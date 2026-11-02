@@ -1,5 +1,5 @@
 import { duelEndVisibleToViewer } from '../src/sim/social/duel_zone';
-import type { SimEvent, Vec3 } from '../src/sim/types';
+import { dist2d, type SimEvent, type Vec3 } from '../src/sim/types';
 
 type CombatEventParty = {
   members: readonly number[];
@@ -11,6 +11,17 @@ type CombatEventParty = {
  * behavior rather than throwing inside the per-session fan-out.
  */
 export type CombatEventOwnerLookup = (entityId: number) => number | null;
+
+/**
+ * The owner lookup the broadcast path binds over the live entity map. A pet acts
+ * for its owner, so combat-event delivery resolves each side to its controller
+ * before comparing against the viewer or viewer party.
+ */
+export function entityOwnerLookup(
+  entities: ReadonlyMap<number, { ownerId?: number | null }>,
+): CombatEventOwnerLookup {
+  return (entityId) => entities.get(entityId)?.ownerId ?? null;
+}
 
 function principalOf(entityId: number, ownerOf: CombatEventOwnerLookup): number {
   return ownerOf(entityId) ?? entityId;
@@ -84,4 +95,19 @@ export function eventAnchor(ev: SimEvent, entities: EventAnchorEntities): Vec3 |
     return { x: ev.x, y: 0, z: ev.z };
   }
   return null; // chat/log etc: broadcast
+}
+
+/**
+ * Whether an event is inside a viewer's event interest: anchorless events
+ * (chat/log) always are; an anchored one when its anchor lies within `radius`
+ * (2D, like every interest check) of the viewer's anchor position.
+ */
+export function eventInRange(
+  ev: SimEvent,
+  entities: EventAnchorEntities,
+  viewerPos: Vec3,
+  radius: number,
+): boolean {
+  const anchor = eventAnchor(ev, entities);
+  return anchor === null || dist2d(viewerPos, anchor) <= radius;
 }

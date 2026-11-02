@@ -73,7 +73,6 @@ import {
 import { threatEntries } from '../src/sim/threat';
 import {
   DT,
-  dist2d,
   type Entity,
   emptyMoveInput,
   FISHING_CAST_ID,
@@ -115,6 +114,7 @@ import { type ActivityDetectDeps, detectActivityEvent } from './activity_detect'
 import { recordOnlineSample } from './admin_db';
 import { type AdminGuildBankView, adminGuildBankView } from './admin_guild_bank_view';
 import { type AdminLiveLocation, adminLiveLocation } from './admin_live_location';
+import { AttackCueFragments } from './attack_cue';
 import { offensiveName } from './auth';
 import type { BackgroundDbGate } from './background_db_gate';
 import type { GuildBankLedgerOp } from './bank_ledger';
@@ -271,7 +271,7 @@ import { isUpdateDue } from './entity_update_cadence';
 import { reconcileOnLogin as reconcileEpicOnLogin } from './epic/mirror';
 import { equippedHistoryJson } from './equipped_history_wire';
 import { equippedInstanceWire } from './equipped_instance_wire';
-import { eventAnchor, shouldDeliverEventToViewer } from './event_delivery';
+import { entityOwnerLookup, eventInRange, shouldDeliverEventToViewer } from './event_delivery';
 import { assembleEventsFrame, filterRoutableEvents, serializeEventFragments } from './event_frame';
 import { buildEventPidIndex, forEachSelectedEventIndex } from './event_pid_index';
 import { appendFarmPlotsWire, dispatchFarmingCommand } from './farming_commands';
@@ -9032,10 +9032,10 @@ export class GameServer {
     // Resolved once per batch, applied per session below against that session's
     // ANCHOR pid (so a spectator watching a fighter refreshes with them).
     const bgRespawnRefresh = this.bgRespawnRefreshPids(routableEvents);
-    // A pet acts for its owner, so combat-event delivery resolves each side to
-    // its controller before comparing against the viewer or viewer party.
-    const ownerOf = (entityId: number): number | null =>
-      this.sim.entities.get(entityId)?.ownerId ?? null;
+    const ownerOf = entityOwnerLookup(this.sim.entities);
+    // Numberless swing cues for in-range bystanders a damage event is kept from
+    // (server/attack_cue.ts); built and stringified at most once per event.
+    const attackCues = new AttackCueFragments(routableEvents, this.sim.entities, EVENT_RADIUS);
     // Guard each session: a throw while routing events to one player must not
     // drop this tick's events for every other session (server/CLAUDE.md).
     forEachGuarded(
@@ -9061,7 +9061,8 @@ export class GameServer {
         forEachSelectedEventIndex(pidIndex, anchorPid, session.pid, (i) => {
           const ev = routableEvents[i];
           if (suppressedInvites?.has(ev)) return;
-          if (!shouldDeliverEventToViewer(ev, anchorPid, anchorParty, ownerOf, anchorPos)) return;
+          if (!shouldDeliverEventToViewer(ev, anchorPid, anchorParty, ownerOf, anchorPos))
+            return attackCues.pushForBystander(i, anchorPos, mine);
           // ignore list: drop chat originating from a character this player has
           // blocked, before it ever reaches their client
           if (
@@ -9147,8 +9148,7 @@ export class GameServer {
             return;
           }
           // world events: only those near this player
-          const anchor = eventAnchor(ev, this.sim.entities);
-          if (anchor === null || dist2d(anchorPos, anchor) <= EVENT_RADIUS) {
+          if (eventInRange(ev, this.sim.entities, anchorPos, EVENT_RADIUS)) {
             mine.push(fragments[i]);
             if (ev.type === 'spellfxAt' && ev.ability === VARKHUL_FORGE_PORTAL_ABILITY_ID) {
               session.needsVarkhulPortalReplay = false;
