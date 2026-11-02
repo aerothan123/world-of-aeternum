@@ -1,3 +1,4 @@
+import { GAME_NAME } from './brand';
 import { applyFrameGeometrySetting } from './game/frame_geometry_settings';
 import { createSubscriptionStoreHooks, storeSnapshotForHud } from './net/subscription_sdk';
 import { captureReferralSlug } from './referral_signup';
@@ -7128,7 +7129,7 @@ function updateSeoMetadata(lang: SupportedLanguage): void {
           {
             '@type': 'WebSite',
             '@id': 'https://worldofclaudecraft.com/#website',
-            name: 'World of ClaudeCraft',
+            name: GAME_NAME,
             alternateName: 'World of Claudecraft',
             url: canonicalHref,
             inLanguage: languageTag(lang),
@@ -7148,7 +7149,7 @@ function updateSeoMetadata(lang: SupportedLanguage): void {
           {
             '@type': 'VideoGame',
             '@id': 'https://worldofclaudecraft.com/#game',
-            name: 'World of ClaudeCraft',
+            name: GAME_NAME,
             alternateName: 'World of Claudecraft',
             genre: t('seo.genre'),
             playMode: t('seo.playMode'),

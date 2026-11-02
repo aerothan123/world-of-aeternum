@@ -7,6 +7,7 @@
 import type { Provider } from '@reown/appkit-adapter-solana';
 import { Transaction, VersionedTransaction } from '@solana/web3.js';
 import bs58 from 'bs58';
+import { GAME_NAME } from '../brand';
 import { CANONICAL_TERMS_URL } from '../client_origin';
 
 export interface WalletConnectState {
@@ -116,8 +117,8 @@ export async function createWalletConnectClient(projectId: string): Promise<Wall
     networks: [solana],
     defaultNetwork: solana,
     metadata: {
-      name: 'World of ClaudeCraft',
-      description: 'Connect a Solana wallet to World of ClaudeCraft',
+      name: GAME_NAME,
+      description: `Connect a Solana wallet to ${GAME_NAME}`,
       url: metadataUrl(),
       icons: ['https://worldofclaudecraft.com/icons/icon-512.png'],
     },

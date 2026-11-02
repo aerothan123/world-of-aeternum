@@ -43,6 +43,7 @@
 // suite proves the real predicates.
 
 import { createHash, randomBytes } from 'node:crypto';
+import { GAME_NAME } from '../src/brand';
 import { itemCopyPin } from '../src/sim/item_copy_ref';
 import type { ItemInstancePayload } from '../src/sim/types';
 import { verifySolanaSignature } from './wallet_link';
@@ -244,7 +245,7 @@ export function buildStepUpMessage(opts: {
           `Agreed price: ${usd(b.usdCents)}`,
         ];
   return [
-    'World of ClaudeCraft $WOC Exchange: authorize moving an item into escrow.',
+    `${GAME_NAME} $WOC Exchange: authorize moving an item into escrow.`,
     '',
     ...action,
     '',

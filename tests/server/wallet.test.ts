@@ -473,7 +473,7 @@ describe('desktop browser wallet handoff routes', () => {
     const nonce = 'ab'.repeat(16);
     desktopWalletHandoffs.authorizeStepUp(7, {
       nonce,
-      message: 'World of ClaudeCraft $WOC Exchange: authorize moving an item into escrow.',
+      message: 'Project H $WOC Exchange: authorize moving an item into escrow.',
       expectedAddress: address,
       expiresAtMs: Date.now() + 60_000,
     });
@@ -490,7 +490,7 @@ describe('desktop browser wallet handoff routes', () => {
     // embeds the nonce line), so the claim wire carries nothing else.
     expect(claimed.body).toEqual({
       kind: 'stepup',
-      message: 'World of ClaudeCraft $WOC Exchange: authorize moving an item into escrow.',
+      message: 'Project H $WOC Exchange: authorize moving an item into escrow.',
       expectedAddress: address,
     });
 

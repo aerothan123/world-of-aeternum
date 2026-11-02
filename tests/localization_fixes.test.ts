@@ -4,6 +4,7 @@ import * as path from 'node:path';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { resolveReportTarget } from '../server/report_target';
 import { DICT as adminDICT, classLabel, setAdminLanguage } from '../src/admin/i18n';
+import { GAME_NAME } from '../src/brand';
 import { DELVE_MOBS } from '../src/sim/content/delves/mobs';
 import { ABILITIES, DUNGEON_LIST, ITEMS } from '../src/sim/data';
 import {
@@ -242,7 +243,7 @@ describe('B1: server log-type messages localize through the log path', () => {
       'Bob is now Officer.',
       'You found the guild <Knights>! You are its Guild Master.',
       'You have left <Knights>.',
-      'Mira has entered World of ClaudeCraft.',
+      'Mira has entered Project H.',
       'Bob has left the world. (disconnected)',
       'Who: 3 players online on Stormforge.',
       'Who: 1 player online on Stormforge.',
@@ -1642,6 +1643,10 @@ describe('S3: every sim.ts emit is recognized (drift guard)', () => {
     // class below would otherwise read `rank` as 5); the bracketed arm has its
     // own matcher cases in tests/server_i18n.test.ts.
     if (/RANK_LABEL|rankLabel\(/.test(expr)) return 'Officer';
+    // The product name rides into the world-entry line as a constant
+    // (src/brand.ts), and the matcher rule is built from the same constant, so
+    // the probe must carry the real name rather than a NAME stand-in.
+    if (/\bGAME_NAME\b/.test(expr)) return GAME_NAME;
     // A rift tier is one letter of the C/B/A/S ladder (RiftTier), and the rift
     // portal announcements' rules match exactly that class, so a NAME probe
     // would fail them for the wrong reason.

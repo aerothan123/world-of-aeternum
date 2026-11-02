@@ -773,7 +773,7 @@ describe('response wrappers expose exactly their pinned key sets', () => {
         ok: true,
         challenge: {
           nonce: 'a'.repeat(32),
-          message: 'World of ClaudeCraft $WOC Exchange: authorize moving an item into escrow.',
+          message: 'Project H $WOC Exchange: authorize moving an item into escrow.',
           expiresAtMs: FAR_FUTURE_MS,
           signatureRequired: true,
         },

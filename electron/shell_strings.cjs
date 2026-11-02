@@ -17,12 +17,12 @@
 const { flattenControlChars } = require('./diagnostics.cjs');
 
 const DEFAULT_SHELL_STRINGS = {
-  crashTitle: 'World of ClaudeCraft',
+  crashTitle: 'Project H',
   crashBody: 'The game view stopped working. Reload it?',
   crashReload: 'Reload',
   crashQuit: 'Quit',
-  fatalTitle: 'World of ClaudeCraft',
-  fatalBody: 'World of ClaudeCraft hit an unexpected error and needs to close.',
+  fatalTitle: 'Project H',
+  fatalBody: 'Project H hit an unexpected error and needs to close.',
   // The host diagnostic's native save dialog (electron/host_diag.cjs): its
   // title, its confirm button, and the file-type label in the format dropdown.
   // Same contract as the crash strings above, for the same reason: the dialog is

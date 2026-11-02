@@ -471,7 +471,7 @@ import * as houseStorageWire from './house_storage_wire';
 import { recordLevelUp } from './progress_events';
 import * as questWire from './quest_command_wire';
 import * as questSnap from './quest_snapshot_wire';
-import { REALM, REALM_PUBLIC_ORIGIN, REALM_RESET_TIME_ZONE } from './realm';
+import { GAME_NAME, REALM, REALM_PUBLIC_ORIGIN, REALM_RESET_TIME_ZONE } from './realm';
 import { RealmMotd } from './realm_motd';
 import { realmMotdStore } from './realm_motd_db';
 import { createRealmReadoutMemo, realmReadoutJson, realmReadoutObject } from './realm_readout_memo';
@@ -3474,7 +3474,7 @@ export class GameServer {
     // broadcast it to everyone (and likewise don't broadcast departures below).
     this.send(session, {
       t: 'events',
-      list: [{ type: 'log', text: `${name} has entered World of ClaudeCraft.`, color: '#ffd100' }],
+      list: [{ type: 'log', text: `${name} has entered ${GAME_NAME}.`, color: '#ffd100' }],
     });
     this.realmMotd.greet(session);
     // firstJoin: the fresh-join path (a resume takes resumeSession, which stamps

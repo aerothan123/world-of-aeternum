@@ -3,6 +3,8 @@
 // and voice-presence shaping. Kept separate from the ws/fetch IO (gateway.ts,
 // discord_api.ts, server_client.ts) so it is unit-tested without a network. This
 // is the same pure/IO split the server uses (wallet_link.ts vs wallet.ts).
+
+import { GAME_NAME } from '../src/brand';
 import { specialRoleByKey, specialRoleByName } from '../src/sim/discord_roles';
 import { DISCORD_STATUS_DEFS, discordStatusByIndex } from '../src/sim/discord_tier';
 import { formatMoney } from '../src/sim/format_money';
@@ -98,8 +100,8 @@ export function isFatalCloseCode(code: number): boolean {
 
 // ── Slash commands ───────────────────────────────────────────────────────────
 export const SLASH_COMMANDS = [
-  { name: 'whoami', description: 'Show your World of ClaudeCraft link status and reward points' },
-  { name: 'link', description: 'Get the link to connect your Discord to World of ClaudeCraft' },
+  { name: 'whoami', description: `Show your ${GAME_NAME} link status and reward points` },
+  { name: 'link', description: `Get the link to connect your Discord to ${GAME_NAME}` },
 ] as const;
 
 export type SlashCommandName = (typeof SLASH_COMMANDS)[number]['name'];
@@ -410,7 +412,7 @@ export function buildWhoamiContent(roles: {
   lifetimePoints: number;
 }): string {
   if (!roles.linked) {
-    return 'Your Discord is not linked to a World of ClaudeCraft account yet. Use /link to connect it and start earning rewards.';
+    return `Your Discord is not linked to a ${GAME_NAME} account yet. Use /link to connect it and start earning rewards.`;
   }
   const rank = tierRoleName(roles.statusTier)?.replace('WoC ', '') ?? 'Unranked';
   return `Linked. Rank: **${rank}** · ${roles.points} reward points (lifetime ${roles.lifetimePoints}).`;
@@ -418,7 +420,7 @@ export function buildWhoamiContent(roles: {
 
 /** /link reply pointing at the in-game link flow. */
 export function buildLinkContent(gameUrl: string): string {
-  return `Connect your Discord to World of ClaudeCraft to earn rewards and flex your characters: open ${gameUrl}, log in, and press the Discord button in the game HUD (or "Continue with Discord" on the login screen).`;
+  return `Connect your Discord to ${GAME_NAME} to earn rewards and flex your characters: open ${gameUrl}, log in, and press the Discord button in the game HUD (or "Continue with Discord" on the login screen).`;
 }
 
 /** Shown when a slash-command reply itself fails (a Discord/network error). */
@@ -448,7 +450,7 @@ export function interactionFailureFallback(
 
 /** Welcome message for a new guild member. */
 export function buildWelcomeMessage(opts: { userMention: string; gameUrl: string }): string {
-  return `Welcome to World of ClaudeCraft, ${opts.userMention}! Play at ${opts.gameUrl} and link your Discord in the game HUD to earn rewards, claim swag, and rank up here in the server.`;
+  return `Welcome to ${GAME_NAME}, ${opts.userMention}! Play at ${opts.gameUrl} and link your Discord in the game HUD to earn rewards, claim swag, and rank up here in the server.`;
 }
 
 // ── Voice presence ───────────────────────────────────────────────────────────
@@ -532,7 +534,7 @@ export function buildQueuePopMessage(item: QueuePopItem, gameUrl: string): Recor
       { name: 'Character', value: item.characterName, inline: true },
       { name: 'Realm', value: item.realm, inline: true },
     ],
-    footer: { text: 'World of ClaudeCraft' },
+    footer: { text: GAME_NAME },
   };
   return {
     embeds: [embed],
@@ -609,7 +611,7 @@ export function buildRelayMessage(item: RelayItem, gameUrl: string): Record<stri
       },
       { name: 'Location', value: `${item.zone} (${item.realm})`, inline: true },
     ],
-    footer: { text: 'World of ClaudeCraft' },
+    footer: { text: GAME_NAME },
   };
   if (item.profileUrl) embed.url = item.profileUrl;
   if (avatarUrl) embed.thumbnail = { url: avatarUrl };
@@ -863,7 +865,7 @@ export function buildActivityMessage(item: ActivityItem): Record<string, unknown
     author: subjectAvatar ? { name: author, icon_url: subjectAvatar } : { name: author },
     title,
     description,
-    footer: { text: 'World of ClaudeCraft' },
+    footer: { text: GAME_NAME },
   };
   if (item.profileUrl) embed.url = item.profileUrl;
   if (subjectAvatar) embed.thumbnail = { url: subjectAvatar };
@@ -967,7 +969,7 @@ export function buildPvpKillFeedMessage(items: readonly PvpKillItem[]): Record<s
         color: 0xb22222,
         author: { name: 'World PvP' },
         description: items.map(pvpKillLine).join('\n'),
-        footer: { text: `World of ClaudeCraft (${realm})` },
+        footer: { text: `${GAME_NAME} (${realm})` },
       },
     ],
     allowed_mentions: { parse: [] },
@@ -1026,7 +1028,7 @@ export function buildHillAnnouncementMessage(item: HillAnnouncementItem): Record
         author: { name: 'King of the Hill' },
         title,
         description,
-        footer: { text: `World of ClaudeCraft (${item.realm || 'the realm'})` },
+        footer: { text: `${GAME_NAME} (${item.realm || 'the realm'})` },
       },
     ],
     allowed_mentions: { parse: [] },
@@ -1095,7 +1097,7 @@ export function buildDailyRewardWinnersMessage(
           { name: 'Prize Pool', value: usd(day.prizePoolUsd), inline: true },
           { name: 'Next task', value: day.nextTaskName, inline: false },
         ],
-        footer: { text: 'World of ClaudeCraft' },
+        footer: { text: GAME_NAME },
       },
     ],
     allowed_mentions: { parse: [] },

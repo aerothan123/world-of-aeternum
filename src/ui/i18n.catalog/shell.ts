@@ -19,14 +19,14 @@ export const shellStrings = {
     seo: {
       title: 'Project H: Sandbox MMO (World of ClaudeCraft fork)',
       description:
-        'Play World of ClaudeCraft, a free browser MMO. Explore, complete quests, and run dungeons with friends. No download required.',
+        'Play Project H, a free browser MMO. Explore, complete quests, and run dungeons with friends. No download required.',
       genre: 'MMORPG',
       playMode: 'Multiplayer',
       applicationCategory: 'Game',
       operatingSystem: 'Web browser',
-      officialLabel: 'Official World of ClaudeCraft website',
+      officialLabel: 'Official Project H website',
       officialBody:
-        'The official home of World of ClaudeCraft. Play online, read the wiki, and find community links here.',
+        'The official home of Project H. Play online, read the wiki, and find community links here.',
     },
     a11y: {
       goHome: 'Go to homepage',
@@ -34,9 +34,9 @@ export const shellStrings = {
       mainNavigation: 'Main navigation',
       languageSelection: 'Language selection',
       characterActions: 'Character actions',
-      githubProject: 'Open the World of ClaudeCraft GitHub project',
-      discordCommunity: 'Join the World of ClaudeCraft Discord community',
-      donateProject: 'Donate to support World of ClaudeCraft',
+      githubProject: 'Open the Project H GitHub project',
+      discordCommunity: 'Join the Project H Discord community',
+      donateProject: 'Donate to support Project H',
     },
     entryGuard: {
       title: 'Graphics lowered',
@@ -166,16 +166,16 @@ export const shellStrings = {
         // the update core deliberately supports): rendering '' through the
         // {version} slot above would read "Update  is ready".
         updateReadyTitleNoVersion: 'Update is ready',
-        updateReadyBody: 'Restart World of ClaudeCraft to apply the update.',
+        updateReadyBody: 'Restart Project H to apply the update.',
         partyInviteTitle: 'Party invite',
         partyInviteBody: '{name} invited you to a party.',
       },
       crash: {
-        title: 'World of ClaudeCraft',
+        title: 'Project H',
         body: 'The game view stopped working. Reload it?',
         reload: 'Reload',
         quit: 'Quit',
-        fatalBody: 'World of ClaudeCraft hit an unexpected error and needs to close.',
+        fatalBody: 'Project H hit an unexpected error and needs to close.',
       },
       // The host diagnostic's native save dialog (electron/host_diag.cjs): the
       // shell opens an OS file dialog, which has no i18n runtime of its own, so
@@ -401,12 +401,12 @@ export const shellStrings = {
       iosInstallDetail:
         'For true fullscreen on iPhone or iPad, install this page to your Home Screen first.',
       iosShareStep: 'In Safari, tap Share, then Add to Home Screen.',
-      iosOpenStep: 'Open World of ClaudeCraft from the new Home Screen icon.',
+      iosOpenStep: 'Open Project H from the new Home Screen icon.',
       androidStandaloneDetail: 'You are in fullscreen app mode. Keep the device in landscape.',
       androidInstallDetail:
         'For fullscreen on Android, install this page or add it to your Home screen first.',
       androidInstallStep: 'In Chrome, tap the menu, then Install app or Add to Home screen.',
-      androidOpenStep: 'Open World of ClaudeCraft from the new icon.',
+      androidOpenStep: 'Open Project H from the new icon.',
       otherStandaloneDetail: 'Keep your device in landscape fullscreen.',
       otherInstallDetail:
         'Install or add this page to your Home screen for the best fullscreen mobile experience.',
@@ -424,8 +424,8 @@ export const shellStrings = {
       confirm: 'Continue',
     },
     serverUnavailable: {
-      title: 'World of ClaudeCraft - World Unavailable',
-      logoAlt: 'World of ClaudeCraft',
+      title: 'Project H - World Unavailable',
+      logoAlt: 'Project H',
       eyebrow: 'World maintenance',
       heading: 'The world is temporarily unavailable.',
       body: 'We are restarting the game service and expect Claudemoon to return shortly. This page will keep checking automatically.',

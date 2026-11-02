@@ -330,7 +330,7 @@ describe('desktop wallet handoff store', () => {
     const nonce = 'a'.repeat(32);
     store.authorizeStepUp(9, {
       nonce,
-      message: 'World of ClaudeCraft $WOC Exchange: authorize moving an item into escrow.',
+      message: 'Project H $WOC Exchange: authorize moving an item into escrow.',
       expectedAddress: 'expected-wallet',
       expiresAtMs: Date.now() + 60_000,
     });
@@ -343,7 +343,7 @@ describe('desktop wallet handoff store', () => {
     expect(store.claim(created.code, '192.0.2.9')).toEqual({
       kind: 'stepup',
       nonce,
-      message: 'World of ClaudeCraft $WOC Exchange: authorize moving an item into escrow.',
+      message: 'Project H $WOC Exchange: authorize moving an item into escrow.',
       expectedAddress: 'expected-wallet',
     });
     expect(() =>

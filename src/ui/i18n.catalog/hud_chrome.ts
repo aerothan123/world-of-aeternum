@@ -510,8 +510,7 @@ export const hudChromeStrings = {
   // (confirm-first so a mid-fight tap never opens the browser by accident).
   wiki: {
     confirmTitle: 'Open the Wiki?',
-    confirmBody:
-      'This opens the World of ClaudeCraft wiki in your browser. The game keeps running.',
+    confirmBody: 'This opens the Project H wiki in your browser. The game keeps running.',
     confirmOpen: 'Open Wiki',
     confirmCancel: 'Cancel',
   },
@@ -987,9 +986,9 @@ export const hudChromeStrings = {
     wallet: {
       title: 'Solana wallet',
       unlinked:
-        'Connect a wallet app, then sign once to link its public address to your WoC account. We never receive your recovery phrase or private key.',
+        'Connect a wallet app, then sign once to link its public address to your Project H account. We never receive your recovery phrase or private key.',
       connectedUnlinked:
-        'The wallet app is connected to this browser, but its public address is not linked to your WoC account yet.',
+        'The wallet app is connected to this browser, but its public address is not linked to your Project H account yet.',
       linkedDisconnected:
         'Your public address is linked. Reconnect that wallet app when you want to pay with SOL or WOC.',
       linkedConnected: 'Your linked wallet app is connected and ready for SOL or WOC purchases.',
@@ -1843,9 +1842,9 @@ export const hudChromeStrings = {
   },
   nativeUpdate: {
     title: 'Update Available',
-    body: 'A new version of World of ClaudeCraft is available. Update now for the latest fixes and improvements.',
+    body: 'A new version of Project H is available. Update now for the latest fixes and improvements.',
     bodyWithVersion:
-      'Version {version} of World of ClaudeCraft is available. Update now for the latest fixes and improvements.',
+      'Version {version} of Project H is available. Update now for the latest fixes and improvements.',
     notNow: 'Not now',
     update: 'Update',
   },
@@ -3470,8 +3469,8 @@ export const hudChromeStrings = {
       offline: 'Offline',
     },
     diagnostics: {
-      panelAria: 'World of ClaudeCraft performance diagnostics',
-      title: 'ClaudeCraft Performance Doctor',
+      panelAria: 'Project H performance diagnostics',
+      title: 'Project H Performance Doctor',
       subtitle: 'A game-specific scan with evidence and code-level fixes.',
       aria: {
         liveMeasurements: 'Live performance measurements',
@@ -3638,7 +3637,7 @@ export const hudChromeStrings = {
         },
       },
       report: {
-        title: 'World of ClaudeCraft performance diagnosis',
+        title: 'Project H performance diagnosis',
         statusLine: 'Status: {status} ({score}/100)',
         capturedLine: 'Captured: {captured}',
         topFindingLine: 'Top finding: {finding}',
@@ -7137,7 +7136,7 @@ export const hudChromeStrings = {
   },
   discord: {
     title: 'Discord',
-    panelTitle: 'World of ClaudeCraft',
+    panelTitle: 'Project H',
     open: 'Discord',
     close: 'Close',
     keybind: 'Discord Panel',
@@ -7362,7 +7361,7 @@ export const hudChromeStrings = {
     // that does not contain the visible text fails WCAG 2.5.3 (Label in Name)
     // for speech input, and the mobile pill's short caption is inside it too.
     wishlist: 'Wishlist on Steam',
-    wishlistAria: 'Wishlist on Steam: open the World of ClaudeCraft store page',
+    wishlistAria: 'Wishlist on Steam: open the Project H store page',
     // The mobile More-tray caption: a 4-column 40px pill cannot hold the full
     // label, so the pill shows this and carries `wishlistAria` as its name.
     wishlistShort: 'Wishlist',
@@ -10819,7 +10818,7 @@ export const hudChromeStrings = {
     // launcher unexplained. Never shown on Capacitor native.
     browserOnlyConfirmTitle: 'Open the $WOC Exchange in your browser?',
     browserOnlyConfirmBody:
-      'The $WOC Exchange runs on the browser version of World of ClaudeCraft only. This opens World of ClaudeCraft in your browser, where you can sign in and open the Exchange; the game keeps running here.',
+      'The $WOC Exchange runs on the browser version of Project H only. This opens Project H in your browser, where you can sign in and open the Exchange; the game keeps running here.',
     browserOnlyConfirmOpen: 'Open in Browser',
     browserOnlyConfirmCancel: 'Cancel',
     // Names no cause (an operator pause and an unhealthy price print both

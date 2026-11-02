@@ -55,7 +55,7 @@ function recording() {
 
 const CHALLENGE = {
   nonce: 'ab'.repeat(16),
-  message: 'World of ClaudeCraft $WOC Exchange: authorize moving an item into escrow.',
+  message: 'Project H $WOC Exchange: authorize moving an item into escrow.',
   expiresAtMs: 5_000,
   signatureRequired: true,
 };

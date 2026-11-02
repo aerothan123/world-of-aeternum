@@ -11,6 +11,7 @@
 // authority for rewards. Pure protocol/diff/embed logic is in ./logic (tested);
 // this file is the wiring. esbuild-bundled for Node via `npm run bot`.
 
+import { GAME_NAME } from '../src/brand';
 import { DISCORD_REWARD_GRANTS } from '../src/sim/discord_tier';
 import { loadConfig } from './config';
 import { DiscordApi, governorFromConfig } from './discord_api';
@@ -372,7 +373,7 @@ async function main(): Promise<void> {
             announced = true;
             void discord
               .createMessage(cfg.testChannelId, {
-                content: `:satellite: World of ClaudeCraft bot online and connected. Two-way sync active. Try \`/whoami\` or \`/link\`. Play at ${cfg.gameUrl}`,
+                content: `:satellite: ${GAME_NAME} bot online and connected. Two-way sync active. Try \`/whoami\` or \`/link\`. Play at ${cfg.gameUrl}`,
               })
               .catch((e) => console.error('[bot] startup announce failed', e));
           }

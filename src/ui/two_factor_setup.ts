@@ -3,6 +3,7 @@
 // directly (tests/two_factor_setup.test.ts) and the DOM wiring stays a thin
 // consumer (the reference pattern in src/ui/unit_portrait.ts).
 
+import { GAME_NAME } from '../brand';
 import { t } from './i18n';
 
 // Authenticator apps display the secret grouped in fours for legibility. We keep
@@ -41,7 +42,7 @@ export function classifyAuthCode(raw: string): { code: string; recoveryCode: str
 export function formatRecoveryCodesFile(
   codes: string[],
   username: string,
-  brand = 'World of ClaudeCraft',
+  brand = GAME_NAME,
 ): string {
   return [
     t('hudChrome.account.recoveryCodesFileHeader', { brand }),

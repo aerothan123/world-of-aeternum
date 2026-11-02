@@ -1,5 +1,10 @@
 import type * as http from 'node:http';
+import { GAME_NAME } from '../src/brand';
 import { DEFAULT_RAID_RESET_TIME_ZONE, isSupportedTimeZone } from './raid_reset';
+
+// The product name rides along with the realm identity so server/game.ts (a
+// monolith under the line-count ratchet) reads it off this existing import.
+export { GAME_NAME };
 
 // The realm (world/shard) this server process serves. In the process-per-realm
 // model each instance hosts exactly one realm — set REALM_NAME per deployment

@@ -1,7 +1,7 @@
 {
-  "name": "World of ClaudeCraft",
-  "short_name": "ClaudeCraft",
-  "description": "World of ClaudeCraft mobile realm",
+  "name": "Project H",
+  "short_name": "Project H",
+  "description": "Project H mobile realm",
   "start_url": "/",
   "scope": "/",
   "display": "fullscreen",

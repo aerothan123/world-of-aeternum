@@ -6,6 +6,8 @@
 // Contributors author ENGLISH only (the `en` block). The maintainer fills other
 // locales at release; a missing locale transparently falls back to `en` (see
 // renderEmail in templates.ts), so the product never ships an empty email.
+
+import { GAME_NAME } from '../../src/brand';
 import type { EmailTemplateKey } from './events';
 
 export interface EmailTemplate {
@@ -17,7 +19,7 @@ export interface EmailTemplate {
 
 export type EmailCatalog = Record<string, Partial<Record<EmailTemplateKey, EmailTemplate>>>;
 
-const BRAND = 'World of ClaudeCraft';
+const BRAND = GAME_NAME;
 
 // English source of truth. {{placeholder}} tokens are filled from the event's
 // EmailData payload. Keep copy plain: no em/en dashes or emoji (repo-wide ban).

@@ -5,6 +5,7 @@
 
 import { ed25519 } from '@noble/curves/ed25519';
 import bs58 from 'bs58';
+import { GAME_NAME } from '../src/brand';
 
 // Base58 alphabet (Bitcoin/Solana). Testing the charset first guarantees the
 // decode below never throws.
@@ -60,7 +61,7 @@ export function buildLinkMessage(opts: {
   issuedAt: string;
 }): string {
   return [
-    `${opts.domain} wants you to link this Solana wallet to your World of ClaudeCraft account.`,
+    `${opts.domain} wants you to link this Solana wallet to your ${GAME_NAME} account.`,
     '',
     `Account: #${opts.accountId}`,
     `Wallet: ${opts.address}`,

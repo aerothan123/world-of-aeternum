@@ -11,6 +11,7 @@
 // only on the KEPT legacy rollback arms, and the route layer adds module-private
 // test/runtime seams (setAccountDbForTests, configureAccountRuntime).
 import type http from 'node:http';
+import { GAME_NAME } from '../src/brand';
 import { deleteAccountAttribution } from './attribution_db';
 import {
   hashPassword,
@@ -82,7 +83,7 @@ import {
 } from './totp';
 
 // Issuer label shown in the user's authenticator app next to the 6-digit code.
-const TOTP_ISSUER = 'World of ClaudeCraft';
+const TOTP_ISSUER = GAME_NAME;
 
 // How long an email-change verification link stays valid.
 export const EMAIL_CHANGE_TTL_HOURS = 24;

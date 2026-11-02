@@ -21,7 +21,7 @@ describe('i18n Translation Foundation', () => {
     expect(getLanguage()).toBe('en');
     expect(t('nav.home')).toBe('Home');
     expect(t('stats.playersOnline')).toBe('Players Online');
-    expect(t('footer.copyright')).toBe('2026 World of ClaudeCraft');
+    expect(t('footer.copyright')).toBe('2026 Project H');
     expect(t('footer.githubLabel')).toBe('Open Source Project');
     expect(t('nav.highscores')).toBe('High Scores');
     expect(t('nav.wiki')).toBe('Wiki');
@@ -44,6 +44,10 @@ describe('i18n Translation Foundation', () => {
     expect(getLanguage()).toBe('es');
     expect(t('nav.home')).toBe('Inicio');
     expect(t('stats.playersOnline')).toBe('Jugadores en Línea');
+    // The es overlay still carries the pre-rename brand: the Project H rename
+    // changed English only (src/brand.ts); the locale overlays follow at the
+    // maintainer's locale pass (docs/i18n-scaling/translation-workflow.md,
+    // "Rewording an existing English value").
     expect(t('footer.copyright')).toBe('2026 World of ClaudeCraft');
     expect(t('footer.githubLabel')).toBe('Proyecto de Código Abierto');
     expect(t('nav.highscores')).toBe('Clasificaciones');

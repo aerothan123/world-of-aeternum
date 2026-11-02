@@ -74,7 +74,7 @@ describe('promptWocMarketBrowserVisit', () => {
     const [title, body, okText, cancelText, onOk] = confirm.mock.calls[0];
     expect(title).toBe('Open the $WOC Exchange in your browser?');
     expect(body).toBe(
-      'The $WOC Exchange runs on the browser version of World of ClaudeCraft only. This opens World of ClaudeCraft in your browser, where you can sign in and open the Exchange; the game keeps running here.',
+      'The $WOC Exchange runs on the browser version of Project H only. This opens Project H in your browser, where you can sign in and open the Exchange; the game keeps running here.',
     );
     expect(okText).toBe('Open in Browser');
     expect(cancelText).toBe('Cancel');

@@ -1,4 +1,6 @@
 // GENERATED new-locale public player-card copy. Spread into PUBLIC_CARD_COPY in player_card.ts.
+
+import { GAME_NAME } from '../src/brand';
 import type { PublicCardCopy } from './player_card';
 
 export const PLAYERCARD_NEW: Record<
@@ -6,15 +8,15 @@ export const PLAYERCARD_NEW: Record<
   PublicCardCopy
 > = {
   da_DK: {
-    gameName: 'World of Claudecraft',
+    gameName: GAME_NAME,
     unknownClass: 'Eventyrer',
     levelClass: 'Niveau {level} {className}',
-    description: '{name} smeder en legende i World of Claudecraft. Slut dig til riget.',
+    description: `{name} smeder en legende i ${GAME_NAME}. Slut dig til riget.`,
     cta: 'Smed din legende',
     missingTitle: 'Kort ikke fundet',
     missingHeading: 'Dette kort er ikke længere tilgængeligt.',
     missingDescription: 'Det kan være pensioneret eller har aldrig eksisteret.',
-    missingCta: 'Træd ind i World of Claudecraft',
+    missingCta: `Træd ind i ${GAME_NAME}`,
     classes: {
       warrior: 'Kriger',
       paladin: 'Paladin',
@@ -28,16 +30,15 @@ export const PLAYERCARD_NEW: Record<
     },
   },
   id_ID: {
-    gameName: 'World of Claudecraft',
+    gameName: GAME_NAME,
     unknownClass: 'Petualang',
     levelClass: '{className} Level {level}',
-    description:
-      '{name} sedang menempa legenda di World of Claudecraft. Bergabunglah dengan ranah ini.',
+    description: `{name} sedang menempa legenda di ${GAME_NAME}. Bergabunglah dengan ranah ini.`,
     cta: 'Tempa legendamu',
     missingTitle: 'Kartu tidak ditemukan',
     missingHeading: 'Kartu ini sudah tidak tersedia.',
     missingDescription: 'Mungkin sudah ditarik atau tidak pernah ada.',
-    missingCta: 'Masuki World of Claudecraft',
+    missingCta: `Masuki ${GAME_NAME}`,
     classes: {
       warrior: 'Prajurit',
       paladin: 'Paladin',
@@ -51,15 +52,15 @@ export const PLAYERCARD_NEW: Record<
     },
   },
   nl_NL: {
-    gameName: 'World of Claudecraft',
+    gameName: GAME_NAME,
     unknownClass: 'Avonturier',
     levelClass: 'Niveau {level} {className}',
-    description: '{name} smeedt een legende in World of Claudecraft. Sluit je aan bij de wereld.',
+    description: `{name} smeedt een legende in ${GAME_NAME}. Sluit je aan bij de wereld.`,
     cta: 'Smeed je legende',
     missingTitle: 'Kaart niet gevonden',
     missingHeading: 'Deze kaart is niet langer beschikbaar.',
     missingDescription: 'Mogelijk is hij teruggetrokken of heeft hij nooit bestaan.',
-    missingCta: 'Betreed World of Claudecraft',
+    missingCta: `Betreed ${GAME_NAME}`,
     classes: {
       warrior: 'Krijger',
       paladin: 'Paladijn',
@@ -73,15 +74,15 @@ export const PLAYERCARD_NEW: Record<
     },
   },
   pl_PL: {
-    gameName: 'World of Claudecraft',
+    gameName: GAME_NAME,
     unknownClass: 'Poszukiwacz przygód',
     levelClass: '{className} na {level} poziomie',
-    description: '{name} tworzy legendę w World of Claudecraft. Dołącz do królestwa.',
+    description: `{name} tworzy legendę w ${GAME_NAME}. Dołącz do królestwa.`,
     cta: 'Wykuj swoją legendę',
     missingTitle: 'Nie znaleziono karty',
     missingHeading: 'Ta karta nie jest już dostępna.',
     missingDescription: 'Mogła zostać wycofana lub nigdy nie istniała.',
-    missingCta: 'Wejdź do World of Claudecraft',
+    missingCta: `Wejdź do ${GAME_NAME}`,
     classes: {
       warrior: 'Wojownik',
       paladin: 'Paladyn',
@@ -95,15 +96,15 @@ export const PLAYERCARD_NEW: Record<
     },
   },
   sv_SE: {
-    gameName: 'World of Claudecraft',
+    gameName: GAME_NAME,
     unknownClass: 'Äventyrare',
     levelClass: 'Nivå {level} {className}',
-    description: '{name} smider en legend i World of Claudecraft. Anslut dig till riket.',
+    description: `{name} smider en legend i ${GAME_NAME}. Anslut dig till riket.`,
     cta: 'Smid din legend',
     missingTitle: 'Kortet hittades inte',
     missingHeading: 'Det här kortet är inte längre tillgängligt.',
     missingDescription: 'Det kan ha dragits tillbaka eller aldrig ha existerat.',
-    missingCta: 'Gå in i World of Claudecraft',
+    missingCta: `Gå in i ${GAME_NAME}`,
     classes: {
       warrior: 'Krigare',
       paladin: 'Paladin',
@@ -117,15 +118,15 @@ export const PLAYERCARD_NEW: Record<
     },
   },
   tr_TR: {
-    gameName: 'World of Claudecraft',
+    gameName: GAME_NAME,
     unknownClass: 'Maceracı',
     levelClass: 'Seviye {level} {className}',
-    description: "{name}, World of Claudecraft'ta bir efsane yaratıyor. Diyara katıl.",
+    description: "{name}, ${GAME_NAME}'ta bir efsane yaratıyor. Diyara katıl.",
     cta: 'Efsaneni yarat',
     missingTitle: 'Kart bulunamadı',
     missingHeading: 'Bu kart artık mevcut değil.',
     missingDescription: 'Emekliye ayrılmış ya da hiç var olmamış olabilir.',
-    missingCta: "World of Claudecraft'a gir",
+    missingCta: "${GAME_NAME}'a gir",
     classes: {
       warrior: 'Savaşçı',
       paladin: 'Paladin',
@@ -139,16 +140,15 @@ export const PLAYERCARD_NEW: Record<
     },
   },
   vi_VN: {
-    gameName: 'World of Claudecraft',
+    gameName: GAME_NAME,
     unknownClass: 'Nhà Phiêu Lưu',
     levelClass: '{className} Cấp {level}',
-    description:
-      '{name} đang rèn nên một huyền thoại tại World of Claudecraft. Hãy gia nhập vương quốc.',
+    description: `{name} đang rèn nên một huyền thoại tại ${GAME_NAME}. Hãy gia nhập vương quốc.`,
     cta: 'Rèn nên huyền thoại của bạn',
     missingTitle: 'Không tìm thấy thẻ',
     missingHeading: 'Thẻ này không còn khả dụng.',
     missingDescription: 'Có thể nó đã bị gỡ bỏ hoặc chưa từng tồn tại.',
-    missingCta: 'Bước vào World of Claudecraft',
+    missingCta: `Bước vào ${GAME_NAME}`,
     classes: {
       warrior: 'Chiến Binh',
       paladin: 'Thánh Kỵ Sĩ',

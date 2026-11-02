@@ -1124,7 +1124,7 @@ describe('PvP kill feed builders', () => {
           description:
             ':crossed_swords: **Kargath** (60) slew **Annthar** (58) in Drakelands\n' +
             ':crossed_swords: **Borin** (60) slew **Kargath** (58) in Drakelands, with 2 assists',
-          footer: { text: 'World of ClaudeCraft (Claudemoon)' },
+          footer: { text: 'Project H (Claudemoon)' },
         },
       ],
       allowed_mentions: { parse: [] },
@@ -1177,7 +1177,7 @@ describe('King of the Hill announcement builder', () => {
           description:
             `It rises <t:${RISES / 1000}:R> and stands until <t:${FALLS / 1000}:t>. ` +
             'The party with the most players standing inside takes it and earns Honor for every minute they hold it.',
-          footer: { text: 'World of ClaudeCraft (Claudemoon)' },
+          footer: { text: 'Project H (Claudemoon)' },
         },
       ],
       allowed_mentions: { parse: [] },

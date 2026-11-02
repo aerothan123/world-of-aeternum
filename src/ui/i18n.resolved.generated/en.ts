@@ -1116,7 +1116,7 @@ export const en: EnTranslations = {
     },
     "wiki": {
       "confirmTitle": "Open the Wiki?",
-      "confirmBody": "This opens the World of ClaudeCraft wiki in your browser. The game keeps running.",
+      "confirmBody": "This opens the Project H wiki in your browser. The game keeps running.",
       "confirmOpen": "Open Wiki",
       "confirmCancel": "Cancel"
     },
@@ -1440,8 +1440,8 @@ export const en: EnTranslations = {
       "armoryBody": "Limited weapon skins from the Season 1 Armory. Account-wide, purely cosmetic, and shown to everyone around you.",
       "wallet": {
         "title": "Solana wallet",
-        "unlinked": "Connect a wallet app, then sign once to link its public address to your WoC account. We never receive your recovery phrase or private key.",
-        "connectedUnlinked": "The wallet app is connected to this browser, but its public address is not linked to your WoC account yet.",
+        "unlinked": "Connect a wallet app, then sign once to link its public address to your Project H account. We never receive your recovery phrase or private key.",
+        "connectedUnlinked": "The wallet app is connected to this browser, but its public address is not linked to your Project H account yet.",
         "linkedDisconnected": "Your public address is linked. Reconnect that wallet app when you want to pay with SOL or WOC.",
         "linkedConnected": "Your linked wallet app is connected and ready for SOL or WOC purchases.",
         "mismatched": "A different wallet is connected. Verify it to replace the linked address, or reconnect the linked wallet.",
@@ -2072,8 +2072,8 @@ export const en: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "Update Available",
-      "body": "A new version of World of ClaudeCraft is available. Update now for the latest fixes and improvements.",
-      "bodyWithVersion": "Version {version} of World of ClaudeCraft is available. Update now for the latest fixes and improvements.",
+      "body": "A new version of Project H is available. Update now for the latest fixes and improvements.",
+      "bodyWithVersion": "Version {version} of Project H is available. Update now for the latest fixes and improvements.",
       "notNow": "Not now",
       "update": "Update"
     },
@@ -3079,8 +3079,8 @@ export const en: EnTranslations = {
         "offline": "Offline"
       },
       "diagnostics": {
-        "panelAria": "World of ClaudeCraft performance diagnostics",
-        "title": "ClaudeCraft Performance Doctor",
+        "panelAria": "Project H performance diagnostics",
+        "title": "Project H Performance Doctor",
         "subtitle": "A game-specific scan with evidence and code-level fixes.",
         "aria": {
           "liveMeasurements": "Live performance measurements",
@@ -3228,7 +3228,7 @@ export const en: EnTranslations = {
           }
         },
         "report": {
-          "title": "World of ClaudeCraft performance diagnosis",
+          "title": "Project H performance diagnosis",
           "statusLine": "Status: {status} ({score}/100)",
           "capturedLine": "Captured: {captured}",
           "topFindingLine": "Top finding: {finding}",
@@ -5422,7 +5422,7 @@ export const en: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "Project H",
       "open": "Discord",
       "close": "Close",
       "keybind": "Discord Panel",
@@ -5608,7 +5608,7 @@ export const en: EnTranslations = {
       "benefits": "Link your Steam account from the desktop app to mirror the deeds you earn into Steam achievements.",
       "noTicket": "Steam did not provide a link ticket. Start Steam, then try again.",
       "wishlist": "Wishlist on Steam",
-      "wishlistAria": "Wishlist on Steam: open the World of ClaudeCraft store page",
+      "wishlistAria": "Wishlist on Steam: open the Project H store page",
       "wishlistShort": "Wishlist"
     },
     "epic": {
@@ -7679,7 +7679,7 @@ export const en: EnTranslations = {
       "loadFailed": "The Exchange could not be reached. Try again shortly.",
       "disabledRealm": "The $WOC Exchange is not available on this realm.",
       "browserOnlyConfirmTitle": "Open the $WOC Exchange in your browser?",
-      "browserOnlyConfirmBody": "The $WOC Exchange runs on the browser version of World of ClaudeCraft only. This opens World of ClaudeCraft in your browser, where you can sign in and open the Exchange; the game keeps running here.",
+      "browserOnlyConfirmBody": "The $WOC Exchange runs on the browser version of Project H only. This opens Project H in your browser, where you can sign in and open the Exchange; the game keeps running here.",
       "browserOnlyConfirmOpen": "Open in Browser",
       "browserOnlyConfirmCancel": "Cancel",
       "pausedBanner": "Trading is paused. Auctions keep counting down; new listings, bids, offers, and payments wait until trading resumes, and a payment already sent still settles.",
@@ -9266,8 +9266,8 @@ export const en: EnTranslations = {
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
-    "brandShort": "ClaudeCraft",
+    "brand": "Project H",
+    "brandShort": "Project H",
     "tagline": "A classic-style MMO you play free in your browser.",
     "skipToContent": "Skip to main content",
     "loading": "Loading...",
@@ -9344,7 +9344,7 @@ export const en: EnTranslations = {
       "github": "Source on GitHub",
       "discord": "Join the Discord",
       "communityWiki": "Community Wiki",
-      "rights": "World of ClaudeCraft",
+      "rights": "Project H",
       "linksLabel": "Play and community links",
       "guidesLabel": "Player guides",
       "guideFree": "Free MMORPGs",
@@ -9376,7 +9376,7 @@ export const en: EnTranslations = {
     },
     "home": {
       "eyebrow": "Classic-style browser MMO",
-      "title": "World of ClaudeCraft",
+      "title": "Project H",
       "subtitle": "Explore the world, take on quests, and tackle dungeons with friends.",
       "ctaPlay": "Play Now",
       "ctaLearn": "How to Play",
@@ -10357,7 +10357,7 @@ export const en: EnTranslations = {
     },
     "worldPage": {
       "heading": "The world",
-      "intro": "World of ClaudeCraft is one continuous land you cross on foot. The old road runs south to north through the starting valley, the marsh, and the peaks, and it keeps climbing past them into the hollow beyond and the snow country at the top of the map. A column of higher realms opens off that road to the west and another to the east, and an island sits off the Vale's east coast. There is no fast travel, no flight paths, and no taxis: every journey is walked or ridden, so getting there is part of the adventure.\n\nThe land also keeps time. A day and night cycle runs on a real clock shared by everyone on your world, so the sky grades from dawn through noon to dusk and dark for all of you at once, the moon comes and goes through its phases, and the light on the ground changes with it. The dial around your minimap is where you read the hour.",
+      "intro": "Project H is one continuous land you cross on foot. The old road runs south to north through the starting valley, the marsh, and the peaks, and it keeps climbing past them into the hollow beyond and the snow country at the top of the map. A column of higher realms opens off that road to the west and another to the east, and an island sits off the Vale's east coast. There is no fast travel, no flight paths, and no taxis: every journey is walked or ridden, so getting there is part of the adventure.\n\nThe land also keeps time. A day and night cycle runs on a real clock shared by everyone on your world, so the sky grades from dawn through noon to dusk and dark for all of you at once, the moon comes and goes through its phases, and the light on the ground changes with it. The dial around your minimap is where you read the hour.",
       "hub": "Home base",
       "mapHeading": "The road and the realms beyond",
       "mapSub": "The quest trail runs south to north up the middle of the map: valley, marsh, peaks, and on past them into the hollow and the snow beyond. The other realms open off that road rather than after it, through gates east and west of the marsh road, with the island of the Farshore reached from the Vale's east coast. What keeps you out of the far realms is their level bands, not the walk: five of them share the top band, so once you are ready you can take them in any order. The Farshore is the exception, low-level country you can visit early.",
@@ -13908,7 +13908,7 @@ export const en: EnTranslations = {
     "realmName": "World Name"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
+    "copyright": "2026 Project H",
     "githubLink": "https://github.com/levy-street/world-of-claudecraft",
     "githubLabel": "Open Source Project",
     "whitepaper": "Whitepaper",
@@ -13974,7 +13974,7 @@ export const en: EnTranslations = {
     "serverOnline": "Online",
     "serverOffline": "Offline",
     "play": "Play",
-    "playAria": "Play World of ClaudeCraft",
+    "playAria": "Play Project H",
     "playLoading": "Loading",
     "playStarting": "Starting",
     "serverLabel": "Choose your world",
@@ -14463,12 +14463,12 @@ export const en: EnTranslations = {
     "extensionHelp": "Choose an installed browser wallet, or open Reown AppKit for Phantom, Solflare, Backpack, and more.",
     "mobileAppHelp": "Choose Phantom or Solflare. Your wallet app will ask for approval. Keep this game open and return to it when finished.",
     "seekerAppHelp": "Continue with Seed Vault Wallet. Review the connection and verification requests in Seed Vault, then return to the game.",
-    "standaloneAppHelp": "Wallet connections are not available in the Home Screen app yet. Open World of ClaudeCraft in Safari or Chrome to use Phantom or Solflare.",
+    "standaloneAppHelp": "Wallet connections are not available in the Home Screen app yet. Open Project H in Safari or Chrome to use Phantom or Solflare.",
     "openAppTitle": "Continue in {wallet}",
     "openAppHelp": "Open {wallet} to review this request. Keep this game tab open while the wallet app is active.",
     "openAppButton": "Open {wallet}",
     "manualReturnBrowserHelp": "After approval, return to this game tab. If iOS opens another browser, close it and return to the original browser manually.",
-    "manualReturnStandaloneHelp": "After approval, return to World of ClaudeCraft from your Home Screen. If iOS opens a browser, close it and reopen the Home Screen app manually.",
+    "manualReturnStandaloneHelp": "After approval, return to Project H from your Home Screen. If iOS opens a browser, close it and reopen the Home Screen app manually.",
     "preparingAppButton": "Preparing {wallet}...",
     "walletAppUnavailable": "{wallet} could not be prepared. Close this window and try again.",
     "flowConnect": "Choose a wallet. Verification continues automatically.",
@@ -14484,12 +14484,12 @@ export const en: EnTranslations = {
       "paymentBody": "Choose the wallet linked to your account and approve the transaction in this browser.",
       "stepUpBody": "Choose the wallet linked to your account and sign the $WOC Exchange authorization message. Signing is free and moves no funds.",
       "extensionHelp": "No compatible wallet extension was found. Install or unlock Phantom, Solflare, or another Solana browser wallet, then retry.",
-      "safety": "World of ClaudeCraft never asks for your recovery phrase or private key.",
+      "safety": "Project H never asks for your recovery phrase or private key.",
       "continueWith": "Continue with {wallet}",
       "reviewTitle": "Review in your wallet",
       "reviewBody": "Follow the prompt from {wallet}. Keep this browser page open.",
       "completeTitle": "Wallet authorization complete",
-      "completeBody": "You can return to the World of ClaudeCraft desktop app.",
+      "completeBody": "You can return to the Project H desktop app.",
       "returnButton": "Return to desktop app",
       "failed": "Wallet authorization failed or expired. Return to the desktop app and try again.",
       "retry": "Retry"
@@ -14587,7 +14587,7 @@ export const en: EnTranslations = {
     "levelClass": "Level {level} - {className}",
     "topPercent": "TOP {percent}%",
     "realmSubtitle": "{realm} World",
-    "defaultRealm": "World of ClaudeCraft",
+    "defaultRealm": "Project H",
     "brandWordmark": "WORLD OF CLAUDECRAFT",
     "recruited": "{count} recruited",
     "footerHandle": "@{handle}",
@@ -14595,8 +14595,8 @@ export const en: EnTranslations = {
     "footerCta": "Forge your legend: {siteUrl}",
     "arenaStat": "Arena",
     "shareTierBit": ", {tier}-rank $WOC holder",
-    "shareText": "I'm forging my legend in World of ClaudeCraft: Level {level} {className}{tierBit}. Join my world:",
-    "nativeShareTitle": "World of ClaudeCraft",
+    "shareText": "I'm forging my legend in Project H: Level {level} {className}{tierBit}. Join my world:",
+    "nativeShareTitle": "Project H",
     "fileNameFallback": "player",
     "actionShareX": "Share to X",
     "actionCopyReferral": "Copy Referral Link",
@@ -15467,13 +15467,13 @@ export const en: EnTranslations = {
   },
   "seo": {
     "title": "Project H: Sandbox MMO (World of ClaudeCraft fork)",
-    "description": "Play World of ClaudeCraft, a free browser MMO. Explore, complete quests, and run dungeons with friends. No download required.",
+    "description": "Play Project H, a free browser MMO. Explore, complete quests, and run dungeons with friends. No download required.",
     "genre": "MMORPG",
     "playMode": "Multiplayer",
     "applicationCategory": "Game",
     "operatingSystem": "Web browser",
-    "officialLabel": "Official World of ClaudeCraft website",
-    "officialBody": "The official home of World of ClaudeCraft. Play online, read the wiki, and find community links here."
+    "officialLabel": "Official Project H website",
+    "officialBody": "The official home of Project H. Play online, read the wiki, and find community links here."
   },
   "a11y": {
     "goHome": "Go to homepage",
@@ -15481,9 +15481,9 @@ export const en: EnTranslations = {
     "mainNavigation": "Main navigation",
     "languageSelection": "Language selection",
     "characterActions": "Character actions",
-    "githubProject": "Open the World of ClaudeCraft GitHub project",
-    "discordCommunity": "Join the World of ClaudeCraft Discord community",
-    "donateProject": "Donate to support World of ClaudeCraft"
+    "githubProject": "Open the Project H GitHub project",
+    "discordCommunity": "Join the Project H Discord community",
+    "donateProject": "Donate to support Project H"
   },
   "entryGuard": {
     "title": "Graphics lowered",
@@ -15582,16 +15582,16 @@ export const en: EnTranslations = {
     "notify": {
       "updateReadyTitle": "Update {version} is ready",
       "updateReadyTitleNoVersion": "Update is ready",
-      "updateReadyBody": "Restart World of ClaudeCraft to apply the update.",
+      "updateReadyBody": "Restart Project H to apply the update.",
       "partyInviteTitle": "Party invite",
       "partyInviteBody": "{name} invited you to a party."
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "Project H",
       "body": "The game view stopped working. Reload it?",
       "reload": "Reload",
       "quit": "Quit",
-      "fatalBody": "World of ClaudeCraft hit an unexpected error and needs to close."
+      "fatalBody": "Project H hit an unexpected error and needs to close."
     },
     "hostDiag": {
       "saveTitle": "Save system report",
@@ -15758,11 +15758,11 @@ export const en: EnTranslations = {
     "iosStandaloneDetail": "You are in home-screen fullscreen mode. Keep the device in landscape.",
     "iosInstallDetail": "For true fullscreen on iPhone or iPad, install this page to your Home Screen first.",
     "iosShareStep": "In Safari, tap Share, then Add to Home Screen.",
-    "iosOpenStep": "Open World of ClaudeCraft from the new Home Screen icon.",
+    "iosOpenStep": "Open Project H from the new Home Screen icon.",
     "androidStandaloneDetail": "You are in fullscreen app mode. Keep the device in landscape.",
     "androidInstallDetail": "For fullscreen on Android, install this page or add it to your Home screen first.",
     "androidInstallStep": "In Chrome, tap the menu, then Install app or Add to Home screen.",
-    "androidOpenStep": "Open World of ClaudeCraft from the new icon.",
+    "androidOpenStep": "Open Project H from the new icon.",
     "otherStandaloneDetail": "Keep your device in landscape fullscreen.",
     "otherInstallDetail": "Install or add this page to your Home screen for the best fullscreen mobile experience."
   },
@@ -15778,8 +15778,8 @@ export const en: EnTranslations = {
     "confirm": "Continue"
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - World Unavailable",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "Project H - World Unavailable",
+    "logoAlt": "Project H",
     "eyebrow": "World maintenance",
     "heading": "The world is temporarily unavailable.",
     "body": "We are restarting the game service and expect Claudemoon to return shortly. This page will keep checking automatically.",

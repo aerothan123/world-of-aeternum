@@ -8,6 +8,7 @@
 // pos), so the page leaks nothing the public JSON wouldn't.
 
 import type * as http from 'node:http';
+import { GAME_NAME } from '../src/brand';
 import { accountLedgerKeysFor } from './account_ledger_keys_cache';
 import { avatarPng, isPlayerClass, isValidSkin } from './avatar';
 import {
@@ -54,8 +55,6 @@ function escapeXml(s: string): string {
 function toSheetRank(rank: { rank: number; total: number } | null): SheetRank | null {
   return rank ? { scope: 'realm', rank: rank.rank, total: rank.total } : null;
 }
-
-const GAME_NAME = 'World of ClaudeCraft';
 
 // ── GET /c/:name ───────────────────────────────────────────────────────────
 

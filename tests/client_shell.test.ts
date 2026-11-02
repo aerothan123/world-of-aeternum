@@ -1008,7 +1008,7 @@ describe('client HTML shell', () => {
       '<meta name="robots" content="index, follow, max-image-preview:large" />',
     );
     expect(html).toContain('<link rel="canonical" href="https://worldofclaudecraft.com/" />');
-    expect(html).toContain('<meta property="og:site_name" content="World of ClaudeCraft" />');
+    expect(html).toContain('<meta property="og:site_name" content="Project H" />');
     expect(html).toContain('"alternateName": "World of Claudecraft"');
     expect(html).toContain('"https://github.com/levy-street/world-of-claudecraft"');
     expect(mainTs).toContain("alternateName: 'World of Claudecraft'");
