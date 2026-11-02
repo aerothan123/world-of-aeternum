@@ -9455,6 +9455,29 @@ export type SimEvent = { pid?: number } & (
       // one-shot animation already began at projectile launch.
       attackAnimationStarted?: true;
     }
+  // ONLINE-ONLY presentation mirror of a `damage` event for a nearby viewer who
+  // is on neither side of it and in no party with either side: the server keeps
+  // the numbered event to its participants (server/event_delivery.ts, for the
+  // combat log, FCT and meters) and derives this cue for bystanders in event
+  // range (server/attack_cue.ts) so they still see and hear the swing. Same
+  // source, target, school, ability label and id, outcome kind and crit flag as
+  // the damage event; `landed` (anything got through) and `absorbed` (a shield
+  // soaked some) replace the amounts. The offline Sim never emits it: there the
+  // renderer reads the damage event itself. Clients present it as a numberless
+  // damage event (src/render/attack_cue_core.ts); nothing logs or counts it.
+  | {
+      type: 'attackCue';
+      sourceId: number;
+      targetId: number;
+      school: string;
+      ability: string | null;
+      abilityId?: string | null;
+      kind: DamageEventKind;
+      crit: boolean;
+      landed: boolean;
+      absorbed?: true;
+      attackAnimationStarted?: true;
+    }
   | {
       type: 'heal';
       targetId: number;

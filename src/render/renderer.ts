@@ -71,6 +71,7 @@ import { buildAoeRingMesh } from './aoe_ring_mesh';
 import { arrivalCoverActive, noteArrivalIfTeleported } from './arrival_cover';
 import { ktx2RetainedSourceBytes } from './assets/ktx2_mip_release';
 import { formatResidencyBudget, residencyBudget } from './assets/residency_budget';
+import { presentedCombatEvent } from './attack_cue_core';
 import type { AmbientPointSource, SpatialAudioSink, Surface } from './audio_sink';
 import {
   AuthoredLightingRig,
@@ -7109,11 +7110,13 @@ export class Renderer {
   }
 
   handleEvent(ev: SimEvent): void {
+    // A bystander attack cue presents as the damage event it mirrors (attack_cue_core.ts).
+    const presented = presentedCombatEvent(ev);
     // Spell Effects judges each effect by this event's caster; dispatched via
     // the prototype so a host that borrows handleEvent reaches the switch too.
-    const scope = enterSpellEvent(ev);
+    const scope = enterSpellEvent(presented);
     try {
-      Renderer.prototype.dispatchEvent.call(this, ev);
+      Renderer.prototype.dispatchEvent.call(this, presented);
     } finally {
       leaveSpellEvent(scope);
     }
@@ -8577,12 +8580,13 @@ export class Renderer {
 
   /** Seconds this damage event's presentation is held for its swing's blade contact. */
   contactDelayFor(ev: object): number {
-    return this.contactQueue.delayFor(ev);
+    return this.contactQueue.delayFor(presentedCombatEvent(ev));
   }
 
-  /** Run `fn(ev)` on `self` at this event's blade contact (at once, unallocated, with none). */
+  /** Run `fn(ev)` on `self` at this event's blade contact (at once, unallocated, with none);
+   *  a bystander attack cue is handed over as the damage event it presents as. */
   atContact<E extends object, S>(ev: E, fn: (this: S, ev: E) => void, self: S): void {
-    this.contactQueue.atContact(ev, performance.now(), fn, self);
+    this.contactQueue.atContact(presentedCombatEvent(ev), performance.now(), fn, self);
   }
 
   private playShoutFx(
