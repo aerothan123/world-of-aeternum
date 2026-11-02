@@ -11,15 +11,44 @@ import { type HouseLotDef, houseLotById, houseLotForDungeon } from '../content/h
 import { FURNISHING_STARTER_RECIPE_IDS } from '../content/recipes';
 import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
-import { dist2d, type Entity } from '../types';
+import { DT, dist2d, type Entity } from '../types';
+import type { HousingPlayerState } from './house_state';
 
 /** How close to a lot's door a purchase must be made (yards). Generous next to
  *  the 2yd walk-in trigger, so the prompt the door raised can still be
  *  accepted after the buyer steps back out of the trigger. */
 export const HOUSE_PURCHASE_RANGE = 10;
 
-/** Seconds between door prompts for a player standing in a lot's trigger. */
+/** The floor between two door prompts to the same player (seconds): a buyer
+ *  oscillating on the trigger's edge is offered at most this often. The
+ *  per-approach rule below is what actually silences a player who stands in
+ *  the trigger. */
 export const HOUSE_OFFER_NOTICE_SECONDS = 4;
+
+/** The walk-in trigger fires every tick a player stands in it; a stand whose
+ *  last trigger tick is older than this gap (seconds) has been broken, so the
+ *  next trigger tick is a fresh approach. One tick plus slack. */
+const HOUSE_DOOR_STAND_GAP_SECONDS = DT * 1.5;
+
+/**
+ * Whether this trigger tick owes the player a purchase prompt, and records
+ * the tick as the player's current stand at this lot's door either way. A
+ * prompt is owed ONCE per approach: the first trigger tick after the player
+ * was NOT standing in this lot's trigger on the previous tick (they walked
+ * in, or came back after leaving), never while the stand continues (the
+ * reported bug: a 20 Hz trigger re-prompting the same standing player), and
+ * never inside HOUSE_OFFER_NOTICE_SECONDS of the last prompt.
+ */
+export function houseOfferDue(meta: HousingPlayerState, lotId: string, time: number): boolean {
+  const stand = meta.houseDoorStand;
+  const standing =
+    stand !== undefined && stand.lotId === lotId && time - stand.at <= HOUSE_DOOR_STAND_GAP_SECONDS;
+  meta.houseDoorStand = { lotId, at: time };
+  if (standing) return false;
+  if (time < (meta.houseOfferAt ?? -Infinity) + HOUSE_OFFER_NOTICE_SECONDS) return false;
+  meta.houseOfferAt = time;
+  return true;
+}
 
 /** The client-facing view of a player's own house (IWorld myHouse). */
 export interface HouseView {
@@ -43,10 +72,10 @@ export function houseInstanceKey(meta: PlayerMeta): string {
  * `undefined` when `dungeonId` is not a house lot (the caller runs the normal
  * dungeon rules); the owner's instance key when they may enter; `null` when the
  * door refuses. A refusal to a living non-owner raises the purchase prompt,
- * throttled because the walk-in trigger fires every tick. A released spirit is
- * refused silently: a house is never a place to resurrect. `devBypass` (the
- * dev-command door bypass, never in production) admits a tester into their
- * own copy of any lot as if they owned it.
+ * once per approach (houseOfferDue, since the walk-in trigger fires every
+ * tick). A released spirit is refused silently: a house is never a place to
+ * resurrect. `devBypass` (the dev-command door bypass, never in production)
+ * admits a tester into their own copy of any lot as if they owned it.
  */
 export function houseEntryKey(
   ctx: SimContext,
@@ -61,8 +90,7 @@ export function houseEntryKey(
   if (e.ghost) return null;
   if (meta.house?.lot === lot.id || devBypass) return houseInstanceKey(meta);
   if (preflightOnly) return null;
-  if (ctx.time >= (meta.houseOfferAt ?? -Infinity) + HOUSE_OFFER_NOTICE_SECONDS) {
-    meta.houseOfferAt = ctx.time;
+  if (houseOfferDue(meta, lot.id, ctx.time)) {
     ctx.emit({
       type: 'houseOffer',
       pid: meta.entityId,

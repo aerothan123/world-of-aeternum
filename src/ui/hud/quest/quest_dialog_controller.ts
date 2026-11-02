@@ -19,7 +19,6 @@ import { esc } from '../../esc';
 import type { FocusTrapHandle } from '../../focus_manager';
 import { captureFocusKey, findFocusKey } from '../../focus_restore';
 import { type TranslationKey, t } from '../../i18n';
-import { QUALITY_COLOR } from '../../icons';
 import { NPC_WINDOW_CLOSE_RANGE } from '../../npc_service_range';
 import type { PainterHostPresentation } from '../../painter_host';
 import { clueHuntTitle } from '../../quest_event_view';
@@ -47,7 +46,11 @@ import { gossipMenuIsEmpty } from './gossip_menu';
 import { hearthstoneAttuneRowFaction } from './hearthstone_attune_row_core';
 import { masterCraftTarget } from './master_craft_core';
 import { PROF_INTRO_QUEST_ID, professionIntroHintVisible } from './prof_intro_hint_core';
-import { questRewardChoiceHtml, questRewardChoiceModel } from './quest_reward_choice_view';
+import {
+  questFixedRewardRowHtml,
+  questRewardChoiceHtml,
+  questRewardChoiceModel,
+} from './quest_reward_choice_view';
 import { seasonalTownsfolkRows, seasonalTownsfolkRowsSig } from './trick_or_treat_row_view';
 
 /** One string per offerable-row set, for cheap open-dialog change detection
@@ -977,8 +980,9 @@ export class QuestDialogController {
     // (or any authored reward on a quest without choices) is a fixed row.
     const rewardItemId = questFixedReward(quest, world.cfg.playerClass);
     if (rewardItemId) {
-      const item = ITEMS[rewardItemId];
-      html += `<div class="qd-reward-row" data-reward><span class="qd-reward-label">${esc(t('questUi.detail.itemReward'))}</span><span class="ui-socket ui-socket--bag">${this.deps.itemIcon(item)}</span><span class="qd-reward-name" style="color:${QUALITY_COLOR[item.quality ?? 'common'] ?? 'var(--color-quality-default)'}">${esc(itemDisplayName(item))}</span></div>`;
+      html += questFixedRewardRowHtml(ITEMS[rewardItemId], {
+        itemIcon: (it) => this.deps.itemIcon(it),
+      });
     }
     const choices = this.rewardChoices(questId);
     if (choices) {

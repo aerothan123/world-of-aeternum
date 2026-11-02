@@ -204,13 +204,17 @@ describe('questlog_window: no magic values (DOM painter)', () => {
     expect(rgb, `rgb colors: ${rgb.join(', ')}`).toEqual([]);
   });
 
-  // Pin moved: the bare .q-* family is a socket RIM (border plus glow), so the
-  // class alone left the reward NAME uncolored and haloed. The color now comes
-  // from the shared itemNameColor (a token or the QUALITY_COLOR map, never a
-  // literal minted here), and the class stays for the rim and for this pin.
-  it('colors the reward name through the shared itemNameColor, keeping the quality class', () => {
-    expect(code).toContain('q-$' + "{item.quality ?? 'common'}");
-    expect(code).toContain('style="color:$' + '{itemNameColor(item)}');
+  // Pin moved twice: the bare .q-* family is a socket RIM (border plus glow),
+  // so the class alone left the reward NAME uncolored and haloed; the color
+  // comes from the shared itemNameColor (a token or the QUALITY_COLOR map,
+  // never a literal minted here). The row itself now comes from the shared
+  // reward-slot painter (hud/quest/quest_reward_choice_view.ts), which the NPC
+  // quest dialog paints too, so this window mints no reward markup of its own
+  // (the tiny-icon drift the dialog shipped is pinned there).
+  it('paints the reward row through the shared reward-slot painter, never its own markup', () => {
+    expect(code).toContain('questFixedRewardRowHtml(');
+    expect(code).not.toContain('q-$' + "{item.quality ?? 'common'}");
+    expect(code).not.toContain('style="color:$');
   });
 
   it('carries no literal em dash in source', () => {

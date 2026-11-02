@@ -13820,9 +13820,12 @@
     outline: 2px solid var(--color-border-focus);
     outline-offset: 2px;
   }
+  /* The prompt is a centred plate (text-align above), so its button row is
+     centred too: a right-flushed Buy House / Decline pair under centred text
+     read as off-centre in the house purchase prompt. */
   .prompt-actions {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     gap: var(--spacing-sm);
   }
   .prompt-actions .btn {

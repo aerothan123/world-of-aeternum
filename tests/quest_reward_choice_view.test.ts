@@ -1,10 +1,13 @@
 // @vitest-environment happy-dom
 
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { ITEMS, QUESTS } from '../src/sim/data';
 import { defaultRewardChoice } from '../src/sim/quests/quest_reward_choice';
 import type { ItemDef } from '../src/sim/types';
 import {
+  questFixedRewardRowHtml,
   questRewardChoiceHtml,
   questRewardChoiceModel,
 } from '../src/ui/hud/quest/quest_reward_choice_view';
@@ -75,5 +78,69 @@ describe('quest reward choice view', () => {
     } finally {
       delete ITEMS[hostile];
     }
+  });
+});
+
+// The reward-slot family: the NPC quest dialog and the quest log paint the
+// SAME socket (the dialog once minted its own row with a bare .ui-socket, so
+// the generic 28px .item-icon sat tiny inside its 40px frame).
+describe('quest reward slot family (dialog and log share it)', () => {
+  const SOCKET_CLASSES = ['qd-reward-socket', 'ui-socket', 'ui-socket--bag'];
+
+  it('the fixed Item reward row carries the bag socket, the card, and the quality name', () => {
+    const item = ITEMS[offered[0]];
+    const host = document.createElement('div');
+    host.innerHTML = questFixedRewardRowHtml(item, { itemIcon });
+    const row = host.querySelector<HTMLElement>('[data-reward]');
+    expect(row?.classList.contains('qd-reward-row')).toBe(true);
+    expect(row?.classList.contains('qd-reward-fixed')).toBe(true);
+    expect(row?.classList.contains('ui-card')).toBe(true);
+    const socket = row?.querySelector<HTMLElement>('.qd-reward-socket');
+    for (const cls of SOCKET_CLASSES) expect(socket?.classList.contains(cls)).toBe(true);
+    expect(socket?.querySelector('[data-icon]')?.getAttribute('data-icon')).toBe(item.id);
+    expect(row?.querySelector('.qd-reward-label')?.textContent).toBe('Item reward:');
+    expect(row?.querySelector('.qd-reward-name')?.classList.contains(`q-${item.quality}`)).toBe(
+      true,
+    );
+  });
+
+  it('every choice card wears the same socket as the fixed row', () => {
+    const model = questRewardChoiceModel(QUEST, 'warrior', null);
+    if (!model) throw new Error('q_wolves offers no choice');
+    for (const interactive of [true, false]) {
+      const host = document.createElement('div');
+      host.innerHTML = questRewardChoiceHtml(model, { itemIcon }, interactive);
+      const sockets = host.querySelectorAll<HTMLElement>(
+        '[data-reward-choice] > .qd-reward-socket',
+      );
+      expect(sockets).toHaveLength(model.itemIds.length);
+      for (const socket of sockets) {
+        for (const cls of SOCKET_CLASSES) expect(socket.classList.contains(cls)).toBe(true);
+      }
+    }
+  });
+
+  it('both windows mint the fixed row through the shared painter, never their own markup', () => {
+    for (const file of [
+      'src/ui/hud/quest/quest_dialog_controller.ts',
+      'src/ui/hud/quest/questlog_window.ts',
+    ]) {
+      const src = readFileSync(join(process.cwd(), file), 'utf8');
+      expect(src, file).toContain('questFixedRewardRowHtml(');
+      expect(src, file).not.toContain("t('questUi.detail.itemReward')");
+      expect(src, file).not.toContain('ui-socket--bag');
+    }
+  });
+
+  it("the socket sizing rules are unscoped, so the dialog gets the log's frame", () => {
+    const css = readFileSync(join(process.cwd(), 'src/styles/components.css'), 'utf8');
+    const rule = (selector: string) => {
+      const m = css.match(new RegExp(`\\n  ${selector.replace(/[.-]/g, '\\$&')} \\{([^}]*)\\}`));
+      return m?.[1] ?? null;
+    };
+    expect(rule('.qd-reward-socket')).toContain('flex: 0 0 var(--socket-size-bag)');
+    expect(rule('.qd-reward-socket .item-icon')).toMatch(/width: 100%;\s+height: 100%;/);
+    expect(rule('.qd-reward-fixed')).toContain('padding: var(--spacing-sm)');
+    expect(css).not.toMatch(/#quest-log-window \.qd-reward-(socket|row)/);
   });
 });

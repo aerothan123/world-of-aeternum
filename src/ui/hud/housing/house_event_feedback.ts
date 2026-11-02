@@ -5,6 +5,13 @@
 //
 // The house name and price are interpolated into the prompt's HTML, so both
 // pass through esc().
+//
+// The purchase prompt is shown ONCE while it is open: the sim offers once per
+// approach (housing/ownership.ts houseOfferDue), and this side keeps the last
+// offer prompt per host, so a repeated offer for the same lot (a replayed
+// event, a version-skewed server) never stacks a second identical prompt
+// behind the first. Keyed on the host through a WeakMap so the Hud grows no
+// field and two hosts never share a prompt.
 
 import { esc } from '../../esc';
 import { formatMoney, t } from '../../i18n';
@@ -19,9 +26,33 @@ export interface HouseFeedbackHost {
   showBanner(text: string): void;
 }
 
+/** What the prompt painter hands back: whether the prompt is still mounted
+ *  (an HTMLElement satisfies it through `isConnected`; a prompt removed by
+ *  Buy, Decline or its timeout reads false). */
+export interface HousePromptHandle {
+  readonly isConnected: boolean;
+}
+
 /** Shows an accept/decline prompt; `textHtml` is already escaped. The Hud
  *  wires its private two-button world prompt here. */
-export type HousePromptFn = (textHtml: string, acceptLabel: string, onAccept: () => void) => void;
+export type HousePromptFn = (
+  textHtml: string,
+  acceptLabel: string,
+  onAccept: () => void,
+) => HousePromptHandle;
+
+interface OpenHouseOffer {
+  lotId: string;
+  handle: HousePromptHandle;
+}
+
+const openOffers = new WeakMap<HouseFeedbackHost, OpenHouseOffer>();
+
+/** Whether an offer prompt for `lotId` is still open on `host`. */
+export function houseOfferPromptOpen(host: HouseFeedbackHost, lotId: string): boolean {
+  const open = openOffers.get(host);
+  return open !== undefined && open.lotId === lotId && open.handle.isConnected;
+}
 
 export function handleHouseEvent(
   ev: HouseEvent,
@@ -32,12 +63,14 @@ export function handleHouseEvent(
   const plan = houseFeedbackPlan(ev);
   switch (plan.kind) {
     case 'offer': {
+      const lotId = plan.lotId;
+      if (houseOfferPromptOpen(host, lotId)) return;
       const text = t('hudChrome.housing.offerText', {
         house: esc(plan.house),
         price: esc(formatMoney(plan.priceCopper)),
       });
-      const lotId = plan.lotId;
-      prompt(text, t('hudChrome.housing.buy'), () => world.buyHouse(lotId));
+      const handle = prompt(text, t('hudChrome.housing.buy'), () => world.buyHouse(lotId));
+      openOffers.set(host, { lotId, handle });
       return;
     }
     case 'error':

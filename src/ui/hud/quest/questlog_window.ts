@@ -14,8 +14,8 @@
 // This is the quest LOG window, not the always-on quest TRACKER (quest_tracker.ts,
 // a separate pure core). It is NOT a canvas window (colors live in the extracted
 // stylesheet; the per-quality reward color comes from the shared itemNameColor
-// over QUALITY_COLOR, the fallback is a CSS token, so there is no literal
-// hex/px in TS).
+// inside the quest_reward_choice_view.ts reward rows, the fallback is a CSS
+// token, so there is no literal hex/px in TS).
 
 import { ITEMS, NPCS } from '../../../sim/data';
 import type { IWorld } from '../../../world_api';
@@ -26,17 +26,20 @@ import {
   questObjectiveLabel,
   questTitle,
 } from '../../entity_display_core';
-import { itemDisplayName, zoneDisplayName } from '../../entity_i18n';
+import { zoneDisplayName } from '../../entity_i18n';
 import { esc } from '../../esc';
 import { formatNumber, t } from '../../i18n';
-import { itemNameColor } from '../../item_name_color';
 import type { PainterHostPresentation } from '../../painter_host';
 import { liveNpcPosLookup, questMapLocation } from '../../quest_map_location_core';
 import { QuestTrackingState, sharedQuestTracking } from '../../quest_tracking_core';
 import { svgIcon } from '../../ui_icons';
 import { referralQuestRows } from '../referral_cards/referral_cards_view';
 import { referralText } from '../referral_cards/referral_cards_window';
-import { questRewardChoiceHtml, questRewardChoiceModel } from './quest_reward_choice_view';
+import {
+  questFixedRewardRowHtml,
+  questRewardChoiceHtml,
+  questRewardChoiceModel,
+} from './quest_reward_choice_view';
 import { buildQuestLogView, type QuestDetailModel } from './questlog_view';
 
 /**
@@ -292,11 +295,9 @@ export class QuestLogWindow {
     html += `<div class="qd-text ql-detail-text">${esc(questNarrative(d.questId, 'text', playerName))}</div>`;
     html += `<div class="qd-sub">${esc(t('questUi.detail.rewards'))}</div><div class="ui-divider"></div><div class="qd-obj qd-reward-currency">${esc(t('questUi.detail.xpReward', { xp: this.questNumber(d.xpReward) }))}<span class="ui-money">${this.deps.moneyHtml(d.copperReward)}</span></div>`;
     if (d.rewardItemId) {
-      const item = ITEMS[d.rewardItemId];
-      // The bare .q-* family is the socket RIM (border plus glow), so it leaves
-      // a name uncolored and haloed; the name's quality color is the shared
-      // itemNameColor, exactly as chat links and loot names paint it.
-      html += `<div class="qd-reward-row ui-card" data-reward><span class="qd-reward-label">${esc(t('questUi.detail.itemReward'))}</span><span class="qd-reward-socket ui-socket ui-socket--bag">${this.deps.itemIcon(item)}</span><span class="qd-reward-name q-${item.quality ?? 'common'}" style="color:${itemNameColor(item)}">${esc(itemDisplayName(item))}</span></div>`;
+      html += questFixedRewardRowHtml(ITEMS[d.rewardItemId], {
+        itemIcon: (it) => this.deps.itemIcon(it),
+      });
     }
     const world = this.deps.world();
     const choices = questRewardChoiceModel(d.questId, world.cfg.playerClass, world.talents.spec);

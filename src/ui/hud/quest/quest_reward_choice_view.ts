@@ -6,6 +6,13 @@
 //
 // The dialog paints it interactive (a radio row per piece; the turn-in sends the
 // checked one), the quest log and the accept step paint it as a preview.
+//
+// The fixed "Item reward:" row (questFixedRewardRowHtml) lives here too, so the
+// quest dialog and the quest log paint ONE reward-slot family: the same
+// `.qd-reward-socket` bag socket (the icon fills the frame; the rule is
+// unscoped in components.css), the same quality-coloured name. The dialog once
+// minted its own row with a bare `.ui-socket`, whose 28px `.item-icon` sat tiny
+// inside the 40px frame; that drift is the bug this module closes.
 
 import { ITEMS, QUESTS } from '../../../sim/data';
 import { defaultRewardChoice, questRewardChoices } from '../../../sim/quests/quest_reward_choice';
@@ -41,6 +48,24 @@ export interface QuestRewardChoicePaintDeps {
   itemIcon(item: ItemDef): string;
 }
 
+/** The icon socket every quest reward row shares (fixed row and choice cards). */
+function rewardSocketHtml(item: ItemDef, deps: QuestRewardChoicePaintDeps): string {
+  return `<span class="qd-reward-socket ui-socket ui-socket--bag">${deps.itemIcon(item)}</span>`;
+}
+
+/** The reward's name: the bare .q-* family is the socket RIM (border plus
+ *  glow), so it leaves a name uncolored and haloed; the name's quality color
+ *  is the shared itemNameColor, exactly as chat links and loot names paint it. */
+function rewardNameHtml(item: ItemDef): string {
+  return `<span class="qd-reward-name q-${item.quality ?? 'common'}" style="color:${itemNameColor(item)}">${esc(itemDisplayName(item))}</span>`;
+}
+
+/** The fixed "Item reward: [icon] Name" row (a quest's one guaranteed piece),
+ *  tagged `data-reward` for the tooltip the window attaches. */
+export function questFixedRewardRowHtml(item: ItemDef, deps: QuestRewardChoicePaintDeps): string {
+  return `<div class="qd-reward-row qd-reward-fixed ui-card" data-reward><span class="qd-reward-label">${esc(t('questUi.detail.itemReward'))}</span>${rewardSocketHtml(item, deps)}${rewardNameHtml(item)}</div>`;
+}
+
 /** The heading plus one row per offered piece; `interactive` makes each row a radio button. */
 export function questRewardChoiceHtml(
   model: QuestRewardChoiceModel,
@@ -54,8 +79,8 @@ export function questRewardChoiceHtml(
   const rows = model.itemIds
     .map((id) => {
       const item = ITEMS[id];
-      const name = `<span class="qd-reward-name q-${item.quality ?? 'common'}" style="color:${itemNameColor(item)}">${esc(itemDisplayName(item))}</span>`;
-      const socket = `<span class="qd-reward-socket ui-socket ui-socket--bag">${deps.itemIcon(item)}</span>`;
+      const name = rewardNameHtml(item);
+      const socket = rewardSocketHtml(item, deps);
       if (!interactive) {
         return `<div class="qd-reward-row qd-reward-choice ui-card" data-reward-choice="${esc(id)}">${socket}${name}</div>`;
       }

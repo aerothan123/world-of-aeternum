@@ -59,6 +59,11 @@ export interface HousingPlayerState {
   /** Runtime-only: sim time of the last door prompt (the walk-in trigger
    *  fires at 20 Hz, so the offer is throttled). Never persisted. */
   houseOfferAt?: number;
+  /** Runtime-only: the lot whose walk-in trigger held this player on the
+   *  last tick, with that tick's sim time, so the door can tell a player
+   *  STANDING in its trigger (no re-offer) from one who left and came back
+   *  (a fresh approach, offered again). Never persisted. */
+  houseDoorStand?: { lotId: string; at: number };
 }
 
 /** The persisted form (CharacterState.house). */

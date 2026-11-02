@@ -922,6 +922,23 @@
     align-items: center;
     margin-top: 4px;
   }
+  /* The reward-slot family BOTH the quest log and the NPC quest dialog paint
+     (hud/quest/quest_reward_choice_view.ts): the fixed "Item reward" row is a
+     padded card, its bag socket keeps its size in the flex row, and the icon
+     fills the socket's frame. Unscoped on purpose: these once lived under
+     #quest-log-window only, so the dialog's copy of the same row drew the
+     generic 28px .item-icon tiny inside its 40px frame. */
+  .qd-reward-fixed {
+    padding: var(--spacing-sm);
+  }
+  .qd-reward-socket {
+    display: inline-block;
+    flex: 0 0 var(--socket-size-bag);
+  }
+  .qd-reward-socket .item-icon {
+    width: 100%;
+    height: 100%;
+  }
   .qd-reward-label {
     color: var(--color-text-muted);
     font-size: 11px;
@@ -2920,17 +2937,6 @@
     flex-direction: row;
     align-items: center;
     gap: var(--spacing-sm);
-  }
-  #quest-log-window .qd-reward-row {
-    padding: var(--spacing-sm);
-  }
-  #quest-log-window .qd-reward-socket {
-    display: inline-block;
-    flex: 0 0 var(--socket-size-bag);
-  }
-  #quest-log-window .qd-reward-socket .item-icon {
-    width: 100%;
-    height: 100%;
   }
 
   /* Specialization / Progression / Gathering sections: the same inset-card
@@ -26378,6 +26384,11 @@
   }
   .item-history-dialog .panel-title {
     flex: none;
+  }
+  /* A left-aligned reading dialog keeps its Close flushed right; the shared
+     .prompt-actions row centres under the centred world prompts (hud.css). */
+  .item-history-dialog .prompt-actions {
+    justify-content: flex-end;
   }
   .item-history-list {
     display: flex;

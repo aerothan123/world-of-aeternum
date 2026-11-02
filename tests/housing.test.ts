@@ -12,11 +12,16 @@ import {
 import { DUNGEON_X_THRESHOLD, DUNGEONS, dungeonAt } from '../src/sim/data';
 import { INTERIOR_LAYOUTS } from '../src/sim/dungeon_floor';
 import { HOUSE_COTTAGE_LAYOUT, HOUSE_ENTRY, HOUSE_EXIT } from '../src/sim/housing/cottage_layout';
-import { sanitizeHouseState, savedHouseState } from '../src/sim/housing/house_state';
+import {
+  type HousingPlayerState,
+  sanitizeHouseState,
+  savedHouseState,
+} from '../src/sim/housing/house_state';
 import {
   HOUSE_OFFER_NOTICE_SECONDS,
   HOUSE_PURCHASE_RANGE,
   houseInstanceKey,
+  houseOfferDue,
 } from '../src/sim/housing/ownership';
 import { enterDungeon, leaveDungeon } from '../src/sim/instances/dungeons';
 import { Sim } from '../src/sim/sim';
@@ -168,7 +173,7 @@ describe('buying a house', () => {
 });
 
 describe('the front door', () => {
-  it('offers the house to a non-owner instead of letting them in, throttled', () => {
+  it('offers the house to a non-owner instead of letting them in, once per approach', () => {
     const sim = makeSim();
     const pid = sim.player.id;
     place(sim, pid, LOT.doorPos.x, LOT.doorPos.z);
@@ -177,12 +182,39 @@ describe('the front door', () => {
     expect(eventsOfType(first, 'houseOffer')).toEqual([
       { type: 'houseOffer', pid, lotId: LOT.id, priceCopper: LOT.priceCopper },
     ]);
-    // standing in the trigger does not re-prompt every tick
+    // Standing in the trigger never re-prompts, however long the stand lasts
+    // (the reported bug: a prompt every notice period, stacking on screen).
+    // Declining is client-side, so this is also what keeps a declined offer
+    // from coming back while the player stays put.
     let repeats = 0;
-    for (let i = 0; i < 20 * (HOUSE_OFFER_NOTICE_SECONDS - 1); i++) {
+    for (let i = 0; i < 20 * (HOUSE_OFFER_NOTICE_SECONDS * 3); i++) {
       repeats += eventsOfType(sim.tick(), 'houseOffer').length;
     }
     expect(repeats).toBe(0);
+    // Leaving the trigger and coming back is a fresh approach: offered again.
+    standBeside(sim, pid);
+    for (let i = 0; i < 20; i++) expect(eventsOfType(sim.tick(), 'houseOffer')).toEqual([]);
+    place(sim, pid, LOT.doorPos.x, LOT.doorPos.z);
+    expect(eventsOfType(sim.tick(), 'houseOffer')).toHaveLength(1);
+  });
+
+  it('houseOfferDue: a continuing stand owes nothing, a re-approach owes one, floored', () => {
+    const meta: HousingPlayerState = { furnishingSkill: 0, houseStorageRev: 0 };
+    const DT = 1 / 20;
+    expect(houseOfferDue(meta, LOT.id, 10)).toBe(true);
+    // the next ticks of the same stand
+    expect(houseOfferDue(meta, LOT.id, 10 + DT)).toBe(false);
+    expect(houseOfferDue(meta, LOT.id, 10 + 2 * DT)).toBe(false);
+    // a gap of two ticks breaks the stand, but the notice floor still holds
+    expect(houseOfferDue(meta, LOT.id, 10 + 4 * DT)).toBe(false);
+    // a re-approach past the floor is offered again
+    const later = 10 + HOUSE_OFFER_NOTICE_SECONDS + 1;
+    expect(houseOfferDue(meta, LOT.id, later)).toBe(true);
+    expect(houseOfferDue(meta, LOT.id, later + DT)).toBe(false);
+    // a different lot's door is its own approach once the floor has passed
+    const other = later + HOUSE_OFFER_NOTICE_SECONDS;
+    expect(houseOfferDue(meta, HOUSE_LOTS[1].id, other)).toBe(true);
+    expect(meta.houseDoorStand).toEqual({ lotId: HOUSE_LOTS[1].id, at: other });
   });
 
   it('tells an owner of another house which house they own', () => {
