@@ -415,7 +415,7 @@ const HUD_UPDATE_DRIVES: readonly DriveRow[] = [
     band: 'frame',
     gate: '',
     surface: 'chrome',
-    why: 'the player unit frame, facet-routed',
+    why: 'the vitals bar (hud/vitals/): the player descriptor of the unit frame family, facet-routed',
   },
   {
     call: 'this.updateLowHealthVignette',

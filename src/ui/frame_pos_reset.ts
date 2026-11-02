@@ -6,8 +6,13 @@
 // timestamp, so a targeted clear is impossible: v0.24.1 therefore clears BOTH
 // unit-frame position keys once per client, keyed by an epoch marker. Bump
 // LAYOUT_RESET_EPOCH if another forced layout reset is ever needed.
+//
+// Epoch 2: the Project H fork (docs/design/project-h-interface.md, packet 1)
+// moved the stock seats, the player frame to the vitals bar at bottom centre
+// and the target frame to a thin bar at top centre, so a position dragged
+// against the classic plates would replay against the new composition.
 
-export const LAYOUT_RESET_EPOCH = 1;
+export const LAYOUT_RESET_EPOCH = 2;
 export const LAYOUT_RESET_EPOCH_KEY = 'woc_layout_reset_epoch';
 // The MovableFrame storage keys hud.ts wires up; hud.ts imports these so the
 // reset and the movers can never drift apart.

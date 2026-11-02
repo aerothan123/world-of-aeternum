@@ -562,7 +562,10 @@ const MONOLITHS: MonolithRow[] = [
     // Phase 3 adds the house storage window's composition (its deps bag), the
     // houseStorage event arm, its managed-close case, the relocalize and slow-band
     // refresh lines: 17744 -> 17769, raised in the Project H fork (a maintainer call).
-    ceiling: 17769,
+    // LOWERED 17769 -> 17755 at Project H interface packet 1: the player frame's
+    // descriptor fill and its six text memos moved to the vitals core
+    // (src/ui/hud/vitals/vitals_view.ts); the ratchet, extract then lower.
+    ceiling: 17755,
     seam: 'pure view core + thin painter on PainterHost (src/ui/CLAUDE.md)',
   },
   {

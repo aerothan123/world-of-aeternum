@@ -787,6 +787,8 @@ const UI_PURE_CORES = [
   'src/ui/hud/stance/stance_radial_core.ts',
   'src/ui/hud/action_bar/action_bar_view.ts',
   'src/ui/hud/action_bar/action_bar_layout_core.ts',
+  // The hands row descriptor of the action bar family (Project H packet 1).
+  'src/ui/hud/action_bar/hands_row_core.ts',
   'src/ui/hud/action_bar/action_bar_visibility_core.ts',
   'src/ui/hud/action_bar/action_bar_toggle_core.ts',
   'src/ui/hud/action_bar/action_bar_bind_core.ts',
@@ -847,6 +849,8 @@ const UI_PURE_CORES = [
   'src/ui/mount_race_view.ts',
   'src/ui/pet_action_icons.ts',
   'src/ui/pet_frame_view.ts',
+  // The vitals bar: the player's descriptor of the unit_frame family (Project H).
+  'src/ui/hud/vitals/vitals_view.ts',
   'src/ui/loading_backdrop_core.ts',
   'src/ui/loading_slow_hint_core.ts',
   'src/ui/reconnect_status_core.ts',

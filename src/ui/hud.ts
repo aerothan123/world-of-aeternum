@@ -415,6 +415,7 @@ import {
   GroundAimController,
   type GroundAimReticleView,
 } from './hud/action_bar/ground_aim_controller';
+import { HANDS_ROW } from './hud/action_bar/hands_row_core';
 import {
   assignAttackSlotAction,
   attackDragDisposition,
@@ -669,11 +670,20 @@ import {
   renderWarfareVendorWindow,
   warfarePurchaseConfirmBody,
 } from './hud/vendor/warfare_vendor_window';
+import {
+  fillVitalsDescriptor,
+  newVitalsCache,
+  newVitalsDescriptor,
+  resetVitalsCache,
+  VITALS_DEFAULT_HP_MODE,
+  type VitalsInput,
+  VitalsPainter,
+} from './hud/vitals';
 import { afflictionFateThreadCount, destructionRuinPips } from './hud/warlock';
 import { WocTradeController } from './hud/woc_trade';
 import { HudFrameGroups, refreshHudFrameGroupLabels } from './hud_frame_groups';
 import { partyFrameGrid, registerHudFrames } from './hud_frame_registry';
-import { healthTextMode, unitFrameCurrentMaxText, unitFrameHealthText } from './hud_frames';
+import { healthTextMode } from './hud_frames';
 import { BG_END_LOG_COLORS, CHROME_TONE, HUD_LOG, MAP_TONE } from './hud_tones';
 import { availableMobVoiceCue, sfxHasCue, yellVoiceKey } from './hud_voice_cues';
 import {
@@ -1147,11 +1157,6 @@ export interface BugReportHooks {
 }
 
 const $ = <T extends HTMLElement = HTMLElement>(sel: string): T => document.querySelector(sel) as T;
-// The player frame's stable portrait-identity key. The player portrait is drawn at
-// character setup (drawPlayerFramePortrait), not by the unit_frame painter, so the
-// painter's repaint gate never fires for it; the constant just pins the key so the
-// gate stays a no-op (target/party pass a per-unit key).
-const PLAYER_PORTRAIT_KEY = 'player';
 // The render-layer lookups the player portrait rule needs (player_portrait_core.ts):
 // the look provider and the composed visual key, both owned by src/render/characters.
 // Resolved per CALL, never at module load: HUD suites mock that barrel with a fixed
@@ -4660,28 +4665,24 @@ export class Hud {
   private readonly targetFrameBuffer = newUnitFrameBuffer();
   private readonly totFrameBuffer = newUnitFrameBuffer();
   private readonly petFrameBuffer = newUnitFrameBuffer();
-  private readonly playerFrameDescriptor: UnitFrameDescriptor = {
-    present: true,
-    hpFrac: 0,
-    hpText: '',
-    showAbsorbText: true,
-    resourceKind: null,
-    resFrac: 0,
-    resText: '',
-    levelText: null,
+  // The vitals bar (hud/vitals/): the player's descriptor of the unit_frame
+  // family, filled by the pure core from the reused input bag below; the cache
+  // elides the text producers exactly as the inline block used to.
+  private readonly playerFrameDescriptor: UnitFrameDescriptor = newVitalsDescriptor();
+  private readonly vitalsCache = newVitalsCache();
+  private readonly vitalsInput: VitalsInput = {
+    hp: 0,
+    maxHp: 1,
+    resource: 0,
+    maxResource: 1,
+    resourceType: null,
+    level: 1,
     name: '',
-    portraitKey: PLAYER_PORTRAIT_KEY,
+    hpModeSetting: undefined,
+    pvpRisk: false,
     borderSlug: '',
     absorb: null,
-    dead: false,
-    outOfRange: false,
   };
-  private lastPlayerFrameHp = Number.NaN;
-  private lastPlayerFrameHpMode = Number.NaN;
-  private lastPlayerFrameMaxHp = Number.NaN;
-  private lastPlayerFrameResource = Number.NaN;
-  private lastPlayerFrameMaxResource = Number.NaN;
-  private lastPlayerFrameLevel = Number.NaN;
   private readonly targetFrameDescriptor: UnitFrameDescriptor = {
     ...ABSENT_TARGET_DESCRIPTOR,
   };
@@ -4710,8 +4711,9 @@ export class Hud {
     // governor. spawn() reads this per event.
     { getFxTier: () => this.fxTier(), contactDelaySec: (s) => this.renderer.contactDelayFor(s) },
   );
-  // Player frame: static name/portrait, cached heraldry and self PvP risk hosts.
-  private readonly playerFramePainter = new UnitFramePainter(this.writerFacet, {
+  // Player frame: the vitals bar painter (hud/vitals/) over the family element
+  // set: static name/portrait, cached heraldry and self PvP risk hosts.
+  private readonly playerFramePainter = new VitalsPainter(this.writerFacet, {
     frame: this.playerFrameEl,
     pvpRisk: { badge: $('#pf-pvp'), minimap: $('#minimap-disc') },
     level: this.pfLevelEl,
@@ -6773,10 +6775,9 @@ export class Hud {
   // Every memo here carries its own row and reason in
   // tests/language_fanout_registry.test.ts (qr-19-hud-coordinator-fanout-exemption).
   private relocalizeCoordinatorMemos(): void {
-    this.lastPlayerFrameHp = Number.NaN;
-    this.lastPlayerFrameMaxHp = Number.NaN;
-    this.lastPlayerFrameResource = Number.NaN;
-    this.lastPlayerFrameMaxResource = Number.NaN;
+    // The vitals bar's text cache (hud/vitals/): hp, resource and level digits
+    // route through formatNumber, so the switch re-formats all of them.
+    resetVitalsCache(this.vitalsCache);
     this.lastResting = null;
     this.lastAnnouncedTargetId = null;
     this.lastMailUnread = -1;
@@ -7854,6 +7855,7 @@ export class Hud {
       this.writerFacet,
       {
         container: this.actionbarEl,
+        rowClass: HANDS_ROW.rowClass,
         slots: this.abilityButtons.map((ab) => ({
           btn: ab.btn,
           label: ab.label,
@@ -8604,41 +8606,25 @@ export class Hud {
     // className swap on the player hot path). updateLowHealthVignette +
     // updateLowResource are player-only side effects with their own cores and stay
     // here, OUT of the shared family (target/party must not inherit them).
-    const playerFrame = this.playerFrameDescriptor;
-    playerFrame.hpFrac = p.hp / Math.max(1, p.maxHp);
-    const hpMode = healthTextMode(this.optionsHooks?.settings?.get('playerFrameHealthText'), 3);
-    if (
-      p.hp !== this.lastPlayerFrameHp ||
-      p.maxHp !== this.lastPlayerFrameMaxHp ||
-      hpMode !== this.lastPlayerFrameHpMode
-    ) {
-      this.lastPlayerFrameHp = p.hp;
-      this.lastPlayerFrameMaxHp = p.maxHp;
-      this.lastPlayerFrameHpMode = hpMode;
-      playerFrame.hpText = unitFrameHealthText(p.hp, p.maxHp, hpMode);
-      playerFrame.showAbsorbText = hpMode !== 0;
-    }
-    playerFrame.resourceKind = p.resourceType;
-    playerFrame.resFrac = p.resource / Math.max(1, p.maxResource);
-    if (
-      p.resource !== this.lastPlayerFrameResource ||
-      p.maxResource !== this.lastPlayerFrameMaxResource
-    ) {
-      this.lastPlayerFrameResource = p.resource;
-      this.lastPlayerFrameMaxResource = p.maxResource;
-      playerFrame.resText = unitFrameCurrentMaxText(Math.round(p.resource), p.maxResource);
-    }
-    if (p.level !== this.lastPlayerFrameLevel) {
-      this.lastPlayerFrameLevel = p.level;
-      playerFrame.levelText = String(p.level);
-    }
-    playerFrame.name = p.name;
-    playerFrame.pvpRisk = playerPvpRisk(sim);
+    const vitals = this.vitalsInput;
+    vitals.hp = p.hp;
+    vitals.maxHp = p.maxHp;
+    vitals.hpModeSetting = healthTextMode(
+      this.optionsHooks?.settings?.get('playerFrameHealthText'),
+      VITALS_DEFAULT_HP_MODE,
+    );
+    vitals.resourceType = p.resourceType;
+    vitals.resource = p.resource;
+    vitals.maxResource = p.maxResource;
+    vitals.level = p.level;
+    vitals.name = p.name;
+    vitals.pvpRisk = playerPvpRisk(sim);
     // SELF reads its worn border from the deeds facet, not the entity wire
     // (the wire carries other players' borders). One guarded record lookup per
     // frame, cheap enough that a signature cache would only add state.
-    playerFrame.borderSlug = deedBorderSlug(sim.activeBorder);
-    playerFrame.absorb = p;
+    vitals.borderSlug = deedBorderSlug(sim.activeBorder);
+    vitals.absorb = p;
+    const playerFrame = fillVitalsDescriptor(this.vitalsCache, this.playerFrameDescriptor, vitals);
     this.playerFramePainter.paint(unitFrameViewInto(this.playerFrameBuffer, playerFrame));
     this.updateLowHealthVignette(p.hp, p.maxHp);
     this.updateLowResource(p);

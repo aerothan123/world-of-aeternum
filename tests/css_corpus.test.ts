@@ -134,6 +134,7 @@ const CORPUS_SECTIONS = new Set(sectionNames(CORPUS));
 // tooltip is shared via hud.css and the windows via components.css / layout.css, all of
 // which play loads). play's set is a subset of index's, so this is the union.
 const INDEX_SECTIONS = [
+  'Project H vitals bar, hands row and XP line',
   'open expeditions',
   'weekly rewards',
   'UI chrome icons (inline SVG from ui_icons.ts, tinted via currentColor)',
@@ -255,11 +256,12 @@ describe('css_corpus section manifest', () => {
     // + the dungeon objectives tracker (hud.css, in both entries): 78, 76.
     // + the launcher turntable's loading silhouette (shell.css, in both entries): 79, 77.
     // + the phone creator's pinch hint (shell.css, in both entries): 80, 78.
-    expect(INDEX_SECTIONS.length).toBe(82);
-    expect(PLAY_SECTIONS.length).toBe(80);
-    expect(MANIFEST.length).toBe(82);
-    expect(new Set(INDEX_SECTIONS).size).toBe(82);
-    expect(new Set(PLAY_SECTIONS).size).toBe(80);
+    // + the Project H vitals bar, hands row and XP line (hud.css, both entries): 83, 81.
+    expect(INDEX_SECTIONS.length).toBe(83);
+    expect(PLAY_SECTIONS.length).toBe(81);
+    expect(MANIFEST.length).toBe(83);
+    expect(new Set(INDEX_SECTIONS).size).toBe(83);
+    expect(new Set(PLAY_SECTIONS).size).toBe(81);
   });
 
   it('captures the live corpus markers (the marker regex is non-vacuous, not a zero match)', () => {

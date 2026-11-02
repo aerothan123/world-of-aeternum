@@ -67,18 +67,21 @@ export const PRESET_ORDER: PresetId[] = [
   'highContrast',
 ];
 
-// `classic` reproduces the shipped gold/dark palette; the others are alternates.
+// `classic` is the Project H palette (docs/design/project-h-interface.md): a
+// quiet charcoal panel that is never pure black, warm off-white text, mid-grey
+// secondary text, one antique-brass accent, and desaturated vitals. The other
+// presets are alternates; every knob still flows through the same derivations.
 export const THEME_PRESETS: Record<PresetId, ThemeKnobs> = {
   classic: {
-    accent: '#ffd100',
-    border: '#6f5a2a',
-    panel: '#15151f',
-    text: '#f0ebd8',
-    textMuted: '#998d6a',
-    hp: '#1eb838',
-    mana: '#2b7bd4',
-    rage: '#c0392b',
-    energy: '#e4c531',
+    accent: '#c9a96a',
+    border: '#4a4640',
+    panel: '#0e0e10',
+    text: '#ece7dc',
+    textMuted: '#aba59b',
+    hp: '#4f9d55',
+    mana: '#3f7fc4',
+    rage: '#b8413a',
+    energy: '#cdb24a',
   },
   midnight: {
     accent: '#8fb8e8',
@@ -130,7 +133,7 @@ export const THEME_PRESETS: Record<PresetId, ThemeKnobs> = {
     border: '#926321',
     panel: '#1d1508',
     text: '#f6ecd2',
-    textMuted: '#c0a468',
+    textMuted: '#c6aa6e',
     hp: '#1eb838',
     mana: '#2b7bd4',
     rage: '#c0392b',
@@ -201,11 +204,32 @@ export function isLightPanel(hex: string): boolean {
   return relativeLuminance(hex) > 0.4;
 }
 
+/** The opaque colour a translucent `hex` at `alpha` reads as over `backdrop`.
+ *  Pure; the contrast guards use it to judge text over the translucent HUD
+ *  surfaces, which have no single colour of their own. */
+export function compositeOver(hex: string, alpha: number, backdrop: string): string {
+  const [r, g, b] = hexToRgb(hex);
+  const [br, bg, bb] = hexToRgb(backdrop);
+  return rgbToHex(
+    r * alpha + br * (1 - alpha),
+    g * alpha + bg * (1 - alpha),
+    b * alpha + bb * (1 - alpha),
+  );
+}
+
 /** `rgba(...)` string from a hex colour and an alpha in [0,1]. Pure. */
 export function rgba(hex: string, alpha: number): string {
   const [r, g, b] = hexToRgb(hex);
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
+
+/** The flat HUD-chrome fill alpha (`--surface-hud`): the direction doc's
+ *  "rgba(14,14,16,0.72) class translucency on the HUD". */
+export const SURFACE_HUD_ALPHA = 0.72;
+/** The ordinary panel / window fill alpha (`--panel-bg`). */
+export const PANEL_ALPHA = 0.84;
+/** The full-screen menu fill alpha (`--surface-menu`): near-opaque. */
+export const SURFACE_MENU_ALPHA = 0.94;
 
 /** Minimum body-text contrast we will let a resolved theme ship with. */
 export const MIN_TEXT_CONTRAST = 4.5;
@@ -218,9 +242,16 @@ export const MIN_LARGE_CONTRAST = 3;
  * black/white the panel contrasts with best until it clears (or fall back to
  * that pole). Pure, so the custom-override guard is unit-testable.
  */
-export function ensureReadable(textHex: string, panelHex: string, min: number): string {
+export function ensureReadable(
+  textHex: string,
+  panelHex: string,
+  min: number,
+  poleHex?: string,
+): string {
   if (contrastRatio(textHex, panelHex) >= min) return textHex;
-  const pole = isLightPanel(panelHex) ? '#000000' : '#ffffff';
+  // The caller may pin the pole (a translucent surface judged over the world
+  // keeps the pole of the PANEL it belongs to, so two repairs never fight).
+  const pole = poleHex ?? (isLightPanel(panelHex) ? '#000000' : '#ffffff');
   if (contrastRatio(pole, panelHex) < min) return pole; // panel itself is mid-grey; best effort
   for (let t = 0.15; t < 1; t += 0.15) {
     const candidate = mixHex(textHex, pole, t);
@@ -321,11 +352,11 @@ export function themeCssVars(knobs: ThemeKnobs): Record<string, string> {
   // The soft and strong panel fills are the standard panel gradient at the two
   // other alphas the boards use (trackers and chat at rest; tooltips, inputs and
   // confirm dialogs), the strong one pulled a step toward black.
-  // The lifted stops the library composes over the panel: the socket radial's
-  // highlight and the window head's upper stop. Dark panels lift toward a cool
-  // slate (the shipped #2c2c3a / #1c1c29 land exactly), light panels sink a step.
-  const socketHi = lightPanel ? mixHex(panel, '#000000', 0.08) : mixHex(panel, '#434355', 0.5);
-  const panelHi = lightPanel ? mixHex(panel, '#000000', 0.06) : mixHex(panel, '#232333', 0.5);
+  // The lifted stops the library composes over the panel: the socket highlight
+  // and the window head's upper stop. Project H: dark panels lift toward a WARM
+  // neutral (charcoal, not blue-black metal), light panels sink a step.
+  const socketHi = lightPanel ? mixHex(panel, '#000000', 0.08) : mixHex(panel, '#3a3836', 0.5);
+  const panelHi = lightPanel ? mixHex(panel, '#000000', 0.06) : mixHex(panel, '#262523', 0.5);
   // The glint (inner edge highlight, badge edge, thumb) follows the accent so a
   // blue preset does not carry a gold hairline; light panels darken it instead.
   const glint = lightPanel ? mixHex(accent, '#000000', 0.15) : mixHex(accent, '#ffffff', 0.55);
@@ -345,10 +376,53 @@ export function themeCssVars(knobs: ThemeKnobs): Record<string, string> {
     MIN_TEXT_CONTRAST,
   );
   const panelStrong = lightPanel ? mixHex(panel, '#ffffff', 0.3) : mixHex(panel, '#000000', 0.24);
-  const panelStrongEdge = lightPanel
-    ? mixHex(panelEdge, '#ffffff', 0.2)
-    : mixHex(panelEdge, '#000000', 0.25);
+  // Project H surfaces (docs/design/project-h-interface.md "Tokens"): one FLAT
+  // translucent fill per surface class. The three --panel-bg* gradients keep
+  // their gradient FORM (every consumer and the pinned tests read a
+  // linear-gradient) but both stops are the same colour, so no panel carries a
+  // vignette any more. --surface-hud is the HUD-chrome fill, --surface-menu the
+  // near-opaque full-screen menu fill; the row fills, the three hairlines and
+  // the accent-soft wash are the TEXT and ACCENT knobs at low alpha, so a light
+  // preset gets dark hairlines and a dark preset light ones for free.
+  const surfaceHud = rgba(panel, SURFACE_HUD_ALPHA);
+  const surfaceMenu = rgba(panel, SURFACE_MENU_ALPHA);
+  // The HUD surface is translucent, so its worst case is the world showing
+  // through: a dark panel over bright terrain lifts the surface toward grey,
+  // and a light panel over a cave sinks it. Repair the secondary text against
+  // the surface composited over the pole the panel contrasts with LEAST, so
+  // --text-dim clears the large-text tier on every preset over any terrain
+  // (tests/theme.test.ts composites and checks it).
+  // worstWorld is also the repair POLE (a dark panel repairs toward white, a
+  // light one toward black), so the two nested repairs never fight.
+  const worstWorld = lightPanel ? '#000000' : '#ffffff';
+  const hudWorst = compositeOver(panel, SURFACE_HUD_ALPHA, worstWorld);
+  const textDim = ensureReadable(
+    ensureReadable(textMuted, hudWorst, MIN_LARGE_CONTRAST, worstWorld),
+    panel,
+    MIN_LARGE_CONTRAST,
+  );
+  const accentHud = ensureReadable(
+    ensureReadable(colorGold, hudWorst, MIN_LARGE_CONTRAST, worstWorld),
+    panel,
+    MIN_LARGE_CONTRAST,
+  );
   return {
+    '--surface-hud': surfaceHud,
+    '--surface-menu': surfaceMenu,
+    '--surface-row': rgba(text, 0.04),
+    '--surface-row-hover': rgba(text, 0.08),
+    '--line-faint': rgba(text, 0.14),
+    '--line': rgba(text, 0.26),
+    '--line-strong': rgba(text, 0.42),
+    '--accent': accentHud,
+    '--accent-soft': rgba(accentHud, 0.28),
+    '--text': text,
+    '--text-dim': textDim,
+    '--text-faint': textFaint,
+    '--text-invert': panel,
+    '--vital-health': hp,
+    '--vital-mana': mana,
+    '--vital-stamina': energy,
     '--gold': accent,
     '--gold-dim': accentDim,
     '--color-gold': colorGold,
@@ -359,10 +433,10 @@ export function themeCssVars(knobs: ThemeKnobs): Record<string, string> {
     '--border': border,
     '--color-border-default': mixHex(border, '#000000', 0.25),
     '--panel-base': panel,
-    '--panel-bg': `linear-gradient(170deg, ${rgba(panel, 0.95)} 0%, ${rgba(panelEdge, 0.95)} 60%, ${rgba(panelEdge, 0.95)} 100%)`,
+    '--panel-bg': `linear-gradient(170deg, ${rgba(panel, PANEL_ALPHA)} 0%, ${rgba(panel, PANEL_ALPHA)} 100%)`,
     '--panel-edge': panelEdge,
-    '--panel-bg-soft': `linear-gradient(170deg, ${rgba(panel, 0.74)} 0%, ${rgba(panelEdge, 0.74)} 60%, ${rgba(panelEdge, 0.74)} 100%)`,
-    '--panel-bg-strong': `linear-gradient(170deg, ${rgba(panelStrong, 0.97)} 0%, ${rgba(panelStrongEdge, 0.97)} 100%)`,
+    '--panel-bg-soft': `linear-gradient(170deg, ${rgba(panel, 0.74)} 0%, ${rgba(panel, 0.74)} 100%)`,
+    '--panel-bg-strong': `linear-gradient(170deg, ${rgba(panelStrong, 0.97)} 0%, ${rgba(panelStrong, 0.97)} 100%)`,
     '--color-bg-dark': panelEdge,
     '--color-text-light': text,
     '--color-text-muted': textMuted,

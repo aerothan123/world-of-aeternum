@@ -4,8 +4,12 @@
 
 import { parseStoredJson } from './local_storage_json';
 
-/** The unit frame's whole-row stock width, mirroring --unit-frame-w in tokens.css. */
-export const UNIT_FRAME_STOCK_WIDTH = 278;
+/** The unit frame's whole-row stock width, mirroring --unit-frame-w in tokens.css.
+ *  420px is the Project H vitals bar (docs/design/project-h-interface.md); the
+ *  classic 278px plate is a retired stock the load-time migration re-stamps. */
+export const UNIT_FRAME_STOCK_WIDTH = 420;
+/** The classic-era whole-frame stock the vitals bar replaced. */
+export const CLASSIC_UNIT_FRAME_STOCK_WIDTH = 278;
 
 /**
  * Widths persisted under the retired semantics (playerFrameWidth was a 612px full
@@ -14,9 +18,9 @@ export const UNIT_FRAME_STOCK_WIDTH = 278;
  * stock instead of shipping a frame the player never chose; a value the player
  * actually dragged is left to the range clamp.
  */
-const LEGACY_STOCK_FRAME_WIDTHS: Partial<Record<string, number>> = {
-  playerFrameWidth: 612,
-  targetFrameWidth: 190,
+const LEGACY_STOCK_FRAME_WIDTHS: Partial<Record<string, readonly number[]>> = {
+  playerFrameWidth: [612, CLASSIC_UNIT_FRAME_STOCK_WIDTH],
+  targetFrameWidth: [190, CLASSIC_UNIT_FRAME_STOCK_WIDTH],
 };
 
 // Camera default is 0.7: the old fixed speed (1.0) was near the top of the
@@ -815,7 +819,7 @@ const INHERITED_NUMERIC_DEFAULTS: Partial<Record<NumericSettingKey, NumericSetti
 
 /** Load-time only: see LEGACY_STOCK_FRAME_WIDTHS. */
 function migrateStoredNumeric(key: NumericSettingKey, v: number): number {
-  return LEGACY_STOCK_FRAME_WIDTHS[key] === v ? SETTING_RANGES[key].def : v;
+  return LEGACY_STOCK_FRAME_WIDTHS[key]?.includes(v) ? SETTING_RANGES[key].def : v;
 }
 
 function defaultTouchInterface(): boolean {

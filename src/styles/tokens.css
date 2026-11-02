@@ -76,8 +76,8 @@
     --website-radius: 12px;
     --website-width: 1320px;
     --website-gutter: clamp(24px, 5vw, 80px);
-    --gold: #ffd100;
-    --gold-dim: #c8a838;
+    --gold: #c9a96a;
+    --gold-dim: #9d8453;
     /* The deed-unlock banner plate (#banner.banner-deed). Echoes the Book of
        Deeds card and renown chip so the earned moment and the window that
        records it read as one family, and so a deed can never be mistaken for
@@ -102,11 +102,11 @@
        the token rather than the element (hud.mobile.css). */
     --subzone-banner-top: 35%;
     --banner-stack-gap: 10px;
-    --border: #6f5a2a;
+    --border: #4a4640;
     /* --panel-base is the single themeable frame colour; --panel-bg derives the
        shipped gradient from it (overwritten wholesale by the theme system). */
-    --panel-base: #15151f;
-    --panel-bg: linear-gradient(170deg, #15151ff2 0%, #0b0b12f2 60%, #08080df2 100%);
+    --panel-base: #0e0e10;
+    --panel-bg: linear-gradient(170deg, rgba(14, 14, 16, 0.84) 0%, rgba(14, 14, 16, 0.84) 100%);
     /* quest-marker tooltip TAG text: the rare-adjacent blue lifted to the
        4.5:1 text tier over the default panel stops (the glyph channels keep
        the #0070dd anchor). The theme system re-emits this per preset via
@@ -119,7 +119,7 @@
        it until it clears the contrast floor. Named for the tooltip surface,
        NOT --color-craft-*: that family below is the crafting-difficulty ramp
        and this token is unrelated to it. */
-    --color-material-use: #d6ce3b;
+    --color-material-use: #b0b288;
     /* Quest moments (DESIGN.md section 4.3 / principle 4): tracked titles,
        bag-grid quest purpose marks, map quest markers. Bright saturated
        yellow reserved for quest, never chrome. Distinct from --gold / --color-accent
@@ -147,6 +147,12 @@
     --font-display: "Cinzel", "Palatino Linotype", Palatino, Georgia, serif;
     --font-ui: "Alegreya Sans", "Segoe UI", system-ui, "Helvetica Neue", sans-serif;
     --font-serif: "Alegreya", "Palatino Linotype", Palatino, Georgia, serif;
+    /* Project H type (docs/design/project-h-interface.md): the classical serif
+       (Cinzel, SIL OFL 1.1, already self-hosted) carries headings with wide
+       tracking and small caps; the clean sans (Alegreya Sans, SIL OFL 1.1)
+       carries body and numerics. --track-caps is the heading tracking. */
+    --font-body: var(--font-ui);
+    --track-caps: 0.12em;
     --title-font: var(--font-display);
     --font-heading: var(--font-display);
     --ui-font: var(--font-ui);
@@ -159,14 +165,14 @@
     --color-queue-bell-silver: #ccd2d6;
     --color-queue-bell-gold: #e5c15a;
     --color-primary-dim: var(--gold-dim);
-    --color-primary-glow: rgba(255, 209, 0, 0.2);
-    --color-primary-glow-heavy: rgba(255, 209, 0, 0.4);
+    --color-primary-glow: rgba(201, 169, 106, 0.2);
+    --color-primary-glow-heavy: rgba(201, 169, 106, 0.4);
 
     /* resource bars / unit-frame states / auras (previously hardcoded across CSS + JS) */
-    --color-hp: #1eb838;
-    --color-mana: #2b7bd4;
-    --color-rage: #c0392b;
-    --color-energy: #e4c531;
+    --color-hp: #4f9d55;
+    --color-mana: #3f7fc4;
+    --color-rage: #b8413a;
+    --color-energy: #cdb24a;
     --color-focus: #d79a2b;
     --color-devotion: #e7b943;
     --color-ascension: #fff1a3;
@@ -217,14 +223,14 @@
     --aura-glow-core: 5px;
     --aura-glow-halo: 16px;
 
-    --color-bg-dark: #08080d;
+    --color-bg-dark: #080809;
     --color-bg-input: #0a0a0f;
-    --color-border-default: #4e3d1d;
+    --color-border-default: #383530;
     /* The showcase hairline: the gold-brown 1px keyline the char-window stat
        panels established and the inset-card family repeats (section cards,
        recipe cards, pill chips, panel dividers). One token for every site so
        the family cannot drift shade by shade. */
-    --color-border-showcase: #463a1c;
+    --color-border-showcase: #3a3833;
     /* The showcase inset-card FILL that pairs with the hairline above: the
        translucent scrim the section cards sit on, so the panel gradient stays
        visible through them. Named at the phase 14 professions unification
@@ -233,12 +239,12 @@
        family still spells the same value and migrates when it is next
        touched. */
     --color-card-inset: rgba(0, 0, 0, 0.24);
-    --color-border-focus: #c8a838;
+    --color-border-focus: #9d8453;
     --color-border-invalid: #ff8f85;
     --color-border-valid: #48e060;
 
-    --color-text-light: #f0ebd8;
-    --color-text-muted: #998d6a;
+    --color-text-light: #ece7dc;
+    --color-text-muted: #aba59b;
     /* Accent/gold for text on panel surfaces, and overlay text that floats
        over the 3D world. The theme system (src/ui/theme.ts) recomputes
        --color-accent/--color-gold per preset so they stay AA-readable on a
@@ -247,7 +253,41 @@
     --color-accent: var(--gold);
     --color-text-overlay: #f4eede;
     --text-outline-color: #000000;
-    --panel-edge: #08080d;
+    --panel-edge: #080809;
+    /* Project H surfaces, lines, text and vitals (docs/design/project-h-interface.md
+       "Tokens"). Static defaults are the classic-preset outputs of src/ui/theme.ts,
+       which re-emits every one of them per preset (tests/theme.test.ts pins the
+       two homes equal). Surfaces are flat translucent charcoal, never pure black;
+       the three hairlines are the text colour at low alpha; --accent is the one
+       antique-brass accent, reserved for the selected or active state. */
+    --surface-hud: rgba(14, 14, 16, 0.72);
+    --surface-menu: rgba(14, 14, 16, 0.94);
+    --surface-row: rgba(236, 231, 220, 0.04);
+    --surface-row-hover: rgba(236, 231, 220, 0.08);
+    --line-faint: rgba(236, 231, 220, 0.14);
+    --line: rgba(236, 231, 220, 0.26);
+    --line-strong: rgba(236, 231, 220, 0.42);
+    --accent: #c9a96a;
+    --accent-soft: rgba(201, 169, 106, 0.28);
+    --text: #ece7dc;
+    --text-dim: #aba59b;
+    --text-faint: #98938a;
+    --text-invert: #0e0e10;
+    --vital-health: #4f9d55;
+    --vital-mana: #3f7fc4;
+    --vital-stamina: #cdb24a;
+    --vital-xp: #b85eff;
+    /* Radii: none is the default everywhere; soft (2px) only on quick-slot icons. */
+    --radius-none: 0;
+    --radius-soft: 2px;
+    /* The vitals bar (src/ui/hud/vitals/): the wide health bar, its thin resource
+       bar and the hands row's 36px square slots. */
+    --vitals-w: 420px;
+    --vitals-hp-h: 14px;
+    --vitals-res-h: 4px;
+    --hands-slot-size: 36px;
+    --hands-slot-gap: 4px;
+    --xp-line-h: 2px;
     --color-text-error: #ff8f85;
     --color-text-success: #7fdc4f;
     --color-candy-berry: #e86b8c;
@@ -706,10 +746,10 @@
     --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 
     /* Custom scrollbar tokens */
-    --scrollbar-thumb: #5c4722;
-    --scrollbar-track: rgba(10, 10, 15, 0.7);
-    --scrollbar-thumb-hover: #7c6233;
-    --scrollbar-border: #7c6233;
+    --scrollbar-thumb: #3f3c36;
+    --scrollbar-track: rgba(14, 14, 16, 0.7);
+    --scrollbar-thumb-hover: #4a4640;
+    --scrollbar-border: #4a4640;
     --app-vw: 100vw;
     --app-vh: 100vh;
     /* #bags' own reservation half-width + gap (components.css), hoisted here so
@@ -864,15 +904,15 @@
     --color-text-on-tab-on: #ffd100;
     --color-text-on-gold-btn: #ffe9a8;
     --color-text-on-medal: #ffd100;
-    --color-socket-rim: #4a3d1d;
-    --color-socket-hi: #2c2c3a;
+    --color-socket-rim: #3a3833;
+    --color-socket-hi: #242323;
     --color-instance-difficulty-mid: #15131a;
     --color-instance-difficulty-bg: #121016;
-    --color-panel-hi: #1c1c29;
+    --color-panel-hi: #1a1a1a;
     --color-chrome-ground: #1a1410;
-    --color-chrome-glyph: #c9b27a;
-    --color-glint: #ffea8c;
-    --color-control-border: #4e3f1d;
+    --color-chrome-glyph: #b8b0a0;
+    --color-glint: #e7d8bc;
+    --color-control-border: #34312d;
     --color-medal-hi: #4a3a14;
     --color-medal-lo: #241c08;
     --color-medal-ink: #3a2b00;
@@ -944,23 +984,22 @@
     /* Themed text and surface derivations (classic outputs; theme.ts re-emits
        --color-socket-hi, --color-panel-hi, --color-glint, --color-control-border,
        --color-info, --color-warning and the four below per preset). */
-    --color-text-secondary: #e0dac4;
-    --color-text-faint: #897f61;
+    --color-text-secondary: #e0dbd0;
+    --color-text-faint: #98938a;
     --panel-bg-soft: linear-gradient(
       170deg,
-      rgba(21, 21, 31, 0.74) 0%,
-      rgba(12, 12, 17, 0.74) 60%,
-      rgba(12, 12, 17, 0.74) 100%
+      rgba(14, 14, 16, 0.74) 0%,
+      rgba(14, 14, 16, 0.74) 100%
     );
     --panel-bg-strong: linear-gradient(
       170deg,
-      rgba(16, 16, 24, 0.97) 0%,
-      rgba(9, 9, 13, 0.97) 100%
+      rgba(11, 11, 12, 0.97) 0%,
+      rgba(11, 11, 12, 0.97) 100%
     );
     /* Composites: fills and edges the primitives share. */
-    --socket-fill: radial-gradient(circle at 35% 30%, var(--color-socket-hi), var(--panel-base));
+    --socket-fill: var(--surface-hud);
     --socket-fill-empty: color-mix(in srgb, var(--color-ink) 55%, transparent);
-    --medal-fill: radial-gradient(circle at 40% 35%, var(--color-medal-hi), var(--color-medal-lo));
+    --medal-fill: var(--color-medal-lo);
     --btn-fill-selected: var(--medal-fill);
     --btn-fill-gold: linear-gradient(
       180deg,
@@ -969,17 +1008,9 @@
       var(--color-btn-gold-lo)
     );
     --btn-fill-red: linear-gradient(180deg, var(--color-btn-red-hi), var(--color-btn-red-lo));
-    --ribbon-bg: linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--color-panel-hi) 92%, transparent),
-      color-mix(in srgb, var(--color-bg-input) 92%, transparent)
-    );
-    --bar-well-fill: linear-gradient(var(--color-bar-well-lo), var(--color-bar-well-hi));
-    --bar-gloss: linear-gradient(
-      color-mix(in srgb, var(--color-white) 25%, transparent),
-      color-mix(in srgb, var(--color-white) 2%, transparent) 45%,
-      color-mix(in srgb, var(--color-keyline) 15%, transparent)
-    );
+    --ribbon-bg: transparent;
+    --bar-well-fill: var(--surface-hud);
+    --bar-gloss: transparent;
     --xp-fill: linear-gradient(180deg, var(--color-xp), var(--color-xp-deep));
     --xp-rested-fill: linear-gradient(180deg, var(--color-xp-rested), var(--color-xp-rested-deep));
     --xp-overflow-fill: linear-gradient(#ffe27a, #d99a1c);
@@ -992,37 +1023,30 @@
     --swing-fill-ready: linear-gradient(#d8e8ff, #8fb6e6 60%, #5b86b8);
     --swing-fill-target: linear-gradient(#c9a3ff, #7c3fd9 60%, #481f8a);
     --swing-fill-tot: linear-gradient(#ffb3c6, #d9427c 60%, #8a1f4e);
-    --edge-glint: inset 0 1px 0 color-mix(in srgb, var(--color-glint) 16%, transparent);
-    --edge-hairline: inset 0 0 0 1px color-mix(in srgb, var(--color-glint) 12%, transparent);
-    --shadow-lift: 0 2px 4px color-mix(in srgb, var(--color-keyline) 56%, transparent);
+    /* Project H flat depth: no drop shadows on HUD chrome, no inner glints. The
+       composites keep their names and shapes (every consumer still reads one
+       box-shadow list) and resolve to a no-op shadow or the single hairline. */
+    --edge-glint: inset 0 0 0 0 transparent;
+    --edge-hairline: inset 0 0 0 1px var(--line-faint);
+    --shadow-lift: 0 0 0 0 transparent;
     --shadow-instance-difficulty: 0 2px 6px rgb(0 0 0 / 90%);
-    --shadow-socket:
-      0 0 0 1px var(--color-keyline),
-      inset 0 1px 0 color-mix(in srgb, var(--color-white) 10%, transparent), var(--edge-hairline),
-      0 3px 6px color-mix(in srgb, var(--color-keyline) 60%, transparent);
-    --shadow-panel:
-      0 2px 16px color-mix(in srgb, var(--color-keyline) 75%, transparent),
-      inset 0 0 24px color-mix(in srgb, var(--color-keyline) 38%, transparent), var(--edge-glint);
-    --shadow-window:
-      0 0 0 2px var(--color-window-ring), 0 0 0 3px var(--color-keyline),
-      0 14px 40px color-mix(in srgb, var(--color-keyline) 70%, transparent),
-      inset 0 0 28px color-mix(in srgb, var(--color-keyline) 40%, transparent), var(--edge-glint);
-    --shadow-well:
-      inset 0 1px 0 color-mix(in srgb, var(--color-white) 5%, transparent),
-      inset 0 0 14px color-mix(in srgb, var(--color-keyline) 70%, transparent);
+    --shadow-socket: 0 0 0 0 transparent;
+    --shadow-panel: 0 0 0 0 transparent;
+    --shadow-window: 0 0 0 0 transparent;
+    --shadow-well: inset 0 0 0 1px var(--line-faint);
     --glow-gold: 0 0 calc(12px * var(--fx-shadow, 1))
       color-mix(in srgb, var(--gold) 70%, transparent);
     --glow-gold-soft: 0 0 calc(8px * var(--fx-shadow, 1))
       color-mix(in srgb, var(--gold) 50%, transparent);
-    --title-shadow: 1px 1px 2px var(--color-keyline);
+    --title-shadow: 0 1px 1px var(--color-keyline);
     --outline-shadow:
       -1px 0 var(--color-keyline), 1px 0 var(--color-keyline), 0 -1px var(--color-keyline),
       0 1px var(--color-keyline), 0 0 3px var(--color-keyline);
     /* Sizes the boards repeat. Sockets are a parametric family: the action size
        is the default and each species (bag 40, bank socket 32, stance disc 30)
        sets --ui-socket-size on its own class. */
-    --socket-size: 46px;
-    --socket-gap: 4px;
+    --socket-size: var(--hands-slot-size);
+    --socket-gap: var(--hands-slot-gap);
     --socket-row-gap: 6px;
     --socket-art-inset: 1px;
     --socket-size-bag: 40px;
@@ -1037,7 +1061,7 @@
     --bar-h-hp: 16px;
     --bar-h-res: 11px;
     --bar-h-res-empty: var(--bar-h-res);
-    --bar-notch: 5px;
+    --bar-notch: 0px;
     --castbar-w: 300px;
     --castbar-h: 20px;
     --castbar-point: 6px;
@@ -1067,10 +1091,10 @@
     --radius-2xs: 2px;
     --radius-xs: 3px;
     --radius-card: 5px;
-    --radius-panel: 6px;
-    --radius-socket: 6px;
-    --radius-cell: 7px;
-    --radius-window: 8px;
+    --radius-panel: var(--radius-none);
+    --radius-socket: var(--radius-soft);
+    --radius-cell: var(--radius-soft);
+    --radius-window: var(--radius-none);
     --radius-pill: 999px;
     --dur-fast: 90ms;
     --dur-press: 60ms;
@@ -1266,7 +1290,7 @@
 
     /* unit and party frames */
     /* Shared authored geometry for the plateless unit-frame family. */
-    --unit-frame-w: 278px;
+    --unit-frame-w: 420px;
     /* Classic party bars keep a readable health-to-resource hierarchy. */
     --party-hp-h: 9px;
     --party-res-h: 5px;

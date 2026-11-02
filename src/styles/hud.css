@@ -16688,4 +16688,314 @@
   .expedition-actions .ui-btn {
     min-height: 40px;
   }
+
+  /* ---------- Project H vitals bar, hands row and XP line ---------- */
+  /* docs/design/project-h-interface.md, packet 1. The DOM, ids, painters and
+     t() keys of the unit frames, the action bar and the XP rail are unchanged;
+     this section re-shapes them to the sandbox-MMO composition: a single wide
+     health bar at bottom centre with the level numeral at its right end and
+     the class resource as a thin line under it (no portrait, no ribbon, no
+     plate), a row of square slots above it, a 2px XP line along the bottom
+     edge, the target as a thin bar at top centre while something is targeted,
+     and the party as thin bars at top left. Every value is a token; the source
+     order (after every legacy unit-frame / bottom-cluster rule, same layer)
+     is what lets these rules win without touching the mechanism they restyle.
+     The frame composition is DESKTOP scoped (body:not(.mobile-touch)): the
+     touch HUD keeps its compact portrait-and-ring layout until the mobile
+     packet the direction doc schedules after desktop packet 3, and so stays
+     functional on day one; the theme, type, flat chrome, hands row sizing
+     and XP line reach both hosts through the shared tokens.
+     Tier rule: nothing here hides information. The portrait disc and the seal
+     were decoration; the name, PvP badge, combat badge, rest marker, level,
+     health text, resource text and absorb overlay all remain visible. */
+  body:not(.mobile-touch) #player-frame {
+    position: relative;
+    align-items: flex-end;
+    justify-content: center;
+    padding-left: 0;
+    /* Centred over the hands row (the classic seat sat flush with the rail's
+       left edge to bracket the bar with the target frame; the target now
+       lives at top centre). */
+    margin: 0 auto var(--spacing-sm);
+  }
+  body:not(.mobile-touch) #player-frame > .portrait-wrap {
+    position: absolute;
+    right: 0;
+    bottom: calc(var(--vitals-res-h) + var(--spacing-xs) + 14px);
+    width: 0;
+    height: var(--uf-bar-height, var(--bar-h-hp));
+    z-index: 4;
+  }
+  body:not(.mobile-touch) #player-frame > .portrait-wrap .portrait,
+  body:not(.mobile-touch) #player-frame > .portrait-wrap .deed-heraldry-seal {
+    display: none;
+  }
+  /* The level numeral at the bar's right end: bare display-serif digits over
+     the bar, no medal plate. */
+  body:not(.mobile-touch) #player-frame #pf-level {
+    position: absolute;
+    left: auto;
+    right: var(--spacing-xs);
+    bottom: 0;
+    width: auto;
+    min-width: 0;
+    height: var(--uf-bar-height, var(--bar-h-hp));
+    padding: 0 var(--spacing-2xs);
+    border: 0;
+    border-radius: var(--radius-none);
+    background: transparent;
+    box-shadow: none;
+    font-family: var(--font-display);
+    font-size: 13px;
+    line-height: 1;
+    color: var(--text);
+    text-shadow: var(--title-shadow);
+  }
+  /* The in-combat badge and the rest marker ride the bar's left end instead
+     of the portrait's corner (both are information and stay visible). */
+  body:not(.mobile-touch) #player-frame #pf-combat {
+    top: auto;
+    right: auto;
+    left: calc(-1 * var(--vitals-w) + var(--spacing-xs));
+    bottom: 0;
+    width: 18px;
+    height: 18px;
+  }
+  body:not(.mobile-touch) #player-frame #pf-rest {
+    top: auto;
+    right: auto;
+    left: calc(-1 * var(--vitals-w) + 24px);
+    bottom: 0;
+    width: 18px;
+    height: 18px;
+  }
+  body:not(.mobile-touch) #player-frame > #pf-bars {
+    width: var(--vitals-w);
+    max-width: 100%;
+    margin: 0;
+    padding: 0 0 14px;
+    gap: var(--spacing-xs);
+  }
+  /* The name line: quiet small-caps serif, no ribbon, PvP badge beside it. */
+  body:not(.mobile-touch) #player-frame #pf-name-header {
+    height: 16px;
+    padding: 0;
+    clip-path: none;
+    background: transparent;
+    box-shadow: none;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  body:not(.mobile-touch) #player-frame #pf-name-header .deed-heraldry-pattern {
+    display: none;
+  }
+  body:not(.mobile-touch) #player-frame .bar.hp {
+    height: var(--uf-bar-height, var(--bar-h-hp));
+    clip-path: none;
+    background: var(--surface-hud);
+    box-shadow: inset 0 0 0 1px var(--line-faint);
+  }
+  body:not(.mobile-touch) #player-frame .bar.hp .bar-fill {
+    background: var(--vital-health);
+  }
+  body:not(.mobile-touch) #player-frame .bar.hp .ui-bevel-ticks {
+    display: none;
+  }
+  body:not(.mobile-touch) #player-frame .bar.hp .bar-text {
+    justify-content: flex-start;
+    padding-left: var(--spacing-sm);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text);
+    text-shadow: var(--title-shadow);
+  }
+  /* The low-health tint (vitals_view.ts threshold): the same width and text,
+     a warmer fill, so a glance reads danger without a vignette. */
+  body:not(.mobile-touch) #player-frame.vitals-low .bar.hp .bar-fill {
+    background: var(--color-rage);
+  }
+  /* The thin resource line under the health bar; its readout hangs under the
+     line in the sans at the right end, and the low-resource label keeps its seat. */
+  body:not(.mobile-touch) #player-frame > #pf-bars #pf-resource-frame .bar {
+    height: var(--vitals-res-h);
+    clip-path: none;
+    overflow: visible;
+    background: var(--surface-hud);
+    box-shadow: inset 0 0 0 1px var(--line-faint);
+  }
+  body:not(.mobile-touch) #player-frame > #pf-bars #pf-resource-frame .bar .ui-bevel-ticks,
+  body:not(.mobile-touch) #player-frame > #pf-bars #pf-resource-frame .bar .ui-bevel-edge {
+    display: none;
+  }
+  body:not(.mobile-touch) #player-frame > #pf-bars #pf-resource-frame .bar.mana .bar-fill {
+    background: var(--vital-mana);
+  }
+  body:not(.mobile-touch) #player-frame > #pf-bars #pf-resource-frame .bar.energy .bar-fill {
+    background: var(--vital-stamina);
+  }
+  body:not(.mobile-touch) #player-frame > #pf-bars #pf-resource-frame .bar .bar-text {
+    top: 100%;
+    bottom: auto;
+    height: 14px;
+    justify-content: flex-end;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-dim);
+    text-shadow: var(--title-shadow);
+  }
+  /* The target: a thin bar under the top-centre band, present only while
+     something is targeted (the painter's display toggle is unchanged). */
+  body:not(.mobile-touch) #target-frame:not(.hud-frame-detached) {
+    left: calc(50% - var(--target-frame-box-w) / 2);
+    top: 56px;
+  }
+  body:not(.mobile-touch) #target-frame > .portrait-wrap .portrait,
+  body:not(.mobile-touch) #target-frame > .portrait-wrap .deed-heraldry-seal {
+    display: none;
+  }
+  body:not(.mobile-touch) #target-frame > .portrait-wrap {
+    width: 0;
+    height: var(--uf-bar-height, var(--bar-h-hp));
+  }
+  body:not(.mobile-touch) #target-frame #tf-level {
+    position: absolute;
+    left: auto;
+    right: var(--spacing-xs);
+    bottom: 0;
+    width: auto;
+    min-width: 0;
+    height: var(--uf-bar-height, var(--bar-h-hp));
+    padding: 0 var(--spacing-2xs);
+    border: 0;
+    border-radius: var(--radius-none);
+    background: transparent;
+    box-shadow: none;
+    font-family: var(--font-display);
+    font-size: 13px;
+    line-height: 1;
+    color: var(--text);
+  }
+  body:not(.mobile-touch) #target-frame > .uf-bars {
+    margin-right: 0;
+    width: var(--target-frame-width, var(--unit-frame-w));
+    gap: var(--spacing-xs);
+  }
+  body:not(.mobile-touch) #target-frame #tf-name-header {
+    height: 16px;
+    padding: 0;
+    justify-content: center;
+    clip-path: none;
+    background: transparent;
+    box-shadow: none;
+    font-size: 11px;
+  }
+  body:not(.mobile-touch) #target-frame #tf-name-header .deed-heraldry-pattern {
+    display: none;
+  }
+  body:not(.mobile-touch) #target-frame .bar.hp,
+  body:not(.mobile-touch) #target-frame #tf-resource {
+    clip-path: none;
+    background: var(--surface-hud);
+    box-shadow: inset 0 0 0 1px var(--line-faint);
+  }
+  body:not(.mobile-touch) #target-frame .bar.hp .ui-bevel-ticks {
+    display: none;
+  }
+  body:not(.mobile-touch) #target-frame #tf-resource {
+    height: var(--vitals-res-h);
+  }
+  body:not(.mobile-touch) #target-frame #tf-resource .ui-bevel-ticks,
+  body:not(.mobile-touch) #target-frame #tf-resource .ui-bevel-edge,
+  body:not(.mobile-touch) #target-frame #tf-resource .bar-text {
+    display: none;
+  }
+  body:not(.mobile-touch) #target-frame .bar.hp .bar-text {
+    font-family: var(--font-body);
+    font-weight: 500;
+    color: var(--text);
+    text-shadow: var(--title-shadow);
+  }
+  /* The party: thin bars, no crest disc, top left (the container already sits
+     there; the rows lose their plate). */
+  body:not(.mobile-touch) #party-frames .party-frame .pfm-crest {
+    display: none;
+  }
+  body:not(.mobile-touch) #party-frames .party-frame {
+    border: 0;
+    border-bottom: 1px solid var(--line-faint);
+    border-radius: var(--radius-none);
+    background: transparent;
+    box-shadow: none;
+  }
+  body:not(.mobile-touch) #party-frames .party-frame .bar {
+    clip-path: none;
+    background: var(--surface-hud);
+    box-shadow: inset 0 0 0 1px var(--line-faint);
+  }
+  /* The hands row: the primary bar painter stamps .hands-row
+     (hands_row_core.ts); the two optional rows share the shape by id. */
+  #actionbar.hands-row,
+  #actionbar2,
+  #actionbar3 {
+    gap: var(--hands-slot-gap);
+    min-height: var(--hands-slot-size);
+  }
+  #actionbar.hands-row .ui-socket,
+  #actionbar2 .ui-socket,
+  #actionbar3 .ui-socket {
+    --ui-socket-size: var(--hands-slot-size);
+    border-radius: var(--radius-soft);
+  }
+  #actionbar.hands-row .ui-socket-cd-text,
+  #actionbar2 .ui-socket-cd-text,
+  #actionbar3 .ui-socket-cd-text {
+    font-size: 14px;
+  }
+  /* The XP line: 2px along the very bottom edge, the readout only on hover
+     or focus (the rail's own reveal), no plate. */
+  #actionbar-stack #xpbar {
+    height: var(--xp-line-h);
+    margin-top: var(--spacing-xs);
+    background: var(--surface-hud);
+    border: 0;
+    box-shadow: inset 0 0 0 1px var(--line-faint);
+    outline: 0;
+  }
+  #actionbar-stack #xpbar .fill {
+    --xp-fill: var(--vital-xp);
+  }
+  #actionbar-stack #xpbar .ticks {
+    display: none;
+  }
+  #actionbar-stack #xpbar .label {
+    top: auto;
+    bottom: calc(100% + var(--spacing-2xs));
+    height: 14px;
+    font-family: var(--font-body);
+    font-size: 10px;
+    color: var(--text-dim);
+    visibility: hidden;
+  }
+  #actionbar-stack #xpbar:hover .label,
+  #actionbar-stack #xpbar:focus-within .label {
+    visibility: visible;
+  }
+  #actionbar-stack #xpbar:hover .label::after,
+  #actionbar-stack #xpbar:focus-within .label::after {
+    bottom: 0;
+  }
+  #actionbar-stack #xpbar.rested {
+    outline: 0;
+    box-shadow: none;
+  }
+  #actionbar-stack #xpbar.overflow {
+    box-shadow: none;
+  }
+  /* The whole bottom stack hugs the viewport's bottom edge so the XP line is
+     the last two pixels of the screen. */
+  #bottom-bar {
+    bottom: 0;
+  }
 }

@@ -72,10 +72,15 @@ describe('css_token_resolution: every var() read names a declared custom propert
     ).toEqual(KNOWN_UNDECLARED);
   });
 
-  it('the marketplace accent reads the themed token, never the undeclared --accent', () => {
+  it('the accent is a declared token on both homes (tokens.css and theme.ts)', () => {
     // The defect this guard was written after: seven marketplace declarations
-    // read var(--accent), which nothing declared.
-    for (const css of sheets) expect(varReadsWithoutFallback(css)).not.toContain('--accent');
+    // read var(--accent), which nothing declared. The Project H token set
+    // (docs/design/project-h-interface.md) closes that gap by DECLARING
+    // --accent as the one brass accent, so a read of it now resolves; the
+    // pin is that both homes carry it, never that it stays undeclared.
+    expect(declared.has('--accent')).toBe(true);
+    expect(stripCss(readFileSync(`${STYLES_DIR}tokens.css`, 'utf8'))).toContain('--accent:');
+    expect(readFileSync(`${REPO}src/ui/theme.ts`, 'utf8')).toContain("'--accent'");
     expect(declared.has('--color-accent')).toBe(true);
     // The Adventure Guide migrated its former latent border reads to a scoped
     // --df-border. Keep the generic alias undeclared for other windows.

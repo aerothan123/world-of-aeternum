@@ -23,7 +23,8 @@ describe('resetFramePositionsOnce', () => {
     // Load-bearing wire tokens: these must match the MovableFrame keys in hud.ts.
     expect(FRAME_POS_RESET_KEYS).toEqual(['woc_player_frame_pos', 'woc_target_frame_pos']);
     expect(LAYOUT_RESET_EPOCH_KEY).toBe('woc_layout_reset_epoch');
-    expect(LAYOUT_RESET_EPOCH).toBe(1);
+    // Epoch 2 is the Project H fork's one-time reset (the vitals bar seats).
+    expect(LAYOUT_RESET_EPOCH).toBe(2);
   });
 
   it('clears both frame positions and stamps the epoch on a first run', () => {

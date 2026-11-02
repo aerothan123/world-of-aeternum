@@ -509,24 +509,26 @@
     pointer-events: none;
   }
 
+  /* Project H chrome (docs/design/project-h-interface.md "Visual signature"):
+     a quiet translucent charcoal fill, ONE hairline edge, flat depth (no bevel,
+     no outline ring, no drop shadow) and type carrying the hierarchy. Same
+     selector and mechanism as the classic plate; only the values moved. */
   .panel {
     background: var(--panel-bg);
-    border: 2px solid var(--border);
-    outline: 1px solid #000;
-    border-radius: 6px;
-    box-shadow:
-      0 2px 16px #000c,
-      inset 0 0 24px #0006,
-      inset 0 1px 0 #ffffff14;
-    color: var(--color-text-light);
+    border: 1px solid var(--line-faint);
+    outline: 0;
+    border-radius: var(--radius-none);
+    box-shadow: none;
+    color: var(--text);
   }
   .panel-title {
     font-family: var(--font-display);
     color: var(--color-accent);
-    font-size: 15px;
-    letter-spacing: 0.5px;
+    font-size: 14px;
+    letter-spacing: var(--track-caps);
+    font-variant-caps: small-caps;
     text-shadow: var(--title-shadow);
-    border-bottom: 1px solid var(--color-border-showcase);
+    border-bottom: 1px solid var(--line-faint);
     padding-bottom: 6px;
     margin-bottom: 8px;
     display: flex;
@@ -550,9 +552,9 @@
     cursor: var(--cursor-point);
     font-size: 14px;
     padding: 0 4px;
-    border: 1px solid var(--color-border-showcase);
-    border-radius: 3px;
-    background: var(--socket-fill);
+    border: 1px solid var(--line-faint);
+    border-radius: var(--radius-none);
+    background: transparent;
     font-family: var(--font-ui);
   }
   .x-btn:hover {
