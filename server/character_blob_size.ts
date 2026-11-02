@@ -59,7 +59,15 @@
 // bytes (the release 227,869 plus the hoard and faction-quartermaster content,
 // +5,491, itemized in tests/professions_blob_growth.test.ts), past 224 KiB. The
 // next 32-KiB step, now level with the guild-bank row scale; still warn-only.
-export const CHARACTER_BLOB_WARN_BYTES = 262_144;
+// RE-MINTED to 294,912 (288 KiB) at Project H housing phase 3 (the home
+// crafting stations): the storage-rich whole-character fixture measured
+// 262,310 bytes (the twelve Furnishing rows of phase 2 plus the six station
+// recipe and item ids of phase 3 in retained knowledge and discovery,
+// itemized in tests/professions_blob_growth.test.ts), 166 bytes past 256 KiB.
+// The next 32-KiB step, one step above the guild-bank row scale; still
+// warn-only, and the ordinary-character arm of tests/character_blob_size.test.ts
+// still sits under a quarter of it.
+export const CHARACTER_BLOB_WARN_BYTES = 294_912;
 
 // The decision, kept pure so it is unit-testable without a database: returns the
 // dev-channel log line for an oversized blob, or null when the size is

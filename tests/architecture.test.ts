@@ -607,6 +607,7 @@ const UI_PURE_CORES = [
   'src/ui/hud/professions/farming_view.ts',
   'src/ui/hud/housing/house_feedback_view.ts',
   'src/ui/hud/housing/house_furnish_view.ts',
+  'src/ui/hud/housing/house_storage_view.ts',
   'src/ui/hud/housing/furniture_tooltip_view.ts',
   'src/ui/hud/professions/farming_plant_sheet_view.ts',
   'src/ui/hud/professions/harvest_journal_view.ts',
@@ -3299,6 +3300,8 @@ const UI_DOM_MODULES = [
   'src/ui/hud/vendor/unbind_window.ts',
   'src/ui/hud/buddy_menu.ts',
   'src/ui/hud/vendor/vendor_window.ts',
+  // The house storage window (Project H phase 3): createElement grid cells.
+  'src/ui/hud/housing/house_storage_window.ts',
   'src/ui/hud/vendor/warfare_vendor_window.ts',
   'src/ui/hud/woc_trade/woc_trade_controller.ts',
   'src/ui/i18n.ts',

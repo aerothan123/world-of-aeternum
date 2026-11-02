@@ -1450,6 +1450,18 @@ const HUD_UPDATE_DRIVES: readonly DriveRow[] = [
     why: 'the owner courier window; custody, phase, membership and draft changes rebuild it, while pose-only movement never does',
   },
   {
+    call: 'this.houseStorageWindow.refreshIfChanged',
+    band: 'slow',
+    gate: 'this.houseStorageWindow.isOpen',
+    surface: 'window',
+    guard: {
+      kind: 'module',
+      module: 'hud/housing/house_storage_window.ts',
+      proof: 'if (!force && signature === this.lastSignature) return;',
+    },
+    why: 'the house storage window (Project H phase 3); it also closes itself when the storage mirror goes null past the open grace',
+  },
+  {
     call: 'this.dailyRewardsWindow.refreshIfChanged',
     band: 'slow',
     gate: 'this.dailyRewardsWindow.isOpen',
@@ -1974,7 +1986,9 @@ describe('Hud.update() drives exactly the registered set, on the registered band
       // chrome 99 -> 100: the dungeon objectives tracker's medium-band paint
       // (hud/dungeon/dungeon_tracker_painter.ts), facet-routed like the deed strip.
       // window 53 -> 54: Lantern Hall's guild window (hud/guild_hall/guild_hall_window.ts).
-    ).toEqual({ window: 55, chrome: 101, none: 21 });
+      // window 55 -> 56: the house storage window (hud/housing/house_storage_window.ts,
+      // Project H phase 3), slow-band and open-only like the courier's.
+    ).toEqual({ window: 56, chrome: 101, none: 21 });
     const windows = HUD_UPDATE_DRIVES.filter((r) => r.surface === 'window');
     expect(windows.map((r) => r.call)).toContain('this.spellbookWindow.tickOpen');
     expect(windows.map((r) => r.call)).toContain('this.refreshOpenTownFocusIfChanged');
@@ -1999,7 +2013,8 @@ describe('Hud.update() drives exactly the registered set, on the registered band
       // refreshing instead of only closing.
       // The courier window owns both revision and content signature guards.
       // Lantern Hall's guild window owns its signature guard (hud/guild_hall/).
-      module: 32,
+      // The house storage window (Project H phase 3) owns its signature guard too.
+      module: 33,
       // Phase 20's refreshCharSheetIfChanged and its siblings. Their latches are
       // HUD fields (lastCharSheetSig et al) because the cold char_window painter
       // holds no signature of its own to diff. The release's trade row left this
@@ -2055,6 +2070,7 @@ describe('Hud.update() drives exactly the registered set, on the registered band
         'hud/battleground/battleground_proposal_popup.ts: if (view.sig !== this.lastSig) {',
         'hud/cosmetics/cosmetics_window.ts: const sig = cosmeticsSig(this.snapshot()); if (sig === this.lastSig) return;',
         'hud/courier/courier_window.ts: if (!force && signature === this.lastSignature) return;',
+        'hud/housing/house_storage_window.ts: if (!force && signature === this.lastSignature) return;',
         'hud.ts: if (craftCastActivitySig(session) !== this.lastCraftingCastSig) {',
         'hud.ts: if (craftingReagentSig(this.sim.inventory, this.sim.player.name, this.sim.craftVaultStock) === this.lastCraftingReagentSig) return;',
         'hud.ts: if (sig !== this.lastLootSettingsSig) {',

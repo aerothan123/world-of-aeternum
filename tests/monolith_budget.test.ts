@@ -559,7 +559,10 @@ const MONOLITHS: MonolithRow[] = [
     // 17736 -> 17739, raised in the Project H fork (a maintainer call). Phase 2
     // adds the houseFurniture case label, the furniture tooltip composition and
     // its import: 17739 -> 17744, raised in the Project H fork (a maintainer call).
-    ceiling: 17744,
+    // Phase 3 adds the house storage window's composition (its deps bag), the
+    // houseStorage event arm, its managed-close case, the relocalize and slow-band
+    // refresh lines: 17744 -> 17769, raised in the Project H fork (a maintainer call).
+    ceiling: 17769,
     seam: 'pure view core + thin painter on PainterHost (src/ui/CLAUDE.md)',
   },
   {
@@ -1328,8 +1331,10 @@ const MONOLITHS: MonolithRow[] = [
     // the Project H fork (a maintainer call). Phase 2 adds the houseAnchors read,
     // the placeFurniture / removeFurniture delegates, their imports and the
     // furnishingSkill default: 11424 -> 11437, raised in the Project H fork (a
-    // maintainer call).
-    ceiling: 11437,
+    // maintainer call). Phase 3 adds the five house storage delegates, their
+    // namespace import and the houseStorageRev default: 11437 -> 11456, raised
+    // in the Project H fork (a maintainer call).
+    ceiling: 11456,
     seam: 'a sim system module behind SimContext (src/sim/CLAUDE.md)',
   },
   {
@@ -1877,7 +1882,11 @@ const MONOLITHS: MonolithRow[] = [
     // `hse` self key: 9666 -> 9670, raised in the Project H fork (a maintainer call).
     // Phase 2 adds the type-guarded place_furniture / remove_furniture dispatch
     // cases: 9670 -> 9689, raised in the Project H fork (a maintainer call).
-    ceiling: 9689,
+    // Phase 3 adds the type-guarded house_storage_deposit / house_storage_withdraw
+    // dispatch cases, the one-line `hst` emit (server/house_storage_wire.ts) and
+    // its two session trackers: 9689 -> 9704, raised in the Project H fork (a
+    // maintainer call).
+    ceiling: 9704,
     seam: 'a sibling server module; see the hot-path seams in server/CLAUDE.md',
   },
   {

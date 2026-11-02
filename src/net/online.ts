@@ -156,6 +156,7 @@ import {
   type GuildPledgeSettings,
   type GuildRankDef,
   type GuildRosterInfo,
+  type HouseStorageView,
   type HouseView,
   type IWorld,
   isOverheadEmoteId,
@@ -235,6 +236,7 @@ import { applyGroundTelegraphSnapshot } from './ground_telegraph_wire';
 import { GuildBankLogMirror } from './guild_bank_log_mirror';
 import { decodeGuildBoardPage, emptyGuildBoardPage, guildBoardPath } from './guild_board_wire';
 import { decodeGuildRoster } from './guild_roster_wire';
+import { applyHouseStorageWire } from './house_storage_wire';
 import { decodeHouseWire } from './housing_self_wire';
 import { foldInputAck } from './input_ack';
 import {
@@ -1436,6 +1438,7 @@ export class ClientWorld extends ReconWireState implements IWorld {
   readonly houseLots = HOUSE_LOTS;
   readonly houseAnchors = HOUSE_COTTAGE_ANCHORS;
   myHouse: HouseView | null = null;
+  houseStorage: HouseStorageView | null = null; // phase 3: the `hst` mirror (house_storage_wire.ts)
   // The clock base the plot timestamps above were written in. Date.now is
   // correct here for the riftEventMsRemaining reason: the server computes farm
   // timestamps through ctx.lockoutNowMs(), which IS real Date.now() on the
@@ -3247,6 +3250,7 @@ export class ClientWorld extends ReconWireState implements IWorld {
       // module, where the delta contract and per-key malformed policy live.
       applyProfessionsSelfMirror(this, s);
       if (s.hse !== undefined) this.myHouse = decodeHouseWire(s.hse);
+      if (s.hst !== undefined) applyHouseStorageWire(this, s.hst);
       // camera follows server-side facing changes when not mouselooking
       if (prevSelfFacing !== undefined && this.mouselookFacing === null) {
         let d = e.facing - prevSelfFacing;
@@ -4286,6 +4290,12 @@ export class ClientWorld extends ReconWireState implements IWorld {
   }
   removeFurniture(anchorId: string): void {
     this.cmd({ cmd: 'remove_furniture', anchor: anchorId });
+  }
+  houseStorageDeposit(slot: number): void {
+    this.cmd({ cmd: 'house_storage_deposit', slot });
+  }
+  houseStorageWithdraw(slot: number): void {
+    this.cmd({ cmd: 'house_storage_withdraw', slot });
   }
   sitOnSeat(seatId: string): void {
     this.cmd({ cmd: 'sit_seat', seat: seatId });

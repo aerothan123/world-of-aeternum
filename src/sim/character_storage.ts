@@ -43,14 +43,22 @@ export function restoreCharacterStorage(
   // with its placed furniture; a dropped placement row is a dev-channel
   // warning (never player text), the farm_load_report.ts shape.
   const droppedFurniture: DroppedFurnitureRow[] = [];
-  meta.house = sanitizeHouseState(s.house, droppedFurniture);
+  const droppedStorageKeys: string[] = [];
+  meta.house = sanitizeHouseState(s.house, droppedFurniture, droppedStorageKeys);
   if (droppedFurniture.length > 0) {
     console.warn(
       `house furniture load dropped ${droppedFurniture.length} row(s): ` +
         droppedFurniture.map((row) => `${row.anchorId}=${String(row.itemId)}`).join(', '),
     );
   }
+  // Phase 3: the house storage's payload-key drops ride the same dev channel.
+  if (droppedStorageKeys.length > 0) {
+    console.warn(
+      `house storage load dropped ${droppedStorageKeys.length} key(s): ${droppedStorageKeys.join(', ')}`,
+    );
+  }
   meta.furnishingSkill = sanitizeFurnishingSkill(s.furnishingSkill);
+  meta.houseStorageRev = 0;
 }
 
 export function savedCharacterStorage(

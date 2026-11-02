@@ -74,6 +74,12 @@ export const HEAVY_SELF_CMDS = new Set<string>([
   // two commands (the place_feast trade), arm-marked with it below.
   'place_furniture',
   'remove_furniture',
+  // Phase 3: both storage moves rewrite the carried inventory (a deposit
+  // splices or decrements a bag slot, a withdrawal addStacks into one), the
+  // heavy-gated `inv` key; the storage view itself rides the revision-gated
+  // `hst` key. Arm-marked like the pair above.
+  'house_storage_deposit',
+  'house_storage_withdraw',
   // The Perfecting stage (Masterwrought phase 12): a resolved attempt spends
   // the three materials through the lock-aware bag walk and mutates the
   // target's instance payload IN PLACE (the bind stamp, the rank, the
@@ -190,6 +196,8 @@ export const HEAVY_SELF_ARM_MARKED_CMDS = new Set<string>([
   'place_feast',
   'place_furniture',
   'remove_furniture',
+  'house_storage_deposit',
+  'house_storage_withdraw',
   'market_sweep',
   'market_order_place',
   'market_order_fill',

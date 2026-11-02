@@ -11308,6 +11308,27 @@ export const hudChromeStrings = {
       anchorKind: 'That piece of furniture does not fit that spot.',
       noItem: 'You are not holding that piece of furniture.',
       bagsFull: 'Your bags are full.',
+      // Phase 3: the house storage refusals (src/sim/housing/house_storage.ts).
+      storageInUse:
+        'Empty that chest first: your house storage still holds items it provides room for.',
+      storageFar: 'You must stand next to a storage chest in your house.',
+      storageFull: 'Your house storage is full.',
+      storageItem: 'That item cannot be stored in your house.',
+    },
+    // Phase 3 (src/ui/hud/housing/house_storage_window.ts): the house
+    // storage window. {used}/{total} are slot counts, {chests} the chest count.
+    storage: {
+      title: 'House Storage',
+      close: 'Close house storage',
+      away: 'Stand next to a storage chest in your house to use its storage.',
+      storedTitle: 'Stored',
+      carriedTitle: 'Your bags',
+      meter: '{used} / {total} slots ({chests} chests)',
+      full: 'Full: place another storage chest for more room.',
+      storedEmpty: 'Nothing is stored here yet.',
+      carriedEmpty: 'Your bags are empty.',
+      withdrawHint: 'Click to take it back into your bags.',
+      depositHint: 'Click to store it in your house.',
     },
     // Phase 2 (src/ui/hud/housing/house_furnish_view.ts): the bag menu's
     // Place row, the picker rows, and the anchor labels. {item} is the
@@ -11336,6 +11357,9 @@ export const hudChromeStrings = {
       kind: 'Furniture',
       use: 'Place it on a {kind} spot inside your house.',
       how: 'Right-click it in your bags while standing in your house.',
+      // Phase 3: what the two functional families do once placed.
+      chest: 'Once placed, adds {slots} slots to your house storage.',
+      station: 'Once placed, lets you craft recipes that need the {station} at home.',
     },
   },
 };

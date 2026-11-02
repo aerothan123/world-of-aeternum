@@ -15,15 +15,21 @@
 // Typing: kind 'tool' with no `use` arm (the Maker's Charm shape): never
 // equippable, never a kind the junk sweep vendors, and useItem's fall-through
 // refuses it (placement is the bag menu's Place row, never a click). Common
-// quality: a decoration, never counted combat power. The storage chest and
-// the trophy plaque are authored now for phases 3 and 4 and carry NO function
-// yet: they place like any other piece.
+// quality: a decoration, never counted combat power. The trophy plaque is
+// authored now for phase 4 and carries NO function yet: it places like any
+// other piece. Phase 3 gives two families a FUNCTION beyond decoration, both
+// resolved by the housing system from the def, never from the item: the
+// storage chest (every placed chest adds HOUSE_CHEST_SLOTS to the pooled
+// house storage, src/sim/housing/house_storage.ts) and the six crafting
+// stations (`stationType`: standing near a placed one inside your own house
+// satisfies the recipe station gate exactly as the town station of that type
+// does, src/sim/housing/house_stations.ts).
 //
 // Item icons: every id below rides ITEM_ART_PENDING (src/ui/icons.ts) through
 // FURNITURE_ART_PENDING_ITEM_IDS until the paintings land, so the icon falls
 // back to the procedural recipe (tests/item_icons.test.ts).
 
-import type { ItemDef } from '../types';
+import type { ItemDef, StationType } from '../types';
 
 /** The anchor kinds a furniture piece can stand on. Persisted indirectly
  *  (an anchor id names its kind in content), so append-only. */
@@ -31,19 +37,27 @@ export type FurnitureAnchorKind = 'floor' | 'wall' | 'rug' | 'table';
 
 /** The render keys the house renderer resolves: the kcas furniture set the
  *  Dawnhold dressing preloads (src/render/dawnhold_dressing.ts
- *  DAWNHOLD_DRESSING_KEYS) plus the procedural rug. */
+ *  DAWNHOLD_DRESSING_KEYS), the two qprops station props (the anvil and the
+ *  weapon stand the market stalls already place, src/render/props.ts
+ *  PROP_ASSET_DEFS), plus the procedural rug. */
 export type FurnitureRenderKey =
   | 'kcasChair'
   | 'kcasStool'
   | 'kcasBench'
   | 'kcasTableRoundSmall'
+  | 'kcasTableRoundMedium'
   | 'kcasTableLong'
+  | 'kcasTableCloth'
   | 'kcasBookcase'
   | 'kcasKeg'
   | 'kcasBarrel'
   | 'kcasChest'
   | 'kcasShelfSmall'
+  | 'kcasShelfCandles'
+  | 'kcasBartopMedium'
   | 'kcasCandleTriple'
+  | 'anvil'
+  | 'weaponStand'
   | 'rug';
 
 export interface FurnitureDef {
@@ -54,6 +68,10 @@ export interface FurnitureDef {
   /** Uniform scale over the normalized render template (height in yards for
    *  a kcas model; the rug's half extents are fixed in the renderer). */
   readonly scale: number;
+  /** Phase 3: the crafting station type a placed copy serves inside the
+   *  owner's house (src/sim/housing/house_stations.ts). Absent on every
+   *  non-station piece. */
+  readonly stationType?: StationType;
 }
 
 /** The catalog, in authoring order. The two reserved rows are last. */
@@ -68,10 +86,55 @@ export const FURNITURE_DEFS: readonly FurnitureDef[] = Object.freeze([
   { itemId: 'furn_barrel', kind: 'floor', renderKey: 'kcasBarrel', scale: 1.2 },
   { itemId: 'furn_woven_rug', kind: 'rug', renderKey: 'rug', scale: 1 },
   { itemId: 'furn_candlestick', kind: 'table', renderKey: 'kcasCandleTriple', scale: 1.2 },
-  // Reserved for phase 3 (storage chests) and phase 4 (trophies): placeable
-  // decoration today, no chest slots and no buff until those phases land.
+  // Phase 3: every placed chest adds HOUSE_CHEST_SLOTS of pooled house storage.
   { itemId: 'furn_storage_chest', kind: 'floor', renderKey: 'kcasChest', scale: 1.3 },
+  // Reserved for phase 4 (trophies): placeable decoration today, no buff.
   { itemId: 'furn_trophy_plaque', kind: 'wall', renderKey: 'kcasShelfSmall', scale: 1.2 },
+  // Phase 3: the six home crafting stations, one per StationType
+  // (content/professions.ts STATIONS). Floor pieces, so they stand on the
+  // workshop's floor anchors (or any floor anchor the owner prefers).
+  {
+    itemId: 'furn_station_forge',
+    kind: 'floor',
+    renderKey: 'anvil',
+    scale: 1.1,
+    stationType: 'forge',
+  },
+  {
+    itemId: 'furn_station_kitchens',
+    kind: 'floor',
+    renderKey: 'kcasBartopMedium',
+    scale: 1.2,
+    stationType: 'kitchens',
+  },
+  {
+    itemId: 'furn_station_apothecary',
+    kind: 'floor',
+    renderKey: 'kcasShelfCandles',
+    scale: 1.4,
+    stationType: 'apothecary',
+  },
+  {
+    itemId: 'furn_station_tannery',
+    kind: 'floor',
+    renderKey: 'kcasTableRoundMedium',
+    scale: 1.1,
+    stationType: 'tannery',
+  },
+  {
+    itemId: 'furn_station_loom',
+    kind: 'floor',
+    renderKey: 'kcasTableCloth',
+    scale: 1.2,
+    stationType: 'loom',
+  },
+  {
+    itemId: 'furn_station_toolworks',
+    kind: 'floor',
+    renderKey: 'weaponStand',
+    scale: 1.5,
+    stationType: 'toolworks',
+  },
 ]);
 
 const DEF_BY_ITEM: ReadonlyMap<string, FurnitureDef> = new Map(
@@ -86,6 +149,21 @@ export function furnitureDefFor(itemId: string | null | undefined): FurnitureDef
 export function isFurnitureItemId(itemId: string | null | undefined): boolean {
   return itemId !== null && itemId !== undefined && DEF_BY_ITEM.has(itemId);
 }
+
+/** The storage chest's item id (phase 3): the one piece that adds house
+ *  storage capacity (src/sim/housing/house_storage.ts). */
+export const HOUSE_STORAGE_CHEST_ITEM_ID = 'furn_storage_chest';
+
+/** The station type a furniture item serves at home, or undefined for every
+ *  other item (phase 3, src/sim/housing/house_stations.ts). */
+export function furnitureStationType(itemId: string | null | undefined): StationType | undefined {
+  return furnitureDefFor(itemId)?.stationType;
+}
+
+/** Every station furniture def, in StationType authoring order. */
+export const HOUSE_STATION_FURNITURE_DEFS: readonly FurnitureDef[] = FURNITURE_DEFS.filter(
+  (def) => def.stationType !== undefined,
+);
 
 /** Every furniture item id (the load sanitizer's allowlist, the icon debt
  *  ledger, and the i18n catalog pin). */
@@ -114,4 +192,10 @@ export const FURNITURE_ITEMS: Record<string, ItemDef> = {
   furn_candlestick: furnitureItem('furn_candlestick', 'Candlestick', 10),
   furn_storage_chest: furnitureItem('furn_storage_chest', 'Storage Chest', 60),
   furn_trophy_plaque: furnitureItem('furn_trophy_plaque', 'Trophy Plaque', 40),
+  furn_station_forge: furnitureItem('furn_station_forge', 'Home Forge', 40),
+  furn_station_kitchens: furnitureItem('furn_station_kitchens', 'Home Kitchen', 40),
+  furn_station_apothecary: furnitureItem('furn_station_apothecary', 'Home Apothecary Bench', 40),
+  furn_station_tannery: furnitureItem('furn_station_tannery', 'Home Tanning Table', 40),
+  furn_station_loom: furnitureItem('furn_station_loom', 'Home Loom', 40),
+  furn_station_toolworks: furnitureItem('furn_station_toolworks', 'Home Toolworks', 40),
 };

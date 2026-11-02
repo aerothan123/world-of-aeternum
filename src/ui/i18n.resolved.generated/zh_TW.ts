@@ -8005,7 +8005,24 @@ export const zh_TW: EnTranslations = {
         "anchorEmpty": "那個位置上沒有東西。",
         "anchorKind": "這件家具放不進那個位置。",
         "noItem": "你沒有拿著這件家具。",
-        "bagsFull": "你的背包已滿。"
+        "bagsFull": "你的背包已滿。",
+        "storageInUse": "請先清空那個箱子：你的房屋儲物中仍有依賴它的物品。",
+        "storageFar": "你必須站在房屋中的儲物箱旁。",
+        "storageFull": "你的房屋儲物已滿。",
+        "storageItem": "那件物品無法存放在你的房屋中。"
+      },
+      "storage": {
+        "title": "房屋儲物",
+        "close": "關閉房屋儲物",
+        "away": "站到房屋中的儲物箱旁即可使用儲物。",
+        "storedTitle": "已存放",
+        "carriedTitle": "你的背包",
+        "meter": "{used} / {total} 格（{chests}個箱子）",
+        "full": "已滿：再擺放一個儲物箱以獲得更多空間。",
+        "storedEmpty": "這裡還沒有存放任何物品。",
+        "carriedEmpty": "你的背包是空的。",
+        "withdrawHint": "點擊取回到背包中。",
+        "depositHint": "點擊存放到房屋中。"
       },
       "furnish": "擺放到房屋中...",
       "placeAt": "擺放到{anchor}",
@@ -8028,7 +8045,9 @@ export const zh_TW: EnTranslations = {
       "furnitureTooltip": {
         "kind": "家具",
         "use": "可擺放在自己房屋內的{kind}位置上。",
-        "how": "站在自己的房屋裡時，在背包中右鍵點擊它。"
+        "how": "站在自己的房屋裡時，在背包中右鍵點擊它。",
+        "chest": "擺放後，為你的房屋儲物增加{slots}格。",
+        "station": "擺放後，可在家中製作需要{station}的配方。"
       }
     }
   },
@@ -24619,6 +24638,24 @@ export const zh_TW: EnTranslations = {
       },
       "furn_trophy_plaque": {
         "name": "獎盃牌匾"
+      },
+      "furn_station_forge": {
+        "name": "家用鍛爐"
+      },
+      "furn_station_kitchens": {
+        "name": "家用廚房"
+      },
+      "furn_station_apothecary": {
+        "name": "家用藥劑台"
+      },
+      "furn_station_tannery": {
+        "name": "家用製革台"
+      },
+      "furn_station_loom": {
+        "name": "家用織布機"
+      },
+      "furn_station_toolworks": {
+        "name": "家用工具坊"
       },
       "membership_staff": {
         "name": "萬變法杖"

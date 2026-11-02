@@ -30485,6 +30485,46 @@
   .frame-preset-loadouts .tal-lo-item {
     min-height: 40px;
   }
+  /* ---------- house storage (Project H housing phase 3) ---------- */
+  #house-storage-window {
+    width: min(720px, 100%);
+    max-height: calc(100dvh - 48px);
+  }
+  #house-storage-window .house-storage-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  #house-storage-window .house-storage-section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  #house-storage-window .house-storage-section-head h3 {
+    margin: 0;
+  }
+  #house-storage-window .house-storage-count {
+    color: var(--color-text-muted);
+  }
+  #house-storage-window .house-storage-grid {
+    grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+    max-height: 280px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 4px;
+  }
+  #house-storage-window .house-storage-grid .bank-item {
+    width: 100%;
+    min-height: 44px;
+  }
+  #house-storage-window .house-storage-grid .bank-item:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
   /* ---------- courier ---------- */
   #courier-window {
     width: min(960px, 100%);

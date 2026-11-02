@@ -8005,7 +8005,24 @@ export const ko_KR: EnTranslations = {
         "anchorEmpty": "그 자리에는 아무것도 없습니다.",
         "anchorKind": "그 가구는 그 자리에 맞지 않습니다.",
         "noItem": "그 가구를 가지고 있지 않습니다.",
-        "bagsFull": "가방이 가득 찼습니다."
+        "bagsFull": "가방이 가득 찼습니다.",
+        "storageInUse": "먼저 그 상자를 비우십시오. 집 보관함에 그 상자가 제공하는 칸을 쓰는 물건이 아직 있습니다.",
+        "storageFar": "집 안의 보관 상자 옆에 서 있어야 합니다.",
+        "storageFull": "집 보관함이 가득 찼습니다.",
+        "storageItem": "그 물건은 집에 보관할 수 없습니다."
+      },
+      "storage": {
+        "title": "집 보관함",
+        "close": "집 보관함 닫기",
+        "away": "집 안의 보관 상자 옆에 서면 보관함을 쓸 수 있습니다.",
+        "storedTitle": "보관 중",
+        "carriedTitle": "내 가방",
+        "meter": "{used} / {total}칸 (상자 {chests}개)",
+        "full": "가득 참: 공간을 늘리려면 보관 상자를 하나 더 놓으십시오.",
+        "storedEmpty": "아직 보관된 물건이 없습니다.",
+        "carriedEmpty": "가방이 비어 있습니다.",
+        "withdrawHint": "클릭하여 가방으로 되돌립니다.",
+        "depositHint": "클릭하여 집에 보관합니다."
       },
       "furnish": "집에 배치...",
       "placeAt": "{anchor}에 배치",
@@ -8028,7 +8045,9 @@ export const ko_KR: EnTranslations = {
       "furnitureTooltip": {
         "kind": "가구",
         "use": "자신의 집 안 {kind}에 배치할 수 있습니다.",
-        "how": "자신의 집 안에서 가방의 이 물건을 우클릭하십시오."
+        "how": "자신의 집 안에서 가방의 이 물건을 우클릭하십시오.",
+        "chest": "설치하면 집 보관함에 {slots}칸이 추가됩니다.",
+        "station": "설치하면 {station}이(가) 필요한 제작법을 집에서 만들 수 있습니다."
       }
     }
   },
@@ -24619,6 +24638,24 @@ export const ko_KR: EnTranslations = {
       },
       "furn_trophy_plaque": {
         "name": "트로피 명판"
+      },
+      "furn_station_forge": {
+        "name": "가정용 화로"
+      },
+      "furn_station_kitchens": {
+        "name": "가정용 주방"
+      },
+      "furn_station_apothecary": {
+        "name": "가정용 약제 작업대"
+      },
+      "furn_station_tannery": {
+        "name": "가정용 무두질 작업대"
+      },
+      "furn_station_loom": {
+        "name": "가정용 베틀"
+      },
+      "furn_station_toolworks": {
+        "name": "가정용 공방"
       },
       "membership_staff": {
         "name": "변화의 지팡이"

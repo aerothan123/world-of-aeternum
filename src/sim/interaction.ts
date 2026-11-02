@@ -46,6 +46,7 @@ import {
 import { tryCageStruggle } from './encounters/sunken_bastion/turnkey';
 import { trySpearWrench } from './encounters/wildheart_basin/zulgar_spear';
 import { tryStartEscort } from './escort';
+import { tryOpenHouseStorage } from './housing/house_storage';
 import { interactIgnivarRaidLore } from './ignivar_raid_lore';
 import { isInRaidInstance } from './instances/dungeons';
 import { FERRY_BELL_OBJECT_ID, tryRingFerryBell } from './interactions/ferry_bell';
@@ -532,6 +533,9 @@ export function interact(
       // A usable encounter body (the trash engine's G3: the Soul Brazier):
       // the press starts its use, validated here on the authoritative sim.
       if (tryStartKitUse(ctx, target, p)) return;
+      // A placed storage chest in the player's own house (Project H housing
+      // phase 3): the press opens the house storage window.
+      if (tryOpenHouseStorage(ctx, r.meta, p, target)) return;
       if (isLootableBody(target) || (target.kind === 'mob' && target.lootable)) {
         const availability = corpseInteractionAvailability(ctx, target, p.id, true);
         if (availability.hasLoot) {
@@ -709,6 +713,10 @@ export function interact(
     pickUpObject(ctx, obj.id, p.id, noticeboardDefinitions);
     return;
   }
+  // No corpse and no lootable object in reach: a placed storage chest in the
+  // player's own house (never lootable, so it never enters the scan above)
+  // opens the house storage window (Project H housing phase 3).
+  if (tryOpenHouseStorage(ctx, r.meta, p, null)) return;
   if (questEntity && talkToWeeklyKeeper(ctx, questEntity, p)) return;
   if (questEntity && ctx.bankerIds.includes(questEntity.id)) {
     // Opening the bank window counts as banker business for the NPC ledger.

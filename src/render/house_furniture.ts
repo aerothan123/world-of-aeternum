@@ -44,19 +44,28 @@ export type HouseFurnitureCompileGate = (
   priority: number,
 ) => Promise<unknown>;
 
-/** The kcas keys the catalog can name (every FurnitureRenderKey but the rug). */
+/** The model keys the catalog can name (every FurnitureRenderKey but the
+ *  rug): the kcas furniture set plus, since phase 3's home stations, the two
+ *  qprops station props the market stalls already place. All resolve through
+ *  PROP_ASSET_DEFS the same way. */
 const KCAS_KEYS = [
   'kcasChair',
   'kcasStool',
   'kcasBench',
   'kcasTableRoundSmall',
+  'kcasTableRoundMedium',
   'kcasTableLong',
+  'kcasTableCloth',
   'kcasBookcase',
   'kcasKeg',
   'kcasBarrel',
   'kcasChest',
   'kcasShelfSmall',
+  'kcasShelfCandles',
+  'kcasBartopMedium',
   'kcasCandleTriple',
+  'anvil',
+  'weaponStand',
 ] as const satisfies readonly Exclude<FurnitureRenderKey, 'rug'>[];
 type KcasKey = (typeof KCAS_KEYS)[number];
 

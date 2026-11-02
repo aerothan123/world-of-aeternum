@@ -11552,9 +11552,20 @@ export type SimEvent = { pid?: number } & (
         | 'anchor_empty'
         | 'anchor_kind'
         | 'no_item'
-        | 'bags_full';
+        | 'bags_full'
+        // Phase 3 (src/sim/housing/house_storage.ts) appends the storage
+        // reasons: a chest removal that would strand stored items, a deposit
+        // or withdrawal made away from a chest, a full storage, and a copy the
+        // storage refuses (a quest item, borrowed gear, a locked copy).
+        | 'storage_in_use'
+        | 'storage_far'
+        | 'storage_full'
+        | 'storage_item';
       anchorId?: string;
     }
+  // Phase 3: the owner used a placed storage chest inside their own house;
+  // the client opens the house storage window (the `bank` event's shape).
+  | { type: 'houseStorage'; pid: number }
   // A piece of furniture was placed on or taken back from an anchor of the
   // caller's own house (text-free; the client names the item and the anchor).
   | {

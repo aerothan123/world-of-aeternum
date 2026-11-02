@@ -79,6 +79,7 @@ import {
 } from '../content/professions';
 import { recipeById } from '../content/recipes';
 import { ITEMS } from '../data';
+import { atHouseStation } from '../housing/house_stations';
 import { slotStatMultForItem } from '../item_budget';
 import { countUnlockedInSlots, removeUnlockedFromSlots } from '../item_lock';
 import { grantFreshLoot } from '../loot/fresh_quality_grant';
@@ -694,7 +695,11 @@ export function evaluateCraftAdmission(
   // phase 09) a party member's ACTIVE partyShared mobile station of that
   // type within STATION_RADIUS of the crafter (the party arm is
   // proximity-gated unlike the any-distance own arm; the walk short-circuits
-  // behind the cheaper arms and runs per craft command, never per tick).
+  // behind the cheaper arms and runs per craft command, never per tick), OR
+  // (Project H housing phase 3) a placed home station of that type within
+  // STATION_RADIUS inside the crafter's OWN house (housing/house_stations.ts,
+  // the last arm: it costs an instance lookup, so it runs only when the three
+  // cheaper arms refused).
   // Checked before every other remedy-able gate, no side effect on denial,
   // no rng, same shape as the combo-requirement check below.
   if (recipe.stationType) {
@@ -714,7 +719,8 @@ export function evaluateCraftAdmission(
           entity.pos,
           recipe.stationType,
           ctx.tickCount,
-        ))
+        ) &&
+        !atHouseStation(ctx, pid, entity.pos, recipe.stationType))
     ) {
       return { ok: false, recipeId: recipe.id, reason: 'station_required' };
     }

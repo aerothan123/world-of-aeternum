@@ -5895,6 +5895,7 @@ const ALL_DELTA_KEYS = [
   'hpw',
   'hrat',
   'hse',
+  'hst',
   'inv',
   'lance',
   'lguide',
@@ -6053,6 +6054,7 @@ const TERSE_TO_IWORLD: Record<string, string> = {
   hpref: 'harvestPreference',
   hrat: 'hasteRating',
   hse: 'myHouse',
+  hst: 'houseStorage',
   inv: 'inventory',
   lance: 'lanceTrial',
   lhonor: 'lifetimeHonor',
@@ -6303,6 +6305,7 @@ function dirtyEveryDeltaField(): {
     lot: 'eastbrook_quay_cottage',
     boughtDay: '2026-11-01',
     furniture: { hearth_floor_1: 'furn_wooden_chair' },
+    storage: [],
   };
   meta.delveClears = { 'collapsed_reliquary:heroic': 1 };
   meta.companionUpgrades = { companion_tessa: 2 };
@@ -6746,7 +6749,12 @@ describe('full self-state snapshot delta fixture', () => {
       // udiff is null while the group's claims match the selection, which a
       // delve-bound fixture always does; its non-null arrival is pinned in the
       // 'dungeon difficulty wire' block above.
-      if (key === 'cvault' || key === 'dgrun' || key === 'udiff') {
+      // hst is position-exclusive with drun the same way: the house storage is
+      // read off the player's OWN house claim at a placed chest, and this
+      // player stands in a delve, so the fresh session's first value is the
+      // explicit null. Its non-null arrival is pinned in
+      // tests/housing_storage.test.ts.
+      if (key === 'cvault' || key === 'dgrun' || key === 'udiff' || key === 'hst') {
         expect(snap.self[key], `self.${key} must arrive as the explicit gated null`).toBeNull();
         continue;
       }
@@ -7674,8 +7682,9 @@ describe('delta-key contract pins (anti-drift)', () => {
     // Courier vault and other-character stores add one owner delta key.
     // +1: the portrait menu's unapplied claim tier udiff (server/self_scalar_wire.ts).
     // +1: player housing's own house hse (Project H), for 137.
-    expect(ALL_DELTA_KEYS).toHaveLength(137);
-    expect(new Set(ALL_DELTA_KEYS).size).toBe(137);
+    // +1: player housing's house storage hst (Project H phase 3), for 138.
+    expect(ALL_DELTA_KEYS).toHaveLength(138);
+    expect(new Set(ALL_DELTA_KEYS).size).toBe(138);
     expect([...ALL_DELTA_KEYS]).toEqual([...ALL_DELTA_KEYS].sort());
   });
 
@@ -7856,8 +7865,9 @@ describe('delta-key contract pins (anti-drift)', () => {
     // Lantern Hall's contract board gcon (quest_snapshot_wire.ts) makes 125.
     // Courier vault and other-character stores add one owner delta key.
     // The unapplied claim tier udiff (self_scalar_wire.ts) adds one more.
-    // Player housing's own house hse (Project H) makes 137.
-    expect(scraped.size).toBe(137);
+    // Player housing's own house hse (Project H) makes 137, and its house
+    // storage hst (phase 3, server/house_storage_wire.ts) 138.
+    expect(scraped.size).toBe(138);
     expect([...scraped].sort()).toEqual([...ALL_DELTA_KEYS].sort());
   });
 
@@ -7938,6 +7948,7 @@ describe('delta-key contract pins (anti-drift)', () => {
       fplot: 'myFarmPlots',
       // Player housing's own house (Project H): no shared stem either.
       hse: 'myHouse',
+      hst: 'houseStorage',
       courier: 'courierInfo',
       courierData: 'courierInfo',
       courierLegTicks: 'courierInfo',

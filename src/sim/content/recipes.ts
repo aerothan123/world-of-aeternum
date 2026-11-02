@@ -4937,6 +4937,80 @@ export const FURNISHING_RECIPES: ProfessionRecipeRecord[] = [
   },
 ];
 
+// Phase 3: the six home crafting stations (content/furniture.ts
+// HOUSE_STATION_FURNITURE_DEFS), one Furnishing row per StationType, all at
+// the toolworks like the rest of the craft. Each vendors at 40 against an
+// input value of 60 or more (tests/recipe_economy.test.ts).
+const HOUSE_STATION_RECIPE_ROWS: readonly {
+  type: string;
+  reagents: { itemId: string; count: number }[];
+}[] = [
+  // Input 64 (ironbark 32 + iron 32).
+  {
+    type: 'forge',
+    reagents: [
+      { itemId: 'ironbark_log', count: 8 },
+      { itemId: 'iron_ore', count: 4 },
+    ],
+  },
+  // Input 64 (ironbark 40 + copper 24).
+  {
+    type: 'kitchens',
+    reagents: [
+      { itemId: 'ironbark_log', count: 10 },
+      { itemId: 'copper_ore', count: 6 },
+    ],
+  },
+  // Input 84 (ironbark 24 + iron 24 + linen 36).
+  {
+    type: 'apothecary',
+    reagents: [
+      { itemId: 'ironbark_log', count: 6 },
+      { itemId: 'iron_ore', count: 3 },
+      { itemId: 'linen_scrap', count: 12 },
+    ],
+  },
+  // Input 72 (ironbark 32 + rough hide 40).
+  {
+    type: 'tannery',
+    reagents: [
+      { itemId: 'ironbark_log', count: 8 },
+      { itemId: 'rough_hide', count: 8 },
+    ],
+  },
+  // Input 86 (ironbark 32 + linen 54).
+  {
+    type: 'loom',
+    reagents: [
+      { itemId: 'ironbark_log', count: 8 },
+      { itemId: 'linen_scrap', count: 18 },
+    ],
+  },
+  // Input 72 (ironbark 24 + iron 48).
+  {
+    type: 'toolworks',
+    reagents: [
+      { itemId: 'ironbark_log', count: 6 },
+      { itemId: 'iron_ore', count: 6 },
+    ],
+  },
+];
+
+export const HOUSE_STATION_RECIPES: ProfessionRecipeRecord[] = HOUSE_STATION_RECIPE_ROWS.map(
+  (row) => ({
+    id: `recipe_furn_station_${row.type}`,
+    professionId: 'furnishing',
+    resultItemId: `furn_station_${row.type}`,
+    resultCount: 1,
+    reagents: row.reagents,
+    skillReq: 0,
+    itemLevelBudget: 12,
+    level: 12,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  }),
+);
+
 /** The two Furnishing rows every new house owner knows outright. */
 export const FURNISHING_STARTER_RECIPE_IDS: readonly string[] = Object.freeze([
   'recipe_furn_wooden_stool',
@@ -4967,8 +5041,10 @@ export const ALL_RECIPES: ProfessionRecipeRecord[] = [
   ...CRUCIBLE_COLLECTION_RECIPES,
   ...FORGEBREAKER_RECIPES,
   ...FACTION_REWARD_RECIPES,
-  // Player housing (Project H) phase 2, appended at the END.
+  // Player housing (Project H) phase 2, appended at the END; phase 3 appends
+  // the home station rows after it.
   ...FURNISHING_RECIPES,
+  ...HOUSE_STATION_RECIPES,
 ];
 
 // O(1) indexes for the two per-lookup resolvers below (the recipe table grows

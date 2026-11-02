@@ -311,6 +311,7 @@ import {
   placeFurniture as placeFurnitureAction,
   removeFurniture as removeFurnitureAction,
 } from './housing/furnishing';
+import * as houseStorageMod from './housing/house_storage';
 import { buyHouse as buyHouseAction, type HouseView, houseViewFor } from './housing/ownership';
 import { spawnDevHealerPracticeDummy, spawnHubPractice } from './hub_practice';
 import * as raidReadouts from './ignivar_raid_readouts';
@@ -2921,6 +2922,7 @@ export class Sim {
       heroicDaily: { date: '', marked: new Set() },
       heroicMarks: 0,
       furnishingSkill: 0, // Project H housing phase 2 (housing/house_state.ts)
+      houseStorageRev: 0, // phase 3: the hst wire change signal (house_storage.ts)
       wyrmfallDaily: { date: '', sources: new Set() },
       emberWeekAnchor: '',
       craftDaily: { date: '', crafted: new Set() },
@@ -11341,6 +11343,23 @@ export class Sim {
   }
   removeFurniture(anchorId: string, pid?: number): void {
     removeFurnitureAction(this.ctx, anchorId, pid);
+  }
+  // Phase 3: the house storage (housing/house_storage.ts); the per-pid reads
+  // feed the server's revision-gated `hst` self key.
+  houseStorageInfoFor(pid: number): houseStorageMod.HouseStorageView | null {
+    return houseStorageMod.houseStorageFor(this.ctx, pid);
+  }
+  houseStorageWireRevFor(pid: number): number | null {
+    return houseStorageMod.houseStorageWireRevFor(this.ctx, pid);
+  }
+  get houseStorage(): houseStorageMod.HouseStorageView | null {
+    return this.houseStorageInfoFor(this.primaryId);
+  }
+  houseStorageDeposit(slot: number, pid?: number): void {
+    houseStorageMod.houseStorageDeposit(this.ctx, slot, pid);
+  }
+  houseStorageWithdraw(slot: number, pid?: number): void {
+    houseStorageMod.houseStorageWithdraw(this.ctx, slot, pid);
   }
 
   // Plant a crop with the optional plant-time knob payload. Thin delegate:

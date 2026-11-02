@@ -15,12 +15,17 @@
 // (src/sim/content/furniture.ts), sparse and OMITTED when empty, so a phase-1
 // save stays byte-equal. Beside the house, `furnishingSkill` is the Furnishing
 // craft's own skill counter (content/professions.ts SECONDARY_CRAFTS: off the
-// ring, so off the ten-key craftSkills record), omitted at zero.
+// ring, so off the ten-key craftSkills record), omitted at zero. Phase 3 adds
+// `storage`: the pooled house storage's slot list (./house_storage_state.ts
+// owns its load path; ./house_storage.ts the rules), sparse and OMITTED when
+// empty, so a phase-2 save stays byte-equal too.
 
 import { furnitureDefFor } from '../content/furniture';
 import { HOUSE_LOT_IDS } from '../content/house_lots';
 import { craftMaxSkillFor, FURNISHING_CRAFT_ID } from '../content/professions';
+import type { InvSlot } from '../types';
 import { houseAnchorById } from './cottage_layout';
+import { sanitizeHouseStorage, savedHouseStorage } from './house_storage_state';
 
 /** Live ownership on PlayerMeta.house. */
 export interface HouseOwnership {
@@ -33,6 +38,10 @@ export interface HouseOwnership {
    *  live anchor and every value a live furniture item (the load sanitizer
    *  guarantees it). */
   furniture: Record<string, string>;
+  /** The pooled house storage (phase 3): one slot list fed by every placed
+   *  storage chest (HOUSE_CHEST_SLOTS each). Over-capacity is tolerated on
+   *  load; a chest removal that would strand a slot is refused instead. */
+  storage: InvSlot[];
 }
 
 /** The housing fields PlayerMeta carries (joined through the storage
@@ -42,6 +51,11 @@ export interface HousingPlayerState {
   house?: HouseOwnership;
   /** The Furnishing skill counter (0 to the craft's maxSkill), persisted. */
   furnishingSkill: number;
+  /** Runtime-only: the change signal for the owner-only `hst` wire key
+   *  (bank.ts bankWireRev's twin): bumped by every write a houseStorageFor
+   *  projection can observe (a deposit, a withdrawal, a chest placed or taken
+   *  back). Never persisted. */
+  houseStorageRev: number;
   /** Runtime-only: sim time of the last door prompt (the walk-in trigger
    *  fires at 20 Hz, so the offer is throttled). Never persisted. */
   houseOfferAt?: number;
@@ -54,6 +68,8 @@ export interface SavedHouseState {
   boughtDay?: string;
   /** Omitted when nothing is placed. */
   furniture?: Record<string, string>;
+  /** Omitted when nothing is stored. */
+  storage?: InvSlot[];
 }
 
 export function savedHouseState(house: HouseOwnership): SavedHouseState {
@@ -65,6 +81,7 @@ export function savedHouseState(house: HouseOwnership): SavedHouseState {
     for (const anchorId of anchorIds) furniture[anchorId] = house.furniture[anchorId];
     saved.furniture = furniture;
   }
+  if (house.storage.length > 0) saved.storage = savedHouseStorage(house.storage);
   return saved;
 }
 
@@ -83,11 +100,14 @@ export interface DroppedFurnitureRow {
  * DROPPED (reported through `dropped`, which the caller logs on the dev
  * channel): the item is not returned to the bags in this phase. Anchor ids and
  * furniture ids are never reused, so such a row is a corrupt blob, not a
- * retired piece.
+ * retired piece. The storage list loads through house_storage_state.ts
+ * sanitizeHouseStorage (items never destroyed; dropped payload KEYS are
+ * reported through `droppedStorageKeys`).
  */
 export function sanitizeHouseState(
   raw: unknown,
   dropped?: DroppedFurnitureRow[],
+  droppedStorageKeys?: string[],
 ): HouseOwnership | undefined {
   if (raw === null || typeof raw !== 'object') return undefined;
   const record = raw as Record<string, unknown>;
@@ -104,7 +124,8 @@ export function sanitizeHouseState(
       else dropped?.push({ anchorId, itemId });
     }
   }
-  return { lot, boughtDay, furniture };
+  const storage = sanitizeHouseStorage(record.storage, droppedStorageKeys);
+  return { lot, boughtDay, furniture, storage };
 }
 
 /** The Furnishing skill load clamp: a finite non-negative number capped at

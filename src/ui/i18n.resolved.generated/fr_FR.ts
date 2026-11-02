@@ -8005,7 +8005,24 @@ export const fr_FR: EnTranslations = {
         "anchorEmpty": "Nothing stands on that spot.",
         "anchorKind": "That piece of furniture does not fit that spot.",
         "noItem": "You are not holding that piece of furniture.",
-        "bagsFull": "Your bags are full."
+        "bagsFull": "Your bags are full.",
+        "storageInUse": "Empty that chest first: your house storage still holds items it provides room for.",
+        "storageFar": "You must stand next to a storage chest in your house.",
+        "storageFull": "Your house storage is full.",
+        "storageItem": "That item cannot be stored in your house."
+      },
+      "storage": {
+        "title": "House Storage",
+        "close": "Close house storage",
+        "away": "Stand next to a storage chest in your house to use its storage.",
+        "storedTitle": "Stored",
+        "carriedTitle": "Your bags",
+        "meter": "{used} / {total} slots ({chests} chests)",
+        "full": "Full: place another storage chest for more room.",
+        "storedEmpty": "Nothing is stored here yet.",
+        "carriedEmpty": "Your bags are empty.",
+        "withdrawHint": "Click to take it back into your bags.",
+        "depositHint": "Click to store it in your house."
       },
       "furnish": "Place in house...",
       "placeAt": "Place at {anchor}",
@@ -8028,7 +8045,9 @@ export const fr_FR: EnTranslations = {
       "furnitureTooltip": {
         "kind": "Furniture",
         "use": "Place it on a {kind} spot inside your house.",
-        "how": "Right-click it in your bags while standing in your house."
+        "how": "Right-click it in your bags while standing in your house.",
+        "chest": "Once placed, adds {slots} slots to your house storage.",
+        "station": "Once placed, lets you craft recipes that need the {station} at home."
       }
     }
   },
@@ -24619,6 +24638,24 @@ export const fr_FR: EnTranslations = {
       },
       "furn_trophy_plaque": {
         "name": "Trophy Plaque"
+      },
+      "furn_station_forge": {
+        "name": "Home Forge"
+      },
+      "furn_station_kitchens": {
+        "name": "Home Kitchen"
+      },
+      "furn_station_apothecary": {
+        "name": "Home Apothecary Bench"
+      },
+      "furn_station_tannery": {
+        "name": "Home Tanning Table"
+      },
+      "furn_station_loom": {
+        "name": "Home Loom"
+      },
+      "furn_station_toolworks": {
+        "name": "Home Toolworks"
       },
       "membership_staff": {
         "name": "Bâton du changement"

@@ -27,6 +27,7 @@ import {
   FARM_RECIPES,
   FURNISHING_RECIPES,
   HOE_RECIPES,
+  HOUSE_STATION_RECIPES,
   INSCRIPTION_RECIPES,
   INTERMEDIATE_RECIPES,
   JEWELCRAFTING_RECIPES,
@@ -658,10 +659,13 @@ describe('REFERENTIAL INTEGRITY', () => {
         // The buddy charm look (content/recipes.ts), trainer-taught at the tannery.
         BUDDY_CHARM_RECIPES.length +
         // Player housing (Project H) phase 2: the Furnishing rows, all
-        // trainer-taught at the toolworks (no channel split).
-        FURNISHING_RECIPES.length,
+        // trainer-taught at the toolworks (no channel split); phase 3 adds the
+        // six home station rows on the same terms.
+        FURNISHING_RECIPES.length +
+        HOUSE_STATION_RECIPES.length,
     );
     expect(FURNISHING_RECIPES, 'the Furnishing catalog is twelve rows').toHaveLength(12);
+    expect(HOUSE_STATION_RECIPES, 'the home station catalog is six rows').toHaveLength(6);
     // The sibling literal for the 11o term: two rows, both trainer-taught.
     expect(ENGINEERING_ONRAMP_RECIPES, 'the engineering on-ramp is two rows').toHaveLength(2);
     // The sibling literal for the derived term, same reason every other term

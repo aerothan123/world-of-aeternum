@@ -20,6 +20,9 @@ describe('the arm-marked subset', () => {
       [
         'convert_husks',
         'harvest_crop',
+        // Player housing phase 3 (Project H): the two storage moves.
+        'house_storage_deposit',
+        'house_storage_withdraw',
         'market_order_fill',
         'market_order_place',
         'market_sweep',

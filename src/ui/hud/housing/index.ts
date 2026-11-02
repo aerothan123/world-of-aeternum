@@ -5,3 +5,5 @@ export * from './furniture_tooltip_view';
 export * from './house_event_feedback';
 export * from './house_feedback_view';
 export * from './house_furnish_view';
+export * from './house_storage_view';
+export * from './house_storage_window';

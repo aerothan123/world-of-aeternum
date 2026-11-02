@@ -9,7 +9,10 @@
 // for a removal, occupied), the bag slot holds a furniture item whose kind
 // fits the anchor, and a removal has bag room for the piece. The spend takes
 // EXACTLY the named bag copy (item_copy_ref.ts: a locked copy refuses even
-// when a spare exists), the feast placement's rule.
+// when a spare exists), the feast placement's rule. Phase 3: taking back a
+// storage chest is refused while the storage would no longer fit
+// (house_storage_state.ts storageRemovalBlocked), and every placement change
+// bumps the storage wire revision, since the chest count is the capacity.
 //
 // Every outcome is a personal, text-free SimEvent (houseDenied with an
 // appended reason, or houseFurniture); the client localizes from the ids.
@@ -26,6 +29,7 @@ import type { SimContext } from '../sim_context';
 import type { SimEvent } from '../types';
 import { houseAnchorById } from './cottage_layout';
 import { spawnHouseFurniture } from './furniture_objects';
+import { bumpHouseStorageRev, storageRemovalBlocked } from './house_storage_state';
 import { houseInstanceKey } from './ownership';
 
 type FurnitureDenyReason = Extract<SimEvent, { type: 'houseDenied' }>['reason'];
@@ -100,6 +104,7 @@ export function placeFurniture(
   }
   ctx.onInventoryChangedForQuests?.(meta);
   meta.house.furniture[anchor.id] = def.itemId;
+  bumpHouseStorageRev(meta);
   spawnHouseFurniture(ctx, inst, instanceOriginOf(inst), meta.house);
   ctx.emit({
     type: 'houseFurniture',
@@ -128,8 +133,12 @@ export function removeFurniture(ctx: SimContext, anchorId: string, pid?: number)
   if (!anchor) return deny(ctx, meta, 'bad_anchor', anchorId);
   const itemId = meta.house.furniture[anchor.id];
   if (itemId === undefined) return deny(ctx, meta, 'anchor_empty', anchorId);
+  if (storageRemovalBlocked(meta.house, anchor.id)) {
+    return deny(ctx, meta, 'storage_in_use', anchorId);
+  }
   if (!ctx.canAddItem(itemId, 1, meta.entityId)) return deny(ctx, meta, 'bags_full', anchorId);
   delete meta.house.furniture[anchor.id];
+  bumpHouseStorageRev(meta);
   spawnHouseFurniture(ctx, inst, instanceOriginOf(inst), meta.house);
   // A movement grant: the piece is the owner's own copy coming back, never a
   // world-sourced acquisition (no Reliquary tally, no fresh-quality roll).

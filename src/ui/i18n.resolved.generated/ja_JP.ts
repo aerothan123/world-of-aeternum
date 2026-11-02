@@ -8005,7 +8005,24 @@ export const ja_JP: EnTranslations = {
         "anchorEmpty": "その場所には何も置かれていない。",
         "anchorKind": "その家具はその場所には置けない。",
         "noItem": "その家具を持っていない。",
-        "bagsFull": "バッグがいっぱいだ。"
+        "bagsFull": "バッグがいっぱいだ。",
+        "storageInUse": "先にその箱を空にすること。家の収納には、その箱が提供している枠に入った品がまだある。",
+        "storageFar": "家の中の収納箱のそばに立つ必要がある。",
+        "storageFull": "家の収納はいっぱいだ。",
+        "storageItem": "その品は家に収納できない。"
+      },
+      "storage": {
+        "title": "家の収納",
+        "close": "家の収納を閉じる",
+        "away": "家の中の収納箱のそばに立つと収納を使える。",
+        "storedTitle": "収納済み",
+        "carriedTitle": "自分のバッグ",
+        "meter": "{used} / {total}枠（箱{chests}個）",
+        "full": "満杯：もっと広げるには収納箱をもう一つ置くこと。",
+        "storedEmpty": "まだ何も収納されていない。",
+        "carriedEmpty": "バッグは空だ。",
+        "withdrawHint": "クリックでバッグに戻す。",
+        "depositHint": "クリックで家に収納する。"
       },
       "furnish": "家に置く...",
       "placeAt": "{anchor}に置く",
@@ -8028,7 +8045,9 @@ export const ja_JP: EnTranslations = {
       "furnitureTooltip": {
         "kind": "家具",
         "use": "自分の家の{kind}に置ける。",
-        "how": "自分の家の中でバッグの中のこれを右クリックする。"
+        "how": "自分の家の中でバッグの中のこれを右クリックする。",
+        "chest": "設置すると家の収納が{slots}枠増える。",
+        "station": "設置すると{station}が必要なレシピを家で作れる。"
       }
     }
   },
@@ -24619,6 +24638,24 @@ export const ja_JP: EnTranslations = {
       },
       "furn_trophy_plaque": {
         "name": "トロフィーの飾り板"
+      },
+      "furn_station_forge": {
+        "name": "家庭用の炉"
+      },
+      "furn_station_kitchens": {
+        "name": "家庭用の台所"
+      },
+      "furn_station_apothecary": {
+        "name": "家庭用の調合台"
+      },
+      "furn_station_tannery": {
+        "name": "家庭用のなめし台"
+      },
+      "furn_station_loom": {
+        "name": "家庭用の織機"
+      },
+      "furn_station_toolworks": {
+        "name": "家庭用の工作台"
       },
       "membership_staff": {
         "name": "変化の杖"

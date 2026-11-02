@@ -16,6 +16,7 @@ import {
   FARM_RECIPES,
   FURNISHING_RECIPES,
   HOE_RECIPES,
+  HOUSE_STATION_RECIPES,
   INSCRIPTION_RECIPES,
   INTERMEDIATE_RECIPES,
   JEWELCRAFTING_RECIPES,
@@ -472,6 +473,8 @@ describe('craftItem command (#1127)', () => {
       ...BUDDY_CHARM_RECIPES,
       // The twelve Furnishing rows (Project H housing phase 2): 209 to 221.
       ...FURNISHING_RECIPES,
+      // The six home station rows (Project H housing phase 3): 221 to 227.
+      ...HOUSE_STATION_RECIPES,
     ]
       .map((r) => r.id)
       .sort();
@@ -503,7 +506,9 @@ describe('craftItem command (#1127)', () => {
         FACTION_REWARD_RECIPES.length +
         BUDDY_CHARM_RECIPES.length +
         // Sibling literal: the twelve-row pin in tests/recipe_economy.test.ts.
-        FURNISHING_RECIPES.length,
+        FURNISHING_RECIPES.length +
+        // Sibling literal: the six-row pin in tests/recipe_economy.test.ts.
+        HOUSE_STATION_RECIPES.length,
     );
     expect(FACTION_REWARD_RECIPES).toHaveLength(5);
     expect(CRUCIBLE_COLLECTION_RECIPES).toHaveLength(33);

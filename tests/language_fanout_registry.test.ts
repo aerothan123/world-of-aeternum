@@ -202,6 +202,9 @@ const FANOUT_ARMS: readonly string[] = [
   'this.marketWindow.render|this.marketWindow.isOpen',
   'this.bankWindow.render|this.bankWindow.isOpen',
   'this.courierWindow.render|this.courierWindow.isOpen()',
+  // The house storage window's relocalize gates itself (isOpen inside) and
+  // forces one rebuild with the signature re-latched (Project H phase 3).
+  'this.houseStorageWindow.relocalize|',
   'this.deedsWindow.render|this.deedsWindow.isOpen',
   'this.professionsWindow.render|this.professionsWindow.isOpen',
   // The journal's relocalize gates itself (isOpen inside) and additionally
@@ -356,6 +359,12 @@ const ANSWERED: readonly AnsweredSurface[] = [
     memos: ['cheapSignature', 'lastSignature'],
     answer: 'this.courierWindow.render',
     why: 'phase, membership, custody, bank contents and selection are locale-independent; the open-window arm forces one render while retaining the selected stacks',
+  },
+  {
+    file: 'hud/housing/house_storage_window.ts',
+    memos: ['lastSignature'],
+    answer: 'this.houseStorageWindow.relocalize',
+    why: 'the signature digests the stored and carried slot lists plus the capacity, all locale-independent; relocalize forces one rebuild while open and re-latches the signature',
   },
   {
     file: 'hud/expeditions/expedition_controller.ts',

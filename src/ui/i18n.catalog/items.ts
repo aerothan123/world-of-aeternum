@@ -3985,6 +3985,13 @@ const ITEM_ENTITY_IDS = [
   'furn_candlestick',
   'furn_storage_chest',
   'furn_trophy_plaque',
+  // Phase 3: the six home crafting stations.
+  'furn_station_forge',
+  'furn_station_kitchens',
+  'furn_station_apothecary',
+  'furn_station_tannery',
+  'furn_station_loom',
+  'furn_station_toolworks',
 ] as const;
 
 type ItemEntityId = (typeof ITEM_ENTITY_IDS)[number];
@@ -4007,6 +4014,13 @@ const APPENDED_ITEM_NAMES: Partial<Record<ItemEntityId, string>> = {
   furn_candlestick: 'Candlestick',
   furn_storage_chest: 'Storage Chest',
   furn_trophy_plaque: 'Trophy Plaque',
+  // Phase 3 (content/furniture.ts HOUSE_STATION_FURNITURE_DEFS).
+  furn_station_forge: 'Home Forge',
+  furn_station_kitchens: 'Home Kitchen',
+  furn_station_apothecary: 'Home Apothecary Bench',
+  furn_station_tannery: 'Home Tanning Table',
+  furn_station_loom: 'Home Loom',
+  furn_station_toolworks: 'Home Toolworks',
   // Gourdlight Eve (content/gourdlight_eve.ts).
   gourdlight_sweet: 'Gourdlight Sweet',
   gourdlight_treat_pouch: 'Gourdlight Treat Pouch',

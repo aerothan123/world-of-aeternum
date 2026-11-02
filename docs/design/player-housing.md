@@ -1,6 +1,21 @@
 # Player housing (Project H)
 
-Status: design, not yet implemented. Working project name: Project H.
+Status: phases 1 to 3 implemented (lots and purchase, Furnishing and
+furniture, storage chests and home stations); phases 4 to 6 are design only.
+Working project name: Project H.
+
+Phase 3 status: shipped on the fork as `src/sim/housing/house_storage.ts`,
+`house_storage_state.ts` and `house_stations.ts`. The implementation deviates
+from the two sketches below in one way each, recorded here so the doc and the
+code agree: the chest storage is NOT a bank capacity term but its own pooled
+slot list on `HouseOwnership.storage` (persisted inside the character save,
+omitted when empty), reached only inside the owner's house near a placed chest
+through the `hst` self key, deposit and withdraw reusing the bank's
+container-agnostic move; and taking back a chest the stored items still need is
+refused (`storage_in_use`) rather than tolerated as over-capacity. Home stations
+inject no `StationDef`: the craft gate gained a home arm and the placed station's
+crafts join the served-craft set the crafting window already reads, while
+training, unbind and the Perfecting exchange stay town services.
 
 Player housing in the New World style: buy a house in a town, step through its
 door into your own private interior, furnish it with player-crafted furniture,

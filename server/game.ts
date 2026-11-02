@@ -467,6 +467,7 @@ import {
 } from './entity_wire_cache';
 import { observeEventRecords } from './event_record_observers';
 import { parseGuildPledgeSettingsCommand } from './guild_pledge_settings_cmd';
+import * as houseStorageWire from './house_storage_wire';
 import { recordLevelUp } from './progress_events';
 import * as questWire from './quest_command_wire';
 import * as questSnap from './quest_snapshot_wire';
@@ -1063,6 +1064,9 @@ export interface ClientSession
   lastBankWirePid: number | null;
   lastBankWireRev: number | null;
   lastBankWirePrice: number | null;
+  // House storage projection (Project H phase 3): revision-gated (house_storage_wire.ts).
+  lastHouseStorageWirePid: number | null;
+  lastHouseStorageWireRev: number | null;
   // Materials Vault projections: both signature-gated (cvault on rev + gate).
   lastVaultWirePid: number | null;
   lastVaultWireRev: number | null;
@@ -3341,6 +3345,8 @@ export class GameServer {
       lastBankWirePid: null,
       lastBankWireRev: null,
       lastBankWirePrice: null,
+      lastHouseStorageWirePid: null,
+      lastHouseStorageWireRev: null,
       lastVaultWirePid: null,
       lastVaultWireRev: null,
       lastCvaultWirePid: null,
@@ -7299,6 +7305,14 @@ export class GameServer {
           if (heavySelfMarkOnAccept(command)) session.selfHeavyDirty = true;
         }
         break;
+      case 'house_storage_deposit': // Project H housing phase 3 (housing/house_storage.ts).
+      case 'house_storage_withdraw':
+        if (typeof msg.slot === 'number' && Number.isInteger(msg.slot) && msg.slot >= 0) {
+          if (command === 'house_storage_deposit') sim.houseStorageDeposit(msg.slot, pid);
+          else sim.houseStorageWithdraw(msg.slot, pid);
+          if (heavySelfMarkOnAccept(command)) session.selfHeavyDirty = true;
+        }
+        break;
 
       // Talents & Specializations — every allocation re-validated in the Sim.
       case 'applyTalents': {
@@ -8412,6 +8426,7 @@ export class GameServer {
     maybe('honor', meta.honor);
     maybe('lhonor', meta.lifetimeHonor);
     maybe('hse', this.sim.houseFor(anchorSession.pid)); // own house: O(1) meta field (Project H)
+    houseStorageWire.emitHouseStorageSelfKey(maybe, this.sim, session, anchorSession.pid);
     if (this.sim.tickCount - session.lastWpvpWireTick >= worldPvpWire.WPVP_WIRE_INTERVAL_TICKS) {
       session.lastWpvpWireTick = this.sim.tickCount;
       maybe('wpvp', this.sim.worldPvpInfoFor(anchorSession.pid));

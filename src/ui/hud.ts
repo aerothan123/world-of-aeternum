@@ -511,6 +511,7 @@ import { GuildHallWindow } from './hud/guild_hall';
 import { buildHillBarView, HillBar } from './hud/hill';
 import { furnitureTooltipLines } from './hud/housing/furniture_tooltip_view';
 import { handleHouseEvent } from './hud/housing/house_event_feedback';
+import { HouseStorageWindow } from './hud/housing/house_storage_window';
 import { LootRollController } from './hud/loot/loot_roll_controller';
 import { lootSettingsView } from './hud/loot/loot_settings_view';
 import { renderLootSettingsWindow } from './hud/loot/loot_settings_window';
@@ -3657,6 +3658,9 @@ export class Hud {
       case 'courier-window':
         this.courierWindow.close();
         break;
+      case 'house-storage-window':
+        this.houseStorageWindow.close();
+        break;
       case 'weekly-quests-window':
         this.weeklyQuestsWindow.close();
         break;
@@ -5390,6 +5394,21 @@ export class Hud {
     // Repaint inventory through the same coordinator as authoritative snapshots.
     onInventoryChanged: () => this.onInventoryChanged(),
   });
+  // House storage window (Project H housing phase 3, src/ui/hud/housing/): the
+  // bank-family grid behind a placed chest; a standalone trapping window.
+  private readonly houseStorageWindow = new HouseStorageWindow({
+    ...this.presentationBag,
+    root: () => $('#house-storage-window'),
+    world: () => this.sim,
+    storage: () => this.sim.houseStorage,
+    inventory: () => this.sim.inventory,
+    closeOthers: () => this.closeOtherWindows('#house-storage-window'),
+    hideTooltip: () => this.hideTooltip(),
+    consumePeek: () => this.peekGuard.consume(),
+    ...this.windowFocus('#house-storage-window'),
+    onInventoryChanged: () => this.onInventoryChanged(),
+    now: () => performance.now(),
+  });
   private readonly courierWindow = new CourierWindow($('#courier-window'), {
     ...this.presentationBag,
     ...this.windowFocus('#courier-window'),
@@ -6844,6 +6863,7 @@ export class Hud {
     if (this.marketWindow.isOpen) this.marketWindow.render();
     if (this.bankWindow.isOpen) this.bankWindow.render();
     if (this.courierWindow.isOpen()) this.courierWindow.render(true);
+    this.houseStorageWindow.relocalize();
     if (this.deedsWindow.isOpen) this.deedsWindow.render();
     if (this.reliquaryWindow.isOpen) this.reliquaryWindow.render();
     if (this.professionsWindow.isOpen) this.professionsWindow.render();
@@ -9327,6 +9347,8 @@ export class Hud {
     // The bank closes itself when the bank mirror goes null (left the banker).
     if (slowHud && this.bankWindow.isOpen) this.bankWindow.refreshIfChanged();
     if (slowHud && this.courierWindow.isOpen()) this.courierWindow.refreshIfChanged();
+    // The house storage closes itself when its mirror goes null (left the chest).
+    if (slowHud && this.houseStorageWindow.isOpen) this.houseStorageWindow.refreshIfChanged();
     // The store's charter fit gate reads live ladder state that no store event
     // observes, so an open store notices a rung bought behind it (ruling 21).
     if (slowHud && this.dailyRewardsWindow.isOpen) this.dailyRewardsWindow.refreshIfChanged();
@@ -11895,6 +11917,9 @@ export class Hud {
           break;
         case 'courier':
           this.courierWindow.open();
+          break;
+        case 'houseStorage': // Project H housing phase 3 (src/ui/hud/housing/)
+          this.houseStorageWindow.open();
           break;
         case 'riftForge':
           // Interact at the Riftwright: open the Rift Forge window (which

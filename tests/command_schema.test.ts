@@ -200,9 +200,12 @@ const repoRoot = fileURLToPath(new URL('..', import.meta.url));
 // Player housing (Project H) adds buy_house (sent by ClientWorld.buyHouse,
 // dispatched to Sim.buyHouse): 274/288/14. Phase 2 adds place_furniture and
 // remove_furniture (ClientWorld.placeFurniture / removeFurniture, dispatched to
-// Sim.placeFurniture / removeFurniture): 276/290/14.
-const EXPECTED_SEND_COUNT = 276;
-const EXPECTED_DISPATCH_COUNT = 290;
+// Sim.placeFurniture / removeFurniture): 276/290/14. Phase 3 adds
+// house_storage_deposit and house_storage_withdraw (ClientWorld.houseStorageDeposit
+// / houseStorageWithdraw, dispatched to Sim.houseStorageDeposit /
+// houseStorageWithdraw): 278/292/14.
+const EXPECTED_SEND_COUNT = 278;
+const EXPECTED_DISPATCH_COUNT = 292;
 const EXPECTED_DISPATCH_ONLY_COUNT = 14;
 
 // The chat sub-channel routing switch (server/game.ts `switch
@@ -341,8 +344,9 @@ describe('command schema parity (W0b)', () => {
     // The integration adds the dungeon guide answer, then the buddy rename command; the
     // Keep main wire tokens in place and append Gourdlight Eve.
     // Player housing (Project H) appends buy_house after trick_or_treat, then
-    // phase 2 appends place_furniture and remove_furniture.
-    expect(COMMAND_NAMES.slice(-10, -3)).toEqual([
+    // phase 2 appends place_furniture and remove_furniture, then phase 3
+    // appends house_storage_deposit and house_storage_withdraw.
+    expect(COMMAND_NAMES.slice(-12, -5)).toEqual([
       'courier_dispatch',
       'dungeon_guide_answer',
       'buddy_rename',
@@ -351,8 +355,20 @@ describe('command schema parity (W0b)', () => {
       'guild_buy_cosmetic',
       'trick_or_treat',
     ]);
-    expect(COMMAND_NAMES.slice(-3)).toEqual(['buy_house', 'place_furniture', 'remove_furniture']);
-    for (const cmd of ['buy_house', 'place_furniture', 'remove_furniture']) {
+    expect(COMMAND_NAMES.slice(-5)).toEqual([
+      'buy_house',
+      'place_furniture',
+      'remove_furniture',
+      'house_storage_deposit',
+      'house_storage_withdraw',
+    ]);
+    for (const cmd of [
+      'buy_house',
+      'place_furniture',
+      'remove_furniture',
+      'house_storage_deposit',
+      'house_storage_withdraw',
+    ]) {
       expect(sendSet.has(cmd), cmd).toBe(true);
       expect(dispatchSet.has(cmd), cmd).toBe(true);
     }

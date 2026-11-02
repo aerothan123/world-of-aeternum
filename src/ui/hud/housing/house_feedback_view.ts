@@ -41,6 +41,11 @@ const DENY_KEYS: Record<HouseDenyReason, TranslationKey> = {
   anchor_kind: 'hudChrome.housing.denied.anchorKind',
   no_item: 'hudChrome.housing.denied.noItem',
   bags_full: 'hudChrome.housing.denied.bagsFull',
+  // Phase 3, the storage refusals (src/sim/housing/house_storage.ts).
+  storage_in_use: 'hudChrome.housing.denied.storageInUse',
+  storage_far: 'hudChrome.housing.denied.storageFar',
+  storage_full: 'hudChrome.housing.denied.storageFull',
+  storage_item: 'hudChrome.housing.denied.storageItem',
 };
 
 /** What one housing event asks the HUD to do. */

@@ -25,6 +25,7 @@ import {
   ALL_RECIPES,
   FURNISHING_RECIPES,
   FURNISHING_STARTER_RECIPE_IDS,
+  HOUSE_STATION_RECIPES,
 } from '../src/sim/content/recipes';
 import { DUNGEON_X_THRESHOLD, ITEMS } from '../src/sim/data';
 import {
@@ -97,7 +98,7 @@ function eventsOfType<T extends SimEvent['type']>(
 /** An owner standing inside their own house, with a chair and a rug in the bags. */
 function ownerInside(sim = makeSim()): { sim: Sim; pid: number } {
   const pid = sim.player.id;
-  metaOf(sim, pid).house = { lot: LOT.id, boughtDay: '', furniture: {} };
+  metaOf(sim, pid).house = { lot: LOT.id, boughtDay: '', furniture: {}, storage: [] };
   sim.addItem(CHAIR, 1, pid);
   sim.addItem(RUG, 1, pid);
   place(sim, pid, LOT.doorPos.x, LOT.doorPos.z);
@@ -118,7 +119,8 @@ function furnitureEntities(sim: Sim): Entity[] {
 
 describe('the furniture catalog (content)', () => {
   it('every furniture def is a merged, non-equippable, non-junk common item with a name', () => {
-    expect(FURNITURE_ITEM_IDS.length).toBe(12);
+    // twelve phase-2 pieces plus the six phase-3 home stations
+    expect(FURNITURE_ITEM_IDS.length).toBe(18);
     for (const def of FURNITURE_DEFS) {
       const item = ITEMS[def.itemId];
       expect(item, def.itemId).toBe(FURNITURE_ITEMS[def.itemId]);
@@ -132,7 +134,7 @@ describe('the furniture catalog (content)', () => {
     }
     expect(isFurnitureItemId('ironbark_log')).toBe(false);
     expect(furnitureDefFor(undefined)).toBeUndefined();
-    // the two reserved rows are authored, placeable and functionless
+    // the chest (phase 3 storage) and the reserved trophy plaque
     expect(furnitureDefFor('furn_storage_chest')?.kind).toBe('floor');
     expect(furnitureDefFor('furn_trophy_plaque')?.kind).toBe('wall');
   });
@@ -175,10 +177,12 @@ describe('the Furnishing profession (a secondary craft off the ring)', () => {
   });
 
   it('has one trainer-taught toolworks recipe per furniture item, appended at the end', () => {
-    expect(FURNISHING_RECIPES).toHaveLength(FURNITURE_ITEM_IDS.length);
-    expect(ALL_RECIPES.slice(-FURNISHING_RECIPES.length)).toEqual(FURNISHING_RECIPES);
+    // the phase-2 rows, then the phase-3 station rows (tests/housing_stations.test.ts)
+    const furnishing = [...FURNISHING_RECIPES, ...HOUSE_STATION_RECIPES];
+    expect(furnishing).toHaveLength(FURNITURE_ITEM_IDS.length);
+    expect(ALL_RECIPES.slice(-furnishing.length)).toEqual(furnishing);
     const outputs = new Set<string>();
-    for (const recipe of FURNISHING_RECIPES) {
+    for (const recipe of furnishing) {
       expect(recipe.professionId).toBe(FURNISHING_CRAFT_ID);
       expect(recipe.stationType).toBe('toolworks');
       expect(recipe.acquisition).toEqual(['trainer']);
@@ -418,13 +422,13 @@ describe('placing and taking back furniture', () => {
       return eventsOfType(sim.tick(), 'houseDenied')[0]?.reason;
     };
     expect(reasonOf(() => sim.placeFurniture(FLOOR_ANCHOR, chair, pid))).toBe('no_house');
-    meta.house = { lot: LOT.id, boughtDay: '', furniture: {} };
+    meta.house = { lot: LOT.id, boughtDay: '', furniture: {}, storage: [] };
     expect(reasonOf(() => sim.placeFurniture(FLOOR_ANCHOR, chair, pid))).toBe('not_inside');
     expect(reasonOf(() => sim.removeFurniture(FLOOR_ANCHOR, pid))).toBe('not_inside');
     // inside the house of ANOTHER lot (the dev bypass), still not inside your own
     const dev = new Sim({ seed: 42, playerClass: 'warrior', autoEquip: true, devCommands: true });
     const dpid = dev.player.id;
-    metaOf(dev, dpid).house = { lot: LOT.id, boughtDay: '', furniture: {} };
+    metaOf(dev, dpid).house = { lot: LOT.id, boughtDay: '', furniture: {}, storage: [] };
     dev.addItem(CHAIR, 1, dpid);
     expect(enterDungeon((dev as any).ctx, HOUSE_LOTS[1].dungeonId, dpid, true)).toBe(true);
     dev.placeFurniture(FLOOR_ANCHOR, slotOf(dev, dpid, CHAIR), dpid);
@@ -460,7 +464,7 @@ describe('placing and taking back furniture', () => {
     const a = sim.addPlayer('warrior', 'Alda');
     const b = sim.addPlayer('mage', 'Brenn');
     for (const pid of [a, b])
-      metaOf(sim, pid).house = { lot: LOT.id, boughtDay: '', furniture: {} };
+      metaOf(sim, pid).house = { lot: LOT.id, boughtDay: '', furniture: {}, storage: [] };
     sim.addItem(CHAIR, 1, a);
     for (const pid of [a, b]) place(sim, pid, LOT.doorPos.x, LOT.doorPos.z);
     sim.tick();
@@ -484,6 +488,7 @@ describe('furniture persistence and wire', () => {
       lot: LOT.id,
       boughtDay: '',
       furniture: { [FLOOR_ANCHOR]: CHAIR, [RUG_ANCHOR]: RUG },
+      storage: [],
     };
     const saved = sim.serializeCharacter(pid)!;
     expect(saved.house).toEqual({
@@ -518,7 +523,9 @@ describe('furniture persistence and wire', () => {
       ['bedroom_rug_1', 'gone_anchor', 'hearth_floor_2', RUG_ANCHOR].sort(),
     );
     expect(sanitizeHouseState({ lot: LOT.id, furniture: 'x' })?.furniture).toEqual({});
-    expect(savedHouseState({ lot: LOT.id, boughtDay: '', furniture: {} })).toEqual({ lot: LOT.id });
+    expect(savedHouseState({ lot: LOT.id, boughtDay: '', furniture: {}, storage: [] })).toEqual({
+      lot: LOT.id,
+    });
   });
 
   it('decodes the hse wire with the furniture map, dropping bad rows', () => {

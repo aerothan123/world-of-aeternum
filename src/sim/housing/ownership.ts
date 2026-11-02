@@ -102,7 +102,7 @@ export function buyHouse(ctx: SimContext, lotId: string, pid?: number): boolean 
   if (dist2d(r.e.pos, door) > HOUSE_PURCHASE_RANGE) return deny(ctx, id, lotId, 'range');
   if (r.meta.copper < lot.priceCopper) return deny(ctx, id, lotId, 'money');
   r.meta.copper -= lot.priceCopper;
-  r.meta.house = { lot: lot.id, boughtDay: ctx.resetDay, furniture: {} };
+  r.meta.house = { lot: lot.id, boughtDay: ctx.resetDay, furniture: {}, storage: [] };
   // Phase 2: a new owner knows the two starter Furnishing recipes outright
   // (the rest are taught at the toolworks), so the house is furnishable from
   // the day it is bought. Idempotent: knownRecipes is a set.

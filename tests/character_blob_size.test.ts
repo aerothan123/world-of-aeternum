@@ -118,19 +118,22 @@ describe('characterBlobSizeWarning: the pure decision', () => {
     // Crucible payloads through serialize/load. Moving it means re-measuring.
     // Re-minted 229,376 -> 262,144 (256 KiB) at the 2026-09-28 Buried Hoards merge:
     // the whole-character fixture measured 233,360 bytes (server/character_blob_size.ts).
-    expect(CHARACTER_BLOB_WARN_BYTES).toBe(262_144);
+    // Re-minted 262,144 -> 294,912 (288 KiB) at Project H housing phase 3: the
+    // fixture measured 262,310 bytes, 166 past the old step.
+    expect(CHARACTER_BLOB_WARN_BYTES).toBe(294_912);
   });
 
   it('stays silent below the threshold and AT it (the bound is inclusive)', () => {
     expect(characterBlobSizeWarning(1, 0)).toBeNull();
     expect(characterBlobSizeWarning(1, 38_900)).toBeNull();
     expect(characterBlobSizeWarning(1, 209_261)).toBeNull();
-    expect(characterBlobSizeWarning(1, 262_143)).toBeNull();
     expect(characterBlobSizeWarning(1, 262_144)).toBeNull();
+    expect(characterBlobSizeWarning(1, 294_911)).toBeNull();
+    expect(characterBlobSizeWarning(1, 294_912)).toBeNull();
   });
 
   it('warns one byte past the threshold and above', () => {
-    expect(characterBlobSizeWarning(1, 262_145)).not.toBeNull();
+    expect(characterBlobSizeWarning(1, 294_913)).not.toBeNull();
     expect(characterBlobSizeWarning(1, 1_000_000)).not.toBeNull();
   });
 
@@ -138,7 +141,7 @@ describe('characterBlobSizeWarning: the pure decision', () => {
     const warning = characterBlobSizeWarning(4291, 300_000);
     expect(warning).toContain('4291');
     expect(warning).toContain('300000');
-    expect(warning).toContain('262144-byte');
+    expect(warning).toContain('294912-byte');
   });
 
   it('leaves a real freshly serialized character far under the threshold', () => {

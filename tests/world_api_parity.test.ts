@@ -673,6 +673,10 @@ export const IWORLD_MEMBERS = [
   { name: 'houseAnchors', kind: 'data' },
   { name: 'placeFurniture', kind: 'method' },
   { name: 'removeFurniture', kind: 'method' },
+  // Phase 3: the pooled house storage behind the placed chests.
+  { name: 'houseStorage', kind: 'data' },
+  { name: 'houseStorageDeposit', kind: 'method' },
+  { name: 'houseStorageWithdraw', kind: 'method' },
 ] as const satisfies readonly IWorldMember[];
 
 const DATA_MEMBERS = IWORLD_MEMBERS.filter((m) => m.kind === 'data');
@@ -1042,10 +1046,12 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
     // more: 471/140/331.
     // Player housing (Project H, housing.ts) adds houseLots and myHouse (data)
     // and buyHouse (method): 474/142/332. Phase 2 adds houseAnchors (data) and
-    // placeFurniture / removeFurniture (methods): 477/143/334.
-    expect(IWORLD_MEMBERS.length).toBe(477);
-    expect(DATA_MEMBERS.length).toBe(143);
-    expect(METHOD_MEMBERS.length).toBe(334);
+    // placeFurniture / removeFurniture (methods): 477/143/334. Phase 3 adds
+    // houseStorage (data) and houseStorageDeposit / houseStorageWithdraw
+    // (methods): 480/144/336.
+    expect(IWORLD_MEMBERS.length).toBe(480);
+    expect(DATA_MEMBERS.length).toBe(144);
+    expect(METHOD_MEMBERS.length).toBe(336);
   });
   it('has no duplicate member names', () => {
     const names = IWORLD_MEMBERS.map((m) => m.name);
@@ -1276,6 +1282,9 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'honor',
       'houseAnchors',
       'houseLots',
+      'houseStorage',
+      'houseStorageDeposit',
+      'houseStorageWithdraw',
       'ignoreAdd',
       'ignoreRemove',
       'interact',
@@ -1610,6 +1619,7 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'honor',
       'houseAnchors',
       'houseLots',
+      'houseStorage',
       'inventory',
       'known',
       'lanceGuidance',
@@ -1834,6 +1844,8 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'harvestNode',
       'healPet',
       'hoardBossCues',
+      'houseStorageDeposit',
+      'houseStorageWithdraw',
       'ignoreAdd',
       'ignoreRemove',
       'interact',
@@ -2768,6 +2780,9 @@ const FACET_HOUSING = [
   'buyHouse',
   'placeFurniture',
   'removeFurniture',
+  'houseStorage',
+  'houseStorageDeposit',
+  'houseStorageWithdraw',
 ] as const satisfies readonly (keyof IWorldHousing)[];
 type _ExhaustHousing = AssertNever<Exclude<keyof IWorldHousing, (typeof FACET_HOUSING)[number]>>;
 
@@ -2922,9 +2937,10 @@ describe('W1: aggregate IWorld member set equals the disjoint union of the facet
     // adds resting (data) and sitOnSeat (the seating facet's method).
     // Plus Lantern Hall's guildContracts and buyGuildCosmetic, the riding
     // ranks method (PR 4390) and unappliedDungeonDifficulty (PR 4625). Player
-    // housing phase 2 adds houseAnchors, placeFurniture and removeFurniture.
-    expect(union.length, 'union size before dedup (catches a duplicated member)').toBe(477);
-    expect(new Set(union).size, 'union size after dedup (catches a duplicated member)').toBe(477);
+    // housing phase 2 adds houseAnchors, placeFurniture and removeFurniture;
+    // phase 3 adds houseStorage, houseStorageDeposit and houseStorageWithdraw.
+    expect(union.length, 'union size before dedup (catches a duplicated member)').toBe(480);
+    expect(new Set(union).size, 'union size after dedup (catches a duplicated member)').toBe(480);
     const sortedUnion = [...union].sort();
     const pinned = IWORLD_MEMBERS.map((m) => m.name).sort();
     expect(sortedUnion).toEqual(pinned);

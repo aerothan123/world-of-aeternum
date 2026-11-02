@@ -60,8 +60,9 @@
 //   seating.ts          IWorldSeating        sit on a piece of furniture by its seat id
 //   seasonal.ts         IWorldSeasonal       the running seasonal event + trick-or-treat
 //   housing.ts          IWorldHousing        player housing: the static lots and anchors, the
-//                                            caller's own house, and the buy / place / remove
-//                                            furniture commands (Project H)
+//                                            caller's own house and house storage, and the
+//                                            buy / place / remove furniture and storage
+//                                            deposit / withdraw commands (Project H)
 //
 // THREE GATES pin this seam (run before any facet edit; the literal counts are
 // pinned THERE and re-stale here, so this prose stays count-free):
@@ -137,7 +138,12 @@ export type {
   DeedStats,
   OverheadEmoteId,
 } from './sim/types';
-export type { HouseAnchorDef, HouseLotDef, HouseView } from './world_api/housing';
+export type {
+  HouseAnchorDef,
+  HouseLotDef,
+  HouseStorageView,
+  HouseView,
+} from './world_api/housing';
 export type { VehicleSession } from './world_api/vehicles';
 
 // Online world and required-snapshot compatibility is encoded in the first
@@ -1024,6 +1030,11 @@ export const COMMAND_NAMES = [
   // Sim.removeFurniture via src/sim/housing/furnishing.ts). Appended.
   'place_furniture',
   'remove_furniture',
+  // Player housing phase 3: move a carried stack into the house storage and a
+  // stored one back (Sim.houseStorageDeposit / Sim.houseStorageWithdraw via
+  // src/sim/housing/house_storage.ts). Appended.
+  'house_storage_deposit',
+  'house_storage_withdraw',
 ] as const;
 
 // The union both the send path (`online.ts`) and the dispatch switch
@@ -1456,4 +1467,8 @@ export const COMMAND_FACETS = {
   // Phase 2: the furniture verbs. houseAnchors is static content, untagged.
   place_furniture: 'IWorldHousing',
   remove_furniture: 'IWorldHousing',
+  // Phase 3: the storage verbs. houseStorage is the `hst` self-delta mirror,
+  // untagged like myHouse.
+  house_storage_deposit: 'IWorldHousing',
+  house_storage_withdraw: 'IWorldHousing',
 } as const satisfies Partial<Record<ClientCommand, WorldFacet>>;

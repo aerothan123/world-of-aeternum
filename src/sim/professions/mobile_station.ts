@@ -23,10 +23,11 @@
 
 import { MOBILE_CRAFTING_STATION_DURATION_TICKS, STATION_RADIUS } from '../content/professions';
 import { refusedWhileDead } from '../dead_gate';
+import { houseStationTypesNear } from '../housing/house_stations';
 import type { SimContext } from '../sim_context';
 import type { StationType } from '../types';
 import { dropMobileStationObject, spawnMobileStationObject } from './mobile_station_object';
-import { stationTypeForCraft } from './stations';
+import { craftsForStationType, stationTypeForCraft } from './stations';
 import { type CraftSkillState, isSpecialized } from './wheel';
 
 export interface MobileCraftingStation {
@@ -293,6 +294,19 @@ export function activeMobileStationCraftsForViewer(
       // and two members can carry stations of one craft.
       if (!crafts) crafts = [station.craftId];
       else if (!crafts.includes(station.craftId)) crafts.push(station.craftId);
+    }
+  }
+  // The home arm (Project H housing phase 3, housing/house_stations.ts): every
+  // craft a placed home station in reach serves joins the set, so the craft
+  // gate's house arm (crafting.ts) and the crafting window's row set agree.
+  // Costs nothing for a viewer with no house, and one instance lookup inside.
+  const ownMeta = ctx.players.get(pid);
+  if (ownMeta?.house) {
+    for (const type of houseStationTypesNear(ctx, ownMeta, viewer.pos)) {
+      for (const craftId of craftsForStationType(type)) {
+        if (!crafts) crafts = [craftId];
+        else if (!crafts.includes(craftId)) crafts.push(craftId);
+      }
     }
   }
   if (!crafts) return EMPTY_CRAFTS;
