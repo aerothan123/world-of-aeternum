@@ -8,7 +8,7 @@ import { DEFAULT_RAID_RESET_TIME_ZONE, isSupportedTimeZone } from './raid_reset'
 // value, so two processes with different REALM_NAME share a DB yet form fully
 // isolated worlds. Defaults to a single realm for local dev / single-shard prod.
 
-export const DEFAULT_REALM_NAME = 'Claudemoon';
+export const DEFAULT_REALM_NAME = 'Project H';
 
 export function resolveRealm(rawName: string | undefined): string {
   const raw = (rawName ?? '').trim();

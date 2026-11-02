@@ -15312,7 +15312,7 @@ export const en: EnTranslations = {
     "parseService": "WoC Parse Service"
   },
   "seo": {
-    "title": "World of ClaudeCraft: Classic-Style Web MMO",
+    "title": "Project H: Sandbox MMO (World of ClaudeCraft fork)",
     "description": "Play World of ClaudeCraft, a free browser MMO. Explore, complete quests, and run dungeons with friends. No download required.",
     "genre": "MMORPG",
     "playMode": "Multiplayer",

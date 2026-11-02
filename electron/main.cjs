@@ -222,7 +222,7 @@ const desktopLoginOrigin = desktopConfig.loginOrigin.replace(/\/+$/, '');
 // build time, https-only) they upload compressed and rate-limited. No extra
 // user data rides along: the report carries only process/version metadata.
 crashReporter.start({
-  productName: 'World of ClaudeCraft',
+  productName: 'Project H',
   // companyName is deprecated in Electron 43; the metadata field survives as
   // the _companyName global extra.
   globalExtra: { _companyName: 'World of ClaudeCraft' },
@@ -626,7 +626,7 @@ function createMainWindow() {
     height: restore.height,
     minWidth: MIN_WINDOW_WIDTH,
     minHeight: MIN_WINDOW_HEIGHT,
-    title: 'World of ClaudeCraft',
+    title: 'Project H',
     backgroundColor: '#05070a',
     // Created hidden and revealed on 'ready-to-show' below, so the player never
     // sees an unpainted white or empty frame before the client boots.

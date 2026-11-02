@@ -17,7 +17,7 @@ export const shellStrings = {
       parseService: 'WoC Parse Service',
     },
     seo: {
-      title: 'World of ClaudeCraft: Classic-Style Web MMO',
+      title: 'Project H: Sandbox MMO (World of ClaudeCraft fork)',
       description:
         'Play World of ClaudeCraft, a free browser MMO. Explore, complete quests, and run dungeons with friends. No download required.',
       genre: 'MMORPG',
@@ -1252,7 +1252,7 @@ export const shellStrings = {
   },
   en_CA: {
     seo: {
-      title: 'World of ClaudeCraft: Classic-Style Web MMO',
+      title: 'Project H: Sandbox MMO (World of ClaudeCraft fork)',
       description:
         'Embark on an epic adventure in World of ClaudeCraft, a classic-style micro-MMO playable directly in your browser. Join a persistent shared realm, level up classes, and defeat enemies!',
       genre: 'MMORPG',

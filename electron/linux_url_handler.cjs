@@ -68,7 +68,7 @@ const APPIMAGE_ENTRY_NAME = `${DESKTOP_ENTRY_BASENAME}-appimage.desktop`;
 // desktop-file string escaping) to survive intact, and getting that subtly wrong ships a
 // handler that runs the wrong command. No real download path contains any of them, so
 // refusing to install is both safer and honest.
-const PRODUCT_NAME = 'World of ClaudeCraft';
+const PRODUCT_NAME = 'Project H';
 /** Returned by every arm with nothing to associate, so the caller never null-checks. */
 const NO_ASSOCIATE = () => {};
 // Where a system package (the .deb) puts its copy. Read only to answer "does this name

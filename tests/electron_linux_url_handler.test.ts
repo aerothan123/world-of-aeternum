@@ -141,7 +141,7 @@ describe('the .desktop entry filename (a cross-package literal)', () => {
 
   it('uses the shipping product name for the entry Name', () => {
     expect(PRODUCT_NAME).toBe(PKG.build.productName);
-    expect(PRODUCT_NAME).toBe('World of ClaudeCraft');
+    expect(PRODUCT_NAME).toBe('Project H');
   });
 
   it('registers the same scheme package.json declares to electron-builder', () => {
@@ -317,11 +317,11 @@ describe('buildDesktopEntry', () => {
       [
         '[Desktop Entry]',
         'Type=Application',
-        'Name=World of ClaudeCraft',
+        'Name=Project H',
         `Exec=${APPIMAGE} %u`,
         `TryExec=${APPIMAGE}`,
         'Icon=world-of-claudecraft',
-        'StartupWMClass=World of ClaudeCraft',
+        'StartupWMClass=Project H',
         'Terminal=false',
         'Categories=Game;',
         `MimeType=x-scheme-handler/${SCHEME};`,

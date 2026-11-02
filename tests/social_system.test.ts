@@ -643,10 +643,10 @@ describe('resolveRealm', () => {
     expect(resolveRealm('  Ironforge  ')).toBe('Ironforge');
   });
   it('falls back to the default for empty or invalid names', () => {
-    expect(resolveRealm(undefined)).toBe('Claudemoon');
-    expect(resolveRealm('')).toBe('Claudemoon');
-    expect(resolveRealm('x'.repeat(25))).toBe('Claudemoon');
-    expect(resolveRealm('drop;table')).toBe('Claudemoon');
+    expect(resolveRealm(undefined)).toBe('Project H');
+    expect(resolveRealm('')).toBe('Project H');
+    expect(resolveRealm('x'.repeat(25))).toBe('Project H');
+    expect(resolveRealm('drop;table')).toBe('Project H');
   });
 });
 

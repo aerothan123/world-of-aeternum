@@ -176,7 +176,7 @@
   },
   "build": {
     "appId": "com.worldofclaudecraft.desktop",
-    "productName": "World of ClaudeCraft",
+    "productName": "Project H",
     "icon": "build/icon.png",
     "files": [
       "dist/**",
