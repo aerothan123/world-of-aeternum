@@ -78,6 +78,12 @@ smoke-test a packaged build against a local server:
 `VITE_DESKTOP_API_ORIGIN=http://localhost:8787 npm run electron:pack` (a BUILD-time
 value: baked into the bundle and stamped into the app; such a build lands on the
 `dev` update channel automatically and cannot produce production feed files).
+To SHIP such a non-production build to real players with working auto-updates
+from your own host, use `node scripts/release_desktop.mjs` and read
+`docs/desktop-self-hosted-updates.md`: it stamps a strictly greater version at
+build time (`WOC_DESKTOP_VERSION`), bakes the feed URL (`WOC_DESKTOP_UPDATE_URL`,
+derived as `<origin>/downloads/desktop` for any non-production origin) and
+uploads the `dev` channel files over scp.
 
 For a fast CSP regression check without packaging at all, run
 `node scripts/csp_shell_smoke.mjs` against a running dev server: it attaches the real

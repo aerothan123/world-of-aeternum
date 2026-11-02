@@ -48,6 +48,47 @@ import {
 
 const UPDATE_CHANNELS = new Set(['latest', 'dev']);
 
+// The path under an API origin where a self-hosted update feed lives when no
+// explicit feed URL is given (docs/desktop-self-hosted-updates.md): the
+// droplet's Caddy serves /downloads/* from /var/www/downloads, and the desktop
+// feed files sit in its desktop/ subdirectory.
+export const SELF_HOSTED_FEED_PATH = '/downloads/desktop';
+
+// A strict-enough semver shape for the stamped desktop version: electron-updater
+// compares feed versions with semver, and a loose value (a date, 'v1.2',
+// '1.2.3.4') either fails to parse at runtime or never compares greater.
+const SEMVER_RE = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-[0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?$/;
+
+export function isSemver(value) {
+  return typeof value === 'string' && SEMVER_RE.test(value);
+}
+
+// Where a website build publishes its update feed (and so where the packaged
+// app-update.yml tells electron-updater to look at runtime; electron-builder
+// writes that file from publish.url, so the two cannot drift). Resolution:
+//  - an explicit updateFeedUrl (WOC_DESKTOP_UPDATE_URL) wins on every origin;
+//    it must be a parseable http(s) URL, and a trailing slash is dropped so
+//    electron-updater's `${url}/dev.yml` join never doubles it;
+//  - a production origin with no explicit URL keeps package.json's publish.url
+//    (the official feed host), byte-identical to before this seam existed;
+//  - any other origin with no explicit URL derives `${origin}/downloads/desktop`,
+//    the self-hosted layout, so a dev or self-hosted build never points at
+//    the production feed host by accident (its dev.yml is not there anyway).
+export function resolveUpdateFeedUrl({ baseUrl, apiOrigin, updateFeedUrl } = {}) {
+  if (typeof updateFeedUrl === 'string' && updateFeedUrl !== '') {
+    if (apiOriginKey(updateFeedUrl) === null) {
+      throw new Error(
+        `WOC_DESKTOP_UPDATE_URL must be a parseable http(s) URL; got "${updateFeedUrl}"`,
+      );
+    }
+    return updateFeedUrl.replace(/\/+$/, '');
+  }
+  if (isProductionApiOrigin(apiOrigin)) return baseUrl;
+  const originKey = apiOriginKey(apiOrigin);
+  if (originKey === null) return baseUrl;
+  return `${originKey}${SELF_HOSTED_FEED_PATH}`;
+}
+
 export function azureSignOptionsFromEnv(env = {}) {
   const options = {
     publisherName: env.WIN_SIGN_PUBLISHER_NAME,
@@ -112,6 +153,8 @@ export function desktopBuilderConfig({
   azureSign = null,
   keyVaultSign = null,
   updateChannel = null,
+  updateFeedUrl = '',
+  version = '',
   steamAppId = '',
   steamworksInstalled = null,
   epicProductId = '',
@@ -122,6 +165,18 @@ export function desktopBuilderConfig({
     throw new Error(`unknown desktop distribution: ${distribution}`);
   }
   const config = structuredClone(base);
+  // A build-time version stamp (WOC_DESKTOP_VERSION, set by
+  // scripts/release_desktop.mjs): electron-builder merges extraMetadata into the
+  // packaged package.json, so this is the version the artifact names, the feed
+  // yml, and the running app's updater all see, without touching the repo's
+  // package.json (a fingerprint input for shipped GLB assets). Only a semver
+  // value may land here; electron-updater would never see a loose one as newer.
+  if (version !== '' && version !== null && version !== undefined) {
+    if (!isSemver(version)) {
+      throw new Error(`WOC_DESKTOP_VERSION must be a semver string (x.y.z); got "${version}"`);
+    }
+    config.extraMetadata = { ...(config.extraMetadata ?? {}), version };
+  }
   config.extraMetadata = {
     ...(config.extraMetadata ?? {}),
     wocDesktop: {
@@ -170,7 +225,12 @@ export function desktopBuilderConfig({
           `is not ${PRODUCTION_API_ORIGIN}`,
       );
     }
-    config.publish = { ...config.publish, channel };
+    // The feed host: the official one for production builds (unchanged), a
+    // self-hosted `${origin}/downloads/desktop` or the explicit
+    // WOC_DESKTOP_UPDATE_URL otherwise. electron-builder writes publish.url
+    // into the packaged app-update.yml, so the runtime reads this same URL.
+    const url = resolveUpdateFeedUrl({ baseUrl: config.publish.url, apiOrigin, updateFeedUrl });
+    config.publish = { ...config.publish, ...(url ? { url } : {}), channel };
   }
   // Windows signing routes, mutually exclusive with Trusted Signing first:
   // both resolvers require a complete env set, so at most one is normally

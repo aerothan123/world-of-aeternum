@@ -146,6 +146,16 @@ const config = desktopBuilderConfig({
   // makes desktopBuilderConfig throw before anything is built. Set-but-empty
   // means "unset" (derive from the origin), hence || rather than ??.
   updateChannel: process.env.WOC_UPDATE_CHANNEL || null,
+  // Self-hosted feed (docs/desktop-self-hosted-updates.md): an explicit feed
+  // URL wins; otherwise a non-production origin derives
+  // `${origin}/downloads/desktop` and the production origin keeps the
+  // package.json publish url. electron-builder writes the result into the
+  // packaged app-update.yml, so the runtime updater reads the same URL.
+  updateFeedUrl: process.env.WOC_DESKTOP_UPDATE_URL || '',
+  // Build-time version stamp (scripts/release_desktop.mjs sets it so each
+  // self-hosted release is a strictly greater semver without editing the
+  // repo's package.json, which fingerprints shipped GLB assets).
+  version: process.env.WOC_DESKTOP_VERSION || '',
   // The real Steamworks app id for a depot build (stamped into wocDesktop for
   // electron/steam.cjs). desktopBuilderConfig refuses a steam channel build
   // without a numeric id, so a depot can never silently ship on the Spacewar

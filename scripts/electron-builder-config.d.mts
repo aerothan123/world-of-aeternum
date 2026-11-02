@@ -24,8 +24,17 @@ export function keyVaultSignConfigFromEnv(
   env?: Record<string, string | undefined>,
 ): KeyVaultSignConfig | null;
 
+export const SELF_HOSTED_FEED_PATH: string;
+export function isSemver(value: unknown): boolean;
+export function resolveUpdateFeedUrl(input?: {
+  baseUrl?: string;
+  apiOrigin?: string;
+  updateFeedUrl?: string;
+}): string | undefined;
+
 export interface DesktopBuilderConfig {
   extraMetadata: {
+    version?: string;
     wocDesktop: {
       distribution: 'website' | 'steam' | 'epic';
       apiOrigin?: string;
@@ -62,6 +71,8 @@ export function desktopBuilderConfig(input: {
   azureSign?: AzureSignOptions | null;
   keyVaultSign?: KeyVaultSignConfig | null;
   updateChannel?: string | null;
+  updateFeedUrl?: string;
+  version?: string;
   steamAppId?: string;
   steamworksInstalled?: (() => boolean) | null;
   epicProductId?: string;

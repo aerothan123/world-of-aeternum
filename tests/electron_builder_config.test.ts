@@ -7,7 +7,9 @@ import {
   azureSignOptionsFromEnv,
   desktopBuilderConfig,
   isChannelFeedFile,
+  isSemver,
   keyVaultSignConfigFromEnv,
+  resolveUpdateFeedUrl,
   stampChannelFeedFiles,
   stampFeedFile,
 } from '../scripts/electron-builder-config.mjs';
@@ -471,6 +473,100 @@ describe('desktopBuilderConfig', () => {
 const realBuild = JSON.parse(
   readFileSync(new URL('../package.json', import.meta.url), 'utf8'),
 ).build;
+
+describe('self-hosted update feed (docs/desktop-self-hosted-updates.md)', () => {
+  const selfOrigin = 'https://104-248-71-233.sslip.io';
+
+  it('resolveUpdateFeedUrl: production keeps the official feed, others derive /downloads/desktop', () => {
+    expect(resolveUpdateFeedUrl({ baseUrl: base.publish.url, apiOrigin: prodOrigin })).toBe(
+      base.publish.url,
+    );
+    expect(resolveUpdateFeedUrl({ baseUrl: base.publish.url, apiOrigin: selfOrigin })).toBe(
+      `${selfOrigin}/downloads/desktop`,
+    );
+    expect(resolveUpdateFeedUrl({ baseUrl: base.publish.url, apiOrigin: `${selfOrigin}/` })).toBe(
+      `${selfOrigin}/downloads/desktop`,
+    );
+    // Unparseable or missing origin: nothing to derive from, keep the base.
+    expect(resolveUpdateFeedUrl({ baseUrl: base.publish.url })).toBe(base.publish.url);
+  });
+
+  it('resolveUpdateFeedUrl: an explicit WOC_DESKTOP_UPDATE_URL wins everywhere, slash-trimmed', () => {
+    for (const apiOrigin of [prodOrigin, selfOrigin]) {
+      expect(
+        resolveUpdateFeedUrl({
+          baseUrl: base.publish.url,
+          apiOrigin,
+          updateFeedUrl: 'https://cdn.example/feed/',
+        }),
+      ).toBe('https://cdn.example/feed');
+    }
+    expect(() =>
+      resolveUpdateFeedUrl({
+        baseUrl: base.publish.url,
+        apiOrigin: selfOrigin,
+        updateFeedUrl: 'cdn',
+      }),
+    ).toThrow(/WOC_DESKTOP_UPDATE_URL/);
+  });
+
+  it('production builds are byte-identical to before: official feed url, no version stamp', () => {
+    const config = desktopBuilderConfig({ base, distribution: 'website', apiOrigin: prodOrigin });
+    expect(config.publish).toEqual({ ...base.publish, channel: 'latest' });
+    expect(config.extraMetadata.version).toBeUndefined();
+  });
+
+  it('a self-hosted origin publishes (and so reads back) its own dev feed', () => {
+    const config = desktopBuilderConfig({ base, distribution: 'website', apiOrigin: selfOrigin });
+    // electron-builder writes publish.url + channel into the packaged
+    // app-update.yml, so the runtime updater requests
+    // `${url}/dev.yml` from exactly this host.
+    expect(config.publish).toEqual({
+      provider: 'generic',
+      url: `${selfOrigin}/downloads/desktop`,
+      channel: 'dev',
+    });
+    const explicit = desktopBuilderConfig({
+      base,
+      distribution: 'website',
+      apiOrigin: selfOrigin,
+      updateFeedUrl: 'https://cdn.example/feed',
+    });
+    expect(explicit.publish?.url).toBe('https://cdn.example/feed');
+    expect(explicit.publish?.channel).toBe('dev');
+  });
+
+  it('stamps a semver build version into extraMetadata and refuses anything else', () => {
+    const config = desktopBuilderConfig({
+      base,
+      distribution: 'website',
+      apiOrigin: selfOrigin,
+      version: '0.45.7',
+    });
+    expect(config.extraMetadata.version).toBe('0.45.7');
+    expect(config.extraMetadata.wocDesktop.distribution).toBe('website');
+    for (const version of ['v0.45.7', '0.45', '2026-11-02', '0.45.7.1', 'latest']) {
+      expect(() =>
+        desktopBuilderConfig({ base, distribution: 'website', apiOrigin: selfOrigin, version }),
+      ).toThrow(/WOC_DESKTOP_VERSION must be a semver/);
+    }
+    expect(isSemver('1.2.3-beta.1')).toBe(true);
+    expect(isSemver('01.2.3')).toBe(false);
+  });
+
+  it('the version stamp applies to every channel; the feed url only to website', () => {
+    const steam = desktopBuilderConfig({
+      base,
+      distribution: 'steam',
+      apiOrigin: selfOrigin,
+      steamAppId: '480',
+      version: '0.45.7',
+      updateFeedUrl: 'https://cdn.example/feed',
+    });
+    expect(steam.extraMetadata.version).toBe('0.45.7');
+    expect(steam.publish).toBeNull();
+  });
+});
 
 describe('package.json build block: per-arch NSIS installer + media dedup (issue 2013)', () => {
   it('disables the universal NSIS installer so the website channel emits one exe per arch', () => {
