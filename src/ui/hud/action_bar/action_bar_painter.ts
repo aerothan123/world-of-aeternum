@@ -71,6 +71,10 @@ export interface ActionBarSlotElements {
 export interface ActionBarPaintDescriptor {
   container: HTMLElement;
   slots: readonly ActionBarSlotElements[];
+  /** A row-shape class stamped on the container ONCE at construction (the
+   *  hands row, hands_row_core.ts). Omitted by an instance whose container
+   *  keeps its own shape (the mobile pager). */
+  rowClass?: string;
 }
 
 export class ActionBarPainter {
@@ -86,6 +90,8 @@ export class ActionBarPainter {
     private readonly resolveBackgroundImage: (iconKey: string) => string,
   ) {
     this.lastIcon = descriptor.slots.map(() => null);
+    if (descriptor.rowClass)
+      this.writers.toggleClass(descriptor.container, descriptor.rowClass, true);
   }
 
   paint(state: ActionBarState): void {

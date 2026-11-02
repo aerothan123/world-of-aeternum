@@ -124,9 +124,9 @@ describe('Settings', () => {
     // width minus 46px), so the defaults must be the --unit-frame-w stock: main.ts
     // stamps every persisted value onto the root, so a stale default ships as-is
     // and the CSS fallback never gets a chance to correct it.
-    expect(UNIT_FRAME_STOCK_WIDTH).toBe(278);
-    expect(SETTING_RANGES.playerFrameWidth).toEqual({ min: 200, max: 460, def: 278 });
-    expect(SETTING_RANGES.targetFrameWidth).toEqual({ min: 200, max: 460, def: 278 });
+    expect(UNIT_FRAME_STOCK_WIDTH).toBe(420);
+    expect(SETTING_RANGES.playerFrameWidth).toEqual({ min: 200, max: 460, def: 420 });
+    expect(SETTING_RANGES.targetFrameWidth).toEqual({ min: 200, max: 460, def: 420 });
     // The editor must be able to REACH the stock from either edge drag.
     expect(SETTING_RANGES.playerFrameWidth.min).toBeLessThan(UNIT_FRAME_STOCK_WIDTH);
     expect(SETTING_RANGES.targetFrameWidth.min).toBeLessThan(UNIT_FRAME_STOCK_WIDTH);
@@ -144,8 +144,16 @@ describe('Settings', () => {
       JSON.stringify({ playerFrameWidth: 612, targetFrameWidth: 190 }),
     );
     const migrated = new Settings();
-    expect(migrated.get('playerFrameWidth')).toBe(278);
-    expect(migrated.get('targetFrameWidth')).toBe(278);
+    expect(migrated.get('playerFrameWidth')).toBe(420);
+    expect(migrated.get('targetFrameWidth')).toBe(420);
+    // The classic 278px plate stock re-stamps to the vitals bar too (Project H).
+    localStorage.setItem(
+      'woc_settings',
+      JSON.stringify({ playerFrameWidth: 278, targetFrameWidth: 278 }),
+    );
+    const classic = new Settings();
+    expect(classic.get('playerFrameWidth')).toBe(420);
+    expect(classic.get('targetFrameWidth')).toBe(420);
 
     // A width the player actually dragged is kept, clamped to the new range.
     localStorage.setItem(

@@ -39,7 +39,8 @@
   }
   .ui-h {
     font-family: var(--font-display);
-    letter-spacing: 0.5px;
+    letter-spacing: var(--track-caps);
+    font-variant-caps: small-caps;
     text-shadow: var(--title-shadow);
     color: var(--color-accent);
     font-size: 13px;
@@ -64,34 +65,32 @@
      the panel gradient at its three alphas, plus the double-ringed window. */
   .ui-panel {
     background: var(--panel-bg);
-    border: 1px solid var(--border);
-    outline: 1px solid var(--color-keyline);
+    border: 1px solid var(--line-faint);
+    outline: 0;
     border-radius: var(--radius-panel);
     box-shadow: var(--shadow-panel);
     color: var(--color-text-light);
   }
   .ui-panel-soft {
     background: var(--panel-bg-soft);
-    border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
-    outline: 1px solid color-mix(in srgb, var(--color-keyline) 70%, transparent);
+    border: 1px solid var(--line-faint);
+    outline: 0;
     border-radius: var(--radius-panel);
-    box-shadow:
-      0 2px 12px color-mix(in srgb, var(--color-keyline) 50%, transparent),
-      inset 0 1px 0 color-mix(in srgb, var(--color-glint) 10%, transparent);
+    box-shadow: none;
     color: var(--color-text-light);
   }
   .ui-panel-strong {
     background: var(--panel-bg-strong);
-    border: 1px solid var(--border);
-    outline: 1px solid var(--color-keyline);
+    border: 1px solid var(--line);
+    outline: 0;
     border-radius: var(--radius-panel);
     box-shadow: var(--shadow-panel);
     color: var(--color-text-light);
   }
   .ui-window {
-    background: var(--panel-bg);
-    border: 1px solid var(--border);
-    outline: 1px solid var(--color-keyline);
+    background: var(--surface-menu);
+    border: 1px solid var(--line);
+    outline: 0;
     border-radius: var(--radius-window);
     box-shadow: var(--shadow-window);
     color: var(--color-text-light);
@@ -104,15 +103,14 @@
     gap: 10px;
     height: var(--win-head-h);
     padding: 0 var(--spacing-sm) 0 var(--window-pad, 12px);
-    background: linear-gradient(180deg, var(--color-panel-hi), var(--panel-base));
-    border-bottom: 1px solid var(--color-border-showcase);
-    box-shadow:
-      inset 0 1px 0 color-mix(in srgb, var(--color-glint) 14%, transparent),
-      inset 0 -1px 0 color-mix(in srgb, var(--color-keyline) 60%, transparent);
+    background: transparent;
+    border-bottom: 1px solid var(--line-faint);
+    box-shadow: none;
   }
   .ui-win-title {
     font-family: var(--font-display);
-    letter-spacing: 0.5px;
+    letter-spacing: var(--track-caps);
+    font-variant-caps: small-caps;
     text-shadow: var(--title-shadow);
     color: var(--color-accent);
     font-size: 16px;
@@ -509,7 +507,7 @@
     height: var(--bar-h-hp);
     clip-path: polygon(0 0, 100% 0, calc(100% - var(--bar-notch)) 50%, 100% 100%, 0 100%);
     background: var(--bar-well-fill);
-    box-shadow: inset 0 1px 2px color-mix(in srgb, var(--color-keyline) 90%, transparent);
+    box-shadow: inset 0 0 0 1px var(--line-faint);
   }
   .ui-bevel--mirror {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, var(--bar-notch) 50%);
@@ -523,13 +521,8 @@
   .ui-bevel-fill {
     position: absolute;
     inset: 0 auto 0 0;
-    background: linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--bar-color, var(--color-hp)) 65%, var(--color-white)) 0%,
-      var(--bar-color, var(--color-hp)) 45%,
-      color-mix(in srgb, var(--bar-color, var(--color-hp)) 65%, var(--color-keyline)) 100%
-    );
-    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-white) 40%, transparent);
+    background: var(--bar-color, var(--color-hp));
+    box-shadow: none;
   }
   .ui-bevel--mirror .ui-bevel-fill {
     inset: 0 0 0 auto;
@@ -542,7 +535,7 @@
   }
   .ui-bevel-ticks > span {
     flex: 1;
-    border-right: 1px solid color-mix(in srgb, var(--color-keyline) 50%, transparent);
+    border-right: 1px solid color-mix(in srgb, var(--color-keyline) 30%, transparent);
   }
   .ui-bevel-ticks > span:last-child {
     border-right: none;
@@ -551,9 +544,7 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    box-shadow:
-      inset 0 0 0 1px color-mix(in srgb, var(--color-keyline) 90%, transparent),
-      inset 0 0 0 2px color-mix(in srgb, var(--color-glint) 12%, transparent);
+    box-shadow: inset 0 0 0 1px var(--line-faint);
   }
   .ui-bevel-text {
     position: absolute;
@@ -577,13 +568,12 @@
     padding: 0 10px 0 30px;
     clip-path: polygon(0 0, 100% 0, calc(100% - var(--bar-notch)) 50%, 100% 100%, 0 100%);
     background: var(--ribbon-bg);
-    box-shadow:
-      inset 0 1px 0 color-mix(in srgb, var(--color-glint) 18%, transparent),
-      inset 0 -1px 0 color-mix(in srgb, var(--gold-dim) 35%, transparent);
+    box-shadow: none;
     font-family: var(--font-display);
     font-size: 13px;
     font-weight: 700;
-    letter-spacing: 0.6px;
+    letter-spacing: var(--track-caps);
+    font-variant-caps: small-caps;
     color: var(--color-accent);
     text-shadow: var(--title-shadow);
     white-space: nowrap;
@@ -679,17 +669,16 @@
     position: relative;
     width: var(--action-rail-w);
     height: var(--xp-rail-h);
-    background: color-mix(in srgb, var(--color-bg-input) 80%, transparent);
-    border-top: 1px solid color-mix(in srgb, var(--gold-dim) 55%, transparent);
-    border-bottom: 1px solid color-mix(in srgb, var(--gold-dim) 55%, transparent);
-    box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-keyline) 70%, transparent);
+    background: var(--surface-hud);
+    border-top: 0;
+    border-bottom: 0;
+    box-shadow: none;
   }
   .ui-rail-fill {
     position: absolute;
     inset: 0 auto 0 0;
     background: var(--xp-fill);
-    box-shadow: 0 0 calc(6px * var(--fx-shadow, 1))
-      color-mix(in srgb, var(--color-xp) 45%, transparent);
+    box-shadow: none;
   }
   .ui-rail-rested {
     position: absolute;
@@ -756,7 +745,7 @@
     position: relative;
     width: var(--ui-socket-size);
     height: var(--ui-socket-size);
-    border: 2px solid var(--color-socket-rim);
+    border: 1px solid var(--line-faint);
     border-radius: var(--radius-socket);
     background: var(--socket-fill);
     box-shadow: var(--shadow-socket);
@@ -798,18 +787,13 @@
   .ui-socket.is-empty,
   .ui-socket.empty {
     background: var(--socket-fill-empty);
-    box-shadow:
-      0 0 0 1px color-mix(in srgb, var(--color-keyline) 60%, transparent),
-      inset 0 0 12px color-mix(in srgb, var(--color-keyline) 70%, transparent);
+    box-shadow: none;
   }
   .ui-socket.is-used,
   .ui-socket.used,
   .ui-socket.is-on {
-    border-color: var(--gold-dim);
-    box-shadow:
-      0 0 0 1px var(--color-keyline),
-      var(--glow-gold),
-      inset 0 0 0 1px color-mix(in srgb, var(--gold) 50%, transparent);
+    border-color: var(--accent);
+    box-shadow: inset 0 0 0 1px var(--accent-soft);
   }
   .ui-socket.is-proc,
   .ui-socket.proc {
@@ -954,17 +938,10 @@
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    border: 3px solid var(--border);
-    outline: 1px solid var(--color-keyline);
-    background: radial-gradient(
-      circle at 35% 30%,
-      var(--color-portrait-hi),
-      var(--color-portrait-lo)
-    );
-    box-shadow:
-      0 3px 10px color-mix(in srgb, var(--color-keyline) 80%, transparent),
-      inset 0 0 0 1px color-mix(in srgb, var(--color-glint) 35%, transparent),
-      inset 0 0 14px color-mix(in srgb, var(--color-keyline) 70%, transparent);
+    border: 1px solid var(--line);
+    outline: 0;
+    background: var(--color-portrait-lo);
+    box-shadow: none;
     overflow: hidden;
   }
   .ui-portrait--hostile {
@@ -986,7 +963,7 @@
     height: var(--level-chip-size);
     border-radius: 50%;
     background: var(--medal-fill);
-    border: 2px solid var(--gold-dim);
+    border: 1px solid var(--line);
     color: var(--color-text-on-medal);
     font-size: 12px;
     font-weight: 700;
@@ -994,7 +971,7 @@
     align-items: center;
     justify-content: center;
     text-shadow: 1px 1px 1px var(--color-keyline);
-    box-shadow: 0 0 0 1px var(--color-keyline);
+    box-shadow: none;
     font-variant-numeric: tabular-nums;
   }
   .ui-medal--right {

@@ -625,17 +625,12 @@ const ANSWERED: readonly AnsweredSurface[] = [
   // hud.ts used to carry a single blanket exemption row here; these are the
   // 46 compared repaint memos it hid, classified one by one. Seven of them
   // were real defects and are fixed by the relocalizeCoordinatorMemos arm.
-  {
-    file: 'hud.ts',
-    memos: [
-      'lastPlayerFrameHp',
-      'lastPlayerFrameMaxHp',
-      'lastPlayerFrameResource',
-      'lastPlayerFrameMaxResource',
-    ],
-    answer: 'this.relocalizeCoordinatorMemos',
-    why: "the player unit frame's raw hp and resource pair, current and max. All four are bare numbers a locale cannot move, while the health and resource TEXT they gate is built by unitFrameCurrentMaxText, whose digits route through formatNumber against the active language; the arm clears all four to NaN, which no live value can equal, so the next painted frame re-resolves both strings (and the absorb suffix, which is elided on the health text) in the new locale",
-  },
+  // The player frame's hp / resource / level text memos moved out of the
+  // coordinator into the vitals bar core (src/ui/hud/vitals/vitals_view.ts,
+  // the Project H fork): a caller-owned VitalsCache of bare numbers that
+  // fillVitalsDescriptor compares. The core declares no private field, so the
+  // sweep cannot see it; the arm is pinned behaviorally instead, below, as the
+  // resetVitalsCache(this.vitalsCache) call the coordinator arm must make.
   {
     file: 'hud.ts',
     memos: ['lastResting'],
@@ -859,12 +854,6 @@ const NOT_A_LANGUAGE_GATE: ReadonlyArray<{
   },
   {
     file: 'hud.ts',
-    memos: ['lastPlayerFrameHpMode'],
-    reason:
-      'The health-text setting is one arm of the same OR gate as lastPlayerFrameHp and lastPlayerFrameMaxHp. relocalizeCoordinatorMemos already clears those two values to NaN, forcing unitFrameHealthText to resolve its numbers in the new locale even when the setting is unchanged.',
-  },
-  {
-    file: 'hud.ts',
     memos: ['lastArenaStatusSig'],
     reason:
       "lastArenaStatusSig is a hybrid whose middle field is vsBlock, the RESOLVED VS markup built on the same tick: t('hud.core.you') and t('hud.arena.vsLine') on the 2v2 arm, t('hud.arena.vsLine') plus t('hud.arena.levelClass') and the tEntity class name on the 1v1 arm. A locale switch therefore changes the freshly built side of the comparison, the banner rewrites itself on the next update, and the timer label (statusCountdown / statusReturning / statusFight), which is deliberately NOT in the signature, rides the same single innerHTML write and relocalizes with it. Write elision on resolved text wearing a signature's name; the genuinely text-independent fields (format, state, the returning countdown seconds) only add motion, they are not what carries the locale. CLOSED at the 19D review round rather than argued: the timer label IS in the signature now. The exemption used to rest on vsBlock's localized bytes alone, which fails in a locale where those two keys are still English-filled while hudChrome.arena.status* are translated (the normal state under the contributors-add-English-only rule): the sig was byte-identical across a switch and the timer line stranded. Note for a future editor: pull vsBlock or the label out of this signature and the banner becomes a stale-language surface needing a fan-out arm",
@@ -930,12 +919,6 @@ const NOT_A_LANGUAGE_GATE: ReadonlyArray<{
     memos: ['lastPetPresent'],
     reason:
       "lastPetPresent is a plain boolean value-diff over 'a living pet is shown', and it gates exactly one write: document.body.classList.toggle('mobile-pet-active', petPresent), a CSS state class the mobile top-band layout keys on. The class name is a fixed literal and no t()/tPlural()/tEntity() call or view module sits inside the transition, so there is no string for a locale switch to leave stale; the only thing that moves the gate is the pet itself appearing, dying or despawning (including the fall-through to a living Necromancy secondary). The pet bar's localized captions are gated by lastPetBarSig further down the same method, not by this flag",
-  },
-  {
-    file: 'hud.ts',
-    memos: ['lastPlayerFrameLevel'],
-    reason:
-      "lastPlayerFrameLevel retains the player's LEVEL as a bare integer and gates exactly one write, playerFrame.levelText = String(p.level) (the levelText write in updatePlayerFrame). That is a raw number-to-string: unlike the hp and resource texts two blocks above it deliberately does not route through unitFrameCurrentMaxText or formatNumber, so no t() key and no Intl formatter sits behind it and no locale can change the bytes it produces. The painter puts it on screen through the elided writer facet (unit_frame_painter.ts:179, this.writers.setText(this.el.level, view.levelText ?? '')), and the level element carries no label, unit word or aria string written from inside the gate. Only the player levelling moves the memo, which is the only thing that ever needs to move it, so its absence from the memo clears in relocalizeCoordinatorMemos is correct rather than an omission.",
   },
   {
     file: 'hud.ts',
@@ -1455,10 +1438,6 @@ describe('language fan-out: half 2, every signature-gated src/ui surface is clas
     // is a no-op and the fix would be silently inert. Each row below pairs the
     // memo with the ONE sentinel its own field can never hold, and why.
     const SENTINEL_BY_MEMO: Readonly<Record<string, { value: string; why: string }>> = {
-      lastPlayerFrameHp: { value: 'Number.NaN', why: 'hp is a number; NaN never equals itself' },
-      lastPlayerFrameMaxHp: { value: 'Number.NaN', why: 'max hp is a number' },
-      lastPlayerFrameResource: { value: 'Number.NaN', why: 'resource is a number' },
-      lastPlayerFrameMaxResource: { value: 'Number.NaN', why: 'max resource is a number' },
       lastResting: {
         value: 'null',
         why: 'the field is boolean | null purely so null is unreachable',
@@ -1481,7 +1460,9 @@ describe('language fan-out: half 2, every signature-gated src/ui surface is clas
     // Non-vacuity: the arm really has rows to check, and the slice really has a
     // body (methodBody throws on a missing anchor, but an emptied method would
     // slice to a few characters and pass every loop below over nothing).
-    expect(claimed.length, 'the coordinator arm answers no memo at all').toBeGreaterThanOrEqual(10);
+    // Nine since the four player-frame memos moved into the vitals core (the
+    // resetVitalsCache pin below is their behavioral replacement).
+    expect(claimed.length, 'the coordinator arm answers no memo at all').toBeGreaterThanOrEqual(9);
     expect(body.length, 'the coordinator arm sliced to an empty body').toBeGreaterThan(200);
     const failures: string[] = [];
     for (const memo of claimed) {
@@ -1516,6 +1497,13 @@ describe('language fan-out: half 2, every signature-gated src/ui surface is clas
     // written ONCE when the pool is built, so the arm has to rewrite them.
     if (!/relabelCompassMarks\(/.test(body)) {
       failures.push('the compass rose labels are never rewritten by the arm');
+    }
+    // The vitals bar's text cache lives in its pure core (hud/vitals/), not on
+    // a coordinator field, so the arm must reset it through the core's own
+    // resetter: the hp, resource and level digits it elides come from
+    // formatNumber and would otherwise stay in the old locale until they moved.
+    if (!/resetVitalsCache\(this\.vitalsCache\)/.test(body)) {
+      failures.push('the vitals bar text cache is never reset by the arm');
     }
     expect(failures, failures.join('\n')).toEqual([]);
   });
@@ -1747,7 +1735,10 @@ describe('language fan-out: half 2, every signature-gated src/ui surface is clas
       // 38 at the release/v0.43.0 merge into feature/world-quests: the forge
       // action bar's numeric world-quest clock memo.
       // 40: the extracted membership controller compares resolved localized markup.
-    ).toBe(40);
+      // 38 in the Project H fork: the player frame's health-mode and level memos
+      // left the coordinator for the vitals core (src/ui/hud/vitals/), whose
+      // cache the coordinator arm resets through resetVitalsCache.
+    ).toBe(38);
   });
 
   it('gives every relocalize() in src/ui a caller in the fan-out', () => {

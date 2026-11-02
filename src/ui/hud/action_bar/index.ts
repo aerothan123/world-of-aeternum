@@ -18,6 +18,7 @@ export * from './consumable_strip_core';
 export * from './consumable_strip_gesture_controller';
 export * from './consumable_strip_painter';
 export * from './ground_aim';
+export * from './hands_row_core';
 export * from './hotbar';
 export * from './mobile_action_page_view';
 export * from './mobile_action_ring_controller';

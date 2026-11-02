@@ -559,7 +559,10 @@ const MONOLITHS: MonolithRow[] = [
     // 17736 -> 17739, raised in the Project H fork (a maintainer call). Phase 2
     // adds the houseFurniture case label, the furniture tooltip composition and
     // its import: 17739 -> 17744, raised in the Project H fork (a maintainer call).
-    ceiling: 17744,
+    // LOWERED 17744 -> 17730 at Project H interface packet 1: the player frame's
+    // descriptor fill and its six text memos moved to the vitals core
+    // (src/ui/hud/vitals/vitals_view.ts); the ratchet, extract then lower.
+    ceiling: 17730,
     seam: 'pure view core + thin painter on PainterHost (src/ui/CLAUDE.md)',
   },
   {

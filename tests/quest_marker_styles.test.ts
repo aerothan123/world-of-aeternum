@@ -58,7 +58,10 @@ const COOLDOWN_ALPHA = '0.55';
 // to the same floor). The panel-bg gradient stops are pinned against the
 // real declaration below so these literals cannot drift.
 const TAG_TEXT_BLUE = '#3d9bff';
-const PANEL_STOPS = ['#15151f', '#0b0b12', '#08080d'] as const;
+// Project H: the panel is one FLAT charcoal stop (both gradient stops are the
+// same colour); the panel edge token is the darkest surface a tag can sit on.
+const PANEL_STOPS = ['#0e0e10', '#080809'] as const;
+const PANEL_BG_STOP = 'rgba(14, 14, 16, 0.84)';
 
 // WCAG 2.2 relative-luminance contrast, so the accessible-blue pin is a
 // working floor rather than a frozen hex: the hue may move as long as the
@@ -140,14 +143,16 @@ describe('quest marker style agreement across surfaces', () => {
   });
 
   it('keeps the tag text at WCAG AA and the glyphs above the component floor', () => {
-    // The stops are pinned against the real --panel-bg declaration (all
-    // three, in order, with the f2 alpha suffix) so the literals here
-    // cannot silently drift from the sheet.
+    // The stops are pinned against the real --panel-bg declaration (the one
+    // flat rgba stop at both ends) and the --panel-edge default, so the
+    // literals here cannot silently drift from the sheet.
     expect(tokensCss).toMatch(
       new RegExp(
-        `--panel-bg:[^;]*${PANEL_STOPS[0]}f2[^;]*${PANEL_STOPS[1]}f2[^;]*${PANEL_STOPS[2]}f2`,
+        `--panel-bg:[^;]*${PANEL_BG_STOP.replace(/[()]/g, '\\$&')} 0%[^;]*${PANEL_BG_STOP.replace(/[()]/g, '\\$&')} 100%`,
       ),
     );
+    expect(tokensCss).toContain(`--panel-edge: ${PANEL_STOPS[1]};`);
+    expect(tokensCss).toContain(`--panel-base: ${PANEL_STOPS[0]};`);
     for (const stop of PANEL_STOPS) {
       // 13.5px tooltip prose needs 4.5:1 (WCAG 2.2 AA, normal text).
       expect(contrast(TAG_TEXT_BLUE, stop)).toBeGreaterThanOrEqual(4.5);

@@ -118,6 +118,7 @@ import {
 import { AURA_TRACKS } from '../src/ui/hud/aura_tracks/aura_track_descriptors';
 import { createAuraTrackView } from '../src/ui/hud/aura_tracks/aura_track_view';
 import { createTargetDotsView } from '../src/ui/hud/target_dots';
+import { VitalsPainter } from '../src/ui/hud/vitals';
 import { makeWriterFacet, type PainterHostWriters } from '../src/ui/painter_host';
 import type { SwingTimerState } from '../src/ui/swing_timer';
 import { SwingTimerPainter } from '../src/ui/swing_timer_painter';
@@ -603,6 +604,9 @@ const HOT_PAINTERS: ReadonlyArray<ScannedPainter> = [
   { file: 'hud/cooldown_manager/cooldown_manager_painter.ts', allow: {}, reflowAllow: {} },
   { file: 'cast_bar_painter.ts', allow: {}, reflowAllow: {} },
   { file: 'unit_frame_painter.ts', allow: {}, reflowAllow: {} },
+  // The vitals bar (Project H): composes UnitFramePainter and adds one elided
+  // toggleClass (the low-health tint); no raw writes, no layout reads.
+  { file: 'hud/vitals/vitals_painter.ts', allow: {}, reflowAllow: {} },
   { file: 'paladin_devotion_painter.ts', allow: {}, reflowAllow: {} },
   // Event-time celebration painters (a skill level-up, a faction standing
   // tier): they draw only through the CelebrationHost seam (log, banner
@@ -3110,6 +3114,23 @@ function buildHarnesses(shape: WorldShape, facet: PainterHostWriters): PainterHa
       outOfRange: false,
     };
     harnesses.push({ name: 'unit_frame', drive: () => painter.paint(unitFrameView(desc)) });
+    // vitals: the same family element set through the vitals painter, plus its
+    // one extra write (the low-health class toggle) at a low health fraction so
+    // the class is established on the first paint and elided after.
+    const vitalsEls: UnitFrameElements = {
+      frame: fakeEl(),
+      level: fakeEl(),
+      hpFill: fakeEl(),
+      hpText: fakeEl(),
+      absorb: fakeEl(),
+      resource: { container: fakeEl(), fill: fakeEl(), text: fakeEl() },
+    };
+    const vitalsPainter = new VitalsPainter(facet, vitalsEls);
+    const vitalsDesc: UnitFrameDescriptor = { ...desc, hpFrac: 0.25, hpText: '150 / 600' };
+    harnesses.push({
+      name: 'vitals',
+      drive: () => vitalsPainter.paint(unitFrameView(vitalsDesc)),
+    });
   }
 
   // action_bar: container many-spells toggle + per-slot writers + setAttr (aria-label).

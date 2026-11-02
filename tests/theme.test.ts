@@ -10,6 +10,8 @@ import {
   relativeLuminance,
   resolveTheme,
   rgba,
+  SURFACE_HUD_ALPHA,
+  SURFACE_MENU_ALPHA,
   serializeTheme,
   THEME_KNOB_ORDER,
   THEME_PRESETS,
@@ -41,24 +43,88 @@ describe('theme pure core', () => {
     }
   });
 
-  it('classic preset reproduces the shipped gold palette', () => {
+  it('classic preset reproduces the Project H palette (charcoal, warm white, brass)', () => {
     const vars = themeCssVars(THEME_PRESETS.classic);
-    expect(vars['--gold']).toBe('#ffd100');
-    expect(vars['--border']).toBe('#6f5a2a');
-    expect(vars['--color-text-light']).toBe('#f0ebd8');
-    expect(vars['--color-hp']).toBe('#1eb838');
+    expect(vars['--gold']).toBe('#c9a96a');
+    expect(vars['--border']).toBe('#4a4640');
+    expect(vars['--color-text-light']).toBe('#ece7dc');
+    expect(vars['--color-hp']).toBe('#4f9d55');
+    // Never pure black: the charcoal panel keeps a little light in it.
+    expect(vars['--panel-base']).toBe('#0e0e10');
+    expect(vars['--panel-base']).not.toBe('#000000');
   });
 
   it('expands knobs into the full CSS variable set including derived colours', () => {
     const vars = themeCssVars(THEME_PRESETS.classic);
     // derived from accent
-    expect(vars['--gold-dim']).toBe(mixHex('#ffd100', '#000000', 0.22));
-    expect(vars['--color-primary-glow']).toBe(rgba('#ffd100', 0.2));
+    expect(vars['--gold-dim']).toBe(mixHex('#c9a96a', '#000000', 0.22));
+    expect(vars['--color-primary-glow']).toBe(rgba('#c9a96a', 0.2));
     // panel-bg is a gradient built from the panel knob
     expect(vars['--panel-bg']).toContain('linear-gradient');
-    expect(vars['--panel-base']).toBe('#15151f');
+    expect(vars['--panel-base']).toBe('#0e0e10');
     // scrollbar derives from border
-    expect(vars['--scrollbar-thumb-hover']).toBe('#6f5a2a');
+    expect(vars['--scrollbar-thumb-hover']).toBe('#4a4640');
+  });
+
+  it('emits the Project H token set from the knobs (docs/design/project-h-interface.md)', () => {
+    const vars = themeCssVars(THEME_PRESETS.classic);
+    expect(vars['--surface-hud']).toBe(rgba('#0e0e10', SURFACE_HUD_ALPHA));
+    expect(vars['--surface-menu']).toBe(rgba('#0e0e10', SURFACE_MENU_ALPHA));
+    expect(vars['--surface-row']).toBe(rgba('#ece7dc', 0.04));
+    expect(vars['--surface-row-hover']).toBe(rgba('#ece7dc', 0.08));
+    expect(vars['--line-faint']).toBe(rgba('#ece7dc', 0.14));
+    expect(vars['--line']).toBe(rgba('#ece7dc', 0.26));
+    expect(vars['--line-strong']).toBe(rgba('#ece7dc', 0.42));
+    expect(vars['--accent']).toBe('#c9a96a');
+    expect(vars['--accent-soft']).toBe(rgba('#c9a96a', 0.28));
+    expect(vars['--text']).toBe('#ece7dc');
+    expect(vars['--text-dim']).toBe('#aba59b');
+    expect(vars['--text-invert']).toBe('#0e0e10');
+    expect(vars['--vital-health']).toBe('#4f9d55');
+    expect(vars['--vital-mana']).toBe('#3f7fc4');
+    expect(vars['--vital-stamina']).toBe('#cdb24a');
+    // Flat depth: the panel gradients carry one colour at both stops.
+    for (const name of ['--panel-bg', '--panel-bg-soft', '--panel-bg-strong']) {
+      const stops = vars[name].match(/rgba\([^)]*\)/g) ?? [];
+      expect(stops.length, name).toBe(2);
+      expect(stops[0], name).toBe(stops[1]);
+    }
+  });
+
+  it('the Project H text and surface pairs clear WCAG AA on every preset', () => {
+    // The surface tokens are translucent; composite them over a BRIGHT and a
+    // DARK world (white sand, black cave) and require the body text to stay at
+    // the 4.5:1 text tier and the secondary text at the 3:1 large tier on both,
+    // so the HUD reads over any terrain, not only over a friendly backdrop.
+    const over = (rgbaStr: string, backdrop: string): string => {
+      const m = rgbaStr.match(/rgba\((\d+), (\d+), (\d+), ([\d.]+)\)/);
+      if (!m) throw new Error(`not an rgba: ${rgbaStr}`);
+      const a = Number(m[4]);
+      const fg = [Number(m[1]), Number(m[2]), Number(m[3])];
+      const bg = [1, 3, 5].map((i) => parseInt(backdrop.slice(i, i + 2), 16));
+      const h = (n: number) => Math.round(n).toString(16).padStart(2, '0');
+      return `#${fg.map((c, i) => h(c * a + bg[i] * (1 - a))).join('')}`;
+    };
+    for (const id of PRESET_ORDER) {
+      const vars = themeCssVars(resolveTheme({ preset: id, custom: {} }));
+      for (const world of ['#ffffff', '#000000', '#7a9a4a']) {
+        for (const surface of ['--surface-hud', '--surface-menu']) {
+          const bg = over(vars[surface], world);
+          expect(
+            wcagContrast(vars['--text'], bg),
+            `${id} text on ${surface} over ${world}`,
+          ).toBeGreaterThanOrEqual(4.5);
+          expect(
+            wcagContrast(vars['--text-dim'], bg),
+            `${id} dim on ${surface} over ${world}`,
+          ).toBeGreaterThanOrEqual(3);
+          expect(
+            wcagContrast(vars['--accent'], bg),
+            `${id} accent on ${surface} over ${world}`,
+          ).toBeGreaterThanOrEqual(3);
+        }
+      }
+    }
   });
 
   it('emits the library text and surface derivations with their classic outputs', () => {
@@ -66,20 +132,20 @@ describe('theme pure core', () => {
     // tokens.css defaults are the classic outputs pinned here, and
     // tests/ui_library.test.ts holds the two homes equal.
     const vars = themeCssVars(THEME_PRESETS.classic);
-    expect(vars['--color-text-secondary']).toBe('#e0dac4');
-    expect(vars['--color-text-faint']).toBe('#897f61');
-    // the shipped socket highlight and window-head stop land exactly
-    expect(vars['--color-socket-hi']).toBe('#2c2c3a');
-    expect(vars['--color-panel-hi']).toBe('#1c1c29');
-    expect(vars['--color-glint']).toBe('#ffea8c');
-    expect(vars['--color-control-border']).toBe('#4e3f1d');
+    expect(vars['--color-text-secondary']).toBe('#e0dbd0');
+    expect(vars['--color-text-faint']).toBe('#98938a');
+    // the warm charcoal socket highlight and window-head stop land exactly
+    expect(vars['--color-socket-hi']).toBe('#242323');
+    expect(vars['--color-panel-hi']).toBe('#1a1a1a');
+    expect(vars['--color-glint']).toBe('#e7d8bc');
+    expect(vars['--color-control-border']).toBe('#34312d');
     expect(vars['--color-info']).toBe('#45c9ff');
     expect(vars['--color-warning']).toBe('#ff9d32');
     expect(vars['--panel-bg-soft']).toBe(
-      'linear-gradient(170deg, rgba(21, 21, 31, 0.74) 0%, rgba(12, 12, 17, 0.74) 60%, rgba(12, 12, 17, 0.74) 100%)',
+      'linear-gradient(170deg, rgba(14, 14, 16, 0.74) 0%, rgba(14, 14, 16, 0.74) 100%)',
     );
     expect(vars['--panel-bg-strong']).toBe(
-      'linear-gradient(170deg, rgba(16, 16, 24, 0.97) 0%, rgba(9, 9, 13, 0.97) 100%)',
+      'linear-gradient(170deg, rgba(11, 11, 12, 0.97) 0%, rgba(11, 11, 12, 0.97) 100%)',
     );
   });
 
