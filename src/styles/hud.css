@@ -1245,7 +1245,9 @@
   .tut-prompt.tut-prompt-center {
     left: 50%;
     top: auto;
-    bottom: 26%;
+    /* Above the class resource orb's seat (tokens.css --class-orb-top): the
+       "B Open your bags" ask sat across a Paladin's devotion medallion. */
+    bottom: var(--hud-center-hint-bottom);
     transform: translateX(-50%);
     font-size: 15px;
   }
@@ -3604,11 +3606,11 @@
   .paladin-devotion-frame {
     position: fixed;
     left: 50%;
-    top: 72%;
+    top: var(--class-orb-top);
     z-index: 24;
     display: none;
-    width: 96px;
-    height: 96px;
+    width: var(--class-orb-size);
+    height: var(--class-orb-size);
     align-items: center;
     justify-content: center;
     translate: -50% -50%;
@@ -3635,7 +3637,9 @@
   /* Short viewports (a handheld's 800px screen): the medallion steps down so it
      reads as a gauge beside the frames, not a second portrait. */
   @media (max-height: 820px) {
-    .paladin-devotion-frame,
+    :root {
+      --class-orb-size: 72px;
+    }
     .paladin-devotion {
       width: 72px;
       height: 72px;
@@ -12033,7 +12037,8 @@
   #interact-affordance {
     position: absolute;
     left: 50%;
-    bottom: 30%;
+    /* The same seat as the coach's centred ask: above the class resource orb. */
+    bottom: var(--hud-center-hint-bottom);
     transform: translateX(-50%);
     opacity: 0;
     max-width: min(420px, calc(100vw - 48px));

@@ -819,6 +819,9 @@ const UI_PURE_CORES = [
   // (the Phase 18 collapse of four private copies): emit-only, esc() and the
   // class div, nothing else.
   'src/ui/tooltip_line_core.ts',
+  // The author-space anchor for a world-anchored prompt in the zoomed #ui:
+  // the renderer's viewport pixel over the UI scale, plus the show gate.
+  'src/ui/world_prompt_anchor_core.ts',
   'src/ui/fct_core.ts',
   'src/ui/fct_emphasis_core.ts',
   'src/ui/fct_event.ts',

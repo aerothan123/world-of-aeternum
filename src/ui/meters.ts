@@ -3249,6 +3249,7 @@ export class Meters {
             tooltipVisibleFor: deps.tooltipVisibleFor,
             actionButtonForSlot: deps.actionButtonForSlot,
             worldToScreen: deps.worldToScreen,
+            uiScale: deps.uiScale,
           })
         : null;
     const host: PanelHost = {

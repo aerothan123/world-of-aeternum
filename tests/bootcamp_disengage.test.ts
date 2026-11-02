@@ -212,6 +212,30 @@ describe('BootcampOverlay controller prompt wiring', () => {
     expect(document.querySelector<HTMLElement>('.tut-prompt')?.style.display).toBe('flex');
   });
 
+  it('writes the bubble in #ui author space: the viewport pixel over the live UI Scale', () => {
+    // The public-server report: at a UI Scale other than 1 the bubble sat at
+    // scale times the NPC's screen point (the zoomed #ui re-multiplies an
+    // undivided left/top), far from the head. The rig's worldToScreen answers
+    // (320, 180) in viewport px; at --ui-scale 2 the author-space write is
+    // half that, which the zoom paints back over the head.
+    document.documentElement.style.setProperty('--ui-scale', '2');
+    try {
+      const sim = new Sim({ seed: 4120, playerClass: 'warrior', autoEquip: true });
+      const tam = PROVING_SHORE_NPCS.warden_tam;
+      sim.player.pos.x = tam.pos.x;
+      sim.player.pos.z = tam.pos.z;
+      paintControllerPrompt(sim, { questId: 'q_ps_the_gauntlet', state: 'available' }, [
+        { button: GP.A, action: GAMEPAD_CONFIRM },
+      ]);
+      const prompt = document.querySelector<HTMLElement>('.tut-prompt');
+      expect(prompt?.style.display).toBe('flex');
+      expect(prompt?.style.left).toBe('160px');
+      expect(prompt?.style.top).toBe('90px');
+    } finally {
+      document.documentElement.style.removeProperty('--ui-scale');
+    }
+  });
+
   it.each([
     [false, 'D-pad', 'Move to Close character'],
     [true, 'A', 'Close character'],

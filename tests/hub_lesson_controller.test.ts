@@ -321,6 +321,20 @@ describe('HubLessonController: the world bubble mirrors every guided step', () =
     expect(bubble()!.querySelector('.hlc-ack')).toBeNull();
   });
 
+  it('writes the bubble in #ui author space: the projection over the injected UI Scale', () => {
+    // The bubble is a #ui child under `zoom: var(--ui-scale)`; an undivided
+    // viewport pixel paints at scale times the dummy's screen point (the
+    // public-server report on the island coach's sibling bubble). The rig
+    // projects to (100, 80); at scale 2 the inline write is half that.
+    const { world, quests } = fakeWorld();
+    quests[HUB_DUMMY_DRILL_QUEST_ID] = 'active';
+    const { controller } = makeController(world, new FakeMeters(), { uiScale: () => 2 });
+    tick(controller);
+    expect(bubble()!.style.display).toBe('flex');
+    expect(bubble()!.style.left).toBe('50px');
+    expect(bubble()!.style.top).toBe('40px');
+  });
+
   it('hides the bubble (but not the tracker) once the correct dummy is missing', () => {
     const { world, quests, entities } = fakeWorld();
     quests[HUB_DUMMY_DRILL_QUEST_ID] = 'active';
