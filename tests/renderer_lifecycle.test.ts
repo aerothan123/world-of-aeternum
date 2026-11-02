@@ -293,13 +293,25 @@ describe('Renderer lifecycle wiring', () => {
     );
   });
 
-  it('pins the mount gait cadence and all three stride-accumulator callers', () => {
+  it('pins the mount gait cadence and both stride-accumulator callers', () => {
     expect(mountAudioSource).toContain('const MOUNT_STRIDE_RUN = 5.8;');
     expect(source).toContain('strideHit(v, loco.speed, dt, SWIM_STRIDE)');
     expect(mountAudioSource).toContain('strideHit(state, speed, dt, MOUNT_STRIDE_RUN)');
+  });
+
+  it('fires on-foot footsteps from the gait clip plants, never a distance stride', () => {
+    // One source of truth for step timing (gait_footfall_core.ts): the old
+    // 1.55 yd run stride fired three cues for every two animated plants.
+    expect(source).not.toMatch(/FOOT_STRIDE_(RUN|WALK)/);
+    expect(source).toContain('active.gaitCycle(gaitScratch);');
     expect(source).toContain(
-      'strideHit(v, loco.speed, dt, running ? FOOT_STRIDE_RUN : FOOT_STRIDE_WALK)',
+      'if (observeGaitCycle(v.footfall, gaitScratch.gait, gaitScratch.phase) > 0)',
     );
+    expect(source).toContain(
+      'sink.footstep(ax, ay, az, this.surfaceAt(ax, az, ay), running, isSelf);',
+    );
+    // standing or dead: the next gait re-anchors instead of inheriting a phase
+    expect(source.match(/v\.footfall\.gait = null;/g)?.length).toBe(2);
   });
 
   it('forwards the resolved skin look into run, jump, and landing dispatch', () => {

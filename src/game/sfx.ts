@@ -1191,7 +1191,8 @@ class Sfx {
   // place; the renderer depends only on the SpatialAudioSink interface.
 
   /** One footfall. `surface` âˆˆ grass|dirt|stone|wood|snow|water â†’ foot_<surface>.
-   *  Footsteps fire every ~0.22s at a run but the clips are ~0.48s, so a flat
+   *  Footsteps fire once per foot plant of the gait clip (every ~0.33s at a
+   *  run, gait_footfall_core.ts) but the clips are ~0.48s, so a flat
    *  retrigger would overlap two pitch-jittered copies of one sample and
    *  comb-filter into a metallic "jingle". Two fixes: a short `release` shapes
    *  each footfall into a transient that decays before the next, and alternating
@@ -1213,7 +1214,7 @@ class Sfx {
       gain: running ? 0.5 : 0.35,
       rate: (running ? 1.06 : 1) * foot,
       cooldown: 0.05,
-      release: running ? 0.17 : 0.22, // < the tightest stride gap (~0.22s at run)
+      release: running ? 0.17 : 0.22, // < the tightest plant gap (~0.33s at run)
     });
   }
   private footTick = 0;
@@ -1246,7 +1247,7 @@ class Sfx {
    *  alternating left/right the way footstep() does so consecutive strides are
    *  not one sample retriggered. The release stays the mount's, though:
    *  footstep()'s tighter 0.17s exists to keep two copies from overlapping at
-   *  the player's ~0.22s stride gap, and a mount's ~0.46s gap has no such
+   *  the player's ~0.33s plant gap, and a mount's ~0.46s gap has no such
    *  overlap to avoid, so cutting there would just throw the sample away. */
   mountRun(
     x: number,

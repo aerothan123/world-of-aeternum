@@ -739,6 +739,20 @@ export function isStrafeState(state: BaseState): boolean {
   return state === 'strafeLeft' || state === 'strafeRight';
 }
 
+/** A looping on-foot locomotion cycle whose feet plant the ground: the states
+ *  whose clip phase drives footstep audio (gait_footfall_core.ts). Swimming
+ *  strokes and every idle are not gaits. */
+export function isGaitCycleState(state: BaseState): boolean {
+  return (
+    state === 'walk' ||
+    state === 'walkBack' ||
+    state === 'run' ||
+    state === 'wade' ||
+    state === 'prowlWalk' ||
+    isStrafeState(state)
+  );
+}
+
 export function locomotionTimeScale(
   baseState: BaseState,
   s: Pick<AnimState, 'speed' | 'backwards' | 'reverseBackpedal'>,
