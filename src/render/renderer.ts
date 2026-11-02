@@ -439,6 +439,13 @@ import {
 } from './frost_nova_root_visual';
 import { buildFrostSky, type FrostSkyView } from './frost_sky';
 import { FrozenOrbFx, handleFrozenOrbSpellfxEvent } from './frozen_orb_fx';
+import {
+  type FootfallTrack,
+  type GaitCycle,
+  newFootfallTrack,
+  newGaitCycle,
+  observeGaitCycle,
+} from './gait_footfall_core';
 import { buildGaleFeatures, type GaleFeaturesView } from './gale_features';
 import { buildGardenFeatures, type GardenFeaturesView } from './garden_features';
 import { buildGateObject, gateObjectPlan, isStableObjectTransition } from './gate_objects';
@@ -1129,10 +1136,11 @@ const TILT_SAMPLE_INTERVAL = 0.06;
 // Beyond this (squared) an entity's footsteps/movement are inaudible, so we skip
 // the surface sample + dispatch entirely. Kept under the engine's own cutoff (46u).
 const SFX_MOVE_RANGE_SQ = 42 * 42;
-// Stride length (world units travelled) between footfalls, longer at a run.
-const FOOT_STRIDE_WALK = 0.95;
-const FOOT_STRIDE_RUN = 1.55;
+// Stride length (world units travelled) between swim strokes. On-foot steps do
+// not use a stride: they follow the gait clip's foot plants (gait_footfall_core).
 const SWIM_STRIDE = 2.4;
+// Scratch record the entity loop fills once per audible body (no allocation).
+const gaitScratch: GaitCycle = newGaitCycle();
 // fire/torch point lights beyond this never shine (their falloff range is
 // shorter anyway); the nearest GFX.maxPointLights within it win the budget
 const LIGHT_BUDGET_RANGE_SQ = 55 * 55;
@@ -1316,9 +1324,11 @@ export interface EntityView extends RickshawMountViewState, WorldQuestCarryViewS
   // walk clip (see locomotion.ts)
   loco: LocoTrack;
   locoState: LocoState;
-  // spatial-audio state: distance travelled since the last footfall, and edge
+  // spatial-audio state: distance travelled since the last swim stroke or
+  // mount gait beat, the gait phase the last footstep fired at, and edge
   // latches for jump/land/water-entry detection.
   stepAccum: number;
+  footfall: FootfallTrack;
   lichHeartbeatAt: number;
   waterContactSeen: boolean;
   waterContactActive: boolean;
@@ -8142,6 +8152,7 @@ export class Renderer {
       loco: newLocoTrack(),
       locoState: newLocoState(),
       stepAccum: 0,
+      footfall: newFootfallTrack(),
       lichHeartbeatAt: 0,
       waterContactSeen: false,
       waterContactActive: false,
@@ -10644,9 +10655,11 @@ export class Renderer {
         }
         if (swimming && !v.wasSwimming && !visuallyDead)
           sink.movement('splash', ax, ay, az, isSelf);
-        // footfalls / swim strokes via a distance accumulator (no timers)
+        // swim strokes and mount gaits via a distance accumulator (no timers);
+        // footfalls off the gait clip's own foot plants (gait_footfall_core)
         if (visuallyDead || (st.sitting && !riderMounted)) {
           v.stepAccum = 0;
+          v.footfall.gait = null;
           sink.mountEngineReset(e.id); // a dead rider must not hold a frozen engine/idle loop
         } else if (swimming) {
           if (strideHit(v, loco.speed, dt, SWIM_STRIDE)) sink.movement('swim', ax, ay, az, isSelf);
@@ -10669,12 +10682,12 @@ export class Renderer {
           );
         } else if (moving && !airborne) {
           const running = loco.speed >= FOOT_RUN_SPEED;
-          if (strideHit(v, loco.speed, dt, running ? FOOT_STRIDE_RUN : FOOT_STRIDE_WALK))
+          active.gaitCycle(gaitScratch);
+          if (observeGaitCycle(v.footfall, gaitScratch.gait, gaitScratch.phase) > 0)
             sink.footstep(ax, ay, az, this.surfaceAt(ax, az, ay), running, isSelf);
         } else {
-          // standing still, prime the accumulator so the first step after moving
-          // lands promptly rather than after a full stride of travel.
-          v.stepAccum = FOOT_STRIDE_WALK * 0.6;
+          // standing still: the next gait starts a fresh plant track
+          v.footfall.gait = null;
         }
       } else if (sink && logicallyMounted) {
         // Every other cue in the block above is a one-shot; an engine

@@ -19,6 +19,7 @@ import { GPU_WORK_PRIORITY } from '../background_gpu_queue';
 import { recordBuildSpan, timeBuildSpan } from '../build_spans';
 import { registerContextRestoreReset } from '../context_restore_registry';
 import type { EyeWardMarkerPlan } from '../eye_ward_marker_core';
+import { cyclePhase, type GaitCycle } from '../gait_footfall_core';
 import { GFX } from '../gfx';
 import { cloneMaterialWithHooks } from '../material_clone_hooks';
 import type { MeleeImpactProfile } from '../melee_impact_core';
@@ -55,6 +56,7 @@ import {
   drawIdleVariant,
   drivesPose,
   gaitWindDownTimeScale,
+  isGaitCycleState,
   isStrafeState,
   locomotionTimeScale,
   onIdleLoopSeam,
@@ -3243,6 +3245,21 @@ export class CharacterVisual {
     const emote = this.def.clips.shoutEmote;
     if (emote === null) return;
     this.playEmote(emote ?? 'cheer', repeats);
+  }
+
+  /** The locomotion cycle driving this body's legs right now, for foot-plant
+   *  audio (gait_footfall_core.ts): the gait base state and the playing clip's
+   *  normalized phase, or a null gait while anything else owns the rig (an
+   *  idle, a jump or hit one-shot, a swim stroke, a seated pose). Fills a
+   *  caller-owned record: the renderer asks once per audible body per frame. */
+  gaitCycle(out: GaitCycle): void {
+    const a = this.current;
+    if (!a || this.currentIsOneShot || !isGaitCycleState(this.baseState)) {
+      out.gait = null;
+      return;
+    }
+    out.gait = this.baseState;
+    out.phase = cyclePhase(a.time, a.getClip().duration);
   }
 
   /** The summon gesture: the rider throws an arm up as a mount is called. A thin

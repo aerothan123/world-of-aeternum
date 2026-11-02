@@ -1,5 +1,6 @@
-// Stride audio accumulator: the distance-not-time trigger behind footsteps,
-// swim strokes, and mount gait beats (renderer.ts's movement-audio arm). One
+// Stride audio accumulator: the distance-not-time trigger behind swim strokes
+// and mount gait beats (renderer.ts's movement-audio arm; on-foot footsteps
+// follow the gait clip's own plants instead, gait_footfall_core.ts). One
 // shared accumulator per entity view rides `view.stepAccum`; a cue fires each
 // time accumulated travel crosses the stride length, so cadence tracks real
 // ground speed and pausing mid-stride never banks a phantom step.
