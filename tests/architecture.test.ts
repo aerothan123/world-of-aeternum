@@ -893,6 +893,12 @@ const UI_PURE_CORES = [
   'src/ui/hud/woc_trade/woc_trade_offer_view.ts',
   'src/ui/hud/target_dots/target_dots_view.ts',
   'src/ui/safe_local_storage.ts',
+  // The Quest Workshop dev tool (src/quest_editor/, quest_editor.html) holds its
+  // logic in two pure cores under the same contract as the HUD's: the content
+  // index over the merged tables and the validation / emission rules. Swept by
+  // the completeness check below like src/ui, so a new core there must register.
+  'src/quest_editor/content_index_core.ts',
+  'src/quest_editor/quest_editor_core.ts',
 ].map((rel) => join(repoRoot, rel));
 
 // The one pure core allowed to trip DOM_GLOBAL_VALUE_RE: the shared safeLocalStorage()
@@ -2422,7 +2428,11 @@ describe('src/ui pure-core invariants', () => {
   // layer (src/guide/CLAUDE.md), not a hud.ts-consumed core, so it is out of scope.
   it('registers every on-disk src/ui *_view / *_core pure core (completeness)', () => {
     const registered = new Set(UI_PURE_CORES);
-    const unregistered = onDiskCores(join(repoRoot, 'src', 'ui')).filter((f) => !registered.has(f));
+    // src/quest_editor (the Quest Workshop dev tool) is held to the same rules.
+    const unregistered = [
+      ...onDiskCores(join(repoRoot, 'src', 'ui')),
+      ...onDiskCores(join(repoRoot, 'src', 'quest_editor')),
+    ].filter((f) => !registered.has(f));
     expect(
       unregistered.map((f) => relative(repoRoot, f)),
       `every src/ui *_view/*_core must be in UI_PURE_CORES (register it if pure, or rename it if it is not a pure core):\n${unregistered.join('\n')}`,

@@ -112,6 +112,13 @@ you cannot infer from the file alone.
 - **Interactables:** `noticeboards.ts` (town noticeboards; the active
   WorldContent supplies the list so spawn, collision, and interaction share one
   authority), `card_master.ts` (the Card Duel NPC gate constants).
+- **Quest Workshop output:** `workshop_quests.generated.ts` is written ONLY by the
+  dev-only Quest Workshop page (`quest_editor.html`, `docs/quest-workshop.md`), never
+  by hand; `workshop_merge.ts` spreads it into `QUESTS`/`QUEST_ORDER` and each
+  giver's `questIds` from `data.ts`. Its quest text is the owner's own content and
+  ships as written: the i18n registry marks those rows blocked, keyed on exactly
+  the ids in that file (`scripts/lib/workshop_quest_keys.mjs`), and
+  `src/sim/world_touchup.ts` strips them from the live-world baseline.
 
 ## Classic-era fidelity (YOU MUST)
 Abilities gain ranks at **classic-era learn levels** with era-accurate values. The

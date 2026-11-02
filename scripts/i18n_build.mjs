@@ -38,6 +38,7 @@ import * as esbuild from 'esbuild';
 import { flatten, unflatten } from './i18n_flatten.mjs';
 import { pseudoLocalize } from './i18n_pseudo.mjs';
 import { RETIRED_KEY_SET } from './i18n_retired_keys.mjs';
+import { makeIsWorkshopQuestKey } from './lib/workshop_quest_keys.mjs';
 import { writeModuleDir } from './lib/write_module_dir.mjs';
 
 const root = process.cwd();
@@ -112,7 +113,10 @@ function sourceModule(lang) {
 // Bundle the source locale objects via a tiny stub and import the result. We pull
 // `en` and each locale export by its code; none of this touches the generated file.
 async function loadLocales() {
-  const stub = LOCALES.map((lang) => `export { ${lang} } from '${sourceModule(lang)}';`).join('\n');
+  const stub = [
+    ...LOCALES.map((lang) => `export { ${lang} } from '${sourceModule(lang)}';`),
+    "export { WORKSHOP_QUEST_IDS } from './src/sim/content/workshop_quests.generated';",
+  ].join('\n');
   const build = await esbuild.build({
     stdin: {
       contents: stub,
@@ -130,7 +134,7 @@ async function loadLocales() {
   const mod = await import(dataUrl);
   const out = {};
   for (const lang of LOCALES) out[lang] = mod[lang];
-  return out;
+  return { locales: out, workshopQuestIds: mod.WORKSHOP_QUEST_IDS };
 }
 
 function deepCopy(value) {
@@ -306,7 +310,7 @@ function emitBarrel(locales) {
 // lockstep so the build's runtime `pending` and the registry's `pending` agree.
 const isPresent = (v) => typeof v === 'string' && v.trim().length > 0;
 
-function computePending(en, locales) {
+function computePending(en, locales, isExcludedKey = () => false) {
   const enFlatKeys = Object.keys(flatten(en));
   const pending = {};
   for (const lang of LOCALES) {
@@ -324,7 +328,9 @@ function computePending(en, locales) {
     // A RETIRED key (scripts/i18n_retired_keys.mjs) is never pending: no page
     // renders it, so an unprovided overlay row is not a fill work item (the
     // registry marks the same rows `blocked`; the two stay in lockstep).
-    pending[lang] = enFlatKeys.filter((k) => !provided.has(k) && !RETIRED_KEY_SET.has(k)).sort();
+    pending[lang] = enFlatKeys
+      .filter((k) => !provided.has(k) && !RETIRED_KEY_SET.has(k) && !isExcludedKey(k))
+      .sort();
   }
   return pending;
 }
@@ -334,7 +340,7 @@ function computePending(en, locales) {
 // for the full contract.
 
 async function main() {
-  const locales = await loadLocales();
+  const { locales, workshopQuestIds } = await loadLocales();
   const en = locales.en;
   const resolved = {};
   for (const lang of LOCALES) {
@@ -354,7 +360,10 @@ async function main() {
     }
     resolved[lang] = out;
   }
-  const pending = computePending(en, locales);
+  // The Quest Workshop's own quest rows (scripts/lib/workshop_quest_keys.mjs)
+  // are excluded like the retired keys: the owner's content ships as written
+  // (the registry marks the same rows blocked with WORKSHOP_REASON).
+  const pending = computePending(en, locales, makeIsWorkshopQuestKey(workshopQuestIds));
   // Generate en_XA from the resolved (dense) `en` so the pseudo table carries every
   // leaf, then emit it as a separate dev-only export (never in `translations`).
   const enXA = pseudoLocalize(resolved.en);

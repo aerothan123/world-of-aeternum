@@ -19,6 +19,8 @@ export const STUDIO_DEV_ROUTE_PREFIXES = Object.freeze([
   '/__region_map/',
   '/__studio_map/',
   '/__studio_asset/',
+  // The Quest Workshop (quest_editor.html) writes src/sim/content/workshop_quests.generated.ts.
+  '/__quest_editor/',
 ]);
 
 /** @param {string | undefined} url */

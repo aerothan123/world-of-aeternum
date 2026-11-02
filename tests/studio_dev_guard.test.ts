@@ -52,6 +52,7 @@ describe('studio dev route guard', () => {
       '/__studio_map/publish',
       '/__studio_map/unpublish?slug=x',
       '/__studio_asset/save',
+      '/__quest_editor/save',
     ]) {
       expect(isStudioDevRoute(url), url).toBe(true);
     }

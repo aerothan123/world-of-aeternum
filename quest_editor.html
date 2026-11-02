@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<!-- World of ClaudeCraft Quest Workshop (dev tool; never part of a production
+     build: vite.config.ts lists no rollup entry for it, exactly like
+     music_editor.html). A friendly form for adding quests to the quest givers
+     already in the world. Saving POSTs the workshop set to the dev server's
+     loopback-only /__quest_editor/save endpoint, which re-validates it and
+     writes src/sim/content/workshop_quests.generated.ts (merged into the game
+     by src/sim/data.ts). Open under npm run dev:
+     http://localhost:5173/quest_editor.html. See docs/quest-workshop.md. -->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Quest Workshop</title>
+  <link rel="stylesheet" href="/src/styles/fonts.css" />
+  <link rel="stylesheet" href="/src/styles/tokens.css" />
+  <link rel="stylesheet" href="/src/quest_editor/styles.css" />
+</head>
+<body>
+  <div id="quest-workshop" class="qw"></div>
+  <script type="module" src="/src/quest_editor/main.ts"></script>
+</body>
+</html>

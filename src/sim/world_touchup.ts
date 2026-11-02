@@ -1,3 +1,4 @@
+import { WORKSHOP_QUEST_IDS } from './content/workshop_quests.generated';
 import { applyFenbridgeTouchupToWorld } from './fenbridge_touchup';
 import { freezeObjectMoves } from './moved_objects';
 import type { WorldContent } from './types';
@@ -42,8 +43,42 @@ export function worldTouchupIdentity(value: unknown): string | undefined {
 
 /** Deterministic drift token, not an authentication or security hash. */
 export function worldTouchupBase(world: WorldContent): string {
+  return worldTouchupBaseWithout(world, WORKSHOP_QUEST_IDS);
+}
+
+/** The baseline token with `workshopQuestIds` stripped from every NPC's
+ *  questIds (stripWorkshopQuestIds). Exported for the pin in
+ *  tests/workshop_quests.test.ts. */
+export function worldTouchupBaseWithout(
+  world: WorldContent,
+  workshopQuestIds: readonly string[],
+): string {
   // Unlike ordinary record keys, NPC insertion order controls spawn entity ids.
-  return worldTouchupToken({ world, npcOrder: Object.keys(world.npcs) });
+  return worldTouchupToken({
+    world: stripWorkshopQuestIds(world, workshopQuestIds),
+    npcOrder: Object.keys(world.npcs),
+  });
+}
+
+/** The world as the live-world patch pipeline sees it: every NPC's questIds
+ *  without the owner's Quest Workshop quests (content/workshop_merge.ts grows
+ *  the lists at table assembly). They are gameplay data, not a spatial layer,
+ *  so a workshop save must never read as the shipped world drifting under the
+ *  patch: the baseline token and the live-world source document both compare
+ *  the stripped rows. Returns the same object when there is nothing to strip. */
+export function stripWorkshopQuestIds(
+  world: WorldContent,
+  workshopQuestIds: readonly string[] = WORKSHOP_QUEST_IDS,
+): WorldContent {
+  if (workshopQuestIds.length === 0) return world;
+  const workshop = new Set(workshopQuestIds);
+  const npcs = Object.fromEntries(
+    Object.entries(world.npcs).map(([id, npc]) => [
+      id,
+      { ...npc, questIds: npc.questIds.filter((questId) => !workshop.has(questId)) },
+    ]),
+  );
+  return { ...world, npcs };
 }
 
 export function worldTouchupToken(value: unknown): string {

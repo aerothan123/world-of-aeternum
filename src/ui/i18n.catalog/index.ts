@@ -4,7 +4,7 @@
 // the i18n.catalog domain split; importers resolve './i18n.catalog' to this index.
 
 import { ITEM_SETS } from '../../sim/data';
-import { worldEntityText as worldNames } from '../world_entity_i18n';
+import { type QuestTranslation, worldEntityText as worldNames } from '../world_entity_i18n';
 import { abilityStrings, classAbilityNames } from './abilities';
 import { apiErrorStrings } from './api_error';
 import { bossJournalStrings } from './boss_journal';
@@ -17,6 +17,7 @@ import { hudStrings } from './hud';
 import { hudChromeStrings } from './hud_chrome';
 import { itemNames, itemStrings } from './items';
 import { mergeEntities, mergeExtra, mergeStrings } from './merge';
+import { questEditorStrings } from './quest_editor';
 import { questStrings } from './quests';
 import { referralCardStrings } from './referral_cards';
 import { seasonalStrings } from './seasonal';
@@ -265,6 +266,8 @@ export const en = {
   bossJournal: bossJournalStrings,
   guide: guideStrings,
   editor: editorStrings,
+  // The Quest Workshop dev tool (quest_editor.html; src/ui/i18n.catalog/quest_editor.ts).
+  questEditor: questEditorStrings,
   // Cosmetic skin-select event overlay. Rarity names reuse itemUi.quality.*.
   skinEvent: {
     title: 'Cosmetic Cache',
@@ -2221,11 +2224,16 @@ export const en = {
       necromancy_gravewing: { name: 'Gravewing' },
     },
     npcs: { ...worldNames.en.entities.npcs, ...mergeExtra.en.npcs },
+    // The index signature admits the owner's Quest Workshop quest ids (the
+    // generated locale slices carry those rows; world_entity_i18n.ts lists them).
     quests: {
       ...worldNames.en.entities.quests,
       ...mergeEntities.en.quests,
       ...mergeExtra.en.quests,
-    },
+    } as typeof worldNames.en.entities.quests &
+      typeof mergeEntities.en.quests &
+      typeof mergeExtra.en.quests &
+      Record<string, QuestTranslation>,
     dungeons: { ...worldNames.en.entities.dungeons, ...mergeExtra.en.dungeons },
     delves: { ...worldNames.en.entities.delves },
     letters: { ...worldNames.en.entities.letters },

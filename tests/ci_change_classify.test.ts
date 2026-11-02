@@ -98,6 +98,7 @@ describe('isCodePath', () => {
       'editor.html',
       'wallet-handoff.html',
       'music_editor.html',
+      'quest_editor.html',
       'svelte.config.js',
       'capacitor.config.ts',
       'tsconfig.bot.json',

@@ -3,6 +3,8 @@ import { readFileSync } from 'node:fs';
 import { beforeAll, describe, expect, it } from 'vitest';
 // @ts-expect-error - shared zero-dep JS tool (no .d.ts); same pattern as tests/i18n_fill_worklist.test.ts.
 import { expandGlossaryTerms, patternToRegExp } from '../scripts/i18n_fill_worklist.mjs';
+import { makeIsWorkshopQuestKey } from '../scripts/lib/workshop_quest_keys.mjs';
+import { WORKSHOP_QUEST_IDS } from '../src/sim/content/workshop_quests.generated';
 import {
   cs_CZ,
   da_DK,
@@ -204,8 +206,16 @@ describe('i18n whole-catalog completeness', () => {
     // The command center is enabled only in Vite development builds and cannot reach
     // a player-facing production surface. Keep its contributor-owned catalog
     // English-only, like other developer tooling, while release localization remains
-    // strict for every namespace that ships to players.
-    const isDevelopmentOnly = (key: string) => key.startsWith('devCommand.');
+    // strict for every namespace that ships to players. The Quest Workshop
+    // (quest_editor.html, src/ui/i18n.catalog/quest_editor.ts) is the same class:
+    // a dev-server-only page with no production entry.
+    const isDevelopmentOnly = (key: string) =>
+      key.startsWith('devCommand.') || key.startsWith('questEditor.');
+    // The owner's Quest Workshop quest text ships as written in every locale
+    // (scripts/lib/workshop_quest_keys.mjs: the registry marks those rows blocked,
+    // never pending). Keyed on exactly the ids the generated file carries, which
+    // only the workshop tool writes, so no shipped quest can ride it.
+    const isWorkshopQuestKey = makeIsWorkshopQuestKey(WORKSHOP_QUEST_IDS);
     // v0.44 release integration debt: several approved feature families landed
     // with English source copy before the non-Latin fill pass. Keep the
     // allowance scoped to those families so unrelated player-facing regressions
@@ -282,7 +292,8 @@ describe('i18n whole-catalog completeness', () => {
           !BRAND_ALLOW.has(key) &&
           !isDevelopmentOnly(key) &&
           !isReleaseLinePendingNonLatin(key) &&
-          !studioPending.has(key)
+          !studioPending.has(key) &&
+          !isWorkshopQuestKey(key)
         ) {
           leaks.push(`${lang} ${key}: "${enValue}"`);
         }

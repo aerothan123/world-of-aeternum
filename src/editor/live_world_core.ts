@@ -13,6 +13,7 @@ import { wallFinishTextureRefs } from '../sim/wall_finishes';
 import { WORLD_SEED } from '../sim/world_seed';
 import {
   applyWorldTouchup,
+  stripWorkshopQuestIds,
   type WorldTouchup,
   worldTouchupBase,
   worldTouchupIdentity,
@@ -47,8 +48,11 @@ const clone = <T>(v: T): T => JSON.parse(JSON.stringify(v)) as T;
 const equal = (a: unknown, b: unknown): boolean =>
   worldTouchupIdentity(a) === worldTouchupIdentity(b);
 // Studio's active overlay mutates the exported NPC registry. Capture the native
-// provenance before a standalone map can install that overlay in this tab.
-const nativeContent = clone(BASE_WORLD);
+// provenance before a standalone map can install that overlay in this tab. The
+// owner's Quest Workshop quests are stripped from the NPC rows the same way the
+// baseline token strips them (world_touchup.ts): the live-world source document
+// carries the SHIPPED rows, so a workshop save never reads as a content edit.
+const nativeContent = stripWorkshopQuestIds(clone(BASE_WORLD));
 const nativeBase = worldTouchupBase(nativeContent);
 const currentRevision = worldTouchupToken(WORLD_TOUCHUP.changes);
 

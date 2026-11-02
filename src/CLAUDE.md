@@ -28,6 +28,8 @@ their own CLAUDE.md: `sim/` (+ `sim/content/`, `sim/professions/`, `sim/physics/
   (desktop shell), and the tracked `public/wallet-return.html` closes the loop. Spec:
   `docs/prd/woc/wallet-link.md`.
 - `music_editor.html` is a dev-only tool that writes `src/game/music_overrides.generated.ts`.
+- `quest_editor.html` is the dev-only Quest Workshop (`src/quest_editor/main.ts`); it writes
+  `src/sim/content/workshop_quests.generated.ts` (see `docs/quest-workshop.md`).
 
 ## Dependency direction: do not violate
 Read "->" as *"is allowed to import from."* Keeping these one-directional is what

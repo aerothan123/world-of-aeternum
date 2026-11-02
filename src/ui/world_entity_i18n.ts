@@ -1,4 +1,5 @@
 import { authoredLettersById } from '../sim/content/letters';
+import { WORKSHOP_QUEST_IDS } from '../sim/content/workshop_quests.generated';
 import { DELVES, DUNGEONS, MOBS, NPCS, QUESTS, ZONES } from '../sim/data';
 import { STUDIO_CONTENT } from '../sim/studio_content';
 
@@ -972,6 +973,12 @@ const LETTER_IDS = [
   'world_quest_reward',
 ] as const;
 
+// The owner's Quest Workshop quests (src/sim/content/workshop_quests.generated.ts)
+// join the shipped list so their text resolves through tEntity like every other
+// quest; their locale rows are a documented blocked class in the i18n registry
+// (scripts/lib/workshop_quest_keys.mjs), never a fill work item.
+const ALL_QUEST_IDS: readonly string[] = [...QUEST_IDS, ...WORKSHOP_QUEST_IDS];
+
 type MobId = (typeof MOB_IDS)[number];
 type NpcId = (typeof NPC_IDS)[number];
 type QuestId = (typeof QUEST_IDS)[number];
@@ -982,13 +989,16 @@ type LetterId = (typeof LETTER_IDS)[number];
 
 type MobTranslations = Record<MobId, { name: string }>;
 type NpcTranslations = Record<NpcId, { name: string; title: string; greeting: string }>;
-type QuestTranslation = {
+export type QuestTranslation = {
   title: string;
   text: string;
   completion: string;
   objectives: Record<number, { label: string }>;
 };
-type QuestTranslations = Record<QuestId, QuestTranslation>;
+// The index signature admits the owner's Quest Workshop ids (ALL_QUEST_IDS),
+// which no literal union can name: the generated locale tables carry those
+// rows and are typed against this shape.
+type QuestTranslations = Record<QuestId, QuestTranslation> & Record<string, QuestTranslation>;
 type ZoneTranslations = Record<
   ZoneId,
   {
@@ -1083,7 +1093,7 @@ function makeEnglishWorldEntities(): WorldEntityTranslations {
   });
 
   const quests = {} as QuestTranslations;
-  orderedValues(QUEST_IDS, QUEST_SOURCE).forEach((quest) => {
+  orderedValues(ALL_QUEST_IDS, QUEST_SOURCE).forEach((quest) => {
     const objectiveRecord = {} as Record<number, { label: string }>;
     quest.objectives.forEach((objective, objectiveIndex) => {
       objectiveRecord[objectiveIndex] = { label: objective.label };

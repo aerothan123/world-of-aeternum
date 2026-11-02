@@ -1,4 +1,4 @@
-import { execSync } from 'node:child_process';
+import { execSync, spawnSync } from 'node:child_process';
 import {
   existsSync,
   mkdirSync,
@@ -391,6 +391,128 @@ function musicEditorSavePlugin() {
           } catch (err) {
             res.statusCode = 400;
             res.end(String(err));
+          }
+        });
+      });
+    },
+  };
+}
+
+// Dev-only save endpoint for the Quest Workshop (quest_editor.html): receives
+// the whole workshop quest set as JSON, re-validates it on the server side with
+// the same pure core the page runs (src/quest_editor/workshop_save.ts, run in a
+// fresh child process by scripts/quest_workshop_save.mjs so it always sees the
+// current content tables), writes src/sim/content/workshop_quests.generated.ts
+// deterministically, then regenerates the wiki content (tests/guide.test.ts
+// freshness; the i18n artifacts are left to npm run i18n:gen, which pretest,
+// build and the gate all run, because rewriting them live reloads the page
+// twenty times over). Same
+// lifecycle as musicEditorSavePlugin (configureServer never runs in a build).
+// The route is a registered Studio dev route (scripts/lib/studio_dev_guard.mjs
+// STUDIO_DEV_ROUTE_PREFIXES, mounted ahead of this plugin), so the loopback
+// same-origin gate runs before the handler; the handler re-checks it anyway,
+// since it writes a source file.
+function questEditorSavePlugin() {
+  return {
+    name: 'woc-quest-editor-save',
+    apply: 'serve' as const,
+    configureServer(server: {
+      middlewares: {
+        use: (
+          route: string,
+          fn: (
+            req: {
+              method?: string;
+              headers: Record<string, string | string[] | undefined>;
+              socket: { remoteAddress?: string };
+              setEncoding: (encoding: BufferEncoding) => void;
+              on: (event: string, callback: (chunk?: unknown) => void) => void;
+            },
+            res: {
+              statusCode: number;
+              setHeader: (name: string, value: string) => void;
+              end: (body?: string) => void;
+            },
+          ) => void,
+        ) => void;
+      };
+    }) {
+      server.middlewares.use('/__quest_editor/save', (req, res) => {
+        const reply = (status: number, body: unknown) => {
+          res.statusCode = status;
+          res.setHeader('Content-Type', 'application/json; charset=utf-8');
+          res.setHeader('Cache-Control', 'no-store');
+          res.end(JSON.stringify(body));
+        };
+        if (req.method !== 'POST') {
+          reply(405, { ok: false, error: 'post_only' });
+          return;
+        }
+        const host = Array.isArray(req.headers.host) ? req.headers.host[0] : req.headers.host;
+        const origin = Array.isArray(req.headers.origin)
+          ? req.headers.origin[0]
+          : req.headers.origin;
+        if (!diagnosticsCaptureAllowed(req.socket.remoteAddress, origin, host)) {
+          reply(403, { ok: false, error: 'loopback_same_origin_only' });
+          return;
+        }
+        let body = '';
+        let bodyBytes = 0;
+        let rejected = false;
+        req.setEncoding('utf8');
+        req.on('data', (chunk) => {
+          if (rejected) return;
+          const text = typeof chunk === 'string' ? chunk : String(chunk ?? '');
+          bodyBytes += Buffer.byteLength(text, 'utf8');
+          if (bodyBytes > 4_000_000) {
+            rejected = true;
+            reply(413, { ok: false, error: 'too_large' });
+            return;
+          }
+          body += text;
+        });
+        req.on('end', () => {
+          if (rejected) return;
+          try {
+            const worker = spawnSync(process.execPath, ['scripts/quest_workshop_save.mjs'], {
+              cwd: root,
+              input: body,
+              encoding: 'utf8',
+              maxBuffer: 64_000_000,
+            });
+            if (worker.status !== 0) {
+              reply(500, { ok: false, error: 'save_failed', detail: worker.stderr.slice(0, 2000) });
+              return;
+            }
+            const result = JSON.parse(worker.stdout) as {
+              ok: boolean;
+              count?: number;
+              module?: string;
+              error?: string;
+              issues?: unknown;
+              setIssue?: string | null;
+            };
+            if (!result.ok || typeof result.module !== 'string') {
+              reply(400, result);
+              return;
+            }
+            writeFileSync(
+              path.resolve(root, 'src/sim/content/workshop_quests.generated.ts'),
+              result.module,
+            );
+            // The guide reads QUESTS: keep src/guide/content.generated.ts fresh
+            // (tests/guide.test.ts) so a save leaves a committable tree.
+            const wiki = spawnSync(process.execPath, ['scripts/wiki/build_content.mjs'], {
+              cwd: root,
+              encoding: 'utf8',
+            });
+            reply(200, {
+              ok: true,
+              count: result.count,
+              wiki: wiki.status === 0 ? 'ok' : `failed: ${wiki.stderr.slice(0, 2000)}`,
+            });
+          } catch (err) {
+            reply(500, { ok: false, error: 'save_failed', detail: String(err).slice(0, 2000) });
           }
         });
       });
@@ -1317,6 +1439,7 @@ export default defineConfig({
     landingGameModulesPlugin(),
     musicEditorSavePlugin(),
     studioDevGuardPlugin(),
+    questEditorSavePlugin(),
     dungeonEditorSavePlugin(),
     battlegroundEditorSavePlugin(),
     collisionMasterSavePlugin(),

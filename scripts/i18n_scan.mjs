@@ -53,6 +53,7 @@ import { COPIED_ALLOW_IDS, V07_SLASH } from './i18n_blocked_seed.mjs';
 import { flatten } from './i18n_flatten.mjs';
 import { contentHash, PLACEHOLDER_RE, placeholdersOf } from './i18n_hash.mjs';
 import { RETIRED_KEY_SET, RETIRED_REASON } from './i18n_retired_keys.mjs';
+import { makeIsWorkshopQuestKey, WORKSHOP_REASON } from './lib/workshop_quest_keys.mjs';
 
 const root = process.cwd();
 // I18N_OUT_DIR overrides the destination DIRECTORY for both emitted files (used by
@@ -163,6 +164,7 @@ async function loadSources() {
   lines.push("export { DICT as serverDICT } from './src/ui/server_i18n';");
   lines.push("export { DICT as simDICT, simDictProvidedKeys } from './src/ui/sim_i18n';");
   lines.push("export { en as adminEn } from './src/admin/i18n.en';");
+  lines.push("export { WORKSHOP_QUEST_IDS } from './src/sim/content/workshop_quests.generated';");
   for (const lang of NON_EN)
     lines.push(`export { ${lang} as admin_${lang} } from './src/admin/i18n.locales/${lang}';`);
   const build = await esbuild.build({
@@ -192,14 +194,23 @@ async function loadSources() {
     simDictProvidedKeys: mod.simDictProvidedKeys,
     adminEn: mod.adminEn,
     adminOverlays,
+    workshopQuestIds: mod.WORKSHOP_QUEST_IDS,
   };
 }
 
 const isPresent = (v) => typeof v === 'string' && v.trim().length > 0;
 
 async function main() {
-  const { en, overlays, serverDICT, simDICT, simDictProvidedKeys, adminEn, adminOverlays } =
-    await loadSources();
+  const {
+    en,
+    overlays,
+    serverDICT,
+    simDICT,
+    simDictProvidedKeys,
+    adminEn,
+    adminOverlays,
+    workshopQuestIds,
+  } = await loadSources();
   const enFlat = flatten(en); // dotted key -> English string
 
   // Per-key per-locale blocked seed: "scope:key" -> Map(locale -> reason).
@@ -235,7 +246,11 @@ async function main() {
   // (scripts/i18n_retired_keys.mjs): a key no page renders is never a fill
   // work item, so its unprovided locale rows carry the retired reason instead
   // of `pending` (a provided row stays `translated`: the reviewed prose is
-  // real and kept). Cognate blocked rows still live in server/admin only.
+  // real and kept), and the Quest Workshop's own quest text
+  // (scripts/lib/workshop_quest_keys.mjs): the owner's content ships as
+  // written, so its unprovided rows carry WORKSHOP_REASON. Cognate blocked
+  // rows still live in server/admin only.
+  const isWorkshopKey = makeIsWorkshopQuestKey(workshopQuestIds);
   for (const key of Object.keys(enFlat)) {
     const enVal = enFlat[key];
     const ph = placeholdersOf(enVal);
@@ -246,7 +261,9 @@ async function main() {
         ? { state: 'translated', srcHash: enHash, by: 'human' }
         : RETIRED_KEY_SET.has(key)
           ? { state: 'blocked', reason: RETIRED_REASON }
-          : { state: 'pending' };
+          : isWorkshopKey(key)
+            ? { state: 'blocked', reason: WORKSHOP_REASON }
+            : { state: 'pending' };
     }
     keyEntries.push({
       composite: `main:${key}`,

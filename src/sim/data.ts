@@ -292,6 +292,12 @@ import {
   WILLOWFEN_ROADS,
   WILLOWFEN_ZONE,
 } from './content/willowfen';
+import { applyWorkshopQuests } from './content/workshop_merge';
+import {
+  WORKSHOP_NPC_QUEST_IDS,
+  WORKSHOP_QUEST_ORDER,
+  WORKSHOP_QUESTS,
+} from './content/workshop_quests.generated';
 import { WORLD_QUEST_CALLIGRAPHY_NPCS } from './content/world_quest_calligraphy';
 import { FORGE_NPC_DEF } from './content/world_quest_forging';
 import { GLIDER_APPRENTICE_NPC_DEF, GLIDER_NPC_DEF } from './content/world_quest_glider';
@@ -675,6 +681,19 @@ export const QUEST_ORDER: string[] = [
   ...Object.keys(GOURDLIGHT_EVE_QUESTS),
   ...Object.keys(GOURDLIGHT_DAILY_QUESTS),
 ];
+
+// The owner's Quest Workshop quests (content/workshop_quests.generated.ts, a
+// dev-tool artifact): appended LAST to QUESTS and QUEST_ORDER, and their giver
+// and turn-in NPCs gain the ids (content/workshop_merge.ts, the Studio
+// npcQuestIds shape). Empty until the owner saves a quest.
+applyWorkshopQuests(
+  { quests: QUESTS, questOrder: QUEST_ORDER, npcs: NPCS },
+  {
+    quests: WORKSHOP_QUESTS,
+    questOrder: WORKSHOP_QUEST_ORDER,
+    npcQuestIds: WORKSHOP_NPC_QUEST_IDS,
+  },
+);
 
 // The Book of Deeds catalog (content/deeds.ts) is deliberately NOT re-exported
 // here: this merge module sits on the guide entry's static import graph (via

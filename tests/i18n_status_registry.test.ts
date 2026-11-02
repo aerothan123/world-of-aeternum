@@ -11,7 +11,9 @@ import { describe, expect, it } from 'vitest';
 // rather than a copy of the scanner's own arithmetic.
 import { contentHash, placeholdersOf } from '../scripts/i18n_hash.mjs';
 import { RETIRED_KEY_SET, RETIRED_REASON } from '../scripts/i18n_retired_keys.mjs';
+import { makeIsWorkshopQuestKey, WORKSHOP_REASON } from '../scripts/lib/workshop_quest_keys.mjs';
 import { DICT as adminDICT } from '../src/admin/i18n';
+import { WORKSHOP_QUEST_IDS } from '../src/sim/content/workshop_quests.generated';
 import { en, supportedLanguages } from '../src/ui/i18n';
 import { DICT as serverDICT } from '../src/ui/server_i18n';
 import { DICT as simDICT, simDictProvidedKeys } from '../src/ui/sim_i18n';
@@ -403,13 +405,17 @@ describe('i18n status registry: blocked rows are load-bearing (no over-allow)', 
     }
   });
 
-  it('main/sim blocked rows exist ONLY for retired main keys, with the retired reason', () => {
+  it('main/sim blocked rows exist ONLY for retired and workshop main keys, each with its reason', () => {
     // Phase 14 widened the main scope's blocked rows to exactly the RETIRED
     // keys (scripts/i18n_retired_keys.mjs): a key no page renders is never a
     // fill work item, so its unprovided rows are blocked-with-reason instead
-    // of pending. Everything else in main, and ALL of sim, still carries
-    // none: the over-allow hazard this pin exists for is unchanged.
+    // of pending. The Quest Workshop added the second class
+    // (scripts/lib/workshop_quest_keys.mjs): the owner's own quest text, keyed
+    // on exactly the ids src/sim/content/workshop_quests.generated.ts carries.
+    // Everything else in main, and ALL of sim, still carries none: the
+    // over-allow hazard this pin exists for is unchanged.
     // Same accumulate-then-assert-once shape as the freshness walk above.
+    const isWorkshopKey = makeIsWorkshopQuestKey(WORKSHOP_QUEST_IDS);
     const violations: string[] = [];
     for (const [ck, entry] of keyEntries()) {
       const ci = ck.indexOf(':');
@@ -418,13 +424,41 @@ describe('i18n status registry: blocked rows are load-bearing (no over-allow)', 
       if (scope === 'server' || scope === 'admin') continue;
       for (const row of Object.values<any>(entry.locales)) {
         if (row.state !== 'blocked') continue;
-        if (scope !== 'main' || !RETIRED_KEY_SET.has(key))
-          violations.push(`${ck} unexpected blocked row in scope ${scope}`);
-        else if (row.reason !== RETIRED_REASON)
-          violations.push(`${ck} retired blocked row without the retired reason`);
+        if (scope !== 'main') violations.push(`${ck} unexpected blocked row in scope ${scope}`);
+        else if (RETIRED_KEY_SET.has(key)) {
+          if (row.reason !== RETIRED_REASON)
+            violations.push(`${ck} retired blocked row without the retired reason`);
+        } else if (isWorkshopKey(key)) {
+          if (row.reason !== WORKSHOP_REASON)
+            violations.push(`${ck} workshop blocked row without the workshop reason`);
+        } else violations.push(`${ck} unexpected blocked row in scope ${scope}`);
       }
     }
     expect(violations).toEqual([]);
+  });
+
+  it('a workshop quest key is blocked, never pending, in both the registry and the runtime set', () => {
+    // The committed workshop set is empty, so the live registry cannot exercise
+    // the class; pin the shared predicate and both scripts' use of it instead.
+    const isWorkshopKey = makeIsWorkshopQuestKey(['q_ws_example']);
+    expect(isWorkshopKey('entities.quests.q_ws_example.title')).toBe(true);
+    expect(isWorkshopKey('entities.quests.q_ws_example.objectives.0.label')).toBe(true);
+    expect(isWorkshopKey('entities.quests.q_ws_example_two.title')).toBe(false);
+    expect(isWorkshopKey('entities.quests.q_wolves.title')).toBe(false);
+    for (const script of ['scripts/i18n_scan.mjs', 'scripts/i18n_build.mjs']) {
+      const source = fs.readFileSync(path.join(root, script), 'utf8');
+      expect(source, `${script} reads the workshop predicate`).toContain('makeIsWorkshopQuestKey(');
+      expect(source, `${script} loads the generated workshop ids`).toContain(
+        'workshop_quests.generated',
+      );
+    }
+    expect(fs.readFileSync(path.join(root, 'scripts/i18n_scan.mjs'), 'utf8')).toContain(
+      'WORKSHOP_REASON',
+    );
+    // The marker string, pinned to its literal ONCE here (the retired-reason rule).
+    expect(WORKSHOP_REASON).toBe(
+      "Quest Workshop content: the owner's own quest text (src/sim/content/workshop_quests.generated.ts), shipped as written in every locale; never a fill work item (docs/quest-workshop.md).",
+    );
   });
 
   it('no retired key carries a pending row anywhere (the Phase 14 exclusion), non-vacuously', () => {

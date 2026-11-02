@@ -1,0 +1,436 @@
+/* Quest Workshop (quest_editor.html): a dev-only page styled with the game's own
+   tokens (src/styles/tokens.css: the charcoal surfaces, the three hairlines, the
+   one brass accent) and fonts (Cinzel headings, Alegreya Sans body). Full-width
+   two-column layout: the quest-giver catalog on the left, the quest form on the
+   right. Not part of the HUD @layer cascade: this sheet is the page's own. */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: #0e0e10;
+  color: var(--text, #ece7dc);
+  font-family: "Alegreya Sans", "Segoe UI", sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+  color-scheme: dark;
+}
+
+.qw {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+  min-height: 100vh;
+}
+
+.qw h1,
+.qw h2,
+.qw h3 {
+  font-family: Cinzel, "Alegreya Sans", serif;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.qw-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--line, rgba(236, 231, 220, 0.26));
+  background: var(--surface-menu, rgba(14, 14, 16, 0.94));
+}
+
+.qw-header h1 {
+  font-size: 22px;
+  color: var(--accent, #c9a96a);
+}
+
+.qw-header .qw-subtitle {
+  color: var(--text-dim, #aba59b);
+  flex: 1;
+}
+
+.qw-status {
+  color: var(--text-dim, #aba59b);
+  min-width: 220px;
+  text-align: right;
+}
+
+.qw-status.ok {
+  color: var(--color-text-success, #7fdc4f);
+}
+
+.qw-status.err {
+  color: var(--color-text-error, #ff8f85);
+}
+
+.qw-body {
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) minmax(0, 2fr);
+  min-height: 0;
+}
+
+.qw-catalog,
+.qw-form {
+  overflow-y: auto;
+  min-height: 0;
+  padding: 16px 20px 40px;
+}
+
+.qw-catalog {
+  border-right: 1px solid var(--line-faint, rgba(236, 231, 220, 0.14));
+  background: var(--surface-hud, rgba(14, 14, 16, 0.72));
+}
+
+.qw-catalog h2,
+.qw-form h2 {
+  font-size: 15px;
+  color: var(--text-dim, #aba59b);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 10px;
+}
+
+.qw-filter {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.qw-zone {
+  margin: 14px 0 6px;
+  font-family: Cinzel, serif;
+  font-size: 13px;
+  color: var(--accent, #c9a96a);
+  letter-spacing: 0.08em;
+}
+
+.qw-giver {
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-left: 2px solid transparent;
+  background: var(--surface-row, rgba(236, 231, 220, 0.04));
+  margin-bottom: 4px;
+  cursor: pointer;
+}
+
+.qw-giver:hover {
+  background: var(--surface-row-hover, rgba(236, 231, 220, 0.08));
+}
+
+.qw-giver.selected {
+  border-left-color: var(--accent, #c9a96a);
+  background: var(--surface-row-hover, rgba(236, 231, 220, 0.08));
+}
+
+.qw-giver-name {
+  font-weight: 600;
+}
+
+.qw-giver-title {
+  color: var(--text-faint, #98938a);
+  font-size: 13px;
+  margin-left: 6px;
+}
+
+.qw-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.qw-chip {
+  font-size: 12px;
+  padding: 1px 7px;
+  border: 1px solid var(--line-faint, rgba(236, 231, 220, 0.14));
+  color: var(--text-dim, #aba59b);
+  background: transparent;
+  font-family: inherit;
+}
+
+.qw-chip.workshop {
+  color: var(--text, #ece7dc);
+  border-color: var(--line, rgba(236, 231, 220, 0.26));
+  cursor: pointer;
+}
+
+.qw-chip.workshop:hover,
+.qw-chip.workshop.selected {
+  border-color: var(--accent, #c9a96a);
+  color: var(--accent, #c9a96a);
+}
+
+.qw-chip .mark {
+  margin-left: 5px;
+  color: var(--color-text-error, #ff8f85);
+}
+
+.qw-chip .mark.unsaved {
+  color: var(--accent, #c9a96a);
+}
+
+.qw-new {
+  margin-top: 6px;
+}
+
+.qw-empty {
+  color: var(--text-dim, #aba59b);
+  max-width: 48ch;
+}
+
+.qw-section {
+  border-top: 1px solid var(--line-faint, rgba(236, 231, 220, 0.14));
+  padding: 14px 0 6px;
+  margin-top: 8px;
+}
+
+.qw-section h3 {
+  font-size: 14px;
+  color: var(--accent, #c9a96a);
+  margin-bottom: 10px;
+}
+
+.qw-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px 16px;
+}
+
+.qw-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.qw-field.wide {
+  grid-column: 1 / -1;
+}
+
+.qw-field label {
+  font-size: 13px;
+  color: var(--text-dim, #aba59b);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.qw-hint {
+  font-size: 13px;
+  color: var(--text-faint, #98938a);
+}
+
+.qw input,
+.qw textarea,
+.qw select,
+.qw button {
+  font: inherit;
+  color: var(--text, #ece7dc);
+  background: rgba(236, 231, 220, 0.05);
+  border: 1px solid var(--line, rgba(236, 231, 220, 0.26));
+  border-radius: 0;
+  padding: 6px 8px;
+}
+
+.qw input:focus,
+.qw textarea:focus,
+.qw select:focus {
+  outline: 1px solid var(--accent, #c9a96a);
+  outline-offset: 0;
+}
+
+.qw textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.qw input[type="number"] {
+  width: 7em;
+}
+
+.qw button {
+  cursor: pointer;
+  padding: 6px 14px;
+}
+
+.qw button:hover {
+  background: var(--surface-row-hover, rgba(236, 231, 220, 0.08));
+}
+
+.qw button.primary {
+  border-color: var(--accent, #c9a96a);
+  color: var(--accent, #c9a96a);
+}
+
+.qw button.primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.qw button.danger {
+  border-color: var(--color-text-error, #ff8f85);
+  color: var(--color-text-error, #ff8f85);
+}
+
+.qw button.small {
+  padding: 2px 8px;
+  font-size: 13px;
+}
+
+.qw-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+
+.qw-objective {
+  border: 1px solid var(--line-faint, rgba(236, 231, 220, 0.14));
+  padding: 10px;
+  margin-bottom: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px 12px;
+  background: var(--surface-row, rgba(236, 231, 220, 0.04));
+}
+
+.qw-objective .qw-row-tools {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-faint, #98938a);
+  font-size: 13px;
+}
+
+.qw-money {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.qw-money span {
+  color: var(--text-dim, #aba59b);
+  font-size: 13px;
+}
+
+.qw-classes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+}
+
+.qw-classes label {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 14px;
+  color: var(--text, #ece7dc);
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.qw-issues {
+  margin: 10px 0;
+  padding: 10px 12px;
+  border: 1px solid var(--color-text-error, #ff8f85);
+  color: var(--color-text-error, #ff8f85);
+}
+
+.qw-issues ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.qw-code {
+  font:
+    12px / 1.45 ui-monospace,
+    Menlo,
+    Consolas,
+    monospace;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--line-faint, rgba(236, 231, 220, 0.14));
+  padding: 10px;
+  white-space: pre;
+  overflow: auto;
+  max-height: 420px;
+  color: var(--text-dim, #aba59b);
+}
+
+/* The searchable picker: an input over a filtered list. */
+.qw-picker {
+  position: relative;
+}
+
+.qw-picker input {
+  width: 100%;
+}
+
+.qw-picker-clear {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  padding: 2px 7px;
+  font-size: 12px;
+  border-color: transparent;
+}
+
+.qw-picker ul {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  top: 100%;
+  max-height: 260px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--surface-menu, rgba(14, 14, 16, 0.94));
+  border: 1px solid var(--line, rgba(236, 231, 220, 0.26));
+}
+
+.qw-picker ul[hidden] {
+  display: none;
+}
+
+.qw-picker li {
+  padding: 5px 8px;
+  cursor: pointer;
+}
+
+.qw-picker li:hover,
+.qw-picker li.active {
+  background: var(--surface-row-hover, rgba(236, 231, 220, 0.08));
+}
+
+.qw-picker li .meta {
+  display: block;
+  font-size: 12px;
+  color: var(--text-faint, #98938a);
+}
+
+.qw-picker li .id {
+  float: right;
+  font:
+    11px ui-monospace,
+    monospace;
+  color: var(--text-faint, #98938a);
+}
+
+@media (max-width: 900px) {
+  .qw-body {
+    grid-template-columns: 1fr;
+  }
+
+  .qw-catalog {
+    border-right: 0;
+    border-bottom: 1px solid var(--line-faint, rgba(236, 231, 220, 0.14));
+    max-height: 40vh;
+  }
+}
