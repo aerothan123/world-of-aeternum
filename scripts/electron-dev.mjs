@@ -36,6 +36,9 @@ const viteUrl = process.env.VITE_DEV_SERVER_URL ?? 'http://127.0.0.1:5173';
 const onlineOrigin = process.env.VITE_DESKTOP_API_ORIGIN ?? 'https://worldofclaudecraft.com';
 const npmCommand = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 const electronCommand = process.platform === 'win32' ? 'electron.cmd' : 'electron';
+// Node 20.12+ refuses to spawn a .cmd shim without a shell (EINVAL, the
+// BatBadBut hardening), so the two Windows launches go through cmd.exe.
+const spawnShell = process.platform === 'win32';
 
 let shuttingDown = false;
 
@@ -48,6 +51,7 @@ const vite = spawn(npmCommand, ['run', 'dev', '--', '--host', '127.0.0.1', '--st
     VITE_DESKTOP_RELATIVE_API: '1',
   },
   stdio: 'inherit',
+  shell: spawnShell,
 });
 
 function stopAll(code = 0) {
@@ -93,6 +97,7 @@ try {
       VITE_DESKTOP_LOGIN_ORIGIN: viteUrl,
     },
     stdio: 'inherit',
+    shell: spawnShell,
   });
   electron.on('exit', (code) => stopAll(code ?? 0));
 } catch (err) {
