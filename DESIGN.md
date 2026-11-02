@@ -1,6 +1,11 @@
 # World of ClaudeCraft Design Language
 
-**Status:** Adopted standard. The redesign boards and the two reference images in
+**Project H note:** this fork adopts a different visual direction, recorded in
+`docs/design/project-h-interface.md` (the quiet sandbox-MMO HUD). That document supersedes
+sections 1 to 11 and 14 to 17 below; sections 12 and 13 (the accessibility and engineering
+contracts) stand unchanged and gate every Project H interface packet.
+
+**Status:** Adopted standard (upstream). The redesign boards and the two reference images in
 section 2 are approved references. Precedence is this document, then the redesign boards,
 then the images.
 **Scope:** The desktop game client (the `index.html` and `play.html` entries). Because
