@@ -94,7 +94,20 @@ try {
     feedVersion,
   });
   log(`releasing ${version} (${reason}) to ${feedUrl}`);
-  const env = releaseBuildEnv({ origin: args.origin, feedUrl, version });
+  // `node scripts/release_desktop.mjs` runs outside `pnpm run`, so the build's
+  // bare `electron-builder` launcher needs node_modules/.bin on PATH explicitly.
+  const pathKey = Object.keys(process.env).find((k) => k.toUpperCase() === 'PATH') ?? 'PATH';
+  const env = releaseBuildEnv({
+    origin: args.origin,
+    feedUrl,
+    version,
+    binDir: path.join(root, 'node_modules', '.bin'),
+    pathValue: process.env[pathKey] ?? '',
+  });
+  if (env.PATH !== undefined && pathKey !== 'PATH') {
+    env[pathKey] = env.PATH;
+    delete env.PATH;
+  }
   const build = {
     step: 'build the website installer',
     command: process.execPath,

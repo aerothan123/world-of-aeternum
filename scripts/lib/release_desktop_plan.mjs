@@ -201,13 +201,21 @@ export function primaryInstaller(installers) {
 
 // Env for `node scripts/electron-build.mjs build website`: the baked origin
 // (which also selects the 'dev' channel), the feed URL, and the version
-// stamp. The caller spreads process.env underneath.
-export function releaseBuildEnv({ origin, feedUrl, version }) {
-  return {
+// stamp. The caller spreads process.env underneath. `binDir` (the repo's
+// node_modules/.bin) is prepended to PATH when given: the build script spawns
+// the electron-builder launcher by bare name, which `pnpm run` resolves by
+// adding .bin to PATH but a plain `node scripts/release_desktop.mjs` does not.
+export function releaseBuildEnv({ origin, feedUrl, version, binDir = '', pathValue = '' }) {
+  const env = {
     VITE_DESKTOP_API_ORIGIN: origin,
     WOC_DESKTOP_UPDATE_URL: feedUrl,
     WOC_DESKTOP_VERSION: version,
   };
+  if (binDir) {
+    const sep = process.platform === 'win32' ? ';' : ':';
+    env.PATH = pathValue ? `${binDir}${sep}${pathValue}` : binDir;
+  }
+  return env;
 }
 
 // A remote path quoted for the droplet's POSIX shell. Our remote paths are

@@ -43,10 +43,17 @@ export function releaseArtifacts(input: {
   joinPath: (...parts: string[]) => string;
 }): { files: string[]; installers: string[] };
 export function primaryInstaller(installers: string[]): string;
-export function releaseBuildEnv(input: { origin: string; feedUrl: string; version: string }): {
+export function releaseBuildEnv(input: {
+  origin: string;
+  feedUrl: string;
+  version: string;
+  binDir?: string;
+  pathValue?: string;
+}): {
   VITE_DESKTOP_API_ORIGIN: string;
   WOC_DESKTOP_UPDATE_URL: string;
   WOC_DESKTOP_VERSION: string;
+  PATH?: string;
 };
 export function shellQuote(value: unknown): string;
 export interface RemoteCommand {

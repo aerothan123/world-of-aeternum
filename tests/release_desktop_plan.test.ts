@@ -240,6 +240,29 @@ describe('build env and remote commands', () => {
     });
   });
 
+  it('prepends node_modules/.bin to PATH so the bare electron-builder launcher resolves', () => {
+    const sep = process.platform === 'win32' ? ';' : ':';
+    const env = releaseBuildEnv({
+      origin: DEFAULT_ORIGIN,
+      feedUrl: `${DEFAULT_ORIGIN}/downloads/desktop`,
+      version: '0.45.7',
+      binDir: '/repo/node_modules/.bin',
+      pathValue: '/usr/bin',
+    });
+    expect(env.PATH).toBe(`/repo/node_modules/.bin${sep}/usr/bin`);
+    expect(
+      releaseBuildEnv({
+        origin: DEFAULT_ORIGIN,
+        feedUrl: '',
+        version: '0.45.7',
+        binDir: '/repo/node_modules/.bin',
+      }).PATH,
+    ).toBe('/repo/node_modules/.bin');
+    expect(
+      releaseBuildEnv({ origin: DEFAULT_ORIGIN, feedUrl: '', version: '0.45.7' }).PATH,
+    ).toBeUndefined();
+  });
+
   it('single-quotes remote paths for the droplet shell', () => {
     expect(shellQuote('/var/www/downloads/desktop')).toBe("'/var/www/downloads/desktop'");
     expect(shellQuote("it's")).toBe(`'it'\\''s'`);
