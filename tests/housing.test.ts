@@ -18,7 +18,7 @@ import {
   HOUSE_PURCHASE_RANGE,
   houseInstanceKey,
 } from '../src/sim/housing/ownership';
-import { leaveDungeon } from '../src/sim/instances/dungeons';
+import { enterDungeon, leaveDungeon } from '../src/sim/instances/dungeons';
 import { Sim } from '../src/sim/sim';
 import type { SimEvent } from '../src/sim/types';
 import { terrainHeight } from '../src/sim/world';
@@ -237,6 +237,19 @@ describe('the front door', () => {
     );
     expect(claims).toHaveLength(2);
     expect(Math.abs(ea.pos.z - eb.pos.z)).toBeGreaterThan(100);
+  });
+
+  it('admits a non-owner only through the dev-command bypass, into their own copy', () => {
+    const sim = new Sim({ seed: 42, playerClass: 'warrior', autoEquip: true, devCommands: true });
+    const pid = sim.player.id;
+    const ctx = (sim as any).ctx;
+    expect(enterDungeon(ctx, LOT.dungeonId, pid)).toBe(false);
+    expect(enterDungeon(ctx, LOT.dungeonId, pid, true)).toBe(true);
+    expect(dungeonAt(sim.player.pos.x)?.id).toBe(LOT.dungeonId);
+    expect(metaOf(sim, pid).house).toBeUndefined();
+    // without dev commands the bypass flag is inert
+    const prod = makeSim();
+    expect(enterDungeon((prod as any).ctx, LOT.dungeonId, prod.player.id, true)).toBe(false);
   });
 
   it('never lets a released spirit in (a house is not a place to resurrect)', () => {

@@ -415,7 +415,14 @@ export function enterDungeon(
   // Player housing (Project H): a house lot's door admits only its owner, into
   // a copy keyed on the owner (housing/ownership.ts); undefined for every real
   // dungeon. The raid gates and the party-size warning below never apply to it.
-  const houseKey = houseEntryKey(ctx, r.meta, r.e, dungeonId, options.preflightOnly === true);
+  const houseKey = houseEntryKey(
+    ctx,
+    r.meta,
+    r.e,
+    dungeonId,
+    options.preflightOnly === true,
+    bypass,
+  );
   if (houseKey === null) return false;
   const party = ctx.partyOf(r.meta.entityId) ?? options.finderParty;
   // The raid return route (instances/raid_return.ts): a raider who cleared a

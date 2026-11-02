@@ -41,7 +41,9 @@ export function houseInstanceKey(meta: PlayerMeta): string {
  * dungeon rules); the owner's instance key when they may enter; `null` when the
  * door refuses. A refusal to a living non-owner raises the purchase prompt,
  * throttled because the walk-in trigger fires every tick. A released spirit is
- * refused silently: a house is never a place to resurrect.
+ * refused silently: a house is never a place to resurrect. `devBypass` (the
+ * dev-command door bypass, never in production) admits a tester into their
+ * own copy of any lot as if they owned it.
  */
 export function houseEntryKey(
   ctx: SimContext,
@@ -49,11 +51,12 @@ export function houseEntryKey(
   e: Entity,
   dungeonId: string,
   preflightOnly: boolean,
+  devBypass = false,
 ): string | null | undefined {
   const lot = houseLotForDungeon(dungeonId);
   if (!lot) return undefined;
   if (e.ghost) return null;
-  if (meta.house?.lot === lot.id) return houseInstanceKey(meta);
+  if (meta.house?.lot === lot.id || devBypass) return houseInstanceKey(meta);
   if (preflightOnly) return null;
   if (ctx.time >= (meta.houseOfferAt ?? -Infinity) + HOUSE_OFFER_NOTICE_SECONDS) {
     meta.houseOfferAt = ctx.time;
