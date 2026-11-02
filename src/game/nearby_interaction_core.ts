@@ -1,5 +1,6 @@
 import { isLootableBody } from '../sim/corpse_loot_state';
 import { WORLD_QUESTS_BY_ID } from '../sim/data';
+import { HOUSE_STORAGE_RANGE, isHouseChestEntity } from '../sim/housing/house_storage';
 import { kitUsableNow, kitUseOf } from '../sim/mob/trash_kit/encounter_use';
 import { isQuestGatedGroundObjectHidden } from '../sim/quest_gated_entity';
 import { isObjectOpenedByViewer } from '../sim/quests/opened_object_view';
@@ -62,6 +63,11 @@ export type NearbyInteractionCandidate =
   | { kind: 'harvest'; id: number; entity: Entity }
   | { kind: 'delve'; id: number; entity: Entity }
   | { kind: 'object'; id: number; entity: Entity }
+  /** A placed house storage chest within HOUSE_STORAGE_RANGE (Project H
+   *  housing phase 3): a plain, never-lootable ground object the object arm
+   *  cannot see, so it has its own rung; the press targets it and sends the
+   *  ordinary interact (the sim's tryOpenHouseStorage arm answers). */
+  | { kind: 'houseChest'; id: number; entity: Entity }
   | { kind: 'npc'; id: number; entity: Entity }
   | { kind: 'escort'; id: number; entity: Entity }
   /** The nearest offered gather node in reach: the one gathering the press
@@ -119,6 +125,8 @@ export function resolveNearbyInteractionCandidate(
   let bestNodeDistance = INTERACT_RANGE;
   let bestUse: Entity | null = null;
   let bestUseDistance = Number.POSITIVE_INFINITY;
+  let bestChest: Entity | null = null;
+  let bestChestDistance = HOUSE_STORAGE_RANGE;
 
   // Nodes stand on the ground plane, so reach is the flat distance (the same
   // measure the node click's core takes in decideGatherNodeAction).
@@ -160,6 +168,10 @@ export function resolveNearbyInteractionCandidate(
     ) {
       bestCorpse = entity;
       bestCorpseDistance = distance;
+    }
+    if (!player.dead && isHouseChestEntity(entity) && distance <= bestChestDistance) {
+      bestChest = entity;
+      bestChestDistance = distance;
     }
     if (!player.dead && entity.kind === 'object' && entity.templateId.startsWith('delve_')) {
       if (distance < bestDelveDistance) {
@@ -227,6 +239,13 @@ export function resolveNearbyInteractionCandidate(
       kind: 'object',
       id: bestObject.id,
       entity: bestObject,
+    };
+  }
+  if (bestChest) {
+    return {
+      kind: 'houseChest',
+      id: bestChest.id,
+      entity: bestChest,
     };
   }
   if (bestNpc) {

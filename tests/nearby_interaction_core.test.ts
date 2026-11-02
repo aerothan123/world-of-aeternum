@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { resolveNearbyInteractionCandidate } from '../src/game/nearby_interaction_core';
+import { HOUSE_STORAGE_CHEST_ITEM_ID } from '../src/sim/content/furniture';
 import { ESCORTS } from '../src/sim/data';
+import { furnitureTemplateId } from '../src/sim/housing/furniture_template';
+import { HOUSE_STORAGE_RANGE } from '../src/sim/housing/house_storage';
 import { feastTemplateIds } from '../src/sim/professions/feast';
 import type { Entity, GatherNodeDef, QuestProgress } from '../src/sim/types';
 import type { FarmPatchDef } from '../src/world_api/farming';
@@ -371,5 +374,46 @@ describe('resolveNearbyInteractionCandidate: the usable encounter body', () => {
   it('picks the nearest of two braziers', () => {
     const near = brazier({ id: 73, pos: { x: 0, y: 0, z: 1.5 } });
     expect(resolveNearbyInteractionCandidate(scan([brazier(), near]).world)?.id).toBe(73);
+  });
+});
+
+// Project H housing phase 3: a placed storage chest is a plain (never
+// lootable) ground object, so the lootable-object arm cannot see it; it has
+// its own rung so the press reaches the sim's tryOpenHouseStorage arm.
+describe('house storage chest candidate', () => {
+  const chest = (overrides: Partial<Entity> = {}) =>
+    entity({
+      id: 90,
+      kind: 'object',
+      templateId: furnitureTemplateId(HOUSE_STORAGE_CHEST_ITEM_ID),
+      name: 'Storage Chest',
+      pos: { x: 0, y: 0, z: 4 },
+      ...overrides,
+    });
+
+  it('resolves a placed chest within the storage reach', () => {
+    const c = resolveNearbyInteractionCandidate(scan([chest()]).world);
+    expect(c).toEqual({ kind: 'houseChest', id: 90, entity: expect.objectContaining({ id: 90 }) });
+  });
+
+  it('refuses a chest beyond HOUSE_STORAGE_RANGE', () => {
+    const far = chest({ pos: { x: 0, y: 0, z: HOUSE_STORAGE_RANGE + 0.5 } });
+    expect(resolveNearbyInteractionCandidate(scan([far]).world)).toBeNull();
+  });
+
+  it('does not treat another placed piece as a chest', () => {
+    const keg = chest({ templateId: furnitureTemplateId('furn_keg') });
+    expect(resolveNearbyInteractionCandidate(scan([keg]).world)).toBeNull();
+  });
+
+  it('lets a lootable ground object in reach win over the chest', () => {
+    const loot = entity({
+      id: 91,
+      kind: 'object',
+      templateId: 'crate',
+      lootable: true,
+      pos: { x: 0, y: 0, z: 2 },
+    });
+    expect(resolveNearbyInteractionCandidate(scan([chest(), loot]).world)?.kind).toBe('object');
   });
 });

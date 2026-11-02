@@ -160,6 +160,14 @@ export function tryNearbyInteraction(
       return world.pickUpObject(candidate.id);
     }
   }
+  if (candidate?.kind === 'houseChest') {
+    // A placed house storage chest: target it and send the ordinary interact;
+    // the authoritative sim re-checks ownership and reach (house_storage.ts
+    // tryOpenHouseStorage) and answers with the houseStorage event.
+    world.targetEntity(candidate.id);
+    world.interact();
+    return true;
+  }
   if (candidate?.kind === 'npc') {
     const npc = candidate.entity;
     // A shadow-mission mark (every shadow npc but the mission giver) is selected,

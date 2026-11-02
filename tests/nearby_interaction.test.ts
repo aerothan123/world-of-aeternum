@@ -1,10 +1,12 @@
 import { describe, expect, it, vi } from 'vitest';
 import { type NearbyGatherOptions, tryNearbyInteraction } from '../src/game/nearby_interaction';
+import { HOUSE_STORAGE_CHEST_ITEM_ID } from '../src/sim/content/furniture';
 import {
   INVESTIGATION_NPC_IDS,
   INVESTIGATION_VARIANTS,
 } from '../src/sim/content/world_quest_investigation';
 import { ITEMS } from '../src/sim/data';
+import { furnitureTemplateId } from '../src/sim/housing/furniture_template';
 import { interactObjectCreditKey } from '../src/sim/quests/interact_object_credit';
 import type { Entity, GatherNodeDef, QuestProgress, WorldQuestProgress } from '../src/sim/types';
 import { worldQuestPuzzleVariantForCycle } from '../src/sim/world_quest_rotation';
@@ -1052,5 +1054,24 @@ describe('tryNearbyInteraction: the usable encounter body', () => {
     const r = rig([brazier]);
     expect(interact(r)).toBe(false);
     expect(r.calls).toEqual(['error:nothing']);
+  });
+});
+
+// Project H housing phase 3: the press on a placed storage chest targets it
+// and sends the ordinary interact (the sim's tryOpenHouseStorage arm answers
+// with the houseStorage event), exactly the Soul Brazier's route. Before this
+// arm the press fell through to "nothing to interact with" while the chest
+// stood a yard away (the lootable-object scan never sees a plain object).
+describe('house storage chest press', () => {
+  it('targets the chest and sends interact', () => {
+    const chest = entity({
+      id: 90,
+      kind: 'object',
+      templateId: furnitureTemplateId(HOUSE_STORAGE_CHEST_ITEM_ID),
+      pos: { x: 0, y: 0, z: 3 },
+    });
+    const r = rig([chest]);
+    expect(interact(r)).toBe(true);
+    expect(r.calls).toEqual(['target:90', 'interact']);
   });
 });
