@@ -7985,6 +7985,19 @@ export const en_XA: EnTranslations = {
       "chosen": "[Ŵééķļý ɋúéšţ ţáķéñ: {category}]",
       "progress": "[{label}: {count}/{required}]",
       "done": "[Ŵééķļý ɋúéšţ çóɱþļéţé: {category}]"
+    },
+    "housing": {
+      "offerText": "[{house} íš ƒóŕ šáļé ƒóŕ {price}. Ɓúý íţ?]",
+      "buy": "[Ɓúý Ĥóúšé]",
+      "alreadyOwn": "[Ýóú áļŕéáðý óŵñ {house}. Á çĥáŕáçţéŕ çáñ óŵñ óñé ĥóúšé.]",
+      "purchased": "[Ýóú ƀóúĝĥţ {house}. Ŵáļķ ţĥŕóúĝĥ íţš ƒŕóñţ ðóóŕ ţó šţéþ íñšíðé.]",
+      "denied": {
+        "badLot": "[Ţĥáţ ĥóúšé íš ñóţ ƒóŕ šáļé.]",
+        "owned": "[Ýóú áļŕéáðý óŵñ á ĥóúšé.]",
+        "range": "[Ýóú áŕé ţóó ƒáŕ ƒŕóɱ ţĥé ƒŕóñţ ðóóŕ óƒ {house}.]",
+        "money": "[Ýóú çáññóţ áƒƒóŕð {house}.]",
+        "dead": "[Ýóú çáññóţ ƀúý á ĥóúšé ŵĥíļé ðéáð.]"
+      }
     }
   },
   "gatherEvent": {
@@ -30507,6 +30520,21 @@ export const en_XA: EnTranslations = {
         "name": "[Ðáŵñĥóļð Çášţļé]",
         "enterText": "[Ýóú šţéþ íñţó ţĥé ŵáŕɱ, ƒļóŵéŕ-šçéñţéð ĥáļļš óƒ Ðáŵñĥóļð Çášţļé.]",
         "leaveText": "[Ýóú šļíþ ƀáçķ óúţ óñţó ţĥé šúñļíţ ĝáŕðéñ ļáŵñ.]"
+      },
+      "house_eastbrook_quay_cottage": {
+        "name": "[Ɋúáý Çóţţáĝé]",
+        "enterText": "[Ýóú šţéþ íñšíðé ýóúŕ ĥóúšé.]",
+        "leaveText": "[Ýóú çļóšé ýóúŕ ƒŕóñţ ðóóŕ ƀéĥíñð ýóú.]"
+      },
+      "house_fenbridge_warden_gatehouse": {
+        "name": "[Ŵáŕðéñ'š Ĝáţéĥóúšé]",
+        "enterText": "[Ýóú šţéþ íñšíðé ýóúŕ ĥóúšé.]",
+        "leaveText": "[Ýóú çļóšé ýóúŕ ƒŕóñţ ðóóŕ ƀéĥíñð ýóú.]"
+      },
+      "house_highwatch_watch_house": {
+        "name": "[Ŵáţçĥ Ĥóúšé]",
+        "enterText": "[Ýóú šţéþ íñšíðé ýóúŕ ĥóúšé.]",
+        "leaveText": "[Ýóú çļóšé ýóúŕ ƒŕóñţ ðóóŕ ƀéĥíñð ýóú.]"
       },
       "drowned_temple": {
         "name": "[Ţĥé Ðŕóŵñéð Ţéɱþļé]",

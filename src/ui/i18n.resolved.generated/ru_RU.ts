@@ -7985,6 +7985,19 @@ export const ru_RU: EnTranslations = {
       "chosen": "Взято еженедельное задание: {category}",
       "progress": "{label}: {count}/{required}",
       "done": "Еженедельное задание выполнено: {category}"
+    },
+    "housing": {
+      "offerText": "{house} продаётся за {price}. Купить?",
+      "buy": "Купить дом",
+      "alreadyOwn": "Вы уже владеете домом «{house}». У персонажа может быть только один дом.",
+      "purchased": "Вы купили дом «{house}». Войдите через парадную дверь, чтобы оказаться внутри.",
+      "denied": {
+        "badLot": "Этот дом не продаётся.",
+        "owned": "У вас уже есть дом.",
+        "range": "Вы слишком далеко от парадной двери дома «{house}».",
+        "money": "Вам не по карману дом «{house}».",
+        "dead": "Нельзя купить дом, пока вы мертвы."
+      }
     }
   },
   "gatherEvent": {
@@ -30507,6 +30520,21 @@ export const ru_RU: EnTranslations = {
         "name": "Замок Рассвета",
         "enterText": "Вы входите в теплые, напоенные ароматом цветов залы Замка Рассвета.",
         "leaveText": "Вы возвращаетесь на залитую солнцем садовую лужайку."
+      },
+      "house_eastbrook_quay_cottage": {
+        "name": "Домик у пристани",
+        "enterText": "Вы входите в свой дом.",
+        "leaveText": "Вы закрываете за собой входную дверь."
+      },
+      "house_fenbridge_warden_gatehouse": {
+        "name": "Сторожка смотрителя",
+        "enterText": "Вы входите в свой дом.",
+        "leaveText": "Вы закрываете за собой входную дверь."
+      },
+      "house_highwatch_watch_house": {
+        "name": "Дозорный дом",
+        "enterText": "Вы входите в свой дом.",
+        "leaveText": "Вы закрываете за собой входную дверь."
       },
       "drowned_temple": {
         "name": "Утонувший храм",

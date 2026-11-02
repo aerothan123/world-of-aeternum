@@ -29,6 +29,7 @@ import { allocRiftCollisionToken } from '../sim/colliders';
 import { applyAbilityCostTail, resolveAbilityChain } from '../sim/combat/ability_resolution';
 import { heroicLeapPlacementPreview } from '../sim/combat/heroic_leap';
 import type { BuddyKey } from '../sim/content/buddies';
+import { HOUSE_LOTS } from '../sim/content/house_lots';
 import { type MountKey, normalizeMountKey } from '../sim/content/mounts';
 import { mechChromaSkinIndex } from '../sim/content/skins';
 import {
@@ -154,6 +155,7 @@ import {
   type GuildPledgeSettings,
   type GuildRankDef,
   type GuildRosterInfo,
+  type HouseView,
   type IWorld,
   isOverheadEmoteId,
   type LeaderboardEntry,
@@ -232,6 +234,7 @@ import { applyGroundTelegraphSnapshot } from './ground_telegraph_wire';
 import { GuildBankLogMirror } from './guild_bank_log_mirror';
 import { decodeGuildBoardPage, emptyGuildBoardPage, guildBoardPath } from './guild_board_wire';
 import { decodeGuildRoster } from './guild_roster_wire';
+import { decodeHouseWire } from './housing_self_wire';
 import { foldInputAck } from './input_ack';
 import {
   INPUT_SEND_TIMER_INTERVAL_MS,
@@ -1428,6 +1431,9 @@ export class ClientWorld extends ReconWireState implements IWorld {
   // here: the authority owns it, and the hidden pre-rolled outcome slots that
   // decide a crop's fate never cross the wire at all.
   myFarmPlots: readonly FarmPlotView[] = [];
+  // Player housing (Project H): static lots + the `hse` self-delta mirror.
+  readonly houseLots = HOUSE_LOTS;
+  myHouse: HouseView | null = null;
   // The clock base the plot timestamps above were written in. Date.now is
   // correct here for the riftEventMsRemaining reason: the server computes farm
   // timestamps through ctx.lockoutNowMs(), which IS real Date.now() on the
@@ -3238,6 +3244,7 @@ export class ClientWorld extends ReconWireState implements IWorld {
       // crafting identity): all delta-omitted, applied by the sibling
       // module, where the delta contract and per-key malformed policy live.
       applyProfessionsSelfMirror(this, s);
+      if (s.hse !== undefined) this.myHouse = decodeHouseWire(s.hse);
       // camera follows server-side facing changes when not mouselooking
       if (prevSelfFacing !== undefined && this.mouselookFacing === null) {
         let d = e.facing - prevSelfFacing;
@@ -4268,6 +4275,9 @@ export class ClientWorld extends ReconWireState implements IWorld {
   // --- IWorldWorldPvp: the /pvp flag + the Skull Bag (worldPvpInfo is a snapshot read). ---
   setWorldPvpFlag(enabled: boolean): void {
     this.cmd({ cmd: 'pvp_flag', on: enabled });
+  }
+  buyHouse(lotId: string): void {
+    this.cmd({ cmd: 'buy_house', lot: lotId });
   }
   sitOnSeat(seatId: string): void {
     this.cmd({ cmd: 'sit_seat', seat: seatId });

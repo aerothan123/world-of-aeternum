@@ -7985,6 +7985,19 @@ export const pt_BR: EnTranslations = {
       "chosen": "Missão semanal aceita: {category}",
       "progress": "{label}: {count}/{required}",
       "done": "Missão semanal concluída: {category}"
+    },
+    "housing": {
+      "offerText": "{house} is for sale for {price}. Buy it?",
+      "buy": "Buy House",
+      "alreadyOwn": "You already own {house}. A character can own one house.",
+      "purchased": "You bought {house}. Walk through its front door to step inside.",
+      "denied": {
+        "badLot": "That house is not for sale.",
+        "owned": "You already own a house.",
+        "range": "You are too far from the front door of {house}.",
+        "money": "You cannot afford {house}.",
+        "dead": "You cannot buy a house while dead."
+      }
     }
   },
   "gatherEvent": {
@@ -30507,6 +30520,21 @@ export const pt_BR: EnTranslations = {
         "name": "Castelo Dawnhold",
         "enterText": "Você entra nos salões quentes e perfumados de flores do Castelo Dawnhold.",
         "leaveText": "Você volta a sair para o gramado ensolarado do jardim."
+      },
+      "house_eastbrook_quay_cottage": {
+        "name": "Quay Cottage",
+        "enterText": "You step inside your house.",
+        "leaveText": "You close your front door behind you."
+      },
+      "house_fenbridge_warden_gatehouse": {
+        "name": "Warden's Gatehouse",
+        "enterText": "You step inside your house.",
+        "leaveText": "You close your front door behind you."
+      },
+      "house_highwatch_watch_house": {
+        "name": "Watch House",
+        "enterText": "You step inside your house.",
+        "leaveText": "You close your front door behind you."
       },
       "drowned_temple": {
         "name": "O Templo Afogado",

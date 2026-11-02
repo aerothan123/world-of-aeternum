@@ -20,6 +20,7 @@ import {
   SANCTUM_LAYOUT,
   TEMPLE_LAYOUT,
 } from './dungeon_layout';
+import { HOUSE_COTTAGE_LAYOUT } from './housing/cottage_layout';
 import { IGNIVAR_LAVA_MOAT_DEPTH, ignivarArenaPointInLava } from './ignivar_arena';
 
 /** Room plan per DungeonDef.interior key (colliders.ts derives its sets from
@@ -33,6 +34,8 @@ export const INTERIOR_LAYOUTS: Record<string, DungeonLayout> = {
   ignivar_approach: IGNIVAR_FORGE_APPROACH_LAYOUT,
   ignivar: IGNIVAR_LAYOUT,
   ignivar_depths: IGNIVAR_SECOND_WING_LAYOUT,
+  // Player housing (Project H): the shared cottage plan every house lot opens onto.
+  house: HOUSE_COTTAGE_LAYOUT,
 };
 
 export interface DungeonInstanceFrame {

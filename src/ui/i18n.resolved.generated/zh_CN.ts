@@ -7985,6 +7985,19 @@ export const zh_CN: EnTranslations = {
       "chosen": "已接取每周任务：{category}",
       "progress": "{label}：{count}/{required}",
       "done": "每周任务完成：{category}"
+    },
+    "housing": {
+      "offerText": "{house}正在出售，售价{price}。要购买吗？",
+      "buy": "购买房屋",
+      "alreadyOwn": "你已拥有{house}。每个角色只能拥有一座房屋。",
+      "purchased": "你买下了{house}。穿过它的前门即可进入。",
+      "denied": {
+        "badLot": "这座房屋不出售。",
+        "owned": "你已经拥有一座房屋。",
+        "range": "你离{house}的前门太远了。",
+        "money": "你买不起{house}。",
+        "dead": "死亡状态下无法购买房屋。"
+      }
     }
   },
   "gatherEvent": {
@@ -30507,6 +30520,21 @@ export const zh_CN: EnTranslations = {
         "name": "晨曦堡",
         "enterText": "你走进晨曦堡温暖而花香四溢的厅堂。",
         "leaveText": "你回到阳光洒落的花园草坪上。"
+      },
+      "house_eastbrook_quay_cottage": {
+        "name": "码头小屋",
+        "enterText": "你走进了自己的房屋。",
+        "leaveText": "你随手关上了前门。"
+      },
+      "house_fenbridge_warden_gatehouse": {
+        "name": "守望者门楼",
+        "enterText": "你走进了自己的房屋。",
+        "leaveText": "你随手关上了前门。"
+      },
+      "house_highwatch_watch_house": {
+        "name": "瞭望屋",
+        "enterText": "你走进了自己的房屋。",
+        "leaveText": "你随手关上了前门。"
       },
       "drowned_temple": {
         "name": "溺亡神殿",

@@ -12,6 +12,7 @@ import type { SavedCooldowns } from './cooldown_persist';
 import type { CourierState } from './courier';
 import type { SavedDeedStats } from './deeds';
 import type { PlayerEquipment } from './entity';
+import type { SavedHouseState } from './housing/house_state';
 import type { JailState } from './jail';
 import type { LocalGathererIdentity } from './material_gatherer';
 import type { MaterialComposition } from './material_sources';
@@ -116,6 +117,10 @@ export interface CharacterState extends ReferralRewardState {
   // defaulting to the empty locked vault). sanitizeVaultState is the one load path
   // (never destroys stock; tolerates an over-capacity count).
   vault?: SavedMaterialsVaultState;
+  // Player housing (Project H): the owned house lot. Absent for every character
+  // who never bought one (zero-default omission); sanitizeHouseState is the one
+  // load path. Forward-only: a pre-housing binary drops it on save.
+  house?: SavedHouseState;
   // Forward-only persistence: pre-feature binaries drop this field on save.
   weeklyRewards?: WeeklyRewardState;
   vendorBuyback?: InvSlot[];

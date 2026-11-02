@@ -509,6 +509,7 @@ import { FiestaController } from './hud/fiesta/fiesta_controller';
 import { GuildBoardWindow } from './hud/guild_board';
 import { GuildHallWindow } from './hud/guild_hall';
 import { buildHillBarView, HillBar } from './hud/hill';
+import { handleHouseEvent } from './hud/housing/house_event_feedback';
 import { LootRollController } from './hud/loot/loot_roll_controller';
 import { lootSettingsView } from './hud/loot/loot_settings_view';
 import { renderLootSettingsWindow } from './hud/loot/loot_settings_window';
@@ -11831,6 +11832,11 @@ export class Hud {
           // ratchet heal); the Hud itself is the host seam.
           handleFarmEvent(ev, this);
           this.plantSheetWindow.notifyFarmEvent(ev);
+          break;
+        case 'houseOffer':
+        case 'housePurchased':
+        case 'houseDenied': // Project H housing (src/ui/hud/housing/)
+          handleHouseEvent(ev, this, (x, l, ok) => this.showPrompt(x, l, ok, () => {}), sim);
           break;
         case 'gatherRareEvent': {
           // Soft zone broadcast (Professions 2.0): every recipient in the

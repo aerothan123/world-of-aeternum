@@ -39,6 +39,7 @@ import { tickBastionEncounters } from '../encounters/sunken_bastion';
 import { clearVarkhulEncounterAuras } from '../encounters/varkhul';
 import { tickWildheartEncounters } from '../encounters/wildheart_basin';
 import { createGroundObject, createMob, createNpc } from '../entity';
+import { houseEntryKey } from '../housing/ownership';
 import { updateIgnivarForgeLift } from '../ignivar_forge_lift';
 import {
   IGNIVAR_LIFT_ROOM_ID,
@@ -411,6 +412,11 @@ export function enterDungeon(
   // resurrect at its arrival point (below). A fresh corpse (dead, spirit not yet released)
   // cannot move, so it never reaches the door.
   if (r.e.dead && !r.e.ghost) return false;
+  // Player housing (Project H): a house lot's door admits only its owner, into
+  // a copy keyed on the owner (housing/ownership.ts); undefined for every real
+  // dungeon. The raid gates and the party-size warning below never apply to it.
+  const houseKey = houseEntryKey(ctx, r.meta, r.e, dungeonId, options.preflightOnly === true);
+  if (houseKey === null) return false;
   const party = ctx.partyOf(r.meta.entityId) ?? options.finderParty;
   // The raid return route (instances/raid_return.ts): a raider who cleared a
   // run and still holds its lock, but no longer belongs to a raid that owns
@@ -421,7 +427,7 @@ export function enterDungeon(
   // another room they cleared, or back out through the backtrack exits.
   // Every rule below then applies to the routed key as it would to a member.
   // A dev teleport names its room explicitly, so the route never applies.
-  const ownKey = instanceKeyFor(ctx, r.meta.entityId);
+  const ownKey = houseKey ?? instanceKeyFor(ctx, r.meta.entityId);
   const returnRoute =
     bypass || options.finderClaim !== undefined
       ? null
@@ -449,7 +455,7 @@ export function enterDungeon(
   }
   const raidAllowed = RAID_ALLOWED_DUNGEON_IDS.has(dungeonId);
   const raidRequired = RAID_REQUIRED_DUNGEON_IDS.has(dungeonId);
-  if (party?.raid && !raidAllowed) {
+  if (party?.raid && !raidAllowed && houseKey === undefined) {
     deny(r.meta.entityId, 'Raid groups cannot enter standard dungeons.');
     return false;
   }
@@ -757,7 +763,7 @@ export function enterDungeon(
       pid: r.meta.entityId,
     });
   }
-  if (!party || party.members.length < dungeon.suggestedPlayers) {
+  if (houseKey === undefined && (!party || party.members.length < dungeon.suggestedPlayers)) {
     ctx.emit({
       type: 'log',
       text: `${dungeon.name} is meant for a full party of ${dungeon.suggestedPlayers}. Tread carefully.`,

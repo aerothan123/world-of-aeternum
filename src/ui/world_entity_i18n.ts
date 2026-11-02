@@ -904,6 +904,11 @@ const DUNGEON_IDS = [
   'wildheart_basin',
   'the_last_keep',
   'dawnhold_castle',
+  // Player housing (Project H): one walk-in def per house lot
+  // (src/sim/content/house_lots.ts); the name is the house's name.
+  'house_eastbrook_quay_cottage',
+  'house_fenbridge_warden_gatehouse',
+  'house_highwatch_watch_house',
 ] as const;
 const DELVE_IDS = ['collapsed_reliquary', 'drowned_litany'] as const;
 // Ravenpost authored letters (src/sim/content/letters.ts): the welcome letter

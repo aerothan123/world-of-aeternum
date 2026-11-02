@@ -78,6 +78,7 @@ import type { IWorldDungeons } from '../src/world_api/dungeons';
 import type { IWorldEntityRoster } from '../src/world_api/entity_roster';
 import type { IWorldFarming } from '../src/world_api/farming';
 import type { IWorldGuildBank } from '../src/world_api/guild_bank';
+import type { IWorldHousing } from '../src/world_api/housing';
 import type { IWorldInteraction } from '../src/world_api/interaction';
 import type { IWorldInventory } from '../src/world_api/inventory';
 import type { IWorldLanceTrial } from '../src/world_api/lance_trial';
@@ -664,6 +665,10 @@ export const IWORLD_MEMBERS = [
   { name: 'trickOrTreatedToday', kind: 'data' },
   { name: 'hauntedPumpkinsFound', kind: 'data' },
   { name: 'trickOrTreat', kind: 'method' },
+  // IWorldHousing (housing.ts): player housing, Project H phase 1.
+  { name: 'houseLots', kind: 'data' },
+  { name: 'myHouse', kind: 'data' },
+  { name: 'buyHouse', kind: 'method' },
 ] as const satisfies readonly IWorldMember[];
 
 const DATA_MEMBERS = IWORLD_MEMBERS.filter((m) => m.kind === 'data');
@@ -1031,9 +1036,11 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
     // Riding ranks (PR 4390) add one method over the release: 466/140/329.
     // The portrait menu's unappliedDungeonDifficulty (method, PR 4625) adds one
     // more: 471/140/331.
-    expect(IWORLD_MEMBERS.length).toBe(471);
-    expect(DATA_MEMBERS.length).toBe(140);
-    expect(METHOD_MEMBERS.length).toBe(331);
+    // Player housing (Project H, housing.ts) adds houseLots and myHouse (data)
+    // and buyHouse (method): 474/142/332.
+    expect(IWORLD_MEMBERS.length).toBe(474);
+    expect(DATA_MEMBERS.length).toBe(142);
+    expect(METHOD_MEMBERS.length).toBe(332);
   });
   it('has no duplicate member names', () => {
     const names = IWORLD_MEMBERS.map((m) => m.name);
@@ -1114,6 +1121,7 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'buyCrucibleVendorItem',
       'buyGuildCosmetic',
       'buyHeroicVendorItem',
+      'buyHouse',
       'buyItem',
       'canRerollWorldQuest',
       'cancelAura',
@@ -1261,6 +1269,7 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'hoardBossCues',
       'hobbyCraft',
       'honor',
+      'houseLots',
       'ignoreAdd',
       'ignoreRemove',
       'interact',
@@ -1323,6 +1332,7 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'moveInventoryItem',
       'moveRaidMember',
       'myFarmPlots',
+      'myHouse',
       'nearbyWorldQuestTraces',
       'nodeHarvestableByMe',
       'nodeRespawnSeconds',
@@ -1590,6 +1600,7 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'hillInfo',
       'hobbyCraft',
       'honor',
+      'houseLots',
       'inventory',
       'known',
       'lanceGuidance',
@@ -1610,6 +1621,7 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'marketInfo',
       'moveInput',
       'myFarmPlots',
+      'myHouse',
       'nearbyWorldQuestTraces',
       'partyInfo',
       'petSpecialCommandsSupported',
@@ -1703,6 +1715,7 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'buyCrucibleVendorItem',
       'buyGuildCosmetic',
       'buyHeroicVendorItem',
+      'buyHouse',
       'buyItem',
       'canRerollWorldQuest',
       'cancelAura',
@@ -2737,6 +2750,12 @@ const FACET_SEASONAL = [
 ] as const satisfies readonly (keyof IWorldSeasonal)[];
 type _ExhaustSeasonal = AssertNever<Exclude<keyof IWorldSeasonal, (typeof FACET_SEASONAL)[number]>>;
 type _ExhaustSeating = AssertNever<Exclude<keyof IWorldSeating, (typeof FACET_SEATING)[number]>>;
+const FACET_HOUSING = [
+  'houseLots',
+  'myHouse',
+  'buyHouse',
+] as const satisfies readonly (keyof IWorldHousing)[];
+type _ExhaustHousing = AssertNever<Exclude<keyof IWorldHousing, (typeof FACET_HOUSING)[number]>>;
 
 // The facet partition, keyed by facet for legible failure messages.
 const FACET_MEMBER_ARRAYS: Readonly<Record<string, readonly string[]>> = {
@@ -2780,6 +2799,7 @@ const FACET_MEMBER_ARRAYS: Readonly<Record<string, readonly string[]>> = {
   worldPvp: FACET_WORLD_PVP,
   seating: FACET_SEATING,
   seasonal: FACET_SEASONAL,
+  housing: FACET_HOUSING,
 };
 
 describe('W1: aggregate IWorld member set equals the disjoint union of the facets', () => {
@@ -2801,7 +2821,8 @@ describe('W1: aggregate IWorld member set equals the disjoint union of the facet
     // 37 on feature/walkable-tavern-aaa: plus seating.ts (sit on furniture); 39 merged
     // into the v0.45.0 integration (its 38 plus seating.ts).
     // 40 with feature/halloween-event's seasonal.ts.
-    expect(Object.keys(FACET_MEMBER_ARRAYS).length).toBe(40);
+    // 41 with player housing's housing.ts (Project H).
+    expect(Object.keys(FACET_MEMBER_ARRAYS).length).toBe(41);
   });
 
   it('every facet FILE on disk is a FACET_MEMBER_ARRAYS key (none can go silently unpartitioned)', () => {
@@ -2887,8 +2908,8 @@ describe('W1: aggregate IWorld member set equals the disjoint union of the facet
     // adds resting (data) and sitOnSeat (the seating facet's method).
     // Plus Lantern Hall's guildContracts and buyGuildCosmetic, the riding
     // ranks method (PR 4390) and unappliedDungeonDifficulty (PR 4625).
-    expect(union.length, 'union size before dedup (catches a duplicated member)').toBe(471);
-    expect(new Set(union).size, 'union size after dedup (catches a duplicated member)').toBe(471);
+    expect(union.length, 'union size before dedup (catches a duplicated member)').toBe(474);
+    expect(new Set(union).size, 'union size after dedup (catches a duplicated member)').toBe(474);
     const sortedUnion = [...union].sort();
     const pinned = IWORLD_MEMBERS.map((m) => m.name).sort();
     expect(sortedUnion).toEqual(pinned);

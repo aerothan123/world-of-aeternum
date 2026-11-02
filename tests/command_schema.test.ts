@@ -197,8 +197,10 @@ const repoRoot = fileURLToPath(new URL('..', import.meta.url));
 // Sim.sitOnSeat) on feature/walkable-tavern-aaa: 248/262/14 on its own. Merged with
 // the v0.45.0 integration's 262/276: 263/277/14.
 // Main commands plus Gourdlight Eve trick-or-treat.
-const EXPECTED_SEND_COUNT = 273;
-const EXPECTED_DISPATCH_COUNT = 287;
+// Player housing (Project H) adds buy_house (sent by ClientWorld.buyHouse,
+// dispatched to Sim.buyHouse): 274/288/14.
+const EXPECTED_SEND_COUNT = 274;
+const EXPECTED_DISPATCH_COUNT = 288;
 const EXPECTED_DISPATCH_ONLY_COUNT = 14;
 
 // The chat sub-channel routing switch (server/game.ts `switch
@@ -336,7 +338,8 @@ describe('command schema parity (W0b)', () => {
   it('appends courier dispatch as a complete client/server command pair', () => {
     // The integration adds the dungeon guide answer, then the buddy rename command; the
     // Keep main wire tokens in place and append Gourdlight Eve.
-    expect(COMMAND_NAMES.slice(-7)).toEqual([
+    // Player housing (Project H) appends buy_house after trick_or_treat.
+    expect(COMMAND_NAMES.slice(-8, -1)).toEqual([
       'courier_dispatch',
       'dungeon_guide_answer',
       'buddy_rename',
@@ -345,6 +348,9 @@ describe('command schema parity (W0b)', () => {
       'guild_buy_cosmetic',
       'trick_or_treat',
     ]);
+    expect(COMMAND_NAMES.at(-1)).toBe('buy_house');
+    expect(sendSet.has('buy_house')).toBe(true);
+    expect(dispatchSet.has('buy_house')).toBe(true);
     expect(sendSet.has('guild_buy_cosmetic')).toBe(true);
     expect(dispatchSet.has('guild_buy_cosmetic')).toBe(true);
     expect(sendSet.has('courier_dispatch')).toBe(true);

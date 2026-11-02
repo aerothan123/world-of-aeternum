@@ -73,7 +73,8 @@ export function resolveFogScene(
   // The Gravewyrm Sanctum: open-air at polar dusk under its own sky.
   const inGravewyrmSanctum = interior === 'gravewyrm_sanctum';
   const inLastKeep = interior === 'lastkeep';
-  const inDawnhold = interior === 'dawnhold';
+  // Player houses (Project H) share Dawnhold's warm daylight grade.
+  const inDawnhold = interior === 'dawnhold' || interior === 'house';
   const desired: FogSceneState = inDelve
     ? 'delve'
     : inYumiMaze

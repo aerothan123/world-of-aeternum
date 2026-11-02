@@ -554,7 +554,10 @@ const MONOLITHS: MonolithRow[] = [
     // Honor and companions. Measured after recovery integration, zero slack.
     // Main ce21c7a66f5 sync: parent pins 18043 (Halloween) and 17733 (main).
     // Exact combined count; the three seasonal wiring lines are preserved.
-    ceiling: 17736,
+    // Player housing (Project H) adds its one-call event arm (three case labels
+    // and the handleHouseEvent call; the rules live in src/ui/hud/housing/):
+    // 17736 -> 17739, raised in the Project H fork (a maintainer call).
+    ceiling: 17739,
     seam: 'pure view core + thin painter on PainterHost (src/ui/CLAUDE.md)',
   },
   {
@@ -1318,7 +1321,10 @@ const MONOLITHS: MonolithRow[] = [
     // riding progression lives in riding_training.ts. wc -l on the merged tree.
     // 11485 after the courier full-bank sync (PR 4598). wc -l.
     // 11490 with the difficulty menu fix (PR 4625) merged ahead of its landing. wc -l.
-    ceiling: 11410,
+    // Player housing (Project H) adds four thin IWorldHousing delegates and their
+    // two imports (the rules live in src/sim/housing/): 11410 -> 11424, raised in
+    // the Project H fork (a maintainer call).
+    ceiling: 11424,
     seam: 'a sim system module behind SimContext (src/sim/CLAUDE.md)',
   },
   {
@@ -1862,7 +1868,9 @@ const MONOLITHS: MonolithRow[] = [
     // Main ce21c7a66f5 sync: parent pins 9758 (Halloween) and 9693 (main).
     // Exact combined count; the three seasonal wiring lines are preserved.
     // Final-save retry and sweep policy now live in character_final_save.ts.
-    ceiling: 9666,
+    // Player housing (Project H) adds the buy_house dispatch case and the O(1)
+    // `hse` self key: 9666 -> 9670, raised in the Project H fork (a maintainer call).
+    ceiling: 9670,
     seam: 'a sibling server module; see the hot-path seams in server/CLAUDE.md',
   },
   {

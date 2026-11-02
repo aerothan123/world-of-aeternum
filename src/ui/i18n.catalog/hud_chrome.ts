@@ -11282,4 +11282,21 @@ export const hudChromeStrings = {
     progress: '{label}: {count}/{required}',
     done: 'Weekly quest complete: {category}',
   },
+  // Player housing (Project H, src/ui/hud/housing/). {house} is the lot's
+  // localized house name, {price} a formatMoney amount.
+  housing: {
+    // The door prompt a non-owner gets on walking into a lot's front door.
+    offerText: '{house} is for sale for {price}. Buy it?',
+    buy: 'Buy House',
+    // A character owns one house at a time.
+    alreadyOwn: 'You already own {house}. A character can own one house.',
+    purchased: 'You bought {house}. Walk through its front door to step inside.',
+    denied: {
+      badLot: 'That house is not for sale.',
+      owned: 'You already own a house.',
+      range: 'You are too far from the front door of {house}.',
+      money: 'You cannot afford {house}.',
+      dead: 'You cannot buy a house while dead.',
+    },
+  },
 };

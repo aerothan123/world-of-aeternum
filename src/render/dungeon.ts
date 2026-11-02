@@ -681,7 +681,7 @@ export class DungeonInteriors {
                       ? IGNIVAR_LAYOUT
                       : (INTERIOR_LAYOUTS[interior] ?? CRYPT_LAYOUT));
     const torch = opts?.style?.torch ?? TORCH_COLORS[variant];
-    const daisRaised = opts?.style?.daisRaised;
+    const daisRaised = interior === 'house' ? false : opts?.style?.daisRaised; // house: flat
     const group = new THREE.Group();
     const registry = createOwnedInteriorResourceRegistry();
     this.interiorResources.set(group, registry);
@@ -736,7 +736,7 @@ export class DungeonInteriors {
             // banners, and mounted torches instanced along the authored room walls.
             await ensureLastKeepDressing();
             buildLastKeepDressing(group, light, this.lowGfx);
-          } else if (variant === 'dawnhold') {
+          } else if (variant === 'dawnhold' && interior !== 'house') {
             // Dawnhold Castle has NO cold story: every room burns the same warm
             // garden-gold flame, and the dressing pass fills it with kcas
             // furniture, planters, and flowers.
@@ -1340,7 +1340,7 @@ export class DungeonInteriors {
     // accidentally trip the bastion-band check below.
     if (interior === 'lastkeep') return 'lastkeep';
     // Dawnhold Castle, same reasoning in the overflow band.
-    if (interior === 'dawnhold') return 'dawnhold';
+    if (interior === 'dawnhold' || interior === 'house') return 'dawnhold'; // + Project H houses
     const bastionX = instanceOrigin(1, 0).x;
     if (Math.abs(ox - bastionX) < 250) return 'bastion';
     return 'crypt';

@@ -190,6 +190,7 @@ import {
   FARM_PATCHES,
   type FarmPatchDef,
 } from './content/farm_patches';
+import { HOUSE_LOTS } from './content/house_lots';
 import {
   CRUCIBLE_VENDOR_ENTITY_ID,
   CRUCIBLE_VENDOR_ENTRANCE_POS,
@@ -305,6 +306,7 @@ import { type GuildContractsView, guildContractsView } from './guild_contracts';
 import { buyGuildCosmetic, type GuildAccountPort } from './guild_quartermaster';
 import { spawnHealingTrainingGround } from './healing_training';
 import { talkToGuildResident } from './highwatch_guild';
+import { buyHouse as buyHouseAction, type HouseView, houseViewFor } from './housing/ownership';
 import { spawnDevHealerPracticeDummy, spawnHubPractice } from './hub_practice';
 import * as raidReadouts from './ignivar_raid_readouts';
 import * as interaction from './interaction';
@@ -11314,6 +11316,18 @@ export class Sim {
   // value projectFarmPlots was handed). Draw-free pure read.
   farmNowMs(): number {
     return this.lockoutNowMs();
+  }
+
+  // Player housing (Project H): thin delegates over housing/ownership.ts.
+  readonly houseLots = HOUSE_LOTS;
+  houseFor(pid: number): HouseView | null {
+    return houseViewFor(this.players.get(pid));
+  }
+  get myHouse(): HouseView | null {
+    return this.houseFor(this.primaryId);
+  }
+  buyHouse(lotId: string, pid?: number): void {
+    buyHouseAction(this.ctx, lotId, pid);
   }
 
   // Plant a crop with the optional plant-time knob payload. Thin delegate:

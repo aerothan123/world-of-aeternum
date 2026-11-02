@@ -7985,6 +7985,19 @@ export const ko_KR: EnTranslations = {
       "chosen": "주간 퀘스트 수락: {category}",
       "progress": "{label}: {count}/{required}",
       "done": "주간 퀘스트 완료: {category}"
+    },
+    "housing": {
+      "offerText": "{house}이(가) {price}에 매물로 나와 있습니다. 구매하시겠습니까?",
+      "buy": "집 구매",
+      "alreadyOwn": "이미 {house}을(를) 소유하고 있습니다. 캐릭터당 집은 한 채만 소유할 수 있습니다.",
+      "purchased": "{house}을(를) 구매했습니다. 정문을 통해 안으로 들어가세요.",
+      "denied": {
+        "badLot": "그 집은 판매하지 않습니다.",
+        "owned": "이미 집을 소유하고 있습니다.",
+        "range": "{house}의 정문에서 너무 멉니다.",
+        "money": "{house}을(를) 살 돈이 부족합니다.",
+        "dead": "죽은 상태에서는 집을 구매할 수 없습니다."
+      }
     }
   },
   "gatherEvent": {
@@ -30507,6 +30520,21 @@ export const ko_KR: EnTranslations = {
         "name": "던홀드 성",
         "enterText": "꽃향기 가득한 던홀드 성의 따뜻한 홀 안으로 들어섭니다.",
         "leaveText": "햇살 가득한 정원 잔디밭으로 다시 나옵니다."
+      },
+      "house_eastbrook_quay_cottage": {
+        "name": "부두 오두막",
+        "enterText": "자신의 집으로 들어섰습니다.",
+        "leaveText": "현관문을 닫고 밖으로 나왔습니다."
+      },
+      "house_fenbridge_warden_gatehouse": {
+        "name": "감시인의 문루",
+        "enterText": "자신의 집으로 들어섰습니다.",
+        "leaveText": "현관문을 닫고 밖으로 나왔습니다."
+      },
+      "house_highwatch_watch_house": {
+        "name": "망루 집",
+        "enterText": "자신의 집으로 들어섰습니다.",
+        "leaveText": "현관문을 닫고 밖으로 나왔습니다."
       },
       "drowned_temple": {
         "name": "익사한 신전",

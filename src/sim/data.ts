@@ -177,6 +177,7 @@ import { HOARD_ITEMS } from './content/hoard_loot';
 import { HOLLOW_CRYPT_MOBS } from './content/hollow_crypt';
 import { HOLLOW_CRYPT_ITEMS } from './content/hollow_crypt_items';
 import { HOLLOW_CRYPT_TRASH_MOBS } from './content/hollow_crypt_trash';
+import { HOUSE_LOT_DUNGEON_DEFS } from './content/house_lots';
 import {
   IGNIVAR_RAID_LORE_NPCS,
   IGNIVAR_RAID_LORE_QUEST_ORDER,
@@ -1553,6 +1554,8 @@ export const DUNGEONS: Record<string, DungeonDef> = {
   ...DUNGEON_DEFS,
   ...TEMPLE_DUNGEON_DEFS,
   ...WILDHEART_DUNGEON_DEFS,
+  // Player housing (Project H): one zero-combat walk-in def per house lot.
+  ...HOUSE_LOT_DUNGEON_DEFS,
 };
 
 export const DUNGEON_LIST: DungeonDef[] = Object.values(DUNGEONS).sort((a, b) => a.index - b.index);

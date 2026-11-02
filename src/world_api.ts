@@ -59,6 +59,8 @@
 //   world_pvp.ts        IWorldWorldPvp       the /pvp flag: self readout + raise/lower command
 //   seating.ts          IWorldSeating        sit on a piece of furniture by its seat id
 //   seasonal.ts         IWorldSeasonal       the running seasonal event + trick-or-treat
+//   housing.ts          IWorldHousing        player housing: the static lots, the caller's own
+//                                            house, and the purchase command (Project H)
 //
 // THREE GATES pin this seam (run before any facet edit; the literal counts are
 // pinned THERE and re-stale here, so this prose stays count-free):
@@ -88,6 +90,7 @@ import type { IWorldDungeons } from './world_api/dungeons';
 import type { IWorldEntityRoster } from './world_api/entity_roster';
 import type { IWorldFarming } from './world_api/farming';
 import type { IWorldGuildBank } from './world_api/guild_bank';
+import type { IWorldHousing } from './world_api/housing';
 import type { IWorldInteraction } from './world_api/interaction';
 import type { IWorldInventory } from './world_api/inventory';
 import type { IWorldLanceTrial } from './world_api/lance_trial';
@@ -133,6 +136,7 @@ export type {
   DeedStats,
   OverheadEmoteId,
 } from './sim/types';
+export type { HouseLotDef, HouseView } from './world_api/housing';
 export type { VehicleSession } from './world_api/vehicles';
 
 // Online world and required-snapshot compatibility is encoded in the first
@@ -533,7 +537,8 @@ export interface IWorld
     IWorldWorldPvp,
     IWorldBuddies,
     IWorldSeating,
-    IWorldSeasonal {}
+    IWorldSeasonal,
+    IWorldHousing {}
 
 // ---------------------------------------------------------------------------
 // Command schema (W0b): the shared wire-token vocabulary.
@@ -1009,6 +1014,10 @@ export const COMMAND_NAMES = [
   'guild_buy_cosmetic',
   // Say trick or treat to an NPC (IWorldSeasonal.trickOrTreat; src/sim/seasonal/).
   'trick_or_treat',
+  // Player housing (Project H): buy the house on a lot (Sim.buyHouse via
+  // src/sim/housing/ownership.ts). Carries the lot id only; the sim owns every
+  // rule. Appended because wire tokens are never reordered.
+  'buy_house',
 ] as const;
 
 // The union both the send path (`online.ts`) and the dispatch switch
@@ -1104,7 +1113,8 @@ export type WorldFacet =
   | 'IWorldWorldPvp'
   | 'IWorldBuddies'
   | 'IWorldSeating'
-  | 'IWorldSeasonal';
+  | 'IWorldSeasonal'
+  | 'IWorldHousing';
 
 export const COMMAND_FACETS = {
   weekly_reward_claim: 'IWorldBank',
@@ -1434,4 +1444,7 @@ export const COMMAND_FACETS = {
   // IWorldSeasonal: the trick-or-treat knock (the event and the day's knocks are
   // the `season` / `tot` self-delta mirrors, untagged).
   trick_or_treat: 'IWorldSeasonal',
+  // IWorldHousing: the purchase verb. houseLots (static content) and myHouse
+  // (the `hse` self-delta mirror) carry no wire command and stay untagged.
+  buy_house: 'IWorldHousing',
 } as const satisfies Partial<Record<ClientCommand, WorldFacet>>;

@@ -4,6 +4,11 @@ import { sanitizeBankState, savedBankState } from './bank';
 import type { CharacterState } from './character_state';
 import { sanitizeCourierState, savedCourierState } from './courier';
 import { absorbLegacyHeroicMarkSlots, sanitizeHeroicMarks } from './heroic_marks';
+import {
+  type HousingPlayerState,
+  sanitizeHouseState,
+  savedHouseState,
+} from './housing/house_state';
 import { savedMaterialSlot } from './material_slot_load';
 import * as vaultMod from './materials_vault';
 import { BAG_SOCKETS, restoreMembershipBag } from './membership_bag_slot';
@@ -32,6 +37,8 @@ export function restoreCharacterStorage(
   meta.heroicMarks = sanitizeHeroicMarks(s.heroicMarks);
   absorbLegacyHeroicMarkSlots(meta);
   restoreMembershipBag(meta, s);
+  // Player housing (Project H): the owned lot, or none (housing/house_state.ts).
+  meta.house = sanitizeHouseState(s.house);
 }
 
 export function savedCharacterStorage(
@@ -47,6 +54,7 @@ export function savedCharacterStorage(
   | 'vendorBuyback'
   | 'courier'
   | 'membershipBag'
+  | 'house'
 > {
   return {
     inventory: meta.inventory.map(savedMaterialSlot),
@@ -63,11 +71,13 @@ export function savedCharacterStorage(
       : {}),
     // Absent at zero, so a character that never earned a mark saves unchanged.
     ...(meta.heroicMarks > 0 ? { heroicMarks: meta.heroicMarks } : {}),
+    // Absent until a house is bought, so every other save stays byte-equal.
+    ...(meta.house ? { house: savedHouseState(meta.house) } : {}),
   };
 }
 
 /** Live storage owned by this load/save boundary. */
-export interface CharacterVaultStorageState {
+export interface CharacterVaultStorageState extends HousingPlayerState {
   // The per-character Materials Vault: a count per material id with a gold-bought
   // per-material ceiling. Capacity and move math live in materials_vault.ts.
   // Persisted (inside the character save, exactly like inventory/bags/bank).

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { houseLotForDungeon } from '../sim/content/house_lots';
 import { activeDungeonDoorPos, DUNGEONS } from '../sim/data';
 import { FORGEFATHER_FORTRESS_PLACEMENTS } from '../sim/forgefather_fortress';
 import { RIFT_TIER_COLORS, type RiftTier } from '../sim/types';
@@ -989,6 +990,8 @@ export function doorArchAuthoredElsewhere(
   placements: readonly { key: string; x?: number; z?: number }[] = FORGEFATHER_FORTRESS_PLACEMENTS,
 ): boolean {
   if (dungeonId === 'nythraxis_crypt') return true;
+  // A player house lot (Project H) enters through the house's own front door.
+  if (dungeonId && houseLotForDungeon(dungeonId)) return true;
   // The Gravewyrm Sanctum's Seal Gate (sanctum_seal_gate.ts) is the door: its
   // pylons frame the walk-in lane and its cold mist film is the portal look.
   if (dungeonId === 'gravewyrm_sanctum') return true;

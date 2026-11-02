@@ -46,6 +46,7 @@ import { ENCHANTS } from '../src/sim/content/enchants';
 import { FARM_CROPS } from '../src/sim/content/farm_crops';
 import { FARM_BED_IDS } from '../src/sim/content/farm_patches';
 import { GATHER_NODES } from '../src/sim/content/gather_nodes';
+import { houseLotForDungeon } from '../src/sim/content/house_lots';
 import { MEMBERSHIP_ITEMS } from '../src/sim/content/membership';
 import {
   CRAFT_RING,
@@ -107,6 +108,12 @@ import {
 import { stripComments } from './helpers/strip_comments';
 import { EMPTY_TEST_WORLD } from './sim_shared';
 
+// Every dungeon a save can carry clears, lockouts or a heroic mark for. A
+// player house lot (Project H, src/sim/content/house_lots.ts) rides a walk-in
+// DungeonDef but has no boss, so no real save ever records one: the maxima
+// below leave them out rather than inflating the bound with unreachable rows.
+const FIXTURE_DUNGEON_IDS = Object.keys(DUNGEONS).filter((id) => !houseLotForDungeon(id));
+
 // This file never spawns, targets, or asserts on a camp, npc, or ground
 // object: every expect() resolves to a static content-table length/id, a
 // literal the test itself assigns, or a self-consistency check between two
@@ -114,6 +121,7 @@ import { EMPTY_TEST_WORLD } from './sim_shared';
 // terrain, props, and playerStart identical to the built-in world (so
 // findSafePos/groundPos still settle every fixture the same way) while
 // skipping the camp/npc/ground-object population that this file never reads.
+
 const makeSim = (seed = 31, nowMs?: number) =>
   new Sim({
     seed,
@@ -1804,7 +1812,7 @@ function maximalCharacterSim(): Sim {
   for (const id of vaultMaterialIds()) meta.vault.stock[id] = perMaterial;
 
   // Every raid and world-boss lockout live (a week out on the fixture clock).
-  for (const id of Object.keys(DUNGEONS)) {
+  for (const id of FIXTURE_DUNGEON_IDS) {
     meta.raidLockouts.set(id, CEILING_EPOCH_MS + SEVEN_DAYS_MS);
   }
   for (const boss of WORLD_BOSSES) {
@@ -1822,7 +1830,7 @@ function maximalCharacterSim(): Sim {
     if ((VISITED_MARK_NAMESPACES as readonly string[]).includes(ns))
       meta.deedStats.visited.add(mark);
   }
-  for (const id of Object.keys(DUNGEONS)) {
+  for (const id of FIXTURE_DUNGEON_IDS) {
     meta.deedStats.dungeonClears[id] = 999;
     meta.deedStats.dungeonClears[`${id}:heroic`] = 999;
   }
@@ -1858,7 +1866,7 @@ function maximalCharacterSim(): Sim {
   const loreBlock = runsSrc.slice(loreAnchor, runsSrc.indexOf('] as const', loreAnchor));
   for (const m of loreBlock.matchAll(/'([a-z_]+)'/g)) meta.delveLoreUnlocked.add(m[1]);
   meta.heroicDaily.date = MAXIMAL_EPOCH_DATE;
-  for (const id of Object.keys(DUNGEONS)) meta.heroicDaily.marked.add(id);
+  for (const id of FIXTURE_DUNGEON_IDS) meta.heroicDaily.marked.add(id);
 
   // Talents: a full allocation, and the loadout list at its cap, each loadout
   // a full allocation with every bar slot filled.
@@ -2147,14 +2155,14 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
     expect(vaultMaterialIds().size).toBeGreaterThan(100);
     expect(s2.vault?.upgrades).toBe(VAULT_UPGRADE_RUNGS);
     expect(Object.keys(s2.raidLockouts ?? {})).toHaveLength(
-      Object.keys(DUNGEONS).length + WORLD_BOSSES.length,
+      FIXTURE_DUNGEON_IDS.length + WORLD_BOSSES.length,
     );
     expect(Object.keys(s2.deeds ?? {})).toHaveLength(Object.keys(DEEDS).length);
     expect(s2.deedStats?.itemsDiscovered).toHaveLength(Object.keys(ITEMS).length);
     expect(Object.keys(ITEMS).length).toBeGreaterThan(900);
     expect(s2.deedStats?.visited?.length ?? 0).toBeGreaterThan(20);
     expect(Object.keys(s2.deedStats?.dungeonClears ?? {})).toHaveLength(
-      2 * Object.keys(DUNGEONS).length,
+      2 * FIXTURE_DUNGEON_IDS.length,
     );
     expect(Object.keys(s2.reliquary?.firstFind ?? {})).toHaveLength(RELIQUARY_ITEM_TO_PAGES.size);
     expect(s2.reliquary?.marks).toHaveLength(RELIQUARY_MARK_IDS.size);
@@ -2162,7 +2170,7 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
     expect(s2.reliquary?.illuminatedPages).toHaveLength(RELIQUARY_PAGES.length);
     expect(Object.keys(s2.delveClears ?? {})).toHaveLength(Object.keys(DELVES).length);
     expect(s2.delveLoreUnlocked).toHaveLength(5);
-    expect(s2.heroicDaily?.marked).toHaveLength(Object.keys(DUNGEONS).length);
+    expect(s2.heroicDaily?.marked).toHaveLength(FIXTURE_DUNGEON_IDS.length);
     expect(s2.loadouts).toHaveLength(MAX_LOADOUTS);
     expect(s2.loadouts?.every((l) => l.bar.length === SAVED_LOADOUT_BAR_SLOTS)).toBe(true);
     expect(Object.keys(s2.cooldowns?.abilities ?? {}).length).toBeGreaterThan(5);

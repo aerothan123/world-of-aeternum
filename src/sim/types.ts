@@ -6401,7 +6401,10 @@ export interface DungeonDef {
     | 'drowned_temple'
     | 'gravewyrm_sanctum'
     | 'lastkeep'
-    | 'dawnhold';
+    | 'dawnhold'
+    // Player housing (Project H): a private house interior behind a town lot's
+    // door (src/sim/content/house_lots.ts, layout in src/sim/housing/).
+    | 'house';
   /**
    * What dresses this dungeon's wall-side obstacle slots (matches the render
    * variant): coffins get one standable lid, cargo splits into the crate
@@ -11522,6 +11525,19 @@ export type SimEvent = { pid?: number } & (
   // snapshot), so this exists only to drive the placer's cue and toast.
   // `feastId` is the spawned entity id.
   | { type: 'farmFeastPlaced'; pid: number; feastId: number }
+  // Player housing (Project H, src/sim/housing/ownership.ts). Personal and
+  // text-free like the farm events: the client localizes from the ids.
+  // houseOffer: a non-owner walked into a house lot's door; `ownedLotId` is
+  // set when they already own a house elsewhere (one per character).
+  | { type: 'houseOffer'; pid: number; lotId: string; priceCopper: number; ownedLotId?: string }
+  | { type: 'housePurchased'; pid: number; lotId: string }
+  // Wire enum: append only, never reorder.
+  | {
+      type: 'houseDenied';
+      pid: number;
+      lotId: string;
+      reason: 'bad_lot' | 'owned' | 'range' | 'money' | 'dead';
+    }
 );
 
 export interface MoveInput {

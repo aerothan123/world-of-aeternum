@@ -5894,6 +5894,7 @@ const ALL_DELTA_KEYS = [
   'hpref',
   'hpw',
   'hrat',
+  'hse',
   'inv',
   'lance',
   'lguide',
@@ -6051,6 +6052,7 @@ const TERSE_TO_IWORLD: Record<string, string> = {
   hpf: 'hauntedPumpkinsFound',
   hpref: 'harvestPreference',
   hrat: 'hasteRating',
+  hse: 'myHouse',
   inv: 'inventory',
   lance: 'lanceTrial',
   lhonor: 'lifetimeHonor',
@@ -6295,6 +6297,8 @@ function dirtyEveryDeltaField(): {
   meta.prestigeRank = 3;
   meta.delveMarks = 7;
   meta.heroicMarks = 9;
+  // Player housing (Project H): an owned house, so the hse self key rides.
+  meta.house = { lot: 'eastbrook_quay_cottage', boughtDay: '2026-11-01' };
   meta.delveClears = { 'collapsed_reliquary:heroic': 1 };
   meta.companionUpgrades = { companion_tessa: 2 };
   meta.gatheringProficiency = { mining: 6, logging: 0, herbalism: 0, fishing: 0, farming: 0 };
@@ -6756,6 +6760,7 @@ describe('full self-state snapshot delta fixture', () => {
     expect(client.factionCurrencies).toEqual({ rift_watch: 17, church_order: 29, automatons: 41 });
     expect(client.treasureMap).toEqual({ rarity: 'epic', siteId: TREASURE_SITES[0].id });
     expect(client.alliedHearthstoneAttunement).toBe('automatons');
+    expect(client.myHouse).toEqual({ lotId: 'eastbrook_quay_cottage' });
     expect(lastSnap(fc.sent).self.tmap).not.toHaveProperty('seed');
 
     // --- fields that decode onto the player ENTITY (client.player), not the client ---
@@ -7660,8 +7665,9 @@ describe('delta-key contract pins (anti-drift)', () => {
     // +1: Lantern Hall's weekly contract board gcon (server/quest_snapshot_wire.ts), for 125.
     // Courier vault and other-character stores add one owner delta key.
     // +1: the portrait menu's unapplied claim tier udiff (server/self_scalar_wire.ts).
-    expect(ALL_DELTA_KEYS).toHaveLength(136);
-    expect(new Set(ALL_DELTA_KEYS).size).toBe(136);
+    // +1: player housing's own house hse (Project H), for 137.
+    expect(ALL_DELTA_KEYS).toHaveLength(137);
+    expect(new Set(ALL_DELTA_KEYS).size).toBe(137);
     expect([...ALL_DELTA_KEYS]).toEqual([...ALL_DELTA_KEYS].sort());
   });
 
@@ -7842,7 +7848,8 @@ describe('delta-key contract pins (anti-drift)', () => {
     // Lantern Hall's contract board gcon (quest_snapshot_wire.ts) makes 125.
     // Courier vault and other-character stores add one owner delta key.
     // The unapplied claim tier udiff (self_scalar_wire.ts) adds one more.
-    expect(scraped.size).toBe(136);
+    // Player housing's own house hse (Project H) makes 137.
+    expect(scraped.size).toBe(137);
     expect([...scraped].sort()).toEqual([...ALL_DELTA_KEYS].sort());
   });
 
@@ -7921,6 +7928,8 @@ describe('delta-key contract pins (anti-drift)', () => {
       // The farming own-plot delta: the wire key and the IWorld name share no
       // stem, so a typo on either side would decode onto nothing at all.
       fplot: 'myFarmPlots',
+      // Player housing's own house (Project H): no shared stem either.
+      hse: 'myHouse',
       courier: 'courierInfo',
       courierData: 'courierInfo',
       courierLegTicks: 'courierInfo',

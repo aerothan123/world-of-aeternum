@@ -7277,6 +7277,9 @@ export class GameServer {
       case 'sit_seat':
         if (typeof msg.seat === 'string' && msg.seat.length <= 64) sim.sitOnSeat(msg.seat, pid);
         break;
+      case 'buy_house': // Project H housing: the sim owns every rule (housing/ownership.ts).
+        if (typeof msg.lot === 'string' && msg.lot.length <= 64) sim.buyHouse(msg.lot, pid);
+        break;
 
       // Talents & Specializations — every allocation re-validated in the Sim.
       case 'applyTalents': {
@@ -8389,6 +8392,7 @@ export class GameServer {
     // Small PvP-ledger scalars, delta-guarded like delve marks (a fresh session gets both).
     maybe('honor', meta.honor);
     maybe('lhonor', meta.lifetimeHonor);
+    maybe('hse', this.sim.houseFor(anchorSession.pid)); // own house: O(1) meta field (Project H)
     if (this.sim.tickCount - session.lastWpvpWireTick >= worldPvpWire.WPVP_WIRE_INTERVAL_TICKS) {
       session.lastWpvpWireTick = this.sim.tickCount;
       maybe('wpvp', this.sim.worldPvpInfoFor(anchorSession.pid));

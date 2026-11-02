@@ -7985,6 +7985,19 @@ export const ja_JP: EnTranslations = {
       "chosen": "週間クエストを受注：{category}",
       "progress": "{label}：{count}/{required}",
       "done": "週間クエスト完了：{category}"
+    },
+    "housing": {
+      "offerText": "{house}が{price}で売りに出されている。購入する？",
+      "buy": "家を購入",
+      "alreadyOwn": "すでに{house}を所有している。1キャラクターにつき家は1軒まで。",
+      "purchased": "{house}を購入した。正面の扉から中に入れる。",
+      "denied": {
+        "badLot": "その家は売りに出されていない。",
+        "owned": "すでに家を所有している。",
+        "range": "{house}の正面の扉から遠すぎる。",
+        "money": "{house}を買う余裕がない。",
+        "dead": "死亡中は家を購入できない。"
+      }
     }
   },
   "gatherEvent": {
@@ -30507,6 +30520,21 @@ export const ja_JP: EnTranslations = {
         "name": "ドーンホールド城",
         "enterText": "花の香り漂うドーンホールド城の暖かな広間へ足を踏み入れた。",
         "leaveText": "日差しあふれる庭園の芝生へと戻った。"
+      },
+      "house_eastbrook_quay_cottage": {
+        "name": "波止場の小屋",
+        "enterText": "自分の家に足を踏み入れた。",
+        "leaveText": "玄関の扉を閉めて外に出た。"
+      },
+      "house_fenbridge_warden_gatehouse": {
+        "name": "番人の門番小屋",
+        "enterText": "自分の家に足を踏み入れた。",
+        "leaveText": "玄関の扉を閉めて外に出た。"
+      },
+      "house_highwatch_watch_house": {
+        "name": "見張りの家",
+        "enterText": "自分の家に足を踏み入れた。",
+        "leaveText": "玄関の扉を閉めて外に出た。"
       },
       "drowned_temple": {
         "name": "溺れし神殿",
