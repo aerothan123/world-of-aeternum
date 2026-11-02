@@ -5,7 +5,7 @@
 // CRAFT_RING entry without a matching key fails here, not in a tooltip.
 
 import { describe, expect, it } from 'vitest';
-import { CRAFT_RING } from '../src/sim/content/professions';
+import { CRAFT_RING, SECONDARY_CRAFTS } from '../src/sim/content/professions';
 import {
   CRAFT_NAME_KEYS,
   craftNameKey,
@@ -13,10 +13,10 @@ import {
 } from '../src/ui/hud/professions/craft_name_view';
 
 describe('craft_name_view', () => {
-  it('covers every CRAFT_RING id, with no stale extras', () => {
-    const ringIds = CRAFT_RING.map((craft) => craft.id).sort();
+  it('covers every CRAFT_RING and SECONDARY_CRAFTS id, with no stale extras', () => {
+    const ringIds = [...CRAFT_RING, ...SECONDARY_CRAFTS].map((craft) => craft.id).sort();
     expect(Object.keys(CRAFT_NAME_KEYS).sort()).toEqual(ringIds);
-    for (const craft of CRAFT_RING) {
+    for (const craft of [...CRAFT_RING, ...SECONDARY_CRAFTS]) {
       expect(craftNameKey(craft.id), craft.id).toBe(`hudChrome.craftName.${craft.id}`);
     }
   });

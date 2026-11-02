@@ -933,10 +933,14 @@ describe('the professions blob growth bound (phase 16)', () => {
     // 204 -> 209 recipes and +8 retainable ids at the faction quartermasters
     // (src/sim/content/faction_vendors.ts, the Buried Hoards merge): five recipes
     // and three formula-taught etchings sold for faction marks.
-    expect(new Set(ALL_RECIPES.map((recipe) => recipe.id)).size).toBe(209);
+    // 209 -> 221 with the twelve Furnishing rows (Project H housing phase 2,
+    // src/sim/content/recipes.ts FURNISHING_RECIPES), all trainer-taught and
+    // so all retainable known ids.
+    expect(new Set(ALL_RECIPES.map((recipe) => recipe.id)).size).toBe(221);
     // 209 with the four learned faction formulas (content/enchants.ts), each
     // a retained `acquisition: 'drop'` enchant id like Zeal.
-    expect(RETAINABLE_KNOWN_IDS.size).toBe(217);
+    // 217 -> 229 with the twelve Furnishing recipe ids (Project H housing phase 2).
+    expect(RETAINABLE_KNOWN_IDS.size).toBe(229);
     expect(RETAINABLE_KNOWN_IDS.size).toBeLessThan(MAX_KNOWN_RECIPE_IDS);
     expect(s2.knownRecipes).toContain('enchant_weapon_lastflame_zeal');
     // Derived from the refusal policy so a profession becoming slottable
@@ -1226,8 +1230,10 @@ describe('the professions blob growth bound (phase 16)', () => {
     // One quest recipe adds exactly 30 UTF-8 bytes to retained knowledge.
     // +247 at the faction quartermasters (Buried Hoards merge, measured exactly):
     // the five vendor recipe ids and three vendor enchant ids in knownRecipes.
-    expect(bytes).toBeGreaterThan(18842);
-    expect(bytes).toBeLessThan(19223);
+    // +296 with the twelve Furnishing recipe ids in knownRecipes (Project H
+    // housing phase 2): 19,519 measured; edge plus one, floor minus 380.
+    expect(bytes).toBeGreaterThan(19139);
+    expect(bytes).toBeLessThan(19520);
     // Strictly dominated by the band's upper edge while the band holds:
     // kept as documentation that the structural ceiling also bounds this
     // state, never the live guard.
@@ -2056,10 +2062,13 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
     // skull 42 + Titan 26 + PvP titles 138 + Hard maze 34 + skull bag 62
     // + vault retune 119 + quiver 66 + quest shields 68. No storage limit changes.
     // Advanced riding adds the sparse ridingTier scalar (+15, PR 4390).
-    expect(baselineBytes).toBe(261480);
+    // Player housing phase 2 adds the twelve Furnishing recipe ids to retained
+    // knowledge (+510, measured; no storage limit changes).
+    expect(baselineBytes).toBe(261990);
     expect(bytes - baselineBytes).toBe(8284);
     // 266,699 -> 266,721 with Wobbles the Slime's reins (+22, kept).
-    expect(bytes).toBe(269764);
+    // +510 with the Furnishing recipe ids (Project H housing phase 2).
+    expect(bytes).toBe(270274);
     // Keep the warning threshold unchanged: saves above it remain whole.
     expect(bytes).toBeGreaterThan(CHARACTER_BLOB_WARN_BYTES);
     process.stdout.write(
@@ -2098,8 +2107,8 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
     // professions arm pins, so the two measurements can never describe
     // different fixtures.
     const professions = professionsBytes(s2);
-    expect(professions).toBeGreaterThan(18842);
-    expect(professions).toBeLessThan(19223);
+    expect(professions).toBeGreaterThan(19139);
+    expect(professions).toBeLessThan(19520);
 
     // Every container really reached its ceiling through the load (the
     // `field in state` and non-empty pins above are the pattern): a load clamp
@@ -2449,7 +2458,7 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
     // (`"membership_staff",`, +19, PR 4281), isolated with membership below.
     // 249,984 -> 250,006 with Wobbles the Slime's reins (+22, kept).
     // Advanced riding adds the sparse ridingTier scalar (+15, PR 4390).
-    expect(beforeReferralBytes).toBe(250915);
+    expect(beforeReferralBytes).toBe(251425);
     expect(bytes - gourdlightEveBytes - stampCardBytes - beforeReferralBytes).toBe(122);
     expect(
       fieldBytes(beforeStampCards, 'deedStats') - fieldBytes(withoutReferral, 'deedStats'),
@@ -2475,7 +2484,7 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
     expect(membershipIds.size).toBe(9);
     const beforeMembershipBytes = Buffer.byteLength(JSON.stringify(withoutMembership), 'utf8');
     // 249,810 -> 249,832 with Wobbles the Slime's reins (+22, kept).
-    expect(beforeMembershipBytes).toBe(250741);
+    expect(beforeMembershipBytes).toBe(251251);
     expect(beforeReferralBytes - beforeMembershipBytes).toBe(174);
     expect(
       fieldBytes(withoutReferral, 'deedStats') - fieldBytes(withoutMembership, 'deedStats'),
@@ -2572,7 +2581,8 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
       // knownRecipes (content/enchants.ts, the faction ladder rework).
       // 196 + 247: the faction quartermasters' five recipe ids and three enchant
       // ids in knownRecipes (itemized at the professions band above).
-      knownRecipes: 443,
+      // 443 + 297: the twelve Furnishing recipe ids (Project H housing phase 2).
+      knownRecipes: 740,
     });
     // field_kit (below) is the ONE Field Kit deedStats entry inside this same
     // settled state; the fixture-repair deltas above are Crucible-only and
@@ -3001,7 +3011,12 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
         // rewards carry no Reliquary page, so no firstFind row. MEASURED.
         68 +
         // Advanced riding adds the sparse scalar ,"ridingTier":2 (15 bytes).
-        15,
+        15 +
+        // Plus 213 for the twelve Project H furniture ids (content/furniture.ts)
+        // in deedStats.itemsDiscovered: 177 characters of ids plus 12 x 3 of
+        // quoting and comma; decoration carries no Reliquary page. Predicted
+        // from the literals BEFORE the run and MEASURED equal (95,056 to 95,269).
+        213,
     );
     const forgeBaseline = {
       questsDone: 4606,
@@ -3040,7 +3055,10 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
       // item ids and the 17 trinket Reliquary pages (+324 and +812 of the
       // +1,136 above).
       questsDone: 100,
-      knownRecipes: 411,
+      // knownRecipes 411 -> 708 and deedStats +213 at Project H housing phase 2:
+      // the twelve Furnishing recipe ids retained and the twelve furniture item
+      // ids discovered (the +297 and +213 above).
+      knownRecipes: 708,
       // deeds 672 -> 708 and deedStats 5,861 -> 5,979 at the fourth
       // release/v0.44.0 base merge: the ferry deed and its four visit marks
       // (the +154 above).
@@ -3063,7 +3081,7 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
       // Then -> 21,354: the 36 legacy buddy item ids add 706 discovery bytes.
       // Then -> 21,373 with the Staff of Changing's discovery id (+19, PR 4281).
       // +18 for the sprite buddy's whistle id in itemsDiscovered: 21373 -> 21436.
-      deedStats: 21080,
+      deedStats: 21293,
       reliquary: 14565,
     });
     // Removing field_kit AND the Bramblehide release content reproduces the
@@ -3113,7 +3131,9 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
       // The Staff of Changing's discovery id adds 19 (247,136, PR 4281).
       // The sprite buddy's whistle id adds 18 (247,154).
       // Advanced riding contributes 15 bytes for the armed ridingTier scalar.
-    ).toBe(248045);
+      // Project H housing phase 2 adds 510: the twelve Furnishing recipe ids
+      // retained (+297) and the twelve furniture ids discovered (+213).
+    ).toBe(248555);
     // Removing ONLY field_kit (the Bramblehide release content and the two
     // dev-mount reins items still present, current staged tree) reproduces
     // 209,524 plus the 1,548-byte Bramblehide delta plus the 71-byte
@@ -3155,7 +3175,8 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
       // The Staff of Changing's discovery id adds 19 (249,946, PR 4281); reins_nightwing_chimera adds 26 (249,972).
       // reins_wobbles_slime adds 22 (249,994).
       // Advanced riding contributes the same 15 bytes here.
-    ).toBe(250903);
+      // Project H housing phase 2 adds the same 510 here.
+    ).toBe(251413);
     const priorContent = withoutCrucibleContent(withoutReferral);
     const contentDelta = Object.fromEntries(
       (['knownRecipes', 'deedStats', 'reliquary'] as const).map((key) => [
@@ -3304,8 +3325,11 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
     // Release composition: 250,982 bytes excluding referral cards; retain the 381-byte band.
     // RE-BASED for advanced riding: up exactly 15 for the sparse ridingTier
     // scalar (250,273). Same 381-byte band.
-    expect(bytes - gourdlightEveBytes - stampCardBytes, reMint).toBeGreaterThan(250657);
-    expect(bytes - gourdlightEveBytes - stampCardBytes, reMint).toBeLessThan(251038);
+    // RE-BASED for Project H housing phase 2: 251,547 bytes, +510 from the
+    // twelve Furnishing recipe ids retained in knownRecipes and the twelve
+    // furniture ids in itemsDiscovered. Same 381-byte band: 251167..251548.
+    expect(bytes - gourdlightEveBytes - stampCardBytes, reMint).toBeGreaterThan(251167);
+    expect(bytes - gourdlightEveBytes - stampCardBytes, reMint).toBeLessThan(251548);
 
     // The Crucible database review approved 229,376 bytes (224 KiB), the first
     // 32-KiB step above the corrected 209,261-byte pre-field-kit fixture it was

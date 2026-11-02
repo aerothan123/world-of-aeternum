@@ -14,6 +14,7 @@ import {
   ENGINEERING_ONRAMP_RECIPES,
   FACTION_REWARD_RECIPES,
   FARM_RECIPES,
+  FURNISHING_RECIPES,
   HOE_RECIPES,
   INSCRIPTION_RECIPES,
   INTERMEDIATE_RECIPES,
@@ -469,6 +470,8 @@ describe('craftItem command (#1127)', () => {
       // into feature/buried-hoards): 204 to 209.
       ...FACTION_REWARD_RECIPES,
       ...BUDDY_CHARM_RECIPES,
+      // The twelve Furnishing rows (Project H housing phase 2): 209 to 221.
+      ...FURNISHING_RECIPES,
     ]
       .map((r) => r.id)
       .sort();
@@ -498,7 +501,9 @@ describe('craftItem command (#1127)', () => {
         CRUCIBLE_COLLECTION_RECIPES.length +
         FORGEBREAKER_RECIPES.length +
         FACTION_REWARD_RECIPES.length +
-        BUDDY_CHARM_RECIPES.length,
+        BUDDY_CHARM_RECIPES.length +
+        // Sibling literal: the twelve-row pin in tests/recipe_economy.test.ts.
+        FURNISHING_RECIPES.length,
     );
     expect(FACTION_REWARD_RECIPES).toHaveLength(5);
     expect(CRUCIBLE_COLLECTION_RECIPES).toHaveLength(33);

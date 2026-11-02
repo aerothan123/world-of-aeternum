@@ -20,7 +20,7 @@
 // import graph and the hazard stays as small as the content tables it reads.
 
 import { ENCHANTS } from './content/enchants';
-import { CRAFT_RING } from './content/professions';
+import { CRAFT_RING, SECONDARY_CRAFTS } from './content/professions';
 import { ALL_RECIPES } from './content/recipes';
 import { baseMaterialFor } from './professions/material_grades';
 
@@ -50,7 +50,12 @@ function deriveDirectCraftConsumers(): ReadonlyMap<string, ReadonlySet<string>> 
 
 const DIRECT_CONSUMERS: ReadonlyMap<string, ReadonlySet<string>> = deriveDirectCraftConsumers();
 
-const CRAFT_RING_ORDER: readonly string[] = CRAFT_RING.map((craft) => craft.id);
+// The ring first, then the secondary crafts (Furnishing, off the ring but a
+// real recipe consumer: Project H housing phase 2), so a material a furniture
+// recipe eats names Furnishing in its Used-by line.
+const CRAFT_RING_ORDER: readonly string[] = [...CRAFT_RING, ...SECONDARY_CRAFTS].map(
+  (craft) => craft.id,
+);
 
 // The content tables never change after module evaluation, so the ring-ordered
 // result per item id is memoized on first ask (tooltips re-ask on every hover).

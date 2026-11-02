@@ -11532,11 +11532,37 @@ export type SimEvent = { pid?: number } & (
   | { type: 'houseOffer'; pid: number; lotId: string; priceCopper: number; ownedLotId?: string }
   | { type: 'housePurchased'; pid: number; lotId: string }
   // Wire enum: append only, never reorder.
+  // Phase 2 (src/sim/housing/furnishing.ts) appends the furniture reasons:
+  // `lotId` is the owned lot ('' when the caller owns no house) and
+  // `anchorId` names the anchor the command addressed.
   | {
       type: 'houseDenied';
       pid: number;
       lotId: string;
-      reason: 'bad_lot' | 'owned' | 'range' | 'money' | 'dead';
+      reason:
+        | 'bad_lot'
+        | 'owned'
+        | 'range'
+        | 'money'
+        | 'dead'
+        | 'no_house'
+        | 'not_inside'
+        | 'bad_anchor'
+        | 'anchor_taken'
+        | 'anchor_empty'
+        | 'anchor_kind'
+        | 'no_item'
+        | 'bags_full';
+      anchorId?: string;
+    }
+  // A piece of furniture was placed on or taken back from an anchor of the
+  // caller's own house (text-free; the client names the item and the anchor).
+  | {
+      type: 'houseFurniture';
+      pid: number;
+      action: 'placed' | 'removed';
+      anchorId: string;
+      itemId: string;
     }
 );
 

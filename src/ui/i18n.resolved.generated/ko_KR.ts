@@ -6293,7 +6293,8 @@ export const ko_KR: EnTranslations = {
       "inscription": "각인",
       "enchanting": "마법부여",
       "tailoring": "재봉",
-      "leatherworking": "가죽세공"
+      "leatherworking": "가죽세공",
+      "furnishing": "가구 제작"
     },
     "enchantName": {
       "enchant_weapon_lastflame_zeal": "마지막 불꽃의 열의",
@@ -7996,7 +7997,38 @@ export const ko_KR: EnTranslations = {
         "owned": "이미 집을 소유하고 있습니다.",
         "range": "{house}의 정문에서 너무 멉니다.",
         "money": "{house}을(를) 살 돈이 부족합니다.",
-        "dead": "죽은 상태에서는 집을 구매할 수 없습니다."
+        "dead": "죽은 상태에서는 집을 구매할 수 없습니다.",
+        "noHouse": "소유한 집이 없습니다.",
+        "notInside": "자신의 집 안에 있어야 합니다.",
+        "badAnchor": "집에 그런 자리가 없습니다.",
+        "anchorTaken": "그 자리에는 이미 무언가가 놓여 있습니다.",
+        "anchorEmpty": "그 자리에는 아무것도 없습니다.",
+        "anchorKind": "그 가구는 그 자리에 맞지 않습니다.",
+        "noItem": "그 가구를 가지고 있지 않습니다.",
+        "bagsFull": "가방이 가득 찼습니다."
+      },
+      "furnish": "집에 배치...",
+      "placeAt": "{anchor}에 배치",
+      "takeBack": "{anchor}에서 {item} 회수",
+      "noSpots": "이 가구에 맞는 빈 자리가 없습니다.",
+      "furniturePlaced": "{item}을(를) {anchor}에 배치했습니다.",
+      "furnitureRemoved": "{anchor}에서 {item}을(를) 회수했습니다.",
+      "anchorLabel": "{room}, {kind} {index}",
+      "room": {
+        "hearthRoom": "난로방",
+        "bedroom": "침실",
+        "workshop": "작업실"
+      },
+      "anchorKind": {
+        "floor": "바닥 자리",
+        "wall": "벽 자리",
+        "rug": "양탄자 자리",
+        "table": "탁자 자리"
+      },
+      "furnitureTooltip": {
+        "kind": "가구",
+        "use": "자신의 집 안 {kind}에 배치할 수 있습니다.",
+        "how": "자신의 집 안에서 가방의 이 물건을 우클릭하십시오."
       }
     }
   },
@@ -24551,6 +24583,42 @@ export const ko_KR: EnTranslations = {
       },
       "gourdlight_crow_feather": {
         "name": "고드라이트 까마귀 깃털"
+      },
+      "furn_wooden_chair": {
+        "name": "나무 의자"
+      },
+      "furn_wooden_stool": {
+        "name": "나무 걸상"
+      },
+      "furn_oak_bench": {
+        "name": "참나무 벤치"
+      },
+      "furn_round_table": {
+        "name": "원형 탁자"
+      },
+      "furn_long_table": {
+        "name": "긴 탁자"
+      },
+      "furn_bookcase": {
+        "name": "책장"
+      },
+      "furn_keg": {
+        "name": "작은 술통"
+      },
+      "furn_barrel": {
+        "name": "나무통"
+      },
+      "furn_woven_rug": {
+        "name": "직조 양탄자"
+      },
+      "furn_candlestick": {
+        "name": "촛대"
+      },
+      "furn_storage_chest": {
+        "name": "보관 상자"
+      },
+      "furn_trophy_plaque": {
+        "name": "트로피 명판"
       },
       "membership_staff": {
         "name": "변화의 지팡이"

@@ -8,6 +8,7 @@
 // / houseDenied); the client localizes from the ids.
 
 import { type HouseLotDef, houseLotById, houseLotForDungeon } from '../content/house_lots';
+import { FURNISHING_STARTER_RECIPE_IDS } from '../content/recipes';
 import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
 import { dist2d, type Entity } from '../types';
@@ -23,6 +24,8 @@ export const HOUSE_OFFER_NOTICE_SECONDS = 4;
 /** The client-facing view of a player's own house (IWorld myHouse). */
 export interface HouseView {
   lotId: string;
+  /** Placed furniture: anchor id to furniture item id (a boundary copy). */
+  furniture: Record<string, string>;
 }
 
 /** The instance key a house owner's private copy claims: keyed on the OWNER,
@@ -99,12 +102,17 @@ export function buyHouse(ctx: SimContext, lotId: string, pid?: number): boolean 
   if (dist2d(r.e.pos, door) > HOUSE_PURCHASE_RANGE) return deny(ctx, id, lotId, 'range');
   if (r.meta.copper < lot.priceCopper) return deny(ctx, id, lotId, 'money');
   r.meta.copper -= lot.priceCopper;
-  r.meta.house = { lot: lot.id, boughtDay: ctx.resetDay };
+  r.meta.house = { lot: lot.id, boughtDay: ctx.resetDay, furniture: {} };
+  // Phase 2: a new owner knows the two starter Furnishing recipes outright
+  // (the rest are taught at the toolworks), so the house is furnishable from
+  // the day it is bought. Idempotent: knownRecipes is a set.
+  for (const recipeId of FURNISHING_STARTER_RECIPE_IDS) r.meta.knownRecipes.add(recipeId);
   ctx.emit({ type: 'housePurchased', pid: id, lotId: lot.id });
   return true;
 }
 
-/** The player's own house view (IWorld myHouse), or null. */
+/** The player's own house view (IWorld myHouse), or null. The furniture map is
+ *  a boundary copy, so a caller can never write through to the live record. */
 export function houseViewFor(meta: PlayerMeta | undefined): HouseView | null {
-  return meta?.house ? { lotId: meta.house.lot } : null;
+  return meta?.house ? { lotId: meta.house.lot, furniture: { ...meta.house.furniture } } : null;
 }

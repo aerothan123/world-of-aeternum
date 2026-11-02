@@ -6293,7 +6293,8 @@ export const en_XA: EnTranslations = {
       "inscription": "[Íñšçŕíþţíóñ]",
       "enchanting": "[Éñçĥáñţíñĝ]",
       "tailoring": "[Ţáíļóŕíñĝ]",
-      "leatherworking": "[Ļéáţĥéŕŵóŕķíñĝ]"
+      "leatherworking": "[Ļéáţĥéŕŵóŕķíñĝ]",
+      "furnishing": "[Ƒúŕñíšĥíñĝ]"
     },
     "enchantName": {
       "enchant_weapon_lastflame_zeal": "[Ļášţ Ƒļáɱé'š Žéáļ]",
@@ -7996,7 +7997,38 @@ export const en_XA: EnTranslations = {
         "owned": "[Ýóú áļŕéáðý óŵñ á ĥóúšé.]",
         "range": "[Ýóú áŕé ţóó ƒáŕ ƒŕóɱ ţĥé ƒŕóñţ ðóóŕ óƒ {house}.]",
         "money": "[Ýóú çáññóţ áƒƒóŕð {house}.]",
-        "dead": "[Ýóú çáññóţ ƀúý á ĥóúšé ŵĥíļé ðéáð.]"
+        "dead": "[Ýóú çáññóţ ƀúý á ĥóúšé ŵĥíļé ðéáð.]",
+        "noHouse": "[Ýóú ðó ñóţ óŵñ á ĥóúšé.]",
+        "notInside": "[Ýóú ɱúšţ ƀé íñšíðé ýóúŕ óŵñ ĥóúšé ţó ðó ţĥáţ.]",
+        "badAnchor": "[Ţĥéŕé íš ñó šúçĥ šþóţ íñ ýóúŕ ĥóúšé.]",
+        "anchorTaken": "[Šóɱéţĥíñĝ áļŕéáðý šţáñðš óñ ţĥáţ šþóţ.]",
+        "anchorEmpty": "[Ñóţĥíñĝ šţáñðš óñ ţĥáţ šþóţ.]",
+        "anchorKind": "[Ţĥáţ þíéçé óƒ ƒúŕñíţúŕé ðóéš ñóţ ƒíţ ţĥáţ šþóţ.]",
+        "noItem": "[Ýóú áŕé ñóţ ĥóļðíñĝ ţĥáţ þíéçé óƒ ƒúŕñíţúŕé.]",
+        "bagsFull": "[Ýóúŕ ƀáĝš áŕé ƒúļļ.]"
+      },
+      "furnish": "[Þļáçé íñ ĥóúšé...]",
+      "placeAt": "[Þļáçé áţ {anchor}]",
+      "takeBack": "[Ţáķé ƀáçķ {item} ƒŕóɱ {anchor}]",
+      "noSpots": "[Ñó ƒŕéé šþóţ ƒíţš ţĥíš þíéçé.]",
+      "furniturePlaced": "[Ýóú þļáçéð {item} áţ {anchor}.]",
+      "furnitureRemoved": "[Ýóú ţóóķ ƀáçķ {item} ƒŕóɱ {anchor}.]",
+      "anchorLabel": "[{room}, {kind} {index}]",
+      "room": {
+        "hearthRoom": "[Ĥéáŕţĥ ŕóóɱ]",
+        "bedroom": "[Ɓéðŕóóɱ]",
+        "workshop": "[Ŵóŕķšĥóþ]"
+      },
+      "anchorKind": {
+        "floor": "[ƒļóóŕ]",
+        "wall": "[ŵáļļ]",
+        "rug": "[ŕúĝ]",
+        "table": "[ţáƀļé]"
+      },
+      "furnitureTooltip": {
+        "kind": "[Ƒúŕñíţúŕé]",
+        "use": "[Þļáçé íţ óñ á {kind} šþóţ íñšíðé ýóúŕ ĥóúšé.]",
+        "how": "[Ŕíĝĥţ-çļíçķ íţ íñ ýóúŕ ƀáĝš ŵĥíļé šţáñðíñĝ íñ ýóúŕ ĥóúšé.]"
       }
     }
   },
@@ -24551,6 +24583,42 @@ export const en_XA: EnTranslations = {
       },
       "gourdlight_crow_feather": {
         "name": "[Ĝóúŕðļíĝĥţ Çŕóŵ Ƒéáţĥéŕ]"
+      },
+      "furn_wooden_chair": {
+        "name": "[Ŵóóðéñ Çĥáíŕ]"
+      },
+      "furn_wooden_stool": {
+        "name": "[Ŵóóðéñ Šţóóļ]"
+      },
+      "furn_oak_bench": {
+        "name": "[Óáķ Ɓéñçĥ]"
+      },
+      "furn_round_table": {
+        "name": "[Ŕóúñð Ţáƀļé]"
+      },
+      "furn_long_table": {
+        "name": "[Ļóñĝ Ţáƀļé]"
+      },
+      "furn_bookcase": {
+        "name": "[Ɓóóķçášé]"
+      },
+      "furn_keg": {
+        "name": "[Ķéĝ]"
+      },
+      "furn_barrel": {
+        "name": "[Ɓáŕŕéļ]"
+      },
+      "furn_woven_rug": {
+        "name": "[Ŵóʋéñ Ŕúĝ]"
+      },
+      "furn_candlestick": {
+        "name": "[Çáñðļéšţíçķ]"
+      },
+      "furn_storage_chest": {
+        "name": "[Šţóŕáĝé Çĥéšţ]"
+      },
+      "furn_trophy_plaque": {
+        "name": "[Ţŕóþĥý Þļáɋúé]"
       },
       "membership_staff": {
         "name": "[Šţáƒƒ óƒ Çĥáñĝíñĝ]"

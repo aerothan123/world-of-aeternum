@@ -19,6 +19,7 @@
 // idiom elsewhere in src/render.
 
 import { MUSTER_RACK_TEMPLATE_ID } from '../sim/content/mirefen_muster';
+import { isFurnitureTemplateId } from '../sim/housing/furniture_template';
 import { isBuddyMob } from '../sim/pet/buddy_ai';
 import { isFeastTemplateId } from '../sim/professions/feast';
 import { isMobileStationTemplateId } from '../sim/professions/mobile_station_object';
@@ -187,8 +188,12 @@ export function nameplatePlanInto(
   // flickers at the exact boundary.
   // A placed mobile station shares the pad: its title names the owner and
   // the tool, which is what a player walking up to it wants to read.
+  // Placed house furniture (Project H) labels on the same pad: the piece's
+  // name reads as the owner walks up to it.
   const feastNear =
-    (isFeastTemplateId(e.templateId) || isMobileStationTemplateId(e.templateId)) &&
+    (isFeastTemplateId(e.templateId) ||
+      isMobileStationTemplateId(e.templateId) ||
+      isFurnitureTemplateId(e.templateId)) &&
     d2 <= (INTERACT_RANGE + 1) * (INTERACT_RANGE + 1);
   // The muster's weapon rack (its art is the camp's, its entity a pick volume) labels
   // the same way, so the one thing to click at the command camp names itself up close.

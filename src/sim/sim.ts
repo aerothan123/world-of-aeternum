@@ -306,6 +306,11 @@ import { type GuildContractsView, guildContractsView } from './guild_contracts';
 import { buyGuildCosmetic, type GuildAccountPort } from './guild_quartermaster';
 import { spawnHealingTrainingGround } from './healing_training';
 import { talkToGuildResident } from './highwatch_guild';
+import { HOUSE_COTTAGE_ANCHORS } from './housing/cottage_layout';
+import {
+  placeFurniture as placeFurnitureAction,
+  removeFurniture as removeFurnitureAction,
+} from './housing/furnishing';
 import { buyHouse as buyHouseAction, type HouseView, houseViewFor } from './housing/ownership';
 import { spawnDevHealerPracticeDummy, spawnHubPractice } from './hub_practice';
 import * as raidReadouts from './ignivar_raid_readouts';
@@ -2915,6 +2920,7 @@ export class Sim {
       townFocus: {},
       heroicDaily: { date: '', marked: new Set() },
       heroicMarks: 0,
+      furnishingSkill: 0, // Project H housing phase 2 (housing/house_state.ts)
       wyrmfallDaily: { date: '', sources: new Set() },
       emberWeekAnchor: '',
       craftDaily: { date: '', crafted: new Set() },
@@ -11328,6 +11334,13 @@ export class Sim {
   }
   buyHouse(lotId: string, pid?: number): void {
     buyHouseAction(this.ctx, lotId, pid);
+  }
+  readonly houseAnchors = HOUSE_COTTAGE_ANCHORS;
+  placeFurniture(anchorId: string, slot: number, pid?: number): void {
+    placeFurnitureAction(this.ctx, anchorId, slot, pid);
+  }
+  removeFurniture(anchorId: string, pid?: number): void {
+    removeFurnitureAction(this.ctx, anchorId, pid);
   }
 
   // Plant a crop with the optional plant-time knob payload. Thin delegate:

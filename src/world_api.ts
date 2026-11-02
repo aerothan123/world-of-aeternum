@@ -59,8 +59,9 @@
 //   world_pvp.ts        IWorldWorldPvp       the /pvp flag: self readout + raise/lower command
 //   seating.ts          IWorldSeating        sit on a piece of furniture by its seat id
 //   seasonal.ts         IWorldSeasonal       the running seasonal event + trick-or-treat
-//   housing.ts          IWorldHousing        player housing: the static lots, the caller's own
-//                                            house, and the purchase command (Project H)
+//   housing.ts          IWorldHousing        player housing: the static lots and anchors, the
+//                                            caller's own house, and the buy / place / remove
+//                                            furniture commands (Project H)
 //
 // THREE GATES pin this seam (run before any facet edit; the literal counts are
 // pinned THERE and re-stale here, so this prose stays count-free):
@@ -136,7 +137,7 @@ export type {
   DeedStats,
   OverheadEmoteId,
 } from './sim/types';
-export type { HouseLotDef, HouseView } from './world_api/housing';
+export type { HouseAnchorDef, HouseLotDef, HouseView } from './world_api/housing';
 export type { VehicleSession } from './world_api/vehicles';
 
 // Online world and required-snapshot compatibility is encoded in the first
@@ -1018,6 +1019,11 @@ export const COMMAND_NAMES = [
   // src/sim/housing/ownership.ts). Carries the lot id only; the sim owns every
   // rule. Appended because wire tokens are never reordered.
   'buy_house',
+  // Player housing phase 2: place the furniture copy in bag slot `slot` on an
+  // anchor of the caller's own house, and take it back (Sim.placeFurniture /
+  // Sim.removeFurniture via src/sim/housing/furnishing.ts). Appended.
+  'place_furniture',
+  'remove_furniture',
 ] as const;
 
 // The union both the send path (`online.ts`) and the dispatch switch
@@ -1447,4 +1453,7 @@ export const COMMAND_FACETS = {
   // IWorldHousing: the purchase verb. houseLots (static content) and myHouse
   // (the `hse` self-delta mirror) carry no wire command and stay untagged.
   buy_house: 'IWorldHousing',
+  // Phase 2: the furniture verbs. houseAnchors is static content, untagged.
+  place_furniture: 'IWorldHousing',
+  remove_furniture: 'IWorldHousing',
 } as const satisfies Partial<Record<ClientCommand, WorldFacet>>;

@@ -6293,7 +6293,8 @@ export const ja_JP: EnTranslations = {
       "inscription": "銘文",
       "enchanting": "エンチャント",
       "tailoring": "裁縫",
-      "leatherworking": "皮革加工"
+      "leatherworking": "皮革加工",
+      "furnishing": "家具製作"
     },
     "enchantName": {
       "enchant_weapon_lastflame_zeal": "最後の炎の熱情",
@@ -7996,7 +7997,38 @@ export const ja_JP: EnTranslations = {
         "owned": "すでに家を所有している。",
         "range": "{house}の正面の扉から遠すぎる。",
         "money": "{house}を買う余裕がない。",
-        "dead": "死亡中は家を購入できない。"
+        "dead": "死亡中は家を購入できない。",
+        "noHouse": "家を所有していない。",
+        "notInside": "自分の家の中にいる必要がある。",
+        "badAnchor": "家にそのような場所はない。",
+        "anchorTaken": "その場所にはすでに何かが置かれている。",
+        "anchorEmpty": "その場所には何も置かれていない。",
+        "anchorKind": "その家具はその場所には置けない。",
+        "noItem": "その家具を持っていない。",
+        "bagsFull": "バッグがいっぱいだ。"
+      },
+      "furnish": "家に置く...",
+      "placeAt": "{anchor}に置く",
+      "takeBack": "{anchor}から{item}を回収",
+      "noSpots": "この家具に合う空きの場所がない。",
+      "furniturePlaced": "{item}を{anchor}に置いた。",
+      "furnitureRemoved": "{anchor}から{item}を回収した。",
+      "anchorLabel": "{room}、{kind}{index}",
+      "room": {
+        "hearthRoom": "炉の間",
+        "bedroom": "寝室",
+        "workshop": "工房"
+      },
+      "anchorKind": {
+        "floor": "床の位置",
+        "wall": "壁の位置",
+        "rug": "敷物の位置",
+        "table": "卓上の位置"
+      },
+      "furnitureTooltip": {
+        "kind": "家具",
+        "use": "自分の家の{kind}に置ける。",
+        "how": "自分の家の中でバッグの中のこれを右クリックする。"
       }
     }
   },
@@ -24551,6 +24583,42 @@ export const ja_JP: EnTranslations = {
       },
       "gourdlight_crow_feather": {
         "name": "ゴードライトのカラスの羽根"
+      },
+      "furn_wooden_chair": {
+        "name": "木の椅子"
+      },
+      "furn_wooden_stool": {
+        "name": "木のスツール"
+      },
+      "furn_oak_bench": {
+        "name": "オークのベンチ"
+      },
+      "furn_round_table": {
+        "name": "丸テーブル"
+      },
+      "furn_long_table": {
+        "name": "長テーブル"
+      },
+      "furn_bookcase": {
+        "name": "本棚"
+      },
+      "furn_keg": {
+        "name": "小樽"
+      },
+      "furn_barrel": {
+        "name": "樽"
+      },
+      "furn_woven_rug": {
+        "name": "織りの敷物"
+      },
+      "furn_candlestick": {
+        "name": "燭台"
+      },
+      "furn_storage_chest": {
+        "name": "収納箱"
+      },
+      "furn_trophy_plaque": {
+        "name": "トロフィーの飾り板"
       },
       "membership_staff": {
         "name": "変化の杖"

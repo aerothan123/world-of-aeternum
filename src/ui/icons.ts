@@ -9,6 +9,7 @@
 // has a proper icon. Results are cached as data URLs.
 
 import { BUDDY_ART_PENDING_ITEM_IDS } from '../sim/content/buddies';
+import { FURNITURE_ART_PENDING_ITEM_IDS } from '../sim/content/furniture';
 import { HOLLOW_CRYPT_ART_PENDING_ITEM_IDS } from '../sim/content/hollow_crypt_items';
 import { IGNIVAR_ART_PENDING_ITEM_IDS } from '../sim/content/ignivar_loot';
 import { isRawCookingCatch } from '../sim/content/items';
@@ -5861,6 +5862,8 @@ export const ITEM_ART_PENDING = new Set<string>([
   // (hollow-crypt-icons-2026-10-03) landed; the seam stays for the next park.
   ...HOLLOW_CRYPT_ART_PENDING_ITEM_IDS,
   ...BUDDY_ART_PENDING_ITEM_IDS,
+  // Player housing (Project H) phase 2 furniture, until its paintings land.
+  ...FURNITURE_ART_PENDING_ITEM_IDS,
   ...Object.keys(ITEM_ART_PLACEHOLDERS),
   ...QUEST_SHIELD_ART_PENDING_ITEM_IDS,
 ]);

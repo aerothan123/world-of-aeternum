@@ -3970,6 +3970,21 @@ const ITEM_ENTITY_IDS = [
   'thatchgrin_patch_pumpkin',
   'cursed_candle_stub',
   'gourdlight_crow_feather',
+  // Player housing (Project H) phase 2: the crafted furniture
+  // (content/furniture.ts FURNITURE_ITEMS), resolved BY KEY from
+  // APPENDED_ITEM_NAMES; the five non-Latin fills ride the overlays (M16).
+  'furn_wooden_chair',
+  'furn_wooden_stool',
+  'furn_oak_bench',
+  'furn_round_table',
+  'furn_long_table',
+  'furn_bookcase',
+  'furn_keg',
+  'furn_barrel',
+  'furn_woven_rug',
+  'furn_candlestick',
+  'furn_storage_chest',
+  'furn_trophy_plaque',
 ] as const;
 
 type ItemEntityId = (typeof ITEM_ENTITY_IDS)[number];
@@ -3979,6 +3994,19 @@ type ItemEntityTranslation = { name: string };
 type ItemEntityTranslations = Record<ItemEntityId, ItemEntityTranslation>;
 
 const APPENDED_ITEM_NAMES: Partial<Record<ItemEntityId, string>> = {
+  // Player housing (Project H) phase 2 furniture (content/furniture.ts).
+  furn_wooden_chair: 'Wooden Chair',
+  furn_wooden_stool: 'Wooden Stool',
+  furn_oak_bench: 'Oak Bench',
+  furn_round_table: 'Round Table',
+  furn_long_table: 'Long Table',
+  furn_bookcase: 'Bookcase',
+  furn_keg: 'Keg',
+  furn_barrel: 'Barrel',
+  furn_woven_rug: 'Woven Rug',
+  furn_candlestick: 'Candlestick',
+  furn_storage_chest: 'Storage Chest',
+  furn_trophy_plaque: 'Trophy Plaque',
   // Gourdlight Eve (content/gourdlight_eve.ts).
   gourdlight_sweet: 'Gourdlight Sweet',
   gourdlight_treat_pouch: 'Gourdlight Treat Pouch',

@@ -25,6 +25,7 @@ import {
   ENGINEERING_ONRAMP_RECIPES,
   FARM_DROP_RUNG_FLOOR,
   FARM_RECIPES,
+  FURNISHING_RECIPES,
   HOE_RECIPES,
   INSCRIPTION_RECIPES,
   INTERMEDIATE_RECIPES,
@@ -243,6 +244,9 @@ describe('THE ECONOMY INVARIANT', () => {
     expect(vendorFed.map((recipe) => recipe.id).sort()).toEqual([
       'recipe_ashwood_axe',
       'recipe_bronze_hoe',
+      // Player housing (Project H) phase 2: the bookcase is six vendor-stocked
+      // ashwood logs (360) against a 60 output.
+      'recipe_furn_bookcase',
       'recipe_goldleaf_mana_draught',
       'recipe_goldleaf_sickle',
       'recipe_sootscale_mantle',
@@ -652,8 +656,12 @@ describe('REFERENTIAL INTEGRITY', () => {
         BAG_RECIPES.length +
         farmTrainerRows +
         // The buddy charm look (content/recipes.ts), trainer-taught at the tannery.
-        BUDDY_CHARM_RECIPES.length,
+        BUDDY_CHARM_RECIPES.length +
+        // Player housing (Project H) phase 2: the Furnishing rows, all
+        // trainer-taught at the toolworks (no channel split).
+        FURNISHING_RECIPES.length,
     );
+    expect(FURNISHING_RECIPES, 'the Furnishing catalog is twelve rows').toHaveLength(12);
     // The sibling literal for the 11o term: two rows, both trainer-taught.
     expect(ENGINEERING_ONRAMP_RECIPES, 'the engineering on-ramp is two rows').toHaveLength(2);
     // The sibling literal for the derived term, same reason every other term

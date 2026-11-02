@@ -6298,7 +6298,12 @@ function dirtyEveryDeltaField(): {
   meta.delveMarks = 7;
   meta.heroicMarks = 9;
   // Player housing (Project H): an owned house, so the hse self key rides.
-  meta.house = { lot: 'eastbrook_quay_cottage', boughtDay: '2026-11-01' };
+  // Phase 2: a placed piece rides the same key as the furniture map.
+  meta.house = {
+    lot: 'eastbrook_quay_cottage',
+    boughtDay: '2026-11-01',
+    furniture: { hearth_floor_1: 'furn_wooden_chair' },
+  };
   meta.delveClears = { 'collapsed_reliquary:heroic': 1 };
   meta.companionUpgrades = { companion_tessa: 2 };
   meta.gatheringProficiency = { mining: 6, logging: 0, herbalism: 0, fishing: 0, farming: 0 };
@@ -6760,7 +6765,10 @@ describe('full self-state snapshot delta fixture', () => {
     expect(client.factionCurrencies).toEqual({ rift_watch: 17, church_order: 29, automatons: 41 });
     expect(client.treasureMap).toEqual({ rarity: 'epic', siteId: TREASURE_SITES[0].id });
     expect(client.alliedHearthstoneAttunement).toBe('automatons');
-    expect(client.myHouse).toEqual({ lotId: 'eastbrook_quay_cottage' });
+    expect(client.myHouse).toEqual({
+      lotId: 'eastbrook_quay_cottage',
+      furniture: { hearth_floor_1: 'furn_wooden_chair' },
+    });
     expect(lastSnap(fc.sent).self.tmap).not.toHaveProperty('seed');
 
     // --- fields that decode onto the player ENTITY (client.player), not the client ---

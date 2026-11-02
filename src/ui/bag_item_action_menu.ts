@@ -39,6 +39,7 @@
 
 import { stackSizeOf } from '../sim/bags';
 import { ENCHANTS } from '../sim/content/enchants';
+import { isFurnitureItemId } from '../sim/content/furniture';
 import { ITEMS } from '../sim/data';
 import type { MaterialComposition } from '../sim/material_sources';
 import {
@@ -56,6 +57,7 @@ import {
 import { bagStackIndex } from './bags_view';
 import { itemDisplayName } from './entity_i18n';
 import { esc } from './esc';
+import { furnishOptions, houseAnchorLabel, insideOwnHouse } from './hud/housing/house_furnish_view';
 import { craftNameKey } from './hud/professions/craft_name_view';
 import { disenchantYieldLines } from './hud/professions/disenchant_yield_view';
 import {
@@ -98,6 +100,10 @@ export const CTX_ITEM_DANGER_CLASS = 'ctx-item-danger';
  *  this line is the only answer a player gets to "why can I not tap this?". The
  *  touch stylesheet sizes it with the danger line for exactly that reason. */
 export const CTX_ITEM_GATE_CLASS = 'ctx-item-gate';
+
+/** The bag menu's Place row (Project H housing), a menu-local act token beside
+ *  the BagItemContextActionId rows. */
+const FURNISH_ACT = 'furnish';
 
 /** The craft id this picker gates on: the same one the sim's insufficient_skill
  *  arm reads (professions/enchanting.ts, skillInCraft(..., 'enchanting')) and a
@@ -220,7 +226,7 @@ export class BagItemActionMenu {
               (action.id !== 'viewSources' && action.id !== 'takeChosenQuantity'),
           )
         : vendorSellContextActions(vendorSellCount);
-    const rows = actions.map((action) => ({
+    const rows: PickerRow[] = actions.map((action) => ({
       act: action.id,
       html: esc(
         t(
@@ -229,7 +235,20 @@ export class BagItemActionMenu {
         ),
       ),
     }));
+    // Player housing (Project H): a furniture item held while standing inside
+    // the viewer's own house gets the Place row right under the default one
+    // (house_furnish_view.ts decides; the sim re-checks the exact claim).
+    const furnishable =
+      vendorSellCount === undefined &&
+      isFurnitureItemId(itemId) &&
+      insideOwnHouse(this.deps.world().player.pos.x, this.deps.world().myHouse);
+    if (furnishable)
+      rows.splice(1, 0, { act: FURNISH_ACT, html: esc(t('hudChrome.housing.furnish')) });
     this.paint(rows, x, y, (act) => {
+      if (act === FURNISH_ACT) {
+        this.openFurnishPicker(itemId, target, x, y);
+        return;
+      }
       const id = act as BagItemContextActionId;
       if (id === 'default') runDefault();
       else if (id === 'sellAll' && vendorSellCount !== undefined) {
@@ -487,6 +506,66 @@ export class BagItemActionMenu {
   // rather than on the target list: all three are facts about the ENCHANT, and
   // answering any of them with "No eligible item to enchant." told the player
   // the wrong thing about their own bags.
+  /** The furnish picker (Project H housing): every free anchor this piece fits
+   *  (Place at ...) and every occupied anchor (Take back ...), one row each,
+   *  then the world command. The placed copy is the clicked slot, re-resolved
+   *  at click time by reference (the lock toggle's rule). */
+  private openFurnishPicker(itemId: string, target: BagMenuTarget, x: number, y: number): void {
+    const world = this.deps.world();
+    const options = furnishOptions(itemId, world.myHouse);
+    const title = esc(t('hudChrome.housing.furnish'));
+    if (options.length === 0) {
+      this.paint(
+        [{ html: esc(t('hudChrome.housing.noSpots')), disabled: true }],
+        x,
+        y,
+        () => {},
+        title,
+        true,
+      );
+      return;
+    }
+    const rows: PickerRow[] = options.map((option) => {
+      const anchor = houseAnchorLabel(option.anchorId);
+      if (option.action === 'place') {
+        return {
+          act: `place:${option.anchorId}`,
+          html: esc(t('hudChrome.housing.placeAt', { anchor })),
+        };
+      }
+      const def = option.itemId === undefined ? undefined : ITEMS[option.itemId];
+      return {
+        act: `remove:${option.anchorId}`,
+        html: esc(
+          t('hudChrome.housing.takeBack', { item: def ? itemDisplayName(def) : '', anchor }),
+        ),
+      };
+    });
+    this.paint(
+      rows,
+      x,
+      y,
+      (act) => {
+        const sep = act.indexOf(':');
+        const verb = act.slice(0, sep);
+        const anchorId = act.slice(sep + 1);
+        if (verb === 'remove') {
+          world.removeFurniture(anchorId);
+        } else if (verb === 'place') {
+          const at = target.slot ? bagStackIndex(world.inventory, target.slot) : target.index;
+          if (at < 0) {
+            target.refuseNotHeld();
+            return;
+          }
+          world.placeFurniture(anchorId, at);
+        }
+        this.deps.afterAction();
+      },
+      title,
+      true,
+    );
+  }
+
   private openEnchantPicker(reagentItemId: string, x: number, y: number): void {
     const world = this.deps.world();
     const sections = enchantSectionsForReagent(

@@ -7280,6 +7280,25 @@ export class GameServer {
       case 'buy_house': // Project H housing: the sim owns every rule (housing/ownership.ts).
         if (typeof msg.lot === 'string' && msg.lot.length <= 64) sim.buyHouse(msg.lot, pid);
         break;
+      case 'place_furniture': // Project H housing phase 2 (housing/furnishing.ts).
+        if (
+          typeof msg.anchor === 'string' &&
+          msg.anchor.length <= 64 &&
+          typeof msg.slot === 'number' &&
+          Number.isInteger(msg.slot) &&
+          msg.slot >= 0
+        ) {
+          sim.placeFurniture(msg.anchor, msg.slot, pid);
+          // Arm-marked heavy-self member: a bag copy leaves on success.
+          if (heavySelfMarkOnAccept(command)) session.selfHeavyDirty = true;
+        }
+        break;
+      case 'remove_furniture':
+        if (typeof msg.anchor === 'string' && msg.anchor.length <= 64) {
+          sim.removeFurniture(msg.anchor, pid);
+          if (heavySelfMarkOnAccept(command)) session.selfHeavyDirty = true;
+        }
+        break;
 
       // Talents & Specializations — every allocation re-validated in the Sim.
       case 'applyTalents': {

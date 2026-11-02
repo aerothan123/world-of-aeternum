@@ -18,6 +18,7 @@ import { ITEMS } from '../src/sim/data';
 import type { ItemDef } from '../src/sim/types';
 import { gatherToolTooltipLines } from '../src/ui/gather_tool_tooltip';
 import { factionRewardTooltipLines } from '../src/ui/hud/faction_reward_tooltip_view';
+import { furnitureTooltipLines } from '../src/ui/hud/housing/furniture_tooltip_view';
 import { cookingCatchHintKey } from '../src/ui/hud/professions/cooking_catch_hint_view';
 import { elixirTooltipLines } from '../src/ui/hud/professions/elixir_tooltip_view';
 import { feastTooltipLines } from '../src/ui/hud/professions/feast_tooltip_view';
@@ -64,6 +65,8 @@ const EFFECT_SOURCES: Array<[string, (def: ItemDef) => boolean]> = [
   ['tool effect charm lines', (def) => toolEffectTooltipLines(def) !== ''],
   // The station-name resolver is irrelevant to the has-a-card predicate.
   ['mobile station lines', (def) => mobileStationTooltipLines(def, () => 'station') !== ''],
+  // Player housing (Project H) phase 2: the crafted furniture.
+  ['furniture lines', (def) => furnitureTooltipLines(def) !== ''],
   ['enchanting material hint', (def) => materialHintLine(def.id) !== ''],
   ['raw cooking catch hint', (def) => cookingCatchHintKey(def.id) !== undefined],
   ['used-by profession hint', (def) => materialProfessionHintText(def.id) !== ''],
@@ -152,6 +155,7 @@ describe('crafted item tooltip coverage', () => {
       'gatherToolTooltipLines(item)',
       'toolEffectTooltipLines(item)',
       'mobileStationTooltipLines(item, stationNameText)',
+      'furnitureTooltipLines(item)',
       'materialHintLine(item.id)',
       'cookingCatchHintKey(item.id)',
       'materialProfessionHintText(item.id)',

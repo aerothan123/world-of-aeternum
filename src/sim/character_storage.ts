@@ -5,7 +5,9 @@ import type { CharacterState } from './character_state';
 import { sanitizeCourierState, savedCourierState } from './courier';
 import { absorbLegacyHeroicMarkSlots, sanitizeHeroicMarks } from './heroic_marks';
 import {
+  type DroppedFurnitureRow,
   type HousingPlayerState,
+  sanitizeFurnishingSkill,
   sanitizeHouseState,
   savedHouseState,
 } from './housing/house_state';
@@ -37,8 +39,18 @@ export function restoreCharacterStorage(
   meta.heroicMarks = sanitizeHeroicMarks(s.heroicMarks);
   absorbLegacyHeroicMarkSlots(meta);
   restoreMembershipBag(meta, s);
-  // Player housing (Project H): the owned lot, or none (housing/house_state.ts).
-  meta.house = sanitizeHouseState(s.house);
+  // Player housing (Project H): the owned lot, or none (housing/house_state.ts),
+  // with its placed furniture; a dropped placement row is a dev-channel
+  // warning (never player text), the farm_load_report.ts shape.
+  const droppedFurniture: DroppedFurnitureRow[] = [];
+  meta.house = sanitizeHouseState(s.house, droppedFurniture);
+  if (droppedFurniture.length > 0) {
+    console.warn(
+      `house furniture load dropped ${droppedFurniture.length} row(s): ` +
+        droppedFurniture.map((row) => `${row.anchorId}=${String(row.itemId)}`).join(', '),
+    );
+  }
+  meta.furnishingSkill = sanitizeFurnishingSkill(s.furnishingSkill);
 }
 
 export function savedCharacterStorage(
@@ -55,6 +67,7 @@ export function savedCharacterStorage(
   | 'courier'
   | 'membershipBag'
   | 'house'
+  | 'furnishingSkill'
 > {
   return {
     inventory: meta.inventory.map(savedMaterialSlot),
@@ -73,6 +86,8 @@ export function savedCharacterStorage(
     ...(meta.heroicMarks > 0 ? { heroicMarks: meta.heroicMarks } : {}),
     // Absent until a house is bought, so every other save stays byte-equal.
     ...(meta.house ? { house: savedHouseState(meta.house) } : {}),
+    // Absent at zero (the Furnishing craft's own counter, Project H phase 2).
+    ...(meta.furnishingSkill > 0 ? { furnishingSkill: meta.furnishingSkill } : {}),
   };
 }
 

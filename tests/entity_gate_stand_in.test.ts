@@ -95,6 +95,12 @@ const GATE_CALL_SITES: readonly {
     file: 'src/render/mobile_stations.ts',
     marker: 'attachSceneGroupGated(',
   },
+  {
+    // Placed house furniture (Project H housing): the same helper, its own file.
+    gate: 'attachSceneGroupGated',
+    file: 'src/render/house_furniture.ts',
+    marker: 'attachSceneGroupGated(',
+  },
 ];
 
 /**

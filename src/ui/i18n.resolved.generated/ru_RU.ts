@@ -6293,7 +6293,8 @@ export const ru_RU: EnTranslations = {
       "inscription": "Начертание",
       "enchanting": "Наложение чар",
       "tailoring": "Портняжное дело",
-      "leatherworking": "Кожевничество"
+      "leatherworking": "Кожевничество",
+      "furnishing": "Меблировка"
     },
     "enchantName": {
       "enchant_weapon_lastflame_zeal": "Рвение Последнего Пламени",
@@ -7996,7 +7997,38 @@ export const ru_RU: EnTranslations = {
         "owned": "У вас уже есть дом.",
         "range": "Вы слишком далеко от парадной двери дома «{house}».",
         "money": "Вам не по карману дом «{house}».",
-        "dead": "Нельзя купить дом, пока вы мертвы."
+        "dead": "Нельзя купить дом, пока вы мертвы.",
+        "noHouse": "У вас нет дома.",
+        "notInside": "Для этого нужно находиться внутри своего дома.",
+        "badAnchor": "В вашем доме нет такого места.",
+        "anchorTaken": "На этом месте уже что-то стоит.",
+        "anchorEmpty": "На этом месте ничего не стоит.",
+        "anchorKind": "Этот предмет мебели не подходит для этого места.",
+        "noItem": "У вас нет этого предмета мебели.",
+        "bagsFull": "Ваши сумки полны."
+      },
+      "furnish": "Поставить в доме...",
+      "placeAt": "Поставить: {anchor}",
+      "takeBack": "Забрать {item} ({anchor})",
+      "noSpots": "Нет свободного места для этого предмета.",
+      "furniturePlaced": "Вы поставили {item}: {anchor}.",
+      "furnitureRemoved": "Вы забрали {item} ({anchor}).",
+      "anchorLabel": "{room}, {kind} {index}",
+      "room": {
+        "hearthRoom": "Комната с очагом",
+        "bedroom": "Спальня",
+        "workshop": "Мастерская"
+      },
+      "anchorKind": {
+        "floor": "пол",
+        "wall": "стена",
+        "rug": "ковёр",
+        "table": "стол"
+      },
+      "furnitureTooltip": {
+        "kind": "Мебель",
+        "use": "Ставится в вашем доме на место типа «{kind}».",
+        "how": "Щёлкните правой кнопкой по предмету в сумке, находясь в своём доме."
       }
     }
   },
@@ -24551,6 +24583,42 @@ export const ru_RU: EnTranslations = {
       },
       "gourdlight_crow_feather": {
         "name": "Перо вороны Тыквенных Огней"
+      },
+      "furn_wooden_chair": {
+        "name": "Деревянный стул"
+      },
+      "furn_wooden_stool": {
+        "name": "Деревянный табурет"
+      },
+      "furn_oak_bench": {
+        "name": "Дубовая скамья"
+      },
+      "furn_round_table": {
+        "name": "Круглый стол"
+      },
+      "furn_long_table": {
+        "name": "Длинный стол"
+      },
+      "furn_bookcase": {
+        "name": "Книжный шкаф"
+      },
+      "furn_keg": {
+        "name": "Бочонок"
+      },
+      "furn_barrel": {
+        "name": "Бочка"
+      },
+      "furn_woven_rug": {
+        "name": "Плетёный ковёр"
+      },
+      "furn_candlestick": {
+        "name": "Подсвечник"
+      },
+      "furn_storage_chest": {
+        "name": "Сундук для хранения"
+      },
+      "furn_trophy_plaque": {
+        "name": "Трофейная табличка"
       },
       "membership_staff": {
         "name": "Посох перемен"

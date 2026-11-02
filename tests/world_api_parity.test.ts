@@ -669,6 +669,10 @@ export const IWORLD_MEMBERS = [
   { name: 'houseLots', kind: 'data' },
   { name: 'myHouse', kind: 'data' },
   { name: 'buyHouse', kind: 'method' },
+  // Phase 2: the furniture anchors (static content) and the two furniture verbs.
+  { name: 'houseAnchors', kind: 'data' },
+  { name: 'placeFurniture', kind: 'method' },
+  { name: 'removeFurniture', kind: 'method' },
 ] as const satisfies readonly IWorldMember[];
 
 const DATA_MEMBERS = IWORLD_MEMBERS.filter((m) => m.kind === 'data');
@@ -1037,10 +1041,11 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
     // The portrait menu's unappliedDungeonDifficulty (method, PR 4625) adds one
     // more: 471/140/331.
     // Player housing (Project H, housing.ts) adds houseLots and myHouse (data)
-    // and buyHouse (method): 474/142/332.
-    expect(IWORLD_MEMBERS.length).toBe(474);
-    expect(DATA_MEMBERS.length).toBe(142);
-    expect(METHOD_MEMBERS.length).toBe(332);
+    // and buyHouse (method): 474/142/332. Phase 2 adds houseAnchors (data) and
+    // placeFurniture / removeFurniture (methods): 477/143/334.
+    expect(IWORLD_MEMBERS.length).toBe(477);
+    expect(DATA_MEMBERS.length).toBe(143);
+    expect(METHOD_MEMBERS.length).toBe(334);
   });
   it('has no duplicate member names', () => {
     const names = IWORLD_MEMBERS.map((m) => m.name);
@@ -1269,6 +1274,7 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'hoardBossCues',
       'hobbyCraft',
       'honor',
+      'houseAnchors',
       'houseLots',
       'ignoreAdd',
       'ignoreRemove',
@@ -1359,6 +1365,7 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'petWaterJet',
       'pickUpObject',
       'placeFeast',
+      'placeFurniture',
       'placeMobileStation',
       'plantCrop',
       'playCardInDuel',
@@ -1393,6 +1400,7 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'reliquaryPageCompletion',
       'reliquaryRarity',
       'reliquaryRecent',
+      'removeFurniture',
       'renameBuddy',
       'renamePet',
       'renown',
@@ -1600,6 +1608,7 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'hillInfo',
       'hobbyCraft',
       'honor',
+      'houseAnchors',
       'houseLots',
       'inventory',
       'known',
@@ -1890,6 +1899,7 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'petWaterJet',
       'pickUpObject',
       'placeFeast',
+      'placeFurniture',
       'placeMobileStation',
       'plantCrop',
       'playCardInDuel',
@@ -1910,6 +1920,7 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'reliquaryPageClearCount',
       'reliquaryPageCompletion',
       'reliquaryRarity',
+      'removeFurniture',
       'renameBuddy',
       'renamePet',
       'reportTelemetry',
@@ -2752,8 +2763,11 @@ type _ExhaustSeasonal = AssertNever<Exclude<keyof IWorldSeasonal, (typeof FACET_
 type _ExhaustSeating = AssertNever<Exclude<keyof IWorldSeating, (typeof FACET_SEATING)[number]>>;
 const FACET_HOUSING = [
   'houseLots',
+  'houseAnchors',
   'myHouse',
   'buyHouse',
+  'placeFurniture',
+  'removeFurniture',
 ] as const satisfies readonly (keyof IWorldHousing)[];
 type _ExhaustHousing = AssertNever<Exclude<keyof IWorldHousing, (typeof FACET_HOUSING)[number]>>;
 
@@ -2907,9 +2921,10 @@ describe('W1: aggregate IWorld member set equals the disjoint union of the facet
     // the dungeon objectives tracker's dungeonRun (one data member); the tavern
     // adds resting (data) and sitOnSeat (the seating facet's method).
     // Plus Lantern Hall's guildContracts and buyGuildCosmetic, the riding
-    // ranks method (PR 4390) and unappliedDungeonDifficulty (PR 4625).
-    expect(union.length, 'union size before dedup (catches a duplicated member)').toBe(474);
-    expect(new Set(union).size, 'union size after dedup (catches a duplicated member)').toBe(474);
+    // ranks method (PR 4390) and unappliedDungeonDifficulty (PR 4625). Player
+    // housing phase 2 adds houseAnchors, placeFurniture and removeFurniture.
+    expect(union.length, 'union size before dedup (catches a duplicated member)').toBe(477);
+    expect(new Set(union).size, 'union size after dedup (catches a duplicated member)').toBe(477);
     const sortedUnion = [...union].sort();
     const pinned = IWORLD_MEMBERS.map((m) => m.name).sort();
     expect(sortedUnion).toEqual(pinned);

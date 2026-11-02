@@ -6293,7 +6293,8 @@ export const zh_TW: EnTranslations = {
       "inscription": "銘文學",
       "enchanting": "附魔",
       "tailoring": "裁縫",
-      "leatherworking": "製皮"
+      "leatherworking": "製皮",
+      "furnishing": "家具製作"
     },
     "enchantName": {
       "enchant_weapon_lastflame_zeal": "末焰熱忱",
@@ -7996,7 +7997,38 @@ export const zh_TW: EnTranslations = {
         "owned": "你已經擁有一棟房屋。",
         "range": "你離{house}的前門太遠了。",
         "money": "你買不起{house}。",
-        "dead": "死亡狀態下無法購買房屋。"
+        "dead": "死亡狀態下無法購買房屋。",
+        "noHouse": "你沒有房屋。",
+        "notInside": "必須站在自己的房屋裡才能這樣做。",
+        "badAnchor": "你的房屋裡沒有這個位置。",
+        "anchorTaken": "那個位置已經擺放了東西。",
+        "anchorEmpty": "那個位置上沒有東西。",
+        "anchorKind": "這件家具放不進那個位置。",
+        "noItem": "你沒有拿著這件家具。",
+        "bagsFull": "你的背包已滿。"
+      },
+      "furnish": "擺放到房屋中...",
+      "placeAt": "擺放到{anchor}",
+      "takeBack": "從{anchor}收回{item}",
+      "noSpots": "沒有適合這件家具的空位。",
+      "furniturePlaced": "你把{item}擺放到了{anchor}。",
+      "furnitureRemoved": "你從{anchor}收回了{item}。",
+      "anchorLabel": "{room}，{kind}{index}",
+      "room": {
+        "hearthRoom": "爐室",
+        "bedroom": "臥室",
+        "workshop": "工坊"
+      },
+      "anchorKind": {
+        "floor": "地面位",
+        "wall": "牆面位",
+        "rug": "地毯位",
+        "table": "桌面位"
+      },
+      "furnitureTooltip": {
+        "kind": "家具",
+        "use": "可擺放在自己房屋內的{kind}位置上。",
+        "how": "站在自己的房屋裡時，在背包中右鍵點擊它。"
       }
     }
   },
@@ -24551,6 +24583,42 @@ export const zh_TW: EnTranslations = {
       },
       "gourdlight_crow_feather": {
         "name": "南瓜燈烏鴉羽毛"
+      },
+      "furn_wooden_chair": {
+        "name": "木椅"
+      },
+      "furn_wooden_stool": {
+        "name": "木凳"
+      },
+      "furn_oak_bench": {
+        "name": "橡木長凳"
+      },
+      "furn_round_table": {
+        "name": "圓桌"
+      },
+      "furn_long_table": {
+        "name": "長桌"
+      },
+      "furn_bookcase": {
+        "name": "書櫃"
+      },
+      "furn_keg": {
+        "name": "小酒桶"
+      },
+      "furn_barrel": {
+        "name": "木桶"
+      },
+      "furn_woven_rug": {
+        "name": "編織地毯"
+      },
+      "furn_candlestick": {
+        "name": "燭台"
+      },
+      "furn_storage_chest": {
+        "name": "儲物箱"
+      },
+      "furn_trophy_plaque": {
+        "name": "獎盃牌匾"
       },
       "membership_staff": {
         "name": "萬變法杖"

@@ -128,8 +128,8 @@ describe('buying a house', () => {
       { type: 'housePurchased', pid, lotId: LOT.id },
     ]);
     expect(meta.copper).toBe(123);
-    expect(meta.house).toEqual({ lot: LOT.id, boughtDay: '' });
-    expect(sim.myHouse).toEqual({ lotId: LOT.id });
+    expect(meta.house).toEqual({ lot: LOT.id, boughtDay: '', furniture: {} });
+    expect(sim.myHouse).toEqual({ lotId: LOT.id, furniture: {} });
   });
 
   it('refuses an unknown lot, a second house, the out-of-range and the broke', () => {
@@ -188,7 +188,7 @@ describe('the front door', () => {
   it('tells an owner of another house which house they own', () => {
     const sim = makeSim();
     const pid = sim.player.id;
-    metaOf(sim, pid).house = { lot: HOUSE_LOTS[1].id, boughtDay: '' };
+    metaOf(sim, pid).house = { lot: HOUSE_LOTS[1].id, boughtDay: '', furniture: {} };
     place(sim, pid, LOT.doorPos.x, LOT.doorPos.z);
     expect(eventsOfType(sim.tick(), 'houseOffer')[0]?.ownedLotId).toBe(HOUSE_LOTS[1].id);
   });
@@ -196,7 +196,7 @@ describe('the front door', () => {
   it('lets the owner walk into a private copy of the cottage and back out', () => {
     const sim = makeSim();
     const pid = sim.player.id;
-    metaOf(sim, pid).house = { lot: LOT.id, boughtDay: '' };
+    metaOf(sim, pid).house = { lot: LOT.id, boughtDay: '', furniture: {} };
     place(sim, pid, LOT.doorPos.x, LOT.doorPos.z);
     sim.tick();
     expect(sim.player.pos.x).toBeGreaterThan(DUNGEON_X_THRESHOLD);
@@ -218,10 +218,11 @@ describe('the front door', () => {
   });
 
   it('gives two owners of the same lot two separate copies, even in one party', () => {
-    const sim = new Sim({ seed: 42, noPlayer: true });
+    const sim = new Sim({ seed: 42, playerClass: 'warrior', noPlayer: true });
     const a = sim.addPlayer('warrior', 'Alda');
     const b = sim.addPlayer('mage', 'Brenn');
-    for (const pid of [a, b]) metaOf(sim, pid).house = { lot: LOT.id, boughtDay: '' };
+    for (const pid of [a, b])
+      metaOf(sim, pid).house = { lot: LOT.id, boughtDay: '', furniture: {} };
     sim.partyInvite(b, a);
     sim.partyAccept(b);
     expect((sim as any).ctx.partyOf(a)?.members).toContain(b);
@@ -255,7 +256,7 @@ describe('the front door', () => {
   it('never lets a released spirit in (a house is not a place to resurrect)', () => {
     const sim = makeSim();
     const pid = sim.player.id;
-    metaOf(sim, pid).house = { lot: LOT.id, boughtDay: '' };
+    metaOf(sim, pid).house = { lot: LOT.id, boughtDay: '', furniture: {} };
     sim.player.ghost = true;
     place(sim, pid, LOT.doorPos.x, LOT.doorPos.z);
     sim.tick();
@@ -265,16 +266,21 @@ describe('the front door', () => {
 
 describe('house persistence', () => {
   it('round-trips through the character save and is absent when never bought', () => {
-    const sim = new Sim({ seed: 42, noPlayer: true });
+    const sim = new Sim({ seed: 42, playerClass: 'warrior', noPlayer: true });
     const pid = sim.addPlayer('warrior', 'Saver');
     expect(sim.serializeCharacter(pid)?.house).toBeUndefined();
-    metaOf(sim, pid).house = { lot: LOT.id, boughtDay: '2026-11-01' };
+    metaOf(sim, pid).house = { lot: LOT.id, boughtDay: '2026-11-01', furniture: {} };
     const saved = sim.serializeCharacter(pid)!;
+    // the empty furniture map is omitted, so a phase-1 save stays byte-equal
     expect(saved.house).toEqual({ lot: LOT.id, boughtDay: '2026-11-01' });
-    const sim2 = new Sim({ seed: 42, noPlayer: true });
+    const sim2 = new Sim({ seed: 42, playerClass: 'warrior', noPlayer: true });
     const pid2 = sim2.addPlayer('warrior', 'Saver', { state: saved });
-    expect(metaOf(sim2, pid2).house).toEqual({ lot: LOT.id, boughtDay: '2026-11-01' });
-    expect(sim2.houseFor(pid2)).toEqual({ lotId: LOT.id });
+    expect(metaOf(sim2, pid2).house).toEqual({
+      lot: LOT.id,
+      boughtDay: '2026-11-01',
+      furniture: {},
+    });
+    expect(sim2.houseFor(pid2)).toEqual({ lotId: LOT.id, furniture: {} });
   });
 
   it('sanitizes: unknown lots and junk load as no house; an empty day is omitted', () => {
@@ -284,7 +290,10 @@ describe('house persistence', () => {
     expect(sanitizeHouseState({ lot: LOT.id, boughtDay: 7 })).toEqual({
       lot: LOT.id,
       boughtDay: '',
+      furniture: {},
     });
-    expect(savedHouseState({ lot: LOT.id, boughtDay: '' })).toEqual({ lot: LOT.id });
+    expect(savedHouseState({ lot: LOT.id, boughtDay: '', furniture: {} })).toEqual({
+      lot: LOT.id,
+    });
   });
 });

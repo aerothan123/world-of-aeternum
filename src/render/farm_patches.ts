@@ -79,6 +79,7 @@ import {
 import { attachSceneGroupGated, GatedSceneAttachCancelledError } from './gated_scene_attach';
 import { surfaceMat } from './gfx';
 import { addInstancedParts, type GlbTemplatePart, glbTemplateParts } from './glb_instanced_props';
+import { HouseFurnitureVisuals } from './house_furniture';
 import { cloneMaterialWithHooks } from './material_clone_hooks';
 import { MobileStationVisuals } from './mobile_stations';
 import { materialProgramSignature } from './prewarm_policy';
@@ -445,6 +446,9 @@ export class FarmPatchVisuals {
   // throttled entity read and per-frame update for the same reason the feast
   // does: a real snapshot entity everyone sees, with no renderer.ts wiring.
   private readonly mobileStations: MobileStationVisuals;
+  // The placed house furniture (house_furniture.ts, Project H housing) rides
+  // the same throttled entity read for the same reason.
+  private readonly houseFurniture: HouseFurnitureVisuals;
   // The hidden program anchors (module header), built at construction and staged after the first-paint boundary is installed.
   private readonly anchors: THREE.Group | null;
   // Fallback-arm BufferGeometries the anchors own (glb_instanced_props.ts mints
@@ -465,6 +469,7 @@ export class FarmPatchVisuals {
   ) {
     this.compileGate = compileGate;
     this.mobileStations = new MobileStationVisuals(scene, compileGate);
+    this.houseFurniture = new HouseFurnitureVisuals(scene, compileGate);
     const anchors = this.compileGate ? buildFarmProgramAnchors() : null;
     this.anchors = anchors?.root ?? null;
     this.ownedAnchorGeometries = anchors?.ownedGeometries ?? [];
@@ -532,6 +537,7 @@ export class FarmPatchVisuals {
     // feast appearing within the normal half-second cadence is fine.
     this.applyFeasts(world.entities, world.cfg.seed);
     this.mobileStations.sync(world.entities, world.cfg.seed);
+    this.houseFurniture.sync(world.entities);
     // The event-forced read stays armed until it actually observes a change
     // (see the field comment: online the changed rows ride a LATER message
     // than the event), bounded at one interval so the normal cadence is the
@@ -697,6 +703,7 @@ export class FarmPatchVisuals {
     for (const [bedId, visual] of this.plots) this.disposePlot(bedId, visual);
     for (const [id, visual] of this.feasts) this.disposeFeast(id, visual);
     this.mobileStations.dispose();
+    this.houseFurniture.dispose();
     // The anchors wear the GLB cache's own materials (shared with the
     // instanced beds and every later template read) and the deduped gfx
     // surface materials, so they are detached, never disposed. A loaded

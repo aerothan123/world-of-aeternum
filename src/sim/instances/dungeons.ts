@@ -39,7 +39,8 @@ import { tickBastionEncounters } from '../encounters/sunken_bastion';
 import { clearVarkhulEncounterAuras } from '../encounters/varkhul';
 import { tickWildheartEncounters } from '../encounters/wildheart_basin';
 import { createGroundObject, createMob, createNpc } from '../entity';
-import { houseEntryKey } from '../housing/ownership';
+import { houseInstanceOwner, spawnHouseFurniture } from '../housing/furniture_objects';
+import { houseEntryKey, houseInstanceKey } from '../housing/ownership';
 import { updateIgnivarForgeLift } from '../ignivar_forge_lift';
 import {
   IGNIVAR_LIFT_ROOM_ID,
@@ -1142,6 +1143,11 @@ function claimInstance(
     ctx.addEntity(obj);
     inst.objectIds.push(obj.id);
   }
+  // Player housing (Project H): a house lot's claim stands the owner's placed
+  // furniture (housing/furniture_objects.ts); the entities ride objectIds, so
+  // freeInstance tears them down with the claim. No rng.
+  const houseOwner = houseInstanceOwner(ctx.players, key, houseInstanceKey);
+  if (houseOwner?.house) spawnHouseFurniture(ctx, inst, origin, houseOwner.house);
   const exit = createGroundObject(
     ctx.nextId++,
     '',

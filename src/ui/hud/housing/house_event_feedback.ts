@@ -1,4 +1,4 @@
-// Player housing (Project H): the thin consumer of the three housing SimEvents.
+// Player housing (Project H): the thin consumer of the housing SimEvents.
 // The pure resolution (which line, which params) is house_feedback_view.ts; this
 // module localizes, formats money, and pushes through the host seam. The HUD's
 // event switch keeps a one-call arm (the farm_event_feedback.ts shape).
@@ -49,6 +49,9 @@ export function handleHouseEvent(
       host.log(line, PROF_LOG_NEWS);
       return;
     }
+    case 'furniture':
+      host.log(t(plan.key, { item: plan.item, anchor: plan.anchor }), PROF_LOG_NEWS);
+      return;
     case 'none':
       return;
   }

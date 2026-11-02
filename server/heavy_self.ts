@@ -68,6 +68,12 @@ export const HEAVY_SELF_CMDS = new Set<string>([
   // (charges and the ledger are feast state, and the buff rides the aura
   // wire), so there is nothing heavy to refresh.
   'place_feast',
+  // Player housing phase 2 (housing/furnishing.ts): placing spends the named
+  // bag copy and taking back grants it, both through paths that bump wireRev,
+  // so freshness already holds; membership keeps the guarantee LOCAL to the
+  // two commands (the place_feast trade), arm-marked with it below.
+  'place_furniture',
+  'remove_furniture',
   // The Perfecting stage (Masterwrought phase 12): a resolved attempt spends
   // the three materials through the lock-aware bag walk and mutates the
   // target's instance payload IN PLACE (the bind stamp, the rank, the
@@ -182,6 +188,8 @@ export const HEAVY_SELF_ARM_MARKED_CMDS = new Set<string>([
   'harvest_crop',
   'convert_husks',
   'place_feast',
+  'place_furniture',
+  'remove_furniture',
   'market_sweep',
   'market_order_place',
   'market_order_fill',

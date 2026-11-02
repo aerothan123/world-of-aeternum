@@ -606,6 +606,8 @@ const UI_PURE_CORES = [
   'src/ui/grant_line_view.ts',
   'src/ui/hud/professions/farming_view.ts',
   'src/ui/hud/housing/house_feedback_view.ts',
+  'src/ui/hud/housing/house_furnish_view.ts',
+  'src/ui/hud/housing/furniture_tooltip_view.ts',
   'src/ui/hud/professions/farming_plant_sheet_view.ts',
   'src/ui/hud/professions/harvest_journal_view.ts',
   'src/ui/hud/professions/harvest_preference_view.ts',

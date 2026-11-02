@@ -7,6 +7,7 @@
 import type { HarborRouteMarkerDestination } from '../sim/content/harbor_route_markers';
 import { IGNIVAR_LORE_OBJECTS } from '../sim/content/ignivar_raid_lore';
 import { MUSTER_RACK_TEMPLATE_ID } from '../sim/content/mirefen_muster';
+import { furnitureItemOf } from '../sim/housing/furniture_template';
 import { type Entity, REALM_BUILDER_MONUMENT_TEMPLATE_ID } from '../sim/types';
 import { investigationObjectLabel } from '../ui/entity_display_core';
 import { dungeonDisplayName, poiMarkLabel, tEntity, zoneDisplayName } from '../ui/entity_i18n';
@@ -125,6 +126,10 @@ export function objectDisplayName(entity: Entity): string {
   // shared-leaf rule (src/ui/hud/professions/mobile_station_title.ts).
   const stationTitle = mobileStationTitleFor(entity.templateId, entity.name);
   if (stationTitle !== null) return stationTitle;
+  // A placed piece of house furniture (Project H): the item's own name; the
+  // entity's wire name is the anchor id, a key, never shown.
+  const furnitureItem = furnitureItemOf(entity.templateId);
+  if (furnitureItem !== null) return tEntity({ kind: 'item', id: furnitureItem, field: 'name' });
   // These four development-raid records are interactOnly narrative props, not
   // inventory items. Their lore handler returns before generic pickup, so keep
   // them out of ITEMS (and its mandatory icon-art contract) while still giving

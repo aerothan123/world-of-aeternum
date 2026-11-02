@@ -198,9 +198,11 @@ const repoRoot = fileURLToPath(new URL('..', import.meta.url));
 // the v0.45.0 integration's 262/276: 263/277/14.
 // Main commands plus Gourdlight Eve trick-or-treat.
 // Player housing (Project H) adds buy_house (sent by ClientWorld.buyHouse,
-// dispatched to Sim.buyHouse): 274/288/14.
-const EXPECTED_SEND_COUNT = 274;
-const EXPECTED_DISPATCH_COUNT = 288;
+// dispatched to Sim.buyHouse): 274/288/14. Phase 2 adds place_furniture and
+// remove_furniture (ClientWorld.placeFurniture / removeFurniture, dispatched to
+// Sim.placeFurniture / removeFurniture): 276/290/14.
+const EXPECTED_SEND_COUNT = 276;
+const EXPECTED_DISPATCH_COUNT = 290;
 const EXPECTED_DISPATCH_ONLY_COUNT = 14;
 
 // The chat sub-channel routing switch (server/game.ts `switch
@@ -338,8 +340,9 @@ describe('command schema parity (W0b)', () => {
   it('appends courier dispatch as a complete client/server command pair', () => {
     // The integration adds the dungeon guide answer, then the buddy rename command; the
     // Keep main wire tokens in place and append Gourdlight Eve.
-    // Player housing (Project H) appends buy_house after trick_or_treat.
-    expect(COMMAND_NAMES.slice(-8, -1)).toEqual([
+    // Player housing (Project H) appends buy_house after trick_or_treat, then
+    // phase 2 appends place_furniture and remove_furniture.
+    expect(COMMAND_NAMES.slice(-10, -3)).toEqual([
       'courier_dispatch',
       'dungeon_guide_answer',
       'buddy_rename',
@@ -348,9 +351,11 @@ describe('command schema parity (W0b)', () => {
       'guild_buy_cosmetic',
       'trick_or_treat',
     ]);
-    expect(COMMAND_NAMES.at(-1)).toBe('buy_house');
-    expect(sendSet.has('buy_house')).toBe(true);
-    expect(dispatchSet.has('buy_house')).toBe(true);
+    expect(COMMAND_NAMES.slice(-3)).toEqual(['buy_house', 'place_furniture', 'remove_furniture']);
+    for (const cmd of ['buy_house', 'place_furniture', 'remove_furniture']) {
+      expect(sendSet.has(cmd), cmd).toBe(true);
+      expect(dispatchSet.has(cmd), cmd).toBe(true);
+    }
     expect(sendSet.has('guild_buy_cosmetic')).toBe(true);
     expect(dispatchSet.has('guild_buy_cosmetic')).toBe(true);
     expect(sendSet.has('courier_dispatch')).toBe(true);

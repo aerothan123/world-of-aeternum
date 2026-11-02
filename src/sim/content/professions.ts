@@ -379,6 +379,24 @@ export const CRAFT_RING: CraftDef[] = [
 
 const RING_SIZE = CRAFT_RING.length;
 
+// Secondary crafts (Project H housing, phase 2): crafts that reuse the recipe
+// machinery (ProfessionRecipeRecord, the craft cast, the station gate) but sit
+// OFF the ring: no archetype seat, no adjacency, no opposite, no entry in a
+// player's ring craftSkills record (the ring's ten-key shape is pinned). Their
+// skill rides its own PlayerMeta counter (src/sim/housing/furnishing_skill.ts).
+// `craftById` and `craftMaxSkillFor` resolve them so the shared crafting path
+// (perk thresholds, the gain multiplier's cap read) never throws on one;
+// `adjacentCrafts` / `oppositeCraft` stay ring-only by contract.
+export const FURNISHING_CRAFT_ID = 'furnishing';
+export const SECONDARY_CRAFTS: readonly CraftDef[] = Object.freeze([
+  { id: FURNISHING_CRAFT_ID, name: 'Furnishing', pole: 'Formal', maxSkill: 125 },
+]);
+
+/** True for a craft that reuses the recipe machinery off the ring. */
+export function isSecondaryCraft(craftId: string): boolean {
+  return SECONDARY_CRAFTS.some((craft) => craft.id === craftId);
+}
+
 const CRAFT_INDEX: ReadonlyMap<string, number> = new Map(
   CRAFT_RING.map((craft, index) => [craft.id, index]),
 );
@@ -405,8 +423,11 @@ export function oppositeCraft(craftId: string): CraftDef {
   return CRAFT_RING[(index + RING_SIZE / 2) % RING_SIZE];
 }
 
-/** Lookup a craft definition by id. */
+/** Lookup a craft definition by id: a ring craft, or a secondary craft
+ *  (SECONDARY_CRAFTS). Throws on an unknown id. */
 export function craftById(craftId: string): CraftDef {
+  const secondary = SECONDARY_CRAFTS.find((craft) => craft.id === craftId);
+  if (secondary) return secondary;
   return CRAFT_RING[indexOf(craftId)];
 }
 
@@ -460,7 +481,7 @@ export interface PerkThresholdDef {
 }
 
 export const PERK_THRESHOLDS: Record<string, PerkThresholdDef> = Object.fromEntries(
-  CRAFT_RING.map((craft) => [
+  [...CRAFT_RING, ...SECONDARY_CRAFTS].map((craft) => [
     craft.id,
     { specializedSkillThreshold: 75, materialDiscountPct: 0.2, rechargeDiscountPct: 0.25 },
   ]),

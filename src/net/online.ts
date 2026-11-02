@@ -56,6 +56,7 @@ import {
 } from '../sim/data';
 import { deadTargetSelectable } from '../sim/dead_target';
 import { DEEDS_RECENT_CAP, freshDeedStats } from '../sim/deeds';
+import { HOUSE_COTTAGE_ANCHORS } from '../sim/housing/cottage_layout';
 import type { NamedSlotTarget } from '../sim/item_copy_ref';
 import { LEADERBOARD_PAGE_SIZE } from '../sim/leaderboard_page';
 import type { Ante, PickAction } from '../sim/lockpick';
@@ -1433,6 +1434,7 @@ export class ClientWorld extends ReconWireState implements IWorld {
   myFarmPlots: readonly FarmPlotView[] = [];
   // Player housing (Project H): static lots + the `hse` self-delta mirror.
   readonly houseLots = HOUSE_LOTS;
+  readonly houseAnchors = HOUSE_COTTAGE_ANCHORS;
   myHouse: HouseView | null = null;
   // The clock base the plot timestamps above were written in. Date.now is
   // correct here for the riftEventMsRemaining reason: the server computes farm
@@ -4278,6 +4280,12 @@ export class ClientWorld extends ReconWireState implements IWorld {
   }
   buyHouse(lotId: string): void {
     this.cmd({ cmd: 'buy_house', lot: lotId });
+  }
+  placeFurniture(anchorId: string, slot: number): void {
+    this.cmd({ cmd: 'place_furniture', anchor: anchorId, slot });
+  }
+  removeFurniture(anchorId: string): void {
+    this.cmd({ cmd: 'remove_furniture', anchor: anchorId });
   }
   sitOnSeat(seatId: string): void {
     this.cmd({ cmd: 'sit_seat', seat: seatId });

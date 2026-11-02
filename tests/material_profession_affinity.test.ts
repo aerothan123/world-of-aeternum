@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest';
 import { CRUCIBLE_RECIPE_PENDING_MATERIAL_ITEM_IDS } from '../src/sim/content/crucible_professions';
 import { ENCHANTS } from '../src/sim/content/enchants';
 import { FARM_CROPS, FARM_MATERIAL_ITEM_IDS } from '../src/sim/content/farm_crops';
-import { CRAFT_RING } from '../src/sim/content/professions';
+import { CRAFT_RING, SECONDARY_CRAFTS } from '../src/sim/content/professions';
 import { ALL_RECIPES } from '../src/sim/content/recipes';
 import { ALL_RECIPES as ALL_RECIPES_VIA_DATA } from '../src/sim/data';
 import { craftIdsForMaterialItem } from '../src/sim/material_profession_affinity';
@@ -47,10 +47,13 @@ describe('craftIdsForMaterialItem', () => {
     // Leatherworking is the home craft; armorcrafting and weaponcrafting also
     // list hide on shipped recipes. Order is CRAFT_RING, not first-seen.
     // CRAFT_RING order: leatherworking sits before weaponcrafting/armorcrafting.
+    // The secondary Furnishing craft (the woven rug, Project H housing phase 2)
+    // follows the ring.
     expect(craftIdsForMaterialItem('rough_hide')).toEqual([
       'leatherworking',
       'weaponcrafting',
       'armorcrafting',
+      'furnishing',
     ]);
   });
 
@@ -266,12 +269,15 @@ describe('craftIdsForMaterialItem', () => {
     // leatherworking and the fine grade gains leatherworking.
     const fine = craftIdsForMaterialItem('fine_iron_ore');
     const base = craftIdsForMaterialItem('iron_ore');
+    // Furnishing (the barrel and the storage chest, Project H housing phase 2)
+    // follows the ring on both.
     expect(base).toEqual([
       'engineering',
       'leatherworking',
       'jewelcrafting',
       'weaponcrafting',
       'armorcrafting',
+      'furnishing',
     ]);
     expect(fine).toEqual([
       'engineering',
@@ -279,6 +285,7 @@ describe('craftIdsForMaterialItem', () => {
       'jewelcrafting',
       'weaponcrafting',
       'armorcrafting',
+      'furnishing',
     ]);
     for (const craftId of base) {
       expect(fine, `fine inherits ${craftId}`).toContain(craftId);
@@ -297,7 +304,8 @@ describe('craftIdsForMaterialItem', () => {
   });
 
   it('orders multi-craft lines by CRAFT_RING, never first-seen recipe order', () => {
-    const ring = CRAFT_RING.map((c) => c.id);
+    // The ring, then the secondary crafts (Furnishing after every ring craft).
+    const ring = [...CRAFT_RING, ...SECONDARY_CRAFTS].map((c) => c.id);
     for (const itemId of MATERIAL_ITEM_IDS) {
       const crafts = craftIdsForMaterialItem(itemId);
       const positions = crafts.map((id) => ring.indexOf(id));
@@ -369,7 +377,8 @@ describe('craftIdsForMaterialItem', () => {
   });
 
   it('every recipe professionId is a craft the affinity can name', () => {
-    const ring = new Set(CRAFT_RING.map((c) => c.id));
+    // The ring plus the secondary crafts (Furnishing, Project H housing phase 2).
+    const ring = new Set([...CRAFT_RING, ...SECONDARY_CRAFTS].map((c) => c.id));
     for (const recipe of ALL_RECIPES) {
       expect(ring.has(recipe.professionId), recipe.professionId).toBe(true);
     }

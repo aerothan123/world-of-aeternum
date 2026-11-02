@@ -10,7 +10,7 @@
 
 import { type TranslationKey, t } from '../../i18n';
 
-/** Craft id -> its display-name key. Every CRAFT_RING id has an entry. */
+/** Craft id -> its display-name key. Every CRAFT_RING and SECONDARY_CRAFTS id has an entry. */
 export const CRAFT_NAME_KEYS: Readonly<Record<string, TranslationKey>> = {
   armorcrafting: 'hudChrome.craftName.armorcrafting',
   weaponcrafting: 'hudChrome.craftName.weaponcrafting',
@@ -22,6 +22,10 @@ export const CRAFT_NAME_KEYS: Readonly<Record<string, TranslationKey>> = {
   enchanting: 'hudChrome.craftName.enchanting',
   tailoring: 'hudChrome.craftName.tailoring',
   leatherworking: 'hudChrome.craftName.leatherworking',
+  // The secondary Furnishing craft (Project H housing phase 2), off the ring
+  // (SECONDARY_CRAFTS) but named wherever a craft is: the Used-by line, the
+  // crafting window's section header.
+  furnishing: 'hudChrome.craftName.furnishing',
 };
 
 /** The display-name key for one craft id, or undefined off the ring. */

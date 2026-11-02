@@ -224,6 +224,15 @@ export const ENTITY_GATE_STAND_INS: readonly EntityGateStandIn[] = [
   },
   {
     gate: 'attachSceneGroupGated',
+    file: 'src/render/house_furniture.ts',
+    callSite: 'void attachSceneGroupGated(',
+    hides:
+      "a placed piece of house furniture's model (the kcas chair, table, bookcase or barrel the FurnitureDef names, or the rug plane) on its first appearance in the owner's private house copy, under the label kind house-furniture; a group retired before its gate settles (the piece taken back) is never shown",
+    standIn:
+      'the furniture ENTITY itself, whose own view (the invisible click proxy the feast also gets) and nameplate (nameplate_view.ts feastNear admits a furniture templateId within INTERACT_RANGE + 1) never ride this gate; the piece is walk-through decoration with no gameplay read, so a held model delays decoration only, bounded by GATED_ATTACH_WATCHDOG_MS',
+  },
+  {
+    gate: 'attachSceneGroupGated',
     file: 'src/render/courier_visual.ts',
     callSite: 'void attachSceneGroupGated(',
     hides: 'the owner-only cosmetic flying donkey while its material compiles',

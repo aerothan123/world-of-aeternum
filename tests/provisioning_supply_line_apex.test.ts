@@ -1488,13 +1488,15 @@ describe('masterwrought Phase 11h: what it did NOT touch', () => {
     expect(FORGEBREAKER_RECIPES.map((recipe) => recipe.id)).toEqual([
       'recipe_varkhul_forgebreaker',
     ]);
+    // 175 -> 187 with the twelve Furnishing rows (Project H housing phase 2).
     expect(
       ALL_RECIPES.filter(
         (recipe) =>
           !CRUCIBLE_COLLECTION_RECIPES.includes(recipe) && !FORGEBREAKER_RECIPES.includes(recipe),
       ),
-    ).toHaveLength(175);
-    expect(ALL_RECIPES).toHaveLength(209);
+    ).toHaveLength(187);
+    // 209 -> 221 with the twelve Furnishing rows (Project H housing phase 2).
+    expect(ALL_RECIPES).toHaveLength(221);
     for (const row of APEX_ROWS) {
       expect(requireRecipe(row.id).skillReq, `${row.id} rung`).toBe(row.rung);
     }

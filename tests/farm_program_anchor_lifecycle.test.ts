@@ -120,7 +120,9 @@ describe('farm program anchor geometry lifecycle (dispose ownership)', () => {
     // constructs a FarmPatchVisuals and tears it down without ever staging
     // (an early unmount, a failed world entry) must not leak the fallback
     // geometries either. The fallback catalog owns one deduped crop-stage
-    // program geometry and one feast-table program geometry before GLBs load.
+    // program geometry and one feast-table program geometry before GLBs load,
+    // and the house furniture mirror this driver hosts (house_furniture.ts)
+    // owns its one rug plane: three owned geometries, three disposes.
     const disposeSpy = vi.spyOn(THREE.BufferGeometry.prototype, 'dispose');
     const scene = new THREE.Scene();
     const { seats } = buildFarmPatchProps(SEED, FARM_PATCHES);
@@ -128,7 +130,7 @@ describe('farm program anchor geometry lifecycle (dispose ownership)', () => {
 
     visuals.dispose();
 
-    expect(disposeSpy).toHaveBeenCalledTimes(2);
+    expect(disposeSpy).toHaveBeenCalledTimes(3);
     disposeSpy.mockRestore();
   });
 });

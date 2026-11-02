@@ -846,12 +846,17 @@ describe('craftLearnHints (discoverability)', () => {
     // Exactly three station-less crafts hint through a foreign-bound teaching
     // home (trainingStationTypeFor): enchanting via the toolworks charms,
     // jewelcrafting via its forge-bound catalog, and inscription via its
-    // apothecary-bound catalog (phase 06). Any new station-less hinted
-    // craft must be added here deliberately.
+    // apothecary-bound catalog (phase 06), plus the secondary Furnishing craft
+    // via its toolworks-bound catalog (Project H housing phase 2). Any new
+    // station-less hinted craft must be added here deliberately.
     for (const [craft, hint] of hints) {
       const own = stationTypeForCraft(craft);
       if (own) expect(own, craft).toBe(hint.stationType);
-      else expect(['enchanting', 'jewelcrafting', 'inscription'], craft).toContain(craft);
+      else {
+        expect(['enchanting', 'jewelcrafting', 'inscription', 'furnishing'], craft).toContain(
+          craft,
+        );
+      }
       expect(hint.masterNpcId).toBeTruthy();
     }
     expect(hints.get('jewelcrafting')).toEqual({
@@ -865,6 +870,10 @@ describe('craftLearnHints (discoverability)', () => {
     expect(hints.get('inscription')).toEqual({
       stationType: 'apothecary',
       masterNpcId: 'alchemist_verane',
+    });
+    expect(hints.get('furnishing')).toEqual({
+      stationType: 'toolworks',
+      masterNpcId: 'tinker_gizzel',
     });
     expect(hints.has('not-a-craft')).toBe(false);
   });

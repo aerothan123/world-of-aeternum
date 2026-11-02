@@ -70,7 +70,7 @@ describe('materialProfessionHintText', () => {
     // ("A, B, and C") in one decisive arm. A view-side sort() or a first-seen
     // recipe order both fail here.
     expect(materialProfessionHintText('rough_hide')).toBe(
-      'Used by Leatherworking, Weaponcrafting, and Armorcrafting.',
+      'Used by Leatherworking, Weaponcrafting, Armorcrafting, and Furnishing.',
     );
   });
 
@@ -178,7 +178,10 @@ describe('materialProfessionHintText', () => {
     // (The buddy charm recipe that briefly made Leatherworking a second
     // consumer left with the account-wide buddy rework: BUDDY_CHARM_RECIPES
     // in content/recipes.ts is empty since 1896839827c.)
-    expect(materialProfessionHintText('fine_ironbark_log')).toBe('Used by Weaponcrafting.');
+    // Furnishing (Project H housing phase 2) joins the ironbark consumers.
+    expect(materialProfessionHintText('fine_ironbark_log')).toBe(
+      'Used by Weaponcrafting and Furnishing.',
+    );
   });
 
   it('CRAFT_NAMING_HINT_KEYS equals the set of hint keys whose English lead names the craft', async () => {
@@ -228,7 +231,7 @@ describe('materialProfessionHintText', () => {
     // feature/buried-hoards: pattern_reinforced_armor_kit takes iron_ore, and
     // the fine grade inherits its base consumers.
     expect(materialProfessionHintText('fine_iron_ore')).toBe(
-      'Used by Engineering, Leatherworking, Jewelcrafting, Weaponcrafting, and Armorcrafting.',
+      'Used by Engineering, Leatherworking, Jewelcrafting, Weaponcrafting, Armorcrafting, and Furnishing.',
     );
   });
 
@@ -262,7 +265,7 @@ describe('itemTooltip integration for profession material tags', () => {
     // The full painted element: createTooltipLine output with the
     // tt-material-use modifier carrying the theme craft tint.
     expect(html).toContain(
-      '<div class="tt-desc tt-material-use">Used by Leatherworking, Weaponcrafting, and Armorcrafting.</div>',
+      '<div class="tt-desc tt-material-use">Used by Leatherworking, Weaponcrafting, Armorcrafting, and Furnishing.</div>',
     );
   });
 
@@ -277,7 +280,7 @@ describe('itemTooltip integration for profession material tags', () => {
     const html = tooltipHtml('fine_iron_ore');
     const hintAt = html.indexOf('Fine grade.');
     const usedByAt = html.indexOf(
-      'Used by Engineering, Leatherworking, Jewelcrafting, Weaponcrafting, and Armorcrafting.',
+      'Used by Engineering, Leatherworking, Jewelcrafting, Weaponcrafting, Armorcrafting, and Furnishing.',
     );
     const sellAt = html.indexOf('Sell price');
     expect(hintAt).toBeGreaterThanOrEqual(0);

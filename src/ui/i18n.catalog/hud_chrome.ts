@@ -8596,6 +8596,8 @@ export const hudChromeStrings = {
     enchanting: 'Enchanting',
     tailoring: 'Tailoring',
     leatherworking: 'Leatherworking',
+    // The secondary Furnishing craft (Project H housing phase 2, SECONDARY_CRAFTS).
+    furnishing: 'Furnishing',
   },
   // Per-enchant display names (Professions 2.0), keyed by the same
   // enchant id as content/enchants.ts ENCHANTS; keep both in sync. This is the
@@ -11297,6 +11299,43 @@ export const hudChromeStrings = {
       range: 'You are too far from the front door of {house}.',
       money: 'You cannot afford {house}.',
       dead: 'You cannot buy a house while dead.',
+      // Phase 2: the furniture refusals (src/sim/housing/furnishing.ts).
+      noHouse: 'You do not own a house.',
+      notInside: 'You must be inside your own house to do that.',
+      badAnchor: 'There is no such spot in your house.',
+      anchorTaken: 'Something already stands on that spot.',
+      anchorEmpty: 'Nothing stands on that spot.',
+      anchorKind: 'That piece of furniture does not fit that spot.',
+      noItem: 'You are not holding that piece of furniture.',
+      bagsFull: 'Your bags are full.',
+    },
+    // Phase 2 (src/ui/hud/housing/house_furnish_view.ts): the bag menu's
+    // Place row, the picker rows, and the anchor labels. {item} is the
+    // furniture's localized name, {anchor} an anchorLabel.
+    furnish: 'Place in house...',
+    placeAt: 'Place at {anchor}',
+    takeBack: 'Take back {item} from {anchor}',
+    noSpots: 'No free spot fits this piece.',
+    furniturePlaced: 'You placed {item} at {anchor}.',
+    furnitureRemoved: 'You took back {item} from {anchor}.',
+    // '{room}, {kind} {index}', e.g. "Hearth room, floor 1".
+    anchorLabel: '{room}, {kind} {index}',
+    room: {
+      hearthRoom: 'Hearth room',
+      bedroom: 'Bedroom',
+      workshop: 'Workshop',
+    },
+    anchorKind: {
+      floor: 'floor',
+      wall: 'wall',
+      rug: 'rug',
+      table: 'table',
+    },
+    // The furniture item tooltip (src/ui/hud/housing/furniture_tooltip_view.ts).
+    furnitureTooltip: {
+      kind: 'Furniture',
+      use: 'Place it on a {kind} spot inside your house.',
+      how: 'Right-click it in your bags while standing in your house.',
     },
   },
 };

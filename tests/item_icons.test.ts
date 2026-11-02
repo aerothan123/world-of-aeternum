@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 import { describe, expect, it } from 'vitest';
 import { validateAcceptedArtManifest } from '../scripts/lib/icon_asset_audit.mjs';
+import { FURNITURE_ART_PENDING_ITEM_IDS } from '../src/sim/content/furniture';
 import { SEASON2_JEWELRY_IDS, SEASON2_SETS } from '../src/sim/content/pvp_honor_season2';
 import { ITEMS } from '../src/sim/data';
 import type { ItemDef } from '../src/sim/types';
@@ -421,10 +422,13 @@ describe('item webp icons', () => {
     // (hollow-crypt-icons-2026-10-03) painted every non-weapon piece and the
     // generated Heroic Hymnal: HOLLOW_CRYPT_ART_PENDING_ITEM_IDS is declared
     // empty in content/hollow_crypt_items.ts.
+    // Player housing (Project H) phase 2 parks its twelve furniture ids
+    // (content/furniture.ts FURNITURE_ART_PENDING_ITEM_IDS) until their
+    // paintings land, beside the Crucible quiver.
     expect(
       [...ITEM_ART_PENDING].sort(),
       'art debt is enumerated and re-pinned deliberately, never grown quietly',
-    ).toEqual(['infernal_quiver']);
+    ).toEqual(['infernal_quiver', ...FURNITURE_ART_PENDING_ITEM_IDS].sort());
     // And the inverse: an id with committed art must still win the static url.
     expect(itemImageUrl('linen_pouch')).toBe('/ui/items/linen_pouch.webp');
   });

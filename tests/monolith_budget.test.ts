@@ -556,8 +556,10 @@ const MONOLITHS: MonolithRow[] = [
     // Exact combined count; the three seasonal wiring lines are preserved.
     // Player housing (Project H) adds its one-call event arm (three case labels
     // and the handleHouseEvent call; the rules live in src/ui/hud/housing/):
-    // 17736 -> 17739, raised in the Project H fork (a maintainer call).
-    ceiling: 17739,
+    // 17736 -> 17739, raised in the Project H fork (a maintainer call). Phase 2
+    // adds the houseFurniture case label, the furniture tooltip composition and
+    // its import: 17739 -> 17744, raised in the Project H fork (a maintainer call).
+    ceiling: 17744,
     seam: 'pure view core + thin painter on PainterHost (src/ui/CLAUDE.md)',
   },
   {
@@ -1323,8 +1325,11 @@ const MONOLITHS: MonolithRow[] = [
     // 11490 with the difficulty menu fix (PR 4625) merged ahead of its landing. wc -l.
     // Player housing (Project H) adds four thin IWorldHousing delegates and their
     // two imports (the rules live in src/sim/housing/): 11410 -> 11424, raised in
-    // the Project H fork (a maintainer call).
-    ceiling: 11424,
+    // the Project H fork (a maintainer call). Phase 2 adds the houseAnchors read,
+    // the placeFurniture / removeFurniture delegates, their imports and the
+    // furnishingSkill default: 11424 -> 11437, raised in the Project H fork (a
+    // maintainer call).
+    ceiling: 11437,
     seam: 'a sim system module behind SimContext (src/sim/CLAUDE.md)',
   },
   {
@@ -1870,7 +1875,9 @@ const MONOLITHS: MonolithRow[] = [
     // Final-save retry and sweep policy now live in character_final_save.ts.
     // Player housing (Project H) adds the buy_house dispatch case and the O(1)
     // `hse` self key: 9666 -> 9670, raised in the Project H fork (a maintainer call).
-    ceiling: 9670,
+    // Phase 2 adds the type-guarded place_furniture / remove_furniture dispatch
+    // cases: 9670 -> 9689, raised in the Project H fork (a maintainer call).
+    ceiling: 9689,
     seam: 'a sibling server module; see the hot-path seams in server/CLAUDE.md',
   },
   {

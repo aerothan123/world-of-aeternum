@@ -538,6 +538,9 @@ describe('nameplate_view - import absence (two-controller + purity, source scan)
       // The muster weapon rack's template id (a sim CONTENT leaf, like the feast
       // one below), so its near-label rule cannot drift from the id the sim spawns.
       '../sim/content/mirefen_muster',
+      // The placed house furniture template-id predicate (Project H housing):
+      // a sim leaf, so a piece shares the feast's near-label pad.
+      '../sim/housing/furniture_template',
       '../sim/pet/buddy_ai',
       // The feast template-id constant (Phase 12): a sim CONTENT leaf, not
       // three/painter/gfx; imported so the discriminator cannot drift from

@@ -15,7 +15,7 @@ import {
 } from '../server/heavy_self';
 
 describe('the arm-marked subset', () => {
-  it('is exactly the Perfecting, farming, market sweep, and buy-order command family', () => {
+  it('is exactly the Perfecting, farming, housing, market sweep, and buy-order command family', () => {
     expect([...HEAVY_SELF_ARM_MARKED_CMDS].sort()).toEqual(
       [
         'convert_husks',
@@ -25,7 +25,10 @@ describe('the arm-marked subset', () => {
         'market_sweep',
         'perfect_item',
         'place_feast',
+        // Player housing phase 2 (Project H): the two furniture verbs.
+        'place_furniture',
         'plant_crop',
+        'remove_furniture',
         'swap_perfecting_ranks',
       ].sort(),
     );

@@ -509,6 +509,7 @@ import { FiestaController } from './hud/fiesta/fiesta_controller';
 import { GuildBoardWindow } from './hud/guild_board';
 import { GuildHallWindow } from './hud/guild_hall';
 import { buildHillBarView, HillBar } from './hud/hill';
+import { furnitureTooltipLines } from './hud/housing/furniture_tooltip_view';
 import { handleHouseEvent } from './hud/housing/house_event_feedback';
 import { LootRollController } from './hud/loot/loot_roll_controller';
 import { lootSettingsView } from './hud/loot/loot_settings_view';
@@ -6523,6 +6524,9 @@ export class Hud {
     // party radius, the duration, and the replace rule; same all-surfaces
     // composition (mobile_station_tooltip.ts).
     html += mobileStationTooltipLines(item, stationNameText);
+    // Furniture (Project H housing): what it is and where it goes
+    // (src/ui/hud/housing/furniture_tooltip_view.ts), same composition.
+    html += furnitureTooltipLines(item);
     // Purpose hint for the eight enchanting materials (material_hint_view.ts
     // keys the table by item id): what the reagent is for and which gear
     // disenchants into it. Every other item id renders nothing here.
@@ -11835,7 +11839,8 @@ export class Hud {
           break;
         case 'houseOffer':
         case 'housePurchased':
-        case 'houseDenied': // Project H housing (src/ui/hud/housing/)
+        case 'houseDenied':
+        case 'houseFurniture': // Project H housing (src/ui/hud/housing/)
           handleHouseEvent(ev, this, (x, l, ok) => this.showPrompt(x, l, ok, () => {}), sim);
           break;
         case 'gatherRareEvent': {

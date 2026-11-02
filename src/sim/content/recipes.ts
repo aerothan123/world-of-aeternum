@@ -4742,6 +4742,207 @@ export const FACTION_REWARD_RECIPES: ProfessionRecipeRecord[] = [
   },
 ];
 
+// Player housing (Project H), phase 2: the Furnishing recipes. Furnishing is
+// a SECONDARY craft off the ring (content/professions.ts SECONDARY_CRAFTS),
+// so these rows reuse the recipe record whole: they consume existing gathered
+// and vendor materials, bind to the TOOLWORKS (the woodworking-adjacent
+// station; Furnishing has no station type of its own, see the phase-2
+// report), are trainer-taught at the toolworks master, and all sit at the
+// free floor (skillReq 0: the Furnishing skill counter advances but gates
+// nothing yet). Outputs are the FURNITURE_ITEMS (content/furniture.ts). Every
+// row vendors strictly below its input value (tests/recipe_economy.test.ts).
+// The two starter rows (the stool and the chair) are also granted outright
+// when a house is bought (src/sim/housing/furnishing.ts).
+export const FURNISHING_RECIPES: ProfessionRecipeRecord[] = [
+  {
+    id: 'recipe_furn_wooden_stool',
+    professionId: 'furnishing',
+    resultItemId: 'furn_wooden_stool',
+    resultCount: 1,
+    // Input 12 vs output 8.
+    reagents: [{ itemId: 'ironbark_log', count: 3 }],
+    skillReq: 0,
+    itemLevelBudget: 5,
+    level: 5,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
+  {
+    id: 'recipe_furn_wooden_chair',
+    professionId: 'furnishing',
+    resultItemId: 'furn_wooden_chair',
+    resultCount: 1,
+    // Input 19 vs output 12.
+    reagents: [
+      { itemId: 'ironbark_log', count: 4 },
+      { itemId: 'linen_scrap', count: 1 },
+    ],
+    skillReq: 0,
+    itemLevelBudget: 6,
+    level: 6,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
+  {
+    id: 'recipe_furn_oak_bench',
+    professionId: 'furnishing',
+    resultItemId: 'furn_oak_bench',
+    resultCount: 1,
+    // Input 24 vs output 15.
+    reagents: [{ itemId: 'ironbark_log', count: 6 }],
+    skillReq: 0,
+    itemLevelBudget: 7,
+    level: 7,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
+  {
+    id: 'recipe_furn_round_table',
+    professionId: 'furnishing',
+    resultItemId: 'furn_round_table',
+    resultCount: 1,
+    // Input 24 vs output 15.
+    reagents: [
+      { itemId: 'ironbark_log', count: 5 },
+      { itemId: 'copper_ore', count: 1 },
+    ],
+    skillReq: 0,
+    itemLevelBudget: 7,
+    level: 7,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
+  {
+    id: 'recipe_furn_long_table',
+    professionId: 'furnishing',
+    resultItemId: 'furn_long_table',
+    resultCount: 1,
+    // Input 32 vs output 20.
+    reagents: [{ itemId: 'ironbark_log', count: 8 }],
+    skillReq: 0,
+    itemLevelBudget: 8,
+    level: 8,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
+  {
+    id: 'recipe_furn_bookcase',
+    professionId: 'furnishing',
+    resultItemId: 'furn_bookcase',
+    resultCount: 1,
+    // Input 360 (ashwood_log is vendor-stocked, so its buyValue prices it)
+    // vs output 60.
+    reagents: [{ itemId: 'ashwood_log', count: 6 }],
+    skillReq: 0,
+    itemLevelBudget: 10,
+    level: 10,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
+  {
+    id: 'recipe_furn_keg',
+    professionId: 'furnishing',
+    resultItemId: 'furn_keg',
+    resultCount: 1,
+    // Input 24 vs output 15.
+    reagents: [
+      { itemId: 'ironbark_log', count: 4 },
+      { itemId: 'copper_ore', count: 2 },
+    ],
+    skillReq: 0,
+    itemLevelBudget: 7,
+    level: 7,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
+  {
+    id: 'recipe_furn_barrel',
+    professionId: 'furnishing',
+    resultItemId: 'furn_barrel',
+    resultCount: 1,
+    // Input 28 vs output 18.
+    reagents: [
+      { itemId: 'ironbark_log', count: 5 },
+      { itemId: 'iron_ore', count: 1 },
+    ],
+    skillReq: 0,
+    itemLevelBudget: 8,
+    level: 8,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
+  {
+    id: 'recipe_furn_woven_rug',
+    professionId: 'furnishing',
+    resultItemId: 'furn_woven_rug',
+    resultCount: 1,
+    // Input 28 vs output 18.
+    reagents: [
+      { itemId: 'linen_scrap', count: 6 },
+      { itemId: 'rough_hide', count: 2 },
+    ],
+    skillReq: 0,
+    itemLevelBudget: 8,
+    level: 8,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
+  {
+    id: 'recipe_furn_candlestick',
+    professionId: 'furnishing',
+    resultItemId: 'furn_candlestick',
+    resultCount: 1,
+    // Input 16 vs output 10.
+    reagents: [
+      { itemId: 'copper_ore', count: 3 },
+      { itemId: 'ironbark_log', count: 1 },
+    ],
+    skillReq: 0,
+    itemLevelBudget: 6,
+    level: 6,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
+  {
+    id: 'recipe_furn_storage_chest',
+    professionId: 'furnishing',
+    resultItemId: 'furn_storage_chest',
+    resultCount: 1,
+    // Input 376 vs output 60. Reserved for phase 3: decoration only today.
+    reagents: [
+      { itemId: 'ashwood_log', count: 6 },
+      { itemId: 'iron_ore', count: 2 },
+    ],
+    skillReq: 0,
+    itemLevelBudget: 12,
+    level: 12,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
+  {
+    id: 'recipe_furn_trophy_plaque',
+    professionId: 'furnishing',
+    resultItemId: 'furn_trophy_plaque',
+    resultCount: 1,
+    // Input 184 vs output 40. Reserved for phase 4: decoration only today.
+    reagents: [
+      { itemId: 'ashwood_log', count: 3 },
+      { itemId: 'copper_ore', count: 1 },
+    ],
+    skillReq: 0,
+    itemLevelBudget: 10,
+    level: 10,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
+];
+
+/** The two Furnishing rows every new house owner knows outright. */
+export const FURNISHING_STARTER_RECIPE_IDS: readonly string[] = Object.freeze([
+  'recipe_furn_wooden_stool',
+  'recipe_furn_wooden_chair',
+]);
+
 export const ALL_RECIPES: ProfessionRecipeRecord[] = [
   ...COMMON_RECIPES,
   ...BUDDY_CHARM_RECIPES,
@@ -4766,6 +4967,8 @@ export const ALL_RECIPES: ProfessionRecipeRecord[] = [
   ...CRUCIBLE_COLLECTION_RECIPES,
   ...FORGEBREAKER_RECIPES,
   ...FACTION_REWARD_RECIPES,
+  // Player housing (Project H) phase 2, appended at the END.
+  ...FURNISHING_RECIPES,
 ];
 
 // O(1) indexes for the two per-lookup resolvers below (the recipe table grows

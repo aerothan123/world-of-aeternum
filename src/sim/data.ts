@@ -136,6 +136,7 @@ import {
   FROSTVEIL_ROADS,
   FROSTVEIL_ZONE,
 } from './content/frostveil';
+import { FURNITURE_ITEMS } from './content/furniture';
 import {
   GALECREST_CAMPS,
   GALECREST_ITEMS,
@@ -489,6 +490,8 @@ export const ITEMS: Record<string, ItemDef> = mergeItems(
   GOURDLIGHT_EVE_ITEMS,
   GOURDLIGHT_SCARECROW_ITEMS,
   GOURDLIGHT_DAILY_ITEMS,
+  // Player housing (Project H) phase 2: the crafted furniture.
+  FURNITURE_ITEMS,
 );
 
 export type { AggregatedSetEffect } from './content/item_sets';

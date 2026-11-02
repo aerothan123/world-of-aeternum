@@ -6293,7 +6293,8 @@ export const vi_VN: EnTranslations = {
       "inscription": "Khắc Chữ",
       "enchanting": "Pháp Khắc",
       "tailoring": "May Vá",
-      "leatherworking": "Thuộc Da"
+      "leatherworking": "Thuộc Da",
+      "furnishing": "Furnishing"
     },
     "enchantName": {
       "enchant_weapon_lastflame_zeal": "Nhiệt huyết Ngọn lửa Cuối",
@@ -7996,7 +7997,38 @@ export const vi_VN: EnTranslations = {
         "owned": "You already own a house.",
         "range": "You are too far from the front door of {house}.",
         "money": "You cannot afford {house}.",
-        "dead": "You cannot buy a house while dead."
+        "dead": "You cannot buy a house while dead.",
+        "noHouse": "You do not own a house.",
+        "notInside": "You must be inside your own house to do that.",
+        "badAnchor": "There is no such spot in your house.",
+        "anchorTaken": "Something already stands on that spot.",
+        "anchorEmpty": "Nothing stands on that spot.",
+        "anchorKind": "That piece of furniture does not fit that spot.",
+        "noItem": "You are not holding that piece of furniture.",
+        "bagsFull": "Your bags are full."
+      },
+      "furnish": "Place in house...",
+      "placeAt": "Place at {anchor}",
+      "takeBack": "Take back {item} from {anchor}",
+      "noSpots": "No free spot fits this piece.",
+      "furniturePlaced": "You placed {item} at {anchor}.",
+      "furnitureRemoved": "You took back {item} from {anchor}.",
+      "anchorLabel": "{room}, {kind} {index}",
+      "room": {
+        "hearthRoom": "Hearth room",
+        "bedroom": "Bedroom",
+        "workshop": "Workshop"
+      },
+      "anchorKind": {
+        "floor": "floor",
+        "wall": "wall",
+        "rug": "rug",
+        "table": "table"
+      },
+      "furnitureTooltip": {
+        "kind": "Furniture",
+        "use": "Place it on a {kind} spot inside your house.",
+        "how": "Right-click it in your bags while standing in your house."
       }
     }
   },
@@ -24551,6 +24583,42 @@ export const vi_VN: EnTranslations = {
       },
       "gourdlight_crow_feather": {
         "name": "Lông Quạ Đèn Bí Ngô"
+      },
+      "furn_wooden_chair": {
+        "name": "Wooden Chair"
+      },
+      "furn_wooden_stool": {
+        "name": "Wooden Stool"
+      },
+      "furn_oak_bench": {
+        "name": "Oak Bench"
+      },
+      "furn_round_table": {
+        "name": "Round Table"
+      },
+      "furn_long_table": {
+        "name": "Long Table"
+      },
+      "furn_bookcase": {
+        "name": "Bookcase"
+      },
+      "furn_keg": {
+        "name": "Keg"
+      },
+      "furn_barrel": {
+        "name": "Barrel"
+      },
+      "furn_woven_rug": {
+        "name": "Woven Rug"
+      },
+      "furn_candlestick": {
+        "name": "Candlestick"
+      },
+      "furn_storage_chest": {
+        "name": "Storage Chest"
+      },
+      "furn_trophy_plaque": {
+        "name": "Trophy Plaque"
       },
       "membership_staff": {
         "name": "Trượng Biến Đổi"

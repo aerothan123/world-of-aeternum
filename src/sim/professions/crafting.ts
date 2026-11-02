@@ -72,7 +72,11 @@
 // offline, on the server, and in the headless RL env unchanged.
 
 import { bagPools, fitsAll } from '../bags';
-import { CRAFT_BATCH_MAX, CRAFT_GOLD_SINK_COPPER_PER_BUDGET } from '../content/professions';
+import {
+  CRAFT_BATCH_MAX,
+  CRAFT_GOLD_SINK_COPPER_PER_BUDGET,
+  isSecondaryCraft,
+} from '../content/professions';
 import { recipeById } from '../content/recipes';
 import { ITEMS } from '../data';
 import { slotStatMultForItem } from '../item_budget';
@@ -129,6 +133,7 @@ import { isStationActive, partySharedStationSatisfies } from './mobile_station';
 import { PERFECTING_HEADSTART_RANK } from './perfecting';
 import { withPerfectingBonus } from './perfecting_bonus';
 import { craftActionXp } from './profession_xp';
+import { gainSecondaryCraftSkill } from './secondary_skill';
 import { isAtStation, stationTypeForCraft } from './stations';
 import type { ProfessionReagent, ProfessionRecipeRecord } from './types';
 import {
@@ -1348,9 +1353,20 @@ export function resolveCraftForRecipe(
       meta.archetype.hobbyCraft,
       recipe.skillReq,
     );
-    const skillBefore = meta.craftSkills[recipe.professionId] ?? 0;
-    gainCraftSkill(meta.craftSkills, recipe.professionId, CRAFT_SKILL_GAIN * multiplier);
-    const skillLearned = (meta.craftSkills[recipe.professionId] ?? 0) - skillBefore;
+    // A secondary craft (Furnishing) keeps its counter off the ring record
+    // (professions/secondary_skill.ts); every ring craft gains as before.
+    let skillLearned: number;
+    if (isSecondaryCraft(recipe.professionId)) {
+      skillLearned = gainSecondaryCraftSkill(
+        meta,
+        recipe.professionId,
+        CRAFT_SKILL_GAIN * multiplier,
+      );
+    } else {
+      const skillBefore = meta.craftSkills[recipe.professionId] ?? 0;
+      gainCraftSkill(meta.craftSkills, recipe.professionId, CRAFT_SKILL_GAIN * multiplier);
+      skillLearned = (meta.craftSkills[recipe.professionId] ?? 0) - skillBefore;
+    }
     // Craft Cast System: cast duration paces craft; the shared action
     // throttle is fully retired (Phase 5).
     // Character XP for the craft is LEARNING XP: the level-banded curve
