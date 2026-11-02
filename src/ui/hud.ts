@@ -2283,9 +2283,9 @@ export class Hud {
         }),
       // The hub practice coach's deps (src/ui/hud/practice/): the bar's LIVE
       // slot array (so the healing lesson always resolves the heal's current
-      // slot) and the renderer's raw worldToScreen, like bootcamp.ts's own
-      // .tut-prompt bubble. No gamepad seam yet (see meters.ts
-      // MetersDeps.padLabel), so the coach's pad chip stays absent.
+      // slot) and the renderer's raw worldToScreen; its #ui bubble divides by
+      // the uiScale dep above (like bootcamp.ts). No gamepad seam yet, so no
+      // pad chip.
       keybinds: this.keybinds,
       actionBarSlots: () => this.hotbarActions,
       actionButtonForSlot: (slot) =>

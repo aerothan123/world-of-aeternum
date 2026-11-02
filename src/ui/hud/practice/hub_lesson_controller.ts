@@ -56,6 +56,11 @@ import { nearestMob } from '../../coach_prompt_view';
 import { esc } from '../../esc';
 import { type TranslationKey, t } from '../../i18n';
 import {
+  type PromptViewport,
+  type WorldPromptAnchor,
+  worldPromptAnchor,
+} from '../../world_prompt_anchor_core';
+import {
   advanceHubLesson,
   HUB_LESSON_START,
   type HubLessonProgress,
@@ -122,6 +127,12 @@ export interface HubLessonControllerDeps {
    *  world-anchored bubble. Absent (a headless/test host) degrades to the
    *  bubble simply never showing, never a guessed screen position. */
   worldToScreen?(x: number, y: number, z: number): { x: number; y: number; behind: boolean };
+  /** The live UI Scale (src/ui/ui_scale.ts getUiScale), injected so the
+   *  controller never takes the layout-read proxy itself: the bubble is a
+   *  #ui child, zoomed by `--ui-scale`, and worldToScreen's viewport pixel
+   *  divides by it on the way in (world_prompt_anchor_core.ts). Absent reads
+   *  as 1, the default scale. */
+  uiScale?(): number;
   /** A connected gamepad's resolved label for a real keybind/action id, when
    *  the player has one bound. Absent (no threaded gamepad state yet, or no
    *  pad connected) degrades to no pad chip, never a fabricated one: see
@@ -237,6 +248,10 @@ export class HubLessonController {
   private prompt: HTMLElement | null = null;
   private lastPromptHtml: string | null = null;
   private promptVisible = false;
+  /** Reused per tick (allocation-light): the viewport the anchor is gated
+   *  against and the author-space left/top it resolves to. */
+  private readonly promptViewport: PromptViewport = { width: 1, height: 1 };
+  private readonly promptAnchor: WorldPromptAnchor = { left: 0, top: 0 };
 
   constructor(private readonly deps: HubLessonControllerDeps) {
     this.progress = this.loadProgress();
@@ -760,24 +775,30 @@ export class HubLessonController {
     const groundY = (full?.pos.y ?? 0) + HUB_PROMPT_LIFT;
     // No renderer to project through in a headless/test host: the DOM
     // element simply never shows, which is the correct degrade.
-    const projected = this.deps.worldToScreen?.(mob.pos.x, groundY, mob.pos.z);
+    const projected = this.deps.worldToScreen?.(mob.pos.x, groundY, mob.pos.z) ?? null;
     // worldToScreen's own `behind` only checks camera-space depth, not
     // viewport bounds, so an off-screen x/y (or one too close to the top
-    // for the upward-drawing bubble to fit) needs its own check here.
+    // for the upward-drawing bubble to fit) is the shared core's gate; the
+    // same core divides the viewport pixel by the UI scale, because this
+    // bubble lives inside the zoomed #ui.
+    this.promptViewport.width = window.innerWidth;
+    this.promptViewport.height = window.innerHeight;
+    const anchor = this.promptAnchor;
     if (
-      !projected ||
-      projected.behind ||
-      projected.x < 0 ||
-      projected.x > window.innerWidth ||
-      projected.y < PROMPT_TOP_CLEARANCE_PX ||
-      projected.y > window.innerHeight
+      !worldPromptAnchor(
+        projected,
+        this.promptViewport,
+        this.deps.uiScale?.() ?? 1,
+        PROMPT_TOP_CLEARANCE_PX,
+        anchor,
+      )
     ) {
       this.hidePrompt();
       return;
     }
     this.prompt.style.display = 'flex';
-    this.prompt.style.left = `${Math.round(projected.x * 2) / 2}px`;
-    this.prompt.style.top = `${Math.round(projected.y * 2) / 2}px`;
+    this.prompt.style.left = `${anchor.left}px`;
+    this.prompt.style.top = `${anchor.top}px`;
     this.promptVisible = true;
   }
 

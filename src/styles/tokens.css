@@ -288,6 +288,21 @@
     --hands-slot-size: 36px;
     --hands-slot-gap: 4px;
     --xp-line-h: 2px;
+    /* The class resource orb's seat (the Paladin devotion medallion, hud.css
+       .paladin-devotion-frame): centre line as a viewport fraction and its
+       box size. The bottom-centre hint band (the coach's centred keycap ask,
+       the interact affordance line) stands ABOVE this seat, measured from the
+       same two numbers, so neither covers the other at any viewport height
+       (tests/hud_center_hint_band.test.ts). */
+    --class-orb-top: 72%;
+    --class-orb-size: 96px;
+    --hud-center-hint-bottom: calc(
+      100% -
+      var(--class-orb-top) +
+      var(--class-orb-size) /
+      2 +
+      var(--spacing-sm)
+    );
     --color-text-error: #ff8f85;
     --color-text-success: #7fdc4f;
     --color-candy-berry: #e86b8c;

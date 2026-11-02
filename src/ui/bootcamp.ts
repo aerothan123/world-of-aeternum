@@ -104,6 +104,12 @@ import {
   uiLessonGlow,
 } from './objective_glow_view';
 import { svgIcon } from './ui_icons';
+import { getUiScale } from './ui_scale';
+import {
+  type PromptViewport,
+  type WorldPromptAnchor,
+  worldPromptAnchor,
+} from './world_prompt_anchor_core';
 
 /** Peak opacity of the wrong-way bloom at full intensity. Deliberately shy of
  *  opaque: it is a hint at the edge of vision, never a curtain. */
@@ -118,6 +124,10 @@ const AUTO_ATTACK_ICON_ID = 'attack';
 const ODO_NPC_ID = 'ferryman_odo';
 /** Where a bubble anchors over a speaker: about head height on a standing NPC. */
 const SPEAKER_HEAD_LIFT = 2.4;
+/** Screen room the world bubble needs above its anchor (it draws UPWARD via
+ *  translate(-50%, -100%)): nearer the top edge than this it would clip, so
+ *  it hides instead. Viewport px, before the UI scale divide. */
+const PROMPT_TOP_CLEARANCE_PX = 40;
 
 interface CoachGamepadBindings {
   entries(): GamepadBindingEntry[];
@@ -172,6 +182,10 @@ export class BootcampOverlay {
   private promptVerbEl: HTMLElement | null = null;
   private promptContentKey = '';
   private promptPainted = { visible: false, sx: Number.NaN, sy: Number.NaN };
+  /** Reused per frame (allocation-light): the viewport the world anchor is
+   *  gated against and the author-space left/top it resolves to. */
+  private readonly promptViewport: PromptViewport = { width: 1, height: 1 };
+  private readonly promptAnchor: WorldPromptAnchor = { left: 0, top: 0 };
   private promptGroundKey = '';
   private promptGroundY = 0;
   // Which mobile cluster button pulses gold for the visible ask (touch only;
@@ -965,13 +979,27 @@ export class BootcampOverlay {
       this.promptGroundY =
         Math.max(groundHeight(plan.x, plan.z, WORLD_SEED), WATER_LEVEL) + plan.lift;
     }
-    const v = renderer.worldToScreen(plan.x, this.promptGroundY, plan.z);
-    if (v.behind) {
+    // The bubble is a #ui child, zoomed by `--ui-scale`, while worldToScreen
+    // answers in unzoomed viewport pixels (the nameplates' space): the shared
+    // core divides by the live scale and hides the bubble when the anchor is
+    // behind the camera or off the viewport, so it never floats alone.
+    this.promptViewport.width = window.innerWidth;
+    this.promptViewport.height = window.innerHeight;
+    const anchor = this.promptAnchor;
+    if (
+      !worldPromptAnchor(
+        renderer.worldToScreen(plan.x, this.promptGroundY, plan.z),
+        this.promptViewport,
+        getUiScale(),
+        PROMPT_TOP_CLEARANCE_PX,
+        anchor,
+      )
+    ) {
       this.hidePrompt();
       return;
     }
-    const sx = Math.round(v.x * 2) / 2;
-    const sy = Math.round(v.y * 2) / 2;
+    const sx = anchor.left;
+    const sy = anchor.top;
     const last = this.promptPainted;
     if (!last.visible) {
       this.prompt.style.display = 'flex';
