@@ -259,7 +259,12 @@ import { CharacterVisualPool, characterVisualPoolKey } from './characters/visual
 import { shouldRetainPooledCharacterVisual } from './characters/visual_pool_policy';
 import { attackAbilityId, isSpinAttackAbility } from './characters/weapon_attack_style_core';
 import { prepareWocEntry } from './characters/woc_entry_prepare';
-import { chaseCameraFloorLift, chaseCameraFloorY } from './chase_camera_floor_core';
+import {
+  chaseCameraFloorLift,
+  chaseCameraFloorY,
+  createChaseFloorSmooth,
+  stepChaseFloorSmooth,
+} from './chase_camera_floor_core';
 import { ChatBubbleLayer } from './chat_bubble_layer';
 import {
   chosenCadenceHoldsQuality,
@@ -1602,6 +1607,7 @@ export class Renderer {
   /** Authored-map chase boom solve (chase_boom_core.ts): scratch in, seat out
    *  (whose solidLimit carries the eased asset-collider limit frame to frame). */
   private readonly chaseBoom = createChaseBoomScratch(CAM_PITCH_UP);
+  private readonly chaseFloor = createChaseFloorSmooth(); // walk-lift steps glide, never pop
   private viewCandidates: ViewCandidate[] = [];
   private viewCandidatePool: ViewCandidate[] = [];
   private readonly viewCandidateScan = createViewCandidateScanState();
@@ -12090,6 +12096,7 @@ export class Renderer {
         authoredChaseGroundY(seed, cx, cz, px, py, pz, eyeY) +
         chaseCameraFloorLift(cx, cz, this.sim.riftFloor);
     }
+    groundY = stepChaseFloorSmooth(this.chaseFloor, groundY, dt);
     this.camera.position.set(cx, Math.max(cy, groundY), cz);
     const fovTarget = Math.min(100, resolveCameraFov(this.baseFov, this.camFeel) + shoulder.fov);
     if (Math.abs(this.camera.fov - fovTarget) > 0.01) {
