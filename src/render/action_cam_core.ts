@@ -1,5 +1,6 @@
-// Action Cam: an opt-in over-the-shoulder framing for the chase camera. When
-// on, the look pivot slides sideways off the avatar (right or left shoulder),
+// Action Cam: an over-the-shoulder framing for the chase camera, on by
+// default (settings.ts BOOL_SETTINGS.actionCam). When on, the look pivot
+// slides sideways off the avatar (right or left shoulder),
 // drops a touch toward shoulder height, and the FOV opens a few degrees, so
 // the character sits off-center and the view reads closer and more kinetic.
 //

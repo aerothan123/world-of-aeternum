@@ -131,7 +131,7 @@ describe('options_view: control primitive dispatch (cluster 1)', () => {
       fmt: 'shoulder',
     });
     expect(SETTING_RANGES.actionCamShoulder).toMatchObject({ min: -1, max: 1, def: 1 });
-    expect(BOOL_SETTINGS.actionCam.def).toBe(false);
+    expect(BOOL_SETTINGS.actionCam.def).toBe(true);
   });
 
   it('the shoulder readout names the side and its strength, or Center', () => {

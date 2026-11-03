@@ -1485,7 +1485,7 @@ export class Renderer {
   private readonly camFeel = createCameraFeel();
   private readonly camDirector = createCameraDirector();
   private readonly vehicleCamera = createVehicleCamera();
-  readonly actionCam = new ActionCamRig(); // opt-in over-the-shoulder shift + stride bob
+  readonly actionCam = new ActionCamRig(); // over-the-shoulder shift + stride bob (default on)
   readonly firstPerson = new FirstPersonRig(); // opt-in first person, fully zoomed in
   private readonly ambience = createAmbienceState();
   private baseFov = CAMERA_BASE_FOV; // setCameraFov's value; camera.fov is overwritten below each frame
