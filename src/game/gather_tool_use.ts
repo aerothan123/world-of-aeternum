@@ -1,6 +1,7 @@
-// Client-side gathering-tool item use (#2343): clicking a pick/axe/sickle in
-// the bags (or pressing it on the hotbar) behaves like the interact press,
-// scoped to the tool's own profession. These pure helpers pick the node; the
+// Client-side gathering-tool item use (#2343): pressing the EQUIPPED
+// pick/axe/sickle on the hotbar behaves like the interact press, scoped to the
+// tool's own profession; clicking a tool that sits in the bags equips it
+// instead (the plain useItem path, answered by the sim's tool belt). These pure helpers pick the node; the
 // main.ts hook composes them with handleGatherNodeInteract (the localized
 // error surface + world.harvestNode dispatch) wrapped in
 // stopAutorunForInteraction, so the bag click honors the #1982 autorun-stop
@@ -17,12 +18,18 @@ import { choppableTreesNear } from '../sim/trees/tree_registry';
 import { type GatherNodeDef, INTERACT_RANGE, type ItemDef } from '../sim/types';
 import type { IWorld } from '../world_api';
 
-/** The node profession a bag-clicked tool gathers for, or null when the item
- *  is not a node-gathering tool (non-tools and fishing implements fall back
- *  to the plain useItem path). */
-export function gatherToolProfessionFor(item: ItemDef): GatheringProfessionId | null {
+/** The node profession a clicked tool gathers for, or null when the item is
+ *  not a node-gathering tool OR is not the tool EQUIPPED in its slot (the
+ *  tool belt, src/sim/professions/gather_tool_slots.ts): a bagged tool falls
+ *  back to the plain useItem path, which the sim answers by equipping it, and
+ *  fishing implements fall back too (they cast at the sim boundary). */
+export function gatherToolProfessionFor(
+  item: ItemDef,
+  world: Pick<IWorld, 'gatherToolSlots'>,
+): GatheringProfessionId | null {
   const use = item.use;
   if (!isGatherToolUse(use)) return null;
+  if (world.gatherToolSlots[use.professionId]?.itemId !== item.id) return null;
   return use.professionId in NODE_TYPE_BY_PROFESSION ? use.professionId : null;
 }
 

@@ -64,11 +64,18 @@ const USE_KEYS: Partial<Record<GatheringProfessionId, TranslationKey>> = {
   mining: 'hudChrome.gathering.toolTooltip.use.mining',
   logging: 'hudChrome.gathering.toolTooltip.use.logging',
   herbalism: 'hudChrome.gathering.toolTooltip.use.herbalism',
-  // The farming row deliberately has NO "Use:" imperative: a hoe is a passive
-  // gate (useGatherToolItem never gains a farming arm; beds are not nodes),
-  // so the line states the bags-carried behavior instead of a click action.
-  farming: 'hudChrome.gathering.toolTooltip.use.farming',
+  // No farming row: a hoe is a passive gate (useGatherToolItem never gains a
+  // farming arm; beds are not nodes), and the old "works from your bags" line
+  // stopped being true with the tool belt. The equip line below says where
+  // the hoe works from.
 };
+
+/** Every tool says where it works from: the tool belt (src/sim/professions/
+ *  gather_tool_slots.ts). A bagged tool gathers nothing, and using it from the
+ *  bags equips it. */
+function equipHintLine(): string {
+  return tooltipLine('tt-desc', t('hudChrome.gathering.toolTooltip.equipHint'));
+}
 
 /** The tooltip lines for one gathering implement, or '' for any other item.
  *  Handles both shapes: the tiered gatherTool items (picks, axes, sickles,
@@ -79,13 +86,14 @@ export function gatherToolTooltipLines(item: ItemDef): string {
   if (!use) return '';
   if (use.type === 'fishing') {
     return (
+      equipHintLine() +
       tooltipLine('tt-desc', t('itemUi.tooltip.useFishing')) +
       tooltipLine('tt-desc', t('hudChrome.gathering.toolTooltip.rodRequired'))
     );
   }
   if (!isGatherToolUse(use)) return '';
   const tier = formatNumber(use.tier, { maximumFractionDigits: 0 });
-  let html = tooltipLine('tt-sub', t(KIND_KEYS[use.professionId], { tier }));
+  let html = tooltipLine('tt-sub', t(KIND_KEYS[use.professionId], { tier })) + equipHintLine();
   if (use.professionId === 'fishing') {
     html += tooltipLine('tt-desc', t('itemUi.tooltip.useFishing'));
     html += tooltipLine('tt-desc', t('hudChrome.gathering.toolTooltip.rodRequired'));

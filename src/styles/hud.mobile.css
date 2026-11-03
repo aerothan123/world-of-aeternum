@@ -6128,6 +6128,11 @@
     grid-row: 2;
     flex-wrap: wrap;
   }
+  /* The Tools row on touch: two cells per line, the corner x always shown
+     (the shared touch rule for .equip-unequip-btn) since there is no hover. */
+  body.mobile-touch #char-window .char-tool-belt-row .tool-belt-slot {
+    flex: 1 1 calc(50% - 14px);
+  }
   body.mobile-touch #char-window .equip-slot .slot-name,
   body.mobile-touch #char-window .equip-slot .slot-item,
   body.mobile-touch #char-window .stat-panel .stat-cell {

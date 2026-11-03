@@ -4078,6 +4078,11 @@ export const cs_CZ: EnTranslations = {
       "hideHelmAria": "Skrýt přilbu",
       "showHelmAria": "Zobrazit přilbu"
     },
+    "toolBelt": {
+      "title": "Tools",
+      "emptySlot": "No {profession} tool equipped. Drag one here, or right-click it in your bags.",
+      "unequipHint": "Click × or right-click to unequip"
+    },
     "account": {
       "title": "Účet",
       "loggedOutPrompt": "Přihlas se, abys mohl(a) spravovat svůj účet.",
@@ -6134,6 +6139,13 @@ export const cs_CZ: EnTranslations = {
         "fishing": "K nahození udice potřebuješ rybářský prut.",
         "farming": "K práci na tomto záhonu potřebuješ farmářskou motyku."
       },
+      "toolEquipRequired": {
+        "mining": "You need a mining pick equipped.",
+        "logging": "You need a logging axe equipped.",
+        "herbalism": "You need a herbalism sickle equipped.",
+        "fishing": "You need a fishing pole equipped.",
+        "farming": "You need a farming hoe equipped."
+      },
       "noNodeNearby": {
         "mining": "V dosahu není žádná rudná žíla.",
         "logging": "V dosahu není žádná skupina stromů.",
@@ -6145,6 +6157,12 @@ export const cs_CZ: EnTranslations = {
         "logging": "K máchnutí sekerou, kterou už máš v batozích, potřebuješ Dřevorubectví {skill}.",
         "herbalism": "K práci se srpem, který už máš v batozích, potřebuješ Bylinkářství {skill}.",
         "farming": "Potřebuješ dovednost Farmaření {skill}, abys použil(a) motyku v brašnách."
+      },
+      "wieldUnmetEquipped": {
+        "mining": "You need Mining {skill} to swing your equipped pick.",
+        "logging": "You need Logging {skill} to swing your equipped axe.",
+        "herbalism": "You need Herbalism {skill} to work your equipped sickle.",
+        "farming": "You need Farming {skill} to swing your equipped hoe."
       },
       "wieldUnmetCorpse": "K využití svého nejlepšího nástroje potřebuješ sběračskou dovednost {skill}.",
       "toolTierUnmetCorpse": "K získání nejjemnějších materiálů potřebuješ sběračský nástroj úrovně {tier}.",
@@ -6172,6 +6190,7 @@ export const cs_CZ: EnTranslations = {
         "speed": "Rychleji sbírá na nalezištích pod {tier}. úrovní.",
         "wieldDegrade": "Pod touto dovedností stále funguje jako nástroj nižší úrovně.",
         "rodRequired": "Nutný k rybaření.",
+        "equipHint": "Equip in the Tools slot.",
         "rodBite": "Ryby zabírají až o {seconds} s dříve.",
         "rodReel": "Prodlužuje čas na navíjení o {seconds} s.",
         "rodBand": "Od rybářské dovednosti {skill} výše odemyká bohatší úlovky.",

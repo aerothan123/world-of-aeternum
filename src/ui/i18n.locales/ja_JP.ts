@@ -17352,6 +17352,23 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'auth.wocBuilder.customSkinAria': 'カスタムの肌の色を選択',
   'hudChrome.paperdoll.hideHelmAria': '兜を隠す',
   'hudChrome.paperdoll.showHelmAria': '兜を表示',
+  'hudChrome.gathering.toolEquipRequired.mining': '採掘用のつるはしを装備する必要があります。',
+  'hudChrome.gathering.toolEquipRequired.logging': '伐採用の斧を装備する必要があります。',
+  'hudChrome.gathering.toolEquipRequired.herbalism': '薬草用の鎌を装備する必要があります。',
+  'hudChrome.gathering.toolEquipRequired.fishing': '釣り竿を装備する必要があります。',
+  'hudChrome.gathering.toolEquipRequired.farming': '農作業用のくわを装備する必要があります。',
+  'hudChrome.gathering.wieldUnmetEquipped.mining':
+    '装備中のつるはしを振るには採掘 {skill} が必要です。',
+  'hudChrome.gathering.wieldUnmetEquipped.logging': '装備中の斧を振るには伐採 {skill} が必要です。',
+  'hudChrome.gathering.wieldUnmetEquipped.herbalism':
+    '装備中の鎌を使うには薬草学 {skill} が必要です。',
+  'hudChrome.gathering.wieldUnmetEquipped.farming':
+    '装備中のくわを振るには農業 {skill} が必要です。',
+  'hudChrome.gathering.toolTooltip.equipHint': '道具スロットに装備します。',
+  'hudChrome.toolBelt.title': '道具',
+  'hudChrome.toolBelt.emptySlot':
+    '{profession}の道具が装備されていません。ここにドラッグするか、バッグで右クリックしてください。',
+  'hudChrome.toolBelt.unequipHint': '× をクリックするか右クリックで外す',
   'hudChrome.options.waterRipples': '水面の波紋（航跡）',
   'hudChrome.options.spellEffects': '呪文エフェクト',
   'hudChrome.options.actionCam': 'アクションカメラ',

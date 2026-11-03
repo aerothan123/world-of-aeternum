@@ -4078,6 +4078,11 @@ export const tr_TR: EnTranslations = {
       "hideHelmAria": "Miğferi gizle",
       "showHelmAria": "Miğferi göster"
     },
+    "toolBelt": {
+      "title": "Tools",
+      "emptySlot": "No {profession} tool equipped. Drag one here, or right-click it in your bags.",
+      "unequipHint": "Click × or right-click to unequip"
+    },
     "account": {
       "title": "Hesap",
       "loggedOutPrompt": "Hesabınızı yönetmek için giriş yapın.",
@@ -6134,6 +6139,13 @@ export const tr_TR: EnTranslations = {
         "fishing": "Balık tutmak için bir olta kamışına ihtiyacınız var.",
         "farming": "Bu yatağı işlemek için bir çiftçilik çapası gerekir."
       },
+      "toolEquipRequired": {
+        "mining": "You need a mining pick equipped.",
+        "logging": "You need a logging axe equipped.",
+        "herbalism": "You need a herbalism sickle equipped.",
+        "fishing": "You need a fishing pole equipped.",
+        "farming": "You need a farming hoe equipped."
+      },
       "noNodeNearby": {
         "mining": "Erişebileceğiniz bir cevher damarı yok.",
         "logging": "Erişebileceğiniz bir ağaç kümesi yok.",
@@ -6145,6 +6157,12 @@ export const tr_TR: EnTranslations = {
         "logging": "Çantanızdaki baltayı sallamak için Ağaç kesme {skill} becerisine ihtiyacınız var.",
         "herbalism": "Çantanızdaki orağı kullanmak için Bitkicilik {skill} becerisine ihtiyacınız var.",
         "farming": "Çantandaki çapayı savurmak için Çiftçilik {skill} gerekir."
+      },
+      "wieldUnmetEquipped": {
+        "mining": "You need Mining {skill} to swing your equipped pick.",
+        "logging": "You need Logging {skill} to swing your equipped axe.",
+        "herbalism": "You need Herbalism {skill} to work your equipped sickle.",
+        "farming": "You need Farming {skill} to swing your equipped hoe."
       },
       "wieldUnmetCorpse": "En iyi aletinizi iş başına koymak için {skill} toplama becerisine ihtiyacınız var.",
       "toolTierUnmetCorpse": "En iyi malzemeleri kurtarmak için {tier}. kademe toplama aracına ihtiyacınız var.",
@@ -6172,6 +6190,7 @@ export const tr_TR: EnTranslations = {
         "speed": "Kademe {tier} altındaki düğümlerde daha hızlı toplar.",
         "wieldDegrade": "Bu becerinin altında hala daha düşük seviyeli bir araç olarak çalışıyor.",
         "rodRequired": "Balık tutmak için gereklidir.",
+        "equipHint": "Equip in the Tools slot.",
         "rodBite": "Balıklar {seconds} sn'ye kadar daha erken oltaya vurur.",
         "rodReel": "Olta çekme süresini {seconds} sn uzatır.",
         "rodBand": "Balıkçılık becerisi {skill} ve üzerinde daha zengin av listelerinin kilidini açar.",

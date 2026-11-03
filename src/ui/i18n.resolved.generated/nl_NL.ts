@@ -4078,6 +4078,11 @@ export const nl_NL: EnTranslations = {
       "hideHelmAria": "Helm verbergen",
       "showHelmAria": "Helm tonen"
     },
+    "toolBelt": {
+      "title": "Tools",
+      "emptySlot": "No {profession} tool equipped. Drag one here, or right-click it in your bags.",
+      "unequipHint": "Click × or right-click to unequip"
+    },
     "account": {
       "title": "Account",
       "loggedOutPrompt": "Log in om je account te beheren.",
@@ -6134,6 +6139,13 @@ export const nl_NL: EnTranslations = {
         "fishing": "Je hebt een hengel nodig om je lijn uit te werpen.",
         "farming": "Je hebt een landbouwschoffel nodig om dit bed te bewerken."
       },
+      "toolEquipRequired": {
+        "mining": "You need a mining pick equipped.",
+        "logging": "You need a logging axe equipped.",
+        "herbalism": "You need a herbalism sickle equipped.",
+        "fishing": "You need a fishing pole equipped.",
+        "farming": "You need a farming hoe equipped."
+      },
       "noNodeNearby": {
         "mining": "Er is geen ertsader binnen bereik.",
         "logging": "Er is geen houtopstand binnen bereik.",
@@ -6145,6 +6157,12 @@ export const nl_NL: EnTranslations = {
         "logging": "Je hebt Houtkap {skill} nodig om de bijl in je tassen te zwaaien.",
         "herbalism": "Je hebt Kruidenkunde {skill} nodig om de sikkel in je tassen te hanteren.",
         "farming": "Je hebt Landbouw {skill} nodig om de schoffel uit je tassen te gebruiken."
+      },
+      "wieldUnmetEquipped": {
+        "mining": "You need Mining {skill} to swing your equipped pick.",
+        "logging": "You need Logging {skill} to swing your equipped axe.",
+        "herbalism": "You need Herbalism {skill} to work your equipped sickle.",
+        "farming": "You need Farming {skill} to swing your equipped hoe."
       },
       "wieldUnmetCorpse": "Je hebt verzamelvaardigheid {skill} nodig om je beste gereedschap aan het werk te zetten.",
       "toolTierUnmetCorpse": "Je hebt een rang {tier} verzamelgereedschap nodig om de fijnste materialen te verzamelen.",
@@ -6172,6 +6190,7 @@ export const nl_NL: EnTranslations = {
         "speed": "Verzamelt sneller bij grondstoffenpunten onder rang {tier}.",
         "wieldDegrade": "Onder die vaardigheid werkt het nog steeds als een hulpmiddel op een lager niveau.",
         "rodRequired": "Vereist om te vissen.",
+        "equipHint": "Equip in the Tools slot.",
         "rodBite": "Vissen bijten tot {seconds} s eerder.",
         "rodReel": "Verlengt de binnenhaaltijd met {seconds} s.",
         "rodBand": "Ontgrendelt een rijkere vangst vanaf visvaardigheid {skill}.",

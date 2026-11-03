@@ -86,6 +86,9 @@ export function charSheetRefreshSigFor(world: {
   ownedMounts(): readonly string[];
   reliquaryAccountFinds: { size: number };
   accountDeeds: { size: number };
+  /** The gathering tool belt behind the Tools section (optional for hosts
+   *  and fixtures without one). */
+  gatherToolSlots?: Readonly<Record<string, { itemId: string } | undefined>>;
 }): string {
   return charSheetRefreshSig({
     activeTitle: world.activeTitle,
@@ -95,6 +98,7 @@ export function charSheetRefreshSigFor(world: {
     marks: world.reliquaryMarks.size,
     mounts: world.ownedMounts().length,
     accountEntries: world.reliquaryAccountFinds.size + world.accountDeeds.size,
+    tools: toolBeltSig(world.gatherToolSlots),
   });
 }
 
@@ -113,7 +117,23 @@ export function charSheetRefreshSig(parts: {
    *  behind the account-wide pair and border row. Optional so a host with no
    *  ledger signs exactly as before. */
   accountEntries?: number;
+  /** The equipped tool ids in profession order (toolBeltSig): the Tools
+   *  section moves when one is equipped or unequipped, offline or online.
+   *  Optional so a host without a belt signs exactly as before. */
+  tools?: string;
 }): string {
+  if (parts.tools) {
+    return JSON.stringify([
+      parts.activeTitle,
+      parts.activeBorder,
+      parts.deedsEarned,
+      parts.itemsDiscovered,
+      parts.marks,
+      parts.mounts,
+      parts.accountEntries ?? 0,
+      parts.tools,
+    ]);
+  }
   return JSON.stringify([
     parts.activeTitle,
     parts.activeBorder,
@@ -123,4 +143,18 @@ export function charSheetRefreshSig(parts: {
     parts.mounts,
     parts.accountEntries ?? 0,
   ]);
+}
+
+/** The belt's equipped ids as one stable string ('' for an empty or absent
+ *  belt), read in a fixed key order so insertion order never moves it. */
+export function toolBeltSig(
+  slots: Readonly<Record<string, { itemId: string } | undefined>> | undefined,
+): string {
+  if (!slots) return '';
+  let out = '';
+  for (const key of Object.keys(slots).sort()) {
+    const id = slots[key]?.itemId;
+    if (id) out += `${key}=${id};`;
+  }
+  return out;
 }

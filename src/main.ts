@@ -3840,14 +3840,13 @@ async function startGame(
     () => input.isDragging() || hud.isModalOpen(),
   );
 
-  // Gathering-tool item use (#2343): a bags click or hotbar press on a
-  // pick/axe/sickle works the nearest matching node like an interact press,
-  // through the same handleGatherNodeInteract error surface and the #1982
-  // autorun stop. Returns false for non-tools and fishing implements, which
-  // fall back to the plain useItem command (fishing routes to startFishing
-  // at the sim boundary).
+  // Gathering-tool item use (#2343): a press of the EQUIPPED pick/axe/sickle
+  // works the nearest matching node like an interact press, through the same
+  // handleGatherNodeInteract error surface and the #1982 autorun stop. False
+  // for non-tools, BAGGED tools (useItem equips them) and fishing implements,
+  // which fall back to the plain useItem command (fishing casts in the sim).
   hud.setGatherToolUseHook((item) => {
-    const professionId = gatherToolProfessionFor(item);
+    const professionId = gatherToolProfessionFor(item, world);
     if (professionId === null) return false;
     const node = nearestGatherNodeForProfession(world, professionId);
     if (node === null) {

@@ -4078,6 +4078,11 @@ export const sv_SE: EnTranslations = {
       "hideHelmAria": "Dölj hjälm",
       "showHelmAria": "Visa hjälm"
     },
+    "toolBelt": {
+      "title": "Tools",
+      "emptySlot": "No {profession} tool equipped. Drag one here, or right-click it in your bags.",
+      "unequipHint": "Click × or right-click to unequip"
+    },
     "account": {
       "title": "Konto",
       "loggedOutPrompt": "Logga in för att hantera ditt konto.",
@@ -6134,6 +6139,13 @@ export const sv_SE: EnTranslations = {
         "fishing": "Du behöver ett metspö för att kasta ut linan.",
         "farming": "Du behöver en odlingshacka för att arbeta med den här bädden."
       },
+      "toolEquipRequired": {
+        "mining": "You need a mining pick equipped.",
+        "logging": "You need a logging axe equipped.",
+        "herbalism": "You need a herbalism sickle equipped.",
+        "fishing": "You need a fishing pole equipped.",
+        "farming": "You need a farming hoe equipped."
+      },
       "noNodeNearby": {
         "mining": "Det finns ingen malmåder inom räckhåll.",
         "logging": "Det finns inget timmerbestånd inom räckhåll.",
@@ -6145,6 +6157,12 @@ export const sv_SE: EnTranslations = {
         "logging": "Du behöver Skogsavverkning {skill} för att svinga yxan du redan har i väskorna.",
         "herbalism": "Du behöver Örtkunskap {skill} för att använda skäran du redan har i väskorna.",
         "farming": "Du behöver odlingsfärdighet {skill} för att använda hackan som redan finns i dina väskor."
+      },
+      "wieldUnmetEquipped": {
+        "mining": "You need Mining {skill} to swing your equipped pick.",
+        "logging": "You need Logging {skill} to swing your equipped axe.",
+        "herbalism": "You need Herbalism {skill} to work your equipped sickle.",
+        "farming": "You need Farming {skill} to swing your equipped hoe."
       },
       "wieldUnmetCorpse": "Du behöver insamlingsskicklighet {skill} för att sätta ditt finaste verktyg i arbete.",
       "toolTierUnmetCorpse": "Du behöver ett tier {tier} insamlingsverktyg för att återvinna de bästa materialen.",
@@ -6172,6 +6190,7 @@ export const sv_SE: EnTranslations = {
         "speed": "Samlar snabbare vid noder under tier {tier}.",
         "wieldDegrade": "Under den färdigheten fungerar det fortfarande som ett verktyg på lägre nivå.",
         "rodRequired": "Krävs för att fiska.",
+        "equipHint": "Equip in the Tools slot.",
         "rodBite": "Fisken nappar upp till {seconds}s tidigare.",
         "rodReel": "Förlänger indragningsfönstret med {seconds}s.",
         "rodBand": "Låser upp rikare fångster vid fiskeskicklighet {skill} och uppåt.",

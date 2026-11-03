@@ -4078,6 +4078,11 @@ export const es: EnTranslations = {
       "hideHelmAria": "Ocultar casco",
       "showHelmAria": "Mostrar casco"
     },
+    "toolBelt": {
+      "title": "Tools",
+      "emptySlot": "No {profession} tool equipped. Drag one here, or right-click it in your bags.",
+      "unequipHint": "Click × or right-click to unequip"
+    },
     "account": {
       "title": "Cuenta",
       "loggedOutPrompt": "Inicia sesión para gestionar tu cuenta.",
@@ -6134,6 +6139,13 @@ export const es: EnTranslations = {
         "fishing": "Necesitas una caña de pescar para lanzar el sedal.",
         "farming": "Necesitas una azada de agricultura para trabajar esta parcela."
       },
+      "toolEquipRequired": {
+        "mining": "You need a mining pick equipped.",
+        "logging": "You need a logging axe equipped.",
+        "herbalism": "You need a herbalism sickle equipped.",
+        "fishing": "You need a fishing pole equipped.",
+        "farming": "You need a farming hoe equipped."
+      },
       "noNodeNearby": {
         "mining": "No hay ninguna veta de mineral a tu alcance.",
         "logging": "No hay ninguna arboleda a tu alcance.",
@@ -6145,6 +6157,12 @@ export const es: EnTranslations = {
         "logging": "Necesitas Tala {skill} para blandir el hacha que ya llevas en las bolsas.",
         "herbalism": "Necesitas Herboristería {skill} para manejar la hoz que ya llevas en las bolsas.",
         "farming": "Necesitas Agricultura {skill} para blandir la azada que llevas en las bolsas."
+      },
+      "wieldUnmetEquipped": {
+        "mining": "You need Mining {skill} to swing your equipped pick.",
+        "logging": "You need Logging {skill} to swing your equipped axe.",
+        "herbalism": "You need Herbalism {skill} to work your equipped sickle.",
+        "farming": "You need Farming {skill} to swing your equipped hoe."
       },
       "wieldUnmetCorpse": "Necesitas habilidad de recolección {skill} para sacar partido a tu mejor herramienta.",
       "toolTierUnmetCorpse": "Necesitas una herramienta de recolección de nivel {tier} para recuperar los mejores materiales.",
@@ -6172,6 +6190,7 @@ export const es: EnTranslations = {
         "speed": "Recolecta más rápido en nodos por debajo del nivel {tier}.",
         "wieldDegrade": "Por debajo de esa habilidad, todavía funciona como una herramienta de nivel inferior.",
         "rodRequired": "Necesaria para pescar.",
+        "equipHint": "Equip in the Tools slot.",
         "rodBite": "Los peces pican hasta {seconds} s antes.",
         "rodReel": "Amplía la ventana de recogida en {seconds} s.",
         "rodBand": "Desbloquea capturas más ricas con habilidad de pesca {skill} o superior.",

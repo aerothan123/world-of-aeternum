@@ -201,15 +201,29 @@ describe('client wiring source pins (the tests/client_shell.test.ts idiom)', () 
 });
 
 describe('gatherToolProfessionFor (the client hook item filter)', () => {
-  it('resolves the three node professions and declines everything else', () => {
-    expect(gatherToolProfessionFor(ITEMS.copper_mining_pick)).toBe('mining');
-    expect(gatherToolProfessionFor(ITEMS.felling_axe)).toBe('logging');
-    expect(gatherToolProfessionFor(ITEMS.gathering_sickle)).toBe('herbalism');
+  const belt = {
+    gatherToolSlots: {
+      mining: { itemId: 'copper_mining_pick', count: 1 },
+      logging: { itemId: 'felling_axe', count: 1 },
+      herbalism: { itemId: 'gathering_sickle', count: 1 },
+      fishing: { itemId: 'ironreel_fishing_rod', count: 1 },
+    },
+  };
+  it('resolves the three node professions for the EQUIPPED tool and declines everything else', () => {
+    expect(gatherToolProfessionFor(ITEMS.copper_mining_pick, belt)).toBe('mining');
+    expect(gatherToolProfessionFor(ITEMS.felling_axe, belt)).toBe('logging');
+    expect(gatherToolProfessionFor(ITEMS.gathering_sickle, belt)).toBe('herbalism');
     // Fishing implements fall back to the plain useItem path (startFishing).
-    expect(gatherToolProfessionFor(ITEMS.ironreel_fishing_rod)).toBeNull();
-    expect(gatherToolProfessionFor(ITEMS.simple_fishing_pole)).toBeNull();
+    expect(gatherToolProfessionFor(ITEMS.ironreel_fishing_rod, belt)).toBeNull();
+    expect(gatherToolProfessionFor(ITEMS.simple_fishing_pole, belt)).toBeNull();
     // A non-tool item never routes here.
-    expect(gatherToolProfessionFor(ITEMS.copper_ore)).toBeNull();
+    expect(gatherToolProfessionFor(ITEMS.copper_ore, belt)).toBeNull();
+  });
+
+  it('declines a tool that is not the one in its slot: the bagged click equips instead', () => {
+    expect(gatherToolProfessionFor(ITEMS.iron_mining_pick, belt)).toBeNull();
+    expect(gatherToolProfessionFor(ITEMS.handaxe, belt)).toBeNull();
+    expect(gatherToolProfessionFor(ITEMS.copper_mining_pick, { gatherToolSlots: {} })).toBeNull();
   });
 });
 

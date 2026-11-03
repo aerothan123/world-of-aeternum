@@ -4810,6 +4810,15 @@ export const hudChromeStrings = {
     hideHelmAria: 'Hide helmet',
     showHelmAria: 'Show helmet',
   },
+  // The Tools section of the character sheet: the gathering tool belt
+  // (src/ui/hud/professions/tool_belt_view.ts), one slot per gathering
+  // profession, separate from combat gear.
+  toolBelt: {
+    title: 'Tools',
+    // Empty-slot tooltip. {profession} is the localized profession name.
+    emptySlot: 'No {profession} tool equipped. Drag one here, or right-click it in your bags.',
+    unequipHint: 'Click × or right-click to unequip',
+  },
   // Home-page account portal (the logged-in "Account" nav tab). Lives here in the
   // English-only hud_chrome domain so an English-only PR compiles; translations
   // live in the overlays like any other hudChrome.* key.
@@ -8212,6 +8221,17 @@ export const hudChromeStrings = {
       fishing: 'You need a fishing pole to cast a line.',
       farming: 'You need a farming hoe to work this bed.',
     },
+    // gatherDenied error toast for requiredTier 1 since the tool belt
+    // (src/sim/professions/gather_tool_slots.ts): no tool of the profession is
+    // EQUIPPED in its Tools slot (a tool in the bags never gathers). Replaces
+    // the toolRequired lines above, which said the player owned no tool.
+    toolEquipRequired: {
+      mining: 'You need a mining pick equipped.',
+      logging: 'You need a logging axe equipped.',
+      herbalism: 'You need a herbalism sickle equipped.',
+      fishing: 'You need a fishing pole equipped.',
+      farming: 'You need a farming hoe equipped.',
+    },
     // gatherToolNoNode error toast (#2343): the player used a gathering tool
     // from the bags with no matching resource node within interact range.
     // Node professions only, so fishing has no arm here (a rod routes to
@@ -8233,6 +8253,14 @@ export const hudChromeStrings = {
       logging: 'You need Logging {skill} to swing the axe already in your bags.',
       herbalism: 'You need Herbalism {skill} to work the sickle already in your bags.',
       farming: 'You need Farming {skill} to swing the hoe already in your bags.',
+    },
+    // The wield arm since the tool belt: the covering tool is the EQUIPPED one
+    // (the wieldUnmet lines above named the bags, where a tool no longer works).
+    wieldUnmetEquipped: {
+      mining: 'You need Mining {skill} to swing your equipped pick.',
+      logging: 'You need Logging {skill} to swing your equipped axe.',
+      herbalism: 'You need Herbalism {skill} to work your equipped sickle.',
+      farming: 'You need Farming {skill} to swing your equipped hoe.',
     },
     // The corpse flavor of the wield arm: profession-neutral like its
     // tier-based sibling below.
@@ -8283,6 +8311,9 @@ export const hudChromeStrings = {
       // the best tier the counter allows rather than refusing it outright.
       wieldDegrade: 'Below that skill it still works as a lower-tier tool.',
       rodRequired: 'Required to fish.',
+      // Where every gathering tool works from: its slot in the Tools section of
+      // the character sheet. Using a bagged tool equips it.
+      equipHint: 'Equip in the Tools slot.',
       rodBite: 'Fish bite up to {seconds}s sooner.',
       rodReel: 'Extends the reel window by {seconds}s.',
       rodBand: 'Unlocks richer catch tables at fishing skill {skill} and above.',

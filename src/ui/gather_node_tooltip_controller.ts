@@ -21,6 +21,7 @@
 
 import type { GatheringProfessionId } from '../sim/content/professions';
 import { ITEMS } from '../sim/data';
+import { toolBeltOf } from '../sim/professions/gather_tool_slots';
 import { NODE_HARVEST_TABLE } from '../sim/professions/gathering';
 import { canGatherTier } from '../sim/professions/tools';
 import { minWieldRequirementToWork } from '../sim/professions/wield_gate';
@@ -136,21 +137,21 @@ const TOOL_TIER_UNMET_KEYS: Record<GatherNodeType, string> = {
   herb: 'hudChrome.gathering.toolTierUnmet.herbalism',
 };
 
-// Tierless denial lines for tier-1 nodes (#2343: requiredTier 1 means "no
-// tool owned at all", so no tier number is named).
+// Tierless denial lines for tier-1 nodes and trees (#2343: requiredTier 1
+// means no tool EQUIPPED in the slot at all, so no tier number is named).
 const TOOL_REQUIRED_KEYS: Record<GatherNodeType, string> = {
-  ore: 'hudChrome.gathering.toolRequired.mining',
-  wood: 'hudChrome.gathering.toolRequired.logging',
-  herb: 'hudChrome.gathering.toolRequired.herbalism',
+  ore: 'hudChrome.gathering.toolEquipRequired.mining',
+  wood: 'hudChrome.gathering.toolEquipRequired.logging',
+  herb: 'hudChrome.gathering.toolEquipRequired.herbalism',
 };
 
-// The R22 wield arm's lines: a covering tool is in the bags and only the
+// The R22 wield arm's lines: a covering tool is EQUIPPED and only the
 // counter is short, so the actionable number is {skill}, not a tier. The
 // same key family the sim's wieldProficiency-carrying gatherDenied renders.
 const WIELD_UNMET_KEYS: Record<GatherNodeType, string> = {
-  ore: 'hudChrome.gathering.wieldUnmet.mining',
-  wood: 'hudChrome.gathering.wieldUnmet.logging',
-  herb: 'hudChrome.gathering.wieldUnmet.herbalism',
+  ore: 'hudChrome.gathering.wieldUnmetEquipped.mining',
+  wood: 'hudChrome.gathering.wieldUnmetEquipped.logging',
+  herb: 'hudChrome.gathering.wieldUnmetEquipped.herbalism',
 };
 
 /** The client-side tool pre-gate for one node, with the localized denial
@@ -168,11 +169,9 @@ export function gatherNodeToolGateFor(
   const professionId = NODE_HARVEST_TABLE[node.type].professionId;
   const viewerToolTier = viewerUsableToolTier(world, professionId);
   // A tree (src/sim/trees/) asks for the axe tier the sim's chop gate asks:
-  // none at tier 1 (a new player chops bare-handed), the tree's tier above.
+  // an equipped axe of at least its tier, tier 1 included.
   if (node.id !== undefined && parseTreeNodeId(node.id) !== null) {
-    const required = treeRequiredToolTier(node.tier);
-    if (required === 0) return { nodeTier: 0, viewerToolTier, unmetText: '' };
-    node = { type: node.type, tier: required };
+    node = { type: node.type, tier: treeRequiredToolTier(node.tier) };
   }
   // The wield split, mirroring the sim's denial choice exactly: when a
   // covering tool is already carried and only its counter is short
@@ -180,7 +179,12 @@ export function gatherNodeToolGateFor(
   // tier and no-tool lines keep their arms otherwise. Client and sim share
   // the resolvers, so the toast the pre-verdict composes is the toast the
   // server's own denial would render.
-  const wieldReq = minWieldRequirementToWork(world.inventory, professionId, node.tier, ITEMS);
+  const wieldReq = minWieldRequirementToWork(
+    toolBeltOf(world.gatherToolSlots),
+    professionId,
+    node.tier,
+    ITEMS,
+  );
   const wieldLocked =
     !canGatherTier(viewerToolTier, node.tier) && wieldReq !== null && wieldReq > 0;
   const unmetKey = wieldLocked

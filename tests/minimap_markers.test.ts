@@ -23,6 +23,7 @@ import {
 } from '../src/sim/data';
 import { createGroundObject } from '../src/sim/entity';
 import { isProfessionQuest } from '../src/sim/quests/ambient_quest_marker';
+import type { InvSlot } from '../src/sim/types';
 import { isQuestTurnInNpc } from '../src/sim/types';
 import { WORLD_BOSSES, worldBossLockoutId } from '../src/sim/world_boss';
 import { STABLE_MAP_NAVIGATION_LANDMARKS } from '../src/ui/map_navigation_landmarks_core';
@@ -39,6 +40,7 @@ import {
   minimapWorldQuestMarkerAt,
 } from '../src/ui/minimap_markers';
 import type { IWorld } from '../src/world_api';
+import { beltFromCarried } from './helpers/tool_belt_fixture';
 import { assertAllocationStable } from './util/alloc_probe';
 
 // A real quest whose giver is also a turn-in npc, so a single npc can carry both the
@@ -191,6 +193,10 @@ function makeWorld(shape: 'sim' | 'client'): IWorld {
     // `inventory is not iterable`. Supplying them makes the fixture answer for
     // itself whatever the map looks like.
     inventory: [],
+    // The carried tools are WORN (the tool belt): a tool works only from its slot.
+    get gatherToolSlots() {
+      return beltFromCarried((this as unknown as { inventory: InvSlot[] }).inventory);
+    },
     nodeHarvestableByMe: () => true,
     raidLockouts: () => [],
     worldBossActive: () => false,
@@ -1249,6 +1255,10 @@ describe('station markers (Professions 2.0)', () => {
       // needed by any viewer with a node inside the rim, which the "field
       // viewer" case below now is (wood_eastbrook_5 is 12 yards from (0, 150)).
       inventory: [],
+      // The carried tools are WORN (the tool belt): a tool works only from its slot.
+      get gatherToolSlots() {
+        return beltFromCarried((this as unknown as { inventory: InvSlot[] }).inventory);
+      },
       ...over,
     } as unknown as IWorld;
   }
@@ -1501,6 +1511,10 @@ describe('gather-node markers: the locked dimension', () => {
       stationPlacements: STATIONS,
       farmPatches: [],
       inventory: opts.inventory ?? [],
+      // The carried tools are WORN (the tool belt): a tool works only from its slot.
+      get gatherToolSlots() {
+        return beltFromCarried((this as unknown as { inventory: InvSlot[] }).inventory);
+      },
       gatheringProficiency: opts.gatheringProficiency ?? {},
       nodeHarvestableByMe: opts.harvestable ?? (() => true),
       questState: () => 'unavailable',
@@ -1646,6 +1660,10 @@ describe('gather-node markers scale with the rim, not the node table (phase 16)'
       stationPlacements: [],
       farmPatches: [],
       inventory: [],
+      // The carried tools are WORN (the tool belt): a tool works only from its slot.
+      get gatherToolSlots() {
+        return beltFromCarried((this as unknown as { inventory: InvSlot[] }).inventory);
+      },
       gatheringProficiency: {},
       nodeHarvestableByMe: () => true,
       questState: () => 'unavailable',

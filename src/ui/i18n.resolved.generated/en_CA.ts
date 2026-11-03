@@ -4078,6 +4078,11 @@ export const en_CA: EnTranslations = {
       "hideHelmAria": "Hide helmet",
       "showHelmAria": "Show helmet"
     },
+    "toolBelt": {
+      "title": "Tools",
+      "emptySlot": "No {profession} tool equipped. Drag one here, or right-click it in your bags.",
+      "unequipHint": "Click × or right-click to unequip"
+    },
     "account": {
       "title": "Account",
       "loggedOutPrompt": "Log in to manage your account.",
@@ -6134,6 +6139,13 @@ export const en_CA: EnTranslations = {
         "fishing": "You need a fishing pole to cast a line.",
         "farming": "You need a farming hoe to work this bed."
       },
+      "toolEquipRequired": {
+        "mining": "You need a mining pick equipped.",
+        "logging": "You need a logging axe equipped.",
+        "herbalism": "You need a herbalism sickle equipped.",
+        "fishing": "You need a fishing pole equipped.",
+        "farming": "You need a farming hoe equipped."
+      },
       "noNodeNearby": {
         "mining": "There is no ore vein within reach.",
         "logging": "There is no timber stand within reach.",
@@ -6145,6 +6157,12 @@ export const en_CA: EnTranslations = {
         "logging": "You need Logging {skill} to swing the axe already in your bags.",
         "herbalism": "You need Herbalism {skill} to work the sickle already in your bags.",
         "farming": "You need Farming {skill} to swing the hoe already in your bags."
+      },
+      "wieldUnmetEquipped": {
+        "mining": "You need Mining {skill} to swing your equipped pick.",
+        "logging": "You need Logging {skill} to swing your equipped axe.",
+        "herbalism": "You need Herbalism {skill} to work your equipped sickle.",
+        "farming": "You need Farming {skill} to swing your equipped hoe."
       },
       "wieldUnmetCorpse": "You need gathering skill {skill} to put your finest tool to work.",
       "toolTierUnmetCorpse": "You need a tier {tier} gathering tool to recover the finest materials.",
@@ -6172,6 +6190,7 @@ export const en_CA: EnTranslations = {
         "speed": "Gathers faster at nodes below tier {tier}.",
         "wieldDegrade": "Below that skill it still works as a lower-tier tool.",
         "rodRequired": "Required to fish.",
+        "equipHint": "Equip in the Tools slot.",
         "rodBite": "Fish bite up to {seconds}s sooner.",
         "rodReel": "Extends the reel window by {seconds}s.",
         "rodBand": "Unlocks richer catch tables at fishing skill {skill} and above.",

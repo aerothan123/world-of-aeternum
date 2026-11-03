@@ -4078,6 +4078,11 @@ export const ko_KR: EnTranslations = {
       "hideHelmAria": "투구 숨기기",
       "showHelmAria": "투구 표시"
     },
+    "toolBelt": {
+      "title": "도구",
+      "emptySlot": "장착한 {profession} 도구가 없습니다. 여기로 끌어다 놓거나 가방에서 오른쪽 클릭하세요.",
+      "unequipHint": "× 또는 오른쪽 클릭으로 장착 해제"
+    },
     "account": {
       "title": "계정",
       "loggedOutPrompt": "계정을 관리하려면 로그인하세요.",
@@ -6134,6 +6139,13 @@ export const ko_KR: EnTranslations = {
         "fishing": "낚싯대가 있어야 낚싯줄을 드리울 수 있습니다.",
         "farming": "이 작물밭을 일구려면 농사 괭이가 필요합니다."
       },
+      "toolEquipRequired": {
+        "mining": "채광 곡괭이를 장착해야 합니다.",
+        "logging": "벌목 도끼를 장착해야 합니다.",
+        "herbalism": "약초 낫을 장착해야 합니다.",
+        "fishing": "낚싯대를 장착해야 합니다.",
+        "farming": "농사 괭이를 장착해야 합니다."
+      },
       "noNodeNearby": {
         "mining": "손이 닿는 곳에 광맥이 없습니다.",
         "logging": "손이 닿는 곳에 벌목 나무가 없습니다.",
@@ -6145,6 +6157,12 @@ export const ko_KR: EnTranslations = {
         "logging": "가방에 있는 도끼를 휘두르려면 벌목 {skill}이(가) 필요합니다.",
         "herbalism": "가방에 있는 낫을 다루려면 약초학 {skill}이(가) 필요합니다.",
         "farming": "가방에 있는 괭이를 휘두르려면 농사 {skill}이(가) 필요합니다."
+      },
+      "wieldUnmetEquipped": {
+        "mining": "장착한 곡괭이를 휘두르려면 채광 {skill}이(가) 필요합니다.",
+        "logging": "장착한 도끼를 휘두르려면 벌목 {skill}이(가) 필요합니다.",
+        "herbalism": "장착한 낫을 사용하려면 약초학 {skill}이(가) 필요합니다.",
+        "farming": "장착한 괭이를 휘두르려면 농사 {skill}이(가) 필요합니다."
       },
       "wieldUnmetCorpse": "최상급 도구를 제대로 다루려면 채집 기술 {skill}이(가) 필요합니다.",
       "toolTierUnmetCorpse": "최상급 재료를 회수하려면 {tier}티어 채집 도구가 필요합니다.",
@@ -6172,6 +6190,7 @@ export const ko_KR: EnTranslations = {
         "speed": "{tier}티어 미만 채집지에서 더 빠르게 채집합니다.",
         "wieldDegrade": "그 숙련도에 못 미쳐도 낮은 티어 도구로는 계속 쓸 수 있습니다.",
         "rodRequired": "낚시에 필요합니다.",
+        "equipHint": "도구 슬롯에 장착합니다.",
         "rodBite": "물고기가 최대 {seconds}초 더 빨리 입질합니다.",
         "rodReel": "릴 감기 시간이 {seconds}초 늘어납니다.",
         "rodBand": "낚시 기술 {skill} 이상에서 더 풍성한 어획 목록이 해금됩니다.",

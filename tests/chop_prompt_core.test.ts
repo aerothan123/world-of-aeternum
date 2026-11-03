@@ -113,6 +113,17 @@ describe('resolveChopPromptTarget: the tree the press would chop', () => {
     expect(target?.y).toBeCloseTo(groundHeight(TREE.x, TREE.z, SEED) + CHOP_PROMPT_LIFT);
   });
 
+  it('offers no chip with no axe in the logging tool slot, and one with an axe there', () => {
+    const bare = besideTree();
+    (bare.world as { gatherToolSlots?: unknown }).gatherToolSlots = {};
+    expect(resolve(bare)).toBeNull();
+    const armed = besideTree();
+    (armed.world as { gatherToolSlots?: unknown }).gatherToolSlots = {
+      logging: { itemId: 'handaxe', count: 1 },
+    };
+    expect(resolve(armed)?.nodeId).toBe(TREE_NODE);
+  });
+
   it('shows nothing out of reach', () => {
     expect(resolve(standingBy(TREE.x, TREE.z - (INTERACT_RANGE + 3)))?.nodeId).not.toBe(TREE_NODE);
   });

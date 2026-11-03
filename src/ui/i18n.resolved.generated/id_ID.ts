@@ -4078,6 +4078,11 @@ export const id_ID: EnTranslations = {
       "hideHelmAria": "Sembunyikan helm",
       "showHelmAria": "Tampilkan helm"
     },
+    "toolBelt": {
+      "title": "Tools",
+      "emptySlot": "No {profession} tool equipped. Drag one here, or right-click it in your bags.",
+      "unequipHint": "Click × or right-click to unequip"
+    },
     "account": {
       "title": "Akun",
       "loggedOutPrompt": "Masuk untuk mengelola akunmu.",
@@ -6134,6 +6139,13 @@ export const id_ID: EnTranslations = {
         "fishing": "Kamu membutuhkan joran pancing untuk melempar kail.",
         "farming": "Kamu memerlukan cangkul tani untuk mengolah bedeng ini."
       },
+      "toolEquipRequired": {
+        "mining": "You need a mining pick equipped.",
+        "logging": "You need a logging axe equipped.",
+        "herbalism": "You need a herbalism sickle equipped.",
+        "fishing": "You need a fishing pole equipped.",
+        "farming": "You need a farming hoe equipped."
+      },
       "noNodeNearby": {
         "mining": "Tidak ada urat bijih dalam jangkauan.",
         "logging": "Tidak ada tegakan pohon dalam jangkauan.",
@@ -6145,6 +6157,12 @@ export const id_ID: EnTranslations = {
         "logging": "Kamu membutuhkan Penebangan {skill} untuk mengayunkan kapak yang sudah ada di tasmu.",
         "herbalism": "Kamu membutuhkan Herbalisme {skill} untuk memakai sabit yang sudah ada di tasmu.",
         "farming": "Kamu memerlukan Bertani {skill} untuk mengayunkan cangkul di tasmu."
+      },
+      "wieldUnmetEquipped": {
+        "mining": "You need Mining {skill} to swing your equipped pick.",
+        "logging": "You need Logging {skill} to swing your equipped axe.",
+        "herbalism": "You need Herbalism {skill} to work your equipped sickle.",
+        "farming": "You need Farming {skill} to swing your equipped hoe."
       },
       "wieldUnmetCorpse": "Kamu membutuhkan keahlian pengumpulan {skill} untuk memakai alat terbaikmu.",
       "toolTierUnmetCorpse": "Kamu membutuhkan alat pengumpul tingkat {tier} untuk mendapatkan bahan terbaik.",
@@ -6172,6 +6190,7 @@ export const id_ID: EnTranslations = {
         "speed": "Mengumpulkan lebih cepat di simpul di bawah tingkat {tier}.",
         "wieldDegrade": "Di bawah keterampilan itu, ia masih berfungsi sebagai alat tingkat rendah.",
         "rodRequired": "Diperlukan untuk memancing.",
+        "equipHint": "Equip in the Tools slot.",
         "rodBite": "Ikan menggigit hingga {seconds} dtk lebih cepat.",
         "rodReel": "Memperpanjang jendela penarikan sebesar {seconds} dtk.",
         "rodBand": "Membuka hasil tangkapan yang lebih kaya pada keahlian memancing {skill} ke atas.",

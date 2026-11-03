@@ -4078,6 +4078,11 @@ export const zh_TW: EnTranslations = {
       "hideHelmAria": "隱藏頭盔",
       "showHelmAria": "顯示頭盔"
     },
+    "toolBelt": {
+      "title": "工具",
+      "emptySlot": "未裝備{profession}工具。將工具拖到此處，或在背包中右鍵點擊它。",
+      "unequipHint": "點擊 × 或右鍵點擊以卸下"
+    },
     "account": {
       "title": "帳號",
       "loggedOutPrompt": "登入以管理您的帳號。",
@@ -6134,6 +6139,13 @@ export const zh_TW: EnTranslations = {
         "fishing": "你需要釣竿才能拋竿垂釣。",
         "farming": "你需要耕作鋤才能打理這片田畦。"
       },
+      "toolEquipRequired": {
+        "mining": "你需要裝備採礦鎬。",
+        "logging": "你需要裝備伐木斧。",
+        "herbalism": "你需要裝備草藥鐮。",
+        "fishing": "你需要裝備釣竿。",
+        "farming": "你需要裝備耕作鋤。"
+      },
       "noNodeNearby": {
         "mining": "附近沒有礦脈可供開採。",
         "logging": "附近沒有林木可供砍伐。",
@@ -6145,6 +6157,12 @@ export const zh_TW: EnTranslations = {
         "logging": "你需要伐木{skill}才能揮動背包裡已有的伐木斧。",
         "herbalism": "你需要藥草學{skill}才能使用背包裡已有的草藥鐮。",
         "farming": "你需要耕作{skill}才能揮動背包裡已有的耕作鋤。"
+      },
+      "wieldUnmetEquipped": {
+        "mining": "你需要採礦技能 {skill} 才能揮動已裝備的礦鎬。",
+        "logging": "你需要伐木技能 {skill} 才能揮動已裝備的斧頭。",
+        "herbalism": "你需要草藥學技能 {skill} 才能使用已裝備的鐮刀。",
+        "farming": "你需要耕作技能 {skill} 才能揮動已裝備的鋤頭。"
       },
       "wieldUnmetCorpse": "你需要採集技能{skill}才能讓最上等的工具派上用場。",
       "toolTierUnmetCorpse": "你需要{tier}階採集工具才能取得最上等的材料。",
@@ -6172,6 +6190,7 @@ export const zh_TW: EnTranslations = {
         "speed": "在低於{tier}階的節點採集速度更快。",
         "wieldDegrade": "技能不足時，它仍可當作較低階的工具使用。",
         "rodRequired": "釣魚所需。",
+        "equipHint": "裝備在工具欄位中。",
         "rodBite": "魚上鉤最多可提前{seconds}秒。",
         "rodReel": "收線時限延長{seconds}秒。",
         "rodBand": "釣魚技能達到{skill}後可解鎖更豐富的漁獲。",

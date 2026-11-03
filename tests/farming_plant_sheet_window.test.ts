@@ -46,6 +46,12 @@ class StubWorld {
   ];
   myFarmPlots: FarmPlotView[] = [];
   farmingSkill = TIER2_SKILL;
+  // The hoe works only from the farming tool slot (the tool belt): the stub's
+  // bagged hoe stands in that slot, as a character's would.
+  get gatherToolSlots() {
+    const hoe = this.inventory.find((s) => s.itemId.endsWith('_hoe'));
+    return hoe ? { farming: hoe } : {};
+  }
   plantCrop = vi.fn();
   // The harvest-mode arm (intentional gathering PR1): the explicit Harvest
   // control revalidates the player, the bed's reach and the live plot before
@@ -1153,6 +1159,7 @@ describe('plant sheet window: the ClientWorld mirror shape', () => {
         { itemId: FARM_COMPOST_ITEM_ID, count: 1 },
       ] as readonly InvSlot[],
       myFarmPlots: [] as readonly FarmPlotView[],
+      gatherToolSlots: { farming: { itemId: 'garden_hoe', count: 1 } },
       professionsState: {
         skills: [{ professionId: 'farming', skill: TIER2_SKILL, maxSkill: 100 }],
       },

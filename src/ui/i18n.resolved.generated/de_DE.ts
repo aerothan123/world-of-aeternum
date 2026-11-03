@@ -4078,6 +4078,11 @@ export const de_DE: EnTranslations = {
       "hideHelmAria": "Helm verbergen",
       "showHelmAria": "Helm anzeigen"
     },
+    "toolBelt": {
+      "title": "Tools",
+      "emptySlot": "No {profession} tool equipped. Drag one here, or right-click it in your bags.",
+      "unequipHint": "Click × or right-click to unequip"
+    },
     "account": {
       "title": "Konto",
       "loggedOutPrompt": "Meldet Euch an, um Euer Konto zu verwalten.",
@@ -6134,6 +6139,13 @@ export const de_DE: EnTranslations = {
         "fishing": "Du brauchst eine Angel, um die Schnur auszuwerfen.",
         "farming": "Du brauchst eine Gartenhacke, um dieses Beet zu bearbeiten."
       },
+      "toolEquipRequired": {
+        "mining": "You need a mining pick equipped.",
+        "logging": "You need a logging axe equipped.",
+        "herbalism": "You need a herbalism sickle equipped.",
+        "fishing": "You need a fishing pole equipped.",
+        "farming": "You need a farming hoe equipped."
+      },
       "noNodeNearby": {
         "mining": "In Reichweite ist keine Erzader.",
         "logging": "In Reichweite ist keine Baumgruppe.",
@@ -6145,6 +6157,12 @@ export const de_DE: EnTranslations = {
         "logging": "Du brauchst Holzfällen {skill}, um die Axt in deinen Taschen zu schwingen.",
         "herbalism": "Du brauchst Kräuterkunde {skill}, um die Sichel in deinen Taschen zu führen.",
         "farming": "Du brauchst Pflanzenfertigkeit {skill}, um die bereits in deinen Taschen befindliche Hacke zu schwingen."
+      },
+      "wieldUnmetEquipped": {
+        "mining": "You need Mining {skill} to swing your equipped pick.",
+        "logging": "You need Logging {skill} to swing your equipped axe.",
+        "herbalism": "You need Herbalism {skill} to work your equipped sickle.",
+        "farming": "You need Farming {skill} to swing your equipped hoe."
       },
       "wieldUnmetCorpse": "Du brauchst Sammelfertigkeit {skill}, um dein bestes Werkzeug einzusetzen.",
       "toolTierUnmetCorpse": "Du brauchst ein Sammelwerkzeug der Stufe {tier}, um die feinsten Materialien zu gewinnen.",
@@ -6172,6 +6190,7 @@ export const de_DE: EnTranslations = {
         "speed": "Sammelt schneller an Knoten unterhalb von Stufe {tier}.",
         "wieldDegrade": "Unterhalb dieser Fähigkeit funktioniert es immer noch als untergeordnetes Werkzeug.",
         "rodRequired": "Zum Angeln erforderlich.",
+        "equipHint": "Equip in the Tools slot.",
         "rodBite": "Fische beißen bis zu {seconds} Sek. früher an.",
         "rodReel": "Verlängert das Einholfenster um {seconds} Sek.",
         "rodBand": "Schaltet ab Angelfertigkeit {skill} reichhaltigere Fangtabellen frei.",

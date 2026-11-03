@@ -43,9 +43,17 @@ const slot = (itemId: string, count: number, over: Partial<InvSlot> = {}): InvSl
 const locked = (itemId: string, count: number): InvSlot =>
   slot(itemId, count, { instance: { locked: true } });
 
+// The fixture's hoe stands in the farming tool slot (the tool belt: a hoe
+// works only from there), exactly where a character's hoe would be.
+const beltOf = (inventory: InvSlot[]) => {
+  const hoe = inventory.find((s) => s.itemId.endsWith('_hoe'));
+  return hoe ? { farming: hoe } : {};
+};
+
 const input = (inventory: InvSlot[], over: Partial<PlantSheetInput> = {}): PlantSheetInput => ({
   bedId: 'bed_eastbrook_1',
   inventory,
+  gatherTools: beltOf(inventory),
   myFarmPlots: [],
   farmingSkill: farmCropSkillThreshold(1),
   ...over,

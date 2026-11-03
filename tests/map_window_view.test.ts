@@ -36,6 +36,7 @@ import {
 import { EASTBROOK_LAYOUT } from '../src/sim/eastbrook_layout';
 import { KIT_BUILDINGS } from '../src/sim/kit_buildings';
 import type { QuestObjectiveRef } from '../src/sim/quest_targets';
+import type { InvSlot } from '../src/sim/types';
 import {
   emptyZoneProps,
   type NoticeboardDef,
@@ -78,6 +79,7 @@ import {
   worldQuestMarkerAt,
 } from '../src/ui/map_window_view';
 import type { IWorld } from '../src/world_api';
+import { beltFromCarried } from './helpers/tool_belt_fixture';
 
 const ZONE = ZONES[0];
 const ZONE_CZ = (ZONE.zMin + ZONE.zMax) / 2; // a z inside the committed zone band
@@ -161,6 +163,10 @@ function makeOverworldWorld(
     // + harvestability so a zone with real GATHER_NODES content does not throw
     // on the tool scan / ready read the core runs for every in-zone node.
     inventory: [],
+    // The carried tools are WORN (the tool belt): a tool works only from its slot.
+    get gatherToolSlots() {
+      return beltFromCarried((this as unknown as { inventory: InvSlot[] }).inventory);
+    },
     gatheringProficiency: {},
     nodeHarvestableByMe: () => true,
     raidLockouts: () => [],
@@ -1448,10 +1454,11 @@ describe('zone-map gather nodes', () => {
     let inventoryReads = 0;
     let proficiencyReads = 0;
     const world = makeOverworldWorld('sim') as unknown as Record<string, unknown>;
-    Object.defineProperty(world, 'inventory', {
+    // The tool scan reads the tool belt (IWorld gatherToolSlots), not the bags.
+    Object.defineProperty(world, 'gatherToolSlots', {
       get: () => {
         inventoryReads += 1;
-        return [];
+        return {};
       },
     });
     Object.defineProperty(world, 'gatheringProficiency', {

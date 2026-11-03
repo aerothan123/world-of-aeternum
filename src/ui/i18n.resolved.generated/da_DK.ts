@@ -4078,6 +4078,11 @@ export const da_DK: EnTranslations = {
       "hideHelmAria": "Skjul hjelm",
       "showHelmAria": "Vis hjelm"
     },
+    "toolBelt": {
+      "title": "Tools",
+      "emptySlot": "No {profession} tool equipped. Drag one here, or right-click it in your bags.",
+      "unequipHint": "Click × or right-click to unequip"
+    },
     "account": {
       "title": "Konto",
       "loggedOutPrompt": "Log ind for at administrere din konto.",
@@ -6134,6 +6139,13 @@ export const da_DK: EnTranslations = {
         "fishing": "Du har brug for en fiskestang for at kaste linen ud.",
         "farming": "Du behøver en landbrugshakke for at arbejde med dette bed."
       },
+      "toolEquipRequired": {
+        "mining": "You need a mining pick equipped.",
+        "logging": "You need a logging axe equipped.",
+        "herbalism": "You need a herbalism sickle equipped.",
+        "fishing": "You need a fishing pole equipped.",
+        "farming": "You need a farming hoe equipped."
+      },
       "noNodeNearby": {
         "mining": "Der er ingen malmåre inden for rækkevidde.",
         "logging": "Der er ingen tømmerlund inden for rækkevidde.",
@@ -6145,6 +6157,12 @@ export const da_DK: EnTranslations = {
         "logging": "Du har brug for Skovhugst {skill} for at svinge den økse, du allerede har i taskerne.",
         "herbalism": "Du har brug for Urtekundskab {skill} for at bruge den segl, du allerede har i taskerne.",
         "farming": "Du behøver landbrugsfærdighed {skill} for at bruge hakken i dine tasker."
+      },
+      "wieldUnmetEquipped": {
+        "mining": "You need Mining {skill} to swing your equipped pick.",
+        "logging": "You need Logging {skill} to swing your equipped axe.",
+        "herbalism": "You need Herbalism {skill} to work your equipped sickle.",
+        "farming": "You need Farming {skill} to swing your equipped hoe."
       },
       "wieldUnmetCorpse": "Du har brug for indsamlingsfærdighed {skill} for at sætte dit fineste værktøj i arbejde.",
       "toolTierUnmetCorpse": "Du har brug for et niveau {tier} indsamlingsværktøj for at genvinde de fineste materialer.",
@@ -6172,6 +6190,7 @@ export const da_DK: EnTranslations = {
         "speed": "Indsamler hurtigere ved ressourcekilder under niveau {tier}.",
         "wieldDegrade": "Under den færdighed fungerer det stadig som et værktøj på lavere niveau.",
         "rodRequired": "Kræves for at fiske.",
+        "equipHint": "Equip in the Tools slot.",
         "rodBite": "Fisk bider op til {seconds}s tidligere.",
         "rodReel": "Forlænger indhivningsvinduet med {seconds}s.",
         "rodBand": "Låser op for rigere fangsttabeller ved fiskerifærdighed {skill} og derover.",

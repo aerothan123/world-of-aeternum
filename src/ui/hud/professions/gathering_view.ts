@@ -28,6 +28,7 @@ import {
   type ToolEffectId,
 } from '../../../sim/content/professions';
 import { activeGatherNodes, GATHER_NODES, ITEMS } from '../../../sim/data';
+import { toolBeltOf } from '../../../sim/professions/gather_tool_slots';
 import {
   effectiveGradeToolTier,
   type GradeReadMeta,
@@ -61,8 +62,8 @@ export function classifyGatherNode(world: IWorld, nodeId: string): GatherNodeSta
 }
 
 /** The viewer's best USABLE gatherTool tier for one gathering profession:
- *  the same IWorld bags read the bags window renders
- *  (IWorldInventory#inventory), filtered by the R22 wield gate against the
+ *  the EQUIPPED tool belt (IWorldProfessions#gatherToolSlots: a bagged tool
+ *  never gathers, src/sim/professions/gather_tool_slots.ts), filtered by the R22 wield gate against the
  *  viewer's own counter (the plain `gatheringProficiency` map both worlds
  *  expose and the vendor advisory already reads: the Sim getter copies the
  *  live map, ClientWorld mirrors the gprof wire field). Guarded end to end:
@@ -90,7 +91,12 @@ export function viewerUsableToolTier(
   proficiency: Readonly<Record<string, number>> | undefined = world.gatheringProficiency,
 ): number {
   const skill = proficiency?.[professionId];
-  return bestWieldableGatherToolTierOrNone(world.inventory, professionId, skill, ITEMS);
+  return bestWieldableGatherToolTierOrNone(
+    toolBeltOf(world.gatherToolSlots),
+    professionId,
+    skill,
+    ITEMS,
+  );
 }
 
 /** Whether a node of this tier is tool-locked for the viewer: a SEPARATE
@@ -196,6 +202,7 @@ function gradeReadMetaFor(world: IWorld): GradeReadMeta {
   }
   return {
     inventory: world.inventory,
+    gatherTools: world.gatherToolSlots,
     gatheringProficiency: world.gatheringProficiency,
     toolEffectSlots: slots,
   };
@@ -278,7 +285,7 @@ export function buildGatherNodeTooltip(
   const professionId = NODE_HARVEST_TABLE[node.type].professionId;
   const locked = isNodeToolLockedFor(world, node);
   const wieldReq = locked
-    ? minWieldRequirementToWork(world.inventory, professionId, node.tier, ITEMS)
+    ? minWieldRequirementToWork(toolBeltOf(world.gatherToolSlots), professionId, node.tier, ITEMS)
     : null;
   const state = classifyGatherNode(world, node.id);
   const respawn = state === 'cooldown' ? world.nodeRespawnSeconds(node.id) : null;
@@ -325,7 +332,7 @@ export function gatherDeniedLineKey(
   if (surface === 'fishing') {
     return requiredTier !== undefined && requiredTier > 1
       ? 'hudChrome.gathering.toolTierUnmet.fishing'
-      : 'hudChrome.gathering.toolRequired.fishing';
+      : 'hudChrome.gathering.toolEquipRequired.fishing';
   }
   if (surface === 'node') {
     if (
@@ -338,10 +345,10 @@ export function gatherDeniedLineKey(
       // wield requirement, the player already OWNS a covering tool and the
       // actionable fact is the counter, not the tier.
       if (wieldProficiency !== undefined && wieldProficiency > 0) {
-        return `hudChrome.gathering.wieldUnmet.${professionId}`;
+        return `hudChrome.gathering.wieldUnmetEquipped.${professionId}`;
       }
       return requiredTier !== undefined && requiredTier <= 1
-        ? `hudChrome.gathering.toolRequired.${professionId}`
+        ? `hudChrome.gathering.toolEquipRequired.${professionId}`
         : `hudChrome.gathering.toolTierUnmet.${professionId}`;
     }
   }

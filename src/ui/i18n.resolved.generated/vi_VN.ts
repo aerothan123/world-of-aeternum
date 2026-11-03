@@ -4078,6 +4078,11 @@ export const vi_VN: EnTranslations = {
       "hideHelmAria": "Ẩn mũ giáp",
       "showHelmAria": "Hiện mũ giáp"
     },
+    "toolBelt": {
+      "title": "Tools",
+      "emptySlot": "No {profession} tool equipped. Drag one here, or right-click it in your bags.",
+      "unequipHint": "Click × or right-click to unequip"
+    },
     "account": {
       "title": "Tài Khoản",
       "loggedOutPrompt": "Đăng nhập để quản lý tài khoản của bạn.",
@@ -6134,6 +6139,13 @@ export const vi_VN: EnTranslations = {
         "fishing": "Bạn phải có cần câu mới buông câu được.",
         "farming": "Bạn cần cuốc trồng trọt để làm luống này."
       },
+      "toolEquipRequired": {
+        "mining": "You need a mining pick equipped.",
+        "logging": "You need a logging axe equipped.",
+        "herbalism": "You need a herbalism sickle equipped.",
+        "fishing": "You need a fishing pole equipped.",
+        "farming": "You need a farming hoe equipped."
+      },
       "noNodeNearby": {
         "mining": "Không có mạch quặng nào trong tầm với.",
         "logging": "Không có cụm cây gỗ nào trong tầm với.",
@@ -6145,6 +6157,12 @@ export const vi_VN: EnTranslations = {
         "logging": "Bạn cần Đốn gỗ {skill} để vung chiếc rìu đã có trong túi.",
         "herbalism": "Bạn cần Thảo dược học {skill} để dùng chiếc liềm đã có trong túi.",
         "farming": "Bạn cần Trồng trọt {skill} để vung cuốc trong túi."
+      },
+      "wieldUnmetEquipped": {
+        "mining": "You need Mining {skill} to swing your equipped pick.",
+        "logging": "You need Logging {skill} to swing your equipped axe.",
+        "herbalism": "You need Herbalism {skill} to work your equipped sickle.",
+        "farming": "You need Farming {skill} to swing your equipped hoe."
       },
       "wieldUnmetCorpse": "Bạn cần kỹ năng thu thập {skill} để dùng được công cụ tốt nhất của mình.",
       "toolTierUnmetCorpse": "Bạn cần công cụ thu thập bậc {tier} để lấy được nguyên liệu tốt nhất.",
@@ -6172,6 +6190,7 @@ export const vi_VN: EnTranslations = {
         "speed": "Thu hoạch nhanh hơn tại các điểm tài nguyên dưới bậc {tier}.",
         "wieldDegrade": "Dưới kỹ năng đó, nó vẫn hoạt động như một công cụ cấp thấp hơn.",
         "rodRequired": "Cần thiết để câu cá.",
+        "equipHint": "Equip in the Tools slot.",
         "rodBite": "Cá cắn câu sớm hơn tới {seconds} giây.",
         "rodReel": "Kéo dài thời gian thu dây thêm {seconds} giây.",
         "rodBand": "Mở khóa danh sách cá phong phú hơn khi kỹ năng câu cá đạt {skill} trở lên.",

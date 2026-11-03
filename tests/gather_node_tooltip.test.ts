@@ -14,6 +14,7 @@ import {
 import type { GatherNodeTooltipModel } from '../src/ui/hud/professions/gathering_view';
 import { hasTranslation } from '../src/ui/i18n';
 import type { IWorld } from '../src/world_api';
+import { beltFromCarried } from './helpers/tool_belt_fixture';
 
 function model(over: Partial<GatherNodeTooltipModel> = {}): GatherNodeTooltipModel {
   return {
@@ -47,7 +48,7 @@ describe('gatherNodeTooltipHtml', () => {
     // instead, red, with the smallest counter that unlocks something owned.
     const html = gatherNodeTooltipHtml(model({ wieldSkill: 40 }));
     expect(html).toContain(
-      '<div class="tt-red">You need Mining 40 to swing the pick already in your bags.</div>',
+      '<div class="tt-red">You need Mining 40 to swing your equipped pick.</div>',
     );
     expect(html).not.toContain('Requires a tier 2 mining pick');
     // The shortfall only speaks while the node is actually locked.
@@ -132,7 +133,11 @@ describe('gatherNodeToolGateFor', () => {
     proficiency: Record<string, number> = {},
   ): IWorld {
     // The plain counter map the wield-filtered scan reads (R22).
-    return { inventory, gatheringProficiency: proficiency } as unknown as IWorld;
+    return {
+      inventory,
+      gatherToolSlots: beltFromCarried(inventory),
+      gatheringProficiency: proficiency,
+    } as unknown as IWorld;
   }
 
   it('resolves the viewer tier from bags and bakes the localized denial line per family', () => {
@@ -162,7 +167,7 @@ describe('gatherNodeToolGateFor', () => {
     ).toEqual({
       nodeTier: 2,
       viewerToolTier: 1,
-      unmetText: 'You need Mining 40 to swing the pick already in your bags.',
+      unmetText: 'You need Mining 40 to swing your equipped pick.',
     });
     // Empty bags read as no tool owned (0, #2343: no bare-hands floor), and
     // the wood/herb families word their own tiered lines.
@@ -182,7 +187,7 @@ describe('gatherNodeToolGateFor', () => {
     expect(gatherNodeToolGateFor(worldWith([]), { type: 'ore', tier: 1 })).toEqual({
       nodeTier: 1,
       viewerToolTier: 0,
-      unmetText: 'You need a mining pick to harvest this vein.',
+      unmetText: 'You need a mining pick equipped.',
     });
   });
 });
