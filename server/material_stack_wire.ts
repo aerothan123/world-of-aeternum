@@ -1,8 +1,13 @@
 // Shape-only material grouping command decoding. Malformed optional sources
 // refuse the entire command; they never become the default whole-stack action.
+import {
+  GATHERING_PROFESSION_IDS,
+  type GatheringProfessionId,
+} from '../src/sim/content/professions';
 import { type MaterialComposition, mergeMaterialCompositions } from '../src/sim/material_sources';
 import type { MaterialStackSelection } from '../src/sim/material_stack_selection';
 import type { Sim } from '../src/sim/sim';
+import { isEquipSlot } from '../src/sim/types';
 
 const record = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -44,16 +49,29 @@ export function parseMaterialGroupingIntent(
   return { itemId: msg.item, target, selectedSources: sources.value };
 }
 
-/** Existing bag movement/sort and new grouping share this shape-only dispatch. */
+/** Bag movement/sort, material grouping, and the two unequip commands (worn
+ *  gear, and the gathering tool belt) share this shape-only dispatch; the sim
+ *  re-validates everything. */
 export function dispatchInventoryGroupingCommand(
   sim: Pick<
     Sim,
-    'moveInventoryItem' | 'sortInventory' | 'separateMaterialStack' | 'combineMaterialStacks'
+    | 'moveInventoryItem'
+    | 'sortInventory'
+    | 'separateMaterialStack'
+    | 'combineMaterialStacks'
+    | 'unequipItem'
+    | 'unequipGatherTool'
   >,
   pid: number,
   msg: Record<string, unknown>,
 ): void {
-  if (msg.cmd === 'inv_move') {
+  if (msg.cmd === 'unequip_item') {
+    if (typeof msg.slot === 'string' && isEquipSlot(msg.slot)) sim.unequipItem(msg.slot, pid);
+  } else if (msg.cmd === 'unequip_gather_tool') {
+    const id = msg.profession;
+    if (typeof id === 'string' && (GATHERING_PROFESSION_IDS as readonly string[]).includes(id))
+      sim.unequipGatherTool(id as GatheringProfessionId, pid);
+  } else if (msg.cmd === 'inv_move') {
     if (typeof msg.from === 'number' && typeof msg.to === 'number')
       sim.moveInventoryItem(msg.from, msg.to, pid);
   } else if (msg.cmd === 'inv_sort') sim.sortInventory(pid);

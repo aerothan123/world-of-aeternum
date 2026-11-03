@@ -6,6 +6,8 @@
 // prior mirror) can be read and tested in one place, following the
 // bank_snapshot_wire.ts precedent.
 
+import { ITEMS } from '../sim/data';
+import { type GatherToolSlots, loadGatherToolSlots } from '../sim/professions/gather_tool_slots';
 import type { HarvestPreference } from '../sim/professions/harvest_preference';
 import {
   parseTownFocusPendingView,
@@ -29,6 +31,12 @@ import type { FelledTreeMirror } from './felled_trees_wire';
 import { decodeGatheringGoalWire } from './gathering_goal_wire';
 import { decodeHarvestPreferenceWire } from './harvest_preference_wire';
 
+/** The `gtool` frame as a belt: the sim's load rule (each row only in its own
+ *  slot, count 1), so a malformed frame mirrors as no tools rather than junk. */
+export function decodeGatherToolSlotsWire(raw: unknown): GatherToolSlots {
+  return loadGatherToolSlots(raw, ITEMS, () => {}).slots;
+}
+
 /** The profession self-mirror fields ClientWorld keeps; the concrete
  *  ClientWorld satisfies this structurally. */
 export interface ProfessionsSelfMirrors {
@@ -41,6 +49,7 @@ export interface ProfessionsSelfMirrors {
   lastSalvageResult: SalvageResultView | null;
   gatheringProficiency: Record<string, number>;
   toolEffectSlots: readonly ToolEffectSlotView[];
+  gatherToolSlots: Readonly<GatherToolSlots>;
   harvestPreference: HarvestPreference | null;
   townFocusPending: TownFocusPendingView | null;
   gatheringGoal: GatheringGoalView | null;
@@ -65,6 +74,7 @@ export function applyProfessionsSelfMirror(
     salv?: SalvageResultView | null;
     gprof?: Record<string, number> | null;
     tslot?: readonly ToolEffectSlotView[] | null;
+    gtool?: unknown;
     hpref?: unknown;
     tfpend?: unknown;
     ggoal?: unknown;
@@ -108,6 +118,9 @@ export function applyProfessionsSelfMirror(
   if (s.salv !== undefined) target.lastSalvageResult = s.salv ?? null;
   if (s.gprof !== undefined) target.gatheringProficiency = s.gprof ?? {};
   if (s.tslot !== undefined) target.toolEffectSlots = s.tslot ?? [];
+  // gtool: the tool belt, re-parsed through the sim's own load rule (a row
+  // whose item no longer fits its slot is dropped from the mirror).
+  if (s.gtool !== undefined) target.gatherToolSlots = decodeGatherToolSlotsWire(s.gtool);
   // hpref: delta-omitted; present decodes via the shared wire leaf, which
   // refuses a malformed value to null rather than reviving All.
   if (s.hpref !== undefined) target.harvestPreference = decodeHarvestPreferenceWire(s.hpref);

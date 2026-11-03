@@ -198,6 +198,7 @@ export function bareClient(pid: number, overrides: BareClientOverrides = {}): Cl
   // online client sees, not undefined. farmPatches is a prototype getter over
   // the active world, so the fixture inherits it.
   c.toolEffectSlots = [];
+  c.gatherToolSlots = {};
   c.myFarmPlots = [];
   c.delveClears = {};
   c.delveDaily = { date: '', firstClearXp: [], markClears: 0 };

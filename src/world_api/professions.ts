@@ -1,7 +1,9 @@
+import type { GatheringProfessionId } from '../sim/content/professions';
 import type {
   CommissionOrderScope,
   CommissionOrderStatus,
 } from '../sim/professions/commission_order';
+import type { GatherToolSlots } from '../sim/professions/gather_tool_slots';
 import type { MaterialRarity } from '../sim/professions/gathering';
 import type { GatheringGoalView } from '../sim/professions/gathering_goal_types';
 import type { HarvestPreference } from '../sim/professions/harvest_preference';
@@ -489,6 +491,15 @@ export interface IWorldProfessions {
   // initializing it moved every parity golden. Offline this reads the live
   // PlayerMeta slot; online it mirrors the server's `tslot` self-delta.
   toolEffectSlots: readonly ToolEffectSlotView[];
+  // The gathering tool belt (src/sim/professions/gather_tool_slots.ts): one
+  // equipped tool per gathering profession id, separate from combat gear. A
+  // tool gathers only from its slot. Offline this is the live PlayerMeta
+  // belt; online it mirrors the server's `gtool` self-delta. Equipping rides
+  // the existing equipItem / useItem commands (a bagged tool equips).
+  gatherToolSlots: Readonly<GatherToolSlots>;
+  // Return the tool in `professionId`'s slot to the bags. Server-authoritative:
+  // refused while a gather cast runs or when the bags have no room.
+  unequipGatherTool(professionId: GatheringProfessionId): void;
   // Slot `effectId` onto the viewer's `professionId` tool, at the charges that
   // profession's BEST OWNED tool's rarity mints (professions/tools.ts
   // startingDurabilityFor), CONSUMING one crafted charm copy of the effect

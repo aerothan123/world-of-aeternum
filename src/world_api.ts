@@ -1021,6 +1021,11 @@ export const COMMAND_NAMES = [
   // src/sim/housing/house_storage.ts). Appended.
   'house_storage_deposit',
   'house_storage_withdraw',
+  // The gathering tool belt: return the tool in one gathering profession's
+  // slot to the bags (Sim.unequipGatherTool via
+  // src/sim/professions/gather_tool_actions.ts). Untagged in COMMAND_FACETS
+  // like the other row-less profession commands. Appended.
+  'unequip_gather_tool',
 ] as const;
 
 // The union both the send path (`online.ts`) and the dispatch switch

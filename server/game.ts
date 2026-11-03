@@ -6175,12 +6175,9 @@ export class GameServer {
       case 'inv_sort':
       case 'material_separate':
       case 'material_combine':
-        dispatchInventoryGroupingCommand(sim, pid, msg);
-        break;
       case 'unequip_item':
-        if (typeof msg.slot === 'string' && isEquipSlot(msg.slot)) {
-          sim.unequipItem(msg.slot, pid);
-        }
+      case 'unequip_gather_tool':
+        dispatchInventoryGroupingCommand(sim, pid, msg);
         break;
       case 'use':
         this.mountItems.syncAccount(session);

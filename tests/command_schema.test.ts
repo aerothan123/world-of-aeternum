@@ -203,9 +203,11 @@ const repoRoot = fileURLToPath(new URL('..', import.meta.url));
 // Sim.placeFurniture / removeFurniture): 276/290/14. Phase 3 adds
 // house_storage_deposit and house_storage_withdraw (ClientWorld.houseStorageDeposit
 // / houseStorageWithdraw, dispatched to Sim.houseStorageDeposit /
-// houseStorageWithdraw): 278/292/14.
-const EXPECTED_SEND_COUNT = 278;
-const EXPECTED_DISPATCH_COUNT = 292;
+// houseStorageWithdraw): 278/292/14. The gathering tool belt adds
+// unequip_gather_tool (ClientWorld.unequipGatherTool, dispatched to
+// Sim.unequipGatherTool through server/material_stack_wire.ts): 279/293/14.
+const EXPECTED_SEND_COUNT = 279;
+const EXPECTED_DISPATCH_COUNT = 293;
 const EXPECTED_DISPATCH_ONLY_COUNT = 14;
 
 // The chat sub-channel routing switch (server/game.ts `switch
@@ -346,7 +348,8 @@ describe('command schema parity (W0b)', () => {
     // Player housing (Project H) appends buy_house after trick_or_treat, then
     // phase 2 appends place_furniture and remove_furniture, then phase 3
     // appends house_storage_deposit and house_storage_withdraw.
-    expect(COMMAND_NAMES.slice(-12, -5)).toEqual([
+    // The gathering tool belt then appends unequip_gather_tool.
+    expect(COMMAND_NAMES.slice(-13, -6)).toEqual([
       'courier_dispatch',
       'dungeon_guide_answer',
       'buddy_rename',
@@ -355,14 +358,16 @@ describe('command schema parity (W0b)', () => {
       'guild_buy_cosmetic',
       'trick_or_treat',
     ]);
-    expect(COMMAND_NAMES.slice(-5)).toEqual([
+    expect(COMMAND_NAMES.slice(-6)).toEqual([
       'buy_house',
       'place_furniture',
       'remove_furniture',
       'house_storage_deposit',
       'house_storage_withdraw',
+      'unequip_gather_tool',
     ]);
     for (const cmd of [
+      'unequip_gather_tool',
       'buy_house',
       'place_furniture',
       'remove_furniture',

@@ -218,6 +218,7 @@ import {
 import { applySelfCombatScalars } from './combat_scalar_wire';
 import { craftResultViewFromEvent } from './craft_result_mirror';
 import { EMPTY_MST_CRAFTS } from './crafting_wire';
+import { applyDelveSelfMirror } from './delve_self_mirror';
 import { pruneMissingEntities } from './despawn_grace';
 import { dungeonEntrySnapshotFacing } from './dungeon_entry_facing';
 import { decodeEntityFlairWire } from './entity_flair_wire';
@@ -1329,6 +1330,7 @@ export class ClientWorld extends ReconWireState implements IWorld {
   // never slotted an effect, which is the server's own default: the sim leaves
   // the backing PlayerMeta field absent and projects [] for it.
   toolEffectSlots: readonly ToolEffectSlotView[] = [];
+  gatherToolSlots: IWorld['gatherToolSlots'] = {}; // the tool belt, `gtool` (professions_self_mirror.ts)
   // Corpse-harvest preference (Intentional Gathering PR3), mirrored from
   // `hpref` below. null until the mirror syncs; reset null on reconnect
   // hello (the marketInfo precedent) so a resume never shows a stale choice.
@@ -3149,12 +3151,7 @@ export class ClientWorld extends ReconWireState implements IWorld {
       if (s.lroll !== undefined) this.lootRollPrompts = s.lroll ?? [];
       if (s.lrollg !== undefined) this.lootRollGroup = s.lrollg ?? [];
       if (s.mloot !== undefined) this.masterLootPrompts = s.mloot ?? [];
-      if (s.drun !== undefined) this.delveRun = s.drun;
-      if (s.dcompanion !== undefined) this.companionState = s.dcompanion;
-      if (s.dmarks !== undefined) this.delveMarks = s.dmarks ?? 0;
-      if (s.dcomp !== undefined) this.companionUpgrades = s.dcomp ?? {};
-      if (s.dclears !== undefined) this.delveClears = s.dclears ?? {};
-      if (s.delveDaily !== undefined) this.delveDaily = s.delveDaily;
+      applyDelveSelfMirror(this, s); // drun/dcompanion/dmarks/dcomp/dclears/delveDaily
       if (s.tfocus !== undefined) this.townFocus = s.tfocus ?? {};
       // Profession self-mirror delta block (mobile-station crafts, commission
       // orders, enchanting result mirrors, gathering proficiency, tool slots,
@@ -3672,6 +3669,9 @@ export class ClientWorld extends ReconWireState implements IWorld {
   // the same toolEffectResult event the slot uses.
   rechargeToolEffect(professionId: string): void {
     this.cmd({ cmd: 'recharge_tool_effect', profession: professionId });
+  }
+  unequipGatherTool(professionId: string): void {
+    this.cmd({ cmd: 'unequip_gather_tool', profession: professionId });
   }
   // Enchanting profession commands (Professions 2.0): command only,
   // never predicted. The server re-validates ownership/eligibility/throttle in

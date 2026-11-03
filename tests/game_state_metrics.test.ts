@@ -961,6 +961,9 @@ describe('economy telemetry counters at their emission sites', () => {
     const meta = server.sim.meta(session.pid) as unknown as Record<string, any>;
     placeOnNpc(server, session.pid, 'trader_wilkes');
     server.sim.addItem('bronze_sickle', 1, session.pid);
+    // The better sickle took the herbalism tool slot; put the starter back so
+    // the one being sold sits in the bags.
+    server.sim.equipItem('gathering_sickle', session.pid);
     meta.copper = 0;
 
     server.handleMessage(session, vendorSellFrame('bronze_sickle', 1));

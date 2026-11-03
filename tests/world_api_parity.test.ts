@@ -503,6 +503,10 @@ export const IWORLD_MEMBERS = [
   { name: 'toolEffectSlots', kind: 'data' },
   { name: 'slotToolEffect', kind: 'method' },
   { name: 'rechargeToolEffect', kind: 'method' },
+  // The gathering tool belt: the slots read and the unequip command (equip
+  // rides the existing equipItem / useItem commands).
+  { name: 'gatherToolSlots', kind: 'data' },
+  { name: 'unequipGatherTool', kind: 'method' },
   // The Perfecting stage (Masterwrought phase 12): the attempt command and
   // the shared both-hosts state read (perfectingInfoFrom).
   { name: 'perfectItem', kind: 'method' },
@@ -1045,10 +1049,11 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
     // houseStorage (data) and houseStorageDeposit / houseStorageWithdraw
     // (methods): 480/144/336. Retiring the crypto-only Daily Rewards facet
     // (IWorldDailyRewards: four methods) leaves 476/144/332, and tree chopping
-    // adds felledTrees (method): 477/144/333.
-    expect(IWORLD_MEMBERS.length).toBe(477);
-    expect(DATA_MEMBERS.length).toBe(144);
-    expect(METHOD_MEMBERS.length).toBe(333);
+    // adds felledTrees (method): 477/144/333. The gathering tool belt adds
+    // gatherToolSlots (data) and unequipGatherTool (method): 479/145/334.
+    expect(IWORLD_MEMBERS.length).toBe(479);
+    expect(DATA_MEMBERS.length).toBe(145);
+    expect(METHOD_MEMBERS.length).toBe(334);
   });
   it('has no duplicate member names', () => {
     const names = IWORLD_MEMBERS.map((m) => m.name);
@@ -1232,6 +1237,7 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'friendAdd',
       'friendRemove',
       'friendlyTabTarget',
+      'gatherToolSlots',
       'gatheringGoal',
       'gatheringProficiency',
       'groundAimPlacementPreview',
@@ -1507,6 +1513,7 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'unappliedDungeonDifficulty',
       'unbindItem',
       'unequipBag',
+      'unequipGatherTool',
       'unequipItem',
       'unequipMechChroma',
       'unlockedMilestones',
@@ -1601,6 +1608,7 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'factionCurrencies',
       'factions',
       'farmPatches',
+      'gatherToolSlots',
       'gatheringGoal',
       'gatheringProficiency',
       'guildBankInfo',
@@ -2010,6 +2018,7 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'unappliedDungeonDifficulty',
       'unbindItem',
       'unequipBag',
+      'unequipGatherTool',
       'unequipItem',
       'unequipMechChroma',
       'unstuck',
@@ -2666,6 +2675,8 @@ const FACET_PROFESSIONS = [
   'toolEffectSlots',
   'slotToolEffect',
   'rechargeToolEffect',
+  'gatherToolSlots',
+  'unequipGatherTool',
   'perfectItem',
   'perfectingInfo',
   'gatheringGoal',
@@ -2922,8 +2933,8 @@ describe('W1: aggregate IWorld member set equals the disjoint union of the facet
     // housing phase 2 adds houseAnchors, placeFurniture and removeFurniture;
     // phase 3 adds houseStorage, houseStorageDeposit and houseStorageWithdraw.
     // The retired Daily Rewards facet removes its four methods; felledTrees adds one.
-    expect(union.length, 'union size before dedup (catches a duplicated member)').toBe(477);
-    expect(new Set(union).size, 'union size after dedup (catches a duplicated member)').toBe(477);
+    expect(union.length, 'union size before dedup (catches a duplicated member)').toBe(479);
+    expect(new Set(union).size, 'union size after dedup (catches a duplicated member)').toBe(479);
     const sortedUnion = [...union].sort();
     const pinned = IWORLD_MEMBERS.map((m) => m.name).sort();
     expect(sortedUnion).toEqual(pinned);
