@@ -548,14 +548,16 @@ import { consumeFeastAction, type FeastState, placeFeastAction } from './profess
 import * as fishing from './professions/fishing';
 import type { RespecPaymentTier } from './professions/focus';
 import {
+  nodeHarvestableFor,
+  nodeRespawnSecondsFor as nodeRespawnSecondsForImpl,
+} from './professions/gather_node_reads';
+import {
   completeGatherCast as completeGatherCastImpl,
   drainGatheringGrants,
   emptyGatheringProficiency,
   foldPendingGatherGrants,
   gatheringSkillsView,
   harvestNode as harvestNodeImpl,
-  isNodeHarvestableBy,
-  nodeRespawnRemainingSec,
   normalizeGatheringProficiency,
 } from './professions/gathering';
 import {
@@ -596,11 +598,7 @@ import {
   placeMobileStationForPlayer,
 } from './professions/mobile_station';
 import { dropMobileStationObject } from './professions/mobile_station_object';
-import {
-  applyNodeReadiness,
-  isLiveGatherNodeId,
-  nodeReadinessSaveFragment,
-} from './professions/node_persist';
+import { applyNodeReadiness, nodeReadinessSaveFragment } from './professions/node_persist';
 import type { PerfectItemRef, PerfectingInfoView } from './professions/perfecting';
 import type { PerfectingSwapRequest } from './professions/perfecting_swap';
 import {
@@ -737,6 +735,11 @@ import {
   migrateCharacterTalentsV2,
 } from './talent_save_migration';
 import type { TransportFerryView } from './transport_schedule';
+import {
+  createTreeFellState,
+  type FelledTreesView,
+  updateTreeRegrowth,
+} from './trees/tree_felling';
 import { updateAbilityDrill } from './tutorial/ability_drill';
 import { updateGauntletRuns } from './tutorial/gauntlet_run';
 import { updateTutorialGreeting } from './tutorial/greeting';
@@ -2002,6 +2005,7 @@ export class Sim {
   duels = new Map<number, DuelState>(); // pid -> shared duel (both pids)
   duelInvites = new Map<number, { fromPid: number; expires: number }>();
   feasts = new Map<number, FeastState>(); // entity id -> live shared feast (transient; professions/feast.ts)
+  readonly treeFells = createTreeFellState(); // felled trees + regrow queue (transient; trees/)
   // Card Duel minigame (src/sim/social/card_duel.ts): its own FIFO queue and
   // live-match map, independent of the HP-based duels above.
   cardDuelQueue: number[] = [];
@@ -4995,6 +4999,7 @@ export class Sim {
       get feasts() {
         return sim.feasts;
       },
+      treeFells: sim.treeFells,
       get nextId() {
         return sim.nextId;
       },
@@ -6227,6 +6232,7 @@ export class Sim {
     // professions/feast.ts) both decide from stored state alone, so its
     // position cannot fork the draw order, like its neighbours.
     updateFarming(this.ctx);
+    updateTreeRegrowth(this.ctx); // zero rng: pops the regrow queue head (trees/)
     lap?.('farming');
     // The Book of Deeds evaluator runs at the very end of the tail: it sees
     // same-tick delayed-event results, and because it draws ZERO rng (pure
@@ -8207,37 +8213,24 @@ export class Sim {
     return harvestNodeImpl(this.ctx, nodeId, confirmEffectUse === true, pid);
   }
 
-  // IWorld read surface (IWorldProfessions): whether the given node is
-  // harvestable right now BY THIS PLAYER specifically (per-player respawn
-  // timer, #1121). Never reflects another player's cooldown for the same node.
-  // Takes an explicit pid (mirrors gatheringProficiencyFor) so both the
-  // local-viewer getter below and tests can check any player's own timer.
+  // IWorld read surface (IWorldProfessions): whether THIS player may work the
+  // node now (per-player respawn timer, #1121; a tree's world felled state),
+  // and the countdown of the same answer. Bodies: professions/gather_node_reads.ts.
   nodeHarvestableByMeFor(nodeId: string, pid: number): boolean {
-    const meta = this.players.get(pid);
-    if (!meta) return false;
-    // Existence via the node_persist id map (O(1)), the same reasoning as
-    // nodeRespawnSecondsFor below: this read runs on the tooltip path and
-    // only needs membership, never the record.
-    if (!isLiveGatherNodeId(nodeId)) return false;
-    return isNodeHarvestableBy(meta, nodeId, this.time);
+    return nodeHarvestableFor(this.ctx, nodeId, pid);
   }
 
   nodeHarvestableByMe(nodeId: string): boolean {
     return this.nodeHarvestableByMeFor(nodeId, this.primaryId);
   }
 
-  // The countdown read of the same per-player timer (IWorldProfessions
-  // nodeRespawnSeconds): remaining seconds until THIS player may harvest the
-  // node again, null when it is ready now or the id is unknown. Same explicit
-  // pid shape as nodeHarvestableByMeFor, same pure helper clock domain.
   nodeRespawnSecondsFor(nodeId: string, pid: number): number | null {
-    const meta = this.players.get(pid);
-    if (!meta) return null;
-    // Existence via the node_persist id map (O(1)): this read runs on the
-    // tooltip path, where gatherNodeById's linear GATHER_NODES scan would be
-    // paid per call for a lookup that only needs membership.
-    if (!isLiveGatherNodeId(nodeId)) return null;
-    return nodeRespawnRemainingSec(meta, nodeId, this.time);
+    return nodeRespawnSecondsForImpl(this.ctx, nodeId, pid);
+  }
+
+  // IWorldProfessions felledTrees: the world's felled-tree set (trees/tree_felling.ts).
+  felledTrees(): FelledTreesView {
+    return this.treeFells;
   }
 
   nodeRespawnSeconds(nodeId: string): number | null {

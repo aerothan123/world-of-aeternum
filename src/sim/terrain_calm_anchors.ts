@@ -21,6 +21,7 @@
 // computes the same rings from the one shipped WORLD_SEED.
 
 import { FARSHORE_HULL_FRAGMENT_PLACEMENT } from './content/farshore_shipwreck_layout';
+import { GATHER_NODE_SITES_AS_SHIPPED } from './content/gather_nodes';
 import { OVERWORLD_GRAVEYARDS } from './content/graveyards';
 import { MAILBOXES } from './content/mailboxes';
 import { TAVERN_KEEPER_NPC_ID } from './content/mirefen_tavern';
@@ -32,16 +33,7 @@ import { WICKHARBOR_HARBOR_MOVED_DECOR } from './content/wickharbor_harbor';
 import { WICKHARBOR_WHARF_CALM_ANCHORS } from './content/wickharbor_wharf';
 import { WORLD_QUEST_CALLIGRAPHY_NPCS } from './content/world_quest_calligraphy';
 import { FARSHORE_SALVAGE_ENTITY_ID_START } from './content/world_quests';
-import {
-  DUNGEONS,
-  ESCORTS,
-  GATHER_NODES,
-  GROUND_OBJECTS,
-  NPCS,
-  PORTALS,
-  PROPS,
-  ZONES,
-} from './data';
+import { DUNGEONS, ESCORTS, GROUND_OBJECTS, NPCS, PORTALS, PROPS, ZONES } from './data';
 import { GALE_HARBOR_DECKS } from './gale_harbor';
 import { GLIDER_WHARF_DECKS } from './glider_wharf_layout';
 import { REACH_DECKS } from './reach_decks';
@@ -166,7 +158,8 @@ export function collectCalmAnchorPads(): CalmPadRow[] {
     rows.push({ x, z, rIn, baseROut, optional, category });
   };
   // The pre-existing anchor set (required: these rings are already minted).
-  for (const node of GATHER_NODES) pad('gatherNode', node.pos.x, node.pos.z, 5, 12, false);
+  // The as-shipped roster: the retired wood stands keep their minted pads.
+  for (const site of GATHER_NODE_SITES_AS_SHIPPED) pad('gatherNode', site.x, site.z, 5, 12, false);
   for (const id in NPCS) {
     if (Object.hasOwn(WORLD_QUEST_CALLIGRAPHY_NPCS, id)) continue;
     // Studio rows (studio_content.ts) never shape terrain: the calm tables are

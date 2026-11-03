@@ -316,11 +316,13 @@ describe('questObjectiveAreas', () => {
     // The band is not open-ended in either direction: 60 yards merges groups
     // that 30 keeps apart, and 25 splits an ore cluster that 30 chains, so
     // moving the constant past either edge cannot pass unnoticed.
-    expect(key(gatherNodeClusters('wood', 60))).not.toBe(key(gatherNodeClusters('wood')));
+    // Wood carries no node clusters since tree chopping retired the stands
+    // (every tree is a Logging source; docs/design/tree-chopping.md), so the
+    // 60-yard edge it used to pin is gone with it.
+    expect(gatherNodeClusters('wood')).toEqual([]);
     expect(key(gatherNodeClusters('ore', 25))).not.toBe(key(gatherNodeClusters('ore')));
     // The UPPER edge belongs to HERB (the expansion's (32,8) pairs merge at
-    // 33); wood does not flip again until 60, so without this arm the band's
-    // stated ceiling was unpinned.
+    // 33), so without this arm the band's stated ceiling was unpinned.
     expect(key(gatherNodeClusters('herb', 33))).not.toBe(key(gatherNodeClusters('herb')));
   });
 

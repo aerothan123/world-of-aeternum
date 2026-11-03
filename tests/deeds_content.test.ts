@@ -153,8 +153,9 @@ describe('audited launch totals (literals: update deliberately with the catalog)
     // + the five-dungeon rework (PR 4352) on the v0.45.0 integration: 346, 3810.
     // + Lantern Hall (the Highwatch guild): three contract milestones (5, 10, 25) and the
     // quartermaster's three zero-Renown title feats: 352, 3850.
-    expect(DEED_ORDER.length).toBe(369);
-    expect(ALL.reduce((sum, d) => sum + d.renown, 0)).toBe(4010);
+    // + tree chopping's first felling (prog_first_felling, renown 5): 370, 4015.
+    expect(DEED_ORDER.length).toBe(370);
+    expect(ALL.reduce((sum, d) => sum + d.renown, 0)).toBe(4015);
   });
 
   it('ships the audited per-category counts', () => {
@@ -173,8 +174,9 @@ describe('audited launch totals (literals: update deliberately with the catalog)
       // +1 the Phase 13 promotion capstone prog_legendmaker, then
       // +7 the faction standing ladder (a Trusted and a Champion deed per
       // allied faction plus the all-factions meta), then
-      // +1 the sixth lifetime-XP rung (prog_titan).
-      progression: 76,
+      // +1 the sixth lifetime-XP rung (prog_titan), then
+      // +1 tree chopping's first felling (prog_first_felling).
+      progression: 77,
       // +1 the Buried Hoard goblin catch (cmb_coinsack_caught).
       // +2 the Mirefen world boss pair, +1 the muster's pike drill.
       combat: 14,
@@ -493,6 +495,8 @@ describe('audited launch totals (literals: update deliberately with the catalog)
       'feat_gourdlight_errands',
       'feat_gourdlight_frights',
       'feat_gourdlight_eve_complete',
+      // Tree chopping's first felling (docs/design/tree-chopping.md).
+      'prog_first_felling',
     ]);
     expect(DEEDS.dgn_wildheart_basin.renown).toBe(10);
     expect(DEEDS.dgn_wildheart_basin_heroic.renown).toBe(10);
@@ -1138,7 +1142,8 @@ describe('frozen trigger + renown catalog (design rule 9: never retro-edit a tri
   // Release merge: retain the release catalogue first and append integration's
   // 33 deeds. Stripping them reproduces the release's frozen digest below.
   // Main's frozen catalog is preserved as the prefix; Halloween appends ten feats.
-  const FROZEN_CATALOG_SHA256 = '6209fd36c03fe4f3d6c8a4ba2966d04b4ba0ba2c21128b82db589c50e24697b2';
+  // Tree chopping appends prog_first_felling (renown 5) at the tail: re-minted.
+  const FROZEN_CATALOG_SHA256 = '01e74f5e5bd8fc4cf7b0cfef5cfcf0408cf962dc0a16ae062690a5d35096c7bf';
 
   it('every shipped deed keeps its trigger and renown unchanged', () => {
     const canonical = JSON.stringify(
@@ -1219,20 +1224,13 @@ describe('frozen trigger + renown catalog (design rule 9: never retro-edit a tri
   //
   // The hard Wisp Maze deed now appends after the World PvP title ladder.
   // Stripping it reproduces the previous 325-deed mint.
+  //
+  // Tree chopping appends prog_first_felling after Gourdlight Eve's checklist;
+  // the previous mint is the Gourdlight catalog's 6209fd36... literal (rotated
+  // down here), and stripping the one id must reproduce it exactly.
   const PRE_APPEND_CATALOG_SHA256 =
-    'f0b1e522f87715f2ffbf812095ea6fb172aa9116d57c706a9fe65f945b1b482d';
-  const APPENDED_SINCE: readonly string[] = [
-    'feat_gourdlight_guise',
-    'feat_old_thatchgrin',
-    'feat_title_gourdlit',
-    'feat_title_trickster',
-    'feat_title_hollow_grinned',
-    'feat_pumpkin_hunter',
-    'feat_gourdlight_doorsteps',
-    'feat_gourdlight_errands',
-    'feat_gourdlight_frights',
-    'feat_gourdlight_eve_complete',
-  ];
+    '6209fd36c03fe4f3d6c8a4ba2966d04b4ba0ba2c21128b82db589c50e24697b2';
+  const APPENDED_SINCE: readonly string[] = ['prog_first_felling'];
 
   it('the catalog minus the ids appended since the previous mint reproduces the previous digest', () => {
     const appended = new Set(APPENDED_SINCE);
@@ -1243,8 +1241,8 @@ describe('frozen trigger + renown catalog (design rule 9: never retro-edit a tri
     // the ferry round trip. Pin the two predecessors too: an append into a known seat,
     // never a scattered insert or a retro-edit (the digest below proves it).
     expect(DEED_ORDER.slice(-2 - APPENDED_SINCE.length)).toEqual([
-      'feat_guild_hallsworn',
-      'feat_guild_of_lantern_hall',
+      'feat_gourdlight_frights',
+      'feat_gourdlight_eve_complete',
       ...APPENDED_SINCE,
     ]);
     const priorRows = DEED_ORDER.filter((id) => !appended.has(id)).map((id) => {
@@ -1475,12 +1473,14 @@ describe('table shape', () => {
     // Mirefen world-boss branch's three combat deeds, then (v0.45.0 integration) the
     // five-dungeon rework's 24, Morthen's Every Candle Lit, then Lantern Hall's six, the
     // quartermaster's third title last.
-    expect(DEED_ORDER[DEED_ORDER.length - 51]).toBe('exp_harbor_to_harbor');
-    expect(DEED_ORDER[DEED_ORDER.length - 42]).toBe('cmb_balgath_ten');
-    expect(DEED_ORDER[DEED_ORDER.length - 41]).toBe('cmb_point_taken');
-    expect(DEED_ORDER[DEED_ORDER.length - 17]).toBe('dgn_morthen_candlelight');
-    expect(DEED_ORDER[DEED_ORDER.length - 11]).toBe('feat_guild_of_lantern_hall');
-    expect(DEED_ORDER.at(-1)).toBe('feat_gourdlight_eve_complete');
+    // Tree chopping's first felling appends last, one seat behind everything.
+    expect(DEED_ORDER[DEED_ORDER.length - 52]).toBe('exp_harbor_to_harbor');
+    expect(DEED_ORDER[DEED_ORDER.length - 43]).toBe('cmb_balgath_ten');
+    expect(DEED_ORDER[DEED_ORDER.length - 42]).toBe('cmb_point_taken');
+    expect(DEED_ORDER[DEED_ORDER.length - 18]).toBe('dgn_morthen_candlelight');
+    expect(DEED_ORDER[DEED_ORDER.length - 12]).toBe('feat_guild_of_lantern_hall');
+    expect(DEED_ORDER.at(-2)).toBe('feat_gourdlight_eve_complete');
+    expect(DEED_ORDER.at(-1)).toBe('prog_first_felling');
   });
 
   it('every entry key matches its id and its prefix matches its category', () => {
@@ -1989,6 +1989,9 @@ describe('trigger references resolve against the real content tables', () => {
         const [, zoneId, type] = mark.split(':');
         expect(zonePoiIds.has(zoneId), `${deedId}: ${mark}`).toBe(true);
         expect(['ore', 'wood', 'herb'], `${deedId}: ${mark}`).toContain(type);
+      } else if (ns === 'felling') {
+        // Tree chopping's one first-felling key (src/sim/trees/tree_felling.ts).
+        expect(mark, `${deedId}: ${mark}`).toBe('felling:tree');
       } else if (ns === 'quality') {
         expect(['rare', 'epic', 'legendary'], `${deedId}: ${mark}`).toContain(mark.slice(8));
       } else if (ns === 'fiesta') {

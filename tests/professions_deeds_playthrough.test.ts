@@ -20,6 +20,7 @@ import { createMob } from '../src/sim/entity';
 import { startFishing } from '../src/sim/professions/fishing';
 import { queueGatheringGrant } from '../src/sim/professions/gathering';
 import { type PlayerMeta, Sim } from '../src/sim/sim';
+import { choppableTreesNear } from '../src/sim/trees/tree_registry';
 import { FISHING_CAST_ID, type SimEvent } from '../src/sim/types';
 import { terrainHeight } from '../src/sim/world';
 import { completeCorpseHarvest } from './helpers/complete_corpse_harvest';
@@ -56,6 +57,16 @@ function moveToNpc(templateId: string): void {
   player.pos.z = npc.pos.z;
   player.prevPos = { ...player.pos };
 }
+
+// The heartwood hunt's tree (beats 12 to 14): the first choppable Eastbrook
+// tree round the hub, a pure function of the seed (no draws).
+const EASTBROOK_TREE = (() => {
+  const tree = choppableTreesNear(PLAYTHROUGH_SEED, -14, -100, 300).find(
+    (t) => t.zoneId === 'eastbrook_vale',
+  );
+  if (!tree) throw new Error('no eastbrook tree');
+  return tree;
+})();
 
 function teleportTo(x: number, z: number): void {
   player.pos.x = x;
@@ -353,7 +364,9 @@ describe('scripted playthrough (one sim, live sites only)', () => {
     // the wander fix around those huts (an idle pick inside a hut wall is
     // skipped for one more pause, mob/locomotion.ts): the murlocs' wander draws
     // move, so the shared stream forks again; the koi now lands on session index 3.
-    expect(koiSession).toBe(30);
+    // Re-hunted for tree chopping: the retired wood stands' colliders left the
+    // world, so wander draws move again; the koi now lands on session index 32.
+    expect(koiSession).toBe(32);
     expect(sawBiteOnKoiSession).toBe(true); // the celebration follows the bite moment
     expect(meta.deedsEarned.has('col_glimmerfin')).toBe(false); // grant sweeps at the tick tail
     const evs = sim.tick();
@@ -418,23 +431,31 @@ describe('scripted playthrough (one sim, live sites only)', () => {
     // Re-recorded in order after composing the permanent loot-quality craft
     // draws with the current release world/combat stream. The real gather
     // events land at 114, 169 and 20, after the merged koi session at 9.
+    // Re-recorded in order for tree chopping (the retired wood stands took
+    // their colliders with them, so mob wander and the shared stream fork, and
+    // the heartwood hunt now chops a tree): 35, 125 and 117.
     const hunts: { nodeId: string; deedId: string; itemId: string; hitAt: number }[] = [
-      { nodeId: 'ore_eastbrook_1', deedId: 'col_pristine_vein', itemId: 'copper_ore', hitAt: 69 },
+      { nodeId: 'ore_eastbrook_1', deedId: 'col_pristine_vein', itemId: 'copper_ore', hitAt: 35 },
       {
-        nodeId: 'wood_eastbrook_1',
+        // A TREE since tree chopping retired the wood stands: the nearest
+        // choppable Eastbrook tree, un-felled between swings (the hunt idiom).
+        nodeId: EASTBROOK_TREE.node.id,
         deedId: 'col_ancient_heartwood',
         itemId: 'ironbark_log',
-        hitAt: 157,
+        hitAt: 125,
       },
       {
         nodeId: 'herb_eastbrook_1',
         deedId: 'col_moonlit_bloom',
         itemId: 'silverleaf_herb',
-        hitAt: 21,
+        hitAt: 117,
       },
     ];
     for (const hunt of hunts) {
-      const node = GATHER_NODES.find((n) => n.id === hunt.nodeId);
+      const node =
+        hunt.nodeId === EASTBROOK_TREE.node.id
+          ? { pos: { x: EASTBROOK_TREE.x, z: EASTBROOK_TREE.z - 1.5 } }
+          : GATHER_NODES.find((n) => n.id === hunt.nodeId);
       if (!node) throw new Error(`missing node ${hunt.nodeId}`);
       teleportTo(node.pos.x, node.pos.z);
       expect(meta.deedsEarned.has(hunt.deedId)).toBe(false);
@@ -448,6 +469,7 @@ describe('scripted playthrough (one sim, live sites only)', () => {
         // (the gather_rare_events.test.ts hunt idiom).
         purgeItem(hunt.itemId);
         delete meta.nodeHarvestReadyAt[hunt.nodeId];
+        sim.treeFells.trees.clear(); // a felled tree stands again (zero draws)
         if (!sim.harvestNode(hunt.nodeId, undefined, pid))
           throw new Error(`${hunt.nodeId} cast denied`);
         player.castingAbility = null;
@@ -509,8 +531,9 @@ describe('scripted playthrough (one sim, live sites only)', () => {
     // painted towns and the Mirefen tavern (#4525) yield 5; the solid Mirefen
     // mudfin huts (named at the koi hunt above) yield 7; the wander fix around
     // those huts (named at the koi hunt above) yields 0, a real first-harvest
-    // hit (hitAt starts at -1), not a skipped hunt.
-    expect(hitAt).toBe(1);
+    // hit (hitAt starts at -1), not a skipped hunt; tree chopping (named at
+    // beats 12 to 14 above) yields 10.
+    expect(hitAt).toBe(10);
     const specimen = meta.inventory.find((s) => s.itemId === 'pristine_hide');
     // The signature rides materialSources, not instance.signer (the two are
     // mutually exclusive; corpse_harvest_grant.test.ts / corpse_harvest_sim.test.ts

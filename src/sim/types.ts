@@ -204,6 +204,11 @@ export const FISHING_SESSION_CAP_SEC = 16;
 // The gather-cast sentinel riding castingAbility (Professions 2.0),
 // beside FISHING_CAST_ID above: an activity marker, never an ability id.
 export const GATHER_CAST_ID = 'gathering';
+// The tree-chop cast sentinel (src/sim/trees/): the SAME gather session
+// (harvestNode starts it, completeGatherCast resolves it) under its own id, so
+// every client draws "Chopping" and the axe swing from public entity state
+// alone, the gather/fishing label precedent.
+export const TREE_CHOP_CAST_ID = 'chopping';
 // The craft-cast sentinel (Craft Cast System Phase 1): same activity-marker
 // shape as gather/fishing, never an ability id. Membership in isNonSpellCast
 // is load-bearing (cancel, damage cancel, item-use block, session_teardown).
@@ -248,6 +253,7 @@ export function isNonSpellCast(castId: string | null): boolean {
   return (
     castId === FISHING_CAST_ID ||
     castId === GATHER_CAST_ID ||
+    castId === TREE_CHOP_CAST_ID ||
     castId === CRAFT_CAST_ID ||
     castId === DISENCHANT_CAST_ID ||
     castId === ENCHANT_CAST_ID ||
@@ -9906,8 +9912,17 @@ export type SimEvent = { pid?: number } & (
       // tool-out cue (audio.gatherCast in src/game/audio.ts) instead of one
       // flat sound for every profession. Every other cast omits it.
       gatherNodeType?: GatherNodeType;
+      // Only set when the gather cast is a TREE chop (src/sim/trees/): the
+      // tree's stable id, so every client in range plays the axe swing at
+      // that trunk (src/render/tree_felling.ts). Every other cast omits it.
+      chopTreeId?: number;
     }
   | { type: 'castStop'; entityId: number; success: boolean }
+  // A tree fell (src/sim/trees/tree_felling.ts fellTree): world-visible,
+  // anchored at the trunk (x, z) so bystanders in event range see it fall.
+  // `yaw` is the fall direction, heading along (sin(yaw), cos(yaw)); deliberately
+  // `fellerId`, not `entityId`, so the event anchors at the tree, not the feller.
+  | { type: 'treeFelled'; treeId: number; x: number; z: number; yaw: number; fellerId: number }
   | { type: 'comboPoint'; points: number }
   // Classic-era death recap: killerId names the entity (by id, so the client
   // resolves its localized display name the same way any other event does)

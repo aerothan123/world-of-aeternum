@@ -438,11 +438,11 @@ describe('live-world touch-up pipeline', () => {
       ).toBe(false);
     }
 
-    // 7. Moved Mirefen gather nodes and farm beds apply in BUILTIN_WORLD.
-    const movedWood3 = gatherNodesInActiveWorld().find((n) => n.id === 'wood_mirefen_3');
-    if (!movedWood3) throw new Error('Expected wood_mirefen_3 in active world');
-    expect(movedWood3.pos.x).toBeCloseTo(-28.655306607051592, 6);
-    expect(movedWood3.pos.z).toBeCloseTo(366.6594938238977, 6);
+    // 7. Moved Mirefen farm beds apply in BUILTIN_WORLD. (The touch-up also
+    // moved three Mirefen wood stands until tree chopping retired every stand,
+    // docs/design/tree-chopping.md; those moves left the patch with them, and
+    // no wood stand stands in the active world any more.)
+    expect(gatherNodesInActiveWorld().some((n) => n.id === 'wood_mirefen_3')).toBe(false);
     const mirefenPatch = farmPatchesInActiveWorld().find((p) => p.id === 'patch_mirefen');
     const bed1 = mirefenPatch?.beds.find((b) => b.id === 'bed_mirefen_1');
     if (!bed1) throw new Error('Expected bed_mirefen_1 in patch_mirefen');

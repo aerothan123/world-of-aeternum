@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { freshAccountLedger } from '../src/sim/account_ledger';
 import { bagCapacity } from '../src/sim/bags';
 import { GATHER_NODE_TYPES, GATHER_NODES } from '../src/sim/content/gather_nodes';
-import { DUNGEON_X_THRESHOLD, zoneAt } from '../src/sim/data';
+import { DUNGEON_X_THRESHOLD, ZONES, zoneAt } from '../src/sim/data';
 import {
   announceGatherRareEvent,
   emitToZonePlayers,
@@ -18,6 +18,7 @@ import { Rng } from '../src/sim/rng';
 import type { PlayerMeta } from '../src/sim/sim';
 import { Sim } from '../src/sim/sim';
 import type { SimContext } from '../src/sim/sim_context';
+import { choppableTreesNear } from '../src/sim/trees/tree_registry';
 import type { GatherNodeType, GatherRareEventFlavor, SimEvent } from '../src/sim/types';
 import { terrainHeight } from '../src/sim/world';
 import { placeAtHarvestSpot } from './helpers/harvest_spot';
@@ -450,8 +451,38 @@ describe('rare events through Sim.harvestNode (all three flavors)', () => {
     expect(meta.reliquary.marks.has('gather_event:pristine_vein')).toBe(true);
   });
 
-  it('a wood node hit is an ancient heartwood with the same signed x5 yield', () => {
-    const { meta, rare, gather } = huntHit('wood_eastbrook_1');
+  // Wood comes from trees since tree chopping (docs/design/tree-chopping.md):
+  // the same hunt over a tier-1 Eastbrook tree, un-felling it between swings.
+  function huntTreeHit() {
+    const sim = new Sim({ seed: 42, playerClass: 'warrior', noPlayer: true });
+    const pid = sim.addPlayer('warrior', 'Finder');
+    const hub = ZONES.find((z) => z.id === 'eastbrook_vale')?.hub;
+    const tree = choppableTreesNear(42, hub?.x ?? 0, hub?.z ?? 0, 300).find(
+      (t) => t.zoneId === 'eastbrook_vale',
+    );
+    const p = sim.entities.get(pid);
+    const meta = sim.players.get(pid);
+    if (!tree || !p || !meta) throw new Error('missing tree or player');
+    p.pos = { x: tree.x, y: terrainHeight(tree.x, tree.z - 1.5, 42), z: tree.z - 1.5 };
+    p.prevPos = { ...p.pos };
+    for (let i = 0; i < 2000; i++) {
+      meta.inventory.length = 0;
+      sim.treeFells.trees.clear();
+      expect(sim.harvestNode(tree.node.id, undefined, pid)).toBe(true);
+      completeCastNow(sim, pid);
+      const events = sim.drainEvents();
+      const rare = events.find((e) => e.type === 'gatherRareEvent');
+      if (rare && rare.type === 'gatherRareEvent') {
+        const gather = events.find((e) => e.type === 'gatherResult');
+        if (gather?.type !== 'gatherResult') throw new Error('expected gatherResult on the hit');
+        return { meta, rare, gather };
+      }
+    }
+    throw new Error('no rare event within 2000 felled trees');
+  }
+
+  it('a tree hit is an ancient heartwood with the same signed x5 yield', () => {
+    const { meta, rare, gather } = huntTreeHit();
     expect(rare.flavor).toBe('ancient_heartwood');
     expect(rare.itemId).toBe('ironbark_log');
     expect(gather.rareEvent).toBe('ancient_heartwood');

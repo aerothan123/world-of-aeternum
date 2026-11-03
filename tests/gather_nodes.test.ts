@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { NODE_COLOR, NODE_GEOMETRY_KEYS } from '../src/render/gather_nodes_lookup';
 import { GATHER_NODE_TYPES, GATHER_NODES, ZONES } from '../src/sim/data';
+import { choppableTreesNear } from '../src/sim/trees/tree_registry';
+import { WORLD_SEED } from '../src/sim/world_seed';
 
 describe('gather node content', () => {
   const zonesById = new Map(ZONES.map((z) => [z.id, z]));
@@ -69,13 +71,34 @@ describe('gather node content', () => {
     // any type by design (mirrors the fishing rod-row exemption in
     // tests/fishing_zones.test.ts; tests/professions_zone_rollout.test.ts
     // pins the rollout row itself).
+    // Wood is the exception since tree chopping (docs/design/tree-chopping.md):
+    // every overworld tree is the zone's Logging source, so the wood stands
+    // retired and the zone's forest answers for it (choppable in every zone
+    // but the professions-free Proving Shore).
     for (const zone of ZONES) {
       if (zone.id === 'proving_shore') continue;
       for (const type of GATHER_NODE_TYPES) {
         const count = GATHER_NODES.filter((n) => n.zoneId === zone.id && n.type === type).length;
+        if (type === 'wood') {
+          expect(count, `${zone.id} wood comes from trees, never a node`).toBe(0);
+          const hub = zone.hub;
+          const trees = choppableTreesNear(WORLD_SEED, hub.x, hub.z, 500).filter(
+            (t) => t.zoneId === zone.id,
+          );
+          expect(trees.length, `${zone.id} should grow choppable trees`).toBeGreaterThan(0);
+          continue;
+        }
         expect(count, `${zone.id} should have at least one ${type} node`).toBeGreaterThan(0);
       }
     }
+    const shore = zonesById.get('proving_shore');
+    if (!shore) throw new Error('missing proving_shore');
+    expect(
+      choppableTreesNear(WORLD_SEED, shore.hub.x, shore.hub.z, 500).filter(
+        (t) => t.zoneId === 'proving_shore',
+      ),
+      'proving_shore trees are scenery: the island is professions-free',
+    ).toHaveLength(0);
     expect(
       GATHER_NODES.filter((n) => n.zoneId === 'proving_shore'),
       'proving_shore is professions-free by design and must ship zero nodes',

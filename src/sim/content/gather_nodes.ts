@@ -151,61 +151,6 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
     tier: 1,
   },
 
-  // Eastbrook Vale, wood stands around Webwood
-  {
-    id: 'wood_eastbrook_1',
-    zoneId: 'eastbrook_vale',
-    type: 'wood',
-    pos: { x: -62, z: 8 },
-    level: 4,
-    tier: 1,
-  },
-  {
-    id: 'wood_eastbrook_2',
-    zoneId: 'eastbrook_vale',
-    type: 'wood',
-    pos: { x: -57, z: -6 },
-    level: 4,
-    tier: 1,
-  },
-  {
-    id: 'wood_eastbrook_3',
-    zoneId: 'eastbrook_vale',
-    type: 'wood',
-    pos: { x: -68, z: 18 },
-    level: 4,
-    tier: 1,
-  },
-  // The Webwood trio above is one stop, so logging in the starting zone was a
-  // single tree. These three follow the northern woodland instead: up the
-  // Fenbridge road, then east along the Brightwood Glade treeline. They are 40
-  // to 80 yards apart, which is the point: a logging run is now a walk, and the
-  // 240-second respawn is spent travelling rather than standing.
-  {
-    id: 'wood_eastbrook_4',
-    zoneId: 'eastbrook_vale',
-    type: 'wood',
-    pos: { x: 25, z: 101 },
-    level: 4,
-    tier: 1,
-  },
-  {
-    id: 'wood_eastbrook_5',
-    zoneId: 'eastbrook_vale',
-    type: 'wood',
-    pos: { x: 7, z: 140 },
-    level: 4,
-    tier: 1,
-  },
-  {
-    id: 'wood_eastbrook_6',
-    zoneId: 'eastbrook_vale',
-    type: 'wood',
-    pos: { x: 85, z: 140 },
-    level: 4,
-    tier: 1,
-  },
-
   // Eastbrook Vale, herb patches along Mirror Lake's bank. All three used to sit
   // ON the lake floor, about 4 yards under the surface (the lake is centred at
   // (-92, 88) with radius 30, and its basin bottoms out at waterLevel - 4), so
@@ -323,45 +268,6 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
     tier: 1,
   },
 
-  // Outside the Fenbridge wall, north-east tree line (was inside the
-  // palisade on the north ring and blocked the town).
-  {
-    id: 'wood_mirefen_1',
-    zoneId: 'mirefen_marsh',
-    type: 'wood',
-    pos: { x: 20, z: 375 },
-    level: 10,
-    tier: 1,
-  },
-  {
-    id: 'wood_mirefen_2',
-    zoneId: 'mirefen_marsh',
-    type: 'wood',
-    pos: { x: -15, z: 355 },
-    level: 10,
-    tier: 1,
-  },
-  // Outside the wall on the north-west tree line near wood_mirefen_2
-  // (was inside near the inn apron).
-  {
-    id: 'wood_mirefen_3',
-    zoneId: 'mirefen_marsh',
-    type: 'wood',
-    pos: { x: -42, z: 355 },
-    level: 10,
-    tier: 1,
-  },
-  // North of the causeway in the Prowler Reeds, the first marsh ground a
-  // traveller from Eastbrook crosses.
-  {
-    id: 'wood_mirefen_4',
-    zoneId: 'mirefen_marsh',
-    type: 'wood',
-    pos: { x: -15, z: 237 },
-    level: 10,
-    tier: 1,
-  },
-
   // Two of the three marsh herb patches were also on a lake floor, each in the
   // dead centre of one of the zone's two smaller pools ((60, 380) radius 25 and
   // (-40, 450) radius 20), about 4 yards under. Both moved out to the dry shore
@@ -421,39 +327,6 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
     zoneId: 'thornpeak_heights',
     type: 'ore',
     pos: { x: 78, z: 630 },
-    level: 17,
-    tier: 1,
-  },
-
-  // This stand was the near-vertical one: it stood in the Glimmermere shallows
-  // with only 0.46 yards of freeboard, and the lake wall inside its own harvest
-  // reach climbs at 3.28 rise/run against a movement climb limit of 1.5, so a
-  // player working it was pushed off the face. The node itself measured a
-  // walkable 0.94, which is why nothing short of a reach sweep found it. Moved
-  // round to a rise 13 yards out from the lake centre. That is still inside the
-  // Glimmermere's authored 18-yard disc, so this is a hummock standing 5 yards
-  // clear of the water plane rather than a shore, which is fine: what the old
-  // spot got wrong was the 0.46 yards of freeboard and the wall, and this has
-  // 5.00 and stays under 0.94 across the whole reach. Nearer the lake than
-  // before, and still the anchor the tier-2 stand sits a short walk from
-  // (18.7 yards). It also happens to sit clear of every mob camp radius, as the
-  // old spot did, which is worth keeping if a later edit moves it again: damage
-  // cancels a gather cast outright rather than pushing it back, so a contested
-  // patch is materially harder to work. Not a rule, though, and no arm pins it:
-  // a third of the shipped nodes sit inside a camp on purpose.
-  {
-    id: 'wood_thornpeak_1',
-    zoneId: 'thornpeak_heights',
-    type: 'wood',
-    pos: { x: -63, z: 771 },
-    level: 17,
-    tier: 1,
-  },
-  {
-    id: 'wood_thornpeak_2',
-    zoneId: 'thornpeak_heights',
-    type: 'wood',
-    pos: { x: -82, z: 782 },
     level: 17,
     tier: 1,
   },
@@ -523,29 +396,6 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
     level: 10,
     tier: 2,
   },
-  // Moved off the north road surface (R11): it shipped at (2, 342), 0.3yd
-  // from the road center line, standing in the roadway the moment nodes
-  // became solid bodies. The new spot is well clear of the road (11.5yd,
-  // dry, standable; measured against the same world.ts predicates the
-  // placement suite runs), and it left the road-band exemption set in
-  // tests/gather_node_placement.test.ts with it.
-  {
-    id: 'wood_mirefen_t2',
-    zoneId: 'mirefen_marsh',
-    type: 'wood',
-    pos: { x: -10, z: 340 },
-    level: 10,
-    tier: 2,
-  },
-  // East flank, past Widow Thicket.
-  {
-    id: 'wood_mirefen_t2b',
-    zoneId: 'mirefen_marsh',
-    type: 'wood',
-    pos: { x: 102, z: 292 },
-    level: 10,
-    tier: 2,
-  },
   // Followed herb_mirefen_1 off the pool it shared: it sat inside the same
   // footprint at 3.55 yards under, and the raised waterline later walked both
   // patches further up the same shore. Still about 20 yards from that patch.
@@ -598,40 +448,6 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
     zoneId: 'thornpeak_heights',
     type: 'ore',
     pos: { x: 110, z: 780 },
-    level: 17,
-    tier: 3,
-  },
-  {
-    id: 'wood_thornpeak_t2',
-    zoneId: 'thornpeak_heights',
-    type: 'wood',
-    pos: { x: -45, z: 776 },
-    level: 17,
-    tier: 2,
-  },
-  // Above Drogmar's War-Camp on the western slopes.
-  {
-    id: 'wood_thornpeak_t2b',
-    zoneId: 'thornpeak_heights',
-    type: 'wood',
-    pos: { x: -130, z: 716 },
-    level: 17,
-    tier: 2,
-  },
-  {
-    id: 'wood_thornpeak_t3',
-    zoneId: 'thornpeak_heights',
-    type: 'wood',
-    pos: { x: -92, z: 793 },
-    level: 17,
-    tier: 3,
-  },
-  // The Revenant Fields treeline, deepest wood stand in the zone at 193 yards.
-  {
-    id: 'wood_thornpeak_t3b',
-    zoneId: 'thornpeak_heights',
-    type: 'wood',
-    pos: { x: -34, z: 850 },
     level: 17,
     tier: 3,
   },
@@ -692,22 +508,6 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
     tier: 1,
   },
   {
-    id: 'wood_veiled_hollow_1',
-    zoneId: 'veiled_hollow',
-    type: 'wood',
-    pos: { x: -82, z: 1052 },
-    level: 18,
-    tier: 1,
-  },
-  {
-    id: 'wood_veiled_hollow_2',
-    zoneId: 'veiled_hollow',
-    type: 'wood',
-    pos: { x: -70, z: 992 },
-    level: 18,
-    tier: 1,
-  },
-  {
     id: 'herb_veiled_hollow_1',
     zoneId: 'veiled_hollow',
     type: 'herb',
@@ -739,22 +539,6 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
     zoneId: 'drakelands',
     type: 'ore',
     pos: { x: 450, z: 1914 },
-    level: 18,
-    tier: 1,
-  },
-  {
-    id: 'wood_drakelands_1',
-    zoneId: 'drakelands',
-    type: 'wood',
-    pos: { x: 362, z: 1922 },
-    level: 18,
-    tier: 1,
-  },
-  {
-    id: 'wood_drakelands_2',
-    zoneId: 'drakelands',
-    type: 'wood',
-    pos: { x: 374, z: 1862 },
     level: 18,
     tier: 1,
   },
@@ -803,25 +587,6 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
     tier: 1,
   },
   {
-    id: 'wood_frostveil_1',
-    zoneId: 'frostveil',
-    type: 'wood',
-    pos: { x: -72, z: 1582 },
-    level: 19,
-    tier: 1,
-  },
-  {
-    id: 'wood_frostveil_2',
-    zoneId: 'frostveil',
-    type: 'wood',
-    // Nudged off (-60,1522) at the v0.32.0 merge: the authored spot stands on
-    // a 1.76 rise/run slope, past the 1.5 climb limit a harvest needs, and
-    // the near ground west keeps a cliff lip inside the 5yd harvest reach.
-    pos: { x: -54, z: 1518 },
-    level: 19,
-    tier: 1,
-  },
-  {
     id: 'herb_frostveil_1',
     zoneId: 'frostveil',
     type: 'herb',
@@ -853,22 +618,6 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
     zoneId: 'amberfall',
     type: 'ore',
     pos: { x: -314, z: 2086 },
-    level: 19,
-    tier: 1,
-  },
-  {
-    id: 'wood_amberfall_1',
-    zoneId: 'amberfall',
-    type: 'wood',
-    pos: { x: -402, z: 2094 },
-    level: 19,
-    tier: 1,
-  },
-  {
-    id: 'wood_amberfall_2',
-    zoneId: 'amberfall',
-    type: 'wood',
-    pos: { x: -390, z: 2034 },
     level: 19,
     tier: 1,
   },
@@ -919,26 +668,6 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
     zoneId: 'willowfen',
     type: 'ore',
     pos: { x: -314, z: 376 },
-    level: 20,
-    tier: 1,
-  },
-  {
-    id: 'wood_willowfen_1',
-    zoneId: 'willowfen',
-    type: 'wood',
-    pos: { x: -402, z: 384 },
-    level: 20,
-    tier: 1,
-  },
-  {
-    id: 'wood_willowfen_2',
-    zoneId: 'willowfen',
-    type: 'wood',
-    // Nudged off (-390,324) at the v0.32.0 merge: half the required yard of
-    // bank clearance over the fen water. Moved again off (-392,322): the fen
-    // still reached 0.13yd into the stand's harvest disc. Now 3.2yd of
-    // freeboard, the whole reach 2.7yd clear of the water.
-    pos: { x: -398, z: 319 },
     level: 20,
     tier: 1,
   },
@@ -1006,47 +735,6 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
     tier: 1,
   },
   {
-    id: 'wood_willowfen_3',
-    zoneId: 'willowfen',
-    type: 'wood',
-    // Lilymoors north willow stand.
-    pos: { x: -458, z: 264 },
-    level: 20,
-    tier: 1,
-  },
-  {
-    id: 'wood_willowfen_4',
-    zoneId: 'willowfen',
-    type: 'wood',
-    // East moor by the Windway track.
-    pos: { x: -232, z: 420 },
-    level: 20,
-    tier: 1,
-  },
-  {
-    id: 'wood_willowfen_5',
-    zoneId: 'willowfen',
-    type: 'wood',
-    // Drowsy Flats east rise. Nudged off (-254,500) at authoring (Q15):
-    // 1.01yd of world-sea freeboard; the moved spot clears at 1.73.
-    pos: { x: -251, z: 504 },
-    level: 20,
-    tier: 1,
-  },
-  {
-    id: 'wood_willowfen_6',
-    zoneId: 'willowfen',
-    type: 'wood',
-    // North fen west stand. Nudged off (-418,580) at authoring (Q15): 1.08yd
-    // of world-sea freeboard; the moved spot clears at 1.69. Moved again off
-    // (-417,580): freeboard at the stand was never the whole story, and the
-    // fen ran 0.83yd deep into its harvest disc. Now 4.3yd of freeboard with
-    // the whole reach 2.2yd dry.
-    pos: { x: -411, z: 582 },
-    level: 20,
-    tier: 1,
-  },
-  {
     id: 'herb_willowfen_3',
     zoneId: 'willowfen',
     type: 'herb',
@@ -1102,22 +790,6 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
     tier: 1,
   },
   {
-    id: 'wood_nightbloom_1',
-    zoneId: 'nightbloom',
-    type: 'wood',
-    pos: { x: -412, z: 1442 },
-    level: 20,
-    tier: 1,
-  },
-  {
-    id: 'wood_nightbloom_2',
-    zoneId: 'nightbloom',
-    type: 'wood',
-    pos: { x: -400, z: 1382 },
-    level: 20,
-    tier: 1,
-  },
-  {
     id: 'herb_nightbloom_1',
     zoneId: 'nightbloom',
     type: 'herb',
@@ -1149,22 +821,6 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
     zoneId: 'wraithwood',
     type: 'ore',
     pos: { x: 406, z: 1444 },
-    level: 20,
-    tier: 1,
-  },
-  {
-    id: 'wood_wraithwood_1',
-    zoneId: 'wraithwood',
-    type: 'wood',
-    pos: { x: 318, z: 1452 },
-    level: 20,
-    tier: 1,
-  },
-  {
-    id: 'wood_wraithwood_2',
-    zoneId: 'wraithwood',
-    type: 'wood',
-    pos: { x: 330, z: 1392 },
     level: 20,
     tier: 1,
   },
@@ -1208,22 +864,6 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
     // ground (sim/painted_towns/wickharbor.ts); it lies up the headland
     // behind the hall now.
     pos: { x: 431, z: 388 },
-    level: 20,
-    tier: 1,
-  },
-  {
-    id: 'wood_galecrest_1',
-    zoneId: 'galecrest',
-    type: 'wood',
-    pos: { x: 378, z: 382 },
-    level: 20,
-    tier: 1,
-  },
-  {
-    id: 'wood_galecrest_2',
-    zoneId: 'galecrest',
-    type: 'wood',
-    pos: { x: 390, z: 322 },
     level: 20,
     tier: 1,
   },
@@ -1301,42 +941,6 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
     tier: 1,
   },
   {
-    id: 'wood_galecrest_3',
-    zoneId: 'galecrest',
-    type: 'wood',
-    // Windway road south side.
-    pos: { x: 250, z: 432 },
-    level: 20,
-    tier: 1,
-  },
-  {
-    id: 'wood_galecrest_4',
-    zoneId: 'galecrest',
-    type: 'wood',
-    // Mid downs on the tarn road.
-    pos: { x: 350, z: 480 },
-    level: 20,
-    tier: 1,
-  },
-  {
-    id: 'wood_galecrest_5',
-    zoneId: 'galecrest',
-    type: 'wood',
-    // Wreckfields west treeline rise, clear of the Warden and deckhand camps.
-    pos: { x: 250, z: 648 },
-    level: 20,
-    tier: 1,
-  },
-  {
-    id: 'wood_galecrest_6',
-    zoneId: 'galecrest',
-    type: 'wood',
-    // Stable meadows east.
-    pos: { x: 452, z: 600 },
-    level: 20,
-    tier: 1,
-  },
-  {
     id: 'herb_galecrest_3',
     zoneId: 'galecrest',
     type: 'herb',
@@ -1394,22 +998,6 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
     tier: 1,
   },
   {
-    id: 'wood_palmreach_1',
-    zoneId: 'palmreach',
-    type: 'wood',
-    pos: { x: -342, z: 842 },
-    level: 20,
-    tier: 1,
-  },
-  {
-    id: 'wood_palmreach_2',
-    zoneId: 'palmreach',
-    type: 'wood',
-    pos: { x: -330, z: 782 },
-    level: 20,
-    tier: 1,
-  },
-  {
     id: 'herb_palmreach_1',
     zoneId: 'palmreach',
     type: 'herb',
@@ -1448,26 +1036,6 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
     tier: 1,
   },
   {
-    id: 'wood_evergarden_1',
-    zoneId: 'evergarden',
-    type: 'wood',
-    pos: { x: 278, z: 832 },
-    level: 20,
-    tier: 1,
-  },
-  {
-    id: 'wood_evergarden_2',
-    zoneId: 'evergarden',
-    type: 'wood',
-    // Moved up the bank off (290,772): the stand cleared the world sea plane
-    // by 0.39yd with open water 1.5yd away, so the logs sat in the lake's
-    // margin and the harvest disc ran 0.89yd under it. Now 5.4yd of
-    // freeboard, the whole reach 2.1yd clear.
-    pos: { x: 290, z: 780 },
-    level: 20,
-    tier: 1,
-  },
-  {
     id: 'herb_evergarden_1',
     zoneId: 'evergarden',
     type: 'herb',
@@ -1502,27 +1070,6 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
     zoneId: 'farshore_isle',
     type: 'ore',
     pos: { x: 351, z: 84 },
-    level: 5,
-    tier: 1,
-  },
-  {
-    id: 'wood_farshore_isle_1',
-    zoneId: 'farshore_isle',
-    type: 'wood',
-    // Nudged off (263,92) at the v0.32.0 merge: a 1.9 rise/run bluff sat
-    // inside the authored spot's 5yd harvest reach. Moved uphill off
-    // (259,96) at the release/v0.34.0 merge: open-sea swim made the shore
-    // shallows real water and the old strand spot's harvest disc dipped to
-    // swim depth (its sea-plane exemption retired with the move).
-    pos: { x: 269, z: 83 },
-    level: 5,
-    tier: 1,
-  },
-  {
-    id: 'wood_farshore_isle_2',
-    zoneId: 'farshore_isle',
-    type: 'wood',
-    pos: { x: 275, z: 32 },
     level: 5,
     tier: 1,
   },
@@ -1586,49 +1133,6 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
     tier: 1,
   },
   {
-    id: 'wood_farshore_isle_3',
-    zoneId: 'farshore_isle',
-    type: 'wood',
-    // South strand west.
-    pos: { x: 279, z: -44 },
-    level: 5,
-    tier: 1,
-  },
-  {
-    id: 'wood_farshore_isle_4',
-    zoneId: 'farshore_isle',
-    type: 'wood',
-    // South headland stand.
-    pos: { x: 330, z: -70 },
-    level: 5,
-    tier: 1,
-  },
-  {
-    id: 'wood_farshore_isle_5',
-    zoneId: 'farshore_isle',
-    type: 'wood',
-    // North coast east of Gull Mere, bundling with the fishing site. Nudged
-    // off (388,123) at authoring (Q15): 1.04yd of world-sea freeboard; the
-    // moved spot clears at 1.50.
-    pos: { x: 386, z: 120 },
-    level: 5,
-    tier: 1,
-  },
-  {
-    id: 'wood_farshore_isle_6',
-    zoneId: 'farshore_isle',
-    type: 'wood',
-    // Ferrywalk causeway approach. Moved inland off (210,-24): that spot sat
-    // on the last yard of the causeway spit with the sea 2 yards away and
-    // 1.32yd deep inside the harvest disc, so a fifth of the ground a player
-    // could legally gather from was open water and the logs read as standing
-    // in the surf. Now up the approach, 6.2yd of freeboard with the whole
-    // reach 2.7yd clear of the water.
-    pos: { x: 207, z: -18 },
-    level: 5,
-    tier: 1,
-  },
-  {
     id: 'herb_farshore_isle_3',
     zoneId: 'farshore_isle',
     type: 'herb',
@@ -1675,6 +1179,75 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
   },
 ];
 
+// The 52 wood stands this table carried until tree chopping replaced them
+// (docs/design/tree-chopping.md: every overworld tree is now the Logging
+// source, src/sim/trees/). Their coordinates outlive them on purpose: the
+// terrain calm pads (terrain_calm_anchors.ts) and the seasonal road-lantern
+// clearance (seasonal_road_lanterns.ts) were minted round these spots, and
+// dropping a pad would reshape the ground under them. Ids are kept for
+// history and the tests; nothing harvests, persists or draws them.
+export const RETIRED_WOOD_NODE_SITES: readonly {
+  readonly id: string;
+  readonly x: number;
+  readonly z: number;
+  /** The live node this site stood just before in the shipped table, so the
+   *  consumers can replay the original order (null: after the last one). */
+  readonly before: string | null;
+}[] = Object.freeze([
+  { id: 'wood_eastbrook_1', x: -62, z: 8, before: 'herb_eastbrook_1' },
+  { id: 'wood_eastbrook_2', x: -57, z: -6, before: 'herb_eastbrook_1' },
+  { id: 'wood_eastbrook_3', x: -68, z: 18, before: 'herb_eastbrook_1' },
+  { id: 'wood_eastbrook_4', x: 25, z: 101, before: 'herb_eastbrook_1' },
+  { id: 'wood_eastbrook_5', x: 7, z: 140, before: 'herb_eastbrook_1' },
+  { id: 'wood_eastbrook_6', x: 85, z: 140, before: 'herb_eastbrook_1' },
+  { id: 'wood_mirefen_1', x: 20, z: 375, before: 'herb_mirefen_1' },
+  { id: 'wood_mirefen_2', x: -15, z: 355, before: 'herb_mirefen_1' },
+  { id: 'wood_mirefen_3', x: -42, z: 355, before: 'herb_mirefen_1' },
+  { id: 'wood_mirefen_4', x: -15, z: 237, before: 'herb_mirefen_1' },
+  { id: 'wood_thornpeak_1', x: -63, z: 771, before: 'herb_thornpeak_1' },
+  { id: 'wood_thornpeak_2', x: -82, z: 782, before: 'herb_thornpeak_1' },
+  { id: 'wood_mirefen_t2', x: -10, z: 340, before: 'herb_mirefen_t2' },
+  { id: 'wood_mirefen_t2b', x: 102, z: 292, before: 'herb_mirefen_t2' },
+  { id: 'wood_thornpeak_t2', x: -45, z: 776, before: 'herb_thornpeak_t2' },
+  { id: 'wood_thornpeak_t2b', x: -130, z: 716, before: 'herb_thornpeak_t2' },
+  { id: 'wood_thornpeak_t3', x: -92, z: 793, before: 'herb_thornpeak_t2' },
+  { id: 'wood_thornpeak_t3b', x: -34, z: 850, before: 'herb_thornpeak_t2' },
+  { id: 'wood_veiled_hollow_1', x: -82, z: 1052, before: 'herb_veiled_hollow_1' },
+  { id: 'wood_veiled_hollow_2', x: -70, z: 992, before: 'herb_veiled_hollow_1' },
+  { id: 'wood_drakelands_1', x: 362, z: 1922, before: 'herb_drakelands_1' },
+  { id: 'wood_drakelands_2', x: 374, z: 1862, before: 'herb_drakelands_1' },
+  { id: 'wood_frostveil_1', x: -72, z: 1582, before: 'herb_frostveil_1' },
+  { id: 'wood_frostveil_2', x: -54, z: 1518, before: 'herb_frostveil_1' },
+  { id: 'wood_amberfall_1', x: -402, z: 2094, before: 'herb_amberfall_1' },
+  { id: 'wood_amberfall_2', x: -390, z: 2034, before: 'herb_amberfall_1' },
+  { id: 'wood_willowfen_1', x: -402, z: 384, before: 'herb_willowfen_1' },
+  { id: 'wood_willowfen_2', x: -398, z: 319, before: 'herb_willowfen_1' },
+  { id: 'wood_willowfen_3', x: -458, z: 264, before: 'herb_willowfen_3' },
+  { id: 'wood_willowfen_4', x: -232, z: 420, before: 'herb_willowfen_3' },
+  { id: 'wood_willowfen_5', x: -251, z: 504, before: 'herb_willowfen_3' },
+  { id: 'wood_willowfen_6', x: -411, z: 582, before: 'herb_willowfen_3' },
+  { id: 'wood_nightbloom_1', x: -412, z: 1442, before: 'herb_nightbloom_1' },
+  { id: 'wood_nightbloom_2', x: -400, z: 1382, before: 'herb_nightbloom_1' },
+  { id: 'wood_wraithwood_1', x: 318, z: 1452, before: 'herb_wraithwood_1' },
+  { id: 'wood_wraithwood_2', x: 330, z: 1392, before: 'herb_wraithwood_1' },
+  { id: 'wood_galecrest_1', x: 378, z: 382, before: 'herb_galecrest_1' },
+  { id: 'wood_galecrest_2', x: 390, z: 322, before: 'herb_galecrest_1' },
+  { id: 'wood_galecrest_3', x: 250, z: 432, before: 'herb_galecrest_3' },
+  { id: 'wood_galecrest_4', x: 350, z: 480, before: 'herb_galecrest_3' },
+  { id: 'wood_galecrest_5', x: 250, z: 648, before: 'herb_galecrest_3' },
+  { id: 'wood_galecrest_6', x: 452, z: 600, before: 'herb_galecrest_3' },
+  { id: 'wood_palmreach_1', x: -342, z: 842, before: 'herb_palmreach_1' },
+  { id: 'wood_palmreach_2', x: -330, z: 782, before: 'herb_palmreach_1' },
+  { id: 'wood_evergarden_1', x: 278, z: 832, before: 'herb_evergarden_1' },
+  { id: 'wood_evergarden_2', x: 290, z: 780, before: 'herb_evergarden_1' },
+  { id: 'wood_farshore_isle_1', x: 269, z: 83, before: 'herb_farshore_isle_1' },
+  { id: 'wood_farshore_isle_2', x: 275, z: 32, before: 'herb_farshore_isle_1' },
+  { id: 'wood_farshore_isle_3', x: 279, z: -44, before: 'herb_farshore_isle_3' },
+  { id: 'wood_farshore_isle_4', x: 330, z: -70, before: 'herb_farshore_isle_3' },
+  { id: 'wood_farshore_isle_5', x: 386, z: 120, before: 'herb_farshore_isle_3' },
+  { id: 'wood_farshore_isle_6', x: 207, z: -18, before: 'herb_farshore_isle_3' },
+]);
+
 // Deep-frozen at module load, not just shared: a Studio map resolves its moved
 // veins against this table through an identity-keyed memo
 // (sim/moved_objects.ts gatherNodesFor), which is only sound while the rows
@@ -1683,3 +1256,21 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
 export const GATHER_NODES: GatherNodeDef[] = Object.freeze(
   GATHER_NODE_ROWS.map((node) => Object.freeze({ ...node, pos: Object.freeze({ ...node.pos }) })),
 ) as GatherNodeDef[];
+
+/** Every gather-node coordinate in the ORIGINAL shipped table order, the live
+ *  nodes with the retired wood stands replayed where they stood: the roster the
+ *  terrain calm pads and the road-lantern clearance were minted from, kept so
+ *  retiring the stands never moves a pad (or the ground under it). */
+export const GATHER_NODE_SITES_AS_SHIPPED: readonly { readonly x: number; readonly z: number }[] =
+  Object.freeze(
+    (() => {
+      const out: { x: number; z: number }[] = [];
+      for (const node of GATHER_NODES) {
+        for (const site of RETIRED_WOOD_NODE_SITES) {
+          if (site.before === node.id) out.push({ x: site.x, z: site.z });
+        }
+        out.push({ x: node.pos.x, z: node.pos.z });
+      }
+      return out;
+    })(),
+  );

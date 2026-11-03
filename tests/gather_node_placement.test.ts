@@ -45,6 +45,7 @@ import { MAX_AGGRO_RADIUS } from '../src/sim/mob/aggro_ranges';
 import { PLAYER_BODY_RADIUS, PLAYER_MAX_CLIMB_SLOPE, PLAYER_SWIM_DEPTH } from '../src/sim/pathfind';
 import { NODE_HARVEST_TABLE } from '../src/sim/professions/gathering';
 import { GATHER_NODE_BODIES } from '../src/sim/prop_layout';
+import { choppableTreesNear } from '../src/sim/trees/tree_registry';
 import { INTERACT_RANGE } from '../src/sim/types';
 import {
   DECORATION_MAX_SLOPE,
@@ -387,6 +388,13 @@ const INSIDE_A_TOWN_COLLIDER = { x: -7, z: -123 };
 // merge (8bff2cec638) cleared the Wolf Run barracks the old (17, -6) fixture
 // sat inside.
 const DEEP_INSIDE_A_BUILDING = { x: -59, z: -55 };
+
+// The node-borne gather types. Wood left the node table when tree chopping
+// replaced the wood stands (docs/design/tree-chopping.md): every overworld tree
+// is a Logging source now, so the per-type count, density and ceiling arms below
+// hold the ore and herb kits, and the forest answers for wood (its coverage is
+// measured beside the node circuit in the spatial arms).
+const NODE_TYPES = GATHER_NODE_TYPES.filter((type) => type !== 'wood');
 
 describe('gather node placement: every node sits on ground a player can work', () => {
   it('dry land: no node sits at or under a declared water surface', () => {
@@ -902,7 +910,7 @@ describe('gather node placement: every node sits on ground a player can work', (
     // relocation that drained the zone's last tier-1 node and left a traveller
     // holding a starter tool with nothing it can work. Hence the second floor.
     for (const zone of TUNED_ZONES) {
-      for (const type of GATHER_NODE_TYPES) {
+      for (const type of NODE_TYPES) {
         const ofType = GATHER_NODES.filter((n) => n.zoneId === zone.id && n.type === type);
         expect(
           ofType.length,
@@ -923,7 +931,7 @@ describe('gather node placement: every node sits on ground a player can work', (
     let leanestTotal = Number.POSITIVE_INFINITY;
     let leanestTier1 = Number.POSITIVE_INFINITY;
     for (const zone of TUNED_ZONES) {
-      for (const type of GATHER_NODE_TYPES) {
+      for (const type of NODE_TYPES) {
         const ofType = GATHER_NODES.filter((n) => n.zoneId === zone.id && n.type === type);
         leanestTotal = Math.min(leanestTotal, ofType.length);
         leanestTier1 = Math.min(leanestTier1, ofType.filter((n) => n.tier === 1).length);
@@ -983,7 +991,13 @@ describe('gather node placement: every node sits on ground a player can work', (
     // pre-overhaul). The rule is unchanged (below the mob-camp density,
     // slack-bounded below); only the calibration input resized, which is
     // exactly the denominator caveat in the prose above.
-    const COVERAGE_FLOOR_PCT = 38;
+    // 28 since tree chopping retired the wood stands
+    // (docs/design/tree-chopping.md): the node circuit is the ore and herb kits
+    // now (re-measured 29.8 / 29.6 / 30.9), and the forest carries wood, held
+    // to its own floor (every tuned zone's trees reach 95 percent and up of its
+    // walkable ground).
+    const COVERAGE_FLOOR_PCT = 28;
+    const FOREST_COVERAGE_FLOOR_PCT = 90;
 
     /** Fraction of `cells` within COVERAGE_RADIUS of any of `centres`, as a percent. */
     const reachPct = (
@@ -1024,6 +1038,17 @@ describe('gather node placement: every node sits on ground a player can work', (
         (c) => c.center,
       );
       const nodePct = reachPct(cells, nodes);
+      const trees = choppableTreesNear(
+        WORLD_SEED,
+        (rectX0 + rectX1) / 2,
+        (zone.zMin + zone.zMax) / 2,
+        2000,
+      ).filter((t) => t.zoneId === zone.id);
+      const forestPct = reachPct(cells, trees);
+      expect(
+        forestPct,
+        `${zone.id}'s choppable forest reaches only ${forestPct.toFixed(1)} percent of its walkable ground`,
+      ).toBeGreaterThanOrEqual(FOREST_COVERAGE_FLOOR_PCT);
       expect(
         nodePct,
         `${zone.id} keeps only ${nodePct.toFixed(1)} percent of its walkable ground within ${COVERAGE_RADIUS}yd of a gather node`,
@@ -1149,16 +1174,6 @@ describe('gather node placement: every node sits on ground a player can work', (
     // Stormcrag, among the elementals: exactly on the world boss's scaled
     // reach (R33 names it deliberate).
     'ore_thornpeak_t3b:thunzharr_waking_peak',
-    // Old Greyjaw's woods hold an optional stand; a level-4 named wolf is the
-    // zone's intended first rare fight, not a tutorial blocker.
-    'wood_eastbrook_4:old_greyjaw',
-    // Brutok's treeline: both stands sit against the ogre warcamp.
-    'wood_thornpeak_1:brutok_skullsmasher',
-    'wood_thornpeak_t2:brutok_skullsmasher',
-    // The Revenant Fields treeline, inside Sethrael's coils.
-    'wood_thornpeak_t3:sethrael_palecoil',
-    // Inside Marrowlord Varkas's aggro on purpose (R33 names it deliberate).
-    'wood_thornpeak_t3b:marrowlord_varkas',
   ];
 
   it('hot node-versus-named-mob pairings are exactly the pinned deliberate dangers', () => {
@@ -1203,11 +1218,6 @@ describe('gather node placement: every node sits on ground a player can work', (
       'ore_thornpeak_2:ironvein_foreman': -0.95,
       'ore_thornpeak_t2:ironvein_foreman': -23.67,
       'ore_thornpeak_t3b:thunzharr_waking_peak': -5.0,
-      'wood_eastbrook_4:old_greyjaw': -4.48,
-      'wood_thornpeak_1:brutok_skullsmasher': -9.75,
-      'wood_thornpeak_t2:brutok_skullsmasher': -20.0,
-      'wood_thornpeak_t3:sethrael_palecoil': -3.12,
-      'wood_thornpeak_t3b:marrowlord_varkas': -22.0,
     };
     expect(Object.keys(EXPECTED_CLEARANCE).sort()).toEqual(DELIBERATE_DANGERS);
     const worst = new Map<string, number>();
@@ -1311,7 +1321,9 @@ describe('gather node placement: every node sits on ground a player can work', (
     expect(inBand).toEqual(['herb_thornpeak_2', 'ore_mirefen_2']);
   });
 
-  it('the expansion-zone road band holds exactly the eight recorded exemptions', () => {
+  // Eight until tree chopping retired wood_amberfall_2 and wood_wraithwood_1:
+  // six remain.
+  it('the expansion-zone road band holds exactly the six recorded exemptions', () => {
     // The phase 20 pass swept the expansion zones with the same 5yd screen
     // (docs/design/professions-tuning-packet-review.md, Q13). The ninth
     // member, ore_evergarden_1 at 0.42yd, stood IN the roadway by the R11
@@ -1335,8 +1347,6 @@ describe('gather node placement: every node sits on ground a player can work', (
       'herb_veiled_hollow_2',
       'herb_wraithwood_2',
       'ore_galecrest_1',
-      'wood_amberfall_2',
-      'wood_wraithwood_1',
     ];
     expect(inBand).toEqual(EXPANSION_ROAD_EXEMPT);
     // Severity floor, per exemption (the review round): each of the eight is
@@ -1372,7 +1382,7 @@ describe('gather node placement: every node sits on ground a player can work', (
     // round until this arm's numbers were measured.
     let groupsChecked = 0;
     for (const zone of ZONES) {
-      for (const type of GATHER_NODE_TYPES) {
+      for (const type of NODE_TYPES) {
         const added = GATHER_NODES.filter(
           (n) => n.zoneId === zone.id && n.type === type && /(_[456]|_t[23]b)$/.test(n.id),
         );
@@ -1392,9 +1402,9 @@ describe('gather node placement: every node sits on ground a player can work', (
     }
     // Non-vacuity: the discovery regex empties SILENTLY on an id rename
     // (every other arm in this file counts its corpus; this one did not), so
-    // pin the zone/type groups that actually reached the comparison. Six
-    // today: both later zones ramp all three types.
-    expect(groupsChecked).toBe(6);
+    // pin the zone/type groups that actually reached the comparison. Four
+    // today: both later zones ramp ore and herbs (wood left with the stands).
+    expect(groupsChecked).toBe(4);
   });
 
   it('every zone lands on one harvest ceiling, which is why both levers moved', () => {
@@ -1410,10 +1420,12 @@ describe('gather node placement: every node sits on ground a player can work', (
       perHour(GATHER_NODES.filter((n) => n.zoneId === zone.id).length),
     );
     expect(new Set(ceilings).size, `zone ceilings differ: ${ceilings.join(', ')}`).toBe(1);
-    expect(ceilings[0]).toBe(270);
-    // All three types share the respawn, so the ceiling is one number per zone
-    // rather than three.
-    for (const type of GATHER_NODE_TYPES) {
+    // 270 (90 per type) until tree chopping retired the six wood stands per
+    // zone: the ore and herb kits keep their 90 an hour each, and wood's
+    // ceiling is the forest's now (every tree, regrowing after five minutes).
+    expect(ceilings[0]).toBe(180);
+    // Every node type shares the respawn, so the ceiling is one number per zone.
+    for (const type of NODE_TYPES) {
       expect(NODE_HARVEST_TABLE[type].respawnSeconds).toBe(NODE_HARVEST_TABLE.ore.respawnSeconds);
     }
   });
@@ -1433,7 +1445,7 @@ describe('gather node placement: every node sits on ground a player can work', (
 
   it('count floor: every bottom-map zone carries six of each type, all of them tier 1', () => {
     for (const zone of BOTTOM_ZONES) {
-      for (const type of GATHER_NODE_TYPES) {
+      for (const type of NODE_TYPES) {
         const ofType = GATHER_NODES.filter((n) => n.zoneId === zone.id && n.type === type);
         expect(
           ofType.length,
@@ -1459,7 +1471,7 @@ describe('gather node placement: every node sits on ground a player can work', (
     // floor's non-vacuity.
     let leanestTotal = Number.POSITIVE_INFINITY;
     for (const zone of BOTTOM_ZONES) {
-      for (const type of GATHER_NODE_TYPES) {
+      for (const type of NODE_TYPES) {
         leanestTotal = Math.min(
           leanestTotal,
           GATHER_NODES.filter((n) => n.zoneId === zone.id && n.type === type).length,
@@ -1478,8 +1490,11 @@ describe('gather node placement: every node sits on ground a player can work', (
     // denominator resize the tuned arm records (open-sea swim drops coastal
     // shallows out of the walkable ground, and the bottom-map rects carry
     // the most coast): the leanest bottom zone re-measured at 45.2.
+    // 29 since tree chopping retired the wood stands: the ore and herb kits
+    // re-measure 31.1 / 31.5 / 72.0 (the forest carries wood; see the tuned
+    // arm above for its floor).
     const COVERAGE_RADIUS = 40;
-    const COVERAGE_FLOOR_PCT = 43;
+    const COVERAGE_FLOOR_PCT = 29;
     let leanest = Number.POSITIVE_INFINITY;
     for (const zone of BOTTOM_ZONES) {
       const cells: { x: number; z: number }[] = [];
@@ -1518,7 +1533,8 @@ describe('gather node placement: every node sits on ground a player can work', (
     const perHour = (nodes: number) => (nodes * 3600) / NODE_HARVEST_TABLE.ore.respawnSeconds;
     for (const zone of BOTTOM_ZONES) {
       const ceiling = perHour(GATHER_NODES.filter((n) => n.zoneId === zone.id).length);
-      expect(ceiling, `${zone.id} harvest ceiling`).toBe(270);
+      // 180: the strip's node ceiling since the wood stands retired (above).
+      expect(ceiling, `${zone.id} harvest ceiling`).toBe(180);
     }
   });
 

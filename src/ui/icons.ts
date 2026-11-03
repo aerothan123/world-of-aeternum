@@ -5908,6 +5908,8 @@ export const DEED_ART_PENDING: ReadonlySet<string> = new Set([
   'feat_guild_writ_runner',
   'feat_guild_hallsworn',
   'feat_guild_of_lantern_hall',
+  // The first felled tree (tree chopping): progression crest until commissioned.
+  'prog_first_felling',
 ]);
 /** Static URL of a deed crest's painted art, or null when the crest id has no committed image. */
 export function deedImageUrl(crestId: string): string | null {

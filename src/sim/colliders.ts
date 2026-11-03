@@ -165,6 +165,7 @@ import {
 import { STREETLAMP_COLLIDER_RADIUS, STREETLAMP_FIXTURE_HEIGHT } from './streetlamp_style';
 import { townPropPlacements } from './town_props';
 import { transportBerthColliders, transportGatesClosedAtBuild } from './transport_gates';
+import { syncFelledTreeCells, withoutFelledTrees } from './trees/tree_fell_collision';
 import type { WorldContent } from './types';
 import {
   crossesSealedBorder,
@@ -1525,9 +1526,9 @@ function assignLateGridIndex(grid: ColliderGrid, c: Collider): void {
 
 function collidersInCell(grid: ColliderGrid, seed: number, gx: number, gz: number): Collider[] {
   const key = cellKey(gx, gz);
+  syncFelledTreeCells(grid.combinedCells); // a fell or regrow re-combines (trees/)
   const cached = grid.combinedCells.get(key);
   if (cached) return cached;
-
   let decorations = grid.decorationCells.get(key);
   if (!decorations) {
     decorations = [];
@@ -1542,11 +1543,9 @@ function collidersInCell(grid: ColliderGrid, seed: number, gx: number, gz: numbe
       minZ: minZ - pad,
       maxZ: maxZ + pad,
     })) {
-      // One body per decoration, shared by every cell it spans (its position
-      // is its identity: the field is deterministic in the seed). A neighbour
-      // cell materialized later reuses this exact object, so a multi-cell
-      // query dedupes it like any authored collider instead of testing and
-      // depenetrating against the same surface twice.
+      // One body per decoration, shared by every cell it spans (its position is
+      // its identity: the field is deterministic in the seed), so a multi-cell
+      // query dedupes it like any authored collider, never testing it twice.
       const bodyKey = `${decoration.x},${decoration.z}`;
       let collider = grid.decorationBodies.get(bodyKey);
       if (!collider) {
@@ -1567,11 +1566,8 @@ function collidersInCell(grid: ColliderGrid, seed: number, gx: number, gz: numbe
   }
 
   const authored = grid.cells.get(key);
-  const combined = authored?.length
-    ? decorations.length
-      ? [...authored, ...decorations]
-      : authored
-    : decorations;
+  const live = withoutFelledTrees(decorations); // a felled trunk no longer blocks
+  const combined = authored?.length ? (live.length ? [...authored, ...live] : authored) : live;
   grid.combinedCells.set(key, combined);
   return combined;
 }

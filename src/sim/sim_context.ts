@@ -1,5 +1,6 @@
 import type { BuddyKey } from './content/buddies';
 import type { PendingDifficultyChange } from './instances/difficulty_selection';
+import type { TreeFellState } from './trees/tree_felling';
 // SimContext: the shared seam every extracted game-system module talks to instead
 // of reaching into the 17.5k-line `Sim` monolith.
 //
@@ -193,6 +194,10 @@ export interface SimContextPrimitives {
   // mutated in place. TRANSIENT by design: never serialized anywhere (the
   // feast module's header owns the rationale).
   readonly feasts: Map<number, FeastState>;
+  // Felled overworld trees and their regrow queue (src/sim/trees/tree_felling.ts).
+  // A LIVE view like `feasts`: the backing object stays on Sim, mutated in
+  // place, never serialized (a restart regrows the forest).
+  readonly treeFells: TreeFellState;
   // The monotonically increasing entity-id counter (I1). Read-write so spawners (I1's
   // claimInstance) allocate ids exactly as `this.nextId++` did on Sim.
   nextId: number;
@@ -1371,6 +1376,9 @@ export function createSimContext(host: SimContextHost): SimContext {
     },
     get feasts() {
       return host.feasts;
+    },
+    get treeFells() {
+      return host.treeFells;
     },
     get nextId() {
       return host.nextId;

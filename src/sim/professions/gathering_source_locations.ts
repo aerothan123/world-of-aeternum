@@ -24,6 +24,7 @@ import { FARM_CROPS, farmCropSkillThreshold } from '../content/farm_crops';
 import { FARM_PATCHES } from '../content/farm_patches';
 import { FISHING_TABLES_BY_BAND, type FishingEntry } from '../content/items';
 import { HARVEST_COMPONENT_ITEMS, HARVEST_COMPONENT_SPECIMENS } from '../content/professions';
+import { TREE_SOURCE_ZONE_IDS, treeTiersInZone } from '../content/tree_chopping';
 import {
   CAMPS,
   DUNGEON_X_THRESHOLD,
@@ -325,8 +326,16 @@ function buildNodeSources(): ReadonlyMap<string, NodeMaterialSource> {
     const baseTierByItemZone = new Map<string, Map<string, number>>();
     const fineTierByItemZone = new Map<string, Map<string, number>>();
 
-    for (const node of GATHER_NODES) {
-      if (node.type !== type) continue;
+    // Wood comes from the overworld trees (src/sim/trees/), whose per-zone
+    // tier mix is content (content/tree_chopping.ts); ore and herbs from the
+    // node table. Same min-tier and fine-reach rules either way.
+    const sources: { zoneId: string; tier: number }[] =
+      type === 'wood'
+        ? TREE_SOURCE_ZONE_IDS.flatMap((zoneId) =>
+            treeTiersInZone(zoneId).map((tier) => ({ zoneId, tier })),
+          )
+        : GATHER_NODES.filter((node) => node.type === type);
+    for (const node of sources) {
       const baseItemId = nodeMaterialFor(type, node.zoneId).itemId;
       recordMinTier(baseTierByItemZone, baseItemId, node.zoneId, node.tier);
       const fineItemId = fineMaterialFor(baseItemId);

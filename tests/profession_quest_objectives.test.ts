@@ -7,6 +7,7 @@ import { GATHER_NODES, QUESTS } from '../src/sim/data';
 import { nodeMaterialFor } from '../src/sim/professions/gathering';
 import { TIER2_TOOL_WIELD_PROFICIENCY } from '../src/sim/professions/wield_gate';
 import { Sim } from '../src/sim/sim';
+import { choppableTreesNear } from '../src/sim/trees/tree_registry';
 import type { QuestDef, QuestObjective, QuestProgress } from '../src/sim/types';
 import { terrainHeight } from '../src/sim/world';
 import { runCraft } from './helpers/enchant_family_cast';
@@ -117,19 +118,19 @@ describe('gather quest objectives', () => {
       },
     ]);
     const ore = GATHER_NODES.find((node) => node.type === 'ore')!;
-    const wood = GATHER_NODES.find((node) => node.type === 'wood')!;
+    const herb = GATHER_NODES.find((node) => node.type === 'herb')!;
     // #2343: every node harvest needs the matching-profession tool in bags
     // (the too-far denial below still fires before the tool gate).
     sim.addItem('copper_mining_pick', 1, pid);
-    sim.addItem('handaxe', 1, pid);
+    sim.addItem('gathering_sickle', 1, pid);
 
     // Too far away, so the server denies without quest credit.
     sim.harvestNode(ore.id, undefined, pid);
     expect(qp.counts).toEqual([0, 0]);
 
     // A successful nonmatching gather still does not count.
-    teleportOntoNode(sim, pid, wood.id);
-    sim.harvestNode(wood.id, undefined, pid);
+    teleportOntoNode(sim, pid, herb.id);
+    sim.harvestNode(herb.id, undefined, pid);
     completeCastNow(sim, pid);
     expect(qp.counts).toEqual([0, 0]);
 
@@ -184,16 +185,43 @@ describe('gather quest objectives across material grades', () => {
     const { sim, pid, qp } = trackedSim([
       { type: 'gather', itemId: 'copper_ore', count: 1, label: 'Ore material gathered' },
     ]);
-    sim.addItem('handaxe', 1, pid);
-    const wood = GATHER_NODES.find(
-      (node) => node.zoneId === 'eastbrook_vale' && node.type === 'wood',
+    sim.addItem('gathering_sickle', 1, pid);
+    const herb = GATHER_NODES.find(
+      (node) => node.zoneId === 'eastbrook_vale' && node.type === 'herb',
     )!;
-    teleportOntoNode(sim, pid, wood.id);
+    teleportOntoNode(sim, pid, herb.id);
 
-    expect(sim.harvestNode(wood.id, undefined, pid)).toBe(true);
+    expect(sim.harvestNode(herb.id, undefined, pid)).toBe(true);
     completeCastNow(sim, pid);
 
-    expect(sim.countItem('ironbark_log', pid)).toBeGreaterThanOrEqual(1);
+    expect(sim.countItem('silverleaf_herb', pid)).toBeGreaterThanOrEqual(1);
     expect(qp.counts).toEqual([0]);
+  });
+});
+
+// Tree chopping (docs/design/tree-chopping.md): the wood stands retired and
+// every overworld tree is the Logging source, so a nodeType 'wood' objective
+// (none ships today; the arm stays live for content) credits on a FELLED tree,
+// whose gather-node view carries type 'wood'.
+describe('gather quest objectives on trees', () => {
+  it('a wood objective credits when a tree is felled, and never on a denied chop', () => {
+    const { sim, pid, qp } = trackedSim([
+      { type: 'gather', nodeType: 'wood', count: 1, label: 'Tree felled' },
+    ]);
+    const tree = choppableTreesNear(sim.cfg.seed, -14, -100, 300).find(
+      (t) => t.zoneId === 'eastbrook_vale',
+    );
+    if (!tree) throw new Error('no eastbrook tree');
+    // Too far: denied, no credit.
+    sim.harvestNode(tree.node.id, undefined, pid);
+    expect(qp.counts).toEqual([0]);
+    const p = sim.entities.get(pid);
+    if (!p) throw new Error('missing player');
+    p.pos = { x: tree.x, y: terrainHeight(tree.x, tree.z - 1.5, sim.cfg.seed), z: tree.z - 1.5 };
+    p.prevPos = { ...p.pos };
+    expect(sim.harvestNode(tree.node.id, undefined, pid)).toBe(true);
+    completeCastNow(sim, pid);
+    expect(qp.counts).toEqual([1]);
+    expect(sim.countItem('ironbark_log', pid)).toBeGreaterThanOrEqual(1);
   });
 });

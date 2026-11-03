@@ -2,7 +2,7 @@
   "scenario": "professions_gather",
   "seed": 1,
   "sampleEvery": 500,
-  "ticks": 5208,
+  "ticks": 5218,
   "coverage": [
     "class:warrior (gatherer)",
     "tier-1 tools in bags satisfy the #2343 always-require-tool gate",
@@ -10,7 +10,7 @@
     "granted harvest at cast completion: exactly two rng draws (rarity roll then rare-event roll)",
     "cooldown denial: zero rng draws, no cast",
     "proficiency-0 grant: common rarity, fungible zone material (copper_ore)",
-    "max-proficiency wood harvest: rarity ladder off the proficiency ceiling",
+    "max-proficiency wood harvest (a felled tree): rarity ladder off the proficiency ceiling",
     "rare gather event: hunted hit in the herb window, gatherRareEvent fanout + x5 signed yield",
     "gatherResult qty/rareEvent payload fields"
   ],
@@ -20,8 +20,8 @@
     {
       "tick": 0,
       "time": 0,
-      "nextId": 1012,
-      "state": "caf53a89",
+      "nextId": 1015,
+      "state": "bcb2ebd8",
       "events": "741638a5",
       "rng": {
         "draws": 0,
@@ -70,7 +70,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1004,
+          "entityId": 1007,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -122,7 +122,7 @@
               "name": "Battle Stance",
               "remaining": 3600,
               "school": "physical",
-              "sourceId": 1004
+              "sourceId": 1007
             }
           ],
           "blockChance": 0.05,
@@ -136,7 +136,7 @@
           "fiveSecondRule": 99,
           "healPower": 5,
           "hp": 100,
-          "id": 1004,
+          "id": 1007,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -180,9 +180,9 @@
     {
       "tick": 51,
       "time": 2.55,
-      "nextId": 1012,
-      "state": "076921ef",
-      "events": "46947db5",
+      "nextId": 1015,
+      "state": "e190e694",
+      "events": "9e4f3bb7",
       "rng": {
         "draws": 2,
         "digest": "00a2a78c"
@@ -250,7 +250,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1004,
+          "entityId": 1007,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -331,7 +331,7 @@
               "name": "Battle Stance",
               "remaining": 3597.45,
               "school": "physical",
-              "sourceId": 1004
+              "sourceId": 1007
             }
           ],
           "blockChance": 0.05,
@@ -346,7 +346,7 @@
           "fiveSecondRule": 101.55,
           "healPower": 5,
           "hp": 100,
-          "id": 1004,
+          "id": 1007,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -388,11 +388,11 @@
       ]
     },
     {
-      "tick": 104,
-      "time": 5.2,
-      "nextId": 1012,
-      "state": "198526a1",
-      "events": "406e1423",
+      "tick": 114,
+      "time": 5.7,
+      "nextId": 1015,
+      "state": "78798a1a",
+      "events": "864897bb",
       "rng": {
         "draws": 4,
         "digest": "49d036fe"
@@ -445,10 +445,10 @@
               "worn_sword"
             ],
             "visited": [
+              "felling:tree",
               "gather:eastbrook_vale:ore",
               "gather:eastbrook_vale:wood",
-              "poi:eastbrook_vale:copper_dig",
-              "poi:eastbrook_vale:sableweb"
+              "poi:eastbrook_vale:copper_dig"
             ]
           },
           "deedsEarned": [
@@ -458,6 +458,10 @@
             ],
             [
               "exp_first_timber",
+              ""
+            ],
+            [
+              "prog_first_felling",
               ""
             ],
             [
@@ -471,7 +475,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1004,
+          "entityId": 1007,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -532,8 +536,7 @@
           "lifetimeXp": 42,
           "mailWelcomed": true,
           "nodeHarvestReadyAt": {
-            "ore_eastbrook_1": 242.5,
-            "wood_eastbrook_1": 245
+            "ore_eastbrook_1": 242.5
           },
           "profTierTutorialSent": true,
           "recipesGrandfathered": true,
@@ -541,7 +544,7 @@
             "counts": {},
             "firstFind": {}
           },
-          "renown": 25,
+          "renown": 30,
           "talents": {
             "rows": {}
           },
@@ -565,24 +568,24 @@
               "id": "battle_stance",
               "kind": "battle_stance",
               "name": "Battle Stance",
-              "remaining": 3594.8,
+              "remaining": 3594.3,
               "school": "physical",
-              "sourceId": 1004
+              "sourceId": 1007
             }
           ],
           "blockChance": 0.05,
           "blockValue": 6,
-          "castTotal": 2.35,
-          "combatTimer": 104.2,
+          "castTotal": 3,
+          "combatTimer": 104.7,
           "comboUntil": -1,
           "critChance": 0.06,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.06,
-          "fallStartY": -0.791371,
-          "fiveSecondRule": 104.2,
+          "fallStartY": -2.819698,
+          "fiveSecondRule": 104.7,
           "healPower": 5,
           "hp": 100,
-          "id": 1004,
+          "id": 1007,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -594,9 +597,9 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -62,
-            "y": -0.791371,
-            "z": 8
+            "x": -100.940695,
+            "y": -2.819698,
+            "z": 11.060247
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
@@ -626,9 +629,9 @@
     {
       "tick": 500,
       "time": 25,
-      "nextId": 1012,
-      "state": "c29f78d2",
-      "events": "399a72b1",
+      "nextId": 1015,
+      "state": "8d3c0b66",
+      "events": "d1eebeb5",
       "rng": {
         "draws": 18,
         "digest": "9145b740"
@@ -637,9 +640,9 @@
     {
       "tick": 1000,
       "time": 50,
-      "nextId": 1012,
-      "state": "3ba394fe",
-      "events": "421df635",
+      "nextId": 1015,
+      "state": "abfc6a1d",
+      "events": "5503b4b3",
       "rng": {
         "draws": 38,
         "digest": "d0aec0bd"
@@ -648,9 +651,9 @@
     {
       "tick": 1500,
       "time": 75,
-      "nextId": 1012,
-      "state": "a6fe8ade",
-      "events": "3d8583ba",
+      "nextId": 1015,
+      "state": "4f44406d",
+      "events": "d66cdd18",
       "rng": {
         "draws": 58,
         "digest": "7a44de5f"
@@ -659,20 +662,20 @@
     {
       "tick": 2000,
       "time": 100,
-      "nextId": 1012,
-      "state": "5058ee5f",
-      "events": "9a716cef",
+      "nextId": 1015,
+      "state": "0d6f0af8",
+      "events": "f318cd61",
       "rng": {
-        "draws": 78,
-        "digest": "a53e3a06"
+        "draws": 76,
+        "digest": "21be3a88"
       }
     },
     {
       "tick": 2500,
       "time": 125,
-      "nextId": 1012,
-      "state": "81b45f86",
-      "events": "391a89a0",
+      "nextId": 1015,
+      "state": "a899ae4a",
+      "events": "c1b19835",
       "rng": {
         "draws": 96,
         "digest": "618fafda"
@@ -681,9 +684,9 @@
     {
       "tick": 3000,
       "time": 150,
-      "nextId": 1012,
-      "state": "f3908cca",
-      "events": "9a716cef",
+      "nextId": 1015,
+      "state": "f935f2bf",
+      "events": "c1b19835",
       "rng": {
         "draws": 116,
         "digest": "6fbace71"
@@ -692,9 +695,9 @@
     {
       "tick": 3500,
       "time": 175,
-      "nextId": 1012,
-      "state": "61318a2d",
-      "events": "a8a0ee9b",
+      "nextId": 1015,
+      "state": "bb415827",
+      "events": "eebd454e",
       "rng": {
         "draws": 136,
         "digest": "33a83e8b"
@@ -703,9 +706,9 @@
     {
       "tick": 4000,
       "time": 200,
-      "nextId": 1012,
-      "state": "5a339950",
-      "events": "41ec692b",
+      "nextId": 1015,
+      "state": "1bfac45f",
+      "events": "6c49ae9d",
       "rng": {
         "draws": 156,
         "digest": "f0dbf356"
@@ -714,31 +717,31 @@
     {
       "tick": 4500,
       "time": 225,
-      "nextId": 1012,
-      "state": "e17fab61",
-      "events": "86982f6d",
+      "nextId": 1015,
+      "state": "869c1e3d",
+      "events": "3b1d94ea",
       "rng": {
-        "draws": 176,
-        "digest": "a0b21a12"
+        "draws": 174,
+        "digest": "b5a61cc9"
       }
     },
     {
       "tick": 5000,
       "time": 250,
-      "nextId": 1012,
-      "state": "fba8780a",
-      "events": "bc44bdfc",
+      "nextId": 1015,
+      "state": "c96c8df0",
+      "events": "6c49ae9d",
       "rng": {
         "draws": 194,
         "digest": "6647d061"
       }
     },
     {
-      "tick": 5206,
-      "time": 260.3,
-      "nextId": 1012,
-      "state": "a92de8d5",
-      "events": "30ca4427",
+      "tick": 5216,
+      "time": 260.8,
+      "nextId": 1015,
+      "state": "d0c111f8",
+      "events": "87b5f473",
       "rng": {
         "draws": 204,
         "digest": "545d7bf1"
@@ -793,12 +796,12 @@
               "worn_sword"
             ],
             "visited": [
+              "felling:tree",
               "gather:eastbrook_vale:herb",
               "gather:eastbrook_vale:ore",
               "gather:eastbrook_vale:wood",
               "gather_event:moonlit_bloom",
-              "poi:eastbrook_vale:copper_dig",
-              "poi:eastbrook_vale:sableweb"
+              "poi:eastbrook_vale:copper_dig"
             ]
           },
           "deedsEarned": [
@@ -823,6 +826,10 @@
               ""
             ],
             [
+              "prog_first_felling",
+              ""
+            ],
+            [
               "prog_first_harvest",
               ""
             ],
@@ -837,7 +844,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1004,
+          "entityId": 1007,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -911,9 +918,8 @@
           "lifetimeXp": 2022,
           "mailWelcomed": true,
           "nodeHarvestReadyAt": {
-            "herb_eastbrook_1": 500.25,
-            "ore_eastbrook_1": 242.5,
-            "wood_eastbrook_1": 245
+            "herb_eastbrook_1": 500.75,
+            "ore_eastbrook_1": 242.5
           },
           "profTierTutorialSent": true,
           "recipesGrandfathered": true,
@@ -927,7 +933,7 @@
               "gather_event:moonlit_bloom"
             ]
           },
-          "renown": 40,
+          "renown": 45,
           "talents": {
             "rows": {}
           },
@@ -951,24 +957,24 @@
               "id": "battle_stance",
               "kind": "battle_stance",
               "name": "Battle Stance",
-              "remaining": 3339.7,
+              "remaining": 3339.2,
               "school": "physical",
-              "sourceId": 1004
+              "sourceId": 1007
             }
           ],
           "blockChance": 0.05,
           "blockValue": 6,
           "castTotal": 2.5,
-          "combatTimer": 359.3,
+          "combatTimer": 359.8,
           "comboUntil": -1,
           "critChance": 0.061,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.061,
           "fallStartY": -4.19148,
-          "fiveSecondRule": 359.3,
+          "fiveSecondRule": 359.8,
           "healPower": 5,
           "hp": 176,
-          "id": 1004,
+          "id": 1007,
           "kind": "player",
           "level": 3,
           "lootFfaTimer": "Infinity",
@@ -1010,10 +1016,10 @@
       ]
     },
     {
-      "tick": 5208,
-      "time": 260.4,
-      "nextId": 1012,
-      "state": "946ea244",
+      "tick": 5218,
+      "time": 260.9,
+      "nextId": 1015,
+      "state": "fb756e47",
       "events": "741638a5",
       "rng": {
         "draws": 204,
@@ -1069,12 +1075,12 @@
               "worn_sword"
             ],
             "visited": [
+              "felling:tree",
               "gather:eastbrook_vale:herb",
               "gather:eastbrook_vale:ore",
               "gather:eastbrook_vale:wood",
               "gather_event:moonlit_bloom",
-              "poi:eastbrook_vale:copper_dig",
-              "poi:eastbrook_vale:sableweb"
+              "poi:eastbrook_vale:copper_dig"
             ]
           },
           "deedsEarned": [
@@ -1099,6 +1105,10 @@
               ""
             ],
             [
+              "prog_first_felling",
+              ""
+            ],
+            [
               "prog_first_harvest",
               ""
             ],
@@ -1113,7 +1123,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1004,
+          "entityId": 1007,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -1187,9 +1197,8 @@
           "lifetimeXp": 2022,
           "mailWelcomed": true,
           "nodeHarvestReadyAt": {
-            "herb_eastbrook_1": 500.25,
-            "ore_eastbrook_1": 242.5,
-            "wood_eastbrook_1": 245
+            "herb_eastbrook_1": 500.75,
+            "ore_eastbrook_1": 242.5
           },
           "profTierTutorialSent": true,
           "recipesGrandfathered": true,
@@ -1203,7 +1212,7 @@
               "gather_event:moonlit_bloom"
             ]
           },
-          "renown": 40,
+          "renown": 45,
           "talents": {
             "rows": {}
           },
@@ -1227,24 +1236,24 @@
               "id": "battle_stance",
               "kind": "battle_stance",
               "name": "Battle Stance",
-              "remaining": 3339.6,
+              "remaining": 3339.1,
               "school": "physical",
-              "sourceId": 1004
+              "sourceId": 1007
             }
           ],
           "blockChance": 0.05,
           "blockValue": 6,
           "castTotal": 2.5,
-          "combatTimer": 359.4,
+          "combatTimer": 359.9,
           "comboUntil": -1,
           "critChance": 0.061,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.061,
           "fallStartY": -4.19148,
-          "fiveSecondRule": 359.4,
+          "fiveSecondRule": 359.9,
           "healPower": 5,
           "hp": 176,
-          "id": 1004,
+          "id": 1007,
           "kind": "player",
           "level": 3,
           "lootFfaTimer": "Infinity",

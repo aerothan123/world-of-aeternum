@@ -425,6 +425,9 @@ const baseEnTable = {
   'error.corpseHarvestInterrupted': 'The harvest was interrupted.',
   'error.gatherNodeMissing': 'That resource node does not exist.',
   'error.gatherNodeNotRespawned': 'This resource node has not respawned for you yet.',
+  // Tree chopping (src/sim/professions/gathering.ts + src/sim/trees/tree_felling.ts):
+  // a chop at, or still swinging at, a tree someone already brought down.
+  'error.treeAlreadyFelled': 'The tree is already felled.',
   // The gathering goal command validation (Intentional Gathering PR4,
   // src/sim/professions/gathering_goal_actions.ts): trackGatheringRecipe's
   // quantity and recipe-id checks, trackGatheringCommission's live-binding
@@ -2007,6 +2010,7 @@ const BASE_DICT: Record<SupportedLanguage, Partial<Record<BaseSimMessageKey, str
       'Nothing you selected can be harvested from that corpse.',
     'error.gatherNodeMissing': 'That resource node does not exist.',
     'error.gatherNodeNotRespawned': 'This resource node has not respawned for you yet.',
+    'error.treeAlreadyFelled': 'The tree is already felled.',
     'error.toolEffectSlotFromWindow': 'Open Professions to slot that.',
     'log.talentsUpdated': 'Talents updated.',
     'log.talentsReset': 'Talents reset.',
@@ -7984,6 +7988,7 @@ const BASE_DICT: Record<SupportedLanguage, Partial<Record<BaseSimMessageKey, str
       'Nothing you selected can be harvested from that corpse.',
     'error.gatherNodeMissing': 'That resource node does not exist.',
     'error.gatherNodeNotRespawned': 'This resource node has not respawned for you yet.',
+    'error.treeAlreadyFelled': 'The tree is already felled.',
     'error.toolEffectSlotFromWindow': 'Open Professions to slot that.',
     'log.talentsUpdated': 'Talents updated.',
     'log.talentsReset': 'Talents reset.',

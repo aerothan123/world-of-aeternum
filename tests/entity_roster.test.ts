@@ -31,6 +31,7 @@ import {
 } from '../src/sim/sim_context';
 import { SpatialGrid } from '../src/sim/spatial';
 import { DEFAULT_STORAGE_PRICES } from '../src/sim/storage_prices';
+import { createTreeFellState } from '../src/sim/trees/tree_felling';
 import type { Entity } from '../src/sim/types';
 
 type AnyEntity = Entity & Record<string, unknown>;
@@ -96,6 +97,7 @@ function makeCtx() {
     tradeInvites: new Map(),
     duelInvites: new Map(),
     feasts: new Map(),
+    treeFells: createTreeFellState(),
     nextId: 1,
     get grid() {
       return grid;

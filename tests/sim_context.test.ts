@@ -16,6 +16,7 @@ import { Sim } from '../src/sim/sim';
 import { createSimContext, type SimContextHost } from '../src/sim/sim_context';
 import { SpatialGrid } from '../src/sim/spatial';
 import { DEFAULT_STORAGE_PRICES } from '../src/sim/storage_prices';
+import { createTreeFellState } from '../src/sim/trees/tree_felling';
 import type { Entity, SimEvent } from '../src/sim/types';
 
 // Every cross-system callback on the seam. The list IS the contract: each must be a
@@ -320,6 +321,7 @@ function makeFakeHost() {
     tradeInvites: new Map(),
     duelInvites: new Map(),
     feasts: new Map(),
+    treeFells: createTreeFellState(),
     nextId: 1,
     grid: new SpatialGrid(),
     playerGrid: new SpatialGrid(),

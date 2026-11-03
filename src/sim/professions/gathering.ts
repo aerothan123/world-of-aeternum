@@ -26,6 +26,14 @@ import { gatherNodesFor, type ObjectMoves } from '../moved_objects';
 import type { Rng } from '../rng';
 import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
+import { treeChopSeconds, treeRequiredToolTier } from '../trees/tree_chop';
+import { fellTree, isTreeFelled } from '../trees/tree_felling';
+import {
+  type ChoppableTree,
+  choppableTreeByNodeId,
+  choppableTreesNear,
+  parseTreeNodeId,
+} from '../trees/tree_registry';
 import {
   type Entity,
   GATHER_CAST_ID,
@@ -35,6 +43,7 @@ import {
   INTERACT_RANGE,
   type InvSlot,
   isConsuming,
+  TREE_CHOP_CAST_ID,
 } from '../types';
 import {
   announceGatherRareEvent,
@@ -223,6 +232,33 @@ export function gatherNodeById(nodeId: string, moves?: ObjectMoves): GatherNodeD
   return gatherNodesFor(moves, GATHER_NODES).find((n) => n.id === nodeId);
 }
 
+/** The node a command names: a content node, or a choppable overworld tree
+ *  (`tree:<id>`, src/sim/trees/), whose node view carries type 'wood', its
+ *  zone, tier and level, so the whole gathering path below runs on it
+ *  unchanged. `tree` is set only for a tree. */
+function resolveCommandNode(
+  ctx: SimContext,
+  nodeId: string,
+): { node: GatherNodeDef; tree: ChoppableTree | null } | null {
+  if (parseTreeNodeId(nodeId) !== null) {
+    const tree = choppableTreeByNodeId(ctx.cfg.seed, nodeId);
+    return tree ? { node: tree.node, tree } : null;
+  }
+  const node = gatherNodeById(nodeId, ctx.objectMoves);
+  return node ? { node, tree: null } : null;
+}
+
+/** The node behind an id for a read that has a seed but no context (the
+ *  client tooltip and confirm prompt): content node first, then a tree. */
+export function gatherNodeOrTreeById(
+  nodeId: string,
+  seed: number,
+  moves?: ObjectMoves,
+): GatherNodeDef | undefined {
+  if (parseTreeNodeId(nodeId) !== null) return choppableTreeByNodeId(seed, nodeId)?.node;
+  return gatherNodeById(nodeId, moves);
+}
+
 // Material rarity roll (#1122): the standard item rarity ladder (ItemDef['quality'],
 // src/sim/types.ts), minus 'poor' (a harvested material is never junk-grade). A
 // gathering profession's proficiency shifts a harvest's rarity roll toward the
@@ -383,7 +419,12 @@ export function resolveHarvest(
 ): HarvestResolution {
   if (!isNodeHarvestableBy(meta, node.id, now)) return { granted: false };
   const entry = NODE_HARVEST_TABLE[node.type];
-  meta.nodeHarvestReadyAt[node.id] = now + entry.respawnSeconds;
+  // A tree keeps no per-player timer: its WORLD felled state is the gate
+  // (src/sim/trees/tree_felling.ts), so writing one would only leak a dead
+  // key into the save. Draw-free either way, so the two-draw contract holds.
+  if (parseTreeNodeId(node.id) === null) {
+    meta.nodeHarvestReadyAt[node.id] = now + entry.respawnSeconds;
+  }
   // Pinned determinism contract: once the harvest gate above passes, EXACTLY
   // two rng draws happen, in this order, on every harvest, draw #1 the
   // material rarity and draw #2 the rare-event roll, regardless of the
@@ -554,13 +595,20 @@ export function harvestNode(
     ctx.error(meta.entityId, "You can't do that while shapeshifted.");
     return false;
   }
-  const node = gatherNodeById(nodeId, ctx.objectMoves);
-  if (!node) {
+  const resolved = resolveCommandNode(ctx, nodeId);
+  if (!resolved) {
     ctx.error(meta.entityId, 'That resource node does not exist.');
     return false;
   }
+  const { node, tree } = resolved;
   if (distToNode(p.pos, node.pos) > INTERACT_RANGE) {
     ctx.error(meta.entityId, 'Too far away.');
+    return false;
+  }
+  // A tree's readiness is its world felled state; no lock while another
+  // player swings at it (first to finish fells it, tree_felling.ts fellTree).
+  if (tree && isTreeFelled(ctx.treeFells, tree.id)) {
+    ctx.error(meta.entityId, 'The tree is already felled.');
     return false;
   }
   if (!isNodeHarvestableBy(meta, node.id, ctx.time)) {
@@ -593,7 +641,13 @@ export function harvestNode(
     meta.gatheringProficiency[professionId],
     ITEMS,
   );
-  if (wieldableToolTier === NO_TOOL_OWNED || !canGatherTier(wieldableToolTier, node.tier)) {
+  // A tier-1 TREE asks for no axe at all (trees/tree_chop.ts
+  // treeRequiredToolTier); every node and every higher tree keeps the rule.
+  const requiredToolTier = tree ? treeRequiredToolTier(node.tier) : node.tier;
+  if (
+    requiredToolTier > 0 &&
+    (wieldableToolTier === NO_TOOL_OWNED || !canGatherTier(wieldableToolTier, requiredToolTier))
+  ) {
     // Two shapes of the same refusal, split for the player's sake: when a
     // covering tool IS in the bags and only the wield requirement is short,
     // the denial names the smallest proficiency at which something they
@@ -643,12 +697,13 @@ export function harvestNode(
     p.mountCastRemaining = 0;
     p.mountCastKey = '';
   }
-  const duration = gatherCastDurationSec(
-    node.tier,
-    wieldableToolTier,
-    proficiencyBandFor(meta.gatheringProficiency[professionId]),
-  );
-  p.castingAbility = GATHER_CAST_ID;
+  // A tree chop is a whole number of axe swings (trees/tree_chop.ts); a node
+  // keeps its short cast.
+  const band = proficiencyBandFor(meta.gatheringProficiency[professionId]);
+  const duration = tree
+    ? treeChopSeconds(node.tier, wieldableToolTier, band)
+    : gatherCastDurationSec(node.tier, wieldableToolTier, band);
+  p.castingAbility = tree ? TREE_CHOP_CAST_ID : GATHER_CAST_ID;
   p.castTotal = duration;
   p.castRemaining = duration;
   p.castTargetId = null;
@@ -687,9 +742,10 @@ export function harvestNode(
   ctx.emit({
     type: 'castStart',
     entityId: p.id,
-    ability: GATHER_CAST_ID,
+    ability: tree ? TREE_CHOP_CAST_ID : GATHER_CAST_ID,
     time: duration,
     gatherNodeType: node.type,
+    ...(tree ? { chopTreeId: tree.id } : {}),
   });
   return true;
 }
@@ -746,6 +802,19 @@ export function useGatherToolItem(
       bestDist = d;
     }
   }
+  // An axe also works the nearest STANDING tree in reach (src/sim/trees/):
+  // trees replaced the wood stands, so for logging this is the main arm.
+  if (nodeType === 'wood') {
+    for (const tree of choppableTreesNear(ctx.cfg.seed, p.pos.x, p.pos.z, INTERACT_RANGE)) {
+      if (isTreeFelled(ctx.treeFells, tree.id)) continue;
+      const d = distToNode(p.pos, tree);
+      if (!bestReady || d < bestDist) {
+        best = tree.node;
+        bestDist = d;
+        bestReady = true;
+      }
+    }
+  }
   if (!best) {
     ctx.emit({ type: 'gatherToolNoNode', pid: meta.entityId, professionId });
     return false;
@@ -781,11 +850,18 @@ export function completeGatherCast(ctx: SimContext, p: Entity, meta: PlayerMeta)
   // grant actually mints, confirmed or not.
   const effectUseConfirmed = p.gatherCastEffectConfirmed;
   p.gatherCastEffectConfirmed = false;
-  const node = gatherNodeById(nodeId, ctx.objectMoves);
+  const resolved = resolveCommandNode(ctx, nodeId);
   // Defensive: the id was validated at cast start and content is static.
-  if (!node) return;
+  if (!resolved) return;
+  const { node, tree } = resolved;
   if (distToNode(p.pos, node.pos) > INTERACT_RANGE) {
     ctx.error(meta.entityId, 'Too far away.');
+    return;
+  }
+  // Another chopper finished first (their fell normally cancels this cast;
+  // this is the same-tick backstop). Before any draw, so nothing forks.
+  if (tree && isTreeFelled(ctx.treeFells, tree.id)) {
+    ctx.error(meta.entityId, 'The tree is already felled.');
     return;
   }
   if (!isNodeHarvestableBy(meta, node.id, ctx.time)) {
@@ -924,6 +1000,8 @@ export function completeGatherCast(ctx: SimContext, p: Entity, meta: PlayerMeta)
   // Rare event: soft zone broadcast plus the dormant per-flavor
   // deed mark, resolved in gather_events.ts after the grant lands.
   if (rareEvent) announceGatherRareEvent(ctx, meta, node, rareEvent, itemId);
+  // The last swing lands: the tree falls (draw-free; trees/tree_felling.ts).
+  if (tree) fellTree(ctx, tree, p, meta);
   // Gather-completion event (#1729): personal (pid), so the client can play a
   // gathering audio cue for the acting player only. Emitted here on the granted
   // path exactly like craftItem emits craftResult on a completed craft; carries

@@ -1337,7 +1337,9 @@ const MONOLITHS: MonolithRow[] = [
     // maintainer call). Phase 3 adds the five house storage delegates, their
     // namespace import and the houseStorageRev default: 11437 -> 11456, raised
     // in the Project H fork (a maintainer call).
-    ceiling: 11456,
+    // LOWERED 11456 -> 11449 with tree chopping: the node harvestable and
+    // respawn reads moved to professions/gather_node_reads.ts. wc -l. Exact.
+    ceiling: 11449,
     seam: 'a sim system module behind SimContext (src/sim/CLAUDE.md)',
   },
   {
@@ -2468,7 +2470,9 @@ const MONOLITHS: MonolithRow[] = [
     // LOWERED 2288 -> 2281 with the Mirefen mudfin huts: the mud hut collider
     // moved to mudfin_huts.ts mudHutCollider, beside the table the renderer
     // draws the huts from. wc -l. Exact count.
-    ceiling: 2279,
+    // LOWERED 2279 -> 2275 with tree chopping: the felled-trunk filter lives in
+    // trees/tree_fell_collision.ts. wc -l. Exact count.
+    ceiling: 2275,
     seam: 'per-zone collider data beside the zone content; shared logic stays here',
   },
   {

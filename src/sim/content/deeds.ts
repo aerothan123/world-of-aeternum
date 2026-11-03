@@ -737,7 +737,7 @@ export const DEEDS: Record<string, DeedDef> = {
   chr_vale_gatherer: {
     id: 'chr_vale_gatherer',
     name: 'Living off the Land',
-    desc: 'Harvest an ore vein, a wood stand, and an herb patch in Eastbrook Vale.',
+    desc: 'Harvest an ore vein, fell a tree, and gather an herb patch in Eastbrook Vale.',
     category: 'chronicle',
     renown: 5,
     trigger: {
@@ -864,7 +864,7 @@ export const DEEDS: Record<string, DeedDef> = {
   chr_marsh_gatherer: {
     id: 'chr_marsh_gatherer',
     name: 'Fenbridge Foraging',
-    desc: 'Harvest an ore vein, a wood stand, and an herb patch in Mirefen Marsh.',
+    desc: 'Harvest an ore vein, fell a tree, and gather an herb patch in Mirefen Marsh.',
     category: 'chronicle',
     renown: 5,
     trigger: {
@@ -2351,7 +2351,7 @@ export const DEEDS: Record<string, DeedDef> = {
   chr_peaks_gatherer: {
     id: 'chr_peaks_gatherer',
     name: 'Harvest of the Heights',
-    desc: 'Harvest an ore vein, a wood stand, and an herb patch in Thornpeak Heights.',
+    desc: 'Harvest an ore vein, fell a tree, and gather an herb patch in Thornpeak Heights.',
     category: 'chronicle',
     renown: 5,
     trigger: {
@@ -2468,7 +2468,7 @@ export const DEEDS: Record<string, DeedDef> = {
   chr_willowfen_gatherer: {
     id: 'chr_willowfen_gatherer',
     name: 'Fenland Bounty',
-    desc: 'Harvest an ore vein, a wood stand, and an herb patch in the Willowfen.',
+    desc: 'Harvest an ore vein, fell a tree, and gather an herb patch in the Willowfen.',
     category: 'chronicle',
     renown: 5,
     trigger: {
@@ -2487,7 +2487,7 @@ export const DEEDS: Record<string, DeedDef> = {
   chr_galecrest_gatherer: {
     id: 'chr_galecrest_gatherer',
     name: 'Harvest on the Headland',
-    desc: 'Harvest an ore vein, a wood stand, and an herb patch in the Galecrest.',
+    desc: 'Harvest an ore vein, fell a tree, and gather an herb patch in the Galecrest.',
     category: 'chronicle',
     renown: 5,
     trigger: {
@@ -2506,7 +2506,7 @@ export const DEEDS: Record<string, DeedDef> = {
   chr_farshore_gatherer: {
     id: 'chr_farshore_gatherer',
     name: 'Island Provisions',
-    desc: 'Harvest an ore vein, a wood stand, and an herb patch on the Farshore.',
+    desc: 'Harvest an ore vein, fell a tree, and gather an herb patch on the Farshore.',
     category: 'chronicle',
     renown: 5,
     trigger: {
@@ -2654,7 +2654,7 @@ export const DEEDS: Record<string, DeedDef> = {
   chr_frostveil_gatherer: {
     id: 'chr_frostveil_gatherer',
     name: 'Terraced Harvest',
-    desc: 'Harvest an ore vein, a wood stand, and an herb patch in the Frostveil.',
+    desc: 'Harvest an ore vein, fell a tree, and gather an herb patch in the Frostveil.',
     category: 'chronicle',
     renown: 5,
     trigger: {
@@ -2673,7 +2673,7 @@ export const DEEDS: Record<string, DeedDef> = {
   chr_amberfall_gatherer: {
     id: 'chr_amberfall_gatherer',
     name: 'The Amberfall Harvest',
-    desc: 'Harvest an ore vein, a wood stand, and an herb patch in the Amberfall.',
+    desc: 'Harvest an ore vein, fell a tree, and gather an herb patch in the Amberfall.',
     category: 'chronicle',
     renown: 5,
     trigger: {
@@ -2692,7 +2692,7 @@ export const DEEDS: Record<string, DeedDef> = {
   chr_nightbloom_gatherer: {
     id: 'chr_nightbloom_gatherer',
     name: 'The Dreaming Harvest',
-    desc: 'Harvest an ore vein, a wood stand, and an herb patch in the Nightbloom.',
+    desc: 'Harvest an ore vein, fell a tree, and gather an herb patch in the Nightbloom.',
     category: 'chronicle',
     renown: 5,
     trigger: {
@@ -2711,7 +2711,7 @@ export const DEEDS: Record<string, DeedDef> = {
   chr_wraithwood_gatherer: {
     id: 'chr_wraithwood_gatherer',
     name: 'Harvest Under the Canopy',
-    desc: 'Harvest an ore vein, a wood stand, and an herb patch in the Wraithwood.',
+    desc: 'Harvest an ore vein, fell a tree, and gather an herb patch in the Wraithwood.',
     category: 'chronicle',
     renown: 5,
     trigger: {
@@ -2730,7 +2730,7 @@ export const DEEDS: Record<string, DeedDef> = {
   chr_palmreach_gatherer: {
     id: 'chr_palmreach_gatherer',
     name: 'Harvest on the Palmstrand',
-    desc: 'Harvest an ore vein, a wood stand, and an herb patch in the Palmreach.',
+    desc: 'Harvest an ore vein, fell a tree, and gather an herb patch in the Palmreach.',
     category: 'chronicle',
     renown: 5,
     trigger: {
@@ -2749,7 +2749,7 @@ export const DEEDS: Record<string, DeedDef> = {
   chr_evergarden_gatherer: {
     id: 'chr_evergarden_gatherer',
     name: "The Parterre's Bounty",
-    desc: 'Harvest an ore vein, a wood stand, and an herb patch in the Evergarden.',
+    desc: 'Harvest an ore vein, fell a tree, and gather an herb patch in the Evergarden.',
     category: 'chronicle',
     renown: 5,
     trigger: {
@@ -4120,6 +4120,19 @@ export const DEEDS: Record<string, DeedDef> = {
     trigger: { kind: 'visits', markIds: [...GOURDLIGHT_EVE_MARKS] },
     feat: true,
     reward: { kind: 'title', text: GOURDLIGHT_META_TITLE },
+  },
+  // Tree chopping (docs/design/tree-chopping.md): the first tree a player
+  // fells. The mark is written by src/sim/trees/tree_felling.ts fellTree
+  // under the registered 'felling' namespace. Name IP-checked (no collision
+  // found for "The First Fell"; plain "Timber!" was passed over as an
+  // existing achievement name elsewhere).
+  prog_first_felling: {
+    id: 'prog_first_felling',
+    name: 'The First Fell',
+    desc: 'Fell your first tree.',
+    category: 'progression',
+    renown: 5,
+    trigger: { kind: 'visit', markId: 'felling:tree' },
   },
 };
 

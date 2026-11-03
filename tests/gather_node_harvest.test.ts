@@ -535,25 +535,17 @@ describe('the RuneScape rule (#2343): pre-phase nodes deny bare hands and need o
     'ore_eastbrook_1',
     'ore_eastbrook_2',
     'ore_eastbrook_3',
-    'wood_eastbrook_1',
-    'wood_eastbrook_2',
-    'wood_eastbrook_3',
     'herb_eastbrook_1',
     'herb_eastbrook_2',
     'herb_eastbrook_3',
     'ore_mirefen_1',
     'ore_mirefen_2',
     'ore_mirefen_3',
-    'wood_mirefen_1',
-    'wood_mirefen_2',
-    'wood_mirefen_3',
     'herb_mirefen_1',
     'herb_mirefen_2',
     'herb_mirefen_3',
     'ore_thornpeak_1',
     'ore_thornpeak_2',
-    'wood_thornpeak_1',
-    'wood_thornpeak_2',
     'herb_thornpeak_1',
     'herb_thornpeak_2',
   ] as const;
@@ -574,8 +566,11 @@ describe('the RuneScape rule (#2343): pre-phase nodes deny bare hands and need o
     herb: 'herbalism',
   } as const;
 
-  it('all 24 pre-phase defs carry tier 1: bare hands deny with requiredTier 1 and zero draws, the matching tier-1 tool grants', () => {
-    expect(PRE_PHASE_NODE_IDS).toHaveLength(24);
+  // Sixteen since tree chopping retired the eight pre-phase wood stands
+  // (docs/design/tree-chopping.md; trees carry their own tool rule, pinned in
+  // tests/tree_chopping.test.ts).
+  it('all 16 surviving pre-phase defs carry tier 1: bare hands deny with requiredTier 1 and zero draws, the matching tier-1 tool grants', () => {
+    expect(PRE_PHASE_NODE_IDS).toHaveLength(16);
     const sim = makeWorld();
     const pid = sim.addPlayer('warrior', 'BareHands');
     const meta = mustMeta(sim, pid);
@@ -634,7 +629,8 @@ describe('the RuneScape rule (#2343): pre-phase nodes deny bare hands and need o
     // than counted: every tier-2-or-higher node is a `_t2`/`_t3`-suffixed id, so
     // no zone-1 node and no plainly-numbered node ever needs a better tool. A
     // future tier bump on, say, ore_eastbrook_1 reds here rather than silently
-    // locking the starting zone behind a 120-copper pick.
+    // locking the starting zone behind a 120-copper pick. The six wood ids left
+    // with the wood stands (tree chopping); trees tier by zone instead.
     const gated = GATHER_NODES.filter((n) => n.tier > 1)
       .map((n) => n.id)
       .sort();
@@ -651,12 +647,6 @@ describe('the RuneScape rule (#2343): pre-phase nodes deny bare hands and need o
       'ore_thornpeak_t2b',
       'ore_thornpeak_t3',
       'ore_thornpeak_t3b',
-      'wood_mirefen_t2',
-      'wood_mirefen_t2b',
-      'wood_thornpeak_t2',
-      'wood_thornpeak_t2b',
-      'wood_thornpeak_t3',
-      'wood_thornpeak_t3b',
     ]);
   });
 });
@@ -2020,17 +2010,15 @@ describe('harvest denies in combat and while swimming (the startFishing pair)', 
 
   it('a waterline stand denies from a swim-deep cast spot and grants from its dry footing', () => {
     // The pre-v0.32.0 shape of this fixture stood the player ON a node that
-    // sat in swim-deep water (herb_eastbrook_1 at seed 42); the merged world
-    // reshaped every shore this suite hunted, and no shipped node sits over
-    // swim depth at any nearby seed now. The acceptance shape survives
-    // inverted: wood_thornpeak_1 keeps a swim-deep pocket INSIDE
-    // INTERACT_RANGE at seed 1, so casting from the water is denied while
-    // the node's own dry footing grants. The node stays farmable, the swim
-    // route does not.
-    const WATERLINE = 'wood_thornpeak_1';
-    const DEEP = { x: -61.3, z: 766.8 };
+    // sat in swim-deep water; the merged world reshaped every shore, so the
+    // shape survives inverted: herb_eastbrook_1 keeps a swim-deep pocket
+    // INSIDE INTERACT_RANGE at seed 42, so casting from the water is denied
+    // while the node's own dry footing grants. (It was wood_thornpeak_1 at
+    // seed 1 until tree chopping retired the wood stands.)
+    const WATERLINE = 'herb_eastbrook_1';
+    const DEEP = { x: -62.3, z: 91 };
     const node = mustNode(WATERLINE);
-    const sim = makeWorld(1);
+    const sim = makeWorld(42);
     expect(
       groundHeight(DEEP.x, DEEP.z, sim.cfg.seed) <
         waterLevelAt(DEEP.x, DEEP.z, sim.cfg.seed) - PLAYER_SWIM_DEPTH,
@@ -2039,7 +2027,7 @@ describe('harvest denies in combat and while swimming (the startFishing pair)', 
       INTERACT_RANGE,
     );
     const pid = sim.addPlayer('warrior', 'Wader');
-    sim.addItem('handaxe', 1, pid);
+    sim.addItem('gathering_sickle', 1, pid);
     const p = mustEntity(sim, pid);
     p.pos.x = DEEP.x;
     p.pos.z = DEEP.z;

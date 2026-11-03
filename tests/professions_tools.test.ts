@@ -1,9 +1,10 @@
 import { describe, expect, it } from 'vitest';
+import { isBlocked } from '../src/sim/colliders';
 import { DELVE_SHOPS } from '../src/sim/content/delves/shop';
 import { HEROIC_VENDOR_STOCK } from '../src/sim/content/heroic_vendor';
 import { TOOL_EFFECT_IDS, TOOL_EFFECTS } from '../src/sim/content/professions';
 import { VENDOR_ROW_GATES } from '../src/sim/content/vendor_row_gates';
-import { GATHER_NODES, ITEMS, NPCS } from '../src/sim/data';
+import { GATHER_NODES, ITEMS, NPCS, ZONES } from '../src/sim/data';
 import { rodTierRequiredForZone } from '../src/sim/professions/fishing_zones';
 import { MATERIAL_GRADES, yieldsFineGrade } from '../src/sim/professions/material_grades';
 import {
@@ -33,6 +34,7 @@ import {
 } from '../src/sim/professions/tools';
 import { wieldRequirementForTier } from '../src/sim/professions/wield_gate';
 import { Sim } from '../src/sim/sim';
+import { choppableTreesNear } from '../src/sim/trees/tree_registry';
 import type { InvSlot, ItemDef } from '../src/sim/types';
 import { terrainHeight } from '../src/sim/world';
 import { EMPTY_TEST_WORLD } from './sim_shared';
@@ -283,12 +285,25 @@ describe('toolless-state helpers (#2343)', () => {
 describe('sim-level node access gating (Professions 2.0)', () => {
   const T2_ORE = 'ore_mirefen_t2';
   const T3_ORE = 'ore_thornpeak_t3';
-  const T2_WOOD = 'wood_thornpeak_t2';
+  // A tier-2 TREE since tree chopping retired the wood stands (the tier-2
+  // Mirefen forest asks for the same tier-2 axe the stand did).
+  const T2_WOOD = 'tree:t2';
+  function tierTwoTree(seed: number) {
+    const hub = ZONES.find((z) => z.id === 'mirefen_marsh')?.hub;
+    const tree = choppableTreesNear(seed, hub?.x ?? 0, hub?.z ?? 0, 400).find(
+      (t) => t.tier === 2 && !isBlocked(seed, t.x, t.z - 1.5, 0.4),
+    );
+    if (!tree) throw new Error('no tier-2 tree');
+    return tree;
+  }
 
   function simAtNode(nodeId: string, seed = 42) {
     const sim = new Sim({ seed, playerClass: 'warrior', noPlayer: true, world: EMPTY_TEST_WORLD });
     const pid = sim.addPlayer('warrior', 'Prospector');
-    const node = GATHER_NODES.find((n) => n.id === nodeId);
+    const tree = nodeId === T2_WOOD ? tierTwoTree(seed) : null;
+    const node = tree
+      ? { pos: { x: tree.x, z: tree.z - 1.5 } }
+      : GATHER_NODES.find((n) => n.id === nodeId);
     if (!node) throw new Error(`missing node ${nodeId}`);
     const p = sim.entities.get(pid);
     if (!p) throw new Error(`missing entity ${pid}`);
@@ -333,7 +348,8 @@ describe('sim-level node access gating (Professions 2.0)', () => {
     if (!sim.harvestNode(nodeId, undefined, pid)) return false;
     const p = sim.entities.get(pid);
     if (!p) throw new Error('missing entity');
-    for (let i = 0; i < 80 && p.castingAbility; i++) sim.tick();
+    // 200 ticks: a tree chop runs up to six one-second swings.
+    for (let i = 0; i < 200 && p.castingAbility; i++) sim.tick();
     if (p.castingAbility) throw new Error('gather cast never completed');
     sim.tick(); // drain the completion tick's queued proficiency grant
     return true;
@@ -444,10 +460,11 @@ describe('sim-level node access gating (Professions 2.0)', () => {
     // Sanity arm: the same axe DOES unlock a tier-2 wood stand (ticked
     // through the cast to the grant).
     const wood = simAtNode(T2_WOOD);
+    const t2Tree = tierTwoTree(42).node.id;
     wood.sim.addItem('felling_axe', 1, wood.pid);
     makeWieldable(wood.sim, wood.pid, 'felling_axe'); // the tool must wield (R22)
-    expect(castAndComplete(wood.sim, T2_WOOD, wood.pid)).toBe(true);
-    expect(wood.sim.countItem('elderwood_log', wood.pid)).toBeGreaterThanOrEqual(1);
+    expect(castAndComplete(wood.sim, t2Tree, wood.pid)).toBe(true);
+    expect(wood.sim.countItem('ashwood_log', wood.pid)).toBeGreaterThanOrEqual(1);
   });
 
   it('owned-best picks the highest tier among multiple owned tools of one profession', () => {
@@ -510,7 +527,7 @@ describe('sim-level node access gating (Professions 2.0)', () => {
     expect(bestOwnedGatherToolTier(meta.inventory, 'mining', ITEMS)).toBe(3);
     expect(bestOwnedGatherToolTier(meta.inventory, 'logging', ITEMS)).toBe(1);
     sim.drainEvents();
-    expectDeniedDrawFreeNoCast(sim, T2_WOOD, pid);
+    expectDeniedDrawFreeNoCast(sim, tierTwoTree(42).node.id, pid);
     expect(sim.drainEvents().filter((e) => e.type === 'gatherDenied')).toEqual([
       { type: 'gatherDenied', pid, surface: 'node', professionId: 'logging', requiredTier: 2 },
     ]);

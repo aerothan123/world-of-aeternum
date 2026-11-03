@@ -2361,4 +2361,8 @@ export const VISITED_MARK_NAMESPACES = [
   // from the event's own tables (seasonal/gourdlight_deed_marks.ts writes them).
   // Registered so a save keeps a half-done checklist across sessions and editions.
   'gourdlight',
+  // Tree chopping (src/sim/trees/tree_felling.ts fellTree): ONE key,
+  // 'felling:tree', the first-felling proof behind prog_first_felling.
+  // Registered so a save keeps it (the gather_event lesson above).
+  'felling',
 ] as const;

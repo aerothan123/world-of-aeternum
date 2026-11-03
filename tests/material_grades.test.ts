@@ -6,6 +6,7 @@ import { CRUCIBLE_COLLECTION_RECIPES } from '../src/sim/content/crucible_collect
 import { FORGEBREAKER_RECIPES } from '../src/sim/content/forgebreaker_recipe';
 import { GATHER_NODE_TYPES, GATHER_NODES } from '../src/sim/content/gather_nodes';
 import { ALL_RECIPES, TOOL_RECIPES } from '../src/sim/content/recipes';
+import { treeTiersInZone } from '../src/sim/content/tree_chopping';
 import { ITEMS, QUESTS } from '../src/sim/data';
 import { NODE_MATERIAL_TABLE } from '../src/sim/professions/gathering';
 import {
@@ -32,10 +33,15 @@ import { isGatherToolUse } from '../src/sim/professions/tools';
 
 const ZONES = ['eastbrook_vale', 'mirefen_marsh', 'thornpeak_heights'] as const;
 
+// Wood's tiers come from the zone's TREES since tree chopping retired the wood
+// stands (content/tree_chopping.ts treeTiersInZone, the per-zone tier mix the
+// stands taught); ore and herbs still read the node table.
 const highestTierIn = (zoneId: string, type: string) =>
-  Math.max(
-    ...GATHER_NODES.filter((n) => n.zoneId === zoneId && n.type === type).map((n) => n.tier),
-  );
+  type === 'wood'
+    ? Math.max(...treeTiersInZone(zoneId))
+    : Math.max(
+        ...GATHER_NODES.filter((n) => n.zoneId === zoneId && n.type === type).map((n) => n.tier),
+      );
 
 describe('MATERIAL_GRADES table', () => {
   it('fineGradeReachable pins the node-at-or-above-rung boundary directly', () => {

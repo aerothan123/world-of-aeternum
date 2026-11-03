@@ -27,7 +27,7 @@
 // (src/render/seasonal_road_lanterns.ts) while the event runs; the pin is
 // tests/seasonal_road_lanterns.test.ts.
 import { isBlocked, streetlampPlacements } from './colliders';
-import { GATHER_NODES } from './content/gather_nodes';
+import { GATHER_NODE_SITES_AS_SHIPPED } from './content/gather_nodes';
 import {
   GOURDLIGHT_DECOR_CITIES,
   GOURDLIGHT_ROAD_LANTERNS,
@@ -266,7 +266,7 @@ function propSpots(seed: number): Point[] {
   return [
     ...streetlampPlacements(seed).map((l) => ({ x: l.x, z: l.z })),
     ...Object.values(NPCS).map((n) => ({ x: n.pos.x, z: n.pos.z })),
-    ...GATHER_NODES.map((g) => ({ x: g.pos.x, z: g.pos.z })),
+    ...GATHER_NODE_SITES_AS_SHIPPED.map((g) => ({ x: g.x, z: g.z })),
     ...GOURDLIGHT_PUMPKINS.map((p) => ({ x: p.x, z: p.z })),
   ];
 }

@@ -86,6 +86,8 @@ import { riftRankForBaseLevel } from '../../src/sim/rift/ranks';
 import { type ArenaMatch, type PlayerMeta, Sim } from '../../src/sim/sim';
 import { ARENA_MIN_LEVEL } from '../../src/sim/social/arena';
 import { addThreat } from '../../src/sim/threat';
+import { treeChopSeconds } from '../../src/sim/trees/tree_chop';
+import { choppableTreesNear } from '../../src/sim/trees/tree_registry';
 import {
   type Aura,
   CAST_QUEUE_WINDOW_SEC,
@@ -5264,7 +5266,7 @@ function professionsGather(seed = 1): Scenario {
       'granted harvest at cast completion: exactly two rng draws (rarity roll then rare-event roll)',
       'cooldown denial: zero rng draws, no cast',
       'proficiency-0 grant: common rarity, fungible zone material (copper_ore)',
-      'max-proficiency wood harvest: rarity ladder off the proficiency ceiling',
+      'max-proficiency wood harvest (a felled tree): rarity ladder off the proficiency ceiling',
       'rare gather event: hunted hit in the herb window, gatherRareEvent fanout + x5 signed yield',
       'gatherResult qty/rareEvent payload fields',
     ],
@@ -5309,11 +5311,16 @@ function professionsGather(seed = 1): Scenario {
 
       // Step 2: max-proficiency wood harvest: the rarity roll runs at the
       // proficiency ceiling (zero common weight), so the rolled tier plus the
-      // signed-or-fungible grant shape land in the state sample.
+      // signed-or-fungible grant shape land in the state sample. A TREE since
+      // tree chopping retired the wood stands (docs/design/tree-chopping.md):
+      // the nearest choppable tree to the retired wood_eastbrook_1 spot, a
+      // pure function of the seed, chopped through the same gather cast (a
+      // whole number of axe swings) and felled at its completion.
       meta.gatheringProficiency.logging = 100;
-      teleport(sim, p, -62, 8); // wood_eastbrook_1
-      sim.harvestNode('wood_eastbrook_1', undefined, pid);
-      rec.tick(castTicks);
+      const tree = choppableTreesNear(seed, -62, 8, 40)[0];
+      teleport(sim, p, tree.x, tree.z - 1.5);
+      sim.harvestNode(tree.node.id, undefined, pid);
+      rec.tick(Math.ceil(treeChopSeconds(tree.tier, 1, 2) / DT) + 1);
       rec.snapshot('harvest-wood-max-proficiency');
       rec.tick(2);
 

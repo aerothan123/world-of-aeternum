@@ -56,6 +56,7 @@ import {
   SALVAGE_CAST_ID,
   SUNDER_CAST_ID,
   TOOL_RECHARGE_CAST_ID,
+  TREE_CHOP_CAST_ID,
   xpForLevel,
 } from '../types';
 import { isUnstuckSystemCooldown } from '../unstuck_cooldown';
@@ -594,7 +595,7 @@ export function castingReadout(e: Entity): string {
     // timing, so the readout names the waiting state and nothing more.
     return 'You are fishing. Waiting for a bite.';
   }
-  if (e.castingAbility === GATHER_CAST_ID) {
+  if (e.castingAbility === GATHER_CAST_ID || e.castingAbility === TREE_CHOP_CAST_ID) {
     // The gather cast is public state (castRemaining/castTotal broadcast),
     // so an honest countdown is safe here, unlike the fishing arm above.
     return `You are gathering: ${remaining}s of ${total}s remaining.`;

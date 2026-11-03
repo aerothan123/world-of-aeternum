@@ -36,11 +36,18 @@ if (!NODE) throw new Error('no eastbrook ore node in content');
 // A second live node for the multi-entry arms: truncation regressions
 // (first-entry-only, break-after-first-surviving-write) are invisible to
 // single-survivor fixtures in either direction.
-const NODE2 = GATHER_NODES.find((n) => n.type === 'wood' && n.zoneId === 'eastbrook_vale');
-if (!NODE2) throw new Error('no eastbrook wood node in content');
+// (An herb patch since tree chopping retired the wood stands.)
+const NODE2 = GATHER_NODES.find((n) => n.type === 'herb' && n.zoneId === 'eastbrook_vale');
+if (!NODE2) throw new Error('no eastbrook herb node in content');
 const RESPAWN_SECONDS = 240;
 
 describe('the pure remaining-delta round trip (no Sim)', () => {
+  it('drops a retired wood stand and a tree id on load: trees keep no per-player timer', () => {
+    // Tree chopping (docs/design/tree-chopping.md): an old save's wood-stand
+    // timers and any tampered tree key load as nothing, never a live timer.
+    expect(applyNodeReadiness({ wood_eastbrook_1: 30, 'tree:1234': 20 }, 0)).toEqual({});
+  });
+
   it('serializes only still-running timers, as remaining seconds', () => {
     // readyAt 10 at now 5 is 5 seconds remaining; readyAt exactly now is
     // elapsed and must NOT serialize (absent means ready on load).
@@ -175,7 +182,11 @@ describe('the write ceiling, the load clamp, and the record bound stay coupled',
     const twoDecimal = serializeNodeReadiness(meta.nodeHarvestReadyAt, 0.05);
     expect(twoDecimal && Object.keys(twoDecimal).length).toBe(GATHER_NODES.length);
     const twoDecimalBytes = JSON.stringify(twoDecimal).length;
-    expect(twoDecimalBytes).toBeGreaterThan(4096);
+    // Tree chopping (docs/design/tree-chopping.md) retired the 52 wood stands
+    // (trees keep no per-player timer), so the live record shrank to 2,727
+    // bytes. The 8192 ceiling stays where it is (shrinking it is its own
+    // blob-size decision); this floor just keeps the measurement honest.
+    expect(twoDecimalBytes).toBeGreaterThan(2048);
     expect(twoDecimalBytes).toBeLessThanOrEqual(8192);
     // Form ordering, kept live (the QA round): the integer bound above is
     // strictly subsumed by the two-decimal bound, and this is the assertion
