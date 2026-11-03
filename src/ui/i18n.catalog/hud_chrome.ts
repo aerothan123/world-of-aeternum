@@ -1148,7 +1148,7 @@ export const hudChromeStrings = {
     checkoutTitle: 'Complete purchase',
     checkoutClose: 'Close checkout',
     checkoutLoading: 'Loading checkout...',
-    checkoutPending: 'Transaction in progress. Confirm in your wallet and keep this panel open.',
+    checkoutPending: 'Checkout in progress. Complete the payment and keep this panel open.',
     checkoutPendingButton: 'Processing',
     checkoutFailed: 'Checkout could not be loaded. Please try again.',
     checkoutUnavailable: 'That Claudium purchase is not available right now.',
@@ -6858,7 +6858,7 @@ export const hudChromeStrings = {
     intro:
       'Export every saved preference on this device as one code, and paste it on another device or browser to import it: graphics, audio, interface, theme, frame layout, key bindings for every character, controller and cross hotbar bindings, chat, window filters, language, and dismissed hints.',
     excluded:
-      'Never included: your login, account, wallet, or purchase data. Action bar layouts are saved to your account and travel with it.',
+      'Never included: your login, account, or purchase data. Action bar layouts are saved to your account and travel with it.',
   },
   // Item tooltip: the minimum character level needed to equip a piece (classic
   // "Requires Level N"). Shown red when the viewer is below it. {level} runs
@@ -10781,7 +10781,7 @@ export const hudChromeStrings = {
   // Every USD amount renders through formatNumber currency options and every
   // timestamp through formatDateTime (UTC plus local, per the PRD); the
   // window never composes numbers into these strings by concatenation.
-  // Wallet-bridge failure classes (src/ui/wallet_bridge_reason_text.ts): the
+  // RETIRED wallet-bridge failure classes (their classifier left with the wallet): the
   // bridge throws English prose and provider Errors, and these are the
   // player-facing lines the classifier resolves instead of rendering
   // err.message raw. Shared by every surface the bridge signs for (the
@@ -10812,7 +10812,7 @@ export const hudChromeStrings = {
     loadFailed: 'The Exchange could not be reached. Try again shortly.',
     disabledRealm: 'The $WOC Exchange is not available on this realm.',
     // The wrapped DESKTOP shell's (Electron, Steam, packaged website build)
-    // launcher confirm dialog (src/ui/woc_market_link.ts): the Exchange
+    // launcher confirm dialog (retired with the Exchange): the Exchange
     // itself stays fail-closed there (docs/prd/woc/marketplace.md), so this
     // hands the player off to the browser build instead of leaving the
     // launcher unexplained. Never shown on Capacitor native.

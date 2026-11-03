@@ -190,6 +190,8 @@ export const en = {
   'usage.cacheColEvictions': 'Evictions',
   'usage.cacheEntriesOfMax': '{entries} / {max}',
   'usage.notAvailable': 'n/a',
+  // LEGACY (no live usage row since the crypto removal): kept only because the admin
+  // locale overlays still carry these keys and the overlay-membership guard needs them.
   'usage.metric.walletHandoffAuthorizationEvicted': 'Desktop wallet handoff evictions',
   'usage.metric.walletHandoffCreateRejected': 'Desktop wallet handoff rejections',
   'usage.metric.wocBalanceApi': '$WOC balance API requests',
@@ -206,6 +208,8 @@ export const en = {
   'usage.metric.githubLinkRequest': 'GitHub link requests',
   'usage.metric.githubLinkFailure': 'GitHub link failures',
   'usage.metric.githubLinkRateLimited': 'GitHub link throttled requests',
+  // LEGACY (no live usage row since the crypto removal): kept only because the admin
+  // locale overlays still carry these keys and the overlay-membership guard needs them.
   'usage.metric.walletChallengeRequest': 'Wallet challenge requests',
   'usage.metric.walletChallengeRateLimited': 'Wallet challenge throttled requests',
   'usage.metric.walletLinkRequest': 'Wallet link requests',
@@ -216,6 +220,8 @@ export const en = {
   'usage.metric.cardPublishRequest': 'Player card publish requests',
   'usage.metric.cardPublishRejected': 'Player card rejected publishes',
   'usage.metric.cardPublishRateLimited': 'Player card throttled publishes',
+  // LEGACY (no live usage row since the crypto removal): kept only because the admin
+  // locale overlays still carry these keys and the overlay-membership guard needs them.
   'usage.cache.wocBalance': '$WOC balance cache',
   'usage.cache.githubReleases': 'GitHub releases cache',
   'usage.cache.githubContributors': 'GitHub contributors cache',

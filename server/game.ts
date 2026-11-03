@@ -455,6 +455,7 @@ import {
   drainPendingBuddyGrants,
   emitBuddySelfKeys,
 } from './buddy_wire';
+import type { CharacterSaveArgs } from './character_save_args';
 import {
   type EntityWireCache,
   type EntityWireView,
@@ -533,7 +534,6 @@ import {
   whoFrame,
 } from './who_roster';
 import { readLiveWhoRows } from './who_roster_host';
-import type { CharacterSaveArgs } from './woc_market';
 import { activeWorldBossIdsWireJson, writeWorldBossWireFields } from './world_boss_wire';
 import * as objectCmds from './world_object_commands';
 import {
@@ -5338,14 +5338,12 @@ export class GameServer {
     return state ? state.level : null;
   }
 
-  // $WOC Exchange custody primitives: the narrow, logic-free bridge the
-  // marketplace custody module (server/woc_market_custody.ts) builds on. The
-  // custody LOGIC lives there; these only surface the live session identity
-  // and the serialized mail write, and the mail write deliberately rides the
-  // market/mail serial queue (a custody parcel must never interleave with the
-  // atomic leave-path escrow flush) and PROPAGATES failure, unlike saveMail's
-  // logging arm: the custodian holds a settlement in 'delivering' until this
-  // resolves, so a swallowed error would fake durability.
+  // Live-session custody primitives: the narrow, logic-free bridge the
+  // caller-owned atomic saves (guild roster transport, the live character
+  // resolver) build on. They only surface the live session identity and the
+  // serialized mail write; the mail write rides the market/mail serial queue
+  // and PROPAGATES failure, unlike saveMail's logging arm, so a swallowed
+  // error can never fake durability.
   wocCustodySession(characterId: number): {
     pid: number;
     accountId: number;
@@ -5364,7 +5362,7 @@ export class GameServer {
     };
   }
 
-  // The save-shaped snapshot every marketplace custody persist must use: the
+  // The save-shaped snapshot every caller-owned custody persist must use: the
   // live serialization PLUS the session save fixups (character_save_fixups.ts
   // owns the rationale; skipping them is a jail escape, not cosmetics).
   serializeCharacterForPersist(characterId: number): {
@@ -5408,27 +5406,8 @@ export class GameServer {
     return session.dirtyGuildBanks.size > 0 || session.bankLedgerJournal.outbox.hasQueuedGuildRows;
   }
 
-  hasDirtyGuildBooks(characterId: number): boolean {
-    const session = this.sessionByCharacterId(characterId);
-    // Quarantined marks can never flush clear (saves refuse), so reporting
-    // them dirty would refuse 'contended' (a retry hint) forever.
-    if (!session || session.left || session.escrowQuarantined) return false;
-    return session.dirtyGuildBanks.size > 0;
-  }
-
-  // One ordinary save to flush a seller's dirty guild books BEFORE the escrow
-  // critical section (that write persists the character row ALONE; unflushed
-  // book-paired deltas would tear the guild-bank atomicity). Never call from
-  // inside a queued character write: deadlock. The boolean is deliberately
-  // discarded: every false re-verdicts downstream (re-check or extractCopy).
-  async flushDirtyGuildBooks(characterId: number): Promise<void> {
-    const session = this.sessionByCharacterId(characterId);
-    if (!session || session.left || session.dirtyGuildBanks.size === 0) return;
-    await this.saveCharacterWithBackgroundPermit(session);
-  }
-
-  // The WocCustodyGameHost durability caller (server/woc_market_custody.ts):
-  // unlike saveMail(), a write failure must propagate.
+  // The custody durability caller (server/mail_partition_rearm.ts and the
+  // caller-owned saves): unlike saveMail(), a write failure must propagate.
   async persistMailBlob(): Promise<void> {
     await writeDirtyMailPartitions<TickProfilerSample>(
       this.sim,

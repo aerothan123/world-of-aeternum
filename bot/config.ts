@@ -40,7 +40,6 @@ export interface BotConfig {
   relayChannelId: string;
   /** Channel id the significant-activity feed (level-ups, drops, ...) posts to. */
   activityChannelId: string;
-  /** Channel id for daily rewards top-10 winner announcements. */
   /** Channel id for the World PvP kill feed (optional; no fallback, unset is off). */
   pvpFeedChannelId: string;
   /** Public game URL shown in bot replies. */

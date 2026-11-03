@@ -283,21 +283,9 @@ export function resetRateLimits(): void {
 }
 
 export const CARD_UPLOAD_MAX_PER_MINUTE = 10;
-export const WALLET_LINK_MAX_PER_MINUTE = 10;
-// The desktop handoff result poll runs at 1 Hz per signing attempt (60/min),
-// woken early by the deep-link return; this cap admits two concurrent
-// handoffs plus headroom while ending an unmetered poll loop.
-export const WALLET_HANDOFF_RESULT_MAX_PER_MINUTE = 150;
-export const SEEKER_SPIN_VERIFY_MAX_PER_MINUTE = 5;
 
 const cardUploadIpAttempts = new Map<string, number[]>();
 const cardUploadAccountAttempts = new Map<number, number[]>();
-const walletLinkIpAttempts = new Map<string, number[]>();
-const walletLinkAccountAttempts = new Map<number, number[]>();
-const walletHandoffResultIpAttempts = new Map<string, number[]>();
-const walletHandoffResultAccountAttempts = new Map<number, number[]>();
-const seekerSpinVerifyIpAttempts = new Map<string, number[]>();
-const seekerSpinVerifyAccountAttempts = new Map<number, number[]>();
 
 function recordSlidingWindowAttempt<K>(
   attemptsByKey: Map<K, number[]>,
@@ -423,10 +411,9 @@ export function resetAssetUploadRateLimits(): void {
   assetUploadAccountAttempts.clear();
 }
 
-// Steam link attempts get their own per-IP AND per-account bucket, mirroring
-// the wallet-link throttle: every allowed attempt costs an upstream
-// AuthenticateUserTicket call, so the budget is deliberately tighter than the
-// wallet's, and a link flood can never burn a player's login budget.
+// Steam link attempts get their own per-IP AND per-account bucket: every
+// allowed attempt costs an upstream AuthenticateUserTicket call, so the budget
+// is deliberately tight, and a link flood can never burn a player's login budget.
 export const STEAM_LINK_MAX_PER_MINUTE = 5;
 const steamLinkIpAttempts = new Map<string, number[]>();
 const steamLinkAccountAttempts = new Map<number, number[]>();
@@ -485,76 +472,6 @@ export function resetEpicLinkRateLimits(): void {
   epicLinkAccountAttempts.clear();
 }
 
-export function walletLinkRateLimited(
-  req: http.IncomingMessage,
-  accountId: number,
-): RateLimitOutcome {
-  const ip = recordSlidingWindowAttempt(
-    walletLinkIpAttempts,
-    requestIp(req),
-    WALLET_LINK_MAX_PER_MINUTE,
-  );
-  const account = recordSlidingWindowAttempt(
-    walletLinkAccountAttempts,
-    accountId,
-    WALLET_LINK_MAX_PER_MINUTE,
-  );
-  return mergeFusedOutcomes(ip, account);
-}
-
-export function walletHandoffResultRateLimited(
-  req: http.IncomingMessage,
-  accountId: number,
-): RateLimitOutcome {
-  const ip = recordSlidingWindowAttempt(
-    walletHandoffResultIpAttempts,
-    requestIp(req),
-    WALLET_HANDOFF_RESULT_MAX_PER_MINUTE,
-  );
-  const account = recordSlidingWindowAttempt(
-    walletHandoffResultAccountAttempts,
-    accountId,
-    WALLET_HANDOFF_RESULT_MAX_PER_MINUTE,
-  );
-  return mergeFusedOutcomes(ip, account);
-}
-
-/** Reset the desktop handoff result-poll throttle. Test-only. */
-export function resetWalletHandoffResultRateLimits(): void {
-  walletHandoffResultIpAttempts.clear();
-  walletHandoffResultAccountAttempts.clear();
-}
-
-/** Reset wallet-link verification throttles. Test-only: keeps scoped buckets isolated. */
-export function resetWalletLinkRateLimits(): void {
-  walletLinkIpAttempts.clear();
-  walletLinkAccountAttempts.clear();
-}
-
-/** Bound native SGT ownership RPC work independently from wallet-link attempts. */
-export function seekerSpinVerifyRateLimited(
-  req: http.IncomingMessage,
-  accountId: number,
-): RateLimitOutcome {
-  const ip = recordSlidingWindowAttempt(
-    seekerSpinVerifyIpAttempts,
-    requestIp(req),
-    SEEKER_SPIN_VERIFY_MAX_PER_MINUTE,
-  );
-  const account = recordSlidingWindowAttempt(
-    seekerSpinVerifyAccountAttempts,
-    accountId,
-    SEEKER_SPIN_VERIFY_MAX_PER_MINUTE,
-  );
-  return mergeFusedOutcomes(ip, account);
-}
-
-/** Reset Seeker spin verification throttles. Test-only. */
-export function resetSeekerSpinVerifyRateLimits(): void {
-  seekerSpinVerifyIpAttempts.clear();
-  seekerSpinVerifyAccountAttempts.clear();
-}
-
 // Discord link/status/reward endpoints share one dedicated bucket (per IP AND
 // per account), separate from login/register so an OAuth-link or reward-claim
 // flood can't lock a user out of logging in. accountId 0 keys the unauthenticated
@@ -608,29 +525,6 @@ export function resetGithubRateLimits(): void {
   githubAccountAttempts.clear();
 }
 
-export const WOC_BALANCE_MAX_PER_MINUTE = 20;
-const wocBalanceIpAttempts = new Map<string, number[]>();
-
-/**
- * Throttle the public /api/woc/balance proxy per IP on its OWN bucket. The proxy
- * is unauthenticated (on-chain balances are public), so it keys on IP only, but
- * NOT the shared register/login `attempts` map, so a player opening their card/bag
- * (each a fresh RPC read) can't burn their login budget, and a balance flood can't
- * lock them out of logging in (or vice-versa).
- */
-export function wocBalanceRateLimited(req: http.IncomingMessage): RateLimitOutcome {
-  return recordSlidingWindowAttempt(
-    wocBalanceIpAttempts,
-    requestIp(req),
-    WOC_BALANCE_MAX_PER_MINUTE,
-  );
-}
-
-/** Reset the balance-proxy throttle. Test-only: keeps scoped buckets isolated. */
-export function resetWocBalanceRateLimits(): void {
-  wocBalanceIpAttempts.clear();
-}
-
 export const GUILD_BOARD_PRESENCE_MAX_PER_MINUTE = 60;
 const guildBoardPresenceIpAttempts = new Map<string, number[]>();
 
@@ -642,8 +536,7 @@ const guildBoardPresenceIpAttempts = new Map<string, number[]>();
  * rate. Its own map, NOT the shared public-read bucket: the board never 429s
  * itself, so charging the shared budget would let signpost browsing 429 the
  * sibling public reads (the roster drill-in is the next click in the same
- * window) while the board only lost its dot, the wocBalanceRateLimited reasoning
- * above.
+ * window) while the board only lost its dot.
  */
 export function guildBoardPresenceRateLimited(req: http.IncomingMessage): RateLimitOutcome {
   return recordSlidingWindowAttempt(
@@ -724,19 +617,15 @@ export function resetCharacterMutationRateLimits(): void {
   characterMutationAccountAttempts.clear();
 }
 
-// Claudium writes can create payment sessions, persist on-chain quotes, poll a
-// settlement verifier, or debit the account ledger. Each action receives its own
-// pre-auth IP bucket plus the existing post-auth fused IP AND account bucket, so
-// invalid-token floods stop before a DB lookup while authenticated account abuse
-// remains capped. Confirm is deliberately the roomiest because the client retries
-// pending chain settlement; purchase remains strict because every accepted call
-// can create a new provider-side payment object.
+// Claudium writes can create payment sessions or debit the account ledger. Each
+// action receives its own pre-auth IP bucket plus the existing post-auth fused
+// IP AND account bucket, so invalid-token floods stop before a DB lookup while
+// authenticated account abuse remains capped. Purchase is strict because every
+// accepted call can create a new provider-side payment object.
 export const CLAUDIUM_PURCHASE_MAX_PER_MINUTE = 10;
-export const CLAUDIUM_QUOTE_MAX_PER_MINUTE = 20;
-export const CLAUDIUM_CONFIRM_MAX_PER_MINUTE = 60;
 export const CLAUDIUM_SPEND_MAX_PER_MINUTE = 30;
 
-export type ClaudiumMutationAction = 'purchase' | 'quote' | 'confirm' | 'spend';
+export type ClaudiumMutationAction = 'purchase' | 'spend';
 
 const claudiumMutationIpAttempts = new Map<string, number[]>();
 const claudiumMutationAccountAttempts = new Map<string, number[]>();
@@ -746,10 +635,6 @@ export function claudiumMutationLimit(action: ClaudiumMutationAction): number {
   switch (action) {
     case 'purchase':
       return CLAUDIUM_PURCHASE_MAX_PER_MINUTE;
-    case 'quote':
-      return CLAUDIUM_QUOTE_MAX_PER_MINUTE;
-    case 'confirm':
-      return CLAUDIUM_CONFIRM_MAX_PER_MINUTE;
     case 'spend':
       return CLAUDIUM_SPEND_MAX_PER_MINUTE;
   }
@@ -792,90 +677,6 @@ export function resetClaudiumMutationRateLimits(): void {
   claudiumMutationIpAttempts.clear();
   claudiumMutationAccountAttempts.clear();
   claudiumPreAuthIpAttempts.clear();
-}
-
-// $WOC Exchange writes create listings (a custody escrow), place bids, request
-// on-chain quotes, or poll a settlement verifier. The Claudium model applies
-// verbatim: each action gets its own fused per-IP AND per-account bucket so
-// no marketplace action can starve another, and confirm is the roomiest
-// because the client retries pending chain finality. Quotes are capped well
-// under the economy-service call budget (the proxy also caches estimates).
-export const WOC_MARKET_LIST_MAX_PER_MINUTE = 10;
-export const WOC_MARKET_BID_MAX_PER_MINUTE = 20;
-export const WOC_MARKET_QUOTE_MAX_PER_MINUTE = 30;
-export const WOC_MARKET_CONFIRM_MAX_PER_MINUTE = 60;
-
-// The one shared read bucket covers SEVEN marketplace GETs (offers, status,
-// browse, detail, activity, history, seller-history; trade-partner
-// deliberately rides the smaller quote bucket, an enumeration-shaped read),
-// sized against the real client cadences, not per route: the Exchange's
-// awaiting-chain poll is two reads every 3 seconds (40/min), the trade
-// window's directed-offer poll is one every 2 seconds (30/min), and a player
-// actively browsing adds a detail+history pair per row tap plus a
-// seller-history read per seller click (click-driven only, never polled, and
-// the client no-ops a repeat click while one is outstanding). One worst-case
-// player sits near 90/min; 240 keeps TWO players behind one NAT (the fused
-// per-IP bucket is shared) under the window with margin. Three or more
-// worst-case players behind one NAT exceed the shared IP arm and 429 each
-// other's polls (silent staleness, retried next beat); accepted at this
-// scale, re-judged pre-enable. The caches behind six of the seven routes
-// bound what an allowed flood buys to in-memory work; the offers poll stays
-// an uncached, index-tuned per-account read whose cost control is the
-// retention window.
-export const WOC_MARKET_READ_MAX_PER_MINUTE = 240;
-
-// Step-up challenge issuance (B6/R1): its OWN bucket, sized at double the
-// list bucket, so the challenge-then-create pair never halves the effective
-// listing throughput (both custody routes ride the shared 'list' bucket) and
-// a declined wallet popup leaves room to retry.
-export const WOC_MARKET_STEPUP_MAX_PER_MINUTE = 20;
-
-export type WocMarketMutationAction = 'list' | 'bid' | 'quote' | 'confirm' | 'read' | 'stepup';
-
-const wocMarketMutationIpAttempts = new Map<string, number[]>();
-const wocMarketMutationAccountAttempts = new Map<string, number[]>();
-
-export function wocMarketMutationLimit(action: WocMarketMutationAction): number {
-  switch (action) {
-    case 'list':
-      return WOC_MARKET_LIST_MAX_PER_MINUTE;
-    case 'bid':
-      return WOC_MARKET_BID_MAX_PER_MINUTE;
-    case 'quote':
-      return WOC_MARKET_QUOTE_MAX_PER_MINUTE;
-    case 'confirm':
-      return WOC_MARKET_CONFIRM_MAX_PER_MINUTE;
-    case 'read':
-      return WOC_MARKET_READ_MAX_PER_MINUTE;
-    case 'stepup':
-      return WOC_MARKET_STEPUP_MAX_PER_MINUTE;
-  }
-}
-
-/** Fused per-IP and per-account throttle for one marketplace mutation action. */
-export function wocMarketMutationRateLimited(
-  req: http.IncomingMessage,
-  accountId: number,
-  action: WocMarketMutationAction,
-): RateLimitOutcome {
-  const limit = wocMarketMutationLimit(action);
-  const ip = recordSlidingWindowAttempt(
-    wocMarketMutationIpAttempts,
-    `${action}:${requestIp(req)}`,
-    limit,
-  );
-  const account = recordSlidingWindowAttempt(
-    wocMarketMutationAccountAttempts,
-    `${action}:${accountId}`,
-    limit,
-  );
-  return mergeFusedOutcomes(ip, account);
-}
-
-/** Reset $WOC Exchange mutation throttles. Test-only. */
-export function resetWocMarketMutationRateLimits(): void {
-  wocMarketMutationIpAttempts.clear();
-  wocMarketMutationAccountAttempts.clear();
 }
 
 // Player-report creation had no dedicated limiter (it was gated only by the full
@@ -1092,8 +893,8 @@ function isThrottled(times: number[], windowStart: number): boolean {
  * auth_failures_total{kind="throttled"} observability signal when the outcome is a
  * lockout rejection (allowed false), so /metrics can count throttled attempts.
  * That count is exact only under an assumption every caller honors (today:
- * server/auth_routes.ts, server/discord.ts, server/main.ts, server/apple_auth.ts,
- * and the wallet re-auth pre-check in server/wallet.ts): every caller gates on
+ * server/auth_routes.ts, server/discord.ts, server/main.ts, and
+ * server/apple_auth.ts): every caller gates on
  * the result and rejects the request when allowed is false, so one
  * lockout-outcome check equals one rejected attempt. A future caller that only
  * inspects the status without rejecting must split this predicate instead of

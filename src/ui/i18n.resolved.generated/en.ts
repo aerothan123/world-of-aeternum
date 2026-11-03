@@ -1752,7 +1752,7 @@ export const en: EnTranslations = {
       "checkoutTitle": "Complete purchase",
       "checkoutClose": "Close checkout",
       "checkoutLoading": "Loading checkout...",
-      "checkoutPending": "Transaction in progress. Confirm in your wallet and keep this panel open.",
+      "checkoutPending": "Checkout in progress. Complete the payment and keep this panel open.",
       "checkoutPendingButton": "Processing",
       "checkoutFailed": "Checkout could not be loaded. Please try again.",
       "checkoutUnavailable": "That Claudium purchase is not available right now.",
@@ -5307,7 +5307,7 @@ export const en: EnTranslations = {
       "title": "Import / Export Settings",
       "fullSettings": "Full Settings",
       "intro": "Export every saved preference on this device as one code, and paste it on another device or browser to import it: graphics, audio, interface, theme, frame layout, key bindings for every character, controller and cross hotbar bindings, chat, window filters, language, and dismissed hints.",
-      "excluded": "Never included: your login, account, wallet, or purchase data. Action bar layouts are saved to your account and travel with it."
+      "excluded": "Never included: your login, account, or purchase data. Action bar layouts are saved to your account and travel with it."
     },
     "riftForge": {
       "title": "Rift Forge",

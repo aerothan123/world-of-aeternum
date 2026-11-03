@@ -2,7 +2,7 @@ import type { CharacterState } from '../src/sim/sim';
 import type { BankLedgerOutboxSnapshot } from './bank_ledger_outbox';
 import type { StorageAppliedEffect } from './storage_purchase_db';
 
-/** The character half carried through a marketplace custody transaction. */
+/** The character half carried through a caller-owned atomic character save. */
 export interface CharacterSaveArgs {
   characterId: number;
   level: number;

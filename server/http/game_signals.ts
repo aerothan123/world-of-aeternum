@@ -179,42 +179,6 @@ export const GUILD_BANK_INCIDENTS = [
 /** One of the fixed twelve guild-bank incident kinds. */
 export type GuildBankIncident = (typeof GUILD_BANK_INCIDENTS)[number];
 
-/** The marketplace escrow-queue outcomes (the per-character save FIFO's
- *  custody entries): one counter with a fixed kind label, the guild-bank
- *  incident idiom. 'started' is the throughput baseline the refusal kinds
- *  and the flush failure are read against. 'realm_refused' is the
- *  realm-global gate at cap (the write-path rider's bound; the per-character
- *  kinds cannot see realm-wide saturation). 'settled' is the terminal
- *  sibling: a held listing sequence released its slot, whatever the
- *  outcome. NOTE the wedge arithmetic: 'started' is a strict SUBSET of the
- *  sequences that settle (a deadline, depth-passed flush failure, or
- *  books-dirty refusal settles without starting), so started-minus-settled
- *  trends negative; (started + flush_failed + books_dirty_refused +
- *  deadline_refused) - settled APPROXIMATES in-flight (a deadline-cancelled
- *  sequence whose flush then rejects books two entered kinds, drifting the
- *  difference by one per occurrence), and the gate's own stats on the ops
- *  readout are the instantaneous truth.
- *  'grant_busy' is the delivered-save twin's head-of-line park (the
- *  bounded grant entry found the buyer's FIFO wedged past the deadline and
- *  the delivery row parked): the one failure mode the FIFO close
- *  introduced, counted so it is never silent.
- *  'permit_refused' is the background-gate starvation arm inside the FIFO
- *  job (the bounded majorBackgroundDbGate wait returned no permit): realm
- *  background-DB saturation seen from the escrow chain, counted because a
- *  saturated gate is otherwise invisible next to its counted siblings. */
-export const WOC_ESCROW_QUEUE_OUTCOMES = [
-  'started',
-  'deadline_refused',
-  'depth_refused',
-  'books_dirty_refused',
-  'flush_failed',
-  'realm_refused',
-  'settled',
-  'grant_busy',
-  'permit_refused',
-] as const;
-export type WocEscrowQueueOutcome = (typeof WOC_ESCROW_QUEUE_OUTCOMES)[number];
-
 /**
  * The Materials Vault ledger incident kinds (Bank Storage Phase 2). Its own
  * closed set rather than a member of GUILD_BANK_INCIDENTS above: the vault is
@@ -285,10 +249,6 @@ export interface GameMetricsCounters {
    * instead of it: the counter says how often, the log says which guild.
    */
   guildBankIncident(kind: GuildBankIncident): void;
-  /** One marketplace escrow-queue outcome (WOC_ESCROW_QUEUE_OUTCOMES): the
-   *  production readout for the listing FIFO coupling, since a refused or
-   *  slow queue is otherwise visible only as a throttled warn line. */
-  wocEscrowQueue(outcome: WocEscrowQueueOutcome): void;
   /**
    * One Materials Vault ledger incident, by kind (see VAULT_LEDGER_INCIDENTS).
    * The vault-container sibling of guildBankIncident above, emitted BESIDE the
@@ -380,7 +340,6 @@ export const noopGameMetricsCounters: GameMetricsCounters = {
   characterCreated() {},
   bankLedgerGrowthLimitRefused() {},
   guildBankIncident() {},
-  wocEscrowQueue() {},
   vaultLedgerIncident() {},
   bankVaultRealmRowBreach() {},
   copperCredited() {},

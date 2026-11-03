@@ -109,7 +109,6 @@ function sourceOver(server: GameServer): GameStateSource {
     simEntities: () => server.sim.entities.size,
     simTickHz: () => server.simTickHz(),
     savePendingKeys: () => server.characterSaveQueues.pendingKeys(),
-    escrowGateInFlight: () => 0,
     backgroundDbGate: () => ({
       inFlight: 0,
       waiting: 0,
@@ -473,7 +472,6 @@ function recordingSink() {
     wsMessageDropped(cause) {
       dropped.push(cause);
     },
-    wocEscrowQueue() {},
     wsRateKick() {
       rateKicks++;
     },

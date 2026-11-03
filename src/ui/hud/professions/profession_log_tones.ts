@@ -1,5 +1,5 @@
 // The chat-log tones the professions family writes with, named once (the
-// woc_log_tones.ts precedent, applied to this family by the Masterwrought
+// pattern the since-retired $WOC log tones set, applied to this family by the Masterwrought
 // phase 14 unification).
 //
 // A chat line is written as an inline colour on a span the log owns, so a

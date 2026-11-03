@@ -1292,8 +1292,8 @@ function bouncePage(
 //   DELETE /api/discord                  unlink (JSON)
 //   POST   /api/discord/swag/claim       swag claim (JSON; previously ORPHANED)
 // The legacy handleApi arms stay in main.ts as the flag-off rollback path until the
-// ladder-deletion PR (next release). This follows the server/reports.ts +
-// server/wallet.ts template:
+// ladder-deletion PR (next release). This follows the server/reports.ts
+// template:
 //
 //  - PARITY-FIRST bodies. The migrated handlers reuse the SAME handleDiscord*
 //    functions UNCHANGED, so every response is the legacy { error } / { ok } /

@@ -217,9 +217,6 @@ const TREE_ALLOWANCES: ReadonlyArray<[file: string, value: number, anchor: strin
   ['src/ui/hud/vehicle/cannon_tactics_view.ts', 1000000, 'result.shotsFired > 1000000'],
   // The vehicle session wire decoder's finite-number bound, not money.
   ['src/net/vehicle_session_wire.ts', 1000000, 'Math.abs(value) <='],
-  // Two minutes in milliseconds, twice: timeouts.
-  ['src/net/mobile_wallet_deeplink.ts', 120000, 'RESPONSE_TIMEOUT_MS'],
-  ['src/net/wallet_connect.ts', 120000, '}, 120000);'],
   // The bounded preparation retry delay, in milliseconds.
   ['src/render/ability_vfx/active_kit_prewarm.ts', 120000, 'ACTIVE_KIT_RETRY_DELAYS_MS'],
   // A render triangle budget, not money.

@@ -48,7 +48,6 @@ import {
 } from '../src/sim/content/mounts';
 import { ITEMS, MOBS, NPCS, QUESTS } from '../src/sim/data';
 import { createMob } from '../src/sim/entity';
-import { exchangeHardLock } from '../src/sim/exchange_eligibility';
 import { guildBankPipeRefusal } from '../src/sim/guild_bank';
 import { sellItem, useItem } from '../src/sim/items';
 import { MARKET_HOUSE_STOCK } from '../src/sim/market';
@@ -858,9 +857,8 @@ describe('mount reins transfer (not soulbound: the collection trades hands)', ()
     expect(guildBankPipeRefusal({ itemId: 'reins_nightwing_chimera', count: 1 })).not.toBe(null);
   });
 
-  it('the annual Chimaera reins can never be listed on the $WOC exchange or salvaged', () => {
+  it('the annual Chimaera reins can never be discarded or salvaged', () => {
     const def = ITEMS.reins_nightwing_chimera;
-    expect(exchangeHardLock(def, undefined)).toBe('no_market_list');
     expect(def).toMatchObject({ soulbound: true, noDiscard: true, noSalvage: true });
   });
 

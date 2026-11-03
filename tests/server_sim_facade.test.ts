@@ -1,9 +1,8 @@
 // Server code resolves mail state through the Sim facade, never by reaching
 // into sim.postOffice: the Sim delegate (Sim.hasCustodyParcel) exists precisely
 // so foreign callers stay off the PostOffice internals, and this exact drift
-// has already shipped once (server/woc_market_custody.ts read
-// sim.postOffice.hasCustodyParcel BESIDE a line that already used the facade;
-// fixed in the woc marketplace baseline). A source scan, because the drift is
+// has already shipped once (a since-retired marketplace custody module read
+// sim.postOffice.hasCustodyParcel BESIDE a line that already used the facade). A source scan, because the drift is
 // behaviorally invisible: the facade is a bare delegation, so both spellings
 // pass every behavior test and only the seam discipline is lost.
 
@@ -59,10 +58,10 @@ describe('server stays off sim.postOffice (the Sim mail facade)', () => {
     expect(sim).toContain('hasCustodyParcel(custodyRef: string): boolean');
     const custody = stripComments(
       readFileSync(
-        fileURLToPath(new URL('../server/woc_market_custody.ts', import.meta.url)),
+        fileURLToPath(new URL('../server/vault_reward_service.ts', import.meta.url)),
         'utf8',
       ),
     );
-    expect(custody).toContain('host.sim.hasCustodyParcel(custodyRef)');
+    expect(custody).toContain('this.host.sim.hasCustodyParcel(row.custodyRef)');
   });
 });

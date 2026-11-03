@@ -2,9 +2,8 @@
 // import graph that makes it shared rather than copied.
 //
 // The predicate itself is three lines, so the interesting half is structural:
-// four anonymous exchange pipes (the World Market, Ravenpost mail, the guild
-// bank, and the $WOC rail) must consult the SAME rule, and the $WOC rail must
-// reach it without dragging in the transfer module's runtime import graph.
+// the anonymous exchange pipes (the World Market, Ravenpost mail, the guild
+// bank) must consult the SAME rule, and the leaf must stay dependency-free.
 // Both facts are invisible to a behavior test, so they are pinned here against
 // the comment-stripped sources.
 
@@ -60,17 +59,6 @@ describe('the transfer-lock import graph', () => {
     expect(src).toContain("import type { ItemInstancePayload } from './types'");
     // A dynamic import would be a runtime edge the line scan above never sees.
     expect(src).not.toMatch(/\bimport\s*\(/);
-  });
-
-  it('has the $WOC rail consume the LEAF, never the re-export', () => {
-    // exchange_eligibility.ts is the rail's sim-side gate. Re-pointing it at
-    // item_instance_transfer.ts would compile and behave identically today
-    // while silently dragging the whole content tree (the sanitize-on-load
-    // helpers) back into the rail's runtime graph.
-    const src = sourceOf('src/sim/exchange_eligibility.ts');
-    expect(src).toContain("import { isTransferLockedInstance } from './transfer_lock'");
-    expect(src).not.toContain('item_instance_transfer');
-    expect(occurrences(src, 'isTransferLockedInstance(')).toBeGreaterThan(0);
   });
 
   // Every sibling pipe still routes its per-copy decision through the shared

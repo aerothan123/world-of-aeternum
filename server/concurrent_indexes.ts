@@ -52,7 +52,16 @@ import {
   DAILY_REWARD_EVENTS_CONCURRENT_INDEX_SQL,
   DAILY_REWARD_EVENTS_INVALID_INDEX_CHECK_SQL,
   DAILY_REWARD_EVENTS_INVALID_INDEX_DROP_SQL,
-} from './daily_rewards_schema';
+  WOC_MARKET_OPS_CLOSED_INDEX_SQL,
+  WOC_MARKET_OPS_CLOSED_INVALID_INDEX_CHECK_SQL,
+  WOC_MARKET_OPS_CLOSED_INVALID_INDEX_DROP_SQL,
+  WOC_MARKET_SALES_REALM_INDEX_SQL,
+  WOC_MARKET_SALES_REALM_INVALID_INDEX_CHECK_SQL,
+  WOC_MARKET_SALES_REALM_INVALID_INDEX_DROP_SQL,
+  WOC_MARKET_SALES_SELLER_INDEX_SQL,
+  WOC_MARKET_SALES_SELLER_INVALID_INDEX_CHECK_SQL,
+  WOC_MARKET_SALES_SELLER_INVALID_INDEX_DROP_SQL,
+} from './legacy_crypto_schema_db';
 import {
   PLAY_SESSIONS_OPEN_INDEX_SQL,
   PLAY_SESSIONS_OPEN_INVALID_INDEX_CHECK_SQL,
@@ -71,21 +80,6 @@ import {
   REFERRAL_FRIEND_PAGE_INVALID_CHECK_SQL,
   REFERRAL_FRIEND_PAGE_INVALID_DROP_SQL,
 } from './referral_indexes';
-import {
-  WOC_MARKET_OPS_CLOSED_INDEX_SQL,
-  WOC_MARKET_OPS_CLOSED_INVALID_INDEX_CHECK_SQL,
-  WOC_MARKET_OPS_CLOSED_INVALID_INDEX_DROP_SQL,
-} from './woc_market_ops_listings_index';
-import {
-  WOC_MARKET_SALES_REALM_INDEX_SQL,
-  WOC_MARKET_SALES_REALM_INVALID_INDEX_CHECK_SQL,
-  WOC_MARKET_SALES_REALM_INVALID_INDEX_DROP_SQL,
-} from './woc_market_sales_realm_index';
-import {
-  WOC_MARKET_SALES_SELLER_INDEX_SQL,
-  WOC_MARKET_SALES_SELLER_INVALID_INDEX_CHECK_SQL,
-  WOC_MARKET_SALES_SELLER_INVALID_INDEX_DROP_SQL,
-} from './woc_market_sales_seller_index';
 
 export interface ConcurrentIndexMigration {
   name: string;
@@ -105,6 +99,7 @@ export const CONCURRENT_INDEX_MIGRATIONS: readonly ConcurrentIndexMigration[] = 
     checkSql: PLAYER_METRICS_INVALID_INDEX_CHECK_SQL,
     dropSql: PLAYER_METRICS_INVALID_INDEX_DROP_SQL,
   },
+  // LEGACY (server/legacy_crypto_schema_db.ts): the retired Daily Rewards log.
   {
     name: 'daily_reward_events_account_day_created_id',
     createSql: DAILY_REWARD_EVENTS_CONCURRENT_INDEX_SQL,
@@ -178,6 +173,7 @@ export const CONCURRENT_INDEX_MIGRATIONS: readonly ConcurrentIndexMigration[] = 
   },
   // The Exchange's seller click-through read (woc_market_db.ts
   // salesForSeller). See woc_market_sales_seller_index.ts.
+  // LEGACY (server/legacy_crypto_schema_db.ts): the retired Exchange tables.
   {
     name: 'woc_market_sales_seller',
     createSql: WOC_MARKET_SALES_SELLER_INDEX_SQL,

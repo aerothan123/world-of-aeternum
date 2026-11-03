@@ -5,6 +5,7 @@ import { grantHoardReward } from '../src/sim/rift/hoard_reward_grant';
 import type { Sim } from '../src/sim/sim';
 import type { BankLedgerOutboxSnapshot } from './bank_ledger_outbox';
 import { bankLedgerSaveEffects } from './bank_ledger_session';
+import type { CharacterSaveArgs } from './character_save_args';
 import { pool, saveCharacterStateOnClient } from './db';
 import { backendCancelViaPool } from './db_transaction_deadline';
 import { REALM } from './realm';
@@ -13,7 +14,6 @@ import type { StorageAppliedEffect } from './storage_purchase_db';
 import { commitVaultDirectClaim, type VaultDirectClaimResult } from './vault_direct_claim';
 import { type PreparedVaultReward, prepareVaultRewardTracking } from './vault_reward_tracking';
 import type { VaultRewardClaim } from './vault_rewards_db';
-import type { CharacterSaveArgs } from './woc_market_character_save';
 
 const cancelVaultBackend = backendCancelViaPool(pool);
 

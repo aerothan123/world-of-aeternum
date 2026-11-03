@@ -59,17 +59,6 @@ export type HttpMethod = (typeof HTTP_METHODS)[number];
 //   admin         an admin account (isAdminAccount)
 //   secret-deploy the x-woc-deploy-secret shared secret (RESTART_COUNTDOWN_SECRET)
 //   secret-discord the x-woc-discord-secret shared secret (DISCORD_BOT_SECRET)
-//   secret-daily-reward the x-woc-daily-reward-secret shared secret
-//                 (WOC_DAILY_REWARD_SERVICE_SECRET). Unlike the other two secret
-//                 scopes' feature-off 404, this gate FAILS CLOSED: an unset env
-//                 AND a wrong header both answer 401 'not authenticated'
-//                 (daily_rewards.ts internalAuthorized), and it never falls back
-//                 to RESTART_COUNTDOWN_SECRET.
-//   secret-dashboard  x-woc-dashboard-secret / DASHBOARD_INTERNAL_SECRET, the
-//                 internal ops dashboard's own gate. Deliberately NOT the deploy
-//                 or discord secret: the dashboard reads player trade history, so
-//                 its credential must be revocable without taking down deploys or
-//                 the bot.
 //   dev-gated     guarded by ALLOW_DEV_COMMANDS=1
 export const AUTH_SCOPE = {
   public: 'public',
@@ -78,8 +67,6 @@ export const AUTH_SCOPE = {
   admin: 'admin',
   secretDeploy: 'secret-deploy',
   secretDiscord: 'secret-discord',
-  secretDailyReward: 'secret-daily-reward',
-  secretDashboard: 'secret-dashboard',
   devGated: 'dev-gated',
 } as const;
 export type AuthScope = (typeof AUTH_SCOPE)[keyof typeof AUTH_SCOPE];

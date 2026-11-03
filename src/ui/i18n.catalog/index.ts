@@ -889,7 +889,7 @@ export const en = {
     unlink: 'Unlink',
     unlinkTitle: 'Remove wallet verification from this account',
     unlinkAria: 'Remove wallet verification from this account',
-    // The R11 re-auth prompt (src/ui/wallet_reauth_prompt.ts): changing or
+    // RETIRED: the R11 re-auth prompt (removed with wallet linking): changing or
     // removing a linked wallet asks for the account password first.
     reauthTitle: 'Confirm wallet change',
     reauthUnlinkTitle: 'Confirm wallet removal',

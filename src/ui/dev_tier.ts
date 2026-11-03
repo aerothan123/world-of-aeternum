@@ -1,7 +1,7 @@
 // Presentation layer for the developer-badge tier ladder ("The Contributor
 // Ladder", part of the Ascendant Sigils system).
 //
-// Mirrors src/ui/holder_tier.ts and src/ui/discord_tier.ts: the pure thresholds
+// Mirrors src/ui/discord_tier.ts: the pure thresholds
 // live in src/sim/dev_tier.ts; this module adds the localized display name, the
 // flavor line, the accent colors, and the procedural SVG badge art the HUD,
 // nameplate, and player card render. It is DOM-free apart from building an SVG

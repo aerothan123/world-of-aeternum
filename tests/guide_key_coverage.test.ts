@@ -177,6 +177,32 @@ function contentOf(file: string): string {
   return content;
 }
 
+/**
+ * Every dotted-identifier span that appears on a non-comment line of `files`, as a set:
+ * each maximal run of `word(.word)*` contributes all of its contiguous segment spans, so a
+ * key is in the set exactly when liveReferences would find it at a segment boundary. One
+ * pass over the corpus instead of one per key: RETIRED_KEYS grew past seven hundred
+ * entries with the crypto removal, and the per-key regex scan stopped fitting the budget.
+ * A hit is re-checked through liveReferences, so the set only ever narrows the work.
+ */
+function referencedSpans(files: string[]): Set<string> {
+  const spans = new Set<string>();
+  const run = /[A-Za-z0-9_]+(?:\.[A-Za-z0-9_]+)+/g;
+  for (const file of files) {
+    for (const line of contentOf(file).split('\n')) {
+      const trimmed = line.trim();
+      if (trimmed.startsWith('//') || trimmed.startsWith('*')) continue;
+      for (const m of line.matchAll(run)) {
+        const parts = m[0].split('.');
+        for (let i = 0; i < parts.length; i++) {
+          for (let j = i + 2; j <= parts.length; j++) spans.add(parts.slice(i, j).join('.'));
+        }
+      }
+    }
+  }
+  return spans;
+}
+
 function liveReferences(key: string, files: string[]): string[] {
   const re = new RegExp(`${key.replace(/\./g, '\\.')}(?![A-Za-z0-9_])`);
   const hits: string[] = [];
@@ -301,7 +327,10 @@ describe('Guide key coverage', () => {
   });
 
   it('has no retired key that is still referenced in src/', () => {
-    const resurrected = RETIRED_KEYS.filter((k) => liveReferences(k, files).length > 0)
+    const spans = referencedSpans(files);
+    const resurrected = RETIRED_KEYS.filter(
+      (k) => spans.has(k) && liveReferences(k, files).length > 0,
+    )
       .map((k) => `${k} <- ${liveReferences(k, files).join(', ')}`)
       .sort();
     expect(

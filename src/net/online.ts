@@ -327,8 +327,6 @@ export type {
   RealmEntry,
   RealmType,
   ReleaseEntry,
-  SeekerEntitlementStatus,
-  WalletReauthProof,
 } from './rest_types';
 
 import type { AccountInfo, RealmDirectory, ReleaseEntry } from './rest_types';

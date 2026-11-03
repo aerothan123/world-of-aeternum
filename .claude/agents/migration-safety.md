@@ -64,7 +64,7 @@ that out wastes budget. Gate yourself before reading any file:
    staged, `git diff --name-only "$(git merge-base HEAD "$(git rev-parse --abbrev-ref '@{upstream}' 2>/dev/null || echo origin/main)")"..HEAD`.
 2. You are IN SCOPE if any changed path is `server/db.ts`, any other `server/*_db.ts` (for
    example `social_db.ts`, `oauth_db.ts`, `chat_filter_db.ts`), a dedicated schema module
-   such as `server/daily_rewards_schema.ts` (any file exporting DDL that `ensureSchema()`
+   such as `server/legacy_crypto_schema_db.ts` (any file exporting DDL that `ensureSchema()`
    applies), `server/concurrent_indexes.ts` (the CONCURRENTLY index registry), or a file
    that serializes/deserializes a persisted JSONB blob
    (`characters.state` in `server/db.ts` / `server/game.ts`; `world_state` / `MarketSave` /

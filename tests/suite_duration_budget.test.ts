@@ -106,10 +106,6 @@ const FILE_ALLOWANCE_LEDGER: ReadonlyMap<string, number> = new Map([
   // run, so it takes the long-sims 120 s budget beside the 300 s contract case:
   // 120_000 + 300_000 = 420_000 (the same shape as the chronomancy targets).
   ['tests/owned_class_balance_groveheart.test.ts', 420_000],
-  // The shared PostgreSQL escrow fixture carries a 30s setup hook plus ten
-  // independently bounded 30s cases. The exact row records that existing
-  // parallelizable shape without promoting the suite into the measured lane.
-  ['tests/woc_market_delivery_pg_integration.test.ts', 330_000],
   // The 2026-08-23 warlock viability round doubled each anchor file's scope
   // (the heroic Nythraxis contract plus the historical level-20 tripwire,
   // four probe runs each); same suite family as the druid/owned probes above.

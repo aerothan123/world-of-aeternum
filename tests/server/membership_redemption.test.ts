@@ -9,12 +9,12 @@ vi.mock('../../server/db', () => ({
 
 import { lockCharacterSaveEffectAccountsOnClient } from '../../server/bank_ledger_save_effects_db';
 import { PROCESS_LEASE_HOLDER } from '../../server/character_lease_db';
+import type { CharacterSaveArgs } from '../../server/character_save_args';
 import {
   consumeMembershipToken,
   redeemMembershipTokenAtomic,
 } from '../../server/membership_redemption_db';
 import { REALM } from '../../server/realm';
-import type { CharacterSaveArgs } from '../../server/woc_market_character_save';
 import { MEMBERSHIP_ITEM_DURATION_MS } from '../../src/membership_contract';
 import type { CharacterState } from '../../src/sim/character_state';
 import type { InvSlot } from '../../src/sim/types';

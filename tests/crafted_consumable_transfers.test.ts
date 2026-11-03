@@ -8,7 +8,6 @@ import {
   type GuildBankOpDelta,
   revertGuildBankDeltasTo,
 } from '../src/sim/guild_bank';
-import { extractTradableCopy } from '../src/sim/inventory_extract';
 import { countMatchingUnlocked, grantCopies } from '../src/sim/item_instance_transfer';
 import { planMaterialMailAttachments } from '../src/sim/mail/material_attachment_plan';
 import type { PlayerMeta } from '../src/sim/sim';
@@ -150,16 +149,13 @@ describe('crafted consumable custody', () => {
   });
 
   it.each([{ boundTo: 7 }, { bindOnTrade: true }, { locked: true }])(
-    'refuses restricted mixed potion sources in mail and escrow: %j',
+    'refuses restricted mixed potion sources in mail: %j',
     (instance) => {
       const inventory: InvSlot[] = [{ ...mixed(), instance }];
       expect(planMaterialMailAttachments(inventory, [{ itemId: POTION, count: 1 }])).toEqual({
         ok: false,
         error: 'insufficient',
       });
-      expect(extractTradableCopy(inventory, { index: 0, itemId: POTION }, ITEMS[POTION]).ok).toBe(
-        false,
-      );
       expect(inventory).toEqual([{ ...mixed(), instance }]);
     },
   );
@@ -200,19 +196,5 @@ describe('crafted consumable custody', () => {
     expect(pinnedTradeUnits(request)).toBeNull();
     expect(inventory[0].count).toBe(2);
     expect(countMatchingUnlocked({ inventory } as PlayerMeta, POTION, { signer: 'Bru' })).toBe(2);
-  });
-
-  it('extracts one exact escrow unit while conserving the remaining sources', () => {
-    const inventory = [mixed()];
-    const result = extractTradableCopy(inventory, { index: 0, itemId: POTION }, ITEMS[POTION]);
-    expect(result).toEqual({
-      ok: true,
-      extracted: {
-        ...mixed(),
-        count: 1,
-        materialSources: [{ source: { signer: 'Ana' }, count: 1 }],
-      },
-    });
-    expect(inventory[0].materialSources).toEqual([{ source: { signer: 'Bru' }, count: 2 }]);
   });
 });

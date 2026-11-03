@@ -10,6 +10,7 @@ import {
   type CharacterSaveAccountLockProof,
   lockCharacterSaveAccountParentOnClient,
 } from './bank_ledger_save_effects_db';
+import type { CharacterSaveArgs } from './character_save_args';
 import {
   backendCancelViaPool,
   createDbTransactionDeadline,
@@ -17,7 +18,6 @@ import {
 } from './db_transaction_deadline';
 import type { FirstPaidFeedReceipt } from './referral_economy_delivery';
 import { referralDiagnostics } from './referral_metrics';
-import type { CharacterSaveArgs } from './woc_market_character_save';
 
 export const REFERRAL_PAGE_SIZE = 50;
 export const REFERRAL_SQL_TIMEOUT_MS = 5_000;

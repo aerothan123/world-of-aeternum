@@ -1,6 +1,6 @@
 // The Curator sigil: the Reliquary's rank-5 honor mark on the click-inspect card.
 //
-// Mirrors the shape pins tests/holder_tier.test.ts gives the $WOC ladder art,
+// Mirrors the shape pins the retired holder-tier ladder art carried,
 // because the sigil ships through the same three contracts: it is a self-contained
 // SVG data URL an <img> can load, it is font-free and filter-free (a <filter>
 // would not survive the badge's own CSS drop-shadow stack and is what the family

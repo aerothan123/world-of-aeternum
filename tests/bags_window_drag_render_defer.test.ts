@@ -57,10 +57,8 @@ function harness() {
           inventory = next;
         },
       }) as unknown as IWorld,
-    wocBalanceHtml: () => '',
     claudiumLauncherHtml: () => '',
     openClaudium: noop,
-    openWallet: noop,
     hideTooltip: noop,
     consumePeek: () => false,
     cancelPetFeed: noop,

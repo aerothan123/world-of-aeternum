@@ -569,8 +569,6 @@ export interface AccountDetail {
   chatMuteReason: string;
   chatStrikes: number;
   generalChatRateLimit: GeneralChatRateLimit | null;
-  dailyRewardsBan?: { reason: string; createdAt: string; expiresAt: string | null } | null;
-  dailyRewardsIpBans?: { ip: string; reason: string; createdAt: string }[];
   // The operator-applied Cheater mark: remaining played-second budget, audited
   // reason, and when it was applied. Null when the account is not marked.
   cheaterMark?: { secondsRemaining: number; reason: string; setAt: string | null } | null;
@@ -602,22 +600,6 @@ export interface AccountDetail {
     ip: string | null;
   }[];
   moderationHistory: ModerationHistoryEntry[];
-}
-
-export interface DailyRewardPointEventRow {
-  id: number;
-  createdAt: string;
-  kind: string;
-  points: number;
-  totalPoints: number;
-  meta: Record<string, unknown>;
-}
-
-export interface DailyRewardPointEventLog {
-  day: string;
-  rows: DailyRewardPointEventRow[];
-  total: number;
-  truncated: boolean;
 }
 
 export interface ModerationHistoryEntry {

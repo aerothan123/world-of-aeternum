@@ -22,12 +22,8 @@ import {
   CHARACTER_DELETE_POLICY,
   CHARACTER_RENAME_POLICY,
   CHARACTER_TAKEOVER_POLICY,
-  CLAUDIUM_CONFIRM_POLICY,
-  CLAUDIUM_CONFIRM_PRE_AUTH_POLICY,
   CLAUDIUM_PURCHASE_POLICY,
   CLAUDIUM_PURCHASE_PRE_AUTH_POLICY,
-  CLAUDIUM_QUOTE_POLICY,
-  CLAUDIUM_QUOTE_PRE_AUTH_POLICY,
   CLAUDIUM_SPEND_POLICY,
   CLAUDIUM_SPEND_PRE_AUTH_POLICY,
   DISCORD_POLICY,
@@ -36,18 +32,12 @@ import {
   REPORTS_CREATE_POLICY,
   rateLimit,
   resetTier2ErrorLogThrottle,
-  SEEKER_SPIN_VERIFY_POLICY,
-  WALLET_LINK_POLICY,
-  WOC_BALANCE_POLICY,
-  WOC_MARKET_READ_POLICY,
 } from '../../../server/http/middleware/rate_limit';
 import type { RateLimitOutcome, RateLimitStore } from '../../../server/http/types';
 import {
   CARD_UPLOAD_MAX_PER_MINUTE,
   CHARACTER_MUTATION_MAX_PER_MINUTE,
-  CLAUDIUM_CONFIRM_MAX_PER_MINUTE,
   CLAUDIUM_PURCHASE_MAX_PER_MINUTE,
-  CLAUDIUM_QUOTE_MAX_PER_MINUTE,
   CLAUDIUM_SPEND_MAX_PER_MINUTE,
   DISCORD_MAX_PER_MINUTE,
   PUBLIC_READ_MAX_PER_MINUTE,
@@ -55,17 +45,11 @@ import {
   resetCardUploadRateLimits,
   resetClaudiumMutationRateLimits,
   resetDiscordRateLimits,
+  resetPublicReadRateLimits,
   resetRateLimitClock,
-  resetWalletLinkRateLimits,
-  resetWocBalanceRateLimits,
-  resetWocMarketMutationRateLimits,
-  SEEKER_SPIN_VERIFY_MAX_PER_MINUTE,
   setRateLimitClock,
   setRateLimitTier2Store,
-  WALLET_LINK_MAX_PER_MINUTE,
   WINDOW_MS,
-  WOC_BALANCE_MAX_PER_MINUTE,
-  WOC_MARKET_READ_MAX_PER_MINUTE,
 } from '../../../server/ratelimit';
 import { createPgRateLimitStore } from '../../../server/ratelimit_db';
 import { fakeCtx } from '../helpers/fake_ctx';
@@ -111,7 +95,7 @@ class RecordingAttackSignalSink implements AttackSignalSink {
 
 beforeEach(() => {
   setRateLimitClock(() => PINNED);
-  resetWocBalanceRateLimits();
+  resetPublicReadRateLimits();
   resetCardUploadRateLimits();
   resetClaudiumMutationRateLimits();
 });
@@ -120,7 +104,7 @@ afterEach(() => {
   // ALWAYS restore the clock AND the tier-2 slot so nothing leaks across tests.
   resetRateLimitClock();
   setRateLimitTier2Store(null);
-  resetWocBalanceRateLimits();
+  resetPublicReadRateLimits();
   resetCardUploadRateLimits();
   resetClaudiumMutationRateLimits();
   resetTier2ErrorLogThrottle();
@@ -129,13 +113,13 @@ afterEach(() => {
 describe('rateLimit: tier-1 ip policy flood', () => {
   it('allows up to the cap, then rejects the next call with an accurate 429', async () => {
     const ctx = fakeCtx();
-    for (let i = 0; i < WOC_BALANCE_MAX_PER_MINUTE; i++) {
-      await expect(rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {})).resolves.toBeUndefined();
+    for (let i = 0; i < PUBLIC_READ_MAX_PER_MINUTE; i++) {
+      await expect(rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {})).resolves.toBeUndefined();
     }
     // At the pinned clock the whole window filled at PINNED, so resetSeconds is the
     // full window (60): the accurate per-request value happens to equal the old
     // constant here, and remaining has bottomed out at 0.
-    await expect(rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {})).rejects.toMatchObject({
+    await expect(rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {})).rejects.toMatchObject({
       status: 429,
       code: 'rate_limit.exceeded',
       params: { retryAfterSeconds: WINDOW_SECONDS },
@@ -144,25 +128,25 @@ describe('rateLimit: tier-1 ip policy flood', () => {
 
   it('emits the exact draft-11 headers on the 429 (r=0, t=window, q=limit, w=window)', async () => {
     const ctx = fakeCtx();
-    for (let i = 0; i < WOC_BALANCE_MAX_PER_MINUTE; i++) {
-      await rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {});
+    for (let i = 0; i < PUBLIC_READ_MAX_PER_MINUTE; i++) {
+      await rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {});
     }
     try {
-      await rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {});
+      await rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {});
       throw new Error('expected rateLimit to reject');
     } catch (err) {
       const e = err as { headers?: Record<string, string>; params?: Record<string, number> };
       expect(e.params?.retryAfterSeconds).toBe(WINDOW_SECONDS);
       expect(e.headers?.['Retry-After']).toBe(String(WINDOW_SECONDS));
-      expect(e.headers?.RateLimit).toBe(`"woc_balance";r=0;t=${WINDOW_SECONDS}`);
-      expect(e.headers?.['RateLimit-Policy']).toBe(`"woc_balance";q=20;w=${WINDOW_SECONDS}`);
+      expect(e.headers?.RateLimit).toBe(`"public_read";r=0;t=${WINDOW_SECONDS}`);
+      expect(e.headers?.['RateLimit-Policy']).toBe(`"public_read";q=60;w=${WINDOW_SECONDS}`);
 
       // The headers survive applyImpliedHeaders and reach the serialized response.
       const serialized = mapError(err, fakeCtx(), { surface: 'problem' });
       expect(serialized.status).toBe(429);
       expect(serialized.headers['Retry-After']).toBe(String(WINDOW_SECONDS));
-      expect(serialized.headers.RateLimit).toBe(`"woc_balance";r=0;t=${WINDOW_SECONDS}`);
-      expect(serialized.headers['RateLimit-Policy']).toBe(`"woc_balance";q=20;w=${WINDOW_SECONDS}`);
+      expect(serialized.headers.RateLimit).toBe(`"public_read";r=0;t=${WINDOW_SECONDS}`);
+      expect(serialized.headers['RateLimit-Policy']).toBe(`"public_read";q=60;w=${WINDOW_SECONDS}`);
     }
   });
 });
@@ -170,15 +154,15 @@ describe('rateLimit: tier-1 ip policy flood', () => {
 describe('rateLimit: window reset', () => {
   it('allows a call again once the window has fully elapsed', async () => {
     const ctx = fakeCtx();
-    for (let i = 0; i < WOC_BALANCE_MAX_PER_MINUTE; i++) {
-      await rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {});
+    for (let i = 0; i < PUBLIC_READ_MAX_PER_MINUTE; i++) {
+      await rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {});
     }
-    await expect(rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {})).rejects.toMatchObject({
+    await expect(rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {})).rejects.toMatchObject({
       status: 429,
       code: 'rate_limit.exceeded',
     });
     setRateLimitClock(() => PINNED + WINDOW_MS + 1);
-    await expect(rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {})).resolves.toBeUndefined();
+    await expect(rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {})).resolves.toBeUndefined();
   });
 });
 
@@ -204,26 +188,12 @@ describe('rateLimit: ip+account policy', () => {
   });
 });
 
-describe('rateLimit: wallet-link and discord ip+account policies', () => {
+describe('rateLimit: discord ip+account policy', () => {
   beforeEach(() => {
-    resetWalletLinkRateLimits();
     resetDiscordRateLimits();
   });
   afterEach(() => {
-    resetWalletLinkRateLimits();
     resetDiscordRateLimits();
-  });
-
-  it('WALLET_LINK_POLICY is ip+account and 429s once its cap is exceeded', async () => {
-    expect(WALLET_LINK_POLICY.keyClass).toBe('ip+account');
-    const ctx = fakeCtx({ account: { accountId: 11, scope: 'full' } });
-    for (let i = 0; i < WALLET_LINK_MAX_PER_MINUTE; i++) {
-      await rateLimit(WALLET_LINK_POLICY)(ctx, async () => {});
-    }
-    await expect(rateLimit(WALLET_LINK_POLICY)(ctx, async () => {})).rejects.toMatchObject({
-      status: 429,
-      code: 'rate_limit.exceeded',
-    });
   });
 
   it('DISCORD_POLICY is ip+account and 429s once its cap is exceeded', async () => {
@@ -251,7 +221,7 @@ describe('rateLimit: allowed call', () => {
   it('runs next() when under the limit and no tier-2 store is wired', async () => {
     const ctx = fakeCtx();
     let nextRan = false;
-    await rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {
+    await rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {
       nextRan = true;
     });
     expect(nextRan).toBe(true);
@@ -265,15 +235,15 @@ describe('rateLimit: tier-1 rejects before tier-2', () => {
     const ctx = fakeCtx();
 
     // The under-cap portion passes tier-1 and DOES record one tier-2 hit each.
-    for (let i = 0; i < WOC_BALANCE_MAX_PER_MINUTE; i++) {
-      await rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {});
+    for (let i = 0; i < PUBLIC_READ_MAX_PER_MINUTE; i++) {
+      await rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {});
     }
-    expect(store.hits.length).toBe(WOC_BALANCE_MAX_PER_MINUTE);
+    expect(store.hits.length).toBe(PUBLIC_READ_MAX_PER_MINUTE);
     const hitsAtCap = store.hits.length;
 
     // Every over-cap attempt is rejected at tier-1 and must NOT reach pg.
     for (let i = 0; i < 5; i++) {
-      await expect(rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {})).rejects.toMatchObject({
+      await expect(rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {})).rejects.toMatchObject({
         status: 429,
       });
     }
@@ -292,18 +262,18 @@ describe('rateLimit: tier-2 trip', () => {
     const ctx = fakeCtx();
 
     try {
-      await rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {});
+      await rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {});
       throw new Error('expected tier-2 rejection');
     } catch (err) {
       const e = err as { headers?: Record<string, string>; params?: Record<string, number> };
       expect(e.params?.retryAfterSeconds).toBe(17);
       expect(e.headers?.['Retry-After']).toBe('17');
-      expect(e.headers?.RateLimit).toBe('"woc_balance";r=3;t=17');
-      expect(e.headers?.['RateLimit-Policy']).toBe(`"woc_balance";q=20;w=${WINDOW_SECONDS}`);
+      expect(e.headers?.RateLimit).toBe('"public_read";r=3;t=17');
+      expect(e.headers?.['RateLimit-Policy']).toBe(`"public_read";q=60;w=${WINDOW_SECONDS}`);
     }
     // tier-1 allowed, so tier-2 was consulted exactly once (ip-only policy).
     expect(store.hits).toEqual([
-      { key: `woc_balance:ip:${ctx.ip}`, max: WOC_BALANCE_MAX_PER_MINUTE },
+      { key: `public_read:ip:${ctx.ip}`, max: PUBLIC_READ_MAX_PER_MINUTE },
     ]);
   });
 });
@@ -319,7 +289,7 @@ describe('rateLimit: tier-2 fails open', () => {
     let nextRan = false;
 
     await expect(
-      rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {
+      rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {
         nextRan = true;
       }),
     ).resolves.toBeUndefined();
@@ -339,13 +309,13 @@ describe('rateLimit: tier-2 fails open', () => {
     setRateLimitTier2Store(store);
     const ctx = fakeCtx();
 
-    await rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {});
-    await rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {});
+    await rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {});
+    await rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {});
     expect(errSpy).toHaveBeenCalledTimes(1);
 
     // A full window later the next failure logs again.
     setRateLimitClock(() => PINNED + WINDOW_MS);
-    await rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {});
+    await rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {});
     expect(errSpy).toHaveBeenCalledTimes(2);
     errSpy.mockRestore();
   });
@@ -387,17 +357,10 @@ describe('rateLimit: policy derivation guard', () => {
     // Import the constants by identity so a re-typed literal (e.g. limit: 20) fails.
     const table: ReadonlyArray<{ policy: RateLimitPolicy; limit: number }> = [
       { policy: PUBLIC_READ_POLICY, limit: PUBLIC_READ_MAX_PER_MINUTE },
-      { policy: WOC_BALANCE_POLICY, limit: WOC_BALANCE_MAX_PER_MINUTE },
       { policy: CARD_UPLOAD_POLICY, limit: CARD_UPLOAD_MAX_PER_MINUTE },
-      { policy: WALLET_LINK_POLICY, limit: WALLET_LINK_MAX_PER_MINUTE },
-      { policy: SEEKER_SPIN_VERIFY_POLICY, limit: SEEKER_SPIN_VERIFY_MAX_PER_MINUTE },
       { policy: CLAUDIUM_PURCHASE_PRE_AUTH_POLICY, limit: CLAUDIUM_PURCHASE_MAX_PER_MINUTE },
-      { policy: CLAUDIUM_QUOTE_PRE_AUTH_POLICY, limit: CLAUDIUM_QUOTE_MAX_PER_MINUTE },
-      { policy: CLAUDIUM_CONFIRM_PRE_AUTH_POLICY, limit: CLAUDIUM_CONFIRM_MAX_PER_MINUTE },
       { policy: CLAUDIUM_SPEND_PRE_AUTH_POLICY, limit: CLAUDIUM_SPEND_MAX_PER_MINUTE },
       { policy: CLAUDIUM_PURCHASE_POLICY, limit: CLAUDIUM_PURCHASE_MAX_PER_MINUTE },
-      { policy: CLAUDIUM_QUOTE_POLICY, limit: CLAUDIUM_QUOTE_MAX_PER_MINUTE },
-      { policy: CLAUDIUM_CONFIRM_POLICY, limit: CLAUDIUM_CONFIRM_MAX_PER_MINUTE },
       { policy: CLAUDIUM_SPEND_POLICY, limit: CLAUDIUM_SPEND_MAX_PER_MINUTE },
       { policy: CHARACTER_CREATE_POLICY, limit: CHARACTER_MUTATION_MAX_PER_MINUTE },
       { policy: CHARACTER_RENAME_POLICY, limit: CHARACTER_MUTATION_MAX_PER_MINUTE },
@@ -412,13 +375,9 @@ describe('rateLimit: policy derivation guard', () => {
       // Every mounted-and-unmounted policy is pg-global backed in the table.
       expect(policy.tier2, `${policy.name} tier2`).toBe('global');
     }
-    // The ONE sanctioned tier-1-only opt-out, pinned beside the rule it
-    // excepts: the marketplace's polled GET surface, where tier-2 'global'
-    // would spend two rate_limits UPSERTs per ALLOWED poll. A second silent
-    // 'none' belongs in this test or it does not ship.
-    expect(WOC_MARKET_READ_POLICY.tier2).toBe('none');
-    expect(WOC_MARKET_READ_POLICY.limit).toBe(WOC_MARKET_READ_MAX_PER_MINUTE);
-    expect(WOC_MARKET_READ_POLICY.windowSeconds).toBe(WINDOW_SECONDS);
+    // No shipped policy opts out of tier-2 today (the one former 'none' policy left
+    // with the retired marketplace). A new 'none' belongs in this test or it does
+    // not ship.
   });
 
   it("tier2 'none' SKIPS the store on an allowed request (the opt-out is real, not a label)", async () => {
@@ -428,18 +387,19 @@ describe('rateLimit: policy derivation guard', () => {
     // Positive control FIRST: a 'global' policy through the same store
     // records hits, proving the store is wired (a zero against an unwired
     // store would be vacuous).
-    await rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {});
+    await rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {});
     const wired = store.hits.length;
     expect(wired).toBeGreaterThan(0);
     let nextRan = false;
-    await rateLimit(WOC_MARKET_READ_POLICY)(ctx, async () => {
+    // An ad-hoc 'none' twin of the same policy: the mechanism stays supported even
+    // though no shipped policy uses it.
+    const tierOneOnly: RateLimitPolicy = { ...PUBLIC_READ_POLICY, tier2: 'none' };
+    await rateLimit(tierOneOnly)(ctx, async () => {
       nextRan = true;
     });
     expect(nextRan).toBe(true);
-    // The allowed read-policy request never touched the pg store: this is
-    // the whole point of the tier-1-only retune.
+    // The allowed request never touched the pg store: the opt-out is real.
     expect(store.hits.length).toBe(wired);
-    resetWocMarketMutationRateLimits();
   });
 });
 
@@ -456,17 +416,17 @@ describe('rateLimit: rate_limit_hits_total attack-signal counter', () => {
 
   it('records one hit with the literal (name, ip) on a tier-1 rejection', async () => {
     const ctx = fakeCtx();
-    for (let i = 0; i < WOC_BALANCE_MAX_PER_MINUTE; i++) {
-      await rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {});
+    for (let i = 0; i < PUBLIC_READ_MAX_PER_MINUTE; i++) {
+      await rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {});
     }
     // Nothing recorded while every call is under the cap.
     expect(signals.rateLimitHits).toEqual([]);
 
-    await expect(rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {})).rejects.toMatchObject({
+    await expect(rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {})).rejects.toMatchObject({
       status: 429,
       code: 'rate_limit.exceeded',
     });
-    expect(signals.rateLimitHits).toEqual([{ policy: 'woc_balance', keyKind: 'ip' }]);
+    expect(signals.rateLimitHits).toEqual([{ policy: 'public_read', keyKind: 'ip' }]);
   });
 
   it('records one hit with the literal (name, ip+account) on a tier-2 rejection', async () => {
@@ -490,7 +450,7 @@ describe('rateLimit: rate_limit_hits_total attack-signal counter', () => {
   it('records nothing for an allowed request', async () => {
     const ctx = fakeCtx();
     let nextRan = false;
-    await rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {
+    await rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {
       nextRan = true;
     });
     expect(nextRan).toBe(true);
@@ -507,15 +467,15 @@ describe('rateLimit: rate_limit_hits_total attack-signal counter', () => {
     const ctx = fakeCtx();
 
     // Fill tier-1 to the cap; each allowed call records exactly one tier-2 hit.
-    for (let i = 0; i < WOC_BALANCE_MAX_PER_MINUTE; i++) {
-      await rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {});
+    for (let i = 0; i < PUBLIC_READ_MAX_PER_MINUTE; i++) {
+      await rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {});
     }
     const tier2HitsAtCap = store.hits.length;
     expect(signals.rateLimitHits).toEqual([]);
 
     // Three over-cap attempts, each rejected at tier-1.
     for (let i = 0; i < 3; i++) {
-      await expect(rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {})).rejects.toMatchObject({
+      await expect(rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {})).rejects.toMatchObject({
         status: 429,
       });
     }
@@ -528,9 +488,9 @@ describe('rateLimit: rate_limit_hits_total attack-signal counter', () => {
     // Exactly one counter hit per rejected request: three rejections, three hits.
     expect(signals.rateLimitHits.length).toBe(3);
     expect(signals.rateLimitHits).toEqual([
-      { policy: 'woc_balance', keyKind: 'ip' },
-      { policy: 'woc_balance', keyKind: 'ip' },
-      { policy: 'woc_balance', keyKind: 'ip' },
+      { policy: 'public_read', keyKind: 'ip' },
+      { policy: 'public_read', keyKind: 'ip' },
+      { policy: 'public_read', keyKind: 'ip' },
     ]);
   });
 
@@ -553,22 +513,22 @@ describe('rateLimit: rate_limit_hits_total attack-signal counter', () => {
     const ctx = fakeCtx();
 
     // Fill tier-1 to the cap: each allowed call reaches pg once and counts once.
-    for (let i = 0; i < WOC_BALANCE_MAX_PER_MINUTE; i++) {
-      await rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {});
+    for (let i = 0; i < PUBLIC_READ_MAX_PER_MINUTE; i++) {
+      await rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {});
     }
-    expect(queries).toBe(WOC_BALANCE_MAX_PER_MINUTE);
-    expect(signals.pgLimiterWrites.length).toBe(WOC_BALANCE_MAX_PER_MINUTE);
-    expect(signals.pgLimiterWrites[0]).toBe('woc_balance');
+    expect(queries).toBe(PUBLIC_READ_MAX_PER_MINUTE);
+    expect(signals.pgLimiterWrites.length).toBe(PUBLIC_READ_MAX_PER_MINUTE);
+    expect(signals.pgLimiterWrites[0]).toBe('public_read');
 
     // Three over-cap attempts, each rejected at tier-1: pg is never queried and
     // the write counter never moves.
     for (let i = 0; i < 3; i++) {
-      await expect(rateLimit(WOC_BALANCE_POLICY)(ctx, async () => {})).rejects.toMatchObject({
+      await expect(rateLimit(PUBLIC_READ_POLICY)(ctx, async () => {})).rejects.toMatchObject({
         status: 429,
       });
     }
-    expect(queries).toBe(WOC_BALANCE_MAX_PER_MINUTE);
-    expect(signals.pgLimiterWrites.length).toBe(WOC_BALANCE_MAX_PER_MINUTE);
+    expect(queries).toBe(PUBLIC_READ_MAX_PER_MINUTE);
+    expect(signals.pgLimiterWrites.length).toBe(PUBLIC_READ_MAX_PER_MINUTE);
     expect(signals.rateLimitHits.length).toBe(3);
   });
 });

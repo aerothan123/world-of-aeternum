@@ -137,23 +137,12 @@ production.
   or a dropped PKCE / `state` parameter.
 - TOTP 2FA (`server/totp.ts`): the secret and recovery codes are never logged or returned to the
   client; a spent code or a replayed counter is rejected. Flag a missing replay guard.
-- Wallet linking (`server/wallet.ts` / `wallet_link.ts`): the ed25519 signature is verified
-  against a server-issued, single-use, short-lived challenge; the server never trusts a
-  client-asserted `$WOC` balance over `server/woc_balance.ts`. Flag a reused/absent challenge or
-  a client-supplied balance.
 - Platform ticket auth (`server/steam/` and `server/epic/`): session tickets are verified
   server-side against the platform web API, never trusted from the client; platform web API
   keys are env-sourced, never logged, never bundled. Desktop login
-  (`server/desktop_login.ts` / `desktop_login_routes.ts`) and the desktop wallet handoff
-  (`server/desktop_wallet_handoff.ts`) are code-based browser handoffs: codes must be
+  (`server/desktop_login.ts` / `desktop_login_routes.ts`) is a code-based browser handoff: codes must be
   crypto-random, single-use, and short-lived, and the status poll must not leak another
   user's result. Flag a guessable or reusable handoff code.
-- Seeker entitlement (`server/seeker_entitlement.ts` and the other `seeker_*` modules):
-  token ownership is verified against the chain through the read-only RPC transport
-  (`server/seeker_rpc_transport.ts`: HTTPS enforced, response bytes bounded, read-only
-  methods only), never accepted from a client assertion. Flag a client-supplied
-  ownership/mint claim trusted without RPC verification, a new RPC method, or a new egress
-  destination.
 
 ### 5. Parameterized SQL (CRITICAL)
 

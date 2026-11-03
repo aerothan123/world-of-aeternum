@@ -451,7 +451,6 @@ import {
   assetUploadCore,
 } from './user_assets_routes';
 import { allowedCorsOrigin, isWebClientRequest } from './web_login_guard';
-import { bustWocAuthGuardAccount } from './woc_auth_guard_cache';
 import { bustWorldQuestLeaderboardCaches, worldQuestScoresIdle } from './world_quest_leaderboard';
 import { pruneWorldQuestScoresBatch } from './world_quest_scores_db';
 import { createWsAuth } from './ws_auth';
@@ -3277,15 +3276,9 @@ export async function startServer(): Promise<http.Server> {
     activeAccountIds: () => [...game.liveAccountIds()],
     onResync: (accountIds, policies) => {
       game.resyncGeneralChatRateLimits(accountIds, policies);
-      // The auth-guard cache projects the policy columns: a resync means the
-      // rows may have moved under ANOTHER process's write, so the cached
-      // moderation rows drop too (closing the cross-process gap for this one
-      // projection slice at zero cost; every other column keeps the TTL bound).
-      for (const accountId of accountIds) bustWocAuthGuardAccount(accountId);
     },
     onChange: (accountId, policy) => {
       game.applyGeneralChatRateLimitLive(accountId, policy);
-      bustWocAuthGuardAccount(accountId);
     },
     onError: (error) => console.error('general chat quota listener failed:', error),
   });

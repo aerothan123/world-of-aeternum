@@ -10,7 +10,7 @@
 // One shared dispatch core, handleClaudiumApi(req, res, accountId), is called by
 // BOTH the migrated RouteDef handlers (registered in server/http/registry.ts) and
 // the legacy handleApi prefix arm in server/main.ts (startsWith('/api/claudium')),
-// mirroring the daily-rewards twin. The dual-edit invariant keeps them in lockstep
+// a prefix-delegated twin. The dual-edit invariant keeps them in lockstep
 // until the legacy ladder is removed.
 
 import type * as http from 'node:http';
@@ -89,7 +89,7 @@ export function resetClaudiumDbForTests(): void {
   claudiumDbOverride = undefined;
 }
 
-/** Full active-session gate (mirrors the daily-rewards prefix arm). */
+/** Full active-session gate. */
 const activeGuard = createActiveGuard(() => claudiumGuardDb());
 
 function parseRail(value: unknown): ClaudiumPriceRail | null {
@@ -327,7 +327,7 @@ export async function handleClaudiumApi(
   if (req.method === 'GET' && priceMatch) {
     const rail = parseRail(decodeURIComponent(priceMatch[1]));
     if (!rail) {
-      return json(res, 200, { rail: '', usdPerClaudium: null, wocBaseUnitsPerClaudium: null });
+      return json(res, 200, { rail: '', usdPerClaudium: null });
     }
     return json(res, 200, await claudiumPrice(rail));
   }
@@ -385,7 +385,6 @@ export async function handleClaudiumApi(
         rail: null,
         claudium: null,
         stripe: null,
-        woc: null,
         reason: 'invalid_request',
       });
     }

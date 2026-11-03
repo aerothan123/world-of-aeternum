@@ -223,13 +223,6 @@ For off-box safety, sync the directory to S3 occasionally:
 
 - **Secrets**: the Postgres password is generated at first boot into
   `/opt/eastbrook/.env` (mode 600, gitignored). Nothing else to manage.
-- **Timed Daily Rewards ban rollback**: releases with timed bans retain expired rows in
-  `daily_reward_bans` and exclude them with an `expires_at` predicate. Before rolling
-  back to a release that predates timed bans, stop every game process and remove expired
-  rows with `DELETE FROM daily_reward_bans WHERE expires_at <= now();`. The older release
-  cannot honor future expiry times. Operators must either remove still-active timed bans
-  before rollback or explicitly accept that they will become permanent until manually
-  unbanned. Do not alter the nullable `expires_at` column during rollback.
 - **Professions rollback caveats**: `characters.state` is written whole, so rolling
   back to a binary that predates a professions field erases that field on the first
   autosave. Across the professions persistence release specifically: node respawn
@@ -719,26 +712,7 @@ For off-box safety, sync the directory to S3 occasionally:
     environment (dev vs prod). If the origin's nginx (in the `ansible-scripts` repo)
     sets a Content-Security-Policy, it must allow `script-src`/`frame-src
     https://challenges.cloudflare.com` or the widget won't load.
-- **Wallet connection and linking**: injected Wallet Standard extensions and the
-  direct Phantom/Solflare iOS and Android web handoffs work without configuration.
-  To offer desktop website QR codes and handoff to Backpack, Jupiter, and other
-  external apps, create a Reown project at
-  `https://cloud.reown.com`, allow the production/staging/local website origins,
-  and set the public `VITE_REOWN_PROJECT_ID` while building the client. Connecting
-  authorizes the current browser session to ask the wallet app for signatures;
-  linking is the separate one-time signature that saves the public address to a
-  WoC account. The website Electron distribution instead opens the same deployed
-  origin in the normal browser, where an installed wallet extension authorizes a
-  short-lived link or purchase operation before returning through the app's custom
-  URL. This browser handoff needs no additional environment variable. The app never
-  receives a recovery phrase or private key. Wallet UI is enabled on website
-  desktop/mobile and the website Electron distribution,
-  and disabled on Capacitor iOS/Android and Steam. Reown AppKit 1.8 uses a
-  community license with commercial-use thresholds, so confirm the current terms
-  before production deployment. $WOC balance reads remain server-side only: set
-  `SOLANA_RPC_URL` to a production Solana RPC endpoint and leave it unprefixed so
-  API keys are not bundled into the client. `WOC_MINT` defaults to the canonical
-  token mint and should only be overridden if that mint changes. Set
+- **Player cards**: set
   `PUBLIC_ORIGIN` in single-realm production so shared player-card pages emit
   stable absolute Open Graph URLs.
 - **Steam link + achievement mirror**: players can link a Steam account so
@@ -782,49 +756,6 @@ For off-box safety, sync the directory to S3 occasionally:
   economy service, use `http://host.docker.internal:8798/v1/claudium/`.
   A separately deployed economy service should use its internal or remote DNS
   URL instead.
-- **$WOC market settlement service**: `WOC_MARKET_SERVICE_URL` points at the
-  same economy service's `/v1/market/` surface and is a SEPARATE knob from the
-  claudium URL above (the market proxy refuses to fall back to it; with the
-  market knob unset the Exchange reports itself unavailable). Same host
-  guidance as above. Health: probe `GET /v1/market/price` on this base (send
-  the shared `x-woc-economy-secret` header if the service requires it; the
-  game mirrors the reading at `/api/woc-market/status`, which needs a player
-  bearer token, so the service base is the operator probe); do not key market
-  monitoring on the service's `/v1/health` rail matrix, which has no
-  market-settlement rail (its `marketplace` rail is the character-marketplace
-  rail and names keys this market never reads). Deploy coupling: the
-  bond-quote contract is service-owned (the game sends the BID, the service
-  answers the bond), so enable the market only with BOTH sides at or after
-  the contract tips: for the service, the PR #31 build whose bond-quote
-  response carries `bondCents` (the probe: quote a bond and check the field);
-  for the game, the build that sends `bidCents`. An old GAME against the new
-  service refuses bond quotes fail-safe (the service demands the bid; no
-  money moves, bids lapse on their TTL). A new game against an OLD service is
-  TOLERATED by design: a quote without `bondCents` falls back to the game's
-  ceil mirror at the same knobs, so keep the knobs in lockstep until both
-  sides are current. The contract also reserves the confirm
-  verdict word `awaiting_finality` for LEDGER-MATCHED payments (the game's
-  anti-snipe extension trusts exactly that reservation); a service build that
-  starts emitting it optimistically is a breaking change, not a copy tweak.
-  Player-visible behavior note: listing an item and the seller side of a
-  directed acceptance now require a wallet SIGNATURE (the step-up challenge;
-  no transaction, no funds), so a seller whose wallet is linked but
-  unavailable at the moment cannot list; no knob controls this and no env
-  change accompanies it (the dev economy pair alone enables the devsig arm).
-  Security framing (be precise with operators): the step-up makes a custody
-  move require a live, attributable wallet signature, and the R11 wallet-link
-  re-auth gate (server/wallet_reauth.ts) closes the relink-first hole that
-  used to sit beside it: changing an existing wallet link now demands the
-  CURRENT wallet's co-signature or the account password plus its second
-  factor, removing one demands the password arm, and every link change emails
-  the account. Client-version note: desktop/native bundles older than R11
-  ship the pre-R11 client, which never shows the password prompt, so on
-  those builds a relink/unlink answers the generic verify-failed flash
-  until the bundle updates (the web client updates with the deploy).
-  History: docs/woc-marketplace-hardening/state.md (R11).
-- **Ops dashboard market reads**: `DASHBOARD_INTERNAL_SECRET` gates the ops
-  dashboard's `/internal/woc-market/*` reads; unset leaves them 404 (names
-  only here, the values live in deployment secrets).
 - **Never** set `ALLOW_DEV_COMMANDS=1` in production: it enables the full
   `/dev` cheat set (the level/teleport cheats the test bots use, plus item
   grants, mob spawns, instance teleports, and the dev command GUI).
@@ -1160,7 +1091,7 @@ For off-box safety, sync the directory to S3 occasionally:
   worth noticing rather than a routine boot.
 - **Env hygiene: no empty numeric placeholders.** A SET-BUT-EMPTY numeric env
   line (`CHAT_LOG_RETENTION_DAYS=`, `PORT=`, `MAX_WS_PER_IP_HARD=`,
-  `PERF_REPORT_RETENTION_DAYS=`, `DAILY_REWARD_EVENTS_RETENTION_DAYS=`,
+  `PERF_REPORT_RETENTION_DAYS=`,
   `ONLINE_SAMPLES_RETENTION_DAYS=`, `SITE_PRESENCE_RETENTION_DAYS=`,
   `PLAY_SESSION_RETENTION_DAYS=`, `ACCOUNT_IP_ASSOCIATION_RETENTION_DAYS=`) now means
   the DEFAULT, not `0`. Before the
@@ -1186,7 +1117,7 @@ For off-box safety, sync the directory to S3 occasionally:
     honestly); an explicit `0` disables the cap entirely. The default is a guard rail,
     not a capacity estimate: what a realm can actually carry depends on the host, so
     measure yours and set the number you measured.
-  - `DAILY_REWARD_EVENTS_RETENTION_DAYS=`, `ONLINE_SAMPLES_RETENTION_DAYS=`,
+  - `ONLINE_SAMPLES_RETENTION_DAYS=`,
     `SITE_PRESENCE_RETENTION_DAYS=`, `PLAY_SESSION_RETENTION_DAYS=`,
     `ACCOUNT_IP_ASSOCIATION_RETENTION_DAYS=`, and
     `UNSTUCK_REPORT_RETENTION_DAYS=` (empty) follow the
@@ -1366,10 +1297,7 @@ For off-box safety, sync the directory to S3 occasionally:
   Play-session rollback caveats, same shape: once play sessions have folded,
   a binary older than the fold reads lifetime playtime lower by the folded
   amount (character select and the admin views; the rollup rows are preserved,
-  the older readers just do not consult them), and its boot recreates the
-  daily-rewards exclusion view without the association arm, so accounts whose
-  banned-IP sessions already folded regain daily-reward eligibility until you
-  roll forward again. Folded raw session rows themselves are recoverable only
+  the older readers just do not consult them). Folded raw session rows themselves are recoverable only
   from the nightly database dump. The first sweep after this feature deploys
   also performs the largest fold it will ever do (the whole backlog, budget-
   capped per night), so the deploy-time catch-up guidance above applies with
@@ -1440,8 +1368,7 @@ The Discord bot (`bot/`) is a standalone Node process that bridges the official
 Discord server and the game: status-tier roles plus a level-on-name nickname synced
 from in-game data, presence (the online count and the featured voice room) pushed
 into the HUD widget, in-game "!" community posts relayed as embeds, a
-significant-activity feed (max level, rare drops, duels, arena), daily-rewards
-winner posts, opt-in queue-pop direct messages (a player's battleground offer or
+significant-activity feed (max level, rare drops, duels, arena), opt-in queue-pop direct messages (a player's battleground offer or
 arena seat, DMed to their linked account; no channel id to configure), and the
 consumer for the game's Discord outbox. It is a pure consumer
 of the game server: it reads and writes through the secret-gated
@@ -1495,7 +1422,6 @@ empty or non-positive value, so an unset key is always safe and a blank line in
 | `DISCORD_RELAY_CHANNEL_ID` | falls back to the test channel | Where in-game "!" community posts land. With neither this nor the test channel set, drained relay items are DROPPED after a once-per-channel notice, so set one before opening the feature to players. |
 | `DISCORD_ACTIVITY_CHANNEL_ID` | falls back to relay, then test | Where the significant-activity feed lands. Same drop rule as relay. |
 | `DISCORD_PVP_FEED_CHANNEL_ID` | unset (no fallback) | The World PvP kill feed, plus the King of the Hill spawn calls (a card when a hill is announced, with a live countdown, and another when it rises). Kills: every resolved `/pvp` kill as one line, batched into digest posts (`PVP_FEED_LINES_PER_POST` lines each, `bot/logic.ts`), names only (nobody is pinged). Deliberately has no fallback so kill volume never spills into the relay or activity channel. With it unset, drained kills are DROPPED after a once-per-channel notice, which is the off switch. |
-| `DISCORD_DAILY_REWARDS_CHANNEL_ID` | unset | Daily-rewards top-10 winner posts. Unlike relay and activity, an unset channel drops nothing: a winner day is marked on the server only after its post lands, so it is re-served until it can be announced. |
 
 **Behavior:**
 

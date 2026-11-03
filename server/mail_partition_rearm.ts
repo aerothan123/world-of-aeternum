@@ -55,7 +55,7 @@ export function takeMailPartitionsForCharacterSave(
 // drain and lose the partitions it needed for its own atomic transaction),
 // write, and rearm on failure. propagate distinguishes saveMail()'s periodic
 // flush (log and retry next cycle) from persistMailBlob()'s
-// durability-critical callers (server/woc_market_custody.ts), which must see
+// durability-critical callers, which must see
 // the failure to know their just-booked parcel is not yet durable.
 export async function writeDirtyMailPartitions<WriteContext = unknown>(
   sim: MailPartitionRearmSim,

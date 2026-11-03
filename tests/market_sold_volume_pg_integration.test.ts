@@ -12,7 +12,7 @@
 //
 // Gate: TEST_DATABASE_URL (an admin URL on the dev Postgres from npm run
 // db:up). The suite creates and drops its own database and never touches the
-// database the URL points at. Pattern: tests/woc_market_stepup_pg_integration.test.ts.
+// database the URL points at. Pattern: the other *_pg_integration suites.
 //
 // The schema is applied DIRECTLY rather than through db.ensureSchema(): what is
 // under test is this module's own DDL, and applying it in isolation is what

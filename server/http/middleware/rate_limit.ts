@@ -24,9 +24,7 @@ import {
   CARD_UPLOAD_MAX_PER_MINUTE,
   CHARACTER_MUTATION_MAX_PER_MINUTE,
   type CharacterMutationAction,
-  CLAUDIUM_CONFIRM_MAX_PER_MINUTE,
   CLAUDIUM_PURCHASE_MAX_PER_MINUTE,
-  CLAUDIUM_QUOTE_MAX_PER_MINUTE,
   CLAUDIUM_SPEND_MAX_PER_MINUTE,
   type ClaudiumMutationAction,
   cardUploadRateLimited,
@@ -46,25 +44,9 @@ import {
   rateLimitNow,
   rateLimitTier2Store,
   reportsCreateRateLimited,
-  SEEKER_SPIN_VERIFY_MAX_PER_MINUTE,
   STEAM_LINK_MAX_PER_MINUTE,
-  seekerSpinVerifyRateLimited,
   steamLinkRateLimited,
-  WALLET_HANDOFF_RESULT_MAX_PER_MINUTE,
-  WALLET_LINK_MAX_PER_MINUTE,
   WINDOW_MS,
-  WOC_BALANCE_MAX_PER_MINUTE,
-  WOC_MARKET_BID_MAX_PER_MINUTE,
-  WOC_MARKET_CONFIRM_MAX_PER_MINUTE,
-  WOC_MARKET_LIST_MAX_PER_MINUTE,
-  WOC_MARKET_QUOTE_MAX_PER_MINUTE,
-  WOC_MARKET_READ_MAX_PER_MINUTE,
-  WOC_MARKET_STEPUP_MAX_PER_MINUTE,
-  type WocMarketMutationAction,
-  walletHandoffResultRateLimited,
-  walletLinkRateLimited,
-  wocBalanceRateLimited,
-  wocMarketMutationRateLimited,
 } from '../../ratelimit';
 import { attackSignalSink } from '../attack_signals';
 import { ctxAccountId } from '../context';
@@ -80,13 +62,10 @@ export type RateLimitKeyClass = 'ip' | 'ip+account';
  * It is the deliberate per-policy opt-out the two-tier resolver spec calls
  * for: tier-2 costs one pg UPSERT per ALLOWED request (two for 'ip+account'),
  * so a mounted high-volume policy stays tier-1-only with a one-word policy
- * edit instead of a resolver change. The one 'none' policy today is
- * WOC_MARKET_READ_POLICY (the marketplace's polled GET surface): paying two
- * pg writes per ALLOWED poll would have out-costed the very reads its caches
- * remove, and the tier-1 sliding window still meters the flood per process.
- * Every other policy is 'global'; the derivation guard test pins the full
- * table, this one opt-out included, so a silently-added second 'none' fails
- * there.
+ * edit instead of a resolver change. No policy opts out today (the one
+ * former 'none' policy, the retired $WOC Exchange's polled read bucket, left
+ * with the crypto rail); the derivation guard test pins the full table, so a
+ * silently-added 'none' fails there.
  */
 export type RateLimitTier2 = 'global' | 'none';
 
@@ -216,15 +195,6 @@ export const PUBLIC_READ_POLICY: RateLimitPolicy = {
   tier2: 'global',
 };
 
-export const WOC_BALANCE_POLICY: RateLimitPolicy = {
-  name: 'woc_balance',
-  keyClass: 'ip',
-  limit: WOC_BALANCE_MAX_PER_MINUTE,
-  windowSeconds: WINDOW_SECONDS,
-  tier1: (ctx) => wocBalanceRateLimited(ctx.req),
-  tier2: 'global',
-};
-
 export const CARD_UPLOAD_POLICY: RateLimitPolicy = {
   name: 'card_upload',
   keyClass: 'ip+account',
@@ -255,33 +225,6 @@ export const EPIC_LINK_POLICY: RateLimitPolicy = {
   limit: EPIC_LINK_MAX_PER_MINUTE,
   windowSeconds: WINDOW_SECONDS,
   tier1: (ctx) => epicLinkRateLimited(ctx.req, ctxAccountId(ctx)),
-  tier2: 'global',
-};
-
-export const WALLET_LINK_POLICY: RateLimitPolicy = {
-  name: 'wallet_link',
-  keyClass: 'ip+account',
-  limit: WALLET_LINK_MAX_PER_MINUTE,
-  windowSeconds: WINDOW_SECONDS,
-  tier1: (ctx) => walletLinkRateLimited(ctx.req, ctxAccountId(ctx)),
-  tier2: 'global',
-};
-
-export const WALLET_HANDOFF_RESULT_POLICY: RateLimitPolicy = {
-  name: 'wallet_handoff_result',
-  keyClass: 'ip+account',
-  limit: WALLET_HANDOFF_RESULT_MAX_PER_MINUTE,
-  windowSeconds: WINDOW_SECONDS,
-  tier1: (ctx) => walletHandoffResultRateLimited(ctx.req, ctxAccountId(ctx)),
-  tier2: 'global',
-};
-
-export const SEEKER_SPIN_VERIFY_POLICY: RateLimitPolicy = {
-  name: 'seeker_spin_verify',
-  keyClass: 'ip+account',
-  limit: SEEKER_SPIN_VERIFY_MAX_PER_MINUTE,
-  windowSeconds: WINDOW_SECONDS,
-  tier1: (ctx) => seekerSpinVerifyRateLimited(ctx.req, ctxAccountId(ctx)),
   tier2: 'global',
 };
 
@@ -320,16 +263,6 @@ export const CLAUDIUM_PURCHASE_PRE_AUTH_POLICY: RateLimitPolicy = claudiumPreAut
   'purchase',
   CLAUDIUM_PURCHASE_MAX_PER_MINUTE,
 );
-export const CLAUDIUM_QUOTE_PRE_AUTH_POLICY: RateLimitPolicy = claudiumPreAuthPolicy(
-  'claudium_quote_pre_auth',
-  'quote',
-  CLAUDIUM_QUOTE_MAX_PER_MINUTE,
-);
-export const CLAUDIUM_CONFIRM_PRE_AUTH_POLICY: RateLimitPolicy = claudiumPreAuthPolicy(
-  'claudium_confirm_pre_auth',
-  'confirm',
-  CLAUDIUM_CONFIRM_MAX_PER_MINUTE,
-);
 export const CLAUDIUM_SPEND_PRE_AUTH_POLICY: RateLimitPolicy = claudiumPreAuthPolicy(
   'claudium_spend_pre_auth',
   'spend',
@@ -341,88 +274,10 @@ export const CLAUDIUM_PURCHASE_POLICY: RateLimitPolicy = claudiumMutationPolicy(
   'purchase',
   CLAUDIUM_PURCHASE_MAX_PER_MINUTE,
 );
-export const CLAUDIUM_QUOTE_POLICY: RateLimitPolicy = claudiumMutationPolicy(
-  'claudium_quote',
-  'quote',
-  CLAUDIUM_QUOTE_MAX_PER_MINUTE,
-);
-export const CLAUDIUM_CONFIRM_POLICY: RateLimitPolicy = claudiumMutationPolicy(
-  'claudium_confirm',
-  'confirm',
-  CLAUDIUM_CONFIRM_MAX_PER_MINUTE,
-);
 export const CLAUDIUM_SPEND_POLICY: RateLimitPolicy = claudiumMutationPolicy(
   'claudium_spend',
   'spend',
   CLAUDIUM_SPEND_MAX_PER_MINUTE,
-);
-
-// The $WOC Exchange policies: the Claudium model verbatim (per-action fused
-// ip+account buckets, mounted BEHIND the auth guard). Limits single-sourced
-// from server/ratelimit.ts so the two dispatch arms cannot drift.
-function wocMarketMutationPolicy(
-  name: string,
-  action: WocMarketMutationAction,
-  limit: number,
-): RateLimitPolicy {
-  return {
-    name,
-    keyClass: 'ip+account',
-    limit,
-    windowSeconds: WINDOW_SECONDS,
-    tier1: (ctx) => wocMarketMutationRateLimited(ctx.req, ctxAccountId(ctx), action),
-    tier2: 'global',
-  };
-}
-
-export const WOC_MARKET_LIST_POLICY: RateLimitPolicy = wocMarketMutationPolicy(
-  'woc_market_list',
-  'list',
-  WOC_MARKET_LIST_MAX_PER_MINUTE,
-);
-export const WOC_MARKET_BID_POLICY: RateLimitPolicy = wocMarketMutationPolicy(
-  'woc_market_bid',
-  'bid',
-  WOC_MARKET_BID_MAX_PER_MINUTE,
-);
-export const WOC_MARKET_QUOTE_POLICY: RateLimitPolicy = wocMarketMutationPolicy(
-  'woc_market_quote',
-  'quote',
-  WOC_MARKET_QUOTE_MAX_PER_MINUTE,
-);
-export const WOC_MARKET_CONFIRM_POLICY: RateLimitPolicy = wocMarketMutationPolicy(
-  'woc_market_confirm',
-  'confirm',
-  WOC_MARKET_CONFIRM_MAX_PER_MINUTE,
-);
-// The reads are metered too: browse and the activity fan-out each cost
-// database round trips, and /listings/:id can reach the economy service.
-// TIER-1 ONLY, the documented high-volume opt-out: this bucket now fronts the
-// POLLED surface (the Exchange's 3s awaiting-chain beat and the trade
-// window's 2s offer poll), and tier-2 'global' would spend two rate_limits
-// UPSERTs per ALLOWED poll, adding pg writes to the exact hot path the read
-// caches exist to relieve (and serializing NAT-mates on one hot row). The
-// in-process sliding window still bounds what any (ip, account) pair can
-// send this realm. Tier-1-only is SOUND because one process serves one realm
-// (the deployment shape); a realm ever fronted by multiple concurrent
-// processes must revisit this, since each process would grant a full window.
-// Flood observability is unchanged: the tier-1 429 path feeds the same
-// rate_limit_hits_total attack-signal series either way.
-export const WOC_MARKET_READ_POLICY: RateLimitPolicy = {
-  name: 'woc_market_read',
-  keyClass: 'ip+account',
-  limit: WOC_MARKET_READ_MAX_PER_MINUTE,
-  windowSeconds: WINDOW_SECONDS,
-  tier1: (ctx) => wocMarketMutationRateLimited(ctx.req, ctxAccountId(ctx), 'read'),
-  tier2: 'none',
-};
-// Step-up challenge issuance (B6/R1): its own bucket so the challenge-then-
-// create pair never halves the shared list bucket (rationale at the limit
-// constant in server/ratelimit.ts).
-export const WOC_MARKET_STEPUP_POLICY: RateLimitPolicy = wocMarketMutationPolicy(
-  'woc_market_stepup',
-  'stepup',
-  WOC_MARKET_STEPUP_MAX_PER_MINUTE,
 );
 
 // The character-mutation policies. Each is 'ip+account' (so it must be
@@ -476,7 +331,7 @@ export const CHARACTER_REROLL_POLICY: RateLimitPolicy = characterMutationPolicy(
 // BEHIND the route's auth guard) running the SAME fused mapMutationRateLimited
 // bucket the legacy /api/maps arms check, so both dispatch paths share one window.
 // The legacy arm answers a prose 429 { error: 'rate_limited' }; this policy's 429
-// is the coded rate_limit.exceeded problem (the wallet-family coded-vs-prose 429
+// is the coded rate_limit.exceeded problem (the coded-vs-prose 429
 // deviation class, recorded in known_deviations.ts).
 export const MAP_MUTATION_POLICY: RateLimitPolicy = {
   name: 'map_mutation',

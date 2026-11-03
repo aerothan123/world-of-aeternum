@@ -7,8 +7,8 @@
 // WITHOUT a DB call, so the no-auth goldens replay DB-free through both dispatch
 // paths.
 //
-// Why a shared factory (rule-of-three): server/wallet.ts, server/characters.ts,
-// and server/account.ts each grew a byte-identical `const activeGuard` copy during
+// Why a shared factory (rule-of-three): the since-retired wallet module,
+// server/characters.ts, and server/account.ts each grew a byte-identical `const activeGuard` copy during
 // their migrations, and the wallet-surface review filed the consolidation as a
 // follow-up ("do NOT add a 4th copy; extract when the next domain needs the
 // guard"). The reports surface (server/reports.ts) is that next domain, so the

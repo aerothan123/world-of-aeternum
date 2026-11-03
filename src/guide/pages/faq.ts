@@ -12,7 +12,6 @@ import { lead, related } from './ui';
 
 const QA: { q: TranslationKey; a: TranslationKey; cap?: boolean; zones?: boolean }[] = [
   { q: 'guide.faqPage.q1', a: 'guide.faqPage.a1' },
-  { q: 'guide.faqPage.q2', a: 'guide.faqPage.a2' },
   { q: 'guide.faqPage.q12', a: 'guide.faqPage.a12' },
   { q: 'guide.faqPage.q3', a: 'guide.faqPage.a3' },
   { q: 'guide.faqPage.q13', a: 'guide.faqPage.a13' },

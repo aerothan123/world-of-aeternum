@@ -11,9 +11,8 @@
 // behavioral arm, and they should be retired site by site as those arms land.
 //
 // The table is the WHOLE migrated set under src/sim/, re-derived at every release
-// sync (the v0.40.0 sync added src/sim/broker_custody.ts, a release-owned grant
-// boundary that arrived on the flat arm and was migrated in the merge; the
-// v0.41.0 sync into feature/masterwrought added that branch's two grant gates,
+// sync (the v0.40.0 sync added a marketplace escrow-custody grant boundary,
+// since retired with the crypto features; the v0.41.0 sync into feature/masterwrought added that branch's two grant gates,
 // farming.ts harvestCrop and sundering.ts sunderAdmitted, adapted from the flat
 // arm at the merge), with ONE deliberate omission:
 // src/sim/mail/post_office.ts, whose stronger pin (a positive toContain on the exact
@@ -167,22 +166,6 @@ const PINS: PoolWiringPin[] = [
         // shippedOfferUnits walk, so the model and the real removal cannot drift.
         // The site itself did not move, which is what this anchor pins.
         what: 'the fitsAfterSwap closure that budgets the units the swap will really ship',
-      },
-    ],
-    grantsOnly: true,
-  },
-  {
-    // Release-owned, and it joined the migrated set at the v0.40.0 sync rather
-    // than at phase 05: the marketplace landed this escrow-custody return on the
-    // FLAT arm, and the merge re-pointed it the way every sibling was already
-    // pointed. Listed here for the table's stated reason, that it is the WHOLE
-    // migrated set: without a row, the one thing standing between this site and
-    // a silent revert to the flat total is the merge resolution that made it.
-    path: 'src/sim/broker_custody.ts',
-    sites: [
-      {
-        fn: 'grantTradableCopyImpl',
-        what: 'the canGrantCopies gate on an escrowed copy returning to the bags',
       },
     ],
     grantsOnly: true,

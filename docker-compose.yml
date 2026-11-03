@@ -112,11 +112,6 @@ services:
       GOOGLE_PLAY_INTEGRITY_PACKAGE_NAME: ${GOOGLE_PLAY_INTEGRITY_PACKAGE_NAME:-com.worldofclaudecraft}
       GOOGLE_PLAY_INTEGRITY_CERT_DIGESTS: ${GOOGLE_PLAY_INTEGRITY_CERT_DIGESTS:-}
       GOOGLE_PLAY_INTEGRITY_DEVICE_VERDICT: ${GOOGLE_PLAY_INTEGRITY_DEVICE_VERDICT:-MEETS_DEVICE_INTEGRITY}
-      # Solana Store (Seeker) artifact allowlist: fail-closed while unset, so the
-      # Solana native-auth arm and Seeker claim/spin stay off until configured.
-      SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME: ${SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME:-}
-      SEEKER_SOLANA_INTEGRITY_CERT_DIGESTS: ${SEEKER_SOLANA_INTEGRITY_CERT_DIGESTS:-}
-      SEEKER_SOLANA_INTEGRITY_DEVICE_VERDICT: ${SEEKER_SOLANA_INTEGRITY_DEVICE_VERDICT:-MEETS_DEVICE_INTEGRITY}
       APPLE_TEAM_ID: ${APPLE_TEAM_ID:-}
       APPLE_BUNDLE_ID: ${APPLE_BUNDLE_ID:-com.worldofclaudecraft}
       APPLE_DEVICECHECK_KEY_ID: ${APPLE_DEVICECHECK_KEY_ID:-}
@@ -138,7 +133,6 @@ services:
       # safe: numberOr treats the empty string as absent.
       CHAT_LOG_RETENTION_DAYS: ${CHAT_LOG_RETENTION_DAYS:-}
       UNSTUCK_REPORT_RETENTION_DAYS: ${UNSTUCK_REPORT_RETENTION_DAYS:-}
-      DAILY_REWARD_EVENTS_RETENTION_DAYS: ${DAILY_REWARD_EVENTS_RETENTION_DAYS:-}
       ONLINE_SAMPLES_RETENTION_DAYS: ${ONLINE_SAMPLES_RETENTION_DAYS:-}
       # Runtime: the published OTA bundle manifest POST /api/ota/updates reads
       # (server/ota_updates.ts). Empty (unset) keeps OTA dark: the endpoint
@@ -177,33 +171,11 @@ services:
       GITHUB_OAUTH_CLIENT_SECRET: ${GITHUB_OAUTH_CLIENT_SECRET:-}
       GITHUB_REPO: ${GITHUB_REPO:-}
       GITHUB_TOKEN: ${GITHUB_TOKEN:-}
-      WOC_DAILY_REWARD_SERVICE_URL: ${WOC_DAILY_REWARD_SERVICE_URL:-}
-      WOC_DAILY_REWARD_SERVICE_SECRET: ${WOC_DAILY_REWARD_SERVICE_SECRET:-}
-      WOC_DAILY_REWARD_CONFIG_TTL_MS: ${WOC_DAILY_REWARD_CONFIG_TTL_MS:-}
       WOC_ECONOMY_SERVICE_URL: ${WOC_ECONOMY_SERVICE_URL:-}
       WOC_ECONOMY_INTERNAL_SECRET: ${WOC_ECONOMY_INTERNAL_SECRET:-}
       # Game memberships: exactly 1 offers them in the store (server/subscription_proxy.ts);
       # unset keeps them off.
       WOC_SUBSCRIPTIONS_ENABLED: ${WOC_SUBSCRIPTIONS_ENABLED:-}
-      # The $WOC Exchange. Ships disabled: unset leaves every path answering
-      # woc_market.disabled and the sweep never starts. WOC_MARKET_SERVICE_URL
-      # points at the economy service's /v1/market/ prefix, authenticated with
-      # the WOC_ECONOMY_INTERNAL_SECRET above (the market proxy shares it).
-      # The DEV arms are deliberately absent here: they are dev-only and this
-      # compose is the production deployment.
-      WOC_MARKET_ENABLED: ${WOC_MARKET_ENABLED:-}
-      WOC_MARKET_SERVICE_URL: ${WOC_MARKET_SERVICE_URL:-}
-      WOC_MARKET_EXCLUDED_ITEM_IDS: ${WOC_MARKET_EXCLUDED_ITEM_IDS:-}
-      WOC_MARKET_LISTINGS_RETENTION_DAYS: ${WOC_MARKET_LISTINGS_RETENTION_DAYS:-}
-      WOC_MARKET_ABANDONS_RETENTION_DAYS: ${WOC_MARKET_ABANDONS_RETENTION_DAYS:-}
-      WOC_MARKET_OFFERS_RETENTION_DAYS: ${WOC_MARKET_OFFERS_RETENTION_DAYS:-}
-      WOC_MARKET_CUSTODY_CLAIMS_RETENTION_DAYS: ${WOC_MARKET_CUSTODY_CLAIMS_RETENTION_DAYS:-}
-      WOC_MARKET_CONFIRMING_REVIEW_HOURS: ${WOC_MARKET_CONFIRMING_REVIEW_HOURS:-}
-      # WOC_MARKET_DEV_SERVICE / WOC_MARKET_DEV_PRICE_MICRO_USD are deliberately
-      # NOT passed through: compose is the production deployment and the dev
-      # economy must be unreachable from it (the ALLOW_DEV_COMMANDS posture).
-      SOLANA_RPC_URL: ${SOLANA_RPC_URL:-}
-      WOC_MINT: ${WOC_MINT:-}
       META_CAPI_PIXEL_ID: ${META_CAPI_PIXEL_ID:-}
       META_CAPI_ACCESS_TOKEN: ${META_CAPI_ACCESS_TOKEN:-}
       META_CAPI_TEST_EVENT_CODE: ${META_CAPI_TEST_EVENT_CODE:-}
@@ -324,7 +296,6 @@ services:
       DISCORD_TEST_CHANNEL_ID: ${DISCORD_TEST_CHANNEL_ID:-}
       DISCORD_RELAY_CHANNEL_ID: ${DISCORD_RELAY_CHANNEL_ID:-}
       DISCORD_ACTIVITY_CHANNEL_ID: ${DISCORD_ACTIVITY_CHANNEL_ID:-}
-      DISCORD_DAILY_REWARDS_CHANNEL_ID: ${DISCORD_DAILY_REWARDS_CHANNEL_ID:-}
       DISCORD_PVP_FEED_CHANNEL_ID: ${DISCORD_PVP_FEED_CHANNEL_ID:-}
       DISCORD_SYNC_NICKNAMES: ${DISCORD_SYNC_NICKNAMES:-1}
       # Runtime: every tuning knob the bot reads, so an operator can turn the

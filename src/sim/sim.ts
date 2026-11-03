@@ -38,7 +38,6 @@ import {
 import * as bankMod from './bank';
 import { applyBankBonusStamp, type BankState, emptyBankState } from './bank';
 import * as bankSocketsMod from './bank_sockets';
-import { extractTradableCopyImpl, grantTradableCopyImpl } from './broker_custody';
 import * as buddiesMod from './buddies';
 import { revealBuddiesOnJoin, updateBuddyReveals } from './buddy_drops';
 import { renameBuddy } from './buddy_names';
@@ -312,7 +311,6 @@ import { spawnDevHealerPracticeDummy, spawnHubPractice } from './hub_practice';
 import * as raidReadouts from './ignivar_raid_readouts';
 import * as interaction from './interaction';
 import * as inventoryConsumption from './inventory_consumption';
-import type { ExtractOutcome, ExtractRef } from './inventory_extract';
 import { grantPlainStack, type InventoryGrantOptions } from './inventory_grant';
 import { emitInventoryReceipt } from './inventory_receipt';
 import { foldNamedSlotTarget, type NamedSlotTarget } from './item_copy_ref';
@@ -7951,17 +7949,6 @@ export class Sim {
   // caller only checked countFungibleItem beforehand.
   removeFungibleItem(itemId: string, count: number, pid?: number): void {
     inventoryConsumption.removeFungibleItem(this.ctx, itemId, count, pid);
-  }
-
-  // The broker custody pair (extraction into escrow, grant back) lives in
-  // broker_custody.ts; these stay as the delegates server/woc_market_custody.ts
-  // resolves on the Sim facade.
-  extractTradableCopy(pid: number | undefined, ref: ExtractRef): ExtractOutcome {
-    return extractTradableCopyImpl(this.ctx, pid, ref);
-  }
-
-  grantTradableCopy(pid: number | undefined, slot: InvSlot): boolean {
-    return grantTradableCopyImpl(this.ctx, pid, slot);
   }
 
   // Enchanting-eligible count for `itemId` (#1712 review): a plain fungible

@@ -53,7 +53,6 @@ it.each([
         itemIcon: knownItemIconHtml,
         itemTooltip: () => '',
         moneyHtml: () => '',
-        wocBalanceHtml: () => '',
         claudiumLauncherHtml: () => '',
         attachTooltip: (element, html) => tooltips.set(element, html),
         isTouchHud: () => width < 1000,

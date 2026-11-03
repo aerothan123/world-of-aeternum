@@ -822,11 +822,11 @@ describe('ensureSchema wires every schema module at boot', () => {
     expect(h.calls.indexOf('COMMIT')).toBeGreaterThan(motdAt);
   });
 
-  it('applies the $WOC Exchange schema (listings plus a dependent table)', async () => {
-    // WOC_MARKET_SCHEMA (server/woc_market_db.ts) backs every marketplace
-    // table. Same defined-but-unwired hazard as the DISCORD_SCHEMA lesson:
-    // deleting its ensureSchema line in server/db.ts must fail here, not at
-    // the first production listing.
+  it('still applies the LEGACY $WOC Exchange schema (listings plus a dependent table)', async () => {
+    // LEGACY_WOC_MARKET_SCHEMA (server/legacy_crypto_schema_db.ts) keeps the
+    // retired marketplace tables defined so persisted databases keep loading
+    // (the tables are never dropped). Deleting its ensureSchema line in
+    // server/db.ts must fail here.
     await ensureSchema();
     const applied = h.calls.join('\n');
     expect(applied).toContain('CREATE TABLE IF NOT EXISTS woc_market_listings');

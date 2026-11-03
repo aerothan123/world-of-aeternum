@@ -4,6 +4,7 @@ import { sanitizeRemovedZone1Content } from '../src/sim/removed_zone1_content';
 import type { CharacterSaveAccountLockProof } from './bank_ledger_save_effects_db';
 import { bankLedgerSaveEffects } from './bank_ledger_session';
 import { journalCharacterSaveSources } from './character_material_sources_db';
+import type { CharacterSaveArgs } from './character_save_args';
 import {
   CHARACTER_SAVE_PREIMAGE_SELECT,
   characterUpdateStatement,
@@ -11,7 +12,6 @@ import {
 } from './character_save_statement';
 import { saveCharacterStateOnClient } from './db';
 import type { DbTransactionDeadline } from './db_transaction_deadline';
-import type { CharacterSaveArgs } from './woc_market_character_save';
 
 /** The store owns the transaction, account/character locks and expired-lease cleanup.
  * Both halves retain the canonical material-source audit in that same transaction. */

@@ -40,12 +40,9 @@ import {
   setClaudiumDbForTests,
 } from '../../server/claudium';
 import { claudiumSpend, claudiumStore, claudiumStripeWebhook } from '../../server/claudium_proxy';
-import { desktopWalletHandoffs } from '../../server/desktop_wallet_handoff';
 import { compose } from '../../server/http/compose';
 import {
-  CLAUDIUM_CONFIRM_MAX_PER_MINUTE,
   CLAUDIUM_PURCHASE_MAX_PER_MINUTE,
-  CLAUDIUM_QUOTE_MAX_PER_MINUTE,
   CLAUDIUM_SPEND_MAX_PER_MINUTE,
   resetClaudiumMutationRateLimits,
 } from '../../server/ratelimit';
@@ -80,7 +77,6 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  desktopWalletHandoffs.clear();
   resetClaudiumDbForTests();
   resetClaudiumMutationRateLimits();
   vi.unstubAllEnvs();
@@ -106,7 +102,6 @@ describe('Claudium spend entitlement mirroring', () => {
     expect(responseJson(res)).toEqual({
       rail: '',
       usdPerClaudium: null,
-      wocBaseUnitsPerClaudium: null,
     });
     expect(fetchMock).not.toHaveBeenCalled();
   });
@@ -928,7 +923,6 @@ describe('Claudium economy-service transport contract', () => {
       rail: null,
       claudium: null,
       stripe: null,
-      woc: null,
       reason: 'unavailable',
     });
   });
@@ -959,7 +953,6 @@ describe('Claudium economy-service transport contract', () => {
       rail: null,
       claudium: null,
       stripe: null,
-      woc: null,
       reason: 'rail_disabled',
     });
   });
@@ -986,7 +979,6 @@ describe('Claudium economy-service transport contract', () => {
       rail: null,
       claudium: null,
       stripe: null,
-      woc: null,
       reason: 'invalid_request',
     });
     expect(fetchMock).not.toHaveBeenCalled();
@@ -1030,7 +1022,6 @@ describe('Claudium economy-service transport contract', () => {
       rail: null,
       claudium: null,
       stripe: null,
-      woc: null,
       reason: 'unknown_sku',
     });
   });

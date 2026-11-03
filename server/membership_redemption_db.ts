@@ -3,13 +3,13 @@ import type { CharacterState } from '../src/sim/character_state';
 import { lockCharacterSaveAccountParentOnClient } from './bank_ledger_save_effects_db';
 import { bankLedgerSaveEffects } from './bank_ledger_session';
 import { PROCESS_LEASE_HOLDER } from './character_lease_db';
+import type { CharacterSaveArgs } from './character_save_args';
 import { pool, saveCharacterStateOnClient } from './db';
 import { cancelDetachedBackend } from './db_backend_cancel';
 import { createDbTransactionDeadline } from './db_transaction_deadline';
 import { extendPrepaidMembershipOnClient } from './membership_db';
 import { throwProvedRollback } from './pg_rollback_proof';
 import { REALM } from './realm';
-import type { CharacterSaveArgs } from './woc_market_character_save';
 
 export function consumeMembershipToken(state: CharacterState, index: number): boolean {
   if (!Number.isSafeInteger(index) || index < 0) return false;

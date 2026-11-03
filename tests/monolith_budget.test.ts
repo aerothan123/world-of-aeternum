@@ -1277,7 +1277,9 @@ const MONOLITHS: MonolithRow[] = [
     // in the Project H fork (a maintainer call).
     // LOWERED 11456 -> 11424 when the crypto rail (wallet, $WOC Exchange,
     // Daily Rewards, holder flair) was removed outright.
-    ceiling: 11424,
+    // Down 11424 -> 11411 at the crypto removal: the escrow extract/grant delegates left with
+    // the Exchange.
+    ceiling: 11411,
     seam: 'a sim system module behind SimContext (src/sim/CLAUDE.md)',
   },
   {
@@ -1833,7 +1835,9 @@ const MONOLITHS: MonolithRow[] = [
     // maintainer call).
     // LOWERED 9704 -> 9613 when the crypto rail (wallet, $WOC Exchange,
     // Daily Rewards, holder flair) was removed outright.
-    ceiling: 9613,
+    // Down 9613 -> 9592 at the crypto removal: the dirty guild-book escrow helpers left with
+    // the Exchange.
+    ceiling: 9592,
     seam: 'a sibling server module; see the hot-path seams in server/CLAUDE.md',
   },
   {
@@ -2037,7 +2041,8 @@ const MONOLITHS: MonolithRow[] = [
     // tavern's resting getter and sitOnSeat send. wc -l. Exact count.
     // LOWERED 5330 -> 5177 when the crypto rail (wallet, $WOC Exchange,
     // Daily Rewards, holder flair) was removed outright.
-    ceiling: 5177,
+    // Down 5177 -> 5175 at the crypto removal: the wallet REST type re-exports left.
+    ceiling: 5175,
     seam: 'a src/net sibling module (the refactor/net-online split is the template)',
   },
   {
@@ -2226,70 +2231,10 @@ const MONOLITHS: MonolithRow[] = [
     // Exact merged size; no additional coordinator logic introduced by resolution.
     // LOWERED 4499 -> 4437 when the crypto rail (wallet, $WOC Exchange,
     // Daily Rewards, holder flair) was removed outright.
-    ceiling: 4437,
+    // Down 4437 -> 4343 at the crypto removal: the wallet-link functions and the marketplace
+    // guard busts left, and the legacy crypto DDL moved to server/legacy_crypto_schema_db.ts.
+    ceiling: 4343,
     seam: 'a domain <domain>_db.ts module with its own *_SCHEMA (server/CLAUDE.md)',
-  },
-  {
-    // Entered the ratchet with the hot-path-scale work, alongside the
-    // drift-warn extraction (woc_market_drift_warn.ts) that paid for the
-    // sweep segment plan; the read caches, price cache, and watchdog are
-    // already sibling modules. The qa gate caught the review rounds growing
-    // the file past the first snapshot, and the local-ledger arithmetic
-    // (woc_market_local_ledgers.ts) moved out to pay for it; the qa
-    // session's fix round then paid its own growth with the step-up flow
-    // (woc_market_stepup_flow.ts). The retention round then folded the
-    // cascade arm's prior-winner fetch into the store and re-pinned at the
-    // shrunken count. The figure is the current count, zero headroom; the
-    // delivery arms are the next standing candidate.
-    // The delivery arms LANDED as the candidate (the escrow write-path
-    // rider): the batch driver, both residue converges, the book-once
-    // custody rail, the hand-off with its grant ledger, and the return
-    // flight moved to server/woc_market_delivery.ts behind a WocDeliveryCtx
-    // slice, paying for the rider's drain rung and re-pinning DOWN at the
-    // exact count (4484 to 3984). The FIFO close then added the
-    // persistGrantSerialized member and its contract doc to the
-    // WocMarketCustody interface the coordinator owns (4000), and the
-    // rider's review round added the remaining declaration-and-rung
-    // surface no sibling can absorb: the escrowSaturated dep with its two
-    // pre-burn rungs (a gate refusal must not consume a signed step-up
-    // challenge), the recorders' typed contended arms, and the busyParks
-    // scope field the delivery budget reads. Exactly 4037, still net 447
-    // DOWN across the rider; the ledgers stay on the service (live state)
-    // and the bond payout walk is the next standing candidate.
-    file: 'server/woc_market.ts',
-    // Down 4037 -> 4036 at the rider QA: the delivery-arms extraction left
-    // listingReturnCustodyRef imported here with its only use gone to
-    // woc_market_delivery.ts. The ratchet's own rule, an extraction lowers
-    // the ceiling, applies to the dead line the extraction forgot too.
-    // Down 4036 -> 4032 at the Exchange UX round: the pass budgets and
-    // deadlines moved to woc_market_budgets.ts (the sibling pattern), which
-    // also cleared the 6 lines the file had drifted over this ceiling.
-    // Down 4032 -> 3989 at the second round: the stuck-custody monitor
-    // vocabulary moved to woc_market_monitor_types.ts (a leaf types module),
-    // paying for the seller-history read.
-    // Down 3989 -> 3929 at the desktop-signing round: the economy vocabulary
-    // (quote legs, price/estimate readouts, WocMarketEconomy) moved to
-    // woc_market_economy_types.ts (the monitor-types pattern), paying for the
-    // desktopHandoff registrar dep and its four registration call sites.
-    // Down 3929 -> 3924 on the release arm: the operator listing and p2p row
-    // vocabulary moved to woc_market_ops.ts instead of growing this
-    // coordinator.
-    // Re-pinned at the third release/v0.41.0 sync into the bank-storage branch:
-    // the merged file lands six lines under the release's own pin, so the
-    // ratchet follows it down. Measured on the merged tree. Exact count.
-    // Re-pinned at the fourth release/v0.41.0 sync (release tip 8592df3866,
-    // the operator-listing batch above): the merged file again lands below
-    // both parent pins and the ratchet follows it down. Measured on the
-    // merged tree. Exact count.
-    // Re-pinned to the exact merged count of the OSSBrain v0.41.0 base
-    // merge: both parents had already ratcheted for their own work, so
-    // the composite is the honest size. Exact count, zero slack.
-    // Down 3945 -> 3943 at the Sales History tab: the sale/query/seller read
-    // types moved to woc_market_sale_types.ts (the economy-types leaf
-    // pattern), which more than paid for the realmSalesHistory read added
-    // here. Measured on the v0.43.0-rebased tree. Exact count, zero slack.
-    ceiling: 3943,
-    seam: 'a woc_market_<thing>.ts sibling behind WocMarketDeps (the drift-warn split is the template)',
   },
   {
     file: 'src/render/foliage.ts',
