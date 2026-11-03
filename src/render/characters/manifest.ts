@@ -374,6 +374,10 @@ export interface ClipMap {
    *  cast differing from the rig's generic channel; the one-shot route in
    *  attackByAbility cannot cover held cast states). */
   castByAbility?: Record<string, string>;
+  /** The looping gathering swings (gather_pose_core.ts): `chop` at a tree
+   *  trunk, `mine` at an ore vein, `herb` at a herb patch. Absent = chopping
+   *  and mining loop the rig's one-hand swing, herbalism its cast loop. */
+  gatherSwing?: { mine?: string; chop?: string; herb?: string };
   /** Playback rate for per-ability cast clips whose authored length must land
    *  its key pose inside the cast window. Also re-applied every frame, since
    *  actions are cached per clip and a clip shared with attackByAbility would
@@ -1019,6 +1023,10 @@ const wocRigClips = (attack: string[]): ClipMap => ({
   // two swings in one frame: the X-slash, then the one-two of the whole Dual_Chop
   dualWieldPair: ['Woc_Attack_Dual', 'Dual_Chop'],
   contacts: WOC_CONTACTS,
+  // The gathering loops from the rig's own library (no clip is authored for
+  // them yet): the diagonal one-hand chop at a trunk, the two-fist overhead
+  // chop as the pick swing at a vein, the kneel at a herb patch.
+  gatherSwing: { chop: '1H_Chop', mine: '2H_Chop', herb: 'Kneel' },
 });
 
 const woc = (attack: string[]): ClipMap => withWocKeyedAnimations(wocRigClips(attack));
