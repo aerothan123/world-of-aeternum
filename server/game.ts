@@ -275,6 +275,7 @@ import { entityOwnerLookup, eventInRange, shouldDeliverEventToViewer } from './e
 import { assembleEventsFrame, filterRoutableEvents, serializeEventFragments } from './event_frame';
 import { buildEventPidIndex, forEachSelectedEventIndex } from './event_pid_index';
 import { appendFarmPlotsWire, dispatchFarmingCommand } from './farming_commands';
+import { appendFelledTreesSelfWire } from './felled_trees_wire';
 import { fishingBandLabel, isKoi, isRodFeeRecipe } from './fishing_telemetry';
 import { type FlairCommandHost, handleFlairChatCommand } from './flair_command';
 import { dispatchGatheringGoalCommand } from './gathering_goal_commands';
@@ -8638,13 +8639,12 @@ export class GameServer {
     maybe('denc', this.sim.lastDisenchantResultFor(anchorSession.pid));
     maybe('ench', this.sim.lastEnchantResultFor(anchorSession.pid));
     maybe('salv', this.sim.lastSalvageResultFor(anchorSession.pid));
-    // Gathering-adjacent self fields (tfocus/gprof/tslot/hpref): extracted to
-    // gathering_self_wire.ts to keep this coordinator under its monolith
-    // ceiling; see that module for the per-field comments this call replaces.
+    // Gathering-adjacent self fields (tfocus/gprof/tslot/hpref; ftr, the felled
+    // trees nearby): sibling modules own the per-field rules and gates.
     appendGatheringSelfWire(this.sim, anchorSession.pid, maybe, maybeSerialized);
-    // Intentional Gathering PR4: the owner-only tracked-goal full view. Its
-    // own leaf (gathering_goal_wire.ts) rather than folded into the call
-    // above: a distinct feature's single field, a full-view replacement.
+    appendFelledTreesSelfWire(this.sim, anchorSession, p.pos, maybeSerialized);
+    // Intentional Gathering PR4: the owner-only tracked-goal full view, its own
+    // leaf (gathering_goal_wire.ts): a distinct feature's full-view field.
     appendGatheringGoalSelfWire(this.sim, anchorSession.pid, maybe);
     // Durable riding, the mount lesson and race, the world-quest vehicle
     // session, the Book of Deeds cosmetics and played time: one leaf

@@ -24,13 +24,17 @@ import type {
   GatheringGoalView,
   SalvageResultView,
 } from '../world_api/professions';
-import { decodeCraftingIdentity } from './crafting_wire';
+import { decodeCraftingIdentity, decodeMobileStationCrafts } from './crafting_wire';
+import type { FelledTreeMirror } from './felled_trees_wire';
 import { decodeGatheringGoalWire } from './gathering_goal_wire';
 import { decodeHarvestPreferenceWire } from './harvest_preference_wire';
 
 /** The profession self-mirror fields ClientWorld keeps; the concrete
  *  ClientWorld satisfies this structurally. */
 export interface ProfessionsSelfMirrors {
+  activeMobileStationCrafts: readonly string[];
+  activeMobileStationCraftsRaw: string | null;
+  readonly felledTreeMirror: FelledTreeMirror;
   commissionOrders: readonly CommissionOrderView[];
   lastDisenchantResult: DisenchantResultView | null;
   lastEnchantResult: ApplyEnchantResultView | null;
@@ -53,6 +57,8 @@ export interface ProfessionsSelfMirrors {
 export function applyProfessionsSelfMirror(
   target: ProfessionsSelfMirrors,
   s: {
+    mst?: unknown;
+    ftr?: unknown;
     corder?: readonly CommissionOrderView[] | null;
     denc?: DisenchantResultView | null;
     ench?: ApplyEnchantResultView | null;
@@ -66,7 +72,26 @@ export function applyProfessionsSelfMirror(
     prof?: PlayerProfessionsView | null;
     cprof?: CraftingIdentityView | null;
   },
+  // The snapshot's server time and the player's position: the felled-tree
+  // mirror's clock and coverage anchor (felled_trees_wire.ts).
+  now = 0,
+  anchor: { x: number; z: number } | null = null,
 ): void {
+  // mst -> activeMobileStationCrafts: a comma-joined nullable scalar, so
+  // the delta's explicit null (every station expired, out of range, or
+  // never placed) must overwrite to the empty set. The split array is
+  // cached against the raw string and rebuilt only when it changes.
+  if (s.mst !== undefined) {
+    const rawMst = (s.mst as string | null) ?? null;
+    if (rawMst !== target.activeMobileStationCraftsRaw) {
+      target.activeMobileStationCraftsRaw = rawMst;
+      target.activeMobileStationCrafts = decodeMobileStationCrafts(rawMst);
+    }
+  }
+  // ftr: the felled trees near the player (IWorld felledTrees). Applied on
+  // EVERY snapshot, present or not, so retained out-of-coverage stumps expire
+  // on the snapshot clock.
+  target.felledTreeMirror.apply(s.ftr, now, anchor);
   // Commission order board (issue #1298): server-gated on the board
   // revision at the corder wire cadence (a passive party converges within
   // one cadence window; the viewer's own commands re-arm for the next

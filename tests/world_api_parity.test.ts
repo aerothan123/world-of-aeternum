@@ -464,6 +464,7 @@ export const IWORLD_MEMBERS = [
   { name: 'craftingIdentity', kind: 'data' },
   { name: 'nodeHarvestableByMe', kind: 'method' }, // read-returning
   { name: 'nodeRespawnSeconds', kind: 'method' }, // read-returning (countdown of the same timer)
+  { name: 'felledTrees', kind: 'method' }, // read-returning (felled overworld trees + rev)
   { name: 'harvestNode', kind: 'method' },
   // The remembered corpse-harvest preference (Intentional Gathering PR3): a
   // settings read plus its command, never gated on kit/location/combat/cost.
@@ -1048,10 +1049,10 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
     // and buyHouse (method): 474/142/332. Phase 2 adds houseAnchors (data) and
     // placeFurniture / removeFurniture (methods): 477/143/334. Phase 3 adds
     // houseStorage (data) and houseStorageDeposit / houseStorageWithdraw
-    // (methods): 480/144/336.
-    expect(IWORLD_MEMBERS.length).toBe(480);
+    // (methods): 480/144/336. Tree chopping adds felledTrees (method): 481/144/337.
+    expect(IWORLD_MEMBERS.length).toBe(481);
     expect(DATA_MEMBERS.length).toBe(144);
-    expect(METHOD_MEMBERS.length).toBe(336);
+    expect(METHOD_MEMBERS.length).toBe(337);
   });
   it('has no duplicate member names', () => {
     const names = IWORLD_MEMBERS.map((m) => m.name);
@@ -1232,6 +1233,7 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'farmNowMs',
       'farmPatches',
       'feedPet',
+      'felledTrees',
       'ferryView',
       'forfeitCardDuel',
       'friendAdd',
@@ -1806,6 +1808,7 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'extractEssence',
       'farmNowMs',
       'feedPet',
+      'felledTrees',
       'ferryView',
       'forfeitCardDuel',
       'friendAdd',
@@ -2656,6 +2659,7 @@ const FACET_PROFESSIONS = [
   'craftingIdentity',
   'nodeHarvestableByMe',
   'nodeRespawnSeconds',
+  'felledTrees',
   'harvestNode',
   'harvestPreference',
   'setHarvestPreference',
@@ -2939,8 +2943,8 @@ describe('W1: aggregate IWorld member set equals the disjoint union of the facet
     // ranks method (PR 4390) and unappliedDungeonDifficulty (PR 4625). Player
     // housing phase 2 adds houseAnchors, placeFurniture and removeFurniture;
     // phase 3 adds houseStorage, houseStorageDeposit and houseStorageWithdraw.
-    expect(union.length, 'union size before dedup (catches a duplicated member)').toBe(480);
-    expect(new Set(union).size, 'union size after dedup (catches a duplicated member)').toBe(480);
+    expect(union.length, 'union size before dedup (catches a duplicated member)').toBe(481);
+    expect(new Set(union).size, 'union size after dedup (catches a duplicated member)').toBe(481);
     const sortedUnion = [...union].sort();
     const pinned = IWORLD_MEMBERS.map((m) => m.name).sort();
     expect(sortedUnion).toEqual(pinned);

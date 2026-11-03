@@ -5881,6 +5881,7 @@ const ALL_DELTA_KEYS = [
   'fac',
   'facCur',
   'fplot',
+  'ftr',
   'gcon',
   'ggoal',
   'gprof',
@@ -6044,6 +6045,7 @@ const TERSE_TO_IWORLD: Record<string, string> = {
   fac: 'factions',
   facCur: 'factionCurrencies',
   fplot: 'myFarmPlots',
+  ftr: 'felledTrees',
   ggoal: 'gatheringGoal',
   gprof: 'gatheringProficiency',
   guildBank: 'guildBankInfo',
@@ -7683,8 +7685,9 @@ describe('delta-key contract pins (anti-drift)', () => {
     // +1: the portrait menu's unapplied claim tier udiff (server/self_scalar_wire.ts).
     // +1: player housing's own house hse (Project H), for 137.
     // +1: player housing's house storage hst (Project H phase 3), for 138.
-    expect(ALL_DELTA_KEYS).toHaveLength(138);
-    expect(new Set(ALL_DELTA_KEYS).size).toBe(138);
+    // +1: tree chopping's felled set ftr (server/felled_trees_wire.ts), for 139.
+    expect(ALL_DELTA_KEYS).toHaveLength(139);
+    expect(new Set(ALL_DELTA_KEYS).size).toBe(139);
     expect([...ALL_DELTA_KEYS]).toEqual([...ALL_DELTA_KEYS].sort());
   });
 
@@ -7866,8 +7869,9 @@ describe('delta-key contract pins (anti-drift)', () => {
     // Courier vault and other-character stores add one owner delta key.
     // The unapplied claim tier udiff (self_scalar_wire.ts) adds one more.
     // Player housing's own house hse (Project H) makes 137, and its house
-    // storage hst (phase 3, server/house_storage_wire.ts) 138.
-    expect(scraped.size).toBe(138);
+    // storage hst (phase 3, server/house_storage_wire.ts) 138. Tree chopping's
+    // felled set ftr (server/felled_trees_wire.ts) makes 139.
+    expect(scraped.size).toBe(139);
     expect([...scraped].sort()).toEqual([...ALL_DELTA_KEYS].sort());
   });
 
@@ -7949,6 +7953,8 @@ describe('delta-key contract pins (anti-drift)', () => {
       // Player housing's own house (Project H): no shared stem either.
       hse: 'myHouse',
       hst: 'houseStorage',
+      // Tree chopping's felled set: no shared stem either.
+      ftr: 'felledTrees',
       courier: 'courierInfo',
       courierData: 'courierInfo',
       courierLegTicks: 'courierInfo',

@@ -246,7 +246,10 @@ describe('ncd bytes per player per tick under the delta rules (stable arm)', () 
     // costs about 156 bytes against the remaining headroom.
     // Two-sided on purpose: the lower bracket proves the raise was needed
     // (this form crossed the old pin), so reverting 8192 to 4096 reds twice.
-    expect(payload.length).toBeGreaterThan(4096);
+    // Re-measured when tree chopping retired the 52 wood stands (trees keep no
+    // per-player timer; docs/design/tree-chopping.md): 104 live nodes, so the
+    // lower bracket follows the content down; the 8192 ceiling is unchanged.
+    expect(payload.length).toBeGreaterThan(2048);
     expect(payload.length).toBeLessThanOrEqual(8192);
   });
 });
@@ -321,8 +324,9 @@ describe('ncd on the legacy per-tick arm', () => {
     // old 4096 pin, so this arm's raise is load-bearing too, not slack
     // inherited from the stable arm. The thin margin is deliberate; an
     // id-shortening sweep or a small node-count drop reds the lower bracket
-    // as a signal to re-measure, not as a defect.
-    expect(payload.length).toBeGreaterThan(4096);
+    // as a signal to re-measure, not as a defect (re-measured at tree
+    // chopping's wood-stand retirement, 104 nodes: see the stable arm above).
+    expect(payload.length).toBeGreaterThan(2048);
     expect(payload.length).toBeLessThanOrEqual(8192);
     // This payload repeats per player per tick at 20 Hz for a pre-stable
     // client while anything cools: that per-tick repetition is exactly why

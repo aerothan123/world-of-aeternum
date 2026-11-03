@@ -220,7 +220,7 @@ import {
 } from './civic_service_placements';
 import { applySelfCombatScalars } from './combat_scalar_wire';
 import { craftResultViewFromEvent } from './craft_result_mirror';
-import { decodeMobileStationCrafts, EMPTY_MST_CRAFTS } from './crafting_wire';
+import { EMPTY_MST_CRAFTS } from './crafting_wire';
 import {
   type DesktopWalletBrowserAction,
   type DesktopWalletStatus,
@@ -232,6 +232,7 @@ import { decodeEntityFlairWire } from './entity_flair_wire';
 import { reanchorDecision } from './entity_reanchor';
 import { applyEntityStatusWire } from './entity_status_wire';
 import { decodeEquippedInstancesWire } from './equipped_instances_wire';
+import { FelledTreeMirror, type FelledTreesView } from './felled_trees_wire';
 import { applyGroundTelegraphSnapshot } from './ground_telegraph_wire';
 import { GuildBankLogMirror } from './guild_bank_log_mirror';
 import { decodeGuildBoardPage, emptyGuildBoardPage, guildBoardPath } from './guild_board_wire';
@@ -1469,15 +1470,26 @@ export class ClientWorld extends ReconWireState implements IWorld {
   // "Never predict an outcome").
   private nodeCooldowns: Map<string, number> | undefined = new Map();
   nodeHarvestableByMe(nodeId: string): boolean {
-    return !this.nodeCooldowns?.has(nodeId);
+    return !this.nodeCooldowns?.has(nodeId) && this.felledTreeMirror.standing(nodeId);
   }
   // The countdown read of the same mirror (IWorldProfessions
   // nodeRespawnSeconds): the entry IS the remaining seconds, refreshed per
   // snapshot in stable timer mode (refreshStableSelfTimers ages the deadline
   // set) and re-sent by the legacy wire, so this stays a plain lookup with no
-  // second timer domain. Null exactly when nodeHarvestableByMe is true.
+  // second timer domain. Null exactly when nodeHarvestableByMe is true; a felled
+  // tree answers its regrow countdown from the `ftr` mirror (felled_trees_wire.ts).
   nodeRespawnSeconds(nodeId: string): number | null {
-    return this.nodeCooldowns?.get(nodeId) ?? null;
+    return this.nodeCooldowns?.get(nodeId) ?? this.felledTreeMirror.regrowSeconds(nodeId);
+  }
+  // IWorld felledTrees, the `ftr` mirror: lazy, so a bare prototype client (the
+  // test idiom) still answers the node reads.
+  private felledTreeMirrorLazy?: FelledTreeMirror;
+  get felledTreeMirror(): FelledTreeMirror {
+    this.felledTreeMirrorLazy ??= new FelledTreeMirror(WORLD_SEED);
+    return this.felledTreeMirrorLazy;
+  }
+  felledTrees(): FelledTreesView {
+    return this.felledTreeMirror.view;
   }
   // Static content read (#1127, extended #1132): the full recipe list (common
   // tier plus combo recipes) ships with the client bundle like every other
@@ -1531,7 +1543,7 @@ export class ClientWorld extends ReconWireState implements IWorld {
   // The raw joined `mst` scalar the array above was split from: the split
   // runs ONLY when this string changes, so steady-state snapshots never
   // re-allocate the array.
-  private activeMobileStationCraftsRaw: string | null = null;
+  activeMobileStationCraftsRaw: string | null = null;
   // Commission order board (Professions 2.0, issue #1298), mirrored from the
   // server's `corder` self-delta below: the viewer's own projection, small
   // and diffed per tick like professionsState/craftingIdentity above.
@@ -3232,23 +3244,12 @@ export class ClientWorld extends ReconWireState implements IWorld {
       if (s.dclears !== undefined) this.delveClears = s.dclears ?? {};
       if (s.delveDaily !== undefined) this.delveDaily = s.delveDaily;
       if (s.tfocus !== undefined) this.townFocus = s.tfocus ?? {};
-      // mst -> activeMobileStationCrafts: a comma-joined nullable scalar, so
-      // the delta's explicit null (every station expired, out of range, or
-      // never placed) must overwrite to the empty set. The split array is
-      // cached against the raw string and rebuilt only when it changes.
-      if (s.mst !== undefined) {
-        const rawMst = (s.mst as string | null) ?? null;
-        if (rawMst !== this.activeMobileStationCraftsRaw) {
-          this.activeMobileStationCraftsRaw = rawMst;
-          this.activeMobileStationCrafts = decodeMobileStationCrafts(rawMst);
-        }
-      }
-      // Profession self-mirror delta block (commission orders, enchanting
-      // result mirrors, gathering proficiency, tool slots, harvest
-      // preference, the gathering goal, farm plots, professionsState, and
-      // crafting identity): all delta-omitted, applied by the sibling
-      // module, where the delta contract and per-key malformed policy live.
-      applyProfessionsSelfMirror(this, s);
+      // Profession self-mirror delta block (mobile-station crafts, commission
+      // orders, enchanting result mirrors, gathering proficiency, tool slots,
+      // harvest preference, the gathering goal, farm plots, professionsState,
+      // crafting identity, the felled trees): all delta-omitted, applied by the
+      // sibling module, where the delta contract and per-key malformed policy live.
+      applyProfessionsSelfMirror(this, s, snap.time, e.pos);
       if (s.hse !== undefined) this.myHouse = decodeHouseWire(s.hse);
       if (s.hst !== undefined) applyHouseStorageWire(this, s.hst);
       // camera follows server-side facing changes when not mouselooking

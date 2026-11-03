@@ -7,11 +7,13 @@
 // harvest_preference_wire.test.ts) rather than hand-rolled from scratch.
 
 import { describe, expect, it } from 'vitest';
+import { FelledTreeMirror } from '../src/net/felled_trees_wire';
 import {
   applyProfessionsSelfMirror,
   type ProfessionsSelfMirrors,
 } from '../src/net/professions_self_mirror';
 import type { FarmPlotView } from '../src/sim/professions/farm_projection';
+import { choppableTreesNear } from '../src/sim/trees/tree_registry';
 import {
   HARVEST_PREFERENCE_ALL,
   HARVEST_PREFERENCE_ALL_TOKEN,
@@ -65,6 +67,9 @@ function farmPlot(overrides: Partial<FarmPlotView> = {}): FarmPlotView {
 
 function freshTarget(): ProfessionsSelfMirrors {
   return {
+    activeMobileStationCrafts: [],
+    activeMobileStationCraftsRaw: null,
+    felledTreeMirror: new FelledTreeMirror(42),
     commissionOrders: [],
     lastDisenchantResult: null,
     lastEnchantResult: null,
@@ -303,5 +308,26 @@ describe('applyProfessionsSelfMirror: cprof (crafting identity)', () => {
     expect(target.craftSkills).not.toBe(payload.craftSkills);
     expect(target.craftingIdentity.activeArchetype).toBe('artisan');
     expect(target.craftingIdentity.synced).toBe(true);
+  });
+});
+
+describe('applyProfessionsSelfMirror: mst and ftr', () => {
+  it('splits mst only when the raw scalar changes, and clears it on explicit null', () => {
+    const target = freshTarget();
+    applyProfessionsSelfMirror(target, { mst: 'alchemy,cooking' });
+    const first = target.activeMobileStationCrafts;
+    expect(first).toEqual(['alchemy', 'cooking']);
+    applyProfessionsSelfMirror(target, { mst: 'alchemy,cooking' });
+    expect(target.activeMobileStationCrafts).toBe(first);
+    applyProfessionsSelfMirror(target, { mst: null });
+    expect(target.activeMobileStationCrafts).toEqual([]);
+  });
+
+  it('hands ftr to the felled-tree mirror with the snapshot clock and anchor', () => {
+    const tree = choppableTreesNear(42, -62, 8, 40)[0];
+    const target = freshTarget();
+    applyProfessionsSelfMirror(target, { ftr: [[tree.id, 300]] }, 10, { x: tree.x, z: tree.z });
+    expect(target.felledTreeMirror.view.trees.has(tree.id)).toBe(true);
+    expect(target.felledTreeMirror.regrowSeconds(`tree:${tree.id}`)).toBe(290);
   });
 });

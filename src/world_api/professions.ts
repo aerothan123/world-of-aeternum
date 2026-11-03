@@ -11,6 +11,10 @@ import type {
   PerfectingSwapRequest,
 } from '../sim/professions/perfecting_swap';
 import type { PlayerProfessionSkill, ProfessionRecipeRecord } from '../sim/professions/types';
+import type { FelledTreesView } from '../sim/trees/tree_felling';
+
+export type { FelledTree, FelledTreesView } from '../sim/trees/tree_felling';
+
 import type { EquipSlot, ItemInstancePayload, StationDef } from '../sim/types';
 import type { WorldInteractionOutcome } from './interaction';
 
@@ -311,6 +315,13 @@ export interface IWorldProfessions {
    *  timer (professions/gathering.ts nodeRespawnRemainingSec); online it
    *  reads the `ncd` mirror, whose entries are already remaining seconds. */
   nodeRespawnSeconds(nodeId: string): number | null;
+  /** Overworld trees that are felled right now (src/sim/trees/), with the
+   *  world time each regrows at; `rev` bumps on every change so a consumer
+   *  diffs only when it moved. Offline: the Sim's whole felled set. Online:
+   *  the felled trees near the player, mirrored from the `ftr` self key. A
+   *  tree's own harvestable/countdown answer still rides nodeHarvestableByMe
+   *  and nodeRespawnSeconds under its `tree:<id>` node id. */
+  felledTrees(): FelledTreesView;
   // `confirmEffectUse` (R40): the per-use consent for a 'prompt'-mode tool
   // effect slot on this harvest. A boolean flag ONLY (the craftItem
   // `commission` precedent): omitted or false sends a wire message
