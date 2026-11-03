@@ -5821,6 +5821,12 @@
   body.mobile-touch #loot-window {
     z-index: 96 !important;
   }
+  /* The corpse popup's close button is an in-flow head item (components.css),
+     not the absolute pin the shared 52px touch reserve exists for, so the head
+     keeps the 8px end inset and the 40px button takes its own room in the row. */
+  body.mobile-touch #loot-window > .panel-title {
+    padding-inline-end: 8px;
+  }
   body.mobile-touch .vendor-item,
   body.mobile-touch .bag-item,
   body.mobile-touch .mkt-tab,
