@@ -257,8 +257,9 @@ describe('draw_stats_core', () => {
     // v21 separates the staged per-system graphics controls and expanded
     // profile bytes from v20 fleet comparisons. v22 (8ac3ed28f3d, merged with
     // the genshin overhaul) segments Low's distant scenery index LOD and its
-    // clearer outdoor light pair from v21 Low frames.
-    expect(GFX_CONFIG_VERSION).toBe(22);
+    // clearer outdoor light pair from v21 Low frames. v23 segments the
+    // bloom-off fixed presets (bloom is opt-in through the Advanced dial).
+    expect(GFX_CONFIG_VERSION).toBe(23);
   });
 
   it('clamps a backward counter jump at zero, per field, and recovers', () => {

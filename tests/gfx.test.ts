@@ -427,7 +427,6 @@ describe('graphics tier resolution', () => {
       expect(tier.bladeCarpetRadius).toBe(34);
       expect(tier.cliffScree).toBe(true);
       expect(tier.canopyDetail).toBe(true);
-      expect(tier.bloom).toBe(true);
     }
     // Canopy clump detail splits by half, not by on/off: ultra runs the AO
     // taps alone, insane keeps the NormalGL half too (canopy_detail_tier_core).
@@ -458,6 +457,18 @@ describe('graphics tier resolution', () => {
         gpuRenderer: 'NVIDIA GeForce RTX 4090',
       }),
     ).toBe(4);
+  });
+
+  it('builds no bloom on any fixed preset, while the composer chain stays where it was', () => {
+    // Owner call: bloom is off by default regardless of preset. The rest of
+    // the post chain is untouched (high and up keep the composer, SMAA and AO),
+    // so turning bloom on later is the same Advanced rebuild it always was.
+    for (const tier of ['low', 'medium', 'high', 'ultra', 'insane'] as const) {
+      expect(gfxInternalsForTest.settingsFor(tier).bloom, tier).toBe(false);
+    }
+    for (const tier of ['high', 'ultra', 'insane'] as const) {
+      expect(gfxInternalsForTest.settingsFor(tier).composer, tier).toBe(true);
+    }
   });
 
   it('the advanced sub-setting ladders map onto the same tier knobs, back-compatibly', () => {
@@ -525,10 +536,16 @@ describe('graphics tier resolution', () => {
     expect(effectsMedium.ao).toBe(true);
     expect(effectsMedium.bloom).toBe(false);
     expect(effectsMedium.smaa).toBe(false);
+    // A pre-round-12 Advanced mix stores no Bloom dial: its derived default
+    // reproduces the mix the player saved, byte for byte.
     const effectsHigh = adv({ effectsQuality: 1 });
     expect(effectsHigh.ao).toBe(true);
     expect(effectsHigh.bloom).toBe(true);
     expect(effectsHigh.smaa).toBe(true);
+    // The Bloom dial is the one way bloom is built: an explicit On keeps it,
+    // an explicit Off drops it, on the composer the effects dial provides.
+    expect(adv({ effectsQuality: 1, bloomQuality: 1 }).bloom).toBe(true);
+    expect(adv({ effectsQuality: 1, bloomQuality: 0 }).bloom).toBe(false);
     // Shadows: pure map-size steps; terrain-cast joins at High. The ladder
     // caps at 4096: a historical stored Insane (2) lands on that top rung
     // instead of the retired ~256 MB-class 8192 map. The top rung is an

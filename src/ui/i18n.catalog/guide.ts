@@ -427,7 +427,7 @@ export const guideStrings = {
     balancedTitle: 'Balanced',
     balancedTagline: 'The sweet spot for most machines, and our default advice.',
     balancedWhy:
-      'Medium brings real shadows and full materials, and High adds ambient occlusion and bloom on top. The built-in safety net stays armed on every tier, so Balanced rides out a busy fight without you babysitting it.',
+      'Medium brings real shadows and full materials, and High adds ambient occlusion on top. The built-in safety net stays armed on every tier, so Balanced rides out a busy fight without you babysitting it.',
     visualsTitle: 'Best Visuals',
     visualsTagline: 'Screenshot mode for powerful desktop machines.',
     visualsWhy:
@@ -521,7 +521,8 @@ export const guideStrings = {
       'How far away other characters keep their full animated rig before they drop to a simpler one. Higher is kinder to the eye in a crowded hub, and heavier.',
     rowAmbientOcclusion:
       'The soft contact shadow where surfaces meet. Off, half resolution, or full.',
-    rowBloom: 'The gentle glow around bright light, fire, and spell effects.',
+    rowBloom:
+      'The gentle glow around bright light, fire, and spell effects. Off on every preset; turn it on here.',
     rowAntiAliasing:
       'Smooths the jagged edges of distant geometry. Cheap, and worth keeping on most machines.',
     rowDynamicLights:

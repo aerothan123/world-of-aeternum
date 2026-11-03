@@ -94,6 +94,11 @@ export const SETTING_RANGES = {
   // ambientOcclusion adds the 0.5 half-resolution middle; the two ladders
   // reuse the 0/0.5/1/2 level scale mapped onto whole render tiers.
   antiAliasing: { min: 0, max: 1, def: 1 },
+  // Bloom is OFF by default: no fixed preset builds it (gfx.ts settingsFor) and
+  // every preset seeds this dial Off (graphics_rebuild_core.ts). This def only
+  // backs a stored Advanced mix, so it stays 1: a store written before the
+  // change carries a 1 here, and moving the def would make every such untouched
+  // store read as a customized mix (stageGraphicsDraftChange keepStoredMix).
   bloomQuality: { min: 0, max: 1, def: 1 },
   ambientOcclusion: { min: 0, max: 1, def: 1 },
   viewDistance: { min: 0, max: 2, def: 1 },

@@ -105,7 +105,9 @@ export function gfxTierAtLeast(tier: GfxTier, floor: GfxTier): boolean {
 // become explicit settings fields and the post-chain per-effect flags follow
 // the dials rather than the effectsQuality bundle alone.
 // v22: Low uses distant scenery index LOD and the clearer outdoor light pair.
-export const GFX_CONFIG_VERSION = 22;
+// v23: bloom is off on every fixed preset (the owner's default); only an
+// Advanced mix with the Bloom dial on builds the pass.
+export const GFX_CONFIG_VERSION = 23;
 
 export const GFX_BUCKET_IDS = [
   'resolution',
@@ -1343,7 +1345,11 @@ function settingsFor(tier: GfxTier, hints?: Partial<GfxRuntimeHints>): GfxSettin
     aoFullRes: gfxTierAtLeast(tier, 'ultra'),
     smaa: aaPolicy.postAa === 'smaa',
     fxaa: aaPolicy.postAa === 'fxaa-grade',
-    bloom: !iosMemoryProfile && gfxTierAtLeast(tier, 'high'),
+    // Off on every fixed preset (owner call, Project H playtest): the glow is
+    // an opt-in look, reached through the Bloom dial (which switches the mix to
+    // Advanced and builds the pass on that rebuild). Cosmetic only, so no
+    // fairness read depends on it; the medium tier always shipped without it.
+    bloom: false,
     terrainCastShadows: tier !== 'low' && !constrainedMemory,
     lowPlus,
     // Tree and rock placement must match across clients because those decorations
