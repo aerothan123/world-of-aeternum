@@ -246,7 +246,7 @@ function reduceAppMemory(metrics) {
     }
     totalKb = (totalKb ?? 0) + workingSetKb;
     // The LARGEST tab, not the first: a session can hold several renderers
-    // (a wallet handoff page, a devtools host), and the game is the big one.
+    // (a popup page, a devtools host), and the game is the big one.
     if (entry.type === 'Tab' && (rendererKb === null || workingSetKb > rendererKb)) {
       rendererKb = workingSetKb;
     }

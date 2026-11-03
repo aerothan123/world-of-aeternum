@@ -37,7 +37,6 @@ describe('electron IPC channel contract (preload <-> main)', () => {
         'desktop-epic-capability',
         'desktop-epic-link-proof',
         'desktop-epic-link-settled',
-        'desktop-exchange-capability',
         'desktop-app-quit',
         'desktop-gamepad-activity',
         'desktop-get-display-mode',
@@ -60,9 +59,6 @@ describe('electron IPC channel contract (preload <-> main)', () => {
         'desktop-steam-link-settled',
         'desktop-steam-link-ticket',
         'desktop-update-install',
-        'desktop-wallet-capability',
-        'desktop-wallet-open-browser',
-        'desktop-wallet-take-code',
       ]),
     );
     for (const channel of invoked) {
@@ -90,7 +86,6 @@ describe('electron IPC channel contract (preload <-> main)', () => {
       'desktop-login-code',
       'desktop-presentation-changed',
       'desktop-update-event',
-      'desktop-wallet-handoff-code',
     ]);
     for (const channel of subscribed) {
       expect(pushed, `nothing pushes subscribed channel ${channel}`).toContain(channel);
@@ -133,14 +128,6 @@ describe('electron IPC channel contract (preload <-> main)', () => {
     expect(start).toBeGreaterThan(-1);
     const body = main.slice(start, main.indexOf('});', start));
     expect(body).toContain('epicShell.cancelLinkProof()');
-  });
-
-  it('reports whether the external wallet authorization page actually opened', () => {
-    const main = stripComments(read('electron/main.cjs'));
-    const start = main.indexOf("ipcMain.handle('desktop-wallet-open-browser'");
-    expect(start).toBeGreaterThan(-1);
-    const body = main.slice(start, main.indexOf('});', start));
-    expect(body).toContain('await openDesktopWalletHandoff(code)');
   });
 
   it('the gpu-force-opt-out setter takes only a strict boolean and reports the write', () => {
@@ -333,29 +320,6 @@ describe('electron IPC channel contract (preload <-> main)', () => {
     expect(missingWindowAt).toBeGreaterThan(trustAt);
     expect(destroyedWindowAt).toBeGreaterThan(missingWindowAt);
     expect(quitAt).toBeGreaterThan(destroyedWindowAt);
-  });
-
-  it('the exchange-capability handler is trusted-sender gated and answers a strict boolean', () => {
-    // The $WOC Exchange store gate (issue #3692): an untrusted frame and a
-    // store build must both read false, and the answer is the pure
-    // desktop_config verdict compared strictly, never a truthy passthrough or
-    // the collapsed resolveDistribution channel. Sliced from the STRIPPED
-    // mainSide so a commented-out verdict line cannot satisfy the pin.
-    const start = mainSide.indexOf("ipcMain.handle('desktop-exchange-capability'");
-    expect(start).toBeGreaterThan(-1);
-    const end = mainSide.indexOf('\n});', start);
-    // An unfound close would make the slice run to end-of-file, letting the
-    // pins below be satisfied by later handlers' text (the show-notification
-    // pin carries the same guard for the same reason).
-    expect(end).toBeGreaterThan(start);
-    const body = mainSide.slice(start, end);
-    expect(body).toContain('if (!trustedSender(event)) return false;');
-    expect(body).toContain('return desktopConfig.wocExchangeEnabled === true;');
-    // And the preload method must invoke THIS channel, not a sibling
-    // capability whose decision reads the collapsed distribution.
-    expect(preload).toContain(
-      "wocExchangeSupported: () => ipcRenderer.invoke('desktop-exchange-capability'),",
-    );
   });
 
   it('the show-notification handler validates, re-checks focus, then paces the OS surface', () => {
@@ -659,14 +623,6 @@ describe('electron IPC channel contract (preload <-> main)', () => {
     expect(toggle).toContain('} catch {}');
   });
 
-  it('activates the macOS app when the browser returns a wallet handoff', () => {
-    const main = stripComments(read('electron/main.cjs'));
-    const start = main.indexOf('function deliverWalletHandoffCode');
-    expect(start).toBeGreaterThan(-1);
-    const body = main.slice(start, main.indexOf('\n}', start));
-    expect(body).toContain('app.focus({ steal: true })');
-  });
-
   it('the bridge methods the client feature-checks exist in the preload', () => {
     for (const method of [
       'openBrowserLogin',
@@ -699,13 +655,20 @@ describe('electron IPC channel contract (preload <-> main)', () => {
       'epicLinkProof',
       'epicLinkSupported',
       'epicLinkSettled',
+    ]) {
+      expect(preload, `preload is missing bridge method ${method}`).toContain(`${method}:`);
+    }
+    // The retired crypto bridge (wallet linking, the $WOC Exchange gate) is gone.
+    for (const retired of [
       'walletConnectionSupported',
       'wocExchangeSupported',
       'openWalletBrowser',
       'takeWalletHandoffCode',
       'onWalletHandoffCode',
     ]) {
-      expect(preload, `preload is missing bridge method ${method}`).toContain(`${method}:`);
+      expect(preload, `preload still exposes retired bridge method ${retired}`).not.toContain(
+        `${retired}:`,
+      );
     }
   });
 

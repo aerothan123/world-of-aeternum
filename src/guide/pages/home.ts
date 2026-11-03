@@ -116,7 +116,6 @@ function groupHtml(): string {
 function faqHtml(): string {
   const qa = [
     ['guide.home.faq.q1', t('guide.home.faq.a1')],
-    ['guide.home.faq.q2', t('guide.home.faq.a2')],
     ['guide.home.faq.q3', t('guide.home.faq.a3')],
     [
       'guide.home.faq.q4',

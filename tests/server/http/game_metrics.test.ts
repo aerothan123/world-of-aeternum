@@ -25,7 +25,6 @@ import {
   registerGameStateMetrics,
   type TickPhaseMillis,
   WOC_ACCOUNTS_ONLINE,
-  WOC_AUTH_GUARD_CACHE,
   WOC_BACKGROUND_DB_GATE,
   WOC_BANK_LEDGER_GROWTH_BUDGET,
   WOC_BANK_LEDGER_GROWTH_LIMIT_REFUSALS_TOTAL,
@@ -47,8 +46,6 @@ import {
   WOC_DB_BACKEND_CANCEL_FAILURES_TOTAL,
   WOC_DB_BACKEND_CANCEL_REQUESTS_TOTAL,
   WOC_DB_POOL_CLIENTS,
-  WOC_ESCROW_GATE_IN_FLIGHT,
-  WOC_ESCROW_QUEUE_TOTAL,
   WOC_FISHING_CASTS_TOTAL,
   WOC_FISHING_CATCHES_TOTAL,
   WOC_FISHING_EARLY_REELS_TOTAL,
@@ -87,13 +84,8 @@ import {
   GENERAL_CHAT_QUOTA_DB_OUTCOMES,
   GUILD_BANK_INCIDENTS,
   VAULT_LEDGER_INCIDENTS,
-  WOC_ESCROW_QUEUE_OUTCOMES,
   WS_DROP_CAUSES,
 } from '../../../server/http/game_signals';
-import {
-  configureWocAuthGuardCache,
-  resetWocAuthGuardCache,
-} from '../../../server/woc_auth_guard_cache';
 
 /** A GameStateSource returning fixed values; override any field per test. */
 function stubSource(overrides: Partial<GameStateSource> = {}): GameStateSource {
@@ -107,7 +99,6 @@ function stubSource(overrides: Partial<GameStateSource> = {}): GameStateSource {
     simEntities: () => 42,
     simTickHz: () => 20,
     savePendingKeys: () => 6,
-    escrowGateInFlight: () => 2,
     backgroundDbGate: () => ({
       inFlight: 0,
       waiting: 0,
@@ -237,7 +228,6 @@ describe('registerGameStateMetrics: gauges read the source at scrape time', () =
     expect(WOC_SIM_ENTITIES).toBe('woc_sim_entities');
     expect(WOC_SIM_TICK_HZ).toBe('woc_sim_tick_hz');
     expect(WOC_SAVE_PENDING_KEYS).toBe('woc_character_save_pending_keys');
-    expect(WOC_ESCROW_GATE_IN_FLIGHT).toBe('woc_escrow_gate_in_flight');
     expect(WOC_USERNAME_BANLIST_FILE_LOADED).toBe('woc_username_banlist_file_loaded');
     expect(WOC_CHARACTER_STATE_BYTES_MAX).toBe('woc_character_state_bytes_max');
     expect(WOC_CHARACTER_STATE_BYTES_P99).toBe('woc_character_state_bytes_p99');
@@ -255,7 +245,6 @@ describe('registerGameStateMetrics: gauges read the source at scrape time', () =
       WOC_SIM_ENTITIES,
       WOC_SIM_TICK_HZ,
       WOC_SAVE_PENDING_KEYS,
-      WOC_ESCROW_GATE_IN_FLIGHT,
       WOC_BACKGROUND_DB_GATE,
       WOC_STORAGE_RECOVERY,
       WOC_BANK_LEDGER_GROWTH_BUDGET,
@@ -274,7 +263,6 @@ describe('registerGameStateMetrics: gauges read the source at scrape time', () =
     expect(sampleValue(text, /^woc_character_save_pending_keys (\d+)$/m)).toBe('6');
     // The realm escrow gate's occupancy (the fix round: an alert rule needs
     // it in /metrics, not only behind the dashboard secret).
-    expect(sampleValue(text, /^woc_escrow_gate_in_flight (\d+)$/m)).toBe('2');
     // The blob high-water gauge (the Phase 17 database review): the stub
     // returns the professions-block ceiling figure.
     expect(sampleValue(text, /^woc_character_state_bytes_max (\d+)$/m)).toBe('17408');
@@ -690,7 +678,6 @@ describe('registerGameStateMetrics: gauges read the source at scrape time', () =
     // as LIVE reads at scrape time, and a stub-value assertion alone would
     // stay green if either were hoisted out of collect() and sampled once.
     let pendingKeys = 2;
-    let gateInFlight = 1;
     let backgroundDbGate = {
       inFlight: 1,
       waiting: 2,
@@ -722,7 +709,6 @@ describe('registerGameStateMetrics: gauges read the source at scrape time', () =
       stubSource({
         playersOnline: () => players,
         savePendingKeys: () => pendingKeys,
-        escrowGateInFlight: () => gateInFlight,
         backgroundDbGate: () => backgroundDbGate,
         storageRecovery: () => storageRecovery,
       }),
@@ -731,7 +717,6 @@ describe('registerGameStateMetrics: gauges read the source at scrape time', () =
     const first = await registry.metrics();
     expect(sampleValue(first, /^woc_players_online (\d+)$/m)).toBe('1');
     expect(sampleValue(first, /^woc_character_save_pending_keys (\d+)$/m)).toBe('2');
-    expect(sampleValue(first, /^woc_escrow_gate_in_flight (\d+)$/m)).toBe('1');
     expect(measureValues(first, WOC_BACKGROUND_DB_GATE)).toMatchObject({
       in_flight: '1',
       waiting: '2',
@@ -746,7 +731,6 @@ describe('registerGameStateMetrics: gauges read the source at scrape time', () =
     });
     players = 9;
     pendingKeys = 7;
-    gateInFlight = 4;
     backgroundDbGate = {
       inFlight: 6,
       waiting: 7,
@@ -776,7 +760,6 @@ describe('registerGameStateMetrics: gauges read the source at scrape time', () =
     const second = await registry.metrics();
     expect(sampleValue(second, /^woc_players_online (\d+)$/m)).toBe('9');
     expect(sampleValue(second, /^woc_character_save_pending_keys (\d+)$/m)).toBe('7');
-    expect(sampleValue(second, /^woc_escrow_gate_in_flight (\d+)$/m)).toBe('4');
     expect(measureValues(second, WOC_BACKGROUND_DB_GATE)).toMatchObject({
       in_flight: '6',
       waiting: '7',
@@ -1159,94 +1142,6 @@ describe('registerGameStateMetrics: throughput counters via the returned sink', 
     ).toBe('0');
   });
 
-  it('pre-registers every escrow-queue outcome at zero and increments by kind', async () => {
-    const registry = new Registry();
-    const counters = registerGameStateMetrics(registry, stubSource());
-
-    expect(WOC_ESCROW_QUEUE_TOTAL).toBe('woc_escrow_queue_total');
-    // The whole vocabulary as literals: the refusal kinds are the production
-    // readout for the listing FIFO coupling (a refused or slow queue is
-    // otherwise visible only as a throttled warn line), so a rename must fail
-    // here rather than silently retire an operator's alert rule.
-    expect(WOC_ESCROW_QUEUE_OUTCOMES).toEqual([
-      // The throughput baseline the failure kinds are read against: a
-      // refusal rate means nothing without the jobs that started.
-      'started',
-      // Waited past the queue deadline. Nothing was extracted (the job is
-      // cancelled before it runs), so this is contention, not loss.
-      'deadline_refused',
-      // The one-job-per-character depth cap refused a second listing.
-      'depth_refused',
-      // Dirty guild books could not be flushed first, so the job never ran:
-      // flushing from inside the job would self-deadlock the FIFO.
-      'books_dirty_refused',
-      // The pre-job guild-book flush itself failed.
-      'flush_failed',
-      // The realm-global escrow gate was at cap (the write-path rider's
-      // bound): realm-wide saturation the per-character kinds cannot see.
-      'realm_refused',
-      // The terminal sibling: a held listing sequence released its slot,
-      // whatever its outcome (the vocabulary doc owns the honest in-flight
-      // arithmetic; the gate stats are the instantaneous truth).
-      'settled',
-      // The delivered-save twin's head-of-line park: the bounded grant
-      // entry found the buyer's FIFO wedged past its deadline (the one
-      // failure mode the FIFO close introduced, counted so never silent).
-      'grant_busy',
-      // The background-gate starvation arm inside the FIFO job: the bounded
-      // majorBackgroundDbGate wait returned no permit, so the settled
-      // caller's background chain terminated without running. Counted
-      // because a saturated gate was otherwise invisible here.
-      'permit_refused',
-    ]);
-
-    // Scrape BEFORE any increment: prom counters cannot backfill, so a rate
-    // rule over these series has to see them from boot, not from the first
-    // refusal (which is exactly the moment nobody wants a gap).
-    const zeroed = await registry.metrics();
-    expect(zeroed).toContain(`# TYPE ${WOC_ESCROW_QUEUE_TOTAL} counter`);
-    // The operator-facing HELP line enumerates the kinds by hand, so it is
-    // tied to the vocabulary here: without this a ninth kind leaves the help
-    // stale while the exact-vocabulary pin above stays green, and the help is
-    // the only place an operator reads what the labels mean.
-    const helpLine = zeroed
-      .split('\n')
-      .find((l) => l.startsWith(`# HELP ${WOC_ESCROW_QUEUE_TOTAL}`));
-    expect(helpLine, 'the escrow-queue counter carries a HELP line').toBeDefined();
-    for (const kind of WOC_ESCROW_QUEUE_OUTCOMES) {
-      expect(helpLine, `HELP names the ${kind} kind`).toContain(kind);
-    }
-    for (const kind of WOC_ESCROW_QUEUE_OUTCOMES) {
-      expect(
-        sampleValue(zeroed, new RegExp(`^woc_escrow_queue_total\\{kind="${kind}"\\} (\\d+)$`, 'm')),
-        kind,
-      ).toBe('0');
-    }
-
-    counters.wocEscrowQueue('started');
-    counters.wocEscrowQueue('started');
-    counters.wocEscrowQueue('started');
-    counters.wocEscrowQueue('depth_refused');
-
-    const text = await registry.metrics();
-    expect(sampleValue(text, /^woc_escrow_queue_total\{kind="started"\} (\d+)$/m)).toBe('3');
-    expect(sampleValue(text, /^woc_escrow_queue_total\{kind="depth_refused"\} (\d+)$/m)).toBe('1');
-    // Each outcome lands on its OWN series: a depth refusal is not a deadline
-    // refusal, and the untouched kinds stay at their pre-registered zero.
-    expect(sampleValue(text, /^woc_escrow_queue_total\{kind="deadline_refused"\} (\d+)$/m)).toBe(
-      '0',
-    );
-    expect(sampleValue(text, /^woc_escrow_queue_total\{kind="books_dirty_refused"\} (\d+)$/m)).toBe(
-      '0',
-    );
-    expect(sampleValue(text, /^woc_escrow_queue_total\{kind="flush_failed"\} (\d+)$/m)).toBe('0');
-    // The other direction: the exposed vocabulary is exactly the closed set, so
-    // no character id, listing id, or account ever reaches a label.
-    expect(labelValues(text, 'kind', WOC_ESCROW_QUEUE_TOTAL)).toEqual(
-      new Set(WOC_ESCROW_QUEUE_OUTCOMES),
-    );
-  });
-
   it('swallows a throwing counter in every sink method and never propagates', () => {
     const registry = new Registry();
     const counters = registerGameStateMetrics(registry, stubSource());
@@ -1275,7 +1170,6 @@ describe('registerGameStateMetrics: throughput counters via the returned sink', 
       WOC_GUILD_BANK_INCIDENTS_TOTAL,
       WOC_VAULT_LEDGER_INCIDENTS_TOTAL,
       WOC_BANK_VAULT_REALM_ROW_BREACHES_TOTAL,
-      WOC_ESCROW_QUEUE_TOTAL,
       WOC_BATTLEGROUND_MATCHES_TOTAL,
       WOC_BATTLEGROUND_DURATION_SECONDS_TOTAL,
       WOC_BATTLEGROUND_CAPTURES_TOTAL,
@@ -1319,10 +1213,6 @@ describe('registerGameStateMetrics: throughput counters via the returned sink', 
     expect(() => counters.guildBankIncident('reconcile')).not.toThrow();
     expect(() => counters.vaultLedgerIncident('ledger_write_failed')).not.toThrow();
     expect(() => counters.bankVaultRealmRowBreach()).not.toThrow();
-    // The escrow-queue counter sits on the listing request path: a prom failure
-    // there must never turn an observable refusal into a thrown 500.
-    expect(() => counters.wocEscrowQueue('started')).not.toThrow();
-    expect(() => counters.wocEscrowQueue('deadline_refused')).not.toThrow();
   });
 
   it('bounds the ws direction label to in/out and emits no per-player label anywhere', async () => {
@@ -1865,71 +1755,6 @@ describe('guild bank activity log cache readout', () => {
     await registry.metrics();
     const second = await registry.metrics();
     expect(second).toContain(`${WOC_GUILD_BANK_LOG_CACHE}{kind="refreshes"} 1`);
-  });
-
-  it('exposes the auth-guard cache arms, zero-backfilled before boot and live after', async () => {
-    // Literal name pin: a rename must fail here, not merely swap a constant.
-    expect(WOC_AUTH_GUARD_CACHE).toBe('woc_auth_guard_cache');
-    resetWocAuthGuardCache();
-    const registry = new Registry();
-    registerGameStateMetrics(registry, stubSource());
-    // Exact-line matcher (a substring pin on `} 1` also matches 10 or 1.5).
-    const line = (metrics: string, arm: string, kind: string): string | undefined =>
-      metrics
-        .split('\n')
-        .find((l) => l.startsWith(`${WOC_AUTH_GUARD_CACHE}{arm="${arm}",kind="${kind}"}`));
-    const cold = await registry.metrics();
-    // Unarmed (pre-boot): every series exists at zero so an alert rule can
-    // fire on its first real sample, the two soft-bound series included.
-    for (const arm of ['tokens', 'accounts']) {
-      for (const kind of ['reads', 'refreshes', 'evictions', 'busts', 'entries']) {
-        expect(line(cold, arm, kind)).toBe(
-          `${WOC_AUTH_GUARD_CACHE}{arm="${arm}",kind="${kind}"} 0`,
-        );
-      }
-    }
-    expect(line(cold, 'index', 'entries')).toBe(
-      `${WOC_AUTH_GUARD_CACHE}{arm="index",kind="entries"} 0`,
-    );
-    expect(line(cold, 'recent_busts', 'entries')).toBe(
-      `${WOC_AUTH_GUARD_CACHE}{arm="recent_busts",kind="entries"} 0`,
-    );
-    expect(line(cold, 'join_veto', 'refetches')).toBe(
-      `${WOC_AUTH_GUARD_CACHE}{arm="join_veto",kind="refetches"} 0`,
-    );
-    // Armed: the gauge reads the LIVE singleton on every scrape, on BOTH
-    // arms and on the soft-bound series.
-    try {
-      const cache = configureWocAuthGuardCache({
-        fetchTokenRow: async () => ({
-          accountId: 7,
-          scope: 'full',
-          expiresAtMs: Date.now() + 3600_000,
-        }),
-        fetchModerationRow: async () => null,
-      });
-      await cache.accountAndScopeForToken('a'.repeat(64));
-      await cache.moderationStatusForAccount(7);
-      cache.bustAccount(8);
-      const warm = await registry.metrics();
-      expect(line(warm, 'tokens', 'reads')).toBe(
-        `${WOC_AUTH_GUARD_CACHE}{arm="tokens",kind="reads"} 1`,
-      );
-      expect(line(warm, 'tokens', 'entries')).toBe(
-        `${WOC_AUTH_GUARD_CACHE}{arm="tokens",kind="entries"} 1`,
-      );
-      expect(line(warm, 'accounts', 'reads')).toBe(
-        `${WOC_AUTH_GUARD_CACHE}{arm="accounts",kind="reads"} 1`,
-      );
-      expect(line(warm, 'index', 'entries')).toBe(
-        `${WOC_AUTH_GUARD_CACHE}{arm="index",kind="entries"} 1`,
-      );
-      expect(line(warm, 'recent_busts', 'entries')).toBe(
-        `${WOC_AUTH_GUARD_CACHE}{arm="recent_busts",kind="entries"} 1`,
-      );
-    } finally {
-      resetWocAuthGuardCache();
-    }
   });
 });
 

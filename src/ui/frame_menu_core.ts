@@ -70,7 +70,6 @@ export function frameSettingRelated(id: string, key: string): boolean {
         'aurasOnPlayerFrame',
         'auraBarBelowFrame',
         'alwaysShowAllBuffs',
-        'showWalletOnPlayerCard',
       ].includes(key)
     );
   if (id === 'targetFrame')

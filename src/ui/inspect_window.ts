@@ -46,12 +46,6 @@ import { discordRoleTagLabel } from './discord_role_tag';
 import { discordStatusBadgeDataUrl, discordStatusDisplayName } from './discord_tier';
 import { classDisplayName } from './entity_i18n';
 import { esc } from './esc';
-import {
-  holderCardBadgeClass,
-  holderTierBadgeDataUrl,
-  holderTierByIndex,
-  holderTierDisplayName,
-} from './holder_tier';
 import { formatNumber, t } from './i18n';
 import { iconDataUrl } from './icons';
 import {
@@ -63,7 +57,6 @@ import {
   type InspectDevModel,
   type InspectDiscordModel,
   type InspectHeaderModel,
-  type InspectHolderModel,
 } from './inspect_view';
 import { type ItemHistoryHolder, itemHistoryProvenanceFor } from './item_history_access_view';
 import {
@@ -110,8 +103,6 @@ export interface InspectEntity {
   modularAppearance?: BodyPick;
   /** The server-resolved active Armory weapon skin (wire wsk), render-only. */
   weaponSkinId?: string | null;
-  holderTier?: number;
-  holderBalance?: number;
   discordTier?: number;
   discordName?: string;
   discordAvatar?: string;
@@ -249,8 +240,6 @@ export class InspectWindow {
         selfStanding: selfStanding ?? null,
         equippedItems: e.equippedItems,
         equippedInstances: selfEquippedInstances ?? e.equippedInstances,
-        holderTier: e.holderTier ?? 0,
-        holderBalance: e.holderBalance ?? null,
         discordTier: e.discordTier ?? 0,
         discordName: e.discordName ?? null,
         discordAvatar: e.discordAvatar ?? null,
@@ -273,7 +262,6 @@ export class InspectWindow {
       }),
     )}</div>${specChipHtml(cls, header.specId)}${this.curatorLineHtml(model.curator)}`;
     const honorHtml =
-      this.holderHtml(model.badges.holder) +
       this.discordHtml(model.badges.discord) +
       this.devHtml(model.badges.dev) +
       this.curatorHtml(model.badges.curator);
@@ -574,28 +562,6 @@ export class InspectWindow {
       `<div class="inspect-holder-text">` +
       `<div class="inspect-holder-name">${esc(rankName)}</div>` +
       `<div class="inspect-holder-sub ui-meta ui-muted">${esc(t('hudChrome.reliquary.sigilCaption'))}</div>` +
-      `</div></div>`
-    );
-  }
-
-  private holderHtml(holder: InspectHolderModel | null): string {
-    if (!holder) return '';
-    const tierDef = holderTierByIndex(holder.tierIndex);
-    if (!tierDef) return '';
-    const sub =
-      holder.balance !== null
-        ? esc(
-            t('wallet.balanceAmount', {
-              amount: formatNumber(holder.balance, { maximumFractionDigits: 0 }),
-            }),
-          )
-        : esc(t('wallet.holder'));
-    return (
-      `<div class="inspect-holder ui-card">` +
-      `<img class="${holderCardBadgeClass(tierDef)}" style="--holder-glow:${tierDef.glow}" src="${holderTierBadgeDataUrl(tierDef)}" alt="" draggable="false">` +
-      `<div class="inspect-holder-text">` +
-      `<div class="inspect-holder-name">${esc(holderTierDisplayName(tierDef))}</div>` +
-      `<div class="inspect-holder-sub ui-meta ui-muted">${sub}</div>` +
       `</div></div>`
     );
   }

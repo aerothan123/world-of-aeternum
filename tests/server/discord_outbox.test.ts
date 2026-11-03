@@ -56,15 +56,8 @@ vi.mock('../../server/discord_relay', async (importOriginal) => ({
   drainRelay: vi.fn(),
   requeueRelay: vi.fn(),
 }));
-vi.mock('../../server/daily_rewards', () => ({
-  dailyRewardService: {
-    discordWinnerAnnouncements: vi.fn(),
-    markDiscordWinnersAnnounced: vi.fn(),
-  },
-}));
 
 import type * as http from 'node:http';
-import { dailyRewardService } from '../../server/daily_rewards';
 import type { QueuedActivity } from '../../server/discord_activity';
 import { ACTIVITY_MAX_QUEUE, drainActivity } from '../../server/discord_activity';
 import type { DiscordOutboxLinkRow } from '../../server/discord_db';
@@ -119,7 +112,9 @@ const ACTIVITY_CAP = ACTIVITY_MAX_QUEUE;
  * own measurement, so re-deriving the headroom never means guessing at the size.
  *
  * The earlier figure was 979,051 bytes, at a whole-cap 5,000-item drain and five
- * winner days: the page and the minimized winners ask are what moved it.
+ * winner days: the page and the minimized winners ask are what moved it. The
+ * winners stream itself has since retired with the crypto-only Daily Rewards
+ * feature, which shrank the measurement by one day's payout table.
  */
 const PAYLOAD_BOUND_BYTES = 420_000;
 
@@ -196,28 +191,6 @@ function activityItem(index: number, accountIds: number[]): QueuedActivity {
   };
 }
 
-/** One finalized reward day with the full ten-rank payout table, in the
- *  announcement-narrow winner-row shape the service serves since #2791 (no
- *  txSignature, wallet pubkey, or voided_by_* operator identity). */
-function winnerDay(dayIndex: number): unknown {
-  return {
-    day: `2026-06-${String(20 + dayIndex).padStart(2, '0')}`,
-    realm: 'Claudemoon',
-    prizePoolUsd: 150,
-    finalizedAt: '2026-06-30T22:00:00.000Z',
-    taskName: 'Complete quests today. Points increase with time spent online.',
-    nextTaskName: 'Win an arena match.',
-    payouts: Array.from({ length: 10 }, (_, rank) => ({
-      rank: rank + 1,
-      username: `Adventurer${rank + 1}`,
-      points: 4200 - rank * 100,
-      prizePercent: 0.2,
-      prizeUsd: 30,
-      status: 'paid',
-    })),
-  };
-}
-
 const ORIGINAL_DISCORD_SECRET = process.env.DISCORD_BOT_SECRET;
 
 beforeEach(() => {
@@ -291,11 +264,6 @@ describe('discord/outbox payload size at the full-cap drain', () => {
     ]);
     vi.mocked(discordLinksForAccounts).mockResolvedValue([...mentioned].map(linkRow));
 
-    // ONE day, which is the ceiling of what the handler asks for now.
-    vi.mocked(dailyRewardService.discordWinnerAnnouncements).mockResolvedValue({
-      days: [winnerDay(0)],
-    });
-
     const r = await runOutbox();
     expect(r.status).toBe(200);
 
@@ -314,7 +282,6 @@ describe('discord/outbox payload size at the full-cap drain', () => {
     const payload = data as {
       relay: { items: unknown[] };
       activity: { items: unknown[] };
-      winners: { days: unknown[] };
       linkChanges: { items: unknown[] };
       pvpKills: { items: unknown[] };
       hillAnnouncements: { items: unknown[] };
@@ -324,7 +291,6 @@ describe('discord/outbox payload size at the full-cap drain', () => {
     expect(payload.hillAnnouncements.items).toHaveLength(HILL_ANNOUNCEMENT_MAX_QUEUE);
     expect(payload.activity.items).toHaveLength(ACTIVITY_CAP);
     expect(payload.linkChanges.items).toHaveLength(OUTBOX_LINK_CHANGE_PAGE);
-    expect(payload.winners.days).toHaveLength(1);
 
     // Reported so the bound can be re-derived without re-measuring by hand.
     console.info(
@@ -345,7 +311,6 @@ describe('discord/outbox payload size at the full-cap drain', () => {
       enqueueLinkChange({ accountId: i, kinds: ['flex'], discordId: `du${i}` }, 1000);
     }
     vi.mocked(discordLinksForAccounts).mockResolvedValue([]);
-    vi.mocked(dailyRewardService.discordWinnerAnnouncements).mockResolvedValue({ days: [] });
 
     const first = await runOutbox();
     const second = await runOutbox();
@@ -376,7 +341,6 @@ describe('discord/outbox payload size at the full-cap drain', () => {
       enqueueLinkChange({ accountId: i, kinds: ['flex'], discordId: `du${i}` }, 1000 + i);
     }
     vi.mocked(discordLinksForAccounts).mockResolvedValue([]);
-    vi.mocked(dailyRewardService.discordWinnerAnnouncements).mockResolvedValue({ days: [] });
 
     const r = await runOutbox();
 

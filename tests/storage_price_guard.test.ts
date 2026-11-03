@@ -191,8 +191,7 @@ const familyAllowed: AllowFn = anchoredAllow(FAMILY_ALLOWANCES, usedFamilyAnchor
 // distinctive price value, each anchored on the named constant sharing its
 // line. The exercised-allowance arm below reds if one goes stale.
 const TREE_ALLOWANCES: ReadonlyArray<[file: string, value: number, anchor: string]> = [
-  // Five minutes in milliseconds, twice: neither is money.
-  ['src/ui/daily_rewards_launcher_core.ts', 300000, 'DAILY_REWARDS_LAUNCHER_THROTTLE_MS'],
+  // Five minutes in milliseconds: not money.
   ['src/ui/hud/loot/loot_roll_controller.ts', 300000, 'MASTER_LOOT_DURATION_MS'],
   // The /dev gold prompt's input bound (dev-gated tooling, not a price render).
   ['src/ui/dev_command_view.ts', 100000, 'boundedInteger'],
@@ -218,10 +217,6 @@ const TREE_ALLOWANCES: ReadonlyArray<[file: string, value: number, anchor: strin
   ['src/ui/hud/vehicle/cannon_tactics_view.ts', 1000000, 'result.shotsFired > 1000000'],
   // The vehicle session wire decoder's finite-number bound, not money.
   ['src/net/vehicle_session_wire.ts', 1000000, 'Math.abs(value) <='],
-  // Two minutes in milliseconds, three times: timeouts and a countdown band.
-  ['src/ui/woc_market_view.ts', 120000, 'remainingMs < 120000'],
-  ['src/net/mobile_wallet_deeplink.ts', 120000, 'RESPONSE_TIMEOUT_MS'],
-  ['src/net/wallet_connect.ts', 120000, '}, 120000);'],
   // The bounded preparation retry delay, in milliseconds.
   ['src/render/ability_vfx/active_kit_prewarm.ts', 120000, 'ACTIVE_KIT_RETRY_DELAYS_MS'],
   // A render triangle budget, not money.
@@ -372,9 +367,9 @@ describe('the literal scanner (positive controls through the real operator)', ()
     // exercised-anchor pins in arms (b)/(c).
     const probeUsed = new Set<string>();
     const probeAllow = anchoredAllow(TREE_ALLOWANCES, probeUsed);
-    const anchored = 'const DAILY_REWARDS_LAUNCHER_THROTTLE_MS = 300000;';
+    const anchored = 'const MASTER_LOOT_DURATION_MS = 300000;';
     const bare = 'const price = 300000;';
-    const rel = 'src/ui/daily_rewards_launcher_core.ts';
+    const rel = 'src/ui/hud/loot/loot_roll_controller.ts';
     expect(scanCode(prepare(anchored), banValues, rel, probeAllow, none)).toEqual([]);
     expect(probeUsed.size).toBe(1);
     const hits = scanCode(prepare(bare), banValues, rel, probeAllow, none);

@@ -133,6 +133,10 @@ import { SCHEMA_ADVISORY_LOCK_KEY } from './schema_lock';
 export { recordReferral } from './referral_armour_db';
 
 import { migrateLegacyAccountSocial } from './account_social_migration';
+import {
+  LEGACY_SEEKER_ENTITLEMENT_SCHEMA,
+  LEGACY_WOC_MARKET_SCHEMA,
+} from './legacy_crypto_schema_db';
 import { MEMBERSHIP_TOKEN_RECEIPTS_SCHEMA } from './membership_token_delivery_db';
 import { OAUTH_SCHEMA } from './oauth_db';
 import { runOfflineCharacterSave } from './offline_character_save_db';
@@ -151,7 +155,6 @@ import { REALM_BUILDER_SCHEMA } from './realm_builder_db';
 import { REALM_MOTD_SCHEMA } from './realm_motd_db';
 import { chooseArchiveName } from './reclaim_name';
 import { attachSchemaNoticeForwarder } from './schema_notices';
-import { SEEKER_ENTITLEMENT_SCHEMA } from './seeker_entitlement_db';
 import { SOCIAL_SCHEMA } from './social_db';
 import { STAFF_WATCHLIST_SCHEMA } from './staff_watchlist_db';
 import {
@@ -163,9 +166,6 @@ import { SUSPICION_FLAGS_SCHEMA } from './suspicion_flags_db';
 import { UNSTUCK_SCHEMA } from './unstuck_db';
 import { USER_ASSETS_SCHEMA } from './user_assets_db';
 import { VAULT_REWARDS_SCHEMA } from './vault_rewards_db';
-import { bustWocAuthGuardAccount, bustWocAuthGuardToken } from './woc_auth_guard_cache';
-import { WOC_MARKET_SCHEMA } from './woc_market_db';
-import { bustWocMarketActivity } from './woc_market_read_cache';
 import { WORLD_QUEST_SCORES_SCHEMA } from './world_quest_scores_db';
 
 export type { BankLedgerSaveEffects } from './bank_ledger_save_effects_db';
@@ -936,18 +936,14 @@ CREATE TABLE IF NOT EXISTS chat_violations (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 CREATE INDEX IF NOT EXISTS chat_violations_account ON chat_violations(account_id, created_at DESC);
--- Non-custodial Solana wallet links (PRD: docs/prd/woc/wallet-link.md). One
--- wallet per account (account_id is the PK) and one account per wallet (pubkey
--- is UNIQUE). The server never holds keys; ownership is proven by a signed
--- challenge (see wallet_link_challenges) and this table is just the mirror.
+-- LEGACY (no longer read or written): the retired Solana wallet links. Project
+-- H uses no cryptocurrency; the DDL stays so persisted databases load unchanged.
 CREATE TABLE IF NOT EXISTS wallet_links (
   account_id INT PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,
   pubkey TEXT NOT NULL UNIQUE,
   linked_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
--- Single-use, short-lived sign-to-link challenges. The full message the wallet
--- must sign is stored server-side so the client cannot choose what gets signed;
--- consuming a challenge deletes it (replay protection).
+-- LEGACY (no longer read or written): the retired wallet sign-to-link challenges.
 CREATE TABLE IF NOT EXISTS wallet_link_challenges (
   nonce TEXT PRIMARY KEY,
   account_id INT NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
@@ -983,6 +979,8 @@ CREATE TABLE IF NOT EXISTS epic_links (
   epic_account_id TEXT NOT NULL UNIQUE,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+-- LEGACY (no longer read or written): the retired crypto-only Daily Rewards
+-- tables (daily_reward_*), kept so persisted databases load unchanged.
 CREATE TABLE IF NOT EXISTS daily_reward_days (
   day TEXT NOT NULL,
   realm TEXT NOT NULL DEFAULT '${REALM_SQL_DEFAULT}',
@@ -1206,6 +1204,8 @@ ALTER TABLE bank_ledger ADD COLUMN IF NOT EXISTS counterparty_copper_delta BIGIN
 ALTER TABLE bank_ledger ADD COLUMN IF NOT EXISTS counterparty_count INT;
 `;
 
+// LEGACY (no longer read): the retired Daily Rewards exclusion view, still
+// applied so persisted databases load unchanged.
 // Kept out of SCHEMA on purpose: the association arm reads
 // account_ip_associations, which PLAY_SESSION_RETENTION_SCHEMA creates, and
 // SCHEMA executes before it on a fresh database. ensureSchema applies this
@@ -1326,7 +1326,9 @@ export async function ensureSchema(): Promise<void> {
     await client.query(REALM_MOTD_SCHEMA);
     await client.query(SOCIAL_SCHEMA);
     await client.query(ADMIN_GUILDS_SCHEMA);
-    await client.query(SEEKER_ENTITLEMENT_SCHEMA);
+    // LEGACY (server/legacy_crypto_schema_db.ts): the retired Seeker claim
+    // table, still applied so persisted databases keep loading unchanged.
+    await client.query(LEGACY_SEEKER_ENTITLEMENT_SCHEMA);
     await client.query(OAUTH_SCHEMA);
     // Discord integration tables (links, oauth states, pending logins, reward
     // economy). FK-references accounts(id), so it runs after SCHEMA. Applied
@@ -1391,9 +1393,11 @@ export async function ensureSchema(): Promise<void> {
     // block, unblock). FK-references accounts(id), so it runs after SCHEMA.
     // Applied unconditionally (idempotent), like the other schema modules.
     await client.query(CONTENT_MODERATION_SCHEMA);
-    // After SCHEMA: every marketplace table FKs accounts(id), and the custody
-    // model rides characters + world_state (the escrow combined save).
-    await client.query(WOC_MARKET_SCHEMA);
+    // LEGACY (server/legacy_crypto_schema_db.ts): the retired $WOC Exchange
+    // tables. Nothing reads or writes them; the DDL is still applied so
+    // persisted databases keep loading unchanged. After SCHEMA: they FK
+    // accounts(id).
+    await client.query(LEGACY_WOC_MARKET_SCHEMA);
     // The World Market sold-volume store (qr-19-sold-volume-four-seam-wiring):
     // realm x day x tracked-item daily aggregates, no FK, additive, idempotent.
     await client.query(MARKET_SOLD_VOLUME_SCHEMA);
@@ -1588,9 +1592,9 @@ export interface AccountRow {
   totp_last_window?: string | number | null;
 }
 
-// The status shape (and its compute) moved to server/auth_guard_core.ts so the
-// direct read below and the marketplace guard cache share one source of truth;
-// re-exported here so the existing importers compile unchanged.
+// The status shape (and its compute) lives in server/auth_guard_core.ts, the
+// pure half of the direct read below; re-exported here so the existing
+// importers compile unchanged.
 export type { AccountModerationStatus } from './auth_guard_core';
 
 export interface AccountChatMuteStatus {
@@ -1692,9 +1696,6 @@ export async function saveToken(
      VALUES ($1, $2, now() + ($3 || ' hours')::interval, $4, $5)`,
     [token, accountId, String(ttlHours), scope, label],
   );
-  // A fresh random token can have no cached guard entry; the call keeps the
-  // auth_tokens writer set exemption-free for the bust discovery pin.
-  bustWocAuthGuardToken(token);
 }
 
 // The raw token-probe row for the guard reads (the cache's refresh source and
@@ -1814,13 +1815,10 @@ export async function revokeTokensExcept(
   } else {
     await pool.query('DELETE FROM auth_tokens WHERE account_id = $1', [accountId]);
   }
-  // Account-keyed guard bust (over-busting the kept token costs one re-fetch).
-  bustWocAuthGuardAccount(accountId);
 }
 
 export async function revokeToken(token: string): Promise<void> {
   await pool.query('DELETE FROM auth_tokens WHERE token = $1', [token]);
-  bustWocAuthGuardToken(token);
 }
 
 // Revoke a read-scoped token by value (OAuth/RFC-7009 revocation, companion
@@ -1830,7 +1828,6 @@ export async function revokeReadToken(token: string): Promise<boolean> {
   const res = await pool.query(`DELETE FROM auth_tokens WHERE token = $1 AND scope = 'read'`, [
     token,
   ]);
-  bustWocAuthGuardToken(token);
   return (res.rowCount ?? 0) > 0;
 }
 
@@ -1884,10 +1881,6 @@ export async function revokeCompanionToken(accountId: number, prefix: string): P
       WHERE account_id = $1 AND scope = 'read' AND left(token, 8) = $2`,
     [accountId, prefix],
   );
-  // The cache is keyed by the FULL token this site does not hold, so the
-  // account-keyed bust drops every cached token of the account (over-busting
-  // is the safe direction; the survivors re-fetch).
-  bustWocAuthGuardAccount(accountId);
   return (res.rowCount ?? 0) > 0;
 }
 
@@ -1925,7 +1918,6 @@ export async function setAccountDeactivated(
     `UPDATE accounts SET deactivated_at = CASE WHEN $2 THEN now() ELSE NULL END WHERE id = $1`,
     [accountId, deactivated],
   );
-  bustWocAuthGuardAccount(accountId);
 }
 
 export async function setAccountLocale(accountId: number, locale: string | null): Promise<void> {
@@ -2096,7 +2088,6 @@ export async function consumePasswordResetRequest(
     // after COMMIT like the discord_db.ts sites. The expired/replayed-token arm
     // returns above without writing and must not evict a healthy snapshot.
     bustDiscordStatus(row.account_id);
-    bustWocAuthGuardAccount(row.account_id);
     return { accountId: row.account_id };
   } catch (err) {
     await client.query('ROLLBACK').catch(() => {});
@@ -2416,91 +2407,6 @@ export async function exportAccountData(
   };
 }
 
-// ── Non-custodial Solana wallet links ──────────────────────────────────────
-
-export interface WalletLinkRow {
-  account_id: number;
-  pubkey: string;
-  linked_at: string;
-}
-
-export async function createWalletChallenge(
-  nonce: string,
-  accountId: number,
-  address: string,
-  message: string,
-  ttlMinutes = 10,
-): Promise<void> {
-  await pool.query(
-    `INSERT INTO wallet_link_challenges (nonce, account_id, address, message, expires_at)
-     VALUES ($1, $2, $3, $4, now() + ($5 || ' minutes')::interval)`,
-    [nonce, accountId, address, message, String(ttlMinutes)],
-  );
-}
-
-// Atomically consume a challenge: returns the stored address+message if the
-// nonce belongs to this account and is unexpired, deleting the row so a
-// signature can never be replayed against it twice.
-export async function consumeWalletChallenge(
-  nonce: string,
-  accountId: number,
-): Promise<{ address: string; message: string } | null> {
-  const res = await pool.query(
-    `DELETE FROM wallet_link_challenges
-     WHERE nonce = $1 AND account_id = $2 AND expires_at > now()
-     RETURNING address, message`,
-    [nonce, accountId],
-  );
-  return res.rows[0] ?? null;
-}
-
-export async function pruneWalletChallenges(): Promise<void> {
-  await pool.query('DELETE FROM wallet_link_challenges WHERE expires_at <= now()');
-}
-
-export async function walletForAccount(accountId: number): Promise<WalletLinkRow | null> {
-  const res = await pool.query(
-    'SELECT account_id, pubkey, linked_at FROM wallet_links WHERE account_id = $1',
-    [accountId],
-  );
-  return res.rows[0] ?? null;
-}
-
-export async function accountForWallet(pubkey: string): Promise<number | null> {
-  const res = await pool.query('SELECT account_id FROM wallet_links WHERE pubkey = $1', [pubkey]);
-  return res.rows[0]?.account_id ?? null;
-}
-
-// One wallet per account (account_id PK) and one account per wallet (pubkey
-// UNIQUE). Upserts the caller's link; returns false when the wallet is already
-// owned by a different account so the handler can surface a 409.
-export async function linkWalletToAccount(accountId: number, pubkey: string): Promise<boolean> {
-  const owner = await accountForWallet(pubkey);
-  if (owner !== null && owner !== accountId) return false;
-  try {
-    await pool.query(
-      `INSERT INTO wallet_links (account_id, pubkey) VALUES ($1, $2)
-       ON CONFLICT (account_id) DO UPDATE SET pubkey = EXCLUDED.pubkey, linked_at = now()`,
-      [accountId, pubkey],
-    );
-  } catch (err) {
-    // TOCTOU: another account claimed this pubkey between the check above and
-    // here. The pubkey column is UNIQUE (not the ON CONFLICT target), so that
-    // races to a 23505: treat it as "already owned" (409), not a 500.
-    if (isUniqueViolation(err)) return false;
-    throw err;
-  }
-  // Identity changes must not wait out a cache TTL: the Exchange's activity
-  // readout carries the verified wallet (the bustDiscordStatus discipline).
-  bustWocMarketActivity(accountId);
-  return true;
-}
-
-export async function unlinkWallet(accountId: number): Promise<void> {
-  await pool.query('DELETE FROM wallet_links WHERE account_id = $1', [accountId]);
-  bustWocMarketActivity(accountId);
-}
-
 // ── Shareable player cards + referrals ─────────────────────────────────────
 
 export interface PlayerCardRow {
@@ -2607,12 +2513,11 @@ export async function referralCountForAccount(accountId: number): Promise<number
 
 // The account facts that drive the bank bonus-slot registry (server/bank_entitlements.ts),
 // read in ONE round trip because this runs at every fresh join. Cross-table reads are
-// fine from here (discord_links DDL lives in server/discord_db.ts, wallet_links + referrals
+// fine from here (discord_links DDL lives in server/discord_db.ts, referrals
 // above): the query is the natural home for the join. A missing account returns all-false/0
 // (the FROM accounts row is absent, so res.rows[0] is undefined and the fallback applies).
 //   - emailVerified: the RESOLVED criterion, email_verified_at IS NOT NULL, never email-present.
-//   - discordLinked / walletLinked: a link ROW is the whole proof. NEVER a balance, holder tier,
-//     or any chain state (the $WOC PRDs pin cosmetic-only; a wallet's contents are out of scope).
+//   - discordLinked: a link ROW is the whole proof.
 //   - qualifiedReferrals: referrals this account referred whose referee owns ANY character at
 //     level >= 10 (the denormalized characters.level; deliberately realm-agnostic, referrals are
 //     account-global; the characters_account index covers the probe). Counted RAW; the cap is
@@ -2622,7 +2527,6 @@ export async function bankBonusFactsForAccount(accountId: number): Promise<BankB
     `SELECT
        (a.email_verified_at IS NOT NULL) AS email_verified,
        EXISTS(SELECT 1 FROM discord_links dl WHERE dl.account_id = $1) AS discord_linked,
-       EXISTS(SELECT 1 FROM wallet_links wl WHERE wl.account_id = $1) AS wallet_linked,
        EXISTS(SELECT 1 FROM referral_progress rp WHERE rp.account_id = $1 AND (rp.rewarded_mask & 2) <> 0) AS referral_capacity_earned,
        (SELECT count(*)::int FROM referrals r
           WHERE r.referrer_account_id = $1
@@ -2638,7 +2542,6 @@ export async function bankBonusFactsForAccount(accountId: number): Promise<BankB
   return {
     emailVerified: !!row?.email_verified,
     discordLinked: !!row?.discord_linked,
-    walletLinked: !!row?.wallet_linked,
     qualifiedReferrals: row?.qualified_referrals ?? 0,
     referralCapacityEarned: !!row?.referral_capacity_earned,
   };

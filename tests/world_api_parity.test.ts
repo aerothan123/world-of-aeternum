@@ -69,7 +69,6 @@ import type { IWorldChat } from '../src/world_api/chat';
 import { isOverheadEmoteId, OVERHEAD_EMOTES } from '../src/world_api/chat';
 import type { IWorldCombat } from '../src/world_api/combat';
 import type { IWorldCosmetics } from '../src/world_api/cosmetics';
-import type { IWorldDailyRewards } from '../src/world_api/daily_rewards';
 import type { IWorldDeeds } from '../src/world_api/deeds';
 import type { IWorldDelves } from '../src/world_api/delves';
 import type { IWorldDuelArena } from '../src/world_api/duel_arena';
@@ -539,11 +538,6 @@ export const IWORLD_MEMBERS = [
   { name: 'guildRoster', kind: 'method' }, // async
   { name: 'devLeaderboard', kind: 'method' }, // async
   { name: 'prestige', kind: 'method' },
-  // --- daily WOC-holder rewards (IWorldDailyRewards; all async) ---
-  { name: 'dailyRewards', kind: 'method' },
-  { name: 'dailyRewardLeaderboard', kind: 'method' },
-  { name: 'spinDailyReward', kind: 'method' },
-  { name: 'dailyRewardHistory', kind: 'method' },
   // --- talents & specializations (reads + commands) ---
   { name: 'talents', kind: 'data' },
   { name: 'talentSpec', kind: 'data' },
@@ -1049,10 +1043,12 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
     // and buyHouse (method): 474/142/332. Phase 2 adds houseAnchors (data) and
     // placeFurniture / removeFurniture (methods): 477/143/334. Phase 3 adds
     // houseStorage (data) and houseStorageDeposit / houseStorageWithdraw
-    // (methods): 480/144/336. Tree chopping adds felledTrees (method): 481/144/337.
-    expect(IWORLD_MEMBERS.length).toBe(481);
+    // (methods): 480/144/336. Retiring the crypto-only Daily Rewards facet
+    // (IWorldDailyRewards: four methods) leaves 476/144/332, and tree chopping
+    // adds felledTrees (method): 477/144/333.
+    expect(IWORLD_MEMBERS.length).toBe(477);
     expect(DATA_MEMBERS.length).toBe(144);
-    expect(METHOD_MEMBERS.length).toBe(337);
+    expect(METHOD_MEMBERS.length).toBe(333);
   });
   it('has no duplicate member names', () => {
     const names = IWORLD_MEMBERS.map((m) => m.name);
@@ -1176,9 +1172,6 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'craftSkills',
       'craftVaultStock',
       'craftingIdentity',
-      'dailyRewardHistory',
-      'dailyRewardLeaderboard',
-      'dailyRewards',
       'deedStats',
       'deedsEarned',
       'deedsLeaderboard',
@@ -1473,7 +1466,6 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'socketRiftGem',
       'sortInventory',
       'spectating',
-      'spinDailyReward',
       'startAutoAttack',
       'startWorldQuestActivity',
       'stationPlacements',
@@ -1767,9 +1759,6 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'corpseHarvestInfo',
       'courierDispatch',
       'craftItem',
-      'dailyRewardHistory',
-      'dailyRewardLeaderboard',
-      'dailyRewards',
       'deedsLeaderboard',
       'deedsRarity',
       'deedsRecent',
@@ -1990,7 +1979,6 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'socialFriendsPage',
       'socketRiftGem',
       'sortInventory',
-      'spinDailyReward',
       'startAutoAttack',
       'startWorldQuestActivity',
       'stopAutoAttack',
@@ -2587,16 +2575,6 @@ const FACET_DELVES = [
 ] as const satisfies readonly (keyof IWorldDelves)[];
 type _ExhaustDelves = AssertNever<Exclude<keyof IWorldDelves, (typeof FACET_DELVES)[number]>>;
 
-const FACET_DAILY_REWARDS = [
-  'dailyRewards',
-  'dailyRewardLeaderboard',
-  'spinDailyReward',
-  'dailyRewardHistory',
-] as const satisfies readonly (keyof IWorldDailyRewards)[];
-type _ExhaustDailyRewards = AssertNever<
-  Exclude<keyof IWorldDailyRewards, (typeof FACET_DAILY_REWARDS)[number]>
->;
-
 const FACET_TELEMETRY = ['reportTelemetry'] as const satisfies readonly (keyof IWorldTelemetry)[];
 type _ExhaustTelemetry = AssertNever<
   Exclude<keyof IWorldTelemetry, (typeof FACET_TELEMETRY)[number]>
@@ -2816,7 +2794,6 @@ const FACET_MEMBER_ARRAYS: Readonly<Record<string, readonly string[]>> = {
   guildBank: FACET_GUILD_BANK,
   dungeons: FACET_DUNGEONS,
   delves: FACET_DELVES,
-  dailyRewards: FACET_DAILY_REWARDS,
   telemetry: FACET_TELEMETRY,
   professions: FACET_PROFESSIONS,
   mounts: FACET_MOUNTS,
@@ -2855,7 +2832,8 @@ describe('W1: aggregate IWorld member set equals the disjoint union of the facet
     // into the v0.45.0 integration (its 38 plus seating.ts).
     // 40 with feature/halloween-event's seasonal.ts.
     // 41 with player housing's housing.ts (Project H).
-    expect(Object.keys(FACET_MEMBER_ARRAYS).length).toBe(41);
+    // 40 once Project H retired the crypto-only daily_rewards.ts facet.
+    expect(Object.keys(FACET_MEMBER_ARRAYS).length).toBe(40);
   });
 
   it('every facet FILE on disk is a FACET_MEMBER_ARRAYS key (none can go silently unpartitioned)', () => {
@@ -2943,8 +2921,9 @@ describe('W1: aggregate IWorld member set equals the disjoint union of the facet
     // ranks method (PR 4390) and unappliedDungeonDifficulty (PR 4625). Player
     // housing phase 2 adds houseAnchors, placeFurniture and removeFurniture;
     // phase 3 adds houseStorage, houseStorageDeposit and houseStorageWithdraw.
-    expect(union.length, 'union size before dedup (catches a duplicated member)').toBe(481);
-    expect(new Set(union).size, 'union size after dedup (catches a duplicated member)').toBe(481);
+    // The retired Daily Rewards facet removes its four methods; felledTrees adds one.
+    expect(union.length, 'union size before dedup (catches a duplicated member)').toBe(477);
+    expect(new Set(union).size, 'union size after dedup (catches a duplicated member)').toBe(477);
     const sortedUnion = [...union].sort();
     const pinned = IWORLD_MEMBERS.map((m) => m.name).sort();
     expect(sortedUnion).toEqual(pinned);

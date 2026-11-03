@@ -10,14 +10,14 @@ import {
 import { BANK_MAX_BONUS_SLOTS } from '../src/sim/bank';
 import type { BankBonusSource } from '../src/world_api';
 
-// The bank bonus-slot registry math. Every source grants +2 per unit: email/Discord/
-// wallet are binary (1 unit, cap 1 -> +2), referral is +2 per qualified referral capped
-// at 5 (+10). Values are pinned as bare literals, never a constant compared to itself.
+// The bank bonus-slot registry math. Every source grants +2 per unit: email/Discord
+// are binary (1 unit, cap 1 -> +2), referral is +2 per qualified referral capped
+// at 5 (+10). The wallet source retired with Project H's crypto removal. Values
+// are pinned as bare literals, never a constant compared to itself.
 
 const facts = (over: Partial<BankBonusFacts> = {}): BankBonusFacts => ({
   emailVerified: false,
   discordLinked: false,
-  walletLinked: false,
   qualifiedReferrals: 0,
   ...over,
 });
@@ -37,7 +37,6 @@ describe('computeBankBonus: per-source math (each dimension toggled independentl
     expect(r.bonusSlots).toBe(0);
     expect(rowFor(r, 'email')).toEqual({ id: 'email', slots: 0, maxSlots: 2 });
     expect(rowFor(r, 'discord')).toEqual({ id: 'discord', slots: 0, maxSlots: 2 });
-    expect(rowFor(r, 'wallet')).toEqual({ id: 'wallet', slots: 0, maxSlots: 2 });
     expect(rowFor(r, 'referral')).toEqual({
       id: 'referral',
       slots: 0,
@@ -51,7 +50,6 @@ describe('computeBankBonus: per-source math (each dimension toggled independentl
     const r = computeBankBonus(facts({ emailVerified: true }));
     expect(rowFor(r, 'email')).toEqual({ id: 'email', slots: 2, maxSlots: 2 });
     expect(rowFor(r, 'discord').slots).toBe(0);
-    expect(rowFor(r, 'wallet').slots).toBe(0);
     expect(rowFor(r, 'referral').slots).toBe(0);
     expect(r.bonusSlots).toBe(2);
   });
@@ -60,16 +58,6 @@ describe('computeBankBonus: per-source math (each dimension toggled independentl
     const r = computeBankBonus(facts({ discordLinked: true }));
     expect(rowFor(r, 'discord')).toEqual({ id: 'discord', slots: 2, maxSlots: 2 });
     expect(rowFor(r, 'email').slots).toBe(0);
-    expect(rowFor(r, 'wallet').slots).toBe(0);
-    expect(rowFor(r, 'referral').slots).toBe(0);
-    expect(r.bonusSlots).toBe(2);
-  });
-
-  it('grants +2 for a linked wallet in isolation, 0 for every other source', () => {
-    const r = computeBankBonus(facts({ walletLinked: true }));
-    expect(rowFor(r, 'wallet')).toEqual({ id: 'wallet', slots: 2, maxSlots: 2 });
-    expect(rowFor(r, 'email').slots).toBe(0);
-    expect(rowFor(r, 'discord').slots).toBe(0);
     expect(rowFor(r, 'referral').slots).toBe(0);
     expect(r.bonusSlots).toBe(2);
   });
@@ -85,7 +73,6 @@ describe('computeBankBonus: per-source math (each dimension toggled independentl
     });
     expect(rowFor(r, 'email').slots).toBe(0);
     expect(rowFor(r, 'discord').slots).toBe(0);
-    expect(rowFor(r, 'wallet').slots).toBe(0);
     expect(r.bonusSlots).toBe(6);
   });
 });
@@ -130,10 +117,8 @@ describe('computeBankBonus: the referral cap holds at exactly 5', () => {
 
 describe('computeBankBonus: row shape and total invariants', () => {
   it('binary rows carry NO count/cap keys', () => {
-    const r = computeBankBonus(
-      facts({ emailVerified: true, discordLinked: true, walletLinked: true }),
-    );
-    for (const id of ['email', 'discord', 'wallet']) {
+    const r = computeBankBonus(facts({ emailVerified: true, discordLinked: true }));
+    for (const id of ['email', 'discord']) {
       const row = rowFor(r, id);
       expect(row).not.toHaveProperty('count');
       expect(row).not.toHaveProperty('cap');
@@ -153,7 +138,6 @@ describe('computeBankBonus: row shape and total invariants', () => {
       facts({
         emailVerified: true,
         discordLinked: true,
-        walletLinked: true,
         qualifiedReferrals: 7,
       }),
     ];
@@ -163,30 +147,29 @@ describe('computeBankBonus: row shape and total invariants', () => {
     }
   });
 
-  it('all facts earned -> 36 bonus slots while existing sources still contribute 16', () => {
+  it('all facts earned -> 34 bonus slots while existing sources still contribute 14', () => {
     const maxed = computeBankBonus(
       facts({
         emailVerified: true,
         discordLinked: true,
-        walletLinked: true,
         qualifiedReferrals: 5,
         referralCapacityEarned: true,
       }),
     );
-    expect(maxed.bonusSlots).toBe(36);
+    expect(maxed.bonusSlots).toBe(34);
     expect(rowFor(maxed, 'referral_cards')).toEqual({
       id: 'referral_cards',
       slots: 20,
       maxSlots: 20,
     });
-    expect(maxBankBonusSlots()).toBe(36);
+    expect(maxBankBonusSlots()).toBe(34);
   });
 });
 
 describe('computeBankBonus: the sim-constant tripwire', () => {
   it('the registry ceiling equals BANK_MAX_BONUS_SLOTS (a future source bumps both in one change)', () => {
     // The registry can never grant more capacity than the sim load-clamp admits. These
-    // are two independent sources of the same 16: the registry cap sum vs the sim
+    // are two independent sources of the same ceiling: the registry cap sum vs the sim
     // constant; adding a source that raises one without the other reds here.
     expect(maxBankBonusSlots(BANK_BONUS_SOURCES)).toBe(BANK_MAX_BONUS_SLOTS);
   });
@@ -218,13 +201,12 @@ describe('computeBankBonus: a new future source row lands without touching the w
     expect(r.bonusSlots).toBe(sumSlots(r));
     expect(r.bonusSlots).toBe(shipped.bonusSlots + 2);
 
-    // ...and doing so required NO edit to the shipped registry: it is still the four v1
+    // ...and doing so required NO edit to the shipped registry: it is still the four
     // rows in order. A regression that mutated the module-level array would red here.
-    expect(BANK_BONUS_SOURCES).toHaveLength(5);
+    expect(BANK_BONUS_SOURCES).toHaveLength(4);
     expect(BANK_BONUS_SOURCES.map((d) => d.id)).toEqual([
       'email',
       'discord',
-      'wallet',
       'referral',
       'referral_cards',
     ]);

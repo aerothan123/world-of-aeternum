@@ -193,10 +193,10 @@ describe('bankBonusRowHtml: the three-way status choice', () => {
     );
   });
 
-  it('the source map points at exactly the thirteen catalog keys, BY LITERAL', () => {
+  it('the source map points at exactly its catalog keys, BY LITERAL', () => {
     // The by-literal arm that came out of tests/bank_window.test.ts with the code,
     // and it is the only thing in the tree that names three of these keys at all.
-    // Without it, re-pointing bonusAdvertWallet at some other existing, distinct
+    // Without it, re-pointing bonusAdvertDiscord at some other existing, distinct
     // catalog key leaves every behavioural arm below green: they compare rendered
     // text against t(meta.advert), built through the same meta the code uses, so
     // they cannot see a wrong key, only a wrong SHAPE.
@@ -208,10 +208,6 @@ describe('bankBonusRowHtml: the three-way status choice', () => {
       discord: {
         label: 'hudChrome.bank.bonusSourceDiscord',
         advert: 'hudChrome.bank.bonusAdvertDiscord',
-      },
-      wallet: {
-        label: 'hudChrome.bank.bonusSourceWallet',
-        advert: 'hudChrome.bank.bonusAdvertWallet',
       },
       referral: {
         label: 'hudChrome.bank.bonusSourceReferral',

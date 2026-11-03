@@ -622,12 +622,12 @@ interface ArmMeasurement {
 }
 
 /**
- * Drive the REAL `saveCharacterStateOnClient` (the arm both marketplace escrow
- * transactions call) with a recording client, once with a container that moved
+ * Drive the REAL `saveCharacterStateOnClient` (the arm every caller-owned
+ * atomic save calls) with a recording client, once with a container that moved
  * and once with one that did not. Shared by the statement-count case and the
  * ladder case so the ladder reads a MEASURED number rather than an assumed one.
  */
-async function measureEscrowSaveArm(): Promise<{
+async function measureCallerOwnedSaveArm(): Promise<{
   unchanged: ArmMeasurement;
   moved: ArmMeasurement;
 }> {
@@ -679,36 +679,6 @@ async function measureEscrowSaveArm(): Promise<{
     moved: await run(after),
   };
 }
-
-/** The body of one named method, brace-matched out of comment-stripped source.
- *  Template literals in these bodies are brace-balanced, so a counter is safe. */
-function methodBody(source: string, marker: string): string {
-  const at = source.indexOf(marker);
-  if (at < 0) return '';
-  // Methods with a Promise union have object-literal braces in their return
-  // type before the method body. Find the body opener by its first statement,
-  // then brace-match from there. This keeps the source count tied to the
-  // actual method boundary rather than accidentally counting a type arm.
-  const rest = source.slice(at);
-  const statement = rest.search(/\{\s*(?:try|return\s+this\.withTx)\b/);
-  if (statement < 0) return '';
-  const bodyOpen = at + statement;
-  let depth = 0;
-  let opened = false;
-  for (let i = bodyOpen; i < source.length; i++) {
-    const ch = source[i];
-    if (ch === '{') {
-      depth++;
-      opened = true;
-    } else if (ch === '}') {
-      depth--;
-      if (opened && depth === 0) return source.slice(at, i + 1);
-    }
-  }
-  return '';
-}
-
-const countOf = (body: string, needle: RegExp): number => (body.match(needle) ?? []).length;
 
 describe('material source save paths: measured statement counts', () => {
   const units = widestMaterial.stack;
@@ -769,161 +739,17 @@ describe('material source save paths: measured statement counts', () => {
     });
   });
 
-  it('the caller-owned escrow save issues its journal statement inside the priced transaction', async () => {
-    const arm = await measureEscrowSaveArm();
+  it('the caller-owned save issues its journal statement inside the priced transaction', async () => {
+    const arm = await measureCallerOwnedSaveArm();
     expect(arm.unchanged.journalStatements).toBe(0);
     expect(arm.moved.journalStatements).toBe(1);
     expect(arm.moved.statements).toBe(arm.unchanged.statements + 1);
 
-    record('escrow-save-statements', {
+    record('caller-owned-save-statements', {
       unchanged: arm.unchanged.statements,
       moved: arm.moved.statements,
       journalStatements: arm.moved.journalStatements,
       sequence: arm.moved.sequence,
     });
-  });
-});
-
-// ---------------------------------------------------------------------------
-// The escrow timeout ladder, measured against the statement count that path
-// really issues. Nothing here re-tunes a bound; the constants are pinned to
-// their current literals so a silent re-tune reds this fixture, and the
-// discrepancy is recorded as a measured result.
-// ---------------------------------------------------------------------------
-
-describe('escrow workload ladder vs the measured statement count', () => {
-  it('pins the ladder inputs: the conservative base figure prices the conditional journal statement in, so it matches the WITH-movement count, one more than the no-movement count', async () => {
-    const { DB_HEAVY_STATEMENT_TIMEOUT_MS, DB_POOL_CONNECT_TIMEOUT_MS } = await import(
-      '../server/db'
-    );
-    const {
-      ESCROW_DIRECTED_BASE_WORKLOAD_STATEMENTS,
-      ESCROW_LEDGER_STORAGE_WORKLOAD_STATEMENTS,
-      ESCROW_LEDGER_WORKLOAD_STATEMENTS,
-      ESCROW_LOCK_TIMEOUT_MS,
-      ESCROW_STATEMENT_TIMEOUT_MS,
-    } = await import('../server/woc_market_db');
-
-    // Pinned literals, not self-comparisons: a re-tune must come here and be
-    // re-measured rather than silently absorbed. The intentional-gathering
-    // source journal added a CONDITIONAL statement to the escrow save arm
-    // (server/woc_market_db.ts docblock above these exports), which repriced
-    // the whole ladder: the statement allowance dropped from 4,000 to 3,500ms
-    // and every workload count grew by exactly the one conditional journal
-    // statement it now prices in as the worst case.
-    expect(ESCROW_STATEMENT_TIMEOUT_MS).toBe(3_500);
-    expect(ESCROW_LOCK_TIMEOUT_MS).toBe(2_000);
-    expect(DB_POOL_CONNECT_TIMEOUT_MS).toBe(5_000);
-    expect(ESCROW_DIRECTED_BASE_WORKLOAD_STATEMENTS).toBe(6);
-    expect(ESCROW_LEDGER_WORKLOAD_STATEMENTS).toBe(7);
-    expect(ESCROW_LEDGER_STORAGE_WORKLOAD_STATEMENTS).toBe(13);
-
-    // AUTOSAVE_SECONDS is module-private in game.ts; scrape it through the
-    // shared block-aware stripper, the tunables-suite idiom, so a re-tuned
-    // cadence moves this relation instead of leaving a stale literal.
-    const fs = await import('node:fs');
-    const path = await import('node:path');
-    const gameSource = stripComments(
-      fs.readFileSync(path.join(process.cwd(), 'server/game.ts'), 'utf8'),
-    );
-    const autosaveMatch = gameSource.match(/^const AUTOSAVE_SECONDS = (\d+);$/m);
-    expect(autosaveMatch).not.toBeNull();
-    const autosaveMs = Number(autosaveMatch?.[1]) * 1000;
-    expect(autosaveMs).toBeGreaterThan(0);
-
-    const ceiling = (statements: number): number =>
-      ESCROW_STATEMENT_TIMEOUT_MS * statements +
-      ESCROW_LOCK_TIMEOUT_MS +
-      DB_POOL_CONNECT_TIMEOUT_MS;
-
-    // The MEASURED half: the real save arm, driven with a recording client.
-    const arm = await measureEscrowSaveArm();
-
-    // The SOURCE-COUNTED half: the rest of the transaction. escrowInsertListing
-    // is a method on a class whose withTx needs a pool, so its whole body is
-    // not drivable here; its query CALL SITES are counted out of the real
-    // source instead. That is a count of the shipped code, not a formula, and
-    // it is labelled as source-counted wherever it is reported.
-    const marketSource = stripComments(
-      fs.readFileSync(path.join(process.cwd(), 'server/woc_market_db.ts'), 'utf8'),
-    );
-    const escrowBody = methodBody(marketSource, 'async escrowInsertListing(');
-    expect(escrowBody.length).toBeGreaterThan(0);
-
-    const directQueries = countOf(escrowBody, /client\.query\(/g);
-    // The three SET LOCALs are protocol statements with no locks, IO or
-    // planning; the ladder's own docblock excludes them from its sum, so this
-    // count follows that exclusion rather than inventing a different one.
-    const setLocals = countOf(escrowBody, /SET LOCAL /g);
-    // One statement each, verified at their definitions.
-    const accountLockCalls = countOf(escrowBody, /lockCharacterSaveAccountParentOnClient\(/g);
-    const saveArmCalls = countOf(escrowBody, /saveCharacterStateOnClient\(/g);
-
-    // ONE character per escrow transaction. The delivered buyer save is a
-    // separate transaction with the heavy character-save timeout, so it is not
-    // folded into this escrow four-second workload ladder.
-    expect(saveArmCalls).toBe(1);
-    const marketSaveArmCallSites = countOf(marketSource, /saveCharacterStateOnClient\(/g);
-    expect(marketSaveArmCallSites).toBe(2);
-    const deliveredBody = methodBody(marketSource, 'async saveDeliveredCharacterBooked(');
-    expect(deliveredBody.length).toBeGreaterThan(0);
-    expect(escrowBody).toContain('ESCROW_STATEMENT_TIMEOUT_MS');
-    expect(deliveredBody).toContain('DB_HEAVY_STATEMENT_TIMEOUT_MS');
-    expect(deliveredBody).not.toContain('ESCROW_STATEMENT_TIMEOUT_MS');
-
-    const workload = (armStatements: number): number =>
-      directQueries - setLocals + accountLockCalls + armStatements;
-    const observedBaseNoMovement = workload(arm.unchanged.statements);
-    const observedBaseWithMovement = workload(arm.moved.statements);
-
-    record('escrow-ladder', {
-      autosaveMs,
-      deliveredSaveStatementTimeoutMs: DB_HEAVY_STATEMENT_TIMEOUT_MS,
-      pinnedBaseStatements: ESCROW_DIRECTED_BASE_WORKLOAD_STATEMENTS,
-      // Source-counted transaction body plus the measured save arm.
-      sourceCountedDirectQueries: directQueries,
-      sourceCountedSetLocals: setLocals,
-      sourceCountedAccountLockStatements: accountLockCalls,
-      measuredSaveArmStatementsNoMovement: arm.unchanged.statements,
-      measuredSaveArmStatementsWithMovement: arm.moved.statements,
-      observedBaseStatementsNoMovement: observedBaseNoMovement,
-      observedBaseStatementsWithMovement: observedBaseWithMovement,
-      pinnedBaseCeilingMs: ceiling(ESCROW_DIRECTED_BASE_WORKLOAD_STATEMENTS),
-      observedBaseCeilingMsNoMovement: ceiling(observedBaseNoMovement),
-      observedBaseCeilingMsWithMovement: ceiling(observedBaseWithMovement),
-      pinnedLedgerCeilingMs: ceiling(ESCROW_LEDGER_WORKLOAD_STATEMENTS),
-      pinnedMaxCeilingMs: ceiling(ESCROW_LEDGER_STORAGE_WORKLOAD_STATEMENTS),
-      pinnedBaseUnderAutosave: ceiling(ESCROW_DIRECTED_BASE_WORKLOAD_STATEMENTS) < autosaveMs,
-      observedBaseUnderAutosaveWithMovement: ceiling(observedBaseWithMovement) < autosaveMs,
-      // A directed trade spans two transactions with DIFFERENT budgets: this
-      // ladder prices the escrow listing, while delivery uses the heavy save
-      // timeout recorded above.
-      escrowSaveArmCallSitesInFile: marketSaveArmCallSites,
-      charactersSavedPerTransaction: saveArmCalls,
-      deliveredSaveUsesHeavyBudget: true,
-      // Per-statement lock and connect terms are counted ONCE per transaction
-      // by this ladder's own formula. Whether that is the right accounting is a
-      // review question, deliberately not re-tuned here.
-      lockAndConnectTermsCountedOnce: true,
-    });
-
-    // The three facts this fixture is entitled to assert. First: with NO
-    // movement the source-counted body issues exactly ONE FEWER statement than
-    // the pinned base figure, because the conditional journal statement (the
-    // one thing the source-counted body cannot see, since escrowInsertListing
-    // calls into saveCharacterStateOnClient rather than issuing it directly)
-    // does not fire.
-    expect(observedBaseNoMovement).toBe(5);
-    // Second: the pinned base figure is CONSERVATIVE by construction, pricing
-    // the conditional journal statement in as its worst case, so a
-    // material-moving save agrees with it EXACTLY rather than merely staying
-    // under it.
-    expect(observedBaseWithMovement).toBe(ESCROW_DIRECTED_BASE_WORKLOAD_STATEMENTS);
-    // Third: the journal is the WHOLE difference between the two arms, exactly
-    // one batched statement, never more (a second material-moving container in
-    // the same save would still cost one, since the journal batches every
-    // moved container into a single statement; see
-    // tests/material_source_journal_db.test.ts).
-    expect(observedBaseWithMovement - observedBaseNoMovement).toBe(1);
   });
 });

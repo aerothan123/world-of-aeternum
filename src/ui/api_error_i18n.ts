@@ -175,7 +175,7 @@ export const API_ERROR_KEYS = {
   'world_quest_block.already_blocked': 'apiError.world_quest_block.already_blocked',
   'world_quest_block.not_blocked': 'apiError.world_quest_block.not_blocked',
 
-  // woc_market: the config-gated $WOC Exchange family (server/woc_market_routes.ts).
+  // woc_market: the RETIRED $WOC Exchange family (append-only codes, no emitter left).
   'woc_market.invalid_input': 'apiError.woc_market.invalid_input',
   'woc_market.disabled': 'apiError.woc_market.disabled',
   'woc_market.paused': 'apiError.woc_market.paused',

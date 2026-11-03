@@ -27,9 +27,9 @@ import { routes as adminRoutes } from '../admin';
 import { routes as appleAuthRoutes } from '../apple_auth';
 import { routes as authRoutes } from '../auth_routes';
 import { routes as battlegroundRoutes } from '../battleground';
+import { routes as cardRoutes } from '../card_routes';
 import { routes as characterRoutes } from '../characters';
 import { routes as claudiumRoutes } from '../claudium';
-import { routes as dailyRewardRoutes } from '../daily_rewards';
 import { routes as deedsRoutes } from '../deeds';
 import { routes as desktopLoginRoutes } from '../desktop_login_routes';
 import { routes as discordRoutes } from '../discord';
@@ -45,11 +45,8 @@ import { routes as otaUpdatesRoutes } from '../ota_updates';
 import { routes as realmBuilderRoutes } from '../realm_builder';
 import { routes as reliquaryRoutes } from '../reliquary';
 import { routes as reportsRoutes } from '../reports';
-import { routes as seekerEntitlementRoutes } from '../seeker_entitlement';
 import { routes as steamRoutes } from '../steam';
 import { routes as userAssetsRoutes } from '../user_assets_routes';
-import { routes as walletRoutes } from '../wallet';
-import { routes as wocMarketRoutes } from '../woc_market_routes';
 import { routes as worldQuestLeaderboardRoutes } from '../world_quest_leaderboard';
 // new:endpoint imports appear above this line (npm run new:endpoint)
 import { type CompiledPattern, compilePattern } from './path_pattern';
@@ -88,9 +85,8 @@ export interface ApiRegistry {
  *    requireOwnedCharacter);
  *  - the account-portal surface (server/account.ts: the /api/account/* family,
  *    the companion-token method trio, and /api/email/unsubscribe);
- *  - the wallet / card / referral surface (server/wallet.ts: the wallet-link
- *    family, GET /api/wallet, the public GET /api/woc/balance, the binary POST
- *    /api/card, and GET /api/referrals);
+ *  - the card / referral surface (server/card_routes.ts: the binary POST
+ *    /api/card and GET /api/referrals);
  *  - the reports + telemetry surface (server/reports.ts: POST /api/reports,
  *    POST /api/bug-reports, and the public beacons POST /api/perf-report and
  *    POST /api/site-presence);
@@ -101,9 +97,6 @@ export interface ApiRegistry {
  *    and the GET/DELETE /api/github status + unlink pair);
  *  - the desktop-login handoff pair (server/desktop_login_routes.ts: create +
  *    exchange, on the fused register/login per-IP budget);
- *  - both daily-rewards families (server/daily_rewards.ts: the bearer-gated
- *    player routes plus the fail-closed secret-gated /internal/daily-rewards
- *    ops routes);
  *  - the custom-map family (server/maps_routes.ts: the owner list/create pair,
  *    the public browse list, the public-or-owner :id read, and the owner-gated
  *    save/delete/fork/publish/unpublish :id routes behind requireOwnedMap);
@@ -120,14 +113,6 @@ export interface ApiRegistry {
  *  - the secret-gated /internal ops surface (server/internal.ts:
  *    restart-countdown plus the Discord-bot routes behind
  *    requireInternalSecret);
- *  - the $WOC Exchange family (server/woc_market_routes.ts: the bearer-gated
- *    status/browse/detail/estimate/me/history reads, the mutating
- *    listing/bid/bond/buy-now/settlement routes on per-action limiters with
- *    owner loaders, and the moderation.read/act operator arms on the admin
- *    surface; every player route and every operator WRITE answers
- *    woc_market.disabled until WOC_MARKET_ENABLED=1, while the operator
- *    reads, admin and internal, stay live so incident work can see residue
- *    rows while the market is dark);
  * the oauth and internal surfaces are each served through their own flag-gated
  * dispatcher in main.ts.
  */
@@ -138,14 +123,12 @@ export const apiRoutes: readonly RouteDef[] = [
   ...appleAuthRoutes,
   ...characterRoutes,
   ...accountRoutes,
-  ...walletRoutes,
+  ...cardRoutes,
   ...reportsRoutes,
-  ...seekerEntitlementRoutes,
   ...discordRoutes,
   ...githubRoutes,
   ...desktopLoginRoutes,
   ...claudiumRoutes,
-  ...dailyRewardRoutes,
   ...mapsRoutes,
   ...userAssetsRoutes,
   ...adminRoutes,
@@ -159,7 +142,6 @@ export const apiRoutes: readonly RouteDef[] = [
   ...otaUpdatesRoutes,
   ...reliquaryRoutes,
   ...adSpendRoutes,
-  ...wocMarketRoutes,
   ...guildRosterRoutes,
   ...worldQuestLeaderboardRoutes,
   // new:endpoint spreads appear above this line (npm run new:endpoint)

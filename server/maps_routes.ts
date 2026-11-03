@@ -7,7 +7,7 @@
 //    lanes in server/main.ts keep their own precheck/auth/limiter lines and then
 //    call the core, and the RouteDefs below mount the equivalent guards and call
 //    the same core, so the success/error bodies cannot drift between the arms
-//    (the wallet *Core template, server/wallet.ts).
+//    (the *Core template the retired wallet module introduced).
 //  - The RouteDefs the registry spreads. Guards mirror the legacy arm order
 //    exactly: Content-Length precheck BEFORE auth on the save lanes (the
 //    /api/card 413 + Connection: close treatment), then the bearer guard, then

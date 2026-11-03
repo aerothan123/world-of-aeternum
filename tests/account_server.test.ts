@@ -1,7 +1,7 @@
 import { Readable } from 'node:stream';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-// Mirror tests/wallet_server.test.ts: stub DATABASE_URL + mock the pg Pool so
+// Stub DATABASE_URL + mock the pg Pool so
 // db.ts loads and every pool.query is a spy we route by SQL text. This drives
 // the REAL account handlers through every branch with no live database.
 const dbMock = vi.hoisted(() => {

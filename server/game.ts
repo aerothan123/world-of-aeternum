@@ -203,7 +203,6 @@ import {
 } from './cosmetic_op_guard';
 import * as courierWire from './courier_wire';
 import { stampCuratorStanding } from './curator_standing';
-import { dailyRewardService } from './daily_rewards';
 import type { AccountChatMuteStatus, AccountCosmetics, RequestMetadata } from './db';
 import {
   closePlaySession,
@@ -226,7 +225,6 @@ import {
   saveMarketState,
   saveRiftState,
   touchCharacterLogin,
-  walletForAccount,
 } from './db';
 import { cancelDetachedBackend } from './db_backend_cancel';
 import { getDeedBroadcasts } from './deeds_db';
@@ -458,6 +456,7 @@ import {
   drainPendingBuddyGrants,
   emitBuddySelfKeys,
 } from './buddy_wire';
+import type { CharacterSaveArgs } from './character_save_args';
 import {
   type EntityWireCache,
   type EntityWireView,
@@ -529,7 +528,6 @@ import { recordUnstuckEvent } from './unstuck_records';
 import { buildVarkhulPortalReplayBatch, varkhulPortalReplayFrame } from './varkhul_portal_replay';
 import { emitVaultSelfKeys } from './vault_wire';
 import {
-  canShowInWho,
   normalizeWhoFilter,
   type WhoRosterEntry,
   type WhoRosterRow,
@@ -537,8 +535,6 @@ import {
   whoFrame,
 } from './who_roster';
 import { readLiveWhoRows } from './who_roster_host';
-import { holderInfoForPubkey } from './woc_balance';
-import type { CharacterSaveArgs } from './woc_market';
 import { activeWorldBossIdsWireJson, writeWorldBossWireFields } from './world_boss_wire';
 import * as objectCmds from './world_object_commands';
 import {
@@ -895,17 +891,14 @@ const LANE_DROP_CAUSE = {
   chat: 'lane_chat',
   name_screen: 'lane_name_screen',
 } as const satisfies Record<MsgLane, WsDropCause>;
-// How often to re-broadcast online players' $WOC holder-tier flair. Each wallet
-// read is served from the woc_balance.ts cache (CACHE_TTL_MS), which is the real
-// freshness floor; keeping this loop at/under that TTL means a token change shows
-// on the in-world badge within ~one cache window of it landing on chain.
-const HOLDER_TIER_REFRESH_MS = 60_000;
+// How often to re-stamp online players' identity flair (Discord, developer badge,
+// Curator standing) off the tick loop.
+const IDENTITY_FLAIR_REFRESH_MS = 60_000;
 // Reward points for in-game playtime: a grant every PLAYTIME_GRANT_MS to each
 // online account that was active (gave input) since the last grant. Ties points
 // to real engagement, not idling. Discord activity grants the rest (bot-driven).
 const PLAYTIME_GRANT_MS = 5 * 60_000;
 const PLAYTIME_POINTS = 10;
-const DAILY_REWARD_ACTIVITY_MS = 60_000;
 
 export interface ClientSession
   extends MovementInputSessionState,
@@ -1539,15 +1532,14 @@ export class GameServer {
   private interval: NodeJS.Timeout | null = null;
   private draining = false;
   private readonly departures = new CharacterDepartures();
-  private holderTierInterval: NodeJS.Timeout | null = null;
+  private identityFlairInterval: NodeJS.Timeout | null = null;
   private keepaliveInterval: NodeJS.Timeout | null = null;
   // Wall-clock ms at which the keepalive sweep last ran, so a sweep can tell whether
   // it fired on time. A late sweep proves the process stalled, not that clients died.
   private lastKeepaliveSweepAt = Date.now();
-  private holderTierRefreshing = false; // overlap guard for the refresh cycle
+  private identityFlairRefreshing = false; // overlap guard for the refresh cycle
   private playtimeInterval: NodeJS.Timeout | null = null;
   private lastPlaytimeGrantAt = new Map<number, number>(); // accountId -> sim time of last grant
-  private dailyRewardActivityInterval: NodeJS.Timeout | null = null;
   private readonly relay = new CommunityRelay({
     entity: (pid) => this.sim.entities.get(pid),
     broadcastSystem: (text) => this.broadcastSystem(text),
@@ -1556,9 +1548,6 @@ export class GameServer {
   });
   // Queue-pop Discord DMs (server/discord_queue_pops.ts): the observer's deps, bound once.
   private queuePopDeps = queuePopDepsFor((pid) => this.clients.get(pid), REALM);
-  // pids whose holder tier was forced via the dev /woctier command — the chain
-  // refresh leaves them alone so the override sticks during testing (dev only).
-  private devTierPids = new Set<number>();
   private saveTimer = 0;
   private socialPosTimer = 0;
   private saveAllInFlight: Promise<void> | null = null;
@@ -2588,19 +2577,16 @@ export class GameServer {
         (err) => console.error('[tick] guarded tick body threw, skipping this tick:', err),
       );
     }, 50);
-    // Refresh every online player's $WOC holder-tier flair off the 20 Hz loop:
-    // an RPC call per wallet (cached for minutes inside holderInfoForPubkey) has
-    // no place in the tick. Catches mid-session balance changes.
-    this.holderTierInterval = setInterval(() => {
-      void this.refreshAllHolderTiers();
-    }, HOLDER_TIER_REFRESH_MS);
+    // Refresh every online player's identity flair off the 20 Hz loop: the
+    // Discord and GitHub reads have no place in the tick. Catches mid-session
+    // link and standing changes.
+    this.identityFlairInterval = setInterval(() => {
+      void this.refreshAllIdentityFlair();
+    }, IDENTITY_FLAIR_REFRESH_MS);
     // Reward in-game playtime: grant points to active online accounts off-loop.
     this.playtimeInterval = setInterval(() => {
       void this.grantPlaytimePoints();
     }, PLAYTIME_GRANT_MS);
-    this.dailyRewardActivityInterval = setInterval(() => {
-      void this.recordDailyRewardActivity();
-    }, DAILY_REWARD_ACTIVITY_MS);
     this.lastKeepaliveSweepAt = Date.now();
     this.keepaliveInterval = setInterval(() => {
       this.pingLiveSessions();
@@ -2734,9 +2720,8 @@ export class GameServer {
     this.guildBankLazyLoader.stop();
     this.membership.stop();
     if (this.interval) clearInterval(this.interval);
-    if (this.holderTierInterval) clearInterval(this.holderTierInterval);
+    if (this.identityFlairInterval) clearInterval(this.identityFlairInterval);
     if (this.playtimeInterval) clearInterval(this.playtimeInterval);
-    if (this.dailyRewardActivityInterval) clearInterval(this.dailyRewardActivityInterval);
     if (this.keepaliveInterval) clearInterval(this.keepaliveInterval);
     await referralDrain;
   }
@@ -2782,18 +2767,6 @@ export class GameServer {
     }
   }
 
-  private async recordDailyRewardActivity(): Promise<void> {
-    const activeSeconds = await dailyRewardService.activeSeconds();
-    for (const session of this.clients.values()) {
-      if (this.sim.time - session.lastInputAt > activeSeconds) continue;
-      try {
-        await dailyRewardService.recordOnlineMinute(session.accountId);
-      } catch (err) {
-        console.error('daily reward activity record failed:', err);
-      }
-    }
-  }
-
   // Refresh one player's linked-Discord flair (status tier + PFP + nickname +
   // member-since + staff role) for nearby players' nameplates / inspect cards.
   private async refreshDiscordFlair(session: ClientSession): Promise<void> {
@@ -2805,7 +2778,7 @@ export class GameServer {
 
   // Load one player's operator-set account flair (AI mark + streamer links) and
   // stamp it on their entity + session. Best-effort and guarded against the player
-  // leaving mid-fetch, exactly like the Discord/holder/dev flair refreshes above.
+  // leaving mid-fetch, exactly like the Discord/dev flair refreshes above.
   private async refreshAccountFlair(session: ClientSession): Promise<void> {
     const flair = await loadAccountFlair(session.accountId);
     if (this.clients.get(session.pid) !== session) return;
@@ -2932,25 +2905,6 @@ export class GameServer {
     return this.clients.get(pid)?.chatFlair;
   }
 
-  // Update one player's holder-tier flair from their linked wallet's $WOC
-  // balance. Best-effort and guarded against the player leaving mid-fetch.
-  private async refreshHolderTier(session: ClientSession): Promise<void> {
-    if (this.devTierPids.has(session.pid)) return; // dev override pinned this pid
-    const wallet = await walletForAccount(session.accountId);
-    const { tier, balance } = wallet
-      ? await holderInfoForPubkey(wallet.pubkey)
-      : { tier: 0, balance: 0 };
-    // The player may have left during the await; only apply if still the live
-    // session for this pid.
-    if (this.clients.get(session.pid) !== session) return;
-    const e = this.sim.entities.get(session.pid);
-    if (e && ((e.holderTier ?? 0) !== tier || (e.holderBalance ?? 0) !== balance)) {
-      e.holderTier = tier; // identity diff re-broadcasts it to nearby players
-      e.holderBalance = balance;
-      console.log(`[woc] ${session.name} holder tier → ${tier} (${balance} $WOC)`);
-    }
-  }
-
   // Update one player's developer-badge flair from their linked GitHub login and
   // the cached repo merged-PR stats. Best-effort and guarded against the player
   // leaving mid-fetch. Only an actual contributor (tier > 0, so >= 1 merged PR)
@@ -2987,16 +2941,16 @@ export class GameServer {
   // under the same guard.
   //
   // The synchronous curator sweep runs FIRST and UNGUARDED. The overlap guard
-  // below belongs to the three AWAITED refreshers (wallet RPC, Discord, GitHub):
+  // below belongs to the two AWAITED refreshers (Discord, GitHub):
   // one of those cycles can outrun the interval and must not pile up. The curator
   // sweep is pure CPU off live sim meta with no IO of its own, so it can never be
   // the thing that piles up, and leaving it under the guard meant one degraded
-  // RPC cycle froze every online player's Curator standing for as long as that
+  // awaited cycle froze every online player's Curator standing for as long as that
   // cycle hung. The per-session try/catch is the same best-effort contract the
-  // .catch arms give the awaited three: one throwing session must not kill the
+  // .catch arms give the awaited two: one throwing session must not kill the
   // sweep for the sessions behind it. Join stamps the standing separately, so
   // this half only has to catch what changed mid-session.
-  private async refreshAllHolderTiers(): Promise<void> {
+  private async refreshAllIdentityFlair(): Promise<void> {
     for (const session of this.clients.values()) {
       try {
         this.refreshCuratorStanding(session);
@@ -3004,15 +2958,12 @@ export class GameServer {
         console.error('curator standing refresh failed:', err);
       }
     }
-    if (this.holderTierRefreshing) return; // a slow cycle (RPC) must not pile up
-    this.holderTierRefreshing = true;
+    if (this.identityFlairRefreshing) return; // a slow cycle must not pile up
+    this.identityFlairRefreshing = true;
     try {
       await Promise.all(
         [...this.clients.values()].map((session) =>
           Promise.all([
-            this.refreshHolderTier(session).catch((err) =>
-              console.error('holder-tier refresh failed:', err),
-            ),
             this.refreshDiscordFlair(session).catch((err) =>
               console.error('discord flair refresh failed:', err),
             ),
@@ -3023,7 +2974,7 @@ export class GameServer {
         ),
       );
     } finally {
-      this.holderTierRefreshing = false;
+      this.identityFlairRefreshing = false;
     }
   }
 
@@ -3484,11 +3435,6 @@ export class GameServer {
     // silently instead of firing the live banner.
     void this.initSocial(session, true);
     void this.moderation.notifyWatchedLogin(session); // /watch: ping online GMs
-    // Stamp the $WOC holder-tier flair (best-effort: a balance read must never
-    // affect joining the world).
-    void this.refreshHolderTier(session).catch((err) =>
-      console.error('holder-tier refresh failed:', err),
-    );
     void this.refreshDiscordFlair(session).catch((err) =>
       console.error('discord flair refresh failed:', err),
     );
@@ -3763,7 +3709,6 @@ export class GameServer {
     this.botDetector.releaseTrackingContext(session.botTrackingContext);
     this.releaseIpSession(session.ip);
     void this.recordOnlineSnapshot();
-    this.devTierPids.delete(session.pid);
     this.social.forget(session.characterId);
     // delete from clients first so friends see them as offline in the notice
     void this.social
@@ -5394,14 +5339,12 @@ export class GameServer {
     return state ? state.level : null;
   }
 
-  // $WOC Exchange custody primitives: the narrow, logic-free bridge the
-  // marketplace custody module (server/woc_market_custody.ts) builds on. The
-  // custody LOGIC lives there; these only surface the live session identity
-  // and the serialized mail write, and the mail write deliberately rides the
-  // market/mail serial queue (a custody parcel must never interleave with the
-  // atomic leave-path escrow flush) and PROPAGATES failure, unlike saveMail's
-  // logging arm: the custodian holds a settlement in 'delivering' until this
-  // resolves, so a swallowed error would fake durability.
+  // Live-session custody primitives: the narrow, logic-free bridge the
+  // caller-owned atomic saves (guild roster transport, the live character
+  // resolver) build on. They only surface the live session identity and the
+  // serialized mail write; the mail write rides the market/mail serial queue
+  // and PROPAGATES failure, unlike saveMail's logging arm, so a swallowed
+  // error can never fake durability.
   wocCustodySession(characterId: number): {
     pid: number;
     accountId: number;
@@ -5420,7 +5363,7 @@ export class GameServer {
     };
   }
 
-  // The save-shaped snapshot every marketplace custody persist must use: the
+  // The save-shaped snapshot every caller-owned custody persist must use: the
   // live serialization PLUS the session save fixups (character_save_fixups.ts
   // owns the rationale; skipping them is a jail escape, not cosmetics).
   serializeCharacterForPersist(characterId: number): {
@@ -5464,27 +5407,8 @@ export class GameServer {
     return session.dirtyGuildBanks.size > 0 || session.bankLedgerJournal.outbox.hasQueuedGuildRows;
   }
 
-  hasDirtyGuildBooks(characterId: number): boolean {
-    const session = this.sessionByCharacterId(characterId);
-    // Quarantined marks can never flush clear (saves refuse), so reporting
-    // them dirty would refuse 'contended' (a retry hint) forever.
-    if (!session || session.left || session.escrowQuarantined) return false;
-    return session.dirtyGuildBanks.size > 0;
-  }
-
-  // One ordinary save to flush a seller's dirty guild books BEFORE the escrow
-  // critical section (that write persists the character row ALONE; unflushed
-  // book-paired deltas would tear the guild-bank atomicity). Never call from
-  // inside a queued character write: deadlock. The boolean is deliberately
-  // discarded: every false re-verdicts downstream (re-check or extractCopy).
-  async flushDirtyGuildBooks(characterId: number): Promise<void> {
-    const session = this.sessionByCharacterId(characterId);
-    if (!session || session.left || session.dirtyGuildBanks.size === 0) return;
-    await this.saveCharacterWithBackgroundPermit(session);
-  }
-
-  // The WocCustodyGameHost durability caller (server/woc_market_custody.ts):
-  // unlike saveMail(), a write failure must propagate.
+  // The custody durability caller (server/mail_partition_rearm.ts and the
+  // caller-owned saves): unlike saveMail(), a write failure must propagate.
   async persistMailBlob(): Promise<void> {
     await writeDirtyMailPartitions<TickProfilerSample>(
       this.sim,
@@ -6217,12 +6141,6 @@ export class GameServer {
           questWire.turnInQuestWire(sim, msg, pid);
           const afterDone = sim.meta(pid)?.questsDone.has(msg.quest) ?? false;
           if (!beforeDone && afterDone) {
-            void dailyRewardService
-              .recordQuestCompletion(session.accountId, session.characterId, msg.quest)
-              .then((points) => {
-                if (points > 0) this.sendDailyRewardPointsGained(session, points);
-              })
-              .catch((err) => console.error('daily reward quest task failed:', err));
             if (msg.quest === ALDRIC_METEOR_QUEST_ID) {
               this.cosmetics.noteQuestComplete(session, msg.quest);
             }
@@ -8807,7 +8725,6 @@ export class GameServer {
       clients: this.clients,
       profileUrlFor: (n) => this.profileUrlFor(n),
       sessionByName: (n) => this.sessionByName(n),
-      sendDailyRewardPointsGained: (s, points) => this.sendDailyRewardPointsGained(s, points),
     };
     const activityDeps = this.activityDeps;
     for (const ev of events) {
@@ -9270,22 +9187,6 @@ export class GameServer {
   ): import('../src/sim/sim').SentChat | null {
     const text = rawText.trim();
     if (!text) return null;
-    // Dev-only: force this character's $WOC holder-tier flair so the in-world
-    // nameplate badge can be exercised without a funded linked wallet. Gated by
-    // ALLOW_DEV_COMMANDS (never set in production). Reset on the next balance
-    // refresh or rejoin.
-    if (process.env.ALLOW_DEV_COMMANDS === '1' && /^\/woctier\b/.test(text)) {
-      const n = Math.max(0, Math.min(10, parseInt(text.split(/\s+/)[1] ?? '', 10) || 0));
-      const e = this.sim.entities.get(pid);
-      if (e) {
-        e.holderTier = n;
-        // Demo balance so the inspect readout shows a plausible amount for the tier.
-        e.holderBalance = n > 0 ? 10 ** (n - 1) : 0;
-      }
-      this.devTierPids.add(pid); // keep the chain refresh from clobbering it
-      this.broadcastSystem(`[dev] ${session.name} $WOC holder tier → ${n}`);
-      return null;
-    }
     // The spawn-control dev commands (spawn/despawn/killtarget) are staff-only
     // even where ALLOW_DEV_COMMANDS is on: on a shared PBE realm any tester may
     // self-serve gear and travel, but conjuring or deleting mobs reshapes the
@@ -9528,19 +9429,6 @@ export class GameServer {
         return this.social.broadcastIllumination({ characterId, accountId, name }, pageId);
       })
       .catch((err) => console.error('illumination broadcast failed:', err));
-  }
-
-  private sendDailyRewardPointsGained(session: ClientSession, points: number): void {
-    this.send(session, {
-      t: 'events',
-      list: [
-        {
-          type: 'log',
-          text: `${Math.max(0, Math.floor(points))} daily rewards points gained.`,
-          color: '#ffe27a',
-        },
-      ],
-    });
   }
 
   /**

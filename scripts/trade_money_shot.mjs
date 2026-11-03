@@ -5,7 +5,7 @@
 // Boots the offline game headless at the LOWEST graphics preset (the capture
 // rule: window shots are evidence about the DOM, never render fidelity, and
 // the low tier is what SwiftShader should pay for), stubs an open trade so the
-// REAL woc_trade controller (hud.wocTrade, src/ui/hud/woc_trade/) renders
+// REAL trade controller (hud.tradeWindowController, src/ui/hud/trade/) renders
 // updateTradeWindow(), and captures tmp/trade_money.png (SHOT= overrides).
 // Run with `npm run dev` already up.
 
@@ -85,10 +85,10 @@ const res = await page.evaluate(() => {
       return TI;
     },
   });
-  hud.wocTrade.updateTradeWindow(); // opens window, resets stagedTrade to 0
+  hud.tradeWindowController.updateTradeWindow(); // opens window, resets stagedTrade to 0
   hud.stagedTrade = { items: [], copper: 53245 };
-  hud.wocTrade.lastTradeSig = ''; // force a re-render with the staged amount
-  hud.wocTrade.updateTradeWindow();
+  hud.tradeWindowController.lastTradeSig = ''; // force a re-render with the staged amount
+  hud.tradeWindowController.updateTradeWindow();
   const g = document.querySelector('#trade-g');
   const s = document.querySelector('#trade-s');
   const c = document.querySelector('#trade-c');

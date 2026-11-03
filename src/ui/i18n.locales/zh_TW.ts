@@ -13,6 +13,9 @@
 import type { TranslationKey } from '../i18n.catalog';
 
 export const zh_TW: Partial<Record<TranslationKey, string>> = {
+  "abilityUi.cast.chopping": "伐木",
+  "guide.profPages.treesHeading": "各區域的樹木",
+  "guide.profPages.treesNote": "木材直接來自森林：走到城鎮外的任意一棵樹旁，按下互動鍵即可開始伐木。砍倒一棵樹需要揮斧{minSwings}到{maxSwings}次，每次{swing}秒；更好的斧頭或更高的伐木等級可以減少次數，移動或受到攻擊會打斷揮砍。第一個完成最後一擊的採集者會砍倒這棵樹並獲得木材，其他仍在砍這棵樹的人會被停止。被砍倒的樹會留下可以走過的樹樁，並在{regrow}秒後為所有人重新長出。",
   'hudChrome.wocStore.subscription.checkoutPending': '結帳待處理。正在等待確認。',
   'bossJournal.wildheart.zulgar.pulseSummaryRework':
     '每{every}秒施法{cast}秒，對{radius}碼內所有玩家造成{min}至{max}點傷害。被釘住的玩家無論距離多遠都會受到{pinMult}倍傷害。',

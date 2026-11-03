@@ -198,7 +198,6 @@ const CODE_PATH_SAMPLES = [
   ['admin.html', 'admin.html'],
   ['guide.html', 'guide.html'],
   ['editor.html', 'editor.html'],
-  ['wallet-handoff.html', 'wallet-handoff.html'],
   ['music_editor.html', 'music_editor.html'],
   ['quest_editor.html', 'quest_editor.html'],
   ['svelte.config.js', 'svelte.config.js'],

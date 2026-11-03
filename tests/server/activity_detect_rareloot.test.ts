@@ -21,7 +21,6 @@ vi.mock('../../server/discord_activity', () => ({
   releaseDedupeKey: () => {},
 }));
 vi.mock('../../server/deeds_db', () => ({ getDeedBroadcasts: async () => true }));
-vi.mock('../../server/daily_rewards', () => ({ dailyRewardService: {} }));
 vi.mock('../../server/realm', () => ({ REALM: 'Claudemoon' }));
 
 import { type ActivityDetectDeps, detectActivityEvent } from '../../server/activity_detect';
@@ -43,7 +42,6 @@ const deps: ActivityDetectDeps<Session> = {
   clients: { get: (pid) => SESSIONS.get(pid) },
   profileUrlFor: (name) => `https://worldofclaudecraft.com/c/claudemoon/${name.toLowerCase()}`,
   sessionByName: (name) => [...SESSIONS.values()].find((s) => s.name === name) ?? null,
-  sendDailyRewardPointsGained: () => {},
 };
 
 const DROP = {

@@ -1,6 +1,6 @@
 // Wire decode for a full identity record's "flair" fields: the cosmetic
-// status badges the server stamps onto a player entity ($WOC holder tier,
-// linked-Discord status, the developer badge, Curator standing, the
+// status badges the server stamps onto a player entity (linked-Discord
+// status, the developer badge, Curator standing, the
 // AI-operated account mark plus a streamer's platform links, and the
 // operator-applied Cheater tag). None of this carries gameplay weight; the
 // sim never reads any of it (src/sim/types.ts, the Entity flair fields).
@@ -17,8 +17,6 @@ import { hasStreamerLink, normalizeStreamerLinks, type StreamerLinks } from '../
 import { RELIQUARY_OBTAIN_COUNT_CAP } from '../sim/reliquary';
 
 export interface EntityFlairWire {
-  holderTier: number;
-  holderBalance: number | undefined;
   discordTier: number;
   discordAvatar: string | undefined;
   discordName: string | undefined;
@@ -54,8 +52,6 @@ function wireCount(value: unknown): number | undefined {
 export function decodeEntityFlairWire(w: Record<string, unknown>): EntityFlairWire {
   const streamerLinks = normalizeStreamerLinks(w.slk);
   return {
-    holderTier: (w.ht as number | undefined) ?? 0,
-    holderBalance: typeof w.hb === 'number' ? w.hb : undefined,
     discordTier: (w.dt as number | undefined) ?? 0,
     discordAvatar: typeof w.dav === 'string' ? w.dav : undefined,
     discordName: typeof w.dnm === 'string' ? w.dnm : undefined,

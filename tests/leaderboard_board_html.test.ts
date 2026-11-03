@@ -11,7 +11,6 @@ import type { DevLeaderboardRow } from '../src/ui/dev_leaderboard_view';
 import { devTierByIndex, devTierDisplayName } from '../src/ui/dev_tier';
 import type { GuildLeaderboardRow } from '../src/ui/guild_leaderboard_view';
 import {
-  dailyPodiumSlot,
   deedsPodiumSlot,
   devPodiumSlot,
   guildPodiumSlot,
@@ -204,22 +203,3 @@ describe('devPodiumSlot', () => {
     expect(host.querySelector('.d .lbp-stat')).toBeNull();
   });
 });
-
-describe('dailyPodiumSlot', () => {
-  it('escapes the name and keeps the score', () => {
-    const entry: DailyRewardLeaderboardEntryLike = {
-      rank: 1,
-      name: HOSTILE,
-      points: 900,
-      me: true,
-    };
-    const card = dailyPodiumSlot(at(entry));
-    const host = dom(card);
-    noInjectedMarkup(host);
-    expect(host.querySelector('.n')?.textContent).toContain(HOSTILE);
-    expect(host.querySelector('.m')?.textContent).toBe('900');
-    expect(card.me).toBe(true);
-  });
-});
-
-type DailyRewardLeaderboardEntryLike = { rank: number; name: string; points: number; me: boolean };

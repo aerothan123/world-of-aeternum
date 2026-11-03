@@ -8,7 +8,6 @@
 // and Book of Deeds title; members and top level; realm and title; badge
 // tier; score), so standing on the podium never hides information. Every
 // player-authored value passes through esc().
-import type { DailyRewardLeaderboardEntry } from '../world_api';
 import type { DeedsLeaderboardRow } from './deeds_leaderboard_view';
 import type { DevLeaderboardRow } from './dev_leaderboard_view';
 import { devTierBadgeDataUrl, devTierByIndex, devTierDisplayName } from './dev_tier';
@@ -128,13 +127,4 @@ export function devPodiumSlot(slot: PodiumSlot<DevLeaderboardRow>): PodiumSlotHt
         : statHtml(t('hudChrome.leaderboard.mergedPrs'), whole(row.mergedPrs)),
     };
   });
-}
-
-export function dailyPodiumSlot(slot: PodiumSlot<DailyRewardLeaderboardEntry>): PodiumSlotHtml {
-  return card(slot, (row) => ({
-    me: row.me,
-    nameHtml: `${esc(row.name)}${youHtml(row.me)}`,
-    metricHtml: esc(whole(row.points)),
-    detailHtml: esc(t('hudChrome.dailyRewards.score')),
-  }));
 }

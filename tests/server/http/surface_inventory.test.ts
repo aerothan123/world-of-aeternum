@@ -53,10 +53,11 @@ import { DISPATCHED_PREFIXES, SURFACE_INVENTORY } from './surface_inventory';
 // Resolve the dispatcher sources relative to THIS file, never the cwd (a shared
 // worktree can run the suite from elsewhere). readFileSync accepts a URL.
 //
-// daily_rewards.ts is here because it is a PREFIX-DELEGATED sub-dispatcher: its
-// exact-path arms sit behind `startsWith('/api/daily-rewards')` in main.ts and
-// the /internal composite delegate, so scanning only the four dispatcher files
-// misses them (the v0.19.0 merge added 6 routes the gate never saw). Any future
+// claudium.ts is here because it is a PREFIX-DELEGATED sub-dispatcher: its
+// exact-path arms sit behind a `startsWith` prefix arm in main.ts, so scanning
+// only the four dispatcher files misses them (the v0.19.0 merge once added 6
+// such routes the gate never saw, through the since-retired daily_rewards.ts
+// sub-dispatcher). Any future
 // module that owns its own `=== '/api/...'` (or /internal/, /oauth/, /admin/api/)
 // path matching behind a prefix delegate MUST be added to this list, or its
 // routes are invisible to the freshness gate.
@@ -65,9 +66,7 @@ const DISPATCHER_SOURCES = [
   new URL('../../../server/admin.ts', import.meta.url),
   new URL('../../../server/oauth.ts', import.meta.url),
   new URL('../../../server/internal.ts', import.meta.url),
-  new URL('../../../server/daily_rewards.ts', import.meta.url),
-  // claudium.ts is a PREFIX-DELEGATED sub-dispatcher like daily_rewards.ts: its
-  // exact-path arms (and the price/:rail Match regex) sit behind
+  // The exact-path arms (and the price/:rail Match regex) sit behind
   // startsWith('/api/claudium') in main.ts, so the scan must read it too.
   new URL('../../../server/claudium.ts', import.meta.url),
 ] as const;

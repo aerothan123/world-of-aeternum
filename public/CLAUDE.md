@@ -53,15 +53,11 @@ else. Model categories and their per-category wiring live in `public/models/CLAU
   mirrored: `server/main.ts` (prod) and `vite.config.ts` (dev). A new standalone page
   needs its alias added to BOTH.
 
-## The standalone HTML pages: three kinds
+## The standalone HTML pages: two kinds
 - **Localized pages** (`server-unavailable.html`, `links.html`, `press.html`,
   `merch.html`): player-facing copy with the inline-copy i18n contract below.
 - **Legal pages** (`privacy.html`, `terms.html`, `support.html`,
   `data-deletion.html`): deliberately English-only (no `data-i18n`).
-- **Machine/redirect pages** (`wallet-return.html` + `wallet-return.js`): noindex,
-  script-only, no visible copy. Opened by full path from
-  `src/net/mobile_wallet_deeplink.ts` during the mobile wallet round-trip, so it needs
-  no `STATIC_PAGE_ALIASES` row and the inline-copy i18n obligation does NOT apply.
 
 ## i18n on the localized pages: the one exception
 The localized pages carry **player-facing copy** but do **NOT** use the app's `t()`

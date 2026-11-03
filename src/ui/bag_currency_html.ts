@@ -6,9 +6,6 @@
 //
 // It escapes every interpolated value. That is not defensive habit: a locale-formatted
 // number reaches this string, and the markup is assigned through innerHTML.
-//
-// The wallet's own $WOC chip used to live here too. It now comes from the shared
-// woc_balance_chip.ts primitive, so only the launcher is left.
 
 import { esc } from './esc';
 import { formatNumber, t } from './i18n';

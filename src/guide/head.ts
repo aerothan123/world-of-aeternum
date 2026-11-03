@@ -35,7 +35,6 @@ const DISCORD_URL = 'https://discord.com/invite/worldofclaudecraft';
 // cap, exactly like the page (the cap value is resolved by the caller via the same key).
 const FAQ_QA: { q: TranslationKey; a: TranslationKey; cap?: boolean; zones?: boolean }[] = [
   { q: 'guide.faqPage.q1', a: 'guide.faqPage.a1' },
-  { q: 'guide.faqPage.q2', a: 'guide.faqPage.a2' },
   { q: 'guide.faqPage.q3', a: 'guide.faqPage.a3' },
   { q: 'guide.faqPage.q4', a: 'guide.faqPage.a4' },
   { q: 'guide.faqPage.q5', a: 'guide.faqPage.a5' },

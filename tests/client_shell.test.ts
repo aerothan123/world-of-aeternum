@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import ts from 'typescript';
 import { describe, expect, it } from 'vitest';
 import {
@@ -83,10 +83,6 @@ const whitepaperUrl = new URL(
   import.meta.url,
 );
 const viteConfig = readFileSync(new URL('../vite.config.ts', import.meta.url), 'utf8').replace(
-  /\r\n/g,
-  '\n',
-);
-const serverMain = readFileSync(new URL('../server/main.ts', import.meta.url), 'utf8').replace(
   /\r\n/g,
   '\n',
 );
@@ -1063,14 +1059,9 @@ describe('client HTML shell', () => {
     expect(supportHtml).toContain('href="https://discord.com/invite/worldofclaudecraft"');
     expect(supportHtml).toContain('href="/data-deletion">Data Deletion page</a>');
     expect(supportHtml).toContain('"@type": "ContactPage"');
-    expect(html).toContain(
-      'href="https://worldofclaudecraft.com/World-of-ClaudeCraft-Whitepaper-v1.0.pdf" class="footer-link" target="_blank" rel="noopener noreferrer" data-i18n="footer.whitepaper"',
-    );
-    expect(html.indexOf('data-i18n="footer.whitepaper"')).toBeLessThan(
-      html.indexOf('data-i18n="footer.terms"'),
-    );
-    expect(existsSync(whitepaperUrl)).toBe(true);
-    expect(statSync(whitepaperUrl).size).toBeGreaterThan(0);
+    // The crypto token whitepaper is retired: no footer link, no shipped PDF.
+    expect(html).not.toContain('data-i18n="footer.whitepaper"');
+    expect(existsSync(whitepaperUrl)).toBe(false);
     expect(html).toContain(
       'href="/terms" class="footer-link" target="_blank" rel="noopener noreferrer" data-i18n="footer.terms"',
     );
@@ -1148,27 +1139,20 @@ describe('client HTML shell', () => {
     expect(hudMobileCss).not.toContain('#token-ca');
   });
 
-  it('excludes wallet surfaces from unverified native and Steam builds while allowing Seeker', () => {
+  it('keeps native/desktop shell gates and ships no wallet surface anywhere', () => {
     expect(hudCss).toContain('body.native-app #nav-btn-download,');
-    expect(hudCss).toContain(
-      'body.native-app:not(.seeker-wallet-enabled) .cs-wallet,\n  body.native-app:not(.seeker-wallet-enabled) .cs-wallet-hidden-note,\n  body.native-app:not(.seeker-wallet-enabled) .account-wallet-card',
-    );
-    expect(hudCss).not.toContain('body.native-app .cs-wallet,');
     expect(hudCss).toContain('body.native-app #performance-tip,');
     expect(hudCss).toContain('body.desktop-app .official-site-copy {');
-    expect(hudCss).not.toContain('body.desktop-app .cs-wallet');
-    expect(html).toContain('<section class="account-card account-wallet-card">');
     expect(mainTs).toContain("document.body.classList.toggle('desktop-app', DESKTOP_APP);");
-    expect(mainTs).toContain('const walletCapabilityReady = resolveWalletCapability({');
-    expect(mainTs).toContain('nativeApp: NATIVE_APP,');
-    expect(mainTs).toContain('desktopApp: DESKTOP_APP,');
-    expect(mainTs).toContain('bridge: DESKTOP_APP ? desktopBridge() : null,');
-    expect(mainTs).toContain("document.querySelector('.cs-wallet')?.remove();");
-    expect(mainTs).toContain("document.querySelector('.account-wallet-card')?.remove();");
-    expect(mainTs).toContain("disconnectBtn.className = 'wallet-mini wallet-picker-disconnect';");
-    expect(mainTs).toContain("closeWalletPicker({ action: 'disconnect' });");
-    expect(mainTs).toContain('await openDesktopWalletManager();');
-    expect(shellCss).toContain('.wallet-picker-disconnect {');
+    // Project H uses no cryptocurrency: no wallet card, picker, or capability probe.
+    expect(html).not.toContain('account-wallet-card');
+    // The `.cs-wallet` row chrome survives only as the shared layout for the GitHub
+    // and Steam link groups; no wallet action is wired into it.
+    expect(html).not.toContain('data-wallet-action');
+    expect(hudCss).not.toContain('seeker-wallet-enabled');
+    expect(shellCss).not.toContain('.wallet-picker');
+    expect(mainTs).not.toContain('resolveWalletCapability');
+    expect(mainTs).not.toContain('openDesktopWalletManager');
   });
 
   it('skips the web mobile preflight in native builds and hard-gates portrait gameplay', () => {

@@ -166,9 +166,10 @@ versions or adding consumers.
 nothing to move to.
 
 **Not reachable here.** The overflow is in the package's native C++ addon, on
-the `converter.toBigInt` branch. The only consumer in this repo is
-`src/net/wallet_connect.ts`, which loads the Solana stack in the browser through
-a dynamic import. `bigint-buffer` declares a `browser` field remapping
+the `converter.toBigInt` branch. No shipped module imports the Solana stack any
+more (the wallet bridge that loaded it in the browser through a dynamic import
+was removed with the crypto features; the dependency itself leaves in a separate
+manifest change). When it was live, it only ran in the browser. `bigint-buffer` declares a `browser` field remapping
 `dist/node.js` to `dist/browser.js`, and the browser build never assigns
 `converter`, so `toBigIntLE` always returns through the pure-JS path. Verified
 against the built bundle: the emitted chunk contains no `bindings(` call and no

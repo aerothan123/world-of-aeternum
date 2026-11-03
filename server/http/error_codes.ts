@@ -228,10 +228,12 @@ export const ERROR_CODES = deepFreeze({
   'epic.account_taken': { params: [] },
   // The Epic / EOS upstream could not be reached or is not provisioned (503).
   'epic.upstream': { params: [] },
+  // RETIRED (Project H has no cryptocurrency): the wallet codes below have no
+  // emitter left; they stay per the append-only contract above.
   // wallet: the desktop browser handoff was malformed, expired, or mismatched.
   'wallet.handoff_invalid': { params: [] },
   // wallet: changing or removing a LINKED wallet needs re-authorization
-  // (server/wallet_reauth.ts, the R11 relink gate): the current wallet's
+  // (the R11 relink gate): the current wallet's
   // signature over the challenge message, or the account password plus the
   // second factor when one is enrolled.
   'wallet.reauth_required': { params: [] },
@@ -292,9 +294,9 @@ export const ERROR_CODES = deepFreeze({
   // disconnect that did not happen (409).
   'kick.target_offline': { params: [] },
 
-  // --- $WOC Exchange family codes (server/woc_market_routes.ts). The whole
-  // surface is config-gated: with WOC_MARKET_ENABLED unset every mutating
-  // route answers woc_market.disabled. ---
+  // --- RETIRED $WOC Exchange family codes. The Exchange was removed (Project H
+  // has no cryptocurrency), so nothing emits these any more; every row stays per
+  // the append-only contract above. ---
 
   // Request failed schema validation (400).
   'woc_market.invalid_input': { params: [] },
@@ -316,7 +318,7 @@ export const ERROR_CODES = deepFreeze({
   'woc_market.terms_required': { params: [] },
   // RETIRED, never enforced (B6/R1): no server path has ever raised either
   // totp code, and none ever will; the wallet step-up
-  // (woc_market.stepup_* below, server/woc_market_stepup.ts) is the real
+  // (woc_market.stepup_* below) was the real
   // second factor on the custody movers. Both rows stay per the append-only
   // contract above; their catalog entries stay with them (the parity test's
   // set-equality dimension).

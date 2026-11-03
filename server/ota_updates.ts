@@ -188,7 +188,7 @@ async function defaultFetchManifest(
   url: string,
   maxBytes: number = OTA_MANIFEST_MAX_BYTES,
 ): Promise<unknown> {
-  // Hardened like server/seeker_rpc_transport.ts: no embedded credentials, no
+  // Hardened transport: no embedded credentials, no
   // redirect following (a 3xx from the pinned origin must never walk this
   // process off-origin), and a declared-length pre-check ahead of the
   // streaming cap below.

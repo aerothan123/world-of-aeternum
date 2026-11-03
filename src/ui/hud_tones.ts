@@ -1,5 +1,5 @@
-// The HUD coordinator's own colour vocabulary, named once (the woc_log_tones.ts
-// and profession_log_tones.ts precedent, applied to hud.ts by the Masterwrought
+// The HUD coordinator's own colour vocabulary, named once (the
+// profession_log_tones.ts precedent, applied to hud.ts by the Masterwrought
 // Phase 18 sweep).
 //
 // hud.ts used to spell these as inline hex literals: about a hundred chat-log
@@ -14,10 +14,9 @@
 // Three records rather than forty loose constants: the coordinator imports
 // three names (its line count is ratcheted), the BG_END_LOG_COLORS record it
 // already carried is the same shape, and `as const` keeps every member a
-// literal type. Two families deliberately stay elsewhere: the professions
+// literal type. One family deliberately stays elsewhere: the professions
 // event arms consume PROF_LOG_* from
-// src/ui/hud/professions/profession_log_tones.ts (their own family seam), and
-// the $WOC money surfaces consume WOC_LOG_* from woc_log_tones.ts. A value
+// src/ui/hud/professions/profession_log_tones.ts (their own family seam). A value
 // repeated across seams (the loot-family green, the house gold) is the SAME
 // register spelled once per family on purpose: each family retunes on its own.
 //

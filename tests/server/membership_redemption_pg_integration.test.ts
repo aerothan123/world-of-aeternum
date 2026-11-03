@@ -1,6 +1,6 @@
 import { Pool, type PoolClient } from 'pg';
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { CharacterSaveArgs } from '../../server/woc_market_character_save';
+import type { CharacterSaveArgs } from '../../server/character_save_args';
 import type { CharacterState } from '../../src/sim/character_state';
 
 const binding = vi.hoisted(() => ({ pool: null as Pool | null }));

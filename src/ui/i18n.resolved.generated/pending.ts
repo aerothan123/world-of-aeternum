@@ -1349,10 +1349,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "zh_CN": [
-    "abilityUi.cast.chopping",
     "guide.profPages.treeToolNone",
-    "guide.profPages.treesHeading",
-    "guide.profPages.treesNote",
     "questEditor.actions.confirmDelete",
     "questEditor.actions.delete",
     "questEditor.actions.discard",
@@ -1493,10 +1490,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "zh_TW": [
-    "abilityUi.cast.chopping",
     "guide.profPages.treeToolNone",
-    "guide.profPages.treesHeading",
-    "guide.profPages.treesNote",
     "questEditor.actions.confirmDelete",
     "questEditor.actions.delete",
     "questEditor.actions.discard",
@@ -1637,10 +1631,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "ko_KR": [
-    "abilityUi.cast.chopping",
     "guide.profPages.treeToolNone",
-    "guide.profPages.treesHeading",
-    "guide.profPages.treesNote",
     "questEditor.actions.confirmDelete",
     "questEditor.actions.delete",
     "questEditor.actions.discard",
@@ -1781,10 +1772,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "ja_JP": [
-    "abilityUi.cast.chopping",
     "guide.profPages.treeToolNone",
-    "guide.profPages.treesHeading",
-    "guide.profPages.treesNote",
     "questEditor.actions.confirmDelete",
     "questEditor.actions.delete",
     "questEditor.actions.discard",
@@ -2148,10 +2136,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "ru_RU": [
-    "abilityUi.cast.chopping",
     "guide.profPages.treeToolNone",
-    "guide.profPages.treesHeading",
-    "guide.profPages.treesNote",
     "questEditor.actions.confirmDelete",
     "questEditor.actions.delete",
     "questEditor.actions.discard",

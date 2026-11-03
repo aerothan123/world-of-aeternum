@@ -83,7 +83,9 @@ function roundTrip(state: CharacterState): CharacterState {
 
 describe('referral receipt growth follows permanent bag custody', () => {
   it('pins the physical bound and the restrictions that prevent a bag leaving custody', () => {
-    expect([CARRIED, BANK, SOCKETS, MAX_BAG_RECEIPTS]).toEqual([80, 196, 8, 284]);
+    // 196 -> 194 bank slots (and 284 -> 282 receipts) when the wallet-link bank
+    // bonus retired with the crypto rail (BANK_MAX_BONUS_SLOTS 36 -> 34).
+    expect([CARRIED, BANK, SOCKETS, MAX_BAG_RECEIPTS]).toEqual([80, 194, 8, 282]);
     expect(ITEMS[REFERRAL_BAG]).toMatchObject({
       kind: 'bag',
       bagSlots: 16,
@@ -97,38 +99,38 @@ describe('referral receipt growth follows permanent bag custody', () => {
     expect(isMaterialItemId(REFERRAL_BAG)).toBe(false);
   });
 
-  it('retains all 284 earned receipts through load/save, rejects new claims and allows retry/move', () => {
+  it('retains all 282 earned receipts through load/save, rejects new claims and allows retry/move', () => {
     const state = fullCustody();
-    expect(Object.keys(state.referralRewards!)).toHaveLength(284);
+    expect(Object.keys(state.referralRewards!)).toHaveLength(282);
     expect(state.inventory).toHaveLength(80);
-    expect(state.bank!.inventory).toHaveLength(196);
+    expect(state.bank!.inventory).toHaveLength(194);
     const saved = roundTrip(state);
     expect(saved.referralRewards).toEqual(state.referralRewards);
     expect(roundTrip(saved)).toEqual(saved);
-    expect(Buffer.byteLength(JSON.stringify(saved))).toBe(21685);
-    expect(Buffer.byteLength(JSON.stringify(referralRewardState(saved)))).toBe(7973);
-    expect(() => grantReferralReward(saved, MAX_LINK_ID - 284, 'tutorial')).toThrow('capacity');
+    expect(Buffer.byteLength(JSON.stringify(saved))).toBe(21549);
+    expect(Buffer.byteLength(JSON.stringify(referralRewardState(saved)))).toBe(7917);
+    expect(() => grantReferralReward(saved, MAX_LINK_ID - 282, 'tutorial')).toThrow('capacity');
     expect(grantReferralReward(saved, MAX_LINK_ID, 'tutorial')).toBe(saved);
     const before = JSON.stringify(saved);
     const moved = moveReferralRewards(saved, blank(), MAX_LINK_ID);
     expect(JSON.stringify(saved)).toBe(before);
-    expect(Object.keys(moved.from.referralRewards!)).toHaveLength(283);
+    expect(Object.keys(moved.from.referralRewards!)).toHaveLength(281);
     expect(moved.from.inventory).toHaveLength(79);
     expect(moved.to.referralRewards).toEqual({ [MAX_LINK_ID]: { redeemed: 1 } });
     expect(moved.to.inventory).toEqual([{ itemId: REFERRAL_BAG, count: 1 }]);
     expect(roundTrip(moved.from).referralRewards).toEqual(moved.from.referralRewards);
     expect(roundTrip(moved.to).referralRewards).toEqual(moved.to.referralRewards);
     expect(
-      Object.keys(grantReferralReward(moved.from, MAX_LINK_ID - 284, 'tutorial').referralRewards!),
-    ).toHaveLength(284);
+      Object.keys(grantReferralReward(moved.from, MAX_LINK_ID - 282, 'tutorial').referralRewards!),
+    ).toHaveLength(282);
     process.stdout.write(
-      `[referral-custody-growth] ${JSON.stringify({ receipts: 284, bytes: Buffer.byteLength(JSON.stringify(saved)), ledgerBytes: Buffer.byteLength(JSON.stringify(referralRewardState(saved))) })}\n`,
+      `[referral-custody-growth] ${JSON.stringify({ receipts: 282, bytes: Buffer.byteLength(JSON.stringify(saved)), ledgerBytes: Buffer.byteLength(JSON.stringify(referralRewardState(saved))) })}\n`,
     );
   });
 
-  it('retains the inviter mask and rewards beside 283 bags without exceeding custody', () => {
+  it('retains the inviter mask and rewards beside 281 bags without exceeding custody', () => {
     const state = fullCustody(true);
-    expect(Object.keys(state.referralRewards!)).toHaveLength(283);
+    expect(Object.keys(state.referralRewards!)).toHaveLength(281);
     expect(state.inventory).toHaveLength(80);
     expect(state.inventory.filter((row) => row.itemId === REFERRAL_RAPTOR_REINS)).toEqual([
       { itemId: REFERRAL_RAPTOR_REINS, count: 1 },
@@ -140,10 +142,10 @@ describe('referral receipt growth follows permanent bag custody', () => {
     expect(saved.buddies?.owned).toEqual(['sprites']);
     expect(grantReferralInviterReward(saved, 5)).toBe(saved);
     expect(roundTrip(saved)).toEqual(saved);
-    expect(Buffer.byteLength(JSON.stringify(saved))).toBe(21780);
-    expect(Buffer.byteLength(JSON.stringify(referralRewardState(saved)))).toBe(7972);
+    expect(Buffer.byteLength(JSON.stringify(saved))).toBe(21644);
+    expect(Buffer.byteLength(JSON.stringify(referralRewardState(saved)))).toBe(7916);
     process.stdout.write(
-      `[referral-inviter-custody-growth] ${JSON.stringify({ receipts: 283, bytes: Buffer.byteLength(JSON.stringify(saved)), ledgerBytes: Buffer.byteLength(JSON.stringify(referralRewardState(saved))) })}\n`,
+      `[referral-inviter-custody-growth] ${JSON.stringify({ receipts: 281, bytes: Buffer.byteLength(JSON.stringify(saved)), ledgerBytes: Buffer.byteLength(JSON.stringify(referralRewardState(saved))) })}\n`,
     );
   });
 
@@ -158,14 +160,14 @@ describe('referral receipt growth follows permanent bag custody', () => {
       referralInviterRewards: 31,
     };
     const receiptBytes = Buffer.byteLength(JSON.stringify(referralRewardState(state)));
-    expect(receiptBytes).toBe(8285);
-    // This is a field envelope, not a jointly reachable 284 fully completed cards:
+    expect(receiptBytes).toBe(8227);
+    // This is a field envelope, not a jointly reachable 282 fully completed cards:
     // their protected trinkets/reins would occupy additional physical slots.
     expect(referralRewardState(state)).toEqual(state);
     process.stdout.write(
-      `[referral-receipt-envelope] ${JSON.stringify({ receiptBytes, rows: 284 })}\n`,
+      `[referral-receipt-envelope] ${JSON.stringify({ receiptBytes, rows: 282 })}\n`,
     );
-    state.referralRewards[String(MAX_LINK_ID - 284)] = { redeemed: 31 };
-    expect(Object.keys(referralRewardState(state).referralRewards!)).toHaveLength(285);
+    state.referralRewards[String(MAX_LINK_ID - 282)] = { redeemed: 31 };
+    expect(Object.keys(referralRewardState(state).referralRewards!)).toHaveLength(283);
   });
 });

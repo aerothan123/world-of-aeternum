@@ -12,6 +12,7 @@ import type { Sim } from '../src/sim/sim';
 import { tradeInfoFor } from '../src/sim/social/trade';
 import type { InvSlot } from '../src/sim/types';
 import { bankLedgerSaveEffects } from './bank_ledger_session';
+import type { CharacterSaveArgs } from './character_save_args';
 import type { ClientSession } from './game';
 import { CUSTODY_PARCEL_LETTERS, confirmCustodyParcelBooked } from './mail_custody_overlay';
 import { transferCourierAccountLeg } from './membership_bank_db';
@@ -34,7 +35,6 @@ import {
 } from './membership_token_delivery_db';
 import type { MembershipTokenRecipient } from './membership_token_store';
 import { KeyedSerialWriteAborted } from './serial_writer';
-import type { CharacterSaveArgs } from './woc_market_character_save';
 
 interface MembershipGameHost {
   sim: Sim;

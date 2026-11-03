@@ -13,6 +13,9 @@
 import type { TranslationKey } from '../i18n.catalog';
 
 export const ja_JP: Partial<Record<TranslationKey, string>> = {
+  "abilityUi.cast.chopping": "伐採",
+  "guide.profPages.treesHeading": "ゾーン別の木",
+  "guide.profPages.treesNote": "木材は森そのものから手に入ります。町の外にある木に近づき、インタラクトキーを押すと伐採を始めます。1本を切り倒すには、1回{swing}秒の斧の振りが{minSwings}回から{maxSwings}回必要で、より良い斧や高い伐採ランクがあれば回数が減ります。移動したり攻撃を受けたりすると振りは中断されます。最後の一振りを最初に決めた採集者が木を倒して木材を手に入れ、同じ木を切っていた他の人は止められます。倒れた木は歩いて越えられる切り株を残し、{regrow}秒後に全員のために再び生えます。",
   'hudChrome.wocStore.subscription.checkoutPending': '購入手続きは保留中です。確認を待っています。',
   'bossJournal.wildheart.zulgar.pulseSummaryRework':
     '{every}秒ごとに{cast}秒詠唱し、{radius}ヤード以内の全員に{min}から{max}ダメージ。串刺しのプレイヤーは距離に関係なく{pinMult}倍のダメージを受ける。',

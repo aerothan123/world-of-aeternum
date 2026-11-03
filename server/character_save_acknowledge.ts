@@ -15,11 +15,11 @@ import {
   acknowledgeCharacterSaveEffects as acknowledgeCommittedCharacterSaveEffects,
   type BankLedgerSessionJournal,
 } from './bank_ledger_session';
+import type { CharacterSaveArgs } from './character_save_args';
 import { bustGuildBankLog, GUILD_BANK_LOG_VISIBLE_OPS } from './guild_bank_log';
 import { REALM } from './realm';
 import type { StorageAppliedEffect } from './storage_purchase_db';
 import { storageAppliedEffectsCommitted } from './storage_purchases';
-import type { CharacterSaveArgs } from './woc_market_character_save';
 
 /** The slice of a live session the acknowledgement reads and consumes. */
 export interface AcknowledgingSession {

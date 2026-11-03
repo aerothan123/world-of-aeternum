@@ -96,7 +96,6 @@ describe('isCodePath', () => {
       'admin.html',
       'guide.html',
       'editor.html',
-      'wallet-handoff.html',
       'music_editor.html',
       'quest_editor.html',
       'svelte.config.js',

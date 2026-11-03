@@ -38,7 +38,6 @@ describe('loadConfig', () => {
     expect(cfg.githubToken).toBe('');
     expect(cfg.chatLogRetentionDays).toBe(90);
     expect(cfg.perfReportRetentionDays).toBe(14);
-    expect(cfg.dailyRewardEventsRetentionDays).toBe(400);
     expect(cfg.onlineSamplesRetentionDays).toBe(90);
     expect(cfg.sitePresenceRetentionDays).toBe(90);
     expect(cfg.playSessionRetentionDays).toBe(180);
@@ -293,11 +292,6 @@ describe('loadConfig', () => {
 
   it('reads every retention day key on the chat-log contract: empty is the default, whitespace is keep-forever', () => {
     const cases = [
-      {
-        key: 'DAILY_REWARD_EVENTS_RETENTION_DAYS',
-        field: 'dailyRewardEventsRetentionDays',
-        dflt: 400,
-      },
       { key: 'ONLINE_SAMPLES_RETENTION_DAYS', field: 'onlineSamplesRetentionDays', dflt: 90 },
       { key: 'SITE_PRESENCE_RETENTION_DAYS', field: 'sitePresenceRetentionDays', dflt: 90 },
       { key: 'PLAY_SESSION_RETENTION_DAYS', field: 'playSessionRetentionDays', dflt: 180 },
@@ -322,38 +316,7 @@ describe('loadConfig', () => {
       { key: 'PLAYER_REPORT_RETENTION_DAYS', field: 'playerReportRetentionDays', dflt: 180 },
       { key: 'BUG_REPORT_RETENTION_DAYS', field: 'bugReportRetentionDays', dflt: 90 },
       { key: 'CHAT_VIOLATION_RETENTION_DAYS', field: 'chatViolationRetentionDays', dflt: 90 },
-      {
-        key: 'WOC_MARKET_LISTINGS_RETENTION_DAYS',
-        field: 'wocMarketListingsRetentionDays',
-        dflt: 180,
-      },
-      {
-        key: 'WOC_MARKET_ABANDONS_RETENTION_DAYS',
-        field: 'wocMarketAbandonsRetentionDays',
-        dflt: 30,
-      },
-      {
-        key: 'WOC_MARKET_OFFERS_RETENTION_DAYS',
-        field: 'wocMarketOffersRetentionDays',
-        dflt: 180,
-      },
-      {
-        // Comfortably above the listings window on purpose (the config.ts
-        // rationale): a booked claim must outlive the rows that could
-        // re-drive its ref.
-        key: 'WOC_MARKET_CUSTODY_CLAIMS_RETENTION_DAYS',
-        field: 'wocMarketCustodyClaimsRetentionDays',
-        dflt: 365,
-      },
     ] as const;
-    // The outlive invariant between the two defaults, asserted rather than
-    // narrated: a default retune that lets the claims window sag to (or
-    // under) the listings window quietly re-arms the delivery duplication
-    // for unparseable legacy refs, whose ONLY protection is the window.
-    const defaults = loadConfig(MIN_ENV);
-    expect(defaults.wocMarketCustodyClaimsRetentionDays).toBeGreaterThan(
-      defaults.wocMarketListingsRetentionDays,
-    );
     for (const { key, field, dflt } of cases) {
       // A set value overrides the default.
       expect(loadConfig({ ...MIN_ENV, [key]: '7' })[field]).toBe(7);

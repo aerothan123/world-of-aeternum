@@ -6,7 +6,6 @@ import {
   nativeAttestationRequired,
   verifyNativeAttestation,
   verifyNativeAttestationChallenge,
-  verifySeekerSolanaArtifactAttestation,
 } from '../server/native_attestation';
 
 const originalEnv = { ...process.env };
@@ -18,7 +17,7 @@ function req(headers: Record<string, string> = {}): IncomingMessage {
   } as unknown as IncomingMessage;
 }
 
-interface SeekerArtifactPayload {
+interface AndroidArtifactPayload {
   requestDetails: {
     nonce: string;
     requestPackageName: string;
@@ -33,21 +32,14 @@ interface SeekerArtifactPayload {
   };
 }
 
-const seekerArtifactEnv = {
-  SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME: 'com.worldofclaudecraft',
-  SEEKER_SOLANA_INTEGRITY_CERT_DIGESTS: 'solana-release-cert',
-};
-
 const enforcedAndroidAuthEnv = {
   NODE_ENV: 'production',
   NATIVE_ATTESTATION_REQUIRED: '1',
   GOOGLE_PLAY_INTEGRITY_PACKAGE_NAME: 'com.worldofclaudecraft',
   GOOGLE_PLAY_INTEGRITY_CERT_DIGESTS: 'google-play-signing-cert',
-  SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME: 'com.worldofclaudecraft',
-  SEEKER_SOLANA_INTEGRITY_CERT_DIGESTS: 'solana-release-cert',
 };
 
-function validSeekerArtifactPayload(nonce: string): SeekerArtifactPayload {
+function validPlayArtifactPayload(nonce: string): AndroidArtifactPayload {
   return {
     requestDetails: {
       nonce,
@@ -55,8 +47,8 @@ function validSeekerArtifactPayload(nonce: string): SeekerArtifactPayload {
     },
     appIntegrity: {
       packageName: 'com.worldofclaudecraft',
-      appRecognitionVerdict: 'UNRECOGNIZED_VERSION',
-      certificateSha256Digest: ['solana-release-cert'],
+      appRecognitionVerdict: 'PLAY_RECOGNIZED',
+      certificateSha256Digest: ['google-play-signing-cert'],
     },
     deviceIntegrity: {
       deviceRecognitionVerdict: ['MEETS_DEVICE_INTEGRITY'],
@@ -113,11 +105,11 @@ describe('native attestation', () => {
   });
 
   it.each(['login', 'register'] as const)(
-    'accepts an allowlisted Solana Store artifact for enforced native %s',
+    'accepts a Google Play recognised artifact for enforced native %s',
     async (action) => {
       const request = req({ origin: 'capacitor://localhost' });
       const challenge = createNativeAttestationChallenge(request, action);
-      const payload = validSeekerArtifactPayload(challenge.nonce);
+      const payload = validPlayArtifactPayload(challenge.nonce);
 
       await expect(
         verifyNativeAttestation(
@@ -136,43 +128,25 @@ describe('native attestation', () => {
     },
   );
 
-  it('continues to accept a Google Play recognised artifact for enforced native login', async () => {
-    const request = req({ origin: 'capacitor://localhost' });
-    const challenge = createNativeAttestationChallenge(request, 'login');
-    const payload = validSeekerArtifactPayload(challenge.nonce);
-    payload.appIntegrity.appRecognitionVerdict = 'PLAY_RECOGNIZED';
-    payload.appIntegrity.certificateSha256Digest = ['google-play-signing-cert'];
-
-    await expect(
-      verifyNativeAttestation(
-        request,
-        {
-          platform: 'android',
-          challengeId: challenge.challengeId,
-          token: 'integrity-token',
-        },
-        {
-          decodeIntegrityToken: async () => payload,
-          env: enforcedAndroidAuthEnv,
-        },
-      ),
-    ).resolves.toBe(true);
-  });
-
   const invalidNativeLoginArtifactCases: Array<{
     name: string;
-    mutate(payload: SeekerArtifactPayload, env: NodeJS.ProcessEnv): void;
+    mutate(payload: AndroidArtifactPayload, env: NodeJS.ProcessEnv): void;
   }> = [
     {
-      name: 'missing Solana certificate allowlist',
-      mutate: (_payload, env) => {
-        delete env.SEEKER_SOLANA_INTEGRITY_CERT_DIGESTS;
+      // The retired Solana Store arm used to admit this shape when its own
+      // allowlist was configured; the stale env must no longer open it.
+      name: 'an unrecognised sideload build, even with the retired Solana Store env set',
+      mutate: (payload, env) => {
+        payload.appIntegrity.appRecognitionVerdict = 'UNRECOGNIZED_VERSION';
+        payload.appIntegrity.certificateSha256Digest = ['solana-release-cert'];
+        env.SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME = 'com.worldofclaudecraft';
+        env.SEEKER_SOLANA_INTEGRITY_CERT_DIGESTS = 'solana-release-cert';
       },
     },
     {
       name: 'Google Play certificate on an unrecognised build',
       mutate: (payload) => {
-        payload.appIntegrity.certificateSha256Digest = ['google-play-signing-cert'];
+        payload.appIntegrity.appRecognitionVerdict = 'UNRECOGNIZED_VERSION';
       },
     },
     {
@@ -182,9 +156,9 @@ describe('native attestation', () => {
       },
     },
     {
-      name: 'Solana package configuration mismatch',
-      mutate: (_payload, env) => {
-        env.SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME = 'com.example.attacker';
+      name: 'nonce mismatch',
+      mutate: (payload) => {
+        payload.requestDetails.nonce = 'different-nonce';
       },
     },
     {
@@ -196,12 +170,12 @@ describe('native attestation', () => {
   ];
 
   it.each(invalidNativeLoginArtifactCases)(
-    'rejects an unrecognised native login artifact with $name',
+    'rejects a native login artifact with $name',
     async ({ mutate }) => {
       const request = req({ origin: 'capacitor://localhost' });
       const challenge = createNativeAttestationChallenge(request, 'login');
-      const payload = validSeekerArtifactPayload(challenge.nonce);
-      const env = { ...enforcedAndroidAuthEnv };
+      const payload = validPlayArtifactPayload(challenge.nonce);
+      const env: NodeJS.ProcessEnv = { ...enforcedAndroidAuthEnv };
       mutate(payload, env);
 
       await expect(
@@ -241,198 +215,14 @@ describe('native attestation', () => {
     ).resolves.toBeNull();
   });
 
-  it('accepts a non-Play Seeker build only with an explicitly trusted certificate', () => {
-    const dappStoreVerdict = {
+  it('accepts a non-Play build only with an explicitly trusted certificate', () => {
+    const sideloadVerdict = {
       appRecognitionVerdict: 'UNRECOGNIZED_VERSION',
       certificateSha256Digest: ['release-cert'],
     };
-    expect(androidAppIntegrityAllowed(dappStoreVerdict, ['release-cert'], true)).toBe(true);
-    expect(androidAppIntegrityAllowed(dappStoreVerdict, [], true)).toBe(false);
-    expect(androidAppIntegrityAllowed(dappStoreVerdict, ['attacker-cert'], true)).toBe(false);
-    expect(androidAppIntegrityAllowed(dappStoreVerdict, ['release-cert'], false)).toBe(false);
-  });
-
-  it('accepts only the configured Solana artifact, Android platform, nonce, and action', async () => {
-    const request = req({ origin: 'capacitor://localhost' });
-    const env = {
-      SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME: 'com.worldofclaudecraft',
-      SEEKER_SOLANA_INTEGRITY_CERT_DIGESTS: 'solana-release-cert',
-    };
-    const challenge = createNativeAttestationChallenge(request, 'seeker-claim');
-    const decodeIntegrityToken = async () => ({
-      requestDetails: {
-        nonce: challenge.nonce,
-        requestPackageName: 'com.worldofclaudecraft',
-      },
-      appIntegrity: {
-        packageName: 'com.worldofclaudecraft',
-        appRecognitionVerdict: 'UNRECOGNIZED_VERSION',
-        certificateSha256Digest: ['solana-release-cert'],
-      },
-      deviceIntegrity: {
-        deviceRecognitionVerdict: ['MEETS_DEVICE_INTEGRITY'],
-      },
-    });
-
-    await expect(
-      verifySeekerSolanaArtifactAttestation(
-        request,
-        {
-          platform: 'android',
-          challengeId: challenge.challengeId,
-          token: 'integrity-token',
-        },
-        'seeker-claim',
-        { decodeIntegrityToken, env },
-      ),
-    ).resolves.toEqual({ nonce: challenge.nonce });
-
-    const iosChallenge = createNativeAttestationChallenge(request, 'seeker-claim');
-    await expect(
-      verifySeekerSolanaArtifactAttestation(
-        request,
-        {
-          platform: 'ios',
-          challengeId: iosChallenge.challengeId,
-          token: 'device-check-token',
-        },
-        'seeker-claim',
-        { decodeIntegrityToken, env },
-      ),
-    ).resolves.toBeNull();
-
-    const wrongAction = createNativeAttestationChallenge(request, 'seeker-claim');
-    await expect(
-      verifySeekerSolanaArtifactAttestation(
-        request,
-        {
-          platform: 'android',
-          challengeId: wrongAction.challengeId,
-          token: 'integrity-token',
-        },
-        'seeker-spin',
-        { decodeIntegrityToken, env },
-      ),
-    ).resolves.toBeNull();
-  });
-
-  const invalidArtifactCases: Array<{
-    name: string;
-    mutate(payload: SeekerArtifactPayload): void;
-  }> = [
-    {
-      name: 'nonce mismatch',
-      mutate: (payload) => {
-        payload.requestDetails.nonce = 'different-nonce';
-      },
-    },
-    {
-      name: 'request package mismatch',
-      mutate: (payload) => {
-        payload.requestDetails.requestPackageName = 'com.example.attacker';
-      },
-    },
-    {
-      name: 'app package mismatch',
-      mutate: (payload) => {
-        payload.appIntegrity.packageName = 'com.example.attacker';
-      },
-    },
-    {
-      name: 'certificate digest mismatch',
-      mutate: (payload) => {
-        payload.appIntegrity.certificateSha256Digest = ['attacker-cert'];
-      },
-    },
-    {
-      name: 'missing device verdict',
-      mutate: (payload) => {
-        delete payload.deviceIntegrity.deviceRecognitionVerdict;
-      },
-    },
-    {
-      name: 'wrong device verdict',
-      mutate: (payload) => {
-        payload.deviceIntegrity.deviceRecognitionVerdict = ['MEETS_BASIC_INTEGRITY'];
-      },
-    },
-  ];
-
-  it.each(invalidArtifactCases)('rejects a Solana artifact with $name', async ({ mutate }) => {
-    const request = req({ origin: 'capacitor://localhost' });
-    const challenge = createNativeAttestationChallenge(request, 'seeker-claim');
-    const payload = validSeekerArtifactPayload(challenge.nonce);
-    mutate(payload);
-
-    await expect(
-      verifySeekerSolanaArtifactAttestation(
-        request,
-        {
-          platform: 'android',
-          challengeId: challenge.challengeId,
-          token: 'integrity-token',
-        },
-        'seeker-claim',
-        {
-          decodeIntegrityToken: async () => payload,
-          env: seekerArtifactEnv,
-        },
-      ),
-    ).resolves.toBeNull();
-  });
-
-  it('fails closed for missing Solana allowlists and rejects Play signing certificates', async () => {
-    const request = req({ origin: 'http://localhost' });
-    const challenge = createNativeAttestationChallenge(request, 'seeker-spin');
-    const proof = {
-      platform: 'android',
-      challengeId: challenge.challengeId,
-      token: 'integrity-token',
-    };
-    const decodeIntegrityToken = async () => ({
-      requestDetails: {
-        nonce: challenge.nonce,
-        requestPackageName: 'com.worldofclaudecraft',
-      },
-      appIntegrity: {
-        packageName: 'com.worldofclaudecraft',
-        appRecognitionVerdict: 'PLAY_RECOGNIZED',
-        certificateSha256Digest: ['google-play-signing-cert'],
-      },
-      deviceIntegrity: {
-        deviceRecognitionVerdict: ['MEETS_DEVICE_INTEGRITY'],
-      },
-    });
-
-    await expect(
-      verifySeekerSolanaArtifactAttestation(request, proof, 'seeker-spin', {
-        decodeIntegrityToken,
-        env: {
-          SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME: 'com.worldofclaudecraft',
-        },
-      }),
-    ).resolves.toBeNull();
-
-    const playChallenge = createNativeAttestationChallenge(request, 'seeker-spin');
-    await expect(
-      verifySeekerSolanaArtifactAttestation(
-        request,
-        { ...proof, challengeId: playChallenge.challengeId },
-        'seeker-spin',
-        {
-          decodeIntegrityToken: async () => ({
-            ...(await decodeIntegrityToken()),
-            requestDetails: {
-              nonce: playChallenge.nonce,
-              requestPackageName: 'com.worldofclaudecraft',
-            },
-          }),
-          env: {
-            SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME: 'com.worldofclaudecraft',
-            SEEKER_SOLANA_INTEGRITY_CERT_DIGESTS: 'solana-release-cert',
-          },
-        },
-      ),
-    ).resolves.toBeNull();
+    expect(androidAppIntegrityAllowed(sideloadVerdict, ['release-cert'], true)).toBe(true);
+    expect(androidAppIntegrityAllowed(sideloadVerdict, [], true)).toBe(false);
+    expect(androidAppIntegrityAllowed(sideloadVerdict, ['attacker-cert'], true)).toBe(false);
+    expect(androidAppIntegrityAllowed(sideloadVerdict, ['release-cert'], false)).toBe(false);
   });
 });

@@ -135,12 +135,12 @@ describe('leaderboard_window: async + page wiring contracts (the painter half)',
 
   it('stamps a render epoch and bails every stale board response against it', () => {
     // One class-wide seq (the DailyRewardsWindow renderSeq pattern): render()
-    // bumps it before the repaint and all five board arms (players, guilds,
-    // deeds, devs, daily) re-check it after their await, so a slow response for
+    // bumps it before the repaint and all four board arms (players, guilds,
+    // deeds, devs) re-check it after their await, so a slow response for
     // an older tab or page never paints the shared body nor mirrors its clamped
     // page into the wrong board's pager state.
     expect(code).toContain('const seq = ++this.renderSeq;');
-    expect(code.match(/seq !== this\.renderSeq/g)?.length).toBe(6);
+    expect(code.match(/seq !== this\.renderSeq/g)?.length).toBe(5);
   });
 
   it('mirrors the server-clamped page back into the pager state', () => {
@@ -177,7 +177,8 @@ describe('leaderboard_window: guild board tab (Players / Guilds)', () => {
     expect(code).toContain("tab('guilds', t('hudChrome.leaderboard.tabGuilds'))");
     expect(code).toContain("tab('deeds', t('hudChrome.deeds.lbTab'))");
     expect(code).toContain("tab('devs', t('hudChrome.leaderboard.tabDevs'))");
-    expect(code).toContain("tab('daily', t('hudChrome.dailyRewards.leaderboard'))");
+    // The crypto-only Daily Rewards board is gone with its tab.
+    expect(code).not.toContain("tab('daily',");
   });
 
   it('marks the active tab with aria-selected for screen readers', () => {
@@ -359,14 +360,14 @@ describe('leaderboard_window: rank/level/virtual level/prestige render through f
   // points, the pager) already routes through formatNumber; rank, level,
   // virtual level (including the guild board's top-member level, which reuses
   // the same vlvl column) and prestige rank must match, not render raw.
-  it('formats the rank in every row builder (players, guilds, devs, deeds, daily)', () => {
+  it('formats the rank in every row builder (players, guilds, devs, deeds)', () => {
     expect(code).toMatch(
       /class="lb-rank">\$\{formatNumber\(r\.rank, \{ maximumFractionDigits: 0 \}\)\}/,
     );
     const matches = code.match(
       /class="lb-rank">\$\{formatNumber\(r\.rank, \{ maximumFractionDigits: 0 \}\)\}/g,
     );
-    expect(matches?.length).toBe(5);
+    expect(matches?.length).toBe(4);
     expect(code).not.toMatch(/class="lb-rank">\$\{r\.rank\}</);
   });
 

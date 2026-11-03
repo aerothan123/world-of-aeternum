@@ -40,10 +40,10 @@ import { chargeGuildRosterPage, refundGuildRosterPage } from '../src/sim/guild_r
 import type { SimContext } from '../src/sim/sim_context';
 import type { BankLedgerOutboxSnapshot } from './bank_ledger_outbox';
 import { bankLedgerSaveEffects } from './bank_ledger_session';
+import type { CharacterSaveArgs } from './character_save_args';
 import type { GuildRosterPageArgs, GuildRosterPageResult } from './guild_roster_page_db';
 import type { GuildRosterPurchase, SocialTransport } from './social';
 import type { StorageAppliedEffect } from './storage_purchase_db';
-import type { CharacterSaveArgs } from './woc_market_character_save';
 
 /** The narrow slice of GameServer the coordinator consumes: its public
  *  session, save-FIFO, snapshot, acknowledgement, and quarantine ports, all

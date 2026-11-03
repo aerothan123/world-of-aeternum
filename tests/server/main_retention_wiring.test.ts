@@ -39,7 +39,6 @@ describe('retention sweep wiring in server/main.ts', () => {
       'pruneClientPerfReports(',
       'pruneChatLogsBatch(',
       'pruneClientPerfReportsBatch(',
-      'pruneDailyRewardEventsBatch(',
       'prunePlayerActivityDailyBatch(',
       'pruneOnlineSamplesBatch(',
       'pruneSitePresenceSamplesBatch(',
@@ -59,12 +58,7 @@ describe('retention sweep wiring in server/main.ts', () => {
       'pruneFtueEventsBatch(',
       'pruneCraftRollEventsBatch(',
       'pruneItemLedgerBatch(',
-      'pruneWocBuyNowAbandonsBatch(',
-      'pruneResolvedWocOffersBatch(',
-      'pruneBookedWocCustodyClaimsBatch(',
-      'pruneExpiredWocStepUpChallengesBatch(',
       'pruneMailCustodyParcelsBatch(',
-      'pruneClosedWocListingsBatch(',
     ]) {
       expect(preListen).not.toContain(call);
     }
@@ -91,7 +85,6 @@ describe('retention sweep wiring in server/main.ts', () => {
     // One call site each, inside the sweep deps closures: deleting a deps entry
     // silently disables that table's retention with everything else green.
     for (const call of [
-      'pruneDailyRewardEventsBatch(',
       'prunePlayerActivityDailyBatch(',
       'pruneOnlineSamplesBatch(',
       'pruneSitePresenceSamplesBatch(',
@@ -101,7 +94,6 @@ describe('retention sweep wiring in server/main.ts', () => {
       'pruneUnstuckReportsBatch(',
       'foldOnlinePeak(',
       'distinctOnlineSampleRealms(',
-      'dailyRewardEventsCutoffDay(',
       // password_reset_requests / email_change_requests / email_log used to be
       // absent from this table list entirely: each completed reset or email
       // change left a permanent row (the per-account supersede DELETE in db.ts
@@ -129,30 +121,23 @@ describe('retention sweep wiring in server/main.ts', () => {
       // The tracked epic/legendary copy provenance ledger (item_ledger) grows
       // per mint, change of hands, modification and end of life; same prune.
       'pruneItemLedgerBatch(',
-      // The $WOC Exchange retention set; exactly-once is what catches the
-      // splice-duplication hazard the listings entry's own comment records.
-      // Custody claims prune BOOKED rows only (unbooked rows are the operator
-      // queue) and the step-up drain exists for realms that stopped issuing.
+      'pruneMailCustodyParcelsBatch(',
+    ]) {
+      expect(count(MAIN, call)).toBe(1);
+    }
+    // The retired crypto tables (daily_reward_events and the $WOC Exchange
+    // set) are no longer written, so they carry no prune: legacy rows stay
+    // loadable and bounded.
+    for (const retired of [
+      'pruneDailyRewardEventsBatch(',
       'pruneWocBuyNowAbandonsBatch(',
       'pruneResolvedWocOffersBatch(',
       'pruneBookedWocCustodyClaimsBatch(',
       'pruneExpiredWocStepUpChallengesBatch(',
-      'pruneMailCustodyParcelsBatch(',
       'pruneClosedWocListingsBatch(',
     ]) {
-      expect(count(MAIN, call)).toBe(1);
+      expect(count(MAIN, retired)).toBe(0);
     }
-  });
-
-  it('derives the daily_reward_events cutoff from the reward clock, behind the keep-forever guard', () => {
-    // The clock-derived cutoff and the keep-forever guard are load-bearing and
-    // live only here. The derivation itself (sign, clamp) is unit-tested in
-    // tests/daily_rewards_cutoff.test.ts; this pin proves main.ts actually
-    // calls it and honors the null (keep forever) contract.
-    expect(MAIN).toContain(
-      'const cutoff = await dailyRewardEventsCutoffDay(config.dailyRewardEventsRetentionDays);',
-    );
-    expect(MAIN).toContain('if (cutoff === null) return 0;');
   });
 
   it('threads each sweep knob from config, never a hardcoded literal', () => {
@@ -191,45 +176,15 @@ describe('retention sweep wiring in server/main.ts', () => {
     expect(MAIN).toContain('prunePlayerReportsBatch(config.playerReportRetentionDays, n)');
     expect(MAIN).toContain('pruneBugReportsBatch(config.bugReportRetentionDays, n)');
     expect(MAIN).toContain('pruneChatViolationsBatch(config.chatViolationRetentionDays, n)');
-    expect(MAIN).toContain(
-      'pruneWocBuyNowAbandonsBatch(pool, config.wocMarketAbandonsRetentionDays, n)',
-    );
-    expect(MAIN).toContain(
-      'pruneResolvedWocOffersBatch(pool, config.wocMarketOffersRetentionDays, n)',
-    );
-    expect(MAIN).toContain(
-      'pruneBookedWocCustodyClaimsBatch(pool, config.wocMarketCustodyClaimsRetentionDays, n)',
-    );
-    // Deliberately knobless: expired step-up nonces are garbage, not history,
-    // so the drain takes no retention-days argument to misthread.
-    expect(MAIN).toContain('pruneExpiredWocStepUpChallengesBatch(pool, n)');
-    // The custody-mail overlay residue prune is knobless too (constant
-    // 30-day window inside the module, no retention-days argument).
+    // The custody-mail overlay residue prune is knobless (constant 30-day
+    // window inside the module, no retention-days argument).
     expect(MAIN).toContain('pruneMailCustodyParcelsBatch(n)');
-    // The custody-claims window relation check must actually be WIRED (the
-    // helper is unit-tested in the market SQL floor; this catches dead code),
-    // with both knobs threaded in the documented order (whitespace-collapsed
-    // so a formatter reflow cannot red it).
-    const flat = MAIN.replace(/\s+/g, ' ');
-    expect(flat).toContain(
-      'wocCustodyClaimsRetentionWarning( config.wocMarketCustodyClaimsRetentionDays, config.wocMarketListingsRetentionDays, )',
-    );
-    // And the answer must reach an operator, not be computed and dropped.
-    expect(flat).toContain('if (claimsRetentionWarn !== null) console.warn(claimsRetentionWarn)');
-    expect(MAIN).toContain(
-      'pruneClosedWocListingsBatch(pool, config.wocMarketListingsRetentionDays, n)',
-    );
   });
 
-  it('keeps the woc listings prune LAST in the table array', () => {
-    // The tail is the one position a rebase auto-merge cannot splice a new
-    // entry into the preceding object (it has happened twice; the comment at
-    // the entry records it). Order also carries semantics: abandons cascades
-    // and directed offers SET NULL on listing_id, so sweeping listings first
-    // would forge "this offer never became a listing". The old pin only
-    // compared two indexOf positions, so a new entry appended AFTER listings
-    // (the natural landing spot for a merge) stayed green; this one scrapes
-    // the real array and pins the whole order plus the tail.
+  it('pins the whole sweep table order', () => {
+    // Scrapes the real array and pins the whole order, so an entry spliced in
+    // by a merge or dropped by a bad rebase reds here. (The $WOC Exchange
+    // tables that used to sit at the tail retired with the crypto rail.)
     const start = MAIN.indexOf('tables: [');
     expect(start).toBeGreaterThan(-1);
     const block = MAIN.slice(start, MAIN.indexOf('onlineSamples:', start));
@@ -237,7 +192,6 @@ describe('retention sweep wiring in server/main.ts', () => {
     expect(names).toEqual([
       'chat_logs',
       'client_perf_reports',
-      'daily_reward_events',
       'player_activity_daily',
       'admin_site_presence_samples',
       'site_presence_sessions',
@@ -255,15 +209,9 @@ describe('retention sweep wiring in server/main.ts', () => {
       'world_quest_scores',
       'craft_roll_events',
       'item_ledger',
-      'woc_market_buy_now_abandons',
-      'woc_market_directed_offers',
-      'woc_market_custody_claims',
-      'woc_market_stepup_challenges',
       'mail_custody_parcels',
-      'woc_market_listings',
     ]);
     expect(new Set(names).size).toBe(names.length);
-    expect(names.at(-1)).toBe('woc_market_listings');
   });
 
   it('sweeps the play-session fold before the association ager', () => {
@@ -409,7 +357,7 @@ describe('retention sweep wiring in server/main.ts', () => {
     expect(count(MAIN, 'stageAppliedEffect:')).toBe(1);
   });
 
-  it('shares one major-background database gate across game, market, storage, and metrics', () => {
+  it('shares one major-background database gate across game, storage, and metrics', () => {
     // Independent subsystem tests can each pass with independent gates while
     // their combined production concurrency exceeds the pool headroom. Pin the
     // composition root: one instance, threaded into every major producer and
@@ -430,35 +378,6 @@ describe('retention sweep wiring in server/main.ts', () => {
     expect(MAIN).toContain(
       'configurePaidGuildCreateBackgroundGate((signal) => majorBackgroundDbGate.acquire(signal))',
     );
-
-    // The escrow enqueue closure: a BOUNDED permit wait (the unbounded form
-    // pinned the character FIFO slot and an escrow-gate hold until the 400s
-    // leak reclaim), and the job NEVER runs on a null permit (the refusal
-    // throw precedes job()).
-    expect(MAIN).toContain('const WOC_ESCROW_BACKGROUND_PERMIT_WAIT_MS = 15_000');
-    const custodyStart = MAIN.indexOf('enqueueCharacterWrite: (characterId, job) =>');
-    const custodyEnd = MAIN.indexOf('serializeCharacterForPersist:', custodyStart);
-    const custody = MAIN.slice(custodyStart, custodyEnd);
-    expect(custodyStart).toBeGreaterThan(-1);
-    expect(custodyEnd).toBeGreaterThan(custodyStart);
-    // Whitespace-tolerant (the guild_create pin shape): an indentation-only
-    // reformat must not break the wiring pin.
-    expect(custody).toMatch(
-      /majorBackgroundDbGate\.acquire\(\s*AbortSignal\.timeout\(WOC_ESCROW_BACKGROUND_PERMIT_WAIT_MS\),?\s*\)/,
-    );
-    expect(custody.indexOf('enqueueCharacterWrite(characterId, async () => {')).toBeLessThan(
-      custody.indexOf('majorBackgroundDbGate.acquire('),
-    );
-    expect(custody.indexOf('majorBackgroundDbGate.acquire(')).toBeLessThan(
-      custody.indexOf('job()'),
-    );
-    const refusal = custody.indexOf(
-      "throw new Error('woc escrow refused: no background database permit')",
-    );
-    expect(refusal).toBeGreaterThan(-1);
-    expect(custody.indexOf('if (!permit)')).toBeGreaterThan(-1);
-    expect(custody.indexOf('if (!permit)')).toBeLessThan(custody.indexOf('job()'));
-    expect(refusal).toBeLessThan(custody.indexOf('job()'));
   });
 
   it('stops admitting storage recovery before the database pool closes', () => {

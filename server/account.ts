@@ -1,7 +1,7 @@
 // Account self-service portal: the exported handleAccount* domain handlers plus the
 // RouteDef layer that serves them (see the block above `export const routes`).
 //
-// The domain handlers mirror server/wallet.ts: each is an exported, account-scoped
+// The domain handlers follow the retired wallet module's template: each is an exported, account-scoped
 // function with a real http (req, res) signature, so tests/account_server.test.ts can
 // drive every branch through the mock-pg harness with no live database. A thin
 // RouteDef layer of 16 routes rides below, served by the shared

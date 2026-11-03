@@ -1,22 +1,18 @@
 // The Currencies tab's pure view core: every balance the character can spend
 // that is NOT coin, in two groups. Activities: Heroic Marks (a PlayerMeta
-// counter, src/sim/heroic_marks.ts), Honor, Delve Marks and the $WOC token
-// (the account-linked wallet, injected by the painter because it is host state,
-// not IWorld). Factions: one row per allied faction, PENDING until Stage 2 of
+// counter, src/sim/heroic_marks.ts), Honor and Delve Marks. Factions: one row per allied faction, PENDING until Stage 2 of
 // the World Quests scope chooses the currency model; standing is shown on the
 // Reputation tab and is deliberately not a currency here.
 import { FACTION_IDS, type FactionId } from '../../../sim/factions';
 
-export type ActivityCurrencyId = 'heroic_mark' | 'honor' | 'delve_mark' | 'woc_token';
+export type ActivityCurrencyId = 'heroic_mark' | 'honor' | 'delve_mark';
 
 export interface ActivityCurrencyRow {
   readonly id: ActivityCurrencyId;
-  /** The spendable amount; null when the source is unavailable (no wallet linked). */
-  readonly amount: number | null;
-  /** A lifetime or verification note the painter may show beside the amount. */
+  /** The spendable amount. */
+  readonly amount: number;
+  /** A lifetime note the painter may show beside the amount. */
   readonly lifetime: number | null;
-  /** For the token: whether the shown balance is the verified one. */
-  readonly verified: boolean;
 }
 
 export interface FactionCurrencyRow {
@@ -37,11 +33,6 @@ export interface CurrenciesViewInput {
   readonly lifetimeHonor: number;
   readonly delveMarks: number;
   readonly factionCurrencies?: Readonly<Record<FactionId, number>>;
-  readonly woc: {
-    readonly enabled: boolean;
-    readonly balance: number | null;
-    readonly verified: boolean;
-  };
 }
 
 const whole = (value: number): number =>
@@ -49,23 +40,10 @@ const whole = (value: number): number =>
 
 export function buildCurrenciesView(input: CurrenciesViewInput): CurrenciesView {
   const activities: ActivityCurrencyRow[] = [
-    { id: 'heroic_mark', amount: whole(input.heroicMarks), lifetime: null, verified: true },
-    {
-      id: 'honor',
-      amount: whole(input.honor),
-      lifetime: whole(input.lifetimeHonor),
-      verified: true,
-    },
-    { id: 'delve_mark', amount: whole(input.delveMarks), lifetime: null, verified: true },
+    { id: 'heroic_mark', amount: whole(input.heroicMarks), lifetime: null },
+    { id: 'honor', amount: whole(input.honor), lifetime: whole(input.lifetimeHonor) },
+    { id: 'delve_mark', amount: whole(input.delveMarks), lifetime: null },
   ];
-  if (input.woc.enabled) {
-    activities.push({
-      id: 'woc_token',
-      amount: input.woc.balance === null ? null : Math.max(0, input.woc.balance),
-      lifetime: null,
-      verified: input.woc.verified,
-    });
-  }
   return {
     activities,
     factions: FACTION_IDS.map((factionId) => ({

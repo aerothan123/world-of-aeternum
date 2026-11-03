@@ -1,15 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import {
-  buildClaudiumView,
-  type ClaudiumViewInput,
-  claudiumBalanceAddress,
-  currentWocDiscountBps,
-} from '../src/ui/claudium_view';
+import { buildClaudiumView, type ClaudiumViewInput } from '../src/ui/claudium_view';
 
 // The pure Claudium view core is DOM/i18n/net-free, so it drives directly here.
 // Two states matter: a funded state (service on) and the service-off disabled
 // state (balance null). The core recomputes NOTHING; it only projects the
-// service payloads into render rows + per-rail availability.
+// service payloads into render rows + card-rail availability. Card (Stripe) is
+// the only purchase rail: Project H has no cryptocurrency rail.
 
 const funded: ClaudiumViewInput = {
   balance: 1250,
@@ -17,32 +13,6 @@ const funded: ClaudiumViewInput = {
     { sku: 's1', usd: 1, claudium: 100 },
     { sku: 's10', usd: 10, claudium: 1000 },
     { sku: 's100', usd: 100, claudium: 10000 },
-  ],
-  nativeRails: { sol: true, usdc: true, woc: true },
-  walletBalances: {
-    solLamports: '2000000000',
-    usdcBaseUnits: '20000000',
-    wocBaseUnits: '20000000',
-  },
-  nativePrices: [
-    {
-      sku: 's1',
-      solAmountBase: '10000000',
-      usdcAmountBase: '1000000',
-      wocAmountBase: '1000000',
-    },
-    {
-      sku: 's10',
-      solAmountBase: '100000000',
-      usdcAmountBase: '10000000',
-      wocAmountBase: '10000000',
-    },
-    {
-      sku: 's100',
-      solAmountBase: '10000000000',
-      usdcAmountBase: '100000000',
-      wocAmountBase: '100000000',
-    },
   ],
 };
 
@@ -56,7 +26,7 @@ describe('buildClaudiumView disabled state (service off)', () => {
     expect(view.hasBalance).toBe(false);
     expect(view.balance).toBeNull();
     expect(view.buyRows).toEqual([]);
-    expect(view.rails).toEqual({ stripe: false, sol: false, usdc: false, woc: false });
+    expect(view.rails).toEqual({ stripe: false });
     expect(view.buyDisabled).toBe(true);
   });
 
@@ -79,52 +49,19 @@ describe('buildClaudiumView funded state (service on)', () => {
     expect(view.hasBalance).toBe(true);
     expect(view.balance).toBe(1250);
     expect(view.buyRows).toEqual([
-      {
-        sku: 's1',
-        usd: 1,
-        claudium: 100,
-        stripeConfigured: true,
-        solAffordable: true,
-        usdcAffordable: true,
-        wocAffordable: true,
-        solAmountBase: '10000000',
-        usdcAmountBase: '1000000',
-        wocAmountBase: '1000000',
-      },
-      {
-        sku: 's10',
-        usd: 10,
-        claudium: 1000,
-        stripeConfigured: true,
-        solAffordable: true,
-        usdcAffordable: true,
-        wocAffordable: true,
-        solAmountBase: '100000000',
-        usdcAmountBase: '10000000',
-        wocAmountBase: '10000000',
-      },
-      {
-        sku: 's100',
-        usd: 100,
-        claudium: 10000,
-        stripeConfigured: true,
-        solAffordable: false,
-        usdcAffordable: false,
-        wocAffordable: false,
-        solAmountBase: '10000000000',
-        usdcAmountBase: '100000000',
-        wocAmountBase: '100000000',
-      },
+      { sku: 's1', usd: 1, claudium: 100, stripeConfigured: true },
+      { sku: 's10', usd: 10, claudium: 1000, stripeConfigured: true },
+      { sku: 's100', usd: 100, claudium: 10000, stripeConfigured: true },
     ]);
   });
 
-  it('enables all native rails when the service exposes priced SKU quotes', () => {
+  it('enables only the card rail when the ladder has configured SKUs', () => {
     const view = buildClaudiumView(funded);
-    expect(view.rails).toEqual({ stripe: true, sol: true, usdc: true, woc: true });
+    expect(view.rails).toEqual({ stripe: true });
     expect(view.buyDisabled).toBe(false);
   });
 
-  it('keeps unconfigured Stripe SKU rows visible but unavailable on the Stripe rail', () => {
+  it('keeps unconfigured Stripe SKU rows visible but disables buying when none is configured', () => {
     const view = buildClaudiumView({
       ...funded,
       skus: [
@@ -133,64 +70,17 @@ describe('buildClaudiumView funded state (service on)', () => {
       ],
     });
     expect(view.buyRows).toEqual([
-      {
-        sku: 's1',
-        usd: 1,
-        claudium: 100,
-        stripeConfigured: false,
-        solAffordable: true,
-        usdcAffordable: true,
-        wocAffordable: true,
-        solAmountBase: '10000000',
-        usdcAmountBase: '1000000',
-        wocAmountBase: '1000000',
-      },
-      {
-        sku: 's10',
-        usd: 10,
-        claudium: 1000,
-        stripeConfigured: false,
-        solAffordable: true,
-        usdcAffordable: true,
-        wocAffordable: true,
-        solAmountBase: '100000000',
-        usdcAmountBase: '10000000',
-        wocAmountBase: '10000000',
-      },
+      { sku: 's1', usd: 1, claudium: 100, stripeConfigured: false },
+      { sku: 's10', usd: 10, claudium: 1000, stripeConfigured: false },
     ]);
-    expect(view.rails).toEqual({ stripe: false, sol: true, usdc: true, woc: true });
-    expect(view.buyDisabled).toBe(false);
-  });
-
-  it('marks native SKU rows unaffordable when the connected wallet balance is too low', () => {
-    const view = buildClaudiumView({
-      ...funded,
-      walletBalances: {
-        solLamports: '9999999',
-        usdcBaseUnits: '999999',
-        wocBaseUnits: '999999',
-      },
-    });
-    expect(view.buyRows[0].solAffordable).toBe(false);
-    expect(view.buyRows[0].usdcAffordable).toBe(false);
-    expect(view.buyRows[0].wocAffordable).toBe(false);
-  });
-
-  it('disables native rails when the service reports them unavailable', () => {
-    const view = buildClaudiumView({
-      ...funded,
-      nativeRails: { sol: false, usdc: false, woc: false },
-    });
-    expect(view.rails).toEqual({ stripe: true, sol: false, usdc: false, woc: false });
-    // Stripe still works, so buying is not disabled.
-    expect(view.buyDisabled).toBe(false);
-  });
-
-  it('disables every rail when there are no skus', () => {
-    const view = buildClaudiumView({ ...funded, skus: [] });
-    expect(view.rails).toEqual({ stripe: false, sol: false, usdc: false, woc: false });
+    expect(view.rails).toEqual({ stripe: false });
     expect(view.buyDisabled).toBe(true);
-    // A zero balance is still a funded (known) state, distinct from the null/off state.
+  });
+
+  it('disables the card rail when there are no skus', () => {
+    const view = buildClaudiumView({ ...funded, skus: [] });
+    expect(view.rails).toEqual({ stripe: false });
+    expect(view.buyDisabled).toBe(true);
   });
 
   it('treats a zero balance as a known funded state, not the disabled state', () => {
@@ -204,53 +94,5 @@ describe('buildClaudiumView funded state (service on)', () => {
 describe('buildClaudiumView is a pure projection', () => {
   it('returns identical structure for identical input (no hidden state)', () => {
     expect(buildClaudiumView(funded)).toEqual(buildClaudiumView(funded));
-  });
-});
-
-describe('claudiumBalanceAddress (which wallet funds the affordability reads)', () => {
-  it('prefers the actively connected session wallet over the linked wallet', () => {
-    expect(claudiumBalanceAddress('SessionPubkey111', 'LinkedPubkey222')).toBe('SessionPubkey111');
-  });
-
-  it('falls back to the server-verified linked wallet when nothing is connected', () => {
-    // A linked-but-disconnected player still gets live buy buttons off the
-    // linked balance; the buy click surfaces the connect prompt to sign.
-    expect(claudiumBalanceAddress(null, 'LinkedPubkey222')).toBe('LinkedPubkey222');
-  });
-
-  it('returns null with neither wallet, so the caller performs no balance read', () => {
-    expect(claudiumBalanceAddress(null, null)).toBeNull();
-  });
-});
-
-describe('currentWocDiscountBps (service price aggregation)', () => {
-  it('selects the authoritative discount when every fetched $WOC price row agrees', () => {
-    expect(
-      currentWocDiscountBps([
-        { sku: 's1', wocDiscountBps: 5000 },
-        { sku: 's10', wocDiscountBps: 5000 },
-      ]),
-    ).toBe(5000);
-  });
-
-  it('fails closed when no fetched price row contains a valid discount', () => {
-    expect(currentWocDiscountBps([])).toBeNull();
-    expect(
-      currentWocDiscountBps([
-        { sku: 's1', wocDiscountBps: null },
-        { sku: 's10', wocDiscountBps: 5000 },
-      ]),
-    ).toBeNull();
-    expect(currentWocDiscountBps([{ sku: 's1', wocDiscountBps: -1 }])).toBeNull();
-    expect(currentWocDiscountBps([{ sku: 's10', wocDiscountBps: 9001 }])).toBeNull();
-  });
-
-  it('fails closed when fetched price rows span different policy revisions', () => {
-    expect(
-      currentWocDiscountBps([
-        { sku: 's1', wocDiscountBps: 2000 },
-        { sku: 's10', wocDiscountBps: 5000 },
-      ]),
-    ).toBeNull();
   });
 });

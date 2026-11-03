@@ -13,6 +13,9 @@
 import type { TranslationKey } from '../i18n.catalog';
 
 export const ko_KR: Partial<Record<TranslationKey, string>> = {
+  "abilityUi.cast.chopping": "벌목",
+  "guide.profPages.treesHeading": "지역별 나무",
+  "guide.profPages.treesNote": "목재는 숲 그 자체에서 얻습니다. 마을 밖에 있는 아무 나무에나 다가가 상호작용 키를 누르면 벌목을 시작합니다. 나무 한 그루를 쓰러뜨리려면 한 번에 {swing}초씩 도끼를 {minSwings}번에서 {maxSwings}번 휘둘러야 하며, 더 좋은 도끼나 더 높은 벌목 등급이 있으면 횟수가 줄어듭니다. 움직이거나 공격을 받으면 휘두르기가 멈춥니다. 마지막 일격을 가장 먼저 넣은 채집가가 나무를 쓰러뜨리고 목재를 가져가며, 같은 나무를 베던 다른 사람은 멈춥니다. 쓰러진 나무는 밟고 지나갈 수 있는 그루터기를 남기고 {regrow}초 뒤 모두를 위해 다시 자랍니다.",
   'hudChrome.wocStore.subscription.checkoutPending':
     '결제가 대기 중입니다. 확인을 기다리고 있습니다.',
   'bossJournal.wildheart.zulgar.pulseSummaryRework':

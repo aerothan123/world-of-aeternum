@@ -9,6 +9,7 @@ import { CharacterRequests } from './character_requests';
 import { applyCharacterRoster, type CharacterMembership } from './character_roster';
 import { applyCourierSelfWire } from './courier_wire';
 import { activeRaidLockouts, activeRiftBossDeathZones, riftMs } from './dungeon_mirror_views';
+import { applyGroundTelegraphSnapshot } from './ground_telegraph_wire';
 import { decodeWeeklyRewardInfo, sendWeekly, type WeeklyRewardInfo } from './weekly_rewards_wire';
 // Online play: REST auth client + WebSocket world mirror.
 
@@ -132,10 +133,6 @@ import {
   type CorpseHarvestInfo,
   type CraftingIdentityView,
   type CraftResultView,
-  type DailyRewardHistory,
-  type DailyRewardLeaderboardPage,
-  type DailyRewardSpinResult,
-  type DailyRewardStatus,
   type DeedsLeaderboardPage,
   type DeedsRarity,
   type DelveCompanionInfo,
@@ -221,11 +218,6 @@ import {
 import { applySelfCombatScalars } from './combat_scalar_wire';
 import { craftResultViewFromEvent } from './craft_result_mirror';
 import { EMPTY_MST_CRAFTS } from './crafting_wire';
-import {
-  type DesktopWalletBrowserAction,
-  type DesktopWalletStatus,
-  parseDesktopWalletHandoffStatus,
-} from './desktop_wallet_handoff';
 import { pruneMissingEntities } from './despawn_grace';
 import { dungeonEntrySnapshotFacing } from './dungeon_entry_facing';
 import { decodeEntityFlairWire } from './entity_flair_wire';
@@ -233,7 +225,6 @@ import { reanchorDecision } from './entity_reanchor';
 import { applyEntityStatusWire } from './entity_status_wire';
 import { decodeEquippedInstancesWire } from './equipped_instances_wire';
 import { FelledTreeMirror, type FelledTreesView } from './felled_trees_wire';
-import { applyGroundTelegraphSnapshot } from './ground_telegraph_wire';
 import { GuildBankLogMirror } from './guild_bank_log_mirror';
 import { decodeGuildBoardPage, emptyGuildBoardPage, guildBoardPath } from './guild_board_wire';
 import { decodeGuildRoster } from './guild_roster_wire';
@@ -266,7 +257,6 @@ import {
   trackPendingInputSequenceRange,
 } from './movement_frame_v2_wire';
 import { applyReconSelfWire, ReconWireState } from './movement_reconciliation_wire';
-import { createNativeAttestationProof } from './native_attestation';
 import { createNetPipelineStats, type NetPipelineStats } from './net_pipeline_stats';
 import { applyPeerMajorCooldownWire } from './peer_major_cooldown_wire';
 import { perfectingCommand } from './perfecting_command';
@@ -330,7 +320,7 @@ export {
   NATIVE_APP,
 } from '../client_origin';
 
-// The REST payload shapes (realms, releases, account, wallet proofs), moved to
+// The REST payload shapes (realms, releases, account), moved to
 // their own module (monolith ratchet) and re-exported so importers are unchanged.
 export type {
   AccountInfo,
@@ -338,20 +328,12 @@ export type {
   RealmEntry,
   RealmType,
   ReleaseEntry,
-  SeekerEntitlementStatus,
-  WalletReauthProof,
 } from './rest_types';
 
-import type {
-  AccountInfo,
-  RealmDirectory,
-  ReleaseEntry,
-  SeekerEntitlementStatus,
-  WalletReauthProof,
-} from './rest_types';
+import type { AccountInfo, RealmDirectory, ReleaseEntry } from './rest_types';
 
-// The shared REST error value lives in its own module (the ratchet payment
-// for the wallet re-auth params below); re-exported so importers are unchanged.
+// The shared REST error value lives in its own module (a monolith ratchet
+// payment); re-exported so importers are unchanged.
 export { ApiError, apiErrorFromBody, isAuthError } from './api_error';
 
 export class Api {
@@ -567,28 +549,6 @@ export class Api {
     const data = await this.post('/api/desktop-login/exchange', { code });
     this.token = data.token;
     this.username = data.username;
-  }
-
-  async createDesktopWalletHandoff(
-    action: DesktopWalletBrowserAction,
-  ): Promise<{ code: string; expiresInMs: number }> {
-    const data = await this.post(
-      '/api/desktop-wallet/create',
-      action,
-      DESKTOP_API_ORIGIN || this.base,
-    );
-    return {
-      code: typeof data.code === 'string' ? data.code : '',
-      expiresInMs: typeof data.expiresInMs === 'number' ? data.expiresInMs : 0,
-    };
-  }
-
-  async desktopWalletHandoffResult(code: string): Promise<DesktopWalletStatus> {
-    // Shape validation lives in the handoff module (an unknown or malformed
-    // result kind reads as 'missing', which the poller treats as expired).
-    return parseDesktopWalletHandoffStatus(
-      await this.post('/api/desktop-wallet/result', { code }, DESKTOP_API_ORIGIN || this.base),
-    );
   }
 
   // ── Persistent session (home-page account portal) ──────────────────────────
@@ -829,52 +789,6 @@ export class Api {
     } catch {
       return [];
     }
-  }
-
-  // ── Non-custodial Solana wallet linking ───────────────────────────────────
-  // Step 1: ask the server for the exact message to sign for this address.
-  async walletLinkChallenge(address: string): Promise<{ nonce: string; message: string }> {
-    return this.post('/api/wallet/link/challenge', { address });
-  }
-
-  // Step 2: submit the wallet's signature; server verifies + persists the link.
-  // CHANGING an existing link (and unlinking below) is re-authorized (the R11
-  // relink gate): pass the account password, plus the second factor when
-  // enrolled. Without it the server answers 401 code wallet.reauth_required.
-  async linkWallet(
-    address: string,
-    signature: string,
-    nonce: string,
-    reauth?: WalletReauthProof,
-  ): Promise<{ pubkey: string }> {
-    // Proof spreads FIRST so the identity fields can never be shadowed.
-    return this.post('/api/wallet/link', { ...(reauth ?? {}), address, signature, nonce });
-  }
-
-  // Current account's linked wallet (null when none).
-  async linkedWallet(): Promise<{ pubkey: string; linkedAt: string } | null> {
-    const data = await this.get('/api/wallet');
-    return data.wallet ?? null;
-  }
-
-  async unlinkWallet(reauth?: WalletReauthProof): Promise<void> {
-    await this.delete('/api/wallet/link', reauth ?? {});
-  }
-
-  async seekerEntitlement(): Promise<SeekerEntitlementStatus> {
-    const data = await this.get('/api/seeker/entitlement');
-    return {
-      entitled: data.entitled === true,
-      mint: typeof data.mint === 'string' ? data.mint : null,
-    };
-  }
-
-  async claimSeekerEntitlement(nativeAttestation: unknown): Promise<SeekerEntitlementStatus> {
-    const data = await this.post('/api/seeker/entitlement', { nativeAttestation });
-    return {
-      entitled: data.entitled === true,
-      mint: typeof data.mint === 'string' ? data.mint : null,
-    };
   }
 
   // ── Discord link/login + status ────────────────────────────────────────────
@@ -2682,15 +2596,13 @@ export class ClientWorld extends ReconWireState implements IWorld {
           e.modularAppearance =
             w.app && typeof w.app === 'object' && !Array.isArray(w.app) ? w.app : null;
         }
-        // Cosmetic status flair ($WOC holder tier, linked-Discord, dev badge,
+        // Cosmetic status flair (linked-Discord, dev badge,
         // Curator standing, the AI-operated mark plus streamer links, and the
         // Cheater tag): decode idiom shared by every full identity record,
         // extracted to entity_flair_wire.ts (src/net/CLAUDE.md). Every field
         // resets to its "no flair" default when the record omits it, since an
         // identity record is authoritative and complete.
         const flair = decodeEntityFlairWire(w);
-        e.holderTier = flair.holderTier;
-        e.holderBalance = flair.holderBalance;
         e.discordTier = flair.discordTier;
         e.discordAvatar = flair.discordAvatar;
         e.discordName = flair.discordName;
@@ -4471,8 +4383,8 @@ export class ClientWorld extends ReconWireState implements IWorld {
   }
   // Reads the EXISTING public character sheet, the same one behind the
   // unauthenticated /c/:name page, so a chat-name lookup exposes nothing that
-  // was not already crawlable. The richer in-view inspect card (wallet balance,
-  // Discord/GitHub flair, gear) stays on the proximity-gated entity wire.
+  // was not already crawlable. The richer in-view inspect card (Discord/GitHub
+  // flair, gear) stays on the proximity-gated entity wire.
   characterProfile(name: string): Promise<CharacterProfile | null> {
     return readCharacterProfile(name, this.base);
   }
@@ -4804,8 +4716,8 @@ export class ClientWorld extends ReconWireState implements IWorld {
       return null;
     }
   }
-  // The global rarity aggregate: a lazy anonymous REST read (the daily-rewards
-  // async-read variant), resolving the endpoint payload verbatim or null on
+  // The global rarity aggregate: a lazy anonymous REST read (an async-read
+  // variant), resolving the endpoint payload verbatim or null on
   // any failure (the facet's documented no-data value; the window hides the
   // slot). The consumer caches per window-open, so no TTL cache here.
   async deedsRarity(): Promise<DeedsRarity | null> {
@@ -5211,71 +5123,6 @@ export class ClientWorld extends ReconWireState implements IWorld {
     } catch {
       return empty;
     }
-  }
-
-  async dailyRewards(): Promise<DailyRewardStatus> {
-    const res = await fetch(apiUrl('/api/daily-rewards', this.base), {
-      headers: { Authorization: `Bearer ${this.token}` },
-    });
-    if (!res.ok) throw new Error('daily rewards unavailable');
-    return (await res.json()) as DailyRewardStatus;
-  }
-
-  async dailyRewardLeaderboard(
-    page = 0,
-    pageSize = LEADERBOARD_PAGE_SIZE,
-  ): Promise<DailyRewardLeaderboardPage> {
-    const empty: DailyRewardLeaderboardPage = {
-      day: '',
-      leaders: [],
-      page: 0,
-      pageCount: 1,
-      total: 0,
-      pageSize,
-    };
-    try {
-      const res = await fetch(
-        apiUrl(`/api/daily-rewards/leaderboard?page=${page}&pageSize=${pageSize}`, this.base),
-        { headers: { Authorization: `Bearer ${this.token}` } },
-      );
-      if (!res.ok) return empty;
-      const data = await res.json();
-      return {
-        day: data.day ?? '',
-        leaders: data.leaders ?? [],
-        page: data.page ?? page,
-        pageCount: data.pageCount ?? 1,
-        total: data.total ?? data.leaders?.length ?? 0,
-        pageSize: data.pageSize ?? pageSize,
-      };
-    } catch {
-      return empty;
-    }
-  }
-
-  async spinDailyReward(): Promise<DailyRewardSpinResult> {
-    const nativeAttestation = NATIVE_APP
-      ? await createNativeAttestationProof(this.base, 'seeker-spin')
-      : undefined;
-    const res = await fetch(apiUrl('/api/daily-rewards/spin', this.base), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${this.token}`,
-      },
-      body: JSON.stringify({ nativeAttestation }),
-    });
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(data.error ?? 'daily spin unavailable');
-    return data as DailyRewardSpinResult;
-  }
-
-  async dailyRewardHistory(): Promise<DailyRewardHistory> {
-    const res = await fetch(apiUrl('/api/daily-rewards/history', this.base), {
-      headers: { Authorization: `Bearer ${this.token}` },
-    });
-    if (!res.ok) return { payouts: [] };
-    return (await res.json()) as DailyRewardHistory;
   }
 
   prestige(): void {

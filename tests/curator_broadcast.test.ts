@@ -184,13 +184,13 @@ describe('Curator standing: the identity wire codec', () => {
     player.curatorRank = undefined;
     player.relicsOwned = 137;
     player.relicsTotal = 402;
-    player.holderTier = 2;
+    player.discordTier = 2;
     broadcast(server);
     const snap = lastSnap(fc.sent);
     // In-snapshot witness: a sibling identity key rides in the SAME payload,
     // so the three absences below cannot pass because identity was never
     // built at all in this broadcast.
-    expect(snap.self.ht).toBe(2);
+    expect(snap.self.dt).toBe(2);
     for (const key of ['crk', 'cro', 'crt']) expect(snap.self).not.toHaveProperty(key);
 
     // Positive control: the same pair rides again once the rank is present.
@@ -627,26 +627,26 @@ describe('GameServer.refreshCuratorStanding (real ownership resolution)', () => 
   it('runs on the periodic flair cycle too, so a mid-session find converges', async () => {
     // The 60s cycle is what catches a relic found after login. Drive the real
     // cycle (not the per-session method) so a refresher dropped from
-    // refreshAllHolderTiers reds here.
+    // refreshAllIdentityFlair reds here.
     discoverRelics(server, session, 12);
     const e = server.sim.entities.get(session.pid)!;
     expect(e.curatorRank).toBeUndefined();
-    await (server as any).refreshAllHolderTiers();
+    await (server as any).refreshAllIdentityFlair();
     expect(e.curatorRank).toBe(2);
     expect(e.relicsOwned).toBe(12);
   });
 
-  it('sweeps even while a degraded RPC cycle still holds the overlap guard', async () => {
-    // The overlap guard belongs to the three AWAITED refreshers (wallet RPC,
-    // Discord, GitHub), whose cycle can outrun the 60s interval and must not
+  it('sweeps even while a degraded awaited cycle still holds the overlap guard', async () => {
+    // The overlap guard belongs to the two AWAITED refreshers (Discord,
+    // GitHub), whose cycle can outrun the 60s interval and must not
     // pile up. The curator sweep is pure CPU with no IO, so it can never be the
-    // thing that piles up; while it sat under that early return, one hung RPC
+    // thing that piles up; while it sat under that early return, one hung awaited
     // cycle froze every online player's Curator standing along with it. Holding
     // the flag down IS that degraded cycle, and it must not stop the sweep.
     discoverRelics(server, session, 12);
     const e = server.sim.entities.get(session.pid)!;
-    (server as any).holderTierRefreshing = true;
-    await (server as any).refreshAllHolderTiers();
+    (server as any).identityFlairRefreshing = true;
+    await (server as any).refreshAllIdentityFlair();
     expect(e.curatorRank).toBe(2);
     expect(e.relicsOwned).toBe(12);
     // ... while the guard still guards its OWN half: the awaited refreshers did
@@ -672,8 +672,8 @@ describe('GameServer.refreshCuratorStanding (real ownership resolution)', () => 
     // value the direct call left behind.
     e.curatorRank = undefined;
     e.relicsOwned = undefined;
-    (server as any).holderTierRefreshing = true;
-    await (server as any).refreshAllHolderTiers();
+    (server as any).identityFlairRefreshing = true;
+    await (server as any).refreshAllIdentityFlair();
     expect(e.curatorRank).toBe(2);
     expect(e.relicsOwned).toBe(12);
     expect(poolQuery()).not.toHaveBeenCalled();
@@ -712,7 +712,7 @@ describe('GameServer.refreshCuratorStanding (real ownership resolution)', () => 
   });
 
   it('isolates a throwing session so the sweep still stamps the ones behind it', async () => {
-    // The per-session try/catch inside refreshAllHolderTiers. Its contract lived
+    // The per-session try/catch inside refreshAllIdentityFlair. Its contract lived
     // only in prose: one session throwing must not cost every session after it
     // in the iteration its standing for the next 60 seconds. The overlap guard
     // is held down so only the synchronous curator half runs.
@@ -731,8 +731,8 @@ describe('GameServer.refreshCuratorStanding (real ownership resolution)', () => 
     });
     const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
     try {
-      (server as any).holderTierRefreshing = true;
-      await (server as any).refreshAllHolderTiers();
+      (server as any).identityFlairRefreshing = true;
+      await (server as any).refreshAllIdentityFlair();
       // The throw really happened (nothing stamped the first session) ...
       expect(first.curatorRank).toBeUndefined();
       expect(errSpy).toHaveBeenCalled();
@@ -775,7 +775,7 @@ describe('GameServer.refreshCuratorStanding (real ownership resolution)', () => 
     // cycle does reach the database through the very same pool
     // (refreshDiscordFlair hands it straight to discordFlairForAccount), so a
     // nonzero count here is what makes those zeros mean something.
-    await (server as any).refreshAllHolderTiers();
+    await (server as any).refreshAllIdentityFlair();
     expect(poolQuery().mock.calls.length).toBeGreaterThan(0);
   });
 });
@@ -847,7 +847,7 @@ describe('Curator standing is server authority, never a client claim', () => {
     // delegates, so it holds NO write of its own.
     const game = codeOnly(readFileSync(GAME_SRC, 'utf8'));
     const refresherStart = game.indexOf('private refreshCuratorStanding(');
-    const refresherEnd = game.indexOf('private async refreshAllHolderTiers(');
+    const refresherEnd = game.indexOf('private async refreshAllIdentityFlair(');
     expect(refresherStart).toBeGreaterThan(0);
     expect(refresherEnd).toBeGreaterThan(refresherStart);
     expect(game.slice(refresherStart, refresherEnd).match(CURATOR_WRITE) ?? []).toHaveLength(0);
@@ -882,14 +882,14 @@ describe('Curator standing is server authority, never a client claim', () => {
     // registration would leave every suite green while live standings never
     // refreshed after join. Matched over comment-stripped code, so a
     // commented-out copy cannot satisfy it, and anchored on both the callback
-    // body and the HOLDER_TIER_REFRESH_MS constant so neither can drift alone.
+    // body and the IDENTITY_FLAIR_REFRESH_MS constant so neither can drift alone.
     const game = codeOnly(readFileSync(GAME_SRC, 'utf8'));
     expect(game).toMatch(
-      /this\.holderTierInterval = setInterval\(\(\) => \{\s*void this\.refreshAllHolderTiers\(\);\s*\}, HOLDER_TIER_REFRESH_MS\);/,
+      /this\.identityFlairInterval = setInterval\(\(\) => \{\s*void this\.refreshAllIdentityFlair\(\);\s*\}, IDENTITY_FLAIR_REFRESH_MS\);/,
     );
     // The VALUE too, or "the 60s cycle" in every doc and comment is a claim
     // no test owns: the registration pin above survives a retune to ten
     // minutes; this line does not.
-    expect(game).toMatch(/const HOLDER_TIER_REFRESH_MS = 60_000;/);
+    expect(game).toMatch(/const IDENTITY_FLAIR_REFRESH_MS = 60_000;/);
   });
 });

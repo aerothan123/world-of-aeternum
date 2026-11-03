@@ -36,7 +36,7 @@ const {
   toCanonicalExternalUrl,
 } = require('./shell_guards.cjs');
 const { rangeContentType, rangedFileResponse } = require('./media_range.cjs');
-const { resolveDesktopConfig, walletConnectionSupported } = require('./desktop_config.cjs');
+const { resolveDesktopConfig } = require('./desktop_config.cjs');
 const {
   DESKTOP_PREFS_FILENAME,
   loadDesktopPrefs,
@@ -107,10 +107,6 @@ const {
   displayWirePayload,
   shouldForwardDisplayChange,
 } = require('./display_events.cjs');
-const {
-  buildWalletHandoffBrowserUrl,
-  parseWalletHandoffDeepLink,
-} = require('./wallet_handoff.cjs');
 
 // The shell's persisted preferences (electron/desktop_prefs.cjs), read synchronously and
 // FIRST because the very next decision depends on them: both discrete-GPU levers have to
@@ -182,7 +178,6 @@ let mainWindow = null;
 // and the next createMainWindow overwrites it for the successor.
 let revealMainWindow = null;
 let pendingLoginCode = null;
-let pendingWalletHandoffCode = null;
 // Session cap counter for the renderer console mirror (used by the
 // 'console-message' handler in createMainWindow).
 let consoleLinesMirrored = 0;
@@ -979,10 +974,6 @@ function openDesktopLogin() {
   shell.openExternal(url.toString());
 }
 
-function openDesktopWalletHandoff(code) {
-  return shell.openExternal(buildWalletHandoffBrowserUrl(apiOrigin, code));
-}
-
 // Bring the running window back to the player. A deep link or a second launch
 // can arrive during the pre-paint hidden phase (the window is created with
 // show:false), where restore()/focus() alone would leave the app looking dead,
@@ -1014,20 +1005,7 @@ function deliverLoginCode(code) {
   focusMainWindow();
 }
 
-function deliverWalletHandoffCode(code) {
-  pendingWalletHandoffCode = code;
-  if (process.platform === 'darwin') app.focus({ steal: true });
-  if (!mainWindow) return;
-  mainWindow.webContents.send('desktop-wallet-handoff-code', code);
-  focusMainWindow();
-}
-
 function handleDeepLink(url) {
-  const walletHandoff = parseWalletHandoffDeepLink(url);
-  if (walletHandoff) {
-    deliverWalletHandoffCode(walletHandoff.code);
-    return;
-  }
   let parsed;
   try {
     parsed = new URL(url);
@@ -1116,23 +1094,6 @@ ipcMain.handle('desktop-epic-capability', (event) => {
   return epicShell.enabled;
 });
 
-// WalletConnect is available in the website-distributed desktop shell but is
-// intentionally absent from Steam until that distribution enables it.
-ipcMain.handle('desktop-wallet-capability', (event) => {
-  if (!trustedSender(event)) return false;
-  return walletConnectionSupported(desktopConfig);
-});
-
-// The $WOC Exchange may attach only in the website-distributed shell. Steam
-// and Epic builds, and any build without an explicit website stamp, answer
-// false so no Exchange UI exists there at all (desktop_config.cjs owns the
-// decision; the renderer gate in src/game/woc_market_wiring.ts fails closed
-// on a false, missing, or failing answer).
-ipcMain.handle('desktop-exchange-capability', (event) => {
-  if (!trustedSender(event)) return false;
-  return desktopConfig.wocExchangeEnabled === true;
-});
-
 ipcMain.handle('desktop-login-open-browser', (event) => {
   if (!trustedSender(event)) return null;
   openDesktopLogin();
@@ -1143,23 +1104,6 @@ ipcMain.handle('desktop-login-take-code', (event) => {
   if (!trustedSender(event)) return null;
   const code = pendingLoginCode;
   pendingLoginCode = null;
-  return code;
-});
-
-ipcMain.handle('desktop-wallet-open-browser', async (event, code) => {
-  if (!trustedSender(event)) return false;
-  try {
-    await openDesktopWalletHandoff(code);
-    return true;
-  } catch {
-    return false;
-  }
-});
-
-ipcMain.handle('desktop-wallet-take-code', (event) => {
-  if (!trustedSender(event)) return null;
-  const code = pendingWalletHandoffCode;
-  pendingWalletHandoffCode = null;
   return code;
 });
 
@@ -1964,10 +1908,6 @@ app.whenReady().then(() => {
     distribution: desktopConfig.distribution,
     updaterEnabled: desktopConfig.updaterEnabled,
     updateChannel: desktopConfig.updateChannel,
-    // Logged so the per-channel release smoke (docs/desktop-release.md step 6)
-    // has a field to read; on an unstamped packaged build `distribution` says
-    // website (the channel collapse) while this correctly says false.
-    wocExchangeEnabled: desktopConfig.wocExchangeEnabled,
     crashUpload: desktopConfig.crashSubmitUrl !== '',
     crashDumpDir: app.getPath('crashDumps'),
     logFile: logFilePath,

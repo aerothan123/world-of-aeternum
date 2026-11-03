@@ -118,7 +118,6 @@ function inertSource(): GameStateSource {
     simEntities: () => 0,
     simTickHz: () => 0,
     savePendingKeys: () => 0,
-    escrowGateInFlight: () => 0,
     backgroundDbGate: gate,
     characterDeleteGate: () => ({
       ...gate(),

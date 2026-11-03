@@ -16,6 +16,7 @@ import type {
   ReferralNotice,
 } from '../src/sim/referral_contract';
 import type { ReferralEvidence } from '../src/sim/referral_evidence';
+import type { CharacterSaveArgs } from './character_save_args';
 import { referralDiagnostics } from './referral_metrics';
 import {
   type PgReferralStore,
@@ -25,7 +26,6 @@ import {
   type ReferralPage,
   type StoredReferral,
 } from './referral_store_db';
-import type { CharacterSaveArgs } from './woc_market_character_save';
 
 export interface ReferralSession {
   pid: number;

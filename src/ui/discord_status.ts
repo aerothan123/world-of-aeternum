@@ -1,8 +1,8 @@
 // Client-side Discord integration state surfaced in the HUD widget.
 //
 // Discord link status, reward points/tier, server presence and voice-room
-// membership are all external account/network state, NOT world state, so (like
-// src/ui/wallet_balance.ts) they do not belong on IWorld. main.ts is the one
+// membership are all external account/network state, NOT world state, so they
+// do not belong on IWorld. main.ts is the one
 // layer that knows both net and ui; it fetches this state over REST and pushes
 // it in here, and the HUD reads it out. A single listener re-renders the widget
 // when anything changes. src/ui never imports src/net, so these view-facing

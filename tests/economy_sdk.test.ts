@@ -1,14 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import {
-  type ClaudiumNativeConfirm,
-  confirmNativeSettlement,
-  EconomyClient,
-  startClaudiumPurchase,
-} from '../src/net/economy_sdk';
-
-vi.mock('../src/net/wallet', () => ({
-  currentWallet: () => ({ address: 'wallet-owner', isConnected: true }),
-}));
+import { EconomyClient, startClaudiumPurchase } from '../src/net/economy_sdk';
 
 afterEach(() => {
   vi.unstubAllGlobals();
@@ -108,32 +99,31 @@ describe('EconomyClient store snapshot', () => {
 });
 
 describe('EconomyClient pack snapshot', () => {
-  it('marks the snapshot available when balance, packs, and native rails all load', async () => {
-    vi.stubGlobal(
-      'fetch',
-      vi.fn(async (input: string | URL | Request) => {
-        const url = String(input);
-        if (url.endsWith('/api/claudium/balance')) {
-          return new Response(JSON.stringify({ available: true, balance: 250 }), { status: 200 });
-        }
-        if (url.endsWith('/api/claudium/skus')) {
-          return new Response(
-            JSON.stringify({
-              available: true,
-              skus: [{ sku: 'claudium_500', usd: 4.99, claudium: 500 }],
-            }),
-            { status: 200 },
-          );
-        }
-        if (url.endsWith('/api/claudium/native/rails')) {
-          return new Response(
-            JSON.stringify({ available: true, rails: { sol: true, usdc: true, woc: true } }),
-            { status: 200 },
-          );
-        }
-        return new Response(null, { status: 404 });
-      }),
-    );
+  // Card (Stripe) is the only purchase rail, so the pack snapshot is the balance
+  // plus the SKU ladder and nothing else: no native-rail or wallet read.
+  function stubPacks(skusAvailable: boolean) {
+    const fetchMock = vi.fn(async (input: string | URL | Request) => {
+      const url = String(input);
+      if (url.endsWith('/api/claudium/balance')) {
+        return new Response(JSON.stringify({ available: true, balance: 250 }), { status: 200 });
+      }
+      if (url.endsWith('/api/claudium/skus')) {
+        return new Response(
+          JSON.stringify({
+            available: skusAvailable,
+            skus: [{ sku: 'claudium_500', usd: 4.99, claudium: 500 }],
+          }),
+          { status: 200 },
+        );
+      }
+      return new Response(null, { status: 404 });
+    });
+    vi.stubGlobal('fetch', fetchMock);
+    return fetchMock;
+  }
+
+  it('marks the snapshot available when balance and packs both load', async () => {
+    const fetchMock = stubPacks(true);
 
     const snapshot = await new EconomyClient({
       token: () => 'token',
@@ -144,39 +134,13 @@ describe('EconomyClient pack snapshot', () => {
       available: true,
       balance: 250,
       skus: [{ sku: 'claudium_500', usd: 4.99, claudium: 500 }],
-      nativeRails: { sol: true, usdc: true, woc: true },
     });
+    const urls = fetchMock.mock.calls.map((call) => String(call[0]));
+    expect(urls.some((url) => url.includes('/native/'))).toBe(false);
   });
 
   it('marks a partial pack refresh unavailable instead of presenting fallbacks as fresh data', async () => {
-    vi.stubGlobal(
-      'fetch',
-      vi.fn(async (input: string | URL | Request) => {
-        const url = String(input);
-        if (url.endsWith('/api/claudium/balance')) {
-          return new Response(JSON.stringify({ available: true, balance: 250 }), { status: 200 });
-        }
-        if (url.endsWith('/api/claudium/skus')) {
-          return new Response(
-            JSON.stringify({
-              available: true,
-              skus: [{ sku: 'claudium_500', usd: 4.99, claudium: 500 }],
-            }),
-            { status: 200 },
-          );
-        }
-        if (url.endsWith('/api/claudium/native/rails')) {
-          return new Response(
-            JSON.stringify({
-              available: false,
-              rails: { sol: false, usdc: false, woc: false },
-            }),
-            { status: 200 },
-          );
-        }
-        return new Response(null, { status: 404 });
-      }),
-    );
+    stubPacks(false);
 
     const snapshot = await new EconomyClient({
       token: () => 'token',
@@ -187,256 +151,59 @@ describe('EconomyClient pack snapshot', () => {
       available: false,
       balance: 250,
       skus: [{ sku: 'claudium_500', usd: 4.99, claudium: 500 }],
-      nativeRails: { sol: false, usdc: false, woc: false },
     });
   });
-
-  it('reads the connected wallet USDC balance through the narrow game proxy', async () => {
-    const fetchMock = vi.fn(
-      async (_input: string | URL | Request) =>
-        new Response(JSON.stringify({ owner: 'wallet-owner', amountBase: '12345678' }), {
-          status: 200,
-        }),
-    );
-    vi.stubGlobal('fetch', fetchMock);
-
-    const balance = await new EconomyClient({
-      token: () => 'token',
-      base: 'https://game.example',
-    }).usdcBalance('wallet-owner');
-
-    expect(balance).toEqual({ owner: 'wallet-owner', amountBase: '12345678' });
-    expect(String(fetchMock.mock.calls[0]?.[0])).toContain(
-      '/api/claudium/native/balance/usdc/wallet-owner',
-    );
-  });
-});
-
-describe('EconomyClient native price', () => {
-  it('preserves the service-provided $WOC discount for the store badge', async () => {
-    vi.stubGlobal(
-      'fetch',
-      vi.fn(
-        async () =>
-          new Response(
-            JSON.stringify({
-              rail: 'woc',
-              claudium: 500,
-              amountBase: '4000000',
-              discountBps: 5000,
-            }),
-            { status: 200 },
-          ),
-      ),
-    );
-
-    const price = await new EconomyClient({
-      token: () => 'token',
-      base: 'https://game.example',
-    }).nativePrice('woc', 'claudium_500');
-
-    expect(price.discountBps).toBe(5000);
-  });
-
-  it.each([-1, 9001, 2000.5, Number.NaN])(
-    'fails closed when the service returns malformed discount basis points: %s',
-    async (discountBps) => {
-      vi.stubGlobal(
-        'fetch',
-        vi.fn(
-          async () =>
-            new Response(
-              JSON.stringify({
-                rail: 'woc',
-                claudium: 500,
-                amountBase: '4000000',
-                discountBps,
-              }),
-              { status: 200 },
-            ),
-        ),
-      );
-
-      const price = await new EconomyClient({
-        token: () => 'token',
-        base: 'https://game.example',
-      }).nativePrice('woc', 'claudium_500');
-
-      expect(price.discountBps).toBeNull();
-    },
-  );
 });
 
 describe('startClaudiumPurchase', () => {
-  it('signs and confirms a service-built USDC transaction through Wallet Standard', async () => {
-    const client = new EconomyClient({ token: () => 'token', base: 'https://game.example' });
-    const quote = vi.spyOn(client, 'nativeQuote').mockResolvedValue({
-      ok: true,
-      reference: 'CLM_usdc',
-      rail: 'usdc',
-      claudium: 500,
-      amountBase: '4990000',
-      destination: 'usdc-token-account',
-      mint: 'usdc-mint',
-      memo: 'CLM_usdc',
-      quoteExpiryMs: Date.now() + 60_000,
-      transactionBase64: 'AQID',
-      reason: null,
-    });
-    const confirm = vi.spyOn(client, 'nativeConfirm').mockResolvedValue({
-      settled: true,
-      balance: 500,
-      reason: null,
-    });
-    const signer = vi.fn(async () => 'usdc-signature');
+  it('requests a card intent and hands it to the Stripe signer', async () => {
+    const intent = { clientSecret: 'cs_1', publishableKey: 'pk_1' };
+    const fetchMock = vi.fn(
+      async (_input: string | URL | Request, _init?: RequestInit) =>
+        new Response(
+          JSON.stringify({
+            ok: true,
+            purchaseId: 'p1',
+            rail: 'stripe',
+            claudium: 500,
+            stripe: intent,
+            reason: null,
+          }),
+          { status: 200 },
+        ),
+    );
+    vi.stubGlobal('fetch', fetchMock);
+    const stripe = vi.fn(async () => {});
 
-    const result = await startClaudiumPurchase(client, 'usdc', 'claudium_500', {
-      nativeSignAndSend: signer,
-    });
-
-    expect(quote).toHaveBeenCalledWith({
-      rail: 'usdc',
-      sku: 'claudium_500',
-      payer: 'wallet-owner',
-    });
-    expect(signer).toHaveBeenCalledWith('AQID', 'usdc', 'CLM_usdc');
-    expect(confirm).toHaveBeenCalledWith({
-      reference: 'CLM_usdc',
-      signature: 'usdc-signature',
-    });
-    expect(result).toEqual({ settled: true, balance: 500, reason: null });
-  });
-
-  it('uses a linked-only desktop payer when no wallet is connected in the renderer', async () => {
-    const client = new EconomyClient({ token: () => 'token', base: 'https://game.example' });
-    const quote = vi.spyOn(client, 'nativeQuote').mockResolvedValue({
-      ok: true,
-      reference: 'CLM_desktop',
-      rail: 'sol',
-      claudium: 500,
-      amountBase: '123',
-      destination: 'treasury',
-      mint: null,
-      memo: 'CLM_desktop',
-      quoteExpiryMs: Date.now() + 60_000,
-      transactionBase64: 'AQID',
-      reason: null,
-    });
-    vi.spyOn(client, 'nativeConfirm').mockResolvedValue({
-      settled: true,
-      balance: 500,
-      reason: null,
-    });
-
-    await startClaudiumPurchase(client, 'sol', 'claudium_500', {
-      nativePayer: 'linked-desktop-wallet',
-      nativeSignAndSend: async () => 'signature',
-    });
-
-    expect(quote).toHaveBeenCalledWith({
-      rail: 'sol',
-      sku: 'claudium_500',
-      payer: 'linked-desktop-wallet',
-    });
-  });
-});
-
-describe('confirmNativeSettlement', () => {
-  it('retries while a native payment is not finalized yet', async () => {
-    const results: ClaudiumNativeConfirm[] = [
-      { settled: false, balance: null, reason: 'not_found_onchain' },
-      { settled: false, balance: null, reason: 'not_finalized' },
-      { settled: false, balance: null, reason: 'unavailable' },
-      { settled: true, balance: 300, reason: null },
-    ];
-    const calls: Array<{ reference: string; signature: string }> = [];
-    const client = {
-      async nativeConfirm(input: { reference: string; signature: string }) {
-        calls.push(input);
-        return results.shift() ?? { settled: false, balance: null, reason: 'unavailable' };
-      },
-    };
-    const waits: number[] = [];
-
-    const result = await confirmNativeSettlement(client, 'CLM_ref', 'SIG', {
-      delayMs: async (ms) => {
-        waits.push(ms);
-      },
-    });
-
-    expect(result).toEqual({ settled: true, balance: 300, reason: null });
-    expect(calls).toHaveLength(4);
-    expect(waits).toEqual([1000, 1500, 2500]);
-  });
-
-  it('does not retry non-final settlement failures', async () => {
-    const client = {
-      nativeConfirm: async () => ({
-        settled: false,
-        balance: null,
-        reason: 'wrong_destination',
-      }),
-    };
-    const waits: number[] = [];
-
-    const result = await confirmNativeSettlement(client, 'CLM_ref', 'SIG', {
-      delayMs: async (ms) => {
-        waits.push(ms);
-      },
-    });
-
-    expect(result.reason).toBe('wrong_destination');
-    expect(waits).toEqual([]);
-  });
-
-  it('retries settlement work that another service worker can finish', async () => {
-    const results: ClaudiumNativeConfirm[] = [
-      { settled: false, balance: null, reason: 'processing' },
-      { settled: false, balance: null, reason: 'post_verify_failed' },
-      { settled: false, balance: null, reason: 'fulfillment_failed' },
-      { settled: true, balance: 13_000, reason: null },
-    ];
-    const waits: number[] = [];
-    const result = await confirmNativeSettlement(
-      {
-        nativeConfirm: async () =>
-          results.shift() ?? { settled: false, balance: null, reason: 'unavailable' },
-      },
-      'CLM_ref',
-      'SIG',
-      {
-        delayMs: async (ms) => {
-          waits.push(ms);
-        },
-      },
+    const purchase = await startClaudiumPurchase(
+      new EconomyClient({ token: () => 'token', base: 'https://game.example' }),
+      'stripe',
+      'claudium_500',
+      { stripe },
     );
 
-    expect(result).toEqual({ settled: true, balance: 13_000, reason: null });
-    expect(waits).toEqual([1000, 1500, 2500]);
+    expect(purchase.ok).toBe(true);
+    expect(String(fetchMock.mock.calls[0]?.[0])).toContain('/api/claudium/purchase');
+    const body = JSON.parse(String(fetchMock.mock.calls[0]?.[1]?.body));
+    expect(body).toMatchObject({ rail: 'stripe', sku: 'claudium_500' });
+    expect(stripe).toHaveBeenCalledWith(intent, 'p1');
   });
 
-  it('bounds retry independently after a payment signature has been broadcast', async () => {
-    const calls: Array<{ reference: string; signature: string }> = [];
-    const waits: number[] = [];
-    const result = await confirmNativeSettlement(
-      {
-        nativeConfirm: async (input) => {
-          calls.push(input);
-          return { settled: false, balance: null, reason: 'processing' };
-        },
-      },
-      'CLM_ref',
-      'SIG',
-      {
-        delayMs: async (ms) => {
-          waits.push(ms);
-        },
-        maxElapsedMs: 2500,
-      },
+  it('stops cleanly without charging when the service is off', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => new Response(null, { status: 503 })),
+    );
+    const stripe = vi.fn(async () => {});
+
+    const purchase = await startClaudiumPurchase(
+      new EconomyClient({ token: () => 'token', base: 'https://game.example' }),
+      'stripe',
+      'claudium_500',
+      { stripe },
     );
 
-    expect(result.reason).toBe('processing');
-    expect(waits).toEqual([1000, 1500]);
-    expect(calls).toHaveLength(3);
+    expect(purchase.ok).toBe(false);
+    expect(stripe).not.toHaveBeenCalled();
   });
 });

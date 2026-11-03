@@ -23,7 +23,7 @@ dependency set. The one sanctioned exception is the standalone admin dashboard
 | `src/game/` | Local input, camera, keybinds, gamepad, mobile controls, sampled WebAudio SFX, and procedural music. |
 | `src/ui/` | Classic HUD (frames, windows, tooltips, map, FCT), procedural icons, i18n. |
 | `src/styles/` | Extracted HUD CSS under one `@layer` order, imported via `src/main.ts` (and `src/boot.ts`, index.html's entry). See `src/styles/CLAUDE.md`. |
-| `src/net/` | Online client: REST auth + WebSocket world mirror (`ClientWorld`), reconnect, native-app glue, wallet glue. |
+| `src/net/` | Online client: REST auth + WebSocket world mirror (`ClientWorld`), reconnect, native-app glue. |
 | `src/admin/` | Admin dashboard SPA (separate `admin.html` entry). |
 | `src/guide/` | Public guide/wiki SPA (separate `guide.html` entry, served at `/wiki`); spoiler-safe content generated from `src/sim/`. |
 | `src/editor/` | World editor SPA (separate root-level `editor.html` entry); its 3D viewport composes the real `Sim` + `Renderer`. |

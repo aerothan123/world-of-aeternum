@@ -2,11 +2,11 @@
 //
 // The pure-core half of the inspect module pair (inspect_window.ts is the thin
 // painter). It turns another player's mirrored entity fields (all already
-// client-side: class, skin, worn gear, the $WOC / Discord / dev identity flair,
+// client-side: class, skin, worn gear, the Discord / dev identity flair,
 // and the server-computed Curator standing) into the structured model the
 // painter draws: a compact header (name, deed title, level, class, class color,
-// Book of Deeds border accent), the four badge decisions (holder / Discord / dev
-// / Curator sigil, each gated exactly as the old inline card gated them), the
+// Book of Deeds border accent), the three badge decisions (Discord / dev /
+// Curator sigil, each gated exactly as the old inline card gated them), the
 // Reliquary standing line, and the worn-gear paperdoll (reused from char_view's
 // buildPaperdollView, so inspect inherits the sheet's 6/6 column split). A
 // separate builder covers the thinner out-of-range remote-profile card.
@@ -66,13 +66,6 @@ export interface InspectHeaderModel {
   border: InspectBorderModel | null;
 }
 
-/** $WOC holder-tier flair, present only for a connected holder (tier > 0).
- *  `balance` is the on-chain balance when known (> 0), else null. */
-export interface InspectHolderModel {
-  tierIndex: number;
-  balance: number | null;
-}
-
 /** Linked-Discord flair, present only when the player has a Discord tier (> 0).
  *  `memberDays` is the whole days since they joined (null when unknown). */
 export interface InspectDiscordModel {
@@ -98,9 +91,8 @@ export interface InspectCuratorBadgeModel {
   rank: number;
 }
 
-/** The four identity-flair decisions. A null field means that badge is hidden. */
+/** The three identity-flair decisions. A null field means that badge is hidden. */
 export interface InspectBadgesModel {
-  holder: InspectHolderModel | null;
   discord: InspectDiscordModel | null;
   dev: InspectDevModel | null;
   curator: InspectCuratorBadgeModel | null;
@@ -191,8 +183,6 @@ export interface InspectInput {
    *  wornTooltipInstance, so the equipment row describes the worn COPY (a
    *  promoted legendary's chosen name and color) exactly as on the sheet. */
   equippedInstances?: Partial<Record<EquipSlot, ItemInstancePayload>>;
-  holderTier: number;
-  holderBalance: number | null;
   discordTier: number;
   discordName: string | null;
   discordAvatar: string | null;
@@ -210,7 +200,7 @@ const MS_PER_DAY = 86_400_000;
 
 /** Build the full inspect model from an inspected player's fields and the item
  *  table. Every badge is gated exactly as the old inline inspect card gated it:
- *  holder/Discord hidden at tier 0, dev hidden at tier 0 OR when showDevBadges is
+ *  Discord hidden at tier 0, dev hidden at tier 0 OR when showDevBadges is
  *  off. The Curator additions gate the same fail-closed way: the sigil at rank
  *  CURATOR_SIGIL_MIN_RANK, the standing line at rank >= 1 WITH its pair, and the
  *  border accent on the palette. Those two gates read `selfStanding` when the
@@ -246,11 +236,6 @@ export function buildInspectView(
         }
       : null,
   };
-
-  const holder: InspectHolderModel | null =
-    input.holderTier > 0
-      ? { tierIndex: input.holderTier, balance: input.holderBalance ? input.holderBalance : null }
-      : null;
 
   const memberDays =
     typeof input.discordJoined === 'number'
@@ -300,7 +285,7 @@ export function buildInspectView(
   const gear = buildPaperdollView(input.equippedItems, items, input.equippedInstances);
   return {
     header,
-    badges: { holder, discord, dev, curator: curatorBadge },
+    badges: { discord, dev, curator: curatorBadge },
     curator,
     gear,
     gearScore: gearScore(gear),

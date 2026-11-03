@@ -5,7 +5,6 @@
 // feeds it. The outbox stream is pinned in tests/server/internal.test.ts.
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-vi.mock('../../server/daily_rewards', () => ({ dailyRewardService: {} }));
 vi.mock('../../server/deeds_db', () => ({ getDeedBroadcasts: async () => true }));
 vi.mock('../../server/realm', () => ({ REALM: 'Claudemoon' }));
 
@@ -82,7 +81,6 @@ describe('the activity-detect arm', () => {
     clients: { get: () => undefined },
     profileUrlFor: () => null,
     sessionByName: () => null,
-    sendDailyRewardPointsGained: () => {},
   };
 
   it('enqueues the warning and the rise on the server realm and clock, never the fall, never a kill', () => {

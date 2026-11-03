@@ -173,8 +173,7 @@ export const MARKET_SOLD_VOLUME_WRITE_TIMEOUT_MS = 2_000;
 
 /**
  * How long the write may WAIT for a row lock before giving up, the standing
- * value every marketplace guard already uses (ESCROW_LOCK_TIMEOUT_MS,
- * server/woc_market_db.ts). statement_timeout alone does not bound a lock wait
+ * value the retired marketplace escrow guards used (ESCROW_LOCK_TIMEOUT_MS). statement_timeout alone does not bound a lock wait
  * usefully here: two realm processes upserting the same (realm, day, item) row
  * genuinely contend, and a sold-volume row is an OBSERVATION, so waiting is
  * always worse than losing it. A timed-out write reports and drops like any

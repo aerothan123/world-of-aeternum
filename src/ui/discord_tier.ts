@@ -1,7 +1,6 @@
 // Presentation layer for the Discord status-tier ladder.
 //
-// Mirrors src/ui/holder_tier.ts: the pure thresholds live in
-// src/sim/discord_tier.ts; this module adds the localized display name and the
+// The pure thresholds live in src/sim/discord_tier.ts; this module adds the localized display name and the
 // accent/badge art the HUD renders. It is DOM-free apart from building an SVG
 // data URL string, so it stays unit-testable. All display names resolve through
 // t() against the English-only hudChrome.discord.tiers.* keys.

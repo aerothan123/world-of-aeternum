@@ -39,7 +39,6 @@ export const DEVIATION_ID = {
   companionTokenMethodFan: 'companion-token-method-fan-405',
   accountBodyValidationRemap: 'account-body-validation-remap',
   rateLimitedBodyToCode: 'rate-limited-body-to-code',
-  walletBodyValidationRemap: 'wallet-body-validation-remap',
   reportsBodyValidationRemap: 'reports-body-validation-remap',
   newLimiterReportsCreate: 'new-limiter-reports-create',
   newLimiterDiscord: 'new-limiter-discord',
@@ -55,8 +54,6 @@ export const DEVIATION_ID = {
   githubBodyValidationRemap: 'github-body-validation-remap',
   desktopLoginBodyValidationRemap: 'desktop-login-body-validation-remap',
   desktopLoginCreateFullScope: 'desktop-login-create-full-scope',
-  dailyRewardsBodyValidationRemap: 'daily-rewards-body-validation-remap',
-  dailyRewardsOpsBodyValidationRemap: 'daily-rewards-ops-body-validation-remap',
   rateLimit429Draft11Headers: 'rate-limit-429-draft11-headers',
   securityHeadersAllSurfaces: 'security-headers-all-surfaces',
   mapsAssetsRateLimitedBodyToCode: 'maps-assets-rate-limited-body-to-code',
@@ -519,7 +516,7 @@ export const KNOWN_DEVIATIONS: readonly KnownDeviation[] = [
   },
   {
     id: DEVIATION_ID.rateLimitedBodyToCode,
-    routes: ['/api/wallet/link/challenge', '/api/wallet/link', '/api/woc/balance', '/api/card'],
+    routes: ['/api/card'],
     currentBehavior:
       'On throttle, the wallet link-challenge, wallet link, wallet unlink, woc balance, ' +
       'and card routes answer 429 { error: "rate limited" } (application/json): the two ' +
@@ -562,40 +559,6 @@ export const KNOWN_DEVIATIONS: readonly KnownDeviation[] = [
       "undercounts throttled wallet/card/balance events with API_DISPATCH at 'new' (the " +
       'production default). Structured request-layer metrics live in the /metrics ' +
       'observability layer. No response-body or security impact.',
-  },
-  {
-    id: DEVIATION_ID.walletBodyValidationRemap,
-    routes: ['/api/wallet/link/challenge', '/api/wallet/link'],
-    currentBehavior:
-      'The wallet link-challenge and link handlers self-read their request body with ' +
-      'readBody INSIDE walletChallengeCore / walletLinkCore (no withBody middleware). On the ' +
-      'legacy handleApi ladder, a malformed JSON body or an over-cap body makes readBody ' +
-      "reject, and the reject falls to handleApi's outer catch, which answers 500 " +
-      '{ error: "internal error" } (application/json); a literal JSON null body (valid JSON) ' +
-      'is dereferenced (null.address), throwing a TypeError that falls to the same generic 500.',
-    intendedBehavior:
-      'The new pipeline serves these two routes. The migrated handlers call ' +
-      'the SAME limiter-free cores UNCHANGED (they self-read the body, so NO withBody ' +
-      'middleware is composed and there is NO 400/413 status remap: a malformed or over-cap ' +
-      'body still answers 500, and a null body still throws to 500). The ONLY divergence is ' +
-      'the 500 BODY SHAPE: the throw propagates to the withErrors boundary and ' +
-      'serializes as 500 application/problem+json (internal.error) instead of the legacy ' +
-      '500 { error: "internal error" }. Leak-free (the 500 detail is a static sentence; the ' +
-      'original error goes only to the logger). The client code-matcher covers the ' +
-      'problem+json body; the divergence becomes the real behavior when the legacy arm ' +
-      'is removed.',
-    introducedInPhase: 14,
-    reason:
-      'The migrated wallet challenge/link handlers surface an unexpected body throw (malformed ' +
-      '/ over-cap / null body) through the shared error-model boundary as 500 ' +
-      'problem+json instead of the legacy outer-catch 500 { error }. Same 500 STATUS, ' +
-      'different body shape; there is no status remap because these handlers self-read without ' +
-      'withBody. Exact sibling to accountBodyValidationRemap (the account self-read POST ' +
-      'routes); the card route does NOT get an entry because handleCardUpload CATCHES its own ' +
-      'readBinaryBody reject and answers a byte-identical 413/400 on both paths. These ' +
-      'framework-error paths are NOT exercised by the db-free parity corpus (which replays ' +
-      'valid bodies only), so the divergence is documented here rather than caught by the ' +
-      'harness.',
   },
   {
     id: DEVIATION_ID.reportsBodyValidationRemap,
@@ -991,7 +954,6 @@ export const KNOWN_DEVIATIONS: readonly KnownDeviation[] = [
       '/internal/discord/presence',
       '/internal/discord/grant',
       '/internal/discord/member',
-      '/internal/discord/daily-rewards-winners/mark',
       '/internal/discord/members-meta',
     ],
     currentBehavior:
@@ -1138,90 +1100,10 @@ export const KNOWN_DEVIATIONS: readonly KnownDeviation[] = [
       'prose is the existing shared guard string ("this token is read-only", no ' +
       'client matcher arm today: a recorded REST error i18n adjudication).',
   },
-  {
-    id: DEVIATION_ID.dailyRewardsBodyValidationRemap,
-    routes: ['/api/daily-rewards', '/api/daily-rewards/spin', '/api/daily-rewards/history'],
-    currentBehavior:
-      'The legacy player family is served by a bare `return handleDailyRewardApi(...)` ' +
-      "inside handleApi's try (no await), so an unexpected throw (a Postgres error, a " +
-      'dailyRewardService throw past the eligibility guards) escapes the outer catch ' +
-      'as an unhandled rejection: NO response is written and the request HANGS. ' +
-      'Handler-owned bodies (the 403 wallet-lock, the 409 already-claimed, the ' +
-      'in-family 404 "unknown endpoint", the lenient Number(...)||30 history limit) ' +
-      'are unaffected.',
-    intendedBehavior:
-      'The migration registers the three player routes calling the SAME ' +
-      'handleDailyRewardApi core (no withBody: spin provably reads no body, history ' +
-      'keeps its lenient limit decode) behind the shared createActiveGuard, and routes ' +
-      'the unexpected throw to the withErrors boundary: the api-surface problem+json ' +
-      '500 plus an X-Request-Id header. Off-table shapes (wrong method, unknown ' +
-      'subpath, the no-slash /api/daily-rewardsX sibling, HEAD) stay delegate-served ' +
-      'until the legacy ladder is removed.',
-    introducedInPhase: 18,
-    reason:
-      'The late-arrival migration ports the daily-rewards player family; parity is by ' +
-      'construction ' +
-      '(the RouteDef handlers call the ladder core unchanged), so the ' +
-      'unexpected-throw class is the only divergence. Sibling to ' +
-      'internalBodyValidationRemap (the hang counterfactual). NO rate limiter is ' +
-      'added (legacy has none; the spin-throttle decision was handed to the two-tier ' +
-      'rate-limiter rework). ' +
-      'Pinned with fakes in tests/server/daily_rewards_routes.test.ts.',
-  },
-  {
-    id: DEVIATION_ID.dailyRewardsOpsBodyValidationRemap,
-    routes: [
-      '/internal/daily-rewards/finalize',
-      '/internal/daily-rewards/pending-payouts',
-      '/internal/daily-rewards/payout-history',
-      '/internal/daily-rewards/leaderboard',
-      '/internal/daily-rewards/mark-payout',
-      '/internal/daily-rewards/void-payout',
-      '/internal/daily-rewards/restore-payout',
-    ],
-    currentBehavior:
-      'The legacy ops family is the FIRST arm of the /internal composite delegate ' +
-      '(handleDailyRewardInternalApi, tried before handleInternalApi), fired ' +
-      'fire-and-forget with NO outer catch: mark-payout self-reads its body via an ' +
-      'UN-caught readBody (unlike internal.ts, which .catch(() => ({}))s every read), ' +
-      'so a malformed/over-cap body AND any DB throw in the seven handlers become an ' +
-      'unhandled rejection: NO response is written and the payout service request ' +
-      'HANGS. The gate itself is FAIL-CLOSED: an unset ' +
-      'WOC_DAILY_REWARD_SERVICE_SECRET and a wrong x-woc-daily-reward-secret header ' +
-      'both answer 401 { success: false, data: null, error: "not authenticated" } ' +
-      "(never the other internal gates' feature-off 404, never a " +
-      'RESTART_COUNTDOWN_SECRET fallback).',
-    intendedBehavior:
-      'The migration registers the five ops routes behind the new ' +
-      'requireInternalSecretFailClosed gate (same fail-closed 401 semantics, ' +
-      'per-request env read, length-guarded timingSafeEqual) with handlers calling ' +
-      'the SAME handleDailyRewardInternalApi core, and routes the rejection to the ' +
-      'withErrors boundary: the admin-shape 500 { success: false, data: null, error: ' +
-      '"internal.error" } plus an X-Request-Id header (meta.envelope "admin"). A ' +
-      'response is now always written where legacy hung. The legacy family gates the ' +
-      'WHOLE /internal/daily-rewards/ prefix BEFORE path/method resolution; on the ' +
-      'table each route gates after path match, which is invisible while the ' +
-      'composite delegate serves the unmatched remainder: at the ladder ' +
-      'deletion the family-wide pre-path 401 must be recreated or its loss ' +
-      'adjudicated deliberately (alongside oauthInternalOffTable405).',
-    introducedInPhase: 18,
-    reason:
-      'The late-arrival migration puts the ops family on the table (the initial OAuth + ' +
-      '/internal migration left it delegate-only). ' +
-      'Sibling to internalBodyValidationRemap with the same hang counterfactual, ' +
-      'SECRET-GATED: every divergence is only reachable behind the valid payout ' +
-      'secret except the 500 on a bad mark-payout body, whose legacy counterfactual ' +
-      'is also a hang. The composite delegate ordering (daily-rewards tried first) ' +
-      'is untouched and stays parity-pinned. Pinned with fakes in ' +
-      'tests/server/daily_rewards_routes.test.ts.',
-  },
   // --- The two-tier rate limiter + draft-11 429 headers ------------------------
   {
     id: DEVIATION_ID.rateLimit429Draft11Headers,
     routes: [
-      '/api/wallet/link/challenge',
-      '/api/wallet/link',
-      '/api/woc/balance',
       '/api/card',
       '/api/characters',
       '/api/characters/:id/rename',

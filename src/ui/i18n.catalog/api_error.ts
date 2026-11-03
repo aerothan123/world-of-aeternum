@@ -217,7 +217,7 @@ export const apiErrorStrings = {
   },
   wallet: {
     handoff_invalid: 'That wallet authorization expired or could not be verified. Try again.',
-    // The R11 relink gate (server/wallet_reauth.ts): changing or removing a
+    // RETIRED with the wallet feature (append-only codes). The R11 relink gate: changing or removing a
     // linked wallet needs the account password (or the current wallet's
     // signature); reauth_required is the marker the wallet prompt keys on.
     reauth_required: 'Confirm this wallet change with your account password.',
@@ -265,9 +265,8 @@ export const apiErrorStrings = {
     already_blocked: 'That account is already blocked from world quests.',
     not_blocked: 'That account is not blocked from world quests.',
   },
-  // woc_market: the config-gated $WOC Exchange family
-  // (server/woc_market_routes.ts). USD-denominated auctions settled in $WOC;
-  // every code here is a player-actionable refusal.
+  // woc_market: the RETIRED $WOC Exchange family. The codes are append-only, so
+  // their rows stay, but nothing emits them since the Exchange was removed.
   woc_market: {
     invalid_input: 'Invalid input.',
     disabled: 'The $WOC Exchange is not available on this realm.',

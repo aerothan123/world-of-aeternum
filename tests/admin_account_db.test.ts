@@ -28,7 +28,6 @@ vi.mock('../server/realm', () => ({
 
 import {
   accountDetail,
-  dailyRewardPointEvents,
   GUILD_RENAME_ACTION,
   listAccounts,
   listModerationActions,
@@ -58,9 +57,6 @@ describe('admin account detail query', () => {
             chat_muted_until: null,
             chat_mute_reason: '',
             chat_strikes: 0,
-            daily_rewards_ban_reason: 'leaderboard manipulation',
-            daily_rewards_banned_at: '2026-06-01T01:00:00Z',
-            daily_rewards_ban_expires_at: '2026-06-01T07:00:00Z',
             last_login_ip: '203.0.113.7',
             playtime_seconds: 3600,
           },
@@ -95,11 +91,9 @@ describe('admin account detail query', () => {
         adminUsername: 'moderator',
       },
     ]);
-    expect(detail?.dailyRewardsBan).toEqual({
-      reason: 'leaderboard manipulation',
-      createdAt: '2026-06-01T01:00:00Z',
-      expiresAt: '2026-06-01T07:00:00Z',
-    });
+    // The crypto-only Daily Rewards ban surface is gone from the account detail.
+    expect(detail).not.toHaveProperty('dailyRewardsBan');
+    expect(detail).not.toHaveProperty('dailyRewardsIpBans');
     expect(mocks.query).toHaveBeenNthCalledWith(
       4,
       expect.stringContaining('FROM account_moderation_actions action_log'),
@@ -109,17 +103,15 @@ describe('admin account detail query', () => {
       'ORDER BY action_log.created_at DESC, action_log.id DESC',
     );
     expect(mocks.query.mock.calls[3][0]).toContain('LIMIT 50');
-    expect(mocks.query.mock.calls[0][0]).toContain('LEFT JOIN LATERAL');
-    expect(mocks.query.mock.calls[0][0]).toContain('expires_at > now()');
+    expect(mocks.query.mock.calls[0][0]).not.toContain('daily_reward_bans');
     // The wrapped account row folds the play_session_totals rollup into
     // lifetime playtime, so the retention fold cannot shrink the admin-visible
     // total when old play_sessions rows delete.
     expect(mocks.query.mock.calls[0][0]).toContain(
       'FROM play_session_totals t WHERE t.account_id = accounts.id',
     );
-    // The ip-bans probe keeps an aged-out account-to-IP link visible through
-    // the association-ledger arm after the raw play_sessions rows fold away.
-    expect(mocks.query.mock.calls[4][0]).toContain('SELECT 1 FROM account_ip_associations assoc');
+    // Four bounded reads: account, characters, sessions, moderation history.
+    expect(mocks.query).toHaveBeenCalledTimes(4);
     expect(mocks.query.mock.calls[1][0]).toContain(
       'LEFT JOIN guild_members gm ON gm.character_id = c.id',
     );
@@ -173,7 +165,6 @@ describe('admin account detail query', () => {
         ],
       })
       .mockResolvedValueOnce({ rows: [] })
-      .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce({ rows: [] });
 
     const detail = await accountDetail(7);
@@ -188,8 +179,8 @@ describe('admin account detail query', () => {
       'LEFT JOIN account_general_chat_rate_limits general_chat_quota',
     );
     // The quota comes from the existing primary account-row read, so account
-    // detail still fans out to exactly the same five bounded reads.
-    expect(mocks.query).toHaveBeenCalledTimes(5);
+    // detail still fans out to exactly the same four bounded reads.
+    expect(mocks.query).toHaveBeenCalledTimes(4);
   });
 
   it('carries the player self-deactivation timestamp so the dashboard can offer reactivate', async () => {
@@ -218,9 +209,7 @@ describe('admin account detail query', () => {
       .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce({ rows: [] })
-      .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce(accountRow(null))
-      .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce({ rows: [] });
@@ -405,73 +394,6 @@ describe('admin account detail query', () => {
     const sql = mocks.query.mock.calls[0][0] as string;
     expect(sql).toContain('ORDER BY a.last_login DESC NULLS LAST, a.id DESC');
     expect(sql).not.toMatch(/ORDER BY a\.last_login DESC,/);
-  });
-
-  it('returns positive point events for one account, reward day, and realm', async () => {
-    mocks.query.mockResolvedValueOnce({
-      rows: [
-        {
-          id: '12',
-          created_at: '2026-07-16T03:00:00Z',
-          kind: 'task',
-          points: 20,
-          total_points: '35',
-          total_events: '2',
-          meta: { taskType: 'quest_completion', multiplier: 2, characterId: 99 },
-        },
-        {
-          id: '10',
-          created_at: '2026-07-16T01:00:00Z',
-          kind: 'spin',
-          points: 15,
-          total_points: '15',
-          total_events: '2',
-          meta: { outcome: 's15', completionId: 'private-id' },
-        },
-      ],
-    });
-
-    const events = await dailyRewardPointEvents(7, '2026-07-16', 100);
-
-    expect(events).toEqual({
-      day: '2026-07-16',
-      rows: [
-        {
-          id: 12,
-          createdAt: '2026-07-16T03:00:00Z',
-          kind: 'task',
-          points: 20,
-          totalPoints: 35,
-          meta: { taskType: 'quest_completion', multiplier: 2 },
-        },
-        {
-          id: 10,
-          createdAt: '2026-07-16T01:00:00Z',
-          kind: 'spin',
-          points: 15,
-          totalPoints: 15,
-          meta: { outcome: 's15' },
-        },
-      ],
-      total: 2,
-      truncated: false,
-    });
-    const [sql, params] = mocks.query.mock.calls[0];
-    expect(sql).toContain('account_id = $1');
-    expect(sql).toContain('day = $2');
-    expect(sql).toContain('realm = $3');
-    expect(sql).toContain('points > 0');
-    expect(sql).toContain('ORDER BY created_at DESC, id DESC');
-    expect(sql).toContain('ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING');
-    expect(params).toEqual([7, '2026-07-16', 'test-realm', 100]);
-  });
-
-  it('caps the point event log at 250 rows', async () => {
-    mocks.query.mockResolvedValueOnce({ rows: [] });
-
-    await dailyRewardPointEvents(7, '2026-07-16', 5000);
-
-    expect(mocks.query.mock.calls[0][1]).toEqual([7, '2026-07-16', 'test-realm', 250]);
   });
 
   it('lists moderation actions newest first, mapping account, ip and guild sources', async () => {

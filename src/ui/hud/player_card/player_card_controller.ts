@@ -2,10 +2,8 @@ import type { EquipSlot } from '../../../sim/types';
 import type { IWorld } from '../../../world_api';
 import { esc } from '../../esc';
 import type { FocusTrapHandle } from '../../focus_manager';
-import { holderTierDisplayName, holderTierForBalance } from '../../holder_tier';
 import { formatNumber, t } from '../../i18n';
 import { svgIcon } from '../../ui_icons';
-import { verifiedWocBalance, walletDisplayAvailable } from '../../wallet_balance';
 import {
   CARD_POSES,
   cardCanvasToBlob,
@@ -34,9 +32,6 @@ export interface PlayerCardPreviewPort {
 }
 
 export interface PlayerCardOptionsPort {
-  refreshBalance(): void;
-  showWallet(): boolean;
-  setShowWallet(show: boolean): void;
   showDevBadges(): boolean;
 }
 
@@ -79,7 +74,6 @@ export class PlayerCardController {
     if (!preview) return;
 
     this.close(false);
-    this.deps.options.refreshBalance();
     this.trap = this.deps.openFocusTrap(() => this.modal);
     const backdrop = this.deps.document.createElement('div');
     backdrop.className = 'modal-backdrop';
@@ -93,7 +87,6 @@ export class PlayerCardController {
       `<div class="panel-title ui-win-head"><span id="player-card-modal-title" class="ui-win-title">${esc(t('playerCard.title'))}</span><button type="button" class="x-btn ui-x-btn" data-close aria-label="${esc(t('playerCard.close'))}">${svgIcon('close')}</button></div>` +
       `<div class="pc-preview pc-loading">${esc(t('playerCard.loading'))}</div>` +
       `<div class="pc-poses" role="group" aria-label="${esc(t('playerCard.poseGroup'))}">${poseButtonsHtml}</div>` +
-      `<div class="pc-options"><button type="button" class="btn pc-wallet-toggle ui-btn ui-btn--red ui-btn--plate" data-wallet-card-toggle><span>${esc(t('hudChrome.playerCard.showWalletBadge'))}</span><span class="pc-toggle-state"></span></button></div>` +
       `<div class="pc-actions"></div>` +
       `<div class="pc-link" hidden><span class="pc-link-label">${esc(t('playerCard.referralLinkLabel'))}</span>` +
       `<input class="pc-link-input ui-input" type="text" readonly aria-label="${esc(t('playerCard.referralLinkAria'))}"></div>` +
@@ -123,12 +116,9 @@ export class PlayerCardController {
     const setStatus = (message: string): void => {
       status.textContent = message;
     };
-    const walletToggle = backdrop.querySelector<HTMLButtonElement>('[data-wallet-card-toggle]');
-    const walletToggleState = walletToggle?.querySelector<HTMLElement>('.pc-toggle-state') ?? null;
     const state: PlayerCardState = { canvas: null, data: null, published: null };
     const poseButtons = Array.from(backdrop.querySelectorAll<HTMLButtonElement>('.pc-pose'));
     let requestedPoseIndex = 0;
-    let showWalletOnCard = walletDisplayAvailable() && this.deps.options.showWallet();
     let metadataReady = false;
     let referral: Awaited<ReturnType<typeof fetchReferralInfo>> = null;
     let standing: CharacterStanding | null = null;
@@ -140,15 +130,6 @@ export class PlayerCardController {
         button.setAttribute('aria-pressed', index === poseIndex ? 'true' : 'false');
       });
     };
-    const syncWalletToggle = (): void => {
-      if (!walletToggle || !walletToggleState) return;
-      const enabled = walletDisplayAvailable() && showWalletOnCard;
-      walletToggle.classList.toggle('off', !enabled);
-      walletToggle.setAttribute('aria-pressed', enabled ? 'true' : 'false');
-      walletToggle.setAttribute('aria-label', t('hudChrome.playerCard.showWalletBadge'));
-      walletToggleState.textContent = enabled ? t('hud.options.on') : t('hud.options.off');
-    };
-    syncWalletToggle();
 
     let composeSequence = 0;
     const compose = async (poseIndex: number): Promise<void> => {
@@ -164,7 +145,6 @@ export class PlayerCardController {
           characterImage,
           referral,
           standing,
-          balance: walletDisplayAvailable() && showWalletOnCard ? verifiedWocBalance() : null,
           showDevBadges: this.deps.options.showDevBadges(),
           slotName: this.deps.slotName,
         });
@@ -197,17 +177,6 @@ export class PlayerCardController {
         }
         void compose(index);
       });
-    });
-    walletToggle?.addEventListener('click', () => {
-      if (!walletDisplayAvailable()) return;
-      this.deps.click();
-      showWalletOnCard = !showWalletOnCard;
-      this.deps.options.setShowWallet(showWalletOnCard);
-      syncWalletToggle();
-      state.published = null;
-      linkRow.hidden = true;
-      setStatus('');
-      if (metadataReady) void compose(requestedPoseIndex);
     });
 
     this.recompose = () => {
@@ -366,12 +335,12 @@ export class PlayerCardController {
   }
 
   private shareText(data: PlayerCardData): string {
-    const tier = holderTierForBalance(data.balance);
-    const tierBit = tier ? t('playerCard.shareTierBit', { tier: holderTierDisplayName(tier) }) : '';
+    // The {tierBit} slot carried the retired holder-tier boast; it stays empty
+    // so every locale's reviewed share sentence keeps rendering unchanged.
     return t('playerCard.shareText', {
       level: formatNumber(data.level, { maximumFractionDigits: 0 }),
       className: data.className,
-      tierBit,
+      tierBit: '',
     });
   }
 }

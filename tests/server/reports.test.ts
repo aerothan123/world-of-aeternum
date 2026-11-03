@@ -99,7 +99,7 @@ const FIXED_NOW_MS = 1_700_000_000_000;
 type DbOverrides = Parameters<typeof setReportsDbForTests>[0];
 
 // ---------------------------------------------------------------------------
-// Local builders (redefined per-file, mirroring tests/server/wallet.test.ts).
+// Local builders (redefined per-file, the RouteDef suite pattern).
 // ---------------------------------------------------------------------------
 
 /** A not-locked moderation status (the AccountModerationStatus happy-path shape). */

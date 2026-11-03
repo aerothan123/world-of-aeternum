@@ -35,7 +35,6 @@
 //   mail.ts             IWorldMail           Ravenpost mail send/take + unread badge
 //   dungeons.ts         IWorldDungeons       dungeon enter/leave + raid lockouts
 //   delves.ts           IWorldDelves         delve runs, lockpick, companion
-//   daily_rewards.ts    IWorldDailyRewards   daily WOC-holder rewards
 //   telemetry.ts        IWorldTelemetry      fire-and-forget metrics sink
 //   professions.ts      IWorldProfessions    skill/craft/recipe/node read surface (#1164; node
 //                                            harvest read + action landed in #1121; recipe
@@ -83,7 +82,6 @@ import type { IWorldCardMinigame } from './world_api/card_minigame';
 import type { IWorldChat } from './world_api/chat';
 import type { IWorldCombat } from './world_api/combat';
 import type { IWorldCosmetics } from './world_api/cosmetics';
-import type { IWorldDailyRewards } from './world_api/daily_rewards';
 import type { IWorldDeeds } from './world_api/deeds';
 import type { IWorldDelves } from './world_api/delves';
 import type { IWorldDuelArena } from './world_api/duel_arena';
@@ -371,17 +369,6 @@ export type {
 } from './world_api/combat';
 export type { AccountCosmetics } from './world_api/cosmetics';
 export type {
-  DailyRewardEligibilityView,
-  DailyRewardHistory,
-  DailyRewardLeaderboardEntry,
-  DailyRewardLeaderboardPage,
-  DailyRewardPayoutLogEntry,
-  DailyRewardSpinResult,
-  DailyRewardSpinView,
-  DailyRewardStatus,
-  DailyRewardTaskView,
-} from './world_api/daily_rewards';
-export type {
   DeedsLeaderboardEntry,
   DeedsLeaderboardSelf,
   DeedsRarity,
@@ -527,7 +514,6 @@ export interface IWorld
     IWorldMail,
     IWorldDungeons,
     IWorldDelves,
-    IWorldDailyRewards,
     IWorldTelemetry,
     IWorldProfessions,
     IWorldBank,
@@ -1115,7 +1101,6 @@ export type WorldFacet =
   | 'IWorldMail'
   | 'IWorldDungeons'
   | 'IWorldDelves'
-  | 'IWorldDailyRewards'
   | 'IWorldTelemetry'
   | 'IWorldBank'
   | 'IWorldGuildBank'

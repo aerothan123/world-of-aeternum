@@ -46,8 +46,6 @@ export const CSP_ORIGINS: {
   turnstile: string;
   fontsStyle: string;
   fontsFile: string;
-  walletFrames: string[];
-  reownFonts: string;
   stripe: {
     script: string[];
     connect: string[];

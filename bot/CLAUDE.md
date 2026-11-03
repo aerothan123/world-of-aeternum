@@ -9,7 +9,7 @@ official Discord server and the game two ways:
   poll reads it); in-game "!" community posts relayed as embeds with a respond
   deep-link button; a significant-activity feed (the kind set is pinned by
   `SERVER_KINDS`; see Activity-kind parity below);
-  daily-rewards top-10 winner posts; a World PvP kill feed (every `/pvp` kill as one
+  a World PvP kill feed (every `/pvp` kill as one
   line, digest-batched, names only, its own channel) with the King of the Hill spawn
   calls in the same channel (see PvP kill feed below);
   a member reward on guild join
@@ -102,7 +102,7 @@ includes `DOM` for the game client. Nothing in `bot/` may depend on a browser gl
   normalizes to 0 inside an otherwise-shipped block; either way the presence push itself
   never fails. Tested in `tests/discord_bot_presence_counters.test.ts`.
 - `outbox_consumer.ts`: the consolidated poll's behavior, behind injected IO: the breaker
-  gate, the per-stream fan-out, the winners announce-then-mark ordering, the didWork signal
+  gate, the per-stream fan-out, the didWork signal
   the cadence reads, and the factory that binds each stream's channel id and message
   builder. Tested in `tests/discord_bot_outbox.test.ts`.
 - `main.ts`: wiring only: guild state seeded from `GUILD_CREATE` (plus the op 8
@@ -181,7 +181,7 @@ not an import, so `logic.ts` stays free of `src/ui/` imports.
 - **The game server is the authority for rewards.** The bot never computes points
   or status; it reads them and pushes grants the server validates (dedupe keys).
   Discord (gateway/REST) state lives only here.
-- **Pure/IO split** (like `wallet_link.ts` vs `wallet.ts`): protocol/diff/embed
+- **Pure/IO split** (like `server/discord_oauth.ts` vs `server/discord.ts`): protocol/diff/embed
   logic in `logic.ts` (tested), ws/fetch IO in the shells. Don't inline opcode or
   role-diff logic into `gateway.ts`/`main.ts`.
 - **One injection convention in the three shells.** Each shell takes its IO as
@@ -261,7 +261,7 @@ not stay phase-locked, and repeated event kicks coalesce into exactly one follow
 - Outbox (`outbox`): the ONE pickup loop, every `cfg.outboxPollMs` while it keeps
   finding work, decaying to `cfg.outboxIdleMs` once the drains come back empty.
   `GET /internal/discord/outbox` answers every stream at once (`OutboxEnvelope`: relay posts, the activity
-  feed, the reward-winner days, the link-change feed, the queue-pop DMs, the World PvP
+  feed, the link-change feed, the queue-pop DMs, the World PvP
   kill feed, and the King of the Hill spawn calls), replacing the
   three separate pollers and the sweep's full flex re-read. `outbox_consumer.ts` owns what
   it does with them: it will NOT drain while the rate governor's breaker is open or half-open
@@ -279,16 +279,9 @@ not stay phase-locked, and repeated event kicks coalesce into exactly one follow
   null payload and is dropped silently before the channel gate (at-most-once by design, and
   the Activity-kind parity rule above keeps the kind set aligned so the drop only ever
   covers a mid-deploy skew);
-  a winners day is marked back on the server ONLY after its post landed, so a failed post
-  retries (at-least-once, duplicates accepted); a bounded process-local announced-days memo
-  (`OutboxPollState`) keeps a day whose MARK keeps failing from being re-announced every
-  poll (the re-serve skips straight to the mark retry; a restart costs the one documented
-  duplicate); and the poll runs on its own much longer
+  and the poll runs on its own much longer
   deadline (`cfg.outboxTimeoutMs`), which must stay ABOVE the server's read deadline.
-  didWork is split by stream class: the four DRAINED streams count by carriage, the
-  re-served winners read counts by successful MARK (the event that stops the re-serve), so
-  a winners day that cannot finish (unset channel, durable 403, a failing mark endpoint)
-  cannot pin the loop at the active cadence forever; the queue-pop `watching` flag counts
+  didWork: the DRAINED streams count by carriage; the queue-pop `watching` flag counts
   as work on its own, bounded by the server recomputing it from the sim's queue arrays
   every tick (a player who leaves or disconnects drops it within a tick).
   Two honest limits of the consolidation, both deliberate: with a stream's channel id UNSET,
@@ -382,7 +375,7 @@ Required: `DISCORD_BOT_TOKEN`, `DISCORD_CLIENT_ID`, `DISCORD_GUILD_ID`,
 `DISCORD_VOICE_CHANNEL_ID` (featured voice room), `DISCORD_TEST_CHANNEL_ID`
 (one-time startup announcement), `DISCORD_RELAY_CHANNEL_ID` (falls back to test),
 `DISCORD_ACTIVITY_CHANNEL_ID` (falls back to relay, then test),
-`DISCORD_DAILY_REWARDS_CHANNEL_ID`, `DISCORD_PVP_FEED_CHANNEL_ID` (the World PvP kill
+`DISCORD_PVP_FEED_CHANNEL_ID` (the World PvP kill
 feed and the King of the Hill spawn calls; no fallback, unset is off), `DISCORD_SYNC_NICKNAMES` (`0` disables, default
 on). Governor knobs (all optional, safe defaults): `DISCORD_MAX_RPS`,
 `DISCORD_BAN_PAUSE_MS`, `DISCORD_BREAKER_LIMIT`, `DISCORD_FORBIDDEN_TTL_MS`. Loop

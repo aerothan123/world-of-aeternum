@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 
-// Item history in the trade window (src/ui/hud/woc_trade/woc_trade_controller.ts):
+// Item history in the trade window (src/ui/hud/trade/trade_window_controller.ts):
 // a tracked copy on EITHER side of the table offers its history, through the
 // visible button beside the row and a desktop right-click on the row. The
 // counterparty's copy reaches the dialog as the public projection, so no
@@ -12,9 +12,9 @@ import { ITEMS } from '../src/sim/data';
 import type { InvSlot, ItemProvenance } from '../src/sim/types';
 import { itemDisplayName } from '../src/ui/entity_i18n';
 import {
-  WocTradeController,
-  type WocTradeControllerDeps,
-} from '../src/ui/hud/woc_trade/woc_trade_controller';
+  TradeWindowController,
+  type TradeWindowControllerDeps,
+} from '../src/ui/hud/trade/trade_window_controller';
 import {
   closeItemHistoryDialog,
   ItemHistoryDialog,
@@ -81,22 +81,19 @@ function rig(myItems: InvSlot[], theirItems: InvSlot[]) {
     tradeSetOffer: () => {},
   } as unknown as IWorld;
   let staged = { items: [] as InvSlot[], copper: 0 };
-  const deps: WocTradeControllerDeps = {
+  const deps: TradeWindowControllerDeps = {
     world: () => world,
-    marketHooks: () => null,
     staged: () => staged,
     setStaged: (next) => {
       staged = next;
     },
     pushTradeOffer: () => {},
-    refreshWocBalance: () => {},
-    log: () => {},
     itemIcon: () => '<span class="icon"></span>',
     attachTooltip: () => {},
     itemTooltip: () => '',
     renderBags: () => {},
   };
-  const controller = new WocTradeController(deps);
+  const controller = new TradeWindowController(deps);
   controller.updateTradeWindow();
   const el = document.getElementById('trade-window') as HTMLElement;
   return { controller, state, el };

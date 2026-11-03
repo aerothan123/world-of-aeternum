@@ -1,6 +1,7 @@
 import { reserveGuildWeaponSkin } from '../src/sim/guild_quartermaster';
 import type { Sim } from '../src/sim/sim';
 import type { AccountCosmeticsService } from './account_cosmetics_service';
+import type { CharacterSaveArgs } from './character_save_args';
 import type { ClientSession } from './game';
 import {
   type GuildWeaponPurchaseSave,
@@ -8,7 +9,6 @@ import {
 } from './guild_weapon_purchase_db';
 import type { PaidGuildCreateSnapshot } from './paid_guild_creation';
 import { KeyedSerialWriteAborted, type KeyedSerialWriter } from './serial_writer';
-import type { CharacterSaveArgs } from './woc_market_character_save';
 
 export interface GuildWeaponPurchaseHost {
   sim(): Sim;

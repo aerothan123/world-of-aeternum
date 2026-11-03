@@ -232,7 +232,6 @@ describe('batched canvas nameplate state', () => {
       title: 'prog_veteran',
       border: 'prog_prestige_10',
       overheadEmoteId: 'wave',
-      holderTier: 1,
       devTier: 4,
       discordAvatar: 'https://example.com/avatar.png',
       auras: [{ kind: 'stealth' } as Entity['auras'][number]],
@@ -254,10 +253,9 @@ describe('batched canvas nameplate state', () => {
     // The wire carries the DEED ID; the plate carries the resolved SLUG.
     expect(state.border).toBe('prestige_laurels');
     expect(state.opacity).toBe(0.55);
-    expect(state.badges).toHaveLength(3);
+    expect(state.badges).toHaveLength(2);
     expect(state.badges[0]?.size).toBe(15);
-    expect(state.badges[1]?.size).toBe(15);
-    expect(state.badges[2]).toMatchObject({
+    expect(state.badges[1]).toMatchObject({
       url: 'https://example.com/avatar.png',
       size: 24,
       circular: true,

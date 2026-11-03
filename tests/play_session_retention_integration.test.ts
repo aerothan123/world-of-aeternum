@@ -32,11 +32,6 @@ if (DB_URL) process.env.DATABASE_URL = DB_URL;
 
 describeDb('play session retention fold (real Postgres)', () => {
   let pool: Pool;
-  // banForAccount's per-account eligibility SQL, exported as a constant from
-  // ../server/daily_rewards_db in the same change that adds the exclusion
-  // view's account_ip_associations arm. Read via dynamic import so a missing
-  // export fails only its own case instead of the whole file.
-  let banForAccountSql: string | undefined;
 
   beforeAll(async () => {
     pool = new Pool({ connectionString: DB_URL, max: 2 });
@@ -53,9 +48,6 @@ describeDb('play session retention fold (real Postgres)', () => {
     };
     const exclusionViewDdl = core.DAILY_REWARD_EXCLUDED_ACCOUNTS_VIEW_SQL;
     expect(typeof exclusionViewDdl).toBe('string');
-    const rewards = await import('../server/daily_rewards_db');
-    banForAccountSql = (rewards as { DAILY_REWARD_BAN_FOR_ACCOUNT_SQL?: string })
-      .DAILY_REWARD_BAN_FOR_ACCOUNT_SQL;
 
     const db = await scopedClient();
     try {
@@ -677,13 +669,6 @@ describeDb('play session retention fold (real Postgres)', () => {
           reason: row.reason,
         })),
       ).toEqual([{ accountId, reason: 'evasion ring' }]);
-
-      // The per-account eligibility probe must not free an evader whose
-      // sessions aged out: it needs the same association lookback the view
-      // gained. A missing export fails here decisively, never silently.
-      expect(typeof banForAccountSql).toBe('string');
-      const ban = await verify.query(String(banForAccountSql), [accountId]);
-      expect(ban.rows.map((row) => ({ reason: row.reason }))).toEqual([{ reason: 'evasion ring' }]);
     } finally {
       verify.release();
     }

@@ -349,8 +349,6 @@ const UI_PURE_CORES = [
   'src/ui/proc_overlay_view.ts',
   'src/ui/chat_ignore_core.ts',
   'src/ui/daily_rewards_chrome_view.ts',
-  'src/ui/daily_rewards_tasks_view.ts',
-  'src/ui/daily_rewards_launcher_core.ts',
   'src/ui/death_recap_view.ts',
   'src/ui/death_screen_view.ts',
   'src/ui/char_bags_pairing_core.ts',
@@ -538,18 +536,6 @@ const UI_PURE_CORES = [
   // armory_card_view twin for the account-mount SKUs.
   'src/ui/store_mount_card_view.ts',
   'src/ui/mount_inspect_view.ts',
-  'src/ui/daily_rewards_reason_view.ts',
-  // The daily-rewards spin wheel's markup and its landing geometry (Bank Storage
-  // phase 17). The overlay ELEMENT lives in the thin painter beside it.
-  'src/ui/daily_rewards_spin_view.ts',
-  // The rewards tab's leaderboard and payout-history panels, pure functions of the
-  // wire records (Bank Storage phase 17's review round, which spent the room the
-  // spin extraction bought and paid for it here rather than raising a ceiling).
-  'src/ui/daily_rewards_ranks_view.ts',
-  // The rewards tab's wallet LOCK card, a pure three-way branch on the lock reason
-  // (Bank Storage phase 17's review round, paying for a comment correction the way
-  // the phase paid for everything else).
-  'src/ui/daily_rewards_wallet_card_view.ts',
   'src/ui/woc_store_view.ts',
   // The banker rung purchase's copy mappers and its second price tag's markup
   // (Bank Storage phase 13), the charter_card_view twin one surface over.
@@ -596,7 +582,6 @@ const UI_PURE_CORES = [
   // It is deliberately DOM-free and clock-free: a wall-clock expiry in here would
   // make a refusal lapse mid-visit and repaint a guaranteed-to-fail card enabled.
   'src/ui/charter_fit_memory.ts',
-  'src/ui/wallet_connection_view.ts',
   'src/ui/hud/loot/loot_roll_status_view.ts',
   'src/ui/hud/loot/loot_settings_view.ts',
   'src/ui/hud/professions/craft_celebration_view.ts',
@@ -645,25 +630,13 @@ const UI_PURE_CORES = [
   // The Wanted tab's rows, place-form validity, and item-picker search.
   'src/ui/market_orders_core.ts',
   'src/ui/usd_text.ts',
-  'src/ui/woc_tokens_text.ts',
-  'src/ui/woc_log_tones.ts',
   'src/ui/hud_tones.ts',
   'src/ui/tooltip_clamp_core.ts',
-  'src/ui/woc_balance_chip.ts',
-  'src/ui/woc_market_chrome.ts',
-  'src/ui/woc_market_activity_html.ts',
-  'src/ui/woc_market_detail_html.ts',
-  'src/ui/woc_market_sales_html.ts',
   'src/ui/guild_tag.ts',
-  'src/ui/wallet_bridge_reason_text.ts',
   'src/ui/terms_link.ts',
   'src/ui/duration_text.ts',
   'src/ui/clock_seconds_core.ts',
   'src/ui/realm_builder_name.ts',
-  'src/ui/woc_affordable_core.ts',
-  'src/ui/woc_market_poll_core.ts',
-  'src/ui/woc_market_reason_text.ts',
-  'src/ui/woc_market_view.ts',
   'src/ui/mailbox_view.ts',
   'src/ui/mail_parcel_sources_view.ts',
   'src/ui/calendar_view.ts',
@@ -766,7 +739,6 @@ const UI_PURE_CORES = [
   'src/ui/leaderboard_podium_view.ts',
   'src/ui/leaderboard_podium_html.ts',
   'src/ui/leaderboard_board_html.ts',
-  'src/ui/daily_rewards_view.ts',
   'src/ui/deed_border_view.ts',
   'src/ui/deed_heraldry_plaque_core.ts',
   'src/ui/deeds_view.ts',
@@ -886,14 +858,12 @@ const UI_PURE_CORES = [
   'src/game/nameplate_view_prefs.ts',
   'src/game/nearby_interaction_core.ts',
   'src/ui/trade_view.ts',
-  'src/ui/trade_woc_view.ts',
   'src/ui/hud/rift/rift_floor_tracker_view.ts',
   'src/ui/hud/transport/ferry_hud_view.ts',
   'src/ui/raid_marker_labels_view.ts',
   'src/ui/hud/practice/practice_dps_view.ts',
   'src/ui/hud/practice/hub_lesson_view.ts',
   'src/ui/hud/talking_head/talking_head_core.ts',
-  'src/ui/hud/woc_trade/woc_trade_offer_view.ts',
   'src/ui/hud/target_dots/target_dots_view.ts',
   'src/ui/safe_local_storage.ts',
   // The Quest Workshop dev tool (src/quest_editor/, quest_editor.html) holds its
@@ -1607,23 +1577,14 @@ const BARE_NAMED = [
   'src/ui/market_armor_badge.ts',
   'src/ui/usd_text.ts',
   'src/ui/money_html.ts',
-  'src/ui/woc_tokens_text.ts',
-  'src/ui/woc_log_tones.ts',
   'src/ui/hud/professions/profession_log_tones.ts',
   'src/ui/hud_tones.ts',
-  'src/ui/woc_balance_chip.ts',
-  'src/ui/woc_market_chrome.ts',
-  'src/ui/woc_market_activity_html.ts',
-  'src/ui/woc_market_detail_html.ts',
-  'src/ui/woc_market_sales_html.ts',
   'src/ui/leaderboard_podium_html.ts',
   'src/ui/leaderboard_board_html.ts',
   'src/ui/guild_tag.ts',
-  'src/ui/wallet_bridge_reason_text.ts',
   'src/ui/terms_link.ts',
   'src/ui/duration_text.ts',
   'src/ui/realm_builder_name.ts',
-  'src/ui/woc_market_reason_text.ts',
   'src/render/foliage_lod.ts',
   'src/render/frame_present.ts',
   'src/render/self_motion_rift_lift.ts',
@@ -2170,21 +2131,14 @@ describe('server host-layer import invariants', () => {
   });
 });
 
-// The $WOC token firewall (docs/prd/woc/marketplace.md "Constraints"): no
-// wallet, token, or settlement code may live in src/sim. The PRD names this
-// scan as the mechanical enforcement, so it exists here rather than as prose.
-// The allowlist is read-only projections of chain state, never money logic.
-describe('the $WOC token firewall over src/sim', () => {
-  // The ONE tenant: daily_rewards_stub.ts, the offline daily-rewards readout
-  // (#1307), which is a constant literal with no logic behind it. It was carved
-  // out of sim.ts precisely so the coordinator is scanned like every other
-  // file. holder_tier.ts and types.ts came OFF this list when they were
-  // measured against the pattern: the cosmetic holder ladder and the holder
-  // field declarations name none of this vocabulary outside comments, and an
-  // allowlist entry that is not covering a real hit only hides the next one.
-  // A NEW file wanting on this list is the signal the firewall is being
-  // breached, not extended.
-  const FIREWALL_ALLOWED = new Set(['src/sim/daily_rewards_stub.ts']);
+// The token firewall: no wallet, token, or settlement code may live in src/sim.
+// Project H uses no cryptocurrency at all, so the firewall now has no tenants;
+// it stays as the mechanical guarantee that none ever returns to the sim.
+describe('the token firewall over src/sim', () => {
+  // NO tenants. The last one (daily_rewards_stub.ts, the offline daily-rewards
+  // readout) retired with the crypto-only Daily Rewards feature. A file wanting
+  // on this list is the signal the firewall is being breached, not extended.
+  const FIREWALL_ALLOWED = new Set<string>([]);
   // The shape every allowlisted file must keep to stay exempt: a read-only
   // projection. Exactly ONE `export function`, and the only other statements
   // allowed are type-only lines (`export type`, `import type`). Everything
@@ -2247,12 +2201,12 @@ describe('the $WOC token firewall over src/sim', () => {
   const FIREWALL_RE =
     /(?:wallet|pubkey|solana|usdcents|pricecents|amountbase|settlementquote|bondcents|treasury[_-]?(?:wallet|pubkey|address|bps|cents|leg|share|base|cut|fee|account)|custodyclaim|lamports|base58|bs58|keypair|secret[_-]?key|private[_-]?key|blockhash|spl[_-]?token|(?:send|sign)[_-]?transaction|woc[_-]?(?:balance|price|amount|payout|transfer)|(?:tx|txn|bond|settlement|burn|transfer|der|escrow|payer|seller|mint)[_-]?signature|signature[_-]?(?:reused|required|field|header|verified|at[_-]?ms|bytes))/i;
 
-  it('exempts exactly one file, by exact membership', () => {
+  it('exempts no file, by exact membership', () => {
     // Set EQUALITY, not a lower bound: widening the exemption has to be a
     // deliberate visible edit to this line, never a quiet extra entry that
     // takes a whole sim file out of the scan.
-    expect([...FIREWALL_ALLOWED]).toEqual(['src/sim/daily_rewards_stub.ts']);
-    expect(FIREWALL_ALLOWED.size).toBe(1);
+    expect([...FIREWALL_ALLOWED]).toEqual([]);
+    expect(FIREWALL_ALLOWED.size).toBe(0);
   });
 
   it('keeps wallet, token, and settlement identifiers out of every sim file', () => {
@@ -2797,15 +2751,6 @@ const EXPECTED_BARE_NAMED = [
   'src/ui/unit_portrait.ts',
   'src/ui/usd_text.ts',
   'src/ui/vault_search.ts',
-  'src/ui/wallet_bridge_reason_text.ts',
-  'src/ui/woc_balance_chip.ts',
-  'src/ui/woc_log_tones.ts',
-  'src/ui/woc_market_activity_html.ts',
-  'src/ui/woc_market_chrome.ts',
-  'src/ui/woc_market_detail_html.ts',
-  'src/ui/woc_market_reason_text.ts',
-  'src/ui/woc_market_sales_html.ts',
-  'src/ui/woc_tokens_text.ts',
   'src/ui/xp_bar.ts',
 ];
 
@@ -3249,21 +3194,12 @@ const UI_DOM_MODULES = [
   'src/ui/char_window.ts',
   'src/ui/charselect_news.ts',
   'src/ui/charselect_redesign.ts',
-  'src/ui/charselect_woc_market_panel.ts',
   'src/ui/chat_command_menu.ts',
   'src/ui/claudium_window.ts',
   'src/ui/continent_art.ts',
   'src/ui/touch_peek.ts',
   'src/ui/hud/professions/crafting_window.ts',
   'src/ui/hud/professions/commission_order_window.ts',
-  // The spin celebration's live element: created, listened to, mounted on
-  // document.body and torn down (Bank Storage phase 17). Its markup and geometry
-  // are in the pure src/ui/daily_rewards_spin_view.ts. Named `_controller` so the
-  // painter gate's filename sweep keeps the cold contract this code held while it
-  // lived in the window, WITHOUT the stricter facet-routed contract a `_painter`
-  // carries or the by-name sweep that would drop this very row. The double
-  // coverage is the deliberate one this file's own header describes.
-  'src/ui/daily_rewards_spin_controller.ts',
   'src/ui/store_subscription.ts',
   // The rotating promo card above chat: it owns its DOM, a rotation interval,
   // a retire-guard clock read and the prefers-reduced-motion query.
@@ -3326,7 +3262,8 @@ const UI_DOM_MODULES = [
   // The house storage window (Project H phase 3): createElement grid cells.
   'src/ui/hud/housing/house_storage_window.ts',
   'src/ui/hud/vendor/warfare_vendor_window.ts',
-  'src/ui/hud/woc_trade/woc_trade_controller.ts',
+  // The plain player-to-player trade window (src/ui/hud/trade/).
+  'src/ui/hud/trade/trade_window_controller.ts',
   'src/ui/i18n.ts',
   'src/ui/icon_prewarm.ts',
   'src/ui/icon_prewarm_worker.ts',
@@ -3352,7 +3289,6 @@ const UI_DOM_MODULES = [
   'src/ui/market_sweep_panel.ts',
   'src/ui/market_orders_panel.ts',
   'src/ui/market_window.ts',
-  'src/ui/woc_market_window.ts',
   'src/ui/material_sources_dialog.ts',
   // The Item history prompt (the sources dialog's #prompt-stack recipe).
   'src/ui/item_history_dialog.ts',
@@ -3363,16 +3299,12 @@ const UI_DOM_MODULES = [
   'src/ui/death_recap_dialog.ts',
   'src/ui/hud/practice/hub_lesson_controller.ts',
   'src/ui/minimap_gilded_ornament.ts',
-  'src/ui/mobile_wallet_launcher.ts',
-  'src/ui/wallet_reauth_prompt.ts',
-  'src/ui/wallet_verify_request.ts',
   'src/ui/mount_race_controls.ts',
   'src/ui/mount_race_strip.ts',
   'src/ui/aura_overlay_config.ts',
   'src/ui/aura_overlay_controller.ts',
   'src/ui/aura_overlay_settings.ts',
   'src/ui/movable_frame.ts',
-  'src/ui/native_select_hold.ts',
   'src/ui/native_update_prompt.ts',
   'src/ui/noticeboard_popup.ts',
   'src/ui/realm_builder_popup.ts',
@@ -3483,7 +3415,6 @@ const UI_DOM_MODULES = [
   'src/ui/window_open_state.ts',
   'src/ui/window_reflow.ts',
   'src/ui/window_resize.ts',
-  'src/ui/woc_market_link.ts',
 ].map((rel) => join(repoRoot, rel));
 
 // The sweep's domain: every src/ui module the other two sweeps do NOT already

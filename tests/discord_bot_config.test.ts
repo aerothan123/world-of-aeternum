@@ -32,7 +32,6 @@ const BOT_ENV_KEYS = [
   'DISCORD_TEST_CHANNEL_ID',
   'DISCORD_RELAY_CHANNEL_ID',
   'DISCORD_ACTIVITY_CHANNEL_ID',
-  'DISCORD_DAILY_REWARDS_CHANNEL_ID',
   'DISCORD_PVP_FEED_CHANNEL_ID',
   'DISCORD_SYNC_NICKNAMES',
   'DISCORD_MAX_RPS',
@@ -158,7 +157,6 @@ describe('loadConfig defaults', () => {
     expect(cfg.testChannelId).toBe('');
     expect(cfg.relayChannelId).toBe('');
     expect(cfg.activityChannelId).toBe('');
-    expect(cfg.dailyRewardsChannelId).toBe('');
     expect(cfg.pvpFeedChannelId).toBe('');
   });
 
@@ -172,7 +170,6 @@ describe('loadConfig defaults', () => {
     process.env.DISCORD_TEST_CHANNEL_ID = 'test-id';
     process.env.DISCORD_RELAY_CHANNEL_ID = 'relay-id';
     process.env.DISCORD_ACTIVITY_CHANNEL_ID = 'activity-id';
-    process.env.DISCORD_DAILY_REWARDS_CHANNEL_ID = 'daily-id';
     process.env.DISCORD_PVP_FEED_CHANNEL_ID = 'pvp-id';
 
     const cfg = loadConfig();
@@ -181,7 +178,6 @@ describe('loadConfig defaults', () => {
     expect(cfg.testChannelId).toBe('test-id');
     expect(cfg.relayChannelId).toBe('relay-id');
     expect(cfg.activityChannelId).toBe('activity-id');
-    expect(cfg.dailyRewardsChannelId).toBe('daily-id');
     expect(cfg.pvpFeedChannelId).toBe('pvp-id');
   });
 });
@@ -209,7 +205,6 @@ describe('loadConfig channel fallback ladders', () => {
     process.env.DISCORD_ACTIVITY_CHANNEL_ID = 'activity-1';
     process.env.DISCORD_RELAY_CHANNEL_ID = 'relay-1';
     process.env.DISCORD_TEST_CHANNEL_ID = 'test-1';
-    process.env.DISCORD_DAILY_REWARDS_CHANNEL_ID = 'daily-1';
     expect(loadConfig().pvpFeedChannelId).toBe('');
   });
 

@@ -1,7 +1,7 @@
 // The pure core of the two per-request auth-guard reads: row types and the
-// row-to-answer computes, extracted from server/db.ts so the direct read path
-// and the marketplace guard cache (server/woc_auth_guard_cache.ts) share ONE
-// source of truth for the security decisions. This module is deliberately
+// row-to-answer computes, extracted from server/db.ts so the security decisions
+// have ONE source of truth (the marketplace guard cache that once shared it was
+// retired with the crypto features). This module is deliberately
 // host-agnostic: no pg, no pool, no clock of its own (callers pass nowMs), so
 // a unit test drives every branch with plain rows.
 //

@@ -1752,7 +1752,7 @@ export const en: EnTranslations = {
       "checkoutTitle": "Complete purchase",
       "checkoutClose": "Close checkout",
       "checkoutLoading": "Loading checkout...",
-      "checkoutPending": "Transaction in progress. Confirm in your wallet and keep this panel open.",
+      "checkoutPending": "Checkout in progress. Complete the payment and keep this panel open.",
       "checkoutPendingButton": "Processing",
       "checkoutFailed": "Checkout could not be loaded. Please try again.",
       "checkoutUnavailable": "That Claudium purchase is not available right now.",
@@ -2929,7 +2929,7 @@ export const en: EnTranslations = {
       "firstPersonBody": "Show Body",
       "firstPersonNoBody": "No Body",
       "showAttackButton": "Show Attack Button",
-      "showDailyRewardsChest": "Show Daily Rewards Chest",
+      "showDailyRewardsChest": "Show Store Chest",
       "mobileCameraJoystick": "Camera joystick",
       "mobileLeftHanded": "Left-handed layout",
       "touchPreciseAim": "Precise Ground Targeting",
@@ -5307,7 +5307,7 @@ export const en: EnTranslations = {
       "title": "Import / Export Settings",
       "fullSettings": "Full Settings",
       "intro": "Export every saved preference on this device as one code, and paste it on another device or browser to import it: graphics, audio, interface, theme, frame layout, key bindings for every character, controller and cross hotbar bindings, chat, window filters, language, and dismissed hints.",
-      "excluded": "Never included: your login, account, wallet, or purchase data. Action bar layouts are saved to your account and travel with it."
+      "excluded": "Never included: your login, account, or purchase data. Action bar layouts are saved to your account and travel with it."
     },
     "riftForge": {
       "title": "Rift Forge",
@@ -9660,7 +9660,7 @@ export const en: EnTranslations = {
       "ifShowOwnNameplate": "Draws your own overhead nameplate exactly as other players see it, flair and all. Turn it off for the classic view.",
       "ifShowPlayerNameplates": "Draws other players nameplates. Off declutters a crowded hub, and your current target stays readable either way.",
       "ifWallet": "Whether your wallet is shown on the character screen. There is a matching switch for the player card.",
-      "ifDailyChest": "Whether the daily rewards chest sits on your HUD.",
+      "ifDailyChest": "Whether the Store chest sits on your HUD.",
       "ifPlayerFrameScale": "The size of your own unit frame.",
       "ifTargetFrameScale": "The size of your target frame.",
       "ifPartyStyle": "The party layout: Automatic follows your group size, Classic is the traditional stack, and Raid packs everyone into the compact grid.",

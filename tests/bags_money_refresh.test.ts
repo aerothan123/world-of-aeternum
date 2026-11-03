@@ -325,22 +325,13 @@ describe('bag purse-freshness wiring (source pins)', () => {
 });
 
 describe('async balance reads repaint the FOOTER, not the whole window', () => {
-  // Both $WOC and Claudium balances resolve on their own schedule with no user action
-  // behind them, and both used to call the HUD's full renderBags() from a promise
-  // resolve. That tore the window down under a player who was mid-drag, hovering a
+  // The Claudium balance resolves on its own schedule with no user action behind
+  // it, and it (like the retired $WOC wallet balance) used to call the HUD's full
+  // renderBags() from a promise resolve. That tore the window down under a player who was mid-drag, hovering a
   // tooltip, or typing in bag search, and it defeated the narrow money-row rewrite the
   // purse probe was built around (the Claudium read is 30s-throttled, so an open bag
   // with a moving purse hit it roughly twice a minute). Pinned per SITE, because a
   // whole-file assertion would be satisfied by either one alone.
-
-  it('the wallet UI change listener repaints only the money row', () => {
-    expect(hud).toMatch(/onWalletUiChange\(\(\) => \{[^}]*this\.bagsWindow\.refreshMoneyRow\(\);/);
-    // ONLY. A toMatch on the new call says nothing about the old one: re-adding
-    // `this.renderBags();` on the next line satisfies every affirmative pin here
-    // while restoring the exact teardown this block is named after. Scoped to the
-    // block, not the file, because ~7 other sites call renderBags() legitimately.
-    expect(hud).not.toMatch(/onWalletUiChange\(\(\) => \{[^}]*this\.renderBags\(\);/);
-  });
 
   // The Claudium balance itself no longer lives here to be pattern-matched. Its
   // state, its 30s read, the in-flight and stale-response guards and the changed-only
@@ -419,16 +410,18 @@ describe('async balance reads repaint the FOOTER, not the whole window', () => {
     );
   });
 
-  it('neither async path is left on the cold-load-unsafe raw display compare', () => {
+  it('the async path is not left on the cold-load-unsafe raw display compare', () => {
     // `!== 'none'` reads a never-opened window as shown (#1538), so the old form
     // would paint a window the player has never opened on every balance read.
+    // One async path remains: the Claudium balance converge (the $WOC wallet
+    // balance listener retired with Project H's crypto removal).
     const sites = hud.match(/this\.bagsWindow\.refreshMoneyRow\(\);/g) ?? [];
-    expect(sites).toHaveLength(2);
+    expect(sites).toHaveLength(1);
     const guarded =
       hud.match(
         /if \(bagsWindowShown\(\$\('#bags'\)\.style\.display\)\) this\.bagsWindow\.refreshMoneyRow\(\);/g,
       ) ?? [];
-    expect(guarded).toHaveLength(2);
+    expect(guarded).toHaveLength(1);
   });
 });
 

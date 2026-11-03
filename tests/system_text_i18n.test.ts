@@ -62,17 +62,6 @@ describe('localizeSystemText', () => {
     expect(out).not.toContain('rare');
   });
 
-  it('formats a counted line through formatNumber', () => {
-    setLanguage('zh_CN');
-    const out = localizeSystemText('1200 daily rewards points gained.');
-    expect(out).toBe(
-      t('hudChrome.dailyRewards.pointsGained', {
-        points: formatNumber(1200, { maximumFractionDigits: 0 }),
-      }),
-    );
-    expect(out).toContain(formatNumber(1200, { maximumFractionDigits: 0 }));
-  });
-
   it('matches a dungeon enter line against the content table', () => {
     setLanguage('zh_CN');
     const dungeon = DUNGEON_LIST[0];

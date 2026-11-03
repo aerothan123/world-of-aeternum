@@ -4,11 +4,11 @@ import type { PoolClient } from 'pg';
 import { WEAPON_SKINS } from '../src/sim/content/weapon_skins';
 import { lockCharacterSaveAccountParentOnClient } from './bank_ledger_save_effects_db';
 import { bankLedgerSaveEffects } from './bank_ledger_session';
+import type { CharacterSaveArgs } from './character_save_args';
 import { beginCharacterSaveTx, prepareCharacterSaveEffects } from './character_save_transaction';
 import { pool, saveCharacterStateOnClient } from './db';
 import { cancelDetachedBackend } from './db_backend_cancel';
 import { acquirePaidGuildCreateClient, type PaidGuildCreateDeps } from './guild_create_db';
-import type { CharacterSaveArgs } from './woc_market_character_save';
 
 export interface GuildWeaponPurchaseSave extends CharacterSaveArgs {
   accountId: number;

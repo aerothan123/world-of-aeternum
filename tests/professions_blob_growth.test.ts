@@ -2002,7 +2002,7 @@ describe('whole-character material source composition matrix', () => {
 
       expect(third).toEqual(second);
       expect(second.inventory).toHaveLength(112);
-      expect(second.bank?.inventory).toHaveLength(228);
+      expect(second.bank?.inventory).toHaveLength(226);
       expect(second.vendorBuyback).toHaveLength(12);
       expect(second.vault?.special).toHaveLength(vaultMaterialIds().size);
       expect(second.vault?.stock).toEqual({});
@@ -2017,7 +2017,7 @@ describe('whole-character material source composition matrix', () => {
           ? 1
           : shape === 'varied'
             ? 5
-            : 112 * 20 + 228 * 20 + 12 * 20 + vaultMaterialIds().size * perMaterial;
+            : 112 * 20 + 226 * 20 + 12 * 20 + vaultMaterialIds().size * perMaterial;
       expect(sourceCount(second)).toBe(expectedSources);
       process.stdout.write(
         `[professions-blob-material-sources] ${JSON.stringify({
@@ -2027,7 +2027,7 @@ describe('whole-character material source composition matrix', () => {
           warningBytes: CHARACTER_BLOB_WARN_BYTES,
           relationToWarning:
             materialSourceBytes(second) < CHARACTER_BLOB_WARN_BYTES ? 'below' : 'at-or-above',
-          physicalUnits: 112 * 20 + 228 * 20 + 12 * 20 + vaultMaterialIds().size * perMaterial,
+          physicalUnits: 112 * 20 + 226 * 20 + 12 * 20 + vaultMaterialIds().size * perMaterial,
         })}\n`,
       );
     }
@@ -2043,10 +2043,10 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
     });
     const baseline = settled.serializeCharacter(pid)!;
     // Independent field maxima, NOT a simultaneously reachable storage state:
-    // 284 actual receipts need 284 protected bags (proved in referral_reward_growth),
+    // 282 actual receipts need 282 protected bags (proved in referral_reward_growth),
     // so their bags would replace the heavy item payloads in this fixture.
     const receipts = Object.fromEntries(
-      Array.from({ length: 284 }, (_, index) => [2_147_483_647 - index, { redeemed: 31 }]),
+      Array.from({ length: 282 }, (_, index) => [2_147_483_647 - index, { redeemed: 31 }]),
     );
     const loaded = makeSim(55, CEILING_EPOCH_MS);
     const loadedPid = loaded.addPlayer('warrior', 'ReceiptEnvelope', {
@@ -2068,12 +2068,14 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
     // Player housing phase 2 adds the twelve Furnishing recipe ids to retained
     // knowledge (+510, measured; no storage limit changes); phase 3 adds the
     // six home station recipe ids and item ids (+320, measured).
-    expect(baselineBytes).toBe(262310);
-    expect(bytes - baselineBytes).toBe(8284);
+    // -816 when the retired wallet-link bank bonus took two bonus slots away;
+    // -58 more on the receipt side for the two fewer receipt rows.
+    expect(baselineBytes).toBe(261494);
+    expect(bytes - baselineBytes).toBe(8226);
     // 266,699 -> 266,721 with Wobbles the Slime's reins (+22, kept).
     // +510 with the Furnishing recipe ids (Project H housing phase 2).
     // +320 with the six home station recipe and item ids (Project H phase 3).
-    expect(bytes).toBe(270594);
+    expect(bytes).toBe(269720);
     // The receipt-laden envelope sits ABOVE the old 256 KiB warn step and below
     // the re-minted 288 KiB one (Project H phase 3): saves on either side of
     // the threshold remain whole, which tests/character_blob_size.test.ts pins
@@ -2142,9 +2144,9 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
     expect(
       s2.inventory?.every((row) => row.instance?.signer?.length === MAX_CRAFTED_BY_LENGTH),
     ).toBe(true);
-    expect(s2.bank?.inventory).toHaveLength(24 + 72 + 36 + 4 * 16);
+    expect(s2.bank?.inventory).toHaveLength(24 + 72 + 34 + 4 * 16);
     expect(s2.bank?.purchasedSlots).toBe(72);
-    expect(s2.bank?.bonusSlots).toBe(36);
+    expect(s2.bank?.bonusSlots).toBe(34);
     expect(s2.bank?.unlockedSockets).toBe(4);
     expect(s2.bank?.appliedStorageKeys).toHaveLength(12);
     expect(s2.bank?.appliedStorageKeys?.every((k) => k.length === 200)).toBe(true);
@@ -2468,7 +2470,8 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
     // 249,984 -> 250,006 with Wobbles the Slime's reins (+22, kept).
     // Advanced riding adds the sparse ridingTier scalar (+15, PR 4390).
     // +320 with the six home station recipe and item ids (Project H phase 3).
-    expect(beforeReferralBytes).toBe(251745);
+    // -816 for the two bank bonus slots the retired wallet link granted.
+    expect(beforeReferralBytes).toBe(250929);
     expect(bytes - gourdlightEveBytes - stampCardBytes - beforeReferralBytes).toBe(122);
     expect(
       fieldBytes(beforeStampCards, 'deedStats') - fieldBytes(withoutReferral, 'deedStats'),
@@ -2495,7 +2498,8 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
     const beforeMembershipBytes = Buffer.byteLength(JSON.stringify(withoutMembership), 'utf8');
     // 249,810 -> 249,832 with Wobbles the Slime's reins (+22, kept).
     // +320 with the six home station recipe and item ids (Project H phase 3).
-    expect(beforeMembershipBytes).toBe(251571);
+    // -816 for the two bank bonus slots the retired wallet link granted.
+    expect(beforeMembershipBytes).toBe(250755);
     expect(beforeReferralBytes - beforeMembershipBytes).toBe(174);
     expect(
       fieldBytes(withoutReferral, 'deedStats') - fieldBytes(withoutMembership, 'deedStats'),
@@ -2586,7 +2590,8 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
       equipment: 141,
       equipmentInstance: -6,
       inventory: 16400,
-      bank: 36080,
+      // 36080 - 816: two fewer bonus slots once the wallet-link bonus retired.
+      bank: 35264,
       vendorBuyback: 756,
       // 62 + 134: the four learned faction formula ids retained in
       // knownRecipes (content/enchants.ts, the faction ladder rework).
@@ -3155,7 +3160,8 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
       // retained (+297) and the twelve furniture ids discovered (+213).
       // Project H housing phase 3 adds 320: the six home station recipe ids
       // retained (+181) and the six station item ids discovered (+139).
-    ).toBe(248875);
+      // The retired wallet-link bank bonus removes two bonus slots: -816 (248,059).
+    ).toBe(248059);
     // Removing ONLY field_kit (the Bramblehide release content and the two
     // dev-mount reins items still present, current staged tree) reproduces
     // 209,524 plus the 1,548-byte Bramblehide delta plus the 71-byte
@@ -3198,7 +3204,8 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
       // reins_wobbles_slime adds 22 (249,994).
       // Advanced riding contributes the same 15 bytes here.
       // Project H housing phase 2 adds the same 510 here, phase 3 the same 320.
-    ).toBe(251733);
+      // The retired wallet-link bank bonus removes two bonus slots: -816 (250,917).
+    ).toBe(250917);
     const priorContent = withoutCrucibleContent(withoutReferral);
     const contentDelta = Object.fromEntries(
       (['knownRecipes', 'deedStats', 'reliquary'] as const).map((key) => [
@@ -3223,7 +3230,8 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
         return [field, beforeReferralBytes - Buffer.byteLength(JSON.stringify(stripped), 'utf8')];
       }),
     );
-    expect(metadataDelta).toEqual({ perfectingBonus: 11872, perfectingBound: 5934 });
+    // Two fewer bank rows carry these fields since the wallet-link bonus retired.
+    expect(metadataDelta).toEqual({ perfectingBonus: 11784, perfectingBound: 5888 });
     // Combined fixture (Crucible baseline + hammer recipe/proof content +
     // field_kit + the Bramblehide/Nythgap release content, commit
     // 0ca3d01a60), measured after this release merge's settle: 211,034
@@ -3352,8 +3360,11 @@ describe('the whole-character gear-heavy maximal blob (Phase 18 U-MEASURE)', () 
     // furniture ids in itemsDiscovered. Same 381-byte band: 251167..251548.
     // RE-BASED for Project H housing phase 3: 251,867 bytes, +320 from the six
     // home station recipe ids and item ids. Same 381-byte band: 251487..251868.
-    expect(bytes - gourdlightEveBytes - stampCardBytes, reMint).toBeGreaterThan(251487);
-    expect(bytes - gourdlightEveBytes - stampCardBytes, reMint).toBeLessThan(251868);
+    // RE-BASED for the crypto rail's removal: 251,051 bytes, -816 from the two
+    // bank bonus slots the retired wallet link granted. Same 381-byte band:
+    // 250671..251052.
+    expect(bytes - gourdlightEveBytes - stampCardBytes, reMint).toBeGreaterThan(250671);
+    expect(bytes - gourdlightEveBytes - stampCardBytes, reMint).toBeLessThan(251052);
 
     // The Crucible database review approved 229,376 bytes (224 KiB), the first
     // 32-KiB step above the corrected 209,261-byte pre-field-kit fixture it was

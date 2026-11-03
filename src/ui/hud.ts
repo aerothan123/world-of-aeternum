@@ -132,7 +132,6 @@ import {
 import { maxBuyCount } from '../sim/vendor_buy_stack';
 import type { SubscriptionStoreHooks } from '../subscription_contract';
 import {
-  type DailyRewardStatus,
   type IWorld,
   isOverheadEmoteId,
   OVERHEAD_EMOTES,
@@ -193,6 +192,7 @@ import {
   bannerSubtextLines,
   isBannerStale,
 } from './banner_queue';
+import { TreasureMapWindow } from './hud/treasure';
 import { treasureMapTooltipLine } from './treasure_map_tooltip_view';
 
 export type { BannerVariant } from './banner_queue';
@@ -257,7 +257,6 @@ import { formatMinimapCoords } from './coords';
 import { formatCount } from './count_format';
 import { classCrestId } from './crest_icon_art';
 import { hydrateCrestImageFallbacks } from './crest_image_fallback';
-import { DailyRewardsLauncherPoll } from './daily_rewards_launcher_core';
 import { DailyRewardsWindow, type StoreSpendResult } from './daily_rewards_window';
 import { DayNightDialPainter } from './day_night_dial_painter';
 import { DeathRecapDialog } from './death_recap_dialog';
@@ -646,8 +645,8 @@ import { StanceBarController } from './hud/stance';
 import { closeOpenTouchMenu } from './hud/tap_menu';
 import { createTargetDotsView, type TargetDotsInput, TargetDotsPainter } from './hud/target_dots';
 import { targetFrameMenuKind } from './hud/target_frame_menu';
+import { TradeWindowController } from './hud/trade';
 import { FerryHudPainter } from './hud/transport';
-import { TreasureMapWindow } from './hud/treasure';
 import { createHudVehicleBar, VehicleActionBarController } from './hud/vehicle';
 import { dismissBuyQuantityPrompts } from './hud/vendor/buy_quantity_prompt_window';
 import { buildCrucibleVendorView } from './hud/vendor/crucible_vendor_view';
@@ -680,7 +679,6 @@ import {
   VitalsPainter,
 } from './hud/vitals';
 import { afflictionFateThreadCount, destructionRuinPips } from './hud/warlock';
-import { WocTradeController } from './hud/woc_trade';
 import { HudFrameGroups, refreshHudFrameGroupLabels } from './hud_frame_groups';
 import { partyFrameGrid, registerHudFrames } from './hud_frame_registry';
 import { healthTextMode } from './hud_frames';
@@ -1010,8 +1008,6 @@ import { unstuckFeedback } from './unstuck_feedback';
 import { vendorSellConfirmPolicyFrom } from './vendor_sell_confirm_policy';
 import { visibleVendorStock } from './vendor_stock_gate_core';
 import { nextVoicedYell, type VoicedYellState, voicedYellGain } from './voice_events';
-import { onWalletUiChange, walletConnectionView } from './wallet_balance';
-import { requestWalletVerify } from './wallet_verify_request';
 import { weaponProcEffectText } from './weapon_proc_text';
 import { weaponProcLines } from './weapon_proc_view';
 import { weaponTypeLabelKey } from './weapon_type_label';
@@ -1028,9 +1024,6 @@ import { syncWindowOpenBodyClasses } from './window_open_state';
 import { installWindowReflow, rememberWindowPos, requestedWindowPos } from './window_reflow';
 import { placeWindow } from './window_reflow_core';
 import { installWindowResize, markResizableWindow } from './window_resize';
-import { wocBalanceChipHtml } from './woc_balance_chip';
-import { promptWocMarketBrowserVisit, wocMarketToggleAction } from './woc_market_link';
-import { type WocMarketHooks, WocMarketWindow } from './woc_market_window';
 import { installWorldDropTarget } from './world_drop_target';
 import { WorldQuestPuzzleWindow } from './world_quest_puzzle_window';
 import { formatXp, type XpBarView, xpBarView } from './xp_bar';
@@ -1059,10 +1052,6 @@ export interface OptionsHooks {
   // fans out woc:languagechange). onStatus receives localized progress/error text for an
   // aria-live element. Resolves false if the locale failed to load (active locale kept).
   changeLanguage(lang: SupportedLanguage, onStatus?: (msg: string) => void): Promise<boolean>;
-  // Re-fetch the connected/linked wallet's $WOC balance (server cache-bypassed) so the
-  // bag footer and player card reflect on-chain token changes. No-op when the wallet
-  // feature is off or no wallet is connected/linked.
-  refreshWocBalance(force?: boolean): void;
   // Account toggle seams, each a REST read/write pair main.ts wires ONLINE
   // ONLY (offline characters have no account row); the options row renders
   // only when its seam is present. deedBroadcasts: the deed-broadcast opt-out
@@ -1950,11 +1939,11 @@ export class Hud {
   private lastXpLanguage = '';
   private xpBarViewCache: XpBarView | null = null;
   // trading: locally staged offer, pushed to the server on change (shared with
-  // the bags window and the woc_trade controller, which resets it on open/close)
+  // the bags window and the trade controller, which resets it on open/close)
   private stagedTrade: { items: InvSlot[]; copper: number } = { items: [], copper: 0 };
   // Card Duel: latches the prior in-match state so a false->true transition
   // (a queued match just started) auto-opens the window, mirroring the trade
-  // window's transition-based auto-open (hud/woc_trade). Without this a
+  // window's transition-based auto-open (hud/trade). Without this a
   // player who closed the window (or was never at the NPC) while queued has
   // no way back into a live match away from the Card Master.
   private cardDuelWasInMatch = false;
@@ -2131,7 +2120,7 @@ export class Hud {
   private lastHudSlowAt = 0;
   private dailyRewardsButtonEl: HTMLButtonElement | null = null;
   private storePromoCard: StorePromoCardController | null = null;
-  // Mobile More-tray entry mirroring the desktop chest button's hidden/spin-ready
+  // Mobile More-tray entry mirroring the desktop chest button's hidden
   // state (folded off the top-right rail so it never overlaps the buff/debuff bars).
   private mobileDailyRewardsButtonEl: HTMLButtonElement | null = null;
   // Per-element tier cadence stamps (graphics-tier knobs). Each gates a
@@ -2560,11 +2549,6 @@ export class Hud {
       preview: () => this.charPreview,
       openFocusTrap: (root) => this.focusManager.open({ root }),
       options: {
-        refreshBalance: () => this.optionsHooks?.refreshWocBalance(),
-        showWallet: () => this.optionsHooks?.settings.get('showWalletOnPlayerCard') ?? true,
-        setShowWallet: (show) => {
-          this.optionsHooks?.onSettingChange('showWalletOnPlayerCard', show);
-        },
         showDevBadges: () => this.optionsHooks?.settings.get('showDevBadges') ?? true,
       },
       slotName: itemSlotName,
@@ -2655,17 +2639,6 @@ export class Hud {
     this.refreshKeybindLabels();
     this.buildXpTicks();
     document.addEventListener('woc:languagechange', () => this.refreshLocalizedDynamicUi());
-    // re-render the bag footer (and re-composite an open player card) when the
-    // connected wallet's $WOC balance changes
-    onWalletUiChange(() => {
-      // Footer-only, as this comment always claimed: the balance lands asynchronously
-      // with no user action behind it, so a full rebuild would drop the bag-search
-      // caret and strand a hovered tooltip. Cold-load-safe gate (#1538) too.
-      if (bagsWindowShown($('#bags').style.display)) this.bagsWindow.refreshMoneyRow();
-      this.playerCard.refresh();
-      this.claudiumWindow.onWalletChanged();
-      this.wocMarketWindow.onWalletChanged();
-    });
     $('#pf-name').textContent = sim.player.name;
     this.drawPlayerFramePortrait();
     // Character GLBs preload after the HUD mounts; once the real 3D portraits are
@@ -2857,6 +2830,9 @@ export class Hud {
     const mobileDailyRewardsButton = document.getElementById(
       'mobile-daily-rewards',
     ) as HTMLButtonElement | null;
+    // The chest launcher opens the Store window. It mounts hidden and only
+    // shows once the online economy hooks attach (attachClaudium): offline
+    // there is no store to open.
     if (!this.dailyRewardsEnabled()) {
       dailyRewardsButton?.setAttribute('hidden', '');
       mobileDailyRewardsButton?.setAttribute('hidden', '');
@@ -2865,9 +2841,8 @@ export class Hud {
       this.dailyRewardsButtonEl = dailyRewardsButton;
       this.mobileDailyRewardsButtonEl = mobileDailyRewardsButton;
       dailyRewardsButton.innerHTML =
-        '<img class="daily-rewards-icon" src="/ui/daily-rewards/treasure_chest.webp" alt="" draggable="false" decoding="async"><span class="daily-reward-count ui-badge ui-badge--corner" aria-hidden="true">1</span>';
+        '<img class="daily-rewards-icon" src="/ui/daily-rewards/treasure_chest.webp" alt="" draggable="false" decoding="async">';
       this.syncDailyRewardsSurfaceLabels();
-      dailyRewardsButton.classList.remove('spin-ready');
       this.applyDailyRewardsChestButtonVisibility();
       dailyRewardsButton.addEventListener('pointerdown', (event) => {
         event.preventDefault();
@@ -2880,7 +2855,6 @@ export class Hud {
         event.preventDefault();
         event.stopPropagation();
       });
-      this.dailyRewardsLauncher.refresh(true);
     }
     this.clock24 = (() => {
       try {
@@ -3213,12 +3187,6 @@ export class Hud {
     $('#mm-dfinder').addEventListener('click', () => this.toggleDungeonFinder());
     $('#mm-cardduel').addEventListener('click', () => this.toggleCardDuel());
     $('#mm-leaderboard').addEventListener('click', () => this.toggleLeaderboard());
-    $('#mm-wocmarket')?.addEventListener('click', () => this.toggleWocMarket());
-    // The mobile More tray launcher (#mobile-wocmarket) binds through
-    // MobileControls like its tray siblings, so tapping it runs the tray's
-    // modal handoff (closeMoreModal plus the focus-return establishment); a
-    // raw listener here left the tray's aria-modal trap live behind the
-    // window (PR 3606 review).
     $('#mm-discord')?.addEventListener('click', () => this.discordHook?.());
     const emoteBtn = $('#mm-emote');
     emoteBtn.addEventListener('click', (ev) => {
@@ -3648,10 +3616,6 @@ export class Hud {
         break;
       case 'market-window':
         this.closeMarket();
-        break;
-      case 'woc-market-window':
-        // Route through the painter so focus returns to the opener (WCAG 2.2 AA).
-        this.wocMarketWindow.close();
         break;
       // Both route through the painter so focus returns to the opener (WCAG 2.2 AA).
       case 'mailbox-window':
@@ -5220,16 +5184,14 @@ export class Hud {
   });
   // Bags window painter (bags_view.ts core + bags_window.ts painter). It composes
   // the shared presentation bag (icon/money/tooltip) and adds the inventory-cluster
-  // surface: world reads, cross-window mode flags + commands, pet-feed / drag /
-  // wallet plumbing. The cross-window modes stay HUD state, read each click.
+  // surface: world reads, cross-window mode flags + commands, pet-feed / drag
+  // plumbing. The cross-window modes stay HUD state, read each click.
   private readonly bagsWindow = new BagsWindow({
     ...this.presentationBag,
     root: () => $('#bags'),
     world: () => this.sim,
-    wocBalanceHtml: () => this.wocBalanceHtml(),
     claudiumLauncherHtml: () => this.claudiumLauncherHtml(),
     openClaudium: () => this.toggleClaudium(),
-    openWallet: requestWalletVerify,
     hideTooltip: () => this.hideTooltip(),
     consumePeek: () => this.peekGuard.consume(),
     cancelPetFeed: () => this.cancelPetFeed(),
@@ -5777,9 +5739,8 @@ export class Hud {
     },
     playtimeVisible: () => this.optionsHooks?.settings.get('showPlaytime') ?? true,
     togglePlaytimeVisible: () => {
-      // Per-device display preference (settings.showPlaytime), the
-      // showWalletOnPlayerCard doctrine: the total keeps accruing, this only
-      // conceals THIS client's sheet value. The flip routes through the
+      // Per-device display preference (settings.showPlaytime): the total keeps
+      // accruing, this only conceals THIS client's sheet value. The flip routes through the
       // options seam so the eye and the Options row share ONE write path;
       // the main.ts arm owns the settings write and synchronously repaints
       // the open sheet (which the click handler's focus re-seat relies on).
@@ -5891,29 +5852,18 @@ export class Hud {
     itemTooltip: (item, instance?: ItemInstancePayload) => this.itemTooltip(item, true, instance),
     attachTooltip: (el, html) => this.attachTooltip(el, html),
   });
-  // The $WOC Exchange is online-only, browser web + website desktop. Its
-  // launcher stays hidden until main.ts attaches hooks; a denied non-native
-  // desktop shell can instead reveal the SAME launcher wired to a browser
-  // hand-off (attachWocMarketBrowserOnlyNotice, src/ui/woc_market_link.ts).
-  private wocMarketHooks: WocMarketHooks | null = null;
-  private wocMarketBrowserOnly = false;
-
-  // The trade window and its $WOC arm live in the woc_trade domain
-  // (src/ui/hud/woc_trade/); the controller owns the offer state machine and
-  // the window repaint, and borrows Hud's shared state through this deps bag.
-  // E2E coupling: scripts/trade_money_shot.mjs and scripts/localization_e2e.mjs
-  // drive hud.wocTrade.updateTradeWindow() (and the money shot resets
-  // wocTrade.lastTradeSig) through the erased-at-runtime privates.
-  private readonly wocTrade = new WocTradeController({
+  // The trade window lives in the trade domain (src/ui/hud/trade/); the
+  // controller owns the window repaint and borrows Hud's shared state through
+  // this deps bag. E2E coupling: scripts/localization_e2e.mjs drives
+  // hud.tradeWindowController.updateTradeWindow() through the erased-at-runtime
+  // private.
+  private readonly tradeWindowController = new TradeWindowController({
     world: () => this.sim,
-    marketHooks: () => this.wocMarketHooks,
     staged: () => this.stagedTrade,
     setStaged: (next) => {
       this.stagedTrade = next;
     },
     pushTradeOffer: () => this.pushTradeOffer(),
-    refreshWocBalance: () => this.optionsHooks?.refreshWocBalance(),
-    log: (text, color) => this.log(text, color),
     itemIcon: (item, quality) => this.itemIcon(item, quality),
     attachTooltip: (el, html) => this.attachTooltip(el, html),
     itemTooltip: (item, compare, instance, materialSources) =>
@@ -5921,30 +5871,13 @@ export class Hud {
     openMaterialSources: openMaterialSourcesDialog,
     renderBags: () => this.renderBags(),
   });
-  private readonly wocMarketWindow = new WocMarketWindow({
-    root: () => $('#woc-market-window'),
-    attachTooltip: (element, html) => this.attachTooltip(element, html),
-    // compare ON, the same as the character window: a listing's worth is
-    // relative to what the viewer is already wearing.
-    itemTooltip: (item, instance?: ItemInstancePayload) => this.itemTooltip(item, true, instance),
-    world: () => this.sim,
-    hooks: () => this.wocMarketHooks,
-    closeOthers: () => this.closeOtherWindows('#woc-market-window'),
-    hideTooltip: () => this.hideTooltip(),
-    openWallet: requestWalletVerify,
-    refreshWocBalance: (force) => this.optionsHooks?.refreshWocBalance(force),
-    ...this.windowFocus('#woc-market-window'),
-  });
-  // Daily rewards window painter. It owns the async rewards reads, spin action,
-  // focus opener, and a low-rate refresh while open. All closures are lazy.
+  // Store window painter (the chest launcher's window). It owns the store and
+  // memberships tabs, the focus opener, and a low-rate refresh while open. All
+  // closures are lazy.
   private readonly dailyRewardsWindow = new DailyRewardsWindow({
     root: () => $('#daily-rewards-window'),
     world: () => this.sim,
     closeOthers: () => this.closeOtherWindows('#daily-rewards-window'),
-    // A status delivered here is as fresh as a fetch, so the poll adopts it.
-    onStatus: (status) => this.dailyRewardsLauncher.observeFresh(status),
-    onClose: () => this.dailyRewardsLauncher.refresh(true),
-    onWalletConnect: requestWalletVerify,
     ...this.claudiumPurchase,
     subscriptionHooks: () => this.claudiumHooks?.subscription,
     storeSnapshot: async () => {
@@ -5988,14 +5921,11 @@ export class Hud {
         ({
           balance: null,
           skus: [],
-          nativeRails: { sol: false, usdc: false, woc: false },
         } satisfies ClaudiumSnapshot);
       this.claudiumBalance.set(snapshot.balance);
       return snapshot;
     },
     buy: (rail, sku) => this.claudiumHooks?.buy(rail, sku) ?? Promise.resolve(),
-    onWalletConnect: requestWalletVerify,
-    walletState: () => walletConnectionView(),
     ...this.windowFocus('#claudium-window'),
     onVisibilityChange: () => this.syncAnyWindowOpenState(),
   });
@@ -6093,8 +6023,8 @@ export class Hud {
     showOnMap: (x, z) => this.showFinderOnMap(x, z),
     openReferralCards: () => this.referralCards.open(),
   });
-  private readonly treasureMapWindow = new TreasureMapWindow({ world: () => this.sim });
   private readonly purchaseRewards = new PurchaseRewardDialogs((id) => this.sim.mailTake(id));
+  private readonly treasureMapWindow = new TreasureMapWindow({ world: () => this.sim });
   private readonly worldQuestPuzzleWindow = new WorldQuestPuzzleWindow({
     document,
     world: () => this.sim,
@@ -6223,12 +6153,6 @@ export class Hud {
 
   private itemIcon(item: ItemDef, quality?: ItemDef['quality']): string {
     return knownItemIconHtml(item, quality);
-  }
-
-  // The connected wallet's $WOC balance, shown left of the coins in the bag
-  // (woc_balance_chip.ts builds it; the Hud only composes it into the bags deps).
-  private wocBalanceHtml(): string {
-    return wocBalanceChipHtml();
   }
 
   private claudiumLauncherHtml(): string {
@@ -6806,7 +6730,6 @@ export class Hud {
     this.chatGeometry.relocalize();
     this.relocalizeCoordinatorMemos();
     this.syncDailyRewardsSurfaceLabels();
-    this.wocMarketWindow.relocalize();
     this.weeklyQuestsWindow.relocalize();
     this.guildHallWindow.relocalize();
     // Self-gated on its own open check (root src/ui/CLAUDE.md); refreshes the
@@ -8382,13 +8305,18 @@ export class Hud {
     return this.alwaysShowAllBuffs ? 'ultra' : this.fxTier();
   }
 
+  /** The Store launcher's platform gate (HudFeatures, fixed at boot). */
   private dailyRewardsEnabled(): boolean {
     return this.features.dailyRewardsEnabled;
   }
 
+  /** The Store opens only once the online economy hooks are attached. */
+  private storeLauncherLive(): boolean {
+    return this.dailyRewardsEnabled() && this.claudiumHooks !== null;
+  }
+
   private syncDailyRewardsSurfaceLabels(): void {
-    const storeEnabled = this.claudiumHooks !== null;
-    const titleKey = storeEnabled ? 'hudChrome.wocStore.title' : 'hudChrome.dailyRewards.title';
+    const titleKey = 'hudChrome.wocStore.title';
     const title = t(titleKey);
     for (const button of [this.dailyRewardsButtonEl, this.mobileDailyRewardsButtonEl]) {
       if (!button) continue;
@@ -8408,70 +8336,25 @@ export class Hud {
     return this.optionsHooks?.settings.get('showDailyRewardsChest') ?? true;
   }
 
-  private mobileDailyRewardsButtonPromoted(): boolean {
-    return this.mobileDailyRewardsButtonEl?.parentElement?.id === 'mobile-combat-controls';
-  }
-
   private applyDailyRewardsChestButtonVisibility(show = this.showDailyRewardsChestButton()): void {
     const button = this.dailyRewardsButtonEl;
     if (!button) return;
-    const visible = this.dailyRewardsEnabled() && show;
+    const visible = this.storeLauncherLive() && show;
     button.toggleAttribute('hidden', !visible);
-    if (!visible) button.classList.remove('spin-ready');
     // The mobile More-tray entry is a menu row, not floating chrome: it stays
-    // reachable whenever the feature itself is on, regardless of the
-    // showDailyRewardsChestButton preference. Once promoted into the Seeker
-    // shortcut grid, it becomes floating chrome and honors the same preference.
-    const mobileButton = this.mobileDailyRewardsButtonEl;
-    const mobileVisible =
-      this.dailyRewardsEnabled() && (!this.mobileDailyRewardsButtonPromoted() || show);
-    mobileButton?.toggleAttribute('hidden', !mobileVisible);
-    if (!mobileVisible) mobileButton?.classList.remove('spin-ready');
+    // reachable whenever the store is live, regardless of the
+    // showDailyRewardsChestButton preference.
+    this.mobileDailyRewardsButtonEl?.toggleAttribute('hidden', !this.storeLauncherLive());
   }
 
   setDailyRewardsChestButtonVisible(show: boolean): void {
     this.applyDailyRewardsChestButtonVisibility(show);
-    if (show) this.dailyRewardsLauncher.refresh(true);
   }
 
   setDailyRewardsChestButtonPreference(show: boolean): void {
     this.optionsHooks?.onSettingChange('showDailyRewardsChest', show);
     this.setDailyRewardsChestButtonVisible(show);
   }
-
-  private applyDailyRewardsLauncherStatus(status: DailyRewardStatus): void {
-    if (!this.dailyRewardsEnabled()) return;
-    const button = this.dailyRewardsButtonEl;
-    const spinReady =
-      status.enabled !== false && (!status.eligibility.eligible || !status.spin.claimed);
-    const mobileVisible =
-      !this.mobileDailyRewardsButtonPromoted() || this.showDailyRewardsChestButton();
-    this.mobileDailyRewardsButtonEl?.classList.toggle('spin-ready', mobileVisible && spinReady);
-    if (!button) return;
-    if (!this.showDailyRewardsChestButton()) {
-      button.hidden = true;
-      button.classList.remove('spin-ready');
-      return;
-    }
-    button.hidden = false;
-    button.classList.toggle('spin-ready', spinReady);
-  }
-
-  // The launcher's status poll (sequence guard, throttle stamp, fetch chain)
-  // lives beside its own predicate in daily_rewards_launcher_core.ts, the
-  // ClaudiumLauncherBalance precedent; the HUD keeps the DOM wiring only.
-  private readonly dailyRewardsLauncher = new DailyRewardsLauncherPoll({
-    enabled: () => this.dailyRewardsEnabled(),
-    mounted: () => !!(this.dailyRewardsButtonEl || this.mobileDailyRewardsButtonEl),
-    syncVisibility: () => this.applyDailyRewardsChestButtonVisibility(),
-    fetch: () => this.sim.dailyRewards(),
-    applyStatus: (status) => this.applyDailyRewardsLauncherStatus(status),
-    onFailure: () => {
-      this.dailyRewardsButtonEl?.classList.remove('spin-ready');
-      this.mobileDailyRewardsButtonEl?.classList.remove('spin-ready');
-    },
-    now: () => performance.now(),
-  });
 
   update(paint = true): void {
     const sim = this.sim;
@@ -8543,7 +8426,6 @@ export class Hud {
     this.bootcamp.update(sim, this.renderer, this.keybinds, this.optionsHooks?.gamepad ?? null);
     if (slowHud) this.updateRaidLockoutBadge();
     if (slowHud) this.updateInstanceDifficultyBadge();
-    if (slowHud) this.dailyRewardsLauncher.refresh();
     this.maybeRestoreActionBarLayout();
     this.resolvePendingLoadoutBar();
     this.syncActiveHotbarForm();
@@ -9216,7 +9098,7 @@ export class Hud {
       // (ui_tier_knobs). updatePartyFrames already short-circuits an unchanged
       // party via its signature, so an idle frame is near-free without a tier gate.
       this.updatePartyFrames();
-      this.wocTrade.updateTradeWindow();
+      this.tradeWindowController.updateTradeWindow();
       this.updateArenaStatus();
       this.updateFiestaHud();
       this.bgScoreboard.update(buildBgScoreboardView(this.sim.bgInfo, this.sim.playerId));
@@ -9232,7 +9114,7 @@ export class Hud {
       if (this.bgProposalPopup.isOpen) this.bgProposalPopup.render();
       // Auto-open the Card Duel window the instant a queued match starts (a
       // false->true transition on match presence), mirroring the trade window's
-      // transition-based auto-open (hud/woc_trade): the sim allows playing a card from anywhere
+      // transition-based auto-open (hud/trade): the sim allows playing a card from anywhere
       // once matched, but the only OTHER way to open this window is the Card
       // Master's proximity-bound gossip menu, so a player who queued and walked
       // away (or closed the window) would otherwise have no path back into a
@@ -9329,7 +9211,6 @@ export class Hud {
     }
     // The mailbox closes itself when the mail mirror goes null (walked away).
     if (slowHud && this.mailboxWindow.isOpen) this.mailboxWindow.refreshIfChanged();
-    if (slowHud && this.wocMarketWindow.isOpen) this.wocMarketWindow.refreshIfChanged();
     // The bank closes itself when the bank mirror goes null (left the banker).
     if (slowHud && this.bankWindow.isOpen) this.bankWindow.refreshIfChanged();
     if (slowHud && this.courierWindow.isOpen()) this.courierWindow.refreshIfChanged();
@@ -15681,11 +15562,6 @@ export class Hud {
     // Dock the char-sheet pairing when its companion opens (the touch cluster).
     this.syncCharBagsPairing();
     audio.bagOpen();
-    // Pull a fresh on-chain $WOC balance for the footer; the async result repaints
-    // the footer (not the whole bag) via the onWalletUiChange listener wired in the
-    // ctor. The display is set to 'flex' above precisely so that listener's
-    // bagsWindowShown gate sees an open window when the balance lands.
-    this.optionsHooks?.refreshWocBalance();
   }
 
   // Called when an authoritative inventory delta lands (online snapshots
@@ -16485,74 +16361,23 @@ export class Hud {
     this.riftForgeWindow.open();
   }
 
+  /** The chest launcher: toggle the Store window (store-only since the
+   *  crypto-only Daily Rewards feature was removed). */
   toggleDailyRewards(): void {
-    if (!this.dailyRewardsEnabled()) return;
+    if (!this.storeLauncherLive()) return;
     this.dailyRewardsWindow.toggle();
-    // Close refreshes via onClose; force only the open direction here. The open
-    // force stays as the fallback for tabs that render without a status fetch
-    // (the store tab), where no onStatus push would arrive.
-    if (this.dailyRewardsWindow.isOpen) this.dailyRewardsLauncher.refresh(true);
   }
 
   openWocStore(tab: 'store' | 'memberships' = 'store'): void {
-    if (!this.dailyRewardsEnabled()) return;
+    if (!this.storeLauncherLive()) return;
     this.dailyRewardsWindow.openStore(tab);
-    this.dailyRewardsLauncher.refresh(true);
-  }
-
-  /** Inject the $WOC Exchange hooks (main.ts, online, browser web + website
-   *  desktop only) and reveal its launcher; else the surface stays absent. */
-  attachWocMarket(hooks: WocMarketHooks): void {
-    this.wocMarketHooks = hooks;
-    // Clears a browser-only notice this Hud instance may have carried from an
-    // earlier attach attempt, so a later real attach can never be shadowed by
-    // it (wocMarketToggleAction checks browserOnly first).
-    this.wocMarketBrowserOnly = false;
-    this.revealWocMarketLauncher();
-  }
-
-  /** Reveal the SAME launcher on a wrapped DESKTOP shell (Steam/Electron/the
-   *  packaged website build), where the Exchange itself stays fail-closed
-   *  (main.ts, via src/game/woc_market_wiring.ts): toggleWocMarket hands off
-   *  to the browser instead of opening the window, so the icon never reads
-   *  as just missing. Never called for Capacitor native (see the wiring
-   *  module's header). */
-  attachWocMarketBrowserOnlyNotice(): void {
-    this.wocMarketBrowserOnly = true;
-    this.revealWocMarketLauncher();
-  }
-
-  private revealWocMarketLauncher(): void {
-    for (const id of ['mm-wocmarket', 'mobile-wocmarket']) {
-      document.getElementById(id)?.removeAttribute('hidden');
-    }
-  }
-
-  toggleWocMarket(): void {
-    switch (
-      wocMarketToggleAction({
-        browserOnly: this.wocMarketBrowserOnly,
-        hasHooks: this.wocMarketHooks !== null,
-      })
-    ) {
-      case 'handoff':
-        promptWocMarketBrowserVisit({
-          confirm: (title, body, okText, cancelText, onOk) =>
-            this.confirmDialog(title, body, okText, cancelText, onOk),
-        });
-        return;
-      case 'toggle':
-        this.wocMarketWindow.toggle();
-        return;
-      case 'none':
-        return;
-    }
   }
 
   /** Inject the online economy hooks that back the Claudium window (main.ts, online only). */
   attachClaudium(hooks: ClaudiumHooks): void {
     this.claudiumHooks = hooks;
     this.syncDailyRewardsSurfaceLabels();
+    this.applyDailyRewardsChestButtonVisibility();
     this.claudiumBalance.reset();
     this.claudiumBalance.refresh(true);
   }
