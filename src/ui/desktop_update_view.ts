@@ -67,9 +67,11 @@ export function reduceUpdateToast(
   if (event.type === 'progress') {
     if (state.mode !== 'downloading' || !Number.isFinite(event.percent)) return state;
     const next = Math.max(0, Math.min(100, Math.round(event.percent as number)));
-    // Monotonic: never let a lower sample or a re-ordered IPC tick pull the bar
-    // backward mid-download.
-    const percent = Math.max(state.percent, next);
+    // Monotonic against small dips: a re-ordered IPC tick never pulls the bar
+    // backward mid-download. A drop of 10 or more points is a RESTARTED download
+    // (a failed differential attempt falling back to the full file), so the bar
+    // follows it instead of freezing at the old percent.
+    const percent = state.percent - next >= 10 ? next : Math.max(state.percent, next);
     return percent === state.percent ? state : { ...state, percent };
   }
   if (event.type === 'not-available') {

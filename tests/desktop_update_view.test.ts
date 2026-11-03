@@ -95,6 +95,20 @@ describe('reduceUpdateToast', () => {
     expect(state.percent).toBe(100);
   });
 
+  it('follows a restarted download instead of freezing at 100%', () => {
+    // A failed differential download reaches 100 before electron-updater falls
+    // back to the full file, whose progress starts again near 0.
+    let state = reduceUpdateToast(INITIAL_UPDATE_TOAST_STATE, {
+      type: 'available',
+      version: '0.45.11',
+    });
+    state = reduceUpdateToast(state, { type: 'progress', percent: 100 });
+    state = reduceUpdateToast(state, { type: 'progress', percent: 4 });
+    expect(state).toMatchObject({ mode: 'downloading', percent: 4 });
+    state = reduceUpdateToast(state, { type: 'progress', percent: 2 });
+    expect(state.percent).toBe(4);
+  });
+
   it('keeps download progress across a re-emitted available (4h recheck)', () => {
     let state = reduceUpdateToast(INITIAL_UPDATE_TOAST_STATE, {
       type: 'available',
@@ -116,7 +130,9 @@ describe('reduceUpdateToast', () => {
       version: '0.19.0',
     });
     state = reduceUpdateToast(state, { type: 'progress', percent: 50 });
-    const afterLower = reduceUpdateToast(state, { type: 'progress', percent: 20 });
+    // A small dip (a stale tick) is ignored; a drop of 10+ points is a
+    // restarted download and is followed (the restart test above).
+    const afterLower = reduceUpdateToast(state, { type: 'progress', percent: 45 });
     expect(afterLower.percent).toBe(50);
     // Identity elision: a no-op lower sample returns the same state object.
     expect(afterLower).toBe(state);

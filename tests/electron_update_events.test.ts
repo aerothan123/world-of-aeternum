@@ -64,6 +64,15 @@ describe('shouldNotifyProgress (IPC throttle)', () => {
     expect(shouldNotifyProgress(100, 100)).toBe(false);
   });
 
+  it('reports a restarted download instead of freezing at the old percent', () => {
+    // electron-updater falls back from a failed differential download to a full
+    // one, whose progress starts again near 0. A gate that only lets progress
+    // climb left the toast frozen at 100% for the whole full download.
+    expect(shouldNotifyProgress(100, 2)).toBe(true);
+    expect(shouldNotifyProgress(60, 3)).toBe(true);
+    expect(shouldNotifyProgress(60, 58)).toBe(false);
+  });
+
   it('rejects non-finite percents', () => {
     expect(shouldNotifyProgress(0, Number.NaN)).toBe(false);
     expect(shouldNotifyProgress(0, undefined)).toBe(false);

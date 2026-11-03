@@ -30,10 +30,14 @@ function updateEventPayload(type, raw = undefined) {
 
 // Throttle download-progress IPC to meaningful movement: every 10 points, plus
 // the arrival at 100. electron-updater emits progress far more often than a
-// toast needs.
+// toast needs. A drop of 10 or more points is a RESTARTED download (the
+// differential attempt failed and the full download began from near 0), so it
+// is reported too; otherwise the toast froze at the old percent for the whole
+// full download.
 function shouldNotifyProgress(lastPercent, percent) {
   if (!Number.isFinite(percent)) return false;
   if (lastPercent < 0) return true;
+  if (lastPercent - percent >= 10) return true;
   if (percent >= 100) return lastPercent < 100;
   return percent - lastPercent >= 10;
 }
