@@ -19036,13 +19036,13 @@ export const GUIDE_PROF_GATHERING: GuideProfGathering[] = [
         {
           "zone": "Eastbrook Vale",
           "tier": 1,
-          "toolTier": 0,
+          "toolTier": 1,
           "material": "Ironbark Log"
         },
         {
           "zone": "Mirefen Marsh",
           "tier": 1,
-          "toolTier": 0,
+          "toolTier": 1,
           "material": "Ashwood Log"
         },
         {
@@ -19054,73 +19054,73 @@ export const GUIDE_PROF_GATHERING: GuideProfGathering[] = [
         {
           "zone": "The Amberfall",
           "tier": 1,
-          "toolTier": 0,
+          "toolTier": 1,
           "material": "Highpine Log"
         },
         {
           "zone": "The Drakelands",
           "tier": 1,
-          "toolTier": 0,
+          "toolTier": 1,
           "material": "Highpine Log"
         },
         {
           "zone": "The Evergarden",
           "tier": 1,
-          "toolTier": 0,
+          "toolTier": 1,
           "material": "Highpine Log"
         },
         {
           "zone": "The Farshore",
           "tier": 1,
-          "toolTier": 0,
+          "toolTier": 1,
           "material": "Ashwood Log"
         },
         {
           "zone": "The Frostveil Reach",
           "tier": 1,
-          "toolTier": 0,
+          "toolTier": 1,
           "material": "Highpine Log"
         },
         {
           "zone": "The Galecrest",
           "tier": 1,
-          "toolTier": 0,
+          "toolTier": 1,
           "material": "Highpine Log"
         },
         {
           "zone": "The Nightbloom",
           "tier": 1,
-          "toolTier": 0,
+          "toolTier": 1,
           "material": "Highpine Log"
         },
         {
           "zone": "The Palmreach",
           "tier": 1,
-          "toolTier": 0,
+          "toolTier": 1,
           "material": "Highpine Log"
         },
         {
           "zone": "The Veiled Hollow",
           "tier": 1,
-          "toolTier": 0,
+          "toolTier": 1,
           "material": "Highpine Log"
         },
         {
           "zone": "The Willowfen",
           "tier": 1,
-          "toolTier": 0,
+          "toolTier": 1,
           "material": "Highpine Log"
         },
         {
           "zone": "The Wraithwood",
           "tier": 1,
-          "toolTier": 0,
+          "toolTier": 1,
           "material": "Highpine Log"
         },
         {
           "zone": "Thornpeak Heights",
           "tier": 1,
-          "toolTier": 0,
+          "toolTier": 1,
           "material": "Highpine Log"
         },
         {

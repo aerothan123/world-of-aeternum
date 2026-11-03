@@ -574,7 +574,9 @@ describe('the RuneScape rule (#2343): pre-phase nodes deny bare hands and need o
     const sim = makeWorld();
     const pid = sim.addPlayer('warrior', 'BareHands');
     const meta = mustMeta(sim, pid);
-    // Genuinely bare-handed: the starting kit carries no gathering tool.
+    // Genuinely bare-handed: the starting kit carries no gathering tool, and
+    // the starter tool belt (gather_tool_slots.ts) is emptied for this case.
+    meta.gatherTools = {};
     expect(meta.inventory.some((s) => ITEMS[s.itemId]?.use?.type === 'gatherTool')).toBe(false);
     let draws = 0;
     sim.rng.setObserver(() => draws++);
@@ -612,6 +614,7 @@ describe('the RuneScape rule (#2343): pre-phase nodes deny bare hands and need o
         p.castRemaining = 0;
         p.gatherCastNodeId = '';
         meta.inventory = meta.inventory.filter((s) => s.itemId !== toolId);
+        meta.gatherTools = {}; // the grant filled the empty tool slot
       }
       // Every arm above, denial and cast start alike, is rng-draw-free.
       expect(draws).toBe(0);
@@ -1674,7 +1677,9 @@ describe('fine material grades on the live harvest path', () => {
     expect(castAndComplete(sim, 'ore_eastbrook_1', pid)).toBe(true);
     // One bonus-bearing harvest with the epic pick in bags: ceiling latched.
     expect(slot.maxDurability).toBe(50);
-    // The refill now prices in shards even with the pick banked again.
+    // The refill now prices in shards even with the pick banked again (off
+    // the tool belt, where the grant put it, and out of the bags).
+    sim.unequipGatherTool('mining', pid);
     sim.removeItem('arcanite_mining_pick', 1, pid);
     slot.durability = 5;
     sim.addItem('arcane_dust', 10, pid);
@@ -1843,6 +1848,10 @@ describe('fine material grades on the live harvest path', () => {
     const pid = sim.addPlayer('warrior', 'Prospector');
     sim.addItem('copper_mining_pick', 1, pid);
     sim.addItem('arcanite_mining_pick', 1, pid);
+    // Work with the copper pick EQUIPPED and the epic one owned in the bags:
+    // a belt tool is locked for the cast, a bagged one can leave mid-cast
+    // (the trade shape this case is about).
+    sim.equipItem('copper_mining_pick', pid);
     sim.addItem('gatherers_cache', 2, pid);
     sim.slotToolEffect('mining', 'gatherers_cache', undefined, pid);
     const meta = mustMeta(sim, pid);
@@ -2112,6 +2121,7 @@ describe('harvest breaks stealth and action-locked forms refuse it', () => {
     const sim = makeWorld();
     const pid = sim.addPlayer('rogue', 'Shade');
     const meta = mustMeta(sim, pid);
+    meta.gatherTools = {}; // bare hands: no starter tool belt
     sim.grantXp(xpForLevel(1) + xpForLevel(2) + 10, meta);
     sim.castAbility('stealth', pid);
     const p = mustEntity(sim, pid);

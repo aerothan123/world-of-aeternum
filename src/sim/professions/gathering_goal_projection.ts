@@ -1,9 +1,11 @@
 // Per-character derived output. The gate precedes all scratch copies and material work.
+
 import { recipeById } from '../content/recipes';
 import { craftVaultDrawBlockedFor, craftVaultStockFor } from '../materials_vault';
 import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
 import { craftDailyLimitReached, isRecipeKnown, meetsComboRequirement } from './crafting';
+import { ownedGatherTools } from './gather_tool_slots';
 import type { SavedGatheringGoal } from './gathering_goal_persist';
 import type {
   GatheringGoalIdentity,
@@ -144,7 +146,10 @@ export function gatheringGoalFor(ctx: SimContext, pid: number): GatheringGoalVie
       crafterName: meta.name,
       craftSkills: meta.craftSkills,
       jackAttuned: !!meta.archetype.isJackOfAllTrades,
-      carriedInventory: meta.inventory,
+      // The equipped tool belt counts as carried: a tool-upgrade craft lends
+      // the equipped previous tool (gather_tool_actions.ts), so the goal is
+      // ready on the same reagents the craft start accepts.
+      carriedInventory: ownedGatherTools(meta),
       bankInventory: meta.bank.inventory,
       vault: meta.vault,
       drawableVaultStock: blocked ? null : craftVaultStockFor(ctx, pid),

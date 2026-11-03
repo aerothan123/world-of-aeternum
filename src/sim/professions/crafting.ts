@@ -115,6 +115,7 @@ import { planCraftReagentDraw } from './craft_reagent_plan';
 import { isDisenchantable } from './enchanting';
 import { APEX_FEAST_CRAFT_MARK, isApexFeastRecipe } from './feast';
 import { announceMasterworkZone } from './gather_events';
+import { lendBeltToolsForReagents } from './gather_tool_actions';
 import { isSignableMaterialRarity, type MaterialRarity } from './gathering';
 import {
   type CraftVarianceOutcome,
@@ -869,13 +870,38 @@ export function evaluateCraftAdmission(
  *  only calls this on cast complete (completeCraftCast). Direct callers
  *  (tests, harnesses) still resolve instantly. The shared action throttle is
  *  no longer consulted here. */
+/**
+ * The craft admission, plus the tool belt: a tool-upgrade recipe consumes the
+ * previous tool, which usually sits EQUIPPED in its tool slot. On a refusal
+ * the equipped reagent tools are lent back to the bags
+ * (gather_tool_actions.ts lendBeltToolsForReagents) and the admission is
+ * asked again; a second refusal puts them back, so a denied craft changes
+ * nothing. Shared by the cast start and the resolve so the two cannot drift.
+ * Draw-free like the admission itself.
+ */
+function admitCraftWithBeltTools(
+  ctx: SimContext,
+  pid: number,
+  recipe: ProfessionRecipeRecord,
+  commission: boolean,
+): CraftResult | null {
+  const denial = evaluateCraftAdmission(ctx, pid, recipe, commission);
+  if (!denial) return null;
+  const meta = ctx.players.get(pid);
+  const lent = meta ? lendBeltToolsForReagents(ctx, meta, recipe.reagents) : null;
+  if (!lent) return denial;
+  const second = evaluateCraftAdmission(ctx, pid, recipe, commission);
+  if (second) lent.undo();
+  return second;
+}
+
 export function resolveCraftForRecipe(
   ctx: SimContext,
   pid: number,
   recipe: ProfessionRecipeRecord,
   commission = false,
 ): CraftResult {
-  const denial = evaluateCraftAdmission(ctx, pid, recipe, commission);
+  const denial = admitCraftWithBeltTools(ctx, pid, recipe, commission);
   if (denial) return denial;
   const meta = ctx.players.get(pid);
   const craftSkills = meta ? meta.craftSkills : {};
@@ -1660,7 +1686,7 @@ export function craftItem(
   }
   const recipe = recipeById(recipeId);
   if (!recipe) return { ok: false, recipeId, reason: 'unknown_recipe' };
-  const denial = evaluateCraftAdmission(ctx, meta.entityId, recipe, commission);
+  const denial = admitCraftWithBeltTools(ctx, meta.entityId, recipe, commission);
   if (denial) return denial;
   const matsMax = maxCraftCountForRecipe(ctx, recipe, meta.entityId);
   const batchTotal = clampCraftBatchCount(count, matsMax);

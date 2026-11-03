@@ -293,6 +293,9 @@ describe('live profession attunement quests', () => {
         player.pos.y = terrainHeight(node.pos.x, node.pos.z, sim.cfg.seed);
         player.prevPos = { ...player.pos };
         sim.harvestNode(node.id, undefined, pid); // rarity roll: draws rng
+        // The starter pick on the tool belt starts a real gather cast: run it
+        // out so the craft below does not find the player busy.
+        for (let i = 0; i < 200 && player.castingAbility; i++) sim.tick();
         sim.tick();
       }
 

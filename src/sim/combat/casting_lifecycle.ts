@@ -53,6 +53,7 @@ import {
   validateCorpseHarvestCast,
 } from '../professions/corpse_harvest_session';
 import { effectiveFishingBand, fishReelWindowSecFor } from '../professions/fishing';
+import { toolBelt } from '../professions/gather_tool_slots';
 import { bestOwnedGatherToolFor } from '../professions/tools';
 import { scheduleProjectile } from '../projectile_travel';
 import { isWorldPvpHostile, WORLD_PVP_AID_REFUSED_LINE } from '../pvp/world_pvp';
@@ -572,7 +573,7 @@ export function updateCasting(ctx: SimContext, p: Entity, meta: PlayerMeta): voi
       // Draw-free, same as the tier-only scan it replaces, so the bite arm
       // still moves no rng and the two-draws-per-landed-session contract is
       // untouched.
-      const rod = bestOwnedGatherToolFor(meta.inventory, 'fishing', ITEMS);
+      const rod = bestOwnedGatherToolFor(toolBelt(meta), 'fishing', ITEMS);
       p.fishReelDeadlineTick =
         ctx.tickCount + Math.ceil(fishReelWindowSecFor(rod.tier, rod.rarity) / DT);
     } else if (p.fishReelDeadlineTick > 0 && ctx.tickCount > p.fishReelDeadlineTick) {

@@ -175,6 +175,10 @@ const PROFESSIONS_BLOB_FIELDS = [
 // included, since a key absent from the fixture is harmless here while a
 // missing one is not.
 const NON_PROFESSIONS_BLOB_FIELDS = [
+  // The gathering tool belt (src/sim/professions/gather_tool_slots.ts): worn
+  // equipment, at most one count-1 copy per gathering profession, bounded by
+  // the bags' own payload rule like the paperdoll.
+  'gatherTools',
   // Per-link reward receipts and the bounded inviter tier mask, never crafting state.
   'referralRewards',
   'referralInviterRewards',

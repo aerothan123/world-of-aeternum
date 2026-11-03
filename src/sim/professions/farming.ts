@@ -112,6 +112,7 @@ import {
   GATHER_RARE_EVENT_YIELD_MULT,
   rollGatherRareEvent,
 } from './gather_events';
+import { ownedGatherTools, toolBelt } from './gather_tool_slots';
 import { queueGatheringGrant } from './gathering';
 import { updateMobileStationObjects } from './mobile_station_object';
 import {
@@ -674,7 +675,7 @@ export function plantCrop(
   //     every deny arm above and BEFORE the deliberate-action trio and the
   //     pre-roll block below: the deny draws ZERO rng, consumes nothing, and
   //     preserves stealth like every arm above it.
-  const hoeTier = bestWieldableGatherToolTierOrNone(meta.inventory, 'farming', skill, ITEMS);
+  const hoeTier = bestWieldableGatherToolTierOrNone(toolBelt(meta), 'farming', skill, ITEMS);
   if (hoeTier === NO_TOOL_OWNED || !canGatherTier(hoeTier, crop.tier)) {
     ctx.emit({ type: 'farmDenied', pid: meta.entityId, reason: 'tool', bedId, cropId });
     return;
@@ -1162,7 +1163,10 @@ export function harvestCrop(ctx: SimContext, p: Entity, meta: PlayerMeta, bedId:
   // exploit), so the one completion-time read covers both R47 ends.
   let effectDepleted = false;
   if (effectUse.applied && slot) {
-    ratchetCeilingForUse(slot, bestOwnedGatherToolFor(meta.inventory, 'farming', ITEMS).rarity);
+    ratchetCeilingForUse(
+      slot,
+      bestOwnedGatherToolFor(ownedGatherTools(meta), 'farming', ITEMS).rarity,
+    );
     if (armed.count !== base.count || armed.fine !== base.fine) {
       // The last-charge signal (the gatherResult settle's farming twin):
       // `spent` guards the durability read, because the read alone would

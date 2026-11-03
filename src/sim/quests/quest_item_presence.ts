@@ -42,6 +42,7 @@
 // The narrow Pick keeps the read surface explicit and the unit tests honest:
 // a fake ctx implements exactly these four members and nothing else. The
 // equipment arm needs no ctx member at all: the worn set lives on the meta.
+import { toolBelt } from '../professions/gather_tool_slots';
 import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
 export type QuestItemPresenceCtx = Pick<
@@ -68,6 +69,10 @@ export function playerHoldsQuestItem(
   // narrower than the full paperdoll (a fixture, a partially restored character) must degrade
   // to "not worn" instead of throwing where a quest is being handed over.
   if (Object.values(meta.equipment ?? {}).some((worn) => worn === itemId)) return true;
+  // A tool in its gathering slot is held too (professions/gather_tool_slots.ts): the
+  // starter quests hand over the tier-1 pick, axe and sickle every character now
+  // starts with equipped, so without this arm each accept would mint a second copy.
+  if (toolBelt(meta).some((slot) => slot.itemId === itemId)) return true;
   if (ctx.mailboxHoldsItem(meta, itemId)) return true;
   return ctx.marketListings.some(
     (l) => l.itemId === itemId && l.count > 0 && ctx.marketListingBelongsTo(l, meta),

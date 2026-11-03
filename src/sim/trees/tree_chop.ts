@@ -28,12 +28,13 @@ export function treeChopSeconds(treeTier: number, wieldableTier: number, band: 0
 }
 
 /**
- * The axe tier a tree asks for. A tier-1 tree needs NO axe at all, so a brand
- * new character can chop the starting forest bare-handed (the one deliberate
- * exception to the node rule that every harvest needs a tool, #2343); tier 2
- * and up need an axe of at least that tier, exactly as wood stands did,
- * including the R22 wield requirement on the axe.
+ * The axe tier a tree asks for: an axe EQUIPPED in the logging tool slot of
+ * at least the tree's tier (never below tier 1), exactly as wood stands did,
+ * including the R22 wield requirement on the axe. Tier-1 trees used to need
+ * no axe at all; since the tool belt (professions/gather_tool_slots.ts) every
+ * character starts with the basic handaxe equipped, so the starting forest is
+ * still open to a brand new character and every tree follows the node rule.
  */
 export function treeRequiredToolTier(treeTier: number): number {
-  return treeTier <= 1 ? 0 : treeTier;
+  return Math.max(1, treeTier);
 }

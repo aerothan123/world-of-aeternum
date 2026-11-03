@@ -45,6 +45,7 @@ import { forceDismount } from '../mounts';
 import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
 import { type Entity, isConsuming, TOOL_RECHARGE_CAST_ID } from '../types';
+import { ownedGatherTools } from './gather_tool_slots';
 import { gatherNodeById, NODE_HARVEST_TABLE } from './gathering';
 import {
   bestOwnedGatherToolFor,
@@ -113,6 +114,7 @@ export function slotToolEffectAction(
     (GATHERING_PROFESSION_IDS as readonly string[]).includes(professionId)
       ? r.meta.toolEffectSlots?.[professionId as GatheringProfessionId]
       : undefined,
+    ownedGatherTools(r.meta),
   );
   if (!resolved.ok) {
     ctx.emit({
@@ -237,7 +239,7 @@ export function restoreToolEffectSlotAction(
   if (slotToolEffectRefused(professionId, effectId)) return 'invalid_request';
   const profession = professionId as GatheringProfessionId;
   if (r.meta.toolEffectSlots?.[profession] !== undefined) return 'already_slotted';
-  const best = bestOwnedGatherToolFor(r.meta.inventory, profession, ITEMS);
+  const best = bestOwnedGatherToolFor(ownedGatherTools(r.meta), profession, ITEMS);
   if (best.ownedTier === NO_TOOL_OWNED) return 'no_tool';
   const slot = slotEffect(effectId as ToolEffectId, { toolRarity: best.rarity });
   applyMintedSlot(ctx, r, profession, effectId, slot);
@@ -304,6 +306,7 @@ function evaluateRechargeAdmission(
     r.meta.name,
     r.meta.craftSkills,
     ITEMS,
+    ownedGatherTools(r.meta),
   );
   if (!resolved.ok) {
     emitRechargeDeny(ctx, r.meta.entityId, professionId, resolved.reason, slot.effectId);
@@ -379,6 +382,7 @@ function resolveRechargeBody(
     r.meta.name,
     r.meta.craftSkills,
     ITEMS,
+    ownedGatherTools(r.meta),
   );
   if (!resolved.ok) {
     emitRechargeDeny(ctx, r.meta.entityId, professionId, resolved.reason, slot.effectId);

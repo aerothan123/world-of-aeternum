@@ -182,6 +182,7 @@ describe('the real seams', () => {
     const sim = new Sim({ seed: 31, playerClass: 'warrior', autoEquip: false });
     const pid = sim.playerId;
     const meta = sim.players.get(pid) as PlayerMeta;
+    meta.gatherTools = {}; // not worn either (the starter tool belt)
     expect(playerHoldsQuestItem(sim.ctx, meta, TOOL)).toBe(false);
     // Books a system letter carrying the item, with the standard delivery
     // delay: the raven is still ON THE WING when we ask, which is exactly the
@@ -210,6 +211,7 @@ describe('the real seams', () => {
     // ownership, and its failure mode is duplicate quest-item minting.
     const sim = new Sim({ seed: 33, playerClass: 'warrior', autoEquip: false });
     const meta = sim.players.get(sim.playerId) as PlayerMeta;
+    meta.gatherTools = {}; // not worn either (the starter tool belt)
     const toolLetter = {
       letterId: 'qa_presence_tools',
       senderName: 'Postmaster',

@@ -37,6 +37,7 @@ import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
 import type { Entity, InvSlot } from '../types';
 import { applyFocusBonus, applyFocusTierBonus, type FocusAllocation } from './focus';
+import { toolBelt } from './gather_tool_slots';
 import {
   forfeitsEveryMappedYield,
   type HarvestTier,
@@ -104,14 +105,14 @@ export function snapshotCorpseHarvestGrantInputs(
   const chosen = [...chosenComponents];
   const townFocus = { ...meta.townFocus };
   const bestAnyToolTier = bestWieldableAnyGatherToolTier(
-    meta.inventory,
+    toolBelt(meta),
     meta.gatheringProficiency,
     ITEMS,
   );
   const wieldRequirementByComponent: Record<string, number | null> = {};
   for (const component of yieldingFocusComponents(tags, chosen)) {
     wieldRequirementByComponent[component] = minWieldRequirementToWorkAny(
-      meta.inventory,
+      toolBelt(meta),
       monsterMaterialTierFor(component),
       ITEMS,
     );

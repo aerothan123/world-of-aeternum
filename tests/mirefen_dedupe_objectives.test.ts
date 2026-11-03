@@ -428,6 +428,8 @@ describe('firebottle lifecycle: giver re-grant and removal on finish (q_deepfen_
     const meta = (sim as unknown as { players: Map<number, PlayerMeta> }).players.get(
       sim.playerId,
     )!;
+    // No starter pick worn (the tool belt would count as held too).
+    meta.gatherTools = {};
     const bank = (meta as unknown as { bank: { inventory: { itemId: string; count: number }[] } })
       .bank;
     bank.inventory.push({ itemId: 'copper_mining_pick', count: 1 });
@@ -437,7 +439,8 @@ describe('firebottle lifecycle: giver re-grant and removal on finish (q_deepfen_
     // The genuinely-lost case (no copy anywhere) still re-grants.
     bank.inventory.length = 0;
     regrantMissingQuestItems(ctx, meta, 'foreman_odell');
-    expect(sim.countItem('copper_mining_pick')).toBe(1);
+    // The re-granted pick lands in the empty mining tool slot.
+    expect(meta.gatherTools?.mining?.itemId).toBe('copper_mining_pick');
   });
 
   it('refuses a firebottle throw while dead', () => {

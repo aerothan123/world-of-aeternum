@@ -172,6 +172,8 @@ describe('a slotted tool effect changes the yield and never the draw stream', ()
       nodeHarvestReadyAt: {},
       pendingGatherGrants: [],
       inventory: [{ itemId: 'copper_mining_pick', count: 1 }],
+      // The pick WORN in its tool slot: a tool works only from there.
+      gatherTools: { mining: { itemId: 'copper_mining_pick', count: 1 } },
       ...(slot ? { toolEffectSlots: { mining: slot } } : {}),
     } as unknown as PlayerMeta;
   }

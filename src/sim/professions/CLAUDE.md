@@ -247,6 +247,22 @@ or pure leaves, never a `Sim` import, randomness only via `ctx.rng` (guarded by
   the three gathering settings together (focus allocation, its queue, the
   harvest preference). `town_focus_commands.ts setTownFocus` keeps a running
   queue when the same allocation is re-saved (never pushes the clock back).
+- `gather_tool_slots.ts` + `gather_tool_actions.ts`: the gathering TOOL BELT,
+  one equipped tool per gathering profession (`PlayerMeta.gatherTools`, keyed by
+  the profession id), separate from combat gear and statless. A tool works ONLY
+  from its slot: every access, grade, speed and fishing read (node, tree, corpse,
+  rod band and reel window, hoe gate) scans `toolBelt(meta)`, never the bags; the
+  price family (R47 ratchet, R30 recharge, the slot mint) scans
+  `ownedGatherTools(meta)`, bags plus belt, as it scanned the bags before. The
+  leaf owns every decision (which slot an item fills, the grant auto-fill rule:
+  an empty slot or a strictly better tool, the load bound, the one-time
+  migration of a pre-belt save, the starter belt); the actions module applies
+  them: equip from the bags (the existing `equipItem` command, and `useItem` on
+  a bagged tool), `unequipGatherTool`, the grant hook, the join load, and
+  `lendBeltToolsForReagents`, which lets a tool-upgrade craft consume the
+  equipped previous tool. Every swap is refused mid gather, chop or fishing
+  cast. Persisted as `CharacterState.gatherTools`, always written (ABSENT marks
+  a pre-belt save). Draws no rng. Pinned by `tests/gather_tool_slots.test.ts`.
 - `tool_effect_actions.ts`: the slot and recharge COMMAND BODIES behind the
   seam (`Sim` keeps thin delegates). Everything stateful lives here and, for
   those TWO, every decision in the `tools.ts` leaf above: resolve first, then

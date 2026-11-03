@@ -193,7 +193,7 @@ import {
 } from './content/ignivar_loot';
 import { normalizeMountSkinId } from './content/mount_skins';
 import { DEFAULT_MOUNT, type MountKey } from './content/mounts';
-import { GATHERING_PROFESSION_IDS, type GatheringProfessionId } from './content/professions';
+import type { GatheringProfessionId } from './content/professions';
 import { PROVING_SHORE_ARRIVAL } from './content/proving_shore';
 import { PTR_DEV_VENDOR_DEF } from './content/ptr_dev_vendor';
 import { FURY_ENTITY_ID, FURY_NPC_ID } from './content/pvp_honor';
@@ -545,6 +545,17 @@ import {
   nodeRespawnSecondsFor as nodeRespawnSecondsForImpl,
 } from './professions/gather_node_reads';
 import {
+  autoFillGatherToolSlot,
+  loadGatherToolBelt,
+  unequipGatherTool,
+} from './professions/gather_tool_actions';
+import {
+  EMPTY_GATHER_TOOL_SLOTS,
+  type GatherToolBeltHolder,
+  type GatherToolSlots,
+  savedGatherToolSlots,
+} from './professions/gather_tool_slots';
+import {
   completeGatherCast as completeGatherCastImpl,
   drainGatheringGrants,
   emptyGatheringProficiency,
@@ -623,8 +634,8 @@ import {
   rechargeToolEffectAction,
   slotToolEffectAction,
 } from './professions/tool_effect_actions';
+import { toolEffectSlotViewsFor } from './professions/tool_effect_slot_views';
 import {
-  EMPTY_TOOL_EFFECT_SLOT_VIEWS,
   normalizeToolEffectSlots,
   structuredCloneToolEffectSlots,
   type ToolEffectConfirmMode,
@@ -1340,7 +1351,8 @@ export interface PlayerMeta
     HostArmourAuthority,
     lanceTrialMod.LancePlayerState,
     petCommands.PetOwnerRuntimeState,
-    CharacterVaultStorageState {
+    CharacterVaultStorageState,
+    GatherToolBeltHolder {
   courier?: courierMod.CourierState;
   queueRewards?: CharacterState['queueRewards'];
   entityId: number;
@@ -3370,6 +3382,7 @@ export class Sim {
       if (s.weaponStowed) player.weaponStowed = true;
       if (s.helmHidden) player.helmHidden = true;
     }
+    loadGatherToolBelt(meta, savedState); // starter belt, pre-belt migration, or the saved belt
 
     // Host-stamped bank bonus slots (see the opt doc above); applyBankBonusStamp
     // owns the clamp and the row clone, so bank.ts stays the one writer.
@@ -3879,6 +3892,7 @@ export class Sim {
       ...(meta.toolEffectSlots
         ? { toolEffectSlots: structuredCloneToolEffectSlots(meta.toolEffectSlots) }
         : {}),
+      gatherTools: savedGatherToolSlots(meta.gatherTools),
       copper: meta.copper,
       hp: e.hp,
       // A druid saved while shifted runs on rage/energy with its mana parked in
@@ -7887,6 +7901,7 @@ export class Sim {
     emitInventoryReceipt(this.ctx, meta.entityId, itemId, def?.name ?? itemId, count, opts);
     this.ctx.onInventoryChangedForQuests(meta);
     if (meta.autoEquip && isAutoEquipGearKind(def)) maybeAutoEquip(this.ctx, itemId, meta);
+    autoFillGatherToolSlot(this.ctx, meta, itemId);
   }
 
   // Grant payload-bearing copies. Materials coalesce exact source buckets;
@@ -7933,6 +7948,7 @@ export class Sim {
     this.ctx.onInventoryChangedForQuests(meta);
     if (meta.autoEquip && autoEquipsInstanceGrant(def, given, instance))
       maybeAutoEquip(this.ctx, itemId, meta, instance);
+    autoFillGatherToolSlot(this.ctx, meta, itemId);
     return instance;
   }
 
@@ -11195,50 +11211,26 @@ export class Sim {
     return this.gatheringProficiencyFor(this.primaryId);
   }
 
-  // The viewer's slotted tool effects, projected for the seam. Takes an
-  // explicit pid (the gatheringProficiencyFor precedent) so the server can
-  // build one player's delta while the offline getter below reads the primary.
-  //
-  // Returns [] for the absent field, which is the default and must stay that
-  // way: an empty object still serializes into the parity state digest, so
-  // initialising the map would move every golden for a feature no scenario
-  // uses. Sorted by professionId so the JSON form is a stable delta signature.
+  // The viewer's slotted tool effects, projected for the seam (explicit pid,
+  // the gatheringProficiencyFor precedent): professions/tool_effect_slot_views.ts.
   toolEffectSlotsFor(pid: number): readonly ToolEffectSlotView[] {
-    const meta = this.players.get(pid);
-    const slots = meta?.toolEffectSlots;
-    // The empty arms return the shared frozen instance: this runs per tick
-    // per session on the snapshot path, and a fresh [] here was two
-    // allocations per player per tick (the array plus its serialized "[]")
-    // for the overwhelming majority who never slot an effect.
-    if (!meta || !slots) return EMPTY_TOOL_EFFECT_SLOT_VIEWS;
-    const rows: ToolEffectSlotView[] = [];
-    for (const professionId of GATHERING_PROFESSION_IDS) {
-      const slot = slots[professionId];
-      if (!slot) continue;
-      rows.push({
-        professionId,
-        effectId: slot.effectId,
-        charges: slot.durability,
-        maxCharges: slot.maxDurability,
-        confirmMode: slot.confirmMode,
-        // The R48 privacy-preserving provenance projection: a boolean, never
-        // the name (a foreign crafter's identity stays server-side).
-        selfCrafted: slot.craftedBy !== undefined && slot.craftedBy === meta.name,
-      });
-    }
-    if (rows.length === 0) return EMPTY_TOOL_EFFECT_SLOT_VIEWS;
-    // GATHERING_PROFESSION_IDS is already a stable content order, but the sort
-    // is what the signature contract actually promises, so state it. A plain
-    // codepoint compare, never localeCompare: this runs per tick per session on
-    // the snapshot path, and an ICU collation inside the deterministic core
-    // would make the wire order depend on the host's locale data.
-    return rows.sort((a, b) =>
-      a.professionId < b.professionId ? -1 : a.professionId > b.professionId ? 1 : 0,
-    );
+    return toolEffectSlotViewsFor(this.players.get(pid));
   }
 
   get toolEffectSlots(): readonly ToolEffectSlotView[] {
     return this.toolEffectSlotsFor(this.primaryId);
+  }
+
+  // The gathering tool belt (professions/gather_tool_slots.ts), per pid for the
+  // server's `gtool` self-wire delta; the offline getter reads the primary.
+  gatherToolSlotsFor(pid: number): Readonly<GatherToolSlots> {
+    return this.players.get(pid)?.gatherTools ?? EMPTY_GATHER_TOOL_SLOTS;
+  }
+  get gatherToolSlots(): Readonly<GatherToolSlots> {
+    return this.gatherToolSlotsFor(this.primaryId);
+  }
+  unequipGatherTool(professionId: GatheringProfessionId, pid?: number): boolean {
+    return unequipGatherTool(this.ctx, professionId, pid);
   }
 
   // Garden beds with this world's moved beds (sim/moved_objects.ts), by shared reference.

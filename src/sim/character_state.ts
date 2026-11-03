@@ -87,6 +87,13 @@ export interface CharacterState extends ReferralRewardState {
   // default the parity digest depends on, so a save written before this field
   // existed loads byte-identically.
   toolEffectSlots?: Partial<Record<string, ToolEffectSlot>>;
+  // The gathering tool belt (professions/gather_tool_slots.ts): one equipped
+  // tool per gathering profession id. ALWAYS written (an empty belt saves as
+  // `{}`), because ABSENT marks a save from before the belt existed, which
+  // the load migrates once (best bagged tool per profession into its slot,
+  // the basic tool granted where none is carried). Forward-only: a pre-belt
+  // binary drops the key on save, and with it the equipped tools.
+  gatherTools?: Partial<Record<string, InvSlot>>;
   copper: number;
   hp: number;
   resource: number;

@@ -11,11 +11,18 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { ITEMS } from '../src/sim/data';
+import { ownedGatherTools } from '../src/sim/professions/gather_tool_slots';
 import { restoreToolEffectSlotAction } from '../src/sim/professions/tool_effect_actions';
 import { resolveSlotToolEffect, startingDurabilityFor } from '../src/sim/professions/tools';
 import { type PlayerMeta, Sim } from '../src/sim/sim';
+import { emptyToolBelt } from './helpers/tool_belt_fixture';
 
-const makeSim = (seed = 11) => new Sim({ seed, playerClass: 'warrior', autoEquip: false });
+// Bare hands: the starter tool belt is emptied, so ownership is what each case grants.
+const makeSim = (seed = 11) => {
+  const sim = new Sim({ seed, playerClass: 'warrior', autoEquip: false });
+  emptyToolBelt(sim.meta(sim.playerId) as PlayerMeta);
+  return sim;
+};
 const metaOf = (sim: Sim): PlayerMeta => sim.meta(sim.playerId) as PlayerMeta;
 
 function toolEffectEvents(sim: Sim): Array<Record<string, unknown>> {
@@ -207,7 +214,7 @@ describe('restoreToolEffectSlotAction (GM restore, R35)', () => {
       const sim = makeSim();
       for (const itemId of row.bags) sim.addItem(itemId, 1);
       const meta = metaOf(sim);
-      // The real mint's decision, read off the SAME bags, before the restore
+      // The real mint's decision, read off the SAME bags and belt, before the restore
       // mutates anything.
       const resolved = resolveSlotToolEffect(
         meta.inventory,
@@ -217,6 +224,7 @@ describe('restoreToolEffectSlotAction (GM restore, R35)', () => {
         ITEMS,
         meta.name,
         undefined,
+        ownedGatherTools(meta),
       );
       const mint = resolved.ok ? 'ok' : resolved.reason;
       const restore = restoreToolEffectSlotAction(

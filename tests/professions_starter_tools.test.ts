@@ -23,6 +23,8 @@ import { acceptQuest } from '../src/sim/quests/quest_commands';
 import { Sim } from '../src/sim/sim';
 import type { Entity, QuestDef } from '../src/sim/types';
 import { terrainHeight } from '../src/sim/world';
+import { heldItemCount } from './helpers/held_item_count';
+import { emptyToolBelt, loseTool } from './helpers/tool_belt_fixture';
 
 type AnySim = Sim & Record<string, any>;
 type AnyEntity = Entity & Record<string, any>;
@@ -87,6 +89,10 @@ function simAtGiver(questId: string): { sim: AnySim; pid: number; meta: any } {
   const player = sim.entities.get(pid) as AnyEntity;
   const giver = findNpc(sim, QUESTS[questId].giverNpcId);
   teleport(sim, player, giver.pos.x, giver.pos.z);
+  // A character who has LOST their starter tools (the tool belt starts every
+  // new character with them equipped): the quest grant is the recovery path
+  // these pins guard. A granted tool lands back in its empty tool slot.
+  emptyToolBelt(sim.players.get(pid));
   return { sim, pid, meta: sim.players.get(pid) };
 }
 
@@ -142,12 +148,12 @@ describe('the gather quests grant the tool their own objective needs', () => {
       const { sim, pid, meta } = simAtGiver(questId);
       const tool = ZONE1_QUESTS[questId].requiredItems![0];
       meta.copper = 0;
-      expect(sim.countItem(tool, pid), `${questId} precondition`).toBe(0);
+      expect(heldItemCount(sim, tool, pid), `${questId} precondition`).toBe(0);
 
       acceptQuest(sim.ctx, questId, selection ?? pid, selection === undefined ? undefined : pid);
 
       expect(meta.questLog.has(questId), `${questId} not accepted`).toBe(true);
-      expect(sim.countItem(tool, pid), `${questId} did not grant ${tool}`).toBe(1);
+      expect(heldItemCount(sim, tool, pid), `${questId} did not grant ${tool}`).toBe(1);
       expect(meta.copper, `${questId} must not cost copper`).toBe(0);
     }
   });
@@ -168,20 +174,20 @@ describe('the gather quests grant the tool their own objective needs', () => {
 
     acceptQuest(sim.ctx, questId, hobby as string, pid);
     expect(meta.questLog.has(questId)).toBe(true);
-    expect(sim.countItem(tool, pid)).toBe(1);
+    expect(heldItemCount(sim, tool, pid)).toBe(1);
 
     // Abandon, lose the tool, accept again: the fallback re-grants it.
     sim.abandonQuest(questId, pid);
-    sim.removeItem(tool, 1, pid);
-    expect(sim.countItem(tool, pid)).toBe(0);
+    loseTool(sim, tool, pid);
+    expect(heldItemCount(sim, tool, pid)).toBe(0);
     acceptQuest(sim.ctx, questId, hobby as string, pid);
-    expect(sim.countItem(tool, pid)).toBe(1);
+    expect(heldItemCount(sim, tool, pid)).toBe(1);
 
     // Still holding it, accept once more: no second copy. This is the arm that
     // keeps the repeatable quest from being an item faucet on its own.
     sim.abandonQuest(questId, pid);
     acceptQuest(sim.ctx, questId, hobby as string, pid);
-    expect(sim.countItem(tool, pid)).toBe(1);
+    expect(heldItemCount(sim, tool, pid)).toBe(1);
     expect(questFallbackGrants(ZONE1_QUESTS[questId], () => true)).toEqual([]);
   });
 });
@@ -257,13 +263,13 @@ describe('the tier-1 starter tools have no route to copper or market value', () 
 
     let minted = 0;
     for (let cycle = 0; cycle < 3; cycle++) {
-      expect(sim.countItem(tool, pid), `cycle ${cycle} starts empty-handed`).toBe(0);
+      expect(heldItemCount(sim, tool, pid), `cycle ${cycle} starts empty-handed`).toBe(0);
       acceptQuest(sim.ctx, questId, hobby, pid);
       // A fresh tool appeared from nothing, on a quest already completed before.
-      expect(sim.countItem(tool, pid), `cycle ${cycle} grant`).toBe(1);
+      expect(heldItemCount(sim, tool, pid), `cycle ${cycle} grant`).toBe(1);
       minted += 1;
       // The trade stand-in: the tool leaves every store the predicate reads.
-      sim.removeItem(tool, 1, pid);
+      loseTool(sim, tool, pid);
       sim.abandonQuest(questId, pid);
     }
     // Three accepts, three tools handed to (notional) trade partners. This
@@ -272,7 +278,7 @@ describe('the tier-1 starter tools have no route to copper or market value', () 
     // will take a copy. If either flag is ever dropped, this loop becomes a
     // live exploit.
     expect(minted).toBe(3);
-    expect(sim.countItem(tool, pid)).toBe(0);
+    expect(heldItemCount(sim, tool, pid)).toBe(0);
     expect(ITEMS[tool].noVendorSell).toBe(true);
     expect(ITEMS[tool].noMarketList).toBe(true);
   });
@@ -294,18 +300,18 @@ describe('the tier-1 starter tools have no route to copper or market value', () 
     ).find((candidate: string) => candidate !== meta.archetype.hobbyCraft) as string;
 
     acceptQuest(sim.ctx, questId, hobby, pid);
-    expect(sim.countItem(tool, pid)).toBe(1);
+    expect(heldItemCount(sim, tool, pid)).toBe(1);
 
     // Deposit: the copy moves from the bags into the bank store the predicate
     // reads (the container move itself is bank.ts's own tested concern).
-    sim.removeItem(tool, 1, pid);
+    loseTool(sim, tool, pid);
     meta.bank.inventory.push({ itemId: tool, count: 1 });
     sim.abandonQuest(questId, pid);
 
     acceptQuest(sim.ctx, questId, hobby, pid);
     expect(meta.questLog.has(questId), 'the accept itself must still succeed').toBe(true);
     // No duplicate: bags stay empty, the bank still holds exactly one.
-    expect(sim.countItem(tool, pid)).toBe(0);
+    expect(heldItemCount(sim, tool, pid)).toBe(0);
     expect(meta.bank.inventory.filter((s: { itemId: string }) => s.itemId === tool)).toHaveLength(
       1,
     );
@@ -327,16 +333,18 @@ describe('the tier-1 starter tools have no route to copper or market value', () 
     teleport(sim, sim.entities.get(pid) as AnyEntity, vendor.pos.x, vendor.pos.z);
     meta.copper = 0;
 
-    sim.addItem('gathering_sickle', 1, pid);
+    // Straight into the bags (a plain grant would fill the empty tool slot,
+    // and the vendor buys from the bags only).
+    meta.inventory.push({ itemId: 'gathering_sickle', count: 1 });
     sellItem(sim.ctx, 'gathering_sickle', 1, pid);
-    expect(sim.countItem('gathering_sickle', pid), 'the sickle was sold').toBe(1);
+    expect(heldItemCount(sim, 'gathering_sickle', pid), 'the sickle was sold').toBe(1);
     expect(meta.copper, 'the sickle minted copper').toBe(0);
 
     // The same call on a tier-2 tool pays out, so the refusal above is the
     // flag doing its job rather than the vendor path being broken.
-    sim.addItem('bronze_sickle', 1, pid);
+    meta.inventory.push({ itemId: 'bronze_sickle', count: 1 });
     sellItem(sim.ctx, 'bronze_sickle', 1, pid);
-    expect(sim.countItem('bronze_sickle', pid)).toBe(0);
+    expect(heldItemCount(sim, 'bronze_sickle', pid)).toBe(0);
     expect(meta.copper).toBe(ITEMS.bronze_sickle.sellValue);
   });
 
@@ -389,7 +397,8 @@ describe('the tier-1 starter tools have no route to copper or market value', () 
     const vendor = findNpc(sim, 'trader_wilkes');
     teleport(sim, sim.entities.get(pid) as AnyEntity, vendor.pos.x, vendor.pos.z);
     meta.copper = 0;
-    for (const itemId of TIER_1_TOOLS) sim.addItem(itemId, 1, pid);
+    // Straight into the bags, where the sweep looks (a grant fills the tool slot).
+    for (const itemId of TIER_1_TOOLS) meta.inventory.push({ itemId, count: 1 });
 
     sellAllJunk(sim.ctx, pid);
 

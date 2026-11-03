@@ -86,8 +86,9 @@ export const BARE_HANDS_TOOL_TIER = 1;
 export const NO_TOOL_OWNED = 0;
 
 // The best (highest) matching-profession gatherTool tier anywhere in the
-// player's bags, or NO_TOOL_OWNED when none is carried. Pure bag scan, no
-// equip slot: owning the tool is carrying it.
+// given slot list, or NO_TOOL_OWNED when none is there. Pure scan: callers
+// hand it the tool belt (gather_tool_slots.ts toolBelt) for what a player can
+// WORK, or bags plus belt (ownedGatherTools) for what they OWN.
 // ACCESS AND GRADE DECISIONS DO NOT BELONG HERE (R22): this is the raw
 // OWNERSHIP scan, kept for the price family (R47 ratchet, R30 recharge) and
 // for tests; any surface deciding what a player may WORK or MINT must use
@@ -445,6 +446,11 @@ export function resolveSlotToolEffect(
   // say so at the call site.
   slotterName: string | undefined,
   live: ToolEffectSlot | undefined,
+  // Where the best OWNED tool is read from (the price family's ownership
+  // scan): the bags plus the tool belt (gather_tool_slots.ts
+  // ownedGatherTools). Defaults to `inventory` for belt-less callers. The
+  // charm itself is always consumed from `inventory`.
+  toolInventory: readonly InvSlot[] = inventory,
 ): ResolvedSlotToolEffect {
   if (!(GATHERING_PROFESSION_IDS as readonly string[]).includes(professionId)) {
     return { ok: false, reason: 'invalid_request' };
@@ -475,7 +481,7 @@ export function resolveSlotToolEffect(
     return { ok: false, reason: 'invalid_request' };
   }
   const profession = professionId as GatheringProfessionId;
-  const best = bestOwnedGatherToolFor(inventory, profession, items);
+  const best = bestOwnedGatherToolFor(toolInventory, profession, items);
   if (best.ownedTier === NO_TOOL_OWNED) return { ok: false, reason: 'no_tool' };
   const consumeIndex = charmIndexToConsume(inventory, effectId, items, slotterName);
   if (consumeIndex === -1) return { ok: false, reason: 'no_charm' };
@@ -1024,11 +1030,13 @@ export function resolveRechargeToolEffect(
   rechargerName: string,
   rechargerSkills: CraftSkillState,
   items: Readonly<Record<string, ItemDef>>,
+  // The ownership scan for the best tool (bags plus belt), as on the mint.
+  toolInventory: readonly InvSlot[] = inventory,
 ): ResolvedRechargeToolEffect {
   if (!(GATHERING_PROFESSION_IDS as readonly string[]).includes(professionId)) {
     return { ok: false, reason: 'invalid_request' };
   }
-  const best = bestOwnedGatherToolFor(inventory, professionId as GatheringProfessionId, items);
+  const best = bestOwnedGatherToolFor(toolInventory, professionId as GatheringProfessionId, items);
   if (best.ownedTier === NO_TOOL_OWNED) return { ok: false, reason: 'no_tool' };
   const newMax = startingDurabilityFor(slot.effectId, best.rarity);
   const restored = newMax - slot.durability;

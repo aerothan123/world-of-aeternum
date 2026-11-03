@@ -21,6 +21,7 @@ import { FARMER_TRADE_RANGE } from '../src/sim/professions/farmer_npcs';
 import { type PlayerMeta, Sim } from '../src/sim/sim';
 import type { Entity, SimEvent } from '../src/sim/types';
 import { terrainHeight } from '../src/sim/world';
+import { heldItemCount } from './helpers/held_item_count';
 
 const QUEST_ID = 'q_farm_intro';
 const GIVER_ID = 'farmer_jessica';
@@ -113,7 +114,7 @@ describe('the go-live journey: q_farm_intro at Farmer Jessica, end to end', () =
   it('walks accept, plant, ripen, harvest, and turn-in through the real entry points', () => {
     const h = makeHarness();
     // A fresh level-1 character: no hoe, no seed, no copper needed.
-    expect(h.sim.countItem(HOE_ID, h.pid)).toBe(0);
+    expect(heldItemCount(h.sim, HOE_ID, h.pid)).toBe(0);
     expect(h.sim.countItem(SEED_ID, h.pid)).toBe(0);
     expect(h.sim.questState(QUEST_ID, h.pid)).toBe('available');
 
@@ -123,7 +124,7 @@ describe('the go-live journey: q_farm_intro at Farmer Jessica, end to end', () =
     const qp = h.meta.questLog.get(QUEST_ID);
     expect(qp?.state).toBe('active');
     expect(qp?.counts).toEqual([0, 0]);
-    expect(h.sim.countItem(HOE_ID, h.pid)).toBe(1);
+    expect(heldItemCount(h.sim, HOE_ID, h.pid)).toBe(1);
     expect(h.sim.countItem(SEED_ID, h.pid)).toBe(1);
 
     // 2. Plant the granted seed at the Eastbrook bed (out of Jessica's reach:
@@ -195,7 +196,7 @@ describe('the go-live journey: q_farm_intro at Farmer Jessica, end to end', () =
     expect(h.sim.countItem(SEED_ID, h.pid)).toBe(1);
     // A second talk while both items are held grants nothing (no double-grant).
     h.sim.talkToNpc(h.jessica.id, h.pid);
-    expect(h.sim.countItem(HOE_ID, h.pid)).toBe(1);
+    expect(heldItemCount(h.sim, HOE_ID, h.pid)).toBe(1);
     expect(h.sim.countItem(SEED_ID, h.pid)).toBe(1);
     // Plant it (the seed is spent), then talk again: the requiredItems
     // fallback re-grants the seed so a withered first crop is never a wall.

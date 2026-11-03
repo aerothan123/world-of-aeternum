@@ -13,6 +13,7 @@ import { DEEDS } from '../src/sim/content/deeds';
 import { authoredLettersById, MASTERY_RESET_LETTER } from '../src/sim/content/letters';
 import { CRAFT_RING, GATHERING_PROFESSION_IDS } from '../src/sim/content/professions';
 import { markDeedsDirty } from '../src/sim/deeds';
+import { ownedGatherTools } from '../src/sim/professions/gather_tool_slots';
 import {
   applyMasteryReset,
   MASTERY_RESET_LETTER_ID,
@@ -190,7 +191,9 @@ describe('the keep ledger (one decisive pin per row)', () => {
   });
   it('tools (inventory instances) KEPT', () => {
     expect(
-      meta.inventory.find((s: { itemId: string }) => s.itemId === 'thorium_mining_pick')?.count,
+      // A pre-belt save: the load migrates the pick into its tool slot.
+      ownedGatherTools(meta).find((s: { itemId: string }) => s.itemId === 'thorium_mining_pick')
+        ?.count,
     ).toBe(1);
   });
   it('bank KEPT', () => {

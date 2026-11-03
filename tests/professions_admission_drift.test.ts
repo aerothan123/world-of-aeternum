@@ -34,6 +34,7 @@ import { createRiftGearInstance } from '../src/sim/rift/progression';
 import { type PlayerMeta, Sim } from '../src/sim/sim';
 import type { Entity, EquipSlot, InvSlot, SimEvent } from '../src/sim/types';
 import { completeRechargeCast } from './helpers/enchant_family_cast';
+import { emptyToolBelt } from './helpers/tool_belt_fixture';
 
 const SWORD = 'eastbrook_arming_sword'; // common mainhand weapon
 const TUNIC = 'recruit_tunic'; // common chest armor
@@ -584,6 +585,7 @@ describe('tool-recharge admission matches its resolver', () => {
         if (!slot) throw new Error('slot');
         slot.durability = 0;
         sim.removeItem('copper_mining_pick', 1);
+        emptyToolBelt(meta); // and nothing in the tool belt either
         sim.addItem(DUST, 10);
       },
     },
