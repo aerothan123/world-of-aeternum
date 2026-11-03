@@ -8,12 +8,12 @@
 // graphics-overhaul pin) and never hides anything: the offset is a pivot shift
 // like the look-ahead lead, applied to both the camera and its aim point.
 // Enabling, disabling and swapping shoulders all glide rather than snap.
-// While running on foot it also adds a subtle stride bob: a vertical dip at
-// step rate plus a gentle sideways sway at stride rate, eased in and out with
-// ground speed and dropped in the air, underwater, and under reduced motion.
+// It adds NO per-footfall motion: walking and running hold the camera steady.
+// A stride bob (a dip per footfall plus a sideways sway per stride) shipped
+// here once and was removed outright after playtests read every footstep as
+// screen shake; tests/action_cam_core.test.ts and
+// tests/chase_camera_run_smoothness.test.ts pin its absence.
 // Pure math, no Three/DOM; renderer.ts owns one state and steps it per frame.
-
-import { RUN_SPEED } from '../sim/types';
 
 /** Shoulder offset: -1 = full left, 0 = centered, 1 = full right. */
 export type ActionCamSide = number;
@@ -34,12 +34,6 @@ export interface ActionCamState {
   weight: number;
   /** Smoothed shoulder offset, -1 (full left) to 1 (full right). */
   side: number;
-  /** Stride phase (radians); one full turn is two footfalls. */
-  bobPhase: number;
-  /** Smoothed bob strength, 0 (still) to 1 (full run). */
-  bobAmp: number;
-  /** Last display height, for the airborne check; NaN before the first step. */
-  bobLastY: number;
 }
 
 /** Lateral pivot shift at zero zoom (yards). */
@@ -56,18 +50,6 @@ export const ACTION_CAM_FOV = 5;
 export const ACTION_CAM_BLEND_RATE = 5;
 /** Shoulder swap rate (1/s). */
 export const ACTION_CAM_SWAP_RATE = 7;
-/** Vertical bob amplitude at a full run (yards), at step rate. */
-export const ACTION_CAM_BOB_Y = 0.07;
-/** Sideways sway amplitude at a full run (yards), at stride rate. */
-export const ACTION_CAM_BOB_X = 0.05;
-/** Stride phase rate per yard/s of ground speed: 2.5 footfalls/s at a run. */
-export const ACTION_CAM_BOB_RATE = (2.5 * Math.PI) / RUN_SPEED;
-/** Phase-rate cap in yards/s: a fast mount strides, it does not buzz. */
-export const ACTION_CAM_BOB_MAX_SPEED = RUN_SPEED * 1.4;
-/** Vertical display speed (yd/s) above which the body counts as airborne. */
-export const ACTION_CAM_BOB_AIR_VY = 2;
-/** Bob ease rate (1/s) in and out. */
-export const ACTION_CAM_BOB_EASE = 6;
 const MAX_STEP = 0.25;
 
 export function createActionCam(): ActionCamState {
@@ -77,9 +59,6 @@ export function createActionCam(): ActionCamState {
     primed: false,
     weight: 0,
     side: 1,
-    bobPhase: 0,
-    bobAmp: 0,
-    bobLastY: Number.NaN,
   };
 }
 
@@ -116,36 +95,6 @@ export function stepActionCam(s: ActionCamState, dt: number, snap: boolean): voi
   s.side = s.weight < 1e-3 ? side : approach(s.side, side, ACTION_CAM_SWAP_RATE, step);
   if (Math.abs(s.weight - target) < 1e-4) s.weight = target;
   if (Math.abs(s.side - side) < 1e-4) s.side = side;
-}
-
-/**
- * Advance the stride bob from the display motion: horizontal ground speed and
- * display height. `still` forces it out (swimming, dead, reduced motion). The
- * phase only advances with distance travelled, so a stop freezes it mid-step
- * while the amplitude eases out, never snapping the view.
- */
-export function stepActionCamBob(
-  s: ActionCamState,
-  speedXZ: number,
-  y: number,
-  dt: number,
-  still: boolean,
-): void {
-  const step = Math.min(Math.max(0, dt), MAX_STEP);
-  const vy = Number.isFinite(s.bobLastY) && step > 0 ? (y - s.bobLastY) / step : 0;
-  s.bobLastY = y;
-  if (still) {
-    s.bobAmp = 0;
-    return;
-  }
-  const speed = Math.max(0, speedXZ);
-  const airborne = Math.abs(vy) > ACTION_CAM_BOB_AIR_VY;
-  const target = airborne ? 0 : Math.min(1, speed / RUN_SPEED);
-  s.bobAmp = approach(s.bobAmp, target, ACTION_CAM_BOB_EASE, step);
-  if (s.bobAmp < 1e-4) s.bobAmp = 0;
-  s.bobPhase =
-    (s.bobPhase + Math.min(speed, ACTION_CAM_BOB_MAX_SPEED) * ACTION_CAM_BOB_RATE * step) %
-    (2 * Math.PI);
 }
 
 export interface ActionCamOffset {
@@ -185,19 +134,9 @@ export function actionCamOffset(
     ) *
     w *
     s.side;
-  // Stride bob: one dip per footfall (the head is highest mid stride), the
-  // sway leans toward the planted foot once per stride. The dip is cos^2, a
-  // smooth curve with the same footfall timing and depth: the old
-  // 1 - |sin| had a cusp at every footfall that reversed the camera's
-  // vertical velocity inside one frame, 2.5 times a second at a run, which
-  // read as the camera shaking (tests/action_cam_core.test.ts pins the bound).
-  const bob = s.bobAmp * w;
-  const sway = ACTION_CAM_BOB_X * bob * Math.sin(s.bobPhase);
-  const cos = Math.cos(s.bobPhase);
-  const dip = ACTION_CAM_BOB_Y * bob * cos * cos;
-  out.x = -Math.cos(yaw) * (lateral + sway);
-  out.z = Math.sin(yaw) * (lateral + sway);
-  out.drop = ACTION_CAM_DROP * w + dip;
+  out.x = -Math.cos(yaw) * lateral;
+  out.z = Math.sin(yaw) * lateral;
+  out.drop = ACTION_CAM_DROP * w;
   out.fov = ACTION_CAM_FOV * w;
   return out;
 }
@@ -213,11 +152,10 @@ export class ActionCamRig {
     setActionCamTarget(this.state, enabled, side);
   }
 
-  /** Advance the blend and the stride bob. `still` (swimming, dead) drops the
-   *  bob; reduced motion snaps the blend and drops the bob too. */
-  step(dt: number, reduce: boolean, still: boolean, velX: number, velZ: number, y: number): void {
+  /** Advance the blend; reduced motion snaps it. Nothing here reads the
+   *  avatar's motion, so no footfall can move the camera. */
+  step(dt: number, reduce: boolean): void {
     stepActionCam(this.state, dt, reduce);
-    stepActionCamBob(this.state, Math.hypot(velX, velZ), y, dt, reduce || still);
   }
 
   /** This frame's pivot shift for the camera yaw and distance. */

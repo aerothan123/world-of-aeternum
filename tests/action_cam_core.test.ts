@@ -1,20 +1,17 @@
 import { describe, expect, it } from 'vitest';
 import {
-  ACTION_CAM_BOB_X,
-  ACTION_CAM_BOB_Y,
   ACTION_CAM_DROP,
   ACTION_CAM_FOV,
   ACTION_CAM_SIDE_BASE,
   ACTION_CAM_SIDE_MAX,
   ACTION_CAM_SIDE_PER_DIST,
   type ActionCamOffset,
+  ActionCamRig,
   actionCamOffset,
   createActionCam,
   setActionCamTarget,
   stepActionCam,
-  stepActionCamBob,
 } from '../src/render/action_cam_core';
-import { RUN_SPEED } from '../src/sim/types';
 
 const out = (): ActionCamOffset => ({ x: 9, z: 9, drop: 9, fov: 9 });
 
@@ -141,104 +138,44 @@ describe('action_cam_core', () => {
     expect(Number.isFinite(s.weight)).toBe(true);
   });
 
-  describe('stride bob', () => {
-    // Run straight at `speed` for `seconds` on flat ground, sampling the offset.
-    function run(speed: number, seconds: number, s = settle(true, 1), y = () => 0) {
-      const samples: ActionCamOffset[] = [];
-      for (let t = 0; t < seconds; t += 1 / 60) {
-        stepActionCam(s, 1 / 60, false);
-        stepActionCamBob(s, speed, y(), 1 / 60, false);
-        samples.push({ ...actionCamOffset(s, 0, 3, out()) });
-      }
-      return { s, samples };
-    }
-    const range = (xs: number[]) => Math.max(...xs) - Math.min(...xs);
+  // The owner's playtest: "when walking/running every footstep still shakes
+  // the screen, shouldn't be any shaking." The stride bob (a cos^2 dip per
+  // footfall plus a sideways sway per stride) is gone outright, not zeroed:
+  // the rig reads no avatar motion at all, so a run at any frame rate leaves
+  // the offset exactly where standing still leaves it.
+  describe('no per-footfall camera motion', () => {
+    const CADENCES: Array<{ name: string; dts: number[] }> = [
+      { name: '30 Hz', dts: [1 / 30] },
+      { name: '60 Hz', dts: [1 / 60] },
+      { name: '144 Hz', dts: [1 / 144] },
+      { name: 'uneven', dts: [1 / 144, 1 / 60, 1 / 90, 1 / 40, 1 / 120] },
+    ];
 
-    it('bobs while running: a dip and a sideways sway within their amplitudes', () => {
-      const { samples } = run(RUN_SPEED, 3);
-      const late = samples.slice(120);
-      const drop = late.map((o) => o.drop);
-      expect(range(drop)).toBeGreaterThan(ACTION_CAM_BOB_Y * 0.8);
-      expect(range(drop)).toBeLessThanOrEqual(ACTION_CAM_BOB_Y + 1e-6);
-      const x = late.map((o) => o.x);
-      expect(range(x)).toBeGreaterThan(ACTION_CAM_BOB_X * 1.5);
-      expect(range(x)).toBeLessThanOrEqual(2 * ACTION_CAM_BOB_X + 1e-6);
-    });
-
-    it('dips at step rate: about 2.5 footfalls a second at a run', () => {
-      const { samples } = run(RUN_SPEED, 4);
-      const drop = samples.slice(120).map((o) => o.drop);
-      let peaks = 0;
-      for (let i = 1; i < drop.length - 1; i++) {
-        if (drop[i] > drop[i - 1] && drop[i] >= drop[i + 1]) peaks++;
-      }
-      const seconds = drop.length / 60;
-      expect(peaks / seconds).toBeGreaterThan(2);
-      expect(peaks / seconds).toBeLessThan(3);
-    });
-
-    // The "camera shakes when running" report: the dip used 1 - |sin|, whose
-    // cusp at every footfall flipped the camera's vertical velocity inside one
-    // frame (about 1.1 yd/s, 2.5 times a second at a run). The bob must stay a
-    // smooth curve: the frame-to-frame change in the dip's vertical velocity
-    // stays inside a fixed acceleration bound at every frame rate, including
-    // uneven frame times.
-    it('dips along a smooth curve, never reversing the camera inside one frame', () => {
-      const MAX_ACCEL = 15; // yd/s^2, comfortably above the smooth bob's ~8.6
-      const cadences: Array<{ name: string; dts: number[] }> = [
-        { name: '30 Hz', dts: [1 / 30] },
-        { name: '60 Hz', dts: [1 / 60] },
-        { name: '144 Hz', dts: [1 / 144] },
-        { name: 'uneven', dts: [1 / 144, 1 / 60, 1 / 90, 1 / 40, 1 / 120] },
-      ];
-      for (const { name, dts } of cadences) {
-        const s = settle(true, 1);
-        let prevDrop = Number.NaN;
-        let prevVel = Number.NaN;
-        let prevDt = 0;
-        let worst = 0;
-        for (let i = 0; i < 2000; i++) {
+    it('holds the offset constant across a run at 30, 60 and 144 Hz', () => {
+      for (const { name, dts } of CADENCES) {
+        const rig = new ActionCamRig();
+        rig.set(true, 1);
+        const rest = { ...rig.offset(0, 3) };
+        // Six seconds of stepping: the cadence a run would step it at.
+        let t = 0;
+        for (let i = 0; t < 6; i++) {
           const dt = dts[i % dts.length];
-          stepActionCam(s, dt, false);
-          stepActionCamBob(s, RUN_SPEED, 0, dt, false);
-          const drop = actionCamOffset(s, 0, 3, out()).drop;
-          if (i > 400 && Number.isFinite(prevDrop)) {
-            const vel = (drop - prevDrop) / dt;
-            // Interval-mean velocities sit at interval midpoints, so the
-            // spacing between two of them is the mean of the two frame times.
-            if (Number.isFinite(prevVel))
-              worst = Math.max(worst, Math.abs(vel - prevVel) / ((dt + prevDt) / 2));
-            prevVel = vel;
-            prevDt = dt;
-          }
-          prevDrop = drop;
+          t += dt;
+          rig.step(dt, false);
+          const o = rig.offset(0, 3);
+          expect(o.drop, name).toBe(rest.drop);
+          expect(o.x, name).toBe(rest.x);
+          expect(o.z, name).toBe(rest.z);
+          expect(o.fov, name).toBe(rest.fov);
         }
-        expect(worst, name).toBeLessThan(MAX_ACCEL);
+        expect(rest.drop, name).toBeCloseTo(ACTION_CAM_DROP);
       }
     });
 
-    it('standing still does not bob, and stopping eases out instead of snapping', () => {
-      expect(range(run(0, 2).samples.map((o) => o.drop))).toBeLessThan(1e-9);
-      const { s } = run(RUN_SPEED, 2);
-      const before = s.bobAmp;
-      stepActionCamBob(s, 0, 0, 1 / 60, false);
-      expect(s.bobAmp).toBeLessThan(before);
-      expect(s.bobAmp).toBeGreaterThan(before * 0.8);
-    });
-
-    it('fades out in the air, and is forced off by still (swim, dead, reduced motion)', () => {
-      let y = 0;
-      const { s } = run(RUN_SPEED, 2, settle(true, 1), () => (y += 0.1)); // 6 yd/s climb
-      expect(s.bobAmp).toBeLessThan(0.01);
-      const r = run(RUN_SPEED, 2).s;
-      stepActionCamBob(r, RUN_SPEED, 0, 1 / 60, true);
-      expect(r.bobAmp).toBe(0);
-    });
-
-    it('never bobs while Action Cam is off', () => {
-      const off = settle(false, 1);
-      const { samples } = run(RUN_SPEED, 2, off);
-      for (const o of samples) expect(o).toEqual({ x: 0, z: 0, drop: 0, fov: 0 });
+    it('takes no motion input, so a footfall has nothing to feed', () => {
+      // step(dt, reduce): no speed, no height, no swim or death flag.
+      expect(ActionCamRig.prototype.step.length).toBe(2);
+      expect(Object.keys(createActionCam()).some((k) => /bob/i.test(k))).toBe(false);
     });
   });
 });

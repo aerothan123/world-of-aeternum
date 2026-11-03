@@ -17,7 +17,8 @@ import { RUN_SPEED } from '../src/sim/types';
 // The "camera shakes sometimes when running" report, end to end over the pure
 // cores renderer.ts updateCamera composes, in its order: the self display pose
 // (a reconciled prediction with a server correction folded in as a residual),
-// the spring boom, the look-ahead lead, the Action Cam shoulder and stride bob,
+// the spring boom, the look-ahead lead, the Action Cam shoulder (which carries
+// no stride bob: "every footstep still shakes the screen" removed it outright),
 // and the camera floor. A straight run at RUN_SPEED over gently rolling
 // ground, at 30, 60 and 144 Hz and at uneven frame times. The camera's
 // forward motion must never reverse, and its frame-to-frame velocity change
@@ -40,6 +41,8 @@ interface Sample {
   t: number;
   x: number;
   y: number;
+  /** The Action Cam's vertical aim offset this frame (its drop). */
+  drop: number;
 }
 
 // `floorLift` 0 is the real floor (the ground a hand over: the orbit stays
@@ -89,7 +92,7 @@ function runPath(
     lastX = pos.x;
     lastZ = pos.z;
     stepCameraFeel(feel, velX, velZ, dt, true);
-    cam.step(dt, false, false, velX, velZ, pos.y);
+    cam.step(dt, false);
     // Running along +x with the camera behind: yaw pi/2 looks along +x.
     const yaw = Math.PI / 2;
     const pitch = 0.32;
@@ -100,7 +103,7 @@ function runPath(
     const cx = px - Math.sin(yaw) * Math.cos(pitch) * dist;
     const cy = eyeY + Math.sin(pitch) * dist;
     const floorY = stepChaseFloorSmooth(floor, ground(cx) + 0.6 + floorLift, dt);
-    out.push({ t, x: cx, y: Math.max(cy, floorY) });
+    out.push({ t, x: cx, y: Math.max(cy, floorY), drop: shoulder.drop });
   }
   return out;
 }
@@ -132,12 +135,37 @@ function worst(samples: Sample[]) {
 
 describe('chase camera over a run (the running-shake report)', () => {
   it('moves smoothly at every frame rate on a clean run', () => {
-    // Before the bob fix its footfall cusp alone measured 33 yd/s^2 here at
-    // 30 Hz, growing with the frame rate (a fixed velocity flip per frame).
+    // The old 1 - |sin| footfall cusp alone measured 33 yd/s^2 here at 30 Hz;
+    // with the bob gone the bound is met by the boom and the lead alone.
     for (const { name, dts } of CADENCES) {
       const { minForward, maxAccel } = worst(runPath(dts, 0, rolling));
       expect(minForward, name).toBeGreaterThan(0);
       expect(maxAccel, name).toBeLessThan(25);
+    }
+  });
+
+  it('adds no per-footfall camera motion: the bob offset is zero across a run', () => {
+    // "When walking/running every footstep still shakes the screen." Every
+    // frame of the run carries exactly the shoulder drop standing still does,
+    // at 30, 60 and 144 Hz and at uneven frame times, so the only vertical
+    // motion left is the ground the boom follows.
+    const rest = new ActionCamRig();
+    rest.set(true, 1);
+    const restDrop = rest.offset(Math.PI / 2, 3).drop;
+    for (const { name, dts } of CADENCES) {
+      for (const sample of runPath(dts, 0, rolling)) {
+        expect(sample.drop - restDrop, name).toBe(0);
+      }
+    }
+  });
+
+  it('on flat ground the camera height does not move at all while running', () => {
+    // No ground roll, no kerb: any vertical wobble here could only come from a
+    // footfall term, and there is none.
+    for (const { name, dts } of CADENCES) {
+      const samples = runPath(dts, 0, () => 0).filter((s) => s.t > 1);
+      const ys = samples.map((s) => s.y);
+      expect(Math.max(...ys) - Math.min(...ys), name).toBeLessThan(1e-9);
     }
   });
 

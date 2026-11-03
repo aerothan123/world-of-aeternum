@@ -1490,7 +1490,7 @@ export class Renderer {
   private readonly camFeel = createCameraFeel();
   private readonly camDirector = createCameraDirector();
   private readonly vehicleCamera = createVehicleCamera();
-  readonly actionCam = new ActionCamRig(); // over-the-shoulder shift + stride bob (default on)
+  readonly actionCam = new ActionCamRig(); // over-the-shoulder shift, no stride bob (default on)
   readonly firstPerson = new FirstPersonRig(); // opt-in first person, fully zoomed in
   private readonly ambience = createAmbienceState();
   private baseFov = CAMERA_BASE_FOV; // setCameraFov's value; camera.fov is overwritten below each frame
@@ -12064,7 +12064,7 @@ export class Renderer {
     const pose = stepRendererVehicleCamera(this, directedPose, dt, reduce);
     // The opt-in Action Cam shoulder shift rides on top of the vehicle-aware
     // pose: the vehicle camera decides the boom, the shoulder offsets it.
-    this.actionCam.step(dt, reduce, this.selfSubmerged || p.dead, velX, velZ, selfPos.y);
+    this.actionCam.step(dt, reduce);
     const shoulder = this.actionCam.offset(pose.yaw, pose.dist);
     const px = pose.x + shoulder.x;
     const py = pose.y;
