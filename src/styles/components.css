@@ -1133,10 +1133,36 @@
     box-shadow: none;
   }
 
+  /* The corpse/chest popup sizes to its CONTENT, led by its title (the body's
+     name), between a floor that keeps the rows and Take Loot comfortable and a
+     ceiling on the title alone past which a long boss name ellipsizes (the full
+     name stays the dialog's accessible name). It used to be a hard 230px with
+     the title the only flex child allowed to shrink to nothing (min-width: 0,
+     nowrap, ellipsis), so every inch the popup lacked came out of the name, down
+     to one glyph and the ellipsis ("W." for a Wild Boar). The viewport clamps in
+     layout.css and hud.mobile.css still cap the whole window. */
   #loot-window {
-    width: 230px;
+    width: max-content;
+    min-width: 230px;
     /* Keep another window's text from showing through the corpse choice. */
     background: var(--panel-base);
+  }
+  /* Reserve the pinned close button's footprint (absolute, inset-inline-end
+     8px, 26px wide; layout.css) on desktop, where the library head padding would
+     otherwise let a long name run under it. The touch header's own 52px reserve
+     (hud.mobile.css, a later layer) still wins on mobile. */
+  #loot-window > .panel-title {
+    padding-inline-end: 40px;
+  }
+  #loot-window > .panel-title > .ui-win-title {
+    max-width: 320px;
+  }
+  /* Prose never sets the popup's width: the harvest section and the footer hint
+     wrap at whatever width the title and rows chose, instead of stretching the
+     popup to one long line of max-content text. */
+  #loot-window > .corpse-harvest,
+  #loot-window > .town-focus-hint {
+    contain: inline-size;
   }
   .loot-item {
     display: flex;
