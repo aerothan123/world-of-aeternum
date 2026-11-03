@@ -2872,7 +2872,7 @@ export const vi_VN: EnTranslations = {
       "stopAutoAttackOnTargetSwitch": "Dừng Tự Đánh Khi Đổi Mục Tiêu",
       "walkByAutoloot": "Tự Nhặt Đồ Khi Đi Ngang",
       "autoLoot": "Auto Loot",
-      "autoLootNote": "Clicking or tapping a corpse puts its coins and items straight into your bags instead of opening the loot window. Hold Shift while you click to do the opposite for that corpse. An item your group rolls for, or that the master looter hands out, still goes to that roll, and anything that does not fit in your bags stays on the corpse. The interact key always takes the loot directly.",
+      "autoLootNote": "When something you are fighting dies, your share of its loot goes straight into your bags with no click: everything when you killed it alone; in a group, your share of the coins, your quest items, the drops whose round-robin turn is yours, and any item you win in your group's need or greed roll (a roll you lose gives you nothing). Drops the master looter hands out, first-come group loot and anything that does not fit in your bags stay on the corpse. Clicking or tapping a corpse with loot left takes it without opening the loot window; hold Shift while you click to open the window instead.",
       "groundReticle": "Vòng ngắm mục tiêu mặt đất",
       "mouseoverCast": "Thi Triển Khi Rê Chuột Trên Khung Tổ Đội",
       "stickyTarget": "Giữ Mục Tiêu Khi Nhấp Đất",

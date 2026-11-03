@@ -41,6 +41,7 @@ import {
 } from '../instances/dungeons';
 import { isImmuneInPlace } from '../instances/instance_combat_hold';
 import { awardQueueEncounter, recordQueueDamage } from '../instances/queue_participation';
+import { autoLootOnKill } from '../loot/auto_loot_on_kill';
 import { isKillParticipant, killParticipationPos } from '../loot/kill_participation';
 import { membershipActive } from '../membership';
 import { wearsMembershipArmour } from '../membership_armour';
@@ -1979,7 +1980,12 @@ export function handleDeath(
       // their own damage-contributor snapshot (rareContribs) so rollLoot's guaranteed
       // personal quest-item entries (questId, chance:1) can credit every contributing
       // quest-needer, not just the tap-credited party.
-      if (!template?.worldBoss) ctx.rollLoot(e, meta, eligible, rareContribs ?? undefined);
+      if (!template?.worldBoss) {
+        ctx.rollLoot(e, meta, eligible, rareContribs ?? undefined);
+        // Kill-time Auto Loot (opt-in per player): an inert no-op when nobody
+        // eligible opted in, so the draw order here is untouched by default.
+        autoLootOnKill(ctx, e);
+      }
       // Book of Deeds kill credit: lifetime counters, slain marks, dungeon
       // clears, and the encounter skill tasks that resolve at this death.
       deedsMod.onMobKillCreditForDeeds(ctx, e, killer, meta, eligible);

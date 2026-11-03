@@ -5655,7 +5655,7 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'hudChrome.options.walkByAutoloot': '路過自動拾取',
   'hudChrome.options.autoLoot': '自動拾取',
   'hudChrome.options.autoLootNote':
-    '點擊或輕觸屍體會直接把其中的金幣和物品放進你的背包，而不開啟拾取視窗。點擊時按住 Shift 可對該屍體執行相反的操作。隊伍需要擲骰的物品或由拾取分配者分配的物品仍會進入相應的擲骰，背包放不下的物品會留在屍體上。互動鍵始終直接拾取戰利品。',
+    '你正在戰鬥的目標死亡時，你應得的那份戰利品會直接放進你的背包，無需點擊：獨自擊殺時為全部戰利品；在隊伍中則為你應得的金幣、你的任務物品、輪流拾取輪到你的掉落，以及你在隊伍需求或貪婪擲骰中贏得的物品（輸掉的擲骰不會給你任何東西）。由拾取分配者分配的掉落、先到先得的隊伍戰利品以及背包放不下的物品會留在屍體上。點擊或輕觸仍有戰利品的屍體會直接拾取而不開啟拾取視窗；點擊時按住 Shift 則改為開啟視窗。',
   'hudChrome.options.lockCursorOnRotate': '旋轉時鎖定游標',
   'hudChrome.options.keybindHelpLockCursorOnRotate':
     '拖曳旋轉鏡頭時將滑鼠游標保持在視窗內，使其無法到達螢幕邊緣或移動到另一台顯示器。若你偏好自由游標，請關閉此選項。',

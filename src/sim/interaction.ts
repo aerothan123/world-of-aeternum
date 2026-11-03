@@ -75,6 +75,7 @@ import {
   dist2d,
   type Entity,
   INTERACT_RANGE,
+  type LootSlot,
   OBJECT_RESPAWN,
   REALM_BUILDER_MONUMENT_INTERACT_RADIUS,
   REALM_BUILDER_MONUMENT_TEMPLATE_ID,
@@ -97,7 +98,7 @@ export function isQuestInteractionEntity(e: Entity): boolean {
 // diverge on the free-for-all rule: manual looting honors the FFA timer (a deliberate
 // click may take a stranger's corpse once its owner-lock lapses), but walk-by passes
 // false so a passive pass never auto-grabs a stranger's corpse just because it aged out.
-function corpseLootRights(
+export function corpseLootRights(
   ctx: SimContext,
   mob: Entity,
   entityId: number,
@@ -128,6 +129,16 @@ function corpseLootRights(
 // buddy, so it is the BUDDY that has to be standing on the corpse. Everything else
 // about the loot is still the owner's (their rights, their bags, their money), so
 // only the range origin moves, never the identity.
+// `claim` (default none: take everything the rights allow) narrows a pass to what
+// the CURRENT loot rules assign to this player. The ONE caller that passes it is
+// the kill-time auto-loot (loot/auto_loot_on_kill.ts): it never takes a group's
+// first-come or master-assigned drop, nor another member's round-robin turn. It
+// gates only the shared coin and the shared/open slots; a slot personal to this
+// player (a quest drop, a held award) is always theirs.
+export interface CorpseLootClaim {
+  copper: boolean;
+  slot(s: LootSlot): boolean;
+}
 export function lootCorpse(
   ctx: SimContext,
   mobId: number,
@@ -135,6 +146,7 @@ export function lootCorpse(
   honorFfa = true,
   quiet = false,
   reachFrom?: Vec3,
+  claim?: CorpseLootClaim,
 ): boolean {
   const r = ctx.resolve(pid);
   if (!r) return false;
@@ -164,7 +176,7 @@ export function lootCorpse(
     return false;
   }
   let didLoot = false;
-  if (rights.shared && mob.loot.copper > 0) {
+  if (rights.shared && mob.loot.copper > 0 && (claim?.copper ?? true)) {
     distributeLootCopper(ctx, mob, meta, ffaUnlocked);
     didLoot = true;
   }
@@ -175,6 +187,7 @@ export function lootCorpse(
   for (const s of [...mob.loot.items]) {
     if (!lootSlotVisibleTo(s, meta.entityId)) continue;
     if (s.openToAll) {
+      if (claim && !claim.slot(s)) continue;
       while (
         s.count > 0 &&
         (s.instance
@@ -245,12 +258,15 @@ export function lootCorpse(
       continue;
     }
     if (!rights.shared) continue;
-    while (s.count > 0) {
-      if (!awardSharedLootItem(ctx, s.itemId, mob, meta, ffaUnlocked, s.instance)) break;
+    // Checked per unit: a round-robin turn moves on with every copy awarded.
+    while (s.count > 0 && (claim?.slot(s) ?? true)) {
+      if (!awardSharedLootItem(ctx, s.itemId, mob, meta, ffaUnlocked, s.instance)) {
+        bagsFull = true;
+        break;
+      }
       s.count--;
       didLoot = true;
     }
-    if (s.count > 0) bagsFull = true;
   }
   if (bagsFull && !quiet) ctx.error(meta.entityId, 'Your bags are full.');
   // The world-boss loot lockout is consumed by LOOTING, not by the kill: taking any
@@ -264,7 +280,8 @@ export function lootCorpse(
     markWorldBossLooted(meta, mob.templateId, ctx.raidResetMs(ctx.lockoutNowMs()));
   }
   pruneCorpseLoot(ctx, mob);
-  if (p.targetId === mobId) p.targetId = null;
+  // A kill-time auto-loot leaves the target alone: the player never touched the corpse.
+  if (!claim && p.targetId === mobId) p.targetId = null;
   return didLoot;
 }
 

@@ -516,6 +516,52 @@ function startNeedGreedRoll(
   return true;
 }
 
+// The master looter a shared drop would be handed to (startMasterLootRoll's
+// whole gate), or null when master loot does not apply to it: disabled, below
+// threshold, a solo looter, or no resolvable looter. Side-effect free, so the
+// kill-time auto-loot (loot/auto_loot_on_kill.ts) asks the SAME question the
+// roll opener does before it decides to leave a drop for the master looter.
+export function masterLooterFor(ctx: SimContext, itemId: string, mob: Entity): number | null {
+  const strategies = partyLootStrategiesForMob(ctx, mob);
+  if (!strategies?.master.enabled) return null;
+  if (!meetsMasterThreshold(ITEMS[itemId]?.quality, strategies.master.threshold)) return null;
+  if (partyLootCandidatesForMob(ctx, mob).length <= 1) return null;
+  const party = mob.tappedById !== null ? ctx.partyOf(mob.tappedById) : null;
+  if (!party) return null;
+  const looterPid = effectiveMasterLooter(strategies.master, party.leader, party.members);
+  if (looterPid === null || ctx.players.get(looterPid)?.leaving) return null;
+  return looterPid;
+}
+
+/** Which arm of awardSharedLootItem a shared drop takes for a tap-group
+ *  looter (the FFA-outsider arm aside), in the same order and on the same
+ *  gates: master assignment, a need/greed roll, the round-robin turn, or the
+ *  looter's own bags. Side-effect free; draws no rng. */
+export type SharedLootRoute = 'master' | 'need-greed' | 'round-robin' | 'looter';
+export function sharedLootRoute(ctx: SimContext, itemId: string, mob: Entity): SharedLootRoute {
+  if (masterLooterFor(ctx, itemId, mob) !== null) return 'master';
+  const strategy = effectiveItemLootStrategy(ctx, itemId, mob);
+  const grouped = partyLootCandidatesForMob(ctx, mob).length > 1;
+  if (strategy === 'need-greed' && grouped) return 'need-greed';
+  const party = mob.tappedById !== null ? ctx.partyOf(mob.tappedById) : null;
+  if (strategy === 'round-robin' && grouped && party) return 'round-robin';
+  return 'looter';
+}
+
+/** Whose round-robin turn the NEXT shared drop of this corpse is (the cursor
+ *  tryAwardItemByRoundRobin reads), or null with no rotating group. */
+export function roundRobinTurnPid(ctx: SimContext, mob: Entity): number | null {
+  const candidates = partyLootCandidatesForMob(ctx, mob);
+  const party = mob.tappedById !== null ? ctx.partyOf(mob.tappedById) : null;
+  if (!party || candidates.length <= 1) return null;
+  return candidates[party.lootTurn % candidates.length].entityId;
+}
+
+/** The party's coin rule for this corpse ('looter-takes-all' with no group). */
+export function corpseCurrencyStrategy(ctx: SimContext, mob: Entity): CurrencyLootStrategy {
+  return effectiveCurrencyLootStrategy(ctx, mob);
+}
+
 // Opens a master-loot assignment when the tapping party uses master loot and
 // the drop is at/above the configured threshold. Returns false (so the caller
 // falls through to need/greed or looter-takes-all) when master loot does not
@@ -526,16 +572,12 @@ function startMasterLootRoll(
   mob: Entity,
   instance?: ItemInstancePayload,
 ): boolean {
-  const strategies = partyLootStrategiesForMob(ctx, mob);
-  if (!strategies?.master.enabled) return false;
-  const def = ITEMS[itemId];
-  if (!meetsMasterThreshold(def?.quality, strategies.master.threshold)) return false;
-  const candidates = partyLootCandidatesForMob(ctx, mob);
-  if (candidates.length <= 1) return false;
+  const looterPid = masterLooterFor(ctx, itemId, mob);
+  if (looterPid === null) return false;
   const party = mob.tappedById !== null ? ctx.partyOf(mob.tappedById) : null;
   if (!party) return false;
-  const looterPid = effectiveMasterLooter(strategies.master, party.leader, party.members);
-  if (looterPid === null || ctx.players.get(looterPid)?.leaving) return false;
+  const candidates = partyLootCandidatesForMob(ctx, mob);
+  const def = ITEMS[itemId];
   const itemName = def?.name ?? itemId;
   const roll: PendingLootRoll = {
     id: ctx.nextLootRollId++,

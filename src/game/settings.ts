@@ -432,6 +432,9 @@ export const BOOL_SETTINGS = {
   // Loot sends) instead of opening the loot window; Shift on that click inverts
   // it. Read per click by src/ui/hud/loot/auto_loot_setting.ts, decided by
   // src/ui/hud/loot/auto_loot_core.ts. The interact key already takes directly.
+  // It is ALSO the sim's kill-time take (src/sim/loot/auto_loot_on_kill.ts):
+  // pushed to the authoritative world on entry and on every toggle by
+  // src/game/sim_session_preferences.ts.
   autoLoot: { def: false },
   // on by default: desktop ground-targeted spells open a terrain reticle before
   // casting. Touch keeps the instant target-feet fallback because there is no

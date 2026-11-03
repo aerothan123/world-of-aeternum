@@ -342,6 +342,7 @@ import {
 import { entityLineOfSightClear } from './line_of_sight_elevation';
 import { cloneGearSet } from './loadout_gear';
 import type { Ante, PickAction } from './lockpick';
+import { type AutoLootPlayerState, setAutoLootOnKill } from './loot/auto_loot_on_kill';
 import { rebindHeldAwardsOnJoin } from './loot/awarded_loot_hold';
 import { retirePartyTradeOnLoad, retirePartyTradeOnSave } from './loot/bop_trade_persistence';
 import { withoutPartyTradeMarker } from './loot/bop_trade_window';
@@ -1340,6 +1341,7 @@ export interface PlayerMeta
     HostArmourAuthority,
     lanceTrialMod.LancePlayerState,
     petCommands.PetOwnerRuntimeState,
+    AutoLootPlayerState,
     CharacterVaultStorageState {
   courier?: courierMod.CourierState;
   queueRewards?: CharacterState['queueRewards'];
@@ -8599,12 +8601,13 @@ export class Sim {
     return interaction.lootCorpse(this.ctx, mobId, pid);
   }
 
-  // Walk-by autoloot: the passive counterpart to lootCorpse, called every
-  // frame as the trigger nears a corpse. Silent on ineligibility (see
-  // interaction.ts); the widened `pid?` overload lets tests drive a
-  // non-primary party member the same way lootCorpse does.
+  // Walk-by autoloot (interaction.ts): silent on ineligibility, every frame.
   autoLoot(mobId: number, pid?: number): void {
     interaction.autoLootForParty(this.ctx, mobId, pid ?? this.primaryId);
+  }
+  // Kill-time Auto Loot preference, session state (loot/auto_loot_on_kill.ts).
+  setAutoLoot(enabled: boolean, pid?: number): void {
+    setAutoLootOnKill(this.ctx, enabled, pid);
   }
 
   harvestCorpse(mobId: number, pid?: number): boolean {
@@ -8622,11 +8625,8 @@ export class Sim {
     return interaction.pickUpObject(this.ctx, objId, pid, this.noticeboardDefinitions);
   }
 
-  // Corpse-harvest preference (Intentional Gathering PR3): a stored PLAYER
-  // SETTING, not a harvest action (no kit/location/combat/cost gate). Body
-  // lives in professions/harvest_preference_commands.ts, behind the same
-  // SimContext seam every other profession command uses; these are thin
-  // delegates so every existing call site resolves unchanged.
+  // Corpse-harvest preference (PR3): a stored PLAYER SETTING, not a harvest action;
+  // thin delegates onto professions/harvest_preference_commands.ts.
   harvestPreferenceFor(pid: number): HarvestPreference | null {
     return harvestPreferenceForImpl(this.ctx, pid);
   }

@@ -1021,6 +1021,10 @@ export const COMMAND_NAMES = [
   // src/sim/housing/house_storage.ts). Appended.
   'house_storage_deposit',
   'house_storage_withdraw',
+  // Kill-time Auto Loot: the caller's "Auto Loot" option, re-pushed on every
+  // world entry and toggle (Sim.setAutoLoot via src/sim/loot/auto_loot_on_kill.ts).
+  // Appended.
+  'set_auto_loot',
 ] as const;
 
 // The union both the send path (`online.ts`) and the dispatch switch
@@ -1456,4 +1460,6 @@ export const COMMAND_FACETS = {
   // untagged like myHouse.
   house_storage_deposit: 'IWorldHousing',
   house_storage_withdraw: 'IWorldHousing',
+  // IWorldInteraction: the kill-time Auto Loot session preference.
+  set_auto_loot: 'IWorldInteraction',
 } as const satisfies Partial<Record<ClientCommand, WorldFacet>>;

@@ -13,6 +13,7 @@ import { emptyBuddySelfMirror } from '../../src/net/buddy_wire';
 import { EMPTY_MST_CRAFTS } from '../../src/net/crafting_wire';
 import { GuildBankLogMirror } from '../../src/net/guild_bank_log_mirror';
 import { ClientWorld } from '../../src/net/online';
+import { SessionPreferenceMemo } from '../../src/net/session_preferences';
 import { freshAccountLedger } from '../../src/sim/account_ledger';
 import { emptyAllocation, emptyModifiers } from '../../src/sim/content/talents';
 import { ALL_RECIPES } from '../../src/sim/data';
@@ -278,7 +279,7 @@ export function bareClient(pid: number, overrides: BareClientOverrides = {}): Cl
   c.commissionOrders = [];
   c.socialDirty = false;
   c.wireSeen = new Set();
-  c.lastStopAutoAttackOnTargetSwitch = null;
+  c.sessionPrefs = new SessionPreferenceMemo();
   c.reconnectAttempts = 0;
   c.conflictRejections = 0;
   c.timeoutRejections = 0;

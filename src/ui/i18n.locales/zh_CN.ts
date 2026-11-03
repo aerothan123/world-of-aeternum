@@ -5654,7 +5654,7 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.options.walkByAutoloot': '路过自动拾取',
   'hudChrome.options.autoLoot': '自动拾取',
   'hudChrome.options.autoLootNote':
-    '点击或轻触尸体会直接把其中的金币和物品放进你的背包，而不打开拾取窗口。点击时按住 Shift 可对该尸体执行相反的操作。队伍需要掷骰的物品或由拾取分配者分配的物品仍会进入相应的掷骰，背包放不下的物品会留在尸体上。交互键始终直接拾取战利品。',
+    '你正在战斗的目标死亡时，你应得的那份战利品会直接放进你的背包，无需点击：独自击杀时为全部战利品；在队伍中则为你应得的金币、你的任务物品、轮流拾取轮到你的掉落，以及你在队伍需求或贪婪掷骰中赢得的物品（输掉的掷骰不会给你任何东西）。由拾取分配者分配的掉落、先到先得的队伍战利品以及背包放不下的物品会留在尸体上。点击或轻触仍有战利品的尸体会直接拾取而不打开拾取窗口；点击时按住 Shift 则改为打开窗口。',
   'hudChrome.options.lockCursorOnRotate': '旋转时锁定光标',
   'hudChrome.options.keybindHelpLockCursorOnRotate':
     '拖动旋转镜头时将鼠标光标保持在窗口内，使其无法到达屏幕边缘或移动到另一台显示器。如果你喜欢自由光标，请关闭此选项。',

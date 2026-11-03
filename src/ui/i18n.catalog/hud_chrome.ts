@@ -3112,12 +3112,14 @@ export const hudChromeStrings = {
     walkByAutoloot: 'Walk-by Autoloot',
     // Interface panel toggle (Combat tab, off by default): the classic Auto Loot
     // option. The note under it is the row's explanation (option rows carry no
-    // hover card), written from the live path: auto_loot_core.ts decides, the
-    // take is the window's own Take Loot command (sim lootCorpse). The note is
-    // wordy (M16): the five non-Latin fills land in this same change.
+    // hover card), written from the live path: the kill-time take is
+    // src/sim/loot/auto_loot_on_kill.ts (server-authoritative), the corpse click
+    // is auto_loot_core.ts over the window's own Take Loot command (sim
+    // lootCorpse). The note is wordy (M16): the five non-Latin fills land in
+    // the same change as any reword.
     autoLoot: 'Auto Loot',
     autoLootNote:
-      'Clicking or tapping a corpse puts its coins and items straight into your bags instead of opening the loot window. Hold Shift while you click to do the opposite for that corpse. An item your group rolls for, or that the master looter hands out, still goes to that roll, and anything that does not fit in your bags stays on the corpse. The interact key always takes the loot directly.',
+      "When something you are fighting dies, your share of its loot goes straight into your bags with no click: everything when you killed it alone; in a group, your share of the coins, your quest items, the drops whose round-robin turn is yours, and any item you win in your group's need or greed roll (a roll you lose gives you nothing). Drops the master looter hands out, first-come group loot and anything that does not fit in your bags stay on the corpse. Clicking or tapping a corpse with loot left takes it without opening the loot window; hold Shift while you click to open the window instead.",
     groundReticle: 'Ground-Targeting Reticle',
     // Interface panel toggle: Clique-style mouseover casting of friendly abilities
     // on the hovered unit frame, the party/raid rows and the target-of-target

@@ -239,6 +239,7 @@ import {
 } from './game/shader_cache_warmup';
 import { registerShaderWarmSetting } from './game/shader_warm_setting';
 import { toggleSheatheWithCue } from './game/sheathe_toggle';
+import * as simSessionPrefs from './game/sim_session_preferences';
 import { initSoftwareRenderNotice } from './game/software_render_notice';
 import {
   decideSpawnCinematic,
@@ -1148,10 +1149,10 @@ async function startGame(
   // (settingsForShellReflection): a bridge read resolving after this line
   // writes into THIS instance rather than a doomed parallel snapshot.
   liveSettings = settings;
-  // "Stop Auto-Attack on Target Switch" (issue #1358) is authoritative on the
-  // sim, so a stored player preference must be re-pushed on every world entry
-  // (offline sim or online server), not just when the Options toggle changes.
-  world.setStopAutoAttackOnTargetSwitch(settings.get('stopAutoAttackOnTargetSwitch'));
+  // "Stop Auto-Attack on Target Switch" (#1358) and kill-time Auto Loot are
+  // authoritative on the sim, so the stored preferences are re-pushed on every
+  // world entry (offline sim or online server), not just when Options toggles.
+  simSessionPrefs.pushSimSessionPreferences(world, settings);
   // First-run graphics default: until a device default has been applied (the dedicated
   // graphicsDefaultApplied marker, NOT the graphicsPreset key, which save() def-fills the moment
   // any unrelated setting is stored), probe the device (GPU name, memory, cores, touch) and
@@ -2294,11 +2295,10 @@ async function startGame(
       settings.set(key, !!value);
       return;
     }
-    if (key === 'stopAutoAttackOnTargetSwitch') {
-      // Authoritative on the sim (issue #1358): persist locally AND mirror the
-      // live value onto the player, so the very next target switch honors it.
-      const v = settings.set('stopAutoAttackOnTargetSwitch', !!value);
-      world.setStopAutoAttackOnTargetSwitch(v);
+    if (simSessionPrefs.isSimSessionPreferenceKey(key)) {
+      // Authoritative on the sim (game/sim_session_preferences.ts): persist
+      // locally AND mirror the live value onto the player at once.
+      simSessionPrefs.applySimSessionPreference(world, key, settings.set(key, !!value));
       return;
     }
     if (key === 'showAttackButton') {
