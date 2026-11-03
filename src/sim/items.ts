@@ -104,6 +104,8 @@ import { mountOwned, summonMountItem } from './mounts';
 import { learnRiding } from './mounts_training';
 import { battlefieldExperienceTrickle } from './professions/battlefield_xp';
 import { placeFeastAction } from './professions/feast';
+import { equipGatherTool } from './professions/gather_tool_actions';
+import { gatherToolSlotFor } from './professions/gather_tool_slots';
 import { useGatherToolItem } from './professions/gathering';
 import { placeMobileStationFromItem } from './professions/mobile_station';
 import { useRecipePatternItem } from './professions/pattern_items';
@@ -211,7 +213,7 @@ function newestInventoryIndex(inventory: readonly InvSlot[], itemId: string): nu
  *  unequip, a respec bench) lands in the first free cell like any other, and
  *  is pinned there at once: a hint-less stack would otherwise slide whenever
  *  an earlier hint-less stack leaves, which a locked one must not. */
-function returnEquippedItemToBags(
+export function returnEquippedItemToBags(
   meta: PlayerMeta,
   itemId: string,
   payload?: ItemInstancePayload,
@@ -236,7 +238,7 @@ function returnEquippedItemToBags(
   return fresh;
 }
 
-function canReturnEquippedItemToBags(
+export function canReturnEquippedItemToBags(
   meta: PlayerMeta,
   itemId: string,
   payload?: ItemInstancePayload,
@@ -603,6 +605,8 @@ export function equipItem(
   if (!r) return;
   const { meta, e: p } = r;
   const def = ITEMS[itemId];
+  // A gathering tool equips into its tool-belt slot (professions/gather_tool_actions.ts).
+  if (equipGatherTool(ctx, meta, p, itemId, slotIndex)) return;
   if (!def?.slot || (def.kind !== 'weapon' && def.kind !== 'armor' && def.kind !== 'held_offhand'))
     return;
   if (ctx.countItem(itemId, meta.entityId) <= 0) return;
@@ -976,7 +980,16 @@ export function useItem(
     useWornTrinket(ctx, meta, p, itemId);
     return;
   }
-  if (ctx.countItem(itemId, meta.entityId) <= 0) {
+  // A gathering tool works only from its belt slot: using the EQUIPPED tool
+  // runs its arm below (cast a line, work the nearest node); using a bagged
+  // one equips it instead (professions/gather_tool_actions.ts).
+  const toolSlot = gatherToolSlotFor(def);
+  const toolEquipped = toolSlot !== null && meta.gatherTools?.[toolSlot]?.itemId === itemId;
+  if (toolSlot && !toolEquipped) {
+    equipGatherTool(ctx, meta, p, itemId, slotIndex);
+    return;
+  }
+  if (!toolEquipped && ctx.countItem(itemId, meta.entityId) <= 0) {
     ctx.error(meta.entityId, "You don't have that item.");
     return;
   }
@@ -985,6 +998,7 @@ export function useItem(
   // effect for free, repeatably. The aggregate countItem check above cannot catch
   // it: the player really does hold the item, they just named a slot that is not it.
   if (
+    !toolEquipped &&
     slotIndex !== undefined &&
     selectedInventorySlot(meta.inventory, itemId, slotIndex) === null
   ) {

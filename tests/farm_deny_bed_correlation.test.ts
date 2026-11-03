@@ -191,6 +191,8 @@ const ARMS: readonly (readonly [string, (h: Harness) => ReturnType<typeof denies
   [
     'tool',
     (h) => {
+      // The hoe works from the farming tool slot: empty it, then lose it.
+      h.sim.unequipGatherTool('farming', h.pid);
       h.sim.removeItem(HOE_ID, 1, h.pid);
       return plant(h);
     },

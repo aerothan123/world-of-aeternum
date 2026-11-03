@@ -5885,6 +5885,7 @@ const ALL_DELTA_KEYS = [
   'gcon',
   'ggoal',
   'gprof',
+  'gtool',
   'guildBank',
   'hbl',
   'hill',
@@ -6048,6 +6049,7 @@ const TERSE_TO_IWORLD: Record<string, string> = {
   ftr: 'felledTrees',
   ggoal: 'gatheringGoal',
   gprof: 'gatheringProficiency',
+  gtool: 'gatherToolSlots',
   guildBank: 'guildBankInfo',
   hill: 'hillInfo',
   hirat: 'hitRating',
@@ -6987,6 +6989,13 @@ describe('full self-state snapshot delta fixture', () => {
     // leaving the HUD empty. craftedBy is deliberately not projected; what
     // crosses instead is the R48 selfCrafted boolean (false here: the
     // fixture's direct meta write recorded no crafter).
+    // gtool -> gatherToolSlots: the fixture character's starter belt, decoded
+    // through the sim's own load rule.
+    expect(client.gatherToolSlots).toEqual({
+      mining: { itemId: 'copper_mining_pick', count: 1 },
+      logging: { itemId: 'handaxe', count: 1 },
+      herbalism: { itemId: 'gathering_sickle', count: 1 },
+    });
     expect(client.toolEffectSlots).toEqual([
       {
         professionId: 'mining',
@@ -7686,8 +7695,9 @@ describe('delta-key contract pins (anti-drift)', () => {
     // +1: player housing's own house hse (Project H), for 137.
     // +1: player housing's house storage hst (Project H phase 3), for 138.
     // +1: tree chopping's felled set ftr (server/felled_trees_wire.ts), for 139.
-    expect(ALL_DELTA_KEYS).toHaveLength(139);
-    expect(new Set(ALL_DELTA_KEYS).size).toBe(139);
+    // +1: the gathering tool belt gtool (server/gathering_self_wire.ts), for 140.
+    expect(ALL_DELTA_KEYS).toHaveLength(140);
+    expect(new Set(ALL_DELTA_KEYS).size).toBe(140);
     expect([...ALL_DELTA_KEYS]).toEqual([...ALL_DELTA_KEYS].sort());
   });
 
@@ -7870,8 +7880,9 @@ describe('delta-key contract pins (anti-drift)', () => {
     // The unapplied claim tier udiff (self_scalar_wire.ts) adds one more.
     // Player housing's own house hse (Project H) makes 137, and its house
     // storage hst (phase 3, server/house_storage_wire.ts) 138. Tree chopping's
-    // felled set ftr (server/felled_trees_wire.ts) makes 139.
-    expect(scraped.size).toBe(139);
+    // felled set ftr (server/felled_trees_wire.ts) makes 139, and the tool
+    // belt gtool (server/gathering_self_wire.ts) 140.
+    expect(scraped.size).toBe(140);
     expect([...scraped].sort()).toEqual([...ALL_DELTA_KEYS].sort());
   });
 

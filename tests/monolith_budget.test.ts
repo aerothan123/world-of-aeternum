@@ -1286,7 +1286,10 @@ const MONOLITHS: MonolithRow[] = [
     // the Exchange.
     // Down 11411 -> 11404 with tree chopping: the node harvestable and respawn
     // reads moved to professions/gather_node_reads.ts. wc -l. Exact.
-    ceiling: 11404,
+    // LOWERED 11404 -> 11396 with the gathering tool belt: toolEffectSlotsFor moved into
+    // professions/tool_effect_slot_views.ts, paying for the belt's load, save and grant
+    // hooks. wc -l. Exact count.
+    ceiling: 11396,
     seam: 'a sim system module behind SimContext (src/sim/CLAUDE.md)',
   },
   {
@@ -1547,7 +1550,9 @@ const MONOLITHS: MonolithRow[] = [
     // LOWERED to 10773 at the merge of PR 4390 (riding ranks) over release/v0.45.0. wc -l.
     // LOWERED 10773 -> 9539 when the crypto rail (wallet, $WOC Exchange,
     // Daily Rewards, holder flair) was removed outright.
-    ceiling: 9539,
+    // LOWERED 9539 -> 9538 with the gathering tool belt (the gather-tool use hook now
+    // passes the world and lost a comment line). wc -l. Exact count.
+    ceiling: 9538,
     seam: 'a src/game/ or src/ui/ sibling module; main.ts is a firewall, not a home',
   },
   {
@@ -1844,7 +1849,9 @@ const MONOLITHS: MonolithRow[] = [
     // Daily Rewards, holder flair) was removed outright.
     // Down 9613 -> 9592 at the crypto removal: the dirty guild-book escrow helpers left with
     // the Exchange.
-    ceiling: 9592,
+    // LOWERED 9592 -> 9589 with the gathering tool belt: the unequip_item case and the
+    // new unequip_gather_tool case moved into material_stack_wire.ts. wc -l. Exact count.
+    ceiling: 9589,
     seam: 'a sibling server module; see the hot-path seams in server/CLAUDE.md',
   },
   {

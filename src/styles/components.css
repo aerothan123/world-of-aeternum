@@ -3028,6 +3028,27 @@
     font-weight: normal;
     font-variant-numeric: tabular-nums;
   }
+  /* The Tools section (the gathering tool belt): one equipment-slot cell per
+     gathering profession, in a wrapping row under the paperdoll, reusing the
+     gear cell family (.equip-slot) so tools read as equipment. */
+  .char-tool-belt {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .char-tool-belt .cp-title {
+    margin-bottom: 0;
+  }
+  .char-tool-belt-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+  }
+  .char-tool-belt-row .tool-belt-slot {
+    flex: 1 1 150px;
+    min-width: 0;
+  }
   /* The lifetime "Time Played" line footing the character sheet: the shared
      inset-card treatment laid out as one slim row (label, value, then the
      reveal/conceal eye pushed to the far edge). */
@@ -22168,6 +22189,10 @@
   }
   .equip-row-weapons .equip-slot .equip-unequip-btn {
     left: calc(50% - 88px);
+  }
+  /* The Tools row cells sit left-aligned, so their x rides the socket corner. */
+  .char-tool-belt-row .tool-belt-slot .equip-unequip-btn {
+    left: -7px;
   }
   .equip-slot:hover .equip-unequip-btn,
   .equip-slot:focus-within .equip-unequip-btn,

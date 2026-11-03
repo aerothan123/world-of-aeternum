@@ -95,6 +95,9 @@ describe('courier live simulation integration', () => {
     player.pos = { ...giver.pos };
     player.prevPos = { ...giver.pos };
     sim.setMembership(pid, 60);
+    // The starter belt equips the pick (gather_tool_slots.ts); move it to the
+    // bags so the courier can carry it, which is the custody shape under test.
+    sim.unequipGatherTool('mining', pid);
     sim.acceptQuest('q_prof_intro', pid);
     expect(sim.countItem('copper_mining_pick', pid)).toBe(1);
     sim.castAbility('courier', pid);

@@ -49,6 +49,8 @@ import type { SimContext } from '../src/sim/sim_context';
 import { type Entity, INTERACT_RANGE, type SimEvent } from '../src/sim/types';
 import { buildVendorView } from '../src/ui/hud/vendor/vendor_view';
 import { NPC_WINDOW_CLOSE_RANGE } from '../src/ui/npc_service_range';
+import { heldItemCount } from './helpers/held_item_count';
+import { emptyToolBelt } from './helpers/tool_belt_fixture';
 import { VENDOR_TEST_WORLD } from './sim_shared';
 
 function ctxOf(sim: Sim): SimContext {
@@ -71,6 +73,8 @@ function shopper(sim: Sim) {
     rebucket(e: Entity): void;
   };
   const pid = sim.addPlayer('warrior', 'Prospector');
+  // Bare hands (the starter tool belt emptied): a bought tool lands in its slot.
+  emptyToolBelt(sim.players.get(pid));
   const hale = [...anySim.entities.values()].find(
     (e) => (e as unknown as { templateId?: string }).templateId === 'provisioner_hale',
   ) as Entity;
@@ -534,7 +538,7 @@ describe('the counter sells ahead; the wield gate owns enforcement (R22)', () =>
 
     items.buyItem(ctxOf(sim), hale.id, 'iron_mining_pick', pid);
 
-    expect(sim.countItem('iron_mining_pick', pid)).toBe(1);
+    expect(heldItemCount(sim, 'iron_mining_pick', pid)).toBe(1);
     expect(meta.copper).toBe(before - (ITEMS.iron_mining_pick.buyValue ?? 0));
     expect(errorTexts(sim.drainEvents())).toEqual([]);
   });
@@ -570,7 +574,7 @@ describe('the counter sells ahead; the wield gate owns enforcement (R22)', () =>
 
     items.buyItem(ctxOf(sim), bree.id, 'mithril_mining_pick', pid);
 
-    expect(sim.countItem('mithril_mining_pick', pid)).toBe(1);
+    expect(heldItemCount(sim, 'mithril_mining_pick', pid)).toBe(1);
     expect(meta.copper).toBe(before - (ITEMS.mithril_mining_pick.buyValue ?? 0));
     expect(errorTexts(sim.drainEvents())).toEqual([]);
   });
@@ -587,15 +591,16 @@ describe('the counter sells ahead; the wield gate owns enforcement (R22)', () =>
     });
     const { pid, hale, meta } = shopper(sim);
     items.buyItem(ctxOf(sim), hale.id, 'iron_mining_pick', pid);
-    expect(sim.countItem('iron_mining_pick', pid)).toBe(1);
+    expect(heldItemCount(sim, 'iron_mining_pick', pid)).toBe(1);
+    sim.unequipGatherTool('mining', pid); // a vendor buys from the bags
     items.sellItem(ctxOf(sim), 'iron_mining_pick', 1, pid);
-    expect(sim.countItem('iron_mining_pick', pid)).toBe(0);
+    expect(heldItemCount(sim, 'iron_mining_pick', pid)).toBe(0);
     meta.gatheringProficiency.mining = 0;
     sim.drainEvents();
 
     items.buyBackItem(ctxOf(sim), 'iron_mining_pick', pid);
 
-    expect(sim.countItem('iron_mining_pick', pid)).toBe(1);
+    expect(heldItemCount(sim, 'iron_mining_pick', pid)).toBe(1);
     expect(errorTexts(sim.drainEvents())).toEqual([]);
   });
 
@@ -612,7 +617,7 @@ describe('the counter sells ahead; the wield gate owns enforcement (R22)', () =>
 
     items.buyItem(ctxOf(sim), hale.id, 'copper_mining_pick', pid);
 
-    expect(sim.countItem('copper_mining_pick', pid)).toBe(1);
+    expect(heldItemCount(sim, 'copper_mining_pick', pid)).toBe(1);
     expect(errorTexts(sim.drainEvents())).toEqual([]);
   });
 
@@ -633,8 +638,8 @@ describe('the counter sells ahead; the wield gate owns enforcement (R22)', () =>
 
     items.buyItem(ctxOf(sim), hale.id, 'iron_mining_pick', pid);
 
-    expect(sim.countItem('mithril_mining_pick', pid)).toBe(1);
-    expect(sim.countItem('iron_mining_pick', pid)).toBe(1);
+    expect(heldItemCount(sim, 'mithril_mining_pick', pid)).toBe(1);
+    expect(heldItemCount(sim, 'iron_mining_pick', pid)).toBe(1);
     expect(meta.gatheringProficiency.mining).toBe(0);
   });
 });
@@ -655,6 +660,7 @@ describe('the harvest boundary enforces the wield gate (the re-minted deny pins)
     anySim.rebucket(p);
     const meta = sim.meta(pid)!;
     meta.inventory.length = 0;
+    emptyToolBelt(meta); // and nothing in the tool belt either
     sim.drainEvents();
     return { pid, p, meta, node };
   }
@@ -867,7 +873,7 @@ describe('the harvest boundary enforces the wield gate (the re-minted deny pins)
       .replace(/\s+/g, '')
       .replace(/,\)/g, ')');
     expect(source).toContain(
-      'bestWieldableAnyGatherToolTier(meta.inventory,meta.gatheringProficiency,ITEMS)',
+      'bestWieldableAnyGatherToolTier(toolBelt(meta),meta.gatheringProficiency,ITEMS)',
     );
     expect(source).not.toContain('bestOwnedAnyGatherToolTier(');
     // And the denial names a wield requirement when one applies.

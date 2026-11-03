@@ -4079,6 +4079,11 @@ export const ja_JP: EnTranslations = {
       "hideHelmAria": "兜を隠す",
       "showHelmAria": "兜を表示"
     },
+    "toolBelt": {
+      "title": "道具",
+      "emptySlot": "{profession}の道具が装備されていません。ここにドラッグするか、バッグで右クリックしてください。",
+      "unequipHint": "× をクリックするか右クリックで外す"
+    },
     "account": {
       "title": "アカウント",
       "loggedOutPrompt": "アカウントを管理するにはログインしてください。",
@@ -6139,6 +6144,13 @@ export const ja_JP: EnTranslations = {
         "fishing": "釣り糸を垂らすには釣り竿が必要です。",
         "farming": "この作物畑を耕すには農耕鍬が必要です。"
       },
+      "toolEquipRequired": {
+        "mining": "採掘用のつるはしを装備する必要があります。",
+        "logging": "伐採用の斧を装備する必要があります。",
+        "herbalism": "薬草用の鎌を装備する必要があります。",
+        "fishing": "釣り竿を装備する必要があります。",
+        "farming": "農作業用のくわを装備する必要があります。"
+      },
       "noNodeNearby": {
         "mining": "手の届く範囲に鉱脈がありません。",
         "logging": "手の届く範囲に立木がありません。",
@@ -6150,6 +6162,12 @@ export const ja_JP: EnTranslations = {
         "logging": "バッグにある伐採斧を振るうには伐採{skill}が必要です。",
         "herbalism": "バッグにある薬草鎌を扱うには薬草学{skill}が必要です。",
         "farming": "バッグにある農耕鍬を振るうには農耕{skill}が必要です。"
+      },
+      "wieldUnmetEquipped": {
+        "mining": "装備中のつるはしを振るには採掘 {skill} が必要です。",
+        "logging": "装備中の斧を振るには伐採 {skill} が必要です。",
+        "herbalism": "装備中の鎌を使うには薬草学 {skill} が必要です。",
+        "farming": "装備中のくわを振るには農業 {skill} が必要です。"
       },
       "wieldUnmetCorpse": "最高の道具を使いこなすには採集スキル{skill}が必要です。",
       "toolTierUnmetCorpse": "最高の素材を回収するにはティア{tier}の採集道具が必要です。",
@@ -6177,6 +6195,7 @@ export const ja_JP: EnTranslations = {
         "speed": "ティア{tier}未満のノードでの採集が速くなります。",
         "wieldDegrade": "その熟練度に満たなくても、下位ティアの道具として使えます。",
         "rodRequired": "釣りに必要です。",
+        "equipHint": "道具スロットに装備します。",
         "rodBite": "魚が食いつくまでの時間が最大{seconds}秒短くなります。",
         "rodReel": "リールの猶予時間が{seconds}秒延びます。",
         "rodBand": "釣りスキル{skill}以上でより豊かな釣果が解放されます。",

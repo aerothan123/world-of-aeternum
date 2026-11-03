@@ -600,6 +600,8 @@ const UI_PURE_CORES = [
   'src/ui/hud/housing/furniture_tooltip_view.ts',
   'src/ui/hud/professions/farming_plant_sheet_view.ts',
   'src/ui/hud/professions/harvest_journal_view.ts',
+  // The character sheet's Tools section (the gathering tool belt cells).
+  'src/ui/hud/professions/tool_belt_view.ts',
   'src/ui/hud/professions/harvest_preference_view.ts',
   'src/ui/hud/professions/perfecting_view.ts',
   'src/ui/hud/professions/perfecting_swap_view.ts',
@@ -1157,6 +1159,8 @@ const RENDER_PURE_CORES = [
   'src/render/tree_hide_index_core.ts',
   // the felled-tree fall/regrow curves and set diff (tree_felling.ts)
   'src/render/tree_felling_core.ts',
+  // The gathering pose: held tool and swing clip from public cast state.
+  'src/render/gather_pose_core.ts',
   'src/render/transport_ship_core.ts',
   'src/render/harbor_route_marker_core.ts',
   'src/render/wyrmwatch_harbor_core.ts',
@@ -3407,6 +3411,8 @@ const UI_DOM_MODULES = [
   'src/ui/bootcamp.ts',
   // The press affordances composition: reads window for the Chop chip's viewport.
   'src/ui/hud/professions/interact_affordances_controller.ts',
+  // The character sheet's Tools row: rebuilt with the sheet, mints its own cells.
+  'src/ui/hud/professions/tool_belt_controller.ts',
   'src/ui/ui_effects_applier.ts',
   'src/ui/ui_icons.ts',
   'src/ui/ui_scale.ts',

@@ -1069,7 +1069,9 @@ describe('the session cap always outlasts a legal reel window', () => {
         (a, b) =>
           (isGatherToolUse(b.use) ? b.use.tier : 0) - (isGatherToolUse(a.use) ? a.use.tier : 0),
       )[0];
-    sim.addItem(bestRod.id, 1);
+    // Straight into the fishing tool slot: the belt refuses a swap while the
+    // session runs, and the window reads the slot at the bite.
+    meta.gatherTools = { ...meta.gatherTools, fishing: { itemId: bestRod.id, count: 1 } };
     // Run the real tick loop to the bite, then to the last tick of the window.
     for (let tick = startTick + 1; tick <= p.fishBiteAtTick; tick++) {
       sim.tickCount = tick;

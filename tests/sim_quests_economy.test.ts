@@ -23,6 +23,7 @@ import {
   xpForLevel,
 } from '../src/sim/types';
 import { terrainHeight, WATER_LEVEL } from '../src/sim/world';
+import { heldItemCount } from './helpers/held_item_count';
 import {
   despawnMobs,
   EMPTY_TEST_WORLD,
@@ -403,7 +404,7 @@ describe('food, drink, vendor', () => {
     teleportTo(sim, brandt.pos.x + 2, brandt.pos.z);
     sim.copper = 100;
     sim.buyItem(brandt.id, 'simple_fishing_pole');
-    expect(sim.countItem('simple_fishing_pole')).toBe(1);
+    expect(heldItemCount(sim, 'simple_fishing_pole')).toBe(1);
     expect(sim.copper).toBe(80);
   });
 
@@ -420,7 +421,7 @@ describe('food, drink, vendor', () => {
     sim.events = [];
     sim.useItem('simple_fishing_pole');
     expect(sim.player.castingAbility).toBe(null);
-    expect(sim.countItem('simple_fishing_pole')).toBe(1);
+    expect(heldItemCount(sim, 'simple_fishing_pole')).toBe(1);
     expect(sim.events).toContainEqual(
       expect.objectContaining({
         type: 'error',
@@ -501,7 +502,7 @@ describe('food, drink, vendor', () => {
         }),
       );
     }
-    expect(sim.countItem('simple_fishing_pole')).toBe(1);
+    expect(heldItemCount(sim, 'simple_fishing_pole')).toBe(1);
   });
 
   it('catches The Codfather in Deepfen Shallows while its quest is active', () => {
@@ -518,11 +519,11 @@ describe('food, drink, vendor', () => {
     sim.player.facing = spot.facing;
     sim.addItem('simple_fishing_pole', 1);
     // The Deepfen Shallows are Mirefen water, which takes the tier-2 rod
-    // (professions/fishing_zones.ts). The pole stays in the bags because the
-    // not-consumed assertion at the end is about the item pressed, and the
-    // press still routes through the pole.
+    // (professions/fishing_zones.ts). The better rod takes the fishing tool
+    // slot (the tool belt) and the pole goes back to the bags, so the presses
+    // below use the rod, the tool that casts.
     sim.addItem('ironreel_fishing_rod', 1);
-    sim.useItem('simple_fishing_pole');
+    sim.useItem('ironreel_fishing_rod');
     expect(sim.player.castingAbility).toBe(FISHING_CAST_ID);
 
     // Drive the bite, then reel: the codfather force-lands at the reel press
@@ -534,13 +535,13 @@ describe('food, drink, vendor', () => {
     expect(events.some((e) => e.type === 'fishingBite')).toBe(true);
     expect(sim.countItem('the_codfather')).toBe(0);
     sim.events = [];
-    sim.useItem('simple_fishing_pole'); // the reel
+    sim.useItem('ironreel_fishing_rod'); // the reel
     expect(sim.events).toContainEqual(expect.objectContaining({ type: 'castStop', success: true }));
     expect(sim.player.castingAbility).toBe(null);
     expect(sim.countItem('the_codfather')).toBe(1);
     sim.tick();
     expect(sim.questState('q_the_codfather')).toBe('ready');
-    expect(sim.countItem('simple_fishing_pole')).toBe(1);
+    expect(heldItemCount(sim, 'simple_fishing_pole')).toBe(1);
   });
 
   it('does not catch The Codfather without the active quest or outside Deepfen Shallows', () => {
@@ -554,14 +555,14 @@ describe('food, drink, vendor', () => {
     // refused and this test would pass for the wrong reason: no codfather
     // because no session, rather than no codfather because no quest.
     deepfenSim.addItem('ironreel_fishing_rod', 1);
-    deepfenSim.useItem('simple_fishing_pole');
+    deepfenSim.useItem('ironreel_fishing_rod');
     expect(deepfenSim.player.castingAbility).toBe(FISHING_CAST_ID);
     const events: SimEvent[] = [];
     for (let i = 0; i < 20 * 10 && !events.some((e) => e.type === 'fishingBite'); i++) {
       events.push(...deepfenSim.tick());
     }
     expect(events.some((e) => e.type === 'fishingBite')).toBe(true);
-    deepfenSim.useItem('simple_fishing_pole'); // reel: at most a normal table catch
+    deepfenSim.useItem('ironreel_fishing_rod'); // reel: at most a normal table catch
     expect(deepfenSim.countItem('the_codfather')).toBe(0);
   });
 

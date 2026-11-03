@@ -20,6 +20,7 @@ import { recordTrackedConsumed } from '../item_tracking';
 import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
 import type { ItemInstancePayload } from '../types';
+import { ownedGatherTools } from './gather_tool_slots';
 
 /** One reagent unit a craft spent that carried a payload. */
 export interface SpentReagentCopy {
@@ -38,15 +39,16 @@ export function craftLineageParent(spent: readonly SpentReagentCopy[]): string |
   return undefined;
 }
 
-/** The copy of `resultItemId` in `meta`'s bags minted from `parentGuid` (the
- *  hub stamped its provenance.derivedFrom), or undefined when the output was
- *  not tracked. */
+/** The copy of `resultItemId` in `meta`'s bags or tool belt minted from
+ *  `parentGuid` (the hub stamped its provenance.derivedFrom), or undefined when
+ *  the output was not tracked. The belt counts because a crafted tool takes its
+ *  empty tool slot inside the grant itself (gather_tool_actions.ts). */
 function derivedChildGuid(
   meta: PlayerMeta,
   resultItemId: string,
   parentGuid: string,
 ): string | undefined {
-  for (const slot of meta.inventory) {
+  for (const slot of ownedGatherTools(meta)) {
     const instance = slot.instance;
     if (slot.itemId !== resultItemId || !instance?.guid) continue;
     if (instance.provenance?.derivedFrom === parentGuid && instance.guid !== parentGuid) {

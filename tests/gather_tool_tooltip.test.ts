@@ -25,6 +25,14 @@ describe('gatherToolTooltipLines: picks, axes, sickles', () => {
     expect(html).not.toContain('Gathers faster');
   });
 
+  it('every tool says it works from the Tools slot (the tool belt)', () => {
+    for (const id of ['copper_mining_pick', 'handaxe', 'gathering_sickle', 'simple_fishing_pole']) {
+      expect(gatherToolTooltipLines(ITEMS[id]), id).toContain(
+        '<div class="tt-desc">Equip in the Tools slot.</div>',
+      );
+    }
+  });
+
   it('a tier-2 pick adds the speed line (0.4s per tier above the node)', () => {
     const html = gatherToolTooltipLines(ITEMS.iron_mining_pick);
     expect(html).toContain('<div class="tt-sub">Mining tool (tier 2)</div>');
@@ -282,7 +290,7 @@ describe('gatherToolTooltipLines: farming', () => {
     expect(gatherToolTooltipLines(hoe(1))).not.toContain('Requires Farming');
   });
 
-  it('renders the unlocks and bags-use lines, and the use line deliberately lacks "Use:"', () => {
+  it('renders the unlocks and Tools-slot lines, and no "Use:" or bags line', () => {
     // The crops-and-tools phase filled the farming UNLOCKS_KEYS and USE_KEYS
     // rows this test used to pin as deliberately absent, so this is the
     // flipped truth: the unlocks line names the crop tiers the hoe's tier
@@ -294,9 +302,10 @@ describe('gatherToolTooltipLines: farming', () => {
     // leaving it as a comment in the key map.
     const html = gatherToolTooltipLines(hoe(1));
     expect(html).toContain('<div class="tt-desc">Required to plant crops up to tier 1.</div>');
-    expect(html).toContain(
-      '<div class="tt-desc">Works from your bags when you plant a crop bed.</div>',
-    );
+    // Since the tool belt a hoe works from the farming tool slot, never the
+    // bags: the old bags line is gone and the equip line says where it goes.
+    expect(html).toContain('<div class="tt-desc">Equip in the Tools slot.</div>');
+    expect(html).not.toContain('Works from your bags');
     expect(html).not.toContain('Use:');
     // The tier interpolates: a tier-3 hoe names tier-3 crops, so the line is
     // the template rendered and never a hardcoded tier-1 sentence.

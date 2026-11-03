@@ -737,6 +737,9 @@ describe('REGRESSION: frozen grant inputs must be the real shared snapshot', () 
     // non-null expectation.
     const { sim, a, mob } = setup();
     const meta = mustMeta(sim, a);
+    // The starter tool belt (gather_tool_slots.ts) equips a tier-1 pick, axe
+    // and sickle; empty it so this is the genuinely toolless shape.
+    meta.gatherTools = {};
     const componentTags = MOBS[mob.templateId]?.componentTags ?? [];
     expect(startCorpseHarvest(sim.ctx, mob.id, a)).toBe(true);
     const frozen = meta.corpseHarvestSession?.grant.inputs.wieldRequirementByComponent;

@@ -24,6 +24,7 @@
 import { isActionLockingFormAuraKind } from '../sim/combat/forms';
 import { TURNKEY_CAGED } from '../sim/encounters/sunken_bastion/ids';
 import { isSwimming } from '../sim/player_motion';
+import type { GatherToolSlots } from '../sim/professions/gather_tool_slots';
 import { parseTreeNodeId } from '../sim/trees/tree_registry';
 import { type Entity, isConsuming } from '../sim/types';
 import { groundHeight } from '../sim/world';
@@ -51,6 +52,9 @@ export interface ChopPromptTarget {
 export interface ChopPromptWorld extends NearbyInteractionScanWorld {
   cfg: { seed: number };
   nodeHarvestableByMe(nodeId: string): boolean;
+  /** The tool belt (IWorld gatherToolSlots): with no axe in the logging slot
+   *  a chop can never start, so no chip is offered. Optional for fixtures. */
+  gatherToolSlots?: Readonly<GatherToolSlots>;
 }
 
 /** The player fields the cheap per-frame gate reads. */
@@ -83,6 +87,7 @@ export function resolveChopPromptTarget(
 ): boolean {
   const p = world.player;
   if (chopPromptPlayerBlocked(p)) return false;
+  if (world.gatherToolSlots && !world.gatherToolSlots.logging) return false;
   const seed = world.cfg.seed;
   if (isSwimming(p, seed)) return false;
   // The keyboard press's exact call: reliable harvest state, no preferred npc.

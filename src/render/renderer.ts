@@ -10195,9 +10195,16 @@ export class Renderer {
       // Gated per newly attached payload: nothing else in this loop drives its own
       // .visible, so first-sight materials link off-thread instead of freezing the
       // frame the gear lands on (#2571).
-      if (e.mainhandItemId !== v.mainhandItemId) {
-        v.mainhandItemId = e.mainhandItemId;
-        const changed = v.visual.setWeapon(e.mainhandItemId);
+      // A gathering body holds its tool instead (tree_felling.ts heldMainhandFor).
+      const shown = this.treeFelling.heldMainhandFor(
+        e,
+        e.mainhandItemId,
+        sim.playerId,
+        sim.gatherToolSlots,
+      );
+      if (shown !== v.mainhandItemId) {
+        v.mainhandItemId = shown;
+        const changed = v.visual.setWeapon(shown);
         if (changed) for (const node of changed) this.gateSwapOnCompile(node);
         this.reconcileViewLights(v);
       }

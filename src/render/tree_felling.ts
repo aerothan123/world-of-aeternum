@@ -27,8 +27,16 @@
 // (one draw per species), and only animating trees cost anything per frame.
 
 import * as THREE from 'three';
+import { gatherNodesInActiveWorld } from '../sim/data';
+import type { GatherToolSlots } from '../sim/professions/gather_tool_slots';
 import { treeAnchorId } from '../sim/trees/tree_registry';
-import { type SimEvent, TREE_CHOP_CAST_ID } from '../sim/types';
+import { GATHER_CAST_ID, type SimEvent, TREE_CHOP_CAST_ID } from '../sim/types';
+import { itemWeaponModelUrl } from './characters/manifest';
+import { gatherCastClipFor, gatherProfessionForCast, heldGatherMainhand } from './gather_pose_core';
+
+const NO_NODES: readonly never[] = [];
+const hasHeldModel = (itemId: string): boolean => itemWeaponModelUrl(itemId) !== null;
+
 import type { FelledTreesView } from '../world_api/professions';
 import type { SpatialAudioSink } from './audio_sink';
 import { disposeGhostHideGeometry, ghostHideGeometry } from './instanced_dither_fade';
@@ -142,10 +150,39 @@ export class TreeFellingView {
     }
   }
 
-  /** The cast clip a body plays: the chop swing while it chops a tree. */
-  castClipFor(e: { id: number; castingAbility: string | null }): string | null {
+  /** The cast clip a body plays: the chop swing while it chops a tree, and
+   *  the mining or herb loop while it works a node (gather_pose_core.ts). */
+  castClipFor(e: {
+    id: number;
+    castingAbility: string | null;
+    pos: { x: number; z: number };
+  }): string | null {
     if (e.castingAbility === TREE_CHOP_CAST_ID) return TREE_CHOP_CAST_CLIP;
+    if (e.castingAbility === GATHER_CAST_ID) {
+      const pose = gatherCastClipFor(
+        gatherProfessionForCast(e.castingAbility, e.pos, gatherNodesInActiveWorld()),
+      );
+      if (pose) return pose;
+    }
     return e.castingAbility ?? null;
+  }
+
+  /** The item a body's main hand shows: the gathering tool (or its held
+   *  stand-in) while it chops, mines or picks herbs, else its real weapon,
+   *  so the weapon comes back the frame the cast ends or is interrupted. Only
+   *  the viewer's own belt is known to this client, so a peer always shows
+   *  the profession's stand-in (gather_pose_core.ts). */
+  heldMainhandFor(
+    e: { id: number; castingAbility: string | null; pos: { x: number; z: number } },
+    realMainhand: string | null,
+    selfId: number,
+    belt: Readonly<GatherToolSlots>,
+  ): string | null {
+    if (!e.castingAbility) return realMainhand;
+    const nodes = e.castingAbility === GATHER_CAST_ID ? gatherNodesInActiveWorld() : NO_NODES;
+    const profession = gatherProfessionForCast(e.castingAbility, e.pos, nodes);
+    const tool = profession && e.id === selfId ? (belt[profession]?.itemId ?? null) : null;
+    return heldGatherMainhand(profession, realMainhand, tool, hasHeldModel);
   }
 
   update(dt: number): void {

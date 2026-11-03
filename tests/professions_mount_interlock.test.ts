@@ -112,6 +112,7 @@ describe('starting a profession cast dismounts, like every other cast', () => {
     // Drop the pick: the tool gate refuses before the cast (and therefore
     // before the dismount arm) is reached.
     meta.inventory = meta.inventory.filter((s) => s.itemId !== 'copper_mining_pick');
+    meta.gatherTools = {}; // and off the tool belt
     expect(sim.harvestNode(NODE!.id, undefined, pid)).toBe(false);
     expect(p.mountKey).toBe('valorsteed');
     expect(p.castingAbility).toBeNull();

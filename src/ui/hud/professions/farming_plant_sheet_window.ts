@@ -263,6 +263,7 @@ export class PlantSheetWindow {
     const view = buildPlantSheetView({
       bedId: this.bedId,
       inventory: world.inventory,
+      gatherTools: world.gatherToolSlots,
       myFarmPlots: world.myFarmPlots,
       farmingSkill:
         world.professionsState.skills.find((row) => row.professionId === 'farming')?.skill ?? 0,

@@ -26,6 +26,7 @@ import {
 } from '../src/ui/hud/professions/gathering_view';
 import { setLanguage, t } from '../src/ui/i18n';
 import type { IWorld } from '../src/world_api';
+import { beltFromCarried } from './helpers/tool_belt_fixture';
 
 const NODE = GATHER_NODES[0];
 
@@ -77,6 +78,9 @@ function makeWorld(opts: {
     // reads as no tool owned at all (#2343: bare hands never gather, so
     // every node locks without its tool).
     inventory: opts.inventory ?? [],
+    // The pack's tools WORN in their tool slots (the tool belt): a tool works
+    // only from its slot, so the carried-tool fixtures wear what they carry.
+    gatherToolSlots: beltFromCarried(opts.inventory ?? []),
     // The plain counter map the wield-filtered scan reads (R22), beside the
     // professionsState rows the display surfaces read: both derive from the
     // same opts so the fixture cannot disagree with itself.
@@ -219,12 +223,13 @@ describe('tool-tier lock dimension', () => {
     // viewerUsableToolTier: every one of them supplies at least {}. This arm
     // drives it, which is what makes the `?.` load-bearing rather than
     // decorative: dropped to a plain index, a partial mirror would throw
-    // inside the minimap's per-frame build instead of locking. The bags hold a
-    // COVERING tier-2 pick on purpose, so a fail-OPEN regression (absent read
-    // as "no requirement") would unlock the vein and red this arm.
+    // inside the minimap's per-frame build instead of locking. The tool slot
+    // holds a COVERING tier-2 pick on purpose, so a fail-OPEN regression
+    // (absent read as "no requirement") would unlock the vein and red this arm.
     const partial = {
       player: { pos: { x: T2.pos.x, z: T2.pos.z } },
       inventory: PICK,
+      gatherToolSlots: beltFromCarried(PICK),
       nodeHarvestableByMe: () => true,
       professionsState: { skills: [] },
     };
@@ -535,19 +540,19 @@ describe('tool-tier lock dimension', () => {
       'hudChrome.gathering.toolTierUnmet.mining',
     );
     expect(gatherDeniedLineKey('node', 'mining', 1)).toBe(
-      'hudChrome.gathering.toolRequired.mining',
+      'hudChrome.gathering.toolEquipRequired.mining',
     );
     expect(gatherDeniedLineKey('node', 'logging', 2)).toBe(
       'hudChrome.gathering.toolTierUnmet.logging',
     );
     expect(gatherDeniedLineKey('node', 'logging', 1)).toBe(
-      'hudChrome.gathering.toolRequired.logging',
+      'hudChrome.gathering.toolEquipRequired.logging',
     );
     expect(gatherDeniedLineKey('node', 'herbalism', 2)).toBe(
       'hudChrome.gathering.toolTierUnmet.herbalism',
     );
     expect(gatherDeniedLineKey('node', 'herbalism', 1)).toBe(
-      'hudChrome.gathering.toolRequired.herbalism',
+      'hudChrome.gathering.toolEquipRequired.herbalism',
     );
     // A missing requiredTier stays on the tiered line (never claims "no tool").
     expect(gatherDeniedLineKey('node', 'mining')).toBe('hudChrome.gathering.toolTierUnmet.mining');
@@ -555,13 +560,13 @@ describe('tool-tier lock dimension', () => {
     // requirement: the player owns a covering tool, so the counter is the
     // actionable fact, at tier 1 and above alike.
     expect(gatherDeniedLineKey('node', 'mining', 1, 40)).toBe(
-      'hudChrome.gathering.wieldUnmet.mining',
+      'hudChrome.gathering.wieldUnmetEquipped.mining',
     );
     expect(gatherDeniedLineKey('node', 'herbalism', 2, 70)).toBe(
-      'hudChrome.gathering.wieldUnmet.herbalism',
+      'hudChrome.gathering.wieldUnmetEquipped.herbalism',
     );
     expect(gatherDeniedLineKey('node', 'logging', 1, 40)).toBe(
-      'hudChrome.gathering.wieldUnmet.logging',
+      'hudChrome.gathering.wieldUnmetEquipped.logging',
     );
     // A zero or absent wield requirement never takes the wield line.
     expect(gatherDeniedLineKey('node', 'mining', 2, 0)).toBe(
@@ -577,7 +582,7 @@ describe('tool-tier lock dimension', () => {
     // The startFishing implement gate (#2343): surface 'fishing' at tier 1
     // means no tackle at all, so no tier is named.
     expect(gatherDeniedLineKey('fishing', 'fishing', 1)).toBe(
-      'hudChrome.gathering.toolRequired.fishing',
+      'hudChrome.gathering.toolEquipRequired.fishing',
     );
     // The ZONE rod gate (D9) rides the same surface at tier 2 and up, and MUST
     // take the tiered line: on the tierless one a player standing in Thornpeak
@@ -592,7 +597,7 @@ describe('tool-tier lock dimension', () => {
     // A missing requiredTier on the fishing surface stays on the tierless
     // line: the tiered copy interpolates {tier} and would render a hole.
     expect(gatherDeniedLineKey('fishing', 'fishing')).toBe(
-      'hudChrome.gathering.toolRequired.fishing',
+      'hudChrome.gathering.toolEquipRequired.fishing',
     );
     expect(gatherDeniedLineKey('corpse', undefined, 2)).toBe(
       'hudChrome.gathering.toolTierUnmetCorpse',
@@ -605,10 +610,10 @@ describe('tool-tier lock dimension', () => {
       'hudChrome.gathering.toolTierUnmet.farming',
     );
     expect(gatherDeniedLineKey('node', 'farming', 1)).toBe(
-      'hudChrome.gathering.toolRequired.farming',
+      'hudChrome.gathering.toolEquipRequired.farming',
     );
     expect(gatherDeniedLineKey('node', 'farming', 1, 40)).toBe(
-      'hudChrome.gathering.wieldUnmet.farming',
+      'hudChrome.gathering.wieldUnmetEquipped.farming',
     );
     // The fallthrough this guards against, named: none of the three may land on
     // the profession-neutral corpse pair, which is where an unlisted id goes.

@@ -41,6 +41,7 @@ import {
 import { groundHeight, isInWaterBody, waterLevel } from '../world';
 import { type FishingCatchBand, fishingCatchBandFor, fishingRodBandFor } from './fishing_bands';
 import { rodTierRequiredForZone } from './fishing_zones';
+import { toolBelt } from './gather_tool_slots';
 import { queueGatheringGrant } from './gathering';
 import {
   bestOwnedGatherToolTier,
@@ -202,7 +203,7 @@ export const fishingBandFor = fishingCatchBandFor;
 // and every telemetry-bearing fishing event resolve it here), pure state,
 // draw-free: a bag scan plus two ladder reads.
 export function effectiveFishingBand(meta: PlayerMeta): FishingCatchBand {
-  const rodTier = bestOwnedGatherToolTier(meta.inventory, 'fishing', ITEMS);
+  const rodTier = bestOwnedGatherToolTier(toolBelt(meta), 'fishing', ITEMS);
   return Math.min(
     fishingBandFor(meta.gatheringProficiency.fishing ?? 0),
     fishingRodBandFor(rodTier),
@@ -475,7 +476,7 @@ export function startFishing(ctx: SimContext, p: Entity, meta: PlayerMeta): void
   // gate) and BEFORE the water check and the one bite-delay draw, so a
   // denial is rng-free and starts nothing. Text-free denial (the
   // gatherDenied idiom): the client composes its own localized copy.
-  if (!hasFishingImplement(meta.inventory, ITEMS)) {
+  if (!hasFishingImplement(toolBelt(meta), ITEMS)) {
     ctx.emit({
       type: 'gatherDenied',
       pid: meta.entityId,
@@ -526,7 +527,7 @@ export function startFishing(ctx: SimContext, p: Entity, meta: PlayerMeta): void
   // Author fishable water inside an instance and this needs a real answer.
   const probeZoneId = zoneAt(probe.x, probe.z).id;
   const requiredRodTier = rodTierRequiredForZone(probeZoneId);
-  const ownedRodTier = bestOwnedGatherToolTier(meta.inventory, 'fishing', ITEMS);
+  const ownedRodTier = bestOwnedGatherToolTier(toolBelt(meta), 'fishing', ITEMS);
   if (!canGatherTier(ownedRodTier, requiredRodTier)) {
     ctx.emit({
       type: 'gatherDenied',

@@ -4079,6 +4079,11 @@ export const it_IT: EnTranslations = {
       "hideHelmAria": "Nascondi elmo",
       "showHelmAria": "Mostra elmo"
     },
+    "toolBelt": {
+      "title": "Tools",
+      "emptySlot": "No {profession} tool equipped. Drag one here, or right-click it in your bags.",
+      "unequipHint": "Click × or right-click to unequip"
+    },
     "account": {
       "title": "Account",
       "loggedOutPrompt": "Accedi per gestire il tuo account.",
@@ -6139,6 +6144,13 @@ export const it_IT: EnTranslations = {
         "fishing": "Hai bisogno di una canna da pesca per lanciare la lenza.",
         "farming": "Ti serve una zappa agricola per lavorare quest’aiuola."
       },
+      "toolEquipRequired": {
+        "mining": "You need a mining pick equipped.",
+        "logging": "You need a logging axe equipped.",
+        "herbalism": "You need a herbalism sickle equipped.",
+        "fishing": "You need a fishing pole equipped.",
+        "farming": "You need a farming hoe equipped."
+      },
       "noNodeNearby": {
         "mining": "Non c'è nessun filone di minerale a portata.",
         "logging": "Non c'è nessun boschetto di alberi a portata.",
@@ -6150,6 +6162,12 @@ export const it_IT: EnTranslations = {
         "logging": "Ti serve Taglio del legname {skill} per impugnare l'ascia che hai già nelle borse.",
         "herbalism": "Ti serve Erbalismo {skill} per usare la falce che hai già nelle borse.",
         "farming": "Ti serve Agricoltura {skill} per impugnare la zappa che hai in borsa."
+      },
+      "wieldUnmetEquipped": {
+        "mining": "You need Mining {skill} to swing your equipped pick.",
+        "logging": "You need Logging {skill} to swing your equipped axe.",
+        "herbalism": "You need Herbalism {skill} to work your equipped sickle.",
+        "farming": "You need Farming {skill} to swing your equipped hoe."
       },
       "wieldUnmetCorpse": "Ti serve abilità di raccolta {skill} per mettere all'opera il tuo strumento migliore.",
       "toolTierUnmetCorpse": "Hai bisogno di uno strumento da raccolta di livello {tier} per recuperare i materiali migliori.",
@@ -6177,6 +6195,7 @@ export const it_IT: EnTranslations = {
         "speed": "Raccoglie più in fretta sui nodi di livello inferiore a {tier}.",
         "wieldDegrade": "Al di sotto di tale abilità funziona ancora come uno strumento di livello inferiore.",
         "rodRequired": "Necessaria per pescare.",
+        "equipHint": "Equip in the Tools slot.",
         "rodBite": "I pesci abboccano fino a {seconds} s prima.",
         "rodReel": "Allunga di {seconds} s la finestra per recuperare la lenza.",
         "rodBand": "Sblocca tabelle di catture più ricche con abilità di Pesca {skill} o superiore.",

@@ -17298,6 +17298,24 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'auth.wocBuilder.customSkinAria': '사용자 지정 피부색 선택',
   'hudChrome.paperdoll.hideHelmAria': '투구 숨기기',
   'hudChrome.paperdoll.showHelmAria': '투구 표시',
+  'hudChrome.gathering.toolEquipRequired.mining': '채광 곡괭이를 장착해야 합니다.',
+  'hudChrome.gathering.toolEquipRequired.logging': '벌목 도끼를 장착해야 합니다.',
+  'hudChrome.gathering.toolEquipRequired.herbalism': '약초 낫을 장착해야 합니다.',
+  'hudChrome.gathering.toolEquipRequired.fishing': '낚싯대를 장착해야 합니다.',
+  'hudChrome.gathering.toolEquipRequired.farming': '농사 괭이를 장착해야 합니다.',
+  'hudChrome.gathering.wieldUnmetEquipped.mining':
+    '장착한 곡괭이를 휘두르려면 채광 {skill}이(가) 필요합니다.',
+  'hudChrome.gathering.wieldUnmetEquipped.logging':
+    '장착한 도끼를 휘두르려면 벌목 {skill}이(가) 필요합니다.',
+  'hudChrome.gathering.wieldUnmetEquipped.herbalism':
+    '장착한 낫을 사용하려면 약초학 {skill}이(가) 필요합니다.',
+  'hudChrome.gathering.wieldUnmetEquipped.farming':
+    '장착한 괭이를 휘두르려면 농사 {skill}이(가) 필요합니다.',
+  'hudChrome.gathering.toolTooltip.equipHint': '도구 슬롯에 장착합니다.',
+  'hudChrome.toolBelt.title': '도구',
+  'hudChrome.toolBelt.emptySlot':
+    '장착한 {profession} 도구가 없습니다. 여기로 끌어다 놓거나 가방에서 오른쪽 클릭하세요.',
+  'hudChrome.toolBelt.unequipHint': '× 또는 오른쪽 클릭으로 장착 해제',
   'hudChrome.options.waterRipples': '수면 물결 (물살)',
   'hudChrome.options.spellEffects': '주문 효과',
   'hudChrome.options.actionCam': '액션 카메라',

@@ -915,7 +915,10 @@ describe('a BLOCKED swing still ends a session (and still pushes no spell back)'
 describe('the reel window follows the rod held at BITE time, not cast start', () => {
   // The window re-scans the rod when the bite fires (fishing.ts documents the
   // re-scan); these two arms kill a cached-at-cast-start implementation from
-  // both directions.
+  // both directions. The rod is read from the fishing tool slot (the tool
+  // belt), which a player cannot change mid-cast (the swap is refused while
+  // the session runs), so the arms write the slot directly: the pin is that
+  // the scan happens at the bite, whatever moved the rod.
   it('a rod dropped between cast start and the bite arms only the base window', () => {
     const sim = makeSim(4242);
     const meta = mustMeta(sim, sim.playerId);
@@ -923,7 +926,7 @@ describe('the reel window follows the rod held at BITE time, not cast start', ()
     teleportToValeShore(sim);
     const p = sim.player;
     startFishing(sim.ctx, p, meta);
-    sim.removeItem('silverstream_fishing_rod', 1);
+    if (meta.gatherTools) delete meta.gatherTools.fishing;
     sim.tickCount = p.fishBiteAtTick;
     updateCasting(sim.ctx, p, meta);
     expect(p.fishReelDeadlineTick - sim.tickCount).toBe(50);
@@ -939,7 +942,10 @@ describe('the reel window follows the rod held at BITE time, not cast start', ()
     teleportToValeShore(sim);
     const p = sim.player;
     startFishing(sim.ctx, p, meta);
-    sim.addItem('silverstream_fishing_rod', 1);
+    meta.gatherTools = {
+      ...meta.gatherTools,
+      fishing: { itemId: 'silverstream_fishing_rod', count: 1 },
+    };
     sim.tickCount = p.fishBiteAtTick;
     updateCasting(sim.ctx, p, meta);
     // 85: the tier-3 rod's two tier rungs plus its UNCOMMON rarity rung. The
@@ -997,6 +1003,7 @@ describe('every gather start-deny arm leaves no cast and draws nothing', () => {
     // ready tier-1 node denies with the structured gatherDenied event
     // (requiredTier 1 = "no tool owned at all") and the full deny shape.
     sim.removeItem('copper_mining_pick', 1, pid);
+    meta.gatherTools = {}; // and the starter tool belt emptied
     sim.drainEvents();
     expectDenied(sim, pid, NODE.id);
     expect(sim.drainEvents()).toContainEqual({

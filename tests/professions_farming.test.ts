@@ -83,6 +83,7 @@ import {
   GATHER_RARE_EVENT_CHANCE,
   GATHER_RARE_EVENT_YIELD_MULT,
 } from '../src/sim/professions/gather_events';
+import { ownedGatherTools } from '../src/sim/professions/gather_tool_slots';
 import {
   resolveSlotToolEffect,
   slotEffect,
@@ -1197,6 +1198,7 @@ describe('plantCrop gate 12: the hoe gate (the crop-ladder tool half)', () => {
 
   it("refuses a farmer with no hoe: reason 'tool', zero draws, nothing consumed", () => {
     giveSeeds(h);
+    h.sim.unequipGatherTool('farming', h.pid); // off the tool belt first
     h.sim.removeItem(HOE_ID, 1, h.pid);
     expect(h.sim.countItem(HOE_ID, h.pid)).toBe(0);
     const from = h.sim.events.length;
@@ -1236,6 +1238,7 @@ describe('plantCrop gate 12: the hoe gate (the crop-ladder tool half)', () => {
     // hoe works as a tier-1 hoe (wield_gate.ts effectiveWieldableTier)
     // instead of dropping out of the scan and refusing every plant.
     giveSeeds(h);
+    h.sim.unequipGatherTool('farming', h.pid); // off the tool belt first
     h.sim.removeItem(HOE_ID, 1, h.pid);
     h.sim.addItem('bronze_hoe', 1, h.pid);
     expect(h.meta.gatheringProficiency.farming).toBe(0);
@@ -1259,6 +1262,7 @@ describe('plantCrop gate 12: the hoe gate (the crop-ladder tool half)', () => {
     // gate 12 is the last deny arm before the deliberate-action trio, so a
     // hoe-less plant must refuse without revealing or unseating the farmer.
     giveSeeds(h);
+    h.sim.unequipGatherTool('farming', h.pid); // off the tool belt first
     h.sim.removeItem(HOE_ID, 1, h.pid);
     const p = h.sim.player;
     p.sitting = true;
@@ -1289,6 +1293,7 @@ describe('plantCrop gate 12: the hoe gate (the crop-ladder tool half)', () => {
     // the knob trio, so a hoe-less tonic plant with no tonic in bags is told
     // about the tonic, never the hoe. Both gates would genuinely refuse here.
     giveSeeds(h);
+    h.sim.unequipGatherTool('farming', h.pid); // off the tool belt first
     h.sim.removeItem(HOE_ID, 1, h.pid);
     expect(h.sim.countItem(FARM_GROWTH_TONIC_ITEM_ID, h.pid)).toBe(0);
     const from = h.sim.events.length;
@@ -2055,6 +2060,7 @@ describe('the mint refuses a prompt-mode FARMING slot (no confirm channel exists
       ITEMS,
       h.meta.name,
       undefined,
+      ownedGatherTools(h.meta),
     );
     expect(prompt).toEqual({ ok: false, reason: 'invalid_request' });
     // 'always' on farming still mints: the refusal is the MODE pairing, not
@@ -2067,6 +2073,7 @@ describe('the mint refuses a prompt-mode FARMING slot (no confirm channel exists
       ITEMS,
       h.meta.name,
       undefined,
+      ownedGatherTools(h.meta),
     );
     expect(always.ok).toBe(true);
     // BOTH live effects mint on farming through the one authority: the act
@@ -2082,6 +2089,7 @@ describe('the mint refuses a prompt-mode FARMING slot (no confirm channel exists
       ITEMS,
       h.meta.name,
       undefined,
+      ownedGatherTools(h.meta),
     );
     expect(eye.ok).toBe(true);
     // And prompt on a profession WITH a confirm channel still mints: the
@@ -2095,6 +2103,7 @@ describe('the mint refuses a prompt-mode FARMING slot (no confirm channel exists
       ITEMS,
       h.meta.name,
       undefined,
+      ownedGatherTools(h.meta),
     );
     expect(mining.ok).toBe(true);
   });

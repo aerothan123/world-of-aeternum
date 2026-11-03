@@ -26,6 +26,7 @@ import { type CharacterState, type PlayerMeta, Sim } from '../src/sim/sim';
 import { hasTranslation } from '../src/ui/i18n';
 import { TOOL_EFFECT_NAME_KEYS } from '../src/ui/tool_effect_name';
 import { runRecharge } from './helpers/enchant_family_cast';
+import { emptyToolBelt, loseTool } from './helpers/tool_belt_fixture';
 import { EMPTY_TEST_WORLD } from './sim_shared';
 
 // This whole file never ticks the sim and never touches an entity, camp, npc,
@@ -35,8 +36,13 @@ import { EMPTY_TEST_WORLD } from './sim_shared';
 // names, wire-echoed ids, explicit addItem counts). The empty world drops the
 // ambient camp/npc/ground-object spawn work every one of the 55 Sim
 // constructions below used to pay for.
-const makeSim = (seed = 11) =>
-  new Sim({ seed, playerClass: 'warrior', autoEquip: false, world: EMPTY_TEST_WORLD });
+// Bare hands: the starter tool belt is emptied, so ownership is what each
+// case grants (a granted tool lands in its empty tool slot).
+const makeSim = (seed = 11) => {
+  const sim = new Sim({ seed, playerClass: 'warrior', autoEquip: false, world: EMPTY_TEST_WORLD });
+  emptyToolBelt(sim.players.get(sim.playerId));
+  return sim;
+};
 const metaOf = (sim: Sim): PlayerMeta => sim.meta(sim.playerId) as PlayerMeta;
 
 /** Self-signed charm copies for both live effects (the acquisition craft's
@@ -280,7 +286,7 @@ describe('the mint consumes a crafted charm (the acquisition craft price)', () =
     if (!slot) throw new Error('slot minted');
     expect(slot.maxDurability).toBe(startingDurabilityFor('gatherers_cache', 'epic'));
     slot.durability = slot.maxDurability; // exactly full
-    sim.removeItem('arcanite_mining_pick', 1);
+    loseTool(sim, 'arcanite_mining_pick');
     sim.addItem('copper_mining_pick', 1);
     sim.slotToolEffect('mining', 'gatherers_cache');
     expect(metaOf(sim).toolEffectSlots?.mining?.maxDurability).toBe(

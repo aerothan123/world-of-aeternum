@@ -45,6 +45,7 @@ import { archetypeTitleText, craftNameText } from './hud/professions/craft_name_
 import { gatheringProfessionNameKey } from './hud/professions/gathering_profession_name';
 import { buildGatheringProficiencyRows } from './hud/professions/gathering_view';
 import { archetypeImageUrl } from './hud/professions/profession_art';
+import { paintToolBelt, toolBeltSectionHtml } from './hud/professions/tool_belt_controller';
 import { reputationTabHtml } from './hud/reputation';
 import { formatNumber, type TranslationKey, t, tPlural } from './i18n';
 import { iconDataUrl, professionIconUrl, professionImageUrl } from './icons';
@@ -320,7 +321,7 @@ export class CharWindow {
         </div>
         <div class="equip-col equip-col-right" id="equip-col-right"></div>
         <div class="equip-row-weapons" id="equip-row-weapons"></div>
-      </div>${this.masterwroughtSlotsHtml(world)}</section>`;
+      </div>${this.masterwroughtSlotsHtml(world)}${toolBeltSectionHtml()}</section>`;
     // The Character tab keeps the paperdoll and adds the stats rail beside it
     // (Offense and Defense, scrolling), with the primary attributes in a row
     // beneath; every other tab takes the whole body. The one tabpanel keeps
@@ -405,6 +406,20 @@ export class CharWindow {
     for (const cell of view.left) leftCol?.appendChild(this.buildSlotRow(cell));
     for (const cell of view.right) rightCol?.appendChild(this.buildSlotRow(cell));
     for (const cell of view.weapons) weaponsRow?.appendChild(this.buildSlotRow(cell));
+    // The Tools section: the gathering tool belt (hud/professions/tool_belt_controller.ts).
+    paintToolBelt(el.querySelector('#char-tool-belt-row'), {
+      world: () => this.deps.world(),
+      itemIcon: (item, quality) => this.deps.itemIcon(item, quality),
+      attachTooltip: (target, html) => this.deps.attachTooltip(target, html),
+      wornItemTooltip: (item, instance) => this.deps.wornItemTooltip(item, instance),
+      hideTooltip: () => this.deps.hideTooltip(),
+      dragState: this.deps.dragState,
+      showError: (text) => this.deps.showError(text),
+      refresh: () => {
+        this.deps.renderBags();
+        this.renderIfOpen();
+      },
+    });
 
     // A character-sheet rebuild mints new socket nodes, including after the
     // inventory-change path has synchronized the old set. Restore the active

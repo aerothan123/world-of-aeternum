@@ -1025,6 +1025,11 @@ export const COMMAND_NAMES = [
   // world entry and toggle (Sim.setAutoLoot via src/sim/loot/auto_loot_on_kill.ts).
   // Appended.
   'set_auto_loot',
+  // The gathering tool belt: return the tool in one gathering profession's
+  // slot to the bags (Sim.unequipGatherTool via
+  // src/sim/professions/gather_tool_actions.ts). Untagged in COMMAND_FACETS
+  // like the other row-less profession commands. Appended.
+  'unequip_gather_tool',
 ] as const;
 
 // The union both the send path (`online.ts`) and the dispatch switch

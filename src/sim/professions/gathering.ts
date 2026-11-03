@@ -50,6 +50,7 @@ import {
   GATHER_RARE_EVENT_YIELD_MULT,
   rollGatherRareEvent,
 } from './gather_events';
+import { type GatherToolBeltHolder, ownedGatherTools, toolBelt } from './gather_tool_slots';
 import { type MaterialRarity, nodeMaterialFor } from './gathering_materials';
 import { fineGradeReachable, harvestGradeItemId } from './material_grades';
 import { gatherActionXp } from './profession_xp';
@@ -145,7 +146,7 @@ export function harvestYieldItemId(
  *  keying on the proficiency map is deliberate: the online mirror's map is
  *  Record<string, number>, and an absent profession coerces fail-closed to 0
  *  inside bestWieldableGatherToolTierOrNone either way. */
-export interface GradeReadMeta {
+export interface GradeReadMeta extends GatherToolBeltHolder {
   inventory: readonly InvSlot[];
   gatheringProficiency: Readonly<Record<string, number>>;
   toolEffectSlots?: Partial<Record<GatheringProfessionId, ToolEffectSlot>>;
@@ -211,7 +212,7 @@ export function effectiveGradeToolTier(
   // and recharge surfaces deliberately stay ownership-based (R47/R30, the
   // price family).
   const wieldable = bestWieldableGatherToolTierOrNone(
-    meta.inventory,
+    toolBelt(meta),
     professionId,
     meta.gatheringProficiency[professionId],
     ITEMS,
@@ -468,7 +469,7 @@ export function resolveHarvest(
   // effectiveGradeToolTier's wield-filtered scan; an unwieldable tool minting
   // a fine grade here would clear room for one item and grant another.
   const wieldableTier = bestWieldableGatherToolTierOrNone(
-    meta.inventory,
+    toolBelt(meta),
     entry.professionId,
     meta.gatheringProficiency[entry.professionId],
     ITEMS,
@@ -636,13 +637,14 @@ export function harvestNode(
   // One bag scan serves both the tool gate and the cast-duration formula
   // below (pure lookup, no rng, so hoisting it cannot shift the draw order).
   const wieldableToolTier = bestWieldableGatherToolTierOrNone(
-    meta.inventory,
+    toolBelt(meta),
     professionId,
     meta.gatheringProficiency[professionId],
     ITEMS,
   );
-  // A tier-1 TREE asks for no axe at all (trees/tree_chop.ts
-  // treeRequiredToolTier); every node and every higher tree keeps the rule.
+  // Every node and every tree asks for an EQUIPPED tool of at least its tier
+  // (the tool belt, gather_tool_slots.ts; trees/tree_chop.ts
+  // treeRequiredToolTier floors a tree at tier 1). Bagged tools never count.
   const requiredToolTier = tree ? treeRequiredToolTier(node.tier) : node.tier;
   if (
     requiredToolTier > 0 &&
@@ -654,7 +656,7 @@ export function harvestNode(
     // already carry would work this node (`wieldProficiency`); otherwise it
     // is the plain no-tool/tier arm. Both are text-free events the client
     // matcher renders.
-    const wieldReq = minWieldRequirementToWork(meta.inventory, professionId, node.tier, ITEMS);
+    const wieldReq = minWieldRequirementToWork(toolBelt(meta), professionId, node.tier, ITEMS);
     ctx.emit({
       type: 'gatherDenied',
       pid: meta.entityId,
@@ -720,7 +722,7 @@ export function harvestNode(
   // returns a concrete rarity (bestOwnedGatherToolFor floors at 'common'),
   // so the no-slot branch is the one live source of ''.
   p.gatherCastToolRarity = meta.toolEffectSlots?.[professionId]
-    ? (bestOwnedGatherToolFor(meta.inventory, professionId, ITEMS).rarity ?? '')
+    ? (bestOwnedGatherToolFor(ownedGatherTools(meta), professionId, ITEMS).rarity ?? '')
     : '';
   // The R40 consent capture, beside the rarity capture and under the same
   // slot-present condition, so a slot-less cast (every player until one is
@@ -969,7 +971,7 @@ export function completeGatherCast(ctx: SimContext, p: Entity, meta: PlayerMeta)
     if (usedSlot) {
       ratchetCeilingForUse(
         usedSlot,
-        bestOwnedGatherToolFor(meta.inventory, professionId, ITEMS).rarity,
+        bestOwnedGatherToolFor(ownedGatherTools(meta), professionId, ITEMS).rarity,
       );
       if (startToolRarity !== '') ratchetCeilingForUse(usedSlot, startToolRarity);
     }

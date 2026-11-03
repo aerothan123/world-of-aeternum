@@ -23,6 +23,7 @@ import { countRawInSlots, countUnlockedInSlots } from '../../../sim/item_lock';
 import type { FarmPlotStatus, FarmPlotView } from '../../../sim/professions/farm_projection';
 import { planWatchFee } from '../../../sim/professions/farm_watch_fee';
 import { canPlantCrop } from '../../../sim/professions/farming';
+import { type GatherToolSlots, toolBeltOf } from '../../../sim/professions/gather_tool_slots';
 import { canGatherTier, NO_TOOL_OWNED } from '../../../sim/professions/tools';
 import { bestWieldableGatherToolTierOrNone } from '../../../sim/professions/wield_gate';
 import type { InvSlot } from '../../../sim/types';
@@ -80,6 +81,9 @@ export interface PlantSheetKnob {
 export interface PlantSheetInput {
   bedId: string;
   inventory: readonly InvSlot[];
+  /** The tool belt (IWorldProfessions.gatherToolSlots): the hoe gate reads the
+   *  EQUIPPED hoe only, exactly as the sim's plant gate does. */
+  gatherTools?: Readonly<GatherToolSlots>;
   /** The caller's own plots (IWorldFarming.myFarmPlots): the occupancy guard.
    *  A bed occupied by MY plot never builds a model. */
   myFarmPlots: readonly FarmPlotView[];
@@ -207,7 +211,7 @@ function supplyKnob(
 export function buildPlantSheetView(input: PlantSheetInput): PlantSheetViewModel | null {
   if (!canOpenPlantSheet(input.bedId, input.myFarmPlots)) return null;
   const hoeTier = bestWieldableGatherToolTierOrNone(
-    input.inventory,
+    toolBeltOf(input.gatherTools),
     'farming',
     input.farmingSkill,
     ITEMS,

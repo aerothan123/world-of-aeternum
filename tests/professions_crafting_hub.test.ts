@@ -42,6 +42,7 @@ import {
 } from '../src/sim/professions/stations';
 import { Sim } from '../src/sim/sim';
 import { completeCraftCast } from './helpers/enchant_family_cast';
+import { heldItemCount } from './helpers/held_item_count';
 
 function makeSim(seed = 42) {
   return new Sim({ seed, playerClass: 'warrior', autoEquip: false });
@@ -292,7 +293,7 @@ describe('resolveCraft station gate (position-only, per type)', () => {
     expect(result.reason).toBe('station_required');
     // no side effect: reagents untouched on denial
     expect(sim.countItem('fine_iron_ore', pid)).toBe(4);
-    expect(sim.countItem('mithril_mining_pick', pid)).toBe(1);
+    expect(heldItemCount(sim, 'mithril_mining_pick', pid)).toBe(1);
   });
 
   it('a station of the WRONG type never satisfies the gate', () => {
@@ -319,7 +320,7 @@ describe('resolveCraft station gate (position-only, per type)', () => {
 
     expect(result.ok).toBe(true);
     expect(sim.countItem('fine_iron_ore', pid)).toBe(0);
-    expect(sim.countItem('thorium_mining_pick', pid)).toBe(1);
+    expect(heldItemCount(sim, 'thorium_mining_pick', pid)).toBe(1);
   });
 
   it('an own ACTIVE mobile station for the matching craft satisfies the gate in the field', () => {
@@ -336,7 +337,7 @@ describe('resolveCraft station gate (position-only, per type)', () => {
     const result = resolveCraft((sim as any).ctx, pid, recipeId);
 
     expect(result.ok).toBe(true);
-    expect(sim.countItem('thorium_mining_pick', pid)).toBe(1);
+    expect(heldItemCount(sim, 'thorium_mining_pick', pid)).toBe(1);
   });
 
   it('a mobile station for a DIFFERENT craft, or an expired one, does not satisfy', () => {
@@ -573,7 +574,7 @@ describe('station reagent sourcing (prog_tools_of_the_trade completability)', ()
     placeAt(sim, pid, bree.pos);
     meta.gatheringProficiency.mining = TIER3_TOOL_GATE_PROFICIENCY;
     sim.buyItem(bree.id, 'mithril_mining_pick');
-    expect(sim.countItem('mithril_mining_pick', pid)).toBe(1);
+    expect(heldItemCount(sim, 'mithril_mining_pick', pid)).toBe(1);
     expect(meta.copper).toBe(240);
 
     // The ore is not: buyItem denies on the missing stock row, charging nothing.
@@ -599,7 +600,7 @@ describe('station reagent sourcing (prog_tools_of_the_trade completability)', ()
     if (start.ok && start.casting) completeCraftCast(anySim as any, pid);
     const result = (anySim as any).lastCraftResult ?? start;
     expect(result.ok).toBe(true);
-    expect(sim.countItem('thorium_mining_pick', pid)).toBe(1);
+    expect(heldItemCount(sim, 'thorium_mining_pick', pid)).toBe(1);
     expect(sim.countItem('fine_iron_ore', pid)).toBe(0);
     // The deed's real trigger: one station-bound craft, at any station.
     expect(meta.deedStats.counters.hubCraftsPerformed).toBe(1);

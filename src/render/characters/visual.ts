@@ -20,13 +20,13 @@ import { recordBuildSpan, timeBuildSpan } from '../build_spans';
 import { registerContextRestoreReset } from '../context_restore_registry';
 import type { EyeWardMarkerPlan } from '../eye_ward_marker_core';
 import { cyclePhase, type GaitCycle } from '../gait_footfall_core';
+import { gatherSwingClip } from '../gather_pose_core';
 import { GFX } from '../gfx';
 import { cloneMaterialWithHooks } from '../material_clone_hooks';
 import type { MeleeImpactProfile } from '../melee_impact_core';
 import type { MountRideSpec } from '../mount_visuals';
 import { buildSeasonalHeadPiece, fitSeasonalHead } from '../seasonal_head_cosmetic';
 import type { SeatAnimInfo } from '../seated_pose_core';
-import { TREE_CHOP_CAST_CLIP } from '../tree_felling_core';
 import {
   stoneboundShardMaterialOptions,
   stoneboundShellMaterialOptions,
@@ -5729,13 +5729,21 @@ export class CharacterVisual {
         return this.action(c.strafeLeft) ?? this.action(c.run) ?? this.action(c.walk);
       case 'strafeRight':
         return this.action(c.strafeRight) ?? this.action(c.run) ?? this.action(c.walk);
-      case 'cast':
+      case 'cast': {
         // A displayed bow holds its draw here instead of the shared caster
         // gesture; a per-ability authored cast clip beats the generic channel;
         // every other weapon keeps the rig's authored cast.
-        // A tree chop (tree_felling_core.ts) loops the rig's one-hand swing.
-        if (this.castingAbility === TREE_CHOP_CAST_CLIP) {
-          const swing = this.action(c.meleeAttack?.[0] ?? c.attack[0]);
+        // A gathering cast (gather_pose_core.ts) loops the rig's gather swing:
+        // the diagonal chop at a trunk, the overhead swing at a vein, the kneel
+        // at a herb; a rig without them keeps the one-hand swing the chop loops.
+        const gatherClip = gatherSwingClip(
+          this.castingAbility,
+          c.gatherSwing,
+          c.meleeAttack?.[0] ?? c.attack[0],
+          c.cast,
+        );
+        if (gatherClip) {
+          const swing = this.action(gatherClip);
           if (swing) return swing;
         }
         return (
@@ -5744,6 +5752,7 @@ export class CharacterVisual {
           this.action(c.cast) ??
           this.action(c.idle)
         );
+      }
       case 'spin':
         return (
           this.action(this.castingAbility ? c.castByAbility?.[this.castingAbility] : undefined) ??

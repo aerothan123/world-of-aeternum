@@ -39,6 +39,7 @@ import { stationsOfType } from '../src/sim/professions/stations';
 import type { ProfessionRecipeRecord } from '../src/sim/professions/types';
 import type { Rng } from '../src/sim/rng';
 import { Sim } from '../src/sim/sim';
+import { heldItemCount } from './helpers/held_item_count';
 
 function makeSim(seed = 42) {
   return new Sim({ seed, playerClass: 'warrior', autoEquip: false });
@@ -129,8 +130,8 @@ describe('TOOL_RECIPES (#1135 de-stub): tier 4/5 tool recipes', () => {
 
     expect(result.ok).toBe(true);
     expect(sim.countItem('fine_iron_ore', pid)).toBe(0);
-    expect(sim.countItem('mithril_mining_pick', pid)).toBe(0);
-    expect(sim.countItem('thorium_mining_pick', pid)).toBe(1);
+    expect(heldItemCount(sim, 'mithril_mining_pick', pid)).toBe(0);
+    expect(heldItemCount(sim, 'thorium_mining_pick', pid)).toBe(1);
   });
 });
 

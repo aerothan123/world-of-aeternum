@@ -14,6 +14,7 @@ import { ALL_RECIPES, APEX_GEAR_RECIPES, TOOL_EFFECT_RECIPES } from '../src/sim/
 import { ITEMS } from '../src/sim/data';
 import { requiredReagentCountFor } from '../src/sim/professions/crafting';
 import { DISENCHANT_MATERIAL_BY_QUALITY } from '../src/sim/professions/disenchant_reagents';
+import { toolBelt } from '../src/sim/professions/gather_tool_slots';
 import { isSignableMaterialRarity, NODE_MATERIAL_TABLE } from '../src/sim/professions/gathering';
 import {
   normalizeToolEffectSlots,
@@ -29,8 +30,15 @@ import { type PlayerMeta, Sim } from '../src/sim/sim';
 import type { SimEvent } from '../src/sim/types';
 import { runRecharge } from './helpers/enchant_family_cast';
 import { reagentUnitValue } from './helpers/reagent_unit_value';
+import { emptyToolBelt, loseTool } from './helpers/tool_belt_fixture';
 
-const makeSim = (seed = 11) => new Sim({ seed, playerClass: 'warrior', autoEquip: false });
+// Bare hands: the starter tool belt is emptied, so ownership is what each
+// case grants (a granted tool lands in its empty tool slot).
+const makeSim = (seed = 11) => {
+  const sim = new Sim({ seed, playerClass: 'warrior', autoEquip: false });
+  emptyToolBelt(sim.players.get(sim.playerId));
+  return sim;
+};
 const metaOf = (sim: Sim): PlayerMeta => sim.meta(sim.playerId) as PlayerMeta;
 
 /** Slot a self-crafted charm onto mining with the given pick carried. */
@@ -97,7 +105,7 @@ describe('the recharge command: price, consume, refill', () => {
     // no_tool: the pick left the bags after slotting, so the R30 rarity
     // cannot resolve (mirrors the slot gate).
     const toolless = simWithSlot();
-    toolless.removeItem('copper_mining_pick', 1);
+    loseTool(toolless, 'copper_mining_pick');
     const tSlot = metaOf(toolless).toolEffectSlots?.mining;
     if (!tSlot) throw new Error('slot minted');
     tSlot.durability = 0;
@@ -232,7 +240,7 @@ describe('the recharge command: price, consume, refill', () => {
     const slot = metaOf(sim).toolEffectSlots?.mining;
     if (!slot) throw new Error('slot minted');
     expect(slot.maxDurability).toBe(50);
-    sim.removeItem('arcanite_mining_pick', 1);
+    loseTool(sim, 'arcanite_mining_pick');
     sim.addItem('copper_mining_pick', 1);
     sim.addItem('arcane_dust', 10);
     sim.addItem('arcane_shard', 10);
@@ -288,7 +296,7 @@ describe('the recharge command: price, consume, refill', () => {
     sim.addItem('arcane_shard', 50);
     // Step one of the ascending ladder: the epic pick stashed, a common pick
     // carried. The fill is common-sized (20) but billed in shards.
-    sim.removeItem('arcanite_mining_pick', 1);
+    loseTool(sim, 'arcanite_mining_pick');
     sim.addItem('copper_mining_pick', 1);
     runRecharge(sim, 'mining');
     sim.tick();
@@ -330,7 +338,7 @@ describe('the recharge command: price, consume, refill', () => {
       // Minted on the common pick (ceiling 20), which then leaves the bags:
       // the tier-4 RARE pick is the only mining tool carried from here on.
       expect(slot.maxDurability).toBe(startingDurabilityFor('gatherers_cache', 'common'));
-      sim.removeItem('copper_mining_pick', 1);
+      loseTool(sim, 'copper_mining_pick');
       sim.addItem('thorium_mining_pick', 1);
       metaOf(sim).gatheringProficiency.mining = miningProficiency;
       slot.durability = 0;
@@ -344,12 +352,12 @@ describe('the recharge command: price, consume, refill', () => {
     // requirement, so the recharge below is resolving off a tool the player
     // genuinely cannot swing at its rung.
     expect(
-      bestWieldableGatherToolTierOrNone(metaOf(sim).inventory, 'mining', 0, ITEMS),
+      bestWieldableGatherToolTierOrNone(toolBelt(metaOf(sim)), 'mining', 0, ITEMS),
       'the fixture pick must degrade to the entry tier at mining 0',
     ).toBe(1);
     expect(
       bestWieldableGatherToolTierOrNone(
-        metaOf(sim).inventory,
+        toolBelt(metaOf(sim)),
         'mining',
         TIER4_TOOL_WIELD_PROFICIENCY,
         ITEMS,

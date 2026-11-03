@@ -12,6 +12,7 @@ import { ITEMS, STATIONS } from '../src/sim/data';
 import { isItemGuid } from '../src/sim/item_provenance';
 import { isTrackedItem } from '../src/sim/item_tracking';
 import { craftItem, resolveCraftForRecipe } from '../src/sim/professions/crafting';
+import { ownedGatherTools } from '../src/sim/professions/gather_tool_slots';
 import { SUNDERED_ESSENCE_ITEM_ID } from '../src/sim/professions/masterwrought_materials';
 import { SALVAGE_MATERIAL_BY_QUALITY } from '../src/sim/professions/salvage_materials';
 import { stationsOfType } from '../src/sim/professions/stations';
@@ -21,6 +22,7 @@ import { type PlayerMeta, Sim } from '../src/sim/sim';
 import type { Entity, InvSlot, SimEvent } from '../src/sim/types';
 import { groundHeight } from '../src/sim/world';
 import { completeEnchantFamilyCast } from './helpers/enchant_family_cast';
+import { heldItemCount } from './helpers/held_item_count';
 
 type ItemTrackedEvent = Extract<SimEvent, { type: 'itemTracked' }>;
 
@@ -56,8 +58,11 @@ function consumeRows(events: ItemTrackedEvent[]): ItemTrackedEvent[] {
   return events.filter((e) => e.kind === 'consume');
 }
 
+// The bags plus the tool belt: a crafted rod takes its empty fishing tool
+// slot by itself (gather_tool_slots.ts), and an equipped rod is the one a
+// rod-upgrade craft consumes.
 function slotsOf(meta: PlayerMeta, itemId: string): InvSlot[] {
-  return meta.inventory.filter((s) => s.itemId === itemId);
+  return ownedGatherTools(meta).filter((s) => s.itemId === itemId);
 }
 
 /** The one tracked copy of `itemId` in the bags, with its guid. */
@@ -351,6 +356,8 @@ describe('crafting: a tracked reagent and the tracked copy made from it', () => 
     const recipe = recipeById(ROD_RECIPE);
     if (!recipe) throw new Error('missing rod recipe');
     for (const r of recipe.reagents) sim.addItem(r.itemId, r.count, pid);
+    // The granted rod filled the empty fishing tool slot: the craft start
+    // lends it back to the bags to spend (gather_tool_actions.ts).
     placeAtStation(sim, pid, ROD_RECIPE);
     return { sim, pid, meta, p };
   }
@@ -363,8 +370,8 @@ describe('crafting: a tracked reagent and the tracked copy made from it', () => 
     p.castRemaining = 0;
     sim.ctx.completeCraftCast(p, meta);
     expect(meta.lastCraftResult?.ok).toBe(true);
-    expect(sim.countItem(OLD_ROD, pid)).toBe(0);
-    expect(sim.countItem(NEW_ROD, pid)).toBe(1);
+    expect(heldItemCount(sim, OLD_ROD, pid)).toBe(0);
+    expect(heldItemCount(sim, NEW_ROD, pid)).toBe(1);
   });
 
   it('mints the output as a derive of the spent rod, and the spent rod consumes naming it', () => {
@@ -405,6 +412,7 @@ describe('crafting: a tracked reagent and the tracked copy made from it', () => 
     const { meta, pid } = playerOf(sim);
     meta.inventory = [];
     sim.addItem(OLD_ROD, 1, pid);
+    sim.unequipGatherTool('fishing', pid); // into the bags the resolve consumes from
     const parent = guidOf(meta, OLD_ROD);
     const recipe: ProfessionRecipeRecord = {
       id: 'recipe_test_rod_scrap',
@@ -421,7 +429,7 @@ describe('crafting: a tracked reagent and the tracked copy made from it', () => 
     sim.drainEvents();
     const result = resolveCraftForRecipe(sim.ctx, pid, recipe);
     expect(result.ok).toBe(true);
-    expect(sim.countItem(OLD_ROD, pid)).toBe(0);
+    expect(heldItemCount(sim, OLD_ROD, pid)).toBe(0);
     const events = trackedEvents(sim);
     expect(events.filter((e) => e.kind === 'derive')).toHaveLength(0);
     const consume = consumeRows(events);

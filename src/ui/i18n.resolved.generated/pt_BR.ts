@@ -4079,6 +4079,11 @@ export const pt_BR: EnTranslations = {
       "hideHelmAria": "Ocultar elmo",
       "showHelmAria": "Mostrar elmo"
     },
+    "toolBelt": {
+      "title": "Tools",
+      "emptySlot": "No {profession} tool equipped. Drag one here, or right-click it in your bags.",
+      "unequipHint": "Click × or right-click to unequip"
+    },
     "account": {
       "title": "Conta",
       "loggedOutPrompt": "Entre para gerenciar sua conta.",
@@ -6139,6 +6144,13 @@ export const pt_BR: EnTranslations = {
         "fishing": "Você precisa de uma vara de pesca para lançar a linha.",
         "farming": "Você precisa de uma enxada de agricultura para trabalhar este canteiro."
       },
+      "toolEquipRequired": {
+        "mining": "You need a mining pick equipped.",
+        "logging": "You need a logging axe equipped.",
+        "herbalism": "You need a herbalism sickle equipped.",
+        "fishing": "You need a fishing pole equipped.",
+        "farming": "You need a farming hoe equipped."
+      },
       "noNodeNearby": {
         "mining": "Não há nenhum veio de minério ao alcance.",
         "logging": "Não há nenhum arvoredo ao alcance.",
@@ -6150,6 +6162,12 @@ export const pt_BR: EnTranslations = {
         "logging": "Você precisa de Lenharia {skill} para brandir o machado que já está nas suas bolsas.",
         "herbalism": "Você precisa de Herborismo {skill} para usar a foice que já está nas suas bolsas.",
         "farming": "Você precisa de Agricultura {skill} para empunhar a enxada que está na sua bolsa."
+      },
+      "wieldUnmetEquipped": {
+        "mining": "You need Mining {skill} to swing your equipped pick.",
+        "logging": "You need Logging {skill} to swing your equipped axe.",
+        "herbalism": "You need Herbalism {skill} to work your equipped sickle.",
+        "farming": "You need Farming {skill} to swing your equipped hoe."
       },
       "wieldUnmetCorpse": "Você precisa de {skill} de habilidade em coleta para pôr sua melhor ferramenta para trabalhar.",
       "toolTierUnmetCorpse": "Você precisa de uma ferramenta de coleta de nível {tier} para recuperar os melhores materiais.",
@@ -6177,6 +6195,7 @@ export const pt_BR: EnTranslations = {
         "speed": "Coleta mais rápido em nós abaixo do nível {tier}.",
         "wieldDegrade": "Abaixo dessa habilidade, ainda funciona como uma ferramenta de nível inferior.",
         "rodRequired": "Necessária para pescar.",
+        "equipHint": "Equip in the Tools slot.",
         "rodBite": "Os peixes mordem a isca até {seconds}s mais cedo.",
         "rodReel": "Estende a janela de puxada em {seconds}s.",
         "rodBand": "Libera tabelas de captura mais ricas a partir de {skill} de proficiência em Pesca.",

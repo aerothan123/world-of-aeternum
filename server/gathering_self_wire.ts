@@ -14,6 +14,7 @@
 // are the exact closures selfWireJson already built (the same emitters every
 // other self field uses), passed in so the delta-gating stays centralized.
 
+import type { GatherToolSlots } from '../src/sim/professions/gather_tool_slots';
 import {
   HARVEST_PREFERENCE_ALL_TOKEN,
   type HarvestPreference,
@@ -27,6 +28,7 @@ export interface GatheringSelfReaders {
   townFocusPendingFor(pid: number): TownFocusPendingView | null;
   gatheringProficiencyFor(pid: number): Record<string, number>;
   toolEffectSlotsFor(pid: number): readonly ToolEffectSlotView[];
+  gatherToolSlotsFor(pid: number): Readonly<GatherToolSlots>;
   harvestPreferenceFor(pid: number): HarvestPreference | null;
 }
 
@@ -76,6 +78,11 @@ export function appendGatheringSelfWire(
   const tslotRows = sim.toolEffectSlotsFor(pid);
   if (tslotRows.length === 0) maybeSerialized('tslot', '[]');
   else maybe('tslot', tslotRows);
+  // The gathering tool belt (IWorld `gatherToolSlots`, the tool-slot feature).
+  // Wire key `gtool`; see TERSE_TO_IWORLD/ALL_DELTA_KEYS in
+  // tests/snapshots.test.ts. A handful of bytes that moves only on an equip,
+  // an unequip or a tool grant, so it delta-elides away almost every tick.
+  maybe('gtool', sim.gatherToolSlotsFor(pid));
   // The remembered corpse-harvest preference (Intentional Gathering PR3).
   // Wire key `hpref`; see TERSE_TO_IWORLD/ALL_DELTA_KEYS in
   // tests/snapshots.test.ts. Unlike the sparse SAVE encoding, All ships as an

@@ -25,6 +25,7 @@ import {
   zoneAt,
 } from '../src/sim/data';
 import { isProfessionQuest } from '../src/sim/quests/ambient_quest_marker';
+import type { InvSlot } from '../src/sim/types';
 import { emptyZoneProps, isQuestTurnInNpc, type QuestProgress } from '../src/sim/types';
 import { WORLD_BOSSES } from '../src/sim/world_boss';
 import { overworldDungeonPortals } from '../src/ui/map_dungeon_portals';
@@ -42,6 +43,7 @@ import {
 import { buildOverworldMapModel } from '../src/ui/map_window_view';
 import { TEXT_SPRITE_LIMIT } from '../src/ui/text_sprite_cache';
 import type { IWorld } from '../src/world_api';
+import { beltFromCarried } from './helpers/tool_belt_fixture';
 
 const painter = readFileSync(new URL('../src/ui/map_window_painter.ts', import.meta.url), 'utf8');
 // Drop comments so prose can't create a false positive (mirrors architecture.test).
@@ -443,6 +445,10 @@ function mapWorld(): IWorld {
     questState: () => 'unavailable',
     questLog: new Map(),
     inventory: [],
+    // The carried tools are WORN (the tool belt): a tool works only from its slot.
+    get gatherToolSlots() {
+      return beltFromCarried((this as unknown as { inventory: InvSlot[] }).inventory);
+    },
     gatheringProficiency: {},
     stationPlacements: [],
     farmPatches: [],
@@ -854,6 +860,10 @@ function labelWorld(): IWorld {
     questsDone: new Set<string>(),
     craftingIdentity: { version: 1, synced: true, cadenceBlockedQuests: [] },
     inventory: [],
+    // The carried tools are WORN (the tool belt): a tool works only from its slot.
+    get gatherToolSlots() {
+      return beltFromCarried((this as unknown as { inventory: InvSlot[] }).inventory);
+    },
     gatheringProficiency: {},
     stationPlacements: [],
     farmPatches: [],

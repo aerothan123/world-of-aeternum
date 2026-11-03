@@ -33,16 +33,18 @@ from a sapling five minutes later. The little wood-stand nodes this replaced are
 ## Chopping
 
 - **Interaction.** F on a standing tree in reach
-  (`src/game/interact_key_gather.ts` `withNearbyTrees`). Using an axe also targets the
-  nearest standing tree (`src/game/gather_tool_use.ts`). Both send the ordinary harvest
-  command with the tree's node id.
+  (`src/game/interact_key_gather.ts` `withNearbyTrees`). Using the EQUIPPED axe (a hotbar
+  press) also targets the nearest standing tree (`src/game/gather_tool_use.ts`); using an
+  axe that sits in the bags equips it instead. Both send the ordinary harvest command with
+  the tree's node id.
 - **Prompt.** A world-anchored "F Chop" chip (the coach's interact bubble chrome) stands
   `CHOP_PROMPT_LIFT` above the terrain at the trunk of the tree the press would chop.
   `src/game/chop_prompt_core.ts` `resolveChopPromptTarget` asks the press's own resolver
   over the press's own node list (`interact_key_gather.ts` `interactKeyNodes`), so an npc,
   a lootable corpse, an object or a nearer vein wins exactly as it wins the press, and a
   felled or town tree never gets a chip. It hides while dead, in combat, swimming, busy
-  (a chop in progress included), action-locked in a form, or caged. The painter is
+  (a chop in progress included), action-locked in a form, caged, or with no axe in the
+  logging tool slot (a chop that can never start). The painter is
   `src/ui/hud/professions/chop_prompt_painter.ts`, composed with the farm notice in
   `interact_affordances_controller.ts`; pinned by `tests/chop_prompt_core.test.ts` and
   `tests/chop_prompt_painter.test.ts`.
@@ -55,10 +57,14 @@ from a sapling five minutes later. The little wood-stand nodes this replaced are
   tree's tier, minus one per wieldable axe tier above the tree's tier, minus the Logging
   proficiency band, clamped from `TREE_CHOP_MIN_SWINGS` to `TREE_CHOP_MAX_SWINGS`. Each swing
   is `TREE_CHOP_SWING_SECONDS`.
-- **Tools.** Tier-1 trees need no axe (`treeRequiredToolTier`), so a new character can chop
-  the starting forest. From tier 2 up, a tree needs an axe of at least its tier, with the
-  same wield rule wood stands used. The refusals are the existing node lines ("Requires
-  Logging N", "Requires a better axe").
+- **Tools.** Every tree, tier 1 included, needs an axe EQUIPPED in the logging slot of the
+  tool belt (`src/sim/professions/gather_tool_slots.ts`) of at least its tier
+  (`treeRequiredToolTier` floors a tree at tier 1), with the same wield rule wood stands used.
+  An axe in the bags never chops. Every character starts with the basic Handaxe equipped (and
+  a character saved before the belt existed is migrated onto it on load), so a new character
+  still chops the starting forest. The refusals are the node lines ("You need a logging axe
+  equipped." for no axe, "You need a tier N logging axe to fell this stand." for a weaker
+  one, the equipped-axe wield line for a short counter). The belt is locked while a chop runs.
 - **Yield.** The zone's existing wood material (the `NODE_MATERIAL_TABLE` wood rows),
   rolled through the unchanged `resolveHarvest` two-draw contract on `ctx.rng`. Quest
   credit, proficiency XP and the rare-find events are those of any node.
@@ -122,8 +128,12 @@ set decision.
   stump at once, with no fall.
 - **Regrow.** A sapling eases up to full size over `TREE_REGROW_ANIM_SECONDS`
   (`regrowScaleAt`), then the batch instance is restored.
-- **Chop beats.** The chopper plays the rig's one-hand swing (`TREE_CHOP_CAST_CLIP`), with
-  one axe-hit cue per swing (`chopHitsBy`).
+- **Chop beats.** The chopper holds an axe (the held hatchet stand-in, since no tool has a
+  held model of its own) and loops the rig's diagonal one-hand chop (`TREE_CHOP_CAST_CLIP`,
+  the `gatherSwing.chop` clip, `1H_Chop` on the WOC rig; a rig without one keeps its
+  one-hand swing), with one axe-hit cue per swing (`chopHitsBy`). The real weapon comes back
+  the frame the chop ends or is interrupted (`src/render/gather_pose_core.ts`), and peers see
+  the same pose from the public cast state alone.
 - **Fairness.** A stump or a missing trunk is world state a player navigates by, so the
   view draws on every graphics preset.
 - **Shader programs.** Every program it draws is already linked by the foliage batch it
@@ -144,8 +154,11 @@ tree". A saved per-player timer for a retired node is dropped on load.
 - Far impostor sprites (past the detail band) still draw a felled tree standing until the
   player is close enough for the instanced batch.
 - There is no 3D click-pick for trees. F and axe use cover the interaction.
-- The Chop chip has no disabled state: a tree the player's axe cannot work still shows
-  it, and the press answers with the existing node line ("Requires a better axe").
+- The Chop chip has no disabled state: a tree the equipped axe cannot work (too low a tier)
+  still shows it, and the press answers with the node line. With no axe equipped at all the
+  chip is not offered.
+- `1H_Chop` is a combat clip borrowed from the rig's library, not an authored chop: a
+  dedicated trunk swing is a blender-anim-pipeline task.
 
 Pinned by `tests/tree_chopping.test.ts`, `tests/felled_trees_wire.test.ts` and
 `tests/tree_felling_core.test.ts`.

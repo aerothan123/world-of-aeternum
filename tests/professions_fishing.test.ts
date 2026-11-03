@@ -70,6 +70,7 @@ import { type PlayerMeta, Sim } from '../src/sim/sim';
 import { DT, type Entity, FISHING_CAST_ID, GATHER_CAST_ID, type SimEvent } from '../src/sim/types';
 import { terrainHeight } from '../src/sim/world';
 import { bareClient } from './helpers/bare_client';
+import { heldItemCount } from './helpers/held_item_count';
 
 function makeSim(seed = 467): Sim {
   return new Sim({ seed, playerClass: 'warrior', autoEquip: true });
@@ -496,6 +497,11 @@ describe('fishing draw contract (pin 2, the bite-and-reel shape)', () => {
       itemId: 'simple_fishing_pole',
       count: 1,
     }));
+    // And one in the fishing tool slot, where a pole actually casts from.
+    meta.gatherTools = {
+      ...meta.gatherTools,
+      fishing: { itemId: 'simple_fishing_pole', count: 1 },
+    };
     sim.events = [];
     let draws = 0;
     sim.rng.setObserver(() => draws++);
@@ -561,6 +567,11 @@ describe('fishing draw contract (pin 2, the bite-and-reel shape)', () => {
       itemId: 'simple_fishing_pole',
       count: 1,
     }));
+    // And one in the fishing tool slot, where a pole actually casts from.
+    meta.gatherTools = {
+      ...meta.gatherTools,
+      fishing: { itemId: 'simple_fishing_pole', count: 1 },
+    };
     sim.events = [];
     completeFishing(sim.ctx, sim.player, meta);
     expect(sim.countItem('the_codfather')).toBe(1);
@@ -1676,7 +1687,7 @@ describe('fishing band tool cap (Professions 2.0)', () => {
         expect.objectContaining({ type: 'castStart', ability: FISHING_CAST_ID, time: 16 }),
       );
       // The rod is a permanent tool: never consumed by the cast.
-      expect(sim.countItem(rodId)).toBe(1);
+      expect(heldItemCount(sim, rodId)).toBe(1);
     }
   });
 
@@ -1687,8 +1698,8 @@ describe('fishing band tool cap (Professions 2.0)', () => {
     // interact range, so the click resolves to the text-free gatherToolNoNode
     // event (never a silent no-op), draws nothing, casts nothing, and keeps
     // the tool.
+    // The starter pick is already on the tool belt: use THAT one.
     const sim = makeSim(467);
-    sim.addItem('copper_mining_pick', 1);
     sim.events = [];
     let draws = 0;
     sim.rng.setObserver(() => draws++);
@@ -1702,12 +1713,11 @@ describe('fishing band tool cap (Professions 2.0)', () => {
     ]);
     expect(draws).toBe(0);
     expect(sim.player.castingAbility).toBe(null);
-    expect(sim.countItem('copper_mining_pick')).toBe(1);
+    expect(heldItemCount(sim, 'copper_mining_pick')).toBe(1);
   });
 
   it('useItem on the pick standing at an ore vein starts the standard gather cast (#2343)', () => {
-    const sim = makeSim(4242);
-    sim.addItem('copper_mining_pick', 1);
+    const sim = makeSim(4242); // the starter pick is on the tool belt
     const vein = GATHER_NODES.find((n) => n.id === 'ore_eastbrook_1');
     if (!vein) throw new Error('missing ore_eastbrook_1');
     teleportTo(sim, vein.pos.x, vein.pos.z);
@@ -1722,7 +1732,7 @@ describe('fishing band tool cap (Professions 2.0)', () => {
       expect.objectContaining({ type: 'castStart', ability: GATHER_CAST_ID, time: 2.5 }),
     );
     // The pick is a permanent tool: never consumed by the cast.
-    expect(sim.countItem('copper_mining_pick')).toBe(1);
+    expect(heldItemCount(sim, 'copper_mining_pick')).toBe(1);
   });
 });
 

@@ -23,6 +23,7 @@ import {
 import { Sim } from '../src/sim/sim';
 import type { SimEvent } from '../src/sim/types';
 import { runCraft } from './helpers/enchant_family_cast';
+import { heldItemCount } from './helpers/held_item_count';
 
 // alchemy -> apothecary (station_highwatch_apothecary, zone 3); the deny
 // arms and the happy path all train this trainer-taught combo recipe.
@@ -389,7 +390,7 @@ describe('knowing vs crafting stay orthogonal (no use-gate)', () => {
 
     runCraft(sim, recipe.id, false, pid);
 
-    expect(sim.countItem('thorium_mining_pick', pid)).toBe(1);
+    expect(heldItemCount(sim, 'thorium_mining_pick', pid)).toBe(1);
   });
 
   it('no COMMON recipe can ever read locked at skill 0: all are known with a zero fee', () => {

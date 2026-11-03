@@ -36,6 +36,7 @@ vi.mock('../server/db', () => ({
 import { type ClientSession, GameServer } from '../server/game';
 import type { PlayerMeta } from '../src/sim/sim';
 import type { SimEvent } from '../src/sim/types';
+import { heldItemCount } from './helpers/held_item_count';
 
 // A field spot in northern Eastbrook Vale: far outside every station circle
 // (the nearest station sits at z 16.5) and clear of hostile camp pull ranges,
@@ -126,8 +127,8 @@ describe('station gate over the live GameServer wire (session routing)', () => {
     expect(craftResultsOf(fcOther.sent)).toEqual([]);
     // No side effect on denial: reagents untouched, nothing produced.
     expect(server.sim.countItem('fine_iron_ore', sc.pid)).toBe(4);
-    expect(server.sim.countItem('mithril_mining_pick', sc.pid)).toBe(1);
-    expect(server.sim.countItem('thorium_mining_pick', sc.pid)).toBe(0);
+    expect(heldItemCount(server.sim, 'mithril_mining_pick', sc.pid)).toBe(1);
+    expect(heldItemCount(server.sim, 'thorium_mining_pick', sc.pid)).toBe(0);
   });
 
   it('place_mobile_station reaches the sim: a specialized player then crafts station-bound in the field', () => {
@@ -153,7 +154,7 @@ describe('station gate over the live GameServer wire (session routing)', () => {
     completeCraftCast(server.sim as never, sc.pid);
     routeTick(server);
 
-    expect(server.sim.countItem('thorium_mining_pick', sc.pid)).toBe(1);
+    expect(heldItemCount(server.sim, 'thorium_mining_pick', sc.pid)).toBe(1);
     // 3 of 4 fine ore consumed: the placer is necessarily specialized (that is the
     // mobile-station gate), so the #1134 material discount composes with the
     // craft (max(1, floor(4 * 0.8)) = 3).

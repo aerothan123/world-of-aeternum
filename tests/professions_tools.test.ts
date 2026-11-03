@@ -6,6 +6,7 @@ import { TOOL_EFFECT_IDS, TOOL_EFFECTS } from '../src/sim/content/professions';
 import { VENDOR_ROW_GATES } from '../src/sim/content/vendor_row_gates';
 import { GATHER_NODES, ITEMS, NPCS, ZONES } from '../src/sim/data';
 import { rodTierRequiredForZone } from '../src/sim/professions/fishing_zones';
+import { ownedGatherTools } from '../src/sim/professions/gather_tool_slots';
 import { MATERIAL_GRADES, yieldsFineGrade } from '../src/sim/professions/material_grades';
 import {
   applyEffectBonus,
@@ -37,6 +38,7 @@ import { Sim } from '../src/sim/sim';
 import { choppableTreesNear } from '../src/sim/trees/tree_registry';
 import type { InvSlot, ItemDef } from '../src/sim/types';
 import { terrainHeight } from '../src/sim/world';
+import { emptyToolBelt } from './helpers/tool_belt_fixture';
 import { EMPTY_TEST_WORLD } from './sim_shared';
 
 describe('gathering tool tier gating (#1123)', () => {
@@ -300,6 +302,9 @@ describe('sim-level node access gating (Professions 2.0)', () => {
   function simAtNode(nodeId: string, seed = 42) {
     const sim = new Sim({ seed, playerClass: 'warrior', noPlayer: true, world: EMPTY_TEST_WORLD });
     const pid = sim.addPlayer('warrior', 'Prospector');
+    // Bare hands for this suite: the starter tool belt is emptied, so every
+    // tool a case grants lands in its empty slot and is the one that works.
+    emptyToolBelt(sim.players.get(pid));
     const tree = nodeId === T2_WOOD ? tierTwoTree(seed) : null;
     const node = tree
       ? { pos: { x: tree.x, z: tree.z - 1.5 } }
@@ -477,7 +482,7 @@ describe('sim-level node access gating (Professions 2.0)', () => {
     makeWieldable(sim, pid, 'mithril_mining_pick');
     const meta = sim.players.get(pid);
     if (!meta) throw new Error('missing meta');
-    expect(bestOwnedGatherToolTier(meta.inventory, 'mining', ITEMS)).toBe(3);
+    expect(bestOwnedGatherToolTier(ownedGatherTools(meta), 'mining', ITEMS)).toBe(3);
     expect(castAndComplete(sim, T3_ORE, pid)).toBe(true);
     expect(sim.countItem('thorium_ore', pid)).toBeGreaterThanOrEqual(1);
   });
@@ -524,8 +529,8 @@ describe('sim-level node access gating (Professions 2.0)', () => {
     sim.addItem('handaxe', 1, pid); // logging tier 1
     const meta = sim.players.get(pid);
     if (!meta) throw new Error('missing meta');
-    expect(bestOwnedGatherToolTier(meta.inventory, 'mining', ITEMS)).toBe(3);
-    expect(bestOwnedGatherToolTier(meta.inventory, 'logging', ITEMS)).toBe(1);
+    expect(bestOwnedGatherToolTier(ownedGatherTools(meta), 'mining', ITEMS)).toBe(3);
+    expect(bestOwnedGatherToolTier(ownedGatherTools(meta), 'logging', ITEMS)).toBe(1);
     sim.drainEvents();
     expectDeniedDrawFreeNoCast(sim, tierTwoTree(42).node.id, pid);
     expect(sim.drainEvents().filter((e) => e.type === 'gatherDenied')).toEqual([

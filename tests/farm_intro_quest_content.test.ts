@@ -13,6 +13,7 @@ import { NPCS, QUEST_ORDER, QUESTS } from '../src/sim/data';
 import { Sim } from '../src/sim/sim';
 import { INTERACT_RANGE } from '../src/sim/types';
 import { terrainHeight } from '../src/sim/world';
+import { heldItemCount } from './helpers/held_item_count';
 
 const QUEST_ID = 'q_farm_intro';
 const GIVER = 'farmer_jessica';
@@ -128,13 +129,13 @@ describe('q_farm_intro: the accept path at the farmer', () => {
   it('a fresh level-1 character in reach accepts it and receives exactly one hoe and one seed', () => {
     const { sim, pid } = freshCharacter();
     expect(sim.entities.get(pid)?.level).toBe(1);
-    expect(sim.countItem(HOE, pid)).toBe(0);
+    expect(heldItemCount(sim, HOE, pid)).toBe(0);
     expect(sim.countItem(SEED, pid)).toBe(0);
     standAtGiver(sim, pid);
     expect(sim.questState(QUEST_ID, pid)).toBe('available');
     sim.acceptQuest(QUEST_ID, pid);
     expect(sim.questState(QUEST_ID, pid)).toBe('active');
-    expect(sim.countItem(HOE, pid)).toBe(1);
+    expect(heldItemCount(sim, HOE, pid)).toBe(1);
     expect(sim.countItem(SEED, pid)).toBe(1);
     // Fresh counts: nothing credited by the accept itself.
     expect(sim.meta(pid)?.questLog.get(QUEST_ID)?.counts).toEqual([0, 0]);
@@ -147,7 +148,7 @@ describe('q_farm_intro: the accept path at the farmer', () => {
     expect(sim.questState(QUEST_ID, pid)).toBe('active');
     // Re-accepting an active quest is refused and grants nothing.
     sim.acceptQuest(QUEST_ID, pid);
-    expect(sim.countItem(HOE, pid)).toBe(1);
+    expect(heldItemCount(sim, HOE, pid)).toBe(1);
     expect(sim.countItem(SEED, pid)).toBe(1);
     // Talking to the giver again re-grants only what is MISSING (the
     // in-progress twin of the accept grant): with both held, nothing moves.
@@ -156,7 +157,7 @@ describe('q_farm_intro: the accept path at the farmer', () => {
     );
     if (!giver) throw new Error('farmer_jessica did not spawn');
     sim.talkToNpc(giver.id, pid);
-    expect(sim.countItem(HOE, pid)).toBe(1);
+    expect(heldItemCount(sim, HOE, pid)).toBe(1);
     expect(sim.countItem(SEED, pid)).toBe(1);
     expect(sim.questState(QUEST_ID, pid)).toBe('active');
   });
@@ -177,7 +178,7 @@ describe('q_farm_intro: the accept path at the farmer', () => {
     if (!giver) throw new Error('farmer_jessica did not spawn');
     sim.talkToNpc(giver.id, pid);
     expect(sim.countItem(SEED, pid)).toBe(1);
-    expect(sim.countItem(HOE, pid)).toBe(1);
+    expect(heldItemCount(sim, HOE, pid)).toBe(1);
   });
 
   it('refuses the accept out of reach of the farmer and grants nothing', () => {
@@ -189,7 +190,7 @@ describe('q_farm_intro: the accept path at the farmer', () => {
     p.prevPos = { ...p.pos };
     sim.acceptQuest(QUEST_ID, pid);
     expect(sim.questState(QUEST_ID, pid)).toBe('available');
-    expect(sim.countItem(HOE, pid)).toBe(0);
+    expect(heldItemCount(sim, HOE, pid)).toBe(0);
     expect(sim.countItem(SEED, pid)).toBe(0);
   });
 });

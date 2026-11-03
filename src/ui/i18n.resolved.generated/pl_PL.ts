@@ -4079,6 +4079,11 @@ export const pl_PL: EnTranslations = {
       "hideHelmAria": "Ukryj hełm",
       "showHelmAria": "Pokaż hełm"
     },
+    "toolBelt": {
+      "title": "Tools",
+      "emptySlot": "No {profession} tool equipped. Drag one here, or right-click it in your bags.",
+      "unequipHint": "Click × or right-click to unequip"
+    },
     "account": {
       "title": "Konto",
       "loggedOutPrompt": "Zaloguj się, aby zarządzać kontem.",
@@ -6139,6 +6144,13 @@ export const pl_PL: EnTranslations = {
         "fishing": "Potrzebujesz wędki, aby zarzucić żyłkę.",
         "farming": "Aby pracować na tej grządce, potrzebujesz motyki do uprawy."
       },
+      "toolEquipRequired": {
+        "mining": "You need a mining pick equipped.",
+        "logging": "You need a logging axe equipped.",
+        "herbalism": "You need a herbalism sickle equipped.",
+        "fishing": "You need a fishing pole equipped.",
+        "farming": "You need a farming hoe equipped."
+      },
       "noNodeNearby": {
         "mining": "W zasięgu nie ma żadnej żyły rudy.",
         "logging": "W zasięgu nie ma żadnego drzewostanu.",
@@ -6150,6 +6162,12 @@ export const pl_PL: EnTranslations = {
         "logging": "Potrzebujesz Wyrębu {skill}, by machnąć siekierą, którą masz już w torbach.",
         "herbalism": "Potrzebujesz Zielarstwa {skill}, by pracować sierpem, który masz już w torbach.",
         "farming": "Potrzebujesz Uprawy {skill}, aby użyć motyki, którą masz już w torbach."
+      },
+      "wieldUnmetEquipped": {
+        "mining": "You need Mining {skill} to swing your equipped pick.",
+        "logging": "You need Logging {skill} to swing your equipped axe.",
+        "herbalism": "You need Herbalism {skill} to work your equipped sickle.",
+        "farming": "You need Farming {skill} to swing your equipped hoe."
       },
       "wieldUnmetCorpse": "Potrzebujesz umiejętności zbieractwa {skill}, by wykorzystać swoje najlepsze narzędzie.",
       "toolTierUnmetCorpse": "Potrzebujesz narzędzia zbieracza {tier} poziomu, by odzyskać najlepsze materiały.",
@@ -6177,6 +6195,7 @@ export const pl_PL: EnTranslations = {
         "speed": "Szybciej zbiera z węzłów poniżej poziomu {tier}.",
         "wieldDegrade": "Poniżej tej umiejętności nadal działa jako narzędzie niższego poziomu.",
         "rodRequired": "Wymagana do łowienia ryb.",
+        "equipHint": "Equip in the Tools slot.",
         "rodBite": "Ryby biorą nawet o {seconds} s wcześniej.",
         "rodReel": "Wydłuża czas na wyciągnięcie ryby o {seconds} s.",
         "rodBand": "Odblokowuje bogatsze połowy przy umiejętności rybołówstwa {skill} i wyższej.",

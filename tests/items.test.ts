@@ -7,6 +7,7 @@ import { Sim } from '../src/sim/sim';
 import type { SimContext } from '../src/sim/sim_context';
 import { type Entity, type ItemDef, POTION_COOLDOWN, type SimEvent } from '../src/sim/types';
 import { adoptedTrophyIds } from './helpers/adopted_trophy_ids';
+import { heldItemCount } from './helpers/held_item_count';
 
 // Direct tests for the extracted inventory/vendor module (W2). They call the module
 // functions with the real SimContext the Sim built in its ctor (the same seam the thin
@@ -282,7 +283,7 @@ describe('items.useItem', () => {
     items.useItem(ctx, 'simple_fishing_pole', pid);
     const errs = errorTexts(sim.drainEvents());
     expect(errs.some((t) => /fishable water/.test(t))).toBe(true);
-    expect(sim.countItem('simple_fishing_pole', pid)).toBe(1); // a tool is not consumed
+    expect(heldItemCount(sim, 'simple_fishing_pole', pid)).toBe(1); // a tool is not consumed (it sits in its tool slot)
   });
 });
 

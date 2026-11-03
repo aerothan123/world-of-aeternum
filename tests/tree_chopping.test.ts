@@ -152,7 +152,7 @@ describe('chop pacing and access', () => {
     expect(treeChopSwings(3, 3, 0)).toBe(6);
     expect(treeChopSwings(1, 3, 2)).toBe(3);
     expect(treeChopSwings(3, 3, 2)).toBe(4);
-    expect(treeRequiredToolTier(1)).toBe(0);
+    expect(treeRequiredToolTier(1)).toBe(1);
     expect(treeRequiredToolTier(2)).toBe(2);
   });
 

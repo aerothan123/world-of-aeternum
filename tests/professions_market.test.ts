@@ -17,6 +17,8 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { Sim } from '../src/sim/sim';
 import type { Entity } from '../src/sim/types';
 import { groundHeight } from '../src/sim/world';
+import { heldItemCount } from './helpers/held_item_count';
+import { bagTool } from './helpers/tool_belt_fixture';
 
 function makeWorld() {
   return new Sim({ seed: 42, playerClass: 'warrior', noPlayer: true });
@@ -93,7 +95,7 @@ describe('World Market integration: profession items (#1146)', () => {
     const buyer = sim.addPlayer('rogue', 'Buyer');
     standAtMerchant(sim, seller);
     standAtMerchant(sim, buyer);
-    sim.addItem('iron_mining_pick', 1, seller);
+    bagTool(sim, 'iron_mining_pick', seller);
     sim.players.get(buyer)!.copper = 500;
     sim.events.length = 0;
 
@@ -110,7 +112,8 @@ describe('World Market integration: profession items (#1146)', () => {
 
     expect(errorsSince(sim)).toEqual([]);
     expect(copperOf(sim, buyer)).toBe(410);
-    expect(sim.countItem('iron_mining_pick', buyer)).toBe(1);
+    // The bought pick beats the buyer's starter pick, so it takes the mining tool slot.
+    expect(heldItemCount(sim, 'iron_mining_pick', buyer)).toBe(1);
     expect(sim.countItem('iron_mining_pick', seller)).toBe(0);
     expect(sim.marketListings.some((l) => l.id === listing.id)).toBe(false);
   });
@@ -143,7 +146,7 @@ describe('World Market integration: profession items (#1146)', () => {
     standAtMerchant(sim, seller);
     standAtMerchant(sim, buyer);
     sim.addItem('bone_fragments', 4, seller);
-    sim.addItem('iron_mining_pick', 1, seller);
+    bagTool(sim, 'iron_mining_pick', seller);
     sim.addItem('eastbrook_wool_trousers', 1, seller);
     sim.players.get(buyer)!.copper = 2000;
 
@@ -270,8 +273,8 @@ describe('the quest-granted tier-1 tools are not brokerable', () => {
     const sim = makeWorld();
     const seller = sim.addPlayer('warrior', 'Toolsmith');
     standAtMerchant(sim, seller);
-    sim.addItem('copper_mining_pick', 1, seller);
-    sim.addItem('iron_mining_pick', 1, seller);
+    bagTool(sim, 'copper_mining_pick', seller);
+    bagTool(sim, 'iron_mining_pick', seller);
     sim.events.length = 0;
 
     // The re-grant supply for a tier-1 tool is unbounded (questFallbackGrants

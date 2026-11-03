@@ -10,6 +10,7 @@ import { turnInQuestCore } from '../src/sim/quests/quest_commands';
 import { Sim } from '../src/sim/sim';
 import type { QuestDef } from '../src/sim/types';
 import { terrainHeight } from '../src/sim/world';
+import { heldItemCount } from './helpers/held_item_count';
 
 // Downward grade substitution (D8): a fine grade satisfies a requirement for
 // its base, never the reverse. Not a courtesy. The fine grade REPLACES the
@@ -218,7 +219,7 @@ describe('crafting accepts the fine grade for a plain reagent', () => {
     expect(result.ok).toBe(false);
     expect(result.reason).toBe('insufficient_materials');
     expect(sim.countItem('iron_ore', pid)).toBe(8);
-    expect(sim.countItem('mithril_mining_pick', pid)).toBe(1);
+    expect(heldItemCount(sim, 'mithril_mining_pick', pid)).toBe(1); // still worn: the denied craft lent nothing away
   });
 });
 
