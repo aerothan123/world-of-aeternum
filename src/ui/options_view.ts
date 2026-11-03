@@ -1157,6 +1157,10 @@ export function buildInterfaceControls(
       ),
       boolToggle(s, 'showAttackButton', 'hudChrome.options.showAttackButton'),
       boolToggle(s, 'walkByAutoloot', 'hudChrome.options.walkByAutoloot'),
+      // Classic Auto Loot: a corpse click takes the loot without the window
+      // (Shift inverts it per click); the note says exactly what it skips.
+      boolToggle(s, 'autoLoot', 'hudChrome.options.autoLoot'),
+      note('hudChrome.options.autoLootNote'),
       boolToggle(s, 'groundReticle', 'hudChrome.options.groundReticle'),
       boolToggle(s, 'stickyTarget', 'hudChrome.options.stickyTarget'),
       // Style of Enemy Highlight: a heading over four independent checkboxes,

@@ -422,6 +422,12 @@ export const BOOL_SETTINGS = {
   // deliberate looting stays the default. Gates the client AutoLoot pass in
   // main.ts; the sim's authoritative gate and the raid-instance gate are separate.
   walkByAutoloot: { def: false },
+  // off by default: Auto Loot, the classic option. A click on a corpse takes its
+  // loot straight into the bags (the same lootCorpse command the window's Take
+  // Loot sends) instead of opening the loot window; Shift on that click inverts
+  // it. Read per click by src/ui/hud/loot/auto_loot_setting.ts, decided by
+  // src/ui/hud/loot/auto_loot_core.ts. The interact key already takes directly.
+  autoLoot: { def: false },
   // on by default: desktop ground-targeted spells open a terrain reticle before
   // casting. Touch keeps the instant target-feet fallback because there is no
   // persistent cursor to preview.

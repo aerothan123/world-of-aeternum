@@ -128,7 +128,8 @@ export interface InputCallbacks {
       | 'mount',
   ): void;
   onEmoteWheel(open: boolean): void;
-  onClickPick(x: number, y: number, button: number): void;
+  /** A click pick; `shiftKey` is Shift on the release (Auto Loot's per-press inversion). */
+  onClickPick(x: number, y: number, button: number, shiftKey: boolean): void;
   /** Attack-move key pressed (only fires while Attack Move mode is on); x/y is the cursor. */
   onAttackMove?(x: number, y: number): void;
   /** When false, keydown-driven actions are ignored: edge actions (spells, UI keys)
@@ -1649,7 +1650,7 @@ export class Input {
     ) {
       document.exitPointerLock();
     }
-    if (pick) this.cb.onClickPick(pick.x, pick.y, pick.button);
+    if (pick) this.cb.onClickPick(pick.x, pick.y, pick.button, e.shiftKey === true);
     if (!this.leftDown && !this.rightDown) this.cameraDragActive = false;
     this.downButton = -1;
     this.pointerLockRequestedForDrag = false;

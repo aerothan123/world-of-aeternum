@@ -52,7 +52,15 @@ export interface PickInteractionWorld {
 }
 
 export interface PickInteractionHud {
-  openLoot(mobId: number, screenX: number, screenY: number): void;
+  // `press` marks this as a pointer press on the corpse, the entry the Auto
+  // Loot option governs (src/ui/hud/loot/auto_loot_core.ts): the HUD either
+  // opens the window or takes the loot straight to the bags.
+  openLoot(
+    mobId: number,
+    screenX: number,
+    screenY: number,
+    press?: { readonly shiftHeld: boolean },
+  ): void;
   openQuestDialog(npcId: number): void;
   openDelveBoard(npcId: number): void;
   openMailbox(): void;
@@ -256,6 +264,9 @@ export function handlePickedEntity(
   screenX: number,
   screenY: number,
   harvestStateReliable = true,
+  // Shift held on the click (input.ts reads it off the release event): it
+  // inverts the Auto Loot option for a corpse press, nothing else reads it.
+  shiftHeld = false,
 ): InteractionOutcome {
   const e = world.entities.get(id);
   if (!e) return false;
@@ -307,7 +318,7 @@ export function handlePickedEntity(
           ).canOpen
         )
           return false;
-        hud.openLoot(id, screenX, screenY);
+        hud.openLoot(id, screenX, screenY, { shiftHeld });
         return true;
       }
       hud.showError(t('questUi.errors.tooFar'));
@@ -414,7 +425,7 @@ export function handlePickedEntity(
           ).canOpen
         )
           return false;
-        hud.openLoot(id, screenX, screenY);
+        hud.openLoot(id, screenX, screenY, { shiftHeld });
         return true;
       }
     } else if (e.kind === 'npc') {

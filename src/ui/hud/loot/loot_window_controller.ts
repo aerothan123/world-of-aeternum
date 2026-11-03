@@ -16,6 +16,8 @@ import { lootQualityBadgeHtml } from '../../loot_quality_view';
 import type { PainterHostPresentation } from '../../painter_host';
 import { svgIcon } from '../../ui_icons';
 import { unknownItemIconHtml } from '../../unknown_item_icon';
+import { type CorpseLootPress, corpseLootPressPlan } from './auto_loot_core';
+import { autoLootEnabled } from './auto_loot_setting';
 import {
   type CorpseHarvestQueryStatus,
   corpseHarvestStatusSignature,
@@ -108,6 +110,10 @@ export interface LootWindowControllerDeps {
   /** Injected wall clock for the harvest-status poll throttle, so a focused
    *  test can drive it deterministically; production wires real `Date.now`. */
   now(): number;
+  /** The Auto Loot option (Interface options, Combat tab), read on each corpse
+   *  press. Optional: when absent the controller reads the live setting itself
+   *  (auto_loot_setting.ts); tests inject a fixed answer. */
+  autoLootEnabled?(): boolean;
 }
 
 /** The corpse popup's range gate, in yards (the coordinator's proximity band). */
@@ -136,6 +142,13 @@ function corpseAvailabilitySignature(availability: CorpseAvailability): string {
     (stack) => `${stack.itemId}:${stack.count}:${lootQualityTier(stack.instance)}`,
   );
   return `${availability.hasLoot ? 'L' : '-'}${availability.harvestable ? 'H' : '-'}|${availability.visibleCopper}|${items.join(',')}`;
+}
+
+/** Does the visible loot hold an item that binds when picked up? An unknown
+ *  stale-client def cannot claim soulbound, so it takes the plain path rather
+ *  than warning on a guess. Shared by Take Loot and the Auto Loot take. */
+function lootBindsOnPickup(items: readonly LootWindowItemStack[]): boolean {
+  return items.some((stack) => knownItemDef(ITEMS, stack.itemId)?.soulbound === true);
 }
 
 /** Owns corpse and delve-chest loot popup state, rendering, actions, and range closure. */
@@ -206,20 +219,31 @@ export class LootWindowController {
    *  Opening never runs an action: Take Loot and Harvest are the player's own
    *  presses inside. The SAME body re-opened is a refresh only (picks and
    *  focus survive); ANOTHER body is a fresh choice with focus on Close and
-   *  the visit's original opener kept. */
-  openCorpse(mobId: number, screenX: number, screenY: number): void {
+   *  the visit's original opener kept.
+   *
+   *  `press` marks a POINTER press on the corpse (a click or a tap), the one
+   *  entry the Auto Loot option governs (auto_loot_core.ts): when the option,
+   *  inverted by Shift on the press, says take, the loot goes straight to the
+   *  bags through the same command Take Loot sends and no window opens. Every
+   *  other opener (the Professions harvest choice, the interact key's
+   *  harvest-only arm) passes nothing and always gets the window. */
+  openCorpse(mobId: number, screenX: number, screenY: number, press?: CorpseLootPress): void {
     const world = this.deps.world();
-    const mob = world.entities.get(mobId);
-    if (
-      !mob ||
-      world.player.dead ||
-      !mob.lootable ||
-      this.distanceFromPlayer(mob) > CORPSE_POPUP_RANGE
-    ) {
-      return;
+    const open = this.pressableCorpse(world, mobId);
+    if (!open) return;
+    const { mob, availability } = open;
+    if (press) {
+      const plan = corpseLootPressPlan({
+        autoLootEnabled: (this.deps.autoLootEnabled ?? autoLootEnabled)(),
+        shiftHeld: press.shiftHeld,
+        hasLoot: availability.hasLoot,
+        bindsOnPickup: lootBindsOnPickup(availability.visibleItems),
+      });
+      if (plan !== 'window') {
+        this.takeWithoutWindow(mobId, world, plan === 'confirmTake');
+        return;
+      }
     }
-    const availability = this.deps.corpseAvailability(mob);
-    if (!availability.canOpen) return;
     if (this.mobId === mobId) {
       this.refreshCorpse(false);
       // A genuine "open" event on the same body/visit: ask again, but this
@@ -259,6 +283,45 @@ export class LootWindowController {
     if (fresh) this.enterVisit();
     this.focusClose();
     if (availability.harvestable) this.issueHarvestQuery(mobId, this.generation);
+  }
+
+  /** The open gate every corpse entry shares (a living viewer, a lootable body
+   *  inside the popup range, something to open), with the live availability;
+   *  null when the press must do nothing at all. */
+  private pressableCorpse(
+    world: IWorld,
+    mobId: number,
+  ): { mob: Entity; availability: CorpseAvailability } | null {
+    const mob = world.entities.get(mobId);
+    if (!mob || world.player.dead || !mob.lootable) return null;
+    if (dist2d(world.player.pos, mob.pos) > CORPSE_POPUP_RANGE) return null;
+    const availability = this.deps.corpseAvailability(mob);
+    return availability.canOpen ? { mob, availability } : null;
+  }
+
+  /** Auto Loot's take: the Take Loot command with no window. The bind confirm
+   *  (when the loot holds a soulbound item) is modal over a LIVE world, so the
+   *  send re-checks the same world, gate and loot first, exactly like the
+   *  window's own Take Loot does after its confirm. A popup already open on
+   *  this same body closes, since its loot just went to the bags. */
+  private takeWithoutWindow(mobId: number, world: IWorld, confirmBind: boolean): void {
+    const dispatch = (): void => {
+      if (this.deps.world() !== world) return;
+      if (!this.pressableCorpse(world, mobId)?.availability.hasLoot) return;
+      world.lootCorpse(mobId);
+      if (this.mobId === mobId) this.close();
+    };
+    if (!confirmBind) {
+      dispatch();
+      return;
+    }
+    this.deps.confirm(
+      t('hudChrome.loot.bindConfirmTitle'),
+      t('hudChrome.loot.bindConfirmBody'),
+      t('hudChrome.loot.takeLootButton'),
+      t('hud.chat.context.cancel'),
+      dispatch,
+    );
   }
 
   openChest(chestId: number, items: readonly LootWindowItemStack[]): void {
@@ -642,12 +705,8 @@ export class LootWindowController {
     };
     // Bind-on-pickup warning: when the visible loot holds a soulbound item,
     // taking it binds it, so the player confirms once first (the classic
-    // BoP dialog). An unknown stale-client def cannot claim soulbound, so
-    // it takes the plain path rather than warning on a guess.
-    const bindsOnPickup = live.visibleItems.some(
-      (stack) => knownItemDef(ITEMS, stack.itemId)?.soulbound === true,
-    );
-    if (bindsOnPickup) {
+    // BoP dialog).
+    if (lootBindsOnPickup(live.visibleItems)) {
       this.deps.confirm(
         t('hudChrome.loot.bindConfirmTitle'),
         t('hudChrome.loot.bindConfirmBody'),

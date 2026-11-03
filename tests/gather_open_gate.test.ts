@@ -90,7 +90,7 @@ describe('handlePickedEntity default arm (both buttons)', () => {
   it.each([0, 2])('opens an unclaimed harvest-only corpse in range with button %i', (button) => {
     const { world, hud } = rig(playerAt(0), corpse({}));
     expect(handlePickedEntity(world, hud, 2, button, 10, 20)).toBe(true);
-    expect(hud.openLoot).toHaveBeenCalledWith(2, 10, 20);
+    expect(hud.openLoot).toHaveBeenCalledWith(2, 10, 20, { shiftHeld: false });
   });
 
   it.each([0, 2])('refuses a CLAIMED harvest-only corpse with button %i', (button) => {

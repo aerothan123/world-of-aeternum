@@ -3110,6 +3110,14 @@ export const hudChromeStrings = {
     stopAutoAttackOnTargetSwitch: 'Stop Auto-Attack on Target Switch',
     // Interface panel toggle: loot corpses by walking past them (off by default).
     walkByAutoloot: 'Walk-by Autoloot',
+    // Interface panel toggle (Combat tab, off by default): the classic Auto Loot
+    // option. The note under it is the row's explanation (option rows carry no
+    // hover card), written from the live path: auto_loot_core.ts decides, the
+    // take is the window's own Take Loot command (sim lootCorpse). The note is
+    // wordy (M16): the five non-Latin fills land in this same change.
+    autoLoot: 'Auto Loot',
+    autoLootNote:
+      'Clicking or tapping a corpse puts its coins and items straight into your bags instead of opening the loot window. Hold Shift while you click to do the opposite for that corpse. An item your group rolls for, or that the master looter hands out, still goes to that roll, and anything that does not fit in your bags stays on the corpse. The interact key always takes the loot directly.',
     groundReticle: 'Ground-Targeting Reticle',
     // Interface panel toggle: Clique-style mouseover casting of friendly abilities
     // on the hovered unit frame, the party/raid rows and the target-of-target

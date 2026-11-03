@@ -943,6 +943,9 @@ const COMBAT_KEYS = [
   'stopAutoAttackOnTargetSwitch',
   'showAttackButton',
   'walkByAutoloot',
+  // Classic Auto Loot, with the note that says what a press takes and skips.
+  'autoLoot',
+  'note:hudChrome.options.autoLootNote',
   'groundReticle',
   'stickyTarget',
   // Style of Enemy Highlight: the gold heading, then its four checkboxes.
@@ -1095,8 +1098,10 @@ describe('options_view: interface dispatch matrix (cluster 5)', () => {
         category: 'general',
       },
       { control: 'note', textKey: 'hudChrome.options.forceHighPerfGpuNote', category: 'general' },
-      // The Combat tab's one note (the dungeon hints toggle), unconditional.
+      // The Combat tab's explanatory notes (the dungeon hints toggle, then Auto
+      // Loot), both unconditional.
       { control: 'note', textKey: 'hudChrome.options.showDungeonHintsNote', category: 'combat' },
+      { control: 'note', textKey: 'hudChrome.options.autoLootNote', category: 'combat' },
       {
         control: 'note',
         textKey: 'hudChrome.options.enemyHighlightStyle',

@@ -14283,8 +14283,8 @@ export class Hud {
   // Loot window
   // -------------------------------------------------------------------------
 
-  openLoot(mobId: number, screenX: number, screenY: number): void {
-    this.lootWindow.openCorpse(mobId, screenX, screenY);
+  openLoot(mobId: number, screenX: number, screenY: number, press?: { shiftHeld: boolean }): void {
+    this.lootWindow.openCorpse(mobId, screenX, screenY, press);
   }
 
   closeLoot(): void {

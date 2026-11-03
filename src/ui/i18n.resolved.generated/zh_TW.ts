@@ -2871,6 +2871,8 @@ export const zh_TW: EnTranslations = {
       "startAttackOnAbility": "使用技能時自動攻擊",
       "stopAutoAttackOnTargetSwitch": "切換目標時停止自動攻擊",
       "walkByAutoloot": "路過自動拾取",
+      "autoLoot": "自動拾取",
+      "autoLootNote": "點擊或輕觸屍體會直接把其中的金幣和物品放進你的背包，而不開啟拾取視窗。點擊時按住 Shift 可對該屍體執行相反的操作。隊伍需要擲骰的物品或由拾取分配者分配的物品仍會進入相應的擲骰，背包放不下的物品會留在屍體上。互動鍵始終直接拾取戰利品。",
       "groundReticle": "地面瞄準指示圈",
       "mouseoverCast": "對隊伍框架滑鼠指向施法",
       "stickyTarget": "點擊地面時保留目標",

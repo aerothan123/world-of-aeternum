@@ -13,9 +13,10 @@
 import type { TranslationKey } from '../i18n.catalog';
 
 export const zh_CN: Partial<Record<TranslationKey, string>> = {
-  "abilityUi.cast.chopping": "伐木",
-  "guide.profPages.treesHeading": "各区域的树木",
-  "guide.profPages.treesNote": "木材直接来自森林：走到城镇外的任意一棵树旁，按下交互键即可开始伐木。砍倒一棵树需要挥斧{minSwings}到{maxSwings}次，每次{swing}秒；更好的斧头或更高的伐木等级可以减少次数，移动或受到攻击会打断挥砍。第一个完成最后一击的采集者会砍倒这棵树并获得木材，其他仍在砍这棵树的人会被停止。被砍倒的树会留下可以走过的树桩，并在{regrow}秒后为所有人重新长出。",
+  'abilityUi.cast.chopping': '伐木',
+  'guide.profPages.treesHeading': '各区域的树木',
+  'guide.profPages.treesNote':
+    '木材直接来自森林：走到城镇外的任意一棵树旁，按下交互键即可开始伐木。砍倒一棵树需要挥斧{minSwings}到{maxSwings}次，每次{swing}秒；更好的斧头或更高的伐木等级可以减少次数，移动或受到攻击会打断挥砍。第一个完成最后一击的采集者会砍倒这棵树并获得木材，其他仍在砍这棵树的人会被停止。被砍倒的树会留下可以走过的树桩，并在{regrow}秒后为所有人重新长出。',
   'hudChrome.wocStore.subscription.checkoutPending': '结账待处理。正在等待确认。',
   'bossJournal.wildheart.zulgar.pulseSummaryRework':
     '每{every}秒施法{cast}秒，对{radius}码内所有玩家造成{min}至{max}点伤害。被钉住的玩家无论距离多远都会受到{pinMult}倍伤害。',
@@ -5651,6 +5652,9 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.options.startAttackOnAbility': '使用技能时自动攻击',
   'hudChrome.options.stopAutoAttackOnTargetSwitch': '切换目标时停止自动攻击',
   'hudChrome.options.walkByAutoloot': '路过自动拾取',
+  'hudChrome.options.autoLoot': '自动拾取',
+  'hudChrome.options.autoLootNote':
+    '点击或轻触尸体会直接把其中的金币和物品放进你的背包，而不打开拾取窗口。点击时按住 Shift 可对该尸体执行相反的操作。队伍需要掷骰的物品或由拾取分配者分配的物品仍会进入相应的掷骰，背包放不下的物品会留在尸体上。交互键始终直接拾取战利品。',
   'hudChrome.options.lockCursorOnRotate': '旋转时锁定光标',
   'hudChrome.options.keybindHelpLockCursorOnRotate':
     '拖动旋转镜头时将鼠标光标保持在窗口内，使其无法到达屏幕边缘或移动到另一台显示器。如果你喜欢自由光标，请关闭此选项。',

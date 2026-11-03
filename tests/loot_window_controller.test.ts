@@ -154,6 +154,9 @@ function harness(
   const openHarvestPreference = vi.fn();
   let nowMs = 0;
   const now = vi.fn(() => nowMs);
+  // The Auto Loot option as the controller reads it on a press (off, the
+  // shipped default, unless a case flips it).
+  let autoLootOn = false;
   const controller = new LootWindowController({
     element,
     document,
@@ -176,6 +179,7 @@ function harness(
     onVisibilityChange,
     openHarvestPreference,
     now,
+    autoLootEnabled: () => autoLootOn,
   });
   return {
     controller,
@@ -200,6 +204,9 @@ function harness(
     openHarvestPreference,
     advanceClock(ms: number) {
       nowMs += ms;
+    },
+    setAutoLoot(on: boolean) {
+      autoLootOn = on;
     },
   };
 }
@@ -1565,6 +1572,137 @@ describe('LootWindowController', () => {
       // authoritative answer above.
       expect(test.openHarvestPreference).not.toHaveBeenCalledWith(harvestMobTags);
     });
+  });
+});
+
+// Auto Loot (Interface options, Combat tab): a POINTER press on a corpse
+// (`press` set, the click path in src/game/interactions.ts) takes the loot with
+// the window's own Take Loot command and opens nothing when the option, inverted
+// by Shift on the press, says so. Every other opener ignores the option.
+describe('LootWindowController: Auto Loot press', () => {
+  beforeEach(() => {
+    document.body.innerHTML = '';
+    document.body.className = '';
+    i18nProbe.suffix = '';
+  });
+
+  function lootedMob(items = [{ itemId: itemIds[0], count: 2, personalFor: [7] }]): Entity {
+    return entity(10, {
+      kind: 'mob',
+      templateId: harvestMobId,
+      loot: { copper: 25, items },
+    });
+  }
+
+  it('option off: a plain click opens the window and sends nothing (the shipped default)', () => {
+    const test = harness([lootedMob()]);
+    test.controller.openCorpse(10, 400, 300, { shiftHeld: false });
+    expect(test.element.style.display).toBe('block');
+    expect(test.lootCorpse).not.toHaveBeenCalled();
+  });
+
+  it('option on: a plain click takes the loot through lootCorpse and never opens the window', () => {
+    const test = harness([lootedMob()]);
+    test.setAutoLoot(true);
+    test.controller.openCorpse(10, 400, 300, { shiftHeld: false });
+    expect(test.lootCorpse).toHaveBeenCalledTimes(1);
+    expect(test.lootCorpse).toHaveBeenCalledWith(10);
+    expect(test.element.style.display).not.toBe('block');
+    expect(test.captureFocus).not.toHaveBeenCalled();
+    expect(test.confirm).not.toHaveBeenCalled();
+  });
+
+  it('Shift inverts the option for that one press, both ways', () => {
+    const off = harness([lootedMob()]);
+    off.controller.openCorpse(10, 400, 300, { shiftHeld: true });
+    expect(off.lootCorpse).toHaveBeenCalledWith(10);
+    expect(off.element.style.display).not.toBe('block');
+
+    document.body.innerHTML = '';
+    const on = harness([lootedMob()]);
+    on.setAutoLoot(true);
+    on.controller.openCorpse(10, 400, 300, { shiftHeld: true });
+    expect(on.lootCorpse).not.toHaveBeenCalled();
+    expect(on.element.style.display).toBe('block');
+  });
+
+  it('openers that are not a pointer press keep the window whatever the option says', () => {
+    const test = harness([lootedMob()]);
+    test.setAutoLoot(true);
+    test.controller.openCorpse(10, HARVEST_CHOICE_NO_POINTER, HARVEST_CHOICE_NO_POINTER);
+    expect(test.element.style.display).toBe('block');
+    expect(test.lootCorpse).not.toHaveBeenCalled();
+  });
+
+  it('a harvest-only body has nothing to take, so the press opens the window for Harvest', () => {
+    const mob = entity(10, {
+      kind: 'mob',
+      templateId: harvestMobId,
+      tappedById: 7,
+      loot: { copper: 0, items: [] },
+    });
+    const test = harness([mob]);
+    test.setAutoLoot(true);
+    test.controller.openCorpse(10, 400, 300, { shiftHeld: false });
+    expect(test.lootCorpse).not.toHaveBeenCalled();
+    expect(test.element.style.display).toBe('block');
+    expect(harvestBtn(test.element)).not.toBeNull();
+  });
+
+  it('soulbound loot asks the bind confirm first; a decline takes nothing and opens nothing', () => {
+    const test = harness([lootedMob([{ itemId: 'heroic_mark', count: 1, personalFor: [7] }])]);
+    test.setAutoLoot(true);
+    test.confirm.mockImplementation(() => {});
+    test.controller.openCorpse(10, 400, 300, { shiftHeld: false });
+    expect(test.confirm).toHaveBeenCalledTimes(1);
+    expect(test.confirm.mock.calls[0][0]).toBe('Binds when picked up');
+    expect(test.lootCorpse).not.toHaveBeenCalled();
+    expect(test.element.style.display).not.toBe('block');
+  });
+
+  it('an accepted bind confirm re-checks the live corpse before it sends', () => {
+    const mob = lootedMob([{ itemId: 'heroic_mark', count: 1, personalFor: [7] }]);
+    const test = harness([mob]);
+    test.setAutoLoot(true);
+    let accept: (() => void) | null = null;
+    test.confirm.mockImplementation((_t, _b, _o, _c, onOk) => {
+      accept = onOk;
+    });
+    test.controller.openCorpse(10, 400, 300, { shiftHeld: false });
+    // The corpse was looted elsewhere while the confirm waited.
+    mob.loot = null;
+    mob.lootable = false;
+    (accept as (() => void) | null)?.();
+    expect(test.lootCorpse).not.toHaveBeenCalled();
+
+    mob.loot = { copper: 0, items: [{ itemId: 'heroic_mark', count: 1, personalFor: [7] }] };
+    mob.lootable = true;
+    test.controller.openCorpse(10, 400, 300, { shiftHeld: false });
+    (accept as (() => void) | null)?.();
+    expect(test.lootCorpse).toHaveBeenCalledWith(10);
+  });
+
+  it('a take on the body whose window is already open closes that window', () => {
+    const test = harness([lootedMob()]);
+    test.controller.openCorpse(10, 400, 300, { shiftHeld: false });
+    expect(test.element.style.display).toBe('block');
+    test.controller.openCorpse(10, 400, 300, { shiftHeld: true });
+    expect(test.lootCorpse).toHaveBeenCalledWith(10);
+    expect(test.element.style.display).toBe('none');
+  });
+
+  it('refuses the press outright for a dead viewer or a body out of range (nothing sent)', () => {
+    const far = entity(10, {
+      kind: 'mob',
+      templateId: harvestMobId,
+      pos: { x: 500, y: 0, z: 0 },
+      loot: { copper: 25, items: [] },
+    });
+    const test = harness([far]);
+    test.setAutoLoot(true);
+    test.controller.openCorpse(10, 400, 300, { shiftHeld: false });
+    expect(test.lootCorpse).not.toHaveBeenCalled();
+    expect(test.element.style.display).not.toBe('block');
   });
 });
 

@@ -504,7 +504,11 @@ describe('handlePickedEntity', () => {
     } as unknown as Parameters<typeof handlePickedEntity>[1];
 
     expect(handlePickedEntity(world, hud, 2, button, 10, 20)).toBe(true);
-    expect(hud.openLoot).toHaveBeenCalledWith(2, 10, 20);
+    expect(hud.openLoot).toHaveBeenCalledWith(2, 10, 20, { shiftHeld: false });
+    // Shift on the click rides the press to the HUD, where it inverts the Auto
+    // Loot option (src/ui/hud/loot/auto_loot_core.ts) for this corpse only.
+    expect(handlePickedEntity(world, hud, 2, button, 10, 20, true, true)).toBe(true);
+    expect(hud.openLoot).toHaveBeenLastCalledWith(2, 10, 20, { shiftHeld: true });
   });
 
   // A dead PLAYER's body carries loot only while it holds World PvP spoils
@@ -550,7 +554,7 @@ describe('handlePickedEntity', () => {
     } as unknown as Parameters<typeof handlePickedEntity>[1];
 
     expect(handlePickedEntity(world, hud, 2, button, 10, 20)).toBe(true);
-    expect(hud.openLoot).toHaveBeenCalledWith(2, 10, 20);
+    expect(hud.openLoot).toHaveBeenCalledWith(2, 10, 20, { shiftHeld: false });
     expect(handlePickedEntity(world, hud, 3, button, 10, 20)).toBe(false);
     expect(hud.openLoot).toHaveBeenCalledTimes(1);
     expect(world.targetEntity).toHaveBeenCalledWith(3);

@@ -2871,6 +2871,8 @@ export const ja_JP: EnTranslations = {
       "startAttackOnAbility": "アビリティ使用時に自動攻撃",
       "stopAutoAttackOnTargetSwitch": "ターゲット切り替え時に自動攻撃を停止",
       "walkByAutoloot": "通りがかり自動ルート",
+      "autoLoot": "自動ルート",
+      "autoLootNote": "死体をクリックまたはタップすると、ルートウィンドウを開かずにお金とアイテムがそのままバッグに入ります。クリック時にShiftを押していると、その死体に対しては逆の動作になります。グループがロールするアイテムやマスタールーターが分配するアイテムは従来どおりそのロールに回り、バッグに入りきらないものは死体に残ります。インタラクトキーは常にルートを直接取得します。",
       "groundReticle": "地面ターゲットのレティクル",
       "mouseoverCast": "パーティフレームでマウスオーバーキャスト",
       "stickyTarget": "地面クリックでターゲットを維持",

@@ -16507,6 +16507,8 @@ export type TranslationKeyFlat =
   | 'hudChrome.options.ambienceVolume'
   | 'hudChrome.options.auraBarBelowFrame'
   | 'hudChrome.options.aurasOnPlayerFrame'
+  | 'hudChrome.options.autoLoot'
+  | 'hudChrome.options.autoLootNote'
   | 'hudChrome.options.browserEffects'
   | 'hudChrome.options.browserEffectsAuto'
   | 'hudChrome.options.browserEffectsFull'

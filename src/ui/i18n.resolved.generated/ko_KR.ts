@@ -2871,6 +2871,8 @@ export const ko_KR: EnTranslations = {
       "startAttackOnAbility": "스킬 사용 시 자동 공격",
       "stopAutoAttackOnTargetSwitch": "대상 전환 시 자동 공격 중지",
       "walkByAutoloot": "지나가며 자동 획득",
+      "autoLoot": "자동 획득",
+      "autoLootNote": "시체를 클릭하거나 탭하면 전리품 창을 열지 않고 동전과 아이템이 바로 가방에 들어갑니다. 클릭할 때 Shift를 누르고 있으면 그 시체에 대해서는 반대로 동작합니다. 파티가 주사위를 굴리는 아이템이나 담당자가 분배하는 아이템은 그대로 해당 주사위로 넘어가고, 가방에 들어가지 않는 것은 시체에 남습니다. 상호작용 키는 항상 전리품을 바로 가져옵니다.",
       "groundReticle": "지면 조준 표시기",
       "mouseoverCast": "파티 창에서 마우스오버 시전",
       "stickyTarget": "지면 클릭 시 대상 유지",

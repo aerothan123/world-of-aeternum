@@ -236,7 +236,7 @@ describe('Input camera zoom', () => {
     windowListeners.get('mousemove')!({ ...event, movementX: 100, movementY: 100 });
     windowListeners.get('mouseup')!(event);
     expect({ yaw: input.camYaw, pitch: input.camPitch, dist: input.camDist }).toEqual(original);
-    expect(cb.onClickPick).toHaveBeenCalledWith(400, 300, 0);
+    expect(cb.onClickPick).toHaveBeenCalledWith(400, 300, 0, false);
     expect(input.hoverX).toBe(400);
     setCameraMotionLocked(false);
     input.zoomBy(1);
@@ -1167,7 +1167,27 @@ describe('Input pointer lock', () => {
       clientY: 163,
       target: canvas,
     });
-    expect(cb.onClickPick).toHaveBeenCalledWith(120, 160, 0);
+    expect(cb.onClickPick).toHaveBeenCalledWith(120, 160, 0, false);
+  });
+
+  it('reports Shift held on the click release (Auto Loot inverts on a Shift-click)', () => {
+    const now = 1000;
+    vi.spyOn(performance, 'now').mockImplementation(() => now);
+    const { canvas, cb, canvasListeners, windowListeners } = makeInput();
+    canvasListeners.get('mousedown')!({
+      button: 2,
+      clientX: 120,
+      clientY: 160,
+      preventDefault: vi.fn(),
+    });
+    windowListeners.get('mouseup')!({
+      button: 2,
+      clientX: 120,
+      clientY: 160,
+      shiftKey: true,
+      target: canvas,
+    });
+    expect(cb.onClickPick).toHaveBeenCalledWith(120, 160, 2, true);
   });
 
   it('starts camera drag by distance but discards the threshold-crossing movement', () => {
@@ -1249,7 +1269,7 @@ describe('Input pointer lock', () => {
       clientY: 172,
       target: canvas,
     });
-    expect(cb.onClickPick).toHaveBeenCalledWith(120, 160, 0);
+    expect(cb.onClickPick).toHaveBeenCalledWith(120, 160, 0, false);
   });
 
   it('allows the click-to-move mouse button to camera-drag after the click timer expires', () => {
@@ -2592,7 +2612,7 @@ describe('Input mouse-button bindings', () => {
     });
 
     expect(cb.onAbilityDown).toHaveBeenLastCalledWith(3);
-    expect(cb.onClickPick).toHaveBeenCalledWith(120, 160, 0);
+    expect(cb.onClickPick).toHaveBeenCalledWith(120, 160, 0, false);
   });
 });
 

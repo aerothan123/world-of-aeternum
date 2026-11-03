@@ -582,6 +582,8 @@ const UI_PURE_CORES = [
   // It is deliberately DOM-free and clock-free: a wall-clock expiry in here would
   // make a refusal lapse mid-visit and repaint a guaranteed-to-fail card enabled.
   'src/ui/charter_fit_memory.ts',
+  // The Auto Loot press decision (option XOR Shift, take or window).
+  'src/ui/hud/loot/auto_loot_core.ts',
   'src/ui/hud/loot/loot_roll_status_view.ts',
   'src/ui/hud/loot/loot_settings_view.ts',
   'src/ui/hud/professions/craft_celebration_view.ts',

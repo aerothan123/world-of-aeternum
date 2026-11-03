@@ -1848,7 +1848,7 @@ async function startGame(
         }
       },
       onEmoteWheel: (open) => hud.setEmoteWheelOpen(open),
-      onClickPick: (x, y, button) => handlePick(x, y, button),
+      onClickPick: (x, y, button, shift) => handlePick(x, y, button, shift),
       onAttackMove: (x, y) => handleAttackMove(x, y),
       canUseGameKeys: () => !gameplayInputBlocked(),
       // The "Unlock interface" arrange mode claims the mouse for frame drags.
@@ -3162,7 +3162,7 @@ async function startGame(
     pathTo: clickMovePathTo,
   });
 
-  function handlePick(x: number, y: number, button: number): void {
+  function handlePick(x: number, y: number, button: number, shift = false): void {
     if (hud.isGroundAimActive()) {
       if (button === 2) {
         hud.cancelGroundAim();
@@ -3243,7 +3243,7 @@ async function startGame(
       return;
     }
     const e = world.entities.get(id);
-    const interactionOutcome = handlePickedEntity(world, hud, id, button, x, y);
+    const interactionOutcome = handlePickedEntity(world, hud, id, button, x, y, true, shift);
     const didInteractImmediately = interactionOutcome === true;
     if (e && e.id !== world.player.id) {
       // Mark the entity when you engage it: a left-click target, or the click-to-move

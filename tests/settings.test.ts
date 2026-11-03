@@ -224,6 +224,8 @@ describe('Settings', () => {
     expect(s.get('mouseCamera')).toBe(false);
     // walk-by autoloot is opt-in: auto-grabbing loot by walking past can feel jarring.
     expect(s.get('walkByAutoloot')).toBe(false);
+    // Auto Loot is opt-in too: a corpse click opens the loot window by default.
+    expect(s.get('autoLoot')).toBe(false);
     // both unit frames ship at their stock size; the scale sliders are opt-in tuning.
     expect(s.get('playerFrameScale')).toBe(1);
     expect(s.get('targetFrameScale')).toBe(1);

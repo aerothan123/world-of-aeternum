@@ -13,9 +13,10 @@
 import type { TranslationKey } from '../i18n.catalog';
 
 export const ko_KR: Partial<Record<TranslationKey, string>> = {
-  "abilityUi.cast.chopping": "벌목",
-  "guide.profPages.treesHeading": "지역별 나무",
-  "guide.profPages.treesNote": "목재는 숲 그 자체에서 얻습니다. 마을 밖에 있는 아무 나무에나 다가가 상호작용 키를 누르면 벌목을 시작합니다. 나무 한 그루를 쓰러뜨리려면 한 번에 {swing}초씩 도끼를 {minSwings}번에서 {maxSwings}번 휘둘러야 하며, 더 좋은 도끼나 더 높은 벌목 등급이 있으면 횟수가 줄어듭니다. 움직이거나 공격을 받으면 휘두르기가 멈춥니다. 마지막 일격을 가장 먼저 넣은 채집가가 나무를 쓰러뜨리고 목재를 가져가며, 같은 나무를 베던 다른 사람은 멈춥니다. 쓰러진 나무는 밟고 지나갈 수 있는 그루터기를 남기고 {regrow}초 뒤 모두를 위해 다시 자랍니다.",
+  'abilityUi.cast.chopping': '벌목',
+  'guide.profPages.treesHeading': '지역별 나무',
+  'guide.profPages.treesNote':
+    '목재는 숲 그 자체에서 얻습니다. 마을 밖에 있는 아무 나무에나 다가가 상호작용 키를 누르면 벌목을 시작합니다. 나무 한 그루를 쓰러뜨리려면 한 번에 {swing}초씩 도끼를 {minSwings}번에서 {maxSwings}번 휘둘러야 하며, 더 좋은 도끼나 더 높은 벌목 등급이 있으면 횟수가 줄어듭니다. 움직이거나 공격을 받으면 휘두르기가 멈춥니다. 마지막 일격을 가장 먼저 넣은 채집가가 나무를 쓰러뜨리고 목재를 가져가며, 같은 나무를 베던 다른 사람은 멈춥니다. 쓰러진 나무는 밟고 지나갈 수 있는 그루터기를 남기고 {regrow}초 뒤 모두를 위해 다시 자랍니다.',
   'hudChrome.wocStore.subscription.checkoutPending':
     '결제가 대기 중입니다. 확인을 기다리고 있습니다.',
   'bossJournal.wildheart.zulgar.pulseSummaryRework':
@@ -4157,6 +4158,9 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.options.startAttackOnAbility': '스킬 사용 시 자동 공격',
   'hudChrome.options.stopAutoAttackOnTargetSwitch': '대상 전환 시 자동 공격 중지',
   'hudChrome.options.walkByAutoloot': '지나가며 자동 획득',
+  'hudChrome.options.autoLoot': '자동 획득',
+  'hudChrome.options.autoLootNote':
+    '시체를 클릭하거나 탭하면 전리품 창을 열지 않고 동전과 아이템이 바로 가방에 들어갑니다. 클릭할 때 Shift를 누르고 있으면 그 시체에 대해서는 반대로 동작합니다. 파티가 주사위를 굴리는 아이템이나 담당자가 분배하는 아이템은 그대로 해당 주사위로 넘어가고, 가방에 들어가지 않는 것은 시체에 남습니다. 상호작용 키는 항상 전리품을 바로 가져옵니다.',
   'hudChrome.options.lockCursorOnRotate': '회전 중 커서 고정',
   'hudChrome.options.keybindHelpLockCursorOnRotate':
     '드래그하여 카메라를 회전하는 동안 마우스 커서를 창 안에 유지하여 화면 가장자리에 닿거나 다른 모니터로 이동하지 않도록 합니다. 자유로운 커서를 원하면 끄세요.',
