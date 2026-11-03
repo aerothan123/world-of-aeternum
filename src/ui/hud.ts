@@ -302,14 +302,11 @@ import {
   combatAbilityName,
   delveDisplayName,
   entityDisplayName,
-  itemDisplayNameFromSource,
-  itemStackDisplayName,
   mobDisplayName,
   mobHoverIdentity,
   npcDisplayName,
   npcDisplayTitle,
   npcGreeting,
-  parseSimMoney,
   questNarrative,
   questObjectiveLabel,
   questTitle,
@@ -512,6 +509,7 @@ import { buildHillBarView, HillBar } from './hud/hill';
 import { furnitureTooltipLines } from './hud/housing/furniture_tooltip_view';
 import { handleHouseEvent } from './hud/housing/house_event_feedback';
 import { HouseStorageWindow } from './hud/housing/house_storage_window';
+import { LootFeedController } from './hud/loot/loot_feed_controller';
 import { LootRollController } from './hud/loot/loot_roll_controller';
 import { lootSettingsView } from './hud/loot/loot_settings_view';
 import { renderLootSettingsWindow } from './hud/loot/loot_settings_window';
@@ -737,6 +735,7 @@ import { chatBubbleKind, isCombatFlavorLog, logEventCue } from './log_event_rout
 import { craftedLineBody, lootQualityReceiptBody } from './loot_quality_receipt';
 import { lootQualityAriaName } from './loot_quality_view';
 import { lootRollWinBanner } from './loot_roll_win_view';
+import { localizeLootText } from './loot_text_i18n_core';
 import { lowHealthVignette } from './low_health';
 import { type LowResourceView, lowResourceViewInto } from './low_resource';
 import { mailIndicatorView } from './mailbox_view';
@@ -936,13 +935,7 @@ import {
 import { isTalentRowUnlockLevel } from './row_unlock_toast';
 import { seasonalItemTooltipLines } from './seasonal_item_tooltip';
 import { selfPreviewSubject, selfTryOnBody } from './self_preview_subject';
-import { localizeServerText } from './server_i18n';
-import {
-  localizeAuthoredYellSpeakerName,
-  localizeAuthoredYellText,
-  localizeSimText,
-  tSim,
-} from './sim_i18n';
+import { localizeAuthoredYellSpeakerName, localizeAuthoredYellText, tSim } from './sim_i18n';
 import { openSimpleMenu } from './simple_context_menu';
 import { livePlayerPid } from './social_row_menu_core';
 import { SocialWindow } from './social_window';
@@ -4675,6 +4668,14 @@ export class Hud {
     // governor. spawn() reads this per event.
     { getFxTier: () => this.fxTier(), contactDelaySec: (s) => this.renderer.contactDelayFor(s) },
   );
+  // Loot Feed (hud/loot/loot_feed_controller.ts): handleEvents feeds it, update() paints it.
+  private readonly lootFeed = new LootFeedController({
+    root: document.getElementById('loot-feed'),
+    document,
+    writers: this.writerFacet,
+    enabled: () => this.optionsHooks?.settings.get('showLootFeed') !== false,
+    iconSrc: (key) => iconDataUrl('item', key === 'coins' ? 'coin_gold' : key),
+  });
   // Player frame: the vitals bar painter (hud/vitals/) over the family element
   // set: static name/portrait, cached heraldry and self PvP risk hosts.
   private readonly playerFramePainter = new VitalsPainter(this.writerFacet, {
@@ -9011,6 +9012,7 @@ export class Hud {
     // once at spawn, so there is no per-frame reposition); an empty pool (no recent combat)
     // returns immediately, so this costs nothing at steady state.
     this.fctPainter.step(now);
+    this.lootFeed.update(now);
 
     // Death UI: src/ui/hud/death/death_prompt_view.ts decides (the Release overlay
     // and its PvP Resurrect button for a fresh corpse; the greyscale spirit world,
@@ -10813,6 +10815,7 @@ export class Hud {
       // server/game.ts), so an event a bystander should see must be pid-less
       // by construction on every host.
       if (ev.pid !== undefined && ev.pid !== sim.playerId) continue;
+      this.lootFeed.onEvent(ev, now);
       if (ev.type === 'duelEnd' && !duelEndVisibleToViewer(ev, sim.playerId, sim.player.pos))
         continue;
       // visual effects (swings, projectiles, glows) — for everyone nearby,
@@ -13520,11 +13523,8 @@ export class Hud {
    *  localized text, or for a quality-rolled copy the nodes whose item link
    *  opens that exact copy rather than the catalogue definition. */
   private lootReceiptBody(ev: Extract<SimEvent, { type: 'loot' }>): string | Node[] {
-    return lootQualityReceiptBody(
-      document,
-      ev,
-      (value) => this.localizeLootText(value),
-      (parent, id, copy) => this.appendChatItemLink(parent, id, copy),
+    return lootQualityReceiptBody(document, ev, localizeLootText, (parent, id, copy) =>
+      this.appendChatItemLink(parent, id, copy),
     );
   }
 
@@ -13764,133 +13764,6 @@ export class Hud {
 
   private localizeErrorText(text: string): string {
     return localizeErrorTextCore(text, this.errorTextDeps);
-  }
-
-  private localizeLootText(text: string): string {
-    // The optional xN suffix (multi-unit grants, both grant hubs emit it)
-    // routes through itemStackDisplayName so the item NAME still localizes;
-    // a greedy single capture would feed "Copper Ore x3" to the exact-name
-    // lookup and silently degrade to raw English.
-    let match = /^You receive: (.+?)( x\d+)?\.$/.exec(text);
-    if (match)
-      return t('hud.logs.lootReceiveItem', {
-        item: itemStackDisplayName(match[1], match[2]),
-      });
-    match = /^You receive (.+)\.$/.exec(text);
-    if (match)
-      return t('hud.logs.lootReceiveMoney', {
-        money: this.localizeSimMoney(match[1]),
-      });
-    match = /^You loot (.+)\.$/.exec(text);
-    if (match)
-      return t('hud.logs.lootMoney', {
-        money: this.localizeSimMoney(match[1]),
-      });
-    match = /^Rolling for (\[\[i:[A-Za-z0-9_]+\]\])\.$/.exec(text);
-    if (match) return t('hudChrome.masterLoot.rollingFor', { item: match[1] });
-    match = /^Everyone passed on (.+)\.$/.exec(text);
-    if (match) return t('itemUi.lootRoll.everyonePassed', { item: match[1] });
-    match = /^Sold (\d+) junk items? for (.+)\.$/.exec(text);
-    if (match) {
-      const n = Number(match[1]);
-      return t(n === 1 ? 'hud.logs.soldJunkOne' : 'hud.logs.soldJunkMany', {
-        count: formatNumber(n, { maximumFractionDigits: 0 }),
-        money: this.localizeSimMoney(match[2]),
-      });
-    }
-    match = /^Kept (\d+) bound cop(?:y|ies)\.$/.exec(text);
-    if (match) {
-      const n = Number(match[1]);
-      return t(n === 1 ? 'hud.logs.keptBoundOne' : 'hud.logs.keptBoundMany', {
-        count: formatNumber(n, { maximumFractionDigits: 0 }),
-      });
-    }
-    // The LOCKED twin (Masterwrought phase 18 QA, item
-    // vendor-partial-sell-locked-toast): a partial vendor sale used to report every
-    // spared copy as bound, including the ones spared because the player had LOCKED
-    // them, so the summary named the wrong reason and the player had nothing to act
-    // on. src/sim/items.ts now splits the two counts and emits this line beside the
-    // bound one, so the matcher needs both arms or the locked half ships raw English.
-    match = /^Kept (\d+) locked cop(?:y|ies)\.$/.exec(text);
-    if (match) {
-      const n = Number(match[1]);
-      return t(n === 1 ? 'hud.logs.keptLockedOne' : 'hud.logs.keptLockedMany', {
-        count: formatNumber(n, { maximumFractionDigits: 0 }),
-      });
-    }
-    match = /^(.+) assigned (.+) to (.+)\.$/.exec(text);
-    if (match)
-      return t('hudChrome.masterLoot.assigned', {
-        looter: match[1],
-        item: match[2],
-        target: match[3],
-      });
-    match = /^(.+) was not assigned and is free for all\.$/.exec(text);
-    if (match)
-      return t('hudChrome.masterLoot.unassigned', {
-        item: itemDisplayNameFromSource(match[1]),
-      });
-    // The optional xN suffix (vendor-selling a stack) routes through
-    // itemStackDisplayName so the item NAME still localizes, the same
-    // treatment as the receive/listed/bought/reclaimed arms above and below:
-    // a greedy single capture would feed "Copper Ore x2" to the exact-name
-    // lookup and silently degrade to raw English.
-    match = /^Sold (.+?)( x\d+)? for (.+)\.$/.exec(text);
-    if (match)
-      return t('hud.logs.soldItem', {
-        item: itemStackDisplayName(match[1], match[2]),
-        money: this.localizeSimMoney(match[3]),
-      });
-    match = /^Listed (.+?)( x\d+)? on the World Market for (.+)\.$/.exec(text);
-    if (match)
-      return t('itemUi.logs.listedItem', {
-        item: itemStackDisplayName(match[1], match[2]),
-        money: this.localizeSimMoney(match[3]),
-      });
-    match = /^(.+) bought your (.+) for (.+?) (?:\u2014|-) collect (.+) from the Merchant\.$/.exec(
-      text,
-    );
-    if (match)
-      return t('itemUi.logs.sellerSold', {
-        buyer: match[1],
-        item: itemDisplayNameFromSource(match[2]),
-        money: this.localizeSimMoney(match[3]),
-        proceeds: this.localizeSimMoney(match[4]),
-      });
-    match = /^Bought back (.+) for (.+)\.$/.exec(text);
-    if (match)
-      return t('itemUi.logs.boughtBackItem', {
-        item: itemDisplayNameFromSource(match[1]),
-        money: this.localizeSimMoney(match[2]),
-      });
-    match = /^Bought (.+?)( x\d+)? for (.+)\.$/.exec(text);
-    if (match)
-      return t('itemUi.logs.boughtItem', {
-        item: itemStackDisplayName(match[1], match[2]),
-        money: this.localizeSimMoney(match[3]),
-      });
-    match = /^Reclaimed (.+?)( x\d+)? from the market\.$/.exec(text);
-    if (match)
-      return t('itemUi.logs.reclaimedItem', {
-        item: itemStackDisplayName(match[1], match[2]),
-      });
-    match = /^You collect (.+) from the Merchant\.$/.exec(text);
-    if (match)
-      return t('itemUi.logs.collectedMoney', {
-        money: this.localizeSimMoney(match[1]),
-      });
-    const server = localizeServerText(text);
-    if (server !== null) return server;
-    // Sim-emitted log/error/loot text (src/sim) is English at the source; localize it
-    // here, the same way server-sent text is handled above.
-    const simLocalized = localizeSimText(text);
-    if (simLocalized !== null) return simLocalized;
-    return text;
-  }
-
-  private localizeSimMoney(text: string): string {
-    const copper = parseSimMoney(text);
-    return copper === null ? text : formatLocalizedMoney(copper);
   }
 
   private combatLog(text: string, color: string = HUD_LOG.PLAIN): void {
@@ -17578,3 +17451,6 @@ export class Hud {
 // headroom extraction, so a Vitest can pin the tooltip lines directly.
 
 // require2dContext moved to ./canvas_context (imported above).
+
+// localizeLootText and localizeSimMoney moved WHOLE to ./loot_text_i18n_core
+// (imported above), a pure matcher core the S3 guard reads directly.

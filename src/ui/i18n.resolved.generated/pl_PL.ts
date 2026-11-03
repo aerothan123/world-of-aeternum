@@ -2880,6 +2880,7 @@ export const pl_PL: EnTranslations = {
       "showDungeonHintsNote": "Pokazuje panel wyjaśniający mechanikę lochu i sposób reakcji. Wyłączenie ukrywa tylko te wskazówki: ostrzeżenia na ziemi, paski rzucania i osłabienia pozostają. Podpowiedzi wymagające działania zawsze się wyświetlają: klatka do opuszczenia, łańcuch do zerwania, obiekt do użycia.",
       "showItemLevel": "Pokaż poziom przedmiotu",
       "showReliquaryTracker": "Pokaż narzędzie do śledzenia relikwiarzy",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Potwierdzaj przed sprzedażą",
       "confirmVendorSellNote": "Wyłączenie tego sprawia, że przedmioty sprzedają się jednym kliknięciem bez potwierdzenia, więc przesunięty slot w torbie może sprzedać niewłaściwy przedmiot.",
       "confirmVendorSellMinQuality": "Potwierdź sprzedaż z jakości",
@@ -4284,6 +4285,10 @@ export const pl_PL: EnTranslations = {
       "farmNote": "Wyhodowane z zasianego nasiona, gotowe po około {duration}. Wymaga Uprawy {skill}+ i motyki poziomu {tier}+.",
       "fishingZoneProven": "wody {zone} (umiejętność {skill}+, wędka poziomu {tier}+)",
       "fishingZoneUnproven": "Niektóre wody wymagają umiejętności {skill}+ i wędki poziomu {tier}+; żadne konkretne miejsce nie jest jeszcze potwierdzone."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Cel zbierania",

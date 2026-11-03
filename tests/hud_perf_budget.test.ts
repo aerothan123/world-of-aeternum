@@ -598,6 +598,15 @@ const HOT_PAINTERS: ReadonlyArray<ScannedPainter> = [
     reflowAllow: {},
   },
   { file: 'xp_bar_painter.ts', allow: {}, reflowAllow: {} },
+  // The Loot Feed's pooled rows: four base-class stamps per pooled row (row,
+  // icon, name, count), all minted once in the constructor. Every state write
+  // after that (text, quality class, live/fading, order, icon src) is
+  // facet-routed.
+  {
+    file: 'hud/loot/loot_feed_painter.ts',
+    allow: { '.className': 4 },
+    reflowAllow: {},
+  },
   { file: 'swing_timer_painter.ts', allow: {}, reflowAllow: {} },
   { file: 'proc_overlay_painter.ts', allow: {}, reflowAllow: {} },
   { file: 'aura_overlay_painter.ts', allow: {}, reflowAllow: {} },

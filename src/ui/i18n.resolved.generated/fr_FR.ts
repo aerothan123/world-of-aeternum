@@ -2880,6 +2880,7 @@ export const fr_FR: EnTranslations = {
       "showDungeonHintsNote": "Affiche le panneau de conseils qui explique une mécanique de donjon et la marche à suivre. Désactiver cette option masque uniquement ces conseils : les avertissements au sol, barres d'incantation et affaiblissements restent visibles. Les invites auxquelles vous devez réagir restent toujours affichées : une cage dont sortir, une chaîne à briser, un objet à utiliser.",
       "showItemLevel": "Afficher le niveau d'objet",
       "showReliquaryTracker": "Afficher le suivi du reliquaire",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Confirmer avant de vendre",
       "confirmVendorSellNote": "Désactiver cette option vend les objets en un seul clic sans confirmation ; un emplacement de sac déplacé pourrait donc faire vendre le mauvais objet.",
       "confirmVendorSellMinQuality": "Confirmer les ventes de la qualité",
@@ -4284,6 +4285,10 @@ export const fr_FR: EnTranslations = {
       "farmNote": "Issu d’une graine plantée, prêt après environ {duration}. Nécessite {skill}+ en culture et une houe de palier {tier} ou supérieur.",
       "fishingZoneProven": "Eaux de {zone} (compétence {skill}+, canne de palier {tier}+)",
       "fishingZoneUnproven": "Certaines eaux nécessitent une compétence {skill}+ et une canne de palier {tier}+ ; aucun lieu précis n’est encore confirmé."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Objectif de récolte",

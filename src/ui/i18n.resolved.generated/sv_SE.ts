@@ -2880,6 +2880,7 @@ export const sv_SE: EnTranslations = {
       "showDungeonHintsNote": "Visar tipspanelen som förklarar en fängelsehålas mekanik och vad du ska göra åt den. Stänger du av detta döljs bara tipsen: markvarningar, besvärjelsefält och negativa effekter finns kvar. Uppmaningar som kräver handling visas alltid: en bur att bryta sig ur, en kedja att bryta, ett föremål att använda.",
       "showItemLevel": "Visa föremålsnivå",
       "showReliquaryTracker": "Visa Relikviespårare",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Bekräfta innan försäljning",
       "confirmVendorSellNote": "Om du stänger av det här säljs föremål med ett enda klick utan bekräftelse, så en förskjuten väskplats skulle kunna sälja fel föremål.",
       "confirmVendorSellMinQuality": "Bekräfta försäljning från kvalitet",
@@ -4284,6 +4285,10 @@ export const sv_SE: EnTranslations = {
       "farmNote": "Odlas från ett planterat frö och blir klar efter ungefär {duration}. Kräver odlingsfärdighet {skill}+ och en hacka av nivå {tier}+.",
       "fishingZoneProven": "{zone}s vatten (färdighet {skill}+, spönivå {tier}+)",
       "fishingZoneUnproven": "Vissa vatten kräver färdighet {skill}+ och spönivå {tier}+; ingen särskild plats är bekräftad än."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Samlarmål",

@@ -16497,6 +16497,115 @@
     min-height: 40px;
   }
 
+  /* ---------- loot feed ---------- */
+  /* The Loot Feed (src/ui/hud/loot/loot_feed_painter.ts): a short stack of what
+     the player just received, newest at the bottom, on the right of the hands
+     row above the action bars, clear of the centred class resource orb and hint
+     text, the minimap and the quest tracker. A governed HUD frame (the lootFeed
+     HUD_FRAME_SPECS row) and decorative (aria-hidden; the chat log carries the
+     same lines). Rows are a fixed pool shown by .is-live and faded by
+     .is-fading; the fade length matches LOOT_FEED_FADE_MS in loot_feed_core.ts. */
+  #loot-feed {
+    position: absolute;
+    left: calc(50% + 250px);
+    bottom: 120px;
+    z-index: 18;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 2px;
+    width: 260px;
+    min-height: 24px;
+    pointer-events: none;
+  }
+  #loot-feed.is-hidden {
+    display: none;
+  }
+  .loot-feed-row {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 8px 2px 2px;
+    border-inline-start: 2px solid var(--line-faint);
+    background: color-mix(in srgb, var(--panel-base) 72%, transparent);
+    color: var(--color-text-light);
+    font-size: 13px;
+    line-height: 18px;
+    opacity: 1;
+    transition: opacity 700ms ease-in;
+  }
+  .loot-feed-row.is-live {
+    display: flex;
+    animation: loot-feed-in 220ms ease-out;
+  }
+  .loot-feed-row.is-fading {
+    opacity: 0;
+  }
+  .loot-feed-icon {
+    flex: none;
+    width: 22px;
+    height: 22px;
+  }
+  .loot-feed-name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .loot-feed-name.q-poor {
+    color: var(--color-quality-poor);
+  }
+  .loot-feed-name.q-common {
+    color: var(--color-quality-common);
+  }
+  .loot-feed-name.q-uncommon {
+    color: var(--color-quality-uncommon);
+  }
+  .loot-feed-name.q-rare {
+    color: var(--color-quality-rare);
+  }
+  .loot-feed-name.q-epic {
+    color: var(--color-quality-epic);
+  }
+  .loot-feed-name.q-legendary {
+    color: var(--color-quality-legendary);
+  }
+  .loot-feed-name.q-quest {
+    color: var(--color-quest);
+  }
+  .loot-feed-count {
+    flex: none;
+    color: var(--color-text-muted);
+  }
+  @keyframes loot-feed-in {
+    from {
+      opacity: 0;
+      transform: translateX(16px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  /* Reduced motion: no slide and no fade, a line just appears and disappears. */
+  @media (prefers-reduced-motion: reduce) {
+    .loot-feed-row,
+    .loot-feed-row.is-live {
+      animation: none;
+      transition: none;
+    }
+  }
+  body.reduce-motion .loot-feed-row,
+  body.reduce-motion .loot-feed-row.is-live {
+    animation: none;
+    transition: none;
+  }
+  /* Touch: narrower and smaller, same seat. */
+  body.mobile-touch #loot-feed {
+    width: 200px;
+    font-size: 12px;
+  }
+
   /* ---------- Project H vitals bar, hands row and XP line ---------- */
   /* docs/design/project-h-interface.md, packet 1. The DOM, ids, painters and
      t() keys of the unit frames, the action bar and the XP rail are unchanged;

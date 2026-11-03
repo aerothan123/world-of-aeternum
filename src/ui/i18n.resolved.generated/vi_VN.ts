@@ -2880,6 +2880,7 @@ export const vi_VN: EnTranslations = {
       "showDungeonHintsNote": "Hiện bảng giải thích cơ chế hầm ngục và cách xử lý. Tắt chỉ ẩn các gợi ý đó: cảnh báo trên đất, thanh thi triển và hiệu ứng bất lợi vẫn còn. Lời nhắc cần thao tác luôn hiện: lồng cần thoát, xích cần phá, vật thể cần dùng.",
       "showItemLevel": "Hiển Thị Cấp Vật Phẩm",
       "showReliquaryTracker": "Hiển thị Trình theo dõi Thánh tích",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Xác Nhận Trước Khi Bán",
       "confirmVendorSellNote": "Tắt tùy chọn này sẽ bán vật phẩm chỉ với một cú nhấp và không cần xác nhận, nên một ô túi bị xê dịch có thể khiến bạn bán nhầm vật phẩm.",
       "confirmVendorSellMinQuality": "Xác nhận bán hàng từ chất lượng",
@@ -4284,6 +4285,10 @@ export const vi_VN: EnTranslations = {
       "farmNote": "Trồng từ hạt giống đã gieo, sẵn sàng sau khoảng {duration}. Cần kỹ năng trồng trọt {skill}+ và cuốc bậc {tier}+.",
       "fishingZoneProven": "Vùng nước {zone} (thành thạo {skill}+, cần câu bậc {tier}+)",
       "fishingZoneUnproven": "Một số vùng nước cần thành thạo {skill}+ và cần câu bậc {tier}+; chưa xác nhận được điểm cụ thể nào."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Mục tiêu thu thập",

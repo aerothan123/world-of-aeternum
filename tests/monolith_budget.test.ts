@@ -503,7 +503,11 @@ const MONOLITHS: MonolithRow[] = [
     // (src/ui/hud/vitals/vitals_view.ts); the ratchet, extract then lower.
     // LOWERED 17755 -> 17580 when the crypto rail (wallet, $WOC Exchange,
     // Daily Rewards, holder flair) was removed outright.
-    ceiling: 17580,
+    // LOWERED 17580 -> 17456 with the Loot Feed: the loot-log matcher
+    // (localizeLootText + localizeSimMoney) moved whole to
+    // src/ui/loot_text_i18n_core.ts, net of the feed's composition, its event
+    // hook and its per-frame update.
+    ceiling: 17456,
     seam: 'pure view core + thin painter on PainterHost (src/ui/CLAUDE.md)',
   },
   {

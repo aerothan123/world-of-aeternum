@@ -2880,6 +2880,7 @@ export const de_DE: EnTranslations = {
       "showDungeonHintsNote": "Zeigt das Hinweisfeld, das eine Dungeonmechanik und die nötige Reaktion erklärt. Beim Ausschalten verschwinden nur diese Tipps: Bodenwarnungen, Zauberleisten und Schwächungen bleiben sichtbar. Handlungsaufforderungen werden immer angezeigt: ein Käfig zum Ausbrechen, eine Kette zum Zerbrechen, ein Objekt zum Benutzen.",
       "showItemLevel": "Gegenstandsstufe anzeigen",
       "showReliquaryTracker": "Reliquiar-Tracker anzeigen",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Vor dem Verkauf bestätigen",
       "confirmVendorSellNote": "Wird dies deaktiviert, verkaufst du Gegenstände mit einem einzigen Klick ohne Bestätigung, sodass ein verschobener Taschenplatz den falschen Gegenstand verkaufen könnte.",
       "confirmVendorSellMinQuality": "Bestätigen Sie Verkäufe durch Qualität",
@@ -4284,6 +4285,10 @@ export const de_DE: EnTranslations = {
       "farmNote": "Aus einem gepflanzten Samen gewachsen, nach etwa {duration} erntereif. Benötigt Pflanzenfertigkeit {skill}+ und eine Gartenhacke Rang {tier}+.",
       "fishingZoneProven": "Gewässer von {zone} (Fertigkeit {skill}+, Angelrangen {tier}+)",
       "fishingZoneUnproven": "Einige Gewässer benötigen Fertigkeit {skill}+ und Angelrangen {tier}+; ein bestimmter Ort ist noch nicht bestätigt."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Sammelziel",

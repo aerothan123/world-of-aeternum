@@ -2880,6 +2880,7 @@ export const ko_KR: EnTranslations = {
       "showDungeonHintsNote": "던전 기믹과 대처 방법을 설명하는 도움말 패널을 표시합니다. 이 설정을 끄면 해당 도움말만 숨겨지며, 바닥 경고, 시전 막대, 디버프는 그대로 표시됩니다. 직접 조작해야 하는 안내는 항상 표시됩니다: 탈출해야 하는 우리, 끊어야 하는 사슬, 사용할 수 있는 물체.",
       "showItemLevel": "아이템 레벨 표시",
       "showReliquaryTracker": "성물고 추적기 표시",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "판매 전 확인",
       "confirmVendorSellNote": "이 설정을 끄면 확인 없이 한 번의 클릭으로 아이템을 판매하므로, 가방 칸이 바뀌면 잘못된 아이템이 팔릴 수 있습니다.",
       "confirmVendorSellMinQuality": "판매 확인 최소 품질",
@@ -4284,6 +4285,10 @@ export const ko_KR: EnTranslations = {
       "farmNote": "씨앗을 심어 기르는 것으로, 약 {duration} 후에 수확할 수 있습니다. 농사 스킬 {skill} 이상과 티어 {tier} 이상의 괭이가 필요합니다.",
       "fishingZoneProven": "{zone} 수역 (숙련도 {skill} 이상, 낚싯대 티어 {tier} 이상)",
       "fishingZoneUnproven": "숙련도 {skill} 이상과 낚싯대 티어 {tier} 이상이 필요한 수역도 있지만, 구체적인 지점은 아직 확인되지 않았습니다."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "채집 목표",

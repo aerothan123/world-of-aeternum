@@ -83,7 +83,7 @@ describe('hudChrome.gathering gather lines', () => {
     // for the harvest and there is no longer a duplicate to diverge FROM.
     // The two wordings must still not collide: "You receive:" remains the
     // wording of every NON-profession grant and is the literal string
-    // Hud.localizeLootText matches on to localize those lines, so a gather
+    // localizeLootText (src/ui/loot_text_i18n_core.ts) matches on to localize those lines, so a gather
     // line reworded into that family would be re-parsed as a hub line.
     expect(t('hudChrome.gathering.gatherLine', { name: 'X' }).startsWith('You receive')).toBe(
       false,
@@ -126,7 +126,7 @@ describe('hudChrome.gathering corpse-harvest lines (#2457)', () => {
   it('the harvest lines stay worded apart from the loot family they replaced', () => {
     // Same reason as the gather line above: "You receive:" is still the
     // wording of every non-profession grant and the literal string
-    // Hud.localizeLootText matches on, so a harvest line reworded into that
+    // localizeLootText (src/ui/loot_text_i18n_core.ts) matches on, so a harvest line reworded into that
     // family would be re-parsed as a hub line.
     expect(t('hudChrome.gathering.harvestLine', { name: 'X' }).startsWith('You receive')).toBe(
       false,
@@ -240,7 +240,10 @@ describe('hud event switch stays wired to the ids', () => {
     // batched windfall). A greedy single-capture arm would feed "Copper Ore
     // x5" to the exact-name lookup and silently render the item name in raw
     // English for every non-English locale.
-    const source = readFileSync(path.resolve(process.cwd(), 'src/ui/hud.ts'), 'utf8');
+    const source = readFileSync(
+      path.resolve(process.cwd(), 'src/ui/loot_text_i18n_core.ts'),
+      'utf8',
+    );
     const armStart = source.indexOf('/^You receive: (.+?)( x\\d+)?\\.$/');
     expect(armStart).toBeGreaterThan(-1);
     const arm = source.slice(

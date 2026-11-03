@@ -2880,6 +2880,7 @@ export const id_ID: EnTranslations = {
       "showDungeonHintsNote": "Menampilkan panel petunjuk yang menjelaskan mekanik dungeon dan cara menghadapinya. Mematikan ini hanya menyembunyikan petunjuk tersebut: peringatan tanah, bilah rapalan, dan debuff tetap ada. Arahan yang harus ditindak selalu muncul: kurungan untuk dibobol, rantai untuk diputus, objek untuk digunakan.",
       "showItemLevel": "Tampilkan Level Item",
       "showReliquaryTracker": "Tampilkan Pelacak Relikui",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Konfirmasi Sebelum Menjual",
       "confirmVendorSellNote": "Menonaktifkan ini menjual barang dengan sekali klik tanpa konfirmasi, sehingga slot tas yang bergeser dapat menjual barang yang salah ke pedagang.",
       "confirmVendorSellMinQuality": "Konfirmasikan Penjualan Dari Kualitas",
@@ -4284,6 +4285,10 @@ export const id_ID: EnTranslations = {
       "farmNote": "Tumbuh dari benih yang ditanam, siap setelah sekitar {duration}. Memerlukan keahlian bertani {skill}+ dan cangkul tingkat {tier}+",
       "fishingZoneProven": "Perairan {zone} (kemahiran {skill}+, tingkat joran {tier}+)",
       "fishingZoneUnproven": "Sebagian perairan memerlukan kemahiran {skill}+ dan joran tingkat {tier}+; belum ada lokasi tertentu yang terkonfirmasi."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Target Pengumpulan",

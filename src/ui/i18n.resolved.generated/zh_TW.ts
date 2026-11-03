@@ -2880,6 +2880,7 @@ export const zh_TW: EnTranslations = {
       "showDungeonHintsNote": "顯示提示面板，說明地城機制以及應對方法。關閉後只隱藏這些提示：地面警示、施法條和減益效果仍會顯示。需要你操作的提示一律顯示：需要掙脫的牢籠、需要打斷的鎖鏈、可以使用的物體。",
       "showItemLevel": "顯示物品等級",
       "showReliquaryTracker": "顯示聖物庫追蹤器",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "出售前確認",
       "confirmVendorSellNote": "關閉後，出售物品只需單擊即可完成，不再確認；如果背包格位發生變化，可能會賣錯物品。",
       "confirmVendorSellMinQuality": "確認出售的最低品質",
@@ -4284,6 +4285,10 @@ export const zh_TW: EnTranslations = {
       "farmNote": "由播種培育而成，約{duration}後可收穫。需要農耕技能{skill}以上和{tier}階以上的鋤頭。",
       "fishingZoneProven": "{zone}水域（熟練度{skill}以上，魚竿{tier}階以上）",
       "fishingZoneUnproven": "有些水域需要熟練度{skill}以上和{tier}階以上的魚竿，但尚未確認具體地點。"
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "採集目標",

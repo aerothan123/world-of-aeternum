@@ -2880,6 +2880,7 @@ export const zh_CN: EnTranslations = {
       "showDungeonHintsNote": "显示提示面板，说明地下城机制以及应对方法。关闭后只隐藏这些提示：地面警示、施法条和减益效果仍会显示。需要你操作的提示始终显示：需要挣脱的牢笼、需要打断的锁链、可以使用的物体。",
       "showItemLevel": "显示物品等级",
       "showReliquaryTracker": "显示圣物库追踪器",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "出售前确认",
       "confirmVendorSellNote": "关闭后，出售物品只需单击即可完成，不再确认；如果背包格位发生变化，可能会卖错物品。",
       "confirmVendorSellMinQuality": "确认出售的最低品质",
@@ -4284,6 +4285,10 @@ export const zh_CN: EnTranslations = {
       "farmNote": "由播种培育而成，约{duration}后可收获。需要农耕技能{skill}以上和{tier}阶以上的锄头。",
       "fishingZoneProven": "{zone}水域（熟练度{skill}以上，鱼竿{tier}阶以上）",
       "fishingZoneUnproven": "有些水域需要熟练度{skill}以上和{tier}阶以上的鱼竿，但尚未确认具体地点。"
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "采集目标",

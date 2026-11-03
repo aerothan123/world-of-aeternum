@@ -2880,6 +2880,7 @@ export const ja_JP: EnTranslations = {
       "showDungeonHintsNote": "ダンジョンのギミックとその対処法を説明するヒントパネルを表示します。オフにするとこのヒントだけが非表示になり、地面の警告、詠唱バー、デバフはそのまま表示されます。操作が必要なプロンプトは常に表示されます：脱出する檻、壊す鎖、使用するオブジェクト。",
       "showItemLevel": "アイテムレベルを表示",
       "showReliquaryTracker": "聖遺物庫トラッカーを表示",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "売却前に確認する",
       "confirmVendorSellNote": "オフにすると確認なしでワンクリックでアイテムを売却します。カバンのスロットがずれていると、誤ったアイテムを売却する可能性があります。",
       "confirmVendorSellMinQuality": "確認する売却品質の下限",
@@ -4284,6 +4285,10 @@ export const ja_JP: EnTranslations = {
       "farmNote": "種を植えて育てるもので、約{duration}後に収穫できます。農耕スキル{skill}以上とティア{tier}以上の鍬が必要です。",
       "fishingZoneProven": "{zone}の水域（熟練度{skill}以上、ティア{tier}以上の釣り竿）",
       "fishingZoneUnproven": "熟練度{skill}以上とティア{tier}以上の釣り竿が必要な水域もありますが、具体的な場所はまだ確認されていません。"
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "採集目標",

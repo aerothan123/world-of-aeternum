@@ -668,6 +668,11 @@ export const BOOL_SETTINGS = {
   // The Reliquary window's eye toggle and the Interface options row; pinning
   // a page while it is off turns it back on.
   showReliquaryTracker: { def: true },
+  // on by default: the Loot Feed (src/ui/hud/loot/loot_feed_controller.ts), the
+  // short stacked list of what you just received beside the action bar. Read
+  // live by the HUD every frame; also the frames menu row's show/hide state
+  // (interface_unlock_core.ts frameRowSettingKey), so the two are one switch.
+  showLootFeed: { def: true },
   // off by default: append an "Item Level N" (plus power score) line to every item
   // tooltip. Purely a display preference read live by the HUD; off keeps the
   // classic stat-only tooltip. See src/sim/item_level.ts for the derivation.

@@ -3144,6 +3144,8 @@ export const hudChromeStrings = {
     // default); shares the persisted switch with the eye toggle inside The
     // Reliquary window.
     showReliquaryTracker: 'Show Reliquary Tracker',
+    // Interface panel toggle (on by default): the Loot Feed beside the action bar.
+    showLootFeed: 'Show Loot Feed',
     // Interface panel toggle (on by default): confirm before a vendor sale of
     // anything beyond true junk. Off restores the classic one-click instant
     // sale for every item (wordy, M16: the five non-Latin fills land in the
@@ -5157,6 +5159,13 @@ export const hudChromeStrings = {
     fishingZoneProven: '{zone} waters (proficiency {skill}+, rod tier {tier}+)',
     fishingZoneUnproven:
       'Some waters need proficiency {skill}+ and rod tier {tier}+; no specific spot is confirmed yet.',
+  },
+  // The Loot Feed (src/ui/hud/loot/loot_feed_controller.ts): the stacked list
+  // of what the player just received. `title` names its Edit Frames row;
+  // `won` is the line for an item won in a group need or greed roll.
+  lootFeed: {
+    title: 'Loot Feed',
+    won: 'You won: {item}',
   },
   // The persistent gathering goal panel (Intentional Gathering PR4): a
   // compact "what am I collecting for" readout, tracked from the crafting

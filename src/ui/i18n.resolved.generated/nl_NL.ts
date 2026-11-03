@@ -2880,6 +2880,7 @@ export const nl_NL: EnTranslations = {
       "showDungeonHintsNote": "Toont het hintpaneel dat een kerkermechaniek en de juiste aanpak uitlegt. Uitschakelen verbergt alleen die hints: grondwaarschuwingen, spreukbalken en nadelige effecten blijven. Meldingen waarop je moet handelen verschijnen altijd: een kooi om uit te breken, een ketting om te breken of een voorwerp om te gebruiken.",
       "showItemLevel": "Itemniveau tonen",
       "showReliquaryTracker": "Toon Relikwieëntracker",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Bevestigen Voor Verkoop",
       "confirmVendorSellNote": "Dit uitzetten verkoopt voorwerpen met één klik zonder bevestiging, dus een verschoven tasvak zou het verkeerde voorwerp aan de handelaar kunnen verkopen.",
       "confirmVendorSellMinQuality": "Bevestig de verkoop van kwaliteit",
@@ -4284,6 +4285,10 @@ export const nl_NL: EnTranslations = {
       "farmNote": "Gegroeid uit een geplant zaad, klaar na ongeveer {duration}. Vereist Landbouw {skill}+ en een schoffel van rang {tier}+.",
       "fishingZoneProven": "Wateren van {zone} (vaardigheid {skill}+, hengelrang {tier}+)",
       "fishingZoneUnproven": "Voor sommige wateren zijn vaardigheid {skill}+ en hengelrang {tier}+ nodig; er is nog geen specifieke plek bevestigd."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Verzameldoel",

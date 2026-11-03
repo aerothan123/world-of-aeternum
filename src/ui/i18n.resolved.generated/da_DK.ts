@@ -2880,6 +2880,7 @@ export const da_DK: EnTranslations = {
       "showDungeonHintsNote": "Viser tipspanelet, som forklarer en fangehulsmekanik, og hvad du skal gøre ved den. Hvis du slår dette fra, skjules kun disse tips: jordadvarsler, besværgelseslinjer og negative effekter bliver. Anvisninger, du handler på, vises altid: et bur at bryde ud af, en kæde at bryde, et objekt at bruge.",
       "showItemLevel": "Vis genstandsniveau",
       "showReliquaryTracker": "Vis Relikviesporer",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Bekræft før salg",
       "confirmVendorSellNote": "Slår du dette fra, sælges genstande med ét klik uden bekræftelse, så en flyttet taskeplads kan sælge den forkerte genstand til den handlende.",
       "confirmVendorSellMinQuality": "Bekræft salg fra kvalitet",
@@ -4284,6 +4285,10 @@ export const da_DK: EnTranslations = {
       "farmNote": "Dyrkes fra et plantet frø og bliver klar efter cirka {duration}. Kræver landbrugsfærdighed {skill}+ og en hakke af niveau {tier}+.",
       "fishingZoneProven": "{zone}s vande (færdighed {skill}+, stangniveau {tier}+)",
       "fishingZoneUnproven": "Nogle vande kræver færdighed {skill}+ og stangniveau {tier}+; intet bestemt sted er bekræftet endnu."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Samlemål",

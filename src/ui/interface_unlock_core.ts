@@ -541,6 +541,18 @@ export const HUD_FRAME_SPECS: readonly HudFrameSpec[] = [
   // zone, so editing shows it as a dimmed placeholder like the cast bar. Its
   // painter rebuilds an inner #hill-body, so the mover chrome on the root
   // survives every skeleton rebuild.
+  // The Loot Feed (src/ui/hud/loot/loot_feed_*): the stacked "what you just
+  // received" lines above the action bars. A #ui child (no re-home); its rows
+  // are a fixed pool inside the root, so the mover chrome on the root survives.
+  // Its menu row drives the showLootFeed option (frameRowSettingKey below).
+  {
+    id: 'lootFeed',
+    elementId: 'loot-feed',
+    storageKey: 'woc_hud_frame_loot_feed',
+    labelKey: 'hudChrome.lootFeed.title',
+    fallbackSize: { w: 260, h: 132 },
+    detachToUiRoot: false,
+  },
   {
     id: 'hillBar',
     elementId: 'hill-bar',
@@ -617,6 +629,7 @@ export function frameRowSettingKey(
   | 'showTargetDots'
   | 'showTargetOfTarget'
   | 'showPetFrame'
+  | 'showLootFeed'
   | AuraTrackSettingKey
   | null {
   if (id === 'actionBar2') return 'showSecondaryActionBar';
@@ -628,6 +641,8 @@ export function frameRowSettingKey(
   // state.
   if (id === 'targetDots') return 'showTargetDots';
   if (id === 'petFrame') return 'showPetFrame';
+  // The Loot Feed's Interface option is its master switch, like the trackers.
+  if (id === 'lootFeed') return 'showLootFeed';
   if (id === 'targetOfTarget') return 'showTargetOfTarget';
   // Each aura track has its own master switch as well (all six ship off), so
   // the same rule holds: the row is generated from the descriptor table and

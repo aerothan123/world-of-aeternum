@@ -2880,6 +2880,7 @@ export const en_CA: EnTranslations = {
       "showDungeonHintsNote": "Shows the tip panel that explains a dungeon mechanic and what to do about it. Turning this off hides only those tips: ground warnings, cast bars and debuffs stay. Prompts you act on always show: a cage to break out of, a chain to break, an object to use.",
       "showItemLevel": "Show Item Level",
       "showReliquaryTracker": "Show Reliquary Tracker",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Confirm Before Selling",
       "confirmVendorSellNote": "Turning this off sells items with a single click and no confirmation, so a shifted bag slot could vendor the wrong item.",
       "confirmVendorSellMinQuality": "Confirm Sales From Quality",
@@ -4284,6 +4285,10 @@ export const en_CA: EnTranslations = {
       "farmNote": "Grown from a planted seed, ready after about {duration}. Needs farming skill {skill}+ and a tier {tier}+ hoe.",
       "fishingZoneProven": "{zone} waters (proficiency {skill}+, rod tier {tier}+)",
       "fishingZoneUnproven": "Some waters need proficiency {skill}+ and rod tier {tier}+; no specific spot is confirmed yet."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Gathering Goal",

@@ -2880,6 +2880,7 @@ export const cs_CZ: EnTranslations = {
       "showDungeonHintsNote": "Zobrazuje panel vysvětlující mechaniku dungeonu a správnou reakci. Vypnutí skryje pouze tyto rady. Varování na zemi, ukazatele sesílání a oslabující účinky zůstanou. Výzvy vyžadující akci se zobrazují vždy: únik z klece, rozbití řetězu nebo použití předmětu.",
       "showItemLevel": "Zobrazit úroveň předmětu",
       "showReliquaryTracker": "Zobrazit Reliquary Tracker",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Potvrdit před prodejem",
       "confirmVendorSellNote": "Vypnutím této volby prodáš předměty jedním kliknutím bez potvrzení, takže přesunutý slot v batohu může obchodníkovi prodat špatný předmět.",
       "confirmVendorSellMinQuality": "Potvrďte prodej od kvality",
@@ -4284,6 +4285,10 @@ export const cs_CZ: EnTranslations = {
       "farmNote": "Vypěstováno ze zasazeného semene, připraveno asi za {duration}. Vyžaduje dovednost Farmaření {skill}+ a motyku úrovně {tier}+.",
       "fishingZoneProven": "vody oblasti {zone} (dovednost {skill}+, prut úrovně {tier}+)",
       "fishingZoneUnproven": "Některé vody vyžadují dovednost {skill}+ a prut úrovně {tier}+; žádné konkrétní místo zatím není potvrzeno."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Cíl sběru",

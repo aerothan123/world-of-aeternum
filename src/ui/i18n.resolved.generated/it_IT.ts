@@ -2880,6 +2880,7 @@ export const it_IT: EnTranslations = {
       "showDungeonHintsNote": "Mostra il pannello che spiega una meccanica del sotterraneo e come affrontarla. Disattivarlo nasconde solo questi suggerimenti: avvisi a terra, barre di lancio ed effetti negativi restano visibili. Le richieste che richiedono un'azione compaiono sempre: una gabbia da cui fuggire, una catena da spezzare, un oggetto da usare.",
       "showItemLevel": "Mostra livello oggetto",
       "showReliquaryTracker": "Mostra tracker del reliquiario",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Conferma prima di vendere",
       "confirmVendorSellNote": "Disattivandolo, gli oggetti vengono venduti con un solo clic e senza conferma, quindi uno slot della borsa spostato potrebbe far vendere l'oggetto sbagliato.",
       "confirmVendorSellMinQuality": "Conferma le vendite dalla qualità",
@@ -4284,6 +4285,10 @@ export const it_IT: EnTranslations = {
       "farmNote": "Cresciuto da un seme piantato, pronto dopo circa {duration}. Richiede Agricoltura {skill}+ e una zappa di livello {tier}+.",
       "fishingZoneProven": "Acque di {zone} (competenza {skill}+, canna di livello {tier}+)",
       "fishingZoneUnproven": "Alcune acque richiedono competenza {skill}+ e canna di livello {tier}+; nessun punto preciso è ancora confermato."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Obiettivo di raccolta",

@@ -2880,6 +2880,7 @@ export const es: EnTranslations = {
       "showDungeonHintsNote": "Muestra el panel de consejos que explica una mecánica de mazmorra y cómo responder. Desactivarlo oculta solo esos consejos: se conservan los avisos del suelo, las barras de lanzamiento y los perjuicios. Los avisos que requieren una acción siempre se muestran: una jaula de la que escapar, una cadena que romper o un objeto que usar.",
       "showItemLevel": "Mostrar nivel de objeto",
       "showReliquaryTracker": "Mostrar rastreador de relicarios",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Confirmar antes de vender",
       "confirmVendorSellNote": "Si lo desactivas, los objetos se venden con un solo clic y sin confirmación, así que un espacio de bolsa desplazado podría vender el objeto equivocado.",
       "confirmVendorSellMinQuality": "Confirmar ventas de calidad",
@@ -4284,6 +4285,10 @@ export const es: EnTranslations = {
       "farmNote": "Cultivado a partir de una semilla plantada, listo tras unos {duration}. Requiere Agricultura {skill}+ y una azada de nivel {tier}+.",
       "fishingZoneProven": "Aguas de {zone} (pericia {skill}+, caña de nivel {tier}+)",
       "fishingZoneUnproven": "Algunas aguas requieren pericia {skill}+ y una caña de nivel {tier}+; aún no se ha confirmado un lugar concreto."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Objetivo de recolección",

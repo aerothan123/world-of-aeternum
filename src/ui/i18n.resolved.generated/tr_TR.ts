@@ -2880,6 +2880,7 @@ export const tr_TR: EnTranslations = {
       "showDungeonHintsNote": "Zindan mekaniğini ve yapılması gerekeni açıklayan ipucu panelini gösterir. Kapatmak yalnızca ipuçlarını gizler: zemin uyarıları, kullanım çubukları ve zayıflatmalar kalır. Eylem istemleri daima görünür: çıkılacak kafes, kırılacak zincir, kullanılacak nesne.",
       "showItemLevel": "Eşya Seviyesini Göster",
       "showReliquaryTracker": "Emanet Takibini Göster",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Satmadan Önce Onayla",
       "confirmVendorSellNote": "Bunu kapatmak eşyaları tek tıkla ve onaysız satar, bu yüzden kayan bir çanta yuvası yanlış eşyayı satıcıya satabilir.",
       "confirmVendorSellMinQuality": "Satışları Kaliteden Onaylayın",
@@ -4284,6 +4285,10 @@ export const tr_TR: EnTranslations = {
       "farmNote": "Ekilmiş bir tohumdan yetişir ve yaklaşık {duration} sonra hazır olur. Çiftçilik becerisi {skill}+ ve kademe {tier}+ çapa gerekir.",
       "fishingZoneProven": "{zone} suları (yeterlilik {skill}+, olta kademesi {tier}+)",
       "fishingZoneUnproven": "Bazı sularda yeterlilik {skill}+ ve olta kademesi {tier}+ gerekir; henüz belirli bir nokta doğrulanmadı."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Toplama Hedefi",
