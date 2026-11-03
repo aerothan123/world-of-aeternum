@@ -199,6 +199,7 @@ export const IWORLD_MEMBERS = [
   { name: 'interact', kind: 'method' },
   { name: 'lootCorpse', kind: 'method' },
   { name: 'autoLoot', kind: 'method' },
+  { name: 'setAutoLoot', kind: 'method' },
   { name: 'harvestCorpse', kind: 'method' },
   { name: 'corpseHarvestInfo', kind: 'method' }, // read-returning
   { name: 'submitLootRoll', kind: 'method' },
@@ -1045,10 +1046,11 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
     // houseStorage (data) and houseStorageDeposit / houseStorageWithdraw
     // (methods): 480/144/336. Retiring the crypto-only Daily Rewards facet
     // (IWorldDailyRewards: four methods) leaves 476/144/332, and tree chopping
-    // adds felledTrees (method): 477/144/333.
-    expect(IWORLD_MEMBERS.length).toBe(477);
+    // adds felledTrees (method): 477/144/333. Kill-time Auto Loot adds
+    // setAutoLoot (method): 478/144/334.
+    expect(IWORLD_MEMBERS.length).toBe(478);
     expect(DATA_MEMBERS.length).toBe(144);
-    expect(METHOD_MEMBERS.length).toBe(333);
+    expect(METHOD_MEMBERS.length).toBe(334);
   });
   it('has no duplicate member names', () => {
     const names = IWORLD_MEMBERS.map((m) => m.name);
@@ -1439,6 +1441,7 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'separateMaterialStack',
       'setActiveBorder',
       'setActiveTitle',
+      'setAutoLoot',
       'setBuddyAutoloot',
       'setDungeonDifficulty',
       'setGuildPledgeSettings',
@@ -1954,6 +1957,7 @@ describe('IWORLD_MEMBERS is the pinned IWorld contract (anti-loosening)', () => 
       'separateMaterialStack',
       'setActiveBorder',
       'setActiveTitle',
+      'setAutoLoot',
       'setBuddyAutoloot',
       'setDungeonDifficulty',
       'setGuildPledgeSettings',
@@ -2192,6 +2196,7 @@ const FACET_INTERACTION = [
   'townFocusPending',
   'setTownFocus',
   'autoLoot',
+  'setAutoLoot',
 ] as const satisfies readonly (keyof IWorldInteraction)[];
 type _ExhaustInteraction = AssertNever<
   Exclude<keyof IWorldInteraction, (typeof FACET_INTERACTION)[number]>
@@ -2922,8 +2927,8 @@ describe('W1: aggregate IWorld member set equals the disjoint union of the facet
     // housing phase 2 adds houseAnchors, placeFurniture and removeFurniture;
     // phase 3 adds houseStorage, houseStorageDeposit and houseStorageWithdraw.
     // The retired Daily Rewards facet removes its four methods; felledTrees adds one.
-    expect(union.length, 'union size before dedup (catches a duplicated member)').toBe(477);
-    expect(new Set(union).size, 'union size after dedup (catches a duplicated member)').toBe(477);
+    expect(union.length, 'union size before dedup (catches a duplicated member)').toBe(478);
+    expect(new Set(union).size, 'union size after dedup (catches a duplicated member)').toBe(478);
     const sortedUnion = [...union].sort();
     const pinned = IWORLD_MEMBERS.map((m) => m.name).sort();
     expect(sortedUnion).toEqual(pinned);

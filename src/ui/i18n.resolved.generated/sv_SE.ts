@@ -2872,7 +2872,7 @@ export const sv_SE: EnTranslations = {
       "stopAutoAttackOnTargetSwitch": "Stoppa automatisk attack vid målbyte",
       "walkByAutoloot": "Automatisk plundring i förbifarten",
       "autoLoot": "Auto Loot",
-      "autoLootNote": "Clicking or tapping a corpse puts its coins and items straight into your bags instead of opening the loot window. Hold Shift while you click to do the opposite for that corpse. An item your group rolls for, or that the master looter hands out, still goes to that roll, and anything that does not fit in your bags stays on the corpse. The interact key always takes the loot directly.",
+      "autoLootNote": "When something you are fighting dies, your share of its loot goes straight into your bags with no click: everything when you killed it alone; in a group, your share of the coins, your quest items, the drops whose round-robin turn is yours, and any item you win in your group's need or greed roll (a roll you lose gives you nothing). Drops the master looter hands out, first-come group loot and anything that does not fit in your bags stay on the corpse. Clicking or tapping a corpse with loot left takes it without opening the loot window; hold Shift while you click to open the window instead.",
       "groundReticle": "Markriktmedel",
       "mouseoverCast": "Kasta via muspekaren på gruppramarna",
       "stickyTarget": "Behåll mål vid markklick",
@@ -2880,6 +2880,7 @@ export const sv_SE: EnTranslations = {
       "showDungeonHintsNote": "Visar tipspanelen som förklarar en fängelsehålas mekanik och vad du ska göra åt den. Stänger du av detta döljs bara tipsen: markvarningar, besvärjelsefält och negativa effekter finns kvar. Uppmaningar som kräver handling visas alltid: en bur att bryta sig ur, en kedja att bryta, ett föremål att använda.",
       "showItemLevel": "Visa föremålsnivå",
       "showReliquaryTracker": "Visa Relikviespårare",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Bekräfta innan försäljning",
       "confirmVendorSellNote": "Om du stänger av det här säljs föremål med ett enda klick utan bekräftelse, så en förskjuten väskplats skulle kunna sälja fel föremål.",
       "confirmVendorSellMinQuality": "Bekräfta försäljning från kvalitet",
@@ -4284,6 +4285,10 @@ export const sv_SE: EnTranslations = {
       "farmNote": "Odlas från ett planterat frö och blir klar efter ungefär {duration}. Kräver odlingsfärdighet {skill}+ och en hacka av nivå {tier}+.",
       "fishingZoneProven": "{zone}s vatten (färdighet {skill}+, spönivå {tier}+)",
       "fishingZoneUnproven": "Vissa vatten kräver färdighet {skill}+ och spönivå {tier}+; ingen särskild plats är bekräftad än."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Samlarmål",

@@ -135,6 +135,8 @@ const CORPUS_SECTIONS = new Set(sectionNames(CORPUS));
 // which play loads). play's set is a subset of index's, so this is the union.
 const INDEX_SECTIONS = [
   'Project H vitals bar, hands row and XP line',
+  // The Loot Feed (hud.css, both entries).
+  'loot feed',
   'open expeditions',
   'weekly rewards',
   'UI chrome icons (inline SVG from ui_icons.ts, tinted via currentColor)',
@@ -245,7 +247,7 @@ const PLAY_SECTIONS = INDEX_SECTIONS.filter((name) => !PLAY_OMITS.includes(name)
 const MANIFEST = INDEX_SECTIONS;
 
 describe('css_corpus section manifest', () => {
-  it('pins a non-vacuous manifest: 80 index + 78 play sections, no duplicate names', () => {
+  it('pins a non-vacuous manifest: 84 index + 82 play sections, no duplicate names', () => {
     // The World Quests branch's vehicle bar and music override sections (72 / 70)
     // plus World PvP (the flag tab) and King of the Hill (src/ui/hud/hill/), one
     // components.css section each in both entries: 74 / 72. The courier
@@ -257,11 +259,12 @@ describe('css_corpus section manifest', () => {
     // + the launcher turntable's loading silhouette (shell.css, in both entries): 79, 77.
     // + the phone creator's pinch hint (shell.css, in both entries): 80, 78.
     // + the Project H vitals bar, hands row and XP line (hud.css, both entries): 83, 81.
-    expect(INDEX_SECTIONS.length).toBe(83);
-    expect(PLAY_SECTIONS.length).toBe(81);
-    expect(MANIFEST.length).toBe(83);
-    expect(new Set(INDEX_SECTIONS).size).toBe(83);
-    expect(new Set(PLAY_SECTIONS).size).toBe(81);
+    // + the Loot Feed (hud.css, both entries): 84, 82.
+    expect(INDEX_SECTIONS.length).toBe(84);
+    expect(PLAY_SECTIONS.length).toBe(82);
+    expect(MANIFEST.length).toBe(84);
+    expect(new Set(INDEX_SECTIONS).size).toBe(84);
+    expect(new Set(PLAY_SECTIONS).size).toBe(82);
   });
 
   it('captures the live corpus markers (the marker regex is non-vacuous, not a zero match)', () => {

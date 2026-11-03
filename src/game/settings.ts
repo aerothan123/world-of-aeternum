@@ -432,6 +432,9 @@ export const BOOL_SETTINGS = {
   // Loot sends) instead of opening the loot window; Shift on that click inverts
   // it. Read per click by src/ui/hud/loot/auto_loot_setting.ts, decided by
   // src/ui/hud/loot/auto_loot_core.ts. The interact key already takes directly.
+  // It is ALSO the sim's kill-time take (src/sim/loot/auto_loot_on_kill.ts):
+  // pushed to the authoritative world on entry and on every toggle by
+  // src/game/sim_session_preferences.ts.
   autoLoot: { def: false },
   // on by default: desktop ground-targeted spells open a terrain reticle before
   // casting. Touch keeps the instant target-feet fallback because there is no
@@ -665,6 +668,11 @@ export const BOOL_SETTINGS = {
   // The Reliquary window's eye toggle and the Interface options row; pinning
   // a page while it is off turns it back on.
   showReliquaryTracker: { def: true },
+  // on by default: the Loot Feed (src/ui/hud/loot/loot_feed_controller.ts), the
+  // short stacked list of what you just received beside the action bar. Read
+  // live by the HUD every frame; also the frames menu row's show/hide state
+  // (interface_unlock_core.ts frameRowSettingKey), so the two are one switch.
+  showLootFeed: { def: true },
   // off by default: append an "Item Level N" (plus power score) line to every item
   // tooltip. Purely a display preference read live by the HUD; off keeps the
   // classic stat-only tooltip. See src/sim/item_level.ts for the derivation.

@@ -37,6 +37,10 @@ export interface IWorldInteraction {
   interact(): void;
   lootCorpse(id: number): WorldInteractionOutcome;
   autoLoot(id: number): void;
+  // The "Auto Loot" option, pushed on every world entry and toggle: while on,
+  // the authoritative sim takes the caller's own share of each fresh kill into
+  // their bags with no click (src/sim/loot/auto_loot_on_kill.ts). Session state.
+  setAutoLoot(enabled: boolean): void;
   // Starts a timed corpse-harvest cast (Intentional Gathering PR3): id only,
   // no per-call component override. What gets extracted resolves entirely
   // from the caller's stored `harvestPreference` (`professions/

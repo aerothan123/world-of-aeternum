@@ -2872,7 +2872,7 @@ export const tr_TR: EnTranslations = {
       "stopAutoAttackOnTargetSwitch": "Hedef Değiştirince Otomatik Saldırıyı Durdur",
       "walkByAutoloot": "Yanından Geçerken Otomatik Yağma",
       "autoLoot": "Auto Loot",
-      "autoLootNote": "Clicking or tapping a corpse puts its coins and items straight into your bags instead of opening the loot window. Hold Shift while you click to do the opposite for that corpse. An item your group rolls for, or that the master looter hands out, still goes to that roll, and anything that does not fit in your bags stays on the corpse. The interact key always takes the loot directly.",
+      "autoLootNote": "When something you are fighting dies, your share of its loot goes straight into your bags with no click: everything when you killed it alone; in a group, your share of the coins, your quest items, the drops whose round-robin turn is yours, and any item you win in your group's need or greed roll (a roll you lose gives you nothing). Drops the master looter hands out, first-come group loot and anything that does not fit in your bags stay on the corpse. Clicking or tapping a corpse with loot left takes it without opening the loot window; hold Shift while you click to open the window instead.",
       "groundReticle": "Yer hedefleme halkası",
       "mouseoverCast": "Grup Çerçevelerinde İmleçle Büyü Yapma",
       "stickyTarget": "Yere Tıklayınca Hedefi Koru",
@@ -2880,6 +2880,7 @@ export const tr_TR: EnTranslations = {
       "showDungeonHintsNote": "Zindan mekaniğini ve yapılması gerekeni açıklayan ipucu panelini gösterir. Kapatmak yalnızca ipuçlarını gizler: zemin uyarıları, kullanım çubukları ve zayıflatmalar kalır. Eylem istemleri daima görünür: çıkılacak kafes, kırılacak zincir, kullanılacak nesne.",
       "showItemLevel": "Eşya Seviyesini Göster",
       "showReliquaryTracker": "Emanet Takibini Göster",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Satmadan Önce Onayla",
       "confirmVendorSellNote": "Bunu kapatmak eşyaları tek tıkla ve onaysız satar, bu yüzden kayan bir çanta yuvası yanlış eşyayı satıcıya satabilir.",
       "confirmVendorSellMinQuality": "Satışları Kaliteden Onaylayın",
@@ -4284,6 +4285,10 @@ export const tr_TR: EnTranslations = {
       "farmNote": "Ekilmiş bir tohumdan yetişir ve yaklaşık {duration} sonra hazır olur. Çiftçilik becerisi {skill}+ ve kademe {tier}+ çapa gerekir.",
       "fishingZoneProven": "{zone} suları (yeterlilik {skill}+, olta kademesi {tier}+)",
       "fishingZoneUnproven": "Bazı sularda yeterlilik {skill}+ ve olta kademesi {tier}+ gerekir; henüz belirli bir nokta doğrulanmadı."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Toplama Hedefi",

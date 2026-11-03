@@ -2872,7 +2872,7 @@ export const pl_PL: EnTranslations = {
       "stopAutoAttackOnTargetSwitch": "Zatrzymaj automatyczny atak przy zmianie celu",
       "walkByAutoloot": "Automatyczny łup w przelocie",
       "autoLoot": "Auto Loot",
-      "autoLootNote": "Clicking or tapping a corpse puts its coins and items straight into your bags instead of opening the loot window. Hold Shift while you click to do the opposite for that corpse. An item your group rolls for, or that the master looter hands out, still goes to that roll, and anything that does not fit in your bags stays on the corpse. The interact key always takes the loot directly.",
+      "autoLootNote": "When something you are fighting dies, your share of its loot goes straight into your bags with no click: everything when you killed it alone; in a group, your share of the coins, your quest items, the drops whose round-robin turn is yours, and any item you win in your group's need or greed roll (a roll you lose gives you nothing). Drops the master looter hands out, first-come group loot and anything that does not fit in your bags stay on the corpse. Clicking or tapping a corpse with loot left takes it without opening the loot window; hold Shift while you click to open the window instead.",
       "groundReticle": "Celownik naziemny",
       "mouseoverCast": "Rzucanie po najechaniu na ramki drużyny",
       "stickyTarget": "Zachowaj cel po kliknięciu w ziemię",
@@ -2880,6 +2880,7 @@ export const pl_PL: EnTranslations = {
       "showDungeonHintsNote": "Pokazuje panel wyjaśniający mechanikę lochu i sposób reakcji. Wyłączenie ukrywa tylko te wskazówki: ostrzeżenia na ziemi, paski rzucania i osłabienia pozostają. Podpowiedzi wymagające działania zawsze się wyświetlają: klatka do opuszczenia, łańcuch do zerwania, obiekt do użycia.",
       "showItemLevel": "Pokaż poziom przedmiotu",
       "showReliquaryTracker": "Pokaż narzędzie do śledzenia relikwiarzy",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Potwierdzaj przed sprzedażą",
       "confirmVendorSellNote": "Wyłączenie tego sprawia, że przedmioty sprzedają się jednym kliknięciem bez potwierdzenia, więc przesunięty slot w torbie może sprzedać niewłaściwy przedmiot.",
       "confirmVendorSellMinQuality": "Potwierdź sprzedaż z jakości",
@@ -4284,6 +4285,10 @@ export const pl_PL: EnTranslations = {
       "farmNote": "Wyhodowane z zasianego nasiona, gotowe po około {duration}. Wymaga Uprawy {skill}+ i motyki poziomu {tier}+.",
       "fishingZoneProven": "wody {zone} (umiejętność {skill}+, wędka poziomu {tier}+)",
       "fishingZoneUnproven": "Niektóre wody wymagają umiejętności {skill}+ i wędki poziomu {tier}+; żadne konkretne miejsce nie jest jeszcze potwierdzone."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Cel zbierania",

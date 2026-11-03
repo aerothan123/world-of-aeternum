@@ -1147,12 +1147,26 @@
     /* Keep another window's text from showing through the corpse choice. */
     background: var(--panel-base);
   }
-  /* Reserve the pinned close button's footprint (absolute, inset-inline-end
-     8px, 26px wide; layout.css) on desktop, where the library head padding would
-     otherwise let a long name run under it. The touch header's own 52px reserve
-     (hud.mobile.css, a later layer) still wins on mobile. */
+  /* The close button is an IN-FLOW flex item at the end of the head, never the
+     shell's absolute pin (layout.css). Pinned, the button is out of flow: it
+     takes no part in the head's flex distribution or in the popup's max-content
+     width, so the only thing keeping the name from running under it was a
+     padding reserve hand-matched to one button footprint, and the X could paint
+     over the middle of a name ("Sableweb L[X]ker"). In flow, the head row is
+     name, gap, button: the popup widens to fit both (up to the title ceiling),
+     and only a name past the ceiling (or a viewport clamp) ellipsizes, always
+     ending before the button. The end padding matches the shell's 8px inset so
+     the button sits where it always did; hud.mobile.css restates the same rule
+     for the touch header (a later layer whose 52px reserve would otherwise
+     double the button's own room). */
   #loot-window > .panel-title {
-    padding-inline-end: 40px;
+    padding-inline-end: 8px;
+  }
+  #loot-window > .panel-title > .x-btn {
+    position: static;
+    transform: none;
+    flex: none;
+    margin-inline-start: auto;
   }
   #loot-window > .panel-title > .ui-win-title {
     max-width: 320px;

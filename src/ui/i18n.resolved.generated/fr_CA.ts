@@ -2872,7 +2872,7 @@ export const fr_CA: EnTranslations = {
       "stopAutoAttackOnTargetSwitch": "Arrêter l'attaque auto au changement de cible",
       "walkByAutoloot": "Ramassage auto au passage",
       "autoLoot": "Auto Loot",
-      "autoLootNote": "Clicking or tapping a corpse puts its coins and items straight into your bags instead of opening the loot window. Hold Shift while you click to do the opposite for that corpse. An item your group rolls for, or that the master looter hands out, still goes to that roll, and anything that does not fit in your bags stays on the corpse. The interact key always takes the loot directly.",
+      "autoLootNote": "When something you are fighting dies, your share of its loot goes straight into your bags with no click: everything when you killed it alone; in a group, your share of the coins, your quest items, the drops whose round-robin turn is yours, and any item you win in your group's need or greed roll (a roll you lose gives you nothing). Drops the master looter hands out, first-come group loot and anything that does not fit in your bags stay on the corpse. Clicking or tapping a corpse with loot left takes it without opening the loot window; hold Shift while you click to open the window instead.",
       "groundReticle": "Réticule de ciblage au sol",
       "mouseoverCast": "Lancement au survol sur les cadres de groupe",
       "stickyTarget": "Conserver la cible au clic au sol",
@@ -2880,6 +2880,7 @@ export const fr_CA: EnTranslations = {
       "showDungeonHintsNote": "Affiche le panneau de conseils qui explique une mécanique de donjon et la marche à suivre. Désactiver cette option masque uniquement ces conseils : les avertissements au sol, barres d'incantation et affaiblissements restent visibles. Les invites auxquelles vous devez réagir restent toujours affichées : une cage dont sortir, une chaîne à briser, un objet à utiliser.",
       "showItemLevel": "Afficher le niveau d'objet",
       "showReliquaryTracker": "Afficher le suivi du reliquaire",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Confirmer avant de vendre",
       "confirmVendorSellNote": "Désactiver cette option vend les objets en un seul clic sans confirmation ; un emplacement de sac déplacé pourrait donc faire vendre le mauvais objet.",
       "confirmVendorSellMinQuality": "Confirmer les ventes de la qualité",
@@ -4284,6 +4285,10 @@ export const fr_CA: EnTranslations = {
       "farmNote": "Issu d’une graine plantée, prêt après environ {duration}. Nécessite {skill}+ en culture et une houe de palier {tier} ou supérieur.",
       "fishingZoneProven": "Eaux de {zone} (compétence {skill}+, canne de palier {tier}+)",
       "fishingZoneUnproven": "Certaines eaux nécessitent une compétence {skill}+ et une canne de palier {tier}+ ; aucun lieu précis n’est encore confirmé."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Objectif de récolte",

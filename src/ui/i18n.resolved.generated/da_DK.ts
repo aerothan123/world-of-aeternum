@@ -2872,7 +2872,7 @@ export const da_DK: EnTranslations = {
       "stopAutoAttackOnTargetSwitch": "Stop autoangreb ved målskift",
       "walkByAutoloot": "Auto-plyndring i forbifarten",
       "autoLoot": "Auto Loot",
-      "autoLootNote": "Clicking or tapping a corpse puts its coins and items straight into your bags instead of opening the loot window. Hold Shift while you click to do the opposite for that corpse. An item your group rolls for, or that the master looter hands out, still goes to that roll, and anything that does not fit in your bags stays on the corpse. The interact key always takes the loot directly.",
+      "autoLootNote": "When something you are fighting dies, your share of its loot goes straight into your bags with no click: everything when you killed it alone; in a group, your share of the coins, your quest items, the drops whose round-robin turn is yours, and any item you win in your group's need or greed roll (a roll you lose gives you nothing). Drops the master looter hands out, first-come group loot and anything that does not fit in your bags stay on the corpse. Clicking or tapping a corpse with loot left takes it without opening the loot window; hold Shift while you click to open the window instead.",
       "groundReticle": "Jordsigte-retikel",
       "mouseoverCast": "Museover-kast på grupperammer",
       "stickyTarget": "Bevar mål ved jordklik",
@@ -2880,6 +2880,7 @@ export const da_DK: EnTranslations = {
       "showDungeonHintsNote": "Viser tipspanelet, som forklarer en fangehulsmekanik, og hvad du skal gøre ved den. Hvis du slår dette fra, skjules kun disse tips: jordadvarsler, besværgelseslinjer og negative effekter bliver. Anvisninger, du handler på, vises altid: et bur at bryde ud af, en kæde at bryde, et objekt at bruge.",
       "showItemLevel": "Vis genstandsniveau",
       "showReliquaryTracker": "Vis Relikviesporer",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Bekræft før salg",
       "confirmVendorSellNote": "Slår du dette fra, sælges genstande med ét klik uden bekræftelse, så en flyttet taskeplads kan sælge den forkerte genstand til den handlende.",
       "confirmVendorSellMinQuality": "Bekræft salg fra kvalitet",
@@ -4284,6 +4285,10 @@ export const da_DK: EnTranslations = {
       "farmNote": "Dyrkes fra et plantet frø og bliver klar efter cirka {duration}. Kræver landbrugsfærdighed {skill}+ og en hakke af niveau {tier}+.",
       "fishingZoneProven": "{zone}s vande (færdighed {skill}+, stangniveau {tier}+)",
       "fishingZoneUnproven": "Nogle vande kræver færdighed {skill}+ og stangniveau {tier}+; intet bestemt sted er bekræftet endnu."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Samlemål",

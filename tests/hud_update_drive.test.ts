@@ -847,6 +847,13 @@ const HUD_UPDATE_DRIVES: readonly DriveRow[] = [
     why: 'TTL-recycles the floating-combat-text pool; returns immediately when empty',
   },
   {
+    call: 'this.lootFeed.update',
+    band: 'frame',
+    gate: '',
+    surface: 'chrome',
+    why: 'the Loot Feed: expires and fades its pooled lines; an identical frame writes nothing',
+  },
+  {
     call: 'this.closeResurrectionPrompt',
     band: 'frame',
     gate: '!p.dead',
@@ -1971,7 +1978,7 @@ describe('Hud.update() drives exactly the registered set, on the registered band
       // Project H phase 3), slow-band and open-only like the courier's.
       // window 56 -> 55 and chrome 101 -> 100: the $WOC Exchange window and the
       // Daily Rewards launcher left with the crypto rail.
-    ).toEqual({ window: 55, chrome: 100, none: 21 });
+    ).toEqual({ window: 55, chrome: 101, none: 21 });
     const windows = HUD_UPDATE_DRIVES.filter((r) => r.surface === 'window');
     expect(windows.map((r) => r.call)).toContain('this.spellbookWindow.tickOpen');
     expect(windows.map((r) => r.call)).toContain('this.refreshOpenTownFocusIfChanged');

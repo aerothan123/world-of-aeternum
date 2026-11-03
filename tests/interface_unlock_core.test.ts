@@ -75,6 +75,8 @@ describe('HUD_FRAME_SPECS', () => {
       'auraTrack_utility',
       'auraTrack_friendly',
       'auraTrack_shields',
+      // The Loot Feed, beside the action bars.
+      'lootFeed',
       // The King of the Hill bar, now static markup.
       'hillBar',
       // The mouseover tooltip's movable seat, appended after the tracks.
@@ -127,6 +129,7 @@ describe('HUD_FRAME_SPECS', () => {
       'aura-track-utility',
       'aura-track-friendly',
       'aura-track-shields',
+      'loot-feed',
       'hill-bar',
       'unit-tooltip-anchor',
     ]);
@@ -202,6 +205,7 @@ describe('HUD_FRAME_SPECS', () => {
       'woc_hud_frame_track_utility',
       'woc_hud_frame_track_friendly',
       'woc_hud_frame_track_shields',
+      'woc_hud_frame_loot_feed',
       'woc_hud_frame_hill_bar',
       'woc_hud_frame_unit_tooltip',
     ]);

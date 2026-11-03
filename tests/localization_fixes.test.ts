@@ -34,7 +34,6 @@ import type { SimEvent } from '../src/sim/types';
 import { auraDisplayNameForHud } from '../src/ui/aura_display_name';
 import { dungeonText } from '../src/ui/entity_display_core';
 import { itemDisplayName, tEntityOptional } from '../src/ui/entity_i18n';
-import { Hud } from '../src/ui/hud';
 import {
   cs_CZ,
   da_DK,
@@ -65,6 +64,7 @@ import {
   zh_CN,
   zh_TW,
 } from '../src/ui/i18n';
+import { localizeLootText } from '../src/ui/loot_text_i18n_core';
 import { localizeServerText, DICT as serverDICT, tServer } from '../src/ui/server_i18n';
 import {
   localizeAuthoredYellSpeakerName,
@@ -173,8 +173,8 @@ const RELEASE_TIER = process.env.I18N_RELEASE_TIER === '1';
 // The three client-side matchers that re-localize the English src/sim and server
 // emit. They no longer share one file: localizeErrorText and now localizeSystemText
 // were each extracted to their own module when hud.ts hit its monolith ceiling,
-// while localizeLootText is still a Hud method (it reaches this.localizeSimMoney,
-// so it cannot move until that does). Every source-text guard below anchors on
+// and localizeLootText followed with localizeSimMoney into loot_text_i18n_core.ts
+// (the Loot Feed headroom extraction). Every source-text guard below anchors on
 // this table rather than assuming hud.ts, which is what made each extraction a
 // one-line move here.
 const MATCHER_ARMS = [
@@ -190,8 +190,8 @@ const MATCHER_ARMS = [
   },
   {
     fn: 'localizeLootText',
-    file: 'src/ui/hud.ts',
-    signature: 'private localizeLootText(text: string): string {',
+    file: 'src/ui/loot_text_i18n_core.ts',
+    signature: 'export function localizeLootText(text: string): string {',
   },
 ] as const;
 
@@ -2315,18 +2315,17 @@ describe('well-fed aura names stay wired to the sim aura matcher', () => {
 });
 
 // --- Vendor-sell log line: the "Sold <item>[ xN] for <money>." arm in
-// Hud.localizeLootText must localize the item name whether or not the sim
+// localizeLootText must localize the item name whether or not the sim
 // appended the " xN" stack suffix. A greedy single capture feeds "Copper Ore
 // x2" whole into the exact-name lookup, which only matches bare item names:
 // the lookup misses and the raw English name (plus the sim's bare "xN"
-// spelling) leaks into an otherwise-localized sentence. Exercised via a bare
-// Hud prototype (the weapon_type_tooltip / hud_confirm_gates precedent)
-// since localizeLootText is private and reads no instance state here.
+// spelling) leaks into an otherwise-localized sentence. Exercised through the
+// extracted pure matcher (src/ui/loot_text_i18n_core.ts).
 describe('vendor sell log line localizes the item name for both a single item and a sold stack', () => {
   interface LootTextHarness {
     localizeLootText(text: string): string;
   }
-  const harness = (): LootTextHarness => Object.create(Hud.prototype) as unknown as LootTextHarness;
+  const harness = (): LootTextHarness => ({ localizeLootText });
 
   it('localizes a single-item sale (no xN suffix) in every locale', () => {
     try {

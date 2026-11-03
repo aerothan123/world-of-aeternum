@@ -503,11 +503,12 @@ const MONOLITHS: MonolithRow[] = [
     // (src/ui/hud/vitals/vitals_view.ts); the ratchet, extract then lower.
     // LOWERED 17755 -> 17580 when the crypto rail (wallet, $WOC Exchange,
     // Daily Rewards, holder flair) was removed outright.
-    // LOWERED 17580 -> 17578 by the tree Chop prompt: the farm press notice's
-    // construction moved out with it into
-    // src/ui/hud/professions/interact_affordances_controller.ts, so the
-    // feature landed with the coordinator two lines smaller.
-    ceiling: 17578,
+    // LOWERED 17580 -> 17456 with the Loot Feed: the loot-log matcher
+    // (localizeLootText + localizeSimMoney) moved whole to
+    // src/ui/loot_text_i18n_core.ts, net of the feed's composition, its event
+    // hook and its per-frame update. Merged with the tree Chop prompt (-2, the
+    // farm press notice moved to interact_affordances_controller.ts): 17454.
+    ceiling: 17454,
     seam: 'pure view core + thin painter on PainterHost (src/ui/CLAUDE.md)',
   },
   {

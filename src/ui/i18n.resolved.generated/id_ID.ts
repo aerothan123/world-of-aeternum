@@ -2872,7 +2872,7 @@ export const id_ID: EnTranslations = {
       "stopAutoAttackOnTargetSwitch": "Hentikan Serangan Otomatis Saat Ganti Target",
       "walkByAutoloot": "Jarah Otomatis Sambil Lewat",
       "autoLoot": "Auto Loot",
-      "autoLootNote": "Clicking or tapping a corpse puts its coins and items straight into your bags instead of opening the loot window. Hold Shift while you click to do the opposite for that corpse. An item your group rolls for, or that the master looter hands out, still goes to that roll, and anything that does not fit in your bags stays on the corpse. The interact key always takes the loot directly.",
+      "autoLootNote": "When something you are fighting dies, your share of its loot goes straight into your bags with no click: everything when you killed it alone; in a group, your share of the coins, your quest items, the drops whose round-robin turn is yours, and any item you win in your group's need or greed roll (a roll you lose gives you nothing). Drops the master looter hands out, first-come group loot and anything that does not fit in your bags stay on the corpse. Clicking or tapping a corpse with loot left takes it without opening the loot window; hold Shift while you click to open the window instead.",
       "groundReticle": "Retikel bidik darat",
       "mouseoverCast": "Rapal Saat Menyorot Bingkai Kelompok",
       "stickyTarget": "Pertahankan Sasaran Saat Klik Tanah",
@@ -2880,6 +2880,7 @@ export const id_ID: EnTranslations = {
       "showDungeonHintsNote": "Menampilkan panel petunjuk yang menjelaskan mekanik dungeon dan cara menghadapinya. Mematikan ini hanya menyembunyikan petunjuk tersebut: peringatan tanah, bilah rapalan, dan debuff tetap ada. Arahan yang harus ditindak selalu muncul: kurungan untuk dibobol, rantai untuk diputus, objek untuk digunakan.",
       "showItemLevel": "Tampilkan Level Item",
       "showReliquaryTracker": "Tampilkan Pelacak Relikui",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Konfirmasi Sebelum Menjual",
       "confirmVendorSellNote": "Menonaktifkan ini menjual barang dengan sekali klik tanpa konfirmasi, sehingga slot tas yang bergeser dapat menjual barang yang salah ke pedagang.",
       "confirmVendorSellMinQuality": "Konfirmasikan Penjualan Dari Kualitas",
@@ -4284,6 +4285,10 @@ export const id_ID: EnTranslations = {
       "farmNote": "Tumbuh dari benih yang ditanam, siap setelah sekitar {duration}. Memerlukan keahlian bertani {skill}+ dan cangkul tingkat {tier}+",
       "fishingZoneProven": "Perairan {zone} (kemahiran {skill}+, tingkat joran {tier}+)",
       "fishingZoneUnproven": "Sebagian perairan memerlukan kemahiran {skill}+ dan joran tingkat {tier}+; belum ada lokasi tertentu yang terkonfirmasi."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Target Pengumpulan",

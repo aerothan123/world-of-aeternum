@@ -2872,7 +2872,7 @@ export const nl_NL: EnTranslations = {
       "stopAutoAttackOnTargetSwitch": "Auto-Aanval Stoppen bij Doelwitwissel",
       "walkByAutoloot": "Buit oprapen in het voorbijgaan",
       "autoLoot": "Auto Loot",
-      "autoLootNote": "Clicking or tapping a corpse puts its coins and items straight into your bags instead of opening the loot window. Hold Shift while you click to do the opposite for that corpse. An item your group rolls for, or that the master looter hands out, still goes to that roll, and anything that does not fit in your bags stays on the corpse. The interact key always takes the loot directly.",
+      "autoLootNote": "When something you are fighting dies, your share of its loot goes straight into your bags with no click: everything when you killed it alone; in a group, your share of the coins, your quest items, the drops whose round-robin turn is yours, and any item you win in your group's need or greed roll (a roll you lose gives you nothing). Drops the master looter hands out, first-come group loot and anything that does not fit in your bags stay on the corpse. Clicking or tapping a corpse with loot left takes it without opening the loot window; hold Shift while you click to open the window instead.",
       "groundReticle": "Grondrichtkruis",
       "mouseoverCast": "Mouseover-bezwering op groepsframes",
       "stickyTarget": "Doel behouden bij klikken op de grond",
@@ -2880,6 +2880,7 @@ export const nl_NL: EnTranslations = {
       "showDungeonHintsNote": "Toont het hintpaneel dat een kerkermechaniek en de juiste aanpak uitlegt. Uitschakelen verbergt alleen die hints: grondwaarschuwingen, spreukbalken en nadelige effecten blijven. Meldingen waarop je moet handelen verschijnen altijd: een kooi om uit te breken, een ketting om te breken of een voorwerp om te gebruiken.",
       "showItemLevel": "Itemniveau tonen",
       "showReliquaryTracker": "Toon Relikwieëntracker",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Bevestigen Voor Verkoop",
       "confirmVendorSellNote": "Dit uitzetten verkoopt voorwerpen met één klik zonder bevestiging, dus een verschoven tasvak zou het verkeerde voorwerp aan de handelaar kunnen verkopen.",
       "confirmVendorSellMinQuality": "Bevestig de verkoop van kwaliteit",
@@ -4284,6 +4285,10 @@ export const nl_NL: EnTranslations = {
       "farmNote": "Gegroeid uit een geplant zaad, klaar na ongeveer {duration}. Vereist Landbouw {skill}+ en een schoffel van rang {tier}+.",
       "fishingZoneProven": "Wateren van {zone} (vaardigheid {skill}+, hengelrang {tier}+)",
       "fishingZoneUnproven": "Voor sommige wateren zijn vaardigheid {skill}+ en hengelrang {tier}+ nodig; er is nog geen specifieke plek bevestigd."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Verzameldoel",

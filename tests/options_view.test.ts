@@ -899,6 +899,7 @@ const GENERAL_KEYS = [
   'showDailyRewardsChest',
   'showItemLevel',
   'showReliquaryTracker',
+  'showLootFeed',
   'showOwnNameplate',
   'showPlayerNameplates',
   'showPetNames',

@@ -2872,7 +2872,7 @@ export const pt_BR: EnTranslations = {
       "stopAutoAttackOnTargetSwitch": "Parar Ataque Automático ao Trocar de Alvo",
       "walkByAutoloot": "Saque Automático ao Passar",
       "autoLoot": "Auto Loot",
-      "autoLootNote": "Clicking or tapping a corpse puts its coins and items straight into your bags instead of opening the loot window. Hold Shift while you click to do the opposite for that corpse. An item your group rolls for, or that the master looter hands out, still goes to that roll, and anything that does not fit in your bags stays on the corpse. The interact key always takes the loot directly.",
+      "autoLootNote": "When something you are fighting dies, your share of its loot goes straight into your bags with no click: everything when you killed it alone; in a group, your share of the coins, your quest items, the drops whose round-robin turn is yours, and any item you win in your group's need or greed roll (a roll you lose gives you nothing). Drops the master looter hands out, first-come group loot and anything that does not fit in your bags stay on the corpse. Clicking or tapping a corpse with loot left takes it without opening the loot window; hold Shift while you click to open the window instead.",
       "groundReticle": "Retícula de mira no chão",
       "mouseoverCast": "Conjuração ao Apontar nos Quadros do Grupo",
       "stickyTarget": "Manter alvo ao clicar no chão",
@@ -2880,6 +2880,7 @@ export const pt_BR: EnTranslations = {
       "showDungeonHintsNote": "Mostra o painel de dicas que explica uma mecânica de masmorra e como responder. Desativar oculta apenas essas dicas: avisos no chão, barras de lançamento e penalidades continuam. Comandos que exigem ação sempre aparecem: uma jaula para escapar, corrente para romper ou objeto para usar.",
       "showItemLevel": "Mostrar nível do item",
       "showReliquaryTracker": "Mostrar rastreador de relicário",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Confirmar Antes de Vender",
       "confirmVendorSellNote": "Desativar isso vende itens com um único clique e sem confirmação, então um espaço de bolsa deslocado pode vender o item errado.",
       "confirmVendorSellMinQuality": "Confirme as vendas com base na qualidade",
@@ -4284,6 +4285,10 @@ export const pt_BR: EnTranslations = {
       "farmNote": "Cultivado de uma semente plantada, pronto após cerca de {duration}. Exige Agricultura {skill}+ e enxada de nível {tier}+.",
       "fishingZoneProven": "Águas de {zone} (proficiência {skill}+, vara de nível {tier}+)",
       "fishingZoneUnproven": "Algumas águas exigem proficiência {skill}+ e vara de nível {tier}+; nenhum ponto específico foi confirmado ainda."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Meta de coleta",

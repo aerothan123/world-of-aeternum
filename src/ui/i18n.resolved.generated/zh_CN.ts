@@ -2872,7 +2872,7 @@ export const zh_CN: EnTranslations = {
       "stopAutoAttackOnTargetSwitch": "切换目标时停止自动攻击",
       "walkByAutoloot": "路过自动拾取",
       "autoLoot": "自动拾取",
-      "autoLootNote": "点击或轻触尸体会直接把其中的金币和物品放进你的背包，而不打开拾取窗口。点击时按住 Shift 可对该尸体执行相反的操作。队伍需要掷骰的物品或由拾取分配者分配的物品仍会进入相应的掷骰，背包放不下的物品会留在尸体上。交互键始终直接拾取战利品。",
+      "autoLootNote": "你正在战斗的目标死亡时，你应得的那份战利品会直接放进你的背包，无需点击：独自击杀时为全部战利品；在队伍中则为你应得的金币、你的任务物品、轮流拾取轮到你的掉落，以及你在队伍需求或贪婪掷骰中赢得的物品（输掉的掷骰不会给你任何东西）。由拾取分配者分配的掉落、先到先得的队伍战利品以及背包放不下的物品会留在尸体上。点击或轻触仍有战利品的尸体会直接拾取而不打开拾取窗口；点击时按住 Shift 则改为打开窗口。",
       "groundReticle": "地面瞄准指示圈",
       "mouseoverCast": "队伍头像上鼠标悬停施法",
       "stickyTarget": "点击地面时保留目标",
@@ -2880,6 +2880,7 @@ export const zh_CN: EnTranslations = {
       "showDungeonHintsNote": "显示提示面板，说明地下城机制以及应对方法。关闭后只隐藏这些提示：地面警示、施法条和减益效果仍会显示。需要你操作的提示始终显示：需要挣脱的牢笼、需要打断的锁链、可以使用的物体。",
       "showItemLevel": "显示物品等级",
       "showReliquaryTracker": "显示圣物库追踪器",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "出售前确认",
       "confirmVendorSellNote": "关闭后，出售物品只需单击即可完成，不再确认；如果背包格位发生变化，可能会卖错物品。",
       "confirmVendorSellMinQuality": "确认出售的最低品质",
@@ -4284,6 +4285,10 @@ export const zh_CN: EnTranslations = {
       "farmNote": "由播种培育而成，约{duration}后可收获。需要农耕技能{skill}以上和{tier}阶以上的锄头。",
       "fishingZoneProven": "{zone}水域（熟练度{skill}以上，鱼竿{tier}阶以上）",
       "fishingZoneUnproven": "有些水域需要熟练度{skill}以上和{tier}阶以上的鱼竿，但尚未确认具体地点。"
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "采集目标",

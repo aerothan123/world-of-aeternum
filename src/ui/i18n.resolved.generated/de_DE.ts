@@ -2872,7 +2872,7 @@ export const de_DE: EnTranslations = {
       "stopAutoAttackOnTargetSwitch": "Automatischen Angriff bei Zielwechsel stoppen",
       "walkByAutoloot": "Plündern im Vorbeigehen",
       "autoLoot": "Auto Loot",
-      "autoLootNote": "Clicking or tapping a corpse puts its coins and items straight into your bags instead of opening the loot window. Hold Shift while you click to do the opposite for that corpse. An item your group rolls for, or that the master looter hands out, still goes to that roll, and anything that does not fit in your bags stays on the corpse. The interact key always takes the loot directly.",
+      "autoLootNote": "When something you are fighting dies, your share of its loot goes straight into your bags with no click: everything when you killed it alone; in a group, your share of the coins, your quest items, the drops whose round-robin turn is yours, and any item you win in your group's need or greed roll (a roll you lose gives you nothing). Drops the master looter hands out, first-come group loot and anything that does not fit in your bags stay on the corpse. Clicking or tapping a corpse with loot left takes it without opening the loot window; hold Shift while you click to open the window instead.",
       "groundReticle": "Bodenziel-Fadenkreuz",
       "mouseoverCast": "Mouseover-Wirken auf Gruppenfenstern",
       "stickyTarget": "Ziel bei Bodenklick behalten",
@@ -2880,6 +2880,7 @@ export const de_DE: EnTranslations = {
       "showDungeonHintsNote": "Zeigt das Hinweisfeld, das eine Dungeonmechanik und die nötige Reaktion erklärt. Beim Ausschalten verschwinden nur diese Tipps: Bodenwarnungen, Zauberleisten und Schwächungen bleiben sichtbar. Handlungsaufforderungen werden immer angezeigt: ein Käfig zum Ausbrechen, eine Kette zum Zerbrechen, ein Objekt zum Benutzen.",
       "showItemLevel": "Gegenstandsstufe anzeigen",
       "showReliquaryTracker": "Reliquiar-Tracker anzeigen",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Vor dem Verkauf bestätigen",
       "confirmVendorSellNote": "Wird dies deaktiviert, verkaufst du Gegenstände mit einem einzigen Klick ohne Bestätigung, sodass ein verschobener Taschenplatz den falschen Gegenstand verkaufen könnte.",
       "confirmVendorSellMinQuality": "Bestätigen Sie Verkäufe durch Qualität",
@@ -4284,6 +4285,10 @@ export const de_DE: EnTranslations = {
       "farmNote": "Aus einem gepflanzten Samen gewachsen, nach etwa {duration} erntereif. Benötigt Pflanzenfertigkeit {skill}+ und eine Gartenhacke Rang {tier}+.",
       "fishingZoneProven": "Gewässer von {zone} (Fertigkeit {skill}+, Angelrangen {tier}+)",
       "fishingZoneUnproven": "Einige Gewässer benötigen Fertigkeit {skill}+ und Angelrangen {tier}+; ein bestimmter Ort ist noch nicht bestätigt."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Sammelziel",

@@ -203,9 +203,11 @@ const repoRoot = fileURLToPath(new URL('..', import.meta.url));
 // Sim.placeFurniture / removeFurniture): 276/290/14. Phase 3 adds
 // house_storage_deposit and house_storage_withdraw (ClientWorld.houseStorageDeposit
 // / houseStorageWithdraw, dispatched to Sim.houseStorageDeposit /
-// houseStorageWithdraw): 278/292/14.
-const EXPECTED_SEND_COUNT = 278;
-const EXPECTED_DISPATCH_COUNT = 292;
+// houseStorageWithdraw): 278/292/14. Kill-time Auto Loot adds set_auto_loot (sent
+// by ClientWorld.setAutoLoot, dispatched to Sim.setAutoLoot through
+// server/session_preference_wire.ts): 279/293/14.
+const EXPECTED_SEND_COUNT = 279;
+const EXPECTED_DISPATCH_COUNT = 293;
 const EXPECTED_DISPATCH_ONLY_COUNT = 14;
 
 // The chat sub-channel routing switch (server/game.ts `switch
@@ -345,8 +347,9 @@ describe('command schema parity (W0b)', () => {
     // Keep main wire tokens in place and append Gourdlight Eve.
     // Player housing (Project H) appends buy_house after trick_or_treat, then
     // phase 2 appends place_furniture and remove_furniture, then phase 3
-    // appends house_storage_deposit and house_storage_withdraw.
-    expect(COMMAND_NAMES.slice(-12, -5)).toEqual([
+    // appends house_storage_deposit and house_storage_withdraw, then kill-time
+    // Auto Loot appends set_auto_loot.
+    expect(COMMAND_NAMES.slice(-13, -6)).toEqual([
       'courier_dispatch',
       'dungeon_guide_answer',
       'buddy_rename',
@@ -355,12 +358,13 @@ describe('command schema parity (W0b)', () => {
       'guild_buy_cosmetic',
       'trick_or_treat',
     ]);
-    expect(COMMAND_NAMES.slice(-5)).toEqual([
+    expect(COMMAND_NAMES.slice(-6)).toEqual([
       'buy_house',
       'place_furniture',
       'remove_furniture',
       'house_storage_deposit',
       'house_storage_withdraw',
+      'set_auto_loot',
     ]);
     for (const cmd of [
       'buy_house',
@@ -368,6 +372,7 @@ describe('command schema parity (W0b)', () => {
       'remove_furniture',
       'house_storage_deposit',
       'house_storage_withdraw',
+      'set_auto_loot',
     ]) {
       expect(sendSet.has(cmd), cmd).toBe(true);
       expect(dispatchSet.has(cmd), cmd).toBe(true);

@@ -487,6 +487,7 @@ import {
   createSerialWriter,
 } from './serial_writer';
 import { findSessionByName } from './session_by_name';
+import { dispatchPreferenceCommand } from './session_preference_wire';
 import { buildRealmSimConfig } from './sim_boot_config';
 import { feedRealmCalendar } from './sim_calendar_feed';
 import {
@@ -6081,8 +6082,11 @@ export class GameServer {
       case 'targetNearestFriendly':
         sim.targetNearestFriendly(pid);
         break;
+      // Player preferences (server/session_preference_wire.ts); the sim validates.
       case 'stopAutoAttackOnTargetSwitch':
-        sim.setStopAutoAttackOnTargetSwitch(!!msg.enabled, pid);
+      case 'set_auto_loot':
+      case 'set_harvest_preference':
+        dispatchPreferenceCommand(sim, command, msg, pid);
         break;
       case 'attack':
         sim.startAutoAttack(pid);
@@ -6107,10 +6111,6 @@ export class GameServer {
         break;
       case 'set_town_focus':
         applyTownFocusCommand(sim, msg, pid);
-        break;
-      // The authenticated player's preference is a setting; the sim validates it.
-      case 'set_harvest_preference':
-        if (typeof msg.raw === 'string') sim.setHarvestPreference(msg.raw, pid);
         break;
       // Intentional Gathering PR4: track/clear the viewer's single explicit
       // gathering goal (see gathering_goal_commands.ts for the validation).

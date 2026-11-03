@@ -2872,7 +2872,7 @@ export const zh_TW: EnTranslations = {
       "stopAutoAttackOnTargetSwitch": "切換目標時停止自動攻擊",
       "walkByAutoloot": "路過自動拾取",
       "autoLoot": "自動拾取",
-      "autoLootNote": "點擊或輕觸屍體會直接把其中的金幣和物品放進你的背包，而不開啟拾取視窗。點擊時按住 Shift 可對該屍體執行相反的操作。隊伍需要擲骰的物品或由拾取分配者分配的物品仍會進入相應的擲骰，背包放不下的物品會留在屍體上。互動鍵始終直接拾取戰利品。",
+      "autoLootNote": "你正在戰鬥的目標死亡時，你應得的那份戰利品會直接放進你的背包，無需點擊：獨自擊殺時為全部戰利品；在隊伍中則為你應得的金幣、你的任務物品、輪流拾取輪到你的掉落，以及你在隊伍需求或貪婪擲骰中贏得的物品（輸掉的擲骰不會給你任何東西）。由拾取分配者分配的掉落、先到先得的隊伍戰利品以及背包放不下的物品會留在屍體上。點擊或輕觸仍有戰利品的屍體會直接拾取而不開啟拾取視窗；點擊時按住 Shift 則改為開啟視窗。",
       "groundReticle": "地面瞄準指示圈",
       "mouseoverCast": "對隊伍框架滑鼠指向施法",
       "stickyTarget": "點擊地面時保留目標",
@@ -2880,6 +2880,7 @@ export const zh_TW: EnTranslations = {
       "showDungeonHintsNote": "顯示提示面板，說明地城機制以及應對方法。關閉後只隱藏這些提示：地面警示、施法條和減益效果仍會顯示。需要你操作的提示一律顯示：需要掙脫的牢籠、需要打斷的鎖鏈、可以使用的物體。",
       "showItemLevel": "顯示物品等級",
       "showReliquaryTracker": "顯示聖物庫追蹤器",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "出售前確認",
       "confirmVendorSellNote": "關閉後，出售物品只需單擊即可完成，不再確認；如果背包格位發生變化，可能會賣錯物品。",
       "confirmVendorSellMinQuality": "確認出售的最低品質",
@@ -4284,6 +4285,10 @@ export const zh_TW: EnTranslations = {
       "farmNote": "由播種培育而成，約{duration}後可收穫。需要農耕技能{skill}以上和{tier}階以上的鋤頭。",
       "fishingZoneProven": "{zone}水域（熟練度{skill}以上，魚竿{tier}階以上）",
       "fishingZoneUnproven": "有些水域需要熟練度{skill}以上和{tier}階以上的魚竿，但尚未確認具體地點。"
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "採集目標",

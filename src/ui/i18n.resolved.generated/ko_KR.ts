@@ -2872,7 +2872,7 @@ export const ko_KR: EnTranslations = {
       "stopAutoAttackOnTargetSwitch": "대상 전환 시 자동 공격 중지",
       "walkByAutoloot": "지나가며 자동 획득",
       "autoLoot": "자동 획득",
-      "autoLootNote": "시체를 클릭하거나 탭하면 전리품 창을 열지 않고 동전과 아이템이 바로 가방에 들어갑니다. 클릭할 때 Shift를 누르고 있으면 그 시체에 대해서는 반대로 동작합니다. 파티가 주사위를 굴리는 아이템이나 담당자가 분배하는 아이템은 그대로 해당 주사위로 넘어가고, 가방에 들어가지 않는 것은 시체에 남습니다. 상호작용 키는 항상 전리품을 바로 가져옵니다.",
+      "autoLootNote": "싸우던 상대가 죽으면 당신 몫의 전리품이 클릭 없이 바로 가방에 들어갑니다. 혼자 처치했다면 전부, 파티에서는 당신 몫의 동전, 당신의 퀘스트 아이템, 순서대로 분배에서 당신 차례인 전리품, 그리고 파티의 입찰 또는 차비 주사위에서 이긴 아이템입니다(진 주사위에서는 아무것도 받지 않습니다). 담당자가 분배하는 전리품, 먼저 줍는 사람이 가져가는 파티 전리품, 가방에 들어가지 않는 것은 시체에 남습니다. 전리품이 남은 시체를 클릭하거나 탭하면 전리품 창을 열지 않고 가져옵니다. 클릭할 때 Shift를 누르고 있으면 창을 엽니다.",
       "groundReticle": "지면 조준 표시기",
       "mouseoverCast": "파티 창에서 마우스오버 시전",
       "stickyTarget": "지면 클릭 시 대상 유지",
@@ -2880,6 +2880,7 @@ export const ko_KR: EnTranslations = {
       "showDungeonHintsNote": "던전 기믹과 대처 방법을 설명하는 도움말 패널을 표시합니다. 이 설정을 끄면 해당 도움말만 숨겨지며, 바닥 경고, 시전 막대, 디버프는 그대로 표시됩니다. 직접 조작해야 하는 안내는 항상 표시됩니다: 탈출해야 하는 우리, 끊어야 하는 사슬, 사용할 수 있는 물체.",
       "showItemLevel": "아이템 레벨 표시",
       "showReliquaryTracker": "성물고 추적기 표시",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "판매 전 확인",
       "confirmVendorSellNote": "이 설정을 끄면 확인 없이 한 번의 클릭으로 아이템을 판매하므로, 가방 칸이 바뀌면 잘못된 아이템이 팔릴 수 있습니다.",
       "confirmVendorSellMinQuality": "판매 확인 최소 품질",
@@ -4284,6 +4285,10 @@ export const ko_KR: EnTranslations = {
       "farmNote": "씨앗을 심어 기르는 것으로, 약 {duration} 후에 수확할 수 있습니다. 농사 스킬 {skill} 이상과 티어 {tier} 이상의 괭이가 필요합니다.",
       "fishingZoneProven": "{zone} 수역 (숙련도 {skill} 이상, 낚싯대 티어 {tier} 이상)",
       "fishingZoneUnproven": "숙련도 {skill} 이상과 낚싯대 티어 {tier} 이상이 필요한 수역도 있지만, 구체적인 지점은 아직 확인되지 않았습니다."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "채집 목표",

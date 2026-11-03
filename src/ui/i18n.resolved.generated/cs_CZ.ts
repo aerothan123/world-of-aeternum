@@ -2872,7 +2872,7 @@ export const cs_CZ: EnTranslations = {
       "stopAutoAttackOnTargetSwitch": "Zastavit automatický útok při přepnutí cíle",
       "walkByAutoloot": "Automatická kořist při průchodu",
       "autoLoot": "Auto Loot",
-      "autoLootNote": "Clicking or tapping a corpse puts its coins and items straight into your bags instead of opening the loot window. Hold Shift while you click to do the opposite for that corpse. An item your group rolls for, or that the master looter hands out, still goes to that roll, and anything that does not fit in your bags stays on the corpse. The interact key always takes the loot directly.",
+      "autoLootNote": "When something you are fighting dies, your share of its loot goes straight into your bags with no click: everything when you killed it alone; in a group, your share of the coins, your quest items, the drops whose round-robin turn is yours, and any item you win in your group's need or greed roll (a roll you lose gives you nothing). Drops the master looter hands out, first-come group loot and anything that does not fit in your bags stay on the corpse. Clicking or tapping a corpse with loot left takes it without opening the loot window; hold Shift while you click to open the window instead.",
       "groundReticle": "Zaměřovací kruh na zemi",
       "mouseoverCast": "Sesílání najetím myší na rámech skupiny",
       "stickyTarget": "Zachovat cíl při kliknutí na zem",
@@ -2880,6 +2880,7 @@ export const cs_CZ: EnTranslations = {
       "showDungeonHintsNote": "Zobrazuje panel vysvětlující mechaniku dungeonu a správnou reakci. Vypnutí skryje pouze tyto rady. Varování na zemi, ukazatele sesílání a oslabující účinky zůstanou. Výzvy vyžadující akci se zobrazují vždy: únik z klece, rozbití řetězu nebo použití předmětu.",
       "showItemLevel": "Zobrazit úroveň předmětu",
       "showReliquaryTracker": "Zobrazit Reliquary Tracker",
+      "showLootFeed": "Show Loot Feed",
       "confirmVendorSell": "Potvrdit před prodejem",
       "confirmVendorSellNote": "Vypnutím této volby prodáš předměty jedním kliknutím bez potvrzení, takže přesunutý slot v batohu může obchodníkovi prodat špatný předmět.",
       "confirmVendorSellMinQuality": "Potvrďte prodej od kvality",
@@ -4284,6 +4285,10 @@ export const cs_CZ: EnTranslations = {
       "farmNote": "Vypěstováno ze zasazeného semene, připraveno asi za {duration}. Vyžaduje dovednost Farmaření {skill}+ a motyku úrovně {tier}+.",
       "fishingZoneProven": "vody oblasti {zone} (dovednost {skill}+, prut úrovně {tier}+)",
       "fishingZoneUnproven": "Některé vody vyžadují dovednost {skill}+ a prut úrovně {tier}+; žádné konkrétní místo zatím není potvrzeno."
+    },
+    "lootFeed": {
+      "title": "Loot Feed",
+      "won": "You won: {item}"
     },
     "gatheringGoal": {
       "title": "Cíl sběru",

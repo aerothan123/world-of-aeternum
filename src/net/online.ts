@@ -278,6 +278,7 @@ import {
 import { decodeReferralCardsSnapshot } from './referral_cards_wire';
 import { type RiftStateEvent, swapMirroredRiftFloor } from './rift_floor_mirror';
 import { isInputSendBackpressured } from './send_backpressure';
+import { type SessionPreferenceCommand, SessionPreferenceMemo } from './session_preferences';
 import { snapshotAlpha } from './snapshot_alpha';
 import { applySnapshotHeadSyncs } from './snapshot_head_syncs';
 import {
@@ -1531,10 +1532,9 @@ export class ClientWorld extends ReconWireState implements IWorld {
   onConnectionLost: ((attempt: number, maxAttempts: number, nextRetryAtMs: number) => void) | null =
     null;
   onReconnected: (() => void) | null = null;
-  // Last value passed to setStopAutoAttackOnTargetSwitch, re-pushed once the
-  // client is genuinely able to send commands again (see the hello handler):
-  // null means "never set this session", so nothing is re-sent on reconnect.
-  private lastStopAutoAttackOnTargetSwitch: boolean | null = null;
+  // Last session preferences sent (src/net/session_preferences.ts), re-pushed
+  // once the client can send commands again (see resendSessionPreferences).
+  private sessionPrefs: SessionPreferenceMemo | null = new SessionPreferenceMemo();
   private reconnectAttempts = 0;
   // consecutive 'character already in world' rejections during a reconnect;
   // see src/net/reconnect_policy.ts for why these are tolerated (bounded)
@@ -3389,8 +3389,14 @@ export class ClientWorld extends ReconWireState implements IWorld {
     this.cmd({ cmd: 'tabFriendly' });
   }
   setStopAutoAttackOnTargetSwitch(enabled: boolean): void {
-    this.lastStopAutoAttackOnTargetSwitch = enabled;
-    this.cmd({ cmd: 'stopAutoAttackOnTargetSwitch', enabled });
+    this.sendSessionPreference({ cmd: 'stopAutoAttackOnTargetSwitch', enabled });
+  }
+  setAutoLoot(enabled: boolean): void {
+    this.sendSessionPreference({ cmd: 'set_auto_loot', enabled });
+  }
+  private sendSessionPreference(pref: SessionPreferenceCommand): void {
+    this.sessionPrefs = (this.sessionPrefs ?? new SessionPreferenceMemo()).with(pref);
+    this.cmd({ ...pref });
   }
 
   // Re-sends every session preference this class remembers, called once the
@@ -3399,15 +3405,9 @@ export class ClientWorld extends ReconWireState implements IWorld {
   // behind cmd()'s own guards (canSendCommand / the spectate drop), so this
   // is a plain re-push through the normal setter, not a raw send.
   private resendSessionPreferences(): void {
-    // typeof, not `!== null`: a bareClient built via Object.create(ClientWorld.prototype)
-    // (the pattern this suite's tests use) skips class field initializers entirely, so
-    // this field reads as undefined rather than its declared null default there.
-    if (typeof this.lastStopAutoAttackOnTargetSwitch === 'boolean') {
-      this.cmd({
-        cmd: 'stopAutoAttackOnTargetSwitch',
-        enabled: this.lastStopAutoAttackOnTargetSwitch,
-      });
-    }
+    // `?.`: a bareClient built via Object.create(ClientWorld.prototype) skips
+    // class field initializers, so the memo can read as undefined there.
+    this.sessionPrefs?.replay((pref) => this.cmd({ ...pref }));
     this.actionBarUploader?.flush(); // a layout save the dead socket refused goes out now
   }
 
