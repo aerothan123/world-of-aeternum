@@ -177,6 +177,46 @@ describe('action_cam_core', () => {
       expect(peaks / seconds).toBeLessThan(3);
     });
 
+    // The "camera shakes when running" report: the dip used 1 - |sin|, whose
+    // cusp at every footfall flipped the camera's vertical velocity inside one
+    // frame (about 1.1 yd/s, 2.5 times a second at a run). The bob must stay a
+    // smooth curve: the frame-to-frame change in the dip's vertical velocity
+    // stays inside a fixed acceleration bound at every frame rate, including
+    // uneven frame times.
+    it('dips along a smooth curve, never reversing the camera inside one frame', () => {
+      const MAX_ACCEL = 15; // yd/s^2, comfortably above the smooth bob's ~8.6
+      const cadences: Array<{ name: string; dts: number[] }> = [
+        { name: '30 Hz', dts: [1 / 30] },
+        { name: '60 Hz', dts: [1 / 60] },
+        { name: '144 Hz', dts: [1 / 144] },
+        { name: 'uneven', dts: [1 / 144, 1 / 60, 1 / 90, 1 / 40, 1 / 120] },
+      ];
+      for (const { name, dts } of cadences) {
+        const s = settle(true, 1);
+        let prevDrop = Number.NaN;
+        let prevVel = Number.NaN;
+        let prevDt = 0;
+        let worst = 0;
+        for (let i = 0; i < 2000; i++) {
+          const dt = dts[i % dts.length];
+          stepActionCam(s, dt, false);
+          stepActionCamBob(s, RUN_SPEED, 0, dt, false);
+          const drop = actionCamOffset(s, 0, 3, out()).drop;
+          if (i > 400 && Number.isFinite(prevDrop)) {
+            const vel = (drop - prevDrop) / dt;
+            // Interval-mean velocities sit at interval midpoints, so the
+            // spacing between two of them is the mean of the two frame times.
+            if (Number.isFinite(prevVel))
+              worst = Math.max(worst, Math.abs(vel - prevVel) / ((dt + prevDt) / 2));
+            prevVel = vel;
+            prevDt = dt;
+          }
+          prevDrop = drop;
+        }
+        expect(worst, name).toBeLessThan(MAX_ACCEL);
+      }
+    });
+
     it('standing still does not bob, and stopping eases out instead of snapping', () => {
       expect(range(run(0, 2).samples.map((o) => o.drop))).toBeLessThan(1e-9);
       const { s } = run(RUN_SPEED, 2);

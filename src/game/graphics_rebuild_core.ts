@@ -92,7 +92,7 @@ export const GRAPHICS_DIAL_KEYS: readonly GraphicsDialKey[] = Object.freeze(
  *   (the exact medium-tier map size).
  * - high: the documented "Advanced-Medium" profile settingsFor's high tier
  *   copies (basic worn surface, reduced carpet, cavity relief) + the full
- *   high-tier post stack (SMAA + bloom + half-res AO). The shadow dial's top
+ *   high-tier post stack (SMAA + half-res AO). The shadow dial's top
  *   rung is one of the differences that cannot round-trip: the high TIER
  *   renders a 2560 map, while the dial's High rung is the 4096 showcase
  *   allocation, and no rung expresses "2560 WITH terrain-cast shadows" (the
@@ -104,7 +104,9 @@ export const GRAPHICS_DIAL_KEYS: readonly GraphicsDialKey[] = Object.freeze(
  *   (shadows top out at the dial's 4096 rung everywhere: it is capped at
  *   level 1 and the retired 8192 rung clamps down to it).
  * The per-effect binaries (antiAliasing, bloomQuality, characterDetail) read
- * 0 Off / 1 On; ambientOcclusion adds the 0.5 half-resolution middle; the
+ * 0 Off / 1 On; bloomQuality seeds Off from every preset, because no fixed
+ * preset renders bloom (gfx.ts settingsFor), so the dial only turns on when the
+ * player turns it on; ambientOcclusion adds the 0.5 half-resolution middle; the
  * viewDistance and waterQuality ladders map 0/0.5/1/2 onto whole render
  * tiers (low/medium/high, then insane's vista grid and ultra's water field).
  */
@@ -151,7 +153,7 @@ const ADVANCED_DIAL_SEEDS: Readonly<Record<number, Readonly<Record<GraphicsDialK
     effectsQuality: 1,
     shadowQuality: 1,
     antiAliasing: 1,
-    bloomQuality: 1,
+    bloomQuality: 0,
     ambientOcclusion: 0.5,
     viewDistance: 1,
     waterQuality: 1,
@@ -167,7 +169,7 @@ const ADVANCED_DIAL_SEEDS: Readonly<Record<number, Readonly<Record<GraphicsDialK
     effectsQuality: 1,
     shadowQuality: 1,
     antiAliasing: 1,
-    bloomQuality: 1,
+    bloomQuality: 0,
     ambientOcclusion: 1,
     viewDistance: 1,
     waterQuality: 2,
@@ -183,7 +185,7 @@ const ADVANCED_DIAL_SEEDS: Readonly<Record<number, Readonly<Record<GraphicsDialK
     effectsQuality: 1,
     shadowQuality: 1,
     antiAliasing: 1,
-    bloomQuality: 1,
+    bloomQuality: 0,
     ambientOcclusion: 1,
     viewDistance: 2,
     waterQuality: 2,

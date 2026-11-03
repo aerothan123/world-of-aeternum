@@ -94,6 +94,11 @@ export const SETTING_RANGES = {
   // ambientOcclusion adds the 0.5 half-resolution middle; the two ladders
   // reuse the 0/0.5/1/2 level scale mapped onto whole render tiers.
   antiAliasing: { min: 0, max: 1, def: 1 },
+  // Bloom is OFF by default: no fixed preset builds it (gfx.ts settingsFor) and
+  // every preset seeds this dial Off (graphics_rebuild_core.ts). This def only
+  // backs a stored Advanced mix, so it stays 1: a store written before the
+  // change carries a 1 here, and moving the def would make every such untouched
+  // store read as a customized mix (stageGraphicsDraftChange keepStoredMix).
   bloomQuality: { min: 0, max: 1, def: 1 },
   ambientOcclusion: { min: 0, max: 1, def: 1 },
   viewDistance: { min: 0, max: 2, def: 1 },
@@ -698,10 +703,17 @@ export const BOOL_SETTINGS = {
   // stay. render/spell_effects_switch.ts owns the split; main.ts pushes the
   // value there (render never reads here).
   spellEffects: { def: true },
-  // off by default: the over-the-shoulder Action Cam (render/action_cam_core.ts).
-  // A camera framing preference like the FOV slider; it never changes zoom or
-  // hides anything, and the side lives in actionCamShoulder.
-  actionCam: { def: false },
+  // ON by default (owner call, Project H playtest): the over-the-shoulder
+  // Action Cam (render/action_cam_core.ts). A camera framing preference like
+  // the FOV slider; it never hides anything, and the side lives in
+  // actionCamShoulder. The default flipped from off, so a stored false only
+  // counts as the player's choice when actionCamChosen says so (see
+  // FLIPPED_DEFAULT_CHOICE_MARKERS).
+  actionCam: { def: true },
+  // Set the first time the player writes actionCam themselves. Not an option
+  // row: it tells a chosen Action Cam apart from the old default that the
+  // whole-store save wrote for everyone.
+  actionCamChosen: { def: false },
   // off by default: the classic "target of target" mini-frame. When on, and you have
   // a target, a small unit frame under the target frame shows who YOUR target is
   // targeting (a mob's aggro target, a player's selected target). Purely a display
@@ -836,6 +848,18 @@ function defaultTouchInterface(): boolean {
 // a one-shot first-run marker added after players already had a store must not re-fire for them.
 const LEGACY_STORE_ANSWERED_KEYS: readonly BoolSettingKey[] = ['graphicsPromptAnswered'];
 
+/**
+ * Bool settings whose shipped default FLIPPED, each with the marker key a write
+ * of it stamps. save() persists the whole store, so a profile saved before the
+ * flip carries the old default for every such key whether or not the player
+ * ever touched it. On load, a stored value that disagrees with the new default
+ * stands only when its marker says the player chose it; otherwise it was the
+ * old default and the new one applies.
+ */
+const FLIPPED_DEFAULT_CHOICE_MARKERS: Partial<Record<BoolSettingKey, BoolSettingKey>> = {
+  actionCam: 'actionCamChosen',
+};
+
 function loadedBoolDefault(
   key: BoolSettingKey,
   values: Pick<GameSettings, 'interfaceMode'>,
@@ -901,6 +925,12 @@ export class Settings {
       const v = raw[key];
       out[key] = typeof v === 'boolean' ? v : loadedBoolDefault(key, out, hadStore);
     }
+    for (const [key, marker] of Object.entries(FLIPPED_DEFAULT_CHOICE_MARKERS) as [
+      BoolSettingKey,
+      BoolSettingKey,
+    ][]) {
+      if (raw[marker] !== true) out[key] = BOOL_SETTINGS[key].def;
+    }
     return out;
   }
 
@@ -955,6 +985,8 @@ export class Settings {
           throw new TypeError(`Invalid boolean setting: ${key}`);
         }
         staged[key] = value;
+        const marker = FLIPPED_DEFAULT_CHOICE_MARKERS[key as BoolSettingKey];
+        if (marker) staged[marker] = true;
         continue;
       }
       if ((NUMERIC_KEYS as readonly string[]).includes(key)) {
@@ -979,6 +1011,8 @@ export class Settings {
     if ((BOOL_KEYS as readonly string[]).includes(key)) {
       const v = !!value;
       (this.values as Record<string, unknown>)[key] = v;
+      const marker = FLIPPED_DEFAULT_CHOICE_MARKERS[key as BoolSettingKey];
+      if (marker) this.values[marker] = true;
       this.save();
       return v as GameSettings[K];
     }

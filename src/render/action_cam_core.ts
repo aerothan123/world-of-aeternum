@@ -1,5 +1,6 @@
-// Action Cam: an opt-in over-the-shoulder framing for the chase camera. When
-// on, the look pivot slides sideways off the avatar (right or left shoulder),
+// Action Cam: an over-the-shoulder framing for the chase camera, on by
+// default (settings.ts BOOL_SETTINGS.actionCam). When on, the look pivot
+// slides sideways off the avatar (right or left shoulder),
 // drops a touch toward shoulder height, and the FOV opens a few degrees, so
 // the character sits off-center and the view reads closer and more kinetic.
 //
@@ -184,11 +185,16 @@ export function actionCamOffset(
     ) *
     w *
     s.side;
-  // Stride bob: |sin| gives one dip per footfall (the head is highest mid
-  // stride), the sway leans toward the planted foot once per stride.
+  // Stride bob: one dip per footfall (the head is highest mid stride), the
+  // sway leans toward the planted foot once per stride. The dip is cos^2, a
+  // smooth curve with the same footfall timing and depth: the old
+  // 1 - |sin| had a cusp at every footfall that reversed the camera's
+  // vertical velocity inside one frame, 2.5 times a second at a run, which
+  // read as the camera shaking (tests/action_cam_core.test.ts pins the bound).
   const bob = s.bobAmp * w;
   const sway = ACTION_CAM_BOB_X * bob * Math.sin(s.bobPhase);
-  const dip = ACTION_CAM_BOB_Y * bob * (1 - Math.abs(Math.sin(s.bobPhase)));
+  const cos = Math.cos(s.bobPhase);
+  const dip = ACTION_CAM_BOB_Y * bob * cos * cos;
   out.x = -Math.cos(yaw) * (lateral + sway);
   out.z = Math.sin(yaw) * (lateral + sway);
   out.drop = ACTION_CAM_DROP * w + dip;

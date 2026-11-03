@@ -722,3 +722,39 @@ describe('chat text size reaches 4K-readable sizes', () => {
     expect(s.set('chatFontScale', 3)).toBe(2.5);
   });
 });
+
+describe('Action Cam default (on, with an explicit stored choice winning)', () => {
+  it('starts a fresh profile in Action Cam', () => {
+    expect(new Settings().get('actionCam')).toBe(true);
+  });
+
+  it('treats a stored off with no choice marker as the old default, not a choice', () => {
+    // Every pre-flip save wrote actionCam: false for everyone, touched or not.
+    localStorage.setItem('woc_settings', JSON.stringify({ actionCam: false, cameraFov: 70 }));
+    const s = new Settings();
+    expect(s.get('actionCam')).toBe(true);
+    expect(s.get('cameraFov')).toBe(70);
+  });
+
+  it('keeps a stored off the player chose, across reloads', () => {
+    const first = new Settings();
+    first.set('actionCam', false);
+    expect(JSON.parse(localStorage.getItem('woc_settings') ?? '{}').actionCamChosen).toBe(true);
+    expect(new Settings().get('actionCam')).toBe(false);
+  });
+
+  it('stamps the choice through patch too, and keeps a stored on', () => {
+    new Settings().patch({ actionCam: false });
+    expect(new Settings().get('actionCam')).toBe(false);
+    localStorage.setItem('woc_settings', JSON.stringify({ actionCam: true }));
+    expect(new Settings().get('actionCam')).toBe(true);
+  });
+
+  it('a full reset returns to the default and forgets the choice', () => {
+    const s = new Settings();
+    s.set('actionCam', false);
+    s.reset();
+    expect(s.get('actionCam')).toBe(true);
+    expect(new Settings().get('actionCam')).toBe(true);
+  });
+});

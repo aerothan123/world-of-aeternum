@@ -3254,7 +3254,7 @@ export const hudChromeStrings = {
     // players and their pets cast in the 3D world. Off keeps everything an
     // enemy casts, area telegraph rings, crowd-control bands and cast bars.
     spellEffects: 'Spell Effects',
-    // Camera card opt-in (default off): the over-the-shoulder Action Cam, plus
+    // Camera card toggle (default on): the over-the-shoulder Action Cam, plus
     // the shoulder slider (full left .. center .. full right) that only shows
     // while it is on. The slider readout: {pct} is a formatted percent.
     actionCam: 'Action Cam',
