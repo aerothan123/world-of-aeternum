@@ -24,13 +24,22 @@ vi.mock('../src/ui/i18n', () => ({
 import {
   createGatherEffectConfirm,
   interactKeyGatherOptions,
+  withNearbyTrees,
 } from '../src/game/interact_key_gather';
 import { activeGatherNodes } from '../src/sim/data';
+import { choppableTreesNear } from '../src/sim/trees/tree_registry';
 import { gatherNodeToolGateFor } from '../src/ui/gather_node_tooltip_controller';
 import { gatherEffectPrompt } from '../src/ui/hud/professions/gathering_view';
 import type { IWorld } from '../src/world_api';
 
-const world = { marker: 'world' } as unknown as IWorld;
+// Far out at sea (no scatter tree in reach), so the press list is the live
+// node list alone; the tree arm has its own case below.
+const world = {
+  marker: 'world',
+  player: { pos: { x: 0, y: 0, z: -100_000 } },
+  cfg: { seed: 42 },
+  felledTrees: () => ({ rev: 0, trees: new Map() }),
+} as unknown as IWorld;
 
 describe('createGatherEffectConfirm', () => {
   it('asks the view core the pure question and routes the ask through the HUD dialog', () => {
@@ -53,8 +62,9 @@ describe('interactKeyGatherOptions', () => {
     const effectConfirm = { needed: vi.fn(() => null), ask: vi.fn() };
     const opts = interactKeyGatherOptions(world, effectConfirm);
 
-    // The SAME array the node click and the tool press read, not a copy.
-    expect(opts.nodes).toBe(activeGatherNodes());
+    // The live node list the node click and the tool press read, plus the
+    // standing trees in reach (none out here).
+    expect(opts.nodes).toEqual(activeGatherNodes());
     expect(opts.tooFarText).toBe('t:questUi.errors.tooFar');
     expect(opts.notReadyText).toBe('t:hudChrome.gathering.notReady');
     expect(opts.effectConfirm).toBe(effectConfirm);
@@ -70,5 +80,29 @@ describe('interactKeyGatherOptions', () => {
       unmetText: 'unmet:2',
     });
     expect(gatherNodeToolGateFor).toHaveBeenCalledWith(world, node);
+  });
+});
+
+describe('withNearbyTrees', () => {
+  // A standing Eastbrook tree under the player's feet joins the press list as
+  // its tree:<id> gather node; once felled it never steals the press.
+  const tree = choppableTreesNear(42, -62, 8, 40)[0];
+  const near = (felledIds: number[]) =>
+    ({
+      player: { pos: { x: tree.x, y: 0, z: tree.z - 1.5 } },
+      cfg: { seed: 42 },
+      felledTrees: () => ({ rev: 1, trees: new Map(felledIds.map((id) => [id, {}])) }),
+    }) as unknown as IWorld;
+
+  it('adds the standing tree in reach and keeps the node list first', () => {
+    const base = activeGatherNodes();
+    const out = withNearbyTrees(near([]), base);
+    expect(out.slice(0, base.length)).toEqual(base);
+    expect(out.map((n) => n.id)).toContain(`tree:${tree.id}`);
+  });
+
+  it('leaves a felled tree out', () => {
+    const out = withNearbyTrees(near([tree.id]), []);
+    expect(out.map((n) => n.id)).not.toContain(`tree:${tree.id}`);
   });
 });

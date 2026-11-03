@@ -1327,14 +1327,15 @@ describe('zone-map gather nodes', () => {
     const client = buildOverworldMapModel(input(makeOverworldWorld('client'), 1));
     expect(sim.gatherNodes).toEqual(client.gatherNodes);
     expect(sim.gatherNodes).toHaveLength(zoneNodes.length);
-    // All three profession types appear (eastbrook has six of each).
+    // Both node-borne profession types appear (eastbrook has six of each; wood
+    // is the forest's since tree chopping, so no wood marker ever draws).
     const types = new Set(sim.gatherNodes.map((n) => n.type));
-    expect(types).toEqual(new Set(['ore', 'wood', 'herb']));
+    expect(types).toEqual(new Set(['ore', 'herb']));
     // Toolless viewer: every node is locked (#2343), and the stub marks ready.
     for (const n of sim.gatherNodes) {
       expect(n.locked).toBe(true);
       expect(n.ready).toBe(true);
-      expect(n.nodeId).toMatch(/^(ore|wood|herb)_/);
+      expect(n.nodeId).toMatch(/^(ore|herb)_/);
       expect(Number.isFinite(n.mx)).toBe(true);
       expect(Number.isFinite(n.my)).toBe(true);
     }
@@ -1359,7 +1360,7 @@ describe('zone-map gather nodes', () => {
       gatheringProficiency: Record<string, number>;
       nodeHarvestableByMe: (id: string) => boolean;
     };
-    // A copper pick (tier 1 mining) unlocks ore; wood AND herb stay locked
+    // A copper pick (tier 1 mining) unlocks ore; herb stays locked
     // without their tools (each profession resolves its own tool scan, so a
     // wrong NODE_HARVEST_TABLE professionId shows here). Mark the first
     // eastbrook ore on cooldown for this viewer.
@@ -1369,13 +1370,10 @@ describe('zone-map gather nodes', () => {
     world.nodeHarvestableByMe = (id) => id !== coolId;
     const model = buildOverworldMapModel(input(world as unknown as IWorld, 1));
     const ore = model.gatherNodes.filter((n) => n.type === 'ore');
-    const wood = model.gatherNodes.filter((n) => n.type === 'wood');
     const herb = model.gatherNodes.filter((n) => n.type === 'herb');
     expect(ore.length).toBeGreaterThan(0);
-    expect(wood.length).toBeGreaterThan(0);
     expect(herb.length).toBeGreaterThan(0);
     for (const n of ore) expect(n.locked).toBe(false);
-    for (const n of wood) expect(n.locked).toBe(true);
     for (const n of herb) expect(n.locked).toBe(true);
     const cooled = model.gatherNodes.find((n) => n.nodeId === coolId);
     expect(cooled).toMatchObject({ ready: false, locked: false, type: 'ore' });
@@ -1465,8 +1463,9 @@ describe('zone-map gather nodes', () => {
     const model = buildOverworldMapModel(input(world as unknown as IWorld, 1));
     // The loop genuinely crossed every node (the count proves the scan ran).
     expect(model.gatherNodes).toHaveLength(zoneNodes.length);
-    // One viewerUsableToolTier resolve per profession, never per node.
-    expect(inventoryReads).toBe(3);
+    // One viewerUsableToolTier resolve per profession, never per node (two
+    // node professions since the wood stands retired with tree chopping).
+    expect(inventoryReads).toBe(2);
     // The proficiency map is hoisted beside the memo: one read for a defined
     // map like this stub's. (An undefined getter cannot stick in `??=` and
     // re-reads per profession; that pre-gprof arm is covered by the wield
@@ -1551,20 +1550,17 @@ describe('zone-map gather nodes', () => {
     // and the cull pads it by the marker margin, so the band runs to +-84yd.
     // The whole Copper Dig ore field sits on the dig headland since the New
     // Eastbrook relocation, entirely west of the pad, so every vein culls;
-    // the near-edge discrimination the old vein pair gave comes from
-    // wood_eastbrook_3 (16yd inside the west bound) and herb_eastbrook_5
-    // (5yd past the east bound). Both sides of the z bound are named too, so
-    // a cull that stopped culling and one that culled everything both red.
+    // the near-edge discrimination comes from herb_eastbrook_5 (5yd past the
+    // east bound) against herb_eastbrook_4 inside it (wood_eastbrook_3, the
+    // west-edge stand, retired with tree chopping). A cull that stopped
+    // culling and one that culled everything both red.
     const model = buildOverworldMapModel(input(makeOverworldWorld('sim'), 3));
     const kept = new Set(model.gatherNodes.map((n) => n.nodeId));
-    expect(kept.has('wood_eastbrook_2')).toBe(true); // (-57, -6): in view
-    expect(kept.has('wood_eastbrook_3')).toBe(true); // (-68, 18): inside the pad
     expect(kept.has('ore_eastbrook_1')).toBe(false); // (-130, -77): headland, west of the pad
     expect(kept.has('ore_eastbrook_4')).toBe(false); // (-152, -72): west of the pad
     expect(kept.has('herb_eastbrook_5')).toBe(false); // (89, -27): just past the east bound
     expect(kept.has('herb_eastbrook_4')).toBe(true); // (6, -69): inside the pad
-    expect(kept.has('wood_eastbrook_5')).toBe(false); // (7, 140): north of the pad
-    expect(model.gatherNodes).toHaveLength(5);
+    expect(model.gatherNodes).toHaveLength(2); // five before the wood stands retired
   });
 
   it('never leaks nodes from another zone into the committed zone model', () => {

@@ -229,6 +229,13 @@ export interface GuideProfNodeRow {
   material: string;
 }
 
+export interface GuideProfTreeRow {
+  zone: string;
+  tier: number;
+  toolTier: number;
+  material: string;
+}
+
 export interface GuideProfFishingRow { name: string | null; pct: number; quality: string | null; }
 
 export interface GuideProfFishingBand {
@@ -246,6 +253,13 @@ export interface GuideProfGathering {
   tools: GuideProfTool[];
   nodes?: GuideProfNodeRow[];
   respawnSeconds?: number;
+  trees?: {
+    rows: GuideProfTreeRow[];
+    regrowSeconds: number;
+    minSwings: number;
+    maxSwings: number;
+    swingSeconds: number;
+  };
   fishing?: {
     biteMinSec: number;
     biteMaxSec: number;
@@ -6471,6 +6485,13 @@ export const GUIDE_DEEDS: GuideDeed[] = [
     "feat": true,
     "rewardTitle": "the Gourdsworn",
     "crest": "/ui/deeds/feat_gourdlight_eve_complete.webp"
+  },
+  {
+    "id": "prog_first_felling",
+    "name": "The First Fell",
+    "category": "progression",
+    "renown": 5,
+    "feat": false
   }
 ];
 
@@ -19008,128 +19029,118 @@ export const GUIDE_PROF_GATHERING: GuideProfGathering[] = [
         "wieldProficiency": 100
       }
     ],
-    "nodes": [
-      {
-        "zone": "Eastbrook Vale",
-        "tier": 1,
-        "toolTier": 1,
-        "count": 6,
-        "material": "Ironbark Log"
-      },
-      {
-        "zone": "Mirefen Marsh",
-        "tier": 1,
-        "toolTier": 1,
-        "count": 4,
-        "material": "Ashwood Log"
-      },
-      {
-        "zone": "Mirefen Marsh",
-        "tier": 2,
-        "toolTier": 2,
-        "count": 2,
-        "material": "Ashwood Log"
-      },
-      {
-        "zone": "The Amberfall",
-        "tier": 1,
-        "toolTier": 1,
-        "count": 2,
-        "material": "Highpine Log"
-      },
-      {
-        "zone": "The Drakelands",
-        "tier": 1,
-        "toolTier": 1,
-        "count": 2,
-        "material": "Highpine Log"
-      },
-      {
-        "zone": "The Evergarden",
-        "tier": 1,
-        "toolTier": 1,
-        "count": 2,
-        "material": "Highpine Log"
-      },
-      {
-        "zone": "The Farshore",
-        "tier": 1,
-        "toolTier": 1,
-        "count": 6,
-        "material": "Ashwood Log"
-      },
-      {
-        "zone": "The Frostveil Reach",
-        "tier": 1,
-        "toolTier": 1,
-        "count": 2,
-        "material": "Highpine Log"
-      },
-      {
-        "zone": "The Galecrest",
-        "tier": 1,
-        "toolTier": 1,
-        "count": 6,
-        "material": "Highpine Log"
-      },
-      {
-        "zone": "The Nightbloom",
-        "tier": 1,
-        "toolTier": 1,
-        "count": 2,
-        "material": "Highpine Log"
-      },
-      {
-        "zone": "The Palmreach",
-        "tier": 1,
-        "toolTier": 1,
-        "count": 2,
-        "material": "Highpine Log"
-      },
-      {
-        "zone": "The Veiled Hollow",
-        "tier": 1,
-        "toolTier": 1,
-        "count": 2,
-        "material": "Highpine Log"
-      },
-      {
-        "zone": "The Willowfen",
-        "tier": 1,
-        "toolTier": 1,
-        "count": 6,
-        "material": "Highpine Log"
-      },
-      {
-        "zone": "The Wraithwood",
-        "tier": 1,
-        "toolTier": 1,
-        "count": 2,
-        "material": "Highpine Log"
-      },
-      {
-        "zone": "Thornpeak Heights",
-        "tier": 1,
-        "toolTier": 1,
-        "count": 2,
-        "material": "Highpine Log"
-      },
-      {
-        "zone": "Thornpeak Heights",
-        "tier": 2,
-        "toolTier": 2,
-        "count": 2,
-        "material": "Highpine Log"
-      },
-      {
-        "zone": "Thornpeak Heights",
-        "tier": 3,
-        "toolTier": 3,
-        "count": 2,
-        "material": "Highpine Log"
-      }
-    ],
-    "respawnSeconds": 240
+    "nodes": [],
+    "respawnSeconds": 240,
+    "trees": {
+      "rows": [
+        {
+          "zone": "Eastbrook Vale",
+          "tier": 1,
+          "toolTier": 0,
+          "material": "Ironbark Log"
+        },
+        {
+          "zone": "Mirefen Marsh",
+          "tier": 1,
+          "toolTier": 0,
+          "material": "Ashwood Log"
+        },
+        {
+          "zone": "Mirefen Marsh",
+          "tier": 2,
+          "toolTier": 2,
+          "material": "Ashwood Log"
+        },
+        {
+          "zone": "The Amberfall",
+          "tier": 1,
+          "toolTier": 0,
+          "material": "Highpine Log"
+        },
+        {
+          "zone": "The Drakelands",
+          "tier": 1,
+          "toolTier": 0,
+          "material": "Highpine Log"
+        },
+        {
+          "zone": "The Evergarden",
+          "tier": 1,
+          "toolTier": 0,
+          "material": "Highpine Log"
+        },
+        {
+          "zone": "The Farshore",
+          "tier": 1,
+          "toolTier": 0,
+          "material": "Ashwood Log"
+        },
+        {
+          "zone": "The Frostveil Reach",
+          "tier": 1,
+          "toolTier": 0,
+          "material": "Highpine Log"
+        },
+        {
+          "zone": "The Galecrest",
+          "tier": 1,
+          "toolTier": 0,
+          "material": "Highpine Log"
+        },
+        {
+          "zone": "The Nightbloom",
+          "tier": 1,
+          "toolTier": 0,
+          "material": "Highpine Log"
+        },
+        {
+          "zone": "The Palmreach",
+          "tier": 1,
+          "toolTier": 0,
+          "material": "Highpine Log"
+        },
+        {
+          "zone": "The Veiled Hollow",
+          "tier": 1,
+          "toolTier": 0,
+          "material": "Highpine Log"
+        },
+        {
+          "zone": "The Willowfen",
+          "tier": 1,
+          "toolTier": 0,
+          "material": "Highpine Log"
+        },
+        {
+          "zone": "The Wraithwood",
+          "tier": 1,
+          "toolTier": 0,
+          "material": "Highpine Log"
+        },
+        {
+          "zone": "Thornpeak Heights",
+          "tier": 1,
+          "toolTier": 0,
+          "material": "Highpine Log"
+        },
+        {
+          "zone": "Thornpeak Heights",
+          "tier": 2,
+          "toolTier": 2,
+          "material": "Highpine Log"
+        },
+        {
+          "zone": "Thornpeak Heights",
+          "tier": 3,
+          "toolTier": 3,
+          "material": "Highpine Log"
+        }
+      ],
+      "regrowSeconds": 300,
+      "minSwings": 3,
+      "maxSwings": 6,
+      "swingSeconds": 1
+    }
   },
   {
     "id": "herbalism",

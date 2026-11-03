@@ -621,10 +621,9 @@ describe('createMinimapMarkers: the discriminated union per draw kind', () => {
     // (pid 16), quest NPCs, player. The stranger
     // (id 4) and the party member (id 5) produce NO entity-loop marker; id 14 is culled.
     //
-    // The gather-node entry is content, not fixture: wood_eastbrook_4 sits 25.0
-    // yards from (0, PZ). wood_eastbrook_5's centre is inside the clip but its
-    // full ready raster would cross the circular edge, so it is intentionally
-    // omitted. Static map paintings precede
+    // No gather-node entry: the wood stands that sat round (0, PZ) retired with
+    // tree chopping (docs/design/tree-chopping.md), and no ore vein or herb
+    // patch lies inside this rim. Static map paintings precede
     // every live entity marker, and the navigation stack remains above both,
     // which is why the whole ordered sequence is asserted rather than a subset.
     expect(kinds).toEqual([
@@ -632,7 +631,6 @@ describe('createMinimapMarkers: the discriminated union per draw kind', () => {
       'portal',
       'service',
       'service',
-      'gather-node',
       'ally',
       'ally',
       'object-loot',
@@ -798,9 +796,18 @@ describe('createMinimapMarkers: the discriminated union per draw kind', () => {
   });
 
   it('preserves each gathering node type for the painter', () => {
-    const nodes = buildMarkers(makeWorld('sim')).filter((marker) => marker.kind === 'gather-node');
-
-    expect(nodes.map((node) => node.type)).toEqual(['wood']);
+    // Stood beside the Copper Dig veins and an herb patch: the painter gets
+    // each node's own type (no wood: the stands retired with tree chopping).
+    const world = makeWorld('sim') as unknown as { player: { pos: { x: number; z: number } } };
+    const ore = GATHER_NODES.find((node) => node.id === 'ore_eastbrook_1');
+    if (!ore) throw new Error('expected ore_eastbrook_1');
+    world.player.pos = { x: ore.pos.x, z: ore.pos.z };
+    const nodes = buildMarkers(world as unknown as IWorld).filter(
+      (marker) => marker.kind === 'gather-node',
+    );
+    expect(nodes.length).toBeGreaterThan(0);
+    expect(new Set(nodes.map((node) => node.type)).has('ore')).toBe(true);
+    expect(nodes.some((node) => node.type === 'wood')).toBe(false);
   });
 
   it('separates dungeon directions and civic services from generic loot', () => {
@@ -929,7 +936,8 @@ describe('createMinimapMarkers: the discriminated union per draw kind', () => {
   });
 
   it('orders one collocated stack: static art, live entities, then the existing top markers', () => {
-    const anchor = GATHER_NODES.find((node) => node.id === 'wood_eastbrook_4');
+    // An herb patch since tree chopping retired the wood stand it used.
+    const anchor = GATHER_NODES.find((node) => node.id === 'herb_eastbrook_4');
     if (!anchor) throw new Error('expected the seeded gathering node');
     const world = makeWorld('sim') as unknown as {
       player: {
@@ -1441,9 +1449,9 @@ describe('minimap corpse marker (ghost run)', () => {
 
 // The gather-node marker's locked dimension. The viewer stands ON
 // the new tier-2 mirefen vein (ore_mirefen_t2), where the rim covers exactly
-// five nodes in GATHER_NODES order: ore_mirefen_1, ore_mirefen_3,
-// wood_mirefen_1, herb_mirefen_3 (all tier 1) and the tier-2 vein itself at
-// the map centre. Actionable info on every preset: locked resolves from the
+// four nodes in GATHER_NODES order: ore_mirefen_1, ore_mirefen_3,
+// herb_mirefen_3 (all tier 1) and the tier-2 vein itself at the map centre
+// (five until tree chopping retired wood_mirefen_1 with the other stands). Actionable info on every preset: locked resolves from the
 // bags, never a graphics knob.
 //
 // The count has moved twice with content, re-minted each time rather than
@@ -1510,7 +1518,7 @@ describe('gather-node markers: the locked dimension', () => {
 
   it('a toolless viewer sees EVERY node locked (#2343: bare hands never gather)', () => {
     const markers = gatherMarkers(makeGatherWorld('sim'));
-    expect(markers.map((m) => m.locked)).toEqual([true, true, true, true, true]);
+    expect(markers.map((m) => m.locked)).toEqual([true, true, true, true]);
     // The centre marker is the tier-2 vein under the viewer, still ready:
     // locked is the tool dimension, never the respawn one.
     const centre = markers.find((m) => m.mx === S / 2 && m.my === S / 2);
@@ -1525,17 +1533,17 @@ describe('gather-node markers: the locked dimension', () => {
         gatheringProficiency: { mining: 40 },
       }),
     );
-    // GATHER_NODES rim order: ore t1, ore t1, wood t1, herb t1, ore t2
-    // (centre): the pick unlocks the ores alone; the wood stand and the herb
-    // patch both stay locked without their own implements.
-    expect(tooled.map((m) => m.locked)).toEqual([false, false, true, true, false]);
+    // GATHER_NODES rim order: ore t1, ore t1, herb t1, ore t2 (centre): the
+    // pick unlocks the ores alone; the herb patch stays locked without its own
+    // implement. (The wood stand that sat in the rim retired with tree chopping.)
+    expect(tooled.map((m) => m.locked)).toEqual([false, false, true, false]);
     // The R22 degrade arm: the SAME pick with the counter short works as its
     // best wieldable lower tier, so the tier-1 ores open and the tier-2
     // centre vein still locks (owned is not fully earned).
     const unearned = gatherMarkers(
       makeGatherWorld('sim', { inventory: [{ itemId: 'iron_mining_pick', count: 1 }] }),
     );
-    expect(unearned.map((m) => m.locked)).toEqual([false, false, true, true, true]);
+    expect(unearned.map((m) => m.locked)).toEqual([false, false, true, true]);
     // Locked composes WITH the respawn dimension, never replaces it: a
     // cooling locked vein keeps ready=false (the silhouette the painter keeps
     // readable under the locked tint).
@@ -1589,19 +1597,18 @@ describe('gather-node markers: the locked dimension', () => {
     const unearnedClient = gatherMarkers(
       makeGatherWorld('client', { inventory: PICK, gatheringProficiency: { mining: 0 } }),
     );
-    expect(unearnedSim.map((m) => m.locked)).toEqual([false, false, true, true, true]);
+    expect(unearnedSim.map((m) => m.locked)).toEqual([false, false, true, true]);
     expect(unearnedClient).toEqual(unearnedSim);
     // The same pick at the pick's own requirement flips the ore rows open
-    // (rim order: ore t1, ore t1, wood t1, herb t1, ore t2 at the centre);
-    // the wood stand and the herb patch keep locking for want of their own
-    // implements, in both shapes.
+    // (rim order: ore t1, ore t1, herb t1, ore t2 at the centre); the herb
+    // patch keeps locking for want of its own implement, in both shapes.
     const earnedSim = gatherMarkers(
       makeGatherWorld('sim', { inventory: PICK, gatheringProficiency: { mining: 40 } }),
     );
     const earnedClient = gatherMarkers(
       makeGatherWorld('client', { inventory: PICK, gatheringProficiency: { mining: 40 } }),
     );
-    expect(earnedSim.map((m) => m.locked)).toEqual([false, false, true, true, false]);
+    expect(earnedSim.map((m) => m.locked)).toEqual([false, false, true, false]);
     expect(earnedClient).toEqual(earnedSim);
     // The pair genuinely discriminates: the counter, and nothing else, moved
     // the vector, so this parity assertion is not two copies of one constant.

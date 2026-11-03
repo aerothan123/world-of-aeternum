@@ -545,6 +545,8 @@ const mergeStringsEn = {
     cast: {
       fishing: 'Fishing',
       gathering: 'Gathering',
+      // Tree chopping's cast bar (TREE_CHOP_CAST_ID, src/sim/trees/).
+      chopping: 'Chopping',
       crafting: 'Crafting',
       disenchanting: 'Disenchanting',
       enchanting_apply: 'Enchanting',

@@ -13,6 +13,7 @@ import type { GatheringProfessionId } from '../sim/content/professions';
 import { gatherNodesInActiveWorld } from '../sim/data';
 import { NODE_TYPE_BY_PROFESSION } from '../sim/professions/gathering';
 import { isGatherToolUse } from '../sim/professions/tools';
+import { choppableTreesNear } from '../sim/trees/tree_registry';
 import { type GatherNodeDef, INTERACT_RANGE, type ItemDef } from '../sim/types';
 import type { IWorld } from '../world_api';
 
@@ -31,7 +32,8 @@ export function gatherToolProfessionFor(item: ItemDef): GatheringProfessionId | 
  *  useGatherToolItem selection policy; the sim re-validates whichever id is
  *  sent, so the mirror is a UX nicety, never an authority. */
 export function nearestGatherNodeForProfession(
-  world: Pick<IWorld, 'player' | 'nodeHarvestableByMe'>,
+  world: Pick<IWorld, 'player' | 'nodeHarvestableByMe'> &
+    Partial<Pick<IWorld, 'cfg' | 'felledTrees'>>,
   professionId: GatheringProfessionId,
 ): GatherNodeDef | null {
   const nodeType = NODE_TYPE_BY_PROFESSION[professionId];
@@ -40,7 +42,16 @@ export function nearestGatherNodeForProfession(
   let best: GatherNodeDef | null = null;
   let bestDist = Infinity;
   let bestReady = false;
-  for (const node of gatherNodesInActiveWorld()) {
+  // An axe works the standing trees in reach (src/sim/trees/), the sim's own
+  // useGatherToolItem arm; one decoration-window query per click.
+  const candidates: GatherNodeDef[] = [...gatherNodesInActiveWorld()];
+  if (nodeType === 'wood' && world.cfg) {
+    const felled = world.felledTrees?.().trees;
+    for (const tree of choppableTreesNear(world.cfg.seed, p.pos.x, p.pos.z, INTERACT_RANGE)) {
+      if (!felled?.has(tree.id)) candidates.push(tree.node);
+    }
+  }
+  for (const node of candidates) {
     if (node.type !== nodeType) continue;
     const dx = p.pos.x - node.pos.x;
     const dz = p.pos.z - node.pos.z;

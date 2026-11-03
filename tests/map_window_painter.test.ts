@@ -2797,9 +2797,8 @@ describe('map_window_painter: zone-map gather nodes', () => {
 
     expect(result.gatherNodes.some((node) => !node.ready)).toBe(true);
     expect(result.gatherNodes.some((node) => node.ready)).toBe(true);
-    expect(new Set(result.gatherNodes.map((node) => node.type))).toEqual(
-      new Set(['ore', 'wood', 'herb']),
-    );
+    // Ore and herb: wood draws no node markers since tree chopping.
+    expect(new Set(result.gatherNodes.map((node) => node.type))).toEqual(new Set(['ore', 'herb']));
     expect(markerArt.calls.filter((call) => call.id.startsWith('gather-'))).toEqual(
       result.gatherNodes.map((node) => ({
         id: `gather-${node.type}`,
@@ -2975,7 +2974,6 @@ describe('map_window_painter: zone-map gather nodes', () => {
     // No ore glow and no ore ready fill while cooling; wood/herb still glow.
     expect(gatherFills.some((f) => f.style === 'paint:--color-map-gather-ore-glow')).toBe(false);
     expect(gatherFills.some((f) => f.style === 'paint:--color-map-gather-ore-ready')).toBe(false);
-    expect(gatherFills.some((f) => f.style === 'paint:--color-map-gather-wood-glow')).toBe(true);
     expect(gatherFills.some((f) => f.style === 'paint:--color-map-gather-herb-glow')).toBe(true);
     // Cooldown fallbacks retain an outline so they survive terrain while art
     // is loading. Nothing here is locked, so no diagonal strikes appear.

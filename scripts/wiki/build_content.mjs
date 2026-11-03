@@ -73,6 +73,11 @@ const entrySource = `
   export { RIFT_PATTERN_ITEM_IDS, FARM_RIFT_DROP_ITEM_IDS } from './src/sim/rift/progression.ts';
   export { ENCHANTS } from './src/sim/content/enchants.ts';
   export { GATHER_NODES } from './src/sim/content/gather_nodes.ts';
+  export {
+    TREE_SOURCE_ZONE_IDS, treeTiersInZone, TREE_REGROW_SECONDS, TREE_CHOP_MIN_SWINGS,
+    TREE_CHOP_MAX_SWINGS, TREE_CHOP_SWING_SECONDS,
+  } from './src/sim/content/tree_chopping.ts';
+  export { treeRequiredToolTier } from './src/sim/trees/tree_chop.ts';
   export { FISHING_TABLES_BY_BAND, FISHING_RARE_ID } from './src/sim/content/items.ts';
   export {
     TIER_SKILL_STEP, tierForSkill, REDUCED_TIER_MULTIPLIER, MINIMAL_TIER_MULTIPLIER,
@@ -188,6 +193,13 @@ const {
   FARM_RIFT_DROP_ITEM_IDS,
   ENCHANTS,
   GATHER_NODES,
+  TREE_SOURCE_ZONE_IDS,
+  treeTiersInZone,
+  TREE_REGROW_SECONDS,
+  TREE_CHOP_MIN_SWINGS,
+  TREE_CHOP_MAX_SWINGS,
+  TREE_CHOP_SWING_SECONDS,
+  treeRequiredToolTier,
   FISHING_TABLES_BY_BAND,
   FISHING_RARE_ID,
   TIER_SKILL_STEP,
@@ -1081,6 +1093,26 @@ const nodeRowsFor = (professionId) => {
   return [...byKey.values()].sort((a, b) => a.zone.localeCompare(b.zone) || a.tier - b.tier);
 };
 
+// Logging's sources are the forests (src/sim/trees/, docs/design/tree-chopping.md):
+// one row per (zone, tier) the zone's trees come in, the tool that tier asks
+// for (0: bare hands) and the zone's wood material. No count column: every
+// overworld tree outside a settlement is choppable.
+const treeRowsFor = (professionId) => {
+  if (NODE_HARVEST_TABLE.wood.professionId !== professionId) return null;
+  const rows = [];
+  for (const zoneId of TREE_SOURCE_ZONE_IDS) {
+    for (const tier of treeTiersInZone(zoneId)) {
+      rows.push({
+        zone: zoneById(zoneId)?.name ?? zoneId,
+        tier,
+        toolTier: treeRequiredToolTier(tier),
+        material: itemName(NODE_MATERIAL_TABLE.wood[zoneId].itemId),
+      });
+    }
+  }
+  return rows.sort((a, b) => a.zone.localeCompare(b.zone) || a.tier - b.tier);
+};
+
 // The catch bands read FISHING's OWN ladder (masterwrought Phase 11i), never
 // the shared PROFICIENCY_BAND_THRESHOLDS. They were the same array until that
 // phase split them, and reading the shared one here would publish 200 for a
@@ -1141,10 +1173,22 @@ const profGathering = GATHERING_PROFESSION_IDS.map((id) => {
   // number instead of failing the build; respawnSeconds is optional in the
   // emitted type and the page length-guards the section.
   const harvest = nodeType ? NODE_HARVEST_TABLE[nodeType] : null;
+  const trees = treeRowsFor(id);
   return {
     ...base,
     nodes: nodeRowsFor(id),
     ...(harvest ? { respawnSeconds: harvest.respawnSeconds } : {}),
+    ...(trees
+      ? {
+          trees: {
+            rows: trees,
+            regrowSeconds: TREE_REGROW_SECONDS,
+            minSwings: TREE_CHOP_MIN_SWINGS,
+            maxSwings: TREE_CHOP_MAX_SWINGS,
+            swingSeconds: TREE_CHOP_SWING_SECONDS,
+          },
+        }
+      : {}),
   };
 });
 
@@ -1641,6 +1685,13 @@ export interface GuideProfNodeRow {
   material: string;
 }
 
+export interface GuideProfTreeRow {
+  zone: string;
+  tier: number;
+  toolTier: number;
+  material: string;
+}
+
 export interface GuideProfFishingRow { name: string | null; pct: number; quality: string | null; }
 
 export interface GuideProfFishingBand {
@@ -1658,6 +1709,13 @@ export interface GuideProfGathering {
   tools: GuideProfTool[];
   nodes?: GuideProfNodeRow[];
   respawnSeconds?: number;
+  trees?: {
+    rows: GuideProfTreeRow[];
+    regrowSeconds: number;
+    minSwings: number;
+    maxSwings: number;
+    swingSeconds: number;
+  };
   fishing?: {
     biteMinSec: number;
     biteMaxSec: number;

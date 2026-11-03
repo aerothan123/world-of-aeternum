@@ -114,6 +114,42 @@ function toolsSection(g: GuideProfGathering): string {
     </section>`;
 }
 
+// Logging's sources are trees, not nodes (docs/design/tree-chopping.md): one
+// row per zone and tree tier, no count column (every tree outside a town is
+// choppable), and a regrow that is shared, unlike a node's per-player timer.
+function treesSection(g: GuideProfGathering): string {
+  const trees = g.trees;
+  if (!trees?.rows.length) return '';
+  const rows = trees.rows
+    .map(
+      (n) => `<tr>
+        <td>${esc(n.zone)}</td>
+        <td>${esc(formatNumber(n.tier))}</td>
+        <td>${esc(n.toolTier > 0 ? t('guide.profPages.toolTierReq', { tier: formatNumber(n.toolTier) }) : t('guide.profPages.treeToolNone'))}</td>
+        <td>${esc(n.material)}</td>
+      </tr>`,
+    )
+    .join('');
+  return `<section class="guide-block" id="prof-trees">
+      <h2>${esc(t('guide.profPages.treesHeading'))}</h2>
+      ${paras('guide.profPages.treesNote', {
+        minSwings: formatNumber(trees.minSwings),
+        maxSwings: formatNumber(trees.maxSwings),
+        swing: formatNumber(trees.swingSeconds),
+        regrow: formatNumber(trees.regrowSeconds),
+      })}
+      <div class="guide-table-scroll"><table class="guide-keytable guide-prof-table">
+        <thead><tr>
+          <th scope="col">${esc(t('guide.profPages.colZone'))}</th>
+          <th scope="col">${esc(t('guide.profPages.colTier'))}</th>
+          <th scope="col">${esc(t('guide.profPages.colToolNeeded'))}</th>
+          <th scope="col">${esc(t('guide.profPages.colMaterial'))}</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div>
+    </section>`;
+}
+
 function nodesSection(g: GuideProfGathering): string {
   // Length-guarded, not just presence-guarded: an EMPTY nodes array
   // (farming, which has no nodes by design) once rendered "respawns for you
@@ -402,7 +438,7 @@ export function gatheringDetailHtml(g: GuideProfGathering): string {
         <div class="guide-fact"><dt>${esc(t('guide.profPages.capLabel'))}</dt><dd>${esc(formatNumber(g.maxSkill))}</dd></div>
       </dl>
       ${isFarming ? farmingSection() : ''}
-      ${isFishing ? fishingSections(g) : isFarming ? farmRhythmSections(g) : rhythmSection(g) + nodesSection(g) + yieldsSection()}
+      ${isFishing ? fishingSections(g) : isFarming ? farmRhythmSections(g) : rhythmSection(g) + treesSection(g) + nodesSection(g) + yieldsSection()}
       ${toolsSection(g)}
       ${isFishing ? '' : toolEffectsSection()}
       ${bandsSection(g)}

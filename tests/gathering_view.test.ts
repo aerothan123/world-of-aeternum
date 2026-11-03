@@ -70,6 +70,7 @@ function makeWorld(opts: {
       drinking: null,
       auras: opts.auras ?? [],
     },
+    cfg: { seed: 42 },
     bags: opts.bags ?? [null, null, null, null],
     // buildNearbyGatherNodes resolves the locked dimension from the viewer's
     // PACK (the inventory below, not the bag sockets above); an empty pack

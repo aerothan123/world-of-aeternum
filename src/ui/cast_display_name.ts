@@ -15,6 +15,7 @@ import {
   SALVAGE_CAST_ID,
   SUNDER_CAST_ID,
   TOOL_RECHARGE_CAST_ID,
+  TREE_CHOP_CAST_ID,
 } from '../sim/types';
 import { abilityDisplayName, abilityDisplayNameFromSource } from './ability_display_name';
 import { type TranslationKey, t } from './i18n';
@@ -252,6 +253,7 @@ const RIFT_CAST_DISPLAY_KEYS: Partial<Record<TranslationKey, true>> = {
 export const castDisplayName = (id: string): string => {
   if (id === FISHING_CAST_ID) return t('abilityUi.cast.fishing');
   if (id === GATHER_CAST_ID) return t('abilityUi.cast.gathering');
+  if (id === TREE_CHOP_CAST_ID) return t('abilityUi.cast.chopping');
   // Corpse harvest (Intentional Gathering PR3) reuses the existing "Harvest"
   // label the corpse loot popup already ships, rather than a new cast key.
   if (id === CORPSE_HARVEST_CAST_ID) return t('hudChrome.corpseHarvest.title');

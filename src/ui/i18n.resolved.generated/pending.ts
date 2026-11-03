@@ -10,6 +10,7 @@
 
 export const pending: Record<string, readonly string[]> = {
   "es": [
+    "abilityUi.cast.chopping",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
     "entities.dungeons.house_eastbrook_quay_cottage.name",
@@ -37,6 +38,9 @@ export const pending: Record<string, readonly string[]> = {
     "entities.items.furn_wooden_chair.name",
     "entities.items.furn_wooden_stool.name",
     "entities.items.furn_woven_rug.name",
+    "guide.profPages.treeToolNone",
+    "guide.profPages.treesHeading",
+    "guide.profPages.treesNote",
     "hudChrome.craftName.furnishing",
     "hudChrome.housing.alreadyOwn",
     "hudChrome.housing.anchorKind.floor",
@@ -229,6 +233,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "es_ES": [
+    "abilityUi.cast.chopping",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
     "entities.dungeons.house_eastbrook_quay_cottage.name",
@@ -256,6 +261,9 @@ export const pending: Record<string, readonly string[]> = {
     "entities.items.furn_wooden_chair.name",
     "entities.items.furn_wooden_stool.name",
     "entities.items.furn_woven_rug.name",
+    "guide.profPages.treeToolNone",
+    "guide.profPages.treesHeading",
+    "guide.profPages.treesNote",
     "hudChrome.craftName.furnishing",
     "hudChrome.housing.alreadyOwn",
     "hudChrome.housing.anchorKind.floor",
@@ -448,6 +456,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "fr_FR": [
+    "abilityUi.cast.chopping",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
     "entities.dungeons.house_eastbrook_quay_cottage.name",
@@ -475,6 +484,9 @@ export const pending: Record<string, readonly string[]> = {
     "entities.items.furn_wooden_chair.name",
     "entities.items.furn_wooden_stool.name",
     "entities.items.furn_woven_rug.name",
+    "guide.profPages.treeToolNone",
+    "guide.profPages.treesHeading",
+    "guide.profPages.treesNote",
     "hudChrome.craftName.furnishing",
     "hudChrome.housing.alreadyOwn",
     "hudChrome.housing.anchorKind.floor",
@@ -667,6 +679,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "fr_CA": [
+    "abilityUi.cast.chopping",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
     "entities.dungeons.house_eastbrook_quay_cottage.name",
@@ -694,6 +707,9 @@ export const pending: Record<string, readonly string[]> = {
     "entities.items.furn_wooden_chair.name",
     "entities.items.furn_wooden_stool.name",
     "entities.items.furn_woven_rug.name",
+    "guide.profPages.treeToolNone",
+    "guide.profPages.treesHeading",
+    "guide.profPages.treesNote",
     "hudChrome.craftName.furnishing",
     "hudChrome.housing.alreadyOwn",
     "hudChrome.housing.anchorKind.floor",
@@ -887,6 +903,7 @@ export const pending: Record<string, readonly string[]> = {
   ],
   "en_CA": [],
   "it_IT": [
+    "abilityUi.cast.chopping",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
     "entities.dungeons.house_eastbrook_quay_cottage.name",
@@ -914,6 +931,9 @@ export const pending: Record<string, readonly string[]> = {
     "entities.items.furn_wooden_chair.name",
     "entities.items.furn_wooden_stool.name",
     "entities.items.furn_woven_rug.name",
+    "guide.profPages.treeToolNone",
+    "guide.profPages.treesHeading",
+    "guide.profPages.treesNote",
     "hudChrome.craftName.furnishing",
     "hudChrome.housing.alreadyOwn",
     "hudChrome.housing.anchorKind.floor",
@@ -1106,6 +1126,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "de_DE": [
+    "abilityUi.cast.chopping",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
     "entities.dungeons.house_eastbrook_quay_cottage.name",
@@ -1133,6 +1154,9 @@ export const pending: Record<string, readonly string[]> = {
     "entities.items.furn_wooden_chair.name",
     "entities.items.furn_wooden_stool.name",
     "entities.items.furn_woven_rug.name",
+    "guide.profPages.treeToolNone",
+    "guide.profPages.treesHeading",
+    "guide.profPages.treesNote",
     "hudChrome.craftName.furnishing",
     "hudChrome.housing.alreadyOwn",
     "hudChrome.housing.anchorKind.floor",
@@ -1325,6 +1349,10 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "zh_CN": [
+    "abilityUi.cast.chopping",
+    "guide.profPages.treeToolNone",
+    "guide.profPages.treesHeading",
+    "guide.profPages.treesNote",
     "questEditor.actions.confirmDelete",
     "questEditor.actions.delete",
     "questEditor.actions.discard",
@@ -1465,6 +1493,10 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "zh_TW": [
+    "abilityUi.cast.chopping",
+    "guide.profPages.treeToolNone",
+    "guide.profPages.treesHeading",
+    "guide.profPages.treesNote",
     "questEditor.actions.confirmDelete",
     "questEditor.actions.delete",
     "questEditor.actions.discard",
@@ -1605,6 +1637,10 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "ko_KR": [
+    "abilityUi.cast.chopping",
+    "guide.profPages.treeToolNone",
+    "guide.profPages.treesHeading",
+    "guide.profPages.treesNote",
     "questEditor.actions.confirmDelete",
     "questEditor.actions.delete",
     "questEditor.actions.discard",
@@ -1745,6 +1781,10 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "ja_JP": [
+    "abilityUi.cast.chopping",
+    "guide.profPages.treeToolNone",
+    "guide.profPages.treesHeading",
+    "guide.profPages.treesNote",
     "questEditor.actions.confirmDelete",
     "questEditor.actions.delete",
     "questEditor.actions.discard",
@@ -1885,6 +1925,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "pt_BR": [
+    "abilityUi.cast.chopping",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
     "entities.dungeons.house_eastbrook_quay_cottage.name",
@@ -1912,6 +1953,9 @@ export const pending: Record<string, readonly string[]> = {
     "entities.items.furn_wooden_chair.name",
     "entities.items.furn_wooden_stool.name",
     "entities.items.furn_woven_rug.name",
+    "guide.profPages.treeToolNone",
+    "guide.profPages.treesHeading",
+    "guide.profPages.treesNote",
     "hudChrome.craftName.furnishing",
     "hudChrome.housing.alreadyOwn",
     "hudChrome.housing.anchorKind.floor",
@@ -2104,6 +2148,10 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "ru_RU": [
+    "abilityUi.cast.chopping",
+    "guide.profPages.treeToolNone",
+    "guide.profPages.treesHeading",
+    "guide.profPages.treesNote",
     "questEditor.actions.confirmDelete",
     "questEditor.actions.delete",
     "questEditor.actions.discard",
@@ -2244,6 +2292,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "cs_CZ": [
+    "abilityUi.cast.chopping",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
     "entities.dungeons.house_eastbrook_quay_cottage.name",
@@ -2271,6 +2320,9 @@ export const pending: Record<string, readonly string[]> = {
     "entities.items.furn_wooden_chair.name",
     "entities.items.furn_wooden_stool.name",
     "entities.items.furn_woven_rug.name",
+    "guide.profPages.treeToolNone",
+    "guide.profPages.treesHeading",
+    "guide.profPages.treesNote",
     "hudChrome.craftName.furnishing",
     "hudChrome.housing.alreadyOwn",
     "hudChrome.housing.anchorKind.floor",
@@ -2463,6 +2515,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "nl_NL": [
+    "abilityUi.cast.chopping",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
     "entities.dungeons.house_eastbrook_quay_cottage.name",
@@ -2490,6 +2543,9 @@ export const pending: Record<string, readonly string[]> = {
     "entities.items.furn_wooden_chair.name",
     "entities.items.furn_wooden_stool.name",
     "entities.items.furn_woven_rug.name",
+    "guide.profPages.treeToolNone",
+    "guide.profPages.treesHeading",
+    "guide.profPages.treesNote",
     "hudChrome.craftName.furnishing",
     "hudChrome.housing.alreadyOwn",
     "hudChrome.housing.anchorKind.floor",
@@ -2682,6 +2738,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "pl_PL": [
+    "abilityUi.cast.chopping",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
     "entities.dungeons.house_eastbrook_quay_cottage.name",
@@ -2709,6 +2766,9 @@ export const pending: Record<string, readonly string[]> = {
     "entities.items.furn_wooden_chair.name",
     "entities.items.furn_wooden_stool.name",
     "entities.items.furn_woven_rug.name",
+    "guide.profPages.treeToolNone",
+    "guide.profPages.treesHeading",
+    "guide.profPages.treesNote",
     "hudChrome.craftName.furnishing",
     "hudChrome.housing.alreadyOwn",
     "hudChrome.housing.anchorKind.floor",
@@ -2901,6 +2961,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "id_ID": [
+    "abilityUi.cast.chopping",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
     "entities.dungeons.house_eastbrook_quay_cottage.name",
@@ -2928,6 +2989,9 @@ export const pending: Record<string, readonly string[]> = {
     "entities.items.furn_wooden_chair.name",
     "entities.items.furn_wooden_stool.name",
     "entities.items.furn_woven_rug.name",
+    "guide.profPages.treeToolNone",
+    "guide.profPages.treesHeading",
+    "guide.profPages.treesNote",
     "hudChrome.craftName.furnishing",
     "hudChrome.housing.alreadyOwn",
     "hudChrome.housing.anchorKind.floor",
@@ -3120,6 +3184,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "tr_TR": [
+    "abilityUi.cast.chopping",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
     "entities.dungeons.house_eastbrook_quay_cottage.name",
@@ -3147,6 +3212,9 @@ export const pending: Record<string, readonly string[]> = {
     "entities.items.furn_wooden_chair.name",
     "entities.items.furn_wooden_stool.name",
     "entities.items.furn_woven_rug.name",
+    "guide.profPages.treeToolNone",
+    "guide.profPages.treesHeading",
+    "guide.profPages.treesNote",
     "hudChrome.craftName.furnishing",
     "hudChrome.housing.alreadyOwn",
     "hudChrome.housing.anchorKind.floor",
@@ -3339,6 +3407,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "sv_SE": [
+    "abilityUi.cast.chopping",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
     "entities.dungeons.house_eastbrook_quay_cottage.name",
@@ -3366,6 +3435,9 @@ export const pending: Record<string, readonly string[]> = {
     "entities.items.furn_wooden_chair.name",
     "entities.items.furn_wooden_stool.name",
     "entities.items.furn_woven_rug.name",
+    "guide.profPages.treeToolNone",
+    "guide.profPages.treesHeading",
+    "guide.profPages.treesNote",
     "hudChrome.craftName.furnishing",
     "hudChrome.housing.alreadyOwn",
     "hudChrome.housing.anchorKind.floor",
@@ -3558,6 +3630,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "vi_VN": [
+    "abilityUi.cast.chopping",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
     "entities.dungeons.house_eastbrook_quay_cottage.name",
@@ -3585,6 +3658,9 @@ export const pending: Record<string, readonly string[]> = {
     "entities.items.furn_wooden_chair.name",
     "entities.items.furn_wooden_stool.name",
     "entities.items.furn_woven_rug.name",
+    "guide.profPages.treeToolNone",
+    "guide.profPages.treesHeading",
+    "guide.profPages.treesNote",
     "hudChrome.craftName.furnishing",
     "hudChrome.housing.alreadyOwn",
     "hudChrome.housing.anchorKind.floor",
@@ -3777,6 +3853,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.title"
   ],
   "da_DK": [
+    "abilityUi.cast.chopping",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
     "entities.dungeons.house_eastbrook_quay_cottage.name",
@@ -3804,6 +3881,9 @@ export const pending: Record<string, readonly string[]> = {
     "entities.items.furn_wooden_chair.name",
     "entities.items.furn_wooden_stool.name",
     "entities.items.furn_woven_rug.name",
+    "guide.profPages.treeToolNone",
+    "guide.profPages.treesHeading",
+    "guide.profPages.treesNote",
     "hudChrome.craftName.furnishing",
     "hudChrome.housing.alreadyOwn",
     "hudChrome.housing.anchorKind.floor",

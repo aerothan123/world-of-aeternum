@@ -16,6 +16,7 @@
 // loudly, and so does flipping a row without the content, which is exactly
 // the two-sided guard R37 asks for. Every sweep is DERIVED from the live
 // tables with per-table non-vacuity, never a hand-kept list of what exists.
+
 import { describe, expect, it } from 'vitest';
 import { GUIDE_PROF_GATHERING } from '../src/guide/content.generated';
 import { DEEDS } from '../src/sim/content/deeds';
@@ -32,6 +33,7 @@ import { HEROIC_VENDOR_STOCK } from '../src/sim/content/heroic_vendor';
 import { FISHING_TABLES_BY_BAND } from '../src/sim/content/items';
 import { GATHERING_PROFESSIONS, STATIONS } from '../src/sim/content/professions';
 import { ALL_RECIPES, FARM_RECIPES, HOE_RECIPES } from '../src/sim/content/recipes';
+import { treeTiersInZone } from '../src/sim/content/tree_chopping';
 import { ZONE1_NPCS } from '../src/sim/content/zone1';
 import { ZONE2_NPCS } from '../src/sim/content/zone2';
 import { ZONE3_NPCS } from '../src/sim/content/zone3';
@@ -179,6 +181,14 @@ describe('the R37 professions zone-rollout guard', () => {
     for (const zoneId of STARTER_ZONES) {
       for (const type of GATHER_NODE_TYPES) {
         const ofType = GATHER_NODES.filter((n) => n.zoneId === zoneId && n.type === type);
+        // Wood is the forest's since tree chopping retired the wood stands
+        // (docs/design/tree-chopping.md): no stand, and a starter zone's trees
+        // are tier 1 only, the same teeth the node kit carried.
+        if (type === 'wood') {
+          expect(ofType.length, `${zoneId} wood is trees, never a stand`).toBe(0);
+          expect([...treeTiersInZone(zoneId)], `${zoneId} starter trees`).toEqual([1]);
+          continue;
+        }
         expect(ofType.length, `${zoneId} ${type} starter kit`).toBe(STARTER_NODES_PER_TYPE[zoneId]);
       }
     }
@@ -329,6 +339,11 @@ describe('the new-zone checklist: every complete zone arrives mechanically whole
     for (const zoneId of complete) {
       const zoneTier = zoneTierOf(zoneId);
       for (const type of GATHER_NODE_TYPES) {
+        // Wood: the zone's forest (every tree a source) with a tier-1 entry rung.
+        if (type === 'wood') {
+          expect(treeTiersInZone(zoneId), `${zoneId} wood needs tier-1 trees`).toContain(1);
+          continue;
+        }
         const ofType = nodesIn(zoneId).filter((n) => n.type === type);
         expect(ofType.length, `${zoneId} ${type} circuit floor`).toBeGreaterThanOrEqual(6);
         expect(
@@ -523,9 +538,11 @@ describe('the new-zone checklist: every complete zone arrives mechanically whole
     for (const type of GATHER_NODE_TYPES) {
       const tiersPresent = new Set(
         complete.flatMap((zoneId) =>
-          nodesIn(zoneId)
-            .filter((n) => n.type === type)
-            .map((n) => n.tier),
+          type === 'wood'
+            ? [...treeTiersInZone(zoneId)] // the forest's tiers (tree chopping)
+            : nodesIn(zoneId)
+                .filter((n) => n.type === type)
+                .map((n) => n.tier),
         ),
       );
       expect(tiersPresent.size, `${type} ships at least one tier`).toBeGreaterThan(0);
@@ -693,13 +710,17 @@ describe('the new-zone checklist: every complete zone arrives mechanically whole
   it('the wiki renders every complete zone in each land gathering table', () => {
     // Non-vacuity first: the generated guide really carries node tables for
     // the three land professions, or the per-zone loop below never runs.
-    const withNodes = GUIDE_PROF_GATHERING.filter((guide) => guide.nodes?.length);
+    // Logging's table is its TREES table since tree chopping retired the
+    // wood stands (docs/design/tree-chopping.md).
+    const rowsOf = (guide: (typeof GUIDE_PROF_GATHERING)[number]) =>
+      guide.nodes?.length ? guide.nodes : (guide.trees?.rows ?? []);
+    const withNodes = GUIDE_PROF_GATHERING.filter((guide) => rowsOf(guide).length > 0);
     expect(withNodes.length).toBeGreaterThanOrEqual(3);
     for (const zoneId of complete) {
       const zoneName = zoneOf(zoneId).name;
       for (const guide of withNodes) {
         expect(
-          guide.nodes?.some((row) => row.zone === zoneName),
+          rowsOf(guide).some((row) => row.zone === zoneName),
           `${zoneName} missing from a wiki gathering table`,
         ).toBe(true);
       }

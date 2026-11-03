@@ -24,6 +24,8 @@ import { ITEMS } from '../sim/data';
 import { NODE_HARVEST_TABLE } from '../sim/professions/gathering';
 import { canGatherTier } from '../sim/professions/tools';
 import { minWieldRequirementToWork } from '../sim/professions/wield_gate';
+import { treeRequiredToolTier } from '../sim/trees/tree_chop';
+import { parseTreeNodeId } from '../sim/trees/tree_registry';
 import type { GatherNodeDef, GatherNodeType } from '../sim/types';
 import type { IWorld } from '../world_api';
 import { clockSeconds } from './clock_seconds_core';
@@ -161,10 +163,17 @@ const WIELD_UNMET_KEYS: Record<GatherNodeType, string> = {
  *  comparison locks every node, tier 1 included, for a toolless viewer. */
 export function gatherNodeToolGateFor(
   world: IWorld,
-  node: Pick<GatherNodeDef, 'type' | 'tier'>,
+  node: Pick<GatherNodeDef, 'type' | 'tier'> & { id?: string },
 ): { nodeTier: number; viewerToolTier: number; unmetText: string } {
   const professionId = NODE_HARVEST_TABLE[node.type].professionId;
   const viewerToolTier = viewerUsableToolTier(world, professionId);
+  // A tree (src/sim/trees/) asks for the axe tier the sim's chop gate asks:
+  // none at tier 1 (a new player chops bare-handed), the tree's tier above.
+  if (node.id !== undefined && parseTreeNodeId(node.id) !== null) {
+    const required = treeRequiredToolTier(node.tier);
+    if (required === 0) return { nodeTier: 0, viewerToolTier, unmetText: '' };
+    node = { type: node.type, tier: required };
+  }
   // The wield split, mirroring the sim's denial choice exactly: when a
   // covering tool is already carried and only its counter is short
   // (minWieldRequirementToWork non-null), the line names the counter; the

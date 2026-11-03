@@ -31,6 +31,7 @@ import { activeGatherNodes, GATHER_NODES, ITEMS } from '../../../sim/data';
 import {
   effectiveGradeToolTier,
   type GradeReadMeta,
+  gatherNodeOrTreeById,
   harvestYieldItemIdFor,
   NODE_HARVEST_TABLE,
   nodeMaterialFor,
@@ -229,7 +230,8 @@ export function gatherEffectPrompt(
   world: IWorld,
   nodeId: string,
 ): { effectId: string; charges: number } | null {
-  const node = GATHER_NODES.find((n) => n.id === nodeId);
+  // Content node or tree (`tree:<id>`): a prompt-mode slot confirms a chop too.
+  const node = gatherNodeOrTreeById(nodeId, world.cfg.seed);
   if (!node) return null;
   const professionId = NODE_HARVEST_TABLE[node.type].professionId;
   const meta = gradeReadMetaFor(world);
