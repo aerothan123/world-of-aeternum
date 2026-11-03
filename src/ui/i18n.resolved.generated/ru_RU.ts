@@ -6094,6 +6094,7 @@ export const ru_RU: EnTranslations = {
       "farming": "Земледелие",
       "corpseHarvesting": "Разделка трупов",
       "notReady": "Этот ресурсный узел еще не восстановился для вас.",
+      "chopPrompt": "Chop",
       "gatherLine": "Вы добываете: {name}.",
       "gatherLineQty": "Вы добываете: {name} x{qty}.",
       "harvestLine": "Вы собираете: {name}.",

@@ -6094,6 +6094,7 @@ export const ja_JP: EnTranslations = {
       "farming": "農耕",
       "corpseHarvesting": "死体採取",
       "notReady": "この資源ノードはまだあなたのために再生していません。",
+      "chopPrompt": "Chop",
       "gatherLine": "{name}を採集した。",
       "gatherLineQty": "{name}を{qty}個採集した。",
       "harvestLine": "{name}を剥ぎ取った。",

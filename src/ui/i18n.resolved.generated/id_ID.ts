@@ -6094,6 +6094,7 @@ export const id_ID: EnTranslations = {
       "farming": "Bertani",
       "corpseHarvesting": "Panen Jasad",
       "notReady": "Simpul sumber daya ini belum muncul kembali untukmu.",
+      "chopPrompt": "Chop",
       "gatherLine": "Anda mengumpulkan: {name}.",
       "gatherLineQty": "Anda mengumpulkan: {name} x{qty}.",
       "harvestLine": "Anda memanen: {name}.",

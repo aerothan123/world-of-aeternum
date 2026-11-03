@@ -216,13 +216,17 @@ describe('the notice surface the controller paints into', () => {
     expect(css).toMatch(/#interact-affordance\s*\{[^}]*pointer-events:\s*none/);
   });
 
+  // The notice is composed with the tree Chop chip in
+  // interact_affordances_controller.ts; Hud hands that composition the node.
   it('Hud resolves the stable notice node once when wiring the controller', () => {
     const hud = read('src/ui/hud.ts');
-    const start = hud.indexOf('this.farmPressAffordance = new FarmPressAffordanceController({');
+    const start = hud.indexOf('this.interactAffordances = new InteractAffordancesController({');
     expect(start).toBeGreaterThan(-1);
     const wiring = hud.slice(start, hud.indexOf('});', start) + 3);
     expect(wiring.match(/interact-affordance/g)).toHaveLength(1);
-    expect(wiring).toContain('root: ');
-    expect(wiring).not.toContain('root: () =>');
+    expect(wiring).toContain('notice: ');
+    expect(wiring).not.toContain('notice: () =>');
+    const composed = read('src/ui/hud/professions/interact_affordances_controller.ts');
+    expect(composed).toContain('root: deps.notice,');
   });
 });

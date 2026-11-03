@@ -6094,6 +6094,7 @@ export const vi_VN: EnTranslations = {
       "farming": "Trồng trọt",
       "corpseHarvesting": "Thu hoạch Thi thể",
       "notReady": "Điểm tài nguyên này chưa hồi sinh lại dành cho bạn.",
+      "chopPrompt": "Chop",
       "gatherLine": "Bạn tập hợp: {name}.",
       "gatherLineQty": "Bạn tập hợp: {name} x{qty}.",
       "harvestLine": "Bạn thu hoạch: {name}.",

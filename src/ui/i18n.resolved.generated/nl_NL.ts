@@ -6094,6 +6094,7 @@ export const nl_NL: EnTranslations = {
       "farming": "Landbouw",
       "corpseHarvesting": "Lijk oogsten",
       "notReady": "Dit grondstoffenpunt is voor jou nog niet teruggekeerd.",
+      "chopPrompt": "Chop",
       "gatherLine": "Jij verzamelt: {name}.",
       "gatherLineQty": "Je verzamelt: {name} x{qty}.",
       "harvestLine": "Je oogst: {name}.",

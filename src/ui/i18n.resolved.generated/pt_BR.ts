@@ -6094,6 +6094,7 @@ export const pt_BR: EnTranslations = {
       "farming": "Agricultura",
       "corpseHarvesting": "Coleta de cadáver",
       "notReady": "Este nó de recursos ainda não se regenerou para você.",
+      "chopPrompt": "Chop",
       "gatherLine": "Você coleta: {name}.",
       "gatherLineQty": "Você coleta: {name} x{qty}.",
       "harvestLine": "Você esfolou: {name}.",

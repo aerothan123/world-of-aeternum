@@ -36,6 +36,16 @@ from a sapling five minutes later. The little wood-stand nodes this replaced are
   (`src/game/interact_key_gather.ts` `withNearbyTrees`). Using an axe also targets the
   nearest standing tree (`src/game/gather_tool_use.ts`). Both send the ordinary harvest
   command with the tree's node id.
+- **Prompt.** A world-anchored "F Chop" chip (the coach's interact bubble chrome) stands
+  `CHOP_PROMPT_LIFT` above the terrain at the trunk of the tree the press would chop.
+  `src/game/chop_prompt_core.ts` `resolveChopPromptTarget` asks the press's own resolver
+  over the press's own node list (`interact_key_gather.ts` `interactKeyNodes`), so an npc,
+  a lootable corpse, an object or a nearer vein wins exactly as it wins the press, and a
+  felled or town tree never gets a chip. It hides while dead, in combat, swimming, busy
+  (a chop in progress included), action-locked in a form, or caged. The painter is
+  `src/ui/hud/professions/chop_prompt_painter.ts`, composed with the farm notice in
+  `interact_affordances_controller.ts`; pinned by `tests/chop_prompt_core.test.ts` and
+  `tests/chop_prompt_painter.test.ts`.
 - **The cast.** A chop is the existing gather cast (`professions/gathering.ts`
   `harvestNode`), under its own cast id `TREE_CHOP_CAST_ID`. That id gives the cast bar its
   "Chopping" label and the character its swing animation, both from public entity state. It
@@ -134,8 +144,8 @@ tree". A saved per-player timer for a retired node is dropped on load.
 - Far impostor sprites (past the detail band) still draw a felled tree standing until the
   player is close enough for the instanced batch.
 - There is no 3D click-pick for trees. F and axe use cover the interaction.
-- The HUD has no free-standing interact prompt for trees. The cast bar and the tooltip
-  carry the text.
+- The Chop chip has no disabled state: a tree the player's axe cannot work still shows
+  it, and the press answers with the existing node line ("Requires a better axe").
 
 Pinned by `tests/tree_chopping.test.ts`, `tests/felled_trees_wire.test.ts` and
 `tests/tree_felling_core.test.ts`.

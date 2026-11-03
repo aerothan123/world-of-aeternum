@@ -6094,6 +6094,7 @@ export const de_DE: EnTranslations = {
       "farming": "Landwirtschaft",
       "corpseHarvesting": "Leichenernte",
       "notReady": "Dieser Ressourcenknoten ist fur dich noch nicht nachgewachsen.",
+      "chopPrompt": "Chop",
       "gatherLine": "Sie sammeln: {name}.",
       "gatherLineQty": "Sie sammeln: {name} x{qty}.",
       "harvestLine": "Ihr häutet: {name}.",

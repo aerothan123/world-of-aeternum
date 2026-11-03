@@ -6094,6 +6094,7 @@ export const da_DK: EnTranslations = {
       "farming": "Landbrug",
       "corpseHarvesting": "Lighøst",
       "notReady": "Denne ressourcekilde er endnu ikke genskabt for dig.",
+      "chopPrompt": "Chop",
       "gatherLine": "Du samler: {name}.",
       "gatherLineQty": "Du samler: {name} x{qty}.",
       "harvestLine": "Du høster: {name}.",

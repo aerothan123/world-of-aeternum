@@ -6094,6 +6094,7 @@ export const zh_CN: EnTranslations = {
       "farming": "耕作",
       "corpseHarvesting": "尸体采集",
       "notReady": "这个资源节点尚未为你重新生成。",
+      "chopPrompt": "Chop",
       "gatherLine": "你采集了：{name}。",
       "gatherLineQty": "你采集了：{name} x{qty}。",
       "harvestLine": "你剥取了：{name}。",

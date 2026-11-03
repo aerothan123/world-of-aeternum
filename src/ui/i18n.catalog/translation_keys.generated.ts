@@ -15242,6 +15242,7 @@ export type TranslationKeyFlat =
   | 'hudChrome.fullTransfer.title'
   | 'hudChrome.gathering.biteLine'
   | 'hudChrome.gathering.catchLine'
+  | 'hudChrome.gathering.chopPrompt'
   | 'hudChrome.gathering.corpseHarvesting'
   | 'hudChrome.gathering.downgradeFind'
   | 'hudChrome.gathering.downgradeMark'

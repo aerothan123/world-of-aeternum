@@ -59,6 +59,16 @@ export function withNearbyTrees(
   return out;
 }
 
+/** The one node list the interact press resolves against: the active world's
+ *  veins and herbs plus every standing choppable tree in reach. The tree Chop
+ *  prompt (src/game/chop_prompt_core.ts) reads the SAME list, so the chip can
+ *  never name a node the press would not pick. */
+export function interactKeyNodes(
+  world: Pick<IWorld, 'player' | 'cfg' | 'felledTrees'>,
+): NearbyGatherNode[] {
+  return withNearbyTrees(world, gatherNodesInActiveWorld());
+}
+
 /** The gather-node arm's inputs for the interact key: the live node list,
  *  the tool-tier gate resolved against the picked node, the localized
  *  too-far / not-ready lines, and the shared confirm gate. The key thereby
@@ -69,7 +79,7 @@ export function interactKeyGatherOptions(
   effectConfirm: GatherEffectConfirmGate,
 ): NearbyGatherOptions {
   return {
-    nodes: withNearbyTrees(world, gatherNodesInActiveWorld()),
+    nodes: interactKeyNodes(world),
     toolGateFor: (node) => gatherNodeToolGateFor(world, node),
     tooFarText: t('questUi.errors.tooFar'),
     notReadyText: t('hudChrome.gathering.notReady'),

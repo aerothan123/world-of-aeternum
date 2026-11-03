@@ -6094,6 +6094,7 @@ export const en_CA: EnTranslations = {
       "farming": "Farming",
       "corpseHarvesting": "Corpse Harvesting",
       "notReady": "This resource node has not respawned for you yet.",
+      "chopPrompt": "Chop",
       "gatherLine": "You gather: {name}.",
       "gatherLineQty": "You gather: {name} x{qty}.",
       "harvestLine": "You harvest: {name}.",

@@ -8105,6 +8105,10 @@ export const hudChromeStrings = {
     // #1866: click/tap/interact-key error when a targeted node's per-viewer
     // respawn timer has not elapsed yet (IWorldProfessions#nodeHarvestableByMe).
     notReady: 'This resource node has not respawned for you yet.',
+    // The verb on the world-anchored interact chip over a standing tree the
+    // interact press would start chopping (hud/professions/chop_prompt_painter.ts),
+    // beside the interact keycap, the same chip shape as the coach's Talk.
+    chopPrompt: 'Chop',
     // Harvest feedback line (Professions 2.0), rendered from the
     // id-based gatherResult SimEvent. The SOLE player-visible line for a
     // harvest grant (#2430): the grant hub's own 'loot' event no longer prints

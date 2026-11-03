@@ -503,7 +503,11 @@ const MONOLITHS: MonolithRow[] = [
     // (src/ui/hud/vitals/vitals_view.ts); the ratchet, extract then lower.
     // LOWERED 17755 -> 17580 when the crypto rail (wallet, $WOC Exchange,
     // Daily Rewards, holder flair) was removed outright.
-    ceiling: 17580,
+    // LOWERED 17580 -> 17578 by the tree Chop prompt: the farm press notice's
+    // construction moved out with it into
+    // src/ui/hud/professions/interact_affordances_controller.ts, so the
+    // feature landed with the coordinator two lines smaller.
+    ceiling: 17578,
     seam: 'pure view core + thin painter on PainterHost (src/ui/CLAUDE.md)',
   },
   {

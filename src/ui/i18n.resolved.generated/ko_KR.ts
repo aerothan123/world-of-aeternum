@@ -6094,6 +6094,7 @@ export const ko_KR: EnTranslations = {
       "farming": "농사",
       "corpseHarvesting": "시체 채집",
       "notReady": "이 자원 채집지는 아직 당신을 위해 재생성되지 않았습니다.",
+      "chopPrompt": "Chop",
       "gatherLine": "{name}을(를) 채집했습니다.",
       "gatherLineQty": "{name}을(를) {qty}개 채집했습니다.",
       "harvestLine": "{name}을(를) 채취했습니다.",

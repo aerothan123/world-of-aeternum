@@ -6094,6 +6094,7 @@ export const pl_PL: EnTranslations = {
       "farming": "Uprawa",
       "corpseHarvesting": "Zbieranie ciał",
       "notReady": "Ten węzeł zasobu jeszcze nie odrósł dla ciebie.",
+      "chopPrompt": "Chop",
       "gatherLine": "Zbierasz: {name}.",
       "gatherLineQty": "Zbierasz: {name} x{qty}.",
       "harvestLine": "Oprawiasz: {name}.",

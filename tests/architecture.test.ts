@@ -859,6 +859,9 @@ const UI_PURE_CORES = [
   // leaf the same way it reads the tier knobs. Pure: no DOM, no sim, no renderer.
   'src/game/nameplate_view_prefs.ts',
   'src/game/nearby_interaction_core.ts',
+  // The tree Chop prompt's decision: the press's own candidate over the press's
+  // own node list, plus the refusal gates (hud/professions/chop_prompt_painter.ts).
+  'src/game/chop_prompt_core.ts',
   'src/ui/trade_view.ts',
   'src/ui/hud/rift/rift_floor_tracker_view.ts',
   'src/ui/hud/transport/ferry_hud_view.ts',
@@ -3400,6 +3403,8 @@ const UI_DOM_MODULES = [
   'src/ui/tracker_stack_anchor.ts',
   'src/ui/tutorial.ts',
   'src/ui/bootcamp.ts',
+  // The press affordances composition: reads window for the Chop chip's viewport.
+  'src/ui/hud/professions/interact_affordances_controller.ts',
   'src/ui/ui_effects_applier.ts',
   'src/ui/ui_icons.ts',
   'src/ui/ui_scale.ts',

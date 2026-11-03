@@ -6094,6 +6094,7 @@ export const en_XA: EnTranslations = {
       "farming": "[Ƒáŕɱíñĝ]",
       "corpseHarvesting": "[Çóŕþšé Ĥáŕʋéšţíñĝ]",
       "notReady": "[Ţĥíš ŕéšóúŕçé ñóðé ĥáš ñóţ ŕéšþáŵñéð ƒóŕ ýóú ýéţ.]",
+      "chopPrompt": "[Çĥóþ]",
       "gatherLine": "[Ýóú ĝáţĥéŕ: {name}.]",
       "gatherLineQty": "[Ýóú ĝáţĥéŕ: {name} ẋ{qty}.]",
       "harvestLine": "[Ýóú ĥáŕʋéšţ: {name}.]",

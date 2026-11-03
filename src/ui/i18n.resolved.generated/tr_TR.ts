@@ -6094,6 +6094,7 @@ export const tr_TR: EnTranslations = {
       "farming": "Çiftçilik",
       "corpseHarvesting": "Ceset Hasadı",
       "notReady": "Bu kaynak noktası senin için henüz yeniden oluşmadı.",
+      "chopPrompt": "Chop",
       "gatherLine": "Topladığınız şey: {name}.",
       "gatherLineQty": "Şunu toplarsınız: {name} x{qty}.",
       "harvestLine": "Yüzersiniz: {name}.",

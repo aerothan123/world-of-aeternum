@@ -6094,6 +6094,7 @@ export const cs_CZ: EnTranslations = {
       "farming": "Farmaření",
       "corpseHarvesting": "Sklízení těl",
       "notReady": "Tento zdroj pro tebe ještě neobnovil zásoby.",
+      "chopPrompt": "Chop",
       "gatherLine": "Shromažďujete: {name}.",
       "gatherLineQty": "Shromažďujete: {name} x{qty}.",
       "harvestLine": "Sklízíte: {name}.",

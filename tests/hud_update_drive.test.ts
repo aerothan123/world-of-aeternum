@@ -1271,11 +1271,11 @@ const HUD_UPDATE_DRIVES: readonly DriveRow[] = [
     why: 'closes the gossip dialog when the player walks away from the NPC',
   },
   {
-    call: 'this.farmPressAffordance.paint',
-    band: 'medium',
+    call: 'this.interactAffordances.update',
+    band: 'frame',
     gate: '',
     surface: 'chrome',
-    why: 'the interact affordance for the ambiguous farming press (a placed feast over a garden bed); the resolver checks the short static bed list first, so the entity walk happens only while standing in a garden, and both writes elide through the shared facet',
+    why: 'the press affordances: the feast-over-bed notice and the tree Chop chip. Both RESOLVES ride the medium band passed in as its poll flag (the farm resolver checks the short static bed list first; the chop resolver is the press ladder over the interest-scoped roster plus one decoration-window query of the interact reach); only the cheap player gate and the chip projection run per frame, and every write elides through the shared facet',
   },
   {
     call: 'this.arenaWindow.close',

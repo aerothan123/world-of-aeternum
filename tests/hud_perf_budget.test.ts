@@ -624,6 +624,15 @@ const HOT_PAINTERS: ReadonlyArray<ScannedPainter> = [
   { file: 'hud/cross_hotbar/cross_hotbar_painter.ts', allow: {}, reflowAllow: {} },
   { file: 'hud/warlock/doom_meter_painter.ts', allow: {}, reflowAllow: {} },
   { file: 'hud/priest/shadow_charge_painter.ts', allow: {}, reflowAllow: {} },
+  // The tree Chop chip: every write in the constructor, once (five class names,
+  // the root's aria-hidden, the touch glyph's svg markup); every paint write
+  // (show/hide, the keycap and verb text, left/top) is facet-routed. The UI
+  // Scale arrives as an injected dep, so no getUiScale proxy token here.
+  {
+    file: 'hud/professions/chop_prompt_painter.ts',
+    allow: { '.className': 5, '.setAttribute': 1, '.innerHTML': 1 },
+    reflowAllow: {},
+  },
   // target_dots is the tracker-painter contract on the same budget as the deed
   // and reliquary strips: ONE constructor innerHTML write for the whole row pool,
   // the frame's role + aria-label set once in that same constructor, and every

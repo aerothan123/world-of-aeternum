@@ -6094,6 +6094,7 @@ export const sv_SE: EnTranslations = {
       "farming": "Odling",
       "corpseHarvesting": "Kroppsskörd",
       "notReady": "Den här resursnoden har inte återspawnats för dig ännu.",
+      "chopPrompt": "Chop",
       "gatherLine": "Du samlar: {name}.",
       "gatherLineQty": "Du samlar in: {name} x{qty}.",
       "harvestLine": "Du skördar: {name}.",

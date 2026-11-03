@@ -1,4 +1,5 @@
 export * from './apex_recipe_view';
+export * from './chop_prompt_painter';
 export * from './commission_order_feedback';
 export * from './commission_order_view';
 export * from './commission_order_window';
@@ -41,6 +42,7 @@ export * from './harvest_journal_window';
 export * from './harvest_preference_controller';
 export * from './harvest_preference_picker';
 export * from './harvest_preference_view';
+export * from './interact_affordances_controller';
 export * from './learned_profession_name';
 export * from './legendary_naming_controller';
 export * from './material_hint_view';

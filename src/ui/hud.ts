@@ -3,7 +3,6 @@ import { authoredMapMusicInput } from '../game/authored_map_music';
 import { corpseLootAvailabilityInWorld } from '../game/corpse_loot_availability';
 import { CROSS_HOTBAR_ATTACK_ID } from '../game/cross_hotbar';
 import { syncDeathControllerHints } from '../game/death_controller_hint';
-import { farmPressTarget } from '../game/farm_press_target_core';
 import type { GamepadKind } from '../game/gamepad_map';
 import type { GraphicsSettingsSnapshot } from '../game/graphics_rebuild_core';
 import { InstanceMusicController, type InstanceMusicDecision } from '../game/instance_music';
@@ -578,7 +577,6 @@ import {
   salvageResultToast,
 } from './hud/professions/enchanting_view';
 import { handleFarmEvent } from './hud/professions/farm_event_feedback';
-import { FarmPressAffordanceController } from './hud/professions/farm_press_affordance_controller';
 import { PlantSheetWindow } from './hud/professions/farming_plant_sheet_window';
 import { feastTooltipLines } from './hud/professions/feast_tooltip_view';
 import { GatheringGoalController } from './hud/professions/gathering_goal_controller';
@@ -595,6 +593,7 @@ import {
 } from './hud/professions/gathering_view';
 import { HarvestJournalWindow } from './hud/professions/harvest_journal_window';
 import { HarvestPreferenceController } from './hud/professions/harvest_preference_controller';
+import { InteractAffordancesController } from './hud/professions/interact_affordances_controller';
 import { learnedProfessionMessage } from './hud/professions/learned_profession_name';
 import { materialHintLine } from './hud/professions/material_hint_view';
 import { materialProfessionHintText } from './hud/professions/material_profession_hint_view';
@@ -2242,15 +2241,14 @@ export class Hud {
       aurasPainter: this.aurasPainterDeps,
       hideTooltip: () => this.hideTooltip(),
     });
-    this.farmPressAffordance = new FarmPressAffordanceController({
-      root: $('#interact-affordance'),
+    this.interactAffordances = new InteractAffordancesController({
       writers: this.writerFacet,
-      text: (target) =>
-        t(
-          target === 'feast_over_harvest'
-            ? 'hudChrome.farming.pressTarget.feastOverHarvest'
-            : 'hudChrome.farming.pressTarget.feastOverPlant',
-        ),
+      ui: $('#ui'),
+      notice: $('#interact-affordance'),
+      worldToScreen: (x, y, z) => this.renderer.worldToScreen(x, y, z),
+      uiScale: getUiScale,
+      interactKeyLabel: () => this.keybinds.primaryLabel('interact'),
+      gamepad: () => this.optionsHooks?.gamepad ?? null,
     });
     this.localIgnoredNames = this.loadLocalIgnoredNames();
     this.meters = new Meters(sim, {
@@ -4620,7 +4618,7 @@ export class Hud {
   // state on the hot path. Options > Auras owns preview and placement mode.
   private readonly auraOverlayController: AuraOverlayController;
   private readonly cooldownManager: CooldownManagerController;
-  private readonly farmPressAffordance: FarmPressAffordanceController;
+  private readonly interactAffordances: InteractAffordancesController;
   // One-shot login preview gate for the phoenix (see update()).
   private procOverlayPreviewed = false;
   // Last spec the proc frame's name chip resolved under (see update()).
@@ -9153,9 +9151,9 @@ export class Hud {
       this.questDialog.updateProximity();
     }
 
-    // The farming press ambiguity (a placed feast over a garden bed), medium band: it moves
-    // only on foot travel, and the resolver checks the SHORT static bed list before any walk.
-    if (mediumHud) this.farmPressAffordance.paint(farmPressTarget(sim, p.pos, p.dead));
+    // The press affordances (feast-over-bed notice, tree Chop chip): resolved on the medium
+    // band, the chip projected every frame (hud/professions/interact_affordances_controller.ts).
+    this.interactAffordances.update(sim, mediumHud);
 
     // when a bout begins, get the queue panel out of the way for the fight. Route through
     // arenaWindow.close() (not a raw hide) so it returns focus to the opener (WCAG 2.4.3):
