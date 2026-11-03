@@ -15,7 +15,7 @@
       "tick": 0,
       "time": 0,
       "nextId": 1015,
-      "state": "a3e09bac",
+      "state": "c4b7ed94",
       "events": "741638a5",
       "rng": {
         "draws": 0,
@@ -72,6 +72,20 @@
           "equipmentInstance": {},
           "factionCurrencies": {},
           "factions": {},
+          "gatherTools": {
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
+          },
           "gatheringProficiency": {},
           "gliderRecords": {},
           "harvestPreference": {
@@ -170,7 +184,7 @@
       "tick": 20,
       "time": 1,
       "nextId": 1016,
-      "state": "883ace78",
+      "state": "928e71f8",
       "events": "3b189189",
       "rng": {
         "draws": 12,
@@ -181,7 +195,7 @@
       "tick": 40,
       "time": 2,
       "nextId": 1016,
-      "state": "3cfa1dbb",
+      "state": "67c8e173",
       "events": "84beb226",
       "rng": {
         "draws": 19,
@@ -192,7 +206,7 @@
       "tick": 60,
       "time": 3,
       "nextId": 1016,
-      "state": "e26f7538",
+      "state": "545f3a38",
       "events": "d73e9fa0",
       "rng": {
         "draws": 162,
@@ -203,7 +217,7 @@
       "tick": 72,
       "time": 3.6,
       "nextId": 1016,
-      "state": "5095d5b6",
+      "state": "601a9bce",
       "events": "741638a5",
       "rng": {
         "draws": 249,
@@ -283,6 +297,20 @@
           "equipmentInstance": {},
           "factionCurrencies": {},
           "factions": {},
+          "gatherTools": {
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
+          },
           "gatheringProficiency": {},
           "gliderRecords": {},
           "harvestPreference": {

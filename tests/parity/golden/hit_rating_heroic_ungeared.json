@@ -14,7 +14,7 @@
       "tick": 0,
       "time": 0,
       "nextId": 1015,
-      "state": "32cb804a",
+      "state": "1f02f68a",
       "events": "741638a5",
       "rng": {
         "draws": 0,
@@ -70,6 +70,20 @@
           "equipmentInstance": {},
           "factionCurrencies": {},
           "factions": {},
+          "gatherTools": {
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
+          },
           "gatheringProficiency": {},
           "gliderRecords": {},
           "harvestPreference": {
@@ -163,7 +177,7 @@
       "tick": 10,
       "time": 0.5,
       "nextId": 1016,
-      "state": "27bc5c84",
+      "state": "ff25226c",
       "events": "7560bbe4",
       "rng": {
         "draws": 3,
@@ -174,7 +188,7 @@
       "tick": 20,
       "time": 1,
       "nextId": 1016,
-      "state": "984d075d",
+      "state": "ea0d5e1d",
       "events": "d0de0f65",
       "rng": {
         "draws": 3,
@@ -185,7 +199,7 @@
       "tick": 30,
       "time": 1.5,
       "nextId": 1016,
-      "state": "59b6ebf4",
+      "state": "c17c4fbc",
       "events": "741638a5",
       "rng": {
         "draws": 3,
@@ -196,7 +210,7 @@
       "tick": 40,
       "time": 2,
       "nextId": 1016,
-      "state": "1be5b27b",
+      "state": "a38a3d83",
       "events": "741638a5",
       "rng": {
         "draws": 3,
@@ -207,7 +221,7 @@
       "tick": 50,
       "time": 2.5,
       "nextId": 1016,
-      "state": "d3e633a8",
+      "state": "91afc788",
       "events": "34fbb7fd",
       "rng": {
         "draws": 72,
@@ -218,7 +232,7 @@
       "tick": 60,
       "time": 3,
       "nextId": 1016,
-      "state": "d3582080",
+      "state": "5e475b40",
       "events": "741638a5",
       "rng": {
         "draws": 153,
@@ -229,7 +243,7 @@
       "tick": 70,
       "time": 3.5,
       "nextId": 1016,
-      "state": "d5ac5bd5",
+      "state": "d78710f5",
       "events": "741638a5",
       "rng": {
         "draws": 241,
@@ -240,7 +254,7 @@
       "tick": 80,
       "time": 4,
       "nextId": 1016,
-      "state": "98237e58",
+      "state": "7ef08418",
       "events": "7fb82d6e",
       "rng": {
         "draws": 329,
@@ -251,7 +265,7 @@
       "tick": 90,
       "time": 4.5,
       "nextId": 1016,
-      "state": "2bee3505",
+      "state": "f2749205",
       "events": "5370a4e8",
       "rng": {
         "draws": 414,
@@ -262,7 +276,7 @@
       "tick": 100,
       "time": 5,
       "nextId": 1016,
-      "state": "9fad24b0",
+      "state": "ded23a10",
       "events": "741638a5",
       "rng": {
         "draws": 507,
@@ -273,7 +287,7 @@
       "tick": 110,
       "time": 5.5,
       "nextId": 1016,
-      "state": "dc6fae77",
+      "state": "57561b87",
       "events": "741638a5",
       "rng": {
         "draws": 605,
@@ -284,7 +298,7 @@
       "tick": 120,
       "time": 6,
       "nextId": 1016,
-      "state": "2f4197e5",
+      "state": "dd87f5a5",
       "events": "741638a5",
       "rng": {
         "draws": 687,
@@ -295,7 +309,7 @@
       "tick": 120,
       "time": 6,
       "nextId": 1016,
-      "state": "2f4197e5",
+      "state": "dd87f5a5",
       "events": "741638a5",
       "rng": {
         "draws": 687,
@@ -385,6 +399,20 @@
           "equipmentInstance": {},
           "factionCurrencies": {},
           "factions": {},
+          "gatherTools": {
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
+          },
           "gatheringProficiency": {},
           "gliderRecords": {},
           "harvestPreference": {
@@ -555,7 +583,7 @@
       "tick": 120,
       "time": 6,
       "nextId": 1016,
-      "state": "2f4197e5",
+      "state": "dd87f5a5",
       "events": "741638a5",
       "rng": {
         "draws": 687,
@@ -645,6 +673,20 @@
           "equipmentInstance": {},
           "factionCurrencies": {},
           "factions": {},
+          "gatherTools": {
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
+          },
           "gatheringProficiency": {},
           "gliderRecords": {},
           "harvestPreference": {

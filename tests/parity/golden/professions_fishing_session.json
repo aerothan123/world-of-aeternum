@@ -18,7 +18,7 @@
       "tick": 0,
       "time": 0,
       "nextId": 1015,
-      "state": "bcb2ebd8",
+      "state": "1ea1f448",
       "events": "741638a5",
       "rng": {
         "draws": 0,
@@ -76,6 +76,20 @@
           "equipmentInstance": {},
           "factionCurrencies": {},
           "factions": {},
+          "gatherTools": {
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
+          },
           "gatheringProficiency": {},
           "gliderRecords": {},
           "harvestPreference": {
@@ -178,7 +192,7 @@
       "tick": 0,
       "time": 0,
       "nextId": 1015,
-      "state": "b569a6bd",
+      "state": "b2fcb46b",
       "events": "ea06a322",
       "rng": {
         "draws": 1,
@@ -237,6 +251,24 @@
           "equipmentInstance": {},
           "factionCurrencies": {},
           "factions": {},
+          "gatherTools": {
+            "fishing": {
+              "count": 1,
+              "itemId": "simple_fishing_pole"
+            },
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
+          },
           "gatheringProficiency": {},
           "gliderRecords": {},
           "harvestPreference": {
@@ -247,10 +279,6 @@
             {
               "count": 5,
               "itemId": "baked_bread"
-            },
-            {
-              "count": 1,
-              "itemId": "simple_fishing_pole"
             }
           ],
           "mailWelcomed": true,
@@ -348,7 +376,7 @@
       "tick": 91,
       "time": 4.55,
       "nextId": 1015,
-      "state": "1235d214",
+      "state": "20dd3a76",
       "events": "a76c4388",
       "rng": {
         "draws": 1,
@@ -407,6 +435,24 @@
           "equipmentInstance": {},
           "factionCurrencies": {},
           "factions": {},
+          "gatherTools": {
+            "fishing": {
+              "count": 1,
+              "itemId": "simple_fishing_pole"
+            },
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
+          },
           "gatheringProficiency": {},
           "gliderRecords": {},
           "harvestPreference": {
@@ -417,10 +463,6 @@
             {
               "count": 5,
               "itemId": "baked_bread"
-            },
-            {
-              "count": 1,
-              "itemId": "simple_fishing_pole"
             }
           ],
           "mailWelcomed": true,
@@ -518,7 +560,7 @@
       "tick": 91,
       "time": 4.55,
       "nextId": 1015,
-      "state": "14e1d2ce",
+      "state": "ceb9fba4",
       "events": "38eeb63f",
       "rng": {
         "draws": 2,
@@ -581,6 +623,24 @@
           "equipmentInstance": {},
           "factionCurrencies": {},
           "factions": {},
+          "gatherTools": {
+            "fishing": {
+              "count": 1,
+              "itemId": "simple_fishing_pole"
+            },
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
+          },
           "gatheringProficiency": {},
           "gliderRecords": {},
           "harvestPreference": {
@@ -591,10 +651,6 @@
             {
               "count": 5,
               "itemId": "baked_bread"
-            },
-            {
-              "count": 1,
-              "itemId": "simple_fishing_pole"
             },
             {
               "count": 1,
@@ -704,7 +760,7 @@
       "tick": 99,
       "time": 4.95,
       "nextId": 1015,
-      "state": "a5e1f1e9",
+      "state": "f1f6efa3",
       "events": "748ef352",
       "rng": {
         "draws": 3,
@@ -773,6 +829,24 @@
           "equipmentInstance": {},
           "factionCurrencies": {},
           "factions": {},
+          "gatherTools": {
+            "fishing": {
+              "count": 1,
+              "itemId": "simple_fishing_pole"
+            },
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
+          },
           "gatheringProficiency": {
             "fishing": 0.08
           },
@@ -785,10 +859,6 @@
             {
               "count": 5,
               "itemId": "baked_bread"
-            },
-            {
-              "count": 1,
-              "itemId": "simple_fishing_pole"
             },
             {
               "count": 1,

@@ -17,7 +17,7 @@
       "tick": 0,
       "time": 0,
       "nextId": 1015,
-      "state": "bcb2ebd8",
+      "state": "1ea1f448",
       "events": "741638a5",
       "rng": {
         "draws": 0,
@@ -75,6 +75,20 @@
           "equipmentInstance": {},
           "factionCurrencies": {},
           "factions": {},
+          "gatherTools": {
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
+          },
           "gatheringProficiency": {},
           "gliderRecords": {},
           "harvestPreference": {
@@ -177,7 +191,7 @@
       "tick": 0,
       "time": 0,
       "nextId": 1015,
-      "state": "8717dd9c",
+      "state": "cd1267b4",
       "events": "9879b61d",
       "rng": {
         "draws": 0,
@@ -235,6 +249,20 @@
           "equipmentInstance": {},
           "factionCurrencies": {},
           "factions": {},
+          "gatherTools": {
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
+          },
           "gatheringProficiency": {},
           "gliderRecords": {},
           "harvestPreference": {
@@ -348,7 +376,7 @@
       "tick": 0,
       "time": 0,
       "nextId": 1015,
-      "state": "28e5d9b6",
+      "state": "905f8716",
       "events": "7ed775c7",
       "rng": {
         "draws": 0,
@@ -406,6 +434,20 @@
           "equipmentInstance": {},
           "factionCurrencies": {},
           "factions": {},
+          "gatherTools": {
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
+          },
           "gatheringProficiency": {},
           "gliderRecords": {},
           "harvestPreference": {
@@ -529,7 +571,7 @@
       "tick": 0,
       "time": 0,
       "nextId": 1015,
-      "state": "20473902",
+      "state": "1473789a",
       "events": "b59a8139",
       "rng": {
         "draws": 0,
@@ -589,6 +631,20 @@
           "equipmentInstance": {},
           "factionCurrencies": {},
           "factions": {},
+          "gatherTools": {
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
+          },
           "gatheringProficiency": {},
           "gliderRecords": {},
           "harvestPreference": {
@@ -706,7 +762,7 @@
       "tick": 0,
       "time": 0,
       "nextId": 1016,
-      "state": "fb156829",
+      "state": "fbdf36c9",
       "events": "3a2b8159",
       "rng": {
         "draws": 0,
@@ -772,6 +828,20 @@
           },
           "factions": {
             "church_order": 80
+          },
+          "gatherTools": {
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
           },
           "gatheringProficiency": {},
           "gliderRecords": {},
@@ -906,7 +976,7 @@
       "tick": 0,
       "time": 0,
       "nextId": 1017,
-      "state": "90bd0bb3",
+      "state": "3e0638bb",
       "events": "4916db51",
       "rng": {
         "draws": 0,
@@ -978,6 +1048,20 @@
           "factions": {
             "church_order": 160,
             "rift_watch": 80
+          },
+          "gatherTools": {
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
           },
           "gatheringProficiency": {},
           "gliderRecords": {},
@@ -1136,7 +1220,7 @@
       "tick": 0,
       "time": 0,
       "nextId": 1017,
-      "state": "2b9536be",
+      "state": "ea562b26",
       "events": "accca6af",
       "rng": {
         "draws": 0,
@@ -1208,6 +1292,20 @@
           "factions": {
             "church_order": 160,
             "rift_watch": 80
+          },
+          "gatherTools": {
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
           },
           "gatheringProficiency": {},
           "gliderRecords": {},
@@ -1344,7 +1442,7 @@
       "tick": 0,
       "time": 0,
       "nextId": 1017,
-      "state": "2b9536be",
+      "state": "ea562b26",
       "events": "741638a5",
       "rng": {
         "draws": 0,
@@ -1416,6 +1514,20 @@
           "factions": {
             "church_order": 160,
             "rift_watch": 80
+          },
+          "gatherTools": {
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
           },
           "gatheringProficiency": {},
           "gliderRecords": {},

@@ -30,7 +30,7 @@
       "tick": 0,
       "time": 0,
       "nextId": 1017,
-      "state": "c8bbeba8",
+      "state": "4b230f20",
       "events": "741638a5",
       "rng": {
         "draws": 8,
@@ -87,6 +87,20 @@
           "equipmentInstance": {},
           "factionCurrencies": {},
           "factions": {},
+          "gatherTools": {
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
+          },
           "gathererIdentity": {
             "id": 101,
             "kind": "character"
@@ -169,6 +183,20 @@
           "equipmentInstance": {},
           "factionCurrencies": {},
           "factions": {},
+          "gatherTools": {
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
+          },
           "gathererIdentity": {
             "id": 102,
             "kind": "character"
@@ -411,7 +439,7 @@
       "tick": 0,
       "time": 0,
       "nextId": 1017,
-      "state": "e594a2bc",
+      "state": "927bb26c",
       "events": "372b8077",
       "rng": {
         "draws": 8,
@@ -472,6 +500,20 @@
           "equipmentInstance": {},
           "factionCurrencies": {},
           "factions": {},
+          "gatherTools": {
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
+          },
           "gathererIdentity": {
             "id": 101,
             "kind": "character"
@@ -571,6 +613,20 @@
           "equipmentInstance": {},
           "factionCurrencies": {},
           "factions": {},
+          "gatherTools": {
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
+          },
           "gathererIdentity": {
             "id": 102,
             "kind": "character"
@@ -814,7 +870,7 @@
       "tick": 0,
       "time": 0,
       "nextId": 1017,
-      "state": "e594a2bc",
+      "state": "927bb26c",
       "events": "741638a5",
       "rng": {
         "draws": 8,
@@ -875,6 +931,20 @@
           "equipmentInstance": {},
           "factionCurrencies": {},
           "factions": {},
+          "gatherTools": {
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
+          },
           "gathererIdentity": {
             "id": 101,
             "kind": "character"
@@ -974,6 +1044,20 @@
           "equipmentInstance": {},
           "factionCurrencies": {},
           "factions": {},
+          "gatherTools": {
+            "herbalism": {
+              "count": 1,
+              "itemId": "gathering_sickle"
+            },
+            "logging": {
+              "count": 1,
+              "itemId": "handaxe"
+            },
+            "mining": {
+              "count": 1,
+              "itemId": "copper_mining_pick"
+            }
+          },
           "gathererIdentity": {
             "id": 102,
             "kind": "character"
