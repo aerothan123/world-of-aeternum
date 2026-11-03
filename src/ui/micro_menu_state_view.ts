@@ -44,7 +44,6 @@ export const MICRO_MENU_LAUNCHERS: readonly MicroMenuLauncherSpec[] = [
   { selector: '#expedition-bell', windowId: 'dungeon-finder-window' },
   { selector: '#mm-cardduel', windowId: 'card-duel-window' },
   { selector: '#mm-leaderboard', windowId: 'leaderboard-window' },
-  { selector: '#mm-wocmarket', windowId: 'woc-market-window' },
   { selector: '#mm-social', windowId: 'social-window' },
   { selector: '#mm-options', windowId: 'options-menu' },
 ];

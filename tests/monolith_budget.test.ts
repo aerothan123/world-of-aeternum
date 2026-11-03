@@ -48,70 +48,6 @@ interface MonolithRow {
 // Ceilings set 2026-08-10 at roughly current size + 200 lines of headroom.
 const MONOLITHS: MonolithRow[] = [
   {
-    // The Exchange window, ratcheted at its exact size with ZERO headroom the
-    // moment it became the largest unpinned UI module (2201 -> 2623 lines
-    // across the polish pass: markup, copy and six small private helpers, none
-    // of it added to a coordinator). It is its own module, so the prime
-    // directive was never broken, but nothing stopped it growing either. The
-    // next line added here fails, and the fix is a sibling module behind the
-    // window's own seam (a pure view-core plus this thin consumer, the
-    // unit_portrait recipe), never a raise.
-    // Re-pinned DOWN from 2623 in the same change that set it: the status
-    // chrome (spinner, loading line, error line, the exact end time a countdown
-    // cell carries) moved to src/ui/woc_market_chrome.ts, which is the seam
-    // named below. The ratchet only works if it tightens after an extraction.
-    // Down 2621 -> 2618 when the browse control row followed the chrome out
-    // (the 15 sign-off round: sort leads the row), paying for the price
-    // cells' token-equivalence tooltips with room to spare.
-    // Down 2618 -> 2614 when the recent-sales list and the empty-sell caption
-    // followed (wocSalesHistoryHtml / wocSellEmptyHtml), paying for the
-    // resolved bond disclosures and the select-scroll command.
-    // Down 2614 -> 2612 at the Exchange UX round: the banners, the foot, the
-    // bid disclosures well and the buy-now face followed the chrome out
-    // (wocMarketBannersHtml / wocMarketFootHtml / wocBidDisclosuresHtml /
-    // wocBuyNowHtml), paying for the collapsed Bid terms toggle and the
-    // banner's connect shortcut. This also cleared the 36 lines the file had
-    // drifted over its own ceiling before this round.
-    // Down 2612 -> 2438 at the second Exchange UX round: the whole My
-    // Activities tab moved verbatim to src/ui/woc_market_activity_html.ts and
-    // the quote face to the chrome (wocQuoteFaceHtml), paying for the Browse
-    // filters, the seller click-through pane, and the hot-path review's
-    // poll-skip and click-dedupe guards, with room to spare.
-    // Up 2438 -> 2487 at the third round (a maintainer-requested feature
-    // pair): the category/subcategory filter axes and the seller pane's
-    // profile line, whose markup all landed in the chrome builders; the
-    // window carries only state, handler arms and passthroughs. Exact
-    // count, zero headroom; the sell-tab combobox block is the next
-    // standing extraction candidate.
-    // Held at 2487 for the Solana wallet card (the Claudium card above the
-    // Browse filters): the card's markup landed in the chrome builder, and
-    // the window's gated wallet fan-out arm was paid for by moving the quote
-    // countdown key's arithmetic to the view core (wocQuoteCountdownSig).
-    // Exact count, zero headroom.
-    file: 'src/ui/woc_market_window.ts',
-    // Down 2487 -> 2475 at the desktop-signing round: the WocMarketHooks
-    // contract moved to src/ui/woc_market_hooks.ts (wiring, window, and the
-    // trade arm all consume it), paying for the signer-reference plumbing.
-    // Held at 2475 through the Browse scroll/filter fix: the scroll-keeper
-    // keying moved to the view core (WocMarketScrollKeys and friends) and the
-    // dropdown-hold heuristic landed as its own module
-    // (src/ui/native_select_hold.ts), together paying exactly for the hold
-    // wiring, the wallet re-arm, and the scroll-after-focus ordering. The
-    // review round (the hold's lazy first-render attach, the no-rung scroll
-    // carve-out) fits inside the same count. Exact count, zero slack.
-    // Down 2475 -> 2419 at the Sales History tab: the browse detail pane
-    // (detailPaneHtml/bidFormHtml/confirmFieldsHtml) moved to
-    // src/ui/woc_market_detail_html.ts (the activity-html precedent), and the
-    // new tab's own table markup lives in src/ui/woc_market_sales_html.ts, so
-    // the fourth tab's window glue landed under the old ceiling (net of the
-    // v0.43.0 sync merge, which trimmed overlapping browse markup). Exact
-    // count, zero slack.
-    // LOWERED for permanent loot quality: item-cell markup moved into
-    // woc_market_chrome.ts, keeping tooltip registration in the window.
-    ceiling: 2414,
-    seam: 'a pure view-core module beside it (src/ui/woc_market_view.ts) that this window renders from',
-  },
-  {
     // Deliberately ZERO headroom (the woc marketplace baseline ratchet): the
     // next line added here fails, and the fix is extraction behind the seam,
     // never a raise. A raise stays a maintainer decision, per the header.
@@ -565,7 +501,9 @@ const MONOLITHS: MonolithRow[] = [
     // LOWERED 17769 -> 17755 at Project H interface packet 1: the player frame's
     // descriptor fill and its six text memos moved to the vitals core
     // (src/ui/hud/vitals/vitals_view.ts); the ratchet, extract then lower.
-    ceiling: 17755,
+    // LOWERED 17755 -> 17580 when the crypto rail (wallet, $WOC Exchange,
+    // Daily Rewards, holder flair) was removed outright.
+    ceiling: 17580,
     seam: 'pure view core + thin painter on PainterHost (src/ui/CLAUDE.md)',
   },
   {
@@ -1337,7 +1275,9 @@ const MONOLITHS: MonolithRow[] = [
     // maintainer call). Phase 3 adds the five house storage delegates, their
     // namespace import and the houseStorageRev default: 11437 -> 11456, raised
     // in the Project H fork (a maintainer call).
-    ceiling: 11456,
+    // LOWERED 11456 -> 11424 when the crypto rail (wallet, $WOC Exchange,
+    // Daily Rewards, holder flair) was removed outright.
+    ceiling: 11424,
     seam: 'a sim system module behind SimContext (src/sim/CLAUDE.md)',
   },
   {
@@ -1596,7 +1536,9 @@ const MONOLITHS: MonolithRow[] = [
     // Landing-first integration extracts the project counter and community tracking.
     // Re-pin the combined release entrypoint at its measured size, with zero slack.
     // LOWERED to 10773 at the merge of PR 4390 (riding ranks) over release/v0.45.0. wc -l.
-    ceiling: 10773,
+    // LOWERED 10773 -> 9539 when the crypto rail (wallet, $WOC Exchange,
+    // Daily Rewards, holder flair) was removed outright.
+    ceiling: 9539,
     seam: 'a src/game/ or src/ui/ sibling module; main.ts is a firewall, not a home',
   },
   {
@@ -1889,7 +1831,9 @@ const MONOLITHS: MonolithRow[] = [
     // dispatch cases, the one-line `hst` emit (server/house_storage_wire.ts) and
     // its two session trackers: 9689 -> 9704, raised in the Project H fork (a
     // maintainer call).
-    ceiling: 9704,
+    // LOWERED 9704 -> 9613 when the crypto rail (wallet, $WOC Exchange,
+    // Daily Rewards, holder flair) was removed outright.
+    ceiling: 9613,
     seam: 'a sibling server module; see the hot-path seams in server/CLAUDE.md',
   },
   {
@@ -2091,7 +2035,9 @@ const MONOLITHS: MonolithRow[] = [
     // LOWERED 5338 -> 5330 at the integration merge of #4525: the reconnect backoff
     // schedule moved into reconnect_policy.ts beside its predicates, paying for the
     // tavern's resting getter and sitOnSeat send. wc -l. Exact count.
-    ceiling: 5330,
+    // LOWERED 5330 -> 5177 when the crypto rail (wallet, $WOC Exchange,
+    // Daily Rewards, holder flair) was removed outright.
+    ceiling: 5177,
     seam: 'a src/net sibling module (the refactor/net-online split is the template)',
   },
   {
@@ -2278,7 +2224,9 @@ const MONOLITHS: MonolithRow[] = [
     // Referral inserts and eligibility hydration live in referral_armour_db.ts.
     // Composes the existing buddy PR additions with integration extractions.
     // Exact merged size; no additional coordinator logic introduced by resolution.
-    ceiling: 4499,
+    // LOWERED 4499 -> 4437 when the crypto rail (wallet, $WOC Exchange,
+    // Daily Rewards, holder flair) was removed outright.
+    ceiling: 4437,
     seam: 'a domain <domain>_db.ts module with its own *_SCHEMA (server/CLAUDE.md)',
   },
   {
@@ -2606,7 +2554,9 @@ const MONOLITHS: MonolithRow[] = [
     // controllers now build over one seam object (store_spend_controllers.ts).
     // Summary and countdown formatting live in daily_rewards_chrome_view.ts.
     // Membership painting and reward task markup now live in tested siblings.
-    ceiling: 1235,
+    // LOWERED 1235 -> 1105 when the crypto rail (wallet, $WOC Exchange,
+    // Daily Rewards, holder flair) was removed outright.
+    ceiling: 1105,
     seam: 'a pure view-core plus a thin painter sibling (src/ui/CLAUDE.md)',
   },
   {

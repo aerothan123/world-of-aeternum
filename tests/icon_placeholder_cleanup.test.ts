@@ -27,10 +27,6 @@ describe('placeholder glyph cleanup', () => {
     expect(social).not.toMatch(/[\u25b2\u25bc]/u);
     expect(source('src/ui/tutorial.ts')).toContain("arrow.innerHTML = svgIcon('next')");
     expect(source('src/ui/char_window.ts')).toContain("unequip.innerHTML = svgIcon('close')");
-    expect(source('src/main.ts')).toContain("closeBtn.innerHTML = svgIcon('close')");
-    expect(source('src/ui/mobile_wallet_launcher.ts')).toContain(
-      "closeBtn.innerHTML = svgIcon('close')",
-    );
     expect(source('src/ui/store_promo_card.ts')).toContain("close.innerHTML = svgIcon('close')");
     expect(source('src/ui/hud.ts')).toContain(
       'current === i ? `<span class="ctx-selected">$' + "{svgIcon('check')}</span>` : ''",

@@ -1344,12 +1344,9 @@ export interface AccountDetail {
   isAi: boolean;
   isStreamer: boolean;
   streamerLinks: StreamerLinks;
-  dailyRewardsBan?: { reason: string; createdAt: string; expiresAt: string | null } | null;
-  dailyRewardsIpBans?: { ip: string; reason: string; createdAt: string }[];
   // The operator-applied Cheater mark (accounts.cheater_mark_*): the remaining
   // played-second budget, the audited reason, and when it was applied. Null when
-  // the account is not marked, so the dashboard can branch apply-vs-lift the way
-  // it does for dailyRewardsBan.
+  // the account is not marked, so the dashboard can branch apply-vs-lift.
   cheaterMark: { secondsRemaining: number; reason: string; setAt: string | null } | null;
   // The operator world quest block (accounts.world_quests_*): the audited reason and
   // when it was applied. Null when the account is not blocked.
@@ -1648,7 +1645,7 @@ export async function listModerationActions(
 }
 
 export async function accountDetail(accountId: number): Promise<AccountDetail | null> {
-  const [account, characters, sessions, moderationHistory, dailyRewardsIpBans] = await Promise.all([
+  const [account, characters, sessions, moderationHistory] = await Promise.all([
     // The account row carries a correlated sum over ALL of this account's
     // play_sessions, the one scan here that grows without bound, so run it on the
     // raised allowance; the remaining reads stay bounded (LIMIT-capped or indexed
@@ -1664,9 +1661,6 @@ export async function accountDetail(accountId: number): Promise<AccountDetail | 
                 is_ai, is_streamer, streamer_links,
                 general_chat_quota.messages AS general_chat_quota_messages,
                 general_chat_quota.window_minutes AS general_chat_quota_window_minutes,
-                active_daily_rewards_ban.daily_rewards_ban_reason,
-                active_daily_rewards_ban.daily_rewards_banned_at,
-                active_daily_rewards_ban.daily_rewards_ban_expires_at,
                 cheater_mark_seconds,
                 COALESCE(cheater_mark_reason, '') AS cheater_mark_reason,
                 cheater_mark_set_at,
@@ -1680,14 +1674,6 @@ export async function accountDetail(accountId: number): Promise<AccountDetail | 
          FROM accounts
          LEFT JOIN account_general_chat_rate_limits general_chat_quota
            ON general_chat_quota.account_id = accounts.id
-         LEFT JOIN LATERAL (
-           SELECT reason AS daily_rewards_ban_reason,
-                  created_at AS daily_rewards_banned_at,
-                  expires_at AS daily_rewards_ban_expires_at
-             FROM daily_reward_bans
-            WHERE account_id = accounts.id
-              AND (expires_at IS NULL OR expires_at > now())
-         ) active_daily_rewards_ban ON true
          WHERE id = $1`,
         [accountId],
       ),
@@ -1722,26 +1708,6 @@ export async function accountDetail(accountId: number): Promise<AccountDetail | 
        LIMIT 50`,
       [accountId],
     ),
-    // The moderation view's own IP-ban lookback, deliberately OR-shaped
-    // (admin-triggered, bounded to one account, off the hot path). The
-    // association arm keeps an aged-out link visible: once retention folds an
-    // account's old play_sessions rows into account_ip_associations, only that
-    // arm still ties the account to its banned IP.
-    pool.query(
-      `SELECT ib.ip_address, ib.reason, ib.created_at
-         FROM daily_reward_ip_bans ib
-        WHERE ib.ip_address = (SELECT last_login_ip FROM accounts WHERE id = $1)
-           OR EXISTS (
-             SELECT 1 FROM play_sessions ps
-              WHERE ps.account_id = $1 AND ps.ip_address = ib.ip_address
-           )
-           OR EXISTS (
-             SELECT 1 FROM account_ip_associations assoc
-              WHERE assoc.account_id = $1 AND assoc.ip_address = ib.ip_address
-           )
-        ORDER BY ib.created_at DESC`,
-      [accountId],
-    ),
   ]);
   const a = account.rows[0];
   if (!a) return null;
@@ -1773,19 +1739,6 @@ export async function accountDetail(accountId: number): Promise<AccountDetail | 
     isAi: flair.ai,
     isStreamer: flair.streamer,
     streamerLinks: flair.links,
-    dailyRewardsBan:
-      a.daily_rewards_ban_reason == null
-        ? null
-        : {
-            reason: String(a.daily_rewards_ban_reason),
-            createdAt: a.daily_rewards_banned_at,
-            expiresAt: a.daily_rewards_ban_expires_at ?? null,
-          },
-    dailyRewardsIpBans: (dailyRewardsIpBans?.rows ?? []).map((row) => ({
-      ip: String(row.ip_address),
-      reason: String(row.reason),
-      createdAt: row.created_at,
-    })),
     cheaterMark:
       Number(a.cheater_mark_seconds) > 0
         ? {

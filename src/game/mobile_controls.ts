@@ -151,11 +151,8 @@ export interface MobileControlCallbacks {
   onTalents(): void;
   onMap(): void;
   onLeaderboard(): void;
-  /** Open the Daily Rewards chest, folded into the More tray on mobile. */
+  /** Open the Store chest, folded into the More tray on mobile. */
   onDailyRewards(): void;
-  /** Open the $WOC Exchange, folded into the More tray on mobile (its
-   *  launcher stays hidden until the online market attach unhides it). */
-  onWocMarket(): void;
   /** Open the Book of Deeds window, folded into the More tray on mobile. */
   onDeeds(): void;
   /** Open The Reliquary window, folded into the More tray on mobile. */
@@ -546,7 +543,6 @@ export class MobileControls {
     this.bindButton('mobile-map', () => this.callbacks.onMap());
     this.bindButton('mobile-leaderboard', () => this.callbacks.onLeaderboard());
     this.bindButton('mobile-daily-rewards', () => this.callbacks.onDailyRewards());
-    this.bindButton('mobile-wocmarket', () => this.callbacks.onWocMarket());
     this.bindButton('mobile-deeds', () => this.callbacks.onDeeds());
     this.bindButton('mobile-reliquary', () => this.callbacks.onReliquary());
     this.bindButton('mobile-loot-explorer', () => this.callbacks.onLootExplorer());

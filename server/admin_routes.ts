@@ -127,11 +127,6 @@ export const ADMIN_ROUTE_PERMISSIONS: readonly AdminRouteRule[] = [
     permission: 'moderation.act',
   },
   {
-    method: 'GET',
-    pattern: /^\/admin\/api\/accounts\/(\d+)\/daily-rewards-events$/,
-    permission: 'accounts.read',
-  },
-  {
     method: 'POST',
     pattern: /^\/admin\/api\/accounts\/(\d+)\/reset-password$/,
     permission: 'accounts.password',
@@ -143,23 +138,6 @@ export const ADMIN_ROUTE_PERMISSIONS: readonly AdminRouteRule[] = [
   },
   { method: 'GET', pattern: '/admin/api/shared-ips', permission: 'moderation.read' },
 
-  // $WOC Exchange moderation (server/woc_market_routes.ts operator arms).
-  { method: 'GET', pattern: '/admin/api/woc-market/listings', permission: 'moderation.read' },
-  {
-    method: 'POST',
-    pattern: /^\/admin\/api\/woc-market\/listings\/(\d+)\/suspend$/,
-    permission: 'moderation.act',
-  },
-  {
-    method: 'POST',
-    pattern: /^\/admin\/api\/woc-market\/sales\/(\d+)\/excluded$/,
-    permission: 'moderation.act',
-  },
-  {
-    method: 'POST',
-    pattern: /^\/admin\/api\/woc-market\/accounts\/(\d+)\/clear-strikes$/,
-    permission: 'moderation.act',
-  },
   { method: 'GET', pattern: '/admin/api/ip-associations', permission: 'accounts.read' },
 
   { method: 'GET', pattern: '/admin/api/moderation/queue', permission: 'moderation.read' },
@@ -260,16 +238,6 @@ export const ADMIN_ROUTE_PERMISSIONS: readonly AdminRouteRule[] = [
   {
     method: 'POST',
     pattern: /^\/admin\/api\/moderation\/accounts\/(\d+)\/kick$/,
-    permission: 'moderation.act',
-  },
-  {
-    method: 'POST',
-    pattern: /^\/admin\/api\/moderation\/accounts\/(\d+)\/daily-rewards-(ban|unban)$/,
-    permission: 'moderation.act',
-  },
-  {
-    method: 'POST',
-    pattern: /^\/admin\/api\/moderation\/accounts\/(\d+)\/daily-rewards-ip-(ban|unban)$/,
     permission: 'moderation.act',
   },
   {

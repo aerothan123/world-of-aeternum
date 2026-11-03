@@ -9376,14 +9376,7 @@
     pointer-events: auto;
     touch-action: manipulation;
   }
-  #daily-rewards-button.spin-ready {
-    border-color: var(--gold);
-  }
-  #daily-rewards-button.spin-ready .daily-rewards-icon {
-    animation: daily-rewards-icon-pulse 1.6s ease-in-out infinite;
-    animation-duration: calc(1.6s * var(--motion-scale, 1));
-    animation-play-state: var(--fx-ambient-anim, running);
-  }
+
   #daily-rewards-button .daily-rewards-icon {
     position: relative;
     z-index: 1;
@@ -9397,15 +9390,7 @@
     filter: drop-shadow(0 1px 2px color-mix(in srgb, var(--color-keyline) 70%, transparent));
   }
   /* The ready count rides the shared corner badge, pulled in to the 34x30 launcher. */
-  #daily-rewards-button .daily-reward-count {
-    top: -2px;
-    right: -2px;
-    z-index: 2;
-    display: none;
-  }
-  #daily-rewards-button.spin-ready .daily-reward-count {
-    display: inline-flex;
-  }
+
   #daily-rewards-button:hover,
   #daily-rewards-button:focus-visible {
     border-color: var(--gold);
@@ -9414,30 +9399,6 @@
   #daily-rewards-button:focus-visible {
     outline: 2px solid var(--color-border-focus);
     outline-offset: 2px;
-  }
-  @keyframes daily-rewards-icon-pulse {
-    0%,
-    100% {
-      filter: drop-shadow(
-          0 2px calc(2px * var(--fx-shadow, 1))
-            color-mix(in srgb, var(--color-keyline) 70%, transparent)
-        )
-        drop-shadow(
-          0 0 calc(4px * var(--fx-shadow, 1)) color-mix(in srgb, var(--gold) 35%, transparent)
-        )
-        brightness(1);
-    }
-    50% {
-      filter: drop-shadow(
-          0 2px calc(2px * var(--fx-shadow, 1))
-            color-mix(in srgb, var(--color-keyline) 70%, transparent)
-        )
-        drop-shadow(
-          0 0 calc(14px * var(--fx-shadow, 1))
-            color-mix(in srgb, var(--color-glint) 80%, transparent)
-        )
-        brightness(1.16) saturate(1.12);
-    }
   }
   /* the lockout panel rows inside the shared tooltip box */
   .rl-panel-title {
@@ -9522,9 +9483,7 @@
   body.native-app .social-link.donate,
   body.native-app #mobile-donate,
   body.native-app #nav-btn-download,
-  body.native-app:not(.seeker-wallet-enabled) .cs-wallet,
-  body.native-app:not(.seeker-wallet-enabled) .cs-wallet-hidden-note,
-  body.native-app:not(.seeker-wallet-enabled) .account-wallet-card,
+  body.native-app .cs-wallet,
   body.native-app #performance-tip,
   body.native-app .official-site-copy {
     display: none !important;
@@ -13966,8 +13925,7 @@
   /* The $WOC price field joins this declaration rather than restating it: the
      two are the same control in the same window, and a second copy of the
      colours would drift the moment either is retuned. */
-  .trade-money input,
-  .trade-woc-price {
+  .trade-money input {
     width: 80px;
     user-select: text;
     font-variant-numeric: tabular-nums;
@@ -13977,10 +13935,6 @@
   #trade-window input:focus-visible {
     outline: 2px solid var(--color-border-focus);
     outline-offset: 2px;
-  }
-  .trade-woc-price::placeholder {
-    color: var(--color-text-muted);
-    opacity: 1;
   }
   .trade-money .mkt-coin-tag {
     margin-right: 2px;
@@ -14011,41 +13965,12 @@
      margin, not the flex gap) so an empty derived line costs no height and yet
      STAYS in the accessibility tree: the hint is the arm's live region and a
      display: none region drops out of it between announcements. */
-  .trade-woc-arm {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    margin-top: var(--spacing-sm);
-    padding-top: var(--spacing-sm);
-    /* The one internal divider: the 10.6 gold fade, not a flat bronze line. */
-    background:
-      linear-gradient(
-        90deg,
-        transparent,
-        color-mix(in srgb, var(--color-accent) 38%, transparent),
-        transparent
-      )
-      top / 100% 1px no-repeat;
-    font-variant-numeric: tabular-nums;
-  }
-  .trade-woc-arm > * + * {
-    margin-top: 6px;
-  }
+
   /* An empty line costs nothing, except the three money lines that arrive
      asynchronously (the estimate lands a debounce and a round trip after the
      first keystroke): those keep their slot so Send never moves under a hand
      that is already reaching for it. */
-  .trade-woc-arm > :empty:not(.trade-woc-equiv):not(.trade-woc-fee):not(.trade-woc-net) {
-    margin-top: 0;
-  }
-  .trade-woc-equiv,
-  .trade-woc-fee,
-  .trade-woc-net {
-    min-height: 1.3em;
-  }
-  .trade-woc-arm .btn {
-    margin: 0;
-  }
+
   /* A disabled coin field must READ as disabled, not merely refuse input. */
   .trade-money .coininput:disabled {
     opacity: 0.45;
@@ -14053,25 +13978,7 @@
   }
   /* The standing offer, read in the Money row in place of that side's gold:
      its own line under the label, in the accent, tabular. */
-  .trade-money .trade-woc-money {
-    display: block;
-    color: var(--color-accent);
-    font-variant-numeric: tabular-nums;
-    margin-top: var(--spacing-xs);
-  }
-  .trade-woc-waiting {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin: 0;
-    font-size: 13px;
-    color: var(--color-text-muted);
-  }
-  .trade-woc-done {
-    margin: 0;
-    font-size: 13px;
-    color: var(--color-accent);
-  }
+
   /* The ONE waiting ring both money surfaces use (the Exchange's busy line and
      inline bond rows, the arm's Pay button and waiting lines): a plain rotating
      arc in the accent over a faint accent ring, sized and inline-block so it
@@ -14090,10 +13997,6 @@
     animation: woc-spin 0.9s linear infinite;
   }
   /* Inside a flex line the container's gap owns the spacing. */
-  .trade-woc-waiting .woc-spinner,
-  .trade-woc-block .woc-spinner {
-    margin-right: 0;
-  }
   @keyframes woc-spin {
     to {
       transform: rotate(360deg);
@@ -14110,116 +14013,28 @@
   /* The currency switch: a group of two pressed-state toggles under a hairline,
      the pressed one in the accent with a 2px underline (shape as well as tone,
      so it survives forced colours), not the maroon action-button gradient. */
-  .trade-woc-modes {
-    display: flex;
-    gap: var(--spacing-sm);
-  }
-  .trade-woc-arm .btn.trade-woc-mode {
-    margin: 0;
-    font-size: 13px;
-  }
-  .trade-woc-arm .btn.trade-woc-mode:disabled {
-    filter: none;
-    opacity: 0.55;
-  }
-  .trade-woc-price-label {
-    font-size: 12px;
-    color: var(--color-text-muted);
-  }
-  .trade-woc-price {
-    width: auto;
-    min-width: 7ch;
-    max-width: 120px;
-  }
-  .trade-woc-equiv,
-  .trade-woc-fee,
-  .trade-woc-net,
-  .trade-woc-leg {
-    margin: 0;
-    font-size: 13px;
-    font-variant-numeric: tabular-nums;
-  }
-  .trade-woc-net {
-    color: var(--color-accent);
-  }
-  .trade-woc-leg-total {
-    font-weight: 700;
-    color: var(--color-text-light);
-  }
-  .trade-woc-quote-title {
-    margin: 0;
-    font-family: var(--title-font);
-    font-size: 13px;
-    color: var(--color-accent);
-  }
+
   /* A price the connected wallet cannot cover. The figure carries the refusal
      itself, because that is the number being typed at; the hint below says why
      and the Send button is disabled alongside it, so the state never rests on
      colour alone. */
-  .trade-woc-equiv.over-balance {
-    color: var(--color-text-error);
-  }
   /* The warnings and the block reason are the copy a player acts on: parchment
      at the floor, with a hairline accent rule as the second signal. Notes and
      the disabled-affordance hint are metadata: muted at the floor. */
-  .trade-woc-warn,
-  .trade-woc-note,
-  .trade-woc-hint,
-  .trade-woc-block {
-    margin: 0;
-    font-size: 12px;
-    color: var(--color-text-muted);
-  }
-  .trade-woc-warn {
-    color: var(--color-text-light);
-    padding-left: var(--spacing-sm);
-    border-left: 2px solid color-mix(in srgb, var(--color-accent) 60%, transparent);
-  }
-  .trade-woc-block {
-    display: flex;
-    align-items: center;
-    color: var(--gold-dim);
-  }
+
   /* The consent row (R9): checkbox beside its caption, the terms link on the
      same line at the same size so the two read as one sentence, wrapping as a
      unit when the column is narrow. */
-  .trade-woc-consent {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--spacing-xs) var(--spacing-sm);
-  }
-  .trade-woc-terms {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 6px;
-    margin: 0;
-    font-size: 12px;
-    color: var(--color-text-light);
-  }
+
   /* 24px is the absolute minimum target in src/ui/CLAUDE.md, and a consent box
      is the one control the server will not take money without: 18px cleared the
      13px UA default but stopped short of the floor. The mobile sheet already
      floors both consent boxes at 24 (hud.mobile.css); this is the desktop half
      of the same rule. */
-  .trade-woc-terms input {
-    width: 24px;
-    height: 24px;
-    margin: 0;
-  }
-  .trade-woc-terms-link {
-    font-size: 12px;
-    color: var(--color-accent);
-    text-decoration: underline;
-  }
+
   /* The consent link is a keyboard target on a money surface: a token ring,
      not the UA fallback (the trade window's other controls are .btn / .x-btn,
      which already carry theirs). */
-  .trade-woc-terms-link:focus-visible {
-    outline: 2px solid var(--color-border-focus);
-    outline-offset: 2px;
-  }
   /* Button hierarchy on a money surface (DESIGN.md 10.1): the ONE commitment
      button per face (Offer, Pay, Sign) wears the primary treatment, the ways
      out (Withdraw, Decline, Cancel sale, Not now) the quiet one, so nothing
@@ -14227,21 +14042,6 @@
      primary is the shared .btn primitive with the accent as its edge and a
      subdued accent tint over the panel; the quiet one is the same primitive
      without its fill. Paired actions share one row. */
-  .trade-woc-arm > .btn {
-    align-self: flex-start;
-  }
-  .trade-woc-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-sm);
-  }
-  .trade-woc-arm .btn.trade-woc-primary {
-    align-self: flex-start;
-  }
-  .trade-woc-arm .btn.trade-woc-quiet:hover:enabled {
-    color: var(--color-text-error);
-    border-color: var(--color-border-invalid);
-  }
 
   /* ---------- elite target frame ---------- */
   /* Rank chrome binds to the TARGET's own portrait via the direct-child

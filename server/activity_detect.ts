@@ -12,7 +12,6 @@
 import { ITEMS } from '../src/sim/data';
 import { MAX_LEVEL, type SimEvent } from '../src/sim/types';
 import { emitCraftActivityCard } from './craft_activity';
-import { dailyRewardService } from './daily_rewards';
 import { enqueueActivity } from './discord_activity';
 import { duelActivityCard } from './discord_activity_pvp';
 import { enqueueHillAnnouncement, hillAnnouncementItem } from './discord_hill_feed';
@@ -20,8 +19,8 @@ import { enqueuePvpKill, pvpKillFeedItem } from './discord_pvp_feed';
 import { REALM } from './realm';
 
 // The session slice the chain reads. GameServer's ClientSession satisfies it
-// structurally; the generic keeps deps.sendDailyRewardPointsGained typed
-// against the caller's own session type rather than this narrowed view.
+// structurally; the generic keeps deps typed against the caller's own session
+// type rather than this narrowed view.
 export interface ActivityDetectSession {
   accountId: number;
   characterId: number;
@@ -32,7 +31,6 @@ export interface ActivityDetectDeps<S extends ActivityDetectSession> {
   clients: { get(pid: number): S | undefined };
   profileUrlFor(name: string): string | null;
   sessionByName(name: string): S | null;
-  sendDailyRewardPointsGained(session: S, points: number): void;
 }
 
 export function detectActivityEvent<S extends ActivityDetectSession>(
@@ -155,17 +153,6 @@ export function detectActivityEvent<S extends ActivityDetectSession>(
   } else if (ev.type === 'arenaEnd' && !ev.draw && ev.pid !== undefined) {
     const s = deps.clients.get(ev.pid);
     if (!s) return;
-    void dailyRewardService
-      .recordArenaResult(s.accountId, {
-        won: ev.won,
-        format: ev.format,
-        ratingBefore: ev.ratingBefore,
-        ratingAfter: ev.ratingAfter,
-      })
-      .then((points) => {
-        if (points > 0) deps.sendDailyRewardPointsGained(s, points);
-      })
-      .catch((err) => console.error('daily reward arena task failed:', err));
     if (!ev.won) return;
     enqueueActivity(
       {
@@ -179,30 +166,5 @@ export function detectActivityEvent<S extends ActivityDetectSession>(
       `arena:${s.accountId}:${ev.ratingAfter}`,
       now,
     );
-  } else if (ev.type === 'delveObjectiveComplete' && ev.pid !== undefined) {
-    const s = deps.clients.get(ev.pid);
-    if (!s) return;
-    void dailyRewardService
-      .recordDelveClear(s.accountId, s.characterId, ev.delveId, ev.tierId)
-      .then((points) => {
-        if (points > 0) deps.sendDailyRewardPointsGained(s, points);
-      })
-      .catch((err) => console.error('daily reward delve task failed:', err));
-  } else if (ev.type === 'delveChestLoot' && ev.pid !== undefined) {
-    const s = deps.clients.get(ev.pid);
-    if (!s) return;
-    void dailyRewardService
-      .recordDelveChestOpen(
-        s.accountId,
-        s.characterId,
-        ev.delveId,
-        ev.tierId,
-        ev.lootTier,
-        ev.bountiful,
-      )
-      .then((points) => {
-        if (points > 0) deps.sendDailyRewardPointsGained(s, points);
-      })
-      .catch((err) => console.error('daily reward delve chest task failed:', err));
   }
 }

@@ -5,8 +5,6 @@ import {
   resolveDesktopOrigins,
   resolveDistribution,
   updaterAllowed,
-  walletConnectionSupported,
-  wocExchangeSupported,
 } from '../electron/desktop_config.cjs';
 
 const steamStamp = { wocDesktop: { distribution: 'steam' } };
@@ -123,83 +121,6 @@ describe('updaterAllowed (the store / dev double gate)', () => {
   it('never allows an unpackaged checkout, even forced to website', () => {
     expect(updaterAllowed({ distribution: 'website', isPackaged: false })).toBe(false);
     expect(updaterAllowed({ distribution: 'website', isPackaged: undefined })).toBe(false);
-  });
-});
-
-describe('walletConnectionSupported', () => {
-  it('allows the website shell and keeps Steam and Epic fail-closed', () => {
-    expect(walletConnectionSupported({ distribution: 'website' })).toBe(true);
-    expect(walletConnectionSupported({ distribution: 'steam' })).toBe(false);
-    expect(walletConnectionSupported({ distribution: 'epic' })).toBe(false);
-    expect(walletConnectionSupported({ distribution: 'unknown' })).toBe(false);
-  });
-});
-
-describe('wocExchangeSupported (stricter than resolveDistribution: no website collapse)', () => {
-  it('allows only a packaged build with a literal website stamp', () => {
-    expect(wocExchangeSupported({ packagedMetadata: websiteStamp, isPackaged: true })).toBe(true);
-    expect(wocExchangeSupported({ packagedMetadata: steamStamp, isPackaged: true })).toBe(false);
-    expect(wocExchangeSupported({ packagedMetadata: epicStamp, isPackaged: true })).toBe(false);
-  });
-
-  it('treats an absent, unknown, or malformed stamp as a store build', () => {
-    // resolveDistribution collapses these to website (safe for the updater);
-    // the Exchange makes the opposite call and fails closed.
-    expect(wocExchangeSupported({ isPackaged: true })).toBe(false);
-    expect(wocExchangeSupported({ packagedMetadata: null, isPackaged: true })).toBe(false);
-    expect(wocExchangeSupported({ packagedMetadata: {}, isPackaged: true })).toBe(false);
-    expect(
-      wocExchangeSupported({
-        packagedMetadata: { wocDesktop: { distribution: 'beta' } },
-        isPackaged: true,
-      }),
-    ).toBe(false);
-    expect(
-      wocExchangeSupported({
-        packagedMetadata: { wocDesktop: { distribution: 42 } },
-        isPackaged: true,
-      }),
-    ).toBe(false);
-  });
-
-  it('a PACKAGED build ignores the env override in both directions', () => {
-    expect(
-      wocExchangeSupported({
-        packagedMetadata: steamStamp,
-        env: { WOC_DISTRIBUTION: 'website' },
-        isPackaged: true,
-      }),
-    ).toBe(false);
-    expect(wocExchangeSupported({ env: { WOC_DISTRIBUTION: 'website' }, isPackaged: true })).toBe(
-      false,
-    );
-    expect(
-      wocExchangeSupported({
-        packagedMetadata: websiteStamp,
-        env: { WOC_DISTRIBUTION: 'steam' },
-        isPackaged: true,
-      }),
-    ).toBe(true);
-  });
-
-  it('an unpackaged checkout needs the explicit WOC_DISTRIBUTION=website opt-in', () => {
-    expect(wocExchangeSupported({ env: { WOC_DISTRIBUTION: 'website' }, isPackaged: false })).toBe(
-      true,
-    );
-    expect(wocExchangeSupported({ env: { WOC_DISTRIBUTION: 'steam' }, isPackaged: false })).toBe(
-      false,
-    );
-    expect(wocExchangeSupported({ env: { WOC_DISTRIBUTION: 'epic' }, isPackaged: false })).toBe(
-      false,
-    );
-    // A bare dev checkout resolves to the website channel elsewhere, but the
-    // Exchange still requires the explicit opt-in.
-    expect(wocExchangeSupported({ isPackaged: false })).toBe(false);
-    expect(wocExchangeSupported({})).toBe(false);
-    expect(wocExchangeSupported()).toBe(false);
-    // The stamp is not read on unpackaged checkouts (there is none in real
-    // life; a stray one must not widen the gate).
-    expect(wocExchangeSupported({ packagedMetadata: websiteStamp, isPackaged: false })).toBe(false);
   });
 });
 
@@ -320,7 +241,6 @@ describe('resolveDesktopConfig', () => {
     expect(config).toEqual({
       distribution: 'website',
       updaterEnabled: true,
-      wocExchangeEnabled: true,
       crashSubmitUrl: '',
       updateChannel: 'latest',
       ...defaultOrigins,
@@ -332,7 +252,6 @@ describe('resolveDesktopConfig', () => {
     expect(config).toEqual({
       distribution: 'steam',
       updaterEnabled: false,
-      wocExchangeEnabled: false,
       crashSubmitUrl: '',
       updateChannel: 'latest',
       ...defaultOrigins,
@@ -344,43 +263,35 @@ describe('resolveDesktopConfig', () => {
     expect(config).toEqual({
       distribution: 'epic',
       updaterEnabled: false,
-      wocExchangeEnabled: false,
       crashSubmitUrl: '',
       updateChannel: 'latest',
       ...defaultOrigins,
     });
   });
 
-  it('an unstamped PACKAGED build collapses to the website channel with the Exchange off', () => {
-    // The headline divergence of the two decisions on one config object: the
-    // channel collapse keeps the safe updater feed, the Exchange still denies.
+  it('an unstamped PACKAGED build collapses to the website channel', () => {
+    // The channel collapse keeps the safe updater feed.
     const config = resolveDesktopConfig({ packagedMetadata: null, isPackaged: true });
     expect(config).toEqual({
       distribution: 'website',
       updaterEnabled: true,
-      wocExchangeEnabled: false,
       crashSubmitUrl: '',
       updateChannel: 'latest',
       ...defaultOrigins,
     });
   });
 
-  it('keeps a bare dev checkout on website with the updater off and the Exchange off', () => {
+  it('keeps a bare dev checkout on website with the updater off', () => {
     const config = resolveDesktopConfig({ isPackaged: false });
     expect(config).toEqual({
       distribution: 'website',
       updaterEnabled: false,
-      // The channel collapse to website does NOT open the Exchange: only the
-      // explicit WOC_DISTRIBUTION=website opt-in does on a dev checkout.
-      wocExchangeEnabled: false,
       crashSubmitUrl: '',
       updateChannel: 'latest',
       ...defaultOrigins,
     });
-    expect(
-      resolveDesktopConfig({ env: { WOC_DISTRIBUTION: 'website' }, isPackaged: false })
-        .wocExchangeEnabled,
-    ).toBe(true);
+    // Project H has no cryptocurrency: the desktop config carries no Exchange flag.
+    expect(resolveDesktopConfig({ isPackaged: false })).not.toHaveProperty('wocExchangeEnabled');
   });
 
   it('derives the update channel from the baked origin: non-production reads the dev feed', () => {

@@ -194,12 +194,9 @@ describe('side rail height budget', () => {
     }
   });
 
-  it('shows the ready daily-reward count through the shared corner badge primitive', () => {
-    // The Prompts board calls for the ready chest to carry a count, not glow alone.
-    expect(hud).toContain('daily-reward-count ui-badge ui-badge--corner');
-    expect(hudCss).toMatch(
-      /#daily-rewards-button\.spin-ready \.daily-reward-count \{\s*display: inline-flex;/,
-    );
+  it('carries no spin-ready count badge on the store chest (Daily Rewards is retired)', () => {
+    expect(hud).not.toContain('daily-reward-count');
+    expect(hudCss).not.toContain('.spin-ready');
   });
 
   // The rail's real footprint: two 34px .side-buttons-col columns plus the
@@ -247,8 +244,8 @@ describe('side rail height budget', () => {
     const colA = wrapper.slice(colAStart, colBStart);
     const colB = wrapper.slice(colBStart);
 
-    // The Daily Rewards chest lives in col-b only: pin that so moving it
-    // back to col-a still fails here. It shares the standard slot budget.
+    // The store chest (id kept from the retired Daily Rewards launcher) lives
+    // in col-b only: pin that so moving it back to col-a still fails here. It shares the standard slot budget.
     expect(colB, name).toContain('id="daily-rewards-button"');
     expect(colA, name).not.toContain('id="daily-rewards-button"');
     return { colA, colB };

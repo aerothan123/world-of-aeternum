@@ -3,7 +3,6 @@
 // with the shared DISCORD_BOT_SECRET (x-woc-discord-secret), NOT a user bearer.
 import type {
   ActivityItem,
-  DailyRewardWinnersDay,
   FlexData,
   HillAnnouncementItem,
   PvpKillItem,
@@ -78,7 +77,7 @@ export interface OutboxLinkChangeItem {
 export type OutboxQueuePopItem = QueuePopItem;
 
 /**
- * Everything one outbox poll carries. The three older streams keep the item
+ * Everything one outbox poll carries. The relay and activity streams keep the item
  * shapes their per-endpoint GETs used byte for byte, so the existing handlers
  * consume them unchanged; `linkChanges` and `queuePops` were born here.
  * `queuePops.watching` is the cadence signal: true while an opted-in, linked
@@ -90,7 +89,6 @@ export type OutboxQueuePopItem = QueuePopItem;
 export interface OutboxEnvelope {
   relay: { items: RelayItem[] };
   activity: { items: ActivityItem[] };
-  winners: { days: DailyRewardWinnersDay[] };
   linkChanges: { items: OutboxLinkChangeItem[] };
   queuePops: { items: OutboxQueuePopItem[]; watching: boolean };
   pvpKills: { items: PvpKillItem[] };
@@ -277,19 +275,6 @@ export class ServerClient {
       discord_user_id: discordUserId,
       guildMember,
     });
-  }
-
-  /**
-   * Mark a reward day announced, so the outbox stops serving it.
-   *
-   * The three per-stream drains that used to sit here (relay, activity, and the
-   * winners GET) are gone: `drainOutbox` carries all three, and keeping a second
-   * way to consume them would mean two clients racing for the same queues. This
-   * is the one half of the winners flow that is NOT a read, and it is what makes
-   * that stream at-least-once rather than at-most-once.
-   */
-  markDailyRewardWinners(day: string): Promise<unknown> {
-    return this.call('POST', '/internal/discord/daily-rewards-winners/mark', { day });
   }
 
   /** Push guild metadata (nickname + server join date + top special role). */

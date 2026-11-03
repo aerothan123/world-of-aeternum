@@ -714,19 +714,6 @@ const HOT_PAINTERS: ReadonlyArray<ScannedPainter> = [
   // (one in the click handler, one in the roving-key branch, one in the Enter/Space
   // branch), never a per-frame write.
   { file: 'tab_strip_painter.ts', allow: { '.dataset': 3 }, reflowAllow: {} },
-  // The trade window's $WOC arm: cold (repainted only with the trade window,
-  // no driver of its own) but held to the full write contract like tab_strip
-  // above. Its in-place derived-line refresh (refreshWocTradeArm) reads and
-  // writes textContent through one elided setter (2), toggles the equiv line's
-  // over-balance class after a contains() read (2), and reads the mode
-  // toggle's dataset once in the click wiring (1). A third textContent or a
-  // new classList site here is a new write path, the shape this count exists
-  // to make a conscious act.
-  {
-    file: 'trade_woc_arm_painter.ts',
-    allow: { '.textContent': 2, '.classList': 2, '.dataset': 1 },
-    reflowAllow: {},
-  },
   // The options window's restart strip: cold (built with the panel that hosts a
   // next-launch row, no driver of its own) and held to the full write contract
   // like tab_strip above. buildRestartStrip mints the row once: 3 class
@@ -1196,9 +1183,9 @@ const COLD_PAINTER_ALLOWANCES: ReadonlyArray<ColdPainter> = [
     reflowAllow: { '.scrollTop': 2 },
     driverAllow: {},
   },
-  // Two polls that repaint an OPEN window only: a 15s refresh of the reward state and a 30s
-  // countdown tick. Page cadence rather than frame cadence, and both no-op while closed.
-  // A THIRD cadence reaches this same body and does NOT show up in the `drivers`
+  // One poll that repaints an OPEN window only: a 15s refresh of the store state.
+  // Page cadence rather than frame cadence, and a no-op while closed.
+  // A SECOND cadence reaches this same body and does NOT show up in the `drivers`
   // list below, because the sweep scans in-file setInterval/setTimeout/rAF and
   // this one is external: hud.update()'s 500 ms slowHud divider calls
   // refreshIfChanged (Bank Storage phase 15, ruling 21). It is named here so a
@@ -1216,15 +1203,15 @@ const COLD_PAINTER_ALLOWANCES: ReadonlyArray<ColdPainter> = [
     // armory, and EVERY purchase outcome forces a rebuild, so without the pair a
     // buyer is thrown to the top of a long scroller on their own action. It runs
     // on that rebuild only (replaceStoreBody, which elides whole on unchanged
-    // markup), never on a frame and never on either interval below. The count is
+    // markup), never on a frame and never on the interval below. The count is
     // what makes a THIRD read a conscious act.
     reflowAllow: { '.scrollTop': 2 },
-    driverAllow: { setInterval: 2 },
+    driverAllow: { setInterval: 1 },
     drivers: [
       {
         driver: 'setInterval',
         everyMs: 15_000,
-        why: 'the reward-state refresh: re-fetch status + history and repaint the open window. Its per-tick body is the `isOpen` guard and a call into renderCurrent, the SAME entry point an open or a tab switch takes, so the DOM cost below is the guard only.',
+        why: 'the store-state refresh: re-fetch the store snapshot and repaint the open window. Its per-tick body is the `isOpen` guard and a call into renderCurrent, the SAME entry point an open or a tab switch takes, so the DOM cost below is the guard only.',
         stopsAt: {
           renderCurrent:
             "the window's ordinary full re-render, shared with toggle() / openStore() / a tab click. Counting a render path per driver would re-run the argument the cold bucket settled (a count over a render churns on every edit and never moves when the real hazard lands); what this entry holds is that the 15s tick does nothing EXTRA on its way there.",
@@ -1234,21 +1221,6 @@ const COLD_PAINTER_ALLOWANCES: ReadonlyArray<ColdPainter> = [
         // in this file are half write-backs. It works as a change detector either way.
         writeAllow: { '.style': 1 },
         queryAllow: {},
-        idlAllow: {},
-        reflowAllow: {},
-      },
-      {
-        driver: 'setInterval',
-        everyMs: 30_000,
-        why: 'the countdown tick: rewrite the "ends in" labels so the open window does not show a stale time. Reaches the `isOpen` guard plus paintCountdowns and its remainingText formatter.',
-        // `.style` is the isOpen guard again; `.textContent` is the countdown label, which
-        // genuinely differs every tick, so it is an unelided write ON PURPOSE at 30s cadence;
-        // `.dataset` is the read of the reset timestamp off each node.
-        writeAllow: { '.style': 1, '.textContent': 1, '.dataset': 1 },
-        // ONE subtree walk per tick to find the countdown nodes. It is a re-query rather than
-        // a cached ref because the nodes are replaced by every repaint of the window; at 30s
-        // that is cheap, and the count is what makes a second one a conscious act.
-        queryAllow: { '.querySelectorAll': 1 },
         idlAllow: {},
         reflowAllow: {},
       },
@@ -1478,7 +1450,6 @@ const COLD_PAINTER_ALLOWANCES: ReadonlyArray<ColdPainter> = [
   // weight in this window than in most: the slow-band poll rebuilds on every
   // countdown bucket change, once a second inside the anti-snipe window, so
   // without the pair the browse list yanks itself to the top while it is read.
-  { file: 'woc_market_window.ts', reflowAllow: { '.scrollTop': 2 }, driverAllow: {} },
   // The hub practice coach's mobile-control visibility probe: on a step that must
   // glow a mobile-only control (the Meters entry under Actions > More, or the
   // Spellbook fallback when the taught ability is not on the bar), it walks up to
@@ -1874,14 +1845,6 @@ describe('hud_perf_budget ARM 1: every src/ui painter holds its bucket contract 
     expect(controllers).toContain('hud/chat/chat_geometry_controller.ts');
     expect(COLD_PAINTERS).toContain('hud/map/map_marker_interaction_controller.ts');
     expect(COLD_PAINTERS).toContain('hud/fiesta/fiesta_controller.ts');
-    // Bank Storage phase 17's extraction, named here because its FILENAME is the
-    // whole reason it holds the cold contract. The spin overlay's code held it
-    // inside src/ui/daily_rewards_window.ts; the extraction would have shed it
-    // under a name outside this sweep, which is what the header above calls the
-    // point of the widening. Renaming the file back sheds the contract silently
-    // (the only other red is a missing-path row a contributor would simply edit),
-    // so the membership is pinned rather than the regex.
-    expect(COLD_PAINTERS).toContain('daily_rewards_spin_controller.ts');
   });
 
   // The cold contract. Swept as ONE test per matcher family over the whole bucket rather
@@ -2042,7 +2005,6 @@ describe('hud_perf_budget ARM 1: every src/ui painter holds its bucket contract 
       'gather_node_tooltip_controller.ts#0',
       'world_quest_ley_window.ts#0',
       'daily_rewards_window.ts#0',
-      'daily_rewards_window.ts#1',
       'hud/professions/harvest_journal_window.ts#0',
       'hud/professions/perfecting_window.ts#0',
       'hud/delve/lockpick_window.ts#0',
@@ -2825,8 +2787,8 @@ describe('hud_perf_budget ARM 1 (cont.): the matchers themselves', () => {
       ).toBe(1);
     }
     // NON-VACUITY against the live tree for the arm that motivated the family: the
-    // pre-#2498 lockpick clock re-queried its refs three times per tick, and
-    // daily_rewards' countdown poll still walks the subtree once per tick today. If the
+    // pre-#2498 lockpick clock re-queried its refs three times per tick, and the
+    // store window still walks its tab strip with querySelectorAll today. If the
     // querySelectorAll arm were re-narrowed it would count 0 here and pass quietly.
     const qsa = queries.get('.querySelectorAll');
     expect(qsa && countMatches(painterSource('daily_rewards_window.ts'), qsa)).toBeGreaterThan(0);

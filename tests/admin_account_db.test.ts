@@ -58,9 +58,6 @@ describe('admin account detail query', () => {
             chat_muted_until: null,
             chat_mute_reason: '',
             chat_strikes: 0,
-            daily_rewards_ban_reason: 'leaderboard manipulation',
-            daily_rewards_banned_at: '2026-06-01T01:00:00Z',
-            daily_rewards_ban_expires_at: '2026-06-01T07:00:00Z',
             last_login_ip: '203.0.113.7',
             playtime_seconds: 3600,
           },
@@ -95,11 +92,9 @@ describe('admin account detail query', () => {
         adminUsername: 'moderator',
       },
     ]);
-    expect(detail?.dailyRewardsBan).toEqual({
-      reason: 'leaderboard manipulation',
-      createdAt: '2026-06-01T01:00:00Z',
-      expiresAt: '2026-06-01T07:00:00Z',
-    });
+    // The crypto-only Daily Rewards ban surface is gone from the account detail.
+    expect(detail).not.toHaveProperty('dailyRewardsBan');
+    expect(detail).not.toHaveProperty('dailyRewardsIpBans');
     expect(mocks.query).toHaveBeenNthCalledWith(
       4,
       expect.stringContaining('FROM account_moderation_actions action_log'),
@@ -109,17 +104,15 @@ describe('admin account detail query', () => {
       'ORDER BY action_log.created_at DESC, action_log.id DESC',
     );
     expect(mocks.query.mock.calls[3][0]).toContain('LIMIT 50');
-    expect(mocks.query.mock.calls[0][0]).toContain('LEFT JOIN LATERAL');
-    expect(mocks.query.mock.calls[0][0]).toContain('expires_at > now()');
+    expect(mocks.query.mock.calls[0][0]).not.toContain('daily_reward_bans');
     // The wrapped account row folds the play_session_totals rollup into
     // lifetime playtime, so the retention fold cannot shrink the admin-visible
     // total when old play_sessions rows delete.
     expect(mocks.query.mock.calls[0][0]).toContain(
       'FROM play_session_totals t WHERE t.account_id = accounts.id',
     );
-    // The ip-bans probe keeps an aged-out account-to-IP link visible through
-    // the association-ledger arm after the raw play_sessions rows fold away.
-    expect(mocks.query.mock.calls[4][0]).toContain('SELECT 1 FROM account_ip_associations assoc');
+    // Four bounded reads: account, characters, sessions, moderation history.
+    expect(mocks.query).toHaveBeenCalledTimes(4);
     expect(mocks.query.mock.calls[1][0]).toContain(
       'LEFT JOIN guild_members gm ON gm.character_id = c.id',
     );
@@ -173,7 +166,6 @@ describe('admin account detail query', () => {
         ],
       })
       .mockResolvedValueOnce({ rows: [] })
-      .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce({ rows: [] });
 
     const detail = await accountDetail(7);
@@ -188,8 +180,8 @@ describe('admin account detail query', () => {
       'LEFT JOIN account_general_chat_rate_limits general_chat_quota',
     );
     // The quota comes from the existing primary account-row read, so account
-    // detail still fans out to exactly the same five bounded reads.
-    expect(mocks.query).toHaveBeenCalledTimes(5);
+    // detail still fans out to exactly the same four bounded reads.
+    expect(mocks.query).toHaveBeenCalledTimes(4);
   });
 
   it('carries the player self-deactivation timestamp so the dashboard can offer reactivate', async () => {
@@ -218,9 +210,7 @@ describe('admin account detail query', () => {
       .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce({ rows: [] })
-      .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce(accountRow(null))
-      .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce({ rows: [] });

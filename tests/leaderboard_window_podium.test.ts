@@ -197,24 +197,20 @@ describe('leaderboard window podium', () => {
     expect(el.querySelector('.lb-self.lb-standing')?.textContent).toMatch(/4,996/);
   });
 
-  it('developers and daily: the viewer row pins only when it is on the page', async () => {
+  it('developers: the viewer row pins when it is on the page', async () => {
     const devs = [1, 2, 3, 4].map((rank) => ({
       rank,
       login: rank === 4 ? 'ari-dev' : `dev${rank}`,
       mergedPrs: 50 - rank,
       devTier: 0,
     }));
-    const daily = [1, 2].map((rank) => ({ rank, name: `P${rank}`, points: 10 - rank, me: false }));
     const { el, lb } = rig({
       devLeaderboard: () => paged(devs),
-      dailyRewardLeaderboard: () => paged(daily, { day: '2026-09-15' }),
     });
     await openOn(el, lb, 'devs');
     expect(places(el)).toEqual(['1', '2', '3']);
     expect(el.querySelector('.lb-standing .lb-name')?.textContent).toContain('@ari-dev');
-    (el.querySelector('[data-leaderboard-tab="daily"]') as HTMLButtonElement).click();
-    await flush();
-    expect(places(el)).toEqual(['1', '2', '3']);
-    expect(el.querySelector('.lb-standing')).toBeNull();
+    // The crypto-only Daily Rewards board left with its tab.
+    expect(el.querySelector('[data-leaderboard-tab="daily"]')).toBeNull();
   });
 });

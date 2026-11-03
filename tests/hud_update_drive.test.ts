@@ -305,13 +305,6 @@ const HUD_UPDATE_DRIVES: readonly DriveRow[] = [
     why: 'the minimap instance difficulty badge and tooltip, value-diffed',
   },
   {
-    call: 'this.dailyRewardsLauncher.refresh',
-    band: 'slow',
-    gate: '',
-    surface: 'chrome',
-    why: 'the daily-rewards launcher button state (not the window). Bank Storage phase 15 moved the poll state machine out of hud.ts into daily_rewards_launcher_core.ts, where its throttle is executed-tested; a chrome row carries no guard field, so the pin lives there rather than here',
-  },
-  {
     call: 'this.maybeRestoreActionBarLayout',
     band: 'frame',
     gate: '',
@@ -1053,13 +1046,13 @@ const HUD_UPDATE_DRIVES: readonly DriveRow[] = [
     why: 'the party frames (a pooled painter) AND, via paintLootSettings, the loot-settings window',
   },
   {
-    call: 'this.wocTrade.updateTradeWindow',
+    call: 'this.tradeWindowController.updateTradeWindow',
     band: 'medium',
     gate: '',
     surface: 'window',
     guard: {
       kind: 'module',
-      module: 'hud/woc_trade/woc_trade_controller.ts',
+      module: 'hud/trade/trade_window_controller.ts',
       proof: 'if (sig === this.lastTradeSig) return;',
     },
     why: 'the trade window, rebuilt on a signature change; also auto-opens it on a trade start',
@@ -1408,18 +1401,6 @@ const HUD_UPDATE_DRIVES: readonly DriveRow[] = [
     surface: 'window',
     guard: { kind: 'module', module: 'hud/guild_hall/guild_hall_window.ts', proof: SIG_RETURN },
     why: "Lantern Hall's guild window (the week's contracts, the seals, the titles owned and the reset clock, minute-granular)",
-  },
-  {
-    call: 'this.wocMarketWindow.refreshIfChanged',
-    band: 'slow',
-    gate: 'this.wocMarketWindow.isOpen',
-    surface: 'window',
-    guard: {
-      kind: 'module',
-      module: 'woc_market_window.ts',
-      proof: 'if (sig === this.lastSig && !this.walletRepaintDue) return;',
-    },
-    why: 'the $WOC Exchange window; its wocMarketViewSig digest folds second-resolution countdowns in, so open auctions tick on the poll without a self-armed driver (walletRepaintDue is the one digest override: a wallet beat skipped under the native-dropdown hold). This call ALSO carries the window’s background re-ask (pollFromServer, self-throttled to its own much slower cadence by woc_market_poll_core): a rebuild alone can only repaint data already in hand, and could never show a bond the chain has since confirmed',
   },
   {
     call: 'this.mailboxWindow.refreshIfChanged',
@@ -1988,7 +1969,9 @@ describe('Hud.update() drives exactly the registered set, on the registered band
       // window 53 -> 54: Lantern Hall's guild window (hud/guild_hall/guild_hall_window.ts).
       // window 55 -> 56: the house storage window (hud/housing/house_storage_window.ts,
       // Project H phase 3), slow-band and open-only like the courier's.
-    ).toEqual({ window: 56, chrome: 101, none: 21 });
+      // window 56 -> 55 and chrome 101 -> 100: the $WOC Exchange window and the
+      // Daily Rewards launcher left with the crypto rail.
+    ).toEqual({ window: 55, chrome: 100, none: 21 });
     const windows = HUD_UPDATE_DRIVES.filter((r) => r.surface === 'window');
     expect(windows.map((r) => r.call)).toContain('this.spellbookWindow.tickOpen');
     expect(windows.map((r) => r.call)).toContain('this.refreshOpenTownFocusIfChanged');
@@ -2014,11 +1997,12 @@ describe('Hud.update() drives exactly the registered set, on the registered band
       // The courier window owns both revision and content signature guards.
       // Lantern Hall's guild window owns its signature guard (hud/guild_hall/).
       // The house storage window (Project H phase 3) owns its signature guard too.
-      module: 33,
+      // 33 -> 32: the $WOC Exchange window's module guard left with the crypto rail.
+      module: 32,
       // Phase 20's refreshCharSheetIfChanged and its siblings. Their latches are
       // HUD fields (lastCharSheetSig et al) because the cold char_window painter
       // holds no signature of its own to diff. The release's trade row left this
-      // bucket when its lastTradeSig latch moved into the woc_trade module.
+      // bucket when its lastTradeSig latch moved into the trade module.
       hud: 6,
       // Up to 12 with the crucible vendor's out-of-range close: the same
       // callsite-guarded shape as the copper and heroic vendor closes.
@@ -2078,7 +2062,7 @@ describe('Hud.update() drives exactly the registered set, on the registered band
         'hud.ts: if (sig === this.lastCharSheetSig) return;',
         'hud.ts: if (sig === this.lastProfessionSurfaceSig) return;',
         'hud.ts: if (sig === this.lastTownFocusSig) return;',
-        'hud/woc_trade/woc_trade_controller.ts: if (sig === this.lastTradeSig) return;',
+        'hud/trade/trade_window_controller.ts: if (sig === this.lastTradeSig) return;',
         'hud/delve/lockpick_window.ts: if (lockpickRenderSig(view) !== this.lastSig) this.renderBoard();',
         'hud/expeditions/expedition_controller.ts: if (sig === this.lastSig) {',
         // The corpse popup's own latch. `force` is the relocalize arm, which
@@ -2105,7 +2089,6 @@ describe('Hud.update() drives exactly the registered set, on the registered band
         'target_auras_window.ts: if (this.cleared) return;',
         'weekly_quests_window.ts: if (sig === this.lastSig) return;',
         'hud/guild_hall/guild_hall_window.ts: if (sig === this.lastSig) return;',
-        'woc_market_window.ts: if (sig === this.lastSig && !this.walletRepaintDue) return;',
       ].sort(),
     );
     expect(

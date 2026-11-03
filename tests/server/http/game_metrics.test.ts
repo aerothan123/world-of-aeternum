@@ -47,7 +47,6 @@ import {
   WOC_DB_BACKEND_CANCEL_FAILURES_TOTAL,
   WOC_DB_BACKEND_CANCEL_REQUESTS_TOTAL,
   WOC_DB_POOL_CLIENTS,
-  WOC_ESCROW_GATE_IN_FLIGHT,
   WOC_ESCROW_QUEUE_TOTAL,
   WOC_FISHING_CASTS_TOTAL,
   WOC_FISHING_CATCHES_TOTAL,
@@ -107,7 +106,6 @@ function stubSource(overrides: Partial<GameStateSource> = {}): GameStateSource {
     simEntities: () => 42,
     simTickHz: () => 20,
     savePendingKeys: () => 6,
-    escrowGateInFlight: () => 2,
     backgroundDbGate: () => ({
       inFlight: 0,
       waiting: 0,
@@ -237,7 +235,6 @@ describe('registerGameStateMetrics: gauges read the source at scrape time', () =
     expect(WOC_SIM_ENTITIES).toBe('woc_sim_entities');
     expect(WOC_SIM_TICK_HZ).toBe('woc_sim_tick_hz');
     expect(WOC_SAVE_PENDING_KEYS).toBe('woc_character_save_pending_keys');
-    expect(WOC_ESCROW_GATE_IN_FLIGHT).toBe('woc_escrow_gate_in_flight');
     expect(WOC_USERNAME_BANLIST_FILE_LOADED).toBe('woc_username_banlist_file_loaded');
     expect(WOC_CHARACTER_STATE_BYTES_MAX).toBe('woc_character_state_bytes_max');
     expect(WOC_CHARACTER_STATE_BYTES_P99).toBe('woc_character_state_bytes_p99');
@@ -255,7 +252,6 @@ describe('registerGameStateMetrics: gauges read the source at scrape time', () =
       WOC_SIM_ENTITIES,
       WOC_SIM_TICK_HZ,
       WOC_SAVE_PENDING_KEYS,
-      WOC_ESCROW_GATE_IN_FLIGHT,
       WOC_BACKGROUND_DB_GATE,
       WOC_STORAGE_RECOVERY,
       WOC_BANK_LEDGER_GROWTH_BUDGET,
@@ -274,7 +270,6 @@ describe('registerGameStateMetrics: gauges read the source at scrape time', () =
     expect(sampleValue(text, /^woc_character_save_pending_keys (\d+)$/m)).toBe('6');
     // The realm escrow gate's occupancy (the fix round: an alert rule needs
     // it in /metrics, not only behind the dashboard secret).
-    expect(sampleValue(text, /^woc_escrow_gate_in_flight (\d+)$/m)).toBe('2');
     // The blob high-water gauge (the Phase 17 database review): the stub
     // returns the professions-block ceiling figure.
     expect(sampleValue(text, /^woc_character_state_bytes_max (\d+)$/m)).toBe('17408');
@@ -690,7 +685,6 @@ describe('registerGameStateMetrics: gauges read the source at scrape time', () =
     // as LIVE reads at scrape time, and a stub-value assertion alone would
     // stay green if either were hoisted out of collect() and sampled once.
     let pendingKeys = 2;
-    let gateInFlight = 1;
     let backgroundDbGate = {
       inFlight: 1,
       waiting: 2,
@@ -722,7 +716,6 @@ describe('registerGameStateMetrics: gauges read the source at scrape time', () =
       stubSource({
         playersOnline: () => players,
         savePendingKeys: () => pendingKeys,
-        escrowGateInFlight: () => gateInFlight,
         backgroundDbGate: () => backgroundDbGate,
         storageRecovery: () => storageRecovery,
       }),
@@ -731,7 +724,6 @@ describe('registerGameStateMetrics: gauges read the source at scrape time', () =
     const first = await registry.metrics();
     expect(sampleValue(first, /^woc_players_online (\d+)$/m)).toBe('1');
     expect(sampleValue(first, /^woc_character_save_pending_keys (\d+)$/m)).toBe('2');
-    expect(sampleValue(first, /^woc_escrow_gate_in_flight (\d+)$/m)).toBe('1');
     expect(measureValues(first, WOC_BACKGROUND_DB_GATE)).toMatchObject({
       in_flight: '1',
       waiting: '2',
@@ -746,7 +738,6 @@ describe('registerGameStateMetrics: gauges read the source at scrape time', () =
     });
     players = 9;
     pendingKeys = 7;
-    gateInFlight = 4;
     backgroundDbGate = {
       inFlight: 6,
       waiting: 7,
@@ -776,7 +767,6 @@ describe('registerGameStateMetrics: gauges read the source at scrape time', () =
     const second = await registry.metrics();
     expect(sampleValue(second, /^woc_players_online (\d+)$/m)).toBe('9');
     expect(sampleValue(second, /^woc_character_save_pending_keys (\d+)$/m)).toBe('7');
-    expect(sampleValue(second, /^woc_escrow_gate_in_flight (\d+)$/m)).toBe('4');
     expect(measureValues(second, WOC_BACKGROUND_DB_GATE)).toMatchObject({
       in_flight: '6',
       waiting: '7',

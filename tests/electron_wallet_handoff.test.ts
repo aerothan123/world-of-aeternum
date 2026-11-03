@@ -1,5 +1,3 @@
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
   buildWalletHandoffBrowserUrl,
@@ -32,13 +30,5 @@ describe('Electron wallet browser handoff', () => {
     expect(
       parseWalletHandoffDeepLink(`https://example.com/wallet-handoff?code=${code}`),
     ).toBeNull();
-  });
-
-  it('localizes the standalone browser page title at runtime', () => {
-    const root = join(__dirname, '..');
-    const html = readFileSync(join(root, 'wallet-handoff.html'), 'utf8');
-    const entry = readFileSync(join(root, 'src/wallet_handoff.ts'), 'utf8');
-    expect(html).toContain('<title></title>');
-    expect(entry).toContain("document.title = t('wallet.browser.eyebrow')");
   });
 });

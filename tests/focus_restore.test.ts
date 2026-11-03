@@ -529,7 +529,7 @@ describe('the data-focus-key namespace has exactly one reader', () => {
   }));
   // The three spellings a module can touch the namespace by: the DOM's camelCase
   // mapping, the attribute written out, and the shared constant (which is how an
-  // emit-only builder spells it: restart_strip_painter.ts, woc_market_chrome.ts).
+  // emit-only builder spells it: restart_strip_painter.ts).
   // A module that reaches the namespace through the constant alone is still a
   // module reaching the namespace, so the sweep has to see it.
   const TOUCHES_NAMESPACE = /dataset\.focusKey|data-focus-key|FOCUS_KEY_ATTR/;
@@ -599,8 +599,6 @@ describe('a focus key is never spliced into a CSS selector', () => {
     'hud/action_bar/bar_editor/bar_editor_window.ts': 'slot and page keys minted in-module',
     'hud/professions/perfecting_window.ts': 'candidate rows keyed by copy identity',
     'options_window.ts': 'setting ids minted in-module',
-    'trade_woc_arm_painter.ts': 'quote and backslash escaped before the splice, not CSS-escaped',
-    'woc_market_window.ts': 'quote and backslash escaped before the splice, not CSS-escaped',
   };
   const uiFiles = tsFilesUnder(path.join(repoRoot, 'src/ui')).map((f) => ({
     ...f,

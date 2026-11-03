@@ -2607,12 +2607,11 @@ export async function referralCountForAccount(accountId: number): Promise<number
 
 // The account facts that drive the bank bonus-slot registry (server/bank_entitlements.ts),
 // read in ONE round trip because this runs at every fresh join. Cross-table reads are
-// fine from here (discord_links DDL lives in server/discord_db.ts, wallet_links + referrals
+// fine from here (discord_links DDL lives in server/discord_db.ts, referrals
 // above): the query is the natural home for the join. A missing account returns all-false/0
 // (the FROM accounts row is absent, so res.rows[0] is undefined and the fallback applies).
 //   - emailVerified: the RESOLVED criterion, email_verified_at IS NOT NULL, never email-present.
-//   - discordLinked / walletLinked: a link ROW is the whole proof. NEVER a balance, holder tier,
-//     or any chain state (the $WOC PRDs pin cosmetic-only; a wallet's contents are out of scope).
+//   - discordLinked: a link ROW is the whole proof.
 //   - qualifiedReferrals: referrals this account referred whose referee owns ANY character at
 //     level >= 10 (the denormalized characters.level; deliberately realm-agnostic, referrals are
 //     account-global; the characters_account index covers the probe). Counted RAW; the cap is
@@ -2622,7 +2621,6 @@ export async function bankBonusFactsForAccount(accountId: number): Promise<BankB
     `SELECT
        (a.email_verified_at IS NOT NULL) AS email_verified,
        EXISTS(SELECT 1 FROM discord_links dl WHERE dl.account_id = $1) AS discord_linked,
-       EXISTS(SELECT 1 FROM wallet_links wl WHERE wl.account_id = $1) AS wallet_linked,
        EXISTS(SELECT 1 FROM referral_progress rp WHERE rp.account_id = $1 AND (rp.rewarded_mask & 2) <> 0) AS referral_capacity_earned,
        (SELECT count(*)::int FROM referrals r
           WHERE r.referrer_account_id = $1
@@ -2638,7 +2636,6 @@ export async function bankBonusFactsForAccount(accountId: number): Promise<BankB
   return {
     emailVerified: !!row?.email_verified,
     discordLinked: !!row?.discord_linked,
-    walletLinked: !!row?.wallet_linked,
     qualifiedReferrals: row?.qualified_referrals ?? 0,
     referralCapacityEarned: !!row?.referral_capacity_earned,
   };

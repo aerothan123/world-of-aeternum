@@ -56,15 +56,11 @@ function appNavigationOrigins(appOrigin, devServerUrl) {
 }
 
 // Third-party origins the app legitimately embeds in a SUBFRAME only (never the main
-// frame): the Cloudflare Turnstile bot-gate renders in its own cross-origin iframe, the
-// WalletConnect modal verifies in its own, and the Claudium store's Stripe Embedded
+// frame): the Cloudflare Turnstile bot-gate renders in its own cross-origin iframe, and
+// the Claudium store's Stripe Embedded
 // Checkout (src/net/stripe_checkout.ts) mounts Stripe's iframes on the page.
 const EMBEDDED_SUBFRAME_ORIGINS = new Set([
   'https://challenges.cloudflare.com',
-  'https://secure.walletconnect.com',
-  'https://secure.walletconnect.org',
-  'https://verify.walletconnect.com',
-  'https://verify.walletconnect.org',
   'https://js.stripe.com',
   'https://checkout.stripe.com',
   'https://hooks.stripe.com',
@@ -171,15 +167,9 @@ const CSP_ORIGINS = {
     'https://www.googletagmanager.com',
     'https://connect.facebook.net',
     'https://www.facebook.com',
-    'https://*.walletconnect.com',
-    'wss://*.walletconnect.com',
-    'https://*.walletconnect.org',
-    'wss://*.walletconnect.org',
-    'https://api.web3modal.org',
-    'https://pulse.walletconnect.org',
   ],
-  // Image origins the web client loads: tracking-pixel beacons, WalletConnect
-  // modal art, and Discord linked profile pictures (nameplates, HUD widget,
+  // Image origins the web client loads: tracking-pixel beacons and Discord
+  // linked profile pictures (nameplates, HUD widget,
   // target frame, inspect). Discord PFPs use DISCORD_CDN_BASE in
   // server/discord_oauth.ts (`cdn.discordapp.com`); without that origin here the
   // desktop CSP blocks every avatar while the browser build (no CSP) still
@@ -188,9 +178,6 @@ const CSP_ORIGINS = {
   img: [
     'https://www.google-analytics.com',
     'https://www.facebook.com',
-    'https://secure.walletconnect.com',
-    'https://secure.walletconnect.org',
-    'https://api.web3modal.org',
     'https://cdn.discordapp.com',
   ],
   // Cloudflare Turnstile: api.js (script) plus the challenge iframe (frame).
@@ -224,13 +211,6 @@ const CSP_ORIGINS = {
   // Google Fonts: the stylesheet origin (style-src) and the font-file origin (font-src).
   fontsStyle: 'https://fonts.googleapis.com',
   fontsFile: 'https://fonts.gstatic.com',
-  reownFonts: 'https://fonts.reown.com',
-  walletFrames: [
-    'https://secure.walletconnect.com',
-    'https://secure.walletconnect.org',
-    'https://verify.walletconnect.com',
-    'https://verify.walletconnect.org',
-  ],
 };
 
 // Extract a CSP source-hash (`sha256-<base64>`) for every INLINE <script> in html
@@ -319,9 +299,9 @@ function buildContentSecurityPolicy({ apiOrigin, scriptHashes = [] } = {}) {
     connectSrc,
     imgSrc,
     `style-src 'self' 'unsafe-inline' ${CSP_ORIGINS.fontsStyle}`,
-    `font-src 'self' ${CSP_ORIGINS.fontsFile} ${CSP_ORIGINS.reownFonts}`,
+    `font-src 'self' ${CSP_ORIGINS.fontsFile}`,
     "worker-src 'self' blob:",
-    `frame-src ${CSP_ORIGINS.turnstile} ${CSP_ORIGINS.walletFrames.join(' ')} ${CSP_ORIGINS.stripe.frame.join(' ')}`,
+    `frame-src ${CSP_ORIGINS.turnstile} ${CSP_ORIGINS.stripe.frame.join(' ')}`,
     "object-src 'none'",
     "base-uri 'none'",
     "frame-ancestors 'none'",

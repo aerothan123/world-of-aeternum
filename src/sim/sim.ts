@@ -10,10 +10,6 @@ import type {
   CivicServicePlacement,
   CorpseHarvestInfo,
   CraftingIdentityView,
-  DailyRewardHistory,
-  DailyRewardLeaderboardPage,
-  DailyRewardSpinResult,
-  DailyRewardStatus,
   DelveCompanionInfo,
   DelveRunInfo,
   GuildPledgeSettings,
@@ -230,7 +226,6 @@ import {
 } from './content/weapon_skin_rules';
 import { WEAPON_SKINS } from './content/weapon_skins';
 import { type AbilityChargeState, applyCooldowns, serializeCooldowns } from './cooldown_persist';
-import { dailyRewardsStub } from './daily_rewards_stub';
 import type { DelveShopGate, DelveShopOffer } from './data';
 import {
   ALL_RECIPES,
@@ -4612,33 +4607,6 @@ export class Sim {
     return Promise.resolve(paginateDeedsLeaderboard([], page, pageSize));
   }
 
-  // The offline constant readout (#1307) lives in daily_rewards_stub.ts, the
-  // one file the $WOC token firewall allows to name chain vocabulary.
-  dailyRewards(): Promise<DailyRewardStatus> {
-    return dailyRewardsStub();
-  }
-
-  dailyRewardLeaderboard(
-    page = 0,
-    pageSize = LEADERBOARD_PAGE_SIZE,
-  ): Promise<DailyRewardLeaderboardPage> {
-    return Promise.resolve({
-      day: '1970-01-01',
-      leaders: [],
-      page: Math.max(0, Math.floor(page)),
-      pageCount: 1,
-      total: 0,
-      pageSize,
-    });
-  }
-  async spinDailyReward(): Promise<DailyRewardSpinResult> {
-    const status = await this.dailyRewards();
-    return { ...status, awardedPoints: 0, outcomeKey: '' };
-  }
-  dailyRewardHistory(): Promise<DailyRewardHistory> {
-    return Promise.resolve({ payouts: [] });
-  }
-
   get known(): ResolvedAbility[] {
     return this.primary.known;
   }
@@ -4793,7 +4761,7 @@ export class Sim {
   }
   // Offline the sandbox has no population, so there is no rarity to report:
   // always null (the facet's documented no-data value; the window hides the
-  // slot). Deterministic, no fetch, no clock (the dailyRewards stub doctrine).
+  // slot). Deterministic, no fetch, no clock (the offline stub doctrine).
   deedsRarity(): Promise<import('../world_api').DeedsRarity | null> {
     return Promise.resolve(null);
   }

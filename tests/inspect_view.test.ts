@@ -36,8 +36,6 @@ const base: InspectInput = {
     chest: 'gravewoven_raiment',
     mainhand: 'worn_sword',
   },
-  holderTier: 0,
-  holderBalance: null,
   discordTier: 0,
   discordName: null,
   discordAvatar: null,
@@ -92,16 +90,6 @@ describe('buildInspectView: header', () => {
 });
 
 describe('buildInspectView: badge gating', () => {
-  it('hides the holder badge at tier 0 and shows it (with balance) above', () => {
-    expect(buildInspectView(base, ITEMS).badges.holder).toBeNull();
-    const m = buildInspectView({ ...base, holderTier: 3, holderBalance: 4200 }, ITEMS);
-    expect(m.badges.holder).toEqual({ tierIndex: 3, balance: 4200 });
-    // A zero/absent balance collapses to null (painter shows the plain rung label).
-    expect(
-      buildInspectView({ ...base, holderTier: 3, holderBalance: 0 }, ITEMS).badges.holder,
-    ).toEqual({ tierIndex: 3, balance: null });
-  });
-
   it('hides the dev badge at tier 0, and hides it at a real tier when showDevBadges is off', () => {
     expect(buildInspectView({ ...base, devTier: 0 }, ITEMS).badges.dev).toBeNull();
     expect(
@@ -320,14 +308,13 @@ describe('buildInspectView: the Curator sigil badge (rank 5 only)', () => {
     expect(CURATOR_RANK_DEFS).toHaveLength(5);
   });
 
-  it('keeps the three older badge slots untouched at every Curator rank', () => {
-    // The sigil is a FOURTH slot, not a replacement: a rank-5 player with no
+  it('keeps the two older badge slots untouched at every Curator rank', () => {
+    // The sigil is its own slot, not a replacement: a rank-5 player with no
     // other flair still shows exactly one badge.
     const m = buildInspectView(ranked(5), ITEMS).badges;
-    expect(m.holder).toBeNull();
     expect(m.discord).toBeNull();
     expect(m.dev).toBeNull();
-    expect(Object.keys(m).sort()).toEqual(['curator', 'dev', 'discord', 'holder']);
+    expect(Object.keys(m).sort()).toEqual(['curator', 'dev', 'discord']);
   });
 });
 

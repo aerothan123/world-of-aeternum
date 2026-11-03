@@ -79,63 +79,6 @@ describe('mobile window layout CSS', () => {
     expect(componentsCss).not.toMatch(/#bank-window \.bag-tools \{[^}]*flex-wrap: nowrap/);
   });
 
-  it('keeps mobile Daily Rewards in one vertical scroller above the open-window layer', () => {
-    const rewardsWindow = mobileCss.match(
-      /body\.mobile-touch #daily-rewards-window:not\(\.store-active\) \{([^}]*)\}/,
-    );
-    expect(rewardsWindow).not.toBeNull();
-    expect(rewardsWindow?.[1]).toContain(
-      'width: min(560px, calc(var(--app-vw) / var(--ui-scale, 1) - 20px));',
-    );
-
-    const rewardsBody = mobileCss.match(
-      /body\.mobile-touch #daily-rewards-window:not\(\.store-active\) \.dr-body \{([^}]*)\}/,
-    );
-    expect(rewardsBody).not.toBeNull();
-    expect(rewardsBody?.[1]).toContain('columns: initial;');
-    expect(rewardsBody?.[1]).toContain('overflow-x: hidden;');
-    expect(rewardsBody?.[1]).toContain('overflow-y: auto;');
-    expect(rewardsBody?.[1]).toContain('overscroll-behavior: contain;');
-    expect(rewardsBody?.[1]).not.toContain('column-count:');
-    expect(rewardsBody?.[1]).not.toContain('column-count: 2;');
-
-    const spinOverlayZ = Number(
-      mobileCss.match(/body\.mobile-touch \.dr-spin-overlay \{[^}]*z-index: (\d+);/)?.[1],
-    );
-    const openUiZ = Number(
-      mobileCss.match(/body\.mobile-touch\.mobile-window-open #ui \{[^}]*z-index: (\d+);/)?.[1],
-    );
-    const backdropZ = Number(
-      mobileCss.match(
-        /body\.mobile-touch\.mobile-window-open #mobile-window-backdrop \{[^}]*z-index: (\d+);/,
-      )?.[1],
-    );
-    expect(spinOverlayZ).toBeGreaterThan(openUiZ);
-    expect(openUiZ).toBeGreaterThan(backdropZ);
-
-    const components = readFileSync(
-      new URL('../src/styles/components.css', import.meta.url),
-      'utf8',
-    ).replace(/\r\n/g, '\n');
-    expect(components).toMatch(/\.dr-spin-overlay \{[^}]*z-index: 60;/);
-
-    expect(mobileCss).toMatch(
-      /body\.mobile-touch \.dr-spin-stage \{[^}]*width: min\(360px, calc\(var\(--app-vw, 100vw\) - 24px\), calc\(var\(--app-vh, 100dvh\) - 24px\)\);/,
-    );
-    expect(mobileCss).toMatch(
-      /body\.mobile-touch \.dr-spin-wheel-big \{[^}]*width: 300px;[^}]*max-width: 84%;/,
-    );
-    expect(mobileCss).toMatch(
-      /body\.mobile-touch \.dr-spin-wheel-big span \{[^}]*translateY\(-106px\)/,
-    );
-    expect(mobileCss).toMatch(
-      /body\.mobile-touch \.dr-spin-result \{[^}]*width: 120px;[^}]*height: 120px;[^}]*font-size: 18px;/,
-    );
-    expect(mobileCss).toMatch(
-      /body\.mobile-touch \.dr-spin-pointer \{[^}]*border-left-width: 13px;[^}]*border-right-width: 13px;[^}]*border-top-width: 24px;/,
-    );
-  });
-
   it('hides the mobile bottom action bar only while a truly fullscreen window (bags/char) is open', () => {
     expect(mobileCss).toMatch(
       /body\.mobile-touch\.mobile-fullscreen-window-open #bottom-bar \{[^}]*display: none;/,
@@ -183,25 +126,6 @@ describe('mobile window layout CSS', () => {
     expect(block).not.toContain('100dvh');
   });
 
-  it('places the Claudium wallet card beside the balance in mobile landscape', () => {
-    expect(mobileCss).toContain(`@media (orientation: landscape) {
-    body.mobile-touch #claudium-window .cl-body:has(> .cl-wallet-connect) {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      align-items: stretch;
-      gap: 10px;
-    }`);
-    expect(mobileCss).toContain(`body.mobile-touch
-      #claudium-window
-      .cl-body:has(> .cl-wallet-connect)
-      > :not(.cl-balance, .cl-wallet-connect) {
-      grid-column: 1 / -1;
-    }`);
-    expect(mobileCss).toContain(`body.mobile-touch #claudium-window .cl-wallet-connect {
-      margin-top: 0;
-    }`);
-  });
-
   it('stacks the market browse sidebar above the listing body on mobile touch', () => {
     // W13: the desktop layout is a 200px sidebar beside #market-body. Mobile
     // collapses that grid to one column so the sidebar stacks above the body, and
@@ -227,30 +151,6 @@ describe('mobile window layout CSS', () => {
     // touch override at all and stayed at the vendor row's 10px base.
     expect(mobileCss).toMatch(
       /body\.mobile-touch \.crafting-reagent-line,\s*body\.mobile-touch \.crafting-fee-line,\s*body\.mobile-touch \.crafting-skill-line \{\s*font-size: 13px;\s*overflow-wrap: anywhere;/,
-    );
-  });
-
-  it('floors the money-surface consent controls and the bid field on touch (the Exchange and the trade arm)', () => {
-    // A checkbox cannot be 40px without looking broken, so the LABEL is the
-    // tap target and carries the floor; the terms link beside it is the
-    // smallest money-surface tap target and gets an inline-flex floor of its
-    // own; the box itself is sized 24px; the legal caption is floored to the
-    // window's 16px button size; the bid amount field joins the 40px floor.
-    // Literal mobile layout values, pinned here like their siblings.
-    expect(mobileCss).toMatch(
-      /body\.mobile-touch #woc-market-window label\.wm-terms,\s*body\.mobile-touch #woc-market-window label\.wm-offer-next,\s*body\.mobile-touch #trade-window \.trade-woc-terms \{\s*min-height: 40px;/,
-    );
-    expect(mobileCss).toMatch(
-      /body\.mobile-touch #woc-market-window \.wm-terms-link,\s*body\.mobile-touch #trade-window \.trade-woc-terms-link \{[^}]*display: inline-flex;[^}]*min-height: 40px;/,
-    );
-    expect(mobileCss).toMatch(
-      /body\.mobile-touch #woc-market-window label\.wm-terms input,\s*body\.mobile-touch #woc-market-window label\.wm-offer-next input,\s*body\.mobile-touch #trade-window \.trade-woc-terms input \{[^}]*width: 24px;[^}]*height: 24px;/,
-    );
-    expect(mobileCss).toMatch(
-      /body\.mobile-touch #trade-window \.trade-woc-terms,\s*body\.mobile-touch #trade-window \.trade-woc-terms-link \{\s*font-size: 16px;/,
-    );
-    expect(mobileCss).toMatch(
-      /body\.mobile-touch #woc-market-window \.wm-bid-form input\[data-field="bid-usd"\] \{\s*min-height: 40px;/,
     );
   });
 
@@ -292,7 +192,7 @@ describe('mobile window layout CSS', () => {
     // screen: a two-line trade painted a 400px panel with its commit row at the
     // bottom of an empty sheet. The inset-aware max-height is what keeps the
     // sheet on screen; the bottom pin belongs only to the side-by-side split.
-    for (const id of ['#trade-window', '#woc-market-window']) {
+    for (const id of ['#trade-window']) {
       const block = blockContaining(
         'top: calc(max(10px, env(safe-area-inset-top)) / var(--ui-scale, 1));',
         `body.mobile-touch ${id} {`,
@@ -321,16 +221,6 @@ describe('mobile window layout CSS', () => {
       );
     expect(split, 'the side-by-side split rule exists').toBeDefined();
     expect(split ?? '', 'the split dock pins both edges').toMatch(/\n\s*bottom: calc\(max\(10px/);
-  });
-
-  it('gives the phone Exchange rows their rhythm, first row included', () => {
-    // The 15 sign-off note: taller cells than the desktop 6px, and the first
-    // row clears the header hairline with its own top padding instead of
-    // starting flush against it.
-    const rows = blockContaining('padding-top: 12px;', '#woc-market-window .wm-table td');
-    expect(rows).toContain('padding-bottom: 12px;');
-    const first = blockContaining('padding-top: 16px;', 'tbody tr:first-child td');
-    expect(first).toContain('#woc-market-window');
   });
 
   it('the split dock marker is the one the HUD actually stamps', () => {
@@ -485,77 +375,5 @@ describe('mobile: the sheet stays the single scroller', () => {
     expect(components).toMatch(
       /#quest-log-window \.ql-cols \{[^}]*height: calc\(100% - var\(--win-head-h\)\)/,
     );
-  });
-});
-
-// The Exchange browse table's one-column portrait sheet (~342px) squeezed every
-// money/time column under 40px, so an ordinary value ("19 minutes", a seller name)
-// had nowhere to break except mid-word (overflow-wrap: anywhere breaks at any
-// character once a column is too narrow, not just at a word boundary). Dropping
-// Buy Now (still shown in the row's own detail pane) gives the rest of the row
-// enough room to wrap at word boundaries instead.
-describe('mobile: the $WOC Exchange browse table sheds Buy Now in portrait', () => {
-  // hud.mobile.css indents this block's own rules at 4 spaces and closes the
-  // outer @media at 2, like every other block in the sheet; matching on that
-  // exact indent (rather than a fixed lookahead comment) keeps this from
-  // silently spanning into whatever rule follows once mobileCss's own
-  // comment-stripping above removes the boundary comment this test would
-  // otherwise anchor on.
-  const portraitBlockRe = /@media \(orientation: portrait\) \{([\s\S]*?)\n {2}\}/;
-
-  function portraitBlock(): string {
-    const hit = portraitBlockRe.exec(mobileCss);
-    expect(hit, 'a @media (orientation: portrait) block in hud.mobile.css').toBeTruthy();
-    return hit ? hit[1] : '';
-  }
-
-  it('hides the Buy Now column only in portrait, only on the browse table', () => {
-    const block = portraitBlock();
-    expect(block).toContain(
-      'body.mobile-touch #woc-market-window .wm-table:not(.wm-sales-table) th:nth-child(4),',
-    );
-    expect(block).toContain(
-      'body.mobile-touch #woc-market-window .wm-table:not(.wm-sales-table) td:nth-child(4) {\n      display: none;\n    }',
-    );
-    // The unconditional (both-orientation) rules above this block still carry
-    // the padding/floor pins but must NOT also hide column 4 outside portrait.
-    const beforePortrait = mobileCss.slice(
-      0,
-      mobileCss.indexOf('@media (orientation: portrait) {'),
-    );
-    const wocSection = beforePortrait.slice(
-      beforePortrait.indexOf('#woc-market-window .wm-browse {'),
-    );
-    expect(wocSection).not.toContain('td:nth-child(4)');
-  });
-
-  it('rebalances the four remaining columns to sum to 100%', () => {
-    const block = portraitBlock();
-    const widths = [1, 2, 3, 5].map((n) => {
-      const m = new RegExp(
-        `wm-table:not\\(\\.wm-sales-table\\) th:nth-child\\(${n}\\) \\{\\s*width: (\\d+)%;`,
-      ).exec(block);
-      expect(m, `a width for th:nth-child(${n}) in the portrait block`).toBeTruthy();
-      return m ? Number(m[1]) : 0;
-    });
-    expect(widths).toEqual([40, 18, 22, 20]);
-    expect(widths.reduce((a, b) => a + b, 0)).toBe(100);
-  });
-
-  it('leaves the Sales History table (its own six-column split) alone', () => {
-    const block = portraitBlock();
-    expect(block).not.toContain('wm-sales-table th:nth-child');
-  });
-
-  it('leaves the landscape table untouched (anti-vacuity: the desktop split still stands)', () => {
-    const components = readFileSync(
-      new URL('../src/styles/components.css', import.meta.url),
-      'utf8',
-    );
-    // The desktop five-column split (42/16/18/12/12) is what portrait overrides;
-    // if it ever moves, this rebalance's premise (a 12% Buy Now/Time Left column)
-    // should be re-derived too.
-    expect(components).toMatch(/#woc-market-window \.wm-table th:nth-child\(4\) \{\s*width: 12%;/);
-    expect(components).toMatch(/#woc-market-window \.wm-table th:nth-child\(5\) \{\s*width: 12%;/);
   });
 });

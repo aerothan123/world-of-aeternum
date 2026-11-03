@@ -119,13 +119,12 @@ describe('inspect_window: thin painter, deps-only Hud access', () => {
 });
 
 describe('inspect_window: the Curator standing surfaces', () => {
-  it('renders the sigil badge AFTER the three older ones, in the same card', () => {
-    // Array/append ORDER is a contract here: the four badge rows are string
+  it('renders the sigil badge AFTER the two older ones, in the same card', () => {
+    // Array/append ORDER is a contract here: the three badge rows are string
     // concatenation inside one honor rail, so the sigil landing before devHtml
     // would silently re-rank the collection. Pin the sequence, not just presence.
     const card = code.slice(code.indexOf('const honorHtml ='));
     const order = [
-      'this.holderHtml(model.badges.holder)',
       'this.discordHtml(model.badges.discord)',
       'this.devHtml(model.badges.dev)',
       'this.curatorHtml(model.badges.curator)',
@@ -136,7 +135,7 @@ describe('inspect_window: the Curator standing surfaces', () => {
 
   it('reuses the shared .inspect-holder badge family for the sigil (no bespoke row)', () => {
     const curator = code.slice(code.indexOf('private curatorHtml('));
-    const body = curator.slice(0, curator.indexOf('private holderHtml('));
+    const body = curator.slice(0, curator.indexOf('private discordHtml('));
     // W12: the shared badge-row hook now sits beside the shared card primitive.
     expect(body).toContain('<div class="inspect-holder ui-card">');
     expect(body).toContain('inspect-holder-text');
@@ -163,7 +162,7 @@ describe('inspect_window: the Curator standing surfaces', () => {
     // half-finished revert cannot leave the painter reading a key the catalog no
     // longer carries.
     const curator = code.slice(code.indexOf('private curatorHtml('));
-    const body = curator.slice(0, curator.indexOf('private holderHtml('));
+    const body = curator.slice(0, curator.indexOf('private discordHtml('));
     expect(body).toContain('alt=""');
     expect(body).not.toContain('alt="${esc(t(\'hudChrome.reliquary.sigilCaption\'))}"');
     // W12: the visible caption adopts the shared muted metadata primitives.
@@ -576,8 +575,6 @@ describe('inspect_window: the real painter over a Sim-shaped and a ranked entity
         curatorRank: 5,
         relicsOwned: 300,
         relicsTotal: 300,
-        holderTier: 3,
-        holderBalance: 4200,
         discordTier: 1,
         discordName: 'Aurelia',
         discordJoined: 1_699_000_000_000,
@@ -600,7 +597,7 @@ describe('inspect_window: the real painter over a Sim-shaped and a ranked entity
     expect(standingItems[2]?.textContent).toContain('300');
     const rail = root.querySelector('.inspect-honor-rail');
     const honors = [...root.querySelectorAll('.inspect-holder')];
-    expect(honors).toHaveLength(4);
+    expect(honors).toHaveLength(3);
     expect(honors.every((honor) => honor.parentElement === rail)).toBe(true);
     const modelPanel = root.querySelector<HTMLElement>('.inspect-model-panel');
     expect(modelPanel?.style.getPropertyValue('--inspect-class-color')).toBe(

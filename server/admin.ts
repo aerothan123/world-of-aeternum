@@ -22,7 +22,6 @@ import {
   characterProfessionsRow,
   clientPerfRaw,
   type DayPoint,
-  dailyRewardPointEvents,
   listAccounts,
   listCharacters,
   listModerationActions,
@@ -117,7 +116,6 @@ import {
 import { runClearItemName } from './clear_item_name';
 import { clearOfflineItemName } from './clear_item_name_db';
 import { cleanContentModerationReason } from './content_moderation_db';
-import { currentDailyRewardDay } from './daily_rewards';
 import {
   accountAndScopeForToken,
   accountById,
@@ -179,8 +177,6 @@ import {
   setAccountAiFlag,
   setAccountCheaterMark,
   setAccountStreamerFlair,
-  setDailyRewardsBan,
-  setDailyRewardsIpBan,
 } from './moderation_db';
 import { readModerationQueue } from './moderation_queue_cache';
 import { createOkResponseMemo, type OkResponseMemoStats } from './ok_response_memo';
@@ -285,7 +281,6 @@ const AI_FLAG_REQUIRED = 'ai must be a boolean';
 const STREAMER_FLAG_REQUIRED = 'streamer must be a boolean';
 const STREAMER_LINKS_REQUIRED = 'a links object is required';
 const ACCOUNT_FLAIR_FAILED = 'failed to update account flair';
-const DAILY_REWARD_EVENT_DAY_REQUIRED = 'a valid daily rewards date is required';
 // The guild bank dormant-slot purge refusals. Shared by both dispatch arms so
 // the strings stay byte-identical, and mirrored into the dashboard's
 // ADMIN_ERROR_KEYS matcher (src/admin/i18n.ts) like every other operator error.
@@ -498,15 +493,6 @@ async function purgeGuildBankSlotOutcome(
       audited,
     },
   };
-}
-
-async function dailyRewardEventDay(value: string | null): Promise<string | null> {
-  if (value === null) return currentDailyRewardDay();
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
-  const parsed = new Date(`${value}T00:00:00.000Z`);
-  return Number.isFinite(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value
-    ? value
-    : null;
 }
 
 function boundedPositiveParam(raw: string | null, fallback: number, max: number): number {
@@ -1103,48 +1089,6 @@ export async function handleAdminApi(
         return ok(res, { ok: true });
       } catch (err) {
         return fail(res, 400, err instanceof Error ? err.message : 'chat mute failed');
-      }
-    }
-    const dailyRewardsBanMatch =
-      /^\/admin\/api\/moderation\/accounts\/(\d+)\/daily-rewards-(ban|unban)$/.exec(path);
-    if (req.method === 'POST' && dailyRewardsBanMatch) {
-      const body = await readBody(req);
-      try {
-        await setDailyRewardsBan({
-          accountId: Number(dailyRewardsBanMatch[1]),
-          adminAccountId: accountId,
-          banned: dailyRewardsBanMatch[2] === 'ban',
-          reason: body.reason,
-          durationHours: body.durationHours,
-        });
-        return ok(res, { ok: true });
-      } catch (err) {
-        return fail(
-          res,
-          400,
-          err instanceof Error ? err.message : 'daily rewards moderation failed',
-        );
-      }
-    }
-    const dailyRewardsIpBanMatch =
-      /^\/admin\/api\/moderation\/accounts\/(\d+)\/daily-rewards-ip-(ban|unban)$/.exec(path);
-    if (req.method === 'POST' && dailyRewardsIpBanMatch) {
-      const body = await readBody(req);
-      try {
-        await setDailyRewardsIpBan({
-          accountId: Number(dailyRewardsIpBanMatch[1]),
-          adminAccountId: accountId,
-          ip: body.ip,
-          banned: dailyRewardsIpBanMatch[2] === 'ban',
-          reason: body.reason,
-        });
-        return ok(res, { ok: true });
-      } catch (err) {
-        return fail(
-          res,
-          400,
-          err instanceof Error ? err.message : 'daily rewards IP moderation failed',
-        );
       }
     }
     const ignoreMatch = /^\/admin\/api\/moderation\/reports\/(\d+)\/ignore$/.exec(path);
@@ -1917,15 +1861,6 @@ export async function handleAdminApi(
         blockedIps: getBlockedIpsForAccount(game, detail),
       });
     }
-    const dailyRewardEventsMatch = /^\/admin\/api\/accounts\/(\d+)\/daily-rewards-events$/.exec(
-      path,
-    );
-    if (dailyRewardEventsMatch) {
-      const day = await dailyRewardEventDay(url.searchParams.get('day'));
-      if (!day) return fail(res, 400, DAILY_REWARD_EVENT_DAY_REQUIRED);
-      const limit = Number(url.searchParams.get('limit') ?? '100');
-      return ok(res, await dailyRewardPointEvents(Number(dailyRewardEventsMatch[1]), day, limit));
-    }
     const detailMatch = /^\/admin\/api\/accounts\/(\d+)$/.exec(path);
     if (detailMatch) {
       const id = Number(detailMatch[1]);
@@ -2189,7 +2124,6 @@ function makeRealAdminDb() {
     // read it): a setAdminDbForTests override still replaces this member
     // outright, which bypasses the cache and keeps existing fakes exact.
     clientPerfSummary: readClientPerfSummaryCached,
-    dailyRewardPointEvents,
     levelDistribution,
     listAccounts,
     listCharacters,
@@ -2281,8 +2215,6 @@ function makeRealAdminDb() {
     // (game.ts wires it into the moderation service as recordAction), so a kick
     // reads identically in moderation history whichever surface issued it.
     recordInGameAction,
-    setDailyRewardsBan,
-    setDailyRewardsIpBan,
     // Account flair: the two audited writes plus the read-back the live push sends
     // (the DB row, never the request body, is the source of truth for what ships).
     setAccountAiFlag,
@@ -2334,7 +2266,7 @@ let realAdminDb: AdminDb | undefined;
 let adminDbOverride: AdminDb | undefined;
 
 /** The active admin db: a setAdminDbForTests override if present, else the real bundle. */
-// Exported for sibling admin-surface RouteDef modules (woc_market_routes.ts):
+// Exported for sibling admin-surface RouteDef modules:
 // one live bundle, one test seam, so the ownership sweep's fakes reach every
 // admin route regardless of which module mounts the gate.
 export function adminDb(): AdminDb {
@@ -3046,49 +2978,6 @@ async function chatMuteHandler(ctx: Ctx): Promise<void> {
   }
 }
 
-/** POST daily-rewards-ban/unban: change reward eligibility with an audited reason. */
-async function dailyRewardsBanHandler(ctx: Ctx): Promise<void> {
-  const banned = ctx.path.endsWith('/daily-rewards-ban');
-  const body = await readBody(ctx.req);
-  try {
-    await adminDb().setDailyRewardsBan({
-      accountId: adminTargetId(ctx),
-      adminAccountId: ctxAccountId(ctx),
-      banned,
-      reason: body.reason,
-      durationHours: body.durationHours,
-    });
-    return ok(ctx.res, { ok: true });
-  } catch (err) {
-    return fail(
-      ctx.res,
-      400,
-      err instanceof Error ? err.message : 'daily rewards moderation failed',
-    );
-  }
-}
-
-async function dailyRewardsIpBanHandler(ctx: Ctx): Promise<void> {
-  const banned = ctx.path.endsWith('/daily-rewards-ip-ban');
-  const body = await readBody(ctx.req);
-  try {
-    await adminDb().setDailyRewardsIpBan({
-      accountId: adminTargetId(ctx),
-      adminAccountId: ctxAccountId(ctx),
-      ip: body.ip,
-      banned,
-      reason: body.reason,
-    });
-    return ok(ctx.res, { ok: true });
-  } catch (err) {
-    return fail(
-      ctx.res,
-      400,
-      err instanceof Error ? err.message : 'daily rewards IP moderation failed',
-    );
-  }
-}
-
 /** POST /admin/api/moderation/reports/:id/ignore: resolve one open report. */
 async function ignoreReportHandler(ctx: Ctx): Promise<void> {
   const body = await readBody(ctx.req);
@@ -3502,14 +3391,6 @@ async function clearItemNameHandler(ctx: Ctx): Promise<void> {
   } catch (err) {
     return fail(ctx.res, 400, err instanceof Error ? err.message : 'item name clear failed');
   }
-}
-
-/** GET /admin/api/accounts/:id/daily-rewards-events: bounded point-award ledger. */
-async function dailyRewardPointEventsHandler(ctx: Ctx): Promise<void> {
-  const day = await dailyRewardEventDay(ctx.url.searchParams.get('day'));
-  if (!day) return fail(ctx.res, 400, DAILY_REWARD_EVENT_DAY_REQUIRED);
-  const limit = Number(ctx.url.searchParams.get('limit') ?? '100');
-  ok(ctx.res, await adminDb().dailyRewardPointEvents(adminTargetId(ctx), day, limit));
 }
 
 /**
@@ -4093,14 +3974,6 @@ export const routes: RouteDef[] = [
     handler: clearItemNameHandler,
   },
   {
-    method: 'GET',
-    path: '/admin/api/accounts/:id/daily-rewards-events',
-    surface: 'admin',
-    middleware: [requireAdmin, requireAdminTarget('account')],
-    meta: adminTargetMeta('account'),
-    handler: dailyRewardPointEventsHandler,
-  },
-  {
     method: 'POST',
     path: '/admin/api/accounts/:id/reset-password',
     surface: 'admin',
@@ -4323,38 +4196,6 @@ export const routes: RouteDef[] = [
     middleware: [requireAdmin, requireAdminTarget('account'), withBody()],
     meta: adminTargetMeta('account'),
     handler: adminKickHandler,
-  },
-  {
-    method: 'POST',
-    path: '/admin/api/moderation/accounts/:id/daily-rewards-ban',
-    surface: 'admin',
-    middleware: [requireAdmin, requireAdminTarget('account')],
-    meta: adminTargetMeta('account'),
-    handler: dailyRewardsBanHandler,
-  },
-  {
-    method: 'POST',
-    path: '/admin/api/moderation/accounts/:id/daily-rewards-unban',
-    surface: 'admin',
-    middleware: [requireAdmin, requireAdminTarget('account')],
-    meta: adminTargetMeta('account'),
-    handler: dailyRewardsBanHandler,
-  },
-  {
-    method: 'POST',
-    path: '/admin/api/moderation/accounts/:id/daily-rewards-ip-ban',
-    surface: 'admin',
-    middleware: [requireAdmin, requireAdminTarget('account')],
-    meta: adminTargetMeta('account'),
-    handler: dailyRewardsIpBanHandler,
-  },
-  {
-    method: 'POST',
-    path: '/admin/api/moderation/accounts/:id/daily-rewards-ip-unban',
-    surface: 'admin',
-    middleware: [requireAdmin, requireAdminTarget('account')],
-    meta: adminTargetMeta('account'),
-    handler: dailyRewardsIpBanHandler,
   },
   {
     method: 'POST',

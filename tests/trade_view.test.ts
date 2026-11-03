@@ -286,16 +286,16 @@ describe('buildTradeItemRow (stale-client guard, R34)', () => {
   });
 });
 
-describe('trade window painter wiring (source pins, woc_trade updateTradeWindow)', () => {
+describe('trade window painter wiring (source pins, trade updateTradeWindow)', () => {
   // The pure core decides; these pins hold the painter to consuming it. The
   // method body is comment-stripped first so a comment naming the assignment
   // cannot satisfy an ordering pin.
   const controller = readFileSync(
-    new URL('../src/ui/hud/woc_trade/woc_trade_controller.ts', import.meta.url),
+    new URL('../src/ui/hud/trade/trade_window_controller.ts', import.meta.url),
     'utf8',
   );
   const start = controller.indexOf('updateTradeWindow(): void {');
-  // updateTradeWindow is the LAST member of WocTradeController, so the method
+  // updateTradeWindow is the LAST member of TradeWindowController, so the method
   // close is the file's LAST two-space-indented brace: a bound that
   // template-literal content inside the body can never fake (a first-match
   // bound could end early on a template line that happens to start with two
@@ -356,7 +356,7 @@ describe('trade window painter wiring (source pins, woc_trade updateTradeWindow)
 // because updateTradeWindow (then still on hud.ts) never wired the trade slots
 // to the shared attachTooltip/itemTooltip infrastructure bag slots use.
 // tradeRowTooltipTarget is the pure lookup that wiring (now in
-// src/ui/hud/woc_trade/woc_trade_controller.ts) resolves through:
+// src/ui/hud/trade/trade_window_controller.ts) resolves through:
 // same InvSlot shape as a bag row (both offer sides carry it, per
 // src/world_api/trade.ts's TradeOffer), so it must expose the exact item def
 // plus per-instance payload (enchant/masterwork/signature) the bag tooltip

@@ -61,8 +61,6 @@ export function identityFields(e: Entity): Record<string, unknown> {
     const eqi = equippedInstanceWire(e);
     if (eqi) out.eqi = eqi;
   }
-  if (e.holderTier) out.ht = e.holderTier; // $WOC holder-tier flair (cosmetic)
-  if (e.holderBalance) out.hb = Math.round(e.holderBalance); // exact $WOC, for inspect
   if (e.discordTier) out.dt = e.discordTier; // Discord status-tier flair (cosmetic)
   if (e.discordAvatar) out.dav = e.discordAvatar; // Discord PFP (linked indicator)
   if (e.discordName) out.dnm = e.discordName; // Discord handle / nickname (nameplate)

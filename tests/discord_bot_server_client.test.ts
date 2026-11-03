@@ -174,18 +174,15 @@ describe('ServerClient request envelope', () => {
     );
     const client = new ServerClient('http://host', 'sekrit', impl, timers.seam);
 
-    await client.markDailyRewardWinners('2026-07-30');
-    expect(calls[0].init.method).toBe('POST');
-    expect(calls[0].url).toBe('http://host/internal/discord/daily-rewards-winners/mark');
-    expect(calls[0].init.body).toBe('{"day":"2026-07-30"}');
-
     // An absent dedupe key is dropped by JSON.stringify, not sent as null: the
     // server treats a null key as a real value and would dedupe against it.
     await client.grant('u1', 'daily', 5);
-    expect(calls[1].init.body).toBe('{"discord_user_id":"u1","reason":"daily","points":5}');
+    expect(calls[0].init.method).toBe('POST');
+    expect(calls[0].url).toBe('http://host/internal/discord/grant');
+    expect(calls[0].init.body).toBe('{"discord_user_id":"u1","reason":"daily","points":5}');
 
     await client.grant('u1', 'daily', 5, 'k1');
-    expect(calls[2].init.body).toBe(
+    expect(calls[1].init.body).toBe(
       '{"discord_user_id":"u1","reason":"daily","points":5,"dedupeKey":"k1"}',
     );
   });
@@ -251,7 +248,6 @@ const ROUTE_ROWS: {
     data: {
       relay: { items: [] },
       activity: { items: [] },
-      winners: { days: [] },
       linkChanges: { items: [] },
     },
   },
@@ -316,15 +312,6 @@ const ROUTE_ROWS: {
     // The points-granting call: a path swap here silently stops every reward.
     path: '/internal/discord/grant',
     body: '{"discord_user_id":"u1","reason":"daily","points":5,"dedupeKey":"k1"}',
-    data: {},
-  },
-  {
-    name: 'markDailyRewardWinners',
-    methodName: 'markDailyRewardWinners',
-    drive: (c) => c.markDailyRewardWinners('2026-07-30'),
-    method: 'POST',
-    path: '/internal/discord/daily-rewards-winners/mark',
-    body: '{"day":"2026-07-30"}',
     data: {},
   },
   {
@@ -588,11 +575,10 @@ describe('ServerClient flexBatch', () => {
 });
 
 describe('ServerClient drainOutbox', () => {
-  it('returns all five streams unwrapped from the envelope', async () => {
+  it('returns all four streams unwrapped from the envelope', async () => {
     const { client } = clientReturning({
       relay: { items: [{ commandId: 'c1', message: 'lfg deadmines' }] },
       activity: { items: [{ kind: 'levelup', level: 20 }] },
-      winners: { days: [{ day: '2026-07-31', taskName: 'gather' }] },
       linkChanges: {
         items: [
           {
@@ -608,12 +594,11 @@ describe('ServerClient drainOutbox', () => {
     });
 
     // Fresh literal, not the response object: distinct payloads per stream, so
-    // reading the wrong key (activity from `relay`, winners from `items`) fails
+    // reading the wrong key (activity from `relay`, link changes from `items`) fails
     // instead of quietly yielding undefined the consumer reads as an empty feed.
     expect(await client.drainOutbox()).toEqual({
       relay: { items: [{ commandId: 'c1', message: 'lfg deadmines' }] },
       activity: { items: [{ kind: 'levelup', level: 20 }] },
-      winners: { days: [{ day: '2026-07-31', taskName: 'gather' }] },
       linkChanges: {
         items: [
           {

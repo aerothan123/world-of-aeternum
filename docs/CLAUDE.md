@@ -60,10 +60,9 @@ whose slices are specced but NOT yet implemented; read the handoff before starti
 **Partially superseded:** the honor layer of that PRD shipped independently as WARFARE
 (`src/sim/pvp/` honor/rating plus battlegrounds); `design/warfare.md` is the live honor
 source of truth, and the PRD remains the plan only for the unbuilt Frostreach zone
-itself. `prd/woc/` holds the $WOC/web3 specs, another shipped-vs-plan mix: for example
-`prd/woc/wallet-link.md` backs the shipped wallet-handoff entry, and
-`prd/woc/marketplace.md` plus `prd/woc/p2p-woc-trade.md` back the shipped (config-off)
-$WOC Exchange and directed trade rail, while other specs there are still plans.
+itself. `prd/woc/` holds the retired $WOC/web3 specs (wallet link, the $WOC Exchange,
+the directed trade rail): Project H removed every crypto feature, so these are history,
+not plans, pending their own cleanup.
 
 ## screenshots/
 JPG/PNG assets embedded by the repo-root `README.md` (title screen, zones, dungeons, UI),

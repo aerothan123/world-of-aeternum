@@ -82,10 +82,10 @@ describe('navigationAllowed', () => {
     expect(navigationAllowed(turnstile, true, main)).toBe(false);
     expect(navigationAllowed(turnstile, false, main)).toBe(true);
   });
-  it('allows WalletConnect verification only as an embedded subframe', () => {
+  it('no longer admits the retired WalletConnect verification frame anywhere', () => {
     const verify = 'https://verify.walletconnect.com/session';
     expect(navigationAllowed(verify, true, main)).toBe(false);
-    expect(navigationAllowed(verify, false, main)).toBe(true);
+    expect(navigationAllowed(verify, false, main)).toBe(false);
   });
   // The Claudium store mounts Stripe Embedded Checkout in iframes. Stripe starts some
   // of them on per-session subdomains (Stripe's CSP guidance names *.js.stripe.com and
@@ -232,13 +232,10 @@ describe('buildContentSecurityPolicy', () => {
     expect(csp).toContain('frame-src https://challenges.cloudflare.com');
   });
 
-  it('allows only the WalletConnect transport, modal images, fonts, and verification frames', () => {
-    expect(directive('connect-src')).toContain('https://*.walletconnect.com');
-    expect(directive('connect-src')).toContain('wss://*.walletconnect.com');
-    expect(directive('connect-src')).toContain('https://api.web3modal.org');
-    expect(directive('img-src')).toContain('https://secure.walletconnect.com');
-    expect(directive('font-src')).toContain('https://fonts.reown.com');
-    expect(directive('frame-src')).toContain('https://verify.walletconnect.com');
+  it('carries no wallet transport, modal, font, or verification origin (no crypto rail)', () => {
+    expect(csp).not.toContain('walletconnect');
+    expect(csp).not.toContain('web3modal');
+    expect(csp).not.toContain('reown');
   });
 
   // The Claudium store's card rail loads https://js.stripe.com/v3/ and mounts Stripe's

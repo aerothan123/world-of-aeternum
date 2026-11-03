@@ -25,7 +25,7 @@ import type { WeeklyRewardInfo } from '../sim/weekly_rewards';
  *  The list is append-only data: a future source (X, Twitch) is a new row with a new
  *  id, never a shape change. Offline worlds always carry an empty list. */
 export interface BankBonusSource {
-  id: string; // stable source id ('email' | 'discord' | 'wallet' | 'referral'; future sources append)
+  id: string; // stable source id ('email' | 'discord' | 'referral' | 'referral_cards'; future sources append)
   slots: number; // slots this source grants right now
   maxSlots: number; // slots it grants when fully earned
   count?: number; // progress numerator (referral: qualified referees, capped for display)

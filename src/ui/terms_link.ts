@@ -1,7 +1,5 @@
-// The one resolver for the Marketplace terms link that the two money surfaces
-// (the trade window's $WOC arm and the Exchange window) render beside their
-// consent checkbox (draft Terms 10.3: the document is LINKED at the moment of
-// acceptance, so the href has to reach it on every shell).
+// The one resolver for links to the legal pages (terms, privacy): the href has
+// to reach the document on every shell.
 //
 // A same-origin '/terms' works only where the client is served by the site
 // (the web, the Vite dev server through STATIC_PAGE_ALIASES). The packaged
@@ -16,12 +14,7 @@
 // DOM-free (registered in tests/architecture.test.ts UI_PURE_CORES): the
 // painters hand in the page origin, this module never reads the host.
 
-import {
-  CANONICAL_PRIVACY_URL,
-  CANONICAL_TERMS_URL,
-  CANONICAL_WHITEPAPER_URL,
-  NATIVE_APP,
-} from '../client_origin';
+import { CANONICAL_PRIVACY_URL, CANONICAL_TERMS_URL, NATIVE_APP } from '../client_origin';
 
 export interface TermsUrlEnv {
   /** True in the Capacitor native app (its WebView origin is not the site). */
@@ -60,18 +53,4 @@ export function resolvePrivacyUrl(env: TermsUrlEnv): string {
 
 export function privacyUrlFor(origin: string): string {
   return resolvePrivacyUrl({ nativeApp: NATIVE_APP, origin });
-}
-
-/** The same-origin path to the whitepaper pdf asset on the public site. */
-export const WHITEPAPER_PATH = '/World-of-ClaudeCraft-Whitepaper-v1.0.pdf';
-
-/** Same-origin whitepaper pdf path whenever served by the site;
- *  the canonical URL otherwise. */
-export function resolveWhitepaperUrl(env: TermsUrlEnv): string {
-  if (!env.nativeApp && /^https?:\/\//.test(env.origin)) return WHITEPAPER_PATH;
-  return CANONICAL_WHITEPAPER_URL;
-}
-
-export function whitepaperUrlFor(origin: string): string {
-  return resolveWhitepaperUrl({ nativeApp: NATIVE_APP, origin });
 }

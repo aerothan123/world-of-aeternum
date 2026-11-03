@@ -577,7 +577,7 @@ export const guideStrings = {
       'Draws other players nameplates. Off declutters a crowded hub, and your current target stays readable either way.',
     ifWallet:
       'Whether your wallet is shown on the character screen. There is a matching switch for the player card.',
-    ifDailyChest: 'Whether the daily rewards chest sits on your HUD.',
+    ifDailyChest: 'Whether the Store chest sits on your HUD.',
     ifPlayerFrameScale: 'The size of your own unit frame.',
     ifTargetFrameScale: 'The size of your target frame.',
     ifPartyStyle:

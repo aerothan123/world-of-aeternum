@@ -147,13 +147,6 @@ export const WOC_DB_BACKEND_CANCEL_FAILURES_TOTAL = 'woc_db_backend_cancel_failu
  *  queueing, the precursor the wocEscrowQueue refusal counters alert on. */
 export const WOC_SAVE_PENDING_KEYS = 'woc_character_save_pending_keys';
 
-/** The realm escrow gate's live occupancy (the write-path rider's
- *  realm-global bound): the instantaneous truth the wocEscrowQueue counter
- *  kinds approximate, exported to Prometheus so an alert rule can watch
- *  sustained inFlight at the cap instead of scraping the secret-gated ops
- *  readout. */
-export const WOC_ESCROW_GATE_IN_FLIGHT = 'woc_escrow_gate_in_flight';
-
 /** Realm-wide cap across the named dominant background DB producers. */
 export const WOC_BACKGROUND_DB_GATE = 'woc_background_db_gate';
 
@@ -427,8 +420,6 @@ export interface GameStateSource {
   simTickHz(): number | null;
   /** Character-save FIFO keys with a queued or running write. */
   savePendingKeys(): number;
-  /** The realm escrow gate's live in-flight count. */
-  escrowGateInFlight(): number;
   backgroundDbGate(): {
     inFlight: number;
     waiting: number;
@@ -620,15 +611,6 @@ export function registerGameStateMetrics(
     registers: [registry],
     collect() {
       this.set(source.savePendingKeys());
-    },
-  });
-
-  new Gauge({
-    name: WOC_ESCROW_GATE_IN_FLIGHT,
-    help: 'Realm escrow gate occupancy (listing sequences holding a slot).',
-    registers: [registry],
-    collect() {
-      this.set(source.escrowGateInFlight());
     },
   });
 

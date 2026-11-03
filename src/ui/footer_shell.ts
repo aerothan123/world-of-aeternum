@@ -1,7 +1,7 @@
 // One-time shell footer wiring, shared by web and packaged clients.
 import { formatFooterVersion } from './app_version';
 import { t } from './i18n';
-import { privacyUrlFor, termsUrlFor, whitepaperUrlFor } from './terms_link';
+import { privacyUrlFor, termsUrlFor } from './terms_link';
 
 export function syncBuildInfo(version: string, buildId: string, buildDate: string): void {
   const el = document.getElementById('game-version');
@@ -12,12 +12,6 @@ export function syncBuildInfo(version: string, buildId: string, buildDate: strin
 
 export function syncFooterLegalLinks(): void {
   const origin = globalThis.location?.origin ?? '';
-  const whitepaper = document.querySelector<HTMLAnchorElement>('a[data-i18n="footer.whitepaper"]');
-  if (whitepaper) {
-    whitepaper.href = whitepaperUrlFor(origin);
-    whitepaper.target = '_blank';
-    whitepaper.rel = 'noopener noreferrer';
-  }
   const terms = document.querySelector<HTMLAnchorElement>('a[data-i18n="footer.terms"]');
   if (terms) {
     terms.href = termsUrlFor(origin);

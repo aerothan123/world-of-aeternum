@@ -16156,44 +16156,26 @@ export const TARGETS = [
     },
   },
   {
-    // $WOC holder-tier badges (Ascendant Sigils reskin). Stages a row of players
-    // whose holderTier spans all four bands (coin, gem, sigil, regalia) so one
-    // frame shows the ladder on real nameplates, over a bright and a darkened
-    // scene (exposure is dropped for the dark variant; the DOM badges float over
-    // the canvas and stay bright, which is the whole legibility test), a close-up
-    // for badge detail, and the inspect/player-card surface.
+    // Contributor (developer) tier badges. Stages a row of players whose
+    // devTier spans all five merged-PR rungs so one frame shows the ladder on
+    // real nameplates, over a bright and a darkened scene (exposure is dropped
+    // for the dark variant; the DOM badges float over the canvas and stay
+    // bright, which is the whole legibility test), and the inspect/player-card
+    // surface. (The $WOC holder ladder that once shared this target retired
+    // with the crypto rail.)
     key: 'holder-tier',
-    label: 'Ascendant Sigils badges (holder + contributor)',
+    label: 'Contributor tier badges',
     // .ts-suffixed so the substring match does not also fire on the *.test.ts files.
-    when: ['ui/holder_tier.ts', 'ui/dev_tier.ts', 'render/nameplate_painter.ts'],
-    variants: [
-      { key: 'ladder-bright' },
-      { key: 'ladder-dark' },
-      { key: 'closeup' },
-      { key: 'card' },
-      { key: 'dev-ladder-bright' },
-      { key: 'dev-ladder-dark' },
-      { key: 'dev-card' },
-    ],
+    when: ['ui/dev_tier.ts', 'render/nameplate_painter.ts'],
+    variants: [{ key: 'dev-ladder-bright' }, { key: 'dev-ladder-dark' }, { key: 'dev-card' }],
     async capture(page, variant) {
-      const mode = variant?.key ?? 'ladder-bright';
+      const mode = variant?.key ?? 'dev-ladder-bright';
       const staged = await page.evaluate((mode) => {
         const g = window.__game;
         const sim = g?.sim;
         const p = sim?.player;
         if (!g || !sim || !p) return { ok: false, reason: 'offline world is unavailable' };
         g.renderer.showDevBadges = true;
-        // A holder ladder spanning every band: Ember/Gilded (coins), Whale (gem),
-        // Titanforged/Worldforger (sigils), Worldbearer/Sovereign (regalia).
-        const HOLDER = [
-          { holderTier: 1, name: 'Emberlyn', cls: 'mage', bal: 1 },
-          { holderTier: 5, name: 'Goldwyn', cls: 'paladin', bal: 10000 },
-          { holderTier: 7, name: 'Whalimir', cls: 'warrior', bal: 1000000 },
-          { holderTier: 12, name: 'Titanys', cls: 'druid', bal: 50000000 },
-          { holderTier: 16, name: 'Forgemara', cls: 'priest', bal: 90000000 },
-          { holderTier: 17, name: 'Worlding', cls: 'hunter', bal: 100000000 },
-          { holderTier: 18, name: 'Sovryn', cls: 'rogue', bal: 1000000000 },
-        ];
         // The contributor ladder: five merged-PR rungs (Tinkerer to Worldwright).
         const DEV = [
           { devTier: 1, name: 'Tinkwyn', cls: 'mage', prs: 1 },
@@ -16205,28 +16187,16 @@ export const TARGETS = [
         // Verified-empty open terrain so nothing clutters the row.
         p.pos.x = -200;
         p.pos.z = 0;
-        let set;
+        const camDist = 22;
+        const camPitch = 0.3;
+        const spacing = 4;
+        const zAhead = 9;
+        let set = DEV;
         let dark = false;
-        let camDist = 22;
-        let camPitch = 0.3;
-        let spacing = 4;
-        let zAhead = 9;
-        if (mode === 'closeup') {
-          set = HOLDER.slice(4);
-          camDist = 6.5;
-          camPitch = 0.14;
-          spacing = 3.4;
-          zAhead = 6;
-        } else if (mode === 'card') {
-          set = [HOLDER[6]]; // Sovereign holder card
-        } else if (mode === 'dev-card') {
+        if (mode === 'dev-card') {
           set = [DEV[4]]; // Worldwright contributor card
-        } else if (mode === 'dev-ladder-bright' || mode === 'dev-ladder-dark') {
-          set = DEV;
-          dark = mode === 'dev-ladder-dark';
         } else {
-          set = HOLDER; // ladder-bright / ladder-dark
-          dark = mode === 'ladder-dark';
+          dark = mode === 'dev-ladder-dark';
         }
         const isCard = mode.indexOf('card') >= 0;
         const ids = [];
@@ -16235,10 +16205,6 @@ export const TARGETS = [
           const e = sim.entities.get(pid);
           if (!e) return;
           e.level = 60;
-          if (row.holderTier != null) {
-            e.holderTier = row.holderTier;
-            e.holderBalance = row.bal;
-          }
           if (row.devTier != null) {
             e.devTier = row.devTier;
             e.devMergedPrs = row.prs;

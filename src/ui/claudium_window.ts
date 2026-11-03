@@ -12,43 +12,26 @@
 // are CSS tokens (class names), no literal hex/px in this module.
 
 import { buildClaudiumView, type ClaudiumSkuInput, type ClaudiumView } from './claudium_view';
-import { currencyImageUrl } from './currency_art';
 import { markDialogRoot } from './dialog_root';
 import { esc } from './esc';
 import { formatNumber, t } from './i18n';
 import { svgIcon } from './ui_icons';
 import { usdDollarsText } from './usd_text';
-import { walletCardKeys } from './wallet_card_keys';
-import type { WalletConnectionView } from './wallet_connection_view';
 
-export type ClaudiumRail = 'stripe' | 'sol' | 'usdc' | 'woc';
+/** The purchase rails. Card (Stripe) is the only one. */
+export type ClaudiumRail = 'stripe';
 
 /** The service-sourced snapshot the window renders (all values from the service). */
 export interface ClaudiumSnapshot {
   available?: boolean;
   balance: number | null;
   skus: readonly ClaudiumSkuInput[];
-  /** Current service-computed $WOC discount, in basis points. */
-  wocDiscountBps?: number | null;
-  nativeRails?: Partial<Record<'sol' | 'usdc' | 'woc', boolean>>;
-  walletBalances?: {
-    solLamports: string | null;
-    usdcBaseUnits: string | null;
-    wocBaseUnits: string | null;
-  };
-  nativePrices?: readonly {
-    sku: string;
-    solAmountBase?: string | null;
-    usdcAmountBase?: string | null;
-    wocAmountBase?: string | null;
-  }[];
 }
 
 /**
  * Hud-supplied glue. The window paints from what these return and reports clicks
  * back; it never reaches into Hud. balance()/skus()/price() are the
- * async service reads; buy() starts the client-signed purchase
- * flows; the focus pair comes from Hud.windowFocus().
+ * async service reads; buy() starts the card checkout flow; the focus pair comes from Hud.windowFocus().
  */
 export interface ClaudiumWindowDeps {
   root(): HTMLElement;
@@ -60,8 +43,6 @@ export interface ClaudiumWindowDeps {
   snapshot(): Promise<ClaudiumSnapshot>;
   /** Begin a purchase on the chosen rail for the chosen SKU. */
   buy(rail: ClaudiumRail, sku: string): Promise<void>;
-  onWalletConnect?(): void;
-  walletState?(): WalletConnectionView;
 }
 
 const EMPTY_SNAPSHOT: ClaudiumSnapshot = {
@@ -69,12 +50,7 @@ const EMPTY_SNAPSHOT: ClaudiumSnapshot = {
   skus: [],
 };
 
-const WOC_DECIMALS = 6;
-const USDC_DECIMALS = 6;
-const WOC_ICON_URL = currencyImageUrl('woc_token') ?? '/woc_logo_square.webp';
-const SOL_ICON_URL = '/claudium/icons/solana-icon.webp';
-const USDC_ICON_URL = '/claudium/icons/usdc-icon.webp';
-type ClaudiumFocusTarget = { kind: 'rail' | 'sku'; value: string } | { kind: 'wallet' };
+type ClaudiumFocusTarget = { kind: 'rail' | 'sku'; value: string };
 
 function sameClaudiumView(left: ClaudiumView | null, right: ClaudiumView): boolean {
   return left !== null && JSON.stringify(left) === JSON.stringify(right);
@@ -91,7 +67,6 @@ export class ClaudiumWindow {
   private selectedRail: ClaudiumRail = 'stripe';
   private pendingPurchase: { rail: ClaudiumRail; sku: string } | null = null;
   private purchaseError: string | null = null;
-  private paintedWalletMarkup: string | null = null;
   // The one-shot return path for a caller that HANDED OFF to this window (the
   // WOC Store's "you need more Claudium" flow). Armed by toggle() on BOTH of its
   // arms (an open arms it for the close that follows; a toggle that finds the
@@ -105,16 +80,6 @@ export class ClaudiumWindow {
 
   get isOpen(): boolean {
     return this.deps.root().style.display === 'block';
-  }
-
-  onWalletChanged(): void {
-    if (!this.isOpen) return;
-    const focused = this.captureBodyFocus();
-    if (this.currentView && this.walletConnectionHtml() !== this.paintedWalletMarkup) {
-      this.paint(this.currentView);
-      this.restoreBodyFocus(focused);
-    }
-    void this.render(null, focused);
   }
 
   /** Open for a HANDOFF, and unlike toggle() calling it while already open does
@@ -296,7 +261,6 @@ export class ClaudiumWindow {
     const body = this.deps.root().querySelector<HTMLElement>('.cl-body');
     const active = document.activeElement as HTMLElement | null;
     if (!body || !active || !body.contains(active)) return null;
-    if (active.dataset.claudiumWallet !== undefined) return { kind: 'wallet' };
     if (active.dataset.sku) return { kind: 'sku', value: active.dataset.sku };
     if (active.dataset.rail) return { kind: 'rail', value: active.dataset.rail };
     return null;
@@ -306,10 +270,6 @@ export class ClaudiumWindow {
     if (!target) return;
     const body = this.deps.root().querySelector<HTMLElement>('.cl-body');
     if (!body) return;
-    if (target.kind === 'wallet') {
-      body.querySelector<HTMLButtonElement>('[data-claudium-wallet]')?.focus();
-      return;
-    }
     const attribute = target.kind === 'sku' ? 'data-sku' : 'data-rail';
     const match = Array.from(body.querySelectorAll<HTMLButtonElement>(`[${attribute}]`)).find(
       (button) => button.dataset[target.kind] === target.value && !button.disabled,
@@ -326,14 +286,8 @@ export class ClaudiumWindow {
   private paint(view: ClaudiumView): void {
     const body = this.deps.root().querySelector<HTMLElement>('.cl-body');
     if (!body) return;
-    const walletMarkup = this.walletConnectionHtml();
     body.innerHTML =
-      this.balanceHtml(view) +
-      walletMarkup +
-      this.noticeHtml(view) +
-      this.buyHtml(view) +
-      this.disclosureHtml();
-    this.paintedWalletMarkup = walletMarkup;
+      this.balanceHtml(view) + this.noticeHtml(view) + this.buyHtml(view) + this.disclosureHtml();
     this.wire(body, view);
   }
 
@@ -362,35 +316,6 @@ export class ClaudiumWindow {
       `<span class="cl-balance-label">${esc(t('hudChrome.claudium.balanceLabel'))}</span>` +
       `<strong class="cl-balance-value ui-num">${esc(shown)}</strong>` +
       `</div>` +
-      this.walletBalancesHtml(view) +
-      `</div>`
-    );
-  }
-
-  private walletBalancesHtml(view: ClaudiumView): string {
-    if (view.disabled) return '';
-    const sol = this.formatBaseUnits(view.walletBalances.solLamports, 9, 4);
-    const usdc = this.formatBaseUnits(view.walletBalances.usdcBaseUnits, USDC_DECIMALS, 2);
-    const woc = this.formatBaseUnits(view.walletBalances.wocBaseUnits, WOC_DECIMALS, 2);
-    return (
-      `<div class="cl-wallet-balances">` +
-      `<span>${esc(t('hudChrome.claudium.solBalance', { amount: sol }))}</span>` +
-      `<span>${esc(t('hudChrome.claudium.usdcBalance', { amount: usdc }))}</span>` +
-      `<span>${esc(t('hudChrome.claudium.wocBalance', { amount: woc }))}</span>` +
-      `</div>`
-    );
-  }
-
-  private walletConnectionHtml(): string {
-    const state = this.deps.walletState?.();
-    if (!state?.enabled) return '';
-    // The copy table is shared with the $WOC Exchange's card (wallet_card_keys).
-    const { bodyKey, actionKey } = walletCardKeys(state.kind);
-    return (
-      `<div class="cl-wallet-connect ui-card">` +
-      `<strong>${esc(t('hudChrome.wocStore.wallet.title'))}</strong>` +
-      `<p>${esc(t(bodyKey))}</p>` +
-      `<button type="button" class="ui-btn" data-claudium-wallet>${esc(t(actionKey))}</button>` +
       `</div>`
     );
   }
@@ -405,45 +330,14 @@ export class ClaudiumWindow {
     const pending = this.pendingPurchase;
     const stripeSel =
       this.selectedRail === 'stripe' ? ' aria-pressed="true"' : ' aria-pressed="false"';
-    const solSel = this.selectedRail === 'sol' ? ' aria-pressed="true"' : ' aria-pressed="false"';
-    const usdcSel = this.selectedRail === 'usdc' ? ' aria-pressed="true"' : ' aria-pressed="false"';
-    const wocSel = this.selectedRail === 'woc' ? ' aria-pressed="true"' : ' aria-pressed="false"';
-    const wocDiscount =
-      Number.isInteger(view.wocDiscountBps) &&
-      (view.wocDiscountBps ?? -1) >= 0 &&
-      (view.wocDiscountBps ?? 10_000) <= 9000
-        ? `<span class="cl-rail-discount ui-chip is-on">${esc(
-            t('hudChrome.claudium.railWocDiscount', {
-              percent: formatNumber((view.wocDiscountBps ?? 0) / 100, {
-                maximumFractionDigits: 2,
-              }),
-            }),
-          )}</span>`
-        : '';
     const railPicker =
       `<div class="cl-rails ui-seg" role="group" aria-label="${esc(t('hudChrome.claudium.railLabel'))}">` +
       `<button type="button" class="cl-rail ui-seg-tab${this.selectedRail === 'stripe' ? ' is-on' : ''}" data-rail="stripe"${stripeSel} ${view.rails.stripe && !pending ? '' : 'disabled'}>` +
       this.railIconHtml('card') +
       `<span>${esc(t('hudChrome.claudium.railStripe'))}</span>` +
       `</button>` +
-      `<button type="button" class="cl-rail cl-rail-woc ui-seg-tab${this.selectedRail === 'woc' ? ' is-on' : ''}" data-rail="woc"${wocSel} ${view.rails.woc && !pending ? '' : 'disabled'}>` +
-      this.railIconHtml('woc') +
-      `<span>${esc(t('hudChrome.claudium.railWoc'))}</span>` +
-      wocDiscount +
-      `</button>` +
-      `<button type="button" class="cl-rail ui-seg-tab${this.selectedRail === 'usdc' ? ' is-on' : ''}" data-rail="usdc"${usdcSel} ${view.rails.usdc && !pending ? '' : 'disabled'}>` +
-      this.railIconHtml('usdc') +
-      `<span>${esc(t('hudChrome.claudium.railUsdc'))}</span>` +
-      `</button>` +
-      `<button type="button" class="cl-rail ui-seg-tab${this.selectedRail === 'sol' ? ' is-on' : ''}" data-rail="sol"${solSel} ${view.rails.sol && !pending ? '' : 'disabled'}>` +
-      this.railIconHtml('sol') +
-      `<span>${esc(t('hudChrome.claudium.railSol'))}</span>` +
-      `</button>` +
       `</div>`;
-    const nativeNote =
-      view.rails.sol || view.rails.usdc || view.rails.woc
-        ? ''
-        : `<p class="cl-rail-note">${esc(t('hudChrome.claudium.railNativeUnavailable'))}</p>`;
+    `</div>`;
     const rows = view.buyRows
       .map((row, index) => {
         const price = this.buyPriceLabel(row);
@@ -475,7 +369,6 @@ export class ClaudiumWindow {
     return (
       `<section class="cl-section"><h3>${esc(t('hudChrome.claudium.buyTitle'))}</h3>` +
       railPicker +
-      nativeNote +
       `<div class="cl-amount-label">${esc(t('hudChrome.claudium.amountLabel'))}</div>` +
       errorNote +
       list +
@@ -493,16 +386,7 @@ export class ClaudiumWindow {
     return `/claudium/icons/stack_${size}_256.webp`;
   }
 
-  private railIconHtml(kind: 'card' | 'sol' | 'usdc' | 'woc'): string {
-    if (kind === 'woc') {
-      return `<img class="cl-rail-icon cl-rail-brand" src="${esc(WOC_ICON_URL)}" alt="" aria-hidden="true">`;
-    }
-    if (kind === 'sol') {
-      return `<img class="cl-rail-icon cl-rail-brand" src="${esc(SOL_ICON_URL)}" alt="" aria-hidden="true">`;
-    }
-    if (kind === 'usdc') {
-      return `<img class="cl-rail-icon cl-rail-brand" src="${esc(USDC_ICON_URL)}" alt="" aria-hidden="true">`;
-    }
+  private railIconHtml(_kind: 'card'): string {
     return (
       `<svg class="cl-rail-icon" viewBox="0 0 24 24" aria-hidden="true">` +
       `<rect x="3.5" y="5.5" width="17" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"></rect>` +
@@ -512,43 +396,7 @@ export class ClaudiumWindow {
   }
 
   private buyPriceLabel(row: ClaudiumView['buyRows'][number]): string {
-    // Ticker through the catalog, never a glued suffix: the number is
-    // locale-formatted and the unit rides its own template token.
-    if (this.selectedRail === 'sol') {
-      return t('hudChrome.claudium.priceSol', {
-        amount: this.formatBaseUnits(row.solAmountBase, 9, 4),
-      });
-    }
-    if (this.selectedRail === 'usdc') {
-      return t('hudChrome.claudium.priceUsdc', {
-        amount: this.formatBaseUnits(row.usdcAmountBase, USDC_DECIMALS, 2),
-      });
-    }
-    if (this.selectedRail === 'woc') {
-      return t('hudChrome.claudium.priceWoc', {
-        amount: this.formatBaseUnits(row.wocAmountBase, WOC_DECIMALS, 2),
-      });
-    }
     return this.usdLabel(row.usd);
-  }
-
-  private formatBaseUnits(value: string | null, decimals: number, fractionDigits: number): string {
-    if (!value) return '--';
-    try {
-      const raw = BigInt(value);
-      const scale = 10n ** BigInt(decimals);
-      const whole = raw / scale;
-      const fraction = raw % scale;
-      const factor = 10n ** BigInt(fractionDigits);
-      const rounded = (fraction * factor + scale / 2n) / scale;
-      const amount = Number(whole) + Number(rounded) / Number(factor);
-      return formatNumber(amount, {
-        maximumFractionDigits: fractionDigits,
-        minimumFractionDigits: 0,
-      });
-    } catch {
-      return '--';
-    }
   }
 
   private disclosureHtml(): string {
@@ -556,25 +404,10 @@ export class ClaudiumWindow {
   }
 
   private wire(body: HTMLElement, view: ClaudiumView): void {
-    body
-      .querySelector<HTMLButtonElement>('[data-claudium-wallet]')
-      ?.addEventListener('click', () => {
-        this.deps.onWalletConnect?.();
-      });
     body.querySelectorAll<HTMLButtonElement>('[data-rail]').forEach((btn) => {
       btn.addEventListener('click', () => {
-        const rail =
-          btn.dataset.rail === 'woc'
-            ? 'woc'
-            : btn.dataset.rail === 'usdc'
-              ? 'usdc'
-              : btn.dataset.rail === 'sol'
-                ? 'sol'
-                : 'stripe';
-        if (rail === 'woc' && !view.rails.woc) return;
-        if (rail === 'usdc' && !view.rails.usdc) return;
-        if (rail === 'sol' && !view.rails.sol) return;
-        if (rail === 'stripe' && !view.rails.stripe) return;
+        const rail: ClaudiumRail = 'stripe';
+        if (!view.rails.stripe) return;
         this.selectedRail = rail;
         this.purchaseError = null;
         const focused = this.captureBodyFocus();
@@ -612,15 +445,12 @@ export class ClaudiumWindow {
     });
   }
 
-  private skuDisabled(view: ClaudiumView, row: ClaudiumView['buyRows'][number]): boolean {
+  private skuDisabled(_view: ClaudiumView, row: ClaudiumView['buyRows'][number]): boolean {
     return (
       this.pendingPurchase !== null ||
       this.refreshing ||
       this.refreshFailed ||
-      (this.selectedRail === 'stripe' && !row.stripeConfigured) ||
-      (this.selectedRail === 'sol' && (!view.rails.sol || !row.solAffordable)) ||
-      (this.selectedRail === 'usdc' && (!view.rails.usdc || !row.usdcAffordable)) ||
-      (this.selectedRail === 'woc' && (!view.rails.woc || !row.wocAffordable))
+      !row.stripeConfigured
     );
   }
 

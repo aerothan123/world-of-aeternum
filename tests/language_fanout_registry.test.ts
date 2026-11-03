@@ -134,7 +134,6 @@ const FANOUT_ARMS: readonly string[] = [
   'this.bgScoreboard.relocalize|',
   'this.hillBar.relocalize|',
   'this.syncDailyRewardsSurfaceLabels|',
-  'this.wocMarketWindow.relocalize|',
   'this.weeklyQuestsWindow.relocalize|',
   'this.guildHallWindow.relocalize|',
   'this.storePromoCard.relocalize|',
@@ -578,12 +577,6 @@ const ANSWERED: readonly AnsweredSurface[] = [
     why: "the week's board and progress, the seal count, the titles owned, the reset instant and the tab digest into lastSig, none of them text; lastMinute only gates the countdown's minute rewrite, whose text comes from t() at write time; relocalize() self-gates on the open sheet and rebuilds once in the current language, and render() re-latches both memos",
   },
   {
-    file: 'woc_market_window.ts',
-    memos: ['lastSig', 'paintedWalletSig'],
-    answer: 'this.wocMarketWindow.relocalize',
-    why: "the Exchange listing rows, statuses and countdowns digest into lastSig; relocalize() self-gates on isOpen, rebuilds once, and render() re-latches the signature. paintedWalletSig is the Solana wallet card's locale-free connection and balance state that gates onWalletChanged(); the same render() repaints the card in the current language and re-latches the signature, so the one relocalize() arm answers both memos",
-  },
-  {
     file: 'hud/professions/farming_plant_sheet_window.ts',
     memos: ['paintedStatus'],
     answer: 'this.plantSheetWindow.relocalize',
@@ -784,16 +777,10 @@ const NOT_A_LANGUAGE_GATE: ReadonlyArray<{
       "The same write-elision idiom as its sibling practice_dps_controller.ts above: lastHtml retains the tracker card markup and lastPromptHtml the world-anchored bubble markup, both freshly built by markup(step) on the coach's own 250ms poll (Meters.update) and both resolved entirely through t() at build time. A locale switch changes the freshly built side of each comparison, so the coach repaints its next tick by itself with no fan-out arm.",
   },
   {
-    file: 'claudium_window.ts',
-    memos: ['paintedWalletMarkup'],
-    reason:
-      'paintedWalletMarkup retains the RESOLVED wallet markup and is compared against a freshly built walletConnectionHtml(), so a locale change moves both sides of the comparison and the repaint happens by itself. It is a write-elision memo, not a data signature.',
-  },
-  {
     file: 'daily_rewards_window.ts',
     memos: ['paintedStoreBody', 'paintedStoreMarkup'],
     reason:
-      'paintedStoreBody / paintedStoreMarkup retain the RESOLVED store markup and the element it was written into, compared against freshly built markup in replaceStoreBody, so a locale change produces different markup and repaints. Same write-elision shape as claudium_window.',
+      'paintedStoreBody / paintedStoreMarkup retain the RESOLVED store markup and the element it was written into, compared against freshly built markup in replaceStoreBody, so a locale change produces different markup and repaints. A write-elision memo, not a data signature.',
   },
   {
     file: 'store_membership_controller.ts',
@@ -832,10 +819,10 @@ const NOT_A_LANGUAGE_GATE: ReadonlyArray<{
       'lastChip gates only the header ARIA presence swap (aria-expanded / aria-controls / aria-haspopup), which carries no player-visible text. Every string in this painter goes through the elided writer facet, which compares resolved text, and the fan-out drives it through this.updateReliquaryTracker.',
   },
   {
-    file: 'hud/woc_trade/woc_trade_controller.ts',
+    file: 'hud/trade/trade_window_controller.ts',
     memos: ['lastTradeSig'],
     reason:
-      'the trade window repaint signature: it reads no text at all (offer structs, staged items and copper, acceptance flags, partner, the staged quote and consent structural state), so a locale switch cannot move it, and there is deliberately no fan-out arm, exactly as when the method lived on hud.ts. A live trade re-renders in the new locale on the next data motion (either offer, stake, or acceptance change; the standing-offer poll adoption; the 2s poll makes an ACTIVE deal converge within a beat). RE-JUDGED TWICE by the UX-honesty pass, which added the consent row and the quote review to this arm: both of those faces are deliberately STATIC (the staged quote waits for a human and polls keep, the consent row keeps the price outside the signature), so each can sit indefinitely in a stale locale, including a player who switches language to READ the terms and then accepts a label rendered in the language they left. The posture still stands, on narrower grounds: the consent SEND carries a boolean judged by the server, never the label text, and the surface is the short-lived two-player trade window. The polish pass owns the real fix, a self-gated relocalize() with form_draft.ts carrying the price field, if the stale-idle residue is judged worth the behavior change.',
+      'the trade window repaint signature: it reads no text at all (offer structs, staged items and copper, acceptance flags), so a locale switch cannot move it, and there is deliberately no fan-out arm, exactly as when the method lived on hud.ts. A live trade re-renders in the new locale on the next data motion (either offer, stake, or acceptance change), and the surface is the short-lived two-player trade window.',
   },
   // RULED (qr-19-hud-coordinator-fanout-exemption, 2026-09-01, under
   // qr-19-best-for-project): the blanket `{ file: 'hud.ts', memos: 'coordinator' }`
@@ -877,7 +864,7 @@ const NOT_A_LANGUAGE_GATE: ReadonlyArray<{
     file: 'hud.ts',
     memos: ['lastCoordsText'],
     reason:
-      'lastCoordsText retains the RESOLVED coordinate string it last put on #minimap-coords and is compared against a freshly built formatMinimapCoords(x, z), whose two numbers go through formatNumber, so a locale that formats digits or the minus sign differently produces different text and the readout rewrites itself on the very next fast-band tick without any fan-out arm. It is the write-elision shape (the claudium_window / daily_rewards_window class), not a data signature; the only other thing that moves it is the player stepping across a whole yard, and no t() call sits behind the gate.',
+      'lastCoordsText retains the RESOLVED coordinate string it last put on #minimap-coords and is compared against a freshly built formatMinimapCoords(x, z), whose two numbers go through formatNumber, so a locale that formats digits or the minus sign differently produces different text and the readout rewrites itself on the very next fast-band tick without any fan-out arm. It is the write-elision shape (the daily_rewards_window class), not a data signature; the only other thing that moves it is the player stepping across a whole yard, and no t() call sits behind the gate.',
   },
   {
     file: 'hud.ts',
@@ -1712,16 +1699,16 @@ describe('language fan-out: half 2, every signature-gated src/ui surface is clas
       // no text); fillGrid rebuilds every cell unconditionally and the
       // existing bags fan-out arm repaints the window wholesale on a locale
       // switch.
-      // 9 as of the woc_trade extraction: the trade window's `lastTradeSig`
+      // 9 as of the trade window extraction: the trade window's `lastTradeSig`
       // moved verbatim off the coordinator (where the blanket hud.ts row
-      // covered it) into hud/woc_trade/woc_trade_controller.ts, carrying the
+      // covered it) into hud/trade/trade_window_controller.ts, carrying the
       // coordinator-era posture unchanged; the row states the reasoning and
       // the deferred relocalize call.
       // 10 as of the v0.38.0 sync merge, which brought in map semantic
       // accessibility: lastHash is paired with lastLanguage in the same
       // guard, so getLanguage() changing explicitly invalidates the
       // localized summary without a separate fan-out arm. Each side of the
-      // merge had added one row (woc_trade above, the map core here), so the
+      // merge had added one row (the trade window above, the map core here), so the
       // merged list carries both.
       // 11 as of the quest tracker's lastHtml repaint memo (the island coach
       // glow strobe fix): the memo holds the freshly BUILT html, which
@@ -1747,7 +1734,8 @@ describe('language fan-out: half 2, every signature-gated src/ui surface is clas
       // 38 in the Project H fork: the player frame's health-mode and level memos
       // left the coordinator for the vitals core (src/ui/hud/vitals/), whose
       // cache the coordinator arm resets through resetVitalsCache.
-    ).toBe(38);
+      // 37: the Claudium window's wallet-markup memo left with the crypto rail.
+    ).toBe(37);
   });
 
   it('gives every relocalize() in src/ui a caller in the fan-out', () => {

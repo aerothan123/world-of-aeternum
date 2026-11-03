@@ -53,9 +53,6 @@ describe('admin route permission map', () => {
     expect(permissionForAdminRoute('GET', '/admin/api/overview')).toBe('analytics.read');
     expect(permissionForAdminRoute('GET', '/admin/api/provider-usage')).toBe('ops_usage.read');
     expect(permissionForAdminRoute('GET', '/admin/api/accounts/42')).toBe('accounts.read');
-    expect(permissionForAdminRoute('GET', '/admin/api/accounts/42/daily-rewards-events')).toBe(
-      'accounts.read',
-    );
     expect(permissionForAdminRoute('GET', '/admin/api/guilds')).toBe('accounts.read');
     expect(permissionForAdminRoute('GET', '/admin/api/guilds/42')).toBe('accounts.read');
     expect(permissionForAdminRoute('GET', '/admin/api/guilds/42/history')).toBe('moderation.read');
@@ -99,12 +96,12 @@ describe('admin route permission map', () => {
     expect(permissionForAdminRoute('POST', '/admin/api/moderation/accounts/42/ban')).toBe(
       'moderation.act',
     );
+    // The retired crypto-only Daily Rewards and $WOC Exchange operator routes no
+    // longer map to any permission (the central gate fails them closed).
     expect(
       permissionForAdminRoute('POST', '/admin/api/moderation/accounts/42/daily-rewards-ban'),
-    ).toBe('moderation.act');
-    expect(
-      permissionForAdminRoute('POST', '/admin/api/moderation/accounts/42/daily-rewards-ip-ban'),
-    ).toBe('moderation.act');
+    ).toBeNull();
+    expect(permissionForAdminRoute('GET', '/admin/api/woc-market/listings')).toBeNull();
     // The Cheater mark pair is registry-only, so the source scan above never sees
     // it: without these rows the central gate would fail closed with a 404 and the
     // routes would be unreachable in production. Spot-checked here because that is

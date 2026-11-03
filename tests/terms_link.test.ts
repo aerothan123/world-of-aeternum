@@ -1,24 +1,16 @@
-// The Marketplace terms link resolver (src/ui/terms_link.ts): the consent
-// checkbox on both money surfaces links the document it names, and the href
-// has to REACH it on every shell. Same-origin on the site, canonical
+// The legal-page link resolver (src/ui/terms_link.ts): a link to the terms or
+// privacy page has to REACH it on every shell. Same-origin on the site, canonical
 // everywhere the origin is not the site (the packaged desktop shell's app://,
 // the Capacitor shells' capacitor://localhost and http://localhost).
 import { describe, expect, it } from 'vitest';
-import {
-  CANONICAL_PRIVACY_URL,
-  CANONICAL_TERMS_URL,
-  CANONICAL_WHITEPAPER_URL,
-} from '../src/client_origin';
+import { CANONICAL_PRIVACY_URL, CANONICAL_TERMS_URL } from '../src/client_origin';
 import {
   PRIVACY_PATH,
   privacyUrlFor,
   resolvePrivacyUrl,
   resolveTermsUrl,
-  resolveWhitepaperUrl,
   TERMS_PATH,
   termsUrlFor,
-  WHITEPAPER_PATH,
-  whitepaperUrlFor,
 } from '../src/ui/terms_link';
 
 describe('resolveTermsUrl', () => {
@@ -86,38 +78,5 @@ describe('resolvePrivacyUrl', () => {
     expect(PRIVACY_PATH).toBe('/privacy');
     expect(privacyUrlFor('http://localhost:3000')).toBe(PRIVACY_PATH);
     expect(privacyUrlFor('app://worldofclaudecraft')).toBe(CANONICAL_PRIVACY_URL);
-  });
-});
-
-describe('resolveWhitepaperUrl', () => {
-  it('links the same-origin pdf when the site serves the client', () => {
-    expect(
-      resolveWhitepaperUrl({ nativeApp: false, origin: 'https://worldofclaudecraft.com' }),
-    ).toBe(WHITEPAPER_PATH);
-    expect(resolveWhitepaperUrl({ nativeApp: false, origin: 'http://localhost:5173' })).toBe(
-      WHITEPAPER_PATH,
-    );
-  });
-
-  it('takes the canonical URL on non-site origins', () => {
-    expect(resolveWhitepaperUrl({ nativeApp: false, origin: 'app://worldofclaudecraft' })).toBe(
-      CANONICAL_WHITEPAPER_URL,
-    );
-    expect(resolveWhitepaperUrl({ nativeApp: true, origin: 'capacitor://localhost' })).toBe(
-      CANONICAL_WHITEPAPER_URL,
-    );
-    expect(resolveWhitepaperUrl({ nativeApp: true, origin: 'http://localhost' })).toBe(
-      CANONICAL_WHITEPAPER_URL,
-    );
-    expect(resolveWhitepaperUrl({ nativeApp: false, origin: '' })).toBe(CANONICAL_WHITEPAPER_URL);
-  });
-
-  it('canonical whitepaper URL matches the public hosted pdf asset', () => {
-    expect(CANONICAL_WHITEPAPER_URL).toBe(
-      'https://worldofclaudecraft.com/World-of-ClaudeCraft-Whitepaper-v1.0.pdf',
-    );
-    expect(WHITEPAPER_PATH).toBe('/World-of-ClaudeCraft-Whitepaper-v1.0.pdf');
-    expect(whitepaperUrlFor('http://localhost:3000')).toBe(WHITEPAPER_PATH);
-    expect(whitepaperUrlFor('app://worldofclaudecraft')).toBe(CANONICAL_WHITEPAPER_URL);
   });
 });

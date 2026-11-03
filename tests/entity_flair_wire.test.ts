@@ -8,8 +8,6 @@ import { decodeEntityFlairWire } from '../src/net/entity_flair_wire';
 describe('decodeEntityFlairWire', () => {
   it('resets every field to its no-flair default on a bare record', () => {
     expect(decodeEntityFlairWire({})).toEqual({
-      holderTier: 0,
-      holderBalance: undefined,
       discordTier: 0,
       discordAvatar: undefined,
       discordName: undefined,
@@ -27,10 +25,17 @@ describe('decodeEntityFlairWire', () => {
     });
   });
 
+  it('ignores the retired $WOC holder keys (ht/hb) an older server may still send', () => {
+    const result = decodeEntityFlairWire({ ht: 7, hb: 12_500 }) as unknown as Record<
+      string,
+      unknown
+    >;
+    expect(result).not.toHaveProperty('holderTier');
+    expect(result).not.toHaveProperty('holderBalance');
+  });
+
   it('decodes a fully-populated identity record', () => {
     const result = decodeEntityFlairWire({
-      ht: 7,
-      hb: 12_500,
       dt: 3,
       dav: 'https://cdn.discordapp.com/avatar.png',
       dnm: 'Someplayer',
@@ -47,8 +52,6 @@ describe('decodeEntityFlairWire', () => {
       chm: 1,
     });
     expect(result).toEqual({
-      holderTier: 7,
-      holderBalance: 12_500,
       discordTier: 3,
       discordAvatar: 'https://cdn.discordapp.com/avatar.png',
       discordName: 'Someplayer',
@@ -86,11 +89,9 @@ describe('decodeEntityFlairWire', () => {
 
   it('ignores wrong-typed string fields rather than throwing', () => {
     const result = decodeEntityFlairWire({
-      hb: 'not-a-number',
       dav: 42,
       dj: 'yesterday',
     });
-    expect(result.holderBalance).toBeUndefined();
     expect(result.discordAvatar).toBeUndefined();
     expect(result.discordJoined).toBeUndefined();
   });

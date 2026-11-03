@@ -621,12 +621,4 @@ describe('one memo per route, and both readable from the ops readout', () => {
     );
     expect(afterMetrics.activity).toEqual(afterActivity.activity);
   });
-
-  it('server/main.ts publishes both memos on the internal stuck readout', () => {
-    // The same source-pin shape tests/server/woc_market_hot_reads.test.ts uses
-    // for the read-cache counters on this readout: the line is the production
-    // reader of stats(), so a hit-rate regression is scrape-visible.
-    const main = readFileSync(resolve(process.cwd(), 'server/main.ts'), 'utf8');
-    expect(main).toContain('adminAnalyticsMemo: adminAnalyticsMemoStats(),');
-  });
 });

@@ -65,10 +65,8 @@ function harness(startCopper = 1000, inventory: InvSlot[] = SWORD): Harness {
           return copper;
         },
       }) as unknown as IWorld,
-    wocBalanceHtml: () => '',
     claudiumLauncherHtml: () => '',
     openClaudium: noop,
-    openWallet: noop,
     hideTooltip,
     consumePeek: () => false,
     cancelPetFeed: noop,
@@ -300,12 +298,8 @@ describe('BagsWindow.refreshIfChanged preserves what the player is holding', () 
     expect(h.hideTooltip).not.toHaveBeenCalled();
   });
 
-  // BOTH launchers, one case each. A single combined assertion is not enough here:
-  // with only the Claudium arm, deleting the wallet re-bind from paintMoneyRow left
-  // all 55 tests green, and the footer's Connect/Link wallet button would have gone
-  // dead after the first purse-driven repaint. wocBalanceHtml emits
-  // [data-wallet-action] only on its BUTTON variant (an unverified wallet), which is
-  // exactly the case a real player hits before verifying.
+  // The footer launcher, re-bound after every in-place rewrite. (The retired $WOC
+  // wallet launcher used to ride this loop as a second case.)
   for (const launcher of [
     {
       name: 'Claudium',
@@ -313,7 +307,6 @@ describe('BagsWindow.refreshIfChanged preserves what the player is holding', () 
       hook: 'openClaudium',
       attr: 'data-claudium-launcher',
     },
-    { name: 'wallet', html: 'wocBalanceHtml', hook: 'openWallet', attr: 'data-wallet-action' },
   ] as const) {
     it(`keeps the ${launcher.name} launcher wired after an in-place rewrite`, () => {
       const opened: string[] = [];
@@ -342,7 +335,7 @@ describe('BagsWindow.refreshIfChanged preserves what the player is holding', () 
     //    default on the chat edge only when `tag !== 'button'`, on the stated grounds
     //    that a button's own Enter activation is a real default action too. Parking
     //    focus back on one makes the player's next Enter (meaning "open chat") ALSO
-    //    open the Claudium store or re-fire the wallet connect flow.
+    //    open the Claudium store.
     //  - #bags is non-modal and absent from Hud.isModalOpen(), so canUseGameKeys()
     //    stays true and input.ts preventDefaults Tab for target-nearest. Keyboard
     //    focus cannot reach this footer at all, so there is no WCAG 2.4.3 debt to pay

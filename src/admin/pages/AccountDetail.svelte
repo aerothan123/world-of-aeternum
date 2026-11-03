@@ -17,7 +17,6 @@
   import AccountNote from '../components/AccountNote.svelte';
   import ChatModerationControls from '../components/ChatModerationControls.svelte';
   import CheaterMarkControls from '../components/CheaterMarkControls.svelte';
-  import DailyRewardsModerationControls from '../components/DailyRewardsModerationControls.svelte';
   import WorldQuestBlockControls from '../components/WorldQuestBlockControls.svelte';
   import ModerationActionPrompt from '../components/ModerationActionPrompt.svelte';
   import ModerationHistory from '../components/ModerationHistory.svelte';
@@ -77,7 +76,6 @@
     <ChatModerationControls target={detail} onSubmit={submitPending} />
     <CheaterMarkControls target={detail} onSubmit={submitPending} />
     <WorldQuestBlockControls target={detail} onSubmit={submitPending} />
-    <DailyRewardsModerationControls target={detail} onSubmit={submitPending} />
     <AccountFlairControls target={detail} onSubmit={submitPending} />
   {/if}
 

@@ -28,7 +28,6 @@ import { discordRoleTagLabel } from '../ui/discord_role_tag';
 import { entityDisplayName } from '../ui/entity_display_core';
 import { tEntity } from '../ui/entity_i18n';
 import { hillBountyTagLabel } from '../ui/hill_bounty_tag';
-import { holderTierBadgeDataUrl, holderTierByIndex } from '../ui/holder_tier';
 import { formatNumber, getI18nRevision, t } from '../ui/i18n';
 import {
   auraImageUrl,
@@ -109,7 +108,6 @@ const NAMEPLATE_DOT_NUMBER_OPTIONS = [
   { minimumFractionDigits: 0, maximumFractionDigits: 0 },
   { minimumFractionDigits: 1, maximumFractionDigits: 1 },
 ] as const;
-const HOLDER_BADGE_URLS = new Map<number, string>();
 const DEV_BADGE_URLS = new Map<number, string>();
 
 const emoteIconUrl = (id: string): string => `/ui/emotes/emote-${id}.png`;
@@ -130,16 +128,6 @@ function nameplateDotIconUrl(auraId: string, auraKind: string): string {
     cachedProceduralIconDataUrl('aura', iconId, NAMEPLATE_DOT_ICON_PX) ??
     proceduralIconDataUrl('aura', iconId, NAMEPLATE_DOT_ICON_PX);
   DOT_ICON_URLS.set(auraId, url);
-  return url;
-}
-
-function holderBadgeUrl(index: number): string {
-  const cached = HOLDER_BADGE_URLS.get(index);
-  if (cached) return cached;
-  const tier = holderTierByIndex(index);
-  if (!tier) return '';
-  const url = holderTierBadgeDataUrl(tier, 32);
-  HOLDER_BADGE_URLS.set(index, url);
   return url;
 }
 
@@ -856,18 +844,6 @@ export class NameplatePainter {
         }
       }
 
-      const holder = holderTierByIndex(entity.holderTier ?? 0);
-      if (holder) {
-        badgeCount = setBadge(
-          state.badges,
-          badgeCount,
-          holderBadgeUrl(holder.index),
-          15,
-          false,
-          undefined,
-          holder.glow,
-        );
-      }
       const developer = showDevBadges ? devTierByIndex(entity.devTier ?? 0) : undefined;
       if (developer) {
         badgeCount = setBadge(

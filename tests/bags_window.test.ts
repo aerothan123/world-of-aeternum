@@ -58,10 +58,8 @@ function renderBagsHarness(
     attachTooltip: (el, html) => tooltips.push({ el, html }),
     root: () => root,
     world: () => world,
-    wocBalanceHtml: () => '',
     claudiumLauncherHtml: () => '',
     openClaudium: noop,
-    openWallet: noop,
     hideTooltip: noop,
     consumePeek: () => false,
     cancelPetFeed: noop,
@@ -164,10 +162,10 @@ describe('bags_window: load-bearing behaviors preserved', () => {
     // the one referenced, and a scrape of a file that no longer contains the string passes
     // vacuously the moment it goes missing.
     expect(bagCurrency).toContain('src="/claudium/icons/claudium_coin_64.webp"');
-    // W7 hands wallet color and interaction paint to the shared button and chip primitives.
-    expect(painter).toContain("'[data-wallet-action], [data-claudium-launcher]'");
-    expect(painter).toContain("control.classList.add('ui-btn')");
-    expect(painter).toContain("classList.add('ui-chip')");
+    // W7 hands the launcher's interaction paint to the shared button and chip primitives.
+    expect(painter).toContain(
+      "querySelector<HTMLElement>('[data-claudium-launcher]')?.classList.add('ui-btn')",
+    );
   });
 
   it('reuses bag_filter via buildBagGrid (does not re-derive the filter)', () => {

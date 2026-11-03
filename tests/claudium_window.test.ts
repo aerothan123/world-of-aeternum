@@ -98,14 +98,11 @@ class FakeElement {
 class FakeBody extends FakeElement {
   private rails: FakeElement[] = [];
   private skus: FakeElement[] = [];
-  private walletButton: FakeElement | null = null;
 
   override set innerHTML(value: string) {
     super.innerHTML = value;
     this.rails = [];
     this.skus = [];
-    this.walletButton = value.includes('data-claudium-wallet') ? new FakeElement() : null;
-    if (this.walletButton) this.walletButton.dataset.claudiumWallet = '';
     const buttons = value.matchAll(
       /<button\b([^>]*)data-(rail|sku)="([^"]+)"([^>]*)>([\s\S]*?)<\/button>/g,
     );
@@ -137,14 +134,12 @@ class FakeBody extends FakeElement {
   override contains(element: unknown): boolean {
     return (
       element === this ||
-      element === this.walletButton ||
       this.rails.includes(element as FakeElement) ||
       this.skus.includes(element as FakeElement)
     );
   }
 
   override querySelector(selector: string): FakeElement | null {
-    if (selector === '[data-claudium-wallet]') return this.walletButton;
     if (selector === '[data-rail][aria-pressed="true"]:not(:disabled)') {
       return (
         this.rails.find(
@@ -236,28 +231,6 @@ function snapshot(balance: number): ClaudiumSnapshot {
   };
 }
 
-function nativeSnapshot(): ClaudiumSnapshot {
-  return {
-    balance: 500,
-    skus: [{ sku: 'claudium_500', usd: 4.99, claudium: 500 }],
-    wocDiscountBps: 5000,
-    nativeRails: { sol: true, usdc: true, woc: true },
-    walletBalances: {
-      solLamports: '1000000000',
-      usdcBaseUnits: '12345678',
-      wocBaseUnits: '500000000',
-    },
-    nativePrices: [
-      {
-        sku: 'claudium_500',
-        solAmountBase: '10000000',
-        usdcAmountBase: '4990000',
-        wocAmountBase: '4000000',
-      },
-    ],
-  };
-}
-
 async function flushMicrotasks(): Promise<void> {
   for (let index = 0; index < 12; index += 1) await Promise.resolve();
 }
@@ -270,273 +243,35 @@ afterEach(() => {
 });
 
 describe('ClaudiumWindow refresh stability', () => {
-  it('renders Card, WOC, USDC, and SOL in order and purchases USDC with its wallet balance', async () => {
+  it('renders only the card rail (no crypto rail or wallet card) and buys on it', async () => {
     vi.stubGlobal('document', fakeDocument);
     const root = new FakeRoot();
     root.style.display = 'block';
-    const purchase = deferred<void>();
     const buys: Array<{ rail: string; sku: string }> = [];
-    const deps: ClaudiumWindowDeps = {
+    const window = new ClaudiumWindow({
       root: () => asHtml(root),
       closeOthers: () => {},
       captureFocus: () => null,
       restoreFocus: () => {},
-      snapshot: () => Promise.resolve(nativeSnapshot()),
+      snapshot: () => Promise.resolve(snapshot(500)),
       buy: (rail, sku) => {
         buys.push({ rail, sku });
-        return purchase.promise;
+        return Promise.resolve();
       },
-    };
-    const window = new ClaudiumWindow(deps);
+    });
 
     await window.render();
 
     const html = root.body.innerHTML;
-    const railOrder = ['stripe', 'woc', 'usdc', 'sol'].map((rail) =>
-      html.indexOf(`data-rail="${rail}"`),
-    );
-    expect(railOrder).toEqual([...railOrder].sort((left, right) => left - right));
-    expect(html).toContain('src="/ui/currency/woc_token.webp"');
-    expect(html).toContain('src="/claudium/icons/solana-icon.webp"');
-    expect(html).toContain('src="/claudium/icons/usdc-icon.webp"');
-    expect(html).toContain('USDC: 12.35');
-    expect(html).toContain('50% off');
-
-    root.body.rail('usdc').click();
-    expect(root.body.innerHTML).toContain('4.99 USDC');
-    expect(root.body.rail('usdc').getAttribute('aria-pressed')).toBe('true');
+    expect(html).toContain('data-rail="stripe"');
+    for (const rail of ['woc', 'usdc', 'sol']) expect(html).not.toContain(`data-rail="${rail}"`);
+    expect(html).not.toContain('data-claudium-wallet');
+    expect(html).not.toContain('woc_token');
+    expect(html).not.toContain('solana-icon');
 
     root.body.sku().click();
     await flushMicrotasks();
-    expect(buys).toEqual([{ rail: 'usdc', sku: 'claudium_500' }]);
-  });
-
-  it('renders the current service-provided $WOC discount instead of a bundled percentage', async () => {
-    vi.stubGlobal('document', fakeDocument);
-    const root = new FakeRoot();
-    root.style.display = 'block';
-    const window = new ClaudiumWindow({
-      root: () => asHtml(root),
-      closeOthers: () => {},
-      captureFocus: () => null,
-      restoreFocus: () => {},
-      snapshot: () => Promise.resolve({ ...nativeSnapshot(), wocDiscountBps: 2000 }),
-      buy: () => Promise.resolve(),
-    });
-
-    await window.render();
-
-    expect(root.body.innerHTML).toContain('20% off');
-    expect(root.body.innerHTML).not.toContain('50% off');
-  });
-
-  it('renders the wallet connection card and routes its action from the Claudium panel', async () => {
-    vi.stubGlobal('document', fakeDocument);
-    const root = new FakeRoot();
-    root.style.display = 'block';
-    const onWalletConnect = vi.fn();
-    const deps: ClaudiumWindowDeps = {
-      root: () => asHtml(root),
-      closeOthers: () => {},
-      captureFocus: () => null,
-      restoreFocus: () => {},
-      snapshot: () => Promise.resolve(snapshot(500)),
-      buy: () => Promise.resolve(),
-      onWalletConnect,
-      walletState: () => ({
-        kind: 'unlinked',
-        enabled: true,
-        linkedAddress: null,
-        connectedAddress: null,
-        balance: null,
-        balanceVerified: false,
-        action: 'connect',
-      }),
-    };
-    const window = new ClaudiumWindow(deps);
-
-    await window.render();
-
-    expect(root.body.innerHTML).toContain('Connect wallet');
-    expect(root.body.innerHTML).toContain('recovery phrase or private key');
-    root.body.querySelector('[data-claudium-wallet]')?.click();
-    expect(onWalletConnect).toHaveBeenCalledOnce();
-  });
-
-  it('repaints an open Claudium panel when the connected wallet disconnects', async () => {
-    vi.stubGlobal('document', fakeDocument);
-    const root = new FakeRoot();
-    root.style.display = 'block';
-    let connected = true;
-    const onWalletConnect = vi.fn();
-    const deps: ClaudiumWindowDeps = {
-      root: () => asHtml(root),
-      closeOthers: () => {},
-      captureFocus: () => null,
-      restoreFocus: () => {},
-      snapshot: () => Promise.resolve(snapshot(500)),
-      buy: () => Promise.resolve(),
-      onWalletConnect,
-      walletState: () => ({
-        kind: connected ? 'linked_connected' : 'linked_disconnected',
-        enabled: true,
-        linkedAddress: 'linked',
-        connectedAddress: connected ? 'linked' : null,
-        balance: 120,
-        balanceVerified: true,
-        action: connected ? 'manage' : 'reconnect',
-      }),
-    };
-    const window = new ClaudiumWindow(deps);
-
-    await window.render();
-    expect(root.body.innerHTML).toContain('Manage wallet');
-    root.body.querySelector('[data-claudium-wallet]')?.focus();
-
-    connected = false;
-    window.onWalletChanged();
-
-    expect(root.body.innerHTML).toContain('Reconnect wallet');
-    expect(root.body.innerHTML).not.toContain('Manage wallet');
-    expect(fakeDocument.activeElement).toBe(root.body.querySelector('[data-claudium-wallet]'));
-    root.body.querySelector('[data-claudium-wallet]')?.click();
-    expect(onWalletConnect).toHaveBeenCalledOnce();
-
-    const settledWrites = root.body.htmlWrites;
-    window.onWalletChanged();
-    expect(root.body.htmlWrites).toBe(settledWrites);
-  });
-
-  it('refreshes open-panel balances and native prices when a wallet connects', async () => {
-    vi.stubGlobal('document', fakeDocument);
-    const root = new FakeRoot();
-    root.style.display = 'block';
-    let connected = false;
-    const snapshotRead = vi.fn(() =>
-      Promise.resolve(
-        connected
-          ? nativeSnapshot()
-          : {
-              ...nativeSnapshot(),
-              walletBalances: {
-                solLamports: null,
-                usdcBaseUnits: null,
-                wocBaseUnits: null,
-              },
-              nativePrices: nativeSnapshot().nativePrices?.map((row) => ({
-                sku: row.sku,
-                solAmountBase: null,
-                usdcAmountBase: null,
-                wocAmountBase: null,
-              })),
-            },
-      ),
-    );
-    const window = new ClaudiumWindow({
-      root: () => asHtml(root),
-      closeOthers: () => {},
-      captureFocus: () => null,
-      restoreFocus: () => {},
-      snapshot: snapshotRead,
-      buy: () => Promise.resolve(),
-      walletState: () => ({
-        kind: connected ? 'linked_connected' : 'linked_disconnected',
-        enabled: true,
-        linkedAddress: 'linked',
-        connectedAddress: connected ? 'linked' : null,
-        balance: 120,
-        balanceVerified: true,
-        action: connected ? 'manage' : 'reconnect',
-      }),
-    });
-
-    await window.render();
-    expect(root.body.innerHTML).toContain('SOL: --');
-    expect(root.body.innerHTML).toContain('Reconnect wallet');
-
-    connected = true;
-    window.onWalletChanged();
-    await flushMicrotasks();
-
-    expect(snapshotRead).toHaveBeenCalledTimes(2);
-    expect(root.body.innerHTML).toContain('SOL: 1');
-    expect(root.body.innerHTML).toContain('USDC: 12.35');
-    expect(root.body.innerHTML).toContain('WOC: 500');
-    expect(root.body.innerHTML).toContain('Manage wallet');
-  });
-
-  it('refreshes again when a wallet connects during the initial snapshot', async () => {
-    vi.stubGlobal('document', fakeDocument);
-    const root = new FakeRoot();
-    root.style.display = 'block';
-    let resolveInitial!: (value: ClaudiumSnapshot) => void;
-    const initial = new Promise<ClaudiumSnapshot>((resolve) => {
-      resolveInitial = resolve;
-    });
-    let connected = false;
-    const snapshotRead = vi
-      .fn<() => Promise<ClaudiumSnapshot>>()
-      .mockImplementationOnce(() => initial)
-      .mockImplementation(() => Promise.resolve(nativeSnapshot()));
-    const window = new ClaudiumWindow({
-      root: () => asHtml(root),
-      closeOthers: () => {},
-      captureFocus: () => null,
-      restoreFocus: () => {},
-      snapshot: snapshotRead,
-      buy: () => Promise.resolve(),
-      walletState: () => ({
-        kind: connected ? 'linked_connected' : 'linked_disconnected',
-        enabled: true,
-        linkedAddress: 'linked',
-        connectedAddress: connected ? 'linked' : null,
-        balance: 120,
-        balanceVerified: true,
-        action: connected ? 'manage' : 'reconnect',
-      }),
-    });
-
-    const initialRender = window.render();
-    await flushMicrotasks();
-    connected = true;
-    window.onWalletChanged();
-    await flushMicrotasks();
-
-    expect(snapshotRead).toHaveBeenCalledTimes(2);
-    expect(root.body.innerHTML).toContain('SOL: 1');
-    expect(root.body.innerHTML).toContain('Manage wallet');
-
-    resolveInitial(nativeSnapshot());
-    await initialRender;
-  });
-
-  it('does not render wallet controls when wallet UI is disabled', async () => {
-    vi.stubGlobal('document', fakeDocument);
-    const root = new FakeRoot();
-    root.style.display = 'block';
-    const deps: ClaudiumWindowDeps = {
-      root: () => asHtml(root),
-      closeOthers: () => {},
-      captureFocus: () => null,
-      restoreFocus: () => {},
-      snapshot: () => Promise.resolve(snapshot(500)),
-      buy: () => Promise.resolve(),
-      walletState: () => ({
-        kind: 'disabled',
-        enabled: false,
-        linkedAddress: null,
-        connectedAddress: null,
-        balance: null,
-        balanceVerified: false,
-        action: 'connect',
-      }),
-    };
-    const window = new ClaudiumWindow(deps);
-
-    await window.render();
-
-    expect(root.body.innerHTML).not.toContain('cl-wallet-connect');
-    expect(root.body.innerHTML).not.toContain('data-claudium-wallet');
+    expect(buys).toEqual([{ rail: 'stripe', sku: 'claudium_500' }]);
   });
 
   it('does not rebuild pack nodes for an unchanged successful refresh', async () => {
@@ -602,7 +337,6 @@ describe('ClaudiumWindow refresh stability', () => {
       available: false,
       balance: null,
       skus: [],
-      nativeRails: { sol: false, usdc: false, woc: false },
     });
     await refresh;
     expect(root.body.innerHTML).toBe(settledHtml);
@@ -668,7 +402,6 @@ describe('ClaudiumWindow refresh stability', () => {
       available: false,
       balance: null,
       skus: [],
-      nativeRails: { sol: false, usdc: false, woc: false },
     });
     await failingRefresh;
     await flushMicrotasks();
@@ -704,7 +437,6 @@ describe('ClaudiumWindow refresh stability', () => {
       available: false,
       balance: null,
       skus: [],
-      nativeRails: { sol: false, usdc: false, woc: false },
     });
     await flushMicrotasks();
 
@@ -764,7 +496,7 @@ describe('a HANDOFF opens rather than toggles (Bank Storage phase 17)', () => {
       restoreFocus: () => {},
       snapshot: () => {
         snapshots.count++;
-        return Promise.resolve(nativeSnapshot());
+        return Promise.resolve(snapshot(500));
       },
       buy: () => Promise.resolve(),
     };

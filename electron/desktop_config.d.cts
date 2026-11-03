@@ -25,7 +25,6 @@ export interface DesktopConfigInput {
 export interface DesktopConfig {
   distribution: Distribution;
   updaterEnabled: boolean;
-  wocExchangeEnabled: boolean;
   crashSubmitUrl: string;
   updateChannel: UpdateChannel;
   apiOrigin: string;
@@ -42,6 +41,4 @@ export function updaterAllowed(input: {
   distribution: string;
   isPackaged: boolean | undefined;
 }): boolean;
-export function walletConnectionSupported(input: { distribution: string }): boolean;
-export function wocExchangeSupported(input?: DesktopConfigInput): boolean;
 export function resolveDesktopConfig(input?: DesktopConfigInput): DesktopConfig;

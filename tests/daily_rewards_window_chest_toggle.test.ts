@@ -7,8 +7,8 @@ const windowSource = readFileSync(
 );
 const hudSource = readFileSync(new URL('../src/ui/hud.ts', import.meta.url), 'utf8');
 
-describe('Daily Rewards chest visibility control', () => {
-  it('does not duplicate the Settings chest toggle inside Daily Rewards', () => {
+describe('Store chest visibility control', () => {
+  it('does not duplicate the Settings chest toggle inside the store window', () => {
     expect(windowSource).not.toContain('data-chest-toggle');
     expect(windowSource).not.toContain('showChestButton?(): boolean');
     expect(windowSource).not.toContain('setShowChestButton?(show: boolean): void');
@@ -17,7 +17,9 @@ describe('Daily Rewards chest visibility control', () => {
   it('keeps chest visibility configurable through Settings', () => {
     expect(hudSource).toContain('showDailyRewardsChestButton()');
     expect(hudSource).toContain('setDailyRewardsChestButtonPreference(show: boolean)');
-    expect(hudSource).toContain("parentElement?.id === 'mobile-combat-controls'");
-    expect(hudSource).toContain("mobileButton?.toggleAttribute('hidden', !mobileVisible)");
+    // The mobile More-tray row follows store availability, never the chest preference.
+    expect(hudSource).toContain(
+      "this.mobileDailyRewardsButtonEl?.toggleAttribute('hidden', !this.storeLauncherLive());",
+    );
   });
 });

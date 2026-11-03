@@ -20,23 +20,16 @@ import { isKnownStorageSkuId } from '../src/sim/content/storage_charters';
 import { isGrantableWeaponSkin } from '../src/sim/content/weapon_skins';
 import { GAME_SUBSCRIPTION_PLAN, GAME_SUBSCRIPTION_PRICE } from '../src/subscription_contract';
 import {
-  type ClaudiumNativeRail,
   type ClaudiumPriceRail,
   claudiumBalance,
   claudiumHistory,
-  claudiumNativeConfirm,
-  claudiumNativePrice,
-  claudiumNativeQuote,
-  claudiumNativeRails,
   claudiumPrice,
   claudiumPurchase,
   claudiumServiceConfigured,
   claudiumSkus,
-  claudiumSolBalance,
   claudiumSpend,
   claudiumStore,
   claudiumStripeWebhook,
-  claudiumUsdcBalance,
   membershipStripeWebhook,
 } from './claudium_proxy';
 import {
@@ -48,12 +41,8 @@ import {
 import { ctxAccountId } from './http/context';
 import { type BearerActiveGuardDb, createActiveGuard } from './http/middleware/bearer_active_guard';
 import {
-  CLAUDIUM_CONFIRM_POLICY,
-  CLAUDIUM_CONFIRM_PRE_AUTH_POLICY,
   CLAUDIUM_PURCHASE_POLICY,
   CLAUDIUM_PURCHASE_PRE_AUTH_POLICY,
-  CLAUDIUM_QUOTE_POLICY,
-  CLAUDIUM_QUOTE_PRE_AUTH_POLICY,
   CLAUDIUM_SPEND_POLICY,
   CLAUDIUM_SPEND_PRE_AUTH_POLICY,
   rateLimit,
@@ -104,11 +93,7 @@ export function resetClaudiumDbForTests(): void {
 const activeGuard = createActiveGuard(() => claudiumGuardDb());
 
 function parseRail(value: unknown): ClaudiumPriceRail | null {
-  return value === 'stripe' || value === 'woc' ? value : null;
-}
-
-function parseNativeRail(value: unknown): ClaudiumNativeRail | null {
-  return value === 'sol' || value === 'usdc' || value === 'woc' ? value : null;
+  return value === 'stripe' ? value : null;
 }
 
 function parseSpendKind(value: unknown): 'cosmetic' | 'skin' | 'item' | 'storage' | null {
@@ -134,10 +119,6 @@ function claudiumMutationAction(req: http.IncomingMessage): ClaudiumMutationActi
     path === '/api/claudium/membership-token/claim'
   )
     return 'purchase';
-  if (path === '/api/claudium/native/quote') return 'quote';
-  if (path === '/api/claudium/native/confirm') {
-    return 'confirm';
-  }
   if (path === '/api/claudium/spend') return 'spend';
   return null;
 }
@@ -353,31 +334,6 @@ export async function handleClaudiumApi(
   if (req.method === 'GET' && path === '/api/claudium/skus') {
     return json(res, 200, await claudiumSkus());
   }
-  if (req.method === 'GET' && path === '/api/claudium/native/rails') {
-    return json(res, 200, await claudiumNativeRails());
-  }
-  const nativePriceMatch = /^\/api\/claudium\/native\/price\/(\w+)$/.exec(path);
-  if (req.method === 'GET' && nativePriceMatch) {
-    const rail = parseNativeRail(decodeURIComponent(nativePriceMatch[1]));
-    const sku = url.searchParams.get('sku')?.trim() ?? '';
-    if (!rail || sku === '') {
-      return json(res, 200, {
-        rail: rail ?? 'sol',
-        claudium: null,
-        amountBase: null,
-        reason: 'invalid_request',
-      });
-    }
-    return json(res, 200, await claudiumNativePrice(rail, sku));
-  }
-  const solBalanceMatch = /^\/api\/claudium\/native\/balance\/sol\/(\w+)$/.exec(path);
-  if (req.method === 'GET' && solBalanceMatch) {
-    return json(res, 200, await claudiumSolBalance(decodeURIComponent(solBalanceMatch[1])));
-  }
-  const usdcBalanceMatch = /^\/api\/claudium\/native\/balance\/usdc\/(\w+)$/.exec(path);
-  if (req.method === 'GET' && usdcBalanceMatch) {
-    return json(res, 200, await claudiumUsdcBalance(decodeURIComponent(usdcBalanceMatch[1])));
-  }
   if (req.method === 'GET' && path === '/api/claudium/store') {
     const store = await claudiumStore(accountId);
     // The same allowlist rule per family: the service can never mint an id
@@ -434,38 +390,6 @@ export async function handleClaudiumApi(
       });
     }
     return json(res, 200, await claudiumPurchase({ accountId, rail, sku, idempotencyKey }));
-  }
-  if (req.method === 'POST' && path === '/api/claudium/native/quote') {
-    const body = (await readBody(req).catch(() => ({}))) as Record<string, unknown>;
-    const rail = parseNativeRail(body.rail);
-    const sku = typeof body.sku === 'string' ? body.sku : '';
-    const payer = typeof body.payer === 'string' ? body.payer : '';
-    if (!rail || sku === '' || payer === '') {
-      return json(res, 200, {
-        ok: false,
-        reference: null,
-        rail: null,
-        claudium: null,
-        amountBase: null,
-        destination: null,
-        mint: null,
-        memo: null,
-        quoteExpiryMs: null,
-        transactionBase64: null,
-        split: null,
-        reason: 'invalid_request',
-      });
-    }
-    return json(res, 200, await claudiumNativeQuote({ accountId, rail, sku, payer }));
-  }
-  if (req.method === 'POST' && path === '/api/claudium/native/confirm') {
-    const body = (await readBody(req).catch(() => ({}))) as Record<string, unknown>;
-    const reference = typeof body.reference === 'string' ? body.reference : '';
-    const signature = typeof body.signature === 'string' ? body.signature : '';
-    if (reference === '' || signature === '') {
-      return json(res, 200, { settled: false, balance: null, reason: 'invalid_request' });
-    }
-    return json(res, 200, await claudiumNativeConfirm({ accountId, reference, signature }));
   }
   if (req.method === 'POST' && path === '/api/claudium/spend') {
     const body = (await readBody(req).catch(() => ({}))) as Record<string, unknown>;
@@ -713,7 +637,7 @@ export const routes: RouteDef[] = [
     method: 'GET',
     path: '/api/claudium/price/:rail',
     surface: 'api',
-    // :rail is a public enum ('stripe'|'woc'), NOT an account-owned resource, so
+    // :rail is a public enum ('stripe'), NOT an account-owned resource, so
     // it carries no requireOwned loader; publicRead marks that intentional.
     meta: { publicRead: true },
     middleware: [activeGuard],
@@ -723,37 +647,6 @@ export const routes: RouteDef[] = [
     method: 'GET',
     path: '/api/claudium/skus',
     surface: 'api',
-    middleware: [activeGuard],
-    handler: claudiumHandler,
-  },
-  {
-    method: 'GET',
-    path: '/api/claudium/native/rails',
-    surface: 'api',
-    middleware: [activeGuard],
-    handler: claudiumHandler,
-  },
-  {
-    method: 'GET',
-    path: '/api/claudium/native/price/:rail',
-    surface: 'api',
-    meta: { publicRead: true },
-    middleware: [activeGuard],
-    handler: claudiumHandler,
-  },
-  {
-    method: 'GET',
-    path: '/api/claudium/native/balance/sol/:owner',
-    surface: 'api',
-    meta: { publicRead: true },
-    middleware: [activeGuard],
-    handler: claudiumHandler,
-  },
-  {
-    method: 'GET',
-    path: '/api/claudium/native/balance/usdc/:owner',
-    surface: 'api',
-    meta: { publicRead: true },
     middleware: [activeGuard],
     handler: claudiumHandler,
   },
@@ -779,28 +672,6 @@ export const routes: RouteDef[] = [
       rateLimit(CLAUDIUM_PURCHASE_PRE_AUTH_POLICY),
       activeGuard,
       rateLimit(CLAUDIUM_PURCHASE_POLICY),
-    ],
-    handler: claudiumHandler,
-  },
-  {
-    method: 'POST',
-    path: '/api/claudium/native/quote',
-    surface: 'api',
-    middleware: [
-      rateLimit(CLAUDIUM_QUOTE_PRE_AUTH_POLICY),
-      activeGuard,
-      rateLimit(CLAUDIUM_QUOTE_POLICY),
-    ],
-    handler: claudiumHandler,
-  },
-  {
-    method: 'POST',
-    path: '/api/claudium/native/confirm',
-    surface: 'api',
-    middleware: [
-      rateLimit(CLAUDIUM_CONFIRM_PRE_AUTH_POLICY),
-      activeGuard,
-      rateLimit(CLAUDIUM_CONFIRM_POLICY),
     ],
     handler: claudiumHandler,
   },

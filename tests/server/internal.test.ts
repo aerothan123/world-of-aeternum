@@ -67,16 +67,9 @@ vi.mock('../../server/discord_activity', () => ({
   requeueActivity: vi.fn(),
 }));
 vi.mock('../../server/discord_relay', () => ({ drainRelay: vi.fn(), requeueRelay: vi.fn() }));
-vi.mock('../../server/daily_rewards', () => ({
-  dailyRewardService: {
-    discordWinnerAnnouncements: vi.fn(),
-    markDiscordWinnersAnnounced: vi.fn(),
-  },
-}));
 
 import type * as http from 'node:http';
 import { MEMBERS_META_BATCH } from '../../bot/logic';
-import { dailyRewardService } from '../../server/daily_rewards';
 import { pool } from '../../server/db';
 import {
   type DiscordFlex,
@@ -103,23 +96,10 @@ import {
   setDiscordGuildMember,
   setDiscordMemberMetaBulk,
 } from '../../server/discord_db';
-// Same for the PvP kill feed and the hill calls: pure and dependency-free, so
-// the REAL queues run.
-import {
-  drainHillAnnouncements,
-  enqueueHillAnnouncement,
-  hillAnnouncementQueueDepth,
-} from '../../server/discord_hill_feed';
 // The change feed itself is pure and dependency-free, so the REAL module runs
 // here: tests enqueue into it and the outbox handler drains it, which exercises
 // the actual FIFO rather than a fake standing in for it.
 import { drainLinkChanges, enqueueLinkChange } from '../../server/discord_link_changes';
-import {
-  drainPvpKills,
-  enqueuePvpKill,
-  pvpKillQueueDepth,
-  type QueuedPvpKill,
-} from '../../server/discord_pvp_feed';
 import {
   enqueueQueuePop,
   type QueuedQueuePop,
@@ -133,8 +113,6 @@ import { withErrors } from '../../server/http/middleware/with_errors';
 import type { Method, Middleware } from '../../server/http/types';
 import {
   configureInternalRuntime,
-  configureInternalWocMarketOps,
-  configureInternalWocMarketStuckRead,
   handleInternalApi,
   type InternalRuntime,
   resetInternalRuntimeForTests,
@@ -149,7 +127,7 @@ const DISCORD_SECRET = 'discord-secret';
 const DEPLOY_HEADERS = { 'x-woc-deploy-secret': DEPLOY_SECRET };
 const DISCORD_HEADERS = { 'x-woc-discord-secret': DISCORD_SECRET };
 
-// The 11 routes as [method, path]: the legacy handleInternalApi ladder order
+// The routes as [method, path]: the legacy handleInternalApi ladder order
 // (the migrated routes plus flaired-ids, added after the migration on both
 // arms per the dual-edit rule; the retired relay/activity/winners GETs are
 // gone from both arms, #2791), then flex-batch and outbox, which are
@@ -162,20 +140,10 @@ const EXPECTED_ROUTES: ReadonlyArray<readonly [Method, string]> = [
   ['POST', '/internal/discord/presence'],
   ['POST', '/internal/discord/grant'],
   ['POST', '/internal/discord/member'],
-  ['POST', '/internal/discord/daily-rewards-winners/mark'],
   ['POST', '/internal/discord/members-meta'],
   ['GET', '/internal/discord/flaired-ids'],
   ['POST', '/internal/discord/flex-batch'],
   ['GET', '/internal/discord/outbox'],
-  // The internal dashboard's read-only ops views. RouteDef-only (no legacy
-  // ladder arm), on their own secret gate rather than the Discord bot's.
-  ['GET', '/internal/woc-market/listings'],
-  ['GET', '/internal/woc-market/p2p-trades'],
-  // The stuck-custody monitor readout (woc_market_monitor.ts), same gate.
-  ['GET', '/internal/woc-market/stuck'],
-  // The parked-review operator arm: the ONE write on this surface, ruling a
-  // review-parked settlement paid or unpaid through the transition CAS.
-  ['POST', '/internal/woc-market/settlements/:id/resolve'],
 ];
 
 /** Read status/body/content-type/headers off the fakeCtx's FakeRes. */
@@ -326,8 +294,8 @@ afterEach(() => {
 // ---------------------------------------------------------------------------
 
 describe('internal route registration', () => {
-  it('registers exactly 15 routes: the legacy ladder, the RouteDef-only pair, and the dashboard ops', () => {
-    expect(routes).toHaveLength(15);
+  it('registers exactly 10 routes: the legacy ladder and the RouteDef-only pair', () => {
+    expect(routes).toHaveLength(10);
     const actual = routes.map((r) => `${r.method} ${r.path}`).sort();
     const expected = EXPECTED_ROUTES.map(([m, p]) => `${m} ${p}`).sort();
     expect(actual).toEqual(expected);
@@ -1074,8 +1042,9 @@ describe('discord/member', () => {
 // ---------------------------------------------------------------------------
 // 8-9 (the relay and activity drain GETs) and the winners-GET half of 10
 // RETIRED with the per-endpoint pickup routes (#2791): the outbox block below
-// owns drain enrichment, participant batching, and the winners pass-through
-// now. Numbering is kept so the later section anchors stay stable.
+// owns drain enrichment and participant batching now. The winners mark (10)
+// retired with the crypto-only Daily Rewards feature. Numbering is kept so the
+// later section anchors stay stable.
 // ---------------------------------------------------------------------------
 
 describe('retired per-endpoint pickup GETs (#2791)', () => {
@@ -1087,6 +1056,7 @@ describe('retired per-endpoint pickup GETs (#2791)', () => {
     '/internal/discord/relay',
     '/internal/discord/activity',
     '/internal/discord/daily-rewards-winners',
+    '/internal/discord/daily-rewards-winners/mark',
   ])('GET %s with a valid secret answers the ladder terminal 404', async (path) => {
     process.env.DISCORD_BOT_SECRET = DISCORD_SECRET;
     const req = makeReq({ method: 'GET', url: path, headers: DISCORD_HEADERS });
@@ -1103,34 +1073,6 @@ describe('retired per-endpoint pickup GETs (#2791)', () => {
     // consume queue items it can no longer deliver.
     expect(vi.mocked(drainRelay)).not.toHaveBeenCalled();
     expect(vi.mocked(drainActivity)).not.toHaveBeenCalled();
-    expect(vi.mocked(dailyRewardService.discordWinnerAnnouncements)).not.toHaveBeenCalled();
-  });
-});
-
-// ---------------------------------------------------------------------------
-// 10. discord/daily-rewards-winners/mark (POST).
-// ---------------------------------------------------------------------------
-
-describe('discord/daily-rewards-winners/mark', () => {
-  it('mark returns the service fail body on error and ok-wraps success', async () => {
-    process.env.DISCORD_BOT_SECRET = DISCORD_SECRET;
-    const mark = vi.mocked(dailyRewardService.markDiscordWinnersAnnounced);
-
-    mark.mockResolvedValue({ error: 'nope', status: 400 });
-    const failed = await runRoute('POST', '/internal/discord/daily-rewards-winners/mark', {
-      headers: DISCORD_HEADERS,
-      body: { day: 'not-a-day' },
-    });
-    expect(failed.status).toBe(400);
-    expect(failed.body).toEqual({ success: false, data: null, error: 'nope' });
-
-    mark.mockResolvedValue({ marked: 2 } as unknown as { ok: true });
-    const ok = await runRoute('POST', '/internal/discord/daily-rewards-winners/mark', {
-      headers: DISCORD_HEADERS,
-      body: {},
-    });
-    expect(ok.status).toBe(200);
-    expect(ok.body).toEqual({ success: true, data: { marked: 2 }, error: null });
   });
 });
 
@@ -1718,13 +1660,11 @@ describe('discord/flex-batch', () => {
 });
 
 // ---------------------------------------------------------------------------
-// discord/outbox (the consolidated poll: three drains + the winner days, with
+// discord/outbox (the consolidated poll: the drains, with
 // ONE batched identity read for every account any of them mentions).
 // ---------------------------------------------------------------------------
 
 describe('discord/outbox', () => {
-  const NO_WINNERS = { days: [] };
-
   /** Arm the three drains; each is destructive in production, so this is per test. */
   function stubDrains(relay: QueuedRelay[] = [], activity: QueuedActivity[] = []): void {
     vi.mocked(drainRelay).mockReturnValue(relay);
@@ -1757,7 +1697,6 @@ describe('discord/outbox', () => {
     );
     enqueueLinkChange({ accountId: 4, kinds: ['flex'] }, 1000);
     enqueueLinkChange({ accountId: 5, kinds: ['points'] }, 1000);
-    vi.mocked(dailyRewardService.discordWinnerAnnouncements).mockResolvedValue(NO_WINNERS);
     vi.mocked(discordLinksForAccounts).mockResolvedValue([1, 2, 3, 4, 5].map(linkRow));
 
     const r = await runRoute('GET', '/internal/discord/outbox', { headers: DISCORD_HEADERS });
@@ -1777,7 +1716,6 @@ describe('discord/outbox', () => {
   it('reads nothing at all when every stream drained empty', async () => {
     process.env.DISCORD_BOT_SECRET = DISCORD_SECRET;
     stubDrains();
-    vi.mocked(dailyRewardService.discordWinnerAnnouncements).mockResolvedValue(NO_WINNERS);
 
     const r = await runRoute('GET', '/internal/discord/outbox', { headers: DISCORD_HEADERS });
 
@@ -1786,17 +1724,9 @@ describe('discord/outbox', () => {
     expect(vi.mocked(discordLinksForAccounts)).not.toHaveBeenCalled();
     expect(vi.mocked(discordForAccount)).not.toHaveBeenCalled();
     expect(vi.mocked(discordForAccounts)).not.toHaveBeenCalled();
-    // The winner days ride the service's TTL cache, so an idle poll costs at
-    // most one read there and zero on a warm cache. The service itself fixes
-    // the ask at ONE day (DAILY_REWARD_WINNER_DAY_LIMIT): the bot announces
-    // and marks one day per poll, so the handler passes no limit at all (the
-    // limit param retired with the standalone winners GET, #2791).
-    expect(vi.mocked(dailyRewardService.discordWinnerAnnouncements)).toHaveBeenCalledTimes(1);
-    expect(vi.mocked(dailyRewardService.discordWinnerAnnouncements)).toHaveBeenCalledWith();
     expect(dataOf(r.body)).toEqual({
       relay: { items: [] },
       activity: { items: [] },
-      winners: NO_WINNERS,
       linkChanges: { items: [] },
       queuePops: { items: [], watching: false },
       pvpKills: { items: [] },
@@ -1810,7 +1740,6 @@ describe('discord/outbox', () => {
     // under test is the link-change feed's (the module is not mocked).
     stubDrains();
     enqueueLinkChange({ accountId: 1, kinds: ['link'], discordId: 'du1' }, 1000);
-    vi.mocked(dailyRewardService.discordWinnerAnnouncements).mockResolvedValue(NO_WINNERS);
     vi.mocked(discordLinksForAccounts).mockResolvedValue([linkRow(1)]);
 
     const first = await runRoute('GET', '/internal/discord/outbox', { headers: DISCORD_HEADERS });
@@ -1820,7 +1749,6 @@ describe('discord/outbox', () => {
     expect(dataOf(second.body)).toEqual({
       relay: { items: [] },
       activity: { items: [] },
-      winners: NO_WINNERS,
       linkChanges: { items: [] },
       queuePops: { items: [], watching: false },
       pvpKills: { items: [] },
@@ -1838,7 +1766,6 @@ describe('discord/outbox', () => {
     const activityItems = [activityItem(2, 'Bea')];
     stubDrains(relayItems, activityItems);
     enqueueLinkChange({ accountId: 3, kinds: ['link'], discordId: 'du3' }, 1000);
-    vi.mocked(dailyRewardService.discordWinnerAnnouncements).mockResolvedValue(NO_WINNERS);
     vi.mocked(discordLinksForAccounts).mockRejectedValueOnce(new Error('identity read failed'));
 
     const failed = await runRoute('GET', '/internal/discord/outbox', { headers: DISCORD_HEADERS });
@@ -1874,166 +1801,15 @@ describe('discord/outbox', () => {
     });
   });
 
-  it('reads the winner days BEFORE draining, so a winners failure costs no items', async () => {
-    // Ordering as durability. The winners read is the most failure-prone await on
-    // this path (a database read behind a TTL cache) and depends on nothing the
-    // drains produce, so it runs first: a failure there refuses the poll without
-    // having consumed a single queued item, and no requeue is even needed.
-    process.env.DISCORD_BOT_SECRET = DISCORD_SECRET;
-    stubDrains([relayItem(1, 'a')]);
-    enqueueLinkChange({ accountId: 4, kinds: ['flex'] }, 1000);
-    vi.mocked(dailyRewardService.discordWinnerAnnouncements).mockRejectedValueOnce(
-      new Error('winner days unavailable'),
-    );
-
-    const failed = await runRoute('GET', '/internal/discord/outbox', { headers: DISCORD_HEADERS });
-
-    expect(failed.status).toBe(500);
-    // Nothing was drained at all, so nothing had to be given back.
-    expect(vi.mocked(drainRelay)).not.toHaveBeenCalled();
-    expect(vi.mocked(drainActivity)).not.toHaveBeenCalled();
-    expect(vi.mocked(requeueRelay)).not.toHaveBeenCalled();
-    expect(vi.mocked(requeueActivity)).not.toHaveBeenCalled();
-    expect(vi.mocked(discordLinksForAccounts)).not.toHaveBeenCalled();
-
-    // And the untouched link change is still there on the next poll.
-    vi.mocked(dailyRewardService.discordWinnerAnnouncements).mockResolvedValue(NO_WINNERS);
-    vi.mocked(discordLinksForAccounts).mockResolvedValue([linkRow(4)]);
-    const retried = await runRoute('GET', '/internal/discord/outbox', { headers: DISCORD_HEADERS });
-
-    expect(
-      (dataOf(retried.body).linkChanges as { items: { accountId: number }[] }).items.map(
-        (it) => it.accountId,
-      ),
-    ).toEqual([4]);
-  });
-
-  it('serves PvP kills verbatim, FIFO, with no identity read (names only, nobody pinged)', async () => {
-    process.env.DISCORD_BOT_SECRET = DISCORD_SECRET;
-    stubDrains();
-    drainPvpKills(); // the real queue is module state; start from empty
-    const kill = (killerName: string): QueuedPvpKill => ({
-      killerName,
-      victimName: 'Annthar',
-      killerLevel: 60,
-      victimLevel: 58,
-      zoneName: 'Drakelands',
-      assists: 1,
-      copper: 120,
-      realm: 'R',
-    });
-    enqueuePvpKill(kill('Kargath'));
-    enqueuePvpKill(kill('Borin'));
-    vi.mocked(dailyRewardService.discordWinnerAnnouncements).mockResolvedValue(NO_WINNERS);
-
-    const r = await runRoute('GET', '/internal/discord/outbox', { headers: DISCORD_HEADERS });
-
-    expect(r.status).toBe(200);
-    // Fresh literals, never the enqueued objects: the item shape IS the wire.
-    expect(dataOf(r.body).pvpKills).toEqual({
-      items: [
-        {
-          killerName: 'Kargath',
-          victimName: 'Annthar',
-          killerLevel: 60,
-          victimLevel: 58,
-          zoneName: 'Drakelands',
-          assists: 1,
-          copper: 120,
-          realm: 'R',
-        },
-        {
-          killerName: 'Borin',
-          victimName: 'Annthar',
-          killerLevel: 60,
-          victimLevel: 58,
-          zoneName: 'Drakelands',
-          assists: 1,
-          copper: 120,
-          realm: 'R',
-        },
-      ],
-    });
-    // The stream mentions no accounts, so a kills-only drain reads nothing.
-    expect(vi.mocked(discordLinksForAccounts)).not.toHaveBeenCalled();
-    expect(pvpKillQueueDepth()).toBe(0);
-  });
-
-  it('serves King of the Hill calls verbatim with no identity read, and requeues them on a failed build', async () => {
-    process.env.DISCORD_BOT_SECRET = DISCORD_SECRET;
-    drainHillAnnouncements();
-    stubDrains();
-    const call = {
-      phase: 'warning' as const,
-      zoneName: 'Drakelands',
-      risesAtMs: 1_790_000_900_000,
-      fallsAtMs: 1_790_003_600_000,
-      realm: 'R',
-    };
-    enqueueHillAnnouncement(call);
-    vi.mocked(dailyRewardService.discordWinnerAnnouncements).mockResolvedValue(NO_WINNERS);
-
-    const r = await runRoute('GET', '/internal/discord/outbox', { headers: DISCORD_HEADERS });
-    expect(r.status).toBe(200);
-    expect(dataOf(r.body).hillAnnouncements).toEqual({
-      items: [
-        {
-          phase: 'warning',
-          zoneName: 'Drakelands',
-          risesAtMs: 1_790_000_900_000,
-          fallsAtMs: 1_790_003_600_000,
-          realm: 'R',
-        },
-      ],
-    });
-    expect(vi.mocked(discordLinksForAccounts)).not.toHaveBeenCalled();
-    expect(hillAnnouncementQueueDepth()).toBe(0);
-
-    // A failed build puts the call back in the REAL queue.
-    enqueueHillAnnouncement(call);
-    stubDrains([], [activityItem(2, 'Bea')]);
-    vi.mocked(discordLinksForAccounts).mockRejectedValueOnce(new Error('identity read failed'));
-    const failed = await runRoute('GET', '/internal/discord/outbox', { headers: DISCORD_HEADERS });
-    expect(failed.status).toBe(500);
-    expect(drainHillAnnouncements().map((c) => c.phase)).toEqual(['warning']);
-  });
-
-  it('requeues drained PvP kills when the response build throws', async () => {
-    process.env.DISCORD_BOT_SECRET = DISCORD_SECRET;
-    drainPvpKills();
-    // An activity item forces the identity read, which is what fails here.
-    stubDrains([], [activityItem(2, 'Bea')]);
-    enqueuePvpKill({
-      killerName: 'Kargath',
-      victimName: 'Annthar',
-      killerLevel: 60,
-      victimLevel: 58,
-      zoneName: null,
-      assists: 0,
-      copper: 0,
-      realm: 'R',
-    });
-    vi.mocked(dailyRewardService.discordWinnerAnnouncements).mockResolvedValue(NO_WINNERS);
-    vi.mocked(discordLinksForAccounts).mockRejectedValueOnce(new Error('identity read failed'));
-
-    const failed = await runRoute('GET', '/internal/discord/outbox', { headers: DISCORD_HEADERS });
-
-    expect(failed.status).toBe(500);
-    // Back in the REAL queue, so the next poll carries it.
-    expect(drainPvpKills().map((k) => k.killerName)).toEqual(['Kargath']);
-  });
-
   it('carries the envelope fields in the documented order', async () => {
     process.env.DISCORD_BOT_SECRET = DISCORD_SECRET;
     stubDrains();
-    vi.mocked(dailyRewardService.discordWinnerAnnouncements).mockResolvedValue(NO_WINNERS);
 
     const r = await runRoute('GET', '/internal/discord/outbox', { headers: DISCORD_HEADERS });
 
     expect(Object.keys(dataOf(r.body))).toEqual([
       'relay',
       'activity',
-      'winners',
       'linkChanges',
       'queuePops',
       'pvpKills',
@@ -2047,7 +1823,6 @@ describe('discord/outbox', () => {
     // now the outbox's OWN contract with the bot and is pinned literally here.
     process.env.DISCORD_BOT_SECRET = DISCORD_SECRET;
     stubDrains([relayItem(1, 'a'), relayItem(2, 'b')]);
-    vi.mocked(dailyRewardService.discordWinnerAnnouncements).mockResolvedValue(NO_WINNERS);
     vi.mocked(discordLinksForAccounts).mockResolvedValue([linkRow(1)]); // account 2 is unlinked
 
     const r = await runRoute('GET', '/internal/discord/outbox', { headers: DISCORD_HEADERS });
@@ -2081,7 +1856,6 @@ describe('discord/outbox', () => {
         activityItem(3, 'Carol'), // nobody linked: dropped
       ],
     );
-    vi.mocked(dailyRewardService.discordWinnerAnnouncements).mockResolvedValue(NO_WINNERS);
     vi.mocked(discordLinksForAccounts).mockResolvedValue([linkRow(1)]);
 
     const r = await runRoute('GET', '/internal/discord/outbox', { headers: DISCORD_HEADERS });
@@ -2102,17 +1876,6 @@ describe('discord/outbox', () => {
     });
   });
 
-  it('passes the winner announcements through exactly as the service returns them', async () => {
-    process.env.DISCORD_BOT_SECRET = DISCORD_SECRET;
-    stubDrains();
-    const days = { days: [{ day: '2026-06-30', taskName: 'Complete quests', payouts: [] }] };
-    vi.mocked(dailyRewardService.discordWinnerAnnouncements).mockResolvedValue(days);
-
-    const r = await runRoute('GET', '/internal/discord/outbox', { headers: DISCORD_HEADERS });
-
-    expect(dataOf(r.body).winners).toEqual(days);
-  });
-
   it('enriches a link change from the map, and lets a carried id win over it', async () => {
     process.env.DISCORD_BOT_SECRET = DISCORD_SECRET;
     stubDrains();
@@ -2125,7 +1888,6 @@ describe('discord/outbox', () => {
     // The row's identity fields do NOT ride along, because they describe a
     // different Discord user (see the repoint case below).
     enqueueLinkChange({ accountId: 2, kinds: ['unlink'], discordId: 'carried-2' }, 1000);
-    vi.mocked(dailyRewardService.discordWinnerAnnouncements).mockResolvedValue(NO_WINNERS);
     vi.mocked(discordLinksForAccounts).mockResolvedValue([linkRow(1), linkRow(2)]);
 
     const r = await runRoute('GET', '/internal/discord/outbox', { headers: DISCORD_HEADERS });
@@ -2161,7 +1923,6 @@ describe('discord/outbox', () => {
     process.env.DISCORD_BOT_SECRET = DISCORD_SECRET;
     stubDrains();
     enqueueLinkChange({ accountId: 3, kinds: ['unlink'], discordId: 'old-user' }, 1000);
-    vi.mocked(dailyRewardService.discordWinnerAnnouncements).mockResolvedValue(NO_WINNERS);
     // The row is the account's NEW identity, under a different Discord id.
     vi.mocked(discordLinksForAccounts).mockResolvedValue([
       { ...linkRow(3), discord_user_id: 'new-user' },
@@ -2189,7 +1950,6 @@ describe('discord/outbox', () => {
     // every player), and the bot has nothing to push for them.
     enqueueLinkChange({ accountId: 7, kinds: ['points'] }, 1000);
     enqueueLinkChange({ accountId: 8, kinds: ['points'] }, 1000);
-    vi.mocked(dailyRewardService.discordWinnerAnnouncements).mockResolvedValue(NO_WINNERS);
     vi.mocked(discordLinksForAccounts).mockResolvedValue([linkRow(8)]);
 
     const r = await runRoute('GET', '/internal/discord/outbox', { headers: DISCORD_HEADERS });
@@ -2232,7 +1992,6 @@ describe('discord/outbox', () => {
     enqueueQueuePop(queuePop(2)); // unlinked: dropped
     enqueueQueuePop(queuePop(3, { expiresAtMs: Date.now() - 1 })); // lapsed: dropped
     enqueueQueuePop(queuePop(4, { kind: 'arena', format: '2v2', seconds: 0 }));
-    vi.mocked(dailyRewardService.discordWinnerAnnouncements).mockResolvedValue(NO_WINNERS);
     vi.mocked(discordLinksForAccounts).mockResolvedValue([linkRow(1), linkRow(4)]);
 
     const r = await runRoute('GET', '/internal/discord/outbox', { headers: DISCORD_HEADERS });
@@ -2268,7 +2027,6 @@ describe('discord/outbox', () => {
     process.env.DISCORD_BOT_SECRET = DISCORD_SECRET;
     stubDrains();
     enqueueQueuePop(queuePop(1));
-    vi.mocked(dailyRewardService.discordWinnerAnnouncements).mockResolvedValue(NO_WINNERS);
     vi.mocked(discordLinksForAccounts).mockRejectedValueOnce(new Error('db down'));
 
     const failed = await runRoute('GET', '/internal/discord/outbox', { headers: DISCORD_HEADERS });
@@ -2496,322 +2254,5 @@ describe('the internal envelope is frozen', () => {
     const gate = await runRoute('POST', '/internal/restart-countdown', { headers: DEPLOY_HEADERS });
     expect(gate.status).toBe(404);
     expect(Object.keys(gate.body as object).sort()).toEqual(only);
-  });
-});
-
-describe('the dashboard ops reads: filters and the default window', () => {
-  const SECRET = 'dashboard-secret';
-  let seen: Record<string, unknown>[] = [];
-
-  beforeEach(() => {
-    seen = [];
-    process.env.DASHBOARD_INTERNAL_SECRET = SECRET;
-    configureInternalWocMarketOps({
-      opsListings: async (q) => {
-        seen.push(q);
-        return { rows: [], hasMore: false };
-      },
-      opsP2pTrades: async (q) => {
-        seen.push(q);
-        return { rows: [], hasMore: false };
-      },
-      adminResolveReviewSettlement: async () => ({ ok: true, to: 'confirmed' }),
-    });
-  });
-
-  afterEach(() => {
-    delete process.env.DASHBOARD_INTERNAL_SECRET;
-    resetInternalRuntimeForTests();
-  });
-
-  const hit = (path: string, query: Record<string, string> = {}) =>
-    runRoute('GET', path, { headers: { 'x-woc-dashboard-secret': SECRET }, query });
-
-  it('defaults the window to the last 30 days, not to zero', async () => {
-    // The bug this pins returned an empty list forever without erroring:
-    // Number(null) is 0 and 0 is finite, so a "not a number, use the default"
-    // guard never fired for an ABSENT parameter and the range collapsed to
-    // fromMs === toMs === 0.
-    const before = Date.now();
-    await hit('/internal/woc-market/listings');
-    const q = seen[0] as { fromMs: number; toMs: number };
-    expect(q.toMs).toBeGreaterThanOrEqual(before);
-    const days = Math.round((q.toMs - q.fromMs) / 86_400_000);
-    expect(days).toBe(30);
-  });
-
-  it('defaults the page SIZE to 50, which the same trap silently made 1', async () => {
-    await hit('/internal/woc-market/listings');
-    expect((seen[0] as { pageSize: number }).pageSize).toBe(50);
-  });
-
-  it('carries an explicit window and page through', async () => {
-    await hit('/internal/woc-market/listings', {
-      fromMs: '1000',
-      toMs: '5000',
-      page: '2',
-      pageSize: '7',
-    });
-    expect(seen[0]).toMatchObject({ fromMs: 1000, toMs: 5000, page: 2, pageSize: 7 });
-  });
-
-  it('defaults listings to ACTIVE and p2p trades to ALL', async () => {
-    await hit('/internal/woc-market/listings');
-    expect((seen[0] as { status: string }).status).toBe('active');
-    seen = [];
-    await hit('/internal/woc-market/p2p-trades');
-    expect((seen[0] as { status: string }).status).toBe('all');
-  });
-
-  it('falls back to the default on an unrecognised status rather than refusing', async () => {
-    // An ops read answering 400 on a typo is less useful than one showing the
-    // default; the value is never interpolated, so there is nothing to injure.
-    await hit('/internal/woc-market/listings', { status: 'nonsense' });
-    expect((seen[0] as { status: string }).status).toBe('active');
-  });
-
-  it('passes sold and cancelled listing display categories through', async () => {
-    await hit('/internal/woc-market/listings', { status: 'sold' });
-    expect((seen[0] as { status: string }).status).toBe('sold');
-    seen = [];
-    await hit('/internal/woc-market/listings', { status: 'cancelled' });
-    expect((seen[0] as { status: string }).status).toBe('cancelled');
-  });
-
-  it('caps the page size, so a caller cannot ask for an unbounded read', async () => {
-    await hit('/internal/woc-market/listings', { pageSize: '100000' });
-    expect((seen[0] as { pageSize: number }).pageSize).toBe(200);
-  });
-
-  it('answers 404 when the market is not wired, the same as an unset secret', async () => {
-    resetInternalRuntimeForTests();
-    const res = await hit('/internal/woc-market/listings');
-    expect(res.status).toBe(404);
-  });
-});
-
-describe('the stuck-custody readout: GET /internal/woc-market/stuck', () => {
-  const SECRET = 'dashboard-secret';
-  const READOUT = {
-    asOfMs: 5000,
-    unbookedClaims: {
-      count: 1,
-      saturated: false,
-      sample: [
-        {
-          custodyRef: 'woc_settlement:7',
-          claimedAtMs: 1000,
-          grantCharacterId: 21,
-          mailIntent: false,
-        },
-      ],
-    },
-    stuckDelivering: {
-      count: 2,
-      saturated: false,
-      sample: [{ id: 7, listingId: 3, createdAtMs: 2000, updatedAtMs: 2500 }],
-    },
-    undisposedListings: { count: 0, saturated: false, sample: [] },
-    reviewSettlements: {
-      count: 1,
-      saturated: false,
-      sample: [{ id: 9, listingId: 4, createdAtMs: 3000, updatedAtMs: 3500 }],
-    },
-    stuckBonds: {
-      count: 1,
-      saturated: false,
-      sample: [{ id: 11, listingId: 4, account: 21, placedAtMs: 1500, stuckSinceMs: 1600 }],
-    },
-  };
-  let reads = 0;
-
-  beforeEach(() => {
-    reads = 0;
-    process.env.DASHBOARD_INTERNAL_SECRET = SECRET;
-    configureInternalWocMarketStuckRead(async () => {
-      reads++;
-      return structuredClone(READOUT);
-    });
-  });
-
-  afterEach(() => {
-    delete process.env.DASHBOARD_INTERNAL_SECRET;
-    resetInternalRuntimeForTests();
-  });
-
-  const hit = (headers: Record<string, string> = { 'x-woc-dashboard-secret': SECRET }) =>
-    runRoute('GET', '/internal/woc-market/stuck', { headers });
-
-  it('serves the injected readout verbatim in the admin envelope', async () => {
-    const res = await hit();
-    expect(res.status).toBe(200);
-    expect(res.body).toEqual({ success: true, data: READOUT, error: null });
-    expect(reads, 'one thunk call per request; caching lives in the monitor').toBe(1);
-  });
-
-  it('answers 401 on a wrong dashboard secret without touching the readout', async () => {
-    const res = await hit({ 'x-woc-dashboard-secret': 'wrong' });
-    expect(res.status).toBe(401);
-    expect(reads).toBe(0);
-  });
-
-  it('answers 404 with the secret UNSET, indistinguishable from an unknown path', async () => {
-    delete process.env.DASHBOARD_INTERNAL_SECRET;
-    const res = await hit();
-    expect(res.status).toBe(404);
-    expect(reads).toBe(0);
-  });
-
-  it('answers 404 when the monitor is not wired, the same as an unset secret', async () => {
-    resetInternalRuntimeForTests();
-    const res = await hit();
-    expect(res.status).toBe(404);
-    expect(reads).toBe(0);
-  });
-});
-
-describe('the parked-review resolve arm: POST /internal/woc-market/settlements/:id/resolve', () => {
-  const SECRET = 'dashboard-secret';
-  const PATH = '/internal/woc-market/settlements/:id/resolve';
-  let calls: { id: number; verdict: string }[] = [];
-  let outcome:
-    | { ok: true; to: 'confirmed' | 'failed' }
-    | { ok: false; reason: 'disabled' | 'not_found' }
-    | { ok: false; reason: 'contended'; state: 'confirmed' | 'delivering' } = {
-    ok: true,
-    to: 'confirmed',
-  };
-
-  beforeEach(() => {
-    calls = [];
-    outcome = { ok: true, to: 'confirmed' };
-    process.env.DASHBOARD_INTERNAL_SECRET = SECRET;
-    configureInternalWocMarketOps({
-      opsListings: async () => ({ rows: [], hasMore: false }),
-      opsP2pTrades: async () => ({ rows: [], hasMore: false }),
-      adminResolveReviewSettlement: async (id, verdict) => {
-        calls.push({ id, verdict });
-        return outcome;
-      },
-    });
-  });
-
-  afterEach(() => {
-    delete process.env.DASHBOARD_INTERNAL_SECRET;
-    resetInternalRuntimeForTests();
-  });
-
-  const resolve = (opts: { id?: string; body?: unknown; secret?: string } = {}) =>
-    runRoute('POST', PATH, {
-      headers: { 'x-woc-dashboard-secret': opts.secret ?? SECRET },
-      params: { id: opts.id ?? '41' },
-      body: opts.body ?? { verdict: 'paid' },
-    });
-
-  it('rules paid through the service and answers the new state', async () => {
-    const res = await resolve();
-    expect(res.status).toBe(200);
-    expect(res.body).toEqual({
-      success: true,
-      data: { resolved: 'paid', state: 'confirmed' },
-      error: null,
-    });
-    expect(calls).toEqual([{ id: 41, verdict: 'paid' }]);
-  });
-
-  it('rules unpaid and reports the failed state back', async () => {
-    outcome = { ok: true, to: 'failed' };
-    const res = await resolve({ body: { verdict: 'unpaid' } });
-    expect(res.status).toBe(200);
-    expect(res.body).toEqual({
-      success: true,
-      data: { resolved: 'unpaid', state: 'failed' },
-      error: null,
-    });
-    expect(calls).toEqual([{ id: 41, verdict: 'unpaid' }]);
-  });
-
-  it('answers 401 on a wrong dashboard secret without touching the service', async () => {
-    const res = await resolve({ secret: 'wrong' });
-    expect(res.status).toBe(401);
-    expect(calls).toEqual([]);
-  });
-
-  it('answers 404 when the secret is unset, hiding the surface', async () => {
-    delete process.env.DASHBOARD_INTERNAL_SECRET;
-    const res = await resolve();
-    expect(res.status).toBe(404);
-    expect(calls).toEqual([]);
-  });
-
-  it('answers 404 when the market is not wired, the same as an unset secret', async () => {
-    resetInternalRuntimeForTests();
-    process.env.DASHBOARD_INTERNAL_SECRET = SECRET;
-    const res = await resolve();
-    expect(res.status).toBe(404);
-  });
-
-  it('refuses every non-decimal id form before reaching the service', async () => {
-    // Number() alone accepts hex, exponent and padded forms; the guard is
-    // digits-only then range, so each malformed arm answers 400.
-    for (const id of ['abc', '0x29', '4e1', ' 41', '41 ', '-3', '4.5', '0', '']) {
-      const res = await resolve({ id });
-      expect(res.status, JSON.stringify(id)).toBe(400);
-    }
-    expect(calls).toEqual([]);
-  });
-
-  it('a malformed body is its own refusal, never disguised as a verdict complaint', async () => {
-    const res = await resolve({ body: 'not json{' });
-    expect(res.status).toBe(400);
-    expect((res.body as { error: string }).error).toBe('invalid JSON body');
-    expect(calls).toEqual([]);
-  });
-
-  it('echoes a bounded, flattened note into the audit log line', async () => {
-    const logged: string[] = [];
-    const spy = vi.spyOn(console, 'log').mockImplementation((line: string) => {
-      logged.push(String(line));
-    });
-    try {
-      const res = await resolve({
-        body: { verdict: 'paid', note: 'by:trev  sig\n5KJh...x9 ' },
-      });
-      expect(res.status).toBe(200);
-    } finally {
-      spy.mockRestore();
-    }
-    expect(logged).toEqual([
-      '[woc_market] review settlement 41 resolved paid -> confirmed (by:trev sig 5KJh...x9)',
-    ]);
-  });
-
-  it('refuses a verdict outside paid/unpaid before reaching the service', async () => {
-    const res = await resolve({ body: { verdict: 'maybe' } });
-    expect(res.status).toBe(400);
-    expect(calls).toEqual([]);
-  });
-
-  it('maps the kill-switch refusal to 409, matching the operator-write family', async () => {
-    outcome = { ok: false, reason: 'disabled' };
-    const res = await resolve();
-    expect(res.status).toBe(409);
-  });
-
-  it('maps a live row outside review to 409 carrying the state actually hit', async () => {
-    outcome = { ok: false, reason: 'contended', state: 'delivering' };
-    const res = await resolve();
-    expect(res.status).toBe(409);
-    expect(res.body).toEqual({
-      success: false,
-      data: { state: 'delivering' },
-      error: 'settlement is not in review',
-    });
-  });
-
-  it('maps a missing settlement to 404', async () => {
-    outcome = { ok: false, reason: 'not_found' };
-    const res = await resolve();
-    expect(res.status).toBe(404);
   });
 });

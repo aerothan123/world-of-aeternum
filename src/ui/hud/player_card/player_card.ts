@@ -1,9 +1,8 @@
 // Player card compositor.
 //
 // Paints a shareable 1200×630 (Open-Graph aspect) card from the player's live
-// stats, equipped gear, a captured close-up of their character, and - when a
-// wallet is linked and verified - their $WOC holder-tier badge. Pure Canvas-2D + the
-// holder-tier data; no network, no game state beyond what the caller passes in.
+// stats, equipped gear, and a captured close-up of their character. Pure Canvas-2D;
+// no network, no game state beyond what the caller passes in.
 //
 // The caller (the HUD) assembles PlayerCardData from IWorld; this module only
 // knows how to draw it.
@@ -13,13 +12,6 @@ import {
   devTierByIndex,
   devTierDisplayName,
 } from '../../dev_tier';
-import {
-  type HolderTier,
-  holderTierBadgeDataUrl,
-  holderTierDisplayName,
-  holderTierFlavorText,
-  holderTierForBalance,
-} from '../../holder_tier';
 import { formatNumber, getLanguage, languageTag, type TranslationKey, t } from '../../i18n';
 import {
   type PercentileTier,
@@ -41,10 +33,6 @@ import {
   gearPanelHeight,
   HEADER_RIGHT_EDGE,
   HEADER_X,
-  HOLDER_BADGE_CX,
-  HOLDER_BADGE_CY,
-  HOLDER_BADGE_R,
-  holderBadgeTextLayout,
   NAME_BASELINE,
   REALM_BASELINE,
   STATS_H,
@@ -91,8 +79,6 @@ export interface PlayerCardData {
   titleText?: string;
   /** Realm percentile by lifetime XP (e.g. 3 = top 3%), or null to hide it. */
   topPercent: number | null;
-  /** Verified linked wallet's $WOC balance (null when unlinked). Drives the badge. */
-  balance: number | null;
   /** Developer-badge tier index (0/null = none, 1-5). Drives the dev badge. */
   devTier: number | null;
   /** Merged-PR count behind the dev tier (null when unknown). */
@@ -173,11 +159,6 @@ export const CARD_POSES: readonly CardPose[] = [
   },
 ];
 
-/** Human-readable $WOC amount in the player's current locale. */
-function formatWoc(n: number): string {
-  return formatNumber(n, { maximumFractionDigits: n >= 1 ? 0 : 2 });
-}
-
 function loadImage(src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     const img = new Image();
@@ -256,14 +237,12 @@ export async function renderPlayerCardCanvas(data: PlayerCardData): Promise<HTML
     ]);
   }
 
-  const tier = holderTierForBalance(data.balance);
   const pctTier = percentileTierForPercent(data.topPercent);
   const devTier = devTierByIndex(data.devTier ?? 0);
-  const [charImg, badgeImg, logoImg, pctBadgeImg, devBadgeImg] = await Promise.all([
+  const [charImg, logoImg, pctBadgeImg, devBadgeImg] = await Promise.all([
     typeof data.characterImage === 'string'
       ? loadImage(data.characterImage)
       : Promise.resolve(data.characterImage),
-    tier ? loadImage(holderTierBadgeDataUrl(tier, 256)) : Promise.resolve(null),
     loadImage(LOGO_URL).catch(() => null), // best-effort brand mark
     pctTier
       ? loadImage(percentileTierBadgeDataUrl(pctTier, 128)).catch(() => null)
@@ -286,7 +265,6 @@ export async function renderPlayerCardCanvas(data: PlayerCardData): Promise<HTML
   drawCharacter(ctx, charImg);
   drawHeader(ctx, data, pctBadgeImg, pctTier, colors);
   if (devTier && devBadgeImg) drawDevBadge(ctx, devTier, devBadgeImg, data.devMergedPrs, colors);
-  if (tier && badgeImg) drawBadge(ctx, tier, badgeImg, data.balance, colors);
   drawStats(ctx, data, colors);
   drawGear(ctx, data, colors);
   drawFooter(ctx, data, logoImg, colors);
@@ -420,57 +398,6 @@ function drawHeader(
     ctx.font = `600 19px ${BODY_FONT}`;
     fillTextClamped(ctx, titleLine.text, titleLine.x, titleLine.y, titleLine.maxW);
   }
-}
-
-function drawBadge(
-  ctx: CanvasRenderingContext2D,
-  tier: HolderTier,
-  badge: HTMLImageElement,
-  balance: number | null,
-  colors: PlayerCardColors,
-): void {
-  // Bottom-left of the right column (the footer band), swapped with the brand
-  // mark, which now sits top-right. Badge on the left, tier + balance to its right.
-  // Compact badge with a tight glow so it sits inside the footer band without
-  // bleeding up into the gear panel above it (see GEAR_Y/gearPanelHeight in
-  // card_layout.ts, which keeps the gear panel's own bottom clear of this band).
-  const r = HOLDER_BADGE_R;
-  const cx = HOLDER_BADGE_CX;
-  const cy = HOLDER_BADGE_CY;
-  ctx.save();
-  ctx.shadowColor = colorWithAlpha(tier.glow, 0.9);
-  ctx.shadowBlur = 8;
-  ctx.drawImage(badge, cx - r, cy - r, r * 2, r * 2);
-  ctx.restore();
-
-  const { left, maxW } = holderBadgeTextLayout();
-  ctx.textAlign = 'left';
-  // Tier name.
-  ctx.fillStyle = tier.ring;
-  ctx.font = `700 18px ${TITLE_FONT}`;
-  ctx.fillText(
-    holderTierDisplayName(tier).toLocaleUpperCase(languageTag(getLanguage())),
-    left,
-    cy - 13,
-  );
-  // The actual on-chain bag: the flex. Clamp width is the panel's measured
-  // run to the footer band, not a fixed guess, so a long localized balance
-  // string gets real room instead of truncating early on a wide card.
-  if (balance !== null) {
-    ctx.fillStyle = colors.gold;
-    ctx.font = `700 20px ${BODY_FONT}`;
-    fillTextClamped(
-      ctx,
-      t('wallet.balanceAmount', { amount: formatWoc(balance) }),
-      left,
-      cy + 10,
-      maxW,
-    );
-  }
-  // Flavour line.
-  ctx.fillStyle = colors.muted;
-  ctx.font = `400 12px ${BODY_FONT}`;
-  fillTextClamped(ctx, holderTierFlavorText(tier), left, cy + 28, maxW);
 }
 
 // The developer badge sits in the free band below the title row and above

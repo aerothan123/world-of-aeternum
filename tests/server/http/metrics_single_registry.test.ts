@@ -32,7 +32,6 @@ function stubSource(): GameStateSource {
     simEntities: () => 0,
     simTickHz: () => 20,
     savePendingKeys: () => 0,
-    escrowGateInFlight: () => 0,
     backgroundDbGate: () => ({
       inFlight: 0,
       waiting: 0,

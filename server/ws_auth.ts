@@ -162,7 +162,7 @@ export interface WsAuthDeps {
     nonce: string,
   ) => Promise<boolean>;
   releaseCharacterLease: (characterId: number, nonce?: string) => Promise<void>;
-  // Recomputes the account's bank bonus slots from live facts (email/Discord/wallet/
+  // Recomputes the account's bank bonus slots from live facts (email/Discord/
   // referrals) so a fresh join stamps the current entitlement into the character state.
   // Called on the FRESH-JOIN arm only, never on a resume (no mid-session recompute); a
   // rejection fails the handshake exactly like a getCharacter failure.

@@ -152,13 +152,13 @@ describe('shell startup polish pins (electron/main.cjs)', () => {
     );
     expect(def, 'focus must restore a minimized window first').toContain('mainWindow.restore()');
     expect(def, 'focus must focus the window').toContain('mainWindow.focus()');
-    // Exactly the definition plus the four call sites (login, wallet,
-    // second-instance, activate): a fifth caller is an unreviewed focus path
+    // Exactly the definition plus the three call sites (login,
+    // second-instance, activate): a fourth caller is an unreviewed focus path
     // and must show up here.
     expect(
       count(code, 'focusMainWindow('),
       'focusMainWindow call-site count drifted from the reviewed set',
-    ).toBe(5);
+    ).toBe(4);
   });
 
   it('publishes the reveal closure for the pre-paint focus path', () => {
@@ -187,7 +187,7 @@ describe('shell startup polish pins (electron/main.cjs)', () => {
     );
   });
 
-  it('routes the login and wallet handoff deliveries through the shared helper', () => {
+  it('routes the login handoff delivery through the shared helper', () => {
     const login = block('function deliverLoginCode(', '\n}', 'deliverLoginCode');
     expect(login, 'login delivery must use the shared focus helper').toContain(
       'focusMainWindow();',
@@ -197,22 +197,8 @@ describe('shell startup polish pins (electron/main.cjs)', () => {
       'mainWindow.restore()',
     );
 
-    const wallet = block('function deliverWalletHandoffCode(', '\n}', 'deliverWalletHandoffCode');
-    expect(wallet, 'wallet delivery must use the shared focus helper').toContain(
-      'focusMainWindow();',
-    );
-    expect(wallet, 'wallet delivery must not re-inline restore').not.toContain(
-      'mainWindow.restore()',
-    );
-    // The darwin app-level focus must stay ahead of the no-window early return:
-    // it is what raises the app when the handoff arrives with no window yet.
-    const steal = wallet.indexOf("if (process.platform === 'darwin') app.focus({ steal: true });");
-    const guard = wallet.indexOf('if (!mainWindow) return;');
-    expect(steal, 'the darwin app.focus line must survive').toBeGreaterThan(-1);
-    expect(guard, 'the no-window early return must survive').toBeGreaterThan(-1);
-    expect(steal, 'darwin app.focus must stay before the no-window early return').toBeLessThan(
-      guard,
-    );
+    // The retired crypto wallet handoff has no delivery path any more.
+    expect(code).not.toContain('function deliverWalletHandoffCode(');
   });
 
   it('nulls the application menu on win32 and linux only, before app ready', () => {
@@ -939,13 +925,9 @@ describe('shell startup polish pins (electron/main.cjs)', () => {
     ).toBe(0);
   });
 
-  it('the startup banner logs the Exchange verdict for the per-channel smoke', () => {
-    // docs/desktop-release.md step 6 reads this field: on an unstamped build
-    // `distribution` collapses to website while this correctly says false, so
-    // the log alone answers the smoke. Sliced from the banner call so a field
-    // elsewhere cannot satisfy it.
+  it('the startup banner carries no retired Exchange verdict', () => {
     const banner = block("log.info('[shell] starting'", '});', 'startup banner');
-    expect(banner).toContain('wocExchangeEnabled: desktopConfig.wocExchangeEnabled,');
+    expect(banner).not.toContain('wocExchangeEnabled');
   });
 });
 

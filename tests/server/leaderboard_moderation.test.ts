@@ -27,7 +27,6 @@ import {
   bustAllLifetimeXpRankCache,
   resetLifetimeXpRankCacheForTests,
 } from '../../server/character_rank_cache';
-import { PgDailyRewardDb } from '../../server/daily_rewards_db';
 import {
   deedsBoardRanked,
   ELIGIBLE_ACCOUNT_SQL,
@@ -287,30 +286,6 @@ describe('every ranked board query embeds the fragment', () => {
       resetLifetimeXpRankCacheForTests();
     }
   });
-
-  it('daily rewards: every ranked read agrees on one population', async () => {
-    const db = new PgDailyRewardDb();
-    const day = '2026-07-08';
-    for (const read of [
-      () => db.leaderboardTotal(day),
-      // The board-cache refresh read: every board read a player status
-      // assembles derives from this one snapshot, so it must gate on the
-      // same population as the live total and page reads.
-      () => db.leaderboardSnapshot(day),
-    ]) {
-      const sql = await capturedSql(read);
-      expect(sql).toHaveLength(1);
-      expect(sql[0]).toContain(ELIGIBLE_LITERAL);
-      expect(sql[0]).toContain('a.id = s.account_id');
-    }
-    // leaderboardPage issues the total read then the page read; both embed it.
-    const pageSql = await capturedSql(() => db.leaderboardPage(day, 0, 10));
-    expect(pageSql).toHaveLength(2);
-    for (const text of pageSql) {
-      expect(text).toContain(ELIGIBLE_LITERAL);
-      expect(text).toContain('a.id = s.account_id');
-    }
-  });
 });
 
 // ---------------------------------------------------------------------------
@@ -412,9 +387,8 @@ describe('main.ts wiring', () => {
     // "a WARM arena cache is nulled by the bust" case.
     const stripComments = (s: string): string => s.replace(/(^|[^:])\/\/.*$/gm, '$1');
     const body = stripComments(src.slice(start, src.indexOf('}', start)));
-    // Players realm + global, guilds realm + global, BOTH arena formats, the deeds
-    // board, and the daily-rewards board (instance-scoped on its service singleton,
-    // busted through the exported bust): every cached, moderation-visible scope. The
+    // Players realm + global, guilds realm + global, BOTH arena formats, and the
+    // deeds board: every cached, moderation-visible scope. The
     // arena ladder is character-faced, so it is busted here now (it used to be served
     // uncached, with nothing to bust).
     expect(body).toContain('leaderboardCache.realm = null');
@@ -424,7 +398,8 @@ describe('main.ts wiring', () => {
     expect(body).toContain("arenaLeaderboardCache['1v1'] = null");
     expect(body).toContain("arenaLeaderboardCache['2v2'] = null");
     expect(body).toContain('deedsBoardCache = null');
-    expect(body).toContain('bustDailyRewardBoardCache()');
+    // The retired Daily Rewards board has no cache left to bust.
+    expect(body).not.toContain('bustDailyRewardBoardCache()');
     // The guild board's officer roster (guild_board_presence.ts): a moderated
     // officer's name leaves the presence tooltip as fast as the boards.
     expect(body).toContain('guildBoardPresence.bust()');
@@ -442,12 +417,7 @@ describe('main.ts wiring', () => {
     // eligible character's ahead/total counts, so the whole cache is dropped
     // rather than one key.
     expect(body).toContain('bustAllLifetimeXpRankCache()');
-    // Not a board, but on the same hook and for the same reason: the
-    // daily-reward ban and IP-ban writes fire this hook and feed the
-    // daily_reward_excluded_accounts view that the Discord winner-announcement
-    // read filters its payouts through, so an exclusion must evict that snapshot
-    // too (a warm one would keep a just-banned winner announceable for a TTL).
-    expect(body).toContain('bustDailyRewardWinnersCache()');
+    expect(body).not.toContain('bustDailyRewardWinnersCache()');
   });
 
   it('registers exactly one moderation hook (the composite bust covers every board)', () => {

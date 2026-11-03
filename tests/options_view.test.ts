@@ -895,8 +895,6 @@ const GENERAL_KEYS = [
   'firstPersonMode',
   'landingHighContrast',
   'showDevBadges',
-  'showWalletOnCharacterScreen',
-  'showWalletOnPlayerCard',
   'showPlaytime',
   'showDailyRewardsChest',
   'showItemLevel',

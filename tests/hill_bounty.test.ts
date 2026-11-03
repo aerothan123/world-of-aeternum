@@ -16,7 +16,6 @@ vi.mock('../server/db', () => ({
 }));
 
 import { writeEntityPresenceBits } from '../server/entity_presence_wire';
-import { wireEntity } from '../server/game';
 import { applyEntityPresenceBits } from '../src/net/entity_presence_wire';
 import { BUILTIN_WORLD, PLAYER_START } from '../src/sim/data';
 import {
@@ -398,21 +397,6 @@ describe('the bounty on the wire and in the HUD', () => {
     expect(e.pvpFlag).toBe(true);
     applyEntityPresenceBits(e, {});
     expect(e.hillBounty).toBeUndefined();
-  });
-
-  it('never collides with the $WOC holder balance on the composed entity record', () => {
-    const sim = world();
-    const pid = join(sim, 'Holder', 3000);
-    const e = ent(sim, pid);
-    e.holderBalance = 500;
-    const balanceOnly = wireEntity(e);
-    const decoded = {} as Entity;
-    applyEntityPresenceBits(decoded, balanceOnly);
-    expect(decoded.hillBounty, 'a holder with no bounty shows no bounty').toBeUndefined();
-    e.hillBounty = 23;
-    const both = wireEntity(e) as { hb?: number; hbn?: number };
-    expect(both.hbn).toBe(23);
-    expect(both.hb, 'the balance keeps its own key').toBe(500);
   });
 
   it('tags a bountied player on the nameplate helper and the target frame, never a mob', () => {

@@ -27,27 +27,12 @@ vi.mock('../src/ui/mount_inspect_controller', () => ({
 vi.mock('../src/ui/portrait_chip', () => ({ portraitChipHtml: () => '' }));
 
 import { DailyRewardsWindow } from '../src/ui/daily_rewards_window';
-import type { DailyRewardStatus, IWorld } from '../src/world_api';
+import type { IWorld } from '../src/world_api';
 
 function worldStub(): IWorld {
-  const status = {
-    day: '2026-01-01',
-    resetAt: '2026-01-02T00:00:00Z',
-    prizePoolUsd: 0,
-    prizePoolSol: null,
-    eligibility: { eligible: false, reason: 'no_wallet' },
-    score: 0,
-    rank: null,
-    spin: { claimed: false },
-    tasks: [],
-    leaderboard: [],
-    leaderboardTotal: 0,
-  } as unknown as DailyRewardStatus;
   return {
     player: { templateId: 'warrior', mainhandItemId: null },
     accountCosmetics: { weaponSkinIds: [], weaponSkinLoadout: {} },
-    dailyRewards: async () => status,
-    dailyRewardHistory: async () => ({ payouts: [] }),
   } as unknown as IWorld;
 }
 
@@ -63,7 +48,7 @@ function rootStub(): HTMLElement {
   } as unknown as HTMLElement;
 }
 
-function makeWindow() {
+function makeWindow(storeEnabled = true) {
   const root = rootStub();
   const onClose = vi.fn();
   const onVisibilityChange = vi.fn();
@@ -75,6 +60,7 @@ function makeWindow() {
     restoreFocus: () => undefined,
     onVisibilityChange,
     onClose,
+    storeEnabled: () => storeEnabled,
   });
   // The async render path is exercised elsewhere; stub it so toggle()/close()
   // drive only the open/closed transitions under test.
@@ -142,37 +128,12 @@ describe('DailyRewardsWindow close notification', () => {
     expect(win.isOpen).toBe(false);
   });
 
-  it('renders the disabled state without depending on payout history', async () => {
-    const root = rootStub();
-    root.style.display = 'block';
-    const history = vi.fn(async () => {
-      throw new Error('history unavailable');
-    });
-    const onStatus = vi.fn();
-    const win = new DailyRewardsWindow({
-      root: () => root,
-      world: () =>
-        ({
-          ...worldStub(),
-          dailyRewards: async () => ({
-            ...(await worldStub().dailyRewards()),
-            enabled: false,
-          }),
-          dailyRewardHistory: history,
-        }) as IWorld,
-      closeOthers: () => undefined,
-      captureFocus: () => null,
-      restoreFocus: () => undefined,
-      onStatus,
-    });
-    const paint = vi
-      .spyOn(win as unknown as { paint(view: unknown): void }, 'paint')
-      .mockImplementation(() => undefined);
+  it('stays closed when the store is unavailable (the window is store-only)', () => {
+    const { win, root, onClose } = makeWindow(false);
 
-    await win.render();
-
-    expect(history).not.toHaveBeenCalled();
-    expect(onStatus).toHaveBeenCalledOnce();
-    expect(paint).toHaveBeenCalledWith({ kind: 'disabled' });
+    win.toggle();
+    expect(root.style.display).toBe('none');
+    expect(win.isOpen).toBe(false);
+    expect(onClose).not.toHaveBeenCalled();
   });
 });

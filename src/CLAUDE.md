@@ -22,11 +22,6 @@ their own CLAUDE.md: `sim/` (+ `sim/content/`, `sim/professions/`, `sim/physics/
   throws there (a bug class that has shipped before).
 - `guide.html` loads `src/guide/main.ts`; `editor.html` loads `src/editor/main.ts`;
   `admin.html` is the standalone Svelte admin SPA (`src/admin/`).
-- `wallet-handoff.html` loads `src/wallet_handoff.ts` (with its `_authorization`/`_focus`
-  siblings): the standalone wallet-link handoff page. Its net glue is split by host:
-  `src/net/wallet_handoff_browser.ts` (browser) vs `src/net/desktop_wallet_handoff.ts`
-  (desktop shell), and the tracked `public/wallet-return.html` closes the loop. Spec:
-  `docs/prd/woc/wallet-link.md`.
 - `music_editor.html` is a dev-only tool that writes `src/game/music_overrides.generated.ts`.
 - `quest_editor.html` is the dev-only Quest Workshop (`src/quest_editor/main.ts`); it writes
   `src/sim/content/workshop_quests.generated.ts` (see `docs/quest-workshop.md`).
