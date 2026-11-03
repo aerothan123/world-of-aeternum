@@ -80,6 +80,7 @@ function field(count: number, spacing: number): TreeHideable[] {
         },
       ],
       prefetched: false,
+      shadows: [],
     });
   }
   return trees;

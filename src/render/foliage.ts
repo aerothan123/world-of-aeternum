@@ -629,6 +629,8 @@ export interface FoliageView {
   /** Compile roots behind one gate key: the one representative bucket mesh
    *  whose program every bucket on that key shares. */
   revealRoots(key: string): readonly THREE.Object3D[];
+  /** Every real tree's hide record (the felled-tree presenter's handles). */
+  treeHideables(): readonly TreeHideable[];
 }
 
 export interface FoliagePerfStats {
@@ -1596,10 +1598,14 @@ function placeSpecies(
         ghosts: [],
         parts: [],
         prefetched: false,
+        shadows: [],
       }));
       hideRegistry.push(...handles);
       return { ...g, handles };
     });
+    const handleOf = new Map<Decoration, TreeHideable>(); // shadow slots (tree_felling.ts)
+    for (const g of handlesByLod)
+      for (let i = 0; i < g.items.length; i++) handleOf.set(g.items[i], g.handles[i]);
     // Every tree in the group, near-fill included, contributes a sprite to
     // the bucket's shared impostor mesh: placement, yaw, scale and height
     // jitter mirror the real instance exactly so the handoff never moves,
@@ -1692,6 +1698,8 @@ function placeSpecies(
       if (GFX.standardMaterials && !GFX.leanFoliage && (part.isLeaf || spec.castBarkShadow)) {
         const built = buildShadowCasters(parent, seed, spec, part, list);
         if (built) {
+          for (let i = 0; i < list.length; i++)
+            handleOf.get(list[i])?.shadows.push({ row: built.row, index: i });
           // The shadow pass does NOT follow the fog-EXTENDED detail distance: a
           // tree's shadow past the old radius contributes nothing the eye can
           // resolve, and re-drawing that geometry for the depth pass is what the
@@ -3637,6 +3645,7 @@ export function buildFoliage(seed: number, webgl?: THREE.WebGLRenderer): Foliage
       const root = revealRootByKey.get(key);
       return root ? [root] : [];
     },
+    treeHideables: () => treeHideables,
     setGrassQuality(level: number): void {
       grass.setQuality(level);
     },

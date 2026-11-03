@@ -401,6 +401,7 @@ describe('the tree hide on the dithered style', () => {
       ghosts: [],
       parts: [{ mesh, index, visibleMatrix: new THREE.Matrix4() }],
       prefetched: false,
+      shadows: [],
     };
   }
 

@@ -51,12 +51,14 @@ describe('gather node rendering', () => {
     // 156 nodes since the phase 20 density pass; the coarse key makes one
     // InstancedMesh per (zone, type), 42 today, derived from the content
     // rather than hand-typed so a new zone or node type moves both sides.
-    expect(activeGatherNodes()).toHaveLength(156);
-    expect(expectedBatches.size).toBe(42);
+    // 104 nodes in 28 batches since tree chopping retired the 52 wood stands
+    // (docs/design/tree-chopping.md): ore and herb only, two shapes.
+    expect(activeGatherNodes()).toHaveLength(104);
+    expect(expectedBatches.size).toBe(28);
     expect(meshes).toHaveLength(expectedBatches.size);
     expect(meshes.reduce((sum, mesh) => sum + mesh.count, 0)).toBe(activeGatherNodes().length);
-    expect(new Set(meshes.map((mesh) => mesh.geometry)).size).toBe(3);
-    expect(new Set(meshes.map((mesh) => mesh.material)).size).toBe(3);
+    expect(new Set(meshes.map((mesh) => mesh.geometry)).size).toBe(2);
+    expect(new Set(meshes.map((mesh) => mesh.material)).size).toBe(2);
     for (const mesh of meshes) {
       expect(mesh.castShadow).toBe(true);
       expect(mesh.receiveShadow).toBe(true);
@@ -91,9 +93,10 @@ describe('gather node rendering', () => {
 
     // 120 nodes in 57 batches through v0.33.0; the phase 20 density pass
     // (the +36 bottom-three set) took the content to 156 nodes and 69
-    // batches. This is the ?gathercoarse=off A/B arm.
-    expect(expectedBatches.size).toBe(69);
-    expect(meshes).toHaveLength(69);
+    // batches; tree chopping's wood-stand retirement leaves 104 nodes in 45.
+    // This is the ?gathercoarse=off A/B arm.
+    expect(expectedBatches.size).toBe(45);
+    expect(meshes).toHaveLength(45);
     expect(meshes.reduce((sum, mesh) => sum + mesh.count, 0)).toBe(activeGatherNodes().length);
     for (const mesh of meshes) {
       const nodeIds = mesh.userData.gatherNodeIds as string[];

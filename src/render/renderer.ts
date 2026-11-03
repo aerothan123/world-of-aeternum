@@ -898,6 +898,7 @@ import {
   trackLocalPos,
 } from './travel_speed_fx';
 import { TravelSpeedFxPainter } from './travel_speed_fx_painter';
+import { TreeFellingView } from './tree_felling';
 import { updateTreeSwayPlayer } from './tree_sway';
 import { UnderwaterView } from './underwater';
 import { createPrewarmGroupSlot, createVariantPrewarmSlot } from './variant_prewarm_slot';
@@ -2094,6 +2095,14 @@ export class Renderer {
   );
   /** Bound once: the puff runs per landing and must not allocate a closure. */
   private surfaceAtForPuff = (x: number, z: number, y: number) => this.surfaceAt(x, z, y);
+  private readonly treeFelling = new TreeFellingView({
+    scene: () => this.scene,
+    world: () => this.sim,
+    trees: () => this.foliage?.treeHideables() ?? [],
+    ground: (x, z) => groundHeight(x, z, this.sim.cfg.seed),
+    puff: (x, y, z, power) => emitGroundPuff(this.vfx, this.surfaceAtForPuff, x, y, z, power),
+    audio: () => this.audioSink,
+  });
 
   private lowGfx: boolean;
   private post: PostPipeline | null = null;
@@ -7133,6 +7142,7 @@ export class Renderer {
   }
 
   private dispatchEvent(ev: SimEvent): void {
+    this.treeFelling.handleEvent(ev); // treeFelled / chop castStart (tree_felling.ts)
     if (this.riftDeathZoneVisuals?.handleEvent(ev)) return;
     switch (ev.type) {
       case 'castStart': {
@@ -10589,7 +10599,7 @@ export class Renderer {
       st.asleep = e.asleep === true; // in bed (mob/slumber.ts): the sleep loop holds
       // Which ability, so the pose layer can tell a drawn shot from a pet
       // utility cast (tame_beast is a 6s cast; a bow must not sit aimed for it).
-      st.castingAbility = characterCasting ? (e.castingAbility ?? null) : null;
+      st.castingAbility = characterCasting ? this.treeFelling.castClipFor(e) : null;
       st.spinning =
         st.casting &&
         e.castingAbility !== null &&
@@ -11467,6 +11477,7 @@ export class Renderer {
       this.reducedMotion(),
     );
     sceneryDetail.updateSceneryDetail(camX, camZ);
+    this.treeFelling.update(dt); // felled trees: hides, falls, stumps, regrows (tree_felling.ts)
     worldStart = this.markRendererWorldPhase(worldPhaseMs, 'foliage', worldStart);
     this.fish.update(p.pos.x, p.pos.z, dt);
     worldStart = this.markRendererWorldPhase(worldPhaseMs, 'fish', worldStart);

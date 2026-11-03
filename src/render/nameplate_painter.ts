@@ -14,7 +14,7 @@ import { isBuddyMob } from '../sim/pet/buddy_ai';
 import { isQuestGatedEntityHidden } from '../sim/quest_gated_entity';
 import { ambientNpcQuestMarkerKind } from '../sim/quests/ambient_quest_marker';
 import { type QuestMarkerKind, strongerQuestMarker } from '../sim/quests/quest_marker_kind';
-import { type Entity, GATHER_CAST_ID } from '../sim/types';
+import { type Entity, GATHER_CAST_ID, TREE_CHOP_CAST_ID } from '../sim/types';
 import { investigationDisguiseHidden } from '../sim/world_quest_investigation_visibility';
 import { shadowGuardHidden } from '../sim/world_quest_shadow_visibility';
 import { abilityDisplayNameFromSource } from '../ui/ability_display_name';
@@ -724,8 +724,12 @@ export class NameplatePainter {
       state.castSource = cast.label;
       state.castLabel = cast.fishing
         ? t('abilityUi.cast.fishing')
-        : cast.label === GATHER_CAST_ID
-          ? t('abilityUi.cast.gathering')
+        : cast.label === GATHER_CAST_ID || cast.label === TREE_CHOP_CAST_ID
+          ? t(
+              cast.label === GATHER_CAST_ID
+                ? 'abilityUi.cast.gathering'
+                : 'abilityUi.cast.chopping',
+            )
           : ABILITIES[cast.label]
             ? tEntity({ kind: 'ability', id: cast.label, field: 'name' })
             : scriptedCastLabel(cast.label);

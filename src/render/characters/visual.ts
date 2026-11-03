@@ -26,6 +26,7 @@ import type { MeleeImpactProfile } from '../melee_impact_core';
 import type { MountRideSpec } from '../mount_visuals';
 import { buildSeasonalHeadPiece, fitSeasonalHead } from '../seasonal_head_cosmetic';
 import type { SeatAnimInfo } from '../seated_pose_core';
+import { TREE_CHOP_CAST_CLIP } from '../tree_felling_core';
 import {
   stoneboundShardMaterialOptions,
   stoneboundShellMaterialOptions,
@@ -5732,6 +5733,11 @@ export class CharacterVisual {
         // A displayed bow holds its draw here instead of the shared caster
         // gesture; a per-ability authored cast clip beats the generic channel;
         // every other weapon keeps the rig's authored cast.
+        // A tree chop (tree_felling_core.ts) loops the rig's one-hand swing.
+        if (this.castingAbility === TREE_CHOP_CAST_CLIP) {
+          const swing = this.action(c.meleeAttack?.[0] ?? c.attack[0]);
+          if (swing) return swing;
+        }
         return (
           this.action(weaponSkinCastClip(this.weaponSkinId, this.castingAbility) ?? undefined) ??
           this.action(this.castingAbility ? c.castByAbility?.[this.castingAbility] : undefined) ??

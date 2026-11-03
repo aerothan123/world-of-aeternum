@@ -1178,6 +1178,8 @@ const RENDER_PURE_CORES = [
   'src/render/hoard_cavern_ground_core.ts',
   'src/render/hoard_cavern_foliage_core.ts',
   'src/render/tree_hide_index_core.ts',
+  // the felled-tree fall/regrow curves and set diff (tree_felling.ts)
+  'src/render/tree_felling_core.ts',
   'src/render/transport_ship_core.ts',
   'src/render/harbor_route_marker_core.ts',
   'src/render/wyrmwatch_harbor_core.ts',

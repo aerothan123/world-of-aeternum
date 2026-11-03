@@ -36,6 +36,18 @@ export interface TreeHideable {
   parts: TreeHidePart[];
   /** The ghost programs were asked for ahead of the first occlusion. */
   prefetched: boolean;
+  /** This tree's slots in the bucket shadow-caster rows (foliage.ts
+   *  buildShadowCasters): the felled-tree presenter (tree_felling.ts) zeroes a
+   *  slot's packed source matrix and forces a repack so a stump casts no
+   *  standing tree's shadow. */
+  shadows: TreeShadowSlot[];
+}
+
+/** One tree's slot in a shadow-caster row: the row's packed source matrices
+ *  (16 floats per instance) and its repack serial. */
+export interface TreeShadowSlot {
+  row: { source: Float32Array; packSerial: number };
+  index: number;
 }
 
 function pointInsideTree(t: TreeHideable, x: number, z: number): boolean {
