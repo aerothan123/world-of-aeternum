@@ -41,6 +41,7 @@ import {
 } from './roof_darkness_core';
 import { markSharedMaterial } from './shared_resource';
 import { isSoftwareRendererName } from './software_renderer';
+import { type WorldStyle, worldStyleFromSetting } from './world_style_core';
 
 // Quality tiers: every tier-dependent knob keys off this module instead of
 // scattered LOW_GFX ternaries.
@@ -168,6 +169,8 @@ export interface GfxRuntimeHints {
   dynamicLights?: number;
   particleEffects?: number;
   ghostFade?: number;
+  /** World Style setting (world_style_core.ts): 0 Classic, 1 Refined. */
+  worldStyle?: number;
 }
 
 export interface GfxCapabilities {
@@ -381,6 +384,13 @@ export interface GfxSettings {
    * preset, whose Water Quality dial remaps it level by level.
    */
   readonly waterTier: GfxTier;
+  /**
+   * The World Style (world_style_core.ts): Classic compiles every world
+   * shader exactly as shipped, Refined the grounded look. Orthogonal to the
+   * tier: it only selects compile-time variants of materials that already
+   * exist, so a change rides the graphics rebuild like any profile change.
+   */
+  readonly worldStyle: WorldStyle;
 }
 
 export interface GfxProfile {
@@ -1247,6 +1257,7 @@ function settingsFor(tier: GfxTier, hints?: Partial<GfxRuntimeHints>): GfxSettin
   let settings: GfxSettings = {
     graphicsConfigVersion: GFX_CONFIG_VERSION,
     tier,
+    worldStyle: worldStyleFromSetting(hints?.worldStyle, hints?.search ?? ''),
     effectsTier: tier,
     bucketBands,
     bucketBaselines: bucketBaselines(bucketBands),
@@ -1829,6 +1840,7 @@ function runtimeHints(): GfxRuntimeHints {
     dynamicLights: storedNumericSetting('dynamicLights'),
     particleEffects: storedNumericSetting('particleEffects'),
     ghostFade: storedNumericSetting('ghostFade'),
+    worldStyle: storedNumericSetting('worldStyle'),
   };
 }
 

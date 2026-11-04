@@ -16,6 +16,7 @@ export const GRAPHICS_REBUILD_KEYS = Object.freeze([
   'dynamicLights',
   'particleEffects',
   'ghostFade',
+  'worldStyle',
 ] as const);
 
 export type GraphicsSettingsKey = (typeof GRAPHICS_REBUILD_KEYS)[number];
@@ -71,12 +72,26 @@ export function graphicsSettingsSnapshotsEqual(
  *  (gfx.ts PRESET_ADVANCED; the value is historical and can never renumber). */
 export const GRAPHICS_PRESET_ADVANCED = 5;
 
-export type GraphicsDialKey = Exclude<GraphicsSettingsKey, 'graphicsPreset'>;
+/**
+ * Rebuild keys that are a STYLE choice, not a quality dial: staged in the
+ * draft and applied through the same rebuild, but no preset seeds them, the
+ * Advanced mix never claims them, and editing one never switches presets.
+ */
+export const GRAPHICS_STYLE_KEYS = Object.freeze(['worldStyle'] as const);
+export type GraphicsStyleKey = (typeof GRAPHICS_STYLE_KEYS)[number];
+
+export type GraphicsDialKey = Exclude<GraphicsSettingsKey, 'graphicsPreset' | GraphicsStyleKey>;
+
+const isStyleKey = (key: GraphicsSettingsKey): key is GraphicsStyleKey =>
+  (GRAPHICS_STYLE_KEYS as readonly string[]).includes(key);
 
 // Derived, never a second literal list: a new rebuild key is automatically a
-// dial key (and the seed rows' Record typing then forces a seed level for it).
+// dial key (and the seed rows' Record typing then forces a seed level for it),
+// unless it is listed as a style key above.
 export const GRAPHICS_DIAL_KEYS: readonly GraphicsDialKey[] = Object.freeze(
-  GRAPHICS_REBUILD_KEYS.filter((key): key is GraphicsDialKey => key !== 'graphicsPreset'),
+  GRAPHICS_REBUILD_KEYS.filter(
+    (key): key is GraphicsDialKey => key !== 'graphicsPreset' && !isStyleKey(key),
+  ),
 );
 
 /**
@@ -219,6 +234,7 @@ export function graphicsDisplaySnapshot(
   return Object.freeze({
     ...advancedDialSeed(draft.graphicsPreset),
     graphicsPreset: draft.graphicsPreset,
+    worldStyle: draft.worldStyle,
   });
 }
 
@@ -244,6 +260,8 @@ export function stageGraphicsDraftChange(
   applied?: Readonly<GraphicsSettingsSnapshot> | null,
 ): Readonly<GraphicsSettingsSnapshot> {
   if (graphicsDisplaySnapshot(draft)[key] === value) return draft;
+  // A style key is a plain field set under every preset.
+  if (isStyleKey(key)) return normalizeGraphicsSettingsSnapshot({ ...draft, [key]: value });
   const fromPreset = Math.round(draft.graphicsPreset);
   if (key === 'graphicsPreset') {
     const toAdvanced =

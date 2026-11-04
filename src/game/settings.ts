@@ -67,6 +67,13 @@ export const SETTING_RANGES = {
   // in gfx.ts settingsFor. Backward compatible by construction: a stored 0
   // still means Low and a stored 1 still means High.
   terrainDetail: { min: 0, max: 2, def: 1 },
+  // World Style (src/render/world_style_core.ts): 0 Classic (the world exactly
+  // as it shipped), 1 Refined (textured ground variants, warm graded light,
+  // aerial haze, a drifting cloud layer). Orthogonal to the quality preset: it
+  // is staged in the graphics draft and applied through the graphics rebuild,
+  // but it is never an Advanced dial, so picking it never switches presets.
+  // def 1: new players and anyone who never set it get Refined.
+  worldStyle: { min: 0, max: 1, def: 1 },
   foliageDensity: { min: 0, max: 2, def: 1 },
   // The shader warm-up worker (src/game/shader_warm_setting.ts): 0 auto
   // (follows the GPU backend), 1 off, 2 on. Read at the next start.

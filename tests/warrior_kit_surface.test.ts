@@ -130,6 +130,7 @@ describe('the kit surface family per tier', () => {
       dynamicLights: 1,
       particleEffects: 1,
       ghostFade: 1,
+      worldStyle: 0,
     };
     activateGfxProfile(
       resolveGfxProfile(

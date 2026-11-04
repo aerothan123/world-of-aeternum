@@ -251,6 +251,7 @@ const preferences: GraphicsSettingsSnapshot = {
   dynamicLights: 1,
   particleEffects: 1,
   ghostFade: 1,
+  worldStyle: 0,
 };
 const activatePhone = () => {
   activateGfxProfile(resolveGfxProfile(phoneCapabilities, preferences, ''));
