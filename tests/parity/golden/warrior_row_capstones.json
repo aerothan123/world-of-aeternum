@@ -9,8 +9,8 @@
     "victory rush on-kill window + selfHealPctMax",
     "bladestorm self-centered channel ticks"
   ],
-  "draws": 1013,
-  "drawDigest": "7ad1000e",
+  "draws": 1014,
+  "drawDigest": "5f96fd59",
   "frames": [
     {
       "tick": 0,
@@ -2638,8 +2638,8 @@
       "state": "dd617609",
       "events": "741638a5",
       "rng": {
-        "draws": 979,
-        "digest": "6dd4aef1"
+        "draws": 980,
+        "digest": "d28f3044"
       }
     },
     {
@@ -2649,8 +2649,8 @@
       "state": "dd617609",
       "events": "741638a5",
       "rng": {
-        "draws": 979,
-        "digest": "6dd4aef1"
+        "draws": 980,
+        "digest": "d28f3044"
       },
       "label": "bladestorm-done",
       "players": [
@@ -3309,8 +3309,8 @@
       "state": "5dd70470",
       "events": "ecdf772a",
       "rng": {
-        "draws": 1013,
-        "digest": "7ad1000e"
+        "draws": 1014,
+        "digest": "5f96fd59"
       }
     },
     {
@@ -3320,8 +3320,8 @@
       "state": "5dd70470",
       "events": "741638a5",
       "rng": {
-        "draws": 1013,
-        "digest": "7ad1000e"
+        "draws": 1014,
+        "digest": "5f96fd59"
       },
       "label": "final",
       "players": [
