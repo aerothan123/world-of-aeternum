@@ -178,6 +178,15 @@ natural outdoor echo.
   count, tail, brightness, low body), keeps the best, trims each to a tight attack and
   its first hit, and conforms it; the kept raw masters live in
   `scripts/sfx/sources/gather/`, so `build` reproduces the shipped files without spend.
+  The pick is a LAYERED build (`layers` on its row in `gather_strike_prompts.mjs`): a
+  punchy stone attack cut to its first hit over a stone-crack body take, through a
+  gentle transient shaper and compressor, picked by ear from the audition demos
+  (`gather_styles_demo.mjs`, `gather_rock_demo.mjs`) after takes whose ring read as
+  metal on metal were rejected by a late-tonality check. The axe is the "heavy"
+  direction (the most low-mid body). The audition candidates stay under
+  `scripts/sfx/sources/gather/variants/`; the pick, axe and tree-fall levels are
+  balanced in `sfx_gain_map.json` so a close pick and a close axe sit together and a
+  far tree fall stays under them.
   `scripts/sfx/gather_reverb_demo.mjs` renders a listening demo through the same mix and
   responses. The personal `ui_gather_*` cast and completion cues are unchanged.
 

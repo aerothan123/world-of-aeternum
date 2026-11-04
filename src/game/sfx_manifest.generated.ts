@@ -1533,76 +1533,52 @@ export const SFX_CLIPS =
     ]
   },
   "impact_gather_axe": {
-    "url": "/audio/sfx/impact_gather_axe_1.mp3?v=75ba18f44538",
+    "url": "/audio/sfx/impact_gather_axe_1.mp3?v=9e1beaf9e310",
     "loop": false,
     "category": "combat",
     "preload": "startup",
     "spatial": true,
-    "gain": 1,
+    "gain": 0.707946,
     "playbackRate": 1,
     "bytes": 15717,
-    "hash": "75ba18f44538",
+    "hash": "9e1beaf9e310",
     "variants": [
       {
         "id": "1",
-        "url": "/audio/sfx/impact_gather_axe_1.mp3?v=75ba18f44538",
+        "url": "/audio/sfx/impact_gather_axe_1.mp3?v=9e1beaf9e310",
         "bytes": 15717,
-        "sha256": "75ba18f4453886c296954a4478a2e0c38ee2e6ecbf202df0e3aee3bc73d032e6"
+        "sha256": "9e1beaf9e310865c2241ef3cbc41ec3261fb0592d89d701618299e0f82b16252"
       },
       {
         "id": "2",
-        "url": "/audio/sfx/impact_gather_axe_2.mp3?v=1a1ea44daf5c",
-        "bytes": 15717,
-        "sha256": "1a1ea44daf5cf5cff5f710706125643a52b3929874be59b49f8a8513ea6e1de3"
-      },
-      {
-        "id": "3",
-        "url": "/audio/sfx/impact_gather_axe_3.mp3?v=0b36c6a8b12a",
-        "bytes": 15717,
-        "sha256": "0b36c6a8b12aaa3fe47012986c175092d4928a556803d3c1c499cc1fa20f073b"
-      },
-      {
-        "id": "4",
-        "url": "/audio/sfx/impact_gather_axe_4.mp3?v=b25f8a0bc787",
-        "bytes": 13209,
-        "sha256": "b25f8a0bc7879d83378d183ebd034390d92f870944466e201d8a718fd02c3aaf"
+        "url": "/audio/sfx/impact_gather_axe_2.mp3?v=a8d9c939ea42",
+        "bytes": 5686,
+        "sha256": "a8d9c939ea421413d6fe4106b96764ef1ddd11b263a30cbf89f97357d1b48334"
       }
     ]
   },
   "impact_gather_pick": {
-    "url": "/audio/sfx/impact_gather_pick_1.mp3?v=00cbcf296a6b",
+    "url": "/audio/sfx/impact_gather_pick_1.mp3?v=252ecc456a33",
     "loop": false,
     "category": "combat",
     "preload": "startup",
     "spatial": true,
-    "gain": 1.258925,
+    "gain": 1.778279,
     "playbackRate": 1,
-    "bytes": 15717,
-    "hash": "00cbcf296a6b",
+    "bytes": 15090,
+    "hash": "252ecc456a33",
     "variants": [
       {
         "id": "1",
-        "url": "/audio/sfx/impact_gather_pick_1.mp3?v=00cbcf296a6b",
-        "bytes": 15717,
-        "sha256": "00cbcf296a6b0d818c0f21f779a7a889b5a9bedefea6f82e5fe7bf86efb9e47c"
+        "url": "/audio/sfx/impact_gather_pick_1.mp3?v=252ecc456a33",
+        "bytes": 15090,
+        "sha256": "252ecc456a330c4b79fa9d7457004055f99df461b6b02bf65bd801e275d4b0a9"
       },
       {
         "id": "2",
-        "url": "/audio/sfx/impact_gather_pick_2.mp3?v=40f2bd3baf77",
-        "bytes": 6940,
-        "sha256": "40f2bd3baf7754ab3633ff42265cf67b29b642abeb10a7fd328f2baedcd3f4c1"
-      },
-      {
-        "id": "3",
-        "url": "/audio/sfx/impact_gather_pick_3.mp3?v=b980a7d2c573",
-        "bytes": 7567,
-        "sha256": "b980a7d2c573d672b8e6dba7fa6fcdc460334e4b3fa4bb7d26dd7e3201e16728"
-      },
-      {
-        "id": "4",
-        "url": "/audio/sfx/impact_gather_pick_4.mp3?v=571e3d48ee56",
-        "bytes": 5686,
-        "sha256": "571e3d48ee56af784c10cfc9aa7afca6473d010cf8df162feadbf6dde65263dd"
+        "url": "/audio/sfx/impact_gather_pick_2.mp3?v=2765b16802d8",
+        "bytes": 15717,
+        "sha256": "2765b16802d8681b26b4f3c28781af6ace82a2b2bd3d5b219452b133b4f58074"
       }
     ]
   },
@@ -1819,7 +1795,7 @@ export const SFX_CLIPS =
     "category": "combat",
     "preload": "startup",
     "spatial": true,
-    "gain": 0.562341,
+    "gain": 0.446684,
     "playbackRate": 1,
     "bytes": 54587,
     "hash": "cd2618da034f",
@@ -1844,7 +1820,7 @@ export const SFX_CLIPS =
     "category": "combat",
     "preload": "startup",
     "spatial": true,
-    "gain": 0.501187,
+    "gain": 0.398107,
     "playbackRate": 1,
     "bytes": 35779,
     "hash": "9af85e9c04fd",

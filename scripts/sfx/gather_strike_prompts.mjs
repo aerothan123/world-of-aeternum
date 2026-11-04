@@ -16,18 +16,27 @@ export const GATHER_STRIKE_PROMPTS = [
     trim: 0.6,
     // a take that swings twice is cut before its second hit
     singleHit: true,
-    candidates: 8,
-    keep: 4,
-    prompt: `One single heavy steel pickaxe striking hard granite: a sharp bright metallic tick at the instant of contact, a dense rock crack, and a few small stone chips falling right after. One hit only, short. ${DRY}`,
+    candidates: 10,
+    keep: 2,
+    // The shipped pick is the LAYERED rock pick the user chose from the rock pass
+    // (gather_rock_demo.mjs section 3): the punchiest attack over a stone-crack
+    // body, shaped (gather_strike_sfx.mjs layerStrike + shapePunch). Built from the
+    // committed candidate masters in sources/gather/variants/.
+    layers: [
+      { attack: 'quarry/cand_1', body: 'rock/cand_4' },
+      { attack: 'quarry/cand_1', body: 'quarry/cand_5' },
+    ],
+    prompt: `Steel pickaxe tip striking a large granite boulder outdoors: one hard, punchy impact, a dry stone crack, a short gritty and slightly hollow rock resonance, a few small stone chips. No metallic ringing, no pitched tone, no bell, no anvil, no clang sustain. One hit only. ${DRY}`,
   },
   {
     key: 'impact_gather_axe',
     request: 1,
     trim: 0.6,
     singleHit: true,
-    candidates: 8,
-    keep: 4,
-    prompt: `One single sharp felling axe biting deep into a thick oak trunk: a solid heavy woody thunk, a fibrous wood crack, a few splinters. One hit only, short. ${DRY}`,
+    candidates: 4,
+    keep: 2,
+    // the heavy-direction takes (variants/heavy cand_1 and cand_2), the most body
+    prompt: `One single heavy felling axe driven deep into a huge old tree trunk: a deep, weighty, chesty wooden thud with a strong low-mid body, a dull fibrous crack, little treble. One hit only. ${DRY}`,
   },
   {
     key: 'impact_tree_creak',

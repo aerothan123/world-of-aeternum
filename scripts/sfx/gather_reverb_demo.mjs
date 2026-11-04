@@ -12,20 +12,15 @@
 // public/audio/sfx (run scripts/sfx/gather_strike_sfx.mjs first).
 import { join } from 'node:path';
 import { decode, loadCores, mixScene, ROOT, SR, writeDemo } from './gather_demo_render.mjs';
+import { GATHER_STRIKE_PROMPTS } from './gather_strike_prompts.mjs';
 
 const outArg = process.argv.indexOf('--out');
 const OUT = outArg >= 0 ? process.argv[outArg + 1] : join(ROOT, 'tmp/gather-reverb-demo');
 
 const core = await loadCores();
-const takeCount = {
-  impact_gather_pick: 4,
-  impact_gather_axe: 4,
-  impact_tree_creak: 2,
-  impact_tree_crash: 2,
-};
 const takes = {};
-for (const [key, count] of Object.entries(takeCount)) {
-  takes[key] = Array.from({ length: count }, (_, i) =>
+for (const { key, keep } of GATHER_STRIKE_PROMPTS) {
+  takes[key] = Array.from({ length: keep }, (_, i) =>
     decode(join(ROOT, `public/audio/sfx/${key}_${i + 1}.mp3`)),
   );
 }

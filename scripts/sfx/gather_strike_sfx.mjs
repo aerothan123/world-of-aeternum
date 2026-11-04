@@ -309,12 +309,30 @@ function tighten(x, trim, singleHit = false) {
   return y;
 }
 
+/** A shipped take from its own committed raw master. */
+function plainTake(cue, n) {
+  const source = join(SOURCES, `${cue.key}_${n}.source.mp3`);
+  if (!existsSync(source)) throw new Error(`missing raw master ${source}`);
+  return tighten(decode(source), cue.trim, cue.singleHit === true);
+}
+
+/** A shipped layered take: an attack candidate (cut to its first hit) over a
+ *  body candidate (its whole decay), shaped, exactly as the rock audition built
+ *  it (rockSelect). Both masters live in sources/gather/variants/. */
+function layeredTake(cue, layer) {
+  const load = (id, singleHit) => {
+    const [style, cand] = id.split('/');
+    const file = join(SOURCES, 'variants', style, `${cue.key}_${cand}.mp3`);
+    if (!existsSync(file)) throw new Error(`missing layer master ${file}`);
+    return tighten(decode(file), cue.trim, singleHit);
+  };
+  return shapePunch(layerStrike(load(layer.attack, true), load(layer.body, false)));
+}
+
 function build() {
   for (const cue of cues) {
     for (let n = 1; n <= cue.keep; n++) {
-      const source = join(SOURCES, `${cue.key}_${n}.source.mp3`);
-      if (!existsSync(source)) throw new Error(`missing raw master ${source}`);
-      const y = tighten(decode(source), cue.trim, cue.singleHit === true);
+      const y = cue.layers ? layeredTake(cue, cue.layers[n - 1]) : plainTake(cue, n);
       const tmp = join(OUT_DIR, `.${cue.key}_${n}.${process.pid}.source.wav`);
       writeFileSync(tmp, wav(y));
       try {
