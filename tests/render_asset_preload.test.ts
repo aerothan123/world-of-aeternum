@@ -236,9 +236,9 @@ describe('foliage preload set covers placement at every graphics tier (regressio
     expect(low.size).toBeLessThan(all.size);
     // pine_2/4/5 only exist in the HIGH tier's variant set (FOLIAGE_MODEL_URLS_LOW.pine
     // is just pine_1): the variant the live crash report named.
-    expect(low.has('models/foliage/pine_2_field.glb')).toBe(false);
-    expect(highTierFoliageModelUrls().has('models/foliage/pine_2_field.glb')).toBe(true);
-    expect(all.has('models/foliage/pine_2_field.glb')).toBe(true);
+    expect(low.has('models/foliage/pine_2.glb')).toBe(false);
+    expect(highTierFoliageModelUrls().has('models/foliage/pine_2.glb')).toBe(true);
+    expect(all.has('models/foliage/pine_2.glb')).toBe(true);
   });
 
   it('ALL_FOLIAGE_MODEL_URLS is constructed as the exact HIGH union LOW superset (a data-shape invariant, not a runtime one: see tests/foliage_preload_boot.test.ts for proof the deferred loop actually FETCHES every one of these regardless of the import-time tier guess)', () => {

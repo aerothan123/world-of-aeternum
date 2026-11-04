@@ -120,7 +120,14 @@ For reference-image reconstruction and procedural GLB authoring, read the living
   scans `src/` so only the field model table and the media manifest name a copy; after an
   intended change run `--write-pins`, paste the printed pins into the table and the test's
   `EXPECTED` with the printed bark counts, then `node scripts/build_media_manifest.mjs
-  generate`, the steps the script prints), `decimated_prop_swap.mjs` (lands a
+  generate`, the steps the script prints), `fit_fable_foliage.mjs` (+ the pure
+  `fable_foliage_fit_core.mjs`, pinned by `tests/fable_foliage_fit.test.ts`: fits the Tripo
+  storybook sources under `assets_src/fable_foliage/` onto the world foliage slots, splitting
+  each single mesh into the bark/leaf/blossom parts the renderer's material names key on and
+  landing it on the old model's height, sink and trunk position, the numbers the sim's
+  colliders were fitted to; after a run, follow its printed steps: the field copies, the
+  vertex-pipeline pins, the generated sizes and collision rows, the media manifest),
+  `decimated_prop_swap.mjs` (lands a
   Blender decimation pass over shipped scatter props: transplants only the export's
   primitive geometry onto the shipped GLB so names, materials and bounds stay what
   consumers key on, downsizes maps above `--cap` with the codec each map shipped with,

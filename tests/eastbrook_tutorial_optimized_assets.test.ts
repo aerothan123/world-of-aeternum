@@ -44,40 +44,6 @@ const ASSETS = [
     normal: false,
     textures: ['6a6096f9b265af6ffd77e6df8b93df81f7fbf09a28d77280ed2d17c46a58f872'],
   },
-  {
-    file: 'foliage/dead_1',
-    sha256: '7f2dea31d5493a304d836a772c9489626c8430e594fc9c81fa782b0ecee8d4f0',
-    triangles: 3249,
-    byteCap: 350000,
-    min: [-2.592215, -0.335555, -2.903571],
-    max: [3.556503, 9.159923, 2.845239],
-    normal: true,
-    textures: null,
-  },
-  {
-    file: 'foliage/dead_2',
-    sha256: 'cc1f3832b267f98cb17a7f515c7809fbd1a192eefc76823b618cf62dc0d6ba21',
-    triangles: 3625,
-    byteCap: 350000,
-    min: [-2.332279, -0.335555, -2.52305],
-    max: [4.397209, 11.152677, 3.855834],
-    normal: true,
-    textures: null,
-  },
-  {
-    file: 'foliage/dead_3',
-    sha256: '309c59cf4030a65f12d5b75fdc11eb1b08e60a9e411ed1821449ef87a9d45771',
-    triangles: 3544,
-    byteCap: 350000,
-    min: [-3.84773, -0.335555, -3.386694],
-    max: [2.540165, 12.944831, 3.043352],
-    normal: true,
-    textures: null,
-  },
-];
-const BARK_TEXTURES = [
-  '65caf15e19881821b1820fa11d97b7291dc2ae9ffeca569a94e92444b270579f',
-  '6ccc6e5ee5eaaf8fa9f77892129b166bdf00054630d25828aae9e09a64e7f1ab',
 ];
 const sha256 = (bytes: Uint8Array) => createHash('sha256').update(bytes).digest('hex');
 const io = new NodeIO()
@@ -144,13 +110,7 @@ describe('Eastbrook and Tutorial Island optimized shipping assets', () => {
       expect(!!material.getNormalTexture()).toBe(asset.normal);
       expect(material.getDoubleSided()).toBe(true);
       expect(material.getMetallicFactor()).toBe(0);
-      if (asset.file.startsWith('foliage/')) {
-        expect(material.getName()).toBe('Bark_DeadTree');
-        expect(material.getRoughnessFactor()).toBe(1);
-        expect(primitive.getAttribute('COLOR_0')?.getCount()).toBe(positions.getCount());
-      } else {
-        expect(material.getRoughnessFactor()).toBe(0.8);
-      }
+      expect(material.getRoughnessFactor()).toBe(0.8);
       const textureHashes = root.listTextures().map((texture) => {
         expect(texture.getMimeType()).toBe('image/ktx2');
         expect(texture.getSize()).toEqual([512, 512]);
@@ -159,9 +119,11 @@ describe('Eastbrook and Tutorial Island optimized shipping assets', () => {
         expect(Buffer.from(image).readUInt32LE(40)).toBe(10);
         return sha256(image);
       });
-      // Five models reuse their original compressed images byte-for-byte. Only
+      // Two models reuse their original compressed images byte-for-byte. Only
       // the retopologized crate has a new color bake and tangent-space normal map.
-      expect(textureHashes.sort()).toEqual([...(asset.textures ?? BARK_TEXTURES)].sort());
+      // (The three dead trees left this table when the storybook models
+      // replaced them; tests/fable_foliage_fit.test.ts covers those files.)
+      expect(textureHashes.sort()).toEqual([...asset.textures].sort());
     },
   );
 });

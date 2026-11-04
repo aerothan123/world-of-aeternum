@@ -15,55 +15,37 @@ export const FOLIAGE_BARK_BOUNDS_TOLERANCE = 0.05;
 
 // Sources are the shipped tree GLBs; outputs are the world foliage field's
 // copies. Every other consumer of the sources keeps the full-detail file.
+// The storybook pines (scripts/assets/fit_fable_foliage.mjs) carry no field
+// copy: their bark is a trunk stub of under a hundred triangles, so the field
+// draws the source itself.
 export const FOLIAGE_FIELD_BARK_ASSETS = Object.freeze([
   {
-    sourcePath: 'models/foliage/pine_1.glb',
-    sourceSha256: '18d21cee2d4141a31ca6c238836e66242d4ca259a874eb2c53c120ba94491f2d',
-    barkTriangleBudget: 1200,
-    outputPath: 'models/foliage/pine_1_field.glb',
-    outputSha256: 'b2de7d8d93daa807835d42ea92aa0fb5817adce00a57e7c9e1365fbedf15a1b0',
-  },
-  {
-    sourcePath: 'models/foliage/pine_2.glb',
-    sourceSha256: 'e3c2d2a2b06b7ad2fb9d186e72797a00287b786d595539c0994880cbcc944bb5',
-    barkTriangleBudget: 1200,
-    outputPath: 'models/foliage/pine_2_field.glb',
-    outputSha256: 'bac6680a8c26a13d19ff5bb58a8ec0331b7976978e2213ed81959a0191474da7',
-  },
-  {
-    sourcePath: 'models/foliage/pine_4.glb',
-    sourceSha256: '25b84be096d31f1ff8d542fd4c5fadb7b1c68f9aa15e3e558625d0ecde5378be',
-    barkTriangleBudget: 1200,
-    outputPath: 'models/foliage/pine_4_field.glb',
-    outputSha256: '26982681dd59ecfb996ad77a3f764eb276b99074fd88f9edb06afd36f8be9618',
-  },
-  {
     sourcePath: 'models/foliage/oak_1.glb',
-    sourceSha256: '9510f3ba02e6395e7ea0b4f766652d9159efcd9593ac56b5f907f7553d6dc5e1',
-    barkTriangleBudget: 1600,
+    sourceSha256: 'ddc65fe9715309f3a35a2cec37201b8739f5695979413f3af82be6274483da20',
+    barkTriangleBudget: 480,
     outputPath: 'models/foliage/oak_1_field.glb',
-    outputSha256: '81898a4faeb28a10a0a6b9afea6e3a5ea6fa311990555043a9b2453bdfea881d',
+    outputSha256: 'dacdfcd5eadfd21d6358e8e1bc36e0f8f57934f9db0f2d2fa49ad27169fcb0a2',
   },
   {
     sourcePath: 'models/foliage/oak_2.glb',
-    sourceSha256: 'eeea227bbd3779ed6b932aa75d9170b49a601743af2eee055e52ef97803f7bc6',
-    barkTriangleBudget: 1600,
+    sourceSha256: 'dca286be3fc655c14e024234461fd665d856b554e232e8f345609e2238f79f92',
+    barkTriangleBudget: 420,
     outputPath: 'models/foliage/oak_2_field.glb',
-    outputSha256: '261c498990b3a6e653b1e9be8ec7df32996ab3e7d04585c39aacc7badb22bc03',
+    outputSha256: 'fc4cb4b27ebc8555c87cb3b9a9649ff5f4f3f72cc1c626df41e07032b4a768d8',
   },
   {
     sourcePath: 'models/foliage/oak_4.glb',
-    sourceSha256: 'a8d015f28af796a92bbfa083f50b5d53f187c9db12bc04ebefe8a3b8269fb0e7',
-    barkTriangleBudget: 1600,
+    sourceSha256: '18f6ddbf280be80dab09b17030cc7700d0badaea9fe83e9a4a8329fb0f6f64f7',
+    barkTriangleBudget: 260,
     outputPath: 'models/foliage/oak_4_field.glb',
-    outputSha256: 'a460a56a29ff568587bd7bc56a2fc8c4012aed8267b8111ea853413a91506a9c',
+    outputSha256: '3307553826ad09a348a9672d5ba109b46c005bfef97bb267f5bfd28e7143828f',
   },
   {
     sourcePath: 'models/foliage/oak_5.glb',
-    sourceSha256: '6de684b3a783d6406444c351bc55fedd2a467ddc71840174c9bf9c45438173ae',
-    barkTriangleBudget: 1600,
+    sourceSha256: 'e1f29f1dfc7f30b4209633c79c0fcdc286a2504e1e4398376d36244d051a328c',
+    barkTriangleBudget: 360,
     outputPath: 'models/foliage/oak_5_field.glb',
-    outputSha256: '6cc4d1c19cc6a44e331866e60e40121d5d10605d62264fb1783b888bde060c05',
+    outputSha256: '5a2e497b88174985067c77c633e6fc338f3425b9da3ac01733758e16655fca72',
   },
   {
     sourcePath: 'models/foliage/twisted_1.glb',

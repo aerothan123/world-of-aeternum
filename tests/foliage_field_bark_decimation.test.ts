@@ -32,73 +32,60 @@ const ROOT = path.join(__dirname, '..');
 const BOUNDS_TOLERANCE = 0.05;
 const QUIET = new Logger(Logger.Verbosity.WARN);
 
-const PINE = { bark: 'Bark_NormalTree', leaves: ['Leaves_Pine'] };
-const OAK = { bark: 'Bark_NormalTree', leaves: ['Leaves_NormalTree'] };
-const TWISTED = { bark: 'Bark_TwistedTree', leaves: ['Leaves_TwistedTree'] };
+// The storybook oaks (scripts/assets/fit_fable_foliage.mjs) wear one baked
+// WEBP sheet on both parts and no normal map; the twisted kit keeps its KTX2
+// bark, normal and leaf sheets.
+const OAK = {
+  bark: 'Bark_NormalTree',
+  leaves: ['Leaves_NormalTree'],
+  barkNormal: null,
+  textures: 1,
+  textureExtension: 'EXT_texture_webp',
+};
+const TWISTED = {
+  bark: 'Bark_TwistedTree',
+  leaves: ['Leaves_TwistedTree'],
+  barkNormal: 'Bark_TwistedTree_Normal',
+  textures: 3,
+  textureExtension: 'KHR_texture_basisu',
+};
 
 const EXPECTED = [
   {
-    model: 'pine_1',
-    sourceSha256: '18d21cee2d4141a31ca6c238836e66242d4ca259a874eb2c53c120ba94491f2d',
-    budget: 1200,
-    outputSha256: 'b2de7d8d93daa807835d42ea92aa0fb5817adce00a57e7c9e1365fbedf15a1b0',
-    materials: PINE,
-    sourceBark: { triangles: 3121, vertices: 2126 },
-    bark: { triangles: 1200, vertices: 890 },
-  },
-  {
-    model: 'pine_2',
-    sourceSha256: 'e3c2d2a2b06b7ad2fb9d186e72797a00287b786d595539c0994880cbcc944bb5',
-    budget: 1200,
-    outputSha256: 'bac6680a8c26a13d19ff5bb58a8ec0331b7976978e2213ed81959a0191474da7',
-    materials: PINE,
-    sourceBark: { triangles: 2827, vertices: 1866 },
-    bark: { triangles: 1200, vertices: 854 },
-  },
-  {
-    model: 'pine_4',
-    sourceSha256: '25b84be096d31f1ff8d542fd4c5fadb7b1c68f9aa15e3e558625d0ecde5378be',
-    budget: 1200,
-    outputSha256: '26982681dd59ecfb996ad77a3f764eb276b99074fd88f9edb06afd36f8be9618',
-    materials: PINE,
-    sourceBark: { triangles: 2125, vertices: 1511 },
-    bark: { triangles: 1200, vertices: 890 },
-  },
-  {
     model: 'oak_1',
-    sourceSha256: '9510f3ba02e6395e7ea0b4f766652d9159efcd9593ac56b5f907f7553d6dc5e1',
-    budget: 1600,
-    outputSha256: '81898a4faeb28a10a0a6b9afea6e3a5ea6fa311990555043a9b2453bdfea881d',
+    sourceSha256: 'ddc65fe9715309f3a35a2cec37201b8739f5695979413f3af82be6274483da20',
+    budget: 480,
+    outputSha256: 'dacdfcd5eadfd21d6358e8e1bc36e0f8f57934f9db0f2d2fa49ad27169fcb0a2',
     materials: OAK,
-    sourceBark: { triangles: 4312, vertices: 2862 },
-    bark: { triangles: 1600, vertices: 1124 },
+    sourceBark: { triangles: 611, vertices: 969 },
+    bark: { triangles: 479, vertices: 790 },
   },
   {
     model: 'oak_2',
-    sourceSha256: 'eeea227bbd3779ed6b932aa75d9170b49a601743af2eee055e52ef97803f7bc6',
-    budget: 1600,
-    outputSha256: '261c498990b3a6e653b1e9be8ec7df32996ab3e7d04585c39aacc7badb22bc03',
+    sourceSha256: 'dca286be3fc655c14e024234461fd665d856b554e232e8f345609e2238f79f92',
+    budget: 420,
+    outputSha256: 'fc4cb4b27ebc8555c87cb3b9a9649ff5f4f3f72cc1c626df41e07032b4a768d8',
     materials: OAK,
-    sourceBark: { triangles: 4274, vertices: 2776 },
-    bark: { triangles: 1600, vertices: 1099 },
+    sourceBark: { triangles: 713, vertices: 983 },
+    bark: { triangles: 419, vertices: 599 },
   },
   {
     model: 'oak_4',
-    sourceSha256: 'a8d015f28af796a92bbfa083f50b5d53f187c9db12bc04ebefe8a3b8269fb0e7',
-    budget: 1600,
-    outputSha256: 'a460a56a29ff568587bd7bc56a2fc8c4012aed8267b8111ea853413a91506a9c',
+    sourceSha256: '18f6ddbf280be80dab09b17030cc7700d0badaea9fe83e9a4a8329fb0f6f64f7',
+    budget: 260,
+    outputSha256: '3307553826ad09a348a9672d5ba109b46c005bfef97bb267f5bfd28e7143828f',
     materials: OAK,
-    sourceBark: { triangles: 3252, vertices: 2110 },
-    bark: { triangles: 1600, vertices: 1080 },
+    sourceBark: { triangles: 440, vertices: 737 },
+    bark: { triangles: 260, vertices: 426 },
   },
   {
     model: 'oak_5',
-    sourceSha256: '6de684b3a783d6406444c351bc55fedd2a467ddc71840174c9bf9c45438173ae',
-    budget: 1600,
-    outputSha256: '6cc4d1c19cc6a44e331866e60e40121d5d10605d62264fb1783b888bde060c05',
+    sourceSha256: 'e1f29f1dfc7f30b4209633c79c0fcdc286a2504e1e4398376d36244d051a328c',
+    budget: 360,
+    outputSha256: '5a2e497b88174985067c77c633e6fc338f3425b9da3ac01733758e16655fca72',
     materials: OAK,
-    sourceBark: { triangles: 1862, vertices: 1188 },
-    bark: { triangles: 1600, vertices: 1032 },
+    sourceBark: { triangles: 521, vertices: 859 },
+    bark: { triangles: 360, vertices: 569 },
   },
   {
     model: 'twisted_1',
@@ -340,6 +327,7 @@ describe('foliage field bark decimation', () => {
     expect(fieldTableUrls.sort()).toEqual(
       FOLIAGE_FIELD_BARK_ASSETS.map(({ outputPath }) => outputPath).sort(),
     );
+    expect(treeUrl('pine', 1)).toBe('models/foliage/pine_1.glb');
     expect(treeUrl('pine', 5)).toBe('models/foliage/pine_5.glb');
     expect(treeUrl('oak', 3)).toBe('models/foliage/oak_3.glb');
   });
@@ -424,8 +412,8 @@ describe('foliage field bark decimation', () => {
 
       for (const bark of [sourceBark, outputBark]) {
         expect(bark.getMaterial()?.getName()).toBe(asset.materials.bark);
-        expect(bark.getMaterial()?.getNormalTexture()?.getName()).toBe(
-          `${asset.materials.bark}_Normal`,
+        expect(bark.getMaterial()?.getNormalTexture()?.getName() ?? null).toBe(
+          asset.materials.barkNormal,
         );
       }
       for (const parts of [sourceParts, outputParts]) {
@@ -452,9 +440,9 @@ describe('foliage field bark decimation', () => {
         sourceParts.others.map(primitiveTriangleAttributeFingerprint),
       );
       expect(textureRecords(output)).toEqual(textureRecords(source));
-      expect(textureRecords(output)).toHaveLength(3);
+      expect(textureRecords(output)).toHaveLength(asset.materials.textures);
       expect(extensionLists(output)).toEqual(extensionLists(source));
-      expect(extensionLists(output).required).toContain('KHR_texture_basisu');
+      expect(extensionLists(output).required).toContain(asset.materials.textureExtension);
 
       expectBoundsClose(modelBounds(output), modelBounds(source));
       expectBoundsClose(worldBarkBounds(output, outputBark), worldBarkBounds(source, sourceBark));
@@ -589,7 +577,7 @@ describe('foliage field bark consumers', () => {
   const decimatedSources = EXPECTED.map(({ model }) => sourceUrl(model));
   const fieldCopies = EXPECTED.map(({ model }) => fieldUrl(model));
 
-  it('points the world foliage field at exactly the ten field copies', () => {
+  it('points the world foliage field at exactly the seven field copies', () => {
     const { allFoliageModelUrls, lowTierFoliageModelUrls, highTierFoliageModelUrls } =
       foliagePreloadInternalsForTest;
     const all = [...allFoliageModelUrls()];
@@ -598,7 +586,7 @@ describe('foliage field bark consumers', () => {
     expect([...highTierFoliageModelUrls()].sort()).toEqual(all.sort());
     expect([...lowTierFoliageModelUrls()].sort()).toEqual(
       [
-        'models/foliage/pine_1_field.glb',
+        'models/foliage/pine_1.glb',
         'models/foliage/oak_1_field.glb',
         'models/foliage/twisted_1_field.glb',
         'models/foliage/dead_1.glb',
@@ -609,7 +597,16 @@ describe('foliage field bark consumers', () => {
         'models/foliage/mushroom.glb',
       ].sort(),
     );
-    for (const kept of ['pine_5', 'oak_3', 'dead_1', 'dead_2', 'dead_3']) {
+    for (const kept of [
+      'pine_1',
+      'pine_2',
+      'pine_4',
+      'pine_5',
+      'oak_3',
+      'dead_1',
+      'dead_2',
+      'dead_3',
+    ]) {
       expect(all).toContain(sourceUrl(kept));
     }
     for (const url of all) {
