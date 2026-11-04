@@ -27,6 +27,8 @@ import {
 } from './palette_lab';
 import type { SkyResidencyRegion } from './sky_residency_core';
 import { skyTexture } from './textures';
+import { worldStyleRefined, worldStyleSkyUniforms } from './world_style';
+import { withRefinedSky } from './world_style_glsl';
 
 // HDRI sky dome. Cloud cover comes from the sky HDRIs themselves; there is
 // no separate sprite cloud layer.
@@ -1433,14 +1435,21 @@ export function buildSky(
   // The palette lab's gradient arm (`?palette=on` only): absent, the dome
   // compiles the shipped string byte for byte.
   const paletteSky = paletteLabEnabled();
+  const refinedSky = worldStyleRefined();
   const material = new THREE.ShaderMaterial({
     uniforms: {
       ...uniforms,
       ...(zoneHaze ? biomeHazeUniforms() : {}),
       ...(paletteSky ? paletteSkyUniforms() : {}),
+      ...(refinedSky ? worldStyleSkyUniforms() : {}),
     },
     vertexShader: SKY_VERT,
-    fragmentShader: skyFrag(zoneHaze, paletteSky),
+    // World Style Refined splices its gradient, sun glow, drifting cloud layer
+    // and matched horizon haze into the SAME dome program (world_style_glsl.ts);
+    // Classic compiles the shipped fragment byte for byte.
+    fragmentShader: refinedSky
+      ? withRefinedSky(skyFrag(zoneHaze, paletteSky))
+      : skyFrag(zoneHaze, paletteSky),
     side: THREE.BackSide,
     fog: false,
     depthWrite: false,
