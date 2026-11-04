@@ -65,8 +65,8 @@ export const FABLE_FOLIAGE_TARGETS = Object.freeze([
   T('dead_1', 'dead', 9.495, -0.336, 0.051, 0, 3249),
   T('dead_2', 'dead', 11.488, -0.336, 0.05, 0, 3600),
   T('dead_3', 'dead', 13.28, -0.336, 0.055, 0.012, 3544),
-  T('bush', 'bush', 1.572, -0.235, 0.038, -0.022, 1000),
-  T('bush_flowers', 'flowering_bush', 1.572, -0.235, 0.083, 0.028, 1200),
+  T('bush', 'bush', 1.572, -0.235, 0.038, -0.022, 1600),
+  T('bush_flowers', 'flowering_bush', 1.572, -0.235, 0.083, 0.028, 2000),
   T('mushroom', 'mushroom', 0.464, -0.017, -0.052, -0.056, 900),
   T('rock_1', 'rock', 2.26, -0.271, -0.115, 0.345, 700, { footprint: [3.225, 2.989] }),
   T('rock_2', 'rock', 1.899, -0.051, -0.189, 0.08, 700, { footprint: [3.049, 2.479] }),
@@ -666,4 +666,118 @@ export function remapUvsToAtlasCell(uvs, index, layout, inset = 0) {
     out[i + 1] = (row + inset + v * span) / rows;
   }
   return out;
+}
+
+// ---------------------------------------------------------------------------
+// leaf albedo grade
+
+/**
+ * Mean linear albedo of the kit leaf sheets each leaf material name was
+ * calibrated against. The renderer multiplies a leaf map by a per-species
+ * lift and a per-biome tint (src/render/foliage.ts, measured there for the
+ * oak sheet over the texels its alpha test keeps), so a brighter, yellower
+ * storybook sheet comes out amber; the fit grades the leaf texels onto these
+ * means and keeps the painted variation around them.
+ */
+export const LEAF_ALBEDO_TARGETS = Object.freeze({
+  Leaves_NormalTree: Object.freeze([0.099, 0.197, 0.012]),
+  Leaves_TwistedTree: Object.freeze([0.099, 0.197, 0.012]),
+  Leaves_Pine: Object.freeze([0.06, 0.12, 0.01]),
+});
+/** Clamp on the per-channel linear gain of the leaf grade. */
+export const LEAF_GRADE_GAIN = Object.freeze([0.15, 1.6]);
+
+const linearToSrgbByte = (v) => {
+  const c = v <= 0.0031308 ? v * 12.92 : 1.055 * v ** (1 / 2.4) - 0.055;
+  return Math.max(0, Math.min(255, Math.round(c * 255)));
+};
+
+/**
+ * Texels covered by the uv footprint of the `mask` triangles, grown by
+ * `dilate` texels so the mip chain at an island edge grades with it.
+ */
+export function rasterizeUvMask(indices, uvs, mask, width, height, dilate = 2) {
+  const out = new Uint8Array(width * height);
+  for (let t = 0; t < indices.length / 3; t++) {
+    if (!mask[t]) continue;
+    const p = [0, 1, 2].map((k) => {
+      const i = indices[t * 3 + k];
+      return [uvs[i * 2] * width, uvs[i * 2 + 1] * height];
+    });
+    // a triangle that spans the wrap seam is rasterized in its own cell
+    const ox = Math.floor(Math.min(p[0][0], p[1][0], p[2][0]) / width) * width;
+    const oy = Math.floor(Math.min(p[0][1], p[1][1], p[2][1]) / height) * height;
+    for (const q of p) {
+      q[0] -= ox;
+      q[1] -= oy;
+    }
+    const x0 = Math.max(0, Math.floor(Math.min(p[0][0], p[1][0], p[2][0])));
+    const x1 = Math.min(width - 1, Math.ceil(Math.max(p[0][0], p[1][0], p[2][0])));
+    const y0 = Math.max(0, Math.floor(Math.min(p[0][1], p[1][1], p[2][1])));
+    const y1 = Math.min(height - 1, Math.ceil(Math.max(p[0][1], p[1][1], p[2][1])));
+    const d = (p[1][0] - p[0][0]) * (p[2][1] - p[0][1]) - (p[2][0] - p[0][0]) * (p[1][1] - p[0][1]);
+    for (let y = y0; y <= y1; y++) {
+      for (let x = x0; x <= x1; x++) {
+        const px = x + 0.5;
+        const py = y + 0.5;
+        let inside;
+        if (Math.abs(d) < 1e-12) {
+          inside = true; // a sliver: mark its bounds
+        } else {
+          const w1 =
+            ((px - p[0][0]) * (p[2][1] - p[0][1]) - (p[2][0] - p[0][0]) * (py - p[0][1])) / d;
+          const w2 =
+            ((p[1][0] - p[0][0]) * (py - p[0][1]) - (px - p[0][0]) * (p[1][1] - p[0][1])) / d;
+          inside = w1 >= -0.02 && w2 >= -0.02 && 1 - w1 - w2 >= -0.02;
+        }
+        if (inside) out[y * width + x] = 1;
+      }
+    }
+  }
+  let cur = out;
+  for (let r = 0; r < dilate; r++) {
+    const next = Uint8Array.from(cur);
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        if (cur[y * width + x]) continue;
+        if (
+          (x > 0 && cur[y * width + x - 1]) ||
+          (x < width - 1 && cur[y * width + x + 1]) ||
+          (y > 0 && cur[(y - 1) * width + x]) ||
+          (y < height - 1 && cur[(y + 1) * width + x])
+        ) {
+          next[y * width + x] = 1;
+        }
+      }
+    }
+    cur = next;
+  }
+  return cur;
+}
+
+/** Per-channel linear gains that land the masked texels' mean on `target`. */
+export function leafGradeGains(image, mask, target) {
+  const sum = [0, 0, 0];
+  let n = 0;
+  for (let i = 0; i < mask.length; i++) {
+    if (!mask[i]) continue;
+    for (let k = 0; k < 3; k++) sum[k] += srgbToLinear(image.data[i * image.channels + k]);
+    n++;
+  }
+  if (n === 0) throw new Error('empty leaf mask');
+  const [lo, hi] = LEAF_GRADE_GAIN;
+  return sum.map((s, k) => Math.min(hi, Math.max(lo, target[k] / Math.max(s / n, 1e-4))));
+}
+
+/** A copy of the image with the masked texels scaled by linear `gains`. */
+export function applyLeafGrade(image, mask, gains) {
+  const data = Uint8Array.from(image.data);
+  for (let i = 0; i < mask.length; i++) {
+    if (!mask[i]) continue;
+    for (let k = 0; k < 3; k++) {
+      const o = i * image.channels + k;
+      data[o] = linearToSrgbByte(srgbToLinear(image.data[o]) * gains[k]);
+    }
+  }
+  return { ...image, data };
 }

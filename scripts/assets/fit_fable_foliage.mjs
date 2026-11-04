@@ -20,6 +20,7 @@ import { MeshoptDecoder, MeshoptEncoder, MeshoptSimplifier } from 'meshoptimizer
 import sharp from 'sharp';
 import {
   applyFit,
+  applyLeafGrade,
   atlasLayout,
   classifyFableTriangles,
   FABLE_FOLIAGE_TARGETS,
@@ -27,6 +28,9 @@ import {
   fitNormals,
   fitTransform,
   indexedBounds,
+  LEAF_ALBEDO_TARGETS,
+  leafGradeGains,
+  rasterizeUvMask,
   remapUvsToAtlasCell,
   SPLIT_KINDS,
   treeAnchor,
@@ -329,10 +333,28 @@ for (const target of targets) {
   for (const part of parts) {
     if (part.indices.length === 0) throw new Error(`${target.name}: empty ${part.material} part`);
   }
+  // Grade the leaf texels onto the kit sheet the renderer's tints expect.
+  let webp = sources.get(target.name).webp;
+  const leafTarget = LEAF_ALBEDO_TARGETS[materials.leaf];
+  if (leafTarget && target.kind !== 'rock') {
+    const leafLabel = target.kind === 'flowering_bush' ? 0 : 1;
+    const triMask = new Uint8Array(geo.indices.length / 3).map((_, t) =>
+      labels ? Number(labels[t] === leafLabel) : 1,
+    );
+    const { image } = sources.get(target.name);
+    const mask = rasterizeUvMask(geo.indices, geo.uvs, triMask, image.width, image.height);
+    const gains = leafGradeGains(image, mask, leafTarget);
+    const graded = applyLeafGrade(image, mask, gains);
+    webp = await sharp(Buffer.from(graded.data), {
+      raw: { width: image.width, height: image.height, channels: image.channels },
+    })
+      .webp({ quality: 90, effort: 6 })
+      .toBuffer();
+  }
   const written =
     target.kind === 'rock'
       ? await writeModel(target, parts, rockAtlas.atlas, 'Fable_Rocks')
-      : await writeModel(target, parts, sources.get(target.name).webp, `Fable_${target.name}`);
+      : await writeModel(target, parts, webp, `Fable_${target.name}`);
   const { bytes, ...pins } = written;
   report.push({
     name: target.name,

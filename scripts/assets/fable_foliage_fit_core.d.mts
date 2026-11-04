@@ -159,3 +159,24 @@ export function remapUvsToAtlasCell(
   layout: { cols: number; rows: number },
   inset?: number,
 ): Float32Array;
+
+export const LEAF_ALBEDO_TARGETS: Readonly<Record<string, readonly [number, number, number]>>;
+export const LEAF_GRADE_GAIN: readonly [number, number];
+export function rasterizeUvMask(
+  indices: ArrayLike<number>,
+  uvs: ArrayLike<number>,
+  mask: ArrayLike<number | boolean>,
+  width: number,
+  height: number,
+  dilate?: number,
+): Uint8Array;
+export function leafGradeGains(
+  image: TextureImage,
+  mask: ArrayLike<number>,
+  target: readonly number[],
+): number[];
+export function applyLeafGrade(
+  image: TextureImage,
+  mask: ArrayLike<number>,
+  gains: readonly number[],
+): TextureImage & { data: Uint8Array };

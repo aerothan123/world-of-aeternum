@@ -13,6 +13,7 @@ import * as THREE from 'three';
 import { beforeAll, describe, expect, it } from 'vitest';
 import {
   applyFit,
+  applyLeafGrade,
   atlasLayout,
   classifyFableTriangles,
   coniferLabels,
@@ -21,6 +22,9 @@ import {
   fitNormals,
   fitTransform,
   indexedBounds,
+  LEAF_ALBEDO_TARGETS,
+  leafGradeGains,
+  rasterizeUvMask,
   remapUvsToAtlasCell,
   removeSmallIslands,
   srgbToLab,
@@ -196,6 +200,31 @@ describe('fable foliage fit core', () => {
     // a 45 degree slope squashed vertically against a wider footprint tips up
     expect(n[4]).toBeGreaterThan(n[3]);
     expect(Math.hypot(n[3], n[4], n[5])).toBeCloseTo(1, 6);
+  });
+
+  it('grades only the leaf uv footprint onto the kit leaf albedo', () => {
+    // two triangles: the left half of a 4x2 image is leaf, the right half bark
+    const indices = [0, 1, 2, 3, 4, 5];
+    const uvs = [0, 0, 0.5, 0, 0, 1, 0.5, 0, 1, 0, 1, 1];
+    const mask = rasterizeUvMask(indices, uvs, [1, 0], 4, 2, 0);
+    // texel centres on the hypotenuse count (a small edge tolerance)
+    expect(Array.from(mask)).toEqual([1, 1, 0, 0, 1, 0, 0, 0]);
+    const image = {
+      data: Uint8Array.from(new Array(8).fill([200, 190, 60]).flat()),
+      width: 4,
+      height: 2,
+      channels: 3,
+    };
+    const target = LEAF_ALBEDO_TARGETS.Leaves_NormalTree;
+    const gains = leafGradeGains(image, mask, target);
+    const graded = applyLeafGrade(image, mask, gains);
+    // the leaf texels turn green, the bark texels keep their colour
+    expect(graded.data[1]).toBeGreaterThan(graded.data[0]);
+    expect(Array.from(graded.data.slice(6, 9))).toEqual([200, 190, 60]);
+    for (const g of gains) {
+      expect(g).toBeGreaterThanOrEqual(0.15);
+      expect(g).toBeLessThanOrEqual(1.6);
+    }
   });
 
   it('remaps uvs into an atlas cell', () => {
