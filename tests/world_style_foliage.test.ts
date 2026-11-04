@@ -103,7 +103,7 @@ describe('painted grass colour', () => {
   });
   it('generates GLSL from the same constants and flower table', () => {
     const glsl = paintedGrassFragGlsl();
-    expect(glsl).toContain('vec3(0.62000, 0.74000, 0.72000)');
+    expect(glsl).toContain('vec3(0.60000, 0.74000, 0.60000)');
     for (const c of PAINTED_GRASS.flowers) expect(glsl).toContain(`vec3(${c[0].toFixed(5)}`);
     expect(samplerCount(glsl)).toBe(0);
   });

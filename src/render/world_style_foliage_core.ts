@@ -106,7 +106,7 @@ export function paintedClumpHeight(style: WorldStyle, x: number, z: number): num
 export const PAINTED_GRASS = {
   /** Multiplier at the blade root: a soft, cool olive (lighter than a hard
    *  black root, so the meadow keeps its low painted contrast). */
-  base: [0.62, 0.74, 0.72] as Rgb,
+  base: [0.6, 0.74, 0.6] as Rgb,
   /** Multiplier at the blade tip: warm sunlit yellow-green. */
   tip: [1.3, 1.12, 0.58] as Rgb,
   /** Where along the blade (0 root, 1 tip) the gradient runs. */
@@ -115,11 +115,11 @@ export const PAINTED_GRASS = {
   /** Per-clump hue drift multipliers: olive, golden, cool sage. */
   olive: [1.0, 0.98, 0.76] as Rgb,
   golden: [1.16, 1.0, 0.6] as Rgb,
-  sage: [0.86, 1.0, 0.92] as Rgb,
+  sage: [0.9, 1.0, 0.86] as Rgb,
   /** How far a clump drifts toward its hue (0 none). */
   hueAmt: 0.7,
   /** Saturation of the painted result (below 1 pulls the neon out). */
-  saturation: 0.7,
+  saturation: 0.78,
   /** Tip softening: share of the top of the blade lifted toward a warm pale
    *  highlight (painted grass has light, soft tips, not hard spikes). */
   tipSoft: 0.28,
@@ -185,7 +185,7 @@ export function paintedGrassColor(c: Rgb, t: number, h: number, s = 0): [number,
 export const PAINTED_CANOPY = {
   /** Multiplier on the underside of the crown (canopy normal pointing down):
    *  a soft cool blue-green shade, never a black hole. */
-  under: [0.65, 0.72, 0.88] as Rgb,
+  under: [0.68, 0.74, 0.9] as Rgb,
   /** Multiplier on the crown top (normal up): warm sunlit gold-green. */
   top: [1.24, 1.13, 0.74] as Rgb,
   /** Canopy-normal y window the gradient runs across. */
@@ -199,7 +199,7 @@ export const PAINTED_CANOPY = {
   saturation: 1.0,
   /** Leaf-texture contrast kept (1 the texture as authored): below 1 the
    *  crown reads as soft painted masses instead of busy leaf cards. */
-  contrast: 0.62,
+  contrast: 0.52,
   /** The luminance the contrast pull converges on (linear albedo). */
   contrastPivot: 0.2,
   /** Warm fresnel rim colour (times the per-frame rim strength). */
