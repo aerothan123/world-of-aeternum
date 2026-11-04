@@ -19,6 +19,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
 import { FFMPEG_PATH } from './ffmpeg_paths.mjs';
+import { readSfxPlaybackProfile, resolveSfxPlaybackProfile } from './playback_profile.mjs';
 
 const ROOT = fileURLToPath(new URL('../..', import.meta.url));
 const SR = 44100;
@@ -185,6 +186,7 @@ function wavStereo(left, right, scale) {
 }
 
 const core = await loadCores();
+const PLAYBACK = readSfxPlaybackProfile(ROOT);
 const takes = {};
 const takeCount = {
   impact_gather_pick: 4,
@@ -225,7 +227,9 @@ for (const [time, kind, distance, azimuth, env] of events) {
   lastTake[key] = pick;
   // playAt's jitter: +-6% rate, +-10% level
   const clip = resample(pool[pick], 1 + (rand() * 2 - 1) * 0.06);
-  const peak = mix.gain * (1 + (rand() * 2 - 1) * 0.1);
+  // the clip's resolved manifest gain (scripts/sfx/sfx_gain_map.json), as sfx.ts applies it
+  const clipGain = resolveSfxPlaybackProfile(key, PLAYBACK).gain;
+  const peak = mix.gain * clipGain * (1 + (rand() * 2 - 1) * 0.1);
   const dry = mix.lowpassHz < 18000 ? lowpass(clip, mix.lowpassHz) : clip;
   const fall = core.gatherDryFalloff(distance);
   const x = (Math.max(-90, Math.min(90, azimuth)) + 90) / 180;

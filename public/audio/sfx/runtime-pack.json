@@ -1,7 +1,7 @@
 {
   "format": "woc-sfx-runtime-pack",
   "version": 1,
-  "bundleId": "1e09ee7b7363115488afae4b864621f7248427adff29bd77c785ac85c9510873",
+  "bundleId": "bfdecaa92ef0bacbf4c1d1c2b82e09592587c5ce30fa6beddf0d43bd073e887c",
   "catalogHash": "c5f520bd8419a9cce1eadb7e3d9fcdc825d2007828628a4c491dd8b9aab7f9f7",
   "clips": {
     "amb_birds": {
@@ -1093,7 +1093,7 @@
           "sha256": "571e3d48ee56af784c10cfc9aa7afca6473d010cf8df162feadbf6dde65263dd"
         }
       ],
-      "gain": 1,
+      "gain": 1.258925,
       "playbackRate": 1
     },
     "impact_gourdfall": {
@@ -1255,7 +1255,7 @@
           "sha256": "ccea75db47fdf4ff278be70b92f9f723acfc53a70e04c7cd8509485cfb48bc50"
         }
       ],
-      "gain": 1,
+      "gain": 0.562341,
       "playbackRate": 1
     },
     "impact_tree_creak": {
@@ -1273,7 +1273,7 @@
           "sha256": "1faa31189275b9c58faf505490e07510a464b3deeff7d54d7182b46b2ea8cef8"
         }
       ],
-      "gain": 1,
+      "gain": 0.501187,
       "playbackRate": 1
     },
     "impact_warrior_avatar_rise": {
