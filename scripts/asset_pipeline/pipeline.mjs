@@ -53,6 +53,7 @@ import {
   propSnippet,
   registerClassSkin,
   registerWeapon,
+  TOOL_FAMILIES,
   visualDefSnippet,
 } from './lib/integrate.mjs';
 import { JOBS_ROOT, Job } from './lib/job.mjs';
@@ -530,6 +531,7 @@ async function cmdWeapon() {
       glbPath: built,
       iconPath: icon,
       itemIds,
+      tool: TOOL_FAMILIES.has(family.name),
     });
     actions.push(
       ...appendCreditsRow({

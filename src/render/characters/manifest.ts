@@ -158,6 +158,7 @@ import {
   VARKHUL_CINDER_REPAIR_END_ANIMATION_ID,
   VARKHUL_CINDER_REPAIR_START_ANIMATION_ID,
 } from '../../sim/varkhul_cinder_artificer';
+import { HELD_TOOL_VARIANTS } from '../../ui/held_tool_variants';
 import { ITEM_WEAPON_VARIANTS } from '../../ui/weapon_variants';
 import type { OverheadEmoteId } from '../../world_api';
 import {
@@ -2217,6 +2218,32 @@ export const ITEM_OFFHAND_MODELS: Readonly<Record<string, string>> = {
  *  polish it always had. Keyed by held-model key (ITEM_WEAPON_VARIANTS /
  *  ITEM_OFFHAND_MODELS values). */
 export const AUTHORED_HELD_MODELS: ReadonlySet<string> = new Set([
+  // The gathering tools (Tripo atlases, src/ui/held_tool_variants.ts)
+  'arcanite_mining_pick',
+  'ashwood_axe',
+  'bronze_hoe',
+  'bronze_sickle',
+  'clockreel_fishing_rod',
+  'copper_mining_pick',
+  'elderwood_axe',
+  'evergarden_hoe',
+  'felling_axe',
+  'garden_hoe',
+  'gathering_sickle',
+  'goldleaf_sickle',
+  'handaxe',
+  'iron_mining_pick',
+  'ironbark_axe',
+  'ironreel_fishing_rod',
+  'mithril_mining_pick',
+  'osmium_hoe',
+  'silverleaf_sickle',
+  'silverstream_fishing_rod',
+  'skysilver_hoe',
+  'stormreel_fishing_rod',
+  'sunpetal_sickle',
+  'thorium_mining_pick',
+  'tidewrought_fishing_rod',
   'balgath_barrowmaul_hammer', // Foreman's Barrowmaul (Balgath world-boss drop)
   'craterglass_stave', // Craterglass Stave (Balgath world-boss drop)
   'hammer_varkhul', // Varkhul Forgebreaker (Ignivar raid legendary)
@@ -2387,6 +2414,8 @@ function itemModelKey(
     : undefined;
   const directExtra = Object.hasOwn(extra, itemId) ? extra[itemId] : undefined;
   if (direct || directExtra) return direct ?? directExtra ?? null;
+  // A gathering tool (its own registry, held only during the gather swing).
+  if (Object.hasOwn(HELD_TOOL_VARIANTS, itemId)) return HELD_TOOL_VARIANTS[itemId];
 
   const item = Object.hasOwn(ITEMS, itemId) ? ITEMS[itemId] : undefined;
   const baseId = item?.heroicOf;
@@ -2433,7 +2462,8 @@ export function offhandModelUrl(
  *  setWeapon can attach any equipped weapon synchronously (resolvedGltf throws on
  *  an un-preloaded url). */
 export function itemWeaponModelUrls(): string[] {
-  return [...new Set(Object.values(ITEM_WEAPON_VARIANTS).map((key) => `${WEAPONS}/${key}.glb`))];
+  const keys = [...Object.values(ITEM_WEAPON_VARIANTS), ...Object.values(HELD_TOOL_VARIANTS)];
+  return [...new Set(keys.map((key) => `${WEAPONS}/${key}.glb`))];
 }
 
 function itemOffhandModelUrls(): string[] {

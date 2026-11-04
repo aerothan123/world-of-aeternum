@@ -14,6 +14,7 @@ import {
   itemWeaponModelUrl,
   VISUALS,
 } from '../src/render/characters/manifest';
+import { HELD_TOOL_VARIANTS } from '../src/ui/held_tool_variants';
 import { ITEM_WEAPON_VARIANTS } from '../src/ui/weapon_variants';
 
 const MODELS = path.resolve(__dirname, '..', 'public', 'models');
@@ -448,8 +449,8 @@ describe('authored surfaces', () => {
     // the two Varkhul drops, the eight starter models, the 23 field models, the 50
     // rare models (37 pack finishes and 13 repaints of them) and the 27 epic models
     // plus Balgath's three on the v0.45.0 integration (the Foreman's Barrowmaul, the
-    // Shardpike and the Craterglass Stave)
-    expect(AUTHORED_HELD_MODELS.size).toBe(113);
+    // Shardpike and the Craterglass Stave), plus the 25 gathering tools
+    expect(AUTHORED_HELD_MODELS.size).toBe(138);
   });
 
   it('flags exactly the replaced creature and mount rigs, never a player body', () => {
@@ -518,6 +519,7 @@ describe('authored surfaces', () => {
     // the offhand (shield) table, by construction rather than a copied list
     const modelKeys = new Set<string>([
       ...Object.values(ITEM_WEAPON_VARIANTS),
+      ...Object.values(HELD_TOOL_VARIANTS),
       ...Object.values(ITEM_OFFHAND_MODELS),
     ]);
     const undeclared: string[] = [];

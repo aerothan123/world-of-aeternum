@@ -20,6 +20,7 @@ import { REPO_ROOT } from './env.mjs';
 const FILES = {
   accessory: 'src/render/characters/assets.ts',
   variants: 'src/ui/weapon_variants.ts',
+  toolVariants: 'src/ui/held_tool_variants.ts',
   manifest: 'src/render/characters/manifest.ts',
   grip: 'src/render/characters/weapon_grip.ts',
   vfxTuning: 'src/render/weapon_vfx_tuning.ts',
@@ -96,7 +97,10 @@ export function authoredHeldModelFollowUp(key) {
 /** Copy the built GLB + legacy model-preview JPG into public/ and register the variant key.
  *  `itemIds` map existing (or new) item ids to the held-model key; each authored item also needs
  *  bespoke painted inventory art at public/ui/items/<item-id>.webp before the item gate passes. */
-export function registerWeapon({ key, gripFamily, glbPath, iconPath, itemIds = [] }) {
+/** Gathering-tool families: their item ids map in HELD_TOOL_VARIANTS, never the weapon map. */
+export const TOOL_FAMILIES = new Set(['pick', 'sickle', 'hoe', 'rod']);
+
+export function registerWeapon({ key, gripFamily, glbPath, iconPath, itemIds = [], tool = false }) {
   if (!/^[a-z0-9_]+$/.test(key)) throw new Error(`weapon key must be snake_case: ${key}`);
   for (const itemId of itemIds) {
     if (!/^[a-z0-9_]+$/.test(itemId)) throw new Error(`item id must be snake_case: ${itemId}`);
@@ -140,20 +144,21 @@ export function registerWeapon({ key, gripFamily, glbPath, iconPath, itemIds = [
     actions.push(`registered ${key}: '${gripFamily}' in KAYKIT_WEAPON_ACCESSORY`);
   }
 
-  let variants = read(FILES.variants);
+  const variantsFile = tool ? FILES.toolVariants : FILES.variants;
+  const table = tool ? 'HELD_TOOL_VARIANTS' : 'ITEM_WEAPON_VARIANTS';
+  const anchor = tool
+    ? 'export const HELD_TOOL_VARIANTS: Readonly<Record<string, string>> = {'
+    : 'export const ITEM_WEAPON_VARIANTS: Record<string, string> = {';
+  let variants = read(variantsFile);
   for (const itemId of itemIds) {
     if (new RegExp(`^\\s*${itemId}:`, 'm').test(variants)) {
-      actions.push(`ITEM_WEAPON_VARIANTS already maps ${itemId} (skipped)`);
+      actions.push(`${table} already maps ${itemId} (skipped)`);
       continue;
     }
-    variants = insertIntoBlock(
-      variants,
-      'export const ITEM_WEAPON_VARIANTS: Record<string, string> = {',
-      `  ${itemId}: '${key}',\n`,
-    );
-    actions.push(`mapped ${itemId} -> ${key} in ITEM_WEAPON_VARIANTS`);
+    variants = insertIntoBlock(variants, anchor, `  ${itemId}: '${key}',\n`);
+    actions.push(`mapped ${itemId} -> ${key} in ${table}`);
   }
-  if (itemIds.length) write(FILES.variants, variants);
+  if (itemIds.length) write(variantsFile, variants);
   actions.push(authoredHeldModelFollowUp(key));
   return actions;
 }
