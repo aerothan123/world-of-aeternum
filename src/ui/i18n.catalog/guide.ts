@@ -797,6 +797,11 @@ export const guideStrings = {
     // hudChrome.options values. Wordy (M16): non-Latin fills ride along.
     framesGovernedPriest:
       "Edit Frames also lets you move the Shadow priest's Gloomtithe and Tithe Bomb medallion.",
+    // The loot feed (src/ui/hud/loot/, 'lootFeed') joined HUD_FRAME_SPECS with
+    // True Auto Loot. Own key for the same reason as the aura tracks. Wordy
+    // (M16): the five non-Latin fills land in this same change.
+    framesGovernedLootFeed:
+      'Edit Frames also loosens the loot feed, the short list of what you have just picked up; it wears its name chip while it is loose.',
     framesGovernedResourceAndHill:
       'Turn on Detach Resource Bar in the Frames tab and Edit Frames also loosens your resource bar, so your mana, energy, or rage can sit anywhere on its own; Resource Bar Width and Resource Bar Height on the same tab size it. Edit Frames loosens the King of the Hill bar too, and King of the Hill Background Opacity on that tab fades its panel while the text stays clear.',
 

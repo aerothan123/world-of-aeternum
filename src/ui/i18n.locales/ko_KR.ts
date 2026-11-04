@@ -21606,6 +21606,8 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.priest.bombLabel': '헌납 폭탄',
   'guide.interfacePage.framesGovernedPriest':
     '프레임 편집으로 암흑 사제의 암흑 십일조와 헌납 폭탄 메달도 이동할 수 있습니다.',
+  'guide.interfacePage.framesGovernedLootFeed':
+    '프레임 편집으로 방금 주운 물건을 짧게 보여 주는 전리품 피드도 이동할 수 있으며, 이동할 수 있는 동안에는 이름표가 붙습니다.',
   'hudChrome.priest.gloomtitheStatus': '암흑 십일조 {value} / {max}',
   'hudChrome.priest.bombStatus': '헌납 폭탄 충전 {value} / {max}',
   'hudChrome.priest.bombReady': '준비 완료',

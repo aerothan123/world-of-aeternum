@@ -6738,6 +6738,8 @@ describe('Guide wiki completeness corrections (Phase 20, 2026-09-03)', () => {
       priestCharge: "the Shadow priest's Gloomtithe and Tithe Bomb medallion",
       procOverlay: 'the spell-proc overlay',
       swingBarOffhand: 'the off-hand swing timer for dual-wielders',
+      // True Auto Loot's feed, named by guide.interfacePage.framesGovernedLootFeed.
+      lootFeed: 'the loot feed, the short list of what you have just picked up',
       damageMeter: 'the tabbed damage meter window',
       // The six opt-in aura tracks (PR #3925), named by
       // guide.interfacePage.framesGovernedAuraTracks from the live track names.

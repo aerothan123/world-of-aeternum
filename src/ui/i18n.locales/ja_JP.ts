@@ -21639,6 +21639,8 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.priest.bombLabel': '献納の爆弾',
   'guide.interfacePage.framesGovernedPriest':
     'フレーム編集では、シャドウプリーストの闇の献納と献納の爆弾を表示するメダリオンも移動できます。',
+  'guide.interfacePage.framesGovernedLootFeed':
+    'フレーム編集では、直前に拾ったものを短く一覧表示する戦利品フィードも動かせます。動かせる間は名前のラベルが付きます。',
   'hudChrome.priest.gloomtitheStatus': '闇の献納 {value} / {max}',
   'hudChrome.priest.bombStatus': '献納の爆弾のチャージ {value} / {max}',
   'hudChrome.priest.bombReady': '準備完了',

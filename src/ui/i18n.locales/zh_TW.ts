@@ -22220,6 +22220,8 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'hudChrome.priest.bombLabel': '獻納靈魂炸彈',
   'guide.interfacePage.framesGovernedPriest':
     '編輯框架還可移動暗影牧師顯示幽暗什一與獻納靈魂炸彈的徽章。',
+  'guide.interfacePage.framesGovernedLootFeed':
+    '編輯框架還會解鎖拾取訊息欄，即你剛剛拾取物品的簡短列表；解鎖期間它會顯示自己的名稱標籤。',
   'hudChrome.priest.gloomtitheStatus': '幽暗什一：{value} / {max}',
   'hudChrome.priest.bombStatus': '獻納靈魂炸彈充能：{value} / {max}',
   'hudChrome.priest.bombReady': '就緒',

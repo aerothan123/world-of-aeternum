@@ -22204,6 +22204,8 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.priest.bombLabel': '献纳灵魂炸弹',
   'guide.interfacePage.framesGovernedPriest':
     '编辑框架还可移动暗影牧师显示幽暗什一和献纳灵魂炸弹的徽章。',
+  'guide.interfacePage.framesGovernedLootFeed':
+    '编辑框架还会解锁拾取信息栏，即你刚刚拾取物品的简短列表；解锁期间它会显示自己的名称标签。',
   'hudChrome.priest.gloomtitheStatus': '幽暗什一：{value} / {max}',
   'hudChrome.priest.bombStatus': '献纳灵魂炸弹充能：{value} / {max}',
   'hudChrome.priest.bombReady': '就绪',

@@ -23751,6 +23751,8 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.priest.gloomtitheLabel': 'Мрачная десятина',
   'hudChrome.priest.bombLabel': 'Бомба подношения',
   'guide.interfacePage.framesGovernedPriest': 'Редактирование рамок также позволяет перемещать медальон жреца Тьмы с Мрачной десятиной и Бомбой подношения.',
+  'guide.interfacePage.framesGovernedLootFeed':
+    'Редактирование рамок также открепляет ленту добычи, короткий список того, что вы только что подобрали; пока она откреплена, на ней видна табличка с названием.',
   'hudChrome.priest.gloomtitheStatus': 'Мрачная десятина: {value} из {max}',
   'hudChrome.priest.bombStatus': 'Заряды Бомбы подношения: {value} из {max}',
   'hudChrome.priest.bombReady': 'Готова',
