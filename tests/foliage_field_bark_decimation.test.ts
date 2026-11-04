@@ -55,37 +55,41 @@ const EXPECTED = [
     model: 'oak_1',
     sourceSha256: 'd2d4e8f5181b00f37bd83833b60cb8e1e1ebe2bc20f665bf18e9ffb7f9bec87d',
     budget: 480,
-    outputSha256: 'c40bf1d4521083a863db14cff1509476084446af05c398d40f66a340b8e878e8',
+    keepSeams: true,
+    outputSha256: '23e336ae6d1662dffe8f76c70a69d3f02fbe537cb65f77cfc376497c8e5994c2',
     materials: OAK,
     sourceBark: { triangles: 611, vertices: 969 },
-    bark: { triangles: 479, vertices: 788 },
+    bark: { triangles: 480, vertices: 841 },
   },
   {
     model: 'oak_2',
     sourceSha256: '8dc4c2499901fdde7f9cbe46bb7969badd44296150baf3b0059ecffd96bd2edd',
     budget: 420,
-    outputSha256: '03c741a568fc51114d4deb8d8b9b9a498ab2996f30acd965960ca28397e03fd5',
+    keepSeams: true,
+    outputSha256: '86764c5923aab3ae0fa65adf0562e6038842d54017d5b371030dc0af4d919fa7',
     materials: OAK,
     sourceBark: { triangles: 736, vertices: 1031 },
-    bark: { triangles: 419, vertices: 614 },
+    bark: { triangles: 420, vertices: 697 },
   },
   {
     model: 'oak_4',
     sourceSha256: 'c765344102ec3e8b833ffe2d937db76c06d93617922324701e81c2bd25ffad0c',
-    budget: 260,
-    outputSha256: 'c77a92c91fbc00dfb3f500b0c072f80701083005df01afd69c75024bc8dcdff6',
+    budget: 480,
+    keepSeams: true,
+    outputSha256: 'f74eec8b7e4f63d7ad89d7da8f73ae0fdf40fd426de01d368b142b7c7edc6974',
     materials: OAK,
     sourceBark: { triangles: 663, vertices: 1027 },
-    bark: { triangles: 259, vertices: 389 },
+    bark: { triangles: 480, vertices: 830 },
   },
   {
     model: 'oak_5',
     sourceSha256: '584d816b262718828a2c072b615a8549929c4aa684d65fcf05d9822c8397a809',
-    budget: 360,
-    outputSha256: 'b2c37460c031c3374ff6bc3e71b06b8c38df977356ed6273271209f0f06989d5',
+    budget: 530,
+    keepSeams: true,
+    outputSha256: '142699d7f2fbf56c1e36776143cbc0a10f1adc3592c77fc006588e09cde5167e',
     materials: OAK,
     sourceBark: { triangles: 587, vertices: 951 },
-    bark: { triangles: 360, vertices: 553 },
+    bark: { triangles: 530, vertices: 898 },
   },
   {
     model: 'twisted_1',
@@ -285,9 +289,11 @@ function decimate(
   document: Document,
   barkTriangleBudget: number,
   simplifier: FoliageBarkSimplifier = MeshoptSimplifier,
+  keepSeams = false,
 ) {
   return decimateFoliageBarkDocument(document, {
     barkTriangleBudget,
+    keepSeams,
     simplifier,
     encoder: MeshoptEncoder,
   });
@@ -308,10 +314,11 @@ describe('foliage field bark decimation', () => {
 
   it('keeps the stage table complete and independently pinned', () => {
     expect(FOLIAGE_FIELD_BARK_ASSETS).toEqual(
-      EXPECTED.map(({ model, sourceSha256, budget, outputSha256 }) => ({
+      EXPECTED.map(({ model, sourceSha256, budget, outputSha256, ...rest }) => ({
         sourcePath: sourceUrl(model),
         sourceSha256,
         barkTriangleBudget: budget,
+        ...('keepSeams' in rest ? { keepSeams: rest.keepSeams } : {}),
         outputPath: fieldUrl(model),
         outputSha256,
       })),
@@ -373,7 +380,12 @@ describe('foliage field bark decimation', () => {
   for (const asset of EXPECTED) {
     it(`rebuilds ${asset.model}_field byte for byte from its source through the stage`, async () => {
       const document = await io.read(path.join(ROOT, 'public', sourceUrl(asset.model)));
-      const report = await decimate(document, asset.budget);
+      const report = await decimate(
+        document,
+        asset.budget,
+        MeshoptSimplifier,
+        'keepSeams' in asset && asset.keepSeams,
+      );
       const rebuiltSha256 = createHash('sha256')
         .update(await io.writeBinary(document))
         .digest('hex');
@@ -495,6 +507,21 @@ describe('foliage bark decimation guards', () => {
   beforeAll(async () => {
     await MeshoptEncoder.ready;
     await MeshoptSimplifier.ready;
+  });
+
+  it('collapses across uv seams only without keepSeams', async () => {
+    const seen: (readonly string[] | undefined)[] = [];
+    const budget = 60;
+    const recording: FoliageBarkSimplifier = {
+      simplify: (indices, _positions, _stride, _target, _error, flags) => {
+        seen.push(flags);
+        return [indices.slice(0, budget * 3), 0];
+      },
+      getScale: () => 1,
+    };
+    await decimate(treeDocument().document, budget, recording).catch(() => undefined);
+    await decimate(treeDocument().document, budget, recording, true).catch(() => undefined);
+    expect(seen).toEqual([['Permissive'], []]);
   });
 
   it('holds the simplified bark inside its budget window', async () => {

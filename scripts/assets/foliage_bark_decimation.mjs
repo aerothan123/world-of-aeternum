@@ -17,35 +17,44 @@ export const FOLIAGE_BARK_BOUNDS_TOLERANCE = 0.05;
 // copies. Every other consumer of the sources keeps the full-detail file.
 // The storybook pines (scripts/assets/fit_fable_foliage.mjs) carry no field
 // copy: their bark is a trunk stub of under a hundred triangles, so the field
-// draws the source itself.
+// draws the source itself. The storybook oaks `keepSeams`: their bark is
+// painted on a fragmented Tripo atlas whose leaf islands sit next to the bark
+// ones, so a collapse across a uv seam stretches a trunk triangle over leaf
+// texels and the far trunk draws green-striped; their budgets are what a
+// seam-locked collapse reaches. The kit twisted trees tile one bark sheet and
+// keep the permissive collapse.
 export const FOLIAGE_FIELD_BARK_ASSETS = Object.freeze([
   {
     sourcePath: 'models/foliage/oak_1.glb',
     sourceSha256: 'd2d4e8f5181b00f37bd83833b60cb8e1e1ebe2bc20f665bf18e9ffb7f9bec87d',
     barkTriangleBudget: 480,
+    keepSeams: true,
     outputPath: 'models/foliage/oak_1_field.glb',
-    outputSha256: 'c40bf1d4521083a863db14cff1509476084446af05c398d40f66a340b8e878e8',
+    outputSha256: '23e336ae6d1662dffe8f76c70a69d3f02fbe537cb65f77cfc376497c8e5994c2',
   },
   {
     sourcePath: 'models/foliage/oak_2.glb',
     sourceSha256: '8dc4c2499901fdde7f9cbe46bb7969badd44296150baf3b0059ecffd96bd2edd',
     barkTriangleBudget: 420,
+    keepSeams: true,
     outputPath: 'models/foliage/oak_2_field.glb',
-    outputSha256: '03c741a568fc51114d4deb8d8b9b9a498ab2996f30acd965960ca28397e03fd5',
+    outputSha256: '86764c5923aab3ae0fa65adf0562e6038842d54017d5b371030dc0af4d919fa7',
   },
   {
     sourcePath: 'models/foliage/oak_4.glb',
     sourceSha256: 'c765344102ec3e8b833ffe2d937db76c06d93617922324701e81c2bd25ffad0c',
-    barkTriangleBudget: 260,
+    barkTriangleBudget: 480,
+    keepSeams: true,
     outputPath: 'models/foliage/oak_4_field.glb',
-    outputSha256: 'c77a92c91fbc00dfb3f500b0c072f80701083005df01afd69c75024bc8dcdff6',
+    outputSha256: 'f74eec8b7e4f63d7ad89d7da8f73ae0fdf40fd426de01d368b142b7c7edc6974',
   },
   {
     sourcePath: 'models/foliage/oak_5.glb',
     sourceSha256: '584d816b262718828a2c072b615a8549929c4aa684d65fcf05d9822c8397a809',
-    barkTriangleBudget: 360,
+    barkTriangleBudget: 530,
+    keepSeams: true,
     outputPath: 'models/foliage/oak_5_field.glb',
-    outputSha256: 'b2c37460c031c3374ff6bc3e71b06b8c38df977356ed6273271209f0f06989d5',
+    outputSha256: '142699d7f2fbf56c1e36776143cbc0a10f1adc3592c77fc006588e09cde5167e',
   },
   {
     sourcePath: 'models/foliage/twisted_1.glb',
@@ -186,14 +195,15 @@ function largestBoundsShift(before, after) {
  * Simplify the one bark primitive of a foliage tree to its triangle budget,
  * as the approved foliage bench arm did at runtime: a permissive
  * meshoptimizer collapse over the renderer-baked positions, the count
- * deciding. The collapse keeps original vertices only; the vertex pipeline
+ * deciding (seam-locked instead with `keepSeams`, so no triangle spans two
+ * uv islands). The collapse keeps original vertices only; the vertex pipeline
  * that finishes the document drops the ones it no longer references. Every
  * other primitive, material, texture and extension is kept. Throws when an
  * invariant does not hold.
  */
 export async function decimateFoliageBarkDocument(
   document,
-  { barkTriangleBudget, simplifier, encoder },
+  { barkTriangleBudget, simplifier, encoder, keepSeams = false },
 ) {
   const { bark, other } = classifyPrimitives(document);
   if (bark.length !== 1) throw new Error(`Expected one bark primitive, found ${bark.length}`);
@@ -220,7 +230,7 @@ export async function decimateFoliageBarkDocument(
     3,
     barkTriangleBudget * 3,
     FOLIAGE_BARK_SIMPLIFY_ERROR,
-    ['Permissive'],
+    keepSeams ? [] : ['Permissive'],
   );
   const barkTriangles = simplified.length / 3;
   if (

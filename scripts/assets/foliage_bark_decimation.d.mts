@@ -8,6 +8,7 @@ export interface FoliageFieldBarkAsset {
   readonly sourcePath: string;
   readonly sourceSha256: string;
   readonly barkTriangleBudget: number;
+  readonly keepSeams?: boolean;
   readonly outputPath: string;
   readonly outputSha256: string;
 }
@@ -45,6 +46,7 @@ export function decimateFoliageBarkDocument(
   document: Document,
   options: {
     readonly barkTriangleBudget: number;
+    readonly keepSeams?: boolean;
     readonly simplifier: FoliageBarkSimplifier;
     readonly encoder: unknown;
   },

@@ -45,6 +45,8 @@ import {
 import { sculptFoliageTreeGeometry } from '../src/render/foliage_tree_sculpt';
 
 const ROOT = path.join(__dirname, '..');
+/** The storybook oaks the world field draws through a `_field` copy. */
+const FIELD_COPIES = ['oak_1', 'oak_2', 'oak_4', 'oak_5'];
 
 /** A 2x1 texture: left half bark brown, right half leaf green. */
 const IMAGE = {
@@ -340,8 +342,13 @@ describe('fable foliage shipped models', () => {
       .setLogger(new Logger(Logger.Verbosity.WARN))
       .registerExtensions(ALL_EXTENSIONS)
       .registerDependencies({ 'meshopt.decoder': MeshoptDecoder });
-    for (const target of FABLE_FOLIAGE_TARGETS) {
-      const doc = await io.read(path.join(ROOT, 'public/models/foliage', `${target.name}.glb`));
+    // the world field draws its own bark-decimated copies of these oaks
+    const files = [
+      ...FABLE_FOLIAGE_TARGETS.map((t) => t.name),
+      ...FIELD_COPIES.map((name) => `${name}_field`),
+    ];
+    for (const file of files) {
+      const doc = await io.read(path.join(ROOT, 'public/models/foliage', `${file}.glb`));
       const prims: Shipped['prims'] = [];
       for (const node of doc.getRoot().listNodes()) {
         const mesh = node.getMesh();
@@ -369,7 +376,7 @@ describe('fable foliage shipped models', () => {
           prims.push({ prim, positions, indices, uvs });
         }
       }
-      shipped.set(target.name, { doc, prims });
+      shipped.set(file, { doc, prims });
     }
   });
 
@@ -506,10 +513,17 @@ describe('fable foliage shipped models', () => {
       }
       expect(core).toBeGreaterThan(0);
       expect(inBark / core).toBeGreaterThan(0.97);
-      // a trunk sheet reads brown, not leaf green: red leads green and blue
-      const [r, g, b] = await meanColour(target.name, bark);
-      expect(r, `${target.name} bark rgb ${[r, g, b].map(Math.round)}`).toBeGreaterThan(g * 1.2);
-      expect(r).toBeGreaterThan(b * 1.5);
+      // a trunk sheet reads brown, not leaf green: red leads green and blue,
+      // on the field copy too (a collapse across a uv seam stretches trunk
+      // triangles over the leaf islands of the shared sheet)
+      const files = FIELD_COPIES.includes(target.name)
+        ? [target.name, `${target.name}_field`]
+        : [target.name];
+      for (const file of files) {
+        const [r, g, b] = await meanColour(file, bark);
+        expect(r, `${file} bark rgb ${[r, g, b].map(Math.round)}`).toBeGreaterThan(g * 1.2);
+        expect(r, file).toBeGreaterThan(b * 1.5);
+      }
     });
   }
 

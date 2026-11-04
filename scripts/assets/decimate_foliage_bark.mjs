@@ -52,6 +52,7 @@ for (const asset of FOLIAGE_FIELD_BARK_ASSETS) {
   const document = await io.read(sourcePath);
   const report = await decimateFoliageBarkDocument(document, {
     barkTriangleBudget: asset.barkTriangleBudget,
+    keepSeams: asset.keepSeams ?? false,
     simplifier: MeshoptSimplifier,
     encoder: MeshoptEncoder,
   });
