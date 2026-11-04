@@ -97,7 +97,17 @@ export interface AbilityAudioOpts {
   abilityId?: string;
 }
 
+/** A gathering tool strike (the pick on a vein, the axe in a trunk), or a felled tree's
+ *  creak as it starts to go over and crash as it lands (gather_strike_audio.ts,
+ *  tree_felling.ts). */
+export type GatherStrikeKind = 'mine' | 'chop' | 'tree_creak' | 'tree_crash';
+
 export interface SpatialAudioSink {
+  /** One gathering strike or tree-fall cue at a world point, for ANY body or tree in
+   *  hearing range (self or other): the engine owns the long hearing range, the shared
+   *  outdoor reverb send and the strike voice cap (src/game/gather_strike_mix.ts).
+   *  Optional: an engine without it stays silent. */
+  gatherStrike?(kind: GatherStrikeKind, x: number, y: number, z: number, self: boolean): void;
   /** One positional one-shot of a manifest clip (a render layer's own timed cue, e.g.
    *  Gourdfall's whistle as a pumpkin starts to fall). Optional: silent without it. */
   playAt?(
