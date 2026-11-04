@@ -22,6 +22,8 @@ import {
   applyFit,
   applyLeafGrade,
   atlasLayout,
+  BARK_ALBEDO_TARGETS,
+  BARK_GRADE_GAIN,
   classifyFableTriangles,
   FABLE_FOLIAGE_TARGETS,
   FABLE_KIND_MATERIALS,
@@ -33,6 +35,7 @@ import {
   rasterizeUvMask,
   remapUvsToAtlasCell,
   SPLIT_KINDS,
+  subtractMask,
   treeAnchor,
 } from './fable_foliage_fit_core.mjs';
 import {
@@ -333,18 +336,38 @@ for (const target of targets) {
   for (const part of parts) {
     if (part.indices.length === 0) throw new Error(`${target.name}: empty ${part.material} part`);
   }
-  // Grade the leaf texels onto the kit sheet the renderer's tints expect.
+  // Grade the leaf texels onto the kit sheet the renderer's tints expect,
+  // and a split tree's bark onto the kit bark. A Tripo sheet reuses texels
+  // across parts (a pine's brown tier undersides sample the trunk's), so the
+  // bark footprint is graded as bark and taken out of the leaf footprint:
+  // the leaf grade never turns a trunk green.
   let webp = sources.get(target.name).webp;
   const leafTarget = LEAF_ALBEDO_TARGETS[target.kind];
   if (leafTarget && target.kind !== 'rock') {
     const leafLabel = target.kind === 'flowering_bush' ? 0 : 1;
-    const triMask = new Uint8Array(geo.indices.length / 3).map((_, t) =>
-      labels ? Number(labels[t] === leafLabel) : 1,
+    const triMask = (label) =>
+      new Uint8Array(geo.indices.length / 3).map((_, t) =>
+        labels ? Number(labels[t] === label) : 1,
+      );
+    let { image } = sources.get(target.name);
+    let leafMask = rasterizeUvMask(
+      geo.indices,
+      geo.uvs,
+      triMask(leafLabel),
+      image.width,
+      image.height,
     );
-    const { image } = sources.get(target.name);
-    const mask = rasterizeUvMask(geo.indices, geo.uvs, triMask, image.width, image.height);
-    const gains = leafGradeGains(image, mask, leafTarget);
-    const graded = applyLeafGrade(image, mask, gains);
+    const barkTarget = BARK_ALBEDO_TARGETS[target.kind];
+    if (barkTarget) {
+      const barkMask = rasterizeUvMask(geo.indices, geo.uvs, triMask(0), image.width, image.height);
+      image = applyLeafGrade(
+        image,
+        barkMask,
+        leafGradeGains(image, barkMask, barkTarget, BARK_GRADE_GAIN),
+      );
+      leafMask = subtractMask(leafMask, barkMask);
+    }
+    const graded = applyLeafGrade(image, leafMask, leafGradeGains(image, leafMask, leafTarget));
     webp = await sharp(Buffer.from(graded.data), {
       raw: { width: image.width, height: image.height, channels: image.channels },
     })

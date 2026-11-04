@@ -15,24 +15,32 @@ import {
   applyFit,
   applyLeafGrade,
   atlasLayout,
+  BARK_ALBEDO_TARGETS,
+  BARK_GRADE_GAIN,
+  BROADLEAF_TRUNK_TOP,
   classifyFableTriangles,
   coniferLabels,
+  DEAD_HEIGHT_SCALE,
   FABLE_FOLIAGE_TARGETS,
   FABLE_KIND_MATERIALS,
   fitNormals,
   fitTransform,
   indexedBounds,
   LEAF_ALBEDO_TARGETS,
+  LEAF_GRADE_GAIN,
   leafGradeGains,
   rasterizeUvMask,
   remapUvsToAtlasCell,
   removeSmallIslands,
+  sampleTexel,
   srgbToLab,
+  subtractMask,
   TREE_SPREAD_CAP,
   treeAnchor,
   triangleAdjacency,
   triangleGeometry,
   trunkAnchor,
+  trunkCoreLabels,
 } from '../scripts/assets/fable_foliage_fit_core.mjs';
 import { sculptFoliageTreeGeometry } from '../src/render/foliage_tree_sculpt';
 
@@ -139,6 +147,40 @@ describe('fable foliage fit core', () => {
     expect(Array.from(labels.slice(trunkTris)).every((l) => l === 1)).toBe(true);
   });
 
+  it('keeps a curved broadleaf trunk in the bark whatever its colour', () => {
+    const m = meshBuilder();
+    // a storybook oak: the trunk below the crown is painted the leaves'
+    // olive (only its root band reads brown) and bends well off its base
+    m.cylinder(0.3, 0, 5, 20, (row) => (row < 2 ? BARK_U : LEAF_U));
+    const trunkVerts = m.positions.length / 3;
+    m.cylinder(2.2, 4.5, 10, 14, () => LEAF_U);
+    const positions = m.positions.map((v, i) => {
+      const vertex = Math.floor(i / 3);
+      if (i % 3 !== 0 || vertex >= trunkVerts) return v;
+      const y = m.positions[vertex * 3 + 1];
+      return v + 0.06 * y * y; // up to 1.5 off axis at the crown base
+    });
+    const src = { indices: m.indices, positions, uvs: m.uvs, image: IMAGE };
+    const { labels } = classifyFableTriangles('broadleaf', src);
+    const geometry = triangleGeometry(m.indices, positions);
+    const bounds = indexedBounds(m.indices, positions);
+    const height = bounds.max[1] - bounds.min[1];
+    const trunkTris = 20 * 8 * 2;
+    for (let t = 0; t < trunkTris; t++) {
+      const yN = (geometry.centroids[t * 3 + 1] - bounds.min[1]) / height;
+      // the core is tracked over 24 height slices up to the trunk top
+      const slice = (Math.floor(yN * 24) + 0.5) / 24;
+      if (slice <= BROADLEAF_TRUNK_TOP) expect(labels[t], `trunk tri at ${yN.toFixed(2)}`).toBe(0);
+    }
+    // the crown stays leaf
+    const crown = Array.from(labels.slice(trunkTris));
+    expect(crown.filter((l) => l === 1).length / crown.length).toBeGreaterThan(0.95);
+    // the geometric core alone agrees on the bent trunk
+    const { labels: core } = trunkCoreLabels(geometry, bounds, BROADLEAF_TRUNK_TOP);
+    expect(core[trunkTris - 1]).toBe(1);
+    expect(core[trunkTris / 4]).toBe(0);
+  });
+
   it('keeps the classification deterministic', () => {
     const m = meshBuilder();
     m.cylinder(0.3, 0, 3, 6, () => BARK_U);
@@ -241,9 +283,37 @@ describe('fable foliage fit core', () => {
     expect(graded.data[1]).toBeGreaterThan(graded.data[0]);
     expect(Array.from(graded.data.slice(6, 9))).toEqual([200, 190, 60]);
     for (const g of gains) {
-      expect(g).toBeGreaterThanOrEqual(0.15);
-      expect(g).toBeLessThanOrEqual(1.6);
+      expect(g).toBeGreaterThanOrEqual(LEAF_GRADE_GAIN[0]);
+      expect(g).toBeLessThanOrEqual(LEAF_GRADE_GAIN[1]);
     }
+  });
+
+  it('grades a shared texel as bark, never as leaf', () => {
+    // a pine's tier undersides sample the trunk's texels: the bark footprint
+    // takes the bark grade and leaves the leaf footprint
+    const leaf = Uint8Array.from([1, 1, 1, 0]);
+    const bark = Uint8Array.from([0, 1, 0, 1]);
+    const leafOnly = subtractMask(leaf, bark);
+    expect(Array.from(leafOnly)).toEqual([1, 0, 1, 0]);
+    const image = {
+      data: Uint8Array.from([90, 80, 20, 90, 80, 20, 90, 80, 20, 90, 80, 20]),
+      width: 4,
+      height: 1,
+      channels: 3,
+    };
+    const barked = applyLeafGrade(
+      image,
+      bark,
+      leafGradeGains(image, bark, BARK_ALBEDO_TARGETS.broadleaf, BARK_GRADE_GAIN),
+    );
+    const graded = applyLeafGrade(
+      barked,
+      leafOnly,
+      leafGradeGains(barked, leafOnly, LEAF_ALBEDO_TARGETS.broadleaf),
+    );
+    const px = (i: number) => Array.from(graded.data.slice(i * 3, i * 3 + 3));
+    for (const i of [1, 3]) expect(px(i)[0], `bark texel ${i}`).toBeGreaterThan(px(i)[1]);
+    for (const i of [0, 2]) expect(px(i)[1], `leaf texel ${i}`).toBeGreaterThan(px(i)[0]);
   });
 
   it('remaps uvs into an atlas cell', () => {
@@ -257,7 +327,7 @@ describe('fable foliage fit core', () => {
 
 interface Shipped {
   doc: Document;
-  prims: { prim: Primitive; positions: Float32Array; indices: Uint32Array }[];
+  prims: { prim: Primitive; positions: Float32Array; indices: Uint32Array; uvs: Float32Array }[];
 }
 
 describe('fable foliage shipped models', () => {
@@ -289,7 +359,14 @@ describe('fable foliage shipped models', () => {
             positions[i * 3 + 2] = e[2] * v[0] + e[6] * v[1] + e[10] * v[2] + e[14];
           }
           const indices = Uint32Array.from(prim.getIndices()?.getArray() ?? []);
-          prims.push({ prim, positions, indices });
+          const uv = prim.getAttribute('TEXCOORD_0');
+          const uvs = new Float32Array((uv?.getCount() ?? 0) * 2);
+          for (let i = 0; i < (uv?.getCount() ?? 0); i++) {
+            uv?.getElement(i, v);
+            uvs[i * 2] = v[0];
+            uvs[i * 2 + 1] = v[1];
+          }
+          prims.push({ prim, positions, indices, uvs });
         }
       }
       shipped.set(target.name, { doc, prims });
@@ -355,7 +432,7 @@ describe('fable foliage shipped models', () => {
       if (target.oldFootprint) {
         const spread = (max[0] - min[0] + max[2] - min[2]) / 2;
         const old = (target.oldFootprint[0] + target.oldFootprint[1]) / 2;
-        expect(spread).toBeLessThanOrEqual(old * TREE_SPREAD_CAP + 0.01);
+        expect(spread).toBeLessThanOrEqual(old * (target.spreadCap ?? TREE_SPREAD_CAP) + 0.01);
       }
       if (target.footprint) {
         expect((max[0] - min[0] + max[2] - min[2]) / 2).toBeCloseTo(
@@ -365,6 +442,104 @@ describe('fable foliage shipped models', () => {
       }
     });
   }
+
+  /** One shipped model as a single soup, with each triangle's material. */
+  const soup = (name: string) => {
+    const { prims } = shipped.get(name) as Shipped;
+    const positions: number[] = [];
+    const indices: number[] = [];
+    const material: string[] = [];
+    for (const { prim, positions: p, indices: idx } of prims) {
+      const base = positions.length / 3;
+      positions.push(...p);
+      for (const i of idx) indices.push(base + i);
+      for (let t = 0; t < idx.length / 3; t++) material.push(prim.getMaterial()?.getName() ?? '');
+    }
+    return { positions, indices, material };
+  };
+
+  /** Area-weighted mean sRGB of a primitive's triangles on its sheet. */
+  const meanColour = async (name: string, materialName: string) => {
+    const { prims, doc } = shipped.get(name) as Shipped;
+    const image = doc.getRoot().listTextures()[0].getImage();
+    if (!image) throw new Error(`${name} has no sheet`);
+    const { data, info } = await sharp(Buffer.from(image))
+      .removeAlpha()
+      .raw()
+      .toBuffer({ resolveWithObject: true });
+    const sheet = { data, width: info.width, height: info.height, channels: info.channels };
+    const part = prims.find(({ prim }) => prim.getMaterial()?.getName() === materialName);
+    if (!part) throw new Error(`${name} has no ${materialName}`);
+    const { areas } = triangleGeometry(part.indices, part.positions);
+    const sum = [0, 0, 0];
+    let w = 0;
+    for (let t = 0; t < areas.length; t++) {
+      let u = 0;
+      let v = 0;
+      for (let k = 0; k < 3; k++) {
+        u += part.uvs[part.indices[t * 3 + k] * 2] / 3;
+        v += part.uvs[part.indices[t * 3 + k] * 2 + 1] / 3;
+      }
+      const c = sampleTexel(sheet, u, v);
+      for (let k = 0; k < 3; k++) sum[k] += c[k] * areas[t];
+      w += areas[t];
+    }
+    return sum.map((x) => x / w);
+  };
+
+  for (const target of FABLE_FOLIAGE_TARGETS.filter(
+    (t) => t.kind === 'broadleaf' || t.kind === 'conifer',
+  )) {
+    it(`keeps ${target.name}'s trunk core in the bark, drawn bark brown`, async () => {
+      const bark = FABLE_KIND_MATERIALS[target.kind].bark as string;
+      const { positions, indices, material } = soup(target.name);
+      const geometry = triangleGeometry(indices, positions);
+      const bounds = indexedBounds(indices, positions);
+      const top = target.kind === 'broadleaf' ? BROADLEAF_TRUNK_TOP : 0.85;
+      const { labels } = trunkCoreLabels(geometry, bounds, top);
+      let core = 0;
+      let inBark = 0;
+      for (let t = 0; t < labels.length; t++) {
+        if (labels[t] !== 0) continue;
+        core += geometry.areas[t];
+        if (material[t] === bark) inBark += geometry.areas[t];
+      }
+      expect(core).toBeGreaterThan(0);
+      expect(inBark / core).toBeGreaterThan(0.97);
+      // a trunk sheet reads brown, not leaf green: red leads green and blue
+      const [r, g, b] = await meanColour(target.name, bark);
+      expect(r, `${target.name} bark rgb ${[r, g, b].map(Math.round)}`).toBeGreaterThan(g * 1.2);
+      expect(r).toBeGreaterThan(b * 1.5);
+    });
+  }
+
+  it('grades the bushes onto the dark kit green, not a yellow', async () => {
+    for (const [name, leaf] of [
+      ['bush', 'Leaves_TwistedTree'],
+      ['bush_flowers', 'Leaves_NormalTree'],
+    ]) {
+      const [r, g] = await meanColour(name, leaf);
+      expect(g, `${name} leaf rgb`).toBeGreaterThan(r * 1.2);
+    }
+  });
+
+  it('stands the dead trees under the old snags and inside their spread', () => {
+    for (const target of FABLE_FOLIAGE_TARGETS.filter((t) => t.kind === 'dead')) {
+      expect(target.height).toBeCloseTo((target.oldHeight ?? 0) * DEAD_HEIGHT_SCALE, 2);
+      expect(target.spreadCap).toBe(1);
+    }
+  });
+
+  it('keeps the whole Tripo source on every model but the rocks', () => {
+    for (const target of FABLE_FOLIAGE_TARGETS) {
+      const triangles = (shipped.get(target.name) as Shipped).prims.reduce(
+        (n, p) => n + p.indices.length / 3,
+        0,
+      );
+      // the old kit counts these replaced: the storybook set is denser
+      expect(triangles, target.name).toBeGreaterThan(target.kind === 'rock' ? 1500 : 3000);
+    }
+  });
 
   it('bakes an opaque sheet, so the leaf alpha test never punches holes', async () => {
     for (const target of FABLE_FOLIAGE_TARGETS) {

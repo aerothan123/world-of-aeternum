@@ -27,10 +27,15 @@ export interface FableFoliageTarget {
   readonly budget: number;
   readonly footprint?: readonly [number, number];
   readonly oldFootprint?: readonly [number, number];
+  readonly spreadCap?: number;
+  readonly oldHeight?: number;
 }
 
 export const FABLE_FOLIAGE_TARGETS: readonly FableFoliageTarget[];
 export const TREE_SPREAD_CAP: number;
+export const FULL_SOURCE: number;
+export const DEAD_HEIGHT_SCALE: number;
+export const BROADLEAF_TRUNK_TOP: number;
 export const TRUNK_ANCHOR_BAND: readonly [number, number];
 export const BROADLEAF_CROWN: number;
 export const CONIFER_TRUNK_RADIUS: {
@@ -125,6 +130,11 @@ export function removeSmallIslands(
   minArea: number,
   keep?: (label: number) => boolean,
 ): Int8Array;
+export function trunkCoreLabels(
+  geometry: TriangleGeometry,
+  bounds: Bounds,
+  top: number,
+): { labels: Int8Array; radius: number };
 export function coniferLabels(
   geometry: TriangleGeometry,
   bounds: Bounds,
@@ -150,7 +160,10 @@ export function treeAnchor(
 export function fitTransform(
   bounds: Bounds,
   anchor: { x: number; z: number },
-  target: Pick<FableFoliageTarget, 'height' | 'minY' | 'x' | 'z' | 'footprint' | 'oldFootprint'>,
+  target: Pick<
+    FableFoliageTarget,
+    'height' | 'minY' | 'x' | 'z' | 'footprint' | 'oldFootprint' | 'spreadCap'
+  >,
 ): Fit;
 export function applyFit(positions: ArrayLike<number>, fit: Fit): Float32Array;
 export function fitNormals(normals: ArrayLike<number>, fit: Fit): Float32Array;
@@ -162,10 +175,14 @@ export function remapUvsToAtlasCell(
   inset?: number,
 ): Float32Array;
 
+export type Rgb = readonly [number, number, number];
 export const LEAF_ALBEDO_TARGETS: Readonly<
-  Partial<Record<FableKind, readonly [number, number, number]>>
+  Record<'broadleaf' | 'conifer' | 'bush' | 'flowering_bush', Rgb>
 >;
 export const LEAF_GRADE_GAIN: readonly [number, number];
+export const BARK_ALBEDO_TARGETS: Readonly<Record<'broadleaf' | 'conifer', Rgb>>;
+export const BARK_GRADE_GAIN: readonly [number, number];
+export function subtractMask(mask: ArrayLike<number>, exclude: ArrayLike<number>): Uint8Array;
 export function rasterizeUvMask(
   indices: ArrayLike<number>,
   uvs: ArrayLike<number>,
@@ -178,6 +195,7 @@ export function leafGradeGains(
   image: TextureImage,
   mask: ArrayLike<number>,
   target: readonly number[],
+  clamp?: readonly [number, number],
 ): number[];
 export function applyLeafGrade(
   image: TextureImage,

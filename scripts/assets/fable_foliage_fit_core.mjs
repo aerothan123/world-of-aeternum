@@ -42,39 +42,72 @@ export const SPLIT_KINDS = Object.freeze(['broadleaf', 'conifer', 'flowering_bus
 // fit anchors on. For trees the anchor is the trunk base (the bbox centre of
 // the lowest bark band), which is where the sim's trunk collider stands
 // (src/sim/decoration_collider.ts, centred on the decoration); for the rest
-// it is the bounds centre. `budget` caps the output triangle count near the
-// old model's, since dressing is instanced by the thousand. A rock also
-// keeps the old footprint (`footprint`: width, depth): the renderer scales a
-// rock to its sim height (src/sim/decoration_dims.ts) and the collider radius
-// follows the old proportions, so a narrower stone would stand inside an
-// invisible wall. A tree keeps its old footprint as `oldFootprint` and may
-// spread at most `TREE_SPREAD_CAP` times wider: the storybook crowns are
-// broad, and the field's spacing, the town dressing and the camera's tree
-// fade were all laid out around the old ones, so an uncapped crown fills the
-// chase camera in a dense wood; past the cap the crown narrows (x/z only).
+// it is the bounds centre. `budget` caps the output triangle count: every
+// tree, bush and the mushroom keep their whole Tripo source (no source is
+// past FULL_SOURCE), well above the old kit counts, because a near tree or
+// bush is where the detail is seen and the far field is carried by the
+// bark-decimated `_field` copies and the baked sprites; the rocks, the
+// densest scatter out to the farthest real-model radius, keep a capped
+// budget. A rock also keeps the old footprint (`footprint`: width, depth):
+// the renderer scales a rock to its sim height (src/sim/decoration_dims.ts)
+// and the collider radius follows the old proportions, so a narrower stone
+// would stand inside an invisible wall. A tree or bush keeps its old
+// footprint as `oldFootprint` and may spread at most `spreadCap` (default
+// `TREE_SPREAD_CAP`) times wider: the storybook crowns are broad, and the
+// field's spacing, the town dressing and the camera's tree fade were all
+// laid out around the old ones, so an uncapped crown fills the chase camera
+// in a dense wood; past the cap the model narrows (x/z only). The bushes are
+// dressing with no camera fade at all, so they keep the old spread exactly.
+// The dead trees stand at `DEAD_HEIGHT_SCALE` of the old height inside the
+// old spread: the old snags were thin poles whose bounds were mostly
+// branches, and the storybook snags are thick gnarled trunks, so at the old
+// height they read as far bulkier and taller than the trees they replace.
 const T = (name, kind, height, minY, x, z, budget, extra = {}) =>
   Object.freeze({ name, kind, height, minY, x, z, budget, ...extra });
 
+/** Triangle budget that keeps a whole Tripo source (every one is under it). */
+export const FULL_SOURCE = 4400;
+/** Height of a fitted dead tree as a fraction of the old snag's. */
+export const DEAD_HEIGHT_SCALE = 0.8;
+const dead = (name, oldHeight, x, z, oldFootprint) =>
+  T(name, 'dead', +(oldHeight * DEAD_HEIGHT_SCALE).toFixed(3), -0.336, x, z, FULL_SOURCE, {
+    oldHeight,
+    oldFootprint,
+    spreadCap: 1,
+  });
+
 export const FABLE_FOLIAGE_TARGETS = Object.freeze([
-  T('oak_1', 'broadleaf', 7.265, -0.243, 0, 0, 6211, { oldFootprint: [4.311, 4.577] }),
-  T('oak_2', 'broadleaf', 7.643, -0.243, 0, 0, 5580, { oldFootprint: [4.464, 4.276] }),
-  T('oak_3', 'broadleaf', 9.425, -0.243, 0, 0, 4000, { oldFootprint: [4.063, 4.241] }),
-  T('oak_4', 'broadleaf', 9.438, -0.243, 0, -0.063, 4000, { oldFootprint: [3.826, 3.755] }),
-  T('oak_5', 'broadleaf', 7.006, -0.243, 0, 0, 4000, { oldFootprint: [3.671, 4.22] }),
-  T('pine_1', 'conifer', 7.317, -0.235, 0.002, -0.001, 2600, { oldFootprint: [4.944, 4.539] }),
-  T('pine_2', 'conifer', 7.376, -0.235, 0.002, -0.001, 2600, { oldFootprint: [5.728, 5.221] }),
-  T('pine_3', 'conifer', 7.392, -0.235, 0.002, -0.001, 3000, { oldFootprint: [3.612, 3.996] }),
-  T('pine_4', 'conifer', 10.236, -0.235, 0, 0, 2600, { oldFootprint: [5.803, 5.371] }),
-  T('pine_5', 'conifer', 8.724, -0.235, 0.003, 0, 2600, { oldFootprint: [6.42, 6.222] }),
-  T('dead_1', 'dead', 9.495, -0.336, 0.051, 0, 3249, { oldFootprint: [6.149, 5.749] }),
-  T('dead_2', 'dead', 11.488, -0.336, 0.05, 0, 3600, { oldFootprint: [6.729, 6.379] }),
-  T('dead_3', 'dead', 13.28, -0.336, 0.055, 0.012, 3544, { oldFootprint: [6.388, 6.43] }),
-  T('bush', 'bush', 1.572, -0.235, 0.038, -0.022, 1600),
-  T('bush_flowers', 'flowering_bush', 1.572, -0.235, 0.083, 0.028, 2000),
-  T('mushroom', 'mushroom', 0.464, -0.017, -0.052, -0.056, 900),
-  T('rock_1', 'rock', 2.26, -0.271, -0.115, 0.345, 700, { footprint: [3.225, 2.989] }),
-  T('rock_2', 'rock', 1.899, -0.051, -0.189, 0.08, 700, { footprint: [3.049, 2.479] }),
-  T('rock_3', 'rock', 2.316, -0.316, -0.114, 0.848, 800, { footprint: [3.42, 3.476] }),
+  T('oak_1', 'broadleaf', 7.265, -0.243, 0, 0, FULL_SOURCE, { oldFootprint: [4.311, 4.577] }),
+  T('oak_2', 'broadleaf', 7.643, -0.243, 0, 0, FULL_SOURCE, { oldFootprint: [4.464, 4.276] }),
+  T('oak_3', 'broadleaf', 9.425, -0.243, 0, 0, FULL_SOURCE, { oldFootprint: [4.063, 4.241] }),
+  T('oak_4', 'broadleaf', 9.438, -0.243, 0, -0.063, FULL_SOURCE, { oldFootprint: [3.826, 3.755] }),
+  T('oak_5', 'broadleaf', 7.006, -0.243, 0, 0, FULL_SOURCE, { oldFootprint: [3.671, 4.22] }),
+  T('pine_1', 'conifer', 7.317, -0.235, 0.002, -0.001, FULL_SOURCE, {
+    oldFootprint: [4.944, 4.539],
+  }),
+  T('pine_2', 'conifer', 7.376, -0.235, 0.002, -0.001, FULL_SOURCE, {
+    oldFootprint: [5.728, 5.221],
+  }),
+  T('pine_3', 'conifer', 7.392, -0.235, 0.002, -0.001, FULL_SOURCE, {
+    oldFootprint: [3.612, 3.996],
+  }),
+  T('pine_4', 'conifer', 10.236, -0.235, 0, 0, FULL_SOURCE, { oldFootprint: [5.803, 5.371] }),
+  T('pine_5', 'conifer', 8.724, -0.235, 0.003, 0, FULL_SOURCE, { oldFootprint: [6.42, 6.222] }),
+  dead('dead_1', 9.495, 0.051, 0, [6.149, 5.749]),
+  dead('dead_2', 11.488, 0.05, 0, [6.729, 6.379]),
+  dead('dead_3', 13.28, 0.055, 0.012, [6.388, 6.43]),
+  T('bush', 'bush', 1.572, -0.235, 0.038, -0.022, FULL_SOURCE, {
+    oldFootprint: [1.69, 1.7],
+    spreadCap: 1,
+  }),
+  T('bush_flowers', 'flowering_bush', 1.572, -0.235, 0.083, 0.028, FULL_SOURCE, {
+    oldFootprint: [1.78, 1.9],
+    spreadCap: 1,
+  }),
+  T('mushroom', 'mushroom', 0.464, -0.017, -0.052, -0.056, FULL_SOURCE),
+  T('rock_1', 'rock', 2.26, -0.271, -0.115, 0.345, 1600, { footprint: [3.225, 2.989] }),
+  T('rock_2', 'rock', 1.899, -0.051, -0.189, 0.08, 1600, { footprint: [3.049, 2.479] }),
+  T('rock_3', 'rock', 2.316, -0.316, -0.114, 0.848, 1600, { footprint: [3.42, 3.476] }),
 ]);
 
 /** How much wider than the old model a fitted tree crown may spread. */
@@ -259,7 +292,6 @@ export function triangleAdjacency(indices, positions, weldEpsilon = 1e-5) {
 // ---------------------------------------------------------------------------
 // classification
 
-/**
 /** Height fraction above which a broadleaf triangle seeds the crown. */
 export const BROADLEAF_CROWN = 0.72;
 
@@ -443,16 +475,15 @@ export const CONIFER_APEX = 0.85;
 const CONIFER_SLICES = 24;
 
 /**
- * A conifer's trunk by geometry, not colour: the painted tier undersides of
- * a Tripo pine are trunk-brown and an amber pine's needles are too, so the
- * texture cannot tell them apart. The trunk is the core within a radius of
- * an axis tracked up the model slice by slice (trunks lean); the radius is
- * the narrowest low slice's median radius times a gain, at least the band's
- * floor. A crown that skirts the ground leaves no low slice narrow enough
- * (the median lands past the band's ceiling): the trunk is hidden, and only
- * the floor radius is bark. 0 = bark, 1 = leaf.
+ * A trunk by geometry, not colour: the core within a radius of an axis
+ * tracked up the model slice by slice (trunks lean and curve), below the
+ * height fraction `top`. The radius is the narrowest low slice's median
+ * radius times a gain, at least the band's floor. A crown that skirts the
+ * ground leaves no low slice narrow enough (the median lands past the band's
+ * ceiling): the trunk is hidden, and only the floor radius is bark.
+ * 0 = trunk core, 1 = the rest.
  */
-export function coniferLabels({ centroids, areas }, bounds) {
+export function trunkCoreLabels({ centroids, areas }, bounds, top) {
   const n = areas.length;
   const minY = bounds.min[1];
   const height = bounds.max[1] - minY;
@@ -488,29 +519,48 @@ export function coniferLabels({ centroids, areas }, bounds) {
   const labels = new Int8Array(n).fill(1);
   let cx = ax;
   let cz = az;
-  for (let s = 0; s < CONIFER_SLICES; s++) {
-    if ((s + 0.5) / CONIFER_SLICES > CONIFER_APEX) break;
+  // Each slice re-centres on the trunk it holds before taking its core (the
+  // previous slice's centre is only the search start), so a curving trunk
+  // is followed without a slice of lag.
+  const recentre = (slice, x, z) => {
     let sx = 0;
     let sz = 0;
     let sw = 0;
-    const inside = [];
-    for (const t of slices[s]) {
-      const r = Math.hypot(centroids[t * 3] - cx, centroids[t * 3 + 2] - cz);
-      if (r <= radius) inside.push(t);
-      if (r <= radius * 1.5) {
-        sx += centroids[t * 3] * areas[t];
-        sz += centroids[t * 3 + 2] * areas[t];
-        sw += areas[t];
-      }
+    for (const t of slice) {
+      if (Math.hypot(centroids[t * 3] - x, centroids[t * 3 + 2] - z) > radius * 1.5) continue;
+      sx += centroids[t * 3] * areas[t];
+      sz += centroids[t * 3 + 2] * areas[t];
+      sw += areas[t];
     }
-    for (const t of inside) labels[t] = 0;
-    if (sw > 0) {
-      cx = sx / sw;
-      cz = sz / sw;
+    return sw > 0 ? [sx / sw, sz / sw] : [x, z];
+  };
+  for (let s = 0; s < CONIFER_SLICES; s++) {
+    if ((s + 0.5) / CONIFER_SLICES > top) break;
+    [cx, cz] = recentre(slices[s], cx, cz);
+    for (const t of slices[s]) {
+      if (Math.hypot(centroids[t * 3] - cx, centroids[t * 3 + 2] - cz) <= radius) labels[t] = 0;
     }
   }
   return { labels, radius };
 }
+
+/**
+ * A conifer's trunk: the painted tier undersides of a Tripo pine are
+ * trunk-brown and an amber pine's needles are too, so the texture cannot
+ * tell them apart, and the trunk is the geometric core up to the apex tuft.
+ */
+export function coniferLabels(geometry, bounds) {
+  return trunkCoreLabels(geometry, bounds, CONIFER_APEX);
+}
+
+/**
+ * Below this height fraction a broadleaf's trunk core is bark whatever its
+ * colour: a storybook oak's leaves and bark share one olive-brown family, so
+ * the colour split alone hands the mid trunk of a curved or leaning tree
+ * (oak_4, oak_5) to the leaves, which then take the leaf grade, the leaf
+ * tint and the sway, and a close trunk draws green.
+ */
+export const BROADLEAF_TRUNK_TOP = 0.45;
 
 /**
  * Split a source into labels: 0 = bark (trees) or leaf (flowering bush),
@@ -542,6 +592,10 @@ export function classifyFableTriangles(kind, { indices, positions, uvs, image })
   const keep =
     kind === 'broadleaf' ? () => false : (label) => label === (kind === 'conifer' ? 0 : 1);
   labels = removeSmallIslands(adjacency, labels, geometry.areas, totalArea * 0.004, keep);
+  if (kind === 'broadleaf') {
+    const { labels: core } = trunkCoreLabels(geometry, bounds, BROADLEAF_TRUNK_TOP);
+    for (let t = 0; t < core.length; t++) if (core[t] === 0) labels[t] = 0;
+  }
   return { labels, seeds, bounds };
 }
 
@@ -608,7 +662,7 @@ export function treeAnchor(indices, positions, barkMask, bounds, band = TRUNK_AN
  * source units) on the target x/z. Uniform, unless the target names a
  * `footprint` (width, depth): then x/z share one scale onto the mean of it;
  * or an `oldFootprint`: then x/z shrink, if they must, so the mean spread is
- * at most `TREE_SPREAD_CAP` times the old one.
+ * at most `spreadCap` (default `TREE_SPREAD_CAP`) times the old one.
  */
 export function fitTransform(bounds, anchor, target) {
   const height = bounds.max[1] - bounds.min[1];
@@ -620,7 +674,8 @@ export function fitTransform(bounds, anchor, target) {
   if (target.footprint) {
     sh = (target.footprint[0] + target.footprint[1]) / (w + d);
   } else if (target.oldFootprint) {
-    const cap = (TREE_SPREAD_CAP * (target.oldFootprint[0] + target.oldFootprint[1])) / (w + d);
+    const spread = target.spreadCap ?? TREE_SPREAD_CAP;
+    const cap = (spread * (target.oldFootprint[0] + target.oldFootprint[1])) / (w + d);
     sh = Math.min(sy, cap);
   }
   return {
@@ -689,18 +744,34 @@ export function remapUvsToAtlasCell(uvs, index, layout, inset = 0) {
  * (src/render/foliage.ts), calibrated on the old kit sheets: the oak value
  * is the one measured there over the texels its alpha test keeps, the pine
  * sheet is darker, and the dressing tint carries a ground-keyed gain for a
- * dark kit albedo, so the bushes sit between the two. Without the grade a
- * brighter, yellower storybook sheet comes out amber; with it the painted
- * variation stays around these means.
+ * dark kit albedo and needs the dark kit sheet under it: the bush value is
+ * the old bush sheet's own (its kept texels carry almost no red, which is
+ * what made the storybook bush read yellow under that gain). Without the
+ * grade a brighter, yellower storybook sheet comes out amber; with it the
+ * painted variation stays around these means.
  */
 export const LEAF_ALBEDO_TARGETS = Object.freeze({
   broadleaf: Object.freeze([0.099, 0.197, 0.012]),
   conifer: Object.freeze([0.06, 0.12, 0.01]),
-  bush: Object.freeze([0.07, 0.15, 0.012]),
+  bush: Object.freeze([0.012, 0.13, 0.026]),
   flowering_bush: Object.freeze([0.07, 0.15, 0.012]),
 });
 /** Clamp on the per-channel linear gain of the leaf grade. */
-export const LEAF_GRADE_GAIN = Object.freeze([0.15, 1.6]);
+export const LEAF_GRADE_GAIN = Object.freeze([0.08, 1.6]);
+
+/**
+ * Mean linear albedo the bark texels of a split tree are graded onto: the
+ * old kit bark sheet measures (0.267, 0.101, 0.057) and draws red-brown
+ * under the warm trunk tint; a storybook trunk is about a third of that and
+ * nearly blue-free, so under the same tint and shade it read dark olive.
+ * The target keeps it a little under the kit's red.
+ */
+export const BARK_ALBEDO_TARGETS = Object.freeze({
+  broadleaf: Object.freeze([0.2, 0.09, 0.04]),
+  conifer: Object.freeze([0.2, 0.09, 0.04]),
+});
+/** Clamp on the per-channel linear gain of the bark grade. */
+export const BARK_GRADE_GAIN = Object.freeze([0.5, 3]);
 
 const linearToSrgbByte = (v) => {
   const c = v <= 0.0031308 ? v * 12.92 : 1.055 * v ** (1 / 2.4) - 0.055;
@@ -770,8 +841,11 @@ export function rasterizeUvMask(indices, uvs, mask, width, height, dilate = 2) {
   return cur;
 }
 
-/** Per-channel linear gains that land the masked texels' mean on `target`. */
-export function leafGradeGains(image, mask, target) {
+/**
+ * Per-channel linear gains that land the masked texels' mean on `target`,
+ * each clamped to `clamp` (the leaf clamp unless told otherwise).
+ */
+export function leafGradeGains(image, mask, target, clamp = LEAF_GRADE_GAIN) {
   const sum = [0, 0, 0];
   let n = 0;
   for (let i = 0; i < mask.length; i++) {
@@ -779,9 +853,16 @@ export function leafGradeGains(image, mask, target) {
     for (let k = 0; k < 3; k++) sum[k] += srgbToLinear(image.data[i * image.channels + k]);
     n++;
   }
-  if (n === 0) throw new Error('empty leaf mask');
-  const [lo, hi] = LEAF_GRADE_GAIN;
+  if (n === 0) throw new Error('empty grade mask');
+  const [lo, hi] = clamp;
   return sum.map((s, k) => Math.min(hi, Math.max(lo, target[k] / Math.max(s / n, 1e-4))));
+}
+
+/** Texels of `mask` that `exclude` does not cover. */
+export function subtractMask(mask, exclude) {
+  const out = Uint8Array.from(mask);
+  for (let i = 0; i < out.length; i++) if (exclude[i]) out[i] = 0;
+  return out;
 }
 
 /** A copy of the image with the masked texels scaled by linear `gains`. */
