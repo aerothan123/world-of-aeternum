@@ -109,6 +109,25 @@ describe('Refined splat terrain', () => {
   }, 60_000);
 });
 
+// Static tap budget: the texture fetches each Refined arm adds over Classic
+// (the WOC_ALB macro and textureLod/texture2D calls in the composed fragment).
+// Several sit behind a weight branch, so this is the worst case per pixel.
+const REFINED_TAP_BUDGET: Record<string, number> = { medium: 4, high: 8, insane: 8 };
+const taps = (src: string): number =>
+  (src.match(/\bWOC_ALB\s*\(|\btexture2D\s*\(|\btextureLod\s*\(|\btexture\s*\(/g) ?? []).length;
+
+describe('Refined splat tap budget', () => {
+  for (const preset of Object.keys(REFINED_TAP_BUDGET)) {
+    it(`adds at most ${REFINED_TAP_BUDGET[preset]} fetches on ${preset}`, async () => {
+      const classic = taps((await compileTerrain(preset, 'classic', false)).shader.fragmentShader);
+      const refined = taps((await compileTerrain(preset, 'refined', false)).shader.fragmentShader);
+      console.info(`world style taps ${preset}: classic ${classic}, refined ${refined}`);
+      expect(refined - classic).toBeGreaterThan(0);
+      expect(refined - classic).toBeLessThanOrEqual(REFINED_TAP_BUDGET[preset]);
+    }, 60_000);
+  }
+});
+
 describe('Refined Low ground', () => {
   it('adds only arithmetic to the Lambert ground', async () => {
     const classic = await compileTerrain('low', 'classic', true);

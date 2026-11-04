@@ -101,7 +101,10 @@ export function refinedSplatGlsl(p: RefinedTerrainProfile): string {
               pathEdge * ${f(b.gravelEdge)} + (1.0 - pathEdge) * ${f(b.gravelCore)}
               + smoothstep(0.55, 0.85, wocWsGrN) * ${f(b.gravelNoise)}) * (1.0 - vExtra.x);
             if ( wocWsGrW > 0.002 ) {
-              vec3 wocWsGr = WOC_ALB(tuv * 1.35 + vec2(0.37, 0.11), ${f(REFINED_LAYER_GRAVEL)}) * wocWsTint;
+              // Gravel takes the trail's own earth tone, so a road reads as
+              // packed brown grit with stones in it, never a grey strip.
+              vec3 wocWsGr = WOC_ALB(tuv * 1.35 + vec2(0.37, 0.11), ${f(REFINED_LAYER_GRAVEL)})
+                * ${v3(REFINED_PALETTE.gravelWarm)} * wocWsTint;
               alb = mix(alb, wocWsGr, wocWsGrW);
             }
           }
@@ -245,7 +248,12 @@ const REFINED_SKY_GLSL = `
     {
       float wsUp = clamp(dir.y, 0.0, 1.0);
       vec3 wsGrad = mix(uWsSkyHorizon, uWsSkyZenith, pow(wsUp, 0.55));
-      c = mix(c, wsGrad, 0.42 * smoothstep(-0.05, 0.08, dir.y));
+      // A CHROMA grade, luminance kept: the gradient re-colours the sky the
+      // HDRI already paints (its clouds and brightness survive), so the IBL
+      // the renderer prefilters from this dome keeps its energy.
+      float wsSkyL = dot(c, vec3(0.2126, 0.7152, 0.0722));
+      float wsGradL = max(dot(wsGrad, vec3(0.2126, 0.7152, 0.0722)), 1e-4);
+      c = mix(c, wsGrad * (wsSkyL / wsGradL), 0.38 * smoothstep(-0.05, 0.08, dir.y));
       float wsSun = max(dot(dir, normalize(uSunDirLive)), 0.0);
       c += uWsSunGlow * (pow(wsSun, 6.0) * 0.35 + pow(wsSun, 48.0) * 0.65)
         * smoothstep(-0.2, 0.05, uSunDirLive.y);
@@ -267,7 +275,7 @@ const REFINED_SKY_GLSL = `
 const REFINED_SKY_HAZE_GLSL = `
     // Refined horizon haze: the same air colour the ground's aerial term
     // fades into, so far hills and the sky meet in one blue-grey band.
-    c = mix(mix(uFog, uWsAerial.rgb, 0.55), c, mix(1.0, smoothstep(0.0, 0.3, dir.y), uWsAerial.a * 1.2));
+    c = mix(mix(uFog, uWsAerial.rgb, 0.55), c, mix(1.0, smoothstep(0.0, 0.24, dir.y), uWsAerial.a * 0.8));
 `;
 
 /** Splice the Refined arm into the dome fragment (`skyFrag` output). */

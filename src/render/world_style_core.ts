@@ -110,10 +110,10 @@ export const REFINED_BLEND = {
   /** Most of a meadow the dry variant may own. */
   variantMax: 0.62,
   /** Gravel weight on the dirt layer: path shoulders take most of it. */
-  gravelEdge: 0.85,
-  gravelCore: 0.22,
-  gravelNoise: 0.3,
-  gravelMax: 0.8,
+  gravelEdge: 0.55,
+  gravelCore: 0.1,
+  gravelNoise: 0.25,
+  gravelMax: 0.6,
   /** Steep faces (normal y under hi, full at lo) turn to rock. */
   steepHi: 0.74,
   steepLo: 0.5,
@@ -188,6 +188,8 @@ export const REFINED_PALETTE = {
   saturation: 0.9,
   /** Dry meadow tint the grass variant carries (straw gold over green). */
   dryGrass: [1.1, 1.0, 0.72] as const,
+  /** Gravel tint toward the trail's earth tone. */
+  gravelWarm: [1.08, 0.94, 0.78] as const,
   /** Damp shore multiply (darker, a touch warm). */
   dampShore: [0.66, 0.6, 0.52] as const,
 } as const;
@@ -291,13 +293,13 @@ const NOON: Phase = {
   exposure: 1.0,
   aerial: [0.64, 0.72, 0.82],
   aerialAmt: 0.46,
-  zenith: [0.24, 0.42, 0.78],
-  horizon: [0.7, 0.78, 0.86],
+  zenith: [0.2, 0.4, 0.82],
+  horizon: [0.66, 0.75, 0.86],
   glow: [0.32, 0.28, 0.2],
-  cloudLit: [1.02, 1.0, 0.96],
-  cloudShade: [0.62, 0.68, 0.78],
-  cover: 0.44,
-  cloudOp: 0.62,
+  cloudLit: [0.9, 0.89, 0.86],
+  cloudShade: [0.56, 0.62, 0.72],
+  cover: 0.42,
+  cloudOp: 0.5,
   sun: [1.0, 0.975, 0.93],
   light: 1.05,
   ambient: 0.95,
