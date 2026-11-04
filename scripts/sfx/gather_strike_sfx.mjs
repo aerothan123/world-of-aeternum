@@ -17,14 +17,32 @@
 //       prints the account's used / limit character counts (never the key)
 //   then: npm run sfx:manifest
 //
+// Style directions (audition only; GATHER_STRIKE_STYLES, never shipped keys):
+//   ELEVENLABS_API_KEY=... node scripts/sfx/gather_strike_sfx.mjs styles-generate
+//   node scripts/sfx/gather_strike_sfx.mjs styles-select [heavy.impact_gather_pick=3,1 ...]
+//   node scripts/sfx/gather_strike_sfx.mjs styles-build
+//
 // Every take is DRY on purpose: the outdoor echo is added at runtime.
 import { execFileSync } from 'node:child_process';
-import { copyFileSync, existsSync, mkdirSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import {
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { conformSfxAudio } from './conform_audio.mjs';
 import { FFMPEG_PATH } from './ffmpeg_paths.mjs';
-import { GATHER_STRIKE_PROMPTS } from './gather_strike_prompts.mjs';
+import {
+  GATHER_STRIKE_PROMPTS,
+  GATHER_STRIKE_STYLES,
+  STYLE_CANDIDATES,
+  STYLE_KEEP,
+} from './gather_strike_prompts.mjs';
 
 const ROOT = fileURLToPath(new URL('../..', import.meta.url));
 const OUT_DIR = join(ROOT, 'public/audio/sfx');
@@ -355,9 +373,115 @@ function select() {
   build();
 }
 
+// --- Style directions (audition only, never shipped keys) ---------------------
+// Candidates and the kept picks live in scripts/sfx/sources/gather/variants/
+// <style>/; `styles-build` renders the kept ones, trimmed and conformed like a
+// shipped take, into tmp/gather-strike-styles/<style>/<key>_<n>.mp3 for the
+// styles demo (scripts/sfx/gather_styles_demo.mjs).
+const VARIANTS = join(SOURCES, 'variants');
+const STYLE_OUT = join(ROOT, 'tmp/gather-strike-styles');
+const STRIKE_KEYS = ['impact_gather_pick', 'impact_gather_axe'];
+
+async function stylesGenerate() {
+  await usage();
+  let seconds = 0;
+  for (const [style, spec] of Object.entries(GATHER_STRIKE_STYLES)) {
+    const dir = join(VARIANTS, style);
+    mkdirSync(dir, { recursive: true });
+    for (const key of STRIKE_KEYS) {
+      const cue = { key: `${style}:${key}`, ...spec[key] };
+      for (let i = 1; i <= STYLE_CANDIDATES; i++) {
+        const file = join(dir, `${key}_cand_${i}.mp3`);
+        if (existsSync(file)) continue;
+        process.stdout.write(`gen ${style} ${key} #${i} (${cue.request}s)... `);
+        writeFileSync(file, await generateOne(cue));
+        seconds += cue.request;
+        console.log('ok');
+      }
+    }
+  }
+  console.log(`requested ${seconds.toFixed(1)} s of audio`);
+  await usage();
+}
+
+/** What a direction should sound like, measured: heavy wants low body and less
+ *  treble, ringing a bright sustained head, crunchy a dense spread of debris. */
+function styleScore(style, m) {
+  const base = -(m.clipped > 20 ? 2 : 0) - (m.onset > 0.3 ? 1 : 0) - m.attackMs / 20;
+  if (style === 'heavy') return base + 4 * m.low - 0.8 * m.bright + 0.5 * Math.log(m.crest);
+  if (style === 'ringing') return base + 1.5 * m.bright + 2 * m.coverage;
+  return base + 3 * m.coverage + 0.5 * m.bright;
+}
+
+function stylesSelect() {
+  const kept = {};
+  for (const [style, spec] of Object.entries(GATHER_STRIKE_STYLES)) {
+    kept[style] = {};
+    for (const key of STRIKE_KEYS) {
+      const { trim, singleHit = true } = spec[key];
+      const rows = [];
+      for (let i = 1; i <= STYLE_CANDIDATES; i++) {
+        const file = join(VARIANTS, style, `${key}_cand_${i}.mp3`);
+        if (!existsSync(file)) continue;
+        const m = measure(tighten(decode(file), trim, singleHit));
+        rows.push({ i, score: styleScore(style, m), ...m });
+      }
+      const override = process.argv
+        .filter((a) => a.startsWith(`${style}.${key}=`))
+        .map((a) => a.split('=')[1].split(',').map(Number))[0];
+      const picks =
+        override ??
+        [...rows]
+          .sort((a, b) => b.score - a.score)
+          .slice(0, STYLE_KEEP)
+          .map((r) => r.i);
+      kept[style][key] = picks;
+      console.log(`\n${style} ${key}: kept ${picks.join(', ')}`);
+      for (const r of rows) {
+        console.log(
+          `  cand_${r.i} score ${r.score.toFixed(2).padStart(6)}  attack ${String(r.attackMs).padStart(3)}ms  crest ${r.crest.toFixed(1).padStart(5)}  bright ${r.bright.toFixed(3)}  low ${r.low.toFixed(2)}  cover ${r.coverage.toFixed(2)}  clip ${r.clipped}`,
+        );
+      }
+    }
+  }
+  writeFileSync(join(VARIANTS, 'kept.json'), `${JSON.stringify(kept, null, 2)}\n`);
+  stylesBuild();
+}
+
+function stylesBuild() {
+  const kept = JSON.parse(readFileSync(join(VARIANTS, 'kept.json'), 'utf8'));
+  for (const [style, byKey] of Object.entries(kept)) {
+    const dir = join(STYLE_OUT, style);
+    mkdirSync(dir, { recursive: true });
+    for (const [key, picks] of Object.entries(byKey)) {
+      const { trim, singleHit = true } = GATHER_STRIKE_STYLES[style][key];
+      picks.forEach((i, n) => {
+        const y = tighten(decode(join(VARIANTS, style, `${key}_cand_${i}.mp3`)), trim, singleHit);
+        const tmp = join(dir, `.${key}_${n + 1}.source.wav`);
+        writeFileSync(tmp, wav(y));
+        try {
+          conformSfxAudio({
+            inputFile: tmp,
+            outputFile: join(dir, `${key}_${n + 1}.mp3`),
+            duration: y.length / SR,
+            ffmpegPath: FFMPEG_PATH,
+            channels: 1,
+          });
+        } finally {
+          rmSync(tmp, { force: true });
+        }
+        console.log(`built ${style}/${key}_${n + 1}.mp3 (${(y.length / SR).toFixed(2)} s)`);
+      });
+    }
+  }
+}
+
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   if (mode === 'generate') await generate();
   else if (mode === 'usage') await usage();
   else if (mode === 'build') build();
+  else if (mode === 'styles-generate') await stylesGenerate();
+  else if (mode === 'styles-select') stylesSelect();
+  else if (mode === 'styles-build') stylesBuild();
   else select();
 }

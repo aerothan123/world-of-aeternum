@@ -153,8 +153,11 @@ function energyOf(channels: readonly Float32Array[]): number {
 export function outdoorImpulseResponse(
   env: ReverbEnv,
   sampleRate: number,
+  /** An audition profile in place of the environment's own (the styles demo's
+   *  candidate spaces); the runtime always passes none. */
+  profile: ReverbProfile = REVERB_PROFILES[env],
 ): [Float32Array, Float32Array] {
-  const p = REVERB_PROFILES[env];
+  const p = profile;
   const len = Math.max(1, Math.round(reverbIrSeconds(p) * sampleRate));
   const tail = [new Float32Array(len), new Float32Array(len)];
   const echo = [new Float32Array(len), new Float32Array(len)];

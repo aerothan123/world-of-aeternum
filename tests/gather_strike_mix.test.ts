@@ -122,6 +122,18 @@ describe('outdoorImpulseResponse', () => {
     }
   });
 
+  it('renders an audition profile in place of the environment, and the default is unchanged', () => {
+    const sr = 8000;
+    const [def] = outdoorImpulseResponse('open', sr);
+    const [same] = outdoorImpulseResponse('open', sr, REVERB_PROFILES.open);
+    expect(def).toEqual(same);
+    const longer = { ...REVERB_PROFILES.open, decay: 3, seed: 7 };
+    const [l, r] = outdoorImpulseResponse('open', sr, longer);
+    expect(l.length).toBeGreaterThan(def.length);
+    const energy = [...l, ...r].reduce((s, v) => s + v * v, 0);
+    expect(energy).toBeCloseTo(2, 3);
+  });
+
   it('rings longer off cliffs than under trees, and its echoes come back after the hit', () => {
     expect(reverbIrSeconds(REVERB_PROFILES.cliffs)).toBeGreaterThan(
       reverbIrSeconds(REVERB_PROFILES.forest),
