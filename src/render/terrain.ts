@@ -99,6 +99,13 @@ import {
 import { terrainSplatPresence, terrainSplatPresenceMask } from './terrain_splat_presence_core';
 import { applyTextureAnisotropy } from './texture_anisotropy';
 import { groundDetailTexture, groundSplatMaps, macroNoiseTexture } from './textures';
+import { worldStyleRefined, worldStyleSurfaceUniforms } from './world_style';
+import {
+  REFINED_ALBEDO_LAYER_FILES,
+  refinedTerrainProfile,
+  refinedTerrainProfileKey,
+} from './world_style_core';
+import { patchRefinedLambertShader, patchRefinedSplatShader } from './world_style_glsl';
 import { disposeZoneBuildPool, zoneBuildPool } from './zone_build_pool';
 
 // Chunked terrain across the whole 360x1080 zone strip.
@@ -219,6 +226,14 @@ export function prepareTerrainProfileAssets(target: Readonly<GfxSettings>): Prom
     // open surface = bright.
     prepareTerrainTex('groundAO', 'GroundAO_Packed.png', false),
   ];
+  // World Style Refined appends two photo layers to the packed albedo array
+  // (both CC0 ambientCG, already shipped for the editor palette); Classic
+  // never fetches them.
+  if (target.worldStyle === 'refined') {
+    for (const [key, file] of Object.entries(REFINED_ALBEDO_LAYER_FILES)) {
+      tasks.push(prepareTerrainTex(key, file, true));
+    }
+  }
   return Promise.all(tasks).then(() => undefined);
 }
 
@@ -1046,6 +1061,12 @@ function plainGrassLift(
 /** Layer order of the packed albedo array; the shader's WOC_L_* constants
  *  mirror these indices and the budget test pins the two lists together. */
 export const SPLAT_ALBEDO_LAYERS = ['grassC', 'dirtC', 'rockC', 'sandC', 'mudC', 'snowC'] as const;
+/** World Style Refined: the Classic six plus the two Refined layers, appended
+ *  so every Classic WOC_L_* index is unchanged (world_style_core.ts). */
+const REFINED_SPLAT_ALBEDO_LAYERS: readonly string[] = [
+  ...SPLAT_ALBEDO_LAYERS,
+  ...Object.keys(REFINED_ALBEDO_LAYER_FILES),
+];
 const SPLAT_ALBEDO_SIZE = 1024;
 
 // The shader half of the pack: WOC_ALB replaces what used to be a
@@ -1067,6 +1088,9 @@ interface SplatAlbedoArray {
   grassMean: [number, number, number] | null;
   /** True when every layer was packed from a real, resolved image. */
   complete: boolean;
+  /** True when every layer past the Classic six was packed from a real image
+   *  (the Refined shader gates its extra layers on it, never on grey fill). */
+  extrasReady: boolean;
 }
 
 let splatAlbedoCache: SplatAlbedoArray | null = null;
@@ -1081,18 +1105,24 @@ let splatAlbedoCache: SplatAlbedoArray | null = null;
  * the deferred preload has had time to land.
  */
 
-function buildSplatAlbedoArray(t: Record<string, THREE.Texture>): SplatAlbedoArray {
-  if (splatAlbedoCache?.complete) return splatAlbedoCache;
+function buildSplatAlbedoArray(
+  t: Record<string, THREE.Texture>,
+  layers: readonly string[] = SPLAT_ALBEDO_LAYERS,
+): SplatAlbedoArray {
+  if (splatAlbedoCache?.complete && splatAlbedoCache.texture.image.depth === layers.length) {
+    return splatAlbedoCache;
+  }
   const size = SPLAT_ALBEDO_SIZE;
-  const data = new Uint8Array(size * size * 4 * SPLAT_ALBEDO_LAYERS.length);
+  const data = new Uint8Array(size * size * 4 * layers.length);
   const canvas = document.createElement('canvas');
   canvas.width = size;
   canvas.height = size;
   const ctx = canvas.getContext('2d', { willReadFrequently: true });
   let complete = true;
   let grassMean: [number, number, number] | null = null;
-  for (let layer = 0; layer < SPLAT_ALBEDO_LAYERS.length; layer++) {
-    const raw = t[SPLAT_ALBEDO_LAYERS[layer]]?.image as unknown;
+  let extrasReady = true;
+  for (let layer = 0; layer < layers.length; layer++) {
+    const raw = t[layers[layer]]?.image as unknown;
     const img = isCanvasDrawableImage(raw) ? raw : undefined;
     const w = (img as { width?: number } | undefined)?.width;
     const dst = data.subarray(layer * size * size * 4, (layer + 1) * size * size * 4);
@@ -1100,6 +1130,7 @@ function buildSplatAlbedoArray(t: Record<string, THREE.Texture>): SplatAlbedoArr
       dst.fill(96); // the neutral fail-safe shade the per-texture bind used
       for (let i = 3; i < dst.length; i += 4) dst[i] = 255;
       complete = false;
+      if (layer >= SPLAT_ALBEDO_LAYERS.length) extrasReady = false;
       continue;
     }
     ctx.save();
@@ -1110,7 +1141,7 @@ function buildSplatAlbedoArray(t: Record<string, THREE.Texture>): SplatAlbedoArr
     ctx.restore();
     const px = ctx.getImageData(0, 0, size, size).data;
     dst.set(px);
-    if (SPLAT_ALBEDO_LAYERS[layer] === 'grassC') {
+    if (layers[layer] === 'grassC') {
       let r = 0;
       let g = 0;
       let b = 0;
@@ -1126,7 +1157,7 @@ function buildSplatAlbedoArray(t: Record<string, THREE.Texture>): SplatAlbedoArr
       grassMean = [lin(r), lin(g), lin(b)];
     }
   }
-  const texture = new THREE.DataArrayTexture(data, size, size, SPLAT_ALBEDO_LAYERS.length);
+  const texture = new THREE.DataArrayTexture(data, size, size, layers.length);
   texture.colorSpace = THREE.SRGBColorSpace;
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
@@ -1136,7 +1167,7 @@ function buildSplatAlbedoArray(t: Record<string, THREE.Texture>): SplatAlbedoArr
   applyTextureAnisotropy(texture, 'colour');
   texture.needsUpdate = true;
   splatAlbedoCache?.texture.dispose();
-  splatAlbedoCache = { texture, grassMean, complete };
+  splatAlbedoCache = { texture, grassMean, complete, extrasReady };
   return splatAlbedoCache;
 }
 
@@ -1393,7 +1424,14 @@ function buildSplatMaterial(
   // preload lane). Both packed arrays carry the fail-safe inside: a missing
   // colour layer fills neutral grey (buildSplatAlbedoArray) and a missing
   // normal set packs flat (buildSplatNormalArray).
-  const albedo = buildSplatAlbedoArray(t);
+  // World Style Refined (world_style.ts): resolved once per material build,
+  // like every other compile-time arm. Classic packs and compiles exactly
+  // the shipped six-layer splat.
+  const refined = worldStyleRefined() ? refinedTerrainProfile(GFX.tier) : null;
+  const albedo = buildSplatAlbedoArray(
+    t,
+    refined ? REFINED_SPLAT_ALBEDO_LAYERS : SPLAT_ALBEDO_LAYERS,
+  );
   const normals = buildSplatNormalArray(t);
   // The map's painted ground TEXTURES (cobbles, paving, tiles...): resolved
   // from the active content at material build, compile-time gated like the
@@ -2413,7 +2451,28 @@ function buildSplatMaterial(
         );
     }
   };
+  if (refined) installRefinedSplat(mat, refined, albedo.extrasReady);
   return mat;
+}
+
+/** World Style Refined over a built splat material: runs the Classic hook,
+ *  then splices the Refined arm (world_style_glsl.ts) and names the variant in
+ *  the program cache key. Classic materials never reach here. */
+function installRefinedSplat(
+  mat: THREE.MeshStandardMaterial,
+  profile: ReturnType<typeof refinedTerrainProfile>,
+  layersReady: boolean,
+): void {
+  const classicHook = mat.onBeforeCompile;
+  const classicKey = mat.customProgramCacheKey;
+  const layers = { value: layersReady ? 1 : 0 };
+  mat.onBeforeCompile = (sh, renderer) => {
+    classicHook.call(mat, sh, renderer);
+    Object.assign(sh.uniforms, worldStyleSurfaceUniforms(), { uWsLayers: layers });
+    patchRefinedSplatShader(sh, profile);
+  };
+  mat.customProgramCacheKey = () =>
+    `${classicKey.call(mat)}|ws-refined:${refinedTerrainProfileKey(profile)}`;
 }
 
 export const terrainInternalsForTest = {
@@ -2602,6 +2661,17 @@ function buildLambertMaterial(brush: BrushUniforms): THREE.MeshLambertMaterial {
         totalEmissiveRadiance += wocBrushRing(vWocWPos.xz);`,
       );
   };
+  if (worldStyleRefined()) {
+    // World Style Refined on the Lambert ground: the zero-tap palette and
+    // the distance-only aerial arm (world_style_glsl.ts).
+    const classicHook = mat.onBeforeCompile;
+    mat.onBeforeCompile = (sh, renderer) => {
+      classicHook.call(mat, sh, renderer);
+      Object.assign(sh.uniforms, worldStyleSurfaceUniforms());
+      patchRefinedLambertShader(sh);
+    };
+    mat.customProgramCacheKey = () => `${classicHook.toString()}|ws-refined:lambert`;
+  }
   return mat;
 }
 

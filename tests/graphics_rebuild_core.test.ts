@@ -60,6 +60,7 @@ describe('graphics rebuild settings snapshot', () => {
       'dynamicLights',
       'particleEffects',
       'ghostFade',
+      'worldStyle',
     ]);
     expect(Object.isFrozen(GRAPHICS_REBUILD_KEYS)).toBe(true);
   });
@@ -88,6 +89,7 @@ describe('graphics rebuild settings snapshot', () => {
       dynamicLights: SETTING_RANGES.dynamicLights.def,
       particleEffects: SETTING_RANGES.particleEffects.def,
       ghostFade: SETTING_RANGES.ghostFade.def,
+      worldStyle: SETTING_RANGES.worldStyle.def,
     });
     expect(Object.isFrozen(snapshot)).toBe(true);
   });
@@ -112,11 +114,11 @@ describe('graphics rebuild settings snapshot', () => {
 });
 
 describe('per-system dial staging (round 12)', () => {
-  it('pins the dial-key inventory: every rebuild key except the preset row', () => {
+  it('pins the dial-key inventory: every rebuild key except the preset row and style keys', () => {
     expect(GRAPHICS_DIAL_KEYS).toEqual(
-      GRAPHICS_REBUILD_KEYS.filter((key) => key !== 'graphicsPreset'),
+      GRAPHICS_REBUILD_KEYS.filter((key) => key !== 'graphicsPreset' && key !== 'worldStyle'),
     );
-    expect(GRAPHICS_DIAL_KEYS).toHaveLength(GRAPHICS_REBUILD_KEYS.length - 1);
+    expect(GRAPHICS_DIAL_KEYS).toHaveLength(GRAPHICS_REBUILD_KEYS.length - 2);
     expect(GRAPHICS_PRESET_ADVANCED).toBe(5);
     expect(Object.isFrozen(GRAPHICS_DIAL_KEYS)).toBe(true);
   });
@@ -228,7 +230,11 @@ describe('per-system dial staging (round 12)', () => {
     expect(graphicsDisplaySnapshot(advanced)).toBe(advanced);
     const high = normalizeGraphicsSettingsSnapshot({ graphicsPreset: 3, terrainDetail: 2 });
     const display = graphicsDisplaySnapshot(high);
-    expect(display).toEqual({ graphicsPreset: 3, ...advancedDialSeed(3) });
+    expect(display).toEqual({
+      graphicsPreset: 3,
+      ...advancedDialSeed(3),
+      worldStyle: high.worldStyle,
+    });
     // A projection, never a mutation: the stored draft keeps its own values.
     expect(high.terrainDetail).toBe(2);
     expect(Object.isFrozen(display)).toBe(true);
@@ -241,6 +247,7 @@ describe('per-system dial staging (round 12)', () => {
       graphicsPreset: 5,
       ...advancedDialSeed(3),
       shadowQuality: 0.5,
+      worldStyle: high.worldStyle,
     });
     // What the player was LOOKING at is what the mix starts from: the seed
     // wins over the previously stored (invisible) dial values.
@@ -278,7 +285,11 @@ describe('per-system dial staging (round 12)', () => {
     // Advanced entry starts from the levels the departing preset displayed.
     const ultra = normalizeGraphicsSettingsSnapshot({ graphicsPreset: 4 });
     const toAdvanced = stageGraphicsDraftChange(ultra, 'graphicsPreset', 5);
-    expect(toAdvanced).toEqual({ graphicsPreset: 5, ...advancedDialSeed(4) });
+    expect(toAdvanced).toEqual({
+      graphicsPreset: 5,
+      ...advancedDialSeed(4),
+      worldStyle: ultra.worldStyle,
+    });
     // A fixed-preset pick is a plain field set (the dials become display-seeded
     // projections, so their stored values are irrelevant until the next switch).
     const toLow = stageGraphicsDraftChange(ultra, 'graphicsPreset', 1);

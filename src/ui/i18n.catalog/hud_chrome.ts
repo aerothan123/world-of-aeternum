@@ -2937,6 +2937,12 @@ export const hudChromeStrings = {
     gfxGhostFade: 'Camera Ghost',
     gfxGhostFadeDithered: 'Dithered',
     gfxGhostFadeSmooth: 'Smooth',
+    // World Style: the look choice beside the quality preset.
+    gfxWorldStyle: 'World Style',
+    gfxWorldStyleClassic: 'Classic',
+    gfxWorldStyleRefined: 'Refined',
+    gfxWorldStyleNote:
+      'Refined paints the world with textured ground, warmer light, distant haze and drifting clouds. Classic keeps the original look. Neither changes what you can see in combat.',
     gfxParticleEffects: 'Particle Effects',
     gfxHalf: 'Half',
     gfxCustomNote:

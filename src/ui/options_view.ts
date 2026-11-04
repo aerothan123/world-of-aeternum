@@ -620,6 +620,11 @@ const ghostFadeOptions: ChoiceOption[] = [
   { value: 0, labelKey: 'hudChrome.options.gfxGhostFadeDithered' },
   { value: 1, labelKey: 'hudChrome.options.gfxGhostFadeSmooth' },
 ];
+// World Style (src/render/world_style_core.ts): 0 Classic, 1 Refined.
+const worldStyleOptions: ChoiceOption[] = [
+  { value: 0, labelKey: 'hudChrome.options.gfxWorldStyleClassic' },
+  { value: 1, labelKey: 'hudChrome.options.gfxWorldStyleRefined' },
+];
 // The two-option Off/On ladder the per-effect binaries render with.
 const offOnOptions: ChoiceOption[] = [
   { value: 0, labelKey: 'hud.options.off' },
@@ -669,6 +674,13 @@ export function buildGraphicsSections(
   }
   quality.push(
     choice(s, 'graphicsPreset', 'hud.options.graphicsQuality', graphicsPresetOptions, true),
+  );
+  // World Style: a look choice beside the quality preset, never an Advanced
+  // dial (graphics_rebuild_core GRAPHICS_STYLE_KEYS), so picking it under a
+  // fixed preset keeps that preset. Staged in the draft and applied with it.
+  quality.push(
+    choice(s, 'worldStyle', 'hudChrome.options.gfxWorldStyle', worldStyleOptions, true),
+    note('hudChrome.options.gfxWorldStyleNote'),
   );
   // The custom-switch explainer renders only under a FIXED preset: once the
   // Advanced mix is active the dials edit in place and the note is a no-op.

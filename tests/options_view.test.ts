@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
+  GRAPHICS_DIAL_KEYS,
   GRAPHICS_REBUILD_KEYS,
   normalizeGraphicsSettingsSnapshot,
 } from '../src/game/graphics_rebuild_core';
@@ -188,6 +189,7 @@ describe('options_view: graphics dispatch matrix (cluster 3)', () => {
       'dynamicLights',
       'particleEffects',
       'ghostFade',
+      'worldStyle',
     ]);
     const live = makeSource({ graphicsPreset: 2, terrainDetail: 0, renderScale: 0.75 });
     const draft = normalizeGraphicsSettingsSnapshot({ graphicsPreset: 5, terrainDetail: 2 });
@@ -231,6 +233,9 @@ describe('options_view: graphics dispatch matrix (cluster 3)', () => {
       // Quality card: the preset row and the custom-switch note (round 12:
       // the dials are no longer gated behind the Advanced preset).
       'graphicsPreset',
+      // World Style: the look choice beside the preset (never a dial).
+      'worldStyle',
+      'note:hudChrome.options.gfxWorldStyleNote',
       'note:hudChrome.options.gfxCustomNote',
       // World Detail card: the world's geometry and dressing layers.
       'terrainDetail',
@@ -670,12 +675,13 @@ describe('options_view: graphics dispatch matrix (cluster 3)', () => {
       nativeShell: true,
     });
     // The two dial cards are omitted wholesale, and no dial key leaks in
-    // through another card.
+    // through another card. The World Style row is a look choice, not a dial
+    // (GRAPHICS_STYLE_KEYS), so the shell keeps it beside its preset row.
     expect(shell.map((s) => s.titleKey)).not.toContain('hudChrome.options.gfxSectionWorld');
     expect(shell.map((s) => s.titleKey)).not.toContain('hudChrome.options.gfxSectionLighting');
     const keys = keysOf(flattenGraphicsSections(shell));
-    for (const key of GRAPHICS_REBUILD_KEYS.filter((k) => k !== 'graphicsPreset'))
-      expect(keys, key).not.toContain(key);
+    for (const key of GRAPHICS_DIAL_KEYS) expect(keys, key).not.toContain(key);
+    expect(keys).toContain('worldStyle');
     expect(keys).not.toContain('note:hudChrome.options.gfxCustomNote');
   });
 

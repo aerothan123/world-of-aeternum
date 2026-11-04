@@ -22,6 +22,8 @@ import { FullScreenQuad, Pass } from 'three/examples/jsm/postprocessing/Pass.js'
 import { PALETTE_GRADE_GLSL, paletteGradeUniforms } from './palette_lab';
 import { CEL_INK_GLSL } from './post_cel_ink_glsl';
 import { FINITE_GUARD_GLSL } from './post_finite_guard_glsl';
+import { worldGradeUniforms } from './world_style';
+import { withWorldGrade } from './world_style_glsl';
 
 interface TimeUniform {
   value: number;
@@ -355,6 +357,13 @@ export interface OutputGradeOptions {
    * grade pass of the chain draws the same look.
    */
   readonly paletteGrade?: boolean;
+  /**
+   * Compile in the World Style Refined grade (world_style_glsl.ts
+   * withWorldGrade) over the shared world-style uniform block: a per-time-of-
+   * day exposure, gain, lift and saturation step. Absent, the fragment is the
+   * shipped source byte for byte.
+   */
+  readonly worldGrade?: boolean;
 }
 
 /** Where the grade's cel ink reads scene depth, and the look's knobs. */
@@ -401,6 +410,7 @@ export class OutputGradePass extends Pass {
     this.fxaa = options.fxaa === true;
     this.celInk = options.celInk ?? null;
     this.paletteGrade = options.paletteGrade === true;
+    const worldGrade = options.worldGrade === true;
     this.uniforms = {
       tDiffuse: { value: null },
       tBloom: { value: bloomTexture },
@@ -417,9 +427,15 @@ export class OutputGradePass extends Pass {
     this.material = new RawShaderMaterial({
       name: 'OutputGradeShader',
       glslVersion: GLSL3,
-      uniforms: this.paletteGrade ? { ...this.uniforms, ...paletteGradeUniforms() } : this.uniforms,
+      uniforms: {
+        ...this.uniforms,
+        ...(this.paletteGrade ? paletteGradeUniforms() : {}),
+        ...(worldGrade ? worldGradeUniforms() : {}),
+      },
       vertexShader: OUTPUT_GRADE_VERTEX_SHADER,
-      fragmentShader: OUTPUT_GRADE_FRAGMENT_SHADER,
+      fragmentShader: worldGrade
+        ? withWorldGrade(OUTPUT_GRADE_FRAGMENT_SHADER)
+        : OUTPUT_GRADE_FRAGMENT_SHADER,
       depthTest: false,
       depthWrite: false,
     });

@@ -43,6 +43,8 @@ const mediumPreferences: GraphicsSettingsSnapshot = {
   dynamicLights: 1,
   particleEffects: 1,
   ghostFade: 1,
+  // Classic: the tier pins below predate World Style and describe the shipped world.
+  worldStyle: 0,
 };
 
 describe('GfxProfile resolution and activation', () => {
