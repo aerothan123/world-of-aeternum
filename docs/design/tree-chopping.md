@@ -131,9 +131,15 @@ set decision.
 - **Chop beats.** The chopper holds an axe (the held hatchet stand-in, since no tool has a
   held model of its own) and loops the rig's diagonal one-hand chop (`TREE_CHOP_CAST_CLIP`,
   the `gatherSwing.chop` clip, `1H_Chop` on the WOC rig; a rig without one keeps its
-  one-hand swing), with one axe-hit cue per swing (`chopHitsBy`). The real weapon comes back
-  the frame the chop ends or is interrupted (`src/render/gather_pose_core.ts`), and peers see
-  the same pose from the public cast state alone.
+  one-hand swing), with one axe strike per swing landing on the clip's own tool contact
+  (`src/render/gather_strike_core.ts`, the same path the pick strikes take; see
+  `docs/design/sound_effects.md`, "Gathering strikes and the outdoor reverb"). The real
+  weapon comes back the frame the chop ends or is interrupted
+  (`src/render/gather_pose_core.ts`), and peers see and hear the same swing from the public
+  cast state alone.
+- **Fall audio.** A creak as the tree starts to tip and a crash as it lands
+  (`impact_tree_creak` / `impact_tree_crash`), through the same long-range, reverberant
+  gathering path.
 - **Fairness.** A stump or a missing trunk is world state a player navigates by, so the
   view draws on every graphics preset.
 - **Shader programs.** Every program it draws is already linked by the foliage batch it

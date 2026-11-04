@@ -4,8 +4,8 @@
 // (`handleEvent`), every frame (`update`), and the character cast clip
 // (`castClipFor`, so a chopping body loops its one-hand swing).
 //
-// What it draws, all from IWorld state (`felledTrees()`, the `treeFelled` and
-// `castStart` events), never deciding anything:
+// What it draws, all from IWorld state (`felledTrees()` and the `treeFelled`
+// event), never deciding anything:
 //   * the standing tree's instances HIDDEN in their instanced batches (one
 //     matrix write per part, and its bucket shadow-caster slot zeroed with a
 //     forced repack), never a batch rebuild;
@@ -15,7 +15,10 @@
 //   * a STUMP under every felled tree, on every graphics preset (a missing tree
 //     is world state, the fairness rule);
 //   * a REGROW: the tree's instances back, scaled up from a sapling;
-//   * one axe-hit cue per swing at the trunk while anyone in view chops it.
+//   * the fall's audio: a creak as the tree starts to go over and a crash as
+//     it lands, through the sink's gathering path (outdoor reverb, long range).
+// The axe strikes themselves are timed off each chopper's own swing clip by
+// gather_strike_audio.ts, the same path the pick strikes take.
 //
 // GPU work (src/render/CLAUDE.md "GPU work"): this module adds NO program.
 // The fall copies and the regrow reuse the batch's own geometry and material on
@@ -42,7 +45,6 @@ import type { SpatialAudioSink } from './audio_sink';
 import { disposeGhostHideGeometry, ghostHideGeometry } from './instanced_dither_fade';
 import {
   CHOP_SWING_SECONDS,
-  chopHitsBy,
   diffFelled,
   type FallPose,
   fallDirection,
@@ -57,9 +59,8 @@ import {
 } from './tree_felling_core';
 import type { TreeHideable } from './tree_hide_fade';
 
-/** The axe-hit and crash cues: existing manifest clips (no new audio). */
-const CHOP_HIT_SFX = 'ui_gather_wood';
-const CRASH_SFX = 'rift_boulder_impact';
+/** The creak rises from partway up the trunk, where the fibres tear. */
+const CREAK_HEIGHT = 2;
 /** Stump pool capacity per bark material. Past it a stump simply is not drawn
  *  (the tree is still hidden and still walkable: nothing actionable is lost). */
 const STUMP_POOL_CAP = 128;
@@ -106,12 +107,6 @@ interface Regrow {
   t: number;
 }
 
-interface Chopper {
-  treeId: number;
-  t: number;
-  hits: number;
-}
-
 const ZERO = new THREE.Matrix4().makeScale(0, 0, 0);
 const m = new THREE.Matrix4();
 const pivot = new THREE.Matrix4();
@@ -132,7 +127,6 @@ export class TreeFellingView {
   private pendingFalls = new Map<number, { yaw: number; at: number }>();
   private falls = new Map<number, Fall>();
   private regrows = new Map<number, Regrow>();
-  private choppers = new Map<number, Chopper>();
   private stumpPools = new Map<THREE.Material, StumpPool>();
   private stumpSlot = new Map<number, { pool: THREE.InstancedMesh; slot: number }>();
   private clock = 0;
@@ -143,10 +137,6 @@ export class TreeFellingView {
   handleEvent(ev: SimEvent): void {
     if (ev.type === 'treeFelled') {
       this.pendingFalls.set(ev.treeId, { yaw: ev.yaw, at: this.clock });
-    } else if (ev.type === 'castStart' && ev.chopTreeId !== undefined) {
-      this.choppers.set(ev.entityId, { treeId: ev.chopTreeId, t: 0, hits: 0 });
-    } else if (ev.type === 'castStop') {
-      this.choppers.delete(ev.entityId);
     }
   }
 
@@ -196,7 +186,6 @@ export class TreeFellingView {
       for (const id of diff.added) this.onFelled(id);
       for (const id of diff.removed) this.onRegrown(id);
     }
-    this.stepChoppers(dt, world.entities);
     for (const fall of this.falls.values()) this.stepFall(fall, dt);
     for (const regrow of this.regrows.values()) this.stepRegrow(regrow, dt);
     for (const [id, p] of this.pendingFalls) {
@@ -321,6 +310,9 @@ export class TreeFellingView {
       copies.push(copy);
     });
     this.falls.set(id, { id, t: 0, yaw, copies, base });
+    // The fibres let go as it starts to tip: the creak leads into the crash at
+    // impact (TREE_FALL_SECONDS later).
+    this.host.audio()?.gatherStrike?.('tree_creak', base.x, base.y + CREAK_HEIGHT, base.z, false);
   }
 
   private stepFall(fall: Fall, dt: number): void {
@@ -361,7 +353,7 @@ export class TreeFellingView {
     const mid = length * 0.5;
     const cx = fall.base.x + dir.x * mid;
     const cz = fall.base.z + dir.z * mid;
-    this.host.audio()?.playAt?.(CRASH_SFX, cx, this.host.ground(cx, cz), cz, { gain: 0.9 });
+    this.host.audio()?.gatherStrike?.('tree_crash', cx, this.host.ground(cx, cz), cz, false);
   }
 
   private endFall(fall: Fall): void {
@@ -381,29 +373,6 @@ export class TreeFellingView {
     const done = regrow.t >= TREE_REGROW_ANIM_SECONDS;
     this.restore(regrow.id, done ? 1 : scale);
     if (done) this.regrows.delete(regrow.id);
-  }
-
-  private stepChoppers(
-    dt: number,
-    entities: ReadonlyMap<number, { castingAbility: string | null }>,
-  ): void {
-    for (const [entityId, chop] of this.choppers) {
-      const e = entities.get(entityId);
-      if (!e || e.castingAbility !== TREE_CHOP_CAST_ID) {
-        this.choppers.delete(entityId);
-        continue;
-      }
-      chop.t += dt;
-      const hits = chopHitsBy(chop.t);
-      if (hits <= chop.hits) continue;
-      chop.hits = hits;
-      const handle = this.byId.get(chop.treeId);
-      if (!handle) continue;
-      const y = this.host.ground(handle.x, handle.z) + 1;
-      this.host
-        .audio()
-        ?.playAt?.(CHOP_HIT_SFX, handle.x, y, handle.z, { gain: 0.8, cooldown: 0.1 });
-    }
   }
 
   private placeStump(id: number, handle: TreeHideable): void {
@@ -477,14 +446,12 @@ export class TreeFellingView {
     falling: number;
     regrowing: number;
     stumps: number;
-    choppers: number;
   } {
     return {
       felled: this.shown.size,
       falling: this.falls.size,
       regrowing: this.regrows.size,
       stumps: this.stumpSlot.size,
-      choppers: this.choppers.size,
     };
   }
 }

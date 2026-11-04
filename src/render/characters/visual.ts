@@ -21,6 +21,7 @@ import { registerContextRestoreReset } from '../context_restore_registry';
 import type { EyeWardMarkerPlan } from '../eye_ward_marker_core';
 import { cyclePhase, type GaitCycle } from '../gait_footfall_core';
 import { gatherSwingClip } from '../gather_pose_core';
+import { contactPhase, type GatherSwingCycle, gatherSwingKindFor } from '../gather_strike_core';
 import { GFX } from '../gfx';
 import { cloneMaterialWithHooks } from '../material_clone_hooks';
 import type { MeleeImpactProfile } from '../melee_impact_core';
@@ -1409,6 +1410,9 @@ export class CharacterVisual {
   private leanFeed = 0;
   private leanRecoil = 0;
   private pendingDt = 0;
+  /** The last frame only banked time (advanceOffscreen): the pose is frozen, so
+   *  gatherSwingCycle reports no live swing and the strike audio coasts. */
+  private bankedOffscreen = false;
   private swimBlend = 0;
   // How far into the upright TREAD posture the body is, 0..1. Separate from
   // swimBlend because it eases between two swim poses rather than in and out of
@@ -1864,6 +1868,7 @@ export class CharacterVisual {
    *  edges still latch so the pose catches up when the entity nears. */
   update(dt: number, s: AnimState, animate: boolean, reducedMotion = false): void {
     this.clock += dt;
+    this.bankedOffscreen = false;
     if (this.currentIsOneShot && this.currentOneShotIsAttack && this.def.clips.combatIdle) {
       this.braceUntil = extendBrace(this.braceUntil, this.clock);
     }
@@ -2431,6 +2436,7 @@ export class CharacterVisual {
    * Actionable rigs never enter this path.
    */
   advanceOffscreen(dt: number): void {
+    this.bankedOffscreen = true;
     this.hitCooldown = Math.max(0, this.hitCooldown - dt);
     if (this.holdCooldown > 0) this.holdCooldown = Math.max(0, this.holdCooldown - dt);
     const stowTick = tickStow(this.stow, dt);
@@ -3261,6 +3267,25 @@ export class CharacterVisual {
     }
     out.gait = this.baseState;
     out.phase = cyclePhase(a.time, a.getClip().duration);
+  }
+
+  /** The gather swing driving this body right now, for per-strike tool audio
+   *  (gather_strike_core.ts): mining or chopping, the looping swing's phase, and
+   *  the phase its tool lands at (the clip's first ClipMap.contacts entry), or a
+   *  null kind while anything else owns the rig. Same caller-owned record
+   *  pattern as gaitCycle. */
+  gatherSwingCycle(out: GatherSwingCycle): void {
+    const a = this.current;
+    const kind = this.baseState === 'cast' ? gatherSwingKindFor(this.castingAbility) : null;
+    if (!a || !kind || this.currentIsOneShot || this.bankedOffscreen) {
+      out.kind = null;
+      return;
+    }
+    const clip = a.getClip();
+    out.kind = kind;
+    out.phase = cyclePhase(a.time, clip.duration);
+    out.contact = contactPhase(this.def.clips.contacts?.[clip.name]?.[0], clip.duration);
+    out.period = clip.duration / Math.max(1e-3, Math.abs(a.getEffectiveTimeScale()));
   }
 
   /** The summon gesture: the rider throws an arm up as a mount is called. A thin

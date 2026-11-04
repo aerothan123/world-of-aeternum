@@ -456,6 +456,7 @@ import { buildGardenFeatures, type GardenFeaturesView } from './garden_features'
 import { buildGateObject, gateObjectPlan, isStableObjectTransition } from './gate_objects';
 import { attachSceneGroupGated } from './gated_scene_attach';
 import { buildGatherNodes, type GatherNodesView, gatherBatchKeyMode } from './gather_nodes';
+import { GatherStrikeAudio } from './gather_strike_audio';
 import {
   GFX,
   type GfxBucketLevels,
@@ -2110,6 +2111,7 @@ export class Renderer {
     puff: (x, y, z, power) => emitGroundPuff(this.vfx, this.surfaceAtForPuff, x, y, z, power),
     audio: () => this.audioSink,
   });
+  private readonly gatherStrikes = new GatherStrikeAudio(() => this.audioSink);
 
   private lowGfx: boolean;
   private post: PostPipeline | null = null;
@@ -10921,6 +10923,7 @@ export class Renderer {
       }
       if (runCharacterPresentation) active.update(dt, st, animate, this.reducedMotion());
       else active.advanceOffscreen(dt);
+      this.gatherStrikes.observe(this.frameIdx, dt, e.id, active, st, d2, ax, ay, az, isSelf);
       // Weapon-skin VFX ride the humanoid rig's held weapon. Hidden cosmetic
       // rigs skip their uniform writes until they return to view; the visible
       // ones shed with camera distance and the frame-budget governor's vfx

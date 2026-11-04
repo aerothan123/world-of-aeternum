@@ -1303,6 +1303,8 @@ const RENDER_PURE_CORES = [
   'src/render/stride_audio_core.ts',
   // the foot-plant detector footsteps fire from (the gait clip's phase, renderer.ts)
   'src/render/gait_footfall_core.ts',
+  // the gather-swing contact detector tool strikes fire from (gather_strike_audio.ts)
+  'src/render/gather_strike_core.ts',
   'src/render/town_reveal_core.ts',
   'src/render/foliage_bucket_reveal_core.ts',
   'src/render/foliage_prewarm_twins_core.ts',
