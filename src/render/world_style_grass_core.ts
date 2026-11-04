@@ -102,11 +102,11 @@ export const PAINTED_BLOOM = {
   /** Patch field frequencies (per yard): drifts a few yards across. */
   patchFreq: [0.41, 0.37, 0.13, 0.11] as const,
   /** Patch field value above which a drift blooms. */
-  patchCut: 0.72,
+  patchCut: 0.66,
   /** Share of clumps inside a drift that carry heads. */
-  clumpShare: 0.85,
+  clumpShare: 0.9,
   /** Blade height (0 root, 1 tip) where a head starts. */
-  headLo: 0.6,
+  headLo: 0.5,
   /** Pale heart at the very tip of a head. */
   heartLo: 0.93,
   heartColor: [0.98, 0.9, 0.55] as Rgb,

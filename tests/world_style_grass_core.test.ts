@@ -111,7 +111,7 @@ describe('painted flower drifts', () => {
       }
     const share = blooming / n;
     expect(share).toBeGreaterThan(0.01);
-    expect(share).toBeLessThan(0.15);
+    expect(share).toBeLessThan(0.3);
     expect(paintedBloomPick(PAINTED_BLOOM.patchCut - 0.01, 0, 0.5)).toBe(0);
     expect(paintedBloomPick(0.95, PAINTED_BLOOM.clumpShare + 0.01, 0.5)).toBe(0);
     expect(paintedBloomPick(0.95, 0.1, 0)).toBe(1);
