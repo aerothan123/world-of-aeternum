@@ -1,5 +1,6 @@
 // The world trees' camera-occluder fade, lifted out of foliage.ts: the
-// hideable records, the eye-to-camera hit test against a tree's trunk circle,
+// hideable records, the eye-to-camera hit test against a tree's trunk circle
+// and its crown,
 // the per-frame ghosting of its instances through the pool's arm (pooled
 // stand-ins behind the gated fade, occluder_fade_gate.ts, or the per-instance
 // dither, instanced_dither_fade.ts), and the ghost sources the boot prewarm
@@ -41,6 +42,126 @@ export interface TreeHideable {
    *  slot's packed source matrix and forces a repack so a stump casts no
    *  standing tree's shadow. */
   shadows: TreeShadowSlot[];
+  /** The crown the camera boom must not draw inside of, derived once from
+   *  the leaf parts (treeCrownOf); null for a bare tree, unset until the
+   *  index first sees the tree. */
+  crown?: TreeCrown | null;
+  /** How far from (x, z) the tree can occlude: the trunk radius, or the
+   *  crown's far edge. The spatial index grows its segment query by it. */
+  reach?: number;
+}
+
+/** A crown as the fade tests it: a vertical cylinder, inset from the leaf
+ *  bounds so a boom that only grazes the outer leaves keeps the tree. */
+export interface TreeCrown {
+  x: number;
+  z: number;
+  r: number;
+  bottomY: number;
+  topY: number;
+}
+
+/** Fraction of the leaf bounds' mean half extent the crown cylinder keeps. */
+export const CROWN_FADE_INSET = 0.8;
+
+const LEAF_PART = /^(Leaves|Flowers)/;
+
+/**
+ * The crown cylinder of a tree in world space: the union of its leaf parts'
+ * geometry bounds under each part's instance matrix. A storybook crown is
+ * broad and starts low (a fitted oak's leaves begin near a third of its
+ * height, the kit's near two thirds), so a chase camera that a trunk-only
+ * test never fades for sits inside the canopy and the whole view turns to
+ * leaves. Null when the tree has no leaf part (a dead tree) or no bounds.
+ */
+export function treeCrownOf(t: Pick<TreeHideable, 'parts'>): TreeCrown | null {
+  const min = [Infinity, Infinity, Infinity];
+  const max = [-Infinity, -Infinity, -Infinity];
+  for (const part of t.parts) {
+    const mesh = part.mesh as Partial<THREE.InstancedMesh> | undefined;
+    const mat = mesh?.material;
+    const material = Array.isArray(mat) ? mat[0] : mat;
+    const geometry = mesh?.geometry;
+    const e = part.visibleMatrix?.elements;
+    if (!material || !LEAF_PART.test(material.name) || !geometry || !e) continue;
+    if (!geometry.boundingBox) geometry.computeBoundingBox();
+    const box = geometry.boundingBox;
+    if (!box) continue;
+    for (let c = 0; c < 8; c++) {
+      const x = c & 1 ? box.max.x : box.min.x;
+      const y = c & 2 ? box.max.y : box.min.y;
+      const z = c & 4 ? box.max.z : box.min.z;
+      const w = [
+        e[0] * x + e[4] * y + e[8] * z + e[12],
+        e[1] * x + e[5] * y + e[9] * z + e[13],
+        e[2] * x + e[6] * y + e[10] * z + e[14],
+      ];
+      for (let k = 0; k < 3; k++) {
+        if (w[k] < min[k]) min[k] = w[k];
+        if (w[k] > max[k]) max[k] = w[k];
+      }
+    }
+  }
+  if (!(max[0] > min[0])) return null;
+  return {
+    x: (min[0] + max[0]) / 2,
+    z: (min[2] + max[2]) / 2,
+    r: (CROWN_FADE_INSET * (max[0] - min[0] + (max[2] - min[2]))) / 4,
+    bottomY: min[1],
+    topY: max[1],
+  };
+}
+
+/** Derive a tree's crown and reach once (the index reads the reach). */
+export function prepareTreeCrown(t: TreeHideable): void {
+  if (t.reach !== undefined) return;
+  t.crown = treeCrownOf(t);
+  const c = t.crown;
+  t.reach = c ? Math.max(t.r, Math.hypot(c.x - t.x, c.z - t.z) + c.r) : t.r;
+}
+
+/** The [t0, t1] stretch of the segment from a to b whose xz lies inside the
+ *  circle, clamped to the segment; null when it never enters. */
+function segmentCircleSpan(
+  ax: number,
+  az: number,
+  bx: number,
+  bz: number,
+  cx: number,
+  cz: number,
+  r: number,
+): [number, number] | null {
+  const dx = bx - ax,
+    dz = bz - az;
+  const fx = ax - cx,
+    fz = az - cz;
+  const a = dx * dx + dz * dz;
+  const c0 = fx * fx + fz * fz - r * r;
+  if (a < 1e-12) return c0 < 0 ? [0, 1] : null;
+  const b = 2 * (fx * dx + fz * dz);
+  const disc = b * b - 4 * a * c0;
+  if (disc < 0) return null;
+  const q = Math.sqrt(disc);
+  const t0 = Math.max(0, (-b - q) / (2 * a));
+  const t1 = Math.min(1, (-b + q) / (2 * a));
+  return t0 <= t1 ? [t0, t1] : null;
+}
+
+/** Whether the eye-to-camera segment runs through the crown cylinder. */
+export function cameraSegmentHitsCrown(
+  c: TreeCrown,
+  eyeX: number,
+  eyeY: number,
+  eyeZ: number,
+  camX: number,
+  camY: number,
+  camZ: number,
+): boolean {
+  const span = segmentCircleSpan(eyeX, eyeZ, camX, camZ, c.x, c.z, c.r);
+  if (!span) return false;
+  const y0 = eyeY + (camY - eyeY) * span[0];
+  const y1 = eyeY + (camY - eyeY) * span[1];
+  return Math.max(y0, y1) >= c.bottomY && Math.min(y0, y1) <= c.topY;
 }
 
 /** One tree's slot in a shadow-caster row: the row's packed source matrices
@@ -90,6 +211,7 @@ export function cameraSegmentHitsTree(
 ): boolean {
   // The editor's viewport turns every camera fade off (occluder_fade_core).
   if (occluderFadesDisabled()) return false;
+  if (t.crown && cameraSegmentHitsCrown(t.crown, eyeX, eyeY, eyeZ, camX, camY, camZ)) return true;
   if (
     (eyeY < t.topY && pointInsideTree(t, eyeX, eyeZ)) ||
     (camY < t.topY && pointInsideTree(t, camX, camZ))
@@ -148,6 +270,7 @@ const indexes = new WeakMap<TreeHideable[], TreeHideIndex>();
 function indexFor(trees: TreeHideable[]): TreeHideIndex {
   let index = indexes.get(trees);
   if (!index || index.count !== trees.length) {
+    for (const t of trees) prepareTreeCrown(t);
     index = new TreeHideIndex(trees, undefined, index?.active ?? []);
     indexes.set(trees, index);
   }
