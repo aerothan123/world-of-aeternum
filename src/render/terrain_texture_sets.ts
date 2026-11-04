@@ -143,6 +143,44 @@ export const TERRAIN_TEXTURE_SETS: readonly TerrainTextureSet[] = [
   { key: 'Ground120', name: 'Terracotta Earth', color: 0x5e2b21, maps: ALL4, paintDefault: true },
   { key: 'Ground121', name: 'Duskloam', color: 0x41375c, maps: ALL4, paintDefault: true },
   { key: 'Ground122', name: 'Azurite Gravel', color: 0x394b98, maps: ALL4, paintDefault: true },
+  // Painted storybook grounds (2026-11-04): project-generated Tripo text-to-
+  // image paintings made seamless, shading-flattened and given derived
+  // normal, roughness and AO maps by scripts/assets/build_painted_ground.mjs.
+  // World Style Refined draws them on the overworld splat
+  // (world_style_ground_core.ts); here they are paint swatches like any set.
+  {
+    key: 'PaintedMeadow',
+    name: 'Storybook Meadow',
+    color: 0x909b3e,
+    maps: ALL4,
+    paintDefault: true,
+  },
+  {
+    key: 'PaintedDryGrass',
+    name: 'Storybook Straw',
+    color: 0xcda456,
+    maps: ALL4,
+    paintDefault: true,
+  },
+  { key: 'PaintedDirt', name: 'Storybook Path', color: 0xbd7d3d, maps: ALL4, paintDefault: true },
+  {
+    key: 'PaintedCobble',
+    name: 'Storybook Cobbles',
+    color: 0x918468,
+    maps: ALL4,
+    paintDefault: true,
+    material: { group: 'paving' },
+  },
+  { key: 'PaintedSand', name: 'Storybook Sand', color: 0xefc28a, maps: ALL4, paintDefault: true },
+  { key: 'PaintedCliff', name: 'Storybook Slate', color: 0xa0a194, maps: ALL4, paintDefault: true },
+  {
+    key: 'PaintedForestFloor',
+    name: 'Storybook Leaf Litter',
+    color: 0x473922,
+    maps: ALL4,
+    paintDefault: true,
+  },
+  { key: 'PaintedMoss', name: 'Storybook Moss', color: 0x7f9232, maps: ALL4, paintDefault: true },
   // ---- Object materials for the Build tool (CC0 from ambientCG.com, 1K,
   // converted like the Yoge sets: 1024 JPEG q85, GL normals). Not paint
   // swatches: they exist for built models (stairs, walls, props) through the

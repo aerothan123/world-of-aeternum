@@ -349,6 +349,15 @@ describe('terrain texture set registry', () => {
       'Ground120',
       'Ground121',
       'Ground122',
+      // Painted storybook grounds (2026-11-04), the World Style Refined layers.
+      'PaintedMeadow',
+      'PaintedDryGrass',
+      'PaintedDirt',
+      'PaintedCobble',
+      'PaintedSand',
+      'PaintedCliff',
+      'PaintedForestFloor',
+      'PaintedMoss',
     ]);
     for (const key of defaults) {
       expect(terrainTexturePath(key, 'color')).toBe(`textures/terrain/${key}_Color.jpg`);
