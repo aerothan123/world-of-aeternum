@@ -672,17 +672,20 @@ export function remapUvsToAtlasCell(uvs, index, layout, inset = 0) {
 // leaf albedo grade
 
 /**
- * Mean linear albedo of the kit leaf sheets each leaf material name was
- * calibrated against. The renderer multiplies a leaf map by a per-species
- * lift and a per-biome tint (src/render/foliage.ts, measured there for the
- * oak sheet over the texels its alpha test keeps), so a brighter, yellower
- * storybook sheet comes out amber; the fit grades the leaf texels onto these
- * means and keeps the painted variation around them.
+ * Mean linear albedo each kind's leaf texels are graded onto. The renderer
+ * multiplies a leaf map by a per-species lift and a per-biome tint
+ * (src/render/foliage.ts), calibrated on the old kit sheets: the oak value
+ * is the one measured there over the texels its alpha test keeps, the pine
+ * sheet is darker, and the dressing tint carries a ground-keyed gain for a
+ * dark kit albedo, so the bushes sit between the two. Without the grade a
+ * brighter, yellower storybook sheet comes out amber; with it the painted
+ * variation stays around these means.
  */
 export const LEAF_ALBEDO_TARGETS = Object.freeze({
-  Leaves_NormalTree: Object.freeze([0.099, 0.197, 0.012]),
-  Leaves_TwistedTree: Object.freeze([0.099, 0.197, 0.012]),
-  Leaves_Pine: Object.freeze([0.06, 0.12, 0.01]),
+  broadleaf: Object.freeze([0.099, 0.197, 0.012]),
+  conifer: Object.freeze([0.06, 0.12, 0.01]),
+  bush: Object.freeze([0.07, 0.15, 0.012]),
+  flowering_bush: Object.freeze([0.07, 0.15, 0.012]),
 });
 /** Clamp on the per-channel linear gain of the leaf grade. */
 export const LEAF_GRADE_GAIN = Object.freeze([0.15, 1.6]);

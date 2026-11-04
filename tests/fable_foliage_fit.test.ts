@@ -215,7 +215,7 @@ describe('fable foliage fit core', () => {
       height: 2,
       channels: 3,
     };
-    const target = LEAF_ALBEDO_TARGETS.Leaves_NormalTree;
+    const target = LEAF_ALBEDO_TARGETS.broadleaf;
     const gains = leafGradeGains(image, mask, target);
     const graded = applyLeafGrade(image, mask, gains);
     // the leaf texels turn green, the bark texels keep their colour

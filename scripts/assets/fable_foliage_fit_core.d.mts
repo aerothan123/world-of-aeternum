@@ -160,7 +160,9 @@ export function remapUvsToAtlasCell(
   inset?: number,
 ): Float32Array;
 
-export const LEAF_ALBEDO_TARGETS: Readonly<Record<string, readonly [number, number, number]>>;
+export const LEAF_ALBEDO_TARGETS: Readonly<
+  Partial<Record<FableKind, readonly [number, number, number]>>
+>;
 export const LEAF_GRADE_GAIN: readonly [number, number];
 export function rasterizeUvMask(
   indices: ArrayLike<number>,

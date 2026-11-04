@@ -335,7 +335,7 @@ for (const target of targets) {
   }
   // Grade the leaf texels onto the kit sheet the renderer's tints expect.
   let webp = sources.get(target.name).webp;
-  const leafTarget = LEAF_ALBEDO_TARGETS[materials.leaf];
+  const leafTarget = LEAF_ALBEDO_TARGETS[target.kind];
   if (leafTarget && target.kind !== 'rock') {
     const leafLabel = target.kind === 'flowering_bush' ? 0 : 1;
     const triMask = new Uint8Array(geo.indices.length / 3).map((_, t) =>
