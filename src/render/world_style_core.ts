@@ -19,6 +19,7 @@
 // lowers exposure and never drops saturation below REFINED_GRADE_MIN_SAT.
 
 import type { GfxTier } from './gfx';
+import { REFINED_EXTRA_LAYER_FILES } from './world_style_ground_core';
 
 export type WorldStyle = 'classic' | 'refined';
 
@@ -93,11 +94,9 @@ export function refinedTerrainProfileKey(p: RefinedTerrainProfile): string {
 }
 
 /** The extra albedo layers Refined appends to the packed splat array (after
- *  the six Classic layers, so every Classic WOC_L_* index is unchanged). */
-export const REFINED_ALBEDO_LAYER_FILES = {
-  grassVariantC: 'Grass004_Color.jpg',
-  gravelC: 'Gravel024_Color.jpg',
-} as const;
+ *  the six Classic layers, so every Classic WOC_L_* index is unchanged); the
+ *  painted-ground roster behind them is world_style_ground_core.ts. */
+export const REFINED_ALBEDO_LAYER_FILES = REFINED_EXTRA_LAYER_FILES;
 export const REFINED_LAYER_GRASS_B = 6;
 export const REFINED_LAYER_GRAVEL = 7;
 
@@ -109,11 +108,13 @@ export const REFINED_BLEND = {
   variantHi: 0.66,
   /** Most of a meadow the dry variant may own. */
   variantMax: 0.62,
-  /** Gravel weight on the dirt layer: path shoulders take most of it. */
-  gravelEdge: 0.55,
-  gravelCore: 0.1,
-  gravelNoise: 0.25,
-  gravelMax: 0.6,
+  /** Gravel weight on the dirt layer: path shoulders take most of it. Kept
+   *  light: the painted path set carries its own pebbles, and the gravel
+   *  photo only roughens the worn margin. */
+  gravelEdge: 0.3,
+  gravelCore: 0.05,
+  gravelNoise: 0.12,
+  gravelMax: 0.35,
   /** Steep faces (normal y under hi, full at lo) turn to rock. */
   steepHi: 0.74,
   steepLo: 0.5,
@@ -184,8 +185,10 @@ export function refinedBlendWeights(i: RefinedBlendInput): RefinedBlendWeights {
 /** The warm painterly ground palette: a per-channel balance and a mild
  *  saturation pull, applied to the composed albedo (both GLSL arms read it). */
 export const REFINED_PALETTE = {
-  balance: [1.045, 1.0, 0.9] as const,
-  saturation: 0.9,
+  // Gentle: the painted sets already carry warm earth, so a strong warm
+  // balance on top double-warmed paths and sand toward orange.
+  balance: [1.03, 1.0, 0.93] as const,
+  saturation: 0.88,
   /** Dry meadow tint the grass variant carries (straw gold over green). */
   dryGrass: [1.1, 1.0, 0.72] as const,
   /** Gravel tint toward the trail's earth tone. */
@@ -201,16 +204,16 @@ export const REFINED_PALETTE = {
  *  detail toward a luminance pivot, so the ground reads painted, not photo. */
 export const REFINED_EARTH = {
   grass: [1.03, 1.02, 0.86] as const,
-  dirt: [1.03, 1.03, 0.93] as const,
+  dirt: [0.99, 0.99, 0.97] as const,
   sand: [1.0, 1.0, 1.0] as const,
   rock: [1.02, 0.99, 1.02] as const,
   /** Worn grassy margin of a trail: share of the shoulder that greens over. */
   pathGreen: 0.42,
   /** The olive the trail margin greens toward (times its own luminance). */
   pathGreenTint: [0.96, 1.08, 0.56] as const,
-  /** Detail contrast kept on the photo-textured earth (dirt and rock; 1 the
-   *  photo as authored). Grass and sand are already painted layers. */
-  soften: 0.86,
+  /** Detail contrast kept on the dirt and rock layers (1 as authored). The
+   *  painted sets ARE the painterly detail now, so they keep nearly all of it. */
+  soften: 0.97,
   /** Luminance pivot the soften pull converges on (linear albedo, near the
    *  mean of the dirt and rock photos so the layer keeps its brightness). */
   softenPivot: 0.36,

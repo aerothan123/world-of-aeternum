@@ -1,0 +1,98 @@
+{
+  "comment": "Painted storybook ground sets for the World Style Refined terrain (scripts/assets/build_painted_ground.mjs). Sources are Tripo text-to-image PNGs kept maintainer-local under srcDir (not checked in); sha256 pins the exact inputs the shipped maps were built from. Each set is sat on a target mean near the shipped photo it replaces (so the biome tints colour it the same way) with its stroke contrast raised; structured sets tile by a seam cut.",
+  "srcDir": "tmp/asset_src/painted_ground",
+  "outDir": "public/textures/terrain",
+  "size": 1024,
+  "items": [
+    {
+      "src": "meadow_grass.png",
+      "key": "PaintedMeadow",
+      "sha256": "0f7f3ec09f3111ab6d31a1f5a55be4875d70d4feaca4990de522c64c390df46d",
+      "opts": {
+        "normalStrength": 5,
+        "tileSeam": true,
+        "targetMean": [74, 98, 42],
+        "contrast": 1.25
+      }
+    },
+    {
+      "src": "dry_grass.png",
+      "key": "PaintedDryGrass",
+      "sha256": "2d497c319fc95c027f3da80967e3a6dc9dcb69a7e6acec6dd99de40e44d0502e",
+      "opts": {
+        "normalStrength": 5,
+        "tileSeam": true,
+        "contrast": 1.1
+      }
+    },
+    {
+      "src": "dirt_path.png",
+      "key": "PaintedDirt",
+      "sha256": "04d237c45aff1c5e107a6668c37f3d6c42155c411fd8f0dfff95364564366a58",
+      "opts": {
+        "crop": 0.5,
+        "flattenRadius": 200,
+        "normalStrength": 5,
+        "tileSeam": true,
+        "targetMean": [112, 94, 74],
+        "contrast": 1.8
+      }
+    },
+    {
+      "src": "cobblestone.png",
+      "key": "PaintedCobble",
+      "sha256": "c421b307a8af3b1010dbce3bac8cb3c6a93b7c7639448a44312046d530dfdc4e",
+      "opts": {
+        "tileBand": 0.14,
+        "tileSeam": true,
+        "normalStrength": 7,
+        "aoGain": 3.2,
+        "targetMean": [132, 128, 118]
+      }
+    },
+    {
+      "src": "beach_sand.png",
+      "key": "PaintedSand",
+      "sha256": "fee77a3bc9580b271fa4aabdbbe273e5b69149584cae7f1366b2c0481e2d082f",
+      "opts": {
+        "normalStrength": 4,
+        "targetMean": [214, 198, 164],
+        "contrast": 1.4
+      }
+    },
+    {
+      "src": "cliff_rock.png",
+      "key": "PaintedCliff",
+      "sha256": "a2e8d1e5102bf4d5bbbcc0645d464308e21a9df7cb227d6d071881e19770968f",
+      "opts": {
+        "tileBand": 0.16,
+        "tileSeam": true,
+        "normalStrength": 7,
+        "aoGain": 3.2,
+        "targetMean": [160, 158, 150]
+      }
+    },
+    {
+      "src": "forest_floor.png",
+      "key": "PaintedForestFloor",
+      "sha256": "6cd66ebfb1261079dc1300df83f0e901738ad95d486b60a076e910e1e27e9d84",
+      "opts": {
+        "crop": 0.75,
+        "normalStrength": 6,
+        "tileSeam": true,
+        "targetMean": [80, 64, 44],
+        "contrast": 1.1
+      }
+    },
+    {
+      "src": "mossy_ground.png",
+      "key": "PaintedMoss",
+      "sha256": "b6bf5d685a2542c6ab2af30d612166ad147a645f9957a74e369a7d4da0da3ab8",
+      "opts": {
+        "normalStrength": 6,
+        "tileSeam": true,
+        "targetMean": [92, 112, 50]
+      }
+    }
+  ]
+}

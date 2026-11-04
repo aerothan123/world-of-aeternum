@@ -18,6 +18,12 @@ import {
   REFINED_PALETTE,
   type RefinedTerrainProfile,
 } from './world_style_core';
+import {
+  REFINED_GROUND,
+  REFINED_LAYER_COBBLE,
+  REFINED_LAYER_FOREST,
+  REFINED_LAYER_MOSS,
+} from './world_style_ground_core';
 
 const f = (n: number): string => {
   const s = n.toFixed(5);
@@ -68,13 +74,102 @@ function aerialGlsl(pos: string, heightAware: boolean): string {
         #include <fog_fragment>`;
 }
 
-/** The Refined splat ground: variant grass, gravel, steep rock, shore mud,
- *  distance breakup and the palette, folded into the composed `alb` right
- *  before the snow mix. Mirrors refinedBlendWeights. */
-export function refinedSplatGlsl(p: RefinedTerrainProfile): string {
+/** What the splat builder tells the Refined arm about its own composite. */
+export interface RefinedSplatComposite {
+  /** The GLSL expression of the grass layer's share of `alb` (before the
+   *  layer weight) when the grass layer is the baked blade artwork, so the
+   *  painted meadow can replace exactly that share; null on the photo arm,
+   *  where the grass layer already IS the painted meadow photo. */
+  readonly bakedGrassTerm: string | null;
+}
+
+/** Uniforms the Refined splat arm reads (values set by the splat builder). */
+const GROUND_DECLARATIONS = `
+        uniform vec3 uWsMeadowMean; // linear mean of the painted meadow layer
+        uniform vec3 uWsGrassTone;  // the baked grass layer's mean share of alb
+        uniform vec3 uWsSandMean;   // linear mean of the painted sand layer`;
+
+/** The painted storybook ground (world_style_ground_core.ts): the painted
+ *  meadow over the baked blades, forest floor, town paving, wet moss and
+ *  the painted dune ripples. Mirrors refinedGroundWeights. */
+function paintedGroundGlsl(c: RefinedSplatComposite): {
+  meadow: string;
+  forestMoss: string;
+  paving: string;
+  sand: string;
+} {
+  const g = REFINED_GROUND;
+  const lumaW = 'vec3(0.2126, 0.7152, 0.0722)';
+  const open = '(1.0 - clamp(vExtra.y, 0.0, 1.0))';
+  return {
+    meadow: c.bakedGrassTerm
+      ? `if ( wocHasGrass && wocHW.x > 0.01 ) {
+            // Painted meadow over the baked blades: the painted tufts' detail
+            // ratio (mostly luminance, part hue) on the biome's own grass tone.
+            vec3 wocWsMa = WOC_ALB(vec2(-tuv.y, tuv.x) * ${f(g.meadowScale)} + vec2(0.13, 0.71), WOC_L_GRASS);
+            vec3 wocWsMq = wocWsMa / max(uWsMeadowMean, vec3(1e-3));
+            float wocWsMl = dot(wocWsMa, ${lumaW}) / max(dot(uWsMeadowMean, ${lumaW}), 1e-3);
+            vec3 wocWsMr = clamp(mix(vec3(wocWsMl), wocWsMq, ${f(g.meadowChroma)}),
+              vec3(${f(g.meadowRatioLo)}), vec3(${f(g.meadowRatioHi)}));
+            vec3 wocWsMeadow = uWsGrassTone * vtint * wocWsMr;
+            alb += wocHW.x * (wocWsMeadow - (${c.bakedGrassTerm})) * ${f(g.meadowReplace)};
+          }`
+      : '',
+    forestMoss: `if ( wocHasGrass && wocHW.x > 0.01 ) {
+            // Forest floor on dark-tinted turf (the woodland realms, the
+            // deepest lush patches): painted leaf litter and roots.
+            float wocWsFoW = wocHW.x * smoothstep(${f(g.forestLumaHi)}, ${f(g.forestLumaLo)},
+              dot(vColor.rgb, ${lumaW})) * ${f(g.forestMax)}
+              * (${f(g.forestFloorNoise)} + ${f(1 - g.forestFloorNoise)} * wocWsVar) * ${open};
+            if ( wocWsFoW > 0.002 ) {
+              vec3 wocWsFo = WOC_ALB(tuv * ${f(g.forestScale)} + vec2(0.61, 0.33), ${f(REFINED_LAYER_FOREST)})
+                * ${f(g.forestGain)} * wocWsTint;
+              alb = mix(alb, wocWsFo, wocWsFoW);
+            }
+            // Wet moss on marsh turf and the band just above the waterline,
+            // on the LOW end of the variant noise (the dry patches own the high).
+            float wocWsMoS = 1.0 - smoothstep(${f(WATER_LEVEL + 0.25)}, ${f(WATER_LEVEL + 2.6)}, vWPos.y);
+            float wocWsMoW = wocHW.x * max(clamp(vExtra.x, 0.0, 1.0) * ${f(g.mossMarsh)}, wocWsMoS * ${f(g.mossShore)})
+              * smoothstep(${f(g.mossNoiseHi)}, ${f(g.mossNoiseLo)}, wocWsVar) * ${open};
+            if ( wocWsMoW > 0.002 ) {
+              vec3 wocWsMo = WOC_ALB(vec2(tuv.y, -tuv.x) * ${f(g.mossScale)} + vec2(0.27, 0.58), ${f(REFINED_LAYER_MOSS)})
+                * ${f(g.mossGain)} * wocWsTint;
+              alb = mix(alb, wocWsMo, wocWsMoW);
+            }
+          }`,
+    paving: `if ( wocHasRock && wocHW.z > 0.01 ) {
+            // Town paving: rock weight on near-flat ground is laid stone (a
+            // cliff is never flat), painted cobbles in the road's own tint.
+            float wocWsPvW = wocHW.z * smoothstep(${f(g.pavingFlatLo)}, ${f(g.pavingFlatHi)}, an.y)
+              * ${f(g.pavingMax)} * ${open};
+            if ( wocWsPvW > 0.002 ) {
+              vec3 wocWsPv = WOC_ALB(tuv * ${f(g.pavingScale)} + vec2(0.07, 0.45), ${f(REFINED_LAYER_COBBLE)})
+                * ${f(g.pavingGain)} * wocWsTint;
+              alb = mix(alb, wocWsPv, wocWsPvW);
+            }
+          }`,
+    sand: `if ( wocHasSand && wocHW.w > 0.01 ) {
+            // Painted dune ripples: the painted sand's LUMINANCE ratio over
+            // the palette sand tone, so the beach keeps the palette's cream.
+            float wocWsSr = clamp(dot(WOC_ALB(tuv * ${f(g.sandScale)} + vec2(0.4, 0.2), WOC_L_SAND), ${lumaW})
+              / max(dot(uWsSandMean, ${lumaW}), 1e-3), 0.6, 1.5);
+            alb += sandAlb * wocHW.w * (wocWsSr - 1.0) * ${f(g.sandRipple)};
+          }`,
+  };
+}
+
+/** The Refined splat ground: the painted meadow, variant grass, forest floor
+ *  and moss, gravel, steep rock, paving, shore mud, sand ripples, distance
+ *  breakup and the palette, folded into the composed `alb` right before the
+ *  snow mix. Mirrors refinedBlendWeights and refinedGroundWeights. */
+export function refinedSplatGlsl(
+  p: RefinedTerrainProfile,
+  composite: RefinedSplatComposite = { bakedGrassTerm: null },
+): string {
   const b = REFINED_BLEND;
   const e = REFINED_EARTH;
   const lumaW = 'vec3(0.2126, 0.7152, 0.0722)';
+  const painted = paintedGroundGlsl(composite);
   return `
         // ---- World Style Refined (world_style_glsl.ts) ----
         {
@@ -85,17 +180,24 @@ export function refinedSplatGlsl(p: RefinedTerrainProfile): string {
               ? 'mix(texture2D(uMacro, vWPos.xz * 0.021 + vec2(0.31, 0.77)).r, texture2D(uMacro, vWPos.xz * 0.083 + vec2(0.57, 0.13)).r, 0.3)'
               : 'macro2'
           };
+          if ( uWsLayers > 0.5 ) {
+          ${painted.meadow}
+          }
           if ( uWsLayers > 0.5 && wocHasGrass && wocHW.x > 0.01 ) {
-            // Dry meadow variant: the Grass004 photo as a luminance DETAIL
-            // ratio over the matched Classic grass tone, tinted straw gold.
+            // Dry meadow variant: the painted dry grass as a per-channel
+            // DETAIL ratio over the matched grass tone, tinted straw gold, so
+            // its gold tufts and green gaps paint the patch, not one tone.
             float wocWsVarW = wocHW.x * smoothstep(${f(b.variantLo)}, ${f(b.variantHi)}, wocWsVar) * ${f(b.variantMax)};
             if ( wocWsVarW > 0.002 ) {
               vec2 wocWsGuv = vec2(tuv.y, -tuv.x) * 0.8 + 0.19;
-              float wocWsGl = dot(WOC_ALB(wocWsGuv, ${f(REFINED_LAYER_GRASS_B)}), ${lumaW});
-              float wocWsGm = dot(textureLod(uAlb, vec3(wocWsGuv, ${f(REFINED_LAYER_GRASS_B)}), 12.0).rgb, ${lumaW});
-              float wocWsGd = clamp(wocWsGl / max(wocWsGm, 1e-3), 0.6, 1.45);
+              vec3 wocWsGd = clamp(WOC_ALB(wocWsGuv, ${f(REFINED_LAYER_GRASS_B)})
+                / max(textureLod(uAlb, vec3(wocWsGuv, ${f(REFINED_LAYER_GRASS_B)}), 12.0).rgb, vec3(1e-3)),
+                vec3(0.55), vec3(1.6));
               alb = mix(alb, alb * ${v3(REFINED_PALETTE.dryGrass)} * wocWsGd, wocWsVarW);
             }
+          }
+          if ( uWsLayers > 0.5 ) {
+          ${painted.forestMoss}
           }
           if ( uWsLayers > 0.5 && wocHasDirt && wocHW.y > 0.01 ) {
             float wocWsGrN = ${p.noiseTaps ? 'texture2D(uMacro, vWPos.xz * 0.19 + vec2(0.71, 0.29)).r' : '0.5'};
@@ -120,6 +222,10 @@ export function refinedSplatGlsl(p: RefinedTerrainProfile): string {
             alb = mix(alb, rockAlb * wocWsTint, wocWsSt);
           }`
               : ''
+          }
+          if ( uWsLayers > 0.5 ) {
+          ${painted.paving}
+          ${painted.sand}
           }
           // Damp band just above the waterline: darker, warmer soil under the
           // turf (with the mud photo on the rich tiers).
@@ -166,18 +272,19 @@ export function refinedSplatGlsl(p: RefinedTerrainProfile): string {
 export function patchRefinedSplatShader(
   sh: { fragmentShader: string },
   p: RefinedTerrainProfile,
+  composite: RefinedSplatComposite = { bakedGrassTerm: null },
 ): void {
   let frag = replaceOnce(
     sh.fragmentShader,
     '#include <common>',
-    `#include <common>${WORLD_STYLE_SURFACE_DECLARATIONS}
+    `#include <common>${WORLD_STYLE_SURFACE_DECLARATIONS}${GROUND_DECLARATIONS}
         uniform float uWsLayers;${PALETTE_GLSL}`,
     'splat common',
   );
   frag = replaceOnce(
     frag,
     '        // snow cover on the peaks/rim, by baked per-vertex weight',
-    refinedSplatGlsl(p),
+    refinedSplatGlsl(p, composite),
     'splat snow',
   );
   frag = replaceOnce(

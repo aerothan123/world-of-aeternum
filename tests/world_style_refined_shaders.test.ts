@@ -112,7 +112,10 @@ describe('Refined splat terrain', () => {
 // Static tap budget: the texture fetches each Refined arm adds over Classic
 // (the WOC_ALB macro and textureLod/texture2D calls in the composed fragment).
 // Several sit behind a weight branch, so this is the worst case per pixel.
-const REFINED_TAP_BUDGET: Record<string, number> = { medium: 4, high: 8, insane: 8 };
+// The painted ground (world_style_ground_core.ts) adds up to six: two painted
+// meadow octaves on the baked-grass arm, then forest floor, wet moss, paving
+// and dune ripples, each behind its own weight branch.
+const REFINED_TAP_BUDGET: Record<string, number> = { medium: 10, high: 14, insane: 14 };
 const taps = (src: string): number =>
   (src.match(/\bWOC_ALB\s*\(|\btexture2D\s*\(|\btextureLod\s*\(|\btexture\s*\(/g) ?? []).length;
 
