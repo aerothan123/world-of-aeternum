@@ -164,7 +164,8 @@ describe('leaf atlas uv patch', () => {
     expect(canopy).not.toBeNull();
     const mat = canopy?.mesh.material as THREE.Material;
     // The stub carries the include markers and the varyings three would have
-    // declared for the slots this material fills.
+    // declared for the slots this material fills (plus the anchors the World
+    // Style Refined canopy arm, the default style, splices at).
     const shader = {
       uniforms: {},
       vertexShader: [
@@ -174,6 +175,7 @@ describe('leaf atlas uv patch', () => {
         'void main() {',
         '#include <uv_vertex>',
         '#include <beginnormal_vertex>',
+        '#include <defaultnormal_vertex>',
         '#include <begin_vertex>',
         '#include <project_vertex>',
         '}',
@@ -181,7 +183,9 @@ describe('leaf atlas uv patch', () => {
       fragmentShader: [
         '#include <common>',
         'void main() {',
+        '#include <color_fragment>',
         '#include <normal_fragment_begin>',
+        '#include <aomap_fragment>',
         '}',
       ].join('\n'),
     };

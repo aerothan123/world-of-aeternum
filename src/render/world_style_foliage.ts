@@ -21,6 +21,7 @@ import {
   PAINTED_GRASS_VERT_DECL,
   paintedCanopyFragGlsl,
   paintedCanopyRimGlsl,
+  paintedCanopyVertGlsl,
   paintedGrassFragGlsl,
   paintedGrassVertGlsl,
 } from './world_style_foliage_core';
@@ -94,9 +95,10 @@ export function paintRefinedGrass(mat: THREE.Material, heightExpr: string): void
  *  texture and a warm daylight rim. `knownLeaf` false (a material the caller
  *  cannot name as a leaf, such as a regenerated GLB's) paints only its green
  *  texels, so bark and stone keep their look on any model. */
-export function paintRefinedCanopy(mat: THREE.Material, knownLeaf = true): void {
+export function paintRefinedCanopy(mat: THREE.Material, knownLeaf = true, upExpr?: string): void {
   if (!worldStyleRefined()) return;
-  chainPatch(mat, `ws-canopy:${knownLeaf ? 'leaf' : 'auto'}`, (sh) => {
+  const tag = `ws-canopy:${knownLeaf ? 'leaf' : 'auto'}${upExpr ? `:${upExpr}` : ''}`;
+  chainPatch(mat, tag, (sh) => {
     sh.uniforms.uWsFoliage = worldStyleUniforms.uWsFoliage;
     let v = spliceAfter(
       sh.vertexShader,
@@ -107,7 +109,7 @@ export function paintRefinedCanopy(mat: THREE.Material, knownLeaf = true): void 
     v = spliceAfter(
       v,
       '#include <defaultnormal_vertex>',
-      PAINTED_CANOPY_VERT_GLSL,
+      upExpr ? paintedCanopyVertGlsl(upExpr) : PAINTED_CANOPY_VERT_GLSL,
       'canopy normal',
     );
     sh.vertexShader = v;

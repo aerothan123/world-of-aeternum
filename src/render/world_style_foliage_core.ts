@@ -185,9 +185,9 @@ export function paintedGrassColor(c: Rgb, t: number, h: number, s = 0): [number,
 export const PAINTED_CANOPY = {
   /** Multiplier on the underside of the crown (canopy normal pointing down):
    *  a soft cool blue-green shade, never a black hole. */
-  under: [0.7, 0.76, 0.88] as Rgb,
+  under: [0.65, 0.72, 0.88] as Rgb,
   /** Multiplier on the crown top (normal up): warm sunlit gold-green. */
-  top: [1.18, 1.1, 0.78] as Rgb,
+  top: [1.24, 1.13, 0.74] as Rgb,
   /** Canopy-normal y window the gradient runs across. */
   upLo: -0.35,
   upHi: 0.95,
@@ -313,8 +313,12 @@ export const PAINTED_CANOPY_VERT_DECL = `
         varying vec2 vWsCanopy; // x canopy normal y, y per-tree hue 0..1`;
 
 /** Vertex body for the canopy paint (after <defaultnormal_vertex>, so the
- *  bent canopy normal is final). */
-export const PAINTED_CANOPY_VERT_GLSL = `
+ *  bent canopy normal is final). `upExpr`, when given, replaces the normal's
+ *  world y as the top-to-underside coordinate (-1..1): a far sprite whose
+ *  shading normal leans to the camera reads its crown height instead. */
+export function paintedCanopyVertGlsl(upExpr?: string): string {
+  const up = upExpr ? `clamp(${upExpr}, -1.0, 1.0)` : 'normalize(mat3(modelMatrix) * wsN).y';
+  return `
         {
           vec3 wsN = objectNormal;
           vec4 wsO = vec4(0.0, 0.0, 0.0, 1.0);
@@ -324,8 +328,16 @@ export const PAINTED_CANOPY_VERT_GLSL = `
           #endif
           wsO = modelMatrix * wsO;
           float wsTree = fract(sin(dot(floor(wsO.xz * 0.5), vec2(12.9898, 78.233))) * 43758.5453);
-          vWsCanopy = vec2(normalize(mat3(modelMatrix) * wsN).y, wsTree);
+          vWsCanopy = vec2(${up}, wsTree);
         }`;
+}
+
+/** The impostor card's crown coordinate: its quad runs 0 (ground) to 1
+ *  (crown top) in position.y, and a tree's crown starts around a third up. */
+export const IMPOSTOR_CANOPY_UP_GLSL = 'position.y * 2.2 - 0.9';
+
+/** The canopy vertex body on the bent canopy normal (the 3D trees). */
+export const PAINTED_CANOPY_VERT_GLSL = paintedCanopyVertGlsl();
 
 export const PAINTED_CANOPY_FRAG_DECL = `
         varying vec2 vWsCanopy;

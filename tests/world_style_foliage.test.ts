@@ -233,6 +233,20 @@ describe('the foliage painter', () => {
     });
   }
 
+  it('lets a far sprite read its crown height instead of its card normal', async () => {
+    const p = await painter('refined');
+    const core = await import('../src/render/world_style_foliage_core');
+    const mat = hooked('standard');
+    p.paintRefinedCanopy(mat, false, core.IMPOSTOR_CANOPY_UP_GLSL);
+    const sh = compile(mat, 'standard');
+    expect(sh.vertexShader).toContain(
+      `vWsCanopy = vec2(clamp(${core.IMPOSTOR_CANOPY_UP_GLSL}, -1.0, 1.0)`,
+    );
+    expect(mat.customProgramCacheKey()).toBe(
+      `prior-key|ws-canopy:auto:${core.IMPOSTOR_CANOPY_UP_GLSL}`,
+    );
+  });
+
   it('writes a daylight rim strength per frame and zero at night', async () => {
     vi.resetModules();
     stubSearch('?gfx=high&worldstyle=refined');

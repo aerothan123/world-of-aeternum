@@ -53,6 +53,8 @@ import {
   packImpostorAtlas,
 } from './foliage_impostor_core';
 import { GFX, sharedUniforms } from './gfx';
+import { paintRefinedCanopy } from './world_style_foliage';
+import { IMPOSTOR_CANOPY_UP_GLSL } from './world_style_foliage_core';
 
 export type ImpostorCategory = 'tree' | 'rock' | 'dress' | 'building';
 
@@ -676,6 +678,13 @@ function impostorMaterial(category: ImpostorCategory, atlas: THREE.Texture): THR
   // ground plus unhazed collage on top of it). Attached LAST on purpose:
   // attachBiomeHaze wraps whatever onBeforeCompile and customProgramCacheKey
   // are already installed, so it has to see the two set above.
+  // World Style Refined: the far crowns take the same painterly canopy arm as
+  // the trees they stand in for (green texels only, the crown height on the
+  // card as the top-to-underside coordinate, the same per-tree hue hash on
+  // the shared instance origin), so the sprite handoff keeps one palette.
+  if (category === 'tree' || category === 'dress') {
+    paintRefinedCanopy(mat, false, IMPOSTOR_CANOPY_UP_GLSL);
+  }
   attachBiomeHaze(mat);
   materialCache.set(category, mat);
   return mat;
