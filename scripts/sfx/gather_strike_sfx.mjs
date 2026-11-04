@@ -21,6 +21,7 @@
 //   ELEVENLABS_API_KEY=... node scripts/sfx/gather_strike_sfx.mjs styles-generate
 //   node scripts/sfx/gather_strike_sfx.mjs styles-select [heavy.impact_gather_pick=3,1 ...]
 //   node scripts/sfx/gather_strike_sfx.mjs styles-build
+//   node scripts/sfx/gather_strike_sfx.mjs styles-layer [--from-json]
 //
 // Every take is DRY on purpose: the outdoor echo is added at runtime.
 import { execFileSync } from 'node:child_process';
@@ -389,8 +390,9 @@ async function stylesGenerate() {
     const dir = join(VARIANTS, style);
     mkdirSync(dir, { recursive: true });
     for (const key of STRIKE_KEYS) {
+      if (!spec[key]) continue;
       const cue = { key: `${style}:${key}`, ...spec[key] };
-      for (let i = 1; i <= STYLE_CANDIDATES; i++) {
+      for (let i = 1; i <= (cue.candidates ?? STYLE_CANDIDATES); i++) {
         const file = join(dir, `${key}_cand_${i}.mp3`);
         if (existsSync(file)) continue;
         process.stdout.write(`gen ${style} ${key} #${i} (${cue.request}s)... `);
@@ -410,6 +412,9 @@ function styleScore(style, m) {
   const base = -(m.clipped > 20 ? 2 : 0) - (m.onset > 0.3 ? 1 : 0) - m.attackMs / 20;
   if (style === 'heavy') return base + 4 * m.low - 0.8 * m.bright + 0.5 * Math.log(m.crest);
   if (style === 'ringing') return base + 1.5 * m.bright + 2 * m.coverage;
+  // punchy ring: nothing soft at the front (attack weighs 4x), a peaky hit, a ring
+  if (style === 'punchy')
+    return base - m.attackMs / 5 + Math.log(m.crest) + m.bright + 1.5 * m.coverage;
   return base + 3 * m.coverage + 0.5 * m.bright;
 }
 
@@ -418,9 +423,10 @@ function stylesSelect() {
   for (const [style, spec] of Object.entries(GATHER_STRIKE_STYLES)) {
     kept[style] = {};
     for (const key of STRIKE_KEYS) {
-      const { trim, singleHit = true } = spec[key];
+      if (!spec[key]) continue;
+      const { trim, singleHit = true, candidates = STYLE_CANDIDATES } = spec[key];
       const rows = [];
-      for (let i = 1; i <= STYLE_CANDIDATES; i++) {
+      for (let i = 1; i <= candidates; i++) {
         const file = join(VARIANTS, style, `${key}_cand_${i}.mp3`);
         if (!existsSync(file)) continue;
         const m = measure(tighten(decode(file), trim, singleHit));
@@ -476,6 +482,130 @@ function stylesBuild() {
   }
 }
 
+// --- The layered punchy-ring pick (audition only) -----------------------------
+// The punchiest attack among the punchy and ringing pick candidates, laid over
+// the clearest ring among them, time-aligned at the onset with the ring running
+// under the attack, then a gentle transient shaper and compressor so the hit
+// still cuts through at distance. Chosen pairs are recorded in
+// variants/layered.json; `styles-layer --from-json` rebuilds from it.
+const LAYER_OUT = join(STYLE_OUT, 'layered');
+const LAYER_SOURCES = ['punchy', 'ringing'];
+const LAYER_TRIM = 0.9;
+
+/** A one-pole peak follower with separate attack and release, in seconds. */
+function follow(x, attack, release) {
+  const a = Math.exp(-1 / (attack * SR));
+  const r = Math.exp(-1 / (release * SR));
+  const e = new Float32Array(x.length);
+  let v = 0;
+  for (let i = 0; i < x.length; i++) {
+    const s = Math.abs(x[i]);
+    v = s > v ? a * v + (1 - a) * s : r * v + (1 - r) * s;
+    e[i] = v;
+  }
+  return e;
+}
+
+/** Transient shaper (fast over slow envelope, so the hit's front lifts about 4 dB
+ *  and its body dips a little), then a 2:1 compressor 14 dB under the peak. */
+export function shapePunch(x) {
+  const fast = follow(x, 0.0005, 0.015);
+  const slow = follow(x, 0.02, 0.12);
+  const y = new Float32Array(x.length);
+  for (let i = 0; i < x.length; i++) {
+    const g = Math.min(1.6, Math.max(0.85, Math.sqrt(fast[i] / (slow[i] + 1e-6))));
+    y[i] = x[i] * g;
+  }
+  let peak = 0;
+  for (const v of y) peak = Math.max(peak, Math.abs(v));
+  const threshold = peak * 0.2;
+  const level = follow(y, 0.01, 0.12);
+  for (let i = 0; i < y.length; i++) {
+    const c = level[i];
+    if (c > threshold) y[i] *= (threshold * Math.sqrt(c / threshold)) / c;
+  }
+  return y;
+}
+
+const normalized = (x) => {
+  let peak = 0;
+  for (const v of x) peak = Math.max(peak, Math.abs(v));
+  return peak > 0 ? x.map((v) => v / peak) : x;
+};
+
+/** The attack take's first 70 ms (fading out by 160 ms) over the whole ring take
+ *  at 0.65: both already start 4 ms before their onsets (tighten). */
+export function layerStrike(attack, ring) {
+  const a = normalized(attack);
+  const r = normalized(ring);
+  const hold = Math.round(0.07 * SR);
+  const gone = Math.round(0.16 * SR);
+  const out = new Float32Array(Math.max(r.length, Math.min(a.length, gone)));
+  for (let i = 0; i < out.length; i++) {
+    const w =
+      i < hold ? 1 : i < gone ? 0.5 + 0.5 * Math.cos((Math.PI * (i - hold)) / (gone - hold)) : 0;
+    out[i] = (a[i] ?? 0) * w + (r[i] ?? 0) * 0.65;
+  }
+  return out;
+}
+
+function stylesLayer() {
+  const jsonPath = join(VARIANTS, 'layered.json');
+  let pairs;
+  if (process.argv.includes('--from-json')) {
+    pairs = JSON.parse(readFileSync(jsonPath, 'utf8')).pairs;
+  } else {
+    const rows = [];
+    for (const style of LAYER_SOURCES) {
+      const spec = GATHER_STRIKE_STYLES[style].impact_gather_pick;
+      for (let i = 1; i <= (spec.candidates ?? STYLE_CANDIDATES); i++) {
+        const file = join(VARIANTS, style, `impact_gather_pick_cand_${i}.mp3`);
+        if (!existsSync(file)) continue;
+        const m = measure(tighten(decode(file), LAYER_TRIM, true));
+        if (m.clipped > 20) continue;
+        rows.push({
+          id: `${style}/cand_${i}`,
+          attack: Math.log(m.crest) - m.attackMs / 3 + m.bright,
+          ring: 3 * m.coverage + 0.5 * Math.min(3, m.tail) + 0.5 * m.bright,
+        });
+      }
+    }
+    const attacks = [...rows].sort((a, b) => b.attack - a.attack).slice(0, 2);
+    const rings = [...rows].sort((a, b) => b.ring - a.ring);
+    pairs = attacks.map((a, n) => {
+      const ring = rings.filter((r) => r.id !== a.id)[n];
+      return { attack: a.id, ring: ring.id };
+    });
+    writeFileSync(jsonPath, `${JSON.stringify({ trim: LAYER_TRIM, pairs }, null, 2)}\n`);
+  }
+  mkdirSync(LAYER_OUT, { recursive: true });
+  // the attack is cut to its first hit; the ring keeps its whole decay
+  const load = (id, singleHit) => {
+    const [style, cand] = id.split('/');
+    const file = join(VARIANTS, style, `impact_gather_pick_${cand}.mp3`);
+    return tighten(decode(file), LAYER_TRIM, singleHit);
+  };
+  pairs.forEach((pair, n) => {
+    const y = shapePunch(layerStrike(load(pair.attack, true), load(pair.ring, false)));
+    const tmp = join(LAYER_OUT, `.impact_gather_pick_${n + 1}.source.wav`);
+    writeFileSync(tmp, wav(y));
+    try {
+      conformSfxAudio({
+        inputFile: tmp,
+        outputFile: join(LAYER_OUT, `impact_gather_pick_${n + 1}.mp3`),
+        duration: y.length / SR,
+        ffmpegPath: FFMPEG_PATH,
+        channels: 1,
+      });
+    } finally {
+      rmSync(tmp, { force: true });
+    }
+    console.log(
+      `layered impact_gather_pick_${n + 1}: attack ${pair.attack} + ring ${pair.ring} (${(y.length / SR).toFixed(2)} s)`,
+    );
+  });
+}
+
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   if (mode === 'generate') await generate();
   else if (mode === 'usage') await usage();
@@ -483,5 +613,6 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   else if (mode === 'styles-generate') await stylesGenerate();
   else if (mode === 'styles-select') stylesSelect();
   else if (mode === 'styles-build') stylesBuild();
+  else if (mode === 'styles-layer') stylesLayer();
   else select();
 }

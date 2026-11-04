@@ -10,5 +10,8 @@
   "crunchy": {
     "impact_gather_pick": [2, 3],
     "impact_gather_axe": [3, 4]
+  },
+  "punchy": {
+    "impact_gather_pick": [8, 2]
   }
 }

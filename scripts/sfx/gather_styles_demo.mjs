@@ -1,18 +1,20 @@
 // A side-by-side listening comparison of the gathering strike style directions
 // (gather_strike_prompts.mjs GATHER_STRIKE_STYLES), rendered through the same
-// mix and reverb chain the game runs (gather_demo_render.mjs). Five sections,
+// mix and reverb chain the game runs (gather_demo_render.mjs). Six sections,
 // separated only by short silences, each the same pattern: three close pick
 // strikes, three close axe strikes, two distant pick strikes, two distant axe
 // strikes.
-//   1  the shipped takes          the current reverb ('open')
-//   2  A heavy                    the current reverb
-//   3  B ringing                  the current reverb
-//   4  C crunchy                  the current reverb
-//   5  B ringing                  "big valley": a longer, louder tail with clear
-//                                 slap echoes off distant terrain (250 to 400 ms)
+//   1  the shipped takes                          the current reverb ('open')
+//   2  A heavy                                    the current reverb
+//   3  C crunchy                                  the current reverb
+//   4  B punchy ring, generated takes + heavy axe the current reverb
+//   5  B punchy ring, layered pick + heavy axe    the current reverb
+//   6  B punchy ring, layered pick + heavy axe    "big valley": a longer, louder
+//      tail with clear slap echoes off distant terrain (250 to 400 ms)
 // "Big valley" is an audition profile only; the runtime is unchanged.
 //
 //   node scripts/sfx/gather_strike_sfx.mjs styles-build   (renders the style takes)
+//   node scripts/sfx/gather_strike_sfx.mjs styles-layer   (renders the layered pick)
 //   node scripts/sfx/gather_styles_demo.mjs [--out <dir>]
 //
 // Writes gather_styles_demo.wav/.mp3 and gather_styles_demo_cues.txt.
@@ -53,6 +55,14 @@ const style = (name, key) =>
     decode(join(STYLE_DIR, name, `${key}_${i + 1}.mp3`)),
   );
 
+// The axe that goes with the punchy-ring pick: the heavy direction's (the
+// strongest measured low-mid body of every axe take, so the pair both punch).
+const BEST_AXE = style('heavy', KEYS.chop);
+const PUNCHY_PICK = style('punchy', KEYS.mine);
+const LAYERED_PICK = Array.from({ length: 2 }, (_, i) =>
+  decode(join(STYLE_DIR, 'layered', `${KEYS.mine}_${i + 1}.mp3`)),
+);
+
 const sections = [
   {
     title: 'Current shipped set, current reverb',
@@ -65,18 +75,24 @@ const sections = [
     bus: 'current',
   },
   {
-    title: `B ${GATHER_STRIKE_STYLES.ringing.label}, current reverb`,
-    style: 'ringing',
-    bus: 'current',
-  },
-  {
     title: `C ${GATHER_STRIKE_STYLES.crunchy.label}, current reverb`,
     style: 'crunchy',
     bus: 'current',
   },
   {
-    title: `B ringing through the "big valley" reverb (audition only)`,
-    style: 'ringing',
+    title: `${GATHER_STRIKE_STYLES.punchy.label} (generated takes), heavy axe, current reverb`,
+    pools: { mine: PUNCHY_PICK, chop: BEST_AXE },
+    bus: 'current',
+  },
+  {
+    title:
+      'B punchy ring, LAYERED pick (punchiest attack + clearest ring, shaped), heavy axe, current reverb',
+    pools: { mine: LAYERED_PICK, chop: BEST_AXE },
+    bus: 'current',
+  },
+  {
+    title: 'B punchy ring, LAYERED pick, heavy axe, "big valley" reverb (audition only)',
+    pools: { mine: LAYERED_PICK, chop: BEST_AXE },
     bus: 'valley',
   },
 ];
