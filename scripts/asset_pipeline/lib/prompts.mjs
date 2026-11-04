@@ -1,17 +1,19 @@
 // Concept-image and text-to-model prompt builders. The style lines describe the
-// Project H art direction (2026-11): stylized, hand-painted high fantasy with
-// chunky exaggerated shapes, painted textures with baked light, and bold but
-// harmonious color, replacing the earlier KayKit / Quaternius chibi low-poly
-// target. Generated assets aim at that look so the world converges on it.
+// Project H art direction (2026-11): a storybook, Fable-like fantasy
+// countryside (charming crooked shapes, soft painted textures with warm baked
+// light, lush soft color, mossy weathering), replacing the earlier KayKit /
+// Quaternius chibi low-poly target. Generated assets aim at that look so the
+// world converges on it.
 //
 // The layout constraints follow the OpenAI image guide's isolation recipe for
 // 3D-reconstruction reference art: one centered object, full object in frame,
 // plain background, crisp silhouette, no text or extra elements.
 
 const STYLE_CORE =
-  'stylized hand-painted high fantasy MMORPG game asset, chunky exaggerated shapes and ' +
-  'thick proportions, hand-painted texture with baked soft light and shadow, bold saturated ' +
-  'but harmonious colors, crisp readable silhouette, clean game-ready topology, no photorealism';
+  'storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, ' +
+  'charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked ' +
+  'light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, ' +
+  'clean game-ready topology, no photorealism';
 
 const LAYOUT_OBJECT =
   'single object, centered, full object in frame, three-quarter view, plain white opaque ' +
