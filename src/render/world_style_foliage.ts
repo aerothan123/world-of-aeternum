@@ -38,7 +38,8 @@ function spliceAfter(src: string, anchor: string, add: string, what: string): st
 function spliceBefore(src: string, anchor: string, add: string, what: string): string {
   const at = src.indexOf(anchor);
   if (at < 0) throw new Error(`world style foliage: ${what} anchor missing: ${anchor}`);
-  return src.slice(0, at) + add + src.slice(at);
+  // The anchor is a preprocessor line: it must keep starting its own line.
+  return `${src.slice(0, at)}${add}\n${src.slice(at)}`;
 }
 
 /** Chain `patch` after the material's existing hook and name it in the key. */

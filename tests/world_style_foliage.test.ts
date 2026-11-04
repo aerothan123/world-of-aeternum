@@ -103,7 +103,7 @@ describe('painted grass colour', () => {
   });
   it('generates GLSL from the same constants and flower table', () => {
     const glsl = paintedGrassFragGlsl();
-    expect(glsl).toContain('vec3(0.70000, 0.80000, 0.74000)');
+    expect(glsl).toContain('vec3(0.62000, 0.74000, 0.72000)');
     for (const c of PAINTED_GRASS.flowers) expect(glsl).toContain(`vec3(${c[0].toFixed(5)}`);
     expect(samplerCount(glsl)).toBe(0);
   });
@@ -227,6 +227,9 @@ describe('the foliage painter', () => {
       expect(rimAt).toBeGreaterThan(sh.fragmentShader.indexOf('float wsLeafW'));
       expect(rimAt).toBeLessThan(sh.fragmentShader.indexOf('#include <aomap_fragment>'));
       expect(mat.customProgramCacheKey()).toBe('prior-key|ws-canopy:auto');
+      // every preprocessor anchor still starts its own line
+      expect(sh.fragmentShader).not.toMatch(/[^\s][ \t]*#include/);
+      expect(sh.vertexShader).not.toMatch(/[^\s][ \t]*#include/);
     });
   }
 

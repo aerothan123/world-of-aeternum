@@ -106,9 +106,9 @@ export function paintedClumpHeight(style: WorldStyle, x: number, z: number): num
 export const PAINTED_GRASS = {
   /** Multiplier at the blade root: a soft, cool olive (lighter than a hard
    *  black root, so the meadow keeps its low painted contrast). */
-  base: [0.7, 0.8, 0.74] as Rgb,
+  base: [0.62, 0.74, 0.72] as Rgb,
   /** Multiplier at the blade tip: warm sunlit yellow-green. */
-  tip: [1.2, 1.12, 0.66] as Rgb,
+  tip: [1.3, 1.12, 0.58] as Rgb,
   /** Where along the blade (0 root, 1 tip) the gradient runs. */
   gradLo: 0.0,
   gradHi: 0.95,
@@ -119,7 +119,7 @@ export const PAINTED_GRASS = {
   /** How far a clump drifts toward its hue (0 none). */
   hueAmt: 0.7,
   /** Saturation of the painted result (below 1 pulls the neon out). */
-  saturation: 0.8,
+  saturation: 0.7,
   /** Tip softening: share of the top of the blade lifted toward a warm pale
    *  highlight (painted grass has light, soft tips, not hard spikes). */
   tipSoft: 0.28,
