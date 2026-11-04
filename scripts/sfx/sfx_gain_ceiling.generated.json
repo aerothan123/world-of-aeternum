@@ -799,6 +799,64 @@
       }
     ]
   },
+  "impact_gather_axe": {
+    "ceilingDb": 5.3,
+    "tracks": [
+      {
+        "filename": "impact_gather_axe_1.mp3",
+        "sha256": "fe421511a12a1e6c035b29a5f1a0237b5b0c174f210b6d42dcd35ca0d5fab1f3",
+        "size": 13836,
+        "peakDb": -6.5
+      },
+      {
+        "filename": "impact_gather_axe_2.mp3",
+        "sha256": "d241289e03d53eb924e9907a2aa54206f210f70f44e7222c75326c1fc6fc6b06",
+        "size": 13836,
+        "peakDb": -6.3
+      },
+      {
+        "filename": "impact_gather_axe_3.mp3",
+        "sha256": "4ade327c5aa6ed4de440a4114a669fdbc0f88d16677a8122e3ba2ff8213c4bd7",
+        "size": 13836,
+        "peakDb": -6.8
+      },
+      {
+        "filename": "impact_gather_axe_4.mp3",
+        "sha256": "887a4f0909eecd442344cc233b75942a9e921be89e219d88cb65cef0b113a1e5",
+        "size": 13836,
+        "peakDb": -6.6
+      }
+    ]
+  },
+  "impact_gather_pick": {
+    "ceilingDb": 4.9,
+    "tracks": [
+      {
+        "filename": "impact_gather_pick_1.mp3",
+        "sha256": "2c44e53463f535636e3ad47ccc079a770caecbbeea0bb8e81591a5513d85f724",
+        "size": 15090,
+        "peakDb": -6.6
+      },
+      {
+        "filename": "impact_gather_pick_2.mp3",
+        "sha256": "5e7fcb5e64a95d7a2d052ea2f4df92b0f150d12300705e6fdf85a0f23da55614",
+        "size": 15090,
+        "peakDb": -6.3
+      },
+      {
+        "filename": "impact_gather_pick_3.mp3",
+        "sha256": "98aecb9ee31f1409cb8ef9cd3155cdbe480a9549533a20edd3659210016d79cd",
+        "size": 15090,
+        "peakDb": -6.3
+      },
+      {
+        "filename": "impact_gather_pick_4.mp3",
+        "sha256": "0c5697d125d32f8335a47ad78272903602685123a65651edd1a83fb02d388f20",
+        "size": 15090,
+        "peakDb": -5.9
+      }
+    ]
+  },
   "impact_gourdfall": {
     "ceilingDb": 6.7,
     "tracks": [
@@ -930,6 +988,40 @@
         "filename": "impact_swelling_gourd_burst.mp3",
         "sha256": "22d856bdb1dae9ab31695ecbe88981073e91e72564f1b9a37316688e043a9bf6",
         "size": 63991,
+        "peakDb": -7.2
+      }
+    ]
+  },
+  "impact_tree_crash": {
+    "ceilingDb": 6,
+    "tracks": [
+      {
+        "filename": "impact_tree_crash_1.mp3",
+        "sha256": "18ceff325abe9f240df9ed4bbc89a0928a0f0dd2a46345acfdeaea4f18a93649",
+        "size": 47064,
+        "peakDb": -7
+      },
+      {
+        "filename": "impact_tree_crash_2.mp3",
+        "sha256": "495208228d1ce998b8da7316a2aa0fe60e50a75caa305433ac3cc421799d8284",
+        "size": 47064,
+        "peakDb": -7.3
+      }
+    ]
+  },
+  "impact_tree_creak": {
+    "ceilingDb": 6.2,
+    "tracks": [
+      {
+        "filename": "impact_tree_creak_1.mp3",
+        "sha256": "d6db70feecd708e470a426789647e5e70ca670d3950beac1288a1a0a8bfd291d",
+        "size": 36406,
+        "peakDb": -7.3
+      },
+      {
+        "filename": "impact_tree_creak_2.mp3",
+        "sha256": "82efe6fb95164d3aeb72abb30079af6bdbb88ace3a1657a0269372cfff496279",
+        "size": 36406,
         "peakDb": -7.2
       }
     ]

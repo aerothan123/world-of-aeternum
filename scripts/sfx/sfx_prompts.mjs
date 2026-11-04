@@ -1254,6 +1254,15 @@ export const SFX = [
   { key: 'spell_gurglegreen_cauldron', custom: true },
   { key: 'gurglegreen_bubble_loop', custom: true, loop: true },
   { key: 'spell_gurglegreen_quaff', custom: true },
+  // Gathering strikes: synthesized from scratch by scripts/sfx/gather_strike_sfx.mjs
+  // (original, no samples; CREDITS.md), all DRY: the outdoor echo is the runtime reverb
+  // send (src/game/outdoor_reverb_bus.ts). One take per tool contact of any gathering
+  // body in hearing range (src/render/gather_strike_audio.ts), and a felled tree's creak
+  // and crash (src/render/tree_felling.ts). Multi-take.
+  { key: 'impact_gather_pick', custom: true },
+  { key: 'impact_gather_axe', custom: true },
+  { key: 'impact_tree_creak', custom: true },
+  { key: 'impact_tree_crash', custom: true },
 ];
 
 // Family ids that have creature vocalizations (used by the integration layer to

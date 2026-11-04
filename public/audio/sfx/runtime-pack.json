@@ -1,8 +1,8 @@
 {
   "format": "woc-sfx-runtime-pack",
   "version": 1,
-  "bundleId": "6ae5c59e328b2f09bfe4c434d28d84f20eccbb806d5263fa45766d2f5b2da3b9",
-  "catalogHash": "f99bd919389d3f6da682ca4e7abcf80c9b7502f1948dea464c76f429f0602863",
+  "bundleId": "c2954116175a5d9cbf7f2c2b3a9b5fd7263ea437b457f6c4543b0d4954c093ef",
+  "catalogHash": "c5f520bd8419a9cce1eadb7e3d9fcdc825d2007828628a4c491dd8b9aab7f9f7",
   "clips": {
     "amb_birds": {
       "variants": [
@@ -1036,6 +1036,66 @@
       "gain": 1.698244,
       "playbackRate": 1
     },
+    "impact_gather_axe": {
+      "variants": [
+        {
+          "id": "1",
+          "url": "/audio/sfx/impact_gather_axe_1.mp3?v=fe421511a12a",
+          "bytes": 13836,
+          "sha256": "fe421511a12a1e6c035b29a5f1a0237b5b0c174f210b6d42dcd35ca0d5fab1f3"
+        },
+        {
+          "id": "2",
+          "url": "/audio/sfx/impact_gather_axe_2.mp3?v=d241289e03d5",
+          "bytes": 13836,
+          "sha256": "d241289e03d53eb924e9907a2aa54206f210f70f44e7222c75326c1fc6fc6b06"
+        },
+        {
+          "id": "3",
+          "url": "/audio/sfx/impact_gather_axe_3.mp3?v=4ade327c5aa6",
+          "bytes": 13836,
+          "sha256": "4ade327c5aa6ed4de440a4114a669fdbc0f88d16677a8122e3ba2ff8213c4bd7"
+        },
+        {
+          "id": "4",
+          "url": "/audio/sfx/impact_gather_axe_4.mp3?v=887a4f0909ee",
+          "bytes": 13836,
+          "sha256": "887a4f0909eecd442344cc233b75942a9e921be89e219d88cb65cef0b113a1e5"
+        }
+      ],
+      "gain": 1,
+      "playbackRate": 1
+    },
+    "impact_gather_pick": {
+      "variants": [
+        {
+          "id": "1",
+          "url": "/audio/sfx/impact_gather_pick_1.mp3?v=2c44e53463f5",
+          "bytes": 15090,
+          "sha256": "2c44e53463f535636e3ad47ccc079a770caecbbeea0bb8e81591a5513d85f724"
+        },
+        {
+          "id": "2",
+          "url": "/audio/sfx/impact_gather_pick_2.mp3?v=5e7fcb5e64a9",
+          "bytes": 15090,
+          "sha256": "5e7fcb5e64a95d7a2d052ea2f4df92b0f150d12300705e6fdf85a0f23da55614"
+        },
+        {
+          "id": "3",
+          "url": "/audio/sfx/impact_gather_pick_3.mp3?v=98aecb9ee31f",
+          "bytes": 15090,
+          "sha256": "98aecb9ee31f1409cb8ef9cd3155cdbe480a9549533a20edd3659210016d79cd"
+        },
+        {
+          "id": "4",
+          "url": "/audio/sfx/impact_gather_pick_4.mp3?v=0c5697d125d3",
+          "bytes": 15090,
+          "sha256": "0c5697d125d32f8335a47ad78272903602685123a65651edd1a83fb02d388f20"
+        }
+      ],
+      "gain": 1,
+      "playbackRate": 1
+    },
     "impact_gourdfall": {
       "variants": [
         {
@@ -1175,6 +1235,42 @@
           "url": "/audio/sfx/impact_swelling_gourd_burst.mp3?v=22d856bdb1da",
           "bytes": 63991,
           "sha256": "22d856bdb1dae9ab31695ecbe88981073e91e72564f1b9a37316688e043a9bf6"
+        }
+      ],
+      "gain": 1,
+      "playbackRate": 1
+    },
+    "impact_tree_crash": {
+      "variants": [
+        {
+          "id": "1",
+          "url": "/audio/sfx/impact_tree_crash_1.mp3?v=18ceff325abe",
+          "bytes": 47064,
+          "sha256": "18ceff325abe9f240df9ed4bbc89a0928a0f0dd2a46345acfdeaea4f18a93649"
+        },
+        {
+          "id": "2",
+          "url": "/audio/sfx/impact_tree_crash_2.mp3?v=495208228d1c",
+          "bytes": 47064,
+          "sha256": "495208228d1ce998b8da7316a2aa0fe60e50a75caa305433ac3cc421799d8284"
+        }
+      ],
+      "gain": 1,
+      "playbackRate": 1
+    },
+    "impact_tree_creak": {
+      "variants": [
+        {
+          "id": "1",
+          "url": "/audio/sfx/impact_tree_creak_1.mp3?v=d6db70feecd7",
+          "bytes": 36406,
+          "sha256": "d6db70feecd708e470a426789647e5e70ca670d3950beac1288a1a0a8bfd291d"
+        },
+        {
+          "id": "2",
+          "url": "/audio/sfx/impact_tree_creak_2.mp3?v=82efe6fb9516",
+          "bytes": 36406,
+          "sha256": "82efe6fb95164d3aeb72abb30079af6bdbb88ace3a1657a0269372cfff496279"
         }
       ],
       "gain": 1,
