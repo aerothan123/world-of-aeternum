@@ -343,8 +343,8 @@ const NOON: Phase = {
   cloudOp: 0.92,
   sun: [1.06, 0.97, 0.82],
   light: 1.02,
-  ambient: 1.1,
-  fog: [1.02, 1.0, 0.96],
+  ambient: 1.06,
+  fog: [1.02, 1.0, 0.97],
 };
 const GOLDEN: Phase = {
   gain: [1.06, 0.99, 0.86],

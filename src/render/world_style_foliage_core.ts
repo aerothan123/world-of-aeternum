@@ -187,7 +187,7 @@ export const PAINTED_CANOPY = {
    *  a soft cool blue-green shade, never a black hole. */
   under: [0.68, 0.74, 0.9] as Rgb,
   /** Multiplier on the crown top (normal up): warm sunlit gold-green. */
-  top: [1.24, 1.13, 0.74] as Rgb,
+  top: [1.2, 1.13, 0.8] as Rgb,
   /** Canopy-normal y window the gradient runs across. */
   upLo: -0.35,
   upHi: 0.95,
@@ -195,8 +195,8 @@ export const PAINTED_CANOPY = {
   cool: [0.86, 1.0, 0.96] as Rgb,
   warm: [1.14, 1.02, 0.68] as Rgb,
   hueAmt: 0.65,
-  /** Saturation of the painted crown. */
-  saturation: 1.0,
+  /** Saturation of the painted crown (a touch under 1: soft, not neon). */
+  saturation: 0.9,
   /** Leaf-texture contrast kept (1 the texture as authored): below 1 the
    *  crown reads as soft painted masses instead of busy leaf cards. */
   contrast: 0.52,
