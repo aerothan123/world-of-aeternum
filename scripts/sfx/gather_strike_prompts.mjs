@@ -109,6 +109,31 @@ GATHER_STRIKE_STYLES.punchy = {
   },
 };
 
+/** The rock pass (the user's steer after the punchy ring read as metal on metal):
+ *  keep the fast punchy hit, but the tone after it is STONE: a hard dry clack or
+ *  crack, a short gritty, slightly hollow rock resonance, the pick's steel only a
+ *  brief bright edge on the transient, a few chips, and no pitched sustain. Two
+ *  angles: a boulder struck outdoors, and quarry rock face work. */
+const NO_RING = 'No metallic ringing, no pitched tone, no bell, no anvil, no clang sustain.';
+GATHER_STRIKE_STYLES.rock = {
+  label: 'rock: a punchy steel tip on a granite boulder, stone crack, short gritty resonance',
+  impact_gather_pick: {
+    request: 1,
+    trim: 0.6,
+    candidates: 10,
+    prompt: `Steel pickaxe tip striking a large granite boulder outdoors: one hard, punchy impact, a dry stone crack, a short gritty and slightly hollow rock resonance, a few small stone chips. ${NO_RING} One hit only. ${DRY}`,
+  },
+};
+GATHER_STRIKE_STYLES.quarry = {
+  label: 'quarry: a pick biting a quarry rock face, a hard stone clack and grit',
+  impact_gather_pick: {
+    request: 1,
+    trim: 0.6,
+    candidates: 5,
+    prompt: `A miner's pick biting hard into a quarry rock face: one sharp punchy stone clack, the rock cracking, grit and a few small chips falling. ${NO_RING} One hit only. ${DRY}`,
+  },
+};
+
 /** Candidates generated and takes kept per style direction and strike. */
 export const STYLE_CANDIDATES = 4;
 export const STYLE_KEEP = 2;

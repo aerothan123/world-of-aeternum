@@ -22,6 +22,7 @@
 //   node scripts/sfx/gather_strike_sfx.mjs styles-select [heavy.impact_gather_pick=3,1 ...]
 //   node scripts/sfx/gather_strike_sfx.mjs styles-build
 //   node scripts/sfx/gather_strike_sfx.mjs styles-layer [--from-json]
+//   node scripts/sfx/gather_strike_sfx.mjs rock-select [--keep=rock/cand_3,...] [--from-json]
 //
 // Every take is DRY on purpose: the outdoor echo is added at runtime.
 import { execFileSync } from 'node:child_process';
@@ -606,6 +607,175 @@ function stylesLayer() {
   });
 }
 
+// --- The rock pick pass (audition only) ---------------------------------------
+// The punchy fast hit kept, but no pitched sustain after it: every rock and
+// quarry candidate is measured for a narrow tonal partial still sounding 150 ms
+// after the onset (a bell or anvil ring) and rejected when one is; the rest rank
+// by attack speed and low-mid punch. The kept takes, and a layered rock pick (the
+// punchiest attack over a stone-crack body, no ring layer), render to
+// tmp/gather-strike-styles/rockpick and rocklayered; the choice is recorded in
+// variants/rock.json (`rock-select --from-json` rebuilds from it).
+const ROCK_SOURCES = ['rock', 'quarry'];
+const ROCK_KEEP = 4;
+
+function fftInPlace(re, im) {
+  const n = re.length;
+  for (let i = 1, j = 0; i < n; i++) {
+    let bit = n >> 1;
+    for (; j & bit; bit >>= 1) j ^= bit;
+    j ^= bit;
+    if (i < j) {
+      [re[i], re[j]] = [re[j], re[i]];
+      [im[i], im[j]] = [im[j], im[i]];
+    }
+  }
+  for (let len = 2; len <= n; len <<= 1) {
+    const ang = (-2 * Math.PI) / len;
+    for (let i = 0; i < n; i += len) {
+      for (let j = 0; j < len / 2; j++) {
+        const wr = Math.cos(ang * j);
+        const wi = Math.sin(ang * j);
+        const k = i + j + len / 2;
+        const br = re[k] * wr - im[k] * wi;
+        const bi = re[k] * wi + im[k] * wr;
+        re[k] = re[i + j] - br;
+        im[k] = im[i + j] - bi;
+        re[i + j] += br;
+        im[i + j] += bi;
+      }
+    }
+  }
+}
+
+/** How tonal a take still is 150 ms after its onset: the strongest narrow
+ *  spectral peak over its local median (dB, 300 Hz to 12 kHz), and how loud that
+ *  late window is against the hit (dB). A sustained bell or anvil partial reads
+ *  as a high `tonalDb` while `lateDb` is still well above silence. */
+export function lateTonality(x) {
+  const N = 4096;
+  const from = Math.round(0.154 * SR); // tightened takes start 4 ms before the onset
+  const re = new Float64Array(N);
+  const im = new Float64Array(N);
+  let late = 0;
+  for (let i = 0; i < N; i++) {
+    const v = x[from + i] ?? 0;
+    late += v * v;
+    re[i] = v * (0.5 - 0.5 * Math.cos((2 * Math.PI * i) / (N - 1)));
+  }
+  fftInPlace(re, im);
+  const p = new Float64Array(N / 2);
+  for (let k = 0; k < N / 2; k++) p[k] = re[k] * re[k] + im[k] * im[k];
+  const lo = Math.round((300 * N) / SR);
+  const hi = Math.round((12000 * N) / SR);
+  let tonal = 0;
+  for (let k = lo; k < hi; k++) {
+    const around = [];
+    for (let j = k - 40; j <= k + 40; j++) if (j !== k && j >= 0 && j < N / 2) around.push(p[j]);
+    around.sort((a, b) => a - b);
+    const median = around[around.length >> 1] || 1e-20;
+    tonal = Math.max(tonal, p[k] / median);
+  }
+  let hit = 0;
+  const w = Math.round(0.05 * SR);
+  for (let i = 0; i < w && i < x.length; i++) hit += x[i] * x[i];
+  return {
+    tonalDb: 10 * Math.log10(tonal || 1),
+    lateDb: 10 * Math.log10((late / N + 1e-20) / (hit / w + 1e-20)),
+  };
+}
+
+/** Low-mid punch: the share of the first 60 ms under about 800 Hz. */
+function lowMidPunch(x) {
+  const a = 1 - Math.exp((-2 * Math.PI * 800) / SR);
+  let lp = 0;
+  let low = 0;
+  let all = 0;
+  for (let i = 0; i < Math.min(x.length, Math.round(0.06 * SR)); i++) {
+    lp += a * (x[i] - lp);
+    low += lp * lp;
+    all += x[i] * x[i];
+  }
+  return all > 0 ? low / all : 0;
+}
+
+/** Rejected when a narrow partial stands 18 dB over its neighbours while the
+ *  late window is still within 40 dB of the hit. */
+const isRinging = (t) => t.tonalDb > 18 && t.lateDb > -40;
+
+function renderTakes(dir, takes) {
+  mkdirSync(dir, { recursive: true });
+  takes.forEach((y, n) => {
+    const tmp = join(dir, `.impact_gather_pick_${n + 1}.source.wav`);
+    writeFileSync(tmp, wav(y));
+    try {
+      conformSfxAudio({
+        inputFile: tmp,
+        outputFile: join(dir, `impact_gather_pick_${n + 1}.mp3`),
+        duration: y.length / SR,
+        ffmpegPath: FFMPEG_PATH,
+        channels: 1,
+      });
+    } finally {
+      rmSync(tmp, { force: true });
+    }
+  });
+}
+
+function rockSelect() {
+  const jsonPath = join(VARIANTS, 'rock.json');
+  const load = (id, singleHit) => {
+    const [style, cand] = id.split('/');
+    return tighten(decode(join(VARIANTS, style, `impact_gather_pick_${cand}.mp3`)), 0.6, singleHit);
+  };
+  let choice;
+  if (process.argv.includes('--from-json')) {
+    choice = JSON.parse(readFileSync(jsonPath, 'utf8'));
+  } else {
+    const rows = [];
+    // the punchy-ring takes are measured too, as the reference for what "ringing" reads as
+    for (const style of [...ROCK_SOURCES, 'punchy']) {
+      const spec = GATHER_STRIKE_STYLES[style].impact_gather_pick;
+      for (let i = 1; i <= (spec.candidates ?? STYLE_CANDIDATES); i++) {
+        if (!existsSync(join(VARIANTS, style, `impact_gather_pick_cand_${i}.mp3`))) continue;
+        const id = `${style}/cand_${i}`;
+        const x = load(id, true);
+        const m = measure(x);
+        const t = lateTonality(load(id, false));
+        const punch = lowMidPunch(x);
+        const score = Math.log(m.crest) - m.attackMs / 4 + 3 * punch - (m.clipped > 20 ? 2 : 0);
+        rows.push({ id, style, score, punch, ...t, ringing: isRinging(t), ...m });
+      }
+    }
+    for (const r of rows) {
+      console.log(
+        `  ${r.id.padEnd(14)} score ${r.score.toFixed(2).padStart(6)}  attack ${String(r.attackMs).padStart(3)}ms  crest ${r.crest.toFixed(1).padStart(5)}  punch ${r.punch.toFixed(2)}  tonal ${r.tonalDb.toFixed(1).padStart(5)}dB  late ${r.lateDb.toFixed(1).padStart(6)}dB  clip ${String(r.clipped).padStart(3)}${r.ringing ? '  REJECT (rings)' : ''}`,
+      );
+    }
+    const pool = rows
+      .filter((r) => ROCK_SOURCES.includes(r.style) && !r.ringing)
+      .sort((a, b) => b.score - a.score);
+    const override = process.argv.find((a) => a.startsWith('--keep='));
+    const kept = override
+      ? override.slice(7).split(',')
+      : pool.slice(0, ROCK_KEEP).map((r) => r.id);
+    // layered: the punchiest attack over the stone body of the next best take
+    const attack = kept[0];
+    const bodies = kept.slice(1, 3);
+    choice = { kept, layered: bodies.map((body) => ({ attack, body })) };
+    writeFileSync(jsonPath, `${JSON.stringify(choice, null, 2)}\n`);
+  }
+  console.log(`rock kept ${choice.kept.join(', ')}`);
+  renderTakes(
+    join(STYLE_OUT, 'rockpick'),
+    choice.kept.map((id) => load(id, true)),
+  );
+  renderTakes(
+    join(STYLE_OUT, 'rocklayered'),
+    choice.layered.map((p) => shapePunch(layerStrike(load(p.attack, true), load(p.body, false)))),
+  );
+  for (const p of choice.layered) console.log(`rock layered: attack ${p.attack} + body ${p.body}`);
+}
+
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   if (mode === 'generate') await generate();
   else if (mode === 'usage') await usage();
@@ -614,5 +784,6 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   else if (mode === 'styles-select') stylesSelect();
   else if (mode === 'styles-build') stylesBuild();
   else if (mode === 'styles-layer') stylesLayer();
+  else if (mode === 'rock-select') rockSelect();
   else select();
 }
