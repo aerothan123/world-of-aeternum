@@ -159,7 +159,7 @@ import { freezeStaticMatrices } from './static_matrix';
 import { groundGrassColorAt, groundLushnessAt } from './terrain_chunk_build';
 import { type FlowerKind, flowerTuftTexture, grassTuftTexture } from './textures';
 import { hideableGhostSources, type TreeHideable, updateTreeHides } from './tree_hide_fade';
-import { paintRefinedCanopy, paintRefinedGrass } from './world_style_foliage';
+import { paintRefinedCanopy, paintRefinedGrass, refinedDressLift } from './world_style_foliage';
 import { applySurfaceDetail, foliageWornFamilyFor } from './worn_stone';
 
 // The renderer seeds the far-placement mirrors through this module's surface.
@@ -2156,7 +2156,7 @@ function buildDressing(
     fern: [1.06, 1.02, 0.88],
   };
   for (const kind of ['bush', 'bushFlowers', 'fern'] as const) {
-    const lift = albedoLift[kind];
+    const lift = kind === 'fern' ? albedoLift[kind] : refinedDressLift(albedoLift[kind]);
     if (!lift) continue;
     for (const part of kindParts[kind]) {
       if (part.material.name === 'Flowers') continue;

@@ -24,7 +24,17 @@ import {
   paintedCanopyVertGlsl,
   paintedGrassFragGlsl,
   paintedGrassVertGlsl,
+  worldStyleDressLift,
 } from './world_style_foliage_core';
+
+/** The ground-dressing albedo lift under the active style (Refined sets the
+ *  bushes and ferns slightly darker; Classic returns the lift unchanged). */
+export function refinedDressLift(
+  lift: readonly [number, number, number] | undefined,
+): readonly [number, number, number] | undefined {
+  if (!lift) return lift;
+  return worldStyleDressLift(worldStyleRefined() ? 'refined' : 'classic', lift);
+}
 
 type Shader = THREE.WebGLProgramParametersWithUniforms;
 

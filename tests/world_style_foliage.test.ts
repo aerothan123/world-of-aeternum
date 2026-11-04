@@ -20,6 +20,8 @@ import {
   paintedGrassColor,
   paintedGrassFlower,
   paintedGrassFragGlsl,
+  REFINED_DRESS_VALUE,
+  worldStyleDressLift,
 } from '../src/render/world_style_foliage_core';
 
 interface FakeShader {
@@ -147,6 +149,24 @@ describe('painterly canopy', () => {
   it('compiles a weight-free arm for a known leaf and a chroma arm otherwise', () => {
     expect(paintedCanopyFragGlsl(true)).toContain('float wsLeafW = 1.0;');
     expect(paintedCanopyFragGlsl(false)).toContain('diffuseColor.g - max(diffuseColor.r * 0.82');
+  });
+});
+
+describe('ground-dressing value', () => {
+  const lift = [1.06, 0.98, 0.78] as const;
+  it('keeps the Classic bush lift exactly as shipped', () => {
+    expect(worldStyleDressLift('classic', lift)).toBe(lift);
+  });
+  it('sets the Refined bushes slightly darker, hue kept', () => {
+    expect(REFINED_DRESS_VALUE).toBeGreaterThanOrEqual(0.85);
+    expect(REFINED_DRESS_VALUE).toBeLessThan(1);
+    const r = worldStyleDressLift('refined', lift);
+    for (let i = 0; i < 3; i++) expect(r[i]).toBeCloseTo(lift[i] * REFINED_DRESS_VALUE, 6);
+  });
+  it('routes through the painter by the active style', async () => {
+    expect((await painter('classic')).refinedDressLift(lift)).toBe(lift);
+    expect((await painter('refined')).refinedDressLift(lift)?.[1]).toBeCloseTo(0.98 * 0.9, 6);
+    expect((await painter('refined')).refinedDressLift(undefined)).toBeUndefined();
   });
 });
 

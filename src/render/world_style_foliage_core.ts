@@ -240,6 +240,18 @@ export function paintedCanopyRim(golden: number, nightAmt: number): number {
   return (0.1 + 0.2 * clamp01(golden)) * (1 - clamp01(nightAmt));
 }
 
+/** Refined value scale on the ground-dressing albedo lift (bushes, ferns):
+ *  the storybook bushes read a touch bright against the painted meadow, so
+ *  Refined sets them slightly darker. Classic keeps the lift as shipped. */
+export const REFINED_DRESS_VALUE = 0.9;
+
+/** The dressing albedo lift for a World Style: identity under Classic. */
+export function worldStyleDressLift(style: WorldStyle, lift: Rgb): Rgb {
+  if (style !== 'refined') return lift;
+  const v = REFINED_DRESS_VALUE;
+  return [lift[0] * v, lift[1] * v, lift[2] * v];
+}
+
 // ---------------------------------------------------------------------------
 // GLSL (generated from the constants above, so mirror and shader agree)
 // ---------------------------------------------------------------------------

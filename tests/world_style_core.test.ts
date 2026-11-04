@@ -172,6 +172,18 @@ describe('Refined aerial perspective', () => {
     );
     expect(refinedAerialAmount(1e6, 0, 5, true)).toBeLessThanOrEqual(REFINED_AERIAL_MAX);
   });
+  it('keeps the midday air clear while distance still softly hazes', () => {
+    const noon = refinedAtmosphere(0.7, 0);
+    // thinner than the golden-hour haze, and never the milky 0.4 it was
+    expect(noon.aerialStrength).toBeLessThanOrEqual(0.34);
+    expect(noon.aerialStrength).toBeLessThan(refinedAtmosphere(0.1, 0).aerialStrength);
+    // a clear blue cast, not a white wash
+    expect(noon.aerialColor[2] - noon.aerialColor[0]).toBeGreaterThanOrEqual(0.2);
+    // the low shadow lift stays a whisper
+    expect(Math.max(...noon.gradeLift)).toBeLessThanOrEqual(0.012);
+    // far hills still haze
+    expect(refinedAerialAmount(600, 10, noon.aerialStrength, true)).toBeGreaterThan(0.15);
+  });
 });
 
 describe('Refined palette and shadows', () => {

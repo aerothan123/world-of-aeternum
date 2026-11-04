@@ -330,15 +330,17 @@ interface Phase {
 const NOON: Phase = {
   // Storybook afternoon: a gentle warm cast, raised cool-blue shadow floor
   // and a slightly compressed range (gain under 1 plus lift), so midday reads
-  // soft and golden rather than crisp and neutral.
+  // soft and golden rather than crisp and neutral. The midday air is kept
+  // clear: a lower shadow lift and a thinner, bluer aerial haze (it read
+  // milky), while distance still softens into a gentle sky-blue.
   gain: [1.0, 0.975, 0.93],
   sat: 1.15,
-  lift: [0.004, 0.007, 0.016],
+  lift: [0.003, 0.005, 0.012],
   exposure: 1.0,
-  aerial: [0.72, 0.78, 0.9],
-  aerialAmt: 0.4,
+  aerial: [0.64, 0.73, 0.9],
+  aerialAmt: 0.32,
   zenith: [0.14, 0.38, 0.92],
-  horizon: [0.84, 0.84, 0.8],
+  horizon: [0.8, 0.82, 0.82],
   glow: [0.5, 0.4, 0.24],
   cloudLit: [1.06, 1.03, 0.96],
   cloudShade: [0.66, 0.68, 0.8],
