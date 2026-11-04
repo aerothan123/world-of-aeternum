@@ -47,24 +47,28 @@ export const SPLIT_KINDS = Object.freeze(['broadleaf', 'conifer', 'flowering_bus
 // keeps the old footprint (`footprint`: width, depth): the renderer scales a
 // rock to its sim height (src/sim/decoration_dims.ts) and the collider radius
 // follows the old proportions, so a narrower stone would stand inside an
-// invisible wall.
+// invisible wall. A tree keeps its old footprint as `oldFootprint` and may
+// spread at most `TREE_SPREAD_CAP` times wider: the storybook crowns are
+// broad, and the field's spacing, the town dressing and the camera's tree
+// fade were all laid out around the old ones, so an uncapped crown fills the
+// chase camera in a dense wood; past the cap the crown narrows (x/z only).
 const T = (name, kind, height, minY, x, z, budget, extra = {}) =>
   Object.freeze({ name, kind, height, minY, x, z, budget, ...extra });
 
 export const FABLE_FOLIAGE_TARGETS = Object.freeze([
-  T('oak_1', 'broadleaf', 7.265, -0.243, 0, 0, 6211),
-  T('oak_2', 'broadleaf', 7.643, -0.243, 0, 0, 5580),
-  T('oak_3', 'broadleaf', 9.425, -0.243, 0, 0, 4000),
-  T('oak_4', 'broadleaf', 9.438, -0.243, 0, -0.063, 4000),
-  T('oak_5', 'broadleaf', 7.006, -0.243, 0, 0, 4000),
-  T('pine_1', 'conifer', 7.317, -0.235, 0.002, -0.001, 2600),
-  T('pine_2', 'conifer', 7.376, -0.235, 0.002, -0.001, 2600),
-  T('pine_3', 'conifer', 7.392, -0.235, 0.002, -0.001, 3000),
-  T('pine_4', 'conifer', 10.236, -0.235, 0, 0, 2600),
-  T('pine_5', 'conifer', 8.724, -0.235, 0.003, 0, 2600),
-  T('dead_1', 'dead', 9.495, -0.336, 0.051, 0, 3249),
-  T('dead_2', 'dead', 11.488, -0.336, 0.05, 0, 3600),
-  T('dead_3', 'dead', 13.28, -0.336, 0.055, 0.012, 3544),
+  T('oak_1', 'broadleaf', 7.265, -0.243, 0, 0, 6211, { oldFootprint: [4.311, 4.577] }),
+  T('oak_2', 'broadleaf', 7.643, -0.243, 0, 0, 5580, { oldFootprint: [4.464, 4.276] }),
+  T('oak_3', 'broadleaf', 9.425, -0.243, 0, 0, 4000, { oldFootprint: [4.063, 4.241] }),
+  T('oak_4', 'broadleaf', 9.438, -0.243, 0, -0.063, 4000, { oldFootprint: [3.826, 3.755] }),
+  T('oak_5', 'broadleaf', 7.006, -0.243, 0, 0, 4000, { oldFootprint: [3.671, 4.22] }),
+  T('pine_1', 'conifer', 7.317, -0.235, 0.002, -0.001, 2600, { oldFootprint: [4.944, 4.539] }),
+  T('pine_2', 'conifer', 7.376, -0.235, 0.002, -0.001, 2600, { oldFootprint: [5.728, 5.221] }),
+  T('pine_3', 'conifer', 7.392, -0.235, 0.002, -0.001, 3000, { oldFootprint: [3.612, 3.996] }),
+  T('pine_4', 'conifer', 10.236, -0.235, 0, 0, 2600, { oldFootprint: [5.803, 5.371] }),
+  T('pine_5', 'conifer', 8.724, -0.235, 0.003, 0, 2600, { oldFootprint: [6.42, 6.222] }),
+  T('dead_1', 'dead', 9.495, -0.336, 0.051, 0, 3249, { oldFootprint: [6.149, 5.749] }),
+  T('dead_2', 'dead', 11.488, -0.336, 0.05, 0, 3600, { oldFootprint: [6.729, 6.379] }),
+  T('dead_3', 'dead', 13.28, -0.336, 0.055, 0.012, 3544, { oldFootprint: [6.388, 6.43] }),
   T('bush', 'bush', 1.572, -0.235, 0.038, -0.022, 1600),
   T('bush_flowers', 'flowering_bush', 1.572, -0.235, 0.083, 0.028, 2000),
   T('mushroom', 'mushroom', 0.464, -0.017, -0.052, -0.056, 900),
@@ -72,6 +76,9 @@ export const FABLE_FOLIAGE_TARGETS = Object.freeze([
   T('rock_2', 'rock', 1.899, -0.051, -0.189, 0.08, 700, { footprint: [3.049, 2.479] }),
   T('rock_3', 'rock', 2.316, -0.316, -0.114, 0.848, 800, { footprint: [3.42, 3.476] }),
 ]);
+
+/** How much wider than the old model a fitted tree crown may spread. */
+export const TREE_SPREAD_CAP = 1.5;
 
 /** Height band (fraction of the model height above its base) the trunk
  *  anchor is read from: above the Tripo ground mound, below the crown. */
@@ -599,17 +606,22 @@ export function treeAnchor(indices, positions, barkMask, bounds, band = TRUNK_AN
  * Scale plus translation that lands a model of `bounds` on the target height
  * and minimum y, with `anchor` (its trunk base or bounds centre, x/z in
  * source units) on the target x/z. Uniform, unless the target names a
- * `footprint` (width, depth): then x/z share one scale onto the mean of it.
+ * `footprint` (width, depth): then x/z share one scale onto the mean of it;
+ * or an `oldFootprint`: then x/z shrink, if they must, so the mean spread is
+ * at most `TREE_SPREAD_CAP` times the old one.
  */
 export function fitTransform(bounds, anchor, target) {
   const height = bounds.max[1] - bounds.min[1];
   if (!(height > 0)) throw new Error('degenerate source height');
   const sy = target.height / height;
   let sh = sy;
+  const w = bounds.max[0] - bounds.min[0];
+  const d = bounds.max[2] - bounds.min[2];
   if (target.footprint) {
-    const w = bounds.max[0] - bounds.min[0];
-    const d = bounds.max[2] - bounds.min[2];
     sh = (target.footprint[0] + target.footprint[1]) / (w + d);
+  } else if (target.oldFootprint) {
+    const cap = (TREE_SPREAD_CAP * (target.oldFootprint[0] + target.oldFootprint[1])) / (w + d);
+    sh = Math.min(sy, cap);
   }
   return {
     scale: [sh, sy, sh],

@@ -26,9 +26,11 @@ export interface FableFoliageTarget {
   readonly z: number;
   readonly budget: number;
   readonly footprint?: readonly [number, number];
+  readonly oldFootprint?: readonly [number, number];
 }
 
 export const FABLE_FOLIAGE_TARGETS: readonly FableFoliageTarget[];
+export const TREE_SPREAD_CAP: number;
 export const TRUNK_ANCHOR_BAND: readonly [number, number];
 export const BROADLEAF_CROWN: number;
 export const CONIFER_TRUNK_RADIUS: {
@@ -148,7 +150,7 @@ export function treeAnchor(
 export function fitTransform(
   bounds: Bounds,
   anchor: { x: number; z: number },
-  target: Pick<FableFoliageTarget, 'height' | 'minY' | 'x' | 'z' | 'footprint'>,
+  target: Pick<FableFoliageTarget, 'height' | 'minY' | 'x' | 'z' | 'footprint' | 'oldFootprint'>,
 ): Fit;
 export function applyFit(positions: ArrayLike<number>, fit: Fit): Float32Array;
 export function fitNormals(normals: ArrayLike<number>, fit: Fit): Float32Array;

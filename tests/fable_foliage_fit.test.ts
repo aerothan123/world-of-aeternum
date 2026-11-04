@@ -28,6 +28,7 @@ import {
   remapUvsToAtlasCell,
   removeSmallIslands,
   srgbToLab,
+  TREE_SPREAD_CAP,
   treeAnchor,
   triangleAdjacency,
   triangleGeometry,
@@ -187,6 +188,24 @@ describe('fable foliage fit core', () => {
     expect(Array.from(out)).toEqual([0, -0.25, 0, 0, 9.75, 0]);
   });
 
+  it('narrows a tree crown that would spread past the cap, and only then', () => {
+    const bounds = { min: [-4, 0, -4], max: [4, 7, 4] };
+    const wide = fitTransform(
+      bounds,
+      { x: 0, z: 0 },
+      { height: 7, minY: 0, x: 0, z: 0, oldFootprint: [4, 4] },
+    );
+    expect(wide.scale[1]).toBe(1);
+    expect(wide.scale[0]).toBeCloseTo((TREE_SPREAD_CAP * 4) / 8, 10);
+    expect(wide.scale[2]).toBe(wide.scale[0]);
+    const narrow = fitTransform(
+      bounds,
+      { x: 0, z: 0 },
+      { height: 7, minY: 0, x: 0, z: 0, oldFootprint: [8, 8] },
+    );
+    expect(narrow.scale).toEqual([1, 1, 1]);
+  });
+
   it('fits a rock footprint with one horizontal scale and corrects its normals', () => {
     const bounds = { min: [0, 0, 0], max: [2, 1, 2] };
     const fit = fitTransform(
@@ -332,6 +351,11 @@ describe('fable foliage shipped models', () => {
       } else {
         expect((min[0] + max[0]) / 2).toBeCloseTo(target.x, 2);
         expect((min[2] + max[2]) / 2).toBeCloseTo(target.z, 2);
+      }
+      if (target.oldFootprint) {
+        const spread = (max[0] - min[0] + max[2] - min[2]) / 2;
+        const old = (target.oldFootprint[0] + target.oldFootprint[1]) / 2;
+        expect(spread).toBeLessThanOrEqual(old * TREE_SPREAD_CAP + 0.01);
       }
       if (target.footprint) {
         expect((max[0] - min[0] + max[2] - min[2]) / 2).toBeCloseTo(

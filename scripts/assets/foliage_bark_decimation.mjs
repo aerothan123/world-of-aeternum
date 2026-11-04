@@ -21,24 +21,24 @@ export const FOLIAGE_BARK_BOUNDS_TOLERANCE = 0.05;
 export const FOLIAGE_FIELD_BARK_ASSETS = Object.freeze([
   {
     sourcePath: 'models/foliage/oak_1.glb',
-    sourceSha256: '6c92d87080bd35dfdfcef3c2b8b775667dbb2cb94ef054e46e400414147dc8b4',
+    sourceSha256: '7cd1f02a2475dfaf34bf5e41148da230de5a96ea5d2f36171685572ed26387fd',
     barkTriangleBudget: 480,
     outputPath: 'models/foliage/oak_1_field.glb',
-    outputSha256: 'de7e9a4b2b04e77b02ba6aa54c5f7803314e7e0a848bda6d7e9d4818609fb7c4',
+    outputSha256: '319169cbdc8464c12d1aa912b7c71299a26a240495d0e59f8ab2e7e5be422a82',
   },
   {
     sourcePath: 'models/foliage/oak_2.glb',
-    sourceSha256: '3e2c7a0f329d38da28c90043437d0cdee79f9213f60de335865e97d13b81ac23',
+    sourceSha256: 'b7e37ddeaf908d3d0e4aa9c57d4a595d422d5074ef90cf7a6493f211e279a053',
     barkTriangleBudget: 420,
     outputPath: 'models/foliage/oak_2_field.glb',
-    outputSha256: '03da775ddeb97f8b77cbe165c2df940fa454d7ef0ee621171ad481bebe76bd64',
+    outputSha256: '8019062e5ba5e37221776c075210ba6845fbeadd828df728cce74611e9566856',
   },
   {
     sourcePath: 'models/foliage/oak_4.glb',
-    sourceSha256: '8ccb3bf21dc6c3141bdec857bd6f2c307354f136a17a99985ccb39d8b9c707d8',
+    sourceSha256: '6adb814103bee67125c25c02da96cdb40f9d421626aa65e0b9662cdf977adaef',
     barkTriangleBudget: 260,
     outputPath: 'models/foliage/oak_4_field.glb',
-    outputSha256: 'e5c0486da5473537dc4b51699faeea92c7c9dc106546e914ef62ebc2a01b9a32',
+    outputSha256: 'c7b7060a8a3a8a6d218a1641408765f969dfb29682deb9bf3d594efd0dbd248b',
   },
   {
     sourcePath: 'models/foliage/oak_5.glb',
