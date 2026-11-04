@@ -51,10 +51,17 @@ function makeLights() {
 // framing the bind box renders a blank.
 
 // The scene.ts camera rule (fov 40, frame by bounding sphere), aimed at an explicit center.
-function frameCamera(camera, radius, center) {
+// `pitch` (radians, default 0: level, every bestiary and class still) raises the
+// camera on an arc so it looks DOWN at the subject: furniture and other props
+// whose tops carry their identity (a table, a rug) read from slightly above.
+function frameCamera(camera, radius, center, pitch = 0) {
   const fov = (camera.fov * Math.PI) / 180;
   const dist = (radius / Math.sin(fov / 2)) * 1.15;
-  camera.position.set(center.x, center.y, center.z + dist);
+  camera.position.set(
+    center.x,
+    center.y + dist * Math.sin(pitch),
+    center.z + dist * Math.cos(pitch),
+  );
   camera.lookAt(center);
   camera.near = Math.max(0.01, dist / 50);
   camera.far = dist * 12;
@@ -109,7 +116,7 @@ window.renderStill = (spec, tint) =>
           // above. frameCamera keeps the camera level with the center, so this reframes
           // vertically; it is not a downward tilt.
           center.y += radius * 0.08;
-          frameCamera(camera, radius, center);
+          frameCamera(camera, radius, center, spec.pitch ?? 0);
         }
 
         renderer.render(scene, camera);

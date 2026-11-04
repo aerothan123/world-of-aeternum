@@ -422,9 +422,9 @@ describe('item webp icons', () => {
     // (hollow-crypt-icons-2026-10-03) painted every non-weapon piece and the
     // generated Heroic Hymnal: HOLLOW_CRYPT_ART_PENDING_ITEM_IDS is declared
     // empty in content/hollow_crypt_items.ts.
-    // Player housing (Project H) phase 2 parks its twelve furniture ids
-    // (content/furniture.ts FURNITURE_ART_PENDING_ITEM_IDS) until their
-    // paintings land, beside the Crucible quiver.
+    // Player housing furniture left the ledger when its render batch
+    // (furniture-renders-2026-11-04) gave every piece an icon:
+    // FURNITURE_ART_PENDING_ITEM_IDS is declared empty in content/furniture.ts.
     expect(
       [...ITEM_ART_PENDING].sort(),
       'art debt is enumerated and re-pinned deliberately, never grown quietly',

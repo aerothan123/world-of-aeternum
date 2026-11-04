@@ -5862,7 +5862,8 @@ export const ITEM_ART_PENDING = new Set<string>([
   // (hollow-crypt-icons-2026-10-03) landed; the seam stays for the next park.
   ...HOLLOW_CRYPT_ART_PENDING_ITEM_IDS,
   ...BUDDY_ART_PENDING_ITEM_IDS,
-  // Player housing (Project H) phase 2 furniture, until its paintings land.
+  // Player housing furniture: EMPTY since its render batch landed; the seam
+  // stays for the next batch.
   ...FURNITURE_ART_PENDING_ITEM_IDS,
   ...Object.keys(ITEM_ART_PLACEHOLDERS),
   ...QUEST_SHIELD_ART_PENDING_ITEM_IDS,

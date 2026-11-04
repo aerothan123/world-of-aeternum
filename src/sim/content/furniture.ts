@@ -25,9 +25,9 @@
 // satisfies the recipe station gate exactly as the town station of that type
 // does, src/sim/housing/house_stations.ts).
 //
-// Item icons: every id below rides ITEM_ART_PENDING (src/ui/icons.ts) through
-// FURNITURE_ART_PENDING_ITEM_IDS until the paintings land, so the icon falls
-// back to the procedural recipe (tests/item_icons.test.ts).
+// Item icons: public/ui/items/<id>.webp, rendered from the very model each
+// piece places (scripts/render_furniture_icons.mjs). A new piece parks in
+// FURNITURE_ART_PENDING_ITEM_IDS until its icon lands (tests/item_icons.test.ts).
 
 import type { ItemDef, StationType } from '../types';
 
@@ -169,9 +169,10 @@ export const HOUSE_STATION_FURNITURE_DEFS: readonly FurnitureDef[] = FURNITURE_D
  *  ledger, and the i18n catalog pin). */
 export const FURNITURE_ITEM_IDS: readonly string[] = FURNITURE_DEFS.map((def) => def.itemId);
 
-/** Item art debt (src/ui/icons.ts ITEM_ART_PENDING): every furniture id ships
- *  on the procedural recipe until its painting lands. */
-export const FURNITURE_ART_PENDING_ITEM_IDS: readonly string[] = FURNITURE_ITEM_IDS;
+/** Item art debt (src/ui/icons.ts ITEM_ART_PENDING): EMPTY since every piece
+ *  got its icon (scripts/render_furniture_icons.mjs); the seam stays for the
+ *  next furniture batch, which parks here until its art lands. */
+export const FURNITURE_ART_PENDING_ITEM_IDS: readonly string[] = [];
 
 function furnitureItem(id: string, name: string, sellValue: number): ItemDef {
   return { id, name, kind: 'tool', quality: 'common', sellValue };

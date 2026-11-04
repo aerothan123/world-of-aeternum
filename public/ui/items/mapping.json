@@ -8602,6 +8602,35 @@
         "gurglegreen_cauldron"
       ],
       "commonPrompt": "Not a text-to-image prompt: a 512px Eevee render of the modelled subject, then scripts/convert_item_icons_webp.mjs to the 128px WebP."
+    },
+    {
+      "batchId": "furniture-renders-2026-11-04",
+      "source": "In-engine render of the committed furniture models each piece places (scripts/render_furniture_icons.mjs: the KayKit castle set, the qprops anvil and weapon stand, and a medieval village carpet for the woven rug, through the shared stills entry seen from slightly above, composited on the item-icon vignette)",
+      "owner": "World of ClaudeCraft",
+      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "styleReference": "existing painted WebP catalog in public/ui/items/; subjects are the exact furniture models the house interior draws",
+      "provenanceRecord": "scripts/render_furniture_icons.mjs",
+      "itemIds": [
+        "furn_barrel",
+        "furn_bookcase",
+        "furn_candlestick",
+        "furn_keg",
+        "furn_long_table",
+        "furn_oak_bench",
+        "furn_round_table",
+        "furn_station_apothecary",
+        "furn_station_forge",
+        "furn_station_kitchens",
+        "furn_station_loom",
+        "furn_station_tannery",
+        "furn_station_toolworks",
+        "furn_storage_chest",
+        "furn_trophy_plaque",
+        "furn_wooden_chair",
+        "furn_wooden_stool",
+        "furn_woven_rug"
+      ],
+      "commonPrompt": "Not a text-to-image prompt: an in-engine render of each piece's own model (scripts/wiki/stills_render_entry.js, camera pitched 24 degrees down, the rug 60), trimmed and composited on the item-icon vignette at 128px."
     }
   ]
 }
