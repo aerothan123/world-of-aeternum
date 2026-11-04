@@ -7,9 +7,11 @@
 // exception is the WEAPON_VFX skin set, whose emissive derivation draws the
 // baseColor image into a canvas and therefore needs a drawable webp/png.
 //
-// An asset exporter re-run silently reverts its outputs to webp (nothing in
-// scripts/assets knows about KTX2); this suite is what turns that drift red.
-// The fix is one command:
+// Project H ships as the Windows desktop (Steam) client only, with no browser
+// or phone build, so the iOS memory ceiling behind the KTX2 rule no longer
+// applies: a newly added model may also ship WEBP textures (what the Tripo
+// asset pipeline writes). Raw PNG or JPEG stays an offender, since it bloats
+// the download for nothing. KTX2 is still preferred and still welcome:
 //   node scripts/assets/compress_glb_textures.mjs && node scripts/build_media_manifest.mjs generate
 import fs from 'node:fs';
 import path from 'node:path';
@@ -44,9 +46,10 @@ const vfxSkinFiles = new Set(
 );
 
 describe('GLB texture KTX2 compression', () => {
-  it('keeps every embedded texture KTX2, except the drawable WEAPON_VFX skins', () => {
+  it('keeps every embedded texture KTX2 or WEBP, and the WEAPON_VFX skins drawable', () => {
     const offenders: string[] = [];
     let converted = 0;
+    let webp = 0;
     let skins = 0;
     for (const file of walkGlbs(MODELS)) {
       // tests/sfx_studio_server_security.test.ts plants (and can leak) a
@@ -65,6 +68,10 @@ describe('GLB texture KTX2 compression', () => {
         if (mimes.some((m) => m === 'image/ktx2')) {
           offenders.push(`${rel}: WEAPON_VFX skin must stay drawable, found ktx2`);
         }
+        continue;
+      }
+      if (mimes.every((m) => m === 'image/webp')) {
+        webp++;
         continue;
       }
       if (mimes.some((m) => m !== 'image/ktx2')) {
@@ -87,6 +94,9 @@ describe('GLB texture KTX2 compression', () => {
     expect(skins).toBe(vfxSkinFiles.size);
     // 1037 converted at introduction; new textured models only add to this.
     expect(converted).toBeGreaterThanOrEqual(1037);
+    // The desktop-only allowance is real, not vacuous: the 25 gathering tools
+    // and the 8 gather node models ship WEBP.
+    expect(webp).toBeGreaterThanOrEqual(33);
   });
 
   it('extracts the same WEAPON_VFX exclusion set the converter uses', () => {
