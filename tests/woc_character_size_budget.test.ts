@@ -64,8 +64,9 @@ const WOC_SIZE_BUDGETS = {
   /** The rig, the body and its one map: a base ends at the neck (the modular head packs are
    *  the head, and the handoff's original face never ships: it was three quarters of each
    *  base until 2026-10-01, so a base that grows by a megabyte is carrying a head again).
-   *  base_female: 361,116. */
-  base: 380_000,
+   *  Raised 2026-11-04 by the stylized paint pass (scripts/assets/woc_character/painted/):
+   *  the body map went from 512 to 1024 a side. base_female: 815,752. */
+  base: 860_000,
   /** A fit's animation library: the rig's nodes and every clip. anims_female: 682,864. */
   anims: 718_000,
   /** A head type's CORE file (woc_head_catalog.ts wocHeadCoreUrl): the base head and every
@@ -73,18 +74,19 @@ const WOC_SIZE_BUDGETS = {
    *  downloads (the split, 2026-09-30, woc_head_pack_split.mjs, replaced the whole-library
    *  pack and its 3.5 MB budget). One budget per head type: Type B ships separate left and
    *  right brow and ear paints and six eyelid paints where Type A shares them, so its core is
-   *  two thirds larger (head_type_a_core: 894,480; head_type_b_core: 1,477,780, held at the
-   *  1.5 MB a core always had). */
-  headCoreA: 940_000,
-  headCoreB: 1_500_000,
-  /** One hairstyle (wocHeadPieceUrl), streamed only when a look wears it.
-   *  head_type_a_hair_waves: 155,760. */
-  hair: 164_000,
-  /** A head type's shared facial-hair file, seven beards cut from one texture.
-   *  head_type_a_beards: 281,000. */
-  beards: 296_000,
-  /** A beard that ships in a file of its own. head_type_a_beard_handlebar: 61,656. */
-  beard: 65_000,
+   *  two thirds larger. Raised 2026-11-04 by the stylized paint pass: the atlases keep their
+   *  size, but painted light and shading cost UASTC bytes (head_type_a_core: 1,121,168;
+   *  head_type_b_core: 1,871,928, from 894,480 and 1,477,780). */
+  headCoreA: 1_178_000,
+  headCoreB: 1_966_000,
+  /** One hairstyle (wocHeadPieceUrl), streamed only when a look wears it. Raised 2026-11-04
+   *  (paint pass: strands from 512 to 1024 a side). head_type_a_hair_undercut: 335,464. */
+  hair: 353_000,
+  /** A head type's shared facial-hair file, seven beards cut from one texture (paint pass:
+   *  its texture doubled a side). head_type_a_beards: 391,328. */
+  beards: 411_000,
+  /** A beard that ships in a file of its own. head_type_a_beard_handlebar: 179,448. */
+  beard: 189_000,
   /** One armor set's low file (its colour atlas 1024 x 512 since the 2026-10-05 rebuild,
    *  PR 4360 review N3). female_druid_low: 214,100. */
   armorLow: 225_000,
@@ -94,8 +96,9 @@ const WOC_SIZE_BUDGETS = {
    *  male_warrior_top: 1,600,368. */
   armorTop: 1_681_000,
   /** One class under-armor atlas (512 x 512 since the 2026-10-05 rebuild, PR 4360 review
-   *  N3). female_paladin_underarmor: 44,299. */
-  underArmor: 46_500,
+   *  N3; 1024 x 1024 with the body map since the 2026-11-04 paint pass, ETC1S at quality
+   *  255). priest_underarmor: 257,800. */
+  underArmor: 271_000,
 } as const;
 
 /** The high tier, which has no file of its own: a set's medium and top files together, what
@@ -205,8 +208,12 @@ const CEILINGS: Readonly<Record<string, number>> = {
   // handoff's original face, then strips it (build_woc_split.mjs stripOriginalFace), so a base
   // is the rig, the body and its map. The female base dropped from 1381016 to 344976 bytes and
   // the male from 1323632 to 327276; nothing else in the delivery moved.
-  'base_female.glb': 363520,
-  'base_male.glb': 343040,
+  // Re-pinned 2026-11-04 (the stylized paint pass, scripts/assets/woc_character/painted/):
+  // every base, head core, hairstyle and beard file below grew with its repainted texture
+  // (bodies, strands and beards doubled a side); their geometry, rig and levels of detail
+  // are byte for byte what they were (painted/verify.mjs).
+  'base_female.glb': 816128,
+  'base_male.glb': 819200,
   // The modular head library (Type A on the male rig, Type B on the female): built by
   // scripts/assets/woc_character/woc_head_pack.py, compressed, then split 2026-09-30 by
   // woc_head_pack_split.mjs into the catalog's streamed files. They replace the 3.0 and 3.4 MB
@@ -243,53 +250,53 @@ const CEILINGS: Readonly<Record<string, number>> = {
   // smaller (scalp caps 53 to 63%), so the hair and beard files of each type halved: Type A
   // 2969584 to 1503420 bytes, Type B 2909304 to 1524836. Geometry and level of detail are byte
   // for byte what they were, and so are both cores. Each changed file takes the next KiB.
-  'head_type_a_beard_handlebar.glb': 62464,
-  'head_type_a_beards.glb': 281600,
-  'head_type_a_core.glb': 894976,
-  'head_type_a_hair_braid.glb': 116736,
-  'head_type_a_hair_long.glb': 101376,
-  'head_type_a_hair_mohawk.glb': 99328,
-  'head_type_a_hair_ponytail.glb': 113664,
-  'head_type_a_hair_quiff.glb': 116736,
-  'head_type_a_hair_shoulder.glb': 112640,
-  'head_type_a_hair_swept.glb': 96256,
-  'head_type_a_hair_topknot.glb': 110592,
-  'head_type_a_hair_undercut.glb': 141312,
-  'head_type_a_hair_waves.glb': 156672,
-  'head_type_b_beard_handlebar.glb': 55296,
-  'head_type_b_beards.glb': 270336,
-  'head_type_b_core.glb': 1478656,
-  'head_type_b_hair_bob.glb': 122880,
-  'head_type_b_hair_braid.glb': 116736,
-  'head_type_b_hair_crown.glb': 109568,
-  'head_type_b_hair_curls.glb': 118784,
-  'head_type_b_hair_ponytail.glb': 116736,
-  'head_type_b_hair_shoulder.glb': 107520,
-  'head_type_b_hair_topknot.glb': 106496,
-  'head_type_b_hair_twins.glb': 115712,
-  'head_type_b_hair_undercut.glb': 136192,
-  'head_type_b_hair_waves.glb': 153600,
+  'head_type_a_beard_handlebar.glb': 180224,
+  'head_type_a_beards.glb': 392192,
+  'head_type_a_core.glb': 1121280,
+  'head_type_a_hair_braid.glb': 284672,
+  'head_type_a_hair_long.glb': 216064,
+  'head_type_a_hair_mohawk.glb': 216064,
+  'head_type_a_hair_ponytail.glb': 283648,
+  'head_type_a_hair_quiff.glb': 317440,
+  'head_type_a_hair_shoulder.glb': 313344,
+  'head_type_a_hair_swept.glb': 205824,
+  'head_type_a_hair_topknot.glb': 314368,
+  'head_type_a_hair_undercut.glb': 335872,
+  'head_type_a_hair_waves.glb': 320512,
+  'head_type_b_beard_handlebar.glb': 148480,
+  'head_type_b_beards.glb': 357376,
+  'head_type_b_core.glb': 1872896,
+  'head_type_b_hair_bob.glb': 315392,
+  'head_type_b_hair_braid.glb': 284672,
+  'head_type_b_hair_crown.glb': 302080,
+  'head_type_b_hair_curls.glb': 304128,
+  'head_type_b_hair_ponytail.glb': 287744,
+  'head_type_b_hair_shoulder.glb': 294912,
+  'head_type_b_hair_topknot.glb': 295936,
+  'head_type_b_hair_twins.glb': 303104,
+  'head_type_b_hair_undercut.glb': 318464,
+  'head_type_b_hair_waves.glb': 317440,
 };
 
 /** Every shipped under-armor atlas (relative to WOC_SKIN_DIR), at its size when it was pinned
  *  (2026-10-05, the PR 4360 review), rounded up to the next KiB. The same rules as CEILINGS. */
 const UNDER_ARMOR_CEILINGS: Readonly<Record<string, number>> = {
-  'druid_underarmor.ktx2': 33792,
-  'female_druid_underarmor.ktx2': 34816,
-  'female_hunter_underarmor.ktx2': 33792,
-  'female_mage_underarmor.ktx2': 28672,
-  'female_paladin_underarmor.ktx2': 45056,
-  'female_priest_underarmor.ktx2': 39936,
-  'female_rogue_underarmor.ktx2': 30720,
-  'female_shaman_underarmor.ktx2': 36864,
-  'female_warlock_underarmor.ktx2': 27648,
-  'hunter_underarmor.ktx2': 31744,
-  'mage_underarmor.ktx2': 19456,
-  'paladin_underarmor.ktx2': 44032,
-  'priest_underarmor.ktx2': 37888,
-  'rogue_underarmor.ktx2': 28672,
-  'shaman_underarmor.ktx2': 34816,
-  'warlock_underarmor.ktx2': 22528,
+  'druid_underarmor.ktx2': 232448,
+  'female_druid_underarmor.ktx2': 222208,
+  'female_hunter_underarmor.ktx2': 203776,
+  'female_mage_underarmor.ktx2': 176128,
+  'female_paladin_underarmor.ktx2': 220160,
+  'female_priest_underarmor.ktx2': 220160,
+  'female_rogue_underarmor.ktx2': 179200,
+  'female_shaman_underarmor.ktx2': 222208,
+  'female_warlock_underarmor.ktx2': 164864,
+  'hunter_underarmor.ktx2': 214016,
+  'mage_underarmor.ktx2': 195584,
+  'paladin_underarmor.ktx2': 228352,
+  'priest_underarmor.ktx2': 258048,
+  'rogue_underarmor.ktx2': 191488,
+  'shaman_underarmor.ktx2': 222208,
+  'warlock_underarmor.ktx2': 186368,
 };
 
 const repoRoot = path.resolve(__dirname, '..');
@@ -385,7 +392,9 @@ describe('WOC character size ratchet', () => {
     // library streams only when a look picks it). 3.25 MB: Type B lands at about 3.0 MB
     // (its core ships separate left and right brow and ear paints and six eyelid paints,
     // where Type A shares them); the split halved both heads from the 3 MB whole packs, and
-    // the bases lost the megabyte of original face they used to carry.
+    // the bases lost the megabyte of original face they used to carry. Raised to 3.75 MB on
+    // 2026-11-04 by the stylized paint pass (bodies, strands and painted head atlases): Type B
+    // lands at about 3.65 MB (the build is desktop-only and the files are cached after one load).
     for (const type of ['a', 'b'] as const) {
       const { fit, defaults } = WOC_HEAD_TYPES[type];
       const files = [
@@ -397,7 +406,7 @@ describe('WOC character size ratchet', () => {
       expect(
         bytes.reduce((a, b) => a + b, 0),
         `Type ${type} login: ${files.map((f, i) => `${path.basename(f)} ${bytes[i]}`).join(' + ')}`,
-      ).toBeLessThanOrEqual(3.25 * MB);
+      ).toBeLessThanOrEqual(3.75 * MB);
     }
     for (const kind of ['low', 'medium', 'top']) {
       expect(Object.keys(CEILINGS).filter((f) => f.endsWith(`_${kind}.glb`))).toHaveLength(18);

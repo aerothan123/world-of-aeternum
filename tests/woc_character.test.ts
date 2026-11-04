@@ -525,13 +525,14 @@ describe('the shipped WOC split files', () => {
     }
   });
 
-  it('ships one map per base: the body atlas at 512', () => {
+  // 1024 since the 2026-11-04 stylized paint pass (scripts/assets/woc_character/painted/)
+  it('ships one map per base: the body atlas at 1024', () => {
     for (const fit of ['male', 'female'] as const) {
       const url = wocBaseUrl(fit);
       const json = BASE[fit];
       expect(json.materials ?? [], url).toHaveLength(1);
       expect(json.images ?? [], url).toHaveLength(1);
-      expect(ktx2Size(publicFile(url), json, 0), url).toEqual([512, 512]);
+      expect(ktx2Size(publicFile(url), json, 0), url).toEqual([1024, 1024]);
     }
   });
 });

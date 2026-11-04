@@ -38,12 +38,14 @@ type Size = readonly [width: number, height: number];
 /** The size of every map a WOC file ships, [width, height]: one literal per map of each kind
  *  of file, so resizing one map is one edit. */
 const SIZE = {
-  /** A base's one map: the body's own suit atlas. */
-  body: [512, 512],
+  /** A base's one map: the body's own suit atlas. Raised from [512, 512] by the stylized
+   *  paint pass (2026-11-04, scripts/assets/woc_character/painted/): the painted light,
+   *  folds and cloth dabs need the texels, and the build is desktop-only (BC7 on every GPU). */
+  body: [1024, 1024],
   /** A class under-armor atlas, swapped onto the body's uvs under a worn chest piece: the
-   *  size of the body map it is drawn in place of (PR 4360 review, N3: it shipped at
-   *  [1024, 1024], four times that map's texels on every preset). */
-  underArmor: [512, 512],
+   *  size of the body map it is drawn in place of (PR 4360 review, N3, held it to that map;
+   *  the paint pass raised both together, so the rule still holds). */
+  underArmor: [1024, 1024],
   /** A low armor file: its colour atlas, and the glow atlas of a set that glows (N3 again:
    *  the colour atlas shipped at [1024, 1024], more texels than the medium file's whole
    *  set of maps). The glow atlas takes the same 2 to 1 shape at a quarter of the scale:
@@ -55,11 +57,14 @@ const SIZE = {
   armorTop: { colour: [2048, 1024], normal: [1024, 512], data: [1024, 512], glow: [1024, 512] },
   /** A head core's one atlas, per head type (packed from that type's own paints). */
   headCore: { a: [2032, 880], b: [1952, 1408] },
-  /** A hairstyle's strands, and the scalp cap of a style that has one, per head type. */
-  hair: [512, 512],
+  /** A hairstyle's strands, and the scalp cap of a style that has one, per head type. The
+   *  strands doubled from [512, 512] with the paint pass (strokes along the mesh's own strand
+   *  flow); the scalp caps kept their size. */
+  hair: [1024, 1024],
   scalp: { a: [256, 256], b: [128, 128] },
-  /** The facial-hair texture of a head type (the shared file's and the handlebar's). */
-  beard: { a: [384, 384], b: [320, 320] },
+  /** The facial-hair texture of a head type (the shared file's and the handlebar's), doubled
+   *  from [384, 384] and [320, 320] with the paint pass. */
+  beard: { a: [768, 768], b: [640, 640] },
 } as const satisfies Record<string, Size | Record<string, Size>>;
 
 /** The codec of every kind of file's maps. ETC1S only where a map survives it: the low tier's
