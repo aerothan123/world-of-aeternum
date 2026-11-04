@@ -455,7 +455,7 @@ import { buildGaleFeatures, type GaleFeaturesView } from './gale_features';
 import { buildGardenFeatures, type GardenFeaturesView } from './garden_features';
 import { buildGateObject, gateObjectPlan, isStableObjectTransition } from './gate_objects';
 import { attachSceneGroupGated } from './gated_scene_attach';
-import { buildGatherNodes, type GatherNodesView } from './gather_nodes';
+import { buildGatherNodes, type GatherNodesView, gatherBatchKeyMode } from './gather_nodes';
 import {
   GFX,
   type GfxBucketLevels,
@@ -2801,7 +2801,7 @@ export class Renderer {
     reparentStrandedLightsToScene(this.scene, this.jailScene.group);
     for (const light of this.jailScene.glowLights) this.fireLightAdopter.adopt(light);
 
-    this.gatherNodes = buildGatherNodes(this.sim.cfg.seed);
+    this.gatherNodes = buildGatherNodes(this.sim.cfg.seed, gatherBatchKeyMode(), this.sim);
     setRenderCategory(this.gatherNodes.group, 'props');
     this.scene.add(this.gatherNodes.group);
     // Node transforms are baked into world space. The lightweight frame update
