@@ -1077,6 +1077,8 @@ const REFINED_SPLAT_ALBEDO_LAYERS: readonly string[] = [
   ...Object.keys(REFINED_ALBEDO_LAYER_FILES),
 ];
 const SPLAT_ALBEDO_SIZE = 1024;
+/** World Style Refined packs its painted detail normals at this size. */
+const REFINED_SPLAT_NORMAL_SIZE = 512;
 
 // The shader half of the pack: WOC_ALB replaces what used to be a
 // texture2D(u<Layer>, uv).rgb tap, sampling the same texel from the array
@@ -1241,7 +1243,10 @@ function buildSplatNormalArray(t: Record<string, THREE.Texture>): SplatNormalArr
     (x) => x && !(x as THREE.CompressedTexture).isCompressedTexture,
   );
   if (worldStyleRefined() && plain.length > 0) {
-    const size = SPLAT_ALBEDO_SIZE;
+    // 512 per layer: uncompressed RGBA8 costs four times the bandwidth of the
+    // block-compressed Classic array per texel, and a detail normal reads
+    // the same at half resolution (it fades out past 120 yd anyway).
+    const size = REFINED_SPLAT_NORMAL_SIZE;
     const packed = packImageLayers(
       SPLAT_NORMAL_LAYERS.map((k) => t[k]?.image),
       size,
