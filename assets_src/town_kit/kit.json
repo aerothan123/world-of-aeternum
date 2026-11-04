@@ -1,0 +1,282 @@
+{
+  "note": "Town kit phase 1 asset list. Each entry is generated through scripts/asset_pipeline (Tripo text-to-image concept, then the prop lane image-to-model). Ids are generic and carry no player-visible names.",
+  "assets": [
+    {
+      "id": "station_forge_canopy",
+      "category": "crafting",
+      "serves": ["weaponcrafting", "armorcrafting"],
+      "height": 4.5,
+      "faceLimit": 3000,
+      "prompt": "blacksmith forge workstation: a squat rounded stone forge hearth with glowing coals and a leather bellows, a sturdy iron anvil on a tree stump beside it, a wooden quench barrel, hammers and tongs on a rack, all sheltered under a crooked open timber canopy on four posts with a mossy shingle roof, no walls, no ground plane"
+    },
+    {
+      "id": "station_anvil_armorer",
+      "category": "crafting",
+      "serves": ["armorcrafting"],
+      "height": 2.2,
+      "faceLimit": 3000,
+      "prompt": "armorsmith open-air workstation: a large iron anvil on a thick oak stump, a wooden armor stand holding a steel breastplate and helmet, a pedal grindstone wheel and a stone quench trough, grouped close together, no roof, no ground plane"
+    },
+    {
+      "id": "station_smelter",
+      "category": "crafting",
+      "serves": ["smelting", "mining refinement"],
+      "height": 4.0,
+      "faceLimit": 3000,
+      "prompt": "ore smelting furnace workstation: a tall rounded clay and fieldstone bloomery furnace with a short chimney and a glowing orange mouth, a big leather bellows, a small wooden cart of raw ore beside it, a neat stack of metal ingots, no ground plane"
+    },
+    {
+      "id": "station_tannery_rack",
+      "category": "crafting",
+      "serves": ["leatherworking", "skinning refinement"],
+      "height": 3.0,
+      "faceLimit": 3000,
+      "prompt": "leatherworking tannery workstation: two tall wooden frames with brown animal hides stretched and laced with rope, a round wooden tanning tub, a low scraping bench with a hide draped over it, grouped together, no ground plane"
+    },
+    {
+      "id": "station_loom_awning",
+      "category": "crafting",
+      "serves": ["tailoring"],
+      "height": 3.6,
+      "faceLimit": 3000,
+      "prompt": "tailoring workstation: a wooden floor loom with colorful half-woven cloth, wicker baskets of yarn spools, a spinning wheel beside it, all under a striped red and cream cloth awning on four wooden poles, no ground plane"
+    },
+    {
+      "id": "station_alchemy_table",
+      "category": "crafting",
+      "serves": ["alchemy", "herbalism refinement"],
+      "height": 2.6,
+      "faceLimit": 3000,
+      "prompt": "alchemy workstation: a sturdy crooked wooden workbench with a bubbling copper alembic still, glass flasks of green and purple potions, a small iron cauldron on a brazier at one end, bundles of drying herbs hanging from a wooden crossbar above, no ground plane"
+    },
+    {
+      "id": "station_cooking_hearth",
+      "category": "crafting",
+      "serves": ["cooking"],
+      "height": 3.8,
+      "faceLimit": 3000,
+      "prompt": "outdoor cooking workstation: a rounded stone hearth with a black iron cooking pot over a small fire, a roasting spit, a wooden chopping table with vegetables and a cleaver, sheltered under a small open timber lean-to roof with mossy shingles, no ground plane"
+    },
+    {
+      "id": "station_enchanting_altar",
+      "category": "crafting",
+      "serves": ["enchanting"],
+      "height": 2.6,
+      "faceLimit": 3000,
+      "prompt": "arcane enchanting workstation: a carved stone and dark wood table with glowing blue runes on its edges, a violet crystal held in a brass ring on a stand above it, an open spellbook and candles on the table, a round carved rune stone base, no ground plane"
+    },
+    {
+      "id": "station_jeweler_bench",
+      "category": "crafting",
+      "serves": ["jewelcrafting"],
+      "height": 1.8,
+      "faceLimit": 3000,
+      "prompt": "jewelcrafting workstation: a small sturdy wooden jeweler's bench with a brass magnifying lens on a jointed arm, a tiny bench vise, trays of colorful cut gemstones, a small foot-powered polishing wheel, a hanging lantern on a hook, no ground plane"
+    },
+    {
+      "id": "station_engineering_bench",
+      "category": "crafting",
+      "serves": ["engineering"],
+      "height": 2.4,
+      "faceLimit": 3000,
+      "prompt": "engineering workstation: a heavy wooden workbench covered in big brass gears and cogs, a hand-cranked clockwork contraption, a bench vise, a pegboard of wrenches and hammers on the back, a small barrel of bolts beside it, no ground plane"
+    },
+    {
+      "id": "station_scribe_desk",
+      "category": "crafting",
+      "serves": ["inscription"],
+      "height": 2.2,
+      "faceLimit": 3000,
+      "prompt": "inscription workstation: a slanted wooden scribe's writing desk with parchment, an inkwell and quill, stacks of leather books and scroll cases, a tall candle, a small bookshelf of tomes standing beside the desk, no ground plane"
+    },
+    {
+      "id": "station_woodshop",
+      "category": "crafting",
+      "serves": ["woodworking", "logging refinement"],
+      "height": 1.8,
+      "faceLimit": 3000,
+      "prompt": "woodworking workstation: a pair of sturdy wooden sawhorses holding a long plank with a bow saw resting on it, a chopping stump with an axe stuck in it, a neat stack of cut lumber, a small foot-pedal wood lathe, grouped together, no ground plane"
+    },
+    {
+      "id": "station_stonecutter",
+      "category": "crafting",
+      "serves": ["stonecutting", "masonry refinement"],
+      "height": 1.8,
+      "faceLimit": 3000,
+      "prompt": "stonecutting workstation: a heavy stone-topped wooden work table with a half-carved stone block on it, mallets and chisels, a small pile of rough cut stone blocks beside it, a hand-cranked stone grinding wheel, no ground plane"
+    },
+
+    {
+      "id": "house_cottage_thatch",
+      "category": "housing",
+      "height": 6,
+      "faceLimit": 4000,
+      "prompt": "small one-storey fairytale village cottage, cream white plaster walls with dark crooked timber beams, a thick rounded golden thatch roof, a rounded wooden front door facing the viewer, small windows with flower boxes, a stone chimney, standalone building on a low stone footing"
+    },
+    {
+      "id": "house_cottage_redtile",
+      "category": "housing",
+      "height": 6,
+      "faceLimit": 4000,
+      "prompt": "small one-storey village cottage, pale stone and plaster walls, a steep red clay tile roof, a little covered front porch with wooden posts and a bench, front door facing the viewer, a brick chimney, standalone building on a low stone footing"
+    },
+    {
+      "id": "house_townhouse_slate",
+      "category": "housing",
+      "height": 9,
+      "faceLimit": 4000,
+      "prompt": "narrow two-storey village townhouse, warm ochre plaster walls, a steep blue-grey slate roof with one dormer window, a tall brick chimney, a front door with a small stone step facing the viewer, wooden shuttered windows, standalone building on a low stone footing"
+    },
+    {
+      "id": "house_townhouse_green",
+      "category": "housing",
+      "height": 9,
+      "faceLimit": 4000,
+      "prompt": "two-storey village townhouse, whitewashed walls with pale stone corners, a crooked dark green wooden shingle roof, two chimneys, an arched front door facing the viewer, window boxes with red flowers, standalone building on a low stone footing"
+    },
+    {
+      "id": "house_timber_jettied",
+      "category": "housing",
+      "height": 10,
+      "faceLimit": 4000,
+      "prompt": "medieval timber-frame village house with a jettied upper floor overhanging the ground floor, white plaster between dark oak beams, a steep brown wooden shingle roof, small leaded windows, front door facing the viewer, standalone building on a low stone footing"
+    },
+    {
+      "id": "house_timber_corner_tall",
+      "category": "housing",
+      "height": 12,
+      "faceLimit": 4000,
+      "prompt": "tall crooked medieval timber-frame house with two jettied upper floors leaning outward, a bay window, a red tile roof with a pointed front gable, a carved wooden porch hood over the front door facing the viewer, standalone building on a low stone footing"
+    },
+    {
+      "id": "house_stone_thatch",
+      "category": "housing",
+      "height": 6,
+      "faceLimit": 4000,
+      "prompt": "rustic fieldstone village cottage, rough grey stone walls, a thick shaggy thatch roof with a rounded ridge, a plain wooden door facing the viewer, a stone chimney, ivy and moss creeping on the walls, standalone building"
+    },
+    {
+      "id": "house_row_terrace",
+      "category": "housing",
+      "height": 9,
+      "faceLimit": 4000,
+      "prompt": "one long building of three joined narrow two-storey terrace row houses, each with its own front door facing the viewer and its own chimney, alternating plaster colors cream, pale blue and rose, one continuous dark slate roof, standalone building on a low stone footing"
+    },
+
+    {
+      "id": "civic_trading_post",
+      "category": "civic",
+      "serves": ["trading post"],
+      "height": 7,
+      "faceLimit": 4000,
+      "prompt": "village trading post building: an open-fronted timber market hall with a long wooden counter facing the viewer, brass merchant scales on the counter, crates of goods and hanging cloth bolts behind it, a mossy shingle roof with a wide overhang, a blank hanging shop sign, compact standalone building shown whole with empty margin on every side"
+    },
+    {
+      "id": "civic_auction_house",
+      "category": "civic",
+      "serves": ["auction house"],
+      "height": 11,
+      "faceLimit": 4000,
+      "prompt": "grand village auction hall: a two-storey timber and stone hall with a wide open arched arcade front facing the viewer, colorful plain cloth banners, a small bell turret on the ridge, a raised wooden podium inside the arcade, a red tile roof, standalone building"
+    },
+    {
+      "id": "civic_storage_shed",
+      "category": "civic",
+      "serves": ["storage"],
+      "height": 4.5,
+      "faceLimit": 4000,
+      "prompt": "open-front village storage shed: a timber lean-to shed with a mossy shingle roof, the whole front open toward the viewer, inside clearly visible rows of iron-banded wooden storage chests, stacked crates and barrels, standalone building"
+    },
+    {
+      "id": "civic_storage_barn",
+      "category": "civic",
+      "serves": ["storage"],
+      "height": 7.5,
+      "faceLimit": 4000,
+      "prompt": "village storage warehouse barn with wide open double doors facing the viewer showing wooden shelves of iron-banded chests, crates and sacks inside, a hay loft door above with a wooden hoist beam, weathered plank walls, a shingle roof, standalone building"
+    },
+    {
+      "id": "civic_town_board",
+      "category": "civic",
+      "serves": ["town board", "quests"],
+      "height": 3.2,
+      "faceLimit": 2500,
+      "prompt": "village notice board: a wide wooden board under a small pitched shingle roof on two thick posts, covered in pinned blank parchment notices, a small lantern hanging from one post, no ground plane"
+    },
+    {
+      "id": "civic_inn_tavern",
+      "category": "civic",
+      "serves": ["inn"],
+      "height": 13,
+      "faceLimit": 4000,
+      "prompt": "large three-storey fairytale village inn and tavern, stone ground floor with timber-frame upper floors, several crooked chimneys, a hanging painted sign showing a tankard, a wide front door facing the viewer with barrels beside it, warm glowing windows, a steep mossy shingle roof, standalone building"
+    },
+    {
+      "id": "civic_bank_strongbox",
+      "category": "civic",
+      "serves": ["bank"],
+      "height": 8,
+      "faceLimit": 4000,
+      "prompt": "sturdy village bank building: a compact square stone building with thick walls, a heavy iron-bound wooden front door facing the viewer, small barred windows, a slate roof, a carved round coin emblem above the door, iron wall lanterns, standalone building"
+    },
+    {
+      "id": "civic_stable",
+      "category": "civic",
+      "serves": ["stable", "mounts"],
+      "height": 6,
+      "faceLimit": 4000,
+      "prompt": "village stable building: a long open-fronted timber barn with three empty stalls facing the viewer, low wooden gates, stacked hay bales, an open hay loft under the gable, a wooden water trough in front, saddles on a rail, a mossy shingle roof, standalone building"
+    },
+    {
+      "id": "civic_market_stall_fruit",
+      "category": "civic",
+      "serves": ["market", "vendor"],
+      "height": 3.2,
+      "faceLimit": 2500,
+      "prompt": "village market stall: a wooden stall with a striped red and cream cloth canopy, a counter piled with baskets of fruit and vegetables, wooden crates underneath, no ground plane"
+    },
+    {
+      "id": "civic_market_stall_cloth",
+      "category": "civic",
+      "serves": ["market", "vendor"],
+      "height": 3.2,
+      "faceLimit": 2500,
+      "prompt": "village market stall: a wooden stall with a blue and gold scalloped cloth canopy, bolts of colorful fabric and hanging woven rugs, clay pottery on the counter, no ground plane"
+    },
+    {
+      "id": "civic_well",
+      "category": "civic",
+      "height": 3.2,
+      "faceLimit": 2500,
+      "prompt": "roofed village well: a round fieldstone well with a wooden winch, rope and wooden bucket, under a small pitched shingle roof on two posts, moss on the stones, no ground plane"
+    },
+    {
+      "id": "civic_fountain",
+      "category": "civic",
+      "height": 3.5,
+      "faceLimit": 2500,
+      "prompt": "town square fountain: a round tiered stone fountain with a wide low basin, a carved central column with two stacked spouting bowls, water in the basin, mossy weathered stone, no ground plane"
+    },
+    {
+      "id": "prop_lamp_post",
+      "category": "civic",
+      "height": 3.4,
+      "faceLimit": 1500,
+      "prompt": "village street lamp post: a tall slightly crooked dark wooden post with a curled wrought iron arm holding a hanging glass lantern, a small square stone base, no ground plane"
+    },
+    {
+      "id": "prop_cart_goods",
+      "category": "civic",
+      "height": 2.0,
+      "faceLimit": 2000,
+      "prompt": "wooden hand cart with two large spoked wheels and long handles, loaded with wooden crates, grain sacks and a barrel, no ground plane"
+    },
+    {
+      "id": "prop_clutter_set",
+      "category": "civic",
+      "height": 1.6,
+      "faceLimit": 2000,
+      "prompt": "tight cluster of village clutter: two stacked wooden crates, three wooden barrels, burlap grain sacks and a basket of apples, grouped closely together touching each other, no ground plane"
+    }
+  ]
+}
