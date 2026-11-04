@@ -27,6 +27,7 @@ import type { PostShedChain, PostShedRung } from './post_shed_core';
 import { ByteTargetSMAAPass } from './post_smaa';
 import { renderLayerDisabled } from './render_dev_flags';
 import { OpaqueSceneCapture } from './scene_sampling';
+import { worldGradeEnabled } from './world_style';
 
 // Post chain: N8AO (high: half-res Low; ultra+insane: full-res Medium while the
 // drawing buffer fits the pixel budget in post_pixel_budget_core.ts, half-res
@@ -337,7 +338,12 @@ export function buildComposer(
   const grade = new OutputGradePass(
     sharedUniforms.uTime,
     bloom instanceof PreparedBloomPass ? bloom.bloomTexture : null,
-    { fxaa: plan.gradeFxaa, celInk, paletteGrade: paletteLabEnabled() },
+    {
+      fxaa: plan.gradeFxaa,
+      celInk,
+      paletteGrade: paletteLabEnabled(),
+      worldGrade: worldGradeEnabled(),
+    },
   );
   labelGpuTimerPass(grade, 'grade');
   composer.addPass(grade);
@@ -348,7 +354,7 @@ export function buildComposer(
     ? new OutputGradePass(
         sharedUniforms.uTime,
         bloom instanceof PreparedBloomPass ? bloom.bloomTexture : null,
-        { fxaa: true, celInk, paletteGrade: paletteLabEnabled() },
+        { fxaa: true, celInk, paletteGrade: paletteLabEnabled(), worldGrade: worldGradeEnabled() },
       )
     : null;
   if (gradeFxaaTwin) {

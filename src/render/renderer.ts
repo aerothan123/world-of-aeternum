@@ -966,6 +966,7 @@ import { playWorldCueFx } from './world_cue_fx';
 import { WorldGuidance } from './world_guidance';
 import { WorldPicking } from './world_picking';
 import { syncWorldQuestCarryView, type WorldQuestCarryViewState } from './world_quest_carry_visual';
+import { activeShadowRadius, applyWorldStyleGrade, applyWorldStyleSunTint } from './world_style';
 import { surfaceDetailPrewarmTextures } from './worn_stone';
 import { buildYumiMaze, type YumiMazeView } from './yumi_maze';
 import { YumiTeamMarkers } from './yumi_team_markers';
@@ -2493,7 +2494,7 @@ export class Renderer {
     sun.shadow.bias = -0.0006;
     // 0.05 pushed contact shadows off clod-scale relief; 0.035 still clears acne
     sun.shadow.normalBias = LOW_GFX ? 0.02 : 0.035;
-    sun.shadow.radius = 2.25;
+    sun.shadow.radius = activeShadowRadius(2.25);
     // The REAL map size three will use: it clamps a requested mapSize to
     // maxTextureSize, and an unclamped derivation would quantize to a
     // fraction of a real texel on a capped device.
@@ -8948,6 +8949,7 @@ export class Renderer {
         const floor = this.authoredLighting.override?.nightFloor ?? 0;
         const lifted = floor + (1 - floor) * effectiveDayness(gday, biome);
         this.dnGrade = warmDuskGrade(dayNightGrade(lifted, biome, moonLit), duskWarmAmount(sd[1]));
+        this.dnGrade = applyWorldStyleGrade(this.dnGrade, sd[1]);
         // The night-visibility layers read the world clock, not the realm's
         // compressed grade, so lamps light at the same instant everywhere.
         this.dnGlobalNight = nightLightAmount(1 - gday, true);
@@ -9272,6 +9274,7 @@ export class Renderer {
       this.dnColorScratch.r *= realmTint[0];
       this.dnColorScratch.g *= realmTint[1];
       this.dnColorScratch.b *= realmTint[2];
+      applyWorldStyleSunTint(this.dnColorScratch);
       this.sun.color.lerp(this.dnColorScratch, k);
       this.dnColorScratch
         .setHex(light.hemiSky)
