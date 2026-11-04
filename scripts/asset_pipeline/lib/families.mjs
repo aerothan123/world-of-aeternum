@@ -67,6 +67,46 @@ export const WEAPON_FAMILIES = {
     lift: 0.04,
     heavyEndUp: true,
   },
+  // Gathering tools (Project H tool belt). Each rides an existing grip, so no new
+  // VAR_* entry is needed: a mining pick and a sickle are one-handed and
+  // top-heavy like a hammer, a hoe and a fishing rod are long two-handed shafts
+  // like a staff (the rod's thin tip goes up).
+  pick: {
+    grip: 'VAR_HAMMER',
+    tokens: ['pick'],
+    gripFrac: 0.26,
+    height: 1.45,
+    maxHeight: 1.5,
+    lift: 0.04,
+    heavyEndUp: true,
+  },
+  sickle: {
+    grip: 'VAR_HAMMER',
+    tokens: ['sickle'],
+    gripFrac: 0.3,
+    height: 1.2,
+    maxHeight: 1.5,
+    lift: 0.04,
+    heavyEndUp: true,
+  },
+  hoe: {
+    grip: 'VAR_STAFF',
+    tokens: ['hoe'],
+    gripFrac: 0.4,
+    height: 2.2,
+    maxHeight: 2.4,
+    lift: 0.18,
+    heavyEndUp: true,
+  },
+  rod: {
+    grip: 'VAR_STAFF',
+    tokens: ['fishing_rod'],
+    gripFrac: 0.2,
+    height: 2.4,
+    maxHeight: 2.4,
+    lift: 0.18,
+    heavyEndUp: false,
+  },
   staff: {
     grip: 'VAR_STAFF',
     tokens: ['staff'],

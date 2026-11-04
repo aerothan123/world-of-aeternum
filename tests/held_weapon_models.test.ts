@@ -426,6 +426,12 @@ describe('held weapon models', () => {
       'scythe',
       'wand',
       'bow',
+      // Gathering tools held from the tool belt (asset_pipeline families pick,
+      // sickle, hoe and rod, gripped as VAR_HAMMER / VAR_STAFF).
+      'pick',
+      'sickle',
+      'hoe',
+      'fishing_rod',
     ];
     for (const key of new Set(Object.values(ITEM_WEAPON_VARIANTS))) {
       const ok = TYPES.some((t) => key.includes(t));

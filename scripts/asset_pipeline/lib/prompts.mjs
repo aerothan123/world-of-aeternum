@@ -42,7 +42,17 @@ export function conceptPrompt({ kind, description, family, rigType }) {
             : family?.heavyEndUp
               ? 'held upright, head at the top, handle at the bottom'
               : 'held upright, blade or tip pointing up, grip at the bottom';
-    return `${description}, fantasy ${family?.name ?? 'weapon'}, ${orient}, ${STYLE_CORE}, ${LAYOUT_OBJECT}`;
+    // Gathering-tool families read as the tool, not as a weapon type.
+    const label =
+      {
+        pick: 'mining pickaxe tool',
+        sickle: 'harvesting sickle tool',
+        hoe: 'farming hoe tool',
+        rod: 'fishing rod',
+      }[family?.name] ??
+      family?.name ??
+      'weapon';
+    return `${description}, fantasy ${label}, ${orient}, ${STYLE_CORE}, ${LAYOUT_OBJECT}`;
   }
   if (kind === 'prop') {
     return `${description}, fantasy environment prop, resting on the ground, upright, ${STYLE_CORE}, ${LAYOUT_OBJECT}`;
