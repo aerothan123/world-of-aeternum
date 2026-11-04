@@ -47,6 +47,9 @@ import { GRASS_BAKE_PATCH_YARDS, GRASS_PAINT_GAIN } from './meadow_tuning';
 import { renderLayerDisabled } from './render_dev_flags';
 import { CHUNK_SIZE } from './terrain';
 import { activeTerrainGridBox, SHIPPED_GRID_BOX } from './terrain_grid_core';
+import { worldStyleRefined, worldStyleSurfaceUniforms } from './world_style';
+import { refinedTerrainProfile } from './world_style_core';
+import { patchRefinedFarTerrainShader } from './world_style_glsl';
 
 // One Uint16 index buffer per (tileSize, spacing): every tile of one
 // spacing has identical topology, so a dozen tiles share one buffer.
@@ -492,6 +495,21 @@ export function buildFarTerrain(
         );
     }
   };
+  // World Style Refined: the same aerial term and palette the detail ground
+  // runs, so the detail-horizon handoff draws no ring (world_style_glsl.ts).
+  // Classic never wraps the hook, so its program is the shipped one.
+  if (worldStyleRefined()) {
+    const classicHook = material.onBeforeCompile;
+    const classicKey = material.customProgramCacheKey;
+    const heightAware = refinedTerrainProfile(GFX.tier).aerialHeight;
+    material.onBeforeCompile = (shader, renderer) => {
+      classicHook.call(material, shader, renderer);
+      Object.assign(shader.uniforms, worldStyleSurfaceUniforms());
+      patchRefinedFarTerrainShader(shader, heightAware);
+    };
+    material.customProgramCacheKey = () =>
+      `${classicKey.call(material)}|ws-refined:${Number(heightAware)}`;
+  }
 
   const sharedIndex = sharedIndexFor(tiles[0].size, plan.spacing);
 
