@@ -1,16 +1,17 @@
 // Concept-image and text-to-model prompt builders. The style lines describe the
-// shipped art direction (KayKit / Quaternius style low-poly, flat-shaded, muted
-// medieval palette; see CREDITS.md and the quality bar in
-// scripts/asset_pipeline/CLAUDE.md) so generated assets sit next to existing
-// ones without looking imported.
+// Project H art direction (2026-11): stylized, hand-painted high fantasy with
+// chunky exaggerated shapes, painted textures with baked light, and bold but
+// harmonious color, replacing the earlier KayKit / Quaternius chibi low-poly
+// target. Generated assets aim at that look so the world converges on it.
 //
 // The layout constraints follow the OpenAI image guide's isolation recipe for
 // 3D-reconstruction reference art: one centered object, full object in frame,
 // plain background, crisp silhouette, no text or extra elements.
 
 const STYLE_CORE =
-  'stylized low-poly fantasy game asset, flat shaded, clean hand-crafted topology look, ' +
-  'muted classic-MMO medieval palette, subtle hand-painted color blocks, no photorealism';
+  'stylized hand-painted high fantasy MMORPG game asset, chunky exaggerated shapes and ' +
+  'thick proportions, hand-painted texture with baked soft light and shadow, bold saturated ' +
+  'but harmonious colors, crisp readable silhouette, clean game-ready topology, no photorealism';
 
 const LAYOUT_OBJECT =
   'single object, centered, full object in frame, three-quarter view, plain white opaque ' +
@@ -58,18 +59,17 @@ export function conceptPrompt({ kind, description, family, rigType }) {
     return `${description}, fantasy environment prop, resting on the ground, upright, ${STYLE_CORE}, ${LAYOUT_OBJECT}`;
   }
   if (kind === 'creature') {
-    // The game's humanoids are CHIBI (KayKit/Quaternius mini proportions): a big
-    // rounded head on a short stubby body. Tripo defaults to realistic
-    // proportions, which look wrong standing next to the player, so force chibi.
+    // Project H creatures stand beside realistically proportioned player bodies,
+    // so they take heroic stylized proportions (heavy shapes, big features,
+    // painted fur and hide), never the old chibi mascot look.
     const biped = !rigType || rigType === 'biped';
-    const chibi = biped
-      ? 'chibi proportions, large rounded head about one third of total height, short stubby ' +
-        'body and limbs, small hands and feet, cute stylized mascot like KayKit and Quaternius ' +
-        'mini game characters, NOT realistic human proportions'
-      : 'chunky stylized proportions, oversized head, cute mascot like KayKit and Quaternius ' +
-        'mini game creatures, NOT realistic proportions';
+    const build = biped
+      ? 'heroic stylized proportions, broad shoulders, big hands and feet, heavy powerful ' +
+        'build, expressive exaggerated features, NOT chibi, NOT cute mascot'
+      : 'heavy powerful stylized build, exaggerated features, thick painted fur or hide, ' +
+        'NOT chibi, NOT cute mascot, NOT photorealistic';
     const layout = biped ? LAYOUT_CHARACTER : LAYOUT_QUADRUPED;
-    return `${description}, fantasy game creature, ${chibi}, ${STYLE_CORE}, ${layout}`;
+    return `${description}, fantasy game creature, ${build}, ${STYLE_CORE}, ${layout}`;
   }
   throw new Error(`unknown concept kind: ${kind}`);
 }
