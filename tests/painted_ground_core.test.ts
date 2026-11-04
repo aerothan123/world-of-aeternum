@@ -6,6 +6,7 @@ import { describe, expect, it } from 'vitest';
 import {
   aoFromHeight,
   flattenLowFrequency,
+  gradeColor,
   heightFromColor,
   lowFrequencyRange,
   makeTileable,
@@ -131,6 +132,15 @@ describe('painted ground: derived maps', () => {
     expect(Math.min(...rough)).toBeGreaterThanOrEqual(Math.round(0.82 * 255) - 1);
     expect(Math.min(...ao)).toBeGreaterThanOrEqual(Math.round(0.55 * 255));
     expect(Math.max(...ao)).toBe(255);
+  });
+
+  it('grades chroma toward grey without moving luminance', () => {
+    const px = new Float32Array([0.8, 0.5, 0.2]);
+    const g = gradeColor(px, { saturation: 0.5 });
+    const l = (c: Float32Array) => 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+    expect(l(g)).toBeCloseTo(l(px), 5);
+    expect(g[0] - g[2]).toBeCloseTo((px[0] - px[2]) * 0.5, 5);
+    expect(Array.from(gradeColor(px))).toEqual(Array.from(px));
   });
 
   it('is deterministic end to end', () => {

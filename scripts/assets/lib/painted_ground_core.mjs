@@ -292,17 +292,33 @@ export function aoFromHeight(height, w, h, { radius = 6, gain = 2.4, floor = 0.5
   return out;
 }
 
-/** The full pass for one set: flatten, tile, then derive the three maps. */
+/**
+ * A gentle colour grade about each pixel's own luminance: `saturation` 1
+ * keeps the chroma, under 1 pulls it toward grey; `gain` scales the value.
+ * Used to sit an over-saturated generated set (the path's neon orange) into
+ * the same earthy range as the rest of the ground.
+ */
+export function gradeColor(rgb, { saturation = 1, gain = 1 } = {}) {
+  const out = new Float32Array(rgb.length);
+  for (let i = 0; i < rgb.length; i += 3) {
+    const l = rgb[i] * LUMA[0] + rgb[i + 1] * LUMA[1] + rgb[i + 2] * LUMA[2];
+    for (let c = 0; c < 3; c++) out[i + c] = clamp01((l + (rgb[i + c] - l) * saturation) * gain);
+  }
+  return out;
+}
+
+/** The full pass for one set: flatten, tile, grade, then derive the maps. */
 export function paintedGroundMaps(rgb, w, h, opts = {}) {
   const flat = flattenLowFrequency(rgb, w, h, {
     radius: opts.flattenRadius ?? Math.round(w / 12),
     strength: opts.flattenStrength ?? 1,
   });
-  const color = makeTileable(flat, w, h, {
+  const tiled = makeTileable(flat, w, h, {
     band: opts.tileBand,
     edgeBias: opts.tileEdgeBias,
     wobble: opts.tileWobble,
   });
+  const color = gradeColor(tiled, { saturation: opts.saturation, gain: opts.gain });
   const height = heightFromColor(color, w, h, { highPass: opts.heightHighPass });
   return {
     color,

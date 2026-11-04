@@ -26,7 +26,9 @@
       "sha256": "04d237c45aff1c5e107a6668c37f3d6c42155c411fd8f0dfff95364564366a58",
       "opts": {
         "flattenRadius": 72,
-        "normalStrength": 4
+        "normalStrength": 4,
+        "saturation": 0.6,
+        "gain": 0.82
       }
     },
     {

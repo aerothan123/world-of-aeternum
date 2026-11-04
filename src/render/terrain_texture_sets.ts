@@ -162,7 +162,7 @@ export const TERRAIN_TEXTURE_SETS: readonly TerrainTextureSet[] = [
     maps: ALL4,
     paintDefault: true,
   },
-  { key: 'PaintedDirt', name: 'Storybook Path', color: 0xbd7d3d, maps: ALL4, paintDefault: true },
+  { key: 'PaintedDirt', name: 'Storybook Path', color: 0x89694a, maps: ALL4, paintDefault: true },
   {
     key: 'PaintedCobble',
     name: 'Storybook Cobbles',

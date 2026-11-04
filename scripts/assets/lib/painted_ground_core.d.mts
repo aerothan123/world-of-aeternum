@@ -50,6 +50,10 @@ export function aoFromHeight(
   h: number,
   opts?: { radius?: number; gain?: number; floor?: number },
 ): Uint8Array;
+export function gradeColor(
+  rgb: Float32Array,
+  opts?: { saturation?: number; gain?: number },
+): Float32Array;
 export interface PaintedGroundOptions {
   flattenRadius?: number;
   flattenStrength?: number;
@@ -60,6 +64,8 @@ export interface PaintedGroundOptions {
   normalStrength?: number;
   roughness?: number;
   aoGain?: number;
+  saturation?: number;
+  gain?: number;
 }
 export function paintedGroundMaps(
   rgb: Float32Array,
