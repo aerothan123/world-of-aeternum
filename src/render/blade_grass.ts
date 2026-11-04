@@ -63,6 +63,7 @@ import {
   CLASSIC_BLADE_SHAPE,
   paintedClumpWidth,
   paintedClumpWidthMax,
+  paintedGrassCoverageScale,
 } from './world_style_grass_core';
 
 // Near-field blade carpet: a single InstancedMesh of low-poly SOLID grass
@@ -178,13 +179,20 @@ export function clusterGeometry(
       // from the ground it grows in
       colors.push(shade, shade, shade);
     };
+    // A blunt painted tip (shape.tipWidth > 0) ends the ribbon in a short
+    // flat edge instead of a point: one extra vertex and triangle.
+    const tipW = w0 * shape.tipWidth;
     if (segments === 2) {
-      const wMid = w0 * 0.62;
+      const wMid = w0 * shape.bandMidTaper;
       put(-w0, 0, 0.86);
       put(w0, 0, 0.86);
       put(-wMid, 0.56, 0.98);
       put(wMid, 0.56, 0.98);
-      put(0, 1.0, 1.1);
+      if (tipW > 0) {
+        put(-tipW, 1.0, 1.1);
+        put(tipW, 1.0, 1.1);
+        indices.push(base + 3, base + 5, base + 4);
+      } else put(0, 1.0, 1.1);
       indices.push(
         base,
         base + 1,
@@ -203,7 +211,11 @@ export function clusterGeometry(
       put(w1, 0.45, 0.95);
       put(-w2, 0.78, 1.03);
       put(w2, 0.78, 1.03);
-      put(0, 1.0, 1.1);
+      if (tipW > 0) {
+        put(-tipW, 1.0, 1.1);
+        put(tipW, 1.0, 1.1);
+        indices.push(base + 5, base + 7, base + 6);
+      } else put(0, 1.0, 1.1);
       indices.push(
         base,
         base + 1,
@@ -452,7 +464,8 @@ export function buildBladeGrass(
       const baseCoverage =
         meadowCoverage(lush) *
         Math.min(biomeDensity, 1.2) *
-        paintedClumpCoverage(GFX.worldStyle, x, z);
+        paintedClumpCoverage(GFX.worldStyle, x, z) *
+        paintedGrassCoverageScale(GFX.worldStyle);
       const rd = roadDistance(x, z);
       // higher floor + gain than the tufts: coverage is the carpet's job,
       // the patch structure just modulates it

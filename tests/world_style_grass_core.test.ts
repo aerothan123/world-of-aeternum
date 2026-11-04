@@ -16,6 +16,7 @@ import {
   paintedBloomVertGlsl,
   paintedClumpWidth,
   paintedClumpWidthMax,
+  paintedGrassCoverageScale,
 } from '../src/render/world_style_grass_core';
 
 const bytes = (a: ArrayLike<number>) => Buffer.from(new Float32Array(a).buffer);
@@ -43,7 +44,8 @@ describe('painted cluster shape', () => {
     expect(painted.getAttribute('position').count).toBeLessThan(
       classic.getAttribute('position').count,
     );
-    expect(painted.getAttribute('position').count).toBe(PAINTED_BLADE_SHAPE.blades * 7);
+    // a blunt tip: two top vertices instead of a point
+    expect(painted.getAttribute('position').count).toBe(PAINTED_BLADE_SHAPE.blades * 8);
     // the root ribbon width: vertices 0 and 1 of the first blade
     const rootWidth = (g: ReturnType<typeof clusterGeometry>) => {
       const p = g.getAttribute('position');
@@ -51,6 +53,34 @@ describe('painted cluster shape', () => {
     };
     expect(rootWidth(painted) / rootWidth(classic)).toBeGreaterThan(1.3);
     expect(PAINTED_BLADE_SHAPE.tipTaper).toBeGreaterThan(CLASSIC_BLADE_SHAPE.tipTaper);
+  });
+
+  it('places fewer, broader clumps under Refined so the blade fill stays near Classic', () => {
+    expect(paintedGrassCoverageScale('classic')).toBe(1);
+    const area = (g: ReturnType<typeof clusterGeometry>) => {
+      const p = g.getAttribute('position');
+      const idx = g.getIndex()?.array ?? [];
+      let a = 0;
+      for (let i = 0; i < idx.length; i += 3) {
+        const [A, B, C] = [idx[i], idx[i + 1], idx[i + 2]];
+        const ux = p.getX(B) - p.getX(A);
+        const uy = p.getY(B) - p.getY(A);
+        const uz = p.getZ(B) - p.getZ(A);
+        const vx = p.getX(C) - p.getX(A);
+        const vy = p.getY(C) - p.getY(A);
+        const vz = p.getZ(C) - p.getZ(A);
+        a += Math.hypot(uy * vz - uz * vy, uz * vx - ux * vz, ux * vy - uy * vx) / 2;
+      }
+      return a;
+    };
+    const classic = area(clusterGeometry(mulberry32(11), 3));
+    const painted = area(clusterGeometry(mulberry32(11), 3, bladeClusterShape('refined')));
+    // each painted clump is much broader...
+    expect(painted / classic).toBeGreaterThan(1.4);
+    // ...but the meadow's total blade area (clumps placed times area, at the
+    // widest clump core) stays within 40 percent of Classic's
+    const w = paintedClumpWidthMax('refined');
+    expect((painted * w * w * paintedGrassCoverageScale('refined')) / classic).toBeLessThan(1.4);
   });
 
   it('widens clump cores only under Refined, and bounds the widening', () => {
@@ -90,12 +120,16 @@ describe('painted flower drifts', () => {
 
   it('paints a head only at the tips and keeps the wash gentle', () => {
     const c: [number, number, number] = [0.1, 0.2, 0.05];
+    // the root: no head, just the shaded base of the value ramp
     const root = paintedBloomColor(c, 0.1, 2, 0.5);
-    for (let k = 0; k < 3; k++) expect(Math.abs(root[k] / c[k] - 1)).toBeLessThan(0.08);
+    for (let k = 0; k < 3; k++) {
+      expect(root[k] / c[k]).toBeLessThan(0.85);
+      expect(root[k] / c[k]).toBeGreaterThan(PAINTED_BLOOM.rampRoot * 0.9);
+    }
     const tip = paintedBloomColor(c, 0.85, 2, 0.5);
     expect(tip[0]).toBeGreaterThan(0.6); // buttercup head
     const none = paintedBloomColor(c, 0.9, 0, 1);
-    expect(none[1] / c[1]).toBeCloseTo(PAINTED_BLOOM.washWarm[1], 5);
+    expect(none[1] / c[1]).toBeCloseTo(PAINTED_BLOOM.washWarm[1] * PAINTED_BLOOM.rampTip, 5);
   });
 
   it('generates the shader arm from the same constants', () => {

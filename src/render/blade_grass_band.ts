@@ -94,6 +94,7 @@ import {
   bladeClusterShape,
   paintedClumpWidth,
   paintedClumpWidthMax,
+  paintedGrassCoverageScale,
 } from './world_style_grass_core';
 
 export interface BladeGrassBandView {
@@ -290,7 +291,8 @@ export function buildBladeGrassBand(
       const baseCoverage =
         meadowCoverage(lush) *
         Math.min(biomeDensity, 1.2) *
-        paintedClumpCoverage(GFX.worldStyle, x, z);
+        paintedClumpCoverage(GFX.worldStyle, x, z) *
+        paintedGrassCoverageScale(GFX.worldStyle);
       const rd = roadDistance(x, z);
       ok = r1 < baseCoverage;
       if (ok) ok = rd > GRASS_ROAD_INNER_RADIUS;

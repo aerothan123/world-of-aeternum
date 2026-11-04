@@ -35,6 +35,10 @@ export interface BladeClusterShape {
   readonly tipTaper: number;
   /** Multiplier on every ribbon's length. */
   readonly lenMul: number;
+  /** Width of the mid-band (two-segment) ribbon's middle ring. */
+  readonly bandMidTaper: number;
+  /** Half-width of a blunt tip as a share of the root width (0 a point). */
+  readonly tipWidth: number;
 }
 
 /** The shipped cluster, byte for byte (clusterGeometry's literals). */
@@ -44,15 +48,20 @@ export const CLASSIC_BLADE_SHAPE: BladeClusterShape = {
   midTaper: 0.74,
   tipTaper: 0.42,
   lenMul: 1,
+  bandMidTaper: 0.62,
+  tipWidth: 0,
 };
 
-/** The painted cluster: seven wide ribbons with a late, soft taper. */
+/** The painted cluster: five broad leaf-like ribbons that keep their width
+ *  and end in a soft blunt tip, so a clump reads as one rounded painted mass. */
 export const PAINTED_BLADE_SHAPE: BladeClusterShape = {
-  blades: 7,
-  widthMul: 1.75,
-  midTaper: 0.86,
-  tipTaper: 0.6,
-  lenMul: 0.9,
+  blades: 5,
+  widthMul: 2.7,
+  midTaper: 0.96,
+  tipTaper: 0.8,
+  lenMul: 0.78,
+  bandMidTaper: 0.9,
+  tipWidth: 0.42,
 };
 
 export function bladeClusterShape(style: WorldStyle): BladeClusterShape {
@@ -60,7 +69,17 @@ export function bladeClusterShape(style: WorldStyle): BladeClusterShape {
 }
 
 /** Horizontal clump scale between clumps (field 0) and at a core (1). */
-export const PAINTED_CLUMP_WIDTH: readonly [number, number] = [1.02, 1.2];
+export const PAINTED_CLUMP_WIDTH: readonly [number, number] = [1.05, 1.3];
+
+/** Placement coverage multiplier: broad clumps cover the ground with fewer
+ *  of them, so Refined places fewer clusters (the painted ground shows
+ *  between them, the storybook look) and the blade fill stays near Classic's. */
+export const PAINTED_GRASS_COVERAGE = 0.45;
+
+/** Coverage multiplier for the carpet and band placement. Exactly 1 under Classic. */
+export function paintedGrassCoverageScale(style: WorldStyle): number {
+  return style === 'refined' ? PAINTED_GRASS_COVERAGE : 1;
+}
 
 /** Horizontal scale multiplier for a cluster at (x, z). Exactly 1 under
  *  Classic, so the shipped placement is untouched. */
@@ -83,11 +102,11 @@ export const PAINTED_BLOOM = {
   /** Patch field frequencies (per yard): drifts a few yards across. */
   patchFreq: [0.41, 0.37, 0.13, 0.11] as const,
   /** Patch field value above which a drift blooms. */
-  patchCut: 0.8,
+  patchCut: 0.72,
   /** Share of clumps inside a drift that carry heads. */
-  clumpShare: 0.6,
+  clumpShare: 0.85,
   /** Blade height (0 root, 1 tip) where a head starts. */
-  headLo: 0.7,
+  headLo: 0.6,
   /** Pale heart at the very tip of a head. */
   heartLo: 0.93,
   heartColor: [0.98, 0.9, 0.55] as Rgb,
@@ -102,6 +121,10 @@ export const PAINTED_BLOOM = {
   /** Per-blade soft value wash: warm lift and cool dip around 1. */
   washWarm: [1.07, 1.05, 0.94] as Rgb,
   washCool: [0.93, 0.97, 1.0] as Rgb,
+  /** Extra painted value ramp along the blade, root to tip (on top of the
+   *  painted-grass arm's colour gradient): a shaded base, a lit tip. */
+  rampRoot: 0.72,
+  rampTip: 1.12,
 } as const;
 
 /** The drift field 0..1 at a cluster origin. JS mirror of the shader's. */
@@ -169,7 +192,8 @@ export function paintedBloomFragGlsl(): string {
     .join('');
   return `
         {
-          diffuseColor.rgb *= mix(${v3(b.washCool)}, ${v3(b.washWarm)}, vWsBloom.z);
+          diffuseColor.rgb *= mix(${v3(b.washCool)}, ${v3(b.washWarm)}, vWsBloom.z)
+            * mix(${f(b.rampRoot)}, ${f(b.rampTip)}, smoothstep(0.0, 0.9, vWsBloom.x));
           if (vWsBloom.y > 0.5) {
             vec3 wbHead = ${pick}${v3(b.colors[0])};
             wbHead = mix(wbHead, ${v3(b.heartColor)}, smoothstep(${f(b.heartLo)}, 1.0, vWsBloom.x));
@@ -198,7 +222,12 @@ export function paintedBloomColor(
     return k * k * (3 - 2 * k);
   };
   const wash = mix(b.washCool, b.washWarm, w);
-  let r: [number, number, number] = [c[0] * wash[0], c[1] * wash[1], c[2] * wash[2]];
+  const ramp = b.rampRoot + (b.rampTip - b.rampRoot) * ss(0, 0.9, t);
+  let r: [number, number, number] = [
+    c[0] * wash[0] * ramp,
+    c[1] * wash[1] * ramp,
+    c[2] * wash[2] * ramp,
+  ];
   if (col > 0) {
     const head = mix(b.colors[col - 1], b.heartColor, ss(b.heartLo, 1, t));
     r = mix(r, head, ss(b.headLo, b.headLo + 0.06, t));
