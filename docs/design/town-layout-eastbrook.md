@@ -1,9 +1,9 @@
 # Eastbrook town layout: a New World style settlement (phase 2 plan)
 
-Status: FOR OWNER REVIEW. Nothing in this document is wired into the game.
-Phase 1 (this branch, `feature/town-kit`) only generated the building and
-station asset set under `assets_src/town_kit/` and wrote this plan. Phase 2
-relays the town in code once the owner signs off on the districts below.
+Status: APPROVED by the owner (2026-11-04); phase 2 is building it on
+`feature/town-kit`. Phase 1 generated the building and station asset set
+under `assets_src/town_kit/` and wrote this plan; the owner approved the
+assets and answered every decision in section 9 (recorded there).
 
 Compass and units follow `docs/design/eastbrook-revamp/site-plan.md`:
 distances in yards, positions as (x, z), world +z is NORTH and world +x is
@@ -405,14 +405,16 @@ id), and the parity scenarios in `tests/parity/scenarios.ts`.
 - Generated look: the Tripo models are stylized and slightly crooked by
   design; colliders must follow the real walls, not the eaves.
 
-## 9. Decisions for the owner
+## 9. Owner decisions (approved 2026-11-04)
 
-1. Storage: bursar to the storage shed by the trading post (recommended), or
-   keep storage at the bank?
-2. Kitchens: move the cooking station into the yard (recommended), or keep it
-   at the inn?
-3. Station types: new types for jewelcrafting, inscription, enchanting and
-   smelting now, or bind the new benches to the existing types first
-   (recommended)?
-4. Housing: how many lots on streets A and B (proposal: 10 to 14 total)?
-5. Stable: north gate only, or also at the quay?
+1. Storage: the storage shed stands on the new Market Row beside the trading
+   post, and the bursar and the banker chest move there. The walk-in bank
+   keeps the Weekly Vault and the card master.
+2. Crafting: ONE U-shaped crafting yard south of the square with all 13
+   stations. The kitchens move in from the inn lane, and Eastbrook gains new
+   tannery and alchemy (apothecary type) stations.
+3. Station types: not separately answered, so phase 2 follows the
+   recommendation: the new jewelcrafting, inscription, enchanting and smelting
+   benches bind to the existing types, and own types stay a later phase.
+4. Housing: 10 to 14 house lots across housing streets A and B.
+5. Stable: at the north road gate.
