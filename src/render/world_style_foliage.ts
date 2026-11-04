@@ -59,26 +59,69 @@ function chainPatch(mat: THREE.Material, tag: string, patch: (sh: Shader) => voi
 export function paintRefinedGrass(mat: THREE.Material, heightExpr: string): void {
   if (!worldStyleRefined()) return;
   chainPatch(mat, `ws-grass:${heightExpr}`, (sh) => {
-    let v = spliceAfter(sh.vertexShader, '#include <common>', PAINTED_GRASS_VERT_DECL, 'grass vert common');
-    v = spliceAfter(v, '#include <begin_vertex>', paintedGrassVertGlsl(heightExpr), 'grass begin_vertex');
+    let v = spliceAfter(
+      sh.vertexShader,
+      '#include <common>',
+      PAINTED_GRASS_VERT_DECL,
+      'grass vert common',
+    );
+    v = spliceAfter(
+      v,
+      '#include <begin_vertex>',
+      paintedGrassVertGlsl(heightExpr),
+      'grass begin_vertex',
+    );
     sh.vertexShader = v;
-    let fr = spliceAfter(sh.fragmentShader, '#include <common>', PAINTED_GRASS_FRAG_DECL, 'grass frag common');
-    fr = spliceAfter(fr, '#include <color_fragment>', paintedGrassFragGlsl(), 'grass color_fragment');
+    let fr = spliceAfter(
+      sh.fragmentShader,
+      '#include <common>',
+      PAINTED_GRASS_FRAG_DECL,
+      'grass frag common',
+    );
+    fr = spliceAfter(
+      fr,
+      '#include <color_fragment>',
+      paintedGrassFragGlsl(),
+      'grass color_fragment',
+    );
     sh.fragmentShader = fr;
   });
 }
 
 /** The painterly canopy shader arm (Refined only): top-light and
- *  under-shadow along the canopy normal, per-tree hue, a warm daylight rim. */
-export function paintRefinedCanopy(mat: THREE.Material): void {
+ *  under-shadow along the canopy normal, per-tree hue, a softened leaf
+ *  texture and a warm daylight rim. `knownLeaf` false (a material the caller
+ *  cannot name as a leaf, such as a regenerated GLB's) paints only its green
+ *  texels, so bark and stone keep their look on any model. */
+export function paintRefinedCanopy(mat: THREE.Material, knownLeaf = true): void {
   if (!worldStyleRefined()) return;
-  chainPatch(mat, 'ws-canopy', (sh) => {
+  chainPatch(mat, `ws-canopy:${knownLeaf ? 'leaf' : 'auto'}`, (sh) => {
     sh.uniforms.uWsFoliage = worldStyleUniforms.uWsFoliage;
-    let v = spliceAfter(sh.vertexShader, '#include <common>', PAINTED_CANOPY_VERT_DECL, 'canopy vert common');
-    v = spliceAfter(v, '#include <defaultnormal_vertex>', PAINTED_CANOPY_VERT_GLSL, 'canopy normal');
+    let v = spliceAfter(
+      sh.vertexShader,
+      '#include <common>',
+      PAINTED_CANOPY_VERT_DECL,
+      'canopy vert common',
+    );
+    v = spliceAfter(
+      v,
+      '#include <defaultnormal_vertex>',
+      PAINTED_CANOPY_VERT_GLSL,
+      'canopy normal',
+    );
     sh.vertexShader = v;
-    let fr = spliceAfter(sh.fragmentShader, '#include <common>', PAINTED_CANOPY_FRAG_DECL, 'canopy frag common');
-    fr = spliceAfter(fr, '#include <color_fragment>', paintedCanopyFragGlsl(), 'canopy color_fragment');
+    let fr = spliceAfter(
+      sh.fragmentShader,
+      '#include <common>',
+      PAINTED_CANOPY_FRAG_DECL,
+      'canopy frag common',
+    );
+    fr = spliceAfter(
+      fr,
+      '#include <color_fragment>',
+      paintedCanopyFragGlsl(knownLeaf),
+      'canopy color_fragment',
+    );
     fr = spliceBefore(fr, '#include <aomap_fragment>', paintedCanopyRimGlsl(), 'canopy aomap');
     sh.fragmentShader = fr;
   });

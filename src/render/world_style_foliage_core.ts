@@ -1,5 +1,5 @@
-// World Style Refined foliage: the pure half of the painted grass and the
-// painterly tree canopies. Three/DOM-free, deterministic, registered in
+// World Style Refined foliage: the pure half of the painted meadow grass and
+// the painterly tree canopies. Three/DOM-free, deterministic, registered in
 // RENDER_PURE_CORES (tests/architecture.test.ts).
 //
 // Classic never reaches anything here: world_style_foliage.ts only chains its
@@ -7,18 +7,23 @@
 // placement factors below return exactly 1 under Classic, so a Classic meadow
 // places, sizes and shades every cluster as it shipped.
 //
-// What Refined paints (toward the approved hand-painted concept):
-// - grass reads as painted CLUMPS: a low-frequency clump field thins the
-//   carpet between clumps and lets clump centres stand a little taller, and
-//   each blade runs a base-to-tip gradient (cool olive at the root, warm
-//   straw-gold at a softened tip) with per-clump hue drift (olive, ochre,
-//   teal) instead of one uniform bright green;
-// - canopies shade as sculpted volumes: a warm top-light and a cool
-//   blue-violet under-shadow along the bent canopy normal, a per-tree hue
-//   drift, and a faint warm fresnel rim by day.
+// What Refined paints (toward the storybook-countryside concepts):
+// - grass reads as a soft, dense painted meadow: a low-frequency clump field
+//   lets clump centres stand fuller and a little taller, each blade runs a
+//   base-to-tip gradient (a cool soft olive at the root, a warm sunlit
+//   yellow-green at a softened tip) with per-clump hue drift (olive, golden,
+//   cool sage) instead of one uniform bright green, and a few clumps carry
+//   wildflower colour specks at their tips;
+// - canopies shade as chunky painted volumes: a warm top light and a soft
+//   cool under-shadow along the bent canopy normal, a per-tree hue drift, a
+//   softened leaf-texture contrast so a crown reads as painted masses rather
+//   than a thousand cards, and a faint warm rim by day. The paint needs no
+//   per-model knowledge: a material the foliage extraction does not know as a
+//   leaf takes it only on its green texels (`canopyLeafWeight`), so a
+//   regenerated tree GLB paints its leaves and leaves its bark alone.
 // Cosmetic only (docs/design/graphics-settings-fairness.md): grass and leaves
 // carry no gameplay read, and nothing here touches entities, decals, fog or
-// any readability floor.
+// any readability floor. The rim is zero at night, so no leaf glows there.
 
 import type { WorldStyle } from './world_style_core';
 
@@ -29,6 +34,15 @@ const smooth = (e0: number, e1: number, x: number): number => {
   const t = clamp01((x - e0) / (e1 - e0));
   return t * t * (3 - 2 * t);
 };
+const luma = (c: Rgb): number => 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+
+function mixRgb(a: Rgb, b: Rgb, t: number): [number, number, number] {
+  return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
+}
+function satRgb(c: Rgb, s: number): [number, number, number] {
+  const l = luma(c);
+  return [l + (c[0] - l) * s, l + (c[1] - l) * s, l + (c[2] - l) * s];
+}
 
 // ---------------------------------------------------------------------------
 // Clump field (CPU placement: blade carpet and mid band)
@@ -36,10 +50,12 @@ const smooth = (e0: number, e1: number, x: number): number => {
 
 /** Clump field cell size in yards (one painted clump plus its gap). */
 export const PAINTED_CLUMP_CELL_YD = 2.6;
-/** Coverage multiplier between clumps (field 0) and at a clump core (1). */
-export const PAINTED_CLUMP_COVER: readonly [number, number] = [0.5, 1.3];
+/** Coverage multiplier between clumps (field 0) and at a clump core (1).
+ *  Both ends sit near or above 1: the painted meadow is DENSER than Classic,
+ *  only gently clumped, never thinned into bald patches. */
+export const PAINTED_CLUMP_COVER: readonly [number, number] = [0.92, 1.34];
 /** Height multiplier between clumps and at a clump core. */
-export const PAINTED_CLUMP_HEIGHT: readonly [number, number] = [0.78, 1.16];
+export const PAINTED_CLUMP_HEIGHT: readonly [number, number] = [0.9, 1.14];
 
 function cellHash(i: number, j: number): number {
   let h = (i * 374761393 + j * 668265263 + 0x5bd1e995) | 0;
@@ -64,7 +80,7 @@ export function paintedClumpField(x: number, z: number): number {
   const c = cellHash(i, j + 1);
   const d = cellHash(i + 1, j + 1);
   const v = a + (b - a) * sx + (c - a) * sz + (a - b - c + d) * sx * sz;
-  // sharpen a little so clumps have edges rather than a soft wash
+  // sharpen a little so clumps have soft edges rather than a uniform wash
   return smooth(0.18, 0.82, v);
 }
 
@@ -88,56 +104,78 @@ export function paintedClumpHeight(style: WorldStyle, x: number, z: number): num
 // ---------------------------------------------------------------------------
 
 export const PAINTED_GRASS = {
-  /** Multiplier at the blade root: a cool, darker olive. */
-  base: [0.6, 0.7, 0.62] as Rgb,
-  /** Multiplier at the blade tip: warm straw-gold light. */
-  tip: [1.2, 1.1, 0.68] as Rgb,
+  /** Multiplier at the blade root: a soft, cool olive (lighter than a hard
+   *  black root, so the meadow keeps its low painted contrast). */
+  base: [0.7, 0.8, 0.74] as Rgb,
+  /** Multiplier at the blade tip: warm sunlit yellow-green. */
+  tip: [1.2, 1.12, 0.66] as Rgb,
   /** Where along the blade (0 root, 1 tip) the gradient runs. */
-  gradLo: 0.05,
+  gradLo: 0.0,
   gradHi: 0.95,
-  /** Per-clump hue drift multipliers. */
-  olive: [1.02, 0.98, 0.72] as Rgb,
-  ochre: [1.18, 0.96, 0.6] as Rgb,
-  teal: [0.82, 1.0, 0.94] as Rgb,
+  /** Per-clump hue drift multipliers: olive, golden, cool sage. */
+  olive: [1.0, 0.98, 0.76] as Rgb,
+  golden: [1.16, 1.0, 0.6] as Rgb,
+  sage: [0.86, 1.0, 0.92] as Rgb,
   /** How far a clump drifts toward its hue (0 none). */
-  hueAmt: 0.75,
+  hueAmt: 0.7,
   /** Saturation of the painted result (below 1 pulls the neon out). */
-  saturation: 0.82,
-  /** Tip softening: share of the top of the blade lifted toward a warm
-   *  pale highlight (painted grass has light, soft tips, not hard spikes). */
-  tipSoft: 0.3,
-  tipSoftColor: [1.0, 0.95, 0.72] as Rgb,
+  saturation: 0.8,
+  /** Tip softening: share of the top of the blade lifted toward a warm pale
+   *  highlight (painted grass has light, soft tips, not hard spikes). */
+  tipSoft: 0.28,
+  tipSoftColor: [1.02, 0.97, 0.72] as Rgb,
+  /** Share of clumps that carry wildflower specks at their tips. */
+  flowerShare: 0.075,
+  /** Tip window (blade height) the speck covers. */
+  flowerLo: 0.8,
+  /** Wildflower speck colours (linear albedo): white, buttercup, rose,
+   *  lavender. */
+  flowers: [
+    [0.86, 0.84, 0.76],
+    [0.92, 0.66, 0.12],
+    [0.82, 0.4, 0.46],
+    [0.56, 0.48, 0.82],
+  ] as readonly Rgb[],
 } as const;
 
-/** The per-clump hue weights (olive, ochre, teal) from a clump value 0..1. */
-export function paintedGrassHueMix(h: number): Rgb {
+/** The per-clump hue multiplier from a clump value 0..1. */
+export function paintedGrassHueMix(h: number): [number, number, number] {
   const g = PAINTED_GRASS;
   const t = clamp01(h);
-  const o = t < 0.5 ? mixRgb(g.olive, g.ochre, t * 2) : mixRgb(g.ochre, g.teal, (t - 0.5) * 2);
+  const o = t < 0.5 ? mixRgb(g.olive, g.golden, t * 2) : mixRgb(g.golden, g.sage, (t - 0.5) * 2);
   return mixRgb([1, 1, 1], o, g.hueAmt);
 }
 
-function mixRgb(a: Rgb, b: Rgb, t: number): [number, number, number] {
-  return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
+/** Which wildflower (0 none, 1..4 a colour) a clump with selector `s` (0..1)
+ *  carries. JS mirror of the shader's pick. */
+export function paintedGrassFlower(s: number): number {
+  const g = PAINTED_GRASS;
+  if (s <= 1 - g.flowerShare) return 0;
+  const k = (s - (1 - g.flowerShare)) / g.flowerShare;
+  return 1 + Math.min(g.flowers.length - 1, Math.floor(k * g.flowers.length));
 }
 
 /** JS mirror of the grass paint applied to the lit-before albedo `c` at blade
- *  height `t` (0 root, 1 tip) for clump value `h`. */
-export function paintedGrassColor(c: Rgb, t: number, h: number): [number, number, number] {
+ *  height `t` (0 root, 1 tip) for clump hue `h` and flower selector `s`. */
+export function paintedGrassColor(c: Rgb, t: number, h: number, s = 0): [number, number, number] {
   const g = PAINTED_GRASS;
   const k = smooth(g.gradLo, g.gradHi, t);
   const grad = mixRgb(g.base, g.tip, k);
   const hue = paintedGrassHueMix(h);
-  let r: [number, number, number] = [
-    c[0] * grad[0] * hue[0],
-    c[1] * grad[1] * hue[1],
-    c[2] * grad[2] * hue[2],
+  let r: [number, number, number] = satRgb(
+    [c[0] * grad[0] * hue[0], c[1] * grad[1] * hue[1], c[2] * grad[2] * hue[2]],
+    g.saturation,
+  );
+  const l = luma(r);
+  const soft: Rgb = [
+    l * g.tipSoftColor[0] * 1.25,
+    l * g.tipSoftColor[1] * 1.25,
+    l * g.tipSoftColor[2] * 1.25,
   ];
-  const l = 0.2126 * r[0] + 0.7152 * r[1] + 0.0722 * r[2];
-  r = [l + (r[0] - l) * g.saturation, l + (r[1] - l) * g.saturation, l + (r[2] - l) * g.saturation];
-  const s = g.tipSoft * smooth(0.6, 1.0, t);
-  const soft: Rgb = [l * g.tipSoftColor[0] * 1.25, l * g.tipSoftColor[1] * 1.25, l * g.tipSoftColor[2] * 1.25];
-  return mixRgb(r, soft, s);
+  r = mixRgb(r, soft, g.tipSoft * smooth(0.6, 1.0, t));
+  const fl = paintedGrassFlower(s);
+  if (fl > 0) r = mixRgb(r, g.flowers[fl - 1], smooth(g.flowerLo, g.flowerLo + 0.08, t));
+  return r;
 }
 
 // ---------------------------------------------------------------------------
@@ -146,40 +184,60 @@ export function paintedGrassColor(c: Rgb, t: number, h: number): [number, number
 
 export const PAINTED_CANOPY = {
   /** Multiplier on the underside of the crown (canopy normal pointing down):
-   *  a cool blue-violet shade. */
-  under: [0.6, 0.64, 0.8] as Rgb,
-  /** Multiplier on the crown top (normal up): warm sunlit gold. */
-  top: [1.16, 1.08, 0.82] as Rgb,
+   *  a soft cool blue-green shade, never a black hole. */
+  under: [0.7, 0.76, 0.88] as Rgb,
+  /** Multiplier on the crown top (normal up): warm sunlit gold-green. */
+  top: [1.18, 1.1, 0.78] as Rgb,
   /** Canopy-normal y window the gradient runs across. */
-  upLo: -0.55,
-  upHi: 0.85,
-  /** Per-tree hue drift: cool teal-green to warm ochre. */
-  cool: [0.88, 1.02, 0.94] as Rgb,
-  warm: [1.12, 1.0, 0.7] as Rgb,
-  hueAmt: 0.6,
+  upLo: -0.35,
+  upHi: 0.95,
+  /** Per-tree hue drift: cool teal-green to warm olive-gold. */
+  cool: [0.86, 1.0, 0.96] as Rgb,
+  warm: [1.14, 1.02, 0.68] as Rgb,
+  hueAmt: 0.65,
   /** Saturation of the painted crown. */
-  saturation: 1.08,
+  saturation: 1.0,
+  /** Leaf-texture contrast kept (1 the texture as authored): below 1 the
+   *  crown reads as soft painted masses instead of busy leaf cards. */
+  contrast: 0.62,
+  /** The luminance the contrast pull converges on (linear albedo). */
+  contrastPivot: 0.2,
   /** Warm fresnel rim colour (times the per-frame rim strength). */
-  rim: [1.0, 0.78, 0.42] as Rgb,
-  rimPower: 3.0,
+  rim: [1.0, 0.8, 0.46] as Rgb,
+  rimPower: 2.6,
+  /** Green-dominance window for a material that is not a known leaf. */
+  leafLo: 0.0,
+  leafHi: 0.05,
 } as const;
 
-/** JS mirror of the canopy paint on albedo `c` for canopy-normal y `up`
- *  (-1 underside, 1 top) and per-tree value `h`. */
-export function paintedCanopyColor(c: Rgb, up: number, h: number): [number, number, number] {
+/** Share of the canopy paint a texel takes on a material that is not a
+ *  known leaf: 1 on green foliage texels, 0 on brown bark, grey stone or a
+ *  red mushroom cap. Model-agnostic by construction (reads only the albedo). */
+export function canopyLeafWeight(c: Rgb): number {
   const p = PAINTED_CANOPY;
+  return smooth(p.leafLo, p.leafHi, c[1] - Math.max(c[0] * 0.82, c[2]));
+}
+
+/** JS mirror of the canopy paint on albedo `c` for canopy-normal y `up`
+ *  (-1 underside, 1 top), per-tree value `h` and leaf weight `w`. */
+export function paintedCanopyColor(c: Rgb, up: number, h: number, w = 1): [number, number, number] {
+  const p = PAINTED_CANOPY;
+  const l0 = luma(c);
+  const soft = (p.contrastPivot + (l0 - p.contrastPivot) * p.contrast) / Math.max(l0, 1e-3);
   const k = smooth(p.upLo, p.upHi, up);
   const g = mixRgb(p.under, p.top, k);
   const hue = mixRgb([1, 1, 1], mixRgb(p.cool, p.warm, clamp01(h)), p.hueAmt);
-  const r: Rgb = [c[0] * g[0] * hue[0], c[1] * g[1] * hue[1], c[2] * g[2] * hue[2]];
-  const l = 0.2126 * r[0] + 0.7152 * r[1] + 0.0722 * r[2];
-  return [l + (r[0] - l) * p.saturation, l + (r[1] - l) * p.saturation, l + (r[2] - l) * p.saturation];
+  const r = satRgb(
+    [c[0] * soft * g[0] * hue[0], c[1] * soft * g[1] * hue[1], c[2] * soft * g[2] * hue[2]],
+    p.saturation,
+  );
+  return mixRgb(c, r, clamp01(w));
 }
 
-/** Per-frame canopy rim strength: warm rim by day, strongest at golden hour,
- *  zero at night (so no leaf ever glows in the dark). */
+/** Per-frame canopy rim strength: a gentle warm rim by day, strongest at
+ *  golden hour, zero at night (so no leaf ever glows in the dark). */
 export function paintedCanopyRim(golden: number, nightAmt: number): number {
-  return (0.12 + 0.22 * clamp01(golden)) * (1 - clamp01(nightAmt));
+  return (0.1 + 0.2 * clamp01(golden)) * (1 - clamp01(nightAmt));
 }
 
 // ---------------------------------------------------------------------------
@@ -194,10 +252,10 @@ const v3 = (c: Rgb): string => `vec3(${f(c[0])}, ${f(c[1])}, ${f(c[2])})`;
 
 /** Vertex declarations for the grass paint. */
 export const PAINTED_GRASS_VERT_DECL = `
-        varying vec2 vWsGrass; // x blade height 0..1, y clump hue 0..1`;
+        varying vec3 vWsGrass; // x blade height 0..1, y clump hue 0..1, z flower selector 0..1`;
 
 /** Vertex body for the grass paint. `heightExpr` is the blade's 0..1 height
- *  along the card or blade (local), computed BEFORE wind and instancing. */
+ *  along the card or blade, read from the LOCAL vertex attributes. */
 export function paintedGrassVertGlsl(heightExpr: string): string {
   return `
         {
@@ -209,30 +267,44 @@ export function paintedGrassVertGlsl(heightExpr: string): string {
           float wsLow = 0.5 + 0.25 * sin(wsOrigin.x * 0.23 + 1.3) * sin(wsOrigin.z * 0.19 + 0.4)
             + 0.25 * sin(wsOrigin.x * 0.061 - wsOrigin.z * 0.047);
           float wsCell = fract(sin(dot(floor(wsOrigin.xz * 0.9), vec2(12.9898, 78.233))) * 43758.5453);
-          vWsGrass = vec2(clamp(${heightExpr}, 0.0, 1.0), clamp(mix(wsLow, wsCell, 0.3), 0.0, 1.0));
+          float wsPick = fract(sin(dot(wsOrigin.xz, vec2(39.3468, 11.1353))) * 24634.6345);
+          vWsGrass = vec3(clamp(${heightExpr}, 0.0, 1.0), clamp(mix(wsLow, wsCell, 0.3), 0.0, 1.0), wsPick);
         }`;
 }
 
 export const PAINTED_GRASS_FRAG_DECL = `
-        varying vec2 vWsGrass;`;
+        varying vec3 vWsGrass;`;
 
 /** Fragment body for the grass paint (after <color_fragment>). Mirrors
  *  paintedGrassColor. */
 export function paintedGrassFragGlsl(): string {
   const g = PAINTED_GRASS;
+  const n = g.flowers.length;
+  const cut = 1 - g.flowerShare;
+  const flowerPick = g.flowers
+    .slice(1)
+    .map((c, i) => `wsK >= ${f(i + 1)} ? ${v3(c)} : `)
+    .reverse()
+    .join('');
   return `
         {
           float wsT = vWsGrass.x;
           float wsH = vWsGrass.y;
           vec3 wsGrad = mix(${v3(g.base)}, ${v3(g.tip)}, smoothstep(${f(g.gradLo)}, ${f(g.gradHi)}, wsT));
           vec3 wsHue = wsH < 0.5
-            ? mix(${v3(g.olive)}, ${v3(g.ochre)}, wsH * 2.0)
-            : mix(${v3(g.ochre)}, ${v3(g.teal)}, (wsH - 0.5) * 2.0);
+            ? mix(${v3(g.olive)}, ${v3(g.golden)}, wsH * 2.0)
+            : mix(${v3(g.golden)}, ${v3(g.sage)}, (wsH - 0.5) * 2.0);
           wsHue = mix(vec3(1.0), wsHue, ${f(g.hueAmt)});
           vec3 wsC = diffuseColor.rgb * wsGrad * wsHue;
           float wsL = dot(wsC, vec3(0.2126, 0.7152, 0.0722));
           wsC = mix(vec3(wsL), wsC, ${f(g.saturation)});
+          wsL = dot(wsC, vec3(0.2126, 0.7152, 0.0722));
           wsC = mix(wsC, wsL * ${v3(g.tipSoftColor)} * 1.25, ${f(g.tipSoft)} * smoothstep(0.6, 1.0, wsT));
+          if (vWsGrass.z > ${f(cut)}) {
+            float wsK = min(floor((vWsGrass.z - ${f(cut)}) / ${f(g.flowerShare)} * ${f(n)}), ${f(n - 1)});
+            vec3 wsFl = ${flowerPick}${v3(g.flowers[0])};
+            wsC = mix(wsC, wsFl, smoothstep(${f(g.flowerLo)}, ${f(g.flowerLo + 0.08)}, wsT));
+          }
           diffuseColor.rgb = wsC;
         }`;
 }
@@ -260,20 +332,29 @@ export const PAINTED_CANOPY_FRAG_DECL = `
         uniform vec4 uWsFoliage; // x canopy rim strength`;
 
 /** Fragment body for the canopy paint (after <color_fragment>). Mirrors
- *  paintedCanopyColor. */
-export function paintedCanopyFragGlsl(): string {
+ *  paintedCanopyColor; `knownLeaf` false takes the paint only on green
+ *  texels (canopyLeafWeight). */
+export function paintedCanopyFragGlsl(knownLeaf: boolean): string {
   const p = PAINTED_CANOPY;
+  const weight = knownLeaf
+    ? '1.0'
+    : `smoothstep(${f(p.leafLo)}, ${f(p.leafHi)}, diffuseColor.g - max(diffuseColor.r * 0.82, diffuseColor.b))`;
   return `
+        float wsLeafW = ${weight};
         {
+          vec3 wsIn = diffuseColor.rgb;
+          float wsL0 = dot(wsIn, vec3(0.2126, 0.7152, 0.0722));
+          float wsSoft = (${f(p.contrastPivot)} + (wsL0 - ${f(p.contrastPivot)}) * ${f(p.contrast)}) / max(wsL0, 1e-3);
           vec3 wsG = mix(${v3(p.under)}, ${v3(p.top)}, smoothstep(${f(p.upLo)}, ${f(p.upHi)}, vWsCanopy.x));
           vec3 wsHue = mix(vec3(1.0), mix(${v3(p.cool)}, ${v3(p.warm)}, vWsCanopy.y), ${f(p.hueAmt)});
-          vec3 wsC = diffuseColor.rgb * wsG * wsHue;
+          vec3 wsC = wsIn * wsSoft * wsG * wsHue;
           float wsL = dot(wsC, vec3(0.2126, 0.7152, 0.0722));
-          diffuseColor.rgb = mix(vec3(wsL), wsC, ${f(p.saturation)});
+          wsC = mix(vec3(wsL), wsC, ${f(p.saturation)});
+          diffuseColor.rgb = mix(wsIn, wsC, wsLeafW);
         }`;
 }
 
-/** Emissive body for the canopy rim (after <emissivemap_fragment>, where the
+/** Emissive body for the canopy rim (before <aomap_fragment>, where the
  *  shading normal exists). Daylight-scaled by uWsFoliage.x (0 at night). */
 export function paintedCanopyRimGlsl(): string {
   const p = PAINTED_CANOPY;
@@ -281,6 +362,7 @@ export function paintedCanopyRimGlsl(): string {
         {
           float wsFr = 1.0 - abs(dot(normalize(normal), normalize(vViewPosition)));
           totalEmissiveRadiance += diffuseColor.rgb * ${v3(p.rim)}
-            * pow(wsFr, ${f(p.rimPower)}) * uWsFoliage.x * smoothstep(-0.4, 0.6, vWsCanopy.x);
+            * pow(wsFr, ${f(p.rimPower)}) * uWsFoliage.x * wsLeafW
+            * smoothstep(-0.4, 0.6, vWsCanopy.x);
         }`;
 }

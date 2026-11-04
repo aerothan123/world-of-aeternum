@@ -54,6 +54,8 @@ import { paletteLabPanelEnabled } from './palette_lab';
 import { bladeSectorAxis, renderLayerDisabled } from './render_dev_flags';
 import { groundGrassColorAt, groundLushnessAt } from './terrain_chunk_build';
 import { GRASS_WIND_TIME_SCALE } from './tree_sway';
+import { paintRefinedGrass } from './world_style_foliage';
+import { paintedClumpCoverage, paintedClumpHeight } from './world_style_foliage_core';
 
 // Near-field blade carpet: a single InstancedMesh of low-poly SOLID grass
 // clusters riding a toroidal grid around the player. The card-tuft system in
@@ -125,6 +127,10 @@ export function mulberry32(seed: number): () => number {
 // Exported (geometry unchanged): the mid-band (blade_grass_band.ts) and the
 // ground bake (grass_ground_bake.ts) must use these EXACT clusters so the
 // carpet, the band, and the painted ground are one look by construction.
+/** The blade's 0..1 height from its vertex shade (clusterGeometry writes
+ *  0.86 at the root and 1.1 at the tip), for shader arms that need it. */
+export const BLADE_HEIGHT_FROM_SHADE_GLSL = '(color.r - 0.86) / 0.24';
+
 export function clusterGeometry(rng: () => number, segments: 2 | 3 = 3): THREE.BufferGeometry {
   const positions: number[] = [];
   const colors: number[] = [];
@@ -370,6 +376,9 @@ export function buildBladeGrass(
       #endif`,
     );
   };
+  // World Style Refined: the painted-meadow colour arm, chained once at build
+  // (world_style_foliage.ts). The vertex shade runs 0.86 root to 1.1 tip.
+  paintRefinedGrass(mat, BLADE_HEIGHT_FROM_SHADE_GLSL);
   const uPlayerPos = { value: new THREE.Vector2(1e9, 1e9) };
 
   // One mesh per sector instead of one uncullable pool mesh: every sector
@@ -425,7 +434,10 @@ export function buildBladeGrass(
       // bare between them (squared for hard patch edges)
       const lush = groundLushnessAt(x, z, seed);
       const biomeDensity = GRASS_BIOME_DENSITY[zoneBiomeAt(x, z)] ?? 1;
-      const baseCoverage = meadowCoverage(lush) * Math.min(biomeDensity, 1.2);
+      const baseCoverage =
+        meadowCoverage(lush) *
+        Math.min(biomeDensity, 1.2) *
+        paintedClumpCoverage(GFX.worldStyle, x, z);
       const rd = roadDistance(x, z);
       // higher floor + gain than the tufts: coverage is the carpet's job,
       // the patch structure just modulates it
@@ -464,7 +476,8 @@ export function buildBladeGrass(
             q.premultiply(qLean.setFromAxisAngle(leanAxis, rLean * 0.21));
             const sy =
               meadowClusterHeight(baseScale, lush, hash(ci, cj, 6)) *
-              grassEdgeHeightScale(edgeTaper);
+              grassEdgeHeightScale(edgeTaper) *
+              paintedClumpHeight(GFX.worldStyle, x, z);
             m.compose(v.set(x, h - 0.02, z), q, sv.set(s, sy, s));
             groundGrassColorAt(x, z, seed, c);
             // slight lift over the raw ground tint: blades catch more sky

@@ -14,6 +14,7 @@ import {
   refinedAerialAmount,
   refinedAtmosphere,
   refinedBlendWeights,
+  refinedEarthTint,
   refinedPalette,
   refinedTerrainProfile,
   refinedTerrainProfileKey,
@@ -119,9 +120,16 @@ describe('Refined atmosphere curves by time of day', () => {
     expect(blueHourAmount(-0.07)).toBeGreaterThan(0.9);
     expect(blueHourAmount(0.3)).toBe(0);
   });
-  it('is neutral at noon, golden in the morning and evening, cool blue at dusk', () => {
+  it('is gently warm at noon, golden in the morning and evening, cool blue at dusk', () => {
+    // storybook afternoon: a soft warm cast at noon, never a strong one
     expect(noon.gradeGain[0]).toBeCloseTo(1, 2);
-    expect(Math.abs(noon.gradeGain[0] - noon.gradeGain[2])).toBeLessThan(0.03);
+    expect(noon.gradeGain[0]).toBeGreaterThan(noon.gradeGain[2]);
+    expect(noon.gradeGain[0] - noon.gradeGain[2]).toBeLessThan(0.1);
+    expect(golden.gradeGain[0] - golden.gradeGain[2]).toBeGreaterThan(
+      noon.gradeGain[0] - noon.gradeGain[2],
+    );
+    // soft cool shadows: the lift raises blue most
+    expect(noon.gradeLift[2]).toBeGreaterThan(noon.gradeLift[0]);
     expect(golden.gradeGain[0]).toBeGreaterThan(golden.gradeGain[2] + 0.08);
     expect(golden.sunTint[0]).toBeGreaterThan(golden.sunTint[2]);
     expect(golden.skyHorizon[0]).toBeGreaterThan(golden.skyHorizon[2]);
@@ -173,6 +181,15 @@ describe('Refined palette and shadows', () => {
     expect(r / b).toBeGreaterThan(0.3 / 0.2);
     const spread = (c: number[]) => Math.max(...c) - Math.min(...c);
     expect(spread([r, g, b])).toBeLessThan(spread([0.3, 0.45, 0.2]));
+  });
+  it('paints each layer its storybook earth tone and softens photo detail', () => {
+    const [r, , b] = refinedEarthTint([0.4, 0.32, 0.24], 'dirt');
+    expect(r / b).toBeGreaterThan(0.4 / 0.24); // warmer ochre
+    const dark = refinedEarthTint([0.1, 0.1, 0.1], 'rock');
+    const light = refinedEarthTint([0.5, 0.5, 0.5], 'rock');
+    expect(light[1] / dark[1]).toBeLessThan(5); // detail contrast pulled in
+    const grass = refinedEarthTint([0.3, 0.45, 0.2], 'grass');
+    expect(grass[0] / grass[1]).toBeGreaterThan(0.3 / 0.45); // sunlit yellow-green
   });
   it('widens the PCF penumbra only under Refined', () => {
     expect(worldStyleShadowRadius('classic', 2.25)).toBe(2.25);

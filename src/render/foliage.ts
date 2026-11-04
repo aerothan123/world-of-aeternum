@@ -159,6 +159,7 @@ import { freezeStaticMatrices } from './static_matrix';
 import { groundGrassColorAt, groundLushnessAt } from './terrain_chunk_build';
 import { type FlowerKind, flowerTuftTexture, grassTuftTexture } from './textures';
 import { hideableGhostSources, type TreeHideable, updateTreeHides } from './tree_hide_fade';
+import { paintRefinedCanopy, paintRefinedGrass } from './world_style_foliage';
 import { applySurfaceDetail, foliageWornFamilyFor } from './worn_stone';
 
 // The renderer seeds the far-placement mirrors through this module's surface.
@@ -1007,6 +1008,7 @@ function foliageMaterial(
   // (needle/leaf break-up) instead; unknown names no-op inside.
   applyCanopyDetail(mat, src.name);
   if (pol.leaf && std.map) reuseLeafMapSampleForEmissive(mat);
+  if (pol.leaf || !MAT_POLICY[src.name]) paintRefinedCanopy(mat, pol.leaf);
   if (role === 'tree') withInstancedDitherFade(mat);
   materialCache.set(key, mat);
   return mat;
@@ -2621,6 +2623,7 @@ function buildGrassRing(
         }),
   );
   applyGrassShader(mat, uniforms, capCollapseBand);
+  paintRefinedGrass(mat, 'uv.y');
   // Chunk meshes are built per frame as you walk, so no boot compile root ever
   // sees this material (ground_decor_prewarm.ts).
   registerGroundDecorPrewarmDraw({ geometry: geo, material: mat, instanceColor: true });

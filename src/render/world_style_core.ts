@@ -194,6 +194,44 @@ export const REFINED_PALETTE = {
   dampShore: [0.66, 0.6, 0.52] as const,
 } as const;
 
+/** The storybook earth tints, one per splat layer, applied by layer weight
+ *  before the palette: a sunlit yellow-green meadow floor, warm ochre packed
+ *  earth on roads and paths, soft cream beach sand and a softened warm-grey
+ *  rock with a faint violet cast. `soften` pulls the dirt and rock photo
+ *  detail toward a luminance pivot, so the ground reads painted, not photo. */
+export const REFINED_EARTH = {
+  grass: [1.03, 1.02, 0.86] as const,
+  dirt: [1.03, 1.03, 0.93] as const,
+  sand: [1.0, 1.0, 1.0] as const,
+  rock: [1.02, 0.99, 1.02] as const,
+  /** Worn grassy margin of a trail: share of the shoulder that greens over. */
+  pathGreen: 0.42,
+  /** The olive the trail margin greens toward (times its own luminance). */
+  pathGreenTint: [0.96, 1.08, 0.56] as const,
+  /** Detail contrast kept on the photo-textured earth (dirt and rock; 1 the
+   *  photo as authored). Grass and sand are already painted layers. */
+  soften: 0.86,
+  /** Luminance pivot the soften pull converges on (linear albedo, near the
+   *  mean of the dirt and rock photos so the layer keeps its brightness). */
+  softenPivot: 0.36,
+} as const;
+
+export type RefinedEarthLayer = 'grass' | 'dirt' | 'sand' | 'rock';
+
+/** JS mirror of the shader's per-layer earth tint and soften on one fully
+ *  weighted layer texel (before refinedPalette). */
+export function refinedEarthTint(
+  rgb: readonly [number, number, number],
+  layer: RefinedEarthLayer,
+): [number, number, number] {
+  const e = REFINED_EARTH;
+  const t = e[layer];
+  const l = 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
+  const soft = layer === 'dirt' || layer === 'rock' ? e.soften : 1;
+  const k = (e.softenPivot + (l - e.softenPivot) * soft) / Math.max(l, 1e-3);
+  return [rgb[0] * t[0] * k, rgb[1] * t[1] * k, rgb[2] * t[2] * k];
+}
+
 /** JS mirror of the shader's palette step, for the decal-contrast pin. */
 export function refinedPalette(rgb: readonly [number, number, number]): [number, number, number] {
   const p = REFINED_PALETTE;
@@ -287,42 +325,45 @@ interface Phase {
 
 // Four anchor looks; the live atmosphere is their blend by the phase weights.
 const NOON: Phase = {
-  gain: [1.0, 1.0, 0.985],
-  sat: 1.04,
-  lift: [0.0, 0.0, 0.004],
-  exposure: 1.0,
-  aerial: [0.64, 0.72, 0.82],
-  aerialAmt: 0.46,
-  zenith: [0.2, 0.4, 0.82],
-  horizon: [0.66, 0.75, 0.86],
-  glow: [0.32, 0.28, 0.2],
-  cloudLit: [0.9, 0.89, 0.86],
-  cloudShade: [0.56, 0.62, 0.72],
-  cover: 0.42,
-  cloudOp: 0.5,
-  sun: [1.0, 0.975, 0.93],
-  light: 1.05,
-  ambient: 0.95,
-  fog: [0.96, 0.99, 1.05],
+  // Storybook afternoon: a gentle warm cast, raised cool-blue shadow floor
+  // and a slightly compressed range (gain under 1 plus lift), so midday reads
+  // soft and golden rather than crisp and neutral.
+  gain: [1.0, 0.975, 0.925],
+  sat: 1.06,
+  lift: [0.014, 0.018, 0.03],
+  exposure: 1.03,
+  aerial: [0.8, 0.82, 0.86],
+  aerialAmt: 0.5,
+  zenith: [0.24, 0.44, 0.8],
+  horizon: [0.9, 0.86, 0.74],
+  glow: [0.5, 0.4, 0.24],
+  cloudLit: [1.0, 0.97, 0.9],
+  cloudShade: [0.62, 0.64, 0.74],
+  cover: 0.48,
+  cloudOp: 0.72,
+  sun: [1.05, 0.97, 0.84],
+  light: 1.02,
+  ambient: 1.14,
+  fog: [1.03, 1.0, 0.95],
 };
 const GOLDEN: Phase = {
-  gain: [1.04, 1.0, 0.93],
-  sat: 1.08,
-  lift: [0.006, 0.003, 0.0],
-  exposure: 1.02,
-  aerial: [0.86, 0.74, 0.62],
-  aerialAmt: 0.42,
-  zenith: [0.3, 0.38, 0.64],
-  horizon: [1.05, 0.7, 0.44],
-  glow: [0.95, 0.6, 0.3],
-  cloudLit: [1.08, 0.74, 0.52],
-  cloudShade: [0.46, 0.42, 0.52],
-  cover: 0.4,
-  cloudOp: 0.66,
-  sun: [1.04, 0.97, 0.88],
-  light: 1.0,
-  ambient: 0.97,
-  fog: [1.02, 0.99, 0.95],
+  gain: [1.06, 0.99, 0.86],
+  sat: 1.1,
+  lift: [0.018, 0.014, 0.02],
+  exposure: 1.05,
+  aerial: [0.95, 0.76, 0.54],
+  aerialAmt: 0.5,
+  zenith: [0.32, 0.38, 0.6],
+  horizon: [1.15, 0.74, 0.42],
+  glow: [1.2, 0.72, 0.32],
+  cloudLit: [1.2, 0.8, 0.52],
+  cloudShade: [0.5, 0.44, 0.54],
+  cover: 0.46,
+  cloudOp: 0.78,
+  sun: [1.08, 0.94, 0.76],
+  light: 1.02,
+  ambient: 1.1,
+  fog: [1.06, 0.98, 0.88],
 };
 const BLUE: Phase = {
   gain: [0.96, 0.98, 1.05],

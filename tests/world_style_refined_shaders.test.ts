@@ -164,7 +164,7 @@ describe('Refined sky dome', () => {
     for (const zoneHaze of [false, true]) {
       const classic = skyZoneHazeInternalsForTest.skyFrag(zoneHaze);
       const refined = withRefinedSky(classic);
-      expect(refined).toContain('Cloud layer: fbm on the dome plane');
+      expect(refined).toContain('Cloud layer: billowy painted cumulus');
       expect(refined).toContain('uniform vec2 uWsCloudDrift;');
       expect(refined).toContain('Refined horizon haze');
       expect(samplerCount(refined)).toBe(samplerCount(classic));

@@ -12,6 +12,7 @@ import { WATER_LEVEL } from '../sim/world';
 import {
   REFINED_AERIAL_MAX,
   REFINED_BLEND,
+  REFINED_EARTH,
   REFINED_LAYER_GRASS_B,
   REFINED_LAYER_GRAVEL,
   REFINED_PALETTE,
@@ -72,6 +73,7 @@ function aerialGlsl(pos: string, heightAware: boolean): string {
  *  before the snow mix. Mirrors refinedBlendWeights. */
 export function refinedSplatGlsl(p: RefinedTerrainProfile): string {
   const b = REFINED_BLEND;
+  const e = REFINED_EARTH;
   const lumaW = 'vec3(0.2126, 0.7152, 0.0722)';
   return `
         // ---- World Style Refined (world_style_glsl.ts) ----
@@ -140,6 +142,19 @@ export function refinedSplatGlsl(p: RefinedTerrainProfile): string {
           float wocWsM = ${p.noiseTaps ? 'texture2D(uMacro, vWPos.xz * 0.0017 + vec2(0.41, 0.09)).r' : 'macro2'};
           alb *= mix(vec3(1.0), mix(vec3(0.86, 0.89, 0.85), vec3(1.1, 1.07, 0.98), wocWsM), wocWsFar * 0.85);`
               : ''
+          }
+          // Storybook earth: per-layer tints (sunlit meadow floor, ochre
+          // packed earth, cream sand, soft warm rock) and a detail soften,
+          // then the trail shoulder greens over into the meadow.
+          {
+            float wocWsSum = max(dot(wocHW, vec4(1.0)), 1e-3);
+            vec3 wocWsEarth = (${v3(e.grass)} * wocHW.x + ${v3(e.dirt)} * wocHW.y
+              + ${v3(e.rock)} * wocHW.z + ${v3(e.sand)} * wocHW.w) / wocWsSum;
+            float wocWsEl = dot(alb, ${lumaW});
+            float wocWsSoftK = mix(1.0, ${f(e.soften)}, clamp((wocHW.y + wocHW.z) / wocWsSum, 0.0, 1.0));
+            alb *= wocWsEarth * ((${f(e.softenPivot)} + (wocWsEl - ${f(e.softenPivot)}) * wocWsSoftK) / max(wocWsEl, 1e-3));
+            alb = mix(alb, vec3(dot(alb, ${lumaW})) * ${v3(e.pathGreenTint)},
+              clamp(pathEdge * wocHW.y * ${f(e.pathGreen)}, 0.0, 1.0));
           }
           alb = wocWsPalette(alb);
         }
@@ -257,16 +272,29 @@ const REFINED_SKY_GLSL = `
       float wsSun = max(dot(dir, normalize(uSunDirLive)), 0.0);
       c += uWsSunGlow * (pow(wsSun, 6.0) * 0.35 + pow(wsSun, 48.0) * 0.65)
         * smoothstep(-0.2, 0.05, uSunDirLive.y);
-      // Cloud layer: fbm on the dome plane, drifting downwind. Faded out
-      // toward the horizon (where the haze band owns the sky) and below it.
+      // Cloud layer: billowy painted cumulus on the dome plane, drifting
+      // downwind. A domain warp rounds the fbm into puffs, a second density
+      // read nudged toward the sun lights the sun-facing rims and shades the
+      // far bellies, and the edges stay soft. Faded out toward the horizon
+      // (where the haze band owns the sky) and below it.
       if (dir.y > 0.02) {
-        vec2 wsP = dir.xz / (dir.y + 0.12) * 1.6 + uWsCloudDrift;
-        float wsN = noise2(wsP * 1.7) * 0.5 + noise2(wsP * 3.9 + 7.1) * 0.27
-          + noise2(wsP * 8.3 + 3.3) * 0.15 + noise2(wsP * 17.0 + 1.7) * 0.08;
-        float wsCov = smoothstep(1.0 - uWsCloudLit.a, 1.0 - uWsCloudLit.a + 0.28, wsN);
-        float wsThick = smoothstep(1.0 - uWsCloudLit.a + 0.05, 1.0, wsN);
-        vec3 wsCloud = mix(uWsCloudLit.rgb, uWsCloudShade.rgb, wsThick * 0.7);
-        wsCloud += uWsSunGlow * pow(wsSun, 5.0) * (1.0 - wsThick) * 0.6;
+        vec2 wsP = dir.xz / (dir.y + 0.12) * 1.35 + uWsCloudDrift;
+        vec2 wsW = vec2(noise2(wsP * 0.9 + 4.7), noise2(wsP * 0.9 + 9.2)) - 0.5;
+        vec2 wsQ = wsP + wsW * 0.9;
+        float wsN = noise2(wsQ * 1.5) * 0.56 + noise2(wsQ * 3.4 + 7.1) * 0.27
+          + noise2(wsQ * 7.6 + 3.3) * 0.12 + noise2(wsQ * 15.0 + 1.7) * 0.05;
+        vec2 wsSunXZ = uSunDirLive.xz / max(length(uSunDirLive.xz), 1e-3);
+        vec2 wsQs = wsQ + wsSunXZ * 0.12;
+        float wsNs = noise2(wsQs * 1.5) * 0.56 + noise2(wsQs * 3.4 + 7.1) * 0.27
+          + noise2(wsQs * 7.6 + 3.3) * 0.12;
+        float wsTh = 1.0 - uWsCloudLit.a;
+        float wsCov = smoothstep(wsTh, wsTh + 0.16, wsN);
+        float wsThick = smoothstep(wsTh + 0.04, wsTh + 0.42, wsN);
+        // denser toward the sun means this texel sits on the shaded side
+        float wsShadeT = clamp((wsNs - wsN) * 5.0 + 0.35, 0.0, 1.0) * wsThick;
+        vec3 wsCloud = mix(uWsCloudLit.rgb, uWsCloudShade.rgb, wsShadeT * 0.75);
+        // silver-gold rim on the thin sun-facing edges
+        wsCloud += uWsSunGlow * (1.0 - wsThick) * (0.35 + pow(wsSun, 4.0) * 0.8);
         c = mix(c, wsCloud, wsCov * uWsCloudShade.a * smoothstep(0.02, 0.22, dir.y));
       }
     }

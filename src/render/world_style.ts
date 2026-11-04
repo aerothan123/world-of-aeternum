@@ -16,6 +16,7 @@ import { WATER_LEVEL } from '../sim/world';
 import type { DayNightGrade } from './day_night_core';
 import { GFX, sharedUniforms } from './gfx';
 import {
+  goldenAmount,
   REFINED_AERIAL_CLEAR_YD,
   REFINED_AERIAL_DENSITY,
   REFINED_AERIAL_HEIGHT_FALLOFF,
@@ -24,6 +25,7 @@ import {
   refinedAtmosphere,
   worldStyleShadowRadius,
 } from './world_style_core';
+import { paintedCanopyRim } from './world_style_foliage_core';
 
 /** True when the active graphics profile runs the Refined style. */
 export function worldStyleRefined(): boolean {
@@ -56,6 +58,8 @@ export const worldStyleUniforms = {
   uWsCloudLit: { value: new THREE.Vector4(...initial.cloudLit, initial.cloudCoverage) },
   uWsCloudShade: { value: new THREE.Vector4(...initial.cloudShade, initial.cloudOpacity) },
   uWsCloudDrift: { value: new THREE.Vector2(0, 0) },
+  /** Refined foliage (world_style_foliage.ts): x the canopy rim strength. */
+  uWsFoliage: { value: new THREE.Vector4(paintedCanopyRim(0, 0), 0, 0, 0) },
 };
 
 /** The uniforms a Refined world surface (terrain, far vista) binds. */
@@ -121,6 +125,7 @@ export function applyWorldStyleGrade(g: DayNightGrade, sunElev: number): DayNigh
   const a = refinedAtmosphere(sunElev, g.nightAmt);
   lastAtmosphere = a;
   writeWorldStyleUniforms(a, sharedUniforms.uTime.value);
+  worldStyleUniforms.uWsFoliage.value.x = paintedCanopyRim(goldenAmount(sunElev), g.nightAmt);
   const day = 1 - g.nightAmt;
   return {
     ...g,
