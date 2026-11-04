@@ -800,60 +800,60 @@
     ]
   },
   "impact_gather_axe": {
-    "ceilingDb": 5.3,
+    "ceilingDb": 5.2,
     "tracks": [
       {
         "filename": "impact_gather_axe_1.mp3",
-        "sha256": "fe421511a12a1e6c035b29a5f1a0237b5b0c174f210b6d42dcd35ca0d5fab1f3",
-        "size": 13836,
-        "peakDb": -6.5
+        "sha256": "75ba18f4453886c296954a4478a2e0c38ee2e6ecbf202df0e3aee3bc73d032e6",
+        "size": 15717,
+        "peakDb": -6.2
       },
       {
         "filename": "impact_gather_axe_2.mp3",
-        "sha256": "d241289e03d53eb924e9907a2aa54206f210f70f44e7222c75326c1fc6fc6b06",
-        "size": 13836,
-        "peakDb": -6.3
+        "sha256": "1a1ea44daf5cf5cff5f710706125643a52b3929874be59b49f8a8513ea6e1de3",
+        "size": 15717,
+        "peakDb": -6.2
       },
       {
         "filename": "impact_gather_axe_3.mp3",
-        "sha256": "4ade327c5aa6ed4de440a4114a669fdbc0f88d16677a8122e3ba2ff8213c4bd7",
-        "size": 13836,
-        "peakDb": -6.8
+        "sha256": "0b36c6a8b12aaa3fe47012986c175092d4928a556803d3c1c499cc1fa20f073b",
+        "size": 15717,
+        "peakDb": -6.3
       },
       {
         "filename": "impact_gather_axe_4.mp3",
-        "sha256": "887a4f0909eecd442344cc233b75942a9e921be89e219d88cb65cef0b113a1e5",
-        "size": 13836,
-        "peakDb": -6.6
+        "sha256": "b25f8a0bc7879d83378d183ebd034390d92f870944466e201d8a718fd02c3aaf",
+        "size": 13209,
+        "peakDb": -6.2
       }
     ]
   },
   "impact_gather_pick": {
-    "ceilingDb": 4.9,
+    "ceilingDb": 5.2,
     "tracks": [
       {
         "filename": "impact_gather_pick_1.mp3",
-        "sha256": "2c44e53463f535636e3ad47ccc079a770caecbbeea0bb8e81591a5513d85f724",
-        "size": 15090,
-        "peakDb": -6.6
-      },
-      {
-        "filename": "impact_gather_pick_2.mp3",
-        "sha256": "5e7fcb5e64a95d7a2d052ea2f4df92b0f150d12300705e6fdf85a0f23da55614",
-        "size": 15090,
+        "sha256": "00cbcf296a6b0d818c0f21f779a7a889b5a9bedefea6f82e5fe7bf86efb9e47c",
+        "size": 15717,
         "peakDb": -6.3
       },
       {
+        "filename": "impact_gather_pick_2.mp3",
+        "sha256": "40f2bd3baf7754ab3633ff42265cf67b29b642abeb10a7fd328f2baedcd3f4c1",
+        "size": 6940,
+        "peakDb": -6.2
+      },
+      {
         "filename": "impact_gather_pick_3.mp3",
-        "sha256": "98aecb9ee31f1409cb8ef9cd3155cdbe480a9549533a20edd3659210016d79cd",
-        "size": 15090,
+        "sha256": "b980a7d2c573d672b8e6dba7fa6fcdc460334e4b3fa4bb7d26dd7e3201e16728",
+        "size": 7567,
         "peakDb": -6.3
       },
       {
         "filename": "impact_gather_pick_4.mp3",
-        "sha256": "0c5697d125d32f8335a47ad78272903602685123a65651edd1a83fb02d388f20",
-        "size": 15090,
-        "peakDb": -5.9
+        "sha256": "571e3d48ee56af784c10cfc9aa7afca6473d010cf8df162feadbf6dde65263dd",
+        "size": 5686,
+        "peakDb": -6.3
       }
     ]
   },
@@ -993,36 +993,36 @@
     ]
   },
   "impact_tree_crash": {
-    "ceilingDb": 6,
+    "ceilingDb": 5.3,
     "tracks": [
       {
         "filename": "impact_tree_crash_1.mp3",
-        "sha256": "18ceff325abe9f240df9ed4bbc89a0928a0f0dd2a46345acfdeaea4f18a93649",
-        "size": 47064,
-        "peakDb": -7
+        "sha256": "cd2618da034f887747044d64574c0ee36f2928787eb5ff416bfd97e49e3831b4",
+        "size": 54587,
+        "peakDb": -6.5
       },
       {
         "filename": "impact_tree_crash_2.mp3",
-        "sha256": "495208228d1ce998b8da7316a2aa0fe60e50a75caa305433ac3cc421799d8284",
-        "size": 47064,
-        "peakDb": -7.3
+        "sha256": "ccea75db47fdf4ff278be70b92f9f723acfc53a70e04c7cd8509485cfb48bc50",
+        "size": 40168,
+        "peakDb": -6.3
       }
     ]
   },
   "impact_tree_creak": {
-    "ceilingDb": 6.2,
+    "ceilingDb": 5.3,
     "tracks": [
       {
         "filename": "impact_tree_creak_1.mp3",
-        "sha256": "d6db70feecd708e470a426789647e5e70ca670d3950beac1288a1a0a8bfd291d",
-        "size": 36406,
-        "peakDb": -7.3
+        "sha256": "9af85e9c04fd1dbbce675cf8cf55bf95e1b98fc5d3e0cdc119303ba38a85acf0",
+        "size": 35779,
+        "peakDb": -6.3
       },
       {
         "filename": "impact_tree_creak_2.mp3",
-        "sha256": "82efe6fb95164d3aeb72abb30079af6bdbb88ace3a1657a0269372cfff496279",
-        "size": 36406,
-        "peakDb": -7.2
+        "sha256": "1faa31189275b9c58faf505490e07510a464b3deeff7d54d7182b46b2ea8cef8",
+        "size": 26375,
+        "peakDb": -6.7
       }
     ]
   },

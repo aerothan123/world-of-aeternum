@@ -172,7 +172,12 @@ natural outdoor echo.
   nearer strike steals the farthest live one, the listener's own always plays, so a crowd
   of miners never stacks into noise.
 - **Clips:** `impact_gather_pick`, `impact_gather_axe`, `impact_tree_creak`,
-  `impact_tree_crash`, all DRY multi-take syntheses (`scripts/sfx/gather_strike_sfx.mjs`).
+  `impact_tree_crash`, all DRY ElevenLabs takes (prompts in
+  `scripts/sfx/gather_strike_prompts.mjs`). `scripts/sfx/gather_strike_sfx.mjs` generates
+  several candidates per cue, auditions them by measurement (onset, attack, crest, hit
+  count, tail, brightness, low body), keeps the best, trims each to a tight attack and
+  its first hit, and conforms it; the kept raw masters live in
+  `scripts/sfx/sources/gather/`, so `build` reproduces the shipped files without spend.
   `scripts/sfx/gather_reverb_demo.mjs` renders a listening demo through the same mix and
   responses. The personal `ui_gather_*` cast and completion cues are unchanged.
 
