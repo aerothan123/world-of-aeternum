@@ -106,7 +106,8 @@ import {
   refinedTerrainProfileKey,
 } from './world_style_core';
 import { patchRefinedLambertShader, patchRefinedSplatShader } from './world_style_glsl';
-import { splatLayerFile } from './world_style_ground_core';
+import { isPaintedGroundFile, splatLayerFile } from './world_style_ground_core';
+import { packImageLayers } from './world_style_splat_pack';
 import { disposeZoneBuildPool, zoneBuildPool } from './zone_build_pool';
 
 // Chunked terrain across the whole 360x1080 zone strip.
@@ -164,8 +165,11 @@ function prepareTerrainTex(key: string, file: string, srgb: boolean): Promise<vo
   // texture whose measured per-channel statistics are baked into shader
   // constants (see the "Measured sds" comment below), and a lossy block
   // encode would shift them.
+  // The painted storybook sets (World Style Refined) ship plain JPGs with no
+  // KTX2 sibling: their normals load as images and pack uncompressed
+  // (buildSplatNormalArray).
   const task = (
-    url.toLowerCase().endsWith('.jpg') && !srgb
+    url.toLowerCase().endsWith('.jpg') && !srgb && !isPaintedGroundFile(file)
       ? loadKtx2Texture(ktx2SiblingUrl(url), { repeat: true })
       : loadTexture(url, { srgb, repeat: true })
   )
@@ -190,7 +194,7 @@ export function prepareTerrainProfileAssets(target: Readonly<GfxSettings>): Prom
   const style = target.worldStyle;
   const tasks = [
     prepareTerrainTex('grassC', splatLayerFile('grassC', 'Grass001_Color.jpg', style), true),
-    prepareTerrainTex('grassN', 'Grass001_NormalGL.jpg', false),
+    prepareTerrainTex('grassN', splatLayerFile('grassN', 'Grass001_NormalGL.jpg', style), false),
     // Ground023 (leaf-littered packed earth), not Ground048: at the splat tile
     // scale 048 is one uniform high-frequency crumble (measured large/fine
     // luminance-std ratio 0.21, saturation 0.39, R/G 1.35) and paths read as
@@ -198,15 +202,15 @@ export function prepareTerrainProfileAssets(target: Readonly<GfxSettings>): Prom
     // earthier desaturated hue (R/G 1.15, saturation 0.26), a clean row/col
     // variance ratio (1.34, no corduroy) and a usable AO map (sd 0.117).
     prepareTerrainTex('dirtC', splatLayerFile('dirtC', 'Ground023_Color.jpg', style), true),
-    prepareTerrainTex('dirtN', 'Ground023_NormalGL.jpg', false),
+    prepareTerrainTex('dirtN', splatLayerFile('dirtN', 'Ground023_NormalGL.jpg', style), false),
     // Rock026 (fractured cliff plates), not Rock051: Rock051's striations are
     // directional (anisotropy 2.57), and wall-projecting them at one scale is
     // what gave mountainsides the vertical corduroy. Rock051 stays on disk for
     // voxel_terrain.
     prepareTerrainTex('rockC', splatLayerFile('rockC', 'Rock026_Color.jpg', style), true),
-    prepareTerrainTex('rockN', 'Rock026_NormalGL.jpg', false),
+    prepareTerrainTex('rockN', splatLayerFile('rockN', 'Rock026_NormalGL.jpg', style), false),
     prepareTerrainTex('sandC', splatLayerFile('sandC', 'Ground080_Color.jpg', style), true),
-    prepareTerrainTex('sandN', 'Ground080_NormalGL.jpg', false),
+    prepareTerrainTex('sandN', splatLayerFile('sandN', 'Ground080_NormalGL.jpg', style), false),
     prepareTerrainTex('mudC', 'Ground071_Color.jpg', true),
     // Snow010A is a near-BLANK image: mean 235, sd 2.24, range 228-245, under
     // 1% contrast, so any ground the snow layer owns renders as flat white and
@@ -1230,6 +1234,31 @@ function compressedMips(tex: THREE.Texture | undefined): MipLevel[] | null {
  */
 function buildSplatNormalArray(t: Record<string, THREE.Texture>): SplatNormalArray {
   if (splatNormalCache?.complete) return splatNormalCache;
+  // World Style Refined: the painted normals are plain images (no KTX2
+  // sibling), packed uncompressed into the same sampler2DArray, so the
+  // program is the one the compressed array links.
+  const plain = SPLAT_NORMAL_LAYERS.map((k) => t[k]).filter(
+    (x) => x && !(x as THREE.CompressedTexture).isCompressedTexture,
+  );
+  if (worldStyleRefined() && plain.length > 0) {
+    const size = SPLAT_ALBEDO_SIZE;
+    const packed = packImageLayers(
+      SPLAT_NORMAL_LAYERS.map((k) => t[k]?.image),
+      size,
+      [128, 128, 255, 255],
+    );
+    const tex = new THREE.DataArrayTexture(packed.data, size, size, SPLAT_NORMAL_LAYERS.length);
+    tex.wrapS = THREE.RepeatWrapping;
+    tex.wrapT = THREE.RepeatWrapping;
+    tex.magFilter = THREE.LinearFilter;
+    tex.minFilter = THREE.LinearMipmapLinearFilter;
+    tex.generateMipmaps = true;
+    applyTextureAnisotropy(tex, 'normal');
+    tex.needsUpdate = true;
+    splatNormalCache?.texture.dispose();
+    splatNormalCache = { texture: tex, complete: packed.complete };
+    return splatNormalCache;
+  }
   const sources = SPLAT_NORMAL_LAYERS.map((k) => t[k] as THREE.CompressedTexture | undefined);
   const chains = sources.map(compressedMips);
   const first = sources[0];

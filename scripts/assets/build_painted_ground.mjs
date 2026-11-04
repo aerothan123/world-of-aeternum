@@ -44,7 +44,23 @@ for (const item of spec.items) {
   else if (item.sha256 && item.sha256 !== sha) {
     throw new Error(`${item.src}: sha256 ${sha} does not match the spec pin ${item.sha256}`);
   }
-  const raw = await sharp(bytes)
+  // `crop`: keep only the centre share of the painting, so the same tile
+  // period carries larger brush strokes (the source is 2048, so a half crop
+  // still resamples DOWN to the shipped size, never up).
+  let img = sharp(bytes);
+  const crop = item.opts?.crop;
+  if (crop && crop < 1) {
+    const meta = await sharp(bytes).metadata();
+    const cw = Math.round(meta.width * crop);
+    const ch = Math.round(meta.height * crop);
+    img = img.extract({
+      left: Math.round((meta.width - cw) / 2),
+      top: Math.round((meta.height - ch) / 2),
+      width: cw,
+      height: ch,
+    });
+  }
+  const raw = await img
     .removeAlpha()
     .toColourspace('srgb')
     .resize(size, size, { kernel: 'lanczos3', fit: 'fill' })

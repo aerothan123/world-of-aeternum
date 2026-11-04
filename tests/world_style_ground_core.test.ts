@@ -9,6 +9,7 @@ import { terrainTexturePath, terrainTextureSet } from '../src/render/terrain_tex
 import { REFINED_ALBEDO_LAYER_FILES, refinedTerrainProfile } from '../src/render/world_style_core';
 import { refinedSplatGlsl } from '../src/render/world_style_glsl';
 import {
+  isPaintedGroundFile,
   PAINTED_GROUND_SETS,
   REFINED_BASE_LAYER_ROLES,
   REFINED_EXTRA_LAYER_FILES,
@@ -73,10 +74,21 @@ describe('painted ground roster', () => {
     expect(splatLayerFile('snowC', 'Snow010A_Color.jpg', 'refined')).toBe('Snow010A_Color.jpg');
     expect(Object.keys(REFINED_BASE_LAYER_ROLES).sort()).toEqual([
       'dirtC',
+      'dirtN',
       'grassC',
+      'grassN',
       'rockC',
+      'rockN',
       'sandC',
+      'sandN',
     ]);
+    // the detail normals take the painted sets' own NormalGL maps, as plain JPGs
+    expect(splatLayerFile('rockN', 'Rock026_NormalGL.jpg', 'refined')).toBe(
+      'PaintedCliff_NormalGL.jpg',
+    );
+    expect(splatLayerFile('rockN', 'Rock026_NormalGL.jpg', 'classic')).toBe('Rock026_NormalGL.jpg');
+    expect(isPaintedGroundFile('PaintedCliff_NormalGL.jpg')).toBe(true);
+    expect(isPaintedGroundFile('Rock026_NormalGL.jpg')).toBe(false);
   });
 
   it('appends the painted-only layers after the two older Refined layers', () => {
@@ -136,9 +148,14 @@ describe('painted ground weights', () => {
     const tone: [number, number, number] = [0.05, 0.12, 0.02];
     const mean: [number, number, number] = [0.3, 0.33, 0.06];
     expect(refinedMeadowTexel(mean, mean, tone)).toEqual(tone);
-    const bright = refinedMeadowTexel([0.6, 0.5, 0.06], mean, tone);
-    expect(bright[0] / tone[0]).toBeCloseTo(1.75, 5); // clamped
-    expect(bright[1] / tone[1]).toBeCloseTo(0.5 / 0.33, 5);
+    // a brighter, yellower tuft lifts the tone mostly by value, a little by hue
+    const tuft = refinedMeadowTexel([0.4, 0.4, 0.06], mean, tone);
+    const lr =
+      (0.2126 * 0.4 + 0.7152 * 0.4 + 0.0722 * 0.06) /
+      (0.2126 * 0.3 + 0.7152 * 0.33 + 0.0722 * 0.06);
+    expect(tuft[1] / tone[1]).toBeCloseTo(lr + (0.4 / 0.33 - lr) * 0.45, 5);
+    expect(tuft[0] / tone[0]).toBeLessThanOrEqual(1.6); // clamped
+    expect(Math.abs(tuft[0] / tone[0] - tuft[1] / tone[1])).toBeLessThan(0.15);
   });
 });
 
@@ -160,5 +177,12 @@ describe('painted ground shader arm', () => {
     expect(src).toContain('alb += wocHW.x * (wocWsMeadow - (grassAlb * vtint * 0.4720))');
     expect(src).toContain('uWsMeadowMean');
     expect(src).toContain('uWsGrassTone * vtint');
+    // one painted read on the meadow, luminance-only dune ripples
+    expect(src.match(/WOC_L_GRASS\)/g)?.length).toBe(1);
+  });
+
+  it('keeps the beach on the palette hue (luminance-only ripples)', () => {
+    const src = refinedSplatGlsl(p);
+    expect(src).toMatch(/float wocWsSr = clamp\(dot\(WOC_ALB/);
   });
 });

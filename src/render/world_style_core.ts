@@ -185,8 +185,10 @@ export function refinedBlendWeights(i: RefinedBlendInput): RefinedBlendWeights {
 /** The warm painterly ground palette: a per-channel balance and a mild
  *  saturation pull, applied to the composed albedo (both GLSL arms read it). */
 export const REFINED_PALETTE = {
-  balance: [1.045, 1.0, 0.9] as const,
-  saturation: 0.9,
+  // Gentle: the painted sets already carry warm earth, so a strong warm
+  // balance on top double-warmed paths and sand toward orange.
+  balance: [1.03, 1.0, 0.93] as const,
+  saturation: 0.88,
   /** Dry meadow tint the grass variant carries (straw gold over green). */
   dryGrass: [1.1, 1.0, 0.72] as const,
   /** Gravel tint toward the trail's earth tone. */
@@ -202,16 +204,16 @@ export const REFINED_PALETTE = {
  *  detail toward a luminance pivot, so the ground reads painted, not photo. */
 export const REFINED_EARTH = {
   grass: [1.03, 1.02, 0.86] as const,
-  dirt: [1.03, 1.03, 0.93] as const,
+  dirt: [0.99, 0.99, 0.97] as const,
   sand: [1.0, 1.0, 1.0] as const,
   rock: [1.02, 0.99, 1.02] as const,
   /** Worn grassy margin of a trail: share of the shoulder that greens over. */
   pathGreen: 0.42,
   /** The olive the trail margin greens toward (times its own luminance). */
   pathGreenTint: [0.96, 1.08, 0.56] as const,
-  /** Detail contrast kept on the photo-textured earth (dirt and rock; 1 the
-   *  photo as authored). Grass and sand are already painted layers. */
-  soften: 0.86,
+  /** Detail contrast kept on the dirt and rock layers (1 as authored). The
+   *  painted sets ARE the painterly detail now, so they keep nearly all of it. */
+  soften: 0.97,
   /** Luminance pivot the soften pull converges on (linear albedo, near the
    *  mean of the dirt and rock photos so the layer keeps its brightness). */
   softenPivot: 0.36,

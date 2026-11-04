@@ -180,6 +180,75 @@ function tileAxis(rgb, w, h, band, edgeBias, wobble, axis, means) {
 }
 
 /**
+ * One axis of the tiling by a minimum-error seam cut instead of a blend:
+ * inside each border band a dynamic-programming path runs top to bottom
+ * (for the 'x' axis) through the texels where the image and its shifted
+ * copy agree best, and the switch from copy to image happens on that path
+ * with a short feather. Structured paintings (slabs, cobbles, leaves) then
+ * show whole features from one source or the other, never a double image.
+ */
+function seamAxis(rgb, w, h, band, axis) {
+  // Work in 'x' layout; the 'y' axis transposes in and out.
+  const T = axis === 'y';
+  const W = T ? h : w;
+  const H = T ? w : h;
+  const get = (img, x, y, c) => (T ? img[(x * w + y) * 3 + c] : img[(y * w + x) * 3 + c]);
+  const half = W >> 1;
+  const bw = Math.max(6, Math.round(band * W));
+  const feather = 1.5;
+  const cost = (x, y) => {
+    const sx = (x + half) % W;
+    let d = 0;
+    for (let c = 0; c < 3; c++) d += Math.abs(get(rgb, x, y, c) - get(rgb, sx, y, c));
+    return d;
+  };
+  // Minimum-cost top-to-bottom path over columns [lo, hi], steps of at most
+  // one column per row; ties prefer the band's middle (deterministic).
+  const path = (lo, hi) => {
+    const n = hi - lo + 1;
+    const E = new Float32Array(n * H);
+    const mid = (lo + hi) / 2;
+    const bias = (x) => Math.abs(x - mid) * 1e-4;
+    for (let x = 0; x < n; x++) E[x] = cost(lo + x, 0) + bias(lo + x);
+    for (let y = 1; y < H; y++) {
+      for (let x = 0; x < n; x++) {
+        let m = E[(y - 1) * n + x];
+        if (x > 0 && E[(y - 1) * n + x - 1] < m) m = E[(y - 1) * n + x - 1];
+        if (x < n - 1 && E[(y - 1) * n + x + 1] < m) m = E[(y - 1) * n + x + 1];
+        E[y * n + x] = m + cost(lo + x, y) + bias(lo + x);
+      }
+    }
+    const out = new Int32Array(H);
+    let bx = 0;
+    for (let x = 1; x < n; x++) if (E[(H - 1) * n + x] < E[(H - 1) * n + bx]) bx = x;
+    out[H - 1] = bx;
+    for (let y = H - 2; y >= 0; y--) {
+      const px = out[y + 1];
+      let best = px;
+      if (px > 0 && E[y * n + px - 1] < E[y * n + best]) best = px - 1;
+      if (px < n - 1 && E[y * n + px + 1] < E[y * n + best]) best = px + 1;
+      out[y] = best;
+    }
+    for (let y = 0; y < H; y++) out[y] += lo;
+    return out;
+  };
+  const left = path(3, bw - 4);
+  const right = path(W - bw + 3, W - 4);
+  const out = new Float32Array(rgb.length);
+  for (let y = 0; y < H; y++) {
+    for (let x = 0; x < W; x++) {
+      let t = 1;
+      if (x < bw) t = smooth((x - left[y]) / (2 * feather) + 0.5);
+      else if (x >= W - bw) t = smooth((right[y] - x) / (2 * feather) + 0.5);
+      const sx = (x + half) % W;
+      const o = T ? (x * w + y) * 3 : (y * w + x) * 3;
+      for (let c = 0; c < 3; c++) out[o + c] = get(rgb, x, y, c) * t + get(rgb, sx, y, c) * (1 - t);
+    }
+  }
+  return out;
+}
+
+/**
  * Make an image tileable by offset-and-blend, one axis at a time. A copy
  * shifted by half the width is wrap-continuous left to right (its own seam
  * is the middle column), so the original is kept in the middle and the copy
@@ -191,9 +260,16 @@ function tileAxis(rgb, w, h, band, edgeBias, wobble, axis, means) {
  * switch follows a luminance-biased threshold (the cut follows brush strokes
  * and stone edges instead of a straight ramp), and what is still blended is
  * variance-preserving (re-scaled about the image mean so the band keeps the
- * source contrast).
+ * source contrast). `seam` swaps the blend for a minimum-error seam cut
+ * (seamAxis), the right choice for structured paintings.
  */
-export function makeTileable(rgb, w, h, { band = 0.24, edgeBias = 0.35, wobble = 0.8 } = {}) {
+export function makeTileable(
+  rgb,
+  w,
+  h,
+  { band = 0.24, edgeBias = 0.35, wobble = 0.8, seam = false } = {},
+) {
+  if (seam) return seamAxis(seamAxis(rgb, w, h, band, 'x'), w, h, band, 'y');
   const means = [0, 0, 0];
   for (let i = 0; i < w * h; i++) for (let c = 0; c < 3; c++) means[c] += rgb[i * 3 + c];
   for (let c = 0; c < 3; c++) means[c] /= w * h;
@@ -307,6 +383,38 @@ export function gradeColor(rgb, { saturation = 1, gain = 1 } = {}) {
   return out;
 }
 
+/**
+ * Sit a set on a target mean colour (sRGB 0..1) with per-channel gains, so
+ * the shader's biome tints (authored against the shipped photos' tones)
+ * colour the painting the way they coloured the photo, then raise the
+ * brush-stroke detail by `contrast` on LUMINANCE only (each texel's value
+ * against the mean value), so a stronger stroke never turns into a hue
+ * speckle.
+ */
+export function matchMean(rgb, target, contrast = 1) {
+  const n = rgb.length / 3;
+  const m = [0, 0, 0];
+  for (let i = 0; i < rgb.length; i += 3) for (let c = 0; c < 3; c++) m[c] += rgb[i + c];
+  const k = [0, 0, 0];
+  for (let c = 0; c < 3; c++) {
+    const mc = m[c] / n;
+    k[c] = (target ? target[c] : mc) / Math.max(mc, 1e-4);
+  }
+  const lm = (target ?? m.map((v) => v / n)).reduce((acc, v, c) => acc + v * LUMA[c], 0);
+  const out = new Float32Array(rgb.length);
+  for (let i = 0; i < rgb.length; i += 3) {
+    const r = rgb[i] * k[0];
+    const g = rgb[i + 1] * k[1];
+    const b = rgb[i + 2] * k[2];
+    const l = r * LUMA[0] + g * LUMA[1] + b * LUMA[2];
+    const f = Math.max(0, 1 + ((l - lm) / Math.max(lm, 1e-4)) * (contrast - 1));
+    out[i] = clamp01(r * f);
+    out[i + 1] = clamp01(g * f);
+    out[i + 2] = clamp01(b * f);
+  }
+  return out;
+}
+
 /** The full pass for one set: flatten, tile, grade, then derive the maps. */
 export function paintedGroundMaps(rgb, w, h, opts = {}) {
   const flat = flattenLowFrequency(rgb, w, h, {
@@ -317,8 +425,17 @@ export function paintedGroundMaps(rgb, w, h, opts = {}) {
     band: opts.tileBand,
     edgeBias: opts.tileEdgeBias,
     wobble: opts.tileWobble,
+    seam: opts.tileSeam,
   });
-  const color = gradeColor(tiled, { saturation: opts.saturation, gain: opts.gain });
+  const graded = gradeColor(tiled, { saturation: opts.saturation, gain: opts.gain });
+  const color =
+    opts.targetMean || opts.contrast
+      ? matchMean(
+          graded,
+          opts.targetMean ? opts.targetMean.map((v) => v / 255) : null,
+          opts.contrast ?? 1,
+        )
+      : graded;
   const height = heightFromColor(color, w, h, { highPass: opts.heightHighPass });
   return {
     color,

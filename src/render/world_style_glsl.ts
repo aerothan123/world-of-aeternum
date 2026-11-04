@@ -105,10 +105,11 @@ function paintedGroundGlsl(c: RefinedSplatComposite): {
     meadow: c.bakedGrassTerm
       ? `if ( wocHasGrass && wocHW.x > 0.01 ) {
             // Painted meadow over the baked blades: the painted tufts' detail
-            // ratio on the biome's own grass tone, two rotated octaves.
-            vec3 wocWsMa = WOC_ALB(tuv * ${f(g.meadowScale)} + vec2(0.13, 0.71), WOC_L_GRASS);
-            vec3 wocWsMb = WOC_ALB(vec2(-tuv.y, tuv.x) * ${f(g.meadowScaleCoarse)} + vec2(0.52, 0.27), WOC_L_GRASS);
-            vec3 wocWsMr = clamp(mix(wocWsMa, wocWsMb, 0.42) / max(uWsMeadowMean, vec3(1e-3)),
+            // ratio (mostly luminance, part hue) on the biome's own grass tone.
+            vec3 wocWsMa = WOC_ALB(vec2(-tuv.y, tuv.x) * ${f(g.meadowScale)} + vec2(0.13, 0.71), WOC_L_GRASS);
+            vec3 wocWsMq = wocWsMa / max(uWsMeadowMean, vec3(1e-3));
+            float wocWsMl = dot(wocWsMa, ${lumaW}) / max(dot(uWsMeadowMean, ${lumaW}), 1e-3);
+            vec3 wocWsMr = clamp(mix(vec3(wocWsMl), wocWsMq, ${f(g.meadowChroma)}),
               vec3(${f(g.meadowRatioLo)}), vec3(${f(g.meadowRatioHi)}));
             vec3 wocWsMeadow = uWsGrassTone * vtint * wocWsMr;
             alb += wocHW.x * (wocWsMeadow - (${c.bakedGrassTerm})) * ${f(g.meadowReplace)};
@@ -148,10 +149,10 @@ function paintedGroundGlsl(c: RefinedSplatComposite): {
             }
           }`,
     sand: `if ( wocHasSand && wocHW.w > 0.01 ) {
-            // Painted dune ripples: the painted sand's detail ratio over the
-            // palette sand tone the Classic arm already paints.
-            vec3 wocWsSr = clamp(WOC_ALB(tuv * ${f(g.sandScale)} + vec2(0.4, 0.2), WOC_L_SAND)
-              / max(uWsSandMean, vec3(1e-3)), vec3(0.6), vec3(1.5));
+            // Painted dune ripples: the painted sand's LUMINANCE ratio over
+            // the palette sand tone, so the beach keeps the palette's cream.
+            float wocWsSr = clamp(dot(WOC_ALB(tuv * ${f(g.sandScale)} + vec2(0.4, 0.2), WOC_L_SAND), ${lumaW})
+              / max(dot(uWsSandMean, ${lumaW}), 1e-3), 0.6, 1.5);
             alb += sandAlb * wocHW.w * (wocWsSr - 1.0) * ${f(g.sandRipple)};
           }`,
   };

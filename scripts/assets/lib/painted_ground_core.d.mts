@@ -25,7 +25,7 @@ export function makeTileable(
   rgb: Float32Array,
   w: number,
   h: number,
-  opts?: { band?: number; edgeBias?: number; wobble?: number },
+  opts?: { band?: number; edgeBias?: number; wobble?: number; seam?: boolean },
 ): Float32Array;
 export function seamRatio(rgb: Float32Array, w: number, h: number): number;
 export function heightFromColor(
@@ -54,6 +54,11 @@ export function gradeColor(
   rgb: Float32Array,
   opts?: { saturation?: number; gain?: number },
 ): Float32Array;
+export function matchMean(
+  rgb: Float32Array,
+  target: readonly number[] | null,
+  contrast?: number,
+): Float32Array;
 export interface PaintedGroundOptions {
   flattenRadius?: number;
   flattenStrength?: number;
@@ -66,6 +71,12 @@ export interface PaintedGroundOptions {
   aoGain?: number;
   saturation?: number;
   gain?: number;
+  tileSeam?: boolean;
+  /** sRGB 0..255 target mean colour. */
+  targetMean?: readonly [number, number, number];
+  contrast?: number;
+  /** Centre share of the source kept before the resize (larger strokes). */
+  crop?: number;
 }
 export function paintedGroundMaps(
   rgb: Float32Array,
