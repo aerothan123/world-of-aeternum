@@ -19,6 +19,7 @@
 // lowers exposure and never drops saturation below REFINED_GRADE_MIN_SAT.
 
 import type { GfxTier } from './gfx';
+import { REFINED_EXTRA_LAYER_FILES } from './world_style_ground_core';
 
 export type WorldStyle = 'classic' | 'refined';
 
@@ -93,11 +94,9 @@ export function refinedTerrainProfileKey(p: RefinedTerrainProfile): string {
 }
 
 /** The extra albedo layers Refined appends to the packed splat array (after
- *  the six Classic layers, so every Classic WOC_L_* index is unchanged). */
-export const REFINED_ALBEDO_LAYER_FILES = {
-  grassVariantC: 'Grass004_Color.jpg',
-  gravelC: 'Gravel024_Color.jpg',
-} as const;
+ *  the six Classic layers, so every Classic WOC_L_* index is unchanged); the
+ *  painted-ground roster behind them is world_style_ground_core.ts. */
+export const REFINED_ALBEDO_LAYER_FILES = REFINED_EXTRA_LAYER_FILES;
 export const REFINED_LAYER_GRASS_B = 6;
 export const REFINED_LAYER_GRAVEL = 7;
 
@@ -109,11 +108,13 @@ export const REFINED_BLEND = {
   variantHi: 0.66,
   /** Most of a meadow the dry variant may own. */
   variantMax: 0.62,
-  /** Gravel weight on the dirt layer: path shoulders take most of it. */
-  gravelEdge: 0.55,
-  gravelCore: 0.1,
-  gravelNoise: 0.25,
-  gravelMax: 0.6,
+  /** Gravel weight on the dirt layer: path shoulders take most of it. Kept
+   *  light: the painted path set carries its own pebbles, and the gravel
+   *  photo only roughens the worn margin. */
+  gravelEdge: 0.3,
+  gravelCore: 0.05,
+  gravelNoise: 0.12,
+  gravelMax: 0.35,
   /** Steep faces (normal y under hi, full at lo) turn to rock. */
   steepHi: 0.74,
   steepLo: 0.5,

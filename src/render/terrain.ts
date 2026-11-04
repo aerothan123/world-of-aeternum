@@ -106,6 +106,7 @@ import {
   refinedTerrainProfileKey,
 } from './world_style_core';
 import { patchRefinedLambertShader, patchRefinedSplatShader } from './world_style_glsl';
+import { splatLayerFile } from './world_style_ground_core';
 import { disposeZoneBuildPool, zoneBuildPool } from './zone_build_pool';
 
 // Chunked terrain across the whole 360x1080 zone strip.
@@ -183,8 +184,12 @@ function prepareTerrainTex(key: string, file: string, srgb: boolean): Promise<vo
 /** Prepare the terrain texture channel selected by an explicit target profile. */
 export function prepareTerrainProfileAssets(target: Readonly<GfxSettings>): Promise<void> {
   if (!target.terrainSplat) return Promise.resolve();
+  // World Style Refined paints the grass, dirt, rock and sand layers from the
+  // painted storybook sets (world_style_ground_core.ts), into the SAME packed
+  // layers; Classic resolves every name below to the shipped photo.
+  const style = target.worldStyle;
   const tasks = [
-    prepareTerrainTex('grassC', 'Grass001_Color.jpg', true),
+    prepareTerrainTex('grassC', splatLayerFile('grassC', 'Grass001_Color.jpg', style), true),
     prepareTerrainTex('grassN', 'Grass001_NormalGL.jpg', false),
     // Ground023 (leaf-littered packed earth), not Ground048: at the splat tile
     // scale 048 is one uniform high-frequency crumble (measured large/fine
@@ -192,15 +197,15 @@ export function prepareTerrainProfileAssets(target: Readonly<GfxSettings>): Prom
     // pink carpet. 023 carries real medium-scale features (ratio 0.47), an
     // earthier desaturated hue (R/G 1.15, saturation 0.26), a clean row/col
     // variance ratio (1.34, no corduroy) and a usable AO map (sd 0.117).
-    prepareTerrainTex('dirtC', 'Ground023_Color.jpg', true),
+    prepareTerrainTex('dirtC', splatLayerFile('dirtC', 'Ground023_Color.jpg', style), true),
     prepareTerrainTex('dirtN', 'Ground023_NormalGL.jpg', false),
     // Rock026 (fractured cliff plates), not Rock051: Rock051's striations are
     // directional (anisotropy 2.57), and wall-projecting them at one scale is
     // what gave mountainsides the vertical corduroy. Rock051 stays on disk for
     // voxel_terrain.
-    prepareTerrainTex('rockC', 'Rock026_Color.jpg', true),
+    prepareTerrainTex('rockC', splatLayerFile('rockC', 'Rock026_Color.jpg', style), true),
     prepareTerrainTex('rockN', 'Rock026_NormalGL.jpg', false),
-    prepareTerrainTex('sandC', 'Ground080_Color.jpg', true),
+    prepareTerrainTex('sandC', splatLayerFile('sandC', 'Ground080_Color.jpg', style), true),
     prepareTerrainTex('sandN', 'Ground080_NormalGL.jpg', false),
     prepareTerrainTex('mudC', 'Ground071_Color.jpg', true),
     // Snow010A is a near-BLANK image: mean 235, sd 2.24, range 228-245, under
@@ -226,9 +231,9 @@ export function prepareTerrainProfileAssets(target: Readonly<GfxSettings>): Prom
     // open surface = bright.
     prepareTerrainTex('groundAO', 'GroundAO_Packed.png', false),
   ];
-  // World Style Refined appends two photo layers to the packed albedo array
-  // (both CC0 ambientCG, already shipped for the editor palette); Classic
-  // never fetches them.
+  // World Style Refined appends its extra layers to the packed albedo array
+  // (the painted dry grass, forest floor, paving and moss, plus the gravel
+  // photo); Classic never fetches them.
   if (target.worldStyle === 'refined') {
     for (const [key, file] of Object.entries(REFINED_ALBEDO_LAYER_FILES)) {
       tasks.push(prepareTerrainTex(key, file, true));
@@ -1091,6 +1096,9 @@ interface SplatAlbedoArray {
   /** True when every layer past the Classic six was packed from a real image
    *  (the Refined shader gates its extra layers on it, never on grey fill). */
   extrasReady: boolean;
+  /** Linear mean of the sand layer (World Style Refined's dune ripples read
+   *  it), or null when its image had not resolved. */
+  sandMean: [number, number, number] | null;
 }
 
 let splatAlbedoCache: SplatAlbedoArray | null = null;
@@ -1120,6 +1128,7 @@ function buildSplatAlbedoArray(
   const ctx = canvas.getContext('2d', { willReadFrequently: true });
   let complete = true;
   let grassMean: [number, number, number] | null = null;
+  let sandMean: [number, number, number] | null = null;
   let extrasReady = true;
   for (let layer = 0; layer < layers.length; layer++) {
     const raw = t[layers[layer]]?.image as unknown;
@@ -1141,7 +1150,7 @@ function buildSplatAlbedoArray(
     ctx.restore();
     const px = ctx.getImageData(0, 0, size, size).data;
     dst.set(px);
-    if (layers[layer] === 'grassC') {
+    if (layers[layer] === 'grassC' || layers[layer] === 'sandC') {
       let r = 0;
       let g = 0;
       let b = 0;
@@ -1154,7 +1163,9 @@ function buildSplatAlbedoArray(
       // canvas bytes are sRGB; the shader samples through an sRGB decode,
       // so the mean is carried in linear space (gamma 2.2 approximation)
       const lin = (sum: number) => ((sum * inv) / 255) ** 2.2;
-      grassMean = [lin(r), lin(g), lin(b)];
+      const m: [number, number, number] = [lin(r), lin(g), lin(b)];
+      if (layers[layer] === 'grassC') grassMean = m;
+      else sandMean = m;
     }
   }
   const texture = new THREE.DataArrayTexture(data, size, size, layers.length);
@@ -1167,7 +1178,7 @@ function buildSplatAlbedoArray(
   applyTextureAnisotropy(texture, 'colour');
   texture.needsUpdate = true;
   splatAlbedoCache?.texture.dispose();
-  splatAlbedoCache = { texture, grassMean, complete, extrasReady };
+  splatAlbedoCache = { texture, grassMean, complete, extrasReady, sandMean };
   return splatAlbedoCache;
 }
 
@@ -2451,7 +2462,7 @@ function buildSplatMaterial(
         );
     }
   };
-  if (refined) installRefinedSplat(mat, refined, albedo.extrasReady);
+  if (refined) installRefinedSplat(mat, refined, albedo, grassBake?.mean ?? null);
   return mat;
 }
 
@@ -2461,15 +2472,28 @@ function buildSplatMaterial(
 function installRefinedSplat(
   mat: THREE.MeshStandardMaterial,
   profile: ReturnType<typeof refinedTerrainProfile>,
-  layersReady: boolean,
+  albedo: SplatAlbedoArray,
+  bakeMean: readonly [number, number, number] | null,
 ): void {
   const classicHook = mat.onBeforeCompile;
   const classicKey = mat.customProgramCacheKey;
-  const layers = { value: layersReady ? 1 : 0 };
+  const layers = { value: albedo.extrasReady ? 1 : 0 };
+  // The painted meadow replaces the baked blade layer's exact share of the
+  // composite (the bake arm's grass term, below), on that share's own mean
+  // tone; the photo arm already samples the painted meadow as its grass.
+  const grassGain = GRASS_PAINT_GAIN / 2;
+  const bakedGrassTerm = bakeMean ? `grassAlb * vtint * ${grassGain.toFixed(4)}` : null;
+  const vec = (m: readonly [number, number, number] | null, k = 1) =>
+    m ? new THREE.Vector3(m[0] * k, m[1] * k, m[2] * k) : new THREE.Vector3(0.16, 0.16, 0.16);
+  const ground = {
+    uWsMeadowMean: { value: vec(albedo.grassMean) },
+    uWsGrassTone: { value: vec(bakeMean, grassGain) },
+    uWsSandMean: { value: vec(albedo.sandMean) },
+  };
   mat.onBeforeCompile = (sh, renderer) => {
     classicHook.call(mat, sh, renderer);
-    Object.assign(sh.uniforms, worldStyleSurfaceUniforms(), { uWsLayers: layers });
-    patchRefinedSplatShader(sh, profile);
+    Object.assign(sh.uniforms, worldStyleSurfaceUniforms(), { uWsLayers: layers }, ground);
+    patchRefinedSplatShader(sh, profile, { bakedGrassTerm });
   };
   mat.customProgramCacheKey = () =>
     `${classicKey.call(mat)}|ws-refined:${refinedTerrainProfileKey(profile)}`;
