@@ -104,8 +104,8 @@ describe('the Copper Dig vein field stays walkable content (solid gather nodes)'
     // body on BOTH sides of its comparison, so shrinking the radius would
     // shrink the thresholds with it and pass trivially. A body change must
     // consciously touch this line.
-    expect(ORE_BODY!.r).toBe(0.44);
-    expect(ORE_BODY!.top).toBeCloseTo(0.84, 10);
+    expect(ORE_BODY!.r).toBe(0.55);
+    expect(ORE_BODY!.top).toBeCloseTo(1.1, 10);
     const nodeR = ORE_BODY!.r;
     // Non-vacuity: these six ARE the dig field, not ore scattered zone-wide.
     for (const v of veins) expect(dist(v.pos, COPPER_DIG)).toBeLessThanOrEqual(DIG_RING);

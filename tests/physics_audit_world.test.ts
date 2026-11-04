@@ -266,7 +266,9 @@ describe('interactable landmarks are solid (the v0.31 walk-through sweep)', () =
       ).toBeCloseTo(expected, 6);
     }
     expect(ore).toBeGreaterThan(0);
-    expect(wood).toBeGreaterThan(0);
+    // Tree chopping retired the wood stands (docs/design/tree-chopping.md): a
+    // felled tree's trunk is the logging collision now, so no wood node ships.
+    expect(wood).toBe(0);
     expect(herb).toBeGreaterThan(0);
   });
 

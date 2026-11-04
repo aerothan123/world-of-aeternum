@@ -657,4 +657,99 @@ describe('gather node rendering: the per-batch reach hide', () => {
     view.update(camera, sunWithShadow(false), 100);
     for (const mesh of meshes) expect(mesh.count).toBe(1);
   });
+
+  it('swaps a harvested node to the depleted twin for this viewer and back', () => {
+    const nodes: GatherNodeDef[] = [oreNode('ore_swap_a', 10, 10), oreNode('ore_swap_b', 14, 12)];
+    const templates = new Map<GatherNodeType, THREE.Object3D>([['ore', oreTemplate()]]);
+    const depletedTemplate = new THREE.Mesh(
+      new THREE.BoxGeometry(1, 0.4, 1).translate(0, 0.2, 0),
+      new THREE.MeshStandardMaterial(),
+    );
+    depletedTemplate.castShadow = true;
+    depletedTemplate.userData.gatherNodeYOffset = -0.06;
+    const timers = new Map<string, number>();
+    const view = gatherNodePreloadInternalsForTest.buildFromTemplates(
+      3,
+      templates,
+      nodes,
+      'coarse',
+      {
+        depleted: new Map([['ore', depletedTemplate]]),
+        respawn: { nodeRespawnSeconds: (id: string) => timers.get(id) ?? null },
+      },
+    );
+    const meshes = instancedMeshes(view.group);
+    const live = meshes.find((m) => !m.userData.gatherNodeDepleted);
+    const twin = meshes.find((m) => m.userData.gatherNodeDepleted === true);
+    if (!live || !twin) throw new Error('expected a live batch and its depleted twin');
+    // The twin carries the same pick table, so a harvested node still resolves.
+    expect(twin.userData.gatherNodeIds).toEqual(['ore_swap_a', 'ore_swap_b']);
+    const scaleOf = (mesh: THREE.InstancedMesh, i: number): number => {
+      const m = new THREE.Matrix4();
+      mesh.getMatrixAt(i, m);
+      return new THREE.Vector3().setFromMatrixScale(m).x;
+    };
+    const camera = new THREE.PerspectiveCamera();
+    const sun = sunWithShadow(false);
+    const frames = (n: number): void => {
+      for (let i = 0; i < n; i++) view.update(camera, sun, NO_HIDE_REACH);
+    };
+    // Nothing harvested: every live instance drawn, every twin instance hidden.
+    frames(20);
+    expect([scaleOf(live, 0), scaleOf(live, 1)]).toEqual([1, 1]);
+    expect([scaleOf(twin, 0), scaleOf(twin, 1)]).toEqual([0, 0]);
+    // Harvest the first node: it swaps within one poll, the other stays.
+    timers.set('ore_swap_a', 240);
+    frames(20);
+    expect([scaleOf(live, 0), scaleOf(live, 1)]).toEqual([0, 1]);
+    expect([scaleOf(twin, 0), scaleOf(twin, 1)]).toEqual([1, 0]);
+    // A steady frame writes nothing (the version only moves on a flip).
+    const version = live.instanceMatrix.version;
+    frames(40);
+    expect(live.instanceMatrix.version).toBe(version);
+    // The timer runs out: back to the full vein.
+    timers.delete('ore_swap_a');
+    frames(20);
+    expect([scaleOf(live, 0), scaleOf(twin, 0)]).toEqual([1, 0]);
+    // Both batches share one reach entry, so the far-hide covers the twin too.
+    view.update(camera, sun, 0);
+    expect(live.count).toBe(0);
+    expect(twin.count).toBe(0);
+  });
+
+  it('builds no twin without a respawn read, so headless builds keep one look', () => {
+    const nodes: GatherNodeDef[] = [oreNode('ore_plain', 10, 10)];
+    const templates = new Map<GatherNodeType, THREE.Object3D>([['ore', oreTemplate()]]);
+    const view = gatherNodePreloadInternalsForTest.buildFromTemplates(
+      3,
+      templates,
+      nodes,
+      'coarse',
+      {
+        depleted: new Map([['ore', oreTemplate()]]),
+      },
+    );
+    expect(instancedMeshes(view.group)).toHaveLength(1);
+  });
+
+  it('draws a zone variant model in place of the shared type model', () => {
+    const nodes: GatherNodeDef[] = [oreNode('ore_copper_a', 10, 10, 'eastbrook_vale')];
+    const shared = oreTemplate();
+    const copper = new THREE.Mesh(new THREE.BoxGeometry(2, 2, 2), new THREE.MeshStandardMaterial());
+    copper.userData.gatherNodeYOffset = -0.06;
+    const view = gatherNodePreloadInternalsForTest.buildFromTemplates(
+      3,
+      new Map<GatherNodeType, THREE.Object3D>([['ore', shared]]),
+      nodes,
+      'coarse',
+      { variants: new Map([['ore_copper', copper]]) },
+    );
+    const [mesh] = instancedMeshes(view.group);
+    expect(mesh.geometry).toBe(copper.geometry);
+    // A based model sits at its own sink (its minY anchors it), not the shared offset.
+    const m = new THREE.Matrix4();
+    mesh.getMatrixAt(0, m);
+    const y = new THREE.Vector3().setFromMatrixPosition(m).y;
+    expect(y).toBeCloseTo(terrainHeight(10, 10, 3) - 0.06, 6);
+  });
 });

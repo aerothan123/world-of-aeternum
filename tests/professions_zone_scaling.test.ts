@@ -135,11 +135,13 @@ describe('per-zone content tables derive from the zone list', () => {
     }
   });
 
-  it('every zone that ships nodes ships all three types (the starter-kit floor)', () => {
+  it('every zone that ships nodes ships every node-backed type (the starter-kit floor)', () => {
     // The density model the projection uses: 6 per type in a tuned zone, 2 in
     // a starter zone. This does not pin those counts (the rollout guard owns
     // them); it pins that no zone ships a PARTIAL kit, which would break the
-    // per-type linearity the projection assumes.
+    // per-type linearity the projection assumes. Logging left the node table
+    // when tree chopping retired the wood stands (docs/design/tree-chopping.md):
+    // its yield is the zone's choppable trees, so the kit is ore and herb.
     for (const zone of ZONES) {
       const byType = new Map<string, number>();
       for (const node of GATHER_NODES) {
@@ -147,7 +149,9 @@ describe('per-zone content tables derive from the zone list', () => {
         byType.set(node.type, (byType.get(node.type) ?? 0) + 1);
       }
       if (byType.size === 0) continue;
-      expect([...byType.keys()].sort(), `zone ${zone.id}`).toEqual([...GATHER_NODE_TYPES].sort());
+      expect([...byType.keys()].sort(), `zone ${zone.id}`).toEqual(
+        GATHER_NODE_TYPES.filter((type) => type !== 'wood').sort(),
+      );
     }
   });
 });

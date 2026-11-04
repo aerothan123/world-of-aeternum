@@ -261,14 +261,17 @@ export function delveArchZ(markerZ: number, delveId: string): number {
 }
 
 /**
- * Gather nodes (render/gather_nodes.ts draws the GLB at native scale plus a
- * per-type Y offset). Ore veins and wood piles are solid standable rocks and
- * stacks; herb clusters are soft vegetation and deliberately keep no
- * collider, the same exception as marsh reeds. Radii are the mean horizontal
- * half-extent, lightly trimmed; tops are offset + native max y.
+ * Gather nodes (render/gather_nodes.ts). Ore veins and wood piles are solid
+ * standable rocks and stacks; herb clusters are soft vegetation and
+ * deliberately keep no collider, the same exception as marsh reeds. Radii
+ * are the mean horizontal half-extent of the rock body, lightly trimmed (the
+ * loose ore chunks round a vein's base are walk-over); tops sit below the
+ * rock's peak. The ore body matches the per-material veins
+ * (render/gather_node_variant_core.ts GATHER_NODE_MODEL_SCALE: about 1.25 to
+ * 1.4 yd tall, a 0.6 yd rock-body half-extent once scaled).
  */
 export const GATHER_NODE_BODIES: Readonly<Record<string, { r: number; top: number } | null>> = {
-  ore: { r: 0.44, top: 0.45 + 0.39 },
+  ore: { r: 0.55, top: 1.1 },
   wood: { r: 0.42, top: 0.9 + 0.31 },
   herb: null,
 };

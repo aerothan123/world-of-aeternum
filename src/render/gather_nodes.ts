@@ -9,6 +9,15 @@ import {
   FOG_REACH_HYSTERESIS,
   planBatchReach,
 } from './gather_batch_reach_core';
+import {
+  DEPLETED_NODE_TYPES,
+  DEPLETED_POLL_FRAMES,
+  GATHER_NODE_MODEL_SCALE,
+  GATHER_NODE_VARIANTS,
+  type GatherNodeVariant,
+  gatherNodeVariantFor,
+  nodeShowsDepleted,
+} from './gather_node_variant_core';
 import { NODE_COLOR, NODE_Y_OFFSET, nodeTierScale } from './gather_nodes_lookup';
 import { surfaceMat } from './gfx';
 import { renderLayerDisabled } from './render_dev_flags';
@@ -39,13 +48,53 @@ const NODE_FALLBACK_GEOMETRY: Record<GatherNodeType, () => THREE.BufferGeometry>
   herb: () => new THREE.BoxGeometry(0.5, 0.5, 0.5),
 };
 
+// Per-material models (gather_node_variant_core.ts) and the harvested look
+// each type swaps to while this viewer's respawn timer runs. Unlike the shared
+// type models above these are pipeline props: base at y=0, so they sit on the
+// ground with a small sink instead of NODE_Y_OFFSET. A variant or depleted
+// model that has not loaded falls back to the type's shared model, and a
+// type with no depleted model simply never swaps.
+const NODE_VARIANT_URL: Record<GatherNodeVariant, string> = {
+  ore_copper: '/models/resources/node_ore_copper.glb',
+  ore_iron: '/models/resources/node_ore_iron.glb',
+  ore_thorium: '/models/resources/node_ore_thorium.glb',
+  herb_silverleaf: '/models/resources/node_herb_silverleaf.glb',
+  herb_goldleaf: '/models/resources/node_herb_goldleaf.glb',
+  herb_sunpetal: '/models/resources/node_herb_sunpetal.glb',
+};
+const NODE_DEPLETED_URL: Partial<Record<GatherNodeType, string>> = {
+  ore: '/models/resources/node_ore_depleted.glb',
+  herb: '/models/resources/node_herb_depleted.glb',
+};
+/** How far a based (y=0) pipeline model sinks into the ground, so uneven
+ *  terrain under its footprint never shows a gap. */
+const BASED_MODEL_SINK = -0.06;
+
 const loadedNodeGltf = new Map<GatherNodeType, THREE.Group>();
+const loadedVariantGltf = new Map<GatherNodeVariant, THREE.Group>();
+const loadedDepletedGltf = new Map<GatherNodeType, THREE.Group>();
 
 if (typeof window !== 'undefined') {
   for (const [type, url] of Object.entries(NODE_ASSET_URL) as [GatherNodeType, string][]) {
     registerDeferredPreload(() =>
       loadGltf(url).then((gltf) => {
         loadedNodeGltf.set(type, gltf.scene);
+      }),
+    );
+  }
+  for (const variant of GATHER_NODE_VARIANTS) {
+    registerDeferredPreload(() =>
+      loadGltf(NODE_VARIANT_URL[variant]).then((gltf) => {
+        loadedVariantGltf.set(variant, gltf.scene);
+      }),
+    );
+  }
+  for (const type of DEPLETED_NODE_TYPES) {
+    const url = NODE_DEPLETED_URL[type];
+    if (!url) continue;
+    registerDeferredPreload(() =>
+      loadGltf(url).then((gltf) => {
+        loadedDepletedGltf.set(type, gltf.scene);
       }),
     );
   }
@@ -80,6 +129,8 @@ interface GatherNodeEntry extends BatchReachState {
   readonly zs: Float64Array;
   casts: boolean;
   shown: boolean;
+  /** The harvested-look swap, when the type has a loaded depleted model. */
+  readonly twin: DepletedTwin | null;
 }
 
 interface GatherNodeBatch {
@@ -108,18 +159,34 @@ interface GatherNodeMeshPart {
   source: THREE.Mesh;
 }
 
+function shadowedClone(loaded: THREE.Group): THREE.Object3D {
+  const inst = loaded.clone(true);
+  inst.traverse((child) => {
+    if (child instanceof THREE.Mesh) {
+      child.castShadow = true;
+      child.receiveShadow = true;
+    }
+  });
+  return inst;
+}
+
+/** A based pipeline model's template, tagged with its ground offset. */
+function basedTemplate(loaded: THREE.Group | undefined, scaleKey: string): THREE.Object3D | null {
+  if (!loaded) return null;
+  const inst = shadowedClone(loaded);
+  inst.scale.setScalar(GATHER_NODE_MODEL_SCALE[scaleKey] ?? 1);
+  inst.userData.gatherNodeYOffset = BASED_MODEL_SINK;
+  return inst;
+}
+
+function templateYOffset(template: THREE.Object3D, type: GatherNodeType): number {
+  const offset = template.userData.gatherNodeYOffset;
+  return typeof offset === 'number' ? offset : NODE_Y_OFFSET[type];
+}
+
 function buildNodeTemplate(type: GatherNodeType): THREE.Object3D {
   const loaded = loadedNodeGltf.get(type);
-  if (loaded) {
-    const inst = loaded.clone(true);
-    inst.traverse((child) => {
-      if (child instanceof THREE.Mesh) {
-        child.castShadow = true;
-        child.receiveShadow = true;
-      }
-    });
-    return inst;
-  }
+  if (loaded) return shadowedClone(loaded);
   const geo = NODE_FALLBACK_GEOMETRY[type]();
   const mat = surfaceMat({ color: NODE_COLOR[type] });
   const mesh = new THREE.Mesh(geo, mat);
@@ -219,27 +286,15 @@ function copyMeshRenderState(source: THREE.Mesh, target: THREE.InstancedMesh): v
 // anchoring, carries picker userData tables, and mirrors shadow render state,
 // so only the ~8-line InstancedMesh tail would be shared and the adoption
 // would be abstraction for uniformity, not reuse.
-function addInstancedBatch(
-  group: THREE.Group,
-  batch: GatherNodeBatch,
-  parts: GatherNodeMeshPart[],
-  seed: number,
-  entries: GatherNodeEntry[],
-): void {
-  const placement = new THREE.Matrix4();
-  const tierMatrix = new THREE.Matrix4();
-  const instanceMatrix = new THREE.Matrix4();
-  const scaleVec = new THREE.Vector3();
+/** The UNSCALED template bounds' minY, per BUILD and not module-level: the
+ *  GLBs can finish loading between one build and a later one (the
+ *  fallback-primitive race), and a stale cache would then anchor fresh GLB
+ *  instances with the primitive's minY. The base anchor needs the
+ *  geometry-space minY of the whole template (the parts union, each in its
+ *  baked local transform). A degenerate box (no geometry yet) reads 0 and the
+ *  anchor is a no-op. */
+function partsMinY(parts: readonly GatherNodeMeshPart[]): number {
   const partBox = new THREE.Box3();
-  const nodeIds = batch.nodes.map((node) => node.id);
-  // The UNSCALED template bounds, per BUILD and not module-level: the GLBs
-  // can finish loading between one build and a later one (the
-  // fallback-primitive race), and a stale cache would then anchor fresh
-  // GLB instances with the primitive's minY. The base anchor below needs
-  // the geometry-space minY of the whole template (the parts union, each
-  // in its baked local transform, the instanced twin of the old clone's
-  // Box3). A degenerate box (no geometry yet) reads 0 and the anchor is a
-  // no-op.
   const templateBox = new THREE.Box3();
   for (const part of parts) {
     if (!part.geometry.boundingBox) part.geometry.computeBoundingBox();
@@ -248,23 +303,31 @@ function addInstancedBatch(
       templateBox.union(partBox);
     }
   }
-  const minY = Number.isFinite(templateBox.min.y) ? templateBox.min.y : 0;
-  // Instance transforms are baked into world space. Union every mesh part so
-  // one castShadow decision conservatively covers the regional batch.
-  const batchBounds = new THREE.Box3();
-  const casters: THREE.Mesh[] = [];
-  const batches: THREE.InstancedMesh[] = [];
-  // The authored node.pos, exact: the placement below carries no horizontal
-  // offset, so the reach measures the instance's true footprint.
-  const xs = new Float64Array(batch.nodes.length);
-  const zs = new Float64Array(batch.nodes.length);
-  for (const [instanceId, node] of batch.nodes.entries()) {
-    xs[instanceId] = node.pos.x;
-    zs[instanceId] = node.pos.z;
-  }
+  return Number.isFinite(templateBox.min.y) ? templateBox.min.y : 0;
+}
+
+/** One instanced mesh per template part over every node of the batch, its
+ *  matrices placed. Returns the meshes plus each one's placed matrices (the
+ *  depleted swap restores them). */
+function placeInstancedParts(
+  group: THREE.Group,
+  batch: GatherNodeBatch,
+  parts: readonly GatherNodeMeshPart[],
+  yOffset: number,
+  seed: number,
+  tag: string,
+): { meshes: THREE.InstancedMesh[]; placed: Float32Array[] } {
+  const placement = new THREE.Matrix4();
+  const tierMatrix = new THREE.Matrix4();
+  const instanceMatrix = new THREE.Matrix4();
+  const scaleVec = new THREE.Vector3();
+  const minY = partsMinY(parts);
+  const nodeIds = batch.nodes.map((node) => node.id);
+  const meshes: THREE.InstancedMesh[] = [];
+  const placed: Float32Array[] = [];
   for (const [partIndex, part] of parts.entries()) {
     const mesh = new THREE.InstancedMesh(part.geometry, part.material, batch.nodes.length);
-    mesh.name = `gatherNodes:${batch.zoneId}:${batch.type}:${batch.band}:${partIndex}`;
+    mesh.name = `gatherNodes:${batch.zoneId}:${batch.type}:${batch.band}:${tag}${partIndex}`;
     // Raycaster intersections carry the instance index, which resolves through
     // this stable content-order table without widening the renderer's picker.
     mesh.userData.gatherNodeIds = nodeIds;
@@ -285,11 +348,7 @@ function addInstancedBatch(
       // base-anchored scale; built-in rows carry neither, so their matrices
       // are exactly the tier scale they always were.
       const tierScale = nodeTierScale(node.tier) * (node.scale ?? 1);
-      placement.makeTranslation(
-        node.pos.x,
-        y + NODE_Y_OFFSET[node.type] - (tierScale - 1) * minY,
-        node.pos.z,
-      );
+      placement.makeTranslation(node.pos.x, y + yOffset - (tierScale - 1) * minY, node.pos.z);
       if (node.rotY === undefined) tierMatrix.makeScale(tierScale, tierScale, tierScale);
       else tierMatrix.makeRotationY(node.rotY).scale(scaleVec.setScalar(tierScale));
       instanceMatrix.multiplyMatrices(placement, tierMatrix).multiply(part.matrix);
@@ -298,10 +357,93 @@ function addInstancedBatch(
     mesh.instanceMatrix.needsUpdate = true;
     mesh.computeBoundingBox();
     mesh.computeBoundingSphere();
+    placed.push(new Float32Array(mesh.instanceMatrix.array));
+    meshes.push(mesh);
+    group.add(mesh);
+  }
+  return { meshes, placed };
+}
+
+const HIDDEN_INSTANCE = new THREE.Matrix4().makeScale(0, 0, 0);
+
+/** Show one instance of a part set (its placed matrix) or hide it (zero scale). */
+function writeInstance(
+  meshes: readonly THREE.InstancedMesh[],
+  placed: readonly Float32Array[],
+  instanceId: number,
+  show: boolean,
+): void {
+  for (const [i, mesh] of meshes.entries()) {
+    if (show) {
+      const offset = instanceId * 16;
+      mesh.instanceMatrix.array.set(placed[i].subarray(offset, offset + 16), offset);
+    } else {
+      mesh.setMatrixAt(instanceId, HIDDEN_INSTANCE);
+    }
+    mesh.instanceMatrix.needsUpdate = true;
+  }
+}
+
+/** A batch's harvested twin: the depleted model at every node, every instance
+ *  hidden until that node's respawn timer runs for this viewer. Built at world
+ *  build with the rest of the group, so its programs link with the batch's
+ *  and a swap never mints a material in a live frame. */
+interface DepletedTwin {
+  readonly nodeIds: readonly string[];
+  readonly live: { meshes: THREE.InstancedMesh[]; placed: Float32Array[] };
+  readonly twin: { meshes: THREE.InstancedMesh[]; placed: Float32Array[] };
+  readonly depleted: Uint8Array;
+}
+
+function addInstancedBatch(
+  group: THREE.Group,
+  batch: GatherNodeBatch,
+  parts: GatherNodeMeshPart[],
+  yOffset: number,
+  seed: number,
+  entries: GatherNodeEntry[],
+  depletedParts: { parts: GatherNodeMeshPart[]; yOffset: number } | null,
+): void {
+  // The authored node.pos, exact: the placement carries no horizontal
+  // offset, so the reach measures the instance's true footprint.
+  const xs = new Float64Array(batch.nodes.length);
+  const zs = new Float64Array(batch.nodes.length);
+  for (const [instanceId, node] of batch.nodes.entries()) {
+    xs[instanceId] = node.pos.x;
+    zs[instanceId] = node.pos.z;
+  }
+  const live = placeInstancedParts(group, batch, parts, yOffset, seed, '');
+  const batches = [...live.meshes];
+  let twin: DepletedTwin | null = null;
+  if (depletedParts) {
+    const placedTwin = placeInstancedParts(
+      group,
+      batch,
+      depletedParts.parts,
+      depletedParts.yOffset,
+      seed,
+      'depleted:',
+    );
+    for (const mesh of placedTwin.meshes) {
+      mesh.userData.gatherNodeDepleted = true;
+      for (let i = 0; i < batch.nodes.length; i++) mesh.setMatrixAt(i, HIDDEN_INSTANCE);
+      mesh.instanceMatrix.needsUpdate = true;
+    }
+    batches.push(...placedTwin.meshes);
+    twin = {
+      nodeIds: batch.nodes.map((node) => node.id),
+      live,
+      twin: placedTwin,
+      depleted: new Uint8Array(batch.nodes.length),
+    };
+  }
+  // Instance transforms are baked into world space. Union every mesh part so
+  // one castShadow decision conservatively covers the regional batch.
+  const batchBounds = new THREE.Box3();
+  const casters: THREE.Mesh[] = [];
+  for (const mesh of batches) {
     if (mesh.boundingBox) batchBounds.union(mesh.boundingBox);
     if (mesh.castShadow) casters.push(mesh);
-    batches.push(mesh);
-    group.add(mesh);
   }
   entries.push({
     bounds: casters.length > 0 && !batchBounds.isEmpty() ? sphereOf(batchBounds) : null,
@@ -312,6 +454,7 @@ function addInstancedBatch(
     zs,
     casts: true,
     shown: true,
+    twin,
   });
 }
 
@@ -333,7 +476,8 @@ function addIndividualNode(
   const tierScale = nodeTierScale(node.tier) * (node.scale ?? 1);
   obj.scale.setScalar(tierScale);
   if (node.rotY !== undefined) obj.rotation.y = node.rotY;
-  obj.position.set(node.pos.x, y + NODE_Y_OFFSET[node.type] - (tierScale - 1) * minY, node.pos.z);
+  const yOffset = templateYOffset(template, node.type);
+  obj.position.set(node.pos.x, y + yOffset - (tierScale - 1) * minY, node.pos.z);
   obj.name = node.id;
   obj.userData.gatherNodeId = node.id;
   group.add(obj);
@@ -353,8 +497,21 @@ function addIndividualNode(
       zs: NO_NODES,
       casts: true,
       shown: true,
+      twin: null,
     });
   }
+}
+
+/** The per-viewer harvest read the depleted swap polls (IWorld professions facet). */
+export interface GatherNodeRespawnRead {
+  nodeRespawnSeconds(nodeId: string): number | null;
+}
+
+/** Optional per-material and harvested-look templates (absent: shared models only). */
+export interface GatherNodeExtraTemplates {
+  readonly variants?: ReadonlyMap<GatherNodeVariant, THREE.Object3D>;
+  readonly depleted?: ReadonlyMap<GatherNodeType, THREE.Object3D>;
+  readonly respawn?: GatherNodeRespawnRead;
 }
 
 function buildGatherNodesFromTemplates(
@@ -362,20 +519,35 @@ function buildGatherNodesFromTemplates(
   templates: ReadonlyMap<GatherNodeType, THREE.Object3D>,
   nodes: readonly GatherNodeDef[],
   mode: GatherBatchKeyMode,
+  extra: GatherNodeExtraTemplates = {},
 ): GatherNodesView {
   const group = new THREE.Group();
   group.name = 'gatherNodes';
   const entries: GatherNodeEntry[] = [];
-  const partsByType = new Map<GatherNodeType, GatherNodeMeshPart[] | null>();
-  for (const batch of gatherNodeBatches(nodes, mode)) {
-    const template = templates.get(batch.type);
-    if (!template) throw new Error(`Missing gather node render template: ${batch.type}`);
-    if (!partsByType.has(batch.type)) {
-      partsByType.set(batch.type, gatherNodeMeshParts(template));
+  const partsByTemplate = new Map<THREE.Object3D, GatherNodeMeshPart[] | null>();
+  const partsOf = (template: THREE.Object3D): GatherNodeMeshPart[] | null => {
+    if (!partsByTemplate.has(template)) {
+      partsByTemplate.set(template, gatherNodeMeshParts(template));
     }
-    const parts = partsByType.get(batch.type);
+    return partsByTemplate.get(template) ?? null;
+  };
+  for (const batch of gatherNodeBatches(nodes, mode)) {
+    const variant = gatherNodeVariantFor(batch.type, batch.zoneId);
+    const template =
+      (variant ? extra.variants?.get(variant) : undefined) ?? templates.get(batch.type);
+    if (!template) throw new Error(`Missing gather node render template: ${batch.type}`);
+    const parts = partsOf(template);
     if (parts) {
-      addInstancedBatch(group, batch, parts, seed, entries);
+      // The harvested twin needs a respawn read to ever show, and an
+      // instanced shape of its own; otherwise the batch keeps one look.
+      const depletedTemplate = extra.respawn ? extra.depleted?.get(batch.type) : undefined;
+      const depletedParts = depletedTemplate ? partsOf(depletedTemplate) : null;
+      const yOffset = templateYOffset(template, batch.type);
+      const twin =
+        depletedTemplate && depletedParts
+          ? { parts: depletedParts, yOffset: templateYOffset(depletedTemplate, batch.type) }
+          : null;
+      addInstancedBatch(group, batch, parts, yOffset, seed, entries, twin);
       continue;
     }
     // Preserve the authored hierarchy and draw order if a future asset uses
@@ -397,9 +569,29 @@ function buildGatherNodesFromTemplates(
     near: 0,
   };
   const flips: number[] = [];
+  const twinEntries = entries.filter((entry) => entry.twin !== null);
+  const respawn = extra.respawn;
+  let pollFrame = 0;
   return {
     group,
     update(camera: THREE.PerspectiveCamera, sun: THREE.DirectionalLight, reach: number): void {
+      // The harvested look: a cadenced poll, and only over batches in reach
+      // (a hidden batch draws nothing either way; it catches up the frame it
+      // returns). Writes only on a flip, so a steady world uploads nothing.
+      if (respawn && twinEntries.length > 0 && ++pollFrame >= DEPLETED_POLL_FRAMES) {
+        pollFrame = 0;
+        for (const entry of twinEntries) {
+          const twin = entry.twin;
+          if (!twin || !entry.shown) continue;
+          for (let i = 0; i < twin.nodeIds.length; i++) {
+            const depleted = nodeShowsDepleted(respawn.nodeRespawnSeconds(twin.nodeIds[i])) ? 1 : 0;
+            if (depleted === twin.depleted[i]) continue;
+            twin.depleted[i] = depleted;
+            writeInstance(twin.live.meshes, twin.live.placed, i, depleted === 0);
+            writeInstance(twin.twin.meshes, twin.twin.placed, i, depleted === 1);
+          }
+        }
+      }
       if (sun.castShadow) {
         lightDirection.subVectors(sun.position, sun.target.position).normalize();
         camera.getWorldDirection(cameraForward);
@@ -443,6 +635,7 @@ export function gatherBatchKeyMode(): GatherBatchKeyMode {
 export function buildGatherNodes(
   seed: number,
   mode: GatherBatchKeyMode = gatherBatchKeyMode(),
+  respawn?: GatherNodeRespawnRead,
 ): GatherNodesView {
   // activeGatherNodes(), never the raw table: on an authored map it is empty,
   // because these veins are pinned to shipped overworld coordinates and would
@@ -452,10 +645,25 @@ export function buildGatherNodes(
   // keeps the node GLBs out of the world-entry decode.
   const nodes = activeGatherNodes();
   const templates = new Map<GatherNodeType, THREE.Object3D>();
+  const variants = new Map<GatherNodeVariant, THREE.Object3D>();
+  const depleted = new Map<GatherNodeType, THREE.Object3D>();
   for (const node of nodes) {
     if (!templates.has(node.type)) templates.set(node.type, buildNodeTemplate(node.type));
+    const variant = gatherNodeVariantFor(node.type, node.zoneId);
+    if (variant && !variants.has(variant)) {
+      const template = basedTemplate(loadedVariantGltf.get(variant), variant);
+      if (template) variants.set(variant, template);
+    }
+    if (!depleted.has(node.type)) {
+      const template = basedTemplate(loadedDepletedGltf.get(node.type), `depleted_${node.type}`);
+      if (template) depleted.set(node.type, template);
+    }
   }
-  return buildGatherNodesFromTemplates(seed, templates, nodes, mode);
+  return buildGatherNodesFromTemplates(seed, templates, nodes, mode, {
+    variants,
+    depleted,
+    respawn,
+  });
 }
 
 export function gatherNodeIdFromIntersection(
@@ -509,5 +717,7 @@ export function resolveGatherNodePick(hits: readonly GatherNodePickHit[]): strin
 /** Test-only window into the preload asset set (mirrors props.ts). */
 export const gatherNodePreloadInternalsForTest = {
   nodeAssetUrl: NODE_ASSET_URL,
+  nodeVariantUrl: NODE_VARIANT_URL,
+  nodeDepletedUrl: NODE_DEPLETED_URL,
   buildFromTemplates: buildGatherNodesFromTemplates,
 };
