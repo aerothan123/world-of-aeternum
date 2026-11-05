@@ -86,7 +86,9 @@ import {
   meadowCoverage,
 } from './meadow_tuning';
 import { bladeSectorAxis, renderLayerDisabled } from './render_dev_flags';
+import { rockGrassClearAt } from './rock_grass_clear';
 import { groundGrassColorAt, groundLushnessAt } from './terrain_chunk_build';
+import { worldStyleRefined } from './world_style';
 import { paintRefinedGrass } from './world_style_foliage';
 import { paintedClumpCoverage, paintedClumpHeight } from './world_style_foliage_core';
 import { paintRefinedBloom } from './world_style_grass';
@@ -142,6 +144,9 @@ export function buildBladeGrassBand(
   const GRID_W = Math.ceil((RADIUS * 2) / CELL);
   const POOL = GRID_W * GRID_W;
 
+  // Refined keeps a bare collar at each scatter rock's foot
+  // (rock_grass_clear_core.ts); Classic placement is unchanged.
+  const rockCollar = worldStyleRefined();
   const rng = mulberry32(seed ^ 0x6b1a);
   const geo = clusterGeometry(rng, 2, bladeClusterShape(GFX.worldStyle));
   const mat = new THREE.MeshStandardMaterial({
@@ -302,6 +307,7 @@ export function buildBladeGrassBand(
       if (ok) ok = !grassClearedAt(activeContent.grassClear, x, z);
       if (ok) ok = !insideGrassHubExclusion(activeContent.zones, x, z, GRASS_HUB_INNER_RADIUS);
       if (ok) ok = !insidePavedGrassExclusion(x, z);
+      if (ok && rockCollar) ok = !rockGrassClearAt(seed, x, z);
       if (ok) ok = !insideEastbrookGrassExclusion(townExclusions, x, z, 0.85);
       if (ok) ok = !insideAnyBuildingFootprint(activeContent.props.buildings, x, z, 0.85);
       if (ok) {

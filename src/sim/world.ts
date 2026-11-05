@@ -33,6 +33,7 @@ import {
 } from './data';
 import { dawnholdPadTarget, dawnholdPadWeight } from './dawnhold_layout';
 import { dockSurfaceHeight, onHarborPlanks } from './deck_surfaces';
+import { decorationScale } from './decoration_dims';
 import { isCuratedGardenScatter, isExcludedDecoration } from './decoration_exclusions';
 import { dungeonFloorLift } from './dungeon_floor';
 import { dawnholdKeepLiftAt, lastKeepLiftAt } from './dungeon_layout';
@@ -4993,9 +4994,8 @@ function decorationAt(seed: number, gx: number, gz: number): Decoration | null {
   const x = gx + ox,
     z = gz + oz;
   if (isExcludedDecoration(x, z) || isCuratedGardenScatter(kind, x, z, zoneBiomeAt)) return null;
-  // The Galecrest paddock is a worked yard and race course. Keep the same
-  // deterministic decoration field out of its apron so no tree becomes an
-  // invisible obstacle across a jump line.
+  // Keep the Galecrest paddock (a worked yard and race course) apron clear so
+  // no tree becomes an invisible obstacle across a jump line.
   if (
     x > STABLE_PADDOCK.x1 - 1 &&
     x < STABLE_PADDOCK.x2 + 1 &&
@@ -5041,7 +5041,7 @@ function decorationAt(seed: number, gx: number, gz: number): Decoration | null {
     kind,
     x,
     z,
-    scale: 0.7 + hash2(Math.round(gx), Math.round(gz), seed + 13) * 0.9,
+    scale: decorationScale(kind, gx, gz, seed),
     variant: Math.floor(hash2(Math.round(gx), Math.round(gz), seed + 77) * 3),
     biome,
   };
