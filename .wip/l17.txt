@@ -1,0 +1,3 @@
+tests/chapter_one_content.test.ts
+tests/escort_quest.test.ts
+tests/quest_mechanics_wyndlewood.test.ts

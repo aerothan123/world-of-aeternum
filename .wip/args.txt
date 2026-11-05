@@ -1,1 +1,1 @@
--From 085839e7c8b208634fb0640f9b5a19ffc0fcd4f2 -To origin/wip/wyndlewood-story-transport -Gen touchup,wiki,tsc -List l16.txt -Tag r16 -Post post.ps1
+-From 42caa860ae9c10c899fbd43e5c4a263d2acedff2 -To origin/wip/wyndlewood-story-transport -List l17.txt -Tag r17 -Post post.ps1
