@@ -1,7 +1,6 @@
 // FIRST import on purpose: loads .env before realm.ts (or any other module
 // with an import-time process.env read) evaluates. See server/env.ts.
 import './env';
-import { randomUUID } from 'node:crypto';
 import * as fs from 'node:fs';
 import * as http from 'node:http';
 import * as path from 'node:path';
@@ -10,7 +9,6 @@ import { WebSocketServer } from 'ws';
 import type { MembershipSnapshot } from '../src/membership_contract';
 import { bankGrantStorageSlots } from '../src/sim/bank';
 import { DEEDS } from '../src/sim/content/deeds';
-import { PROVING_SHORE_ARRIVAL } from '../src/sim/content/proving_shore';
 import { GUILD_BOARD_CATEGORY_PARAM } from '../src/sim/guild_board_category';
 import {
   LEADERBOARD_MAX,
@@ -19,10 +17,7 @@ import {
   paginateLeaderboard,
 } from '../src/sim/leaderboard_page';
 import { settleAllWorldPvpSpoils } from '../src/sim/pvp/world_pvp_spoils';
-import { Sim } from '../src/sim/sim';
-import type { PlayerClass } from '../src/sim/types';
 import { virtualLevel } from '../src/sim/types';
-import { WORLD_SEED } from '../src/sim/world_seed';
 import {
   type DeedsLeaderboardEntry,
   type DeedsLeaderboardSelf,
@@ -139,6 +134,7 @@ import {
   characterDeleteHttpRefusal,
   characterDeleteRequestSignal,
 } from './character_delete_http';
+import { initialCharacterState } from './character_newborn';
 import { bustAllLifetimeXpRankCache } from './character_rank_cache';
 import { characterSheet, SHEET_RECENT_DEEDS, type SheetRank } from './character_sheet';
 import {
@@ -544,35 +540,6 @@ function liveGame(): GameServer {
   // constructor default keeps DB-mocked unit worlds independent from config.
   gameInstance ??= new GameServer(undefined, majorBackgroundDbGate);
   return gameInstance;
-}
-
-function initialCharacterState(
-  cls: PlayerClass,
-  name: string,
-  skin: number,
-): import('../src/sim/sim').CharacterState {
-  // Wall-clock injection is load-bearing for persistence: every blob that
-  // reaches Postgres must be written on the epoch base (farm_persist.ts
-  // clock-base doctrine), never the sim-clock default that starts at zero.
-  const sim = new Sim({
-    seed: WORLD_SEED,
-    playerClass: cls,
-    playerName: name,
-    lockoutNowMs: () => Date.now(),
-    mintItemGuid: randomUUID,
-  });
-  sim.setPlayerSkin(sim.playerId, skin);
-  const character = sim.serializeCharacter(sim.playerId);
-  if (!character) throw new Error('failed to serialize initial character');
-  // A newborn begins ON the Proving Shore (the coached tutorial), no opt-in
-  // ferry ride: the persisted row is what decides an online spawn (addPlayer
-  // prefers savedPos over playerStart), so island entry costs no sim change,
-  // keeps the offline default spawn untouched, and leaves every parity
-  // golden byte-identical. The greeting sweep sees the fresh character
-  // already ashore and plays Odo's arrival instead of Bryn's ferry offer.
-  character.pos = { x: PROVING_SHORE_ARRIVAL.x, z: PROVING_SHORE_ARRIVAL.z };
-  character.facing = PROVING_SHORE_ARRIVAL.facing;
-  return character;
 }
 
 // Newborn-state seam for tests (the boardReadTestSeam precedent): pins that
