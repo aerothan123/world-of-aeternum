@@ -1,7 +1,7 @@
-# Asset pipeline into Unity
+# Asset pipeline into Unreal Engine 5.8
 
 Status: planning spec, written against `feature/player-housing` (merge `64d84727`). How the
-existing assets get into a Unity client, what carries over, what must be re-authored for the
+existing assets get into an Unreal Engine 5.8 client, what carries over, what must be re-authored for the
 "detailed stylized" target, which render pipeline to use, and how the graphics tiers stay fair.
 
 ## 1. The art target, restated as rules a crew can check
@@ -18,17 +18,16 @@ Checkable rules for every new or re-authored asset:
    current "chunky readable shapes" brief in the shared crew rules); the material is a full PBR
    set with real micro detail. No painted-in lighting, no baked highlights or shadows in the
    base colour.
-2. **Every material ships base colour, normal, metallic with smoothness in alpha (the URP Lit
-   metallic map layout), occlusion, and an optional emissive.** A custom packed mask (metallic,
-   occlusion, detail, smoothness in one texture) is allowed only with the project's own Lit
-   variant shader.
+2. **Every material ships base colour, normal, and one packed ORM texture (R ambient occlusion,
+   G roughness, B metallic, the Unreal and Megascans convention), plus an optional emissive.**
+   Materials are instances of a small set of project master materials, never one-off graphs.
 3. **Texel density:** 512 px per metre for hero props and characters in the 2K to 4K range,
    256 px per metre for buildings with tiling trims and a detail normal, terrain layers tiled
    at 2 m to 4 m with a macro variation map. One density table, checked by an editor script.
 4. **Warmth comes from light and grade, not from albedo.** Base colours stay physically
    plausible (sRGB albedo between about 30 and 240), and the storybook palette comes from the
    key light colour, the sky, fog tint and a colour grade LUT. This is what lets realistic
-   Asset Store packs sit in the same frame as crew-made art (the shortlist depends on it).
+   Fab packs sit in the same frame as crew-made art (the shortlist depends on it).
 5. **Readability first:** gameplay-relevant objects (gather nodes, quest objects, interactables,
    enemies) keep a value contrast against their background in a greyscale check.
 
@@ -47,8 +46,8 @@ Counted with `git ls-tree -r --name-only origin/feature/player-housing public`:
 
 Provenance: `CREDITS.md` lists KayKit, Quaternius, Kenney, ambientCG, Poly Haven and about 190
 Tripo-generated rows. CC0 sources carry over freely; Tripo outputs follow the Tripo terms the
-crews already ship under. Every asset added in Unity still gets a `CREDITS.md` row (in the
-Unity repo, see `vertical-slice-plan.md` section 3).
+crews already ship under. Every asset added in Unreal still gets a `CREDITS.md` row (in the
+Unreal project repo, see `vertical-slice-plan.md` section 3).
 
 Glossary of glTF extensions found in `src/render` and `scripts` (`grep -rhoE`):
 `EXT_meshopt_compression`, `KHR_mesh_quantization`, `KHR_texture_basisu`,
@@ -56,49 +55,90 @@ Glossary of glTF extensions found in `src/render` and `scripts` (`grep -rhoE`):
 one file, `src/render/assets/woc_lod_plugin.ts`) and several `WOC_*` head and morph markers used
 by the modular characters.
 
-## 3. Importing GLBs: glTFast versus UnityGLTF
+## 3. Importing GLBs: Interchange glTF, then Nanite
 
-| | glTFast (`com.unity.cloud.gltfast`) | UnityGLTF (Khronos) |
-|---|---|---|
-| Owner | Unity | Khronos and Prefrontal Cortex, open source |
-| meshopt, Draco, KTX2 | yes, through the optional packages "meshoptimizer decompression for Unity", "Draco for Unity" and "KTX for Unity" ([install docs](https://docs.unity3d.com/Packages/com.unity.cloud.gltfast@6.15/manual/installation.html)) | meshopt and KTX2 through add-on packages |
-| Custom extensions (`WOC_lod`) | limited extension hooks | plugin architecture for import extensions |
-| Speed | fast runtime and editor import | slower, more complete material model |
+Unreal 5.8 imports `.gltf` and `.glb` through the Interchange framework
+([Epic: importing glTF](https://dev.epicgames.com/documentation/unreal-engine/importing-gltf-files-into-unreal-engine)),
+scriptable from Python through `InterchangeGLTFTranslator` and the Interchange pipeline classes
+([Python API](https://dev.epicgames.com/documentation/en-us/unreal-engine/python-api/class/InterchangeGLTFTranslator?application_version=5.7)).
+Epic's page does not list which glTF extensions are supported, and the shipping GLBs here use
+`EXT_meshopt_compression`, `KHR_mesh_quantization`, `KHR_texture_basisu` and the in-house
+`WOC_lod`, which a general importer cannot be expected to decode. So:
 
-Recommendation: **do not import the shipping GLBs directly.** Add a Node "unity normalize"
-step in THIS repo (proposed `scripts/unity/normalize_glb.mjs`, built on the gltf-transform
-toolchain the pipeline already uses in `scripts/asset_pipeline/lib/wizard.mjs`) that, per GLB:
+**Do not import the shipping GLBs directly.** Add a Node "unreal normalize" step in THIS repo
+(proposed `scripts/unreal/normalize_glb.mjs`, built on the gltf-transform toolchain the pipeline
+already uses in `scripts/asset_pipeline/lib/wizard.mjs`) that, per GLB:
 
 1. decodes meshopt and quantization to plain float geometry;
 2. decodes KTX2 back to lossless PNG (or, better, re-reads the pre-compression source texture
    when one exists);
-3. splits `WOC_lod` levels into `name_LOD0.glb`, `name_LOD1.glb`, ... so Unity builds a
-   `LODGroup` from file names;
-4. writes the `WOC_*` character markers to a sidecar JSON next to the model.
+3. splits `WOC_lod` levels into `name_LOD0.glb`, `name_LOD1.glb`, ... (static meshes that become
+   Nanite need only LOD0; skeletal meshes keep their LOD chain);
+4. writes the `WOC_*` character markers and collision hints to a sidecar JSON.
 
-Then glTFast imports the clean GLBs at editor time, and a Unity `AssetPostprocessor` makes the
-prefab (LODGroup, colliders from the sidecar, URP Lit materials). Unity compresses textures to
-BC7 (colour) and BC5 (normals) itself. Nothing glTF-specific ships in the player, and the build
-never depends on runtime decoders.
+Then an editor Python script (`unreal` module, run headless as a commandlet, see
+`vertical-slice-plan.md` section 4) imports each clean GLB through Interchange with a project
+pipeline asset that: enables Nanite on static meshes, builds simple collision from the sidecar,
+assigns material instances of the project master materials, and sets texture groups and
+compression (BC7 colour, BC5 normal). Imports are reproducible from the script and a manifest,
+so a re-import never depends on someone clicking dialogs.
 
-Clip libraries: import as `AnimationClip` sets, keep the original clip names, and generate a
-`ClipMap` ScriptableObject from `src/render/characters/manifest.ts` so the TS `BaseState`
-names (`idle`, `walk`, `run`, `strafeLeft`, `cast`, `swim`, `sit`, `jump`, ...) map to the same
-clips. Mark the KayKit and Quaternius rigs Humanoid where the bone set allows retargeting, so
-one locomotion set can drive several bodies; keep Generic for creatures.
+Nanite: virtualized geometry removes most manual LOD work for static meshes (buildings, rocks,
+props, and Nanite foliage), which suits dense ground cover and stone detail. Skinned characters,
+translucent materials and some masked foliage cases still need traditional LODs; check each
+category in the slice (M4).
+
+Clip libraries: import as `UAnimSequence` sets on a shared skeleton per rig family, keep the
+original clip names, and generate a `ClipMap` data asset from
+`src/render/characters/manifest.ts` so the TS `BaseState` names (`idle`, `walk`, `run`,
+`strafeLeft`, `cast`, `swim`, `sit`, `jump`, ...) map to the same clips. Use IK Retargeter to
+share one locomotion set across the KayKit and Quaternius humanoid rigs; keep creature rigs
+separate.
+
+### Fab and Megascans licensing
+
+- Fab sells under the Fab Standard License in two tiers: Personal for buyers whose gross
+  revenue from commercial activity in the last 12 months is at most 100,000 USD, Professional
+  above that ([Epic: licenses and pricing in Fab](https://dev.epicgames.com/documentation/en-us/fab/licenses-and-pricing-in-fab)).
+  The owner buys the tier that matches the studio's revenue and must upgrade before crossing
+  the threshold.
+- Fab Standard licensed assets may be used in any engine or tool, a broader grant than the
+  old Epic Content License ([Epic forum, Megascans update March 2025](https://forums.unrealengine.com/t/megascans-update-march-2025/2419561)).
+- Megascans stopped being free from 2025 ([80.lv](https://80.lv/articles/megascans-no-longer-free-after-2024/));
+  anything claimed during the free period keeps its license. Check whether the owner's Epic
+  account claimed the library in 2024 before paying for scans.
+- Each Fab listing carries two AI flags: "Generated with AI" and whether it allows use with AI
+  (the NoAI tag means it "must not be used for generative AI data collection", same Fab page).
+  The crews must never feed NoAI-flagged content to a generator (and never feed ANY bought
+  content to Tripo as a reference, the existing IP rule).
+
+### MetaHuman
+
+MetaHuman is free under the standard Unreal license for anyone under 1 million USD revenue
+and can be used with any engine ([metahuman.com license](https://www.metahuman.com/license)).
+Two constraints matter here:
+
+- The Unreal EULA forbids using MetaHuman characters and animation curves "to build or enhance
+  any database or training or testing any artificial intelligence"
+  ([Unreal EULA section 6(e)](https://www.unrealengine.com/eula)). Crews must not export
+  MetaHuman meshes or curves into Tripo or any generative tool.
+- MetaHumans are realistic humans by design, while the target is slightly stylized faces. A
+  MetaHuman can still be the BASE (topology, rig, facial controls) with stylized proportions and
+  hand-painted-to-PBR skin, but that is a look-development question for the slice (M4). The
+  cheaper default remains a stylized base mesh on the UE5 Manny/Quinn skeleton.
 
 ## 4. What carries over, what gets re-authored
 
 | Asset class | Carries over as-is | Needs re-authoring for "detailed stylized" |
 |---|---|---|
-| Music (58 tracks) | yes; import MP3 or, better, re-render WAV from `scripts/render_music.mjs` and let Unity encode Vorbis | no |
+| Music (58 tracks) | yes; import MP3 or, better, re-render WAV from `scripts/render_music.mjs` and let Unreal compress it (Bink Audio or ADPCM) | no |
 | SFX (747) and voice (578) | yes; import, and generate the volume and pitch table from `scripts/sfx/sfx_gain_map.json` and `sfx_speed_map.json` | no; add 3D spatial settings per category |
 | Item icons and UI art (WebP) | yes as sprites for the slice | the HUD frame art is redesigned (it is part of the "mobile look" complaint) |
 | Animation clips | yes | add-on clips later for the new bodies (the `blender-anim-pipeline` skill) |
 | Creature models (211) | yes for the slice | hero creatures re-textured to PBR first, zone by zone |
 | Weapons and tools (291) | geometry mostly yes | full PBR texture pass (metal, leather, wood) |
 | Props (274) and resources (143) | geometry often yes | PBR texture pass; gather nodes keep their tier sizes |
-| Buildings (`medieval_village_v2` 349, `tidehold`, `dungeon`) | blockout only | most re-authored as a modular PBR kit or replaced by an Asset Store kit |
+| Buildings (`medieval_village_v2` 349, `tidehold`, `dungeon`) | blockout only | most re-authored as a modular PBR kit or replaced by a Fab kit |
 | Terrain | heights carry over as DATA (section 5) | all ground materials re-authored as PBR terrain layers |
 | Foliage and trees (`foliage`, `biome`) | no | re-authored: dense PBR foliage with wind, the biggest visual upgrade |
 | Characters (139 in `chars`) | rigs and clips yes | bodies, faces and armor re-authored to the stylized-face, realistic-material target |
@@ -112,23 +152,23 @@ The terrain and the town layout are code today, not scene files: heights come fr
 `src/sim/colliders.ts` readouts (`bankerChestSpots`, `streetlampPlacements`, ...), and the rest of
 the dressing from the render placement modules (`src/render/placed_assets.ts`).
 
-Export pipeline (proposed `scripts/unity/export_world.mjs`, run in Node against `src/sim` with
+Export pipeline (proposed `scripts/unreal/export_world.mjs`, run in Node against `src/sim` with
 the realm seed from `hello.seed`):
 
 - **Heightfield:** sample `terrainHeight(x, z, seed)` on a 0.5 yd grid per zone into 16-bit RAW
-  tiles plus a JSON header (origin, spacing, min and max). Unity builds Terrain tiles or meshes
-  from them. A Vitest asserts the baked tile reproduces `terrainHeight` within 1 cm at random
-  points, so feet planting in Unity matches the server.
+  tiles plus a JSON header (origin, spacing, min and max). Unreal imports them as Landscape heightmaps (16-bit PNG or RAW per World Partition
+  region). A Vitest asserts the baked tile reproduces `terrainHeight` within 1 cm at random
+  points, so feet planting in Unreal matches the server.
 - **Water bodies, roads and splat regions:** export the lake circles, shore curves and paint
   regions the render terrain reads (`terrain_paint_layers.ts`, `terrain_region_core.ts`).
 - **Placements:** export every collider-backed placement from `src/sim` directly. For the
   render-only dressing, the fastest exact source is the running client: a puppeteer script
   (the `scripts/*.mjs` E2E pattern) walks the renderer's scene graph through `window.__game`
-  and dumps `{ asset url, position, rotation, scale }` per instance to JSON. Unity places
-  prefabs by asset key from that file with a C# editor importer.
-- **Rule:** the exported JSON is the source of truth for WHERE things are; Unity scenes are
-  generated from it by code, never hand-placed, so crews do not edit binary scene files
-  (`cost-and-risk.md`, risk 6). Hand-authored Unity dressing goes in prefabs and additive
+  and dumps `{ asset url, position, rotation, scale }` per instance to JSON. An editor Python
+  script places actors and Packed Level Actors by asset key from that file.
+- **Rule:** the exported JSON is the source of truth for WHERE things are; Unreal levels are
+  generated from it by code, never hand-placed, so crews do not edit binary `.umap` files
+  (`cost-and-risk.md`, risk 6). Hand-authored dressing goes in Level Instances and additive
   "dressing" data files that the generator merges.
 
 ## 6. Producing PBR maps from the Tripo and Blender pipeline
@@ -138,23 +178,22 @@ Today `scripts/asset_pipeline/pipeline.mjs` already asks Tripo for PBR output
 pbr: true })`). The maps are then shrunk for the web: `scripts/asset_pipeline/lib/wizard.mjs`
 re-encodes metallicRoughness, occlusion and emissive as 512 px JPEG and the normal map as a
 256 px PNG, and the shipped GLB carries KTX2. That is fine for WebGL budgets and far too small
-for the Unity target.
+for the Unreal target.
 
-Unity lane changes (all additive, the web lane stays as it is):
+Unreal lane changes (all additive, the web lane stays as it is):
 
 1. **Keep the raw Tripo output.** Save `raw.glb` maps at the native resolution Tripo returned
-   into an asset-source folder in the Unity repo, never into `public/`.
+   into an asset-source folder in the Unreal project repo, never into `public/`.
 2. **Blender pass** (headless: `blender --background --python <script> -- <args>`, the same
    invocation shape the `blender-anim-pipeline` skill defines):
    - retopology or decimation to the poly budget, a clean UV layout, and a high-to-low bake
      where the Tripo mesh has the detail but the UVs are poor;
    - bake or derive: base colour (delit: remove baked shading with a high-pass and AO divide),
-     a tangent-space normal in the OpenGL Y+ convention (what both glTF and Unity expect),
+     a tangent-space normal in the OpenGL Y+ convention (glTF's convention; Unreal uses DirectX Y-, so the import flips green, or set Flip Green Channel on the texture),
      roughness, metallic, ambient occlusion;
-   - pack the URP Lit metallic map (RGB metallic, A smoothness = 1 - roughness) and keep
-     occlusion as its own map;
+   - pack the ORM texture (R occlusion, G roughness, B metallic);
    - export FBX or GLB plus the PNG set at 2K (hero) or 1K (common).
-3. **Material review gate:** an editor script renders each prefab on a neutral turntable under
+3. **Material review gate:** an editor Python script renders each asset on a neutral turntable under
    three fixed lighting rigs (noon, golden hour, night torch) and saves the sheet. The owner
    approves sheets, not files.
 4. **Tiling materials** (stone, plaster, thatch, wood planks, cobbles, terrain layers): author or
@@ -167,55 +206,37 @@ Unity lane changes (all additive, the web lane stays as it is):
 Prompting rule carried over from the crew rules: original text prompts only, never another
 game's reference images.
 
-## 7. Render pipeline: URP, not HDRP
+## 7. Rendering features for the target
 
-The coordinator asked to plan for HDRP unless there was a strong reason otherwise. There is
-one, and it is decisive:
+Unreal has one renderer; the decisions are which features to lean on.
 
-- **HDRP is in maintenance mode.** Unity's February 2026 render pipelines strategy says no new
-  features are planned for HDRP, development priority is URP, and "Users are strongly
-  encouraged to use URP when starting any new project" ([80.lv summary of the Unity
-  announcement](https://80.lv/articles/unity-unveils-2026-render-pipelines-strategy/),
-  [gamefromscratch, same announcement](https://gamefromscratch.com/the-unity-hdrp-is-dead/)).
-  A Unity staff post in the official thread says HDRP is not deprecated and will be maintained
-  "as long as necessary", while URP gets the investment, naming dynamic lighting as the biggest
-  gap and listing shadow caching, shadow quality and volumetric fog as future URP work
-  ([Unity Discussions, post 219](https://discussions.unity.com/t/render-pipelines-strategy-for-2026/1710004/219)).
-  A game that will live for years on a live-service cadence should not start on the pipeline
-  that stopped growing.
-- **Min-spec and Steam Deck.** URP scales from integrated GPUs and the Deck to RTX cards in one
-  project; HDRP's floor is high. Unity's March 2026 GDC announcement adds native Linux and Steam
-  Deck work to the engine ([PCGH](https://www.pcgameshardware.de/Linux-Software-26761/News/Unity-baut-Support-fuer-Steam-Deck-und-Steam-Machine-aus-1521791/)).
-- **Asset Store fit.** The water, fog and terrain packs best suited to the look are URP-first or
-  URP-only (`asset-store-shortlist.md`).
-
-What URP gives the Fable target on an RTX-class PC, and what it does not:
-
-| Need | URP answer |
+| Need | Unreal 5.8 answer |
 |---|---|
-| Soft shadows | URP soft shadows, 4 cascades, high resolution, contact shadows via screen-space shadows; shadow cascades tuned per tier |
-| GI approximation | Adaptive Probe Volumes (supported in URP since Unity 6, [Unity manual](https://docs.unity3d.com/6000.0/Documentation/Manual/urp/probevolumes-streaming.html)) with lighting scenarios blended across the day, plus SSAO and reflection probes |
-| Many lights (torches, lamps, windows) | Forward+ rendering path |
-| Volumetric fog and light shafts | NOT built into URP today (Unity lists volumetric fog as future URP work, post 219 above); use an Asset Store volumetric fog (shortlist) |
-| Colour and warmth | URP post-processing Volume: tonemapping, colour grading LUT, bloom, vignette, film grain off |
-| Dense foliage | GPU instancing or terrain details, with the URP depth prepass and a wind shader |
+| GI | Lumen (software ray tracing by default; hardware ray tracing on RTX for higher quality). Epic: the High scalability level targets 60 fps on current consoles, Epic targets 30 fps, Medium uses the cheaper Irradiance Field Gather aimed at low-end PC and Switch 2, and Low turns Lumen off ([Lumen performance guide](https://dev.epicgames.com/documentation/en-us/unreal-engine/lumen-performance-guide-for-unreal-engine)) |
+| Soft shadows | Virtual Shadow Maps (high resolution, soft penumbra); contact shadows on hero lights |
+| Many lights | MegaLights where stable, otherwise a light budget with shadow-casting limits |
+| Volumetric fog and light shafts | built in: Exponential Height Fog with volumetric fog, light shafts on the directional light, local fog volumes |
+| Sky and day and night | Sky Atmosphere, Volumetric Clouds, Sky Light (real-time capture), driven by the server clock |
+| Dense foliage and ground cover | Nanite foliage plus PCG scattering; Landscape grass for the near carpet |
+| Terrain | Landscape with Runtime Virtual Texturing (or 5.8's new Mesh Terrain, evaluated in M4), layer blending with height |
+| Colour and warmth | Post Process Volume: filmic tonemapper, LUT grade, bloom, local exposure |
+| Streaming | World Partition with Data Layers and HLODs |
 
-Reasons HDRP would still be tempting, recorded honestly: built-in volumetric fog and clouds,
-physical sky and better area lights out of the box. Those are bought back in URP with two
-packs (fog and sky) for under 100 USD, and URP's roadmap is closing the rest.
+Version: build on 5.8.4 and stay on 5.8 for the slice. 5.8 is described as the last big
+update before UE6 ([FeedBagel](https://feedbagel.com/post/unreal-engine-58)), so plan one
+deliberate upgrade to UE6 after launch rather than tracking every release.
 
-Version: start on the current LTS (Unity 6.3 LTS, supported into late 2027 per
-[StraySpark's roadmap summary](https://www.strayspark.studio/blog/unity-6-4-to-6-8-roadmap-indie-developers-2026)),
-and move only to the next LTS.
+### Quality tiers (Scalability groups)
 
-### Quality tiers
-
-| Tier | Target | Shadows | GI | Fog | Foliage | Render scale |
+| Tier | Target | GI | Shadows | Fog | Foliage | Resolution |
 |---|---|---|---|---|---|---|
-| Ultra | RTX 3070 class, 1440p 60 | 4 cascades 4096, soft high | APV plus SSAO high | volumetric, full res | full density, far grass | 1.0 |
-| High | RTX 2060 class, 1080p 60 | 4 cascades 2048 | APV plus SSAO medium | volumetric, half res | full density near, thinned far | 1.0 |
-| Medium | GTX 1060 or Steam Deck docked | 2 cascades 2048 | APV, SSAO low | volumetric, quarter res | thinned far | 0.85 |
-| Low (min-spec, Steam Deck handheld) | integrated GPU, 800p 30 to 40 | 1 cascade 1024 | APV only | height fog (non-volumetric) | near only | 0.7 with FSR or STP upscaling |
+| Epic | RTX 3070 class, 1440p 60 | Lumen High, hardware RT | VSM, high | volumetric, full | full density | TSR 75 percent |
+| High | RTX 2060 class, 1080p 60 | Lumen High, software RT | VSM | volumetric | full near, thinned far | TSR 67 percent |
+| Medium | GTX 1060 class, Steam Deck docked | Lumen Medium (Irradiance Field Gather) | VSM low or cascaded | volumetric, low | thinned far | TSR 58 percent |
+| Low (min-spec, Steam Deck handheld) | 800p 30 | Lumen off, baked sky light fallback | cascaded shadow maps | height fog, non-volumetric | near only | TSR 50 percent |
+
+The Low tier is the hard one: Lumen off changes the whole look, so the warm palette must hold
+up under a plain sky light, and the fairness rules below must still hold.
 
 ## 8. The graphics-tier fairness rule (binding on every tier above)
 
@@ -226,7 +247,7 @@ cast bar, target HP granularity, enemy and aggro positions, the fishing bobber a
 minimap and map gather-node markers, and the node tier ladder expressed as size. Tier knobs
 read the STATIC preset (`src/game/ui_effects_profile.ts`), never an FPS governor.
 
-Unity-specific consequences, to be pinned by Unity play-mode tests the way
+Unreal-specific consequences, to be pinned by Unreal automation tests the way
 `tests/professions_graphics_fairness.test.ts` pins the web client:
 
 1. **Foliage density must never change concealment.** Dense grass and ground cover are the
@@ -240,6 +261,6 @@ Unity-specific consequences, to be pinned by Unity play-mode tests the way
    noise. A thicker fog on Ultra must not hide an enemy that Low shows.
 3. **Telegraphs, cast VFX and ground AoE markers are never tiered** (they are actionable).
 4. **Shadows may change quality but not existence** (the web client's rule for
-   `shadow_cadence_core.ts`).
+   `shadow_cadence_core.ts`); Low's cascaded shadows still cast from every character.
 5. **Darkness:** night exposure and the minimum ambient level are the same on every tier, so a
    Low player never sees better at night because a light was culled.
