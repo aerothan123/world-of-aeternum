@@ -1,5 +1,7 @@
-// One house per ACCOUNT (Wyndlewood owner decision, 2026-11): the boot
-// consolidation and the join-time holder lookup. The merge rule itself is the
+// One house per ACCOUNT, shared by all its characters (Wyndlewood owner
+// decision, 2026-11): the boot consolidation, the account_houses row (the
+// house's one home, written inside each character save's transaction), and
+// the join-time read. The merge rule itself is the
 // pure plan in ./account_house_merge.ts.
 //
 // Migration safety (.claude/agents/migration-safety.md):
@@ -41,12 +43,52 @@ CREATE TABLE IF NOT EXISTS account_house_migrations (
   migrated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 CREATE INDEX IF NOT EXISTS account_house_migrations_account ON account_house_migrations(account_id);
+-- One house per ACCOUNT: the live record every character of the account shares,
+-- one row per account and realm, written in the same transaction as each save
+-- of a character using it (upsertAccountHouseFromSave). Bounded by accounts.
+CREATE TABLE IF NOT EXISTS account_houses (
+  account_id INT NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  realm TEXT NOT NULL,
+  house JSONB NOT NULL,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  PRIMARY KEY (account_id, realm)
+);
 `;
 
-/** Accounts holding two or more houses in this realm. */
-export const MULTI_HOUSE_ACCOUNTS_SQL = `SELECT account_id FROM characters
-WHERE realm = $1 AND state ? 'house'
-GROUP BY account_id HAVING count(*) > 1 ORDER BY account_id`;
+/** Accounts holding two or more houses in this realm that are not yet
+ *  account-owned. Once an account_houses row exists, every character of the
+ *  account carries a COPY of the one shared house in its blob, which must
+ *  never be merged again (that would duplicate the storage). */
+export const MULTI_HOUSE_ACCOUNTS_SQL = `SELECT c.account_id FROM characters c
+WHERE c.realm = $1 AND c.state ? 'house'
+AND NOT EXISTS (SELECT 1 FROM account_houses ah WHERE ah.account_id = c.account_id AND ah.realm = c.realm)
+GROUP BY c.account_id HAVING count(*) > 1 ORDER BY c.account_id`;
+
+/** Seed the account row for every single-house account (idempotent). */
+export const SEED_ACCOUNT_HOUSES_SQL = `INSERT INTO account_houses (account_id, realm, house)
+SELECT DISTINCT ON (c.account_id) c.account_id, c.realm, c.state->'house' FROM characters c
+WHERE c.realm = $1 AND c.state ? 'house' AND jsonb_typeof(c.state->'house') = 'object'
+AND c.account_id NOT IN (
+  SELECT account_id FROM characters WHERE realm = $1 AND state ? 'house'
+  GROUP BY account_id HAVING count(*) > 1
+)
+ORDER BY c.account_id, c.id
+ON CONFLICT (account_id, realm) DO NOTHING`;
+
+const KEEP_ACCOUNT_ROW_SQL = `INSERT INTO account_houses (account_id, realm, house) VALUES ($1, $2, $3::jsonb)
+ON CONFLICT (account_id, realm) DO UPDATE SET house = EXCLUDED.house, updated_at = now()`;
+
+const ACCOUNT_ROW_SQL = `SELECT house FROM account_houses WHERE account_id = $1 AND realm = $2`;
+
+const FALLBACK_HOUSE_SQL = `SELECT state->'house' AS house FROM characters
+WHERE account_id = $1 AND realm = $2 AND state ? 'house'
+ORDER BY (id = $3) DESC, id LIMIT 1`;
+
+/** The save-transaction write: the account's row takes the saving
+ *  character's (shared, live) house. */
+export const UPSERT_ACCOUNT_HOUSE_SQL = `INSERT INTO account_houses (account_id, realm, house, updated_at)
+SELECT account_id, realm, $2::jsonb, now() FROM characters WHERE id = $1
+ON CONFLICT (account_id, realm) DO UPDATE SET house = EXCLUDED.house, updated_at = now()`;
 
 const ACCOUNT_HOUSES_SQL = `SELECT id, state->'house' AS house FROM characters
 WHERE account_id = $1 AND realm = $2 AND state ? 'house' ORDER BY id FOR UPDATE`;
@@ -62,12 +104,6 @@ const RELEASE_SQL = `UPDATE characters SET state = state - 'house', updated_at =
 
 const KEEP_SQL = `UPDATE characters SET state = jsonb_set(state, '{house}', $2::jsonb), updated_at = now()
 WHERE id = $1`;
-
-/** The join-time lookup: another character on this account and realm who
- *  holds a house, or null. */
-export const ACCOUNT_HOUSE_HOLDER_SQL = `SELECT name FROM characters
-WHERE account_id = $1 AND realm = $2 AND id <> $3 AND state ? 'house'
-ORDER BY id LIMIT 1`;
 
 export interface AccountHouseMigrationReport {
   accounts: number;
@@ -127,6 +163,7 @@ export async function migrateAccountHouses(
           report.movedSlots += released.movedSlots;
         }
         await client.query(KEEP_SQL, [plan.keptCharacterId, JSON.stringify(plan.keptHouse)]);
+        await client.query(KEEP_ACCOUNT_ROW_SQL, [accountId, realm, JSON.stringify(plan.keptHouse)]);
         await client.query('COMMIT');
         report.accounts++;
       } catch (error) {
@@ -134,6 +171,8 @@ export async function migrateAccountHouses(
         throw error;
       }
     }
+    // Every account left with one house becomes account-owned (idempotent).
+    await client.query(SEED_ACCOUNT_HOUSES_SQL, [realm]);
   } finally {
     await client.query('SELECT pg_advisory_unlock($1)', [MIGRATION_LOCK]);
   }
@@ -147,32 +186,68 @@ export async function migrateAccountHouses(
   return report;
 }
 
-/** The join-time holder lookup (the ws_auth `accountHouseHolder` dep). */
-export async function accountHouseHolderName(
+/** What a joining character receives: the account's one house (the account
+ *  row, else the oldest character's saved house as the old-shape fallback). */
+export interface AccountHouseForJoin {
+  house: unknown | null;
+}
+
+/** The join-time read (the ws_auth `accountHouse` dep). */
+export async function accountHouseForJoin(
   client: Queryable,
   accountId: number,
   realm: string,
   characterId: number,
-): Promise<string | null> {
-  const result = await client.query(ACCOUNT_HOUSE_HOLDER_SQL, [accountId, realm, characterId]);
-  const name = (result?.rows?.[0] as { name?: unknown } | undefined)?.name;
-  return typeof name === 'string' ? name : null;
+): Promise<AccountHouseForJoin> {
+  const row = await client.query(ACCOUNT_ROW_SQL, [accountId, realm]);
+  const owned = (row?.rows?.[0] as { house?: unknown } | undefined)?.house;
+  if (owned !== undefined && owned !== null) return { house: owned };
+  const fallback = await client.query(FALLBACK_HOUSE_SQL, [accountId, realm, characterId]);
+  const house = (fallback?.rows?.[0] as { house?: unknown } | undefined)?.house;
+  return { house: house ?? null };
 }
 
-/** Annotate a joining character's loaded state with the account's house
- *  holder (src/sim/character_state.ts accountHouseHolder). Only when the
- *  character holds no house itself. Fails open: a failed read logs and leaves
- *  the state alone (the next boot's consolidation still enforces the rule). */
-export async function annotateAccountHouseHolder(
-  lookup: ((accountId: number, characterId: number) => Promise<string | null>) | undefined,
+/** The account key every character of an account shares its house under. */
+export function accountHouseKeyFor(accountId: number): string {
+  return `acct:${accountId}`;
+}
+
+/** Annotate a joining character's loaded state: the account house key and the
+ *  account's house (src/sim/character_state.ts accountHouseKey). Fails open
+ *  WITHOUT the key: a failed read leaves the character on its own saved copy
+ *  and keeps its saves from writing the account row. */
+export async function annotateAccountHouse(
+  lookup: ((accountId: number, characterId: number) => Promise<AccountHouseForJoin>) | undefined,
   accountId: number,
   row: { id: number; state: object | null },
 ): Promise<void> {
-  if (!lookup || !row.state || 'house' in row.state) return;
+  if (!lookup || !row.state) return;
+  const state = row.state as { accountHouseKey?: string; house?: unknown };
+  delete state.accountHouseKey;
   try {
-    const holder = await lookup(accountId, row.id);
-    if (holder) (row.state as { accountHouseHolder?: string }).accountHouseHolder = holder;
+    const { house } = await lookup(accountId, row.id);
+    if (house !== null && typeof house === 'object') state.house = house;
+    state.accountHouseKey = accountHouseKeyFor(accountId);
   } catch (error) {
-    console.error('account house holder lookup failed:', error);
+    console.error('account house lookup failed:', error);
   }
+}
+
+const ACCOUNT_HOUSE_SAVE_MARKER = '"accountHouseKey":"acct:';
+
+/** Inside a character save's transaction (server/character_save_statement.ts):
+ *  a character on an account house writes that house to the account row in the
+ *  same transaction as its own row, so a storage deposit or withdrawal can
+ *  never land in one and miss the other. The full state is parsed only for a
+ *  save that carries the marker (characters using an account house). */
+export async function upsertAccountHouseFromSave(
+  tx: { query(text: string, values?: unknown[]): Promise<unknown> },
+  characterId: number,
+  stateJson: string,
+): Promise<boolean> {
+  if (!stateJson.includes(ACCOUNT_HOUSE_SAVE_MARKER)) return false;
+  const house = (JSON.parse(stateJson) as { house?: unknown }).house;
+  if (house === null || typeof house !== 'object') return false;
+  await tx.query(UPSERT_ACCOUNT_HOUSE_SQL, [characterId, JSON.stringify(house)]);
+  return true;
 }

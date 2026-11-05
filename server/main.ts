@@ -52,7 +52,7 @@ import {
   verifyLoginTwoFactor,
 } from './account';
 import { loadAccountBuddies } from './account_buddies_db';
-import { accountHouseHolderName } from './account_house_migration';
+import { accountHouseForJoin } from './account_house_migration';
 import { loadAccountLedger } from './account_ledger_db';
 import { accountLedgerKeysFor } from './account_ledger_keys_cache';
 import { relicRecordsIdle } from './account_ledger_records';
@@ -3467,8 +3467,8 @@ export async function startServer(): Promise<http.Server> {
   const wsAuth = createWsAuth({
     game,
     getMembership,
-    accountHouseHolder: (accountId, characterId) =>
-      accountHouseHolderName(pool, accountId, REALM, characterId),
+    accountHouse: (accountId, characterId) =>
+      accountHouseForJoin(pool, accountId, REALM, characterId),
     referralArmourForAccount,
     accountAndScopeForToken,
     moderationStatusForAccount,

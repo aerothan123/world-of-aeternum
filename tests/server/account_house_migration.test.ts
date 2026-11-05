@@ -8,9 +8,10 @@ import { describe, expect, it } from 'vitest';
 import { houseItemTotal } from '../../server/account_house_merge';
 import {
   ACCOUNT_HOUSE_MIGRATION_SCHEMA,
-  accountHouseHolderName,
-  annotateAccountHouseHolder,
+  accountHouseForJoin,
+  annotateAccountHouse,
   migrateAccountHouses,
+  upsertAccountHouseFromSave,
 } from '../../server/account_house_migration';
 
 interface Char {
@@ -27,6 +28,8 @@ class FakeDb {
   chars: Char[] = [];
   leases: { character_id: number; live: boolean }[] = [];
   audit: Record<string, unknown>[] = [];
+  /** account_houses, keyed `${account}:${realm}`. */
+  accountHouses = new Map<string, unknown>();
   log: string[] = [];
   private snapshot: string | null = null;
 
@@ -34,7 +37,7 @@ class FakeDb {
     const sql = text.replace(/\s+/g, ' ').trim();
     this.log.push(sql.split(' ').slice(0, 3).join(' '));
     if (sql === 'BEGIN') {
-      this.snapshot = JSON.stringify([this.chars, this.audit]);
+      this.snapshot = JSON.stringify([this.chars, this.audit, [...this.accountHouses]]);
       return { rows: [] };
     }
     if (sql === 'COMMIT') {
@@ -42,21 +45,55 @@ class FakeDb {
       return { rows: [] };
     }
     if (sql === 'ROLLBACK') {
-      if (this.snapshot) [this.chars, this.audit] = JSON.parse(this.snapshot);
+      if (this.snapshot) {
+        const [chars, audit, rows] = JSON.parse(this.snapshot);
+        this.chars = chars;
+        this.audit = audit;
+        this.accountHouses = new Map(rows);
+      }
       this.snapshot = null;
       return { rows: [] };
     }
     if (sql.startsWith('SET LOCAL') || sql.includes('pg_advisory')) return { rows: [] };
     const has = (c: Char) => Object.hasOwn(c.state, 'house');
-    if (sql.startsWith('SELECT account_id FROM characters')) {
+    const owned = (account: unknown, realm: unknown) =>
+      this.accountHouses.has(`${account}:${realm}`);
+    const multi = (realm: unknown) => {
       const counts = new Map<number, number>();
       for (const c of this.chars) {
-        if (c.realm === params[0] && has(c))
+        if (c.realm === realm && has(c))
           counts.set(c.account_id, (counts.get(c.account_id) ?? 0) + 1);
       }
+      return counts;
+    };
+    if (sql.startsWith('INSERT INTO account_houses (account_id, realm, house) SELECT DISTINCT ON')) {
+      const counts = multi(params[0]);
+      for (const c of [...this.chars].sort((a, b) => a.id - b.id)) {
+        if (c.realm !== params[0] || !has(c) || (counts.get(c.account_id) ?? 0) > 1) continue;
+        if (!owned(c.account_id, c.realm)) {
+          this.accountHouses.set(`${c.account_id}:${c.realm}`, structuredClone(c.state.house));
+        }
+      }
+      return { rows: [] };
+    }
+    if (sql.startsWith('INSERT INTO account_houses (account_id, realm, house) VALUES')) {
+      this.accountHouses.set(`${params[0]}:${params[1]}`, JSON.parse(params[2] as string));
+      return { rows: [] };
+    }
+    if (sql.startsWith('INSERT INTO account_houses (account_id, realm, house, updated_at)')) {
+      const c = this.chars.find((x) => x.id === params[0])!;
+      this.accountHouses.set(`${c.account_id}:${c.realm}`, JSON.parse(params[1] as string));
+      return { rows: [] };
+    }
+    if (sql.startsWith('SELECT house FROM account_houses')) {
+      const row = this.accountHouses.get(`${params[0]}:${params[1]}`);
+      return { rows: row === undefined ? [] : [{ house: structuredClone(row) }] };
+    }
+    if (sql.startsWith('SELECT c.account_id FROM characters c')) {
+      const counts = multi(params[0]);
       return {
         rows: [...counts]
-          .filter(([, n]) => n > 1)
+          .filter(([account, n]) => n > 1 && !owned(account, params[0]))
           .map(([account_id]) => ({ account_id }))
           .sort((a, b) => a.account_id - b.account_id),
       };
@@ -96,12 +133,12 @@ class FakeDb {
       c.state.house = JSON.parse(params[1] as string);
       return { rows: [] };
     }
-    if (sql.startsWith('SELECT name FROM characters')) {
+    if (sql.startsWith("SELECT state->'house' AS house FROM characters")) {
       const [account, realm, self] = params;
       const row = this.chars
-        .filter((c) => c.account_id === account && c.realm === realm && c.id !== self && has(c))
-        .sort((a, b) => a.id - b.id)[0];
-      return { rows: row ? [{ name: row.name }] : [] };
+        .filter((c) => c.account_id === account && c.realm === realm && has(c))
+        .sort((a, b) => Number(b.id === self) - Number(a.id === self) || a.id - b.id)[0];
+      return { rows: row ? [{ house: structuredClone(row.state.house) }] : [] };
     }
     throw new Error(`unexpected SQL: ${sql}`);
   }
@@ -267,32 +304,67 @@ describe('migrateAccountHouses', () => {
   });
 });
 
-describe('join-time holder', () => {
-  it('names another character holding the account house, and annotates a houseless join', async () => {
+describe('the account-owned house', () => {
+  it('makes every account left with one house account-owned at boot', async () => {
     const db = seeded();
-    expect(await accountHouseHolderName(db as never, 2, 'r1', 22)).toBe('Esk');
-    expect(await accountHouseHolderName(db as never, 2, 'r1', 21)).toBeNull();
-    const row = { id: 22, state: { level: 2 } as Record<string, unknown> };
-    await annotateAccountHouseHolder(
-      (a, c) => accountHouseHolderName(db as never, a, 'r1', c),
-      2,
-      row,
-    );
-    expect(row.state.accountHouseHolder).toBe('Esk');
-    const owner = {
-      id: 21,
-      state: { house: { lot: 'eastbrook_quay_cottage' } } as Record<string, unknown>,
-    };
-    await annotateAccountHouseHolder(async () => 'Nope', 2, owner);
-    expect(owner.state.accountHouseHolder).toBeUndefined();
-    const failing = { id: 22, state: {} as Record<string, unknown> };
-    await annotateAccountHouseHolder(
+    await migrateAccountHouses(db as never, 'r1');
+    expect(db.accountHouses.get('1:r1')).toEqual(db.chars.find((c) => c.id === 12)!.state.house);
+    expect(db.accountHouses.get('2:r1')).toEqual({ lot: 'eastbrook_quay_cottage' });
+    expect(db.accountHouses.has('3:r1')).toBe(false); // leased: still two houses
+    expect(db.accountHouses.has('1:r2')).toBe(false); // another realm's boot
+  });
+
+  it('never re-merges the copies the shared house leaves in every blob', async () => {
+    const db = seeded();
+    db.leases = [];
+    await migrateAccountHouses(db as never, 'r1');
+    const shared = structuredClone(db.accountHouses.get('1:r1'));
+    // Every character of the account has since joined and saved a copy.
+    for (const c of db.chars.filter((x) => x.account_id === 1 && x.realm === 'r1')) {
+      c.state.house = structuredClone(shared);
+    }
+    const before = JSON.stringify([db.chars, db.audit]);
+    const report = await migrateAccountHouses(db as never, 'r1');
+    expect(report.accounts).toBe(0);
+    expect(JSON.stringify([db.chars, db.audit])).toBe(before);
+    expect(db.accountHouses.get('1:r1')).toEqual(shared);
+  });
+
+  it('gives a joining alt the account house and its key; a failed read gives no key', async () => {
+    const db = seeded();
+    db.leases = [];
+    await migrateAccountHouses(db as never, 'r1');
+    const lookup = (a: number, c: number) => accountHouseForJoin(db as never, a, 'r1', c);
+    const alt = { id: 22, state: { level: 2 } as Record<string, unknown> };
+    await annotateAccountHouse(lookup, 2, alt);
+    expect(alt.state.house).toEqual({ lot: 'eastbrook_quay_cottage' });
+    expect(alt.state.accountHouseKey).toBe('acct:2');
+    // Before any account row exists, the oldest saved house is the old-shape fallback.
+    const fresh = seeded();
+    expect(await accountHouseForJoin(fresh as never, 2, 'r1', 22)).toEqual({
+      house: { lot: 'eastbrook_quay_cottage' },
+    });
+    const failing = { id: 22, state: { accountHouseKey: 'acct:2' } as Record<string, unknown> };
+    await annotateAccountHouse(
       async () => {
         throw new Error('db down');
       },
       2,
       failing,
     );
-    expect(failing.state.accountHouseHolder).toBeUndefined();
+    expect(failing.state.accountHouseKey).toBeUndefined();
+  });
+
+  it('writes the shared house in the save transaction only for an account-house save', async () => {
+    const db = seeded();
+    const house = { lot: 'eastbrook_quay_cottage', storage: [{ itemId: 'copper_ore', count: 3 }] };
+    const plain = JSON.stringify({ level: 2, house });
+    expect(await upsertAccountHouseFromSave(db as never, 22, plain)).toBe(false);
+    expect(db.accountHouses.has('2:r1')).toBe(false);
+    const marked = JSON.stringify({ level: 2, house, accountHouseKey: 'acct:2' });
+    expect(await upsertAccountHouseFromSave(db as never, 22, marked)).toBe(true);
+    expect(db.accountHouses.get('2:r1')).toEqual(house);
+    const noHouse = JSON.stringify({ level: 2, accountHouseKey: 'acct:2' });
+    expect(await upsertAccountHouseFromSave(db as never, 22, noHouse)).toBe(false);
   });
 });

@@ -16,7 +16,7 @@ import { HOUSE_LOTS } from '../src/sim/content/house_lots';
 import { ITEMS } from '../src/sim/data';
 import { HOUSE_COTTAGE_ANCHORS } from '../src/sim/housing/cottage_layout';
 import { sanitizeHouseState } from '../src/sim/housing/house_state';
-import { buyHouse, houseEntryKey } from '../src/sim/housing/ownership';
+import { buyHouse, houseEntryKey, houseInstanceKey } from '../src/sim/housing/ownership';
 import { Rng } from '../src/sim/rng';
 import { Sim } from '../src/sim/sim';
 import type { SimEvent } from '../src/sim/types';
@@ -201,3 +201,72 @@ describe('the sim refuses a second house on the account', () => {
     expect(events.some((e) => e.type === 'houseOffer')).toBe(false);
   });
 });
+
+describe('one house shared by every character on the account', () => {
+  const LOT = HOUSE_LOTS[0];
+  function twoOnAccount() {
+    const sim = new Sim({ seed: 5, playerClass: 'warrior', noPlayer: true });
+    const ownerState = (() => {
+      const probe = new Sim({ seed: 5, playerClass: 'warrior' });
+      const s = probe.serializeCharacter(probe.playerId)!;
+      return {
+        ...s,
+        house: { lot: LOT.id, storage: [{ itemId: 'copper_ore', count: 4 }] },
+        accountHouseKey: 'acct:7',
+      };
+    })();
+    const a = sim.addPlayer('warrior', 'Aster', { state: structuredClone(ownerState) as never });
+    const altState = { ...structuredClone(ownerState), house: undefined };
+    const b = sim.addPlayer('mage', 'Bryn', { state: altState as never });
+    return { sim, a, b };
+  }
+
+  it('an alt joining while the holder is online shares the ONE live record', () => {
+    const { sim, a, b } = twoOnAccount();
+    const ma = sim.players.get(a)!;
+    const mb = sim.players.get(b)!;
+    expect(ma.house).toBeDefined();
+    expect(mb.house).toBe(ma.house);
+    // A deposit by one is the other's storage: no second copy to diverge.
+    ma.house!.storage.push({ itemId: 'iron_ore', count: 2 });
+    expect(mb.house!.storage.map((s) => s.itemId)).toEqual(['copper_ore', 'iron_ore']);
+  });
+
+  it('both enter one instance, and each save carries the account marker', () => {
+    const { sim, a, b } = twoOnAccount();
+    expect(houseInstanceKeyOf(sim, a)).toBe('house:acct:7');
+    expect(houseInstanceKeyOf(sim, b)).toBe('house:acct:7');
+    const saved = sim.serializeCharacter(b)!;
+    expect(saved.accountHouseKey).toBe('acct:7');
+    expect(saved.house?.lot).toBe(LOT.id);
+  });
+
+  it('refuses a second purchase while another character of the account is online', () => {
+    const sim = new Sim({ seed: 6, playerClass: 'warrior', noPlayer: true });
+    const blank = (() => {
+      const probe = new Sim({ seed: 6, playerClass: 'warrior' });
+      return { ...probe.serializeCharacter(probe.playerId)!, accountHouseKey: 'acct:9' };
+    })();
+    const a = sim.addPlayer('warrior', 'Cora', { state: structuredClone(blank) as never });
+    const b = sim.addPlayer('rogue', 'Dell', { state: structuredClone(blank) as never });
+    for (const pid of [a, b]) {
+      const e = sim.entities.get(pid)!;
+      e.pos.x = LOT.doorPos.x;
+      e.pos.z = LOT.doorPos.z;
+      sim.players.get(pid)!.copper = 100_000_000;
+    }
+    expect(buyHouse(sim.ctx, LOT.id, a)).toBe(true);
+    // The alt shares the new house at once and cannot buy another.
+    expect(sim.players.get(b)!.house).toBe(sim.players.get(a)!.house);
+    sim.drainEvents();
+    expect(buyHouse(sim.ctx, HOUSE_LOTS[1].id, b)).toBe(false);
+    expect(sim.players.get(b)!.copper).toBe(100_000_000);
+    // Even with the alt's reference cleared, the online holder still blocks it.
+    sim.players.get(b)!.house = undefined;
+    expect(buyHouse(sim.ctx, HOUSE_LOTS[1].id, b)).toBe(false);
+  });
+});
+
+function houseInstanceKeyOf(sim: Sim, pid: number): string {
+  return houseInstanceKey(sim.players.get(pid)!);
+}

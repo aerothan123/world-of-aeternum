@@ -27,6 +27,7 @@ export function restoreCharacterStorage(
   s: CharacterState,
   droppedInstanceJunk: string[],
   playerId: number,
+  players?: ReadonlyMap<number, PlayerMeta>,
 ): void {
   // Bank sanitizes on load (never destroys items; a pre-bank save sanitizes to
   // an empty bank; see bank.ts sanitizeBankState). Deliberately NO wire-rev bump
@@ -64,12 +65,35 @@ export function restoreCharacterStorage(
   }
   meta.furnishingSkill = sanitizeFurnishingSkill(s.furnishingSkill);
   meta.lifeSkillStanding = sanitizeLifeSkillStanding(s.lifeSkillStanding);
+  // One house per account, shared by every character on it: a character of
+  // the same account already online holds the LIVE record, so this one shares
+  // that object (never a second copy that could diverge or duplicate stock).
+  meta.accountHouseKey =
+    typeof s.accountHouseKey === 'string' && s.accountHouseKey !== ''
+      ? s.accountHouseKey.slice(0, 64)
+      : undefined;
+  const sharer = meta.accountHouseKey ? accountHouseSharer(players, meta) : undefined;
+  if (sharer?.house) meta.house = sharer.house;
   // One house per account: the host names the holder when it is someone else.
   meta.accountHouseHolder =
     !meta.house && typeof s.accountHouseHolder === 'string' && s.accountHouseHolder !== ''
       ? s.accountHouseHolder.slice(0, 64)
       : undefined;
   meta.houseStorageRev = 0;
+}
+
+/** Another online character of the same account that holds the live house. */
+export function accountHouseSharer(
+  players: ReadonlyMap<number, PlayerMeta> | undefined,
+  meta: Pick<PlayerMeta, 'accountHouseKey'>,
+): PlayerMeta | undefined {
+  if (!players || !meta.accountHouseKey) return undefined;
+  for (const other of players.values()) {
+    if (other !== meta && other.accountHouseKey === meta.accountHouseKey && other.house) {
+      return other;
+    }
+  }
+  return undefined;
 }
 
 export function savedCharacterStorage(
@@ -88,6 +112,7 @@ export function savedCharacterStorage(
   | 'house'
   | 'furnishingSkill'
   | 'lifeSkillStanding'
+  | 'accountHouseKey'
 > {
   const lifeSkillStanding = savedLifeSkillStanding(meta.lifeSkillStanding);
   return {
@@ -109,6 +134,11 @@ export function savedCharacterStorage(
     ...(meta.house ? { house: savedHouseState(meta.house) } : {}),
     // Absent at zero (the Furnishing craft's own counter, Project H phase 2).
     ...(meta.furnishingSkill > 0 ? { furnishingSkill: meta.furnishingSkill } : {}),
+    // The host-supplied account house key rides the save as the marker that
+    // this save also writes the account's house row (server/
+    // account_house_migration.ts upsertAccountHouseFromSave); the host
+    // re-supplies it at every join, so a stale one is never trusted.
+    ...(meta.accountHouseKey ? { accountHouseKey: meta.accountHouseKey } : {}),
     // Absent until a life skill first pays standing (life_skills/life_skill_state.ts).
     ...(lifeSkillStanding ? { lifeSkillStanding } : {}),
   };

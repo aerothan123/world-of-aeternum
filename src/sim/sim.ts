@@ -3161,7 +3161,7 @@ export class Sim {
           slot.count = 1;
         return normalizeLoadedMaterialSlot(slot);
       });
-      restoreCharacterStorage(meta, s, droppedInstanceJunk, player.id);
+      restoreCharacterStorage(meta, s, droppedInstanceJunk, player.id, this.players);
       // Expired bind-on-pickup party-trade markers retire here and at serialize.
       retirePartyTradeOnLoad(meta, this.lockoutNowMs());
       warnDroppedInstanceKeys(meta.name, droppedInstanceJunk);

@@ -12,6 +12,7 @@ import { FURNISHING_STARTER_RECIPE_IDS } from '../content/recipes';
 import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
 import { DT, dist2d, type Entity } from '../types';
+import { accountHouseSharer } from '../character_storage';
 import type { HousingPlayerState } from './house_state';
 
 /** How close to a lot's door a purchase must be made (yards). Generous next to
@@ -62,6 +63,8 @@ export interface HouseView {
  *  The durable character id when the host supplies one (relogs rejoin the same
  *  copy), else the entity id (offline and headless hosts). */
 export function houseInstanceKey(meta: PlayerMeta): string {
+  // The account's one house: every character of the account enters ONE copy.
+  if (meta.accountHouseKey) return `house:${meta.accountHouseKey}`;
   return meta.characterId !== undefined
     ? `house:char:${meta.characterId}`
     : `house:pid:${meta.entityId}`;
@@ -134,11 +137,24 @@ export function buyHouse(ctx: SimContext, lotId: string, pid?: number): boolean 
   if (r.e.dead || r.e.ghost) return deny(ctx, id, lotId, 'dead');
   if (r.meta.house) return deny(ctx, id, lotId, 'owned');
   if (r.meta.accountHouseHolder !== undefined) return deny(ctx, id, lotId, 'account_owned');
+  // Server-side race close: another character of the account online right now
+  // already owns (or just bought) the house.
+  if (accountHouseSharer(ctx.players, r.meta)) return deny(ctx, id, lotId, 'account_owned');
   const door = { x: lot.doorPos.x, y: r.e.pos.y, z: lot.doorPos.z };
   if (dist2d(r.e.pos, door) > HOUSE_PURCHASE_RANGE) return deny(ctx, id, lotId, 'range');
   if (r.meta.copper < lot.priceCopper) return deny(ctx, id, lotId, 'money');
   r.meta.copper -= lot.priceCopper;
   r.meta.house = { lot: lot.id, boughtDay: ctx.resetDay, furniture: {}, storage: [] };
+  // Every online character of the same account shares the new house at once.
+  if (r.meta.accountHouseKey) {
+    for (const other of ctx.players.values()) {
+      if (other !== r.meta && other.accountHouseKey === r.meta.accountHouseKey) {
+        other.house = r.meta.house;
+        other.accountHouseHolder = undefined;
+        other.wireRev++;
+      }
+    }
+  }
   // Phase 2: a new owner knows the two starter Furnishing recipes outright
   // (the rest are taught at the toolworks), so the house is furnishable from
   // the day it is bought. Idempotent: knownRecipes is a set.

@@ -60,6 +60,12 @@ export interface HousingPlayerState {
    *  this one may not buy a second. Set at join from the server's account
    *  read (CharacterState.accountHouseHolder); never persisted. */
   accountHouseHolder?: string;
+  /** Runtime-only, host-supplied: the account this character's house belongs
+   *  to (`acct:<id>`). Every online character with the same key shares ONE
+   *  live HouseOwnership object (character_storage.ts restore, ownership.ts
+   *  buyHouse), so all of an account's characters enter, decorate and use the
+   *  same house and storage. Never persisted. */
+  accountHouseKey?: string;
   /** Runtime-only: the change signal for the owner-only `hst` wire key
    *  (bank.ts bankWireRev's twin): bumped by every write a houseStorageFor
    *  projection can observe (a deposit, a withdrawal, a chest placed or taken

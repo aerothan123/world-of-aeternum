@@ -28,7 +28,7 @@ import {
 } from '../src/world_api';
 import { sanitizeAppearance } from '../src/world_api/appearance';
 import { accountAdmissionsFor } from './account_admission';
-import { annotateAccountHouseHolder } from './account_house_migration';
+import { type AccountHouseForJoin, annotateAccountHouse } from './account_house_migration';
 import type { AccountMountItemsRow } from './account_mount_items_core';
 import type {
   AccountChatMuteStatus,
@@ -106,9 +106,9 @@ function rejectHandshake(ws: WebSocket, error: string): void {
 export interface WsAuthDeps {
   game: GameServer;
   getMembership?: (accountId: number) => Promise<MembershipAuthorization>;
-  /** One house per account: another character on this account and realm who
-   *  holds the house, or null (server/account_house_migration.ts). */
-  accountHouseHolder?: (accountId: number, characterId: number) => Promise<string | null>;
+  /** One house per account, shared by all its characters: the account's house
+   *  for a joining character (server/account_house_migration.ts). */
+  accountHouse?: (accountId: number, characterId: number) => Promise<AccountHouseForJoin>;
   referralArmourForAccount?: (accountId: number) => Promise<ReferralArmourEntitlement | null>;
   accountAndScopeForToken: (
     token: string,
@@ -580,8 +580,8 @@ export function createWsAuth(deps: WsAuthDeps): WsAuthHandlers {
                 rejectHandshake(ws, WS_AUTH_ERROR.forceRename);
                 return;
               }
-              await annotateAccountHouseHolder(
-                deps.accountHouseHolder,
+              await annotateAccountHouse(
+                deps.accountHouse,
                 accountId,
                 refreshedCharacter,
               );

@@ -64,6 +64,7 @@
 // Pure apart from the size signal: no pool, no clock of its own, the holder
 // injected, so the statement text is unit-testable
 // (tests/server/character_save_statement.test.ts).
+import { upsertAccountHouseFromSave } from './account_house_migration';
 import type { QueryResult } from 'pg';
 
 import {
@@ -371,11 +372,16 @@ export async function runFencedCharacterSave(
 ): Promise<FencedCharacterSave> {
   if (fence.kind === 'unleased') throw new Error(UNLEASED_ROUTING_REFUSAL);
   if (fence.kind !== 'nonce') {
-    return runPreimageCharacterSave(tx, characterId, level, stateJson, fence);
+    const saved = await runPreimageCharacterSave(tx, characterId, level, stateJson, fence);
+    if (saved.result.rowCount) await upsertAccountHouseFromSave(tx, characterId, stateJson);
+    return saved;
   }
   const locked = await tx.query(CHARACTER_SAVE_ROW_LOCK_SQL, [characterId, REALM]);
   const stmt = characterUpdateStatement(characterId, level, stateJson, fence);
   const result = await tx.query(stmt.text, stmt.values);
+  // One house per account: the shared house rides THIS transaction
+  // (server/account_house_migration.ts), only when the row landed.
+  if (result.rowCount) await upsertAccountHouseFromSave(tx, characterId, stateJson);
   return { result, before: readCharacterSavePreimage(locked.rows[0]) };
 }
 

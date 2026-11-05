@@ -132,6 +132,9 @@ export interface CharacterState extends ReferralRewardState {
   // omits it): the name of the character on this account who holds the
   // account's one house (server/account_house_join.ts). Absent offline.
   accountHouseHolder?: string;
+  // Host-supplied at join, NEVER written by a save: the account house key
+  // (`acct:<id>`) every character of the account shares its house under.
+  accountHouseKey?: string;
   // Life skills (src/sim/life_skills/life_skill_state.ts): the daily standing
   // ledger behind the per-activity caps. Absent until the first grant.
   lifeSkillStanding?: import('./life_skills/life_skill_state').LifeSkillStandingLedger;
