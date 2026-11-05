@@ -1,0 +1,8 @@
+tests/chapter_two_content.test.ts
+tests/quest_leveling_gear.test.ts
+tests/quest_reward_choice.test.ts
+tests/item_art_consistency.test.ts
+tests/item_icons.test.ts
+tests/progression.test.ts
+tests/localization_coverage.test.ts
+tests/chapter_one_content.test.ts

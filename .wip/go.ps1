@@ -22,6 +22,7 @@ foreach ($g in $Gen.Split(',')) {
   switch ($g) {
     'touchup' { node "$N\rebase_touchup.mjs" 2>&1 | Out-File $log -Append -Encoding utf8 }
     'tscbase' { Copy-Item "$N\logs\r7.tsc.log" "$N\logs\tsc_base.log" -Force }
+    'restoreqlg' { git restore --source=23bb449e --worktree -- src/sim/content/quest_leveling_gear.ts src/sim/content/quest_choice_rewards.ts 2>&1 | Out-File $log -Append -Encoding utf8 }
     'qlg' { cmd /c npx tsx scripts/quest_leveling_gear_gen.ts 2>&1 | Out-File $log -Append -Encoding utf8 }
     'icons' { node "$N\import_c1_icons.mjs" 2>&1 | Out-File $log -Append -Encoding utf8 }
     'media' { node scripts/build_media_manifest.mjs generate 2>&1 | Out-File $log -Append -Encoding utf8 }

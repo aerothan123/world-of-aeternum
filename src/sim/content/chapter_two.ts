@@ -279,7 +279,7 @@ export const CHAPTER_TWO_OBJECTS: GroundObjectDef[] = objects(2_147_210_000, [
       { x: -9, z: 224 },
       { x: -10, z: 233 },
       { x: -11, z: 240 },
-      { x: -4, z: 246 },
+      { x: -9, z: 247 },
       { x: -10, z: 255 },
     ],
   ],
