@@ -62,7 +62,8 @@ import {
 import { playerHoldsQuestItem } from './quest_item_presence';
 import { grantQuestRecipeReward, validateQuestRecipeReward } from './quest_recipe_rewards';
 import { defaultRewardChoice, questFixedReward, resolveRewardChoice } from './quest_reward_choice';
-import { questRewardXp } from './quest_xp';
+import { grantLifeSkillStanding } from '../life_skills/standing_seam';
+import { questLevelOf, questRewardXp } from './quest_xp';
 import { weeklyLockedQuestIds, weeklyQuestLockoutId } from './weekly_quest_lock';
 
 // Pure quest-state computation, shared by the sim and the network client. Relocated
@@ -551,6 +552,10 @@ export function turnInQuestCore(
   // authoritative and persisted per character with zero-default omission.
   if (quest.repeatCadenceTicks && quest.repeatCadenceTicks > 0) {
     armCadence(meta.questCadence, questId, ctx.tickCount, quest.repeatCadenceTicks);
+    // A crafter work order also pays Hearthwright standing (life_skills seam).
+    if (questId.startsWith('q_prof_workorder_')) {
+      grantLifeSkillStanding(ctx, meta, 'workOrder', questLevelOf(quest));
+    }
   }
   // A weekly quest locks until the realm's weekly reset (weekly_quest_lock.ts); a
   // daily one rides the same lock to the next daily reset.

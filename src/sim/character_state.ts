@@ -132,6 +132,9 @@ export interface CharacterState extends ReferralRewardState {
   // omits it): the name of the character on this account who holds the
   // account's one house (server/account_house_join.ts). Absent offline.
   accountHouseHolder?: string;
+  // Life skills (src/sim/life_skills/life_skill_state.ts): the daily standing
+  // ledger behind the per-activity caps. Absent until the first grant.
+  lifeSkillStanding?: import('./life_skills/life_skill_state').LifeSkillStandingLedger;
   // Player housing (Project H) phase 2: the Furnishing craft's skill counter
   // (off the ring, so off craftSkills). Absent at zero; sanitizeFurnishingSkill
   // is the one load path. Forward-only like `house`.

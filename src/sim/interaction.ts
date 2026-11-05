@@ -83,6 +83,7 @@ import {
 } from './types';
 import { talkToWeeklyKeeper } from './weekly_rewards';
 import { markWorldBossLooted } from './world_boss';
+import { tryContributeAtTownProject } from './life_skills/town_projects';
 import { forgeStationForEntity } from './world_quest_forging';
 import { isFarshoreSalvageEntity } from './world_quest_salvage';
 
@@ -632,6 +633,9 @@ export function interact(
   // Escort start: standing near an idle escortee whose quest this player has
   // active begins the walk (escort.ts picks the nearest eligible one).
   if (tryStartEscort(ctx, p, r.meta)) return;
+  // Town restoration (life_skills/town_projects.ts): standing at a project
+  // site, the press hands in one bundle of the current stage's materials.
+  if (tryContributeAtTownProject(ctx, r.meta, p)) return;
   let bestCorpse: Entity | null = null;
   let bestCorpseD2 = INTERACT_RANGE * INTERACT_RANGE;
   let bestObj: Entity | null = null;

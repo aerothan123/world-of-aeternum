@@ -11,6 +11,11 @@ import {
   sanitizeHouseState,
   savedHouseState,
 } from './housing/house_state';
+import {
+  type LifeSkillPlayerState,
+  sanitizeLifeSkillStanding,
+  savedLifeSkillStanding,
+} from './life_skills/life_skill_state';
 import { savedMaterialSlot } from './material_slot_load';
 import * as vaultMod from './materials_vault';
 import { BAG_SOCKETS, restoreMembershipBag } from './membership_bag_slot';
@@ -58,6 +63,7 @@ export function restoreCharacterStorage(
     );
   }
   meta.furnishingSkill = sanitizeFurnishingSkill(s.furnishingSkill);
+  meta.lifeSkillStanding = sanitizeLifeSkillStanding(s.lifeSkillStanding);
   // One house per account: the host names the holder when it is someone else.
   meta.accountHouseHolder =
     !meta.house && typeof s.accountHouseHolder === 'string' && s.accountHouseHolder !== ''
@@ -81,7 +87,9 @@ export function savedCharacterStorage(
   | 'membershipBag'
   | 'house'
   | 'furnishingSkill'
+  | 'lifeSkillStanding'
 > {
+  const lifeSkillStanding = savedLifeSkillStanding(meta.lifeSkillStanding);
   return {
     inventory: meta.inventory.map(savedMaterialSlot),
     bags: meta.bags.slice(0, BAG_SOCKETS),
@@ -101,11 +109,13 @@ export function savedCharacterStorage(
     ...(meta.house ? { house: savedHouseState(meta.house) } : {}),
     // Absent at zero (the Furnishing craft's own counter, Project H phase 2).
     ...(meta.furnishingSkill > 0 ? { furnishingSkill: meta.furnishingSkill } : {}),
+    // Absent until a life skill first pays standing (life_skills/life_skill_state.ts).
+    ...(lifeSkillStanding ? { lifeSkillStanding } : {}),
   };
 }
 
 /** Live storage owned by this load/save boundary. */
-export interface CharacterVaultStorageState extends HousingPlayerState {
+export interface CharacterVaultStorageState extends HousingPlayerState, LifeSkillPlayerState {
   // The per-character Materials Vault: a count per material id with a gold-bought
   // per-material ceiling. Capacity and move math live in materials_vault.ts.
   // Persisted (inside the character save, exactly like inventory/bags/bank).

@@ -53,6 +53,7 @@ import {
 } from './account';
 import { loadAccountBuddies } from './account_buddies_db';
 import { accountHouseHolderName } from './account_house_migration';
+import { TownProjectsStore } from './town_projects_store';
 import { loadAccountLedger } from './account_ledger_db';
 import { accountLedgerKeysFor } from './account_ledger_keys_cache';
 import { relicRecordsIdle } from './account_ledger_records';
@@ -3355,6 +3356,13 @@ export async function startServer(): Promise<http.Server> {
   // releases the deliberately silent-inert Phase 2 wire).
   await game.loadGuildBanks();
   await game.loadRifts();
+  // Town restoration projects: the realm-wide counters (server/town_projects_store.ts).
+  const townProjects = new TownProjectsStore(game.sim.ctx, REALM, {
+    load: (key) => loadWorldState(key),
+    save: (key, data) => saveWorldState(key, data),
+  });
+  await townProjects.load();
+  townProjects.start();
   await game.loadChatFilter();
   await game.realmMotd.load();
   await game.loadBlockedIps();
@@ -3812,6 +3820,8 @@ export async function startServer(): Promise<http.Server> {
     await game.saveMarket();
     await game.saveMail();
     await game.saveRifts();
+    townProjects.stop();
+    await townProjects.saveIfChanged();
     await game.endAllPlaySessions();
     // Drain any bank_ledger writes still queued on the FIFO tail BEFORE the lease
     // sweep: once the leases drop, a replacement process can load the same character

@@ -134,7 +134,7 @@ import { materialTierBonusForReagents } from './material_tier';
 import { isStationActive, partySharedStationSatisfies } from './mobile_station';
 import { PERFECTING_HEADSTART_RANK } from './perfecting';
 import { withPerfectingBonus } from './perfecting_bonus';
-import { craftActionXp } from './profession_xp';
+import { lifeSkillCraftXp } from '../life_skills/life_skill_xp';
 import { gainSecondaryCraftSkill } from './secondary_skill';
 import { isAtStation, stationTypeForCraft } from './stations';
 import type { ProfessionReagent, ProfessionRecipeRecord } from './types';
@@ -1412,8 +1412,13 @@ export function resolveCraftForRecipe(
     // lifetime XP contribution per character is a closed sum).
     const entity = ctx.entities.get(pid);
     if (entity) {
-      const xp = Math.round(
-        craftActionXp(recipe.level, entity.level) * (skillLearned / CRAFT_SKILL_GAIN),
+      // Fatigue on trivial recipes (life_skills/life_skill_xp.ts), anti-bot.
+      const xp = lifeSkillCraftXp(
+        meta,
+        ctx.time,
+        recipe.level,
+        entity.level,
+        skillLearned / CRAFT_SKILL_GAIN,
       );
       if (xp > 0) ctx.grantXp(xp, meta);
     }
