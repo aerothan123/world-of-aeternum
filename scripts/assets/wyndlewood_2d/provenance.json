@@ -1,4 +1,103 @@
 {
+  "public/textures/loading/crystal-delve.webp": {
+    "sheet": "wide_001",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "34c0563c-c872-4772-bc92-0f45ea05d561",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sweeping painted landscape of the crystal-delve, an adventure vista",
+    "masterSha256": "f38a75acf9f7e6156f4ba3c19da1c99013d386e503bec0f4bb676eda42273567"
+  },
+  "public/textures/loading/drakemaw-caldera.webp": {
+    "sheet": "wide_002",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "1b8bd23b-4f12-4e82-a678-8e5f9fe6b5c7",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sweeping painted landscape of the drakemaw-caldera, an adventure vista",
+    "masterSha256": "e3fcda4758f2f962948e32520719e62f6b062e2c1df6870e56dcb03467311540"
+  },
+  "public/textures/loading/duskmoor-eclipse.webp": {
+    "sheet": "wide_003",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "05ab126a-5319-4c32-91f4-5739e13451a8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sweeping painted landscape of the duskmoor-eclipse, an adventure vista",
+    "masterSha256": "6157c3e2c91aef8907046a6024b4702f5d7a35efeeb619375bf93832593d0992"
+  },
+  "public/textures/loading/eastbrook-mine-duel.webp": {
+    "sheet": "wide_004",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "e9f9f1d7-b979-46c1-adfe-625d06a9329b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sweeping painted landscape of the eastbrook-mine-duel, an adventure vista",
+    "masterSha256": "c00e16eaf7ed31ad363e3e617af0e11522bd268a0de7899856c8feea732f8661"
+  },
+  "public/textures/loading/eastbrook-square.webp": {
+    "sheet": "wide_005",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "c0c2c332-3028-4fb1-bb89-f992900d9c29",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sweeping painted landscape of the eastbrook-square, an adventure vista",
+    "masterSha256": "b619f2ef58c643e9231ee3c5768bbcc13ac8d24fce736544b095633c6fbf9972"
+  },
+  "public/textures/loading/fenbridge-march.webp": {
+    "sheet": "wide_006",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "1520ac35-d0f9-44de-845e-15a5247175ce",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sweeping painted landscape of the fenbridge-march, an adventure vista",
+    "masterSha256": "676f3f1af1ff6ed6d677c9a8709f3ffb4b0dd99812209886836872efa5258248"
+  },
+  "public/textures/loading/fenbridge-rain-skiff.webp": {
+    "sheet": "wide_007",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "06e9aacf-a6a7-4445-9565-674204e6c8b2",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sweeping painted landscape of the fenbridge-rain-skiff, an adventure vista",
+    "masterSha256": "2421ec0e656651ba029e5233f40b88a68ef22697c1e3d03600a26f45f3cfbbb0"
+  },
+  "public/textures/loading/hollow-crypt-empty.webp": {
+    "sheet": "wide_008",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "81bcf8de-e635-4ae9-ac62-901ee4886308",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sweeping painted landscape of the hollow-crypt-empty, an adventure vista",
+    "masterSha256": "025a0fae6a187d687c5e5c5788904f7a241f0a468d267f0b2ac7cdc34fdec15b"
+  },
+  "public/textures/loading/hollow-crypt-party.webp": {
+    "sheet": "wide_009",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "e75f15be-1e48-48cd-9934-0efcb2e7a570",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sweeping painted landscape of the hollow-crypt-party, an adventure vista",
+    "masterSha256": "7d47db306ceaa09932713025382c5e8979a2689d4f9a36dcbc39faa6313eaa33"
+  },
+  "public/textures/loading/thornpeak-storm.webp": {
+    "sheet": "wide_010",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "b95fa73c-c1cf-4c4f-8b38-a0dc284be8b3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sweeping painted landscape of the thornpeak-storm, an adventure vista",
+    "masterSha256": "1fb996a672bb1737621324ade10b2d9676672941677655f016ecfe40f84bd8f1"
+  },
+  "public/textures/loading/veiled-hollow-stag.webp": {
+    "sheet": "wide_011",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "986e3b54-d7fb-42b4-904d-812fd8d06e36",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sweeping painted landscape of the veiled-hollow-stag, an adventure vista",
+    "masterSha256": "7a692f0ce52e327335cd661410c1c113557d066a4fe823b4b7351d21c30cb21a"
+  },
   "public/ui/auras/affliction_doom.webp": {
     "sheet": "auras_001",
     "cell": 0,
@@ -4939,6 +5038,42 @@
     "model": "Tripo text-to-image, seedream_v4",
     "subject": "a glowing skull wreathed in wisps, a lingering magical effect",
     "masterSha256": "27673363d9dcfc8d6d0e913cfea0f94dd06a0e772ec12439efe1b714d11d666a"
+  },
+  "public/ui/dungeon-scenes/drowned-temple.webp": {
+    "sheet": "wide_012",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "c014b1ca-7dab-46b0-bb86-5cf5ad97891b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a wide painted view into the drowned-temple",
+    "masterSha256": "4c0cf67f79666d1f34a78994e47f56995d8e28a00dc6908eeffc2ff818faa59c"
+  },
+  "public/ui/dungeon-scenes/gravewyrm-sanctum.webp": {
+    "sheet": "wide_013",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "875d5073-3a74-4807-96f4-43efd302cba7",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a wide painted view into the gravewyrm-sanctum",
+    "masterSha256": "2416191beb16c58aedd2545c5ec2a7885e598524e46a9ad41c95367fee51d709"
+  },
+  "public/ui/dungeon-scenes/sunken-bastion.webp": {
+    "sheet": "wide_014",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "1c23361a-c0a1-445e-9a89-547498220ee9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a wide painted view into the sunken-bastion",
+    "masterSha256": "af76a2b68f9c5f9143f0f58c97c399b012ad58a5a721d4310fb853077e5d6b39"
+  },
+  "public/ui/dungeon-scenes/wildheart-basin.webp": {
+    "sheet": "wide_015",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "dbad7ac2-8e1c-457f-b9bf-fe17e8904bc9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a wide painted view into the wildheart-basin",
+    "masterSha256": "90aef8ea60b4f52ab0f49135a2ec29b5e1148d8ceafdb1cbe2594e36f8ede5bc"
   },
   "public/ui/dungeons/bound_guardian.webp": {
     "sheet": "misc_004",
@@ -25739,6 +25874,33 @@
     "subject": "portrait of a buddy sprites companion",
     "masterSha256": "421ee72e7750c047958dc2c678fdf5ab96fb782159a902f56518bbbfa66f2007"
   },
+  "public/ui/procs/chronomancy-phoenix-v2.webp": {
+    "sheet": "wide_016",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "791dce29-dbc6-456a-b8c6-717800092dd8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a chronomancy-phoenix-v2 spirit bird with spread wings, alone on a plain dark slate backdrop",
+    "masterSha256": "a82fb81883efe25982cd55b4c34956cd6a44f300707a3370d2bb8e5405bf2532"
+  },
+  "public/ui/procs/fire-phoenix-v2.webp": {
+    "sheet": "wide_017",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "11d0ca23-38fa-46eb-8f5c-0bd3fb40b36c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a fire-phoenix-v2 spirit bird with spread wings, alone on a plain dark slate backdrop",
+    "masterSha256": "b670fd79840ac61c258159dc5836e7e0a19c04ab7233bd9200dfd9c360125a7d"
+  },
+  "public/ui/procs/frost-phoenix-v1.webp": {
+    "sheet": "wide_018",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "5f5f03ba-a389-45cb-b1c3-a5659292a222",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a frost-phoenix-v1 spirit bird with spread wings, alone on a plain dark slate backdrop",
+    "masterSha256": "9d74b07a5db891b99ad3ffe84da8e65dda0acc93c24686e476b2cf2a3eb55623"
+  },
   "public/ui/professions/archetype_apothecary.webp": {
     "sheet": "misc_011",
     "cell": 5,
@@ -30716,6 +30878,51 @@
     "subject": "a glowing round shield, a lingering magical effect, in a glowing ring",
     "masterSha256": "a04eb84a530dd79b9e13bb9667c95189cbb4bb252ac4b7e0aebc0fb0d934b48b"
   },
+  "public/ui/weekly-vault/closed.webp": {
+    "sheet": "wide_023",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "81deeb2a-36df-4fe3-9127-f063c93508ce",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a square iron vault door, closed, alone on a plain dark slate backdrop",
+    "masterSha256": "5c567b3f1a5cd159273c8830310efa28140c88f2857c5774b5896617ec2739ef"
+  },
+  "public/ui/weekly-vault/heroic.webp": {
+    "sheet": "wide_024",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "d76f381d-f9c8-496c-9778-f873261a3727",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a square iron vault door, heroic, alone on a plain dark slate backdrop",
+    "masterSha256": "e8b8abbe06741c489c252f430d68c76577c6dfd1e2203c3425a45c97c3878d86"
+  },
+  "public/ui/weekly-vault/normal.webp": {
+    "sheet": "wide_025",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "c889f724-dff8-473e-bd49-4b7c33da5551",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a square iron vault door, normal, alone on a plain dark slate backdrop",
+    "masterSha256": "a8e74281263fef5643874cccff7c9679b74674ac59f797870464a7dc197d323c"
+  },
+  "public/ui/weekly/battlegrounds.webp": {
+    "sheet": "wide_019",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "97b46572-7fce-4852-a9c9-f67b09678cbb",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a wide painted scene of battlegrounds adventure",
+    "masterSha256": "5bbf14231cc905ebb2039d5efbf497466c9d77a4096d2a68184b0ef22320cbf6"
+  },
+  "public/ui/weekly/dungeons.webp": {
+    "sheet": "wide_020",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "a8b4d832-31ed-49ac-aedd-bdd46b0174b0",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a wide painted scene of dungeons adventure",
+    "masterSha256": "af772aba2568d71f98bebe2ac5af332527b2ea3b1490596cac07101c9fa3176d"
+  },
   "public/ui/weekly/emissary.webp": {
     "sheet": "misc_014",
     "cell": 15,
@@ -30761,6 +30968,60 @@
     "subject": "a medal for worldboss",
     "masterSha256": "d5ef71a826c4c29be43091b3ab962b5c59db778bf2d2b9e8b4af676b146370c3"
   },
+  "public/ui/weekly/raid.webp": {
+    "sheet": "wide_021",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "d05b7061-b83e-407d-b90b-cfd30d6bdefe",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a wide painted scene of raid adventure",
+    "masterSha256": "cb0462add6866d7968a80b9207d29ab1926a2b3198c318172966e7a3a338a8aa"
+  },
+  "public/ui/weekly/worldboss.webp": {
+    "sheet": "wide_022",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "620bfa78-a2d0-4422-9596-aeb56523466a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a wide painted scene of worldboss adventure",
+    "masterSha256": "fcebff6fb0a3d34bbbec7732645db99f6973415f51e681d4da580dd6f2e868df"
+  },
+  "public/ui/world-quests/leaderboard/barricade.webp": {
+    "sheet": "wide_026",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "2f1a411b-94fd-41f1-b955-3bcb5e737c6b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a wide painted scene of barricade",
+    "masterSha256": "551cc0ca54f8cd38aaba3ce8b6f236713e0e36399db45407267ba0c9b1de54b9"
+  },
+  "public/ui/world-quests/leaderboard/calligraphy.webp": {
+    "sheet": "wide_027",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "b5730e51-7e14-49b4-95b9-4127accc5e79",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a wide painted scene of calligraphy",
+    "masterSha256": "fa9b331cae65e5b85f2850f04b9082b7de8c06a96ebf6eb339621c16bb15a564"
+  },
+  "public/ui/world-quests/leaderboard/forge.webp": {
+    "sheet": "wide_028",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "d122a0fa-1d52-491c-a318-b6263df0c4ee",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a wide painted scene of forge",
+    "masterSha256": "c15ec625f52c4a273794505b24e7a40dd45aafe4d38d165ec5232cd07b49abc8"
+  },
+  "public/ui/world-quests/leaderboard/last_keep_cannon.webp": {
+    "sheet": "wide_029",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "e72e5143-57d6-4dc7-b4b0-3bad668a28fe",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a wide painted scene of last keep cannon",
+    "masterSha256": "a36e29bf18a6b92d706082142531d5da5f7b83086c80a338e41551f7cf04d457"
+  },
   "public/ui/world-quests/leaderboard/medal_bronze.webp": {
     "sheet": "misc_015",
     "cell": 4,
@@ -30787,5 +31048,23 @@
     "model": "Tripo text-to-image, seedream_v4",
     "subject": "a silver medal",
     "masterSha256": "99313785e00eb9837b58c3bb88198f9f6f6f3c589418218149af27a33f0ae34a"
+  },
+  "public/ui/world-quests/leaderboard/north_watch_cannon.webp": {
+    "sheet": "wide_030",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "1f1a0fc1-77dc-4c4f-ac45-2857dd161d60",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a wide painted scene of north watch cannon",
+    "masterSha256": "19cf3544f5bf08d7ea0407cc1f0f744205dfa61bbf6be55074d9bcb11b6b4f9b"
+  },
+  "public/ui/world-quests/leaderboard/slalom.webp": {
+    "sheet": "wide_031",
+    "cell": 0,
+    "grid": 1,
+    "taskId": "c62eb732-097a-4a8d-8b39-9405839a21be",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a wide painted scene of slalom",
+    "masterSha256": "b4fd24269162d16aba9ce508f3e59477345f23ff50ac33ae5f6af75b97acb7da"
   }
 }
