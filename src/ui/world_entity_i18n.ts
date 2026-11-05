@@ -934,6 +934,14 @@ const QUEST_IDS = [
   'c1_d10_quay_posts',
   'c1_d11_light_behind',
   'c1_d12_road_not_rumor',
+  // Wyndlewood Chapter Two's core quests (content/chapter_two.ts). Its Southern
+  // Reaches quests join this list when their zones merge.
+  'c2_01_ship_sank_twice',
+  'c2_03_bells_from_steps',
+  'c2_12_door_we_left_shut',
+  'c2_28_remembered_roofs',
+  'c2_32_bridge_fenbridge_trusts',
+  'c2_33_paddy_work_fog',
 ] as const;
 
 const ZONE_IDS = [

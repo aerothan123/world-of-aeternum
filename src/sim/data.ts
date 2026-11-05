@@ -23,6 +23,13 @@ import {
   chapterOneNpcQuestIds,
   TOWN_BOARD_QUESTS,
 } from './content/chapter_one';
+import {
+  applyChapterTwoReaches,
+  CHAPTER_TWO_ITEMS,
+  CHAPTER_TWO_OBJECTS,
+  CHAPTER_TWO_QUESTS,
+  chapterTwoNpcQuestIds,
+} from './content/chapter_two';
 import { BASE_ITEMS } from './content/items';
 import {
   isAuthoredMapPresentation,
@@ -512,6 +519,8 @@ export const ITEMS: Record<string, ItemDef> = mergeItems(
   FURNITURE_ITEMS,
   // Wyndlewood Chapter One's quest items and inspected objects (content/chapter_one.ts).
   CHAPTER_ONE_ITEMS,
+  // Wyndlewood Chapter Two's core quest items and objects (content/chapter_two.ts).
+  CHAPTER_TWO_ITEMS,
 );
 
 export type { AggregatedSetEffect } from './content/item_sets';
@@ -671,15 +680,19 @@ export const QUESTS: Record<string, QuestDef> = {
   // Wyndlewood Chapter One and the Eastbrook quest board (content/chapter_one.ts).
   ...CHAPTER_ONE_QUESTS,
   ...TOWN_BOARD_QUESTS,
+  // Wyndlewood Chapter Two's core quests (content/chapter_two.ts).
+  ...CHAPTER_TWO_QUESTS,
 };
 
 // The chapter's quests ride their givers', turn-ins' and talk targets'
 // questIds lists (a town-board posting sits on its poster for the turn-in row
 // only, quests/quest_marker_kind.ts).
-for (const [npcId, questIds] of Object.entries(chapterOneNpcQuestIds())) {
-  const npc = NPCS[npcId];
-  if (!npc) continue;
-  for (const questId of questIds) if (!npc.questIds.includes(questId)) npc.questIds.push(questId);
+for (const lists of [chapterOneNpcQuestIds(), chapterTwoNpcQuestIds()]) {
+  for (const [npcId, questIds] of Object.entries(lists)) {
+    const npc = NPCS[npcId];
+    if (!npc) continue;
+    for (const questId of questIds) if (!npc.questIds.includes(questId)) npc.questIds.push(questId);
+  }
 }
 
 // The choose-one leveling gear rides on the quest records (QuestDef.choiceRewards),
@@ -714,6 +727,7 @@ export const QUEST_ORDER: string[] = [
   // Wyndlewood Chapter One and the Eastbrook quest board, appended last.
   ...Object.keys(CHAPTER_ONE_QUESTS),
   ...Object.keys(TOWN_BOARD_QUESTS),
+  ...Object.keys(CHAPTER_TWO_QUESTS),
 ];
 
 // The owner's Quest Workshop quests (content/workshop_quests.generated.ts, a
@@ -835,6 +849,8 @@ export const GROUND_OBJECTS: GroundObjectDef[] = [
   ...WORLD_QUEST_OBJECTS,
   // Wyndlewood Chapter One's objects (reserved high entity ids, content/chapter_one.ts).
   ...CHAPTER_ONE_OBJECTS,
+  // Wyndlewood Chapter Two's core objects (reserved high entity ids, content/chapter_two.ts).
+  ...CHAPTER_TWO_OBJECTS,
 ];
 
 // The content table itself (deep-frozen there), so every reader resolves a
@@ -1120,6 +1136,21 @@ export const ZONES: ZoneDef[] = [
   FARSHORE_ZONE,
   PROVING_SHORE_ZONE,
 ];
+
+// Wyndlewood Chapter Two's Southern Reaches quests (content/chapter_two.ts):
+// merged, appended last, only when the zone table carries their zones (the
+// world crew's feature/world-expansion row). Without those zones nothing of
+// the bundle exists and the core chapter plays around it.
+applyChapterTwoReaches({
+  zoneIds: ZONES.map((zone) => zone.id),
+  items: ITEMS,
+  mobs: MOBS,
+  npcs: NPCS,
+  quests: QUESTS,
+  questOrder: QUEST_ORDER,
+  camps: CAMPS,
+  objects: GROUND_OBJECTS,
+});
 
 export const WORLD_SIZE = 360; // the original strip's width (one grid column)
 // A zone without an explicit x-range spans the original strip column.
