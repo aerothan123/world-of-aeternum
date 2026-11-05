@@ -23,10 +23,9 @@ import type { SimEvent } from '../src/sim/types';
 
 const LOT_A = HOUSE_LOTS[0].id;
 const LOT_B = HOUSE_LOTS[1].id;
-const STORABLE = Object.keys(ITEMS).filter((id) => {
-  const def = ITEMS[id];
-  return def.kind === 'material' || def.kind === 'food';
-});
+const STORABLE = ['copper_ore', 'iron_ore', 'ashwood_log', 'spider_silk', 'rough_hide'].filter(
+  (id) => ITEMS[id] !== undefined,
+);
 
 /** A random saved house: some anchors furnished (a chest first when any), some
  *  stored stacks. Deterministic from the Rng. */
