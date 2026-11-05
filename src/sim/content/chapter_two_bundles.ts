@@ -12,12 +12,14 @@ import {
   type ChapterTwoBundle,
   type ChapterTwoGatedTables,
 } from './chapter_two';
+import { CHAPTER_TWO_CHALKBARROW } from './chapter_two_chalkbarrow';
 import { CHAPTER_TWO_KINDLEMOOR } from './chapter_two_kindlemoor';
 
 /** Every gated bundle, in merge order (appended last, so no shipped id moves). */
 export const CHAPTER_TWO_GATED_BUNDLES: readonly ChapterTwoBundle[] = Object.freeze([
   CHAPTER_TWO_REACHES,
   CHAPTER_TWO_KINDLEMOOR,
+  CHAPTER_TWO_CHALKBARROW,
 ]);
 
 /** Merge every bundle whose zones are live. Returns the merged bundles. */
