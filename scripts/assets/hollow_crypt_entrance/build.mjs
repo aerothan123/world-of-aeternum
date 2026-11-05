@@ -1,5 +1,8 @@
-// Ship the Blender-authored Fallen Chapel, the Hollow Crypt's world entrance
-// (docs/design/dungeon-rework/entrance/build_crypt_entrance.py). Four GLBs
+// Ship the Fallen Chapel, the Hollow Crypt's world entrance, as Wyndlewood
+// builds it: scripts/assets/hollow_crypt_entrance/wyn_chapel.mjs authors the
+// four raw GLBs in code from the sim's own collider table and terrain (an
+// original design; the earlier Blender build this replaced is no longer an
+// input). Four GLBs
 // share one origin, the door at its terrain height: the south gable with the
 // crypt stair-house and the nave's furnishings, the nave walls with the
 // chancel and the apse, the churchyard (headstones, lychgate, yard walls, the
@@ -68,10 +71,8 @@ export function sourceFingerprint(root = ROOT) {
   // The Blender output is a local intermediate (reproducible from the Python
   // sources and the sim's own terrain), so the fingerprint covers the sources.
   for (const file of [
-    'docs/design/dungeon-rework/kit/hckit.py',
-    'docs/design/dungeon-rework/entrance/entrance_common.py',
-    'docs/design/dungeon-rework/entrance/crypt_ruin_kit.py',
-    'docs/design/dungeon-rework/entrance/build_crypt_entrance.py',
+    'scripts/assets/hollow_crypt_entrance/wyn_chapel.mjs',
+    'src/sim/hollow_crypt_entrance.ts',
     'scripts/assets/hollow_crypt_entrance/build.mjs',
   ]) {
     hash
@@ -97,19 +98,19 @@ export async function buildAsset(asset, root = ROOT) {
     .sort();
   const expected = [asset.root, ...asset.pieces].sort();
   if (JSON.stringify(names) !== JSON.stringify(expected)) {
-    throw new Error(`Unexpected Blender nodes in ${asset.source}: ${names.join(', ')}`);
+    throw new Error(`Unexpected nodes in ${asset.source}: ${names.join(', ')}`);
   }
   const materials = gltf
     .listMaterials()
     .map((material) => material.getName())
     .sort();
   if (JSON.stringify(materials) !== JSON.stringify(asset.materials)) {
-    throw new Error(`Unexpected Blender materials in ${asset.source}: ${materials.join(', ')}`);
+    throw new Error(`Unexpected materials in ${asset.source}: ${materials.join(', ')}`);
   }
   if (gltf.listAnimations().length || gltf.listCameras().length || gltf.listTextures().length) {
     throw new Error('Only static texture-free geometry may ship');
   }
-  gltf.setExtras({ sourceFingerprint: sourceFingerprint(root), authoring: 'Blender' });
+  gltf.setExtras({ sourceFingerprint: sourceFingerprint(root), authoring: 'wyn_chapel.mjs' });
   await doc.transform(
     prune({ keepExtras: true }),
     dedup(),

@@ -1,5 +1,5 @@
 // The Fallen Chapel's shipping GLBs (scripts/assets/hollow_crypt_entrance/build.mjs,
-// authored by docs/design/dungeon-rework/entrance/build_crypt_entrance.py):
+// authored in code by scripts/assets/hollow_crypt_entrance/wyn_chapel.mjs):
 // exact bytes, the live authoring fingerprint, the media manifest rows, the
 // Blender nodes and materials the runtime keys on, and the landmark budget
 // (texture free, vertex colour only, meshopt; under 51,000 triangles and one
@@ -23,27 +23,27 @@ const ROOT = path.join(__dirname, '..');
 
 const PINS: Record<string, { sha: string; bytes: number; triangles: number; maxBytes: number }> = {
   'public/models/props/hollow_crypt_entrance.glb': {
-    sha: 'c8e93bc63e0f2695fa6c63f491a1c9a5022d45ba898f082d9175c306083beecb',
-    bytes: 475560,
-    triangles: 24740,
+    sha: 'cd8a167f22aa0816ec4ae53d9d46601f25dda25d5cc4b80a2068abbbe51a495c',
+    bytes: 121304,
+    triangles: 15860,
     maxBytes: 480 * 1024,
   },
   'public/models/props/hollow_crypt_entrance_walls.glb': {
-    sha: 'b834314b5a8a7d1d2f1f4d8035837d25d7f53b7749c77bbcf63acb0a9b095e42',
-    bytes: 208176,
-    triangles: 9605,
+    sha: '9c2fd27e907899e811150482b864feb784bc801269bf9d524441696f7160a60c',
+    bytes: 89780,
+    triangles: 13190,
     maxBytes: 240 * 1024,
   },
   'public/models/props/hollow_crypt_entrance_props.glb': {
-    sha: 'ecc3ee3ea99fdc07664ef1ff813ce7fdf73cd5b43c3ec27f68cdfeb62458c0fb',
-    bytes: 104104,
-    triangles: 6134,
+    sha: '9f20d863ede44b886587835e5a35c5af9a3e471143cb630bab1a9540b2d1676d',
+    bytes: 57616,
+    triangles: 7324,
     maxBytes: 130 * 1024,
   },
   'public/models/props/hollow_crypt_entrance_growth.glb': {
-    sha: 'd24dac1186a3674131a18e838d99b1b89cbfdf1564a5c959d90ed3fa808c86be',
-    bytes: 132100,
-    triangles: 10197,
+    sha: '41fd596c131d14a734d6f375ddb38d9ab238f25ae1a214319d6a023f558a0199',
+    bytes: 44848,
+    triangles: 3988,
     maxBytes: 160 * 1024,
   },
 };
