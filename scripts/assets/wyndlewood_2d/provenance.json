@@ -1169,6 +1169,3210 @@
     "subject": "a coiling cloud of dark purple shadow, a lingering magical effect, over a battlefield",
     "masterSha256": "2e005f9de9de1803baba2fb1169ea464aa4c19f65799fabf638239ffd744e2be"
   },
+  "public/ui/deeds/chr_amberfall_first_cast.webp": {
+    "sheet": "deeds_001",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "7eebf8ad-5814-43bd-beca-0d5f1e405d5f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a leaping fish, softly lit on a warm painted background",
+    "masterSha256": "6b4fcc09a39cf0a59f6c7bfbcd7c7149b6729e9fb47d873cfc59c4b5e0084aa3"
+  },
+  "public/ui/deeds/chr_amberfall_gatherer.webp": {
+    "sheet": "deeds_001",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "7eebf8ad-5814-43bd-beca-0d5f1e405d5f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background",
+    "masterSha256": "2955a1b4772f4ce0bb88981f95bba9ecea502e8e3a577cbc4d3d4e6ebf183400"
+  },
+  "public/ui/deeds/chr_drakemaw_broodlord.webp": {
+    "sheet": "deeds_001",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "7eebf8ad-5814-43bd-beca-0d5f1e405d5f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background",
+    "masterSha256": "c01315c44bc29f3e8054e219a5f62ae08b2d91fe63623b9f80380444bb3fc055"
+  },
+  "public/ui/deeds/chr_evergarden_first_cast.webp": {
+    "sheet": "deeds_001",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "7eebf8ad-5814-43bd-beca-0d5f1e405d5f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a leaping fish, softly lit on a warm painted background, seen up close",
+    "masterSha256": "5d689ee9823ca180db07b5398c853b6f137dd1e8a11218589d2408ee851170ae"
+  },
+  "public/ui/deeds/chr_evergarden_first_harvest.webp": {
+    "sheet": "deeds_001",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "7eebf8ad-5814-43bd-beca-0d5f1e405d5f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, seen up close",
+    "masterSha256": "2d8debee32d6cc2d81d15f6c28ac35bd5969d54884004bbe4f490953e5ec9163"
+  },
+  "public/ui/deeds/chr_evergarden_gatherer.webp": {
+    "sheet": "deeds_001",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "7eebf8ad-5814-43bd-beca-0d5f1e405d5f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "d5be1033e3f44efc5bcf7725bb9680938c24d64375472701664a2d1e0321c937"
+  },
+  "public/ui/deeds/chr_farshore_first_cast.webp": {
+    "sheet": "deeds_001",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "7eebf8ad-5814-43bd-beca-0d5f1e405d5f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a leaping fish, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "11de7cda7112c3fda13eca1dfc4748d0171f64ddea2519cde79d2f1c406fb97f"
+  },
+  "public/ui/deeds/chr_farshore_gatherer.webp": {
+    "sheet": "deeds_001",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "7eebf8ad-5814-43bd-beca-0d5f1e405d5f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, rising upward",
+    "masterSha256": "24468f5dfc13a5696da5d92222e61fa1f9b8de514f5920a7c8faacb0dcc0527f"
+  },
+  "public/ui/deeds/chr_frostveil_first_cast.webp": {
+    "sheet": "deeds_001",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "7eebf8ad-5814-43bd-beca-0d5f1e405d5f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a leaping fish, softly lit on a warm painted background, rising upward",
+    "masterSha256": "b6a44fb36047f6d675d427175988e5f6d45598f800f05e4b5c6aa751d4db320e"
+  },
+  "public/ui/deeds/chr_frostveil_gatherer.webp": {
+    "sheet": "deeds_001",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "7eebf8ad-5814-43bd-beca-0d5f1e405d5f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, twin",
+    "masterSha256": "282e96be79577a4d709588fb37a8c9b87b2ad6acb62c0b9d1bede5b3668b29c0"
+  },
+  "public/ui/deeds/chr_galecrest_first_cast.webp": {
+    "sheet": "deeds_001",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "7eebf8ad-5814-43bd-beca-0d5f1e405d5f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a leaping fish, softly lit on a warm painted background, twin",
+    "masterSha256": "0697284b2be9de2eefa90d849735a00e4dd4f6ef0d6355930a69ca6b846bbf49"
+  },
+  "public/ui/deeds/chr_galecrest_gatherer.webp": {
+    "sheet": "deeds_001",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "7eebf8ad-5814-43bd-beca-0d5f1e405d5f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "a6559b492edd9d8a2d0ae8370792140a0d26cf38ea9405b5e1e08a10b3882caa"
+  },
+  "public/ui/deeds/chr_gleamstag.webp": {
+    "sheet": "deeds_001",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "7eebf8ad-5814-43bd-beca-0d5f1e405d5f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, seen up close",
+    "masterSha256": "29ddb2851151f9a4a29cfcdbad3c9a5e42ad8173eb731d317e8431720f295df6"
+  },
+  "public/ui/deeds/chr_hollow_rares.webp": {
+    "sheet": "deeds_001",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "7eebf8ad-5814-43bd-beca-0d5f1e405d5f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "a882f92fff71f13342e6a7ff6fd2e01fade48d9b0215dc2bb3a615db28ef6392"
+  },
+  "public/ui/deeds/chr_marsh_chapter_i.webp": {
+    "sheet": "deeds_001",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "7eebf8ad-5814-43bd-beca-0d5f1e405d5f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open storybook, softly lit on a warm painted background",
+    "masterSha256": "69fd032d7a13942059e92f3ae8321d50f31c9b9963e19ecaa86b176a60e8cc39"
+  },
+  "public/ui/deeds/chr_marsh_chapter_ii.webp": {
+    "sheet": "deeds_001",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "7eebf8ad-5814-43bd-beca-0d5f1e405d5f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open storybook, softly lit on a warm painted background, seen up close",
+    "masterSha256": "27e5ed83af8e7bb9c0c744f501110bc1dc2296f1cd8bf54c2dacb8f4d2c737a3"
+  },
+  "public/ui/deeds/chr_marsh_chapter_iii.webp": {
+    "sheet": "deeds_002",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "6459c09d-7415-4c89-bd60-c8510de29f02",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, rising upward",
+    "masterSha256": "cb8de4fd2db634a90717096b5f86e03531cbf0c6070e8463e1d4a9d563a40ce6"
+  },
+  "public/ui/deeds/chr_marsh_first_cast.webp": {
+    "sheet": "deeds_002",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "6459c09d-7415-4c89-bd60-c8510de29f02",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a leaping fish, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "2341ea35787f3777b189ceab3c4760a9b9679e33674577061c35b18b09b23cfb"
+  },
+  "public/ui/deeds/chr_marsh_first_harvest.webp": {
+    "sheet": "deeds_002",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "6459c09d-7415-4c89-bd60-c8510de29f02",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "2dec03883881f311519907d712efebb9f4a156b7118aaec955de9dac17f6c87c"
+  },
+  "public/ui/deeds/chr_marsh_gatherer.webp": {
+    "sheet": "deeds_002",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "6459c09d-7415-4c89-bd60-c8510de29f02",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "dd73a020a5af056744f3a6ebbeec91da3b9f64921d372e9b1504f63a7e7d760d"
+  },
+  "public/ui/deeds/chr_marsh_hush_the_mending.webp": {
+    "sheet": "deeds_002",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "6459c09d-7415-4c89-bd60-c8510de29f02",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background",
+    "masterSha256": "378dd1f710599c0669b613b872300dded20033149461d5998a02b0003f445da6"
+  },
+  "public/ui/deeds/chr_marsh_rares.webp": {
+    "sheet": "deeds_002",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "6459c09d-7415-4c89-bd60-c8510de29f02",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, twin",
+    "masterSha256": "366bc70b959176f2bbdf34711615fd1d588cd09af38e7a5deac501640cf73e8d"
+  },
+  "public/ui/deeds/chr_marsh_rares_ii.webp": {
+    "sheet": "deeds_002",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "6459c09d-7415-4c89-bd60-c8510de29f02",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "f60f7dd6abf402d9aee8e39a0b7bbfa9820ed75d72ee16cab0ea51b8c146c4d5"
+  },
+  "public/ui/deeds/chr_marsh_unburst.webp": {
+    "sheet": "deeds_002",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "6459c09d-7415-4c89-bd60-c8510de29f02",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, seen up close",
+    "masterSha256": "16f2d8b64599f54eb53d0bfe67abeb35691433e1dd5794a67854a990116b184f"
+  },
+  "public/ui/deeds/chr_maw_matriarch.webp": {
+    "sheet": "deeds_002",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "6459c09d-7415-4c89-bd60-c8510de29f02",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "4dc00bbf3a483ff376de8c897dd960f6ad4271188ac53bb2631381aa18929018"
+  },
+  "public/ui/deeds/chr_nightbloom_first_cast.webp": {
+    "sheet": "deeds_002",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "6459c09d-7415-4c89-bd60-c8510de29f02",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a leaping fish, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "dc6a7915c90ccdfe51b149d91eaa7338310b4d86520180bc0bb9adceee15e8cc"
+  },
+  "public/ui/deeds/chr_nightbloom_gatherer.webp": {
+    "sheet": "deeds_002",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "6459c09d-7415-4c89-bd60-c8510de29f02",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, at dusk",
+    "masterSha256": "35dfcd210a73f00056d9359933e2dac0761447b3fb7918b9e8743281afcb3ea5"
+  },
+  "public/ui/deeds/chr_palmreach_first_cast.webp": {
+    "sheet": "deeds_002",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "6459c09d-7415-4c89-bd60-c8510de29f02",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a leaping fish, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "734626edec86158363397d0f2eae19d351069d4128d50d55581ff3ed26aa2c7f"
+  },
+  "public/ui/deeds/chr_palmreach_gatherer.webp": {
+    "sheet": "deeds_002",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "6459c09d-7415-4c89-bd60-c8510de29f02",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, cracking the ground",
+    "masterSha256": "2ba8341f9fe285a9dc14cd4fa7d66eea2bb24088cc77d094e725494655b81316"
+  },
+  "public/ui/deeds/chr_peaks_chapter_i.webp": {
+    "sheet": "deeds_002",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "6459c09d-7415-4c89-bd60-c8510de29f02",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open storybook, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "fe2ed5ef73908969881ad2e22247df3ab64353bfb87c26ef8aad9181452eb937"
+  },
+  "public/ui/deeds/chr_peaks_chapter_ii.webp": {
+    "sheet": "deeds_002",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "6459c09d-7415-4c89-bd60-c8510de29f02",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open storybook, softly lit on a warm painted background, rising upward",
+    "masterSha256": "40355f85e15dced9d6d334bf733016856fcdca9762c0c01ec5ee2f47f409bff3"
+  },
+  "public/ui/deeds/chr_peaks_chapter_iii.webp": {
+    "sheet": "deeds_002",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "6459c09d-7415-4c89-bd60-c8510de29f02",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "3006cd486055f0bd11a3144968cf1a3867350cf57304246e0160ee3d4a626974"
+  },
+  "public/ui/deeds/chr_peaks_first_harvest.webp": {
+    "sheet": "deeds_003",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "83c9587c-c82b-46db-ba51-60a6c215e3e3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, with drifting sparks",
+    "masterSha256": "326d3d98949d5de818015c31b5b718cd4555d9b476010a2d636eff2dd9b6edce"
+  },
+  "public/ui/deeds/chr_peaks_gatherer.webp": {
+    "sheet": "deeds_003",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "83c9587c-c82b-46db-ba51-60a6c215e3e3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, in a beam of light",
+    "masterSha256": "3f9bfd15a2596c2b0b6d886942f36f08c70b9402705189fdc62f3b2684fd97b0"
+  },
+  "public/ui/deeds/chr_peaks_glimmer_cast.webp": {
+    "sheet": "deeds_003",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "83c9587c-c82b-46db-ba51-60a6c215e3e3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a leaping fish, softly lit on a warm painted background, at dusk",
+    "masterSha256": "d7164e71a71e91e6741a87fbf317934f17294af6e3bdb163d935cee907ddfb3a"
+  },
+  "public/ui/deeds/chr_peaks_moongate.webp": {
+    "sheet": "deeds_003",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "83c9587c-c82b-46db-ba51-60a6c215e3e3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "9c8ee36b05e2121399aea4c8cefef8df88be4091511dc7fd531a67fbd5ac4043"
+  },
+  "public/ui/deeds/chr_peaks_rares.webp": {
+    "sheet": "deeds_003",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "83c9587c-c82b-46db-ba51-60a6c215e3e3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, rising upward",
+    "masterSha256": "30d21e1f809c2d790bb5198733fde44f1dfb782d769e66362fb0f56168c7c492"
+  },
+  "public/ui/deeds/chr_peaks_rares_ii.webp": {
+    "sheet": "deeds_003",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "83c9587c-c82b-46db-ba51-60a6c215e3e3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, twin",
+    "masterSha256": "c1ab765c9679610364067e17dd7f17ef8a36afc6460b0858cc1bb55dfddd714c"
+  },
+  "public/ui/deeds/chr_peaks_sparring.webp": {
+    "sheet": "deeds_003",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "83c9587c-c82b-46db-ba51-60a6c215e3e3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open storybook, softly lit on a warm painted background, twin",
+    "masterSha256": "3d1377f12411cc2af5fe0191d589b9296e7d352bc52f99ccab7bed817cce3fa5"
+  },
+  "public/ui/deeds/chr_peaks_waking_witness.webp": {
+    "sheet": "deeds_003",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "83c9587c-c82b-46db-ba51-60a6c215e3e3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open storybook, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "d69c49393d8f8e1018e633e3c864c59b3caca6c476dca1bb944a4de870b3a54b"
+  },
+  "public/ui/deeds/chr_vale_chapter_i.webp": {
+    "sheet": "deeds_003",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "83c9587c-c82b-46db-ba51-60a6c215e3e3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open storybook, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "25be52153b56c1f5778eedbc4065cff2ffec7a3e564bcb241e8bef58886149d0"
+  },
+  "public/ui/deeds/chr_vale_chapter_ii.webp": {
+    "sheet": "deeds_003",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "83c9587c-c82b-46db-ba51-60a6c215e3e3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "a409ce8b38a6c919f12cc1af4d79179a835fa27115e387dff39978593df50883"
+  },
+  "public/ui/deeds/chr_vale_chapter_iii.webp": {
+    "sheet": "deeds_003",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "83c9587c-c82b-46db-ba51-60a6c215e3e3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, at dusk",
+    "masterSha256": "279adbfaf202feff9cb27212c82b5396419d258309f3eb018505c0b2608d12f9"
+  },
+  "public/ui/deeds/chr_vale_cup_debut.webp": {
+    "sheet": "deeds_003",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "83c9587c-c82b-46db-ba51-60a6c215e3e3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open storybook, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "ca4809e0868958c1761f1f70965d3be888502bb118b9c99a00c14c1d9ba7f33f"
+  },
+  "public/ui/deeds/chr_vale_first_cast.webp": {
+    "sheet": "deeds_003",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "83c9587c-c82b-46db-ba51-60a6c215e3e3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a leaping fish, softly lit on a warm painted background, cracking the ground",
+    "masterSha256": "1c25face97043fc5990b8a7f56e099b56c4ad6365ccac5c0505064def41b4c69"
+  },
+  "public/ui/deeds/chr_vale_first_harvest.webp": {
+    "sheet": "deeds_003",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "83c9587c-c82b-46db-ba51-60a6c215e3e3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, framed by mist",
+    "masterSha256": "47b7f32f6e958939c2a529a0cb09ea711e9b81c4b03fce2ba9d8e0e78e4db8cb"
+  },
+  "public/ui/deeds/chr_vale_gatherer.webp": {
+    "sheet": "deeds_003",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "83c9587c-c82b-46db-ba51-60a6c215e3e3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, spiralling",
+    "masterSha256": "160b82fc1064c5e76bea1898cbf4170ea1652a8103b7abd4677236ee5382fd1b"
+  },
+  "public/ui/deeds/chr_vale_packbreaker.webp": {
+    "sheet": "deeds_003",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "83c9587c-c82b-46db-ba51-60a6c215e3e3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "98d351b4e415e36bfe9b7d686f1297ae718f9767307e6701b6b0e3a0084872f3"
+  },
+  "public/ui/deeds/chr_vale_rares.webp": {
+    "sheet": "deeds_004",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "9aa6c2c8-2347-43b0-a9bf-d9d26989ce05",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, cracking the ground",
+    "masterSha256": "cc2c7c9b1e51c10879379ab9ec61d230dac40eddd69287ae5944a0cd7a681333"
+  },
+  "public/ui/deeds/chr_willowfen_first_cast.webp": {
+    "sheet": "deeds_004",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "9aa6c2c8-2347-43b0-a9bf-d9d26989ce05",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a leaping fish, softly lit on a warm painted background, with drifting sparks",
+    "masterSha256": "2d11663d57ed9ca77a13ef70b5af05ff5456a3f22c5edae3df55d51b7492c364"
+  },
+  "public/ui/deeds/chr_willowfen_gatherer.webp": {
+    "sheet": "deeds_004",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "9aa6c2c8-2347-43b0-a9bf-d9d26989ce05",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, shattering",
+    "masterSha256": "11c420272c7c4cf1760591d9e1714a65179384abd4233a907f915c59e54c1258"
+  },
+  "public/ui/deeds/chr_wraithwood_first_cast.webp": {
+    "sheet": "deeds_004",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "9aa6c2c8-2347-43b0-a9bf-d9d26989ce05",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a leaping fish, softly lit on a warm painted background, in a beam of light",
+    "masterSha256": "f032fc236b961385c7e7f2e2290b8b8b3f727137bc64c6cf7219ebcc87878234"
+  },
+  "public/ui/deeds/chr_wraithwood_gatherer.webp": {
+    "sheet": "deeds_004",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "9aa6c2c8-2347-43b0-a9bf-d9d26989ce05",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, in a storm of motes",
+    "masterSha256": "11067707a86b560f9cd18e96eddc64579e82e0253d15ace0312c9cc303472a03"
+  },
+  "public/ui/deeds/cmb_balgath.webp": {
+    "sheet": "deeds_006",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "86a4ca79-965f-448e-b1e0-53ce63700294",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "a15dcda6e1002c8f665d853e77d34891e06a1dee57d6466ecf245e865b4438d7"
+  },
+  "public/ui/deeds/cmb_balgath_ten.webp": {
+    "sheet": "deeds_006",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "86a4ca79-965f-448e-b1e0-53ce63700294",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, at dusk",
+    "masterSha256": "975752ae6b4c5a14a88d3c5be6339fa5e808e4d3c39e1bf5370026158891769f"
+  },
+  "public/ui/deeds/cmb_coinsack_caught.webp": {
+    "sheet": "deeds_007",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "ea12e483-e238-4476-985b-7edfbded25e5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, cracking the ground",
+    "masterSha256": "bda30988e1df3ced73745a9e8021c8607cc4b01fa810ff3d0371d36a98906d8f"
+  },
+  "public/ui/deeds/cmb_critical_eye.webp": {
+    "sheet": "deeds_007",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "ea12e483-e238-4476-985b-7edfbded25e5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background",
+    "masterSha256": "9f4d0bd4d74f6d018013441dd537734d082ad9490104fcebecec7b0716abfba9"
+  },
+  "public/ui/deeds/cmb_first_blood.webp": {
+    "sheet": "deeds_007",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "ea12e483-e238-4476-985b-7edfbded25e5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, with drifting sparks",
+    "masterSha256": "0a208f895b820002e3bd97b5cec128ac5632f347ac6dd9c88037cdfa4aac3733"
+  },
+  "public/ui/deeds/cmb_first_fall.webp": {
+    "sheet": "deeds_007",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "ea12e483-e238-4476-985b-7edfbded25e5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, seen up close",
+    "masterSha256": "0864ca1eff08623b4dca151fc97c1d130238928a878597f3521a29c436fb199e"
+  },
+  "public/ui/deeds/cmb_giantslayer.webp": {
+    "sheet": "deeds_007",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "ea12e483-e238-4476-985b-7edfbded25e5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, in a beam of light",
+    "masterSha256": "d1ada43df2a6020aa1cd2aaee20bda8a2ae4cec0532d84c5f854d8c43cf6a505"
+  },
+  "public/ui/deeds/cmb_heavy_hitter.webp": {
+    "sheet": "deeds_007",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "ea12e483-e238-4476-985b-7edfbded25e5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "ed6675a634690852ce289d047313582b4d737bf2ac40c609389fc7fb33eff3ff"
+  },
+  "public/ui/deeds/cmb_legion_of_one.webp": {
+    "sheet": "deeds_007",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "ea12e483-e238-4476-985b-7edfbded25e5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, framed by mist",
+    "masterSha256": "f7494af70084ef5763f33ee5e006a16c28a8a9d964fe295589d62dfd1cbd7655"
+  },
+  "public/ui/deeds/cmb_point_taken.webp": {
+    "sheet": "deeds_007",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "ea12e483-e238-4476-985b-7edfbded25e5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, with drifting sparks",
+    "masterSha256": "7cd6dfa2ba6b1abfb5e627ed7f4498536fddf97e12ba6dabe8a1c0bcf7f3bdaf"
+  },
+  "public/ui/deeds/cmb_slayer.webp": {
+    "sheet": "deeds_007",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "ea12e483-e238-4476-985b-7edfbded25e5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, spiralling",
+    "masterSha256": "211e2cb923f23aa7d618fcddc134499a597322b1efd475451a029994f418a63e"
+  },
+  "public/ui/deeds/cmb_thunzharr.webp": {
+    "sheet": "deeds_007",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "ea12e483-e238-4476-985b-7edfbded25e5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a horse head, softly lit on a warm painted background",
+    "masterSha256": "a1fa77e3297da8f1c6601be212c976fefaa57411952370b8636ec57e7b32f512"
+  },
+  "public/ui/deeds/cmb_thunzharr_ten.webp": {
+    "sheet": "deeds_007",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "ea12e483-e238-4476-985b-7edfbded25e5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a horse head, softly lit on a warm painted background, seen up close",
+    "masterSha256": "2f83987628cc1e2e46f4691b0a01d71fa5597d1299eeded041595ef419bd010f"
+  },
+  "public/ui/deeds/cmb_thunzharr_unbroken.webp": {
+    "sheet": "deeds_007",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "ea12e483-e238-4476-985b-7edfbded25e5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, rising upward",
+    "masterSha256": "74f53a0a1ddc7735ba9342dac6aa8f37f3a82299e0510cab93f6d9b0db658f39"
+  },
+  "public/ui/deeds/col_all_slots.webp": {
+    "sheet": "deeds_004",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "9aa6c2c8-2347-43b0-a9bf-d9d26989ce05",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background",
+    "masterSha256": "b23f7d8cb92105cba51c200035fba2baa43996dc9ff4882b0ac0ea063e9ba20c"
+  },
+  "public/ui/deeds/col_ancient_heartwood.webp": {
+    "sheet": "deeds_004",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "9aa6c2c8-2347-43b0-a9bf-d9d26989ce05",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, seen up close",
+    "masterSha256": "2124f3170069f3eea1645424ccf1c6841691b41ca6e3f0478c6d6565157e46ca"
+  },
+  "public/ui/deeds/col_deepest_cast.webp": {
+    "sheet": "deeds_004",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "9aa6c2c8-2347-43b0-a9bf-d9d26989ce05",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a leaping fish, softly lit on a warm painted background, framed by mist",
+    "masterSha256": "4dd86f4c555ac0e69bd8adc21904b691006895b860da6c87caeadcc26cab27ae"
+  },
+  "public/ui/deeds/col_discovery_150.webp": {
+    "sheet": "deeds_004",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "9aa6c2c8-2347-43b0-a9bf-d9d26989ce05",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "279b731ce16b3b99d4b4b054531acb6b3d1c92a9dcf1710b6253ff2dc36a3360"
+  },
+  "public/ui/deeds/col_discovery_25.webp": {
+    "sheet": "deeds_004",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "9aa6c2c8-2347-43b0-a9bf-d9d26989ce05",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, rising upward",
+    "masterSha256": "64cc673f49cbca48d5785b81f42d639cfacc65b3eb91afadf7462df1fa1c226d"
+  },
+  "public/ui/deeds/col_discovery_250.webp": {
+    "sheet": "deeds_004",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "9aa6c2c8-2347-43b0-a9bf-d9d26989ce05",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, twin",
+    "masterSha256": "02e2c825eb600b1c1d1540b29b8a86ad33b4b4b00565aa78d28c326d922cbd81"
+  },
+  "public/ui/deeds/col_discovery_75.webp": {
+    "sheet": "deeds_004",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "9aa6c2c8-2347-43b0-a9bf-d9d26989ce05",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "a37f9dc11c446c6d2cbc81ef5816fa209f78b1943f8639d2d84bc264f104e667"
+  },
+  "public/ui/deeds/col_farm_roster.webp": {
+    "sheet": "deeds_004",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "9aa6c2c8-2347-43b0-a9bf-d9d26989ce05",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background",
+    "masterSha256": "bb3e25703ad7b241f6b5162f97471b2c5715e210ff5c7c9ca02c8befb17d5f97"
+  },
+  "public/ui/deeds/col_first_epic.webp": {
+    "sheet": "deeds_004",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "9aa6c2c8-2347-43b0-a9bf-d9d26989ce05",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "f09cf3e97e6b50a632ecc4647263b3466cb95dc4b8b5516f00230d5bdb1e62a0"
+  },
+  "public/ui/deeds/col_first_legendary.webp": {
+    "sheet": "deeds_004",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "9aa6c2c8-2347-43b0-a9bf-d9d26989ce05",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "b7a1621cabb2441279d2b972500a40123d0fd02c68e44e7f9205e95cd81b6473"
+  },
+  "public/ui/deeds/col_first_rare.webp": {
+    "sheet": "deeds_004",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "9aa6c2c8-2347-43b0-a9bf-d9d26989ce05",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, at dusk",
+    "masterSha256": "b42090e9afbd63dd6aa95bab961d03b13cd63bd00116ad4429a273ab32e58c12"
+  },
+  "public/ui/deeds/col_full_creel.webp": {
+    "sheet": "deeds_005",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "a09917ab-9c95-4447-9242-0a304141b4db",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, cracking the ground",
+    "masterSha256": "1b3bb2426ca57a0393966af34375aca48dd0715f275b09d6847f2b5384b4b302"
+  },
+  "public/ui/deeds/col_glimmerfin.webp": {
+    "sheet": "deeds_005",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "a09917ab-9c95-4447-9242-0a304141b4db",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, with drifting sparks",
+    "masterSha256": "ae06da49f0c749ff67c4a3ceba2547cfcf23403f6a8b61fbbf9fc8ede8dfde09"
+  },
+  "public/ui/deeds/col_golden_harvest.webp": {
+    "sheet": "deeds_005",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "a09917ab-9c95-4447-9242-0a304141b4db",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, seen up close",
+    "masterSha256": "6e7c2fc982ba2860d08df53d5c1506d6f6b867a3d627b960996d04243f127a8c"
+  },
+  "public/ui/deeds/col_junk_drawer.webp": {
+    "sheet": "deeds_005",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "a09917ab-9c95-4447-9242-0a304141b4db",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, in a beam of light",
+    "masterSha256": "3e6d533d90ad73228dab99d2f733ef832fde01b30cc44dfcda3ed89f76c9cd6c"
+  },
+  "public/ui/deeds/col_moonlit_bloom.webp": {
+    "sheet": "deeds_005",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "a09917ab-9c95-4447-9242-0a304141b4db",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "94db9d52450a252ef4b94fe988d4cfe5fa0e6bea46be31624c226d674017c9cf"
+  },
+  "public/ui/deeds/col_perfect_specimen.webp": {
+    "sheet": "deeds_005",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "a09917ab-9c95-4447-9242-0a304141b4db",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, rising upward",
+    "masterSha256": "96f56c7cefa70c0a16fb9f975ab7301505d17e637aa59ca7551c4c6e45cc23d6"
+  },
+  "public/ui/deeds/col_pristine_vein.webp": {
+    "sheet": "deeds_005",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "a09917ab-9c95-4447-9242-0a304141b4db",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, framed by mist",
+    "masterSha256": "dcdfc502f2bdc013c68535e6308f848d5b8218f4f1efe4f8ea45d530e4dedb91"
+  },
+  "public/ui/deeds/col_quartermaster_buyout.webp": {
+    "sheet": "deeds_005",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "a09917ab-9c95-4447-9242-0a304141b4db",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, spiralling",
+    "masterSha256": "545965eb238d4b5b121916e51613be5c01b31fd058ae0c9ac21191e3a4111d0e"
+  },
+  "public/ui/deeds/col_reliquary_complete.webp": {
+    "sheet": "deeds_005",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "a09917ab-9c95-4447-9242-0a304141b4db",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, shattering",
+    "masterSha256": "d3b499fa1ce68b993bf7d84d21a3efce48124add5b690067b281e54a50097a97"
+  },
+  "public/ui/deeds/col_reliquary_conquerors.webp": {
+    "sheet": "deeds_005",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "a09917ab-9c95-4447-9242-0a304141b4db",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, in a storm of motes",
+    "masterSha256": "c800593decd5dd2dd23740d2fab9df17159fc7305ab0232bd09db7009d990b83"
+  },
+  "public/ui/deeds/col_reliquary_illum_gravewyrm_heroic.webp": {
+    "sheet": "deeds_005",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "a09917ab-9c95-4447-9242-0a304141b4db",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background",
+    "masterSha256": "795c830d5b173ac778c8f9279c1cc80c99a8c5665a53256be601b4432a478d54"
+  },
+  "public/ui/deeds/col_reliquary_illum_nythraxis_heroic.webp": {
+    "sheet": "deeds_005",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "a09917ab-9c95-4447-9242-0a304141b4db",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, seen up close",
+    "masterSha256": "c4ff66c3c34003ce10e98343e03848dfe084382c242dd926e27ecb5bfd69cf0b"
+  },
+  "public/ui/deeds/col_reliquary_illum_thunzharr.webp": {
+    "sheet": "deeds_005",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "a09917ab-9c95-4447-9242-0a304141b4db",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "67d190a70d8c4cbc71d375e9d136fe6cdee600105eea4d1b405362fae72dbcb2"
+  },
+  "public/ui/deeds/col_reliquary_rank_2.webp": {
+    "sheet": "deeds_005",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "a09917ab-9c95-4447-9242-0a304141b4db",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, rising upward",
+    "masterSha256": "f5b3e717ff631477eda623d2b87ea60e3d6c7da4dcd815c36033567c53fd92dd"
+  },
+  "public/ui/deeds/col_reliquary_rank_3.webp": {
+    "sheet": "deeds_005",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "a09917ab-9c95-4447-9242-0a304141b4db",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, twin",
+    "masterSha256": "bbde90bb23271924be8f5ed5b2745d19270c2bea24ce4c16b5e40731173f81ef"
+  },
+  "public/ui/deeds/col_reliquary_rank_4.webp": {
+    "sheet": "deeds_005",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "a09917ab-9c95-4447-9242-0a304141b4db",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "93eb550cb02e4e11cecdb8e9b1c38fa9adf30a5e831fa5e9ce19a4e699211eb8"
+  },
+  "public/ui/deeds/col_reliquary_rank_5.webp": {
+    "sheet": "deeds_006",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "86a4ca79-965f-448e-b1e0-53ce63700294",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "e7bf21c5fae748815eaf739963480c33c067404b26c7f76e57ab5284f2fbfca7"
+  },
+  "public/ui/deeds/col_set_boundstone_vanguard.webp": {
+    "sheet": "deeds_006",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "86a4ca79-965f-448e-b1e0-53ce63700294",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "7f8d7d479d03ab6f107a19a8575a5edba4f49a0b6fbf4bb8ce12b3c14aeb699a"
+  },
+  "public/ui/deeds/col_set_bramblehide.webp": {
+    "sheet": "deeds_006",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "86a4ca79-965f-448e-b1e0-53ce63700294",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, at dusk",
+    "masterSha256": "b0d364bc3e6fa901133aeb997de3db98223db6d50330d5ef5b83fab64bf13fe0"
+  },
+  "public/ui/deeds/col_set_crownforged.webp": {
+    "sheet": "deeds_006",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "86a4ca79-965f-448e-b1e0-53ce63700294",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, cracking the ground",
+    "masterSha256": "284d7c9160d5c99cb3a1503f37d42b64cb7b7b9ce80263059ecb056723f56752"
+  },
+  "public/ui/deeds/col_set_deathlord.webp": {
+    "sheet": "deeds_006",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "86a4ca79-965f-448e-b1e0-53ce63700294",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, with drifting sparks",
+    "masterSha256": "f38b9de439b710ab21d6bbeaf3e81bb4310eb1a1147f3495b54bdd1bb36ba4c1"
+  },
+  "public/ui/deeds/col_set_greyjaw_stalker.webp": {
+    "sheet": "deeds_006",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "86a4ca79-965f-448e-b1e0-53ce63700294",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, in a beam of light",
+    "masterSha256": "36ad3c83f9713f9c23d41aaa8562cb9fcf9eb7e72f77c2f17d8eee099941c4f2"
+  },
+  "public/ui/deeds/col_set_necromancers.webp": {
+    "sheet": "deeds_006",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "86a4ca79-965f-448e-b1e0-53ce63700294",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, framed by mist",
+    "masterSha256": "605961439575f52bd2335110a31d1609a4398da1b5d6e146ce718bdaf0a494f9"
+  },
+  "public/ui/deeds/col_set_nighttalon.webp": {
+    "sheet": "deeds_006",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "86a4ca79-965f-448e-b1e0-53ce63700294",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, spiralling",
+    "masterSha256": "e0670aeb928cc1e2ab04c04e2f33aaaa2144c3d835f6803c5424124df67cca1f"
+  },
+  "public/ui/deeds/col_set_soulflame.webp": {
+    "sheet": "deeds_006",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "86a4ca79-965f-448e-b1e0-53ce63700294",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, shattering",
+    "masterSha256": "cc12e2f9d9b2a4244ff260f462b0bea393742b541e196b5c5de60f3ccfe77c1d"
+  },
+  "public/ui/deeds/col_set_stormcallers.webp": {
+    "sheet": "deeds_006",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "86a4ca79-965f-448e-b1e0-53ce63700294",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, in a storm of motes",
+    "masterSha256": "0c544805c4c3eb614c45d4ff3606dded801ea95323746cf7d767a3ba48b1d1fa"
+  },
+  "public/ui/deeds/col_set_vale_arcanist.webp": {
+    "sheet": "deeds_006",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "86a4ca79-965f-448e-b1e0-53ce63700294",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background",
+    "masterSha256": "4c4f0b09a452601eb62563f50ac346da7b53b5e30c4751c5af9098cfca7341c7"
+  },
+  "public/ui/deeds/col_set_wyrmshadow.webp": {
+    "sheet": "deeds_006",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "86a4ca79-965f-448e-b1e0-53ce63700294",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, seen up close",
+    "masterSha256": "66b089bf8a08b7d867402d754a60f98da358208f181ac370f1825d993de4ac6e"
+  },
+  "public/ui/deeds/col_seven_regalia.webp": {
+    "sheet": "deeds_006",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "86a4ca79-965f-448e-b1e0-53ce63700294",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "da92b31d064de937cc9d2e72bfd50e23fade726e8cb511327d7e334a4420083d"
+  },
+  "public/ui/deeds/col_true_colors.webp": {
+    "sheet": "deeds_006",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "86a4ca79-965f-448e-b1e0-53ce63700294",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, rising upward",
+    "masterSha256": "a5d1b3aa7f8109cb1d5f15b946de9e2a013608c90fc28bff18efc8769a46a348"
+  },
+  "public/ui/deeds/dgn_beastmaster_apart.webp": {
+    "sheet": "deeds_008",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "d20a10f7-4cb0-4144-844a-7acff051e19a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a leaping fish, softly lit on a warm painted background, spiralling",
+    "masterSha256": "7f54b69bdef04122a07e919b54161c7ca5138d7854bcdd40e7f3b15e468fc560"
+  },
+  "public/ui/deeds/dgn_boss_clears_50.webp": {
+    "sheet": "deeds_008",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "d20a10f7-4cb0-4144-844a-7acff051e19a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, shattering",
+    "masterSha256": "f3803a1a4926cb71603e70c8f4fa1a8abcb0407a5f614965fa8cd6f268dc7460"
+  },
+  "public/ui/deeds/dgn_colossus_mirror.webp": {
+    "sheet": "deeds_008",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "d20a10f7-4cb0-4144-844a-7acff051e19a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, in a storm of motes",
+    "masterSha256": "6408e7d7968736f24cfa7d87b97200dbf23114060c7eab8d9f7a84d686e0fb7a"
+  },
+  "public/ui/deeds/dgn_crypt_knellwyrm.webp": {
+    "sheet": "deeds_008",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "d20a10f7-4cb0-4144-844a-7acff051e19a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background",
+    "masterSha256": "f6cebc0e47c49525c5b0eb0044f3d5678ca986f3e1c5e870434abff30f67fca5"
+  },
+  "public/ui/deeds/dgn_deepward.webp": {
+    "sheet": "deeds_008",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "d20a10f7-4cb0-4144-844a-7acff051e19a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dark dungeon gate, softly lit on a warm painted background",
+    "masterSha256": "01c862b91a09c73794f49487b790676097a7d8ed755998c16fda2de1b3d6bc72"
+  },
+  "public/ui/deeds/dgn_drowned_temple.webp": {
+    "sheet": "deeds_008",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "d20a10f7-4cb0-4144-844a-7acff051e19a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, seen up close",
+    "masterSha256": "3baeacad6c6531fe67306f8ca6269cc8fdd15d3bbcd33f5aeab8d1acbed462bc"
+  },
+  "public/ui/deeds/dgn_drowned_temple_cantor.webp": {
+    "sheet": "deeds_008",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "d20a10f7-4cb0-4144-844a-7acff051e19a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "7eaadf641e29d107d18f60c11db878bf737348643b1613a26ba47570544513c0"
+  },
+  "public/ui/deeds/dgn_drowned_temple_heroic.webp": {
+    "sheet": "deeds_009",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "7f12b613-ee62-4585-bb23-757c5043b97c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, rising upward",
+    "masterSha256": "5cde569f685b1d33e96edcf9fad24c8392460f0eab82d4a8316754496a8826f3"
+  },
+  "public/ui/deeds/dgn_gorgebloom_clean.webp": {
+    "sheet": "deeds_009",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "7f12b613-ee62-4585-bb23-757c5043b97c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, twin",
+    "masterSha256": "b1ff17caa9e3767b5ee4c1dd5658498be0f3d19dcb23a20af2de2a325a96b0e5"
+  },
+  "public/ui/deeds/dgn_gravewyrm_sanctum.webp": {
+    "sheet": "deeds_009",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "7f12b613-ee62-4585-bb23-757c5043b97c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "cb191aad0d1642dea6a1562b9c8ea8743456f27b695c10dc01e08981828e6f8c"
+  },
+  "public/ui/deeds/dgn_gravewyrm_sanctum_heroic.webp": {
+    "sheet": "deeds_009",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "7f12b613-ee62-4585-bb23-757c5043b97c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "25d0ac43a146b30f89635be612d9f291b6f7f0a5bf53e6fedbc03c577256cdde"
+  },
+  "public/ui/deeds/dgn_great_saurian.webp": {
+    "sheet": "deeds_009",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "7f12b613-ee62-4585-bb23-757c5043b97c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "1649a65bd30ff76e09cc9aa14e9bb7899b4915050db472fed13a35747ee3b78d"
+  },
+  "public/ui/deeds/dgn_hollow_crypt.webp": {
+    "sheet": "deeds_009",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "7f12b613-ee62-4585-bb23-757c5043b97c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, at dusk",
+    "masterSha256": "da694f84e5d5e3b57f915ccc0b33b281505400d495d234eb47acda6e31e34786"
+  },
+  "public/ui/deeds/dgn_hollow_crypt_heroic.webp": {
+    "sheet": "deeds_009",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "7f12b613-ee62-4585-bb23-757c5043b97c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, cracking the ground",
+    "masterSha256": "e8e8ab87a446779c64915e2b0c418edb159b46864cd2bca719533285dd8ad239"
+  },
+  "public/ui/deeds/dgn_ignivar.webp": {
+    "sheet": "deeds_009",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "7f12b613-ee62-4585-bb23-757c5043b97c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, with drifting sparks",
+    "masterSha256": "c2c84e0be8d4c3c4b79f3c81af5bbd3c5a905f057aaa20cb248151f25d6efe40"
+  },
+  "public/ui/deeds/dgn_ignivar_heroic.webp": {
+    "sheet": "deeds_009",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "7f12b613-ee62-4585-bb23-757c5043b97c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, in a beam of light",
+    "masterSha256": "466002fdd4066fa3ae91af475cdcddf16383ea683ed097bca8a5c0f753ffbbc5"
+  },
+  "public/ui/deeds/dgn_ilvane_hush.webp": {
+    "sheet": "deeds_009",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "7f12b613-ee62-4585-bb23-757c5043b97c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, framed by mist",
+    "masterSha256": "5604674ef5f153e2330ee69aa13bc10a83c4fabf3c0a1b3e43aca8b48136734b"
+  },
+  "public/ui/deeds/dgn_korgath_all_chains.webp": {
+    "sheet": "deeds_009",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "7f12b613-ee62-4585-bb23-757c5043b97c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, spiralling",
+    "masterSha256": "c796ab922d1aeff8073a5f0f16692a508ec89700c1cd3655762450b21bf9c2e3"
+  },
+  "public/ui/deeds/dgn_korgath_still_bound.webp": {
+    "sheet": "deeds_009",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "7f12b613-ee62-4585-bb23-757c5043b97c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, shattering",
+    "masterSha256": "89d687f8786e7bcd97682e2fe4362b582cd71d4a77e6272d5d3519c944a7df95"
+  },
+  "public/ui/deeds/dgn_korzul_flawless.webp": {
+    "sheet": "deeds_009",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "7f12b613-ee62-4585-bb23-757c5043b97c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, in a storm of motes",
+    "masterSha256": "b636a518ea0b2f1ccb5caf7356cca40ee30d77811455a4cefb095c5d30b9db29"
+  },
+  "public/ui/deeds/dgn_korzul_thin_ice.webp": {
+    "sheet": "deeds_009",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "7f12b613-ee62-4585-bb23-757c5043b97c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background",
+    "masterSha256": "14ed9378b8de70e1443e6a8fa288a848d078c10f625d9c5e3eb0933395c92437"
+  },
+  "public/ui/deeds/dgn_lady_nobody_hanging.webp": {
+    "sheet": "deeds_009",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "7f12b613-ee62-4585-bb23-757c5043b97c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, seen up close",
+    "masterSha256": "66ced4a8c138e2adfc91f76419f79b97251b0f7484713aca378c2103e0ed9b78"
+  },
+  "public/ui/deeds/dgn_mark_circuit.webp": {
+    "sheet": "deeds_009",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "7f12b613-ee62-4585-bb23-757c5043b97c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dark dungeon gate, softly lit on a warm painted background, seen up close",
+    "masterSha256": "be5e7bc6d277d101373487488b487505b4f0e18142aab153f4840fa14d4878b5"
+  },
+  "public/ui/deeds/dgn_marrow_tidy.webp": {
+    "sheet": "deeds_010",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "18f9b70a-1f16-4c4b-914e-26e198e6cdb5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "460095fc65580f990db3e5148f9379dadaa326f97f1bba66fb19175fb58d6b29"
+  },
+  "public/ui/deeds/dgn_mere_hydra.webp": {
+    "sheet": "deeds_010",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "18f9b70a-1f16-4c4b-914e-26e198e6cdb5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, rising upward",
+    "masterSha256": "9ce0e31efdd7b747050a6348a1bea71638d45be1c512a83005888a3372ef7c61"
+  },
+  "public/ui/deeds/dgn_morthen_candlelight.webp": {
+    "sheet": "deeds_010",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "18f9b70a-1f16-4c4b-914e-26e198e6cdb5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, twin",
+    "masterSha256": "d99de9820e44991dec0ae038a64c747b2a3b7d8e78105066965142138d3dd20a"
+  },
+  "public/ui/deeds/dgn_morthen_flawless.webp": {
+    "sheet": "deeds_010",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "18f9b70a-1f16-4c4b-914e-26e198e6cdb5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "11489410554f0ee4e7c9650a86adc43e40f1e04dcf1105d10f8428c122d4c55d"
+  },
+  "public/ui/deeds/dgn_morthen_trio.webp": {
+    "sheet": "deeds_010",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "18f9b70a-1f16-4c4b-914e-26e198e6cdb5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "0be7af43501edcff2a97f64d317048bf9198ac2c7df378e82c90aea0dfee104a"
+  },
+  "public/ui/deeds/dgn_nythraxis.webp": {
+    "sheet": "deeds_010",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "18f9b70a-1f16-4c4b-914e-26e198e6cdb5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, in a beam of light",
+    "masterSha256": "15142b88003fec487eea8b3f96bfa5a831b4634865e54f02979958d6c09f98dc"
+  },
+  "public/ui/deeds/dgn_nythraxis_crypt.webp": {
+    "sheet": "deeds_010",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "18f9b70a-1f16-4c4b-914e-26e198e6cdb5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dark dungeon gate, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "336c913429b89bfca1085567ec6f66c16dff06f6741a39b8c0fa5c16fccaddbc"
+  },
+  "public/ui/deeds/dgn_nythraxis_deathless.webp": {
+    "sheet": "deeds_010",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "18f9b70a-1f16-4c4b-914e-26e198e6cdb5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, framed by mist",
+    "masterSha256": "41eb9bb86bf8685b28ceaf66c777a2353c28a49a4798e4a774927d9c32ba00ef"
+  },
+  "public/ui/deeds/dgn_nythraxis_gravebreaker.webp": {
+    "sheet": "deeds_010",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "18f9b70a-1f16-4c4b-914e-26e198e6cdb5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "f9c78b5657ac8d1f95fa419a8f8d485a0e79b187a676a0c746318b948a56f2f6"
+  },
+  "public/ui/deeds/dgn_nythraxis_heroic.webp": {
+    "sheet": "deeds_010",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "18f9b70a-1f16-4c4b-914e-26e198e6cdb5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, spiralling",
+    "masterSha256": "975df46ec6d09231cadb1c28bf5f3beef49b9c5550fa5bf88ba4de45b223e3d4"
+  },
+  "public/ui/deeds/dgn_nythraxis_wardens.webp": {
+    "sheet": "deeds_010",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "18f9b70a-1f16-4c4b-914e-26e198e6cdb5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, shattering",
+    "masterSha256": "60666f0ec8cb341ed38a538e2e7bc749020db8bddafa52992613857de8da3c31"
+  },
+  "public/ui/deeds/dgn_olen_arc.webp": {
+    "sheet": "deeds_010",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "18f9b70a-1f16-4c4b-914e-26e198e6cdb5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, at dusk",
+    "masterSha256": "f7d4b564b5cbe275e7de2592808aacbfe4e337e6bff9c7bde6a437e9bf1bd77c"
+  },
+  "public/ui/deeds/dgn_olen_buttress.webp": {
+    "sheet": "deeds_010",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "18f9b70a-1f16-4c4b-914e-26e198e6cdb5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, cracking the ground",
+    "masterSha256": "5a272473c79d9a3f606cc6c83e799a67bd274bf7f56609df8348d129e20ebbf4"
+  },
+  "public/ui/deeds/dgn_ossick_moored.webp": {
+    "sheet": "deeds_010",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "18f9b70a-1f16-4c4b-914e-26e198e6cdb5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, in a storm of motes",
+    "masterSha256": "fa70e8524b9d7e27eaa43d8074d55ca898b913c90766c16cf032fb7368d0b7f2"
+  },
+  "public/ui/deeds/dgn_rift.webp": {
+    "sheet": "deeds_010",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "18f9b70a-1f16-4c4b-914e-26e198e6cdb5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, with drifting sparks",
+    "masterSha256": "bd77671140af26f6206ced3e54a1529995075fbb2ca42369aef06ba9e0ce6694"
+  },
+  "public/ui/deeds/dgn_rift_s_rank.webp": {
+    "sheet": "deeds_010",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "18f9b70a-1f16-4c4b-914e-26e198e6cdb5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dark dungeon gate, softly lit on a warm painted background, rising upward",
+    "masterSha256": "9e2a3bc10a51b028644d3292188248f54bf6cbcb4f5d1d6e2a0c693ba582dbc5"
+  },
+  "public/ui/deeds/dgn_sanctum_speed.webp": {
+    "sheet": "deeds_011",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "77e0ec21-b2d1-4d06-bc08-f7fec1b152c9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, in a beam of light",
+    "masterSha256": "e344df3f84ad2faea5b989d01d3e0bf0e0897d552e70d11f4c26af43b8552aaf"
+  },
+  "public/ui/deeds/dgn_selthe_pitch.webp": {
+    "sheet": "deeds_011",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "77e0ec21-b2d1-4d06-bc08-f7fec1b152c9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background",
+    "masterSha256": "10bdc1133a998a0cb8d1ae6295b7261268cb3f155d039de823822a49de06fe08"
+  },
+  "public/ui/deeds/dgn_sledge_tusker.webp": {
+    "sheet": "deeds_011",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "77e0ec21-b2d1-4d06-bc08-f7fec1b152c9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, framed by mist",
+    "masterSha256": "c8479593edc02a81dcbb7db222ac9422405377fbd8a1eca20fa769fa0a69fe5f"
+  },
+  "public/ui/deeds/dgn_sunken_bastion.webp": {
+    "sheet": "deeds_011",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "77e0ec21-b2d1-4d06-bc08-f7fec1b152c9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, spiralling",
+    "masterSha256": "ebb73adb1052c482850f8117d3ddde34952d89ea861c898f07b8fe3837d4655c"
+  },
+  "public/ui/deeds/dgn_sunken_bastion_heroic.webp": {
+    "sheet": "deeds_011",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "77e0ec21-b2d1-4d06-bc08-f7fec1b152c9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, shattering",
+    "masterSha256": "39806ec8a802973e3ab4282593539dce32d2b34ba7e16297b893abdaf5e68cab"
+  },
+  "public/ui/deeds/dgn_thornpeak_rounds.webp": {
+    "sheet": "deeds_011",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "77e0ec21-b2d1-4d06-bc08-f7fec1b152c9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dark dungeon gate, softly lit on a warm painted background, twin",
+    "masterSha256": "a1ca597f75b3693b56751046e1bdab96668720e8d3b026f8c59cf1737bd75405"
+  },
+  "public/ui/deeds/dgn_turnkey_cage.webp": {
+    "sheet": "deeds_011",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "77e0ec21-b2d1-4d06-bc08-f7fec1b152c9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, in a storm of motes",
+    "masterSha256": "4f9a6364053ab039647e97c2fbc3f3576d510e77f7e1e9dda4f445639ca3e5e2"
+  },
+  "public/ui/deeds/dgn_turretback.webp": {
+    "sheet": "deeds_011",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "77e0ec21-b2d1-4d06-bc08-f7fec1b152c9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background",
+    "masterSha256": "01a6ceefc8afccbc3f2f88604be49fff07c9d3421a57adcd8c39c51748dcfc34"
+  },
+  "public/ui/deeds/dgn_vael_beacon.webp": {
+    "sheet": "deeds_011",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "77e0ec21-b2d1-4d06-bc08-f7fec1b152c9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, seen up close",
+    "masterSha256": "d79a8c0f4f1dd464864092f2d63cecb12755517a1ddee732d741d09ec51583d7"
+  },
+  "public/ui/deeds/dgn_vael_thralls.webp": {
+    "sheet": "deeds_011",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "77e0ec21-b2d1-4d06-bc08-f7fec1b152c9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, seen up close",
+    "masterSha256": "f7240dd4f4f37302923d5bdf23b9cac280141f4da38e80c1ef9a93bb6562efdb"
+  },
+  "public/ui/deeds/dgn_varkhul.webp": {
+    "sheet": "deeds_011",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "77e0ec21-b2d1-4d06-bc08-f7fec1b152c9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "a3c347cc905f2653bb7d42562c391a3bdfc4882713d620650c6af6205718d45b"
+  },
+  "public/ui/deeds/dgn_varkhul_flawless.webp": {
+    "sheet": "deeds_011",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "77e0ec21-b2d1-4d06-bc08-f7fec1b152c9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, rising upward",
+    "masterSha256": "33a0b48c3061407b843482574ff161ba81035fcbdf85763832fa58ca6ac76486"
+  },
+  "public/ui/deeds/dgn_varkhul_heroic.webp": {
+    "sheet": "deeds_011",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "77e0ec21-b2d1-4d06-bc08-f7fec1b152c9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, twin",
+    "masterSha256": "bf51b57435530d96a0fe1c2c10cbaa031dcea0571f67050acebd64e45d88e8f5"
+  },
+  "public/ui/deeds/dgn_velkhar_bonewalkers.webp": {
+    "sheet": "deeds_011",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "77e0ec21-b2d1-4d06-bc08-f7fec1b152c9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "5ed3c982d7b04271fdaa970a6ae98942f78d1b9e293047dfc1a2c7fffdf50c9f"
+  },
+  "public/ui/deeds/dgn_velkhar_cold.webp": {
+    "sheet": "deeds_011",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "77e0ec21-b2d1-4d06-bc08-f7fec1b152c9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "57acf37b24e39c5d5e747cea130112f4a09182b343d2dd9f6041a3b15e72acdb"
+  },
+  "public/ui/deeds/dgn_wildheart_basin.webp": {
+    "sheet": "deeds_011",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "77e0ec21-b2d1-4d06-bc08-f7fec1b152c9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "c298b040ac4a168ab3df576cf878ccc305c5df90ebb68260cb80e11a5ad178b7"
+  },
+  "public/ui/deeds/dgn_wildheart_basin_heroic.webp": {
+    "sheet": "deeds_012",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "b3f8c530-646b-4cb9-8698-91e8bf891435",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "4b601e88674391b1d6e80caec10fbac5d870a19bc427064c8f7e1c9ef2b9ff3e"
+  },
+  "public/ui/deeds/dgn_ysolei_flawless.webp": {
+    "sheet": "deeds_012",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "b3f8c530-646b-4cb9-8698-91e8bf891435",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, at dusk",
+    "masterSha256": "ee5d4d8d6cec738550be4cb8eae3c72f9a2b9b69ebb1dc1ecd1d3c7d80569caf"
+  },
+  "public/ui/deeds/dgn_ysolei_high_and_dry.webp": {
+    "sheet": "deeds_012",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "b3f8c530-646b-4cb9-8698-91e8bf891435",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, cracking the ground",
+    "masterSha256": "8e76f8d9cf41fb4d66580a8ba09dd32b0d74bb04482bb3ae188bc65466e93f69"
+  },
+  "public/ui/deeds/dgn_ysolei_moonspawn.webp": {
+    "sheet": "deeds_012",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "b3f8c530-646b-4cb9-8698-91e8bf891435",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, with drifting sparks",
+    "masterSha256": "7c549df5231dbe5d183a69ea1096b35abadfcd965787234c22f8b9b4530e54cf"
+  },
+  "public/ui/deeds/dgn_zulgar_uncaught.webp": {
+    "sheet": "deeds_012",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "b3f8c530-646b-4cb9-8698-91e8bf891435",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, in a beam of light",
+    "masterSha256": "a66a023b48e7e76a212b117789de2af64a9337930c98a270ecf786508b924845"
+  },
+  "public/ui/deeds/dlv_clears_50.webp": {
+    "sheet": "deeds_007",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "ea12e483-e238-4476-985b-7edfbded25e5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, twin",
+    "masterSha256": "5a772549b1cf21b1575a8b6aaecdf88f3111cefc563d7645e6236a870d40ca77"
+  },
+  "public/ui/deeds/dlv_companion_max.webp": {
+    "sheet": "deeds_007",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "ea12e483-e238-4476-985b-7edfbded25e5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a small friendly creature, softly lit on a warm painted background",
+    "masterSha256": "0f0c3a6b6fe42a8b84b8086a08abf15b9cc9ce40904cdef68b45e7339c248397"
+  },
+  "public/ui/deeds/dlv_companions_both.webp": {
+    "sheet": "deeds_007",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "ea12e483-e238-4476-985b-7edfbded25e5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a small friendly creature, softly lit on a warm painted background, seen up close",
+    "masterSha256": "f88fe59b7c71a92ff42b02cbc36829fe0d5bb68ca72e518db3e53840b299d219"
+  },
+  "public/ui/deeds/dlv_litany.webp": {
+    "sheet": "deeds_007",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "ea12e483-e238-4476-985b-7edfbded25e5",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "04c9fb868303f558bc990db5f8cbc8028c27972b1ebc3e599468f1afa593cfc8"
+  },
+  "public/ui/deeds/dlv_litany_heroic.webp": {
+    "sheet": "deeds_008",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "d20a10f7-4cb0-4144-844a-7acff051e19a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dark dungeon gate, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "a69dbcc578bf8818074c6c720c24069c1f9fc43a5c89945e6b72b9483928a90c"
+  },
+  "public/ui/deeds/dlv_lore_journal.webp": {
+    "sheet": "deeds_008",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "d20a10f7-4cb0-4144-844a-7acff051e19a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, rising upward",
+    "masterSha256": "0feb64a866fde1d8bb036e01cae3045ec8d773e389d140a28957480b8bc47325"
+  },
+  "public/ui/deeds/dlv_nhalia_bells.webp": {
+    "sheet": "deeds_008",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "d20a10f7-4cb0-4144-844a-7acff051e19a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, framed by mist",
+    "masterSha256": "438de1edbd6987027fd00fe305987227a4733775d894ca1da47173196977a45e"
+  },
+  "public/ui/deeds/dlv_reliquary.webp": {
+    "sheet": "deeds_008",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "d20a10f7-4cb0-4144-844a-7acff051e19a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "b0575c48f0480d0148afcb7fa83a2fc2b02ec288c4f13745685468271553ad7b"
+  },
+  "public/ui/deeds/dlv_reliquary_heroic.webp": {
+    "sheet": "deeds_008",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "d20a10f7-4cb0-4144-844a-7acff051e19a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dark dungeon gate, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "64915b9eb8aedc930fb84c70cac3f7f8ae2c22cda64aa04be76dcc73eb741d17"
+  },
+  "public/ui/deeds/dlv_rite_flawless.webp": {
+    "sheet": "deeds_008",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "d20a10f7-4cb0-4144-844a-7acff051e19a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "55d679ea8aae0ea5b7e63bcf77b173583a1a5734efb4a3129104008688ed7e73"
+  },
+  "public/ui/deeds/dlv_solo_heroic.webp": {
+    "sheet": "deeds_008",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "d20a10f7-4cb0-4144-844a-7acff051e19a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dark dungeon gate, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "85abcbf647eec6d4f5bfa0f354bae7e0014e9a37e0868b59cf78719aa957abec"
+  },
+  "public/ui/deeds/dlv_tumbler_premium.webp": {
+    "sheet": "deeds_008",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "d20a10f7-4cb0-4144-844a-7acff051e19a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, at dusk",
+    "masterSha256": "95b3c773120af08337b768d98d1c6d2387d104fd45256608bd3dd43964762e72"
+  },
+  "public/ui/deeds/dlv_varric_ringers.webp": {
+    "sheet": "deeds_008",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "d20a10f7-4cb0-4144-844a-7acff051e19a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, spiralling",
+    "masterSha256": "96e42b6c708718688cb64568d4b93e4d8b10dab713b40ea182cce0f5e9099cac"
+  },
+  "public/ui/deeds/exp_arcane_calligraphy.webp": {
+    "sheet": "deeds_012",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "b3f8c530-646b-4cb9-8698-91e8bf891435",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, cracking the ground",
+    "masterSha256": "ebe72979a7fe6d1c568a42625d0ef38c45b9f90f4c59a62dda2c392d6523a252"
+  },
+  "public/ui/deeds/exp_arcane_calligraphy_gold.webp": {
+    "sheet": "deeds_012",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "b3f8c530-646b-4cb9-8698-91e8bf891435",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, with drifting sparks",
+    "masterSha256": "0268657be9d0a1db7c62c6aab729a51614093fe6c084418cecd8bd3d21e0220c"
+  },
+  "public/ui/deeds/exp_borrowed_face.webp": {
+    "sheet": "deeds_012",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "b3f8c530-646b-4cb9-8698-91e8bf891435",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, shattering",
+    "masterSha256": "3a34400baa32d49d84c4fb6bd7613e5c9adaea925d0fa351f9844a2cce23ea6e"
+  },
+  "public/ui/deeds/exp_clue_first_casket.webp": {
+    "sheet": "deeds_012",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "b3f8c530-646b-4cb9-8698-91e8bf891435",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, in a beam of light",
+    "masterSha256": "1aaffca38555fca10722828c94e0ec0c2e596425151c0d746a937743310f49b1"
+  },
+  "public/ui/deeds/exp_clue_ten_caskets.webp": {
+    "sheet": "deeds_012",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "b3f8c530-646b-4cb9-8698-91e8bf891435",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, framed by mist",
+    "masterSha256": "c9b6550bda6d33b76dbd0937f4032bc43578e7e18134886df84f6a8f7542ea00"
+  },
+  "public/ui/deeds/exp_dawnhold_castle.webp": {
+    "sheet": "deeds_012",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "b3f8c530-646b-4cb9-8698-91e8bf891435",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a leaping fish, softly lit on a warm painted background, shattering",
+    "masterSha256": "b8d24dfae29f5451678529c7fae44af5ba82aa21333366f0440915c9dc0ecc8d"
+  },
+  "public/ui/deeds/exp_duskweave_dispatches.webp": {
+    "sheet": "deeds_012",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "b3f8c530-646b-4cb9-8698-91e8bf891435",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a crafting hammer and anvil, softly lit on a warm painted background",
+    "masterSha256": "b2fd0c2c9f2d05d1afb7bbba449e739a3713c72490800dd22ce776e986085e7f"
+  },
+  "public/ui/deeds/exp_first_herb.webp": {
+    "sheet": "deeds_012",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "b3f8c530-646b-4cb9-8698-91e8bf891435",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, twin",
+    "masterSha256": "e27be6af89435a7bcc3e48cbd45096d880f84a71f5ee66c370e565b4d030308b"
+  },
+  "public/ui/deeds/exp_first_ore.webp": {
+    "sheet": "deeds_012",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "b3f8c530-646b-4cb9-8698-91e8bf891435",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "b07c14962ebdbfc9ebddd7775cc31026ea3d75f92ad1abf9dbb0f5aac9d4cd67"
+  },
+  "public/ui/deeds/exp_first_timber.webp": {
+    "sheet": "deeds_012",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "b3f8c530-646b-4cb9-8698-91e8bf891435",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "624bb7872f22793250f1b5438db67bf6acbb2341bf3ca1b0ca1fc09c1647d6db"
+  },
+  "public/ui/deeds/exp_forge_helper.webp": {
+    "sheet": "deeds_012",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "b3f8c530-646b-4cb9-8698-91e8bf891435",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a crafting hammer and anvil, softly lit on a warm painted background, seen up close",
+    "masterSha256": "f9f4d0e5a8ae469e7300163d9cebb2e4026e55dbabbb7f98c7f13dd204350377"
+  },
+  "public/ui/deeds/exp_harbor_to_harbor.webp": {
+    "sheet": "deeds_013",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "beb11582-a0e4-4e8d-83e3-a7da18e7fca1",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, spiralling",
+    "masterSha256": "6a0341eb53aec9edf61dba1c4542a7885b3920be91c1da65c9c1fe7671e40f27"
+  },
+  "public/ui/deeds/exp_last_barricade.webp": {
+    "sheet": "deeds_013",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "beb11582-a0e4-4e8d-83e3-a7da18e7fca1",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, twin",
+    "masterSha256": "c549b2c3f1864295f94b6c573433c335e8524e81ed359e4d653e9c250854c630"
+  },
+  "public/ui/deeds/exp_long_road_north.webp": {
+    "sheet": "deeds_013",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "beb11582-a0e4-4e8d-83e3-a7da18e7fca1",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, shattering",
+    "masterSha256": "2d683e7d84167979537bf032261629e36e809cdaea2aaba9a1b22a76cda1f289"
+  },
+  "public/ui/deeds/exp_marsh_wayfarer.webp": {
+    "sheet": "deeds_013",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "beb11582-a0e4-4e8d-83e3-a7da18e7fca1",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, in a storm of motes",
+    "masterSha256": "35b8ad2bba9eb149ac0ca26c73213973a5d663de71ff944c83214e2ebfbf695f"
+  },
+  "public/ui/deeds/exp_peaks_wayfarer.webp": {
+    "sheet": "deeds_013",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "beb11582-a0e4-4e8d-83e3-a7da18e7fca1",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background",
+    "masterSha256": "1fc27cd57bd8fa700dea1b48e7575a9f33fe10b33fa2f63e917dd63f9cff31b4"
+  },
+  "public/ui/deeds/exp_something_shiny.webp": {
+    "sheet": "deeds_013",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "beb11582-a0e4-4e8d-83e3-a7da18e7fca1",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, seen up close",
+    "masterSha256": "b81ea9641cd38c36ddb5214eb4f2812630f100d8f0e4f88744cc308bfe976810"
+  },
+  "public/ui/deeds/exp_the_last_keep.webp": {
+    "sheet": "deeds_013",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "beb11582-a0e4-4e8d-83e3-a7da18e7fca1",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "be6f9f9e3077abe90eced39048d9f6a8f88af59ca6a4b0b227bdd5596a151297"
+  },
+  "public/ui/deeds/exp_vale_wayfarer.webp": {
+    "sheet": "deeds_013",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "beb11582-a0e4-4e8d-83e3-a7da18e7fca1",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, rising upward",
+    "masterSha256": "b1c67c1c5f26ef45ec82ceb13dca7b30bca9563a2b73e4e49d47ad017d5a491a"
+  },
+  "public/ui/deeds/exp_windrider_slalom.webp": {
+    "sheet": "deeds_013",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "beb11582-a0e4-4e8d-83e3-a7da18e7fca1",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a horse head, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "687f138a1662c955fd60a482a1d35e71132a12ab958c6acd1e83d0c1b039f2ec"
+  },
+  "public/ui/deeds/exp_wisp_maze.webp": {
+    "sheet": "deeds_013",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "beb11582-a0e4-4e8d-83e3-a7da18e7fca1",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "737a7eedd1170071611a7b960642e17943d177ef88be29cc73a5983ba4341bd9"
+  },
+  "public/ui/deeds/exp_world_traveler.webp": {
+    "sheet": "deeds_013",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "beb11582-a0e4-4e8d-83e3-a7da18e7fca1",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a compass rose, softly lit on a warm painted background",
+    "masterSha256": "f15cd6ff0c51c52b873eb572ee04db057e5f92f0757ce723749931763b50b602"
+  },
+  "public/ui/deeds/feat_book_complete.webp": {
+    "sheet": "deeds_013",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "beb11582-a0e4-4e8d-83e3-a7da18e7fca1",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, twin",
+    "masterSha256": "424d9ff601d4eb7ea0b1967583e56507c181d0950840ee9cd182f62d8ec9db60"
+  },
+  "public/ui/deeds/feat_brightwood_relic.webp": {
+    "sheet": "deeds_013",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "beb11582-a0e4-4e8d-83e3-a7da18e7fca1",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "3aedf7fd897cf0cc4c0000dd063e3405dfb99b0af9fce15827756b07410c8892"
+  },
+  "public/ui/deeds/feat_era_cap.webp": {
+    "sheet": "deeds_013",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "beb11582-a0e4-4e8d-83e3-a7da18e7fca1",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a rising sun, softly lit on a warm painted background",
+    "masterSha256": "ff04a4c21c996192866182029d339c24712aaff9020e56d81e13b07a5fffd858"
+  },
+  "public/ui/deeds/feat_gourdlight_doorsteps.webp": {
+    "sheet": "deeds_013",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "beb11582-a0e4-4e8d-83e3-a7da18e7fca1",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "7424a0cc7cb06b8c4e8aa9a3b8b43b3fbb7d1e741cf14d580d4d92b7d3ccb80f"
+  },
+  "public/ui/deeds/feat_gourdlight_errands.webp": {
+    "sheet": "deeds_013",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "beb11582-a0e4-4e8d-83e3-a7da18e7fca1",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "499433a58acc9eb1e36bcd00511d1d125e6b28658c6d6f70e47ae26ef6196c31"
+  },
+  "public/ui/deeds/feat_gourdlight_eve_complete.webp": {
+    "sheet": "deeds_014",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "abb6d405-56cb-4b70-a17c-32872611af89",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, at dusk",
+    "masterSha256": "61fbb1390ddc5004b69632e486be4fc380c2ee7a76021382a97611689f0cf62d"
+  },
+  "public/ui/deeds/feat_gourdlight_frights.webp": {
+    "sheet": "deeds_014",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "abb6d405-56cb-4b70-a17c-32872611af89",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, cracking the ground",
+    "masterSha256": "30f082af560eb13d3eecc95eea3bce0e6af4f8ac88e8764a5afde18a741a0999"
+  },
+  "public/ui/deeds/feat_gourdlight_guise.webp": {
+    "sheet": "deeds_014",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "abb6d405-56cb-4b70-a17c-32872611af89",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, with drifting sparks",
+    "masterSha256": "82b0a320ffcdd53cb50f04dc4618eb59784d5f7f2df3da058cd42830b34fba61"
+  },
+  "public/ui/deeds/feat_old_thatchgrin.webp": {
+    "sheet": "deeds_014",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "abb6d405-56cb-4b70-a17c-32872611af89",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, in a beam of light",
+    "masterSha256": "e576a50b1b9d5ec0380876d856d7cf0d93091cb155c782663668e7b1a07c4025"
+  },
+  "public/ui/deeds/feat_pumpkin_hunter.webp": {
+    "sheet": "deeds_014",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "abb6d405-56cb-4b70-a17c-32872611af89",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, framed by mist",
+    "masterSha256": "e15dd5543af0935859896e83b29c2c70886c3bf487d5a32de810e12e3726f82a"
+  },
+  "public/ui/deeds/feat_title_gourdlit.webp": {
+    "sheet": "deeds_014",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "abb6d405-56cb-4b70-a17c-32872611af89",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, spiralling",
+    "masterSha256": "3d0fb24f2c5da639d1e9efc983d2dff40256b39f2835ef2a4801f9df8ee2c1e7"
+  },
+  "public/ui/deeds/feat_title_hollow_grinned.webp": {
+    "sheet": "deeds_014",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "abb6d405-56cb-4b70-a17c-32872611af89",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, shattering",
+    "masterSha256": "88ae7fd5cba57bf818c8c491b34b4fd10569ff9be7bc4c5dbe7e3ca46c59836c"
+  },
+  "public/ui/deeds/feat_title_trickster.webp": {
+    "sheet": "deeds_014",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "abb6d405-56cb-4b70-a17c-32872611af89",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, in a storm of motes",
+    "masterSha256": "9d737a56debdc3f81e1fffb5d3963e839bc6dc7c0c17b53c9187c86abbe6c1b0"
+  },
+  "public/ui/deeds/hid_bountiful_coffer.webp": {
+    "sheet": "deeds_014",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "abb6d405-56cb-4b70-a17c-32872611af89",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "adc1c6e2f8d8429745321ba5a9ed5000521ac4df399ff5f8e7c2d85e75ddcaa0"
+  },
+  "public/ui/deeds/hid_codfather.webp": {
+    "sheet": "deeds_014",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "abb6d405-56cb-4b70-a17c-32872611af89",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background",
+    "masterSha256": "0466a6ab6cd39039ee5c01dd5f7df27d59b5af0ac58ef8ce6a18f8205dc47392"
+  },
+  "public/ui/deeds/hid_companion_save.webp": {
+    "sheet": "deeds_014",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "abb6d405-56cb-4b70-a17c-32872611af89",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a small friendly creature, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "e0e07709c9b3485e5d41e05b5ca26fc994e6bff3283bfbbd72aa4f73d0a0bc1f"
+  },
+  "public/ui/deeds/hid_fall_death.webp": {
+    "sheet": "deeds_014",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "abb6d405-56cb-4b70-a17c-32872611af89",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, seen up close",
+    "masterSha256": "7690d9b10d648434af975cea519a792c36989585371f5da8edaa65c6b51b4d6e"
+  },
+  "public/ui/deeds/hid_forgebreaker.webp": {
+    "sheet": "deeds_014",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "abb6d405-56cb-4b70-a17c-32872611af89",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a crafting hammer and anvil, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "9ac3690d6d20bffdbe2313001d1a9c46db15c367890f24961e29b74ded93c8b7"
+  },
+  "public/ui/deeds/hid_gilded_tour.webp": {
+    "sheet": "deeds_014",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "abb6d405-56cb-4b70-a17c-32872611af89",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "db3687afe7db36af25d957dbbc9bcddceb403e081a5891a705ad0477fe1e15e8"
+  },
+  "public/ui/deeds/hid_keepers_toll_twice.webp": {
+    "sheet": "deeds_014",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "abb6d405-56cb-4b70-a17c-32872611af89",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, twin",
+    "masterSha256": "1baeb26ff8d025ea4e3da0d68931eb4e8605baeb28084d245b6b7fb48ac04315"
+  },
+  "public/ui/deeds/hid_roll_hundred.webp": {
+    "sheet": "deeds_014",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "abb6d405-56cb-4b70-a17c-32872611af89",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, rising upward",
+    "masterSha256": "515a258f748513340688b12d1414ce92ce5c2f218fc6944c04c7dafb88a20b1d"
+  },
+  "public/ui/deeds/hid_saul_footnote.webp": {
+    "sheet": "deeds_015",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "9332f188-76b2-4e19-b5dc-15f9de50eade",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open storybook, softly lit on a warm painted background, at dusk",
+    "masterSha256": "78972c208f74aab5809de410e3bd37e05d9025590e095c2e77af124b695b2ab0"
+  },
+  "public/ui/deeds/hid_yumi_cheer.webp": {
+    "sheet": "deeds_015",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "9332f188-76b2-4e19-b5dc-15f9de50eade",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, twin",
+    "masterSha256": "ea9fd8d7801854a9a2ceccc5057687d8b2b835dafd33eaed9a3202dad0242c5f"
+  },
+  "public/ui/deeds/prog_alchemy_50.webp": {
+    "sheet": "deeds_015",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "9332f188-76b2-4e19-b5dc-15f9de50eade",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, in a storm of motes",
+    "masterSha256": "a035dc5bf5c2956df1ce6734bcc82b682a4f21515f58dad6b41c70d694fbdf63"
+  },
+  "public/ui/deeds/prog_alchemy_rare.webp": {
+    "sheet": "deeds_015",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "9332f188-76b2-4e19-b5dc-15f9de50eade",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "da361f23e9ec263c19661b072d0d06594fefd6ce328d2f855823ed3374aeb64f"
+  },
+  "public/ui/deeds/prog_armorcrafting_50.webp": {
+    "sheet": "deeds_015",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "9332f188-76b2-4e19-b5dc-15f9de50eade",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background",
+    "masterSha256": "a7f0e5ae1a34cc8e2c179971fadab2d924652a0173b50940d2da0bfb8cdc41ae"
+  },
+  "public/ui/deeds/prog_armorcrafting_rare.webp": {
+    "sheet": "deeds_015",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "9332f188-76b2-4e19-b5dc-15f9de50eade",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "4ac3fa9485e003bf92461c1642aa6692dfaa352ec7ae2fba5564736c3b875730"
+  },
+  "public/ui/deeds/prog_around_the_ring.webp": {
+    "sheet": "deeds_015",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "9332f188-76b2-4e19-b5dc-15f9de50eade",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, seen up close",
+    "masterSha256": "fb85d7e8d6e05f2c25218a94bd766edf1650c8c6cd3ae554dcd4377aea8f0c3b"
+  },
+  "public/ui/deeds/prog_automatons_champion.webp": {
+    "sheet": "deeds_015",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "9332f188-76b2-4e19-b5dc-15f9de50eade",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "8cd8736d0744e77c52912905992bbdb81f1e349dc641ea6f4a814ea1cbc6ca49"
+  },
+  "public/ui/deeds/prog_automatons_trusted.webp": {
+    "sheet": "deeds_015",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "9332f188-76b2-4e19-b5dc-15f9de50eade",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a heraldic shield, softly lit on a warm painted background",
+    "masterSha256": "3a58521e1cc01592fc3e8a3c77957d1985e233d6dbd13fceaeddbeb0a112516e"
+  },
+  "public/ui/deeds/prog_callused_hands.webp": {
+    "sheet": "deeds_015",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "9332f188-76b2-4e19-b5dc-15f9de50eade",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "c1a9a387e4b1b29608d572c1709fb5e0ef9993e283710b1e82dee6769058a18f"
+  },
+  "public/ui/deeds/prog_champion.webp": {
+    "sheet": "deeds_015",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "9332f188-76b2-4e19-b5dc-15f9de50eade",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a rising sun, softly lit on a warm painted background, seen up close",
+    "masterSha256": "ee920b8aa43860f594cbb718f6eada1221ed4132f928416f602bd2b83f926635"
+  },
+  "public/ui/deeds/prog_church_order_champion.webp": {
+    "sheet": "deeds_015",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "9332f188-76b2-4e19-b5dc-15f9de50eade",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "24b84c5790aba2bdc7729474076f7e9c0e68dc74c28ac396b6687088405dcaf4"
+  },
+  "public/ui/deeds/prog_church_order_trusted.webp": {
+    "sheet": "deeds_015",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "9332f188-76b2-4e19-b5dc-15f9de50eade",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a heraldic shield, softly lit on a warm painted background, seen up close",
+    "masterSha256": "3ef3d1b85332da527d44988f23aa24d8dd138fb58e93651df722e8b01607a2d6"
+  },
+  "public/ui/deeds/prog_cooking_50.webp": {
+    "sheet": "deeds_015",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "9332f188-76b2-4e19-b5dc-15f9de50eade",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "69107a2f1db2e7995449b329b85820123807d7f2c275796ce33ba3652482868d"
+  },
+  "public/ui/deeds/prog_cooking_rare.webp": {
+    "sheet": "deeds_015",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "9332f188-76b2-4e19-b5dc-15f9de50eade",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "bd89f0f2a7b517e2aa93030e1350da884cb4139cd05b095aec2ee6815d257cb2"
+  },
+  "public/ui/deeds/prog_craft_specialist.webp": {
+    "sheet": "deeds_015",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "9332f188-76b2-4e19-b5dc-15f9de50eade",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, rising upward",
+    "masterSha256": "9059e97b837f6c9d1d09ed2643311095726401116721e06bba027c6e3a014418"
+  },
+  "public/ui/deeds/prog_crown_below.webp": {
+    "sheet": "deeds_016",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "cf3de868-c068-47b1-ba2e-d4f43d0957d9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, at dusk",
+    "masterSha256": "56ab6e0e795df991a870eb2de69b25bcf45012e121e8509c3ac94fcbc12034b9"
+  },
+  "public/ui/deeds/prog_deep_roots.webp": {
+    "sheet": "deeds_016",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "cf3de868-c068-47b1-ba2e-d4f43d0957d9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, cracking the ground",
+    "masterSha256": "cce6b000f3a1641a50afec7057a9346bcabe7ee59ff91a8b894800d047d67e58"
+  },
+  "public/ui/deeds/prog_double_digits.webp": {
+    "sheet": "deeds_016",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "cf3de868-c068-47b1-ba2e-d4f43d0957d9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a rising sun, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "3666359b5953726759a044d7b3e94937f8d2a57a77c6aa0a68704ea1dfb1fc56"
+  },
+  "public/ui/deeds/prog_enchanting_50.webp": {
+    "sheet": "deeds_016",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "cf3de868-c068-47b1-ba2e-d4f43d0957d9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, twin",
+    "masterSha256": "adde2319c6a6cd7be83a7fcc49077cdd64b464b44a2e3a8523a3ee68d279cb63"
+  },
+  "public/ui/deeds/prog_engineering_50.webp": {
+    "sheet": "deeds_016",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "cf3de868-c068-47b1-ba2e-d4f43d0957d9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "65edd9769bdbde0cae52d89ae1ada4d6f1f095b9bef2b4ad5dadc7277ef16b97"
+  },
+  "public/ui/deeds/prog_engineering_rare.webp": {
+    "sheet": "deeds_016",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "cf3de868-c068-47b1-ba2e-d4f43d0957d9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, at dusk",
+    "masterSha256": "5c0a58f5ed57452654b9f74b1d850f272c5d927cbf3c3764796e0c9f2a7526d8"
+  },
+  "public/ui/deeds/prog_eternal.webp": {
+    "sheet": "deeds_016",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "cf3de868-c068-47b1-ba2e-d4f43d0957d9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a rising sun, softly lit on a warm painted background, rising upward",
+    "masterSha256": "8fd1a92808442f181192009315c8b345b135107460426f11cc5a492891cc2eaf"
+  },
+  "public/ui/deeds/prog_faction_champion_all.webp": {
+    "sheet": "deeds_016",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "cf3de868-c068-47b1-ba2e-d4f43d0957d9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a heraldic shield, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "227495504e2bdc40ec007e4c03ab9f672be1009307e239ba32d437554c609ade"
+  },
+  "public/ui/deeds/prog_farming_100.webp": {
+    "sheet": "deeds_016",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "cf3de868-c068-47b1-ba2e-d4f43d0957d9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, at dusk",
+    "masterSha256": "ff58e46905b92364659aadd388ec021cc24e7fd16c28f59181e8951a1319732a"
+  },
+  "public/ui/deeds/prog_field_to_feast.webp": {
+    "sheet": "deeds_016",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "cf3de868-c068-47b1-ba2e-d4f43d0957d9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dark dungeon gate, softly lit on a warm painted background, at dusk",
+    "masterSha256": "aa1a73ebc50091e3d39dfdee7d676d5d6578f789cd46903b461c0606b3fa907e"
+  },
+  "public/ui/deeds/prog_finding_your_feet.webp": {
+    "sheet": "deeds_016",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "cf3de868-c068-47b1-ba2e-d4f43d0957d9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a rising sun, softly lit on a warm painted background, twin",
+    "masterSha256": "f19fe668f36c757a08b61bbfc751548490be64ce01e51269fd973d4a35eb4d15"
+  },
+  "public/ui/deeds/prog_first_craft.webp": {
+    "sheet": "deeds_016",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "cf3de868-c068-47b1-ba2e-d4f43d0957d9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a crafting hammer and anvil, softly lit on a warm painted background, rising upward",
+    "masterSha256": "57a8b10629832f28479ab44171be9798200044185885def3ffd594a81c307b99"
+  },
+  "public/ui/deeds/prog_first_harvest.webp": {
+    "sheet": "deeds_016",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "cf3de868-c068-47b1-ba2e-d4f43d0957d9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, cracking the ground",
+    "masterSha256": "5863fce1bb899ba4e587ffa49f08aba8c2eb97810a3be6e1a93af06d4097fe3f"
+  },
+  "public/ui/deeds/prog_first_planting.webp": {
+    "sheet": "deeds_016",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "cf3de868-c068-47b1-ba2e-d4f43d0957d9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, with drifting sparks",
+    "masterSha256": "a79d6220b789edd6fb455b27441e9343dc27d7fbadfdeb40a53e288deb417064"
+  },
+  "public/ui/deeds/prog_first_steps.webp": {
+    "sheet": "deeds_016",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "cf3de868-c068-47b1-ba2e-d4f43d0957d9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a rising sun, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "520fc547076a0f93a7d8f8eb1c8c78d0de3112c94d793b6450a3277ab3904726"
+  },
+  "public/ui/deeds/prog_fishing_100.webp": {
+    "sheet": "deeds_016",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "cf3de868-c068-47b1-ba2e-d4f43d0957d9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a leaping fish, softly lit on a warm painted background, in a storm of motes",
+    "masterSha256": "cf9b8af1f62fa63a259b720517b743358f7ddf450575f7d368a21303ef6f7574"
+  },
+  "public/ui/deeds/prog_full_build.webp": {
+    "sheet": "deeds_017",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "a7ba8e09-c66d-4113-b596-cf5f83c02a72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, with drifting sparks",
+    "masterSha256": "853eaa28e7e0dde9f389fe0a21bd96e48147ca7a630592c647e06f46aed8c2b4"
+  },
+  "public/ui/deeds/prog_grandmaster_alchemy.webp": {
+    "sheet": "deeds_017",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "a7ba8e09-c66d-4113-b596-cf5f83c02a72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "62909b1599661f1aef699da67a1a1c64a44a83a363cb315f5b402207f8ff7343"
+  },
+  "public/ui/deeds/prog_grandmaster_armorcrafting.webp": {
+    "sheet": "deeds_017",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "a7ba8e09-c66d-4113-b596-cf5f83c02a72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "042c9f2e2dbcbca9dc71f3951efddb6f97253791ff715b5690c874598e28b328"
+  },
+  "public/ui/deeds/prog_grandmaster_cooking.webp": {
+    "sheet": "deeds_017",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "a7ba8e09-c66d-4113-b596-cf5f83c02a72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, at dusk",
+    "masterSha256": "36e1c9cb2bae81efe39fd23dcbeab8b386b0731d4465f3a1763ffaad74a1eb38"
+  },
+  "public/ui/deeds/prog_grandmaster_enchanting.webp": {
+    "sheet": "deeds_017",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "a7ba8e09-c66d-4113-b596-cf5f83c02a72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, cracking the ground",
+    "masterSha256": "5fae7cf6bd301240f8cd82163a7b0ca10262255b164fb6c430f39838df7f5a5c"
+  },
+  "public/ui/deeds/prog_grandmaster_engineering.webp": {
+    "sheet": "deeds_017",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "a7ba8e09-c66d-4113-b596-cf5f83c02a72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, with drifting sparks",
+    "masterSha256": "e8e10ebcf1613ae00008317ba6cf6b52517b9ed2c193bae26904c8befc44e509"
+  },
+  "public/ui/deeds/prog_grandmaster_inscription.webp": {
+    "sheet": "deeds_017",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "a7ba8e09-c66d-4113-b596-cf5f83c02a72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, in a beam of light",
+    "masterSha256": "b0e81a744f58d155d5eebd1c2fc4f46d171bb152086466f8ed473ad8158f6e31"
+  },
+  "public/ui/deeds/prog_grandmaster_jewelcrafting.webp": {
+    "sheet": "deeds_017",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "a7ba8e09-c66d-4113-b596-cf5f83c02a72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, framed by mist",
+    "masterSha256": "9bd7e677ded025bf1ad8326ac982d8cdee0ab847c1f4513ac2d51cf1323bf137"
+  },
+  "public/ui/deeds/prog_grandmaster_leatherworking.webp": {
+    "sheet": "deeds_017",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "a7ba8e09-c66d-4113-b596-cf5f83c02a72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, spiralling",
+    "masterSha256": "b4b60bb10ad9edb4f8e3b5d39fc2aa3476e7f3fe63f54717968fad0041502e52"
+  },
+  "public/ui/deeds/prog_grandmaster_tailoring.webp": {
+    "sheet": "deeds_017",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "a7ba8e09-c66d-4113-b596-cf5f83c02a72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, shattering",
+    "masterSha256": "e7600357699ebf0d0323355b45bf06c4fa1d09def8719c534e6a2369b807fd28"
+  },
+  "public/ui/deeds/prog_grandmaster_weaponcrafting.webp": {
+    "sheet": "deeds_017",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "a7ba8e09-c66d-4113-b596-cf5f83c02a72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, in a storm of motes",
+    "masterSha256": "80bae8164f7e3de0e3d83b37e3e68d3d13a694a43b66b6ce069da810baccc2fc"
+  },
+  "public/ui/deeds/prog_guildsworn.webp": {
+    "sheet": "deeds_017",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "a7ba8e09-c66d-4113-b596-cf5f83c02a72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a crafting hammer and anvil, softly lit on a warm painted background, twin",
+    "masterSha256": "07e2101a64fe92d3c810158e811b06829325506fdcc844d66686a361f7d6f48f"
+  },
+  "public/ui/deeds/prog_herbalism_100.webp": {
+    "sheet": "deeds_017",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "a7ba8e09-c66d-4113-b596-cf5f83c02a72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, in a beam of light",
+    "masterSha256": "58cedff88ab6d6b26e81a69a3347c599af8c9da6733d738a3a04fe68ef41bf4b"
+  },
+  "public/ui/deeds/prog_inscription_50.webp": {
+    "sheet": "deeds_017",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "a7ba8e09-c66d-4113-b596-cf5f83c02a72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background",
+    "masterSha256": "4bd585c148f8b8864730827bf095cd56ca7a25be54673e12e4de462c91664ff9"
+  },
+  "public/ui/deeds/prog_inscription_rare.webp": {
+    "sheet": "deeds_017",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "a7ba8e09-c66d-4113-b596-cf5f83c02a72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, cracking the ground",
+    "masterSha256": "c20107020db6bac02eca88c3e024c30b5d589f00ee1cec4816d6c6f7eafd3366"
+  },
+  "public/ui/deeds/prog_jewelcrafting_50.webp": {
+    "sheet": "deeds_017",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "a7ba8e09-c66d-4113-b596-cf5f83c02a72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, seen up close",
+    "masterSha256": "f5092fcec7c79a9b34800195e5d5189ae8dcf6a533bb1c40516b4d4525b3cd7f"
+  },
+  "public/ui/deeds/prog_jewelcrafting_rare.webp": {
+    "sheet": "deeds_018",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "428bd71f-ea61-4ac7-8d7f-fcee82c2f4f6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, with drifting sparks",
+    "masterSha256": "e00100f2c64c42b5df17a1f45ca073b98864972c01ad7cf4e3817644adc03262"
+  },
+  "public/ui/deeds/prog_leatherworking_50.webp": {
+    "sheet": "deeds_018",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "428bd71f-ea61-4ac7-8d7f-fcee82c2f4f6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "e73cd7422155845b585c035e2b37a7d2dd19d647575798d4e428f5901a0cd59c"
+  },
+  "public/ui/deeds/prog_leatherworking_rare.webp": {
+    "sheet": "deeds_018",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "428bd71f-ea61-4ac7-8d7f-fcee82c2f4f6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, in a beam of light",
+    "masterSha256": "22c18a501765ad7d5c3256566b3414811adc5ce693fdb8962fbfa870a00bb3d4"
+  },
+  "public/ui/deeds/prog_legendmaker.webp": {
+    "sheet": "deeds_018",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "428bd71f-ea61-4ac7-8d7f-fcee82c2f4f6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, in a beam of light",
+    "masterSha256": "f896928b479cca82e67b5415965799f01c9c41166e8595b320ee1fa9c3018411"
+  },
+  "public/ui/deeds/prog_level_cap.webp": {
+    "sheet": "deeds_018",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "428bd71f-ea61-4ac7-8d7f-fcee82c2f4f6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a rising sun, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "800d1bf23357b9f0041079514d77f217527408d6974223e8fdb0bb9e0ac20420"
+  },
+  "public/ui/deeds/prog_logging_100.webp": {
+    "sheet": "deeds_018",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "428bd71f-ea61-4ac7-8d7f-fcee82c2f4f6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, framed by mist",
+    "masterSha256": "a2a0df759b6d506b14265815b6cbf06f5ff1e2c2de0e3d5cd7136a4bdb15577c"
+  },
+  "public/ui/deeds/prog_master_angler.webp": {
+    "sheet": "deeds_018",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "428bd71f-ea61-4ac7-8d7f-fcee82c2f4f6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a leaping fish, softly lit on a warm painted background",
+    "masterSha256": "44627f5146b18abd0932ffe1d675ac2d5df74fe641227efe2ac0b9b61a9dc9b1"
+  },
+  "public/ui/deeds/prog_master_gatherer.webp": {
+    "sheet": "deeds_018",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "428bd71f-ea61-4ac7-8d7f-fcee82c2f4f6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, framed by mist",
+    "masterSha256": "10a8fd8cdbdc85c55aa70c61f59da94f24e75247569b18a8bd6b3fd13e2a8234"
+  },
+  "public/ui/deeds/prog_masterwright.webp": {
+    "sheet": "deeds_018",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "428bd71f-ea61-4ac7-8d7f-fcee82c2f4f6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a crafting hammer and anvil, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "2035da256fa9e97e5259e6bda44bd968a5ed5911f689db54fd081db80e420502"
+  },
+  "public/ui/deeds/prog_mere_at_rest.webp": {
+    "sheet": "deeds_018",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "428bd71f-ea61-4ac7-8d7f-fcee82c2f4f6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, spiralling",
+    "masterSha256": "beeef38de5d46be28ea239f4b86e406613c5c30417ac61559a24bddd22c9bb5c"
+  },
+  "public/ui/deeds/prog_mining_100.webp": {
+    "sheet": "deeds_018",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "428bd71f-ea61-4ac7-8d7f-fcee82c2f4f6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "57bffdc3576f3d2e987b56fbed5225b797da11982f9068b68e5a917f93f59f24"
+  },
+  "public/ui/deeds/prog_mythic.webp": {
+    "sheet": "deeds_018",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "428bd71f-ea61-4ac7-8d7f-fcee82c2f4f6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a rising sun, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "0d7031bf429c556f6e2584e481880d8e15bc616949d7c1c256ceda3c40bd1d50"
+  },
+  "public/ui/deeds/prog_paragon.webp": {
+    "sheet": "deeds_018",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "428bd71f-ea61-4ac7-8d7f-fcee82c2f4f6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a rising sun, softly lit on a warm painted background, at dusk",
+    "masterSha256": "6908185b6fc54b7aaab23e1166ff9c15f200b7faee0e46682626e09abc4d76be"
+  },
+  "public/ui/deeds/prog_prestige.webp": {
+    "sheet": "deeds_018",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "428bd71f-ea61-4ac7-8d7f-fcee82c2f4f6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "0627423a5693abcad1fa2a63b0aeff43ab95c1b9cda65190f511299e78e3102b"
+  },
+  "public/ui/deeds/prog_prestige_10.webp": {
+    "sheet": "deeds_018",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "428bd71f-ea61-4ac7-8d7f-fcee82c2f4f6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a small friendly creature, softly lit on a warm painted background, rising upward",
+    "masterSha256": "6870a8fbce8d169b442b715893bfeb4479e11650659c827a82c041f143c5cf52"
+  },
+  "public/ui/deeds/prog_prestige_5.webp": {
+    "sheet": "deeds_018",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "428bd71f-ea61-4ac7-8d7f-fcee82c2f4f6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, shattering",
+    "masterSha256": "21317cc9465d9d58d88b92194296c3499ab43c552c0a41c7f6412cf0191f74e2"
+  },
+  "public/ui/deeds/prog_ready_for_an_adventure.webp": {
+    "sheet": "deeds_019",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "562cf025-9dec-457f-ab26-ce8f7104da4b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, at dusk",
+    "masterSha256": "0707cb6c5d2ce2df66c97c77dcf75da7188318758d8096d84f0b2b3c93c69f9d"
+  },
+  "public/ui/deeds/prog_rift_watch_champion.webp": {
+    "sheet": "deeds_019",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "562cf025-9dec-457f-ab26-ce8f7104da4b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, in a storm of motes",
+    "masterSha256": "bf9ea0b34474dd01fa99cd88ef345a4ff83090b48d7f03bee560fa1ce08c4986"
+  },
+  "public/ui/deeds/prog_rift_watch_trusted.webp": {
+    "sheet": "deeds_019",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "562cf025-9dec-457f-ab26-ce8f7104da4b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a heraldic shield, softly lit on a warm painted background, rising upward",
+    "masterSha256": "40e7547b59e69aa8717a51741c4fccbfea1d2b14765224f823a117e513e3c19e"
+  },
+  "public/ui/deeds/prog_specialized.webp": {
+    "sheet": "deeds_019",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "562cf025-9dec-457f-ab26-ce8f7104da4b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background",
+    "masterSha256": "d75d20d252a000ab1049b59c4141d0f6062c4f8eb6ed4d77f331976a8abbbce7"
+  },
+  "public/ui/deeds/prog_tailoring_50.webp": {
+    "sheet": "deeds_019",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "562cf025-9dec-457f-ab26-ce8f7104da4b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, rising upward",
+    "masterSha256": "8fa02e8c7b05031345d45a526dd5b492d66655f002a98aaa076b49b021038dea"
+  },
+  "public/ui/deeds/prog_tailoring_rare.webp": {
+    "sheet": "deeds_019",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "562cf025-9dec-457f-ab26-ce8f7104da4b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, framed by mist",
+    "masterSha256": "90ee7a48f70f186b61bdf8354e114387262c6b10492f27a657ad9d640b9465c0"
+  },
+  "public/ui/deeds/prog_talented.webp": {
+    "sheet": "deeds_019",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "562cf025-9dec-457f-ab26-ce8f7104da4b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, seen up close",
+    "masterSha256": "68fd7c21d20eac2f53706b5f26c2efdb412fdf401c4035563c1c78c0755d11f9"
+  },
+  "public/ui/deeds/prog_the_long_middle.webp": {
+    "sheet": "deeds_019",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "562cf025-9dec-457f-ab26-ce8f7104da4b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a rising sun, softly lit on a warm painted background, cracking the ground",
+    "masterSha256": "c165ae80afe453e1979f4fb1f255cb41e0bbadafb7dc86001462dcf71cb1acf1"
+  },
+  "public/ui/deeds/prog_tools_of_the_trade.webp": {
+    "sheet": "deeds_019",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "562cf025-9dec-457f-ab26-ce8f7104da4b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a crafting hammer and anvil, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "2efa6ae82779ab80e17f6e5eef1b3b67e89a983fde8da5aec5fb0f64f548ba2d"
+  },
+  "public/ui/deeds/prog_veteran.webp": {
+    "sheet": "deeds_019",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "562cf025-9dec-457f-ab26-ce8f7104da4b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a rising sun, softly lit on a warm painted background, with drifting sparks",
+    "masterSha256": "d22863010d909d245a87209680a5b4979819e3d696a94930cc2bb01f66f7a96b"
+  },
+  "public/ui/deeds/prog_weaponcrafting_50.webp": {
+    "sheet": "deeds_019",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "562cf025-9dec-457f-ab26-ce8f7104da4b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed swords over a skull, softly lit on a warm painted background, twin",
+    "masterSha256": "8275fb5571dfdef82900b5fee8256a6ea3dd70ce38faace3a1d482f24ca778f8"
+  },
+  "public/ui/deeds/prog_weaponcrafting_rare.webp": {
+    "sheet": "deeds_019",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "562cf025-9dec-457f-ab26-ce8f7104da4b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, spiralling",
+    "masterSha256": "82220aee206a4eae7afc63496c6e44b64c4d98c1b974efe022af0af448e97889"
+  },
+  "public/ui/deeds/prog_well_rested.webp": {
+    "sheet": "deeds_019",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "562cf025-9dec-457f-ab26-ce8f7104da4b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a rising sun, softly lit on a warm painted background, in a beam of light",
+    "masterSha256": "41530e47949904964b52ed69fe9d2b8c2b2d2732184a7415c4ea918af8b3f050"
+  },
+  "public/ui/deeds/pvp_arena_1v1_1600.webp": {
+    "sheet": "deeds_019",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "562cf025-9dec-457f-ab26-ce8f7104da4b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background",
+    "masterSha256": "5d9b4983e24ce417a5afb1e98f5d26a4c9fea221c19ee18633a78d32e5c45aa6"
+  },
+  "public/ui/deeds/pvp_arena_1v1_1750.webp": {
+    "sheet": "deeds_019",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "562cf025-9dec-457f-ab26-ce8f7104da4b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, seen up close",
+    "masterSha256": "c6961d355670af43d906a9ce46317c3c870a71ff2b81ea4d866531b87476cbfa"
+  },
+  "public/ui/deeds/pvp_arena_1v1_1900.webp": {
+    "sheet": "deeds_019",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "562cf025-9dec-457f-ab26-ce8f7104da4b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "728af1a00e56295f02998d4dc04b8a316a7cacc649192c38d47a0d955a08e7aa"
+  },
+  "public/ui/deeds/pvp_arena_2v2_1600.webp": {
+    "sheet": "deeds_020",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "5a969c70-301a-4330-befc-64b73dd1d22f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, rising upward",
+    "masterSha256": "5a0c416886cfd2c58849e72daf511398526a08af31e64644cb26c935f194e8ce"
+  },
+  "public/ui/deeds/pvp_arena_2v2_1750.webp": {
+    "sheet": "deeds_020",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "5a969c70-301a-4330-befc-64b73dd1d22f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, twin",
+    "masterSha256": "405351a5879925c12d9123810b2a0218473e9ec72b40a53f4f155bfa5796fa61"
+  },
+  "public/ui/deeds/pvp_arena_2v2_1900.webp": {
+    "sheet": "deeds_020",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "5a969c70-301a-4330-befc-64b73dd1d22f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "402bf52b1c5254170c73d70bb2fa06fa3407611dd6167a1f659e032b5def8495"
+  },
+  "public/ui/deeds/pvp_arena_first_match.webp": {
+    "sheet": "deeds_020",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "5a969c70-301a-4330-befc-64b73dd1d22f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "30eb86bd0af6298b8a9d13b75efb5b496abad11b0b9cd36db24cf5cff3a8413f"
+  },
+  "public/ui/deeds/pvp_arena_first_win.webp": {
+    "sheet": "deeds_020",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "5a969c70-301a-4330-befc-64b73dd1d22f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "9755a957dcfc7f6bba9fe2f3679007dc4cc3b3b9510c64fdf6465463e3b5d92c"
+  },
+  "public/ui/deeds/pvp_bg_captures_100.webp": {
+    "sheet": "deeds_020",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "5a969c70-301a-4330-befc-64b73dd1d22f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, at dusk",
+    "masterSha256": "2e071f6737a352dc4eb8292ea6951a5e909994fe1f46a5ff315548d8321fd70a"
+  },
+  "public/ui/deeds/pvp_bg_first_capture.webp": {
+    "sheet": "deeds_020",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "5a969c70-301a-4330-befc-64b73dd1d22f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, cracking the ground",
+    "masterSha256": "9742458facfb6d56a8060b39d547a6b6a789ae07c298781888f6ec4ae2c45fcf"
+  },
+  "public/ui/deeds/pvp_bg_first_win.webp": {
+    "sheet": "deeds_020",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "5a969c70-301a-4330-befc-64b73dd1d22f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, with drifting sparks",
+    "masterSha256": "1620aeb42dc615610394d4f76c4098a68008c4175ce08bab30f102a7a73cb6ab"
+  },
+  "public/ui/deeds/pvp_bg_wins_25.webp": {
+    "sheet": "deeds_020",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "5a969c70-301a-4330-befc-64b73dd1d22f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, in a beam of light",
+    "masterSha256": "ca6a49e78c1b6b76a62595a750147da15518cecfe0b2487aa9debf6d45713096"
+  },
+  "public/ui/deeds/pvp_card_duel_first_win.webp": {
+    "sheet": "deeds_020",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "5a969c70-301a-4330-befc-64b73dd1d22f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, framed by mist",
+    "masterSha256": "c71a17fa2bba744123da38aa1b8fa819a76d737a53a467667986c0aa39b623b7"
+  },
+  "public/ui/deeds/pvp_duel_first_win.webp": {
+    "sheet": "deeds_020",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "5a969c70-301a-4330-befc-64b73dd1d22f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, spiralling",
+    "masterSha256": "6aab3213d93dc92042f4337c7fc4b97284afb1d28e1df44e9749aa28fb5a826e"
+  },
+  "public/ui/deeds/pvp_duel_grace.webp": {
+    "sheet": "deeds_020",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "5a969c70-301a-4330-befc-64b73dd1d22f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, shattering",
+    "masterSha256": "97c53f962108ce76b9231d49f30aaaa8369d5990071ce71d2c26b9b183e66287"
+  },
+  "public/ui/deeds/pvp_fiesta_double.webp": {
+    "sheet": "deeds_020",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "5a969c70-301a-4330-befc-64b73dd1d22f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, cracking the ground",
+    "masterSha256": "58a08e712e04e3e8a7aa0c106fabdace99d24736b7384899af5d4c9703594ef1"
+  },
+  "public/ui/deeds/pvp_fiesta_first_bout.webp": {
+    "sheet": "deeds_020",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "5a969c70-301a-4330-befc-64b73dd1d22f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, in a storm of motes",
+    "masterSha256": "a68ad4ae7225a73ba3ccdd525c5569b1dbbbdfa919e3f2c7bbd06a9d9f709283"
+  },
+  "public/ui/deeds/pvp_fiesta_first_win.webp": {
+    "sheet": "deeds_020",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "5a969c70-301a-4330-befc-64b73dd1d22f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background",
+    "masterSha256": "85018a3ebfaf01153a41dfd4978089b9e638eccc8a207b273c7e621d387ff786"
+  },
+  "public/ui/deeds/pvp_fiesta_five_kills.webp": {
+    "sheet": "deeds_020",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "5a969c70-301a-4330-befc-64b73dd1d22f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, with drifting sparks",
+    "masterSha256": "ad4c7ffba70e56efdc28254880ff78b872d1fca211c0f2bc671fd865ddffa2eb"
+  },
+  "public/ui/deeds/pvp_fiesta_full_build.webp": {
+    "sheet": "deeds_021",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "c70c217c-7812-4f85-812a-c8eb78912e7a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, seen up close",
+    "masterSha256": "343d19241aa631efcc27aa9f6082a31b8c083ba10b8b590be348ed3fd822fcc9"
+  },
+  "public/ui/deeds/pvp_fiesta_powerups.webp": {
+    "sheet": "deeds_021",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "c70c217c-7812-4f85-812a-c8eb78912e7a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "ed40a6870b17a91c9e3de89a5fe45b46ea755c5eca2e8732b744861d89e063c9"
+  },
+  "public/ui/deeds/pvp_fiesta_shutdown.webp": {
+    "sheet": "deeds_021",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "c70c217c-7812-4f85-812a-c8eb78912e7a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, in a beam of light",
+    "masterSha256": "bba9cc92b70faf3fa191ef5e8affb7ea2713a31b9519cd052f5140d5a53ac3db"
+  },
+  "public/ui/deeds/pvp_honor_field_marshal.webp": {
+    "sheet": "deeds_021",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "c70c217c-7812-4f85-812a-c8eb78912e7a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, rising upward",
+    "masterSha256": "ef2f4535c8fc12bd36ca9c1d0e9995ef4c14345f0629a86540258a97929fe8d5"
+  },
+  "public/ui/deeds/pvp_honor_knight_lieutenant.webp": {
+    "sheet": "deeds_021",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "c70c217c-7812-4f85-812a-c8eb78912e7a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, twin",
+    "masterSha256": "06d420f0122a45a8935669c49313bd1ce449755c146347fed20563f4ff6e543a"
+  },
+  "public/ui/deeds/pvp_honor_sergeant.webp": {
+    "sheet": "deeds_021",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "c70c217c-7812-4f85-812a-c8eb78912e7a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "9a5743ad60ccf5b7f3c0136a804c7d329b36ef4891a04076a89abd9c75a78e34"
+  },
+  "public/ui/deeds/pvp_vcup_clean_sheet.webp": {
+    "sheet": "deeds_021",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "c70c217c-7812-4f85-812a-c8eb78912e7a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "cb114f7f3bb79b0b10069658bb4eff756583e895c52b49339d626737fd38612a"
+  },
+  "public/ui/deeds/pvp_vcup_first_goal.webp": {
+    "sheet": "deeds_021",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "c70c217c-7812-4f85-812a-c8eb78912e7a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, framed by mist",
+    "masterSha256": "fae6f99cf70c0d3acdd72c4b0582b8b368dd16f061cec0166c42b682fdaa2903"
+  },
+  "public/ui/deeds/pvp_vcup_first_match.webp": {
+    "sheet": "deeds_021",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "c70c217c-7812-4f85-812a-c8eb78912e7a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "67d8a7369c64b13edc3619dc58afc77866bae72f1e092a273edea0e8f133f36d"
+  },
+  "public/ui/deeds/pvp_vcup_first_save.webp": {
+    "sheet": "deeds_021",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "c70c217c-7812-4f85-812a-c8eb78912e7a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, at dusk",
+    "masterSha256": "8234b8fb7b464a28cffcdef63290a1c7206c37d53a34a0a860c81ecd4c54606a"
+  },
+  "public/ui/deeds/pvp_vcup_first_win.webp": {
+    "sheet": "deeds_021",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "c70c217c-7812-4f85-812a-c8eb78912e7a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, cracking the ground",
+    "masterSha256": "7803cd56684702d54716ec697c2c5753f4e3796ef60f934d01b653a06980359b"
+  },
+  "public/ui/deeds/pvp_vcup_golden_goal.webp": {
+    "sheet": "deeds_021",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "c70c217c-7812-4f85-812a-c8eb78912e7a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, spiralling",
+    "masterSha256": "cdbc4ba91b4446035e7ed81e735a6493928f81fbbad3f3b09ac8a93618992ade"
+  },
+  "public/ui/deeds/pvp_vcup_guild_win.webp": {
+    "sheet": "deeds_021",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "c70c217c-7812-4f85-812a-c8eb78912e7a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, with drifting sparks",
+    "masterSha256": "89b3bb3ff9d2b21a7d55e975461b6028edc53684c0ad92e784985faffab90cf8"
+  },
+  "public/ui/deeds/pvp_vcup_hat_trick.webp": {
+    "sheet": "deeds_021",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "c70c217c-7812-4f85-812a-c8eb78912e7a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, shattering",
+    "masterSha256": "081091170b9bf9b22a87b98161077ac06b702dbf7bd004a12abb79dc5d409b3d"
+  },
+  "public/ui/deeds/pvp_vcup_wins_10.webp": {
+    "sheet": "deeds_021",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "c70c217c-7812-4f85-812a-c8eb78912e7a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, in a beam of light",
+    "masterSha256": "596cc519f24ab291774e198c64700037abccb93f197abb3849998edb893dcd3a"
+  },
+  "public/ui/deeds/pvp_vcup_wins_25.webp": {
+    "sheet": "deeds_021",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "c70c217c-7812-4f85-812a-c8eb78912e7a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "two crossed banners, softly lit on a warm painted background, framed by mist",
+    "masterSha256": "49c8e4f5f8974310aeadb7e58e2ae7c18b3eb8b6ffec772c25780e5d533f8a8c"
+  },
+  "public/ui/deeds/soc_by_ravens_wing.webp": {
+    "sheet": "deeds_022",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "b7bb5fac-18ae-4de9-b454-0e6f2d74f20f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, in a glowing ring",
+    "masterSha256": "fc911996626efee6bc3147d7ddc3f8ec8a8c77ed3c439943acd2cb2a07a95995"
+  },
+  "public/ui/deeds/soc_civic_duty.webp": {
+    "sheet": "deeds_022",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "b7bb5fac-18ae-4de9-b454-0e6f2d74f20f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, rising upward",
+    "masterSha256": "26bdfe1a41b70f94e14e55afd3cc63025aaaaf5dbb0ea655cdc5ad7d3db6c7ad"
+  },
+  "public/ui/deeds/soc_first_party.webp": {
+    "sheet": "deeds_022",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "b7bb5fac-18ae-4de9-b454-0e6f2d74f20f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, twin",
+    "masterSha256": "bd02518c72811a69fc9fe97e27fb95728ee00578fda2b7328c389ada584b8450"
+  },
+  "public/ui/deeds/soc_first_sale.webp": {
+    "sheet": "deeds_022",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "b7bb5fac-18ae-4de9-b454-0e6f2d74f20f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, shattering",
+    "masterSha256": "86b4bf12171d325da508f8baf63ff31493f00f1db7b77947c62b828af7f5cfd3"
+  },
+  "public/ui/deeds/soc_first_salvage.webp": {
+    "sheet": "deeds_022",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "b7bb5fac-18ae-4de9-b454-0e6f2d74f20f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, erupting outward",
+    "masterSha256": "55bb5208ad358465955635a1e5f6136e9d7ee9913d62d23885794ba73e17f159"
+  },
+  "public/ui/deeds/soc_first_trade.webp": {
+    "sheet": "deeds_022",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "b7bb5fac-18ae-4de9-b454-0e6f2d74f20f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, over a battlefield",
+    "masterSha256": "f0d540087dde340afcd9726f1b6a1f1a68658845d99646509700803a788acab5"
+  },
+  "public/ui/deeds/soc_four_bags_deep.webp": {
+    "sheet": "deeds_022",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "b7bb5fac-18ae-4de9-b454-0e6f2d74f20f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, in a swirling vortex",
+    "masterSha256": "f1a1023737f6dbe8556eef323cd2b5e52c034cf69f73b387a03de3109ea1250c"
+  },
+  "public/ui/deeds/soc_full_house.webp": {
+    "sheet": "deeds_022",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "b7bb5fac-18ae-4de9-b454-0e6f2d74f20f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dark dungeon gate, softly lit on a warm painted background, cracking the ground",
+    "masterSha256": "aa8772803609652bef3ddb5dfdb34d30bc3a60461d4d2959484a7172991fb20c"
+  },
+  "public/ui/deeds/soc_gilded_strongbox.webp": {
+    "sheet": "deeds_022",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "b7bb5fac-18ae-4de9-b454-0e6f2d74f20f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, at dusk",
+    "masterSha256": "d94ca06ef688fee107f05521cd4e0fc5a2c96c28525a211bbfc3f4156e7e0519"
+  },
+  "public/ui/deeds/soc_guild_founded.webp": {
+    "sheet": "deeds_022",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "b7bb5fac-18ae-4de9-b454-0e6f2d74f20f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, cracking the ground",
+    "masterSha256": "11fec32c2a8cd63e461acb37db250d1d9de71fdea60449637974b024f2ae5299"
+  },
+  "public/ui/deeds/soc_guild_joined.webp": {
+    "sheet": "deeds_022",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "b7bb5fac-18ae-4de9-b454-0e6f2d74f20f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, with drifting sparks",
+    "masterSha256": "3360ace36966256877cfdcce82309d030324abe72071aeaa7ef98f0984a5b2e6"
+  },
+  "public/ui/deeds/soc_heavy_purse.webp": {
+    "sheet": "deeds_022",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "b7bb5fac-18ae-4de9-b454-0e6f2d74f20f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, in a beam of light",
+    "masterSha256": "35e70f5316ce8501aa5db727b4bf9cc41534f7378b4f612c917e88e1dd2141ad"
+  },
+  "public/ui/deeds/soc_market_magnate.webp": {
+    "sheet": "deeds_022",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "b7bb5fac-18ae-4de9-b454-0e6f2d74f20f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background, in a storm of motes",
+    "masterSha256": "222c303c1bef2881eb9b776ad0739d1d8daa9b36b6ee873b4896f4a8c1da3462"
+  },
+  "public/ui/deeds/soc_meet_bursar.webp": {
+    "sheet": "deeds_022",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "b7bb5fac-18ae-4de9-b454-0e6f2d74f20f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, framed by mist",
+    "masterSha256": "10aa27d9cf6da1402b4dfeac9463d8ea347817cabfb00dda93c53ba8437b3d1e"
+  },
+  "public/ui/deeds/soc_pocket_money.webp": {
+    "sheet": "deeds_022",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "b7bb5fac-18ae-4de9-b454-0e6f2d74f20f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, spiralling",
+    "masterSha256": "1e9172d0dd5d9bbe733d3517d5fc8c892935a3c56c87a77852303b25afd820dd"
+  },
+  "public/ui/deeds/soc_room_for_more.webp": {
+    "sheet": "deeds_022",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "b7bb5fac-18ae-4de9-b454-0e6f2d74f20f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, in a storm of motes",
+    "masterSha256": "31410bf6f774c83c1b6a04ec025714beaa7cb2be2402e6b583acef29bd938cf6"
+  },
+  "public/ui/deeds/soc_salvage_50.webp": {
+    "sheet": "deeds_023",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "493b8e9a-7664-45e7-814a-034c8e00d96f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, shattering",
+    "masterSha256": "35c4bb89b359ec97f38e9fb71c00dd3afa6499754dbe460fd4b9737f8c5fd788"
+  },
+  "public/ui/deeds/soc_steady_custom.webp": {
+    "sheet": "deeds_023",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "493b8e9a-7664-45e7-814a-034c8e00d96f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "an open treasure chest, softly lit on a warm painted background",
+    "masterSha256": "5075a4e7abebeb4a71819b5e98d6b27c9a52056d8963f16d76c705e7d1dd1c04"
+  },
+  "public/ui/deeds/soc_strongbox_outfitter.webp": {
+    "sheet": "deeds_023",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "493b8e9a-7664-45e7-814a-034c8e00d96f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background, in a storm of motes",
+    "masterSha256": "1b5c44e7874bcc044ac4d6ea2e21b5b2c8d2023c74c4892cdfa95606e3a90d9d"
+  },
+  "public/ui/deeds/soc_wyrms_hoard.webp": {
+    "sheet": "deeds_023",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "493b8e9a-7664-45e7-814a-034c8e00d96f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a laurel wreath around a star, softly lit on a warm painted background",
+    "masterSha256": "b90fa1334aa42a4ce8ad30f7b1351d80eb6315bfd62ceb82ed32e9e4c9ea04b6"
+  },
   "public/ui/items/abyssal_loop.webp": {
     "sheet": "items_001",
     "cell": 0,
