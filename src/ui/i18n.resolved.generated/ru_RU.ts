@@ -24868,6 +24868,108 @@ export const ru_RU: EnTranslations = {
       "furn_folding_worktable": {
         "name": "Складной верстак"
       },
+      "furn_rustic_wardrobe": {
+        "name": "Дощатый шкаф"
+      },
+      "furn_rustic_cupboard": {
+        "name": "Кухонный буфет"
+      },
+      "furn_straw_cot": {
+        "name": "Соломенная лежанка"
+      },
+      "furn_wash_stand": {
+        "name": "Умывальник"
+      },
+      "furn_log_basket": {
+        "name": "Корзина для дров"
+      },
+      "furn_peg_rail": {
+        "name": "Вешалка с колышками"
+      },
+      "furn_water_jug": {
+        "name": "Кувшин для воды"
+      },
+      "furn_bread_board": {
+        "name": "Хлебная доска"
+      },
+      "furn_cottage_armchair": {
+        "name": "Деревенское кресло"
+      },
+      "furn_rocking_chair": {
+        "name": "Кресло-качалка"
+      },
+      "furn_cottage_dresser": {
+        "name": "Деревенский буфет"
+      },
+      "furn_painted_wardrobe": {
+        "name": "Расписной шкаф"
+      },
+      "furn_quilt_chest": {
+        "name": "Сундук с лоскутным одеялом"
+      },
+      "furn_side_table": {
+        "name": "Приставной столик"
+      },
+      "furn_flower_stand": {
+        "name": "Цветочная подставка"
+      },
+      "furn_wall_clock": {
+        "name": "Настенные часы"
+      },
+      "furn_landscape_painting": {
+        "name": "Пейзаж"
+      },
+      "furn_potted_flowers": {
+        "name": "Цветы в горшке"
+      },
+      "furn_tea_set": {
+        "name": "Чайный сервиз"
+      },
+      "furn_rag_runner": {
+        "name": "Лоскутная дорожка"
+      },
+      "furn_canopy_bed": {
+        "name": "Кровать с балдахином"
+      },
+      "furn_highback_chair": {
+        "name": "Кресло с высокой спинкой"
+      },
+      "furn_banquet_table": {
+        "name": "Пиршественный стол"
+      },
+      "furn_writing_desk": {
+        "name": "Письменный стол"
+      },
+      "furn_velvet_settee": {
+        "name": "Бархатная кушетка"
+      },
+      "furn_display_cabinet": {
+        "name": "Витрина"
+      },
+      "furn_wall_tapestry": {
+        "name": "Гобелен с оленем"
+      },
+      "furn_globe_stand": {
+        "name": "Глобус на подставке"
+      },
+      "furn_noble_carpet": {
+        "name": "Усадебный ковёр"
+      },
+      "furn_tool_rack": {
+        "name": "Стойка для инструментов"
+      },
+      "furn_sawhorse": {
+        "name": "Козлы для пилки"
+      },
+      "furn_potting_bench": {
+        "name": "Садовый стол"
+      },
+      "furn_spool_rack": {
+        "name": "Стойка для катушек"
+      },
+      "furn_herb_drying_rack": {
+        "name": "Сушилка для трав"
+      },
       "membership_staff": {
         "name": "Посох перемен"
       },

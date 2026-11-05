@@ -24868,6 +24868,108 @@ export const ja_JP: EnTranslations = {
       "furn_folding_worktable": {
         "name": "折りたたみ作業台"
       },
+      "furn_rustic_wardrobe": {
+        "name": "板張りの衣装棚"
+      },
+      "furn_rustic_cupboard": {
+        "name": "台所の食器棚"
+      },
+      "furn_straw_cot": {
+        "name": "藁の簡易寝台"
+      },
+      "furn_wash_stand": {
+        "name": "洗面台"
+      },
+      "furn_log_basket": {
+        "name": "薪かご"
+      },
+      "furn_peg_rail": {
+        "name": "壁掛けのフック板"
+      },
+      "furn_water_jug": {
+        "name": "水差し"
+      },
+      "furn_bread_board": {
+        "name": "パン板"
+      },
+      "furn_cottage_armchair": {
+        "name": "コテージの肘掛け椅子"
+      },
+      "furn_rocking_chair": {
+        "name": "ロッキングチェア"
+      },
+      "furn_cottage_dresser": {
+        "name": "コテージの食器棚"
+      },
+      "furn_painted_wardrobe": {
+        "name": "絵付けの衣装棚"
+      },
+      "furn_quilt_chest": {
+        "name": "キルトの長持"
+      },
+      "furn_side_table": {
+        "name": "サイドテーブル"
+      },
+      "furn_flower_stand": {
+        "name": "花台"
+      },
+      "furn_wall_clock": {
+        "name": "掛け時計"
+      },
+      "furn_landscape_painting": {
+        "name": "風景画"
+      },
+      "furn_potted_flowers": {
+        "name": "鉢植えの花"
+      },
+      "furn_tea_set": {
+        "name": "茶器セット"
+      },
+      "furn_rag_runner": {
+        "name": "裂き織りのラグ"
+      },
+      "furn_canopy_bed": {
+        "name": "天蓋付きベッド"
+      },
+      "furn_highback_chair": {
+        "name": "背もたれの高い椅子"
+      },
+      "furn_banquet_table": {
+        "name": "宴の長卓"
+      },
+      "furn_writing_desk": {
+        "name": "書き物机"
+      },
+      "furn_velvet_settee": {
+        "name": "ベルベットの長椅子"
+      },
+      "furn_display_cabinet": {
+        "name": "飾り棚"
+      },
+      "furn_wall_tapestry": {
+        "name": "牡鹿のタペストリー"
+      },
+      "furn_globe_stand": {
+        "name": "地球儀の台"
+      },
+      "furn_noble_carpet": {
+        "name": "館の絨毯"
+      },
+      "furn_tool_rack": {
+        "name": "道具掛け"
+      },
+      "furn_sawhorse": {
+        "name": "木挽き台"
+      },
+      "furn_potting_bench": {
+        "name": "鉢植えの作業台"
+      },
+      "furn_spool_rack": {
+        "name": "糸巻きの棚"
+      },
+      "furn_herb_drying_rack": {
+        "name": "薬草干しの棚"
+      },
       "membership_staff": {
         "name": "変化の杖"
       },

@@ -24868,6 +24868,108 @@ export const es: EnTranslations = {
       "furn_folding_worktable": {
         "name": "Folding Worktable"
       },
+      "furn_rustic_wardrobe": {
+        "name": "Plank Wardrobe"
+      },
+      "furn_rustic_cupboard": {
+        "name": "Kitchen Cupboard"
+      },
+      "furn_straw_cot": {
+        "name": "Straw Cot"
+      },
+      "furn_wash_stand": {
+        "name": "Wash Stand"
+      },
+      "furn_log_basket": {
+        "name": "Log Basket"
+      },
+      "furn_peg_rail": {
+        "name": "Peg Rail"
+      },
+      "furn_water_jug": {
+        "name": "Water Jug"
+      },
+      "furn_bread_board": {
+        "name": "Bread Board"
+      },
+      "furn_cottage_armchair": {
+        "name": "Cottage Armchair"
+      },
+      "furn_rocking_chair": {
+        "name": "Rocking Chair"
+      },
+      "furn_cottage_dresser": {
+        "name": "Cottage Dresser"
+      },
+      "furn_painted_wardrobe": {
+        "name": "Painted Wardrobe"
+      },
+      "furn_quilt_chest": {
+        "name": "Quilt Chest"
+      },
+      "furn_side_table": {
+        "name": "Side Table"
+      },
+      "furn_flower_stand": {
+        "name": "Flower Stand"
+      },
+      "furn_wall_clock": {
+        "name": "Wall Clock"
+      },
+      "furn_landscape_painting": {
+        "name": "Landscape Painting"
+      },
+      "furn_potted_flowers": {
+        "name": "Potted Flowers"
+      },
+      "furn_tea_set": {
+        "name": "Tea Set"
+      },
+      "furn_rag_runner": {
+        "name": "Rag Runner"
+      },
+      "furn_canopy_bed": {
+        "name": "Canopy Bed"
+      },
+      "furn_highback_chair": {
+        "name": "High-Backed Chair"
+      },
+      "furn_banquet_table": {
+        "name": "Banquet Table"
+      },
+      "furn_writing_desk": {
+        "name": "Writing Desk"
+      },
+      "furn_velvet_settee": {
+        "name": "Velvet Settee"
+      },
+      "furn_display_cabinet": {
+        "name": "Display Cabinet"
+      },
+      "furn_wall_tapestry": {
+        "name": "Stag Tapestry"
+      },
+      "furn_globe_stand": {
+        "name": "Globe Stand"
+      },
+      "furn_noble_carpet": {
+        "name": "Manor Carpet"
+      },
+      "furn_tool_rack": {
+        "name": "Tool Rack"
+      },
+      "furn_sawhorse": {
+        "name": "Sawhorse"
+      },
+      "furn_potting_bench": {
+        "name": "Potting Bench"
+      },
+      "furn_spool_rack": {
+        "name": "Spool Rack"
+      },
+      "furn_herb_drying_rack": {
+        "name": "Herb Drying Rack"
+      },
       "membership_staff": {
         "name": "Bastón del cambio"
       },

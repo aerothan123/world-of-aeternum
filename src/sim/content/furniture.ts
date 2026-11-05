@@ -68,7 +68,51 @@ export type FurnitureRenderKey =
   | 'wynBraidedRug'
   | 'wynTableLantern'
   | 'wynSmallStorageChest'
-  | 'wynFoldingWorktable';
+  | 'wynFoldingWorktable'
+  | 'wynRusticChair'
+  | 'wynRusticStool'
+  | 'wynRusticBench'
+  | 'wynRusticBarrel'
+  | 'wynCottageRoundTable'
+  | 'wynNobleBookcase'
+  | 'wynWovenRugPainted'
+  | 'wynHomeForge'
+  | 'wynHomeKitchen'
+  | 'wynHomeApothecary'
+  | 'wynRusticWardrobe'
+  | 'wynRusticCupboard'
+  | 'wynStrawCot'
+  | 'wynWashStand'
+  | 'wynLogBasket'
+  | 'wynPegRail'
+  | 'wynWaterJug'
+  | 'wynBreadBoard'
+  | 'wynCottageArmchair'
+  | 'wynRockingChair'
+  | 'wynCottageDresser'
+  | 'wynPaintedWardrobe'
+  | 'wynQuiltChest'
+  | 'wynSideTable'
+  | 'wynFlowerStand'
+  | 'wynWallClock'
+  | 'wynLandscapePainting'
+  | 'wynPottedFlowers'
+  | 'wynTeaSet'
+  | 'wynRagRunner'
+  | 'wynCanopyBed'
+  | 'wynHighbackChair'
+  | 'wynBanquetTable'
+  | 'wynWritingDesk'
+  | 'wynVelvetSettee'
+  | 'wynDisplayCabinet'
+  | 'wynWallTapestry'
+  | 'wynGlobeStand'
+  | 'wynNobleCarpet'
+  | 'wynToolRack'
+  | 'wynSawhorse'
+  | 'wynPottingBench'
+  | 'wynSpoolRack'
+  | 'wynHerbDryingRack';
 
 export interface FurnitureDef {
   /** The item id (the ItemDef key and the persisted placement value). */
@@ -86,15 +130,15 @@ export interface FurnitureDef {
 
 /** The catalog, in authoring order. The two reserved rows are last. */
 export const FURNITURE_DEFS: readonly FurnitureDef[] = Object.freeze([
-  { itemId: 'furn_wooden_chair', kind: 'floor', renderKey: 'kcasChair', scale: 1.3 },
-  { itemId: 'furn_wooden_stool', kind: 'floor', renderKey: 'kcasStool', scale: 1.2 },
-  { itemId: 'furn_oak_bench', kind: 'floor', renderKey: 'kcasBench', scale: 1.4 },
-  { itemId: 'furn_round_table', kind: 'floor', renderKey: 'kcasTableRoundSmall', scale: 1.25 },
+  { itemId: 'furn_wooden_chair', kind: 'floor', renderKey: 'wynRusticChair', scale: 1.1 },
+  { itemId: 'furn_wooden_stool', kind: 'floor', renderKey: 'wynRusticStool', scale: 0.55 },
+  { itemId: 'furn_oak_bench', kind: 'floor', renderKey: 'wynRusticBench', scale: 0.6 },
+  { itemId: 'furn_round_table', kind: 'floor', renderKey: 'wynCottageRoundTable', scale: 0.8 },
   { itemId: 'furn_long_table', kind: 'floor', renderKey: 'kcasTableLong', scale: 1.5 },
-  { itemId: 'furn_bookcase', kind: 'wall', renderKey: 'kcasBookcase', scale: 1.5 },
+  { itemId: 'furn_bookcase', kind: 'wall', renderKey: 'wynNobleBookcase', scale: 2.2 },
   { itemId: 'furn_keg', kind: 'floor', renderKey: 'kcasKeg', scale: 1.2 },
-  { itemId: 'furn_barrel', kind: 'floor', renderKey: 'kcasBarrel', scale: 1.2 },
-  { itemId: 'furn_woven_rug', kind: 'rug', renderKey: 'rug', scale: 1 },
+  { itemId: 'furn_barrel', kind: 'floor', renderKey: 'wynRusticBarrel', scale: 1 },
+  { itemId: 'furn_woven_rug', kind: 'rug', renderKey: 'wynWovenRugPainted', scale: 0.05 },
   { itemId: 'furn_candlestick', kind: 'table', renderKey: 'kcasCandleTriple', scale: 1.2 },
   // Phase 3: every placed chest adds HOUSE_CHEST_SLOTS of pooled house storage.
   // Drawn with the painted small chest (the Wyndlewood kit) since the props
@@ -108,21 +152,21 @@ export const FURNITURE_DEFS: readonly FurnitureDef[] = Object.freeze([
   {
     itemId: 'furn_station_forge',
     kind: 'floor',
-    renderKey: 'anvil',
-    scale: 1.1,
+    renderKey: 'wynHomeForge',
+    scale: 1.2,
     stationType: 'forge',
   },
   {
     itemId: 'furn_station_kitchens',
     kind: 'floor',
-    renderKey: 'kcasBartopMedium',
-    scale: 1.2,
+    renderKey: 'wynHomeKitchen',
+    scale: 1.3,
     stationType: 'kitchens',
   },
   {
     itemId: 'furn_station_apothecary',
     kind: 'floor',
-    renderKey: 'kcasShelfCandles',
+    renderKey: 'wynHomeApothecary',
     scale: 1.4,
     stationType: 'apothecary',
   },
@@ -157,6 +201,49 @@ export const FURNITURE_DEFS: readonly FurnitureDef[] = Object.freeze([
   { itemId: 'furn_braided_rug', kind: 'rug', renderKey: 'wynBraidedRug', scale: 0.05 },
   { itemId: 'furn_table_lantern', kind: 'table', renderKey: 'wynTableLantern', scale: 0.5 },
   { itemId: 'furn_folding_worktable', kind: 'floor', renderKey: 'wynFoldingWorktable', scale: 1 },
+  // The Wyndlewood rustic family (assets_src/wyndlewood_props/furniture_catalog.json).
+  { itemId: 'furn_rustic_wardrobe', kind: 'floor', renderKey: 'wynRusticWardrobe', scale: 2 },
+  { itemId: 'furn_rustic_cupboard', kind: 'floor', renderKey: 'wynRusticCupboard', scale: 1.1 },
+  { itemId: 'furn_straw_cot', kind: 'floor', renderKey: 'wynStrawCot', scale: 0.7 },
+  { itemId: 'furn_wash_stand', kind: 'floor', renderKey: 'wynWashStand', scale: 1.05 },
+  { itemId: 'furn_log_basket', kind: 'floor', renderKey: 'wynLogBasket', scale: 0.6 },
+  { itemId: 'furn_peg_rail', kind: 'wall', renderKey: 'wynPegRail', scale: 0.9 },
+  { itemId: 'furn_water_jug', kind: 'table', renderKey: 'wynWaterJug', scale: 0.32 },
+  { itemId: 'furn_bread_board', kind: 'table', renderKey: 'wynBreadBoard', scale: 0.2 },
+  // The Wyndlewood cottage family (assets_src/wyndlewood_props/furniture_catalog.json).
+  { itemId: 'furn_cottage_armchair', kind: 'floor', renderKey: 'wynCottageArmchair', scale: 1.1 },
+  { itemId: 'furn_rocking_chair', kind: 'floor', renderKey: 'wynRockingChair', scale: 1.15 },
+  { itemId: 'furn_cottage_dresser', kind: 'floor', renderKey: 'wynCottageDresser', scale: 2 },
+  { itemId: 'furn_painted_wardrobe', kind: 'floor', renderKey: 'wynPaintedWardrobe', scale: 2 },
+  { itemId: 'furn_quilt_chest', kind: 'floor', renderKey: 'wynQuiltChest', scale: 0.7 },
+  { itemId: 'furn_side_table', kind: 'floor', renderKey: 'wynSideTable', scale: 0.7 },
+  { itemId: 'furn_flower_stand', kind: 'floor', renderKey: 'wynFlowerStand', scale: 1.1 },
+  { itemId: 'furn_wall_clock', kind: 'wall', renderKey: 'wynWallClock', scale: 0.55 },
+  {
+    itemId: 'furn_landscape_painting',
+    kind: 'wall',
+    renderKey: 'wynLandscapePainting',
+    scale: 0.8,
+  },
+  { itemId: 'furn_potted_flowers', kind: 'table', renderKey: 'wynPottedFlowers', scale: 0.45 },
+  { itemId: 'furn_tea_set', kind: 'table', renderKey: 'wynTeaSet', scale: 0.25 },
+  { itemId: 'furn_rag_runner', kind: 'rug', renderKey: 'wynRagRunner', scale: 0.04 },
+  // The Wyndlewood noble family (assets_src/wyndlewood_props/furniture_catalog.json).
+  { itemId: 'furn_canopy_bed', kind: 'floor', renderKey: 'wynCanopyBed', scale: 2.3 },
+  { itemId: 'furn_highback_chair', kind: 'floor', renderKey: 'wynHighbackChair', scale: 1.5 },
+  { itemId: 'furn_banquet_table', kind: 'floor', renderKey: 'wynBanquetTable', scale: 0.85 },
+  { itemId: 'furn_writing_desk', kind: 'floor', renderKey: 'wynWritingDesk', scale: 1.1 },
+  { itemId: 'furn_velvet_settee', kind: 'floor', renderKey: 'wynVelvetSettee', scale: 1 },
+  { itemId: 'furn_display_cabinet', kind: 'floor', renderKey: 'wynDisplayCabinet', scale: 2 },
+  { itemId: 'furn_wall_tapestry', kind: 'wall', renderKey: 'wynWallTapestry', scale: 1.6 },
+  { itemId: 'furn_globe_stand', kind: 'floor', renderKey: 'wynGlobeStand', scale: 1.2 },
+  { itemId: 'furn_noble_carpet', kind: 'rug', renderKey: 'wynNobleCarpet', scale: 0.04 },
+  // The Wyndlewood crafter family (assets_src/wyndlewood_props/furniture_catalog.json).
+  { itemId: 'furn_tool_rack', kind: 'wall', renderKey: 'wynToolRack', scale: 1.2 },
+  { itemId: 'furn_sawhorse', kind: 'floor', renderKey: 'wynSawhorse', scale: 0.75 },
+  { itemId: 'furn_potting_bench', kind: 'floor', renderKey: 'wynPottingBench', scale: 1.2 },
+  { itemId: 'furn_spool_rack', kind: 'floor', renderKey: 'wynSpoolRack', scale: 1.4 },
+  { itemId: 'furn_herb_drying_rack', kind: 'floor', renderKey: 'wynHerbDryingRack', scale: 1.6 },
 ]);
 
 const DEF_BY_ITEM: ReadonlyMap<string, FurnitureDef> = new Map(
@@ -228,4 +315,38 @@ export const FURNITURE_ITEMS: Record<string, ItemDef> = {
   furn_braided_rug: furnitureItem('furn_braided_rug', 'Braided Rug', 11),
   furn_table_lantern: furnitureItem('furn_table_lantern', 'Table Lantern', 8),
   furn_folding_worktable: furnitureItem('furn_folding_worktable', 'Folding Worktable', 17),
+  furn_rustic_wardrobe: furnitureItem('furn_rustic_wardrobe', 'Plank Wardrobe', 24),
+  furn_rustic_cupboard: furnitureItem('furn_rustic_cupboard', 'Kitchen Cupboard', 16),
+  furn_straw_cot: furnitureItem('furn_straw_cot', 'Straw Cot', 12),
+  furn_wash_stand: furnitureItem('furn_wash_stand', 'Wash Stand', 12),
+  furn_log_basket: furnitureItem('furn_log_basket', 'Log Basket', 9),
+  furn_peg_rail: furnitureItem('furn_peg_rail', 'Peg Rail', 8),
+  furn_water_jug: furnitureItem('furn_water_jug', 'Water Jug', 7),
+  furn_bread_board: furnitureItem('furn_bread_board', 'Bread Board', 4),
+  furn_cottage_armchair: furnitureItem('furn_cottage_armchair', 'Cottage Armchair', 19),
+  furn_rocking_chair: furnitureItem('furn_rocking_chair', 'Rocking Chair', 16),
+  furn_cottage_dresser: furnitureItem('furn_cottage_dresser', 'Cottage Dresser', 24),
+  furn_painted_wardrobe: furnitureItem('furn_painted_wardrobe', 'Painted Wardrobe', 25),
+  furn_quilt_chest: furnitureItem('furn_quilt_chest', 'Quilt Chest', 16),
+  furn_side_table: furnitureItem('furn_side_table', 'Side Table', 9),
+  furn_flower_stand: furnitureItem('furn_flower_stand', 'Flower Stand', 9),
+  furn_wall_clock: furnitureItem('furn_wall_clock', 'Wall Clock', 12),
+  furn_landscape_painting: furnitureItem('furn_landscape_painting', 'Landscape Painting', 10),
+  furn_potted_flowers: furnitureItem('furn_potted_flowers', 'Potted Flowers', 6),
+  furn_tea_set: furnitureItem('furn_tea_set', 'Tea Set', 7),
+  furn_rag_runner: furnitureItem('furn_rag_runner', 'Rag Runner', 9),
+  furn_canopy_bed: furnitureItem('furn_canopy_bed', 'Canopy Bed', 154),
+  furn_highback_chair: furnitureItem('furn_highback_chair', 'High-Backed Chair', 39),
+  furn_banquet_table: furnitureItem('furn_banquet_table', 'Banquet Table', 108),
+  furn_writing_desk: furnitureItem('furn_writing_desk', 'Writing Desk', 74),
+  furn_velvet_settee: furnitureItem('furn_velvet_settee', 'Velvet Settee', 79),
+  furn_display_cabinet: furnitureItem('furn_display_cabinet', 'Display Cabinet', 112),
+  furn_wall_tapestry: furnitureItem('furn_wall_tapestry', 'Stag Tapestry', 50),
+  furn_globe_stand: furnitureItem('furn_globe_stand', 'Globe Stand', 43),
+  furn_noble_carpet: furnitureItem('furn_noble_carpet', 'Manor Carpet', 24),
+  furn_tool_rack: furnitureItem('furn_tool_rack', 'Tool Rack', 12),
+  furn_sawhorse: furnitureItem('furn_sawhorse', 'Sawhorse', 7),
+  furn_potting_bench: furnitureItem('furn_potting_bench', 'Potting Bench', 12),
+  furn_spool_rack: furnitureItem('furn_spool_rack', 'Spool Rack', 12),
+  furn_herb_drying_rack: furnitureItem('furn_herb_drying_rack', 'Herb Drying Rack', 11),
 };

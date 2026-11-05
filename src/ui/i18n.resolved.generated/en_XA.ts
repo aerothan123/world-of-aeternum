@@ -24868,6 +24868,108 @@ export const en_XA: EnTranslations = {
       "furn_folding_worktable": {
         "name": "[Ƒóļðíñĝ Ŵóŕķţáƀļé]"
       },
+      "furn_rustic_wardrobe": {
+        "name": "[Þļáñķ Ŵáŕðŕóƀé]"
+      },
+      "furn_rustic_cupboard": {
+        "name": "[Ķíţçĥéñ Çúþƀóáŕð]"
+      },
+      "furn_straw_cot": {
+        "name": "[Šţŕáŵ Çóţ]"
+      },
+      "furn_wash_stand": {
+        "name": "[Ŵášĥ Šţáñð]"
+      },
+      "furn_log_basket": {
+        "name": "[Ļóĝ Ɓášķéţ]"
+      },
+      "furn_peg_rail": {
+        "name": "[Þéĝ Ŕáíļ]"
+      },
+      "furn_water_jug": {
+        "name": "[Ŵáţéŕ Ĵúĝ]"
+      },
+      "furn_bread_board": {
+        "name": "[Ɓŕéáð Ɓóáŕð]"
+      },
+      "furn_cottage_armchair": {
+        "name": "[Çóţţáĝé Áŕɱçĥáíŕ]"
+      },
+      "furn_rocking_chair": {
+        "name": "[Ŕóçķíñĝ Çĥáíŕ]"
+      },
+      "furn_cottage_dresser": {
+        "name": "[Çóţţáĝé Ðŕéššéŕ]"
+      },
+      "furn_painted_wardrobe": {
+        "name": "[Þáíñţéð Ŵáŕðŕóƀé]"
+      },
+      "furn_quilt_chest": {
+        "name": "[Ɋúíļţ Çĥéšţ]"
+      },
+      "furn_side_table": {
+        "name": "[Šíðé Ţáƀļé]"
+      },
+      "furn_flower_stand": {
+        "name": "[Ƒļóŵéŕ Šţáñð]"
+      },
+      "furn_wall_clock": {
+        "name": "[Ŵáļļ Çļóçķ]"
+      },
+      "furn_landscape_painting": {
+        "name": "[Ļáñðšçáþé Þáíñţíñĝ]"
+      },
+      "furn_potted_flowers": {
+        "name": "[Þóţţéð Ƒļóŵéŕš]"
+      },
+      "furn_tea_set": {
+        "name": "[Ţéá Šéţ]"
+      },
+      "furn_rag_runner": {
+        "name": "[Ŕáĝ Ŕúññéŕ]"
+      },
+      "furn_canopy_bed": {
+        "name": "[Çáñóþý Ɓéð]"
+      },
+      "furn_highback_chair": {
+        "name": "[Ĥíĝĥ-Ɓáçķéð Çĥáíŕ]"
+      },
+      "furn_banquet_table": {
+        "name": "[Ɓáñɋúéţ Ţáƀļé]"
+      },
+      "furn_writing_desk": {
+        "name": "[Ŵŕíţíñĝ Ðéšķ]"
+      },
+      "furn_velvet_settee": {
+        "name": "[Ʋéļʋéţ Šéţţéé]"
+      },
+      "furn_display_cabinet": {
+        "name": "[Ðíšþļáý Çáƀíñéţ]"
+      },
+      "furn_wall_tapestry": {
+        "name": "[Šţáĝ Ţáþéšţŕý]"
+      },
+      "furn_globe_stand": {
+        "name": "[Ĝļóƀé Šţáñð]"
+      },
+      "furn_noble_carpet": {
+        "name": "[Ɱáñóŕ Çáŕþéţ]"
+      },
+      "furn_tool_rack": {
+        "name": "[Ţóóļ Ŕáçķ]"
+      },
+      "furn_sawhorse": {
+        "name": "[Šáŵĥóŕšé]"
+      },
+      "furn_potting_bench": {
+        "name": "[Þóţţíñĝ Ɓéñçĥ]"
+      },
+      "furn_spool_rack": {
+        "name": "[Šþóóļ Ŕáçķ]"
+      },
+      "furn_herb_drying_rack": {
+        "name": "[Ĥéŕƀ Ðŕýíñĝ Ŕáçķ]"
+      },
       "membership_staff": {
         "name": "[Šţáƒƒ óƒ Çĥáñĝíñĝ]"
       },

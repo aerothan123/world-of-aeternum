@@ -24868,6 +24868,108 @@ export const zh_CN: EnTranslations = {
       "furn_folding_worktable": {
         "name": "折叠工作台"
       },
+      "furn_rustic_wardrobe": {
+        "name": "木板衣柜"
+      },
+      "furn_rustic_cupboard": {
+        "name": "厨房橱柜"
+      },
+      "furn_straw_cot": {
+        "name": "草垫小床"
+      },
+      "furn_wash_stand": {
+        "name": "洗脸架"
+      },
+      "furn_log_basket": {
+        "name": "柴火篮"
+      },
+      "furn_peg_rail": {
+        "name": "挂钉架"
+      },
+      "furn_water_jug": {
+        "name": "水壶"
+      },
+      "furn_bread_board": {
+        "name": "面包板"
+      },
+      "furn_cottage_armchair": {
+        "name": "农舍扶手椅"
+      },
+      "furn_rocking_chair": {
+        "name": "摇椅"
+      },
+      "furn_cottage_dresser": {
+        "name": "农舍碗柜"
+      },
+      "furn_painted_wardrobe": {
+        "name": "彩绘衣柜"
+      },
+      "furn_quilt_chest": {
+        "name": "被褥箱"
+      },
+      "furn_side_table": {
+        "name": "边桌"
+      },
+      "furn_flower_stand": {
+        "name": "花架"
+      },
+      "furn_wall_clock": {
+        "name": "挂钟"
+      },
+      "furn_landscape_painting": {
+        "name": "风景画"
+      },
+      "furn_potted_flowers": {
+        "name": "盆花"
+      },
+      "furn_tea_set": {
+        "name": "茶具"
+      },
+      "furn_rag_runner": {
+        "name": "布条长地毯"
+      },
+      "furn_canopy_bed": {
+        "name": "帷幔床"
+      },
+      "furn_highback_chair": {
+        "name": "高背椅"
+      },
+      "furn_banquet_table": {
+        "name": "宴会长桌"
+      },
+      "furn_writing_desk": {
+        "name": "书桌"
+      },
+      "furn_velvet_settee": {
+        "name": "天鹅绒长椅"
+      },
+      "furn_display_cabinet": {
+        "name": "陈列柜"
+      },
+      "furn_wall_tapestry": {
+        "name": "雄鹿挂毯"
+      },
+      "furn_globe_stand": {
+        "name": "地球仪架"
+      },
+      "furn_noble_carpet": {
+        "name": "庄园地毯"
+      },
+      "furn_tool_rack": {
+        "name": "工具架"
+      },
+      "furn_sawhorse": {
+        "name": "锯木架"
+      },
+      "furn_potting_bench": {
+        "name": "盆栽工作台"
+      },
+      "furn_spool_rack": {
+        "name": "线轴架"
+      },
+      "furn_herb_drying_rack": {
+        "name": "草药晾架"
+      },
       "membership_staff": {
         "name": "万变法杖"
       },

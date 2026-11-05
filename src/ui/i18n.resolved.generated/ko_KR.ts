@@ -24868,6 +24868,108 @@ export const ko_KR: EnTranslations = {
       "furn_folding_worktable": {
         "name": "접이식 작업대"
       },
+      "furn_rustic_wardrobe": {
+        "name": "널빤지 옷장"
+      },
+      "furn_rustic_cupboard": {
+        "name": "부엌 찬장"
+      },
+      "furn_straw_cot": {
+        "name": "짚 간이침대"
+      },
+      "furn_wash_stand": {
+        "name": "세면대"
+      },
+      "furn_log_basket": {
+        "name": "장작 바구니"
+      },
+      "furn_peg_rail": {
+        "name": "벽걸이 못걸이"
+      },
+      "furn_water_jug": {
+        "name": "물주전자"
+      },
+      "furn_bread_board": {
+        "name": "빵 도마"
+      },
+      "furn_cottage_armchair": {
+        "name": "오두막 안락의자"
+      },
+      "furn_rocking_chair": {
+        "name": "흔들의자"
+      },
+      "furn_cottage_dresser": {
+        "name": "오두막 찬장"
+      },
+      "furn_painted_wardrobe": {
+        "name": "채색 옷장"
+      },
+      "furn_quilt_chest": {
+        "name": "퀼트 궤"
+      },
+      "furn_side_table": {
+        "name": "사이드 테이블"
+      },
+      "furn_flower_stand": {
+        "name": "화분대"
+      },
+      "furn_wall_clock": {
+        "name": "벽시계"
+      },
+      "furn_landscape_painting": {
+        "name": "풍경화"
+      },
+      "furn_potted_flowers": {
+        "name": "화분 꽃"
+      },
+      "furn_tea_set": {
+        "name": "찻잔 세트"
+      },
+      "furn_rag_runner": {
+        "name": "넝마 러너"
+      },
+      "furn_canopy_bed": {
+        "name": "캐노피 침대"
+      },
+      "furn_highback_chair": {
+        "name": "등받이 높은 의자"
+      },
+      "furn_banquet_table": {
+        "name": "연회 테이블"
+      },
+      "furn_writing_desk": {
+        "name": "필기용 책상"
+      },
+      "furn_velvet_settee": {
+        "name": "벨벳 소파"
+      },
+      "furn_display_cabinet": {
+        "name": "진열장"
+      },
+      "furn_wall_tapestry": {
+        "name": "수사슴 태피스트리"
+      },
+      "furn_globe_stand": {
+        "name": "지구본 받침대"
+      },
+      "furn_noble_carpet": {
+        "name": "저택 카펫"
+      },
+      "furn_tool_rack": {
+        "name": "공구 걸이"
+      },
+      "furn_sawhorse": {
+        "name": "톱질 받침대"
+      },
+      "furn_potting_bench": {
+        "name": "분갈이 작업대"
+      },
+      "furn_spool_rack": {
+        "name": "실패 걸이"
+      },
+      "furn_herb_drying_rack": {
+        "name": "약초 건조대"
+      },
       "membership_staff": {
         "name": "변화의 지팡이"
       },

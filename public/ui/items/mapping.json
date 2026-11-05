@@ -8611,24 +8611,14 @@
       "styleReference": "existing painted WebP catalog in public/ui/items/; subjects are the exact furniture models the house interior draws",
       "provenanceRecord": "scripts/render_furniture_icons.mjs",
       "itemIds": [
-        "furn_barrel",
-        "furn_bookcase",
         "furn_candlestick",
         "furn_keg",
         "furn_long_table",
-        "furn_oak_bench",
-        "furn_round_table",
-        "furn_station_apothecary",
-        "furn_station_forge",
-        "furn_station_kitchens",
         "furn_station_loom",
         "furn_station_tannery",
         "furn_station_toolworks",
         "furn_storage_chest",
-        "furn_trophy_plaque",
-        "furn_wooden_chair",
-        "furn_wooden_stool",
-        "furn_woven_rug"
+        "furn_trophy_plaque"
       ],
       "commonPrompt": "Not a text-to-image prompt: an in-engine render of each piece's own model (scripts/wiki/stills_render_entry.js, camera pitched 24 degrees down, the rug 60), trimmed and composited on the item-icon vignette at 128px."
     },
@@ -8640,13 +8630,23 @@
       "styleReference": "existing painted WebP catalog in public/ui/items/; subjects are the exact furniture models the house interior draws",
       "provenanceRecord": "scripts/render_furniture_icons.mjs",
       "itemIds": [
+        "furn_barrel",
+        "furn_bookcase",
         "furn_braided_rug",
         "furn_cottage_bed",
         "furn_cottage_chair",
         "furn_cottage_shelf",
         "furn_cottage_table",
         "furn_folding_worktable",
-        "furn_table_lantern"
+        "furn_oak_bench",
+        "furn_round_table",
+        "furn_station_apothecary",
+        "furn_station_forge",
+        "furn_station_kitchens",
+        "furn_table_lantern",
+        "furn_wooden_chair",
+        "furn_wooden_stool",
+        "furn_woven_rug"
       ],
       "commonPrompt": "Not a text-to-image prompt: an in-engine render of each piece of its own kit model, seen from slightly above, trimmed and composited on the item-icon vignette at 128px."
     }
