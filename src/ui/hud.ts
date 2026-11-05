@@ -499,6 +499,7 @@ import { RiteController } from './hud/delve/rite_controller';
 import { DungeonPrompts, fctAvoidanceText, wardHitText } from './hud/dungeon';
 import { applyDungeonGuideSpeech } from './hud/dungeon/dungeon_guide_speech';
 import { DungeonTrackerPainter } from './hud/dungeon/dungeon_tracker_painter';
+import { DurabilityPainter, durabilityView } from './hud/durability';
 import { createFinderSurfaces } from './hud/expeditions';
 import { factionRewardTooltipLines } from './hud/faction_reward_tooltip_view';
 import { FiestaController } from './hud/fiesta/fiesta_controller';
@@ -710,8 +711,8 @@ import {
   instanceLockLine,
   instancePartyTradeLine,
   instanceTitleHtml,
-  itemNumber,
   itemGateLines,
+  itemNumber,
   materialMakersMarkLines,
   tooltipEffectiveQuality,
   vendorSellTooltipLine,
@@ -915,7 +916,6 @@ import {
   reliquaryRelicPageId,
   reliquaryRelicPageIndex,
 } from './reliquary_view';
-import { DurabilityPainter, durabilityView } from './hud/durability';
 import { curatorRankDisplayName, ReliquaryWindow } from './reliquary_window';
 import { closeReportWindow, openReportWindow } from './report_window';
 import { type RestLabelKey, restStateOf, restView } from './rest_indicator';
