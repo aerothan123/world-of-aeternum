@@ -216,4 +216,7 @@ export function blendTangentNormals(
   detailWeight?: number,
 ): Uint8Array;
 export const ROCK_RELIEF_OVER_BAKED: number;
+export const ROCK_ALBEDO_TARGET: readonly [number, number, number];
+export const ROCK_GRADE_GAIN: readonly [number, number];
+export function paintedTexelMask(image: TextureImage, floor?: number): Uint8Array;
 export const RELIEF_KINDS: Readonly<Partial<Record<FableKind, Readonly<Required<ReliefOptions>>>>>;

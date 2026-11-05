@@ -30,8 +30,11 @@ import {
   LEAF_ALBEDO_TARGETS,
   LEAF_GRADE_GAIN,
   leafGradeGains,
+  paintedTexelMask,
   RELIEF_KINDS,
+  ROCK_ALBEDO_TARGET,
   ROCK_BUDGET,
+  ROCK_GRADE_GAIN,
   ROCK_RELIEF_OVER_BAKED,
   rasterizeUvMask,
   remapUvsToAtlasCell,
@@ -733,6 +736,27 @@ describe('rock relief over the baked normal', () => {
 
   it('rejects maps of different sizes', () => {
     expect(() => blendTangentNormals(px(flat), px(flat, flat))).toThrow(/differ/);
+  });
+
+  it('grades a dark rock sheet onto the rock albedo target, skipping unused black', () => {
+    // two painted texels (dark warm grey) and one unused black texel
+    const image = {
+      data: Uint8Array.from([90, 85, 60, 100, 95, 70, 0, 0, 0]),
+      width: 3,
+      height: 1,
+      channels: 3,
+    };
+    const mask = paintedTexelMask(image);
+    expect(Array.from(mask)).toEqual([1, 1, 0]);
+    const gains = leafGradeGains(image, mask, ROCK_ALBEDO_TARGET, ROCK_GRADE_GAIN);
+    for (const g of gains) {
+      expect(g).toBeGreaterThanOrEqual(ROCK_GRADE_GAIN[0]);
+      expect(g).toBeLessThanOrEqual(ROCK_GRADE_GAIN[1]);
+    }
+    // the sheet brightens, and the unused texel stays black
+    const out = applyLeafGrade(image, mask, gains);
+    expect(out.data[0]).toBeGreaterThan(90);
+    expect(Array.from(out.data.slice(6))).toEqual([0, 0, 0]);
   });
 
   it('keeps the rock budget a capped scatter budget', () => {

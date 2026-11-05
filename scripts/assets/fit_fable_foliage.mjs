@@ -34,7 +34,10 @@ import {
   LEAF_ALBEDO_TARGETS,
   leafGradeGains,
   paintedReliefNormals,
+  paintedTexelMask,
   RELIEF_KINDS,
+  ROCK_ALBEDO_TARGET,
+  ROCK_GRADE_GAIN,
   ROCK_RELIEF_OVER_BAKED,
   rasterizeUvMask,
   remapUvsToAtlasCell,
@@ -219,9 +222,21 @@ function partOf(geo, labels, label) {
  *  merged cluster) with ONE material, so they must share one texture. */
 async function buildRockAtlas(sources) {
   const layout = atlasLayout(sources.length);
+  // each sheet graded onto the rock albedo target first (ROCK_ALBEDO_TARGET)
+  const graded = (s) => {
+    const mask = paintedTexelMask(s.image);
+    const g = applyLeafGrade(
+      s.image,
+      mask,
+      leafGradeGains(s.image, mask, ROCK_ALBEDO_TARGET, ROCK_GRADE_GAIN),
+    );
+    return sharp(Buffer.from(g.data), {
+      raw: { width: g.width, height: g.height, channels: g.channels },
+    });
+  };
   const composites = await Promise.all(
     sources.map(async (s, i) => ({
-      input: await sharp(s.webp).resize(ROCK_ATLAS_TILE, ROCK_ATLAS_TILE).png().toBuffer(),
+      input: await graded(s).resize(ROCK_ATLAS_TILE, ROCK_ATLAS_TILE).png().toBuffer(),
       left: (i % layout.cols) * ROCK_ATLAS_TILE,
       top: Math.floor(i / layout.cols) * ROCK_ATLAS_TILE,
     })),

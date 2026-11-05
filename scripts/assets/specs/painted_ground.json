@@ -115,8 +115,9 @@
       "opts": {
         "normalStrength": 6,
         "tileSeam": true,
-        "targetMean": [112, 92, 68],
-        "contrast": 1.2
+        "saturation": 0.85,
+        "targetMean": [108, 90, 68],
+        "contrast": 0.95
       }
     }
   ]

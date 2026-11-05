@@ -782,6 +782,28 @@ export const BARK_ALBEDO_TARGETS = Object.freeze({
 /** Clamp on the per-channel linear gain of the bark grade. */
 export const BARK_GRADE_GAIN = Object.freeze([0.5, 3]);
 
+/**
+ * Mean linear albedo each rock sheet is graded onto before it joins the
+ * shared atlas: the renderer multiplies every rock by its biome tint (about
+ * 0.6 in the vale) and a baked top tint, so a storybook sheet at its own
+ * mean (about 0.13) drew a near-black boulder against the painted sand.
+ * A warm, nearly neutral grey keeps the painted moss and lichen readable.
+ */
+export const ROCK_ALBEDO_TARGET = Object.freeze([0.2, 0.19, 0.165]);
+/** Clamp on the per-channel linear gain of the rock grade. */
+export const ROCK_GRADE_GAIN = Object.freeze([0.8, 1.8]);
+
+/** Texels of a sheet that carry paint (not the flat black of unused atlas space). */
+export function paintedTexelMask(image, floor = 12) {
+  const { data, width, height, channels } = image;
+  const out = new Uint8Array(width * height);
+  for (let i = 0; i < out.length; i++) {
+    const o = i * channels;
+    if (data[o] + data[o + 1] + data[o + 2] > floor) out[i] = 1;
+  }
+  return out;
+}
+
 const linearToSrgbByte = (v) => {
   const c = v <= 0.0031308 ? v * 12.92 : 1.055 * v ** (1 / 2.4) - 0.055;
   return Math.max(0, Math.min(255, Math.round(c * 255)));
