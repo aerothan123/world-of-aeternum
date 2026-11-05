@@ -3,6 +3,7 @@ import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSy
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import brand from '../electron/brand.cjs';
 import {
   azureSignOptionsFromEnv,
   desktopBuilderConfig,
@@ -11,7 +12,6 @@ import {
   stampChannelFeedFiles,
 } from './electron-builder-config.mjs';
 import { buildElectronVendor } from './electron-vendor.mjs';
-import brand from '../electron/brand.cjs';
 
 const { LOCAL_DEV_API_ORIGIN, PRODUCTION_API_ORIGIN } = brand;
 
