@@ -55,6 +55,7 @@ const {
   sanitizeDiscordActivity,
 } = require('./discord_presence.cjs');
 const { createSteamShell } = require('./steam.cjs');
+const { createAddonsShell } = require('./addons.cjs');
 const { createEpicShell } = require('./epic.cjs');
 const { PRODUCTION_API_ORIGIN } = require('./update_guard.cjs');
 const {
@@ -1057,6 +1058,36 @@ ipcMain.handle('desktop-steam-link-settled', (event) => {
 ipcMain.handle('desktop-steam-capability', (event) => {
   if (!trustedSender(event)) return false;
   return steamShell.enabled;
+});
+
+// Add-ons (electron/addons.cjs): the local AddOns folder under userData plus the
+// installed Steam Workshop items (only on the Steam distribution / WOC_STEAM_DEV
+// dev loop, through the same lazy steamworks.js client as the link tickets). The
+// shell only reads size-capped files and hands their text to the renderer's
+// sandboxed runtime; it never executes add-on code. Every handler resolves.
+const addonsShell = createAddonsShell({
+  userDataDir: app.getPath('userData'),
+  env: process.env,
+  isPackaged: app.isPackaged,
+  argv: process.argv,
+  steamShell,
+  openPath: (p) => shell.openPath(p),
+  log,
+});
+
+ipcMain.handle('desktop-addons-list', async (event) => {
+  if (!trustedSender(event)) return null;
+  return await addonsShell.list();
+});
+
+ipcMain.handle('desktop-addons-open-folder', async (event) => {
+  if (!trustedSender(event)) return false;
+  return await addonsShell.openFolder();
+});
+
+ipcMain.handle('desktop-addons-publish', async (event, request) => {
+  if (!trustedSender(event)) return { ok: false, code: 'failed' };
+  return await addonsShell.publish(request);
 });
 
 // Epic link proofs (electron/epic.cjs). Inert on website/steam builds: the

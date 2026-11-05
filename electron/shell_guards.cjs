@@ -97,6 +97,10 @@ function navigationAllowed(
   subframeOrigins = EMBEDDED_SUBFRAME_ORIGINS,
   subframeHostSuffixes = EMBEDDED_SUBFRAME_HOST_SUFFIXES,
 ) {
+  // The add-on sandbox (src/ui/hud/addons/addon_runtime_controller.ts) is a
+  // sandboxed srcdoc SUBFRAME the game builds itself; about:srcdoc has no origin
+  // to match, and it can load nothing beyond its own deny-all CSP.
+  if (!isMainFrame && url === 'about:srcdoc') return true;
   const origin = deriveOrigin(url);
   if (!origin) return false;
   if (toOriginSet(mainFrameOrigins).has(origin)) return true;

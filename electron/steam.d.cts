@@ -27,6 +27,8 @@ export interface SteamShell {
   appId: number;
   getLinkTicket(): Promise<string | null>;
   cancelLinkTicket(): void;
+  /** The initialized steamworks.js client, or null (integration off, no Steam). */
+  client(): unknown;
 }
 
 export function steamIntegrationEnabled(input?: {

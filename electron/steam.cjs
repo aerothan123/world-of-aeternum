@@ -147,7 +147,13 @@ function createSteamShell({
     lastTicket = null;
   }
 
-  return { enabled, appId, getLinkTicket, cancelLinkTicket };
+  // The initialized steamworks.js client (or null) for the add-on Workshop glue
+  // (electron/addons.cjs). Same lazy, retry-on-next-call init as the tickets.
+  function workshopClient() {
+    return clientOrNull();
+  }
+
+  return { enabled, appId, getLinkTicket, cancelLinkTicket, client: workshopClient };
 }
 
 module.exports = {
