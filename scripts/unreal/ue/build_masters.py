@@ -219,6 +219,14 @@ def build(kind, cfg):
     mel.connect_material_property(rmoss, '', unreal.MaterialProperty.MP_ROUGHNESS)
     mt_c = scalar(mat, 'MetallicBase', metal, 1100, 450)
     mel.connect_material_property(mt_c, '', unreal.MaterialProperty.MP_METALLIC)
+    emc = vec(mat, 'EmissiveColor', (0, 0, 0, 1), 1100, 900)
+    ems = scalar(mat, 'EmissiveStrength', 1.0, 1100, 1000)
+    emm = mul(mat, emc, 'RGB', ems, '', 1300, 900)
+    emt = tex_param(mat, 'EmissiveTex', eal.load_asset('/Engine/EngineResources/Black'), 1100, 1100)
+    emts = scalar(mat, 'EmissiveTexStrength', 0.0, 1100, 1200)
+    emtm = mul(mat, emt, 'RGB', emts, '', 1300, 1100)
+    emsum = add(mat, emm, '', emtm, '', 1500, 1000)
+    mel.connect_material_property(emsum, '', unreal.MaterialProperty.MP_EMISSIVE_COLOR)
     mat.set_editor_property('shading_model', unreal.MaterialShadingModel.MSM_DEFAULT_LIT)
     mel.recompile_material(mat)
     eal.save_loaded_asset(mat)
@@ -232,4 +240,5 @@ for k, cfg in KINDS.items():
     except Exception as e:
         unreal.log_warning(f'WYND master FAILED {k}: {e}')
 unreal.log('WYND masters done')
+
 
