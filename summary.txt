@@ -1,0 +1,7 @@
+﻿put M docs/narrative/chapter_one_placements.md 0
+put M tests/chapter_one_content.test.ts 0
+PASS tests/chapter_one_content.test.ts :: 8 passed (8)
+PASS tests/escort_quest.test.ts :: 23 passed (23)
+PASS tests/quest_mechanics_wyndlewood.test.ts :: 12 passed (12)
+FAILED FILES: none
+total current errors: 0 base: 22
