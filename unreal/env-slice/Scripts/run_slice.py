@@ -26,12 +26,8 @@ ONLY = [s for s in os.environ.get("WYND_SHOTS", "").split(",") if s]
 # Eastbrook Docks and watchtower west of town on the sea, the north road
 # toward Wolf Run. The shipped slice has no river or water mill, so shot 3
 # frames the harbour shore instead.
-SHOTS = [
-    {"name": "village_square", "eye": (6.0, 2.1, -95.0), "target": (-32.0, 4.0, -112.0), "focal": 24.0, "time": "golden_hour"},
-    {"name": "vale_road", "eye": (9.0, 1.9, -62.0), "target": (-2.0, 1.5, -18.0), "focal": 28.0, "time": "late_afternoon"},
-    {"name": "harbour_shore", "eye": (-76.0, 3.2, -66.0), "target": (-125.0, 1.0, -38.0), "focal": 26.0, "time": "golden_hour"},
-    {"name": "wide_vista", "eye": (120.0, 46.0, -190.0), "target": (-50.0, 0.0, 10.0), "focal": 22.0, "time": "late_afternoon"},
-]
+with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "look_shots.json")) as _f:
+    SHOTS = json.load(_f)["shots"]
 if ONLY:
     SHOTS = [s for s in SHOTS if s["name"] in ONLY]
 

@@ -1,0 +1,11 @@
+{
+ "note": "Game frame: x, z in yards; eye and target heights are above the ground (target never below sea level). focal is mm on a 36 x 20.25 filmback (16:9). time names a key light in lights.json. Read by run_slice.py (Unreal) and scripts/world_export/threejs_shots.mjs (Three.js). The shipped slice has no river or water mill, so the third shot frames the harbour shore.",
+ "width": 2560,
+ "height": 1440,
+ "shots": [
+  { "name": "village_square", "eye": [6.0, 2.1, -95.0], "target": [-32.0, 4.0, -112.0], "focal": 24.0, "time": "golden_hour" },
+  { "name": "vale_road", "eye": [9.0, 1.9, -62.0], "target": [-2.0, 1.5, -18.0], "focal": 28.0, "time": "late_afternoon" },
+  { "name": "harbour_shore", "eye": [-76.0, 3.2, -66.0], "target": [-125.0, 1.0, -38.0], "focal": 26.0, "time": "golden_hour" },
+  { "name": "wide_vista", "eye": [120.0, 46.0, -190.0], "target": [-50.0, 0.0, 10.0], "focal": 22.0, "time": "late_afternoon" }
+ ]
+}
