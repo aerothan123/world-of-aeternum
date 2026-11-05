@@ -33,10 +33,15 @@ authoritative for every outcome (`server/CLAUDE.md`, "Trust nothing from the cli
 - Facing `f` is radians. Forward is `(sin f, cos f)` on `(x, z)` and right is `(-cos f, sin f)`
   (`stepPlayerMotion` in `src/sim/player_motion.ts`), which is a right-handed frame.
 - Unreal is left-handed, Z-up, in centimetres, with actor forward on `+X` and right on `+Y`.
-  Use exactly one conversion everywhere: `ue = (z, -x, y) * 91.44` (1 yd = 91.44 cm) and
-  `ueYawDegrees = -f * 180 / PI`. With that mapping sim forward becomes Unreal `+X`, sim right
-  becomes `+Y` and sim up becomes `+Z`. Put it in one C++ function library (`FSimSpace`) and
-  unit-test it against recorded server frames; never convert ad hoc. Positions stay `double`
+  Use exactly one conversion everywhere: `ue = (x, z, y) * 100` (one sim yard is drawn as one
+  metre) and `ueYawDegrees = 90 - f * 180 / PI`, so an actor at that yaw has its `+X` along the
+  sim forward `(sin f, cos f)`. Why this frame: the environment slice world is already built in
+  it (the Unreal project's `Scripts/wynd_common.py`, pinned by its probe import of
+  `terrain_0_0`), so mirrored entities stand on that terrain with no second conversion, and the
+  1 yd = 1 m scale matches how the game's assets are authored. Swapping two axes turns the
+  right-handed sim frame into Unreal's left-handed one, so this is a proper change of frame, not a
+  mirror. It lives in one C++ function library (`FSimSpace`, module `WyndlewoodCore`), pinned by
+  the `Wyndlewood.Core.SimSpace` automation tests; never convert ad hoc. Positions stay `double`
   (UE 5 Large World Coordinates) so no precision is lost on the way in.
 - The sim tick is fixed at 20 Hz (`DT = 1 / TICK_RATE`, `src/sim/types.ts`).
 
