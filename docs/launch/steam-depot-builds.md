@@ -59,8 +59,9 @@ that one server verifies one app id.
 ## Launch option
 
 Steamworks > Installation > General: one launch option, executable
-`Wyndlewood.exe` (the product name in the build; check `win-unpacked/` for the
-exact file name), OS Windows, 64-bit. Optional second launch option for players
+`<productName>.exe` (named after `build.productName` in `package.json`, today
+`Project H.exe` until the rebrand lands; check `win-unpacked/` for the exact
+file name), OS Windows, 64-bit. Optional second launch option for players
 whose GPU misbehaves with the overlay: same executable, arguments
 `--no-steam-overlay`, description "Start without the Steam overlay".
 

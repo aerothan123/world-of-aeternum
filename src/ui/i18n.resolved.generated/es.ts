@@ -685,6 +685,14 @@ export const es: EnTranslations = {
       "saved": "Hecho.",
       "failed": "No se pudo guardar ni cargar el ajuste preestablecido."
     },
+    "maintenance": {
+      "beginsInMinute": "Realm maintenance begins in 1 minute.",
+      "beginsInMinutes": "Realm maintenance begins in {count} minutes.",
+      "beginsInSeconds": "Realm maintenance begins in {count} seconds.",
+      "begun": "Realm maintenance has begun. New logins are closed.",
+      "cancelled": "Realm maintenance was cancelled.",
+      "ended": "Realm maintenance is over. Logins are open again."
+    },
     "frameMenus": {
       "hide": "Ocultar marco",
       "units": "Marcos de unidad",
@@ -15546,6 +15554,8 @@ export const es: EnTranslations = {
     "connectionRejected": "El servidor cerró la conexión.",
     "incompatibleWorldVersion": "Las versiones del juego y del servidor no son compatibles. Recarga o actualiza y vuelve a intentarlo.",
     "realmFull": "Este mundo esta lleno en este momento. Por favor, intentalo de nuevo en unos minutos.",
+    "maintenance": "The realm is closed for maintenance. Please try again soon.",
+    "updateRequired": "Update required: this version of the game is out of date. Restart Steam to update, then try again.",
     "tooManyConnections": "Hay demasiadas conexiones a este mundo desde tu red. Cierra ventanas adicionales del juego o intentalo de nuevo en unos minutos.",
     "messageRateExceeded": "Se te desconectó por enviar acciones demasiado rápido. Espera un momento y vuelve a iniciar sesión.",
     "kickedByModerator": "Un moderador te ha desconectado: {reason}",

@@ -24506,4 +24506,12 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'hudChrome.auth.steamNoTicket': 'Steam 未執行。請啟動 Steam 後再試一次。',
   'hudChrome.auth.steamUnavailable': 'Steam 登入目前無法使用。',
   'apiError.steam.unlink_last_login': 'Steam 是你登入此帳號的唯一方式。請先新增電子郵件與密碼，再解除連結。',
+  'loading.maintenance': '伺服器正在維護，請稍後再試。',
+  'loading.updateRequired': '需要更新：目前的遊戲版本已過期。請重新啟動 Steam 以更新，然後再試一次。',
+  'hudChrome.maintenance.beginsInMinute': '伺服器維護將在 1 分鐘後開始。',
+  'hudChrome.maintenance.beginsInMinutes': '伺服器維護將在 {count} 分鐘後開始。',
+  'hudChrome.maintenance.beginsInSeconds': '伺服器維護將在 {count} 秒後開始。',
+  'hudChrome.maintenance.begun': '伺服器維護已開始，暫停新的登入。',
+  'hudChrome.maintenance.cancelled': '伺服器維護已取消。',
+  'hudChrome.maintenance.ended': '伺服器維護已結束，現已開放登入。',
 };

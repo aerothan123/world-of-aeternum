@@ -459,6 +459,12 @@ export function userFacingApiError(err: unknown): string {
   // The realm admission cap refused a fresh join. 'realm is full' is a byte-exact
   // wire contract with server/ws_auth.ts (WS_AUTH_ERROR).
   if (normalized === 'realm is full') return t('loading.realmFull');
+  // Realm maintenance closed the gate. 'realm is under maintenance' is a byte-exact
+  // wire contract with server/maintenance.ts (MAINTENANCE_REJECTION).
+  if (normalized === 'realm is under maintenance') return t('loading.maintenance');
+  // The realm's minimum client version refused this build. 'client update required'
+  // is a byte-exact wire contract with server/client_version_gate.ts.
+  if (normalized === 'client update required') return t('loading.updateRequired');
   // The per-IP connection cap refused the handshake. 'too many connections from your
   // network' is a byte-exact wire contract with server/ws_auth.ts (WS_AUTH_ERROR).
   if (normalized === 'too many connections from your network')

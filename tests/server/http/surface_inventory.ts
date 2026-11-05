@@ -2418,6 +2418,27 @@ export const SURFACE_INVENTORY: readonly SurfaceRoute[] = [
   // -------------------------------------------------------------------------
   // internal handleInternalApi (/internal/*)
   // -------------------------------------------------------------------------
+  // Realm maintenance (server/maintenance.ts): registry-only, no ladder arm.
+  {
+    dispatcher: DISPATCH.internal,
+    method: 'POST',
+    path: '/internal/maintenance',
+    handler: 'server/internal.ts maintenanceHandler (registry-only RouteDef)',
+    contentType: PROBLEM_JSON,
+    authScope: AUTH_SCOPE.secretDeploy,
+    limiter: null,
+    requireOwnedExpected: null,
+  },
+  {
+    dispatcher: DISPATCH.internal,
+    method: 'GET',
+    path: '/internal/maintenance',
+    handler: 'server/internal.ts maintenance status (registry-only RouteDef)',
+    contentType: PROBLEM_JSON,
+    authScope: AUTH_SCOPE.secretDeploy,
+    limiter: null,
+    requireOwnedExpected: null,
+  },
   {
     dispatcher: DISPATCH.internal,
     method: 'POST',

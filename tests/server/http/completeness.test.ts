@@ -582,8 +582,9 @@ describe('registry completeness: oauth + internal surfaces (server/oauth.ts, ser
     // have no rows since #2791, and the winners mark retired with Daily
     // Rewards) plus the two registry-only rows (POST /internal/discord/flex-batch
     // and GET /internal/discord/outbox), which have no legacy ladder arm by
-    // design.
-    expect(internalLadder.length).toBe(10);
+    // design, plus the registry-only maintenance pair (POST and GET
+    // /internal/maintenance, server/maintenance.ts).
+    expect(internalLadder.length).toBe(12);
   });
 
   it('registers exactly the oauth POST ladder routes', () => {

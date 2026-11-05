@@ -26273,4 +26273,12 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.auth.steamNoTicket': 'Steam не запущен. Запустите Steam и попробуйте снова.',
   'hudChrome.auth.steamUnavailable': 'Вход через Steam сейчас недоступен.',
   'apiError.steam.unlink_last_login': 'Steam остаётся единственным способом входа в эту учётную запись. Добавьте email и пароль, прежде чем отвязывать его.',
+  'loading.maintenance': 'Мир закрыт на техническое обслуживание. Попробуйте позже.',
+  'loading.updateRequired': 'Требуется обновление: эта версия игры устарела. Перезапустите Steam, чтобы обновить её, и попробуйте снова.',
+  'hudChrome.maintenance.beginsInMinute': 'Техническое обслуживание мира начнётся через 1 минуту.',
+  'hudChrome.maintenance.beginsInMinutes': 'Техническое обслуживание мира начнётся через {count} мин.',
+  'hudChrome.maintenance.beginsInSeconds': 'Техническое обслуживание мира начнётся через {count} с.',
+  'hudChrome.maintenance.begun': 'Техническое обслуживание мира началось. Новые входы закрыты.',
+  'hudChrome.maintenance.cancelled': 'Техническое обслуживание мира отменено.',
+  'hudChrome.maintenance.ended': 'Техническое обслуживание мира завершено. Вход снова открыт.',
 };

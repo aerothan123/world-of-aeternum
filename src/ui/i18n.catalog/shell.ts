@@ -62,6 +62,9 @@ export const shellStrings = {
       incompatibleWorldVersion:
         'Game and server versions are incompatible. Reload or update, then try again.',
       realmFull: 'This world is full right now. Please try again in a few minutes.',
+      maintenance: 'The realm is closed for maintenance. Please try again soon.',
+      updateRequired:
+        'Update required: this version of the game is out of date. Restart Steam to update, then try again.',
       tooManyConnections:
         'Too many connections to this world are coming from your network. Please close extra game windows or try again in a few minutes.',
       messageRateExceeded:

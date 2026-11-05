@@ -685,6 +685,14 @@ export const zh_TW: EnTranslations = {
       "saved": "完成。",
       "failed": "無法儲存或載入預設。"
     },
+    "maintenance": {
+      "beginsInMinute": "伺服器維護將在 1 分鐘後開始。",
+      "beginsInMinutes": "伺服器維護將在 {count} 分鐘後開始。",
+      "beginsInSeconds": "伺服器維護將在 {count} 秒後開始。",
+      "begun": "伺服器維護已開始，暫停新的登入。",
+      "cancelled": "伺服器維護已取消。",
+      "ended": "伺服器維護已結束，現已開放登入。"
+    },
     "frameMenus": {
       "hide": "隱藏框架",
       "units": "單位框架",
@@ -15546,6 +15554,8 @@ export const zh_TW: EnTranslations = {
     "connectionRejected": "伺服器已關閉連線。",
     "incompatibleWorldVersion": "遊戲與伺服器版本不相容。請重新整理或更新後再試一次。",
     "realmFull": "這個世界目前已滿，請於幾分鐘後再試。",
+    "maintenance": "伺服器正在維護，請稍後再試。",
+    "updateRequired": "需要更新：目前的遊戲版本已過期。請重新啟動 Steam 以更新，然後再試一次。",
     "tooManyConnections": "您的網路對這個世界建立的連線過多。請關閉多餘的遊戲視窗，或於幾分鐘後再試。",
     "messageRateExceeded": "由於發送操作過快，您已中斷連線。請稍候片刻後重新登入。",
     "kickedByModerator": "管理員已將您中斷連線：{reason}",

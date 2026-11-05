@@ -9546,7 +9546,7 @@ export class GameServer {
     );
   }
 
-  private broadcastSystem(text: string, color = '#ffd100'): void {
+  broadcastSystem(text: string, color = '#ffd100'): void {
     for (const session of this.clients.values()) {
       this.send(session, { t: 'events', list: [{ type: 'log', text, color }] });
     }

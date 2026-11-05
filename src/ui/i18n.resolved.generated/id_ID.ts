@@ -685,6 +685,14 @@ export const id_ID: EnTranslations = {
       "saved": "Selesai.",
       "failed": "Tidak dapat menyimpan atau memuat pratinjau."
     },
+    "maintenance": {
+      "beginsInMinute": "Realm maintenance begins in 1 minute.",
+      "beginsInMinutes": "Realm maintenance begins in {count} minutes.",
+      "beginsInSeconds": "Realm maintenance begins in {count} seconds.",
+      "begun": "Realm maintenance has begun. New logins are closed.",
+      "cancelled": "Realm maintenance was cancelled.",
+      "ended": "Realm maintenance is over. Logins are open again."
+    },
     "frameMenus": {
       "hide": "Sembunyikan Bingkai",
       "units": "Bingkai Unit",
@@ -15546,6 +15554,8 @@ export const id_ID: EnTranslations = {
     "connectionRejected": "Server menutup koneksi.",
     "incompatibleWorldVersion": "Versi permainan dan server tidak kompatibel. Muat ulang atau perbarui, lalu coba lagi.",
     "realmFull": "Dunia ini sedang penuh. Coba lagi dalam beberapa menit.",
+    "maintenance": "The realm is closed for maintenance. Please try again soon.",
+    "updateRequired": "Update required: this version of the game is out of date. Restart Steam to update, then try again.",
     "tooManyConnections": "Terlalu banyak koneksi ke dunia ini dari jaringanmu. Tutup jendela permainan ekstra atau coba lagi dalam beberapa menit.",
     "messageRateExceeded": "Kamu terputus karena mengirim tindakan terlalu cepat. Tunggu sebentar, lalu masuk kembali.",
     "kickedByModerator": "Moderator telah memutus koneksi Anda: {reason}",

@@ -685,6 +685,14 @@ export const ko_KR: EnTranslations = {
       "saved": "완료.",
       "failed": "프리셋을 저장하거나 불러올 수 없습니다."
     },
+    "maintenance": {
+      "beginsInMinute": "1분 후 렐름 점검이 시작됩니다.",
+      "beginsInMinutes": "{count}분 후 렐름 점검이 시작됩니다.",
+      "beginsInSeconds": "{count}초 후 렐름 점검이 시작됩니다.",
+      "begun": "렐름 점검이 시작되었습니다. 새로운 로그인은 막혀 있습니다.",
+      "cancelled": "렐름 점검이 취소되었습니다.",
+      "ended": "렐름 점검이 끝났습니다. 다시 로그인할 수 있습니다."
+    },
     "frameMenus": {
       "hide": "프레임 숨기기",
       "units": "유닛 프레임",
@@ -15546,6 +15554,8 @@ export const ko_KR: EnTranslations = {
     "connectionRejected": "서버가 연결을 종료했습니다.",
     "incompatibleWorldVersion": "게임과 서버 버전이 호환되지 않습니다. 새로고침하거나 업데이트한 후 다시 시도하세요.",
     "realmFull": "이 월드는 현재 포화 상태입니다. 몇 분 후에 다시 시도해 주세요.",
+    "maintenance": "렐름이 점검 중입니다. 잠시 후 다시 시도해 주세요.",
+    "updateRequired": "업데이트 필요: 이 버전의 게임은 오래되었습니다. Steam을 다시 시작해 업데이트한 후 다시 시도해 주세요.",
     "tooManyConnections": "사용 중인 네트워크에서 이 월드로 연결이 너무 많습니다. 추가 게임 창을 닫거나 몇 분 후에 다시 시도해 주세요.",
     "messageRateExceeded": "행동을 너무 빠르게 전송하여 연결이 끊어졌습니다. 잠시 기다렸다가 다시 로그인해 주세요.",
     "kickedByModerator": "운영자가 연결을 끊었습니다: {reason}",

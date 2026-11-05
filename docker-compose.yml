@@ -199,6 +199,11 @@ services:
       STEAM_APP_ID: ${STEAM_APP_ID:-}
       STEAM_WEB_API_KEY: ${STEAM_WEB_API_KEY:-}
       STEAM_LOGIN_ENABLED: ${STEAM_LOGIN_ENABLED:-}
+      # Realm maintenance boot flag and the minimum client version gate
+      # (docs/launch/live-ops-runbook.md). The dev-commands local override is
+      # deliberately NOT passed through: it must never reach a deployed realm.
+      MAINTENANCE_MODE: ${MAINTENANCE_MODE:-}
+      MIN_CLIENT_VERSION: ${MIN_CLIENT_VERSION:-}
       # Optional Epic account link and Book of Deeds achievement mirror.
       # Dark unless EPIC_ENABLED is exactly 1 (see DEPLOY.md). Secrets stay on
       # the host .env; never commit real values.

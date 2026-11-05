@@ -151,6 +151,7 @@ describe('websocket authentication', () => {
       timerWire: STABLE_TIMER_WIRE_VERSION,
       petSpecialWire: PET_SPECIAL_WIRE_VERSION,
       movementWire: 2,
+      clientVersion: expect.stringMatching(/^\d+\.\d+\.\d+/),
     });
   });
 
@@ -164,6 +165,7 @@ describe('websocket authentication', () => {
       timerWire: STABLE_TIMER_WIRE_VERSION,
       petSpecialWire: PET_SPECIAL_WIRE_VERSION,
       movementWire: 2,
+      clientVersion: expect.stringMatching(/^\d+\.\d+\.\d+/),
     });
   });
 });

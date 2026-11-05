@@ -25823,4 +25823,12 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.auth.steamNoTicket': 'Steamが起動していません。Steamを起動してからもう一度お試しください。',
   'hudChrome.auth.steamUnavailable': '現在Steamでのサインインはご利用いただけません。',
   'apiError.steam.unlink_last_login': 'このアカウントにはSteamでしかサインインできません。連携を解除する前にメールアドレスとパスワードを追加してください。',
+  'loading.maintenance': 'レルムはメンテナンス中です。しばらくしてからもう一度お試しください。',
+  'loading.updateRequired': 'アップデートが必要です：このバージョンのゲームは古くなっています。Steamを再起動して更新してから、もう一度お試しください。',
+  'hudChrome.maintenance.beginsInMinute': '1分後にレルムのメンテナンスを開始します。',
+  'hudChrome.maintenance.beginsInMinutes': '{count}分後にレルムのメンテナンスを開始します。',
+  'hudChrome.maintenance.beginsInSeconds': '{count}秒後にレルムのメンテナンスを開始します。',
+  'hudChrome.maintenance.begun': 'レルムのメンテナンスを開始しました。新規ログインは締め切られています。',
+  'hudChrome.maintenance.cancelled': 'レルムのメンテナンスは中止されました。',
+  'hudChrome.maintenance.ended': 'レルムのメンテナンスが終了しました。ログインを再開しています。',
 };

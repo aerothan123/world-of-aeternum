@@ -685,6 +685,14 @@ export const zh_CN: EnTranslations = {
       "saved": "完成。",
       "failed": "无法保存或加载预设。"
     },
+    "maintenance": {
+      "beginsInMinute": "服务器维护将在 1 分钟后开始。",
+      "beginsInMinutes": "服务器维护将在 {count} 分钟后开始。",
+      "beginsInSeconds": "服务器维护将在 {count} 秒后开始。",
+      "begun": "服务器维护已开始，暂停新的登录。",
+      "cancelled": "服务器维护已取消。",
+      "ended": "服务器维护已结束，现已开放登录。"
+    },
     "frameMenus": {
       "hide": "隐藏框体",
       "units": "单位框架",
@@ -15546,6 +15554,8 @@ export const zh_CN: EnTranslations = {
     "connectionRejected": "服务器关闭了连接。",
     "incompatibleWorldVersion": "游戏与服务器版本不兼容。请刷新或更新后重试。",
     "realmFull": "当前服务器已满，请稍后几分钟再试。",
+    "maintenance": "服务器正在维护，请稍后再试。",
+    "updateRequired": "需要更新：当前游戏版本已过期。请重启 Steam 进行更新，然后重试。",
     "tooManyConnections": "您的网络向该服务器发起的连接过多。请关闭多余的游戏窗口，或稍后几分钟再试。",
     "messageRateExceeded": "由于发送操作过快，您已断开连接。请稍等片刻后重新登录。",
     "kickedByModerator": "管理员已将您断开连接：{reason}",

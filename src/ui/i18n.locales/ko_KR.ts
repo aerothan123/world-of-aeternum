@@ -25828,4 +25828,12 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.auth.steamNoTicket': 'Steam이 실행 중이 아닙니다. Steam을 실행한 후 다시 시도해 주세요.',
   'hudChrome.auth.steamUnavailable': '지금은 Steam 로그인을 사용할 수 없습니다.',
   'apiError.steam.unlink_last_login': '이 계정에 로그인하는 방법은 Steam뿐입니다. 연결을 해제하기 전에 이메일과 비밀번호를 추가해 주세요.',
+  'loading.maintenance': '렐름이 점검 중입니다. 잠시 후 다시 시도해 주세요.',
+  'loading.updateRequired': '업데이트 필요: 이 버전의 게임은 오래되었습니다. Steam을 다시 시작해 업데이트한 후 다시 시도해 주세요.',
+  'hudChrome.maintenance.beginsInMinute': '1분 후 렐름 점검이 시작됩니다.',
+  'hudChrome.maintenance.beginsInMinutes': '{count}분 후 렐름 점검이 시작됩니다.',
+  'hudChrome.maintenance.beginsInSeconds': '{count}초 후 렐름 점검이 시작됩니다.',
+  'hudChrome.maintenance.begun': '렐름 점검이 시작되었습니다. 새로운 로그인은 막혀 있습니다.',
+  'hudChrome.maintenance.cancelled': '렐름 점검이 취소되었습니다.',
+  'hudChrome.maintenance.ended': '렐름 점검이 끝났습니다. 다시 로그인할 수 있습니다.',
 };

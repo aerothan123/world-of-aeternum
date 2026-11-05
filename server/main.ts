@@ -242,6 +242,7 @@ import {
   handleDesktopLoginExchange,
   issueDesktopLoginCode,
 } from './desktop_login';
+import { assertDevCommandsBootSafe } from './dev_commands_boot_guard';
 import {
   configureDiscordRuntime,
   handleDiscordCallback,
@@ -328,6 +329,7 @@ import {
 } from './leaderboard';
 import { findLiveSessionForCharacter, resolveLiveCharacterFrom } from './live_character_resolver';
 import { pruneMailCustodyParcelsBatch } from './mail_custody_overlay';
+import { configureMaintenance, maintenance } from './maintenance';
 import { MAX_MAP_SAVE_BYTES } from './maps';
 import {
   mapDeleteCore,
@@ -3238,6 +3240,9 @@ export function routeHttpRequest(req: http.IncomingMessage, res: http.ServerResp
 // ---------------------------------------------------------------------------
 
 export async function startServer(): Promise<http.Server> {
+  // Refuse a production boot that arms the /dev cheat set (dev_commands_boot_guard.ts),
+  // before config, the DB wait, or any listener.
+  assertDevCommandsBootSafe(process.env);
   // Load + validate the whole environment ONCE, before anything else (before the
   // 120x500ms DB retry loop), so a garbage flag or a missing required value fails fast
   // with a clear message rather than after a minute of connection retries. This
@@ -3457,8 +3462,14 @@ export async function startServer(): Promise<http.Server> {
     maxPayload: WS_MAX_PAYLOAD_BYTES,
     perMessageDeflate: wsPerMessageDeflateOptions(config.wsPerMessageDeflate),
   });
+  // Realm maintenance (server/maintenance.ts): broadcasts ride the game's system
+  // line; the WS gate below reads the same controller.
+  configureMaintenance((text) => game.broadcastSystem(text));
+  if (maintenance().gateActive())
+    console.warn('MAINTENANCE_MODE=1: realm booted closed to non-staff');
   const wsAuth = createWsAuth({
     game,
+    maintenanceGateActive: () => maintenance().gateActive(),
     getMembership,
     referralArmourForAccount,
     accountAndScopeForToken,

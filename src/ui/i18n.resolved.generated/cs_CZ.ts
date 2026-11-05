@@ -685,6 +685,14 @@ export const cs_CZ: EnTranslations = {
       "saved": "Hotovo.",
       "failed": "Předvolbu se nepodařilo uložit ani načíst."
     },
+    "maintenance": {
+      "beginsInMinute": "Realm maintenance begins in 1 minute.",
+      "beginsInMinutes": "Realm maintenance begins in {count} minutes.",
+      "beginsInSeconds": "Realm maintenance begins in {count} seconds.",
+      "begun": "Realm maintenance has begun. New logins are closed.",
+      "cancelled": "Realm maintenance was cancelled.",
+      "ended": "Realm maintenance is over. Logins are open again."
+    },
     "frameMenus": {
       "hide": "Skrýt rámeček",
       "units": "Rámečky jednotek",
@@ -15546,6 +15554,8 @@ export const cs_CZ: EnTranslations = {
     "connectionRejected": "Server ukončil připojení.",
     "incompatibleWorldVersion": "Verze hry a serveru nejsou kompatibilní. Obnov stránku nebo aktualizuj hru a zkus to znovu.",
     "realmFull": "Tento svět je momentálně plný. Zkus to prosím znovu za několik minut.",
+    "maintenance": "The realm is closed for maintenance. Please try again soon.",
+    "updateRequired": "Update required: this version of the game is out of date. Restart Steam to update, then try again.",
     "tooManyConnections": "Z tvé sítě se k tomuto světu připojuje příliš mnoho spojení. Zavři nadbytečná herní okna nebo to zkus znovu za několik minut.",
     "messageRateExceeded": "Spojení bylo přerušeno kvůli příliš rychlému odesílání akcí. Chvíli počkej a přihlas se znovu.",
     "kickedByModerator": "Moderátor vás odpojil: {reason}",

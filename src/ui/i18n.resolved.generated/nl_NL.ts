@@ -685,6 +685,14 @@ export const nl_NL: EnTranslations = {
       "saved": "Klaar.",
       "failed": "De voorinstelling kon niet worden opgeslagen of geladen."
     },
+    "maintenance": {
+      "beginsInMinute": "Realm maintenance begins in 1 minute.",
+      "beginsInMinutes": "Realm maintenance begins in {count} minutes.",
+      "beginsInSeconds": "Realm maintenance begins in {count} seconds.",
+      "begun": "Realm maintenance has begun. New logins are closed.",
+      "cancelled": "Realm maintenance was cancelled.",
+      "ended": "Realm maintenance is over. Logins are open again."
+    },
     "frameMenus": {
       "hide": "Frame verbergen",
       "units": "Eenheidskaders",
@@ -15546,6 +15554,8 @@ export const nl_NL: EnTranslations = {
     "connectionRejected": "De server heeft de verbinding gesloten.",
     "incompatibleWorldVersion": "Spel- en serverversie zijn niet compatibel. Laad opnieuw of werk bij en probeer het daarna nogmaals.",
     "realmFull": "Deze wereld is op dit moment vol. Probeer het over een paar minuten opnieuw.",
+    "maintenance": "The realm is closed for maintenance. Please try again soon.",
+    "updateRequired": "Update required: this version of the game is out of date. Restart Steam to update, then try again.",
     "tooManyConnections": "Er komen te veel verbindingen naar deze wereld vanuit jouw netwerk. Sluit extra spelvensters of probeer het over een paar minuten opnieuw.",
     "messageRateExceeded": "De verbinding is verbroken omdat je te snel acties verstuurde. Wacht even en log opnieuw in.",
     "kickedByModerator": "Een moderator heeft de verbinding met je verbroken: {reason}",

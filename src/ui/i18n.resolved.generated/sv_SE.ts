@@ -685,6 +685,14 @@ export const sv_SE: EnTranslations = {
       "saved": "Klart.",
       "failed": "Det gick inte att spara eller läsa in förinställningen."
     },
+    "maintenance": {
+      "beginsInMinute": "Realm maintenance begins in 1 minute.",
+      "beginsInMinutes": "Realm maintenance begins in {count} minutes.",
+      "beginsInSeconds": "Realm maintenance begins in {count} seconds.",
+      "begun": "Realm maintenance has begun. New logins are closed.",
+      "cancelled": "Realm maintenance was cancelled.",
+      "ended": "Realm maintenance is over. Logins are open again."
+    },
     "frameMenus": {
       "hide": "Dölj ram",
       "units": "Enhetens ramar",
@@ -15546,6 +15554,8 @@ export const sv_SE: EnTranslations = {
     "connectionRejected": "Servern stängde anslutningen.",
     "incompatibleWorldVersion": "Spelets och serverns versioner är inkompatibla. Läs om sidan eller uppdatera spelet, och försök sedan igen.",
     "realmFull": "Denna värld är full just nu. Försök igen om några minuter.",
+    "maintenance": "The realm is closed for maintenance. Please try again soon.",
+    "updateRequired": "Update required: this version of the game is out of date. Restart Steam to update, then try again.",
     "tooManyConnections": "För många anslutningar till denna värld kommer från ditt nätverk. Stäng extra spelfönster eller försök igen om några minuter.",
     "messageRateExceeded": "Du kopplades från för att du skickade handlingar för snabbt. Vänta en stund och logga in igen.",
     "kickedByModerator": "En moderator har kopplat bort dig: {reason}",

@@ -685,6 +685,14 @@ export const da_DK: EnTranslations = {
       "saved": "Færdig.",
       "failed": "Kunne ikke gemme eller indlæse forudindstillingen."
     },
+    "maintenance": {
+      "beginsInMinute": "Realm maintenance begins in 1 minute.",
+      "beginsInMinutes": "Realm maintenance begins in {count} minutes.",
+      "beginsInSeconds": "Realm maintenance begins in {count} seconds.",
+      "begun": "Realm maintenance has begun. New logins are closed.",
+      "cancelled": "Realm maintenance was cancelled.",
+      "ended": "Realm maintenance is over. Logins are open again."
+    },
     "frameMenus": {
       "hide": "Skjul ramme",
       "units": "Enhedsrammer",
@@ -15546,6 +15554,8 @@ export const da_DK: EnTranslations = {
     "connectionRejected": "Serveren lukkede forbindelsen.",
     "incompatibleWorldVersion": "Spillets og serverens versioner er ikke kompatible. Genindlæs eller opdater, og prøv derefter igen.",
     "realmFull": "Denne verden er fuld i øjeblikket. Prøv igen om et par minutter.",
+    "maintenance": "The realm is closed for maintenance. Please try again soon.",
+    "updateRequired": "Update required: this version of the game is out of date. Restart Steam to update, then try again.",
     "tooManyConnections": "Der kommer for mange forbindelser til denne verden fra dit netværk. Luk ekstra spilvinduer, eller prøv igen om et par minutter.",
     "messageRateExceeded": "Forbindelsen blev afbrudt, fordi du sendte handlinger for hurtigt. Vent et øjeblik, og log ind igen.",
     "kickedByModerator": "En moderator har afbrudt dig: {reason}",

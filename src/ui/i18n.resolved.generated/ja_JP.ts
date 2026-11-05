@@ -685,6 +685,14 @@ export const ja_JP: EnTranslations = {
       "saved": "完了。",
       "failed": "プリセットを保存または読み込めませんでした。"
     },
+    "maintenance": {
+      "beginsInMinute": "1分後にレルムのメンテナンスを開始します。",
+      "beginsInMinutes": "{count}分後にレルムのメンテナンスを開始します。",
+      "beginsInSeconds": "{count}秒後にレルムのメンテナンスを開始します。",
+      "begun": "レルムのメンテナンスを開始しました。新規ログインは締め切られています。",
+      "cancelled": "レルムのメンテナンスは中止されました。",
+      "ended": "レルムのメンテナンスが終了しました。ログインを再開しています。"
+    },
     "frameMenus": {
       "hide": "フレームを非表示",
       "units": "ユニットフレーム",
@@ -15546,6 +15554,8 @@ export const ja_JP: EnTranslations = {
     "connectionRejected": "サーバーが接続を閉じました。",
     "incompatibleWorldVersion": "ゲームとサーバーのバージョンに互換性がありません。再読み込みまたはアップデートしてから、もう一度お試しください。",
     "realmFull": "このワールドは現在満員です。数分後にもう一度お試しください。",
+    "maintenance": "レルムはメンテナンス中です。しばらくしてからもう一度お試しください。",
+    "updateRequired": "アップデートが必要です：このバージョンのゲームは古くなっています。Steamを再起動して更新してから、もう一度お試しください。",
     "tooManyConnections": "お使いのネットワークからこのワールドへの接続が多すぎます。余分なゲームウィンドウを閉じるか、数分後にもう一度お試しください。",
     "messageRateExceeded": "操作の送信が速すぎたため、切断されました。しばらく待ってから再度ログインしてください。",
     "kickedByModerator": "モデレーターによって切断されました：{reason}",

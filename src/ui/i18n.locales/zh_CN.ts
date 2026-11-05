@@ -24487,4 +24487,12 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.auth.steamNoTicket': 'Steam 未运行。请启动 Steam 后重试。',
   'hudChrome.auth.steamUnavailable': 'Steam 登录暂时不可用。',
   'apiError.steam.unlink_last_login': 'Steam 是你登录此账号的唯一方式。请先添加邮箱和密码，再解除关联。',
+  'loading.maintenance': '服务器正在维护，请稍后再试。',
+  'loading.updateRequired': '需要更新：当前游戏版本已过期。请重启 Steam 进行更新，然后重试。',
+  'hudChrome.maintenance.beginsInMinute': '服务器维护将在 1 分钟后开始。',
+  'hudChrome.maintenance.beginsInMinutes': '服务器维护将在 {count} 分钟后开始。',
+  'hudChrome.maintenance.beginsInSeconds': '服务器维护将在 {count} 秒后开始。',
+  'hudChrome.maintenance.begun': '服务器维护已开始，暂停新的登录。',
+  'hudChrome.maintenance.cancelled': '服务器维护已取消。',
+  'hudChrome.maintenance.ended': '服务器维护已结束，现已开放登录。',
 };
