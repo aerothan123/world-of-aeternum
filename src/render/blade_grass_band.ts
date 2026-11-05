@@ -26,12 +26,12 @@ import {
   getActiveWorldContent,
   isBuiltinWorldActive,
   isBuiltinWorldContent,
-  WORLD_MAX_X,
   WORLD_MAX_Z,
   WORLD_MIN_Z,
 } from '../sim/data';
 import { grassClearedAt } from '../sim/grass_clear';
 import { roadDistance, terrainCutAtHeight, terrainHeight, zoneBiomeAt } from '../sim/world';
+import { insideWorldX } from '../sim/world_x_edge';
 import {
   BLADE_HEIGHT_FROM_SHADE_GLSL,
   bladeSwayGlsl,
@@ -284,7 +284,7 @@ export function buildBladeGrassBand(
     const r1 = hash(ci, cj, 1);
     const x = ci * CELL + (r1 - 0.5) * CELL * 1.3;
     const z = cj * CELL + (hash(ci, cj, 2) - 0.5) * CELL * 1.3;
-    let ok = Math.abs(x) <= WORLD_MAX_X - 16 && z >= WORLD_MIN_Z + 16 && z <= WORLD_MAX_Z - 16;
+    let ok = insideWorldX(x) >= 16 && z >= WORLD_MIN_Z + 16 && z <= WORLD_MAX_Z - 16;
     if (ok) {
       const lush = groundLushnessAt(x, z, seed);
       const biomeDensity = GRASS_BIOME_DENSITY[zoneBiomeAt(x, z)] ?? 1;

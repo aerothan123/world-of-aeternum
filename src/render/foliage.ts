@@ -6,7 +6,6 @@ import {
   getActiveWorldContent,
   isBuiltinWorldActive,
   isBuiltinWorldContent,
-  WORLD_MAX_X,
   WORLD_MAX_Z,
   WORLD_MIN_Z,
 } from '../sim/data';
@@ -25,6 +24,7 @@ import {
   WATER_LEVEL,
   zoneBiomeAt,
 } from '../sim/world';
+import { insideWorldX } from '../sim/world_x_edge';
 import { type LoadedGltf, loadGltf, releaseGltf } from './assets/loader';
 import { registerDeferredPreload } from './assets/preload';
 import { attachBiomeHaze } from './biome_haze_field';
@@ -2871,8 +2871,7 @@ function buildGrassRing(
         const x = i * step + (hashAt(i, j, 1) - 0.5) * step * 1.4;
         const z = j * step + (hashAt(i, j, 2) - 0.5) * step * 1.4;
         if (x < minX || x >= maxX || z < minZ || z >= maxZ) continue;
-        if (Math.abs(x) > WORLD_MAX_X - 16 || z < WORLD_MIN_Z + 16 || z > WORLD_MAX_Z - 16)
-          continue;
+        if (insideWorldX(x) < 16 || z < WORLD_MIN_Z + 16 || z > WORLD_MAX_Z - 16) continue;
         const tuftBiome = zoneBiomeAt(x, z);
         // the Evergarden lawn is mown bare, but around the plantings grass
         // grows back the way a real bed does: through every parterre bed

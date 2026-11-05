@@ -3,12 +3,12 @@ import {
   DUNGEON_X_THRESHOLD,
   getActiveWorldContent,
   isBuiltinWorldActive,
-  WORLD_MAX_X,
   WORLD_MAX_Z,
   WORLD_MIN_Z,
 } from '../sim/data';
 import type { BiomeId } from '../sim/types';
 import { terrainHeight, WATER_LEVEL, zoneBiomeAt } from '../sim/world';
+import { insideWorldX } from '../sim/world_x_edge';
 import { GFX } from './gfx';
 import { moteKeepOutFade } from './motes_keepout_core';
 
@@ -146,7 +146,7 @@ export function buildMotes(seed: number): MotesView {
     const r = Math.sqrt(rng()) * RADIUS; // sqrt → even areal spread, not centre-clumped
     const x = px + Math.cos(ang) * r;
     const z = pz + Math.sin(ang) * r;
-    if (Math.abs(x) > WORLD_MAX_X - 8 || z < WORLD_MIN_Z + 8 || z > WORLD_MAX_Z - 8) return false;
+    if (insideWorldX(x) < 8 || z < WORLD_MIN_Z + 8 || z > WORLD_MAX_Z - 8) return false;
     const biome = zoneBiomeAt(x, z);
     if (MOTELESS_BIOMES.has(biome)) return false; // these realms drift no motes
     const h = terrainHeight(x, z, seed);

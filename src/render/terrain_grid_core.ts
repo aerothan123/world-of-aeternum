@@ -1,7 +1,7 @@
 // The world box the terrain chunk grid (and the far-vista tiles over it) is
 // laid out on.
 //
-// The shipped world streams over its own fixed box: x +-WORLD_MAX_X by
+// The shipped world streams over its own fixed box: x WORLD_MIN_X..WORLD_MAX_X by
 // z WORLD_MIN_Z..WORLD_MAX_Z. An authored map is its own rect (worldHalfX by
 // the zone band) and is sculpted past it freely, so a grid pinned to the
 // shipped box clipped the maker's ground wherever the two disagree: one of
@@ -20,6 +20,7 @@ import {
   getActiveWorldContent,
   WORLD_MAX_X,
   WORLD_MAX_Z,
+  WORLD_MIN_X,
   WORLD_MIN_Z,
   zoneXBounds,
 } from '../sim/data';
@@ -39,7 +40,7 @@ export const AUTHORED_OUTSKIRTS_YARDS = 240;
 export const AUTHORED_STAMP_REACH_YARDS = 600;
 
 export const SHIPPED_GRID_BOX: GridBox = {
-  minX: -WORLD_MAX_X,
+  minX: WORLD_MIN_X,
   maxX: WORLD_MAX_X,
   minZ: WORLD_MIN_Z,
   maxZ: WORLD_MAX_Z,
