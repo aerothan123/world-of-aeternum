@@ -192,7 +192,23 @@ function createSteamShell({
     lastLoginTicket = null;
   }
 
-  return { enabled, appId, getLinkTicket, cancelLinkTicket, getLoginTicket, cancelLoginTicket };
+  // Initialize the Steam API once the app is ready, so the overlay (Windows
+  // Steam build) has a live Steam session from the first frame instead of only
+  // after the first ticket. Same never-throws, retry-later contract as the
+  // ticket paths: a Steam client that is not running just leaves it null.
+  function warmUp() {
+    return clientOrNull() !== null;
+  }
+
+  return {
+    enabled,
+    appId,
+    getLinkTicket,
+    cancelLinkTicket,
+    getLoginTicket,
+    cancelLoginTicket,
+    warmUp,
+  };
 }
 
 module.exports = {

@@ -821,8 +821,12 @@ Rules that keep this working:
   steam depot alone, asar-unpacked (`scripts/electron-builder-config.mjs`);
   website builds never load it. Achievements reach Steam through the SERVER'S
   Book of Deeds mirror (`server/steam/`), not the client SDK; cloud and rich
-  presence stay unused, and the Steam OVERLAY is not hooked (nothing calls an
-  overlay enable). Gate: `tests/electron_steam.test.ts`.
+  presence stay unused. On Windows the Steam OVERLAY is hooked
+  (`electron/steam_overlay.cjs`: in-process GPU, no direct composition, set
+  before app ready; the `--no-steam-overlay` launch option turns it off), and
+  the Steam API initializes at ready. Gates: `tests/electron_steam.test.ts`,
+  `tests/electron_steam_overlay.test.ts`. Wyndlewood ships the Windows depot
+  only; the upload step is `docs/launch/steam-depot-builds.md`.
 - Updates ship as new SteamPipe builds promoted to the default branch; the in-app
   updater is off in this channel (runtime stamp) AND the build has no publish feed
   (no app-update.yml), so there is nothing to disable manually. Steam policy is that

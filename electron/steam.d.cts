@@ -31,6 +31,7 @@ export interface SteamShell {
   cancelLinkTicket(): void;
   getLoginTicket(): Promise<{ ticket: string; personaName: string } | null>;
   cancelLoginTicket(): void;
+  warmUp(): boolean;
 }
 
 export function steamIntegrationEnabled(input?: {

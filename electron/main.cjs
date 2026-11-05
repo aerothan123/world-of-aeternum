@@ -73,6 +73,7 @@ const { createHostEssentials } = require('./host_essentials.cjs');
 const { DEFAULT_SHELL_STRINGS, sanitizeShellStrings } = require('./shell_strings.cjs');
 const { registerLinuxUrlHandler } = require('./linux_url_handler.cjs');
 const { allowGpuUnderSteamOverlay } = require('./steam_overlay_guard.cjs');
+const { applySteamOverlay, planSteamOverlay } = require('./steam_overlay.cjs');
 const { attachRendererCrashRecovery, installProcessCrashGuards } = require('./crash_guard.cjs');
 const { initUpdater } = require('./updater.cjs');
 const {
@@ -337,6 +338,19 @@ log.info(
 // Applies ONLY when Steam actually injected, so an ordinary launch keeps the full sandbox.
 // Must be before app 'ready', like the switches above, or Chromium never reads it.
 allowGpuUnderSteamOverlay({ app, log });
+
+// Windows Steam build: hook the Steam overlay (electron/steam_overlay.cjs). Also
+// before 'ready', for the same reason. Off on every other channel and platform,
+// and the --no-steam-overlay launch option keeps the stock GPU process.
+applySteamOverlay({
+  plan: planSteamOverlay({
+    distribution: desktopConfig.distribution,
+    platform: process.platform,
+    argv: process.argv,
+    steamEnabled: !app.isPackaged && process.env.WOC_STEAM_DEV === '1',
+  }),
+  log,
+});
 
 // Player-visible strings for main-process dialogs (crash recovery): the
 // renderer pushes t()-localized values via 'desktop-set-strings'
@@ -1034,6 +1048,10 @@ const steamShell = createSteamShell({
   isPackaged: app.isPackaged,
   log,
 });
+
+// Steam builds init the Steam API at ready (the overlay wants a live session
+// from the first frame); a no-op on website and Epic builds.
+if (steamShell.enabled) app.whenReady().then(() => steamShell.warmUp());
 
 ipcMain.handle('desktop-steam-link-ticket', async (event) => {
   if (!trustedSender(event)) return null;
