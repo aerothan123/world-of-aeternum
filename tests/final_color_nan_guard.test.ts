@@ -52,6 +52,7 @@ const basePreferences: GraphicsSettingsSnapshot = {
   dynamicLights: 1,
   particleEffects: 1,
   ghostFade: 1,
+  worldStyle: 1,
 };
 
 afterEach(() => {

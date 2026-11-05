@@ -816,6 +816,8 @@ describe('server wiring for inv_sort (source pins)', () => {
         moveInventoryItem: () => {},
         separateMaterialStack: () => {},
         combineMaterialStacks: () => {},
+        unequipItem: () => false,
+        unequipGatherTool: () => false,
       },
       7,
       { cmd: 'inv_sort' },
