@@ -61,12 +61,6 @@ get written permission.
   extend to third parties. **Redistribution requires permission, and must be
   arranged through Levy Street** (tony@levystreet.com).
 
-The **@jamiecypher** sound effects are a separate case: they are CC BY-NC 4.0,
-so you *may* redistribute them non-commercially with attribution, but you may
-**not** use them commercially. The perpetual commercial grant covering them runs
-to World of ClaudeCraft (Levy Street) only and does not transfer to forks. See
-the Audio section.
-
 The **brand marks** (Twitch, X, Kick, YouTube, Discord, Steam, Solana, USDC) are
 trademarks and are not licensed to anyone by this file. See Brand marks.
 
@@ -84,9 +78,8 @@ them.** They are there so a fork works out of the box. What you may not do is
 lift them out and republish or sell them as standalone art.
 
 The only assets you need to actually remove or replace are the ones marked
-`No, permission required` above, plus the CC BY-NC audio if your fork is
-commercial. Anything not listed in this register at all is unrecorded rather
-than free, so ask before you rely on it.
+`No, permission required` above. Anything not listed in this register at all is
+unrecorded rather than free, so ask before you rely on it.
 
 ## Models, textures, icons, and art
 
@@ -337,30 +330,13 @@ branding.
 
 ## Audio
 
-All sampled sound effects credited to @jamiecypher below (`public/audio/sfx/`)
-are original recordings and sound design, reworked using original sounds and
-licensed source material from EastWest Composer Cloud, Epic Stock Media, and
-Freesound.org (CC0). @jamiecypher retains copyright and publishes this work
-under CC BY-NC 4.0 (Creative Commons Attribution-NonCommercial 4.0
-International): free to use and share non-commercially with attribution.
-@jamiecypher separately grants World of ClaudeCraft (Levy Street) a
-perpetual, royalty-free license to use these assets commercially, including
-in official releases and the Claudium store.
-
-**That commercial grant is to Levy Street and does not transfer with a fork.**
-If you redistribute these sounds you must credit @jamiecypher and keep the use
-non-commercial. For commercial use, arrange your own licence with the author.
+Every shipped sound effect under `public/audio/sfx/` is a project original; the
+rows below say how each set was made.
 
 | Assets | Author | Source | License | Redistribution |
 |---|---|---|---|---|
 | Ignivar encounter voice lines (`public/audio/voice/ignivar/*.mp3`) | World of ClaudeCraft | Project-generated with ElevenLabs Voice Design and text-to-speech, then locally post-processed | Project asset, rights reserved | **No, permission required** |
 | Varkhul encounter voice lines (`public/audio/voice/varkhul/*.mp3`) | World of ClaudeCraft | Project-generated with ElevenLabs Voice Design, then locally post-processed | Project asset, rights reserved | **No, permission required** |
-| Valorsteed gallop layer (`mount_run_valorsteed.mp3`) | D4XX, adapted by congusbongus | [Horse gallop on different surfaces](https://opengameart.org/content/horse-gallop-on-different-surfaces), individual `ground.mp3` source identified as CC0 in the included credits | CC0 1.0 | Yes |
-| Mount footfall layers (`mount_run_grag_bear.mp3`, `mount_run_shadowjump_toad.mp3`, `mount_run_stormfeather_griffin.mp3`, `mount_run_thunderstrut_gobbler.mp3`) | Fantozzi, extracted by qubodup | [Fantozzi's Footsteps](https://opengameart.org/content/fantozzis-footsteps-grasssand-stone) | CC0 1.0 | Yes |
-| Stalk-Glider slime layer (`mount_run_stalkglider_snail.mp3`) | RandomUser | [Slime ultimate the best](https://opengameart.org/content/slime-ultimate-the-best) | CC0 1.0 | Yes |
-| Shadow-Jump Toad slime layer (`mount_run_shadowjump_toad.mp3`) | KobatoGames | [Slime jump effect](https://opengameart.org/content/slime-jump-effect) | CC0 1.0 | Yes |
-| Hover-Cycle movement layer (`mount_run_aether_hover_cycle.mp3`) | Umplix | [Hovermobile SFX](https://opengameart.org/content/hovermobile-sfx) | CC0 1.0 | Yes |
-| Stormfeather and Grand Gobbler wing layers (`mount_run_stormfeather_griffin.mp3`, `mount_run_thunderstrut_gobbler.mp3`) | AntumDeluge, derived from dave.des | [Large Wings Flap](https://opengameart.org/content/large-wings-flap) | CC0 1.0 | Yes |
 | Gathering strike sound effects (`impact_gather_pick_{1,2}.mp3`, `impact_gather_axe_{1,2}.mp3`, `impact_tree_creak_{1,2}.mp3`, `impact_tree_crash_{1,2}.mp3`; raw masters in `scripts/sfx/sources/gather/`, dates and plan tier in its `takes.json`) | World of ClaudeCraft | Project-generated with the ElevenLabs Sound Effects API on the paid Creator plan (2026-11-04; prompts in `scripts/sfx/gather_strike_prompts.mjs`), each master the candidate measured closest to the free-tier audition pick it replaced, conformed via `scripts/sfx/gather_strike_sfx.mjs`; each pick take is a layered build of two generated candidates (a punchy stone attack over a stone-crack body) with a transient shaper and compressor | Project asset | With the project only |
 | Region ambience beds (`amb_bed_*.mp3`: amber, bastion, castle, cave, crypt, dusk, ember, forest, forge, frost, gale, garden, harbor, haunt, house, jungle, lair, marsh, meadow, mine, night_wild, palace, peaks, shore, temple, town_day, town_night, wildheart; raw takes in `scripts/sfx/sources/ambience/`, dates and plan tier in its `takes.json`) | World of ClaudeCraft | Project-generated with the ElevenLabs Sound Effects API on the paid Creator plan (2026-11-04; prompts in `scripts/sfx/ambience_bed_prompts.mjs`, original text descriptions of natural, village and interior sound only), one take per bed, cut into a seamless loop (an equal-power tail-over-head crossfade) and mastered by `scripts/sfx/ambience_beds_sfx.mjs`; ledger: `docs/audio/elevenlabs_provenance.md` | Project asset | With the project only |
 | Outdoor reverb impulse responses (generated at runtime by `src/game/outdoor_reverb_ir.ts`) | World of ClaudeCraft | Original deterministic synthesis from seeded noise and filtered echo taps; no recorded impulse responses | Project asset | With the project only |
