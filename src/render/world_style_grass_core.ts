@@ -57,11 +57,12 @@ export const CLASSIC_BLADE_SHAPE: BladeClusterShape = {
 };
 
 /** The painted cluster: seven soft leaf blades of varied length. The width
- *  holds through the middle (a fuller taper profile) and ends in a narrow
- *  rounded tip instead of a needle point, and every blade bows a little
- *  further over, so a clump up close reads as soft painted leaves rather than
- *  spiky low-poly shards. The blunt tip costs one vertex a ribbon: 7 x 8 = 56
- *  vertices a cluster on the carpet, still under Classic's 9 x 7 = 63. */
+ *  holds through the middle (a fuller taper profile) up to a broad last
+ *  ring, so the tip is a short wide point instead of a needle, and every
+ *  blade bows a little further over, so a clump up close reads as soft
+ *  painted leaves rather than spiky low-poly shards. No blunt tip vertex
+ *  (tipWidth 0): 7 x 7 = 49 vertices a cluster on the carpet, the same
+ *  triangle cost as the narrow painted blade, under Classic's 9 x 7 = 63. */
 export const PAINTED_BLADE_SHAPE: BladeClusterShape = {
   blades: 7,
   widthMul: 1.2,
@@ -69,7 +70,7 @@ export const PAINTED_BLADE_SHAPE: BladeClusterShape = {
   tipTaper: 0.66,
   lenMul: 0.88,
   bandMidTaper: 0.76,
-  tipWidth: 0.16,
+  tipWidth: 0,
   bowMul: 1.35,
 };
 
