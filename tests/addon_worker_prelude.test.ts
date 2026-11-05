@@ -111,6 +111,24 @@ describe('addon worker prelude: hardening', () => {
   });
 });
 
+describe('addon worker prelude: integrity', () => {
+  it('refuses to run when a global it relies on was rebound before it ran', () => {
+    // A hoisted `function setTimeout() {}` in an add-on file rebinds the global
+    // before the prelude executes; the prelude must abort, not run unhardened.
+    const main = new Function(`return (${PRELUDE});`)();
+    const hijacked = {
+      setTimeout: () => 0,
+      clearTimeout,
+      setInterval,
+      clearInterval,
+      addEventListener: () => {},
+      Intl,
+      performance,
+    };
+    expect(() => main(hijacked, init())).toThrow(/integrity/);
+  });
+});
+
 describe('addon worker prelude: lifecycle and API', () => {
   it('reports ready, then LOADED, and batches UI ops into one message', async () => {
     const { got } = boot(`
@@ -222,7 +240,7 @@ describe('addon worker prelude: lifecycle and API', () => {
 describe('the sandbox bootstrap builds the same single worker script', () => {
   it('prelude call first, files in order, load trailer last', () => {
     const script = addonWorkerScript('function(){}', '{}', ['A', 'B']);
-    expect(script.indexOf('(function(){})(self, {})')).toBeLessThan(script.indexOf('A'));
+    expect(script.indexOf('(function(){})(this, {})')).toBeLessThan(script.indexOf('A'));
     expect(script.indexOf('A')).toBeLessThan(script.indexOf('B'));
     expect(script.trimEnd().endsWith('self.__wyndLoaded();')).toBe(true);
     const boot = readFileSync(
@@ -230,7 +248,7 @@ describe('the sandbox bootstrap builds the same single worker script', () => {
       'utf8',
     );
     expect(boot).toContain(
-      '"use strict";\\n(${String(msg.prelude)})(self, ${JSON.stringify(msg.init)});\\n',
+      '"use strict";\\n(${String(msg.prelude)})(this, ${JSON.stringify(msg.init)});\\n',
     );
     expect(boot).toContain("code += 'self.__wyndLoaded();\\n';");
     expect(boot).not.toContain('importScripts');

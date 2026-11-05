@@ -19,7 +19,9 @@
     // One worker script: the prelude call (it hardens the global first), then
     // the add-on files in load order, then the load trailer. The same shape as
     // addonWorkerScript() in src/ui/hud/addons/addon_worker_prelude.ts.
-    let code = `"use strict";\n(${String(msg.prelude)})(self, ${JSON.stringify(msg.init)});\n`;
+    // `this` at a worker script's top level is the global object itself: unlike
+    // `self`, no hoisted add-on declaration can rebind it.
+    let code = `"use strict";\n(${String(msg.prelude)})(this, ${JSON.stringify(msg.init)});\n`;
     for (const f of msg.files) code += `${String(f)}\n;\n`;
     code += 'self.__wyndLoaded();\n';
     const url = blobUrl(code);

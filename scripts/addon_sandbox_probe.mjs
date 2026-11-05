@@ -111,6 +111,8 @@ const ESCAPE = `
   })();
 `;
 const LOOP = `wynd.on('LOADED', () => { for (;;) {} });`;
+// Hoisted declarations rebind globals before the prelude runs: it must refuse.
+const HOIST = `function setTimeout() {}\nfunction JSON() {}\nwynd.print('ran unhardened');`;
 
 async function runMode(label, pageCsp) {
   csp = pageCsp;
@@ -120,7 +122,7 @@ async function runMode(label, pageCsp) {
     const page = await browser.newPage();
     await page.goto(`${ORIGIN}/`);
     const result = await page.evaluate(
-      async ({ escapeCode, loop }) => {
+      async ({ escapeCode, loop, hoist }) => {
         const { createIframeSandbox, prelude } = window.__probe;
         const events = [];
         const sandbox = createIframeSandbox(document, window, (e) => events.push(e));
@@ -152,6 +154,8 @@ async function runMode(label, pageCsp) {
             setTimeout(() => resolve({ msgs, ch }), 4000);
           });
         const esc = await spawn('escape', escapeCode);
+        const hoisted = await spawn('hoist', hoist);
+        const hoistRan = hoisted.msgs.some((m) => m.t === 'print' || m.t === 'ready');
         const printed = esc.msgs.find((m) => m.t === 'print');
         // The hung add-on: the page's own timers must keep running on time.
         const loopCh = new MessageChannel();
@@ -172,13 +176,15 @@ async function runMode(label, pageCsp) {
         sandbox.kill('loop');
         return {
           report: printed ? JSON.parse(printed.text) : null,
+          hoistRan,
+          hoistRefused: events.some((e) => e.key === 'hoist' && e.kind === 'workerError'),
           loopAnsweredPing: pong,
           mainThreadMaxLagMs: Math.round(maxLag),
           elapsedMs: Math.round(performance.now() - t0),
           events,
         };
       },
-      { escapeCode: ESCAPE, loop: LOOP },
+      { escapeCode: ESCAPE, loop: LOOP, hoist: HOIST },
     );
     await new Promise((r) => setTimeout(r, 300));
     return { label, ...result, networkHits: [...hits] };
@@ -210,6 +216,8 @@ for (const [label, policy] of [
   }
   if (r.networkHits.length > 0) failures.push(`${label}: server saw ${r.networkHits.join(', ')}`);
   if (r.loopAnsweredPing) failures.push(`${label}: the looping add-on answered a ping`);
+  if (r.hoistRan || !r.hoistRefused)
+    failures.push(`${label}: a hoisted global rebind was not refused`);
   if (r.mainThreadMaxLagMs > 250)
     failures.push(`${label}: main thread lagged ${r.mainThreadMaxLagMs} ms`);
 }

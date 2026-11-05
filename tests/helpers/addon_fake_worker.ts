@@ -42,27 +42,29 @@ export function createFakeWorker(
   const timers = new Set<ReturnType<typeof setTimeout>>();
   const scope: FakeScope = {
     performance: { now: () => performance.now() },
-    setTimeout: (fn: () => void, ms: number) => {
+    // Bound, so they read as native code to the prelude's integrity check
+    // (a real worker's timers are native; Node's are plain JS functions).
+    setTimeout: ((fn: () => void, ms: number) => {
       const h = setTimeout(() => {
         timers.delete(h);
         fn();
       }, ms);
       timers.add(h);
       return h;
-    },
-    clearTimeout: (h: ReturnType<typeof setTimeout>) => {
+    }).bind(null),
+    clearTimeout: ((h: ReturnType<typeof setTimeout>) => {
       clearTimeout(h);
       timers.delete(h);
-    },
-    setInterval: (fn: () => void, ms: number) => {
+    }).bind(null),
+    setInterval: ((fn: () => void, ms: number) => {
       const h = setInterval(fn, ms);
       timers.add(h);
       return h;
-    },
-    clearInterval: (h: ReturnType<typeof setInterval>) => {
+    }).bind(null),
+    clearInterval: ((h: ReturnType<typeof setInterval>) => {
       clearInterval(h);
       timers.delete(h);
-    },
+    }).bind(null),
     Intl,
     URL: { createObjectURL: () => 'blob:x', revokeObjectURL: () => {} },
     fetch: () => Promise.resolve('LEAK'),
@@ -76,11 +78,11 @@ export function createFakeWorker(
     Worker: class {},
     postMessage: () => 'LEAK',
     WebAssembly: {},
-    addEventListener(type: string, fn: (e: unknown) => void) {
+    addEventListener: ((type: string, fn: (e: unknown) => void) => {
       const list = listeners.get(type) ?? [];
       list.push(fn);
       listeners.set(type, list);
-    },
+    }).bind(null),
   };
   scope.self = scope;
   const worker: FakeWorker = {

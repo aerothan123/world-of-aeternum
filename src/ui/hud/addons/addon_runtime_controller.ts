@@ -620,7 +620,10 @@ export class AddonRuntime {
     while (l.queue.length > 0) {
       if (this.deps.now() - start > ADDON_BUDGET.hostMsPerFrame) break;
       const op = l.queue.shift() as AddonUiOp;
-      if (inCombat && (l.deferredIds.has(op.id) || l.tree.lockedInCombat(op))) {
+      // A child created under a deferred widget waits with it, so the
+      // subtree lands whole (in order) when combat ends.
+      const parentDeferred = op.op === 'c' && op.parent !== null && l.deferredIds.has(op.parent);
+      if (inCombat && (parentDeferred || l.deferredIds.has(op.id) || l.tree.lockedInCombat(op))) {
         l.deferred.push(op);
         l.deferredIds.add(op.id);
         continue;

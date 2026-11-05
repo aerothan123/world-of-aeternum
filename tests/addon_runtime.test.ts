@@ -410,6 +410,32 @@ describe('add-on runtime: no automation', () => {
     expect(h.secure.toggleWindow).toHaveBeenCalledWith('bags');
   });
 
+  it('defers a secure button created in combat together with its children', async () => {
+    const h = setup([
+      inlinePackage(
+        'late',
+        `wynd.on('COMBAT_START', () => {
+           const b = wynd.ui.create('button', { text: 'Go', secure: { type: 'actionSlot', slot: 1 } });
+           wynd.ui.create('text', { parent: b, text: 'child' });
+         });`,
+        { permissions: ['secureActions'] },
+      ),
+    ]);
+    await h.rt.start();
+    await tick();
+    h.rt.tick();
+    await tick();
+    h.sim.player.inCombat = true;
+    h.rt.tick();
+    await tick();
+    expect(h.uiRoot.querySelector('.addon-w--secure')).toBeNull();
+    h.sim.player.inCombat = false;
+    h.rt.tick();
+    await tick();
+    expect(h.uiRoot.querySelector('.addon-w--secure .addon-w--text')?.textContent).toBe('child');
+    expect(h.rt.entries[0].errors.total).toBe(0);
+  });
+
   it('defers re-declaring a secure button while in combat', async () => {
     const h = setup([
       inlinePackage(

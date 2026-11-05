@@ -79,6 +79,44 @@ export function addonWorkerMain(scope: AnyScope, init: AddonWorkerInit): void {
     'webkitRequestFileSystem',
     'storage',
   ];
+  // ---- integrity: refuse to run on hijacked globals ------------------------
+  // The add-on files share this worker script, and a top-level FUNCTION
+  // DECLARATION in one is hoisted: it rebinds a configurable global (Object,
+  // JSON, setTimeout, addEventListener, ...) before any code runs, this prelude
+  // included. No add-on code has RUN yet, so a global that is still the native
+  // intrinsic is clean; anything else aborts the worker (the host records a
+  // load error) instead of running unhardened. `scope` is the script's
+  // top-level `this` (the bootstrap passes it), which no declaration can rebind.
+  const fnToString = (() => {}).constructor.prototype.toString;
+  const isNative = (f: unknown): boolean => {
+    try {
+      return typeof f === 'function' && /\{\s*\[native code\]\s*\}\s*$/.test(fnToString.call(f));
+    } catch {
+      return false;
+    }
+  };
+  const nativeObjects = [JSON, Math, scope.Intl, scope.performance];
+  const nativeFns = [
+    Object,
+    Map,
+    Set,
+    String,
+    Number,
+    TypeError,
+    RangeError,
+    scope.setTimeout,
+    scope.clearTimeout,
+    scope.setInterval,
+    scope.clearInterval,
+    scope.addEventListener,
+  ];
+  if (
+    Object !== {}.constructor ||
+    nativeObjects.some((o) => typeof o !== 'object' || o === null) ||
+    !nativeFns.every(isNative)
+  ) {
+    throw new Error('add-on sandbox integrity check failed: a global was redeclared');
+  }
   const MIN_TIMER_S = 0.05;
   const MAX_TIMERS = 64;
   const FLUSH_SAVED_MS = 10000;
@@ -553,7 +591,7 @@ export function addonWorkerScript(
   initJson: string,
   files: readonly string[],
 ): string {
-  let out = `"use strict";\n(${prelude})(self, ${initJson});\n`;
+  let out = `"use strict";\n(${prelude})(this, ${initJson});\n`;
   for (const f of files) out += `${f}\n;\n`;
   return `${out}self.__wyndLoaded();\n`;
 }

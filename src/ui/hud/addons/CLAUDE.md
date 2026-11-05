@@ -29,6 +29,10 @@ directory is a security change.
 - **The prelude is self-contained**: no imports, no module constants inside
   `addonWorkerMain` (it is evaluated in a fresh realm). `ADDON_WORKER_BLOCKED_GLOBALS`
   mirrors its inner list and the prelude test checks every name.
+- **Hoisting is the prelude's adversary**: add-on files share the worker script, so a
+  top-level function declaration rebinds a global before the prelude runs. Every global the
+  prelude uses must be in its native-intrinsic integrity check, and the script passes the
+  top-level `this`, never `self`.
 - **The bootstrap and `addonWorkerScript` build the same single worker script**; change
   both together (no `importScripts`: the desktop CSP forbids `blob:` script imports).
 - **Sandbox changes run the real-browser probe**: `node scripts/addon_sandbox_probe.mjs`

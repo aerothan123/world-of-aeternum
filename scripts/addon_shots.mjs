@@ -8,6 +8,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import puppeteer from 'puppeteer-core';
 import { BROWSER_PATH } from './browser_path.mjs';
+import { enterOfflineGame } from './enter_offline_game.mjs';
 
 const URL = process.env.GAME_URL ?? 'http://localhost:5173';
 const OUT = path.resolve(process.argv[2] ?? 'docs/screenshots/addons');
@@ -22,29 +23,15 @@ const browser = await puppeteer.launch({
 });
 const page = await browser.newPage();
 page.on('pageerror', (e) => console.log('PAGEERROR:', e.message));
-const click = (sel) =>
-  page.evaluate((s) => {
-    const el = document.querySelector(s);
-    if (!el) throw new Error(`missing ${s}`);
-    el.click();
-  }, sel);
 
-await page.goto(URL, { waitUntil: 'networkidle0', timeout: 60000 });
-await sleep(500);
-await click('#btn-offline');
-await sleep(300);
-await page.type('#char-name', 'Brindle');
-await click('#offline-select .mini-class[data-class="warrior"]');
-await click('#btn-start-offline');
-await page.waitForFunction(() => window.__game?.sim?.player, { timeout: 90000 });
-await sleep(4000);
-await page.evaluate(() => {
-  const btn = [...document.querySelectorAll('button')].find((b) =>
-    /skip tutorial/i.test(b.textContent || ''),
-  );
-  btn?.click();
+await page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 120000 });
+const booted = await enterOfflineGame(page, {
+  charName: 'Brindle',
+  settleMs: 6000,
+  gameBootTimeoutMs: 240000,
+  selectorTimeoutMs: 120000,
 });
-await sleep(500);
+if (!booted) throw new Error('the offline world never booted');
 
 // A fight: stand beside the nearest live mob, target it, and swing.
 const fight = await page.evaluate(() => {
