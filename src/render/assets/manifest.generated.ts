@@ -1142,7 +1142,7 @@ export const MEDIA_ASSETS: Record<string, string> =
   "models/foliage/dead_1.glb": "/media/models/foliage/dead_1.9529b07107f6.glb",
   "models/foliage/dead_2.glb": "/media/models/foliage/dead_2.414e0fb63c64.glb",
   "models/foliage/dead_3.glb": "/media/models/foliage/dead_3.00e15a5f4d14.glb",
-  "models/foliage/fern.glb": "/media/models/foliage/fern.bf1e28fcb897.glb",
+  "models/foliage/fern.glb": "/media/models/foliage/fern.240f91d93d31.glb",
   "models/foliage/mushroom.glb": "/media/models/foliage/mushroom.b4443460a7fe.glb",
   "models/foliage/mushroom_woc.glb": "/media/models/foliage/mushroom_woc.27a9d70917aa.glb",
   "models/foliage/oak_1.glb": "/media/models/foliage/oak_1.d38f3eaf035c.glb",

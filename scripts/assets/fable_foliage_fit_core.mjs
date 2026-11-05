@@ -79,8 +79,11 @@ export const FULL_SOURCE = 4400;
  *  (its own baked normal map, with the painted relief over it, carries the
  *  surface). */
 export const ROCK_BUDGET = 4200;
-/** Triangle budget of the fern, the densest dressing kind. */
-export const FERN_BUDGET = 1400;
+/** Triangle budget of the fern, the densest dressing kind. At 1400 the
+ *  ferns alone held grass-heavy views about 10 percent over the previous
+ *  triangle count (every fern is also a shadow caster); 600 is still about
+ *  twice the old 288-triangle card fern. */
+export const FERN_BUDGET = 600;
 /** Height of a fitted dead tree as a fraction of the old snag's. */
 export const DEAD_HEIGHT_SCALE = 0.8;
 const dead = (name, oldHeight, x, z, oldFootprint) =>
