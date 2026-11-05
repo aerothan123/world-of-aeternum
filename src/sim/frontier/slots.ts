@@ -107,27 +107,41 @@ export const WORLD_SLOTS: readonly WorldSlot[] = [
   shipped('palmreach', -540, -180, 700, 1260, [20, 20]),
   shipped('nightbloom', -540, -180, 1260, 1820, [20, 20]),
   shipped('amberfall', -540, -180, 1820, 2380, [18, 20]),
-  // chapter 1 (this build): the Southern Reaches, the first frontier row
+  // chapter 1, the launch frontier (live in this build). The Southern Reaches
+  // row (6 to 13), the Low Reaches row (11 to 15, run east to west) and the
+  // West March column (14 to 20, run south to north): the second road
+  // through the top band beside Thornpeak and the Veiled Hollow.
   lattice('applewold', 'open', 1, 1, -1, [6, 9]),
   lattice('kindlemoor', 'open', 1, 0, -1, [8, 11]),
   lattice('chalkbarrow_coast', 'open', 1, -1, -1, [10, 13]),
-  // reserved: the deep south row (an alternative 11 to 15 road)
-  lattice('south_row_east', 'reserved', 2, 1, -2, [11, 13]),
-  lattice('south_row_mid', 'reserved', 2, 0, -2, [12, 14]),
-  lattice('south_row_west', 'reserved', 2, -1, -2, [13, 15]),
-  // reserved: the west march, two lattice columns wide, branching 15 to 20
-  lattice('west_march_south', 'reserved', 3, -3, -2, [14, 16], { cols: 2, rows: 2 }),
-  lattice('west_march_downs', 'reserved', 3, -3, 0, [16, 18], { cols: 2, rows: 2 }),
-  lattice('west_march_fens', 'reserved', 4, -3, 2, [17, 19], { cols: 2, rows: 2 }),
-  lattice('west_march_heights', 'reserved', 4, -3, 4, [18, 20], { cols: 2, rows: 2 }),
-  lattice('west_march_rime', 'reserved', 5, -3, 6, [20, 20], { cols: 2, rows: 2 }),
-  // reserved: the east march past x 540. Blocked until the save rule changes:
-  // data.ts migrateLegacyInstancePos reads ANY saved x in 600..99400 as a
-  // pre-move instance position and sends it to a dungeon door, so a character
-  // saved out here would be teleported away on login. The fix is a save epoch
-  // stamp (docs/design/world-expansion-framework.md, "Save positions").
-  lattice('east_march_south', 'reserved', 5, 2, -2, [15, 17], { cols: 2, rows: 2 }),
-  lattice('east_march_isles', 'reserved', 6, 2, 0, [20, 20], { cols: 2, rows: 2 }),
+  lattice('saltmeads', 'open', 1, 1, -2, [11, 13]),
+  lattice('wychwold', 'open', 1, 0, -2, [12, 14]),
+  lattice('tinmarch', 'open', 1, -1, -2, [13, 15]),
+  lattice('rookcliffs', 'open', 1, -2, -2, [14, 16]),
+  lattice('sedgemarch', 'open', 1, -2, -1, [16, 18]),
+  lattice('harrowfells', 'open', 1, -2, 0, [17, 19]),
+  lattice('wardmere', 'open', 1, -2, 1, [18, 20]),
+  // reserved: the Hushmist rings, one per post-launch chapter
+  // (docs/design/wyndlewood-chapter-roadmap.md section 6). Levels follow the
+  // cap raise of 5 per chapter. Every ring sits on the lattice past the launch
+  // edge, so opening one is a gate flip plus its zone content, never a
+  // re-layout of the launch map.
+  // Chapter Eight: past the Galecrest (the forge complex's far side)
+  lattice('hushmist_galecrest', 'reserved', 8, 2, 1, [20, 25], { rows: 2 }),
+  // Chapter Nine: past the Palmreach and past the Wraithwood
+  lattice('hushmist_palmreach', 'reserved', 9, -2, 2, [25, 30], { rows: 2 }),
+  lattice('hushmist_wraithwood', 'reserved', 9, 2, 4, [25, 30], { rows: 2 }),
+  // Chapter Ten: past the Evergarden and past the Nightbloom, with the first
+  // guild town sites on the far west shore
+  lattice('hushmist_evergarden', 'reserved', 10, 2, 3, [30, 35]),
+  lattice('hushmist_nightbloom', 'reserved', 10, -2, 4, [30, 35], { rows: 2 }),
+  lattice('guild_sites_west', 'reserved', 10, -3, 0, [30, 35], { rows: 2 }),
+  // unassigned ground held behind the mist for later chapters: the east reach
+  // past the Farshore and the Saltmeads (open since the save-position epoch,
+  // data.ts SAVE_POS_EPOCH, made east-of-600 saves literal), and the deep
+  // south row past the Low Reaches
+  lattice('east_reach', 'reserved', 11, 2, -2, [35, 40], { rows: 3 }),
+  lattice('deep_south_row', 'reserved', 11, -2, -3, [35, 40], { cols: 4 }),
 ];
 
 export const SLOT_CONNECTORS: readonly SlotConnector[] = [
@@ -148,6 +162,22 @@ export const SLOT_CONNECTORS: readonly SlotConnector[] = [
     x: -180,
     z: -395,
   },
+  // the Southway off Eastbrook's south shore to the Kindlemoor (the road link
+  // that lets the Mirefen road reach the Southern Reaches without the ferry)
+  { id: 'southway', slots: ['eastbrook_vale', 'kindlemoor'], kind: 'causeway', x: 72, z: -190 },
+  // the Low Reaches: in from the Applewold and down from the Chalkbarrow Coast
+  { id: 'saltmeads_gate', slots: ['applewold', 'saltmeads'], kind: 'causeway', x: 332, z: -560 },
+  { id: 'chalk_pass', slots: ['chalkbarrow_coast', 'tinmarch'], kind: 'pass', x: -236, z: -545 },
+  { id: 'salt_way', slots: ['saltmeads', 'wychwold'], kind: 'road', x: 184, z: -726 },
+  { id: 'tinners_ford', slots: ['wychwold', 'tinmarch'], kind: 'road', x: -184, z: -720 },
+  // the West March, south to north
+  { id: 'rook_ford', slots: ['tinmarch', 'rookcliffs'], kind: 'road', x: -548, z: -738 },
+  { id: 'sedge_neck', slots: ['rookcliffs', 'sedgemarch'], kind: 'road', x: -722, z: -542 },
+  { id: 'fell_neck', slots: ['sedgemarch', 'harrowfells'], kind: 'road', x: -740, z: -182 },
+  { id: 'ward_neck', slots: ['harrowfells', 'wardmere'], kind: 'road', x: -748, z: 178 },
+  // planned: a stop for the Willowfen ferry lane at the Westering Pier (the
+  // March's link to the west realms; sim piece for the systems crew)
+  { id: 'westering_pier', slots: ['wardmere', 'willowfen'], kind: 'ferry', x: -676, z: 300 },
 ];
 
 /** The slot holding a point, or undefined (open sea past every slot). */

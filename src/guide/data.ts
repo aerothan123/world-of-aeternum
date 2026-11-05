@@ -78,6 +78,15 @@ const ZONE_KEY_STEM: Record<string, string> = {
   applewold: 'applewold',
   kindlemoor: 'kindlemoor',
   chalkbarrow_coast: 'chalkbarrow',
+  // The Low Reaches and the West March (the next frontier row and column):
+  // each shares a shipped biome, so each carries its own stem too.
+  saltmeads: 'saltmeads',
+  wychwold: 'wychwold',
+  tinmarch: 'tinmarch',
+  rookcliffs: 'rookcliffs',
+  sedgemarch: 'sedgemarch',
+  harrowfells: 'harrowfells',
+  wardmere: 'wardmere',
 };
 
 /** The stem that names a zone's curated catalog keys and its world-page anchor. */

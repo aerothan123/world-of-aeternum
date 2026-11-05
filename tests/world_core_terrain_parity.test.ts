@@ -20,6 +20,8 @@ import { WORLD_SEED } from '../src/sim/world_seed';
 const TIE_IN_EXEMPTIONS: readonly { x0: number; x1: number; z0: number; z1: number }[] = [
   // the Applewold causeway off the Farshore's Sundered Cliffs
   { x0: 330, x1: 440, z0: -180, z1: -90 },
+  // the Southway off Eastbrook's south shore, east of the town
+  { x0: 50, x1: 96, z0: -180, z1: -98 },
 ];
 
 function exempt(x: number, z: number): boolean {
@@ -53,5 +55,7 @@ describe('core world terrain parity', () => {
   });
 });
 
-// Measured on feature/player-housing 64d84727's world.ts, before any expansion code.
-const PINNED_CORE_HASH = '168f9fbc:79f53d82';
+// Measured on feature/player-housing 64d84727's world.ts, before any expansion code
+// (re-measured there when the Southway's exemption was added; the new code
+// gives the same hash).
+const PINNED_CORE_HASH = '9c722d62:c3665b52';

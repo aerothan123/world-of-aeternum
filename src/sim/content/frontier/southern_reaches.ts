@@ -130,7 +130,7 @@ export const SOUTHERN_REACHES_ROADS: { x: number; z: number }[][] = [
   [
     { x: 350, z: -306 },
     { x: 410, z: -300 },
-    { x: 452, z: -294 },
+    { x: 434, z: -297 },
   ], // Pressford -> Blossom Rise
   [
     { x: A.pressford.x - 12, z: A.pressford.z - 6 },
@@ -162,7 +162,7 @@ export const SOUTHERN_REACHES_ROADS: { x: number; z: number }[][] = [
     { x: 84, z: -436 },
   ], // Ferncross -> the Grey Tor
   [
-    { x: -90, z: -334 },
+    { x: -80, z: -342 },
     { x: -140, z: -372 },
     { x: A.westHeath.x, z: A.westHeath.z },
     { x: -240, z: -380 },
@@ -177,13 +177,22 @@ export const SOUTHERN_REACHES_ROADS: { x: number; z: number }[][] = [
   [
     { x: A.coinwell.x - 14, z: A.coinwell.z + 4 },
     { x: -400, z: -320 },
-    { x: -456, z: -304 },
+    { x: -438, z: -308 },
   ], // Coinwell Camp -> the White Head
   [
     { x: A.coinwell.x + 8, z: A.coinwell.z - 14 },
     { x: -292, z: -400 },
     { x: -268, z: -440 },
   ], // Coinwell Camp -> Wreckers' Cove
+  [
+    { x: A.southwayLanding.x, z: A.southwayLanding.z },
+    { x: 74, z: -150 },
+    { x: 72, z: -190 },
+    { x: 68, z: -230 },
+    { x: A.southwayFoot.x, z: A.southwayFoot.z },
+    { x: 56, z: -296 },
+    { x: A.ferncross.x + 10, z: A.ferncross.z + 8 },
+  ], // the Southway: Eastbrook's south shore (east of the town) -> the causeway -> Ferncross
 ];
 
 // Camps reuse shipped templates at camp-level ranges. Orchard boars and down
@@ -332,7 +341,7 @@ export const SOUTHERN_REACHES_CAMPS: CampDef[] = [
   },
   {
     mobId: 'drowned_dead',
-    center: { x: -262, z: -448 },
+    center: { x: -280, z: -432 },
     radius: 12,
     count: 4,
     levelMin: 11,

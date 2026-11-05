@@ -2,7 +2,7 @@
 // world, reaches every hub on dry land, joins the old coasts with walkable
 // causeways, and never reshapes the instance bands.
 import { describe, expect, it } from 'vitest';
-import { ZONES } from '../src/sim/data';
+import { ROADS, ZONES, zoneContaining } from '../src/sim/data';
 import { FRONTIER_ANCHORS, FRONTIER_TIE_INS } from '../src/sim/frontier/layout';
 import {
   applyFrontierTerrain,
@@ -15,6 +15,8 @@ import { CORE_WORLD } from '../src/sim/world_core_bounds';
 import { WORLD_SEED } from '../src/sim/world_seed';
 
 const seed = WORLD_SEED;
+// samples this close to the core edge belong to the shipped ground
+const FRONTIER_SEAM_BAND_LIMIT = 4;
 const FRONTIER_ZONES = ZONES.filter((z) => {
   const x0 = z.xMin ?? -180;
   const x1 = z.xMax ?? 180;
@@ -134,6 +136,63 @@ describe('frontier terrain', () => {
       A.coinwell,
     ]);
     expect(west.dry).toBe(true);
+  });
+
+  it('walks every frontier road dry and climbable, end to end', () => {
+    const frontier = new Set(FRONTIER_ZONES.map((z) => z.id));
+    const roads = ROADS.filter((r) =>
+      r.some((p) => frontier.has(zoneContaining(p.x, p.z)?.id ?? '')),
+    );
+    // the Southern Reaches' dozen, the Low Reaches, the West March, the Southway
+    expect(roads.length).toBeGreaterThanOrEqual(40);
+    for (const road of roads) {
+      const walk = walkable(road);
+      const tag = `${road[0].x},${road[0].z}`;
+      expect(walk.dry, tag).toBe(true);
+      expect(walk.maxSlope, tag).toBeLessThan(1.1);
+    }
+  });
+
+  it('joins the Kindlemoor to Eastbrook by the Southway, dry all the way', () => {
+    const A = FRONTIER_ANCHORS;
+    const walk = walkable([A.southwayLanding, { x: 72, z: -190 }, A.southwayFoot, A.ferncross]);
+    expect(walk.dry).toBe(true);
+    expect(walk.maxSlope).toBeLessThan(1.1);
+  });
+
+  it('walks the second road from the Applewold to the Wardmere by land', () => {
+    const A = FRONTIER_ANCHORS;
+    const chain = [
+      A.pressford,
+      A.saltmeadsGate,
+      A.panwick,
+      A.saltWay,
+      A.elmhallow,
+      A.tinnersFord,
+      A.whealPatience,
+      A.rookFord,
+      A.kestrelPoint,
+      A.sedgeNeck,
+      A.withyholt,
+      A.fellNeck,
+      A.fellgate,
+      A.wardNeck,
+      A.lanternfold,
+    ];
+    // anchor to anchor along the authored roads (each leg is a road in data)
+    for (const p of chain)
+      expect(terrainHeight(p.x, p.z, seed), `${p.x},${p.z}`).toBeGreaterThan(WATER_LEVEL);
+  });
+
+  it('keeps the West March clear of the Willowfen ferry lane', () => {
+    // the lane runs north along x ~ -546..-552 from z 165; the March's coast
+    // keeps 80yd of open water to it
+    for (let z = 170; z <= 540; z += 10) {
+      for (let x = -632; x <= -560; x += 8) {
+        if (x >= CORE_WORLD.minX - FRONTIER_SEAM_BAND_LIMIT) continue;
+        expect(terrainHeight(x, z, seed), `${x},${z}`).toBeLessThan(WATER_LEVEL);
+      }
+    }
   });
 
   it('keeps open sea between the frontier and the Proving Shore island', () => {

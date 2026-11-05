@@ -226,6 +226,28 @@ export const guideStrings = {
       chalkbarrowName: 'The Chalkbarrow Coast',
       chalkbarrowBlurb:
         'White cliffs and chalk downs, where prospectors dig at Coinwell and someone else digs deeper.',
+      // The Low Reaches and the West March (own stems, shared biomes).
+      saltmeadsName: 'The Saltmeads',
+      saltmeadsBlurb:
+        'Salt marsh and pan villages on a grey coast south of the Applewold, where Panwick boils brine for half the south.',
+      wychwoldName: 'The Wychwold',
+      wychwoldBlurb:
+        'An old elm wold of charcoal burners, where the Bracken Circle keeps the Knotted Elm at Elmhallow.',
+      tinmarchName: 'The Tinmarch',
+      tinmarchBlurb:
+        'Tin moor and spoil heaps below the chalk cliffs, worked by lamplight from the mine camp at Wheal Patience.',
+      rookcliffsName: 'The Rookcliffs',
+      rookcliffsBlurb:
+        'Sea stacks and rookeries at the edge of the Hushmist, watched from the Lanternwarden lookout at Kestrel Point.',
+      sedgemarchName: 'The Sedgemarch',
+      sedgemarchBlurb:
+        'Reed fen and withy beds as far as the mist, home to the basket village of Withyholt.',
+      harrowfellsName: 'The Harrowfells',
+      harrowfellsBlurb:
+        'High fells over an old battlefield, where the watch at Fellgate counts the cairns every night.',
+      wardmereName: 'The Wardmere',
+      wardmereBlurb:
+        'The last shore the Lanternwardens hold before the Hushmist, kept lit day and night from Lanternfold.',
       nightName: 'The Nightbloom',
       nightBlurb:
         'A country of starry midnight where the flowers light the paths and Moonrest keeps its vigil.',
@@ -1904,6 +1926,52 @@ export const guideStrings = {
     chalkbarrowGreeter: 'A prospector at Coinwell Camp',
     chalkbarrowPlaceNotes:
       "Coinwell Camp is the prospectors' base on the downs. The Unlit Dig lies to the south-west, Chalk Mere sits west of camp, the White Head is the headland in the north-west, and Wreckers' Cove opens to the south-east.",
+    // The Low Reaches (saltmeads, wychwold, tinmarch) and the West March
+    // (rookcliffs, sedgemarch, harrowfells, wardmere): frontier zones that share
+    // shipped biomes, so each has its own stem.
+    saltmeadsBlurb:
+      'A grey salt coast south of the Applewold, reached over the Saltmeads Gate. The tides have started bringing in more than salt.',
+    saltmeadsGreeting: 'Mind the pans, and mind the tide. It has been coming in wrong.',
+    saltmeadsGreeter: 'A salt boiler at Panwick',
+    saltmeadsPlaceNotes:
+      'Panwick is the pan-town at the head of the downs. The Saltmeads Gate is the causeway in from the Applewold, the Brine Pans lie east of town, Gannet Stack rises at the south-east corner, the Wrack Shallows are the wreck-strewn flats to the south-west, and the Salt Way runs west into the Wychwold.',
+    wychwoldBlurb:
+      'An old elm wold between the Saltmeads and the Tinmarch, where the charcoal burners work and something under the roots has begun to stir.',
+    wychwoldGreeting: 'Leave the elm be. It was here first, and it remembers.',
+    wychwoldGreeter: 'A keeper of the Bracken Circle at Elmhallow',
+    wychwoldPlaceNotes:
+      'Elmhallow is the Bracken Circle lodge at the heart of the wold. The Knotted Elm stands south-west of it in its ring of hearth stones, Charcoal Hollow smokes to the south-east, the Sunk Lane runs west toward the Tinmarch, and the Salt Way leaves east for the Saltmeads.',
+    tinmarchBlurb:
+      'Tin moor below the chalk cliffs, also reached by the Chalk Pass from the Chalkbarrow Coast. Someone has opened the old Blackadit.',
+    tinmarchGreeting: 'Lamps lit, eyes open. Nobody goes near the Blackadit alone.',
+    tinmarchGreeter: 'A Gilt Measure foreman at Wheal Patience',
+    tinmarchPlaceNotes:
+      "Wheal Patience is the mine camp at the north of the moor. The Chalk Pass climbs north to the Chalkbarrow Coast, the Stannary Stones stand to the south-west, the Blackadit opens in the south-east, Tinners' Ford crosses east into the Wychwold, and the Rook Way runs west to the Rook Ford and the West March.",
+    rookcliffsBlurb:
+      'Sea stacks and rookeries at the south-west corner of the world, where the grey Hushmist sits on the sea and swallows every sound.',
+    rookcliffsGreeting:
+      'That light is the last one. Past it, the mist takes the sound right out of your boots.',
+    rookcliffsGreeter: 'A Lanternwarden at Kestrel Point',
+    rookcliffsPlaceNotes:
+      'Kestrel Point is the Lanternwarden lookout in the north of the cliffs. The Rook Ford crosses east to the Tinmarch, the Hushmist Light burns on the west shore, the Sea Stacks stand off the south-west corner, Rook Hollow lies to the south-east, and the Sedge Neck leads north into the Sedgemarch.',
+    sedgemarchBlurb:
+      'Reed fen and withy beds north of the Rookcliffs. Withyholt knows which paths the fen keeps and which it gives back.',
+    sedgemarchGreeting: 'Stay on the withies. The fen is patient, and it is hungry.',
+    sedgemarchGreeter: 'A basket weaver at Withyholt',
+    sedgemarchPlaceNotes:
+      'Withyholt is the basket village on the dry rise in the middle of the fen. The Withy Beds lie to the south-west, Heron Mere to the south-east, the Drowned Causey runs off to the north-west, the Sedge Neck leads south to the Rookcliffs, and the Fell Neck climbs north to the Harrowfells.',
+    harrowfellsBlurb:
+      'High fells over an old battlefield north of the Sedgemarch. The cairns were raised to keep a war ended, and the dead beneath them are not resting.',
+    harrowfellsGreeting: 'Count them with me. If there are more cairns than last night, we run.',
+    harrowfellsGreeter: 'A cairn watcher at Fellgate',
+    harrowfellsPlaceNotes:
+      'Fellgate is the watch post below the high fell. The Cairn Field spreads to the north-west, Harrow Tarn lies east of the post, the Iron Ring stands just west of it, the Fell Neck leads south to the Sedgemarch, and the Ward Neck runs north to the Wardmere.',
+    wardmereBlurb:
+      'The last shore the Lanternwardens hold before the Hushmist, where the mist comes in like a tide past the Ward Mere.',
+    wardmereGreeting: 'Keep to the lamps. Anyone who walks out past them walks out alone.',
+    wardmereGreeter: 'A Lanternwarden at Lanternfold',
+    wardmerePlaceNotes:
+      "Lanternfold is the Lanternwardens' lamp-lit post in the middle of the shore. The Ward Mere lies to the north-east, the Last Beacon stands on its crag to the north-west, the Westering Pier faces the ferry lane to the east, and the Ward Neck leads south to the Harrowfells.",
     // The Proving Shore (proving_shore). It renders in the vale biome, so it
     // carries its own stem for the same anchor-collision reason as the
     // Farshore above.

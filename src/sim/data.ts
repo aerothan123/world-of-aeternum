@@ -122,11 +122,23 @@ import {
   FARSHORE_ZONE,
 } from './content/farshore';
 import {
+  LOW_REACHES_CAMPS,
+  LOW_REACHES_PROPS,
+  LOW_REACHES_ROADS,
+  LOW_REACHES_ZONES,
+} from './content/frontier/low_reaches';
+import {
   SOUTHERN_REACHES_CAMPS,
   SOUTHERN_REACHES_PROPS,
   SOUTHERN_REACHES_ROADS,
   SOUTHERN_REACHES_ZONES,
 } from './content/frontier/southern_reaches';
+import {
+  WEST_MARCH_CAMPS,
+  WEST_MARCH_PROPS,
+  WEST_MARCH_ROADS,
+  WEST_MARCH_ZONES,
+} from './content/frontier/west_march';
 import {
   FROSTVEIL_CAMPS,
   FROSTVEIL_ESCORTS,
@@ -245,7 +257,6 @@ import {
   PROVING_SHORE_ZONE,
 } from './content/proving_shore';
 import { QUEST_CHOICE_REWARDS } from './content/quest_choice_rewards';
-
 import { QUEST_LEVELING_GEAR_ITEMS } from './content/quest_leveling_gear';
 import {
   REALM_CAMPS,
@@ -765,6 +776,10 @@ export const CAMPS: CampDef[] = [
   // The Southern Reaches (the expansion's first frontier row) append after every
   // shipped camp, all offStream, by the same rule.
   ...SOUTHERN_REACHES_CAMPS,
+  // The Low Reaches and the West March (the next frontier row and column)
+  // append after the Southern Reaches, all offStream, by the same rule.
+  ...LOW_REACHES_CAMPS,
+  ...WEST_MARCH_CAMPS,
   // The Eastbrook hub dummy is NOT a camp: it spawns with its sparring master
   // after the player (sim/hub_practice.ts), so it consumes only trailing ids.
 ];
@@ -974,6 +989,8 @@ export const ROADS: { x: number; z: number }[][] = [
   ...FARSHORE_ROADS,
   ...PROVING_SHORE_ROADS,
   ...SOUTHERN_REACHES_ROADS,
+  ...LOW_REACHES_ROADS,
+  ...WEST_MARCH_ROADS,
 ];
 
 // Paired overworld portals (src/sim/portals.ts checks these each tick).
@@ -1009,6 +1026,8 @@ export const PROPS: ZonePropsDef = mergeProps([
   FARSHORE_PROPS,
   PROVING_SHORE_PROPS,
   SOUTHERN_REACHES_PROPS,
+  LOW_REACHES_PROPS,
+  WEST_MARCH_PROPS,
 ]);
 
 function mergeProps(sets: ZonePropsDef[]): ZonePropsDef {
@@ -1093,6 +1112,8 @@ export const ZONES: ZoneDef[] = [
   PROVING_SHORE_ZONE,
   // The world expansion's frontier zones append LAST (src/sim/frontier/).
   ...SOUTHERN_REACHES_ZONES,
+  ...LOW_REACHES_ZONES,
+  ...WEST_MARCH_ZONES,
 ];
 
 export const WORLD_SIZE = 360; // the original strip's width (one grid column)
