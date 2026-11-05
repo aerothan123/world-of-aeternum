@@ -57,6 +57,12 @@ def con(a, ap, b, bp):
     mel.connect_material_expressions(a, ap, b, bp)
 
 
+def node_const(mat, val, x, y):
+    n = node(mat, unreal.MaterialExpressionConstant, x, y)
+    n.set_editor_property('r', val)
+    return n
+
+
 def scalar(mat, name, val, x, y):
     n = node(mat, unreal.MaterialExpressionScalarParameter, x, y)
     n.set_editor_property('parameter_name', name)
@@ -160,13 +166,20 @@ def build(kind, cfg):
     tile, nstr, moss, wear, rough0, metal = cfg
     mpath = f'{MST}/M_Wynd_{kind}'
     if eal.does_asset_exist(mpath):
-        eal.delete_asset(mpath)
-    mat = tools.create_asset(f'M_Wynd_{kind}', MST, unreal.Material, unreal.MaterialFactoryNew())
+        # rebuild in place so the material instances keep their parent
+        mat = eal.load_asset(mpath)
+        mel.delete_all_material_expressions(mat)
+    else:
+        mat = tools.create_asset(f'M_Wynd_{kind}', MST, unreal.Material, unreal.MaterialFactoryNew())
     nt = import_tex(kind, 'N')
     rt = import_tex(kind, 'R')
     mt = import_tex('Moss', 'R') if kind != 'Moss' else rt
     # painted base colour
-    base_tex = tex_param(mat, 'BaseColorTex', None, -1600, -700)
+    # A texture parameter with no default texture is a material compile error, which makes Unreal fall
+    # back to the flat default material for every instance. Default to the engine white square so the
+    # master always compiles and BaseColorTex * BaseTint is the painted colour.
+    white = eal.load_asset('/Engine/EngineResources/WhiteSquareTexture')
+    base_tex = tex_param(mat, 'BaseColorTex', white, -1600, -700)
     tint = vec(mat, 'BaseTint', (1, 1, 1, 1), -1600, -500)
     vcol = node(mat, unreal.MaterialExpressionVertexColor, -1600, -350)
     use_vc = scalar(mat, 'UseVertexColor', 0.0, -1600, -250)
@@ -208,8 +221,11 @@ def build(kind, cfg):
     wmask = mul(mat, ln, '', wearamt, '', 900, 650)
     wsat = node(mat, unreal.MaterialExpressionSaturate, 1050, 650)
     con(wmask, '', wsat, '')
-    b1 = lerp(mat, base_sel, '', wearc, '', wsat, '', 1100, -400)
-    b2 = lerp(mat, b1, '', mossc, '', mclamp, '', 1300, -300)
+    # Gentle modulation: wear and moss never replace the painted colour, they cap at 35% / 45% blends.
+    wgent = mul(mat, wsat, '', node_const(mat, 0.35, 1050, 720), '', 1150, 650)
+    mgent = mul(mat, mclamp, '', node_const(mat, 0.45, 900, 380), '', 1000, 330)
+    b1 = lerp(mat, base_sel, '', wearc, '', wgent, '', 1100, -400)
+    b2 = lerp(mat, b1, '', mossc, '', mgent, '', 1300, -300)
     mel.connect_material_property(b2, '', unreal.MaterialProperty.MP_BASE_COLOR)
     # roughness
     rbase = scalar(mat, 'RoughnessBase', rough0, 1100, 300)
@@ -228,6 +244,8 @@ def build(kind, cfg):
     emsum = add(mat, emm, '', emtm, '', 1500, 1000)
     mel.connect_material_property(emsum, '', unreal.MaterialProperty.MP_EMISSIVE_COLOR)
     mat.set_editor_property('shading_model', unreal.MaterialShadingModel.MSM_DEFAULT_LIT)
+    # Every converted mesh is Nanite: a material without this flag is swapped for the flat default.
+    mat.set_editor_property('used_with_nanite', True)
     mel.recompile_material(mat)
     eal.save_loaded_asset(mat)
     unreal.log(f'WYND master built {mpath}')
