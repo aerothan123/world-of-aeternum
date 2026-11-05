@@ -196,7 +196,8 @@ export const apiErrorStrings = {
     unknown_board: 'No scoreboard by that name.',
   },
   // steam: the env-gated Steam link family (server/steam/). Linking mirrors
-  // deed unlocks to Steam achievements; it is never a sign-in method.
+  // deed unlocks to Steam achievements; Steam sign-in (server/steam_login.ts)
+  // shows its own hudChrome.auth.steam* lines for these codes.
   steam: {
     disabled: 'Steam linking is not available right now.',
     invalid_ticket: 'Steam could not verify this link request. Try again from the desktop app.',
@@ -204,6 +205,10 @@ export const apiErrorStrings = {
     already_linked: 'Your account already has a linked Steam account.',
     account_taken: 'That Steam account is already linked to another account.',
     upstream: 'Steam did not respond. Try again in a moment.',
+    unlink_last_login:
+      'Steam is your only way to sign in to this account. Add an email and password before unlinking it.',
+    not_owned: 'This Steam account does not own the game yet. Get it on Steam, then try again.',
+    reauth_required: 'Enter your password (and your two-factor code, if it is on) to link Steam.',
   },
   // epic: the env-gated Epic link family (server/epic/). Linking mirrors
   // deed unlocks to Epic achievements; it is never a sign-in method.

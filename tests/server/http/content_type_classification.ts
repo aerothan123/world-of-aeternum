@@ -147,6 +147,7 @@ export const API_CONTENT_TYPE: Readonly<Record<string, ContentTypeClass>> = {
   '/api/discord/queue-pings': PROBLEM_JSON,
   '/api/steam/link': PROBLEM_JSON,
   '/api/steam/status': PROBLEM_JSON,
+  '/api/auth/steam': PROBLEM_JSON,
   '/api/epic/link': PROBLEM_JSON,
   '/api/epic/status': PROBLEM_JSON,
   '/api/card': BINARY,

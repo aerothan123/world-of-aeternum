@@ -201,6 +201,16 @@ export const hudChromeStrings = {
     saved: 'Done.',
     failed: 'Could not save or load the preset.',
   },
+  // Realm maintenance broadcasts (server/maintenance.ts), re-localized from the
+  // server's English by src/ui/maintenance_text_i18n.ts.
+  maintenance: {
+    beginsInMinute: 'Realm maintenance begins in 1 minute.',
+    beginsInMinutes: 'Realm maintenance begins in {count} minutes.',
+    beginsInSeconds: 'Realm maintenance begins in {count} seconds.',
+    begun: 'Realm maintenance has begun. New logins are closed.',
+    cancelled: 'Realm maintenance was cancelled.',
+    ended: 'Realm maintenance is over. Logins are open again.',
+  },
   frameMenus: {
     hide: 'Hide Frame',
     units: 'Unit Frames',
@@ -6475,6 +6485,10 @@ export const hudChromeStrings = {
   auth: {
     appleLoginCta: 'Continue with Apple',
     appleError: 'Could not sign in with Apple. Please try again.',
+    steamLoginCta: 'Continue with Steam',
+    steamError: 'Could not sign in with Steam. Please try again.',
+    steamNoTicket: 'Steam is not running. Start Steam, then try again.',
+    steamUnavailable: 'Steam sign-in is not available right now.',
     appleChoiceIntro: 'Create a new account, or link Apple to one you already have.',
     appleChoiceExpired: 'That Apple sign-in expired. Please sign in with Apple again.',
     forgotPrompt: 'Forgot password?',

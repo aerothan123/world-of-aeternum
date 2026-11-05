@@ -685,6 +685,14 @@ export const cs_CZ: EnTranslations = {
       "saved": "Hotovo.",
       "failed": "Předvolbu se nepodařilo uložit ani načíst."
     },
+    "maintenance": {
+      "beginsInMinute": "Realm maintenance begins in 1 minute.",
+      "beginsInMinutes": "Realm maintenance begins in {count} minutes.",
+      "beginsInSeconds": "Realm maintenance begins in {count} seconds.",
+      "begun": "Realm maintenance has begun. New logins are closed.",
+      "cancelled": "Realm maintenance was cancelled.",
+      "ended": "Realm maintenance is over. Logins are open again."
+    },
     "frameMenus": {
       "hide": "Skrýt rámeček",
       "units": "Rámečky jednotek",
@@ -5122,6 +5130,10 @@ export const cs_CZ: EnTranslations = {
     "auth": {
       "appleLoginCta": "Pokračovat přes Apple",
       "appleError": "Přihlášení přes Apple se nezdařilo. Zkus to znovu.",
+      "steamLoginCta": "Continue with Steam",
+      "steamError": "Could not sign in with Steam. Please try again.",
+      "steamNoTicket": "Steam is not running. Start Steam, then try again.",
+      "steamUnavailable": "Steam sign-in is not available right now.",
       "appleChoiceIntro": "Vytvoř nový účet, nebo propoj Apple s účtem, který už máš.",
       "appleChoiceExpired": "Platnost tohoto přihlášení přes Apple vypršela. Přihlas se přes Apple znovu.",
       "forgotPrompt": "Zapomenuté heslo?",
@@ -8380,7 +8392,10 @@ export const cs_CZ: EnTranslations = {
       "banned": "Tento účet Steam nelze propojit.",
       "already_linked": "Tvůj účet už má propojený účet Steam.",
       "account_taken": "Tento účet Steam už je propojený s jiným účtem.",
-      "upstream": "Steam neodpověděl. Zkus to za chvíli znovu."
+      "upstream": "Steam neodpověděl. Zkus to za chvíli znovu.",
+      "unlink_last_login": "Steam is your only way to sign in to this account. Add an email and password before unlinking it.",
+      "not_owned": "This Steam account does not own the game yet. Get it on Steam, then try again.",
+      "reauth_required": "Enter your password (and your two-factor code, if it is on) to link Steam."
     },
     "epic": {
       "disabled": "Propojení s Epic momentálně není k dispozici.",
@@ -15730,6 +15745,8 @@ export const cs_CZ: EnTranslations = {
     "connectionRejected": "Server ukončil připojení.",
     "incompatibleWorldVersion": "Verze hry a serveru nejsou kompatibilní. Obnov stránku nebo aktualizuj hru a zkus to znovu.",
     "realmFull": "Tento svět je momentálně plný. Zkus to prosím znovu za několik minut.",
+    "maintenance": "The realm is closed for maintenance. Please try again soon.",
+    "updateRequired": "Update required: this version of the game is out of date. Restart Steam to update, then try again.",
     "tooManyConnections": "Z tvé sítě se k tomuto světu připojuje příliš mnoho spojení. Zavři nadbytečná herní okna nebo to zkus znovu za několik minut.",
     "messageRateExceeded": "Spojení bylo přerušeno kvůli příliš rychlému odesílání akcí. Chvíli počkej a přihlas se znovu.",
     "kickedByModerator": "Moderátor vás odpojil: {reason}",

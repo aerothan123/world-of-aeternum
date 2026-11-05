@@ -685,6 +685,14 @@ export const fr_FR: EnTranslations = {
       "saved": "Terminé.",
       "failed": "Impossible d'enregistrer ou de charger le préréglage."
     },
+    "maintenance": {
+      "beginsInMinute": "Realm maintenance begins in 1 minute.",
+      "beginsInMinutes": "Realm maintenance begins in {count} minutes.",
+      "beginsInSeconds": "Realm maintenance begins in {count} seconds.",
+      "begun": "Realm maintenance has begun. New logins are closed.",
+      "cancelled": "Realm maintenance was cancelled.",
+      "ended": "Realm maintenance is over. Logins are open again."
+    },
     "frameMenus": {
       "hide": "Masquer le cadre",
       "units": "Cadres d'unité",
@@ -5122,6 +5130,10 @@ export const fr_FR: EnTranslations = {
     "auth": {
       "appleLoginCta": "Continuer avec Apple",
       "appleError": "Impossible de se connecter avec Apple. Veuillez réessayer.",
+      "steamLoginCta": "Continue with Steam",
+      "steamError": "Could not sign in with Steam. Please try again.",
+      "steamNoTicket": "Steam is not running. Start Steam, then try again.",
+      "steamUnavailable": "Steam sign-in is not available right now.",
       "appleChoiceIntro": "Créez un nouveau compte ou associez Apple à un compte existant.",
       "appleChoiceExpired": "Cette connexion avec Apple a expiré. Veuillez vous reconnecter avec Apple.",
       "forgotPrompt": "Mot de passe oublié ?",
@@ -8380,7 +8392,10 @@ export const fr_FR: EnTranslations = {
       "banned": "Ce compte Steam ne peut pas être lié.",
       "already_linked": "Votre compte est déjà lié à un compte Steam.",
       "account_taken": "Ce compte Steam est déjà lié à un autre compte.",
-      "upstream": "Steam n'a pas répondu. Réessayez dans un instant."
+      "upstream": "Steam n'a pas répondu. Réessayez dans un instant.",
+      "unlink_last_login": "Steam is your only way to sign in to this account. Add an email and password before unlinking it.",
+      "not_owned": "This Steam account does not own the game yet. Get it on Steam, then try again.",
+      "reauth_required": "Enter your password (and your two-factor code, if it is on) to link Steam."
     },
     "epic": {
       "disabled": "La liaison Epic n’est pas disponible pour le moment.",
@@ -15730,6 +15745,8 @@ export const fr_FR: EnTranslations = {
     "connectionRejected": "Le serveur a fermé la connexion.",
     "incompatibleWorldVersion": "Les versions du jeu et du serveur sont incompatibles. Rechargez ou mettez à jour, puis réessayez.",
     "realmFull": "Ce monde est complet en ce moment. Veuillez réessayer dans quelques minutes.",
+    "maintenance": "The realm is closed for maintenance. Please try again soon.",
+    "updateRequired": "Update required: this version of the game is out of date. Restart Steam to update, then try again.",
     "tooManyConnections": "Trop de connexions à ce monde proviennent de votre réseau. Veuillez fermer les fenêtres de jeu superflues ou réessayer dans quelques minutes.",
     "messageRateExceeded": "Vous avez été déconnecté pour avoir envoyé des actions trop rapidement. Patientez un instant, puis reconnectez-vous.",
     "kickedByModerator": "Un modérateur vous a déconnecté: {reason}",

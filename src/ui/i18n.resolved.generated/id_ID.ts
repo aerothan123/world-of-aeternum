@@ -685,6 +685,14 @@ export const id_ID: EnTranslations = {
       "saved": "Selesai.",
       "failed": "Tidak dapat menyimpan atau memuat pratinjau."
     },
+    "maintenance": {
+      "beginsInMinute": "Realm maintenance begins in 1 minute.",
+      "beginsInMinutes": "Realm maintenance begins in {count} minutes.",
+      "beginsInSeconds": "Realm maintenance begins in {count} seconds.",
+      "begun": "Realm maintenance has begun. New logins are closed.",
+      "cancelled": "Realm maintenance was cancelled.",
+      "ended": "Realm maintenance is over. Logins are open again."
+    },
     "frameMenus": {
       "hide": "Sembunyikan Bingkai",
       "units": "Bingkai Unit",
@@ -5122,6 +5130,10 @@ export const id_ID: EnTranslations = {
     "auth": {
       "appleLoginCta": "Lanjutkan dengan Apple",
       "appleError": "Tidak dapat masuk dengan Apple. Silakan coba lagi.",
+      "steamLoginCta": "Continue with Steam",
+      "steamError": "Could not sign in with Steam. Please try again.",
+      "steamNoTicket": "Steam is not running. Start Steam, then try again.",
+      "steamUnavailable": "Steam sign-in is not available right now.",
       "appleChoiceIntro": "Buat akun baru, atau tautkan Apple ke akun yang sudah kamu miliki.",
       "appleChoiceExpired": "Sesi masuk dengan Apple itu telah kedaluwarsa. Silakan masuk lagi dengan Apple.",
       "forgotPrompt": "Lupa kata sandi?",
@@ -8380,7 +8392,10 @@ export const id_ID: EnTranslations = {
       "banned": "Akun Steam itu tidak dapat ditautkan.",
       "already_linked": "Akunmu sudah memiliki akun Steam yang tertaut.",
       "account_taken": "Akun Steam itu sudah tertaut ke akun lain.",
-      "upstream": "Steam tidak merespons. Coba lagi dalam beberapa saat."
+      "upstream": "Steam tidak merespons. Coba lagi dalam beberapa saat.",
+      "unlink_last_login": "Steam is your only way to sign in to this account. Add an email and password before unlinking it.",
+      "not_owned": "This Steam account does not own the game yet. Get it on Steam, then try again.",
+      "reauth_required": "Enter your password (and your two-factor code, if it is on) to link Steam."
     },
     "epic": {
       "disabled": "Penautan Epic sedang tidak tersedia.",
@@ -15730,6 +15745,8 @@ export const id_ID: EnTranslations = {
     "connectionRejected": "Server menutup koneksi.",
     "incompatibleWorldVersion": "Versi permainan dan server tidak kompatibel. Muat ulang atau perbarui, lalu coba lagi.",
     "realmFull": "Dunia ini sedang penuh. Coba lagi dalam beberapa menit.",
+    "maintenance": "The realm is closed for maintenance. Please try again soon.",
+    "updateRequired": "Update required: this version of the game is out of date. Restart Steam to update, then try again.",
     "tooManyConnections": "Terlalu banyak koneksi ke dunia ini dari jaringanmu. Tutup jendela permainan ekstra atau coba lagi dalam beberapa menit.",
     "messageRateExceeded": "Kamu terputus karena mengirim tindakan terlalu cepat. Tunggu sebentar, lalu masuk kembali.",
     "kickedByModerator": "Moderator telah memutus koneksi Anda: {reason}",

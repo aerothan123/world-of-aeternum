@@ -19,7 +19,7 @@ vi.mock('pg', () => ({
   },
 }));
 
-import { displaceSteamLink } from '../../server/steam/steam_db';
+import { deleteSteamLinkIfReachable, displaceSteamLink } from '../../server/steam/steam_db';
 
 beforeEach(() => {
   dbMock.query.mockReset();
@@ -57,14 +57,47 @@ describe('displaceSteamLink', () => {
     expect(calls[0][0]).toBe('BEGIN');
     expect(calls[1][0]).toMatch(/FOR UPDATE/);
     expect(calls[1][1]).toEqual([STEAM_ID]);
+    // The holder's progress is checked INSIDE the transaction, under the lock.
+    expect(calls[2][0]).toMatch(/FROM characters WHERE account_id = \$1/);
+    expect(calls[2][1]).toEqual([99]);
     // The guarded DELETE can only remove a DIFFERENT account's row.
-    expect(calls[2][0]).toMatch(/DELETE FROM steam_links/);
-    expect(calls[2][0]).toMatch(/account_id <> \$2/);
-    expect(calls[2][1]).toEqual([STEAM_ID, 7]);
-    expect(calls[3][0]).toMatch(/INSERT INTO steam_links/);
-    expect(calls[3][1]).toEqual([7, STEAM_ID]);
-    expect(calls[4][0]).toBe('COMMIT');
+    expect(calls[3][0]).toMatch(/DELETE FROM steam_links/);
+    expect(calls[3][0]).toMatch(/account_id <> \$2/);
+    expect(calls[3][1]).toEqual([STEAM_ID, 7]);
+    expect(calls[4][0]).toMatch(/INSERT INTO steam_links/);
+    expect(calls[4][1]).toEqual([7, STEAM_ID]);
+    expect(calls[5][0]).toBe('COMMIT');
     expect(client.release).toHaveBeenCalledTimes(1);
+  });
+
+  it('refuses a holder with characters: ROLLBACK, nothing deleted, holder_protected', async () => {
+    const client = clientStub();
+    dbMock.connect.mockResolvedValue(client as never);
+    client.query
+      .mockResolvedValueOnce({ rows: [], rowCount: 0 } as never) // BEGIN
+      .mockResolvedValueOnce({ rows: [{ account_id: 99 }], rowCount: 1 } as never) // lock
+      .mockResolvedValueOnce({ rows: [{ has_characters: true }], rowCount: 1 } as never);
+    await expect(displaceSteamLink(7, STEAM_ID)).resolves.toEqual({
+      result: 'holder_protected',
+      displacedAccountId: null,
+    });
+    const sql = client.query.mock.calls.map((c) => String(c[0]));
+    expect(sql.at(-1)).toBe('ROLLBACK');
+    expect(sql.some((q) => q.includes('DELETE FROM steam_links'))).toBe(false);
+    expect(client.release).toHaveBeenCalledTimes(1);
+  });
+
+  it('unlink is ONE check-and-delete statement counting only a verified email', async () => {
+    dbMock.query.mockResolvedValueOnce({ rows: [{ had: 1, deleted: 0 }], rowCount: 1 } as never);
+    await expect(deleteSteamLinkIfReachable(7)).resolves.toBe('last_login');
+    expect(dbMock.query).toHaveBeenCalledTimes(1);
+    const sql = String(dbMock.query.mock.calls[0][0]);
+    expect(sql).toMatch(/DELETE FROM steam_links/);
+    expect(sql).toMatch(/email_verified_at IS NOT NULL/);
+    dbMock.query.mockResolvedValueOnce({ rows: [{ had: 1, deleted: 1 }], rowCount: 1 } as never);
+    await expect(deleteSteamLinkIfReachable(7)).resolves.toBe('deleted');
+    dbMock.query.mockResolvedValueOnce({ rows: [{ had: 0, deleted: 0 }], rowCount: 1 } as never);
+    await expect(deleteSteamLinkIfReachable(7)).resolves.toBe('none');
   });
 
   it('inserts without a DELETE when the steam id is unclaimed (nothing displaced)', async () => {

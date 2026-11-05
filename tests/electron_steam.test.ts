@@ -6,6 +6,7 @@ import { describe, expect, it, vi } from 'vitest';
 import {
   createSteamShell,
   LINK_TICKET_IDENTITY,
+  LOGIN_TICKET_IDENTITY,
   resolveSteamAppId,
   SPACEWAR_APP_ID,
   steamIntegrationEnabled,
@@ -313,5 +314,63 @@ describe('cancelLinkTicket (Valve CancelAuthTicket on link settle)', () => {
     });
     await expect(bare.getLinkTicket()).resolves.toBe('01');
     expect(() => bare.cancelLinkTicket()).not.toThrow();
+  });
+});
+
+describe('the login ticket (Steam sign-in, POST /api/auth/steam)', () => {
+  function loginShell(fake = fakeSteamworks(), name: unknown = 'Bramble') {
+    const init = vi.fn((_appId: number) => ({
+      auth: { getAuthTicketForWebApi: fake.getAuthTicketForWebApi },
+      localplayer: { getName: () => name as string },
+    }));
+    const shell = createSteamShell({
+      distribution: 'steam',
+      env: {},
+      isPackaged: true,
+      requireSteamworks: () => ({ init }),
+    });
+    return { shell, fake };
+  }
+
+  it('mints for the LOGIN identity (never the link one) and returns the persona hint', async () => {
+    const { shell, fake } = loginShell();
+    await expect(shell.getLoginTicket()).resolves.toEqual({
+      ticket: 'abcd',
+      personaName: 'Bramble',
+    });
+    expect(fake.getAuthTicketForWebApi).toHaveBeenCalledWith(LOGIN_TICKET_IDENTITY);
+    expect(LOGIN_TICKET_IDENTITY).toBe('wyndlewood-login');
+    expect(LOGIN_TICKET_IDENTITY).not.toBe(LINK_TICKET_IDENTITY);
+  });
+
+  it('keeps its own handle slot: a login mint never cancels the live link ticket', async () => {
+    const { shell, fake } = loginShell();
+    await shell.getLinkTicket();
+    await shell.getLoginTicket();
+    expect(fake.tickets[0].cancel).not.toHaveBeenCalled();
+    shell.cancelLoginTicket();
+    expect(fake.tickets[1].cancel).toHaveBeenCalledTimes(1);
+    expect(fake.tickets[0].cancel).not.toHaveBeenCalled();
+  });
+
+  it('answers null (never throws) when Steam is down or the ticket is empty', async () => {
+    const empty = loginShell(fakeSteamworks(Buffer.alloc(0)));
+    await expect(empty.shell.getLoginTicket()).resolves.toBeNull();
+    const down = createSteamShell({
+      distribution: 'steam',
+      env: {},
+      isPackaged: true,
+      requireSteamworks: () => ({
+        init: () => {
+          throw new Error('Steam is not running');
+        },
+      }),
+    });
+    await expect(down.getLoginTicket()).resolves.toBeNull();
+  });
+
+  it('a non-string persona name degrades to an empty hint', async () => {
+    const { shell } = loginShell(fakeSteamworks(), 42);
+    await expect(shell.getLoginTicket()).resolves.toEqual({ ticket: 'abcd', personaName: '' });
   });
 });

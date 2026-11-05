@@ -685,6 +685,14 @@ export const ko_KR: EnTranslations = {
       "saved": "완료.",
       "failed": "프리셋을 저장하거나 불러올 수 없습니다."
     },
+    "maintenance": {
+      "beginsInMinute": "1분 후 렐름 점검이 시작됩니다.",
+      "beginsInMinutes": "{count}분 후 렐름 점검이 시작됩니다.",
+      "beginsInSeconds": "{count}초 후 렐름 점검이 시작됩니다.",
+      "begun": "렐름 점검이 시작되었습니다. 새로운 로그인은 막혀 있습니다.",
+      "cancelled": "렐름 점검이 취소되었습니다.",
+      "ended": "렐름 점검이 끝났습니다. 다시 로그인할 수 있습니다."
+    },
     "frameMenus": {
       "hide": "프레임 숨기기",
       "units": "유닛 프레임",
@@ -5122,6 +5130,10 @@ export const ko_KR: EnTranslations = {
     "auth": {
       "appleLoginCta": "Apple로 계속하기",
       "appleError": "Apple로 로그인할 수 없습니다. 다시 시도해 주세요.",
+      "steamLoginCta": "Steam으로 계속",
+      "steamError": "Steam으로 로그인할 수 없습니다. 다시 시도해 주세요.",
+      "steamNoTicket": "Steam이 실행 중이 아닙니다. Steam을 실행한 후 다시 시도해 주세요.",
+      "steamUnavailable": "지금은 Steam 로그인을 사용할 수 없습니다.",
       "appleChoiceIntro": "새 계정을 만들거나 Apple을 기존 계정에 연결하세요.",
       "appleChoiceExpired": "Apple 로그인이 만료되었습니다. Apple로 다시 로그인해 주세요.",
       "forgotPrompt": "비밀번호를 잊으셨나요?",
@@ -8380,7 +8392,10 @@ export const ko_KR: EnTranslations = {
       "banned": "해당 Steam 계정은 연동할 수 없습니다.",
       "already_linked": "계정에 이미 연동된 Steam 계정이 있습니다.",
       "account_taken": "해당 Steam 계정은 이미 다른 계정에 연결되어 있습니다.",
-      "upstream": "Steam이 응답하지 않습니다. 잠시 후 다시 시도해 주세요."
+      "upstream": "Steam이 응답하지 않습니다. 잠시 후 다시 시도해 주세요.",
+      "unlink_last_login": "이 계정에 로그인하는 방법은 Steam뿐입니다. 연결을 해제하기 전에 이메일과 비밀번호를 추가해 주세요.",
+      "not_owned": "이 Steam 계정은 아직 게임을 보유하고 있지 않습니다. Steam에서 게임을 구매한 후 다시 시도해 주세요.",
+      "reauth_required": "Steam을 연결하려면 비밀번호(2단계 인증을 사용 중이면 인증 코드도)를 입력해 주세요."
     },
     "epic": {
       "disabled": "현재 Epic 연동을 사용할 수 없습니다.",
@@ -15730,6 +15745,8 @@ export const ko_KR: EnTranslations = {
     "connectionRejected": "서버가 연결을 종료했습니다.",
     "incompatibleWorldVersion": "게임과 서버 버전이 호환되지 않습니다. 새로고침하거나 업데이트한 후 다시 시도하세요.",
     "realmFull": "이 월드는 현재 포화 상태입니다. 몇 분 후에 다시 시도해 주세요.",
+    "maintenance": "렐름이 점검 중입니다. 잠시 후 다시 시도해 주세요.",
+    "updateRequired": "업데이트 필요: 이 버전의 게임은 오래되었습니다. Steam을 다시 시작해 업데이트한 후 다시 시도해 주세요.",
     "tooManyConnections": "사용 중인 네트워크에서 이 월드로 연결이 너무 많습니다. 추가 게임 창을 닫거나 몇 분 후에 다시 시도해 주세요.",
     "messageRateExceeded": "행동을 너무 빠르게 전송하여 연결이 끊어졌습니다. 잠시 기다렸다가 다시 로그인해 주세요.",
     "kickedByModerator": "운영자가 연결을 끊었습니다: {reason}",

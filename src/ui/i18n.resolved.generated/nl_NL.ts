@@ -685,6 +685,14 @@ export const nl_NL: EnTranslations = {
       "saved": "Klaar.",
       "failed": "De voorinstelling kon niet worden opgeslagen of geladen."
     },
+    "maintenance": {
+      "beginsInMinute": "Realm maintenance begins in 1 minute.",
+      "beginsInMinutes": "Realm maintenance begins in {count} minutes.",
+      "beginsInSeconds": "Realm maintenance begins in {count} seconds.",
+      "begun": "Realm maintenance has begun. New logins are closed.",
+      "cancelled": "Realm maintenance was cancelled.",
+      "ended": "Realm maintenance is over. Logins are open again."
+    },
     "frameMenus": {
       "hide": "Frame verbergen",
       "units": "Eenheidskaders",
@@ -5122,6 +5130,10 @@ export const nl_NL: EnTranslations = {
     "auth": {
       "appleLoginCta": "Ga verder met Apple",
       "appleError": "Aanmelden met Apple is mislukt. Probeer het opnieuw.",
+      "steamLoginCta": "Continue with Steam",
+      "steamError": "Could not sign in with Steam. Please try again.",
+      "steamNoTicket": "Steam is not running. Start Steam, then try again.",
+      "steamUnavailable": "Steam sign-in is not available right now.",
       "appleChoiceIntro": "Maak een nieuw account of koppel Apple aan een bestaand account.",
       "appleChoiceExpired": "Deze aanmelding bij Apple is verlopen. Meld je opnieuw aan met Apple.",
       "forgotPrompt": "Wachtwoord vergeten?",
@@ -8380,7 +8392,10 @@ export const nl_NL: EnTranslations = {
       "banned": "Dat Steam-account kan niet worden gekoppeld.",
       "already_linked": "Je account heeft al een gekoppeld Steam-account.",
       "account_taken": "Dat Steam-account is al aan een ander account gekoppeld.",
-      "upstream": "Steam reageerde niet. Probeer het zo meteen opnieuw."
+      "upstream": "Steam reageerde niet. Probeer het zo meteen opnieuw.",
+      "unlink_last_login": "Steam is your only way to sign in to this account. Add an email and password before unlinking it.",
+      "not_owned": "This Steam account does not own the game yet. Get it on Steam, then try again.",
+      "reauth_required": "Enter your password (and your two-factor code, if it is on) to link Steam."
     },
     "epic": {
       "disabled": "Epic-koppeling is momenteel niet beschikbaar.",
@@ -15730,6 +15745,8 @@ export const nl_NL: EnTranslations = {
     "connectionRejected": "De server heeft de verbinding gesloten.",
     "incompatibleWorldVersion": "Spel- en serverversie zijn niet compatibel. Laad opnieuw of werk bij en probeer het daarna nogmaals.",
     "realmFull": "Deze wereld is op dit moment vol. Probeer het over een paar minuten opnieuw.",
+    "maintenance": "The realm is closed for maintenance. Please try again soon.",
+    "updateRequired": "Update required: this version of the game is out of date. Restart Steam to update, then try again.",
     "tooManyConnections": "Er komen te veel verbindingen naar deze wereld vanuit jouw netwerk. Sluit extra spelvensters of probeer het over een paar minuten opnieuw.",
     "messageRateExceeded": "De verbinding is verbroken omdat je te snel acties verstuurde. Wacht even en log opnieuw in.",
     "kickedByModerator": "Een moderator heeft de verbinding met je verbroken: {reason}",

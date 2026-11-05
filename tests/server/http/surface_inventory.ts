@@ -1196,6 +1196,18 @@ export const SURFACE_INVENTORY: readonly SurfaceRoute[] = [
     limiter: null,
     requireOwnedExpected: null,
   },
+  // Steam login (server/steam_login.ts): registry-only RouteDef, env-gated
+  // dark (steam.disabled 503 until STEAM_ENABLED=1), per-IP auth limiter.
+  {
+    dispatcher: DISPATCH.mainApi,
+    method: 'POST',
+    path: '/api/auth/steam',
+    handler: 'server/steam_login.ts steamLoginHandler (registry-only RouteDef)',
+    contentType: PROBLEM_JSON,
+    authScope: AUTH_SCOPE.public,
+    limiter: 'rateLimited',
+    requireOwnedExpected: null,
+  },
   // Epic link family (server/epic/routes.ts): registry-only RouteDefs, twin of
   // the Steam trio. Env-gated dark (epic.disabled 503 until EPIC_ENABLED=1);
   // linking is NEVER an identity or session source.
@@ -2440,6 +2452,27 @@ export const SURFACE_INVENTORY: readonly SurfaceRoute[] = [
   // -------------------------------------------------------------------------
   // internal handleInternalApi (/internal/*)
   // -------------------------------------------------------------------------
+  // Realm maintenance (server/maintenance.ts): registry-only, no ladder arm.
+  {
+    dispatcher: DISPATCH.internal,
+    method: 'POST',
+    path: '/internal/maintenance',
+    handler: 'server/internal.ts maintenanceHandler (registry-only RouteDef)',
+    contentType: PROBLEM_JSON,
+    authScope: AUTH_SCOPE.secretDeploy,
+    limiter: null,
+    requireOwnedExpected: null,
+  },
+  {
+    dispatcher: DISPATCH.internal,
+    method: 'GET',
+    path: '/internal/maintenance',
+    handler: 'server/internal.ts maintenance status (registry-only RouteDef)',
+    contentType: PROBLEM_JSON,
+    authScope: AUTH_SCOPE.secretDeploy,
+    limiter: null,
+    requireOwnedExpected: null,
+  },
   {
     dispatcher: DISPATCH.internal,
     method: 'POST',

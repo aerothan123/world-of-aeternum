@@ -30,6 +30,7 @@ import { sanitizeAppearance } from '../src/world_api/appearance';
 import { accountAdmissionsFor } from './account_admission';
 import { type AccountHouseForJoin, annotateAccountHouse } from './account_house_migration';
 import type { AccountMountItemsRow } from './account_mount_items_core';
+import { CLIENT_UPDATE_REQUIRED, clientVersionAllowed } from './client_version_gate';
 import type {
   AccountChatMuteStatus,
   AccountCosmetics,
@@ -40,6 +41,7 @@ import type {
 import { SERVER_EARLY_ACCESS } from './early_access_flags';
 import type { GameServer } from './game';
 import { noteClientFrame } from './keepalive_sweep';
+import { MAINTENANCE_REJECTION } from './maintenance';
 import type { MembershipAuthorization } from './membership_service';
 import { negotiateMovementWireVersion } from './movement_wire_version';
 import type { ReferralArmourEntitlement } from './referral_armour_db';
@@ -75,6 +77,12 @@ const WS_AUTH_ERROR = {
   membershipRequired: 'membership required for this character',
   authTimedOut: 'authentication timed out',
   incompatibleWorldLayout: ONLINE_WORLD_INCOMPATIBLE_MESSAGE,
+  // Realm maintenance closed the gate (server/maintenance.ts MAINTENANCE_REJECTION);
+  // staff are exempt. Byte-exact wire contract with the client matcher.
+  maintenance: MAINTENANCE_REJECTION,
+  // The client build is older than MIN_CLIENT_VERSION. Byte-exact wire contract
+  // with the client matcher (server/client_version_gate.ts).
+  clientUpdateRequired: CLIENT_UPDATE_REQUIRED,
 } as const;
 
 // The first auth frame must arrive within this window or the socket is closed.
@@ -137,6 +145,10 @@ export interface WsAuthDeps {
   /** The account ledger load (server/account_ledger_db.ts): which characters
    *  on the account earned each deed and found each relic. */
   loadAccountLedger: (accountId: number) => Promise<AccountLedger>;
+  /** Realm maintenance (server/maintenance.ts): while true, every non-staff
+   *  entry is refused with WS_AUTH_ERROR.maintenance. Optional so older test
+   *  rigs keep working; absent reads as open. */
+  maintenanceGateActive?: () => boolean;
   isConnectionRefused: (input: {
     blocked: boolean;
     isAdmin: boolean;
@@ -314,6 +326,13 @@ export function createWsAuth(deps: WsAuthDeps): WsAuthHandlers {
       msg.dungeonEntryFacingWire === DUNGEON_ENTRY_FACING_WIRE_VERSION
         ? DUNGEON_ENTRY_FACING_WIRE_VERSION
         : 0;
+    // Minimum client version (server/client_version_gate.ts), before any
+    // credential or DB work: an outdated client gets the update line, not a
+    // half-negotiated session.
+    if (!clientVersionAllowed(process.env.MIN_CLIENT_VERSION, msg.clientVersion)) {
+      rejectHandshake(ws, WS_AUTH_ERROR.clientUpdateRequired);
+      return;
+    }
     const account = await accountAndScopeForToken(token);
     if (account === null || account.scope !== 'full' || !Number.isFinite(characterId)) {
       rejectHandshake(ws, WS_AUTH_ERROR.notAuthenticated);
@@ -380,6 +399,10 @@ export function createWsAuth(deps: WsAuthDeps): WsAuthHandlers {
       const staff = await adminRolesForAccount(accountId);
       const isAdmin = staff !== null;
       const adminPermissions = staff ? [...permissionsForRoles(staff.roles)] : [];
+      if (!isAdmin && deps.maintenanceGateActive?.() === true) {
+        rejectHandshake(ws, WS_AUTH_ERROR.maintenance);
+        return;
+      }
       if (
         isConnectionRefused({
           blocked: game.isIpBlocked(ip),

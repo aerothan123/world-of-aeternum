@@ -685,6 +685,14 @@ export const tr_TR: EnTranslations = {
       "saved": "Tamamlandı.",
       "failed": "Ön ayar kaydedilemedi veya yüklenemedi."
     },
+    "maintenance": {
+      "beginsInMinute": "Realm maintenance begins in 1 minute.",
+      "beginsInMinutes": "Realm maintenance begins in {count} minutes.",
+      "beginsInSeconds": "Realm maintenance begins in {count} seconds.",
+      "begun": "Realm maintenance has begun. New logins are closed.",
+      "cancelled": "Realm maintenance was cancelled.",
+      "ended": "Realm maintenance is over. Logins are open again."
+    },
     "frameMenus": {
       "hide": "Çerçeveyi Gizle",
       "units": "Birim Çerçeveleri",
@@ -5122,6 +5130,10 @@ export const tr_TR: EnTranslations = {
     "auth": {
       "appleLoginCta": "Apple ile Devam Et",
       "appleError": "Apple ile oturum açılamadı. Lütfen tekrar dene.",
+      "steamLoginCta": "Continue with Steam",
+      "steamError": "Could not sign in with Steam. Please try again.",
+      "steamNoTicket": "Steam is not running. Start Steam, then try again.",
+      "steamUnavailable": "Steam sign-in is not available right now.",
       "appleChoiceIntro": "Yeni bir hesap oluştur veya Apple hesabını mevcut hesabına bağla.",
       "appleChoiceExpired": "Bu Apple oturum açma işleminin süresi doldu. Lütfen Apple ile yeniden oturum aç.",
       "forgotPrompt": "Şifreni mi unuttun?",
@@ -8380,7 +8392,10 @@ export const tr_TR: EnTranslations = {
       "banned": "Bu Steam hesabı bağlanamaz.",
       "already_linked": "Hesabına zaten bağlı bir Steam hesabı var.",
       "account_taken": "Bu Steam hesabı zaten başka bir hesaba bağlı.",
-      "upstream": "Steam yanıt vermedi. Birazdan tekrar dene."
+      "upstream": "Steam yanıt vermedi. Birazdan tekrar dene.",
+      "unlink_last_login": "Steam is your only way to sign in to this account. Add an email and password before unlinking it.",
+      "not_owned": "This Steam account does not own the game yet. Get it on Steam, then try again.",
+      "reauth_required": "Enter your password (and your two-factor code, if it is on) to link Steam."
     },
     "epic": {
       "disabled": "Epic bağlantısı şu anda kullanılamıyor.",
@@ -15730,6 +15745,8 @@ export const tr_TR: EnTranslations = {
     "connectionRejected": "Sunucu bağlantıyı kapattı.",
     "incompatibleWorldVersion": "Oyun ve sunucu sürümleri uyumsuz. Yeniden yükleyin veya güncelleyin, ardından tekrar deneyin.",
     "realmFull": "Bu dünya şu an dolu. Lütfen birkaç dakika sonra tekrar dene.",
+    "maintenance": "The realm is closed for maintenance. Please try again soon.",
+    "updateRequired": "Update required: this version of the game is out of date. Restart Steam to update, then try again.",
     "tooManyConnections": "Ağından bu dünyaya çok fazla bağlantı geliyor. Lütfen fazladan oyun pencerelerini kapat ya da birkaç dakika sonra tekrar dene.",
     "messageRateExceeded": "Eylemleri çok hızlı gönderdiğiniz için bağlantınız kesildi. Lütfen biraz bekleyip tekrar giriş yapın.",
     "kickedByModerator": "Bir moderatör bağlantınızı kesti: {reason}",

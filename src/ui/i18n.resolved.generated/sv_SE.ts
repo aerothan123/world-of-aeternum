@@ -685,6 +685,14 @@ export const sv_SE: EnTranslations = {
       "saved": "Klart.",
       "failed": "Det gick inte att spara eller läsa in förinställningen."
     },
+    "maintenance": {
+      "beginsInMinute": "Realm maintenance begins in 1 minute.",
+      "beginsInMinutes": "Realm maintenance begins in {count} minutes.",
+      "beginsInSeconds": "Realm maintenance begins in {count} seconds.",
+      "begun": "Realm maintenance has begun. New logins are closed.",
+      "cancelled": "Realm maintenance was cancelled.",
+      "ended": "Realm maintenance is over. Logins are open again."
+    },
     "frameMenus": {
       "hide": "Dölj ram",
       "units": "Enhetens ramar",
@@ -5122,6 +5130,10 @@ export const sv_SE: EnTranslations = {
     "auth": {
       "appleLoginCta": "Fortsätt med Apple",
       "appleError": "Det gick inte att logga in med Apple. Försök igen.",
+      "steamLoginCta": "Continue with Steam",
+      "steamError": "Could not sign in with Steam. Please try again.",
+      "steamNoTicket": "Steam is not running. Start Steam, then try again.",
+      "steamUnavailable": "Steam sign-in is not available right now.",
       "appleChoiceIntro": "Skapa ett nytt konto eller länka Apple till ett konto du redan har.",
       "appleChoiceExpired": "Den här Apple-inloggningen har gått ut. Logga in med Apple igen.",
       "forgotPrompt": "Glömt lösenordet?",
@@ -8380,7 +8392,10 @@ export const sv_SE: EnTranslations = {
       "banned": "Det Steam-kontot kan inte länkas.",
       "already_linked": "Ditt konto har redan ett länkat Steam-konto.",
       "account_taken": "Det Steam-kontot är redan länkat till ett annat konto.",
-      "upstream": "Steam svarade inte. Försök igen om en stund."
+      "upstream": "Steam svarade inte. Försök igen om en stund.",
+      "unlink_last_login": "Steam is your only way to sign in to this account. Add an email and password before unlinking it.",
+      "not_owned": "This Steam account does not own the game yet. Get it on Steam, then try again.",
+      "reauth_required": "Enter your password (and your two-factor code, if it is on) to link Steam."
     },
     "epic": {
       "disabled": "Epic-länkning är inte tillgänglig just nu.",
@@ -15730,6 +15745,8 @@ export const sv_SE: EnTranslations = {
     "connectionRejected": "Servern stängde anslutningen.",
     "incompatibleWorldVersion": "Spelets och serverns versioner är inkompatibla. Läs om sidan eller uppdatera spelet, och försök sedan igen.",
     "realmFull": "Denna värld är full just nu. Försök igen om några minuter.",
+    "maintenance": "The realm is closed for maintenance. Please try again soon.",
+    "updateRequired": "Update required: this version of the game is out of date. Restart Steam to update, then try again.",
     "tooManyConnections": "För många anslutningar till denna värld kommer från ditt nätverk. Stäng extra spelfönster eller försök igen om några minuter.",
     "messageRateExceeded": "Du kopplades från för att du skickade handlingar för snabbt. Vänta en stund och logga in igen.",
     "kickedByModerator": "En moderator har kopplat bort dig: {reason}",

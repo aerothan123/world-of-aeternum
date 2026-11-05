@@ -21,6 +21,7 @@ import {
   t,
   tPlural,
 } from './i18n';
+import { localizeMaintenanceText } from './maintenance_text_i18n';
 import { SERVER_NEW } from './server_i18n.newlocales';
 import { IN_GAME_MODERATION_MESSAGES } from './server_i18n_moderation';
 
@@ -3054,6 +3055,8 @@ const RULES: Rule[] = [
 
 // Returns the localized form of a server message, or null if it is not one of ours.
 export function localizeServerText(text: string): string | null {
+  const maintenanceLine = localizeMaintenanceText(text);
+  if (maintenanceLine) return maintenanceLine;
   if (text === 'Bound friends are linked by their referral invitation.')
     return t('hud.social.boundFriendLink');
   const restart = RESTART_MESSAGES[text]?.[getLanguage()];

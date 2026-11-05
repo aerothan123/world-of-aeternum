@@ -685,6 +685,14 @@ export const en: EnTranslations = {
       "saved": "Done.",
       "failed": "Could not save or load the preset."
     },
+    "maintenance": {
+      "beginsInMinute": "Realm maintenance begins in 1 minute.",
+      "beginsInMinutes": "Realm maintenance begins in {count} minutes.",
+      "beginsInSeconds": "Realm maintenance begins in {count} seconds.",
+      "begun": "Realm maintenance has begun. New logins are closed.",
+      "cancelled": "Realm maintenance was cancelled.",
+      "ended": "Realm maintenance is over. Logins are open again."
+    },
     "frameMenus": {
       "hide": "Hide Frame",
       "units": "Unit Frames",
@@ -5122,6 +5130,10 @@ export const en: EnTranslations = {
     "auth": {
       "appleLoginCta": "Continue with Apple",
       "appleError": "Could not sign in with Apple. Please try again.",
+      "steamLoginCta": "Continue with Steam",
+      "steamError": "Could not sign in with Steam. Please try again.",
+      "steamNoTicket": "Steam is not running. Start Steam, then try again.",
+      "steamUnavailable": "Steam sign-in is not available right now.",
       "appleChoiceIntro": "Create a new account, or link Apple to one you already have.",
       "appleChoiceExpired": "That Apple sign-in expired. Please sign in with Apple again.",
       "forgotPrompt": "Forgot password?",
@@ -8380,7 +8392,10 @@ export const en: EnTranslations = {
       "banned": "That Steam account cannot be linked.",
       "already_linked": "Your account already has a linked Steam account.",
       "account_taken": "That Steam account is already linked to another account.",
-      "upstream": "Steam did not respond. Try again in a moment."
+      "upstream": "Steam did not respond. Try again in a moment.",
+      "unlink_last_login": "Steam is your only way to sign in to this account. Add an email and password before unlinking it.",
+      "not_owned": "This Steam account does not own the game yet. Get it on Steam, then try again.",
+      "reauth_required": "Enter your password (and your two-factor code, if it is on) to link Steam."
     },
     "epic": {
       "disabled": "Epic linking is not available right now.",
@@ -15730,6 +15745,8 @@ export const en: EnTranslations = {
     "connectionRejected": "The server closed the connection.",
     "incompatibleWorldVersion": "Game and server versions are incompatible. Reload or update, then try again.",
     "realmFull": "This world is full right now. Please try again in a few minutes.",
+    "maintenance": "The realm is closed for maintenance. Please try again soon.",
+    "updateRequired": "Update required: this version of the game is out of date. Restart Steam to update, then try again.",
     "tooManyConnections": "Too many connections to this world are coming from your network. Please close extra game windows or try again in a few minutes.",
     "messageRateExceeded": "You were disconnected for sending actions too quickly. Please wait a moment and log back in.",
     "kickedByModerator": "A moderator has disconnected you: {reason}",

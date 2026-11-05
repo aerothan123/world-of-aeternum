@@ -685,6 +685,14 @@ export const zh_TW: EnTranslations = {
       "saved": "完成。",
       "failed": "無法儲存或載入預設。"
     },
+    "maintenance": {
+      "beginsInMinute": "伺服器維護將在 1 分鐘後開始。",
+      "beginsInMinutes": "伺服器維護將在 {count} 分鐘後開始。",
+      "beginsInSeconds": "伺服器維護將在 {count} 秒後開始。",
+      "begun": "伺服器維護已開始，暫停新的登入。",
+      "cancelled": "伺服器維護已取消。",
+      "ended": "伺服器維護已結束，現已開放登入。"
+    },
     "frameMenus": {
       "hide": "隱藏框架",
       "units": "單位框架",
@@ -5122,6 +5130,10 @@ export const zh_TW: EnTranslations = {
     "auth": {
       "appleLoginCta": "透過 Apple 繼續",
       "appleError": "無法透過 Apple 登入。請再試一次。",
+      "steamLoginCta": "使用 Steam 繼續",
+      "steamError": "無法使用 Steam 登入，請再試一次。",
+      "steamNoTicket": "Steam 未執行。請啟動 Steam 後再試一次。",
+      "steamUnavailable": "Steam 登入目前無法使用。",
       "appleChoiceIntro": "建立新帳戶，或將 Apple 連結到現有帳戶。",
       "appleChoiceExpired": "Apple 登入已過期。請再次使用 Apple 登入。",
       "forgotPrompt": "忘記密碼？",
@@ -8380,7 +8392,10 @@ export const zh_TW: EnTranslations = {
       "banned": "該 Steam 帳號無法連結。",
       "already_linked": "你的帳號已連結一個 Steam 帳號。",
       "account_taken": "該 Steam 帳號已連結到另一個帳號。",
-      "upstream": "Steam 未回應。請稍後重試。"
+      "upstream": "Steam 未回應。請稍後重試。",
+      "unlink_last_login": "Steam 是你登入此帳號的唯一方式。請先新增電子郵件與密碼，再解除連結。",
+      "not_owned": "這個 Steam 帳號尚未擁有本遊戲。請先在 Steam 上取得遊戲，然後再試一次。",
+      "reauth_required": "請輸入你的密碼（若已開啟雙重驗證，還需輸入驗證碼）以連結 Steam。"
     },
     "epic": {
       "disabled": "Epic 連結目前無法使用。",
@@ -15730,6 +15745,8 @@ export const zh_TW: EnTranslations = {
     "connectionRejected": "伺服器已關閉連線。",
     "incompatibleWorldVersion": "遊戲與伺服器版本不相容。請重新整理或更新後再試一次。",
     "realmFull": "這個世界目前已滿，請於幾分鐘後再試。",
+    "maintenance": "伺服器正在維護，請稍後再試。",
+    "updateRequired": "需要更新：目前的遊戲版本已過期。請重新啟動 Steam 以更新，然後再試一次。",
     "tooManyConnections": "您的網路對這個世界建立的連線過多。請關閉多餘的遊戲視窗，或於幾分鐘後再試。",
     "messageRateExceeded": "由於發送操作過快，您已中斷連線。請稍候片刻後重新登入。",
     "kickedByModerator": "管理員已將您中斷連線：{reason}",

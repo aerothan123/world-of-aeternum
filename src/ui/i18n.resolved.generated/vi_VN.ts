@@ -685,6 +685,14 @@ export const vi_VN: EnTranslations = {
       "saved": "Xong.",
       "failed": "Không thể lưu hoặc tải cấu hình."
     },
+    "maintenance": {
+      "beginsInMinute": "Realm maintenance begins in 1 minute.",
+      "beginsInMinutes": "Realm maintenance begins in {count} minutes.",
+      "beginsInSeconds": "Realm maintenance begins in {count} seconds.",
+      "begun": "Realm maintenance has begun. New logins are closed.",
+      "cancelled": "Realm maintenance was cancelled.",
+      "ended": "Realm maintenance is over. Logins are open again."
+    },
     "frameMenus": {
       "hide": "Ẩn Khung",
       "units": "Khung Đơn Vị",
@@ -5122,6 +5130,10 @@ export const vi_VN: EnTranslations = {
     "auth": {
       "appleLoginCta": "Tiếp Tục với Apple",
       "appleError": "Không thể đăng nhập bằng Apple. Vui lòng thử lại.",
+      "steamLoginCta": "Continue with Steam",
+      "steamError": "Could not sign in with Steam. Please try again.",
+      "steamNoTicket": "Steam is not running. Start Steam, then try again.",
+      "steamUnavailable": "Steam sign-in is not available right now.",
       "appleChoiceIntro": "Tạo tài khoản mới, hoặc liên kết Apple với tài khoản bạn đã có.",
       "appleChoiceExpired": "Lần đăng nhập bằng Apple đó đã hết hạn. Vui lòng đăng nhập lại bằng Apple.",
       "forgotPrompt": "Quên mật khẩu?",
@@ -8380,7 +8392,10 @@ export const vi_VN: EnTranslations = {
       "banned": "Không thể liên kết tài khoản Steam đó.",
       "already_linked": "Tài khoản của bạn đã liên kết với một tài khoản Steam.",
       "account_taken": "Tài khoản Steam đó đã được liên kết với một tài khoản khác.",
-      "upstream": "Steam không phản hồi. Hãy thử lại sau giây lát."
+      "upstream": "Steam không phản hồi. Hãy thử lại sau giây lát.",
+      "unlink_last_login": "Steam is your only way to sign in to this account. Add an email and password before unlinking it.",
+      "not_owned": "This Steam account does not own the game yet. Get it on Steam, then try again.",
+      "reauth_required": "Enter your password (and your two-factor code, if it is on) to link Steam."
     },
     "epic": {
       "disabled": "Hiện không thể liên kết Epic.",
@@ -15730,6 +15745,8 @@ export const vi_VN: EnTranslations = {
     "connectionRejected": "Máy chủ đã đóng kết nối.",
     "incompatibleWorldVersion": "Phiên bản trò chơi và máy chủ không tương thích. Hãy tải lại hoặc cập nhật, rồi thử lại.",
     "realmFull": "Thế giới này đang đầy người chơi. Vui lòng thử lại sau vài phút.",
+    "maintenance": "The realm is closed for maintenance. Please try again soon.",
+    "updateRequired": "Update required: this version of the game is out of date. Restart Steam to update, then try again.",
     "tooManyConnections": "Có quá nhiều kết nối đến thế giới này từ mạng của bạn. Vui lòng đóng bớt cửa sổ trò chơi hoặc thử lại sau vài phút.",
     "messageRateExceeded": "Bạn đã bị ngắt kết nối do gửi thao tác quá nhanh. Vui lòng đợi một lát rồi đăng nhập lại.",
     "kickedByModerator": "Người điều hành đã ngắt kết nối bạn: {reason}",

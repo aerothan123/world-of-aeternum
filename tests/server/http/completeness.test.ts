@@ -121,6 +121,7 @@ const REGISTRY_ONLY_PATHS = new Set<string>([
   '/api/characters/:id/appearance-reroll',
   '/api/steam/link',
   '/api/steam/status',
+  '/api/auth/steam',
   '/api/battleground/leaderboard',
   '/api/epic/link',
   '/api/epic/status',
@@ -337,6 +338,8 @@ describe('registry completeness: migrated baseline (public reads + auth + charac
     { method: 'POST', path: '/api/steam/link' },
     { method: 'DELETE', path: '/api/steam/link' },
     { method: 'GET', path: '/api/steam/status' },
+    // Steam login (server/steam_login.ts): registry-only, env-gated dark.
+    { method: 'POST', path: '/api/auth/steam' },
     // The Epic link trio (server/epic/routes.ts): registry-only twin of Steam,
     // env-gated dark until EPIC_ENABLED=1.
     { method: 'POST', path: '/api/epic/link' },
@@ -586,8 +589,9 @@ describe('registry completeness: oauth + internal surfaces (server/oauth.ts, ser
     // have no rows since #2791, and the winners mark retired with Daily
     // Rewards) plus the two registry-only rows (POST /internal/discord/flex-batch
     // and GET /internal/discord/outbox), which have no legacy ladder arm by
-    // design.
-    expect(internalLadder.length).toBe(10);
+    // design, plus the registry-only maintenance pair (POST and GET
+    // /internal/maintenance, server/maintenance.ts).
+    expect(internalLadder.length).toBe(12);
   });
 
   it('registers exactly the oauth POST ladder routes', () => {

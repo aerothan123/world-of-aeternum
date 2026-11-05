@@ -652,7 +652,7 @@ function gatePairFor(route: RouteDef): {
   unsetStatus: number;
   unsetBody: Record<string, unknown>;
 } {
-  if (route.path === '/internal/restart-countdown') {
+  if (route.path === '/internal/restart-countdown' || route.path === '/internal/maintenance') {
     return {
       header: DEPLOY_SECRET_HEADER,
       envVar: DEPLOY_SECRET_ENV,
@@ -697,12 +697,13 @@ describe('internal secret-gate mounting sweep: every /internal route is gated', 
     vi.restoreAllMocks();
   });
 
-  it('selects the full 10-route internal surface (handleInternalApi 8 + flex-batch + outbox)', () => {
+  it('selects the full 12-route internal surface (handleInternalApi 8 + flex-batch + outbox + the maintenance pair)', () => {
     // flex-batch and outbox are registry-only (no legacy arm) but still ride the same Discord secret
     // gate, so the sweep below generates their unset-env and wrong-secret cases like every other route.
     // The retired relay/activity/winners GETs (#2791) are absent from the registry, and the Daily
     // Rewards ops family and the Exchange dashboard reads retired with the crypto rail.
-    expect(internalSurfaceRoutes.length).toBe(10);
+    // The maintenance pair (server/maintenance.ts) rides the DEPLOY gate.
+    expect(internalSurfaceRoutes.length).toBe(12);
   });
 
   for (const route of internalSurfaceRoutes) {

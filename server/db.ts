@@ -2040,9 +2040,8 @@ export async function createPasswordResetRequest(
 // revoke every session, all in one transaction. The claiming UPDATE ... WHERE
 // consumed_at IS NULL AND expires_at > now() is the race + replay guard: a
 // replayed or expired link matches zero rows and returns null, and two concurrent
-// clicks can never both win. Deleting all auth_tokens signs out every device,
-// which is the right posture for a reset (the account may be recovering from a
-// compromise), unlike the change-password path that keeps the current device.
+// clicks can never both win. Deleting all auth_tokens (and the Steam link,
+// itself a login) signs out every device: a reset may be a compromise recovery.
 export async function consumePasswordResetRequest(
   tokenHash: string,
   newPasswordHash: string,
@@ -2070,6 +2069,7 @@ export async function consumePasswordResetRequest(
       [row.account_id, newPasswordHash],
     );
     await client.query('DELETE FROM auth_tokens WHERE account_id = $1', [row.account_id]);
+    await client.query('DELETE FROM steam_links WHERE account_id = $1', [row.account_id]);
     await client.query('COMMIT');
     // This path writes password_set = TRUE in its OWN transaction (it does not
     // call updatePasswordHash), so it carries its own /api/discord status bust,

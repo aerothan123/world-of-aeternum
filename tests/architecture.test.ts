@@ -3423,6 +3423,7 @@ const UI_DOM_MODULES = [
   'src/ui/spellbook_window.ts',
   'src/ui/start_skin_picker_portraits.ts',
   'src/ui/steam_link.ts',
+  'src/ui/steam_login.ts',
   'src/ui/steam_wishlist.ts',
   'src/ui/store_decision_prompt.ts',
   // Resolves and mints the body-level host a Store decision takes while an

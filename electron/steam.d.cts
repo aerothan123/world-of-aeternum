@@ -4,6 +4,7 @@
 
 export const SPACEWAR_APP_ID: number;
 export const LINK_TICKET_IDENTITY: string;
+export const LOGIN_TICKET_IDENTITY: string;
 
 export interface SteamShellInput {
   distribution?: string;
@@ -18,6 +19,7 @@ export interface SteamShellInput {
           identity: string,
         ) => Promise<{ getBytes?: () => Buffer | null; cancel?: () => void } | null>;
       };
+      localplayer?: { getName?: () => string };
     };
   };
 }
@@ -29,6 +31,9 @@ export interface SteamShell {
   cancelLinkTicket(): void;
   /** The initialized steamworks.js client, or null (integration off, no Steam). */
   client(): unknown;
+  getLoginTicket(): Promise<{ ticket: string; personaName: string } | null>;
+  cancelLoginTicket(): void;
+  warmUp(): boolean;
 }
 
 export function steamIntegrationEnabled(input?: {
