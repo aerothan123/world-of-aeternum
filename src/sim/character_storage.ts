@@ -58,6 +58,11 @@ export function restoreCharacterStorage(
     );
   }
   meta.furnishingSkill = sanitizeFurnishingSkill(s.furnishingSkill);
+  // One house per account: the host names the holder when it is someone else.
+  meta.accountHouseHolder =
+    !meta.house && typeof s.accountHouseHolder === 'string' && s.accountHouseHolder !== ''
+      ? s.accountHouseHolder.slice(0, 64)
+      : undefined;
   meta.houseStorageRev = 0;
 }
 

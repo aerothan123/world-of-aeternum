@@ -1,6 +1,7 @@
 // FIRST import on purpose: loads .env before realm.ts (or any other module
 // with an import-time process.env read) evaluates. See server/env.ts.
 import './env';
+import { accountHouseHolderName } from './account_house_migration';
 import { randomUUID } from 'node:crypto';
 import * as fs from 'node:fs';
 import * as http from 'node:http';
@@ -3458,6 +3459,8 @@ export async function startServer(): Promise<http.Server> {
   const wsAuth = createWsAuth({
     game,
     getMembership,
+    accountHouseHolder: (accountId, characterId) =>
+      accountHouseHolderName(pool, accountId, REALM, characterId),
     referralArmourForAccount,
     accountAndScopeForToken,
     moderationStatusForAccount,

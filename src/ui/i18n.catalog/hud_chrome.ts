@@ -11356,6 +11356,8 @@ export const hudChromeStrings = {
     denied: {
       badLot: 'That house is not for sale.',
       owned: 'You already own a house.',
+      // One house per account (src/sim/housing/ownership.ts).
+      accountOwned: 'Your account already has a house. An account can own one house.',
       range: 'You are too far from the front door of {house}.',
       money: 'You cannot afford {house}.',
       dead: 'You cannot buy a house while dead.',

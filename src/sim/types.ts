@@ -11582,6 +11582,7 @@ export type SimEvent = { pid?: number } & (
       reason:
         | 'bad_lot'
         | 'owned'
+        | 'account_owned'
         | 'range'
         | 'money'
         | 'dead'

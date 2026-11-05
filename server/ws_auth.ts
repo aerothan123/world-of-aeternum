@@ -11,6 +11,7 @@
 // contract: changing one is a wire change that must land in the client matcher in the
 // same commit.
 
+import { annotateAccountHouseHolder } from './account_house_migration';
 import { randomUUID } from 'node:crypto';
 import type { EventEmitter } from 'node:events';
 import type * as http from 'node:http';
@@ -105,6 +106,9 @@ function rejectHandshake(ws: WebSocket, error: string): void {
 export interface WsAuthDeps {
   game: GameServer;
   getMembership?: (accountId: number) => Promise<MembershipAuthorization>;
+  /** One house per account: another character on this account and realm who
+   *  holds the house, or null (server/account_house_migration.ts). */
+  accountHouseHolder?: (accountId: number, characterId: number) => Promise<string | null>;
   referralArmourForAccount?: (accountId: number) => Promise<ReferralArmourEntitlement | null>;
   accountAndScopeForToken: (
     token: string,
@@ -576,6 +580,11 @@ export function createWsAuth(deps: WsAuthDeps): WsAuthHandlers {
                 rejectHandshake(ws, WS_AUTH_ERROR.forceRename);
                 return;
               }
+              await annotateAccountHouseHolder(
+                deps.accountHouseHolder,
+                accountId,
+                refreshedCharacter,
+              );
               admittedCharacter = refreshedCharacter;
               // Re-read even if the initial query returned after revocation,
               // before this probe existed. Check the probe AFTER that await to

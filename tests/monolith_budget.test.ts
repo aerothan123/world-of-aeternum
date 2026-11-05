@@ -2251,7 +2251,10 @@ const MONOLITHS: MonolithRow[] = [
     // Daily Rewards, holder flair) was removed outright.
     // Down 4437 -> 4343 at the crypto removal: the wallet-link functions and the marketplace
     // guard busts left, and the legacy crypto DDL moved to server/legacy_crypto_schema_db.ts.
-    ceiling: 4343,
+    // LOWERED 4343 -> 4331 (Wyndlewood one house per account): the retired
+    // wallet-link DDL moved to server/legacy_crypto_schema_db.ts (interpolated at
+    // its original SCHEMA position), paying for the account-house hooks. wc -l.
+    ceiling: 4331,
     seam: 'a domain <domain>_db.ts module with its own *_SCHEMA (server/CLAUDE.md)',
   },
   {

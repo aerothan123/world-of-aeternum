@@ -128,6 +128,10 @@ export interface CharacterState extends ReferralRewardState {
   // who never bought one (zero-default omission); sanitizeHouseState is the one
   // load path. Forward-only: a pre-housing binary drops it on save.
   house?: SavedHouseState;
+  // Host-supplied at join, NEVER written by a save (savedCharacterStorage
+  // omits it): the name of the character on this account who holds the
+  // account's one house (server/account_house_join.ts). Absent offline.
+  accountHouseHolder?: string;
   // Player housing (Project H) phase 2: the Furnishing craft's skill counter
   // (off the ring, so off craftSkills). Absent at zero; sanitizeFurnishingSkill
   // is the one load path. Forward-only like `house`.

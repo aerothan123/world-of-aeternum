@@ -15,6 +15,26 @@ const OPEN_SETTLEMENT_STATES_SQL = `('offered', 'confirming', 'review', 'confirm
  *  exactly as the original schema spelled it. */
 const WOC_MARKET_OFFERS_PAIR_PENDING_INDEX = 'woc_market_offers_pair_pending';
 
+/** The retired Solana wallet-link tables, interpolated into SCHEMA (server/
+ *  db.ts) at their original position, so the applied DDL text is unchanged. */
+export const LEGACY_WALLET_LINK_SCHEMA = `-- LEGACY (no longer read or written): the retired Solana wallet links. Project
+-- H uses no cryptocurrency; the DDL stays so persisted databases load unchanged.
+CREATE TABLE IF NOT EXISTS wallet_links (
+  account_id INT PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,
+  pubkey TEXT NOT NULL UNIQUE,
+  linked_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+-- LEGACY (no longer read or written): the retired wallet sign-to-link challenges.
+CREATE TABLE IF NOT EXISTS wallet_link_challenges (
+  nonce TEXT PRIMARY KEY,
+  account_id INT NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+  address TEXT NOT NULL,
+  message TEXT NOT NULL,
+  expires_at TIMESTAMPTZ NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS wallet_link_challenges_account ON wallet_link_challenges(account_id);`;
+
 export const LEGACY_SEEKER_ENTITLEMENT_SCHEMA = `
 -- Keep forever. A claimed SGT mint must never become reusable after a wallet
 -- unlink, token transfer, account deactivation, hard delete, or binary rollback.
