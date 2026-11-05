@@ -17,7 +17,14 @@ import sharp from 'sharp';
 import { WORLD_SEED } from '../../src/sim/world_seed';
 import { IncrementalWriter, readPreviousFiles, stableJson } from './ue_manifest';
 import { allRoads } from './ue_roads';
-import { LANDSCAPE_LAYOUT, QUAD_YD, TILE_VERTS, TILE_YD, pickHeightEncoding, tileName } from './ue_tiles';
+import {
+  LANDSCAPE_LAYOUT,
+  pickHeightEncoding,
+  QUAD_YD,
+  TILE_VERTS,
+  TILE_YD,
+  tileName,
+} from './ue_tiles';
 import {
   type HeightReport,
   loadRegistryKeys,
@@ -25,9 +32,9 @@ import {
   validateTileHeights,
 } from './ue_validate';
 import {
-  type UePlacement,
   dungeonWalls,
   exportTileRasters,
+  type UePlacement,
   worldHeightRange,
   worldTiles,
   zoneInfos,
@@ -37,7 +44,8 @@ import {
 import { GROUND_LAYERS, parsePropAssetUrls } from './world_slice_export';
 
 export const EXPORT_VERSION = 1;
-const DEFAULT_REGISTRY = 'E:/WyndlewoodUnreal/EnvSlice/Content/Wyndlewood/Assets/asset_registry.json';
+const DEFAULT_REGISTRY =
+  'E:/WyndlewoodUnreal/EnvSlice/Content/Wyndlewood/Assets/asset_registry.json';
 
 const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const args = process.argv.slice(2);
@@ -74,8 +82,7 @@ try {
 
 const tileIndex: Record<string, unknown> = { ...(prevManifest.tiles ?? {}) };
 const heightReports: HeightReport[] = [];
-const zoneTileNames = (z: (typeof zones)[number]): string[] =>
-  worldTiles([z]).map(tileName);
+const zoneTileNames = (z: (typeof zones)[number]): string[] => worldTiles([z]).map(tileName);
 
 if (!skipTiles) {
   const wanted = new Map(worldTiles(zones).map((t) => [tileName(t), t]));
@@ -103,7 +110,9 @@ if (!skipTiles) {
   }
 }
 
-const propUrls = parsePropAssetUrls(fs.readFileSync(path.join(repo, 'src/render/props.ts'), 'utf8'));
+const propUrls = parsePropAssetUrls(
+  fs.readFileSync(path.join(repo, 'src/render/props.ts'), 'utf8'),
+);
 const propUrl = (k: string): string | null => propUrls[k] ?? null;
 const roads = allRoads();
 const placementsByZone: Record<string, UePlacement[]> = {};

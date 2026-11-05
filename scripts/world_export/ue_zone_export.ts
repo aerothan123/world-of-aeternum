@@ -3,30 +3,31 @@
 // records out; ue_export_cli.ts writes the files. Every number is read from
 // the live sim (terrainHeight, the world content tables, the dungeon
 // colliders); nothing is re-derived.
+
+import type { Collider } from '../../src/sim/collider_shapes';
 import { DUNGEON_LIST, STRIP_MAX_X, STRIP_MIN_X, ZONES, zoneAt } from '../../src/sim/data';
 import { interiorCollidersFor } from '../../src/sim/interior_collider_sets';
 import { terrainHeight } from '../../src/sim/world';
-import type { Collider } from '../../src/sim/collider_shapes';
-import {
-  type ExportPlacement,
-  type ExportRoad,
-  GROUND_LAYERS,
-  type PlacementFit,
-  collectPlacements,
-  sampleGround,
-} from './world_slice_export';
 import { simLengthToUu, simToUe, simYawToUeYawDeg } from './ue_space';
 import {
+  encodeHeight,
   type HeightEncoding,
   QUAD_YD,
   type Rect,
   TILE_QUADS,
   TILE_VERTS,
   type TileCoord,
-  encodeHeight,
   tileBounds,
   tilesCovering,
 } from './ue_tiles';
+import {
+  collectPlacements,
+  type ExportPlacement,
+  type ExportRoad,
+  GROUND_LAYERS,
+  type PlacementFit,
+  sampleGround,
+} from './world_slice_export';
 
 export interface ZoneInfo {
   id: string;
@@ -195,7 +196,10 @@ export interface UeRoad {
 }
 
 /** Polyline length-midpoint, the point that decides which zone owns a road. */
-export function polylineMidpoint(pts: readonly { x: number; z: number }[]): { x: number; z: number } {
+export function polylineMidpoint(pts: readonly { x: number; z: number }[]): {
+  x: number;
+  z: number;
+} {
   let total = 0;
   for (let i = 1; i < pts.length; i++) {
     total += Math.hypot(pts[i].x - pts[i - 1].x, pts[i].z - pts[i - 1].z);

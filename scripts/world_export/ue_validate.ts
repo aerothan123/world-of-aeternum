@@ -3,7 +3,14 @@
 // a missing asset id is listed for the asset crew instead of failing the run.
 import fs from 'node:fs';
 import { terrainHeight } from '../../src/sim/world';
-import { type HeightEncoding, QUAD_YD, TILE_VERTS, type TileCoord, decodeHeight, tileBounds } from './ue_tiles';
+import {
+  decodeHeight,
+  type HeightEncoding,
+  QUAD_YD,
+  TILE_VERTS,
+  type TileCoord,
+  tileBounds,
+} from './ue_tiles';
 import type { UePlacement } from './ue_zone_export';
 
 export interface HeightReport {
