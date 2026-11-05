@@ -43,6 +43,21 @@ import { parseRecordedFrames } from './helpers/unreal_golden';
 const DIR = join(resolve(import.meta.dirname), 'fixtures/unreal_golden');
 const TOLERANCE_YD = 0.05;
 
+// The pinned window ends where the scripted route turns back toward the ferry dock (the
+// client's second `target` command, Ferryman Odo). Near the dock the walkable deck follows
+// the ferry schedule, which the live server drives from the realm calendar (wall clock) and
+// a twin server does not share, so poses there legitimately differ between the live realm
+// and any replay. Everything before it is plain terrain and props, which must match.
+function pinnedWindowEnd(sent: { t: string; cmd?: string; ct?: number }[]): number {
+  let targets = 0;
+  let lastCt = Number.POSITIVE_INFINITY;
+  for (const m of sent) {
+    if (m.t === 'input' && typeof m.ct === 'number') lastCt = m.ct;
+    if (m.t === 'cmd' && m.cmd === 'target' && ++targets === 2) return lastCt;
+  }
+  return Number.POSITIVE_INFINITY;
+}
+
 type Pose = [number, number, number, number];
 
 /** ackCt -> the first acknowledged pose reported for it, skipping override-active frames. */
@@ -121,13 +136,14 @@ describe('unreal route accuracy (M3)', () => {
     }
     const replay = ackedPoses(replaySnaps);
 
+    const windowEnd = pinnedWindowEnd(sent);
     let compared = 0;
     let worst = 0;
     let worstCt = -1;
     let travel = 0;
     let prev: Pose | null = null;
     for (const [ct, p] of live) {
-      if (ct <= ct0) continue;
+      if (ct <= ct0 || ct > windowEnd) continue;
       const q = replay.get(ct);
       if (!q) continue;
       const d = Math.hypot(p[0] - q[0], p[1] - q[1], p[2] - q[2]);
@@ -140,9 +156,9 @@ describe('unreal route accuracy (M3)', () => {
       }
     }
     console.log(
-      `route: ${delivered} frames replayed, ${compared} ackCt poses compared over ${travel.toFixed(1)} yd of travel, worst ${worst.toFixed(4)} yd at ct ${worstCt}`,
+      `route: ${delivered} frames replayed, ${compared} ackCt poses compared over ${travel.toFixed(1)} yd of travel (ct ${ct0} to ${windowEnd}), worst ${worst.toFixed(4)} yd at ct ${worstCt}`,
     );
-    expect(compared).toBeGreaterThan(200);
+    expect(compared).toBeGreaterThan(150);
     // A replay that never moved cannot pass: the compared poses must cover a real walk.
     expect(travel).toBeGreaterThan(20);
     expect(worst).toBeLessThanOrEqual(TOLERANCE_YD);
