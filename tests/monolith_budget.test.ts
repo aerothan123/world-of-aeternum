@@ -511,7 +511,9 @@ const MONOLITHS: MonolithRow[] = [
     // LOWERED 17454 -> 17452 (Wyndlewood durability figure): the Curator rank
     // name helper moved to src/ui/reliquary_window.ts, paying for the
     // durability painter field and its slow-band paint. wc -l. Exact count.
-    ceiling: 17452,
+    // LOWERED 17452 -> 17450 (town restoration window): classCss moved to
+    // src/ui/class_css.ts, paying for the townProject event case. wc -l.
+    ceiling: 17450,
     seam: 'pure view core + thin painter on PainterHost (src/ui/CLAUDE.md)',
   },
   {

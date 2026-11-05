@@ -6945,6 +6945,25 @@ export const hudChromeStrings = {
     itemName: '{item}, {quality}',
     tooltip: '{quality}: +{levels} item levels. Retained through upgrades.',
   },
+  // Town restoration projects (src/ui/hud/housing/town_project_view.ts):
+  // {project} and {stage} are the names below; {items} the joined bundle.
+  townProject: {
+    progress:
+      '{project}: {stage}. {done} of {needed} bundles are in. Each bundle is {items}.',
+    complete: '{project} is complete. The town thanks you.',
+    contribute: 'Contribute',
+    bundleItem: '{count} {item}',
+    bundleJoin: ' and ',
+    name: {
+      eastbrook_yard_well: 'The Yard Well',
+      eastbrook_yard_well_shaft: 'Line the shaft',
+      eastbrook_yard_well_roof: 'Raise the roof',
+      eastbrook_yard_well_winch: 'Hang the winch',
+      eastbrook_street_lamps: 'The Main Street Lamps',
+      eastbrook_street_lamps_posts: 'Set the posts',
+      eastbrook_street_lamps_lanterns: 'Hang the lanterns',
+    },
+  },
   // The HUD durability indicator (src/ui/hud/durability/).
   durability: {
     low: 'Your equipment is badly damaged. Repair it at an armorer, a weaponsmith or a forge.',

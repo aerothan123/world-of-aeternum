@@ -11616,6 +11616,19 @@ export type SimEvent = { pid?: number } & (
       anchorId: string;
       itemId: string;
     }
+  // Town restoration (src/sim/life_skills/town_projects.ts): the project's
+  // progress after an interact press at its site (text-free; the client
+  // names the project, the stage and the bundle). `stage` is the stage index
+  // (the stage count when complete); `contributed` is whether this press
+  // handed a bundle in.
+  | {
+      type: 'townProject';
+      pid: number;
+      projectId: string;
+      stage: number;
+      bundles: number;
+      contributed: boolean;
+    }
 );
 
 export interface MoveInput {

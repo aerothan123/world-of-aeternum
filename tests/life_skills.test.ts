@@ -207,3 +207,25 @@ describe('town restoration projects', () => {
     expect(writes).toEqual([{ [WELL.id]: { stage: 0, bundles: 4 } }]);
   });
 });
+
+describe('town project progress event', () => {
+  it('every press at a site reports the progress, contributed or not', () => {
+    const sim = new Sim({ seed: 4, playerClass: 'warrior' });
+    const well = TOWN_PROJECTS[0];
+    sim.player.pos.x = well.site.x;
+    sim.player.pos.z = well.site.z;
+    const meta = sim.players.get(sim.playerId)!;
+    sim.drainEvents();
+    tryContributeAtTownProject(sim.ctx, meta, sim.player);
+    const first = sim.drainEvents().filter((e) => e.type === 'townProject');
+    expect(first).toEqual([
+      { type: 'townProject', pid: sim.playerId, projectId: well.id, stage: 0, bundles: 0, contributed: false },
+    ]);
+    for (const b of well.stages[0].bundle) sim.addItem(b.itemId, b.count);
+    tryContributeAtTownProject(sim.ctx, meta, sim.player);
+    const second = sim.drainEvents().filter((e) => e.type === 'townProject');
+    expect(second).toEqual([
+      { type: 'townProject', pid: sim.playerId, projectId: well.id, stage: 0, bundles: 1, contributed: true },
+    ]);
+  });
+});

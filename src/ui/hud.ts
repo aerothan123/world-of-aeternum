@@ -499,6 +499,7 @@ import { RiteController } from './hud/delve/rite_controller';
 import { DungeonPrompts, fctAvoidanceText, wardHitText } from './hud/dungeon';
 import { applyDungeonGuideSpeech } from './hud/dungeon/dungeon_guide_speech';
 import { DungeonTrackerPainter } from './hud/dungeon/dungeon_tracker_painter';
+import { classCss } from './class_css';
 import { DurabilityPainter, durabilityView } from './hud/durability';
 import { createFinderSurfaces } from './hud/expeditions';
 import { factionRewardTooltipLines } from './hud/faction_reward_tooltip_view';
@@ -1206,10 +1207,6 @@ const PET_MODE_DESC_KEYS: Record<PetMode, TranslationKey> = {
   aggressive: 'hud.pet.aggressiveDesc',
   assist: 'hud.pet.assistDesc',
 };
-// Classic class colors (CLASSES[cls].color is a 0xRRGGBB number) as a CSS
-// string, used to color-code party members on the minimap and in the frames.
-const classCss = (cls: string): string =>
-  `#${((CLASSES as Record<string, { color: number }>)[cls]?.color ?? 0x5fa8ff).toString(16).padStart(6, '0')}`;
 
 // The OFFLINE ignore store. Online, the ignore list is server-persisted and
 // arrives on the `social` frame, so this set is not consulted at all (see the
@@ -11729,6 +11726,7 @@ export class Hud {
         case 'housePurchased':
         case 'houseDenied':
         case 'houseFurniture': // Project H housing (src/ui/hud/housing/)
+        case 'townProject': // town restoration (life_skills/town_projects.ts)
           handleHouseEvent(ev, this, (x, l, ok) => this.showPrompt(x, l, ok, () => {}), sim);
           break;
         case 'gatherRareEvent': {

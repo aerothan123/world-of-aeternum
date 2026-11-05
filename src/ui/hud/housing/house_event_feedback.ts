@@ -17,6 +17,7 @@ import { esc } from '../../esc';
 import { formatMoney, t } from '../../i18n';
 import { PROF_LOG_NEWS } from '../professions/profession_log_tones';
 import { type HouseEvent, houseFeedbackPlan } from './house_feedback_view';
+import { type TownProjectEvent, townProjectWindowPlan } from './town_project_view';
 
 /** The HUD surfaces the housing arms write to. The Hud satisfies this
  *  structurally (the farm_event_feedback.ts FarmFeedbackHost shape). */
@@ -55,11 +56,21 @@ export function houseOfferPromptOpen(host: HouseFeedbackHost, lotId: string): bo
 }
 
 export function handleHouseEvent(
-  ev: HouseEvent,
+  ev: HouseEvent | TownProjectEvent,
   host: HouseFeedbackHost,
   prompt: HousePromptFn,
-  world: { buyHouse(lotId: string): void },
+  world: { buyHouse(lotId: string): void; interact(): void },
 ): void {
+  if (ev.type === 'townProject') {
+    // The restoration project window: progress and the bundle it asks for,
+    // with Contribute (the interact key's own action) while a stage is open.
+    const view = townProjectWindowPlan(ev);
+    if (!view) return;
+    if (view.canContribute) {
+      prompt(esc(view.text), t('hudChrome.townProject.contribute'), () => world.interact());
+    } else host.showBanner(view.text);
+    return;
+  }
   const plan = houseFeedbackPlan(ev);
   switch (plan.kind) {
     case 'offer': {

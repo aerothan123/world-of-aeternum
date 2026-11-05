@@ -106,6 +106,7 @@ export function tryContributeAtTownProject(ctx: SimContext, meta: PlayerMeta, p:
   const stage = def.stages[progress.stage];
   if (!stage) {
     ctx.notice(meta.entityId, `${def.name} is complete. The town thanks you.`);
+    emitProgress(ctx, meta, def.id, progress, false);
     return true;
   }
   const short = stage.bundle.find((b) => ctx.countItem(b.itemId, meta.entityId) < b.count);
@@ -114,6 +115,7 @@ export function tryContributeAtTownProject(ctx: SimContext, meta: PlayerMeta, p:
       meta.entityId,
       `${def.name}: ${stage.name} needs a bundle of materials. ${progress.bundles} of ${stage.bundlesNeeded} bundles are in.`,
     );
+    emitProgress(ctx, meta, def.id, progress, false);
     return true;
   }
   for (const b of stage.bundle) ctx.removeItem(b.itemId, b.count, meta.entityId);
@@ -134,7 +136,26 @@ export function tryContributeAtTownProject(ctx: SimContext, meta: PlayerMeta, p:
       ? `${def.name}: ${stage.name} is finished. The town thanks you.`
       : `You contribute to ${def.name}: ${stage.name}, ${next.bundles} of ${stage.bundlesNeeded} bundles.`,
   );
+  emitProgress(ctx, meta, def.id, next, true);
   return true;
+}
+
+/** The text-free progress event the client's project window reads. */
+function emitProgress(
+  ctx: SimContext,
+  meta: PlayerMeta,
+  projectId: string,
+  progress: TownProjectProgress,
+  contributed: boolean,
+): void {
+  ctx.emit({
+    type: 'townProject',
+    pid: meta.entityId,
+    projectId,
+    stage: progress.stage,
+    bundles: progress.bundles,
+    contributed,
+  });
 }
 
 /** The persisted realm record: projectId to progress, sparse (an untouched
