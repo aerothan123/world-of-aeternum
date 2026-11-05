@@ -1375,8 +1375,9 @@ describe('Masterwrought art completion evidence', () => {
         '73a7a9e964cc7f51422ba3837bf9e40b8d40629ba48088376bd3dbddf843c4b8',
       ],
       [
-        '| Masterwrought art-completion wave (181 painted assets',
-        '93b63a5bd6aff180f185ced2b760b34b70271747c0cbaad92415abf10c0a2786',
+        // Narrowed to the four paintings still shipping; the Wyndlewood repaint took the rest.
+        '| Masterwrought art-completion wave (the four painted assets',
+        '429ec526c76efef6ffc9af337218caf9e94c7aa4174c82943b61dd44cb1172bf',
       ],
       // The Wyndlewood repaint's aura and deed rows replace the superseded aura-painting
       // and Masterwrought deed-crest rows.

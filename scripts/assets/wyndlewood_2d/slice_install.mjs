@@ -105,7 +105,11 @@ for (const s of sheets) {
   if (FULL_BLEED.has(s.family)) rects = rects.map((r) => refineRect(data, info.width, r));
   const review = [];
   for (const cell of s.cells) {
-    const cellPng = await sharp(src).extract(rects[cell.index]).png().toBuffer();
+    // `painted` names the grid cell the model actually painted this subject into, for a sheet
+    // whose painting drifted from the prompt's order (an extra or a missing tile); the slot
+    // `index` stays the prompt position. Unset, they are the same cell.
+    const at = cell.painted ?? cell.index;
+    const cellPng = await sharp(src).extract(rects[at]).png().toBuffer();
     const stem = cell.file.replace(/\.[a-z]+$/, '');
     let master;
     let dest;
@@ -182,16 +186,17 @@ for (const s of sheets) {
     review.push(master);
     prov[cell.file] = {
       sheet: s.id,
-      cell: cell.index,
+      cell: at,
       grid: s.grid,
       taskId: ledger.get(s.id)?.taskId ?? null,
       model: 'Tripo text-to-image, seedream_v4',
-      subject: subjects.get(cell.file)?.subject ?? null,
+      subject: cell.subject ?? subjects.get(cell.file)?.subject ?? null,
       masterSha256: sha(master),
     };
     count++;
   }
-  if (s.family === 'wide') continue;
+  // A sheet whose every cell moved to a fix sheet has nothing left to review.
+  if (s.family === 'wide' || review.length === 0) continue;
   const g = Math.ceil(Math.sqrt(review.length));
   const tiles = await Promise.all(
     review.map((m) =>

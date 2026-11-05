@@ -6,7 +6,8 @@
 // deterministic paper grain). No image model and no reference art: the plates are a pure
 // function of (world seed, region), so coastlines, water and roads match the game exactly.
 //
-// usage: node scripts/assets/wyndlewood_2d/paint_map_plates.mjs
+// usage: node scripts/assets/wyndlewood_2d/paint_map_plates.mjs [--only id,id]
+// --only repaints just those plates (a re-run after a crash) and keeps the rest of the record.
 import fs from 'node:fs';
 import path from 'node:path';
 import * as esbuild from 'esbuild';
@@ -69,11 +70,15 @@ async function paint(region, W, H) {
     .blur(0.5);
 }
 
+const onlyAt = process.argv.indexOf('--only');
+const only = onlyAt === -1 ? [] : process.argv[onlyAt + 1].split(',').filter(Boolean);
+const recordPath = path.join(root, 'scripts/assets/wyndlewood_2d/map_plates.json');
 const written = [];
 for (const f of fs.readdirSync(artDir)) {
   const m = /^(.+)\.(png|webp)$/.exec(f);
   if (!m) continue;
   const id = m[1];
+  if (only.length && !only.includes(id)) continue;
   const file = path.join(artDir, f);
   const meta = await sharp(file).metadata();
   let region = null;
@@ -95,7 +100,12 @@ for (const f of fs.readdirSync(artDir)) {
   written.push(`public/map_art/${f}`);
   console.log('[w2d] map plate', f, meta.width, meta.height, out.length);
 }
+const kept =
+  only.length && fs.existsSync(recordPath)
+    ? JSON.parse(fs.readFileSync(recordPath, 'utf8')).plates
+    : [];
+const plates = [...new Set([...kept, ...written])].sort();
 fs.writeFileSync(
-  path.join(root, 'scripts/assets/wyndlewood_2d/map_plates.json'),
-  `${JSON.stringify({ seed: WORLD_SEED, painter: 'src/ui/map_terrain.ts paintTerrainRows', plates: written }, null, 1)}\n`,
+  recordPath,
+  `${JSON.stringify({ seed: WORLD_SEED, painter: 'src/ui/map_terrain.ts paintTerrainRows', plates }, null, 1)}\n`,
 );

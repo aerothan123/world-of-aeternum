@@ -17346,54 +17346,34 @@
         "id": "chr_evergarden_gatherer"
       },
       {
-        "index": 6,
-        "file": "public/ui/deeds/chr_farshore_first_cast.webp",
-        "id": "chr_farshore_first_cast"
-      },
-      {
-        "index": 7,
-        "file": "public/ui/deeds/chr_farshore_gatherer.webp",
-        "id": "chr_farshore_gatherer"
-      },
-      {
         "index": 8,
         "file": "public/ui/deeds/chr_frostveil_first_cast.webp",
-        "id": "chr_frostveil_first_cast"
+        "id": "chr_frostveil_first_cast",
+        "painted": 9
       },
       {
         "index": 9,
         "file": "public/ui/deeds/chr_frostveil_gatherer.webp",
-        "id": "chr_frostveil_gatherer"
-      },
-      {
-        "index": 10,
-        "file": "public/ui/deeds/chr_galecrest_first_cast.webp",
-        "id": "chr_galecrest_first_cast"
-      },
-      {
-        "index": 11,
-        "file": "public/ui/deeds/chr_galecrest_gatherer.webp",
-        "id": "chr_galecrest_gatherer"
+        "id": "chr_frostveil_gatherer",
+        "painted": 10
       },
       {
         "index": 12,
         "file": "public/ui/deeds/chr_gleamstag.webp",
-        "id": "chr_gleamstag"
+        "id": "chr_gleamstag",
+        "painted": 13
       },
       {
         "index": 13,
         "file": "public/ui/deeds/chr_hollow_rares.webp",
-        "id": "chr_hollow_rares"
+        "id": "chr_hollow_rares",
+        "painted": 14
       },
       {
         "index": 14,
         "file": "public/ui/deeds/chr_marsh_chapter_i.webp",
-        "id": "chr_marsh_chapter_i"
-      },
-      {
-        "index": 15,
-        "file": "public/ui/deeds/chr_marsh_chapter_ii.webp",
-        "id": "chr_marsh_chapter_ii"
+        "id": "chr_marsh_chapter_i",
+        "painted": 15
       }
     ],
     "prompt": "Painted fantasy storybook game art, soft natural colours, warm top-left light. A 4x4 grid of 16 separate paintings in equal square cells split by thin black lines, each cell a full-bleed square painting filling the cell. Left to right, top to bottom: 1) a leaping fish, softly lit on a warm painted background; 2) a sheaf of herbs and a sickle, softly lit on a warm painted background; 3) crossed swords over a skull, softly lit on a warm painted background; 4) a leaping fish, softly lit on a warm painted background, seen up close; 5) a sheaf of herbs and a sickle, softly lit on a warm painted background, seen up; 6) a sheaf of herbs and a sickle, softly lit on a warm painted background, in a; 7) a leaping fish, softly lit on a warm painted background, in a glowing ring; 8) a sheaf of herbs and a sickle, softly lit on a warm painted background, rising; 9) a leaping fish, softly lit on a warm painted background, rising upward; 10) a sheaf of herbs and a sickle, softly lit on a warm painted background, twin; 11) a leaping fish, softly lit on a warm painted background, twin; 12) a sheaf of herbs and a sickle, softly lit on a warm painted background, erupting; 13) crossed swords over a skull, softly lit on a warm painted background, seen up close; 14) crossed swords over a skull, softly lit on a warm painted background, in a glowing; 15) an open storybook, softly lit on a warm painted background; 16) an open storybook, softly lit on a warm painted background, seen up close. Pictures only, never any words, captions, titles, letters or numbers, and no frames."
@@ -17585,16 +17565,6 @@
         "id": "chr_vale_rares"
       },
       {
-        "index": 1,
-        "file": "public/ui/deeds/chr_willowfen_first_cast.webp",
-        "id": "chr_willowfen_first_cast"
-      },
-      {
-        "index": 2,
-        "file": "public/ui/deeds/chr_willowfen_gatherer.webp",
-        "id": "chr_willowfen_gatherer"
-      },
-      {
         "index": 3,
         "file": "public/ui/deeds/chr_wraithwood_first_cast.webp",
         "id": "chr_wraithwood_first_cast"
@@ -17754,88 +17724,7 @@
     "id": "deeds_006",
     "family": "deeds",
     "grid": 4,
-    "cells": [
-      {
-        "index": 0,
-        "file": "public/ui/deeds/col_reliquary_rank_5.webp",
-        "id": "col_reliquary_rank_5"
-      },
-      {
-        "index": 1,
-        "file": "public/ui/deeds/col_set_boundstone_vanguard.webp",
-        "id": "col_set_boundstone_vanguard"
-      },
-      {
-        "index": 2,
-        "file": "public/ui/deeds/col_set_bramblehide.webp",
-        "id": "col_set_bramblehide"
-      },
-      {
-        "index": 3,
-        "file": "public/ui/deeds/col_set_crownforged.webp",
-        "id": "col_set_crownforged"
-      },
-      {
-        "index": 4,
-        "file": "public/ui/deeds/col_set_deathlord.webp",
-        "id": "col_set_deathlord"
-      },
-      {
-        "index": 5,
-        "file": "public/ui/deeds/col_set_greyjaw_stalker.webp",
-        "id": "col_set_greyjaw_stalker"
-      },
-      {
-        "index": 6,
-        "file": "public/ui/deeds/col_set_necromancers.webp",
-        "id": "col_set_necromancers"
-      },
-      {
-        "index": 7,
-        "file": "public/ui/deeds/col_set_nighttalon.webp",
-        "id": "col_set_nighttalon"
-      },
-      {
-        "index": 8,
-        "file": "public/ui/deeds/col_set_soulflame.webp",
-        "id": "col_set_soulflame"
-      },
-      {
-        "index": 9,
-        "file": "public/ui/deeds/col_set_stormcallers.webp",
-        "id": "col_set_stormcallers"
-      },
-      {
-        "index": 10,
-        "file": "public/ui/deeds/col_set_vale_arcanist.webp",
-        "id": "col_set_vale_arcanist"
-      },
-      {
-        "index": 11,
-        "file": "public/ui/deeds/col_set_wyrmshadow.webp",
-        "id": "col_set_wyrmshadow"
-      },
-      {
-        "index": 12,
-        "file": "public/ui/deeds/col_seven_regalia.webp",
-        "id": "col_seven_regalia"
-      },
-      {
-        "index": 13,
-        "file": "public/ui/deeds/col_true_colors.webp",
-        "id": "col_true_colors"
-      },
-      {
-        "index": 14,
-        "file": "public/ui/deeds/cmb_balgath.webp",
-        "id": "cmb_balgath"
-      },
-      {
-        "index": 15,
-        "file": "public/ui/deeds/cmb_balgath_ten.webp",
-        "id": "cmb_balgath_ten"
-      }
-    ],
+    "cells": [],
     "prompt": "Painted fantasy storybook game art, soft natural colours, warm top-left light. A 4x4 grid of 16 separate paintings in equal square cells split by thin black lines, each cell a full-bleed square painting filling the cell. Left to right, top to bottom: 1) an open treasure chest, softly lit on a warm painted background, over a battlefield; 2) an open treasure chest, softly lit on a warm painted background, in a swirling; 3) an open treasure chest, softly lit on a warm painted background, at dusk; 4) an open treasure chest, softly lit on a warm painted background, cracking the ground; 5) an open treasure chest, softly lit on a warm painted background, with drifting; 6) an open treasure chest, softly lit on a warm painted background, in a beam of light; 7) an open treasure chest, softly lit on a warm painted background, framed by mist; 8) an open treasure chest, softly lit on a warm painted background, spiralling; 9) an open treasure chest, softly lit on a warm painted background, shattering; 10) an open treasure chest, softly lit on a warm painted background, in a storm of motes; 11) an open treasure chest, softly lit on a warm painted background; 12) an open treasure chest, softly lit on a warm painted background, seen up close; 13) an open treasure chest, softly lit on a warm painted background, in a glowing ring; 14) an open treasure chest, softly lit on a warm painted background, rising upward; 15) a pickaxe on an ore vein, softly lit on a warm painted background, in a swirling; 16) a pickaxe on an ore vein, softly lit on a warm painted background, at dusk. Pictures only, never any words, captions, titles, letters or numbers, and no frames."
   },
   {
@@ -17871,52 +17760,50 @@
       {
         "index": 5,
         "file": "public/ui/deeds/cmb_heavy_hitter.webp",
-        "id": "cmb_heavy_hitter"
+        "id": "cmb_heavy_hitter",
+        "painted": 6
       },
       {
         "index": 6,
         "file": "public/ui/deeds/cmb_legion_of_one.webp",
-        "id": "cmb_legion_of_one"
+        "id": "cmb_legion_of_one",
+        "painted": 7
       },
       {
         "index": 7,
         "file": "public/ui/deeds/cmb_point_taken.webp",
-        "id": "cmb_point_taken"
+        "id": "cmb_point_taken",
+        "painted": 8
       },
       {
         "index": 8,
         "file": "public/ui/deeds/cmb_slayer.webp",
-        "id": "cmb_slayer"
+        "id": "cmb_slayer",
+        "painted": 9
       },
       {
         "index": 9,
         "file": "public/ui/deeds/cmb_thunzharr.webp",
-        "id": "cmb_thunzharr"
+        "id": "cmb_thunzharr",
+        "painted": 10
       },
       {
         "index": 10,
         "file": "public/ui/deeds/cmb_thunzharr_ten.webp",
-        "id": "cmb_thunzharr_ten"
+        "id": "cmb_thunzharr_ten",
+        "painted": 11
       },
       {
         "index": 11,
         "file": "public/ui/deeds/cmb_thunzharr_unbroken.webp",
-        "id": "cmb_thunzharr_unbroken"
+        "id": "cmb_thunzharr_unbroken",
+        "painted": 12
       },
       {
         "index": 12,
         "file": "public/ui/deeds/dlv_clears_50.webp",
-        "id": "dlv_clears_50"
-      },
-      {
-        "index": 13,
-        "file": "public/ui/deeds/dlv_companion_max.webp",
-        "id": "dlv_companion_max"
-      },
-      {
-        "index": 14,
-        "file": "public/ui/deeds/dlv_companions_both.webp",
-        "id": "dlv_companions_both"
+        "id": "dlv_clears_50",
+        "painted": 13
       },
       {
         "index": 15,
@@ -17954,12 +17841,14 @@
       {
         "index": 4,
         "file": "public/ui/deeds/dlv_reliquary_heroic.webp",
-        "id": "dlv_reliquary_heroic"
+        "id": "dlv_reliquary_heroic",
+        "painted": 5
       },
       {
         "index": 5,
         "file": "public/ui/deeds/dlv_rite_flawless.webp",
-        "id": "dlv_rite_flawless"
+        "id": "dlv_rite_flawless",
+        "painted": 4
       },
       {
         "index": 6,
@@ -18055,11 +17944,6 @@
         "id": "dgn_hollow_crypt_heroic"
       },
       {
-        "index": 7,
-        "file": "public/ui/deeds/dgn_ignivar.webp",
-        "id": "dgn_ignivar"
-      },
-      {
         "index": 8,
         "file": "public/ui/deeds/dgn_ignivar_heroic.webp",
         "id": "dgn_ignivar_heroic"
@@ -18093,11 +17977,6 @@
         "index": 14,
         "file": "public/ui/deeds/dgn_lady_nobody_hanging.webp",
         "id": "dgn_lady_nobody_hanging"
-      },
-      {
-        "index": 15,
-        "file": "public/ui/deeds/dgn_mark_circuit.webp",
-        "id": "dgn_mark_circuit"
       }
     ],
     "prompt": "Painted fantasy storybook game art, soft natural colours, warm top-left light. A 4x4 grid of 16 separate paintings in equal square cells split by thin black lines, each cell a full-bleed square painting filling the cell. Left to right, top to bottom: 1) crossed swords over a skull, softly lit on a warm painted background, rising upward; 2) crossed swords over a skull, softly lit on a warm painted background, twin; 3) crossed swords over a skull, softly lit on a warm painted background, erupting; 4) crossed swords over a skull, softly lit on a warm painted background, over a; 5) crossed swords over a skull, softly lit on a warm painted background, in a swirling; 6) crossed swords over a skull, softly lit on a warm painted background, at dusk; 7) crossed swords over a skull, softly lit on a warm painted background, cracking the; 8) crossed swords over a skull, softly lit on a warm painted background, with drifting; 9) crossed swords over a skull, softly lit on a warm painted background, in a beam of; 10) crossed swords over a skull, softly lit on a warm painted background, framed by mist; 11) crossed swords over a skull, softly lit on a warm painted background, spiralling; 12) crossed swords over a skull, softly lit on a warm painted background, shattering; 13) crossed swords over a skull, softly lit on a warm painted background, in a storm of; 14) crossed swords over a skull, softly lit on a warm painted background; 15) crossed swords over a skull, softly lit on a warm painted background, seen up close; 16) a dark dungeon gate, softly lit on a warm painted background, seen up close. Pictures only, never any words, captions, titles, letters or numbers, and no frames."
@@ -18238,17 +18117,14 @@
       {
         "index": 8,
         "file": "public/ui/deeds/dgn_vael_beacon.webp",
-        "id": "dgn_vael_beacon"
+        "id": "dgn_vael_beacon",
+        "painted": 9
       },
       {
         "index": 9,
         "file": "public/ui/deeds/dgn_vael_thralls.webp",
-        "id": "dgn_vael_thralls"
-      },
-      {
-        "index": 10,
-        "file": "public/ui/deeds/dgn_varkhul.webp",
-        "id": "dgn_varkhul"
+        "id": "dgn_vael_thralls",
+        "painted": 8
       },
       {
         "index": 11,
@@ -18258,22 +18134,8 @@
       {
         "index": 12,
         "file": "public/ui/deeds/dgn_varkhul_heroic.webp",
-        "id": "dgn_varkhul_heroic"
-      },
-      {
-        "index": 13,
-        "file": "public/ui/deeds/dgn_velkhar_bonewalkers.webp",
-        "id": "dgn_velkhar_bonewalkers"
-      },
-      {
-        "index": 14,
-        "file": "public/ui/deeds/dgn_velkhar_cold.webp",
-        "id": "dgn_velkhar_cold"
-      },
-      {
-        "index": 15,
-        "file": "public/ui/deeds/dgn_wildheart_basin.webp",
-        "id": "dgn_wildheart_basin"
+        "id": "dgn_varkhul_heroic",
+        "painted": 14
       }
     ],
     "prompt": "Painted fantasy storybook game art, soft natural colours, warm top-left light. A 4x4 grid of 16 separate paintings in equal square cells split by thin black lines, each cell a full-bleed square painting filling the cell. Left to right, top to bottom: 1) crossed swords over a skull, softly lit on a warm painted background, in a beam of; 2) a pickaxe on an ore vein, softly lit on a warm painted background; 3) crossed swords over a skull, softly lit on a warm painted background, framed by mist; 4) crossed swords over a skull, softly lit on a warm painted background, spiralling; 5) crossed swords over a skull, softly lit on a warm painted background, shattering; 6) a dark dungeon gate, softly lit on a warm painted background, twin; 7) crossed swords over a skull, softly lit on a warm painted background, in a storm of; 8) crossed swords over a skull, softly lit on a warm painted background; 9) crossed swords over a skull, softly lit on a warm painted background, seen up close; 10) a pickaxe on an ore vein, softly lit on a warm painted background, seen up close; 11) crossed swords over a skull, softly lit on a warm painted background, in a glowing; 12) crossed swords over a skull, softly lit on a warm painted background, rising upward; 13) crossed swords over a skull, softly lit on a warm painted background, twin; 14) a pickaxe on an ore vein, softly lit on a warm painted background, in a glowing ring; 15) crossed swords over a skull, softly lit on a warm painted background, erupting; 16) crossed swords over a skull, softly lit on a warm painted background, over a. Pictures only, never any words, captions, titles, letters or numbers, and no frames."
@@ -18326,42 +18188,44 @@
       {
         "index": 8,
         "file": "public/ui/deeds/exp_clue_first_casket.webp",
-        "id": "exp_clue_first_casket"
+        "id": "exp_clue_first_casket",
+        "painted": 10
       },
       {
         "index": 9,
         "file": "public/ui/deeds/exp_clue_ten_caskets.webp",
-        "id": "exp_clue_ten_caskets"
+        "id": "exp_clue_ten_caskets",
+        "painted": 11
       },
       {
         "index": 10,
         "file": "public/ui/deeds/exp_dawnhold_castle.webp",
-        "id": "exp_dawnhold_castle"
+        "id": "exp_dawnhold_castle",
+        "painted": 12
       },
       {
         "index": 11,
         "file": "public/ui/deeds/exp_duskweave_dispatches.webp",
-        "id": "exp_duskweave_dispatches"
+        "id": "exp_duskweave_dispatches",
+        "painted": 9
       },
       {
         "index": 12,
         "file": "public/ui/deeds/exp_first_herb.webp",
-        "id": "exp_first_herb"
+        "id": "exp_first_herb",
+        "painted": 13
       },
       {
         "index": 13,
         "file": "public/ui/deeds/exp_first_ore.webp",
-        "id": "exp_first_ore"
-      },
-      {
-        "index": 14,
-        "file": "public/ui/deeds/exp_first_timber.webp",
-        "id": "exp_first_timber"
+        "id": "exp_first_ore",
+        "painted": 14
       },
       {
         "index": 15,
         "file": "public/ui/deeds/exp_forge_helper.webp",
-        "id": "exp_forge_helper"
+        "id": "exp_forge_helper",
+        "painted": 8
       }
     ],
     "prompt": "Painted fantasy storybook game art, soft natural colours, warm top-left light. A 4x4 grid of 16 separate paintings in equal square cells split by thin black lines, each cell a full-bleed square painting filling the cell. Left to right, top to bottom: 1) crossed swords over a skull, softly lit on a warm painted background, in a swirling; 2) crossed swords over a skull, softly lit on a warm painted background, at dusk; 3) crossed swords over a skull, softly lit on a warm painted background, cracking the; 4) crossed swords over a skull, softly lit on a warm painted background, with drifting; 5) crossed swords over a skull, softly lit on a warm painted background, in a beam of; 6) a laurel wreath around a star, softly lit on a warm painted background, cracking; 7) a laurel wreath around a star, softly lit on a warm painted background, with; 8) crossed swords over a skull, softly lit on a warm painted background, shattering; 9) a laurel wreath around a star, softly lit on a warm painted background, in a beam; 10) a laurel wreath around a star, softly lit on a warm painted background, framed by; 11) a leaping fish, softly lit on a warm painted background, shattering; 12) a crafting hammer and anvil, softly lit on a warm painted background; 13) a sheaf of herbs and a sickle, softly lit on a warm painted background, twin; 14) a sheaf of herbs and a sickle, softly lit on a warm painted background, erupting; 15) a sheaf of herbs and a sickle, softly lit on a warm painted background, over a; 16) a crafting hammer and anvil, softly lit on a warm painted background, seen up close. Pictures only, never any words, captions, titles, letters or numbers, and no frames."
@@ -18512,12 +18376,14 @@
       {
         "index": 10,
         "file": "public/ui/deeds/hid_companion_save.webp",
-        "id": "hid_companion_save"
+        "id": "hid_companion_save",
+        "painted": 11
       },
       {
         "index": 11,
         "file": "public/ui/deeds/hid_fall_death.webp",
-        "id": "hid_fall_death"
+        "id": "hid_fall_death",
+        "painted": 10
       },
       {
         "index": 12,
@@ -18570,12 +18436,14 @@
       {
         "index": 4,
         "file": "public/ui/deeds/prog_armorcrafting_50.webp",
-        "id": "prog_armorcrafting_50"
+        "id": "prog_armorcrafting_50",
+        "painted": 5
       },
       {
         "index": 5,
         "file": "public/ui/deeds/prog_armorcrafting_rare.webp",
-        "id": "prog_armorcrafting_rare"
+        "id": "prog_armorcrafting_rare",
+        "painted": 4
       },
       {
         "index": 6,
@@ -18595,17 +18463,14 @@
       {
         "index": 9,
         "file": "public/ui/deeds/prog_callused_hands.webp",
-        "id": "prog_callused_hands"
+        "id": "prog_callused_hands",
+        "painted": 10
       },
       {
         "index": 10,
         "file": "public/ui/deeds/prog_champion.webp",
-        "id": "prog_champion"
-      },
-      {
-        "index": 11,
-        "file": "public/ui/deeds/prog_church_order_champion.webp",
-        "id": "prog_church_order_champion"
+        "id": "prog_champion",
+        "painted": 11
       },
       {
         "index": 12,
@@ -18766,42 +18631,37 @@
       {
         "index": 8,
         "file": "public/ui/deeds/prog_grandmaster_leatherworking.webp",
-        "id": "prog_grandmaster_leatherworking"
+        "id": "prog_grandmaster_leatherworking",
+        "painted": 9
       },
       {
         "index": 9,
         "file": "public/ui/deeds/prog_grandmaster_tailoring.webp",
-        "id": "prog_grandmaster_tailoring"
+        "id": "prog_grandmaster_tailoring",
+        "painted": 10
       },
       {
         "index": 10,
         "file": "public/ui/deeds/prog_grandmaster_weaponcrafting.webp",
-        "id": "prog_grandmaster_weaponcrafting"
+        "id": "prog_grandmaster_weaponcrafting",
+        "painted": 11
       },
       {
         "index": 11,
         "file": "public/ui/deeds/prog_guildsworn.webp",
-        "id": "prog_guildsworn"
+        "id": "prog_guildsworn",
+        "painted": 8
       },
       {
         "index": 12,
         "file": "public/ui/deeds/prog_herbalism_100.webp",
-        "id": "prog_herbalism_100"
-      },
-      {
-        "index": 13,
-        "file": "public/ui/deeds/prog_inscription_50.webp",
-        "id": "prog_inscription_50"
+        "id": "prog_herbalism_100",
+        "painted": 13
       },
       {
         "index": 14,
         "file": "public/ui/deeds/prog_inscription_rare.webp",
         "id": "prog_inscription_rare"
-      },
-      {
-        "index": 15,
-        "file": "public/ui/deeds/prog_jewelcrafting_50.webp",
-        "id": "prog_jewelcrafting_50"
       }
     ],
     "prompt": "Painted fantasy storybook game art, soft natural colours, warm top-left light. A 4x4 grid of 16 separate paintings in equal square cells split by thin black lines, each cell a full-bleed square painting filling the cell. Left to right, top to bottom: 1) a laurel wreath around a star, softly lit on a warm painted background, with; 2) crossed swords over a skull, softly lit on a warm painted background, over a; 3) crossed swords over a skull, softly lit on a warm painted background, in a swirling; 4) crossed swords over a skull, softly lit on a warm painted background, at dusk; 5) crossed swords over a skull, softly lit on a warm painted background, cracking the; 6) crossed swords over a skull, softly lit on a warm painted background, with drifting; 7) crossed swords over a skull, softly lit on a warm painted background, in a beam of; 8) crossed swords over a skull, softly lit on a warm painted background, framed by mist; 9) crossed swords over a skull, softly lit on a warm painted background, spiralling; 10) crossed swords over a skull, softly lit on a warm painted background, shattering; 11) crossed swords over a skull, softly lit on a warm painted background, in a storm of; 12) a crafting hammer and anvil, softly lit on a warm painted background, twin; 13) a sheaf of herbs and a sickle, softly lit on a warm painted background, in a beam; 14) crossed swords over a skull, softly lit on a warm painted background; 15) an open treasure chest, softly lit on a warm painted background, cracking the ground; 16) crossed swords over a skull, softly lit on a warm painted background, seen up close. Pictures only, never any words, captions, titles, letters or numbers, and no frames."
@@ -18859,12 +18719,14 @@
       {
         "index": 9,
         "file": "public/ui/deeds/prog_mere_at_rest.webp",
-        "id": "prog_mere_at_rest"
+        "id": "prog_mere_at_rest",
+        "painted": 10
       },
       {
         "index": 10,
         "file": "public/ui/deeds/prog_mining_100.webp",
-        "id": "prog_mining_100"
+        "id": "prog_mining_100",
+        "painted": 9
       },
       {
         "index": 11,
@@ -18927,12 +18789,14 @@
       {
         "index": 5,
         "file": "public/ui/deeds/prog_tailoring_rare.webp",
-        "id": "prog_tailoring_rare"
+        "id": "prog_tailoring_rare",
+        "painted": 6
       },
       {
         "index": 6,
         "file": "public/ui/deeds/prog_talented.webp",
-        "id": "prog_talented"
+        "id": "prog_talented",
+        "painted": 5
       },
       {
         "index": 7,
@@ -19113,12 +18977,14 @@
       {
         "index": 7,
         "file": "public/ui/deeds/pvp_vcup_first_goal.webp",
-        "id": "pvp_vcup_first_goal"
+        "id": "pvp_vcup_first_goal",
+        "painted": 8
       },
       {
         "index": 8,
         "file": "public/ui/deeds/pvp_vcup_first_match.webp",
-        "id": "pvp_vcup_first_match"
+        "id": "pvp_vcup_first_match",
+        "painted": 7
       },
       {
         "index": 9,
@@ -19211,7 +19077,8 @@
       {
         "index": 9,
         "file": "public/ui/deeds/soc_guild_founded.webp",
-        "id": "soc_guild_founded"
+        "id": "soc_guild_founded",
+        "painted": 15
       },
       {
         "index": 10,
@@ -19226,22 +19093,19 @@
       {
         "index": 12,
         "file": "public/ui/deeds/soc_market_magnate.webp",
-        "id": "soc_market_magnate"
+        "id": "soc_market_magnate",
+        "painted": 13
       },
       {
         "index": 13,
         "file": "public/ui/deeds/soc_meet_bursar.webp",
-        "id": "soc_meet_bursar"
+        "id": "soc_meet_bursar",
+        "painted": 12
       },
       {
         "index": 14,
         "file": "public/ui/deeds/soc_pocket_money.webp",
         "id": "soc_pocket_money"
-      },
-      {
-        "index": 15,
-        "file": "public/ui/deeds/soc_room_for_more.webp",
-        "id": "soc_room_for_more"
       }
     ],
     "prompt": "Painted fantasy storybook game art, soft natural colours, warm top-left light. A 4x4 grid of 16 separate paintings in equal square cells split by thin black lines, each cell a full-bleed square painting filling the cell. Left to right, top to bottom: 1) a laurel wreath around a star, softly lit on a warm painted background, in a; 2) a laurel wreath around a star, softly lit on a warm painted background, rising; 3) a laurel wreath around a star, softly lit on a warm painted background, twin; 4) an open treasure chest, softly lit on a warm painted background, shattering; 5) a laurel wreath around a star, softly lit on a warm painted background, erupting; 6) a laurel wreath around a star, softly lit on a warm painted background, over a; 7) a laurel wreath around a star, softly lit on a warm painted background, in a; 8) a dark dungeon gate, softly lit on a warm painted background, cracking the ground; 9) a laurel wreath around a star, softly lit on a warm painted background, at dusk; 10) a laurel wreath around a star, softly lit on a warm painted background, cracking; 11) a laurel wreath around a star, softly lit on a warm painted background, with; 12) a laurel wreath around a star, softly lit on a warm painted background, in a beam; 13) an open treasure chest, softly lit on a warm painted background, in a storm of motes; 14) a laurel wreath around a star, softly lit on a warm painted background, framed by; 15) a laurel wreath around a star, softly lit on a warm painted background, spiralling; 16) a pickaxe on an ore vein, softly lit on a warm painted background, in a storm of. Pictures only, never any words, captions, titles, letters or numbers, and no frames."
@@ -19273,5 +19137,271 @@
       }
     ],
     "prompt": "Painted fantasy storybook game art, soft natural colours, warm top-left light. A 4x4 grid of 16 separate paintings in equal square cells split by thin black lines, each cell a full-bleed square painting filling the cell. Left to right, top to bottom: 1) a laurel wreath around a star, softly lit on a warm painted background, shattering; 2) an open treasure chest, softly lit on a warm painted background; 3) a laurel wreath around a star, softly lit on a warm painted background, in a storm; 4) a laurel wreath around a star, softly lit on a warm painted background; 5) a laurel wreath around a star, softly lit on a warm painted background, shattering; 6) an open treasure chest, softly lit on a warm painted background; 7) a laurel wreath around a star, softly lit on a warm painted background, in a storm; 8) a laurel wreath around a star, softly lit on a warm painted background; 9) a laurel wreath around a star, softly lit on a warm painted background, shattering; 10) an open treasure chest, softly lit on a warm painted background; 11) a laurel wreath around a star, softly lit on a warm painted background, in a storm; 12) a laurel wreath around a star, softly lit on a warm painted background; 13) a laurel wreath around a star, softly lit on a warm painted background, shattering; 14) an open treasure chest, softly lit on a warm painted background; 15) a laurel wreath around a star, softly lit on a warm painted background, in a storm; 16) a laurel wreath around a star, softly lit on a warm painted background. Pictures only, never any words, captions, titles, letters or numbers, and no frames."
+  },
+  {
+    "id": "deeds_fix_001",
+    "family": "deeds",
+    "grid": 3,
+    "cells": [
+      {
+        "index": 4,
+        "file": "public/ui/deeds/chr_willowfen_first_cast.webp",
+        "id": "chr_willowfen_first_cast",
+        "subject": "a whiskered catfish beside floating lily pads in dark green marsh water"
+      },
+      {
+        "index": 6,
+        "file": "public/ui/deeds/chr_marsh_chapter_ii.webp",
+        "id": "chr_marsh_chapter_ii",
+        "subject": "an open storybook, softly lit on a warm painted background, seen up close"
+      },
+      {
+        "index": 7,
+        "file": "public/ui/deeds/col_reliquary_rank_5.webp",
+        "id": "col_reliquary_rank_5",
+        "subject": "an open treasure chest, softly lit on a warm painted background, over a battlefield"
+      },
+      {
+        "index": 8,
+        "file": "public/ui/deeds/col_set_boundstone_vanguard.webp",
+        "id": "col_set_boundstone_vanguard",
+        "subject": "an open treasure chest, softly lit on a warm painted background, in a swirling vortex"
+      }
+    ],
+    "prompt": "Painted fantasy storybook game art, soft natural colours, warm top-left light. A 3x3 grid of 9 separate paintings in equal square cells split by thin black lines, each cell a full-bleed square painting filling the cell. Left to right, top to bottom: 1) a silver fish leaping out of a curling turquoise sea wave under cool sea-green light; 2) a woven basket of pink seashells and green kelp resting on pale sand in morning light; 3) a bent fishing rod with a taut line over a wind-whipped violet mountain lake; 4) white feathers and blue alpine flowers swirling on a gust of wind against a pale sky; 5) a whiskered catfish beside floating lily pads in dark green marsh water; 6) a reed basket of brown mushrooms beneath drooping willow fronds in olive dusk light; 7) an open storybook, softly lit on a warm painted background, seen up close; 8) an open treasure chest, softly lit on a warm painted background, over a battlefield; 9) an open treasure chest, softly lit on a warm painted background, in a swirling vortex. Pictures only, never any words, captions, titles, letters or numbers, and no frames."
+  },
+  {
+    "id": "deeds_fix_002",
+    "family": "deeds",
+    "grid": 3,
+    "cells": [
+      {
+        "index": 0,
+        "file": "public/ui/deeds/col_set_bramblehide.webp",
+        "id": "col_set_bramblehide",
+        "subject": "an open treasure chest, softly lit on a warm painted background, at dusk"
+      },
+      {
+        "index": 1,
+        "file": "public/ui/deeds/col_set_crownforged.webp",
+        "id": "col_set_crownforged",
+        "subject": "an open treasure chest, softly lit on a warm painted background, cracking the ground"
+      },
+      {
+        "index": 2,
+        "file": "public/ui/deeds/col_set_deathlord.webp",
+        "id": "col_set_deathlord",
+        "subject": "an open treasure chest, softly lit on a warm painted background, with drifting sparks"
+      },
+      {
+        "index": 3,
+        "file": "public/ui/deeds/col_set_greyjaw_stalker.webp",
+        "id": "col_set_greyjaw_stalker",
+        "subject": "an open treasure chest, softly lit on a warm painted background, in a beam of light"
+      },
+      {
+        "index": 4,
+        "file": "public/ui/deeds/col_set_necromancers.webp",
+        "id": "col_set_necromancers",
+        "subject": "an open treasure chest, softly lit on a warm painted background, framed by mist"
+      },
+      {
+        "index": 5,
+        "file": "public/ui/deeds/col_set_nighttalon.webp",
+        "id": "col_set_nighttalon",
+        "subject": "an open treasure chest, softly lit on a warm painted background, spiralling"
+      },
+      {
+        "index": 6,
+        "file": "public/ui/deeds/col_set_soulflame.webp",
+        "id": "col_set_soulflame",
+        "subject": "an open treasure chest, softly lit on a warm painted background, shattering"
+      },
+      {
+        "index": 7,
+        "file": "public/ui/deeds/col_set_stormcallers.webp",
+        "id": "col_set_stormcallers",
+        "subject": "an open treasure chest, softly lit on a warm painted background, in a storm of motes"
+      },
+      {
+        "index": 8,
+        "file": "public/ui/deeds/col_set_vale_arcanist.webp",
+        "id": "col_set_vale_arcanist",
+        "subject": "an open treasure chest, softly lit on a warm painted background"
+      }
+    ],
+    "prompt": "Painted fantasy storybook game art, soft natural colours, warm top-left light. A 3x3 grid of 9 separate paintings in equal square cells split by thin black lines, each cell a full-bleed square painting filling the cell. Left to right, top to bottom: 1) an open treasure chest, softly lit on a warm painted background, at dusk; 2) an open treasure chest, softly lit on a warm painted background, cracking the ground; 3) an open treasure chest, softly lit on a warm painted background, with drifting sparks; 4) an open treasure chest, softly lit on a warm painted background, in a beam of light; 5) an open treasure chest, softly lit on a warm painted background, framed by mist; 6) an open treasure chest, softly lit on a warm painted background, spiralling; 7) an open treasure chest, softly lit on a warm painted background, shattering; 8) an open treasure chest, softly lit on a warm painted background, in a storm of motes; 9) an open treasure chest, softly lit on a warm painted background. Pictures only, never any words, captions, titles, letters or numbers, and no frames."
+  },
+  {
+    "id": "deeds_fix_003",
+    "family": "deeds",
+    "grid": 3,
+    "cells": [
+      {
+        "index": 0,
+        "file": "public/ui/deeds/col_set_wyrmshadow.webp",
+        "id": "col_set_wyrmshadow",
+        "subject": "an open treasure chest, softly lit on a warm painted background, seen up close"
+      },
+      {
+        "index": 1,
+        "file": "public/ui/deeds/col_seven_regalia.webp",
+        "id": "col_seven_regalia",
+        "subject": "an open treasure chest, softly lit on a warm painted background, in a glowing ring"
+      },
+      {
+        "index": 2,
+        "file": "public/ui/deeds/col_true_colors.webp",
+        "id": "col_true_colors",
+        "subject": "an open treasure chest, softly lit on a warm painted background, rising upward"
+      },
+      {
+        "index": 3,
+        "file": "public/ui/deeds/cmb_balgath.webp",
+        "id": "cmb_balgath",
+        "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, in a swirling vortex"
+      },
+      {
+        "index": 4,
+        "file": "public/ui/deeds/cmb_balgath_ten.webp",
+        "id": "cmb_balgath_ten",
+        "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, at dusk"
+      },
+      {
+        "index": 5,
+        "file": "public/ui/deeds/dlv_companion_max.webp",
+        "id": "dlv_companion_max",
+        "subject": "a small friendly creature, softly lit on a warm painted background"
+      },
+      {
+        "index": 6,
+        "file": "public/ui/deeds/dlv_companions_both.webp",
+        "id": "dlv_companions_both",
+        "subject": "a small friendly creature, softly lit on a warm painted background, seen up close"
+      },
+      {
+        "index": 7,
+        "file": "public/ui/deeds/dgn_ignivar.webp",
+        "id": "dgn_ignivar",
+        "subject": "crossed swords over a skull, softly lit on a warm painted background, with drifting sparks"
+      },
+      {
+        "index": 8,
+        "file": "public/ui/deeds/dgn_mark_circuit.webp",
+        "id": "dgn_mark_circuit",
+        "subject": "a dark dungeon gate, softly lit on a warm painted background, seen up close"
+      }
+    ],
+    "prompt": "Painted fantasy storybook game art, soft natural colours, warm top-left light. A 3x3 grid of 9 separate paintings in equal square cells split by thin black lines, each cell a full-bleed square painting filling the cell. Left to right, top to bottom: 1) an open treasure chest, softly lit on a warm painted background, seen up close; 2) an open treasure chest, softly lit on a warm painted background, in a glowing ring; 3) an open treasure chest, softly lit on a warm painted background, rising upward; 4) a pickaxe on an ore vein, softly lit on a warm painted background, in a swirling vortex; 5) a pickaxe on an ore vein, softly lit on a warm painted background, at dusk; 6) a small friendly creature, softly lit on a warm painted background; 7) a small friendly creature, softly lit on a warm painted background, seen up close; 8) crossed swords over a skull, softly lit on a warm painted background, with drifting sparks; 9) a dark dungeon gate, softly lit on a warm painted background, seen up close. Pictures only, never any words, captions, titles, letters or numbers, and no frames."
+  },
+  {
+    "id": "deeds_fix_004",
+    "family": "deeds",
+    "grid": 3,
+    "cells": [
+      {
+        "index": 0,
+        "file": "public/ui/deeds/dgn_varkhul.webp",
+        "id": "dgn_varkhul",
+        "subject": "crossed swords over a skull, softly lit on a warm painted background, in a glowing ring"
+      },
+      {
+        "index": 1,
+        "file": "public/ui/deeds/dgn_velkhar_bonewalkers.webp",
+        "id": "dgn_velkhar_bonewalkers",
+        "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, in a glowing ring"
+      },
+      {
+        "index": 2,
+        "file": "public/ui/deeds/dgn_velkhar_cold.webp",
+        "id": "dgn_velkhar_cold",
+        "subject": "crossed swords over a skull, softly lit on a warm painted background, erupting outward"
+      },
+      {
+        "index": 4,
+        "file": "public/ui/deeds/exp_first_timber.webp",
+        "id": "exp_first_timber",
+        "subject": "a sheaf of herbs and a sickle, softly lit on a warm painted background, over a battlefield"
+      },
+      {
+        "index": 5,
+        "file": "public/ui/deeds/prog_church_order_champion.webp",
+        "id": "prog_church_order_champion",
+        "subject": "a laurel wreath around a star, softly lit on a warm painted background, in a swirling vortex"
+      },
+      {
+        "index": 6,
+        "file": "public/ui/deeds/prog_inscription_50.webp",
+        "id": "prog_inscription_50",
+        "subject": "crossed swords over a skull, softly lit on a warm painted background"
+      },
+      {
+        "index": 7,
+        "file": "public/ui/deeds/prog_jewelcrafting_50.webp",
+        "id": "prog_jewelcrafting_50",
+        "subject": "crossed swords over a skull, softly lit on a warm painted background, seen up close"
+      },
+      {
+        "index": 8,
+        "file": "public/ui/deeds/soc_room_for_more.webp",
+        "id": "soc_room_for_more",
+        "subject": "a pickaxe on an ore vein, softly lit on a warm painted background, in a storm of motes"
+      }
+    ],
+    "prompt": "Painted fantasy storybook game art, soft natural colours, warm top-left light. A 3x3 grid of 9 separate paintings in equal square cells split by thin black lines, each cell a full-bleed square painting filling the cell. Left to right, top to bottom: 1) crossed swords over a skull, softly lit on a warm painted background, in a glowing ring; 2) a pickaxe on an ore vein, softly lit on a warm painted background, in a glowing ring; 3) crossed swords over a skull, softly lit on a warm painted background, erupting outward; 4) crossed swords over a skull, softly lit on a warm painted background, over a battlefield; 5) a sheaf of herbs and a sickle, softly lit on a warm painted background, over a battlefield; 6) a laurel wreath around a star, softly lit on a warm painted background, in a swirling vortex; 7) crossed swords over a skull, softly lit on a warm painted background; 8) crossed swords over a skull, softly lit on a warm painted background, seen up close; 9) a pickaxe on an ore vein, softly lit on a warm painted background, in a storm of motes. Pictures only, never any words, captions, titles, letters or numbers, and no frames."
+  },
+  {
+    "id": "deeds_fix_005",
+    "family": "deeds",
+    "grid": 3,
+    "cells": [
+      {
+        "index": 0,
+        "file": "public/ui/deeds/chr_farshore_first_cast.webp",
+        "id": "chr_farshore_first_cast",
+        "subject": "a small bright silver fish leaping high in the top of the frame above a deep black night ocean"
+      },
+      {
+        "index": 1,
+        "file": "public/ui/deeds/chr_farshore_gatherer.webp",
+        "id": "chr_farshore_gatherer",
+        "subject": "pink seashells on glowing white sand filling the lower half under a dark navy night sky",
+        "painted": 3
+      },
+      {
+        "index": 2,
+        "file": "public/ui/deeds/chr_galecrest_first_cast.webp",
+        "id": "chr_galecrest_first_cast",
+        "subject": "a fishing rod held out from a pitch dark cliff on the right toward a blazing sunlit sky on the left"
+      },
+      {
+        "index": 3,
+        "file": "public/ui/deeds/chr_galecrest_gatherer.webp",
+        "id": "chr_galecrest_gatherer",
+        "subject": "white feathers caught in bright wind on the right side beside dark storm clouds on the left",
+        "painted": 5
+      },
+      {
+        "index": 4,
+        "file": "public/ui/deeds/chr_willowfen_gatherer.webp",
+        "id": "chr_willowfen_gatherer",
+        "subject": "one dark brown mushroom silhouette in the centre ringed by bright glowing pale green marsh fog"
+      }
+    ],
+    "prompt": "Painted fantasy storybook game art, soft natural colours, warm top-left light. A 3x3 grid of 9 separate paintings in equal square cells split by thin black lines, each cell a full-bleed square painting filling the cell. Left to right, top to bottom: 1) a small bright silver fish leaping high in the top of the frame above a deep black night ocean; 2) pink seashells on glowing white sand filling the lower half under a dark navy night sky; 3) a fishing rod held out from a pitch dark cliff on the right toward a blazing sunlit sky on the left; 4) white feathers caught in bright wind on the right side beside dark storm clouds on the left; 5) one dark brown mushroom silhouette in the centre ringed by bright glowing pale green marsh fog; 6) a plain grey pebble; 7) a plain wooden spoon; 8) a plain clay cup; 9) a plain iron key. Pictures only, never any words, captions, titles, letters or numbers, and no frames."
+  },
+  {
+    "id": "deeds_fix_006",
+    "family": "deeds",
+    "grid": 2,
+    "cells": [
+      {
+        "index": 0,
+        "file": "public/ui/deeds/dgn_wildheart_basin.webp",
+        "id": "dgn_wildheart_basin",
+        "subject": "a deep forest basin seen from above, a ring of dark green treetops around a glowing turquoise pool"
+      }
+    ],
+    "prompt": "Painted fantasy storybook game art, soft natural colours, warm top-left light. A 2x2 grid of 4 separate paintings in equal square cells split by thin black lines, each cell a full-bleed square painting filling the cell. Left to right, top to bottom: 1) a deep forest basin seen from above, a ring of dark green treetops around a glowing turquoise pool; 2) a plain grey pebble; 3) a plain wooden spoon; 4) a plain clay cup. Pictures only, never any words, captions, titles, letters or numbers, and no frames."
   }
 ]

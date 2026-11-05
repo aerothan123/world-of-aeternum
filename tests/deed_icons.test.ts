@@ -457,11 +457,11 @@ describe('Book of Deeds webp icons', () => {
     // bytes and the record they must agree with is scripts/assets/wyndlewood_2d/provenance.json.
     const REPAINTED_CREST_SHA256: Record<string, string> = {
       prog_jewelcrafting_rare: 'fde8c17c565c65c942f91c2a4c83294105bbc356b17df96dae2b938cc7a54bfa',
-      prog_jewelcrafting_50: '2b8e3f6217c6a5ec67e591cacd3a6e4b46dc3ade7e6c5811351ffb11688de612',
+      prog_jewelcrafting_50: '821c87a9d1e16636a853a8b1eb32ddf1e44ba80405d2f046b8e31269247746d7',
       prog_grandmaster_jewelcrafting:
         '08b5b949dea9b31eca6658e8883bc0731ccfd632ee02531485350d088a727233',
       prog_inscription_rare: '4e8c6bfda5f170084adcbe576a6823ee52b8e32836e520c20546b07960e0af5e',
-      prog_inscription_50: '31cb3be9573ec62752253cbae8574a41644525c831779635988360bc7748ff03',
+      prog_inscription_50: '7af66495fe7052d91d9013efa6d7dadfd1d62fd1f189b18155db6923fb7be145',
       prog_grandmaster_inscription:
         'a3f18310d7c2c17677655d27f85cbc8dd33f996aa50d278b69e6e4441ea95c13',
     };

@@ -507,3 +507,15 @@
 {"sheet":"deeds_014","taskId":"abb6d405-56cb-4b70-a17c-32872611af89","status":"done","credits":5,"bytes":1248244}
 {"sheet":"items_062","taskId":"f42031f5-25a1-4d87-bec0-083fd83695d8","status":"created","model":"seedream_v4","at":"2026-11-05T09:29:13.426Z"}
 {"sheet":"items_062","taskId":"f42031f5-25a1-4d87-bec0-083fd83695d8","status":"done","credits":5,"bytes":1227020}
+{"sheet":"deeds_fix_001","taskId":"965d2079-38d5-4786-87c9-423d4ddcf7ea","status":"created","model":"seedream_v4","at":"2026-11-05T11:28:45.809Z"}
+{"sheet":"deeds_fix_001","taskId":"965d2079-38d5-4786-87c9-423d4ddcf7ea","status":"done","credits":5,"bytes":1127948}
+{"sheet":"deeds_fix_003","taskId":"c3330d93-2387-4ae4-9733-6709eab8a70c","status":"created","model":"seedream_v4","at":"2026-11-05T11:29:04.965Z"}
+{"sheet":"deeds_fix_003","taskId":"c3330d93-2387-4ae4-9733-6709eab8a70c","status":"done","credits":5,"bytes":1080084}
+{"sheet":"deeds_fix_004","taskId":"5d30c542-a250-4b43-92b0-458bdda96ad0","status":"created","model":"seedream_v4","at":"2026-11-05T11:29:20.831Z"}
+{"sheet":"deeds_fix_004","taskId":"5d30c542-a250-4b43-92b0-458bdda96ad0","status":"done","credits":5,"bytes":1270223}
+{"sheet":"deeds_fix_002","taskId":"9fe9256c-ec88-4f38-a765-5e506fa58cb2","status":"created","model":"seedream_v4","at":"2026-11-05T11:30:01.445Z"}
+{"sheet":"deeds_fix_002","taskId":"9fe9256c-ec88-4f38-a765-5e506fa58cb2","status":"done","credits":5,"bytes":1095977}
+{"sheet":"deeds_fix_005","taskId":"affedf86-f5b7-4c30-8a73-b294ac4801ac","status":"created","model":"seedream_v4","at":"2026-11-05T11:41:32.249Z"}
+{"sheet":"deeds_fix_005","taskId":"affedf86-f5b7-4c30-8a73-b294ac4801ac","status":"done","credits":5,"bytes":995450}
+{"sheet":"deeds_fix_006","taskId":"b74b913a-1339-4e93-8fa3-e2766c3f1bb5","status":"created","model":"seedream_v4","at":"2026-11-05T11:54:09.853Z"}
+{"sheet":"deeds_fix_006","taskId":"b74b913a-1339-4e93-8fa3-e2766c3f1bb5","status":"done","credits":5,"bytes":999013}

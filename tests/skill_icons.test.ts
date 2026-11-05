@@ -539,7 +539,8 @@ describe('class ability webp icons', () => {
     }
     expect(hashes.size).toBe(generatedIds.length);
     expect(readFileSync(path.join(repoRoot, 'CREDITS.md'), 'utf8')).toContain(
-      'Generated Warlock spell and talent icons',
+      // The generated batch was repainted with the rest of the skills by the Wyndlewood pass.
+      'Wyndlewood repaint of `public/ui/skills/`',
     );
   });
 

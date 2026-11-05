@@ -1,0 +1,22 @@
+{
+  "seed": 20061,
+  "painter": "src/ui/map_terrain.ts paintTerrainRows",
+  "plates": [
+    "public/map_art/amberfall.png",
+    "public/map_art/drakelands.png",
+    "public/map_art/eastbrook_vale.png",
+    "public/map_art/evergarden.png",
+    "public/map_art/farshore_isle.png",
+    "public/map_art/frostveil.png",
+    "public/map_art/galecrest.png",
+    "public/map_art/mirefen_marsh.png",
+    "public/map_art/nightbloom.png",
+    "public/map_art/palmreach.png",
+    "public/map_art/thornpeak_heights.png",
+    "public/map_art/veiled_hollow.png",
+    "public/map_art/willowfen.png",
+    "public/map_art/world.png",
+    "public/map_art/world_overview.webp",
+    "public/map_art/wraithwood.png"
+  ]
+}

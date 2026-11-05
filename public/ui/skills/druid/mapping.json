@@ -14,6 +14,15 @@
       "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
+      "abilityId": "challenging_roar",
+      "output": "challenging_roar.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_001/6",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
+    },
+    {
       "abilityId": "healing_touch",
       "output": "healing_touch.webp",
       "sourcePack": "wyndlewood-2d-v1",
