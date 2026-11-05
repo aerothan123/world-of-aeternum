@@ -20,9 +20,8 @@ import type { WocCharacterManifest } from './woc_character_manifest';
 import { WOC_ITEM_DISPLAY } from './woc_item_display';
 import type { WocAppearance, WocWorn } from './woc_parts_core';
 
-// the visual's third and fourth hooks: what a stylized body can draw while a set file still
-// streams, and the body regions that fill a seam between two sets
-export { stylizedDrawableWorn, stylizedSeamFill } from './stylized_kit_core';
+// the visual's third hook: what a stylized body can draw while a set file still streams
+export { stylizedDrawableWorn } from './stylized_kit_core';
 
 /** The live item table, as the gear mapping reads it. */
 const ITEM_LOOKUP: StylizedItemLookup = {

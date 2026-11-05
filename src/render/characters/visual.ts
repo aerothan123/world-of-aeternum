@@ -184,12 +184,7 @@ import {
   tickStow,
 } from './stow_transition';
 import { auraHeldClip, stunIdleClip } from './stun_idle_core';
-import {
-  stylizedAppearanceFor,
-  stylizedDrawableWorn,
-  stylizedKitFor,
-  stylizedSeamFill,
-} from './stylized_kit_dev';
+import { stylizedAppearanceFor, stylizedDrawableWorn, stylizedKitFor } from './stylized_kit_dev';
 import { CharacterSurfaceResponse, SURFACE_RESPONSE_PROGRAM } from './surface_response';
 import { createTurnInPlaceState, stepTurnInPlace } from './turn_in_place_core';
 import { warriorActionBlend } from './warrior_action_blend';
@@ -840,7 +835,7 @@ export class CharacterVisual {
       stylizedAppearanceFor(manifest) ?? wocDefaultAppearance(manifest),
       stylizedDrawableWorn(manifest, worn, this.wocParts),
     );
-    applyWocPartVisibility(this.wocParts, manifest, stylizedSeamFill(manifest, worn, wanted));
+    applyWocPartVisibility(this.wocParts, manifest, wanted);
     // The modular head after the part pass: the worn helm hides its hair.
     if (this.wocHead && !this.wocHead.setHelm(wocWornHidesHair(manifest, worn))) {
       this.wocHead.apply();

@@ -210,7 +210,7 @@ export function stylizedKitWorn(
       set && (slot !== 'head' || HELMED.has(set)) ? stylizedItemId(fit, set, slot) : null;
   }
   if (helmHidden) worn.head = null;
-  return worn;
+  return stylizedCloseSeams(fit, worn);
 }
 
 /**
@@ -323,7 +323,7 @@ export function stylizedGearWorn(
     worn[slot] = slot !== 'head' || HELMED.has(set) ? stylizedItemId(fit, set, slot) : null;
   }
   if (helmHidden) worn.head = null;
-  return worn;
+  return stylizedCloseSeams(fit, worn);
 }
 
 const catalogCache = new Map<WocFit, ReadonlyMap<string, WocArmorItem>>();
@@ -344,42 +344,27 @@ export function stylizedFitCatalog(fit: WocFit): ReadonlyMap<string, WocArmorIte
   return hit;
 }
 
-/** The slots whose pieces meet: each set is cut to close against its OWN neighbour, so where
- *  two sets (or a set and a bare slot) meet, a sliver of the body between them is hidden by
- *  neither. */
-const SEAMS: readonly (readonly [string, string])[] = [
+/** The seams a kit closes: each set is cut to meet its OWN neighbour, so a piece of one set
+ *  over a piece of another opens a gap between them (a plate chest ends above a leather
+ *  belt). The second slot of each pair follows the first's set while both are worn: the belt
+ *  goes with the chest, the gloves with the shoulders. */
+const SEAM_FOLLOWERS: readonly (readonly [string, string])[] = [
   ['chest', 'waist'],
-  ['chest', 'arms'],
   ['arms', 'hands'],
-  ['waist', 'legs'],
-  ['legs', 'feet'],
 ];
 
-/**
- * The mixed-kit seam: `wanted` (the parts a stylized body draws) plus the bare body regions
- * under both sides of every seam whose two sides are not one set, so the body fills the gap
- * instead of the far side of the armor showing through it. Untouched (the same set back)
- * for any other body and for a kit that is one set throughout.
- */
-export function stylizedSeamFill(
-  manifest: WocCharacterManifest,
-  worn: WocWorn,
-  wanted: Set<string>,
-): Set<string> {
-  if (!manifest.ownHead) return wanted;
-  const setOf = (slot: string): string | null => {
-    const id = worn[slot];
-    if (!id) return null;
-    return (manifest.items[id] ?? stylizedFitCatalog(manifest.fit).get(id))?.set ?? null;
-  };
-  for (const [a, b] of SEAMS) {
-    if (setOf(a) === setOf(b)) continue;
-    for (const slot of [a, b]) {
-      for (const n of manifest.appearance[`body_${slot}`]?.variants.default?.nodes ?? [])
-        wanted.add(n);
-    }
+/** `worn` with every open seam closed (SEAM_FOLLOWERS); the same object when none is open. */
+export function stylizedCloseSeams(fit: WocFit, worn: WocWorn): WocWorn {
+  const catalog = stylizedFitCatalog(fit);
+  let out: Record<string, string | null> | null = null;
+  for (const [lead, follow] of SEAM_FOLLOWERS) {
+    const a = worn[lead] ? catalog.get(worn[lead] as string) : undefined;
+    const b = worn[follow] ? catalog.get(worn[follow] as string) : undefined;
+    if (!a || !b || a.set === b.set) continue;
+    out ??= { ...worn };
+    out[follow] = stylizedItemId(fit, a.set.replace(/^stylized_/, '') as StylizedSet, follow);
   }
-  return wanted;
+  return out ?? worn;
 }
 
 /** The face and hair a dev review asks for, onto the manifest's defaults. */

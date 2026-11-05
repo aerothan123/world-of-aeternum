@@ -5,12 +5,12 @@ import {
   STYLIZED_SET_ARMOR,
   STYLIZED_SETS,
   type StylizedItemLookup,
+  stylizedCloseSeams,
   stylizedFitCatalog,
   stylizedGearWorn,
   stylizedItemId,
   stylizedKitWorn,
   stylizedManifest,
-  stylizedSeamFill,
   stylizedSetForItem,
   stylizedSetOfDisplay,
 } from '../src/render/characters/stylized_kit_core';
@@ -92,31 +92,27 @@ describe('stylized gear mapping', () => {
   });
 });
 
-describe('stylized seam fill', () => {
-  const m = stylizedManifest('male', WOC_WARRIOR_MANIFEST, 'plate', ['leather']);
-  const region = (slot: string) => m.appearance[`body_${slot}`].variants.default.nodes[0];
-
-  it('adds nothing for a kit that is one set throughout', () => {
+describe('stylized seam closing', () => {
+  it('leaves a kit that is one set throughout untouched', () => {
     const worn = stylizedKitWorn('male', 'plate', false);
-    const wanted = wocVisibleParts(m, m.defaultAppearance, worn);
-    const before = [...wanted];
-    expect([...stylizedSeamFill(m, worn, wanted)]).toEqual(before);
+    expect(stylizedCloseSeams('male', worn)).toBe(worn);
   });
 
-  it('shows the body under both sides of a seam where two sets meet', () => {
-    const worn = stylizedKitWorn('male', 'mixed', false);
-    const wanted = stylizedSeamFill(m, worn, wocVisibleParts(m, m.defaultAppearance, worn));
-    // plate chest and arms over leather waist and hands: chest/waist and arms/hands seams
-    for (const slot of ['chest', 'waist', 'arms', 'hands'])
-      expect(wanted.has(region(slot))).toBe(true);
-    // leather waist, legs and feet meet each other only: those stay covered
-    expect(wanted.has(region('legs'))).toBe(false);
-    expect(wanted.has(region('feet'))).toBe(false);
-  });
-
-  it('leaves a WOC body alone', () => {
-    const wanted = new Set(['x']);
-    expect(stylizedSeamFill(WOC_WARRIOR_MANIFEST, { chest: null }, wanted)).toBe(wanted);
-    expect([...wanted]).toEqual(['x']);
+  it('puts the belt with the chest and the gloves with the shoulders across two sets', () => {
+    const worn = stylizedKitWorn('female', 'mixed', false);
+    expect(worn.chest).toBe(stylizedItemId('female', 'plate', 'chest'));
+    expect(worn.waist).toBe(stylizedItemId('female', 'plate', 'waist'));
+    expect(worn.hands).toBe(stylizedItemId('female', 'plate', 'hands'));
+    expect(worn.legs).toBe(stylizedItemId('female', 'leather', 'legs'));
+    const gear = stylizedGearWorn(
+      'male',
+      { chest: 'robe', waist: 'belt', gloves: 'mitts' },
+      false,
+      'mage',
+      lookup({ robe: 'cloth', belt: 'leather', mitts: 'leather' }),
+    );
+    expect(gear.waist).toBe(stylizedItemId('male', 'mage', 'waist'));
+    // no shoulders worn: the gloves keep their own set
+    expect(gear.hands).toBe(stylizedItemId('male', 'leather', 'hands'));
   });
 });
