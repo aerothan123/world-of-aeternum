@@ -1,4 +1,1174 @@
 {
+  "public/ui/auras/affliction_doom.webp": {
+    "sheet": "auras_001",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "4e47b636-0bad-43c9-b948-5b395e0002d8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, a lingering magical effect",
+    "masterSha256": "b4ea585d359665de014c677f52268416586b062d559fd9939f971d919962ca7d"
+  },
+  "public/ui/auras/battle_trance.webp": {
+    "sheet": "auras_001",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "4e47b636-0bad-43c9-b948-5b395e0002d8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect",
+    "masterSha256": "7cfe8a514d3650963bcd3d30785d024a6488d69d44da657397d6f842faff04a2"
+  },
+  "public/ui/auras/bg_battle_rune.webp": {
+    "sheet": "auras_001",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "4e47b636-0bad-43c9-b948-5b395e0002d8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, seen up close",
+    "masterSha256": "750f6c50e84c9a29175933d6cfeb9d4286a57f2b1c097966ffbd88a56c08d9aa"
+  },
+  "public/ui/auras/bg_carried_flag.webp": {
+    "sheet": "auras_001",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "4e47b636-0bad-43c9-b948-5b395e0002d8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, in a glowing ring",
+    "masterSha256": "feec579d4bb6913ba421014a2ca797f0a6c8f29e443cfb608ffb83e8e21ac8b4"
+  },
+  "public/ui/auras/bg_carrier_vulnerability.webp": {
+    "sheet": "auras_001",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "4e47b636-0bad-43c9-b948-5b395e0002d8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, rising upward",
+    "masterSha256": "7e151b1d109afd066d7f424e080d9fe05e1ab8fb3ed41382f1bb8a1987083bf3"
+  },
+  "public/ui/auras/bg_sprint_rune.webp": {
+    "sheet": "auras_001",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "4e47b636-0bad-43c9-b948-5b395e0002d8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "swift speed streaks behind a running boot, a lingering magical effect",
+    "masterSha256": "28c12dc72c5d6b8cad4c7e1988a5a22761556b75b5134dd651de065b81e95c16"
+  },
+  "public/ui/auras/bg_ward_rune.webp": {
+    "sheet": "auras_001",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "4e47b636-0bad-43c9-b948-5b395e0002d8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, a lingering magical effect",
+    "masterSha256": "6dcb5fa3200d673e1077b4f321c2b1944edc818ea163da24494d509a6c2a095c"
+  },
+  "public/ui/auras/boneglass_cut.webp": {
+    "sheet": "auras_001",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "4e47b636-0bad-43c9-b948-5b395e0002d8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, a lingering magical effect",
+    "masterSha256": "e662d58fed327f9e542d94720eeef04b8d629ee839793ee4bffa51e1a2c8708b"
+  },
+  "public/ui/auras/brood_burn_hatchling_burn.webp": {
+    "sheet": "auras_001",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "4e47b636-0bad-43c9-b948-5b395e0002d8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, a lingering magical effect",
+    "masterSha256": "3fe2d0a5412effe096e0d9ddae6fbc831b6ed44158f7b617017b98f440ded26b"
+  },
+  "public/ui/auras/brood_burn_seared_scales.webp": {
+    "sheet": "auras_001",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "4e47b636-0bad-43c9-b948-5b395e0002d8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, a lingering magical effect, seen up close",
+    "masterSha256": "39a1b273acad337e215762a49e588c66e6eccf74a94e54ffc7e13e8cf1bcba0f"
+  },
+  "public/ui/auras/brood_counter_stun.webp": {
+    "sheet": "auras_001",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "4e47b636-0bad-43c9-b948-5b395e0002d8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a shattered glowing rune circle, a lingering magical effect",
+    "masterSha256": "90d42d8ef84ab92e8a957a07f1aee49566e0618763b52ee4df94d944ac815823"
+  },
+  "public/ui/auras/brood_ward.webp": {
+    "sheet": "auras_001",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "4e47b636-0bad-43c9-b948-5b395e0002d8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, a lingering magical effect, seen up close",
+    "masterSha256": "3410ae1d5a55f44982e9c6f9e405544070741da6247a9bb1ffb7ac8af125fc3c"
+  },
+  "public/ui/auras/cauterize_fatigue.webp": {
+    "sheet": "auras_001",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "4e47b636-0bad-43c9-b948-5b395e0002d8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, twin",
+    "masterSha256": "f2dab090b72870761b80e7c1fe264076bed02c106f90c85e02c6a252465107b7"
+  },
+  "public/ui/auras/cauterizing.webp": {
+    "sheet": "auras_001",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "4e47b636-0bad-43c9-b948-5b395e0002d8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, erupting outward",
+    "masterSha256": "ad0bb4cf9b2728618a6881f4c6e20148b2aafe54b2b981e0d327a5ba0c6847fc"
+  },
+  "public/ui/auras/cheater_mark.webp": {
+    "sheet": "auras_001",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "4e47b636-0bad-43c9-b948-5b395e0002d8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, over a battlefield",
+    "masterSha256": "279249151ac87d7fb45faae106f9520092c0eb8d9b15b4dccb07ba49548200a5"
+  },
+  "public/ui/auras/convergence_cd.webp": {
+    "sheet": "auras_001",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "4e47b636-0bad-43c9-b948-5b395e0002d8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling violet arcane orb, a lingering magical effect",
+    "masterSha256": "7fea3c39ffc1a31b77ebdff9496680d13ff818cd62e94c7d3070d09d9fd710c9"
+  },
+  "public/ui/auras/convergence_mark.webp": {
+    "sheet": "auras_002",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "4c07acd5-2b65-402f-a85a-8fb525e76928",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling violet arcane orb, a lingering magical effect, seen up close",
+    "masterSha256": "9d9e53d5a70fc8d2c4abc2da965b4c0563f2b62f6ed1f08964e27ef800cbd837"
+  },
+  "public/ui/auras/deathbloom.webp": {
+    "sheet": "auras_002",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "4c07acd5-2b65-402f-a85a-8fb525e76928",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirl of oak leaves and bark, a lingering magical effect",
+    "masterSha256": "3c3ee9f95ff8955b547239572aba3c13ef56b1ad1f9ee7cf1a11d60b5fc8a83d"
+  },
+  "public/ui/auras/destruction_ruin.webp": {
+    "sheet": "auras_002",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "4c07acd5-2b65-402f-a85a-8fb525e76928",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, a lingering magical effect, seen up close",
+    "masterSha256": "4c437abfc65dff96463c0e200d4a705e91d10ae0b36f1d0d861d0ef174b8b5a7"
+  },
+  "public/ui/auras/elemental_convergence.webp": {
+    "sheet": "auras_002",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "4c07acd5-2b65-402f-a85a-8fb525e76928",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling violet arcane orb, a lingering magical effect, in a glowing ring",
+    "masterSha256": "316387be55f1ef724e71f73cb5205851c6edd4fbeedd5a2972580bb66c27289f"
+  },
+  "public/ui/auras/elixir_buff_sta.webp": {
+    "sheet": "auras_002",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "4c07acd5-2b65-402f-a85a-8fb525e76928",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, in a swirling vortex",
+    "masterSha256": "c58833a9b68c9a07738be4c305f15492a9c66b30a186527b4321e9e34b69b7ad"
+  },
+  "public/ui/auras/fear_incap.webp": {
+    "sheet": "auras_002",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "4c07acd5-2b65-402f-a85a-8fb525e76928",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dreamy swirl of mist around a closed eye, a lingering magical effect",
+    "masterSha256": "18122163d64f7dc67d59611424a74624b869c39167995552a494663a7f50e3be"
+  },
+  "public/ui/auras/heating_up.webp": {
+    "sheet": "auras_002",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "4c07acd5-2b65-402f-a85a-8fb525e76928",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, at dusk",
+    "masterSha256": "1e4c3c74f56cacc14518ca8007b7d4a74d420e4695566444243a010ec5a4a273"
+  },
+  "public/ui/auras/hunter_enduring_courser_burst.webp": {
+    "sheet": "auras_002",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "4c07acd5-2b65-402f-a85a-8fb525e76928",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, cracking the ground",
+    "masterSha256": "2c0ec7fce5abb191c277a205dc54c919bf6c976a6918e57ba2d63200c90c2bb8"
+  },
+  "public/ui/auras/hunter_enduring_courser_icd.webp": {
+    "sheet": "auras_002",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "4c07acd5-2b65-402f-a85a-8fb525e76928",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, with drifting sparks",
+    "masterSha256": "8a040518256fa2c42bfa92d40eef560db66f84094b57282a901afe2f7bba1bb3"
+  },
+  "public/ui/auras/hunter_pack_rally_haste.webp": {
+    "sheet": "auras_002",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "4c07acd5-2b65-402f-a85a-8fb525e76928",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a howling wolf spirit, a lingering magical effect",
+    "masterSha256": "52d826db87becdbc4809ee76336846ada6293e82511cd31d40aced0fae9e8cc9"
+  },
+  "public/ui/auras/hunter_pack_rally_speed.webp": {
+    "sheet": "auras_002",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "4c07acd5-2b65-402f-a85a-8fb525e76928",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a howling wolf spirit, a lingering magical effect, seen up close",
+    "masterSha256": "4d872be3cde7434d5d60aaa6d8438c15febdd8d5d971042d92989973842d7350"
+  },
+  "public/ui/auras/hunter_pack_rally_spellhaste.webp": {
+    "sheet": "auras_002",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "4c07acd5-2b65-402f-a85a-8fb525e76928",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a howling wolf spirit, a lingering magical effect, in a glowing ring",
+    "masterSha256": "a2987761e5dcac64df55f0165102e75bc59aaa726553bebc3ee95f3827fca84c"
+  },
+  "public/ui/auras/hunter_predators_pace.webp": {
+    "sheet": "auras_002",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "4c07acd5-2b65-402f-a85a-8fb525e76928",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, in a beam of light",
+    "masterSha256": "8696ea2a3fd05c3dabc9e94618cae4b77fd92cb2781ba319946f469b70adc62c"
+  },
+  "public/ui/auras/hunter_predators_pace_icd.webp": {
+    "sheet": "auras_002",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "4c07acd5-2b65-402f-a85a-8fb525e76928",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, framed by mist",
+    "masterSha256": "d5de0fcafc43b9cf1117402a9ec004487f8816f1d934feb23e0290a1e0431845"
+  },
+  "public/ui/auras/icicles.webp": {
+    "sheet": "auras_002",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "4c07acd5-2b65-402f-a85a-8fb525e76928",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, spiralling",
+    "masterSha256": "1240c25e6eeb5937ed0cf736bea7997e750590822d1cc0949724ec161a6d97e0"
+  },
+  "public/ui/auras/lifebloom.webp": {
+    "sheet": "auras_002",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "4c07acd5-2b65-402f-a85a-8fb525e76928",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirl of oak leaves and bark, a lingering magical effect, seen up close",
+    "masterSha256": "752ba332d07456d48acf056c4377d5afc8919716f7066492036a9ef22b06fe40"
+  },
+  "public/ui/auras/marrowpoint_rend.webp": {
+    "sheet": "auras_003",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "86454032-aa4e-428f-a719-24455ebc4696",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, a lingering magical effect",
+    "masterSha256": "3a3171b30dd942ccc08a249bb1dd1faf8a2feefb42c1298619f8fcf1566626ed"
+  },
+  "public/ui/auras/mob_aoe_slow.webp": {
+    "sheet": "auras_003",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "86454032-aa4e-428f-a719-24455ebc4696",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, shattering",
+    "masterSha256": "a39bfb90d8d67bd72bb2cfd6f463be864438ce4e3ac06b243353db1d10f6608c"
+  },
+  "public/ui/auras/mob_arcane_rot.webp": {
+    "sheet": "auras_003",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "86454032-aa4e-428f-a719-24455ebc4696",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling violet arcane orb, a lingering magical effect, rising upward",
+    "masterSha256": "3263e2bb98d626108e017e8b1bed36104e158a99e5df361a81b605d16f1fadbd"
+  },
+  "public/ui/auras/mob_bleed.webp": {
+    "sheet": "auras_003",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "86454032-aa4e-428f-a719-24455ebc4696",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "falling drops of crimson blood, a lingering magical effect",
+    "masterSha256": "4c56027a50019051e11142f40592bda384838fa6adc1193a84f434e9bb3b2649"
+  },
+  "public/ui/auras/mob_blind.webp": {
+    "sheet": "auras_003",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "86454032-aa4e-428f-a719-24455ebc4696",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, in a storm of motes",
+    "masterSha256": "24a21489d837376091e3658eecd7085359b72e98a196faf9d7fb44fdd1e6dc59"
+  },
+  "public/ui/auras/mob_charge_stun.webp": {
+    "sheet": "auras_003",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "86454032-aa4e-428f-a719-24455ebc4696",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a heavy war hammer smashing down, a lingering magical effect",
+    "masterSha256": "48b10828796c6bc7fada03766227913cf17f65b0db038b0ddb3d85d6870bb757"
+  },
+  "public/ui/auras/mob_chill_on_hit.webp": {
+    "sheet": "auras_003",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "86454032-aa4e-428f-a719-24455ebc4696",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, a lingering magical effect",
+    "masterSha256": "0dc125be16b997c65b0e88416a22c9f9cff88b7f6ac47dfe3cdc759327062146"
+  },
+  "public/ui/auras/mob_cinder.webp": {
+    "sheet": "auras_003",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "86454032-aa4e-428f-a719-24455ebc4696",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, a lingering magical effect, in a glowing ring",
+    "masterSha256": "d420894afbf22326622d33accc28858f17b39cdf8a77f6116791a0d7fa6d38de"
+  },
+  "public/ui/auras/mob_concuss.webp": {
+    "sheet": "auras_003",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "86454032-aa4e-428f-a719-24455ebc4696",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a heavy war hammer smashing down, a lingering magical effect, seen up close",
+    "masterSha256": "a9b33f46c1d02c80948277bb054a0f162e0bf616af6b2e719d3f4eacd05ca22b"
+  },
+  "public/ui/auras/mob_corrode.webp": {
+    "sheet": "auras_003",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "86454032-aa4e-428f-a719-24455ebc4696",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect",
+    "masterSha256": "94e42d69f2d6ac42825235c384574b4a44d81e0c8a4c506efbc2de3128ddfd4d"
+  },
+  "public/ui/auras/mob_cost_tax.webp": {
+    "sheet": "auras_003",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "86454032-aa4e-428f-a719-24455ebc4696",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, seen up close",
+    "masterSha256": "85ca081b0e819ce0c3e0adddcaf7e8ff62c085d29554926a73c27fb8b7f7ecec"
+  },
+  "public/ui/auras/mob_crit_vuln.webp": {
+    "sheet": "auras_003",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "86454032-aa4e-428f-a719-24455ebc4696",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, in a glowing ring",
+    "masterSha256": "2a8568eb7b7e5731379be3e904fa477064f1e70e6a804a6fd5d59580362de295"
+  },
+  "public/ui/auras/mob_demoralize.webp": {
+    "sheet": "auras_003",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "86454032-aa4e-428f-a719-24455ebc4696",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, rising upward",
+    "masterSha256": "65951e9da73b88327439b7f74816c078bf6ba1a40ed76d68832768e5a0f80047"
+  },
+  "public/ui/auras/mob_disarm.webp": {
+    "sheet": "auras_003",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "86454032-aa4e-428f-a719-24455ebc4696",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, twin",
+    "masterSha256": "49dda9e247e05ce814d499708130b3927d8ba49bd724a024d460615ecc779ac2"
+  },
+  "public/ui/auras/mob_enervate.webp": {
+    "sheet": "auras_003",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "86454032-aa4e-428f-a719-24455ebc4696",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, erupting outward",
+    "masterSha256": "f385db9c93588e0052678f2423d0c41ad28690f328bd25ae2dcce58088f314e5"
+  },
+  "public/ui/auras/mob_enfeeble.webp": {
+    "sheet": "auras_003",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "86454032-aa4e-428f-a719-24455ebc4696",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, over a battlefield",
+    "masterSha256": "a7c28095d07fffa99038c3c9ecea5253d4bf3a12e83cd7d7fc7b736f18646166"
+  },
+  "public/ui/auras/mob_ensnare.webp": {
+    "sheet": "auras_004",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "46e07c89-120e-4599-8224-8499ecd46e88",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a steel jaw trap on the ground, a lingering magical effect",
+    "masterSha256": "54a3d239df3cea6cd5186baf7fb50e21eb225b0c6c16313e08a29902980aae93"
+  },
+  "public/ui/auras/mob_expose.webp": {
+    "sheet": "auras_004",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "46e07c89-120e-4599-8224-8499ecd46e88",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, in a swirling vortex",
+    "masterSha256": "b4ab99e203e9fca748076b8d929c45247be275ec385732d378ef2c9c90cf14e8"
+  },
+  "public/ui/auras/mob_frenzy_on_hit.webp": {
+    "sheet": "auras_004",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "46e07c89-120e-4599-8224-8499ecd46e88",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a red rage aura around a clenched fist, a lingering magical effect",
+    "masterSha256": "f71f12c6b37e2ca2d42b6a9e1f767ac0fbe621d93b7bca3f70609fb9519180ef"
+  },
+  "public/ui/auras/mob_frostbite.webp": {
+    "sheet": "auras_004",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "46e07c89-120e-4599-8224-8499ecd46e88",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, a lingering magical effect, seen up close",
+    "masterSha256": "3b91af6e8804c9d7494b4e2cd7353a5a75f0da70bf56affd032d12b04b09f6e4"
+  },
+  "public/ui/auras/mob_heal_absorb.webp": {
+    "sheet": "auras_004",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "46e07c89-120e-4599-8224-8499ecd46e88",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, a lingering magical effect",
+    "masterSha256": "110516165ecbef32b8cd5cd01ef459cfbfa361622fcaa78f80c4523d13339ea0"
+  },
+  "public/ui/auras/mob_hex.webp": {
+    "sheet": "auras_004",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "46e07c89-120e-4599-8224-8499ecd46e88",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, a lingering magical effect, in a glowing ring",
+    "masterSha256": "d1aa213202dfa95857a3443630b22a553b448f8fa5b502594d142a1b2646b345"
+  },
+  "public/ui/auras/mob_lockout.webp": {
+    "sheet": "auras_004",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "46e07c89-120e-4599-8224-8499ecd46e88",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a shattered glowing rune circle, a lingering magical effect, seen up close",
+    "masterSha256": "472557a266e797cd559b6843f3d73890fa7f319155291890d3d6446193356b85"
+  },
+  "public/ui/auras/mob_mortal_strike.webp": {
+    "sheet": "auras_004",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "46e07c89-120e-4599-8224-8499ecd46e88",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, a lingering magical effect",
+    "masterSha256": "1e79769eb85555a8e2fa4b75eec272c01478b440f90de623ea49e4e2a42e75b5"
+  },
+  "public/ui/auras/mob_pack_frenzy.webp": {
+    "sheet": "auras_004",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "46e07c89-120e-4599-8224-8499ecd46e88",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a howling wolf spirit, a lingering magical effect, rising upward",
+    "masterSha256": "f674faff8e2909a02f3344e2e1bf5ecc9a59d97a43dd0baf42541b5cbaa9abe8"
+  },
+  "public/ui/auras/mob_plague.webp": {
+    "sheet": "auras_004",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "46e07c89-120e-4599-8224-8499ecd46e88",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dripping green poison flask, a lingering magical effect",
+    "masterSha256": "04c04b02f91b7530f8e757b44b323e1c66355cf94ad1192333eae81d45f511e5"
+  },
+  "public/ui/auras/mob_polymorph_hex.webp": {
+    "sheet": "auras_004",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "46e07c89-120e-4599-8224-8499ecd46e88",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, a lingering magical effect, rising upward",
+    "masterSha256": "73083cb2802aabb3217754c5387d376eff6f803a5f1bf089df067e8dcd2aec80"
+  },
+  "public/ui/auras/mob_rally.webp": {
+    "sheet": "auras_004",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "46e07c89-120e-4599-8224-8499ecd46e88",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, at dusk",
+    "masterSha256": "937d21613a194b2fa1a40b83de108beab7cb46c85384e97682b4b59b02b3791d"
+  },
+  "public/ui/auras/mob_rampage.webp": {
+    "sheet": "auras_004",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "46e07c89-120e-4599-8224-8499ecd46e88",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, cracking the ground",
+    "masterSha256": "2973fccca1ba619c76542017bfc22d63f6f056e0590ded9a31467b9a4e247958"
+  },
+  "public/ui/auras/mob_silence.webp": {
+    "sheet": "auras_004",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "46e07c89-120e-4599-8224-8499ecd46e88",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a shattered glowing rune circle, a lingering magical effect, in a glowing ring",
+    "masterSha256": "c7ab6e7b3d82acd349361e7d52aebf4b05e331daa611eb80aefba504ce71599f"
+  },
+  "public/ui/auras/mob_siphon_spirit.webp": {
+    "sheet": "auras_004",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "46e07c89-120e-4599-8224-8499ecd46e88",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, a lingering magical effect, seen up close",
+    "masterSha256": "8ed35572777cf892e960032b3ba8f104caad0b1403a14aa09dbb2b7f8c07a4f7"
+  },
+  "public/ui/auras/mob_slow_strike.webp": {
+    "sheet": "auras_004",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "46e07c89-120e-4599-8224-8499ecd46e88",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, a lingering magical effect, seen up close",
+    "masterSha256": "483d3d328d06df1f3fca0c5831d8d436acd63be7606887b674ca8dbe2255c4a6"
+  },
+  "public/ui/auras/mob_smolder.webp": {
+    "sheet": "auras_005",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "569830e9-758e-451d-ac80-1f58ea74c1ff",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, with drifting sparks",
+    "masterSha256": "eb6f7998cf10fcbfaef729e3cca078c01ec0303dfb778796c3961d07c705c768"
+  },
+  "public/ui/auras/mob_soulrot.webp": {
+    "sheet": "auras_005",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "569830e9-758e-451d-ac80-1f58ea74c1ff",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, a lingering magical effect, in a glowing ring",
+    "masterSha256": "67f19f1c34acec686bdfcc9fc92480e53881927c0a1463b671f56703e935d8cd"
+  },
+  "public/ui/auras/mob_spell_vuln.webp": {
+    "sheet": "auras_005",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "569830e9-758e-451d-ac80-1f58ea74c1ff",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, in a beam of light",
+    "masterSha256": "d70d8cd55b5588efb6ad402b5ea3be4798eb790bc60dcffbd35f3f8879a66818"
+  },
+  "public/ui/auras/mob_stack_poison.webp": {
+    "sheet": "auras_005",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "569830e9-758e-451d-ac80-1f58ea74c1ff",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dripping green poison flask, a lingering magical effect, seen up close",
+    "masterSha256": "29d11986ea88d6c2a669cd17729200e9cafe7deec0ae56ae66d32820e33d7984"
+  },
+  "public/ui/auras/mob_stagger_hit.webp": {
+    "sheet": "auras_005",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "569830e9-758e-451d-ac80-1f58ea74c1ff",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, framed by mist",
+    "masterSha256": "9a2f025307bc2042846f9f3e57a7ff9a9b24398dbb202efcecc3553da7ad7127"
+  },
+  "public/ui/auras/mob_stoneskin.webp": {
+    "sheet": "auras_005",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "569830e9-758e-451d-ac80-1f58ea74c1ff",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "cracked stone erupting from the ground, a lingering magical effect",
+    "masterSha256": "4af4e1d6c4e2163a92405e0482c5d1209ad29a9c81389cf23447b07e505ed36a"
+  },
+  "public/ui/auras/mob_stun_on_hit.webp": {
+    "sheet": "auras_005",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "569830e9-758e-451d-ac80-1f58ea74c1ff",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a heavy war hammer smashing down, a lingering magical effect, in a glowing ring",
+    "masterSha256": "0131783b5b149e9762378b23aa1e8bc812336617b402c7ebc2a1512b75eff6ef"
+  },
+  "public/ui/auras/mob_tongues.webp": {
+    "sheet": "auras_005",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "569830e9-758e-451d-ac80-1f58ea74c1ff",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, spiralling",
+    "masterSha256": "77ad36d3795cb96a437dd844caa75e81325bf4ad4e517d6d452fa4ed67afe736"
+  },
+  "public/ui/auras/mob_venom.webp": {
+    "sheet": "auras_005",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "569830e9-758e-451d-ac80-1f58ea74c1ff",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dripping green poison flask, a lingering magical effect, in a glowing ring",
+    "masterSha256": "6952c9e7465fce5786add91e50c2bd91322123b20c57771dab6289bcf03a62dd"
+  },
+  "public/ui/auras/mob_vulnerability.webp": {
+    "sheet": "auras_005",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "569830e9-758e-451d-ac80-1f58ea74c1ff",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, shattering",
+    "masterSha256": "0d16ae0aee2ea699eebf8cbde34eee02b16d2397a54f5e18b4f2e417a53bd8ed"
+  },
+  "public/ui/auras/mob_warcry.webp": {
+    "sheet": "auras_005",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "569830e9-758e-451d-ac80-1f58ea74c1ff",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "rings of a shockwave rolling outward, a lingering magical effect",
+    "masterSha256": "efa2dffebc26e9a80cb376b0909350cb336e0113c780f7366761862f88520275"
+  },
+  "public/ui/auras/mob_ward_allies.webp": {
+    "sheet": "auras_005",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "569830e9-758e-451d-ac80-1f58ea74c1ff",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, a lingering magical effect, in a glowing ring",
+    "masterSha256": "9c958ee6e216d11973e3211094c939bb74a951faa25ce1afcb4420eda5852b6b"
+  },
+  "public/ui/auras/mob_wither.webp": {
+    "sheet": "auras_005",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "569830e9-758e-451d-ac80-1f58ea74c1ff",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, in a storm of motes",
+    "masterSha256": "e7380369965a6725cbcd434b1587fc1b3793ef83c1dd07652b9416da818c6b93"
+  },
+  "public/ui/auras/moontide.webp": {
+    "sheet": "auras_005",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "569830e9-758e-451d-ac80-1f58ea74c1ff",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a crescent moon among bright stars, a lingering magical effect",
+    "masterSha256": "f1ea95c3124c39e2188f6be4ec1a97bf8031431334ccf0ad5876da8421711de7"
+  },
+  "public/ui/auras/nhalia_cantor_shield.webp": {
+    "sheet": "auras_005",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "569830e9-758e-451d-ac80-1f58ea74c1ff",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, a lingering magical effect, rising upward",
+    "masterSha256": "b38ffb9cda8988a60e38f3d69f81ad7740a813fe0ca288788ae2fa43cfed91c9"
+  },
+  "public/ui/auras/nythraxis_deathless_stun.webp": {
+    "sheet": "auras_005",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "569830e9-758e-451d-ac80-1f58ea74c1ff",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, a lingering magical effect, rising upward",
+    "masterSha256": "a7c9e47bac677053c786bfd27d3ddf22c1d1ebdb8aa9fe5ec0eddd132564d3a5"
+  },
+  "public/ui/auras/nythraxis_dread_curse.webp": {
+    "sheet": "auras_006",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "1c5f6a24-4709-4058-ad12-836d480004fd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, a lingering magical effect, twin",
+    "masterSha256": "1f08b38e1d1cd9241b272668bf95306726ef992937ccc5842daf9d25dd97e9b1"
+  },
+  "public/ui/auras/nythraxis_final_stand.webp": {
+    "sheet": "auras_006",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "1c5f6a24-4709-4058-ad12-836d480004fd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect",
+    "masterSha256": "bcb83795267dc217a33a6c54b7de65692b504c84dea4cc3dd8ebc834d4299528"
+  },
+  "public/ui/auras/nythraxis_soul_rend.webp": {
+    "sheet": "auras_006",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "1c5f6a24-4709-4058-ad12-836d480004fd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "three raking claw marks of light, a lingering magical effect",
+    "masterSha256": "4f3590580b1152ced9662bfe75483b526af0676ed29276263f137346a2008171"
+  },
+  "public/ui/auras/nythraxis_transition_pause.webp": {
+    "sheet": "auras_006",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "1c5f6a24-4709-4058-ad12-836d480004fd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, seen up close",
+    "masterSha256": "5b21e84abff25f552be7fcbfa9107a4bc51dbf557fe0f60e1763c2a353c73c79"
+  },
+  "public/ui/auras/nythraxis_transition_stun.webp": {
+    "sheet": "auras_006",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "1c5f6a24-4709-4058-ad12-836d480004fd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a heavy war hammer smashing down, a lingering magical effect, rising upward",
+    "masterSha256": "35f1919f4ceed0b60074093cebd3182aaac10d82e828b7653bc47a900ca0f6da"
+  },
+  "public/ui/auras/nythraxis_wardstone_lit.webp": {
+    "sheet": "auras_006",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "1c5f6a24-4709-4058-ad12-836d480004fd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, a lingering magical effect, twin",
+    "masterSha256": "b0950dabdebf7a174dc03dfe9991aa457d2d5ab183616bc52d1a0c6521c778b5"
+  },
+  "public/ui/auras/old_blood.webp": {
+    "sheet": "auras_006",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "1c5f6a24-4709-4058-ad12-836d480004fd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "falling drops of crimson blood, a lingering magical effect, seen up close",
+    "masterSha256": "9b64f3dc6997e053bbe986493b9294e701614fb21546606fb4965bcdd3f682a6"
+  },
+  "public/ui/auras/resurrection_sickness.webp": {
+    "sheet": "auras_006",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "1c5f6a24-4709-4058-ad12-836d480004fd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, in a glowing ring",
+    "masterSha256": "0bcf6f7afdbb38877224b8ac1838fabdeb8384e17dec2fb0d92a5767edaa31e7"
+  },
+  "public/ui/auras/sated.webp": {
+    "sheet": "auras_006",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "1c5f6a24-4709-4058-ad12-836d480004fd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, rising upward",
+    "masterSha256": "01f7b0cd059c1e6bd8b51c7d5b8dad9ce9ad2681c8afcd69e95464e6e1666ecb"
+  },
+  "public/ui/auras/set_bonesplinter.webp": {
+    "sheet": "auras_006",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "1c5f6a24-4709-4058-ad12-836d480004fd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, a lingering magical effect, twin",
+    "masterSha256": "0f228b1a75f7d41933819ab32e2b107183a68504f10d8cda9bd091e910ebdbf2"
+  },
+  "public/ui/auras/set_clearcasting.webp": {
+    "sheet": "auras_006",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "1c5f6a24-4709-4058-ad12-836d480004fd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, twin",
+    "masterSha256": "5f266ea4d684bb98679a2d6535130dd4efdcadbab5f8daa5d056299203f7bec8"
+  },
+  "public/ui/auras/set_fangrush.webp": {
+    "sheet": "auras_006",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "1c5f6a24-4709-4058-ad12-836d480004fd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "swift speed streaks behind a running boot, a lingering magical effect, seen up close",
+    "masterSha256": "9b00cef5c256366083465d64eee37fb45d4ffd5fc15b79499f6b4624b08d6e6b"
+  },
+  "public/ui/auras/set_gravemight.webp": {
+    "sheet": "auras_006",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "1c5f6a24-4709-4058-ad12-836d480004fd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, a lingering magical effect, erupting outward",
+    "masterSha256": "c7b2b1142b81412003b95081cef4abbbdd6f52d239658390bc4f2588173e3e86"
+  },
+  "public/ui/auras/set_ragged_gash.webp": {
+    "sheet": "auras_006",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "1c5f6a24-4709-4058-ad12-836d480004fd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, erupting outward",
+    "masterSha256": "6db87ace5928734e33c3fd905f1116da9ae054576877d5237596d318a1b9eb0b"
+  },
+  "public/ui/auras/set_soulblaze.webp": {
+    "sheet": "auras_006",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "1c5f6a24-4709-4058-ad12-836d480004fd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, a lingering magical effect, rising upward",
+    "masterSha256": "d6e0f43d7c97be4da1d730fc994e6a270fa7aea3b9fddf2c7fa8841e80ec14c4"
+  },
+  "public/ui/auras/set_warfare_ashen_step.webp": {
+    "sheet": "auras_006",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "1c5f6a24-4709-4058-ad12-836d480004fd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "swift speed streaks behind a running boot, a lingering magical effect, in a glowing ring",
+    "masterSha256": "0cddcfc4cda5b58a986815d63260950679295929ed867a87095c0ef9905c0837"
+  },
+  "public/ui/auras/set_warfare_emberward.webp": {
+    "sheet": "auras_007",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "5951a34f-4e72-4726-a8be-bd4a5eedf4bc",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, a lingering magical effect, erupting outward",
+    "masterSha256": "879e62a9d5ad781d893dc0f02172d341603823701753ed2b9646e4ecd11252a8"
+  },
+  "public/ui/auras/set_warfare_thornguard.webp": {
+    "sheet": "auras_007",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "5951a34f-4e72-4726-a8be-bd4a5eedf4bc",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirl of oak leaves and bark, a lingering magical effect, in a glowing ring",
+    "masterSha256": "ce254cdbefb73d685caccb3cea7f7d7705cb189587f286c76521f5560149776f"
+  },
+  "public/ui/auras/set_warfare_unbroken_oath.webp": {
+    "sheet": "auras_007",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "5951a34f-4e72-4726-a8be-bd4a5eedf4bc",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, over a battlefield",
+    "masterSha256": "056b6cfee441ca57dfe23668853dba2c1e08523a224f9c869f39e06a2c66036c"
+  },
+  "public/ui/auras/shaman_ancestral_bulwark.webp": {
+    "sheet": "auras_007",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "5951a34f-4e72-4726-a8be-bd4a5eedf4bc",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, a lingering magical effect, over a battlefield",
+    "masterSha256": "8957034d68c3b36178b37341511db9dc764d414af9963e9665bfcdc72f63fc82"
+  },
+  "public/ui/auras/shaman_ancestral_bulwark_icd.webp": {
+    "sheet": "auras_007",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "5951a34f-4e72-4726-a8be-bd4a5eedf4bc",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, a lingering magical effect, in a swirling vortex",
+    "masterSha256": "b36f691f460a4d06a5e2507297923c640f220af32c1076128cbb9794a6e3bb47"
+  },
+  "public/ui/auras/shaman_gathering_winds.webp": {
+    "sheet": "auras_007",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "5951a34f-4e72-4726-a8be-bd4a5eedf4bc",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a spiralling gust of wind with leaves, a lingering magical effect",
+    "masterSha256": "795e3008dc9ba7d5f5210a7a50c360f5377a2fcd8b89d352cc6a291d5a4530e3"
+  },
+  "public/ui/auras/shaman_gathering_winds_icd.webp": {
+    "sheet": "auras_007",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "5951a34f-4e72-4726-a8be-bd4a5eedf4bc",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a spiralling gust of wind with leaves, a lingering magical effect, seen up close",
+    "masterSha256": "15bd12b429a6ddcc0f00382dc8e72e2dcade7009512fcec94ca07ff6f6385859"
+  },
+  "public/ui/auras/shaman_mending_current.webp": {
+    "sheet": "auras_007",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "5951a34f-4e72-4726-a8be-bd4a5eedf4bc",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, a lingering magical effect, seen up close",
+    "masterSha256": "27e0e3cdc171b06b27c3700c892ac5d0246cb95729724c7ab53b9e4fb97c7637"
+  },
+  "public/ui/auras/shaman_stonebound_armor.webp": {
+    "sheet": "auras_007",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "5951a34f-4e72-4726-a8be-bd4a5eedf4bc",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "cracked stone erupting from the ground, a lingering magical effect, seen up close",
+    "masterSha256": "7927f76597548fcf3996da47c66c2bc2b7044d7a9a124b1533b2df26fbfd64bd"
+  },
+  "public/ui/auras/shaman_stonebound_dr.webp": {
+    "sheet": "auras_007",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "5951a34f-4e72-4726-a8be-bd4a5eedf4bc",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "cracked stone erupting from the ground, a lingering magical effect, in a glowing ring",
+    "masterSha256": "c40d980624d1e0de5c334a61cbb3478d02668a0bbcb066eb6efffb1c7c1d4216"
+  },
+  "public/ui/auras/shaman_stonebound_stamina.webp": {
+    "sheet": "auras_007",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "5951a34f-4e72-4726-a8be-bd4a5eedf4bc",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "cracked stone erupting from the ground, a lingering magical effect, rising upward",
+    "masterSha256": "263638a2b0a2a5c5e738ee6807d0b02866af5c3a1bf978f97471696a052984b3"
+  },
+  "public/ui/auras/shaman_stonebound_unleash_guard.webp": {
+    "sheet": "auras_007",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "5951a34f-4e72-4726-a8be-bd4a5eedf4bc",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, a lingering magical effect, at dusk",
+    "masterSha256": "4e2c6993afd3ff136825b71983d53b3c90e8e9058197fce746ec6c7229ff8159"
+  },
+  "public/ui/auras/shaman_stonebound_ward_smooth.webp": {
+    "sheet": "auras_007",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "5951a34f-4e72-4726-a8be-bd4a5eedf4bc",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, a lingering magical effect, cracking the ground",
+    "masterSha256": "1c140d6efff608fe5a4d4bca7d586265ecacdadb4641ae7856aced4428db5ccd"
+  },
+  "public/ui/auras/shaman_stormcast.webp": {
+    "sheet": "auras_007",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "5951a34f-4e72-4726-a8be-bd4a5eedf4bc",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a forked lightning bolt, a lingering magical effect",
+    "masterSha256": "95f54d9927dfddfddb10848dc675c4b34e55d5ced68f0fa54e857a3ba82e57e3"
+  },
+  "public/ui/auras/shaman_stormcast_cheap.webp": {
+    "sheet": "auras_007",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "5951a34f-4e72-4726-a8be-bd4a5eedf4bc",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a forked lightning bolt, a lingering magical effect, seen up close",
+    "masterSha256": "48237c49d294b26419b45e61418158a7270b677fe4475e846afb62f35ccf0b31"
+  },
+  "public/ui/auras/shaman_thunder_charges.webp": {
+    "sheet": "auras_007",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "5951a34f-4e72-4726-a8be-bd4a5eedf4bc",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a forked lightning bolt, a lingering magical effect, in a glowing ring",
+    "masterSha256": "634bfb5cf33167e37fef39fc3fa129e397d02d843c3259493b667d1ee597cd07"
+  },
+  "public/ui/auras/shaman_warspirit_cadence.webp": {
+    "sheet": "auras_008",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "f17d4cab-a535-4c64-a88c-310e47cccf35",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, a lingering magical effect, over a battlefield",
+    "masterSha256": "1ebcfe212a329445fc996475c4df9b18d48565c84184b72f9a884cdca99dd369"
+  },
+  "public/ui/auras/shaman_wayfarer_grace.webp": {
+    "sheet": "auras_008",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "f17d4cab-a535-4c64-a88c-310e47cccf35",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, a lingering magical effect, in a glowing ring",
+    "masterSha256": "4cea3fa59d9a9f4daa9e88112d9149715893505b0de279557a81b866974551b9"
+  },
+  "public/ui/auras/shaman_wayfarer_grace_icd.webp": {
+    "sheet": "auras_008",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "f17d4cab-a535-4c64-a88c-310e47cccf35",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, a lingering magical effect, rising upward",
+    "masterSha256": "8cf34b432886945ae5bf200803cf3472c3dbf695cad43fc31cc02547eb0e8ab1"
+  },
+  "public/ui/auras/soul_fragments.webp": {
+    "sheet": "auras_008",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "f17d4cab-a535-4c64-a88c-310e47cccf35",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, a lingering magical effect, in a swirling vortex",
+    "masterSha256": "69f2e447cd43c5a04419b9267fb5acac1c041b5fd52e8d122cbdbb9d8fa7df64"
+  },
+  "public/ui/auras/stomp_stun.webp": {
+    "sheet": "auras_008",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "f17d4cab-a535-4c64-a88c-310e47cccf35",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a heavy war hammer smashing down, a lingering magical effect, twin",
+    "masterSha256": "d502b9690691d8a71322fc6c7b5c70fc5eea3fe505eb8cb444ecf894445e4024"
+  },
+  "public/ui/auras/thronebane_arc_slow.webp": {
+    "sheet": "auras_008",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "f17d4cab-a535-4c64-a88c-310e47cccf35",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, in a swirling vortex",
+    "masterSha256": "e5a6eccfd3dad8acb656726a4e2451cf0ad71a5f4b88ca79a333888652cf8632"
+  },
+  "public/ui/auras/unstuck_sickness.webp": {
+    "sheet": "auras_008",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "f17d4cab-a535-4c64-a88c-310e47cccf35",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, at dusk",
+    "masterSha256": "c9b481ea12f04a9e3964366ee44a63080ae44553692ac85b0236313af939d47a"
+  },
+  "public/ui/auras/verdance.webp": {
+    "sheet": "auras_008",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "f17d4cab-a535-4c64-a88c-310e47cccf35",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, cracking the ground",
+    "masterSha256": "ed57de8275b8515906b1722e1bb38a9aac0caea82318fb0a8e46d2e01f6a6d89"
+  },
+  "public/ui/auras/voidsong_echo.webp": {
+    "sheet": "auras_008",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "f17d4cab-a535-4c64-a88c-310e47cccf35",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, a lingering magical effect, erupting outward",
+    "masterSha256": "f896d4af76a5552e2c04bd8fdc6ffba2e37fd0defc0ce44d0a58802711c79b28"
+  },
+  "public/ui/auras/water_jet.webp": {
+    "sheet": "auras_008",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "f17d4cab-a535-4c64-a88c-310e47cccf35",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a cresting wave of water, a lingering magical effect",
+    "masterSha256": "53dfecff1ad964024071f78e23616c5b67e7107fbf88e0505bcbf5c263bfa7f7"
+  },
+  "public/ui/auras/water_jet_slow.webp": {
+    "sheet": "auras_008",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "f17d4cab-a535-4c64-a88c-310e47cccf35",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a cresting wave of water, a lingering magical effect, seen up close",
+    "masterSha256": "3730e18b5a4187f2787e551028d2bf0a4610fc6ab064f02ec3d961e9e640e06f"
+  },
+  "public/ui/auras/well_fed.webp": {
+    "sheet": "auras_008",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "f17d4cab-a535-4c64-a88c-310e47cccf35",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, with drifting sparks",
+    "masterSha256": "c56e638f17d08165749ce5af690f630fefe995ad3c67346132c0d236a7a80951"
+  },
+  "public/ui/auras/winters_chill.webp": {
+    "sheet": "auras_008",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "f17d4cab-a535-4c64-a88c-310e47cccf35",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, a lingering magical effect, in a glowing ring",
+    "masterSha256": "acc5185eea3a1ec73da7824110911b6ce1e3e634d0479c9f5ecd594d61b62a1a"
+  },
+  "public/ui/auras/wlk_forbidden_reflection.webp": {
+    "sheet": "auras_008",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "f17d4cab-a535-4c64-a88c-310e47cccf35",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, in a beam of light",
+    "masterSha256": "46c8b63c4647f21261b284b7ab9c359326e1990d382f38b890bdaa4e4c17357b"
+  },
+  "public/ui/auras/wlk_forbidden_reflection_lock.webp": {
+    "sheet": "auras_008",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "f17d4cab-a535-4c64-a88c-310e47cccf35",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, a lingering magical effect, framed by mist",
+    "masterSha256": "6588317d6e84edc99ab9509f75b767805e70a4af12516333a1e159d266ba5a23"
+  },
+  "public/ui/auras/wlk_leaden_hex_root.webp": {
+    "sheet": "auras_008",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "f17d4cab-a535-4c64-a88c-310e47cccf35",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "twisting roots bursting from the ground, a lingering magical effect",
+    "masterSha256": "efc42bf87b9719afd03831d82f0d6f99d43409ff1f522591bddd1c252009e058"
+  },
+  "public/ui/auras/wlk_leaden_hex_root_lock.webp": {
+    "sheet": "auras_009",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "8433ba9b-b4e4-4fb2-b76c-23de1d0b40ff",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "twisting roots bursting from the ground, a lingering magical effect, seen up close",
+    "masterSha256": "9168967e223068f72f4a490f59400c1beec8493c1655be32a73ea335636ead56"
+  },
+  "public/ui/auras/wlk_leaden_hex_slow.webp": {
+    "sheet": "auras_009",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "8433ba9b-b4e4-4fb2-b76c-23de1d0b40ff",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, a lingering magical effect, over a battlefield",
+    "masterSha256": "2e005f9de9de1803baba2fb1169ea464aa4c19f65799fabf638239ffd744e2be"
+  },
   "public/ui/skills/druid/barkskin.webp": {
     "sheet": "skills_001",
     "cell": 0,
