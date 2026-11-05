@@ -3796,11 +3796,11 @@ function weaponVfxPrewarmHostMap(): THREE.Texture {
  * skin that changes either fails there instead of linking live.
  */
 export const WEAPON_VFX_DOUBLE_SIDED_SKINS: ReadonlySet<string> = new Set([
-  'cosmarch_spire_of_the_endless_void',
+  'astravyr_fang_of_the_fallen_star',
   'forgeheart_stave',
-  'hoarfrost_vigil',
   'ice_fang',
   'rimelight_staff',
+  'solheim_last_light_of_the_dawn',
 ]);
 
 /** Untextured, single-sided extra materials, by GLB material name. */
