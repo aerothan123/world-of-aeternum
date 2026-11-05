@@ -32,6 +32,9 @@ const SAMPLE_MS = Number(process.env.SAMPLE_MS ?? 5000);
 const PHASE = { morning: 0.32, noon: 0.5, late_afternoon: 0.64, golden_hour: 0.705, dusk: 0.75 };
 
 fs.mkdirSync(OUT, { recursive: true });
+const PROGRESS = path.join(OUT, 'threejs_progress.log');
+const note = (m) => fs.appendFileSync(PROGRESS, `${new Date().toISOString()} ${m}\n`);
+note('launch');
 const browser = await puppeteer.launch({
   executablePath: BROWSER_PATH,
   headless: 'new',
@@ -41,7 +44,11 @@ const browser = await puppeteer.launch({
 const results = [];
 try {
   const page = await browser.newPage();
-  await page.goto(`${BASE}/play.html?gfx=${GFX}&worldstyle=${STYLE}&fpscap=display`, {
+  page.on('console', (m) => {
+    if (m.type() === 'error') note(`console ${m.text().slice(0, 300)}`);
+  });
+  note('goto');
+  await page.goto(`${BASE}/?gfx=${GFX}&worldstyle=${STYLE}&fpscap=display`, {
     waitUntil: 'domcontentloaded',
     timeout: 120_000,
   });
@@ -52,6 +59,7 @@ try {
     gameBootTimeoutMs: 180_000,
     selectorTimeoutMs: 120_000,
   });
+  note('entered');
   await dismissEntryOverlays(page).catch(() => {});
   await page.addStyleTag({
     content:
@@ -79,13 +87,33 @@ try {
         clock.setDayNightPhaseOverride(phase);
         const r = game.renderer;
         const v = (x, y, z) => r.camera.position.clone().set(x, y, z);
-        r.editorCam = {
+        const pose = {
           pos: v(ex, terrainHeight(ex, ez, seed) + eh, ez),
           target: v(tx, Math.max(terrainHeight(tx, tz, seed), waterLevel()) + th, tz),
+          // UE focal on a 36 x 20.25 filmback, as a vertical field of view
+          fov: (2 * Math.atan(10.125 / shot.focal) * 180) / Math.PI,
         };
-        // UE focal on a 36 x 20.25 filmback, as a vertical field of view
-        r.camera.fov = (2 * Math.atan(10.125 / shot.focal) * 180) / Math.PI;
-        r.camera.updateProjectionMatrix();
+        // The chase camera rewrites the pose every frame, so pin it at the
+        // last moment: on each draw of the main camera (the composer passes
+        // draw through the same WebGLRenderer.render).
+        window.__lookPose = pose;
+        if (!r.webgl.__lookPinned) {
+          const orig = r.webgl.render.bind(r.webgl);
+          r.webgl.render = (scene, cam) => {
+            const p = window.__lookPose;
+            if (p && cam === r.camera) {
+              cam.position.copy(p.pos);
+              cam.lookAt(p.target);
+              if (cam.fov !== p.fov) {
+                cam.fov = p.fov;
+                cam.updateProjectionMatrix();
+              }
+              cam.updateMatrixWorld();
+            }
+            return orig(scene, cam);
+          };
+          r.webgl.__lookPinned = true;
+        }
       },
       { shot, phase: PHASE[shot.time] },
     );
@@ -111,10 +139,24 @@ try {
       };
     }, SAMPLE_MS);
     const file = path.join(OUT, `threejs_${shot.name}.png`);
+    // the world canvas alone: hide every DOM layer that is not the canvas or
+    // one of its ancestors (the HUD, nameplates and tutorial are DOM)
+    await page.evaluate(() => {
+      const c = [...document.querySelectorAll('canvas')].sort(
+        (a, b) => b.width * b.height - a.width * a.height,
+      )[0];
+      for (const el of document.body.querySelectorAll('*')) {
+        el.style.visibility = el === c || el.contains(c) ? 'visible' : 'hidden';
+      }
+    });
+    await delay(300);
     await page.screenshot({ path: file });
     results.push({ name: shot.name, time: shot.time, ...frame, file });
-    console.log(JSON.stringify(results.at(-1)));
+    note(JSON.stringify(results.at(-1)));
   }
+} catch (err) {
+  note(`error ${err?.stack ?? err}`);
+  throw err;
 } finally {
   fs.writeFileSync(path.join(OUT, 'threejs_shots.json'), JSON.stringify(results, null, 1));
   await browser.close();

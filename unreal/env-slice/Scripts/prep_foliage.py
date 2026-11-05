@@ -125,6 +125,12 @@ for asset in sorted(os.listdir(W.THIRD_PARTY)):
     )
     if not alpha:
         stats["missing"].append(asset)
+    # The atlases sit on a black ground that the mips bleed into the thin
+    # blades; lift the colour back to a lit, storybook green.
+    if asset.startswith("grass"):
+        mel.set_material_instance_vector_parameter_value(mi, "Tint", unreal.LinearColor(1.9, 2.0, 1.5, 1.0))
+        mel.update_material_instance(mi)
+        lib.save_loaded_asset(mi)
     for p in lib.list_assets(folder, recursive=True, include_folder=False):
         m = lib.load_asset(p)
         if isinstance(m, unreal.StaticMesh):

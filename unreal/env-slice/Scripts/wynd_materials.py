@@ -95,7 +95,20 @@ def terrain_material():
     wp = g.node(unreal.MaterialExpressionWorldPosition, 6)
     wxy = g.node(unreal.MaterialExpressionComponentMask, 5, r=True, g=True, b=False, a=False)
     g.link(wp, "", wxy, "")
-    uv0 = g.node(unreal.MaterialExpressionTextureCoordinate, 5)
+    # raster UVs from world position, not the mesh UV channel (the importer
+    # is free to repack UV0): u = (x - minX) / size, v = (z - minZ) / size,
+    # with UE X = game x and UE Y = game z (wynd_common frame)
+    b = W.load_json("manifest.json")["bounds"]
+    size = (b["maxX"] - b["minX"]) * W.UNIT
+    shifted = g.op(
+        unreal.MaterialExpressionSubtract,
+        wxy,
+        g.node(
+            unreal.MaterialExpressionConstant2Vector, 6,
+            r=b["minX"] * W.UNIT, g=b["minZ"] * W.UNIT,
+        ),
+    )
+    uv0 = g.op(unreal.MaterialExpressionDivide, shifted, g.const(size))
     ctrl = g.tex(W.ROOT + "/Rasters/splat_control", uv0, "linear")
     cob = g.tex(W.ROOT + "/Rasters/splat_cobble", uv0, "linear")
     tint = g.tex(W.ROOT + "/Rasters/tint", uv0, "color")
