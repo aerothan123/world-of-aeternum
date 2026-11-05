@@ -32,7 +32,7 @@ export const PROP_NATURAL_SIZE: Readonly<Record<string, PropNaturalSize>> = {
   delveEntrance2: { x: 1.5841, y: 2.0091, z: 0.4182, cx: -0.0008, cz: -0.0125, minY: -1.0052 },
   dockPlatform: { x: 2.5001, y: 1.3124, z: 2.5127, cx: 0, cz: 0, minY: 0 },
   farmCrate: { x: 0.7138, y: 0.2437, z: 0.4142, cx: 0, cz: 0, minY: -0.016 },
-  fence: { x: 0.791, y: 0.326, z: 0.0259, cx: -0.0054, cz: 0.0001, minY: -0.0028 },
+  fence: { x: 0.79, y: 0.326, z: 0.1842, cx: 0, cz: 0, minY: -0.003 },
   flowerBedRound: { x: 0.9776, y: 0.5043, z: 0.9774, cx: 0.0005, cz: 0.0001, minY: 0.0014 },
   flowerBedSquareA: { x: 0.9767, y: 0.1737, z: 0.9797, cx: -0.0002, cz: 0.0004, minY: 0.0004 },
   flowerBedSquareB: { x: 0.9796, y: 0.1979, z: 0.9762, cx: -0.0001, cz: 0, minY: 0.0001 },

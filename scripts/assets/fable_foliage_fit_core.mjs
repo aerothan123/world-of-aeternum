@@ -36,6 +36,9 @@ export const FABLE_KIND_MATERIALS = Object.freeze({
   flowering_bush: Object.freeze({ leaf: 'Leaves_NormalTree', flower: 'Flowers' }),
   mushroom: Object.freeze({ whole: 'Mushrooms' }),
   rock: Object.freeze({ whole: 'Rocks' }),
+  // The fern keeps the old card fern's `Leaves` name: the dressing's fern
+  // policy (wind sway, double sided) keys on it.
+  fern: Object.freeze({ whole: 'Leaves' }),
 });
 
 /** Kinds whose source is split into parts (the rest ship as one primitive). */
@@ -76,6 +79,8 @@ export const FULL_SOURCE = 4400;
  *  (its own baked normal map, with the painted relief over it, carries the
  *  surface). */
 export const ROCK_BUDGET = 4200;
+/** Triangle budget of the fern, the densest dressing kind. */
+export const FERN_BUDGET = 1400;
 /** Height of a fitted dead tree as a fraction of the old snag's. */
 export const DEAD_HEIGHT_SCALE = 0.8;
 const dead = (name, oldHeight, x, z, oldFootprint) =>
@@ -114,6 +119,11 @@ export const FABLE_FOLIAGE_TARGETS = Object.freeze([
     spreadCap: 1,
   }),
   T('mushroom', 'mushroom', 0.464, -0.017, -0.052, -0.056, FULL_SOURCE),
+  // The sculpted storybook fern replaces the old 288-triangle card fern. It
+  // keeps the old height and sits a little inside the old card spread (the
+  // cards' bounds were mostly thin frond tips), at a capped budget because
+  // ferns are the densest ground dressing.
+  T('fern', 'fern', 0.84, -0.077, 0.033, 0.048, FERN_BUDGET, { footprint: [2.3, 2.2] }),
   T('rock_1', 'rock', 2.26, -0.271, -0.115, 0.345, ROCK_BUDGET, { footprint: [3.225, 2.989] }),
   T('rock_2', 'rock', 1.899, -0.051, -0.189, 0.08, ROCK_BUDGET, { footprint: [3.049, 2.479] }),
   T('rock_3', 'rock', 2.316, -0.316, -0.114, 0.848, ROCK_BUDGET, { footprint: [3.42, 3.476] }),
