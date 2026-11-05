@@ -21,6 +21,14 @@ Companion files:
   quest and dungeon tables, and the zone order for the world crew.
 - `docs/design/wyndlewood-game-plan-economy.md`: the sink and source table and
   the monetization options.
+- `docs/design/wyndlewood-chapter-roadmap.md`: launch plus the post-launch
+  chapters (+5 cap each).
+- `docs/design/wyndlewood-chapter-two-outline.md`: the quest outline for
+  levels 5 to 13.
+- `docs/design/wyndlewood-faction-ladder.md`: standing formula, tiers and
+  rewards.
+- `docs/design/wyndlewood-last-keep-dawnhold.md`: encounter designs for the
+  two story walks.
 
 ---
 
@@ -63,7 +71,8 @@ engine. It has:
    Basin needs a reframe as the finale.
 
 **Recommendations in brief.**
-- Keep the **level cap at 20** for launch. Every system is pinned to it, and
+- Keep the **level cap at 20** for launch (now decided; later chapters
+  raise it by 5). Every system is pinned to it, and
   levels 16 to 20 already hold 45% of all XP to cap. Raise the cap only in a
   paid expansion.
 - **Re-tune quest XP to about 10% of a level per quest** (today it is about
@@ -319,7 +328,8 @@ Totals: 3 tank classes (warrior, paladin, druid) and 5 healer classes.
   need station masters. Each town should anchor at least one station type.
 - **Housing slice.** Today:
   - A few lots in total, one each in Eastbrook, Fenbridge and Highwatch.
-  - One house per character, owned by the character.
+  - One house per character, owned by the character. The owner has since
+    decided on one house per account, so ownership moves to the account.
   - Furniture snaps to fixed anchors.
   - Furniture reuses castle GLBs (the furniture crew is replacing them).
 
@@ -569,26 +579,56 @@ Recommended shape:
 
 ---
 
-## 11. Open questions for the owner
+## 11. Owner decisions and open questions
 
-1. Keep the level cap at 20 for launch? (Recommended: yes.)
-2. Target time to cap for a first character: about 30 hours (quest XP about
-   10% of a level), or faster?
-3. Business model: buy-to-play plus cosmetics plus expansions, with no
-   subscription? Or add a cosmetic-only subscription?
-4. Remove membership gear, XP bonus and market fee cut from the Wyndlewood
-   build? (Recommended: yes.)
-5. Remove the crypto currency and stakes layer from the Steam build?
-   (Recommended: yes.)
-6. Factions: can one character max all four, with moral choices only tilting
-   standing? (Recommended: yes.)
-7. Housing: per character (today) or account-wide? One house or several?
-8. Add classic durability and repair as a gold sink? (Recommended: yes.)
-9. PvP at launch: opt-in only (duels, arenas, battlegrounds, flagged world
-   PvP)? (Recommended: yes.)
-10. Mage Chronomancy: list it as a finder healer, or change its role?
-11. Approve "the Oathless King" (decisions file, item 4).
-12. One large realm at launch, or several?
+### Decided (owner, 2026-11)
+- **Level cap.** 20 at launch. Each later chapter raises it by 5
+  (`docs/design/wyndlewood-chapter-roadmap.md`).
+- **Time to cap.** About 30 hours by questing. Life skills are a path to cap
+  at a slower pace, about 45 hours.
+- **Housing.** One house per account. Today a house is owned per character
+  (`CharacterState.house`), so this needs an account-level move.
+- **Repair.** Classic durability and repair is in.
+- **Paid systems.** Membership is off for Early Access. The crypto layer is
+  removed from the Steam build. The systems crew is doing both on
+  `feature/core-systems`.
+- **Factions.** Reputation comes from activities
+  (`docs/design/wyndlewood-faction-ladder.md`):
+  - Lanternwardens for combat, patrol and escort;
+  - Hearthwright for crafting, building, housing and restoration;
+  - Bracken for gathering and cleansing;
+  - Gilt for trading, the market and buy orders.
+- **PvP.** Opt-in at launch. An arena or PvP zone comes later.
+- **First mount.** At level 10 (systems crew).
+- **The map.** It grows to include:
+  - the Southern Reaches row at 6 to 13;
+  - a further south row at 11 to 15;
+  - a west column for the 16 to 20 branches;
+  - a cart and ferry network;
+  - the Hushmist frontier.
+  The longest trip is about 15 minutes on foot at launch.
+
+### Still open
+1. **Business model after Early Access.** Buy-to-play plus cosmetics plus
+   expansions, with or without a cosmetic-only subscription? Does membership
+   return later, and if so as cosmetic only?
+2. **Faction depth.** Can one character max all four factions, with moral
+   choices only tilting standing? (Recommended: yes; the ladder assumes it.)
+3. **Faction gear.** Re-budget the shipped quartermaster gear down to the
+   quest tier, as the ladder proposes? (Recommended: yes.)
+4. **Chapters as releases.** Are post-launch chapters paid expansions, free
+   updates, or alternating (roadmap R1)? And at what cadence (R4)?
+5. **Prestige at the first cap raise.** Freeze prestige ranks as a cosmetic
+   record, or convert them (roadmap R2)?
+6. **`zeroDiff`.** Correct it to the classic table for levels 16 to 19 at
+   launch, or only when the cap rises (roadmap R3)?
+7. **Mage Chronomancy.** List it as a finder healer, or change its role?
+8. **Names.** Approve "the Oathless King" (decisions file, item 4), and
+   rename the Royal Forgemaster (bible Garrick Vellthorn) to avoid the
+   Garrick Holt clash.
+9. **Realms.** One large realm at launch, or several?
+10. **Eshmara's end.** Does she yield and survive at the end of Dawnhold
+    (as designed), or die?
 
 ---
 
