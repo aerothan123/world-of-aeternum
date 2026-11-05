@@ -28147,6 +28147,11 @@ export const fr_CA: EnTranslations = {
         "title": "Maître de la Tannerie",
         "greeting": "Une peau n'est aussi bonne que son bronzage, {className}. Les cuves sont prêtes quand vous l'êtes."
       },
+      "tanner_tamsin": {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "greeting": "Fresh hides on the racks today, {className}. Scrape with the grain, never against it."
+      },
       "alchemist_verane": {
         "name": "Alchimiste Vérane",
         "title": "Maître de l'apothicaire",

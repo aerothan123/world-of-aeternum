@@ -87,8 +87,15 @@ describe('Eastbrook town grass exclusion', () => {
     const painted = PAINTED_TOWNS.flatMap((town) => town.buildings);
     // The 3 added north Fenbridge cottages (fenbridge_touchup.ts) also clear
     // their reach and service apron (two rows each, six more: 99 to 105; Lantern Hall adds two more).
-    expect(exclusions).toHaveLength(107 + tavernGroundsRects().length + 2 * painted.length);
+    // Town kit (phase 2): every Eastbrook kit placement clears its reach, one
+    // row each, so the count follows the kit list.
+    expect(exclusions).toHaveLength(
+      107 + tavernGroundsRects().length + 2 * painted.length + EASTBROOK_LAYOUT.townKit.length,
+    );
     expect(tavernGroundsRects().length).toBe(25);
+    for (const kit of EASTBROOK_LAYOUT.townKit) {
+      expect(exclusions.some((item) => item.id === kit.id)).toBe(true);
+    }
     for (const building of [...HIGHWATCH_LAYOUT.buildings, ...painted]) {
       expect(exclusions.some((item) => item.id === building.id)).toBe(true);
       expect(exclusions.some((item) => item.id === `${building.id}:serviceApron`)).toBe(true);
@@ -299,8 +306,10 @@ describe('Eastbrook town grass exclusion', () => {
     // harbor move (d19aa33f76, docs/design/eastbrook-revamp/site-plan.md),
     // then re-derived again in round 3 when the yard widened around the
     // grown smithy lot, so the half widths carry fresh float noise.
+    // Re-pinned for the town kit (phase 2): the smithy-yard fences retired with
+    // the forge lot, and the stable corral's three low rails replaced them.
     expect(fenceDimensions.map(([halfWidth]) => halfWidth)).toEqual([
-      0.9000000000000008, 4.7000000000000055, 0.9000000000000008,
+      2.3000000000000007, 2.6499999999999995, 2.3000000000000007,
     ]);
     expect(fenceDimensions.map(([, halfDepth]) => halfDepth)).toEqual([0.14, 0.14, 0.14]);
 

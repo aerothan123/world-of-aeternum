@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-460f0-b9b6e5a1-1df920d1-14b3-b4ad9a78-f493dfc8",
+    "id": "live-4735c-6d020d7d-26e15a8d-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "460f0-b9b6e5a1-1df920d1",
+    "overworldBase": "4735c-6d020d7d-26e15a8d",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -3525,10 +3525,10 @@
         "name": "The Merchant",
         "title": "Keeper of the World Market",
         "pos": {
-          "x": -19.333512834321652,
-          "z": -95.49976921301501
+          "x": -29,
+          "z": -103.79285714285714
         },
-        "facing": 2.4805494847391065,
+        "facing": 0,
         "color": 13938487,
         "questIds": [],
         "greeting": "Welcome to the World Market, $C. Buy from every adventurer in the realm, or set out your own wares and let coin find you.",
@@ -3605,10 +3605,10 @@
         "name": "Ivara Fenmoss",
         "title": "Herbalist",
         "pos": {
-          "x": -24.5,
-          "z": -112.5
+          "x": -16.471153846153847,
+          "z": -109.2
         },
-        "facing": 0.7853981633974483,
+        "facing": 0.33061826155045143,
         "color": 8207512,
         "questIds": [
           "q_spiders",
@@ -3704,10 +3704,10 @@
         "name": "Foreman Odell",
         "title": "Mine Foreman",
         "pos": {
-          "x": -3.5,
-          "z": -104.5
+          "x": 1.8,
+          "z": -102.6
         },
-        "facing": -1.3370531459259951,
+        "facing": -1.5328398816065827,
         "color": 10502144,
         "questIds": [
           "q_prof_intro",
@@ -3734,10 +3734,10 @@
         "name": "Bursar Fernando",
         "title": "The Gilded Strongbox",
         "pos": {
-          "x": -55.21592057176678,
-          "z": -105.19195954108784
+          "x": -41.6,
+          "z": -102.88933333333333
         },
-        "facing": 0.7853981633974481,
+        "facing": 0,
         "color": 13214247,
         "questIds": [],
         "greeting": "Welcome to the Gilded Strongbox. Your goods rest safe behind our locks.",
@@ -3774,10 +3774,10 @@
         "name": "Brunna Flintmorrow",
         "title": "Master of the Forge",
         "pos": {
-          "x": -8.171547617899419,
-          "z": -120.39003105620014
+          "x": -5.772222222222222,
+          "z": -113.8
         },
-        "facing": -2.0344439357957027,
+        "facing": -1.5707963267948966,
         "color": 11883548,
         "questIds": [
           "q_prof_attune_smith",
@@ -3803,10 +3803,10 @@
         "name": "Cook Marlow",
         "title": "Master of the Kitchens",
         "pos": {
-          "x": -42.62589170715949,
-          "z": -92.23189846640925
+          "x": -4.967368421052631,
+          "z": -108.5
         },
-        "facing": -0.669638945676638,
+        "facing": -1.5707963267948966,
         "color": 13208139,
         "questIds": [
           "q_prof_attune_apothecary",
@@ -3830,10 +3830,10 @@
         "name": "Weaver Ottilie",
         "title": "Master of the Loom",
         "pos": {
-          "x": -20.5,
-          "z": -117.5
+          "x": -13.677777777777779,
+          "z": -116.6
         },
-        "facing": 1.1071487177940904,
+        "facing": 1.5707963267948966,
         "color": 7430568,
         "questIds": [
           "q_prof_attune_outfitter",
@@ -3855,10 +3855,10 @@
         "name": "Tinker Gizzel",
         "title": "Master of the Toolworks",
         "pos": {
-          "x": -16.277350098112613,
-          "z": -122.64714310642654
+          "x": -14.294166666666667,
+          "z": -125.6
         },
-        "facing": 0.5880026035475675,
+        "facing": 1.5707963267948966,
         "color": 11570519,
         "questIds": [
           "q_prof_attune_bombardier",
@@ -6442,6 +6442,24 @@
           "c1_03_fish_consulted"
         ],
         "greeting": "Never trust a fish with good manners. The polite ones are planning something."
+      },
+      "tanner_tamsin": {
+        "id": "tanner_tamsin",
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "pos": {
+          "x": -13.844,
+          "z": -121.2
+        },
+        "facing": 1.5707963267948966,
+        "color": 9398844,
+        "questIds": [],
+        "greeting": "Fresh hides on the racks today, $C. Scrape with the grain, never against it.",
+        "vendorItems": [
+          "travelers_knapsack",
+          "tough_jerky",
+          "tanning_agent"
+        ]
       }
     },
     "objects": [
@@ -8530,10 +8548,6 @@
           "z": -123
         },
         {
-          "x": -18.5,
-          "z": -121.5
-        },
-        {
           "x": -18,
           "z": -128
         },
@@ -8668,6 +8682,28 @@
         {
           "x": -44,
           "z": -98
+        }
+      ],
+      [
+        {
+          "x": 18,
+          "z": -24
+        },
+        {
+          "x": 27,
+          "z": -24
+        },
+        {
+          "x": 30,
+          "z": -30
+        },
+        {
+          "x": 33,
+          "z": -24
+        },
+        {
+          "x": 64,
+          "z": -24
         }
       ],
       [

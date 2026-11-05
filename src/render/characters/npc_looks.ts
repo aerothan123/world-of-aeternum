@@ -1156,6 +1156,21 @@ export const NPC_LOOKS: Record<string, NpcLookDef> = {
     },
     props: 'tome',
   },
+  // Tamsin Tanwick, the Eastbrook crafting yard's tanner (town kit phase 2):
+  // a weathered working look, sleeves up, her scraping knife at her side.
+  tanner_tamsin: {
+    cls: 'warrior',
+    app: {
+      gender: 'female',
+      ...head('crown', 'none', 'relaxed', 'almond', 'soft', 'default', 'default', 'lobes'),
+      ...skin(28, 0.5, 0.48),
+      ...hair(22, 0.55, 0.2),
+      ...eyes(32, 0.45, 0.3),
+      headShape: shape({ eyeSpacing: 0.3, eyeSize: 0.5, eyeTilt: 0.1, chinWidth: 0.55 }),
+      bodyScale: 1.0,
+    },
+    props: 'knife',
+  },
   // Tanner Hesk, Master of the Tannery.
   tanner_hesk: {
     cls: 'warrior',

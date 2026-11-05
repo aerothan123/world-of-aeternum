@@ -28147,6 +28147,11 @@ export const sv_SE: EnTranslations = {
         "title": "Mästaren på garveriet",
         "greeting": "En hud är bara så bra som dess garvning, {className}. Karen är klara när du är."
       },
+      "tanner_tamsin": {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "greeting": "Fresh hides on the racks today, {className}. Scrape with the grain, never against it."
+      },
       "alchemist_verane": {
         "name": "Alkemisten Verane",
         "title": "Apotekerns mästare",

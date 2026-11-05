@@ -43,6 +43,9 @@ export const STATION_PROP_CLUSTERS = CLUSTERS;
 export function stationPropPlacements(stations: readonly StationDef[]): StationPropPlacement[] {
   const out: StationPropPlacement[] = [];
   for (const station of stations) {
+    // a station dressed by authored town decor (StationDef.dressed, the
+    // Eastbrook town kit benches) draws no generic cluster
+    if (station.dressed) continue;
     for (const prop of STATION_PROP_CLUSTERS[station.type]) {
       out.push({
         stationId: station.id,

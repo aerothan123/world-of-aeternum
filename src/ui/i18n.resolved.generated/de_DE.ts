@@ -28147,6 +28147,11 @@ export const de_DE: EnTranslations = {
         "title": "Meister der Gerberei",
         "greeting": "Eine Haut ist nur so gut wie ihre Gerbung, {className}. Die Bottiche sind bereit, wenn du es bist."
       },
+      "tanner_tamsin": {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "greeting": "Fresh hides on the racks today, {className}. Scrape with the grain, never against it."
+      },
       "alchemist_verane": {
         "name": "Alchemist Verane",
         "title": "Meister der Apotheke",

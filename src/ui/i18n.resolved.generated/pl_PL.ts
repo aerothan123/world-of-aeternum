@@ -28147,6 +28147,11 @@ export const pl_PL: EnTranslations = {
         "title": "Mistrz Garbarni",
         "greeting": "Skóra jest tak dobra, jak jej garbowanie, {className}. Kadzie będą gotowe, kiedy ty będziesz."
       },
+      "tanner_tamsin": {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "greeting": "Fresh hides on the racks today, {className}. Scrape with the grain, never against it."
+      },
       "alchemist_verane": {
         "name": "Alchemik Verane",
         "title": "Mistrz Aptekarstwa",

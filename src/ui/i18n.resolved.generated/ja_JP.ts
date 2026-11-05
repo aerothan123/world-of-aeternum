@@ -28147,6 +28147,11 @@ export const ja_JP: EnTranslations = {
         "title": "なめし場の主",
         "greeting": "革の良し悪しはなめしで決まる、{className}。桶の用意はできている、あとはあんた次第だ。"
       },
+      "tanner_tamsin": {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "greeting": "Fresh hides on the racks today, {className}. Scrape with the grain, never against it."
+      },
       "alchemist_verane": {
         "name": "錬金術師ヴェレーン",
         "title": "薬房の主",

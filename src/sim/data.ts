@@ -109,6 +109,7 @@ import { DROWNED_TEMPLE_MOBS } from './content/drowned_temple';
 import { CANTOR_NPCS } from './content/drowned_temple_cantor';
 import { DROWNED_TEMPLE_ITEMS } from './content/drowned_temple_items';
 import { DUNGEON_DEFS, DUNGEON_KEEPSAKE_ITEMS, DUNGEON_MOBS } from './content/dungeons';
+import { EASTBROOK_YARD_NPCS } from './content/eastbrook_yard_npcs';
 import { FORGEFATHER_ISLE_TERRAIN_EDITS } from './content/ember_coast';
 import {
   EVERGARDEN_CAMPS,
@@ -643,6 +644,10 @@ export const NPCS: Record<string, NpcDef> = {
   // Wyndlewood Chapter One's new townsfolk (content/chapter_one.ts), appended
   // last so every NPC placed before them keeps its entity id.
   ...CHAPTER_ONE_NPCS,
+  // The Eastbrook crafting yard's tannery master (content/eastbrook_yard_npcs.ts,
+  // the town kit relayout), appended last so every NPC placed before her keeps
+  // its entity id.
+  ...EASTBROOK_YARD_NPCS,
 };
 
 // Graveyards + the Spirit Healer: re-exported so the Sim and spirit.ts import the

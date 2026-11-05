@@ -28147,6 +28147,11 @@ export const cs_CZ: EnTranslations = {
         "title": "Mistr koželužny",
         "greeting": "Kůže je jen tak dobrá, jak dobře je vyčiněná, {className}. Kádě jsou připravené, až budeš ty."
       },
+      "tanner_tamsin": {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "greeting": "Fresh hides on the racks today, {className}. Scrape with the grain, never against it."
+      },
       "alchemist_verane": {
         "name": "Alchymista Verane",
         "title": "Mistr lékárny",

@@ -28147,6 +28147,11 @@ export const pt_BR: EnTranslations = {
         "title": "Mestre do Curtume",
         "greeting": "Uma pele é tão boa quanto o seu curtimento, {className}. As cubas estarão prontas quando você estiver."
       },
+      "tanner_tamsin": {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "greeting": "Fresh hides on the racks today, {className}. Scrape with the grain, never against it."
+      },
       "alchemist_verane": {
         "name": "Alquimista Verane",
         "title": "Mestre do Boticário",

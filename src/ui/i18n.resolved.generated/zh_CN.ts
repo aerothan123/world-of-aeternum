@@ -28147,6 +28147,11 @@ export const zh_CN: EnTranslations = {
         "title": "制革坊大师",
         "greeting": "皮子的好坏全看鞣制，{className}。鞣槽已经备好，就等你了。"
       },
+      "tanner_tamsin": {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "greeting": "Fresh hides on the racks today, {className}. Scrape with the grain, never against it."
+      },
       "alchemist_verane": {
         "name": "韦兰炼金术士",
         "title": "药坊大师",

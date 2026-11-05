@@ -6,6 +6,9 @@ export const PROFESSION_TRAINERS = {
   weaver_ottilie: 'tailoring',
   tinker_gizzel: 'engineering',
   tanner_hesk: 'leatherworking',
+  // the Eastbrook crafting yard's tannery and alchemy masters (town kit phase 2)
+  tanner_tamsin: 'leatherworking',
+  apothecary_lin: 'alchemy',
   alchemist_verane: 'alchemy',
   farmer_jessica: 'farming',
   farmer_teasel: 'farming',

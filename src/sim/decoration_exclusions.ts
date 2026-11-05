@@ -1,4 +1,5 @@
 import { getActiveWorldContent, isBuiltinWorldActive } from './data';
+import { eastbrookTownKitCovers } from './eastbrook_town_kit_scatter';
 import { activeFenbridgeReachCovers } from './fenbridge_touchup';
 import { mirefenTavernCovers } from './mirefen_tavern_floor';
 import { mirefenTavernGroundsCovers } from './mirefen_tavern_grounds';
@@ -184,7 +185,8 @@ export function isExcludedDecoration(x: number, z: number): boolean {
   if (
     (mirefenTavernCovers(x, z, TAVERN_SCATTER_PAD) ||
       mirefenTavernGroundsCovers(x, z, TAVERN_GROUNDS_SCATTER_PAD) ||
-      activeFenbridgeReachCovers(x, z, PAINTED_TOWN_SCATTER_PAD)) &&
+      activeFenbridgeReachCovers(x, z, PAINTED_TOWN_SCATTER_PAD) ||
+      eastbrookTownKitCovers(x, z)) &&
     isBuiltinWorldActive()
   ) {
     return true;

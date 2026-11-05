@@ -28147,6 +28147,11 @@ export const it_IT: EnTranslations = {
         "title": "Maestro della Conceria",
         "greeting": "Una pelle è buona quanto la sua concia, {className}. Le vasche sono pronte quando lo sei tu."
       },
+      "tanner_tamsin": {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "greeting": "Fresh hides on the racks today, {className}. Scrape with the grain, never against it."
+      },
       "alchemist_verane": {
         "name": "L'alchimista Verane",
         "title": "Maestro dello speziale",

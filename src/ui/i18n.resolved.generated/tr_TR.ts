@@ -28147,6 +28147,11 @@ export const tr_TR: EnTranslations = {
         "title": "Tabakhane Ustası",
         "greeting": "Bir deri yalnızca bronzlaşması kadar iyidir, {className}. Siz hazır olduğunuzda fıçılar hazırdır."
       },
+      "tanner_tamsin": {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "greeting": "Fresh hides on the racks today, {className}. Scrape with the grain, never against it."
+      },
       "alchemist_verane": {
         "name": "Simyacı Verane",
         "title": "Eczacı Ustası",

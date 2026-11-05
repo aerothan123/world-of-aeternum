@@ -740,7 +740,8 @@ const PINNED_POLISH_COMPOSITE_FINGERPRINT =
   // No capture was retaken.
   // Re-minted for v0.45.4 graphics and dungeon loading optimizations in renderer.ts.
   // No capture was retaken.
-  'ffd2da58022d92efb024cd844eb81a07df56bb5756dc63c0e9ac90ca1cab83f5';
+  // Re-minted for the Eastbrook town kit relayout (eastbrook_layout.ts). No capture was retaken.
+  '5657fdc8021306902f4b78a00e554fce55631ecdc7dee2d5655bd716c0b11bd0';
 
 function validPolishAttributionTargets(): AttributionTargetFixture[] {
   return [
@@ -1180,9 +1181,11 @@ describe('Eastbrook polish capture contract', () => {
         camera: { x: 16, y: 12, z: -100.5 },
         target: { x: -10.5, y: 3, z: -100 },
       },
+      // Town kit (phase 2): the toolworks station moved to the crafting yard's
+      // engineering bench, and the camera stands in the yard aisle.
       'toolworks-service-perimeter': {
-        camera: { x: -11, y: 7, z: -120 },
-        target: { x: -13.614789156231515, y: 5, z: -124.42218373434727 },
+        camera: { x: -10.5, y: 7, z: -123 },
+        target: { x: -15.789166666666667, y: 5, z: -125.6 },
       },
       'stall-world-market': {
         camera: { x: -16, y: 6, z: -93 },
@@ -1337,12 +1340,13 @@ describe('Eastbrook polish capture contract', () => {
     expect(toolworksStation).toMatchObject({
       type: 'toolworks',
       masterNpcId: 'tinker_gizzel',
-      position: { x: -13.614789156231515, z: -124.42218373434727 },
+      // Town kit (phase 2): the crafting yard's engineering bench front.
+      position: { x: -15.789166666666667, z: -125.6 },
     });
     expect(tinker).toMatchObject({
       anchorId: 'station_eastbrook_toolworks',
-      position: { x: -16.277350098112613, z: -122.64714310642654 },
-      facing: 0.5880026035475675,
+      position: { x: -14.189166666666667, z: -125.6 },
+      facing: 1.5707963267948966,
     });
     expect(
       Math.hypot(
@@ -1542,8 +1546,8 @@ describe('Eastbrook polish capture contract', () => {
     const expectedViews = {
       'apothecary-lin': {
         subject: 'apothecary_lin',
-        camera: { x: -20.96, y: 6, z: -108.96 },
-        target: { x: -24.5, y: 2.5, z: -112.5 },
+        camera: { x: -14.2, y: 6, z: -107.5 },
+        target: { x: -16.425, y: 2.5, z: -109.2 },
       },
       'ravenpost-chronicler': {
         subject: 'chronicler_saul',
