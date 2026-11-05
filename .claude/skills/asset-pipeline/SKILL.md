@@ -19,7 +19,7 @@ Full reference: `scripts/asset_pipeline/CLAUDE.md`. This is the operational loop
 |---|---|---|
 | Held weapon (sword, axe, staff, ...) | weapon | `weapon --name <key_with_family> --prompt "..."` |
 | World object / building / scenery | prop | `prop --name <key> --height <units> --prompt "..." [--building]` |
-| Mob / NPC / animated character | creature | `creature --name <key> --prompt "..."` |
+| Mob / NPC / animated character | creature | `creature --name <key> --rig-type biped\|quadruped --prompt "..."` (a quadruped stops at the model; rig it in Blender, `scripts/assets/creatures/README.md`) |
 | Player-class skin (texture swap) | skin | `skin --class <cls> --suffix <x> --tripo --prompt "..."` |
 | League-style themed CHARACTER skin | skinmodel | `skinmodel --class <cls> --theme "pool party" --name <key>` |
 | Free rig of a raw mesh (KayKit skeleton) | rig-manual | `rig-manual --raw <job>/raw.glb --name <key>` |
@@ -47,8 +47,12 @@ preview PNGs under `tmp/asset_pipeline/<job>/preview/`: `front.png`, `right.png`
   character. In the live viewer (`library --serve`) use the "held by" dropdown to watch any
   character (including generated skinmodel bodies) swing it.
 - Prop: upright, front facing the camera in `front.png`.
-- Creature: every clip frame posed (a T-pose clip frame means a broken retarget); for
-  non-biped rigs the walk clip is reused for Idle/Run/Attack/Death, judge if that reads OK.
+- Creature: every clip frame posed (a T-pose clip frame means a broken retarget). A
+  four-legged animal is always `--rig-type quadruped`: the old biped default stood the
+  first painted wolf up on two legs (T-pose concept template, biped skeleton). The
+  quadruped lane stops after the model; the rig and the full clip set are authored in
+  Blender (`scripts/assets/creatures/README.md`). Other non-biped rigs reuse the walk
+  clip for Idle/Run/Attack/Death, judge if that reads OK.
 
 ## 3. Fix by resuming the job (paid stages never re-run)
 - Weapon upside down: rerun the same command with `--flip --job <id>`.

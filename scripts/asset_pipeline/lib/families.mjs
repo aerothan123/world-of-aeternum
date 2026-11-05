@@ -253,6 +253,42 @@ export function quadClipPlan(rigType) {
   return [{ game: 'Walk', presets: [walk] }];
 }
 
+/** Every Tripo rig type the creature lane accepts. */
+export const CREATURE_RIG_TYPES = [
+  'biped',
+  'quadruped',
+  'hexapod',
+  'octopod',
+  'serpentine',
+  'aquatic',
+];
+
+/** The creature lane's body decision, made BEFORE any credit is spent.
+ *
+ *  The body type is required. It used to default to biped, and the biped
+ *  default does two things to a four-legged animal: the concept prompt asks for
+ *  a T-pose with arms out (so the concept and then the model stand up on two
+ *  legs, a wolf comes back as a wolf-man), and the rig step asks Tripo for a
+ *  biped skeleton. A quadruped also never takes the Tripo rig: its quadruped
+ *  library is one walk preset (Idle, Run, Attack and Death would all be that
+ *  walk), so the lane stops after the textured model and hands it to the
+ *  Blender rigger (scripts/assets/hoard_mobs/quadruped_rig.py, see
+ *  scripts/assets/creatures/README.md), which authors the full clip set. */
+export function creatureBodyPlan(rigType) {
+  if (!rigType) {
+    throw new Error(
+      `creature needs --rig-type <${CREATURE_RIG_TYPES.join('|')}>: a four-legged animal ` +
+        'run as the old biped default comes back standing on two legs',
+    );
+  }
+  if (!CREATURE_RIG_TYPES.includes(rigType)) {
+    throw new Error(`unknown --rig-type ${rigType} (${CREATURE_RIG_TYPES.join(', ')})`);
+  }
+  // The other non-biped types keep the Tripo walk-only path they always had.
+  const quadruped = rigType === 'quadruped';
+  return { rigType, tripoRig: !quadruped, handoff: quadruped ? 'blender-quadruped' : null };
+}
+
 /** ClipMap snippet fields required by src/render/characters/manifest.ts. */
 export const REQUIRED_CLIPMAP_FIELDS = ['idle', 'walk', 'run', 'attack', 'death'];
 

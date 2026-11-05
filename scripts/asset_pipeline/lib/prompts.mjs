@@ -74,6 +74,13 @@ export function conceptPrompt({ kind, description, family, rigType }) {
   throw new Error(`unknown concept kind: ${kind}`);
 }
 
+/** The Tripo text-to-image template for a concept. Its t_pose template stands any
+ *  subject up on two legs with its arms out, so only a biped creature takes it: a
+ *  wolf sent through it comes back as a wolf-man (the first painted wolf did). */
+export function conceptTemplate({ kind, rigType }) {
+  return kind === 'creature' && (!rigType || rigType === 'biped') ? 't_pose' : undefined;
+}
+
 /** Prompt for the direct text-to-model path (no concept image). Tripo prompts
  *  cap at 1024 chars and should describe shape, material, style. */
 export function modelPrompt({ kind, description, family }) {

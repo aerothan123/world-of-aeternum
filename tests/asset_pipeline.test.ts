@@ -903,6 +903,36 @@ describe('prompt builders', () => {
     expect(p).toContain('T-pose');
   });
 
+  it('a quadruped concept stands on all four legs, never in a T-pose', () => {
+    // The biped T-pose language is what stood the first painted wolf up on two legs.
+    const p = prompts.conceptPrompt({
+      kind: 'creature',
+      description: 'a grey timber wolf',
+      rigType: 'quadruped',
+    });
+    expect(p).toContain('standing naturally on all of its legs');
+    expect(p).not.toContain('T-pose');
+    expect(p).not.toContain('arms out');
+    // Tripo's t_pose image template stands a subject up on two legs whatever the prompt.
+    expect(prompts.conceptTemplate({ kind: 'creature', rigType: 'quadruped' })).toBeUndefined();
+    expect(prompts.conceptTemplate({ kind: 'creature', rigType: 'biped' })).toBe('t_pose');
+  });
+
+  it('refuses a creature run with no body type before any credit is spent', () => {
+    expect(() => families.creatureBodyPlan(undefined)).toThrow('--rig-type');
+    expect(() => families.creatureBodyPlan('dragonish')).toThrow('unknown --rig-type');
+  });
+
+  it('hands a quadruped to the Blender rigger instead of the Tripo rig', () => {
+    expect(families.creatureBodyPlan('quadruped')).toEqual({
+      rigType: 'quadruped',
+      tripoRig: false,
+      handoff: 'blender-quadruped',
+    });
+    expect(families.creatureBodyPlan('biped')).toMatchObject({ tripoRig: true, handoff: null });
+    expect(families.creatureBodyPlan('hexapod')).toMatchObject({ tripoRig: true });
+  });
+
   it('model prompts strip the 2D layout constraints and fit the Tripo 1024 cap', () => {
     const p = prompts.modelPrompt({ kind: 'weapon', description: 'a fiery sword', family: sword });
     expect(p).not.toContain('plain white opaque background');

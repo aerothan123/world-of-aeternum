@@ -14,7 +14,9 @@
 //   node scripts/asset_pipeline/pipeline.mjs prop --name market_fountain --height 2.4 \
 //     [--prompt "..."] [--image ...] [--rotate-y 90] [--max-texture 256] [--apply] [--job id]
 //   node scripts/asset_pipeline/pipeline.mjs creature --name bog_lurker \
-//     [--prompt "..."] [--image ...] [--rig-type biped] [--height 2.0] [--job id]
+//     --rig-type biped|quadruped|... [--prompt "..."] [--image ...] [--height 2.0] [--job id]
+//     (--rig-type is required; a quadruped stops after the textured model and is
+//     rigged in Blender, see scripts/assets/creatures/README.md)
 //   node scripts/asset_pipeline/pipeline.mjs skin --class warrior --suffix lava \
 //     --tripo --prompt "molten obsidian armor, glowing lava cracks" [--apply]  (real gen)
 //     (or --recolor hue=..[,sat=..][,light=..] fallback, or --prompt with OPENAI_API_KEY)
@@ -38,7 +40,13 @@
 import { copyFileSync, existsSync, readdirSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { hasOpenAi, REPO_ROOT } from './lib/env.mjs';
-import { BIPED_CLIP_PLAN, CATEGORY_SPECS, quadClipPlan, weaponFamilyFor } from './lib/families.mjs';
+import {
+  BIPED_CLIP_PLAN,
+  CATEGORY_SPECS,
+  creatureBodyPlan,
+  quadClipPlan,
+  weaponFamilyFor,
+} from './lib/families.mjs';
 import {
   assembleRiggedModel,
   checkInPlace,
@@ -66,7 +74,7 @@ import {
   renderPreviewsIfPossible,
   renderWeaponIcon,
 } from './lib/preview.mjs';
-import { atlasEditPrompt, conceptPrompt } from './lib/prompts.mjs';
+import { atlasEditPrompt, conceptPrompt, conceptTemplate } from './lib/prompts.mjs';
 import * as tripo from './lib/tripo.mjs';
 import { validateCreature, validateProp, validateWeapon } from './lib/validate.mjs';
 
@@ -270,7 +278,7 @@ async function conceptStage(job, { kind, description, family, image, rigType }) 
   }
   return job.step('concept', async () => {
     job.log(`tripo text-to-image concept (no OPENAI_API_KEY): ${prompt.slice(0, 120)}...`);
-    const template = kind === 'creature' ? 't_pose' : undefined;
+    const template = conceptTemplate({ kind, rigType });
     const { url } = await tripo.textToImage({
       prompt,
       template,
@@ -629,27 +637,45 @@ async function cmdProp() {
 async function cmdCreature() {
   const name = opt('name');
   if (!name) throw new Error('creature needs --name <snake_case>');
+  // Decided before any credit is spent: no body type, no run (creatureBodyPlan).
+  const body = creatureBodyPlan(opt('rig-type'));
   const job = Job.open({ job: opt('job'), kind: 'creature', name, create: flag('new-job') });
   applyRedo(job, 'creature');
   job.set('kind', 'creature');
   job.set('name', name);
+  job.set('rigType', body.rigType);
 
   const concept = await conceptStage(job, {
     kind: 'creature',
     description: opt('prompt'),
     image: opt('image'),
-    rigType: opt('rig-type'),
+    rigType: body.rigType,
   });
   const input = concept.conceptPath ?? concept.input;
   const gen = await generateStage(job, {
     input,
-    prompt: opt('prompt') ? conceptPrompt({ kind: 'creature', description: opt('prompt') }) : null,
+    prompt: opt('prompt')
+      ? conceptPrompt({ kind: 'creature', description: opt('prompt'), rigType: body.rigType })
+      : null,
     model: tripo.modelFor(opt('model')),
     faceLimit: faceLimitOpt(CATEGORY_SPECS.creature.faceLimit),
   });
   if (await reviewStop(job, 'generate', gen.raw)) return;
   const tex = await textureStage(job, gen);
   if (await reviewStop(job, 'texture', tex?.glb ?? gen.raw)) return;
+  if (!body.tripoRig) {
+    // A quadruped stops here: Tripo's quadruped library is one walk preset, so
+    // the rig and every clip are authored in Blender instead.
+    const model = tex?.glb ?? gen.raw;
+    job.log(`quadruped: no Tripo rig; rig ${model} with the Blender quadruped rigger`);
+    console.log(
+      '\nNext (scripts/assets/creatures/README.md): measure the body, write its bone spec, then\n' +
+        `  blender --background --python scripts/assets/hoard_mobs/quadruped_rig.py -- ${model} <dir> --spec <spec.json>\n` +
+        `  node scripts/assets/hoard_mobs/assemble.mjs <key> <dir> public/models/creatures/<key>.glb`,
+    );
+    printReport(job, { ok: true, glb: model, rigType: body.rigType, actions: [] });
+    return;
+  }
   // Rig whichever model the operator approved: the textured task when the
   // texture stage ran, else the raw generate task.
   const modelTaskForRig = tex?.taskId ?? gen.taskId;
