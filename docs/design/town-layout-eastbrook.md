@@ -481,6 +481,11 @@ below rather than the numbers.
   multiview build (a 4096 by 2048 turnaround sheet cut into views) because
   their single-image backs were unpainted and face a street; 230 credits
   (`assets_src/town_kit/manifest.json`, `spend.phase2`).
+- **Cost.** 30 placements of 29 GLBs: 88,437 triangles in all, 3.3 MB of
+  downloads, one primitive per model. Before and after captures
+  (`scripts/eastbrook_town_kit_shot.mjs`, `docs/screenshots/eastbrook-town-kit/`,
+  `before-perf.json` and `after-perf.json`) were taken on a shared machine,
+  so treat their frame rates as a rough read and re-measure on an idle one.
 - **Live-world touch-up.** The kit changes `BASE_WORLD`, so the Fenbridge-only
   touch-up was rebased onto the new baseline with its changes byte-identical
   (`data/world_touchup/current.map.json`, `src/sim/world_touchup.generated.ts`).

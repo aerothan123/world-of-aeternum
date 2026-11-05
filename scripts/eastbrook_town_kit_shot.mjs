@@ -87,17 +87,34 @@ async function standLooking(x, z, tx, tz, pitch, dist) {
 async function sample() {
   return run(`
     return await new Promise((resolve) => {
+      // The renderer may not reset info per frame, so the counters are read as
+      // a per-frame mean over the window: (end - start) / frames, or the
+      // largest single frame when a reset lands inside the window.
       const info = window.__game.renderer.webgl.info.render;
       let frames = 0;
-      let calls = 0;
-      let tris = 0;
+      let prevCalls = info.calls;
+      let prevTris = info.triangles;
+      const startCalls = info.calls;
+      const startTris = info.triangles;
+      let resetSeen = false;
+      let frameCalls = 0;
+      let frameTris = 0;
       const t0 = performance.now();
       const tick = () => {
         frames++;
-        calls = Math.max(calls, info.calls);
-        tris = Math.max(tris, info.triangles);
-        if (performance.now() - t0 < 2000) requestAnimationFrame(tick);
-        else resolve({ fps: Math.round((frames * 1000) / (performance.now() - t0)), calls, tris });
+        if (info.calls < prevCalls) {
+          resetSeen = true;
+          frameCalls = Math.max(frameCalls, prevCalls);
+          frameTris = Math.max(frameTris, prevTris);
+        }
+        prevCalls = info.calls;
+        prevTris = info.triangles;
+        if (performance.now() - t0 < 3000) requestAnimationFrame(tick);
+        else {
+          const calls = resetSeen ? frameCalls : Math.round((info.calls - startCalls) / frames);
+          const tris = resetSeen ? frameTris : Math.round((info.triangles - startTris) / frames);
+          resolve({ fps: Math.round((frames * 1000) / (performance.now() - t0)), calls, tris });
+        }
       };
       requestAnimationFrame(tick);
     });
@@ -106,7 +123,7 @@ async function sample() {
 
 const STATIONS = [
   // From the ferry bell's town landing (FERRY_BELL_TOWN_LANDING), up into town.
-  { name: 'quay-overview', at: [-92.5, -46.5], look: [-60, -66], pitch: 0.32, dist: 16 },
+  { name: 'quay-overview', at: [-92.5, -46.5], look: [-60, -66], pitch: 0.55, dist: 24 },
   // The crafting yard south of the square, from its square end.
   { name: 'crafting-yard', at: [-7, -100], look: [-9, -118], pitch: 0.5, dist: 15 },
   // Market Row: the trading post and the storage shed from the main street.
