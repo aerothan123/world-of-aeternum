@@ -7,12 +7,12 @@
 // Every outcome is a personal, text-free SimEvent (houseOffer / housePurchased
 // / houseDenied); the client localizes from the ids.
 
+import { accountHouseSharer } from '../character_storage';
 import { type HouseLotDef, houseLotById, houseLotForDungeon } from '../content/house_lots';
 import { FURNISHING_STARTER_RECIPE_IDS } from '../content/recipes';
 import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
 import { DT, dist2d, type Entity } from '../types';
-import { accountHouseSharer } from '../character_storage';
 import type { HousingPlayerState } from './house_state';
 
 /** How close to a lot's door a purchase must be made (yards). Generous next to

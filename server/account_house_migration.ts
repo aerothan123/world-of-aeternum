@@ -163,7 +163,11 @@ export async function migrateAccountHouses(
           report.movedSlots += released.movedSlots;
         }
         await client.query(KEEP_SQL, [plan.keptCharacterId, JSON.stringify(plan.keptHouse)]);
-        await client.query(KEEP_ACCOUNT_ROW_SQL, [accountId, realm, JSON.stringify(plan.keptHouse)]);
+        await client.query(KEEP_ACCOUNT_ROW_SQL, [
+          accountId,
+          realm,
+          JSON.stringify(plan.keptHouse),
+        ]);
         await client.query('COMMIT');
         report.accounts++;
       } catch (error) {

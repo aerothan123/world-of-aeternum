@@ -221,6 +221,7 @@ import {
 } from './chat_ignore_core';
 import { CHAT_TEMPLATE_KEYS, localizeChatBody } from './chat_templates';
 import { wireChromeFocus } from './chrome_focus_wiring';
+import { classCss } from './class_css';
 import { ClaudiumLauncherBalance } from './claudium_launcher_balance_core';
 import { createClaudiumPurchaseFacet } from './claudium_purchase_bridge';
 import { type ClaudiumRail, type ClaudiumSnapshot, ClaudiumWindow } from './claudium_window';
@@ -499,7 +500,6 @@ import { RiteController } from './hud/delve/rite_controller';
 import { DungeonPrompts, fctAvoidanceText, wardHitText } from './hud/dungeon';
 import { applyDungeonGuideSpeech } from './hud/dungeon/dungeon_guide_speech';
 import { DungeonTrackerPainter } from './hud/dungeon/dungeon_tracker_painter';
-import { classCss } from './class_css';
 import { DurabilityPainter, durabilityView } from './hud/durability';
 import { createFinderSurfaces } from './hud/expeditions';
 import { factionRewardTooltipLines } from './hud/faction_reward_tooltip_view';

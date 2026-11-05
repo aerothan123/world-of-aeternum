@@ -66,7 +66,9 @@ class FakeDb {
       }
       return counts;
     };
-    if (sql.startsWith('INSERT INTO account_houses (account_id, realm, house) SELECT DISTINCT ON')) {
+    if (
+      sql.startsWith('INSERT INTO account_houses (account_id, realm, house) SELECT DISTINCT ON')
+    ) {
       const counts = multi(params[0]);
       for (const c of [...this.chars].sort((a, b) => a.id - b.id)) {
         if (c.realm !== params[0] || !has(c) || (counts.get(c.account_id) ?? 0) > 1) continue;

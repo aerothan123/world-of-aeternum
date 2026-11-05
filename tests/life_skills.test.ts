@@ -219,13 +219,27 @@ describe('town project progress event', () => {
     tryContributeAtTownProject(sim.ctx, meta, sim.player);
     const first = sim.drainEvents().filter((e) => e.type === 'townProject');
     expect(first).toEqual([
-      { type: 'townProject', pid: sim.playerId, projectId: well.id, stage: 0, bundles: 0, contributed: false },
+      {
+        type: 'townProject',
+        pid: sim.playerId,
+        projectId: well.id,
+        stage: 0,
+        bundles: 0,
+        contributed: false,
+      },
     ]);
     for (const b of well.stages[0].bundle) sim.addItem(b.itemId, b.count);
     tryContributeAtTownProject(sim.ctx, meta, sim.player);
     const second = sim.drainEvents().filter((e) => e.type === 'townProject');
     expect(second).toEqual([
-      { type: 'townProject', pid: sim.playerId, projectId: well.id, stage: 0, bundles: 1, contributed: true },
+      {
+        type: 'townProject',
+        pid: sim.playerId,
+        projectId: well.id,
+        stage: 0,
+        bundles: 1,
+        contributed: true,
+      },
     ]);
   });
 });

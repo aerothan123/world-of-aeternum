@@ -64,8 +64,9 @@
 // Pure apart from the size signal: no pool, no clock of its own, the holder
 // injected, so the statement text is unit-testable
 // (tests/server/character_save_statement.test.ts).
-import { upsertAccountHouseFromSave } from './account_house_migration';
+
 import type { QueryResult } from 'pg';
+import { upsertAccountHouseFromSave } from './account_house_migration';
 
 import {
   queueCharacterBlobWarning,

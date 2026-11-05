@@ -580,11 +580,7 @@ export function createWsAuth(deps: WsAuthDeps): WsAuthHandlers {
                 rejectHandshake(ws, WS_AUTH_ERROR.forceRename);
                 return;
               }
-              await annotateAccountHouse(
-                deps.accountHouse,
-                accountId,
-                refreshedCharacter,
-              );
+              await annotateAccountHouse(deps.accountHouse, accountId, refreshedCharacter);
               admittedCharacter = refreshedCharacter;
               // Re-read even if the initial query returned after revocation,
               // before this probe existed. Check the probe AFTER that await to
