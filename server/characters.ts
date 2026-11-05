@@ -103,6 +103,7 @@ import type { Ctx, Middleware, RouteDef } from './http/types';
 import { isUniqueViolation, json, moderationErrorBody } from './http_util';
 import { getMembership } from './membership_service';
 import { countOfflineFenceRefusal } from './offline_fence_refusals';
+import { SERVER_EARLY_ACCESS } from './early_access_flags';
 import { REALM } from './realm';
 import {
   REFERRAL_CHARACTER_BONUS,
@@ -406,7 +407,12 @@ export function buildCharacterList(
     characters: chars.map((c) => ({
       id: c.id,
       membershipSlot: c.membership_slot === true,
-      membershipLocked: membershipCharacterLocked(c.membership_slot, membership, nowMs),
+      membershipLocked: membershipCharacterLocked(
+        c.membership_slot,
+        membership,
+        nowMs,
+        SERVER_EARLY_ACCESS.membership,
+      ),
       name: c.name,
       class: c.class,
       level: c.level,

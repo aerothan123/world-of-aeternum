@@ -1,3 +1,4 @@
+import { MEMBERSHIP_ENABLED } from '../early_access_flags';
 import type { PlayerClass } from '../sim/types';
 import { deleteCharButtonHtml } from './char_delete_button';
 import { type CharselectHintSource, charselectHintsHtml } from './charselect_hints';
@@ -46,7 +47,11 @@ export function canCreateMembershipCharacter(
 export function membershipSlotsHtml(
   characters: readonly { membershipLocked?: boolean; membershipSlot?: boolean }[],
   active: boolean,
+  membershipOffered: boolean = MEMBERSHIP_ENABLED,
 ): string {
+  // Early Access (early_access_flags.ts): no locked membership-slot upsell rows
+  // while membership is switched off.
+  if (!membershipOffered) return '';
   const count = active
     ? Math.max(0, 20 - characters.length)
     : Math.max(0, 10 - characters.filter((character) => character.membershipSlot).length);

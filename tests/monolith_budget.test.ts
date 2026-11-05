@@ -1557,7 +1557,9 @@ const MONOLITHS: MonolithRow[] = [
     // LOWERED 9538 -> 9514 at the Wyndlewood rebrand: the upstream Meta Pixel
     // calls, the Ko-fi donate wiring and the upstream JSON-LD sameAs list left,
     // net of the one-line legal-steps hook (src/ui/world_entry_legal.ts). Exact.
-    ceiling: 9514,
+    // LOWERED 9514 -> 9435 (Wyndlewood core systems): the Claudium store wiring
+    // moved to src/net/claudium_store_wiring.ts behind the Early Access switch.
+    ceiling: 9435,
     seam: 'a src/game/ or src/ui/ sibling module; main.ts is a firewall, not a home',
   },
   {

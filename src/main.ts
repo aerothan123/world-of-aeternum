@@ -1,6 +1,6 @@
 import { DESKTOP_DEEP_LINK_SCHEME, GAME_NAME } from './brand';
+import { CLAUDIUM_ENABLED } from './early_access_flags';
 import { applyFrameGeometrySetting } from './game/frame_geometry_settings';
-import { createSubscriptionStoreHooks, storeSnapshotForHud } from './net/subscription_sdk';
 import { captureReferralSlug } from './referral_signup';
 import { formatAbilityImbueDamage } from './ui/ability_imbue_text';
 import { liftBootSplashWhenReady } from './ui/boot_splash';
@@ -295,7 +295,6 @@ import {
   startDiscordOAuth,
 } from './net/discord_oauth_flow';
 import { shouldEnterDiscordOnboarding } from './net/discord_onboarding_gate';
-import { EconomyClient, newIdempotencyKey, startClaudiumPurchase } from './net/economy_sdk';
 import { watchWorldEntry } from './net/entry_watch';
 import { InputEchoTracker } from './net/input_echo_tracker';
 import {
@@ -329,7 +328,6 @@ import {
   savePlayMarker,
 } from './net/resume_play';
 import { snapshotAlpha } from './net/snapshot_alpha';
-import { openStripeCheckout } from './net/stripe_checkout';
 import { setArrivalEstablishingShot } from './render/arrival_cover';
 import {
   prepareGraphicsProfileAssets,
@@ -518,7 +516,7 @@ import {
 import { promptGraphicsChoiceOnFirstLogin } from './ui/graphics_choice_prompt';
 import { installGraphicsRestoreNote } from './ui/graphics_restore_note_controller';
 import { loadHighscoresInto } from './ui/highscore_board';
-import { type ClaudiumHooks, Hud } from './ui/hud';
+import { Hud } from './ui/hud';
 import { resolveActionBarVisibility } from './ui/hud/action_bar/action_bar_visibility_core';
 import { autosizeChatInput } from './ui/hud/chat/chat_input_autosize';
 import { wireSkinPicker } from './ui/hud/cosmetics/skin_picker';
@@ -572,7 +570,6 @@ import { hideReconnectOverlay, showReconnectOverlay } from './ui/reconnect_overl
 import { createSpectateBadge } from './ui/spectate_badge';
 import { refreshStartSkinPickerPortraits } from './ui/start_skin_picker_portraits';
 import { refreshSteamLinkStatus, wireSteamLink } from './ui/steam_link';
-import { shouldShowStorePromo } from './ui/store_promo_card';
 import { talentRowOptionIconRef } from './ui/talent_icons';
 import { type PresetId, type ThemeKnob, ThemeStore } from './ui/theme';
 import {
@@ -2987,88 +2984,12 @@ async function startGame(
           meta: payload.meta,
         }),
     });
-    // Native iOS and Android do not expose the WOC Store.
-    // Every Claudium purchase surface stays absent until native billing is implemented.
-    // Claudium store, online only. The client SDK hits the game server's
-    // same-origin /api/claudium/* routes, which proxy to the economy service and
-    // fail closed; the SDK itself returns typed unavailable states, never throws.
-    // The game therefore boots and plays with the service OFF: snapshot() resolves
-    // to the disabled state and the window renders its empty notice.
-    const economy = new EconomyClient({
-      token: () => api.token,
-      base: api.base,
-    });
-    const claudiumHooks: ClaudiumHooks = {
-      balance: async () => (await economy.balance()).balance,
-      subscription: createSubscriptionStoreHooks({ token: () => api.token, base: api.base }),
-      storeSnapshot: () => storeSnapshotForHud(economy),
-      snapshot: async () => {
-        const pack = await economy.packSnapshot();
-        return { available: pack.available, balance: pack.balance, skus: pack.skus };
-      },
-      buy: async (rail, sku) => {
-        await (async () => {
-          const refreshClaudiumLater = () => {
-            void hud.refreshClaudium();
-          };
-          const result = await startClaudiumPurchase(economy, rail, sku, {
-            stripe: (intent) =>
-              openStripeCheckout(
-                intent,
-                {
-                  title: t('hudChrome.claudium.checkoutTitle'),
-                  close: t('hudChrome.claudium.checkoutClose'),
-                  loading: t('hudChrome.claudium.checkoutLoading'),
-                  failed: t('hudChrome.claudium.checkoutFailed'),
-                },
-                {
-                  onComplete: () => {
-                    refreshClaudiumLater();
-                    window.setTimeout(refreshClaudiumLater, 1500);
-                    window.setTimeout(refreshClaudiumLater, 4000);
-                    window.setTimeout(refreshClaudiumLater, 8000);
-                  },
-                },
-              ),
-          });
-          if (!result.ok) {
-            throw new Error(t('hudChrome.claudium.checkoutUnavailable'));
-          }
-        })().catch((err) => {
-          // The checkout throws its own localized sentences; anything else
-          // (a provider failure) falls back to the generic line. Raw log for devs.
-          console.warn('[claudium] checkout failed', err);
-          const message = err instanceof Error ? err.message : '';
-          throw new Error(message || t('hudChrome.claudium.checkoutFailed'));
-        });
-      },
-      spend: async (itemId, kind, expectedCostClaudium, idempotencyKey) => {
-        const result = await economy.spend({
-          itemId,
-          kind,
-          expectedCostClaudium,
-          idempotencyKey: idempotencyKey ?? newIdempotencyKey(),
-        });
-        return {
-          granted: result.granted,
-          balance: result.balance,
-          costClaudium: result.costClaudium,
-          reason: result.reason,
-        };
-      },
-    };
-    if (!NATIVE_APP) {
-      hud.attachClaudium(claudiumHooks);
-      if (
-        shouldShowStorePromo({
-          nativeApp: NATIVE_APP,
-          desktopApp: DESKTOP_APP,
-          mobileTouch: document.body.classList.contains('mobile-touch'),
-        })
-      ) {
-        hud.attachStorePromoCard();
-      }
-    }
+    // The Claudium store (card checkout, subscription offers, promo card) loads only
+    // when the build enables it; Early Access builds leave it out (early_access_flags.ts).
+    if (CLAUDIUM_ENABLED && !NATIVE_APP)
+      void import('./net/claudium_store_wiring').then((m) =>
+        m.wireClaudiumStore({ api, hud, nativeApp: NATIVE_APP, desktopApp: DESKTOP_APP }),
+      );
   }
   const bgFlagKey = createBgFlagKey(world);
 
