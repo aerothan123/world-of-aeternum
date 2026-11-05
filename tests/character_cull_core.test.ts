@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import * as THREE from 'three';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import {
   CHARACTER_CULL_ALL,
   CHARACTER_CULL_CASTS,
@@ -17,6 +17,8 @@ import {
 } from '../src/render/character_cull_core';
 import {
   applySkinnedCullBounds,
+  ensurePosedCullCentre,
+  hasPosedCullCentre,
   measurePosedCullCentre,
   notePosedCullCentre,
 } from '../src/render/characters/skinned_cull_bounds';
@@ -450,6 +452,31 @@ describe('the posed cull centre (quantized skinned rigs)', () => {
     noted.root.scale.setScalar(20);
     noted.root.updateMatrixWorld(true);
     expect(frustum.intersectsObject(noted.mesh)).toBe(true);
+  });
+
+  it('notes a posed centre once for a geometry bound after the build (attached armor)', () => {
+    const { mesh } = packedEye();
+    expect(hasPosedCullCentre(mesh.geometry)).toBe(false);
+    ensurePosedCullCentre(mesh, 2);
+    expect(hasPosedCullCentre(mesh.geometry)).toBe(true);
+    const root = new THREE.Group();
+    root.add(mesh);
+    applySkinnedCullBounds(mesh, root, 0.05);
+    expect(mesh.boundingSphere?.center.y).toBeCloseTo(0.5, 5);
+    // a second body sharing the geometry measures nothing more
+    const spy = vi.spyOn(mesh, 'applyBoneTransform');
+    ensurePosedCullCentre(mesh, 2);
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it('the WOC armor mounts note their posed centres before the host pads their spheres', () => {
+    for (const file of ['woc_armor_merge.ts', 'woc_armor_packs.ts']) {
+      const src = readFileSync(
+        fileURLToPath(new URL(`../src/render/characters/${file}`, import.meta.url)),
+        'utf8',
+      );
+      expect(src, file).toMatch(/ensurePosedCullCentre\(mesh, /);
+    }
   });
 
   it('prepareVisual notes every measured skinned geometry', () => {

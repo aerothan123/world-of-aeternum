@@ -935,7 +935,9 @@ export function visualAssetsResident(key: string, fetch = true): boolean {
   const def = VISUALS[key];
   if (!def) return false;
   // a WOC body's head core streams beside its base (never gating the build)
-  if (fetch && def.wocCharacter) ensureWocHeadCoreForFit(def.wocCharacter.fit);
+  if (fetch && def.wocCharacter && !def.wocCharacter.ownHead) {
+    ensureWocHeadCoreForFit(def.wocCharacter.fit);
+  }
   let resident = true;
   for (const url of [def.url, ...(def.animUrls ?? [])]) {
     if (characterAssetResident(url)) continue;
@@ -2210,7 +2212,8 @@ export function assembleModel(
     );
     // the pieces of the modular head it is born with (woc_head_packs.ts: its look's, never
     // the library's), hidden until the visual dresses it
-    hangWocHeadAtBuild(root, def.wocCharacter.fit, lod, opts?.wocHead);
+    if (!def.wocCharacter.ownHead)
+      hangWocHeadAtBuild(root, def.wocCharacter.fit, lod, opts?.wocHead);
   }
   // tag the character's own meshes (body + accessories share one texture atlas)
   // so a skin override hits them but not the separate weapons attached below.
@@ -3277,7 +3280,8 @@ export function prepareVisual(key: string): PreparedVisual {
         idle,
         norm,
         wocNeckTop,
-        WOC_ANATOMY_TOP[def.wocCharacter.fit],
+        // a body with its own head casts it: no stand-in ellipsoid above it
+        def.wocCharacter.ownHead ? wocNeckTop : WOC_ANATOMY_TOP[def.wocCharacter.fit],
       );
     }
   } else {

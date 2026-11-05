@@ -86,7 +86,30 @@ export const WOC_ANATOMY_TOP: Readonly<Record<WocFit, number>> = {
  *  file, which the store lays over the medium file (woc_armor_packs.ts). `set` is the pack id
  *  the manifest's items name (a class set today: `warrior`, `mage`, ...). */
 export function wocArmorPackUrl(fit: WocFit, set: string, tier: WocArmorTier): string {
-  return `${WOC_SPLIT_DIR}/armor/${fit}_${set}_${PACK_FILE[tier]}.glb`;
+  return `${wocArmorDir(set)}/${fit}_${set}_${PACK_FILE[tier]}.glb`;
+}
+
+/** Where the dev-only stylized kit ships (stylized_kit_core.ts): its own root, so the shipped
+ *  WOC files and their pins never see it. */
+export const WOC_STYLIZED_DIR = 'models/chars/players/woc_stylized';
+
+/** The directory a set's files live in: a `stylized_` set under the stylized root. */
+function wocArmorDir(set: string): string {
+  return set.startsWith('stylized_') ? `${WOC_STYLIZED_DIR}/armor` : `${WOC_SPLIT_DIR}/armor`;
+}
+
+/** Which base rig a pack is prepared against (woc_armor_packs.ts): its fit's shipped WOC base,
+ *  or for a `stylized_` set the stylized base of that fit. The two share joints and rest pose
+ *  but not their quantized inverse binds, so a pack rebaked for one must never draw on the
+ *  other. A body names its base by its manifest (`ownHead`: the stylized bases bring their
+ *  own head), a pack by its set. */
+export function wocArmorRigKey(fit: WocFit, stylized: boolean): string {
+  return stylized ? `${fit}:stylized` : fit;
+}
+
+/** The rig key of a pack's set. */
+export function wocArmorRigKeyOfSet(fit: WocFit, set: string): string {
+  return wocArmorRigKey(fit, set.startsWith('stylized_'));
 }
 
 /** An armor pack's parts (fit, set, tier: the top file is the high pack), or null for any
@@ -95,12 +118,14 @@ export function parseWocArmorPackUrl(
   url: string,
 ): { fit: WocFit; set: string; tier: WocArmorTier } | null {
   const m =
-    /(?:^|\/)models\/chars\/players\/woc\/armor\/(male|female)_([a-z0-9_]+)_(low|medium|top)\.glb$/.exec(
+    /(?:^|\/)models\/chars\/players\/(woc|woc_stylized)\/armor\/(male|female)_([a-z0-9_]+)_(low|medium|top)\.glb$/.exec(
       url,
     );
   if (!m) return null;
-  const tier: WocArmorTier = m[3] === 'top' ? 'high' : (m[3] as WocArmorTier);
-  return { fit: m[1] as WocFit, set: m[2], tier };
+  // a file under the stylized root names a stylized set (and only one does)
+  if ((m[1] === 'woc_stylized') !== m[3].startsWith('stylized_')) return null;
+  const tier: WocArmorTier = m[4] === 'top' ? 'high' : (m[4] as WocArmorTier);
+  return { fit: m[2] as WocFit, set: m[3], tier };
 }
 
 /** The pack an assembled pack is drawn over: a high pack's medium file. Null for a pack that is

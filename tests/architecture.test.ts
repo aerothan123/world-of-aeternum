@@ -1555,6 +1555,7 @@ const RENDER_PURE_CORES = [
   'src/render/characters/tinted_material_cache_core.ts',
   'src/render/characters/composed_variant_residency_core.ts',
   'src/render/characters/stylized_char_test_core.ts',
+  'src/render/characters/stylized_kit_core.ts',
   'src/render/characters/weapon_attack_style_core.ts',
   // FORK (Studio) pure cores.
   'src/render/foliage_far_placements_core.ts',

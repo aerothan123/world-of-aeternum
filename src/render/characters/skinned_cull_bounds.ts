@@ -48,14 +48,39 @@ export function notePosedCullCentre(geometry: THREE.BufferGeometry, centre: THRE
     posedCentres.set(geometry, centre.clone());
 }
 
+/** How many vertices a late-bound geometry's posed centre is measured from: a centre for a
+ *  sphere padded to the whole animated body needs no more. */
+export const POSED_CENTRE_SAMPLES = 2048;
+
+/** Whether a skinned geometry's posed centre is noted already. */
+export function hasPosedCullCentre(geometry: THREE.BufferGeometry): boolean {
+  return posedCentres.has(geometry);
+}
+
+/** Note the posed centre of a geometry bound AFTER its body was measured (an armor file
+ *  attached later, or the merged draw of one), once per geometry, from at most `samples`
+ *  vertices: its parts' quantized packing would otherwise centre its padded sphere off the
+ *  body, and three would cull a part standing in plain view. The caller's bones are current
+ *  (the live body's). */
+export function ensurePosedCullCentre(mesh: THREE.SkinnedMesh, samples: number): void {
+  if (posedCentres.has(mesh.geometry)) return;
+  const centre = measurePosedCullCentre(mesh, samples);
+  if (centre) notePosedCullCentre(mesh.geometry, centre);
+}
+
 /** The posed box centre of a skinned mesh in its own object space, from its
- *  CURRENT bone matrices (the caller has posed it and updated the skeleton). */
-export function measurePosedCullCentre(mesh: THREE.SkinnedMesh): THREE.Vector3 | null {
+ *  CURRENT bone matrices (the caller has posed it and updated the skeleton),
+ *  over at most `samples` evenly strided vertices (all of them by default). */
+export function measurePosedCullCentre(
+  mesh: THREE.SkinnedMesh,
+  samples = Number.POSITIVE_INFINITY,
+): THREE.Vector3 | null {
   const pos = mesh.geometry.getAttribute('position') as THREE.BufferAttribute | undefined;
   if (!pos || pos.count === 0) return null;
   const box = new THREE.Box3();
   const v = new THREE.Vector3();
-  for (let i = 0; i < pos.count; i++) {
+  const step = Math.max(1, Math.floor(pos.count / samples));
+  for (let i = 0; i < pos.count; i += step) {
     v.fromBufferAttribute(pos, i);
     mesh.applyBoneTransform(i, v);
     box.expandByPoint(v);

@@ -42,6 +42,29 @@ const colorPx = Number(opt('color', 1024));
 const auxPx = Number(opt('aux', 512));
 const keepOrm = args.includes('--keep-orm');
 const matteRoughness = Number(opt('roughness', 0.85));
+const calmSkin = args.includes('--calm-skin');
+
+/** Tone down painted skin blotches (Tripo's rosy cheeks and nose read as orange patches in the
+ *  game's grade): only bright, strongly saturated red-orange texels are pulled back toward the
+ *  skin around them; ordinary skin, dark leather and ochre cloth fall outside the gates. */
+async function calmSkinBlotches(bytes) {
+  const { data, info } = await sharp(Buffer.from(bytes))
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  const { calmSkinTexel } = await import('./calm_skin_core.mjs');
+  for (let i = 0; i < data.length; i += 4) {
+    const out = calmSkinTexel(data[i], data[i + 1], data[i + 2]);
+    data[i] = out[0];
+    data[i + 1] = out[1];
+    data[i + 2] = out[2];
+  }
+  return new Uint8Array(
+    await sharp(data, { raw: { width: info.width, height: info.height, channels: 4 } })
+      .png()
+      .toBuffer(),
+  );
+}
 const BASE = resolve(REPO, 'public/models/chars/players/woc/base_male.glb');
 
 // --- WOC reference rig: rest world positions per joint -----------------------
@@ -215,6 +238,8 @@ for (const p of posed) {
       ? doc.createTexture(tex.getName()).setImage(tex.getImage()).setMimeType(tex.getMimeType())
       : null;
   const color = copyTex(m?.getBaseColorTexture());
+  if (color && calmSkin)
+    color.setImage(await calmSkinBlotches(color.getImage())).setMimeType('image/png');
   const normal = copyTex(m?.getNormalTexture());
   if (color) mat.setBaseColorTexture(color);
   if (normal) mat.setNormalTexture(normal);

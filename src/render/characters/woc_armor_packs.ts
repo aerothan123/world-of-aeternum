@@ -50,6 +50,11 @@ import { GFX } from '../gfx';
 import { applyTextureAnisotropy } from '../texture_anisotropy';
 import { logAssetMissOnce } from './asset_miss_log';
 import {
+  ensurePosedCullCentre,
+  hasPosedCullCentre,
+  POSED_CENTRE_SAMPLES,
+} from './skinned_cull_bounds';
+import {
   hangWocRigidArmor,
   instantiateWocArmor,
   type PreparedWocArmor,
@@ -67,6 +72,8 @@ import {
   wocArmorIdleEvictMs,
   wocArmorPackBaseUrl,
   wocArmorPackUrl,
+  wocArmorRigKey,
+  wocArmorRigKeyOfSet,
   wocArmorTierFor,
 } from './woc_armor_core';
 import {
@@ -101,6 +108,8 @@ interface PrepareTicket {
 interface PackEntry {
   /** The pack's fit and tier, read off its url once (null for a url that names no pack). */
   readonly fit: WocFit | null;
+  /** The base rig it is prepared against (woc_armor_core.ts wocArmorRigKey). */
+  readonly rigKey: string | null;
   readonly tier: WocArmorTier | null;
   /** What names the pack in a work-queue label: `<fit>:<set>:<tier>`. */
   readonly label: string;
@@ -167,7 +176,8 @@ interface FitRig {
   readonly rig: WocRigBind;
   readonly manifest: WocCharacterManifest;
 }
-const rigs = new Map<WocFit, FitRig>();
+/** Keyed by base rig (wocArmorRigKey): a fit's shipped base, or its stylized base. */
+const rigs = new Map<string, FitRig>();
 
 /**
  * Hand the store the renderer's background work queue (null: none). Every character the
@@ -189,13 +199,14 @@ export function setWocArmorWorkQueue(queue: WocArmorWorkQueue | null): void {
  * can be prepared against it. Free after the first body of a fit.
  */
 export function noteWocArmorRig(model: THREE.Object3D, manifest: WocCharacterManifest): void {
-  if (rigs.has(manifest.fit)) return;
+  const key = wocArmorRigKey(manifest.fit, manifest.ownHead === true);
+  if (rigs.has(key)) return;
   const rig = wocRigBindOf(model);
   if (!rig) return;
   // its own copy of the inverses: the body they were read off shares that array with every
   // clone of its base, and this one outlives them all
   const boneInverses = rig.boneInverses.map((inverse) => inverse.clone());
-  rigs.set(manifest.fit, { rig: { ...rig, boneInverses }, manifest });
+  rigs.set(key, { rig: { ...rig, boneInverses }, manifest });
   queueWaitingPrepares();
 }
 
@@ -223,7 +234,7 @@ function queuePrepare(url: string, entry: PackEntry, urgent: boolean): boolean {
   const queue = workQueue;
   const pending = entry.prepareQueued;
   if (pending && pending.queue === queue && pending.priority >= priority) return true;
-  const fit = entry.fit ? rigs.get(entry.fit) : undefined;
+  const fit = entry.rigKey ? rigs.get(entry.rigKey) : undefined;
   if (!queue || !fit) return false;
   const ticket: PrepareTicket = { queue, priority };
   entry.prepareQueued = ticket;
@@ -365,6 +376,7 @@ function requestPack(url: string, wanted: boolean): void {
     const parsed = parseWocArmorPackUrl(url);
     entry = {
       fit: parsed?.fit ?? null,
+      rigKey: parsed ? wocArmorRigKeyOfSet(parsed.fit, parsed.set) : null,
       tier: parsed?.tier ?? null,
       label: parsed ? `${parsed.fit}:${parsed.set}:${parsed.tier}` : 'file',
       scene: null,
@@ -614,6 +626,13 @@ export function attachWocArmorPack(
       wrapper.traverse(noteFileMaterial);
     }
     if (lod !== 'lod0') for (const piece of [container, ...rigid]) applyGeometryLod(piece, lod);
+    // each part's cull sphere centred where it really draws (skinned_cull_bounds.ts), measured
+    // once per shared geometry on the body's current bones
+    const parts = (container.children as THREE.SkinnedMesh[]).filter((m) => m.isSkinnedMesh);
+    if (parts.some((m) => !hasPosedCullCentre(m.geometry))) {
+      model.updateMatrixWorld(true);
+      for (const mesh of parts) ensurePosedCullCentre(mesh, POSED_CENTRE_SAMPLES);
+    }
   } catch (err) {
     // all of it or none: a half-hung file would sit on the model with no reference behind it
     container.removeFromParent();

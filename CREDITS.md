@@ -567,7 +567,7 @@ something this file marks as restricted, ask first: tony@levystreet.com.
 | Generated gather node model (node_herb_goldleaf) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
 | Generated gather node model (node_herb_sunpetal) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
 | Generated gather node model (node_herb_depleted) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
-| Stylized character test bodies (warrior_stylized, quartermaster_stylized; dev-only) | World of ClaudeCraft | Project-generated from original text prompts (Tripo AI 3D), refit onto the WOC rig by scripts/assets/stylized_char_test | Project asset | With the project only |
+| Stylized character review assets (dev-only): the townsperson body `models/chars/test_stylized/quartermaster_stylized.glb` and the modular player kit `models/chars/players/woc_stylized/` (male and female bases with faces and hairstyles, plate and leather sets) | World of ClaudeCraft | Project-generated from original text prompts (Tripo AI 3D, no reference images), refit onto the WOC rig by `scripts/assets/stylized_char_test` and conformed and cut into slots by `scripts/assets/stylized_chars` | Project asset | With the project only |
 
 ### Orbital Lightning
 

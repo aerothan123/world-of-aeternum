@@ -217,7 +217,7 @@ import { SANCTUM_MOB_KEYS, sanctumCreatureLooks } from './sanctum_creature_looks
 import { seasonalTrickLooks } from './seasonal_trick_looks';
 import type { SeatClipSet } from './seat_clips';
 import { stylizedTestDefs, stylizedTestKeyFor } from './stylized_char_test_core';
-import { stylizedCharsEnabled } from './stylized_char_test_flag';
+import { stylizedCharsEnabled, stylizedReviewParam } from './stylized_char_test_flag';
 import type { WeaponLoadout } from './weapon_loadout_core';
 import { WILDHEART_MOB_KEYS, wildheartPlaceholderLooks } from './wildheart_creature_looks';
 import { type WocFit, wocAnimsUrl, wocBaseUrl } from './woc_armor_core';
@@ -8144,9 +8144,11 @@ VISUALS.player_druid_female = wocFemale(VISUALS.player_druid, WOC_DRUID_FEMALE_M
 SKINS.player_druid_female = [null, null, null, null, null, null];
 VISUALS.player_shaman_female = wocFemale(VISUALS.player_shaman, WOC_SHAMAN_FEMALE_MANIFEST);
 SKINS.player_shaman_female = [null, null, null, null, null, null];
-// The stylized character TEST bodies (dev-only `?stylizedchars=1`; off, nothing
+// The stylized character review bodies (dev-only `?stylizedchars=1`; off, nothing
 // registers): stylized_char_test_core.ts.
-if (stylizedCharsEnabled()) Object.assign(VISUALS, stylizedTestDefs(VISUALS.player_warrior));
+if (stylizedCharsEnabled()) {
+  Object.assign(VISUALS, stylizedTestDefs(VISUALS, stylizedReviewParam('kit')));
+}
 
 /** The KayKit def each WOC-bodied class derives its `_modular` fallback from. */
 export const KAYKIT_BASELINES: Partial<Record<PlayerClass, VisualDef>> = {

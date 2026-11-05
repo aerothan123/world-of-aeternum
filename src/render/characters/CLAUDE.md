@@ -915,17 +915,32 @@ told so, which drops a far bake still queued for it) are
   look needs no term: it is a pure function of the templateId, so a pooled body
   only ever returns to the NPC it was built for.
 
-## Stylized character test (dev-only `?stylizedchars=1`)
-An owner look review, not a shipping lane. `stylized_char_test_core.ts` (pure: the
-switch, the entity rule, the two defs derived from `player_warrior`) and
-`stylized_char_test_flag.ts` (the DEV-only, read-once URL leaf) put two finished,
-single-mesh bodies (`models/chars/test_stylized/`) on the male warrior player and on
-`trader_wilkes`, through `authoredRigOverride` (an explicit model choice, so no
-composed look, no NPC props, no WOC head or armor). With the flag off nothing
-registers. The bodies are Tripo auto-rigged meshes refit onto `WOC_Armored_Rig` by
-`scripts/assets/stylized_char_test/fit_woc_rig.mjs` (header of `fit_woc_rig_core.mjs`:
-why rotations-only clips allow a joint refit), so they play the shipped WOC library
-and ClipMap unchanged. Pinned by `tests/stylized_char_test.test.ts`.
+## Stylized characters (dev-only `?stylizedchars=1`)
+An owner look review, not a shipping lane. `stylized_char_test_flag.ts` (the DEV-only,
+read-once URL leaf) gates everything; with the flag off nothing registers.
+`stylized_char_test_core.ts` (pure: the switch, the entity rule, the defs derived from the
+WOC warrior defs) routes through `authoredRigOverride`:
+- **Players are MODULAR** (`stylized_kit_core.ts`, pure): the warrior player of either body
+  pick draws a stylized WOC character. Its files are ordinary WOC split files under their
+  own root (`WOC_STYLIZED_DIR`, `woc_armor_core.ts` routes `stylized_` sets there), built on
+  the EXACT shipped rig and inverse binds by
+  `scripts/assets/stylized_chars/build_stylized_kit.mjs` (conform the body to the rig:
+  `conform_core.mjs`; cut it into armor slots: `segment_core.mjs`). Each set piece is a
+  manifest item that hides the bare body region under it (`body_<slot>` appearance slots,
+  `hidesAppearance`), the face and hair are appearance slots, and the helm hides the hair.
+  `ownHead` tells `index.ts`/`assets.ts`/`visual.ts` the body brings its own head, so the
+  WOC head library is never asked for. Dev review overrides (`stylized_kit_dev.ts`):
+  `stylizedkit=plate|leather|mixed|bare`, `stylizedface=default|b|c`,
+  `stylizedhair=h1|h2|h3|none`, `stylizedhelm=on|off`. Stylized packs are prepared against
+  the stylized base only (`wocArmorRigKey`): the two bases share joints and rest pose but
+  not their quantized inverse binds.
+- **NPCs wear FIXED outfits**: one finished single-mesh body (`trader_wilkes` today,
+  `models/chars/test_stylized/`), refit onto `WOC_Armored_Rig` by
+  `scripts/assets/stylized_char_test/fit_woc_rig.mjs` (`--calm-skin` tames painted
+  blotches), with per-NPC bone dials (a stout build's arms clear its belly) and a calm
+  jog for its run.
+Both play the shipped WOC clip library and ClipMap unchanged. Pinned by
+`tests/stylized_char_test.test.ts`.
 
 ## Adding things (module-first: where NEW work lands, and its test)
 - **New family/key:** a declarative `VisualDef` in `VISUALS` (existing `ClipMap`

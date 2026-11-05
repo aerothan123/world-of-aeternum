@@ -184,6 +184,7 @@ import {
   tickStow,
 } from './stow_transition';
 import { auraHeldClip, stunIdleClip } from './stun_idle_core';
+import { stylizedAppearanceFor, stylizedDrawableWorn, stylizedKitFor } from './stylized_kit_dev';
 import { CharacterSurfaceResponse, SURFACE_RESPONSE_PROGRAM } from './surface_response';
 import { createTurnInPlaceState, stepTurnInPlace } from './turn_in_place_core';
 import { warriorActionBlend } from './warrior_action_blend';
@@ -694,7 +695,8 @@ export class CharacterVisual {
     this.wocHelmHidden = helmHidden;
     this.wocDressed = true;
     this.wocDefaultDressed = false;
-    this.applyWocWorn(wocWornFromEquipment(manifest, equipped, helmHidden));
+    const worn = wocWornFromEquipment(manifest, equipped, helmHidden);
+    this.applyWocWorn(stylizedKitFor(manifest, helmHidden) ?? worn);
     return true;
   }
 
@@ -828,7 +830,11 @@ export class CharacterVisual {
    *  resolves to no node yet, and the body's own suit shows in its place. */
   private dressWoc(manifest: WocCharacterManifest, worn: WocWorn): void {
     if (!this.wocParts) this.wocParts = resolveWocPartNodes(this.model, manifest);
-    const wanted = wocVisibleParts(manifest, wocDefaultAppearance(manifest), worn);
+    const wanted = wocVisibleParts(
+      manifest,
+      stylizedAppearanceFor(manifest) ?? wocDefaultAppearance(manifest),
+      stylizedDrawableWorn(manifest, worn, this.wocParts),
+    );
     applyWocPartVisibility(this.wocParts, manifest, wanted);
     // The modular head after the part pass: the worn helm hides its hair.
     if (this.wocHead && !this.wocHead.setHelm(wocWornHidesHair(manifest, worn))) {
@@ -1595,7 +1601,7 @@ export class CharacterVisual {
       // A WOC body's modular head (the pieces of its look resident at build hung by
       // assembleModel, the rest hung the frame they land): its tint wrap goes on before
       // the material snapshot below, so the body's first draw links the tinted program.
-      if (prep.def.wocCharacter) {
+      if (prep.def.wocCharacter && !prep.def.wocCharacter.ownHead) {
         this.wocHead = new WocHeadDressing(
           this.wocHeadHost(),
           wocHeadTypeForGender(prep.def.wocCharacter.fit),

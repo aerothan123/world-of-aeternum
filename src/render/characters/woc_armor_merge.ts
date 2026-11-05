@@ -102,6 +102,11 @@ import { GFX } from '../gfx';
 import { logAssetMissOnce } from './asset_miss_log';
 import { rebakeMatrix, solveRebindTransform } from './rig_merge';
 import { characterMeshCastsShadow } from './shadow_policy';
+import {
+  ensurePosedCullCentre,
+  hasPosedCullCentre,
+  POSED_CENTRE_SAMPLES,
+} from './skinned_cull_bounds';
 import { wocRigBindOf, wocRigSkeletonOf } from './woc_armor_bind';
 import {
   WOC_ARMOR_MERGE_ATTRIBUTES,
@@ -1023,6 +1028,13 @@ export class WocArmorMergeRig {
       m.meshes.push(mesh);
     }
     this.model.add(wrapper);
+    // ...centred where the merged vertices land, never on the quantized packing's centre:
+    // measured once per merged geometry, in place on the body (its world current, so the
+    // skin lands in the mesh's own space) and before the host pads the sphere
+    if (m.meshes.some((mesh) => !hasPosedCullCentre(mesh.geometry))) {
+      this.model.updateMatrixWorld(true);
+      for (const mesh of m.meshes) ensurePosedCullCentre(mesh, POSED_CENTRE_SAMPLES);
+    }
     this.host.adopt(wrapper);
     this.settle(m);
   }

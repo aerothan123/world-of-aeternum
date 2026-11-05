@@ -64,6 +64,9 @@ export interface WocCharacterManifest {
    *  under-armor cloth shows only under its chest plate, the GLB's own black
    *  suit otherwise. A `textures/skins` PNG shipped with its KTX2 sibling. */
   readonly underArmorAtlas?: { readonly slot: string; readonly url: string };
+  /** The base file carries the head (faces and hairstyles as appearance parts), so the
+   *  modular head library is never hung on this body (stylized_kit_core.ts). */
+  readonly ownHead?: boolean;
 }
 
 export const WOC_WARRIOR_MANIFEST: WocCharacterManifest = {

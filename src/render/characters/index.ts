@@ -166,7 +166,9 @@ export function createCharacterVisual(
   // miss like any other body's and takes the logged fail-soft path below, with the
   // caller's retry cooldown; a core that is missing anyway (a host that built a world
   // without the entry gate) leaves the body drawing without a head until it lands.
-  const wocFit = formKey ? undefined : VISUALS[key]?.wocCharacter?.fit;
+  // A body that carries its own head (wocCharacter.ownHead) never asks for the head library.
+  const wocFit =
+    formKey || VISUALS[key]?.wocCharacter?.ownHead ? undefined : VISUALS[key]?.wocCharacter?.fit;
   const wocHeadApp = e.kind === 'player' ? e.modularAppearance : (npcLook?.app ?? null);
   if (wocFit && opts?.fetchStreamed !== false) ensureWocHeadForAppearance(wocFit, wocHeadApp);
   try {
