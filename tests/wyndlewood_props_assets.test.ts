@@ -13,7 +13,11 @@ import { getBounds } from '@gltf-transform/functions';
 import { MeshoptDecoder } from 'meshoptimizer';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { PROP_ASSET_DEFS } from '../src/render/props';
-import { WYN_PROP_DEFS, WYN_PROP_LOW_TIER_KEYS } from '../src/render/wyndlewood_props';
+import {
+  WYN_FURNITURE_MODEL_URLS,
+  WYN_PROP_DEFS,
+  WYN_PROP_LOW_TIER_KEYS,
+} from '../src/render/wyndlewood_props';
 import { FURNITURE_DEFS } from '../src/sim/content/furniture';
 import { WYN_PROP_MODEL_IDS, WYN_PROP_MODELS } from '../src/sim/content/wyndlewood_props';
 
@@ -50,7 +54,8 @@ beforeAll(async () => {
     const b = getBounds(root.getDefaultScene() ?? root.listScenes()[0]);
     let triangles = 0;
     for (const mesh of root.listMeshes())
-      for (const prim of mesh.listPrimitives()) triangles += (prim.getIndices()?.getCount() ?? 0) / 3;
+      for (const prim of mesh.listPrimitives())
+        triangles += (prim.getIndices()?.getCount() ?? 0) / 3;
     measured.set(id, {
       height: b.max[1] - b.min[1],
       w: b.max[0] - b.min[0],
@@ -108,15 +113,20 @@ describe('the Wyndlewood props kit models', () => {
     }
   });
 
-  it('registers every model in the props registry on every graphics tier', () => {
-    for (const id of WYN_PROP_MODEL_IDS) {
-      const { propKey, url } = WYN_PROP_MODELS[id];
-      expect(PROP_ASSET_DEFS[propKey]?.url, propKey).toBe(url);
-      expect(WYN_PROP_DEFS[propKey]?.url, propKey).toBe(url);
-      expect(WYN_PROP_LOW_TIER_KEYS).toContain(propKey);
+  it('registers every world model in the props registry on every tier and keeps furniture out of the boot preload', () => {
+    for (const model of Object.values(WYN_PROP_MODELS)) {
+      if (model.category === 'furniture') {
+        // Furniture only draws inside a house (house_furniture.ts loads it on
+        // demand behind its compile gate), so it never joins the props preload.
+        expect(PROP_ASSET_DEFS[model.propKey], model.propKey).toBeUndefined();
+        expect(WYN_FURNITURE_MODEL_URLS[model.propKey], model.propKey).toBe(model.url);
+        continue;
+      }
+      expect(PROP_ASSET_DEFS[model.propKey]?.url, model.propKey).toBe(model.url);
+      expect(WYN_PROP_DEFS[model.propKey]?.url, model.propKey).toBe(model.url);
+      expect(WYN_PROP_LOW_TIER_KEYS).toContain(model.propKey);
     }
   });
-
   it('credits every shipped model', () => {
     const credits = readFileSync(path.join(ROOT, 'CREDITS.md'), 'utf8');
     for (const id of WYN_PROP_MODEL_IDS) expect(credits, id).toContain(`(wyn_${id})`);

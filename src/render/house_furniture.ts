@@ -37,6 +37,7 @@ import { GFX } from './gfx';
 import { PROP_ASSET_DEFS } from './props';
 import { setRenderCategory } from './renderer_diagnostics';
 import { markSharedGeometry, markSharedMaterial } from './shared_resource';
+import { WYN_FURNITURE_MODEL_URLS } from './wyndlewood_props';
 
 export type HouseFurnitureCompileGate = (
   target: THREE.Object3D,
@@ -182,13 +183,15 @@ function extractParts(scene: THREE.Group): Part[] {
   return parts;
 }
 
-/** Resolve every furniture GLB (cache hits after props.ts preloads). A model
+/** Resolve every furniture GLB: the kcas and qprops keys are cache hits after
+ *  props.ts preloads, the painted Wyndlewood pieces load here on demand (they
+ *  stay out of the props boot preload, render/wyndlewood_props.ts). A model
  *  that fails to load resolves to no parts and its pieces stay click proxies. */
 export function ensureHouseFurnitureModels(): Promise<void> {
   loadTask ??= Promise.all(
     KCAS_KEYS.map(async (key) => {
       try {
-        const gltf = await loadGltf(PROP_ASSET_DEFS[key].url);
+        const gltf = await loadGltf(WYN_FURNITURE_MODEL_URLS[key] ?? PROP_ASSET_DEFS[key].url);
         partsCache.set(key, extractParts(gltf.scene));
       } catch {
         partsCache.set(key, []);
