@@ -8080,6 +8080,93 @@ export const zh_CN: EnTranslations = {
         "chest": "摆放后，为你的房屋储物增加{slots}格。",
         "station": "摆放后，可在家中制作需要{station}的配方。"
       }
+    },
+    "addons": {
+      "menuEntry": "插件",
+      "title": "插件",
+      "close": "关闭",
+      "masterToggle": "加载插件",
+      "loadOutdated": "加载过期插件",
+      "masterHint": "重新加载界面后更改生效。",
+      "reloadNeeded": "重新加载界面以应用此更改。",
+      "leaveSafe": "立即加载插件",
+      "safeCrash": "插件启动时游戏意外关闭，因此本次会话以安全模式启动，未加载任何插件。",
+      "safeRequested": "你以安全模式重新启动，因此未加载插件。",
+      "safeUrl": "启动时请求了安全模式，因此未加载插件。",
+      "workshopUnavailable": "Steam 创意工坊当前不可用，因此仅列出本地文件夹中的插件。",
+      "empty": "尚未安装插件。请在 Steam 创意工坊订阅，或将插件文件夹放入插件文件夹。",
+      "reload": "重新加载界面",
+      "openFolder": "打开插件文件夹",
+      "restartSafe": "以安全模式重新启动",
+      "memoryNote": "内存以界面控件和保存数据表示，因为插件工作线程不会报告其堆大小。",
+      "enable": "启用 {name}",
+      "version": "版本 {version}",
+      "by": "作者 {author}",
+      "permissions": "权限",
+      "options": "选项",
+      "showErrors": "错误（{count}）",
+      "resetSaved": "重置保存数据",
+      "resetDone": "已清除 {name} 的保存数据。",
+      "publish": "发布到创意工坊",
+      "stats": "CPU {cpu} 毫秒/秒，{msgs} 条消息/秒，{widgets} 个控件，已保存 {kb} KB，{errors} 个错误",
+      "optionsTitle": "{name} 选项",
+      "back": "返回",
+      "publishTitle": "发布 {name}",
+      "publishHint": "将此文件夹上传到 Steam 创意工坊。首次上传会创建物品，之后的上传会更新它。",
+      "changeNote": "更新说明",
+      "publishConfirm": "发布",
+      "publishing": "正在发布到创意工坊...",
+      "visibility": {
+        "label": "可见性",
+        "private": "私密",
+        "friends": "仅好友",
+        "unlisted": "不公开列出",
+        "public": "公开"
+      },
+      "publishResult": {
+        "published": "已作为物品 {id} 发布到创意工坊。",
+        "agreement": "已上传为物品 {id}。请在物品页面接受 Steam 创意工坊法律协议以使其可见。",
+        "noSteam": "Steam 未运行，因此无法发布插件。",
+        "invalid": "插件文件夹未通过验证。",
+        "notFound": "未找到插件文件夹。",
+        "failed": "发布失败。详情见桌面日志。"
+      },
+      "status": {
+        "disabled": "已禁用",
+        "loading": "加载中",
+        "running": "运行中",
+        "error": "加载错误",
+        "stopped": "已停止",
+        "blocked": "未加载",
+        "tooNew": "需要更新的游戏版本",
+        "outdated": "已过期",
+        "invalid": "无效插件"
+      },
+      "stop": {
+        "errors": "因反复出错已停止。重新启用以重试。",
+        "hang": "因无响应已停止。重新启用以重试。",
+        "flood": "因发送过多界面更新已停止。重新启用以重试。",
+        "load": "加载失败。"
+      },
+      "invalidJson": "其 addon.json 文件不是有效的 JSON。",
+      "invalidField": "其 addon.json 文件的“{field}”有问题。",
+      "blockedPending": "仍在从创意工坊下载。",
+      "blockedDuplicate": "已加载另一个 ID 为 {id} 的插件。",
+      "blockedDependency": "缺少必需的插件或其未加载：{id}。",
+      "origin": {
+        "dev": "开发者示例",
+        "local": "本地",
+        "workshop": "创意工坊"
+      },
+      "perm": {
+        "party": "小队和团队",
+        "combatLog": "战斗记录",
+        "chat": "读取你的聊天，包括私聊",
+        "minimap": "小地图",
+        "inventory": "背包和装备",
+        "quests": "任务日志",
+        "secureActions": "动作按钮"
+      }
     }
   },
   "gatherEvent": {

@@ -8080,6 +8080,93 @@ export const ja_JP: EnTranslations = {
         "chest": "設置すると家の収納が{slots}枠増える。",
         "station": "設置すると{station}が必要なレシピを家で作れる。"
       }
+    },
+    "addons": {
+      "menuEntry": "アドオン",
+      "title": "アドオン",
+      "close": "閉じる",
+      "masterToggle": "アドオンを読み込む",
+      "loadOutdated": "古いアドオンも読み込む",
+      "masterHint": "インターフェースを再読み込みすると変更が反映されます。",
+      "reloadNeeded": "この変更を反映するにはUIを再読み込みしてください。",
+      "leaveSafe": "今すぐアドオンを読み込む",
+      "safeCrash": "アドオンの起動中にゲームが予期せず終了したため、このセッションはアドオンなしのセーフモードで起動しました。",
+      "safeRequested": "セーフモードで再起動したため、アドオンは読み込まれていません。",
+      "safeUrl": "起動時にセーフモードが指定されたため、アドオンは読み込まれていません。",
+      "workshopUnavailable": "現在 Steam ワークショップを利用できないため、ローカルフォルダーのアドオンのみ表示しています。",
+      "empty": "アドオンがインストールされていません。Steam ワークショップで購読するか、アドオンフォルダーにアドオンのフォルダーを置いてください。",
+      "reload": "UIを再読み込み",
+      "openFolder": "アドオンフォルダーを開く",
+      "restartSafe": "セーフモードで再起動",
+      "memoryNote": "アドオンのワーカーはヒープサイズを報告しないため、メモリはUIウィジェットと保存データで表示しています。",
+      "enable": "{name} を有効化",
+      "version": "バージョン {version}",
+      "by": "作者 {author}",
+      "permissions": "権限",
+      "options": "オプション",
+      "showErrors": "エラー（{count}）",
+      "resetSaved": "保存データをリセット",
+      "resetDone": "{name} の保存データを消去しました。",
+      "publish": "ワークショップに公開",
+      "stats": "CPU {cpu} ms/秒、{msgs} メッセージ/秒、ウィジェット {widgets}、保存 {kb} KB、エラー {errors}",
+      "optionsTitle": "{name} のオプション",
+      "back": "戻る",
+      "publishTitle": "{name} を公開",
+      "publishHint": "このフォルダーを Steam ワークショップにアップロードします。初回はアイテムを作成し、以降は更新します。",
+      "changeNote": "変更内容",
+      "publishConfirm": "公開",
+      "publishing": "ワークショップに公開しています...",
+      "visibility": {
+        "label": "公開範囲",
+        "private": "非公開",
+        "friends": "フレンドのみ",
+        "unlisted": "限定公開",
+        "public": "公開"
+      },
+      "publishResult": {
+        "published": "アイテム {id} としてワークショップに公開しました。",
+        "agreement": "アイテム {id} としてアップロードしました。表示するにはアイテムページで Steam ワークショップの法的同意書に同意してください。",
+        "noSteam": "Steam が起動していないため、アドオンを公開できませんでした。",
+        "invalid": "アドオンフォルダーが検証に合格しませんでした。",
+        "notFound": "アドオンフォルダーが見つかりませんでした。",
+        "failed": "公開に失敗しました。詳細はデスクトップのログを確認してください。"
+      },
+      "status": {
+        "disabled": "無効",
+        "loading": "読み込み中",
+        "running": "実行中",
+        "error": "読み込みエラー",
+        "stopped": "停止",
+        "blocked": "未読み込み",
+        "tooNew": "より新しいゲームバージョンが必要",
+        "outdated": "古いバージョン",
+        "invalid": "無効なアドオン"
+      },
+      "stop": {
+        "errors": "エラーが繰り返されたため停止しました。再度有効にすると再試行します。",
+        "hang": "応答しなくなったため停止しました。再度有効にすると再試行します。",
+        "flood": "インターフェースの更新を送りすぎたため停止しました。再度有効にすると再試行します。",
+        "load": "読み込みに失敗しました。"
+      },
+      "invalidJson": "addon.json ファイルが有効な JSON ではありません。",
+      "invalidField": "addon.json ファイルの「{field}」に問題があります。",
+      "blockedPending": "ワークショップからダウンロード中です。",
+      "blockedDuplicate": "ID が {id} の別のアドオンがすでに読み込まれています。",
+      "blockedDependency": "必要なアドオンがないか読み込まれていません：{id}。",
+      "origin": {
+        "dev": "開発者向けサンプル",
+        "local": "ローカル",
+        "workshop": "ワークショップ"
+      },
+      "perm": {
+        "party": "パーティーとレイド",
+        "combatLog": "戦闘ログ",
+        "chat": "チャットを読む（ささやきを含む）",
+        "minimap": "ミニマップ",
+        "inventory": "バッグと装備",
+        "quests": "クエストログ",
+        "secureActions": "アクションボタン"
+      }
     }
   },
   "gatherEvent": {
