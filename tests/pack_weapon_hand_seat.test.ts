@@ -46,6 +46,9 @@ const ON_AXIS = 0.03;
 /** The widest thing a palm closes on. Handles run 0.06 to 0.15 across (the two-hand axe at
  *  its drawn scale is the thickest); a guard or a head in the palm is 0.2 and up. */
 const HANDLE_WIDTH = 0.2;
+/** Families with no handle for the width to measure: across the palm a bow's section spans
+ *  its riser and its string, and a book is held by its board. They still centre in the fist. */
+const NO_HANDLE_FAMILIES: ReadonlySet<string> = new Set(['VAR_BOW', 'VAR_BOOK']);
 
 /** Shapes whose working end is one-sided: the side it overhangs the handle by more is the
  *  cut. (A double-bit axe, a straight dagger and a hammer have no such side.) */
@@ -54,6 +57,7 @@ const ONE_SIDED = [
   'axe_field',
   'axe_rare_a',
   'axe_epic_gravecleaver',
+  'axe_wynd',
   'dagger_rare_b',
 ] as const;
 
@@ -232,6 +236,7 @@ describe('pack weapons in the hand', () => {
 
   it('put a handle in the palm, never a guard or a head', () => {
     for (const key of KEYS) {
+      if (NO_HANDLE_FAMILIES.has(KAYKIT_WEAPON_ACCESSORY[key])) continue;
       for (const hand of ['r', 'l'] as const) {
         expect(palm(key, hand).widest, `${key} ${hand}`).toBeLessThan(HANDLE_WIDTH);
       }
@@ -262,8 +267,9 @@ describe('pack weapons in the hand', () => {
 
   it('turn a one-sided head to the cut: down at rest, at the enemy in the stance', () => {
     const oneSided = KEYS.filter((key) => ONE_SIDED.some((shape) => key.startsWith(shape)));
-    // the starter axe, three field axes, three rare ones, two epic ones, three curved daggers
-    expect(oneSided).toHaveLength(12);
+    // the starter axe, three field axes, three rare ones, two epic ones, three curved daggers,
+    // and the WYNDLEWOOD single-bit axe (its starter look stands for its three)
+    expect(oneSided).toHaveLength(13);
     for (const key of oneSided) {
       const right = overhang(key, 'r');
       const left = overhang(key, 'l');

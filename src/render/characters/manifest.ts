@@ -242,6 +242,8 @@ import {
   type WocCharacterManifest,
 } from './woc_character_manifest';
 import { withWocKeyedAnimations, wocKeyedAnimsUrl } from './woc_keyed_animations';
+import { WYND_MODEL_KEYS, WYND_RIMLESS_MODEL_KEYS } from './wynd_weapon_models';
+import { wyndHeldModelKey } from './wynd_weapon_tier_core';
 
 export interface EmoteClipSpec {
   clips: readonly string[];
@@ -2363,6 +2365,8 @@ export const AUTHORED_HELD_MODELS: ReadonlySet<string> = new Set([
   'shield_epic_crucible_heat_blue_iron',
   'shield_epic_votive_bone_votive',
   'shield_epic_votive_ember_warden',
+  // The WYNDLEWOOD tier set (wynd_weapon_models.ts): painted atlases of their own
+  ...WYND_MODEL_KEYS,
 ]);
 
 /** True when a held-prop GLB url resolves to one of AUTHORED_HELD_MODELS (a held weapon
@@ -2396,6 +2400,7 @@ export const RIMLESS_HELD_MODELS: ReadonlySet<string> = new Set([
   'shield_epic_crucible_heat_blue_iron',
   'shield_epic_votive_bone_votive',
   'shield_epic_votive_ember_warden',
+  ...WYND_RIMLESS_MODEL_KEYS,
 ]);
 
 /** True when a held-prop GLB url resolves to one of RIMLESS_HELD_MODELS. */
@@ -2456,6 +2461,31 @@ export function offhandModelUrl(
     return weaponSkinModelUrl(weaponSkinId);
   }
   return itemOffhandModelUrl(offhandItemId);
+}
+
+/** GLB url a body draws for its equipped mainhand: the WYNDLEWOOD tier look when the item's
+ *  classic model is a pack model the tier set supersedes (wynd_weapon_tier_core.ts), else
+ *  the classic model (itemWeaponModelUrl). The render attach path reads this one. */
+export function heldMainhandModelUrl(itemId: string | null | undefined): string | null {
+  const wynd = wyndHeldModelKey(itemId, itemModelKey(itemId));
+  return wynd ? `${WEAPONS}/${wynd}.glb` : itemWeaponModelUrl(itemId);
+}
+
+/** The offhand twin of heldMainhandModelUrl, for the item's own model. */
+export function heldOffhandItemModelUrl(itemId: string | null | undefined): string | null {
+  const wynd = wyndHeldModelKey(itemId, itemModelKey(itemId, ITEM_OFFHAND_MODELS));
+  return wynd ? `${WEAPONS}/${wynd}.glb` : itemOffhandModelUrl(itemId);
+}
+
+/** offhandModelUrl through the tier set: a mirrored skin first, else the item's held model. */
+export function heldOffhandModelUrl(
+  offhandItemId: string | null | undefined,
+  weaponSkinId: string | null | undefined,
+): string | null {
+  if (offhandMirrorsWeaponSkin(weaponSkinId, offhandItemId)) {
+    return weaponSkinModelUrl(weaponSkinId);
+  }
+  return heldOffhandItemModelUrl(offhandItemId);
 }
 
 /** Distinct held-weapon GLB urls (one per variant), for the boot preload sweep so
@@ -8866,6 +8896,8 @@ export function manifestUrls(): string[] {
   // gear), so they are resolved-and-ready when setWeapon attaches them.
   for (const url of itemWeaponModelUrls()) urls.add(url);
   for (const url of itemOffhandModelUrls()) urls.add(url);
+  // The WYNDLEWOOD tier set, every look resolvable for the same synchronous attach.
+  for (const key of WYND_MODEL_KEYS) urls.add(`${WEAPONS}/${key}.glb`);
   // Season 1 Armory weapon-skin models: also attachable on any nearby player at
   // any moment (account-wide cosmetics), so they preload with the same sweep.
   for (const url of weaponSkinModelUrls()) urls.add(url);

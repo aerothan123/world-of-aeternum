@@ -14,6 +14,7 @@ import {
   itemWeaponModelUrl,
   VISUALS,
 } from '../src/render/characters/manifest';
+import { WYND_MODEL_KEYS } from '../src/render/characters/wynd_weapon_models';
 import { HELD_TOOL_VARIANTS } from '../src/ui/held_tool_variants';
 import { ITEM_WEAPON_VARIANTS } from '../src/ui/weapon_variants';
 
@@ -450,7 +451,8 @@ describe('authored surfaces', () => {
     // rare models (37 pack finishes and 13 repaints of them) and the 27 epic models
     // plus Balgath's three on the v0.45.0 integration (the Foreman's Barrowmaul, the
     // Shardpike and the Craterglass Stave), plus the 25 gathering tools
-    expect(AUTHORED_HELD_MODELS.size).toBe(138);
+    // plus every WYNDLEWOOD tier look (wynd_weapon_models.ts)
+    expect(AUTHORED_HELD_MODELS.size).toBe(138 + WYND_MODEL_KEYS.length);
   });
 
   it('flags exactly the replaced creature and mount rigs, never a player body', () => {

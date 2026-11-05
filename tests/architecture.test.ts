@@ -1253,6 +1253,7 @@ const RENDER_PURE_CORES = [
   'src/render/characters/anim_state_entity_core.ts',
   'src/render/characters/combat_brace_core.ts',
   'src/render/characters/weapon_loadout_core.ts',
+  'src/render/characters/wynd_weapon_tier_core.ts',
   'src/render/characters/held_item_size_core.ts',
   'src/render/characters/attack_swing_core.ts',
   'src/render/characters/woc_autoattack_core.ts',

@@ -46,13 +46,13 @@ import { buildMakeupDecal } from './makeup';
 import {
   type AttachDef,
   characterPreloadUrls,
+  heldMainhandModelUrl,
+  heldOffhandItemModelUrl,
+  heldOffhandModelUrl,
   isAuthoredHeldModelUrl,
   isRimlessHeldModelUrl,
-  itemOffhandModelUrl,
-  itemWeaponModelUrl,
   manifestUrlsForGraphics,
   modularVisualKey,
-  offhandModelUrl,
   SKIN_EMISSIVE,
   SKINS,
   SKINS_DIR,
@@ -146,6 +146,7 @@ import {
 } from './woc_parts_core';
 import { bakeWocShadowStandIn } from './woc_shadow_stand_in';
 import { prepareWocSitClips } from './woc_sit_pose';
+import { WYND_WEAPON_ACCESSORY } from './wynd_weapon_models';
 
 const DEFAULT_TINT_STRENGTH = 0.4;
 
@@ -364,6 +365,8 @@ export const KAYKIT_WEAPON_ACCESSORY: Record<string, string> = {
   wand_epic_deathless_quenched_ember: 'VAR_WAND',
   wand_epic_deathless_royal_amethyst: 'VAR_WAND',
   wand_epic_deathless_storm_crystal: 'VAR_WAND',
+  // The WYNDLEWOOD tier set (wynd_weapon_models.ts): a base per type, three tier looks.
+  ...WYND_WEAPON_ACCESSORY,
   ...KAYKIT_SHIELD_ACCESSORIES,
   balgath_barrowmaul_hammer: 'VAR_HAMMER',
   shardpike_spear: 'VAR_POLEARM',
@@ -690,7 +693,7 @@ function swapAttachDef(
     return { url: skinUrl, bone };
   }
   if (bareWhenUnarmed && !weaponItemId) return null;
-  const url = itemWeaponModelUrl(weaponItemId);
+  const url = heldMainhandModelUrl(weaponItemId);
   // the item's own model draws at the item's size; a skin above is the player's pick of
   // model and keeps its own, as the class stand-in does
   return url ? { url, bone: base.bone, size: heldWeaponSize(weaponItemId) } : base;
@@ -706,14 +709,15 @@ function offhandAttachDef(
   offhandItemId: string | null | undefined,
   weaponSkinId: string | null | undefined = null,
 ): AttachDef | null {
-  const url = offhandModelUrl(offhandItemId, weaponSkinId);
+  const url = heldOffhandModelUrl(offhandItemId, weaponSkinId);
   // The mirrored-skin arm of offhandModelUrl can name a streamed skin GLB; the
   // item's own offhand model is always resident, so degrade to it.
-  const resident = residentOrEnsure(url) ?? itemOffhandModelUrl(offhandItemId);
+  const own = heldOffhandItemModelUrl(offhandItemId);
+  const resident = residentOrEnsure(url) ?? own;
   if (!resident) return null;
   // the item's own model at the item's size (a second weapon: a shield or a held off-hand
   // is no weapon and keeps its own); a mirrored skin keeps the skin's
-  return resident === itemOffhandModelUrl(offhandItemId)
+  return resident === own
     ? { url: resident, bone: base.bone, size: heldWeaponSize(offhandItemId) }
     : { url: resident, bone: base.bone };
 }

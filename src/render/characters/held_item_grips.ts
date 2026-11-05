@@ -1,3 +1,5 @@
+import { WYND_SHIELD_ACCESSORIES } from './wynd_weapon_models';
+
 export interface HandGrip {
   position: [number, number, number];
   quaternion: [number, number, number, number];
@@ -29,6 +31,8 @@ export const KAYKIT_SHIELD_ACCESSORIES = {
   shield_epic_votive_bone_votive: 'Heater_Shield',
   shield_epic_votive_ember_warden: 'Heater_Shield',
   shield_epic_crucible_heat_blue_iron: 'Tower_Shield',
+  // The WYNDLEWOOD round board (wynd_weapon_models.ts): origin at its middle, the heater's seat.
+  ...WYND_SHIELD_ACCESSORIES,
 } as const;
 
 // Extracted from the authored accessory nodes in the original KayKit knight

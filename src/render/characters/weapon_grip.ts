@@ -217,6 +217,24 @@ export const WEAPON_GRIP_OVERRIDES: Record<string, WeaponGripOverride> = {
   sword_field_2h_steel: { scale: 1.075 },
   hammer_field_2h_iron: { scale: 1.05 },
   hammer_field_2h_steel: { scale: 1.05 },
+  // The WYNDLEWOOD tier set (wynd_weapon_models.ts). The staff files are head-up for the
+  // carry and turned back in the hand, like the field staves; the two-hand axe rides the
+  // one-hand axe clamp of 1.5 and takes its length back here (1.875, the rare double-bit's).
+  // The staff's shaft was generated bowed back off its file axis (about 0.054 behind it
+  // at the grip, measured by tests/pack_weapon_hand_seat.test.ts), so it steps forward into
+  // the fist. The axe's single bit lies on the file's +X: turned about Y like the starter
+  // axe, it faces the cut (down at rest, at the enemy in the stance).
+  staff_wynd_starter: { rot: [180, 0, 0], pos: [0, 0, 0.054] },
+  staff_wynd_mid: { rot: [180, 0, 0], pos: [0, 0, 0.054] },
+  staff_wynd_fine: { rot: [180, 0, 0], pos: [0, 0, 0.054] },
+  axe_wynd_2h_starter: { rot: [0, 180, 0], scale: 1.25 },
+  axe_wynd_2h_mid: { rot: [0, 180, 0], scale: 1.25 },
+  axe_wynd_2h_fine: { rot: [0, 180, 0], scale: 1.25 },
+  // The studded mace's head was generated broad (half its file's length across): drawn at
+  // the one-hand clamp it read as big as the wielder's chest, so it draws at 0.72 of it.
+  mace_wynd_starter: { scale: 0.72 },
+  mace_wynd_mid: { scale: 0.72 },
+  mace_wynd_fine: { scale: 0.72 },
   // The rare staves and polearms, by the same recipe as the field ones: head-up files,
   // turned back in the hand.
   staff_rare_a_teal: { rot: [180, 0, 0] },
