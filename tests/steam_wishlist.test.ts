@@ -6,7 +6,6 @@ import { hasChromeIconArt } from '../src/ui/chrome_icon_art';
 import { ensureLocaleLoaded, setLanguage, t } from '../src/ui/i18n';
 import {
   isSteamDistribution,
-  STEAM_APP_ID,
   STEAM_BUILD_BODY_CLASS,
   STEAM_WISHLIST_PENDING_BODY_CLASS,
   STEAM_WISHLIST_URL,
@@ -133,11 +132,20 @@ describe('steam wishlist suppression policy', () => {
     );
   });
 
-  it('points at the real store listing', () => {
-    expect(STEAM_APP_ID).toBe(4897790);
-    expect(STEAM_WISHLIST_URL).toBe(
-      'https://store.steampowered.com/app/4897790/World_of_ClaudeCraft/',
+  it('points at the owner-configured Wyndlewood listing, never the upstream one', () => {
+    // src/brand.ts STEAM_STORE_URL is empty until the Steamworks app exists, and
+    // an empty URL hides every wishlist surface.
+    expect(STEAM_WISHLIST_URL).not.toContain('4897790');
+    expect(steamWishlistSuppressed({ nativeApp: false, steamBuild: false, storeUrl: '' })).toBe(
+      true,
     );
+    expect(
+      steamWishlistSuppressed({
+        nativeApp: false,
+        steamBuild: false,
+        storeUrl: 'https://store.steampowered.com/app/1/Wyndlewood/',
+      }),
+    ).toBe(false);
   });
 });
 

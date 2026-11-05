@@ -37,16 +37,19 @@ function apiOriginKey(value) {
   return parsed.origin;
 }
 
-function isProductionApiOrigin(origin) {
-  if (PRODUCTION_API_ORIGIN === '') return false;
-  return apiOriginKey(origin) === apiOriginKey(PRODUCTION_API_ORIGIN);
+// `production` defaults to the provisioned origin (electron/brand.cjs); it is a
+// parameter so the track split stays testable while none is provisioned.
+function isProductionApiOrigin(origin, production = PRODUCTION_API_ORIGIN) {
+  const productionKey = apiOriginKey(production);
+  if (productionKey === null) return false;
+  return apiOriginKey(origin) === productionKey;
 }
 
 // The electron-updater channel for a build baked with this API origin. Only
 // the exact production origin earns the production channel; anything else,
 // including a missing or garbage value, fails safe onto 'dev'.
-function updateChannelForOrigin(apiOrigin) {
-  return isProductionApiOrigin(apiOrigin) ? 'latest' : 'dev';
+function updateChannelForOrigin(apiOrigin, production = PRODUCTION_API_ORIGIN) {
+  return isProductionApiOrigin(apiOrigin, production) ? 'latest' : 'dev';
 }
 
 // Decide whether an offered update (electron-updater's UpdateInfo, which is

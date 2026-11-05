@@ -55,8 +55,9 @@ export function steamWishlistSuppressed(env: {
   steamBuild: boolean;
   storeUrl?: string;
 }): boolean {
-  // No store page configured yet: nothing to wishlist, so every surface hides.
-  if ((env.storeUrl ?? STEAM_WISHLIST_URL) === '') return true;
+  // An explicitly passed empty store URL (no page configured yet) hides every
+  // surface; syncSteamWishlistVisibility applies the same rule to the live URL.
+  if (env.storeUrl === '') return true;
   return env.nativeApp || env.steamBuild;
 }
 
