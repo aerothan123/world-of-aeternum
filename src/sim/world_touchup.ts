@@ -1,5 +1,6 @@
 import { WORKSHOP_QUEST_IDS } from './content/workshop_quests.generated';
 import { applyFenbridgeTouchupToWorld } from './fenbridge_touchup';
+import { withoutFrontierContent } from './frontier/touchup_scope';
 import { freezeObjectMoves } from './moved_objects';
 import type { WorldContent } from './types';
 
@@ -54,8 +55,10 @@ export function worldTouchupBaseWithout(
   workshopQuestIds: readonly string[],
 ): string {
   // Unlike ordinary record keys, NPC insertion order controls spawn entity ids.
+  // The expansion frontier is stripped first (frontier/touchup_scope.ts): the
+  // token covers the shipped world the patch was reviewed against.
   return worldTouchupToken({
-    world: stripWorkshopQuestIds(world, workshopQuestIds),
+    world: stripWorkshopQuestIds(withoutFrontierContent(world), workshopQuestIds),
     npcOrder: Object.keys(world.npcs),
   });
 }

@@ -128,8 +128,10 @@ export const MAX_NPCS = 200;
 export const MAX_OBJECTS = 400;
 // The built-in grid world ships 14 zones (the original strip plus the east/west
 // realm columns), so the editor's zone cap sits above that with headroom for a
-// few custom zones. (It was 12 in the 3-zone-strip era.)
-export const MAX_ZONES = 24;
+// few custom zones. (It was 12 in the 3-zone-strip era, and 24 until the
+// expansion frontier took the built-in world to 25 zones; the slot grid in
+// sim/frontier/slots.ts reserves room for about 40.)
+export const MAX_ZONES = 48;
 // 256, not 64: the SHIPPED world already carries 91 roads, so the old bound
 // silently truncated 27 of them out of every authored map the moment it was
 // sanitized, and roads flatten terrain and carve paths, so the map lost shape,

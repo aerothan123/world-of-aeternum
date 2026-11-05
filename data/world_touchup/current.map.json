@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-4735c-6d020d7d-26e15a8d-14b3-b4ad9a78-f493dfc8",
+    "id": "live-47a6e-a7445110-bd56c1e0-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "4735c-6d020d7d-26e15a8d",
+    "overworldBase": "47a6e-a7445110-bd56c1e0",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -3556,7 +3556,8 @@
           "c1_d01_bounty_culvert",
           "c1_d08_lunch_stew",
           "c1_d10_road_checkposts",
-          "c1_d10_quay_posts"
+          "c1_d10_quay_posts",
+          "c2_05_causeway_watch"
         ],
         "greeting": "Keep your blade close, $C. The Vale is not what it was."
       },
@@ -3579,7 +3580,8 @@
           "c1_d07_receipt_rivets",
           "c1_d07_receipt_hinges",
           "c1_d12_road_not_rumor",
-          "c2_01_ship_sank_twice"
+          "c2_01_ship_sank_twice",
+          "c2_02_whose_seal"
         ],
         "greeting": "Fresh bread, clean water, fair prices. What can I get you?",
         "vendorItems": [
@@ -6332,7 +6334,8 @@
           "c1_28_door_left_shut",
           "c1_d03_teeth_verge",
           "c1_d08_lunch_bread",
-          "c1_d11_light_behind"
+          "c1_d11_light_behind",
+          "c2_04_lantern_causeway"
         ],
         "greeting": "If the snow speaks, do not answer. Down here it is mostly the hedges, and they talk a great deal."
       },
@@ -6460,6 +6463,40 @@
           "tough_jerky",
           "tanning_agent"
         ]
+      },
+      "cider_master_mabel": {
+        "id": "cider_master_mabel",
+        "name": "Mabel Cotterill",
+        "title": "Pressford Cider-Master",
+        "pos": {
+          "x": 336,
+          "z": -314
+        },
+        "facing": 3.141592653589793,
+        "color": 11038522,
+        "questIds": [
+          "c2_02_whose_seal",
+          "c2_07_pressford_remembers",
+          "c2_08_pests_windfalls"
+        ],
+        "greeting": "Pressford makes the best cider in the Reaches, and the second best, and most of the third."
+      },
+      "sergeant_ivo_bramwell": {
+        "id": "sergeant_ivo_bramwell",
+        "name": "Ivo Bramwell",
+        "title": "Causeway Watch Sergeant",
+        "pos": {
+          "x": 370,
+          "z": -258
+        },
+        "facing": 1.5707963267948966,
+        "color": 6254470,
+        "questIds": [
+          "c2_04_lantern_causeway",
+          "c2_05_causeway_watch",
+          "c2_06_watch_holds_road"
+        ],
+        "greeting": "The causeway is one road with the sea on both sides. I like it that way. Fewer directions to be ambushed from."
       }
     },
     "objects": [
@@ -8429,6 +8466,104 @@
           {
             "x": -9,
             "z": 247
+          }
+        ]
+      },
+      {
+        "itemId": "c2_shipping_roll",
+        "name": "Pressford Shipping Roll",
+        "positions": [
+          {
+            "x": 339,
+            "z": -317
+          }
+        ]
+      },
+      {
+        "itemId": "c2_causeway_lantern",
+        "name": "Causeway Lantern",
+        "positions": [
+          {
+            "x": 394,
+            "z": -216
+          },
+          {
+            "x": 385,
+            "z": -234
+          },
+          {
+            "x": 377,
+            "z": -250
+          }
+        ]
+      },
+      {
+        "itemId": "c2_pressford_door",
+        "name": "Pressford Cottage Door",
+        "positions": [
+          {
+            "x": 323,
+            "z": -312
+          },
+          {
+            "x": 343,
+            "z": -325
+          },
+          {
+            "x": 328,
+            "z": -330
+          }
+        ]
+      },
+      {
+        "itemId": "c2_tally_stick",
+        "name": "Misremembered Tally Stick",
+        "positions": [
+          {
+            "x": 326,
+            "z": -322
+          },
+          {
+            "x": 340,
+            "z": -312
+          },
+          {
+            "x": 330,
+            "z": -326
+          },
+          {
+            "x": 338,
+            "z": -322
+          }
+        ]
+      },
+      {
+        "itemId": "c2_windfall_apple",
+        "name": "Windfall Apple",
+        "positions": [
+          {
+            "x": 448,
+            "z": -300
+          },
+          {
+            "x": 452,
+            "z": -306
+          },
+          {
+            "x": 458,
+            "z": -298
+          },
+          {
+            "x": 444,
+            "z": -308
+          },
+          {
+            "x": 462,
+            "z": -304
+          },
+          {
+            "x": 455,
+            "z": -312
           }
         ]
       }

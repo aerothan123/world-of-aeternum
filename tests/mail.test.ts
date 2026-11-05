@@ -156,7 +156,8 @@ function tickFor(sim: Sim, seconds: number): SimEvent[] {
 describe('mailboxes in the world', () => {
   it('spawns one interactable mailbox object per town', () => {
     const sim = makeWorld();
-    expect(sim.postOffice.mailboxIds).toHaveLength(MAILBOXES.length);
+    expect(sim.postOffice.mailboxIds).toHaveLength(BUILTIN_WORLD.services?.mailboxes?.length ?? 0);
+    expect(BUILTIN_WORLD.services?.mailboxes?.slice(0, MAILBOXES.length)).toEqual(MAILBOXES);
     for (const id of sim.postOffice.mailboxIds) {
       const box = sim.entities.get(id);
       expect(box?.kind).toBe('object');

@@ -9652,6 +9652,26 @@ export const tr_TR: EnTranslations = {
         "farshoreBlurb": "Kum setinin ötesindeki bir ada; gökyüzü Yarık Tarlaları'nın üzerinde yırtılır ve Gullhaven her gedik için çanını çalar.",
         "provingName": "Sınav Kıyısı",
         "provingBlurb": "Boğazın karşısında sessiz bir eğitim adası; yeni maceracılar, Vadi onlardan bir şey istemeden önce burada ayaklarını bulur.",
+        "applewoldName": "The Applewold",
+        "applewoldBlurb": "Orchard downs past the Farshore causeway, where Pressford keeps the cider presses turning.",
+        "kindlemoorName": "The Kindlemoor",
+        "kindlemoorBlurb": "Open heath over standing stones older than the first kingdom, watched from the camp at Ferncross.",
+        "chalkbarrowName": "The Chalkbarrow Coast",
+        "chalkbarrowBlurb": "White cliffs and chalk downs, where prospectors dig at Coinwell and someone else digs deeper.",
+        "saltmeadsName": "The Saltmeads",
+        "saltmeadsBlurb": "Salt marsh and pan villages on a grey coast south of the Applewold, where Panwick boils brine for half the south.",
+        "wychwoldName": "The Wychwold",
+        "wychwoldBlurb": "An old elm wold of charcoal burners, where the Bracken Circle keeps the Knotted Elm at Elmhallow.",
+        "tinmarchName": "The Tinmarch",
+        "tinmarchBlurb": "Tin moor and spoil heaps below the chalk cliffs, worked by lamplight from the mine camp at Wheal Patience.",
+        "rookcliffsName": "The Rookcliffs",
+        "rookcliffsBlurb": "Sea stacks and rookeries at the edge of the Hushmist, watched from the Lanternwarden lookout at Kestrel Point.",
+        "sedgemarchName": "The Sedgemarch",
+        "sedgemarchBlurb": "Reed fen and withy beds as far as the mist, home to the basket village of Withyholt.",
+        "harrowfellsName": "The Harrowfells",
+        "harrowfellsBlurb": "High fells over an old battlefield, where the watch at Fellgate counts the cairns every night.",
+        "wardmereName": "The Wardmere",
+        "wardmereBlurb": "The last shore the Lanternwardens hold before the Hushmist, kept lit day and night from Lanternfold.",
         "nightName": "Gece Çiçeği",
         "nightBlurb": "Çiçeklerin patikaları aydınlattığı ve Moonrest'in nöbetini tuttuğu, yıldızlı gece yarısı ülkesi.",
         "hauntName": "Hayalet Ormanı",
@@ -10656,6 +10676,46 @@ export const tr_TR: EnTranslations = {
       "farshoreGreeting": "Feribot Yolu'ndan mı geçtin? O zaman bir haftadır ilk gelensin, ve Bekçi seni incelemek isteyecektir.",
       "farshoreGreeter": "Çan Bekçisi Tam, İskele",
       "farshorePlaceNotes": "Gullhaven, adanın tek kasabası ve tabyasıdır. İskele, üzerinde bir nöbet çanının dikildiği, Feribot Yolu'nun karaya vurduğu yerdir; Nöbet Çayırı, bir yarık nöbetçisinin bir sonraki gediği dinlediği, kasabanın güneydoğusundaki yüksek zemini tutar; Yarılmış Kayalıklar adanın güney ucunda açılır; ve Yarık Tarlaları, Gullhaven'ın doğusundaki harap tahıl sıralarıdır, hâlâ oradaki gedikten geçenlerle kaynamaktadır.",
+      "applewoldBlurb": "Orchard country south of the Farshore, reached over a causeway from the island. The orchards have turned strange, and the boars no longer fear the dogs.",
+      "applewoldGreeting": "Road is open as far as Pressford. Past that, keep your eyes on the trees.",
+      "applewoldGreeter": "A Lanternwarden at Causeway Watch",
+      "applewoldPlaceNotes": "Pressford is the press-town at the heart of the downs. Causeway Watch guards the head of the causeway, the Cider Mere lies east of town, Blossom Rise crowns the eastern lobe, the Old Press is a fallen pressing-house to the west, and the South Downs roll down to the sea.",
+      "kindlemoorBlurb": "A wide heath west of the Applewold, where nothing grows tall and nothing is new. The Bracken Circle watches stones that have lately grown warm.",
+      "kindlemoorGreeting": "Walk softly near the ring. The stones remember more than we do.",
+      "kindlemoorGreeter": "A keeper of the Bracken Circle at Ferncross",
+      "kindlemoorPlaceNotes": "Ferncross is the Bracken Circle camp at the moor road. The First Hearth Ring stands south-west of it, the Moor Tarn lies to the west, the Grey Tor rises in the south-east, and the Heath Way runs east to the Applewold.",
+      "chalkbarrowBlurb": "Chalk downs and white cliffs at the south-west of the reaches, where the prospectors of Coinwell Camp are not the only ones digging.",
+      "chalkbarrowGreeting": "If you hear picks after dark, they are not ours.",
+      "chalkbarrowGreeter": "A prospector at Coinwell Camp",
+      "chalkbarrowPlaceNotes": "Coinwell Camp is the prospectors' base on the downs. The Unlit Dig lies to the south-west, Chalk Mere sits west of camp, the White Head is the headland in the north-west, and Wreckers' Cove opens to the south-east.",
+      "saltmeadsBlurb": "A grey salt coast south of the Applewold, reached over the Saltmeads Gate. The tides have started bringing in more than salt.",
+      "saltmeadsGreeting": "Mind the pans, and mind the tide. It has been coming in wrong.",
+      "saltmeadsGreeter": "A salt boiler at Panwick",
+      "saltmeadsPlaceNotes": "Panwick is the pan-town at the head of the downs. The Saltmeads Gate is the causeway in from the Applewold, the Brine Pans lie east of town, Gannet Stack rises at the south-east corner, the Wrack Shallows are the wreck-strewn flats to the south-west, and the Salt Way runs west into the Wychwold.",
+      "wychwoldBlurb": "An old elm wold between the Saltmeads and the Tinmarch, where the charcoal burners work and something under the roots has begun to stir.",
+      "wychwoldGreeting": "Leave the elm be. It was here first, and it remembers.",
+      "wychwoldGreeter": "A keeper of the Bracken Circle at Elmhallow",
+      "wychwoldPlaceNotes": "Elmhallow is the Bracken Circle lodge at the heart of the wold. The Knotted Elm stands south-west of it in its ring of hearth stones, Charcoal Hollow smokes to the south-east, the Sunk Lane runs west toward the Tinmarch, and the Salt Way leaves east for the Saltmeads.",
+      "tinmarchBlurb": "Tin moor below the chalk cliffs, also reached by the Chalk Pass from the Chalkbarrow Coast. Someone has opened the old Blackadit.",
+      "tinmarchGreeting": "Lamps lit, eyes open. Nobody goes near the Blackadit alone.",
+      "tinmarchGreeter": "A Gilt Measure foreman at Wheal Patience",
+      "tinmarchPlaceNotes": "Wheal Patience is the mine camp at the north of the moor. The Chalk Pass climbs north to the Chalkbarrow Coast, the Stannary Stones stand to the south-west, the Blackadit opens in the south-east, Tinners' Ford crosses east into the Wychwold, and the Rook Way runs west to the Rook Ford and the West March.",
+      "rookcliffsBlurb": "Sea stacks and rookeries at the south-west corner of the world, where the grey Hushmist sits on the sea and swallows every sound.",
+      "rookcliffsGreeting": "That light is the last one. Past it, the mist takes the sound right out of your boots.",
+      "rookcliffsGreeter": "A Lanternwarden at Kestrel Point",
+      "rookcliffsPlaceNotes": "Kestrel Point is the Lanternwarden lookout in the north of the cliffs. The Rook Ford crosses east to the Tinmarch, the Hushmist Light burns on the west shore, the Sea Stacks stand off the south-west corner, Rook Hollow lies to the south-east, and the Sedge Neck leads north into the Sedgemarch.",
+      "sedgemarchBlurb": "Reed fen and withy beds north of the Rookcliffs. Withyholt knows which paths the fen keeps and which it gives back.",
+      "sedgemarchGreeting": "Stay on the withies. The fen is patient, and it is hungry.",
+      "sedgemarchGreeter": "A basket weaver at Withyholt",
+      "sedgemarchPlaceNotes": "Withyholt is the basket village on the dry rise in the middle of the fen. The Withy Beds lie to the south-west, Heron Mere to the south-east, the Drowned Causey runs off to the north-west, the Sedge Neck leads south to the Rookcliffs, and the Fell Neck climbs north to the Harrowfells.",
+      "harrowfellsBlurb": "High fells over an old battlefield north of the Sedgemarch. The cairns were raised to keep a war ended, and the dead beneath them are not resting.",
+      "harrowfellsGreeting": "Count them with me. If there are more cairns than last night, we run.",
+      "harrowfellsGreeter": "A cairn watcher at Fellgate",
+      "harrowfellsPlaceNotes": "Fellgate is the watch post below the high fell. The Cairn Field spreads to the north-west, Harrow Tarn lies east of the post, the Iron Ring stands just west of it, the Fell Neck leads south to the Sedgemarch, and the Ward Neck runs north to the Wardmere.",
+      "wardmereBlurb": "The last shore the Lanternwardens hold before the Hushmist, where the mist comes in like a tide past the Ward Mere.",
+      "wardmereGreeting": "Keep to the lamps. Anyone who walks out past them walks out alone.",
+      "wardmereGreeter": "A Lanternwarden at Lanternfold",
+      "wardmerePlaceNotes": "Lanternfold is the Lanternwardens' lamp-lit post in the middle of the shore. The Ward Mere lies to the north-east, the Last Beacon stands on its crag to the north-west, the Westering Pier faces the ferry lane to the east, and the Ward Neck leads south to the Harrowfells.",
       "provingBlurb": "Vadi'nin karşısında, boğazın öte yakasında, eğitim alanı olarak tutulan sessiz bir ada: bir kamp, bir talim alanı, enkazlarla dolu bir kumsal, ve iki yönde de işleyen bir feribot.",
       "provingGreeting": "Vadi'nin şimdiye dek teşekkür ettiği her kahraman, şu an senin durduğun yerde durdu, ve hiçbiri bir kılıcın hangi ucundan tutulacağını bilmiyordu.",
       "provingGreeter": "Eğitmen Maren, Dawnrest Kampı",
@@ -31990,6 +32050,219 @@ export const tr_TR: EnTranslations = {
           },
           "4": {
             "label": "Parkur"
+          }
+        }
+      },
+      "applewold": {
+        "name": "The Applewold",
+        "welcome": "The causeway ends in apple country. Pressford keeps the presses turning and the Lanternwardens keep the road, but the orchards have gone strange, and the boars have stopped fearing the dogs.",
+        "pois": {
+          "0": {
+            "label": "Pressford"
+          },
+          "1": {
+            "label": "Causeway Watch"
+          },
+          "2": {
+            "label": "The Cider Mere"
+          },
+          "3": {
+            "label": "Blossom Rise"
+          },
+          "4": {
+            "label": "The Old Press"
+          },
+          "5": {
+            "label": "The South Downs"
+          }
+        }
+      },
+      "kindlemoor": {
+        "name": "The Kindlemoor",
+        "welcome": "Nothing grows tall on the Kindlemoor, and nothing here is new. The Bracken Circle keeps watch over stones that were old when the first kingdom was young, and lately the stones have been warm to the touch.",
+        "pois": {
+          "0": {
+            "label": "Ferncross"
+          },
+          "1": {
+            "label": "The First Hearth Ring"
+          },
+          "2": {
+            "label": "The Moor Tarn"
+          },
+          "3": {
+            "label": "The Grey Tor"
+          },
+          "4": {
+            "label": "The Heath Way"
+          }
+        }
+      },
+      "chalkbarrow_coast": {
+        "name": "The Chalkbarrow Coast",
+        "welcome": "The Gilt Measure came to the white cliffs for chalk and stayed for what was under it. Someone else is digging further down, by lantern-less dark, and the prospectors at Coinwell would very much like to know who.",
+        "pois": {
+          "0": {
+            "label": "Coinwell Camp"
+          },
+          "1": {
+            "label": "The Unlit Dig"
+          },
+          "2": {
+            "label": "Chalk Mere"
+          },
+          "3": {
+            "label": "The White Head"
+          },
+          "4": {
+            "label": "Wreckers' Cove"
+          }
+        }
+      },
+      "saltmeads": {
+        "name": "The Saltmeads",
+        "welcome": "Grey water, white pans and the smell of brine. Panwick boils salt for half the south, but lately the tide brings in more than weed, and the gannets will not land on the stack.",
+        "pois": {
+          "0": {
+            "label": "Panwick"
+          },
+          "1": {
+            "label": "The Brine Pans"
+          },
+          "2": {
+            "label": "Gannet Stack"
+          },
+          "3": {
+            "label": "The Wrack Shallows"
+          },
+          "4": {
+            "label": "The Saltmeads Gate"
+          }
+        }
+      },
+      "wychwold": {
+        "name": "The Wychwold",
+        "welcome": "The Wychwold was old before the Hearthbinding. The charcoal burners still work its hollows, the Bracken Circle still keeps its oldest elm, and something under the roots has begun to stir.",
+        "pois": {
+          "0": {
+            "label": "Elmhallow"
+          },
+          "1": {
+            "label": "The Knotted Elm"
+          },
+          "2": {
+            "label": "Charcoal Hollow"
+          },
+          "3": {
+            "label": "The Sunk Lane"
+          },
+          "4": {
+            "label": "The Salt Way"
+          }
+        }
+      },
+      "tinmarch": {
+        "name": "The Tinmarch",
+        "welcome": "Tin, spoil and wind. The Gilt Measure keeps Wheal Patience working by lamplight, and the miners swear the old Blackadit was sealed before any of them were born. Someone has opened it.",
+        "pois": {
+          "0": {
+            "label": "Wheal Patience"
+          },
+          "1": {
+            "label": "The Stannary Stones"
+          },
+          "2": {
+            "label": "Blackadit"
+          },
+          "3": {
+            "label": "Tinners' Ford"
+          },
+          "4": {
+            "label": "The Chalk Pass"
+          }
+        }
+      },
+      "rookcliffs": {
+        "name": "The Rookcliffs",
+        "welcome": "The world ends here, or seems to. West of the cliffs the grey mist sits on the sea and swallows every sound, and the Lanternwardens at Kestrel Point keep a light burning at its edge.",
+        "pois": {
+          "0": {
+            "label": "Kestrel Point"
+          },
+          "1": {
+            "label": "The Sea Stacks"
+          },
+          "2": {
+            "label": "Rook Hollow"
+          },
+          "3": {
+            "label": "The Hushmist Light"
+          },
+          "4": {
+            "label": "The Rook Ford"
+          }
+        }
+      },
+      "sedgemarch": {
+        "name": "The Sedgemarch",
+        "welcome": "Reed and sedge as far as the mist. Withyholt weaves the baskets half the west carries, and its people know which paths the fen keeps and which it gives back.",
+        "pois": {
+          "0": {
+            "label": "Withyholt"
+          },
+          "1": {
+            "label": "The Withy Beds"
+          },
+          "2": {
+            "label": "Heron Mere"
+          },
+          "3": {
+            "label": "The Drowned Causey"
+          },
+          "4": {
+            "label": "The Sedge Neck"
+          }
+        }
+      },
+      "harrowfells": {
+        "name": "The Harrowfells",
+        "welcome": "A war was ended on these fells long ago, and the cairns were raised to keep it ended. Fellgate stands watch over the field, and every night the watch counts the cairns again.",
+        "pois": {
+          "0": {
+            "label": "Fellgate"
+          },
+          "1": {
+            "label": "The Cairn Field"
+          },
+          "2": {
+            "label": "Harrow Tarn"
+          },
+          "3": {
+            "label": "The Iron Ring"
+          },
+          "4": {
+            "label": "The Fell Neck"
+          }
+        }
+      },
+      "wardmere": {
+        "name": "The Wardmere",
+        "welcome": "The last shore the Lanternwardens hold. Past the Ward Mere the mist comes in like a tide, and Lanternfold keeps its lamps lit all day so that no one walks into it by mistake.",
+        "pois": {
+          "0": {
+            "label": "Lanternfold"
+          },
+          "1": {
+            "label": "The Ward Mere"
+          },
+          "2": {
+            "label": "The Last Beacon"
+          },
+          "3": {
+            "label": "The Westering Pier"
+          },
+          "4": {
+            "label": "The Ward Neck"
           }
         }
       },

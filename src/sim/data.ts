@@ -142,6 +142,25 @@ import {
   FARSHORE_ZONE,
 } from './content/farshore';
 import {
+  LOW_REACHES_CAMPS,
+  LOW_REACHES_PROPS,
+  LOW_REACHES_ROADS,
+  LOW_REACHES_ZONES,
+} from './content/frontier/low_reaches';
+import { FRONTIER_MAILBOXES } from './content/frontier/mailboxes';
+import {
+  SOUTHERN_REACHES_CAMPS,
+  SOUTHERN_REACHES_PROPS,
+  SOUTHERN_REACHES_ROADS,
+  SOUTHERN_REACHES_ZONES,
+} from './content/frontier/southern_reaches';
+import {
+  WEST_MARCH_CAMPS,
+  WEST_MARCH_PROPS,
+  WEST_MARCH_ROADS,
+  WEST_MARCH_ZONES,
+} from './content/frontier/west_march';
+import {
   FROSTVEIL_CAMPS,
   FROSTVEIL_ESCORTS,
   FROSTVEIL_ITEMS,
@@ -811,6 +830,13 @@ export const CAMPS: CampDef[] = [
   // Wyndlewood Chapter One's camps (content/chapter_one.ts): offStream, appended
   // last by the same rule.
   ...CHAPTER_ONE_CAMPS,
+  // The Southern Reaches (the expansion's first frontier row) append after every
+  // shipped camp, all offStream, by the same rule.
+  ...SOUTHERN_REACHES_CAMPS,
+  // The Low Reaches and the West March (the next frontier row and column)
+  // append after the Southern Reaches, all offStream, by the same rule.
+  ...LOW_REACHES_CAMPS,
+  ...WEST_MARCH_CAMPS,
   // The Eastbrook hub dummy is NOT a camp: it spawns with its sparring master
   // after the player (sim/hub_practice.ts), so it consumes only trailing ids.
 ];
@@ -1024,6 +1050,9 @@ export const ROADS: { x: number; z: number }[][] = [
   ...GALECREST_ROADS,
   ...FARSHORE_ROADS,
   ...PROVING_SHORE_ROADS,
+  ...SOUTHERN_REACHES_ROADS,
+  ...LOW_REACHES_ROADS,
+  ...WEST_MARCH_ROADS,
 ];
 
 // Paired overworld portals (src/sim/portals.ts checks these each tick).
@@ -1058,6 +1087,9 @@ export const PROPS: ZonePropsDef = mergeProps([
   GALECREST_PROPS,
   FARSHORE_PROPS,
   PROVING_SHORE_PROPS,
+  SOUTHERN_REACHES_PROPS,
+  LOW_REACHES_PROPS,
+  WEST_MARCH_PROPS,
 ]);
 
 function mergeProps(sets: ZonePropsDef[]): ZonePropsDef {
@@ -1140,6 +1172,10 @@ export const ZONES: ZoneDef[] = [
   GALECREST_ZONE,
   FARSHORE_ZONE,
   PROVING_SHORE_ZONE,
+  // The world expansion's frontier zones append LAST (src/sim/frontier/).
+  ...SOUTHERN_REACHES_ZONES,
+  ...LOW_REACHES_ZONES,
+  ...WEST_MARCH_ZONES,
 ];
 
 // Wyndlewood Chapter Two's Southern Reaches quests (content/chapter_two.ts):
@@ -1197,7 +1233,7 @@ export const BASE_WORLD: WorldContent = {
   playerStart: PLAYER_START,
   services: {
     stations: STATIONS,
-    mailboxes: MAILBOXES,
+    mailboxes: [...MAILBOXES, ...FRONTIER_MAILBOXES],
     noticeboards: NOTICEBOARDS,
     musterBoards: MUSTER_BOARDS,
     graveyards: OVERWORLD_GRAVEYARDS,
@@ -1469,11 +1505,19 @@ export function zoneContaining(x: number, z: number): ZoneDef | null {
 // STRIP_ZONES in stack order exactly as they always did; COLUMN_ZONES blend
 // in sideways via columnBlendAt. With no columns registered both are inert
 // and the world is byte-identical to the strip era.
+// Frontier zones (openBorders, src/sim/frontier/) join neither cascade: their
+// ground and its blends come from frontier/terrain.ts, and a zero-weight term
+// in a shipped blend would still move the core world's floats by an ulp.
 export const STRIP_ZONES: readonly ZoneDef[] = ZONES.filter(
-  (zn) => (zn.xMin ?? STRIP_MIN_X) <= STRIP_MIN_X && (zn.xMax ?? STRIP_MAX_X) >= STRIP_MAX_X,
+  (zn) =>
+    !zn.openBorders &&
+    (zn.xMin ?? STRIP_MIN_X) <= STRIP_MIN_X &&
+    (zn.xMax ?? STRIP_MAX_X) >= STRIP_MAX_X,
 );
 export const COLUMN_ZONES: readonly ZoneDef[] = ZONES.filter(
-  (zn) => (zn.xMin ?? STRIP_MIN_X) > STRIP_MIN_X || (zn.xMax ?? STRIP_MAX_X) < STRIP_MAX_X,
+  (zn) =>
+    !zn.openBorders &&
+    ((zn.xMin ?? STRIP_MIN_X) > STRIP_MIN_X || (zn.xMax ?? STRIP_MAX_X) < STRIP_MAX_X),
 );
 
 function sm01(raw: number): number {
@@ -1731,15 +1775,30 @@ export function arenaOriginAt(z: number): { x: number; z: number; slot: number }
   return { x: o.x, z: o.z, slot: best };
 }
 
+// The save-position epoch every save from this build stamps
+// (CharacterState.posEpoch, written by saved_pos_exit.ts savedPlacement).
+// Epoch 2 means "the instance plane is at INSTANCE_X_BASE": the position is
+// read literally, so an overworld save east of x 600 (the expansion's east
+// march) stays where it is. An UNSTAMPED save predates the stamp and may
+// still carry a pre-move instance position, so only it takes the legacy rule.
+export const SAVE_POS_EPOCH = 2;
+
 // Saved positions from before the instance plane moved east (stage 2 of the
 // world grid) sit in the old bands at x 600..5400+. Map them to the same
 // door the old load rule would have chosen, using the OLD layout frozen as
 // literals: dungeons at 900+index*600 past threshold 600, the delve band
 // from 4773. Anything unmapped falls back exactly like the old rule did.
-export function migrateLegacyInstancePos(pos: { x: number; z: number }): {
+// Keyed on the save's epoch first: a stamped save is never legacy, whatever
+// its x (an instance save of this era sits on the real band at x ~100k and
+// the band rules in saved_pos_exit.ts own it).
+export function migrateLegacyInstancePos(
+  pos: { x: number; z: number },
+  posEpoch?: number,
+): {
   x: number;
   z: number;
 } | null {
+  if (typeof posEpoch === 'number' && posEpoch >= SAVE_POS_EPOCH) return null; // stamped: literal
   if (pos.x <= 600 || pos.x >= INSTANCE_X_BASE) return null; // not a legacy instance pos
   if (pos.x >= 4773) {
     const delve = DELVE_LIST.find((d) => d.index === Math.round((pos.x - 4800) / 600));

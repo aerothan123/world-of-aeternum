@@ -6,6 +6,7 @@ import {
   applyFenbridgeTouchupToWorld,
   resolveFenbridgeTerrainEdits,
 } from '../sim/fenbridge_touchup';
+import { withoutFrontierContent } from '../sim/frontier/touchup_scope';
 import { MAP_DOC_VERSION, type MapDoc, sanitizeMapDoc } from '../sim/map_doc';
 import { materialFinishTextureRefs } from '../sim/material_finishes';
 import type { WorldContent } from '../sim/types';
@@ -53,6 +54,10 @@ const equal = (a: unknown, b: unknown): boolean =>
 // baseline token strips them (world_touchup.ts): the live-world source document
 // carries the SHIPPED rows, so a workshop save never reads as a content edit.
 const nativeContent = stripWorkshopQuestIds(clone(BASE_WORLD));
+// The live-world overlay covers the shipped world the patch was reviewed
+// against; the expansion frontier stays out of its content rows the same way
+// it stays out of the baseline token (frontier/touchup_scope.ts).
+const shippedContent = withoutFrontierContent(nativeContent);
 const nativeBase = worldTouchupBase(nativeContent);
 const currentRevision = worldTouchupToken(WORLD_TOUCHUP.changes);
 
@@ -73,11 +78,11 @@ export function liveWorldBaseline(): MapDoc {
         overworldRevision: currentRevision,
       },
       content: {
-        zones: nativeContent.zones,
-        camps: nativeContent.camps,
-        npcs: nativeContent.npcs,
-        objects: nativeContent.groundObjects,
-        roads: nativeContent.roads,
+        zones: shippedContent.zones,
+        camps: shippedContent.camps,
+        npcs: shippedContent.npcs,
+        objects: shippedContent.groundObjects,
+        roads: shippedContent.roads,
       },
       terrainEdits: BASE_WORLD.terrainEdits ?? [],
       placements: [],

@@ -335,8 +335,14 @@ describe('content referential integrity', () => {
   });
 
   it('zones tile the grid and content sits inside its zone band', () => {
-    // the strip column tiles south to north exactly as it always did
-    const strip = ZONES.filter((zn) => (zn.xMin ?? -180) <= -180 && (zn.xMax ?? 180) >= 180);
+    // the strip column tiles south to north exactly as it always did. The
+    // expansion frontier (openBorders, src/sim/frontier/) sits outside the
+    // shipped grid on its own slot lattice: its tiling is pinned by
+    // tests/world_slots.test.ts and its reachability by the road walks in
+    // tests/frontier_terrain.test.ts, so the two strip rules below skip it.
+    const strip = ZONES.filter(
+      (zn) => !zn.openBorders && (zn.xMin ?? -180) <= -180 && (zn.xMax ?? 180) >= 180,
+    );
     for (let i = 0; i + 1 < strip.length; i++) {
       expect(strip[i].zMax).toBe(strip[i + 1].zMin);
     }
@@ -356,7 +362,7 @@ describe('content referential integrity', () => {
     const stripMin = strip[0].zMin;
     const stripMax = strip[strip.length - 1].zMax;
     for (const zn of ZONES) {
-      if (x0(zn) <= -180 && x1(zn) >= 180) continue;
+      if (zn.openBorders || (x0(zn) <= -180 && x1(zn) >= 180)) continue;
       expect(
         zn.zMin < stripMax && zn.zMax > stripMin,
         `${zn.id} band overlaps the strip somewhere`,

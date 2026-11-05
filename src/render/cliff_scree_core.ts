@@ -1,11 +1,11 @@
 import {
   gatherNodesInActiveWorld,
   getActiveWorldContent,
-  WORLD_MAX_X,
   WORLD_MAX_Z,
   WORLD_MIN_Z,
 } from '../sim/data';
 import { roadDistance, terrainHeight, waterLevel } from '../sim/world';
+import { insideWorldX } from '../sim/world_x_edge';
 
 // Cliff-scree placement for the renderer's moving detail grid. The rocks are
 // tier-gated, walk-through visual dressing, so this policy belongs render-side
@@ -105,7 +105,7 @@ function computeSpot(seed: number, ci: number, cj: number): ScreeSpot | null {
   if (r1 >= CLIFF_DENSITY) return null;
   const x = ci * SCREE_CELL + (hash(ci, cj, 2) - 0.5) * SCREE_CELL * 0.9;
   const z = cj * SCREE_CELL + (hash(ci, cj, 3) - 0.5) * SCREE_CELL * 0.9;
-  if (Math.abs(x) > WORLD_MAX_X - EDGE || z < WORLD_MIN_Z + EDGE || z > WORLD_MAX_Z - EDGE) {
+  if (insideWorldX(x) < EDGE || z < WORLD_MIN_Z + EDGE || z > WORLD_MAX_Z - EDGE) {
     return null;
   }
   const h = terrainHeight(x, z, seed);

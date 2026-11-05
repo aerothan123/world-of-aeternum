@@ -97,3 +97,36 @@ export function zonesEligibleForEviction(
   candidates.sort((a, b) => b.distanceSq - a.distanceSq);
   return candidates.map((candidate) => candidate.id);
 }
+
+/**
+ * Desktop residency budget: how many overworld zones a full-memory host keeps
+ * resident before it starts shedding far ones. Desktop used to retain every
+ * zone it ever built (the intentional trade above); the world expansion
+ * (src/sim/frontier/) more than doubles the zone count and the land area, so
+ * an unbounded session would hold the whole continent's terrain and water
+ * geometry. Twelve zones is the shipped world's practical worst case for one
+ * long play session in a region (a hub, its neighbours and a road trip), so
+ * ordinary play never notices the budget; only a session that tours the far
+ * frontier sheds anything, and what it sheds rebuilds through the normal
+ * streaming lane exactly like a never-visited zone.
+ */
+export const DESKTOP_RESIDENT_ZONE_BUDGET = 12;
+
+/**
+ * The one zone to release this pass, or undefined. Constrained-memory hosts
+ * shed any zone past ZONE_EVICTION_RADIUS, as they always have. Full-memory
+ * (desktop) hosts shed only while more than DESKTOP_RESIDENT_ZONE_BUDGET zones
+ * are resident, and only a zone past the same radius, farthest first, so the
+ * view never loses ground it could see and a border walk never thrashes.
+ */
+export function pickZoneToEvict(
+  zones: readonly ZoneDef[],
+  preparedZoneIds: ReadonlySet<string>,
+  currentZoneId: string | null,
+  playerX: number,
+  playerZ: number,
+  constrainedMemory: boolean,
+): string | undefined {
+  if (!constrainedMemory && preparedZoneIds.size <= DESKTOP_RESIDENT_ZONE_BUDGET) return undefined;
+  return zonesEligibleForEviction(zones, preparedZoneIds, currentZoneId, playerX, playerZ)[0];
+}

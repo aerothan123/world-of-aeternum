@@ -30,7 +30,6 @@ import {
   getActiveWorldContent,
   isBuiltinWorldActive,
   STRIP_ZONES,
-  WORLD_MAX_X,
   WORLD_MAX_Z,
   WORLD_MIN_Z,
   ZONES,
@@ -40,6 +39,7 @@ import { fbm2 } from '../sim/rng';
 import { cutBounds, cutsInRect, cutsSdfAt, inTerrainCut } from '../sim/terrain_cuts';
 import type { TerrainCut, TerrainKnockout } from '../sim/types';
 import { generateDecorationsInBounds, roadDistance, waterLevel, zoneBiomeAt } from '../sim/world';
+import { insideWorldX, worldU } from '../sim/world_x_edge';
 import { groundPaletteFor, groundPaletteVersion } from './ground_palette_override_core';
 import { type ImpactCraterTerrainBlend, impactCraterTerrainBlend } from './impact_terrain';
 import { clamp01 } from './num_clamp';
@@ -586,11 +586,7 @@ function sampleVertex(state: ChunkGeometryBuildState, ci: number, cj: number): V
   // kicks in well before the wall itself (edge starts negative deep inland)
   // so from a zone's centre the rim reads as atmospheric haze rather than a
   // crisp silhouette, reinforcing the reduced BIOME_FOG draw distance.
-  const edge = Math.max(
-    Math.abs(x) - (WORLD_MAX_X - 70),
-    WORLD_MIN_Z + 70 - z,
-    z - (WORLD_MAX_Z - 70),
-  );
+  const edge = Math.max(70 - insideWorldX(x), WORLD_MIN_Z + 70 - z, z - (WORLD_MAX_Z - 70));
   const rim = clamp01(edge / 64);
   if (rim > 0) {
     cTmp.lerp(hazyPeakC, rim * 0.95);
@@ -1083,7 +1079,7 @@ export function fillChunkVertexRow(state: ChunkGeometryBuildState, gj: number): 
       state.uvs[vi * 2] = s.lowMask[0];
       state.uvs[vi * 2 + 1] = s.lowMask[1];
     } else {
-      state.uvs[vi * 2] = (x + WORLD_MAX_X) / (WORLD_MAX_X * 2);
+      state.uvs[vi * 2] = worldU(x);
       state.uvs[vi * 2 + 1] = (z - WORLD_MIN_Z) / worldDepth;
     }
     if (state.splats) {
@@ -1438,7 +1434,7 @@ export function buildChunkCutFine(state: ChunkGeometryBuildState): {
             state.uvs[v11 * 2 + c] * w11;
         }
       } else {
-        uvs[v * 2] = (x + WORLD_MAX_X) / (WORLD_MAX_X * 2);
+        uvs[v * 2] = worldU(x);
         uvs[v * 2 + 1] = (z - WORLD_MIN_Z) / worldDepth;
       }
       const lerp4 = (src: Float32Array, dst: Float32Array): void => {
