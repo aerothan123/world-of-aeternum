@@ -16,7 +16,7 @@
     {
       "tick": 0,
       "time": 0,
-      "nextId": 1014,
+      "nextId": 1197,
       "state": "5bc471b0",
       "events": "741638a5",
       "rng": {
@@ -30,9 +30,9 @@
     {
       "tick": 0,
       "time": 0,
-      "nextId": 1096,
-      "state": "f3faf003",
-      "events": "ac4fadb3",
+      "nextId": 1279,
+      "state": "bfbe17be",
+      "events": "1fec867f",
       "rng": {
         "draws": 62,
         "digest": "86e69dc4"
@@ -82,7 +82,7 @@
           "delveClears": {},
           "delveDaily": {},
           "dungeonDifficulty": "heroic",
-          "entityId": 1014,
+          "entityId": 1197,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -179,7 +179,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1015,
+          "entityId": 1198,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -278,7 +278,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1016,
+          "entityId": 1199,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -377,7 +377,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1017,
+          "entityId": 1200,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -476,7 +476,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1018,
+          "entityId": 1201,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -546,7 +546,7 @@
               "name": "Battle Stance",
               "remaining": 3600,
               "school": "physical",
-              "sourceId": 1014
+              "sourceId": 1197
             }
           ],
           "blockChance": 0.05,
@@ -559,7 +559,7 @@
           "fiveSecondRule": 99,
           "healPower": 5,
           "hp": 1062,
-          "id": 1014,
+          "id": 1197,
           "kind": "player",
           "level": 20,
           "lootFfaTimer": "Infinity",
@@ -608,7 +608,7 @@
           "fiveSecondRule": 99,
           "healPower": 41,
           "hp": 665,
-          "id": 1015,
+          "id": 1198,
           "kind": "player",
           "level": 20,
           "lootFfaTimer": "Infinity",
@@ -657,7 +657,7 @@
           "fiveSecondRule": 99,
           "healPower": 41,
           "hp": 665,
-          "id": 1016,
+          "id": 1199,
           "kind": "player",
           "level": 20,
           "lootFfaTimer": "Infinity",
@@ -706,7 +706,7 @@
           "fiveSecondRule": 99,
           "healPower": 41,
           "hp": 665,
-          "id": 1017,
+          "id": 1200,
           "kind": "player",
           "level": 20,
           "lootFfaTimer": "Infinity",
@@ -755,7 +755,7 @@
           "fiveSecondRule": 99,
           "healPower": 41,
           "hp": 665,
-          "id": 1018,
+          "id": 1201,
           "kind": "player",
           "level": 20,
           "lootFfaTimer": "Infinity",
@@ -805,7 +805,7 @@
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 36785,
-          "id": 1080,
+          "id": 1263,
           "idleStationary": true,
           "kind": "mob",
           "level": 22,
@@ -842,9 +842,9 @@
     {
       "tick": 1,
       "time": 0.05,
-      "nextId": 1124,
-      "state": "47359457",
-      "events": "6dadbeff",
+      "nextId": 1307,
+      "state": "7c2b9d45",
+      "events": "b0b94f31",
       "rng": {
         "draws": 69,
         "digest": "0249f6ce"
@@ -971,7 +971,7 @@
           "delveClears": {},
           "delveDaily": {},
           "dungeonDifficulty": "heroic",
-          "entityId": 1014,
+          "entityId": 1197,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -1187,7 +1187,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1015,
+          "entityId": 1198,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -1405,7 +1405,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1016,
+          "entityId": 1199,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -1623,7 +1623,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1017,
+          "entityId": 1200,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -1841,7 +1841,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1018,
+          "entityId": 1201,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -1960,7 +1960,7 @@
               "name": "Battle Stance",
               "remaining": 3599.95,
               "school": "physical",
-              "sourceId": 1014
+              "sourceId": 1197
             }
           ],
           "blockChance": 0.05,
@@ -1973,7 +1973,7 @@
           "fiveSecondRule": 99.05,
           "healPower": 5,
           "hp": 1062,
-          "id": 1014,
+          "id": 1197,
           "inCombat": true,
           "kind": "player",
           "level": 20,
@@ -2023,7 +2023,7 @@
           "fiveSecondRule": 99.05,
           "healPower": 41,
           "hp": 665,
-          "id": 1015,
+          "id": 1198,
           "kind": "player",
           "level": 20,
           "lootFfaTimer": "Infinity",
@@ -2072,7 +2072,7 @@
           "fiveSecondRule": 99.05,
           "healPower": 41,
           "hp": 665,
-          "id": 1016,
+          "id": 1199,
           "kind": "player",
           "level": 20,
           "lootFfaTimer": "Infinity",
@@ -2121,7 +2121,7 @@
           "fiveSecondRule": 99.05,
           "healPower": 41,
           "hp": 665,
-          "id": 1017,
+          "id": 1200,
           "kind": "player",
           "level": 20,
           "lootFfaTimer": "Infinity",
@@ -2170,7 +2170,7 @@
           "fiveSecondRule": 99.05,
           "healPower": 41,
           "hp": 665,
-          "id": 1018,
+          "id": 1201,
           "kind": "player",
           "level": 20,
           "lootFfaTimer": "Infinity",
@@ -2215,11 +2215,11 @@
           "corpseHarvestState": {
             "priorityEndsAt": 10,
             "priorityMemberKeys": [
-              "entity:1014",
-              "entity:1015",
-              "entity:1016",
-              "entity:1017",
-              "entity:1018"
+              "entity:1197",
+              "entity:1198",
+              "entity:1199",
+              "entity:1200",
+              "entity:1201"
             ],
             "token": {}
           },
@@ -2231,7 +2231,7 @@
           "facing": 3.141593,
           "fiveSecondRule": 99,
           "hostile": true,
-          "id": 1080,
+          "id": 1263,
           "idleStationary": true,
           "inCombat": true,
           "kind": "mob",
@@ -2251,11 +2251,11 @@
           },
           "lootFfaTimer": 59.95,
           "lootRecipientIds": [
-            1014,
-            1015,
-            1016,
-            1017,
-            1018
+            1197,
+            1198,
+            1199,
+            1200,
+            1201
           ],
           "lootable": true,
           "maxHp": 36785,
@@ -2279,79 +2279,79 @@
             "phase": "slain",
             "plates": [
               {
-                "objectId": 1105,
+                "objectId": 1288,
                 "state": "sound"
               },
               {
-                "objectId": 1106,
+                "objectId": 1289,
                 "state": "broken"
               },
               {
-                "objectId": 1107,
+                "objectId": 1290,
                 "state": "sound"
               },
               {
-                "objectId": 1108,
+                "objectId": 1291,
                 "state": "sound"
               },
               {
-                "objectId": 1109,
+                "objectId": 1292,
                 "state": "sound"
               },
               {
-                "objectId": 1110,
+                "objectId": 1293,
                 "state": "sound"
               },
               {
-                "objectId": 1111,
+                "objectId": 1294,
                 "state": "sound"
               },
               {
-                "objectId": 1112,
+                "objectId": 1295,
                 "state": "sound"
               },
               {
-                "objectId": 1113,
+                "objectId": 1296,
                 "state": "sound"
               },
               {
-                "objectId": 1114,
+                "objectId": 1297,
                 "state": "sound"
               },
               {
-                "objectId": 1115,
+                "objectId": 1298,
                 "state": "sound"
               },
               {
-                "objectId": 1116,
+                "objectId": 1299,
                 "state": "sound"
               },
               {
-                "objectId": 1117,
+                "objectId": 1300,
                 "state": "sound"
               },
               {
-                "objectId": 1118,
+                "objectId": 1301,
                 "state": "sound"
               },
               {
-                "objectId": 1119,
+                "objectId": 1302,
                 "state": "sound"
               },
               {
-                "objectId": 1120,
+                "objectId": 1303,
                 "state": "sound"
               },
               {
-                "objectId": 1121,
+                "objectId": 1304,
                 "state": "sound"
               },
               {
-                "objectId": 1122,
+                "objectId": 1305,
                 "state": "sound"
               },
               {
-                "objectId": 1123,
+                "objectId": 1306,
                 "state": "sound"
               }
             ],
@@ -2366,7 +2366,7 @@
           "stats": {
             "armor": 857
           },
-          "tappedById": 1014,
+          "tappedById": 1197,
           "templateId": "korzul_the_gravewyrm",
           "weapon": {
             "max": 2779,
@@ -2379,8 +2379,8 @@
     {
       "tick": 1,
       "time": 0.05,
-      "nextId": 1124,
-      "state": "47359457",
+      "nextId": 1307,
+      "state": "7c2b9d45",
       "events": "741638a5",
       "rng": {
         "draws": 69,
@@ -2508,7 +2508,7 @@
           "delveClears": {},
           "delveDaily": {},
           "dungeonDifficulty": "heroic",
-          "entityId": 1014,
+          "entityId": 1197,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -2724,7 +2724,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1015,
+          "entityId": 1198,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -2942,7 +2942,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1016,
+          "entityId": 1199,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -3160,7 +3160,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1017,
+          "entityId": 1200,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -3378,7 +3378,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1018,
+          "entityId": 1201,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -3497,7 +3497,7 @@
               "name": "Battle Stance",
               "remaining": 3599.95,
               "school": "physical",
-              "sourceId": 1014
+              "sourceId": 1197
             }
           ],
           "blockChance": 0.05,
@@ -3510,7 +3510,7 @@
           "fiveSecondRule": 99.05,
           "healPower": 5,
           "hp": 1062,
-          "id": 1014,
+          "id": 1197,
           "inCombat": true,
           "kind": "player",
           "level": 20,
@@ -3560,7 +3560,7 @@
           "fiveSecondRule": 99.05,
           "healPower": 41,
           "hp": 665,
-          "id": 1015,
+          "id": 1198,
           "kind": "player",
           "level": 20,
           "lootFfaTimer": "Infinity",
@@ -3609,7 +3609,7 @@
           "fiveSecondRule": 99.05,
           "healPower": 41,
           "hp": 665,
-          "id": 1016,
+          "id": 1199,
           "kind": "player",
           "level": 20,
           "lootFfaTimer": "Infinity",
@@ -3658,7 +3658,7 @@
           "fiveSecondRule": 99.05,
           "healPower": 41,
           "hp": 665,
-          "id": 1017,
+          "id": 1200,
           "kind": "player",
           "level": 20,
           "lootFfaTimer": "Infinity",
@@ -3707,7 +3707,7 @@
           "fiveSecondRule": 99.05,
           "healPower": 41,
           "hp": 665,
-          "id": 1018,
+          "id": 1201,
           "kind": "player",
           "level": 20,
           "lootFfaTimer": "Infinity",
@@ -3752,11 +3752,11 @@
           "corpseHarvestState": {
             "priorityEndsAt": 10,
             "priorityMemberKeys": [
-              "entity:1014",
-              "entity:1015",
-              "entity:1016",
-              "entity:1017",
-              "entity:1018"
+              "entity:1197",
+              "entity:1198",
+              "entity:1199",
+              "entity:1200",
+              "entity:1201"
             ],
             "token": {}
           },
@@ -3768,7 +3768,7 @@
           "facing": 3.141593,
           "fiveSecondRule": 99,
           "hostile": true,
-          "id": 1080,
+          "id": 1263,
           "idleStationary": true,
           "inCombat": true,
           "kind": "mob",
@@ -3788,11 +3788,11 @@
           },
           "lootFfaTimer": 59.95,
           "lootRecipientIds": [
-            1014,
-            1015,
-            1016,
-            1017,
-            1018
+            1197,
+            1198,
+            1199,
+            1200,
+            1201
           ],
           "lootable": true,
           "maxHp": 36785,
@@ -3816,79 +3816,79 @@
             "phase": "slain",
             "plates": [
               {
-                "objectId": 1105,
+                "objectId": 1288,
                 "state": "sound"
               },
               {
-                "objectId": 1106,
+                "objectId": 1289,
                 "state": "broken"
               },
               {
-                "objectId": 1107,
+                "objectId": 1290,
                 "state": "sound"
               },
               {
-                "objectId": 1108,
+                "objectId": 1291,
                 "state": "sound"
               },
               {
-                "objectId": 1109,
+                "objectId": 1292,
                 "state": "sound"
               },
               {
-                "objectId": 1110,
+                "objectId": 1293,
                 "state": "sound"
               },
               {
-                "objectId": 1111,
+                "objectId": 1294,
                 "state": "sound"
               },
               {
-                "objectId": 1112,
+                "objectId": 1295,
                 "state": "sound"
               },
               {
-                "objectId": 1113,
+                "objectId": 1296,
                 "state": "sound"
               },
               {
-                "objectId": 1114,
+                "objectId": 1297,
                 "state": "sound"
               },
               {
-                "objectId": 1115,
+                "objectId": 1298,
                 "state": "sound"
               },
               {
-                "objectId": 1116,
+                "objectId": 1299,
                 "state": "sound"
               },
               {
-                "objectId": 1117,
+                "objectId": 1300,
                 "state": "sound"
               },
               {
-                "objectId": 1118,
+                "objectId": 1301,
                 "state": "sound"
               },
               {
-                "objectId": 1119,
+                "objectId": 1302,
                 "state": "sound"
               },
               {
-                "objectId": 1120,
+                "objectId": 1303,
                 "state": "sound"
               },
               {
-                "objectId": 1121,
+                "objectId": 1304,
                 "state": "sound"
               },
               {
-                "objectId": 1122,
+                "objectId": 1305,
                 "state": "sound"
               },
               {
-                "objectId": 1123,
+                "objectId": 1306,
                 "state": "sound"
               }
             ],
@@ -3903,7 +3903,7 @@
           "stats": {
             "armor": 857
           },
-          "tappedById": 1014,
+          "tappedById": 1197,
           "templateId": "korzul_the_gravewyrm",
           "weapon": {
             "max": 2779,
