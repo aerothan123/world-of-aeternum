@@ -357,7 +357,7 @@ describe('isHarvestableCorpse', () => {
     // nothing either: 187. Minus the six templates the Phase 11m spread
     // tagged for the first time, the same six the `included` count above
     // picked up: 181. Plus the seven Ignivar raid templates (the derelict
-    // mech, Varkhul, the three crucible automatons, the herald and the Heart
+    // mech, Varkhul, the three crucible hearthwright_compact, the herald and the Heart
     // of the End): all elemental-family forge constructs, and a construct
     // corpse carries no skinnable or butcherable components (the release's
     // own chain read 194 = 187 + 7, since it predates the Phase 11m spread

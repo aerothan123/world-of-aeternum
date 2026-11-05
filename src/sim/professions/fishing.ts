@@ -21,13 +21,16 @@
 // and every deny arm is draw-free.
 
 import { isActionLockingFormAuraKind } from '../combat/forms';
+import { QUEST_CATCH_SPOTS } from '../content/chapter_one';
 import { FISHING_RARE_ID, FISHING_TABLES_BY_BAND, isRawCookingCatch } from '../content/items';
 import { DEEPFEN_SHALLOWS_LAKE } from '../content/zone2';
 import { ITEMS, zoneAt } from '../data';
 import { onFishCaughtForDeeds } from '../deeds';
+import { recordFactionActivity } from '../faction_activity';
 import { gatheredMaterialSources } from '../material_gatherer';
 import { forceDismount } from '../mounts';
 import { PLAYER_SWIM_DEPTH } from '../pathfind';
+import { landQuestCatch, questCatchWaterAhead } from '../quests/quest_fishing_catch';
 import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
 import {
@@ -486,7 +489,11 @@ export function startFishing(ctx: SimContext, p: Entity, meta: PlayerMeta): void
     });
     return;
   }
-  const probe = firstFishableSampleAhead(p.pos.x, p.pos.z, p.facing, ctx.cfg.seed);
+  // A quest spot facing the sea (quests/quest_fishing_catch.ts) accepts the
+  // cast only while its quest still wants the catch; draw-free.
+  const probe =
+    firstFishableSampleAhead(p.pos.x, p.pos.z, p.facing, ctx.cfg.seed) ??
+    questCatchWaterAhead(ctx, p, meta, QUEST_CATCH_SPOTS);
   if (!probe) {
     ctx.error(meta.entityId, 'You need to face fishable water.');
     return;
@@ -592,6 +599,9 @@ export function completeFishing(ctx: SimContext, p: Entity, meta: PlayerMeta): v
     ctx.addItem(THE_CODFATHER_ITEM_ID, 1, meta.entityId);
     return;
   }
+  // A fishing quest's own catch at its own spot (quests/quest_fishing_catch.ts):
+  // draw-free and table-free, like the Codfather above.
+  if (landQuestCatch(ctx, p, meta, QUEST_CATCH_SPOTS)) return;
   // The catch depends on which zone's water you're fishing and how skilled you
   // are: each zone has its own weighted table per rarity band, and the player's
   // fishing proficiency picks the band (fishingBandFor). Band selection is pure
@@ -709,6 +719,8 @@ export function completeFishing(ctx: SimContext, p: Entity, meta: PlayerMeta): v
   // Book of Deeds: a real fish (never weeds or boots) from this zone's
   // waters feeds the per-zone first-cast mark.
   onFishCaughtForDeeds(ctx, meta, zoneId, caught);
+  // Bracken Circle standing for a real fish (faction_activity.ts; draw-free).
+  if (isRawCookingCatch(caught)) recordFactionActivity(ctx, meta, 'fishing', null);
   // Character XP: fishing deliberately grants NONE, on every branch above and
   // below. It is the only UNCAPPED gathering faucet (a catch needs no node and
   // no per-player respawn timer), so at the per-action XP a world-node harvest

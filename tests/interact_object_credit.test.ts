@@ -185,7 +185,10 @@ describe('every multi-count interact objective has enough distinct objects to fi
     .filter((quest) => !(quest.id in SCORCHING_QUESTS))
     .flatMap((quest) =>
       quest.objectives.flatMap((o, i) =>
-        o.type === 'interact' && o.targetObjectItemId
+        // A crafting station (quests/quest_station_craft.ts) credits every use
+        // of its one object by design, so it sits outside the distinct-object
+        // ledger (tests/quest_mechanics_wyndlewood.test.ts pins it).
+        o.type === 'interact' && o.targetObjectItemId && !o.station
           ? [
               {
                 questId: quest.id,
@@ -222,7 +225,11 @@ describe('every multi-count interact objective has enough distinct objects to fi
     // Plus the hub healing drill (q_hub_healing_numbers, count 3), a sixth:
     // tutorial/hub_healing_drill.ts credits it off every EFFECTIVE heal that
     // lands on the friendly hub healing dummy, never through this ledger.
-    expect(interactObjectives.filter((o) => o.count > 1).length).toBe(26);
+    //
+    // Plus Wyndlewood Chapter One (content/chapter_one.ts): twelve multi-count
+    // interact objectives across the story quests and board dailies, every one
+    // authored with at least as many distinct objects as its count.
+    expect(interactObjectives.filter((o) => o.count > 1).length).toBe(39);
   });
 
   it.each(
@@ -602,7 +609,10 @@ describe('the sibling interact-credit paths this fix does NOT cover', () => {
     // closes, in a path that does not fix it. Fail here rather than there.
     const unguarded = Object.values(QUESTS).flatMap((quest) =>
       quest.objectives.flatMap((o) =>
-        o.type === 'interact' && !o.targetObjectItemId && o.count > 1
+        // A counted delivery (quests/quest_object_use.ts questDeliveryUnits)
+        // spends one carried unit per credit, so the items, not the talk,
+        // bound it: no repeat-talk exploit to inherit.
+        o.type === 'interact' && !o.targetObjectItemId && o.count > 1 && !o.usesItemId
           ? [`${quest.id}:${o.targetNpcId ?? '?'}`]
           : [],
       ),

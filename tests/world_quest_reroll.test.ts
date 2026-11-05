@@ -215,10 +215,11 @@ describe('World Quest Reroll Mechanism', () => {
     const replacementDef = playerActiveWorldQuests(meta, cycle).find((q) => q.id === replacementId);
     if (!replacementDef) throw new Error('Expected replacement def');
 
-    expect(meta.factions.automatons).toBe(0);
+    expect(meta.factions.hearthwright_compact).toBe(0);
     awardWorldQuest(sim.ctx, meta, replacementDef);
-    // At level 20, Automatons WQ awards +100 standing
-    expect(meta.factions.automatons).toBe(100);
+    // At level 20 a Hearthwright Compact WQ awards the daily-at-cap 400 split
+    // across its three zones (factions.ts worldQuestStandingReward): 133.
+    expect(meta.factions.hearthwright_compact).toBe(133);
   });
 });
 

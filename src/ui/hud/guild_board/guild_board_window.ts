@@ -30,11 +30,13 @@ import {
   type GuildBoardViewer,
   type GuildLeaderboardRow,
 } from '../../guild_leaderboard_view';
-import { formatList, formatNumber, t, tPlural } from '../../i18n';
+import { formatList, formatNumber, type TranslationKey, t, tPlural } from '../../i18n';
 import type { LeaderboardPager } from '../../leaderboard_view';
 import { svgIcon } from '../../ui_icons';
 import { formatXp } from '../../xp_bar';
 import { buildGuildRosterView, type GuildRosterRow } from './guild_roster_view';
+import { paintTownBoardPanel } from './town_board_panel';
+import { hasTownBoard } from './town_board_view';
 
 export interface GuildBoardWindowDeps {
   root(): HTMLElement;
@@ -87,6 +89,10 @@ export class GuildBoardWindow {
   // newer: the confirming social frame lands a beat later. Cleared on open,
   // the leaderboard-era latch carried over unchanged.
   private pledgeSentTo: string | null = null;
+  /** The board that opened the window, and which tab it shows: a board that
+   *  hosts a town quest board (src/sim/town_board/) opens on its notices. */
+  private boardId: string | undefined = undefined;
+  private tab: 'notices' | 'guilds' = 'guilds';
 
   constructor(private readonly deps: GuildBoardWindowDeps) {}
 
@@ -104,6 +110,8 @@ export class GuildBoardWindow {
    *  signpost opens on the new-player-friendly guilds, every other board (and
    *  no id at all) on the whole ranking. */
   open(boardId?: string): void {
+    this.boardId = boardId;
+    this.tab = hasTownBoard(boardId) ? 'notices' : 'guilds';
     const category = defaultGuildBoardCategory(boardId);
     // A different default view starts from page one; the same view keeps the
     // page across a mid-open re-read (the pre-category behavior).
@@ -157,6 +165,7 @@ export class GuildBoardWindow {
     el.innerHTML = this.titleHtml(world.realm) + this.statusHtml() + this.loadingBodyHtml();
     el.querySelector('[data-close]')?.addEventListener('click', () => this.close());
     if (focus === 'open') (el.querySelector('[data-close]') as HTMLElement | null)?.focus();
+    if (this.renderTabs(el, world)) return;
     if (this.rosterOf !== null) {
       await this.renderRoster(el, world, this.rosterOf, focus, seq);
       return;
@@ -583,6 +592,40 @@ export class GuildBoardWindow {
   }
 
   // ---------------------------------------------------------------------
+  // The town quest board's notices tab (town_board_panel.ts). Returns true
+  // when the notices tab painted the body (the guild board is skipped).
+  // ---------------------------------------------------------------------
+
+  private renderTabs(el: HTMLElement, world: IWorld): boolean {
+    const boardId = this.boardId;
+    if (boardId === undefined || !hasTownBoard(boardId)) return false;
+    const body = el.querySelector('.gb-body');
+    if (!body) return false;
+    const tabHtml = (tab: 'notices' | 'guilds', key: TranslationKey) =>
+      `<button type="button" role="tab" class="tb-tab${this.tab === tab ? ' active' : ''}" ` +
+      `aria-selected="${this.tab === tab}" data-tb-tab="${tab}">${esc(t(key))}</button>`;
+    body.insertAdjacentHTML(
+      'beforebegin',
+      `<div class="tb-tabs" role="tablist">${tabHtml('notices', 'hudChrome.townBoard.tabNotices')}` +
+        `${tabHtml('guilds', 'hudChrome.townBoard.tabGuilds')}</div>`,
+    );
+    for (const button of el.querySelectorAll<HTMLButtonElement>('[data-tb-tab]')) {
+      button.addEventListener('click', () => {
+        this.tab = button.dataset.tbTab === 'notices' ? 'notices' : 'guilds';
+        void this.render(null);
+      });
+    }
+    if (this.tab !== 'notices') return false;
+    paintTownBoardPanel(body as HTMLElement, world, boardId, () => {
+      // Repaint now, and once more when the authoritative quest log has had
+      // time to land (online, the accept round-trips through the server).
+      void this.render(null);
+      setTimeout(() => {
+        if (this.isOpen && this.tab === 'notices') void this.render(null);
+      }, 400);
+    });
+    return true;
+  }
 
   private titleHtml(realm: string): string {
     const realmTag = realm ? ` &middot; ${esc(realm)}` : '';

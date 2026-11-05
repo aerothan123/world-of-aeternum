@@ -7,7 +7,7 @@
 // exactly where startFishing validated the cast.
 import { PLAYER_SWIM_DEPTH } from '../sim/pathfind';
 import { FISHING_SAMPLE_DISTANCES } from '../sim/professions/fishing';
-import { groundHeight, isInWaterBody, waterLevel } from '../sim/world';
+import { groundHeight, isInWaterBody, waterLevel, waterLevelAt } from '../sim/world';
 
 export interface BobberAnchor {
   x: number;
@@ -34,9 +34,11 @@ export function bobberAnchorInto(
   for (const d of FISHING_SAMPLE_DISTANCES) {
     const sx = x + sin * d;
     const sz = z + cos * d;
-    // Declared water bodies only, mirroring firstFishableSampleAhead: the
-    // open sea is swimmable but unfishable, so the bobber never lands on it.
-    if (!isInWaterBody(sx, sz)) continue;
+    // Declared water bodies, mirroring firstFishableSampleAhead, plus open
+    // sea: the bobber only draws during a cast startFishing validated, and the
+    // one sea cast it ever validates is a quest catch spot's
+    // (quests/quest_fishing_catch.ts questCatchWaterAhead).
+    if (!isInWaterBody(sx, sz) && !Number.isFinite(waterLevelAt(sx, sz, seed))) continue;
     const water = waterLevel();
     if (groundHeight(sx, sz, seed) < water - PLAYER_SWIM_DEPTH) {
       out.x = sx;
