@@ -1,18 +1,17 @@
 // Give every committed furn_* icon WebP that has no provenance owner yet a
 // row in the Wyndlewood furniture render batch of public/ui/items/mapping.json
 // (the icons are in-engine renders of the kit GLBs, made by
-// scripts/render_furniture_icons.mjs). Idempotent; prints what it added.
-// usage: node scripts/assets/wyndlewood_props/own_icons.mjs
+// scripts/render_furniture_icons.mjs). Ids named on the command line are
+// re-owned: their icon was re-rendered from a painted kit model, so they move
+// out of whatever batch held them into this one. Idempotent; prints changes.
+// usage: node scripts/assets/wyndlewood_props/own_icons.mjs [reownId ...]
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 
 const MAP = 'public/ui/items/mapping.json';
 const BATCH = 'wyndlewood-furniture-renders-2026-11-04';
+const reown = new Set(process.argv.slice(2));
 const m = JSON.parse(readFileSync(MAP, 'utf8'));
 m.generatedBatches ??= [];
-const owned = new Set([
-  ...m.entries.map((e) => e.itemId),
-  ...m.generatedBatches.flatMap((b) => b.itemIds),
-]);
 let batch = m.generatedBatches.find((b) => b.batchId === BATCH);
 if (!batch) {
   batch = {
@@ -30,6 +29,20 @@ if (!batch) {
   };
   m.generatedBatches.push(batch);
 }
+const moved = [];
+for (const b of m.generatedBatches) {
+  if (b === batch) continue;
+  const keep = b.itemIds.filter((id) => !reown.has(id));
+  if (keep.length !== b.itemIds.length) {
+    moved.push(...b.itemIds.filter((id) => reown.has(id)));
+    b.itemIds = keep;
+  }
+}
+for (const id of moved) if (!batch.itemIds.includes(id)) batch.itemIds.push(id);
+const owned = new Set([
+  ...m.entries.map((e) => e.itemId),
+  ...m.generatedBatches.flatMap((b) => b.itemIds),
+]);
 const added = [];
 for (const f of readdirSync('public/ui/items').sort()) {
   if (!/^furn_.*\.webp$/.test(f)) continue;
@@ -40,4 +53,7 @@ for (const f of readdirSync('public/ui/items').sort()) {
 }
 batch.itemIds.sort();
 writeFileSync(MAP, `${JSON.stringify(m, null, 2)}\n`);
-console.log(`own_icons: ${added.length} added`, added.join(' '));
+console.log(
+  `own_icons: ${added.length} added, ${moved.length} re-owned`,
+  [...added, ...moved].join(' '),
+);

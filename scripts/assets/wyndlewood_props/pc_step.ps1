@@ -32,7 +32,7 @@ foreach ($tok in ($Steps -split ',')) {
     'conceptsheet' { Run conceptsheet { node tmp/props_kit/concept_sheet.mjs "tmp/props_kit/concepts_$Name.jpg" @idList } }
     'icons' { $env:ONLY = ($idList -join ','); Run icons { node scripts/render_furniture_icons.mjs }; Remove-Item Env:ONLY }
     'shots' {
-      $vite = Start-Process npx -ArgumentList 'vite','--port','5272','--strictPort' -PassThru -WindowStyle Hidden
+      $vite = Start-Process cmd -ArgumentList '/c','npx vite --port 5272 --strictPort > tmp\props_kit\vite.log 2>&1' -PassThru -WindowStyle Hidden
       $ok = $false; for ($i = 0; $i -lt 90; $i++) { Start-Sleep 2; try { Invoke-WebRequest -UseBasicParsing http://localhost:5272/ -TimeoutSec 5 | Out-Null; $ok = $true; break } catch {} }
       Log "vite up $ok"
       $env:GAME_URL = 'http://localhost:5272'; $env:SHOTS_DIR = "tmp/props_kit/shots_$Name"; $env:GPU = '1'
