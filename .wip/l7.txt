@@ -1,0 +1,13 @@
+tests/faction_activity.test.ts
+tests/factions.test.ts
+tests/wyndlewood_factions.test.ts
+tests/world_quest_reroll.test.ts
+tests/world_quest_tooltip_view.test.ts
+tests/gathering.test.ts
+tests/professions_fishing.test.ts
+tests/reliquary_content.test.ts
+tests/escort_quest.test.ts
+tests/item_icons.test.ts
+tests/item_art_consistency.test.ts
+tests/world_quests.test.ts
+tests/faction_rewards.test.ts

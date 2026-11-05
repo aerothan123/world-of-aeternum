@@ -530,8 +530,9 @@ describe('Reliquary Conqueror catalog structure', () => {
     // 466 + 13 with the Mirefen world boss page's relics, staff and trinkets: 479.
     // + the five-dungeon rework (PR 4352) on the v0.45.0 integration: 529;
     // 532 with the two referral reward mounts and nightwing_chimera; 537 with
-    // Wobbles the Slime's character-scoped mount slot.
-    expect(character).toEqual({ owned: 551, total: 551 });
+    // Wobbles the Slime's character-scoped mount slot. 552 with the Bracken
+    // Circle's Champion title slot (the fourth Wyndlewood faction).
+    expect(character).toEqual({ owned: 552, total: 552 });
     // The Warfare Season 2 page is class-personal, outside completion.
   });
 

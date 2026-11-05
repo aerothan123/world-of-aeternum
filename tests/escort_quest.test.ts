@@ -552,7 +552,13 @@ describe('every escort route completes in the real world', () => {
         teleportTo(sim, def.start.x, def.start.z);
         sim.tick();
       } else {
-        sim.questLog.set(def.questId, { questId: def.questId, counts: [0], state: 'active' });
+        // Only the escort objective is outstanding: a quest that pairs the
+        // escort with other steps (Chapter One's c1_21 also collects veils)
+        // reports ready the moment the escortee arrives.
+        const counts = (QUESTS[def.questId]?.objectives ?? [{ type: 'escort', count: 1 }]).map(
+          (objective) => (objective.type === 'escort' ? 0 : objective.count),
+        );
+        sim.questLog.set(def.questId, { questId: def.questId, counts, state: 'active' });
       }
       teleportTo(sim, def.start.x, def.start.z);
       sim.interact();

@@ -434,7 +434,7 @@ describe('item webp icons', () => {
         'infernal_quiver',
         ...FURNITURE_ART_PENDING_ITEM_IDS,
         // Wyndlewood Chapter One's quest items and objects (content/chapter_one.ts):
-        // procedural quest icons until their painted wave is commissioned.
+        // EMPTY since their painted wave (chapter-one-painted-icons-2026-11-04).
         ...CHAPTER_ONE_ART_PENDING_ITEM_IDS,
       ].sort(),
     );

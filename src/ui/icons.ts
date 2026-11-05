@@ -5868,8 +5868,8 @@ export const ITEM_ART_PENDING = new Set<string>([
   ...FURNITURE_ART_PENDING_ITEM_IDS,
   ...Object.keys(ITEM_ART_PLACEHOLDERS),
   ...QUEST_SHIELD_ART_PENDING_ITEM_IDS,
-  // Wyndlewood Chapter One's quest items (content/chapter_one.ts): procedural
-  // icons until their painted wave is commissioned.
+  // Wyndlewood Chapter One's quest items (content/chapter_one.ts): EMPTY since
+  // its painted wave (chapter-one-painted-icons-2026-11-04) landed.
   ...CHAPTER_ONE_ART_PENDING_ITEM_IDS,
 ]);
 

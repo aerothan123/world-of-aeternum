@@ -423,11 +423,10 @@ for (const [id, name] of Object.entries(INSPECT)) {
   CHAPTER_ONE_ITEMS[id] = { id, name, kind: 'quest', sellValue: 0 };
 }
 
-/** Item art debt (src/ui/icons.ts ITEM_ART_PENDING): every chapter item and
- *  object id draws its procedural quest icon until a painted wave lands. */
-export const CHAPTER_ONE_ART_PENDING_ITEM_IDS: readonly string[] = Object.freeze(
-  Object.keys(CHAPTER_ONE_ITEMS),
-);
+/** Item art debt (src/ui/icons.ts ITEM_ART_PENDING): EMPTY since the painted
+ *  wave chapter-one-painted-icons-2026-11-04 gave every chapter item and object
+ *  id its WebP icon; the seam stays for the next chapter's park. */
+export const CHAPTER_ONE_ART_PENDING_ITEM_IDS: readonly string[] = Object.freeze([]);
 
 let nextObjectId = 2_147_200_000;
 function obj(itemId: string, positions: { x: number; z: number }[]): GroundObjectDef {

@@ -315,28 +315,30 @@ describe('faction state persistence and invariants', () => {
 
 describe('world quest UI display lines', () => {
   it('clearly formats faction and standing reward strings', () => {
-    const giltQuest = WORLD_QUESTS_BY_ID.wq_farshore_salvage;
-    expect(worldQuestFactionName(giltQuest)).toBe('Gilt Measure');
-    expect(worldQuestFactionLine(giltQuest)).toBe('Faction: Gilt Measure');
-    expect(worldQuestStandingRewardText(giltQuest, 20)).toBe('+133 Gilt Measure standing');
-
-    const lanternQuest = WORLD_QUESTS_BY_ID.wq_eastbrook_bandits;
-    expect(worldQuestFactionName(lanternQuest)).toBe('Lanternwardens');
-    expect(worldQuestFactionLine(lanternQuest)).toBe('Faction: Lanternwardens');
-    expect(worldQuestStandingRewardText(lanternQuest, 10)).toBe('+30 Lanternwardens standing');
-
-    const hearthQuest = WORLD_QUESTS_BY_ID.wq_drakelands_brood;
-    expect(worldQuestFactionName(hearthQuest)).toBe('Hearthwright Compact');
-    expect(worldQuestFactionLine(hearthQuest)).toBe('Faction: Hearthwright Compact');
-    expect(worldQuestStandingRewardText(hearthQuest, 20)).toBe(
-      '+133 Hearthwright Compact standing',
+    // The objective type picks the faction (faction_activity.ts): salvage is
+    // Hearthwright work, a kill is Lanternwarden work, freight is Gilt work.
+    const salvageQuest = WORLD_QUESTS_BY_ID.wq_farshore_salvage;
+    expect(worldQuestFactionName(salvageQuest)).toBe('Hearthwright Compact');
+    expect(worldQuestFactionLine(salvageQuest)).toBe('Faction: Hearthwright Compact');
+    expect(worldQuestStandingRewardText(salvageQuest, 20)).toBe(
+      '+100 Hearthwright Compact standing',
     );
+
+    const freightQuest = WORLD_QUESTS_BY_ID.wq_eastbrook_bandits;
+    expect(worldQuestFactionName(freightQuest)).toBe('Gilt Measure');
+    expect(worldQuestFactionLine(freightQuest)).toBe('Faction: Gilt Measure');
+    expect(worldQuestStandingRewardText(freightQuest, 10)).toBe('+30 Gilt Measure standing');
+
+    const killQuest = WORLD_QUESTS_BY_ID.wq_drakelands_brood;
+    expect(worldQuestFactionName(killQuest)).toBe('Lanternwardens');
+    expect(worldQuestFactionLine(killQuest)).toBe('Faction: Lanternwardens');
+    expect(worldQuestStandingRewardText(killQuest, 20)).toBe('+100 Lanternwardens standing');
   });
 
   it('includes standing in the unified reward line', () => {
-    const hearthQuest = WORLD_QUESTS_BY_ID.wq_drakelands_brood;
-    const line = worldQuestRewardLine(hearthQuest, { level: 20, cls: 'warrior', cycle: 'wq1_0' });
-    expect(line).toContain('+133 Hearthwright Compact standing');
+    const killQuest = WORLD_QUESTS_BY_ID.wq_drakelands_brood;
+    const line = worldQuestRewardLine(killQuest, { level: 20, cls: 'warrior', cycle: 'wq1_0' });
+    expect(line).toContain('+100 Lanternwardens standing');
   });
 });
 describe('simulation WQ completion standing integration', () => {
@@ -354,8 +356,8 @@ describe('simulation WQ completion standing integration', () => {
 
     const meta = sim.meta(sim.playerId);
     if (!meta) throw new Error('Missing player meta');
-    expect(meta.factions.lanternwardens).toBe(0);
-    expect(sim.factions.lanternwardens).toBe(0);
+    expect(meta.factions.gilt_measure).toBe(0);
+    expect(sim.factions.gilt_measure).toBe(0);
 
     const objective = quest.objective;
     if (objective.type !== 'delivery') throw new Error('Expected delivery quest');
@@ -377,7 +379,8 @@ describe('simulation WQ completion standing integration', () => {
       expect(sim.pickUpObject(destination.id)).toBe(true);
     }
 
-    expect(meta.factions.lanternwardens).toBe(30);
-    expect(sim.factions.lanternwardens).toBe(30);
+    // A freight run is Gilt Measure work wherever it stands.
+    expect(meta.factions.gilt_measure).toBe(30);
+    expect(sim.factions.gilt_measure).toBe(30);
   });
 });

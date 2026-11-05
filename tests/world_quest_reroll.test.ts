@@ -7,6 +7,7 @@ import {
   SHADOW_QUEST_ID,
 } from '../src/sim/content/world_quest_shadow';
 import { BUILTIN_WORLD } from '../src/sim/data';
+import { WORLD_QUEST_STANDING_AT_CAP, worldQuestFaction } from '../src/sim/factions';
 import { hasShadowCloak } from '../src/sim/shadow_action_lock';
 import { Sim } from '../src/sim/sim';
 import {
@@ -215,11 +216,12 @@ describe('World Quest Reroll Mechanism', () => {
     const replacementDef = playerActiveWorldQuests(meta, cycle).find((q) => q.id === replacementId);
     if (!replacementDef) throw new Error('Expected replacement def');
 
-    expect(meta.factions.hearthwright_compact).toBe(0);
+    // The replacement pays the faction its objective serves (factions.ts
+    // worldQuestFaction, by activity), the flat level-20 amount: 100.
+    const factionId = worldQuestFaction(replacementDef);
+    expect(meta.factions[factionId]).toBe(0);
     awardWorldQuest(sim.ctx, meta, replacementDef);
-    // At level 20 a Hearthwright Compact WQ awards the daily-at-cap 400 split
-    // across its three zones (factions.ts worldQuestStandingReward): 133.
-    expect(meta.factions.hearthwright_compact).toBe(133);
+    expect(meta.factions[factionId]).toBe(WORLD_QUEST_STANDING_AT_CAP);
   });
 });
 
