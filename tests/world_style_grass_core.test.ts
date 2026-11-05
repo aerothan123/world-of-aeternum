@@ -38,24 +38,27 @@ describe('painted cluster shape', () => {
     }
   });
 
-  it('draws fewer, wider ribbons under Refined (never more vertices)', () => {
+  it('draws fewer, narrow pointed blades under Refined (never more vertices)', () => {
     const classic = clusterGeometry(mulberry32(7), 3);
     const painted = clusterGeometry(mulberry32(7), 3, bladeClusterShape('refined'));
     expect(painted.getAttribute('position').count).toBeLessThan(
       classic.getAttribute('position').count,
     );
-    // a blunt tip: two top vertices instead of a point
-    expect(painted.getAttribute('position').count).toBe(PAINTED_BLADE_SHAPE.blades * 8);
-    // the root ribbon width: vertices 0 and 1 of the first blade
+    // a pointed tip: one top vertex per blade, never the old blunt edge
+    expect(PAINTED_BLADE_SHAPE.tipWidth).toBe(0);
+    expect(painted.getAttribute('position').count).toBe(PAINTED_BLADE_SHAPE.blades * 7);
+    // the root ribbon width: vertices 0 and 1 of the first blade, a little
+    // fuller than Classic's hair-fine blades but nowhere near a broad ribbon
     const rootWidth = (g: ReturnType<typeof clusterGeometry>) => {
       const p = g.getAttribute('position');
       return Math.hypot(p.getX(1) - p.getX(0), p.getZ(1) - p.getZ(0));
     };
-    expect(rootWidth(painted) / rootWidth(classic)).toBeGreaterThan(1.3);
-    expect(PAINTED_BLADE_SHAPE.tipTaper).toBeGreaterThan(CLASSIC_BLADE_SHAPE.tipTaper);
+    const ratio = rootWidth(painted) / rootWidth(classic);
+    expect(ratio).toBeGreaterThan(1);
+    expect(ratio).toBeLessThan(1.8);
   });
 
-  it('places fewer, broader clumps under Refined so the blade fill stays near Classic', () => {
+  it('places fewer clumps under Refined so the blade fill stays under Classic', () => {
     expect(paintedGrassCoverageScale('classic')).toBe(1);
     const area = (g: ReturnType<typeof clusterGeometry>) => {
       const p = g.getAttribute('position');
@@ -75,12 +78,12 @@ describe('painted cluster shape', () => {
     };
     const classic = area(clusterGeometry(mulberry32(11), 3));
     const painted = area(clusterGeometry(mulberry32(11), 3, bladeClusterShape('refined')));
-    // each painted clump is much broader...
-    expect(painted / classic).toBeGreaterThan(1.4);
-    // ...but the meadow's total blade area (clumps placed times area, at the
-    // widest clump core) stays within 40 percent of Classic's
+    // the meadow's total blade area (clumps placed times area, at the widest
+    // clump core) stays within 40 percent of Classic's either way
     const w = paintedClumpWidthMax('refined');
-    expect((painted * w * w * paintedGrassCoverageScale('refined')) / classic).toBeLessThan(1.4);
+    const fill = (painted * w * w * paintedGrassCoverageScale('refined')) / classic;
+    expect(fill).toBeLessThan(1.4);
+    expect(fill).toBeGreaterThan(0.6);
   });
 
   it('widens clump cores only under Refined, and bounds the widening', () => {

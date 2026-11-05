@@ -2,20 +2,21 @@
 // Three/DOM-free, deterministic, registered in RENDER_PURE_CORES
 // (tests/architecture.test.ts).
 //
-// Refined grass reads as chunky painted clumps rather than fine photo-real
-// blades: fewer, much wider ribbons that taper late into soft rounded tips
-// (the cluster SHAPE, consumed by blade_grass.ts clusterGeometry for the
-// near carpet and the mid band, which must stay one look), clumps a little
-// wider at the clump-field cores, a soft per-blade warm/cool value wash, and
-// small flower clusters: whole patches of neighbouring clumps that bloom in
-// one colour, like a planted drift, instead of lone specks.
+// Refined grass reads as natural painted clumps rather than fine photo-real
+// hair: a few narrow pointed blades of varied length per clump (the cluster
+// SHAPE, consumed by blade_grass.ts clusterGeometry for the near carpet and
+// the mid band, which must stay one look), clumps a little wider at the
+// clump-field cores, a soft per-blade warm/cool value wash, and small flower
+// clusters: whole patches of neighbouring clumps that bloom in one colour,
+// like a planted drift, instead of lone specks.
 //
 // Classic never reaches anything here: the shape and the width factor are
 // exactly the shipped values under Classic, and world_style_grass.ts chains
 // its shader arm only under Refined.
 //
-// Budget: the painted shape draws 7 ribbons a cluster where Classic draws 9,
-// so the carpet and band shed vertices under Refined, never add them; the
+// Budget: the painted shape draws 7 pointed ribbons a cluster where Classic
+// draws 9, at 0.6 of Classic's coverage, so the carpet and band shed
+// vertices under Refined, never add them; the
 // per-tier density and radius knobs (gfx.ts) are untouched. Cosmetic only
 // (docs/design/graphics-settings-fairness.md): grass carries no gameplay read.
 
@@ -52,16 +53,18 @@ export const CLASSIC_BLADE_SHAPE: BladeClusterShape = {
   tipWidth: 0,
 };
 
-/** The painted cluster: five broad leaf-like ribbons that keep their width
- *  and end in a soft blunt tip, so a clump reads as one rounded painted mass. */
+/** The painted cluster: seven narrow pointed blades of varied length that
+ *  taper from a soft root into a fine point, so a clump reads as natural
+ *  painted grass (leaf-card detail, not broad blunt ribbons) while the
+ *  painted arm keeps its base-to-tip value ramp. */
 export const PAINTED_BLADE_SHAPE: BladeClusterShape = {
-  blades: 5,
-  widthMul: 2.7,
-  midTaper: 0.96,
-  tipTaper: 0.8,
-  lenMul: 0.78,
-  bandMidTaper: 0.9,
-  tipWidth: 0.42,
+  blades: 7,
+  widthMul: 1.3,
+  midTaper: 0.8,
+  tipTaper: 0.42,
+  lenMul: 0.9,
+  bandMidTaper: 0.62,
+  tipWidth: 0,
 };
 
 export function bladeClusterShape(style: WorldStyle): BladeClusterShape {
@@ -71,10 +74,10 @@ export function bladeClusterShape(style: WorldStyle): BladeClusterShape {
 /** Horizontal clump scale between clumps (field 0) and at a core (1). */
 export const PAINTED_CLUMP_WIDTH: readonly [number, number] = [1.05, 1.3];
 
-/** Placement coverage multiplier: broad clumps cover the ground with fewer
- *  of them, so Refined places fewer clusters (the painted ground shows
- *  between them, the storybook look) and the blade fill stays near Classic's. */
-export const PAINTED_GRASS_COVERAGE = 0.45;
+/** Placement coverage multiplier: Refined places fewer clusters than
+ *  Classic (the painted ground shows between clumps, the storybook look),
+ *  enough of the narrow blades that a meadow still reads full. */
+export const PAINTED_GRASS_COVERAGE = 0.6;
 
 /** Coverage multiplier for the carpet and band placement. Exactly 1 under Classic. */
 export function paintedGrassCoverageScale(style: WorldStyle): number {
