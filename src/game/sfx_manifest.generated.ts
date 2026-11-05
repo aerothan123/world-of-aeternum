@@ -28,538 +28,538 @@ export const SFX_MAX_TRACKS_PER_KEY = 8;
 export const SFX_MAX_TRACK_BYTES = 4194304;
 export const SFX_MAX_TOTAL_AUDIO_BYTES = 134217728;
 export const SFX_MAX_RUNTIME_PACK_BYTES = 524288;
-export const SFX_GAIN_LIMITS = {"amb_bed_amber":1.757924,"amb_bed_bastion":1.698244,"amb_bed_castle":1.862087,"amb_bed_cave":1.840772,"amb_bed_crypt":1.862087,"amb_bed_dusk":1.972423,"amb_bed_ember":2.162719,"amb_bed_forest":1.62181,"amb_bed_forge":2.691535,"amb_bed_frost":1.905461,"amb_bed_gale":1.862087,"amb_bed_garden":1.698244,"amb_bed_harbor":1.798871,"amb_bed_haunt":1.678804,"amb_bed_house":1.798871,"amb_bed_jungle":3.126079,"amb_bed_lair":1.862087,"amb_bed_marsh":1.819701,"amb_bed_meadow":1.678804,"amb_bed_mine":1.678804,"amb_bed_night_wild":1.698244,"amb_bed_palace":1.678804,"amb_bed_peaks":1.840772,"amb_bed_shore":1.819701,"amb_bed_temple":2.137962,"amb_bed_town_day":1.840772,"amb_bed_town_night":2.06538,"amb_bed_wildheart":2.42661,"amb_birds":1,"amb_campfire":1,"amb_dungeon":1,"amb_forge":1.778279,"amb_rain":1,"amb_snow":1,"amb_tavern":2.113489,"amb_water":1,"amb_wind_marsh":1,"amb_wind_peaks":1,"amb_wind_vale":1,"ambush":1.798871,"arcane_blast":1.995262,"backstab":1.819701,"battle_shout":2.041738,"blind":2.018366,"blink":2.041738,"blizzard":1.949845,"buff_apply":2.483133,"cast_arcane":1,"cast_chain_heal":1.678804,"cast_fire":1,"cast_frost":1,"cast_holy":1,"cast_lightning_bolt":1.778279,"cast_nature":1,"cast_shadow":1,"cheap_shot":1.840772,"cloak_of_shadows":2.041738,"combat_block":1.717908,"combat_crit":3.273407,"combat_dodge":1.840772,"combat_parry":1.819701,"debuff_apply":2.018366,"defiant_bellow":1.819701,"demoralizing_shout":1.819701,"emboldening_roar":2.041738,"entangling_roots":1.883649,"eviscerate":1.798871,"fear":2.238721,"fear_shout":2.06538,"flamestrike":2.041738,"foot_dirt":1.819701,"foot_grass":1.798871,"foot_snow":1.819701,"foot_stone":1.819701,"foot_water":1.819701,"foot_wood":1.819701,"frost_nova":2.041738,"frozen_orb":2.018366,"garrote":1.862087,"glacial_spike":1.972423,"gurglegreen_bubble_loop":2.06538,"hammer_of_justice":2.06538,"heal_impact":2.018366,"hoard_entrance_hum":5.821032,"hoard_entrance_open":1.883649,"hoard_tide_build":1.798871,"hoard_tide_crash":1.819701,"hoard_tide_hit":1.819701,"hoard_tide_rush":1.798871,"ice_block":2.06538,"impact_arcane":2.06538,"impact_bone":2.018366,"impact_fire":2.041738,"impact_flesh":1.995262,"impact_frost":1.949845,"impact_gather_axe":1.819701,"impact_gather_pick":1.757924,"impact_gourdfall":2.162719,"impact_holy":2.113489,"impact_leather":2.06538,"impact_masterwork_execution":1.883649,"impact_metal":1.927525,"impact_nature":2.06538,"impact_prank_pumpkin_splat":1.819701,"impact_shadow":2.018366,"impact_swelling_gourd_burst":2.041738,"impact_tree_crash":1.798871,"impact_tree_creak":1.737801,"impact_warrior_avatar_rise":1.840772,"impact_warrior_blood_recovery":1.819701,"impact_warrior_bloodletting":1.819701,"impact_warrior_breachmaker":1.819701,"impact_warrior_brute":1.819701,"impact_warrior_early_grave":1.798871,"impact_warrior_faultline":1.819701,"impact_warrior_goad_bark":1.819701,"impact_warrior_guard_lock":1.840772,"impact_warrior_gyre_sweep":1.778279,"impact_warrior_hammer_land":1.798871,"impact_warrior_hobble_cut":1.819701,"impact_warrior_jawcrack_break":1.840772,"impact_warrior_maiming":1.819701,"impact_warrior_mending_lock":1.819701,"impact_warrior_quake":1.840772,"impact_warrior_reaver":1.840772,"impact_warrior_reckless_tear":1.819701,"impact_warrior_red_harvest_finish":2.691535,"impact_warrior_red_harvest_first":2.660725,"impact_warrior_red_harvest_second":2.660725,"impact_warrior_redhand":1.840772,"impact_warrior_resolve_lock":1.840772,"impact_warrior_revenge":1.798871,"impact_warrior_seething_release":1.819701,"impact_warrior_shear_peel":1.840772,"impact_warrior_shieldcrack":1.819701,"impact_warrior_sword_guard_lock":1.819701,"impact_warrior_toll_clench":1.840772,"impact_warrior_twinstrike_first":1.757924,"impact_warrior_twinstrike_second":1.798871,"impact_warrior_victory":1.819701,"intimidating_shout":2.041738,"lockpick_advanced_1":1.698244,"lockpick_advanced_2":1.717908,"lockpick_advanced_3":1.678804,"lockpick_advanced_4":1.717908,"lockpick_begin":1.798871,"lockpick_bind":1.698244,"lockpick_bonus":1.698244,"lockpick_end":1.778279,"lockpick_fail":1.678804,"lockpick_page_cleared":1.778279,"lockpick_retry":1.757924,"lockpick_slip":1.698244,"lockpick_success":1.757924,"lockpick_trap":1.737801,"melee_bow":1.819701,"melee_swing_blade":1.819701,"melee_swing_heavy":1.819701,"melee_swing_light":1.798871,"melee_unarmed":1.819701,"melee_warrior_avatar_release":1.819701,"melee_warrior_bloodletting_release":1.819701,"melee_warrior_breachmaker_release":1.840772,"melee_warrior_brute_release":1.840772,"melee_warrior_early_grave_release":1.819701,"melee_warrior_faultline_release":1.819701,"melee_warrior_goad_release":1.840772,"melee_warrior_guard_release":1.798871,"melee_warrior_gyre_release":1.819701,"melee_warrior_hammer_throw":1.819701,"melee_warrior_hobble_release":1.819701,"melee_warrior_jawcrack_release":1.819701,"melee_warrior_maiming_release":1.840772,"melee_warrior_mending_release":1.840772,"melee_warrior_quake_release":1.819701,"melee_warrior_reaver_release":1.819701,"melee_warrior_reckless_release":1.819701,"melee_warrior_red_harvest_release":1.819701,"melee_warrior_redhand_release":1.840772,"melee_warrior_resolve_release":1.819701,"melee_warrior_revenge_release":1.840772,"melee_warrior_seething_release":1.840772,"melee_warrior_shear_release":1.819701,"melee_warrior_shieldcrack_release":1.819701,"melee_warrior_sword_guard_release":1.840772,"melee_warrior_toll_release":1.819701,"melee_warrior_twinstrike_release":1.840772,"melee_warrior_victory_release":1.840772,"meteor":2.041738,"mob_beast_aggro":1.840772,"mob_beast_attack":1.840772,"mob_beast_death":2.06538,"mob_beast_hurt":1.840772,"mob_beast_idle":2.985383,"mob_beast_wolf_aggro":1.840772,"mob_beast_wolf_attack":1.840772,"mob_beast_wolf_death":1.840772,"mob_beast_wolf_hurt":1.840772,"mob_beast_wolf_idle":1.819701,"mob_boar_aggro":1.905461,"mob_boar_attack":1.840772,"mob_boar_death":2.041738,"mob_boar_hurt":2.137962,"mob_boar_idle":1.819701,"mob_burrower_aggro":1.819701,"mob_burrower_attack":1.819701,"mob_burrower_death":1.840772,"mob_burrower_hurt":1.819701,"mob_burrower_idle":1.840772,"mob_demon_aggro":2.317395,"mob_demon_attack":2.317395,"mob_demon_death":2.317395,"mob_demon_hurt":2.317395,"mob_demon_idle":2.041738,"mob_dragonkin_aggro":2.041738,"mob_dragonkin_attack":1.819701,"mob_dragonkin_death":2.041738,"mob_dragonkin_hurt":2.041738,"mob_dragonkin_idle":2.290868,"mob_elemental_aggro":1.819701,"mob_elemental_attack":1.840772,"mob_elemental_death":2.041738,"mob_elemental_hurt":2.041738,"mob_elemental_idle":1.840772,"mob_elemental_ignivar_aggro":2.041738,"mob_elemental_ignivar_attack":1.995262,"mob_elemental_ignivar_death":2.041738,"mob_elemental_ignivar_hurt":1.798871,"mob_elemental_ignivar_idle":1.678804,"mob_elemental_varkhul_aggro":2.722701,"mob_elemental_varkhul_attack":2.290868,"mob_elemental_varkhul_death":2.540973,"mob_elemental_varkhul_hurt":1.905461,"mob_elemental_varkhul_idle":2.041738,"mob_humanoid_aggro":1.883649,"mob_humanoid_attack":1.972423,"mob_humanoid_death":2.041738,"mob_humanoid_hurt":2.041738,"mob_humanoid_idle":1.819701,"mob_mudfin_aggro":1.840772,"mob_mudfin_attack":1.819701,"mob_mudfin_death":1.819701,"mob_mudfin_hurt":1.840772,"mob_mudfin_idle":1.819701,"mob_ogre_aggro":1.883649,"mob_ogre_attack":1.819701,"mob_ogre_death":2.06538,"mob_ogre_hurt":2.238721,"mob_ogre_idle":1.840772,"mob_reptile_aggro":1.717908,"mob_reptile_attack":1.819701,"mob_reptile_death":2.041738,"mob_reptile_hurt":1.905461,"mob_reptile_idle":2.60016,"mob_spider_aggro":1.819701,"mob_spider_attack":1.819701,"mob_spider_death":1.819701,"mob_spider_hurt":1.840772,"mob_spider_idle":2.317395,"mob_troll_aggro":1.819701,"mob_troll_attack":1.840772,"mob_troll_death":2.041738,"mob_troll_hurt":2.041738,"mob_troll_idle":2.290868,"mob_undead_aggro":1.698244,"mob_undead_attack":1.840772,"mob_undead_death":2.041738,"mob_undead_hurt":2.187762,"mob_undead_idle":2.187762,"mob_undead_skeleton_aggro":1.819701,"mob_undead_skeleton_attack":1.840772,"mob_undead_skeleton_death":1.840772,"mob_undead_skeleton_hurt":1.840772,"mob_undead_skeleton_idle":1.883649,"mount_flap_avian_strider":1.757924,"mount_idle_emberbristle_broom":2.018366,"mount_idle_mech_bird":2.985383,"mount_jump_avian_strider":1.778279,"mount_jump_mech_bird":2.917427,"mount_jump_rallycart_rxt":1.778279,"mount_land_avian_strider":1.778279,"mount_land_mech_bird":2.985383,"mount_land_rallycart_rxt":1.778279,"mount_loop_rickshaw_mount":1.778279,"mount_neigh_lantern_hall_destrier":1.698244,"mount_run_aether_hover_cycle":1.819701,"mount_run_avian_strider":1.737801,"mount_run_drakemaw_raptor":1.819701,"mount_run_emberbristle_broom":1.737801,"mount_run_goblin_rocket_sled":2.722701,"mount_run_goblin_rocket_sled_reverse":2.06538,"mount_run_goblin_rocket_sled_reverse_start":2.06538,"mount_run_goblin_rocket_sled_reverse_stop":1.995262,"mount_run_goblin_rocket_sled_start":2.018366,"mount_run_goblin_rocket_sled_stop":2.06538,"mount_run_grag_bear":1.840772,"mount_run_mech_bird":2.290868,"mount_run_rallycart_rxt":2.06538,"mount_run_rallycart_rxt_idle":5.128614,"mount_run_rallycart_rxt_reverse":5.128614,"mount_run_rallycart_rxt_reverse_start":5.754399,"mount_run_rallycart_rxt_reverse_stop":5.248075,"mount_run_rallycart_rxt_start":2.317395,"mount_run_rallycart_rxt_stop":2.213095,"mount_run_shadowjump_toad":1.840772,"mount_run_stalkglider_snail":1.840772,"mount_run_stormfeather_griffin":1.819701,"mount_run_terrorspark_groundshaker":2.041738,"mount_run_terrorspark_groundshaker_start":1.840772,"mount_run_terrorspark_groundshaker_stop":1.840772,"mount_run_thunderstrut_gobbler":1.819701,"mount_run_valorsteed":1.819701,"mount_squawk_avian_strider":1.717908,"mount_summon_avian_strider":2.238721,"mount_summon_goblin_rocket_sled":2.041738,"mount_summon_rallycart_rxt":2.691535,"mount_summon_rickshaw_mount":2.06538,"move_jump":1.698244,"move_land":1.717908,"move_splash":1.995262,"move_swim":2.018366,"piercing_howl":1.819701,"player_death":2.06538,"player_death_female":1.819701,"player_drink_potion":2.851018,"player_drink_water":2.06538,"player_eat_food":2.06538,"player_hurt":1.819701,"player_hurt_female":1.819701,"proj_arcane":2.018366,"proj_fire":2.041738,"proj_frost":1.972423,"proj_gourdfall_whistle":1.949845,"proj_holy":1.905461,"proj_nature":2.018366,"proj_shadow":1.949845,"pyroblast":2.041738,"quest_accept":2.238721,"quest_complete":2.06538,"quest_ready":4.570882,"rallying_cry":1.840772,"rift_boulder_impact":1.778279,"rift_boulder_roll":1.698244,"rift_gate_grind":2.041738,"rift_ice_glide":2.041738,"rift_ice_start":1.819701,"rift_ice_stop":1.840772,"rift_lava_tick":2.42661,"rift_portal_drone":8.317638,"rift_portal_enter":2.660725,"rift_portal_spawn":3.935501,"sap":1.927525,"scorch":1.840772,"shadowstep":1.840772,"sinister_strike":2.660725,"spell_gurglegreen_cauldron":2.06538,"spell_gurglegreen_quaff":1.883649,"spell_murmurwick_candle":1.995262,"spell_nova":2.113489,"spell_startled_bats":1.995262,"spell_swelling_gourd_pulse":1.840772,"spell_wanderwisp_lantern":2.041738,"stealth":2.162719,"temporal_clock":1.757924,"ui_achievement":1.757924,"ui_arena_loss":2.344229,"ui_aura_anvil_strike":1,"ui_aura_blaring_horn":1,"ui_aura_bubble_pop":1,"ui_aura_car_klaxon":1,"ui_aura_cat_meow":1,"ui_aura_coin_drop":1,"ui_aura_electric_zap":1,"ui_aura_frog_croak":1,"ui_aura_glass_ping":1,"ui_aura_hard_bell":1,"ui_aura_music_box":1,"ui_aura_owl_hoot":1,"ui_aura_soft_chime":1,"ui_aura_sonar_ping":1,"ui_aura_steam_hiss":1,"ui_aura_sword_draw":1,"ui_aura_temple_gong":1,"ui_aura_water_drop":1,"ui_aura_wind_whoosh":1,"ui_aura_wolf_howl":1,"ui_bag_close":1.798871,"ui_bag_open":1.778279,"ui_card_play":1.778279,"ui_card_reveal":1.737801,"ui_card_round_push":1.778279,"ui_card_shuffle":1.778279,"ui_click":1.778279,"ui_coin":1.927525,"ui_cosmetic_unlock":1.949845,"ui_craft_alchemy":1.778279,"ui_craft_armorcrafting":1.778279,"ui_craft_cast":1,"ui_craft_cooking":1.798871,"ui_craft_disenchant":2.089296,"ui_craft_enchanting":1.757924,"ui_craft_engineering":1.757924,"ui_craft_inscription":1.778279,"ui_craft_jewelcrafting":1.778279,"ui_craft_leatherworking":1.778279,"ui_craft_salvage":1.819701,"ui_craft_tailoring":1.757924,"ui_craft_weaponcrafting":1.778279,"ui_death":1,"ui_duel_challenge":1.840772,"ui_duel_countdown":1.778279,"ui_duel_end":1.717908,"ui_duel_start":1.717908,"ui_error":1.778279,"ui_farm_feast":1,"ui_farm_golden":1,"ui_farm_harvest":1,"ui_farm_plant":1,"ui_farm_ready":1,"ui_farm_withered":1,"ui_fiesta_augment":1,"ui_fiesta_down":1,"ui_fiesta_revive":1,"ui_fiesta_score_mine":1,"ui_fiesta_score_other":1,"ui_fiesta_wave":1,"ui_fiesta_word_0":1,"ui_fiesta_word_1":1,"ui_fiesta_word_2":1,"ui_fiesta_word_3":1,"ui_fish_bite":1.819701,"ui_fish_cast":1.840772,"ui_fish_reel":1.840772,"ui_gather_cast":1,"ui_gather_cast_herb":1.840772,"ui_gather_cast_ore":1.819701,"ui_gather_cast_wood":1.819701,"ui_gather_epic":2.660725,"ui_gather_herb":1.905461,"ui_gather_legendary":2.041738,"ui_gather_ore":1.819701,"ui_gather_rare":1.883649,"ui_gather_wood":1.840772,"ui_legendary_forged":1,"ui_level_up":1.798871,"ui_loot_item":1.778279,"ui_masterwork":1.737801,"ui_perfecting_attempt":1,"ui_perfecting_success":1,"ui_quest_done":1,"ui_ready_check":1.717908,"ui_sheep":1.798871,"ui_sunder_complete":1,"ui_weapon_sheathe":1.778279,"ui_weapon_unsheathe":1.798871,"ui_whisper":1.717908,"vanish":2.06538,"wand_arcane":2.398833,"wand_holy":2.851018,"wand_shadow":2.187762} as const satisfies Record<string, number>;
+export const SFX_GAIN_LIMITS = {"amb_bed_amber":1.862087,"amb_bed_bastion":1.949845,"amb_bed_castle":2.06538,"amb_bed_cave":2.041738,"amb_bed_crypt":2.06538,"amb_bed_dusk":1.972423,"amb_bed_ember":2.113489,"amb_bed_forest":1.995262,"amb_bed_forge":2.630268,"amb_bed_frost":2.06538,"amb_bed_gale":2.018366,"amb_bed_garden":1.862087,"amb_bed_harbor":1.995262,"amb_bed_haunt":2.06538,"amb_bed_house":1.927525,"amb_bed_jungle":3.019952,"amb_bed_lair":2.06538,"amb_bed_marsh":2.018366,"amb_bed_meadow":1.862087,"amb_bed_mine":1.840772,"amb_bed_night_wild":1.949845,"amb_bed_palace":1.927525,"amb_bed_peaks":2.018366,"amb_bed_shore":1.949845,"amb_bed_temple":2.113489,"amb_bed_town_day":1.995262,"amb_bed_town_night":2.018366,"amb_bed_wildheart":2.344229,"amb_birds":1,"amb_campfire":1,"amb_dungeon":1,"amb_forge":1.778279,"amb_rain":1,"amb_snow":1,"amb_tavern":2.113489,"amb_water":1,"amb_wind_marsh":1,"amb_wind_peaks":1,"amb_wind_vale":1,"ambush":1.798871,"arcane_blast":1.995262,"backstab":1.819701,"battle_shout":2.041738,"blind":2.018366,"blink":2.041738,"blizzard":1.949845,"buff_apply":2.483133,"cast_arcane":1,"cast_chain_heal":1.678804,"cast_fire":1,"cast_frost":1,"cast_holy":1,"cast_lightning_bolt":1.778279,"cast_nature":1,"cast_shadow":1,"cheap_shot":1.840772,"cloak_of_shadows":2.041738,"combat_block":1.717908,"combat_crit":3.273407,"combat_dodge":1.840772,"combat_parry":1.819701,"debuff_apply":2.018366,"defiant_bellow":1.819701,"demoralizing_shout":1.819701,"emboldening_roar":2.041738,"entangling_roots":1.883649,"eviscerate":1.798871,"fear":2.238721,"fear_shout":2.06538,"flamestrike":2.041738,"foot_dirt":1.819701,"foot_grass":1.798871,"foot_snow":1.819701,"foot_stone":1.819701,"foot_water":1.819701,"foot_wood":1.819701,"frost_nova":2.041738,"frozen_orb":2.018366,"garrote":1.862087,"glacial_spike":1.972423,"gurglegreen_bubble_loop":2.06538,"hammer_of_justice":2.06538,"heal_impact":2.018366,"hoard_entrance_hum":5.821032,"hoard_entrance_open":1.883649,"hoard_tide_build":1.798871,"hoard_tide_crash":1.819701,"hoard_tide_hit":1.819701,"hoard_tide_rush":1.798871,"ice_block":2.06538,"impact_arcane":2.06538,"impact_bone":2.018366,"impact_fire":2.041738,"impact_flesh":1.995262,"impact_frost":1.949845,"impact_gather_axe":1.819701,"impact_gather_pick":1.757924,"impact_gourdfall":2.162719,"impact_holy":2.113489,"impact_leather":2.06538,"impact_masterwork_execution":1.883649,"impact_metal":1.927525,"impact_nature":2.06538,"impact_prank_pumpkin_splat":1.819701,"impact_shadow":2.018366,"impact_swelling_gourd_burst":2.041738,"impact_tree_crash":1.798871,"impact_tree_creak":1.737801,"impact_warrior_avatar_rise":1.840772,"impact_warrior_blood_recovery":1.819701,"impact_warrior_bloodletting":1.819701,"impact_warrior_breachmaker":1.819701,"impact_warrior_brute":1.819701,"impact_warrior_early_grave":1.798871,"impact_warrior_faultline":1.819701,"impact_warrior_goad_bark":1.819701,"impact_warrior_guard_lock":1.840772,"impact_warrior_gyre_sweep":1.778279,"impact_warrior_hammer_land":1.798871,"impact_warrior_hobble_cut":1.819701,"impact_warrior_jawcrack_break":1.840772,"impact_warrior_maiming":1.819701,"impact_warrior_mending_lock":1.819701,"impact_warrior_quake":1.840772,"impact_warrior_reaver":1.840772,"impact_warrior_reckless_tear":1.819701,"impact_warrior_red_harvest_finish":2.691535,"impact_warrior_red_harvest_first":2.660725,"impact_warrior_red_harvest_second":2.660725,"impact_warrior_redhand":1.840772,"impact_warrior_resolve_lock":1.840772,"impact_warrior_revenge":1.798871,"impact_warrior_seething_release":1.819701,"impact_warrior_shear_peel":1.840772,"impact_warrior_shieldcrack":1.819701,"impact_warrior_sword_guard_lock":1.819701,"impact_warrior_toll_clench":1.840772,"impact_warrior_twinstrike_first":1.757924,"impact_warrior_twinstrike_second":1.798871,"impact_warrior_victory":1.819701,"intimidating_shout":2.041738,"lockpick_advanced_1":1.698244,"lockpick_advanced_2":1.717908,"lockpick_advanced_3":1.678804,"lockpick_advanced_4":1.717908,"lockpick_begin":1.798871,"lockpick_bind":1.698244,"lockpick_bonus":1.698244,"lockpick_end":1.778279,"lockpick_fail":1.678804,"lockpick_page_cleared":1.778279,"lockpick_retry":1.757924,"lockpick_slip":1.698244,"lockpick_success":1.757924,"lockpick_trap":1.737801,"melee_bow":1.819701,"melee_swing_blade":1.819701,"melee_swing_heavy":1.819701,"melee_swing_light":1.798871,"melee_unarmed":1.819701,"melee_warrior_avatar_release":1.819701,"melee_warrior_bloodletting_release":1.819701,"melee_warrior_breachmaker_release":1.840772,"melee_warrior_brute_release":1.840772,"melee_warrior_early_grave_release":1.819701,"melee_warrior_faultline_release":1.819701,"melee_warrior_goad_release":1.840772,"melee_warrior_guard_release":1.798871,"melee_warrior_gyre_release":1.819701,"melee_warrior_hammer_throw":1.819701,"melee_warrior_hobble_release":1.819701,"melee_warrior_jawcrack_release":1.819701,"melee_warrior_maiming_release":1.840772,"melee_warrior_mending_release":1.840772,"melee_warrior_quake_release":1.819701,"melee_warrior_reaver_release":1.819701,"melee_warrior_reckless_release":1.819701,"melee_warrior_red_harvest_release":1.819701,"melee_warrior_redhand_release":1.840772,"melee_warrior_resolve_release":1.819701,"melee_warrior_revenge_release":1.840772,"melee_warrior_seething_release":1.840772,"melee_warrior_shear_release":1.819701,"melee_warrior_shieldcrack_release":1.819701,"melee_warrior_sword_guard_release":1.840772,"melee_warrior_toll_release":1.819701,"melee_warrior_twinstrike_release":1.840772,"melee_warrior_victory_release":1.840772,"meteor":2.041738,"mob_beast_aggro":1.840772,"mob_beast_attack":1.840772,"mob_beast_death":2.06538,"mob_beast_hurt":1.840772,"mob_beast_idle":2.985383,"mob_beast_wolf_aggro":1.840772,"mob_beast_wolf_attack":1.840772,"mob_beast_wolf_death":1.840772,"mob_beast_wolf_hurt":1.840772,"mob_beast_wolf_idle":1.819701,"mob_boar_aggro":1.905461,"mob_boar_attack":1.840772,"mob_boar_death":2.041738,"mob_boar_hurt":2.137962,"mob_boar_idle":1.819701,"mob_burrower_aggro":1.819701,"mob_burrower_attack":1.819701,"mob_burrower_death":1.840772,"mob_burrower_hurt":1.819701,"mob_burrower_idle":1.840772,"mob_demon_aggro":2.317395,"mob_demon_attack":2.317395,"mob_demon_death":2.317395,"mob_demon_hurt":2.317395,"mob_demon_idle":2.041738,"mob_dragonkin_aggro":2.041738,"mob_dragonkin_attack":1.819701,"mob_dragonkin_death":2.041738,"mob_dragonkin_hurt":2.041738,"mob_dragonkin_idle":2.290868,"mob_elemental_aggro":1.819701,"mob_elemental_attack":1.840772,"mob_elemental_death":2.041738,"mob_elemental_hurt":2.041738,"mob_elemental_idle":1.840772,"mob_elemental_ignivar_aggro":2.041738,"mob_elemental_ignivar_attack":1.995262,"mob_elemental_ignivar_death":2.041738,"mob_elemental_ignivar_hurt":1.798871,"mob_elemental_ignivar_idle":1.678804,"mob_elemental_varkhul_aggro":2.722701,"mob_elemental_varkhul_attack":2.290868,"mob_elemental_varkhul_death":2.540973,"mob_elemental_varkhul_hurt":1.905461,"mob_elemental_varkhul_idle":2.041738,"mob_humanoid_aggro":1.883649,"mob_humanoid_attack":1.972423,"mob_humanoid_death":2.041738,"mob_humanoid_hurt":2.041738,"mob_humanoid_idle":1.819701,"mob_mudfin_aggro":1.840772,"mob_mudfin_attack":1.819701,"mob_mudfin_death":1.819701,"mob_mudfin_hurt":1.840772,"mob_mudfin_idle":1.819701,"mob_ogre_aggro":1.883649,"mob_ogre_attack":1.819701,"mob_ogre_death":2.06538,"mob_ogre_hurt":2.238721,"mob_ogre_idle":1.840772,"mob_reptile_aggro":1.717908,"mob_reptile_attack":1.819701,"mob_reptile_death":2.041738,"mob_reptile_hurt":1.905461,"mob_reptile_idle":2.60016,"mob_spider_aggro":1.819701,"mob_spider_attack":1.819701,"mob_spider_death":1.819701,"mob_spider_hurt":1.840772,"mob_spider_idle":2.317395,"mob_troll_aggro":1.819701,"mob_troll_attack":1.840772,"mob_troll_death":2.041738,"mob_troll_hurt":2.041738,"mob_troll_idle":2.290868,"mob_undead_aggro":1.698244,"mob_undead_attack":1.840772,"mob_undead_death":2.041738,"mob_undead_hurt":2.187762,"mob_undead_idle":2.187762,"mob_undead_skeleton_aggro":1.819701,"mob_undead_skeleton_attack":1.840772,"mob_undead_skeleton_death":1.840772,"mob_undead_skeleton_hurt":1.840772,"mob_undead_skeleton_idle":1.883649,"mount_flap_avian_strider":1.757924,"mount_idle_emberbristle_broom":2.018366,"mount_idle_mech_bird":2.985383,"mount_jump_avian_strider":1.778279,"mount_jump_mech_bird":2.917427,"mount_jump_rallycart_rxt":1.778279,"mount_land_avian_strider":1.778279,"mount_land_mech_bird":2.985383,"mount_land_rallycart_rxt":1.778279,"mount_loop_rickshaw_mount":1.778279,"mount_neigh_lantern_hall_destrier":1.698244,"mount_run_aether_hover_cycle":1.819701,"mount_run_avian_strider":1.737801,"mount_run_drakemaw_raptor":1.819701,"mount_run_emberbristle_broom":1.737801,"mount_run_goblin_rocket_sled":2.722701,"mount_run_goblin_rocket_sled_reverse":2.06538,"mount_run_goblin_rocket_sled_reverse_start":2.06538,"mount_run_goblin_rocket_sled_reverse_stop":1.995262,"mount_run_goblin_rocket_sled_start":2.018366,"mount_run_goblin_rocket_sled_stop":2.06538,"mount_run_grag_bear":1.840772,"mount_run_mech_bird":2.290868,"mount_run_rallycart_rxt":2.06538,"mount_run_rallycart_rxt_idle":5.128614,"mount_run_rallycart_rxt_reverse":5.128614,"mount_run_rallycart_rxt_reverse_start":5.754399,"mount_run_rallycart_rxt_reverse_stop":5.248075,"mount_run_rallycart_rxt_start":2.317395,"mount_run_rallycart_rxt_stop":2.213095,"mount_run_shadowjump_toad":1.840772,"mount_run_stalkglider_snail":1.840772,"mount_run_stormfeather_griffin":1.819701,"mount_run_terrorspark_groundshaker":2.041738,"mount_run_terrorspark_groundshaker_start":1.840772,"mount_run_terrorspark_groundshaker_stop":1.840772,"mount_run_thunderstrut_gobbler":1.819701,"mount_run_valorsteed":1.819701,"mount_squawk_avian_strider":1.717908,"mount_summon_avian_strider":2.238721,"mount_summon_goblin_rocket_sled":2.041738,"mount_summon_rallycart_rxt":2.691535,"mount_summon_rickshaw_mount":2.06538,"move_jump":1.698244,"move_land":1.717908,"move_splash":1.995262,"move_swim":2.018366,"piercing_howl":1.819701,"player_death":2.06538,"player_death_female":1.819701,"player_drink_potion":2.851018,"player_drink_water":2.06538,"player_eat_food":2.06538,"player_hurt":1.819701,"player_hurt_female":1.819701,"proj_arcane":2.018366,"proj_fire":2.041738,"proj_frost":1.972423,"proj_gourdfall_whistle":1.949845,"proj_holy":1.905461,"proj_nature":2.018366,"proj_shadow":1.949845,"pyroblast":2.041738,"quest_accept":2.238721,"quest_complete":2.06538,"quest_ready":4.570882,"rallying_cry":1.840772,"rift_boulder_impact":1.778279,"rift_boulder_roll":1.698244,"rift_gate_grind":2.041738,"rift_ice_glide":2.041738,"rift_ice_start":1.819701,"rift_ice_stop":1.840772,"rift_lava_tick":2.42661,"rift_portal_drone":8.317638,"rift_portal_enter":2.660725,"rift_portal_spawn":3.935501,"sap":1.927525,"scorch":1.840772,"shadowstep":1.840772,"sinister_strike":2.660725,"spell_gurglegreen_cauldron":2.06538,"spell_gurglegreen_quaff":1.883649,"spell_murmurwick_candle":1.995262,"spell_nova":2.113489,"spell_startled_bats":1.995262,"spell_swelling_gourd_pulse":1.840772,"spell_wanderwisp_lantern":2.041738,"stealth":2.162719,"temporal_clock":1.757924,"ui_achievement":1.757924,"ui_arena_loss":2.344229,"ui_aura_anvil_strike":1,"ui_aura_blaring_horn":1,"ui_aura_bubble_pop":1,"ui_aura_car_klaxon":1,"ui_aura_cat_meow":1,"ui_aura_coin_drop":1,"ui_aura_electric_zap":1,"ui_aura_frog_croak":1,"ui_aura_glass_ping":1,"ui_aura_hard_bell":1,"ui_aura_music_box":1,"ui_aura_owl_hoot":1,"ui_aura_soft_chime":1,"ui_aura_sonar_ping":1,"ui_aura_steam_hiss":1,"ui_aura_sword_draw":1,"ui_aura_temple_gong":1,"ui_aura_water_drop":1,"ui_aura_wind_whoosh":1,"ui_aura_wolf_howl":1,"ui_bag_close":1.798871,"ui_bag_open":1.778279,"ui_card_play":1.778279,"ui_card_reveal":1.737801,"ui_card_round_push":1.778279,"ui_card_shuffle":1.778279,"ui_click":1.778279,"ui_coin":1.927525,"ui_cosmetic_unlock":1.949845,"ui_craft_alchemy":1.778279,"ui_craft_armorcrafting":1.778279,"ui_craft_cast":1,"ui_craft_cooking":1.798871,"ui_craft_disenchant":2.089296,"ui_craft_enchanting":1.757924,"ui_craft_engineering":1.757924,"ui_craft_inscription":1.778279,"ui_craft_jewelcrafting":1.778279,"ui_craft_leatherworking":1.778279,"ui_craft_salvage":1.819701,"ui_craft_tailoring":1.757924,"ui_craft_weaponcrafting":1.778279,"ui_death":1,"ui_duel_challenge":1.840772,"ui_duel_countdown":1.778279,"ui_duel_end":1.717908,"ui_duel_start":1.717908,"ui_error":1.778279,"ui_farm_feast":1,"ui_farm_golden":1,"ui_farm_harvest":1,"ui_farm_plant":1,"ui_farm_ready":1,"ui_farm_withered":1,"ui_fiesta_augment":1,"ui_fiesta_down":1,"ui_fiesta_revive":1,"ui_fiesta_score_mine":1,"ui_fiesta_score_other":1,"ui_fiesta_wave":1,"ui_fiesta_word_0":1,"ui_fiesta_word_1":1,"ui_fiesta_word_2":1,"ui_fiesta_word_3":1,"ui_fish_bite":1.819701,"ui_fish_cast":1.840772,"ui_fish_reel":1.840772,"ui_gather_cast":1,"ui_gather_cast_herb":1.840772,"ui_gather_cast_ore":1.819701,"ui_gather_cast_wood":1.819701,"ui_gather_epic":2.660725,"ui_gather_herb":1.905461,"ui_gather_legendary":2.041738,"ui_gather_ore":1.819701,"ui_gather_rare":1.883649,"ui_gather_wood":1.840772,"ui_legendary_forged":1,"ui_level_up":1.798871,"ui_loot_item":1.778279,"ui_masterwork":1.737801,"ui_perfecting_attempt":1,"ui_perfecting_success":1,"ui_quest_done":1,"ui_ready_check":1.717908,"ui_sheep":1.798871,"ui_sunder_complete":1,"ui_weapon_sheathe":1.778279,"ui_weapon_unsheathe":1.798871,"ui_whisper":1.717908,"vanish":2.06538,"wand_arcane":2.398833,"wand_holy":2.851018,"wand_shadow":2.187762} as const satisfies Record<string, number>;
 export const SFX_CLIPS =
 {
   "amb_bed_amber": {
-    "url": "/audio/sfx/amb_bed_amber.mp3?v=46dd7a662a8b",
+    "url": "/audio/sfx/amb_bed_amber.mp3?v=354e29d1e066",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "46dd7a662a8b",
+    "bytes": 661464,
+    "hash": "354e29d1e066",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_amber.mp3?v=46dd7a662a8b",
-        "bytes": 440991,
-        "sha256": "46dd7a662a8b791b9ef4c580e04315fdf38158d1e30b0e348141ca6741bf6856"
+        "url": "/audio/sfx/amb_bed_amber.mp3?v=354e29d1e066",
+        "bytes": 661464,
+        "sha256": "354e29d1e066347f09cb2c1487f1ff4fe898ffae9358c90a055e3b788111387f"
       }
     ]
   },
   "amb_bed_bastion": {
-    "url": "/audio/sfx/amb_bed_bastion.mp3?v=9906ec4a7a0d",
+    "url": "/audio/sfx/amb_bed_bastion.mp3?v=1dc883f307d3",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "9906ec4a7a0d",
+    "bytes": 661464,
+    "hash": "1dc883f307d3",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_bastion.mp3?v=9906ec4a7a0d",
-        "bytes": 440991,
-        "sha256": "9906ec4a7a0d8d4f90bfac88f79e77fec90480a898a107997ccdaddd67825aa0"
+        "url": "/audio/sfx/amb_bed_bastion.mp3?v=1dc883f307d3",
+        "bytes": 661464,
+        "sha256": "1dc883f307d32f0d686dde7a108decb8322e68723c7f95a3f2af54164acb9e05"
       }
     ]
   },
   "amb_bed_castle": {
-    "url": "/audio/sfx/amb_bed_castle.mp3?v=06b12fc98985",
+    "url": "/audio/sfx/amb_bed_castle.mp3?v=32cffb810f9b",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "06b12fc98985",
+    "bytes": 661464,
+    "hash": "32cffb810f9b",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_castle.mp3?v=06b12fc98985",
-        "bytes": 440991,
-        "sha256": "06b12fc989857c2f795a844e3444058176e21e00346f9b3c934a0ecff8fdd8be"
+        "url": "/audio/sfx/amb_bed_castle.mp3?v=32cffb810f9b",
+        "bytes": 661464,
+        "sha256": "32cffb810f9bd8ba5c680c1d338507d551ab9447773dcde29d332341d585460b"
       }
     ]
   },
   "amb_bed_cave": {
-    "url": "/audio/sfx/amb_bed_cave.mp3?v=49ba0daa60c7",
+    "url": "/audio/sfx/amb_bed_cave.mp3?v=0308c2b5d28c",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "49ba0daa60c7",
+    "bytes": 661464,
+    "hash": "0308c2b5d28c",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_cave.mp3?v=49ba0daa60c7",
-        "bytes": 440991,
-        "sha256": "49ba0daa60c7ce27529926ea2e0fbe5b6431d724e5acbd6273ad45a16609f74c"
+        "url": "/audio/sfx/amb_bed_cave.mp3?v=0308c2b5d28c",
+        "bytes": 661464,
+        "sha256": "0308c2b5d28cc388e5446e6b3d8809899050c5f63b5d01f8a55c9edc5da305d6"
       }
     ]
   },
   "amb_bed_crypt": {
-    "url": "/audio/sfx/amb_bed_crypt.mp3?v=547db2349d20",
+    "url": "/audio/sfx/amb_bed_crypt.mp3?v=60500b98ba05",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "547db2349d20",
+    "bytes": 661464,
+    "hash": "60500b98ba05",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_crypt.mp3?v=547db2349d20",
-        "bytes": 440991,
-        "sha256": "547db2349d20279cac079550cae4085162e82603396d86c122cc44479c81169d"
+        "url": "/audio/sfx/amb_bed_crypt.mp3?v=60500b98ba05",
+        "bytes": 661464,
+        "sha256": "60500b98ba05e72e0e782813797fb59c522b550a07b7fd9aa152e0c9b6911b5d"
       }
     ]
   },
   "amb_bed_dusk": {
-    "url": "/audio/sfx/amb_bed_dusk.mp3?v=0276f0830d12",
+    "url": "/audio/sfx/amb_bed_dusk.mp3?v=8870238a8ce7",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "0276f0830d12",
+    "bytes": 661464,
+    "hash": "8870238a8ce7",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_dusk.mp3?v=0276f0830d12",
-        "bytes": 440991,
-        "sha256": "0276f0830d1267db5b2f1079a953ffbce7ecf794668274dc2d80944e48abe734"
+        "url": "/audio/sfx/amb_bed_dusk.mp3?v=8870238a8ce7",
+        "bytes": 661464,
+        "sha256": "8870238a8ce74161a7590ce8601fbe5b34414bd09ccc473575e694d762f7f172"
       }
     ]
   },
   "amb_bed_ember": {
-    "url": "/audio/sfx/amb_bed_ember.mp3?v=deeec377e4d6",
+    "url": "/audio/sfx/amb_bed_ember.mp3?v=33a37d070502",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "deeec377e4d6",
+    "bytes": 661464,
+    "hash": "33a37d070502",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_ember.mp3?v=deeec377e4d6",
-        "bytes": 440991,
-        "sha256": "deeec377e4d6b6ca94b5c3f8cbe5500d50f45e4ddf616611de8effaa540df45e"
+        "url": "/audio/sfx/amb_bed_ember.mp3?v=33a37d070502",
+        "bytes": 661464,
+        "sha256": "33a37d070502c735f9fb2830de4ba2b0dfde57ae6925aad1fd1232faf49a5586"
       }
     ]
   },
   "amb_bed_forest": {
-    "url": "/audio/sfx/amb_bed_forest.mp3?v=37f2d2da2b7c",
+    "url": "/audio/sfx/amb_bed_forest.mp3?v=d60b0cfe7432",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "37f2d2da2b7c",
+    "bytes": 661464,
+    "hash": "d60b0cfe7432",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_forest.mp3?v=37f2d2da2b7c",
-        "bytes": 440991,
-        "sha256": "37f2d2da2b7c94e3a6e87ccd9eecdfe30ed8fecb752949572ed435d27f3fdc2a"
+        "url": "/audio/sfx/amb_bed_forest.mp3?v=d60b0cfe7432",
+        "bytes": 661464,
+        "sha256": "d60b0cfe7432797cb300026a1982878419b7bf49707145f4d5c132bceb445366"
       }
     ]
   },
   "amb_bed_forge": {
-    "url": "/audio/sfx/amb_bed_forge.mp3?v=93e155b01980",
+    "url": "/audio/sfx/amb_bed_forge.mp3?v=d032277b135e",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "93e155b01980",
+    "bytes": 661464,
+    "hash": "d032277b135e",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_forge.mp3?v=93e155b01980",
-        "bytes": 440991,
-        "sha256": "93e155b01980dac62ba79d1f643128fad0b1a92ada05fe81d1d201b3c542e6af"
+        "url": "/audio/sfx/amb_bed_forge.mp3?v=d032277b135e",
+        "bytes": 661464,
+        "sha256": "d032277b135e7792b2b089cd71cd56dd84f0d488aa29a200f931c16c5dafde43"
       }
     ]
   },
   "amb_bed_frost": {
-    "url": "/audio/sfx/amb_bed_frost.mp3?v=f5bfd729033e",
+    "url": "/audio/sfx/amb_bed_frost.mp3?v=2a1dc559dc3f",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "f5bfd729033e",
+    "bytes": 661464,
+    "hash": "2a1dc559dc3f",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_frost.mp3?v=f5bfd729033e",
-        "bytes": 440991,
-        "sha256": "f5bfd729033e766fe64c9505b397fead89c38770fc3bc60c0f05d39a7c719e1b"
+        "url": "/audio/sfx/amb_bed_frost.mp3?v=2a1dc559dc3f",
+        "bytes": 661464,
+        "sha256": "2a1dc559dc3f377942bf8824d627f7069a50e06b3e598a56af179781017cc98e"
       }
     ]
   },
   "amb_bed_gale": {
-    "url": "/audio/sfx/amb_bed_gale.mp3?v=dda61ba3c7a0",
+    "url": "/audio/sfx/amb_bed_gale.mp3?v=f25ac01d04c1",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "dda61ba3c7a0",
+    "bytes": 661464,
+    "hash": "f25ac01d04c1",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_gale.mp3?v=dda61ba3c7a0",
-        "bytes": 440991,
-        "sha256": "dda61ba3c7a0640414d1b3081026c6a4732ae7f80137920c06903c935148a29a"
+        "url": "/audio/sfx/amb_bed_gale.mp3?v=f25ac01d04c1",
+        "bytes": 661464,
+        "sha256": "f25ac01d04c1a6b91ceef6eda64d015c4e01e22f6131a1287f4a0eebcf7d28a8"
       }
     ]
   },
   "amb_bed_garden": {
-    "url": "/audio/sfx/amb_bed_garden.mp3?v=c7cc73ae2cec",
+    "url": "/audio/sfx/amb_bed_garden.mp3?v=6b4667cec8cf",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "c7cc73ae2cec",
+    "bytes": 661464,
+    "hash": "6b4667cec8cf",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_garden.mp3?v=c7cc73ae2cec",
-        "bytes": 440991,
-        "sha256": "c7cc73ae2cec941baee1aa140e4b02be6dda536ca8d2c977c36681bdd0e2e2a0"
+        "url": "/audio/sfx/amb_bed_garden.mp3?v=6b4667cec8cf",
+        "bytes": 661464,
+        "sha256": "6b4667cec8cfa41e063d9b44f95b9691e46d2de20baff8076466c8e21ae8c34e"
       }
     ]
   },
   "amb_bed_harbor": {
-    "url": "/audio/sfx/amb_bed_harbor.mp3?v=a6ee9c5a5049",
+    "url": "/audio/sfx/amb_bed_harbor.mp3?v=db1b9f325c55",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "a6ee9c5a5049",
+    "bytes": 661464,
+    "hash": "db1b9f325c55",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_harbor.mp3?v=a6ee9c5a5049",
-        "bytes": 440991,
-        "sha256": "a6ee9c5a504993aae6eab1ad747f02279621d9a93d4c7ceacc36c274da85b51a"
+        "url": "/audio/sfx/amb_bed_harbor.mp3?v=db1b9f325c55",
+        "bytes": 661464,
+        "sha256": "db1b9f325c55aeacc4dfff894ef9e4a98ee689d830033c9eed457c267d90b43e"
       }
     ]
   },
   "amb_bed_haunt": {
-    "url": "/audio/sfx/amb_bed_haunt.mp3?v=6f3d67c1d791",
+    "url": "/audio/sfx/amb_bed_haunt.mp3?v=018ac8322464",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "6f3d67c1d791",
+    "bytes": 661464,
+    "hash": "018ac8322464",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_haunt.mp3?v=6f3d67c1d791",
-        "bytes": 440991,
-        "sha256": "6f3d67c1d791f33086b8c5c77d0cf3e41c8cb2b08d3d97011263fb923c7b5f30"
+        "url": "/audio/sfx/amb_bed_haunt.mp3?v=018ac8322464",
+        "bytes": 661464,
+        "sha256": "018ac8322464950cd170b35304ae82caa2b60a098545f13c1d8ceb7bba85e285"
       }
     ]
   },
   "amb_bed_house": {
-    "url": "/audio/sfx/amb_bed_house.mp3?v=6c783c1854e4",
+    "url": "/audio/sfx/amb_bed_house.mp3?v=e3dfa8fb0d0e",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "6c783c1854e4",
+    "bytes": 661464,
+    "hash": "e3dfa8fb0d0e",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_house.mp3?v=6c783c1854e4",
-        "bytes": 440991,
-        "sha256": "6c783c1854e4f959c427c4ddd7fbc96df62916330a1daf038dae19732f9414dd"
+        "url": "/audio/sfx/amb_bed_house.mp3?v=e3dfa8fb0d0e",
+        "bytes": 661464,
+        "sha256": "e3dfa8fb0d0e356ca8d233659710d6f2d7734fc66b2487f01fd5b393696026bc"
       }
     ]
   },
   "amb_bed_jungle": {
-    "url": "/audio/sfx/amb_bed_jungle.mp3?v=256fc5fd10f7",
+    "url": "/audio/sfx/amb_bed_jungle.mp3?v=13b0647a81ef",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "256fc5fd10f7",
+    "bytes": 661464,
+    "hash": "13b0647a81ef",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_jungle.mp3?v=256fc5fd10f7",
-        "bytes": 440991,
-        "sha256": "256fc5fd10f703b991aa29a9957e0f30a5fbba77100e6ccd5d62fc86ba6e98d8"
+        "url": "/audio/sfx/amb_bed_jungle.mp3?v=13b0647a81ef",
+        "bytes": 661464,
+        "sha256": "13b0647a81ef91f0eba6abe87f25dcc6e64fbb4123f5ed97ceba02bce74b45f4"
       }
     ]
   },
   "amb_bed_lair": {
-    "url": "/audio/sfx/amb_bed_lair.mp3?v=13ac45158e8f",
+    "url": "/audio/sfx/amb_bed_lair.mp3?v=5fed5ea052b0",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "13ac45158e8f",
+    "bytes": 661464,
+    "hash": "5fed5ea052b0",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_lair.mp3?v=13ac45158e8f",
-        "bytes": 440991,
-        "sha256": "13ac45158e8f2fac2984f06dc6b92248febf6a10a5b233d9b01a3f780f7eb592"
+        "url": "/audio/sfx/amb_bed_lair.mp3?v=5fed5ea052b0",
+        "bytes": 661464,
+        "sha256": "5fed5ea052b0dcce508228970ce1171a0abd1076baa323984f27e6d73fa1526a"
       }
     ]
   },
   "amb_bed_marsh": {
-    "url": "/audio/sfx/amb_bed_marsh.mp3?v=cd17be60fc09",
+    "url": "/audio/sfx/amb_bed_marsh.mp3?v=8e38d8bde0a8",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "cd17be60fc09",
+    "bytes": 661464,
+    "hash": "8e38d8bde0a8",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_marsh.mp3?v=cd17be60fc09",
-        "bytes": 440991,
-        "sha256": "cd17be60fc09893430f616fb68110c65a9d72d8743aa3566d8b48554a042a463"
+        "url": "/audio/sfx/amb_bed_marsh.mp3?v=8e38d8bde0a8",
+        "bytes": 661464,
+        "sha256": "8e38d8bde0a8997ac772adc8719daa81ab675d3f27d7f8b4cf973c3afd3e0606"
       }
     ]
   },
   "amb_bed_meadow": {
-    "url": "/audio/sfx/amb_bed_meadow.mp3?v=74a8c0c2bd43",
+    "url": "/audio/sfx/amb_bed_meadow.mp3?v=a6806158bb30",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "74a8c0c2bd43",
+    "bytes": 661464,
+    "hash": "a6806158bb30",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_meadow.mp3?v=74a8c0c2bd43",
-        "bytes": 440991,
-        "sha256": "74a8c0c2bd43c07525b0c7cc59e97d1831fa687e63ecc5271db4dd2e70d08354"
+        "url": "/audio/sfx/amb_bed_meadow.mp3?v=a6806158bb30",
+        "bytes": 661464,
+        "sha256": "a6806158bb30cd93c698e836c54211a190474a7b20c0924627c43a91120d6fb9"
       }
     ]
   },
   "amb_bed_mine": {
-    "url": "/audio/sfx/amb_bed_mine.mp3?v=3a0d7031d6b9",
+    "url": "/audio/sfx/amb_bed_mine.mp3?v=8a6d6385ee9d",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "3a0d7031d6b9",
+    "bytes": 661464,
+    "hash": "8a6d6385ee9d",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_mine.mp3?v=3a0d7031d6b9",
-        "bytes": 440991,
-        "sha256": "3a0d7031d6b9bfa47ab14fb49d0d5c214877199b0ab76807827373ef85dbe8c0"
+        "url": "/audio/sfx/amb_bed_mine.mp3?v=8a6d6385ee9d",
+        "bytes": 661464,
+        "sha256": "8a6d6385ee9d3a189395d5ab1106ac2a3b0f3c055fece0d30500e1a192fda01d"
       }
     ]
   },
   "amb_bed_night_wild": {
-    "url": "/audio/sfx/amb_bed_night_wild.mp3?v=94a9e3485810",
+    "url": "/audio/sfx/amb_bed_night_wild.mp3?v=b29f63e58c10",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "94a9e3485810",
+    "bytes": 661464,
+    "hash": "b29f63e58c10",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_night_wild.mp3?v=94a9e3485810",
-        "bytes": 440991,
-        "sha256": "94a9e34858102029dcdfd41afae331136cd6ee5cfcb98ebb7a3cb11d7a0f1b7c"
+        "url": "/audio/sfx/amb_bed_night_wild.mp3?v=b29f63e58c10",
+        "bytes": 661464,
+        "sha256": "b29f63e58c10185cd724ec83f5b14cf7c41a80f0db9930daa5b3d8ea4dbb3d1f"
       }
     ]
   },
   "amb_bed_palace": {
-    "url": "/audio/sfx/amb_bed_palace.mp3?v=f171f98c6b41",
+    "url": "/audio/sfx/amb_bed_palace.mp3?v=c1dd50fb1fd9",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "f171f98c6b41",
+    "bytes": 661464,
+    "hash": "c1dd50fb1fd9",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_palace.mp3?v=f171f98c6b41",
-        "bytes": 440991,
-        "sha256": "f171f98c6b419b2d02872b344e6f4fec03cef565079d51cc13320c16fe1536a0"
+        "url": "/audio/sfx/amb_bed_palace.mp3?v=c1dd50fb1fd9",
+        "bytes": 661464,
+        "sha256": "c1dd50fb1fd99f46081793d48688b635cec744019e52e1a6e7f7f0cd51e4e9d2"
       }
     ]
   },
   "amb_bed_peaks": {
-    "url": "/audio/sfx/amb_bed_peaks.mp3?v=2b55c609e320",
+    "url": "/audio/sfx/amb_bed_peaks.mp3?v=c3738db770ac",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "2b55c609e320",
+    "bytes": 661464,
+    "hash": "c3738db770ac",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_peaks.mp3?v=2b55c609e320",
-        "bytes": 440991,
-        "sha256": "2b55c609e3202d7368c43e5d3f931742d4c8c9bd94469a76fff39bf84527f4d6"
+        "url": "/audio/sfx/amb_bed_peaks.mp3?v=c3738db770ac",
+        "bytes": 661464,
+        "sha256": "c3738db770acfabac17869bc16e9e8fa7daa7f99201a89cef954bb5d39971a1a"
       }
     ]
   },
   "amb_bed_shore": {
-    "url": "/audio/sfx/amb_bed_shore.mp3?v=249c77914bc7",
+    "url": "/audio/sfx/amb_bed_shore.mp3?v=9776752b9dbf",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 313095,
-    "hash": "249c77914bc7",
+    "bytes": 469621,
+    "hash": "9776752b9dbf",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_shore.mp3?v=249c77914bc7",
-        "bytes": 313095,
-        "sha256": "249c77914bc7fde29ae8ead034ba3134cf346eed1ffffbc115a09d7b2cfe17d0"
+        "url": "/audio/sfx/amb_bed_shore.mp3?v=9776752b9dbf",
+        "bytes": 469621,
+        "sha256": "9776752b9dbf0c6a4d76c95b1f9fc24b0bcf83feb47dbd6ca99f1e13a325a3f7"
       }
     ]
   },
   "amb_bed_temple": {
-    "url": "/audio/sfx/amb_bed_temple.mp3?v=76e4cbc38055",
+    "url": "/audio/sfx/amb_bed_temple.mp3?v=214e63d65acb",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "76e4cbc38055",
+    "bytes": 661464,
+    "hash": "214e63d65acb",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_temple.mp3?v=76e4cbc38055",
-        "bytes": 440991,
-        "sha256": "76e4cbc380556655ece2b4fcc4f3b8fad0fa8e7e6d0add71094c77e5ab5dd977"
+        "url": "/audio/sfx/amb_bed_temple.mp3?v=214e63d65acb",
+        "bytes": 661464,
+        "sha256": "214e63d65acb7899e62e1683105e84968b1eb4d3ab4452f92028837bf625f282"
       }
     ]
   },
   "amb_bed_town_day": {
-    "url": "/audio/sfx/amb_bed_town_day.mp3?v=07af0fa81b70",
+    "url": "/audio/sfx/amb_bed_town_day.mp3?v=4ea85e133099",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "07af0fa81b70",
+    "bytes": 661464,
+    "hash": "4ea85e133099",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_town_day.mp3?v=07af0fa81b70",
-        "bytes": 440991,
-        "sha256": "07af0fa81b70b52d615f3da2e437e704b8ee594cce1ec637543e9765c7854c5b"
+        "url": "/audio/sfx/amb_bed_town_day.mp3?v=4ea85e133099",
+        "bytes": 661464,
+        "sha256": "4ea85e133099c68de8c10ce9161076d07b7e98b51eb70be26f9c029e22f800f7"
       }
     ]
   },
   "amb_bed_town_night": {
-    "url": "/audio/sfx/amb_bed_town_night.mp3?v=65058c0dade7",
+    "url": "/audio/sfx/amb_bed_town_night.mp3?v=d9a07916755a",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "65058c0dade7",
+    "bytes": 661464,
+    "hash": "d9a07916755a",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_town_night.mp3?v=65058c0dade7",
-        "bytes": 440991,
-        "sha256": "65058c0dade74ab6a1a3b065155ce2db2cefe31185f21df8679a85bb6c3248eb"
+        "url": "/audio/sfx/amb_bed_town_night.mp3?v=d9a07916755a",
+        "bytes": 661464,
+        "sha256": "d9a07916755a95a746a35cce5b044dabdc501ac845be4fcf06dfdc8df9a73d22"
       }
     ]
   },
   "amb_bed_wildheart": {
-    "url": "/audio/sfx/amb_bed_wildheart.mp3?v=81fe65c1f63c",
+    "url": "/audio/sfx/amb_bed_wildheart.mp3?v=2c2457abf1fb",
     "loop": true,
     "category": "ambience",
     "preload": "lazy",
     "spatial": false,
     "gain": 1,
     "playbackRate": 1,
-    "bytes": 440991,
-    "hash": "81fe65c1f63c",
+    "bytes": 661464,
+    "hash": "2c2457abf1fb",
     "variants": [
       {
         "id": "main",
-        "url": "/audio/sfx/amb_bed_wildheart.mp3?v=81fe65c1f63c",
-        "bytes": 440991,
-        "sha256": "81fe65c1f63c0a2269c1207de7e57d641dab24fe49af07fcff7fda298345d3b7"
+        "url": "/audio/sfx/amb_bed_wildheart.mp3?v=2c2457abf1fb",
+        "bytes": 661464,
+        "sha256": "2c2457abf1fb4a85a97e738026ef4d432f97ec54c4c6a8efdd28f9884a4b4536"
       }
     ]
   },
