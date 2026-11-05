@@ -175,20 +175,20 @@ export function moonNightFloors(litFrac: number): NightFloors {
  * neighbour's HDRI (sky.ts BIOME_HDRI_2K) and carry that sky's number.
  */
 export const REALM_SKY_IRRADIANCE: Record<BiomeId, number> = {
-  amber: 0.5449, // amber_sunset
+  amber: 0.5425, // amber_sunset
   beach: 0.5348, // aliases vale_day
   cave: 0.6473, // aliases marsh_overcast
   desert: 0.4163, // aliases peaks_dawn
-  dusk: 0.2498, // hollow_dusk
-  ember: 0.0432, // ember_storm
-  fen: 0.9541, // fen_day
-  frost: 0.3977, // frost_twilight
+  dusk: 0.2485, // hollow_dusk
+  ember: 0.0429, // ember_storm
+  fen: 0.95, // fen_day
+  frost: 0.3958, // frost_twilight
   gale: 0.6586, // galecrest_day
   garden: 0.8111, // evergarden_day
-  haunt: 0.3413, // wraithwood_gloom
+  haunt: 0.3402, // wraithwood_gloom
   jungle: 0.8125, // palmreach_day
   marsh: 0.6473, // marsh_overcast
-  night: 0.048, // nightbloom_dream
+  night: 0.0477, // nightbloom_dream
   peaks: 0.4163, // peaks_dawn
   vale: 0.5348, // vale_day
   volcano: 0.6473, // aliases marsh_overcast

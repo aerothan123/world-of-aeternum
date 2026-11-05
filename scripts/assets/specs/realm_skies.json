@@ -1,0 +1,126 @@
+{
+  "comment": "Realm sky repaint specs for scripts/assets/paint_realm_skies.mjs. sunU is the sun azimuth sky.ts HDRI_SUN_U already rotates by, so the repaint lands its sun where the renderer expects it; sunV is the fallback sun polar position (0 zenith, 0.5 horizon) when the painting has no sun of its own; paintedSun pins the painting's own sun when the automatic search misses it. target is the measured irradiance (REALM_SKY_IRRADIANCE) the open sky is calibrated to, so day tuning and the night normalization keep their split. gain and clamp mirror sky.ts HDRI_TUNE.",
+  "style": "Painted fantasy storybook game art, soft painterly brushwork. A seamless 360 degree equirectangular sky panorama in a 2:1 frame: the horizon is one perfectly level line exactly across the middle of the image, sky above, a calm open sea below reflecting the sky, and the left and right edges continue into each other. No land, no mountains, no trees, no buildings, no people, no birds, no frame, and never any words, letters, numbers, signatures or watermarks.",
+  "skies": [
+    {
+      "stem": "hollow_dusk",
+      "biome": "dusk",
+      "gain": 0.55,
+      "clamp": 2.2,
+      "target": 0.2498,
+      "sunU": 0.745,
+      "sunV": 0.47,
+      "paintedSun": [0.52, 0.455],
+      "sun": {
+        "radiance": 24,
+        "radiusDeg": 0.7,
+        "haloDeg": 7,
+        "haloGain": 0.6,
+        "color": [1, 0.78, 0.7]
+      },
+      "prompt": "A rose and lilac dusk: swirling soft pink and violet cloud ribbons, a warm low sun just above the horizon glowing coral, the zenith a deeper mauve, gentle mist on the water."
+    },
+    {
+      "stem": "ember_storm",
+      "biome": "ember",
+      "gain": 0.5,
+      "clamp": 2.0,
+      "target": 0.0432,
+      "sunU": 0.385,
+      "sunV": 0.42,
+      "sun": {
+        "radiance": 6,
+        "radiusDeg": 0.9,
+        "haloDeg": 10,
+        "haloGain": 0.25,
+        "color": [1, 0.55, 0.3]
+      },
+      "prompt": "A dark volcanic storm sky: heavy churning ash-brown storm clouds lit from beneath by ember orange and red fire glow, a smouldering crimson haze along the horizon, a dim sun barely burning through the smoke, dark water mirroring the red glow."
+    },
+    {
+      "stem": "frost_twilight",
+      "biome": "frost",
+      "gain": 0.5,
+      "clamp": 2.0,
+      "target": 0.3977,
+      "sunU": 0.5,
+      "sunV": 0.47,
+      "sun": {
+        "radiance": 20,
+        "radiusDeg": 0.6,
+        "haloDeg": 8,
+        "haloGain": 0.5,
+        "color": [0.92, 0.96, 1]
+      },
+      "prompt": "A cold winter twilight: pale ice blue sky with long wispy frost cirrus streaks, a faint teal aurora shimmer, a small white sun low near the horizon, a bright frosty haze at the horizon, still steel blue water below."
+    },
+    {
+      "stem": "amber_sunset",
+      "biome": "amber",
+      "gain": 0.55,
+      "clamp": 2.2,
+      "target": 0.5449,
+      "sunU": 0.501,
+      "sunV": 0.44,
+      "sun": {
+        "radiance": 30,
+        "radiusDeg": 0.7,
+        "haloDeg": 9,
+        "haloGain": 0.8,
+        "color": [1, 0.86, 0.6]
+      },
+      "prompt": "A warm golden sunset: honey, cream and amber clouds curling across the whole sky, a bright golden sun low over the horizon, soft peach light, the zenith a pale warm gold, glittering golden water below."
+    },
+    {
+      "stem": "fen_day",
+      "biome": "fen",
+      "gain": 0.6,
+      "clamp": 2.6,
+      "target": 0.9541,
+      "sunU": 0.497,
+      "sunV": 0.22,
+      "sun": {
+        "radiance": 40,
+        "radiusDeg": 0.6,
+        "haloDeg": 8,
+        "haloGain": 0.9,
+        "color": [1, 0.97, 0.9]
+      },
+      "prompt": "A bright clear summer day: a soft turquoise blue sky, scattered fluffy white cumulus clouds, a high bright sun, a pale luminous haze along the horizon, gentle sparkling blue water below."
+    },
+    {
+      "stem": "nightbloom_dream",
+      "biome": "night",
+      "gain": 0.55,
+      "clamp": 2.2,
+      "target": 0.048,
+      "sunU": 0.324,
+      "sunV": 0.45,
+      "sun": {
+        "radiance": 4,
+        "radiusDeg": 0.8,
+        "haloDeg": 8,
+        "haloGain": 0.12,
+        "color": [0.85, 0.75, 1]
+      },
+      "prompt": "A dreamlike night: a deep indigo sky full of tiny stars, drifting violet and magenta nebula clouds, a small pale lavender moon low near the horizon, a glowing violet line of light along the horizon, a dark sea shimmering with violet reflections."
+    },
+    {
+      "stem": "wraithwood_gloom",
+      "biome": "haunt",
+      "gain": 0.6,
+      "clamp": 1.8,
+      "target": 0.3413,
+      "sunU": 0.282,
+      "sunV": 0.48,
+      "sun": {
+        "radiance": 8,
+        "radiusDeg": 0.8,
+        "haloDeg": 9,
+        "haloGain": 0.3,
+        "color": [0.95, 0.93, 0.88]
+      },
+      "prompt": "A gloomy haunted overcast: a heavy blanket of grey storm clouds in soft layers, cold muted silver light, a pale dying sun glowing faintly through the clouds low on the horizon, flat grey misty water below."
+    }
+  ]
+}

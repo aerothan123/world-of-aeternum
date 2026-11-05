@@ -90,8 +90,10 @@ For reference-image reconstruction and procedural GLB authoring, read the living
   produces three KTX2 UASTC HDR files (`_2k` and `_1k` for the two dome tiers, `_512` for
   the PMREM prefilter source); `src/render/sky.ts` requests them through `loadKtx2Texture`
   and there is NO Radiance arm at runtime, so a missing or stale `.ktx2` is a black sky, not
-  a slow path. The `.hdr` masters are never deleted: `skies_in/` holds only LDR PNGs and the
-  PNG-to-Radiance step is a maintainer-local tool, so they are the repo's only HDR source.
+  a slow path. The `.hdr` masters are never deleted: they are the repo's only HDR source. The
+  realm skies' PNG-to-Radiance step is `paint_realm_skies.mjs` (`paint` then `build`; maths in
+  `lib/sky_rgbe_core.mjs`, pinned by `tests/sky_rgbe_core.test.ts`; specs and the Tripo task ledger
+  in `specs/realm_skies*.json*`), whose source paintings stay maintainer-local in `tmp/realm_skies/`.
   Unlike the LDR sets this needs `basisu` (BinomialLLC/basis_universal v1.50+), NOT `ktx`:
   through KTX-Software 4.4 `ktx create --encode` takes only the two LDR codecs and rejects
   `--format ASTC_4x4_SFLOAT_BLOCK`, so it cannot write UASTC HDR at all. The distinction is
