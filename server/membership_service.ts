@@ -223,12 +223,20 @@ const service = createMembershipService({
 // Early Access: with membership switched off (server/early_access_flags.ts) every
 // account reads as inactive. Nothing is queried or written, so the stored
 // prepaid and subscription rows stay exactly as they are for a later switch-on.
-export const getMembership: typeof service.get = (accountId) =>
-  SERVER_EARLY_ACCESS.membership ? service.get(accountId) : Promise.resolve(inactive());
-export const getMembershipBatch: typeof service.getBatch = (accountIds) =>
-  SERVER_EARLY_ACCESS.membership
-    ? service.getBatch(accountIds)
-    : Promise.resolve(new Map(accountIds.map((id) => [id, inactive()] as const)));
+export function gateMembershipService(
+  inner: Pick<ReturnType<typeof createMembershipService>, 'get' | 'getBatch'>,
+  enabled: boolean,
+): Pick<ReturnType<typeof createMembershipService>, 'get' | 'getBatch'> {
+  if (enabled) return inner;
+  return {
+    get: () => Promise.resolve(inactive()),
+    getBatch: (accountIds) =>
+      Promise.resolve(new Map(accountIds.map((id) => [id, inactive()] as const))),
+  };
+}
+const gated = gateMembershipService(service, SERVER_EARLY_ACCESS.membership);
+export const getMembership = gated.get;
+export const getMembershipBatch = gated.getBatch;
 export const bustMembership = service.bust;
 
 export function trustedRecurringMembershipExpiry(

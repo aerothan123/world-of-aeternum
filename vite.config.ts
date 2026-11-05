@@ -1545,6 +1545,14 @@ export default defineConfig({
     env: {
       DATABASE_URL:
         process.env.DATABASE_URL ?? 'postgres://vitest:vitest@127.0.0.1:5433/wocc_vitest_dummy',
+      // The inherited membership and Claudium suites test those systems as they
+      // ship when switched on; the Early Access OFF state (the realm and build
+      // default, src/early_access_flags.ts) is pinned through explicit flags in
+      // tests/early_access_flags.test.ts.
+      MEMBERSHIP_ENABLED: '1',
+      CLAUDIUM_ENABLED: '1',
+      VITE_MEMBERSHIP_ENABLED: '1',
+      VITE_CLAUDIUM_ENABLED: '1',
     },
     // happy-dom resolves a relative resource URL against its window origin,
     // which vitest defaults to http://localhost:3000, and then opens a REAL
