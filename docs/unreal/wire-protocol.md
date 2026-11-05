@@ -1,7 +1,8 @@
-# Wire protocol for a non-JS client (Unity)
+# Wire protocol for a non-JS client (engine-neutral; Unreal notes)
 
-Status: planning spec, written against `feature/player-housing` (merge `64d84727`). No Unity
-code exists yet. This file states what a Unity client must speak to play online against the
+Status: planning spec, written against `feature/player-housing` (merge `64d84727`). No Unreal
+client code exists yet. This file states what any non-JS client (the planned Unreal Engine 5.8
+client) must speak to play online against the
 unchanged TypeScript server, and where every rule lives in the source. It follows the anchor
 rule (`docs/qa-gate.md`): it cites paths, exported symbols and pinned tests, never line numbers.
 
@@ -13,7 +14,7 @@ round trip), `tests/command_schema.test.ts` (W0b), `tests/command_facets.test.ts
 ## 0. The big picture
 
 ```
-Unity client                                   server (Node, unchanged)
+Unreal client                                  server (Node, unchanged)
  REST  POST /api/login | /api/auth/steam  --->  server/auth_routes.ts, server/steam_login.ts
        GET  /api/characters               --->  server/characters.ts
  WS    wss://<realm>/ws                    --->  server/ws_auth.ts createWsAuth
@@ -31,10 +32,12 @@ authoritative for every outcome (`server/CLAUDE.md`, "Trust nothing from the cli
 - World units are yards. The sim is Y-up with the ground plane on `x`/`z` (`src/sim/types.ts`).
 - Facing `f` is radians. Forward is `(sin f, cos f)` on `(x, z)` and right is `(-cos f, sin f)`
   (`stepPlayerMotion` in `src/sim/player_motion.ts`), which is a right-handed frame.
-- Unity is left-handed. Use exactly one conversion everywhere: `unity = (-x, y, z)` and
-  `unityYawDegrees = -f * 180 / PI`. With that mapping sim forward becomes Unity `+Z` and sim
-  right becomes Unity `+X`. Put it in one C# static (`SimSpace`) and unit-test it against
-  recorded server frames; never convert ad hoc.
+- Unreal is left-handed, Z-up, in centimetres, with actor forward on `+X` and right on `+Y`.
+  Use exactly one conversion everywhere: `ue = (z, -x, y) * 91.44` (1 yd = 91.44 cm) and
+  `ueYawDegrees = -f * 180 / PI`. With that mapping sim forward becomes Unreal `+X`, sim right
+  becomes `+Y` and sim up becomes `+Z`. Put it in one C++ function library (`FSimSpace`) and
+  unit-test it against recorded server frames; never convert ad hoc. Positions stay `double`
+  (UE 5 Large World Coordinates) so no precision is lost on the way in.
 - The sim tick is fixed at 20 Hz (`DT = 1 / TICK_RATE`, `src/sim/types.ts`).
 
 ## 1. REST authentication
@@ -44,7 +47,7 @@ All REST calls go to the realm origin chosen from the realm directory and carry
 Bodies are JSON. Errors are `{ error, code }`; a client localizes `code` first
 (`userFacingApiError`, `src/ui/api_error_i18n.ts`; codes in `server/http/error_codes.ts`).
 
-### 1.1 Origin and anti-bot gates (a Unity client must handle these)
+### 1.1 Origin and anti-bot gates (a native client must handle these)
 
 - `POST /api/login` and `POST /api/register` run `webLoginGuard`, `ipRateLimitGuard` and
   `turnstileGuard` (`server/auth_routes.ts`). In production `webLoginEnforced()` is on
@@ -53,10 +56,10 @@ Bodies are JSON. Errors are `{ error, code }`; a client localizes `code` first
 - The Electron shell passes both gates by sending `Origin: app://worldofclaudecraft`
   (`DESKTOP_APP_ORIGINS` in `server/web_login_guard.ts`); `passesTurnstile` then returns true for
   a desktop origin without a Turnstile token (`isDesktopAppRequest` in `server/turnstile.ts`).
-- A Unity client is a native desktop program, so it must send that same header on REST calls
-  (C# `HttpClient` allows it). This is the documented softening described in `server/CLAUDE.md`
-  ("Realms / auth / limits"). OWNER DECISION: either accept that the Unity client reuses the
-  desktop origin, or add a dedicated `app://wyndlewood-unity` entry to `DESKTOP_APP_ORIGINS`
+- An Unreal client is a native desktop program, so it must send that same header on REST calls
+  (the `HTTP` module's `IHttpRequest::SetHeader` allows it). This is the documented softening described in `server/CLAUDE.md`
+  ("Realms / auth / limits"). OWNER DECISION: either accept that the Unreal client reuses the
+  desktop origin, or add a dedicated `app://wyndlewood-unreal` entry to `DESKTOP_APP_ORIGINS`
   (a one-line server change plus its test) so the server can tell the clients apart.
 - The WebSocket upgrade has no Origin check (`attachUpgrade` in `server/ws_auth.ts` only checks
   the path `WS_UPGRADE_PATH`).
@@ -84,7 +87,7 @@ nativeAttestation }` (`Api.login`). Handler: `loginHandler` in `server/auth_rout
 On `feature/player-housing` Steam is LINK-ONLY: `server/steam/CLAUDE.md` says "LOGIN WITH
 STEAM DOES NOT EXIST" there, and only `POST /api/steam/link`, `DELETE /api/steam/link` and
 `GET /api/steam/status` exist (`server/steam/routes.ts`). Steam login is implemented on the
-unmerged branch `feature/steam-platform`. Spec from that branch, which a Unity client should
+unmerged branch `feature/steam-platform`. Spec from that branch, which a native client should
 target once it merges:
 
 - Capability advert: `GET /api/status` returns `steam: { enabled, login }`; the client only
@@ -101,15 +104,16 @@ target once it merges:
   (`createTicketReplayGuard`), so the 2FA retry MUST request a FRESH ticket and resend it with
   the code. The client never names its own Steam id; the server reads it from the verified
   ticket.
-- Unity side: Steamworks.NET or Facepunch.Steamworks provide `GetAuthTicketForWebApi`. The
+- Unreal side: the engine's Steam online subsystem plugin wraps Steamworks, and a thin C++
+  call to `SteamUser()->GetAuthTicketForWebApi("wyndlewood-login")` produces the ticket. The
   ticket bytes are hex-encoded before posting (`isTicketShape` in `server/steam/ticket.ts`).
 
 ### 1.4 Other sign-in surfaces (port later, not in the slice)
 
 Discord OAuth handoff, Apple, and the desktop login code pair (`POST /api/desktop-login/create`
 and `POST /api/desktop-login/exchange`, `server/desktop_login_routes.ts`) exist. The desktop code
-pair is the cheapest way to let the Unity client reuse a browser-side Discord login: the
-browser mints a code, the Unity client exchanges it for `{ token, username }`.
+pair is the cheapest way to let the Unreal client reuse a browser-side Discord login: the
+browser mints a code, the Unreal client exchanges it for `{ token, username }`.
 
 ### 1.5 Realms and characters
 
@@ -126,7 +130,7 @@ browser mints a code, the Unity client exchanges it for `{ token, username }`.
   `buildWebSocketUrl` in `src/net/world_auth_message.ts`).
 - Compression: the server negotiates permessage-deflate with context takeover
   (`server/ws_compression.ts`, about 9x to 12x smaller snapshots). A client that does not offer
-  it still works, uncompressed. See section 9 for the Unity library choice.
+  it still works, uncompressed. See section 9 for the client library choice.
 - Inbound cap: one client frame may be at most 16 KiB, inflated (`WS_MAX_PAYLOAD_BYTES`,
   `server/main.ts`; "Never widen WS maxPayload" in `server/CLAUDE.md`).
 - First frame, within `AUTH_TIMEOUT_MS` (10 s, `server/ws_auth.ts`), built exactly like
@@ -139,7 +143,7 @@ browser mints a code, the Unity client exchanges it for `{ token, username }`.
 
 | Field | Source of truth | Rule |
 |---|---|---|
-| `t` | `ONLINE_WORLD_AUTH_TYPE` = `auth-world-${ONLINE_WORLD_LAYOUT_VERSION}` (`src/world_api.ts`, currently 48) | exact match or the server refuses with `ONLINE_WORLD_INCOMPATIBLE_MESSAGE`. The Unity build must stamp the epoch from the TS source at build time (section 10), never hard-code it. |
+| `t` | `ONLINE_WORLD_AUTH_TYPE` = `auth-world-${ONLINE_WORLD_LAYOUT_VERSION}` (`src/world_api.ts`, currently 48) | exact match or the server refuses with `ONLINE_WORLD_INCOMPATIBLE_MESSAGE`. The client build must stamp the epoch from the TS source at build time (section 10), never hard-code it. |
 | `timerWire` | `STABLE_TIMER_WIRE_VERSION` (3) | opts into the stable timer wire (`exp` deadlines, `tw` head, auras delta-elided) |
 | `petSpecialWire` | `PET_SPECIAL_WIRE_VERSION` (1) | echoed as `psw` in snapshots |
 | `dungeonEntryFacingWire` | `DUNGEON_ENTRY_FACING_WIRE_VERSION` (1) | enables the `de` self key |
@@ -147,7 +151,7 @@ browser mints a code, the Unity client exchanges it for `{ token, username }`.
 | `clientVersion` | feature/steam-platform only | `server/client_version_gate.ts`: refused below `MIN_CLIENT_VERSION` with `client update required` |
 
 Each capability is negotiated by exact equality and silently downgrades when absent, so the
-Unity client must send every one (comment in `buildWebSocketAuthMessage`).
+client must send every one (comment in `buildWebSocketAuthMessage`).
 
 Refusals are always an `{ t: 'error', error: '<literal>' }` frame before close
 (`WS_AUTH_ERROR` in `server/ws_auth.ts`): `bad auth message`, `authentication required`,
@@ -238,7 +242,7 @@ Identity fields (only in full records; absence in a lite record means unchanged)
 
 A lite record for an id the client has never met is skipped (the server always sends
 identity first). For NPCs the client fills quest and vendor lists from `NPCS[tid]` in
-`src/sim/data.ts`, so the Unity client needs the content export (section 10).
+`src/sim/data.ts`, so a native client needs the content export (section 10).
 
 Dynamic fields (every record; `dynamicFields` in `server/game.ts`). Omit-when-default: an
 absent key decodes to its default, never "unchanged":
@@ -334,7 +338,7 @@ them (`applyLockpickEvent`, `applyCraftResultEvent`, `applyRiftStateEvent` and s
 `onMessage`).
 
 Server text inside events (`type: 'log' | 'error'`, chat notices) is English re-localized on
-the client by `localizeServerText` (`src/ui/server_i18n.ts`). A Unity client needs the same
+the client by `localizeServerText` (`src/ui/server_i18n.ts`). A native client needs the same
 matcher (section 10).
 
 ## 6. Client to server frames
@@ -373,7 +377,7 @@ The client runs a fixed 20 Hz input tick and sends one frame per tick
   is far below this.
 
 Legacy v1 (`sendInput` in `online.ts`, constants in `src/net/input_send_cadence.ts`) is a held
-boolean state sent on a 50 ms timer plus a 16 ms gated changed-only flush. A Unity client
+boolean state sent on a 50 ms timer plus a 16 ms gated changed-only flush. A native client
 should implement v2 only and treat a v1 `hello` as incompatible.
 
 ### 6.2 Commands (`cmd`)
@@ -406,7 +410,7 @@ member (`src/world_api/<domain>.ts`) and the `case` in `dispatchMessage`.
   `server/interest_scope.ts`.
 - Update rate by distance (`isUpdateDue`, `server/entity_update_cadence.ts`): every snapshot
   inside 55 yd, every second snapshot to 80 yd, every fourth beyond. The viewer's target and
-  anything attacking the viewer always update at full rate. So a Unity client must
+  anything attacking the viewer always update at full rate. So a native client must
   interpolate each entity on its OWN measured cadence (`reanchorDecision` in
   `src/net/entity_reanchor.ts`, `netInterval`) and must not assume 50 ms everywhere.
 - Fog of interest is a server duty: enemies past the radius are never shipped, so a client can
@@ -428,17 +432,17 @@ member (`src/world_api/<domain>.ts`) and the `case` in `dispatchMessage`.
   `onMessage`: `marketInfo`, `harvestPreference`, `gatheringGoal`, quest world state, vault),
   then re-push session preferences (`resendSessionPreferences`).
 
-## 9. What the current client runs locally, and what Unity must replicate
+## 9. What the current client runs locally, and what Unreal must replicate
 
 `ClientWorld` is presentation only, but it is not thin. It imports more than a hundred
 modules from `src/sim/` (`grep "from '../sim/" src/net/*.ts`), in four groups:
 
-| Group | Examples | Why the client needs it | Unity options |
+| Group | Examples | Why the client needs it | Unreal options |
 |---|---|---|---|
 | A. Content tables | `src/sim/data.ts` (`NPCS`, `MOBS`, items, abilities), `src/sim/content/*` | names, icons, vendor and quest lists, tooltips, model keys | export to JSON at build time (section 10); no porting |
-| B. Pure display rules | `abilitiesKnownAt`, `computeQuestState`, `resolveAbilityChain`, `applyAbilityCostTail`, talent resolution, item tooltip math | the HUD shows the same numbers the sim uses | port the slice's few to C#; long term embed the TS (below) |
+| B. Pure display rules | `abilitiesKnownAt`, `computeQuestState`, `resolveAbilityChain`, `applyAbilityCostTail`, talent resolution, item tooltip math | the HUD shows the same numbers the sim uses | port the slice's few to C++; long term embed the TS (below) |
 | C. Movement kernel | `stepPlayerMotion` (`src/sim/player_motion.ts`), `resolveMovement` and `moverHeight` (`src/sim/colliders.ts`), `terrainHeight` (`src/sim/world.ts`), ladders, slopes, decks, rift floors | local-player prediction must be bit-exact with the server (`tests/player_motion.test.ts`, `tests/movement_latency_baseline.test.ts`) | see below |
-| D. Wire decoders | every `src/net/*_wire.ts` | turn terse JSON into typed state | port to C# alongside generated DTOs |
+| D. Wire decoders | every `src/net/*_wire.ts` | turn terse JSON into typed state | port to C++ alongside generated `USTRUCT` DTOs |
 
 The movement kernel is the hard part. The v2 predictor (`src/render/self_prediction.ts`,
 `self_prediction_core.ts`) replays the exact input frames through the shared kernel and
@@ -449,13 +453,14 @@ rift regions). Three options:
 1. **No local prediction (slice default).** Draw the self entity interpolated from snapshots,
    like `?nopredict` (`src/render/self_render_position_core.ts`). Input latency becomes one
    round trip. Acceptable for the visual slice, NOT acceptable for launch.
-2. **Embed the TS kernel in Unity** with a V8 runtime (PuerTS, BSD-3, V8 backend, Windows and
-   Linux; see `cost-and-risk.md`). The same JS doubles as Node, so the kernel and its collider
+2. **Embed the TS kernel in Unreal** with a V8 runtime (PuerTS, BSD-3, which supports Unreal as
+   well as Unity, V8 backend, Windows and Linux; see `cost-and-risk.md`). The same JS doubles as Node, so the kernel and its collider
    data run unchanged; the bundle is produced by esbuild from `src/sim/player_motion.ts` and
    its imports. Cost: a V8 dependency, a per-tick interop call, and keeping the world
    collision data in JS memory.
-3. **Port the kernel to C#** with `double` math. Exactness is plausible (C# `double` is IEEE
-   754 and `Math.Sin`/`Math.Cos` are the platform libm) but NOT guaranteed bit-identical to V8
+3. **Port the kernel to C++** with `double` math. Exactness is plausible (`double` is IEEE 754 and
+   `std::sin`/`std::cos` are the platform libm, but MSVC floating-point flags such as `/fp:fast`
+   must be off for that module) but NOT guaranteed bit-identical to V8
    for transcendental functions, and every future sim change to movement must be ported in the
    same change. Highest long-term risk.
 
@@ -464,32 +469,33 @@ the recorded-input replay from `tests/movement_latency_baseline.test.ts` through
 measure exact-match rate and per-tick cost. Prefer option 2 if it holds; it also hosts group B
 for free and keeps "one sim, three hosts" honest.
 
-Network library: the server benefits from permessage-deflate with context takeover.
-`System.Net.WebSockets.ClientWebSocket` supports it through `DangerousDeflateOptions`
-([Microsoft docs](https://learn.microsoft.com/dotnet/fundamentals/networking/websockets)), but
-that is a modern .NET API; whether Unity's scripting runtime exposes it must be verified in
-milestone M2. websocket-sharp supports compression only WITHOUT context takeover
-([repo](https://github.com/nozomi-ai/websocket-sharp/)), which loses most of the saving. Budget
-for an uncompressed fallback and measure the bandwidth with `tests/bandwidth.test.ts` style
-frames.
+Network library: the server benefits from permessage-deflate with context takeover
+(`server/ws_compression.ts`). Unreal ships a `WebSockets` module (`FWebSocketsModule`, built on
+libwebsockets on desktop). Whether its client negotiates permessage-deflate with context
+takeover must be verified in milestone M2 of `vertical-slice-plan.md` by inspecting the
+handshake against a local server; if it does not, either enable the libwebsockets extension in
+a small engine-module patch or accept uncompressed frames and measure the bandwidth with
+`tests/bandwidth.test.ts` style frames (about 9x to 12x more downstream per the
+`server/ws_compression.ts` measurements).
 
-## 10. Keeping a C# client in lockstep (generated, never hand-copied)
+## 10. Keeping a C++ client in lockstep (generated, never hand-copied)
 
 A second client in another language doubles the lockstep surface the TS pins protect. The
 plan: generate, then pin.
 
-- A Node exporter in this repo (proposed `scripts/unity/export_protocol.mjs`) emits, from the
+- A Node exporter in this repo (proposed `scripts/unreal/export_protocol.mjs`) emits, from the
   TS source of truth: `ONLINE_WORLD_LAYOUT_VERSION` and every capability version,
   `COMMAND_NAMES` and `DISPATCH_ONLY_COMMANDS`, `ALL_DELTA_KEYS` and `TERSE_TO_IWORLD`, the
   reconnect literals, and JSON Schemas for `SimEvent`, `WireAura` and the self record built
   from the TS types (for example with `typescript-json-schema`).
-- C# DTOs are generated from those schemas (for example with quicktype) inside the Unity repo.
-- A Vitest in this repo (proposed `tests/unity_protocol_export.test.ts`) fails when the export
+- C++ `USTRUCT` DTOs and JSON readers are generated from those schemas by a small generator in
+  the Unreal project repo (FJsonObjectConverter maps `UPROPERTY` names to the terse keys).
+- A Vitest in this repo (proposed `tests/unreal_protocol_export.test.ts`) fails when the export
   is stale, the same freshness pattern `tests/guide.test.ts` uses for the wiki.
 - Golden frames: record real `hello`/`snap`/`events` frames from a local server session and
-  replay them through both the TS `ClientWorld.applySnapshot` and the C# decoder, comparing the
-  resulting mirrored state. This is the C# twin of the W0a round trip.
-- Content export (proposed `scripts/unity/export_content.mjs`): `src/sim/data.ts` tables and the
+  replay them through both the TS `ClientWorld.applySnapshot` and the C++ decoder, comparing the
+  resulting mirrored state. This is the C++ twin of the W0a round trip.
+- Content export (proposed `scripts/unreal/export_content.mjs`): `src/sim/data.ts` tables and the
   resolved English i18n catalog (`src/ui/i18n.resolved.generated/en.ts`, plus locales) as JSON.
 
 ## Appendix: command table (generated from `src/net/` call sites and `COMMAND_FACETS`)
