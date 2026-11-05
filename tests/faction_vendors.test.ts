@@ -31,6 +31,7 @@ import {
 } from '../src/sim/item_budget';
 import { meetsLevelRequirement, requiredLevelFor } from '../src/sim/item_level_req';
 import { Sim } from '../src/sim/sim';
+import type { ItemDef } from '../src/sim/types';
 import { buildVendorView } from '../src/ui/hud/vendor/vendor_view';
 
 const LADDER_TIERS = ['recognized', 'trusted', 'proven', 'vanguard', 'champion'] as const;
@@ -45,9 +46,6 @@ const FORMULA_IDS = [
 // sells only the allied rows for now: no faction-owned ladder yet, so the
 // ladder-shape pins below cover the three factions that have one.
 const FULL_LADDER_FACTIONS = FACTION_IDS.filter((f) => f !== 'bracken_circle');
-// House furniture rows (content/furniture.ts pieces) ride the ladders as the
-// cosmetic value above the quest-tier gear.
-const isFurniture = (id: string) => id.startsWith('furn_');
 
 describe('Faction Vendors & Reroll NPC content', () => {
   it('registers all three faction quartermasters and the taskmaster in NPCS', () => {
@@ -77,15 +75,14 @@ describe('Faction Vendors & Reroll NPC content', () => {
     expect(Object.keys(FACTION_VENDOR_NPCS)).toHaveLength(4);
   });
 
-  it('the stock lists and the gate table name the same 60 rows, all priced in marks but the reins', () => {
+  it('the stock lists and the gate table name the same 47 rows, all priced in marks but the reins', () => {
     const stockIds = FACTION_IDS.flatMap((f) => [...FACTION_VENDOR_STOCK[f]]);
     const unique = new Set(stockIds);
     // The three allied rows stand on every ladder; every other row on one.
-    // The Bracken Circle (Wyndlewood) sells the three allied rows and five
-    // furniture pieces until its gear ladder is authored; the other three
-    // ladders add eight furniture pieces between them.
-    expect(stockIds).toHaveLength(69);
-    expect(unique.size).toBe(60);
+    // The Bracken Circle (Wyndlewood) sells only the three allied rows until
+    // its own ladder is authored, so it adds 3 listings and no unique row.
+    expect(stockIds).toHaveLength(56);
+    expect(unique.size).toBe(47);
     expect([...unique].sort()).toEqual(Object.keys(FACTION_VENDOR_GATES).sort());
     // The Valestrider reins sit with the other reins and the Ink with the quest
     // items (content/items.ts); the item table also authors what the sold
@@ -99,9 +96,7 @@ describe('Faction Vendors & Reroll NPC content', () => {
     ];
     expect(
       [...unique]
-        .filter(
-          (id) => id !== 'reins_avian_strider' && id !== 'cartographers_ink' && !isFurniture(id),
-        )
+        .filter((id) => id !== 'reins_avian_strider' && id !== 'cartographers_ink')
         .concat(CRAFTED)
         .sort(),
     ).toEqual(Object.keys(FACTION_VENDOR_ITEMS).sort());
@@ -165,7 +160,7 @@ describe('Faction Vendors & Reroll NPC content', () => {
   it('every tier sells the lane the design names: neck, ring + bag, periphery + formula, weapon, jewels', () => {
     const slotsAt = (factionId: (typeof FACTION_IDS)[number], tier: string) =>
       FACTION_VENDOR_STOCK[factionId]
-        .filter((id) => !isFurniture(id) && FACTION_VENDOR_GATES[id].standingTier === tier)
+        .filter((id) => FACTION_VENDOR_GATES[id].standingTier === tier)
         .map((id) => (ITEMS[id].kind === 'recipe' ? 'formula' : (ITEMS[id].slot ?? ITEMS[id].kind)))
         .sort();
     for (const factionId of FULL_LADDER_FACTIONS) {
@@ -273,7 +268,6 @@ describe('faction ladder gear stays at quest strength', () => {
     'expertiseRating',
     'spellPower',
     'healPower',
-    'blockValue',
   ];
 
   it('reprices every gear row to the quest-tier budget for its slot, its ratio kept', () => {
@@ -319,7 +313,7 @@ describe('faction ladder gear stays at quest strength', () => {
         !Object.hasOwn(FACTION_VENDOR_ITEMS, def.id) &&
         (def.requiredLevel ?? 20) <= 20,
     );
-    const line = (def: (typeof gear)[number]) => {
+    const line = (def: ItemDef) => {
       const { armor: _armor, ...rest } = def.stats ?? {};
       return Object.values(rest).reduce((a, b) => a + (b ?? 0), 0);
     };
@@ -354,17 +348,6 @@ describe('faction ladder gear stays at quest strength', () => {
     for (const id of ['rift_surveyors_satchel', 'clockwork_tinkers_pack']) {
       expect(ITEMS[id].kind, id).toBe('bag');
       expect(ITEMS[id].bagSlots, id).toBe(14);
-    }
-  });
-
-  it('every faction ladder sells house furniture, one faction per piece', () => {
-    for (const factionId of FACTION_IDS) {
-      const pieces = FACTION_VENDOR_STOCK[factionId].filter(isFurniture);
-      expect(pieces.length, factionId).toBeGreaterThanOrEqual(2);
-      for (const id of pieces) {
-        expect(FACTION_VENDOR_GATES[id].factionId, id).toBe(factionId);
-        expect(ITEMS[id], id).toBeDefined();
-      }
     }
   });
 });

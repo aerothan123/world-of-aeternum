@@ -4,6 +4,7 @@
 // whatever the content modules currently export, so they hold as zones grow.
 import { describe, expect, it } from 'vitest';
 import { QUEST_CATCH_SPOTS } from '../src/sim/content/chapter_one';
+import { CHAPTER_TWO_CATCH_SPOTS } from '../src/sim/content/chapter_two';
 import { CHOICE_ROW_LEVELS, CHOICE_ROWS } from '../src/sim/content/choice_rows';
 import { FACTION_VENDOR_GATES } from '../src/sim/content/faction_vendors';
 import { FARM_CROPS } from '../src/sim/content/farm_crops';
@@ -76,7 +77,9 @@ function collectItemAcquirable(itemId: string, recipes = ALL_RECIPES): boolean {
       (q.requiredItems ?? []).includes(itemId) ||
       q.objectives.some((o) => o.type === 'interact' && o.yieldsItemId === itemId),
   );
-  const fromQuestCatch = QUEST_CATCH_SPOTS.some((spot) => spot.itemId === itemId);
+  const fromQuestCatch = [...QUEST_CATCH_SPOTS, ...CHAPTER_TWO_CATCH_SPOTS].some(
+    (spot) => spot.itemId === itemId,
+  );
   return (
     fromQuest ||
     fromQuestCatch ||

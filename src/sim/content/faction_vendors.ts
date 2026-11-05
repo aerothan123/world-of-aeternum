@@ -15,12 +15,14 @@
 // catalog, weapons on weaponDpsBudget. The tier lanes stay (a neck, a ring and
 // a bag, the periphery and formulas, a weapon, jewels), so a quartermaster
 // still fills empty slots on the day a tier opens; the value above that lives
-// in titles (the Champion deeds), furniture, the toys and the mount.
+// in titles (the Champion deeds), the toys and the mount. Furniture stays a
+// crafted good (tests/vendor_floor.test.ts: crafted pieces are never also
+// vendor stock), so faction furniture waits for faction-only patterns.
 //   Gilt Measure          Agility (rogue, hunter); was the Rift Watch's
 //   Lanternwardens        casters and healers; was the Church Order's
 //   Hearthwright Compact  Strength and the stamina line; was the Automatons'
-//   Bracken Circle        furniture and the allied rows (its gear ladder is a
-//                         follow-up; docs/narrative/wyndlewood_decisions.md)
+//   Bracken Circle        the allied rows only for now: its own ladder is a
+//                         follow-up (docs/narrative/wyndlewood_decisions.md)
 // Item ids shipped in the golden (tests/shipped_item_ids.golden.json) are
 // never deleted: the first-cut ids keep their slot and were re-statted.
 //
@@ -135,24 +137,6 @@ export const FACTION_VENDOR_GATES: Readonly<Record<string, FactionVendorGate>> =
   forgemaster_crag_cleaver: gate('hearthwright_compact', 'vanguard'),
   champion_forged_loop: gate('hearthwright_compact', 'champion'),
   forgewall_gorget: gate('hearthwright_compact', 'champion'),
-
-  // House furniture (content/furniture.ts, the housing pieces a player can
-  // also craft): the cosmetic value the Wyndlewood ladder moves above the
-  // quest-tier gear (docs/design/wyndlewood-faction-ladder.md section 5). One
-  // faction per piece, priced like a toy.
-  furn_candlestick: gate('lanternwardens', 'trusted', TOY_MARKS),
-  furn_trophy_plaque: gate('lanternwardens', 'vanguard', TOY_MARKS),
-  furn_station_forge: gate('hearthwright_compact', 'proven', TOY_MARKS),
-  furn_bookcase: gate('hearthwright_compact', 'vanguard', TOY_MARKS),
-  furn_station_toolworks: gate('hearthwright_compact', 'champion', TOY_MARKS),
-  furn_woven_rug: gate('bracken_circle', 'recognized', TOY_MARKS),
-  furn_station_apothecary: gate('bracken_circle', 'trusted', TOY_MARKS),
-  furn_barrel: gate('bracken_circle', 'proven', TOY_MARKS),
-  furn_oak_bench: gate('bracken_circle', 'vanguard', TOY_MARKS),
-  furn_station_tannery: gate('bracken_circle', 'champion', TOY_MARKS),
-  furn_keg: gate('gilt_measure', 'recognized', TOY_MARKS),
-  furn_round_table: gate('gilt_measure', 'proven', TOY_MARKS),
-  furn_station_kitchens: gate('gilt_measure', 'vanguard', TOY_MARKS),
 
   // Allied rows: every quartermaster, its own marks, the best standing.
   cartographers_ink: gate(undefined, 'recognized', 60),
@@ -789,7 +773,6 @@ export const FACTION_VENDOR_STOCK: Readonly<Record<FactionId, readonly string[]>
   gilt_measure: Object.freeze([
     'tidewatchers_locket',
     'cartographers_ink',
-    'furn_keg',
     'rift_watchers_band',
     'rift_surveyors_satchel',
     'rift_feather_glider',
@@ -800,11 +783,9 @@ export const FACTION_VENDOR_STOCK: Readonly<Record<FactionId, readonly string[]>
     'formula_enchant_feet_shadowstride',
     'recipe_potion_of_invisibility',
     'pattern_reinforced_armor_kit',
-    'furn_round_table',
     'riftwarden_voidblade',
     'allied_hearthstone',
     'allied_vanguard_duffel',
-    'furn_station_kitchens',
     'champion_rift_band',
     'riftwardens_pendant',
     // The Viridian Valestrider (content/items.ts, PR 4175): the ladder's
@@ -816,7 +797,6 @@ export const FACTION_VENDOR_STOCK: Readonly<Record<FactionId, readonly string[]>
     'cartographers_ink',
     'acolytes_signet',
     'dawn_battle_standard',
-    'furn_candlestick',
     'vestments_of_the_acolyte',
     'cord_of_the_dawn',
     'dawnlit_slippers',
@@ -828,7 +808,6 @@ export const FACTION_VENDOR_STOCK: Readonly<Record<FactionId, readonly string[]>
     'templar_dawn_shield',
     'allied_hearthstone',
     'allied_vanguard_duffel',
-    'furn_trophy_plaque',
     'champion_dawn_medallion',
     'champions_dawn_loop',
     'dawnkeepers_circle',
@@ -846,26 +825,18 @@ export const FACTION_VENDOR_STOCK: Readonly<Record<FactionId, readonly string[]>
     'formula_enchant_gloves_forged_might',
     'schematic_clockwork_shock_bomb',
     'plans_dense_sharpening_stone',
-    'furn_station_forge',
     'forgemaster_crag_cleaver',
     'allied_hearthstone',
     'allied_vanguard_duffel',
-    'furn_bookcase',
     'champion_forged_loop',
     'forgewall_gorget',
-    'furn_station_toolworks',
   ]),
-  // Furniture and the allied rows, bought with Bracken Acorns (its gear ladder
-  // is a follow-up; see the header).
+  // The allied rows only, bought with Bracken Acorns (its own ladder is a
+  // follow-up; see the header).
   bracken_circle: Object.freeze([
-    'furn_woven_rug',
     'cartographers_ink',
-    'furn_station_apothecary',
-    'furn_barrel',
     'allied_hearthstone',
     'allied_vanguard_duffel',
-    'furn_oak_bench',
-    'furn_station_tannery',
   ]),
 });
 
