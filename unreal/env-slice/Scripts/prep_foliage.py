@@ -23,7 +23,7 @@ MP = unreal.MaterialProperty
 
 
 def master(name, separate_alpha):
-    m = WM.fresh_material(W.ROOT + "/Materials/" + name)
+    m = WM.fresh_material(W.PLACEHOLDERS + "/Materials/" + name)
     m.set_editor_property("blend_mode", unreal.BlendMode.BLEND_MASKED)
     m.set_editor_property("two_sided", True)
     m.set_editor_property("shading_model", unreal.MaterialShadingModel.MSM_TWO_SIDED_FOLIAGE)
@@ -165,5 +165,45 @@ for p in lib.list_assets(W.MODELS + "/foliage", recursive=True, include_folder=F
         stats["leafSlots"] += 1
     if changed:
         lib.save_loaded_asset(m)
+
+
+def cover_master():
+    """Opaque two-sided foliage lit from the cover meshes' painted vertex
+    colours (root to tip), a Brightness scalar and a subsurface tint so the
+    blades glow when the low sun is behind them."""
+    m = WM.fresh_material(W.PLACEHOLDERS + "/Materials/M_Cover")
+    m.set_editor_property("two_sided", True)
+    m.set_editor_property("shading_model", unreal.MaterialShadingModel.MSM_TWO_SIDED_FOLIAGE)
+    m.set_editor_property("used_with_instanced_static_meshes", True)
+    m.set_editor_property("used_with_nanite", True)
+    g = WM.G(m)
+    vc = g.node(unreal.MaterialExpressionVertexColor, 3)
+    br = g.node(unreal.MaterialExpressionScalarParameter, 3, parameter_name="Brightness", default_value=1.0)
+    col = g.op(unreal.MaterialExpressionMultiply, vc, br, "RGB", "")
+    mel.connect_material_property(col, "", MP.MP_BASE_COLOR)
+    sss = g.op(unreal.MaterialExpressionMultiply, col, g.const(0.6))
+    mel.connect_material_property(sss, "", MP.MP_SUBSURFACE_COLOR)
+    mel.connect_material_property(g.const(0.75), "", MP.MP_ROUGHNESS)
+    mel.connect_material_property(g.const(0.0), "", MP.MP_METALLIC)
+    mel.recompile_material(m)
+    lib.save_loaded_asset(m)
+    return m
+
+
+cover = cover_master()
+stats["cover"] = 0
+for p in lib.list_assets(W.PLACEHOLDERS + "/Cover", recursive=True, include_folder=False):
+    m = lib.load_asset(p)
+    if isinstance(m, unreal.StaticMesh):
+        for i in range(len(m.get_editor_property("static_materials"))):
+            m.set_material(i, cover)
+        try:  # Nanite foliage: dense clumps stay cheap at range
+            ns = m.get_editor_property("nanite_settings")
+            ns.enabled = True
+            m.set_editor_property("nanite_settings", ns)
+        except Exception as err:
+            W.log("cover nanite: %s" % err)
+        lib.save_loaded_asset(m)
+        stats["cover"] += 1
 
 W.log("foliage prep %s" % stats)

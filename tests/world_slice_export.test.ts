@@ -1,8 +1,11 @@
 import fs from 'node:fs';
 import { NodeIO } from '@gltf-transform/core';
+import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
+import { coverGlbs } from '../scripts/world_export/cover_meshes';
 import { engineGlb, WEB_ONLY_EXTENSIONS } from '../scripts/world_export/engine_glb';
 import { EXPORT_SCRIPT } from '../scripts/world_export/export_slice.mjs';
+import { object3DToGlb } from '../scripts/world_export/procedural_glb';
 import { terrainTiles } from '../scripts/world_export/terrain_mesh';
 import type { WorldSliceExport } from '../scripts/world_export/world_slice_export';
 import {
@@ -19,6 +22,7 @@ import {
 } from '../scripts/world_export/world_slice_export';
 import { sunDirection } from '../src/render/day_night_core';
 import { getActiveWorldContent } from '../src/sim/data';
+import { EASTBROOK_LAYOUT } from '../src/sim/eastbrook_layout';
 import { generateGroundDressing } from '../src/sim/ground_dressing';
 import { generateDecorationsInBounds, terrainHeight } from '../src/sim/world';
 import { WORLD_SEED } from '../src/sim/world_seed';
@@ -87,7 +91,17 @@ describe('world slice export', () => {
     expect(by('buildings')).toBeGreaterThanOrEqual(6);
     const bank = placements.find((p) => p.id === 'eastbrook_bank');
     expect(bank?.path).toBe('/models/tidehold/bank.glb');
-    expect(bank?.y).toBe(terrainHeight(bank?.x ?? 0, bank?.z ?? 0, WORLD_SEED));
+    // stood as render/eastbrook_placed_building.ts stands it: layout anchor,
+    // turn and uniform scale, sunk by the layout's lift
+    const placed = EASTBROOK_LAYOUT.buildings.find((b) => b.id === 'eastbrook_bank')?.placement;
+    expect(placed).toBeDefined();
+    expect(bank?.x).toBe(placed?.x);
+    expect(bank?.rotY).toBe(placed?.rotation);
+    expect(bank?.fit).toEqual({ mode: 'raw', scale: placed?.scale });
+    expect(bank?.y).toBeCloseTo(
+      terrainHeight(bank?.x ?? 0, bank?.z ?? 0, WORLD_SEED) + (placed?.lift ?? 0),
+      9,
+    );
     for (const p of placements) expect(p.path).toMatch(/^\/models\/.+\.glb$/);
   });
 
@@ -152,5 +166,33 @@ describe('world slice export', () => {
     expect(propUrls.fence).toBe('/models/props/fence.glb');
     expect(propUrls.bonfire).toBe('/models/props/bonfire.glb');
     expect(fs.existsSync(EXPORT_SCRIPT)).toBe(true);
+  });
+
+  it('bakes code-built geometry to a world-space GLB', async () => {
+    const g = new THREE.Group();
+    const mesh = new THREE.Mesh(
+      new THREE.BoxGeometry(2, 2, 2),
+      new THREE.MeshStandardMaterial({ color: 0x8a6a4a, roughness: 0.9 }),
+    );
+    mesh.position.set(10, 1, -5);
+    g.add(mesh);
+    const doc = await new NodeIO().readBinary(await object3DToGlb(g, { name: 'box' }));
+    const prim = doc.getRoot().listMeshes()[0].listPrimitives()[0];
+    const pos = prim.getAttribute('POSITION')?.getArray() as Float32Array;
+    let minX = Infinity;
+    for (let i = 0; i < pos.length; i += 3) minX = Math.min(minX, pos[i]);
+    expect(minX).toBeCloseTo(9, 6);
+    expect(prim.getMaterial()?.getRoughnessFactor()).toBeCloseTo(0.9, 6);
+  });
+
+  it('writes deterministic vertex-coloured ground cover', async () => {
+    const a = await coverGlbs();
+    const b = await coverGlbs();
+    expect(a.map((c) => c.name)).toContain('grass_clump_a');
+    expect(a.some((c) => c.name.startsWith('flower_'))).toBe(true);
+    for (const [i, c] of a.entries())
+      expect(Buffer.compare(Buffer.from(c.bytes), Buffer.from(b[i].bytes))).toBe(0);
+    const doc = await new NodeIO().readBinary(a[0].bytes);
+    expect(doc.getRoot().listMeshes()[0].listPrimitives()[0].getAttribute('COLOR_0')).toBeTruthy();
   });
 });

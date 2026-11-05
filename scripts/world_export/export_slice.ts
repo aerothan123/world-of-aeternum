@@ -7,8 +7,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
+import type * as THREE from 'three';
 import { WORLD_SEED } from '../../src/sim/world_seed';
+import { coverGlbs } from './cover_meshes';
 import { engineGlb } from './engine_glb';
+import { object3DToGlb } from './procedural_glb';
 import { terrainTiles } from './terrain_mesh';
 import {
   EASTBROOK_VALE_SLICE,
@@ -79,6 +82,53 @@ const tiles = await terrainTiles(ex);
 fs.mkdirSync(path.join(outDir, 'terrain'), { recursive: true });
 for (const t of tiles) fs.writeFileSync(path.join(outDir, 'terrain', `${t.name}.glb`), t.bytes);
 
+// The slice's own stylized ground cover (cover_meshes.ts), a placeholder
+// until an engine-side foliage pass replaces it.
+fs.mkdirSync(path.join(outDir, 'cover'), { recursive: true });
+const cover = await coverGlbs();
+for (const c of cover) fs.writeFileSync(path.join(outDir, 'cover', `${c.name}.glb`), c.bytes);
+
+// Pieces the client builds in code rather than loading a GLB: the harbor
+// decks (render/eastbrook_harbor.ts) and the weekly vault
+// (render/eastbrook_weekly_vault.ts), baked to world space, placed at the
+// origin. A builder that cannot run outside the browser is reported, not fatal.
+const procedural: { path: string; error?: string }[] = [];
+const bakeProcedural = async (
+  name: string,
+  build: () => Promise<THREE.Object3D>,
+): Promise<void> => {
+  const rel = `/models/procedural/${name}.glb`;
+  try {
+    const root = await build();
+    const bytes = await object3DToGlb(root, { name });
+    fs.mkdirSync(path.join(outDir, 'models/procedural'), { recursive: true });
+    fs.writeFileSync(path.join(outDir, rel), bytes);
+    ex.placements.push({
+      id: `procedural:${name}`,
+      source: 'procedural',
+      path: rel,
+      x: 0,
+      y: 0,
+      z: 0,
+      rotY: 0,
+      fit: { mode: 'raw', scale: 1 },
+      seatOnGround: false,
+    });
+    procedural.push({ path: rel });
+  } catch (err) {
+    procedural.push({ path: rel, error: err instanceof Error ? err.message : String(err) });
+  }
+};
+await bakeProcedural('eastbrook_harbor', async () =>
+  (await import('../../src/render/eastbrook_harbor')).buildEastbrookHarbor(WORLD_SEED),
+);
+await bakeProcedural('eastbrook_weekly_vault', async () => {
+  const { buildEastbrookWeeklyVault } = await import('../../src/render/eastbrook_weekly_vault');
+  const { terrainHeight } = await import('../../src/sim/world');
+  const v = buildEastbrookWeeklyVault((x, z) => terrainHeight(x, z, WORLD_SEED));
+  return (v as { group?: THREE.Object3D }).group ?? (v as unknown as THREE.Object3D);
+});
+
 // GLBs: each referenced file is rewritten under its public path as a plain
 // glTF binary (meshopt decoded, attributes dequantized, KTX2 and WebP decoded
 // to PNG, engine_glb.ts), since desktop importers do not read the web
@@ -97,6 +147,11 @@ interface ModelRow {
 }
 const models: ModelRow[] = [];
 for (const p of glbPaths) {
+  if (p.startsWith('/models/procedural/')) {
+    const bytes = fs.statSync(path.join(outDir, p)).size;
+    models.push({ path: p, sourceBytes: 0, bytes, sourceExtensions: [], extensionsUsed: [] });
+    continue;
+  }
   const src = path.join(repo, 'public', p);
   if (!fs.existsSync(src)) {
     models.push({
@@ -195,6 +250,8 @@ const manifest = {
     roads: ex.roads.length,
     lakes: ex.water.lakes.length,
     pointLights: ex.lights.pointLights.length,
+    procedural,
+    cover: cover.map((c) => c.name),
     models: models.length,
     modelsMissing: models.filter((m) => m.missing).map((m) => m.path),
     modelsFailed: models.filter((m) => m.error).map((m) => `${m.path}: ${m.error}`),

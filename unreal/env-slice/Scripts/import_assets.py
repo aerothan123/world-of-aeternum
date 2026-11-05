@@ -1,6 +1,6 @@
 # Imports the world slice export (terrain tiles, the PNG rasters, every placed
 # and scattered GLB) and the CC0 Poly Haven ground textures and plant models
-# into /Game/EnvSlice. Idempotent: an asset that already exists is skipped
+# into /Game/Wyndlewood/World (wynd_common paths). Idempotent: an asset that already exists is skipped
 # unless WYND_REIMPORT=1.
 import os
 import sys
@@ -60,6 +60,13 @@ def main():
         if import_folder(src, W.model_folder(m["path"])) == 0:
             stats["failed"].append(m["path"])
         stats["models"] += 1
+    # the slice's own placeholder ground cover (cover_meshes.ts), until the
+    # nature crew's PCG grass and flowers replace it
+    stats["cover"] = 0
+    for name in manifest["stats"].get("cover", []):
+        src = os.path.join(W.EXPORT, "cover", name + ".glb")
+        if import_folder(src, W.PLACEHOLDERS + "/Cover/" + name) != 0:
+            stats["cover"] += 1
     rasters = W.ROOT + "/Rasters"
     import_texture(os.path.join(W.EXPORT, "splat_control.png"), rasters, TC.TC_VECTOR_DISPLACEMENTMAP, False, True)
     import_texture(os.path.join(W.EXPORT, "splat_cobble.png"), rasters, TC.TC_VECTOR_DISPLACEMENTMAP, False, True)

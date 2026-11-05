@@ -205,18 +205,23 @@ def build_scatter(sl):
     sl.stats["scatter"] = total
 
 
-# Poly Haven ground cover: (asset, density raster, keep probability, scale range)
+# Placeholder ground cover, the export's own painted clumps (cover_meshes.ts)
+# until the nature crew's PCG layer lands: (mesh, density raster, keep
+# probability, scale range). Grass keeps near full cover on turf; the
+# meadow flowers ride the exported flower density.
 COVER = [
-    ("grass_medium_02", "grass", 0.85, (1.3, 2.1)),
-    ("grass_bermuda_01", "grass", 0.45, (1.1, 1.7)),
-    ("dandelion_01", "flowers", 0.28, (1.2, 1.7)),
-    ("flower_gazania", "flowers", 0.22, (1.4, 2.0)),
-    ("flower_ursinia", "flowers", 0.22, (1.3, 1.9)),
-    ("periwinkle_plant", "flowers", 0.18, (1.1, 1.6)),
+    ("grass_clump_a", "grass", 0.62, (0.9, 1.25)),
+    ("grass_clump_c", "grass", 0.42, (0.9, 1.3)),
+    ("grass_clump_b", "grass", 0.2, (0.85, 1.15)),
+    ("flower_daisy", "flowers", 0.3, (0.9, 1.3)),
+    ("flower_buttercup", "flowers", 0.26, (0.9, 1.3)),
+    ("flower_campion", "flowers", 0.12, (0.9, 1.2)),
+    ("flower_cornflower", "flowers", 0.12, (0.9, 1.2)),
 ]
+COVER_ROOT = W.PLACEHOLDERS + "/Cover/"
 
 
-def build_ground_cover(sl, areas, step=0.38):
+def build_ground_cover(sl, areas, step=0.3):
     """Jittered-grid instances inside each (x, z, radius) area, kept with the
     exported density as the probability. Deterministic (fixed seed)."""
     rng = random.Random(20061)
@@ -225,7 +230,7 @@ def build_ground_cover(sl, areas, step=0.38):
     for asset, _, _, _ in COVER:
         meshes = [
             lib.load_asset(p)
-            for p in lib.list_assets(W.PH + "/Plants/" + asset, True, False)
+            for p in lib.list_assets(COVER_ROOT + asset, True, False)
         ]
         meshes = [m for m in meshes if isinstance(m, unreal.StaticMesh)]
         comps[asset] = [instancer("cover_%s_%s" % (asset, m.get_name()), m, False, 9000) for m in meshes]
@@ -248,7 +253,7 @@ def build_ground_cover(sl, areas, step=0.38):
                 roll = rng.random()
                 acc = 0.0
                 for asset, raster, keep, (s0, s1) in COVER:
-                    acc += keep * dens[raster] / 1.4
+                    acc += keep * min(1.0, dens[raster] * 1.3) / 1.65
                     if roll < acc:
                         s = rng.uniform(s0, s1)
                         t = unreal.Transform(
@@ -273,8 +278,8 @@ def build_lights(sl):
     lc.set_editor_property("atmosphere_sun_light", True)
     lc.set_editor_property("intensity", 9.0)
     lc.set_editor_property("use_temperature", True)
-    lc.set_editor_property("temperature", 5200.0)
-    lc.set_editor_property("volumetric_scattering_intensity", 2.5)
+    lc.set_editor_property("temperature", 5600.0)
+    lc.set_editor_property("volumetric_scattering_intensity", 1.4)
     lc.set_editor_property("enable_light_shaft_bloom", True)
     lc.set_editor_property("bloom_scale", 0.15)
     lc.set_editor_property("light_source_angle", 1.2)
@@ -291,7 +296,7 @@ def build_lights(sl):
         cloud.volumetric_cloud_component.set_editor_property("material", cm)
     fog = spawn(unreal.ExponentialHeightFog, label="WYND_Fog", loc=W.to_ue(0, -2, 0))
     fc = fog.component
-    fc.set_editor_property("fog_density", 0.018)
+    fc.set_editor_property("fog_density", 0.011)
     fc.set_editor_property("fog_height_falloff", 0.12)
     fc.set_editor_property("enable_volumetric_fog", True)
     fc.set_editor_property("volumetric_fog_scattering_distribution", 0.75)
@@ -301,13 +306,16 @@ def build_lights(sl):
     pp.set_editor_property("unbound", True)
     s = pp.settings
     for k, v in [
-        ("override_auto_exposure_bias", True), ("auto_exposure_bias", 0.6),
-        ("override_white_temp", True), ("white_temp", 7000.0),
-        ("override_color_saturation", True), ("color_saturation", unreal.Vector4(1.12, 1.08, 1.0, 1.0)),
+        # golden hour warmth comes from the sun's temperature alone; the
+        # grade stays near neutral so greens and whites hold (owner note:
+        # the first pass read too orange and too bright)
+        ("override_auto_exposure_bias", True), ("auto_exposure_bias", -0.2),
+        ("override_white_temp", True), ("white_temp", 6500.0),
+        ("override_color_saturation", True), ("color_saturation", unreal.Vector4(0.98, 1.08, 1.0, 1.04)),
         ("override_color_contrast", True), ("color_contrast", unreal.Vector4(1.06, 1.06, 1.06, 1.0)),
-        ("override_color_gain_highlights", True), ("color_gain_highlights", unreal.Vector4(1.05, 1.0, 0.92, 1.0)),
+        ("override_color_gain_highlights", True), ("color_gain_highlights", unreal.Vector4(1.0, 1.0, 0.98, 1.0)),
         ("override_color_gamma_shadows", True), ("color_gamma_shadows", unreal.Vector4(1.0, 1.0, 1.04, 1.0)),
-        ("override_bloom_intensity", True), ("bloom_intensity", 0.9),
+        ("override_bloom_intensity", True), ("bloom_intensity", 0.55),
         ("override_vignette_intensity", True), ("vignette_intensity", 0.35),
         ("override_ambient_occlusion_intensity", True), ("ambient_occlusion_intensity", 0.6),
         ("override_lumen_scene_lighting_quality", True), ("lumen_scene_lighting_quality", 2.0),

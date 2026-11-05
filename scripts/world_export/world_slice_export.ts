@@ -348,19 +348,24 @@ export function collectPlacements(
       seatOnGround: p.y === undefined,
     });
   }
+  const layoutBuildings = new Map(EASTBROOK_LAYOUT.buildings.map((lb) => [lb.id, lb]));
   for (const [i, bd] of P.buildings.entries()) {
     if (!bd.assetId || !inside(b, bd.x, bd.z)) continue;
+    // A painted town building stands as render/eastbrook_placed_building.ts
+    // stands it: at its layout anchor and turn, one uniform scale, its
+    // lowest point on the ground and then sunk by the layout's lift.
+    const placed = bd.id ? layoutBuildings.get(bd.id)?.placement : undefined;
+    const x = placed?.x ?? bd.x;
+    const z = placed?.z ?? bd.z;
     add({
       id: bd.id ?? `building:${i}`,
       source: 'buildings',
       path: bd.assetId,
-      x: bd.x,
-      z: bd.z,
-      rotY: bd.rot,
-      // painted town buildings are authored in yards and stand at one
-      // uniform scale of 1 (render/eastbrook_placed_building.ts); w, d and
-      // height are their native dimensions, not a fit target
-      fit: { mode: 'raw', scale: 1 },
+      x,
+      z,
+      y: terrainHeight(x, z, seed) + (placed?.lift ?? 0),
+      rotY: placed?.rotation ?? bd.rot,
+      fit: { mode: 'raw', scale: placed?.scale ?? 1 },
       seatOnGround: true,
     });
   }

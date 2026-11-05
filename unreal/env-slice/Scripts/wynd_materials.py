@@ -4,6 +4,8 @@
 #              with a height-aware edge, world-aligned tiling, and the game's
 #              own baked ground tint as a low-strength macro colour.
 #   M_Water    single layer water at the game's water level.
+import os
+
 import unreal
 
 import wynd_common as W
@@ -21,6 +23,13 @@ LAYERS = [
     ("rock", "rock_pitted_mossy", 4.5),
     ("cobble", "mossy_cobblestone", 2.6),
 ]
+# The vale's painted turf as a linear colour (sRGB about 78, 138, 46: the
+# Refined client's sunlit grass), and the mean linear luminance of the
+# leafy_grass scan, measured over its 2k diffuse, that its detail divides by.
+GRASS_COLOR = (0.076, 0.25, 0.028, 1.0)
+GRASS_SCAN_LUM = 0.241
+# The game's baked ground tint averaged over the slice (tint.png, linear).
+TINT_MEAN = (0.493, 0.53, 0.249)
 
 
 def fresh_material(path):
@@ -89,7 +98,7 @@ class G:
 
 
 def terrain_material():
-    path = W.ROOT + "/Materials/M_Terrain"
+    path = W.LANDSCAPE + "/M_Terrain"
     m = fresh_material(path)
     g = G(m)
     wp = g.node(unreal.MaterialExpressionWorldPosition, 6)
@@ -125,8 +134,28 @@ def terrain_material():
                 "hgt": g.tex(base + "Displacement_2k", uv, "masks"),
             }
         )
+    # The grass layer is the game's painted turf, not the scan's colour: a
+    # lush green parameter carrying the scan's luminance as detail, so the
+    # vale reads green under a warm sun while keeping a real PBR surface.
+    # detail = lerp(1, lum(scan) / mean lum(scan), GrassDetail)
+    lum = g.node(unreal.MaterialExpressionDotProduct, 3)
+    g.link(sets[0]["alb"], "RGB", lum, "A")
+    g.link(
+        g.node(unreal.MaterialExpressionConstant3Vector, 6, constant=unreal.LinearColor(0.2126, 0.7152, 0.0722, 1)),
+        "", lum, "B",
+    )
+    detail = g.lerp(
+        g.const(1.0),
+        g.op(unreal.MaterialExpressionDivide, lum, g.const(GRASS_SCAN_LUM)),
+        g.node(unreal.MaterialExpressionScalarParameter, 6, parameter_name="GrassDetail", default_value=0.6),
+    )
+    grass_col = g.node(
+        unreal.MaterialExpressionVectorParameter, 6,
+        parameter_name="GrassColor", default_value=unreal.LinearColor(*GRASS_COLOR),
+    )
+    sets[0]["alb"] = g.op(unreal.MaterialExpressionMultiply, grass_col, detail)
     alb, nor, arm = sets[0]["alb"], sets[0]["nor"], sets[0]["arm"]
-    alb_o = nor_o = arm_o = "RGB"
+    alb_o, nor_o, arm_o = "", "RGB", "RGB"
     contrast = g.node(unreal.MaterialExpressionScalarParameter, 6, parameter_name="EdgeContrast", default_value=5.0)
     for s, (src, chan) in zip(sets[1:], [(ctrl, "R"), (ctrl, "G"), (ctrl, "B"), (cob, "R")]):
         # alpha = saturate((w - 0.5 + (h - 0.5) * 0.6) * contrast + 0.5)
@@ -145,7 +174,7 @@ def terrain_material():
     # brightness and hue around 1 instead of shifting the whole ground yellow
     ts = g.node(unreal.MaterialExpressionScalarParameter, 6, parameter_name="TintStrength", default_value=0.3)
     mean = g.node(
-        unreal.MaterialExpressionConstant3Vector, 6, constant=unreal.LinearColor(0.43, 0.51, 0.21, 1.0)
+        unreal.MaterialExpressionConstant3Vector, 6, constant=unreal.LinearColor(*TINT_MEAN, 1.0)
     )
     tn = g.op(unreal.MaterialExpressionDivide, tint, mean, "RGB")
     macro = g.lerp(g.const(1.0), tn, ts)
@@ -161,7 +190,13 @@ def terrain_material():
     g.link(arm, "", ao, "")
     rough = g.node(unreal.MaterialExpressionComponentMask, 1, r=False, g=True, b=False, a=False)
     g.link(arm, "", rough, "")
-    mel.connect_material_property(alb, "", MP.MP_BASE_COLOR)
+    debug = os.environ.get("WYND_TERRAIN_DEBUG")
+    if debug == "splat":  # r dirt, g sand, b rock as colour
+        mel.connect_material_property(ctrl, "RGB", MP.MP_BASE_COLOR)
+    elif debug == "grass":  # the grass layer alone
+        mel.connect_material_property(sets[0]["alb"], "", MP.MP_BASE_COLOR)
+    else:
+        mel.connect_material_property(alb, "", MP.MP_BASE_COLOR)
     mel.connect_material_property(nor, "", MP.MP_NORMAL)
     mel.connect_material_property(rough, "", MP.MP_ROUGHNESS)
     mel.connect_material_property(ao, "", MP.MP_AMBIENT_OCCLUSION)

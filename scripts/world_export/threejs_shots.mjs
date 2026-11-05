@@ -78,8 +78,9 @@ try {
         const [tx, th, tz] = shot.target;
         const player = game.sim.player;
         // park the hero behind the camera, out of frame
-        player.pos.x = ex + (ex - tx) * 0.05;
-        player.pos.z = ez + (ez - tz) * 0.05;
+        const back = 30 / Math.hypot(ex - tx, ez - tz);
+        player.pos.x = ex + (ex - tx) * back;
+        player.pos.z = ez + (ez - tz) * back;
         player.pos.y = terrainHeight(player.pos.x, player.pos.z, seed);
         player.prevPos.x = player.pos.x;
         player.prevPos.y = player.pos.y;
@@ -102,13 +103,20 @@ try {
           r.webgl.render = (scene, cam) => {
             const p = window.__lookPose;
             if (p && cam === r.camera) {
-              cam.position.copy(p.pos);
-              cam.lookAt(p.target);
+              // the game camera hangs under a boom rig, so its local pose is
+              // not its world pose: write the world matrices directly and
+              // stop the scene graph from recomputing them
+              p.m = p.m ?? cam.matrixWorld.clone();
+              p.m.lookAt(p.pos, p.target, cam.up);
+              p.m.setPosition(p.pos);
+              cam.matrixAutoUpdate = false;
+              cam.matrixWorldAutoUpdate = false;
+              cam.matrixWorld.copy(p.m);
+              cam.matrixWorldInverse.copy(p.m).invert();
               if (cam.fov !== p.fov) {
                 cam.fov = p.fov;
                 cam.updateProjectionMatrix();
               }
-              cam.updateMatrixWorld();
             }
             return orig(scene, cam);
           };

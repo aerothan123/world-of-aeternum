@@ -17,8 +17,14 @@ import unreal
 EXPORT = os.environ.get("WYND_EXPORT", r"E:\WyndlewoodUnreal\export\eastbrook_vale")
 THIRD_PARTY = os.environ.get("WYND_THIRD_PARTY", r"E:\WyndlewoodUnreal\ThirdParty\polyhaven")
 OUT = os.environ.get("WYND_OUT", r"E:\WyndlewoodUnreal\out")
-ROOT = "/Game/EnvSlice"
-MODELS = ROOT + "/Export"
+# environment-lead content (README.md "Folder ownership"): the world map,
+# terrain, rasters, water and atmosphere under World; landscape materials
+# under Materials/Landscape. The exported GLBs and plant materials sit in
+# World/Placeholders until the asset-convert and nature crews deliver theirs.
+ROOT = "/Game/Wyndlewood/World"
+LANDSCAPE = "/Game/Wyndlewood/Materials/Landscape"
+PLACEHOLDERS = ROOT + "/Placeholders"
+MODELS = PLACEHOLDERS + "/Export"
 PH = ROOT + "/PolyHaven"
 MAP = ROOT + "/Maps/EastbrookVale"
 UNIT = 100.0
@@ -43,7 +49,7 @@ def load_json(name):
 
 def model_folder(glb_path):
     """Content folder an exported GLB imports into: /models/props/fence.glb ->
-    /Game/EnvSlice/Export/props/fence."""
+    /Game/Wyndlewood/World/Placeholders/Export/props/fence."""
     rel = glb_path.lstrip("/")
     rel = re.sub(r"^models/", "", rel)
     rel = re.sub(r"\.glb$", "", rel)
@@ -52,7 +58,9 @@ def model_folder(glb_path):
 
 # Imported GLBs split into one static mesh per glTF node; these name tails
 # are the client's far LODs and hulls, which the slice does not place.
-SKIP_MESH = re.compile(r"(_H\d+|_LOD[1-9]|_L[1-9]|_collider|_collision|_shadow)$", re.I)
+# A painted building's `_H1` / `_H2` nodes are its upper storeys and roof
+# (render/interior_reveal.ts), not hulls, so they are always placed.
+SKIP_MESH = re.compile(r"(_LOD[1-9]|_collider|_collision|_shadow)$", re.I)
 
 
 def model_meshes(glb_path):
