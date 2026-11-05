@@ -8492,6 +8492,12 @@ export const zh_TW: EnTranslations = {
       "stepup_wallet_mismatch": "該確認簽發後綁定的錢包已變更。請重新發起出售。",
       "stepup_binding_mismatch": "該錢包確認與本次出售不符。請重新發起出售。",
       "stepup_signature_invalid": "錢包簽名驗證失敗。請重新發起出售。"
+    },
+    "store": {
+      "disabled": "搶先體驗期間商店無法使用。"
+    },
+    "legal_acceptance": {
+      "invalid_input": "這些協議已經更新。請重新載入並接受目前的版本。"
     }
   },
   "clues": {
@@ -16019,13 +16025,32 @@ export const zh_TW: EnTranslations = {
     "confirm": "繼續"
   },
   "legalPrompt": {
-    "title": "終端使用者授權協議",
-    "body": "開始遊戲前，請閱讀並接受 Wyndlewood 終端使用者授權協議。此協議與服務條款及隱私權政策共同適用。",
+    "title": "玩家協議",
+    "body": "開始遊戲前，請閱讀並接受服務條款、隱私權政策和最終使用者授權協議。下方每段摘要都附有完整文件的連結。",
     "earlyAccess": "Wyndlewood 正處於搶先體驗階段：功能、平衡與內容都會變動，正式發售時進度可能依商店頁面的公告重置一次。",
     "eulaLink": "終端使用者授權協議",
     "termsLink": "服務條款",
     "privacyLink": "隱私權政策",
-    "version": "協議版本 {version}",
+    "version": "版本 {version}",
+    "updated": "自你上次接受後已更新",
+    "readFull": "閱讀完整文件",
+    "publisher": "發行商：[PUBLISHER LEGAL NAME]（在確定發行商之前的預留文字）。這些文件是等待法律審查的草案。",
+    "terms": {
+      "age": "你必須年滿 13 歲，或由父母或監護人代你同意。",
+      "fairPlay": "公平遊戲：禁止作弊、機器人、自動化、利用漏洞、騷擾，或以真錢交易物品或金幣。",
+      "virtualItems": "虛擬物品、貨幣和進度沒有金錢價值。Steam 版本中的任何購買都透過 Steam 進行。",
+      "enforcement": "違反規則的帳號可能會被警告、禁言、停權或封鎖。你可以向客服申訴。"
+    },
+    "privacy": {
+      "account": "我們會保存你的帳號、角色和進度，並使用你的 IP 位址等技術資料來運作伺服器、阻止作弊和濫用。",
+      "public": "聊天、角色名稱、公會和排行榜對其他玩家可見。",
+      "analytics": "除非你主動開啟，否則分析功能保持關閉，且不會向任何廣告或分析公司傳送資料。",
+      "rights": "你可以隨時匯出你的資料並刪除你的帳號。"
+    },
+    "eula": {
+      "license": "本遊戲是授權給你使用，而非出售給你，僅供你個人非商業遊玩。",
+      "restrictions": "不得複製、轉售或逆向工程本遊戲，也不得對其使用作弊、機器人或漏洞利用。"
+    },
     "accept": "我接受",
     "decline": "拒絕"
   },

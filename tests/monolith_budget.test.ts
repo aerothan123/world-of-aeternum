@@ -1553,8 +1553,8 @@ const MONOLITHS: MonolithRow[] = [
     // Daily Rewards, holder flair) was removed outright.
     // LOWERED 9539 -> 9538 with the gathering tool belt (the gather-tool use hook now
     // passes the world and lost a comment line). wc -l. Exact count.
-    // LOWERED to 9435 at integration (rebrand Meta Pixel/Ko-fi removal plus the Claudium store wiring extraction). wc -l. Exact count.
-    ceiling: 9435,
+    // LOWERED to 9427 at integration (rebrand Meta Pixel/Ko-fi removal, the Claudium store wiring extraction, the launch-blockers store gate). wc -l. Exact count.
+    ceiling: 9427,
     seam: 'a src/game/ or src/ui/ sibling module; main.ts is a firewall, not a home',
   },
   {
@@ -2251,10 +2251,10 @@ const MONOLITHS: MonolithRow[] = [
     // Daily Rewards, holder flair) was removed outright.
     // Down 4437 -> 4343 at the crypto removal: the wallet-link functions and the marketplace
     // guard busts left, and the legacy crypto DDL moved to server/legacy_crypto_schema_db.ts.
-    // LOWERED 4343 -> 4331 (Wyndlewood one house per account): the retired
-    // wallet-link DDL moved to server/legacy_crypto_schema_db.ts (interpolated at
-    // its original SCHEMA position), paying for the account-house hooks. wc -l.
-    ceiling: 4331,
+    // LOWERED 4343 -> 4314 (Wyndlewood launch blockers): the wallet-link DDL and the
+    // Seeker export query left; the retired crypto tables are now dropped by
+    // server/legacy_crypto_drop_db.ts. Exact count. Merged tree: 4313.
+    ceiling: 4313,
     seam: 'a domain <domain>_db.ts module with its own *_SCHEMA (server/CLAUDE.md)',
   },
   {

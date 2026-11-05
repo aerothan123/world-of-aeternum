@@ -24,6 +24,7 @@ const { pathToFileURL } = require('node:url');
 const {
   appNavigationOrigins,
   navigationAllowed,
+  embeddedSubframePolicy,
   isTrustedSender,
   isDevToolsToggleShortcut,
   isSoftwareRenderer,
@@ -216,6 +217,9 @@ function readPackagedMetadata() {
   }
 }
 const packagedMetadata = readPackagedMetadata();
+// The subframe allow-list for this build: Turnstile always, Stripe only on a card
+// checkout build (wocDesktop.cardCheckout; see shell_guards.cjs).
+const subframePolicy = embeddedSubframePolicy(packagedMetadata?.wocDesktop?.cardCheckout === true);
 const desktopConfig = resolveDesktopConfig({
   packagedMetadata,
   env: process.env,
@@ -424,7 +428,11 @@ function registerAppProtocol() {
   } catch {
     scriptHashes = [];
   }
-  const csp = buildContentSecurityPolicy({ apiOrigin, scriptHashes });
+  // Card checkout (Stripe) origins ride the CSP only when the build stamp says the
+  // Claudium store is on (scripts/electron-build.mjs cardCheckout); a Steam build
+  // made without VITE_CLAUDIUM_ENABLED=1 names no payment origin.
+  const cardCheckout = packagedMetadata?.wocDesktop?.cardCheckout === true;
+  const csp = buildContentSecurityPolicy({ apiOrigin, scriptHashes, cardCheckout });
   const notFound = () =>
     new Response('not found', { status: 404, headers: { 'Content-Security-Policy': csp } });
   protocol.handle('app', async (request) => {
@@ -897,7 +905,15 @@ function createMainWindow() {
   // (event, url) form is deprecated. An off-origin navigation is blocked.
   const guardNavigation = (details) => {
     const isMainFrame = details.isMainFrame !== false;
-    if (!navigationAllowed(details.url, isMainFrame, appOrigins)) {
+    if (
+      !navigationAllowed(
+        details.url,
+        isMainFrame,
+        appOrigins,
+        subframePolicy.origins,
+        subframePolicy.hostSuffixes,
+      )
+    ) {
       details.preventDefault();
       if (
         isMainFrame &&

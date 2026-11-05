@@ -1063,13 +1063,35 @@ export const SURFACE_INVENTORY: readonly SurfaceRoute[] = [
     limiter: null,
     requireOwnedExpected: null,
   },
-  // The per-account EULA acceptance record (server/eula.ts): the deeds
-  // broadcasts pair's shape (read-tier GET, full-scope POST). Registry-only.
+  // The per-account player-agreement record (server/legal_acceptance.ts): the
+  // deeds broadcasts pair's shape (read-tier GET, full-scope POST). Registry-only.
+  {
+    dispatcher: DISPATCH.mainApi,
+    method: 'GET',
+    path: '/api/legal-acceptance',
+    handler: 'server/legal_acceptance.ts statusHandler (registry-only RouteDef)',
+    contentType: PROBLEM_JSON,
+    authScope: AUTH_SCOPE.bearer,
+    limiter: null,
+    requireOwnedExpected: null,
+  },
+  {
+    dispatcher: DISPATCH.mainApi,
+    method: 'POST',
+    path: '/api/legal-acceptance',
+    handler: 'server/legal_acceptance.ts acceptHandler (registry-only RouteDef)',
+    contentType: PROBLEM_JSON,
+    authScope: AUTH_SCOPE.full,
+    limiter: null,
+    requireOwnedExpected: null,
+  },
+  // The retired EULA-only pair (server/legal_acceptance.ts retiredEulaHandler):
+  // kept so a stale cached client gets the stable legal_acceptance error.
   {
     dispatcher: DISPATCH.mainApi,
     method: 'GET',
     path: '/api/eula',
-    handler: 'server/eula.ts eulaStatusHandler (registry-only RouteDef)',
+    handler: 'server/legal_acceptance.ts retiredEulaHandler (registry-only RouteDef)',
     contentType: PROBLEM_JSON,
     authScope: AUTH_SCOPE.bearer,
     limiter: null,
@@ -1079,7 +1101,7 @@ export const SURFACE_INVENTORY: readonly SurfaceRoute[] = [
     dispatcher: DISPATCH.mainApi,
     method: 'POST',
     path: '/api/eula/accept',
-    handler: 'server/eula.ts eulaAcceptHandler (registry-only RouteDef)',
+    handler: 'server/legal_acceptance.ts retiredEulaHandler (registry-only RouteDef)',
     contentType: PROBLEM_JSON,
     authScope: AUTH_SCOPE.full,
     limiter: null,

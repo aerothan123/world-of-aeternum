@@ -740,8 +740,9 @@ const PINNED_POLISH_COMPOSITE_FINGERPRINT =
   // No capture was retaken.
   // Re-minted for v0.45.4 graphics and dungeon loading optimizations in renderer.ts.
   // No capture was retaken.
-  // Re-minted for the Eastbrook town kit relayout (eastbrook_layout.ts). No capture was retaken.
-  '5657fdc8021306902f4b78a00e554fce55631ecdc7dee2d5655bd716c0b11bd0';
+  // Re-minted for the Wyndlewood wallet-package removal: pnpm-lock.yaml (a
+  // fingerprinted input) lost the Reown and Solana stack. No capture was retaken.
+  'a9847eebc91d1d102839d740f55a60c86e69ae59c4d6cad293a22c307902b0fb';
 
 function validPolishAttributionTargets(): AttributionTargetFixture[] {
   return [

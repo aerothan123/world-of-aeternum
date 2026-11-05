@@ -1,4 +1,6 @@
+import type { EarlyAccessFlags } from '../early_access_flags';
 import { t } from './i18n';
+import { BUILD_STORE_FLAGS, type StorePromoId, storePromoAllowed } from './store_surfaces_core';
 import { svgIcon } from './ui_icons';
 
 export interface StorePromoCardLabels {
@@ -114,9 +116,12 @@ export interface StorePromoSlideDeps {
 }
 
 /** The adverts the card rotates through, in order, with the current locale's copy. */
-export function storePromoSlides(deps: StorePromoSlideDeps): StorePromoSlide[] {
+export function storePromoSlides(
+  deps: StorePromoSlideDeps,
+  flags: EarlyAccessFlags = BUILD_STORE_FLAGS,
+): StorePromoSlide[] {
   const labels = storePromoLabels();
-  return [
+  const slides: (StorePromoSlide & { id: StorePromoId })[] = [
     {
       id: 'armory',
       image: '/ui/store/season-01-armory-promo.webp',
@@ -139,6 +144,8 @@ export function storePromoSlides(deps: StorePromoSlideDeps): StorePromoSlide[] {
       onOpen: deps.openReferralCards,
     },
   ];
+  // Early Access: an advert never points at a surface this build closed.
+  return slides.filter((slide) => storePromoAllowed(slide.id, flags));
 }
 
 interface SlideView {

@@ -156,6 +156,7 @@ import {
   handleClaudiumApi,
   handleClaudiumStripeWebhook,
   handleMembershipStripeWebhook,
+  sendStoreDisabled,
 } from './claudium';
 import { claudiumSpendDetailed } from './claudium_proxy';
 import { configureCommunityTestAccounts } from './community_test_accounts';
@@ -276,11 +277,11 @@ import { configurePaidGuildCreateBackgroundGate } from './guild_create_db';
 import { createAccessLogSink } from './http/access_log';
 import { setAttackSignalSink } from './http/attack_signals';
 import { registerBusinessMetrics } from './http/business_metrics';
-import { handleClientError } from './http/client_error';
 import {
   registerClientAnalyticsMetrics,
   setClientAnalyticsMetricsSink,
 } from './http/client_analytics_metrics';
+import { handleClientError } from './http/client_error';
 import { registerClientPerfMetrics, setClientPerfMetricsSink } from './http/client_perf_metrics';
 import { type Config, DEFAULT_DISPATCH, type DispatchMode, loadConfig } from './http/config';
 import { registerDiscordBotMetrics } from './http/discord_bot_metrics';
@@ -2595,7 +2596,7 @@ async function handleApi(req: http.IncomingMessage, res: http.ServerResponse): P
     }
     // Early Access: a switched-off Claudium store exposes no /api/claudium path.
     if (url.startsWith('/api/claudium') && !claudiumPathEnabled(url.split('?')[0])) {
-      return json(res, 404, { error: 'unknown endpoint' });
+      return sendStoreDisabled(res);
     }
     if (req.method === 'POST' && url === '/api/claudium/stripe/webhook') {
       return handleClaudiumStripeWebhook(req, res);

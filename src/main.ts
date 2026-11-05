@@ -1477,7 +1477,7 @@ async function startGame(
     initSoftwareRenderNotice(DESKTOP_APP);
     loadPhaseStart('hud-ctor');
     hud = new Hud(world, renderer, keybinds, {
-      dailyRewardsEnabled: true,
+      dailyRewardsEnabled: CLAUDIUM_ENABLED,
       devCommandsEnabled: import.meta.env.DEV,
       constrainedMemory: GFX.constrainedMemory,
     });
@@ -8093,19 +8093,11 @@ function wireStartScreens(): Promise<void> {
         const email = ($('#login-email') as unknown as HTMLInputElement).value.trim();
         const optIn =
           ($('#login-marketing') as unknown as HTMLInputElement | null)?.checked === true;
-        await api.register(
-          username,
-          password,
-          email,
-          token,
-          REFERRAL_SLUG,
-          nativeAttestation,
-          {
-            attribution: registerAttributionPayload(),
-            marketingOptIn: optIn,
-            locale: getLanguage(),
-          },
-        );
+        await api.register(username, password, email, token, REFERRAL_SLUG, nativeAttestation, {
+          attribution: registerAttributionPayload(),
+          marketingOptIn: optIn,
+          locale: getLanguage(),
+        });
       }
     } catch (err) {
       // Auth itself failed (bad credentials, taken username, Turnstile reject…).

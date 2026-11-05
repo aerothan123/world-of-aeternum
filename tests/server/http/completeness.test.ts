@@ -115,6 +115,7 @@ const REGISTRY_ONLY_PATHS = new Set<string>([
   '/api/deeds/broadcasts',
   '/api/eula',
   '/api/eula/accept',
+  '/api/legal-acceptance',
   '/api/telemetry',
   '/api/discord/queue-pings',
   '/api/characters/:id/deeds-recent',
@@ -316,7 +317,9 @@ describe('registry completeness: migrated baseline (public reads + auth + charac
     { method: 'GET', path: '/api/world-quests/leaderboard' },
     { method: 'GET', path: '/api/deeds/broadcasts' },
     { method: 'POST', path: '/api/deeds/broadcasts' },
-    // The EULA record and the opt-in analytics ingest: registry-only, new routes.
+    // The player-agreement record and the opt-in analytics ingest: registry-only, new routes.
+    { method: 'GET', path: '/api/legal-acceptance' },
+    { method: 'POST', path: '/api/legal-acceptance' },
     { method: 'GET', path: '/api/eula' },
     { method: 'POST', path: '/api/eula/accept' },
     { method: 'POST', path: '/api/telemetry' },

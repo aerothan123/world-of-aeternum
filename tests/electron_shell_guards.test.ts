@@ -3,10 +3,13 @@ import {
   ALLOWED_PERMISSIONS,
   appNavigationOrigins,
   buildContentSecurityPolicy,
+  CARD_CHECKOUT_SUBFRAME_HOST_SUFFIXES,
+  CARD_CHECKOUT_SUBFRAME_ORIGINS,
   CSP_ORIGINS,
   deriveOrigin,
   EMBEDDED_SUBFRAME_HOST_SUFFIXES,
   EMBEDDED_SUBFRAME_ORIGINS,
+  embeddedSubframePolicy,
   extractInlineScriptHashes,
   isDevToolsToggleShortcut,
   isExternalDocumentUrl,
@@ -91,8 +94,36 @@ describe('navigationAllowed', () => {
   // of them on per-session subdomains (Stripe's CSP guidance names *.js.stripe.com and
   // *.link.com), so the guard admits the exact Stripe origins and those host suffixes,
   // in subframes only, and never a look-alike host.
-  it('allows the Stripe checkout frames only as embedded subframes', () => {
+  // Wyndlewood Early Access ships the Claudium store OFF, and a Steam build may carry
+  // no non-Steam payment path, so the DEFAULT guard denies every Stripe frame; only a
+  // build stamped cardCheckout (VITE_CLAUDIUM_ENABLED=1) admits them, in subframes only.
+  it('denies the Stripe checkout frames by default (no card checkout stamp)', () => {
     const app = new Set(['app://worldofclaudecraft']);
+    for (const url of [
+      'https://js.stripe.com/v3/embedded-checkout-inner.html',
+      'https://b.js.stripe.com/v3/controller.html',
+      'https://checkout.stripe.com/c/pay/cs_test_123',
+      'https://link.com/login',
+    ]) {
+      expect(navigationAllowed(url, false, app)).toBe(false);
+      expect(navigationAllowed(url, true, app)).toBe(false);
+    }
+    expect(EMBEDDED_SUBFRAME_ORIGINS.has('https://js.stripe.com')).toBe(false);
+    expect(EMBEDDED_SUBFRAME_HOST_SUFFIXES).toEqual([]);
+    const off = embeddedSubframePolicy(false);
+    expect(off.origins).toBe(EMBEDDED_SUBFRAME_ORIGINS);
+    expect(off.hostSuffixes).toBe(EMBEDDED_SUBFRAME_HOST_SUFFIXES);
+  });
+
+  it('allows the Stripe checkout frames only as embedded subframes on a card checkout build', () => {
+    const app = new Set(['app://worldofclaudecraft']);
+    const policy = embeddedSubframePolicy(true);
+    const allowed = (url: string, main: boolean) =>
+      navigationAllowed(url, main, app, policy.origins, policy.hostSuffixes);
+    expect(policy.origins.has('https://challenges.cloudflare.com')).toBe(true);
+    for (const origin of CARD_CHECKOUT_SUBFRAME_ORIGINS)
+      expect(policy.origins.has(origin)).toBe(true);
+    expect(policy.hostSuffixes).toEqual([...CARD_CHECKOUT_SUBFRAME_HOST_SUFFIXES]);
     for (const url of [
       'https://js.stripe.com/v3/embedded-checkout-inner.html',
       'https://b.js.stripe.com/v3/controller.html',
@@ -101,13 +132,14 @@ describe('navigationAllowed', () => {
       'https://link.com/login',
       'https://checkout.link.com/login',
     ]) {
-      expect(navigationAllowed(url, false, app)).toBe(true);
-      expect(navigationAllowed(url, true, app)).toBe(false);
+      expect(allowed(url, false)).toBe(true);
+      expect(allowed(url, true)).toBe(false);
     }
   });
 
-  it('denies look-alike and non-HTTPS Stripe hosts even in a subframe', () => {
+  it('denies look-alike and non-HTTPS Stripe hosts even in a card checkout subframe', () => {
     const app = new Set(['app://worldofclaudecraft']);
+    const policy = embeddedSubframePolicy(true);
     for (const url of [
       'https://evil-js.stripe.com/v3/',
       'https://js.stripe.com.evil.com/v3/',
@@ -115,7 +147,7 @@ describe('navigationAllowed', () => {
       'http://b.js.stripe.com/v3/',
       'https://api.stripe.com/v1/tokens',
     ]) {
-      expect(navigationAllowed(url, false, app)).toBe(false);
+      expect(navigationAllowed(url, false, app, policy.origins, policy.hostSuffixes)).toBe(false);
     }
   });
 
@@ -242,26 +274,42 @@ describe('buildContentSecurityPolicy', () => {
   // Embedded Checkout iframes (src/net/stripe_checkout.ts). The desktop shell is the only
   // host with a CSP, so without these every card purchase there failed with
   // "Checkout could not be loaded" while the browser build worked (v0.42.0 report).
-  it('allows Stripe.js, the Checkout frames, and the Stripe API on the desktop shell', () => {
-    expect(directive('script-src')).toContain('https://js.stripe.com');
-    expect(directive('script-src')).toContain('https://*.js.stripe.com');
-    expect(directive('frame-src')).toContain('https://js.stripe.com');
-    expect(directive('frame-src')).toContain('https://*.js.stripe.com');
-    expect(directive('frame-src')).toContain('https://hooks.stripe.com');
-    expect(directive('frame-src')).toContain('https://checkout.stripe.com');
-    expect(directive('frame-src')).toContain('https://*.link.com');
-    expect(directive('connect-src')).toContain('https://api.stripe.com');
-    expect(directive('img-src')).toContain('https://*.stripe.com');
+  // Only on a card checkout build (wocDesktop.cardCheckout): the default CSP names no
+  // payment origin at all, so a Steam build carries no non-Steam payment path.
+  it('names no Stripe origin in the default CSP', () => {
+    expect(csp).not.toContain('stripe');
+    expect(csp).not.toContain('link.com');
+    expect(directive('frame-src')).toBe('frame-src https://challenges.cloudflare.com');
+  });
+
+  it('allows Stripe.js, the Checkout frames, and the Stripe API on a card checkout build', () => {
+    const cardCsp = buildContentSecurityPolicy({
+      apiOrigin: 'https://worldofclaudecraft.com',
+      scriptHashes: ['sha256-abc123'],
+      cardCheckout: true,
+    });
+    const card = (name: string) => cardCsp.split('; ').find((d) => d.startsWith(`${name} `));
+    expect(card('script-src')).toContain('https://js.stripe.com');
+    expect(card('script-src')).toContain('https://*.js.stripe.com');
+    expect(card('frame-src')).toContain('https://js.stripe.com');
+    expect(card('frame-src')).toContain('https://*.js.stripe.com');
+    expect(card('frame-src')).toContain('https://hooks.stripe.com');
+    expect(card('frame-src')).toContain('https://checkout.stripe.com');
+    expect(card('frame-src')).toContain('https://*.link.com');
+    expect(card('connect-src')).toContain('https://api.stripe.com');
+    expect(card('img-src')).toContain('https://*.stripe.com');
     // The frame allowance and the navigation guard must agree, or the CSP admits a frame
-    // the guard then cancels: every exact Stripe frame origin is also an embedded subframe.
+    // the guard then cancels: every exact Stripe frame origin is also an embedded subframe
+    // of the SAME (card checkout) policy.
+    const policy = embeddedSubframePolicy(true);
     for (const origin of CSP_ORIGINS.stripe.frame) {
       const wildcard = origin.match(/^https:\/\/\*\.(.+)$/);
       if (wildcard) {
         // A wildcard frame origin is covered by the suffix list, or the guard cancels it.
-        expect(EMBEDDED_SUBFRAME_HOST_SUFFIXES).toContain(`.${wildcard[1]}`);
+        expect(policy.hostSuffixes).toContain(`.${wildcard[1]}`);
         continue;
       }
-      expect(EMBEDDED_SUBFRAME_ORIGINS.has(origin)).toBe(true);
+      expect(policy.origins.has(origin)).toBe(true);
     }
   });
 

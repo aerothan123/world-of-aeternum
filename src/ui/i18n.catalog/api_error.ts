@@ -335,4 +335,12 @@ export const apiErrorStrings = {
       'That wallet confirmation does not match this sale. Start the sale again.',
     stepup_signature_invalid: 'The wallet signature did not verify. Start the sale again.',
   },
+  // store: a store, membership or cosmetic-shop route on a realm with that
+  // Early Access switch off.
+  store: {
+    disabled: 'The store is not available in Early Access.',
+  },
+  legal_acceptance: {
+    invalid_input: 'These agreements have changed. Reload and accept the current versions.',
+  },
 };

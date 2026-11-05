@@ -1438,8 +1438,9 @@ const ACCEPTED_POLISH_V2_METADATA_SHA256 =
   // No capture was retaken.
   // Re-minted for v0.45.4 graphics and dungeon loading optimizations in renderer.ts.
   // No capture was retaken.
-  // Re-minted for the Eastbrook town kit relayout (eastbrook_layout.ts). No capture was retaken.
-  'ee024bdb6f0374a5fd4d52e19bc943eb60b6e4a98e31f7e0e88e802eff6f1ff2';
+  // Re-minted for the Wyndlewood wallet-package removal: pnpm-lock.yaml (a
+  // fingerprinted input) lost the Reown and Solana stack. No capture was retaken.
+  '03d023483007afba2c8e609c53bc76551679c1769b93a19a4aa41c93c552a421';
 const ACCEPTED_POLISH_V2_COMPOSITE_PROVENANCE =
   // Re-minted for the Studio town-dressing promotion: eastbrook_town.ts stands its micro batch
   // down under promotedScenery.authoredTownDressing. No capture was retaken.
@@ -1497,8 +1498,9 @@ const ACCEPTED_POLISH_V2_COMPOSITE_PROVENANCE =
   // No capture was retaken.
   // Re-minted for v0.45.4 graphics and dungeon loading optimizations in renderer.ts.
   // No capture was retaken.
-  // Re-minted for the Eastbrook town kit relayout (eastbrook_layout.ts). No capture was retaken.
-  '5657fdc8021306902f4b78a00e554fce55631ecdc7dee2d5655bd716c0b11bd0';
+  // Re-minted for the Wyndlewood wallet-package removal: pnpm-lock.yaml (a
+  // fingerprinted input) lost the Reown and Solana stack. No capture was retaken.
+  'a9847eebc91d1d102839d740f55a60c86e69ae59c4d6cad293a22c307902b0fb';
 const ACCEPTED_POLISH_V2_METADATA = readJsonFile<CaptureMetadata>(ACCEPTED_POLISH_V2_METADATA_PATH);
 const ACCEPTED_POLISH_V2_PROVENANCE = ACCEPTED_POLISH_V2_METADATA.polishProvenance;
 const ACCEPTED_POLISH_V2_TOWN_CONTRACT = ACCEPTED_POLISH_V2_METADATA.records[0]?.townContract;
@@ -2907,8 +2909,10 @@ describe('Eastbrook polish performance and contact evidence', () => {
       // release/v0.45.3: recomputed from the swept evidence. No capture was retaken.
       // v0.45.4 graphics and dungeon loading optimizations in renderer.ts:
       // recomputed from the swept evidence. No capture was retaken.
-    // Re-minted for the Eastbrook town kit relayout (eastbrook_layout.ts). No capture was retaken.
-    ).toBe('452aeaa3ac97e95f67d81324914bd36f09406c89ef02ee53759c40ff8269eea4');
+      // Re-minted for the Wyndlewood wallet-package removal (pnpm-lock.yaml moved);
+      // this second-order performance seal follows the swept evidence bytes. No
+      // capture was retaken.
+    ).toBe('d950d2000c50d900380864db562dc038b5370321d99f92909bedcae62aab9fc7');
   });
 
   it('binds every historical after record to its accepted source and asset provenance', () => {

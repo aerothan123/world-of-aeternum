@@ -48,14 +48,14 @@ const cssTargets = browserslistToTargets(
   loadBrowserslistFloors(fileURLToPath(new URL('.browserslistrc', import.meta.url))),
 );
 
-// `#bot-detector` → the private detector if its clone is present, else the no-op
-// stub. Mirrors scripts/build_server.mjs (bundle) and tsconfig.json `paths` (tsc).
+// `#bot-detector` → the private detector if its clone is present, else the open
+// flag-only detector (server/bot_detector/flag_only.ts). Mirrors scripts/build_server.mjs (bundle) and tsconfig.json `paths` (tsc).
 const privateBotDetector = fileURLToPath(
   new URL('private/bot_detector/src/index.ts', import.meta.url),
 );
 const botDetectorImpl = existsSync(privateBotDetector)
   ? privateBotDetector
-  : fileURLToPath(new URL('server/bot_detector/stub.ts', import.meta.url));
+  : fileURLToPath(new URL('server/bot_detector/flag_only.ts', import.meta.url));
 const pkg = JSON.parse(readFileSync(new URL('package.json', import.meta.url), 'utf8')) as {
   version?: string;
 };

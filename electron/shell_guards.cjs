@@ -57,11 +57,16 @@ function appNavigationOrigins(appOrigin, devServerUrl) {
 }
 
 // Third-party origins the app legitimately embeds in a SUBFRAME only (never the main
-// frame): the Cloudflare Turnstile bot-gate renders in its own cross-origin iframe, and
-// the Claudium store's Stripe Embedded
-// Checkout (src/net/stripe_checkout.ts) mounts Stripe's iframes on the page.
-const EMBEDDED_SUBFRAME_ORIGINS = new Set([
-  'https://challenges.cloudflare.com',
+// frame): the Cloudflare Turnstile bot-gate renders in its own cross-origin iframe.
+const EMBEDDED_SUBFRAME_ORIGINS = new Set(['https://challenges.cloudflare.com']);
+
+// The Claudium store's card rail: Stripe Embedded Checkout (src/net/stripe_checkout.ts)
+// mounts Stripe's iframes on the page. These origins are allowed ONLY when the build
+// stamp says the Claudium store is on (wocDesktop.cardCheckout, from
+// VITE_CLAUDIUM_ENABLED=1 at build time): a Steam build ships no non-Steam payment
+// path, so by default the shell blocks every Stripe frame, script and connection
+// (the Wyndlewood Early Access decision, docs/launch/early-access-readiness.md).
+const CARD_CHECKOUT_SUBFRAME_ORIGINS = new Set([
   'https://js.stripe.com',
   'https://checkout.stripe.com',
   'https://hooks.stripe.com',
@@ -72,8 +77,25 @@ const EMBEDDED_SUBFRAME_ORIGINS = new Set([
 // https://*.js.stripe.com and https://*.link.com for exactly that), which an exact-origin
 // set cannot name. A subframe whose HTTPS host ends with one of these suffixes is allowed;
 // the leading dot means the bare parent host is matched by the exact set above, never a
-// look-alike such as evil-js.stripe.com or js.stripe.com.evil.com.
-const EMBEDDED_SUBFRAME_HOST_SUFFIXES = Object.freeze(['.js.stripe.com', '.link.com']);
+// look-alike such as evil-js.stripe.com or js.stripe.com.evil.com. Same gate as the
+// exact set: card checkout builds only.
+const CARD_CHECKOUT_SUBFRAME_HOST_SUFFIXES = Object.freeze(['.js.stripe.com', '.link.com']);
+const EMBEDDED_SUBFRAME_HOST_SUFFIXES = Object.freeze([]);
+
+/** The subframe allow-lists for a build: the always-on set, plus the card checkout
+ *  family when the build stamp turned the Claudium store on. */
+function embeddedSubframePolicy(cardCheckout = false) {
+  if (!cardCheckout) {
+    return { origins: EMBEDDED_SUBFRAME_ORIGINS, hostSuffixes: EMBEDDED_SUBFRAME_HOST_SUFFIXES };
+  }
+  return {
+    origins: new Set([...EMBEDDED_SUBFRAME_ORIGINS, ...CARD_CHECKOUT_SUBFRAME_ORIGINS]),
+    hostSuffixes: Object.freeze([
+      ...EMBEDDED_SUBFRAME_HOST_SUFFIXES,
+      ...CARD_CHECKOUT_SUBFRAME_HOST_SUFFIXES,
+    ]),
+  };
+}
 
 function subframeHostSuffixAllowed(urlString, suffixes) {
   let parsed;
@@ -251,14 +273,19 @@ function deriveWebSocketOrigin(apiOrigin) {
   }
 }
 
-function buildContentSecurityPolicy({ apiOrigin, scriptHashes = [] } = {}) {
+function buildContentSecurityPolicy({ apiOrigin, scriptHashes = [], cardCheckout = false } = {}) {
   const hashPart = scriptHashes.map((h) => `'${h}'`).join(' ');
+  // The Stripe family rides the CSP only for a card checkout build (see
+  // CARD_CHECKOUT_SUBFRAME_ORIGINS); a default build names no payment origin at all.
+  const stripe = cardCheckout
+    ? CSP_ORIGINS.stripe
+    : { script: [], connect: [], frame: [], img: [] };
   const scriptSrc = [
     "script-src 'self' 'wasm-unsafe-eval'",
     hashPart,
     CSP_ORIGINS.turnstile,
     ...CSP_ORIGINS.script,
-    ...CSP_ORIGINS.stripe.script,
+    ...stripe.script,
   ]
     .filter(Boolean)
     .join(' ');
@@ -279,16 +306,11 @@ function buildContentSecurityPolicy({ apiOrigin, scriptHashes = [] } = {}) {
     deriveWebSocketOrigin(apiOrigin),
     'wss:',
     ...CSP_ORIGINS.connect,
-    ...CSP_ORIGINS.stripe.connect,
+    ...stripe.connect,
   ]
     .filter(Boolean)
     .join(' ');
-  const imgSrc = [
-    "img-src 'self' data: blob:",
-    apiOrigin,
-    ...CSP_ORIGINS.img,
-    ...CSP_ORIGINS.stripe.img,
-  ]
+  const imgSrc = ["img-src 'self' data: blob:", apiOrigin, ...CSP_ORIGINS.img, ...stripe.img]
     .filter(Boolean)
     .join(' ');
   return [
@@ -299,7 +321,7 @@ function buildContentSecurityPolicy({ apiOrigin, scriptHashes = [] } = {}) {
     `style-src 'self' 'unsafe-inline' ${CSP_ORIGINS.fontsStyle}`,
     `font-src 'self' ${CSP_ORIGINS.fontsFile}`,
     "worker-src 'self' blob:",
-    `frame-src ${CSP_ORIGINS.turnstile} ${CSP_ORIGINS.stripe.frame.join(' ')}`,
+    [`frame-src ${CSP_ORIGINS.turnstile}`, ...stripe.frame].join(' '),
     "object-src 'none'",
     "base-uri 'none'",
     "frame-ancestors 'none'",
@@ -381,6 +403,9 @@ module.exports = {
   ALLOWED_PERMISSIONS,
   EMBEDDED_SUBFRAME_ORIGINS,
   EMBEDDED_SUBFRAME_HOST_SUFFIXES,
+  CARD_CHECKOUT_SUBFRAME_ORIGINS,
+  CARD_CHECKOUT_SUBFRAME_HOST_SUFFIXES,
+  embeddedSubframePolicy,
   CSP_ORIGINS,
   extractInlineScriptHashes,
   buildContentSecurityPolicy,

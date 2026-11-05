@@ -143,6 +143,7 @@ export const API_CONTENT_TYPE: Readonly<Record<string, ContentTypeClass>> = {
   '/api/deeds/broadcasts': PROBLEM_JSON,
   '/api/eula': PROBLEM_JSON,
   '/api/eula/accept': PROBLEM_JSON,
+  '/api/legal-acceptance': PROBLEM_JSON,
   '/api/telemetry': PROBLEM_JSON,
   '/api/discord/queue-pings': PROBLEM_JSON,
   '/api/steam/link': PROBLEM_JSON,
