@@ -204,6 +204,18 @@
       {
         "from": "electron/host_diag/dist/HostDiag.ps1",
         "to": "host-diag/HostDiag.ps1"
+      },
+      {
+        "from": "LICENSE",
+        "to": "licenses/LICENSE"
+      },
+      {
+        "from": "THIRD_PARTY_NOTICES.md",
+        "to": "licenses/THIRD_PARTY_NOTICES.md"
+      },
+      {
+        "from": "CREDITS.md",
+        "to": "licenses/CREDITS.md"
       }
     ],
     "directories": {

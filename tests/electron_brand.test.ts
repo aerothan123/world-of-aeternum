@@ -48,6 +48,18 @@ describe('desktop brand identity', () => {
   });
 });
 
+describe('license notices ship with the desktop build', () => {
+  it('copies LICENSE (MIT, Levy Street notice), THIRD_PARTY_NOTICES and CREDITS beside the app', () => {
+    const extra = pkg.build.extraResources as { from: string; to: string }[];
+    for (const file of ['LICENSE', 'THIRD_PARTY_NOTICES.md', 'CREDITS.md']) {
+      expect(extra).toContainEqual({ from: file, to: `licenses/${file}` });
+    }
+    const license = readFileSync(new URL('../LICENSE', import.meta.url), 'utf8');
+    expect(license).toContain('Copyright (c) 2026 Levy Street');
+    expect(license).toContain('The above copyright notice and this permission notice shall be included');
+  });
+});
+
 describe('user-data folder across the rename', () => {
   const appData = '/home/p/.config';
   const join = (...parts: string[]) => path.posix.join(...parts);
