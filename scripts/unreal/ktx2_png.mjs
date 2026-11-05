@@ -14,12 +14,17 @@ export function loadBasis() {
     basisPromise = (async () => {
       const src = fs
         .readFileSync(`${BASIS_DIR}/basis_transcoder.js`, 'utf8')
-        .replace('typeof process=="object"&&typeof process.versions=="object"&&typeof process.versions.node=="string"', 'false')
+        .replace(
+          'typeof process=="object"&&typeof process.versions=="object"&&typeof process.versions.node=="string"',
+          'false',
+        )
         .replaceAll('__dirname', '""')
         .replaceAll('require("fs")', 'null')
         .replaceAll('require("path")', 'null');
       vm.runInThisContext(`${src}\n;globalThis.BASIS = BASIS;`);
-      const mod = await globalThis.BASIS({ wasmBinary: fs.readFileSync(`${BASIS_DIR}/basis_transcoder.wasm`) });
+      const mod = await globalThis.BASIS({
+        wasmBinary: fs.readFileSync(`${BASIS_DIR}/basis_transcoder.wasm`),
+      });
       mod.initializeBasis();
       return mod;
     })();
@@ -38,7 +43,9 @@ export async function ktx2ToPngBuffer(bytes) {
     const h = f.getHeight();
     const dst = new Uint8Array(f.getImageTranscodedSizeInBytes(0, 0, 0, 13));
     if (!f.transcodeImage(dst, 0, 0, 0, 13, 0, -1, -1)) throw new Error('transcode failed');
-    const png = await sharp(Buffer.from(dst), { raw: { width: w, height: h, channels: 4 } }).png().toBuffer();
+    const png = await sharp(Buffer.from(dst), { raw: { width: w, height: h, channels: 4 } })
+      .png()
+      .toBuffer();
     const st = await sharp(png).stats();
     return { png, w, h, mean: st.channels.slice(0, 3).map((c) => Math.round(c.mean)) };
   } finally {

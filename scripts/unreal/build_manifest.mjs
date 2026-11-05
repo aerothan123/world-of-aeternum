@@ -7,7 +7,8 @@ import { join, relative, resolve, sep } from 'node:path';
 const root = resolve(process.cwd(), 'public', 'models');
 const out = process.argv[2] ?? 'manifest.json';
 const SKIP_DIRS = new Set(['foliage', 'chars', 'vfx']); // nature crew / characters / fx are out of scope
-const FURNITURE = /(chair|table|bed|shelf|barrel|crate|chest|stool|bench|cabinet|lamp|candle|furnit|wardrobe|desk|rug|sofa|bookcase)/i;
+const FURNITURE =
+  /(chair|table|bed|shelf|barrel|crate|chest|stool|bench|cabinet|lamp|candle|furnit|wardrobe|desk|rug|sofa|bookcase)/i;
 
 function walk(dir, acc) {
   for (const n of readdirSync(dir)) {
@@ -25,7 +26,8 @@ function classify(rel) {
   const base = parts[parts.length - 1];
   if (SKIP_DIRS.has(top)) return null;
   if (base.startsWith('eastbrook_')) return { tier: 1, cat: 'Buildings' };
-  if (top === 'creatures' || top === 'mounts' || top === 'buddies') return { tier: 5, cat: 'Creatures' };
+  if (top === 'creatures' || top === 'mounts' || top === 'buddies')
+    return { tier: 5, cat: 'Creatures' };
   if (top === 'weapons' || top === 'tools') return { tier: 4, cat: 'Weapons' };
   if (FURNITURE.test(base)) return { tier: 3, cat: 'Furniture' };
   return { tier: 2, cat: 'Props' };
@@ -48,8 +50,15 @@ for (const f of walk(root, [])) {
   if (!c) continue;
   const id = rel.replace(/\.glb$/i, '');
   const safe = id.replace(/[^A-Za-z0-9_]+/g, '_');
-  items.push({ id, glb: rel, tier: c.tier, cat: c.cat, mat: matClass(id), name: 'SM_' + safe,
-    bytes: statSync(f).size });
+  items.push({
+    id,
+    glb: rel,
+    tier: c.tier,
+    cat: c.cat,
+    mat: matClass(id),
+    name: 'SM_' + safe,
+    bytes: statSync(f).size,
+  });
 }
 items.sort((a, b) => a.tier - b.tier || a.id.localeCompare(b.id));
 writeFileSync(out, JSON.stringify({ modelsRoot: root, count: items.length, items }, null, 1));

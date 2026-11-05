@@ -5,11 +5,11 @@
 // Usage (cwd = worktree): node scripts/unreal/prep_tidehold.mjs <manifest.json> <glbOutDir> <texOutDir>
 import fs from 'node:fs';
 import path from 'node:path';
-import { ktx2ToPngBuffer } from './ktx2_png.mjs';
 import { NodeIO } from '@gltf-transform/core';
 import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
-import { MeshoptDecoder } from 'meshoptimizer';
 import { dequantize, prune } from '@gltf-transform/functions';
+import { MeshoptDecoder } from 'meshoptimizer';
+import { ktx2ToPngBuffer } from './ktx2_png.mjs';
 import { mergeToSingleMesh } from './merge_meshes.mjs';
 
 const [manifestPath, glbOut, texOut] = process.argv.slice(2);
@@ -20,7 +20,9 @@ async function ktx2ToPng(buf, out) {
   return { w: r.w, h: r.h, mean: r.mean };
 }
 await MeshoptDecoder.ready;
-const io = new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({ 'meshopt.decoder': MeshoptDecoder });
+const io = new NodeIO()
+  .registerExtensions(ALL_EXTENSIONS)
+  .registerDependencies({ 'meshopt.decoder': MeshoptDecoder });
 const man = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 const report = [];
 for (const n of NAMES) {
@@ -44,30 +46,65 @@ for (const n of NAMES) {
       info.emis = path.join(dir, `T_${name}_${safe}_emis.png`);
       info.emisStats = await ktx2ToPng(et.getImage(), info.emis);
     }
-    m.setBaseColorTexture(null).setEmissiveTexture(null).setNormalTexture(null).setOcclusionTexture(null).setMetallicRoughnessTexture(null);
+    m.setBaseColorTexture(null)
+      .setEmissiveTexture(null)
+      .setNormalTexture(null)
+      .setOcclusionTexture(null)
+      .setMetallicRoughnessTexture(null);
     m.setEmissiveFactor([0, 0, 0]);
     matinfo[m.getName()] = info;
   }
   for (const node of doc.getRoot().listNodes()) {
     if (/(^|_)LOD[1-9]/.test(node.getName()) && node.getMesh()) node.setMesh(null);
   }
-  const sockets = doc.getRoot().listNodes().filter((x) => x.getName().startsWith('Socket_') && !x.getMesh()).map((x) => ({ name: x.getName(), pos: x.getWorldTranslation() }));
-  const nodesKept = doc.getRoot().listNodes().filter((x) => x.getMesh()).map((x) => x.getName());
+  const sockets = doc
+    .getRoot()
+    .listNodes()
+    .filter((x) => x.getName().startsWith('Socket_') && !x.getMesh())
+    .map((x) => ({ name: x.getName(), pos: x.getWorldTranslation() }));
+  const nodesKept = doc
+    .getRoot()
+    .listNodes()
+    .filter((x) => x.getMesh())
+    .map((x) => x.getName());
   const prims = mergeToSingleMesh(doc, name);
-  await doc.transform(prune());
+  await doc.transform(prune({ keepAttributes: true }));
   for (const ext of doc.getRoot().listExtensionsUsed()) {
-    if (['EXT_meshopt_compression', 'KHR_mesh_quantization', 'KHR_texture_basisu'].includes(ext.extensionName)) ext.dispose();
+    if (
+      ['EXT_meshopt_compression', 'KHR_mesh_quantization', 'KHR_texture_basisu'].includes(
+        ext.extensionName,
+      )
+    )
+      ext.dispose();
   }
   const out = path.join(glbOut, 'Buildings', `${name}.glb`);
   fs.mkdirSync(path.dirname(out), { recursive: true });
   await io.write(out, doc);
   // Re-point (or add) the manifest entry: Buildings category, tier 6 so the generic batch driver skips it.
   let it = man.items.find((x) => x.id === id);
-  if (!it) { it = { id, glb: `tidehold/${n}.glb`, bytes: 0 }; man.items.push(it); }
-  Object.assign(it, { tier: 6, cat: 'Buildings', mat: 'Plaster', name, local: out, prims, sockets, matinfo });
-  report.push({ id, prims, nodesKept: nodesKept.length, mats: Object.entries(matinfo).map(([k, v]) => `${k}:${v.baseStats ? v.baseStats.mean : '-'}|e:${v.emisStats ? v.emisStats.mean : '-'}`) });
+  if (!it) {
+    it = { id, glb: `tidehold/${n}.glb`, bytes: 0 };
+    man.items.push(it);
+  }
+  Object.assign(it, {
+    tier: 6,
+    cat: 'Buildings',
+    mat: 'Plaster',
+    name,
+    local: out,
+    prims,
+    sockets,
+    matinfo,
+  });
+  report.push({
+    id,
+    prims,
+    nodesKept: nodesKept.length,
+    mats: Object.entries(matinfo).map(
+      ([k, v]) =>
+        `${k}:${v.baseStats ? v.baseStats.mean : '-'}|e:${v.emisStats ? v.emisStats.mean : '-'}`,
+    ),
+  });
 }
 fs.writeFileSync(manifestPath, JSON.stringify(man, null, 1));
 console.log(JSON.stringify(report, null, 1));
-
-

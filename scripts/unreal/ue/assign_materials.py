@@ -138,7 +138,7 @@ for aid, r in reg.items():
             col = None
         if col:
             mel.set_material_instance_vector_parameter_value(mi, 'BaseTint', unreal.LinearColor(col[0], col[1], col[2], 1.0))
-        elif tex is None:
+        elif tex is None and not emissive:
             mel.set_material_instance_vector_parameter_value(mi, 'BaseTint', unreal.LinearColor(0.5, 0.5, 0.5, 1.0))
         mel.update_material_instance(mi)
         eal.save_loaded_asset(mi)
