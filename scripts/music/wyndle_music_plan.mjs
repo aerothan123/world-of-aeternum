@@ -1023,7 +1023,10 @@ export const MUSIC_PLAN = [
           'Outro',
           42000,
           ['choir hums the melody, strings fade'],
-          ['Five who were watching when the promise was made,', 'We keep it still. We are not afraid.'],
+          [
+            'Five who were watching when the promise was made,',
+            'We keep it still. We are not afraid.',
+          ],
         ],
       ],
     },

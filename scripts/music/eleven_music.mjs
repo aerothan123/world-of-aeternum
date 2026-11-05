@@ -21,8 +21,9 @@
 // keep tmp/music-takes/ to rebuild. Every take is generated with the
 // instrumental guard (or a composition plan for the sung cues) and an IP-clean
 // prompt: instrumentation, mood, tempo, mode and form only.
-import { createHash } from 'node:crypto';
+
 import { execFileSync, spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -136,7 +137,11 @@ async function generate() {
     // moves so each take's cost is measured on its own (another crew may spend too,
     // so a cost is an upper bound, never an undercount).
     let after = await subscription();
-    for (let i = 0; i < 15 && before && after && after.character_count === before.character_count; i++) {
+    for (
+      let i = 0;
+      i < 15 && before && after && after.character_count === before.character_count;
+      i++
+    ) {
       await new Promise((r) => setTimeout(r, 3000));
       after = await subscription();
     }
@@ -185,9 +190,15 @@ function loudnormStats(file, lufs) {
   const r = spawnSync(
     FFMPEG_PATH,
     [
-      '-hide_banner', '-nostats', '-i', file,
-      '-af', `loudnorm=I=${lufs}:TP=${TRUE_PEAK}:LRA=14:print_format=json`,
-      '-f', 'null', '-',
+      '-hide_banner',
+      '-nostats',
+      '-i',
+      file,
+      '-af',
+      `loudnorm=I=${lufs}:TP=${TRUE_PEAK}:LRA=14:print_format=json`,
+      '-f',
+      'null',
+      '-',
     ],
     { encoding: 'utf8', maxBuffer: 1 << 26 },
   );
@@ -225,8 +236,24 @@ function buildOne(cue) {
   execFileSync(
     FFMPEG_PATH,
     [
-      '-y', '-v', 'error', '-i', src, '-af', af, '-ar', '44100', '-ac', '2',
-      '-c:a', 'libmp3lame', '-b:a', '128k', '-map_metadata', '-1', out,
+      '-y',
+      '-v',
+      'error',
+      '-i',
+      src,
+      '-af',
+      af,
+      '-ar',
+      '44100',
+      '-ac',
+      '2',
+      '-c:a',
+      'libmp3lame',
+      '-b:a',
+      '128k',
+      '-map_metadata',
+      '-1',
+      out,
     ],
     { stdio: 'inherit' },
   );
@@ -316,7 +343,9 @@ function estimate() {
     const list = MUSIC_PLAN.filter((t) => t.tier === tier);
     const s = list.reduce((a, t) => a + t.seconds, 0);
     const credits = rate ? Math.round((s / 60) * rate) : '?';
-    console.log(`tier ${tier}: ${list.length} cues, ${(s / 60).toFixed(1)} min, ~${credits} credits`);
+    console.log(
+      `tier ${tier}: ${list.length} cues, ${(s / 60).toFixed(1)} min, ~${credits} credits`,
+    );
   }
   const all = MUSIC_PLAN.reduce((a, t) => a + t.seconds, 0);
   console.log(`total: ${MUSIC_PLAN.length} cues, ${(all / 60).toFixed(1)} min`);
@@ -327,14 +356,16 @@ async function main() {
   else if (mode === 'estimate') estimate();
   else if (mode === 'generate') await generate();
   else if (mode === 'measure') {
-    for (const f of process.argv.slice(3)) console.log(`${f}: ${lufsOf(f)} LUFS, ${probeSeconds(f).toFixed(1)} s`);
+    for (const f of process.argv.slice(3))
+      console.log(`${f}: ${lufsOf(f)} LUFS, ${probeSeconds(f).toFixed(1)} s`);
   } else if (mode === 'build') {
     let n = 0;
     for (const cue of cues) if (buildOne(cue)) n++;
     console.log(`built ${n} cues`);
     for (const cue of cues) {
       const out = join(OUT_DIR, `${cue.key}.mp3`);
-      if (existsSync(out)) console.log(`  ${cue.key}: ${lufsOf(out)} LUFS, ${probeSeconds(out).toFixed(1)} s`);
+      if (existsSync(out))
+        console.log(`  ${cue.key}: ${lufsOf(out)} LUFS, ${probeSeconds(out).toFixed(1)} s`);
     }
     writeGenerated();
     writeProvenanceDoc();
