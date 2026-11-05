@@ -59,7 +59,9 @@ describe('steamLogin', () => {
     const api = new Api();
     api.token = 'b'.repeat(64);
     const owed = fakeFetch(401, { code: 'steam.reauth_required', needPassword: 1, needCode: 0 });
-    const err = await steamLinkWithProof(api, 'abcd', {}, owed.impl).catch((e: unknown) => e);
+    const err = await steamLinkWithProof(api, 'abcd', { code: '1' }, owed.impl).catch(
+      (e: unknown) => e,
+    );
     expect(linkStepUpNeeds(err)).toEqual({ password: true, code: false });
     expect(linkStepUpNeeds(new ApiError('x', 409, 'steam.account_taken'))).toBeNull();
     const ok = fakeFetch(200, { linked: true, steamId: '1' });

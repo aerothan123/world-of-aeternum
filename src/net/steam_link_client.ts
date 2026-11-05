@@ -18,6 +18,8 @@ export async function steamLinkWithProof(
   proof: SteamLinkProof = {},
   fetchImpl: typeof fetch = fetch,
 ): Promise<{ linked: boolean; steamId: string }> {
+  // No proof owed (the first attempt): the Api's own link call, unchanged.
+  if (!proof.password && !proof.code && !proof.recoveryCode) return api.steamLink(ticket);
   const res = await fetchImpl(apiUrl('/api/steam/link', api.base), {
     method: 'POST',
     headers: {
