@@ -53,4 +53,13 @@ describe('off-machine backup script', () => {
     // The dump is encrypted to a PUBLIC recipient before it leaves the host.
     expect(backup).toContain('age -r "$AGE_RECIPIENT"');
   });
+
+  it('deletes a partial dump on any failure and refuses a loose env file', () => {
+    expect(backup).toContain('trap cleanup EXIT');
+    expect(backup).toMatch(/rm -f "\$out"/);
+    // ok=1 is set only on the success line, after every check passed.
+    expect(backup.indexOf('ok=1')).toBeGreaterThan(backup.indexOf('rclone size'));
+    expect(backup).toContain('stat -c %u "$ENV_FILE"');
+    expect(backup).toMatch(/"\$mode" != "600"/);
+  });
 });

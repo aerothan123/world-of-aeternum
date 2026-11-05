@@ -7,14 +7,19 @@ the public edge (which answers 404 for `/internal/*`).
 
 ## Production guard for dev commands
 
-A production boot refuses to start when `ALLOW_DEV_COMMANDS=1`
-(`server/dev_commands_boot_guard.ts`, run first in `startServer`).
-Production means `NODE_ENV=production` (every Docker image) or
-`WOC_ENV=production`. The log line starts `refusing to boot:`. Fix: remove
-`ALLOW_DEV_COMMANDS` from `.env` and restart. The only override,
-`ALLOW_DEV_COMMANDS_LOCAL_OVERRIDE=1`, works only with a loopback
-`DATABASE_URL` (a developer running the production image against a local
-database) and never on a real host.
+The boot fails closed (`server/dev_commands_boot_guard.ts`, run first in
+`startServer`): `ALLOW_DEV_COMMANDS=1` is honored only with an explicit
+`WOC_ENV=development` or `WOC_ENV=test`. An unset or unknown `WOC_ENV`
+refuses, and `WOC_ENV=production` refuses even with the override. The log line
+starts `refusing to boot:`. Fix on a real host: remove `ALLOW_DEV_COMMANDS`
+from `.env` and restart. Developers add `WOC_ENV=development` to their local
+`.env`. `ALLOW_DEV_COMMANDS_LOCAL_OVERRIDE=1` only matters for the production
+image on a laptop (`NODE_ENV=production`, dev `WOC_ENV`, loopback
+`DATABASE_URL`).
+
+Belt and braces: the `DevCommandsOnPublicRealm` alert
+(`deploy/alerts/wyndlewood.rules.yml`) pages when `woc_dev_commands_enabled`
+reads 1, the same flag `/api/status` advertises as `dev_commands`.
 
 ## Maintenance mode
 

@@ -20,17 +20,46 @@ describe('devCommandsBootVerdict', () => {
     expect(devCommandsBootVerdict({}).ok).toBe(true);
   });
 
-  it('allows dev commands outside production (local dev, E2E)', () => {
-    expect(devCommandsBootVerdict({ ALLOW_DEV_COMMANDS: '1' })).toEqual({
-      ok: true,
-      devCommands: true,
-      overridden: false,
-    });
+  it('allows dev commands only with an explicit WOC_ENV=development or test', () => {
+    for (const WOC_ENV of ['development', 'test']) {
+      expect(devCommandsBootVerdict({ ALLOW_DEV_COMMANDS: '1', WOC_ENV })).toEqual({
+        ok: true,
+        devCommands: true,
+        overridden: false,
+      });
+    }
+  });
+
+  it('fails closed: an unset or unknown WOC_ENV refuses the flag', () => {
+    for (const env of [
+      { ALLOW_DEV_COMMANDS: '1' },
+      { ALLOW_DEV_COMMANDS: '1', WOC_ENV: 'staging' },
+      { ALLOW_DEV_COMMANDS: '1', NODE_ENV: 'development' },
+    ]) {
+      expect(devCommandsBootVerdict(env)).toEqual({ ok: false, reason: 'not_dev_env' });
+    }
+  });
+
+  it('never honors the local override under WOC_ENV=production', () => {
+    expect(
+      devCommandsBootVerdict({
+        ALLOW_DEV_COMMANDS: '1',
+        WOC_ENV: 'production',
+        NODE_ENV: 'production',
+        ALLOW_DEV_COMMANDS_LOCAL_OVERRIDE: '1',
+        DATABASE_URL: LOCAL_DB,
+      }),
+    ).toEqual({ ok: false, reason: 'production' });
   });
 
   it('refuses ALLOW_DEV_COMMANDS=1 under NODE_ENV or WOC_ENV production', () => {
     for (const env of [
-      { ALLOW_DEV_COMMANDS: '1', NODE_ENV: 'production', DATABASE_URL: REMOTE_DB },
+      {
+        ALLOW_DEV_COMMANDS: '1',
+        WOC_ENV: 'development',
+        NODE_ENV: 'production',
+        DATABASE_URL: REMOTE_DB,
+      },
       { ALLOW_DEV_COMMANDS: '1', WOC_ENV: 'production', DATABASE_URL: LOCAL_DB },
     ]) {
       expect(devCommandsBootVerdict(env)).toEqual({ ok: false, reason: 'production' });
@@ -40,6 +69,7 @@ describe('devCommandsBootVerdict', () => {
   it('honors the local override only with a loopback database', () => {
     const base = {
       ALLOW_DEV_COMMANDS: '1',
+      WOC_ENV: 'development',
       NODE_ENV: 'production',
       ALLOW_DEV_COMMANDS_LOCAL_OVERRIDE: '1',
     };
@@ -78,6 +108,7 @@ describe('assertDevCommandsBootSafe', () => {
     assertDevCommandsBootSafe(
       {
         ALLOW_DEV_COMMANDS: '1',
+        WOC_ENV: 'development',
         NODE_ENV: 'production',
         ALLOW_DEV_COMMANDS_LOCAL_OVERRIDE: '1',
         DATABASE_URL: LOCAL_DB,

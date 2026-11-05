@@ -25,8 +25,17 @@
 set -euo pipefail
 
 ENV_FILE="${BACKUP_ENV_FILE:-/etc/wyndlewood/backup.env}"
-# shellcheck disable=SC1090
-if [ -f "$ENV_FILE" ]; then . "$ENV_FILE"; fi
+if [ -f "$ENV_FILE" ]; then
+  # The env file is sourced as root: refuse one anyone else could have written.
+  owner="$(stat -c %u "$ENV_FILE")"
+  mode="$(stat -c %a "$ENV_FILE")"
+  if [ "$owner" != "0" ] || [ "$mode" != "600" ]; then
+    echo "backup: $ENV_FILE must be owned by root with mode 600 (is uid $owner, mode $mode)" >&2
+    exit 2
+  fi
+  # shellcheck disable=SC1090
+  . "$ENV_FILE"
+fi
 
 : "${AGE_RECIPIENT:?set AGE_RECIPIENT (age public key) in $ENV_FILE}"
 : "${RCLONE_REMOTE:?set RCLONE_REMOTE (rclone destination) in $ENV_FILE}"
@@ -44,6 +53,10 @@ stamp="$(date -u +%Y-%m-%dT%H%MZ)"
 mkdir -p "$LOCAL_DIR"
 chmod 700 "$LOCAL_DIR"
 out="$LOCAL_DIR/wyndlewood-$stamp.dump.age"
+# A failed run must never leave a partial dump that looks like a backup.
+ok=0
+cleanup() { if [ "$ok" != 1 ]; then rm -f "$out" "${BACKUP_METRIC_FILE:-/nonexistent}.tmp"; fi; }
+trap cleanup EXIT
 
 echo "backup: dumping $PG_DB from $PG_CONTAINER"
 docker exec "$PG_CONTAINER" pg_dump -U "$PG_USER" -d "$PG_DB" --format=custom --compress=6 \
@@ -62,4 +75,5 @@ if [ -n "${BACKUP_METRIC_FILE:-}" ]; then
   printf 'wyndlewood_backup_last_success_timestamp_seconds %s\n' "$(date +%s)" > "$BACKUP_METRIC_FILE.tmp"
   mv "$BACKUP_METRIC_FILE.tmp" "$BACKUP_METRIC_FILE"
 fi
+ok=1
 echo "backup: ok ($local_size bytes)"

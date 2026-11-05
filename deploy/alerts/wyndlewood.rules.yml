@@ -18,6 +18,15 @@ groups:
           summary: "Realm metrics endpoint unreachable for 2 minutes"
           runbook: "docs/launch/live-ops-runbook.md#realm-down"
 
+      - alert: DevCommandsOnPublicRealm
+        # The realm advertises dev_commands in /api/status: the /dev cheat set is
+        # armed. The boot guard should make this impossible; page if it is not.
+        expr: woc_dev_commands_enabled{job="wyndlewood"} == 1
+        labels: { severity: page }
+        annotations:
+          summary: "Dev commands are armed on the public realm (ALLOW_DEV_COMMANDS=1)"
+          runbook: "docs/launch/live-ops-runbook.md#production-guard-for-dev-commands"
+
       - alert: SimTickRateLow
         expr: woc_sim_tick_hz < 17
         for: 5m
