@@ -34,9 +34,6 @@ import {
   STOUT_ARM_DIALS,
   STYLIZED_BASE_FEMALE_URL,
   STYLIZED_BASE_MALE_URL,
-  STYLIZED_TOWNSFOLK_KEY,
-  STYLIZED_TOWNSFOLK_TEMPLATE,
-  STYLIZED_TOWNSFOLK_URL,
   stylizedCharsRequested,
   stylizedPlayerKey,
   stylizedTestDefs,
@@ -55,6 +52,12 @@ import {
   stylizedKitWorn,
   stylizedManifest,
 } from '../src/render/characters/stylized_kit_core';
+import {
+  STYLIZED_NPC_LOOKS,
+  stylizedNpcKey,
+  stylizedNpcLookFor,
+  stylizedNpcUrl,
+} from '../src/render/characters/stylized_npc_looks';
 import {
   parseWocArmorPackUrl,
   wocArmorPackUrl,
@@ -99,18 +102,18 @@ describe('stylized character test switch', () => {
       ),
     ).toBe(stylizedPlayerKey('mage', 'female'));
     expect(stylizedTestKeyFor(ent('player', 'mech'), true)).toBeNull();
-    expect(stylizedTestKeyFor(ent('npc', STYLIZED_TOWNSFOLK_TEMPLATE), true)).toBe(
-      STYLIZED_TOWNSFOLK_KEY,
+    expect(stylizedTestKeyFor(ent('npc', 'trader_wilkes'), true)).toBe(stylizedNpcKey('silven'));
+    expect(stylizedTestKeyFor(ent('npc', 'brother_aldric_fen'), true)).toBe(
+      stylizedNpcKey('aldric'),
     );
     expect(stylizedTestKeyFor(ent('npc', 'smith_haldren'), true)).toBeNull();
-    expect(stylizedTestKeyFor(ent('mob', STYLIZED_TOWNSFOLK_TEMPLATE), true)).toBeNull();
+    expect(stylizedTestKeyFor(ent('mob', 'trader_wilkes'), true)).toBeNull();
     expect(stylizedTestKeyFor(ent('player', 'warrior'), false)).toBeNull();
   });
 
   it('is off on a host without a location, so the default visuals are unchanged', () => {
     expect(stylizedCharsEnabled()).toBe(false);
     expect(Object.keys(VISUALS).filter((k) => k.startsWith('stylized_'))).toEqual([]);
-    expect(VISUALS[STYLIZED_TOWNSFOLK_KEY]).toBeUndefined();
     const warrior = { kind: 'player', templateId: 'warrior', auras: [] } as unknown as Entity;
     expect(visualKeyFor(warrior)).toBe('player_warrior');
   });
@@ -142,7 +145,7 @@ describe('stylized character test switch', () => {
     const defs = stylizedTestDefs(VISUALS);
     const m = defs[stylizedPlayerKey('warrior', 'male')];
     const f = defs[stylizedPlayerKey('warrior', 'female')];
-    const t = defs[STYLIZED_TOWNSFOLK_KEY];
+    const t = defs[stylizedNpcKey('jorren')];
     for (const d of [m, f, t]) expect(d.lazyPreload).toBe(true);
     expect(m.animUrls).toEqual(male.animUrls);
     expect(t.animUrls).toEqual(male.animUrls);
@@ -154,10 +157,26 @@ describe('stylized character test switch', () => {
     expect(m.clips).toBe(male.clips);
     // the townsperson: one fixed body, nothing held, a calm jog, arms dialled off the belly
     expect(t.wocCharacter).toBeUndefined();
-    expect(t.url).toBe(STYLIZED_TOWNSFOLK_URL);
+    expect(t.url).toBe(stylizedNpcUrl('jorren'));
     expect(t.attach).toEqual([]);
     expect(t.clips.run).toBe(male.clips.walk);
     expect(t.dials).toBe(STOUT_ARM_DIALS);
+    // a slim townsperson keeps the library's own arms
+    expect(defs[stylizedNpcKey('silven')].dials).toBeUndefined();
+  });
+
+  it('gives every fixed-outfit look its own body, each NPC template at most one look', () => {
+    const defs = stylizedTestDefs(VISUALS);
+    const seen = new Set<string>();
+    for (const npc of STYLIZED_NPC_LOOKS) {
+      expect(defs[stylizedNpcKey(npc.look)]?.url).toBe(stylizedNpcUrl(npc.look));
+      for (const t of npc.templates) {
+        expect(seen.has(t), t).toBe(false);
+        seen.add(t);
+        expect(stylizedNpcLookFor(t)).toBe(npc);
+      }
+    }
+    expect(stylizedNpcLookFor('smith_haldren')).toBeNull();
   });
 });
 
@@ -272,8 +291,8 @@ describe('stylized modular kit manifest', () => {
   });
 });
 
-// The sets whose files are built so far (the class sets land with their build).
-const BUILT_SETS: readonly string[] = ['plate', 'leather'];
+// Every set ships its files.
+const BUILT_SETS: readonly string[] = STYLIZED_SETS;
 
 describe('stylized shipped files', () => {
   for (const fit of ['male', 'female'] as const) {
@@ -306,17 +325,19 @@ describe('stylized shipped files', () => {
     });
   }
 
-  it('the townsperson is one skinned body on the WOC rig, clips left to the library', () => {
-    const path = `public/${STYLIZED_TOWNSFOLK_URL}`;
-    expect(jointNames(path)).toEqual(jointNames('public/models/chars/players/woc/base_male.glb'));
-    const j = glbJson(path);
-    expect(j.animations ?? []).toHaveLength(0);
-    const prims = (j.meshes ?? []).flatMap((m) => m.primitives);
-    expect(prims).toHaveLength(1);
-    expect(Object.keys(prims[0].attributes)).toEqual(
-      expect.arrayContaining(['POSITION', 'NORMAL', 'TEXCOORD_0', 'JOINTS_0', 'WEIGHTS_0']),
-    );
-  });
+  for (const npc of STYLIZED_NPC_LOOKS) {
+    it(`townsperson ${npc.look} is one skinned body on the WOC rig, clips left to the library`, () => {
+      const path = `public/${stylizedNpcUrl(npc.look)}`;
+      expect(jointNames(path)).toEqual(jointNames('public/models/chars/players/woc/base_male.glb'));
+      const j = glbJson(path);
+      expect(j.animations ?? []).toHaveLength(0);
+      const prims = (j.meshes ?? []).flatMap((m) => m.primitives);
+      expect(prims).toHaveLength(1);
+      expect(Object.keys(prims[0].attributes)).toEqual(
+        expect.arrayContaining(['POSITION', 'NORMAL', 'TEXCOORD_0', 'JOINTS_0', 'WEIGHTS_0']),
+      );
+    });
+  }
 });
 
 describe('stylized kit build cores', () => {

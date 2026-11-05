@@ -23,6 +23,12 @@ import {
   stylizedKitSets,
   stylizedManifest,
 } from './stylized_kit_core';
+import {
+  STYLIZED_NPC_LOOKS,
+  stylizedNpcKey,
+  stylizedNpcLookFor,
+  stylizedNpcUrl,
+} from './stylized_npc_looks';
 import { WOC_STYLIZED_DIR, type WocFit } from './woc_armor_core';
 
 /** The URL switch, read once per session. */
@@ -32,14 +38,8 @@ export const STYLIZED_CHARS_PARAM = 'stylizedchars';
 export function stylizedPlayerKey(cls: string, fit: WocFit): string {
   return `stylized_player_${cls}_${fit}`;
 }
-export const STYLIZED_TOWNSFOLK_KEY = 'test_stylized_quartermaster';
-
-/** The Eastbrook townsperson the fixed-outfit body stands in for (zone1.ts). */
-export const STYLIZED_TOWNSFOLK_TEMPLATE = 'trader_wilkes';
-
 export const STYLIZED_BASE_MALE_URL = `${WOC_STYLIZED_DIR}/base_male.glb`;
 export const STYLIZED_BASE_FEMALE_URL = `${WOC_STYLIZED_DIR}/base_female.glb`;
-export const STYLIZED_TOWNSFOLK_URL = 'models/chars/test_stylized/quartermaster_stylized.glb';
 
 /** True when `search` (a location.search string) opts in. Only `1`/`on` do. */
 export function stylizedCharsRequested(search: string): boolean {
@@ -48,7 +48,7 @@ export function stylizedCharsRequested(search: string): boolean {
 }
 
 /** The review key an entity draws with while the review is on, else null: a player of a WOC
- *  class (by body pick) and the one townsperson; nothing else. */
+ *  class (by body pick) and a townsperson with a fixed-outfit body; nothing else. */
 export function stylizedTestKeyFor(
   e: Pick<Entity, 'kind' | 'templateId'> & {
     readonly modularAppearance?: { gender?: unknown } | null;
@@ -62,13 +62,14 @@ export function stylizedTestKeyFor(
       e.modularAppearance?.gender === 'female' ? 'female' : 'male',
     );
   }
-  if (e.kind === 'npc' && e.templateId === STYLIZED_TOWNSFOLK_TEMPLATE) {
-    return STYLIZED_TOWNSFOLK_KEY;
+  if (e.kind === 'npc') {
+    const look = stylizedNpcLookFor(e.templateId);
+    return look ? stylizedNpcKey(look.look) : null;
   }
   return null;
 }
 
-/** The quartermaster's arm dials: his upper arms swing out a little so his hands clear the
+/** A stout townsperson's arm dials: the upper arms swing out a little so the hands clear the
  *  belly through every clip (a rest offset on top of the WOC library's own rotations). */
 export const STOUT_ARM_ABDUCTION = 0.22;
 export const STOUT_ARM_DIALS: readonly BoneDialDef[] = [
@@ -82,9 +83,9 @@ export const STOUT_ARM_DIALS: readonly BoneDialDef[] = [
  * `player_<class>_female`): same clip library, ClipMap, gait refs and weapon layout, the
  * stylized kit's manifest and base file in place of the WOC one. `reviewKit` (the dev
  * `stylizedkit` pick) adds the sets it borrows to every manifest, so only a review that asks
- * for a mix loads more than a body's own set. The townsperson is one fixed body holding
- * nothing, its run a calm jog (the walk cycle played faster) and its arms dialled clear of its
- * belly.
+ * for a mix loads more than a body's own set. Each townsperson (stylized_npc_looks.ts) is one
+ * fixed body holding nothing, its run a calm jog (the walk cycle played faster), a stout one's
+ * arms dialled clear of its belly.
  */
 export function stylizedTestDefs(
   visuals: Readonly<Record<string, VisualDef>>,
@@ -94,17 +95,19 @@ export function stylizedTestDefs(
   const warrior = visuals.player_warrior;
   if (warrior) {
     const { wocCharacter: _woc, ...shared } = warrior;
-    defs[STYLIZED_TOWNSFOLK_KEY] = {
-      ...shared,
-      url: STYLIZED_TOWNSFOLK_URL,
-      lazyPreload: true,
-      attach: [],
-      weaponSlots: [],
-      offhandSlot: undefined,
-      clips: { ...shared.clips, run: shared.clips.walk },
-      runRef: shared.walkRef,
-      dials: STOUT_ARM_DIALS,
-    };
+    for (const npc of STYLIZED_NPC_LOOKS) {
+      defs[stylizedNpcKey(npc.look)] = {
+        ...shared,
+        url: stylizedNpcUrl(npc.look),
+        lazyPreload: true,
+        attach: [],
+        weaponSlots: [],
+        offhandSlot: undefined,
+        clips: { ...shared.clips, run: shared.clips.walk },
+        runRef: shared.walkRef,
+        dials: npc.stout ? STOUT_ARM_DIALS : undefined,
+      };
+    }
   }
   const kit = reviewKit && isStylizedKit(reviewKit) ? reviewKit : 'class';
   for (const [cls, classSet] of Object.entries(STYLIZED_CLASS_SET) as [string, StylizedSet][]) {
