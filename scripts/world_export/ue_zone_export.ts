@@ -95,6 +95,31 @@ export function exportTileRasters(t: TileCoord, seed: number, enc: HeightEncodin
   return { heights, heightsYd, layers };
 }
 
+/**
+ * Per-vertex mask of a tile: 255 where the vertex lies inside some zone rect
+ * (edges count), 0 for the padding the tile grid adds past the world's
+ * edge. The Unreal import should ignore (or flatten) the 0 cells: the sim
+ * terrain out there is unauthored and can hold cliffs.
+ */
+export function tileZoneMask(t: TileCoord, zones: readonly ZoneInfo[]): Uint8Array {
+  const b = tileBounds(t);
+  const n = TILE_VERTS;
+  const mask = new Uint8Array(n * n);
+  for (let j = 0; j < n; j++) {
+    const z = b.minZ + j * QUAD_YD;
+    for (let i = 0; i < n; i++) {
+      const x = b.minX + i * QUAD_YD;
+      for (const { rect: r } of zones) {
+        if (x >= r.minX && x <= r.maxX && z >= r.minZ && z <= r.maxZ) {
+          mask[j * n + i] = 255;
+          break;
+        }
+      }
+    }
+  }
+  return mask;
+}
+
 /** Min and max terrain height over all tiles, sampled on a coarse lattice. */
 export function worldHeightRange(
   tiles: readonly TileCoord[],

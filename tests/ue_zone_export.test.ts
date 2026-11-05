@@ -8,7 +8,13 @@ import {
   stableJson,
 } from '../scripts/world_export/ue_manifest';
 import { allRoads } from '../scripts/world_export/ue_roads';
-import { pickHeightEncoding, tileBounds, tileName } from '../scripts/world_export/ue_tiles';
+import {
+  pickHeightEncoding,
+  TILE_VERTS,
+  tileBounds,
+  tileName,
+  tilesCovering,
+} from '../scripts/world_export/ue_tiles';
 import {
   loadRegistryKeys,
   validateAssets,
@@ -20,12 +26,13 @@ import {
   exportTileRasters,
   placementToUe,
   polylineMidpoint,
+  tileZoneMask,
   worldTiles,
   zoneInfos,
   zonePlacements,
   zoneRoads,
 } from '../scripts/world_export/ue_zone_export';
-import { DUNGEON_LIST, ZONES } from '../src/sim/data';
+import { DUNGEON_LIST, getActiveWorldContent, ZONES } from '../src/sim/data';
 import { WORLD_SEED } from '../src/sim/world_seed';
 
 const zones = zoneInfos();
@@ -179,5 +186,61 @@ describe('asset validation', () => {
     expect(rep.missing).toEqual([{ assetId: 'props/barrel', uses: 2, zones: ['z1', 'z2'] }]);
     expect(rep.referenced).toBe(2);
     expect(loadRegistryKeys(['Z:/does/not/exist.json']).found).toEqual([]);
+  });
+});
+
+describe('padding cells past the world edge', () => {
+  // x 510..765 is the east-most tile column; the world ends at x = 540.
+  const edge = { tx: 2, tz: 0 };
+
+  it('marks vertices outside every zone as padding in the tile mask', () => {
+    const mask = tileZoneMask(edge, zones);
+    const n = TILE_VERTS;
+    const b = tileBounds(edge);
+    const at = (x: number, z: number): number =>
+      mask[Math.round((z - b.minZ) / 0.5) * n + Math.round((x - b.minX) / 0.5)];
+    expect(at(520, 50)).toBe(255);
+    expect(at(540, 50)).toBe(255);
+    expect(at(540.5, 50)).toBe(0);
+    expect(at(700, 50)).toBe(0);
+  });
+
+  it('gives a tile wholly inside the world no padding', () => {
+    const inner = tileZoneMask({ tx: -1, tz: 0 }, zones);
+    expect(inner.every((v) => v === 255)).toBe(true);
+  });
+
+  it('scores the between-vertex error only on cells inside the zones', () => {
+    const enc = pickHeightEncoding(-50, 300);
+    const r = exportTileRasters(edge, WORLD_SEED, enc);
+    const mask = tileZoneMask(edge, zones);
+    const all = validateTileHeights('edge', edge, r.heights, enc, WORLD_SEED, 1);
+    const scored = validateTileHeights('edge', edge, r.heights, enc, WORLD_SEED, 1, mask);
+    // the unauthored terrain past x = 540 holds a cliff of tens of yards
+    expect(all.maxOffGridErrCm).toBeGreaterThan(500);
+    expect(scored.maxOffGridErrCm).toBeLessThan(all.maxOffGridErrCm / 5);
+    // vertex quantization is still checked everywhere
+    expect(scored.maxVertexErrCm).toBe(all.maxVertexErrCm);
+  }, 120_000);
+});
+
+describe('new player spawn', () => {
+  it('lies in tiles that the export writes', () => {
+    const w = getActiveWorldContent();
+    const area = w.playerSpawnArea ?? {
+      minX: w.playerStart.x,
+      maxX: w.playerStart.x,
+      minZ: w.playerStart.z,
+      maxZ: w.playerStart.z,
+    };
+    const exported = new Set(worldTiles(zones).map(tileName));
+    const need = tilesCovering({
+      minX: area.minX,
+      maxX: area.maxX + 0.001,
+      minZ: area.minZ,
+      maxZ: area.maxZ + 0.001,
+    });
+    expect(need.length).toBeGreaterThan(0);
+    for (const t of need) expect(exported.has(tileName(t))).toBe(true);
   });
 });

@@ -34,6 +34,7 @@ import {
 import {
   dungeonWalls,
   exportTileRasters,
+  tileZoneMask,
   type UePlacement,
   worldHeightRange,
   worldTiles,
@@ -99,13 +100,30 @@ if (!skipTiles) {
       w.write(`tiles/${name}/splat_${layerName}.png`, png);
       rel.push(`tiles/${name}/splat_${layerName}.png`);
     }
-    heightReports.push(validateTileHeights(name, t, r.heights, enc, seed));
+    // Padding: the tile grid reaches past the world's edge. The mask file marks
+    // those vertices (0) so the Unreal import can ignore or flatten them.
+    const mask = tileZoneMask(t, allZones);
+    const inside = mask.reduce((a, v) => a + (v ? 1 : 0), 0);
+    const hasPadding = inside < mask.length;
+    if (hasPadding) {
+      const png = await sharp(mask, {
+        raw: { width: TILE_VERTS, height: TILE_VERTS, channels: 1 },
+      })
+        .png({ compressionLevel: 9 })
+        .toBuffer();
+      w.write(`tiles/${name}/zone_mask.png`, png);
+      rel.push(`tiles/${name}/zone_mask.png`);
+    }
+    heightReports.push(validateTileHeights(name, t, r.heights, enc, seed, 7, mask));
     tileIndex[name] = {
       tx: t.tx,
       tz: t.tz,
       minX: t.tx * TILE_YD,
       minZ: t.tz * TILE_YD,
       files: rel,
+      padding: hasPadding
+        ? { mask: `tiles/${name}/zone_mask.png`, insideFraction: inside / mask.length }
+        : null,
     };
   }
 }
@@ -175,6 +193,8 @@ const manifest = {
       tilesChecked: heightReports.length,
       worstVertexErrCm: worstVertex,
       worstOffGridErrCm: worstOffGrid,
+      offGridScope:
+        'cells whose four corners lie inside a zone rect; padding cells are in tiles/*/zone_mask.png',
       withinTwoCm: worstVertex <= 2,
     },
     assets,

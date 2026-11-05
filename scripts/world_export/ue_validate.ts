@@ -34,6 +34,8 @@ export function validateTileHeights(
   enc: HeightEncoding,
   seed: number,
   stride = 7,
+  /** per-vertex zone mask (255 inside a zone, 0 padding); off-grid cells are scored only when all four corners are inside */
+  zoneMask?: Uint8Array,
 ): HeightReport {
   const b = tileBounds(t);
   const n = TILE_VERTS;
@@ -46,7 +48,13 @@ export function validateTileHeights(
       const err = Math.abs(decodeHeight(heights[j * n + i], enc) - sim) * 100;
       if (err > maxV) maxV = err;
       samples++;
-      if (i + 1 < n && j + 1 < n) {
+      const cellInside =
+        !zoneMask ||
+        (zoneMask[j * n + i] &&
+          zoneMask[j * n + i + 1] &&
+          zoneMask[(j + 1) * n + i] &&
+          zoneMask[(j + 1) * n + i + 1]);
+      if (i + 1 < n && j + 1 < n && cellInside) {
         const cx = b.minX + (i + 0.5) * QUAD_YD;
         const cz = b.minZ + (j + 0.5) * QUAD_YD;
         const h00 = decodeHeight(heights[j * n + i], enc);
