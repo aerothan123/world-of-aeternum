@@ -10,7 +10,7 @@
 // still sit slightly wrong. WEAPON_GRIP_OVERRIDES layers a per-WEAPON nudge on
 // top so one model fits the hand nicely without retuning the whole family.
 
-import { WYND_SEAT_DONORS } from './wynd_weapon_replacements';
+import { WYND_HERO_MODELS, WYND_SEAT_DONORS } from './wynd_weapon_replacements';
 
 /** Per-weapon grip fine-tune, applied ON TOP of the family VariantGrip. Every
  *  field is optional and defaults to identity, so an absent override reproduces
@@ -344,6 +344,22 @@ for (const [key, source] of Object.entries(WYND_SEAT_DONORS)) {
   if (fit) WEAPON_GRIP_OVERRIDES[key] = fit;
   else delete WEAPON_GRIP_OVERRIDES[key];
 }
+
+/** The crossbow keys that hold a WYNDLEWOOD hero model. Those files are normalized in the bow
+ *  frame, with the prod as the long axis, so the seat they ride (the bow family or the kit
+ *  crossbow node) held them prod-first; a quarter turn about X puts the prod across the hand and
+ *  the stock forward, idle and aimed (checked on the hunter's held crossbow). */
+export const WYND_CROSSBOW_SEAT: Readonly<Record<string, WeaponGripOverride>> = Object.fromEntries(
+  [
+    'cinderlatch',
+    'crossbow_starter',
+    'meteorlatch_the_sky_s_last_judgment',
+    'simple_farmhand_crossbow',
+  ]
+    .filter((key) => Object.hasOwn(WYND_HERO_MODELS, key))
+    .map((key) => [key, { ...WEAPON_GRIP_OVERRIDES[key], rot: [90, 0, 0] }]),
+);
+Object.assign(WEAPON_GRIP_OVERRIDES, WYND_CROSSBOW_SEAT);
 
 export interface GripTransform {
   position: [number, number, number];

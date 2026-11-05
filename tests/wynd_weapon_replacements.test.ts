@@ -8,7 +8,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { KAYKIT_WEAPON_ACCESSORY } from '../src/render/characters/assets';
 import { KAYKIT_SHIELD_ACCESSORIES } from '../src/render/characters/held_item_grips';
-import { WEAPON_GRIP_OVERRIDES } from '../src/render/characters/weapon_grip';
+import { WEAPON_GRIP_OVERRIDES, WYND_CROSSBOW_SEAT } from '../src/render/characters/weapon_grip';
 import {
   WYND_MODEL_KEYS,
   WYND_SHIELD_ACCESSORIES,
@@ -125,7 +125,9 @@ describe('retired inherited weapon models', () => {
 
   it('seat each one the way its tier look sits: grip fit, family and shield seat', () => {
     for (const [key, source] of Object.entries(WYND_SEAT_DONORS)) {
-      expect(WEAPON_GRIP_OVERRIDES[key], key).toEqual(WEAPON_GRIP_OVERRIDES[source]);
+      if (!Object.hasOwn(WYND_CROSSBOW_SEAT, key)) {
+        expect(WEAPON_GRIP_OVERRIDES[key], key).toEqual(WEAPON_GRIP_OVERRIDES[source]);
+      }
       const own = KAYKIT_WEAPON_ACCESSORY[key];
       if (own && own !== 'VAR_CROSSBOW' && KAYKIT_WEAPON_ACCESSORY[source]) {
         expect(own, key).toBe(KAYKIT_WEAPON_ACCESSORY[source]);
@@ -150,6 +152,15 @@ describe('retired inherited weapon models', () => {
       }
       expect(tris, key).toBeLessThanOrEqual(1500);
       expect(buf.length, key).toBeLessThan(150_000);
+    }
+  });
+
+  it('turns each hero crossbow a quarter about X so its prod lies across the hand', () => {
+    const keys = Object.keys(WYND_CROSSBOW_SEAT);
+    expect(keys.length).toBeGreaterThan(0);
+    for (const key of keys) {
+      expect(WYND_HERO_MODELS[key], key).toBeDefined();
+      expect(WEAPON_GRIP_OVERRIDES[key]?.rot, key).toEqual([90, 0, 0]);
     }
   });
 });
