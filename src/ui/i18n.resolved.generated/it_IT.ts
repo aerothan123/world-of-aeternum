@@ -5364,6 +5364,10 @@ export const it_IT: EnTranslations = {
       "itemName": "{item}, {quality}",
       "tooltip": "{quality}: +{levels} livelli oggetto. Mantenuto attraverso i miglioramenti."
     },
+    "durability": {
+      "low": "Your equipment is badly damaged. Repair it at an armorer, a weaponsmith or a forge.",
+      "broken": "Some of your equipment is broken and gives no stats. Repair it at an armorer, a weaponsmith or a forge."
+    },
     "itemTooltip": {
       "requiresLevel": "Richiede livello {level}",
       "durability": "Durability {current} / {max}",

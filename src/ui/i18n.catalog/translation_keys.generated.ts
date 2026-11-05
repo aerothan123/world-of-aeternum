@@ -14597,6 +14597,8 @@ export type TranslationKeyFlat =
   | 'hudChrome.dungeonDifficulty.unappliedNormal'
   | 'hudChrome.dungeonTracker.complete'
   | 'hudChrome.dungeonTracker.heroicTitle'
+  | 'hudChrome.durability.broken'
+  | 'hudChrome.durability.low'
   | 'hudChrome.emoteEditor.close'
   | 'hudChrome.emoteEditor.done'
   | 'hudChrome.emoteEditor.title'

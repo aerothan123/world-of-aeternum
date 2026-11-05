@@ -5364,6 +5364,10 @@ export const en_XA: EnTranslations = {
       "itemName": "[{item}, {quality}]",
       "tooltip": "[{quality}: +{levels} íţéɱ ļéʋéļš. Ŕéţáíñéð ţĥŕóúĝĥ úþĝŕáðéš.]"
     },
+    "durability": {
+      "low": "[Ýóúŕ éɋúíþɱéñţ íš ƀáðļý ðáɱáĝéð. Ŕéþáíŕ íţ áţ áñ áŕɱóŕéŕ, á ŵéáþóñšɱíţĥ óŕ á ƒóŕĝé.]",
+      "broken": "[Šóɱé óƒ ýóúŕ éɋúíþɱéñţ íš ƀŕóķéñ áñð ĝíʋéš ñó šţáţš. Ŕéþáíŕ íţ áţ áñ áŕɱóŕéŕ, á ŵéáþóñšɱíţĥ óŕ á ƒóŕĝé.]"
+    },
     "itemTooltip": {
       "requiresLevel": "[Ŕéɋúíŕéš Ļéʋéļ {level}]",
       "durability": "[Ðúŕáƀíļíţý {current} / {max}]",

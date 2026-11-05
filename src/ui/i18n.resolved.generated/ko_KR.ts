@@ -5364,6 +5364,10 @@ export const ko_KR: EnTranslations = {
       "itemName": "{item}, {quality}",
       "tooltip": "{quality}: 아이템 레벨 +{levels}. 강화 후에도 유지됩니다."
     },
+    "durability": {
+      "low": "Your equipment is badly damaged. Repair it at an armorer, a weaponsmith or a forge.",
+      "broken": "Some of your equipment is broken and gives no stats. Repair it at an armorer, a weaponsmith or a forge."
+    },
     "itemTooltip": {
       "requiresLevel": "필요 레벨 {level}",
       "durability": "Durability {current} / {max}",

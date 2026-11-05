@@ -5364,6 +5364,10 @@ export const vi_VN: EnTranslations = {
       "itemName": "{item}, {quality}",
       "tooltip": "{quality}: +{levels} cấp độ vật phẩm. Được giữ lại qua các nâng cấp."
     },
+    "durability": {
+      "low": "Your equipment is badly damaged. Repair it at an armorer, a weaponsmith or a forge.",
+      "broken": "Some of your equipment is broken and gives no stats. Repair it at an armorer, a weaponsmith or a forge."
+    },
     "itemTooltip": {
       "requiresLevel": "Yêu cầu Cấp {level}",
       "durability": "Durability {current} / {max}",

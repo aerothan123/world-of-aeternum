@@ -5364,6 +5364,10 @@ export const tr_TR: EnTranslations = {
       "itemName": "{item}, {quality}",
       "tooltip": "{quality}: +{levels} öğe seviyeleri. Yükseltmeler sırasında korunur."
     },
+    "durability": {
+      "low": "Your equipment is badly damaged. Repair it at an armorer, a weaponsmith or a forge.",
+      "broken": "Some of your equipment is broken and gives no stats. Repair it at an armorer, a weaponsmith or a forge."
+    },
     "itemTooltip": {
       "requiresLevel": "Gereken Seviye {level}",
       "durability": "Durability {current} / {max}",

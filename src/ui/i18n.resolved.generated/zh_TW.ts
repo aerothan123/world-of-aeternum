@@ -5364,6 +5364,10 @@ export const zh_TW: EnTranslations = {
       "itemName": "{item}，{quality}",
       "tooltip": "{quality}：+{levels} 物品等級。強化後仍會保留。"
     },
+    "durability": {
+      "low": "Your equipment is badly damaged. Repair it at an armorer, a weaponsmith or a forge.",
+      "broken": "Some of your equipment is broken and gives no stats. Repair it at an armorer, a weaponsmith or a forge."
+    },
     "itemTooltip": {
       "requiresLevel": "需要等級 {level}",
       "durability": "Durability {current} / {max}",
