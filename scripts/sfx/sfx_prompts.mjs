@@ -18,6 +18,7 @@
 // single-event, "no music, no speech" where it matters. Footsteps/impacts are ONE
 // hit (the engine pitch-randomizes and alternates to avoid repetition).
 
+import { AMBIENCE_BED_PROMPTS } from './ambience_bed_prompts.mjs';
 import { FURY_SFX } from './fury_sfx.mjs';
 import { GATHER_STRIKE_SFX } from './gather_strike_prompts.mjs';
 import { UI_SFX_CATALOG } from './ui_sfx.mjs';
@@ -1017,6 +1018,20 @@ export const SFX = [
     prompt:
       'A lively medieval tavern room: overlapping talk and laughter, mugs clinking, a hearth crackling and a little lute music from the corner. Seamless loop.',
   },
+  // The region beds (src/render/region_ambience_core.ts): long zone and town soundscapes,
+  // generated and looped by scripts/sfx/ambience_beds_sfx.mjs (prompts in
+  // ambience_bed_prompts.mjs, raw takes in scripts/sfx/sources/ambience/). custom is
+  // load-bearing, as for amb_tavern: that script bakes the crossfaded wrap and masters each
+  // bed itself, so conform only enforces the true-peak ceiling and never retargets it.
+  // stereo: non-positional beds the region readout crossfades by where the player stands.
+  ...AMBIENCE_BED_PROMPTS.map(({ key, request, prompt }) => ({
+    key,
+    duration: request,
+    loop: true,
+    stereo: true,
+    custom: true,
+    prompt,
+  })),
 
   // --- Custom recordings (not ElevenLabs) ----------------------------------
   { key: 'quest_accept', custom: true },

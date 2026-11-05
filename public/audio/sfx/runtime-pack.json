@@ -1,9 +1,81 @@
 {
   "format": "woc-sfx-runtime-pack",
   "version": 1,
-  "bundleId": "cec64d83399c255046e9269864e02ab4941cba3f64f96635ea69979beb04b5f1",
-  "catalogHash": "c5f520bd8419a9cce1eadb7e3d9fcdc825d2007828628a4c491dd8b9aab7f9f7",
+  "bundleId": "e86aa4bca26c33ff960cd3316d87f1ab44b62cca3e2d1bbb3380a5c479146e8e",
+  "catalogHash": "ad5559cb435307f4b71e02030a4d17a50b9d18c55cac1d65b16dce687b01d09a",
   "clips": {
+    "amb_bed_forest": {
+      "variants": [
+        {
+          "id": "main",
+          "url": "/audio/sfx/amb_bed_forest.mp3?v=da0d9bd8d2c5",
+          "bytes": 440991,
+          "sha256": "da0d9bd8d2c596e9e0134ed05a8573b6945a082ddfae1b9e2e0e2dedb0058771"
+        }
+      ],
+      "gain": 1,
+      "playbackRate": 1
+    },
+    "amb_bed_marsh": {
+      "variants": [
+        {
+          "id": "main",
+          "url": "/audio/sfx/amb_bed_marsh.mp3?v=047b5fa6774f",
+          "bytes": 440991,
+          "sha256": "047b5fa6774f586ab99dc95e241677bf2038b90a13340de9fc4a1b85a48b2638"
+        }
+      ],
+      "gain": 1,
+      "playbackRate": 1
+    },
+    "amb_bed_meadow": {
+      "variants": [
+        {
+          "id": "main",
+          "url": "/audio/sfx/amb_bed_meadow.mp3?v=5974d4609253",
+          "bytes": 440991,
+          "sha256": "5974d4609253b5785c6e2c03cef492507ec73500a66e9237ada439d8ed1aa4c1"
+        }
+      ],
+      "gain": 1,
+      "playbackRate": 1
+    },
+    "amb_bed_shore": {
+      "variants": [
+        {
+          "id": "main",
+          "url": "/audio/sfx/amb_bed_shore.mp3?v=f7e2402659be",
+          "bytes": 313095,
+          "sha256": "f7e2402659bedf6b917e15b226b32083b8968a91859107b6cbfbd4bb1a9c8d7b"
+        }
+      ],
+      "gain": 1,
+      "playbackRate": 1
+    },
+    "amb_bed_town_day": {
+      "variants": [
+        {
+          "id": "main",
+          "url": "/audio/sfx/amb_bed_town_day.mp3?v=a74802f126ab",
+          "bytes": 440991,
+          "sha256": "a74802f126abf2d1464f26bb42b43748b88687a3b87f46b7a2fe1ef826d5b35e"
+        }
+      ],
+      "gain": 1,
+      "playbackRate": 1
+    },
+    "amb_bed_town_night": {
+      "variants": [
+        {
+          "id": "main",
+          "url": "/audio/sfx/amb_bed_town_night.mp3?v=79cd95b5825b",
+          "bytes": 440991,
+          "sha256": "79cd95b5825bf2ca440749b3aaee32b490155fab46ccb43cf5ab4790a6c700f1"
+        }
+      ],
+      "gain": 1,
+      "playbackRate": 1
+    },
     "amb_birds": {
       "variants": [
         {

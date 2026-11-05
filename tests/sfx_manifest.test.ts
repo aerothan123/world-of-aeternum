@@ -182,9 +182,18 @@ describe('buildManifest', () => {
     // and the Lantern Hall Destrier's whinny as it rears (mount_neigh_lantern_hall_destrier,
     // synthesized) makes 408, mount cues 41. The four gathering strike cues (the pick,
     // the axe, and a felled tree's creak and crash, scripts/sfx/gather_strike_sfx.mjs)
-    // make 412.
+    // make 412. The six region beds (the island surf, Eastbrook by day and by night, the
+    // meadow, the forest and the marsh, scripts/sfx/ambience_beds_sfx.mjs) make 418.
     const keys = new Set(SFX.map((entry) => entry.key));
-    expect(keys.size).toBe(412);
+    expect(keys.size).toBe(418);
+    expect([...keys].filter((key) => key.startsWith('amb_bed_')).sort()).toEqual([
+      'amb_bed_forest',
+      'amb_bed_marsh',
+      'amb_bed_meadow',
+      'amb_bed_shore',
+      'amb_bed_town_day',
+      'amb_bed_town_night',
+    ]);
     for (const key of [
       'impact_gather_pick',
       'impact_gather_axe',
@@ -303,7 +312,7 @@ describe('buildManifest', () => {
     // purely filesystem-discovered.
     const mobFamilyKeys = [...keys].filter((key) => key.startsWith('mob_'));
     expect(mobFamilyKeys).toHaveLength(65); // 13 families x 5 actions
-    expect(SFX_FIXED_CATALOG_KEYS).toHaveLength(412);
+    expect(SFX_FIXED_CATALOG_KEYS).toHaveLength(418);
     expect([...SFX_FIXED_CATALOG_KEYS].sort()).toEqual([...keys].sort());
   });
 });
