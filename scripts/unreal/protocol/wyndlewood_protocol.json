@@ -498,8 +498,5 @@
     "wqrr",
     "xp"
   ],
-  "capabilityDeltaKeys": [
-    "auras",
-    "de"
-  ]
+  "capabilityDeltaKeys": ["auras", "de"]
 }

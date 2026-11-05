@@ -38,7 +38,10 @@ describe('unreal protocol export', () => {
   it('committed export is fresh (run npm run unreal:protocol)', () => {
     const fresh = buildProtocolExport(ROOT);
     const dir = join(ROOT, PROTOCOL_EXPORT_DIR);
-    expect(readFileSync(join(dir, PROTOCOL_JSON_FILE), 'utf8')).toBe(fresh.json);
+    // The JSON is compared structurally: the committed copy is biome-formatted.
+    expect(JSON.parse(readFileSync(join(dir, PROTOCOL_JSON_FILE), 'utf8'))).toEqual(
+      JSON.parse(fresh.json),
+    );
     expect(readFileSync(join(dir, PROTOCOL_HEADER_FILE), 'utf8')).toBe(fresh.header);
   });
 
