@@ -22,6 +22,12 @@ export const WYND_TYPES = {
   bow: { family: 'bow', key: 'bow_wynd' },
   shield: { family: 'book', key: 'shield_wynd' },
   tome: { family: 'book', key: 'tome_wynd' },
+  dagger: { family: 'dagger', key: 'dagger_wynd' },
+  wand: { family: 'wand', key: 'wand_wynd' },
+  spear: { family: 'polearm', key: 'spear_wynd' },
+  axe1h: { family: 'axe', key: 'axe_wynd' },
+  greatsword: { family: 'sword', key: 'sword_wynd_2h' },
+  maul: { family: 'hammer', key: 'hammer_wynd_2h' },
 };
 
 /** The held-model key of one type's tier. */
@@ -119,6 +125,22 @@ export function inTrimZone(type, t, r) {
       return r > 0.88;
     case 'tome':
       return true;
+    case 'dagger':
+      return t < 0.32;
+    case 'greatsword':
+      return t < 0.28;
+    case 'wand':
+      // the end cap and the setting round the tip
+      return t < 0.08 || t > 0.9;
+    case 'spear':
+      // the spear file is head-down (polearms carry their head below the fist): the riveted
+      // socket above the head, and the butt cap at the top
+      return (t > 0.27 && t < 0.34) || t > 0.96;
+    case 'axe1h':
+      return (t > 0.6 && r < 0.3) || t < 0.05;
+    case 'maul':
+      // the butt cap and the banded edges of the head
+      return t < 0.06 || (t > 0.78 && r > 0.85);
     default:
       return false;
   }
@@ -128,7 +150,7 @@ export function inTrimZone(type, t, r) {
  *  bow's tip caps, a sword's guard and pommel and a mace's studs are painted dark and
  *  warm, so on these a tier recolours every non-shadow texel of the zone outside the grip
  *  wrap, not only the grey ones. */
-export const TRIM_GILDS_ALL = new Set(['shield', 'bow', 'sword', 'mace']);
+export const TRIM_GILDS_ALL = new Set(['shield', 'bow', 'sword', 'mace', 'dagger', 'greatsword']);
 
 /** Whether a texel lies in the type's GRIP zone: where its leather wrap is, the one warm
  *  surface a better tier dyes rather than merely deepens (wood and leather share a hue, so
@@ -147,6 +169,18 @@ export function inGripZone(type, t) {
       return t > 0.4 && t < 0.6;
     case 'tome':
       return true;
+    case 'dagger':
+      return t > 0.06 && t < 0.26;
+    case 'greatsword':
+      return t > 0.04 && t < 0.24;
+    case 'wand':
+      return t > 0.06 && t < 0.38;
+    case 'spear':
+      return t > 0.4 && t < 0.6;
+    case 'axe1h':
+      return t > 0.04 && t < 0.4;
+    case 'maul':
+      return t > 0.04 && t < 0.36;
     default:
       return false;
   }
@@ -267,6 +301,18 @@ export const WYND_ADDONS = {
     bow: [{ kind: 'gem', at: 'front-mid', swatch: 'gem', size: 0.045 }],
     shield: [{ kind: 'gem', at: 'front-center', swatch: 'gemWarm', size: 0.06 }],
     tome: [{ kind: 'gem', at: 'front-center', swatch: 'gem', size: 0.07 }],
+    dagger: [{ kind: 'gem', at: 'foot', swatch: 'gemWarm', size: 0.06 }],
+    greatsword: [{ kind: 'gem', at: 'foot', swatch: 'gemWarm', size: 0.045 }],
+    wand: [{ kind: 'band', t: 0.42, swatch: 'gilt' }],
+    spear: [
+      { kind: 'band', t: 0.66, swatch: 'gilt' },
+      { kind: 'band', t: 0.72, swatch: 'gilt' },
+    ],
+    axe1h: [{ kind: 'band', t: 0.46, swatch: 'gilt' }],
+    maul: [
+      { kind: 'band', t: 0.4, swatch: 'gilt' },
+      { kind: 'band', t: 0.45, swatch: 'gilt' },
+    ],
   },
 };
 
