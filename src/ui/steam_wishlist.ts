@@ -101,9 +101,9 @@ export async function syncSteamWishlistVisibility(
       link.href = STEAM_WISHLIST_URL;
     }
   }
-  body.classList.toggle(
-    STEAM_BUILD_BODY_CLASS,
-    STEAM_WISHLIST_URL === '' || (await isSteamDistribution(bridge)),
-  );
+  // Always await the shell answer first, so the fail-closed boot class holds
+  // until the probe settles whichever way the store URL is configured.
+  const steamBuild = await isSteamDistribution(bridge);
+  body.classList.toggle(STEAM_BUILD_BODY_CLASS, STEAM_WISHLIST_URL === '' || steamBuild);
   body.classList.toggle(STEAM_WISHLIST_PENDING_BODY_CLASS, false);
 }

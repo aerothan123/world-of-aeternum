@@ -242,7 +242,9 @@ describe('resolveDesktopConfig', () => {
       distribution: 'website',
       updaterEnabled: true,
       crashSubmitUrl: '',
-      updateChannel: 'latest',
+      // No production origin is provisioned yet (electron/brand.cjs), so the
+      // unstamped local-dev default reads the dev track.
+      updateChannel: 'dev',
       ...defaultOrigins,
     });
   });
@@ -253,7 +255,9 @@ describe('resolveDesktopConfig', () => {
       distribution: 'steam',
       updaterEnabled: false,
       crashSubmitUrl: '',
-      updateChannel: 'latest',
+      // No production origin is provisioned yet (electron/brand.cjs), so the
+      // unstamped local-dev default reads the dev track.
+      updateChannel: 'dev',
       ...defaultOrigins,
     });
   });
@@ -264,7 +268,9 @@ describe('resolveDesktopConfig', () => {
       distribution: 'epic',
       updaterEnabled: false,
       crashSubmitUrl: '',
-      updateChannel: 'latest',
+      // No production origin is provisioned yet (electron/brand.cjs), so the
+      // unstamped local-dev default reads the dev track.
+      updateChannel: 'dev',
       ...defaultOrigins,
     });
   });
@@ -276,7 +282,9 @@ describe('resolveDesktopConfig', () => {
       distribution: 'website',
       updaterEnabled: true,
       crashSubmitUrl: '',
-      updateChannel: 'latest',
+      // No production origin is provisioned yet (electron/brand.cjs), so the
+      // unstamped local-dev default reads the dev track.
+      updateChannel: 'dev',
       ...defaultOrigins,
     });
   });
@@ -287,7 +295,9 @@ describe('resolveDesktopConfig', () => {
       distribution: 'website',
       updaterEnabled: false,
       crashSubmitUrl: '',
-      updateChannel: 'latest',
+      // No production origin is provisioned yet (electron/brand.cjs), so the
+      // unstamped local-dev default reads the dev track.
+      updateChannel: 'dev',
       ...defaultOrigins,
     });
     // Project H has no cryptocurrency: the desktop config carries no Exchange flag.

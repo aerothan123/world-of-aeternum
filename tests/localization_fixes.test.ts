@@ -243,7 +243,7 @@ describe('B1: server log-type messages localize through the log path', () => {
       'Bob is now Officer.',
       'You found the guild <Knights>! You are its Guild Master.',
       'You have left <Knights>.',
-      'Mira has entered Project H.',
+      'Mira has entered Wyndlewood.',
       'Bob has left the world. (disconnected)',
       'Who: 3 players online on Stormforge.',
       'Who: 1 player online on Stormforge.',

@@ -248,12 +248,11 @@ describe('client HTML shell', () => {
     expect(mainTsCode).toContain('openHeaderWiki(NATIVE_APP || DESKTOP_APP)');
     expect(mainTsCode).not.toContain("window.location.href = '/wiki'");
   });
-  it('links to the three companion websites in separate tabs', () => {
+  it('no longer links to the upstream companion websites (records, scout, parses)', () => {
+    // Those are World of ClaudeCraft services, not Wyndlewood ones.
     for (const site of ['records', 'scout', 'parses']) {
-      const href = `https://${site}.worldofclaudecraft.com/`;
-      const link = html.match(/<a\b[^>]*>/g)?.find((tag) => tag.includes(`href="${href}"`));
-      expect(link).toContain('target="_blank"');
-      expect(link).toContain('rel="noopener noreferrer"');
+      expect(html).not.toContain(`https://${site}.worldofclaudecraft.com/`);
+      expect(playHtml).not.toContain(`https://${site}.worldofclaudecraft.com/`);
     }
   });
   it('uses the painted combat-status crest in both game entries', () => {
@@ -997,11 +996,12 @@ describe('client HTML shell', () => {
       '<meta name="robots" content="index, follow, max-image-preview:large" />',
     );
     expect(html).toContain('<link rel="canonical" href="https://worldofclaudecraft.com/" />');
-    expect(html).toContain('<meta property="og:site_name" content="Project H" />');
-    expect(html).toContain('"alternateName": "World of Claudecraft"');
-    expect(html).toContain('"https://github.com/levy-street/world-of-claudecraft"');
-    expect(mainTs).toContain("alternateName: 'World of Claudecraft'");
-    expect(mainTs).toContain("'https://github.com/levy-street/world-of-claudecraft'");
+    expect(html).toContain('<meta property="og:site_name" content="Wyndlewood" />');
+    // The JSON-LD names Wyndlewood only: no upstream alternateName or social sameAs.
+    expect(html).not.toContain('"alternateName": "World of Claudecraft"');
+    expect(html).not.toContain('"sameAs"');
+    expect(mainTs).not.toContain("alternateName: 'World of Claudecraft'");
+    expect(mainTs).not.toContain("'https://github.com/levy-street/world-of-claudecraft',\n");
     expect(robotsTxt.trim()).toBe(
       'User-agent: *\nAllow: /\n\nSitemap: https://worldofclaudecraft.com/sitemap.xml\nSitemap: https://worldofclaudecraft.com/sitemap-characters.xml\nSitemap: https://worldofclaudecraft.com/sitemap-marketing.xml',
     );
@@ -1820,12 +1820,12 @@ describe('client HTML shell', () => {
     // homepage still use it); only the in-game touch HUD hides it, because
     // its two-person toggle icon under the minimap masqueraded as a Friends
     // button next to the real Social button in the top-left trio.
-    expect(html).toContain('<a class="donate-cta"');
+    expect(html).not.toContain('<a class="donate-cta"');
     expect(html).toContain('<details id="community-menu">');
     expect(html).toContain('<summary class="community-toggle ui-disc"');
     expect(html).toContain('<div class="community-tray">');
     // The tray is wishlist-only now (its GitHub/Donate links were removed,
-    // owner request); the marketing donate-cta above stays.
+    // owner request); the marketing donate-cta left with the Ko-fi removal.
     expect(html).toContain('<a class="community-link steam-wishlist steam-wishlist-chip"');
     expect(html).not.toContain('<a class="community-link github"');
     expect(html).not.toContain('<a class="community-link donate"');

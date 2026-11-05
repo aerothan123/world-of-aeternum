@@ -900,6 +900,8 @@ const GENERAL_KEYS = [
   'invertLookY',
   'firstPersonMode',
   'landingHighContrast',
+  'shareAnalytics',
+  'note:hudChrome.options.shareAnalyticsNote',
   'showDevBadges',
   'showPlaytime',
   'showDailyRewardsChest',

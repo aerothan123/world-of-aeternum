@@ -92,7 +92,9 @@ describe('steam wishlist suppression policy', () => {
     expect(toggled).toEqual([
       { token: STEAM_BUILD_BODY_CLASS, force: true },
       { token: STEAM_WISHLIST_PENDING_BODY_CLASS, force: false },
-      { token: STEAM_BUILD_BODY_CLASS, force: false },
+      // A website build hides the reminder too while no Wyndlewood store page is
+      // configured (src/brand.ts STEAM_STORE_URL is empty).
+      { token: STEAM_BUILD_BODY_CLASS, force: STEAM_WISHLIST_URL === '' },
       { token: STEAM_WISHLIST_PENDING_BODY_CLASS, force: false },
     ]);
   });
@@ -177,7 +179,10 @@ describe('steam wishlist markup', () => {
   it('links every outbound surface at the module URL, in a safe new tab', () => {
     for (const file of ENTRIES) {
       for (const tag of wishlistTags(entry(file))) {
-        expect(tag, file).toContain(`href="${STEAM_WISHLIST_URL}"`);
+        // A neutral static href; syncSteamWishlistVisibility points every surface
+        // at the configured page (or hides them all while none exists).
+        expect(tag, file).toContain('href="https://store.steampowered.com/"');
+        expect(tag, file).not.toContain('4897790');
         expect(tag, file).toContain('target="_blank"');
         expect(tag, file).toContain('rel="noopener noreferrer"');
       }
@@ -300,7 +305,7 @@ describe('steam wishlist copy', () => {
     expect(t('hudChrome.steam.wishlist')).toBe('Wishlist on Steam');
     expect(t('hudChrome.steam.wishlistShort')).toBe('Wishlist');
     expect(t('hudChrome.steam.wishlistAria')).toBe(
-      'Wishlist on Steam: open the World of ClaudeCraft store page',
+      'Wishlist on Steam: open the Wyndlewood store page',
     );
   });
 
@@ -312,7 +317,7 @@ describe('steam wishlist copy', () => {
       expect(t('hudChrome.steam.wishlist'), lang).not.toBe('Wishlist on Steam');
       expect(t('hudChrome.steam.wishlistShort'), lang).not.toBe('Wishlist');
       expect(t('hudChrome.steam.wishlistAria'), lang).not.toBe(
-        'Wishlist on Steam: open the World of ClaudeCraft store page',
+        'Wishlist on Steam: open the Wyndlewood store page',
       );
       // The brand itself is never transliterated away.
       expect(t('hudChrome.steam.wishlist'), lang).toContain('Steam');
