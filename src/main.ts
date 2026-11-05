@@ -1930,7 +1930,6 @@ async function startGame(
     onMenu: () => hud.toggleOptionsMenu(),
     onSocial: () => hud.toggleSocial(),
     onDiscord: () => openDiscordEntry(),
-    onDonate: () => window.open(DONATE_URL, '_blank', 'noopener,noreferrer'),
     onWiki: () => hud.openWiki(),
     onEmotes: () => hud.toggleEmoteWheel(),
     onArena: () => hud.toggleArena(),
@@ -7132,11 +7131,6 @@ function wireHomepageMusicToggle(): void {
 // ── Discord login/onboarding ─────────────────────────────────────────────────
 // Discord UI is available on web and native unless explicitly disabled at build time.
 const DISCORD_BUILD_ENABLED = String(import.meta.env.VITE_DISCORD_DISABLED ?? '').trim() !== '1';
-// Community links for the mobile More tray. discordInviteUrl() itself now
-// falls back to DEFAULT_DISCORD_INVITE_URL (discord_status.ts) when the
-// server-fed value is not known yet (logged out, offline), so every caller
-// gets the fail-open behavior for free.
-const DONATE_URL = 'https://ko-fi.com/worldofclaudecraft';
 
 // The OAuth flow itself (web popup, native handoff, and the in-game link-error
 // notice a failed relink now surfaces) lives in src/net/discord_oauth_flow.ts;

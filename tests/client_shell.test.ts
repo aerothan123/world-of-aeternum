@@ -1236,49 +1236,28 @@ describe('client HTML shell', () => {
     expect(html).toContain('aria-label="Quest Log"');
   });
 
-  it('offers Discord and Donate entries in the mobile drawer of BOTH entries', () => {
+  it('offers the Discord entry and NO donation link in the mobile drawer of BOTH entries', () => {
     // Mobile has no keyboard, so the U-key Discord panel toggle is unreachable;
     // this drawer button is the touch path to Discord (the account panel when
-    // available, else the community invite). Donate mirrors the desktop shell's
-    // Ko-fi community link.
+    // available, else the community invite).
     for (const [name, entry] of [
       ['index.html', html],
       ['play.html', playHtml],
     ] as const) {
       expect(entry, name).toContain('id="mobile-discord"');
-      // Carries the icon hook (hydrateIcons swaps [data-icon] for the inline SVG).
       expect(entry, name).toMatch(/id="mobile-discord"[^>]*data-icon="discord"/);
-      // Starts hidden; main.ts reveals it at boot on any build with Discord UI
-      // enabled (it stays hidden in the native-app build).
       expect(entry, name).toMatch(/id="mobile-discord"\s+hidden/);
-      expect(entry, name).toContain('id="mobile-donate"');
-      expect(entry, name).toMatch(/id="mobile-donate"[^>]*data-icon="donate"/);
-      // Donate is never gated on the web: no hidden attribute on it.
-      expect(entry, name).not.toMatch(/id="mobile-donate"\s+hidden/);
-    }
-    // The native-app build strips every donation link (store payment-steering
-    // policy); the tray entry joins the same suppression block as the desktop
-    // .donate links in hud.css.
-    expect(hudCss).toContain('body.native-app #mobile-donate,');
-    // The tap targets: the account panel with the invite as the logged-out /
-    // offline fallback (discordInviteUrl() itself falls back to
-    // DEFAULT_DISCORD_INVITE_URL in discord_status.ts), and the Ko-fi page,
-    // pinned to the shells' URLs.
-    expect(mainTs).toContain("const DONATE_URL = 'https://ko-fi.com/worldofclaudecraft';");
-    expect(mainTs).toContain("window.open(discordInviteUrl(), '_blank', 'noopener,noreferrer');");
-    expect(mainTs).toContain(
-      "onDonate: () => window.open(DONATE_URL, '_blank', 'noopener,noreferrer'),",
-    );
-    // Two Ko-fi taps per entry (the marketing donate-cta and the mobile
-    // drawer): the in-game community tray's third one left with the tray's
-    // GitHub/Donate links (owner request, the tray is wishlist-only now).
-    for (const [name, entry] of [
-      ['index.html', html],
-      ['play.html', playHtml],
-    ] as const) {
-      expect(entry.match(/href="https:\/\/ko-fi\.com\/worldofclaudecraft"/g), name).toHaveLength(2);
+      // Wyndlewood removed the upstream Ko-fi donation links (a non-Steam payment
+      // link fails Steam build review, and the page was upstream's): no header CTA,
+      // no footer link, no mobile tray button.
+      expect(entry, name).not.toContain('ko-fi.com');
+      expect(entry, name).not.toContain('id="mobile-donate"');
+      expect(entry, name).not.toContain('class="donate-cta"');
       expect(entry, name).not.toContain('https://github.com/sponsors/levy-street');
     }
+    expect(mainTs).toContain("window.open(discordInviteUrl(), '_blank', 'noopener,noreferrer');");
+    expect(mainTs).not.toContain('DONATE_URL');
+    expect(mainTs).not.toContain('onDonate');
   });
 
   it('offers a desktop micro-menu Discord entry in BOTH entries (not keybind-only)', () => {
