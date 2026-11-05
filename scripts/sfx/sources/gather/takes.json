@@ -1,0 +1,80 @@
+{
+  "variants/quarry/impact_gather_pick_cand_1.mp3": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "replaces": "quarry/cand_1 (pick attack)",
+    "matchedFrom": "quarry/cand_2",
+    "distanceDb": 11.6
+  },
+  "variants/rock/impact_gather_pick_cand_4.mp3": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "replaces": "rock/cand_4 (pick body, take 1)",
+    "matchedFrom": "rock/cand_2",
+    "distanceDb": 6.37
+  },
+  "variants/quarry/impact_gather_pick_cand_5.mp3": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "replaces": "quarry/cand_5 (pick body, take 2)",
+    "matchedFrom": "quarry/cand_8",
+    "distanceDb": 9.83
+  },
+  "impact_gather_axe_1.source.mp3": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "replaces": "axe_1",
+    "matchedFrom": "heavy/cand_1",
+    "distanceDb": 4.78,
+    "matchedOn": "built clip vs the free-tier shipped clip"
+  },
+  "impact_gather_axe_2.source.mp3": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "replaces": "axe_2",
+    "matchedFrom": "heavy/cand_5",
+    "distanceDb": 1.3,
+    "matchedOn": "built clip vs the free-tier shipped clip"
+  },
+  "impact_tree_creak_1.source.mp3": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "replaces": "creak_1",
+    "matchedFrom": "creak/cand_5",
+    "distanceDb": 8.48,
+    "matchedOn": "built clip vs the free-tier shipped clip"
+  },
+  "impact_tree_creak_2.source.mp3": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "replaces": "creak_2",
+    "matchedFrom": "creak/cand_1",
+    "distanceDb": 8.92,
+    "matchedOn": "built clip vs the free-tier shipped clip"
+  },
+  "impact_tree_crash_1.source.mp3": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "replaces": "crash_1",
+    "matchedFrom": "crash/cand_2",
+    "distanceDb": 5.72,
+    "matchedOn": "built clip vs the free-tier shipped clip"
+  },
+  "impact_tree_crash_2.source.mp3": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "replaces": "crash_2",
+    "matchedFrom": "crash/cand_4",
+    "distanceDb": 6.06,
+    "matchedOn": "built clip vs the free-tier shipped clip"
+  }
+}
