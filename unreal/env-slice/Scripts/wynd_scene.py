@@ -276,27 +276,46 @@ def build_lights(sl):
     sun = spawn(unreal.DirectionalLight, label="WYND_Sun")
     lc = sun.light_component
     lc.set_editor_property("atmosphere_sun_light", True)
-    lc.set_editor_property("intensity", 9.0)
+    lc.set_editor_property("intensity", 10.5)
     lc.set_editor_property("use_temperature", True)
-    lc.set_editor_property("temperature", 5600.0)
-    lc.set_editor_property("volumetric_scattering_intensity", 1.4)
-    lc.set_editor_property("enable_light_shaft_bloom", True)
+    lc.set_editor_property("temperature", 5300.0)
+    lc.set_editor_property("volumetric_scattering_intensity", 1.0)
+    # no light-shaft bloom: with a low sun in or near frame it washed the
+    # harbour shot out
+    lc.set_editor_property("enable_light_shaft_bloom", False)
     lc.set_editor_property("bloom_scale", 0.15)
     lc.set_editor_property("light_source_angle", 1.2)
     lc.set_editor_property("cast_cloud_shadows", True)
-    spawn(unreal.SkyAtmosphere, label="WYND_SkyAtmosphere")
+    atmo = spawn(unreal.SkyAtmosphere, label="WYND_SkyAtmosphere")
+    # a little more Mie haze gives the low sun a warm golden halo across the
+    # sky instead of a grey one (defaults: scale 0.003996, anisotropy 0.8)
+    try:
+        ac = atmo.get_component_by_class(unreal.SkyAtmosphereComponent)
+        ac.set_editor_property("mie_scattering_scale", 0.0065)
+        ac.set_editor_property("mie_anisotropy", 0.85)
+    except Exception as err:
+        W.log("atmosphere tweak skipped: %s" % err)
     sky = spawn(unreal.SkyLight, label="WYND_SkyLight")
     sc = sky.light_component
     sc.set_editor_property("real_time_capture", True)
     sc.set_editor_property("mobility", unreal.ComponentMobility.MOVABLE)
-    sc.set_editor_property("intensity", 1.4)
+    sc.set_editor_property("intensity", 1.7)
     cloud = spawn(unreal.VolumetricCloud, label="WYND_Clouds")
     cm = lib.load_asset("/Engine/EngineSky/VolumetricClouds/m_SimpleVolumetricCloud_Inst")
     if cm:
         cloud.volumetric_cloud_component.set_editor_property("material", cm)
     fog = spawn(unreal.ExponentialHeightFog, label="WYND_Fog", loc=W.to_ue(0, -2, 0))
     fc = fog.component
-    fc.set_editor_property("fog_density", 0.011)
+    fc.set_editor_property("fog_density", 0.009)
+    # a warm cream haze for the golden-hour air, not a grey one
+    for k, v in (
+        ("fog_inscattering_luminance", unreal.LinearColor(0.42, 0.36, 0.27, 1.0)),
+        ("directional_inscattering_luminance", unreal.LinearColor(0.55, 0.42, 0.26, 1.0)),
+    ):
+        try:
+            fc.set_editor_property(k, v)
+        except Exception as err:
+            W.log("fog %s skipped: %s" % (k, err))
     fc.set_editor_property("fog_height_falloff", 0.12)
     fc.set_editor_property("enable_volumetric_fog", True)
     fc.set_editor_property("volumetric_fog_scattering_distribution", 0.75)
@@ -309,13 +328,21 @@ def build_lights(sl):
         # golden hour warmth comes from the sun's temperature alone; the
         # grade stays near neutral so greens and whites hold (owner note:
         # the first pass read too orange and too bright)
-        ("override_auto_exposure_bias", True), ("auto_exposure_bias", -0.2),
-        ("override_white_temp", True), ("white_temp", 6500.0),
-        ("override_color_saturation", True), ("color_saturation", unreal.Vector4(0.98, 1.08, 1.0, 1.04)),
-        ("override_color_contrast", True), ("color_contrast", unreal.Vector4(1.06, 1.06, 1.06, 1.0)),
-        ("override_color_gain_highlights", True), ("color_gain_highlights", unreal.Vector4(1.0, 1.0, 0.98, 1.0)),
+        # second pass: the frames read grey and dim beside the web game, so
+        # a little more exposure, saturation and a soft warm highlight
+        # gain, still short of orange; no lens flare, softer bloom and a
+        # slow eye adaptation so a low sun cannot pump the exposure
+        ("override_auto_exposure_bias", True), ("auto_exposure_bias", 0.35),
+        ("override_auto_exposure_speed_up", True), ("auto_exposure_speed_up", 1.0),
+        ("override_auto_exposure_speed_down", True), ("auto_exposure_speed_down", 1.0),
+        ("override_auto_exposure_high_percent", True), ("auto_exposure_high_percent", 85.0),
+        ("override_white_temp", True), ("white_temp", 6700.0),
+        ("override_color_saturation", True), ("color_saturation", unreal.Vector4(1.02, 1.1, 1.02, 1.12)),
+        ("override_color_contrast", True), ("color_contrast", unreal.Vector4(1.08, 1.08, 1.08, 1.0)),
+        ("override_color_gain_highlights", True), ("color_gain_highlights", unreal.Vector4(1.03, 1.0, 0.95, 1.0)),
         ("override_color_gamma_shadows", True), ("color_gamma_shadows", unreal.Vector4(1.0, 1.0, 1.04, 1.0)),
-        ("override_bloom_intensity", True), ("bloom_intensity", 0.55),
+        ("override_bloom_intensity", True), ("bloom_intensity", 0.4),
+        ("override_lens_flare_intensity", True), ("lens_flare_intensity", 0.0),
         ("override_vignette_intensity", True), ("vignette_intensity", 0.35),
         ("override_ambient_occlusion_intensity", True), ("ambient_occlusion_intensity", 0.6),
         ("override_lumen_scene_lighting_quality", True), ("lumen_scene_lighting_quality", 2.0),

@@ -63,7 +63,40 @@ def model_folder(glb_path):
 SKIP_MESH = re.compile(r"(_LOD[1-9]|_collider|_collision|_shadow)$", re.I)
 
 
+# The asset-convert crew's converted meshes (Content/Wyndlewood/Assets/
+# asset_registry.json, keyed by the GLB path without /models/ and .glb,
+# e.g. props/eastbrook_bank). A registry mesh of an allowed category is
+# placed instead of the placeholder import; WYND_REGISTRY_CATS widens the
+# set (comma list, or "all").
+_REGISTRY = None
+REGISTRY_CATS = [c for c in os.environ.get("WYND_REGISTRY_CATS", "Buildings").split(",") if c]
+
+
+def registry():
+    global _REGISTRY
+    if _REGISTRY is None:
+        p = os.path.join(unreal.Paths.project_content_dir(), "Wyndlewood", "Assets", "asset_registry.json")
+        try:
+            with open(p, "r", encoding="utf8") as f:
+                _REGISTRY = json.load(f)
+        except OSError:
+            _REGISTRY = {}
+    return _REGISTRY
+
+
+def registry_mesh(glb_path):
+    key = re.sub(r"\.glb$", "", re.sub(r"^/?models/", "", glb_path.lstrip("/")))
+    rec = registry().get(key)
+    if not rec or ("all" not in REGISTRY_CATS and rec.get("cat") not in REGISTRY_CATS):
+        return None
+    m = unreal.EditorAssetLibrary.load_asset(rec["path"].split(".")[0])
+    return m if isinstance(m, unreal.StaticMesh) else None
+
+
 def model_meshes(glb_path):
+    reg = registry_mesh(glb_path)
+    if reg:
+        return [reg]
     folder = model_folder(glb_path)
     out = []
     for p in unreal.EditorAssetLibrary.list_assets(folder, recursive=True, include_folder=False):

@@ -216,42 +216,49 @@ def terrain_material():
 
 
 def water_material():
+    """Stylized sea: a translucent, forward-lit surface whose colour runs
+    from a bright shallow teal to a deep blue-teal with the water's
+    thickness along the view (scene depth behind it minus its own depth),
+    so shores read light and the open sea reads deep without going brown.
+    Forward per-pixel lighting keeps the sun's glint on it."""
     path = W.ROOT + "/Materials/M_Water"
     m = fresh_material(path)
-    g = G(m)
+    m.set_editor_property("shading_model", unreal.MaterialShadingModel.MSM_DEFAULT_LIT)
+    m.set_editor_property("blend_mode", unreal.BlendMode.BLEND_TRANSLUCENT)
     try:
-        m.set_editor_property("shading_model", unreal.MaterialShadingModel.MSM_SINGLE_LAYER_WATER)
-    except Exception as err:  # older builds: plain glossy surface
-        W.log("water shading model unavailable: %s" % err)
-    col = g.node(
-        unreal.MaterialExpressionVectorParameter,
-        2,
-        parameter_name="Color",
-        default_value=unreal.LinearColor(0.02, 0.07, 0.07, 1.0),
-    )
-    mel.connect_material_property(col, "", MP.MP_BASE_COLOR)
-    mel.connect_material_property(g.const(0.04), "", MP.MP_ROUGHNESS)
-    mel.connect_material_property(g.const(0.0), "", MP.MP_METALLIC)
-    try:
-        out = g.node(unreal.MaterialExpressionSingleLayerWaterMaterialOutput, 0)
-        scat = g.node(
-            unreal.MaterialExpressionConstant3Vector,
-            1,
-            constant=unreal.LinearColor(0.02, 0.09, 0.08, 1.0),
+        m.set_editor_property(
+            "translucency_lighting_mode", unreal.TranslucencyLightingMode.TLM_SURFACE_PER_PIXEL_LIGHTING
         )
-        absorb = g.node(
-            unreal.MaterialExpressionConstant3Vector,
-            1,
-            constant=unreal.LinearColor(0.35, 0.09, 0.05, 1.0),
-        )
-        for src, names in (
-            (scat, ("ScatteringCoefficients", "Scattering Coefficients")),
-            (absorb, ("AbsorptionCoefficients", "Absorption Coefficients")),
-        ):
-            if not any(mel.connect_material_expressions(src, "", out, n) for n in names):
-                W.log("water output input not found: %s" % (names,))
     except Exception as err:
-        W.log("water output node unavailable: %s" % err)
+        W.log("water lighting mode: %s" % err)
+    g = G(m)
+    scene = g.node(unreal.MaterialExpressionSceneDepth, 4)
+    pixel = g.node(unreal.MaterialExpressionPixelDepth, 4)
+    thick = g.op(unreal.MaterialExpressionSubtract, scene, pixel)
+    deep_at = g.node(unreal.MaterialExpressionScalarParameter, 4, parameter_name="DeepDistance", default_value=900.0)
+    d = g.sat(g.op(unreal.MaterialExpressionDivide, thick, deep_at))
+    pw = g.node(unreal.MaterialExpressionPower, 3)
+    g.link(d, "", pw, "Base")
+    g.link(g.const(0.6), "", pw, "Exponent")
+    shallow = g.node(
+        unreal.MaterialExpressionVectorParameter, 2,
+        parameter_name="ShallowColor", default_value=unreal.LinearColor(0.09, 0.42, 0.38, 1.0),
+    )
+    deep = g.node(
+        unreal.MaterialExpressionVectorParameter, 2,
+        parameter_name="DeepColor", default_value=unreal.LinearColor(0.012, 0.1, 0.13, 1.0),
+    )
+    col = g.lerp(shallow, deep, pw)
+    mel.connect_material_property(col, "", MP.MP_BASE_COLOR)
+    # a share of the colour as emission holds the teal against the bright
+    # sky reflection and the haze, which washed the first pass out to white
+    glow = g.node(unreal.MaterialExpressionScalarParameter, 3, parameter_name="ColorGlow", default_value=0.35)
+    mel.connect_material_property(g.op(unreal.MaterialExpressionMultiply, col, glow), "", MP.MP_EMISSIVE_COLOR)
+    opac = g.lerp(g.const(0.7), g.const(0.98), pw)
+    mel.connect_material_property(opac, "", MP.MP_OPACITY)
+    mel.connect_material_property(g.const(0.18), "", MP.MP_ROUGHNESS)
+    mel.connect_material_property(g.const(0.25), "", MP.MP_SPECULAR)
+    mel.connect_material_property(g.const(0.0), "", MP.MP_METALLIC)
     mel.recompile_material(m)
     lib.save_loaded_asset(m)
     return m
