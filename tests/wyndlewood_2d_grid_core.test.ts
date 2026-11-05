@@ -54,7 +54,8 @@ describe('wyndlewood 2d grid core', () => {
   it('keys the backdrop to transparent and keeps the subject', () => {
     const size = 64;
     const rgb = new Uint8Array(size * size * 3).fill(40);
-    for (let y = 20; y < 44; y++) for (let x = 20; x < 44; x++) rgb.set([220, 180, 60], (y * size + x) * 3);
+    for (let y = 20; y < 44; y++)
+      for (let x = 20; x < 44; x++) rgb.set([220, 180, 60], (y * size + x) * 3);
     expect(ringMedian(rgb, size)).toEqual([40, 40, 40]);
     const rgba = keyAlpha(rgb, size);
     expect(rgba[3]).toBe(0);

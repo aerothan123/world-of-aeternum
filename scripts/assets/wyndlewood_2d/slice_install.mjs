@@ -30,7 +30,9 @@ mkdirSync(reviewDir, { recursive: true });
 mkdirSync(deedSrc, { recursive: true });
 const FULL_BLEED = new Set(['skills', 'auras', 'deeds']);
 const NO_RULES = new Set(['wide']);
-const subjects = new Map(JSON.parse(readFileSync(join(here, 'subjects.json'), 'utf8')).map((r) => [r.file, r]));
+const subjects = new Map(
+  JSON.parse(readFileSync(join(here, 'subjects.json'), 'utf8')).map((r) => [r.file, r]),
+);
 const ledger = new Map();
 for (const l of readFileSync(join(here, 'ledger.jsonl'), 'utf8').split('\n')) {
   if (!l.trim()) continue;
@@ -54,9 +56,19 @@ const RING = {
 // (disc radius 196 on 512: coverage ~0.46, padding 60, centred by construction).
 async function deedMaster(cellPng, metal) {
   const [hi, mid, lo] = RING[metal] ?? RING.bronze;
-  const art = await sharp(cellPng).resize(360, 360, { fit: 'cover' }).removeAlpha().png().toBuffer();
-  const disc = Buffer.from('<svg width="360" height="360"><circle cx="180" cy="180" r="178" fill="#fff"/></svg>');
-  const face = await sharp(art).ensureAlpha().composite([{ input: disc, blend: 'dest-in' }]).png().toBuffer();
+  const art = await sharp(cellPng)
+    .resize(360, 360, { fit: 'cover' })
+    .removeAlpha()
+    .png()
+    .toBuffer();
+  const disc = Buffer.from(
+    '<svg width="360" height="360"><circle cx="180" cy="180" r="178" fill="#fff"/></svg>',
+  );
+  const face = await sharp(art)
+    .ensureAlpha()
+    .composite([{ input: disc, blend: 'dest-in' }])
+    .png()
+    .toBuffer();
   const ring = Buffer.from(
     `<svg width="512" height="512"><defs><linearGradient id="m" x1="0" y1="0" x2="1" y2="1">` +
       `<stop offset="0" stop-color="${hi}"/><stop offset="0.55" stop-color="${mid}"/><stop offset="1" stop-color="${lo}"/></linearGradient>` +
@@ -65,8 +77,13 @@ async function deedMaster(cellPng, metal) {
       `<circle cx="256" cy="256" r="195" fill="none" stroke="${lo}" stroke-width="2"/>` +
       `<circle cx="256" cy="256" r="176.5" fill="none" stroke="url(#b)" stroke-width="3"/></svg>`,
   );
-  return sharp({ create: { width: 512, height: 512, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } } })
-    .composite([{ input: face, left: 76, top: 76 }, { input: ring, left: 0, top: 0 }])
+  return sharp({
+    create: { width: 512, height: 512, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } },
+  })
+    .composite([
+      { input: face, left: 76, top: 76 },
+      { input: ring, left: 0, top: 0 },
+    ])
     .png()
     .toBuffer();
 }
@@ -75,9 +92,16 @@ for (const s of sheets) {
   const src = join(sheetDir, `${s.id}.png`);
   if (!existsSync(src)) continue;
   const { data, info } = await sharp(src).greyscale().raw().toBuffer({ resolveWithObject: true });
-  const xr = NO_RULES.has(s.family) ? [] : findRules(profile(data, info.width, info.height, 'x'), s.grid);
-  const yr = NO_RULES.has(s.family) ? [] : findRules(profile(data, info.width, info.height, 'y'), s.grid);
-  let rects = s.grid === 1 ? [{ left: 0, top: 0, width: info.width, height: info.height }] : cellRects(xr, yr);
+  const xr = NO_RULES.has(s.family)
+    ? []
+    : findRules(profile(data, info.width, info.height, 'x'), s.grid);
+  const yr = NO_RULES.has(s.family)
+    ? []
+    : findRules(profile(data, info.width, info.height, 'y'), s.grid);
+  let rects =
+    s.grid === 1
+      ? [{ left: 0, top: 0, width: info.width, height: info.height }]
+      : cellRects(xr, yr);
   if (FULL_BLEED.has(s.family)) rects = rects.map((r) => refineRect(data, info.width, r));
   const review = [];
   for (const cell of s.cells) {
@@ -91,11 +115,21 @@ for (const s of sheets) {
       const H = rec?.h ?? 128;
       let img;
       if (rec?.alpha) {
-        const { data: rgb } = await sharp(cellPng).resize(512, 512).removeAlpha().raw().toBuffer({ resolveWithObject: true });
+        const { data: rgb } = await sharp(cellPng)
+          .resize(512, 512)
+          .removeAlpha()
+          .raw()
+          .toBuffer({ resolveWithObject: true });
         const rgba = keepCenterComponent(keyAlpha(rgb, 512), 512);
-        img = sharp(rgba, { raw: { width: 512, height: 512, channels: 4 } }).resize(W, H, { fit: s.family === 'wide' ? 'fill' : 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } });
+        img = sharp(rgba, { raw: { width: 512, height: 512, channels: 4 } }).resize(W, H, {
+          fit: s.family === 'wide' ? 'fill' : 'contain',
+          background: { r: 0, g: 0, b: 0, alpha: 0 },
+        });
       } else {
-        img = sharp(cellPng).resize(W, H, { fit: 'cover' }).flatten({ background: '#26282b' }).removeAlpha();
+        img = sharp(cellPng)
+          .resize(W, H, { fit: 'cover' })
+          .flatten({ background: '#26282b' })
+          .removeAlpha();
       }
       master = await img.png().toBuffer();
       let out;
@@ -106,7 +140,9 @@ for (const s of sheets) {
         out = await sharp(master).webp({ quality: q, smartSubsample: true, effort: 6 }).toBuffer();
         while (out.length > cap && q > 55) {
           q -= 7;
-          out = await sharp(master).webp({ quality: q, smartSubsample: true, effort: 6 }).toBuffer();
+          out = await sharp(master)
+            .webp({ quality: q, smartSubsample: true, effort: 6 })
+            .toBuffer();
         }
       }
       dest = join(root, cell.file);
@@ -125,10 +161,16 @@ for (const s of sheets) {
         .toBuffer();
       if (s.family === 'auras') {
         let q = 82;
-        let webp = await sharp(master).resize(128, 128).webp({ quality: q, smartSubsample: true, effort: 6 }).toBuffer();
+        let webp = await sharp(master)
+          .resize(128, 128)
+          .webp({ quality: q, smartSubsample: true, effort: 6 })
+          .toBuffer();
         while (webp.length > 15 * 1024 && q > 60) {
           q -= 7;
-          webp = await sharp(master).resize(128, 128).webp({ quality: q, smartSubsample: true, effort: 6 }).toBuffer();
+          webp = await sharp(master)
+            .resize(128, 128)
+            .webp({ quality: q, smartSubsample: true, effort: 6 })
+            .toBuffer();
         }
         dest = join(root, cell.file);
         writeFileSync(dest, webp);
@@ -151,9 +193,19 @@ for (const s of sheets) {
   }
   if (s.family === 'wide') continue;
   const g = Math.ceil(Math.sqrt(review.length));
-  const tiles = await Promise.all(review.map((m) => sharp(m).resize(200, 200).flatten({ background: '#808080' }).png().toBuffer()));
+  const tiles = await Promise.all(
+    review.map((m) =>
+      sharp(m).resize(200, 200).flatten({ background: '#808080' }).png().toBuffer(),
+    ),
+  );
   await sharp({ create: { width: g * 204, height: g * 204, channels: 3, background: '#ffffff' } })
-    .composite(tiles.map((t, i) => ({ input: t, left: (i % g) * 204 + 2, top: Math.floor(i / g) * 204 + 2 })))
+    .composite(
+      tiles.map((t, i) => ({
+        input: t,
+        left: (i % g) * 204 + 2,
+        top: Math.floor(i / g) * 204 + 2,
+      })),
+    )
     .jpeg({ quality: 80 })
     .toFile(join(reviewDir, `${s.id}.jpg`));
 }

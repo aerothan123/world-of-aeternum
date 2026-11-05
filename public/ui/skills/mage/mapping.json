@@ -1,506 +1,633 @@
 {
   "class": "mage",
-  "license": "CraftPix premium (royalty-free commercial). Icons Purchased by Levy Street Account - callum@levystreet.com",
+  "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)",
   "iconSize": 128,
   "sourcePacks": [
-    "pyromancer (fire)",
-    "cryomancer (frost)",
-    "lightning-mage (arcane)",
-    "aeromancer (unused \u2014 mage has no wind)"
+    "wyndlewood-2d-v1"
   ],
   "runtimeDir": "public/ui/skills/mage",
   "abilities": [
     {
       "abilityId": "fireball",
-      "sourcePack": "pyromancer",
-      "sourceFile": "24.png",
-      "output": "fireball.webp"
+      "output": "fireball.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_008/13",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "fireball_form",
-      "sourcePack": "owner-provided",
-      "sourceFile": "owner-provided artwork (Fireball Form)",
-      "output": "fireball_form.webp"
+      "output": "fireball_form.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_008/14",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "frost_armor",
-      "sourcePack": "cryomancer",
-      "sourceFile": "16.png",
-      "output": "frost_armor.webp"
+      "output": "frost_armor.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_009/1",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "arcane_intellect",
-      "sourcePack": "lightning",
-      "sourceFile": "17.png",
-      "output": "arcane_intellect.webp"
+      "output": "arcane_intellect.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_007/6",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "frostbolt",
-      "sourcePack": "cryomancer",
-      "sourceFile": "20.png",
-      "output": "frostbolt.webp"
+      "output": "frostbolt.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_009/3",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "conjure_water",
-      "sourcePack": "cryomancer",
-      "sourceFile": "34.png",
-      "output": "conjure_water.webp"
+      "output": "conjure_water.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_008/4",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "fire_blast",
-      "sourcePack": "pyromancer",
-      "sourceFile": "27.png",
-      "output": "fire_blast.webp"
+      "output": "fire_blast.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_008/12",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "arcane_missiles",
-      "sourcePack": "lightning",
-      "sourceFile": "4.png",
-      "output": "arcane_missiles.webp"
+      "output": "arcane_missiles.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_007/7",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "frost_nova",
-      "sourcePack": "cryomancer",
-      "sourceFile": "40.png",
-      "output": "frost_nova.webp"
+      "output": "frost_nova.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_009/2",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "arcane_explosion",
-      "sourcePack": "lightning",
-      "sourceFile": "2.png",
-      "output": "arcane_explosion.webp"
+      "output": "arcane_explosion.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_007/5",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "scorch",
-      "sourcePack": "pyromancer",
-      "sourceFile": "38.png",
-      "output": "scorch.webp"
+      "output": "scorch.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_010/10",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "ice_barrier",
-      "sourcePack": "cryomancer",
-      "sourceFile": "17.png",
-      "output": "ice_barrier.webp"
+      "output": "ice_barrier.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_009/9",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "pyroblast",
-      "sourcePack": "pyromancer",
-      "sourceFile": "12.png",
-      "output": "pyroblast.webp"
+      "output": "pyroblast.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_010/7",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "conjure_food",
-      "sourcePack": "_Missing_Mage",
-      "sourceFile": "11.png",
-      "output": "conjure_food.webp"
+      "output": "conjure_food.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_008/3",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "polymorph",
-      "sourcePack": "_Missing_Mage",
-      "sourceFile": "32.png",
-      "output": "polymorph.webp"
+      "output": "polymorph.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_010/4",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "counterspell",
-      "sourcePack": "owner-provided",
-      "sourceFile": "owner-provided artwork (Counterspell)",
-      "output": "counterspell.webp"
+      "output": "counterspell.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_008/5",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "ice_lance",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Lanza de hielo.png",
-      "output": "ice_lance.webp"
+      "output": "ice_lance.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_009/12",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "flurry",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/e.png",
-      "output": "flurry.webp"
+      "output": "flurry.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_009/0",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "frozen_orb",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/d.png",
-      "output": "frozen_orb.webp"
+      "output": "frozen_orb.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_009/4",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "blizzard",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/x.png",
-      "output": "blizzard.webp"
+      "output": "blizzard.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_007/13",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "icy_veins",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/q.png",
-      "output": "icy_veins.webp"
+      "output": "icy_veins.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_009/13",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "ice_floes",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Ice Floes.png",
-      "output": "ice_floes.webp"
+      "output": "ice_floes.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_009/11",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "double_blink",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Double blink.png",
-      "output": "double_blink.webp"
+      "output": "double_blink.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_008/7",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "blink_while_casting",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Blink while casting.png",
-      "output": "blink_while_casting.webp"
+      "output": "blink_while_casting.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_007/12",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "warded",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Warded.png",
-      "output": "warded.webp"
+      "output": "warded.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_011/9",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "temporal_rift",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Temporal rift.png",
-      "output": "temporal_rift.webp"
+      "output": "temporal_rift.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_011/7",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "greater_invisibility",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Greater invis.png",
-      "output": "greater_invisibility.webp"
+      "output": "greater_invisibility.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_009/7",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "rings_of_frost",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Ring of frost.png",
-      "output": "rings_of_frost.webp"
+      "output": "rings_of_frost.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_010/8",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "snap_polymorph",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Snap Polymorph.png",
-      "output": "snap_polymorph.webp"
+      "output": "snap_polymorph.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_010/12",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "twin_frost_nova",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Twin Frost nova.png",
-      "output": "twin_frost_nova.webp"
+      "output": "twin_frost_nova.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_011/8",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "power_echo",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Power echo.png",
-      "output": "power_echo.webp"
+      "output": "power_echo.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_010/5",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "overload",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Overload.png",
-      "output": "overload.webp"
+      "output": "overload.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_010/2",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "presence_of_mind",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Racing mind.png",
-      "output": "presence_of_mind.webp"
+      "output": "presence_of_mind.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_010/6",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "elemental_convergence",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Elemental Convergence.png",
-      "output": "elemental_convergence.webp"
+      "output": "elemental_convergence.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_008/9",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "cold_snap",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Cold snap.png",
-      "output": "cold_snap.webp"
+      "output": "cold_snap.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_007/15",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "mass_barrier",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Mass barrier.png",
-      "output": "mass_barrier.webp"
+      "output": "mass_barrier.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_009/15",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "rune_of_power",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Rune of power.png",
-      "output": "rune_of_power.webp"
+      "output": "rune_of_power.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_010/9",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "overflowing_power",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Overflowing Power.png",
-      "output": "overflowing_power.webp"
+      "output": "overflowing_power.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_010/1",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "evocation",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Aetherwell.png",
-      "output": "evocation.webp"
+      "output": "evocation.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_008/10",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "blink",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/habilidades.png (Blink crop)",
-      "output": "blink.webp"
+      "output": "blink.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_007/11",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "temporal_barrier",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/habilidades.png (Barrera temporal crop)",
-      "output": "temporal_barrier.webp"
+      "output": "temporal_barrier.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_011/0",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "temporal_echo",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/habilidades.png (Eco temporal crop)",
-      "output": "temporal_echo.webp"
+      "output": "temporal_echo.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_011/2",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "temporal_mend",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/habilidades.png (Remiendo temporal crop)",
-      "output": "temporal_mend.webp"
+      "output": "temporal_mend.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_011/4",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "arcane_surge",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/habilidades.png (Oleada de eter crop)",
-      "output": "arcane_surge.webp"
+      "output": "arcane_surge.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_007/9",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "fingers_of_frost",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/frost.png (fingers_of_frost crop)",
-      "output": "fingers_of_frost.webp"
+      "output": "fingers_of_frost.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_008/11",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "summon_water_elemental",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/frost.png (summon_water_elemental crop)",
-      "output": "summon_water_elemental.webp"
+      "output": "summon_water_elemental.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_010/14",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "ice_block",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/frost.png (ice_block crop)",
-      "output": "ice_block.webp"
+      "output": "ice_block.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_009/10",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "brain_freeze",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/frost.png (brain_freeze crop)",
-      "output": "brain_freeze.webp"
+      "output": "brain_freeze.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_007/14",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "shatter",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/frost.png (shatter crop)",
-      "output": "shatter.webp"
+      "output": "shatter.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_010/11",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "glacial_spike",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/frost.png (glacial_spike crop)",
-      "output": "glacial_spike.webp"
+      "output": "glacial_spike.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_009/6",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "glacial_front",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/frost.png (glacial_front crop)",
-      "output": "glacial_front.webp"
+      "output": "glacial_front.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_009/5",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "ignition",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Mago fuego.png (ignition crop)",
-      "output": "ignition.webp"
+      "output": "ignition.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_009/14",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "hot_streak",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Mago fuego.png (hot_streak crop)",
-      "output": "hot_streak.webp"
+      "output": "hot_streak.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_009/8",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "blazing_barrier",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Mago fuego.png (blazing_barrier crop)",
-      "output": "blazing_barrier.webp"
+      "output": "blazing_barrier.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_007/10",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "meteor",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Mago fuego.png (meteor crop)",
-      "output": "meteor.webp"
+      "output": "meteor.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_010/0",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "dragons_breath",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Mago fuego.png (dragons_breath crop)",
-      "output": "dragons_breath.webp"
+      "output": "dragons_breath.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_008/8",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "flamestrike",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Mago fuego.png (flamestrike crop)",
-      "output": "flamestrike.webp"
+      "output": "flamestrike.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_008/15",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "temporal_cascade",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Chronomancer.png (temporal_cascade crop)",
-      "output": "temporal_cascade.webp"
+      "output": "temporal_cascade.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_011/1",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "temporal_reversal",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Chronomancer.png (temporal_reversal crop)",
-      "output": "temporal_reversal.webp"
+      "output": "temporal_reversal.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_011/5",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "temporal_rewind",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Chronomancer.png (temporal_rewind crop)",
-      "output": "temporal_rewind.webp"
+      "output": "temporal_rewind.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_011/6",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "temporal_acceleration",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/Chronomancer.png (temporal_acceleration crop)",
-      "output": "temporal_acceleration.webp"
+      "output": "temporal_acceleration.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_010/15",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "perfect_moment",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/poder arcano.png",
-      "output": "perfect_moment.webp"
+      "output": "perfect_moment.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_010/3",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "collective_reversal",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/mass res.png",
-      "output": "collective_reversal.webp"
+      "output": "collective_reversal.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_008/0",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "temporal_hourglass",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/reloj en el suelo.png",
-      "output": "temporal_hourglass.webp"
+      "output": "temporal_hourglass.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_011/3",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "combustion",
-      "sourcePack": "custom-user",
-      "sourceFile": "desktop/combustion.png (combustion crop)",
-      "output": "combustion.webp"
+      "output": "combustion.webp",
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_008/1",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "arcane_power",
-      "sourcePack": "woc_openai_missing_painted_icons_2026_08_01",
-      "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/mage/arcane_power.png",
       "output": "arcane_power.webp",
-      "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
-      "intendedVisualSubject": "A mage silhouette inside two concentric arcane rings, one expanding power and one accelerating runes.",
-      "references": [
-        {
-          "path": "public/ui/skills/mage/arcane_missiles.webp",
-          "role": "style reference",
-          "provenance": "CraftPix Premium art licensed to Levy Street for this project",
-          "license": "CraftPix premium royalty-free commercial license, non-transferable"
-        },
-        {
-          "path": "public/ui/skills/mage/fireball.webp",
-          "role": "composition reference",
-          "provenance": "CraftPix Premium art licensed to Levy Street for this project",
-          "license": "CraftPix premium royalty-free commercial license, non-transferable"
-        }
-      ],
-      "generationPrompt": "Use case: stylized-concept\nAsset type: borderless square game ability icon for mage\nPrimary request: fresh distinct premium hand-painted dark-fantasy MMORPG ability art for Aether Surge (arcane_power)\nCanonical mechanic: Aether Surge increases spell damage by 20% and spell haste by 10% for 10 sec; 90 sec cooldown.\nSubject: A mage silhouette inside two concentric arcane rings, one expanding power and one accelerating runes.\nScene/backdrop: opaque full-square atmospheric background in the class palette\nComposition/framing: one dominant readable action or symbol, visually centered, subject fills 75 to 88 percent, safe at 32px and 48px\nLighting/mood: deep values, controlled saturated accents, crisp focal edges and softer peripheral atmosphere\nConstraints: fresh composition; no text, letters, numbers, border, frame, rarity chrome, watermark, modern graphic design or flat glyph"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_007/8",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "cone_of_cold",
-      "sourcePack": "woc_openai_missing_painted_icons_2026_08_01",
-      "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/mage/cone_of_cold.png",
       "output": "cone_of_cold.webp",
-      "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
-      "intendedVisualSubject": "A circular sweep of ice shards radiating around the mage's boots.",
-      "references": [
-        {
-          "path": "public/ui/skills/mage/frost_nova.webp",
-          "role": "subject reference",
-          "provenance": "CraftPix Premium art licensed to Levy Street for this project",
-          "license": "CraftPix premium royalty-free commercial license, non-transferable"
-        },
-        {
-          "path": "public/ui/skills/mage/arcane_missiles.webp",
-          "role": "style reference",
-          "provenance": "CraftPix Premium art licensed to Levy Street for this project",
-          "license": "CraftPix premium royalty-free commercial license, non-transferable"
-        }
-      ],
-      "generationPrompt": "Use case: stylized-concept\nAsset type: borderless square game ability icon for mage\nPrimary request: fresh distinct premium hand-painted dark-fantasy MMORPG ability art for Frostsweep (cone_of_cold)\nCanonical mechanic: Frostsweep deals 28 to 36 Frost damage to enemies in a caster-centered 8 yd radius; 20 sec cooldown. Despite the legacy ID, it is not a frontal cone.\nSubject: A circular sweep of ice shards radiating around the mage's boots.\nScene/backdrop: opaque full-square atmospheric background in the class palette\nComposition/framing: one dominant readable action or symbol, visually centered, subject fills 75 to 88 percent, safe at 32px and 48px\nLighting/mood: deep values, controlled saturated accents, crisp focal edges and softer peripheral atmosphere\nConstraints: fresh composition; no text, letters, numbers, border, frame, rarity chrome, watermark, modern graphic design or flat glyph"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_008/2",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "deep_freeze",
-      "sourcePack": "woc_openai_missing_painted_icons_2026_08_01",
-      "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/mage/deep_freeze.png",
       "output": "deep_freeze.webp",
-      "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
-      "intendedVisualSubject": "An enemy encased in cracked blue ice, with a sharp stun star at the fracture.",
-      "references": [
-        {
-          "path": "public/ui/skills/mage/frost_nova.webp",
-          "role": "subject reference",
-          "provenance": "CraftPix Premium art licensed to Levy Street for this project",
-          "license": "CraftPix premium royalty-free commercial license, non-transferable"
-        },
-        {
-          "path": "public/ui/skills/mage/fireball.webp",
-          "role": "composition reference",
-          "provenance": "CraftPix Premium art licensed to Levy Street for this project",
-          "license": "CraftPix premium royalty-free commercial license, non-transferable"
-        }
-      ],
-      "generationPrompt": "Use case: stylized-concept\nAsset type: borderless square game ability icon for mage\nPrimary request: fresh distinct premium hand-painted dark-fantasy MMORPG ability art for Deadfrost (deep_freeze)\nCanonical mechanic: Deadfrost deals 92 to 116 Frost damage at 30 yd and stuns for 4 sec; 30 sec cooldown.\nSubject: An enemy encased in cracked blue ice, with a sharp stun star at the fracture.\nScene/backdrop: opaque full-square atmospheric background in the class palette\nComposition/framing: one dominant readable action or symbol, visually centered, subject fills 75 to 88 percent, safe at 32px and 48px\nLighting/mood: deep values, controlled saturated accents, crisp focal edges and softer peripheral atmosphere\nConstraints: fresh composition; no text, letters, numbers, border, frame, rarity chrome, watermark, modern graphic design or flat glyph"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_008/6",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "abilityId": "spellsteal",
-      "sourcePack": "woc_openai_missing_painted_icons_2026_08_01",
-      "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/mage/spellsteal.png",
       "output": "spellsteal.webp",
-      "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
-      "intendedVisualSubject": "A glowing buff rune being pulled from an enemy into an open mage hand.",
-      "references": [
-        {
-          "path": "public/ui/skills/mage/counterspell.webp",
-          "role": "subject reference",
-          "provenance": "World of ClaudeCraft project-generated art",
-          "license": "Project asset, rights reserved"
-        },
-        {
-          "path": "public/ui/skills/mage/arcane_missiles.webp",
-          "role": "style reference",
-          "provenance": "CraftPix Premium art licensed to Levy Street for this project",
-          "license": "CraftPix premium royalty-free commercial license, non-transferable"
-        }
-      ],
-      "generationPrompt": "Use case: stylized-concept\nAsset type: borderless square game ability icon for mage\nPrimary request: fresh distinct premium hand-painted dark-fantasy MMORPG ability art for Spellplunder (spellsteal)\nCanonical mechanic: Spellplunder removes one beneficial magic effect from an enemy and transfers it to the caster; 12 sec cooldown.\nSubject: A glowing buff rune being pulled from an enemy into an open mage hand.\nScene/backdrop: opaque full-square atmospheric background in the class palette\nComposition/framing: one dominant readable action or symbol, visually centered, subject fills 75 to 88 percent, safe at 32px and 48px\nLighting/mood: deep values, controlled saturated accents, crisp focal edges and softer peripheral atmosphere\nConstraints: fresh composition; no text, letters, numbers, border, frame, rarity chrome, watermark, modern graphic design or flat glyph"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_010/13",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     }
   ],
-  "deferredStayProcedural": [],
-  "licenseScope": "The top-level CraftPix license applies only to entries without their own license; woc_openai_missing_painted_icons_2026_08_01 entries are project-generated and explicitly override it."
+  "deferredStayProcedural": []
 }

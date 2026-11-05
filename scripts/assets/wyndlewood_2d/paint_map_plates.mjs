@@ -28,8 +28,18 @@ export { mapZoneRegion, paintTerrainRows } from './src/ui/map_terrain.ts';`,
   write: false,
   logLevel: 'silent',
 });
-const mod = await import(`data:text/javascript;base64,${Buffer.from(built.outputFiles[0].text).toString('base64')}`);
-const { WORLD_MAX_X, WORLD_MAX_Z, WORLD_MIN_X, WORLD_MIN_Z, ZONES, mapZoneRegion, paintTerrainRows } = mod;
+const mod = await import(
+  `data:text/javascript;base64,${Buffer.from(built.outputFiles[0].text).toString('base64')}`
+);
+const {
+  WORLD_MAX_X,
+  WORLD_MAX_Z,
+  WORLD_MIN_X,
+  WORLD_MIN_Z,
+  ZONES,
+  mapZoneRegion,
+  paintTerrainRows,
+} = mod;
 const worldRegion = { minX: WORLD_MIN_X, maxX: WORLD_MAX_X, minZ: WORLD_MIN_Z, maxZ: WORLD_MAX_Z };
 const artDir = path.join(root, 'public', 'map_art');
 
@@ -77,7 +87,10 @@ for (const f of fs.readdirSync(artDir)) {
     continue;
   }
   const img = await paint(region, meta.width, meta.height);
-  const out = m[2] === 'png' ? await img.png({ compressionLevel: 9 }).toBuffer() : await img.webp({ quality: 86 }).toBuffer();
+  const out =
+    m[2] === 'png'
+      ? await img.png({ compressionLevel: 9 }).toBuffer()
+      : await img.webp({ quality: 86 }).toBuffer();
   fs.writeFileSync(file, out);
   written.push(`public/map_art/${f}`);
   console.log('[w2d] map plate', f, meta.width, meta.height, out.length);

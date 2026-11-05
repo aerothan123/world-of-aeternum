@@ -7,11 +7,11 @@
 // subjects are the only creative input the generator sees (see sheets.json).
 //
 // usage: node scripts/assets/wyndlewood_2d/build_subjects.mjs [--content dump.json]
-import { readdirSync, readFileSync, writeFileSync, existsSync, mkdtempSync, rmSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { pathToFileURL, fileURLToPath } from 'node:url';
-import { FAMILIES, composeSubject, varySubjects } from './subject_core.mjs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { composeSubject, FAMILIES, varySubjects } from './subject_core.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = process.cwd();

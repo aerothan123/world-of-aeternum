@@ -47,7 +47,10 @@ async function api(path, { method = 'GET', body } = {}) {
     try {
       res = await fetch(BASE + path, {
         method,
-        headers: { Authorization: `Bearer ${KEY}`, ...(body ? { 'Content-Type': 'application/json' } : {}) },
+        headers: {
+          Authorization: `Bearer ${KEY}`,
+          ...(body ? { 'Content-Type': 'application/json' } : {}),
+        },
         body: body ? JSON.stringify(body) : undefined,
         signal: AbortSignal.timeout(method === 'GET' ? 30_000 : 90_000),
       });
@@ -95,10 +98,21 @@ async function worker() {
       if (!taskId) {
         const d = await api('/generation/text-to-image', {
           method: 'POST',
-          body: { prompt: s.prompt, model: 'seedream_v4', size: s.size ?? '2048x2048', output_format: 'png' },
+          body: {
+            prompt: s.prompt,
+            model: 'seedream_v4',
+            size: s.size ?? '2048x2048',
+            output_format: 'png',
+          },
         });
         taskId = d.task_id;
-        log({ sheet: s.id, taskId, status: 'created', model: 'seedream_v4', at: new Date().toISOString() });
+        log({
+          sheet: s.id,
+          taskId,
+          status: 'created',
+          model: 'seedream_v4',
+          at: new Date().toISOString(),
+        });
       }
       let task;
       const maxPolls = Number(arg('--max-polls', '200'));
@@ -113,7 +127,13 @@ async function worker() {
         continue;
       }
       if (task.status !== 'success') {
-        log({ sheet: s.id, taskId, status: 'failed', taskStatus: task.status, credits: task.credits_consumed ?? 0 });
+        log({
+          sheet: s.id,
+          taskId,
+          status: 'failed',
+          taskStatus: task.status,
+          credits: task.credits_consumed ?? 0,
+        });
         continue;
       }
       const res = await fetch(urls(task.output)[0]);
@@ -121,7 +141,13 @@ async function worker() {
       writeFileSync(file, buf);
       done++;
       spent += Number(task.credits_consumed ?? 0);
-      log({ sheet: s.id, taskId, status: 'done', credits: task.credits_consumed, bytes: buf.length });
+      log({
+        sheet: s.id,
+        taskId,
+        status: 'done',
+        credits: task.credits_consumed,
+        bytes: buf.length,
+      });
       console.log('[w2d] done', s.id, task.credits_consumed);
     } catch (e) {
       log({ sheet: s.id, status: 'error', err: String(e).slice(0, 300) });

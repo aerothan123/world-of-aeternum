@@ -1,0 +1,4457 @@
+{
+  "public/ui/skills/druid/barkskin.webp": {
+    "sheet": "skills_001",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "6326f86f-ef92-4156-9ab8-6960b6ae1877",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a hooded figure fading into smoke, green nature magic",
+    "masterSha256": "0c2095b6ac2ae7e2b12687046d2ad87258099a351b11e25ffd9b1418e9b60fe3"
+  },
+  "public/ui/skills/druid/bash.webp": {
+    "sheet": "skills_001",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "6326f86f-ef92-4156-9ab8-6960b6ae1877",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a heavy war hammer smashing down, steel and force",
+    "masterSha256": "63c8d55d5dfa9dda80126794d368e8044cef14c954fe3279383fc5cf7a47322d"
+  },
+  "public/ui/skills/druid/bear_charge.webp": {
+    "sheet": "skills_001",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "6326f86f-ef92-4156-9ab8-6960b6ae1877",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring bear spirit, steel and force",
+    "masterSha256": "9c3828c9ea6507b334e56e5eeb4167e41d761c27042ecda669f8b666f96c75db"
+  },
+  "public/ui/skills/druid/bear_form.webp": {
+    "sheet": "skills_001",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "6326f86f-ef92-4156-9ab8-6960b6ae1877",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring bear spirit, steel and force, seen up close",
+    "masterSha256": "752a603d34fffa119e78b9fb87852a199919d499d7b7671a1394c3eb15aaf2e2"
+  },
+  "public/ui/skills/druid/berserk.webp": {
+    "sheet": "skills_001",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "6326f86f-ef92-4156-9ab8-6960b6ae1877",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a red rage aura around a clenched fist, steel and force",
+    "masterSha256": "2f6e129cb0ca1cc43331bc1b3371c6eaefb905ddc9d44d79376d1a23ec8d2433"
+  },
+  "public/ui/skills/druid/cat_form.webp": {
+    "sheet": "skills_001",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "6326f86f-ef92-4156-9ab8-6960b6ae1877",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "three raking claw marks of light, steel and force",
+    "masterSha256": "8891ebf1df43954f047a6e2cb8d9fff7978ef9ce0dc384b924773fc1f51a1cc1"
+  },
+  "public/ui/skills/druid/challenging_roar.webp": {
+    "sheet": "skills_001",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "6326f86f-ef92-4156-9ab8-6960b6ae1877",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "rings of a shockwave rolling outward, steel and force",
+    "masterSha256": "07b74b7e148edd841d9561243894e494d6a4c0c1c295e4b0b9a4428d2b6a4ed2"
+  },
+  "public/ui/skills/druid/claw.webp": {
+    "sheet": "skills_001",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "6326f86f-ef92-4156-9ab8-6960b6ae1877",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "three raking claw marks of light, steel and force, seen up close",
+    "masterSha256": "2a0d951652589fce097b2d5eed5131b5fca8e1321c8b4386a2744519cf6cdff2"
+  },
+  "public/ui/skills/druid/dash.webp": {
+    "sheet": "skills_001",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "6326f86f-ef92-4156-9ab8-6960b6ae1877",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "swift speed streaks behind a running boot, steel and force",
+    "masterSha256": "c83a9a173c68ca078842b185d1d546740d712b50d27c2875d5905a2c51cc1ada"
+  },
+  "public/ui/skills/druid/demoralizing_roar.webp": {
+    "sheet": "skills_001",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "6326f86f-ef92-4156-9ab8-6960b6ae1877",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swooping hawk with spread wings, steel and force",
+    "masterSha256": "32539ba44e1fe45cef8bfb053a3e3fc07c0be726d7928bf82bd76b1e1ded1a5b"
+  },
+  "public/ui/skills/druid/enrage.webp": {
+    "sheet": "skills_001",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "6326f86f-ef92-4156-9ab8-6960b6ae1877",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a red rage aura around a clenched fist, steel and force, seen up close",
+    "masterSha256": "ea3e875c8c7c9fff9c24c570870750292ee04ec4e00d57b64905ce6e4338ea72"
+  },
+  "public/ui/skills/druid/entangling_roots.webp": {
+    "sheet": "skills_001",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "6326f86f-ef92-4156-9ab8-6960b6ae1877",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "twisting roots bursting from the ground, green nature magic",
+    "masterSha256": "d6562db18bb3ff2595bd7efa28cda0e7807d09c8d17e6bd1ffc162b633032bda"
+  },
+  "public/ui/skills/druid/faerie_fire.webp": {
+    "sheet": "skills_001",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "6326f86f-ef92-4156-9ab8-6960b6ae1877",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, green nature magic",
+    "masterSha256": "311634cacfb41f2d9102957267ef5e43e5983043114572ee0845e61114b06764"
+  },
+  "public/ui/skills/druid/feral_charge.webp": {
+    "sheet": "skills_001",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "6326f86f-ef92-4156-9ab8-6960b6ae1877",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a cresting wave of water, steel and force",
+    "masterSha256": "c8e8c1348d0829e3244e5120bcdf5b737c8c277fe8152448aca153f717dda154"
+  },
+  "public/ui/skills/druid/ferocious_bite.webp": {
+    "sheet": "skills_001",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "6326f86f-ef92-4156-9ab8-6960b6ae1877",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "three raking claw marks of light, steel and force, in a glowing ring",
+    "masterSha256": "1064300b26ccb4fc4bc329045b2dfc1a23d11fc9b985945c850269f057467915"
+  },
+  "public/ui/skills/druid/frenzied_regeneration.webp": {
+    "sheet": "skills_001",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "6326f86f-ef92-4156-9ab8-6960b6ae1877",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, green nature magic",
+    "masterSha256": "df79c634669375968946d6a81ea0081a289fabfea15b5de57dcda2cab09b0506"
+  },
+  "public/ui/skills/druid/grove_awakening.webp": {
+    "sheet": "skills_002",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "d5994d26-2f51-4c37-8b5b-0a531632d923",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirl of oak leaves and bark, green nature magic",
+    "masterSha256": "4a9eda315b4e0d2e109307e6be4f58b7ce8f2d80f632710a030475791c8a0a34"
+  },
+  "public/ui/skills/druid/growl.webp": {
+    "sheet": "skills_002",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "d5994d26-2f51-4c37-8b5b-0a531632d923",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "rings of a shockwave rolling outward, steel and force, seen up close",
+    "masterSha256": "3914d2eed265615edc1fd9b6a9ce4b80b5abe075f1cdb569cdb959996d7901eb"
+  },
+  "public/ui/skills/druid/hamstring_bite.webp": {
+    "sheet": "skills_002",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "d5994d26-2f51-4c37-8b5b-0a531632d923",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, steel and force",
+    "masterSha256": "6a4de7f60c1778f8b9e65e23e3fe6345e9dfae3aa89d0559e4dd4e432ed0119d"
+  },
+  "public/ui/skills/druid/healing_touch.webp": {
+    "sheet": "skills_002",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "d5994d26-2f51-4c37-8b5b-0a531632d923",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirl of oak leaves and bark, green nature magic, seen up close",
+    "masterSha256": "a2f5bb6105bbe420d9b51c454dc1323958172536a3141a5eb0b2b3c66b0ff0c7"
+  },
+  "public/ui/skills/druid/hibernate.webp": {
+    "sheet": "skills_002",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "d5994d26-2f51-4c37-8b5b-0a531632d923",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dreamy swirl of mist around a closed eye, green nature magic",
+    "masterSha256": "ac6ed58a9e599e7e1080da603c26ac0930767f2eafcbae575bb4fd8da443ea3b"
+  },
+  "public/ui/skills/druid/hurricane.webp": {
+    "sheet": "skills_002",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "d5994d26-2f51-4c37-8b5b-0a531632d923",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a spiralling gust of wind with leaves, green nature magic",
+    "masterSha256": "e256415c3be499d34e6cfbc15c28acb57e48da5c3d35bbdb69c27b1b3f75e275"
+  },
+  "public/ui/skills/druid/innervate.webp": {
+    "sheet": "skills_002",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "d5994d26-2f51-4c37-8b5b-0a531632d923",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirl of oak leaves and bark, green nature magic, in a glowing ring",
+    "masterSha256": "6f821e36748accad4f58d035265838f8b90c82b6542d635f133b28f444877bd2"
+  },
+  "public/ui/skills/druid/insect_swarm.webp": {
+    "sheet": "skills_002",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "d5994d26-2f51-4c37-8b5b-0a531632d923",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, green nature magic",
+    "masterSha256": "12d4ee055977a13d7af573d9fd0153c44293a7453e548099218365faf69bec74"
+  },
+  "public/ui/skills/druid/lunge.webp": {
+    "sheet": "skills_002",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "d5994d26-2f51-4c37-8b5b-0a531632d923",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "swift speed streaks behind a running boot, steel and force, seen up close",
+    "masterSha256": "ca617604e982311273fd5e25accb34058e06279c45ee4ead4e7308f6074f0bcb"
+  },
+  "public/ui/skills/druid/mark_of_the_wild.webp": {
+    "sheet": "skills_002",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "d5994d26-2f51-4c37-8b5b-0a531632d923",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirl of oak leaves and bark, green nature magic, rising upward",
+    "masterSha256": "d9892278c1b380e2fa3a9910bc0ebf7c2e35b9dc07d13fe11f070c56a4393d0c"
+  },
+  "public/ui/skills/druid/marrowbreak.webp": {
+    "sheet": "skills_002",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "d5994d26-2f51-4c37-8b5b-0a531632d923",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, steel and force",
+    "masterSha256": "5092774532b82bec2dee1d7b9042004c42158ec1a590baf19901d6d4129d6529"
+  },
+  "public/ui/skills/druid/maul.webp": {
+    "sheet": "skills_002",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "d5994d26-2f51-4c37-8b5b-0a531632d923",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, steel and force",
+    "masterSha256": "323e987f9b28ad78c5e45af7052ee23a1829a9277707b8ffbbb08274ae224962"
+  },
+  "public/ui/skills/druid/moonfire.webp": {
+    "sheet": "skills_002",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "d5994d26-2f51-4c37-8b5b-0a531632d923",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a crescent moon among bright stars, violet arcane light",
+    "masterSha256": "d28801cc383d56827665b49edef05c9c9f72dce13e9a01eae49f58c3f594a1f7"
+  },
+  "public/ui/skills/druid/moonkin_form.webp": {
+    "sheet": "skills_002",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "d5994d26-2f51-4c37-8b5b-0a531632d923",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swooping hawk with spread wings, violet arcane light",
+    "masterSha256": "9006f4bca356c7ebf57731b4c48ab288160056eefa36176c51aec83026cb1d3d"
+  },
+  "public/ui/skills/druid/moonlash.webp": {
+    "sheet": "skills_002",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "d5994d26-2f51-4c37-8b5b-0a531632d923",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a crescent moon among bright stars, violet arcane light, seen up close",
+    "masterSha256": "e6290858e1186ff064a44f20c7acb015fa94fa9295a7bbc5922f1bd20f4710fa"
+  },
+  "public/ui/skills/druid/moonseed.webp": {
+    "sheet": "skills_002",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "d5994d26-2f51-4c37-8b5b-0a531632d923",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a crescent moon among bright stars, violet arcane light, in a glowing ring",
+    "masterSha256": "71583a01db0c67d346074bae025ee404822b746ad8bd7b919316e8fd3a1bc530"
+  },
+  "public/ui/skills/druid/natures_boon.webp": {
+    "sheet": "skills_003",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "5db03782-bf13-4352-a37f-f73166a00e72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a curved dagger glinting in shadow, green nature magic",
+    "masterSha256": "682d1b729eba5a77ea1f2858902c236c200d279f1aa711397b65379ea0a4bb2c"
+  },
+  "public/ui/skills/druid/overbloom.webp": {
+    "sheet": "skills_003",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "5db03782-bf13-4352-a37f-f73166a00e72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirl of oak leaves and bark, green nature magic, twin",
+    "masterSha256": "b85e55b177ad03997d290b3f7b14e6a0741914d2e045923aa1d183a09fc8249d"
+  },
+  "public/ui/skills/druid/pounce.webp": {
+    "sheet": "skills_003",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "5db03782-bf13-4352-a37f-f73166a00e72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, steel and force, seen up close",
+    "masterSha256": "a586acc0e9134e889ed0829826c6db441fc4c9347d6c4df23f71d1da84b9e702"
+  },
+  "public/ui/skills/druid/primal_reflexes.webp": {
+    "sheet": "skills_003",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "5db03782-bf13-4352-a37f-f73166a00e72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, green nature magic, seen up close",
+    "masterSha256": "8986324a8aa92fa33790de5c0f69a9549a3fab344c1bdb7fdd47be59d96ce71e"
+  },
+  "public/ui/skills/druid/prowl.webp": {
+    "sheet": "skills_003",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "5db03782-bf13-4352-a37f-f73166a00e72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a hooded figure fading into smoke, steel and force",
+    "masterSha256": "20c0a7e2f8b23bdbb5980299349b6945b85d7f5cd0ad849e4387a541ec8f0662"
+  },
+  "public/ui/skills/druid/rake.webp": {
+    "sheet": "skills_003",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "5db03782-bf13-4352-a37f-f73166a00e72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "three raking claw marks of light, steel and force, rising upward",
+    "masterSha256": "ad50767ae41e6d5884c0ae327d6b9ae1161e9d20b2f1c9ae35de6ecca140b6c0"
+  },
+  "public/ui/skills/druid/redharvest.webp": {
+    "sheet": "skills_003",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "5db03782-bf13-4352-a37f-f73166a00e72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, steel and force",
+    "masterSha256": "4c1d347968c460527218d6284f08a60a11f37717410837337376600e0bc0a71a"
+  },
+  "public/ui/skills/druid/regrowth.webp": {
+    "sheet": "skills_003",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "5db03782-bf13-4352-a37f-f73166a00e72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirl of oak leaves and bark, green nature magic, erupting outward",
+    "masterSha256": "895adb6d7d0e4951418e7c95f950819190e729e69e8ad801f39ccc1385ddf2de"
+  },
+  "public/ui/skills/druid/rejuvenation.webp": {
+    "sheet": "skills_003",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "5db03782-bf13-4352-a37f-f73166a00e72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, green nature magic, seen up close",
+    "masterSha256": "8a56bdcc4f1aa274cb136644781afcd35a650b2f2f22b7d44f2295a02f4de90d"
+  },
+  "public/ui/skills/druid/rip.webp": {
+    "sheet": "skills_003",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "5db03782-bf13-4352-a37f-f73166a00e72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "falling drops of crimson blood, steel and force",
+    "masterSha256": "97e79f35409f8ce57660043b81a9ef7a8279a0ffcbc432e9321ef3af73a1498a"
+  },
+  "public/ui/skills/druid/skull_bash.webp": {
+    "sheet": "skills_003",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "5db03782-bf13-4352-a37f-f73166a00e72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, steel and force, seen up close",
+    "masterSha256": "9e2f1cc0d4cb067106bfcb4589e7f07b837f601d27a2136fabb16f1ba3922fcc"
+  },
+  "public/ui/skills/druid/spore_burst.webp": {
+    "sheet": "skills_003",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "5db03782-bf13-4352-a37f-f73166a00e72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, green nature magic, in a glowing ring",
+    "masterSha256": "cbbb6ba1a4b4d4b9eefe45a85faba430ae25200675cca124f9f932f5c95841f7"
+  },
+  "public/ui/skills/druid/sporemender_form.webp": {
+    "sheet": "skills_003",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "5db03782-bf13-4352-a37f-f73166a00e72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, green nature magic, rising upward",
+    "masterSha256": "fa705bca91eacf67af43124842b00d1c1da10180ea71e6b41abcd407cb4d98a4"
+  },
+  "public/ui/skills/druid/starfire.webp": {
+    "sheet": "skills_003",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "5db03782-bf13-4352-a37f-f73166a00e72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a crescent moon among bright stars, violet arcane light, rising upward",
+    "masterSha256": "dd33fdf4a942bb52cc9a0d1c9f8c20c2e4892aa79a5ae9dcdb0e3d3480eded73"
+  },
+  "public/ui/skills/druid/sunlance.webp": {
+    "sheet": "skills_003",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "5db03782-bf13-4352-a37f-f73166a00e72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, green nature magic, seen up close",
+    "masterSha256": "05549e8c842022fdadb1c9b3ba87a9d3fee581a0a5534d65b8686dc6087c376f"
+  },
+  "public/ui/skills/druid/swiftmend.webp": {
+    "sheet": "skills_003",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "5db03782-bf13-4352-a37f-f73166a00e72",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, green nature magic, twin",
+    "masterSha256": "ee40bc885aed8c00f66cd042e565653fa0e2558df2dee4cac70e9a6c4f9eec7f"
+  },
+  "public/ui/skills/druid/swipe.webp": {
+    "sheet": "skills_004",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "66eb7ca2-6901-4dbc-8ac0-9fc074e58787",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "three raking claw marks of light, steel and force, twin",
+    "masterSha256": "775aed4c272232745ac27c4e184b9d40fabf74422cb57bfe213f1b5c3d4b8e5f"
+  },
+  "public/ui/skills/druid/thorns.webp": {
+    "sheet": "skills_004",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "66eb7ca2-6901-4dbc-8ac0-9fc074e58787",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirl of oak leaves and bark, green nature magic, over a battlefield",
+    "masterSha256": "7e04bb5e52b51265c9dc5ac142759ee3364842117df1634e95836acd79f9d774"
+  },
+  "public/ui/skills/druid/tigers_fury.webp": {
+    "sheet": "skills_004",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "66eb7ca2-6901-4dbc-8ac0-9fc074e58787",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "three raking claw marks of light, steel and force, erupting outward",
+    "masterSha256": "80cff675ae3c34f3d84b4bafac84a325e81e5edc10a1872df424707fffc849b2"
+  },
+  "public/ui/skills/druid/tranquility.webp": {
+    "sheet": "skills_004",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "66eb7ca2-6901-4dbc-8ac0-9fc074e58787",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, green nature magic, erupting outward",
+    "masterSha256": "405fa1d73c8b3df312feb2f4fbd9be58ea4556e7cb2e243f44597b818a427166"
+  },
+  "public/ui/skills/druid/travel_form.webp": {
+    "sheet": "skills_004",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "66eb7ca2-6901-4dbc-8ac0-9fc074e58787",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "swift speed streaks behind a running boot, green nature magic",
+    "masterSha256": "69e2272aec32fa40cd7e8fbf79f8ccdbea41571996d9fc2a7ce6947620561d0b"
+  },
+  "public/ui/skills/druid/typhoon.webp": {
+    "sheet": "skills_004",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "66eb7ca2-6901-4dbc-8ac0-9fc074e58787",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a spiralling gust of wind with leaves, green nature magic, seen up close",
+    "masterSha256": "2d4ea869e3508fbb74df7706e3e35d20003be8deecbe3caae69efda82d85098d"
+  },
+  "public/ui/skills/druid/wildwake.webp": {
+    "sheet": "skills_004",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "66eb7ca2-6901-4dbc-8ac0-9fc074e58787",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirl of oak leaves and bark, green nature magic, in a swirling vortex",
+    "masterSha256": "adabc0bc49cdaa42441fe91fcc8be8838ec66c7f90b463966fb5a4ee43a9ff81"
+  },
+  "public/ui/skills/druid/wrath.webp": {
+    "sheet": "skills_004",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "66eb7ca2-6901-4dbc-8ac0-9fc074e58787",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, green nature magic",
+    "masterSha256": "30d815604e05365372f998f5bf9f84a3d9046fbae1a4fc2cf9c3539039f452ad"
+  },
+  "public/ui/skills/hunter/aimed_shot.webp": {
+    "sheet": "skills_004",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "66eb7ca2-6901-4dbc-8ac0-9fc074e58787",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, steel and force, seen up close",
+    "masterSha256": "6274b1f99dfeab1e4359422f0f117550b9d1c5a2e6a28ee7613827e9a2dd86c1"
+  },
+  "public/ui/skills/hunter/arcane_shot.webp": {
+    "sheet": "skills_004",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "66eb7ca2-6901-4dbc-8ac0-9fc074e58787",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, violet arcane light",
+    "masterSha256": "3804f4f11b87899b32cfac41e686a86f5697691331ae6a22d50860e417c57db2"
+  },
+  "public/ui/skills/hunter/aspect_of_the_cheetah.webp": {
+    "sheet": "skills_004",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "66eb7ca2-6901-4dbc-8ac0-9fc074e58787",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "swift speed streaks behind a running boot, green nature magic, seen up close",
+    "masterSha256": "281f6b3e97f61cfc2e322bfe91f54fbec4dfb5a22a918dbe5e0bed2b5d8783b7"
+  },
+  "public/ui/skills/hunter/aspect_of_the_hawk.webp": {
+    "sheet": "skills_004",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "66eb7ca2-6901-4dbc-8ac0-9fc074e58787",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swooping hawk with spread wings, green nature magic",
+    "masterSha256": "9dff5b5e9b5ba0a18a66be7a149ed5b1e564059727062d654383d00945f23f6d"
+  },
+  "public/ui/skills/hunter/aspect_of_the_monkey.webp": {
+    "sheet": "skills_004",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "66eb7ca2-6901-4dbc-8ac0-9fc074e58787",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, green nature magic, in a glowing ring",
+    "masterSha256": "43d0b1430e4938a735b9aa4e58808018c348f22cf866c2f62a5914fa211a18c3"
+  },
+  "public/ui/skills/hunter/aspect_of_the_wild.webp": {
+    "sheet": "skills_004",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "66eb7ca2-6901-4dbc-8ac0-9fc074e58787",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirl of oak leaves and bark, green nature magic, at dusk",
+    "masterSha256": "d5cdd554cc0b346ae867290297d36b3f008fb9037b5fc62b726773d49842d7e4"
+  },
+  "public/ui/skills/hunter/bear_trap.webp": {
+    "sheet": "skills_004",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "66eb7ca2-6901-4dbc-8ac0-9fc074e58787",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a steel jaw trap on the ground, steel and force",
+    "masterSha256": "44401f08988d26d7891eda227e72bfc188909b339dd97d5a28df397bfc9c475d"
+  },
+  "public/ui/skills/hunter/bestial_wrath.webp": {
+    "sheet": "skills_004",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "66eb7ca2-6901-4dbc-8ac0-9fc074e58787",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a howling wolf spirit, green nature magic",
+    "masterSha256": "026d6d988f59d32586587086ed95b0dcc9761987a2eb1680397663a144d82880"
+  },
+  "public/ui/skills/hunter/bloodhook.webp": {
+    "sheet": "skills_005",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "ed750295-69db-4c77-a99e-84d250aee21d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "falling drops of crimson blood, steel and force, seen up close",
+    "masterSha256": "d2a1f8a7a9a57e1f0f558cd352577c6682287f57148a42c589bf67a83aad2b8a"
+  },
+  "public/ui/skills/hunter/bloodtrail_assault.webp": {
+    "sheet": "skills_005",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "ed750295-69db-4c77-a99e-84d250aee21d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "falling drops of crimson blood, steel and force, in a glowing ring",
+    "masterSha256": "552d29be449fe819517e9d68c08507aac9eb830524d837e6b56fefc9b200f4e2"
+  },
+  "public/ui/skills/hunter/cold_focus.webp": {
+    "sheet": "skills_005",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "ed750295-69db-4c77-a99e-84d250aee21d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, steel and force",
+    "masterSha256": "eeba8b04602c5419cac5231015e76338b696c1f494fbbf37377d02de70503f82"
+  },
+  "public/ui/skills/hunter/concussive_shot.webp": {
+    "sheet": "skills_005",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "ed750295-69db-4c77-a99e-84d250aee21d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, steel and force, in a glowing ring",
+    "masterSha256": "00cbe516e90251293d6973cad18a3802cdcda92253a2b06c900c50cdba5e8bcc"
+  },
+  "public/ui/skills/hunter/counter_shot.webp": {
+    "sheet": "skills_005",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "ed750295-69db-4c77-a99e-84d250aee21d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a shattered glowing rune circle, steel and force",
+    "masterSha256": "4223e937cb93ef40cc3f852697542e4e92cf3f76294bff379fcfc680b362bf8d"
+  },
+  "public/ui/skills/hunter/deterrence.webp": {
+    "sheet": "skills_005",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "ed750295-69db-4c77-a99e-84d250aee21d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, steel and force",
+    "masterSha256": "e2d55116fe20790443e2396a94ab95f0d4eae1257437f66c5c8a359b6dd2de33"
+  },
+  "public/ui/skills/hunter/dismiss_pet.webp": {
+    "sheet": "skills_005",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "ed750295-69db-4c77-a99e-84d250aee21d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a loyal hunting hound, green nature magic",
+    "masterSha256": "2c5bc28b1ffbd5a6dfd04ec416c9509bc07be1ea8a2157a096bfe95a5446b704"
+  },
+  "public/ui/skills/hunter/fieldcraft_reentry.webp": {
+    "sheet": "skills_005",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "ed750295-69db-4c77-a99e-84d250aee21d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "falling drops of crimson blood, steel and force, rising upward",
+    "masterSha256": "f733c4488a8e07dbd99f233ead7e749f92b6a7c9b6a1874ff39209301c07e81f"
+  },
+  "public/ui/skills/hunter/frost_trap.webp": {
+    "sheet": "skills_005",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "ed750295-69db-4c77-a99e-84d250aee21d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a steel jaw trap on the ground, pale blue frost",
+    "masterSha256": "d2caca51228882bbe88823d26d7388de15949977b69e3773ae560ebf966114f4"
+  },
+  "public/ui/skills/hunter/frostjaw_trap.webp": {
+    "sheet": "skills_005",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "ed750295-69db-4c77-a99e-84d250aee21d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a steel jaw trap on the ground, pale blue frost, seen up close",
+    "masterSha256": "31d8eda89751009bfe3b8ac2c9d528b8f909291c3958a3bc516ffb29a68d323f"
+  },
+  "public/ui/skills/hunter/hunting_momentum.webp": {
+    "sheet": "skills_005",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "ed750295-69db-4c77-a99e-84d250aee21d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "three raking claw marks of light, steel and force, over a battlefield",
+    "masterSha256": "3544e4de450fcd7c99011aeb6587b722cfe452d9691699cb908b5f22905e98fa"
+  },
+  "public/ui/skills/hunter/measured_shot.webp": {
+    "sheet": "skills_005",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "ed750295-69db-4c77-a99e-84d250aee21d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, steel and force, rising upward",
+    "masterSha256": "9570a00c6ddd2d9fdcc1632a752deee1160155a209b80ea587e39435fab1c764"
+  },
+  "public/ui/skills/hunter/mend_pet.webp": {
+    "sheet": "skills_005",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "ed750295-69db-4c77-a99e-84d250aee21d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, green nature magic, over a battlefield",
+    "masterSha256": "33f1cc9327218bc785e278315e4db4f32e861fa3eee43311ca1797794f41ceac"
+  },
+  "public/ui/skills/hunter/mongoose_bite.webp": {
+    "sheet": "skills_005",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "ed750295-69db-4c77-a99e-84d250aee21d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "three raking claw marks of light, steel and force, in a swirling vortex",
+    "masterSha256": "6c9170ebc79ed7ca9ad438d1d038ba439c34b4ac0f7fbc14ca525a9566abbccf"
+  },
+  "public/ui/skills/hunter/multi_shot.webp": {
+    "sheet": "skills_005",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "ed750295-69db-4c77-a99e-84d250aee21d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, steel and force, twin",
+    "masterSha256": "a6595970c644b5738e8df4c6a8ffc1ce5db35ee130cb426d65bddb8816e12b1d"
+  },
+  "public/ui/skills/hunter/pack_command.webp": {
+    "sheet": "skills_005",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "ed750295-69db-4c77-a99e-84d250aee21d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a howling wolf spirit, steel and force",
+    "masterSha256": "948e2e2992761334dd72e55c95c3e83144308948f336dfc4950e92f608f6d319"
+  },
+  "public/ui/skills/hunter/pack_rally.webp": {
+    "sheet": "skills_006",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "b1351b21-4864-4443-8f3e-aed079a51337",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a howling wolf spirit, green nature magic, seen up close",
+    "masterSha256": "4b970a87045de87df9ace7dfd6a321a1a37dfb35bd83d25473556178fa822934"
+  },
+  "public/ui/skills/hunter/phosphor_flask.webp": {
+    "sheet": "skills_006",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "b1351b21-4864-4443-8f3e-aed079a51337",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, orange fire",
+    "masterSha256": "0b6dac340363e2746e01773ddf08d470d07b6e4158d71301be0ac3731e5f6689"
+  },
+  "public/ui/skills/hunter/play_dead.webp": {
+    "sheet": "skills_006",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "b1351b21-4864-4443-8f3e-aed079a51337",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, steel and force, seen up close",
+    "masterSha256": "37a02a28a4520d9de324e22da859a3758c47152cb53b0625457a09368e19996c"
+  },
+  "public/ui/skills/hunter/rapid_fire.webp": {
+    "sheet": "skills_006",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "b1351b21-4864-4443-8f3e-aed079a51337",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, steel and force",
+    "masterSha256": "a085efb5dfb39f3ec72bf516027fbd501e0a6c00f5a14b09fa3e7580749ccbfb"
+  },
+  "public/ui/skills/hunter/raptor_strike.webp": {
+    "sheet": "skills_006",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "b1351b21-4864-4443-8f3e-aed079a51337",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, steel and force, in a glowing ring",
+    "masterSha256": "fd5ad397dd92681c79b8d5a97e84f7bd329421044e29e55aa2251a1b076fadc5"
+  },
+  "public/ui/skills/hunter/revive_pet.webp": {
+    "sheet": "skills_006",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "b1351b21-4864-4443-8f3e-aed079a51337",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a loyal hunting hound, green nature magic, seen up close",
+    "masterSha256": "53ee3beb3f57d614b58dd7b7fbd9c180e41a6e2fe522998f86a490be74fe57d8"
+  },
+  "public/ui/skills/hunter/scatterbolt.webp": {
+    "sheet": "skills_006",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "b1351b21-4864-4443-8f3e-aed079a51337",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, steel and force, erupting outward",
+    "masterSha256": "bff1f56e53c9793e9adac44b520232c21578704f16ee40c8a24de691860fbe36"
+  },
+  "public/ui/skills/hunter/serpent_sting.webp": {
+    "sheet": "skills_006",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "b1351b21-4864-4443-8f3e-aed079a51337",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dripping green poison flask, green nature magic",
+    "masterSha256": "8b5fa18e6bae98ca43ae65f6b0aece24d0313c8d7d995ab131a927cf26925226"
+  },
+  "public/ui/skills/hunter/shellskin.webp": {
+    "sheet": "skills_006",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "b1351b21-4864-4443-8f3e-aed079a51337",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed steel blades striking sparks, steel and force",
+    "masterSha256": "9ff76e6f69c8b049ef94820c7857e7948efd3ba00d9ea7000021be7011efc03e"
+  },
+  "public/ui/skills/hunter/shrapnel_charge.webp": {
+    "sheet": "skills_006",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "b1351b21-4864-4443-8f3e-aed079a51337",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "swift speed streaks behind a running boot, steel and force, in a glowing ring",
+    "masterSha256": "ad724e96c84fa9d8251d1306b32d790ebbbbb36eb947d365d79e5acb4b223226"
+  },
+  "public/ui/skills/hunter/stampede.webp": {
+    "sheet": "skills_006",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "b1351b21-4864-4443-8f3e-aed079a51337",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed steel blades striking sparks, steel and force, seen up close",
+    "masterSha256": "6641082b9c60908078bbb359bef99e3e33261fd84cb9f4446ea5841f679cc44b"
+  },
+  "public/ui/skills/hunter/startle_shot.webp": {
+    "sheet": "skills_006",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "b1351b21-4864-4443-8f3e-aed079a51337",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, steel and force, over a battlefield",
+    "masterSha256": "a3eb9e0e71c7aa16c68c43ff62c1eead85ee5d3b86ddacca3cc1f5397b05f389"
+  },
+  "public/ui/skills/hunter/tactical_camo.webp": {
+    "sheet": "skills_006",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "b1351b21-4864-4443-8f3e-aed079a51337",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a hooded figure fading into smoke, steel and force, seen up close",
+    "masterSha256": "58593127a5b73d8e4c0bf69f621c7c71306ecfb9f43993e43774c998b436f686"
+  },
+  "public/ui/skills/hunter/tame_beast.webp": {
+    "sheet": "skills_006",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "b1351b21-4864-4443-8f3e-aed079a51337",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirl of oak leaves and bark, green nature magic, cracking the ground",
+    "masterSha256": "597f7748bcc5790c21f118a25193f4cd40ffd8957f439372f973c94fe3ab655a"
+  },
+  "public/ui/skills/hunter/trailbreak.webp": {
+    "sheet": "skills_006",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "b1351b21-4864-4443-8f3e-aed079a51337",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "twisting roots bursting from the ground, steel and force",
+    "masterSha256": "1c0b4127e7512fe2390645e1345d3461870545adcf94703adbe1c96eb2127e92"
+  },
+  "public/ui/skills/hunter/trueshot_aura.webp": {
+    "sheet": "skills_006",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "b1351b21-4864-4443-8f3e-aed079a51337",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, green nature magic, in a glowing ring",
+    "masterSha256": "1d16ab2da7a87967c3b994747ecdf7cf9878f3a39d05a86fd1289af65a893938"
+  },
+  "public/ui/skills/hunter/unleash_beast.webp": {
+    "sheet": "skills_007",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "3f52d6e4-311c-4e9d-89d4-630dd753481c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a loyal hunting hound, steel and force",
+    "masterSha256": "b6fee5fc0e26cca45e7fb60bc780acac5d5e9249f1a379ebeb3c8036e6e2d821"
+  },
+  "public/ui/skills/hunter/volley.webp": {
+    "sheet": "skills_007",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "3f52d6e4-311c-4e9d-89d4-630dd753481c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, steel and force, in a swirling vortex",
+    "masterSha256": "460966ecbefc94bd6b0f39ccc84026af801aef44e55cc353ed111e38e145cf36"
+  },
+  "public/ui/skills/hunter/wildheart.webp": {
+    "sheet": "skills_007",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "3f52d6e4-311c-4e9d-89d4-630dd753481c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirl of oak leaves and bark, green nature magic, with drifting sparks",
+    "masterSha256": "d2fd3bac536df2641df8bf441fb72c93fada97d9e69c74a40baa4c259a40501c"
+  },
+  "public/ui/skills/hunter/wing_clip.webp": {
+    "sheet": "skills_007",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "3f52d6e4-311c-4e9d-89d4-630dd753481c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, steel and force, rising upward",
+    "masterSha256": "80c99042f38e8bda4e0c0b92fb4d1309e5f55b51dda6d3480056425f416c2e9c"
+  },
+  "public/ui/skills/hunter/wyvern_sting.webp": {
+    "sheet": "skills_007",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "3f52d6e4-311c-4e9d-89d4-630dd753481c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "three raking claw marks of light, green nature magic",
+    "masterSha256": "a9122c023ade0dd5deb6ababcdb5a00776b3e2603b99dee09cdce1d17cefc60a"
+  },
+  "public/ui/skills/mage/arcane_explosion.webp": {
+    "sheet": "skills_007",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "3f52d6e4-311c-4e9d-89d4-630dd753481c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling violet arcane orb, violet arcane light",
+    "masterSha256": "4a8c88398ac12d38dccfb4fdb719eb556dcc0346f10c6f4b4c2bd682333b4589"
+  },
+  "public/ui/skills/mage/arcane_intellect.webp": {
+    "sheet": "skills_007",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "3f52d6e4-311c-4e9d-89d4-630dd753481c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling violet arcane orb, violet arcane light, seen up close",
+    "masterSha256": "b4685743dd0f93e33204aa30421484b1d10d960d86bb331a5f34f09aa1e34a57"
+  },
+  "public/ui/skills/mage/arcane_missiles.webp": {
+    "sheet": "skills_007",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "3f52d6e4-311c-4e9d-89d4-630dd753481c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling violet arcane orb, violet arcane light, in a glowing ring",
+    "masterSha256": "709b3ff99e5a69503e3ae62804ef43b0c3c8b66e0de2e551996aa083cd7b2944"
+  },
+  "public/ui/skills/mage/arcane_power.webp": {
+    "sheet": "skills_007",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "3f52d6e4-311c-4e9d-89d4-630dd753481c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a cresting wave of water, violet arcane light",
+    "masterSha256": "10d49dec7bc6fca087f7ed7f630aae7d010949da9cd82a4ec4379696e519bc11"
+  },
+  "public/ui/skills/mage/arcane_surge.webp": {
+    "sheet": "skills_007",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "3f52d6e4-311c-4e9d-89d4-630dd753481c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a cresting wave of water, violet arcane light, seen up close",
+    "masterSha256": "0c7b954c8fc39dae6df9e4f7681877761380951d23f285a82d25fb946129c6ef"
+  },
+  "public/ui/skills/mage/blazing_barrier.webp": {
+    "sheet": "skills_007",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "3f52d6e4-311c-4e9d-89d4-630dd753481c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, orange fire",
+    "masterSha256": "397855706629d3f51b0759a6e7f22aadb028dc79c909b62b40a70496c60f846f"
+  },
+  "public/ui/skills/mage/blink.webp": {
+    "sheet": "skills_007",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "3f52d6e4-311c-4e9d-89d4-630dd753481c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "swift speed streaks behind a running boot, violet arcane light",
+    "masterSha256": "181066f13b2c09b454fbec173e78bc6d3978606c06a04af2583c1add8752f423"
+  },
+  "public/ui/skills/mage/blink_while_casting.webp": {
+    "sheet": "skills_007",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "3f52d6e4-311c-4e9d-89d4-630dd753481c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling violet arcane orb, glowing magic",
+    "masterSha256": "663ce3b1c0d80768d437dcd124eaea76ee1cee96f99724c6843f0b3e1b776bbf"
+  },
+  "public/ui/skills/mage/blizzard.webp": {
+    "sheet": "skills_007",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "3f52d6e4-311c-4e9d-89d4-630dd753481c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, pale blue frost",
+    "masterSha256": "2ccfc091b6632371011b22d4abeeda30ec9d8925368d043ae894483ccbcbc11b"
+  },
+  "public/ui/skills/mage/brain_freeze.webp": {
+    "sheet": "skills_007",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "3f52d6e4-311c-4e9d-89d4-630dd753481c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a cresting wave of water, pale blue frost",
+    "masterSha256": "ac45f59be9d0f74de1d2a35f430c83ebabd70a880209132707a39ac235573b09"
+  },
+  "public/ui/skills/mage/cold_snap.webp": {
+    "sheet": "skills_007",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "3f52d6e4-311c-4e9d-89d4-630dd753481c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a loyal hunting hound, pale blue frost",
+    "masterSha256": "4778dcb51f1332dbe5904c81d15251ead31ddafbc490c5eea17d551178330127"
+  },
+  "public/ui/skills/mage/collective_reversal.webp": {
+    "sheet": "skills_008",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "4e21ca88-003b-4b24-8865-cf30b3c065f3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing hourglass with drifting sand, violet arcane light",
+    "masterSha256": "a8a4828a19a85380878cc5d8f8864edd9dc3a0d88315cf4923e2230fb54612ed"
+  },
+  "public/ui/skills/mage/combustion.webp": {
+    "sheet": "skills_008",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "4e21ca88-003b-4b24-8865-cf30b3c065f3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, orange fire",
+    "masterSha256": "65fc2aa90374ab979e9c5476e3a6c2d3cb67a7c4253582cd2e79137d64407d33"
+  },
+  "public/ui/skills/mage/cone_of_cold.webp": {
+    "sheet": "skills_008",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "4e21ca88-003b-4b24-8865-cf30b3c065f3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, pale blue frost, seen up close",
+    "masterSha256": "6e5cf5ac159d8f24fa29f705e018ad7f5c835c38ff2ea85ba211d56f7b20dfa4"
+  },
+  "public/ui/skills/mage/conjure_food.webp": {
+    "sheet": "skills_008",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "4e21ca88-003b-4b24-8865-cf30b3c065f3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, violet arcane light",
+    "masterSha256": "6292d6baa31719dd4bccfb587a2bf2d2a609486a5312cf217979ab9836467290"
+  },
+  "public/ui/skills/mage/conjure_water.webp": {
+    "sheet": "skills_008",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "4e21ca88-003b-4b24-8865-cf30b3c065f3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a cresting wave of water, violet arcane light, in a glowing ring",
+    "masterSha256": "15eb3a74d99dc4b23638d6f2ddf2252b3335feb47b6dee5ba19a7298cd6edac7"
+  },
+  "public/ui/skills/mage/counterspell.webp": {
+    "sheet": "skills_008",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "4e21ca88-003b-4b24-8865-cf30b3c065f3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a shattered glowing rune circle, steel and force, seen up close",
+    "masterSha256": "75d156fa2d2d4f6dca8dd48751da674e49f7dd69dc2acf0ee6998540792c102b"
+  },
+  "public/ui/skills/mage/deep_freeze.webp": {
+    "sheet": "skills_008",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "4e21ca88-003b-4b24-8865-cf30b3c065f3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, pale blue frost, in a glowing ring",
+    "masterSha256": "928bce513f69fab54475d38d5ff4bef87c63f99c4f17e3b22ac0a2df8856fddc"
+  },
+  "public/ui/skills/mage/double_blink.webp": {
+    "sheet": "skills_008",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "4e21ca88-003b-4b24-8865-cf30b3c065f3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling violet arcane orb, glowing magic, seen up close",
+    "masterSha256": "fb6453f41c5519b661989958f4a1d1d5c27610fb5ded805e9ef739e4e91872bf"
+  },
+  "public/ui/skills/mage/dragons_breath.webp": {
+    "sheet": "skills_008",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "4e21ca88-003b-4b24-8865-cf30b3c065f3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, orange fire, seen up close",
+    "masterSha256": "f67064da1b8601d0330539bd6a6ba5ab1315f77b1ac37eddf0fa7bffb85ea374"
+  },
+  "public/ui/skills/mage/elemental_convergence.webp": {
+    "sheet": "skills_008",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "4e21ca88-003b-4b24-8865-cf30b3c065f3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling violet arcane orb, glowing magic, in a glowing ring",
+    "masterSha256": "9b926fe8c1ec0b4fcb3a6dc3f413daf64926846b86094f94bb7757c5f42e3c3c"
+  },
+  "public/ui/skills/mage/evocation.webp": {
+    "sheet": "skills_008",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "4e21ca88-003b-4b24-8865-cf30b3c065f3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, violet arcane light, seen up close",
+    "masterSha256": "a6be847d94ea1f8f10e8a028b823b59e5489c65e8ef4c5bc953ece73697aa022"
+  },
+  "public/ui/skills/mage/fingers_of_frost.webp": {
+    "sheet": "skills_008",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "4e21ca88-003b-4b24-8865-cf30b3c065f3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, pale blue frost, rising upward",
+    "masterSha256": "b46be7e827a3cbd0314686bb24f913e9b67e8dc778fa1421be958f19c0e367df"
+  },
+  "public/ui/skills/mage/fire_blast.webp": {
+    "sheet": "skills_008",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "4e21ca88-003b-4b24-8865-cf30b3c065f3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, orange fire, seen up close",
+    "masterSha256": "504bb3aafef628d8dfb87096df1694f06e920a2d38a617d2101759552cc9c47a"
+  },
+  "public/ui/skills/mage/fireball.webp": {
+    "sheet": "skills_008",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "4e21ca88-003b-4b24-8865-cf30b3c065f3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, orange fire, seen up close",
+    "masterSha256": "9c126ce81d811fceea952cbab92e6923e18651d2d321dc818bd83d837634a8e7"
+  },
+  "public/ui/skills/mage/fireball_form.webp": {
+    "sheet": "skills_008",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "4e21ca88-003b-4b24-8865-cf30b3c065f3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, orange fire, in a glowing ring",
+    "masterSha256": "5628676ff32317cd9f56a951bd30c9ca70a037751b920f3cd782abf739afdc54"
+  },
+  "public/ui/skills/mage/flamestrike.webp": {
+    "sheet": "skills_008",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "4e21ca88-003b-4b24-8865-cf30b3c065f3",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, orange fire, rising upward",
+    "masterSha256": "b65374acd59dccff70ee71fa271c7d4ea8d45daa517758ea1c03a35ea5246057"
+  },
+  "public/ui/skills/mage/flurry.webp": {
+    "sheet": "skills_009",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "6a1da424-dcd9-4ebd-81f8-122e85cc5133",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, pale blue frost",
+    "masterSha256": "223171a3c4205c80dad2697998d79862bbea2bc617b62c55120f0e6c01ea283e"
+  },
+  "public/ui/skills/mage/frost_armor.webp": {
+    "sheet": "skills_009",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "6a1da424-dcd9-4ebd-81f8-122e85cc5133",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, pale blue frost, twin",
+    "masterSha256": "cd1f1b38305ebf95dde4bfecf8a0574c7593b699cdcba45aea2db3210dd1bbbf"
+  },
+  "public/ui/skills/mage/frost_nova.webp": {
+    "sheet": "skills_009",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "6a1da424-dcd9-4ebd-81f8-122e85cc5133",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, pale blue frost, erupting outward",
+    "masterSha256": "4c3e1c1dd7272ace179da28550c1aa3ea445ee5811477a046940df66d67d0757"
+  },
+  "public/ui/skills/mage/frostbolt.webp": {
+    "sheet": "skills_009",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "6a1da424-dcd9-4ebd-81f8-122e85cc5133",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, pale blue frost, over a battlefield",
+    "masterSha256": "0ba7facdde7fc8fe19e67d9c95394ea999a123310623af9f69e3a393b4339f84"
+  },
+  "public/ui/skills/mage/frozen_orb.webp": {
+    "sheet": "skills_009",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "6a1da424-dcd9-4ebd-81f8-122e85cc5133",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, pale blue frost, in a swirling vortex",
+    "masterSha256": "cdcf35c5ec134e1c2f084505b27dd6d39f02ae254cd644aa594a0b337eeb4641"
+  },
+  "public/ui/skills/mage/glacial_front.webp": {
+    "sheet": "skills_009",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "6a1da424-dcd9-4ebd-81f8-122e85cc5133",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, pale blue frost, at dusk",
+    "masterSha256": "4da429c764cfd5e51997a8f937f9d8fe084808f1785f6c30a3648bbc12702a81"
+  },
+  "public/ui/skills/mage/glacial_spike.webp": {
+    "sheet": "skills_009",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "6a1da424-dcd9-4ebd-81f8-122e85cc5133",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, pale blue frost, cracking the ground",
+    "masterSha256": "f9c73e277ffc709597942263bd49d50e5ef41740041ee99eee290a029abd829b"
+  },
+  "public/ui/skills/mage/greater_invisibility.webp": {
+    "sheet": "skills_009",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "6a1da424-dcd9-4ebd-81f8-122e85cc5133",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing hourglass with drifting sand, violet arcane light, seen up close",
+    "masterSha256": "bc907aec331f4343e935fc55cc461679340c35eda171737c9a6762507d677c80"
+  },
+  "public/ui/skills/mage/hot_streak.webp": {
+    "sheet": "skills_009",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "6a1da424-dcd9-4ebd-81f8-122e85cc5133",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, orange fire, in a glowing ring",
+    "masterSha256": "9881ceb904682e82e6ebe5d8edb64b0a67833b3a5164eadd4f01c5202e838f25"
+  },
+  "public/ui/skills/mage/ice_barrier.webp": {
+    "sheet": "skills_009",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "6a1da424-dcd9-4ebd-81f8-122e85cc5133",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, pale blue frost, with drifting sparks",
+    "masterSha256": "266cdefc5e9dcaaeeff0edcfb90cef4df5b0a6d2ad19b7657be3b57f9c705828"
+  },
+  "public/ui/skills/mage/ice_block.webp": {
+    "sheet": "skills_009",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "6a1da424-dcd9-4ebd-81f8-122e85cc5133",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, pale blue frost, in a beam of light",
+    "masterSha256": "81ac5b873bb4a75b84da75aa620072ae7c33b3a32bcb36c6849f65ce96827802"
+  },
+  "public/ui/skills/mage/ice_floes.webp": {
+    "sheet": "skills_009",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "6a1da424-dcd9-4ebd-81f8-122e85cc5133",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, pale blue frost, framed by mist",
+    "masterSha256": "cb2efa62f34908372d89cc78e968b3bade9edb51cccf4eab3c43e42fb6199aea"
+  },
+  "public/ui/skills/mage/ice_lance.webp": {
+    "sheet": "skills_009",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "6a1da424-dcd9-4ebd-81f8-122e85cc5133",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, pale blue frost, spiralling",
+    "masterSha256": "39493b4a5a674a0d72bb9a9c01abfc5672ac1808565be7b0ddb6e947484f3e50"
+  },
+  "public/ui/skills/mage/icy_veins.webp": {
+    "sheet": "skills_009",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "6a1da424-dcd9-4ebd-81f8-122e85cc5133",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, pale blue frost, shattering",
+    "masterSha256": "5aa0bf0c16cc1f7cab36c6678dbacce688e556c45979119249116f59c43bbbc5"
+  },
+  "public/ui/skills/mage/ignition.webp": {
+    "sheet": "skills_009",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "6a1da424-dcd9-4ebd-81f8-122e85cc5133",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, orange fire, twin",
+    "masterSha256": "ff4a17f3378011c8a826694765530149cc1fa9885ff2beb33807f797219d0c51"
+  },
+  "public/ui/skills/mage/mass_barrier.webp": {
+    "sheet": "skills_009",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "6a1da424-dcd9-4ebd-81f8-122e85cc5133",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, pale blue frost",
+    "masterSha256": "b4ab4cf9412bdea451a759ba4f1fbb4ee60b246ff1df183c02d11a95ae2359d0"
+  },
+  "public/ui/skills/mage/meteor.webp": {
+    "sheet": "skills_010",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "67a66fff-fcba-4733-a24b-32272c3204be",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "cracked stone erupting from the ground, orange fire",
+    "masterSha256": "2c17f3e936db2eaaaebe06c6b64fcee02edfd80150fc2a4028921f4f94602efe"
+  },
+  "public/ui/skills/mage/overflowing_power.webp": {
+    "sheet": "skills_010",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "67a66fff-fcba-4733-a24b-32272c3204be",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swooping hawk with spread wings, glowing magic",
+    "masterSha256": "9e3dc70b8100efccba92a953ad6a65efb267f4fb368e682780dcd2a833ae3ddd"
+  },
+  "public/ui/skills/mage/overload.webp": {
+    "sheet": "skills_010",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "67a66fff-fcba-4733-a24b-32272c3204be",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling violet arcane orb, violet arcane light, rising upward",
+    "masterSha256": "69b9fd5ab50ad3357ba78f216a5cf78889c75047da23b6c0e8bccbce87673657"
+  },
+  "public/ui/skills/mage/perfect_moment.webp": {
+    "sheet": "skills_010",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "67a66fff-fcba-4733-a24b-32272c3204be",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing hourglass with drifting sand, violet arcane light, in a glowing ring",
+    "masterSha256": "cfd1c7935b9ae3a1d53afa438451d284278a354e006f1dd01803087a2b1de2e7"
+  },
+  "public/ui/skills/mage/polymorph.webp": {
+    "sheet": "skills_010",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "67a66fff-fcba-4733-a24b-32272c3204be",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling violet arcane orb, violet arcane light, twin",
+    "masterSha256": "43c0da4eca4f3dae4ea493937a15f9b3bb4d1bd990827b8486bd601c71a040d0"
+  },
+  "public/ui/skills/mage/power_echo.webp": {
+    "sheet": "skills_010",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "67a66fff-fcba-4733-a24b-32272c3204be",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, violet arcane light",
+    "masterSha256": "a55b6ba16d8bd7f8d114dc1962a9fbfa7c6ad109e592713081f267da0a5cdee9"
+  },
+  "public/ui/skills/mage/presence_of_mind.webp": {
+    "sheet": "skills_010",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "67a66fff-fcba-4733-a24b-32272c3204be",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dreamy swirl of mist around a closed eye, violet arcane light",
+    "masterSha256": "691f2c494297f1d25d697659737fde7e4972250886e5522f3b807fe27f361bcd"
+  },
+  "public/ui/skills/mage/pyroblast.webp": {
+    "sheet": "skills_010",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "67a66fff-fcba-4733-a24b-32272c3204be",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, orange fire, erupting outward",
+    "masterSha256": "dd4d00bbf13b5ccdce6651c4702bbe1a39f00813656fdd1d6be82cb3abdfa86a"
+  },
+  "public/ui/skills/mage/rings_of_frost.webp": {
+    "sheet": "skills_010",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "67a66fff-fcba-4733-a24b-32272c3204be",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, pale blue frost, in a storm of motes",
+    "masterSha256": "93d31799e1a2e582445bb63d18f25d25ed0ec830c02fca53562c699cc6a7ef85"
+  },
+  "public/ui/skills/mage/rune_of_power.webp": {
+    "sheet": "skills_010",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "67a66fff-fcba-4733-a24b-32272c3204be",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, violet arcane light, seen up close",
+    "masterSha256": "1fcfdb9377867ea15d196f4c43ce8ce6d6a79d144d88d17b731f47e1d9b55220"
+  },
+  "public/ui/skills/mage/scorch.webp": {
+    "sheet": "skills_010",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "67a66fff-fcba-4733-a24b-32272c3204be",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, orange fire, over a battlefield",
+    "masterSha256": "488657cfd705092528a281e75f650ecb64e9c83ebc495396836e272b0712dfcd"
+  },
+  "public/ui/skills/mage/shatter.webp": {
+    "sheet": "skills_010",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "67a66fff-fcba-4733-a24b-32272c3204be",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, pale blue frost",
+    "masterSha256": "64cf02ff342071174ec75b4cd3af473f8ae96f0cf5c6f096ece73f8070c6fa02"
+  },
+  "public/ui/skills/mage/snap_polymorph.webp": {
+    "sheet": "skills_010",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "67a66fff-fcba-4733-a24b-32272c3204be",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling violet arcane orb, glowing magic, rising upward",
+    "masterSha256": "a6dff0acd7a9f50967d9d6bb78bf0cbdde900a58aeaf0b66c43e855a8354b5de"
+  },
+  "public/ui/skills/mage/spellsteal.webp": {
+    "sheet": "skills_010",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "67a66fff-fcba-4733-a24b-32272c3204be",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, violet arcane light, in a glowing ring",
+    "masterSha256": "0b53bce2bdf2ac7a3e2201b1f8b9eb92bd53f235bb18f44e008fa9e76ca479a5"
+  },
+  "public/ui/skills/mage/summon_water_elemental.webp": {
+    "sheet": "skills_010",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "67a66fff-fcba-4733-a24b-32272c3204be",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a cresting wave of water, pale blue frost, seen up close",
+    "masterSha256": "218d63656116d8a2ddfd7922bbd95d437fe359d1291eb2d32b3a4f77e66b05e5"
+  },
+  "public/ui/skills/mage/temporal_acceleration.webp": {
+    "sheet": "skills_010",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "67a66fff-fcba-4733-a24b-32272c3204be",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing hourglass with drifting sand, violet arcane light, rising upward",
+    "masterSha256": "7d9d14e8d20b13c9eb3d54d78f4ed23eadd70d2b49f25a7050aea086b7d11567"
+  },
+  "public/ui/skills/mage/temporal_barrier.webp": {
+    "sheet": "skills_011",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "ec00b8ef-7877-4fbe-9865-e62cea3ee907",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing hourglass with drifting sand, violet arcane light, twin",
+    "masterSha256": "2007283a560f781f665b4cd3ea928bd1df13814faa5d5c9f8d8aba5a81ae22f5"
+  },
+  "public/ui/skills/mage/temporal_cascade.webp": {
+    "sheet": "skills_011",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "ec00b8ef-7877-4fbe-9865-e62cea3ee907",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing hourglass with drifting sand, violet arcane light, erupting outward",
+    "masterSha256": "4fd17cbbbc15848dfcbba4d8de502610d56e5c5945e719811e7104c9c8ad4cc9"
+  },
+  "public/ui/skills/mage/temporal_echo.webp": {
+    "sheet": "skills_011",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "ec00b8ef-7877-4fbe-9865-e62cea3ee907",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing hourglass with drifting sand, violet arcane light, over a battlefield",
+    "masterSha256": "abdbf925c6ee4cb6bd1dc0b2308026b5839bd3991e2641837bd03ef025e24f1d"
+  },
+  "public/ui/skills/mage/temporal_hourglass.webp": {
+    "sheet": "skills_011",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "ec00b8ef-7877-4fbe-9865-e62cea3ee907",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing hourglass with drifting sand, violet arcane light, in a swirling vortex",
+    "masterSha256": "7242b6b57c9777daa8f87caa83f5f5f21d140ae0170708e671833a6734eb8c11"
+  },
+  "public/ui/skills/mage/temporal_mend.webp": {
+    "sheet": "skills_011",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "ec00b8ef-7877-4fbe-9865-e62cea3ee907",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing hourglass with drifting sand, violet arcane light, at dusk",
+    "masterSha256": "d982e2bc9275499529cce703ed25ba3a700d96ac4ac1fa88b418620400afeec8"
+  },
+  "public/ui/skills/mage/temporal_reversal.webp": {
+    "sheet": "skills_011",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "ec00b8ef-7877-4fbe-9865-e62cea3ee907",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing hourglass with drifting sand, violet arcane light, cracking the ground",
+    "masterSha256": "24474e42c42d0311ffb9f1c363516594ee2f42f85be75f1792c085a356233a59"
+  },
+  "public/ui/skills/mage/temporal_rewind.webp": {
+    "sheet": "skills_011",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "ec00b8ef-7877-4fbe-9865-e62cea3ee907",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a spiralling gust of wind with leaves, violet arcane light",
+    "masterSha256": "d5ede0c31c96f4c4b252058723947e4f80b62ff30990a08a1c75eafa70a2cf51"
+  },
+  "public/ui/skills/mage/temporal_rift.webp": {
+    "sheet": "skills_011",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "ec00b8ef-7877-4fbe-9865-e62cea3ee907",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing hourglass with drifting sand, glowing magic",
+    "masterSha256": "0d014ffb58c1cbb3ad6824d8cc8263f5613e467b548b5ff6e700212ae766d7cd"
+  },
+  "public/ui/skills/mage/twin_frost_nova.webp": {
+    "sheet": "skills_011",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "ec00b8ef-7877-4fbe-9865-e62cea3ee907",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, glowing magic",
+    "masterSha256": "0049f27f60c64f2cf2352f6424d2be961e0b3faf3d25aaf2339cb9c980e4ae64"
+  },
+  "public/ui/skills/mage/warded.webp": {
+    "sheet": "skills_011",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "ec00b8ef-7877-4fbe-9865-e62cea3ee907",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, glowing magic",
+    "masterSha256": "6c05b5106fb65090d5d3380948f0b1660c2a327b956cb1efc9dec35178d001e7"
+  },
+  "public/ui/skills/paladin/aegis_first_dawn.webp": {
+    "sheet": "skills_011",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "ec00b8ef-7877-4fbe-9865-e62cea3ee907",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, golden holy light",
+    "masterSha256": "8d2abb78e9f2bb692c1769dfdb70cd327b9ef8da140716ad107c30ffa5e3abcd"
+  },
+  "public/ui/skills/paladin/aura_mastery.webp": {
+    "sheet": "skills_011",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "ec00b8ef-7877-4fbe-9865-e62cea3ee907",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, golden holy light",
+    "masterSha256": "77ec0adb33f4f262b52862de7dfabbc7b96230f3fe97feb51f86c244edd4ad16"
+  },
+  "public/ui/skills/paladin/avenging_wrath.webp": {
+    "sheet": "skills_011",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "ec00b8ef-7877-4fbe-9865-e62cea3ee907",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swooping hawk with spread wings, golden holy light",
+    "masterSha256": "e24800f5da0a03dea991b0fd87c033b9357de023204c5eec08cdc2d0d140ee73"
+  },
+  "public/ui/skills/paladin/bastion_rite.webp": {
+    "sheet": "skills_011",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "ec00b8ef-7877-4fbe-9865-e62cea3ee907",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, golden holy light",
+    "masterSha256": "95506ce6a6bdbedc971bbba13794b4793a451f7f677ba7eef662a97e6ba5c32b"
+  },
+  "public/ui/skills/paladin/bastion_sweep.webp": {
+    "sheet": "skills_011",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "ec00b8ef-7877-4fbe-9865-e62cea3ee907",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, golden holy light",
+    "masterSha256": "d552aef471f0db6e9b6ab9cbab2c0e30777698b3d16695da74d1fc885832f21d"
+  },
+  "public/ui/skills/paladin/beacon_of_light.webp": {
+    "sheet": "skills_011",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "ec00b8ef-7877-4fbe-9865-e62cea3ee907",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, golden holy light, seen up close",
+    "masterSha256": "cdcbc4a4393da1f85d8a6d924394359dc49538319db4d5f180a0234c1731d0de"
+  },
+  "public/ui/skills/paladin/blessing_of_might.webp": {
+    "sheet": "skills_012",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "ff9917b2-e7bf-4a51-8e9b-952e4608d0cd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, golden holy light, in a glowing ring",
+    "masterSha256": "4ec39e4f45001189673089bb93035b82a409ac3bdd87a0a440644d190fc4434e"
+  },
+  "public/ui/skills/paladin/consecration.webp": {
+    "sheet": "skills_012",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "ff9917b2-e7bf-4a51-8e9b-952e4608d0cd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, golden holy light, rising upward",
+    "masterSha256": "fc8bd510cd40161e6b9661a83465516b323a3ffd54fe48b7f56bf5e357790182"
+  },
+  "public/ui/skills/paladin/crusader_strike.webp": {
+    "sheet": "skills_012",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "ff9917b2-e7bf-4a51-8e9b-952e4608d0cd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, golden holy light, seen up close",
+    "masterSha256": "7fe6e002fdb95be1807b55bb6f021ee1f058514adfa3f731a4b30bcc13eb222e"
+  },
+  "public/ui/skills/paladin/dawn_devotion.webp": {
+    "sheet": "skills_012",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "ff9917b2-e7bf-4a51-8e9b-952e4608d0cd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, golden holy light, twin",
+    "masterSha256": "234f3da4a72f0d0b0d800c365117d00e3aa647a22180d0635fe3953a3e32052f"
+  },
+  "public/ui/skills/paladin/dawnfall.webp": {
+    "sheet": "skills_012",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "ff9917b2-e7bf-4a51-8e9b-952e4608d0cd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, golden holy light, erupting outward",
+    "masterSha256": "a2e33623aa4dfc99dea1b25b3100b91b76734d2962fbb5d336c1a93ca66b344d"
+  },
+  "public/ui/skills/paladin/dawns_embrace.webp": {
+    "sheet": "skills_012",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "ff9917b2-e7bf-4a51-8e9b-952e4608d0cd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, golden holy light, over a battlefield",
+    "masterSha256": "ffc6fb772320a3629f66aa3dcea60635f599c5ed974855c137a5134f7ca3e75e"
+  },
+  "public/ui/skills/paladin/devotion_aura.webp": {
+    "sheet": "skills_012",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "ff9917b2-e7bf-4a51-8e9b-952e4608d0cd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, golden holy light",
+    "masterSha256": "2e978680f4a2e7b6591b9fcdf264a3bcf0105e83ceb9ed51728e57085c3f1a8e"
+  },
+  "public/ui/skills/paladin/devotion_ward.webp": {
+    "sheet": "skills_012",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "ff9917b2-e7bf-4a51-8e9b-952e4608d0cd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, golden holy light, seen up close",
+    "masterSha256": "41a4c00bf2462c805f00c0c806fef449860a80e64b08de0bde7fc0ed83c5bb1d"
+  },
+  "public/ui/skills/paladin/divine_ascension.webp": {
+    "sheet": "skills_012",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "ff9917b2-e7bf-4a51-8e9b-952e4608d0cd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "twisting roots bursting from the ground, golden holy light",
+    "masterSha256": "ba2ae1c4d348b1cc8d7a700b95bd9e9afbc4dc5c29060296d7b9fa8e5882b28c"
+  },
+  "public/ui/skills/paladin/divine_protection.webp": {
+    "sheet": "skills_012",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "ff9917b2-e7bf-4a51-8e9b-952e4608d0cd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, golden holy light, in a glowing ring",
+    "masterSha256": "c6aea50980b4115313f6b5f5d5b84ca506bc0e984cebd3da3a892c6f42648b93"
+  },
+  "public/ui/skills/paladin/exorcism.webp": {
+    "sheet": "skills_012",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "ff9917b2-e7bf-4a51-8e9b-952e4608d0cd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, golden holy light, in a swirling vortex",
+    "masterSha256": "bb8259cb20adbcd82d2fe506acfd57cfb3b4ea39f4f1bc6c544722601d33c4f3"
+  },
+  "public/ui/skills/paladin/faithforged_guard.webp": {
+    "sheet": "skills_012",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "ff9917b2-e7bf-4a51-8e9b-952e4608d0cd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, golden holy light, at dusk",
+    "masterSha256": "ebfe0289c550cc5fae64089a0ed3babbee3b72e9b97316674c468e2aa69c0ac1"
+  },
+  "public/ui/skills/paladin/final_edict.webp": {
+    "sheet": "skills_012",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "ff9917b2-e7bf-4a51-8e9b-952e4608d0cd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, steel and force",
+    "masterSha256": "b30239812ade7ebba28cfe106f0299e2933bf6b88070ba6863390f5d81223fa0"
+  },
+  "public/ui/skills/paladin/flash_of_light.webp": {
+    "sheet": "skills_012",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "ff9917b2-e7bf-4a51-8e9b-952e4608d0cd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, golden holy light",
+    "masterSha256": "3a746472820294d3bc888f911a3d0dd53c81e4d0635b207b7303912fda4c63ed"
+  },
+  "public/ui/skills/paladin/grace_devotion.webp": {
+    "sheet": "skills_012",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "ff9917b2-e7bf-4a51-8e9b-952e4608d0cd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, golden holy light, seen up close",
+    "masterSha256": "9367aad298dbea3a1e6d4f858efeee5e3db31e178c98cc156f494bae4cb96580"
+  },
+  "public/ui/skills/paladin/guardian_covenant.webp": {
+    "sheet": "skills_012",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "ff9917b2-e7bf-4a51-8e9b-952e4608d0cd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, golden holy light, rising upward",
+    "masterSha256": "b2d59e4da16cd6ff9366f00907e5801a84342ed77c28ec98490f5aa24de16c43"
+  },
+  "public/ui/skills/paladin/hammer_of_grace.webp": {
+    "sheet": "skills_013",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "83dcc823-95ca-49d2-bf1d-4efdb895a63a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, golden holy light, in a glowing ring",
+    "masterSha256": "33e5b3b30b4163d6e704090cfb94d369e7792f968ec789ce97a7991584536fba"
+  },
+  "public/ui/skills/paladin/hammer_of_justice.webp": {
+    "sheet": "skills_013",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "83dcc823-95ca-49d2-bf1d-4efdb895a63a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, golden holy light, cracking the ground",
+    "masterSha256": "a99d166a70612e787daf3099d9412fe01df006ce46cdc22413dcdcac02ac8669"
+  },
+  "public/ui/skills/paladin/hammer_of_wrath.webp": {
+    "sheet": "skills_013",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "83dcc823-95ca-49d2-bf1d-4efdb895a63a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a heavy war hammer smashing down, golden holy light",
+    "masterSha256": "b080d14294b3022272d5aac40763eb701126ac966b375eb69c45470e45baa144"
+  },
+  "public/ui/skills/paladin/holy_light.webp": {
+    "sheet": "skills_013",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "83dcc823-95ca-49d2-bf1d-4efdb895a63a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, golden holy light, rising upward",
+    "masterSha256": "d61c3abc74c79e7041237de3df6a45b95eab6499e3dfb5bfefde3fef136d6687"
+  },
+  "public/ui/skills/paladin/holy_shield.webp": {
+    "sheet": "skills_013",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "83dcc823-95ca-49d2-bf1d-4efdb895a63a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, golden holy light, twin",
+    "masterSha256": "b910d43672e03dae60b27c8b25a7ebc978ebbf2a0a67fc209e214678e87b659b"
+  },
+  "public/ui/skills/paladin/holy_shock.webp": {
+    "sheet": "skills_013",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "83dcc823-95ca-49d2-bf1d-4efdb895a63a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, golden holy light, with drifting sparks",
+    "masterSha256": "ad6b7bed8b174f95c87ca95bd7ad6cec9ee100184be69df6265edf2b5219df04"
+  },
+  "public/ui/skills/paladin/holy_taunt.webp": {
+    "sheet": "skills_013",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "83dcc823-95ca-49d2-bf1d-4efdb895a63a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, golden holy light, in a beam of light",
+    "masterSha256": "1f571f3bbfadbf92e06ad385f71bd2bae2764382e28b16f5856db54c059d5279"
+  },
+  "public/ui/skills/paladin/hushbrand.webp": {
+    "sheet": "skills_013",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "83dcc823-95ca-49d2-bf1d-4efdb895a63a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a shattered glowing rune circle, steel and force, in a glowing ring",
+    "masterSha256": "77d2355a3aa1b385d1b71a1854bd934f15c21a2c8c1089b87825fdf5045c55c7"
+  },
+  "public/ui/skills/paladin/lay_on_hands.webp": {
+    "sheet": "skills_013",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "83dcc823-95ca-49d2-bf1d-4efdb895a63a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, golden holy light, twin",
+    "masterSha256": "ca6028c09c6cf2aeb67b7ec450f9d6212cfed8ab6171d342d6fc20bd155ab579"
+  },
+  "public/ui/skills/paladin/life_covenant.webp": {
+    "sheet": "skills_013",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "83dcc823-95ca-49d2-bf1d-4efdb895a63a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, golden holy light, erupting outward",
+    "masterSha256": "9e9adbb17e6fcc9909c60cffdd5a296b2875f89ae08063ca155992b39928525a"
+  },
+  "public/ui/skills/paladin/mercy_lance.webp": {
+    "sheet": "skills_013",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "83dcc823-95ca-49d2-bf1d-4efdb895a63a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, golden holy light, over a battlefield",
+    "masterSha256": "5d7aa7f1a57f32ef8cda46dcee8ab030ccf79c54f224770499b9ca11b73807dd"
+  },
+  "public/ui/skills/paladin/oath_chain.webp": {
+    "sheet": "skills_013",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "83dcc823-95ca-49d2-bf1d-4efdb895a63a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, golden holy light, erupting outward",
+    "masterSha256": "ea568f8d43d5aaabef0eef72f3b46a912e8dcde84817ec8ea6414d2c9d3d1a9f"
+  },
+  "public/ui/skills/paladin/pal_r11_double_sentence.webp": {
+    "sheet": "skills_013",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "83dcc823-95ca-49d2-bf1d-4efdb895a63a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, glowing magic",
+    "masterSha256": "f9041ab679b12bb76536550b2f4cf63ad90f6fae4db2aef5e8e21376228fad6f"
+  },
+  "public/ui/skills/paladin/pal_r11_fist_of_justice.webp": {
+    "sheet": "skills_013",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "83dcc823-95ca-49d2-bf1d-4efdb895a63a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, glowing magic, seen up close",
+    "masterSha256": "b2549e8d2979480cbbbc08825a575664cf7b6b25f9d0de552d5fffaca9c21b04"
+  },
+  "public/ui/skills/paladin/pal_r11_radiant_shackles.webp": {
+    "sheet": "skills_013",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "83dcc823-95ca-49d2-bf1d-4efdb895a63a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, glowing magic, seen up close",
+    "masterSha256": "0b2f0bbb650740650649d1cdf89798e1598c45f7b8c88d136b5206f5211d9707"
+  },
+  "public/ui/skills/paladin/pal_r14_divine_purpose.webp": {
+    "sheet": "skills_013",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "83dcc823-95ca-49d2-bf1d-4efdb895a63a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "twisting roots bursting from the ground, glowing magic",
+    "masterSha256": "f4c63089e65681624df1806ce61aeb39487d1af0aa9f9015fb8289ae8c207f1a"
+  },
+  "public/ui/skills/paladin/pal_r14_sacred_reserve.webp": {
+    "sheet": "skills_014",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "92429fef-aea5-4fc0-ab25-e4e9b5cb153c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, glowing magic, in a glowing ring",
+    "masterSha256": "86ba14e6bcecd94c1ba7f0cdd6e117036d9e5b2b5783d50540e6d18c3d3f53e2"
+  },
+  "public/ui/skills/paladin/pal_r14_zeal.webp": {
+    "sheet": "skills_014",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "92429fef-aea5-4fc0-ab25-e4e9b5cb153c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, glowing magic, rising upward",
+    "masterSha256": "5d1626ff84e3cc5b14b7cf919c87f6c2e539a2d96b086bfa8455d64229b93413"
+  },
+  "public/ui/skills/paladin/pal_r17_extended_dawn.webp": {
+    "sheet": "skills_014",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "92429fef-aea5-4fc0-ab25-e4e9b5cb153c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, glowing magic, twin",
+    "masterSha256": "197474aa4888fd90e41f41be91c7a3fa2df53e59699acd708731da8c916c71ed"
+  },
+  "public/ui/skills/paladin/pal_r17_radiant_wrath.webp": {
+    "sheet": "skills_014",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "92429fef-aea5-4fc0-ab25-e4e9b5cb153c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, glowing magic, erupting outward",
+    "masterSha256": "1a5081b9317b02b131980100ce79931565a62bb04daa2ea9542916d9ba9dc73b"
+  },
+  "public/ui/skills/paladin/pal_r17_sanctified_fervor.webp": {
+    "sheet": "skills_014",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "92429fef-aea5-4fc0-ab25-e4e9b5cb153c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, glowing magic",
+    "masterSha256": "2cc55c437deee8c7167df9bbd6596a831dbb593722fd1ef4352d023a0d366ed5"
+  },
+  "public/ui/skills/paladin/pal_r20_aura_mastery.webp": {
+    "sheet": "skills_014",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "92429fef-aea5-4fc0-ab25-e4e9b5cb153c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, glowing magic, seen up close",
+    "masterSha256": "d9338178a77846dc35b0d7727f12d9c256d7f9b015c73ffcfcdc145cc9079a90"
+  },
+  "public/ui/skills/paladin/pal_r20_dawn_echo.webp": {
+    "sheet": "skills_014",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "92429fef-aea5-4fc0-ab25-e4e9b5cb153c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, glowing magic, over a battlefield",
+    "masterSha256": "f9429a505831e6532ff209493bfd72aeacd26f863626869c76f8d14495c2506a"
+  },
+  "public/ui/skills/paladin/pal_r20_perpetual_sun.webp": {
+    "sheet": "skills_014",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "92429fef-aea5-4fc0-ab25-e4e9b5cb153c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, glowing magic, in a swirling vortex",
+    "masterSha256": "ab14e54d90509ce9d6c9fd369696521d155407d9f45b997b3b0a3f4588f6d7c2"
+  },
+  "public/ui/skills/paladin/pal_r5_divine_steed.webp": {
+    "sheet": "skills_014",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "92429fef-aea5-4fc0-ab25-e4e9b5cb153c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "twisting roots bursting from the ground, glowing magic, seen up close",
+    "masterSha256": "1fca37faa1d8cf4187a3bc8c0913b633993e10c0066f108aac2032ac3ccf008b"
+  },
+  "public/ui/skills/paladin/pal_r5_radiant_stride.webp": {
+    "sheet": "skills_014",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "92429fef-aea5-4fc0-ab25-e4e9b5cb153c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, glowing magic, at dusk",
+    "masterSha256": "4c01ae5d021efb91058216a5fcae07d3dfa1d1aee33ddfb747f7f25711717c2c"
+  },
+  "public/ui/skills/paladin/pal_r5_steadfast_step.webp": {
+    "sheet": "skills_014",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "92429fef-aea5-4fc0-ab25-e4e9b5cb153c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "swift speed streaks behind a running boot, glowing magic",
+    "masterSha256": "1da20509f68e9a7d5054d2217786a48b8432fe65ce69de8f7db4b2b87aba42e8"
+  },
+  "public/ui/skills/paladin/pal_r8_enduring_protection.webp": {
+    "sheet": "skills_014",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "92429fef-aea5-4fc0-ab25-e4e9b5cb153c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, glowing magic, seen up close",
+    "masterSha256": "dc255de2ecf14ce797ed6aac11a5c249980ec7d7bb9a54bcdd9262e5c8f6dc63"
+  },
+  "public/ui/skills/paladin/pal_r8_recurring_grace.webp": {
+    "sheet": "skills_014",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "92429fef-aea5-4fc0-ab25-e4e9b5cb153c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, glowing magic",
+    "masterSha256": "cff148b7c8a09071fa8100d895f8de6666d127ada31351f191cf27583c383399"
+  },
+  "public/ui/skills/paladin/pal_r8_steady_hands.webp": {
+    "sheet": "skills_014",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "92429fef-aea5-4fc0-ab25-e4e9b5cb153c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, glowing magic, in a glowing ring",
+    "masterSha256": "4c1cfe055ec8e5fa362c9582a7a553f555ca5ec7218d818e4b1dbe9cbf9fd74d"
+  },
+  "public/ui/skills/paladin/radiant_chorus.webp": {
+    "sheet": "skills_014",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "92429fef-aea5-4fc0-ab25-e4e9b5cb153c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, golden holy light, framed by mist",
+    "masterSha256": "17c154d8b597439475c8966e7871c0bc9e9f4a7a9c197bc69081fbc528235109"
+  },
+  "public/ui/skills/paladin/radiant_devotion.webp": {
+    "sheet": "skills_014",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "92429fef-aea5-4fc0-ab25-e4e9b5cb153c",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, golden holy light, spiralling",
+    "masterSha256": "cf0723bc14a02a3980bbc73a789df8db42cd797ea1d5f0ae4be3718805eae94f"
+  },
+  "public/ui/skills/paladin/rebuke.webp": {
+    "sheet": "skills_015",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "4df2d94a-3e6d-4900-944d-b5c44ff3988a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a shattered glowing rune circle, steel and force, rising upward",
+    "masterSha256": "3272edc2922e46841886328a805cd5a6c828f9d4fc458ddc3bdc8450d202ecc6"
+  },
+  "public/ui/skills/paladin/recall_the_fallen.webp": {
+    "sheet": "skills_015",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "4df2d94a-3e6d-4900-944d-b5c44ff3988a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a loyal hunting hound, golden holy light",
+    "masterSha256": "6d22742a0c991779cba13f061ca4363211169bc02304c83bacbcee760c1d77f2"
+  },
+  "public/ui/skills/paladin/retribution_aura.webp": {
+    "sheet": "skills_015",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "4df2d94a-3e6d-4900-944d-b5c44ff3988a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, golden holy light",
+    "masterSha256": "a2c9fe7fe9251d713ae3d037215af48513b70bd49ff13928e83a805704066585"
+  },
+  "public/ui/skills/paladin/righteous_fury.webp": {
+    "sheet": "skills_015",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "4df2d94a-3e6d-4900-944d-b5c44ff3988a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, golden holy light, seen up close",
+    "masterSha256": "9d2d30c7290d9446bb02242bb0f94e02922a60fc93977f12d7cea31abf20d6e8"
+  },
+  "public/ui/skills/paladin/sacred_bulwark.webp": {
+    "sheet": "skills_015",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "4df2d94a-3e6d-4900-944d-b5c44ff3988a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, golden holy light, over a battlefield",
+    "masterSha256": "aa11abc164686c4c07046464b9cf421ae8df877df57adb0149c74d487dda3c47"
+  },
+  "public/ui/skills/paladin/sacred_challenge.webp": {
+    "sheet": "skills_015",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "4df2d94a-3e6d-4900-944d-b5c44ff3988a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, golden holy light, shattering",
+    "masterSha256": "debba1176fcd2fff8550d5644baf38effe4f599b855134b04ce4a1a997adab92"
+  },
+  "public/ui/skills/paladin/sacred_form.webp": {
+    "sheet": "skills_015",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "4df2d94a-3e6d-4900-944d-b5c44ff3988a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, golden holy light, in a storm of motes",
+    "masterSha256": "29aee6f8eb0ec86bcb1f9eebcd7748e17e2e019d38999114fb6f97c9fec16aa1"
+  },
+  "public/ui/skills/paladin/seal_of_righteousness.webp": {
+    "sheet": "skills_015",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "4df2d94a-3e6d-4900-944d-b5c44ff3988a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swooping hawk with spread wings, golden holy light, seen up close",
+    "masterSha256": "af75d323f9e165b0f54b68e079be9dc95aba3219e6ca68a799dd85d99afafa0e"
+  },
+  "public/ui/skills/paladin/solar_invocation.webp": {
+    "sheet": "skills_015",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "4df2d94a-3e6d-4900-944d-b5c44ff3988a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, golden holy light, in a swirling vortex",
+    "masterSha256": "e40f3425ab4e0abed62f52b5c6039266faa59ad3bf976362025f8ca51d284272"
+  },
+  "public/ui/skills/paladin/solar_step.webp": {
+    "sheet": "skills_015",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "4df2d94a-3e6d-4900-944d-b5c44ff3988a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "swift speed streaks behind a running boot, golden holy light",
+    "masterSha256": "9b26e131e9ea5850ab9c2428e65db550c5b65f90f11eaabb213d6297fd402a5d"
+  },
+  "public/ui/skills/paladin/sun_gods_verdict.webp": {
+    "sheet": "skills_015",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "4df2d94a-3e6d-4900-944d-b5c44ff3988a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, golden holy light",
+    "masterSha256": "dae3532cab53f5b99f963dc94d6ddc947d61512e072b5a1a2269c6ba4f5e5501"
+  },
+  "public/ui/skills/paladin/sunward_disc.webp": {
+    "sheet": "skills_015",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "4df2d94a-3e6d-4900-944d-b5c44ff3988a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, golden holy light, in a swirling vortex",
+    "masterSha256": "e0bc94f67b23f61087147d62ca50320ab1e72c66895d7d02a41125e8dda3ec08"
+  },
+  "public/ui/skills/paladin/valkyrs_calling.webp": {
+    "sheet": "skills_015",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "4df2d94a-3e6d-4900-944d-b5c44ff3988a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a loyal hunting hound, golden holy light, seen up close",
+    "masterSha256": "0e90fe9417eb0fe9cfb1db44757c9bf7531e18409810464731e081ea2ef4cd43"
+  },
+  "public/ui/skills/paladin/veilbound_march.webp": {
+    "sheet": "skills_015",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "4df2d94a-3e6d-4900-944d-b5c44ff3988a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, golden holy light, seen up close",
+    "masterSha256": "9e0b576b5127383ce75ed5fc4cdb2b500aedd798f0a4bf0e8710a3962135df43"
+  },
+  "public/ui/skills/paladin/vowkeeper_strike.webp": {
+    "sheet": "skills_015",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "4df2d94a-3e6d-4900-944d-b5c44ff3988a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, steel and force, twin",
+    "masterSha256": "08a676700d206afe46f478d7a4538309389978cd9d411b937b387c5c1a29e4e1"
+  },
+  "public/ui/skills/pet/pet_aggressive.webp": {
+    "sheet": "skills_015",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "4df2d94a-3e6d-4900-944d-b5c44ff3988a",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a loyal hunting hound, glowing magic",
+    "masterSha256": "7f3272daf6dfa960f481ab8860553fc7eb26eb6be0b76ef88f63f2dedc622820"
+  },
+  "public/ui/skills/pet/pet_attack.webp": {
+    "sheet": "skills_016",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "1af0ae25-763a-4892-ab4e-f1f530de516d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a loyal hunting hound, glowing magic, seen up close",
+    "masterSha256": "749fe1de606b3914f20283b0110fbbdb60f9379446f603efcbb2ec1da433a3a1"
+  },
+  "public/ui/skills/pet/pet_defensive.webp": {
+    "sheet": "skills_016",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "1af0ae25-763a-4892-ab4e-f1f530de516d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a loyal hunting hound, glowing magic, in a glowing ring",
+    "masterSha256": "0e08e7b93c442ee6b70e16024533a87429f5e7f45e312d18d832ed8d307ef60a"
+  },
+  "public/ui/skills/pet/pet_feed.webp": {
+    "sheet": "skills_016",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "1af0ae25-763a-4892-ab4e-f1f530de516d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a loyal hunting hound, glowing magic, rising upward",
+    "masterSha256": "e6038feef2c71b6a99d61d7c6598c924702b62f0831d675185ada5b52f7f3e4f"
+  },
+  "public/ui/skills/pet/pet_growl.webp": {
+    "sheet": "skills_016",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "1af0ae25-763a-4892-ab4e-f1f530de516d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swooping hawk with spread wings, glowing magic, seen up close",
+    "masterSha256": "e93d9af5fa2e9605528290c74be5bc8c9af9ca3d2cabdf5c910616cf855cf1e6"
+  },
+  "public/ui/skills/pet/pet_mend.webp": {
+    "sheet": "skills_016",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "1af0ae25-763a-4892-ab4e-f1f530de516d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, glowing magic, seen up close",
+    "masterSha256": "8f44bccec74d4718664cf7d5c1f3b16c400486afc174acbe3daab81f989dec34"
+  },
+  "public/ui/skills/pet/pet_passive.webp": {
+    "sheet": "skills_016",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "1af0ae25-763a-4892-ab4e-f1f530de516d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a loyal hunting hound, glowing magic, twin",
+    "masterSha256": "baecb9b7ee15b7c2985dfcaa0126412287ad7d323a409d120e77d095f49d9516"
+  },
+  "public/ui/skills/pet/pet_water_jet.webp": {
+    "sheet": "skills_016",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "1af0ae25-763a-4892-ab4e-f1f530de516d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a cresting wave of water, glowing magic",
+    "masterSha256": "cc591e5a0a3275688b1609ef87509ce0d2b46ccdf261e6eadc1294560a2ca08d"
+  },
+  "public/ui/skills/priest/choir_of_deliverance.webp": {
+    "sheet": "skills_016",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "1af0ae25-763a-4892-ab4e-f1f530de516d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, golden holy light, at dusk",
+    "masterSha256": "d3eff6716544379d16afb5a07ca75c8c104e36a01248d3cb890c63e288c649a7"
+  },
+  "public/ui/skills/priest/desperate_prayer.webp": {
+    "sheet": "skills_016",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "1af0ae25-763a-4892-ab4e-f1f530de516d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, golden holy light, cracking the ground",
+    "masterSha256": "1b1abdcb2474ba4837878ba844489de6440e90558c5af0b35dcde6a289aeb50e"
+  },
+  "public/ui/skills/priest/flash_heal.webp": {
+    "sheet": "skills_016",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "1af0ae25-763a-4892-ab4e-f1f530de516d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, golden holy light, with drifting sparks",
+    "masterSha256": "dcb39b22b8c9938baca0bf544edeae4f6108ba9ac93223f56cc30b482f1fbc2a"
+  },
+  "public/ui/skills/priest/heal.webp": {
+    "sheet": "skills_016",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "1af0ae25-763a-4892-ab4e-f1f530de516d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, golden holy light, in a beam of light",
+    "masterSha256": "f566f74b5ffe7dde4aa6b05580dd341a7d8d0f519290aac30d866d05bc8de6b1"
+  },
+  "public/ui/skills/priest/holy_nova.webp": {
+    "sheet": "skills_016",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "1af0ae25-763a-4892-ab4e-f1f530de516d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, golden holy light, seen up close",
+    "masterSha256": "c3a6c22e52c73e759845d41cf907f550d90e0894704c04f62a491c7847aa09ce"
+  },
+  "public/ui/skills/priest/inner_focus.webp": {
+    "sheet": "skills_016",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "1af0ae25-763a-4892-ab4e-f1f530de516d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dreamy swirl of mist around a closed eye, golden holy light",
+    "masterSha256": "910973c5a36c254ea26124c8da523b5ad2a1c081e6065ac162beb35459a66a98"
+  },
+  "public/ui/skills/priest/lesser_heal.webp": {
+    "sheet": "skills_016",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "1af0ae25-763a-4892-ab4e-f1f530de516d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, golden holy light, framed by mist",
+    "masterSha256": "80dba9745fdb93cbf80770b3634fbcaac77f81e9f07fd47d058931f3a57f26ce"
+  },
+  "public/ui/skills/priest/martyrs_aegis.webp": {
+    "sheet": "skills_016",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "1af0ae25-763a-4892-ab4e-f1f530de516d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, golden holy light, at dusk",
+    "masterSha256": "e31b4fba807eb08641f9cae94471af96fe55475a90f58d2aa8243d897f1eae45"
+  },
+  "public/ui/skills/priest/mind_blast.webp": {
+    "sheet": "skills_016",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "1af0ae25-763a-4892-ab4e-f1f530de516d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dreamy swirl of mist around a closed eye, purple shadow",
+    "masterSha256": "09c2aa12b87107763bd0c7de2234310c705914c2b5a11f40c28a60ab78c81048"
+  },
+  "public/ui/skills/priest/mind_flay.webp": {
+    "sheet": "skills_017",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "45e68d06-223c-423d-afa7-532876d64789",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dreamy swirl of mist around a closed eye, purple shadow, seen up close",
+    "masterSha256": "f1497c7130adc969c70ecd9a72d24fdd45aba938e745c7df613942ea960a37fe"
+  },
+  "public/ui/skills/priest/mind_sear.webp": {
+    "sheet": "skills_017",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "45e68d06-223c-423d-afa7-532876d64789",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, purple shadow",
+    "masterSha256": "0424970247d032b14fd02c03425e160f6c10906e6031d11887ddd4332fb3a101"
+  },
+  "public/ui/skills/priest/power_infusion.webp": {
+    "sheet": "skills_017",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "45e68d06-223c-423d-afa7-532876d64789",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, golden holy light, spiralling",
+    "masterSha256": "fd282ccb4d7de1d53870011deb78d8d4b231283d2f432c1b4fcb8af40207a53f"
+  },
+  "public/ui/skills/priest/power_word_fortitude.webp": {
+    "sheet": "skills_017",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "45e68d06-223c-423d-afa7-532876d64789",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, golden holy light, in a glowing ring",
+    "masterSha256": "73915c28db5fe811c33151ddae92844330045cb07657dd2c92fed6f5eca066e3"
+  },
+  "public/ui/skills/priest/power_word_shield.webp": {
+    "sheet": "skills_017",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "45e68d06-223c-423d-afa7-532876d64789",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, golden holy light, cracking the ground",
+    "masterSha256": "3f9943ce24e89a76b6d527357185e029d12621462e23df586df770656a2648db"
+  },
+  "public/ui/skills/priest/prayer_of_healing.webp": {
+    "sheet": "skills_017",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "45e68d06-223c-423d-afa7-532876d64789",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, golden holy light, shattering",
+    "masterSha256": "c345c3db959316d3dc086d302fea835b195428f45d42eb6dfd1f05b6562aad96"
+  },
+  "public/ui/skills/priest/prayer_of_returning.webp": {
+    "sheet": "skills_017",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "45e68d06-223c-423d-afa7-532876d64789",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, golden holy light, in a storm of motes",
+    "masterSha256": "183172a813f2ca5475cb143e9c7aad09f390adf410e46e4bccbce5a862576fe0"
+  },
+  "public/ui/skills/priest/psychic_scream.webp": {
+    "sheet": "skills_017",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "45e68d06-223c-423d-afa7-532876d64789",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dreamy swirl of mist around a closed eye, purple shadow, in a glowing ring",
+    "masterSha256": "4bfa7137bd038fa2be620f040d81864012b12d5db0ef46f5cd709965c8aaac7a"
+  },
+  "public/ui/skills/priest/renew.webp": {
+    "sheet": "skills_017",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "45e68d06-223c-423d-afa7-532876d64789",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, golden holy light",
+    "masterSha256": "b9651777ba063f6454bdadbdf09657495ed0daa1d047b902154364f4da11f00d"
+  },
+  "public/ui/skills/priest/scouring_mercy.webp": {
+    "sheet": "skills_017",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "45e68d06-223c-423d-afa7-532876d64789",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, golden holy light, seen up close",
+    "masterSha256": "92bf004ac806053decee451a0be3c45a42bc9e143f93b1d35d269c9f25321ca8"
+  },
+  "public/ui/skills/priest/seraphic_vigil.webp": {
+    "sheet": "skills_017",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "45e68d06-223c-423d-afa7-532876d64789",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, golden holy light, in a glowing ring",
+    "masterSha256": "a11838d81da5bf1c76aaf18304d2b366c8622b5411b0f6c0d07765fcfdf74792"
+  },
+  "public/ui/skills/priest/shadow_word_pain.webp": {
+    "sheet": "skills_017",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "45e68d06-223c-423d-afa7-532876d64789",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, purple shadow",
+    "masterSha256": "3c794a3ab35634f436c4a10037129cfa368ac61e575b991a47121b4289c2639a"
+  },
+  "public/ui/skills/priest/shadowform.webp": {
+    "sheet": "skills_017",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "45e68d06-223c-423d-afa7-532876d64789",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, purple shadow, seen up close",
+    "masterSha256": "0354ba50948aaf51044a0fcf5da23a728d28e3b9a40cfd459c6cfc7ac9bb16cf"
+  },
+  "public/ui/skills/priest/silence.webp": {
+    "sheet": "skills_017",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "45e68d06-223c-423d-afa7-532876d64789",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a shattered glowing rune circle, purple shadow",
+    "masterSha256": "9669f0046a1d82525224c7ce475407f4f2af44c3581a25a58036ee463e122890"
+  },
+  "public/ui/skills/priest/smite.webp": {
+    "sheet": "skills_017",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "45e68d06-223c-423d-afa7-532876d64789",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, golden holy light, in a glowing ring",
+    "masterSha256": "6b7d93546b85a1e0aac6515a5b4550ca6bfdd6393dad53b57f326994afe3feaf"
+  },
+  "public/ui/skills/priest/spirit_bomb.webp": {
+    "sheet": "skills_017",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "45e68d06-223c-423d-afa7-532876d64789",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bursting bomb with sparks, purple shadow",
+    "masterSha256": "09427646790ab5d02b13a11c97b8e21ecadd1107c156a2cd47ee7034a32a668e"
+  },
+  "public/ui/skills/priest/summon_tithefiend.webp": {
+    "sheet": "skills_018",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "c699a182-4e16-4fdd-a58b-b4dc4ea0d2bd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a loyal hunting hound, purple shadow",
+    "masterSha256": "6cb17805174abb51ad68e6a3f856fb3b04d9c7834900f94bc827ce49bcbdd975"
+  },
+  "public/ui/skills/priest/vampiric_touch.webp": {
+    "sheet": "skills_018",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "c699a182-4e16-4fdd-a58b-b4dc4ea0d2bd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a stream of red light drawn from a figure, purple shadow",
+    "masterSha256": "9d6ef213382864072825ef17a0972b387c11396fd012e8bf33d7637936330f99"
+  },
+  "public/ui/skills/priest/veilstep.webp": {
+    "sheet": "skills_018",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "c699a182-4e16-4fdd-a58b-b4dc4ea0d2bd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "swift speed streaks behind a running boot, purple shadow",
+    "masterSha256": "c156338f4e52288b4cf93f7e32cbdba6feb447e4c5e2e1aa79310c0eaf5e0dd9"
+  },
+  "public/ui/skills/priest/void_rupture.webp": {
+    "sheet": "skills_018",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "c699a182-4e16-4fdd-a58b-b4dc4ea0d2bd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, purple shadow, in a glowing ring",
+    "masterSha256": "b7e472cd034655f0a0bdb9dd959abd5120ae5da2995ed43b532996fa38854e4c"
+  },
+  "public/ui/skills/rogue/adrenaline_rush.webp": {
+    "sheet": "skills_018",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "c699a182-4e16-4fdd-a58b-b4dc4ea0d2bd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "falling drops of crimson blood, steel and force, twin",
+    "masterSha256": "4de34274bbfc23f9630b6f7d5cfdaba66bee60b7b619d0becd9ed81e7a55f2f3"
+  },
+  "public/ui/skills/rogue/ambush.webp": {
+    "sheet": "skills_018",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "c699a182-4e16-4fdd-a58b-b4dc4ea0d2bd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, steel and force, erupting outward",
+    "masterSha256": "dcf823e53f38ccd99139f00c310cf514c439470e91219ee9038a86a10be5226c"
+  },
+  "public/ui/skills/rogue/backstab.webp": {
+    "sheet": "skills_018",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "c699a182-4e16-4fdd-a58b-b4dc4ea0d2bd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swooping hawk with spread wings, steel and force, seen up close",
+    "masterSha256": "6b24c18041e8307fe0d32204f6a04ceb97bb16eeb23227eb553538542a4b4280"
+  },
+  "public/ui/skills/rogue/blade_flurry.webp": {
+    "sheet": "skills_018",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "c699a182-4e16-4fdd-a58b-b4dc4ea0d2bd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, steel and force, over a battlefield",
+    "masterSha256": "35c77f972993b14037c9e00ecc97b5bb2eae98e976c4405f3f49f6aca6f4ea5f"
+  },
+  "public/ui/skills/rogue/blind.webp": {
+    "sheet": "skills_018",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "c699a182-4e16-4fdd-a58b-b4dc4ea0d2bd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed steel blades striking sparks, steel and force, in a glowing ring",
+    "masterSha256": "adb8249e426dac22644f99f63a583975b748a437b486e4e6a187c047075b8b25"
+  },
+  "public/ui/skills/rogue/body_blow.webp": {
+    "sheet": "skills_018",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "c699a182-4e16-4fdd-a58b-b4dc4ea0d2bd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, steel and force, seen up close",
+    "masterSha256": "b2025b085ce2890f9ba1c65bf0d5248ba24fb4f1b4cff249264f5ce9332f567c"
+  },
+  "public/ui/skills/rogue/cheap_shot.webp": {
+    "sheet": "skills_018",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "c699a182-4e16-4fdd-a58b-b4dc4ea0d2bd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a curved dagger glinting in shadow, steel and force",
+    "masterSha256": "1b41a0ded72a1b824f4cfcbf7f747ac79c6506fb58d56c39e807222c3709f1a9"
+  },
+  "public/ui/skills/rogue/cloak_of_shadows.webp": {
+    "sheet": "skills_018",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "c699a182-4e16-4fdd-a58b-b4dc4ea0d2bd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirl of oak leaves and bark, steel and force",
+    "masterSha256": "018c06e23f10cfcad496f468c534de302e63451b055828de32146643d132ecb4"
+  },
+  "public/ui/skills/rogue/cold_blood.webp": {
+    "sheet": "skills_018",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "c699a182-4e16-4fdd-a58b-b4dc4ea0d2bd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, steel and force, seen up close",
+    "masterSha256": "f49cb833d8eb73793d7ee2b609fcc49b2986da425c5b251fd6174fd5285fc083"
+  },
+  "public/ui/skills/rogue/crippling_poison.webp": {
+    "sheet": "skills_018",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "c699a182-4e16-4fdd-a58b-b4dc4ea0d2bd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dripping green poison flask, green nature magic, seen up close",
+    "masterSha256": "e62b58c02b7403630bda69dd73e9dcffaa87fe6e03ef638b08ce3a99fa1910f6"
+  },
+  "public/ui/skills/rogue/deadly_poison.webp": {
+    "sheet": "skills_018",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "c699a182-4e16-4fdd-a58b-b4dc4ea0d2bd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dripping green poison flask, green nature magic, in a glowing ring",
+    "masterSha256": "58ce5a51e54cb45c828783ab81d29d0d32dfd1d1fc8962e5f1e47e4138c89f34"
+  },
+  "public/ui/skills/rogue/evasion.webp": {
+    "sheet": "skills_018",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "c699a182-4e16-4fdd-a58b-b4dc4ea0d2bd",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed steel blades striking sparks, steel and force, rising upward",
+    "masterSha256": "cd5af903187f5f9416f7559355d34c424501f1069cb1a097773acfc0ddd58b1f"
+  },
+  "public/ui/skills/rogue/eviscerate.webp": {
+    "sheet": "skills_019",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "85d26c58-1957-4a35-9f39-514a01b23fa6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a curved dagger glinting in shadow, steel and force, seen up close",
+    "masterSha256": "bf30333ac795862581074b7012285437d4f7efddec6cecb0cb7b1998dd4c6c4e"
+  },
+  "public/ui/skills/rogue/expose_armor.webp": {
+    "sheet": "skills_019",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "85d26c58-1957-4a35-9f39-514a01b23fa6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed steel blades striking sparks, steel and force, twin",
+    "masterSha256": "39eac9e157b985277563ea52b613b26fed4991f07b5fe8596b2327a4764e9964"
+  },
+  "public/ui/skills/rogue/flurry_of_knives.webp": {
+    "sheet": "skills_019",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "85d26c58-1957-4a35-9f39-514a01b23fa6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed steel blades striking sparks, steel and force, erupting outward",
+    "masterSha256": "e8906b05c83940c63662ef9f90f0e3485c6b678f8b2c378fa8c3702e26555314"
+  },
+  "public/ui/skills/rogue/garrote.webp": {
+    "sheet": "skills_019",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "85d26c58-1957-4a35-9f39-514a01b23fa6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a curved dagger glinting in shadow, steel and force, in a glowing ring",
+    "masterSha256": "457ecf7ac0b0f367659409a2780cf39842bfedc62d631dbeeb18a7be7eddb341"
+  },
+  "public/ui/skills/rogue/ghostly_strike.webp": {
+    "sheet": "skills_019",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "85d26c58-1957-4a35-9f39-514a01b23fa6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, steel and force, in a swirling vortex",
+    "masterSha256": "19ac27b907ff73758e87d833ffe1f220cad223bc459fc92de17056e39e797bd7"
+  },
+  "public/ui/skills/rogue/gouge.webp": {
+    "sheet": "skills_019",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "85d26c58-1957-4a35-9f39-514a01b23fa6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a curved dagger glinting in shadow, steel and force, rising upward",
+    "masterSha256": "09ea86bd2d2f85389527b2a02c207f513fba0b0028702352a092d3c2a79c027a"
+  },
+  "public/ui/skills/rogue/hemorrhage.webp": {
+    "sheet": "skills_019",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "85d26c58-1957-4a35-9f39-514a01b23fa6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "falling drops of crimson blood, steel and force, erupting outward",
+    "masterSha256": "3a3891ad69521f6e2c4fa0e8341703490d555473a3e7517652ab2feb875a0816"
+  },
+  "public/ui/skills/rogue/instant_poison.webp": {
+    "sheet": "skills_019",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "85d26c58-1957-4a35-9f39-514a01b23fa6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dripping green poison flask, green nature magic, rising upward",
+    "masterSha256": "4f8fb405f98ab40bc8396214c0dd88ae86b43ce9cc17faefbddd3a2d4421c38e"
+  },
+  "public/ui/skills/rogue/kick.webp": {
+    "sheet": "skills_019",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "85d26c58-1957-4a35-9f39-514a01b23fa6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a shattered glowing rune circle, steel and force, twin",
+    "masterSha256": "1092a71cd667953f73191a7e4348c4ba24b2846bd7e5f525497a2fce7f72e4a8"
+  },
+  "public/ui/skills/rogue/kidney_shot.webp": {
+    "sheet": "skills_019",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "85d26c58-1957-4a35-9f39-514a01b23fa6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a curved dagger glinting in shadow, steel and force, twin",
+    "masterSha256": "86af3917aa533afb8b48eae0a0127fb8a5f53f2a2d733ce2ea1f16094a1cdb91"
+  },
+  "public/ui/skills/rogue/knockout_blow.webp": {
+    "sheet": "skills_019",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "85d26c58-1957-4a35-9f39-514a01b23fa6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, steel and force, seen up close",
+    "masterSha256": "220617b6a2194197eec2ed2f685e0ed2e3df5f51b30455ae0888b619dff3f8cf"
+  },
+  "public/ui/skills/rogue/melting_acid.webp": {
+    "sheet": "skills_019",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "85d26c58-1957-4a35-9f39-514a01b23fa6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swooping hawk with spread wings, green nature magic, seen up close",
+    "masterSha256": "8301d774b82d6c8810d6af897c295a0300bf5499f1b5b1a4c09789a260f80c31"
+  },
+  "public/ui/skills/rogue/nightshade_coating.webp": {
+    "sheet": "skills_019",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "85d26c58-1957-4a35-9f39-514a01b23fa6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, green nature magic",
+    "masterSha256": "edbe5e4c3c93c37b2c943c4459da0a3d97ea5e43cae8e90d1ac150fb4c74387f"
+  },
+  "public/ui/skills/rogue/preparation.webp": {
+    "sheet": "skills_019",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "85d26c58-1957-4a35-9f39-514a01b23fa6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "crossed steel blades striking sparks, steel and force, over a battlefield",
+    "masterSha256": "22173b4a44919790e4f4c5e69839c5bbdf47b78f7eb33eecf91e2fd01178ebbf"
+  },
+  "public/ui/skills/rogue/rupture.webp": {
+    "sheet": "skills_019",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "85d26c58-1957-4a35-9f39-514a01b23fa6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "falling drops of crimson blood, steel and force, over a battlefield",
+    "masterSha256": "4942fd52c52e62d88b87b595a71b3c79dfcbe1dcd91bf1ae6425cbb5f00e2239"
+  },
+  "public/ui/skills/rogue/sap.webp": {
+    "sheet": "skills_019",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "85d26c58-1957-4a35-9f39-514a01b23fa6",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirl of oak leaves and bark, steel and force, seen up close",
+    "masterSha256": "3ccf20c7d8ff5a40af7512ba81e251e650006b61a5a6e3eead8c5fccacafe3a8"
+  },
+  "public/ui/skills/rogue/shadowstep.webp": {
+    "sheet": "skills_020",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "f0056954-c856-43c9-8650-03ab4346231b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, steel and force",
+    "masterSha256": "58307f4fc4964921ffd6a6550d616c2ea9ec8de4a87189dd788c214fe1cd89c2"
+  },
+  "public/ui/skills/rogue/sinister_strike.webp": {
+    "sheet": "skills_020",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "f0056954-c856-43c9-8650-03ab4346231b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, steel and force, at dusk",
+    "masterSha256": "743823ce7faacd6ab09be0ebf03ee7cf1dc2b58f537000ac5d660a6d53f38fe7"
+  },
+  "public/ui/skills/rogue/slice_and_dice.webp": {
+    "sheet": "skills_020",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "f0056954-c856-43c9-8650-03ab4346231b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, steel and force, in a glowing ring",
+    "masterSha256": "8e34166e09f11be696e72f8616670b14134ac54b19afe4a4f52ad8325943c333"
+  },
+  "public/ui/skills/rogue/smoke_screen.webp": {
+    "sheet": "skills_020",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "f0056954-c856-43c9-8650-03ab4346231b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a hooded figure fading into smoke, steel and force, in a glowing ring",
+    "masterSha256": "352dcb32a8a48f3ab42ca7984bd7fff317283e8a2a16a810dae13004b0bf0ca5"
+  },
+  "public/ui/skills/rogue/sprint.webp": {
+    "sheet": "skills_020",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "f0056954-c856-43c9-8650-03ab4346231b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "swift speed streaks behind a running boot, steel and force, rising upward",
+    "masterSha256": "4dcb6e450710aaede26a3bae76c8f88a5e4e2b55eea30792d8c74675136aad01"
+  },
+  "public/ui/skills/rogue/stealth.webp": {
+    "sheet": "skills_020",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "f0056954-c856-43c9-8650-03ab4346231b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, steel and force, seen up close",
+    "masterSha256": "9af8d406013ef304a05f65ca1a7f1721fdd4c56b0dc8d363d76363b29a6676e4"
+  },
+  "public/ui/skills/rogue/thieves_chorus.webp": {
+    "sheet": "skills_020",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "f0056954-c856-43c9-8650-03ab4346231b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "swift speed streaks behind a running boot, steel and force, twin",
+    "masterSha256": "c0d01adf2ed997c77f34d7593122b06378a8a9af0a83d8daa4bd9bbbd3a2b72a"
+  },
+  "public/ui/skills/rogue/vanish.webp": {
+    "sheet": "skills_020",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "f0056954-c856-43c9-8650-03ab4346231b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a hooded figure fading into smoke, steel and force, rising upward",
+    "masterSha256": "8f23f9e3ff8e96340c97004241673ef84582eda1c5b759f3ae74b734413bd546"
+  },
+  "public/ui/skills/rogue/veilstrike.webp": {
+    "sheet": "skills_020",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "f0056954-c856-43c9-8650-03ab4346231b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, purple shadow, rising upward",
+    "masterSha256": "3579577985cc105b3a16fc25f72bc1c0b6d4c2058a9ec63e41f9e87918832fc4"
+  },
+  "public/ui/skills/rogue/venom_dart.webp": {
+    "sheet": "skills_020",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "f0056954-c856-43c9-8650-03ab4346231b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dripping green poison flask, green nature magic, twin",
+    "masterSha256": "6b624bd95b1dd0a90d2528fac34a8d1e1b4beded9fc60230d128011c248c9c54"
+  },
+  "public/ui/skills/rogue/venomrend.webp": {
+    "sheet": "skills_020",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "f0056954-c856-43c9-8650-03ab4346231b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a dripping green poison flask, steel and force",
+    "masterSha256": "6f36b0a1aeb917584fb97991886f308094a7b63c56c3a2422295935dd0e542cb"
+  },
+  "public/ui/skills/shaman/ancestor_return.webp": {
+    "sheet": "skills_020",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "f0056954-c856-43c9-8650-03ab4346231b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, green nature magic, in a swirling vortex",
+    "masterSha256": "7a602f953fa0f8799cca7bd72e958f3f1b8e02831c35562e45fb2dd9e5940f7d"
+  },
+  "public/ui/skills/shaman/bloodlust.webp": {
+    "sheet": "skills_020",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "f0056954-c856-43c9-8650-03ab4346231b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a forked lightning bolt, green nature magic",
+    "masterSha256": "f8144f3c2d1b126b7d175dea4544be904a18a79875ae28267f945f40add1dd6b"
+  },
+  "public/ui/skills/shaman/chain_heal.webp": {
+    "sheet": "skills_020",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "f0056954-c856-43c9-8650-03ab4346231b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, green nature magic, at dusk",
+    "masterSha256": "5a7e619c8c9b7b3cf82b0c5451b3e7e3044334b2bfa923c028a592bcc7f38dcd"
+  },
+  "public/ui/skills/shaman/chain_lightning.webp": {
+    "sheet": "skills_020",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "f0056954-c856-43c9-8650-03ab4346231b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a forked lightning bolt, green nature magic, seen up close",
+    "masterSha256": "12e270d02047fdb3e1b70785ab16aabec0613dd98e21bb1218c628a96fa9a3b7"
+  },
+  "public/ui/skills/shaman/earth_shock.webp": {
+    "sheet": "skills_020",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "f0056954-c856-43c9-8650-03ab4346231b",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "cracked stone erupting from the ground, green nature magic",
+    "masterSha256": "fc68754368855f0905d4dd76fed3494642e74fb0726ee11f905ab6fd22f9ea97"
+  },
+  "public/ui/skills/shaman/earthbind.webp": {
+    "sheet": "skills_021",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "3f79b7e8-a985-49be-a0fa-d209ab9135f8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "twisting roots bursting from the ground, green nature magic, seen up close",
+    "masterSha256": "1f77a2a3acf4a3e182dc70bee785a0fb3ecc09f8c34a8a974c32e5ddb1796db4"
+  },
+  "public/ui/skills/shaman/earthquake.webp": {
+    "sheet": "skills_021",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "3f79b7e8-a985-49be-a0fa-d209ab9135f8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "cracked stone erupting from the ground, green nature magic, seen up close",
+    "masterSha256": "0f5d98eb4f5a6b486f6acd06a3fb68fb6188ab7b589a4e5b1d7484c78665880e"
+  },
+  "public/ui/skills/shaman/elemental_mastery.webp": {
+    "sheet": "skills_021",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "3f79b7e8-a985-49be-a0fa-d209ab9135f8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, green nature magic, seen up close",
+    "masterSha256": "02450c2daa6bd2c5a3c6cdc9f439ebfef970772e901050b7923d63659a338b31"
+  },
+  "public/ui/skills/shaman/elemental_trance.webp": {
+    "sheet": "skills_021",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "3f79b7e8-a985-49be-a0fa-d209ab9135f8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, green nature magic",
+    "masterSha256": "f701a9ee08271d0c9425e56f5bfc51cc0f285e07012e56d74b849a82e6bc84ce"
+  },
+  "public/ui/skills/shaman/flame_shock.webp": {
+    "sheet": "skills_021",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "3f79b7e8-a985-49be-a0fa-d209ab9135f8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, orange fire, in a swirling vortex",
+    "masterSha256": "8d320f843190490278bdddf84aba651238c25ca86b27f98024a3e4027d0caa7f"
+  },
+  "public/ui/skills/shaman/flametongue_weapon.webp": {
+    "sheet": "skills_021",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "3f79b7e8-a985-49be-a0fa-d209ab9135f8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, orange fire, at dusk",
+    "masterSha256": "aeba90014b21c6a484fd1a8f26f4e436dab0ba00628e6059eeeb50bf85beeb3c"
+  },
+  "public/ui/skills/shaman/frost_shock.webp": {
+    "sheet": "skills_021",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "3f79b7e8-a985-49be-a0fa-d209ab9135f8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, pale blue frost",
+    "masterSha256": "ad3679fe4bd5e6f64dd480082b418326545e57b18aa378f9899d935c21a37544"
+  },
+  "public/ui/skills/shaman/frostbrand_weapon.webp": {
+    "sheet": "skills_021",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "3f79b7e8-a985-49be-a0fa-d209ab9135f8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, pale blue frost, seen up close",
+    "masterSha256": "4534246c52d9ff3f7553ce17d3129a20f43b7bb4989ea6e06d0da4939b67e737"
+  },
+  "public/ui/skills/shaman/galeheart_weapon.webp": {
+    "sheet": "skills_021",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "3f79b7e8-a985-49be-a0fa-d209ab9135f8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a spiralling gust of wind with leaves, green nature magic, in a glowing ring",
+    "masterSha256": "95f395db8bc47e09a72c5d7b8883f623358512e9fc7a1d0e9d015ecba645cdee"
+  },
+  "public/ui/skills/shaman/ghost_wolf.webp": {
+    "sheet": "skills_021",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "3f79b7e8-a985-49be-a0fa-d209ab9135f8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a howling wolf spirit, green nature magic, in a glowing ring",
+    "masterSha256": "3afbb7bda95bb5fef9be53d9ce211e932f44891e3b402e51cdf77471b35cc949"
+  },
+  "public/ui/skills/shaman/healing_stream.webp": {
+    "sheet": "skills_021",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "3f79b7e8-a985-49be-a0fa-d209ab9135f8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, green nature magic, cracking the ground",
+    "masterSha256": "f94286f34b59ed1591b396ab865d7738e57e9ff825d43f6681005f645bd669a6"
+  },
+  "public/ui/skills/shaman/healing_wave.webp": {
+    "sheet": "skills_021",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "3f79b7e8-a985-49be-a0fa-d209ab9135f8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, green nature magic, with drifting sparks",
+    "masterSha256": "c77420e74bdac9216fcbe77e77b5f8a290cfc2f5dc7d30250667176b0c766b70"
+  },
+  "public/ui/skills/shaman/lava_burst.webp": {
+    "sheet": "skills_021",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "3f79b7e8-a985-49be-a0fa-d209ab9135f8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, orange fire, cracking the ground",
+    "masterSha256": "b9f539e06578b42faeeb41644d0ed740b5a88305153b0c9b1521b88a604a0c12"
+  },
+  "public/ui/skills/shaman/lifespring_weapon.webp": {
+    "sheet": "skills_021",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "3f79b7e8-a985-49be-a0fa-d209ab9135f8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, green nature magic, in a beam of light",
+    "masterSha256": "adab87c21e2150c17506c877be6b130aae625f3247cf8ecad3f49ed31069f34c"
+  },
+  "public/ui/skills/shaman/lightning_bolt.webp": {
+    "sheet": "skills_021",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "3f79b7e8-a985-49be-a0fa-d209ab9135f8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, green nature magic, in a glowing ring",
+    "masterSha256": "f807f64e24a397c2d3558b474e41cd65db0318ab21273362933f03661d8a7b93"
+  },
+  "public/ui/skills/shaman/lightning_overload.webp": {
+    "sheet": "skills_021",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "3f79b7e8-a985-49be-a0fa-d209ab9135f8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a forked lightning bolt, green nature magic, in a glowing ring",
+    "masterSha256": "038e88a849ceb7dc24587962d8d2c6f454c18c657110732afd67c93814575679"
+  },
+  "public/ui/skills/shaman/lightning_shield.webp": {
+    "sheet": "skills_022",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "3896f315-5892-4b65-a408-22175782cd64",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, green nature magic",
+    "masterSha256": "d5391d59b7df522467466d6866888c78c3564de24ffb79d5cf9d88f898be914c"
+  },
+  "public/ui/skills/shaman/primal_exaltation.webp": {
+    "sheet": "skills_022",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "3896f315-5892-4b65-a408-22175782cd64",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, green nature magic, rising upward",
+    "masterSha256": "c6b074bb5b1ae409d47db0579d46f861d69affd5ac6fb656952bdda704d7d153"
+  },
+  "public/ui/skills/shaman/rockbiter_weapon.webp": {
+    "sheet": "skills_022",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "3896f315-5892-4b65-a408-22175782cd64",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "cracked stone erupting from the ground, green nature magic, in a glowing ring",
+    "masterSha256": "4c484843a0fa2171e6c2053afe3bdf99a28081eca68183bea2fef874d0923e6f"
+  },
+  "public/ui/skills/shaman/stoneward.webp": {
+    "sheet": "skills_022",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "3896f315-5892-4b65-a408-22175782cd64",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, green nature magic, seen up close",
+    "masterSha256": "76a5f05c0b4c5734ca31d05c57f6f56c1d1c2ad5f9daa8473e45724f48ecc0c9"
+  },
+  "public/ui/skills/shaman/stormstrike.webp": {
+    "sheet": "skills_022",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "3896f315-5892-4b65-a408-22175782cd64",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, steel and force, cracking the ground",
+    "masterSha256": "d100236a9e7e8f1d20d83e4fba7fa4afa3b4ccaa428aeadb9f3c8bfa9f72f52d"
+  },
+  "public/ui/skills/shaman/stormsurge.webp": {
+    "sheet": "skills_022",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "3896f315-5892-4b65-a408-22175782cd64",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a forked lightning bolt, green nature magic, rising upward",
+    "masterSha256": "3ba732f2d1f7e90ffd194811e536a1c95ac53f47ed552692d939d83fa05703b5"
+  },
+  "public/ui/skills/shaman/thunder_reservoir.webp": {
+    "sheet": "skills_022",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "3896f315-5892-4b65-a408-22175782cd64",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a forked lightning bolt, green nature magic, twin",
+    "masterSha256": "0f0021b341bae0e28a98849bf7e815ba8baa3edef45969b6fde960f19ada02f7"
+  },
+  "public/ui/skills/shaman/thunderstorm.webp": {
+    "sheet": "skills_022",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "3896f315-5892-4b65-a408-22175782cd64",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a forked lightning bolt, green nature magic, erupting outward",
+    "masterSha256": "c1cffe545218f0bfd93afbe0a790ae1e0cd62c93bc15d294569631b9748ecaf1"
+  },
+  "public/ui/skills/shaman/tidecall.webp": {
+    "sheet": "skills_022",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "3896f315-5892-4b65-a408-22175782cd64",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a cresting wave of water, green nature magic",
+    "masterSha256": "bff3e4f443db51605b6d0b994a1e3f0402bbcd572ce76889bb88a23bb5e9bd11"
+  },
+  "public/ui/skills/shaman/unleash_weapon.webp": {
+    "sheet": "skills_022",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "3896f315-5892-4b65-a408-22175782cd64",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, green nature magic, rising upward",
+    "masterSha256": "875e5090e0bcd47cd956ca78b6801e6e95020c8d496a3acf1e77b2f9960c3e8f"
+  },
+  "public/ui/skills/shaman/warspirit_cadence.webp": {
+    "sheet": "skills_022",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "3896f315-5892-4b65-a408-22175782cd64",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, green nature magic, seen up close",
+    "masterSha256": "c54216607bcd5cb83dc0230521a52f1617ac9c02b80ff79555cc2d77122f5e50"
+  },
+  "public/ui/skills/shardpike/lance_brace.webp": {
+    "sheet": "skills_022",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "3896f315-5892-4b65-a408-22175782cd64",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, glowing magic, rising upward",
+    "masterSha256": "9726e7cd604cbd8094012ea8ee0481cfd63f521d8dac281d93fc7d043a8779e8"
+  },
+  "public/ui/skills/shardpike/lance_release.webp": {
+    "sheet": "skills_022",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "3896f315-5892-4b65-a408-22175782cd64",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, glowing magic, twin",
+    "masterSha256": "791f506b6e9ad916c8b3f88ce3b7e28ae8084a942a2698f786e075921ca600c3"
+  },
+  "public/ui/skills/shardpike/lance_thrust.webp": {
+    "sheet": "skills_022",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "3896f315-5892-4b65-a408-22175782cd64",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, glowing magic, erupting outward",
+    "masterSha256": "e17fce1e2baeb219d0da6d421a33d03e5dadb99889bcd039ca119c5a8228e8e8"
+  },
+  "public/ui/skills/warlock/abyssal_rift.webp": {
+    "sheet": "skills_022",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "3896f315-5892-4b65-a408-22175782cd64",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, purple shadow, twin",
+    "masterSha256": "b9760349d3c8395ceab3fa69552fb9175c1f665b3b70ddcf4bcf4f57fd26088d"
+  },
+  "public/ui/skills/warlock/army_of_the_dead.webp": {
+    "sheet": "skills_022",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "3896f315-5892-4b65-a408-22175782cd64",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swooping hawk with spread wings, purple shadow",
+    "masterSha256": "20e132ae32759d01f118f06a13e54a905cee8b0c6a919760e9913888aab8c039"
+  },
+  "public/ui/skills/warlock/bone_armor.webp": {
+    "sheet": "skills_023",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "f735dae5-bcfa-4b41-8528-9ae73512099d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, purple shadow",
+    "masterSha256": "a50726c4ab4c4c6fbc6637fff57478438dae3a4de10b597d33278a0f637c6111"
+  },
+  "public/ui/skills/warlock/chaos_bolt.webp": {
+    "sheet": "skills_023",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "f735dae5-bcfa-4b41-8528-9ae73512099d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, orange fire, rising upward",
+    "masterSha256": "1e39455d19a3737ab32b21ebbab9621ce653611fef3a8b13c3e076ed8cecf474"
+  },
+  "public/ui/skills/warlock/cinderhide.webp": {
+    "sheet": "skills_023",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "f735dae5-bcfa-4b41-8528-9ae73512099d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a hooded figure fading into smoke, orange fire",
+    "masterSha256": "09f9978fdef5b2948d41f20972cdad8e230b336d5178596a2c5d58351504289b"
+  },
+  "public/ui/skills/warlock/conflagrate.webp": {
+    "sheet": "skills_023",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "f735dae5-bcfa-4b41-8528-9ae73512099d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, orange fire, with drifting sparks",
+    "masterSha256": "9afb08d19635b2722e8f983b618aa528f925796e9d829ba380214ca2c081254a"
+  },
+  "public/ui/skills/warlock/corpse_explosion.webp": {
+    "sheet": "skills_023",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "f735dae5-bcfa-4b41-8528-9ae73512099d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, purple shadow, seen up close",
+    "masterSha256": "8395e197614bacf468378d941c3b088b541d30207dfe01d9c616a8ef035fdf7f"
+  },
+  "public/ui/skills/warlock/corruption.webp": {
+    "sheet": "skills_023",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "f735dae5-bcfa-4b41-8528-9ae73512099d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, purple shadow, erupting outward",
+    "masterSha256": "18ad5abba2a6a15880c4b8a24dc796848540a024e48a584adc65df941395d883"
+  },
+  "public/ui/skills/warlock/coven.webp": {
+    "sheet": "skills_023",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "f735dae5-bcfa-4b41-8528-9ae73512099d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, purple shadow",
+    "masterSha256": "ae77624444c2cad33ded834a1a0b61172294677dbe0ba18d94500cb1b6cdc5aa"
+  },
+  "public/ui/skills/warlock/cruel_pact.webp": {
+    "sheet": "skills_023",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "f735dae5-bcfa-4b41-8528-9ae73512099d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, purple shadow",
+    "masterSha256": "ad90a5cdff47d4609b4de3de308737238fa4bacd3ff2e717f60a2e83d84ce1a3"
+  },
+  "public/ui/skills/warlock/curse_of_agony.webp": {
+    "sheet": "skills_023",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "f735dae5-bcfa-4b41-8528-9ae73512099d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, purple shadow, over a battlefield",
+    "masterSha256": "4659958ea984ed1ce3f725cd72759b80cf1016bc069e5033ff189f6303a32f27"
+  },
+  "public/ui/skills/warlock/curse_of_exhaustion.webp": {
+    "sheet": "skills_023",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "f735dae5-bcfa-4b41-8528-9ae73512099d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, purple shadow, in a swirling vortex",
+    "masterSha256": "02fe6d696d89c7b724d1ab9156ae41fb7c35f6294554bd68f266cb85401ce63a"
+  },
+  "public/ui/skills/warlock/cursed_accomplice.webp": {
+    "sheet": "skills_023",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "f735dae5-bcfa-4b41-8528-9ae73512099d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, purple shadow",
+    "masterSha256": "6f8e12e52e614d3da5d4878e64161a5e5d0f27895f2fbb5e4fc8a7a31818180d"
+  },
+  "public/ui/skills/warlock/dark_pact.webp": {
+    "sheet": "skills_023",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "f735dae5-bcfa-4b41-8528-9ae73512099d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "falling drops of crimson blood, purple shadow",
+    "masterSha256": "52946d970fb28e8e5d3d2f3ebc0a0a48325d9d6997edd4f8670e902070003ebf"
+  },
+  "public/ui/skills/warlock/death_coil.webp": {
+    "sheet": "skills_023",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "f735dae5-bcfa-4b41-8528-9ae73512099d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swooping hawk with spread wings, purple shadow, seen up close",
+    "masterSha256": "73035b0325a1e41174c80ea278e7da5efbf98cf842f42000a4269a1cf97a43d3"
+  },
+  "public/ui/skills/warlock/demon_skin.webp": {
+    "sheet": "skills_023",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "f735dae5-bcfa-4b41-8528-9ae73512099d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a hooded figure fading into smoke, purple shadow",
+    "masterSha256": "53d9394dd4cb62cfc37c1e9751f1130bd7dbb39d835f2c133ac185e99917633e"
+  },
+  "public/ui/skills/warlock/drain_life.webp": {
+    "sheet": "skills_023",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "f735dae5-bcfa-4b41-8528-9ae73512099d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, purple shadow, seen up close",
+    "masterSha256": "9c16064e77dfa761c9200427df26958e802d3071c8687f66fa74c614e058f9a0"
+  },
+  "public/ui/skills/warlock/emberkin_felbolt.webp": {
+    "sheet": "skills_023",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "f735dae5-bcfa-4b41-8528-9ae73512099d",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, glowing magic",
+    "masterSha256": "d94d4c670044fffc61fa9eda2a9a8c48f8e27df2bbbc932f2a911dd423e61f4a"
+  },
+  "public/ui/skills/warlock/evil_eye.webp": {
+    "sheet": "skills_024",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "24e9d843-cecc-4839-9010-05709dd47ca8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, purple shadow, at dusk",
+    "masterSha256": "ce2f498e20fe7431c8c7ddce717585e7f73d37a848cee758f112f32232f57b0a"
+  },
+  "public/ui/skills/warlock/fear.webp": {
+    "sheet": "skills_024",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "24e9d843-cecc-4839-9010-05709dd47ca8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, purple shadow",
+    "masterSha256": "19d937824c3d0c36432eb1aca43758a544036e401106e91ab320a0c2dc5778c2"
+  },
+  "public/ui/skills/warlock/funeral_harvest.webp": {
+    "sheet": "skills_024",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "24e9d843-cecc-4839-9010-05709dd47ca8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, purple shadow, in a glowing ring",
+    "masterSha256": "c494d7dcd27f5729e369bb462f09950dad3f96d023c06ec3c424fad45266d040"
+  },
+  "public/ui/skills/warlock/gloomshade_abyssal_chain.webp": {
+    "sheet": "skills_024",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "24e9d843-cecc-4839-9010-05709dd47ca8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, glowing magic, over a battlefield",
+    "masterSha256": "110db7722061de64099033c492713ceae445b11d57aa9a7cbebbd74b3f586418"
+  },
+  "public/ui/skills/warlock/hex_of_violence.webp": {
+    "sheet": "skills_024",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "24e9d843-cecc-4839-9010-05709dd47ca8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, purple shadow, cracking the ground",
+    "masterSha256": "b5cf73a134960bd08378e667948d381346703e255ecbf33913a9804a08fc5356"
+  },
+  "public/ui/skills/warlock/hour_of_judgment.webp": {
+    "sheet": "skills_024",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "24e9d843-cecc-4839-9010-05709dd47ca8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, purple shadow, seen up close",
+    "masterSha256": "4271aa734c9acb9dc02b829ebcbcad32c1db2d693a0fe99688af4eb4ab3f4bab"
+  },
+  "public/ui/skills/warlock/howl_of_terror.webp": {
+    "sheet": "skills_024",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "24e9d843-cecc-4839-9010-05709dd47ca8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a howling wolf spirit, purple shadow",
+    "masterSha256": "8290364020bcf37b3dc0e1ebaf16fb71ab27b7bcdb088da3d90f9493ea1b6382"
+  },
+  "public/ui/skills/warlock/immolate.webp": {
+    "sheet": "skills_024",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "24e9d843-cecc-4839-9010-05709dd47ca8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, orange fire, in a beam of light",
+    "masterSha256": "b841f54e407b71ecb1f34492cf854afddc4bd23dd069220c704dd0f275bceba5"
+  },
+  "public/ui/skills/warlock/life_tap.webp": {
+    "sheet": "skills_024",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "24e9d843-cecc-4839-9010-05709dd47ca8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, purple shadow, in a glowing ring",
+    "masterSha256": "c2b80d44fab89c8bf7aa2d0bbe49323d7a16675132c3adec040be0f6a54e2b08"
+  },
+  "public/ui/skills/warlock/litany_of_guilt.webp": {
+    "sheet": "skills_024",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "24e9d843-cecc-4839-9010-05709dd47ca8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a cresting wave of water, purple shadow",
+    "masterSha256": "a82a3625ac59a6d28bee75c1e082645705ad1fa79e02d0f88cc0d6fb803d3cdd"
+  },
+  "public/ui/skills/warlock/maledict_gaze.webp": {
+    "sheet": "skills_024",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "24e9d843-cecc-4839-9010-05709dd47ca8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, purple shadow, with drifting sparks",
+    "masterSha256": "2b4d418c23aa1d7aa91eb2f8ec4753c290577cc2839484652d22b8fb8ad6f25f"
+  },
+  "public/ui/skills/warlock/metamorphosis.webp": {
+    "sheet": "skills_024",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "24e9d843-cecc-4839-9010-05709dd47ca8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a figure changing shape in swirling light, purple shadow",
+    "masterSha256": "ccce0fc2dce70bcdabaec4668be21b8337d86b020011b092cf83e44b3ce01e7d"
+  },
+  "public/ui/skills/warlock/needle_of_fate.webp": {
+    "sheet": "skills_024",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "24e9d843-cecc-4839-9010-05709dd47ca8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring bear spirit, purple shadow",
+    "masterSha256": "4620d9820c60d3c8c1715ae5e4843e0c53bdd28e0c20d5cc65f50a65f979c192"
+  },
+  "public/ui/skills/warlock/ossuary_mark.webp": {
+    "sheet": "skills_024",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "24e9d843-cecc-4839-9010-05709dd47ca8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bursting bomb with sparks, purple shadow, seen up close",
+    "masterSha256": "49fee07668f6646d92ce23ae58f6ae2cdcd866eda382231457116855f7fb2f19"
+  },
+  "public/ui/skills/warlock/possess_evil_eye.webp": {
+    "sheet": "skills_024",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "24e9d843-cecc-4839-9010-05709dd47ca8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a stream of red light drawn from a figure, purple shadow, seen up close",
+    "masterSha256": "966602b90ce9104aae118d965eb1e90379d08b2169636abbc9cb296165765b0d"
+  },
+  "public/ui/skills/warlock/rain_of_fire.webp": {
+    "sheet": "skills_024",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "24e9d843-cecc-4839-9010-05709dd47ca8",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, orange fire, framed by mist",
+    "masterSha256": "d3d1b7e28b137fcc0db8718e5d29063a45a20d520b3cd801d3767109dbb021bf"
+  },
+  "public/ui/skills/warlock/raise_bone_mage.webp": {
+    "sheet": "skills_025",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "aefa8346-4587-4b20-8c40-aead771bd4ba",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, purple shadow, rising upward",
+    "masterSha256": "6761c909aa9c7da37a75ac33624bb5970e36b44ebcc57e83d489c037bbd90115"
+  },
+  "public/ui/skills/warlock/raise_graveguard.webp": {
+    "sheet": "skills_025",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "aefa8346-4587-4b20-8c40-aead771bd4ba",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, purple shadow",
+    "masterSha256": "412193fd8f0b3bbd3546ad8e791331080229e8467120c8bea372030ee271fadd"
+  },
+  "public/ui/skills/warlock/raise_gravewing.webp": {
+    "sheet": "skills_025",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "aefa8346-4587-4b20-8c40-aead771bd4ba",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swooping hawk with spread wings, purple shadow, in a glowing ring",
+    "masterSha256": "3a11e405a7122ae9f16da306c8c27682ba6435fbd90d65d63d03edcb6caaf4b3"
+  },
+  "public/ui/skills/warlock/raise_skeletal_warrior.webp": {
+    "sheet": "skills_025",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "aefa8346-4587-4b20-8c40-aead771bd4ba",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, purple shadow, twin",
+    "masterSha256": "de62153b635880564380e82947e59675367e3edc97a720d08c4410bcf6d94f34"
+  },
+  "public/ui/skills/warlock/reaping_command.webp": {
+    "sheet": "skills_025",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "aefa8346-4587-4b20-8c40-aead771bd4ba",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "three raking claw marks of light, purple shadow",
+    "masterSha256": "436fdcc63f3a486d67f6ddac64a3c25fd07f2a9151ce3ad84cd439d1517d014a"
+  },
+  "public/ui/skills/warlock/ruinous_brand.webp": {
+    "sheet": "skills_025",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "aefa8346-4587-4b20-8c40-aead771bd4ba",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, orange fire",
+    "masterSha256": "46f0f7e34cca034949a2d90076c0384a6c0092b27759ccab470c05ed828acb56"
+  },
+  "public/ui/skills/warlock/sacrifice_undead.webp": {
+    "sheet": "skills_025",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "aefa8346-4587-4b20-8c40-aead771bd4ba",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "jagged ice crystals bursting outward, purple shadow, seen up close",
+    "masterSha256": "b333b0ac9e256a1fb9fc74022d4a6f08e1583437891ab483c79523e95c73ef85"
+  },
+  "public/ui/skills/warlock/sacrilegious_march.webp": {
+    "sheet": "skills_025",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "aefa8346-4587-4b20-8c40-aead771bd4ba",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, purple shadow, rising upward",
+    "masterSha256": "5864c0eb9aa85563ccac379dde4c61085cfb54337039e07946da99261d8cbcf0"
+  },
+  "public/ui/skills/warlock/searing_pain.webp": {
+    "sheet": "skills_025",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "aefa8346-4587-4b20-8c40-aead771bd4ba",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, orange fire, spiralling",
+    "masterSha256": "b6f28b5574cee5e6956376427d95fe5560bab7e473b26eef9a89acfcfdf9fe0e"
+  },
+  "public/ui/skills/warlock/sentence.webp": {
+    "sheet": "skills_025",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "aefa8346-4587-4b20-8c40-aead771bd4ba",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, purple shadow, in a glowing ring",
+    "masterSha256": "309e99436a0884c2088e43923f69d1f0616b40660d631c46059379f4fd9f2ae7"
+  },
+  "public/ui/skills/warlock/shadow_bolt.webp": {
+    "sheet": "skills_025",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "aefa8346-4587-4b20-8c40-aead771bd4ba",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, purple shadow, seen up close",
+    "masterSha256": "b52fb1b11269580894bf862b4915e7cdf3ffdcd20f97bd82efb47782a56cfb92"
+  },
+  "public/ui/skills/warlock/shadowburn.webp": {
+    "sheet": "skills_025",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "aefa8346-4587-4b20-8c40-aead771bd4ba",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, purple shadow, seen up close",
+    "masterSha256": "e1bf631ccda7b71cef12e7467414af461b03170d2105efbf178d651c0ca3c5fe"
+  },
+  "public/ui/skills/warlock/siphon_life.webp": {
+    "sheet": "skills_025",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "aefa8346-4587-4b20-8c40-aead771bd4ba",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a stream of red light drawn from a figure, purple shadow, in a glowing ring",
+    "masterSha256": "9e94901d1271d2f31858d3054eb6c697d47b551f6edddadba1b976de9a894832"
+  },
+  "public/ui/skills/warlock/soul_harvest.webp": {
+    "sheet": "skills_025",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "aefa8346-4587-4b20-8c40-aead771bd4ba",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, purple shadow, erupting outward",
+    "masterSha256": "5fb415621e546b52be5cb7e6efe24b78ff32461d2aec81ddfbc4ab7038ace7dd"
+  },
+  "public/ui/skills/warlock/soul_lance.webp": {
+    "sheet": "skills_025",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "aefa8346-4587-4b20-8c40-aead771bd4ba",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, purple shadow, over a battlefield",
+    "masterSha256": "040adff1b5848fe41d6e8be96a99ec12a1e9937dd6dd9c242fad15905118bca3"
+  },
+  "public/ui/skills/warlock/soulwell.webp": {
+    "sheet": "skills_025",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "aefa8346-4587-4b20-8c40-aead771bd4ba",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, purple shadow, in a swirling vortex",
+    "masterSha256": "876208ceebca6cf74430c3f806ea73954448f2b5a305e187bc9130e73e6bbc77"
+  },
+  "public/ui/skills/warlock/spell_lock.webp": {
+    "sheet": "skills_026",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "baf4b0e2-ae9a-47d8-999f-8d85539d0e30",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a shattered glowing rune circle, purple shadow, seen up close",
+    "masterSha256": "62270698192a9a26a06276f7c360686628e3ad4280014f7b5deca3d57b1fc35b"
+  },
+  "public/ui/skills/warlock/summon_doomguard.webp": {
+    "sheet": "skills_026",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "baf4b0e2-ae9a-47d8-999f-8d85539d0e30",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, glowing magic, in a glowing ring",
+    "masterSha256": "83592429260e82dca9299576818fb98260ea15a5d6c4313908fef96780706644"
+  },
+  "public/ui/skills/warlock/summon_felguard.webp": {
+    "sheet": "skills_026",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "baf4b0e2-ae9a-47d8-999f-8d85539d0e30",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, glowing magic, rising upward",
+    "masterSha256": "7f9bb1337e15c6e9865316b2252f902d6de8e2a4bfe8940163d47b49e2c2d23f"
+  },
+  "public/ui/skills/warlock/summon_felhunter.webp": {
+    "sheet": "skills_026",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "baf4b0e2-ae9a-47d8-999f-8d85539d0e30",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a horned demonic sigil glowing, glowing magic",
+    "masterSha256": "a63d7abe7f5c7893e32e0f9f22b3c05e8dc3e4ad1f58292d48bd277df39f4cfc"
+  },
+  "public/ui/skills/warlock/summon_imp.webp": {
+    "sheet": "skills_026",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "baf4b0e2-ae9a-47d8-999f-8d85539d0e30",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, purple shadow, in a glowing ring",
+    "masterSha256": "ce061e6d5005fdbd6785f4a1143c24e7613c6c67a4996b41a8b8ff596f86f98e"
+  },
+  "public/ui/skills/warlock/summon_infernal.webp": {
+    "sheet": "skills_026",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "baf4b0e2-ae9a-47d8-999f-8d85539d0e30",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, orange fire, shattering",
+    "masterSha256": "3bd87c1203921bb1ff2391f7e93663693783dc6eb473dc6632a64b1d7d72df50"
+  },
+  "public/ui/skills/warlock/summon_succubus.webp": {
+    "sheet": "skills_026",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "baf4b0e2-ae9a-47d8-999f-8d85539d0e30",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a horned demonic sigil glowing, glowing magic, seen up close",
+    "masterSha256": "adb7476ce9777bae661be9a034a79f7df75deedada7d38c788fd26cc8bd1484c"
+  },
+  "public/ui/skills/warlock/summon_voidwalker.webp": {
+    "sheet": "skills_026",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "baf4b0e2-ae9a-47d8-999f-8d85539d0e30",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a horned demonic sigil glowing, purple shadow",
+    "masterSha256": "00c842414a07e75f12041fc5a90cd47022ef65c6b60dda8ab05cef88aa9f10db"
+  },
+  "public/ui/skills/warlock/umbral_anchor.webp": {
+    "sheet": "skills_026",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "baf4b0e2-ae9a-47d8-999f-8d85539d0e30",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, purple shadow, in a beam of light",
+    "masterSha256": "f4dd176a821fc121333519f2bf5128cf4177b3f8f8252eb92aee59ebefa65c14"
+  },
+  "public/ui/skills/warlock/unholy_command.webp": {
+    "sheet": "skills_026",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "baf4b0e2-ae9a-47d8-999f-8d85539d0e30",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, purple shadow, rising upward",
+    "masterSha256": "9cade123b9cc77204236a7ad54d6fe8cb7453b02cfc61d5b9a85640c4a9ae91e"
+  },
+  "public/ui/skills/warlock/vicarious_suffering.webp": {
+    "sheet": "skills_026",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "baf4b0e2-ae9a-47d8-999f-8d85539d0e30",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, purple shadow, twin",
+    "masterSha256": "9c4c50e5bf47ab90137e2022f0045bcf4deefe08357d72614e2ea3d191ad738c"
+  },
+  "public/ui/skills/warlock/voidfeast.webp": {
+    "sheet": "skills_026",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "baf4b0e2-ae9a-47d8-999f-8d85539d0e30",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, purple shadow, framed by mist",
+    "masterSha256": "d44204003a9f0f4e746fe5475d995b39f36b693f792ff9f3ada5e9fb15777228"
+  },
+  "public/ui/skills/warlock/wlk_r11_demon_armor.webp": {
+    "sheet": "skills_026",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "baf4b0e2-ae9a-47d8-999f-8d85539d0e30",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a horned demonic sigil glowing, glowing magic, in a glowing ring",
+    "masterSha256": "4a892b23bf8063b1659def36cada29339d40022a1fd6c026221ba0a4af15dd18"
+  },
+  "public/ui/skills/warlock/wlk_r11_fel_concentration.webp": {
+    "sheet": "skills_026",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "baf4b0e2-ae9a-47d8-999f-8d85539d0e30",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a horned demonic sigil glowing, glowing magic, rising upward",
+    "masterSha256": "a6a6fe15fcd28ab8d855a6d0aee610f664b708e7d228df08fe70d9b489a25602"
+  },
+  "public/ui/skills/warlock/wlk_r11_improved_life_tap.webp": {
+    "sheet": "skills_026",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "baf4b0e2-ae9a-47d8-999f-8d85539d0e30",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, glowing magic, in a glowing ring",
+    "masterSha256": "22d7a7f3edb0b2d80e98198c9fdb578cd5662508c900cb2c338b9ac0ec79af0f"
+  },
+  "public/ui/skills/warlock/wlk_r14_amplify_curse.webp": {
+    "sheet": "skills_026",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "baf4b0e2-ae9a-47d8-999f-8d85539d0e30",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, glowing magic",
+    "masterSha256": "926f04649aedad70c19e05b4e0b9422b10afa1fb0f21268797c749236b686105"
+  },
+  "public/ui/skills/warlock/wlk_r14_ruin.webp": {
+    "sheet": "skills_027",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "6ea24445-5568-4383-be90-31fd9281151f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, glowing magic, seen up close",
+    "masterSha256": "f5de2a3951b6b89fd21720371ac2fcd058b951d899f0238740857f0bd06dad55"
+  },
+  "public/ui/skills/warlock/wlk_r14_shadow_mastery.webp": {
+    "sheet": "skills_027",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "6ea24445-5568-4383-be90-31fd9281151f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, glowing magic, in a glowing ring",
+    "masterSha256": "19963d65c72e29f9ce7052f74133285d168cb061e1986b10d6195c280d502519"
+  },
+  "public/ui/skills/warlock/wlk_r17_death_coil.webp": {
+    "sheet": "skills_027",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "6ea24445-5568-4383-be90-31fd9281151f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, glowing magic",
+    "masterSha256": "63126ad5e85318d70f04269380bce09331c0098683a25fa60ea246ce3d65cbb3"
+  },
+  "public/ui/skills/warlock/wlk_r17_demonic_resilience.webp": {
+    "sheet": "skills_027",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "6ea24445-5568-4383-be90-31fd9281151f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a horned demonic sigil glowing, glowing magic, twin",
+    "masterSha256": "ab9d3efb3216f40d11e20b53f2b7db34b1a9c021b05ffa857fd5fcf695dd3a38"
+  },
+  "public/ui/skills/warlock/wlk_r17_improved_fear.webp": {
+    "sheet": "skills_027",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "6ea24445-5568-4383-be90-31fd9281151f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a horned demonic sigil glowing, glowing magic, erupting outward",
+    "masterSha256": "cc3def687a0d2c248bccbf884b4469ccb1b970baa3042047e4d9f1df5fa4e0d5"
+  },
+  "public/ui/skills/warlock/wlk_r20_chaos_bolt.webp": {
+    "sheet": "skills_027",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "6ea24445-5568-4383-be90-31fd9281151f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, glowing magic, seen up close",
+    "masterSha256": "5a8b33842825931b026bdd8861f821b46cd8816d142ee5471119624574dc7ffa"
+  },
+  "public/ui/skills/warlock/wlk_r20_curse_mastery.webp": {
+    "sheet": "skills_027",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "6ea24445-5568-4383-be90-31fd9281151f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, glowing magic, rising upward",
+    "masterSha256": "72dfa4b4bc1332b34a35e177e6166483c4a07adbdd85d8324be93fa7bbed8fc5"
+  },
+  "public/ui/skills/warlock/wlk_r20_grimoire_of_haste.webp": {
+    "sheet": "skills_027",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "6ea24445-5568-4383-be90-31fd9281151f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "swift speed streaks behind a running boot, glowing magic, seen up close",
+    "masterSha256": "dc916cec1b641e9ea6e9d66be15ff96a2dcfa75998cece437ef109c2147bc0f6"
+  },
+  "public/ui/skills/warlock/wlk_r5_bane.webp": {
+    "sheet": "skills_027",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "6ea24445-5568-4383-be90-31fd9281151f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, glowing magic, in a swirling vortex",
+    "masterSha256": "7254e60ff81d4001fc56f155266799ee1236ed958bd0bea1a580b9a7fb29fdd1"
+  },
+  "public/ui/skills/warlock/wlk_r5_improved_corruption.webp": {
+    "sheet": "skills_027",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "6ea24445-5568-4383-be90-31fd9281151f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a horned demonic sigil glowing, glowing magic, over a battlefield",
+    "masterSha256": "a42eee97c2904c51b532bf041c563c516e2b812a049ad02102e20c91d7e4ad7a"
+  },
+  "public/ui/skills/warlock/wlk_r5_improved_immolate.webp": {
+    "sheet": "skills_027",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "6ea24445-5568-4383-be90-31fd9281151f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a roaring fireball, glowing magic",
+    "masterSha256": "152f6435385d7066120c634eb954865c62204813a9bdc7f997c944696ad65d8c"
+  },
+  "public/ui/skills/warlock/wlk_r8_curse_of_exhaustion.webp": {
+    "sheet": "skills_027",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "6ea24445-5568-4383-be90-31fd9281151f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, glowing magic, twin",
+    "masterSha256": "a548e1f9b01b1269e7241a20b69d231cd41c9c5189bb98ce5d3612f231f71629"
+  },
+  "public/ui/skills/warlock/wlk_r8_howl_of_terror.webp": {
+    "sheet": "skills_027",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "6ea24445-5568-4383-be90-31fd9281151f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a howling wolf spirit, glowing magic",
+    "masterSha256": "c52c3e8cd36b9cab1d94bcf2b3ea87a0b31abe0cf7fac9db9abb87b330783c82"
+  },
+  "public/ui/skills/warlock/wlk_r8_voidfeast.webp": {
+    "sheet": "skills_027",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "6ea24445-5568-4383-be90-31fd9281151f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a coiling cloud of dark purple shadow, glowing magic, erupting outward",
+    "masterSha256": "9dd9a0fb9dd231a06d65670fd8c1093ee0611c2802159a94850338037c3c6267"
+  },
+  "public/ui/skills/warrior/anger_management.webp": {
+    "sheet": "skills_027",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "6ea24445-5568-4383-be90-31fd9281151f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling violet arcane orb, glowing magic, twin",
+    "masterSha256": "ed93713190251886da81a63cdeed164e8d0de34b5e779190c5c68662a02d89b5"
+  },
+  "public/ui/skills/warrior/attack.webp": {
+    "sheet": "skills_027",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "6ea24445-5568-4383-be90-31fd9281151f",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, glowing magic, at dusk",
+    "masterSha256": "b9d472531a7bcf711defc1950cb575a7de0141e5baa7e2d1d346b05ed0650e82"
+  },
+  "public/ui/skills/warrior/avatar.webp": {
+    "sheet": "skills_028",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "95566f92-3ea7-4445-ad5e-73509b62ceea",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a figure changing shape in swirling light, steel and force",
+    "masterSha256": "85d44b17d8dd913b9548ef3f0e32e0bcce305188b70984bb85b611394847ae6d"
+  },
+  "public/ui/skills/warrior/battle_rhythm.webp": {
+    "sheet": "skills_028",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "95566f92-3ea7-4445-ad5e-73509b62ceea",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, glowing magic, cracking the ground",
+    "masterSha256": "c5ac5db0a21adb01446b04e0ad0de2c281eec3c57d6a4ac383d3ea5409f66f17"
+  },
+  "public/ui/skills/warrior/battle_shout.webp": {
+    "sheet": "skills_028",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "95566f92-3ea7-4445-ad5e-73509b62ceea",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "rings of a shockwave rolling outward, steel and force, in a glowing ring",
+    "masterSha256": "6b65aabf607a8fa2c02f2215291870bd85f41434d0445313b0c3bfaa30d9e5df"
+  },
+  "public/ui/skills/warrior/battle_stance.webp": {
+    "sheet": "skills_028",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "95566f92-3ea7-4445-ad5e-73509b62ceea",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, steel and force, in a glowing ring",
+    "masterSha256": "76205e8d4f6201da02ca6e64e8811ea32eb3b5161c902d22c014ccfc8c8df0a2"
+  },
+  "public/ui/skills/warrior/berserker_rage.webp": {
+    "sheet": "skills_028",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "95566f92-3ea7-4445-ad5e-73509b62ceea",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a red rage aura around a clenched fist, steel and force, in a glowing ring",
+    "masterSha256": "976cfd2f1cf80ce9cf64a56efb3dee58ee2fcfaef12211065cfde04a6b52d233"
+  },
+  "public/ui/skills/warrior/berserker_stance.webp": {
+    "sheet": "skills_028",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "95566f92-3ea7-4445-ad5e-73509b62ceea",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a red rage aura around a clenched fist, steel and force, rising upward",
+    "masterSha256": "d51be9f2a21a2f136567b090839681f17574ce06048fb0aaa069bf0605acbb53"
+  },
+  "public/ui/skills/warrior/bladestorm.webp": {
+    "sheet": "skills_028",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "95566f92-3ea7-4445-ad5e-73509b62ceea",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a forked lightning bolt, steel and force",
+    "masterSha256": "42a1f16628017f86c96349714d952feb8a03778adab3aa66063bb79397db6fed"
+  },
+  "public/ui/skills/warrior/bloodbath.webp": {
+    "sheet": "skills_028",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "95566f92-3ea7-4445-ad5e-73509b62ceea",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "falling drops of crimson blood, glowing magic",
+    "masterSha256": "0560f6131c47599c2d009b97836da8799f35f0caef8c6ca5c00428cb83f3fc49"
+  },
+  "public/ui/skills/warrior/bloodrage.webp": {
+    "sheet": "skills_028",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "95566f92-3ea7-4445-ad5e-73509b62ceea",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "falling drops of crimson blood, steel and force, in a swirling vortex",
+    "masterSha256": "70db191f47cd0c734033814bdc9fe246d9822c5e7c1d9ef0ca52162b1a176162"
+  },
+  "public/ui/skills/warrior/bloodthirst.webp": {
+    "sheet": "skills_028",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "95566f92-3ea7-4445-ad5e-73509b62ceea",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "falling drops of crimson blood, steel and force, at dusk",
+    "masterSha256": "2b0a8c82a2de9fdbbb1fbe20389109fb51b6014b70a29b3d0cf0976b92b676f6"
+  },
+  "public/ui/skills/warrior/breachmaker.webp": {
+    "sheet": "skills_028",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "95566f92-3ea7-4445-ad5e-73509b62ceea",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, steel and force, rising upward",
+    "masterSha256": "89741b7777ae38f6d1d503b6cccccdfe4a628f67aa2766acafc2c39e6da67ab3"
+  },
+  "public/ui/skills/warrior/charge.webp": {
+    "sheet": "skills_028",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "95566f92-3ea7-4445-ad5e-73509b62ceea",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "swift speed streaks behind a running boot, steel and force, erupting outward",
+    "masterSha256": "c4308432c9ee49be35c97c53988be4b1a44bf41b706630b2774fc3371c99158f"
+  },
+  "public/ui/skills/warrior/cleave.webp": {
+    "sheet": "skills_028",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "95566f92-3ea7-4445-ad5e-73509b62ceea",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, steel and force, with drifting sparks",
+    "masterSha256": "d514531bb8394df9a624d11f1dbdd777484af707fc2bdd60a5047e9f490e1d15"
+  },
+  "public/ui/skills/warrior/cleaving_blows.webp": {
+    "sheet": "skills_028",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "95566f92-3ea7-4445-ad5e-73509b62ceea",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a red rage aura around a clenched fist, steel and force, twin",
+    "masterSha256": "28653bf8c502182ea8475754f1ab606df7b575c26ad34f5dcbc37cb954112c61"
+  },
+  "public/ui/skills/warrior/clockwork_shock_bomb.webp": {
+    "sheet": "skills_028",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "95566f92-3ea7-4445-ad5e-73509b62ceea",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing hourglass with drifting sand, green nature magic",
+    "masterSha256": "19244295bb987d74648a01dc242c3e583d2c341b2420cec60d14978fd87355a0"
+  },
+  "public/ui/skills/warrior/colossal_might.webp": {
+    "sheet": "skills_028",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "95566f92-3ea7-4445-ad5e-73509b62ceea",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, glowing magic, with drifting sparks",
+    "masterSha256": "fcc89f2f73fb8ed16a425418af534389138667719adf280e38c066b4a40506a3"
+  },
+  "public/ui/skills/warrior/combat_mastery.webp": {
+    "sheet": "skills_029",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "871f0014-f567-4afb-80ef-439b84337180",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, glowing magic, in a beam of light",
+    "masterSha256": "2dcafcfbc940b834112aff3b5e93c2058f605d01482e95e1cb84dff9ba165bfb"
+  },
+  "public/ui/skills/warrior/courier.webp": {
+    "sheet": "skills_029",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "871f0014-f567-4afb-80ef-439b84337180",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, green nature magic, twin",
+    "masterSha256": "16dd6552ec74d30f8797424cc92e026c83d66cb290e44e6850aeb40480161914"
+  },
+  "public/ui/skills/warrior/crushing_charge.webp": {
+    "sheet": "skills_029",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "871f0014-f567-4afb-80ef-439b84337180",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a heavy war hammer smashing down, glowing magic",
+    "masterSha256": "ce227cad823ffc0ac08d52102eff59d7e4710bb4621e2c70077b07e97b31e551"
+  },
+  "public/ui/skills/warrior/deep_wounds.webp": {
+    "sheet": "skills_029",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "871f0014-f567-4afb-80ef-439b84337180",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, steel and force, at dusk",
+    "masterSha256": "d6855eeaa1dbd3d110e82014438391526c60457670fe6693d54d18fa9507c53f"
+  },
+  "public/ui/skills/warrior/defensive_stance.webp": {
+    "sheet": "skills_029",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "871f0014-f567-4afb-80ef-439b84337180",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, steel and force, twin",
+    "masterSha256": "fd037f321c2189fd9c225580cca8093916c1e5404fac4800f1726defd5ab3aad"
+  },
+  "public/ui/skills/warrior/defiant_bellow.webp": {
+    "sheet": "skills_029",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "871f0014-f567-4afb-80ef-439b84337180",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "rings of a shockwave rolling outward, steel and force, rising upward",
+    "masterSha256": "c7e2b28979a459fbeff052328e2c633033268516dbe1fabff0bc0ab229c54970"
+  },
+  "public/ui/skills/warrior/demoralizing_shout.webp": {
+    "sheet": "skills_029",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "871f0014-f567-4afb-80ef-439b84337180",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a howling wolf spirit, steel and force, seen up close",
+    "masterSha256": "94702a376c3aae0ff62179a463ca77c1fc0e4cf825c80c22e1ccfa1a6999a69e"
+  },
+  "public/ui/skills/warrior/diabolical_twinstrike.webp": {
+    "sheet": "skills_029",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "871f0014-f567-4afb-80ef-439b84337180",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, steel and force, in a beam of light",
+    "masterSha256": "8ad3aeff6a226309656041d033e7430e1a2b82fab085af02e6eb7b819654b6a3"
+  },
+  "public/ui/skills/warrior/die_by_sword.webp": {
+    "sheet": "skills_029",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "871f0014-f567-4afb-80ef-439b84337180",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, steel and force, framed by mist",
+    "masterSha256": "070f84169499ae476e7fd005236d2cef6b3ed3237320559f82d741ef7f61cc5b"
+  },
+  "public/ui/skills/warrior/double_charge.webp": {
+    "sheet": "skills_029",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "871f0014-f567-4afb-80ef-439b84337180",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "swift speed streaks behind a running boot, glowing magic, in a glowing ring",
+    "masterSha256": "821a15e854dcdfec24e2526953aebaa4ef1c4fbd01e83876e7e33f45334f0e1e"
+  },
+  "public/ui/skills/warrior/emboldening_roar.webp": {
+    "sheet": "skills_029",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "871f0014-f567-4afb-80ef-439b84337180",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "rings of a shockwave rolling outward, steel and force, twin",
+    "masterSha256": "e6e57d499c2f993175c101e7bfc1213039eea59db40c43f2ffc5a557364fb12e"
+  },
+  "public/ui/skills/warrior/enrage_passive.webp": {
+    "sheet": "skills_029",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "871f0014-f567-4afb-80ef-439b84337180",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a red rage aura around a clenched fist, steel and force, erupting outward",
+    "masterSha256": "bb9b977bd3a97a9ddbcbe4605dde67974a81c259ed90149d0b710c4d3e8b546c"
+  },
+  "public/ui/skills/warrior/execute.webp": {
+    "sheet": "skills_029",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "871f0014-f567-4afb-80ef-439b84337180",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, steel and force, in a glowing ring",
+    "masterSha256": "6b4a53bcd5c15bf3cd183d3b41680683e27c5205e2aaffa9ec86cbbc21d8e9fe"
+  },
+  "public/ui/skills/warrior/faultline.webp": {
+    "sheet": "skills_029",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "871f0014-f567-4afb-80ef-439b84337180",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, steel and force, erupting outward",
+    "masterSha256": "087d261fe7b73bd4b2cea6df3fdf304e247de207bfe7a85b5727cd7fc1220135"
+  },
+  "public/ui/skills/warrior/furious_mending.webp": {
+    "sheet": "skills_029",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "871f0014-f567-4afb-80ef-439b84337180",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, steel and force, in a glowing ring",
+    "masterSha256": "69f1581d5cd9f8158cde07ccbee3c9c2ea8cabf8dbabaa6b067d2802318661a2"
+  },
+  "public/ui/skills/warrior/hamstring.webp": {
+    "sheet": "skills_029",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "871f0014-f567-4afb-80ef-439b84337180",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, steel and force, cracking the ground",
+    "masterSha256": "5042b993bbe938a101d2656e90320a1ddf13dedd4c695896c674baa95850ec9d"
+  },
+  "public/ui/skills/warrior/heroic_leap.webp": {
+    "sheet": "skills_030",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "14ec3f77-e7b0-41f9-9b0d-da30a7522608",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "swift speed streaks behind a running boot, steel and force, over a battlefield",
+    "masterSha256": "2186176f2e98cdd4799b521e96ba80b3dbf409ea56126d3f942587494571a0ad"
+  },
+  "public/ui/skills/warrior/heroic_strike.webp": {
+    "sheet": "skills_030",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "14ec3f77-e7b0-41f9-9b0d-da30a7522608",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, steel and force, spiralling",
+    "masterSha256": "99ce55345a2fdd18ebe02bd5dfa2ba91efb7000124f87f73aab3774f2ef18554"
+  },
+  "public/ui/skills/warrior/intervene.webp": {
+    "sheet": "skills_030",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "14ec3f77-e7b0-41f9-9b0d-da30a7522608",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, steel and force, over a battlefield",
+    "masterSha256": "cde4f44c7513dbc6336cb1096fffc5d647302a143bf62315f992c5c8df28ed7b"
+  },
+  "public/ui/skills/warrior/intimidating_shout.webp": {
+    "sheet": "skills_030",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "14ec3f77-e7b0-41f9-9b0d-da30a7522608",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "rings of a shockwave rolling outward, steel and force, erupting outward",
+    "masterSha256": "56c7ec8d583e3b34e3b8e40d1678b3dffb65bd4bc8040ff1db770f2637181bab"
+  },
+  "public/ui/skills/warrior/iron_resolve.webp": {
+    "sheet": "skills_030",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "14ec3f77-e7b0-41f9-9b0d-da30a7522608",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a soft healing glow rising from cupped hands, steel and force, rising upward",
+    "masterSha256": "dc078db1e7fe2300de1951dac504ccd82c83ebe398916cf3e999ff10c325746a"
+  },
+  "public/ui/skills/warrior/lingering_dread.webp": {
+    "sheet": "skills_030",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "14ec3f77-e7b0-41f9-9b0d-da30a7522608",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, glowing magic, framed by mist",
+    "masterSha256": "5d339509eba1a0e7249a017ae366b9fa214e73ea5bd560472cecc817d90829c2"
+  },
+  "public/ui/skills/warrior/measured_fury.webp": {
+    "sheet": "skills_030",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "14ec3f77-e7b0-41f9-9b0d-da30a7522608",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a red rage aura around a clenched fist, steel and force, over a battlefield",
+    "masterSha256": "b4866e6bf2b0daebf7a8148c47893d4b07b17f036636119303b711fd75ce3373"
+  },
+  "public/ui/skills/warrior/mortal_strike.webp": {
+    "sheet": "skills_030",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "14ec3f77-e7b0-41f9-9b0d-da30a7522608",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing arrow in flight, steel and force, with drifting sparks",
+    "masterSha256": "dc187fe52a7d5240e5a154692ae28d3a9af93275137a0bd9b04fe75a0a31c7c6"
+  },
+  "public/ui/skills/warrior/overpower.webp": {
+    "sheet": "skills_030",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "14ec3f77-e7b0-41f9-9b0d-da30a7522608",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, steel and force, shattering",
+    "masterSha256": "25baee98db8cc196d4af2bf41c4a68c651026f77cb12747c782d2555f8a47820"
+  },
+  "public/ui/skills/warrior/piercing_howl.webp": {
+    "sheet": "skills_030",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "14ec3f77-e7b0-41f9-9b0d-da30a7522608",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a howling wolf spirit, steel and force, in a glowing ring",
+    "masterSha256": "50ceb4c11740a2d5131fac49be22be271d6ebb6f94f244cf15433e4a307510ae"
+  },
+  "public/ui/skills/warrior/pummel.webp": {
+    "sheet": "skills_030",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "14ec3f77-e7b0-41f9-9b0d-da30a7522608",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a shattered glowing rune circle, steel and force, erupting outward",
+    "masterSha256": "46413d91c5d2ce3e10698dcff4dc85ef71e864fb8ea642e5ba955f0a8ac281f1"
+  },
+  "public/ui/skills/warrior/pursuit.webp": {
+    "sheet": "skills_030",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "14ec3f77-e7b0-41f9-9b0d-da30a7522608",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swirling orb of magic, glowing magic, spiralling",
+    "masterSha256": "896bae04b8e7dfbed4a39b4c8e75b59ed7740f0727ba25742d9b9c718c2517e4"
+  },
+  "public/ui/skills/warrior/raging_gale.webp": {
+    "sheet": "skills_030",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "14ec3f77-e7b0-41f9-9b0d-da30a7522608",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, steel and force, in a storm of motes",
+    "masterSha256": "57b0c627a8a4a487f78baccb7dd5154a0266762e938012c4fd01a5437151763d"
+  },
+  "public/ui/skills/warrior/raised_guard.webp": {
+    "sheet": "skills_030",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "14ec3f77-e7b0-41f9-9b0d-da30a7522608",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, steel and force, in a swirling vortex",
+    "masterSha256": "3950ec9971c9e80acbca220e84caf850e4abd7e0dd3500706dbd464ec6a72e3a"
+  },
+  "public/ui/skills/warrior/rallying_cry.webp": {
+    "sheet": "skills_030",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "14ec3f77-e7b0-41f9-9b0d-da30a7522608",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "rings of a shockwave rolling outward, steel and force, over a battlefield",
+    "masterSha256": "f52fdb5f1a407beaa6af7c35bce3fb0f138c670b1feeafefa51c27ce6a57cd1a"
+  },
+  "public/ui/skills/warrior/recklessness.webp": {
+    "sheet": "skills_030",
+    "cell": 15,
+    "grid": 4,
+    "taskId": "14ec3f77-e7b0-41f9-9b0d-da30a7522608",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a red rage aura around a clenched fist, steel and force, in a swirling vortex",
+    "masterSha256": "fd3130f283204f7b1a0437c41e27d7373271f6a0f339411ba9241eaffa4caf9f"
+  },
+  "public/ui/skills/warrior/red_harvest.webp": {
+    "sheet": "skills_031",
+    "cell": 0,
+    "grid": 4,
+    "taskId": "c92be1f1-5bc1-4cce-beb4-f84ea5ef0fd9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing hourglass with drifting sand, steel and force",
+    "masterSha256": "458dd8ea10fc502feffccb667fd050dac69d8f505f8be5ece8b1fd6582049f17"
+  },
+  "public/ui/skills/warrior/revenge.webp": {
+    "sheet": "skills_031",
+    "cell": 1,
+    "grid": 4,
+    "taskId": "c92be1f1-5bc1-4cce-beb4-f84ea5ef0fd9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, steel and force, at dusk",
+    "masterSha256": "cc5795c15affc41d4f6de72fa4e27c03810fff5dfdbe65c1fddf5c637ee68613"
+  },
+  "public/ui/skills/warrior/sanguine_aura.webp": {
+    "sheet": "skills_031",
+    "cell": 2,
+    "grid": 4,
+    "taskId": "c92be1f1-5bc1-4cce-beb4-f84ea5ef0fd9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "falling drops of crimson blood, steel and force, cracking the ground",
+    "masterSha256": "011675ca6e2241b7cbede1db58685016c3c34d6ce49fd3ccc39ea4507430428a"
+  },
+  "public/ui/skills/warrior/seasoned_soldier.webp": {
+    "sheet": "skills_031",
+    "cell": 3,
+    "grid": 4,
+    "taskId": "c92be1f1-5bc1-4cce-beb4-f84ea5ef0fd9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a red rage aura around a clenched fist, steel and force, at dusk",
+    "masterSha256": "3fdeeb946f7f631289a12c0adc4746d7f307179d42635e084dfba9a143a954ac"
+  },
+  "public/ui/skills/warrior/second_wind.webp": {
+    "sheet": "skills_031",
+    "cell": 4,
+    "grid": 4,
+    "taskId": "c92be1f1-5bc1-4cce-beb4-f84ea5ef0fd9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a spiralling gust of wind with leaves, glowing magic",
+    "masterSha256": "cdcd6c0bcd7473505815de499ea9ff6e219235ed10f3afc6f6ee7dcf26d69a88"
+  },
+  "public/ui/skills/warrior/shield_slam.webp": {
+    "sheet": "skills_031",
+    "cell": 5,
+    "grid": 4,
+    "taskId": "c92be1f1-5bc1-4cce-beb4-f84ea5ef0fd9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing round shield, steel and force, cracking the ground",
+    "masterSha256": "d18e04d1cfe267c0c99cfbae4afbc5fa21d4792e660a08474742bf5574654e0e"
+  },
+  "public/ui/skills/warrior/slam.webp": {
+    "sheet": "skills_031",
+    "cell": 6,
+    "grid": 4,
+    "taskId": "c92be1f1-5bc1-4cce-beb4-f84ea5ef0fd9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a swooping hawk with spread wings, steel and force, in a glowing ring",
+    "masterSha256": "31b2dadc44fa615dfd2b9017b7190bc9b24d161b17dcf14a8230939c3f6d19d3"
+  },
+  "public/ui/skills/warrior/storm_bolt.webp": {
+    "sheet": "skills_031",
+    "cell": 7,
+    "grid": 4,
+    "taskId": "c92be1f1-5bc1-4cce-beb4-f84ea5ef0fd9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a forked lightning bolt, steel and force, seen up close",
+    "masterSha256": "5173ad5bf437e7b5b0b4ebd2c520629389ddb8a8fbb8bd41a311e51caaade677"
+  },
+  "public/ui/skills/warrior/sudden_death.webp": {
+    "sheet": "skills_031",
+    "cell": 8,
+    "grid": 4,
+    "taskId": "c92be1f1-5bc1-4cce-beb4-f84ea5ef0fd9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a glowing skull wreathed in wisps, steel and force, rising upward",
+    "masterSha256": "cf4bd99bbb412afbcc247c912741a7cf39792cabcabddeff2441e0e9c2bd0f19"
+  },
+  "public/ui/skills/warrior/sunder_armor.webp": {
+    "sheet": "skills_031",
+    "cell": 9,
+    "grid": 4,
+    "taskId": "c92be1f1-5bc1-4cce-beb4-f84ea5ef0fd9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a burst of golden holy light, steel and force, in a glowing ring",
+    "masterSha256": "782947f584a1c9ecedcb859321aa3ba555f3b8665e39f3161f5d9def74558973"
+  },
+  "public/ui/skills/warrior/sweeping_strikes.webp": {
+    "sheet": "skills_031",
+    "cell": 10,
+    "grid": 4,
+    "taskId": "c92be1f1-5bc1-4cce-beb4-f84ea5ef0fd9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, steel and force",
+    "masterSha256": "8393743cd8e189cb4789ca46f4476d6178eaaadb0116255d15253b9fa3e98dcc"
+  },
+  "public/ui/skills/warrior/taunt.webp": {
+    "sheet": "skills_031",
+    "cell": 11,
+    "grid": 4,
+    "taskId": "c92be1f1-5bc1-4cce-beb4-f84ea5ef0fd9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "rings of a shockwave rolling outward, steel and force, in a swirling vortex",
+    "masterSha256": "0dc43c1cb5cd9e434fb37f90b3f4a4b8b5f364c5c59b75725a12af274edfb034"
+  },
+  "public/ui/skills/warrior/thunder_clap.webp": {
+    "sheet": "skills_031",
+    "cell": 12,
+    "grid": 4,
+    "taskId": "c92be1f1-5bc1-4cce-beb4-f84ea5ef0fd9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a forked lightning bolt, steel and force, in a glowing ring",
+    "masterSha256": "346c86e1ca62e7424a159a66bfd4378eec470d1aaa73c119d173c1c95931f174"
+  },
+  "public/ui/skills/warrior/victory_rush.webp": {
+    "sheet": "skills_031",
+    "cell": 13,
+    "grid": 4,
+    "taskId": "c92be1f1-5bc1-4cce-beb4-f84ea5ef0fd9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a cresting wave of water, steel and force, seen up close",
+    "masterSha256": "c5a46265e9597bdb3bbcf8469740e58a88cd4aa5b50868d371802b1ab193b4a4"
+  },
+  "public/ui/skills/warrior/whirlwind.webp": {
+    "sheet": "skills_031",
+    "cell": 14,
+    "grid": 4,
+    "taskId": "c92be1f1-5bc1-4cce-beb4-f84ea5ef0fd9",
+    "model": "Tripo text-to-image, seedream_v4",
+    "subject": "a bright sword slash arc, steel and force, seen up close",
+    "masterSha256": "bf19df8028c92e6a904a11c3916ed2a9a8945d13bbc18904523953feb72eaf4a"
+  }
+}

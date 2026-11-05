@@ -1,7 +1,7 @@
 // Wyndlewood 2D replacement, step 2: subjects.json -> sheets.json (one Tripo task per sheet).
 // usage: node scripts/assets/wyndlewood_2d/plan_sheets.mjs [--grid 4] [--family items,skills]
 import { readFileSync, writeFileSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { planSheets } from './plan_core.mjs';
 

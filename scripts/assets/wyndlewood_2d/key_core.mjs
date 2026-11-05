@@ -87,7 +87,12 @@ export function keepCenterComponent(rgba, size, floor = 24) {
     const p = stack.pop();
     const x = p % size;
     const y = (p - x) / size;
-    for (const q of [x > 0 ? p - 1 : -1, x < size - 1 ? p + 1 : -1, y > 0 ? p - size : -1, y < size - 1 ? p + size : -1]) {
+    for (const q of [
+      x > 0 ? p - 1 : -1,
+      x < size - 1 ? p + 1 : -1,
+      y > 0 ? p - size : -1,
+      y < size - 1 ? p + size : -1,
+    ]) {
       if (q < 0 || seen[q] || rgba[q * 4 + 3] <= floor) continue;
       seen[q] = 1;
       stack.push(q);

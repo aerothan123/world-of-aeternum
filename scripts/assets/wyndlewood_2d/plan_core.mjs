@@ -4,7 +4,8 @@
 
 export const MAX_PROMPT = 1790; // Tripo text-to-image rejects prompts over 1800 characters
 
-export const STYLE = 'Painted fantasy storybook game art, soft natural colours, warm top-left light.';
+export const STYLE =
+  'Painted fantasy storybook game art, soft natural colours, warm top-left light.';
 
 export const FAMILY_STYLE = {
   items: 'each cell one complete object centered on a plain dark slate backdrop',
@@ -26,7 +27,8 @@ export function widePrompt(subject) {
   return `${STYLE} A single painting with no border: ${subject}. ${NEGATIVE}`.slice(0, MAX_PROMPT);
 }
 
-export const NEGATIVE = 'Pictures only, never any words, captions, titles, letters or numbers, and no frames.';
+export const NEGATIVE =
+  'Pictures only, never any words, captions, titles, letters or numbers, and no frames.';
 
 const cut = (s, n) => (s.length <= n ? s : s.slice(0, n).replace(/[\s,;:]+\S*$/, ''));
 
@@ -61,7 +63,14 @@ export function planSheets(records, { grid = 4 } = {}) {
     if (fam === 'wide') {
       for (const c of list) {
         const id = `wide_${String(sheets.filter((x) => x.family === 'wide').length + 1).padStart(3, '0')}`;
-        sheets.push({ id, family: 'wide', grid: 1, size: wideSize(c.w, c.h), cells: [{ index: 0, file: c.file, id: c.id }], prompt: widePrompt(c.subject) });
+        sheets.push({
+          id,
+          family: 'wide',
+          grid: 1,
+          size: wideSize(c.w, c.h),
+          cells: [{ index: 0, file: c.file, id: c.id }],
+          prompt: widePrompt(c.subject),
+        });
       }
       continue;
     }

@@ -4,7 +4,7 @@
 //
 // usage: node scripts/assets/wyndlewood_2d/apply_provenance.mjs [--family items,skills,auras]
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { STYLE } from './plan_core.mjs';
 
@@ -16,7 +16,8 @@ const arg = (k, d) => {
 };
 const fams = arg('--family', 'items,skills,auras').split(',').filter(Boolean);
 const prov = JSON.parse(readFileSync(join(here, 'provenance.json'), 'utf8'));
-export const LICENSE = 'Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)';
+export const LICENSE =
+  'Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)';
 export const SOURCE =
   "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images";
 const PACK = 'wyndlewood-2d-v1';
@@ -52,7 +53,19 @@ if (fams.includes('items')) {
 }
 
 if (fams.includes('skills')) {
-  for (const cls of ['druid', 'hunter', 'mage', 'paladin', 'pet', 'priest', 'rogue', 'shaman', 'shardpike', 'warlock', 'warrior']) {
+  for (const cls of [
+    'druid',
+    'hunter',
+    'mage',
+    'paladin',
+    'pet',
+    'priest',
+    'rogue',
+    'shaman',
+    'shardpike',
+    'warlock',
+    'warrior',
+  ]) {
     const p = `public/ui/skills/${cls}/mapping.json`;
     if (!existsSync(join(root, p))) continue;
     const m = readJson(p);
@@ -119,16 +132,21 @@ if (fams.includes('misc') || fams.includes('wide')) {
     if (/ui\/(items|skills|auras)(\/|$)/.test(d)) continue;
     const p = `${d}/mapping.json`;
     const m = readJson(p);
-    const names = new Set(files.filter((f) => f.startsWith(`${d}/`)).map((f) => f.slice(d.length + 1)));
+    const names = new Set(
+      files.filter((f) => f.startsWith(`${d}/`)).map((f) => f.slice(d.length + 1)),
+    );
     const stems = new Set([...names].map((n) => n.replace(/^.*\//, '').replace(/\.[a-z]+$/, '')));
     let n = 0;
     const visit = (o) => {
       if (Array.isArray(o)) return o.forEach(visit);
       if (!o || typeof o !== 'object') return;
       const vals = Object.values(o).filter((v) => typeof v === 'string');
-      const hit = vals.some((v) => names.has(v) || stems.has(v) || [...names].some((x) => v.endsWith(`/${x}`)));
+      const hit = vals.some(
+        (v) => names.has(v) || stems.has(v) || [...names].some((x) => v.endsWith(`/${x}`)),
+      );
       if (hit) {
-        for (const k of Object.keys(o)) if (/sha256|bytes|reference|prompt|lineage/i.test(k)) delete o[k];
+        for (const k of Object.keys(o))
+          if (/sha256|bytes|reference|prompt|lineage/i.test(k)) delete o[k];
         if ('license' in o || 'licence' in o || 'source' in o || 'owner' in o) {
           o.license = LICENSE;
           o.source = SOURCE;

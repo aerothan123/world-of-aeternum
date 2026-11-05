@@ -26,13 +26,30 @@ for (const f of Object.keys(prov)) {
 const COLS = 12;
 const PER = 144;
 for (const [fam, files] of byFam) {
-  files.sort((a, b) => (prov[a].sheet + String(prov[a].cell).padStart(2, '0') < prov[b].sheet + String(prov[b].cell).padStart(2, '0') ? -1 : 1));
+  files.sort((a, b) =>
+    prov[a].sheet + String(prov[a].cell).padStart(2, '0') <
+    prov[b].sheet + String(prov[b].cell).padStart(2, '0')
+      ? -1
+      : 1,
+  );
   for (let p = 0; p * PER < files.length; p++) {
     const page = files.slice(p * PER, (p + 1) * PER).filter((f) => existsSync(join(root, f)));
-    const tiles = await Promise.all(page.map((f) => sharp(join(root, f)).resize(128, 128).flatten({ background: '#3a3a3a' }).png().toBuffer()));
+    const tiles = await Promise.all(
+      page.map((f) =>
+        sharp(join(root, f)).resize(128, 128).flatten({ background: '#3a3a3a' }).png().toBuffer(),
+      ),
+    );
     const rows = Math.ceil(tiles.length / COLS);
-    await sharp({ create: { width: COLS * 132, height: rows * 132, channels: 3, background: '#1c1c1c' } })
-      .composite(tiles.map((t, i) => ({ input: t, left: (i % COLS) * 132 + 2, top: Math.floor(i / COLS) * 132 + 2 })))
+    await sharp({
+      create: { width: COLS * 132, height: rows * 132, channels: 3, background: '#1c1c1c' },
+    })
+      .composite(
+        tiles.map((t, i) => ({
+          input: t,
+          left: (i % COLS) * 132 + 2,
+          top: Math.floor(i / COLS) * 132 + 2,
+        })),
+      )
       .jpeg({ quality: 78 })
       .toFile(join(outDir, `${fam}_${String(p + 1).padStart(2, '0')}.jpg`));
   }

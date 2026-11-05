@@ -1,5 +1,14 @@
-export function profile(gray: ArrayLike<number>, width: number, height: number, axis: 'x' | 'y'): Float64Array;
-export function findRules(p: ArrayLike<number>, grid: number, opts?: { windowFrac?: number }): number[];
+export function profile(
+  gray: ArrayLike<number>,
+  width: number,
+  height: number,
+  axis: 'x' | 'y',
+): Float64Array;
+export function findRules(
+  p: ArrayLike<number>,
+  grid: number,
+  opts?: { windowFrac?: number },
+): number[];
 export function cellRects(
   xRules: number[],
   yRules: number[],
