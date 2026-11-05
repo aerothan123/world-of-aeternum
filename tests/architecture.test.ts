@@ -595,6 +595,8 @@ const UI_PURE_CORES = [
   'src/ui/grant_line_view.ts',
   'src/ui/hud/professions/farming_view.ts',
   'src/ui/hud/housing/house_feedback_view.ts',
+  // Town restoration project window text (life_skills/town_projects.ts).
+  'src/ui/hud/housing/town_project_view.ts',
   'src/ui/hud/housing/house_furnish_view.ts',
   'src/ui/hud/housing/house_storage_view.ts',
   'src/ui/hud/housing/furniture_tooltip_view.ts',
@@ -832,6 +834,8 @@ const UI_PURE_CORES = [
   'src/ui/pet_frame_view.ts',
   // The vitals bar: the player's descriptor of the unit_frame family (Project H).
   'src/ui/hud/vitals/vitals_view.ts',
+  // The HUD durability figure (src/sim/durability/).
+  'src/ui/hud/durability/durability_view.ts',
   'src/ui/loading_backdrop_core.ts',
   'src/ui/loading_slow_hint_core.ts',
   'src/ui/reconnect_status_core.ts',
