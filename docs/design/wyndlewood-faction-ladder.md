@@ -139,7 +139,9 @@ reward for its slot** (item level = quest source level + quality bump, by
 furniture, titles and mount appearances. Heroic and raid budgets stay in
 heroics and raids.
 
-**NEEDS WORK: the shipped ladders break this rule.** `FACTION_VENDOR_STOCK`
+**NEEDS WORK: the shipped ladders break this rule.** The owner has decided
+to lower faction gear to quest strength, and the story crew is
+re-budgeting the quartermasters. `FACTION_VENDOR_STOCK`
 copies the heroic five-man and raid offset budgets
 (`docs/design/factions.md`). For Wyndlewood:
 - re-budget those rows down to the quest tier, or replace them with

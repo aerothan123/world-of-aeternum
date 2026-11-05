@@ -429,7 +429,7 @@ the bible's five. Another crew is building that now.
 Rules:
 - Every faction can be maxed by one character. There is no exclusive choice
   at launch. Moral choices can grant a little standing to one faction over
-  another without locking anything out (owner decision Q6).
+  another without locking anything out (decided by the owner).
 - The Chapter One file already tags each quest with its faction. Every
   authored quest should carry a faction tag that feeds
   `awardFactionReputation`.
