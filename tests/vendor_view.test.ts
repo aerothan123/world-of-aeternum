@@ -8,7 +8,13 @@ import { adoptedTrophyIds } from './helpers/adopted_trophy_ids';
 describe('riding service rank preview', () => {
   it('offers the next rank at its actual fee and hides fully learned training', () => {
     const balances = { copper: 10_000_000, honor: 0, gatheringProficiency: {} };
-    const basic = buildVendorView(['riding_training'], [], ITEMS, { ...balances, ridingTier: 0 });
+    const apprentice = buildVendorView(['riding_training'], [], ITEMS, {
+      ...balances,
+      ridingTier: 0,
+    });
+    expect(apprentice.goods[0].ridingRank).toBe(3);
+    expect(apprentice.goods[0].price.copper).toBe(20_000);
+    const basic = buildVendorView(['riding_training'], [], ITEMS, { ...balances, ridingTier: 3 });
     expect(basic.goods[0].ridingRank).toBe(1);
     expect(basic.goods[0].price.copper).toBe(800_000);
     const advanced = buildVendorView(['riding_training'], [], ITEMS, {

@@ -1,4 +1,5 @@
 import { gliderActionsLocked } from './glider_action_lock';
+import { canRide } from './riding_training';
 import { shadowActionsLocked } from './shadow_action_lock';
 // Ground riding rules, shared by all hosts. Riding training owns speed and
 // access; reins only provide a revocable cosmetic appearance. The keybind
@@ -264,7 +265,7 @@ export function summonMountItem(ctx: SimContext, pid: number, key: string): bool
   }
   // A summon already in flight swallows the click, matching toggleMount.
   if ((e.mountCastRemaining ?? 0) > 0) return false;
-  if (!meta.ridingTrained && !trainingSummon(meta, def.key)) {
+  if (!canRide(meta) && !trainingSummon(meta, def.key)) {
     ctx.error(pid, RIDING_UNTRAINED_MSG);
     return false;
   }
@@ -341,7 +342,7 @@ export function toggleMount(ctx: SimContext, pid: number): boolean {
   // Riding skill gate: the player must have purchased riding from Marla before
   // they can summon any mount. The training lesson is the one exception (it teaches
   // the skill via the quest and lends the Valorsteed during the lesson itself).
-  if (!meta.ridingTrained && meta.mountTraining?.state !== 'IN_PROGRESS') {
+  if (!canRide(meta) && meta.mountTraining?.state !== 'IN_PROGRESS') {
     ctx.error(pid, RIDING_UNTRAINED_MSG);
     return false;
   }
@@ -415,7 +416,7 @@ export function updateMountTransition(ctx: SimContext, e: Entity, swimming: bool
       } else if (
         mountDef(target) &&
         meta &&
-        (meta.ridingTrained || trainingSummon(meta, target)) &&
+        (canRide(meta) || trainingSummon(meta, target)) &&
         // a channel that ends on a ship's deck lapses (the summon was refused
         // aboard; this covers one finished standing on the gangway's lip)
         !onShipDeck(ctx, e)

@@ -18,7 +18,11 @@ import { BUILTIN_WORLD, NPCS, QUESTS } from '../src/sim/data';
 import { MOUNT_RACE_COUNTDOWN_TICKS } from '../src/sim/mount_race';
 import { MOUNT_TRAIN_FEE_COPPER } from '../src/sim/mounts_training';
 import { moveSpeedMult } from '../src/sim/player_motion';
-import { ADVANCED_RIDING_FEE_COPPER, BASIC_RIDING_FEE_COPPER } from '../src/sim/riding_training';
+import {
+  ADVANCED_RIDING_FEE_COPPER,
+  APPRENTICE_RIDING_FEE_COPPER,
+  BASIC_RIDING_FEE_COPPER,
+} from '../src/sim/riding_training';
 import { Sim } from '../src/sim/sim';
 import type { SimEvent, WorldContent } from '../src/sim/types';
 import { terrainHeight } from '../src/sim/world';
@@ -41,20 +45,25 @@ const makeSim = (seed = 1) =>
 
 describe('character riding ranks', () => {
   for (const command of ['vendor', 'learn'] as const) {
-    it(`${command}: duplicate basic quotes buy only basic riding, then an explicit advanced quote buys advanced`, () => {
+    it(`${command}: duplicate quotes buy one rank at a time, apprentice then riding then advanced`, () => {
       const sim = makeSim();
       sim.setPlayerLevel(20);
       standAtMarla(sim);
       const meta = metaOf(sim);
       const npcId = marlaOf(sim).id;
-      meta.copper = BASIC_RIDING_FEE_COPPER + ADVANCED_RIDING_FEE_COPPER;
-      const buy = (expectedRidingTier?: 0 | 1) =>
+      meta.copper =
+        APPRENTICE_RIDING_FEE_COPPER + BASIC_RIDING_FEE_COPPER + ADVANCED_RIDING_FEE_COPPER;
+      const buy = (expectedRidingTier?: 0 | 1 | 3) =>
         command === 'vendor'
           ? sim.buyItem(npcId, 'riding_training', { expectedRidingTier })
           : sim.learnRiding(npcId, expectedRidingTier);
       buy(0);
       buy(0);
       buy(); // Old clients cannot silently upgrade a trained character.
+      expect(sim.ridingTrainingTier()).toBe(3);
+      expect(meta.copper).toBe(BASIC_RIDING_FEE_COPPER + ADVANCED_RIDING_FEE_COPPER);
+      buy(3);
+      buy(3);
       expect(sim.ridingTrainingTier()).toBe(1);
       expect(meta.copper).toBe(ADVANCED_RIDING_FEE_COPPER);
       buy(1);
@@ -68,8 +77,15 @@ describe('character riding ranks', () => {
     sim.setPlayerLevel(20);
     standAtMarla(sim);
     const meta = metaOf(sim);
-    meta.copper = BASIC_RIDING_FEE_COPPER + ADVANCED_RIDING_FEE_COPPER;
+    meta.copper =
+      APPRENTICE_RIDING_FEE_COPPER + BASIC_RIDING_FEE_COPPER + ADVANCED_RIDING_FEE_COPPER;
     sim.buyItem(marlaOf(sim).id, 'riding_training');
+    expect(sim.ridingTrainingTier()).toBe(3);
+    for (const key of MOUNT_KEYS) {
+      sim.player.mountKey = key;
+      expect(moveSpeedMult(sim.player)).toBeCloseTo(1.4);
+    }
+    sim.buyItem(marlaOf(sim).id, 'riding_training', { expectedRidingTier: 3 });
     expect(sim.ridingTrainingTier()).toBe(1);
     expect(meta.copper).toBe(ADVANCED_RIDING_FEE_COPPER);
     for (const key of MOUNT_KEYS) {

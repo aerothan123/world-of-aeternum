@@ -8704,8 +8704,9 @@ export interface Entity extends ClientMirroredEntityFields {
   // online self-extrapolator predicts mounted speed in lockstep. The persisted
   // selection lives on PlayerMeta.selectedMount (src/sim/content/mounts.ts).
   mountKey: string;
-  // Character training controls movement for every cosmetic mount model.
-  ridingTier: 0 | 1 | 2;
+  // Character training controls movement for every cosmetic mount model
+  // (riding_training.ts: 3 is the level 10 apprentice rank).
+  ridingTier: 0 | 1 | 2 | 3;
   // Mount summon/dismount transition (players only; 0 = idle). Seconds left in the
   // call-the-mount summon or the dismount, driven per tick by updateMountTransition
   // (src/sim/mounts.ts). The sim READS it: player_motion.stepPlayerMotion roots the

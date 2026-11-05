@@ -102,6 +102,7 @@ import {
 import type { MaterialComposition } from './material_sources';
 import { mountOwned, summonMountItem } from './mounts';
 import { learnRiding } from './mounts_training';
+import { APPRENTICE_RIDING_MIN_LEVEL, canRide } from './riding_training';
 import { battlefieldExperienceTrickle } from './professions/battlefield_xp';
 import { placeFeastAction } from './professions/feast';
 import { equipGatherTool } from './professions/gather_tool_actions';
@@ -1557,12 +1558,13 @@ export function buyItem(
   // Emberbristle Broom keeps that purchase rule; riding still requires training.
   if (def.kind === 'mount') {
     const eventKeepsake = !!def.seasonalEvent || def.id === GOURDLIGHT_BROOM_ID;
-    if (!eventKeepsake && !meta.ridingTrained) {
+    if (!eventKeepsake && !canRide(meta)) {
       ctx.error(meta.entityId, 'You must learn to ride first. Find a riding trainer.');
       return;
     }
-    if (!eventKeepsake && p.level < 20) {
-      ctx.error(meta.entityId, 'You must be level 20 to buy a mount.');
+    // The stable horse follows the first riding rank (Apprentice Riding, level 10).
+    if (!eventKeepsake && p.level < APPRENTICE_RIDING_MIN_LEVEL) {
+      ctx.error(meta.entityId, 'You must be level 10 to buy a mount.');
       return;
     }
     if (mountOwned(meta, def.mount)) {

@@ -14,7 +14,7 @@ import {
   factionDisplayName,
   STANDING_TIER_LABELS,
 } from '../../../sim/factions';
-import { ridingMoveSpeedPct } from '../../../sim/riding_training';
+import { ridingMoveSpeedPct, ridingTierBefore } from '../../../sim/riding_training';
 import type { ItemInstancePayload } from '../../../sim/types';
 import type { VendorBuyOptions } from '../../../sim/vendor_buy_stack';
 import { currencyIconHtml } from '../../currency_art';
@@ -274,7 +274,13 @@ export function renderVendorWindow(
     row.disabled = lockedByFaction || (countBuy ? !countBuy.affordable : !goods.affordable);
     const price = countBuy ? formatLocalizedMoney(countBuy.copper) : goodsPriceText(goods.price);
     const itemName = goods.ridingRank
-      ? t(goods.ridingRank === 1 ? 'itemUi.vendor.basicRiding' : 'itemUi.vendor.advancedRiding')
+      ? t(
+          goods.ridingRank === 3
+            ? 'itemUi.vendor.apprenticeRiding'
+            : goods.ridingRank === 1
+              ? 'itemUi.vendor.basicRiding'
+              : 'itemUi.vendor.advancedRiding',
+        )
       : itemDisplayName(item);
     const stack =
       quantity > 1
@@ -338,7 +344,7 @@ export function renderVendorWindow(
     // countFit-capped prompt (Q19), and 1x stays the plain buy.
     row.addEventListener('click', (ev) => {
       if (goods.ridingRank) {
-        deps.onBuy(itemId, { expectedRidingTier: goods.ridingRank === 1 ? 0 : 1 });
+        deps.onBuy(itemId, { expectedRidingTier: ridingTierBefore(goods.ridingRank) });
       } else if (ev.ctrlKey || ev.metaKey) {
         deps.onBuy(itemId, { bulk: true });
       } else if (countBuy) {

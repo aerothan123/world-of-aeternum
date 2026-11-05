@@ -17,7 +17,11 @@ import {
 import { resolveVendorRowGate, type VendorRowGate } from '../../../sim/content/vendor_row_gates';
 import type { FactionId } from '../../../sim/factions';
 import { junkSellableSlot } from '../../../sim/items';
-import { type RidingTier, ridingTrainingFee } from '../../../sim/riding_training';
+import {
+  nextRidingTier,
+  type RidingTier,
+  ridingTrainingFee,
+} from '../../../sim/riding_training';
 import type { InvSlot, ItemDef, ItemInstancePayload } from '../../../sim/types';
 import { bulkBuyQuantity, vendorCountForced } from '../../../sim/vendor_buy_stack';
 import { vendorStackSize } from '../../../sim/vendor_stack';
@@ -34,7 +38,8 @@ export type VendorMultiple = 1 | 5 | 10 | 'custom';
 export const VENDOR_MULTIPLES: readonly VendorMultiple[] = [1, 5, 10, 'custom'];
 
 export interface VendorGoodsRow {
-  ridingRank?: 1 | 2;
+  /** The riding rank this row teaches (riding_training.ts: 3 apprentice, 1, 2). */
+  ridingRank?: 1 | 2 | 3;
   itemId: string;
   item: ItemDef;
   /** Server-matching price for one purchase. Either component may be zero. */
@@ -256,7 +261,7 @@ export function buildVendorView(
     const canAffordFaction = !factionMarks || playerFactionMarks >= factionMarks.amount;
     const canAffordToken = !token || heldCount(balances.inventory, token.itemId) >= token.count;
     goods.push({
-      ...(item.teachesRiding ? { ridingRank: (ridingTier === 0 ? 1 : 2) as 1 | 2 } : {}),
+      ...(item.teachesRiding ? { ridingRank: (nextRidingTier(ridingTier) ?? 2) as 1 | 2 | 3 } : {}),
       itemId,
       item,
       price,

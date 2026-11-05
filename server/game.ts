@@ -6232,12 +6232,12 @@ export class GameServer {
         if (
           typeof msg.npc === 'number' &&
           typeof msg.item === 'string' &&
-          (msg.ridingTier === undefined || msg.ridingTier === 0 || msg.ridingTier === 1)
+          (msg.ridingTier === undefined || [0, 1, 3].includes(msg.ridingTier))
         ) {
           const options = {
             count: typeof msg.count === 'number' ? msg.count : undefined,
             bulk: msg.bulk === true,
-            expectedRidingTier: (msg.ridingTier ?? 0) as 0 | 1,
+            expectedRidingTier: (msg.ridingTier ?? 0) as 0 | 1 | 3,
           };
           if (!this.accountBuddies.buy(session, msg.npc, msg.item, options))
             sim.buyItem(msg.npc, msg.item, options, pid);
@@ -6560,7 +6560,7 @@ export class GameServer {
         if (
           typeof msg.npc === 'number' &&
           Number.isInteger(msg.npc) &&
-          (msg.ridingTier === undefined || msg.ridingTier === 0 || msg.ridingTier === 1)
+          (msg.ridingTier === undefined || [0, 1, 3].includes(msg.ridingTier))
         )
           sim.learnRidingFor(msg.npc, pid, msg.ridingTier ?? 0);
         break;

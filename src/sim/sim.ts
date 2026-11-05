@@ -704,6 +704,7 @@ import {
   type RidingPlayerState,
   restoreRidingTraining,
   ridingTrainingTier as ridingTierOf,
+  savedRidingFields,
 } from './riding_training';
 import { Rng } from './rng';
 import { resolveSavedPosExit } from './saved_pos_exit';
@@ -4000,8 +4001,7 @@ export class Sim {
       // Absent until the fee is actually charged (back-compat + parity-stable saves).
       ...(meta.mountTrainingFeePaid ? { mountTrainingFeePaid: true } : {}),
       // Absent until riding skill is purchased (back-compat).
-      ...(meta.ridingTrained ? { ridingTrained: true } : {}),
-      ...(meta.ridingTier === 2 ? { ridingTier: 2 as const } : {}),
+      ...savedRidingFields(meta),
       // Absent outside the PBE (back-compat; server/pbe_boost.ts).
       ...(meta.pbeBoostKit !== undefined ? { pbeBoostKit: meta.pbeBoostKit } : {}),
       craftSkills: { ...meta.craftSkills },
@@ -4126,9 +4126,9 @@ export class Sim {
     return this.ownedMountsFor(this.primaryId);
   }
   ridingTrained(): boolean {
-    return this.players.get(this.primaryId)?.ridingTrained === true;
+    return ridingTierOf(this.players.get(this.primaryId)) !== 0; // any rank can ride
   }
-  ridingTrainingTier(): 0 | 1 | 2 {
+  ridingTrainingTier(): 0 | 1 | 2 | 3 {
     return ridingTierOf(this.players.get(this.primaryId));
   }
   toggleMounted(): void {
@@ -4196,12 +4196,12 @@ export class Sim {
   }
 
   /** Purchase a quoted riding rank through the authoritative training module. */
-  learnRidingFor(npcId: number, pid: number, expectedTier: 0 | 1 = 0): void {
+  learnRidingFor(npcId: number, pid: number, expectedTier: 0 | 1 | 3 = 0): void {
     learnRidingImpl(this.ctx, npcId, pid, expectedTier);
   }
 
   // --- IWorldMounts: learn riding ---
-  learnRiding(npcId: number, expectedTier: 0 | 1 = 0): void {
+  learnRiding(npcId: number, expectedTier: 0 | 1 | 3 = 0): void {
     this.learnRidingFor(npcId, this.primaryId, expectedTier);
   }
 
