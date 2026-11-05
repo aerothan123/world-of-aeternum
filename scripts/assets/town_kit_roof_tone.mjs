@@ -51,12 +51,16 @@ function hsvToRgb(h, s, v) {
   return [r + m, g + m, b + m];
 }
 
-/** Whether a pixel is roof red or orange: warm hue, saturated, not near black. */
-export function isWarmRoofPixel(h, s, v) {
-  return (h >= 350 || h <= 25) && s >= 0.6 && v >= 0.3;
+/** Whether a pixel is roof red or orange: warm hue, saturated, not near black.
+ *  `minSaturation` lowers the bar for a second, deeper pass on a roof whose
+ *  paint was brighter than the first pass could reach. */
+export function isWarmRoofPixel(h, s, v, minSaturation = 0.6) {
+  return (h >= 350 || h <= 25) && s >= minSaturation && v >= 0.3;
 }
 
-const [input, output, toneName] = process.argv.slice(2);
+//   optional 4th argument: the minimum saturation a pixel needs to move (default 0.6)
+const [input, output, toneName, minSatArg] = process.argv.slice(2);
+const minSaturation = minSatArg === undefined ? 0.6 : Number(minSatArg);
 const tone = TONES[toneName];
 if (!tone) throw new Error(`tone must be one of ${Object.keys(TONES).join(', ')}`);
 await Promise.all([MeshoptDecoder.ready, MeshoptEncoder.ready]);
@@ -78,7 +82,7 @@ for (const material of doc.getRoot().listMaterials()) {
   for (let i = 0; i < data.length; i += 4) {
     total++;
     const [h, s, v] = rgbToHsv(data[i] / 255, data[i + 1] / 255, data[i + 2] / 255);
-    if (!isWarmRoofPixel(h, s, v)) continue;
+    if (!isWarmRoofPixel(h, s, v, minSaturation)) continue;
     moved++;
     // Blend by how deep in the red band the pixel sits, so edges soften.
     const [r, g, b] = hsvToRgb(tone[0] ?? h, s * tone[1], v * tone[2]);
