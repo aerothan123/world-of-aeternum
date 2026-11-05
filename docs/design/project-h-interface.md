@@ -20,6 +20,32 @@ This is an ORIGINAL interface in that spirit. It never reproduces another game's
 icons, fonts, layout measurements or copy; the published game is the reference for a
 philosophy, nothing in it is copied.
 
+## Painted direction (Wyndlewood, supersedes signature points 1, 2 and 4)
+The fork became WYNDLEWOOD and its world moved to a hand-painted storybook look (chunky
+readable shapes, soft natural colour, a little more realistic than a cartoon). A charcoal
+hairline HUD read as a web overlay on top of that world, so the chrome now reads as
+painted wood-and-parchment plates that belong to it. The LAYOUT, the type roles, the
+packet plan and every guardrail below are unchanged; only these values moved:
+- **Warm walnut fill, top-lit.** The `classic` preset panel is a warm walnut
+  (`src/ui/theme.ts` `THEME_PRESETS.classic`), never pure black. Every `--panel-bg*`
+  gradient is top-lit: its upper stop leans toward the accent by `PANEL_LIFT`, its lower
+  stop is the panel itself, so text contrast is still judged against the panel knob. The
+  HUD surfaces (`--surface-hud`, `--surface-menu`) stay flat because they float over the
+  live world.
+- **Cream text, honey-gilt accent, bark border.** One accent still marks selected and
+  active state only; the border knob is a bark brown that the window frame ring uses.
+- **Painted depth, not flat depth.** The shared composites in `src/styles/tokens.css`
+  (`--edge-glint`, `--shadow-panel`, `--shadow-window`, `--shadow-socket`,
+  `--shadow-well`, `--bar-gloss`, `--win-head-fill`) carry a warm top glint, a soft umber
+  vignette, a bark frame ring on windows, carved sockets and rounded bar volume. They are
+  decoration only and carry no `--fx-shadow` term, so every graphics tier shows the same
+  plates and no tier can hide or delay information.
+- **Softly worn corners.** `--radius-panel` 6px, `--radius-window` 8px, sockets and cells
+  4px, vitals bars 3px and 2px. Never pills, never hard boxes.
+- **Vitals stay information first.** The painted bar sheen rides as an image layer over the
+  fill COLOUR, so the colour (and any painter-written state colour) is never altered; the
+  low-health swap and every threshold are unchanged.
+
 ## Visual signature (every surface carries all four)
 1. **Quiet dark fill.** Panels are charcoal, not blue-black metal: `rgba(14,14,16,0.72)`
    class translucency on the HUD, near-opaque on full-screen menus. Never pure black.

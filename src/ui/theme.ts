@@ -67,21 +67,23 @@ export const PRESET_ORDER: PresetId[] = [
   'highContrast',
 ];
 
-// `classic` is the Project H palette (docs/design/project-h-interface.md): a
-// quiet charcoal panel that is never pure black, warm off-white text, mid-grey
-// secondary text, one antique-brass accent, and desaturated vitals. The other
-// presets are alternates; every knob still flows through the same derivations.
+// `classic` is the Wyndlewood painted palette (docs/design/project-h-interface.md,
+// "Painted direction"): a warm walnut panel that is never pure black, cream
+// parchment text, a soft parchment secondary, one honey-gilt accent, a bark
+// frame border, and leaf-and-sky vitals that sit in the painted world's colour
+// family. The other presets are alternates; every knob still flows through the
+// same derivations.
 export const THEME_PRESETS: Record<PresetId, ThemeKnobs> = {
   classic: {
-    accent: '#c9a96a',
-    border: '#4a4640',
-    panel: '#0e0e10',
-    text: '#ece7dc',
-    textMuted: '#aba59b',
-    hp: '#4f9d55',
-    mana: '#3f7fc4',
-    rage: '#b8413a',
-    energy: '#cdb24a',
+    accent: '#dcb46a',
+    border: '#6b5236',
+    panel: '#1e1810',
+    text: '#f3e9d2',
+    textMuted: '#bfb08f',
+    hp: '#56a845',
+    mana: '#3f86cc',
+    rage: '#bf4434',
+    energy: '#d9b84a',
   },
   midnight: {
     accent: '#8fb8e8',
@@ -230,6 +232,9 @@ export const SURFACE_HUD_ALPHA = 0.72;
 export const PANEL_ALPHA = 0.84;
 /** The full-screen menu fill alpha (`--surface-menu`): near-opaque. */
 export const SURFACE_MENU_ALPHA = 0.94;
+/** How far the top stop of a painted panel gradient leans toward its light
+ *  (the accent on a dark panel, white on a light one). */
+export const PANEL_LIFT = 0.1;
 
 /** Minimum body-text contrast we will let a resolved theme ship with. */
 export const MIN_TEXT_CONTRAST = 4.5;
@@ -353,10 +358,10 @@ export function themeCssVars(knobs: ThemeKnobs): Record<string, string> {
   // other alphas the boards use (trackers and chat at rest; tooltips, inputs and
   // confirm dialogs), the strong one pulled a step toward black.
   // The lifted stops the library composes over the panel: the socket highlight
-  // and the window head's upper stop. Project H: dark panels lift toward a WARM
-  // neutral (charcoal, not blue-black metal), light panels sink a step.
-  const socketHi = lightPanel ? mixHex(panel, '#000000', 0.08) : mixHex(panel, '#3a3836', 0.5);
-  const panelHi = lightPanel ? mixHex(panel, '#000000', 0.06) : mixHex(panel, '#262523', 0.5);
+  // and the window head's upper stop. Painted direction: dark panels lift toward
+  // a warm oiled-wood brown (never blue-black metal), light panels sink a step.
+  const socketHi = lightPanel ? mixHex(panel, '#000000', 0.08) : mixHex(panel, '#4a3a26', 0.5);
+  const panelHi = lightPanel ? mixHex(panel, '#000000', 0.06) : mixHex(panel, '#3a2c1c', 0.5);
   // The glint (inner edge highlight, badge edge, thumb) follows the accent so a
   // blue preset does not carry a gold hairline; light panels darken it instead.
   const glint = lightPanel ? mixHex(accent, '#000000', 0.15) : mixHex(accent, '#ffffff', 0.55);
@@ -376,11 +381,20 @@ export function themeCssVars(knobs: ThemeKnobs): Record<string, string> {
     MIN_TEXT_CONTRAST,
   );
   const panelStrong = lightPanel ? mixHex(panel, '#ffffff', 0.3) : mixHex(panel, '#000000', 0.24);
-  // Project H surfaces (docs/design/project-h-interface.md "Tokens"): one FLAT
-  // translucent fill per surface class. The three --panel-bg* gradients keep
-  // their gradient FORM (every consumer and the pinned tests read a
-  // linear-gradient) but both stops are the same colour, so no panel carries a
-  // vignette any more. --surface-hud is the HUD-chrome fill, --surface-menu the
+  // Painted direction: every panel gradient is TOP-LIT, the way the world's
+  // painted props catch a warm key light from above. The upper stop leans the
+  // panel toward the accent (a dark panel) or toward white (a light panel); the
+  // lower stop is the panel itself, so text contrast is judged against the
+  // panel knob exactly as before and the lift only ever adds separation.
+  const lift = (base: string): string =>
+    lightPanel ? mixHex(base, '#ffffff', PANEL_LIFT) : mixHex(base, accent, PANEL_LIFT);
+  const paintedPanel = (base: string, alpha: number): string =>
+    `linear-gradient(170deg, ${rgba(lift(base), alpha)} 0%, ${rgba(base, alpha)} 100%)`;
+  // Project H surfaces (docs/design/project-h-interface.md "Tokens"): one
+  // translucent fill per surface class. The three --panel-bg* gradients are the
+  // painted top-lit pair above; the HUD surfaces stay FLAT because they float
+  // over the live world, where a gradient would read as a smudge rather than a
+  // light. --surface-hud is the HUD-chrome fill, --surface-menu the
   // near-opaque full-screen menu fill; the row fills, the three hairlines and
   // the accent-soft wash are the TEXT and ACCENT knobs at low alpha, so a light
   // preset gets dark hairlines and a dark preset light ones for free.
@@ -433,10 +447,10 @@ export function themeCssVars(knobs: ThemeKnobs): Record<string, string> {
     '--border': border,
     '--color-border-default': mixHex(border, '#000000', 0.25),
     '--panel-base': panel,
-    '--panel-bg': `linear-gradient(170deg, ${rgba(panel, PANEL_ALPHA)} 0%, ${rgba(panel, PANEL_ALPHA)} 100%)`,
+    '--panel-bg': paintedPanel(panel, PANEL_ALPHA),
     '--panel-edge': panelEdge,
-    '--panel-bg-soft': `linear-gradient(170deg, ${rgba(panel, 0.74)} 0%, ${rgba(panel, 0.74)} 100%)`,
-    '--panel-bg-strong': `linear-gradient(170deg, ${rgba(panelStrong, 0.97)} 0%, ${rgba(panelStrong, 0.97)} 100%)`,
+    '--panel-bg-soft': paintedPanel(panel, 0.74),
+    '--panel-bg-strong': paintedPanel(panelStrong, 0.97),
     '--color-bg-dark': panelEdge,
     '--color-text-light': text,
     '--color-text-muted': textMuted,

@@ -103,7 +103,7 @@
     gap: 10px;
     height: var(--win-head-h);
     padding: 0 var(--spacing-sm) 0 var(--window-pad, 12px);
-    background: transparent;
+    background: var(--win-head-fill);
     border-bottom: 1px solid var(--line-faint);
     box-shadow: none;
   }
@@ -745,7 +745,7 @@
     position: relative;
     width: var(--ui-socket-size);
     height: var(--ui-socket-size);
-    border: 1px solid var(--line-faint);
+    border: 1px solid var(--color-socket-rim);
     border-radius: var(--radius-socket);
     background: var(--socket-fill);
     box-shadow: var(--shadow-socket);
@@ -787,7 +787,7 @@
   .ui-socket.is-empty,
   .ui-socket.empty {
     background: var(--socket-fill-empty);
-    box-shadow: none;
+    box-shadow: var(--shadow-socket);
   }
   .ui-socket.is-used,
   .ui-socket.used,

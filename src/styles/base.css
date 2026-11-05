@@ -509,17 +509,22 @@
     pointer-events: none;
   }
 
-  /* Project H chrome (docs/design/project-h-interface.md "Visual signature"):
-     a quiet translucent charcoal fill, ONE hairline edge, flat depth (no bevel,
-     no outline ring, no drop shadow) and type carrying the hierarchy. Same
-     selector and mechanism as the classic plate; only the values moved. */
+  /* Painted chrome (docs/design/project-h-interface.md "Painted direction"):
+     a warm top-lit walnut plate, ONE hairline edge, softly worn corners and
+     the shared painted depth composites; a floating window adds the bark frame
+     ring. Same selectors and mechanism as the classic plate; only the composed
+     tokens moved, so every legacy .panel window picks the look up at once. */
   .panel {
     background: var(--panel-bg);
     border: 1px solid var(--line-faint);
     outline: 0;
-    border-radius: var(--radius-none);
-    box-shadow: none;
+    border-radius: var(--radius-panel);
+    box-shadow: var(--shadow-panel);
     color: var(--text);
+  }
+  .window.panel {
+    border-radius: var(--radius-window);
+    box-shadow: var(--shadow-window);
   }
   .panel-title {
     font-family: var(--font-display);

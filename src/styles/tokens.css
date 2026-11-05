@@ -76,8 +76,8 @@
     --website-radius: 12px;
     --website-width: 1320px;
     --website-gutter: clamp(24px, 5vw, 80px);
-    --gold: #c9a96a;
-    --gold-dim: #9d8453;
+    --gold: #dcb46a;
+    --gold-dim: #ac8c53;
     /* The deed-unlock banner plate (#banner.banner-deed). Echoes the Book of
        Deeds card and renown chip so the earned moment and the window that
        records it read as one family, and so a deed can never be mistaken for
@@ -102,11 +102,11 @@
        the token rather than the element (hud.mobile.css). */
     --subzone-banner-top: 35%;
     --banner-stack-gap: 10px;
-    --border: #4a4640;
+    --border: #6b5236;
     /* --panel-base is the single themeable frame colour; --panel-bg derives the
        shipped gradient from it (overwritten wholesale by the theme system). */
-    --panel-base: #0e0e10;
-    --panel-bg: linear-gradient(170deg, rgba(14, 14, 16, 0.84) 0%, rgba(14, 14, 16, 0.84) 100%);
+    --panel-base: #1e1810;
+    --panel-bg: linear-gradient(170deg, rgba(49, 40, 25, 0.84) 0%, rgba(30, 24, 16, 0.84) 100%);
     /* quest-marker tooltip TAG text: the rare-adjacent blue lifted to the
        4.5:1 text tier over the default panel stops (the glyph channels keep
        the #0070dd anchor). The theme system re-emits this per preset via
@@ -119,7 +119,7 @@
        it until it clears the contrast floor. Named for the tooltip surface,
        NOT --color-craft-*: that family below is the crafting-difficulty ramp
        and this token is unrelated to it. */
-    --color-material-use: #b0b288;
+    --color-material-use: #bdba88;
     /* Quest moments (DESIGN.md section 4.3 / principle 4): tracked titles,
        bag-grid quest purpose marks, map quest markers. Bright saturated
        yellow reserved for quest, never chrome. Distinct from --gold / --color-accent
@@ -128,12 +128,13 @@
     /* Typography, Cinzel (heraldic display/headings), Alegreya Sans (UI + body),
        Alegreya (serif flavour prose). Legacy token names alias the canonical set
        so every existing usage resolves to the new system. */
-    --color-finder-ink: #0b1421;
-    --color-finder-surface: #142638;
-    --color-finder-surface-raised: #213a50;
-    --color-finder-line: #3f596b;
+    /* Painted direction: the finder plates are the walnut family, not navy. */
+    --color-finder-ink: #140e08;
+    --color-finder-surface: #241a10;
+    --color-finder-surface-raised: #33261a;
+    --color-finder-line: #5a4630;
     --color-finder-text: #f4f0e5;
-    --color-finder-muted: #bdcbd5;
+    --color-finder-muted: #cdbfa0;
     --color-finder-gold: #f0cd87;
     --color-finder-gold-deep: #6c4b24;
     --color-finder-teal: #79dccb;
@@ -165,14 +166,14 @@
     --color-queue-bell-silver: #ccd2d6;
     --color-queue-bell-gold: #e5c15a;
     --color-primary-dim: var(--gold-dim);
-    --color-primary-glow: rgba(201, 169, 106, 0.2);
-    --color-primary-glow-heavy: rgba(201, 169, 106, 0.4);
+    --color-primary-glow: rgba(220, 180, 106, 0.2);
+    --color-primary-glow-heavy: rgba(220, 180, 106, 0.4);
 
     /* resource bars / unit-frame states / auras (previously hardcoded across CSS + JS) */
-    --color-hp: #4f9d55;
-    --color-mana: #3f7fc4;
-    --color-rage: #b8413a;
-    --color-energy: #cdb24a;
+    --color-hp: #56a845;
+    --color-mana: #3f86cc;
+    --color-rage: #bf4434;
+    --color-energy: #d9b84a;
     --color-focus: #d79a2b;
     --color-devotion: #e7b943;
     --color-ascension: #fff1a3;
@@ -223,9 +224,9 @@
     --aura-glow-core: 5px;
     --aura-glow-halo: 16px;
 
-    --color-bg-dark: #080809;
-    --color-bg-input: #0a0a0f;
-    --color-border-default: #383530;
+    --color-bg-dark: #110d09;
+    --color-bg-input: #110c07;
+    --color-border-default: #503e29;
     /* The showcase hairline: the gold-brown 1px keyline the char-window stat
        panels established and the inset-card family repeats (section cards,
        recipe cards, pill chips, panel dividers). One token for every site so
@@ -239,12 +240,12 @@
        family still spells the same value and migrates when it is next
        touched. */
     --color-card-inset: rgba(0, 0, 0, 0.24);
-    --color-border-focus: #9d8453;
+    --color-border-focus: #ac8c53;
     --color-border-invalid: #ff8f85;
     --color-border-valid: #48e060;
 
-    --color-text-light: #ece7dc;
-    --color-text-muted: #aba59b;
+    --color-text-light: #f3e9d2;
+    --color-text-muted: #bfb08f;
     /* Accent/gold for text on panel surfaces, and overlay text that floats
        over the 3D world. The theme system (src/ui/theme.ts) recomputes
        --color-accent/--color-gold per preset so they stay AA-readable on a
@@ -253,29 +254,29 @@
     --color-accent: var(--gold);
     --color-text-overlay: #f4eede;
     --text-outline-color: #000000;
-    --panel-edge: #080809;
+    --panel-edge: #110d09;
     /* Project H surfaces, lines, text and vitals (docs/design/project-h-interface.md
        "Tokens"). Static defaults are the classic-preset outputs of src/ui/theme.ts,
        which re-emits every one of them per preset (tests/theme.test.ts pins the
        two homes equal). Surfaces are flat translucent charcoal, never pure black;
        the three hairlines are the text colour at low alpha; --accent is the one
        antique-brass accent, reserved for the selected or active state. */
-    --surface-hud: rgba(14, 14, 16, 0.72);
-    --surface-menu: rgba(14, 14, 16, 0.94);
-    --surface-row: rgba(236, 231, 220, 0.04);
-    --surface-row-hover: rgba(236, 231, 220, 0.08);
-    --line-faint: rgba(236, 231, 220, 0.14);
-    --line: rgba(236, 231, 220, 0.26);
-    --line-strong: rgba(236, 231, 220, 0.42);
-    --accent: #c9a96a;
-    --accent-soft: rgba(201, 169, 106, 0.28);
-    --text: #ece7dc;
-    --text-dim: #aba59b;
-    --text-faint: #98938a;
-    --text-invert: #0e0e10;
-    --vital-health: #4f9d55;
-    --vital-mana: #3f7fc4;
-    --vital-stamina: #cdb24a;
+    --surface-hud: rgba(30, 24, 16, 0.72);
+    --surface-menu: rgba(30, 24, 16, 0.94);
+    --surface-row: rgba(243, 233, 210, 0.04);
+    --surface-row-hover: rgba(243, 233, 210, 0.08);
+    --line-faint: rgba(243, 233, 210, 0.14);
+    --line: rgba(243, 233, 210, 0.26);
+    --line-strong: rgba(243, 233, 210, 0.42);
+    --accent: #dcb46a;
+    --accent-soft: rgba(220, 180, 106, 0.28);
+    --text: #f3e9d2;
+    --text-dim: #bfb08f;
+    --text-faint: #ac9e80;
+    --text-invert: #1e1810;
+    --vital-health: #56a845;
+    --vital-mana: #3f86cc;
+    --vital-stamina: #d9b84a;
     --vital-xp: #b85eff;
     /* Radii: none is the default everywhere; soft (2px) only on quick-slot icons. */
     --radius-none: 0;
@@ -761,10 +762,10 @@
     --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 
     /* Custom scrollbar tokens */
-    --scrollbar-thumb: #3f3c36;
+    --scrollbar-thumb: #5b462e;
     --scrollbar-track: rgba(14, 14, 16, 0.7);
-    --scrollbar-thumb-hover: #4a4640;
-    --scrollbar-border: #4a4640;
+    --scrollbar-thumb-hover: #6b5236;
+    --scrollbar-border: #6b5236;
     --app-vw: 100vw;
     --app-vh: 100vh;
     /* #bags' own reservation half-width + gap (components.css), hoisted here so
@@ -907,8 +908,10 @@
        re-emit them per preset. */
     --color-keyline: #000000;
     --color-white: #ffffff;
-    --color-ink: #0d0d13;
-    --color-ink-deep: #0b0b10;
+    /* Painted direction: the fixed-dark chrome is warm umber ink (oiled wood in
+       shadow), never blue-black, so wells, tabs and tracks sit in one family. */
+    --color-ink: #120d08;
+    --color-ink-deep: #0d0905;
     /* Foregrounds for the fixed-dark surfaces (ink grounds, the red and gold
        button plates, the selected tab, the medal). theme.ts must never re-emit
        these: a preset-derived text token on a fixed surface goes dark-on-dark
@@ -919,15 +922,15 @@
     --color-text-on-tab-on: #ffd100;
     --color-text-on-gold-btn: #ffe9a8;
     --color-text-on-medal: #ffd100;
-    --color-socket-rim: #3a3833;
-    --color-socket-hi: #242323;
+    --color-socket-rim: #5a4228;
+    --color-socket-hi: #34291b;
     --color-instance-difficulty-mid: #15131a;
     --color-instance-difficulty-bg: #121016;
-    --color-panel-hi: #1a1a1a;
+    --color-panel-hi: #2c2216;
     --color-chrome-ground: #1a1410;
     --color-chrome-glyph: #b8b0a0;
-    --color-glint: #e7d8bc;
-    --color-control-border: #34312d;
+    --color-glint: #efddbc;
+    --color-control-border: #4b3926;
     --color-medal-hi: #4a3a14;
     --color-medal-lo: #241c08;
     --color-medal-ink: #3a2b00;
@@ -935,20 +938,20 @@
     --color-bronze-light: #b08a3a;
     --color-bronze-dark: #3c2f14;
     --color-hostile-rim: #8b2a22;
-    --color-portrait-hi: #3a3a4e;
-    --color-portrait-lo: #14141c;
+    --color-portrait-hi: #3e3020;
+    --color-portrait-lo: #17110a;
     --color-proc-rim: #ffd97a;
     --color-proc-glow: #ffcf40;
-    --color-bar-track: #1a1a1a;
-    --color-bar-well-lo: #0a0a0e;
-    --color-bar-well-hi: #17171d;
+    --color-bar-track: #1d1710;
+    --color-bar-well-lo: #0d0906;
+    --color-bar-well-hi: #1c150d;
     --color-cast-track: #0c0906;
     --color-swing-track: #0c0a07;
     --color-combat-badge-ground: #100606;
-    --color-tab-on-hi: #2a2436;
-    --color-tab-on-lo: #161220;
-    --color-tab-off-hi: #1c1824;
-    --color-tab-off-lo: #0d0b13;
+    --color-tab-on-hi: #3a2c18;
+    --color-tab-on-lo: #1c140b;
+    --color-tab-off-hi: #20180f;
+    --color-tab-off-lo: #100b07;
     --color-tab-off-border: #3a321d;
     --color-card-hi: #17130c;
     --color-card-lo: #0c0a07;
@@ -999,17 +1002,17 @@
     /* Themed text and surface derivations (classic outputs; theme.ts re-emits
        --color-socket-hi, --color-panel-hi, --color-glint, --color-control-border,
        --color-info, --color-warning and the four below per preset). */
-    --color-text-secondary: #e0dbd0;
-    --color-text-faint: #98938a;
+    --color-text-secondary: #eadfc6;
+    --color-text-faint: #ac9e80;
     --panel-bg-soft: linear-gradient(
       170deg,
-      rgba(14, 14, 16, 0.74) 0%,
-      rgba(14, 14, 16, 0.74) 100%
+      rgba(49, 40, 25, 0.74) 0%,
+      rgba(30, 24, 16, 0.74) 100%
     );
     --panel-bg-strong: linear-gradient(
       170deg,
-      rgba(11, 11, 12, 0.97) 0%,
-      rgba(11, 11, 12, 0.97) 100%
+      rgba(43, 34, 21, 0.97) 0%,
+      rgba(23, 18, 12, 0.97) 100%
     );
     /* Composites: fills and edges the primitives share. */
     --socket-fill: var(--surface-hud);
@@ -1025,7 +1028,15 @@
     --btn-fill-red: linear-gradient(180deg, var(--color-btn-red-hi), var(--color-btn-red-lo));
     --ribbon-bg: transparent;
     --bar-well-fill: var(--surface-hud);
-    --bar-gloss: transparent;
+    /* Painted bar volume: a soft top sheen and a darker belly over the fill, so
+       a bar reads as a rounded painted tube. Shade only, never a hue shift:
+       the fill colour (the information) shows through at every point. */
+    --bar-gloss: linear-gradient(
+      180deg,
+      rgb(255 248 228 / 30%) 0%,
+      rgb(255 248 228 / 6%) 45%,
+      rgb(0 0 0 / 14%) 100%
+    );
     --xp-fill: linear-gradient(180deg, var(--color-xp), var(--color-xp-deep));
     --xp-rested-fill: linear-gradient(180deg, var(--color-xp-rested), var(--color-xp-rested-deep));
     --xp-overflow-fill: linear-gradient(#ffe27a, #d99a1c);
@@ -1038,17 +1049,37 @@
     --swing-fill-ready: linear-gradient(#d8e8ff, #8fb6e6 60%, #5b86b8);
     --swing-fill-target: linear-gradient(#c9a3ff, #7c3fd9 60%, #481f8a);
     --swing-fill-tot: linear-gradient(#ffb3c6, #d9427c 60%, #8a1f4e);
-    /* Project H flat depth: no drop shadows on HUD chrome, no inner glints. The
-       composites keep their names and shapes (every consumer still reads one
-       box-shadow list) and resolve to a no-op shadow or the single hairline. */
-    --edge-glint: inset 0 0 0 0 transparent;
-    --edge-hairline: inset 0 0 0 1px var(--line-faint);
-    --shadow-lift: 0 0 0 0 transparent;
+    /* Painted depth (docs/design/project-h-interface.md "Painted direction"):
+       the chrome reads as painted wood-and-parchment plates lit from above, to
+       sit in the storybook world. A warm glint catches the top edge, a soft
+       umber vignette rounds the inside, and windows carry a bark-brown frame
+       ring. Every term is decoration only; the composites keep their names and
+       shapes, so no consumer changes, and none of them carries an
+       --fx-shadow term (the plates read the same on every graphics tier). */
+    --color-paint-umber: rgb(12 8 3 / 46%);
+    --color-paint-umber-deep: rgb(8 5 2 / 58%);
+    --edge-glint: inset 0 1px 0 0 color-mix(in srgb, var(--color-glint) 22%, transparent);
+    --edge-hairline: inset 0 0 0 1px var(--line-faint), var(--edge-glint);
+    --shadow-lift: 0 2px 6px var(--color-paint-umber);
     --shadow-instance-difficulty: 0 2px 6px rgb(0 0 0 / 90%);
-    --shadow-socket: 0 0 0 0 transparent;
-    --shadow-panel: 0 0 0 0 transparent;
-    --shadow-window: 0 0 0 0 transparent;
-    --shadow-well: inset 0 0 0 1px var(--line-faint);
+    --shadow-socket:
+      inset 0 2px 5px var(--color-paint-umber-deep),
+      0 1px 0 color-mix(in srgb, var(--color-glint) 12%, transparent);
+    --shadow-panel:
+      0 3px 10px var(--color-paint-umber), inset 0 0 18px var(--color-paint-umber),
+      var(--edge-glint);
+    --shadow-window:
+      0 0 0 1px var(--color-keyline), 0 0 0 3px color-mix(in srgb, var(--border) 80%, transparent),
+      0 0 0 4px var(--color-keyline), 0 10px 28px var(--color-paint-umber-deep),
+      inset 0 0 26px var(--color-paint-umber), var(--edge-glint);
+    --shadow-well: inset 0 1px 4px var(--color-paint-umber-deep), inset 0 0 0 1px var(--line-faint);
+    /* The window head band: a warm wash under the title that fades into the
+       body, like light pooling on the top board of a painted sign. */
+    --win-head-fill: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--accent) 14%, transparent) 0%,
+      transparent 100%
+    );
     --glow-gold: 0 0 calc(12px * var(--fx-shadow, 1))
       color-mix(in srgb, var(--gold) 70%, transparent);
     --glow-gold-soft: 0 0 calc(8px * var(--fx-shadow, 1))
@@ -1106,10 +1137,15 @@
     --radius-2xs: 2px;
     --radius-xs: 3px;
     --radius-card: 5px;
-    --radius-panel: var(--radius-none);
-    --radius-socket: var(--radius-soft);
-    --radius-cell: var(--radius-soft);
-    --radius-window: var(--radius-none);
+    /* Painted direction: plates have softly worn corners, never hard boxes and
+       never pills; sockets round a little less so icon art keeps its corners. */
+    --radius-panel: 6px;
+    --radius-socket: 4px;
+    --radius-cell: 4px;
+    --radius-window: 8px;
+    /* The painted vitals: the wide health bar and the thin resource lines. */
+    --radius-bar: 3px;
+    --radius-bar-thin: 2px;
     --radius-pill: 999px;
     --dur-fast: 90ms;
     --dur-press: 60ms;
@@ -1142,8 +1178,8 @@
     --color-options-scrim: color-mix(in srgb, var(--color-keyline) 74%, transparent);
 
     /* player card canvas */
-    --color-player-card-bg-hi: #2a3a48;
-    --color-player-card-bg-lo: #0b0b12;
+    --color-player-card-bg-hi: #3a2c1c;
+    --color-player-card-bg-lo: #100b07;
     --color-player-card-chip-ink: #1c1407;
 
     /* action bars */

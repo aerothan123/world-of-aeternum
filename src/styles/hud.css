@@ -16709,11 +16709,15 @@
   body:not(.mobile-touch) #player-frame .bar.hp {
     height: var(--uf-bar-height, var(--bar-h-hp));
     clip-path: none;
+    border-radius: var(--radius-bar);
     background: var(--surface-hud);
-    box-shadow: inset 0 0 0 1px var(--line-faint);
+    box-shadow: var(--shadow-well);
   }
+  /* Painted volume rides as an image layer over the fill COLOUR, so the colour
+     (the information, and any painter-written state colour) is untouched. */
   body:not(.mobile-touch) #player-frame .bar.hp .bar-fill {
-    background: var(--vital-health);
+    background-color: var(--vital-health);
+    background-image: var(--bar-gloss);
   }
   body:not(.mobile-touch) #player-frame .bar.hp .ui-bevel-ticks {
     display: none;
@@ -16730,7 +16734,7 @@
   /* The low-health tint (vitals_view.ts threshold): the same width and text,
      a warmer fill, so a glance reads danger without a vignette. */
   body:not(.mobile-touch) #player-frame.vitals-low .bar.hp .bar-fill {
-    background: var(--color-rage);
+    background-color: var(--color-rage);
   }
   /* The thin resource line under the health bar; its readout hangs under the
      line in the sans at the right end, and the low-resource label keeps its seat. */
@@ -16738,18 +16742,23 @@
     height: var(--vitals-res-h);
     clip-path: none;
     overflow: visible;
+    border-radius: var(--radius-bar-thin);
     background: var(--surface-hud);
-    box-shadow: inset 0 0 0 1px var(--line-faint);
+    box-shadow: var(--shadow-well);
   }
   body:not(.mobile-touch) #player-frame > #pf-bars #pf-resource-frame .bar .ui-bevel-ticks,
   body:not(.mobile-touch) #player-frame > #pf-bars #pf-resource-frame .bar .ui-bevel-edge {
     display: none;
   }
+  body:not(.mobile-touch) #player-frame > #pf-bars #pf-resource-frame .bar .bar-fill {
+    border-radius: var(--radius-bar-thin);
+    background-image: var(--bar-gloss);
+  }
   body:not(.mobile-touch) #player-frame > #pf-bars #pf-resource-frame .bar.mana .bar-fill {
-    background: var(--vital-mana);
+    background-color: var(--vital-mana);
   }
   body:not(.mobile-touch) #player-frame > #pf-bars #pf-resource-frame .bar.energy .bar-fill {
-    background: var(--vital-stamina);
+    background-color: var(--vital-stamina);
   }
   body:not(.mobile-touch) #player-frame > #pf-bars #pf-resource-frame .bar .bar-text {
     top: 100%;
@@ -16814,14 +16823,20 @@
   body:not(.mobile-touch) #target-frame .bar.hp,
   body:not(.mobile-touch) #target-frame #tf-resource {
     clip-path: none;
+    border-radius: var(--radius-bar);
     background: var(--surface-hud);
-    box-shadow: inset 0 0 0 1px var(--line-faint);
+    box-shadow: var(--shadow-well);
+  }
+  body:not(.mobile-touch) #target-frame .bar.hp .bar-fill,
+  body:not(.mobile-touch) #party-frames .party-frame .bar .bar-fill {
+    background-image: var(--bar-gloss);
   }
   body:not(.mobile-touch) #target-frame .bar.hp .ui-bevel-ticks {
     display: none;
   }
   body:not(.mobile-touch) #target-frame #tf-resource {
     height: var(--vitals-res-h);
+    border-radius: var(--radius-bar-thin);
   }
   body:not(.mobile-touch) #target-frame #tf-resource .ui-bevel-ticks,
   body:not(.mobile-touch) #target-frame #tf-resource .ui-bevel-edge,
@@ -16848,8 +16863,9 @@
   }
   body:not(.mobile-touch) #party-frames .party-frame .bar {
     clip-path: none;
+    border-radius: var(--radius-bar-thin);
     background: var(--surface-hud);
-    box-shadow: inset 0 0 0 1px var(--line-faint);
+    box-shadow: var(--shadow-well);
   }
   /* The hands row: the primary bar painter stamps .hands-row
      (hands_row_core.ts); the two optional rows share the shape by id. */
@@ -16863,7 +16879,7 @@
   #actionbar2 .ui-socket,
   #actionbar3 .ui-socket {
     --ui-socket-size: var(--hands-slot-size);
-    border-radius: var(--radius-soft);
+    border-radius: var(--radius-socket);
   }
   #actionbar.hands-row .ui-socket-cd-text,
   #actionbar2 .ui-socket-cd-text,

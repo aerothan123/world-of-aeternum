@@ -5,6 +5,8 @@ import {
   ensureReadable,
   isValidHex,
   mixHex,
+  PANEL_ALPHA,
+  PANEL_LIFT,
   PRESET_ORDER,
   parseTheme,
   relativeLuminance,
@@ -43,51 +45,65 @@ describe('theme pure core', () => {
     }
   });
 
-  it('classic preset reproduces the Project H palette (charcoal, warm white, brass)', () => {
+  it('classic preset reproduces the painted Wyndlewood palette (walnut, cream, honey gilt)', () => {
     const vars = themeCssVars(THEME_PRESETS.classic);
-    expect(vars['--gold']).toBe('#c9a96a');
-    expect(vars['--border']).toBe('#4a4640');
-    expect(vars['--color-text-light']).toBe('#ece7dc');
-    expect(vars['--color-hp']).toBe('#4f9d55');
-    // Never pure black: the charcoal panel keeps a little light in it.
-    expect(vars['--panel-base']).toBe('#0e0e10');
+    expect(vars['--gold']).toBe('#dcb46a');
+    expect(vars['--border']).toBe('#6b5236');
+    expect(vars['--color-text-light']).toBe('#f3e9d2');
+    expect(vars['--color-hp']).toBe('#56a845');
+    // Never pure black: the walnut panel keeps a little warm light in it.
+    expect(vars['--panel-base']).toBe('#1e1810');
     expect(vars['--panel-base']).not.toBe('#000000');
   });
 
   it('expands knobs into the full CSS variable set including derived colours', () => {
     const vars = themeCssVars(THEME_PRESETS.classic);
     // derived from accent
-    expect(vars['--gold-dim']).toBe(mixHex('#c9a96a', '#000000', 0.22));
-    expect(vars['--color-primary-glow']).toBe(rgba('#c9a96a', 0.2));
+    expect(vars['--gold-dim']).toBe(mixHex('#dcb46a', '#000000', 0.22));
+    expect(vars['--color-primary-glow']).toBe(rgba('#dcb46a', 0.2));
     // panel-bg is a gradient built from the panel knob
     expect(vars['--panel-bg']).toContain('linear-gradient');
-    expect(vars['--panel-base']).toBe('#0e0e10');
+    expect(vars['--panel-base']).toBe('#1e1810');
     // scrollbar derives from border
-    expect(vars['--scrollbar-thumb-hover']).toBe('#4a4640');
+    expect(vars['--scrollbar-thumb-hover']).toBe('#6b5236');
   });
 
   it('emits the Project H token set from the knobs (docs/design/project-h-interface.md)', () => {
     const vars = themeCssVars(THEME_PRESETS.classic);
-    expect(vars['--surface-hud']).toBe(rgba('#0e0e10', SURFACE_HUD_ALPHA));
-    expect(vars['--surface-menu']).toBe(rgba('#0e0e10', SURFACE_MENU_ALPHA));
-    expect(vars['--surface-row']).toBe(rgba('#ece7dc', 0.04));
-    expect(vars['--surface-row-hover']).toBe(rgba('#ece7dc', 0.08));
-    expect(vars['--line-faint']).toBe(rgba('#ece7dc', 0.14));
-    expect(vars['--line']).toBe(rgba('#ece7dc', 0.26));
-    expect(vars['--line-strong']).toBe(rgba('#ece7dc', 0.42));
-    expect(vars['--accent']).toBe('#c9a96a');
-    expect(vars['--accent-soft']).toBe(rgba('#c9a96a', 0.28));
-    expect(vars['--text']).toBe('#ece7dc');
-    expect(vars['--text-dim']).toBe('#aba59b');
-    expect(vars['--text-invert']).toBe('#0e0e10');
-    expect(vars['--vital-health']).toBe('#4f9d55');
-    expect(vars['--vital-mana']).toBe('#3f7fc4');
-    expect(vars['--vital-stamina']).toBe('#cdb24a');
-    // Flat depth: the panel gradients carry one colour at both stops.
-    for (const name of ['--panel-bg', '--panel-bg-soft', '--panel-bg-strong']) {
-      const stops = vars[name].match(/rgba\([^)]*\)/g) ?? [];
-      expect(stops.length, name).toBe(2);
-      expect(stops[0], name).toBe(stops[1]);
+    expect(vars['--surface-hud']).toBe(rgba('#1e1810', SURFACE_HUD_ALPHA));
+    expect(vars['--surface-menu']).toBe(rgba('#1e1810', SURFACE_MENU_ALPHA));
+    expect(vars['--surface-row']).toBe(rgba('#f3e9d2', 0.04));
+    expect(vars['--surface-row-hover']).toBe(rgba('#f3e9d2', 0.08));
+    expect(vars['--line-faint']).toBe(rgba('#f3e9d2', 0.14));
+    expect(vars['--line']).toBe(rgba('#f3e9d2', 0.26));
+    expect(vars['--line-strong']).toBe(rgba('#f3e9d2', 0.42));
+    expect(vars['--accent']).toBe('#dcb46a');
+    expect(vars['--accent-soft']).toBe(rgba('#dcb46a', 0.28));
+    expect(vars['--text']).toBe('#f3e9d2');
+    expect(vars['--text-dim']).toBe('#bfb08f');
+    expect(vars['--text-invert']).toBe('#1e1810');
+    expect(vars['--vital-health']).toBe('#56a845');
+    expect(vars['--vital-mana']).toBe('#3f86cc');
+    expect(vars['--vital-stamina']).toBe('#d9b84a');
+  });
+
+  it('paints every panel gradient top-lit, with the panel itself as the lower stop', () => {
+    // Painted direction: the upper stop leans toward the light (the accent on a
+    // dark panel, white on a light one) by PANEL_LIFT, the lower stop is the
+    // unlifted panel, so text contrast against the panel knob is unchanged.
+    for (const id of PRESET_ORDER) {
+      const knobs = resolveTheme({ preset: id, custom: {} });
+      const vars = themeCssVars(knobs);
+      const light = relativeLuminance(knobs.panel) > 0.4;
+      const lifted = mixHex(knobs.panel, light ? '#ffffff' : knobs.accent, PANEL_LIFT);
+      expect(vars['--panel-bg'], id).toBe(
+        `linear-gradient(170deg, ${rgba(lifted, PANEL_ALPHA)} 0%, ${rgba(knobs.panel, PANEL_ALPHA)} 100%)`,
+      );
+      for (const name of ['--panel-bg', '--panel-bg-soft', '--panel-bg-strong']) {
+        const stops = vars[name].match(/rgba\([^)]*\)/g) ?? [];
+        expect(stops.length, `${id} ${name}`).toBe(2);
+        expect(stops[0], `${id} ${name}`).not.toBe(stops[1]);
+      }
     }
   });
 
@@ -132,20 +148,20 @@ describe('theme pure core', () => {
     // tokens.css defaults are the classic outputs pinned here, and
     // tests/ui_library.test.ts holds the two homes equal.
     const vars = themeCssVars(THEME_PRESETS.classic);
-    expect(vars['--color-text-secondary']).toBe('#e0dbd0');
-    expect(vars['--color-text-faint']).toBe('#98938a');
-    // the warm charcoal socket highlight and window-head stop land exactly
-    expect(vars['--color-socket-hi']).toBe('#242323');
-    expect(vars['--color-panel-hi']).toBe('#1a1a1a');
-    expect(vars['--color-glint']).toBe('#e7d8bc');
-    expect(vars['--color-control-border']).toBe('#34312d');
+    expect(vars['--color-text-secondary']).toBe('#eadfc6');
+    expect(vars['--color-text-faint']).toBe('#ac9e80');
+    // the warm oiled-wood socket highlight and window-head stop land exactly
+    expect(vars['--color-socket-hi']).toBe('#34291b');
+    expect(vars['--color-panel-hi']).toBe('#2c2216');
+    expect(vars['--color-glint']).toBe('#efddbc');
+    expect(vars['--color-control-border']).toBe('#4b3926');
     expect(vars['--color-info']).toBe('#45c9ff');
     expect(vars['--color-warning']).toBe('#ff9d32');
     expect(vars['--panel-bg-soft']).toBe(
-      'linear-gradient(170deg, rgba(14, 14, 16, 0.74) 0%, rgba(14, 14, 16, 0.74) 100%)',
+      'linear-gradient(170deg, rgba(49, 40, 25, 0.74) 0%, rgba(30, 24, 16, 0.74) 100%)',
     );
     expect(vars['--panel-bg-strong']).toBe(
-      'linear-gradient(170deg, rgba(11, 11, 12, 0.97) 0%, rgba(11, 11, 12, 0.97) 100%)',
+      'linear-gradient(170deg, rgba(43, 34, 21, 0.97) 0%, rgba(23, 18, 12, 0.97) 100%)',
     );
   });
 
