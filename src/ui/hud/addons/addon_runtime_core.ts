@@ -13,6 +13,11 @@ export const ADDON_BUDGET = {
   /** Heartbeat: ping cadence and how long a worker may stay silent. */
   pingEveryMs: 1000,
   hangAfterMs: 3000,
+  /** A worker that never reports ready within this long is a load failure. */
+  loadTimeoutMs: 20_000,
+  /** A host tick gap longer than this is the GAME stalling (a zone load, a
+   *  shader compile), not the add-on: the watchdog forgives that interval. */
+  hostStallMs: 1000,
   /** Host-side op application budget per add-on per frame. */
   hostMsPerFrame: 2,
   /** Boot sentinel: how long add-ons must run before the launch counts as safe. */
@@ -86,6 +91,14 @@ export class AddonHeartbeat {
   /** True once the worker has not answered for longer than the hang limit. */
   hung(now: number): boolean {
     return this.outstanding && now - this.lastPongAt > ADDON_BUDGET.hangAfterMs;
+  }
+
+  /** The host itself stalled: restart the silence clock so a pong still queued
+   *  behind the stall is not mistaken for a hung worker. */
+  forgive(now: number): void {
+    this.outstanding = false;
+    this.lastPongAt = now;
+    this.lastPingAt = -Infinity;
   }
 }
 

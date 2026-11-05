@@ -72,7 +72,14 @@ await sleep(4500);
 
 const state = await page.evaluate(() => {
   const rt = window.__game.hud.addons.runtime;
-  return rt.entries.map((e) => `${e.key}:${e.status}:${e.errors.total}`);
+  const frame = document.querySelector('.addon-sandbox-frame');
+  return [
+    `sandboxFrame=${!!frame}`,
+    ...rt.entries.map(
+      (e) =>
+        `${e.key}:${e.status}:${e.stopReason ?? '-'}:${e.errors.total}:${e.detail}:${e.errors.recent.join('|')}`,
+    ),
+  ];
 });
 console.log('addons', state.join(' '));
 await page.screenshot({ path: path.join(OUT, 'addons_in_game.jpg'), type: 'jpeg', quality: 86 });

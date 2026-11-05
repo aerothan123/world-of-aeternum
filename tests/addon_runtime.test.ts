@@ -294,11 +294,11 @@ describe('add-on runtime: crash isolation', () => {
       'sleeper',
     );
     if (live) live.port.onmessage = null;
-    h.rt.tick();
-    h.advance(ADDON_BUDGET.hangAfterMs + ADDON_BUDGET.pingEveryMs * 2);
-    h.rt.tick();
-    h.advance(ADDON_BUDGET.pingEveryMs);
-    h.rt.tick();
+    // Ticks 500 ms apart: the game is running normally, the worker is silent.
+    for (let i = 0; i < 12; i++) {
+      h.advance(500);
+      h.rt.tick();
+    }
     expect(h.rt.entries[0].status).toBe('stopped');
     expect(h.rt.entries[0].stopReason).toBe('hang');
     expect(h.sandbox.workers.has('sleeper')).toBe(false);
@@ -342,6 +342,36 @@ describe('add-on runtime: crash isolation', () => {
     h.advance(ADDON_BUDGET.stableAfterMs + 1);
     h.rt.tick();
     expect(h.storage.getItem(ADDON_SENTINEL_KEY)).toBeNull();
+  });
+});
+
+describe('add-on runtime: watchdog fairness to a stalled game', () => {
+  it('does not blame an add-on when the GAME stalls between ticks', async () => {
+    const h = setup([inlinePackage('patient', `wynd.on('LOADED', () => {});`)]);
+    await h.rt.start();
+    await tick();
+    h.rt.tick();
+    await tick();
+    // A 6 s main-thread stall (a zone load): one huge tick gap, then normal ticks.
+    h.advance(6000);
+    h.rt.tick();
+    await tick();
+    h.advance(500);
+    h.rt.tick();
+    expect(h.rt.entries[0].status).toBe('running');
+  });
+
+  it('gives up on an add-on that never finishes loading', async () => {
+    const h = setup([inlinePackage('never', `wynd.on('LOADED', () => {});`)]);
+    await h.rt.start();
+    const e = h.rt.entries[0];
+    e.status = 'loading';
+    for (let i = 0; i < 50; i++) {
+      h.advance(500);
+      h.rt.tick();
+    }
+    expect(e.status).toBe('error');
+    expect(e.detail).toContain('timed out');
   });
 });
 

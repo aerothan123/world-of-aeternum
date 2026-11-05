@@ -131,6 +131,9 @@ interface Live {
   hostMs: number;
   printStamps: number[];
   startedAt: number;
+  /** Host time spent waiting for `ready` (stalls of the game excluded). */
+  loadingMs: number;
+  lastSeenAt: number;
 }
 
 export class AddonRuntime {
@@ -149,6 +152,7 @@ export class AddonRuntime {
   private readonly t0: number;
   private sentinelArmedAt: number | null = null;
   private lastStatsAt = 0;
+  private lastTickAt = 0;
   private wasInCombat = false;
   private started = false;
   private generation = 0;
@@ -310,11 +314,21 @@ export class AddonRuntime {
     const union = new Set<AddonPermission>();
     for (const l of this.live.values()) for (const p of l.entry.perms) union.add(p);
     const snap = this.snapshots.build(world, this.time(), union);
+    const stalled = this.lastTickAt > 0 && now - this.lastTickAt > ADDON_BUDGET.hostStallMs;
+    this.lastTickAt = now;
     for (const [key, l] of this.live) {
-      if (l.heartbeat.hung(now)) {
+      if (stalled) l.heartbeat.forgive(now);
+      if (l.entry.status === 'loading') {
+        l.loadingMs += stalled ? 0 : now - l.lastSeenAt;
+        if (l.loadingMs > ADDON_BUDGET.loadTimeoutMs) {
+          this.stop(key, 'load', 'timed out while loading');
+          continue;
+        }
+      } else if (l.heartbeat.hung(now)) {
         this.stop(key, 'hang', '');
         continue;
       }
+      l.lastSeenAt = now;
       if (l.heartbeat.shouldPing(now)) l.port.postMessage({ t: 'ping' });
       if (l.entry.status === 'running') {
         l.port.postMessage({ t: 'snap', snap: stripSnapshotForPermissions(snap, l.entry.perms) });
@@ -466,6 +480,8 @@ export class AddonRuntime {
         hostMs: 0,
         printStamps: [],
         startedAt: now,
+        loadingMs: 0,
+        lastSeenAt: now,
       };
       e.stats.savedBytes = (savedAccount?.length ?? 0) + (savedChar?.length ?? 0);
       if (savedAccount !== null) this.savedSizes.set(accountKey, savedAccount.length);
@@ -534,6 +550,7 @@ export class AddonRuntime {
         l.entry.stats.cpuMsPerSec = smooth(l.entry.stats.cpuMsPerSec, msg.cpuMs);
         break;
       case 'ready':
+        l.heartbeat.forgive(now);
         l.entry.status = 'running';
         this.changed();
         break;
