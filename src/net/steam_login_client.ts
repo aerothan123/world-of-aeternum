@@ -11,6 +11,9 @@ import type { Api } from './online';
 export interface SteamLoginResult {
   /** True when this sign-in created the account (a first Steam login). */
   created: boolean;
+  /** The account has two-factor on and no code was sent: nothing signed in;
+   *  retry with a FRESH ticket plus the code (the /api/login contract). */
+  twoFactorRequired?: boolean;
 }
 
 export async function steamLogin(
@@ -18,14 +21,23 @@ export async function steamLogin(
   ticket: string,
   personaName: string,
   fetchImpl: typeof fetch = fetch,
+  factor: { code: string; recoveryCode: string } = { code: '', recoveryCode: '' },
 ): Promise<SteamLoginResult> {
   const res = await fetchImpl(apiUrl('/api/auth/steam', api.base), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ ticket, personaName }),
+    body: JSON.stringify({
+      ticket,
+      personaName,
+      ...(factor.code ? { code: factor.code } : {}),
+      ...(factor.recoveryCode ? { recoveryCode: factor.recoveryCode } : {}),
+    }),
   });
   const data = (await res.json().catch(() => ({}))) as Record<string, unknown>;
   if (!res.ok) throw apiErrorFromBody(data, res.status);
+  if (data.twoFactorRequired === true && typeof data.token !== 'string') {
+    return { created: false, twoFactorRequired: true };
+  }
   if (typeof data.token !== 'string' || typeof data.username !== 'string') {
     throw apiErrorFromBody(data, 502);
   }

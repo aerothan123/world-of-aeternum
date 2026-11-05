@@ -6,6 +6,7 @@ import type { DesktopBridge } from '../runtime';
 import { desktopBridge } from '../runtime';
 import { userFacingApiError } from './api_error_i18n';
 import { t } from './i18n';
+import { classifyAuthCode } from './two_factor_setup';
 
 // "Continue with Steam" on the login panel: Steam sign-in with no separate
 // account (server/steam_login.ts). Shown ONLY when the desktop shell can mint
@@ -75,8 +76,20 @@ async function startSteamSignIn(
       showLoginError(t('hudChrome.auth.steamNoTicket'));
       return;
     }
+    // Two-factor accounts: the shared login code field (#login-2fa-field) the
+    // password login reveals is reused, so the second click carries the code.
+    const twoFaField = document.getElementById('login-2fa-field') as HTMLElement | null;
+    const twoFaInput = document.getElementById('login-2fa-code') as HTMLInputElement | null;
+    const raw = twoFaField && !twoFaField.hidden ? (twoFaInput?.value ?? '') : '';
+    const factor = raw ? classifyAuthCode(raw) : { code: '', recoveryCode: '' };
     try {
-      await steamLogin(api, minted.ticket, minted.personaName ?? '');
+      const result = await steamLogin(api, minted.ticket, minted.personaName ?? '', fetch, factor);
+      if (result.twoFactorRequired) {
+        if (twoFaField) twoFaField.hidden = false;
+        twoFaInput?.focus();
+        showLoginError(t('auth.twoFactorHint'));
+        return;
+      }
     } catch (err) {
       console.error('[steam] sign-in failed', err);
       showLoginError(steamLoginErrorText(err));

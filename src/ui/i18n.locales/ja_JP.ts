@@ -25831,4 +25831,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.maintenance.begun': 'レルムのメンテナンスを開始しました。新規ログインは締め切られています。',
   'hudChrome.maintenance.cancelled': 'レルムのメンテナンスは中止されました。',
   'hudChrome.maintenance.ended': 'レルムのメンテナンスが終了しました。ログインを再開しています。',
+  'apiError.steam.not_owned': 'このSteamアカウントはまだゲームを所有していません。Steamでゲームを入手してから、もう一度お試しください。',
+  'apiError.steam.reauth_required': 'Steamを連携するには、パスワード（二段階認証が有効な場合は認証コードも）を入力してください。',
 };

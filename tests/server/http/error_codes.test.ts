@@ -147,6 +147,8 @@ const EXPECTED_CODES = [
   'steam.account_taken',
   'steam.upstream',
   'steam.unlink_last_login',
+  'steam.not_owned',
+  'steam.reauth_required',
   'epic.disabled',
   'epic.invalid_token',
   'epic.banned',

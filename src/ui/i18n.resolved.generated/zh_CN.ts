@@ -8213,7 +8213,9 @@ export const zh_CN: EnTranslations = {
       "already_linked": "你的账号已关联一个 Steam 账号。",
       "account_taken": "该 Steam 账号已关联到另一个账号。",
       "upstream": "Steam 未响应。请稍后重试。",
-      "unlink_last_login": "Steam 是你登录此账号的唯一方式。请先添加邮箱和密码，再解除关联。"
+      "unlink_last_login": "Steam 是你登录此账号的唯一方式。请先添加邮箱和密码，再解除关联。",
+      "not_owned": "这个 Steam 账户还没有拥有本游戏。请先在 Steam 上获取游戏，然后重试。",
+      "reauth_required": "请输入你的密码（如已开启两步验证，还需输入验证码）以关联 Steam。"
     },
     "epic": {
       "disabled": "Epic 关联当前不可用。",

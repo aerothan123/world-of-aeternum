@@ -8213,7 +8213,9 @@ export const ja_JP: EnTranslations = {
       "already_linked": "このアカウントには既にSteamアカウントが連携されています。",
       "account_taken": "そのSteamアカウントは既に別のアカウントに連携されています。",
       "upstream": "Steamから応答がありません。しばらくしてからもう一度お試しください。",
-      "unlink_last_login": "このアカウントにはSteamでしかサインインできません。連携を解除する前にメールアドレスとパスワードを追加してください。"
+      "unlink_last_login": "このアカウントにはSteamでしかサインインできません。連携を解除する前にメールアドレスとパスワードを追加してください。",
+      "not_owned": "このSteamアカウントはまだゲームを所有していません。Steamでゲームを入手してから、もう一度お試しください。",
+      "reauth_required": "Steamを連携するには、パスワード（二段階認証が有効な場合は認証コードも）を入力してください。"
     },
     "epic": {
       "disabled": "Epic連携は現在利用できません。",

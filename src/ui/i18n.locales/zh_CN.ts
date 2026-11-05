@@ -24495,4 +24495,6 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.maintenance.begun': '服务器维护已开始，暂停新的登录。',
   'hudChrome.maintenance.cancelled': '服务器维护已取消。',
   'hudChrome.maintenance.ended': '服务器维护已结束，现已开放登录。',
+  'apiError.steam.not_owned': '这个 Steam 账户还没有拥有本游戏。请先在 Steam 上获取游戏，然后重试。',
+  'apiError.steam.reauth_required': '请输入你的密码（如已开启两步验证，还需输入验证码）以关联 Steam。',
 };

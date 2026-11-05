@@ -7,6 +7,7 @@
 
 import {
   buildAuthenticateUserTicketUrl,
+  buildCheckAppOwnershipUrl,
   buildSetAchievementRequest,
   parseAuthenticateUserTicketResponse,
   type TicketVerdict,
@@ -43,6 +44,34 @@ export async function verifyLinkTicket(
   // ticket verdict; the route serves 503 and the player retries.
   if (verdict.kind === 'malformed') return { kind: 'upstream' };
   return verdict;
+}
+
+/** Whether a Steam id owns (or is family-shared) the app: 'upstream' when
+ *  Steam could not be asked, never read as proof either way. The login route
+ *  asks before provisioning a NEW account, so a free Steam account that never
+ *  bought the game cannot mint Wyndlewood accounts. */
+export type OwnershipOutcome = 'owned' | 'not_owned' | 'upstream';
+
+export async function checkAppOwnership(
+  opts: { key: string; appId: number; steamId: string },
+  fetchImpl: typeof fetch = fetch,
+): Promise<OwnershipOutcome> {
+  let res: Response;
+  try {
+    res = await fetchImpl(buildCheckAppOwnershipUrl(opts), {
+      method: 'GET',
+      signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS),
+    });
+  } catch {
+    return 'upstream';
+  }
+  if (!res.ok) return 'upstream';
+  const body = (await res.json().catch(() => null)) as {
+    appownership?: { ownsapp?: unknown; result?: unknown };
+  } | null;
+  const own = body?.appownership;
+  if (!own || typeof own.ownsapp !== 'boolean') return 'upstream';
+  return own.ownsapp ? 'owned' : 'not_owned';
 }
 
 /** POST a batch of achievement unlocks for one account+steamId in ONE

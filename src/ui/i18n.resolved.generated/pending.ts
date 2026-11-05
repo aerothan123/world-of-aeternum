@@ -11,6 +11,8 @@
 export const pending: Record<string, readonly string[]> = {
   "es": [
     "abilityUi.cast.chopping",
+    "apiError.steam.not_owned",
+    "apiError.steam.reauth_required",
     "apiError.steam.unlink_last_login",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
@@ -271,6 +273,8 @@ export const pending: Record<string, readonly string[]> = {
   ],
   "es_ES": [
     "abilityUi.cast.chopping",
+    "apiError.steam.not_owned",
+    "apiError.steam.reauth_required",
     "apiError.steam.unlink_last_login",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
@@ -531,6 +535,8 @@ export const pending: Record<string, readonly string[]> = {
   ],
   "fr_FR": [
     "abilityUi.cast.chopping",
+    "apiError.steam.not_owned",
+    "apiError.steam.reauth_required",
     "apiError.steam.unlink_last_login",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
@@ -791,6 +797,8 @@ export const pending: Record<string, readonly string[]> = {
   ],
   "fr_CA": [
     "abilityUi.cast.chopping",
+    "apiError.steam.not_owned",
+    "apiError.steam.reauth_required",
     "apiError.steam.unlink_last_login",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
@@ -1052,6 +1060,8 @@ export const pending: Record<string, readonly string[]> = {
   "en_CA": [],
   "it_IT": [
     "abilityUi.cast.chopping",
+    "apiError.steam.not_owned",
+    "apiError.steam.reauth_required",
     "apiError.steam.unlink_last_login",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
@@ -1312,6 +1322,8 @@ export const pending: Record<string, readonly string[]> = {
   ],
   "de_DE": [
     "abilityUi.cast.chopping",
+    "apiError.steam.not_owned",
+    "apiError.steam.reauth_required",
     "apiError.steam.unlink_last_login",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
@@ -2152,6 +2164,8 @@ export const pending: Record<string, readonly string[]> = {
   ],
   "pt_BR": [
     "abilityUi.cast.chopping",
+    "apiError.steam.not_owned",
+    "apiError.steam.reauth_required",
     "apiError.steam.unlink_last_login",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
@@ -2557,6 +2571,8 @@ export const pending: Record<string, readonly string[]> = {
   ],
   "cs_CZ": [
     "abilityUi.cast.chopping",
+    "apiError.steam.not_owned",
+    "apiError.steam.reauth_required",
     "apiError.steam.unlink_last_login",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
@@ -2817,6 +2833,8 @@ export const pending: Record<string, readonly string[]> = {
   ],
   "nl_NL": [
     "abilityUi.cast.chopping",
+    "apiError.steam.not_owned",
+    "apiError.steam.reauth_required",
     "apiError.steam.unlink_last_login",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
@@ -3077,6 +3095,8 @@ export const pending: Record<string, readonly string[]> = {
   ],
   "pl_PL": [
     "abilityUi.cast.chopping",
+    "apiError.steam.not_owned",
+    "apiError.steam.reauth_required",
     "apiError.steam.unlink_last_login",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
@@ -3337,6 +3357,8 @@ export const pending: Record<string, readonly string[]> = {
   ],
   "id_ID": [
     "abilityUi.cast.chopping",
+    "apiError.steam.not_owned",
+    "apiError.steam.reauth_required",
     "apiError.steam.unlink_last_login",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
@@ -3597,6 +3619,8 @@ export const pending: Record<string, readonly string[]> = {
   ],
   "tr_TR": [
     "abilityUi.cast.chopping",
+    "apiError.steam.not_owned",
+    "apiError.steam.reauth_required",
     "apiError.steam.unlink_last_login",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
@@ -3857,6 +3881,8 @@ export const pending: Record<string, readonly string[]> = {
   ],
   "sv_SE": [
     "abilityUi.cast.chopping",
+    "apiError.steam.not_owned",
+    "apiError.steam.reauth_required",
     "apiError.steam.unlink_last_login",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
@@ -4117,6 +4143,8 @@ export const pending: Record<string, readonly string[]> = {
   ],
   "vi_VN": [
     "abilityUi.cast.chopping",
+    "apiError.steam.not_owned",
+    "apiError.steam.reauth_required",
     "apiError.steam.unlink_last_login",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",
@@ -4377,6 +4405,8 @@ export const pending: Record<string, readonly string[]> = {
   ],
   "da_DK": [
     "abilityUi.cast.chopping",
+    "apiError.steam.not_owned",
+    "apiError.steam.reauth_required",
     "apiError.steam.unlink_last_login",
     "entities.dungeons.house_eastbrook_quay_cottage.enterText",
     "entities.dungeons.house_eastbrook_quay_cottage.leaveText",

@@ -19,6 +19,7 @@ vi.mock('../../server/steam/steam_db', () => ({
   insertSteamLink: vi.fn(async () => 'ok'),
   displaceSteamLink: vi.fn(async () => ({ result: 'ok', displacedAccountId: null })),
   deleteSteamLink: vi.fn(async () => {}),
+  deleteSteamLinkIfReachable: vi.fn(async () => 'deleted'),
   steamLinkOwnerStanding: vi.fn(async () => ({ hasOtherLogin: true, hasCharacters: false })),
 }));
 vi.mock('../../server/steam/web_api', () => ({
@@ -54,14 +55,13 @@ import { rateLimit, STEAM_LINK_POLICY } from '../../server/http/middleware/rate_
 import type { Ctx, RouteDef } from '../../server/http/types';
 import { resetSteamLinkRateLimits, STEAM_LINK_MAX_PER_MINUTE } from '../../server/ratelimit';
 import { onLinkChanged, reconcileLink } from '../../server/steam/mirror';
-import { routes } from '../../server/steam/routes';
+import { routes, setSteamLinkRouteDepsForTests } from '../../server/steam/routes';
 import {
   accountForSteamId,
-  deleteSteamLink,
+  deleteSteamLinkIfReachable,
   displaceSteamLink,
   insertSteamLink,
   steamLinkForAccount,
-  steamLinkOwnerStanding,
 } from '../../server/steam/steam_db';
 import {
   isTicketShape,
@@ -77,8 +77,7 @@ const linkForAccountMock = vi.mocked(steamLinkForAccount);
 const accountForSteamIdMock = vi.mocked(accountForSteamId);
 const insertMock = vi.mocked(insertSteamLink);
 const displaceMock = vi.mocked(displaceSteamLink);
-const deleteMock = vi.mocked(deleteSteamLink);
-const standingMock = vi.mocked(steamLinkOwnerStanding);
+const deleteMock = vi.mocked(deleteSteamLinkIfReachable);
 const verifyMock = vi.mocked(verifyLinkTicket);
 const reconcileMock = vi.mocked(reconcileLink);
 const onLinkChangedMock = vi.mocked(onLinkChanged);
@@ -140,8 +139,24 @@ afterEach(() => {
   insertMock.mockResolvedValue('ok');
   displaceMock.mockResolvedValue({ result: 'ok', displacedAccountId: null });
   verifyMock.mockResolvedValue({ kind: 'ok', steamId: STEAM_ID });
-  standingMock.mockResolvedValue({ hasOtherLogin: true, hasCharacters: false });
+  deleteMock.mockResolvedValue('deleted');
+  // No step-up owed by default (an account with neither password nor 2FA), so
+  // the cases below exercise the link flow; the step-up block raises it.
+  notifyMock.mockReset();
+  notifyMock.mockResolvedValue(undefined);
+  setSteamLinkRouteDepsForTests({
+    stepUpNeeds: async () => ({ username: 'linker', password: false, code: false }),
+    verifyPassword: async (_id, password) => password === 'hunter2',
+    verifyTwoFactor: async (_id, code) => code === '123456',
+    throttled: () => false,
+    recordFailure: () => {},
+    clearFailures: () => {},
+    notifyDisplaced: notifyMock,
+    now: () => 5_000_000,
+  });
 });
+
+const notifyMock = vi.fn(async (_accountId: number) => {});
 
 // ---------------------------------------------------------------------------
 // DDL pins (the steam_links literals in db.ts SCHEMA).
@@ -380,10 +395,11 @@ describe('POST /api/steam/link', () => {
 // ---------------------------------------------------------------------------
 
 describe('DELETE /api/steam/link', () => {
-  it('deletes the link, invalidates the mirror cache, and is idempotent', async () => {
+  it('deletes the link in one check-and-delete, invalidates the mirror cache, and is idempotent', async () => {
     enableSteam();
     const handler = routeFor('DELETE', '/api/steam/link').handler;
-    for (let round = 0; round < 2; round++) {
+    for (const result of ['deleted', 'none'] as const) {
+      deleteMock.mockResolvedValueOnce(result);
       const ctx = fakeCtx({ method: 'DELETE', url: '/api/steam/link', account: ACCOUNT });
       await handler(ctx);
       expect(captured(ctx.res)).toEqual({ status: 200, body: { unlinked: true } });
@@ -392,69 +408,129 @@ describe('DELETE /api/steam/link', () => {
     expect(deleteMock).toHaveBeenCalledWith(ACCOUNT.accountId);
     expect(onLinkChangedMock).toHaveBeenCalledWith(ACCOUNT.accountId, null);
   });
-});
 
-describe('Steam-only accounts keep their only login (Steam login provisioned them)', () => {
-  const linkedRow = {
-    accountId: ACCOUNT.accountId,
-    steamId: STEAM_ID,
-    createdAt: '2026-01-01T00:00:00.000Z',
-  };
-
-  it('unlink refuses 409 steam.unlink_last_login when the link is the only login', async () => {
+  it('refuses 409 steam.unlink_last_login when the statement finds no other way in', async () => {
     enableSteam();
-    linkForAccountMock.mockResolvedValue(linkedRow);
-    standingMock.mockResolvedValue({ hasOtherLogin: false, hasCharacters: true });
+    deleteMock.mockResolvedValue('last_login');
     const ctx = fakeCtx({ method: 'DELETE', url: '/api/steam/link', account: ACCOUNT });
     await expect(routeFor('DELETE', '/api/steam/link').handler(ctx)).rejects.toMatchObject({
       status: 409,
       code: 'steam.unlink_last_login',
     });
-    expect(deleteMock).not.toHaveBeenCalled();
+    expect(onLinkChangedMock).not.toHaveBeenCalled();
   });
+});
 
-  it('unlink still proceeds for an account with another login', async () => {
-    enableSteam();
-    linkForAccountMock.mockResolvedValue(linkedRow);
-    standingMock.mockResolvedValue({ hasOtherLogin: true, hasCharacters: true });
-    const ctx = fakeCtx({ method: 'DELETE', url: '/api/steam/link', account: ACCOUNT });
-    await routeFor('DELETE', '/api/steam/link').handler(ctx);
-    expect(captured(ctx.res).status).toBe(200);
-    expect(deleteMock).toHaveBeenCalledWith(ACCOUNT.accountId);
-  });
+describe('reclaim-by-proof never takes a link from an account with progress', () => {
+  const linkCtx = (body: Record<string, unknown> = { ticket: GOOD_TICKET }) =>
+    fakeCtx({ method: 'POST', url: '/api/steam/link', account: ACCOUNT, body });
 
-  it('reclaim-by-proof refuses to strand a Steam-only account that holds characters', async () => {
+  it('a holder with characters is protected (decided in the displace transaction), whatever its logins', async () => {
     enableSteam();
     accountForSteamIdMock.mockResolvedValue(99);
-    standingMock.mockResolvedValue({ hasOtherLogin: false, hasCharacters: true });
-    const ctx = fakeCtx({
-      method: 'POST',
-      url: '/api/steam/link',
-      account: ACCOUNT,
-      body: { ticket: GOOD_TICKET },
-    });
-    await expect(routeFor('POST', '/api/steam/link').handler(ctx)).rejects.toMatchObject({
+    displaceMock.mockResolvedValue({ result: 'holder_protected', displacedAccountId: null });
+    await expect(routeFor('POST', '/api/steam/link').handler(linkCtx())).rejects.toMatchObject({
       status: 409,
       code: 'steam.account_taken',
     });
-    expect(standingMock).toHaveBeenCalledWith(99);
-    expect(displaceMock).not.toHaveBeenCalled();
+    expect(displaceMock).toHaveBeenCalledWith(ACCOUNT.accountId, STEAM_ID);
+    expect(notifyMock).not.toHaveBeenCalled();
+    expect(reconcileMock).not.toHaveBeenCalled();
   });
 
-  it('reclaim-by-proof may displace an EMPTY Steam-only account (nothing is lost)', async () => {
+  it('an EMPTY holder may be displaced, and is notified', async () => {
     enableSteam();
     accountForSteamIdMock.mockResolvedValue(99);
-    standingMock.mockResolvedValue({ hasOtherLogin: false, hasCharacters: false });
     displaceMock.mockResolvedValue({ result: 'ok', displacedAccountId: 99 });
-    const ctx = fakeCtx({
-      method: 'POST',
-      url: '/api/steam/link',
-      account: ACCOUNT,
-      body: { ticket: GOOD_TICKET },
-    });
+    const ctx = linkCtx();
     await routeFor('POST', '/api/steam/link').handler(ctx);
     expect(captured(ctx.res).status).toBe(200);
-    expect(displaceMock).toHaveBeenCalledWith(ACCOUNT.accountId, STEAM_ID);
+    expect(onLinkChangedMock).toHaveBeenCalledWith(99, null);
+    expect(notifyMock).toHaveBeenCalledWith(99);
+  });
+});
+
+describe('link step-up: a bearer token alone cannot plant a Steam login', () => {
+  const linkCtx = (body: Record<string, unknown>) =>
+    fakeCtx({ method: 'POST', url: '/api/steam/link', account: ACCOUNT, body });
+  const owe = (password: boolean, code: boolean) =>
+    setSteamLinkRouteDepsForTests({
+      stepUpNeeds: async () => ({ username: 'linker', password, code }),
+      verifyPassword: async (_id, pw) => pw === 'hunter2',
+      verifyTwoFactor: async (_id, c) => c === '123456',
+      throttled: () => false,
+      recordFailure: () => {},
+      clearFailures: () => {},
+      notifyDisplaced: notifyMock,
+      now: () => 5_000_000,
+    });
+
+  it('answers steam.reauth_required naming the owed proofs, before Steam is asked', async () => {
+    enableSteam();
+    owe(true, true);
+    await expect(
+      routeFor('POST', '/api/steam/link').handler(linkCtx({ ticket: GOOD_TICKET })),
+    ).rejects.toMatchObject({
+      status: 401,
+      code: 'steam.reauth_required',
+      params: { needPassword: 1, needCode: 1 },
+    });
+    expect(verifyMock).not.toHaveBeenCalled();
+  });
+
+  it('a wrong password or code is refused; the right pair links', async () => {
+    enableSteam();
+    owe(true, true);
+    const route = routeFor('POST', '/api/steam/link');
+    await expect(
+      route.handler(linkCtx({ ticket: GOOD_TICKET, password: 'nope', code: '123456' })),
+    ).rejects.toMatchObject({ status: 401, code: 'auth.password_incorrect' });
+    await expect(
+      route.handler(linkCtx({ ticket: GOOD_TICKET, password: 'hunter2', code: '000000' })),
+    ).rejects.toMatchObject({ status: 401, code: 'two_factor.code_invalid' });
+    expect(verifyMock).not.toHaveBeenCalled();
+    const ok = linkCtx({ ticket: GOOD_TICKET, password: 'hunter2', code: '123456' });
+    await route.handler(ok);
+    expect(captured(ok.res).status).toBe(200);
+  });
+
+  it('a throttled account is refused before any proof is checked', async () => {
+    enableSteam();
+    setSteamLinkRouteDepsForTests({
+      stepUpNeeds: async () => ({ username: 'linker', password: true, code: false }),
+      throttled: () => true,
+      notifyDisplaced: notifyMock,
+      now: () => 5_000_000,
+    });
+    await expect(
+      routeFor('POST', '/api/steam/link').handler(
+        linkCtx({ ticket: GOOD_TICKET, password: 'hunter2' }),
+      ),
+    ).rejects.toMatchObject({ status: 429, code: 'auth.too_many_failed_attempts' });
+  });
+});
+
+describe('link tickets are single-use', () => {
+  it('refuses a replayed link ticket, but an upstream outage leaves it unspent', async () => {
+    enableSteam();
+    const route = routeFor('POST', '/api/steam/link');
+    const ctx = () =>
+      fakeCtx({
+        method: 'POST',
+        url: '/api/steam/link',
+        account: ACCOUNT,
+        body: { ticket: GOOD_TICKET },
+      });
+    verifyMock.mockResolvedValueOnce({ kind: 'upstream' });
+    await expect(route.handler(ctx())).rejects.toMatchObject({ code: 'steam.upstream' });
+    insertMock.mockResolvedValueOnce('ok');
+    await route.handler(ctx());
+    // The same ticket again (another account would be the attack): refused.
+    await expect(route.handler(ctx())).rejects.toMatchObject({
+      status: 400,
+      code: 'steam.invalid_ticket',
+    });
+    expect(verifyMock).toHaveBeenCalledTimes(2);
   });
 });
 
@@ -516,11 +592,12 @@ describe('STEAM_LINK_POLICY', () => {
     const bearer = { authorization: `Bearer ${'a'.repeat(64)}` };
     const route = routeFor('POST', '/api/steam/link');
     for (let i = 0; i < STEAM_LINK_MAX_PER_MINUTE; i++) {
+      // A distinct ticket per request: link tickets are single-use.
       const ctx = fakeCtx({
         method: 'POST',
         url: '/api/steam/link',
         headers: bearer,
-        body: { ticket: GOOD_TICKET },
+        body: { ticket: i.toString(16).padStart(2, '0').repeat(64) },
       });
       await runRoute(route, ctx);
       expect(captured(ctx.res).status).toBe(200);

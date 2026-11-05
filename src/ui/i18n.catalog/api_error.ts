@@ -207,6 +207,8 @@ export const apiErrorStrings = {
     upstream: 'Steam did not respond. Try again in a moment.',
     unlink_last_login:
       'Steam is your only way to sign in to this account. Add an email and password before unlinking it.',
+    not_owned: 'This Steam account does not own the game yet. Get it on Steam, then try again.',
+    reauth_required: 'Enter your password (and your two-factor code, if it is on) to link Steam.',
   },
   // epic: the env-gated Epic link family (server/epic/). Linking mirrors
   // deed unlocks to Epic achievements; it is never a sign-in method.

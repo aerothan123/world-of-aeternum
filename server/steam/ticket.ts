@@ -85,6 +85,19 @@ export function buildAuthenticateUserTicketUrl(opts: {
   return url.toString();
 }
 
+/** ISteamUser/CheckAppOwnership on the partner host (publisher key). */
+export function buildCheckAppOwnershipUrl(opts: {
+  key: string;
+  appId: number;
+  steamId: string;
+}): string {
+  const url = new URL(`${PARTNER_API_HOST}/ISteamUser/CheckAppOwnership/v2/`);
+  url.searchParams.set('key', opts.key);
+  url.searchParams.set('steamid', opts.steamId);
+  url.searchParams.set('appid', String(opts.appId));
+  return url.toString();
+}
+
 /**
  * How a verification response reads:
  *  - ok: the ticket proves the given Steam id, no publisher or VAC ban;

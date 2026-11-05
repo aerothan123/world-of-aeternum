@@ -8213,7 +8213,9 @@ export const zh_TW: EnTranslations = {
       "already_linked": "你的帳號已連結一個 Steam 帳號。",
       "account_taken": "該 Steam 帳號已連結到另一個帳號。",
       "upstream": "Steam 未回應。請稍後重試。",
-      "unlink_last_login": "Steam 是你登入此帳號的唯一方式。請先新增電子郵件與密碼，再解除連結。"
+      "unlink_last_login": "Steam 是你登入此帳號的唯一方式。請先新增電子郵件與密碼，再解除連結。",
+      "not_owned": "這個 Steam 帳號尚未擁有本遊戲。請先在 Steam 上取得遊戲，然後再試一次。",
+      "reauth_required": "請輸入你的密碼（若已開啟雙重驗證，還需輸入驗證碼）以連結 Steam。"
     },
     "epic": {
       "disabled": "Epic 連結目前無法使用。",

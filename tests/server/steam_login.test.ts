@@ -9,7 +9,7 @@ process.env.DATABASE_URL ||= 'postgres://test:test@127.0.0.1:5433/wocc_steam_log
 import type * as http from 'node:http';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import type { Ctx, RouteDef } from '../../server/http/types';
-import { resetRateLimits } from '../../server/ratelimit';
+import { resetRateLimitClock, resetRateLimits, setRateLimitClock } from '../../server/ratelimit';
 import { LOGIN_TICKET_IDENTITY, TICKET_IDENTITY } from '../../server/steam/ticket';
 import { verifyLinkTicket } from '../../server/steam/web_api';
 import {
@@ -69,6 +69,9 @@ function fakeStore() {
   const links = new Map<string, number>();
   const sessions: { accountId: number; token: string }[] = [];
   const discarded: number[] = [];
+  const reports: { accountId: number; username: string; ip: string }[] = [];
+  const twoFactor = new Map<number, string>();
+  const ownership: { answer: 'owned' | 'not_owned' | 'upstream' } = { answer: 'owned' };
   const deps: Partial<SteamLoginDeps> = {
     accountForSteamId: async (steamId) => links.get(steamId) ?? null,
     insertSteamLink: async (accountId, steamId) => {
@@ -99,10 +102,19 @@ function fakeStore() {
       sessions.push({ accountId, token });
       return { token, username: accounts.get(accountId)?.username ?? 'player', emailMissing: true };
     },
+    ownsApp: async () => ownership.answer,
+    twoFactorStanding: async (accountId) => ({
+      username: accounts.get(accountId)?.username ?? '',
+      enabled: twoFactor.has(accountId),
+    }),
+    verifyTwoFactor: async (accountId, code) => twoFactor.get(accountId) === code,
+    reportRegistration: (input) => {
+      reports.push(input);
+    },
     randomHex: (bytes) => 'c'.repeat(bytes * 2),
     now: () => 1_000_000,
   };
-  return { accounts, links, sessions, discarded, deps };
+  return { accounts, links, sessions, discarded, reports, twoFactor, ownership, deps };
 }
 
 function route(): RouteDef {
@@ -192,6 +204,111 @@ describe('POST /api/auth/steam (mocked Steam endpoint)', () => {
     await runRoute(ctx);
     expect(captured(ctx.res).body).toMatchObject({ username: 'OldHand', created: false });
     expect(store.accounts.size).toBe(1);
+  });
+
+  it('a first login reports the new account to the registration abuse signals', async () => {
+    const { store } = install();
+    await runRoute(loginCtx({ ticket: TICKET, personaName: 'Bramble' }));
+    expect(store.reports).toHaveLength(1);
+    expect(store.reports[0]).toMatchObject({ username: 'Bramble' });
+    // A returning login is not a registration.
+    await runRoute(loginCtx({ ticket: 'cd'.repeat(60) }));
+    expect(store.reports).toHaveLength(1);
+  });
+
+  it('refuses to provision for a Steam account that does not own the game', async () => {
+    const store = fakeStore();
+    store.ownership.answer = 'not_owned';
+    install(fakeSteam(), store);
+    await expect(runRoute(loginCtx({ ticket: TICKET }))).rejects.toMatchObject({
+      status: 403,
+      code: 'steam.not_owned',
+    });
+    expect(store.accounts.size).toBe(0);
+    store.ownership.answer = 'upstream';
+    await expect(runRoute(loginCtx({ ticket: 'cd'.repeat(60) }))).rejects.toMatchObject({
+      status: 503,
+      code: 'steam.upstream',
+    });
+    expect(store.accounts.size).toBe(0);
+  });
+
+  it('caps new accounts per IP per day (a Steam account farm cannot mint unbounded accounts)', async () => {
+    let n = 0;
+    const steam = {
+      calls: [] as SteamCall[],
+      fetchImpl: (async (input: string | URL) => {
+        const url = new URL(String(input));
+        const id = `7656119800000${String(1000 + n++)}`;
+        return new Response(
+          JSON.stringify({
+            response: {
+              params: {
+                result: 'OK',
+                steamid: id,
+                ownersteamid: id,
+                vacbanned: false,
+                publisherbanned: false,
+              },
+            },
+          }),
+          { status: url ? 200 : 500 },
+        );
+      }) as typeof fetch,
+    };
+    const { store } = install(steam);
+    for (let i = 0; i < 3; i++) await runRoute(loginCtx({ ticket: `${i}a`.repeat(60) }));
+    expect(store.accounts.size).toBe(3);
+    await expect(runRoute(loginCtx({ ticket: '9a'.repeat(60) }))).rejects.toMatchObject({
+      status: 429,
+      code: 'auth.too_many_attempts',
+    });
+    expect(store.accounts.size).toBe(3);
+  });
+
+  it('caps ticket claims per IP, so a flood cannot evict real claims from the guard', async () => {
+    install();
+    // Step the per-IP auth limiter's clock a minute per request so only the
+    // claim budget (on the fixed deps clock, one 10-minute window) can refuse.
+    let clock = 0;
+    setRateLimitClock(() => (clock += 61_000));
+    try {
+      for (let i = 0; i < 30; i++) {
+        await runRoute(loginCtx({ ticket: i.toString(16).padStart(2, '0').repeat(60) }));
+      }
+      await expect(runRoute(loginCtx({ ticket: 'ef'.repeat(60) }))).rejects.toMatchObject({
+        status: 429,
+        code: 'auth.too_many_attempts',
+      });
+    } finally {
+      resetRateLimitClock();
+    }
+  });
+
+  it('a two-factor account answers twoFactorRequired, then needs a FRESH ticket plus the code', async () => {
+    const { store } = install();
+    await runRoute(loginCtx({ ticket: TICKET }));
+    const accountId = store.links.get(STEAM_ID) as number;
+    store.twoFactor.set(accountId, '123456');
+    const sessionsBefore = store.sessions.length;
+
+    const challenge = loginCtx({ ticket: 'd1'.repeat(60) });
+    await runRoute(challenge);
+    expect(captured(challenge.res)).toEqual({ status: 200, body: { twoFactorRequired: true } });
+    expect(store.sessions).toHaveLength(sessionsBefore);
+
+    await expect(
+      runRoute(loginCtx({ ticket: 'd2'.repeat(60), code: '000000' })),
+    ).rejects.toMatchObject({ status: 401, code: 'two_factor.code_invalid' });
+    // The spent challenge ticket cannot be reused with the code.
+    await expect(
+      runRoute(loginCtx({ ticket: 'd1'.repeat(60), code: '123456' })),
+    ).rejects.toMatchObject({ status: 400, code: 'steam.invalid_ticket' });
+
+    const ok = loginCtx({ ticket: 'd3'.repeat(60), code: '123456' });
+    await runRoute(ok);
+    expect(captured(ok.res).status).toBe(200);
+    expect(store.sessions).toHaveLength(sessionsBefore + 1);
   });
 
   it('the login identity is not the link identity (a link ticket cannot sign in)', () => {

@@ -213,6 +213,10 @@ export const ERROR_CODES = deepFreeze({
   'steam.upstream': { params: [] },
   // Unlink refused: the Steam link is this account's only way to sign in (409).
   'steam.unlink_last_login': { params: [] },
+  // A first Steam sign-in from a Steam account that does not own the game (403).
+  'steam.not_owned': { params: [] },
+  // Linking Steam needs the account password and/or a two-factor code (401).
+  'steam.reauth_required': { params: ['needPassword', 'needCode'] },
 
   // --- Epic link family codes (server/epic/). The whole surface is
   // env-gated: with EPIC_ENABLED unset every route answers epic.disabled.

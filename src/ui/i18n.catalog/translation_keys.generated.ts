@@ -383,6 +383,8 @@ export type TranslationKeyFlat =
   | 'apiError.steam.banned'
   | 'apiError.steam.disabled'
   | 'apiError.steam.invalid_ticket'
+  | 'apiError.steam.not_owned'
+  | 'apiError.steam.reauth_required'
   | 'apiError.steam.unlink_last_login'
   | 'apiError.steam.upstream'
   | 'apiError.two_factor.already_enabled'

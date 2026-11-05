@@ -24,6 +24,7 @@
 
 import { randomBytes } from 'node:crypto';
 import type * as http from 'node:http';
+import { verifyLoginTwoFactor } from './account';
 import { hashPassword, newToken, offensiveName } from './auth';
 import {
   accountById,
@@ -40,12 +41,33 @@ import { withBody } from './http/middleware/body';
 import { turnstile } from './http/middleware/turnstile';
 import type { Ctx, Middleware, RouteDef } from './http/types';
 import { isUniqueViolation, json, moderationErrorBody } from './http_util';
-import { rateLimited, requestIp } from './ratelimit';
+import { createSuspiciousRegistrationReport } from './moderation_db';
+import {
+  authThrottled,
+  clearAuthFailures,
+  rateLimited,
+  recordAuthFailure,
+  requestIp,
+} from './ratelimit';
 import { steamAppId, steamLoginEnabled, steamWebApiKey } from './steam/config';
 import { accountForSteamId, insertSteamLink } from './steam/steam_db';
 import { isTicketShape, LOGIN_TICKET_IDENTITY } from './steam/ticket';
-import { type VerifyOutcome, verifyLinkTicket } from './steam/web_api';
-import { createTicketReplayGuard, steamUsernameBase, ticketDigest } from './steam_login_core';
+import {
+  checkAppOwnership,
+  type OwnershipOutcome,
+  type VerifyOutcome,
+  verifyLinkTicket,
+} from './steam/web_api';
+import {
+  createTicketReplayGuard,
+  createWindowBudget,
+  STEAM_NEW_ACCOUNT_WINDOW_MS,
+  STEAM_NEW_ACCOUNTS_PER_IP,
+  STEAM_TICKET_CLAIM_WINDOW_MS,
+  STEAM_TICKET_CLAIMS_PER_IP,
+  steamUsernameBase,
+  ticketDigest,
+} from './steam_login_core';
 
 /** Every IO edge the handler touches, injectable so the route tests run with
  *  a mocked Steam endpoint and an in-memory account store (no pg, no network). */
@@ -74,6 +96,19 @@ export interface SteamLoginDeps {
     accountId: number,
     meta: { ip: string; userAgent: string },
   ): Promise<{ token: string; username: string; emailMissing: boolean }>;
+  /** Whether the verified Steam id owns the app (asked only before a NEW account). */
+  ownsApp(opts: { key: string; appId: number; steamId: string }): Promise<OwnershipOutcome>;
+  /** The account's login name and whether it has two-factor on. */
+  twoFactorStanding(accountId: number): Promise<{ username: string; enabled: boolean }>;
+  /** Verify a TOTP or recovery code (replay-guarded, server/account.ts). */
+  verifyTwoFactor(accountId: number, code: string, recoveryCode: string): Promise<boolean>;
+  /** The registration abuse signals every fresh account gets (fire-and-forget). */
+  reportRegistration(input: {
+    accountId: number;
+    username: string;
+    ip: string;
+    userAgent: string;
+  }): void;
   randomHex(bytes: number): string;
   now(): number;
 }
@@ -92,6 +127,15 @@ let runtime: SteamLoginRuntime = {
 
 export function configureSteamLoginRuntime(rt: SteamLoginRuntime): void {
   runtime = rt;
+}
+
+/** The full row (totp columns included) that verifyLoginTwoFactor needs:
+ *  accountById's info row omits them, findAccount carries them. */
+async function fullAccountRow(accountId: number) {
+  const info = await accountById(accountId);
+  if (!info) return null;
+  const full = await findAccount(info.username);
+  return full && full.id === accountId ? full : null;
 }
 
 const defaultDeps: SteamLoginDeps = {
@@ -116,18 +160,51 @@ const defaultDeps: SteamLoginDeps = {
       emailMissing: !account?.email?.trim(),
     };
   },
+  ownsApp: (opts) => checkAppOwnership(opts),
+  twoFactorStanding: async (accountId) => {
+    const full = await fullAccountRow(accountId);
+    return { username: full?.username ?? '', enabled: Boolean(full?.totp_enabled_at) };
+  },
+  verifyTwoFactor: async (accountId, code, recoveryCode) => {
+    const full = await fullAccountRow(accountId);
+    return full ? verifyLoginTwoFactor(full, code, recoveryCode) : false;
+  },
+  reportRegistration: (input) => {
+    void createSuspiciousRegistrationReport(input).catch((err) =>
+      console.error('[steam] suspicious registration report failed', err),
+    );
+  },
   randomHex: (bytes) => randomBytes(bytes).toString('hex'),
   now: () => Date.now(),
 };
 
 let deps: SteamLoginDeps = defaultDeps;
 let replayGuard = createTicketReplayGuard({ now: () => deps.now() });
+let claimBudget = newClaimBudget();
+let newAccountBudget = newAccountBudgetFor();
+
+function newClaimBudget() {
+  return createWindowBudget({
+    now: () => deps.now(),
+    windowMs: STEAM_TICKET_CLAIM_WINDOW_MS,
+    max: STEAM_TICKET_CLAIMS_PER_IP,
+  });
+}
+function newAccountBudgetFor() {
+  return createWindowBudget({
+    now: () => deps.now(),
+    windowMs: STEAM_NEW_ACCOUNT_WINDOW_MS,
+    max: STEAM_NEW_ACCOUNTS_PER_IP,
+  });
+}
 
 /** Swap in fakes (tests only). Passing nothing restores the real deps. Always
  *  resets the replay guard so cases never share claimed tickets. */
 export function setSteamLoginDepsForTests(overrides?: Partial<SteamLoginDeps>): void {
   deps = overrides ? { ...defaultDeps, ...overrides } : defaultDeps;
   replayGuard = createTicketReplayGuard({ now: () => deps.now() });
+  claimBudget = newClaimBudget();
+  newAccountBudget = newAccountBudgetFor();
 }
 
 /** How many provisioning attempts a username collision may take before the
@@ -137,19 +214,20 @@ const PROVISION_ATTEMPTS = 8;
 async function provisionSteamAccount(
   personaHint: unknown,
   meta: { ip: string; userAgent: string },
-): Promise<{ id: number }> {
+): Promise<{ id: number; username: string }> {
   const base = steamUsernameBase(personaHint, deps.randomHex(4), offensiveName);
   for (let attempt = 0; attempt < PROVISION_ATTEMPTS; attempt++) {
     const username = attempt === 0 ? base : `${base.slice(0, 18)}${deps.randomHex(2)}`;
     if (await deps.usernameTaken(username)) continue;
     try {
-      return await deps.provisionAccount(username, meta);
+      return { ...(await deps.provisionAccount(username, meta)), username };
     } catch (error) {
       if (isUniqueViolation(error)) continue;
       throw error;
     }
   }
-  return deps.provisionAccount(`steam${deps.randomHex(8).slice(0, 18)}`, meta);
+  const fallback = `steam${deps.randomHex(8).slice(0, 18)}`;
+  return { ...(await deps.provisionAccount(fallback, meta)), username: fallback };
 }
 
 /** Resolve (or create) the account the verified Steam id signs in to. */
@@ -160,9 +238,24 @@ async function accountForVerifiedSteamId(
 ): Promise<{ accountId: number; created: boolean }> {
   const existing = await deps.accountForSteamId(steamId);
   if (existing !== null) return { accountId: existing, created: false };
+  // A NEW account: the registration abuse rails every signup path carries.
+  // A per-IP daily budget (a Steam account farm cannot mint unbounded realm
+  // accounts from one address), then proof the Steam account owns the game
+  // (a free Steam account is not a customer), then the shared suspicious-
+  // registration report once the account exists.
+  if (!newAccountBudget.take(meta.ip)) throw new HttpError(429, 'auth.too_many_attempts');
+  const appId = steamAppId();
+  const key = steamWebApiKey();
+  if (appId === null || key === null) throw new HttpError(503, 'steam.upstream');
+  const owned = await deps.ownsApp({ key, appId, steamId });
+  if (owned === 'upstream') throw new HttpError(503, 'steam.upstream');
+  if (owned === 'not_owned') throw new HttpError(403, 'steam.not_owned');
   const account = await provisionSteamAccount(personaHint, meta);
   const inserted = await deps.insertSteamLink(account.id, steamId);
-  if (inserted === 'ok') return { accountId: account.id, created: true };
+  if (inserted === 'ok') {
+    deps.reportRegistration({ accountId: account.id, username: account.username, ...meta });
+    return { accountId: account.id, created: true };
+  }
   // A concurrent first sign-in for the same Steam id won the link: drop the
   // now-unreachable account we just made and sign in to the winner's.
   await deps.discardProvision(account.id);
@@ -181,6 +274,10 @@ async function steamLoginHandler(ctx: Ctx): Promise<void> {
   const key = steamWebApiKey();
   if (appId === null || key === null) throw new HttpError(503, 'steam.upstream');
 
+  // Claim only after the shape check, and cap how many claims one address
+  // plants (STEAM_TICKET_CLAIMS_PER_IP), so a flood cannot evict real claims.
+  const ip = requestIp(ctx.req);
+  if (!claimBudget.take(ip)) throw new HttpError(429, 'auth.too_many_attempts');
   const digest = ticketDigest(ticket.toLowerCase());
   if (!replayGuard.claim(digest)) throw new HttpError(400, 'steam.invalid_ticket');
   const outcome = await deps.verify({ key, appId, ticket, identity: LOGIN_TICKET_IDENTITY });
@@ -194,7 +291,7 @@ async function steamLoginHandler(ctx: Ctx): Promise<void> {
   }
   if (outcome.kind === 'banned') throw new HttpError(403, 'steam.banned');
 
-  const meta = { ip: requestIp(ctx.req), userAgent: String(ctx.req.headers['user-agent'] ?? '') };
+  const meta = { ip, userAgent: String(ctx.req.headers['user-agent'] ?? '') };
   const { accountId, created } = await accountForVerifiedSteamId(
     outcome.steamId,
     body.personaName,
@@ -204,6 +301,28 @@ async function steamLoginHandler(ctx: Ctx): Promise<void> {
   if (status.locked) {
     json(ctx.res, 403, moderationErrorBody(status));
     return;
+  }
+  // Two-factor is never skipped by Steam: an account with TOTP on answers the
+  // same { twoFactorRequired } contract as /api/login, and the client retries
+  // with a FRESH ticket plus the code (the first ticket is spent).
+  if (!created) {
+    const factor = await deps.twoFactorStanding(accountId);
+    if (factor.enabled) {
+      if (factor.username && !authThrottled(factor.username).allowed) {
+        throw new HttpError(429, 'auth.too_many_failed_attempts');
+      }
+      const code = typeof body.code === 'string' ? body.code : '';
+      const recoveryCode = typeof body.recoveryCode === 'string' ? body.recoveryCode : '';
+      if (!code && !recoveryCode) {
+        json(ctx.res, 200, { twoFactorRequired: true });
+        return;
+      }
+      if (!(await deps.verifyTwoFactor(accountId, code, recoveryCode))) {
+        if (factor.username) recordAuthFailure(factor.username);
+        throw new HttpError(401, 'two_factor.code_invalid');
+      }
+      if (factor.username) clearAuthFailures(factor.username);
+    }
   }
   const session = await deps.issueSession(accountId, meta);
   json(ctx.res, 200, { ...session, created });

@@ -25836,4 +25836,6 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.maintenance.begun': '렐름 점검이 시작되었습니다. 새로운 로그인은 막혀 있습니다.',
   'hudChrome.maintenance.cancelled': '렐름 점검이 취소되었습니다.',
   'hudChrome.maintenance.ended': '렐름 점검이 끝났습니다. 다시 로그인할 수 있습니다.',
+  'apiError.steam.not_owned': '이 Steam 계정은 아직 게임을 보유하고 있지 않습니다. Steam에서 게임을 구매한 후 다시 시도해 주세요.',
+  'apiError.steam.reauth_required': 'Steam을 연결하려면 비밀번호(2단계 인증을 사용 중이면 인증 코드도)를 입력해 주세요.',
 };

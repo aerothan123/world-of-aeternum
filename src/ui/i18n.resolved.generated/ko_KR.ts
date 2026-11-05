@@ -8213,7 +8213,9 @@ export const ko_KR: EnTranslations = {
       "already_linked": "계정에 이미 연동된 Steam 계정이 있습니다.",
       "account_taken": "해당 Steam 계정은 이미 다른 계정에 연결되어 있습니다.",
       "upstream": "Steam이 응답하지 않습니다. 잠시 후 다시 시도해 주세요.",
-      "unlink_last_login": "이 계정에 로그인하는 방법은 Steam뿐입니다. 연결을 해제하기 전에 이메일과 비밀번호를 추가해 주세요."
+      "unlink_last_login": "이 계정에 로그인하는 방법은 Steam뿐입니다. 연결을 해제하기 전에 이메일과 비밀번호를 추가해 주세요.",
+      "not_owned": "이 Steam 계정은 아직 게임을 보유하고 있지 않습니다. Steam에서 게임을 구매한 후 다시 시도해 주세요.",
+      "reauth_required": "Steam을 연결하려면 비밀번호(2단계 인증을 사용 중이면 인증 코드도)를 입력해 주세요."
     },
     "epic": {
       "disabled": "현재 Epic 연동을 사용할 수 없습니다.",

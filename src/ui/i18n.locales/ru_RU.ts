@@ -26281,4 +26281,6 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.maintenance.begun': 'Техническое обслуживание мира началось. Новые входы закрыты.',
   'hudChrome.maintenance.cancelled': 'Техническое обслуживание мира отменено.',
   'hudChrome.maintenance.ended': 'Техническое обслуживание мира завершено. Вход снова открыт.',
+  'apiError.steam.not_owned': 'У этого аккаунта Steam пока нет игры. Приобретите её в Steam и попробуйте снова.',
+  'apiError.steam.reauth_required': 'Чтобы привязать Steam, введите пароль (и код двухфакторной проверки, если она включена).',
 };
