@@ -10,6 +10,7 @@
 // (tests/hud_perf_budget.test.ts) as well as in UI_DOM_MODULES.
 
 import { audio } from '../game/audio';
+import { openAddonsWindowFromMenu } from './hud/addons';
 import { t } from './i18n';
 import { interfaceUnlockLabelKey } from './interface_unlock_core';
 import type { OptionsMenuAction, OptionsMenuEntry } from './options_view';
@@ -35,8 +36,29 @@ export function buildOptionsMenuList(
 ): HTMLElement {
   const list = document.createElement('div');
   list.className = 'opt-list';
-  for (const entry of entries) list.appendChild(menuButton(entry, deps));
+  for (const entry of entries) {
+    list.appendChild(menuButton(entry, deps));
+    // The add-on manager rides right after Interface when the platform is
+    // mounted (src/ui/hud/addons/): it closes the menu, then opens its window.
+    const openAddons = openAddonsWindowFromMenu();
+    if (openAddons && entry.action.kind === 'goto' && entry.action.view === 'interface') {
+      list.appendChild(addonsButton(openAddons, deps));
+    }
+  }
   return list;
+}
+
+function addonsButton(openAddons: () => void, deps: OptionsMainMenuDeps): HTMLButtonElement {
+  const b = document.createElement('button');
+  b.className = 'btn ui-btn opt-btn';
+  b.textContent = t('hudChrome.addons.menuEntry');
+  b.dataset.menuAction = 'addons';
+  b.addEventListener('click', () => {
+    audio.click();
+    deps.dispatch({ kind: 'close' });
+    openAddons();
+  });
+  return b;
 }
 
 function menuButton(entry: OptionsMenuEntry, deps: OptionsMainMenuDeps): HTMLButtonElement {

@@ -8173,6 +8173,93 @@ export const ko_KR: EnTranslations = {
         "chest": "설치하면 집 보관함에 {slots}칸이 추가됩니다.",
         "station": "설치하면 {station}이(가) 필요한 제작법을 집에서 만들 수 있습니다."
       }
+    },
+    "addons": {
+      "menuEntry": "애드온",
+      "title": "애드온",
+      "close": "닫기",
+      "masterToggle": "애드온 불러오기",
+      "loadOutdated": "오래된 애드온도 불러오기",
+      "masterHint": "인터페이스를 다시 불러오면 변경 사항이 적용됩니다.",
+      "reloadNeeded": "이 변경 사항을 적용하려면 UI를 다시 불러오세요.",
+      "leaveSafe": "지금 애드온 불러오기",
+      "safeCrash": "애드온이 시작되는 동안 게임이 예기치 않게 종료되어, 이번 세션은 애드온 없이 안전 모드로 시작되었습니다.",
+      "safeRequested": "안전 모드로 다시 시작했으므로 애드온을 불러오지 않았습니다.",
+      "safeUrl": "시작할 때 안전 모드가 요청되어 애드온을 불러오지 않았습니다.",
+      "workshopUnavailable": "현재 Steam 창작마당을 사용할 수 없어 로컬 폴더의 애드온만 표시합니다.",
+      "empty": "설치된 애드온이 없습니다. Steam 창작마당에서 구독하거나 애드온 폴더에 애드온 폴더를 넣으세요.",
+      "reload": "UI 다시 불러오기",
+      "openFolder": "애드온 폴더 열기",
+      "restartSafe": "안전 모드로 다시 시작",
+      "memoryNote": "애드온 워커는 힙 크기를 보고하지 않으므로 메모리는 인터페이스 위젯과 저장 데이터로 표시합니다.",
+      "enable": "{name} 사용",
+      "version": "버전 {version}",
+      "by": "제작자 {author}",
+      "permissions": "권한",
+      "options": "옵션",
+      "showErrors": "오류 ({count})",
+      "resetSaved": "저장 데이터 초기화",
+      "resetDone": "{name}의 저장 데이터를 지웠습니다.",
+      "publish": "창작마당에 게시",
+      "stats": "CPU {cpu}ms/초, 메시지 {msgs}개/초, 위젯 {widgets}개, 저장 {kb}KB, 오류 {errors}개",
+      "optionsTitle": "{name} 옵션",
+      "back": "뒤로",
+      "publishTitle": "{name} 게시",
+      "publishHint": "이 폴더를 Steam 창작마당에 업로드합니다. 처음 업로드하면 아이템이 만들어지고, 이후에는 업데이트됩니다.",
+      "changeNote": "변경 사항",
+      "publishConfirm": "게시",
+      "publishing": "창작마당에 게시하는 중...",
+      "visibility": {
+        "label": "공개 범위",
+        "private": "비공개",
+        "friends": "친구만",
+        "unlisted": "목록에 없음",
+        "public": "공개"
+      },
+      "publishResult": {
+        "published": "아이템 {id}(으)로 창작마당에 게시했습니다.",
+        "agreement": "아이템 {id}(으)로 업로드했습니다. 공개하려면 아이템 페이지에서 Steam 창작마당 법적 동의서에 동의하세요.",
+        "noSteam": "Steam이 실행 중이 아니어서 애드온을 게시할 수 없습니다.",
+        "invalid": "애드온 폴더가 검증을 통과하지 못했습니다.",
+        "notFound": "애드온 폴더를 찾을 수 없습니다.",
+        "failed": "게시에 실패했습니다. 자세한 내용은 데스크톱 로그를 확인하세요."
+      },
+      "status": {
+        "disabled": "사용 안 함",
+        "loading": "불러오는 중",
+        "running": "실행 중",
+        "error": "불러오기 오류",
+        "stopped": "중지됨",
+        "blocked": "불러오지 않음",
+        "tooNew": "더 새로운 게임 버전 필요",
+        "outdated": "오래됨",
+        "invalid": "잘못된 애드온"
+      },
+      "stop": {
+        "errors": "오류가 반복되어 중지되었습니다. 다시 사용하면 재시도합니다.",
+        "hang": "응답하지 않아 중지되었습니다. 다시 사용하면 재시도합니다.",
+        "flood": "인터페이스 업데이트를 너무 많이 보내 중지되었습니다. 다시 사용하면 재시도합니다.",
+        "load": "불러오지 못했습니다."
+      },
+      "invalidJson": "addon.json 파일이 올바른 JSON이 아닙니다.",
+      "invalidField": "addon.json 파일의 \"{field}\"에 문제가 있습니다.",
+      "blockedPending": "창작마당에서 아직 내려받는 중입니다.",
+      "blockedDuplicate": "ID가 {id}인 다른 애드온이 이미 불러와져 있습니다.",
+      "blockedDependency": "필요한 애드온이 없거나 불러오지 않았습니다: {id}.",
+      "origin": {
+        "dev": "개발자 예제",
+        "local": "로컬",
+        "workshop": "창작마당"
+      },
+      "perm": {
+        "party": "파티와 공격대",
+        "combatLog": "전투 기록",
+        "chat": "귓속말을 포함한 채팅 읽기",
+        "minimap": "미니맵",
+        "inventory": "가방과 장비",
+        "quests": "퀘스트 목록",
+        "secureActions": "행동 버튼"
+      }
     }
   },
   "gatherEvent": {

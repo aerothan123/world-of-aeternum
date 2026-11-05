@@ -8173,6 +8173,93 @@ export const zh_TW: EnTranslations = {
         "chest": "擺放後，為你的房屋儲物增加{slots}格。",
         "station": "擺放後，可在家中製作需要{station}的配方。"
       }
+    },
+    "addons": {
+      "menuEntry": "插件",
+      "title": "插件",
+      "close": "關閉",
+      "masterToggle": "載入插件",
+      "loadOutdated": "載入過期插件",
+      "masterHint": "重新載入介面後變更生效。",
+      "reloadNeeded": "重新載入介面以套用此變更。",
+      "leaveSafe": "立即載入插件",
+      "safeCrash": "插件啟動時遊戲意外關閉，因此本次工作階段以安全模式啟動，未載入任何插件。",
+      "safeRequested": "你以安全模式重新啟動，因此未載入插件。",
+      "safeUrl": "啟動時要求了安全模式，因此未載入插件。",
+      "workshopUnavailable": "Steam 工作坊目前無法使用，因此僅列出本機資料夾中的插件。",
+      "empty": "尚未安裝插件。請在 Steam 工作坊訂閱，或將插件資料夾放入插件資料夾。",
+      "reload": "重新載入介面",
+      "openFolder": "開啟插件資料夾",
+      "restartSafe": "以安全模式重新啟動",
+      "memoryNote": "記憶體以介面元件和儲存資料表示，因為插件工作執行緒不會回報其堆積大小。",
+      "enable": "啟用 {name}",
+      "version": "版本 {version}",
+      "by": "作者 {author}",
+      "permissions": "權限",
+      "options": "選項",
+      "showErrors": "錯誤（{count}）",
+      "resetSaved": "重設儲存資料",
+      "resetDone": "已清除 {name} 的儲存資料。",
+      "publish": "發佈到工作坊",
+      "stats": "CPU {cpu} 毫秒/秒，{msgs} 則訊息/秒，{widgets} 個元件，已儲存 {kb} KB，{errors} 個錯誤",
+      "optionsTitle": "{name} 選項",
+      "back": "返回",
+      "publishTitle": "發佈 {name}",
+      "publishHint": "將此資料夾上傳到 Steam 工作坊。首次上傳會建立項目，之後的上傳會更新它。",
+      "changeNote": "更新說明",
+      "publishConfirm": "發佈",
+      "publishing": "正在發佈到工作坊...",
+      "visibility": {
+        "label": "可見性",
+        "private": "私人",
+        "friends": "僅限好友",
+        "unlisted": "不公開列出",
+        "public": "公開"
+      },
+      "publishResult": {
+        "published": "已作為項目 {id} 發佈到工作坊。",
+        "agreement": "已上傳為項目 {id}。請在項目頁面接受 Steam 工作坊法律協議以使其可見。",
+        "noSteam": "Steam 未執行，因此無法發佈插件。",
+        "invalid": "插件資料夾未通過驗證。",
+        "notFound": "找不到插件資料夾。",
+        "failed": "發佈失敗。詳情請見桌面記錄。"
+      },
+      "status": {
+        "disabled": "已停用",
+        "loading": "載入中",
+        "running": "執行中",
+        "error": "載入錯誤",
+        "stopped": "已停止",
+        "blocked": "未載入",
+        "tooNew": "需要更新的遊戲版本",
+        "outdated": "已過期",
+        "invalid": "無效插件"
+      },
+      "stop": {
+        "errors": "因反覆出錯已停止。重新啟用以重試。",
+        "hang": "因無回應已停止。重新啟用以重試。",
+        "flood": "因傳送過多介面更新已停止。重新啟用以重試。",
+        "load": "載入失敗。"
+      },
+      "invalidJson": "其 addon.json 檔案不是有效的 JSON。",
+      "invalidField": "其 addon.json 檔案的「{field}」有問題。",
+      "blockedPending": "仍在從工作坊下載。",
+      "blockedDuplicate": "已載入另一個 ID 為 {id} 的插件。",
+      "blockedDependency": "缺少必要的插件或其未載入：{id}。",
+      "origin": {
+        "dev": "開發者範例",
+        "local": "本機",
+        "workshop": "工作坊"
+      },
+      "perm": {
+        "party": "小隊和團隊",
+        "combatLog": "戰鬥記錄",
+        "chat": "讀取你的聊天，包括私訊",
+        "minimap": "小地圖",
+        "inventory": "背包和裝備",
+        "quests": "任務日誌",
+        "secureActions": "動作按鈕"
+      }
     }
   },
   "gatherEvent": {

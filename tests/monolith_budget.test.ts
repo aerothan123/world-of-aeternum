@@ -508,8 +508,8 @@ const MONOLITHS: MonolithRow[] = [
     // src/ui/loot_text_i18n_core.ts, net of the feed's composition, its event
     // hook and its per-frame update. Merged with the tree Chop prompt (-2, the
     // farm press notice moved to interact_affordances_controller.ts): 17454.
-    // LOWERED to 17441 at integration (rebrand Meta Pixel removal plus core-systems durability figure and town restoration window extractions). wc -l. Exact count.
-    ceiling: 17441,
+    // LOWERED to 17430 at integration (rebrand Meta Pixel removal, core-systems extractions, add-on platform emote wheel store). wc -l. Exact count.
+    ceiling: 17430,
     seam: 'pure view core + thin painter on PainterHost (src/ui/CLAUDE.md)',
   },
   {

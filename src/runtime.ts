@@ -224,6 +224,30 @@ export interface DesktopHostEssentials {
   hostGameMode: boolean | null;
 }
 
+/** One add-on folder as the desktop shell read it (electron/addons.cjs). */
+export interface DesktopAddonPackage {
+  origin: 'local' | 'workshop';
+  folder: string;
+  manifestText: string;
+  files: Record<string, string>;
+  workshopId?: string;
+  pending?: boolean;
+}
+
+export interface DesktopAddonList {
+  packages: DesktopAddonPackage[];
+  safeMode: boolean;
+  workshopAvailable: boolean;
+  localFolder: string | null;
+}
+
+/** The shell's answer to a Workshop publish (electron/steam_workshop.cjs). */
+export interface DesktopAddonPublishResult {
+  ok: boolean;
+  code: 'published' | 'agreement' | 'noSteam' | 'invalid' | 'notFound' | 'failed';
+  itemId?: string;
+}
+
 export interface DesktopBridge {
   openBrowserLogin(): Promise<void>;
   takeLoginCode(): Promise<string | null>;
@@ -335,6 +359,16 @@ export interface DesktopBridge {
   // feature-check before use.
   setDiscordActivity?(activity: DesktopDiscordActivity | null): void;
   setDiscordPresenceEnabled?(enabled: boolean): void;
+  // Add-ons (electron/addons.cjs): the local AddOns folder plus installed
+  // Steam Workshop items, the folder opener, and the Workshop publish path for
+  // a LOCAL add-on. Absent on older shells and the website: feature-check.
+  listAddons?(): Promise<DesktopAddonList>;
+  openAddonsFolder?(): Promise<boolean>;
+  publishAddon?(request: {
+    folder: string;
+    visibility: 'public' | 'friends' | 'private' | 'unlisted';
+    changeNote: string;
+  }): Promise<DesktopAddonPublishResult>;
 }
 
 export function desktopBridge(): DesktopBridge | null {

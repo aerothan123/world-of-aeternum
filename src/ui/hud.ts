@@ -291,11 +291,8 @@ import { dropdownKeyNav } from './dropdown_nav';
 import { duelEndFeedback } from './duel_end_feedback';
 import { dungeonMapLocal } from './dungeon_map_view';
 import { emoteIconUrl } from './emote_icons';
-import { DEFAULT_EMOTE_WHEEL, EMOTE_WHEEL_LIMIT } from './emote_wheel_defaults';
-import {
-  emoteWheelSlotsKey,
-  emoteWheelVersionKey as emoteWheelVersionKeyFor,
-} from './emote_wheel_keys';
+import { EMOTE_WHEEL_LIMIT } from './emote_wheel_defaults';
+import { loadEmoteWheelSlots, saveEmoteWheelSlots } from './emote_wheel_store';
 import { crossHotbarActionSlot, EmpowerHold } from './empower_hold_core';
 import {
   combatAbilityName,
@@ -449,6 +446,7 @@ import { petSlotText } from './hud/action_bar/pet_slot_core';
 import { playerStealthed } from './hud/action_bar/player_stealthed';
 import { RADIAL_DIRECTIONS, type RadialDirection } from './hud/action_bar/radial_action_core';
 import { slotEditHintLines } from './hud/action_bar/slot_edit_hints_core';
+import { type MountedAddons, mountAddons } from './hud/addons';
 import { AuraTrackFamily } from './hud/aura_tracks';
 import {
   BattlegroundKillFeed,
@@ -2099,6 +2097,8 @@ export class Hud {
   private windowObserver: MutationObserver | null = null;
   private windowZ = 50;
   private localIgnoredNames = new Set<string>();
+  // The add-on platform (src/ui/hud/addons/): runtime + Addons window.
+  private readonly addons: MountedAddons;
   private lastHudFastAt = 0;
   private lastHudMediumAt = 0;
   private lastHudSlowAt = 0;
@@ -2612,9 +2612,20 @@ export class Hud {
     });
     this.chatWindow.init();
     this.chatGeometry.init();
+    this.addons = mountAddons({
+      world: sim,
+      writers: this.writerFacet,
+      uiRoot: $('#ui'),
+      uiScale: getUiScale,
+      focus: this.focusManager,
+      isIgnored: (n) => this.sim.socialInfo === null && this.localIgnoredNames.has(ignoreKey(n)),
+      print: (text, color) => this.log(text, color ?? undefined, undefined, undefined, false, true),
+      castSlot: (slot) => this.castSlot(slot),
+      toggleWindow: (w) => this.toggleWindowByAddonName(w),
+    });
     this.initFrameMovers();
     this.initWindowManagement();
-    this.emoteWheelSlots = this.loadEmoteWheelSlots();
+    this.emoteWheelSlots = loadEmoteWheelSlots(localStorage, sim.cfg.playerClass, sim.player.name);
     this.actionBarController.init();
     this.buildActionBar();
     this.initMailIndicator();
@@ -4225,51 +4236,6 @@ export class Hud {
   // Emote wheel
   // -------------------------------------------------------------------------
 
-  private emoteWheelKey(): string {
-    return emoteWheelSlotsKey(this.sim.cfg.playerClass, this.sim.player.name);
-  }
-
-  private emoteWheelVersionKey(): string {
-    return emoteWheelVersionKeyFor(this.sim.cfg.playerClass, this.sim.player.name);
-  }
-
-  private loadEmoteWheelSlots(): OverheadEmoteId[] {
-    let raw: unknown = null;
-    try {
-      raw = JSON.parse(localStorage.getItem(this.emoteWheelKey()) ?? 'null');
-    } catch {
-      /* corrupt */
-    }
-    const ids = Array.isArray(raw) ? raw.filter(isOverheadEmoteId) : [];
-    const deduped = ids.filter((id, i) => ids.indexOf(id) === i).slice(0, EMOTE_WHEEL_LIMIT);
-    let migrated = false;
-    try {
-      migrated = localStorage.getItem(this.emoteWheelVersionKey()) === '1';
-    } catch {
-      /* storage unavailable */
-    }
-    if (deduped.length > 0 && !migrated && !deduped.includes('question')) {
-      deduped.splice(2, 0, 'question');
-      deduped.length = Math.min(deduped.length, EMOTE_WHEEL_LIMIT);
-      try {
-        localStorage.setItem(this.emoteWheelKey(), JSON.stringify(deduped));
-        localStorage.setItem(this.emoteWheelVersionKey(), '1');
-      } catch {
-        /* storage unavailable */
-      }
-    }
-    return deduped.length > 0 ? deduped : [...DEFAULT_EMOTE_WHEEL];
-  }
-
-  private saveEmoteWheelSlots(): void {
-    try {
-      localStorage.setItem(this.emoteWheelKey(), JSON.stringify(this.emoteWheelSlots));
-      localStorage.setItem(this.emoteWheelVersionKey(), '1');
-    } catch {
-      /* storage unavailable */
-    }
-  }
-
   private emoteLabel(id: OverheadEmoteId): string {
     return t(`hudChrome.emotes.${id}` as TranslationKey);
   }
@@ -4446,7 +4412,12 @@ export class Hud {
         this.emoteWheelSlots = OVERHEAD_EMOTES.map((e) => e.id).filter(
           (id): id is OverheadEmoteId => selected.has(id),
         );
-        this.saveEmoteWheelSlots();
+        saveEmoteWheelSlots(
+          localStorage,
+          this.sim.cfg.playerClass,
+          this.sim.player.name,
+          this.emoteWheelSlots,
+        );
         syncCount();
         syncButtons();
       });
@@ -8373,6 +8344,8 @@ export class Hud {
     // Same for the tab-independent chat live region: drain the trailing
     // chat burst on the fast tier once chat goes quiet.
     if (fastHud) this.chatAnnouncer.flush(now);
+    // Add-on snapshots, watchdog and op drains ride the same 100 ms band.
+    if (fastHud) this.addons.runtime.tick();
 
     this.questDialog.updateVoice();
     // Self-contained timer controller: a roll must keep expiring on schedule
@@ -10793,6 +10766,7 @@ export class Hud {
     // One spawn clock for the whole batch: FCT floaters spawned from this event burst
     // share a bornAt, and the pooled painter's step() evicts each once now - bornAt >= ttl.
     const now = performance.now();
+    this.addons.runtime.onEvents(events);
     for (const ev of events) {
       // Personal events for OTHER players exist only offline: the offline
       // main.ts loop hands the WHOLE sim.tick() batch to this method, so a bot
@@ -15391,6 +15365,20 @@ export class Hud {
     this.lastPetBarSig = '';
   }
 
+  /** A secure add-on button's toggleWindow action (the allowlist is in
+   *  src/ui/hud/addons/addon_widget_core.ts): the same toggles the keybinds call. */
+  private toggleWindowByAddonName(w: string): void {
+    const toggles: Record<string, () => void> = {
+      bags: () => this.toggleBags(),
+      map: () => this.toggleMap(),
+      character: () => this.toggleChar(),
+      spellbook: () => this.toggleSpellbook(),
+      talents: () => this.toggleTalents(),
+      questlog: () => this.toggleQuestLog(),
+    };
+    toggles[w]?.();
+  }
+
   toggleBags(): void {
     const el = $('#bags');
     if (bagsWindowShown(el.style.display)) {
@@ -17402,6 +17390,7 @@ export class Hud {
       this.closeRitePanel();
       return true;
     }
+    if (this.addons.window.close()) return true;
     const top = this.topmostOpenWindow();
     if (top) {
       this.closeManagedWindow(top);
