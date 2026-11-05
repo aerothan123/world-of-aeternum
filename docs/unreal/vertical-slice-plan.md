@@ -1,9 +1,9 @@
-# Unity vertical slice plan (2 to 3 weeks)
+# Unreal Engine 5.8 vertical slice plan (2 to 3 weeks)
 
-Status: plan only. Unity is not installed yet. Written against `feature/player-housing`
-(merge `64d84727`). Goal: give the owner a side-by-side answer to "can a Unity client hit the
-detailed stylized look while speaking our existing server?" before committing to the full port
-(`cost-and-risk.md`).
+Status: plan only. UE 5.8.4 is installed on AerothanPC at `E:\UE_5.8`; no project exists yet.
+Written against `feature/player-housing` (merge `64d84727`). Goal: give the owner a side-by-side
+answer to "can an Unreal client hit the Fable-style detailed look while speaking our existing
+server?" before committing to the full port (`cost-and-risk.md`).
 
 ## 1. Scope
 
@@ -16,174 +16,215 @@ In scope:
   with the camera.
 - A real server connection: REST login, world auth, snapshots, other players and mobs visible
   and animated, chat.
-- A minimal HUD: player frame (health and resource), target frame (health, cast bar), chat
-  (receive and send).
-- Day and night lighting at the detailed stylized target, driven by the server clock.
+- A minimal HUD: player frame (health and resource), target frame (health, cast bar), chat.
+- Day and night lighting at the target look with Lumen, Virtual Shadow Maps, volumetric fog,
+  driven by the server clock.
 
-Out of scope for the slice: combat abilities beyond auto-attack display, inventory and every
-other window, dungeons, add-ons, audio beyond footsteps and the town music track, Steam
-integration, localization beyond loading the English catalog through keys.
+Out of scope: combat abilities beyond auto-attack display, every other window, dungeons,
+add-ons, audio beyond footsteps and the town music, Steam integration, localization beyond
+loading the English catalog by key.
 
-Rules that still apply: the server stays unchanged except, if the owner chooses it, the one-line
-desktop origin entry (`wire-protocol.md` section 1.1); no em dashes, en dashes or emojis; every
-player-visible string comes from an exported i18n key; the fairness rule
-(`asset-pipeline.md` section 8).
+Rules that still apply: the server stays unchanged except, if the owner chooses it, the
+one-line desktop origin entry (`wire-protocol.md` section 1.1); no em dashes, en dashes or
+emojis; every player string comes from an exported i18n key; the fairness rule
+(`asset-pipeline.md` section 8); logic in C++ and editor automation in Python, Blueprints only
+as thin layout (`cost-and-risk.md`, risk 6).
 
 ## 2. Milestones
 
-Day numbers assume one crew on the slice full time, starting the day Unity is installed. Each
-milestone has one pass or fail check that a crew can run and report; a failed check stops the
-next dependent milestone, never silently passes.
+Day numbers assume one crew full time from day 1. Each milestone has one pass or fail check; a
+failed check stops the next dependent milestone.
 
 | # | Days | Milestone | Pass or fail check |
 |---|---|---|---|
-| M0 | 1 to 2 | **Toolchain.** Unity 6.3 LTS with URP on AerothanPC, the private Unity repo with LFS, the `.ps1` runners (section 4), an empty bootstrap scene built by code | `run_build.ps1` produces `Build/Win64/Wyndlewood.exe` from `-batchmode -executeMethod`, and `run_tests.ps1` writes an NUnit XML with one passing EditMode test; both exit 0 |
-| M1 | 2 to 4 | **World export.** `scripts/unity/export_world.mjs` in this repo bakes the zone 1 heightfield (0.5 yd grid), water circles, roads and collider-backed placements; the render-only dressing is dumped from the running web client (`asset-pipeline.md` section 5) | a Vitest asserts baked heights equal `terrainHeight` within 1 cm at 10,000 random points; in Unity the generated terrain and placed blockout prefabs line up with a web screenshot from the same camera (overlay diff under 0.5 percent of pixels off by more than 8 px) |
-| M2 | 3 to 6 | **Network spine.** C# REST login, `auth-world-48` handshake with every capability field, `hello`, `snap` decode (identity, dynamic, `keep`, prune, self scalars, `ack`, `ackCt`), `events` passthrough, reconnect with the jittered backoff; DTOs generated from the protocol export (`wire-protocol.md` section 10) | golden-frame test: 2 minutes of recorded frames from a local server replayed through the TS `ClientWorld.applySnapshot` and the C# decoder give identical mirrored entity state (positions, hp, kind, name, auras) on every frame; a live connect to a local `npm run server` reaches `hello` and holds 10 minutes with no `error` frame |
-| M3 | 5 to 9 | **Walking player.** 20 Hz v2 `input` frames with `seq` and `ct`, facing from mouselook, self drawn interpolated (no prediction, the `?nopredict` model), camera rig, locomotion Animator mapped from the exported `ClipMap` | walk a scripted route (town gate to Mirror Lake and back): the server position at each `ackCt` stays within 0.05 yd of the web client's replay of the same input frames; zero `message rate exceeded` kicks; the base state shown matches `desiredBaseState` for the same speed and input on 100 percent of sampled frames |
-| M4 | 6 to 12 | **Look development.** URP Forward+, APV with day and night lighting scenarios, volumetric fog, water, PBR terrain layers, dense foliage, Eastbrook's core (the gate, the square, about ten buildings, the bank, the inn) in PBR from the shortlist packs and crew re-texture passes, warm grade LUT; time of day follows the server `time` through a port of `src/render/day_night_core.ts` | on AerothanPC (RTX class) at 1440p High: median frame time under 16.7 ms and 99th percentile under 25 ms over a 60 s fly-through of the square at noon and at night, captured with the Unity Profiler in a development build; the screenshot set in section 5 is produced |
-| M5 | 8 to 12 | **Embedding spike (decides the architecture).** PuerTS with the V8 backend runs an esbuild bundle of `src/sim/player_motion.ts` and its imports inside the player; replay the recorded inputs of `tests/movement_latency_baseline.test.ts` scenarios | exact-match (bit-identical pose) against the Node replay on at least 99.9 percent of ticks, and under 0.2 ms per kernel step on AerothanPC; result written up as go or no-go for the hybrid architecture in `cost-and-risk.md` |
-| M6 | 10 to 15 | **Minimal HUD and UI direction.** UI Toolkit theme (one USS token file), player frame, target frame with cast bar, chat frame with send; strings from the exported English catalog by key; the visual direction tile for owner sign-off before any other window | target a wolf another client is attacking and watch its health fall and its cast bar run; send a chat line from Unity and read it in the web client and back; a scan of the C# UI code finds no player-visible English literal |
-| M7 | 14 to 18 | **The living world.** Other players (modular bodies from `app`), mobs (zone 1 creatures from `MOBS`), interest enter and leave, per-entity interpolation on its own cadence (`reanchorDecision`), nameplates | with 20 local bot players plus the town NPCs and nearby mobs: entities appear inside 90 yd and disappear past 100 yd (NPCs 120 and 130), no entity lingers after it leaves `ents` and `keep`, frame-time budget of M4 still met |
-| M8 | 17 to 21 | **Owner review pack.** Screenshot pairs, a 2 minute capture video, the perf report, the M5 decision, and an updated estimate | the owner can answer "go, change, or stop" from the pack alone |
+| M0 | 1 to 3 | **Toolchain.** C++ project `Wyndlewood` (Game module plus `WyndNet`, `WyndWorld`, `WyndHud` runtime modules and a `WyndEditor` editor module), the Python Editor Script Plugin and Epic's MCP plugin enabled, version control (section 3), the `.ps1` runners (section 4), an empty level generated by script | `run_build.ps1` compiles Development Editor and Development Game targets through UnrealBuildTool; `run_cook.ps1` produces a packaged `Windows/Wyndlewood.exe` through BuildCookRun; `run_tests.ps1` runs one automation test and writes a JSON report; all exit 0. Record the cold and incremental C++ build times |
+| M1 | 2 to 5 | **World export and generation.** `scripts/unreal/export_world.mjs` in this repo bakes the zone 1 heightfield (0.5 yd grid, 16-bit), water bodies, roads and collider-backed placements; the render-only dressing is dumped from the running web client (`asset-pipeline.md` section 5); a Python commandlet builds a World Partition level: Landscape from the heightmap, Water bodies, placed blockout actors | a Vitest asserts the baked heights equal `terrainHeight` within 1 cm at 10,000 random points; in Unreal a line trace at 1,000 random points matches the baked height within 2 cm; an overlay of an Unreal screenshot against a web screenshot from the same camera has under 0.5 percent of pixels off by more than 8 px |
+| M2 | 3 to 7 | **Network spine (C++).** `HTTP` module REST login, WebSocket (`WebSockets` module) `auth-world-48` handshake with every capability field, `hello`, `snap` decode (identity, dynamic, `keep`, prune, self scalars, `ack`, `ackCt`), `events` passthrough, jittered reconnect; DTOs generated from the protocol export (`wire-protocol.md` section 10); check whether permessage-deflate is negotiated | golden-frame test: 2 minutes of recorded frames from a local server replayed through the TS `ClientWorld.applySnapshot` and the C++ decoder give identical mirrored entity state on every frame; a live connect to a local `npm run server` reaches `hello` and holds 10 minutes with no `error` frame; the handshake log states deflate on or off |
+| M3 | 5 to 10 | **Walking player.** 20 Hz v2 `input` frames with `seq` and `ct` from Enhanced Input, facing from mouselook, self drawn interpolated (no prediction, the `?nopredict` model), spring-arm camera, a C++ `UAnimInstance` mapping the exported `ClipMap` | scripted route from the town gate to Mirror Lake and back: the server position at each `ackCt` stays within 0.05 yd of the web client's replay of the same frames; zero `message rate exceeded` kicks; the base state matches `desiredBaseState` on 100 percent of sampled frames |
+| M4 | 6 to 13 | **Look development.** Lumen (software and hardware RT compared), Virtual Shadow Maps, Sky Atmosphere and Volumetric Clouds, Exponential Height Fog with volumetric fog and light shafts, Water plugin with Fab materials, Landscape layers with RVT, PCG graphs scattering Nanite foliage and ground cover, Eastbrook's core (gate, square, about ten buildings, bank, inn) from the Fab shortlist plus crew re-texture passes, warm LUT grade; time of day from the server `time` through a port of `src/render/day_night_core.ts`; Mesh Terrain versus Landscape decided | on AerothanPC at 1440p Epic: median frame time under 16.7 ms and 99th percentile under 25 ms over a 60 s fly-through of the square at noon and at night (`stat unit` plus Unreal Insights trace in a Development build); the same route on the Low tier at 800p stays under 33 ms median; the screenshot set in section 5 is produced |
+| M5 | 9 to 13 | **Embedding spike (decides the architecture).** PuerTS (V8 backend, Unreal flavour) runs an esbuild bundle of `src/sim/player_motion.ts` and its imports in the game process; replay the recorded inputs of the `tests/movement_latency_baseline.test.ts` scenarios | bit-identical pose against the Node replay on at least 99.9 percent of ticks, under 0.2 ms per kernel step; written up as go or no-go for the hybrid architecture in `cost-and-risk.md` |
+| M6 | 11 to 16 | **Minimal HUD and UI direction.** Common UI style set (one style asset), player frame, target frame with cast bar, chat frame with send, as UMG layouts driven by C++ widget classes; strings from the exported English catalog via String Tables; one visual direction tile for owner sign-off | target a wolf another client is attacking and watch its health fall and its cast bar run; send chat from Unreal and read it in the web client and back; a scan of the C++ UI code finds no player-visible literal |
+| M7 | 14 to 19 | **The living world.** Other players (modular bodies from `app`), zone 1 mobs, interest enter and leave, per-entity interpolation on its own cadence (`reanchorDecision`), nameplates, World Partition streaming as the player walks | with 20 local bot players plus town NPCs and nearby mobs: entities appear inside 90 yd and disappear past 100 yd (NPCs 120 and 130), nothing lingers after it leaves `ents` and `keep`, no streaming hitch over 50 ms on the walking route, M4's frame budget still met |
+| M8 | 18 to 21 | **Owner review pack.** Screenshot pairs, a 2 minute capture video, the perf report, build and cook times, the M5 decision, an updated estimate | the owner can answer "go, change, or stop" from the pack alone |
 
-Parallelism: M1 and M2 can run on two crews; M4 is art-heavy and can start on M1's blockout.
-With two crews the slice fits in about 2 weeks; with one, about 3.
+Two crews in parallel (M1 and M4 on one, M2, M3 and M5 on the other) bring this to about 2
+weeks; one crew takes about 3.
 
-## 3. Repo layout: a separate private repo
+## 3. Repo layout and version control
 
-Recommendation: **a separate private repository** (proposed `aerothan123/wyndlewood-unity`)
-with Git LFS, not a `unity/` folder in this monorepo. Reasons, all checked:
+Recommendation: **a separate private repository for the Unreal project** (proposed
+`aerothan123/wyndlewood-unreal`), not an `unreal/` folder in this monorepo:
 
-1. **This repo is public.** `gh api repos/aerothan123/world-of-aeternum` reports
-   `"visibility":"public"`, a fork of `levy-street/world-of-claudecraft`. Paid Asset Store
-   content may only be distributed embedded in a product; the EULA FAQ says a product is not
-   "incorporated" if it lets users "extract or download assets separately"
-   ([Asset Store EULA FAQ](https://assetstore.unity.com/browse/eula-faq)). Committing purchased
-   packs to a public repository would publish their source files. Community consensus is that
-   private repositories are fine and public ones are not
-   ([Unity Discussions](https://discussions.unity.com/t/using-git-for-paid-for-assets-if-set-the-repository-to-private/879286)).
-2. **No LFS today.** `.gitattributes` has no `filter=lfs` line, and the repo already weighs about
-   11 GB on GitHub (`size` from the same API call). Adding a Unity project's textures, FBX and
-   scenes would grow every clone, including the worker clones on both PCs.
-3. **Different toolchains and gates.** The pre-push floor here runs `tsc`, Vitest guard tests and
-   Biome; none of that applies to C#, and a Unity import of a large folder would slow every
-   crew's `git status`.
+1. **This repo is public** (`gh api repos/aerothan123/world-of-aeternum` reports
+   `"visibility":"public"`, a fork of `levy-street/world-of-claudecraft`). Fab content bought
+   under the Standard License must not be published as source files.
+2. **No LFS today** (`.gitattributes` has no `filter=lfs` line) and the repo already weighs about
+   11 GB on GitHub. An Unreal project with Nanite meshes, 2K to 4K textures and `.uasset` files
+   grows fast; every clone on both PCs would carry it.
+3. **Different gates.** The pre-push floor here runs `tsc`, Vitest and Biome; none of it applies
+   to C++ and `.uasset` files.
 
-What crosses between the repos is GENERATED and pinned:
+Git LFS or Perforce (OWNER DECISION):
 
-- This repo owns the exporters (`scripts/unity/export_protocol.mjs`, `export_content.mjs`,
-  `export_world.mjs`, `normalize_glb.mjs`) and their freshness tests.
-- The Unity repo has `Assets/Generated/` (protocol DTOs, content JSON, i18n tables, world
-  data, normalized GLBs) written only by an import script that records the source commit in
-  `Assets/Generated/SOURCE_COMMIT`. A Unity EditMode test fails when `SOURCE_COMMIT` differs from
-  the pinned TS commit in `Packages/wyndlewood-source.json`.
-- `ONLINE_WORLD_LAYOUT_VERSION` travels with the protocol export, so a Unity build is always
-  stamped with the epoch of the TS commit it was generated from.
+| | Git plus LFS (GitHub) | Perforce P4 (Helix Core) |
+|---|---|---|
+| Cost | GitHub Free includes 10 GiB LFS storage and 10 GiB bandwidth per month ([GitHub docs](https://docs.github.com/en/billing/concepts/product-billing/git-lfs)); beyond that billed per GiB | free for up to five users ([Perforce](https://www.perforce.com/p/products/vcs/free-version-control-unreal-engine)); self-hosted on one of the owner's PCs or paid cloud |
+| Locking | LFS file locking (`git lfs lock`) | exclusive checkout is native, and Unreal's editor shows lock state |
+| Crew fit | crews already know git, worktrees, branches and the commit format | crews need new tooling; branching is heavier |
+| Unreal editor integration | the Git source control plugin is basic | first-class, Epic's own workflow |
 
-LFS budget: GitHub Free includes 10 GiB of LFS storage and 10 GiB of bandwidth per month
-([GitHub docs](https://docs.github.com/en/billing/concepts/product-billing/git-lfs)). A Unity
-project with 2K PBR sets passes that within weeks, and every crew clone or CI checkout counts
-against bandwidth. OWNER DECISION: pay for LFS data (billed per GiB beyond the quota), or use
-Unity Version Control for the binary-heavy Unity repo. Either way, keep crew clones shallow and
-use one shared LFS cache per PC.
+Recommended: **Git with LFS** for this project, because the crews' whole workflow (worktrees,
+Conventional Commits, push after each commit) is git, and the binary edits are kept rare by
+design (generated levels, C++ logic). Mark `*.uasset` and `*.umap` as LFS and lockable, and use
+One File Per Actor (World Partition's external actors) so a level edit touches one small file
+per actor instead of one huge `.umap`. Revisit Perforce if LFS bandwidth or lock conflicts bite.
 
-Layout of the Unity repo:
+What crosses between the repos is GENERATED and pinned: this repo owns the exporters
+(`scripts/unreal/export_protocol.mjs`, `export_content.mjs`, `export_world.mjs`,
+`normalize_glb.mjs`) and their freshness tests; the Unreal repo has `Content/Generated/` and
+`Source/Wyndlewood/Generated/` written only by an import commandlet that records the source
+commit in `Generated/SOURCE_COMMIT`, and an automation test fails when it differs from the
+pinned TS commit. `ONLINE_WORLD_LAYOUT_VERSION` travels with the protocol export.
+
+Layout:
 
 ```
-wyndlewood-unity/
-  Assets/
-    Generated/            # written by the import script only, never by hand
-    Wyndlewood/
-      Runtime/            # C#: Net/, World/, Characters/, Hud/, Audio/, Bridge/ (V8)
-      Editor/             # builders: BuildScripts.cs, SceneGenerator.cs, AssetPostprocessors
-      Prefabs/            # every placed thing is a prefab
-      Art/                # crew and purchased art, by category, with CREDITS rows
-      Settings/           # URP assets, quality tiers, Volume profiles
-    ThirdParty/           # Asset Store packs, untouched
-  Packages/manifest.json
-  Tests/EditMode, Tests/PlayMode
-  tools/                  # run_build.ps1, run_tests.ps1, run_capture.ps1, import_generated.ps1
+wyndlewood-unreal/
+  Wyndlewood.uproject
+  Source/
+    Wyndlewood/        # game module: GameMode, PlayerController, camera
+    WyndNet/           # REST, WebSocket, decoders, generated DTOs (C++)
+    WyndWorld/         # entity mirror, interpolation, actors, animation instances
+    WyndHud/           # C++ widget classes (painters) on the PainterHost-like seam
+    WyndBridge/        # PuerTS host for the TS cores (after M5)
+    WyndEditor/        # editor module: importers, level generator, capture tour
+  Content/
+    Generated/         # import commandlet output only, never hand-edited
+    Wyndlewood/        # master materials, material instances, UMG layouts, data assets
+    Fab/               # purchased packs, untouched
+  Config/              # DefaultEngine.ini, DefaultScalability.ini, DefaultInput.ini
+  Scripts/             # Python editor scripts (import, generate, capture)
+  tools/               # run_build.ps1, run_cook.ps1, run_tests.ps1, run_capture.ps1
   CREDITS.md, CLAUDE.md
 ```
 
-Scenes: one tiny bootstrap scene committed; zone scenes are GENERATED by
-`SceneGenerator.cs` from `Assets/Generated/world/*.json` plus prefabs, and are not committed
-(or committed only as a build cache). Unity's YAML scene merge is fragile, so crews never
-hand-edit `.unity` files (`cost-and-risk.md`, risk 6). Force text serialization and visible meta
-files in Editor settings.
-
-## 4. Driving Unity headlessly on the owner's Windows PC
+## 4. How crews drive the editor
 
 Follow the shared crew rules: long jobs run hidden through a `.ps1`, log to a file, and are
-polled; refresh `PATH` first; at most one Unity instance at a time on AerothanPC because other
-crews share it.
+polled; refresh `PATH` first; at most one Unreal editor or cook at a time on AerothanPC (C++
+compiles and shader compiles take every core), and heavy cooks preferably on the GEEKOM if it
+has the project.
 
-Build (`tools/run_build.ps1`):
+### 4.1 Epic's MCP plugin (interactive editing)
+
+UE 5.8 ships an experimental, first-party MCP server plugin that runs inside the editor and lets
+an MCP client inspect the project and act on Blueprints, assets, levels and materials
+([Crypto Briefing on the 5.8 release](https://cryptobriefing.com/unreal-engine-5-8-mcp-server-support/),
+[StraySpark comparison](https://www.strayspark.studio/blog/epic-official-mcp-plugin-ue5-8-vs-third-party)).
+Treat it as a convenience for exploration, not as the build path:
+
+- It is experimental: a "deliberately minimal" tool set, limited read-back, APIs that will move,
+  and hardening that is not finished (StraySpark). A hands-on test found minutes-long latencies,
+  no PCG graph authoring, and one session that left the project unplayable
+  ([Puget Systems](https://www.pugetsystems.com/blog/2026/07/09/unreal-engine-mcp-hands-on-testing-ai-inside-the-editor/)).
+- Rules: work in a 5.8 Sandbox or a throwaway branch; every MCP-made change that should persist
+  is re-expressed as a Python script or C++ change and committed, so the repo never depends on
+  an untracked click history; never let it edit `Content/Generated/`.
+- Connection: the plugin serves MCP from the running editor on the PC; the crew connects through
+  the Desktop Commander session on AerothanPC. Exact plugin name, port and transport to be read
+  from the 5.8.4 install in M0 and written into the project `CLAUDE.md`.
+
+### 4.2 Python editor scripting (the default automation)
+
+The Python Editor Script Plugin exposes the `unreal` module (asset tools, Interchange, levels,
+actors). Run it headless:
 
 ```powershell
-$env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User')
-$unity = 'C:\Program Files\Unity\Hub\Editor\<6000.3.x>\Editor\Unity.exe'
-& $unity -batchmode -nographics -quit `
-  -projectPath C:\Users\cdero\Apps\wyndlewood-unity `
-  -executeMethod Wyndlewood.Editor.BuildScripts.BuildWin64 `
-  -logFile C:\Users\cdero\Apps\wyndlewood-unity\Logs\build.log
-exit $LASTEXITCODE
+$ue = 'E:\UE_5.8\Engine\Binaries\Win64\UnrealEditor-Cmd.exe'
+& $ue C:\Users\cdero\Apps\wyndlewood-unreal\Wyndlewood.uproject `
+  -run=pythonscript -script="C:\Users\cdero\Apps\wyndlewood-unreal\Scripts\import_generated.py" `
+  -unattended -nop4 -nosplash -stdout -FullStdOutLogOutput > Logs\import.log 2>&1
 ```
 
-`BuildScripts.BuildWin64` calls `BuildPipeline.BuildPlayer` with an explicit scene list and
-`EditorApplication.Exit(1)` on any error, so the exit code is honest.
+Every import, level generation and capture step is a script in `Scripts/`, reviewed and
+committed like code.
 
-Tests (`tools/run_tests.ps1`), Unity Test Framework from the CLI
-([UTF command line reference](https://docs.unity3d.com/Packages/com.unity.test-framework@1.4/manual/reference-command-line.html)):
+### 4.3 Commandlets
+
+Custom `UCommandlet` subclasses in `WyndEditor` for jobs that need C++ speed or engine
+internals (bulk validation, world generation over many cells, the material review sheet),
+invoked with `UnrealEditor-Cmd.exe <project> -run=<Name>`. Built-in ones used here:
+`ResavePackages` (fix-ups after an engine upgrade), `DerivedDataCache -fill` (warm the DDC so
+crews do not each recompile shaders), and `WorldPartitionBuilderCommandlet` (HLODs).
+
+### 4.4 Build, cook and package from the CLI (UnrealBuildTool and UAT)
 
 ```powershell
-& $unity -batchmode -nographics -projectPath <path> -runTests -testPlatform EditMode `
-  -testResults <path>\Logs\editmode.xml -logFile <path>\Logs\editmode.log
-& $unity -batchmode -projectPath <path> -runTests -testPlatform PlayMode `
-  -testResults <path>\Logs\playmode.xml -logFile <path>\Logs\playmode.log
+# compile the editor target
+& 'E:\UE_5.8\Engine\Build\BatchFiles\Build.bat' WyndlewoodEditor Win64 Development `
+  -Project="C:\Users\cdero\Apps\wyndlewood-unreal\Wyndlewood.uproject" -WaitMutex
+# build, cook, stage, pak and archive a shippable build
+& 'E:\UE_5.8\Engine\Build\BatchFiles\RunUAT.bat' BuildCookRun `
+  -project="C:\Users\cdero\Apps\wyndlewood-unreal\Wyndlewood.uproject" `
+  -platform=Win64 -clientconfig=Development -build -cook -stage -pak -iostore `
+  -archive -archivedirectory="C:\Users\cdero\Apps\wyndlewood-builds" -unattended -utf8output
 ```
 
-Notes: leave `-quit` off a `-runTests` run (the test runner exits by itself when it finishes, and
-an early `-quit` can end the editor before the tests run);
-use `-testFilter` for single suites while iterating, the same discipline as single Vitest files;
-PlayMode tests that render need a GPU, so they run without `-nographics`. Parse the NUnit XML
-(`result="Passed"` counts) in the runner and print a one-line summary for the crew to poll.
+Use `-iterate` for iterative cooks while working and a clean cook for release candidates; add
+`-platform=Linux` once the Linux cross-compile toolchain is installed (Steam Deck native).
 
-Screenshots (`tools/run_capture.ps1`): run the BUILT player with a capture flag, for example
-`Wyndlewood.exe -screen-width 2560 -screen-height 1440 -capture-tour bookmarks.json -capture-out
-<dir>`, where a `CaptureTour` component teleports the camera through fixed bookmarks, sets the
-time of day, hides or shows the HUD, waits for streaming and APV to settle, and writes PNGs.
-Batchmode with `-nographics` cannot render, so captures always use a windowed player.
+### 4.5 Automation tests
 
-Licensing for batchmode: the Unity Hub must be signed in once on each machine so the
-editor finds an activated Personal or Pro entitlement; a fresh machine fails batchmode until
-then. This is an owner step (an account login), not a crew step.
+C++ automation tests (`IMPLEMENT_SIMPLE_AUTOMATION_TEST`, plus functional tests in a test level)
+run from the CLI:
+
+```powershell
+& $ue <project> -ExecCmds="Automation RunTest Wyndlewood;Quit" -unattended -nullrhi `
+  -ReportExportPath="C:\Users\cdero\Apps\wyndlewood-unreal\Logs\tests" -log
+```
+
+`-ExecCmds="Automation RunTest <filter>;Quit"` and `-ReportExportPath` (JSON plus HTML results)
+are documented by Epic ([Epic: run automation tests](https://dev.epicgames.com/documentation/en-us/unreal-engine/run-automation-tests-in-unreal-engine));
+`-nullrhi` skips rendering for logic tests, and render or capture tests run without it. The
+runner parses the JSON report and prints a one-line pass and fail count for the crew to poll.
+Golden-frame, fairness and protocol tests all live here.
+
+### 4.6 Screenshots
+
+`tools/run_capture.ps1` launches the packaged game windowed at 2560x1440 with
+`-CaptureTour=bookmarks.json -CaptureOut=<dir>`; a capture subsystem teleports the camera
+through fixed bookmarks, sets the time of day and scalability tier, hides or shows the HUD,
+waits for World Partition streaming, Lumen and VSM to settle, and writes PNGs with
+`FScreenshotRequest`.
 
 ## 5. The screenshots that will show the owner the difference
 
-Captured from the SAME camera bookmarks in the current web client (`scripts/pr_screenshots.mjs`
-and the `pr-screenshots` skill) and in the Unity slice, labeled side by side, at 2560x1440, the
-web client on its Refined preset at high, HUD hidden unless stated:
+Same camera bookmarks in the current web client (`scripts/pr_screenshots.mjs`, the
+`pr-screenshots` skill) and in the Unreal slice, labeled side by side, 2560x1440, web client on
+its Refined preset at high, HUD hidden unless stated:
 
 | # | Bookmark | Times |
 |---|---|---|
 | 1 | Eastbrook gate, street level, looking into town | noon, golden hour, night |
 | 2 | The town square from a second-floor height (the "postcard") | noon, golden hour, night |
-| 3 | Close-up material shot: a timber-frame wall, cobbles, a barrel, a lamp | noon, night (lamp lit) |
+| 3 | Close-up material shot: timber-frame wall, cobbles, a barrel, a lamp | noon, night (lamp lit) |
 | 4 | Vale meadow toward Mirror Lake, foliage and water | noon, golden hour |
-| 5 | Forest edge on the Wolf Run with fog and light shafts | morning fog |
+| 5 | Forest edge on the Wolf Run with volumetric fog and light shafts | morning fog |
 | 6 | The player character, three-quarter view, in town | noon |
 | 7 | Gameplay frame with the minimal HUD visible, targeting a wolf | noon |
+| 8 | Bookmark 2 again on the Low tier (Lumen off) | noon, night |
 
-Plus a 2 minute capture of the M3 walking route and the M7 crowd, and one perf overlay frame
-per bookmark. Images are kept in the Unity repo (`Docs/screenshots/slice/`) and copied into this
-repo under `docs/screenshots/unity-slice/` only when a PR here needs them.
+Plus a 2 minute capture of the M3 route and the M7 crowd, and one `stat unit` overlay frame per
+bookmark. Images live in the Unreal repo (`Docs/screenshots/slice/`) and are copied into this
+repo under `docs/screenshots/unreal-slice/` only when a PR here needs them.
 
 ## 6. What the owner provides
 
-- Installs Unity Hub and Unity 6.3 LTS with the Windows and Linux build modules, signs in.
-- Creates the private repo and decides LFS versus Unity Version Control.
-- Buys the shortlist packs (`asset-store-shortlist.md`) after viewing their screenshots.
+- Confirms the 5.8.4 install at `E:\UE_5.8` includes the Win64 and Linux target platforms and
+  Visual Studio 2022 with the C++ game workload (UBT needs MSVC).
+- Creates the private repo and decides Git LFS versus Perforce.
+- Buys the Fab shortlist packs (`fab-shortlist.md`) after viewing their screenshots.
 - Decides the desktop origin question (`wire-protocol.md` section 1.1).
 - Reviews the M6 UI direction tile before any other window is built.
+- Gets legal advice on the EULA generative-AI clause before crews start (`cost-and-risk.md`,
+  risk 1).
