@@ -599,6 +599,62 @@
       "requestedSeconds": 120,
       "credits": 2888,
       "sung": true
+    },
+    "wyn_boss_undead": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 90,
+      "credits": 1238,
+      "sung": false
+    },
+    "wyn_boss_wild": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 90,
+      "credits": 1238,
+      "sung": false
+    },
+    "wyn_crucible_heart": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 110,
+      "credits": 1512,
+      "sung": false
+    },
+    "wyn_crucible_assembly": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 110,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_town_gourdlight": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 90,
+      "credits": 2750,
+      "sung": false
+    },
+    "wyn_minigame_playful": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 75,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_minigame_tense": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 75,
+      "credits": null,
+      "sung": false
     }
   }
 }

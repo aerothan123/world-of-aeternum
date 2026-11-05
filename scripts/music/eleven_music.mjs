@@ -24,7 +24,7 @@
 
 import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { FFMPEG_PATH, FFPROBE_PATH } from '../sfx/ffmpeg_paths.mjs';
@@ -37,6 +37,13 @@ const LEDGER = join(ROOT, 'scripts/music/provenance.json');
 const GENERATED = join(ROOT, 'src/game/music_score_tracks.generated.ts');
 const PROVENANCE_DOC = join(ROOT, 'docs/audio/elevenlabs_music_provenance.md');
 const API = 'https://api.elevenlabs.io';
+/** Cues also built in place over stable paths older code and tests load directly:
+ *  the home-page theme (src/main.ts) and the shared boss-fight loop
+ *  (boss_music_loop.ts DEFAULT_BOSS_TRACK_URL). */
+const IN_PLACE = {
+  wyn_title: 'public/audio/main-theme.mp3',
+  wyn_boss_dungeon: 'public/audio/dungeon-boss-fight.mp3',
+};
 const MODEL = process.env.WYN_MUSIC_MODEL || 'music_v2';
 /** Integrated loudness of the shipped cues (LUFS). Matches the existing zone
  *  remasters (measured with `measure`), so the new score sits in the same mix. */
@@ -366,6 +373,10 @@ async function main() {
       const out = join(OUT_DIR, `${cue.key}.mp3`);
       if (existsSync(out))
         console.log(`  ${cue.key}: ${lufsOf(out)} LUFS, ${probeSeconds(out).toFixed(1)} s`);
+    }
+    for (const [cue, alias] of Object.entries(IN_PLACE)) {
+      const built = join(OUT_DIR, `${cue}.mp3`);
+      if (existsSync(built)) copyFileSync(built, join(ROOT, alias));
     }
     writeGenerated();
     writeProvenanceDoc();

@@ -628,6 +628,82 @@ export const MUSIC_PLAN = [
     prompt: body,
   })),
 
+  // Replacements for inherited cues removed under the asset-rights decision
+  // (docs/launch/asset-rights-inventory.md, music crew).
+  ...[
+    [
+      'wyn_boss_undead',
+      'Boss battle against a risen lord of the dead deep in a crypt. Low tolling bells, a ' +
+        'dark male choir chanting on vowels, pounding timpani and frame drums, tremolo low ' +
+        'strings, a desperate heroic horn line, D minor, about 146 bpm, grim but thrilling.',
+    ],
+    [
+      'wyn_boss_wild',
+      'Boss battle against a great beast of the old wild forest. Thunderous hand drums and ' +
+        'big frame drums, wild driving fiddles, roaring low horns, a fierce wooden flute ' +
+        'melody, F-sharp minor, about 150 bpm, primal and exhilarating.',
+    ],
+  ].map(([key, body]) => ({
+    key,
+    group: 'boss',
+    seconds: 90,
+    tier: 2,
+    prompt: `${body} Starts strongly and ends on a firm final chord.`,
+  })),
+  ...[
+    [
+      'wyn_crucible_heart',
+      'The molten heart of an ancient forge citadel, a long raid floor. Slow heavy anvil ' +
+        'strikes, enormous low brass swells, a dark wordless choir, molten low strings ' +
+        'building in waves to climactic surges and falling back, C minor, about 90 bpm, ' +
+        'colossal and relentless.',
+    ],
+    [
+      'wyn_crucible_assembly',
+      'A vast hall of half-woken iron giants inside a forge citadel. Clanking metallic ' +
+        'percussion in odd meter, low bassoons and tuba-like brass, tense string ostinato, ' +
+        'distant horn calls, E Phrygian, about 100 bpm, mechanical menace and awe.',
+    ],
+  ].map(([key, body]) => ({
+    key,
+    group: 'dungeon',
+    seconds: 110,
+    tier: 2,
+    prompt: `${body} ${LOOPABLE}`,
+  })),
+  {
+    key: 'wyn_town_gourdlight',
+    group: 'town',
+    seconds: 90,
+    tier: 2,
+    prompt:
+      'Autumn lantern festival in a storybook village at dusk. Playful plucked lute and ' +
+      'pizzicato strings, a mischievous bassoon and clarinet duet, small bells and a soft ' +
+      'frame drum, a warm fiddle melody, E minor brightening to G major, 6/8, about 104 bpm, ' +
+      'cozy and a little spooky, carved-gourd lanterns glowing. ' +
+      LOOPABLE,
+  },
+  ...[
+    [
+      'wyn_minigame_playful',
+      'Light playful music for a quiet puzzle or a careful task. Pizzicato strings, ' +
+        'marimba-like wooden mallets, a cheerful clarinet melody, soft harp, C major, about ' +
+        '112 bpm, curious and bright, steady without rushing.',
+    ],
+    [
+      'wyn_minigame_tense',
+      'Energetic music for a fast timed challenge. Driving spiccato strings, quick hand ' +
+        'drums, a bold fiddle melody with horn punches, A minor, about 138 bpm, urgent and ' +
+        'fun rather than dark.',
+    ],
+  ].map(([key, body]) => ({
+    key,
+    group: 'minigame',
+    seconds: 75,
+    tier: 2,
+    prompt: `${body} ${LOOPABLE}`,
+  })),
+
   // In-world songs (original lyrics). Composition plans with sung sections.
   {
     key: 'wyn_song_kettle_before_the_candle',
