@@ -12,8 +12,24 @@ Read it alongside the story bible (`docs/narrative/wyndlewood_bible.md`, on
 
 Naming. **Launch** is the whole bible campaign, The Unravelling, chapters One
 to Seven, levels 1 to 20. Post-launch releases continue the numbering:
-Chapter Eight, Nine, Ten. Each is one paid or free content release that
-raises the cap by 5 (open question R1).
+Chapter Eight, Nine, Ten. Each is a **free update** that raises the cap by 5
+(owner decision). Development is funded by the game's price and by the
+cosmetic shop, not by selling chapters.
+
+**What free chapters change here:**
+- Nobody owns "the old game" while others own the new one. Every player on
+  the one Early Access realm can enter a new chapter on the day it ships, so
+  no content gate needs a purchase check.
+- Each chapter ships with a new **cosmetic shop line** themed to its region:
+  - mount and armor appearances;
+  - house wallpapers, dyes and decor looks.
+  Shop items are looks only. Earned rewards (deeds, Reliquary relics,
+  faction mount appearances, raid looks) are never sold.
+  See `docs/design/wyndlewood-game-plan-economy.md`, section 3.
+- Chapter scope must fit what game sales and cosmetics fund. Plan each
+  chapter as a budget, not a promise: the core (cap raise, one ring, two
+  dungeons, one raid) is fixed, and optional extras slip to the next
+  chapter.
 
 Labels: EXISTS, NEEDS WORK, MISSING, as in the main plan.
 
@@ -275,10 +291,12 @@ As the bible describes it. Endgame at 20:
 ---
 
 ## 8. Open questions (roadmap only)
-- **R1.** Are chapters paid expansions, free updates, or alternating?
+- **R1 (decided).** Chapters are free updates.
 - **R2.** When the cap first rises, freeze prestige ranks as a cosmetic
   record (recommended), or convert them?
 - **R3.** Correct `zeroDiff` for levels 16 to 19 to the classic table (9) at
   launch, or only when the cap rises?
-- **R4.** Release cadence: one chapter every 6 to 9 months (recommended for
-  the team size)?
+- **R4.** Release cadence: one free chapter every 6 to 9 months (recommended
+  for the team size)?
+- **R5.** On the one realm, how many guild town sites does Chapter Ten open?
+  Few sites make competition; too few shut small guilds out.

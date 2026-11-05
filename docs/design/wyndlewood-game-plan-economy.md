@@ -51,17 +51,62 @@ cut-price fees. Selling time saved is borderline, so keep it rare and small.
 | Subscription | Steady revenue that matches server cost | A hard sell for a new indie MMO. Shrinks the player base |
 | Free-to-play plus a shop | The largest possible audience | Bots, gold sellers and spam. Pressure to sell power or convenience. Needs strong moderation (moderation EXISTS: `src/sim/moderation/`, `server/`) |
 | Cosmetic shop (appearances, mount and weapon skins, house wallpapers and dyes, emotes) | Fair. Fits a housing game. Store mount and weapon skin plumbing EXISTS | Must never undercut crafted furniture, or makers lose their market. Sell looks, never function |
-| Paid expansions (cap raise, new regions, new raid) | The classic, proven shape. Fair | Expensive to build. They split the player base unless the old content stays relevant |
+| Paid expansions (cap raise, new regions, new raid) | The classic, proven shape. Fair | Not chosen: the owner decided chapters are free. They would split a small playerbase on one realm |
+| Free chapter updates (decided) | Keeps the one realm together. Earns goodwill and Steam review momentum at each launch | No direct chapter revenue: cosmetics and game sales must carry development |
 | Cosmetic subscription or seasonal pass (a monthly cosmetic, house theme items) | Recurring revenue without power | Must avoid fear-of-missing-out pressure. Make past items buyable again later |
 | Storage purchases (the inherited storage SKU) | Popular | Convenience power. If kept, cap it low and keep in-game gold paths |
 | The inherited membership (gear at character level + 5, +20% XP, half market fee) | Already built | Pay-for-power. Remove it or convert it to cosmetics |
 | The inherited crypto currency and stakes layer | Already built | Likely blocked under Steam's rules for blockchain games. Legal and trust risk. Remove it from the Steam build |
 
-**Recommended shape:**
+**Decided shape:**
 - Buy-to-play at the base price.
 - A cosmetic shop.
-- Paid expansions, starting with the first cap raise.
-- Optionally, a cosmetic subscription that never gates content.
+- Free chapter updates.
+- Membership off for Early Access.
+- Crypto removed from the Steam build.
+
+Still open: a cosmetic subscription that never gates content.
 
 Free-to-play is not recommended at launch, because of bot and moderation
 load on a small team.
+
+## 3. How free chapters are funded
+
+Owner decision: chapters are free, so income is the game's price plus
+cosmetics.
+
+**Revenue levers.**
+- **Game price.** The Early Access price, then a raise at full release.
+  Every free chapter is also a sales moment: a Steam update, a discount
+  window, and new store page art.
+- **A cosmetic line per chapter.** Each chapter ships with its own set of
+  looks:
+  - two mount appearances;
+  - an armor appearance set per armor type;
+  - a house theme (wallpaper, floor, dye pack, decor looks);
+  - an emote or toy.
+  Sell them singly and as one chapter bundle. Skin plumbing EXISTS
+  (`src/sim/content/mount_skins.ts`, `weapon_skins.ts`, `skins.ts`).
+- **An optional cosmetic supporter pack at each chapter launch.** It is a
+  bundle of that chapter's looks plus a supporter title. The title is a
+  shop title, kept separate from the Book of Deeds, so earned titles stay
+  earned.
+- **Optional, still open:** a cosmetic subscription.
+
+**Rules that keep it fair and keep makers in business.**
+- Never sell anything a chapter gives as an earned reward. That covers
+  deeds, Reliquary relics, faction mount appearances and raid looks.
+- Never sell furniture function: chests, stations or trophies. Shop decor
+  is looks only, so crafted furniture keeps its market.
+- Shop looks can be gifted, but not traded on the World Market, so the shop
+  never becomes a gold source.
+- No time-limited fear of missing out. Past chapter lines return to the
+  shop on a rotation.
+
+**What to measure (one realm).**
+- Revenue per active player per chapter.
+- The share of players who buy at least one cosmetic.
+- Server cost per active player, so the cosmetic line's size is planned
+  against cost.
+- These are business metrics for the admin dashboard (`src/admin/`). Keep
+  them apart from the in-game money supply above.

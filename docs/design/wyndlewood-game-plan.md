@@ -73,8 +73,8 @@ engine. It has:
 **Recommendations in brief.**
 - Keep the **level cap at 20** for launch (now decided; later chapters
   raise it by 5). Every system is pinned to it, and
-  levels 16 to 20 already hold 45% of all XP to cap. Raise the cap only in a
-  paid expansion.
+  levels 16 to 20 already hold 45% of all XP to cap. Raise the cap in later
+  chapters, which the owner has decided are free updates.
 - **Re-tune quest XP to about 10% of a level per quest** (today it is about
   18 to 25%). Aim for about 5 quests completed per level and about 7 offered,
   for a first character's time to cap of roughly 25 to 35 hours.
@@ -84,9 +84,9 @@ engine. It has:
   defense, Hearthwright Compact for building and crafting, Bracken Circle for
   nature and herbs, Gilt Measure for trade and contracts. The Pale Accord is
   the enemy with no reputation.
-- **Business model:** buy-to-play, a cosmetic-only shop, and paid
-  expansions. Convert the membership gear and XP perks to cosmetics or remove
-  them, and keep crypto out of the Steam build.
+- **Business model:** buy-to-play plus a cosmetic-only shop, with free
+  chapter updates (now decided). Membership is off for Early Access, and
+  crypto is out of the Steam build.
 - **Minimum viable launch:** Chapters One to Seven playable to 20, the 5
   factions, housing phases 4 to 6 plus a garden plot, durability and repair,
   the economy pass, and a cleaned-up Steam build. Roadmap and risks are in
@@ -160,8 +160,8 @@ Full tables: `docs/design/wyndlewood-game-plan-progression.md`.
 
 **Recommended launch cap: 20 (keep).** The bible fixes the campaign at
 levels 1 to 20. Talent rows, spell ranks, heroics, raid item budgets and
-faction vendor budgets all assume 20. Raising the cap is the classic shape
-of a paid expansion (section 9).
+faction vendor budgets all assume 20. Each later chapter raises the cap by 5
+as a free update (section 9, and the chapter roadmap).
 
 **NEEDS WORK: leveling speed.** The shipped convention pays about 18 to 25%
 of a level's XP bar per quest. `docs/design/master-spec.md` caps a single
@@ -517,7 +517,8 @@ Recommended shape:
 - A cosmetic shop: mount, weapon and armor appearances, house wallpapers and
   dyes. The shop never sells crafted furniture functions, so makers keep the
   market.
-- Paid expansions that raise the cap and add regions.
+- Free chapter updates that raise the cap and add regions (decided). Each
+  chapter ships with a new cosmetic shop line, which funds the next one.
 - Optionally, a small cosmetic subscription.
 - Remove the membership gear, XP and market perks, and remove crypto, from
   the Wyndlewood build.
@@ -600,6 +601,14 @@ Recommended shape:
   - Gilt for trading, the market and buy orders.
 - **PvP.** Opt-in at launch. An arena or PvP zone comes later.
 - **First mount.** At level 10 (systems crew).
+- **Faction depth.** One character can max all four friendly factions.
+  Moral choices only tilt standing; they lock nothing out.
+- **Faction gear.** Lowered to quest-reward strength. The story crew is
+  re-budgeting the quartermasters.
+- **Chapters.** Post-launch chapters are free updates. Income comes from the
+  game's price and from cosmetics
+  (`docs/design/wyndlewood-game-plan-economy.md`, section 3).
+- **Realms.** One realm at the Early Access launch.
 - **The map.** It grows to include:
   - the Southern Reaches row at 6 to 13;
   - a further south row at 11 to 15;
@@ -609,26 +618,22 @@ Recommended shape:
   The longest trip is about 15 minutes on foot at launch.
 
 ### Still open
-1. **Business model after Early Access.** Buy-to-play plus cosmetics plus
-   expansions, with or without a cosmetic-only subscription? Does membership
-   return later, and if so as cosmetic only?
-2. **Faction depth.** Can one character max all four factions, with moral
-   choices only tilting standing? (Recommended: yes; the ladder assumes it.)
-3. **Faction gear.** Re-budget the shipped quartermaster gear down to the
-   quest tier, as the ladder proposes? (Recommended: yes.)
-4. **Chapters as releases.** Are post-launch chapters paid expansions, free
-   updates, or alternating (roadmap R1)? And at what cadence (R4)?
-5. **Prestige at the first cap raise.** Freeze prestige ranks as a cosmetic
-   record, or convert them (roadmap R2)?
-6. **`zeroDiff`.** Correct it to the classic table for levels 16 to 19 at
+1. **Membership after Early Access.** Does it return later, and if so as
+   cosmetic only? And is there a cosmetic-only subscription?
+2. **Chapter cadence.** One free chapter every 6 to 9 months is the
+   recommendation for the team size (roadmap R4).
+3. **Prestige at the first cap raise.** Freeze prestige ranks as a cosmetic
+   record (recommended), or convert them (roadmap R2)?
+4. **`zeroDiff`.** Correct it to the classic table for levels 16 to 19 at
    launch, or only when the cap rises (roadmap R3)?
-7. **Mage Chronomancy.** List it as a finder healer, or change its role?
-8. **Names.** Approve "the Oathless King" (decisions file, item 4), and
+5. **Mage Chronomancy.** List it as a finder healer, or change its role?
+6. **Names.** Approve "the Oathless King" (decisions file, item 4), and
    rename the Royal Forgemaster (bible Garrick Vellthorn) to avoid the
    Garrick Holt clash.
-9. **Realms.** One large realm at launch, or several?
-10. **Eshmara's end.** Does she yield and survive at the end of Dawnhold
-    (as designed), or die?
+7. **Eshmara's end.** Does she yield and survive at the end of Dawnhold
+   (as designed), or die?
+8. **Realm capacity.** On one realm, what player count triggers opening a
+   second realm, or running layered copies of busy zones?
 
 ---
 
