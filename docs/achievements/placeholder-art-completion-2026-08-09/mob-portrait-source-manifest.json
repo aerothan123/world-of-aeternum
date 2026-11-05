@@ -6,7 +6,7 @@
     "bytes": 1510,
     "sha256": "bb0b6bacba9acb12568c3bbbe536e4442cb2964266cffef890f27ee4915dcf2a"
   },
-  "rendererFingerprint": "9c68310c5a3e4107cc2b0d2120b6a024e5757543e880f17f0cd5ed3840623857",
+  "rendererFingerprint": "5be6e6ed95ab29606b8cf5c68aefee418ed1113887f18ac2dab60738156d220b",
   "renderEnv": {
     "schemaVersion": 1,
     "platform": "win32",
@@ -38,8 +38,8 @@
     ],
     "browserBundle": {
       "entry": "scripts/wiki/stills_render_entry.js",
-      "bytes": 6865920,
-      "sha256": "330c87fecb418124b8f266860b13da28aa8f61aed4e9f857e1b70fceb267d540",
+      "bytes": 6866776,
+      "sha256": "485311862c52533e13b630015e80f99ff5098dcf72dae13187303411ad11ae9f",
       "esbuildVersion": "0.28.1"
     },
     "output": {
@@ -1108,34 +1108,34 @@
       "id": "canopy_weaver",
       "family": "spider",
       "finderEncounter": false,
-      "visualKey": "mob_spider",
+      "visualKey": "wildlife_spider",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/spider.glb",
-          "path": "public/models/creatures/spider.glb",
-          "bytes": 130436,
-          "sha256": "5becf8b6510f0620ff473becc29c6567f7ae32fc1bd9f42e0b647599aa6ed6de"
+          "url": "models/creatures/wildlife_spider.glb",
+          "path": "public/models/creatures/wildlife_spider.glb",
+          "bytes": 648284,
+          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
         },
-        "idle": "Spider_Idle",
-        "height": 1.4,
-        "yaw": null,
+        "idle": "Idle",
+        "height": 1.3,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
         "weaponFix": null,
-        "tintStrength": 0.35
+        "tintStrength": 0.3
       },
       "tint": {
         "source": "entity",
         "authored": "entity",
         "resolved": "#4e8a3c",
-        "strength": 0.35
+        "strength": 0.3
       },
-      "sourceFingerprint": "bd0feb975f11519f7177e14935a8edc003e38bc5d0f2471f685cc9bc76ed8b27",
+      "sourceFingerprint": "0ecc590f4f1cf11cd11274849c5d9847c6b184586e447f0c0261283175e84823",
       "output": {
         "path": "public/ui/mobs/canopy_weaver.webp",
-        "bytes": 1690,
-        "sha256": "0ef42ddb01857368a65577e173d66862d2b6dc4792f38e46672ac43c21b6930e"
+        "bytes": 1880,
+        "sha256": "28f8289864963205a19137e6b40f1997327518bcc7ffd9c893f2502755f28f85"
       }
     },
     {
@@ -4009,34 +4009,34 @@
       "id": "gloam_fox",
       "family": "beast",
       "finderEncounter": false,
-      "visualKey": "mob_fox",
+      "visualKey": "wildlife_fox",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/fox.glb",
-          "path": "public/models/creatures/fox.glb",
-          "bytes": 332748,
-          "sha256": "2694028b47e84bad3b9d985aa7743dae02a3bcfddd6becd73b46c747a1e067b3"
+          "url": "models/creatures/wildlife_fox.glb",
+          "path": "public/models/creatures/wildlife_fox.glb",
+          "bytes": 552544,
+          "sha256": "0d5eef329ac0aeca20394b3b9a949c4bda6fedd8ac4a34a384a7949be5fdf8d7"
         },
         "idle": "Idle",
-        "height": 1,
-        "yaw": null,
+        "height": 0.95,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
         "weaponFix": null,
-        "tintStrength": 0.35
+        "tintStrength": 0.3
       },
       "tint": {
         "source": "entity",
         "authored": "entity",
         "resolved": "#d87838",
-        "strength": 0.35
+        "strength": 0.3
       },
-      "sourceFingerprint": "989c02070d03b9eeb8a41ed2db166e5b606254d5cdea8eb6e982d27d9cbe9917",
+      "sourceFingerprint": "de9d7694effeae5e03edb540fa4453aed9c5c44090ea75a0d598170d03309596",
       "output": {
         "path": "public/ui/mobs/gloam_fox.webp",
-        "bytes": 1962,
-        "sha256": "adc2cec1cd38dda8bba6479d02f0c5fbc53d33cd153d9126b1340ea7cbb6f2bc"
+        "bytes": 2440,
+        "sha256": "ce8bd14d1ca34dc4300f6785af444e96353a7399b0967ffb0b33180d6e691248"
       }
     },
     {
@@ -6689,68 +6689,68 @@
       "id": "mire_prowler",
       "family": "beast",
       "finderEncounter": false,
-      "visualKey": "mob_wolf",
+      "visualKey": "wildlife_wolf",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/wolf_basic.glb",
-          "path": "public/models/creatures/wolf_basic.glb",
-          "bytes": 369180,
-          "sha256": "1d8c3c652467f2e4ba8b9746f926eda43254adf5ddaaca722dce582ec629d381"
+          "url": "models/creatures/wildlife_wolf.glb",
+          "path": "public/models/creatures/wildlife_wolf.glb",
+          "bytes": 522236,
+          "sha256": "20fcfbe89e19bfa4b4640cf2cea7b66017abdc47355ac70b5e64171e883fc8c0"
         },
         "idle": "Idle",
         "height": 1.47,
-        "yaw": null,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
         "weaponFix": null,
-        "tintStrength": 0.35
+        "tintStrength": 0.3
       },
       "tint": {
         "source": "entity",
         "authored": "entity",
         "resolved": "#4d5656",
-        "strength": 0.35
+        "strength": 0.3
       },
-      "sourceFingerprint": "c3bf0629c77831cd33fc56fa3ec3e5df7b76b247b26f8c95eb9ca5e6d0d81ef5",
+      "sourceFingerprint": "d9d7f7bacea26e73d44dc08156259f3f9cbeb72204b4b3cdeefed4c096dc5751",
       "output": {
         "path": "public/ui/mobs/mire_prowler.webp",
-        "bytes": 1980,
-        "sha256": "252801e166c89d790c31f222aaa84c555299fa6c744d49858114d0f8ca3d04bc"
+        "bytes": 2348,
+        "sha256": "b0b02a698e76135a797a5119c8b0368ea78cf72e9afc25a3f5cd3fcdfe650a6d"
       }
     },
     {
       "id": "mire_widow",
       "family": "spider",
       "finderEncounter": false,
-      "visualKey": "mob_spider",
+      "visualKey": "wildlife_spider",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/spider.glb",
-          "path": "public/models/creatures/spider.glb",
-          "bytes": 130436,
-          "sha256": "5becf8b6510f0620ff473becc29c6567f7ae32fc1bd9f42e0b647599aa6ed6de"
+          "url": "models/creatures/wildlife_spider.glb",
+          "path": "public/models/creatures/wildlife_spider.glb",
+          "bytes": 648284,
+          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
         },
-        "idle": "Spider_Idle",
-        "height": 1.4,
-        "yaw": null,
+        "idle": "Idle",
+        "height": 1.3,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
         "weaponFix": null,
-        "tintStrength": 0.35
+        "tintStrength": 0.3
       },
       "tint": {
         "source": "entity",
         "authored": "entity",
         "resolved": "#283747",
-        "strength": 0.35
+        "strength": 0.3
       },
-      "sourceFingerprint": "1565161d6df612ac3e6e6c17fbdb6299292d200aad7689e6baee1508de845fdc",
+      "sourceFingerprint": "889159cb65c6b300eeb1c2b280837fa96bc84e2bc11625e5060ebbfa84e22f89",
       "output": {
         "path": "public/ui/mobs/mire_widow.webp",
-        "bytes": 1546,
-        "sha256": "ff44b5da890ca12e20f04b697fe82baa915bc3b357c54d9110cf62cd96606e4f"
+        "bytes": 1802,
+        "sha256": "b9afb99ece30e116e6d8fd8fd0534e9c091eda918e0847823faf7a76df18de4e"
       }
     },
     {
@@ -6791,34 +6791,34 @@
       "id": "mirefen_widowling",
       "family": "beast",
       "finderEncounter": false,
-      "visualKey": "mob_spider",
+      "visualKey": "wildlife_spider",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/spider.glb",
-          "path": "public/models/creatures/spider.glb",
-          "bytes": 130436,
-          "sha256": "5becf8b6510f0620ff473becc29c6567f7ae32fc1bd9f42e0b647599aa6ed6de"
+          "url": "models/creatures/wildlife_spider.glb",
+          "path": "public/models/creatures/wildlife_spider.glb",
+          "bytes": 648284,
+          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
         },
-        "idle": "Spider_Idle",
-        "height": 1.4,
-        "yaw": null,
+        "idle": "Idle",
+        "height": 1.3,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
         "weaponFix": null,
-        "tintStrength": 0.35
+        "tintStrength": 0.3
       },
       "tint": {
         "source": "entity",
         "authored": "entity",
         "resolved": "#2e2a34",
-        "strength": 0.35
+        "strength": 0.3
       },
-      "sourceFingerprint": "669698ab3bfa546c92414ab56e10637b199735b3560bf40cea20c966ec499647",
+      "sourceFingerprint": "0c4286949c6b61af80cf8881115bee3b2674b3a43e29d92cdb1bb46027121cab",
       "output": {
         "path": "public/ui/mobs/mirefen_widowling.webp",
-        "bytes": 1684,
-        "sha256": "fdfd3f9f7400dda45adb70aeca74313bf41f774f6384d31db3bd2ab5ae11aa8a"
+        "bytes": 1966,
+        "sha256": "a4bff3ce15fd0587cbd455a09f359183e024a1c13898437ea2b58ea7e7089089"
       }
     },
     {
@@ -6893,34 +6893,34 @@
       "id": "mister_crabs",
       "family": "beast",
       "finderEncounter": false,
-      "visualKey": "mob_crab",
+      "visualKey": "wildlife_crab",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/crabenemy.glb",
-          "path": "public/models/creatures/crabenemy.glb",
-          "bytes": 62156,
-          "sha256": "8d3c9c7a231c9835a1ee618c18e27d4285c0d369bfac10a2ff9680400bd7b06b"
+          "url": "models/creatures/wildlife_crab.glb",
+          "path": "public/models/creatures/wildlife_crab.glb",
+          "bytes": 615080,
+          "sha256": "8de1fd795125e5fc3512ca83a6cbf2ea877af9888e4dee1a8322953af789712d"
         },
         "idle": "Idle",
-        "height": 1.7,
-        "yaw": null,
+        "height": 1.2,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
         "weaponFix": null,
-        "tintStrength": 0.35
+        "tintStrength": 0.3
       },
       "tint": {
         "source": "entity",
         "authored": "entity",
         "resolved": "#b0402a",
-        "strength": 0.35
+        "strength": 0.3
       },
-      "sourceFingerprint": "d9b51b2795eccc1807d3ce2d9b9b8271f76204002d8ade7c3fca934916365625",
+      "sourceFingerprint": "1d6d0f7d495c4d8d3ca9da500bea7209e0dae8e927597a6223b3fa5837a0b3e6",
       "output": {
         "path": "public/ui/mobs/mister_crabs.webp",
-        "bytes": 2190,
-        "sha256": "800918d7db72d0401600a62681c479d784fecf69bcc6197e41f9fae4f6bdc59f"
+        "bytes": 3436,
+        "sha256": "1cee4065b0a68106eb09518b8c76551857398a34ff2406ec10ff6d95bbd566b2"
       }
     },
     {
@@ -8260,34 +8260,34 @@
       "id": "old_cragmaw",
       "family": "beast",
       "finderEncounter": false,
-      "visualKey": "mob_bear",
+      "visualKey": "wildlife_bear",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/yetialt.glb",
-          "path": "public/models/creatures/yetialt.glb",
-          "bytes": 149784,
-          "sha256": "6c14f370c2aff231186aee084902113e58823e1cd97f5dd9958417c4a9288767"
+          "url": "models/creatures/wildlife_bear.glb",
+          "path": "public/models/creatures/wildlife_bear.glb",
+          "bytes": 540808,
+          "sha256": "69b019097067d700b6b297fbfaed11a81750246659266e67ce1462b49ac9fe8c"
         },
         "idle": "Idle",
-        "height": 2.2,
-        "yaw": null,
+        "height": 1.8,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
         "weaponFix": null,
-        "tintStrength": 0.5
+        "tintStrength": 0.3
       },
       "tint": {
-        "source": "fixed",
-        "authored": "#5a4030",
-        "resolved": "#5a4030",
-        "strength": 0.5
+        "source": "entity",
+        "authored": "entity",
+        "resolved": "#6e6453",
+        "strength": 0.3
       },
-      "sourceFingerprint": "9d9c62362e9d5d894cef31ff20e661aadb53eb987384a937bc29d47032e0e75e",
+      "sourceFingerprint": "192b19f016862ab72148ccaae27fb7d612c0127714d7537d49370d5fa373ce9c",
       "output": {
         "path": "public/ui/mobs/old_cragmaw.webp",
-        "bytes": 1738,
-        "sha256": "97d3590c5150fb2c0c77ed51ffc2448d9d2d17a498c9d95fc1d90197f5f87de2"
+        "bytes": 1698,
+        "sha256": "ac126267799046b40a28b987b310875afa2abc1c416e172f6a32ea47ebab35eb"
       }
     },
     {
@@ -8328,34 +8328,34 @@
       "id": "old_marrowshell",
       "family": "beast",
       "finderEncounter": false,
-      "visualKey": "mob_crab",
+      "visualKey": "wildlife_crab",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/crabenemy.glb",
-          "path": "public/models/creatures/crabenemy.glb",
-          "bytes": 62156,
-          "sha256": "8d3c9c7a231c9835a1ee618c18e27d4285c0d369bfac10a2ff9680400bd7b06b"
+          "url": "models/creatures/wildlife_crab.glb",
+          "path": "public/models/creatures/wildlife_crab.glb",
+          "bytes": 615080,
+          "sha256": "8de1fd795125e5fc3512ca83a6cbf2ea877af9888e4dee1a8322953af789712d"
         },
         "idle": "Idle",
-        "height": 1.7,
-        "yaw": null,
+        "height": 1.2,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
         "weaponFix": null,
-        "tintStrength": 0.35
+        "tintStrength": 0.3
       },
       "tint": {
         "source": "entity",
         "authored": "entity",
         "resolved": "#8fb8d8",
-        "strength": 0.35
+        "strength": 0.3
       },
-      "sourceFingerprint": "56b55e0083ddb0c25aee478c4534e5b2884ed21d8bb5662a4093ce0b5be375d7",
+      "sourceFingerprint": "14cb60a5390cdef37c80f0a6def3e682f16ad08265f4ae0d432e22b09b6b081f",
       "output": {
         "path": "public/ui/mobs/old_marrowshell.webp",
-        "bytes": 2066,
-        "sha256": "39b5e33b2f137ea508cbfef3c67e3a5135b5a31310172670f4b64baab96cdf9d"
+        "bytes": 3422,
+        "sha256": "ec5919c43bd705c296041ff83ac4a93ddc7eecfead11735cbe84a332d2a7daed"
       }
     },
     {
@@ -8923,34 +8923,34 @@
       "id": "ridge_stalker",
       "family": "beast",
       "finderEncounter": false,
-      "visualKey": "mob_wolf",
+      "visualKey": "wildlife_wolf",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/wolf_basic.glb",
-          "path": "public/models/creatures/wolf_basic.glb",
-          "bytes": 369180,
-          "sha256": "1d8c3c652467f2e4ba8b9746f926eda43254adf5ddaaca722dce582ec629d381"
+          "url": "models/creatures/wildlife_wolf.glb",
+          "path": "public/models/creatures/wildlife_wolf.glb",
+          "bytes": 522236,
+          "sha256": "20fcfbe89e19bfa4b4640cf2cea7b66017abdc47355ac70b5e64171e883fc8c0"
         },
         "idle": "Idle",
         "height": 1.47,
-        "yaw": null,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
         "weaponFix": null,
-        "tintStrength": 0.35
+        "tintStrength": 0.3
       },
       "tint": {
         "source": "entity",
         "authored": "entity",
         "resolved": "#8c8270",
-        "strength": 0.35
+        "strength": 0.3
       },
-      "sourceFingerprint": "3282c1c42b7c50daa4bff8a591989a6bb4ca71b32b5441a7bb6b711f9415b883",
+      "sourceFingerprint": "355688538bc0847f7d32e202283eb798f727b2884b0346c6ccf9dcbd7c64db18",
       "output": {
         "path": "public/ui/mobs/ridge_stalker.webp",
-        "bytes": 2022,
-        "sha256": "cee147084aa714e320c49867a0c125efd46977092f262bbdaf02552840212cc1"
+        "bytes": 2360,
+        "sha256": "5e5a1b6d84fdf77e037f1bb390ea4c338c042393ceb228b879ef9cddba0111bf"
       }
     },
     {
@@ -10620,68 +10620,68 @@
       "id": "shoal_scuttler",
       "family": "beast",
       "finderEncounter": false,
-      "visualKey": "mob_crab",
+      "visualKey": "wildlife_crab",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/crabenemy.glb",
-          "path": "public/models/creatures/crabenemy.glb",
-          "bytes": 62156,
-          "sha256": "8d3c9c7a231c9835a1ee618c18e27d4285c0d369bfac10a2ff9680400bd7b06b"
+          "url": "models/creatures/wildlife_crab.glb",
+          "path": "public/models/creatures/wildlife_crab.glb",
+          "bytes": 615080,
+          "sha256": "8de1fd795125e5fc3512ca83a6cbf2ea877af9888e4dee1a8322953af789712d"
         },
         "idle": "Idle",
-        "height": 1.7,
-        "yaw": null,
+        "height": 1.2,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
         "weaponFix": null,
-        "tintStrength": 0.35
+        "tintStrength": 0.3
       },
       "tint": {
         "source": "entity",
         "authored": "entity",
         "resolved": "#8898a8",
-        "strength": 0.35
+        "strength": 0.3
       },
-      "sourceFingerprint": "66cd6a9301e330fc24b9dfeb7769b177fe8b4693f9674d8474ef8c40d2b5d5aa",
+      "sourceFingerprint": "f0d0af71538a25558bf7092fa7f6f38c684829ccb5217fbf73b3a477666c7cca",
       "output": {
         "path": "public/ui/mobs/shoal_scuttler.webp",
-        "bytes": 2052,
-        "sha256": "cd3c82f3a09f2fcb5cde081955a33277097a0432823b300d867f4d2dcbaff685"
+        "bytes": 3418,
+        "sha256": "62092b3eac9d6d0c9ce7b5caccfcaa6af9ab847430e65c65675bfc4b1e651bf5"
       }
     },
     {
       "id": "shore_scuttler",
       "family": "beast",
       "finderEncounter": false,
-      "visualKey": "mob_crab",
+      "visualKey": "wildlife_crab",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/crabenemy.glb",
-          "path": "public/models/creatures/crabenemy.glb",
-          "bytes": 62156,
-          "sha256": "8d3c9c7a231c9835a1ee618c18e27d4285c0d369bfac10a2ff9680400bd7b06b"
+          "url": "models/creatures/wildlife_crab.glb",
+          "path": "public/models/creatures/wildlife_crab.glb",
+          "bytes": 615080,
+          "sha256": "8de1fd795125e5fc3512ca83a6cbf2ea877af9888e4dee1a8322953af789712d"
         },
         "idle": "Idle",
-        "height": 1.7,
-        "yaw": null,
+        "height": 1.2,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
         "weaponFix": null,
-        "tintStrength": 0.35
+        "tintStrength": 0.3
       },
       "tint": {
         "source": "entity",
         "authored": "entity",
         "resolved": "#7a5a3a",
-        "strength": 0.35
+        "strength": 0.3
       },
-      "sourceFingerprint": "5410bf927da41fef18efaec05fbd45e67553daa2cf80644d204ae2136d061cb4",
+      "sourceFingerprint": "7ca9a59207fab9f1f115bb252589147af7f64a2642ebd54d40bbde1b710d217d",
       "output": {
         "path": "public/ui/mobs/shore_scuttler.webp",
-        "bytes": 2066,
-        "sha256": "b9375c333b12f7e8c5ca47df180dd156f5b80e79f6cd2e4f8d31828b1931baa1"
+        "bytes": 3400,
+        "sha256": "b3d3d9428dc6bded19689014dca79cdbb579cbd9d8354ba56027d5486b053851"
       }
     },
     {
@@ -11360,34 +11360,34 @@
       "id": "terrace_howler",
       "family": "beast",
       "finderEncounter": false,
-      "visualKey": "mob_wolf",
+      "visualKey": "wildlife_wolf",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/wolf_basic.glb",
-          "path": "public/models/creatures/wolf_basic.glb",
-          "bytes": 369180,
-          "sha256": "1d8c3c652467f2e4ba8b9746f926eda43254adf5ddaaca722dce582ec629d381"
+          "url": "models/creatures/wildlife_wolf.glb",
+          "path": "public/models/creatures/wildlife_wolf.glb",
+          "bytes": 522236,
+          "sha256": "20fcfbe89e19bfa4b4640cf2cea7b66017abdc47355ac70b5e64171e883fc8c0"
         },
         "idle": "Idle",
         "height": 1.47,
-        "yaw": null,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
         "weaponFix": null,
-        "tintStrength": 0.35
+        "tintStrength": 0.3
       },
       "tint": {
         "source": "entity",
         "authored": "entity",
         "resolved": "#9db4c8",
-        "strength": 0.35
+        "strength": 0.3
       },
-      "sourceFingerprint": "cce38928f585cda0573a12f9aef3fd6da6b69a0935c6ceedb903e911a8d7e5be",
+      "sourceFingerprint": "3fad5bd170323c0904f98b395d9949dd2a5abe76ba94bc790231d3e9eab601ab",
       "output": {
         "path": "public/ui/mobs/terrace_howler.webp",
-        "bytes": 2096,
-        "sha256": "1ce995526b30ad083de71a27de243701617f6e89619966ea1bdbce4c56afb620"
+        "bytes": 2442,
+        "sha256": "cb6160be81fe2a1e952ce0fa12948c186132b600c5bcbc056d867ab9e51f5909"
       }
     },
     {
@@ -11828,34 +11828,34 @@
       "id": "tide_scuttler",
       "family": "beast",
       "finderEncounter": false,
-      "visualKey": "mob_crab",
+      "visualKey": "wildlife_crab",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/crabenemy.glb",
-          "path": "public/models/creatures/crabenemy.glb",
-          "bytes": 62156,
-          "sha256": "8d3c9c7a231c9835a1ee618c18e27d4285c0d369bfac10a2ff9680400bd7b06b"
+          "url": "models/creatures/wildlife_crab.glb",
+          "path": "public/models/creatures/wildlife_crab.glb",
+          "bytes": 615080,
+          "sha256": "8de1fd795125e5fc3512ca83a6cbf2ea877af9888e4dee1a8322953af789712d"
         },
         "idle": "Idle",
-        "height": 1.7,
-        "yaw": null,
+        "height": 1.2,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
         "weaponFix": null,
-        "tintStrength": 0.35
+        "tintStrength": 0.3
       },
       "tint": {
         "source": "entity",
         "authored": "entity",
         "resolved": "#e86848",
-        "strength": 0.35
+        "strength": 0.3
       },
-      "sourceFingerprint": "f0efc1346c9252a3737430ff6a22cef3a2ff6565b94a29fc5a94970df09991f9",
+      "sourceFingerprint": "ed0e968166be4997fbac707ecfd03a964fa730c8df1d969dc41770ebdb8c53aa",
       "output": {
         "path": "public/ui/mobs/tide_scuttler.webp",
-        "bytes": 2334,
-        "sha256": "5ee5968c03351c419c3fdce770e9979d95dda9018e43e470bd92ede71c1e7eb0"
+        "bytes": 3464,
+        "sha256": "8e6736c82be5892128324b3b3c2b020535b9a0c7d5aaff1d6698654b4b77e895"
       }
     },
     {
@@ -13839,34 +13839,34 @@
       "id": "webwood_spider",
       "family": "spider",
       "finderEncounter": false,
-      "visualKey": "mob_spider",
+      "visualKey": "wildlife_spider",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/spider.glb",
-          "path": "public/models/creatures/spider.glb",
-          "bytes": 130436,
-          "sha256": "5becf8b6510f0620ff473becc29c6567f7ae32fc1bd9f42e0b647599aa6ed6de"
+          "url": "models/creatures/wildlife_spider.glb",
+          "path": "public/models/creatures/wildlife_spider.glb",
+          "bytes": 648284,
+          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
         },
-        "idle": "Spider_Idle",
-        "height": 1.4,
-        "yaw": null,
+        "idle": "Idle",
+        "height": 1.3,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
         "weaponFix": null,
-        "tintStrength": 0.35
+        "tintStrength": 0.3
       },
       "tint": {
         "source": "entity",
         "authored": "entity",
         "resolved": "#4a235a",
-        "strength": 0.35
+        "strength": 0.3
       },
-      "sourceFingerprint": "6b24737f485a350bec3ab6387b6355f7baceeceff75c46431fe8b2844d3458cc",
+      "sourceFingerprint": "dff39e71992d5fc1a1ef62dcfa881ac3d849e5e3dae58d51732fe99a49f37c1d",
       "output": {
         "path": "public/ui/mobs/webwood_spider.webp",
-        "bytes": 1516,
-        "sha256": "ed3f8ad8970b410d3faa6f58819211a49bf9f44c562eace093eb2ea170d5f9f1"
+        "bytes": 1842,
+        "sha256": "4e2217bdcd9d8a7a8567a3c898c08dd62ffe84286b2298e89e9534542fe4c348"
       }
     },
     {
@@ -13907,34 +13907,34 @@
       "id": "widowsilk_spinner",
       "family": "spider",
       "finderEncounter": false,
-      "visualKey": "mob_spider",
+      "visualKey": "wildlife_spider",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/spider.glb",
-          "path": "public/models/creatures/spider.glb",
-          "bytes": 130436,
-          "sha256": "5becf8b6510f0620ff473becc29c6567f7ae32fc1bd9f42e0b647599aa6ed6de"
+          "url": "models/creatures/wildlife_spider.glb",
+          "path": "public/models/creatures/wildlife_spider.glb",
+          "bytes": 648284,
+          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
         },
-        "idle": "Spider_Idle",
-        "height": 1.4,
-        "yaw": null,
+        "idle": "Idle",
+        "height": 1.3,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
         "weaponFix": null,
-        "tintStrength": 0.35
+        "tintStrength": 0.3
       },
       "tint": {
         "source": "entity",
         "authored": "entity",
         "resolved": "#3a3440",
-        "strength": 0.35
+        "strength": 0.3
       },
-      "sourceFingerprint": "2de5548a06f6c8c5c1b9c36db8e92fbe945154c86f47399e6be84f51d55379f0",
+      "sourceFingerprint": "7d665f997b7f336f4b53f6c0ce4a232a905c08e7b5ef5fe705279f7f2e07f80a",
       "output": {
         "path": "public/ui/mobs/widowsilk_spinner.webp",
-        "bytes": 1534,
-        "sha256": "1de9ee718a14c9fe77459e7fa728aaf1b94a579a335e54b88f195c779910e744"
+        "bytes": 1798,
+        "sha256": "c804836ae8983bb65877e459a7dc93f1c59c69c8f74d2221a63b55044c9c1d30"
       }
     },
     {

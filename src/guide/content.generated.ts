@@ -2670,10 +2670,10 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "max": 2,
         "rare": false,
         "templateId": "shore_scuttler",
-        "model": "mob_crab",
+        "model": "wildlife_crab",
         "tint": "#7a5a3a",
-        "tintStrength": 0.35,
-        "still": "/guide-stills/mob_crab__7a5a3a__s35.webp"
+        "tintStrength": 0.3,
+        "still": "/guide-stills/wildlife_crab__7a5a3a__s30.webp"
       },
       {
         "name": "Wild Boar",
@@ -2712,10 +2712,10 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "max": 8,
         "rare": false,
         "templateId": "mire_prowler",
-        "model": "mob_wolf",
+        "model": "wildlife_wolf",
         "tint": "#4d5656",
-        "tintStrength": 0.35,
-        "still": "/guide-stills/mob_wolf__4d5656__s35.webp"
+        "tintStrength": 0.3,
+        "still": "/guide-stills/wildlife_wolf__4d5656__s30.webp"
       },
       {
         "name": "Bog Bloat",
@@ -2734,10 +2734,10 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "max": 14,
         "rare": false,
         "templateId": "ridge_stalker",
-        "model": "mob_wolf",
+        "model": "wildlife_wolf",
         "tint": "#8c8270",
-        "tintStrength": 0.35,
-        "still": "/guide-stills/mob_wolf__8c8270__s35.webp"
+        "tintStrength": 0.3,
+        "still": "/guide-stills/wildlife_wolf__8c8270__s30.webp"
       },
       {
         "name": "Veiled Doe",
@@ -2785,10 +2785,10 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "max": 18,
         "rare": false,
         "templateId": "gloam_fox",
-        "model": "mob_fox",
+        "model": "wildlife_fox",
         "tint": "#d87838",
-        "tintStrength": 0.35,
-        "still": "/guide-stills/mob_fox__d87838__s35.webp"
+        "tintStrength": 0.3,
+        "still": "/guide-stills/wildlife_fox__d87838__s30.webp"
       },
       {
         "name": "Terrace Howler",
@@ -2796,10 +2796,10 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "max": 20,
         "rare": false,
         "templateId": "terrace_howler",
-        "model": "mob_wolf",
+        "model": "wildlife_wolf",
         "tint": "#9db4c8",
-        "tintStrength": 0.35,
-        "still": "/guide-stills/mob_wolf__9db4c8__s35.webp"
+        "tintStrength": 0.3,
+        "still": "/guide-stills/wildlife_wolf__9db4c8__s30.webp"
       },
       {
         "name": "Moonfleece Grazer",
@@ -2829,10 +2829,10 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "max": 20,
         "rare": false,
         "templateId": "shoal_scuttler",
-        "model": "mob_crab",
+        "model": "wildlife_crab",
         "tint": "#8898a8",
-        "tintStrength": 0.35,
-        "still": "/guide-stills/mob_crab__8898a8__s35.webp"
+        "tintStrength": 0.3,
+        "still": "/guide-stills/wildlife_crab__8898a8__s30.webp"
       },
       {
         "name": "Thicket Boar",
@@ -2851,10 +2851,10 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "max": 20,
         "rare": false,
         "templateId": "tide_scuttler",
-        "model": "mob_crab",
+        "model": "wildlife_crab",
         "tint": "#e86848",
-        "tintStrength": 0.35,
-        "still": "/guide-stills/mob_crab__e86848__s35.webp"
+        "tintStrength": 0.3,
+        "still": "/guide-stills/wildlife_crab__e86848__s30.webp"
       },
       {
         "name": "Topiary Stag",
@@ -2889,10 +2889,10 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "max": 4,
         "rare": false,
         "templateId": "webwood_spider",
-        "model": "mob_spider",
+        "model": "wildlife_spider",
         "tint": "#4a235a",
-        "tintStrength": 0.35,
-        "still": "/guide-stills/mob_spider__4a235a__s35.webp"
+        "tintStrength": 0.3,
+        "still": "/guide-stills/wildlife_spider__4a235a__s30.webp"
       },
       {
         "name": "Mirefen Widow",
@@ -2900,10 +2900,10 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "max": 10,
         "rare": false,
         "templateId": "mire_widow",
-        "model": "mob_spider",
+        "model": "wildlife_spider",
         "tint": "#283747",
-        "tintStrength": 0.35,
-        "still": "/guide-stills/mob_spider__283747__s35.webp"
+        "tintStrength": 0.3,
+        "still": "/guide-stills/wildlife_spider__283747__s30.webp"
       },
       {
         "name": "Broodmother Egg",
@@ -2920,10 +2920,10 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "max": 20,
         "rare": false,
         "templateId": "canopy_weaver",
-        "model": "mob_spider",
+        "model": "wildlife_spider",
         "tint": "#4e8a3c",
-        "tintStrength": 0.35,
-        "still": "/guide-stills/mob_spider__4e8a3c__s35.webp"
+        "tintStrength": 0.3,
+        "still": "/guide-stills/wildlife_spider__4e8a3c__s30.webp"
       },
       {
         "name": "Widowsilk Spinner",
@@ -2931,10 +2931,10 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "max": 20,
         "rare": false,
         "templateId": "widowsilk_spinner",
-        "model": "mob_spider",
+        "model": "wildlife_spider",
         "tint": "#3a3440",
-        "tintStrength": 0.35,
-        "still": "/guide-stills/mob_spider__3a3440__s35.webp"
+        "tintStrength": 0.3,
+        "still": "/guide-stills/wildlife_spider__3a3440__s30.webp"
       }
     ]
   },
@@ -22489,11 +22489,12 @@ export const GUIDE_MODELS: Record<string, GuideModelSpec> = {
     "yaw": -1.5707963267948966,
     "tintStrength": 0.3
   },
-  "mob_spider": {
-    "url": "models/creatures/spider.glb",
-    "idle": "Spider_Idle",
-    "height": 1.4,
-    "tintStrength": 0.35
+  "wildlife_spider": {
+    "url": "models/creatures/wildlife_spider.glb",
+    "idle": "Idle",
+    "height": 1.3,
+    "yaw": -1.5707963267948966,
+    "tintStrength": 0.3
   },
   "mob_murloc": {
     "url": "models/creatures/frog.glb",
@@ -22513,12 +22514,6 @@ export const GUIDE_MODELS: Record<string, GuideModelSpec> = {
     "idle": "Idle",
     "height": 2.5,
     "tintStrength": 0.25
-  },
-  "mob_wolf": {
-    "url": "models/creatures/wolf_basic.glb",
-    "idle": "Idle",
-    "height": 1.47,
-    "tintStrength": 0.35
   },
   "mob_spider_egg_sac": {
     "url": "models/creatures/spider_egg_sac.glb",
@@ -22655,11 +22650,12 @@ export const GUIDE_MODELS: Record<string, GuideModelSpec> = {
     "height": 1.9,
     "tintStrength": 0.35
   },
-  "mob_fox": {
-    "url": "models/creatures/fox.glb",
+  "wildlife_fox": {
+    "url": "models/creatures/wildlife_fox.glb",
     "idle": "Idle",
-    "height": 1,
-    "tintStrength": 0.35
+    "height": 0.95,
+    "yaw": -1.5707963267948966,
+    "tintStrength": 0.3
   },
   "mob_alpaca": {
     "url": "models/creatures/alpaca.glb",
@@ -22686,10 +22682,17 @@ export const GUIDE_MODELS: Record<string, GuideModelSpec> = {
     "height": 2.6,
     "tintStrength": 0.72
   },
-  "mob_crab": {
-    "url": "models/creatures/crabenemy.glb",
+  "wildlife_crab": {
+    "url": "models/creatures/wildlife_crab.glb",
     "idle": "Idle",
-    "height": 1.7,
+    "height": 1.2,
+    "yaw": -1.5707963267948966,
+    "tintStrength": 0.3
+  },
+  "mob_wolf": {
+    "url": "models/creatures/wolf_basic.glb",
+    "idle": "Idle",
+    "height": 1.47,
     "tintStrength": 0.35
   },
   "mob_demonalt": {

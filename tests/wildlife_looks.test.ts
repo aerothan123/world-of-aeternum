@@ -1,7 +1,7 @@
 // WYNDLEWOOD wildlife bodies (src/render/characters/wildlife_looks.ts): every
-// model ships its file and its whole clip set, the mapped templates draw it, and
-// the fallbacks the wildlife does not own (the beast family, the Shadewolf form)
-// keep their old bodies.
+// model ships its file and its whole clip set on the skeleton it claims, the
+// mapped templates draw it, and the fallbacks the wildlife does not own (the beast
+// family, the Shadewolf form) keep their old bodies.
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
@@ -45,11 +45,20 @@ describe('wildlife looks', () => {
       expect(existsSync(path), `${id}: ${model.file}`).toBe(true);
       const { clips, joints } = glbFacts(path);
       for (const clip of wanted) expect(clips, `${id} clip ${clip}`).toContain(clip);
-      // A four-legged skeleton, never a biped one (the first painted wolf stood up).
-      for (const bone of ['ForeUpper.L', 'ForeUpper.R', 'HindThigh.L', 'HindThigh.R']) {
-        expect(joints, `${id} joint ${bone}`).toContain(bone);
-      }
+      // Never a biped skeleton (the first painted wolf stood up).
       expect(joints.some((j) => /arm|hand|shoulder/i.test(j))).toBe(false);
+      if (model.legs === 'four') {
+        for (const bone of ['ForeUpper.L', 'ForeUpper.R', 'HindThigh.L', 'HindThigh.R']) {
+          expect(joints, `${id} joint ${bone}`).toContain(bone);
+        }
+      } else {
+        // Every found leg is rigged, on both sides (a missed cut once left a
+        // spider with one leg pair and six legs welded to its body).
+        for (const side of ['L', 'R']) {
+          const legs = joints.filter((j) => new RegExp(`^Leg\\d+Upper\\.${side}$`).test(j));
+          expect(legs.length, `${id} legs on ${side}`).toBeGreaterThanOrEqual(3);
+        }
+      }
     }
   });
 
@@ -68,13 +77,21 @@ describe('wildlife looks', () => {
     }
   });
 
-  it('leaves the beast family fallback and the Shadewolf form on the old wolf', () => {
+  it('draws the open-world wildlife on the painted bodies', () => {
+    expect(mobVisualKey('gloam_fox')).toBe(wildlifeVisualKey('fox'));
+    expect(mobVisualKey('old_cragmaw')).toBe(wildlifeVisualKey('bear'));
+    expect(mobVisualKey('webwood_spider')).toBe(wildlifeVisualKey('spider'));
+    expect(mobVisualKey('shore_scuttler')).toBe(wildlifeVisualKey('crab'));
+  });
+
+  it('leaves the beast family fallback, the dungeon spiders and the Shadewolf form alone', () => {
     // A beast with no row of its own (a story branch's new mob, say) still draws.
     const unmappedBeast = Object.values(MOBS).find(
       (m) =>
         m.family === 'beast' && !(m.id in WILDLIFE_MOB_KEYS) && mobVisualKey(m.id) === 'mob_wolf',
     );
     expect(unmappedBeast).toBeDefined();
+    expect(mobVisualKey('rimeweb_spinner')).toBe('mob_spider');
     expect(VISUALS.form_ghost_wolf.url).toBe('models/creatures/wolf_basic.glb');
   });
 });
