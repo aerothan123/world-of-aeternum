@@ -12,8 +12,7 @@ import { VISUALS } from '../src/render/characters/manifest';
 const ROOT = join(__dirname, '..');
 
 describe('greyjaw attack', () => {
-  it("bites like the pack: the pack wolf's own ClipMap, plain Attack", () => {
-    expect(VISUALS.greyjaw.clips).toBe(VISUALS.mob_wolf.clips);
+  it('bites like the pack: a plain Attack', () => {
     expect(VISUALS.greyjaw.clips.attack).toEqual(['Attack']);
     expect(VISUALS.greyjaw.clips.hit).toEqual(['Idle_HitReact_Left', 'Idle_HitReact_Right']);
   });

@@ -216,8 +216,8 @@ describe('character visual manifest', () => {
     expect(NPCS.chronicler_edda_hartwell.name).toBe('Chronicler Zenzie');
   });
 
-  it('uses the custom boar death clip without relying on a speed override', () => {
-    expect(VISUALS.mob_boar.clips.death).toBe('Dying');
+  it('plays the painted boar death clip without relying on a speed override', () => {
+    expect(VISUALS.mob_boar.clips.death).toBe('Death');
     expect(VISUALS.mob_boar.deathTimeScale).toBeUndefined();
   });
 
@@ -299,7 +299,7 @@ describe('character visual manifest', () => {
   it('renders the three Stampede guardians as distinct beasts', () => {
     const expected = [
       ['guardian_stampede_0', 'greyjaw', 'models/creatures/greyjaw.glb'],
-      ['guardian_stampede_1', 'mob_boar', 'models/creatures/wild_boar.glb'],
+      ['guardian_stampede_1', 'mob_boar', 'models/creatures/wildlife_boar.glb'],
       ['guardian_stampede_2', 'mob_raptor', 'models/creatures/velociraptor.glb'],
     ] as const;
     for (const [templateId, visualKey, model] of expected) {

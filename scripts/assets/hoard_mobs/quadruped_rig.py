@@ -386,7 +386,7 @@ def clip_death(t):
     settle = ease(0.7, 1.0, t)
     pose = stance(chest=-10 * stagger * (1 - fall) + 8 * fall, head=-18 * stagger * (1 - fall) + 20 * fall,
                   head_yaw=12 * fall, jaw=22 * stagger - 8 * settle)
-    pose['Hips'] = {'move': (0, -0.05 * fall, -MOTION.get('deathDrop', 0.19) * fall + 0.012 * math.sin(math.pi * settle)),
+    pose['Hips'] = {'move': (0, 0, -MOTION.get('deathDrop', 0.19) * fall + 0.012 * math.sin(math.pi * settle)),
                     'turn': [('X', -MOTION.get('deathRoll', 78) * fall), ('Z', 8 * fall)]}
     for side, s in (('L', 1), ('R', -1)):
         leg(pose, 'fore', side, 12 * fall * s, 0.55 * fall)

@@ -6,7 +6,7 @@
     "bytes": 1510,
     "sha256": "bb0b6bacba9acb12568c3bbbe536e4442cb2964266cffef890f27ee4915dcf2a"
   },
-  "rendererFingerprint": "5be6e6ed95ab29606b8cf5c68aefee418ed1113887f18ac2dab60738156d220b",
+  "rendererFingerprint": "7b0b443563cb6c108f9fe4f314b066a16815daf92c19718085b7e4c81a572043",
   "renderEnv": {
     "schemaVersion": 1,
     "platform": "win32",
@@ -38,8 +38,8 @@
     ],
     "browserBundle": {
       "entry": "scripts/wiki/stills_render_entry.js",
-      "bytes": 6866776,
-      "sha256": "485311862c52533e13b630015e80f99ff5098dcf72dae13187303411ad11ae9f",
+      "bytes": 6865902,
+      "sha256": "bb4d14437c1449aab3b8a86d4fe2ce88b0a6cc2768eff36aed25647a8507437c",
       "esbuildVersion": "0.28.1"
     },
     "output": {
@@ -737,14 +737,14 @@
       "visualKey": "mob_spider",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/spider.glb",
-          "path": "public/models/creatures/spider.glb",
-          "bytes": 130436,
-          "sha256": "5becf8b6510f0620ff473becc29c6567f7ae32fc1bd9f42e0b647599aa6ed6de"
+          "url": "models/creatures/wildlife_spider.glb",
+          "path": "public/models/creatures/wildlife_spider.glb",
+          "bytes": 648284,
+          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
         },
-        "idle": "Spider_Idle",
+        "idle": "Idle",
         "height": 1.4,
-        "yaw": null,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
@@ -757,11 +757,11 @@
         "resolved": "#d6eaf8",
         "strength": 0.35
       },
-      "sourceFingerprint": "5157d4a1cf7d753e8a11c086625daa40acc5311928ed30db0480a1c6e0970a44",
+      "sourceFingerprint": "2ae36faadedd4637a21b5be2d00a5f714aa19dabf622401974d758f8c0f89dde",
       "output": {
         "path": "public/ui/mobs/bonechill_widow.webp",
-        "bytes": 1760,
-        "sha256": "63510898c18f42cb81346aa2c8d5f1e58f50941a76119028e8f354bdda4b11df"
+        "bytes": 1904,
+        "sha256": "81b439ac581a956092bcdece156852a7cc18b8ddba09143d869014ab277ef59b"
       }
     },
     {
@@ -4014,8 +4014,8 @@
         "model": {
           "url": "models/creatures/wildlife_fox.glb",
           "path": "public/models/creatures/wildlife_fox.glb",
-          "bytes": 552544,
-          "sha256": "0d5eef329ac0aeca20394b3b9a949c4bda6fedd8ac4a34a384a7949be5fdf8d7"
+          "bytes": 525528,
+          "sha256": "b715b92c27aa696a85eca3b06f117bd735e70addb840bec859cab2e949ee62fd"
         },
         "idle": "Idle",
         "height": 0.95,
@@ -4032,11 +4032,11 @@
         "resolved": "#d87838",
         "strength": 0.3
       },
-      "sourceFingerprint": "de9d7694effeae5e03edb540fa4453aed9c5c44090ea75a0d598170d03309596",
+      "sourceFingerprint": "80937e842173e79adf681a61d12a1fbf071c854a891314950ae76aeb95e0b632",
       "output": {
         "path": "public/ui/mobs/gloam_fox.webp",
-        "bytes": 2440,
-        "sha256": "ce8bd14d1ca34dc4300f6785af444e96353a7399b0967ffb0b33180d6e691248"
+        "bytes": 2622,
+        "sha256": "8bbdbdfe9ee7095a0c27748cfefeb942337d6f8f635921ea40c7eb2fb9e2d467"
       }
     },
     {
@@ -5586,14 +5586,14 @@
       "visualKey": "mob_spider",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/spider.glb",
-          "path": "public/models/creatures/spider.glb",
-          "bytes": 130436,
-          "sha256": "5becf8b6510f0620ff473becc29c6567f7ae32fc1bd9f42e0b647599aa6ed6de"
+          "url": "models/creatures/wildlife_spider.glb",
+          "path": "public/models/creatures/wildlife_spider.glb",
+          "bytes": 648284,
+          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
         },
-        "idle": "Spider_Idle",
+        "idle": "Idle",
         "height": 1.4,
-        "yaw": null,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
@@ -5606,11 +5606,11 @@
         "resolved": "#9acd32",
         "strength": 0.35
       },
-      "sourceFingerprint": "302f479b67ff4220308f4836992b9baf96f26eec8c8fddd618132a278b7b5749",
+      "sourceFingerprint": "cec33093fdf0b8e3b80bc33b78537017d0187c929dffa469482c82fdfb7fdf97",
       "output": {
         "path": "public/ui/mobs/hoard_brood_hatchling.webp",
-        "bytes": 1828,
-        "sha256": "4d9f7a927b426e6924cd25df7fae38645f6e551535e6ec2e7d10f0729212039d"
+        "bytes": 1880,
+        "sha256": "672f7a72e4b0fde655c67add4caf56768ad0d7cca7251780ac41c6f71ab03790"
       }
     },
     {
@@ -6760,14 +6760,14 @@
       "visualKey": "mob_spider",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/spider.glb",
-          "path": "public/models/creatures/spider.glb",
-          "bytes": 130436,
-          "sha256": "5becf8b6510f0620ff473becc29c6567f7ae32fc1bd9f42e0b647599aa6ed6de"
+          "url": "models/creatures/wildlife_spider.glb",
+          "path": "public/models/creatures/wildlife_spider.glb",
+          "bytes": 648284,
+          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
         },
-        "idle": "Spider_Idle",
+        "idle": "Idle",
         "height": 1.4,
-        "yaw": null,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
@@ -6780,11 +6780,11 @@
         "resolved": "#641e16",
         "strength": 0.35
       },
-      "sourceFingerprint": "9d7bbbb78dea35e9b7b6ecb4831e8b1cea102583464051fe65d69892736d13dc",
+      "sourceFingerprint": "df327bae594884430d013761e410045267a8415392af2aa3f1a2089b9429b477",
       "output": {
         "path": "public/ui/mobs/mirefen_broodmother.webp",
-        "bytes": 1652,
-        "sha256": "8ab2a2833f4b3698772344f0794d5d2dd2795ebebcae4a9bca139b1901324afa"
+        "bytes": 1874,
+        "sha256": "12580d64c23035e590543c17d086890b2409ccbcf35f77736cd01c77ef7d560d"
       }
     },
     {
@@ -9347,14 +9347,14 @@
       "visualKey": "mob_spider",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/spider.glb",
-          "path": "public/models/creatures/spider.glb",
-          "bytes": 130436,
-          "sha256": "5becf8b6510f0620ff473becc29c6567f7ae32fc1bd9f42e0b647599aa6ed6de"
+          "url": "models/creatures/wildlife_spider.glb",
+          "path": "public/models/creatures/wildlife_spider.glb",
+          "bytes": 648284,
+          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
         },
-        "idle": "Spider_Idle",
+        "idle": "Idle",
         "height": 1.4,
-        "yaw": null,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
@@ -9367,11 +9367,11 @@
         "resolved": "#7cb342",
         "strength": 0.35
       },
-      "sourceFingerprint": "3a8e911982e74762bf05fa2c48c2af0c90714232db3c247a4173f444911505ac",
+      "sourceFingerprint": "62054254e9f28035385f28e1b454219386f847445c52dd446ff0c9026eeb2a56",
       "output": {
         "path": "public/ui/mobs/rift_boss_venom.webp",
-        "bytes": 1784,
-        "sha256": "e1a45b50340f04aa25fac0d8ea4de6f361a2798f8c509c79fd46f15499596162"
+        "bytes": 1886,
+        "sha256": "3aa9c623a3686d06b9267e99b196f9c84295dab9357b4d2f94ac078774b88f6a"
       }
     },
     {
@@ -10215,14 +10215,14 @@
       "visualKey": "mob_spider",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/spider.glb",
-          "path": "public/models/creatures/spider.glb",
-          "bytes": 130436,
-          "sha256": "5becf8b6510f0620ff473becc29c6567f7ae32fc1bd9f42e0b647599aa6ed6de"
+          "url": "models/creatures/wildlife_spider.glb",
+          "path": "public/models/creatures/wildlife_spider.glb",
+          "bytes": 648284,
+          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
         },
-        "idle": "Spider_Idle",
+        "idle": "Idle",
         "height": 1.4,
-        "yaw": null,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
@@ -10235,11 +10235,11 @@
         "resolved": "#d6eaf8",
         "strength": 0.35
       },
-      "sourceFingerprint": "5157d4a1cf7d753e8a11c086625daa40acc5311928ed30db0480a1c6e0970a44",
+      "sourceFingerprint": "2ae36faadedd4637a21b5be2d00a5f714aa19dabf622401974d758f8c0f89dde",
       "output": {
         "path": "public/ui/mobs/rimeweb_hatchling.webp",
-        "bytes": 1760,
-        "sha256": "63510898c18f42cb81346aa2c8d5f1e58f50941a76119028e8f354bdda4b11df"
+        "bytes": 1904,
+        "sha256": "81b439ac581a956092bcdece156852a7cc18b8ddba09143d869014ab277ef59b"
       }
     },
     {
@@ -10249,14 +10249,14 @@
       "visualKey": "mob_spider",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/spider.glb",
-          "path": "public/models/creatures/spider.glb",
-          "bytes": 130436,
-          "sha256": "5becf8b6510f0620ff473becc29c6567f7ae32fc1bd9f42e0b647599aa6ed6de"
+          "url": "models/creatures/wildlife_spider.glb",
+          "path": "public/models/creatures/wildlife_spider.glb",
+          "bytes": 648284,
+          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
         },
-        "idle": "Spider_Idle",
+        "idle": "Idle",
         "height": 1.4,
-        "yaw": null,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
@@ -10269,11 +10269,11 @@
         "resolved": "#e4f0fa",
         "strength": 0.35
       },
-      "sourceFingerprint": "a8713eb6046a805c178d1c1ef35f8e347795943d349ccd4bbedf727fe92f172e",
+      "sourceFingerprint": "2d33735a6be9a5835c44d87991fffb4fa7eff8fa0bd05ef779f64ff568a3f691",
       "output": {
         "path": "public/ui/mobs/rimeweb_spinner.webp",
-        "bytes": 1812,
-        "sha256": "e45b808e429b20016af93271198a658992f18ed3b49f1dbbdb6f843f7e5dfde3"
+        "bytes": 1928,
+        "sha256": "b61e3a1b611a1e74bc95061faad42ca8f81f24b312a1cef9903cc87b6263e91c"
       }
     },
     {
@@ -11582,8 +11582,8 @@
         "model": {
           "url": "models/creatures/wildlife_boar.glb",
           "path": "public/models/creatures/wildlife_boar.glb",
-          "bytes": 573984,
-          "sha256": "99c759419f4bdc0f28e89d9b8ae065a3c874c65fbe99db852ddf0786457db8ba"
+          "bytes": 573332,
+          "sha256": "977056eaaa2e78e53a8e19f150d9532caf319ce9de4c0554479b0503cef23e00"
         },
         "idle": "Idle",
         "height": 1.45,
@@ -11600,7 +11600,7 @@
         "resolved": "#6a4e38",
         "strength": 0.3
       },
-      "sourceFingerprint": "c4d3e35c1d7cdb0cd774c247f16a1f0ba232e69148c261b2be87209a43dbd636",
+      "sourceFingerprint": "b17ab21741f2f936222516fbd1d2bdc099fa17f79c12ee0e672e979addc532d1",
       "output": {
         "path": "public/ui/mobs/thicket_boar.webp",
         "bytes": 1900,
@@ -12833,14 +12833,14 @@
       "visualKey": "mob_wolf",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/wolf_basic.glb",
-          "path": "public/models/creatures/wolf_basic.glb",
-          "bytes": 369180,
-          "sha256": "1d8c3c652467f2e4ba8b9746f926eda43254adf5ddaaca722dce582ec629d381"
+          "url": "models/creatures/wildlife_wolf.glb",
+          "path": "public/models/creatures/wildlife_wolf.glb",
+          "bytes": 522236,
+          "sha256": "20fcfbe89e19bfa4b4640cf2cea7b66017abdc47355ac70b5e64171e883fc8c0"
         },
         "idle": "Idle",
         "height": 1.47,
-        "yaw": null,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
@@ -12853,11 +12853,11 @@
         "resolved": "#4a8a4e",
         "strength": 0.35
       },
-      "sourceFingerprint": "4f3d2b67c0b63f8df68d3735934492f020e1874814e856d0444e8280aa323e5d",
+      "sourceFingerprint": "409ed583fcf7023837fe6d36fb68fff316e85633ea3eb18631229e433e62a258",
       "output": {
         "path": "public/ui/mobs/topiary_wolf.webp",
-        "bytes": 1984,
-        "sha256": "aded6f63d14a1bf93159966351e656ae9a48b0898ce25df93c039d22a1e93515"
+        "bytes": 2330,
+        "sha256": "32e1336e684e3ebabd020256fb21e5520bb6292ad875e5113ca8a8874bd55953"
       }
     },
     {
@@ -13599,14 +13599,14 @@
       "visualKey": "mob_wolf",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/wolf_basic.glb",
-          "path": "public/models/creatures/wolf_basic.glb",
-          "bytes": 369180,
-          "sha256": "1d8c3c652467f2e4ba8b9746f926eda43254adf5ddaaca722dce582ec629d381"
+          "url": "models/creatures/wildlife_wolf.glb",
+          "path": "public/models/creatures/wildlife_wolf.glb",
+          "bytes": 522236,
+          "sha256": "20fcfbe89e19bfa4b4640cf2cea7b66017abdc47355ac70b5e64171e883fc8c0"
         },
         "idle": "Idle",
         "height": 1.47,
-        "yaw": null,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
@@ -13619,11 +13619,11 @@
         "resolved": "#2f2a44",
         "strength": 0.35
       },
-      "sourceFingerprint": "e446834bae3d26145c3ac12ff7135e6da095252771a0f533416af4ea1ae17c2c",
+      "sourceFingerprint": "bbe2761f62608f59629e8e2ad32865758a8402f509908017bc1eb663730ae210",
       "output": {
         "path": "public/ui/mobs/void_stalker.webp",
-        "bytes": 1972,
-        "sha256": "4079376524d005709ce9fc1b72e6676caa16f68611e13e58b291a5e0c1b8703b"
+        "bytes": 2326,
+        "sha256": "de28d4b21b4ef4190a3fcd3724d5dfeeca9940ed071a0e577edca11518180f2f"
       }
     },
     {
@@ -13876,14 +13876,14 @@
       "visualKey": "mob_spider",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/spider.glb",
-          "path": "public/models/creatures/spider.glb",
-          "bytes": 130436,
-          "sha256": "5becf8b6510f0620ff473becc29c6567f7ae32fc1bd9f42e0b647599aa6ed6de"
+          "url": "models/creatures/wildlife_spider.glb",
+          "path": "public/models/creatures/wildlife_spider.glb",
+          "bytes": 648284,
+          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
         },
-        "idle": "Spider_Idle",
+        "idle": "Idle",
         "height": 1.4,
-        "yaw": null,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
@@ -13896,11 +13896,11 @@
         "resolved": "#3a2740",
         "strength": 0.35
       },
-      "sourceFingerprint": "8b940d99c4c01769048fb2db1acbbbd095568e475507e16a2431899b3b663139",
+      "sourceFingerprint": "013f18c93a2f7a91516b7740c0c06a55ebf2917b58a19b3bd6713b91f9d52aaa",
       "output": {
         "path": "public/ui/mobs/widow_hatchling.webp",
-        "bytes": 1536,
-        "sha256": "226e2ec1fda1cab26bd3912bf2c15a1b9b74b56256a7bc1d4cc3c721a611d5e6"
+        "bytes": 1822,
+        "sha256": "aa8d0d84cb446d3b675478ed9ac97fd46e611b1a81cd089e0cd439032d9cd59c"
       }
     },
     {
@@ -13946,8 +13946,8 @@
         "model": {
           "url": "models/creatures/wildlife_boar.glb",
           "path": "public/models/creatures/wildlife_boar.glb",
-          "bytes": 573984,
-          "sha256": "99c759419f4bdc0f28e89d9b8ae065a3c874c65fbe99db852ddf0786457db8ba"
+          "bytes": 573332,
+          "sha256": "977056eaaa2e78e53a8e19f150d9532caf319ce9de4c0554479b0503cef23e00"
         },
         "idle": "Idle",
         "height": 1.45,
@@ -13964,7 +13964,7 @@
         "resolved": "#935116",
         "strength": 0.3
       },
-      "sourceFingerprint": "cfe55555a856ca78133fd26c04520fa8254d2e738a8a45ff5c86d54cd62a6465",
+      "sourceFingerprint": "76987ea3b929ae18aca63681cfdb6b535deaa678551c1c0fa8038cef96f27639",
       "output": {
         "path": "public/ui/mobs/wild_boar.webp",
         "bytes": 1950,

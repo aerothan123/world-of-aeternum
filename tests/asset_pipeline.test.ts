@@ -1346,7 +1346,7 @@ describe('asset library registry parsers', () => {
     const map = library.parseVisualUrls(src);
     expect(map.get('models/chars/players/woc/base_male.glb')).toContain('player_warrior');
     expect(map.get('models/chars/players/woc/anims_male.glb')).toContain('player_mage');
-    expect(map.get('models/creatures/wolf_basic.glb')).toEqual(
+    expect(map.get('models/creatures/wildlife_wolf.glb')).toEqual(
       expect.arrayContaining(['form_ghost_wolf', 'mob_wolf']),
     );
     expect(map.get('models/creatures/druid_cat_form.glb')).toEqual(['form_cat']);

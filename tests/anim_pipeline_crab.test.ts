@@ -35,17 +35,10 @@ function manifestBlock(startAnchor: string, endAnchor: string): string {
 }
 
 describe('mob_crab bespoke attack (issue #2889 round 2)', () => {
-  it('ships Crab_Attack in a mesh-free donor GLB', () => {
-    const glbPath = 'public/models/creatures/crab_ability_anims.glb';
-    expect(clipNamesOf(glbPath)).toEqual(['Crab_Attack']);
-    expect(meshCountOf(glbPath)).toBe(0);
-  });
-
-  it('gives mob_crab its own ClipMap instead of mutating the shared ENEMY_BITE constant', () => {
+  it('draws mob_crab on the painted Wyndlewood crab, leaving ENEMY_BITE untouched', () => {
     const crabBlock = manifestBlock('mob_crab: {', 'mob_bull: {');
-    expect(crabBlock).toContain('crab_ability_anims.glb');
-    expect(crabBlock).toContain('clips: CRAB_ENEMY_BITE');
-    expect(crabBlock).not.toContain('clips: ENEMY_BITE,');
+    expect(crabBlock).toContain('wildlife_crab.glb');
+    expect(crabBlock).toContain('clips: WILDLIFE_CLIPS');
 
     // ENEMY_BITE itself (the constant definition, not a VisualDef using it)
     // must still read the original shared attack: mob_treant, the other

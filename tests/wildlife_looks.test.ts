@@ -84,7 +84,7 @@ describe('wildlife looks', () => {
     expect(mobVisualKey('shore_scuttler')).toBe(wildlifeVisualKey('crab'));
   });
 
-  it('leaves the beast family fallback, the dungeon spiders and the Shadewolf form alone', () => {
+  it('keeps the beast-family default and the dungeon spiders on their own keys', () => {
     // A beast with no row of its own (a story branch's new mob, say) still draws.
     const unmappedBeast = Object.values(MOBS).find(
       (m) =>
@@ -92,6 +92,9 @@ describe('wildlife looks', () => {
     );
     expect(unmappedBeast).toBeDefined();
     expect(mobVisualKey('rimeweb_spinner')).toBe('mob_spider');
-    expect(VISUALS.form_ghost_wolf.url).toBe('models/creatures/wolf_basic.glb');
+    // ...which draw the painted bodies too, as does the Shadewolf form.
+    expect(VISUALS.mob_wolf.url).toBe(VISUALS[wildlifeVisualKey('wolf')].url);
+    expect(VISUALS.mob_spider.url).toBe(VISUALS[wildlifeVisualKey('spider')].url);
+    expect(VISUALS.form_ghost_wolf.url).toBe(VISUALS[wildlifeVisualKey('wolf')].url);
   });
 });

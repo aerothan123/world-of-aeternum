@@ -219,7 +219,7 @@ import type { SeatClipSet } from './seat_clips';
 import { STORY_MOB_KEYS, storyMobLooks } from './story_mob_looks';
 import type { WeaponLoadout } from './weapon_loadout_core';
 import { WILDHEART_MOB_KEYS, wildheartPlaceholderLooks } from './wildheart_creature_looks';
-import { WILDLIFE_LOOKS, WILDLIFE_MOB_KEYS } from './wildlife_looks';
+import { WILDLIFE_CLIPS, WILDLIFE_LOOKS, WILDLIFE_MOB_KEYS } from './wildlife_looks';
 import { type WocFit, wocAnimsUrl, wocBaseUrl } from './woc_armor_core';
 import wocAutoAttackContacts from './woc_autoattack_contacts.json';
 import {
@@ -1606,16 +1606,6 @@ const DRUID_CAT_FORM: ClipMap = {
   swimIdle: 'Swim',
 };
 
-// Custom wild boar rig (wild_boar.glb)
-const WILD_BOAR: ClipMap = {
-  idle: 'Idle1',
-  walk: 'Move2 (shuffle)',
-  run: 'Move1 (jump)',
-  attack: ['Attack1 (marracca)', 'Attack2 (tusks)'],
-  hit: ['Hurt'],
-  death: 'Dying',
-};
-
 // 14-clip biped rig (orc/frog/demonalt/yetialt)
 const BIPED14: ClipMap = {
   idle: 'Idle',
@@ -1671,17 +1661,6 @@ const MURLOC_BIPED14: ClipMap = {
 const DEMON_BIPED14: ClipMap = {
   ...BIPED14,
   attack: ['Demon_Attack'],
-};
-
-// The bear family's own attack (scripts/build_bear_anims.mjs, issue #2889
-// round 2): BIPED14's Punch/Weapon attack is shared by reference across 6
-// unrelated families (mob_bear, mob_yeti, mob_murloc, mob_troll, mob_demon,
-// mob_demonalt). This "ground-swipe maul" clip is baked off yetialt.glb's
-// own donor poses (Punch's forward swing blended through the currently
-// unused Duck clip's low crouch-and-rise), so only mob_bear gets it.
-const BEAR_BIPED14: ClipMap = {
-  ...BIPED14,
-  attack: ['Bear_Attack'],
 };
 
 // Tripo biped rig. These creatures come through the current biped
@@ -1935,18 +1914,6 @@ const ENEMY_BITE: ClipMap = {
   death: 'Death',
 };
 
-// The crab's own attack (scripts/build_crab_anims.mjs, issue #2889 round 2):
-// crabenemy.glb ships several unused bonus donor clips (Bite_InPlace, Dance,
-// No, Yes, Jump) alongside the shared Bite_Front every ENEMY_BITE family
-// plays; this blends Dance's side-to-side wiggle into Bite_InPlace's
-// in-place snap for a pincer-click flourish before the bite lands, distinct
-// from the plain forward-lunging Bite_Front every other ENEMY_BITE family
-// (mob_treant) still plays.
-const CRAB_ENEMY_BITE: ClipMap = {
-  ...ENEMY_BITE,
-  attack: ['Crab_Attack'],
-};
-
 // The treant's own attack (scripts/build_treant_anims.mjs, issue #2889
 // round 2): a tree "biting" reads wrong, so this reinterprets the shared
 // ENEMY_BITE attack as a slam/root-grab off yeti.glb's own donor poses (a
@@ -2095,14 +2062,6 @@ const VARKHUL_FORGEFATHER: ClipMap = {
   // the roar is the ENGAGE cue only (and respawn), never a cast loop
   flourish: 'PowerUp',
   death: 'Death',
-};
-
-const SPIDER: ClipMap = {
-  idle: 'Spider_Idle',
-  walk: 'Spider_Walk',
-  run: 'Spider_Walk',
-  attack: ['Spider_Attack'],
-  death: 'Spider_Death', // no hit-react in asset
 };
 
 // Velociraptor rig (velociraptor.glb): like the spider, no hit-react clips
@@ -3419,9 +3378,14 @@ export const VISUALS: Record<string, VisualDef> = {
   // Shaman Shadewolf retains the original wolf, tint and ghost-material overlay.
   // Height: as mob_wolf (same file, same on-screen size).
   form_ghost_wolf: {
-    url: `${CREATURES}/wolf_basic.glb`,
+    // The Shadewolf wears the painted wolf (the same file and size as mob_wolf)
+    // under its tint and ghost-material overlay.
+    url: `${CREATURES}/wildlife_wolf.glb`,
+    authoredAtlas: true,
     height: 1.47,
-    clips: WOLF_BAKED,
+    // The rigged body faces +x; yaw swings it onto the game's facing.
+    yaw: -Math.PI / 2,
+    clips: WILDLIFE_CLIPS,
     tint: 0xd08b45,
     tintStrength: 0.35,
   },
@@ -3796,18 +3760,15 @@ export const VISUALS: Record<string, VisualDef> = {
 
   // -- mob families --------------------------------------------------------
   mob_wolf: {
-    // Custom Tripo wolf on the rebuilt wolf rig (scripts/assets/wolf_rig/, see
-    // WOLF_BAKED). Baked basecolor texture; keeps a light entity tint so this
-    // doubles as the beast-family fallback and each beast keeps its own colour.
-    // Height 1.47 draws it exactly as large as the old rig's 1.6 did: the game
-    // sizes a creature by its posed idle, and the old idle measured taller than the
-    // wolf (a sliver of the left hind heel was weighted to the tail and hung below
-    // the paws), which also stood the old wolves off the ground. tests/wolf_rig.test.ts
-    // pins the size (WOLF_ON_SCREEN_SCALE in scripts/assets/wolf_rig/contract.mjs).
-    url: `${CREATURES}/wolf_basic.glb`,
-    authoredAtlas: true, // baked Tripo/contributor atlas: low-tier floor rides the map
+    // The painted Wyndlewood wolf (wildlife_looks.ts: its own four-legged rig and
+    // clips), here as the beast-family fallback: a light entity tint keeps each
+    // beast its own colour.
+    url: `${CREATURES}/wildlife_wolf.glb`,
+    authoredAtlas: true,
     height: 1.47,
-    clips: WOLF_BAKED,
+    // The rigged body faces +x; yaw swings it onto the game's facing.
+    yaw: -Math.PI / 2,
+    clips: WILDLIFE_CLIPS,
     tint: 'entity',
     tintStrength: 0.35,
   },
@@ -3845,27 +3806,37 @@ export const VISUALS: Record<string, VisualDef> = {
     clips: WOLF_BAKED,
   },
   mob_boar: {
-    url: `${CREATURES}/wild_boar.glb`,
+    url: `${CREATURES}/wildlife_boar.glb`,
+    authoredAtlas: true,
     height: 1.45,
-    clips: WILD_BOAR,
+    // The rigged body faces +x; yaw swings it onto the game's facing.
+    yaw: -Math.PI / 2,
+    clips: WILDLIFE_CLIPS,
     tint: 'entity',
     tintStrength: 0.4,
   },
   // Quaternius animal rig (shares clip names with wolf) — fox/deer/critters that
   // would otherwise fall back to mob_wolf via FAMILY_KEYS['beast'].
   mob_fox: {
-    url: `${CREATURES}/fox.glb`,
-    height: 1.0,
-    clips: animal(['Attack']),
+    url: `${CREATURES}/wildlife_fox.glb`,
+    authoredAtlas: true,
+    height: 1,
+    // The rigged body faces +x; yaw swings it onto the game's facing.
+    yaw: -Math.PI / 2,
+    clips: WILDLIFE_CLIPS,
     tint: 'entity',
     tintStrength: 0.35,
   },
   // smaller silhouette of the same rig for ground critters (hares, badgers);
   // no dedicated rabbit/mustelid asset ships, so this is the closest small beast.
   mob_critter: {
-    url: `${CREATURES}/fox.glb`,
+    // a smaller silhouette of the painted fox for ground critters
+    url: `${CREATURES}/wildlife_fox.glb`,
+    authoredAtlas: true,
     height: 0.7,
-    clips: animal(['Attack']),
+    // The rigged body faces +x; yaw swings it onto the game's facing.
+    yaw: -Math.PI / 2,
+    clips: WILDLIFE_CLIPS,
     tint: 'entity',
     tintStrength: 0.35,
   },
@@ -3995,14 +3966,15 @@ export const VISUALS: Record<string, VisualDef> = {
   },
   // brown-tinted yeti rig, same recipe as the druid Bear form.
   mob_bear: {
-    url: `${CREATURES}/yetialt.glb`,
-    // Bear_Attack clip donor (scripts/build_bear_anims.mjs): mesh-free,
-    // baked off this same rig's own poses.
-    animUrls: [`${CREATURES}/yetialt_hit_variety_anims.glb`, `${CREATURES}/bear_ability_anims.glb`],
-    height: 2.2,
-    clips: BEAR_BIPED14,
-    tint: 0x5a4030,
-    tintStrength: 0.5,
+    // the painted Wyndlewood bear on all fours
+    url: `${CREATURES}/wildlife_bear.glb`,
+    authoredAtlas: true,
+    height: 1.8,
+    // The rigged body faces +x; yaw swings it onto the game's facing.
+    yaw: -Math.PI / 2,
+    clips: WILDLIFE_CLIPS,
+    tint: 'entity',
+    tintStrength: 0.3,
   },
   // the same rig worn honestly: an ice-white yeti for the Frostveil
   mob_yeti: {
@@ -4017,9 +3989,12 @@ export const VISUALS: Record<string, VisualDef> = {
     tintStrength: 0.55,
   },
   mob_spider: {
-    url: `${CREATURES}/spider.glb`,
+    url: `${CREATURES}/wildlife_spider.glb`,
+    authoredAtlas: true,
     height: 1.4,
-    clips: SPIDER,
+    // The rigged body faces +x; yaw swings it onto the game's facing.
+    yaw: -Math.PI / 2,
+    clips: WILDLIFE_CLIPS,
     tint: 'entity',
     tintStrength: 0.35,
   },
@@ -4709,16 +4684,12 @@ export const VISUALS: Record<string, VisualDef> = {
   },
   // the Hollow's wandering bosses: two more rigs no other zone uses
   mob_crab: {
-    url: `${CREATURES}/crabenemy.glb`,
+    url: `${CREATURES}/wildlife_crab.glb`,
+    authoredAtlas: true,
     height: 1.7,
-    clips: CRAB_ENEMY_BITE,
-    // Crab_Attack clip donor (scripts/build_crab_anims.mjs): mesh-free,
-    // baked off this same rig's own poses. Loads alongside the hit-variety
-    // donor GLB below; both are mesh-free so their clips just merge in.
-    animUrls: [
-      `${CREATURES}/crabenemy_hit_variety_anims.glb`,
-      `${CREATURES}/crab_ability_anims.glb`,
-    ],
+    // The rigged body faces +x; yaw swings it onto the game's facing.
+    yaw: -Math.PI / 2,
+    clips: WILDLIFE_CLIPS,
     tint: 'entity',
     tintStrength: 0.35,
   },
@@ -5336,9 +5307,12 @@ export const VISUALS: Record<string, VisualDef> = {
     selfIllumination: 0.12,
   },
   mob_crypt_rimeweb: {
-    url: `${CREATURES}/spider.glb`,
+    url: `${CREATURES}/wildlife_spider.glb`,
+    authoredAtlas: true,
     height: 2.7,
-    clips: SPIDER,
+    // The rigged body faces +x; yaw swings it onto the game's facing.
+    yaw: -Math.PI / 2,
+    clips: WILDLIFE_CLIPS,
     tint: 'entity',
     tintStrength: 0.35,
   },

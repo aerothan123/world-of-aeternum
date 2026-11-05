@@ -6,10 +6,10 @@ const PLAYER = 'public/models/chars/players/knight.glb';
 const MAGE = 'public/models/chars/players/mage.glb';
 
 const MOB_MODELS = {
-  beast: 'public/models/creatures/wolf_basic.glb',
-  boar: 'public/models/creatures/wild_boar.glb',
-  spider: 'public/models/creatures/spider.glb',
-  mudfin: 'public/models/creatures/crabenemy.glb',
+  beast: 'public/models/creatures/wildlife_wolf.glb',
+  boar: 'public/models/creatures/wildlife_boar.glb',
+  spider: 'public/models/creatures/wildlife_spider.glb',
+  mudfin: 'public/models/creatures/wildlife_crab.glb',
   burrower: 'public/models/creatures/goblin.glb',
   humanoid: 'public/models/chars/enemies/skeleton_warrior.glb',
   undead: 'public/models/chars/enemies/skeleton_warrior.glb',

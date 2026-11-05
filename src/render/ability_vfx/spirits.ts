@@ -34,22 +34,22 @@ import { clamp01 } from '../num_clamp';
 // Mirrors the gallery SPIRIT_URLS onto the game's creature set (wolf.glb
 // restored for the spirit pack; the gallery preview used wolf_basic).
 export const SPIRIT_URLS: Record<string, string> = {
-  wolf: 'models/creatures/wolf.glb',
+  wolf: 'models/creatures/wildlife_wolf.glb',
   // the real quadruped, not the brown-tinted yeti biped this used to conjure
-  bear: 'models/creatures/bear_form.glb',
+  bear: 'models/creatures/wildlife_bear.glb',
   // the druid's own cat rig, so shifting into the form conjures the body it becomes
   cat: 'models/creatures/druid_cat_form.glb',
   raptor: 'models/creatures/velociraptor.glb',
   stag: 'models/creatures/stag.glb',
-  fox: 'models/creatures/fox.glb',
+  fox: 'models/creatures/wildlife_fox.glb',
   bull: 'models/creatures/bull.glb',
   sheep: 'models/creatures/alpaca.glb',
   hawk: 'models/creatures/dragonevolved.glb',
   demon: 'models/creatures/demon.glb',
   voidwalker: 'models/creatures/demonalt.glb',
   ghost: 'models/creatures/ghost.glb',
-  spider: 'models/creatures/spider.glb',
-  boar: 'models/creatures/wild_boar.glb',
+  spider: 'models/creatures/wildlife_spider.glb',
+  boar: 'models/creatures/wildlife_boar.glb',
 };
 
 // Canonical species heights (world units): normalization must keep the food

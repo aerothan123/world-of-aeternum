@@ -34,17 +34,10 @@ function manifestBlock(startAnchor: string, endAnchor: string): string {
 }
 
 describe('bear family bespoke attack (issue #2889 round 2)', () => {
-  it('ships Bear_Attack in a mesh-free donor GLB', () => {
-    const glbPath = 'public/models/creatures/bear_ability_anims.glb';
-    expect(clipNamesOf(glbPath)).toEqual(['Bear_Attack']);
-    expect(meshCountOf(glbPath)).toBe(0);
-  });
-
-  it('gives mob_bear its own ClipMap instead of mutating the shared BIPED14 constant', () => {
+  it('draws mob_bear on the painted Wyndlewood bear, leaving BIPED14 untouched', () => {
     const bearBlock = manifestBlock('mob_bear: {', 'mob_yeti: {');
-    expect(bearBlock).toContain('bear_ability_anims.glb');
-    expect(bearBlock).toContain('clips: BEAR_BIPED14');
-    expect(bearBlock).not.toContain('clips: BIPED14,');
+    expect(bearBlock).toContain('wildlife_bear.glb');
+    expect(bearBlock).toContain('clips: WILDLIFE_CLIPS');
 
     // BIPED14 itself (the constant definition, not a VisualDef using it)
     // must still read the original shared attack.

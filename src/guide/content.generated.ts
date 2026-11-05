@@ -22690,9 +22690,10 @@ export const GUIDE_MODELS: Record<string, GuideModelSpec> = {
     "tintStrength": 0.3
   },
   "mob_wolf": {
-    "url": "models/creatures/wolf_basic.glb",
+    "url": "models/creatures/wildlife_wolf.glb",
     "idle": "Idle",
     "height": 1.47,
+    "yaw": -1.5707963267948966,
     "tintStrength": 0.35
   },
   "mob_demonalt": {
