@@ -11,14 +11,8 @@ import {
   UNBUILT_GROUND_FOG_GUARD,
 } from '../src/render/chunk_residency_core';
 import { MAX_OUTDOOR_FOG_FAR, MIN_OUTDOOR_FOG_FAR } from '../src/render/zone_streaming';
-import {
-  STRIP_MAX_X,
-  STRIP_MIN_X,
-  WORLD_MAX_X,
-  WORLD_MAX_Z,
-  WORLD_MIN_Z,
-  ZONES,
-} from '../src/sim/data';
+import { STRIP_MAX_X, STRIP_MIN_X, ZONES } from '../src/sim/data';
+import { CORE_WORLD } from '../src/sim/world_core_bounds';
 
 // The real lattice src/render/terrain.ts builds on: 18 x 44 cells of 60 yd.
 // The scenarios below reproduce reports on the shipped world, so they run over the
@@ -27,10 +21,10 @@ const SHIPPED_ZONES = ZONES.filter((zone) => !zone.openBorders);
 const CHUNK_SIZE = 60;
 const GRID: ChunkGrid = {
   size: CHUNK_SIZE,
-  countX: Math.ceil((WORLD_MAX_X * 2) / CHUNK_SIZE),
-  countZ: Math.ceil((WORLD_MAX_Z - WORLD_MIN_Z) / CHUNK_SIZE),
-  originX: -WORLD_MAX_X,
-  originZ: WORLD_MIN_Z,
+  countX: Math.ceil((CORE_WORLD.maxX * 2) / CHUNK_SIZE),
+  countZ: Math.ceil((CORE_WORLD.maxZ - CORE_WORLD.minZ) / CHUNK_SIZE),
+  originX: -CORE_WORLD.maxX,
+  originZ: CORE_WORLD.minZ,
 };
 
 // The same ownership rule terrain.ts builds against: a cell belongs to the zone
