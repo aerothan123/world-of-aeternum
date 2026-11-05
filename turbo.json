@@ -126,6 +126,7 @@
     "SystemRoot",
     "TEST_DATABASE_URL",
     "TIME",
+    "TRIPO_API_KEY",
     "UPDATE_PARITY",
     "UPDATE_TERRAIN_HEIGHT_PARITY",
     "WOCC_EXPECT_PG",
