@@ -8,7 +8,7 @@ import type { z as Zod, ZodTypeAny } from 'zod';
 
 const require = createRequire(import.meta.url);
 
-for (const consumer of ['chromium-bidi']) {
+for (const consumer of ['@reown/appkit-wallet', 'chromium-bidi']) {
   const consumerRequire = createRequire(require.resolve(consumer));
   const packagePath = consumerRequire.resolve('zod/package.json');
   const pkg = require(packagePath) as { main: string; module: string; version: string };
