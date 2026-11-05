@@ -17,11 +17,11 @@ Crypt door is at (80, 90).
 | NPC (template id) | Display name | Position |
 | --- | --- | --- |
 | `scout_neris` | Neris Snowmantle | (75, -40), the eastern lookout past Meadow Lane |
-| `gravekeeper_holven` | Bertram Hollis | (25, -106), the burial gate |
+| `gravekeeper_holven` | Bertram Ashcombe | (25, -106), the burial gate |
 | `innkeeper_jorren` | Jorren | (12, -84), the riverside inn counter |
 | `herbalist_olvessa` | Olvessa | (-30, -76), the herb terrace |
 | `gardener_della` | Della Brindlepot | (-13.2, -72.8), the riverside garden |
-| `carpenter_pella` | Nell Nookwright | (-45, -87), the carpenter's yard north of the main street |
+| `carpenter_pella` | Wenna Nookwright | (-45, -87), the carpenter's yard north of the main street |
 | `fisherman_tobbin` | Tobbin Wickerby | (-278, -4), the Proving Shore jetty |
 
 ## Camps (all `offStream`, so no shipped spawn shifts)
@@ -62,7 +62,7 @@ earlier id moves. The full coordinate list lives in the source; the groups are:
 - Silven's stall: parcels, delivery slips and the cart tag (around -26, -96),
   in front of the row terrace's street face rather than under it.
 - Brunna's public furnace (-4.6, -116.8), beside the forge.
-- Nell's yard: workbench (-46.5, -84), housing noticeboard (-43, -83),
+- Wenna's yard: workbench (-46.5, -84), housing noticeboard (-43, -83),
   furnishing practice marker (-44, -80.5), on the free ground the town layout
   keeps for it north of the main street.
 - The root hedge and the bone pit: silvermint and waxed bindings (around
@@ -102,7 +102,7 @@ and a well at (57, -29); a row terrace at (-22.5, -86.3); a stone cottage at
 south. Chapter One keeps clear of all of them
 (`tests/chapter_one_content.test.ts`, the town-lot clearance case): Silven's
 stall goods and the board's rivet and hinge drops moved out from under the
-terrace, Nell's yard moved to the free ground at about (-45, -87), and
+terrace, Wenna's yard moved to the free ground at about (-45, -87), and
 Della's escort passes south of the Meadow Lane houses. Every camp keeps at
 least 11 yards past its radius from every lot. The spot at about (-78, -45)
 beside the red cottage stays free for a later garden or board.

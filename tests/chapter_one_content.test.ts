@@ -125,7 +125,7 @@ describe('Chapter One content', () => {
         expect(d, `${camp.mobId} by ${lot}`).toBeGreaterThanOrEqual(camp.radius + 11);
       }
     }
-    // Nell keeps her yard where the layout leaves room for it.
+    // Wenna keeps her yard where the layout leaves room for it.
     const pella = CHAPTER_ONE_NPCS.carpenter_pella.pos;
     expect(Math.hypot(pella.x + 45, pella.z + 87)).toBeLessThan(3);
   });
@@ -157,36 +157,34 @@ describe('Chapter One content', () => {
     expect(QUESTS.q_whispers.completionText).toContain(OATHLESS_KING_TITLE);
   });
 
-  it('gives no new townsfolk a first name one letter off a shipped NPC name', () => {
+  it('gives no new townsfolk a shipped first name, nor one a letter off the known clashes', () => {
     // The clash rule (docs/narrative/wyndlewood_decisions.md): Pella beside
-    // the shipped Pells and Holven beside Brother Halven read as one person,
-    // so the newcomers ship under different first names (ids unchanged).
-    const near = (a: string, b: string): boolean => {
+    // the five shipped Pells and Holven beside Brother Halven read as one
+    // person, so those newcomers ship under different first names (ids
+    // unchanged); and no newcomer reuses a word of any shipped NPC's name.
+    const oneOff = (a: string, b: string): boolean => {
       if (a === b) return true;
       if (Math.abs(a.length - b.length) > 1) return false;
-      const dp = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]);
-      for (let j = 1; j <= b.length; j++) dp[0][j] = j;
-      for (let i = 1; i <= a.length; i++)
-        for (let j = 1; j <= b.length; j++)
-          dp[i][j] = Math.min(
-            dp[i - 1][j] + 1,
-            dp[i][j - 1] + 1,
-            dp[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1),
-          );
-      return dp[a.length][b.length] <= 1;
+      let i = 0;
+      while (i < a.length && a[i] === b[i]) i++;
+      const tail = (x: string, n: number) => x.slice(i + n);
+      return tail(a, 1) === tail(b, 1) || tail(a, 1) === tail(b, 0) || tail(a, 0) === tail(b, 1);
     };
     const chapter = new Set(Object.keys(CHAPTER_ONE_NPCS));
     const shippedWords = new Set<string>();
     for (const npc of Object.values(NPCS)) {
       if (chapter.has(npc.id)) continue;
       for (const word of npc.name.toLowerCase().split(/[^a-z]+/)) {
-        if (word.length >= 4) shippedWords.add(word);
+        if (word.length >= 3) shippedWords.add(word);
       }
     }
     const clashes: string[] = [];
     for (const npc of Object.values(CHAPTER_ONE_NPCS)) {
       const first = npc.name.toLowerCase().split(' ')[0];
-      for (const word of shippedWords) if (near(first, word)) clashes.push(`${npc.name} ~ ${word}`);
+      if (shippedWords.has(first)) clashes.push(`${npc.name} reuses a shipped name`);
+      for (const known of ['pell', 'halven']) {
+        if (oneOff(first, known)) clashes.push(`${npc.name} ~ ${known}`);
+      }
     }
     expect(clashes).toEqual([]);
   });

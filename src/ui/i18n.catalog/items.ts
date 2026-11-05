@@ -4151,7 +4151,7 @@ const APPENDED_ITEM_NAMES: Partial<Record<ItemEntityId, string>> = {
   c1_ferry_workbench: 'Ferry Workbench',
   c1_walkway_gap: 'Walkway Gap',
   c1_public_furnace: "Brunna's Public Furnace",
-  c1_pella_workbench: "Nell's Public Workbench",
+  c1_pella_workbench: "Wenna's Public Workbench",
   c1_housing_noticeboard: 'Housing Noticeboard',
   c1_practice_marker: 'Furnishing Practice Marker',
   c1_inn_hearth: "The Inn's Public Hearth",

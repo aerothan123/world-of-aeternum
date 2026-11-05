@@ -25,13 +25,13 @@
 
 import { ESCORTS, MOBS, QUESTS } from './data';
 import { createMob } from './entity';
-import { recordFactionActivity } from './faction_activity';
 import {
   emitEscortSpeech,
   interruptEscortStory,
   startEscortStory,
   updateEscortStory,
 } from './escort_story';
+import { recordFactionActivity } from './faction_activity';
 import type { PlayerMeta } from './sim';
 import type { SimContext } from './sim_context';
 import { addThreat } from './threat';
@@ -291,7 +291,7 @@ function creditEscort(ctx: SimContext, def: EscortDef, npc: Entity): void {
     meta.counters.questProgress++;
     // Lanternwarden standing for seeing the escortee home (faction_activity.ts);
     // once per quest, since a credited objective never credits again.
-    recordFactionActivity(ctx, meta, 'escort', quest.level);
+    recordFactionActivity(ctx, meta, 'escort', quest.minLevel ?? 1);
     ctx.emit({
       type: 'questProgress',
       questId: qp.questId,

@@ -33,7 +33,7 @@ import { HOUSE_STORAGE_CHEST_ITEM_ID } from './furniture';
 import { OATHLESS_KING_TITLE } from './wyndlewood_lore';
 import { ZONE1_MOBS } from './zone1';
 
-/** Nell's worktable (quest 23) is a real piece of house furniture: the
+/** Wenna's worktable (quest 23) is a real piece of house furniture: the
  *  housing system's Long Table (content/furniture.ts, a floor piece), so the
  *  player keeps it and can place it in their own house later
  *  (housing/furnishing.ts). The quest's storage chest is likewise the real
@@ -114,7 +114,7 @@ export const CHAPTER_ONE_NPCS: Record<string, NpcDef> = {
   ),
   [C1_HOLVEN]: npc(
     C1_HOLVEN,
-    'Bertram Hollis',
+    'Bertram Ashcombe',
     'Gravekeeper',
     { x: 25, z: -106 },
     -Math.PI / 2,
@@ -150,7 +150,7 @@ export const CHAPTER_ONE_NPCS: Record<string, NpcDef> = {
   ),
   [C1_PELLA]: npc(
     C1_PELLA,
-    'Nell Nookwright',
+    'Wenna Nookwright',
     'Carpenter',
     { x: -45, z: -87 },
     Math.PI / 2,
@@ -414,7 +414,7 @@ const INSPECT: Record<string, string> = {
   c1_ferry_workbench: 'Ferry Workbench',
   c1_walkway_gap: 'Walkway Gap',
   c1_public_furnace: "Brunna's Public Furnace",
-  c1_pella_workbench: "Nell's Public Workbench",
+  c1_pella_workbench: "Wenna's Public Workbench",
   c1_housing_noticeboard: 'Housing Noticeboard',
   c1_practice_marker: 'Furnishing Practice Marker',
   c1_inn_hearth: "The Inn's Public Hearth",
@@ -594,7 +594,7 @@ export const CHAPTER_ONE_OBJECTS: GroundObjectDef[] = [
   ]),
   // Appended last so every earlier object keeps its reserved id. The tool
   // and crafting quests: Tobbin's jetty, Fenlow's ferry walkway, Brunna's
-  // furnace, Nell's yard and the inn's hearth.
+  // furnace, Wenna's yard and the inn's hearth.
   obj('c1_keep_net', [{ x: -271.5, z: 4 }]),
   obj('c1_loan_woodcutting_axe', [{ x: -286, z: -11 }]),
   obj('c1_marked_shore_pine', [
@@ -611,7 +611,7 @@ export const CHAPTER_ONE_OBJECTS: GroundObjectDef[] = [
     { x: -274.5, z: 2.5 },
   ]),
   obj('c1_public_furnace', [{ x: -4.6, z: -116.8 }]),
-  // Nell's carpenter's yard on the north side of the main street, the spot
+  // Wenna's carpenter's yard on the north side of the main street, the spot
   // the town layout keeps free for it (clear of the row terrace and the
   // housing streets; tests/chapter_one_content.test.ts town-lot clearance).
   obj('c1_pella_workbench', [{ x: -46.5, z: -84 }]),
@@ -939,7 +939,7 @@ export const CHAPTER_ONE_QUESTS: Record<string, QuestDef> = {
     'He heard someone counting after midnight, and this cloth matches the thread Fenlow sent. I would rather have found a thoughtless vandal than someone so careful.',
     [
       inspect('c1_disturbed_grave', 3, 'Freshly Disturbed Grave inspected'),
-      talk(C1_HOLVEN, 'Spoke with Bertram Hollis'),
+      talk(C1_HOLVEN, 'Spoke with Bertram Ashcombe'),
       collect('c1_black_cloth_snag', 1, 'Black Cloth Snag'),
     ],
     { requiresQuest: 'c1_08_vouch' },
@@ -1318,7 +1318,7 @@ export const CHAPTER_ONE_QUESTS: Record<string, QuestDef> = {
         type: 'interact',
         targetObjectItemId: 'c1_pella_workbench',
         count: 1,
-        label: "Storage Chest built at Nell's workbench",
+        label: "Storage Chest built at Wenna's workbench",
         usesItemId: 'c1_hinge_packet',
         yieldsItemId: HOUSE_STORAGE_CHEST_ITEM_ID,
         station: true,
@@ -1349,7 +1349,7 @@ export const CHAPTER_ONE_QUESTS: Record<string, QuestDef> = {
         type: 'interact',
         targetObjectItemId: 'c1_pella_workbench',
         count: 1,
-        label: "Worktable built at Nell's workbench",
+        label: "Worktable built at Wenna's workbench",
         yieldsItemId: C1_WORKTABLE_ITEM_ID,
         station: true,
       },
@@ -1532,9 +1532,9 @@ export const TOWN_BOARD_QUESTS: Record<string, QuestDef> = {
     2,
     SILVEN,
     'gilt_measure',
-    "Please take 3 Hinge Bundles to Nell at the carpenter's yard. The goods are paid for, properly labeled, and not yours to inspect for personal inspiration. Bring confirmation back, and we shall both enjoy the rare pleasure of an uncomplicated transaction.",
+    "Please take 3 Hinge Bundles to Wenna at the carpenter's yard. The goods are paid for, properly labeled, and not yours to inspect for personal inspiration. Bring confirmation back, and we shall both enjoy the rare pleasure of an uncomplicated transaction.",
     'Everything is signed for, so everybody knows whom to blame if it goes missing later. Your payment, happily, is considerably less complicated.',
-    [deliver(C1_PELLA, 'Hinge Bundles delivered to Nell', 'c1_hinge_bundle', 3)],
+    [deliver(C1_PELLA, 'Hinge Bundles delivered to Wenna', 'c1_hinge_bundle', 3)],
   ),
   c1_d08_lunch_stew: daily(
     'c1_d08_lunch_stew',

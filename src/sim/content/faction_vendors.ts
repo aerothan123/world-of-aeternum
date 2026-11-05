@@ -2,51 +2,25 @@
 // vendor ladder. Deterministic simulation content leaf: pure data structures
 // and gate resolution. Zero RNG, zero wall-clock, zero DOM/Three.js imports.
 //
-// THE LADDER (docs/design/factions.md, "What standing unlocks"). Factions own
-// the PERIPHERY the raid never fills, the way classic reputation gear did:
-// the five set slots (helmet, shoulder, chest, gloves, legs) and the top
-// weapons stay raid prestige, and every faction tier sells something a player
-// uses the day it opens.
-//   Recognized  a neck at the heroic five-man vendor's budget (one 25 rating)
-//   Trusted     a ring at the same budget, plus the faction's bag
-//   Proven      the two thinnest armor slots (waist, feet) at the raid OFFSET
-//               budget (its ratings; armor AND line one point under, the
-//               same never-a-tie rule as Champion: the max-armor tank kit in
-//               tests/heroic_difficulty_floors.test.ts breaks an armor tie
-//               by id), a pre-raid set-slot piece at the heroic five-man
-//               budget, and the faction's formulas
-//   Vanguard    a proc weapon at the heroic five-man weapon bar (the only
-//               non-legendary proc weapons outside the two 1.7 daggers)
-//   Champion    the Gilt Measure's Viridian Valestrider mount (its reins def
-//               stays in content/items.ts beside the other reins), and
-//               the jewelry gaps: Agility jewels, stamina-line tank jewels,
-//               a SECOND caster and healer ring, each carrying the raid
-//               jewel's 25 rating with its primary line ONE point under the
-//               raid row it mirrors (a rival, never a tie: dev/bis_gear.ts
-//               orders epics by line total, so an exact tie would silently
-//               swap every dev kit and DPS fixture onto faction stock)
-// Each faction serves one role family across its whole ladder (the factions
-// progress in parallel, so every character walks all of them). The three
-// ladders were authored for the provisional factions and passed whole to
-// their Wyndlewood successors (src/sim/factions.ts LEGACY_FACTION_IDS); item
-// ids are frozen, so a row's id may still name its first owner:
+// THE LADDER (docs/design/wyndlewood-faction-ladder.md section 5, the owner's
+// Wyndlewood decision): faction rewards never give raw power above what quests
+// give. The ladders were authored for the provisional factions at the heroic
+// and raid budgets and passed whole to their Wyndlewood successors
+// (src/sim/factions.ts LEGACY_FACTION_IDS); item ids are frozen, so a row's id
+// may still name its first owner, and every equipment row was re-statted DOWN
+// to the quest tier: the level-20 quest reward budget for its slot
+// (FACTION_GEAR_ITEM_LEVEL = 20 + the rare bump, item_budget.ts
+// primaryStatBudget), its own stat ratio kept, every secondary rating, Spell
+// Power and proc removed, rare quality, armor from the level-20 quest
+// catalog, weapons on weaponDpsBudget. The tier lanes stay (a neck, a ring and
+// a bag, the periphery and formulas, a weapon, jewels), so a quartermaster
+// still fills empty slots on the day a tier opens; the value above that lives
+// in titles (the Champion deeds), furniture, the toys and the mount.
 //   Gilt Measure          Agility (rogue, hunter); was the Rift Watch's
 //   Lanternwardens        casters and healers; was the Church Order's
-//   Hearthwright Compact  Strength and the stamina line (warrior, paladin,
-//                         enhancement shaman; feral druids wear its jewelry
-//                         and two-hander, since Feral is a Strength spec:
-//                         content/spec_primary_stat.ts); was the Automatons'
-//   Bracken Circle        the allied rows only for now: its own ladder is a
-//                         follow-up (docs/narrative/wyndlewood_decisions.md)
-// Budgets are COPIED from the live raid and heroic tables, never invented:
-// jewelry mirrors content/ignivar_loot.ts IGNIVAR_JEWELRY_ITEMS (one 25
-// rating, 15 to 16 primary) and content/heroic_vendor.ts; waist and feet
-// mirror IGNIVAR_OFFSET_ITEMS (25 + 60 ratings; armor and line one point
-// under; the proxy stamina floor of item_stamina_baseline still holds); set-slot pieces mirror the
-// heroic five-man drops (one 40 rating); weapons sit on the heroic five-man
-// weapon bar (FIVE_MAN_WEAPON_RATING). Faction stock is UNTIERED in
-// item_level.ts (no source registers it), so tests/faction_vendors.test.ts
-// pins each row against the raid or heroic row it mirrors.
+//   Hearthwright Compact  Strength and the stamina line; was the Automatons'
+//   Bracken Circle        furniture and the allied rows (its gear ladder is a
+//                         follow-up; docs/narrative/wyndlewood_decisions.md)
 // Item ids shipped in the golden (tests/shipped_item_ids.golden.json) are
 // never deleted: the first-cut ids keep their slot and were re-statted.
 //
@@ -62,8 +36,14 @@
 import type { FactionId, StandingTier } from '../factions';
 import { STANDING_THRESHOLDS } from '../factions';
 import { FENBRIDGE_NPC_PLACEMENTS_BY_ID } from '../fenbridge_layout';
+import { QUALITY_ILVL_BONUS } from '../item_budget';
 import { DRIFTHAVEN_NPC_PLACEMENTS_BY_ID } from '../painted_towns';
 import type { ItemDef, NpcDef } from '../types';
+
+/** The quest tier faction gear is capped at: the level-20 quest reward plus
+ *  the rare quality bump (docs/design/wyndlewood-faction-ladder.md section 5). */
+export const FACTION_GEAR_SOURCE_LEVEL = 20;
+export const FACTION_GEAR_ITEM_LEVEL = FACTION_GEAR_SOURCE_LEVEL + QUALITY_ILVL_BONUS.rare;
 
 export interface FactionVendorGate {
   /** Absent on an allied row: any quartermaster sells it, gated on the best standing. */
@@ -156,6 +136,24 @@ export const FACTION_VENDOR_GATES: Readonly<Record<string, FactionVendorGate>> =
   champion_forged_loop: gate('hearthwright_compact', 'champion'),
   forgewall_gorget: gate('hearthwright_compact', 'champion'),
 
+  // House furniture (content/furniture.ts, the housing pieces a player can
+  // also craft): the cosmetic value the Wyndlewood ladder moves above the
+  // quest-tier gear (docs/design/wyndlewood-faction-ladder.md section 5). One
+  // faction per piece, priced like a toy.
+  furn_candlestick: gate('lanternwardens', 'trusted', TOY_MARKS),
+  furn_trophy_plaque: gate('lanternwardens', 'vanguard', TOY_MARKS),
+  furn_station_forge: gate('hearthwright_compact', 'proven', TOY_MARKS),
+  furn_bookcase: gate('hearthwright_compact', 'vanguard', TOY_MARKS),
+  furn_station_toolworks: gate('hearthwright_compact', 'champion', TOY_MARKS),
+  furn_woven_rug: gate('bracken_circle', 'recognized', TOY_MARKS),
+  furn_station_apothecary: gate('bracken_circle', 'trusted', TOY_MARKS),
+  furn_barrel: gate('bracken_circle', 'proven', TOY_MARKS),
+  furn_oak_bench: gate('bracken_circle', 'vanguard', TOY_MARKS),
+  furn_station_tannery: gate('bracken_circle', 'champion', TOY_MARKS),
+  furn_keg: gate('gilt_measure', 'recognized', TOY_MARKS),
+  furn_round_table: gate('gilt_measure', 'proven', TOY_MARKS),
+  furn_station_kitchens: gate('gilt_measure', 'vanguard', TOY_MARKS),
+
   // Allied rows: every quartermaster, its own marks, the best standing.
   cartographers_ink: gate(undefined, 'recognized', 60),
   allied_hearthstone: gate(undefined, 'vanguard', 100),
@@ -200,30 +198,31 @@ const sell = (tier: StandingTier) => PRICE[tier] / 4;
  *  formulas); the Rift Watch ladder also sells the Valestrider reins from
  *  content/items.ts. */
 export const FACTION_VENDOR_ITEMS: Record<string, ItemDef> = {
+  // Every equipment row sits on the quest tier (FACTION_GEAR_ITEM_LEVEL, the
+  // level-20 quest reward plus the rare bump): primaryStatBudget for its slot
+  // with the row's own stat ratio, no secondary ratings, no Spell Power, no
+  // proc, rare quality, quest-catalog armor, weapons on weaponDpsBudget.
+  // tests/faction_vendors.test.ts pins every row to that formula.
   // ------------------------------------------------------------------ Rift Watch
-  // Recognized: the heroic vendor's Agility neck shape (Yumi's Keepsake Locket).
   tidewatchers_locket: {
     id: 'tidewatchers_locket',
     name: "Tidewatcher's Locket",
     kind: 'armor',
     slot: 'neck',
     quality: 'rare',
-    stats: { agi: 7, sta: 5 },
-    hasteRating: 25,
+    stats: { agi: 5, sta: 3 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('recognized'),
     buyValue: 0,
   },
-  // Trusted: the heroic vendor's Agility ring shape (Sutil's Gambit).
   rift_watchers_band: {
     id: 'rift_watchers_band',
     name: "Rift Watcher's Band",
     kind: 'armor',
     slot: 'ring',
     quality: 'rare',
-    stats: { agi: 7, sta: 4 },
-    critRating: 25,
+    stats: { agi: 5, sta: 3 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('trusted'),
@@ -239,7 +238,6 @@ export const FACTION_VENDOR_ITEMS: Record<string, ItemDef> = {
     sellValue: sell('trusted'),
     buyValue: 0,
   },
-  // Proven: the heroic five-man leather Agility chest (Basin Stalker's Tunic).
   riftwalkers_tunic: {
     id: 'riftwalkers_tunic',
     name: "Riftwalker's Tunic",
@@ -247,25 +245,20 @@ export const FACTION_VENDOR_ITEMS: Record<string, ItemDef> = {
     slot: 'chest',
     armorType: 'leather',
     quality: 'rare',
-    stats: { armor: 172, agi: 13, sta: 9 },
-    hitRating: 40,
+    stats: { armor: 130, agi: 8, sta: 5 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('proven'),
     buyValue: 0,
   },
-  // Proven: the raid offset leather Agility waist and feet (Slagstalker Belt,
-  // Ashrunner Boots).
   riftwalkers_cord: {
     id: 'riftwalkers_cord',
     name: "Riftwalker's Cord",
     kind: 'armor',
     slot: 'waist',
     armorType: 'leather',
-    quality: 'epic',
-    stats: { armor: 149, agi: 10, sta: 6 },
-    critRating: 25,
-    hitRating: 60,
+    quality: 'rare',
+    stats: { armor: 83, agi: 6, sta: 3 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('proven'),
@@ -277,10 +270,8 @@ export const FACTION_VENDOR_ITEMS: Record<string, ItemDef> = {
     kind: 'armor',
     slot: 'feet',
     armorType: 'leather',
-    quality: 'epic',
-    stats: { armor: 144, agi: 10, sta: 5 },
-    critRating: 60,
-    hasteRating: 25,
+    quality: 'rare',
+    stats: { armor: 73, agi: 5, sta: 3 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('proven'),
@@ -297,43 +288,27 @@ export const FACTION_VENDOR_ITEMS: Record<string, ItemDef> = {
     buyValue: 0,
     noVendorSell: true,
   },
-  // Vanguard: the game's first fast (1.6) non-dagger one-hander, on the heroic
-  // five-man weapon bar (17.2 dps, FIVE_MAN_WEAPON_RATING 50), with a
-  // chance-on-hit slow sized like Thronebane's Thunderclap.
   riftwarden_voidblade: {
     id: 'riftwarden_voidblade',
     name: "Riftwarden's Voidblade",
     kind: 'weapon',
     slot: 'mainhand',
-    quality: 'epic',
-    weapon: { min: 22, max: 33, speed: 1.6 },
-    stats: { agi: 13, sta: 8 },
-    critRating: 50,
+    quality: 'rare',
+    weapon: { min: 17, max: 26, speed: 1.6 },
+    stats: { agi: 8, sta: 5 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('vanguard'),
     buyValue: 0,
     requiredClass: ['warrior', 'rogue', 'hunter', 'shaman'],
-    weaponProcs: [
-      {
-        id: 'riftwarden_drag',
-        name: 'Rift Drag',
-        trigger: 'weaponHit',
-        chance: 0.08,
-        effects: [{ kind: 'attackSlow', name: 'Rift Drag', mult: 1.2, duration: 6 }],
-      },
-    ],
   },
-  // Champion: the Agility jewels the raid never drops, at the raid jewel
-  // budget (Seal of the Forgewall / Pendant of the First Tempering shapes).
   champion_rift_band: {
     id: 'champion_rift_band',
     name: "Champion's Rift Band",
     kind: 'armor',
     slot: 'ring',
-    quality: 'epic',
-    stats: { agi: 7, sta: 7 },
-    hitRating: 25,
+    quality: 'rare',
+    stats: { agi: 4, sta: 4 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('champion'),
@@ -344,9 +319,8 @@ export const FACTION_VENDOR_ITEMS: Record<string, ItemDef> = {
     name: "Riftwarden's Pendant",
     kind: 'armor',
     slot: 'neck',
-    quality: 'epic',
-    stats: { agi: 7, sta: 8 },
-    critRating: 25,
+    quality: 'rare',
+    stats: { agi: 4, sta: 4 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('champion'),
@@ -354,36 +328,30 @@ export const FACTION_VENDOR_ITEMS: Record<string, ItemDef> = {
   },
 
   // ---------------------------------------------------------------- Church Order
-  // Recognized: a caster-and-healer neck at the heroic vendor budget (the
-  // Architect's Cornerstone shape with the line split evenly).
   order_prayer_beads: {
     id: 'order_prayer_beads',
     name: 'Order Prayer Beads',
     kind: 'armor',
     slot: 'neck',
     quality: 'rare',
-    stats: { int: 6, spi: 5, sta: 4 },
-    hasteRating: 25,
+    stats: { sta: 2, int: 3, spi: 3 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('recognized'),
     buyValue: 0,
   },
-  // Trusted: the heroic vendor's caster ring shape (Zense Meridian).
   acolytes_signet: {
     id: 'acolytes_signet',
     name: "Acolyte's Signet",
     kind: 'armor',
     slot: 'ring',
     quality: 'rare',
-    stats: { int: 7, spi: 5, sta: 4 },
-    critRating: 25,
+    stats: { sta: 2, int: 4, spi: 2 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('trusted'),
     buyValue: 0,
   },
-  // Proven: the heroic five-man cloth healer chest (Shroud of the Gravewyrm).
   vestments_of_the_acolyte: {
     id: 'vestments_of_the_acolyte',
     name: 'Vestments of the Acolyte',
@@ -391,26 +359,20 @@ export const FACTION_VENDOR_ITEMS: Record<string, ItemDef> = {
     slot: 'chest',
     armorType: 'cloth',
     quality: 'rare',
-    stats: { armor: 90, int: 12, spi: 10, sta: 7 },
-    critRating: 40,
+    stats: { armor: 68, sta: 3, int: 5, spi: 5 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('proven'),
     buyValue: 0,
   },
-  // Proven: the raid offset cloth caster waist (Cord of the Last Flame) and
-  // healer feet (Steps of Quiet Water).
   cord_of_the_dawn: {
     id: 'cord_of_the_dawn',
     name: 'Cord of the Dawn',
     kind: 'armor',
     slot: 'waist',
     armorType: 'cloth',
-    quality: 'epic',
-    stats: { armor: 74, int: 10, spi: 6, sta: 6 },
-    spellPower: 4,
-    critRating: 25,
-    hitRating: 60,
+    quality: 'rare',
+    stats: { armor: 48, sta: 3, int: 4, spi: 2 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('proven'),
@@ -422,11 +384,8 @@ export const FACTION_VENDOR_ITEMS: Record<string, ItemDef> = {
     kind: 'armor',
     slot: 'feet',
     armorType: 'cloth',
-    quality: 'epic',
-    stats: { armor: 69, int: 8, spi: 7, sta: 5 },
-    healPower: 8,
-    critRating: 25,
-    hasteRating: 60,
+    quality: 'rare',
+    stats: { armor: 45, sta: 2, int: 3, spi: 3 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('proven'),
@@ -454,33 +413,19 @@ export const FACTION_VENDOR_ITEMS: Record<string, ItemDef> = {
     buyValue: 0,
     noVendorSell: true,
   },
-  // Vanguard: a healer mace on the Springtouched Crozier's damage line with a
-  // heal-triggered heal-over-time sized like Heartwood's Lifebloom, and a
-  // healer shield one step under the Ember Warden's Barrier.
   dawnkeeper_consecrated_mace: {
     id: 'dawnkeeper_consecrated_mace',
     name: "Dawnkeeper's Consecrated Mace",
     kind: 'weapon',
     slot: 'mainhand',
-    quality: 'epic',
-    weapon: { min: 33, max: 50, speed: 2.4 },
-    stats: { int: 12, spi: 10, sta: 8 },
-    healPower: 32,
-    hasteRating: 50,
+    quality: 'rare',
+    weapon: { min: 26, max: 39, speed: 2.4 },
+    stats: { sta: 4, int: 5, spi: 4 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('vanguard'),
     buyValue: 0,
     requiredClass: ['priest', 'paladin', 'shaman', 'druid'],
-    weaponProcs: [
-      {
-        id: 'dawnkeeper_lingering_light',
-        name: 'Lingering Light',
-        trigger: 'heal',
-        chance: 0.15,
-        effects: [{ kind: 'hot', name: 'Lingering Light', perTick: 10, interval: 2, duration: 8 }],
-      },
-    ],
   },
   templar_dawn_shield: {
     id: 'templar_dawn_shield',
@@ -490,27 +435,21 @@ export const FACTION_VENDOR_ITEMS: Record<string, ItemDef> = {
     armorType: 'mail',
     shield: true,
     blockValue: 22,
-    quality: 'epic',
-    stats: { armor: 680, int: 8, spi: 7, sta: 5 },
-    healPower: 18,
-    hasteRating: 20,
+    quality: 'rare',
+    stats: { armor: 380, sta: 3, int: 4, spi: 3 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('vanguard'),
     buyValue: 0,
     requiredClass: ['paladin', 'shaman'],
   },
-  // Champion: a haste caster neck, and the SECOND caster and healer rings the
-  // raid tier lacks (Circle of Cinders / Loop of Quiet Springs shapes).
   champion_dawn_medallion: {
     id: 'champion_dawn_medallion',
     name: "Champion's Dawn Medallion",
     kind: 'armor',
     slot: 'neck',
-    quality: 'epic',
-    stats: { int: 9, spi: 6, sta: 5 },
-    spellPower: 4,
-    hasteRating: 25,
+    quality: 'rare',
+    stats: { sta: 2, int: 4, spi: 2 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('champion'),
@@ -521,10 +460,8 @@ export const FACTION_VENDOR_ITEMS: Record<string, ItemDef> = {
     name: "Champion's Dawn Loop",
     kind: 'armor',
     slot: 'ring',
-    quality: 'epic',
-    stats: { int: 9, spi: 5, sta: 5 },
-    spellPower: 4,
-    critRating: 25,
+    quality: 'rare',
+    stats: { sta: 2, int: 4, spi: 2 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('champion'),
@@ -535,10 +472,8 @@ export const FACTION_VENDOR_ITEMS: Record<string, ItemDef> = {
     name: "Dawnkeeper's Circle",
     kind: 'armor',
     slot: 'ring',
-    quality: 'epic',
-    stats: { int: 8, spi: 6, sta: 5 },
-    healPower: 8,
-    hasteRating: 25,
+    quality: 'rare',
+    stats: { sta: 2, int: 3, spi: 3 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('champion'),
@@ -546,29 +481,25 @@ export const FACTION_VENDOR_ITEMS: Record<string, ItemDef> = {
   },
 
   // ------------------------------------------------------------------ Automatons
-  // Recognized: the heroic vendor's Strength neck shape (Medallion of Endless Profit).
   cogwork_choker: {
     id: 'cogwork_choker',
     name: 'Cogwork Choker',
     kind: 'armor',
     slot: 'neck',
     quality: 'rare',
-    stats: { str: 7, sta: 5 },
-    critRating: 25,
+    stats: { str: 5, sta: 3 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('recognized'),
     buyValue: 0,
   },
-  // Trusted: the heroic vendor's Strength ring shape (Seal of the Nine Oaths).
   automaton_cog_ring: {
     id: 'automaton_cog_ring',
     name: 'Automaton Cog Ring',
     kind: 'armor',
     slot: 'ring',
     quality: 'rare',
-    stats: { str: 7, sta: 4 },
-    hitRating: 25,
+    stats: { str: 5, sta: 3 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('trusted'),
@@ -584,7 +515,6 @@ export const FACTION_VENDOR_ITEMS: Record<string, ItemDef> = {
     sellValue: sell('trusted'),
     buyValue: 0,
   },
-  // Proven: the heroic five-man mail Strength helm (Cryptplate Helm).
   artificers_welding_cowl: {
     id: 'artificers_welding_cowl',
     name: "Artificer's Welding Cowl",
@@ -592,25 +522,20 @@ export const FACTION_VENDOR_ITEMS: Record<string, ItemDef> = {
     slot: 'helmet',
     armorType: 'mail',
     quality: 'rare',
-    stats: { armor: 292, str: 10, sta: 8 },
-    hitRating: 40,
+    stats: { armor: 151, str: 6, sta: 5 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('proven'),
     buyValue: 0,
   },
-  // Proven: the raid offset mail Strength waist and feet (Warforged
-  // Waistguard, Furnace March Greaves).
   forgemasters_girdle: {
     id: 'forgemasters_girdle',
     name: "Forgemaster's Girdle",
     kind: 'armor',
     slot: 'waist',
     armorType: 'mail',
-    quality: 'epic',
-    stats: { armor: 269, str: 10, sta: 6 },
-    critRating: 25,
-    hitRating: 60,
+    quality: 'rare',
+    stats: { armor: 124, str: 6, sta: 3 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('proven'),
@@ -622,10 +547,8 @@ export const FACTION_VENDOR_ITEMS: Record<string, ItemDef> = {
     kind: 'armor',
     slot: 'feet',
     armorType: 'mail',
-    quality: 'epic',
-    stats: { armor: 254, str: 10, sta: 5 },
-    critRating: 60,
-    hasteRating: 25,
+    quality: 'rare',
+    stats: { armor: 110, str: 5, sta: 3 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('proven'),
@@ -642,48 +565,28 @@ export const FACTION_VENDOR_ITEMS: Record<string, ItemDef> = {
     buyValue: 0,
     noVendorSell: true,
   },
-  // Vanguard: a two-hander on the heroic five-man two-hander bar (Deathless
-  // Greatblade: 18.5 dps, 3.4 speed, str 18 sta 12) with a chance-on-hit
-  // chain arc sized like Rimefang's Frostbite. Two-handed so the faction's
-  // own Piston Drive formula has a home.
   forgemaster_crag_cleaver: {
     id: 'forgemaster_crag_cleaver',
     name: "Forgemaster's Crag Cleaver",
     kind: 'weapon',
     slot: 'mainhand',
     hand: 'twohand',
-    quality: 'epic',
-    weapon: { min: 50, max: 76, speed: 3.4 },
-    stats: { str: 17, sta: 12 },
-    critRating: 50,
+    quality: 'rare',
+    weapon: { min: 42, max: 64, speed: 3.4 },
+    stats: { str: 10, sta: 7 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('vanguard'),
     buyValue: 0,
     requiredClass: ['warrior', 'paladin', 'shaman', 'hunter'],
-    weaponProcs: [
-      {
-        id: 'forgemaster_piston_spark',
-        name: 'Piston Spark',
-        trigger: 'weaponHit',
-        chance: 0.08,
-        effects: [
-          { kind: 'chainArc', school: 'fire', damage: 20, jumps: 0, falloff: 0.6, radius: 8 },
-        ],
-      },
-    ],
   },
-  // Champion: the stamina-line tank jewels no source drops (Stamina-first with
-  // the raid jewel's one rating; blockValue is a shield-only field and armor
-  // on jewelry would skew the /dev bis picker, so neither is used).
   champion_forged_loop: {
     id: 'champion_forged_loop',
     name: "Champion's Forged Loop",
     kind: 'armor',
     slot: 'ring',
-    quality: 'epic',
-    stats: { str: 4, sta: 10 },
-    hitRating: 25,
+    quality: 'rare',
+    stats: { str: 2, sta: 6 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('champion'),
@@ -694,9 +597,8 @@ export const FACTION_VENDOR_ITEMS: Record<string, ItemDef> = {
     name: 'Forgewall Gorget',
     kind: 'armor',
     slot: 'neck',
-    quality: 'epic',
-    stats: { str: 3, sta: 12 },
-    critRating: 25,
+    quality: 'rare',
+    stats: { str: 2, sta: 6 },
     requiredLevel: 20,
     soulbound: true,
     sellValue: sell('champion'),
@@ -887,6 +789,7 @@ export const FACTION_VENDOR_STOCK: Readonly<Record<FactionId, readonly string[]>
   gilt_measure: Object.freeze([
     'tidewatchers_locket',
     'cartographers_ink',
+    'furn_keg',
     'rift_watchers_band',
     'rift_surveyors_satchel',
     'rift_feather_glider',
@@ -897,9 +800,11 @@ export const FACTION_VENDOR_STOCK: Readonly<Record<FactionId, readonly string[]>
     'formula_enchant_feet_shadowstride',
     'recipe_potion_of_invisibility',
     'pattern_reinforced_armor_kit',
+    'furn_round_table',
     'riftwarden_voidblade',
     'allied_hearthstone',
     'allied_vanguard_duffel',
+    'furn_station_kitchens',
     'champion_rift_band',
     'riftwardens_pendant',
     // The Viridian Valestrider (content/items.ts, PR 4175): the ladder's
@@ -911,6 +816,7 @@ export const FACTION_VENDOR_STOCK: Readonly<Record<FactionId, readonly string[]>
     'cartographers_ink',
     'acolytes_signet',
     'dawn_battle_standard',
+    'furn_candlestick',
     'vestments_of_the_acolyte',
     'cord_of_the_dawn',
     'dawnlit_slippers',
@@ -922,6 +828,7 @@ export const FACTION_VENDOR_STOCK: Readonly<Record<FactionId, readonly string[]>
     'templar_dawn_shield',
     'allied_hearthstone',
     'allied_vanguard_duffel',
+    'furn_trophy_plaque',
     'champion_dawn_medallion',
     'champions_dawn_loop',
     'dawnkeepers_circle',
@@ -939,18 +846,26 @@ export const FACTION_VENDOR_STOCK: Readonly<Record<FactionId, readonly string[]>
     'formula_enchant_gloves_forged_might',
     'schematic_clockwork_shock_bomb',
     'plans_dense_sharpening_stone',
+    'furn_station_forge',
     'forgemaster_crag_cleaver',
     'allied_hearthstone',
     'allied_vanguard_duffel',
+    'furn_bookcase',
     'champion_forged_loop',
     'forgewall_gorget',
+    'furn_station_toolworks',
   ]),
-  // The allied rows only, bought with Bracken Acorns (its own ladder is a
-  // follow-up; see the header).
+  // Furniture and the allied rows, bought with Bracken Acorns (its gear ladder
+  // is a follow-up; see the header).
   bracken_circle: Object.freeze([
+    'furn_woven_rug',
     'cartographers_ink',
+    'furn_station_apothecary',
+    'furn_barrel',
     'allied_hearthstone',
     'allied_vanguard_duffel',
+    'furn_oak_bench',
+    'furn_station_tannery',
   ]),
 });
 

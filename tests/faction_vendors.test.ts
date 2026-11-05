@@ -1,20 +1,20 @@
 // The faction quartermaster ladder (content/faction_vendors.ts,
-// docs/design/factions.md "What standing unlocks"): three quartermasters, one
-// ladder per faction covering every standing tier, every row gated on the
-// exact tier threshold, and every budget COPIED from the raid or heroic row it
-// mirrors rather than invented. Faction stock is untiered in item_level.ts,
-// so the mirror pins here are the only budget guard it has.
+// docs/design/wyndlewood-faction-ladder.md section 5): one ladder per faction
+// covering every standing tier, every row gated on the exact tier threshold,
+// and every equipment row capped at the QUEST tier (the level-20 quest reward
+// budget for its slot), never above what quests give. Faction stock is
+// untiered in item_level.ts, so the formula pins here are its budget guard.
 
 import { describe, expect, it } from 'vitest';
 import { ENCHANTS } from '../src/sim/content/enchants';
 import {
+  FACTION_GEAR_ITEM_LEVEL,
   FACTION_VENDOR_GATES,
   FACTION_VENDOR_ITEMS,
   FACTION_VENDOR_NPCS,
   FACTION_VENDOR_STOCK,
   resolveFactionVendorRowGate,
 } from '../src/sim/content/faction_vendors';
-import { FIVE_MAN_WEAPON_RATING } from '../src/sim/content/heroic_loot';
 import { ITEMS, NPCS } from '../src/sim/data';
 import {
   FACTION_IDS,
@@ -22,6 +22,13 @@ import {
   STANDING_THRESHOLDS,
   STANDING_TIERS,
 } from '../src/sim/factions';
+import {
+  normalizePrimaryStats,
+  primaryStatBudget,
+  TWOHAND_DPS_MULT,
+  TWOHAND_STAT_MULT,
+  weaponDpsBudget,
+} from '../src/sim/item_budget';
 import { meetsLevelRequirement, requiredLevelFor } from '../src/sim/item_level_req';
 import { Sim } from '../src/sim/sim';
 import { buildVendorView } from '../src/ui/hud/vendor/vendor_view';
@@ -38,6 +45,9 @@ const FORMULA_IDS = [
 // sells only the allied rows for now: no faction-owned ladder yet, so the
 // ladder-shape pins below cover the three factions that have one.
 const FULL_LADDER_FACTIONS = FACTION_IDS.filter((f) => f !== 'bracken_circle');
+// House furniture rows (content/furniture.ts pieces) ride the ladders as the
+// cosmetic value above the quest-tier gear.
+const isFurniture = (id: string) => id.startsWith('furn_');
 
 describe('Faction Vendors & Reroll NPC content', () => {
   it('registers all three faction quartermasters and the taskmaster in NPCS', () => {
@@ -67,14 +77,15 @@ describe('Faction Vendors & Reroll NPC content', () => {
     expect(Object.keys(FACTION_VENDOR_NPCS)).toHaveLength(4);
   });
 
-  it('the stock lists and the gate table name the same 47 rows, all priced in marks but the reins', () => {
+  it('the stock lists and the gate table name the same 60 rows, all priced in marks but the reins', () => {
     const stockIds = FACTION_IDS.flatMap((f) => [...FACTION_VENDOR_STOCK[f]]);
     const unique = new Set(stockIds);
     // The three allied rows stand on every ladder; every other row on one.
-    // The Bracken Circle (Wyndlewood) sells only the three allied rows until
-    // its own ladder is authored, so it adds 3 listings and no unique row.
-    expect(stockIds).toHaveLength(56);
-    expect(unique.size).toBe(47);
+    // The Bracken Circle (Wyndlewood) sells the three allied rows and five
+    // furniture pieces until its gear ladder is authored; the other three
+    // ladders add eight furniture pieces between them.
+    expect(stockIds).toHaveLength(69);
+    expect(unique.size).toBe(60);
     expect([...unique].sort()).toEqual(Object.keys(FACTION_VENDOR_GATES).sort());
     // The Valestrider reins sit with the other reins and the Ink with the quest
     // items (content/items.ts); the item table also authors what the sold
@@ -88,7 +99,9 @@ describe('Faction Vendors & Reroll NPC content', () => {
     ];
     expect(
       [...unique]
-        .filter((id) => id !== 'reins_avian_strider' && id !== 'cartographers_ink')
+        .filter(
+          (id) => id !== 'reins_avian_strider' && id !== 'cartographers_ink' && !isFurniture(id),
+        )
         .concat(CRAFTED)
         .sort(),
     ).toEqual(Object.keys(FACTION_VENDOR_ITEMS).sort());
@@ -99,7 +112,7 @@ describe('Faction Vendors & Reroll NPC content', () => {
         if (gate.factionId !== undefined) expect(gate.factionId, id).toBe(factionId);
         expect(ITEMS[id], id).toBeDefined();
         // Every row, the mount included, costs marks and never coin.
-        expect(ITEMS[id].buyValue, id).toBe(0);
+        expect(ITEMS[id].buyValue ?? 0, id).toBe(0);
         expect(gate.currencyCost, id).toBeGreaterThan(0);
         // Formulas are bind-on-pickup knowledge and mount reins never vendor
         // back (the mount contract in tests/mounts.test.ts); every other row sells.
@@ -152,7 +165,7 @@ describe('Faction Vendors & Reroll NPC content', () => {
   it('every tier sells the lane the design names: neck, ring + bag, periphery + formula, weapon, jewels', () => {
     const slotsAt = (factionId: (typeof FACTION_IDS)[number], tier: string) =>
       FACTION_VENDOR_STOCK[factionId]
-        .filter((id) => FACTION_VENDOR_GATES[id].standingTier === tier)
+        .filter((id) => !isFurniture(id) && FACTION_VENDOR_GATES[id].standingTier === tier)
         .map((id) => (ITEMS[id].kind === 'recipe' ? 'formula' : (ITEMS[id].slot ?? ITEMS[id].kind)))
         .sort();
     for (const factionId of FULL_LADDER_FACTIONS) {
@@ -196,7 +209,7 @@ describe('Faction Vendors & Reroll NPC content', () => {
     for (const [id, gate] of Object.entries(FACTION_VENDOR_GATES)) {
       const def = ITEMS[id];
       const tier = gate.standingTier as keyof typeof MARKS;
-      expect(def.buyValue, id).toBe(0);
+      expect(def.buyValue ?? 0, id).toBe(0);
       if (gate.factionId === undefined) continue; // the allied rows, pinned below
       if (def.kind === 'recipe') expect(gate.currencyCost, id).toBe(50);
       else if (def.kind === 'tool') expect(gate.currencyCost, id).toBe(40);
@@ -245,154 +258,77 @@ describe('Faction Vendors & Reroll NPC content', () => {
   });
 });
 
-// Every budget is a copy of a live row. The right-hand side of each pin is the
-// row it mirrors, read off the merged catalog, so a retune of the raid or
-// heroic table is a red here rather than silent drift between the two.
-describe('faction ladder budgets mirror the raid and heroic tables', () => {
-  const stats = (id: string) => ITEMS[id].stats ?? {};
-  const ratings = (id: string) => {
-    const it = ITEMS[id] as unknown as Record<string, unknown>;
-    const out: Record<string, number> = {};
-    for (const k of ['critRating', 'hitRating', 'hasteRating', 'spellPower', 'healPower']) {
-      if (typeof it[k] === 'number') out[k] = it[k] as number;
-    }
-    return out;
-  };
-  const ratingSum = (id: string) => Object.values(ratings(id)).reduce((a, b) => a + b, 0);
-  const line = (id: string) => {
-    const s = stats(id);
-    return (s.str ?? 0) + (s.agi ?? 0) + (s.int ?? 0) + (s.spi ?? 0) + (s.sta ?? 0);
-  };
+// Every equipment row sits on the quest tier: the level-20 quest reward plus
+// the rare bump (FACTION_GEAR_ITEM_LEVEL), priced by the shared budget
+// functions with the row's own stat ratio, so a retune of the budget curve is
+// a red here rather than silent drift above what quests give.
+describe('faction ladder gear stays at quest strength', () => {
+  const gear = Object.values(FACTION_VENDOR_ITEMS).filter(
+    (def) => (def.kind === 'armor' || def.kind === 'weapon') && def.slot !== undefined,
+  );
+  const POWER_FIELDS = [
+    'critRating',
+    'hitRating',
+    'hasteRating',
+    'expertiseRating',
+    'spellPower',
+    'healPower',
+    'blockValue',
+  ];
 
-  it('Recognized necks and Trusted rings carry the heroic vendor jewel budget: one 25 rating, its line', () => {
-    const pairs: Array<[string, string]> = [
-      ['tidewatchers_locket', 'yumis_keepsake_locket'],
-      ['rift_watchers_band', 'sutils_gambit'],
-      ['order_prayer_beads', 'architects_cornerstone'],
-      ['acolytes_signet', 'zense_meridian'],
-      ['cogwork_choker', 'medallion_of_endless_profit'],
-      ['automaton_cog_ring', 'seal_of_the_nine_oaths'],
-    ];
-    for (const [id, mirror] of pairs) {
-      expect(ITEMS[id].quality, id).toBe('rare');
-      expect(line(id), `${id} line vs ${mirror}`).toBe(line(mirror));
-      expect(ratingSum(id), `${id} rating vs ${mirror}`).toBe(25);
-      expect(Object.keys(ratings(id)), id).toHaveLength(1);
+  it('reprices every gear row to the quest-tier budget for its slot, its ratio kept', () => {
+    expect(FACTION_GEAR_ITEM_LEVEL).toBe(23);
+    expect(gear).toHaveLength(26);
+    for (const def of gear) {
+      const two = def.kind === 'weapon' && def.hand === 'twohand';
+      const base = primaryStatBudget(FACTION_GEAR_ITEM_LEVEL, 'rare', def.slot);
+      const budget = two ? Math.round(base * TWOHAND_STAT_MULT) : base;
+      const { armor: _armor, ...line } = def.stats ?? {};
+      const total = Object.values(line).reduce((a, b) => a + (b ?? 0), 0);
+      expect(total, def.id).toBe(budget);
+      expect(normalizePrimaryStats(line, budget), def.id).toEqual(line);
+      expect(def.quality, def.id).toBe('rare');
     }
   });
 
-  it('Champion jewels carry the raid jewel rating with their line one point under the raid mirror', () => {
-    const pairs: Array<[string, string]> = [
-      ['riftwardens_pendant', 'pendant_of_the_first_tempering'],
-      ['champion_rift_band', 'seal_of_the_forgewall'],
-      ['champion_dawn_medallion', 'locket_of_the_last_flame'],
-      ['champions_dawn_loop', 'circle_of_cinders'],
-      ['dawnkeepers_circle', 'loop_of_quiet_springs'],
-      ['forgewall_gorget', 'pendant_of_the_first_tempering'],
-      ['champion_forged_loop', 'seal_of_the_forgewall'],
-    ];
-    for (const [id, mirror] of pairs) {
-      expect(ITEMS[id].quality, id).toBe('epic');
-      expect(line(id), `${id} line vs ${mirror}`).toBe(line(mirror) - 1);
-      const mirrorRatings = ratings(mirror);
-      const ownRatings = ratings(id);
-      // The raid jewel's one 25 rating, plus the same power line where the
-      // mirror carries one (spellPower 4 / healPower 8).
-      expect(
-        Object.values(ownRatings).filter((v) => v === 25),
-        id,
-      ).toHaveLength(1);
-      expect(ownRatings.spellPower, id).toBe(mirrorRatings.spellPower);
-      expect(ownRatings.healPower, id).toBe(mirrorRatings.healPower);
+  it('carries no rating, power line or proc: that value moved to cosmetics', () => {
+    for (const def of gear) {
+      const fields = def as unknown as Record<string, unknown>;
+      for (const key of POWER_FIELDS) expect(fields[key], `${def.id} ${key}`).toBeUndefined();
+      if (def.kind === 'weapon') expect(def.weaponProcs, def.id).toBeUndefined();
     }
-    // The two tank jewels are Stamina-first: the raid never sells that line.
-    expect(stats('forgewall_gorget').sta).toBeGreaterThan(stats('forgewall_gorget').str ?? 0);
-    expect(stats('champion_forged_loop').sta).toBeGreaterThan(
-      stats('champion_forged_loop').str ?? 0,
+  });
+
+  it('puts the weapons on the quest-tier dps line', () => {
+    for (const def of gear) {
+      if (def.kind !== 'weapon') continue;
+      const w = def.weapon;
+      const dps = (w.min + w.max) / 2 / w.speed;
+      const line =
+        weaponDpsBudget(FACTION_GEAR_ITEM_LEVEL) * (def.hand === 'twohand' ? TWOHAND_DPS_MULT : 1);
+      expect(Math.abs(dps - line), def.id).toBeLessThan(0.4);
+    }
+  });
+
+  it('never out-stats the best level-20 quest reward for the same slot', () => {
+    // The quest catalog's best rare for each slot (any source a quest offers).
+    const questRares = Object.values(ITEMS).filter(
+      (def) =>
+        def.quality === 'rare' &&
+        (def.kind === 'armor' || def.kind === 'weapon') &&
+        !Object.hasOwn(FACTION_VENDOR_ITEMS, def.id) &&
+        (def.requiredLevel ?? 20) <= 20,
     );
-    for (const id of ['forgewall_gorget', 'champion_forged_loop']) {
-      expect(stats(id).armor, `${id} carries no armor (bis picker)`).toBeUndefined();
-      expect((ITEMS[id] as { blockValue?: number }).blockValue, id).toBeUndefined();
-    }
-  });
-
-  it('Proven waist and feet carry the raid offset ratings and armor with the line one point under', () => {
-    // One under on BOTH axes the pickers score, never a tie: dev/bis_gear.ts
-    // scores armor plus the class line and the max-armor tank kit
-    // (tests/heroic_difficulty_floors.test.ts) breaks an armor tie by id, so
-    // an exact mirror would hand the faction row every /dev bis kit and the
-    // tank reference pools (both moved by that tie before this rule).
-    const pairs: Array<[string, string]> = [
-      ['riftwalkers_cord', 'slagstalker_belt'],
-      ['riftwalkers_treads', 'ashrunner_boots'],
-      ['cord_of_the_dawn', 'cord_of_the_last_flame'],
-      ['dawnlit_slippers', 'steps_of_quiet_water'],
-      ['forgemasters_girdle', 'warforged_waistguard'],
-      ['forgemasters_sabatons', 'furnace_march_greaves'],
-    ];
-    for (const [id, mirror] of pairs) {
-      expect(ITEMS[id].quality, id).toBe('epic');
-      expect(ITEMS[id].slot, id).toBe(ITEMS[mirror].slot);
-      expect(ITEMS[id].armorType, id).toBe(ITEMS[mirror].armorType);
-      expect(stats(id).armor, `${id} armor vs ${mirror}`).toBe((stats(mirror).armor ?? 0) - 1);
-      expect(line(id), `${id} line vs ${mirror}`).toBe(line(mirror) - 1);
-      expect(ratings(id), `${id} ratings vs ${mirror}`).toEqual(ratings(mirror));
-    }
-  });
-
-  it('Proven set-slot pieces mirror a heroic five-man drop', () => {
-    const pairs: Array<[string, string]> = [
-      ['riftwalkers_tunic', 'basin_stalkers_tunic'],
-      ['vestments_of_the_acolyte', 'shroud_of_the_gravewyrm'],
-      ['artificers_welding_cowl', 'cryptplate_helm'],
-    ];
-    for (const [id, mirror] of pairs) {
-      expect(ITEMS[id].quality, id).toBe('rare');
-      expect(ITEMS[id].slot, id).toBe(ITEMS[mirror].slot);
-      expect(ITEMS[id].armorType, id).toBe(ITEMS[mirror].armorType);
-      expect(stats(id), `${id} vs ${mirror}`).toEqual(stats(mirror));
-      expect(ratingSum(id), id).toBe(40);
-    }
-  });
-
-  it('Vanguard weapons sit on the heroic five-man weapon bar and each carries one proc', () => {
-    const dps = (id: string) => {
-      const w = ITEMS[id].weapon!;
-      return (w.min + w.max) / 2 / w.speed;
+    const line = (def: (typeof gear)[number]) => {
+      const { armor: _armor, ...rest } = def.stats ?? {};
+      return Object.values(rest).reduce((a, b) => a + (b ?? 0), 0);
     };
-    const heroicBar = ['gravewyrm_cleaver', 'deathless_greatblade'].map(dps);
-    const [low, high] = [Math.min(...heroicBar), Math.max(...heroicBar)];
-    for (const id of [
-      'riftwarden_voidblade',
-      'dawnkeeper_consecrated_mace',
-      'forgemaster_crag_cleaver',
-    ]) {
-      const def = ITEMS[id];
-      if (def.kind !== 'weapon') throw new Error(`${id} is not a weapon`);
-      expect(def.quality, id).toBe('epic');
-      expect(dps(id), `${id} dps within the heroic bar`).toBeGreaterThanOrEqual(low - 0.05);
-      expect(dps(id), `${id} dps within the heroic bar`).toBeLessThanOrEqual(high + 0.05);
-      expect(def.weaponProcs, id).toHaveLength(1);
-      expect(ratingSum(id) - (def.healPower ?? 0), id).toBe(FIVE_MAN_WEAPON_RATING);
+    for (const def of gear) {
+      const peers = questRares.filter((q) => q.slot === def.slot);
+      if (peers.length === 0) continue;
+      const best = Math.max(...peers.map((q) => line(q)));
+      expect(line(def), def.id).toBeLessThanOrEqual(Math.round(best * TWOHAND_STAT_MULT));
     }
-    // The Voidblade is the game's first fast non-dagger one-hander.
-    const weapon = (id: string) => {
-      const def = ITEMS[id];
-      if (def.kind !== 'weapon') throw new Error(`${id} is not a weapon`);
-      return def;
-    };
-    expect(weapon('riftwarden_voidblade').weapon.speed).toBe(1.6);
-    expect(weapon('riftwarden_voidblade').weapon.dagger).toBeUndefined();
-    expect(weapon('riftwarden_voidblade').weaponProcs?.[0].effects).toEqual([
-      { kind: 'attackSlow', name: 'Rift Drag', mult: 1.2, duration: 6 },
-    ]);
-    // The Crag Cleaver is two-handed, the home of the faction's Piston Drive.
-    expect(weapon('forgemaster_crag_cleaver').hand).toBe('twohand');
-    expect(weapon('forgemaster_crag_cleaver').weaponProcs?.[0].trigger).toBe('weaponHit');
-    // The healer mace procs on heals, never on swings.
-    expect(weapon('dawnkeeper_consecrated_mace').weaponProcs?.[0].trigger).toBe('heal');
-    expect(weapon('dawnkeeper_consecrated_mace').weaponProcs?.[0].effects[0].kind).toBe('hot');
-    expect(weapon('dawnkeeper_consecrated_mace').healPower).toBe(32);
   });
 
   it('the four formulas teach the four learned faction enchants, at Proven', () => {
@@ -414,9 +350,21 @@ describe('faction ladder budgets mirror the raid and heroic tables', () => {
   });
 
   it('the bags are 14 slots, one step over the 12-slot uncommon line', () => {
+    // Kept at 14: shrinking a bag a player already carries would strand items.
     for (const id of ['rift_surveyors_satchel', 'clockwork_tinkers_pack']) {
       expect(ITEMS[id].kind, id).toBe('bag');
       expect(ITEMS[id].bagSlots, id).toBe(14);
+    }
+  });
+
+  it('every faction ladder sells house furniture, one faction per piece', () => {
+    for (const factionId of FACTION_IDS) {
+      const pieces = FACTION_VENDOR_STOCK[factionId].filter(isFurniture);
+      expect(pieces.length, factionId).toBeGreaterThanOrEqual(2);
+      for (const id of pieces) {
+        expect(FACTION_VENDOR_GATES[id].factionId, id).toBe(factionId);
+        expect(ITEMS[id], id).toBeDefined();
+      }
     }
   });
 });
