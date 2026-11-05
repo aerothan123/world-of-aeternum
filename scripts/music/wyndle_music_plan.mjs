@@ -56,7 +56,7 @@ export const MUSIC_PLAN = [
   {
     key: 'wyn_charselect',
     group: 'title',
-    seconds: 120,
+    seconds: 90,
     tier: 2,
     prompt:
       'Calm character selection music. The main melody of a hopeful D Mixolydian folk theme ' +
@@ -69,7 +69,7 @@ export const MUSIC_PLAN = [
   // Regions (day and night). Day: warm and melodic. Night: sparse, mysterious.
   region(
     'wyn_region_proving_shore_day',
-    120,
+    100,
     2,
     'Seaside morning on a small starter island. Gentle fiddle and tin whistle melody over ' +
       'plucked lute and soft frame drum, G major, light 6/8 lilt, about 96 bpm, sea-breeze ' +
@@ -77,14 +77,14 @@ export const MUSIC_PLAN = [
   ),
   region(
     'wyn_region_proving_shore_night',
-    100,
+    70,
     3,
     'Night on a quiet island shore. Solo harp arpeggios, a low flute melody, soft string ' +
       'pad, slow, E minor, calm and a little lonely, distant lantern light on the water.',
   ),
   region(
     'wyn_region_eastbrook_vale_day',
-    150,
+    120,
     1,
     'Pastoral home-valley theme. Rolling green hills, watermills, farm fields under a golden ' +
       'sky. Acoustic guitar-like lute and harp picking, a singing fiddle melody answered by ' +
@@ -93,7 +93,7 @@ export const MUSIC_PLAN = [
   ),
   region(
     'wyn_region_eastbrook_vale_night',
-    120,
+    90,
     1,
     'The same green valley at night. Slow, hushed: harp and celesta-like bell tones, a low ' +
       'alto flute melody, soft sustained strings, crickets-quiet texture, E minor with a ' +
@@ -101,7 +101,7 @@ export const MUSIC_PLAN = [
   ),
   region(
     'wyn_region_farshore_isle_day',
-    140,
+    100,
     2,
     'Island exploration with maritime mystery. Concertina-like reed, fiddle and low ' +
       'whistle over a rolling 6/8 hand drum, A Dorian, about 92 bpm. Salt wind, rope and ' +
@@ -109,14 +109,14 @@ export const MUSIC_PLAN = [
   ),
   region(
     'wyn_region_farshore_isle_night',
-    110,
+    70,
     3,
     'Foggy island night. Distant low horn calls, slow solo cello, soft bowed string ' +
       'harmonics, a tolling deep bell-like tone, A minor, about 60 bpm, mysterious and wide.',
   ),
   region(
     'wyn_region_mirefen_marsh_day',
-    140,
+    100,
     1,
     'Haunted wetlands of stilt houses and misty walkways. Low clarinet and bass clarinet ' +
       'melody, plucked double bass, muted strings, soft wooden clicks and a slow frame drum, ' +
@@ -125,7 +125,7 @@ export const MUSIC_PLAN = [
   ),
   region(
     'wyn_region_mirefen_marsh_night',
-    120,
+    70,
     2,
     'Marsh at night. Sparse and eerie: glassy bowed string harmonics, a breathy low flute, ' +
       'slow detuned-sounding harp notes, distant soft choir hum, D minor, very slow, about ' +
@@ -133,7 +133,7 @@ export const MUSIC_PLAN = [
   ),
   region(
     'wyn_region_thornpeak_heights_day',
-    150,
+    100,
     1,
     'Mountain mining highlands with ancient forges. Strong low strings and horns, steady ' +
       'anvil-like metallic percussion on the off beat, a proud fiddle melody, E minor ' +
@@ -141,14 +141,14 @@ export const MUSIC_PLAN = [
   ),
   region(
     'wyn_region_thornpeak_heights_night',
-    120,
+    70,
     2,
     'Mountains at night. Low horn and cello duet, slow, distant wind-like flute, sparse ' +
       'low drum heartbeat, E minor, about 62 bpm, cold stars over quiet mine lamps.',
   ),
   region(
     'wyn_region_veiled_hollow_day',
-    150,
+    100,
     2,
     'A sealed, forgotten kingdom reached through a portal. Shimmering harp glissandi, ' +
       'muted strings, soft celesta and glass-like bell tones, a wistful oboe melody, ' +
@@ -156,14 +156,14 @@ export const MUSIC_PLAN = [
   ),
   region(
     'wyn_region_veiled_hollow_night',
-    120,
+    70,
     3,
     'Night in a faded portal kingdom. Very soft wordless choir, slow string chords that ' +
       'drift between major and minor, solo harp, about 58 bpm, haunting and still.',
   ),
   region(
     'wyn_region_drakelands_day',
-    150,
+    100,
     2,
     'Volcanic dragon lands. Deep low brass and low strings, large frame drums in a slow ' +
       'heavy pulse, a fierce fiddle and horn melody, C Phrygian dominant colour, about ' +
@@ -171,14 +171,14 @@ export const MUSIC_PLAN = [
   ),
   region(
     'wyn_region_drakelands_night',
-    120,
+    70,
     3,
     'Volcanic land at night. Low bowed strings, rumbling soft timpani rolls, a lonely ' +
       'bass flute line, embers glowing, C minor, about 60 bpm.',
   ),
   region(
     'wyn_region_frostveil_day',
-    150,
+    100,
     2,
     'Frozen wilderness of ancient pacts. Crystalline harp and bell tones, high violins ' +
       'in long notes, a solemn low flute melody, soft tapped frame drum, A Aeolian, about ' +
@@ -186,14 +186,14 @@ export const MUSIC_PLAN = [
   ),
   region(
     'wyn_region_frostveil_night',
-    120,
+    70,
     3,
     'Snowbound night. Glassy string harmonics, slow solo cello, wind-soft flute breath, ' +
       'very sparse bells, A minor, about 54 bpm, hushed and endless.',
   ),
   region(
     'wyn_region_amberfall_day',
-    150,
+    100,
     2,
     'Ancient autumn forest of falling amber leaves. Warm harp, nylon-string-like lute ' +
       'and cello, a nostalgic English horn melody, light brushed hand percussion, F major ' +
@@ -201,14 +201,14 @@ export const MUSIC_PLAN = [
   ),
   region(
     'wyn_region_amberfall_night',
-    120,
+    70,
     3,
     'Autumn forest night. Soft low strings, slow harp, an alto flute melody, faint wooden ' +
       'creaks of percussion, D minor, about 60 bpm, leaves drifting in moonlight.',
   ),
   region(
     'wyn_region_willowfen_day',
-    150,
+    100,
     2,
     'Magical willow wetlands. Flowing harp arpeggios, soft clarinet and flute in thirds, ' +
       'gentle pizzicato strings, small chimes, E-flat major, 6/8, about 80 bpm. Graceful, ' +
@@ -216,14 +216,14 @@ export const MUSIC_PLAN = [
   ),
   region(
     'wyn_region_willowfen_night',
-    120,
+    70,
     3,
     'Willow wetland night. Twinkling small bells, slow harp, very soft choir pad, a ' +
       'gentle flute lullaby line, C minor, about 58 bpm, glowing insects over still water.',
   ),
   region(
     'wyn_region_nightbloom_day',
-    150,
+    100,
     2,
     'Moonlit supernatural land of glowing flowers. Ethereal wordless female choir, ' +
       'celesta, harp, slow string chords, a floating solo violin, F-sharp Lydian, about ' +
@@ -231,14 +231,14 @@ export const MUSIC_PLAN = [
   ),
   region(
     'wyn_region_nightbloom_night',
-    120,
+    70,
     3,
     'Deep moonlit night among glowing flowers. Barely there: high string harmonics, ' +
       'soft glass bells, a distant hummed choir chord, about 50 bpm, otherworldly calm.',
   ),
   region(
     'wyn_region_wraithwood_day',
-    150,
+    100,
     2,
     'Ancient haunted forest of guardian spirits. Low strings in slow tremolo, a solemn ' +
       'cello melody, distant soft choir, hollow wooden percussion, B minor, about 68 bpm. ' +
@@ -246,14 +246,14 @@ export const MUSIC_PLAN = [
   ),
   region(
     'wyn_region_wraithwood_night',
-    120,
+    70,
     3,
     'Haunted forest at night. Whispering bowed textures, a slow bass clarinet, one ' +
       'lonely high violin line, faint low choir, B minor, about 52 bpm, chilling but quiet.',
   ),
   region(
     'wyn_region_palmreach_day',
-    150,
+    100,
     2,
     'Tropical coast with ancient ruins and trading ports. Marimba and plucked strings, ' +
       'bright flute melody, hand drums and shakers in a relaxed groove, A major with a ' +
@@ -261,14 +261,14 @@ export const MUSIC_PLAN = [
   ),
   region(
     'wyn_region_palmreach_night',
-    120,
+    70,
     3,
     'Tropical night. Soft marimba, gentle hand drum, a mellow wooden flute, warm string ' +
       'pad, F-sharp minor, about 70 bpm, warm breeze and distant ruins.',
   ),
   region(
     'wyn_region_evergarden_day',
-    150,
+    100,
     2,
     'An unnaturally perfect paradise garden. Sweet music-box-like celesta, harp and ' +
       'flutes in simple, too-perfect C major phrases, soft strings, about 76 bpm. Pleasant ' +
@@ -277,7 +277,7 @@ export const MUSIC_PLAN = [
   ),
   region(
     'wyn_region_evergarden_night',
-    120,
+    70,
     3,
     'Paradise garden at night. A slow music-box melody that gradually slows, soft strings ' +
       'holding unresolved chords, C major turning ambiguous, about 56 bpm, serene and ' +
@@ -285,7 +285,7 @@ export const MUSIC_PLAN = [
   ),
   region(
     'wyn_region_galecrest_day',
-    150,
+    100,
     2,
     'Storm highlands with ancient structures suspended over valleys. Driving low strings ' +
       'ostinato, soaring horns and violins, powerful frame drums, D Dorian, about 108 bpm. ' +
@@ -293,14 +293,14 @@ export const MUSIC_PLAN = [
   ),
   region(
     'wyn_region_galecrest_night',
-    120,
+    70,
     3,
     'Storm highlands at night. Low rumbling drums far away, sustained horns, a solo ' +
       'fiddle melody in the wind, D minor, about 64 bpm, lightning over distant ruins.',
   ),
   region(
     'wyn_region_southern_reaches_day',
-    150,
+    100,
     3,
     'Warm southern frontier of open grasslands and dusty roads. Plucked lute, bowed ' +
       'fiddle, low whistle and a steady walking hand drum, A Mixolydian, about 96 bpm. ' +
@@ -308,7 +308,7 @@ export const MUSIC_PLAN = [
   ),
   region(
     'wyn_region_southern_reaches_night',
-    120,
+    70,
     3,
     'Southern frontier night. Campfire-quiet solo lute, soft cello, distant flute, ' +
       'A minor, about 62 bpm, stars over open plains.',
@@ -331,7 +331,7 @@ export const MUSIC_PLAN = [
   {
     key: 'wyn_town_eastbrook_night',
     group: 'town',
-    seconds: 130,
+    seconds: 100,
     tier: 1,
     prompt:
       'The same village at night, lanterns in windows. Slow solo fiddle playing a gentle ' +
@@ -342,7 +342,7 @@ export const MUSIC_PLAN = [
   {
     key: 'wyn_town_fenbridge_day',
     group: 'town',
-    seconds: 140,
+    seconds: 110,
     tier: 2,
     prompt:
       'Marsh town of stilt houses and wooden walkways. Lazy swaying clarinet and button ' +
@@ -354,7 +354,7 @@ export const MUSIC_PLAN = [
   {
     key: 'wyn_town_fenbridge_night',
     group: 'town',
-    seconds: 120,
+    seconds: 75,
     tier: 3,
     prompt:
       'Marsh town at night. Slow clarinet, soft accordion-like reed chords, quiet plucked ' +
@@ -364,7 +364,7 @@ export const MUSIC_PLAN = [
   {
     key: 'wyn_town_highwatch_day',
     group: 'town',
-    seconds: 140,
+    seconds: 110,
     tier: 2,
     prompt:
       'Mountain mining town with forges and stone halls. Sturdy low strings, horn melody, ' +
@@ -375,7 +375,7 @@ export const MUSIC_PLAN = [
   {
     key: 'wyn_town_highwatch_night',
     group: 'town',
-    seconds: 120,
+    seconds: 75,
     tier: 3,
     prompt:
       'Mountain town at night. Low horn and cello, soft distant anvil taps, warm harp, ' +
@@ -385,7 +385,7 @@ export const MUSIC_PLAN = [
   {
     key: 'wyn_town_goldcrest_day',
     group: 'town',
-    seconds: 150,
+    seconds: 110,
     tier: 2,
     prompt:
       'Grand harbor capital city of merchants and guilds. Stately strings and brass, ' +
@@ -396,7 +396,7 @@ export const MUSIC_PLAN = [
   {
     key: 'wyn_town_goldcrest_night',
     group: 'town',
-    seconds: 120,
+    seconds: 75,
     tier: 3,
     prompt:
       'Harbor capital at night. Soft strings, gentle plucked keyboard, a lyrical oboe ' +
@@ -456,7 +456,7 @@ export const MUSIC_PLAN = [
   ].map(([key, tier, body]) => ({
     key,
     group: 'combat',
-    seconds: 105,
+    seconds: 70,
     tier,
     prompt: `${body} Starts strongly on the downbeat and ends on a firm final chord.`,
   })),
@@ -517,7 +517,7 @@ export const MUSIC_PLAN = [
   ].map(([key, tier, body]) => ({
     key,
     group: 'dungeon',
-    seconds: 150,
+    seconds: 100,
     tier,
     prompt: `${body} ${LOOPABLE}`,
   })),
@@ -554,7 +554,7 @@ export const MUSIC_PLAN = [
   ].map(([key, tier, body]) => ({
     key,
     group: 'boss',
-    seconds: 120,
+    seconds: 90,
     tier,
     prompt: `${body} Starts strongly and ends on a firm final chord.`,
   })),
@@ -563,7 +563,7 @@ export const MUSIC_PLAN = [
   {
     key: 'wyn_home_day',
     group: 'home',
-    seconds: 150,
+    seconds: 110,
     tier: 1,
     prompt:
       'Cozy music for inside your own cottage. Warm solo acoustic lute and harp, soft ' +
@@ -574,7 +574,7 @@ export const MUSIC_PLAN = [
   {
     key: 'wyn_home_night',
     group: 'home',
-    seconds: 130,
+    seconds: 85,
     tier: 2,
     prompt:
       'Your cottage at night by the fire. Very soft solo harp and celesta, warm low ' +
