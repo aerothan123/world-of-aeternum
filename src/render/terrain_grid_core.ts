@@ -25,6 +25,7 @@ import {
   zoneXBounds,
 } from '../sim/data';
 import { isAuthoredMapPresentation } from '../sim/map_presentation';
+import { CORE_WORLD } from '../sim/world_core_bounds';
 
 export interface GridBox {
   minX: number;
@@ -38,6 +39,13 @@ export interface GridBox {
 export const AUTHORED_OUTSKIRTS_YARDS = 240;
 /** The farthest a sculpt stamp may widen the grid past the map's rect. */
 export const AUTHORED_STAMP_REACH_YARDS = 600;
+
+/** The frozen shipped box the terrain world-planar detail map tiles over,
+ *  so the shipped ground keeps its texture scale however far the frontier
+ *  grows the world. Exported here because terrain.ts already imports this
+ *  module: a new import statement there renumbers every later binding in
+ *  its shader hooks, whose source text the program cache keys hash. */
+export const DETAIL_MAP_BOX = CORE_WORLD;
 
 export const SHIPPED_GRID_BOX: GridBox = {
   minX: WORLD_MIN_X,
