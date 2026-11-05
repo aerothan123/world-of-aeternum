@@ -152,6 +152,7 @@ import {
 } from './characters';
 import { pruneChatViolationsBatch } from './chat_filter_db';
 import {
+  claudiumPathEnabled,
   claudiumPreAuthMutationRateLimited,
   configureClaudiumRuntime,
   handleClaudiumApi,
@@ -2613,6 +2614,10 @@ async function handleApi(req: http.IncomingMessage, res: http.ServerResponse): P
       if (!githubRateLimited(req, accountId).allowed)
         return json(res, 429, { error: 'rate limited' });
       return handleGitHubUnlink(req, res, accountId);
+    }
+    // Early Access: a switched-off Claudium store exposes no /api/claudium path.
+    if (url.startsWith('/api/claudium') && !claudiumPathEnabled(url.split('?')[0])) {
+      return json(res, 404, { error: 'unknown endpoint' });
     }
     if (req.method === 'POST' && url === '/api/claudium/stripe/webhook') {
       return handleClaudiumStripeWebhook(req, res);

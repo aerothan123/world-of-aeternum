@@ -6,6 +6,7 @@ import {
   membershipBatchAccountIds,
 } from './membership_batch';
 import { prepaidMembershipExpiresAt } from './membership_db';
+import { SERVER_EARLY_ACCESS } from './early_access_flags';
 import { gameSubscriptionSnapshot } from './subscription_proxy';
 
 export const MEMBERSHIP_CACHE_TTL_MS = 15_000;
@@ -219,8 +220,15 @@ const service = createMembershipService({
   batch: loadMembershipBatch,
   now: Date.now,
 });
-export const getMembership = service.get;
-export const getMembershipBatch = service.getBatch;
+// Early Access: with membership switched off (server/early_access_flags.ts) every
+// account reads as inactive. Nothing is queried or written, so the stored
+// prepaid and subscription rows stay exactly as they are for a later switch-on.
+export const getMembership: typeof service.get = (accountId) =>
+  SERVER_EARLY_ACCESS.membership ? service.get(accountId) : Promise.resolve(inactive());
+export const getMembershipBatch: typeof service.getBatch = (accountIds) =>
+  SERVER_EARLY_ACCESS.membership
+    ? service.getBatch(accountIds)
+    : Promise.resolve(new Map(accountIds.map((id) => [id, inactive()] as const)));
 export const bustMembership = service.bust;
 
 export function trustedRecurringMembershipExpiry(

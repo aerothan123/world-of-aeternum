@@ -47,7 +47,8 @@ import {
   CLAUDIUM_SPEND_PRE_AUTH_POLICY,
   rateLimit,
 } from './http/middleware/rate_limit';
-import type { Ctx, RateLimitOutcome, RouteDef } from './http/types';
+import type { Ctx, Middleware, RateLimitOutcome, RouteDef } from './http/types';
+import { SERVER_EARLY_ACCESS } from './early_access_flags';
 import { json, readBinaryBody, readBody } from './http_util';
 import { gameMembershipAnnualClaim, membershipAnnualRecipient } from './membership_annual_store';
 import {
@@ -520,7 +521,27 @@ function claudiumHandler(ctx: Ctx): Promise<void> {
   return handleClaudiumApi(ctx.req, ctx.res, ctxAccountId(ctx), { rateLimitApplied: true });
 }
 
-export const routes: RouteDef[] = [
+/** Whether an /api/claudium path is reachable on this realm: nothing is while the
+ *  Claudium switch is off (server/early_access_flags.ts, Early Access), and the
+ *  membership offers it fronts (the subscription and the membership token) stay
+ *  closed while membership is off even when the store is on. */
+export function claudiumPathEnabled(path: string): boolean {
+  if (!SERVER_EARLY_ACCESS.claudium) return false;
+  if (/^\/api\/claudium\/(subscription|membership)/.test(path)) return SERVER_EARLY_ACCESS.membership;
+  return true;
+}
+
+/** The Early Access gate every Claudium route runs first: a closed path answers
+ *  exactly like an unknown endpoint, so a switched-off realm exposes nothing. */
+const earlyAccessGate: Middleware = async (ctx, next) => {
+  if (!claudiumPathEnabled(ctx.req.url?.split('?')[0] ?? '')) {
+    json(ctx.res, 404, { error: 'unknown endpoint' });
+    return;
+  }
+  await next();
+};
+
+const claudiumRouteDefs: RouteDef[] = [
   {
     method: 'POST',
     path: '/api/claudium/subscription/annual/claim',
@@ -686,3 +707,8 @@ export const routes: RouteDef[] = [
     handler: claudiumHandler,
   },
 ];
+
+export const routes: RouteDef[] = claudiumRouteDefs.map((route) => ({
+  ...route,
+  middleware: [earlyAccessGate, ...(route.middleware ?? [])],
+}));

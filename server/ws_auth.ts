@@ -43,6 +43,7 @@ import { negotiateMovementWireVersion } from './movement_wire_version';
 import type { ReferralArmourEntitlement } from './referral_armour_db';
 import { kickStoragePurchaseRecovery } from './storage_purchases';
 import type { HandshakeFlushMode } from './ws_buffer';
+import { SERVER_EARLY_ACCESS } from './early_access_flags';
 
 // The {t:'error', error} rejection strings, by the exact value the client reads
 // and localizes. Each is part of the wire contract (see the module header).
@@ -349,6 +350,7 @@ export function createWsAuth(deps: WsAuthDeps): WsAuthHandlers {
           row.membership_slot,
           { ...membership, active: membership.active && membership.authorizedUntil > Date.now() },
           Date.now(),
+          SERVER_EARLY_ACCESS.membership,
         );
       if (membershipLocked(character)) {
         rejectHandshake(ws, WS_AUTH_ERROR.membershipRequired);

@@ -1552,7 +1552,9 @@ const MONOLITHS: MonolithRow[] = [
     // Daily Rewards, holder flair) was removed outright.
     // LOWERED 9539 -> 9538 with the gathering tool belt (the gather-tool use hook now
     // passes the world and lost a comment line). wc -l. Exact count.
-    ceiling: 9538,
+    // LOWERED 9538 -> 9459 (Wyndlewood core systems): the Claudium store wiring
+    // moved to src/net/claudium_store_wiring.ts behind the Early Access switch.
+    ceiling: 9459,
     seam: 'a src/game/ or src/ui/ sibling module; main.ts is a firewall, not a home',
   },
   {
