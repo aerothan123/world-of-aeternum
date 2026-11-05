@@ -999,15 +999,18 @@ export type QuestTranslation = {
 // which no literal union can name: the generated locale tables carry those
 // rows and are typed against this shape.
 type QuestTranslations = Record<QuestId, QuestTranslation> & Record<string, QuestTranslation>;
-type ZoneTranslations = Record<
-  ZoneId,
-  {
-    name: string;
-    welcome: string;
-    welcomeDone?: string;
-    pois: Record<number, { label: string }>;
-  }
->;
+type ZoneTranslation = {
+  name: string;
+  welcome: string;
+  welcomeDone?: string;
+  pois: Record<number, { label: string }>;
+};
+// Same shape as QuestTranslations: ZONE_IDS keeps the shipped zones required,
+// and the index signature admits every zone appended to ZONES after them (the
+// frontier rows, Studio zones). makeEnglishWorldEntities() emits a row per
+// ZONE_SOURCE entry and the generated locale tables are typed against this
+// shape, so a new zone needs no hand edit here to type-check.
+type ZoneTranslations = Record<ZoneId, ZoneTranslation>;
 type DungeonTranslations = Record<
   DungeonId,
   { name: string; enterText: string; leaveText: string }
