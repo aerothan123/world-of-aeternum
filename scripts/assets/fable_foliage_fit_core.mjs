@@ -36,6 +36,9 @@ export const FABLE_KIND_MATERIALS = Object.freeze({
   flowering_bush: Object.freeze({ leaf: 'Leaves_NormalTree', flower: 'Flowers' }),
   mushroom: Object.freeze({ whole: 'Mushrooms' }),
   rock: Object.freeze({ whole: 'Rocks' }),
+  // The fern keeps the old card fern's `Leaves` name: the dressing's fern
+  // policy (wind sway, double sided) keys on it.
+  fern: Object.freeze({ whole: 'Leaves' }),
 });
 
 /** Kinds whose source is split into parts (the rest ship as one primitive). */
@@ -73,8 +76,14 @@ const T = (name, kind, height, minY, x, z, budget, extra = {}) =>
 export const FULL_SOURCE = 4400;
 /** Triangle budget of a rock: the densest scatter, so a capped one, but
  *  rich enough that a near boulder's silhouette stops reading as facets
- *  (its painted relief map carries the surface). */
-export const ROCK_BUDGET = 2600;
+ *  (its own baked normal map, with the painted relief over it, carries the
+ *  surface). */
+export const ROCK_BUDGET = 4200;
+/** Triangle budget of the fern, the densest dressing kind. At 1400 the
+ *  ferns alone held grass-heavy views about 10 percent over the previous
+ *  triangle count (every fern is also a shadow caster); 600 is still about
+ *  twice the old 288-triangle card fern. */
+export const FERN_BUDGET = 600;
 /** Height of a fitted dead tree as a fraction of the old snag's. */
 export const DEAD_HEIGHT_SCALE = 0.8;
 const dead = (name, oldHeight, x, z, oldFootprint) =>
@@ -113,6 +122,11 @@ export const FABLE_FOLIAGE_TARGETS = Object.freeze([
     spreadCap: 1,
   }),
   T('mushroom', 'mushroom', 0.464, -0.017, -0.052, -0.056, FULL_SOURCE),
+  // The sculpted storybook fern replaces the old 288-triangle card fern. It
+  // keeps the old height and sits a little inside the old card spread (the
+  // cards' bounds were mostly thin frond tips), at a capped budget because
+  // ferns are the densest ground dressing.
+  T('fern', 'fern', 0.84, -0.077, 0.033, 0.048, FERN_BUDGET, { footprint: [2.3, 2.2] }),
   T('rock_1', 'rock', 2.26, -0.271, -0.115, 0.345, ROCK_BUDGET, { footprint: [3.225, 2.989] }),
   T('rock_2', 'rock', 1.899, -0.051, -0.189, 0.08, ROCK_BUDGET, { footprint: [3.049, 2.479] }),
   T('rock_3', 'rock', 2.316, -0.316, -0.114, 0.848, ROCK_BUDGET, { footprint: [3.42, 3.476] }),
@@ -781,6 +795,28 @@ export const BARK_ALBEDO_TARGETS = Object.freeze({
 /** Clamp on the per-channel linear gain of the bark grade. */
 export const BARK_GRADE_GAIN = Object.freeze([0.5, 3]);
 
+/**
+ * Mean linear albedo each rock sheet is graded onto before it joins the
+ * shared atlas: the renderer multiplies every rock by its biome tint (about
+ * 0.6 in the vale) and a baked top tint, so a storybook sheet at its own
+ * mean (about 0.13) drew a near-black boulder against the painted sand.
+ * A warm, nearly neutral grey keeps the painted moss and lichen readable.
+ */
+export const ROCK_ALBEDO_TARGET = Object.freeze([0.2, 0.19, 0.165]);
+/** Clamp on the per-channel linear gain of the rock grade. */
+export const ROCK_GRADE_GAIN = Object.freeze([0.8, 1.8]);
+
+/** Texels of a sheet that carry paint (not the flat black of unused atlas space). */
+export function paintedTexelMask(image, floor = 12) {
+  const { data, width, height, channels } = image;
+  const out = new Uint8Array(width * height);
+  for (let i = 0; i < out.length; i++) {
+    const o = i * channels;
+    if (data[o] + data[o + 1] + data[o + 2] > floor) out[i] = 1;
+  }
+  return out;
+}
+
 const linearToSrgbByte = (v) => {
   const c = v <= 0.0031308 ? v * 12.92 : 1.055 * v ** (1 / 2.4) - 0.055;
   return Math.max(0, Math.min(255, Math.round(c * 255)));
@@ -940,6 +976,39 @@ export function paintedReliefNormals(image, { strength = 3.2, blur = 2 } = {}) {
   }
   return out;
 }
+
+/**
+ * Whiteout blend of two tangent-space normal maps (rgb bytes, same size):
+ * the `base` map (a source's own baked normal, which carries the sculpted
+ * chips and cracks) with the `detail` map (the painted relief) layered on at
+ * `detailWeight`. The xy slopes add and z multiplies, so a flat detail texel
+ * returns the base texel and a flat base returns the scaled detail. Returns
+ * new rgb bytes.
+ */
+export function blendTangentNormals(base, detail, detailWeight = 1) {
+  if (base.length !== detail.length) throw new Error('normal maps differ in size');
+  const out = new Uint8Array(base.length);
+  const dec = (v) => (v / 255) * 2 - 1;
+  for (let i = 0; i < base.length; i += 3) {
+    const bx = dec(base[i]);
+    const by = dec(base[i + 1]);
+    const bz = Math.max(1e-3, dec(base[i + 2]));
+    const dx = dec(detail[i]) * detailWeight;
+    const dy = dec(detail[i + 1]) * detailWeight;
+    const dz = Math.max(1e-3, 1 + (dec(detail[i + 2]) - 1) * detailWeight);
+    const x = bx + dx;
+    const y = by + dy;
+    const z = bz * dz;
+    const len = Math.hypot(x, y, z);
+    out[i] = Math.round(((x / len) * 0.5 + 0.5) * 255);
+    out[i + 1] = Math.round(((y / len) * 0.5 + 0.5) * 255);
+    out[i + 2] = Math.round(((z / len) * 0.5 + 0.5) * 255);
+  }
+  return out;
+}
+
+/** Share of the painted relief layered over a rock's own baked normal map. */
+export const ROCK_RELIEF_OVER_BAKED = 0.6;
 
 /** Kinds whose own sheet carries a painted relief normal map. */
 export const RELIEF_KINDS = Object.freeze({

@@ -2272,7 +2272,10 @@ const MONOLITHS: MonolithRow[] = [
     // v0.45 integration sync at 78c350c8d55 into cel-shading-rnd:
     // parent pins 3996 and 3864; combined existing wiring,
     // exact merged count with no new coordinator behavior or slack.
-    ceiling: 3867,
+    // Lowered after extracting the world rock material, its baked moss / snow
+    // colorways and the Refined sky-fill correction into
+    // src/render/rock_material.ts (+ rock_material_core.ts).
+    ceiling: 3826,
     seam: 'a new src/render/<thing>.ts module (src/render/CLAUDE.md)',
   },
   {

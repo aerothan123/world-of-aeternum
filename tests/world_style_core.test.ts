@@ -88,7 +88,7 @@ describe('Refined terrain blend weights', () => {
   it('turns steep turf to rock and leaves flat turf alone', () => {
     expect(refinedBlendWeights(flatMeadow).steepRock).toBe(0);
     const cliff = refinedBlendWeights({ ...flatMeadow, normalY: 0.4 });
-    expect(cliff.steepRock).toBeCloseTo(0.7, 5);
+    expect(cliff.steepRock).toBeCloseTo(0.88, 5);
     const bank = refinedBlendWeights({ ...flatMeadow, normalY: 0.62 });
     expect(bank.steepRock).toBeGreaterThan(0);
     expect(bank.steepRock).toBeLessThan(cliff.steepRock);
@@ -100,6 +100,12 @@ describe('Refined terrain blend weights', () => {
     const mid = refinedBlendWeights({ ...flatMeadow, heightAboveWater: 1.4 });
     expect(mid.shoreMud).toBeGreaterThan(0);
     expect(mid.shoreMud).toBeLessThan(shore.shoreMud);
+  });
+  it('keeps the damp band light on a trail that runs onto the beach', () => {
+    const turf = refinedBlendWeights({ ...flatMeadow, heightAboveWater: 0.2 });
+    const trail = refinedBlendWeights({ ...flatMeadow, grass: 0, dirt: 1, heightAboveWater: 0.2 });
+    expect(trail.shoreMud).toBeGreaterThan(0);
+    expect(trail.shoreMud).toBeLessThan(turf.shoreMud * 0.3);
   });
   it('never touches sand or rock layers themselves', () => {
     const beach = refinedBlendWeights({ ...flatMeadow, grass: 0, sand: 1, normalY: 0.3 });

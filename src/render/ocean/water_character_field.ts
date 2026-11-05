@@ -1,13 +1,16 @@
 import * as THREE from 'three';
 import { getActiveWorldContent, STRIP_MAX_X, STRIP_MIN_X, zoneAt } from '../../sim/data';
+import { GFX } from '../gfx';
 import {
   buildWaterCharacterField,
   WATER_CHARACTERS,
   WATER_FIELD_LAYERS,
+  type WaterCharacter,
   waterCharacterFor,
   waterCharacterTexels,
   waterFieldLayout,
 } from './water_character_core';
+import { styledWaterCharacter } from './water_style_core';
 
 // The water character field as a texture: one small three-layer array texture
 // over the active map (water_character_core.ts holds the table and the bake),
@@ -57,9 +60,19 @@ export function waterCharacterUniforms(): FieldUniforms {
 export function rebakeWaterCharacterField(): void {
   const target = uniforms ?? waterCharacterUniforms();
   const layout = waterFieldLayout(getActiveWorldContent().zones, STRIP_MIN_X, STRIP_MAX_X);
+  // World Style Refined paints each realm's water (water_style_core.ts); one
+  // styled object per character keeps the bake's per-character texel cache.
+  const style = GFX.worldStyle;
+  const styled = new Map<WaterCharacter, WaterCharacter>();
   const data = buildWaterCharacterField(layout, (x, z) => {
     const zone = zoneAt(x, z);
-    return waterCharacterFor(zone.id, zone.biome);
+    const c = waterCharacterFor(zone.id, zone.biome);
+    let s = styled.get(c);
+    if (!s) {
+      s = styledWaterCharacter(c, style);
+      styled.set(c, s);
+    }
+    return s;
   });
   const previous = target.uWaterChar.value;
   target.uWaterChar.value = arrayTexture(data, layout.width, layout.height);

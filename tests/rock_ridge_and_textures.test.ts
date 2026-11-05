@@ -358,6 +358,8 @@ describe('terrain texture set registry', () => {
       'PaintedCliff',
       'PaintedForestFloor',
       'PaintedMoss',
+      'PaintedMud',
+      'PaintedSnow',
     ]);
     for (const key of defaults) {
       expect(terrainTexturePath(key, 'color')).toBe(`textures/terrain/${key}_Color.jpg`);
