@@ -151,9 +151,9 @@ export function learnRiding(
     meta.ridingTier = APPRENTICE_RIDING_TIER;
   } else {
     meta.ridingTrained = true;
-    meta.ridingTier = next;
+    meta.ridingTier = next as 1 | 2;
   }
-  e.ridingTier = meta.ridingTier;
+  e.ridingTier = meta.ridingTier ?? 0;
   ctx.notice(
     meta.entityId,
     next === APPRENTICE_RIDING_TIER

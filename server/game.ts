@@ -6232,7 +6232,7 @@ export class GameServer {
         if (
           typeof msg.npc === 'number' &&
           typeof msg.item === 'string' &&
-          (msg.ridingTier === undefined || [0, 1, 3].includes(msg.ridingTier))
+          (msg.ridingTier === undefined || [0, 1, 3].includes(msg.ridingTier as number))
         ) {
           const options = {
             count: typeof msg.count === 'number' ? msg.count : undefined,
@@ -6560,9 +6560,9 @@ export class GameServer {
         if (
           typeof msg.npc === 'number' &&
           Number.isInteger(msg.npc) &&
-          (msg.ridingTier === undefined || [0, 1, 3].includes(msg.ridingTier))
+          (msg.ridingTier === undefined || [0, 1, 3].includes(msg.ridingTier as number))
         )
-          sim.learnRidingFor(msg.npc, pid, msg.ridingTier ?? 0);
+          sim.learnRidingFor(msg.npc, pid, (msg.ridingTier ?? 0) as 0 | 1 | 3);
         break;
       // Show-jumping race: the Sim re-validates the glowing platform, lesson or
       // mount eligibility, and liveness before arming the countdown.
