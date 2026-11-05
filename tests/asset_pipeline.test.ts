@@ -44,7 +44,7 @@ import * as wizardStatus from '../scripts/asset_pipeline/wizard_status.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const SWORD_GLB = join(ROOT, 'public/models/weapons/sword_a.glb');
-const FOX_GLB = join(ROOT, 'public/models/creatures/fox.glb');
+const FOX_GLB = join(ROOT, 'public/models/creatures/wildlife_fox.glb');
 const BARREL_GLB = join(ROOT, 'public/models/props/barrel.glb');
 const TMP = join(ROOT, 'tmp/asset_pipeline/test');
 const SKINS_DIR_EXPR = '${' + 'SKINS_DIR}';
@@ -1004,10 +1004,10 @@ describe('validators calibrated against shipped assets', () => {
   );
 
   it.skipIf(!existsSync(FOX_GLB))(
-    'accepts the shipped fox.glb creature with its game clips',
+    'accepts the shipped painted fox creature with its game clips',
     async () => {
       const res = await validate.validateCreature(FOX_GLB, {
-        requiredClips: ['Idle', 'Walk', 'Gallop', 'Attack', 'Death'],
+        requiredClips: ['Idle', 'Walk', 'Run', 'Attack', 'Death'],
       });
       expect(res.errors).toEqual([]);
       expect(res.ok).toBe(true);

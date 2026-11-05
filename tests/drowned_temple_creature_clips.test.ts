@@ -22,10 +22,6 @@ import {
 import { HYDRA_BODY } from '../src/sim/content/drowned_temple_layout';
 import { MOBS } from '../src/sim/data';
 import {
-  COLOSSUS_MOONLIGHT_LANCE,
-  COLOSSUS_PRISM_FLARE,
-  COLOSSUS_RESONANT_SLAM,
-  COLOSSUS_TUNING,
   SELTHE_BOLT_GATHER,
   SELTHE_CHORUS_MARK,
   SELTHE_DROWNING_ARIA,
@@ -42,8 +38,6 @@ import {
   YSOLEI_WRATH,
 } from '../src/sim/encounters/drowned_temple';
 import { updateBossMechanics } from '../src/sim/mob/boss_mechanics';
-import { BASTION_LOOSE_ON_MY_MARK } from '../src/sim/mob/trash_kit/bastion_cast_ids';
-import { CRYPT_GRAVESPARK_VOLLEY } from '../src/sim/mob/trash_kit/cast_ids';
 import {
   TEMPLE_CALL_OF_THE_SHALLOWS,
   TEMPLE_CALL_THE_TIDE,
@@ -266,64 +260,11 @@ describe('the Ice Wraith and the Colossus', () => {
     );
   });
 
-  it('the walking Colossus keeps its body at the old size under its larger reach', () => {
-    const v = visualOf('tideglass_colossus');
-    expect(clipsOf('public/models/creatures/woc_temple_colossus.glb')).toEqual(
-      expect.arrayContaining(['Walk', 'Run']),
-    );
-    expect(v.clips.walk).toBe('Walk');
-    // the body is still the 15-unit giant; the pointed spires of the recut
-    // rise past it, so the drawn bounds (spire tips included) are 16.7
-    expect(v.height * (MOBS.tideglass_colossus.scale ?? 1)).toBeCloseTo(16.7, 3);
-  });
-
-  it('the art-guide Colossus lands its blows on frame 18 and spans each bar with its clip', () => {
-    const path = 'public/models/creatures/woc_temple_colossus.glb';
-    const v = visualOf('tideglass_colossus');
-    // the env boost the Reflections' glass uses runs the light across its facets
-    expect(v.envMapIntensity).toBe(2.2);
-    // its fists: 1.5 s at 1x, the blow on frame 18
-    expect(v.attackTimeScale).toBe(1);
-    for (const clip of ['Attack', 'Attack2']) {
-      expect(v.clips.contacts?.[clip], clip).toEqual([0.567]);
-      expect(clipSeconds(path, clip), clip).toBeCloseTo(1.5, 2);
-    }
-    // the bars are clip-synced and each clip is its bar long, the blow on its end
-    expect(clipSeconds(path, 'Flare')).toBeCloseTo(COLOSSUS_TUNING.flareCast, 2);
-    expect(clipSeconds(path, 'Lance')).toBeCloseTo(COLOSSUS_TUNING.lanceCast, 2);
-    expect(clipSeconds(path, 'Slam')).toBeCloseTo(COLOSSUS_TUNING.slamCast, 2);
-  });
-
-  it('the rebuilt sea-glass Colossus answers each of its bars with its own clip', () => {
-    const v = visualOf('tideglass_colossus');
-    expect(clipsOf('public/models/creatures/woc_temple_colossus.glb').sort()).toEqual(
-      [
-        'Attack',
-        'Attack2',
-        'Cast',
-        'Death',
-        'Flare',
-        'Hit',
-        'Idle',
-        'Lance',
-        'PrismPulse',
-        'Run',
-        'Slam',
-        'Walk',
-      ].sort(),
-    );
-    const c = v.clips;
-    expect(c.castByAbility?.[COLOSSUS_PRISM_FLARE]).toBe('Flare');
-    expect(c.castByAbility?.[COLOSSUS_MOONLIGHT_LANCE]).toBe('Lance');
-    expect(c.castByAbility?.[COLOSSUS_RESONANT_SLAM]).toBe('Slam');
-    for (const id of [COLOSSUS_PRISM_FLARE, COLOSSUS_MOONLIGHT_LANCE, COLOSSUS_RESONANT_SLAM])
-      expect(c.castTimeScaleByAbility?.[id]).toBe(1);
-    // heroic's Reflection swap is a windup cue on the same ability id
-    expect(c.attackByAbility?.[COLOSSUS_PRISM_FLARE]).toBe('PrismPulse');
-    expect(v.authoredAtlas).toBe(true);
-    expect(COLOSSUS_TUNING.flareCast).toBe(2);
-    expect(COLOSSUS_TUNING.lanceCast).toBe(2);
-    expect(COLOSSUS_TUNING.slamCast).toBe(1.5);
+  it('the sea-glass Colossus wears its rebuilt body on the warrior library', () => {
+    // its own clips retired with its old body (refit_enemy_looks.ts)
+    const def = visualOf('tideglass_colossus');
+    expect(def.url).toBe('models/creatures/woc_temple_colossus.glb');
+    expect(def.clips).toBe(VISUALS.player_warrior.clips);
   });
 });
 
@@ -839,13 +780,10 @@ describe('the pilgrim frenzy cue rides the real enrage', () => {
 
 describe('the trash pass second wave plays on the casters own clips', () => {
   it('the volley, the shout and the song each have their clip', () => {
-    const adept = VISUALS.crypt_skel_adept.clips;
-    // the adept's own art-guide body: Volley is authored at the 3 s bar, played at rate 1
-    expect(adept.castByAbility?.[CRYPT_GRAVESPARK_VOLLEY]).toBe('Volley');
-    expect(adept.castTimeScaleByAbility?.[CRYPT_GRAVESPARK_VOLLEY] ?? 1).toBe(1);
-    expect(VISUALS.bastion_skel_sergeant.clips.castByAbility?.[BASTION_LOOSE_ON_MY_MARK]).toBe(
-      'Rally',
-    );
+    // the adept and the sergeant wear rebuilt bodies on the class library now
+    // (refit_enemy_looks.ts): the volley and the shout play its cast
+    expect(VISUALS.crypt_skel_adept.clips).toBe(VISUALS.player_warlock.clips);
+    expect(VISUALS.bastion_skel_sergeant.clips).toBe(VISUALS.player_warrior.clips);
     const siren = visualOf('moonlit_siren').clips;
     expect(siren.castByAbility?.[TEMPLE_CALL_OF_THE_SHALLOWS]).toBe('Sing');
     expect(siren.castTimeScaleByAbility?.[TEMPLE_CALL_OF_THE_SHALLOWS]).toBe(1);

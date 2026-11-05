@@ -409,18 +409,4 @@ describe('the bone pile and the brute on the rigs', () => {
     expect(VISUALS[key].bodyless).toBe(true);
     expect(VISUALS[key].clickRadius ?? 0).toBeGreaterThanOrEqual(1.8);
   });
-
-  it('stands the warrior up with its own awaken flourish on revive', () => {
-    const key = visualKeyFor({ kind: 'mob', templateId: 'crypt_ossuary_warrior' } as Entity);
-    expect(VISUALS[key].clips.flourish).toBe('Awaken');
-  });
-
-  it('heaves the two-fist slam over the Marrow Crush bar, locked to it', () => {
-    const key = visualKeyFor({ kind: 'mob', templateId: 'crypt_bone_brute' } as Entity);
-    const def = VISUALS[key];
-    expect(def.clips.castByAbility?.[CRYPT_MARROW_CRUSH]).toBe('Slam');
-    // authored at the bar's length: the fists land on its end at the clip's own rate
-    expect(def.clips.castTimeScaleByAbility?.[CRYPT_MARROW_CRUSH] ?? 1).toBe(1);
-    expect(def.castClipSync).toEqual([CRYPT_MARROW_CRUSH]);
-  });
 });

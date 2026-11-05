@@ -144,6 +144,9 @@ const AUTHORED_ATLAS_DEFS = [
   'mob_bear',
   'mob_crab',
   'mob_crypt_rimeweb',
+  // the painted Wyndlewood crow and the scarecrow form that borrows it
+  'mob_crypt_crow',
+  'form_puppet_crow',
   'mob_spider',
   'mob_critter',
   'mob_fox',

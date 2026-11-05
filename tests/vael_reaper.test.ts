@@ -12,25 +12,15 @@ import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
 import { MeshoptDecoder } from 'meshoptimizer';
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
-import { castClipSyncs, clipSnapsIn } from '../src/render/characters/anim_state';
 import { VISUALS, visualKeyFor } from '../src/render/characters/manifest';
 import {
-  VAEL_EMERGE_CLIP_SECONDS,
-  VAEL_VEIL_RISE_CLIP_RATE,
   VEIL_BOIL_FADE_SECONDS,
   veilBoilAlpha,
   veilBoilDone,
   veilBoilScale,
   veilRiseEmerged,
 } from '../src/render/sunken_bastion/bastion_gaol_reaper_core';
-import {
-  VAEL_DROWNING_HYMN,
-  VAEL_MIST_SURGE,
-  VAEL_REAPING_SCYTHE,
-  VAEL_SHADOWSTEP,
-  VAEL_TUNING,
-  VAEL_VEIL_RISE,
-} from '../src/sim/encounters/sunken_bastion/ids';
+import { VAEL_TUNING } from '../src/sim/encounters/sunken_bastion/ids';
 import type { Entity } from '../src/sim/types';
 
 const GLB = 'public/models/creatures/woc_bastion_vael.glb';
@@ -152,107 +142,7 @@ describe('Vael, Death itself: his body and clips', () => {
     const doc = await readGlb();
     expect(doc.getRoot().listSkins().length).toBe(1);
   });
-
-  it('ships every clip the look maps', async () => {
-    const doc = await readGlb();
-    const names = new Set(
-      doc
-        .getRoot()
-        .listAnimations()
-        .map((a) => a.getName()),
-    );
-    const c = def.clips;
-    const mapped = [
-      c.idle,
-      c.walk,
-      c.run,
-      c.death,
-      c.cast,
-      c.flourish,
-      ...(c.attack ?? []),
-      ...(c.hit ?? []),
-      ...Object.values(c.castByAbility ?? {}),
-    ].filter((x): x is string => typeof x === 'string');
-    expect(mapped.length).toBeGreaterThanOrEqual(12);
-    for (const clip of mapped) expect(names.has(clip), clip).toBe(true);
-    for (const clip of [
-      'Idle',
-      'Walk',
-      'Run',
-      'Attack',
-      'Attack2',
-      'Cast',
-      'Hymn',
-      'Vanish',
-      'Emerge',
-      'ScytheSweep',
-      'Hit',
-      'Death',
-    ])
-      expect(names.has(clip), clip).toBe(true);
-  });
 });
-
-/** His Death holds the scythe through frame 6 and lets it go on frame 7 (seconds at 30 fps). */
-const DEATH_LETS_GO = 5 / 30;
-
-describe('Vael, Death itself: the scythe stays in his fist', () => {
-  // A scythe bone that turns against hand.r is the weapon swinging on its own
-  // against the hand and arm. Every key of every clip must hold the rest turn,
-  // save his Death once the scythe slips from his fist on frame 7 (it falls and
-  // lies flat beside him: tests/sunken_bastion_boss_poses.test.ts).
-  it('never turns the scythe against the hand, in any clip', async () => {
-    const doc = await readGlb();
-    const scythe = node(doc, 'scythe');
-    expect(scythe.getParentNode()?.getName()).toBe('hand.r');
-    const rest = scythe.getRotation();
-    const clips = doc.getRoot().listAnimations();
-    expect(clips.length).toBeGreaterThanOrEqual(12);
-    let checked = 0;
-    for (const clip of clips) {
-      for (const ch of clip.listChannels()) {
-        if (ch.getTargetNode() !== scythe || ch.getTargetPath() !== 'rotation') continue;
-        const out = ch.getSampler()?.getOutput();
-        const times = ch.getSampler()?.getInput();
-        if (!out || !times) continue;
-        for (let i = 0; i < out.getCount(); i++) {
-          if (clip.getName() === 'Death' && times.getElement(i, [])[0] > DEATH_LETS_GO) continue;
-          const q = out.getElement(i, []);
-          const len = Math.hypot(q[0], q[1], q[2], q[3]);
-          const unit = q.map((v) => v / len);
-          expect(quatAngleDeg(unit, rest), `${clip.getName()} key ${i}`).toBeLessThan(3);
-          checked++;
-        }
-      }
-    }
-    expect(checked).toBeGreaterThan(0);
-  });
-
-  it('closes the off hand round the snath at every heavy blow', async () => {
-    const doc = await readGlb();
-    // the contact beats: the sweep's cut, the chop, the flourish off the pool,
-    // and the wind-up he rises out of the pool with
-    for (const [clip, frame] of [
-      ['Attack', 18],
-      ['Attack2', 18],
-      ['ScytheSweep', 4],
-      ['Emerge', 20],
-    ] as const) {
-      const { off, along } = offHandOnShaft(doc, clip, (frame - 1) / FPS);
-      expect(off, `${clip} wrist off the shaft`).toBeLessThan(0.12);
-      // the off hand rides the snath below the right fist, above the butt
-      expect(along, `${clip} grip along the shaft`).toBeLessThan(-0.16);
-      expect(along, `${clip} grip along the shaft`).toBeGreaterThan(-0.9);
-    }
-  });
-
-  it('leaves the off hand free while he holds the scythe at rest', async () => {
-    const doc = await readGlb();
-    const { off } = offHandOnShaft(doc, 'Idle', 0.5);
-    expect(off).toBeGreaterThan(0.27);
-  });
-});
-
 // The Fog Veil's rise (bastion_gaol_reaper_core.ts): Jose saw the shadow copies
 // pop in. The Emerge clip is half the rise bar, so at rate 1 it looped (the
 // figure rose, dropped back under the flags and rose again), and the rig
@@ -273,33 +163,6 @@ describe('Vael, Death itself: the veil figures rise out of the roof once', () =>
     }
     return end;
   }
-
-  it('plays Emerge once over the whole veil rise bar, and no faster than the reap rise', async () => {
-    const emerge = await clipSeconds('Emerge');
-    expect(emerge).toBeCloseTo(VAEL_EMERGE_CLIP_SECONDS, 2);
-    const rate = def.clips.castTimeScaleByAbility?.[VAEL_VEIL_RISE];
-    expect(rate).toBeCloseTo(VAEL_VEIL_RISE_CLIP_RATE, 9);
-    // The bar at this rate spans the clip once, ending on the wind-up.
-    expect((rate ?? 1) * VAEL_TUNING.veilRiseSeconds).toBeCloseTo(emerge, 2);
-    // The Shadow Crossing's own bars already fit their clips at rate 1.
-    expect(await clipSeconds('Vanish')).toBeGreaterThanOrEqual(
-      VAEL_TUNING.vanishSeconds + VAEL_TUNING.poolSeconds - 0.05,
-    );
-    expect(emerge).toBeGreaterThanOrEqual(VAEL_TUNING.riseSeconds);
-  });
-
-  it('locks only the sink and the rises to their bars, and snaps the rise in', () => {
-    const sync = def.castClipSync;
-    for (const id of [VAEL_SHADOWSTEP, VAEL_REAPING_SCYTHE, VAEL_VEIL_RISE])
-      expect(castClipSyncs(sync, id), id).toBe(true);
-    // The hymn and the reap of souls keep looping through their long bars.
-    for (const id of [VAEL_DROWNING_HYMN, VAEL_MIST_SURGE])
-      expect(castClipSyncs(sync, id), id).toBe(false);
-    expect(clipSnapsIn(def.clips.castSnapIn, 'Emerge')).toBe(true);
-    // Every other clip still crossfades.
-    for (const clip of ['Idle', 'Vanish', 'Hymn', 'Cast', 'Attack'])
-      expect(clipSnapsIn(def.clips.castSnapIn, clip), clip).toBe(false);
-  });
 
   it('the body is under the flags as the rise starts and out of them when it ends', () => {
     expect(veilRiseEmerged(0)).toBe(0);

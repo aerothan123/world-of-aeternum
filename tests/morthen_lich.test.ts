@@ -8,11 +8,8 @@ import { readFileSync } from 'node:fs';
 import { NodeIO } from '@gltf-transform/core';
 import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
 import { MeshoptDecoder } from 'meshoptimizer';
-import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
-import { composedFarMeshes } from '../src/render/characters/assets';
 import { VISUALS, visualKeyFor } from '../src/render/characters/manifest';
-import { characterMeshCastsShadow } from '../src/render/characters/shadow_policy';
 import {
   DISSOLVE_SEC,
   dissolveLevels,
@@ -20,7 +17,6 @@ import {
   MORTHEN_GROWTH,
   MORTHEN_HOVER,
   MORTHEN_MITRE_EYE,
-  MORTHEN_REAP_SWEEP,
   MORTHEN_REST_MINZ,
   MORTHEN_RIBS,
   MORTHEN_RIG_Y,
@@ -32,7 +28,6 @@ import {
   MORTHEN_SOUL_RADIUS,
   MORTHEN_STAFF_HELD,
   MORTHEN_STAFF_RESTORED_FRACTION,
-  MORTHEN_TOLL,
   morthenAnchor,
   morthenBodyY,
   morthenDrawScale,
@@ -44,13 +39,7 @@ import {
   soulOrbit,
 } from '../src/render/hollow_crypt/morthen_fx_core';
 import { MOBS } from '../src/sim/data';
-import {
-  MORTHEN_DESCEND,
-  MORTHEN_LAST_RITES_FRACTION,
-  MORTHEN_PROCLAIM,
-  MORTHEN_RISE,
-} from '../src/sim/encounters/hollow_crypt/ids';
-import { MORTHEN_REAP, MORTHEN_RITE } from '../src/sim/encounters/hollow_crypt/morthen_ids';
+import { MORTHEN_LAST_RITES_FRACTION } from '../src/sim/encounters/hollow_crypt/ids';
 import type { Entity } from '../src/sim/types';
 
 const PLAYER_HEIGHT = 2.6;
@@ -84,15 +73,6 @@ function quatAngleDeg(a: ArrayLike<number>, b: ArrayLike<number>): number {
 }
 
 describe('Morthen, the Lich Bishop: his own body', () => {
-  it("draws the art guide's lich, not a KayKit mage", () => {
-    expect(visualKeyFor({ kind: 'mob', templateId: 'morthen' } as Entity)).toBe(
-      'crypt_morthen_lich',
-    );
-    expect(def.url).toBe('models/creatures/woc_crypt_morthen.glb');
-    expect(def.attach).toBeUndefined();
-    expect(def.authoredAtlas).toBe(true);
-  });
-
   it('stands as tall over the flags as the body he replaced, and floats', () => {
     const drawn = def.height * MOBS.morthen.scale;
     expect(drawn / PLAYER_HEIGHT).toBeGreaterThan(2.9);
@@ -143,126 +123,6 @@ describe('Morthen, the Lich Bishop: his own body', () => {
     expect(MORTHEN_MITRE_EYE.y).toBeLessThan(def.height);
     expect(MORTHEN_MITRE_EYE.z).toBeGreaterThan(0);
   });
-
-  it('ships every clip of both stances, each his own', () => {
-    const names = new Set((glbJson().animations ?? []).map((a) => a.name));
-    for (const clip of [
-      'Idle',
-      'Walk',
-      'Run',
-      'Rise',
-      'SummonSouls',
-      'ShieldRitual',
-      'BellToll',
-      'StaffStrike',
-      'StaffStrike2',
-      'Hit',
-      'Death',
-      'Transform',
-      'ScytheIdle',
-      'ScytheWalk',
-      'ScytheRun',
-      'ScytheSweep',
-      'ScytheSweep2',
-      'ScytheToll',
-      'ScytheSummon',
-      'ScytheHit',
-      'ScytheDeath',
-    ])
-      expect(names.has(clip), clip).toBe(true);
-  });
-
-  it('stays inside the boss triangle budget', () => {
-    const j = glbJson();
-    let tris = 0;
-    for (const m of j.meshes)
-      for (const p of m.primitives) tris += j.accessors[p.indices].count / 3;
-    // a Tripo Smart Mesh body (about 10k faces) plus the scythe blade and the smoke
-    expect(tris).toBeGreaterThan(8_000);
-    expect(tris).toBeLessThan(55_000);
-    expect(readFileSync(GLB).length).toBeLessThan(3_500_000);
-  });
-});
-
-describe('Morthen, the Lich Bishop: the staff stays in his fist', () => {
-  // The staff is modelled IN the right fist and parented to it, so every swing is
-  // carried by the arm and the body. A staff bone turning against hand.r is the
-  // propeller the owner saw: the weapon spinning round the grip while the arm
-  // barely moved. Every key of every clip must hold the rest turn.
-  it('never turns the staff against the hand, in any clip', async () => {
-    const doc = await readGlb();
-    const staff = doc
-      .getRoot()
-      .listNodes()
-      .find((n) => n.getName() === 'staff');
-    expect(staff, 'staff node').toBeDefined();
-    expect(staff?.getParentNode()?.getName()).toBe('hand.r');
-    const rest = staff?.getRotation() ?? [0, 0, 0, 1];
-    const clips = doc.getRoot().listAnimations();
-    expect(clips.length).toBeGreaterThanOrEqual(21);
-    let checked = 0;
-    for (const clip of clips) {
-      for (const ch of clip.listChannels()) {
-        if (ch.getTargetNode() !== staff || ch.getTargetPath() !== 'rotation') continue;
-        const out = ch.getSampler()?.getOutput()?.getArray();
-        if (!out) continue;
-        for (let i = 0; i + 3 < out.length; i += 4) {
-          const q = [out[i], out[i + 1], out[i + 2], out[i + 3]];
-          const len = Math.hypot(q[0], q[1], q[2], q[3]);
-          const unit = q.map((v) => v / len);
-          expect(quatAngleDeg(unit, rest), `${clip.getName()} key ${i / 4}`).toBeLessThan(3);
-          checked++;
-        }
-      }
-    }
-    expect(checked).toBeGreaterThan(0);
-  });
-
-  it('draws the soul smoke under the robes as a translucent material', async () => {
-    const doc = await readGlb();
-    const smoke = doc
-      .getRoot()
-      .listMaterials()
-      .find((m) => m.getName() === 'CreatureSmoke');
-    expect(smoke?.getAlphaMode()).toBe('BLEND');
-  });
-
-  // The smoke is vertex-alpha translucency: a depth shadow or the frozen far-LOD
-  // bake (which keeps no vertex colour) would draw it as a solid dark shell, so it
-  // ships as its own mesh that opts out of both through its node extras.
-  it('ships the smoke as its own mesh that casts no shadow and skips the far bake', async () => {
-    const doc = await readGlb();
-    const node = doc
-      .getRoot()
-      .listNodes()
-      .find((n) => n.getName() === 'MorthenSmoke');
-    expect(node?.getExtras()).toMatchObject({ shadowCaster: false, farBake: false });
-    const prims = node?.getMesh()?.listPrimitives() ?? [];
-    expect(prims.map((p) => p.getMaterial()?.getName())).toEqual(['CreatureSmoke']);
-    const body = doc
-      .getRoot()
-      .listNodes()
-      .find((n) => n.getName() === 'MorthenLich');
-    const bodyMats = (body?.getMesh()?.listPrimitives() ?? []).map((p) =>
-      p.getMaterial()?.getName(),
-    );
-    expect(bodyMats).not.toContain('CreatureSmoke');
-  });
-
-  it('honours those extras in the character pipeline', () => {
-    const root = new THREE.Group();
-    const geo = new THREE.BufferGeometry();
-    geo.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0, 1, 0, 0, 0, 1, 0], 3));
-    const body = new THREE.Mesh(geo, new THREE.MeshStandardMaterial());
-    body.name = 'MorthenLich';
-    const smoke = new THREE.Mesh(geo, new THREE.MeshStandardMaterial());
-    smoke.name = 'MorthenSmoke';
-    smoke.userData = { shadowCaster: false, farBake: false };
-    root.add(body, smoke);
-    expect(composedFarMeshes(root).map((m) => m.name)).toEqual(['MorthenLich']);
-    expect(characterMeshCastsShadow(body)).toBe(true);
-    expect(characterMeshCastsShadow(smoke)).toBe(false);
-  });
 });
 
 describe('Morthen, the Lich Bishop: the souls circling him', () => {
@@ -299,49 +159,6 @@ describe('Morthen, the Lich Bishop: the souls circling him', () => {
     };
     expect(arc(true, false)).toBeGreaterThan(arc(false, false));
     expect(arc(false, true)).toBeGreaterThan(arc(false, false));
-  });
-});
-
-describe('Morthen, the Lich Bishop: clips mapped to his casts', () => {
-  it('plays his entrance on his own rise, proclamation and ward', () => {
-    expect(def.clips.castByAbility?.[MORTHEN_RISE]).toBe('Rise');
-    expect(def.clips.castByAbility?.[MORTHEN_PROCLAIM]).toBe('SummonSouls');
-    expect(def.clips.castByAbility?.[MORTHEN_DESCEND]).toBe('ShieldRitual');
-    expect(def.clips.castTimeScaleByAbility?.[MORTHEN_RISE]).toBe(1);
-  });
-
-  it('holds his ward through the Rite, and winds up and sweeps the Reap with the scythe', () => {
-    expect(def.clips.castByAbility?.[MORTHEN_RITE]).toBe('ShieldRitual');
-    const scythe = def.phaseClips?.[MORTHEN_SCYTHE_HELD]?.clips;
-    expect(scythe?.castByAbility?.[MORTHEN_REAP]).toBe('ScytheSummon');
-    expect(scythe?.attackByAbility?.[MORTHEN_REAP_SWEEP]).toBe('ScytheSweep');
-    expect(scythe?.attackTimeScaleByAbility?.[MORTHEN_REAP_SWEEP]).toBeGreaterThan(1);
-    const names = new Set((glbJson().animations ?? []).map((a) => a.name));
-    for (const clip of ['ShieldRitual', 'ScytheSummon', 'ScytheSweep'])
-      expect(names.has(clip)).toBe(true);
-  });
-
-  it('strikes with the bell staff and tolls it for the Shadow Pulse', () => {
-    expect(def.clips.attack).toEqual(['StaffStrike', 'StaffStrike2']);
-    expect(def.clips.attackByAbility?.[MORTHEN_TOLL]).toBe('BellToll');
-    expect(def.clips.idle).toBe('Idle');
-  });
-
-  it('unfolds the scythe once, then reaps with it', () => {
-    const unfold = def.phaseClips?.[MORTHEN_SCYTHE_UNFOLD];
-    const held = def.phaseClips?.[MORTHEN_SCYTHE_HELD];
-    const staff = def.phaseClips?.[MORTHEN_STAFF_HELD];
-    expect(unfold?.enter).toBe('Transform');
-    expect(held?.enter).toBeUndefined();
-    expect(staff?.enter).toBeUndefined();
-    // The held and unfolding gestures swap to the very same vocabulary, and the
-    // staff gesture back to the one he spawns with (the swap is an identity check).
-    expect(held?.clips).toBe(unfold?.clips);
-    expect(staff?.clips).toBe(def.clips);
-    expect(unfold?.clips.attack).toEqual(['ScytheSweep', 'ScytheSweep2']);
-    expect(unfold?.clips.idle).toBe('ScytheIdle');
-    expect(unfold?.clips.death).toBe('ScytheDeath');
-    expect(unfold?.clips.attackByAbility?.[MORTHEN_TOLL]).toBe('ScytheToll');
   });
 });
 

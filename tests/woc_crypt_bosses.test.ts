@@ -21,13 +21,6 @@ import {
   KNELLWYRM_JAWS_STRAFE,
 } from '../src/render/hollow_crypt/crypt_creature_fx_core';
 import { MOBS } from '../src/sim/data';
-import { ILVANE_DIRGE, ILVANE_TUNING } from '../src/sim/encounters/hollow_crypt/ilvane_ids';
-import {
-  MARROW_GRAVEDIGGERS_BLOW,
-  MARROW_MEASURE,
-  MARROW_SHOVELFUL,
-  MARROW_TUNING,
-} from '../src/sim/encounters/hollow_crypt/marrow_ids';
 import {
   CRYPT_BARROWFLAME_BREATH,
   CRYPT_TAIL_LASH,
@@ -36,9 +29,6 @@ import {
 import type { Entity } from '../src/sim/types';
 
 const BODIES: Record<string, string> = {
-  sexton_marrow: 'models/creatures/woc_crypt_sexton_marrow.glb',
-  cantor_ilvane: 'models/creatures/woc_crypt_cantor_ilvane.glb',
-  rimeweb: 'models/creatures/woc_crypt_lady_bonechill.glb',
   crypt_chapel_gargoyle: 'models/creatures/woc_crypt_gargoyle.glb',
   crypt_ossuary_drake: 'models/creatures/woc_crypt_ossuary_drake.glb',
   crypt_knellwyrm: 'models/creatures/woc_crypt_knellwyrm.glb',
@@ -104,6 +94,16 @@ function restJoints(url: string): Map<string, RestJoint> {
 const defOf = (templateId: string) => VISUALS[visualKeyFor({ kind: 'mob', templateId } as Entity)];
 
 describe('the Hollow Crypt boss bodies', () => {
+  it('draws Sexton Marrow, Cantor Ilvane and the Lady on their rebuilt WOC bodies', () => {
+    // their own clips retired with their old bodies (refit_enemy_looks.ts)
+    expect(defOf('sexton_marrow').url).toBe('models/creatures/woc_crypt_sexton_marrow.glb');
+    expect(defOf('sexton_marrow').clips).toBe(VISUALS.player_warrior.clips);
+    expect(defOf('cantor_ilvane').url).toBe('models/creatures/woc_crypt_cantor_ilvane.glb');
+    expect(defOf('cantor_ilvane').clips).toBe(VISUALS.player_priest.clips);
+    expect(defOf('rimeweb').url).toBe('models/creatures/woc_crypt_lady_bonechill.glb');
+    expect(defOf('rimeweb').clips).toBe(VISUALS.player_priest.clips);
+  });
+
   it('draws each boss from its own art-guide GLB, untinted', () => {
     for (const [mob, url] of Object.entries(BODIES)) {
       const def = defOf(mob);
@@ -151,9 +151,6 @@ describe('the Hollow Crypt boss bodies', () => {
 
   it('authors each bar-locked strike at rate 1, long enough to land on its bar and play out', () => {
     const cases: [string, string, string, number][] = [
-      ['sexton_marrow', MARROW_SHOVELFUL, 'Shovelful', MARROW_TUNING.shovelCast],
-      ['sexton_marrow', MARROW_MEASURE, 'Measure', MARROW_TUNING.measureCast],
-      ['sexton_marrow', MARROW_GRAVEDIGGERS_BLOW, 'GravediggersBlow', MARROW_TUNING.blowCast],
       ['crypt_ossuary_drake', CRYPT_BARROWFLAME_BREATH, 'Breath', 2],
       ['crypt_ossuary_drake', CRYPT_TAIL_LASH, 'TailSweep', 1],
       ['crypt_ossuary_drake', CRYPT_WING_GUST, 'WingBuffet', 1.5],
@@ -169,12 +166,6 @@ describe('the Hollow Crypt boss bodies', () => {
     // the drake's bars are the template's own
     const drake = MOBS.crypt_ossuary_drake;
     expect(drake.breathCone?.castTime).toBe(2);
-    // the Dirge is sung on its 2.5 s bar: the peak lands inside it and is held to its end
-    const ilvane = defOf('cantor_ilvane');
-    expect(ilvane.clips.castByAbility?.[ILVANE_DIRGE]).toBe('Sing');
-    expect(ilvane.castClipSync).toContain(ILVANE_DIRGE);
-    const sing = clipsOf(BODIES.cantor_ilvane).get('Sing') ?? 0;
-    expect(Math.abs(sing - ILVANE_TUNING.dirgeCast)).toBeLessThan(1 / 30 + 1e-6);
   });
 
   it('pours the breath from the drake jaws over its cone, at its own scale', () => {
@@ -235,20 +226,6 @@ describe('the Hollow Crypt boss bodies', () => {
     const wyrm = defOf('crypt_knellwyrm').height * MOBS.crypt_knellwyrm.scale;
     const drake = defOf('crypt_ossuary_drake').height * MOBS.crypt_ossuary_drake.scale;
     expect(wyrm).toBeGreaterThan(drake * 1.2);
-  });
-
-  it('lands the Lady and the Cantor blows on their frame, the swing played at 1x', () => {
-    for (const mob of ['rimeweb', 'cantor_ilvane']) {
-      const def = defOf(mob);
-      expect(def.attackTimeScale, mob).toBe(1);
-      const shipped = clipsOf(BODIES[mob]);
-      for (const clip of def.clips.attack) {
-        const contact = def.clips.contacts?.[clip]?.[0] ?? 0;
-        // a coiled windup first (over half a second), the blow well inside the clip
-        expect(contact, `${mob} ${clip}`).toBeGreaterThan(0.5);
-        expect(contact, `${mob} ${clip}`).toBeLessThan((shipped.get(clip) ?? 0) - 0.5);
-      }
-    }
   });
 });
 
@@ -406,9 +383,6 @@ describe('the Hollow Crypt boss corpses', () => {
     // the gargoyle and the Lady settle INTO the floor (Reuben's second pass): their lowest
     // twentieth sits under it, the middle low (0.21 and 0.21 before)
     ['crypt_chapel_gargoyle', 0.005, 0.17],
-    ['rimeweb', 0.005, 0.09],
-    ['cantor_ilvane', 0.06, 0.15],
-    ['sexton_marrow', 0.015, 0.1],
   ];
   for (const [mob, p5Ceiling, midCeiling] of CORPSES) {
     it(`lays the ${mob} corpse on the floor`, async () => {
@@ -434,42 +408,4 @@ describe('the Hollow Crypt boss corpses', () => {
       expect(mid / def.height, `${mob} middle`).toBeLessThan(midCeiling);
     });
   }
-});
-
-describe("Cantor Ilvane's backhand", () => {
-  // Reuben's second pass: Attack2 went "through his body the wrong way". The chest turned AWAY
-  // from the cocked claw, so the arm crossed inside her. A backhand coils toward the claw: it
-  // folds across in front of her chest, comes round in front of her on the contact frame and
-  // rakes out to her left. The wrist never comes back behind the front of her chest.
-  it('keeps the claw in front of her chest through the whole swing', async () => {
-    const doc = await readShipped(BODIES.cantor_ilvane);
-    const anim = doc
-      .getRoot()
-      .listAnimations()
-      .find((a) => a.getName() === 'Attack2') as GAnim;
-    const node = (name: string) =>
-      doc
-        .getRoot()
-        .listNodes()
-        .find((n) => n.getName() === name) as GNode;
-    const chest = node('chest');
-    const hand = node('hand.l');
-    const pos = new Vector3();
-    const scale = new Vector3();
-    const restRot = new Quaternion();
-    nodeWorlds(doc, null, 0)(chest).decompose(pos, restRot, scale);
-    const toRest = restRot.clone().invert();
-    let least = Number.POSITIVE_INFINITY;
-    for (let t = 0; t <= clipEnd(anim) + 1e-6; t += 1 / 30) {
-      const world = nodeWorlds(doc, anim, t);
-      const chestPos = new Vector3();
-      const chestRot = new Quaternion();
-      world(chest).decompose(chestPos, chestRot, scale);
-      // the model faces glTF +z at rest; carry that facing with the chest as it turns
-      const forward = new Vector3(0, 0, 1).applyQuaternion(toRest).applyQuaternion(chestRot);
-      const wrist = new Vector3().setFromMatrixPosition(world(hand));
-      least = Math.min(least, wrist.sub(chestPos).dot(forward));
-    }
-    expect(least).toBeGreaterThan(0.12);
-  });
 });

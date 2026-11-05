@@ -1,9 +1,9 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 
-// The captain wears the art guide's body now; the sailor and the ship keep
-// the ghost-crew builds (scripts/assets/bastion_ghost_crew/).
-const FILES: Record<string, string> = { captain: 'woc_bastion_captain' };
+// The captain wears a rebuilt body on the WOC rig now (refit_enemy_looks.ts); the
+// sailor and the ship keep the ghost-crew builds (scripts/assets/bastion_ghost_crew/).
+const FILES: Record<string, string> = {};
 
 function asset(name: string, folder = 'creatures') {
   const bytes = readFileSync(
@@ -15,7 +15,7 @@ function asset(name: string, folder = 'creatures') {
 }
 
 describe('Bastion authored spectral assets', () => {
-  it.each(['captain', 'sailor'])(
+  it.each(['sailor'])(
     '%s has a skinned body, distinct action clips and compressed atlas',
     (name) => {
       const glb = asset(name);

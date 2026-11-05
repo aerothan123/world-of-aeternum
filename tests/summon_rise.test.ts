@@ -4,9 +4,7 @@
 // it with its Awaken (the heap of bones pulling itself up). Nothing else is cued: a
 // summoned beast just arrives.
 
-import { readFileSync } from 'node:fs';
 import { describe, expect, it, vi } from 'vitest';
-import { glbJsonChunk } from '../scripts/assets/lib/glb_texture_compression_core.mjs';
 import { VISUALS, visualKeyFor } from '../src/render/characters/manifest';
 import { SUMMON_RISE_WINDOW_SECONDS, SummonRiseFx } from '../src/render/summon_rise_fx';
 import { MOBS } from '../src/sim/data';
@@ -113,40 +111,18 @@ describe('the summoned dead rise (render)', () => {
   });
 });
 
-describe('the skeleton minion rises on the cue', () => {
+describe('the skeleton minion on the cue', () => {
   const minionKey = (id: string) =>
     visualKeyFor({ kind: 'mob', templateId: id, family: MOBS[id].family } as never);
 
-  it('draws the summoned minions on the remade skeleton, which rises on the cue', () => {
+  it('draws the summoned minions on the rebuilt skeleton, which just arrives', () => {
+    // the rebuilt body plays the warrior library (refit_enemy_looks.ts): it has no
+    // Awaken, so the rise cue finds no entrance gesture and the add simply appears
     for (const id of ['restless_bones', 'varkas_boneguard', 'drowned_thrall', 'rift_bonewalker']) {
       const def = VISUALS[minionKey(id)];
       expect(def.url, id).toBe('models/creatures/woc_skeleton_minion.glb');
-      expect(def.entranceGesture, id).toBe(SUMMON_RISE_CUE);
-      expect(def.clips.entrance, id).toBe('Awaken');
-      // the same Awaken a respawn plays (the flourish), held against its first swing
-      expect(def.clips.flourish, id).toBe('Awaken');
-      expect(def.oneShotsHoldAttacks, id).toContain('Awaken');
+      expect(def.clips, id).toBe(VISUALS.player_warrior.clips);
+      expect(def.entranceGesture, id).toBeUndefined();
     }
-  });
-
-  it('ships every clip its ClipMap names', () => {
-    const json = glbJsonChunk(readFileSync('public/models/creatures/woc_skeleton_minion.glb')) as {
-      animations: { name: string }[];
-    };
-    const shipped = json.animations.map((a) => a.name).sort();
-    expect(shipped).toEqual(['Attack', 'Awaken', 'Cast', 'Death', 'Idle', 'React', 'Run', 'Walk']);
-    const { clips } = VISUALS.skel_minion;
-    const named = [
-      clips.idle,
-      clips.walk,
-      clips.run,
-      ...clips.attack,
-      ...(clips.hit ?? []),
-      clips.death,
-      clips.flourish,
-      clips.cast,
-      clips.entrance,
-    ];
-    for (const n of named) expect(shipped, String(n)).toContain(n);
   });
 });

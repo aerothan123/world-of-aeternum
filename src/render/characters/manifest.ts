@@ -212,6 +212,7 @@ import type { EyeGlowSpec } from './eye_glow_core';
 import type { MeshToggleDef } from './gesture_mesh_toggles';
 import type { GlowPulseSet } from './glow_pulse_core';
 import { NPC_PROP_SET_IDS, type NpcLook, type NpcPropSet, npcLookFor } from './npc_looks';
+import { refitEnemyLooks } from './refit_enemy_looks';
 import { SANCTUM_BOSS_LOOKS, SANCTUM_BOSS_MOB_KEYS } from './sanctum_boss_looks';
 import { SANCTUM_MOB_KEYS, sanctumCreatureLooks } from './sanctum_creature_looks';
 import { seasonalTrickLooks } from './seasonal_trick_looks';
@@ -5368,6 +5369,8 @@ export const VISUALS: Record<string, VisualDef> = {
   // drops the body onto the floor.
   mob_crypt_crow: {
     url: `${CREATURES}/crypt_crow.glb`,
+    // the painted Wyndlewood crow (bat_rig.py over a Tripo body)
+    authoredAtlas: true,
     height: 1.7,
     hover: 2.2,
     clips: {
@@ -8208,6 +8211,9 @@ Object.assign(VISUALS, WILDLIFE_LOOKS);
 // WYNDLEWOOD's Chapter One humanoid bodies on the WOC rig (story_mob_looks.ts),
 // derived from the class defs above.
 Object.assign(VISUALS, storyMobLooks(VISUALS));
+// WYNDLEWOOD's rebuilt crypt and bastion bodies on the WOC rig (refit_enemy_looks.ts),
+// in place over every def that draws one of their files.
+Object.assign(VISUALS, refitEnemyLooks(VISUALS));
 
 /** The composed-body variant of a class visual (every class has one). */
 export function modularVisualKey(cls: PlayerClass): string {

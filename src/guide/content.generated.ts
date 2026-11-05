@@ -22511,7 +22511,7 @@ export const GUIDE_MODELS: Record<string, GuideModelSpec> = {
   },
   "skel_minion": {
     "url": "models/creatures/woc_skeleton_minion.glb",
-    "idle": "Idle",
+    "idle": "Woc_Idle",
     "height": 2.5,
     "tintStrength": 0.25
   },

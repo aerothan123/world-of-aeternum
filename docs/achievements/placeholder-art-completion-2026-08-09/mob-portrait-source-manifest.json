@@ -6,7 +6,7 @@
     "bytes": 1510,
     "sha256": "bb0b6bacba9acb12568c3bbbe536e4442cb2964266cffef890f27ee4915dcf2a"
   },
-  "rendererFingerprint": "7b0b443563cb6c108f9fe4f314b066a16815daf92c19718085b7e4c81a572043",
+  "rendererFingerprint": "b0d13a523cac9c10c6e438de76885637aa7aace44ac3e7033cedead4c6c36636",
   "renderEnv": {
     "schemaVersion": 1,
     "platform": "win32",
@@ -39,7 +39,7 @@
     "browserBundle": {
       "entry": "scripts/wiki/stills_render_entry.js",
       "bytes": 6865902,
-      "sha256": "bb4d14437c1449aab3b8a86d4fe2ce88b0a6cc2768eff36aed25647a8507437c",
+      "sha256": "71719e17c8700b363698ecc07c2a6c56bfdfe2cb6dfcfa68844f2dd45bdfabfb",
       "esbuildVersion": "0.28.1"
     },
     "output": {
@@ -263,10 +263,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -281,11 +281,11 @@
         "resolved": "#e8dcc8",
         "strength": 0.25
       },
-      "sourceFingerprint": "a0654417f4073c4408177f132e33c795278c17baccbe89c9ec4dd1a652795d48",
+      "sourceFingerprint": "d1eca27eee7c725af273a4809a1d2016b6ea2a5999aee786565e6f14f83fbf38",
       "output": {
         "path": "public/ui/mobs/ashbone_raider.webp",
-        "bytes": 2242,
-        "sha256": "06f4d6997c795e4ce5c8a0f83212e65987cb2185a28c0deea333c4c5dd3eaf36"
+        "bytes": 2154,
+        "sha256": "57164d988fa2f23ac1b65242c63b781a61e97c23b7e841474c5f6ad4a17f5524"
       }
     },
     {
@@ -297,10 +297,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -315,11 +315,11 @@
         "resolved": "#d8c8a8",
         "strength": 0.25
       },
-      "sourceFingerprint": "2a196e8eae67243dc2c24e7f7b533d8082966ffc8342c25c16c8e06ba346b7a0",
+      "sourceFingerprint": "3c66403e478b79709da03c14ecd89b94cc5c8b73d1dcb91ad38b841bf7bd3ff3",
       "output": {
         "path": "public/ui/mobs/ashbone_warcaller.webp",
-        "bytes": 2208,
-        "sha256": "166ec6d822501d16a78f27869e7907a9220fe610928fe482dbcf8b3274e5d2bc"
+        "bytes": 2140,
+        "sha256": "d3d0bece516529a3a1f511a1381fca02d704b6dd7dd2d0e37f849b5ac549f302"
       }
     },
     {
@@ -467,10 +467,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -485,11 +485,11 @@
         "resolved": "#9fb0c4",
         "strength": 0.25
       },
-      "sourceFingerprint": "cf832cd4a3c240f0a95e315fd427d7e44ab96f008e26524165180e3f6c2b5fa5",
+      "sourceFingerprint": "b8d4a7410aad8e4165a0b4840de2e1c375be117c0a25d02d39c9ee45a3108120",
       "output": {
         "path": "public/ui/mobs/barrow_wight.webp",
-        "bytes": 2122,
-        "sha256": "f5ce6cf45be3e1d60239871841ddcd96c7ac8e65f205ce0c8a8b551dff2ffcdb"
+        "bytes": 2106,
+        "sha256": "9e2db7431818e500dd9ebe3b81c934b10e02ed7d407af949636d8bce32d1a5e2"
       }
     },
     {
@@ -603,10 +603,10 @@
         "model": {
           "url": "models/creatures/drowned_revenant.glb",
           "path": "public/models/creatures/drowned_revenant.glb",
-          "bytes": 2852992,
-          "sha256": "6dfc0be7e5905fe5136dadd311535ae7086b23cb0d2ed2a750172f62bfa65323"
+          "bytes": 491064,
+          "sha256": "a73f1642539868e2b06b9fb3e9f5e8b087ec2e5bcdc0eef39d3898850f6f8ff8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 5.445,
         "yaw": null,
         "hover": null,
@@ -621,11 +621,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "c3a0314ac500b906e38d58c8dbc2ea3d23c74560263b5cb004bcc02676452fea",
+      "sourceFingerprint": "15a0400803e550c1991077d94f4f57d589b8510ed6564a93c1254ce94f6cc802",
       "output": {
         "path": "public/ui/mobs/bastion_revenant.webp",
-        "bytes": 2554,
-        "sha256": "df8750b064ea7d8acc84b35f8b5720808b2b6eddc67557c32dd64b0002ef1d56"
+        "bytes": 1932,
+        "sha256": "36f1aaa9680a018cc43e0fb4fa571c2f55a65c4e1b27a233fe3c421b1507f68f"
       }
     },
     {
@@ -637,8 +637,8 @@
         "model": {
           "url": "models/creatures/bastion_warhound.glb",
           "path": "public/models/creatures/bastion_warhound.glb",
-          "bytes": 2782908,
-          "sha256": "45912d864c47383b6794313ac32227794cbd185b9f0733989194ab19de088a95"
+          "bytes": 590400,
+          "sha256": "66baecb54a6be781b1b24d98a98703a4e9e6ca489e4142dadaf813975486cdf0"
         },
         "idle": "Idle",
         "height": 3.55,
@@ -655,11 +655,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "f6e6ca2df0116c4d6769c23cc44cfeec595657376da37e74868157744cab647b",
+      "sourceFingerprint": "e231a984e234d6e85d52535df5f279880269f18080b8c8450f995a719519a572",
       "output": {
         "path": "public/ui/mobs/bastion_warhound.webp",
-        "bytes": 1970,
-        "sha256": "be2aaaf80493d45f3c5730bf20af13e1d71f2f288995e4503f8c71cf9693fdac"
+        "bytes": 2114,
+        "sha256": "f84f8a39c22cd3ea306e952491b419dee178549882ff5871ed89aa12d7254e40"
       }
     },
     {
@@ -740,7 +740,7 @@
           "url": "models/creatures/wildlife_spider.glb",
           "path": "public/models/creatures/wildlife_spider.glb",
           "bytes": 648284,
-          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
+          "sha256": "ed0e68af14367fc2d100c7ae91a820aef45888d6ce00e58c5e6aee0b99bd7e49"
         },
         "idle": "Idle",
         "height": 1.4,
@@ -757,7 +757,7 @@
         "resolved": "#d6eaf8",
         "strength": 0.35
       },
-      "sourceFingerprint": "2ae36faadedd4637a21b5be2d00a5f714aa19dabf622401974d758f8c0f89dde",
+      "sourceFingerprint": "2c1cd38388a761b697d670f72bebd6fa536a2e9c19a5a3c0fbf8ebca6182ce26",
       "output": {
         "path": "public/ui/mobs/bonechill_widow.webp",
         "bytes": 1904,
@@ -807,10 +807,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -825,11 +825,11 @@
         "resolved": "#a8b0b8",
         "strength": 0.25
       },
-      "sourceFingerprint": "c35885ed1cd0854f26c575bb91be66443fb99958a1decf06126dd288216fe740",
+      "sourceFingerprint": "86de130bce6c1c8bed0be1ccaf4d194375c207f2b0ee84718530ea1bc4922764",
       "output": {
         "path": "public/ui/mobs/bound_guardian.webp",
-        "bytes": 2196,
-        "sha256": "41e1dcbfe22d1fd5d664b53668a6aaf0e70a8d61c6308b4ea58bd693bbde8d4b"
+        "bytes": 2114,
+        "sha256": "0b686793deba3b64fd6506143dd262cd2b24bd703c2c839c8e78611c46908f06"
       }
     },
     {
@@ -841,10 +841,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -859,11 +859,11 @@
         "resolved": "#6fd6a8",
         "strength": 0.25
       },
-      "sourceFingerprint": "ce90da4b2601a12a68e0984fe8f736a6208cf46e2a93db99503e56db754fb737",
+      "sourceFingerprint": "1da722d864f782dc1c5c3997df1b6d03d5c4223ae64edeeb072ed04bba8fd569",
       "output": {
         "path": "public/ui/mobs/bound_soul.webp",
-        "bytes": 2156,
-        "sha256": "beb19d2947b04776084413108ce998d49ccd7d100faf7b972dd79c61ecca7426"
+        "bytes": 2090,
+        "sha256": "80051ac09c7e8fff9d58abebbe858a5a3d389ae0a1fbf25bd27a2d20474e340a"
       }
     },
     {
@@ -1079,10 +1079,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -1097,11 +1097,11 @@
         "resolved": "#e8a64a",
         "strength": 0.25
       },
-      "sourceFingerprint": "4ee5064cb6a37fdc5c6524e9322003c727c63170ca83afb6b69080272c4e5c41",
+      "sourceFingerprint": "8a9ca8f4a33c43219ccc0b1304fd72ca299a33a0d1f236dee23151dad7c6c985",
       "output": {
         "path": "public/ui/mobs/candlewright_acolyte.webp",
-        "bytes": 2246,
-        "sha256": "dd5763a11cbeb9f828f77ac06c998e8dd5d0dd67683b315a4e739904067c3f3e"
+        "bytes": 2158,
+        "sha256": "23261caa0a36e0937ff3c5d4530a66d65b8c1a0cfe52843db6bd669047362116"
       }
     },
     {
@@ -1114,7 +1114,7 @@
           "url": "models/creatures/wildlife_spider.glb",
           "path": "public/models/creatures/wildlife_spider.glb",
           "bytes": 648284,
-          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
+          "sha256": "ed0e68af14367fc2d100c7ae91a820aef45888d6ce00e58c5e6aee0b99bd7e49"
         },
         "idle": "Idle",
         "height": 1.3,
@@ -1131,7 +1131,7 @@
         "resolved": "#4e8a3c",
         "strength": 0.3
       },
-      "sourceFingerprint": "0ecc590f4f1cf11cd11274849c5d9847c6b184586e447f0c0261283175e84823",
+      "sourceFingerprint": "066663b6e197e4951d5f3a6a78e620ce340a31d7eae23541e079345e853157df",
       "output": {
         "path": "public/ui/mobs/canopy_weaver.webp",
         "bytes": 1880,
@@ -1147,10 +1147,10 @@
         "model": {
           "url": "models/creatures/woc_crypt_cantor_ilvane.glb",
           "path": "public/models/creatures/woc_crypt_cantor_ilvane.glb",
-          "bytes": 2132556,
-          "sha256": "8cf96f0bb8d6e4cac8e6f2fda28610c8f0be2fa25bcdb9dd4a8ee93d137ad2d4"
+          "bytes": 458308,
+          "sha256": "aa0bff438f37a163090151df9d244ba5b4e835efa4318b88c5499c03fe3960ad"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 5.964,
         "yaw": null,
         "hover": -0.206,
@@ -1165,11 +1165,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "7b18828055c1c298f925b6cba11cea666d9db7d4f23f3e07439a72e8d452b08f",
+      "sourceFingerprint": "100003e332f17432347f84a8103f9417ec193a2477994486cab02d6727f48999",
       "output": {
         "path": "public/ui/mobs/cantor_ilvane.webp",
-        "bytes": 2062,
-        "sha256": "0b85513d6050e7f8cab37eb9af35d42cd3010e718ad442d324300d7bb4cddf34"
+        "bytes": 2226,
+        "sha256": "9d0c37c8b0fda1a7b6c268fd9f3cd757dde90eb0cd783764046ab3675b1ebf84"
       }
     },
     {
@@ -1181,10 +1181,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -1199,11 +1199,11 @@
         "resolved": "#3b4a5a",
         "strength": 0.25
       },
-      "sourceFingerprint": "dd7b7976f5cef8bc655370551ca34c1196a6b1f604714dcfe5b37f27b4edee8e",
+      "sourceFingerprint": "12fc546186069a05f0c5f77a4cd893d82159f9eef4efce5593deabc61fbd5c24",
       "output": {
         "path": "public/ui/mobs/captain_verlan.webp",
-        "bytes": 2164,
-        "sha256": "6c752e5c1482f08f0d77700b69d333a625c35947c328ea19706eeb849ff3159b"
+        "bytes": 2072,
+        "sha256": "241c7ef53d38dceb97b8c86501d052bdfca81635f254b48967da343bd4f87f0f"
       }
     },
     {
@@ -1466,10 +1466,10 @@
         "model": {
           "url": "models/creatures/woc_crypt_bone_brute.glb",
           "path": "public/models/creatures/woc_crypt_bone_brute.glb",
-          "bytes": 2328664,
-          "sha256": "36d378c1f2378c9d43f3fa8f2bddb1d412e0da6df2fdafdd83bbba5f4673a515"
+          "bytes": 598344,
+          "sha256": "afda825f3f1e3b758f004a85ab9fa7a5f62fd6355a09174018b151f237823b87"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 4.6,
         "yaw": null,
         "hover": null,
@@ -1484,11 +1484,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "8ba6ed7865edefbf73bde2a25408f82bce5ff0850e3ea58c396ec02e3201d3d4",
+      "sourceFingerprint": "500df0eca96c24fa50566ded396e85900e6e99059f9a2dd28306ee8743c85688",
       "output": {
         "path": "public/ui/mobs/crypt_bone_brute.webp",
-        "bytes": 2992,
-        "sha256": "c6666c98aa010bc1648d8ab519cedae0123ee9c87d0bff93bbbd90f4b7b6e36a"
+        "bytes": 2994,
+        "sha256": "2dd1670dc859fbec1b561cce4f1ef72cd064517b3b4cc38e1e5aa5ce0d8ee8d1"
       }
     },
     {
@@ -1500,10 +1500,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 3.5,
         "yaw": null,
         "hover": null,
@@ -1518,11 +1518,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "ec5c53d6074867f1f80be043a886dde6002f50e93779b3635083fc730ba2d2d1",
+      "sourceFingerprint": "d6d7fdc27d8143bf99b6e18f21d36c4b0ac80915ac60d0311b51d46cbead3fde",
       "output": {
         "path": "public/ui/mobs/crypt_bone_minion.webp",
-        "bytes": 2232,
-        "sha256": "bb5dccdf5d14f5aa23827262c92274fe516e4e9b55e46a1fd283e3670d8a67c2"
+        "bytes": 2182,
+        "sha256": "363c1f3e39e5d93d8b8dd557853bf48b300ab91f8e17acd817151b6f360b4a36"
       }
     },
     {
@@ -1568,8 +1568,8 @@
         "model": {
           "url": "models/creatures/crypt_crow.glb",
           "path": "public/models/creatures/crypt_crow.glb",
-          "bytes": 87216,
-          "sha256": "448da36c47023500383b02fc77815211fe1681da10b6a0796960f540a7e460eb"
+          "bytes": 631788,
+          "sha256": "f7fb06c1421656212b551f37f313d41f3f4e2b16e30763a700ab6ee5ca5eef7f"
         },
         "idle": "Idle",
         "height": 1.7,
@@ -1586,11 +1586,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "a730dd51566f4961fdf2175ba5bf99e814b58cdce6f348b17a044a70ef68c39f",
+      "sourceFingerprint": "8e2eef11eb59f65c922bd642e4eeab56ac5f877d2bd3137c01852d8c633cc9a6",
       "output": {
         "path": "public/ui/mobs/crypt_carrion_crow.webp",
-        "bytes": 1528,
-        "sha256": "c848089b7f1b6118969bbfa2e5256d0a63806acceb0e0fc0b3cc8c47a2589b82"
+        "bytes": 1880,
+        "sha256": "847c4455d12cc85377ca4c70f60ff933504922aec39893d3624a5240871aef49"
       }
     },
     {
@@ -1717,10 +1717,10 @@
         "model": {
           "url": "models/creatures/woc_crypt_gravecaller_adept.glb",
           "path": "public/models/creatures/woc_crypt_gravecaller_adept.glb",
-          "bytes": 1927664,
-          "sha256": "d40cfb5d9638f16c8af143c811f2db2df7d97c277128547daad4107dfa64dbc0"
+          "bytes": 459496,
+          "sha256": "e39282719ca4dd7c116666f59369b18ef61d660e174a3d44d669b4cdea777580"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 3.2,
         "yaw": null,
         "hover": null,
@@ -1748,11 +1748,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "8f8ba82dcb57937ee4d7bee0b3bd7f1121acebcfb25485ce234f1c91bd351f25",
+      "sourceFingerprint": "da0f0e21d83af3e8a9942e895bedb5f5c451221c277545652aebbf7ffbbe41ff",
       "output": {
         "path": "public/ui/mobs/crypt_gravecaller_adept.webp",
-        "bytes": 2464,
-        "sha256": "c231ad7a290a19ad00badb0122fdde64229591447b4f5b57c2ecc06d3b876578"
+        "bytes": 2158,
+        "sha256": "3dd3f5ad48952396dffa0453d5dc035635aaaf6684d9eb19797220928721d5d2"
       }
     },
     {
@@ -1764,10 +1764,10 @@
         "model": {
           "url": "models/creatures/woc_crypt_gravecaller_necromancer.glb",
           "path": "public/models/creatures/woc_crypt_gravecaller_necromancer.glb",
-          "bytes": 1905996,
-          "sha256": "f406e48ddf3c603c7103fb317b3edba4a1468c5788b8c7d433510238f061b356"
+          "bytes": 497460,
+          "sha256": "f27db20b9388f22d403baeb222452069cc9c7fe094618bc6c43148f4dfec27fd"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 3.3,
         "yaw": null,
         "hover": null,
@@ -1795,11 +1795,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "2bd0d45226367f1d67495a0800aa23469f241252866cf028f9725a590004f037",
+      "sourceFingerprint": "9022492e302a4aae02d5c230d87cbdda9a7cb054b1769d815ea3b52a770bcbf2",
       "output": {
         "path": "public/ui/mobs/crypt_gravecaller_necromancer.webp",
-        "bytes": 2270,
-        "sha256": "e53b051250d7020e66afd1158cf7d2ebd4e4b0119e318394c7961a7c0d60f735"
+        "bytes": 1934,
+        "sha256": "c33d60d9d0e6b9a30f3dd79dfbe9cbaf720a97e6b650105203cd6aa26aa3be6f"
       }
     },
     {
@@ -1845,40 +1845,15 @@
         "model": {
           "url": "models/creatures/woc_crypt_ossuary_cutthroat.glb",
           "path": "public/models/creatures/woc_crypt_ossuary_cutthroat.glb",
-          "bytes": 2219232,
-          "sha256": "e5434a35bd6febca61a1b1de2ea3b76e432f8b793275f3db0946d47f1b7499f8"
+          "bytes": 570376,
+          "sha256": "22897efa98d3d315324e07b354a29045a70a06f851b370f15da688d5fd6f110f"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 3.2,
         "yaw": null,
         "hover": null,
         "show": null,
-        "attach": [
-          {
-            "asset": {
-              "url": "models/weapons/dagger_rare_a_bone.glb",
-              "path": "public/models/weapons/dagger_rare_a_bone.glb",
-              "bytes": 72560,
-              "sha256": "598f2421a9d756fd2df67af9c3d531bf5dce20569d6996b2931eeee11fea5d95"
-            },
-            "bone": "handslot.r",
-            "position": null,
-            "rotationY": null,
-            "gripRef": null
-          },
-          {
-            "asset": {
-              "url": "models/weapons/dagger_rare_a_bone.glb",
-              "path": "public/models/weapons/dagger_rare_a_bone.glb",
-              "bytes": 72560,
-              "sha256": "598f2421a9d756fd2df67af9c3d531bf5dce20569d6996b2931eeee11fea5d95"
-            },
-            "bone": "handslot.l",
-            "position": null,
-            "rotationY": null,
-            "gripRef": null
-          }
-        ],
+        "attach": [],
         "weaponFix": null,
         "tintStrength": null
       },
@@ -1888,11 +1863,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "12424d836b61e50bdc437466032f13112f393c96eaf0d2720e9afeb71a7846ff",
+      "sourceFingerprint": "9b3071e80b800a2ed10ec99bb287b294c3075c0fe20af0372e1e27b946e35184",
       "output": {
         "path": "public/ui/mobs/crypt_ossuary_cutthroat.webp",
-        "bytes": 2718,
-        "sha256": "0e7a275f1a549e6a26dbf667fa4bf647f1420c493d7cb23ae8c574e880ba1576"
+        "bytes": 2600,
+        "sha256": "4789fdaa633dd3bc9d7318af56c849c6dd7c5bc179864510b2040e4dec413c33"
       }
     },
     {
@@ -1938,10 +1913,10 @@
         "model": {
           "url": "models/creatures/woc_crypt_ossuary_warrior.glb",
           "path": "public/models/creatures/woc_crypt_ossuary_warrior.glb",
-          "bytes": 2144324,
-          "sha256": "60d798c59b15a97880aa06e0180a01127e582bb14193287418c8cb543552ae5b"
+          "bytes": 536468,
+          "sha256": "91987f1c77a6b2960f5efabc9949f6f014132a381bd3c394b6f9b334014ca7f5"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 3.3,
         "yaw": null,
         "hover": null,
@@ -1969,11 +1944,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "40c383ac640c10aa479cdceeb11bde1f281b2159e8bde8e936f3984bfef1f93a",
+      "sourceFingerprint": "433ee67c19be7bf33c04e510ed1fa1079d04840e4abe3fbcb28cc2afe8e83236",
       "output": {
         "path": "public/ui/mobs/crypt_ossuary_warrior.webp",
-        "bytes": 2112,
-        "sha256": "27ac3ac2887c4f55ee656eddb67139d6594af00ccf1e157f120b9e705d3fde08"
+        "bytes": 2124,
+        "sha256": "7fbef3a512618a29811b63df8b3af9c5af7092dbdc0318777fa5368c8a84552b"
       }
     },
     {
@@ -2602,10 +2577,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -2620,11 +2595,11 @@
         "resolved": "#7fb3d5",
         "strength": 0.25
       },
-      "sourceFingerprint": "427bd8c33625b666d0c426d5b84e9235cb33c8e4bd93f0fb801e97101b7f4ad8",
+      "sourceFingerprint": "e3b47f574a9c32f0ea8fc80ab9f2517d6a493a2ee13454b90cdd30148a126040",
       "output": {
         "path": "public/ui/mobs/drowned_dead.webp",
-        "bytes": 2130,
-        "sha256": "b1772156b78d6e76b725ca8664fdb2b9ec7d270c785cfdb12ed0b7ad814234bd"
+        "bytes": 2084,
+        "sha256": "a7125f23237a798c143e04d8758958a9874826e059a52750e74ac6ccff49be10"
       }
     },
     {
@@ -2636,10 +2611,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -2654,11 +2629,11 @@
         "resolved": "#86988e",
         "strength": 0.25
       },
-      "sourceFingerprint": "34ea4be5883bcae41c22ff817acf1ef0945aeabfa31fd216040ed127fa4b9b1a",
+      "sourceFingerprint": "09efc99c97371b71e578ae73a259f231da210592c35a1cb225aed3091aba56d3",
       "output": {
         "path": "public/ui/mobs/drowned_deckhand.webp",
-        "bytes": 2150,
-        "sha256": "c06d2a71f026ef4a08b8816a2d5a55efebd734835063e5d304d817a70e200a4c"
+        "bytes": 2094,
+        "sha256": "d0d298532e186c7f0100636056916ebc2c79acc3b92f8218412251e5caa113b3"
       }
     },
     {
@@ -2704,10 +2679,10 @@
         "model": {
           "url": "models/creatures/drowned_sergeant.glb",
           "path": "public/models/creatures/drowned_sergeant.glb",
-          "bytes": 2849592,
-          "sha256": "6f2817dea8ea2b053257064077c9b10fe6e73e466a77e5f4be225effd4bb2fa0"
+          "bytes": 519800,
+          "sha256": "c188fce3f59215324b7024afbd0991d1f1e9d7b40a64f709f07acc2116b6d716"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 5.15,
         "yaw": null,
         "hover": null,
@@ -2722,11 +2697,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "df45c124569b75638a7c3358c217ba0e5eb707e4fcc5b0ef4c12a22652603c20",
+      "sourceFingerprint": "665a1182c1a0646b8afa54a14d2a13fbbcd4438a12c67342d9a663c754b5e3ac",
       "output": {
         "path": "public/ui/mobs/drowned_sergeant.webp",
-        "bytes": 2272,
-        "sha256": "a306248c2c51c62110d4a3b6d10b37a11966eb8c4e1910c6d8890f33656e2bcc"
+        "bytes": 2306,
+        "sha256": "ebb5103db7e84a2e8820c19e076b65efef76302f3e66d8c51f1de6054017813e"
       }
     },
     {
@@ -2772,10 +2747,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -2790,11 +2765,11 @@
         "resolved": "#6fae9e",
         "strength": 0.25
       },
-      "sourceFingerprint": "13215dbcd2639aa93dd89677505586ca27c39c95782537aa97f764b708e738fc",
+      "sourceFingerprint": "3bfb1fd3870dd61769f98dbfd87c527951122ecf8c915210772dba22a960ee79",
       "output": {
         "path": "public/ui/mobs/drowned_thrall.webp",
-        "bytes": 2136,
-        "sha256": "274498f609e60ed1f41edc1f1a2c9632f14790deba56236949d833159c457241"
+        "bytes": 2078,
+        "sha256": "3fd9234d620c86ee46254d86a7df2ea6c3b53582cc798a174969f721a1b82afc"
       }
     },
     {
@@ -2806,10 +2781,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -2824,11 +2799,11 @@
         "resolved": "#6c8f8a",
         "strength": 0.25
       },
-      "sourceFingerprint": "4ec9ecae28a74df5b0fba15e3ea6b61970e3c5254d5558c562a26a6dd9a1b48c",
+      "sourceFingerprint": "172c983877ca403bf3e1d22bb789d707f15154d72bd8007ce3d00e3d7b5ebd4a",
       "output": {
         "path": "public/ui/mobs/drowned_votary.webp",
-        "bytes": 2164,
-        "sha256": "0df9c19797540eea445234b71bd57303cb595c1aa4ae852f46da67b618d3ed8b"
+        "bytes": 2074,
+        "sha256": "1e1a4a8dce24300ae0cb39dfa9ec3612930450a08e7fb8ffd27c6253dd7aeb28"
       }
     },
     {
@@ -2840,10 +2815,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -2858,11 +2833,11 @@
         "resolved": "#3a6ea5",
         "strength": 0.25
       },
-      "sourceFingerprint": "888917752830085ace2312ec8046d16fe823756381c7b9efdc4b86e1669b7f1e",
+      "sourceFingerprint": "49aadfc38f8b167c429934213f4312d04410d5e12559702fbb743b94faa2dd00",
       "output": {
         "path": "public/ui/mobs/drowned_warlord.webp",
-        "bytes": 2132,
-        "sha256": "9f2dafeeac2d26632e15e91ea10b6d867acf631e4578dc19fc7fc2a6c9c3248f"
+        "bytes": 2060,
+        "sha256": "77c1f7840f1c3206cf264f91916b3333238d88b822bb470b101e54830fbadb5b"
       }
     },
     {
@@ -2874,10 +2849,10 @@
         "model": {
           "url": "models/creatures/drowned_watchman.glb",
           "path": "public/models/creatures/drowned_watchman.glb",
-          "bytes": 2798912,
-          "sha256": "b1ee9ac1c6cdb42ff712a5b0f8b17ac95488d8a7708bc46103e70e4b59607007"
+          "bytes": 510960,
+          "sha256": "5cb88f8718e0cb526ce6ddaeea464cf8cb1a96ac8914f15e4fe36a2e6ec628b7"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 5.390000000000001,
         "yaw": null,
         "hover": null,
@@ -2892,11 +2867,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "8defffdc325a5bd6ab473c201494c372d1a8533c8801b5929ed7b9cd85cf7ca0",
+      "sourceFingerprint": "a4b19847daf8dad0aa767746a359ea10d641a714e02c6f6bdba2bca949b28d3c",
       "output": {
         "path": "public/ui/mobs/drowned_watchman.webp",
-        "bytes": 2168,
-        "sha256": "5640bd8b393fef7a2f5cdaa6f550261c648b5902cbbd50c5dd67b133aa39696e"
+        "bytes": 2158,
+        "sha256": "5db1a7d021a1690c68f5f5e09a9df44f6a3bbb7a9d97c622fdf15907f6c22b13"
       }
     },
     {
@@ -3376,10 +3351,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -3394,11 +3369,11 @@
         "resolved": "#7fb3d5",
         "strength": 0.25
       },
-      "sourceFingerprint": "427bd8c33625b666d0c426d5b84e9235cb33c8e4bd93f0fb801e97101b7f4ad8",
+      "sourceFingerprint": "e3b47f574a9c32f0ea8fc80ab9f2517d6a493a2ee13454b90cdd30148a126040",
       "output": {
         "path": "public/ui/mobs/fenbridge_infiltrator.webp",
-        "bytes": 2130,
-        "sha256": "b1772156b78d6e76b725ca8664fdb2b9ec7d270c785cfdb12ed0b7ad814234bd"
+        "bytes": 2084,
+        "sha256": "a7125f23237a798c143e04d8758958a9874826e059a52750e74ac6ccff49be10"
       }
     },
     {
@@ -3526,7 +3501,7 @@
           "url": "models/creatures/wildlife_wolf.glb",
           "path": "public/models/creatures/wildlife_wolf.glb",
           "bytes": 522236,
-          "sha256": "20fcfbe89e19bfa4b4640cf2cea7b66017abdc47355ac70b5e64171e883fc8c0"
+          "sha256": "83b94a1cf597f2ef745552dad2b3ec65e0d9cde9a4b470e8590d84a25ab7420e"
         },
         "idle": "Idle",
         "height": 1.47,
@@ -3543,7 +3518,7 @@
         "resolved": "#7f8c8d",
         "strength": 0.3
       },
-      "sourceFingerprint": "7a0c5e9ba0274624003d2ab378a026392f0321bdecf9da4f0bdf281b7010c0e0",
+      "sourceFingerprint": "94b83f071856a1d59627fc471fed75341e3e37028da11ec65ed4bf9e59dc3ff2",
       "output": {
         "path": "public/ui/mobs/forest_wolf.webp",
         "bytes": 2382,
@@ -3742,10 +3717,10 @@
         "model": {
           "url": "models/creatures/woc_bastion_turnkey.glb",
           "path": "public/models/creatures/woc_bastion_turnkey.glb",
-          "bytes": 1982764,
-          "sha256": "46c7f0fdeca973c85061ed0ddf782debe77ccdcf87fa2c3086da9a300e916e1b"
+          "bytes": 477452,
+          "sha256": "887c0b888af0cc08516ec4b06a4fd8a88f459db52957af192742555ac5aceb6c"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 6.4,
         "yaw": null,
         "hover": null,
@@ -3760,11 +3735,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "0d0cf3ac9f8c6abd2b603cdeee4b501290e22ad3b6aa8d9c189c715276c2b6cf",
+      "sourceFingerprint": "e18ffecfd2894e27489cc8f227ca300d14d6be7aa0347eec8bd708e87c16cb7c",
       "output": {
         "path": "public/ui/mobs/gaol_turnkey.webp",
-        "bytes": 1576,
-        "sha256": "b491d74926a7a1250242d702c66ddbc01658521504681b824913731f70a39c79"
+        "bytes": 1846,
+        "sha256": "677b0eb11f3e50ce8cdd38b31ee0ce7fae5dd2d74cb1871eff38b64021e67dc3"
       }
     },
     {
@@ -3776,10 +3751,10 @@
         "model": {
           "url": "models/creatures/woc_bastion_ossick.glb",
           "path": "public/models/creatures/woc_bastion_ossick.glb",
-          "bytes": 2455468,
-          "sha256": "200b0fe695e5954f21e684fa7639048c9ec9d87fb7f1cf479b40b5c2d4c0d0f2"
+          "bytes": 583884,
+          "sha256": "5315b7c31247d55e5f97e556329e34c047f14dd4c9b0fc97661d9759e53cb780"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 7,
         "yaw": null,
         "hover": null,
@@ -3794,11 +3769,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "ba6ae823132eb2bb8a689c9e96d85b3fb9cc4609e8e07b8bea57d4010ff0a0f7",
+      "sourceFingerprint": "ad44b9d8ac4c09951162819335c0639eae258cdfe30b247f6a964204c6f734ec",
       "output": {
         "path": "public/ui/mobs/gaoler_ossick.webp",
-        "bytes": 2220,
-        "sha256": "85b2b15bca31159b6fc598489b9b735848d50ccb0b7b47952921dd0872a25955"
+        "bytes": 1930,
+        "sha256": "728a9aebc4aafdedf68daadc4383638a089071a1b3e651aa55339944757a0cf9"
       }
     },
     {
@@ -4197,8 +4172,8 @@
         "model": {
           "url": "models/creatures/crypt_crow.glb",
           "path": "public/models/creatures/crypt_crow.glb",
-          "bytes": 87216,
-          "sha256": "448da36c47023500383b02fc77815211fe1681da10b6a0796960f540a7e460eb"
+          "bytes": 631788,
+          "sha256": "f7fb06c1421656212b551f37f313d41f3f4e2b16e30763a700ab6ee5ca5eef7f"
         },
         "idle": "Idle",
         "height": 1.7,
@@ -4215,11 +4190,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "a730dd51566f4961fdf2175ba5bf99e814b58cdce6f348b17a044a70ef68c39f",
+      "sourceFingerprint": "8e2eef11eb59f65c922bd642e4eeab56ac5f877d2bd3137c01852d8c633cc9a6",
       "output": {
         "path": "public/ui/mobs/gourdlight_crow.webp",
-        "bytes": 1528,
-        "sha256": "c848089b7f1b6118969bbfa2e5256d0a63806acceb0e0fc0b3cc8c47a2589b82"
+        "bytes": 1880,
+        "sha256": "847c4455d12cc85377ca4c70f60ff933504922aec39893d3624a5240871aef49"
       }
     },
     {
@@ -5589,7 +5564,7 @@
           "url": "models/creatures/wildlife_spider.glb",
           "path": "public/models/creatures/wildlife_spider.glb",
           "bytes": 648284,
-          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
+          "sha256": "ed0e68af14367fc2d100c7ae91a820aef45888d6ce00e58c5e6aee0b99bd7e49"
         },
         "idle": "Idle",
         "height": 1.4,
@@ -5606,7 +5581,7 @@
         "resolved": "#9acd32",
         "strength": 0.35
       },
-      "sourceFingerprint": "cec33093fdf0b8e3b80bc33b78537017d0187c929dffa469482c82fdfb7fdf97",
+      "sourceFingerprint": "5548b6e45dc43af347544508f148aee939f077b28aeb70f0736e0302d43a5148",
       "output": {
         "path": "public/ui/mobs/hoard_brood_hatchling.webp",
         "bytes": 1880,
@@ -5805,10 +5780,10 @@
         "model": {
           "url": "models/creatures/woc_crypt_hollow_chorister.glb",
           "path": "public/models/creatures/woc_crypt_hollow_chorister.glb",
-          "bytes": 2402380,
-          "sha256": "9cdcfd80cf747fc2963a6ed62f42f55c3814b52618a248db299fa64a79901201"
+          "bytes": 512232,
+          "sha256": "c7eee7dcaa12b94dabfee130b377dbede72219322411a9562b94ff527b64f6f7"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 3.3,
         "yaw": null,
         "hover": null,
@@ -5823,11 +5798,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "0a6fe4b9d2f2192a2178fbbef109c35d50f8058f57a4a9c6632c5d2f4a04a214",
+      "sourceFingerprint": "9e2cca1d3b56decbcfb5c6f69d593247e58279d4f25650411cac2834c7d23b4e",
       "output": {
         "path": "public/ui/mobs/hollow_chorister.webp",
-        "bytes": 2370,
-        "sha256": "4079a17cdbd4f2618a4e45bd1bec53888819ec218db021a5652525bac2ce9001"
+        "bytes": 2492,
+        "sha256": "84f5c06b5fbf65303be12d9cb06ba3a765970d81e41c9b12119596d5855783a9"
       }
     },
     {
@@ -5839,10 +5814,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -5857,11 +5832,11 @@
         "resolved": "#8a7a64",
         "strength": 0.25
       },
-      "sourceFingerprint": "d8d39e8945f2b00e547efd5d38af2dd520283783c006a9e0b19510a2a7055318",
+      "sourceFingerprint": "7ede90a6004fd33a97210d91e039ff867ff8afd91fefc62d720b35006cd82170",
       "output": {
         "path": "public/ui/mobs/hollow_gravedigger.webp",
-        "bytes": 2130,
-        "sha256": "95da55d418942b86600e4cdb7e23c9ff7b4805dd57aa7bca5e3ffea2a3c5b890"
+        "bytes": 2094,
+        "sha256": "83f78306810da84516966efea30e9b3d54680872170077fad4df11b1e54dc46a"
       }
     },
     {
@@ -6320,10 +6295,10 @@
         "model": {
           "url": "models/creatures/woc_bastion_olen.glb",
           "path": "public/models/creatures/woc_bastion_olen.glb",
-          "bytes": 2423436,
-          "sha256": "4306dced829d61eb238c7dc39c8e8f49d81f32e0a75a3d26c5f0699e25f24fbe"
+          "bytes": 595056,
+          "sha256": "c5c66c3d141343d80f670d321a2a8c6f2db167eef8c55edc84bf81e3ff69d2bc"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 7.4,
         "yaw": null,
         "hover": null,
@@ -6338,11 +6313,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "0dd37ae9578257200e7d4bbe52883621fbc3f3c68567bbda4efcd063c3819b85",
+      "sourceFingerprint": "e3f4c6534bb064f4bf3026827d3180ebeeb6288763cafadf5f63d0d722d2cc31",
       "output": {
         "path": "public/ui/mobs/knight_commander_olen.webp",
-        "bytes": 2004,
-        "sha256": "ac2dcf65e94e06ab51d455e96e4683c0667aa547730b8236fbb9ffdd466b53ed"
+        "bytes": 2364,
+        "sha256": "ea9b42fa3f74e2aace87635b685b7868f0e0d5af23a0f06056ca036cb87de0c6"
       }
     },
     {
@@ -6490,10 +6465,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -6508,11 +6483,11 @@
         "resolved": "#d5dbdb",
         "strength": 0.25
       },
-      "sourceFingerprint": "958caaf68e183f5dd52d7be80a52cd33d20ce69dd6aeaf83d04e729f49f57453",
+      "sourceFingerprint": "f3cd8847edc3d8ef1abd38bf9567a3aa5c4061505b214273c72dba5d5b52786d",
       "output": {
         "path": "public/ui/mobs/marrow_restless_bones.webp",
-        "bytes": 2200,
-        "sha256": "e91769f096cae1d68d224370c4d731fefe6e517cf3e2753f80dc43908dbf2de7"
+        "bytes": 2148,
+        "sha256": "606e1aa5e72aa6661b53db9f4c63dbff0c9a822e62c828fcabb4ca389bd8cbe4"
       }
     },
     {
@@ -6695,7 +6670,7 @@
           "url": "models/creatures/wildlife_wolf.glb",
           "path": "public/models/creatures/wildlife_wolf.glb",
           "bytes": 522236,
-          "sha256": "20fcfbe89e19bfa4b4640cf2cea7b66017abdc47355ac70b5e64171e883fc8c0"
+          "sha256": "83b94a1cf597f2ef745552dad2b3ec65e0d9cde9a4b470e8590d84a25ab7420e"
         },
         "idle": "Idle",
         "height": 1.47,
@@ -6712,7 +6687,7 @@
         "resolved": "#4d5656",
         "strength": 0.3
       },
-      "sourceFingerprint": "d9d7f7bacea26e73d44dc08156259f3f9cbeb72204b4b3cdeefed4c096dc5751",
+      "sourceFingerprint": "5e470bda40b61c9f727022a5945a9da741f4a7c87e6b202c06454ed49c63a01c",
       "output": {
         "path": "public/ui/mobs/mire_prowler.webp",
         "bytes": 2348,
@@ -6729,7 +6704,7 @@
           "url": "models/creatures/wildlife_spider.glb",
           "path": "public/models/creatures/wildlife_spider.glb",
           "bytes": 648284,
-          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
+          "sha256": "ed0e68af14367fc2d100c7ae91a820aef45888d6ce00e58c5e6aee0b99bd7e49"
         },
         "idle": "Idle",
         "height": 1.3,
@@ -6746,7 +6721,7 @@
         "resolved": "#283747",
         "strength": 0.3
       },
-      "sourceFingerprint": "889159cb65c6b300eeb1c2b280837fa96bc84e2bc11625e5060ebbfa84e22f89",
+      "sourceFingerprint": "c5bbe94ba7b6c6bd240a9f40af24333aa1722247b259dcda1475615bfee320f8",
       "output": {
         "path": "public/ui/mobs/mire_widow.webp",
         "bytes": 1802,
@@ -6763,7 +6738,7 @@
           "url": "models/creatures/wildlife_spider.glb",
           "path": "public/models/creatures/wildlife_spider.glb",
           "bytes": 648284,
-          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
+          "sha256": "ed0e68af14367fc2d100c7ae91a820aef45888d6ce00e58c5e6aee0b99bd7e49"
         },
         "idle": "Idle",
         "height": 1.4,
@@ -6780,7 +6755,7 @@
         "resolved": "#641e16",
         "strength": 0.35
       },
-      "sourceFingerprint": "df327bae594884430d013761e410045267a8415392af2aa3f1a2089b9429b477",
+      "sourceFingerprint": "39b97bb8161ebf14912f20c4c0c219619418bfabb7b1c9cec8b99bbd1146dfbc",
       "output": {
         "path": "public/ui/mobs/mirefen_broodmother.webp",
         "bytes": 1874,
@@ -6797,7 +6772,7 @@
           "url": "models/creatures/wildlife_spider.glb",
           "path": "public/models/creatures/wildlife_spider.glb",
           "bytes": 648284,
-          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
+          "sha256": "ed0e68af14367fc2d100c7ae91a820aef45888d6ce00e58c5e6aee0b99bd7e49"
         },
         "idle": "Idle",
         "height": 1.3,
@@ -6814,7 +6789,7 @@
         "resolved": "#2e2a34",
         "strength": 0.3
       },
-      "sourceFingerprint": "0c4286949c6b61af80cf8881115bee3b2674b3a43e29d92cdb1bb46027121cab",
+      "sourceFingerprint": "741a1d57481e93bb220bca042cba8f7179382395de8cfe088ee0ade50ff89e6a",
       "output": {
         "path": "public/ui/mobs/mirefen_widowling.webp",
         "bytes": 1966,
@@ -6899,7 +6874,7 @@
           "url": "models/creatures/wildlife_crab.glb",
           "path": "public/models/creatures/wildlife_crab.glb",
           "bytes": 615080,
-          "sha256": "8de1fd795125e5fc3512ca83a6cbf2ea877af9888e4dee1a8322953af789712d"
+          "sha256": "b5849701cdd77dfb522b325e20e283497c96b5220747d468335b6362a195977a"
         },
         "idle": "Idle",
         "height": 1.2,
@@ -6916,7 +6891,7 @@
         "resolved": "#b0402a",
         "strength": 0.3
       },
-      "sourceFingerprint": "1d6d0f7d495c4d8d3ca9da500bea7209e0dae8e927597a6223b3fa5837a0b3e6",
+      "sourceFingerprint": "15ea89d792853fc6ceae25672ded737c89e0ac6de6d25302b81c280dca88937c",
       "output": {
         "path": "public/ui/mobs/mister_crabs.webp",
         "bytes": 3436,
@@ -6932,10 +6907,10 @@
         "model": {
           "url": "models/creatures/mist_chanter.glb",
           "path": "public/models/creatures/mist_chanter.glb",
-          "bytes": 2589576,
-          "sha256": "3491588535504b87e18cbdbcffdef282393af1bfdf576b330688a9a2a59c6ebc"
+          "bytes": 689100,
+          "sha256": "5af1c1667ca0a827dfb9f6e4e31e1454b9c7c8fed2ddaefe3293558bdc9821de"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 4.4,
         "yaw": null,
         "hover": null,
@@ -6950,11 +6925,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "62d1f4d52e6e32e93db4061e6fcece8d54062c0372828dc791ebf7ce9713c6d5",
+      "sourceFingerprint": "78860f0db68a2a48ad554448d2e8edc14512cf14bd109b8731a179a16641bd40",
       "output": {
         "path": "public/ui/mobs/mistweaver.webp",
-        "bytes": 2370,
-        "sha256": "114e9b9aaeb3cbd77c05952c7e6b26637c0cda25af4e44c22f78896a4bed8d39"
+        "bytes": 1710,
+        "sha256": "a46c678c6123c71bfceaa3962f8316ffb026fd616dfd44f9d948ac3112caef88"
       }
     },
     {
@@ -7264,10 +7239,10 @@
         "model": {
           "url": "models/creatures/woc_crypt_morthen.glb",
           "path": "public/models/creatures/woc_crypt_morthen.glb",
-          "bytes": 1451860,
-          "sha256": "e1053e68e530d1f4cd52fc7415b90b0930e7ba9601c44564af084713e0bfd209"
+          "bytes": 552564,
+          "sha256": "686667114d41da2ad625777f31ed059a1331dfa4ca7a138e86469c9968597853"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 6.668999999999999,
         "yaw": null,
         "hover": -0.8595599999999999,
@@ -7282,11 +7257,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "fa3bfa65cd40b3a9052bcb6765e30a847a50831d36b39bc96f28a73e0d5a7563",
+      "sourceFingerprint": "4155b6c6ae605741f01208e0561ace21ffd9652fc9ad0506513aba755c9120d4",
       "output": {
         "path": "public/ui/mobs/morthen.webp",
-        "bytes": 2132,
-        "sha256": "c479c46eac8fb57e7041f93069075442963452f9c87eda272f7cf6c7fb1df0a5"
+        "bytes": 2914,
+        "sha256": "858c0d06428d6b0f791e1e55c381a308269361687860e75172f0757d2bbf50ca"
       }
     },
     {
@@ -7805,10 +7780,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -7823,11 +7798,11 @@
         "resolved": "#c7d0bd",
         "strength": 0.25
       },
-      "sourceFingerprint": "0b4da38b6421c88b0bfb6b46a36f177e5535a99c238a1d6ed8ce85e7badef9ce",
+      "sourceFingerprint": "175ae8113b286aa0f687330007259510edc1b90fe1ee9f3ae026e0f06f4e868d",
       "output": {
         "path": "public/ui/mobs/necromancy_skeletal_warrior.webp",
-        "bytes": 2178,
-        "sha256": "9780eb0574896f5faebe990b2004a208a24fe8b8d9f4dc9c639fdb1772161110"
+        "bytes": 2128,
+        "sha256": "85c3aa6dd20ba773dc774418ddf2e2642ea5e8b4704b01e4fb24f6b2852d3778"
       }
     },
     {
@@ -8266,7 +8241,7 @@
           "url": "models/creatures/wildlife_bear.glb",
           "path": "public/models/creatures/wildlife_bear.glb",
           "bytes": 540808,
-          "sha256": "69b019097067d700b6b297fbfaed11a81750246659266e67ce1462b49ac9fe8c"
+          "sha256": "78c5994ffcdeec89bb1fca91a518997b7ca8bfde1c1c4d72fd581d3a5438ca33"
         },
         "idle": "Idle",
         "height": 1.8,
@@ -8283,7 +8258,7 @@
         "resolved": "#6e6453",
         "strength": 0.3
       },
-      "sourceFingerprint": "192b19f016862ab72148ccaae27fb7d612c0127714d7537d49370d5fa373ce9c",
+      "sourceFingerprint": "34e466991bc567ebf591c4f6fc673c84714574256de181fd4abbfe2ac295f24e",
       "output": {
         "path": "public/ui/mobs/old_cragmaw.webp",
         "bytes": 1698,
@@ -8334,7 +8309,7 @@
           "url": "models/creatures/wildlife_crab.glb",
           "path": "public/models/creatures/wildlife_crab.glb",
           "bytes": 615080,
-          "sha256": "8de1fd795125e5fc3512ca83a6cbf2ea877af9888e4dee1a8322953af789712d"
+          "sha256": "b5849701cdd77dfb522b325e20e283497c96b5220747d468335b6362a195977a"
         },
         "idle": "Idle",
         "height": 1.2,
@@ -8351,7 +8326,7 @@
         "resolved": "#8fb8d8",
         "strength": 0.3
       },
-      "sourceFingerprint": "14cb60a5390cdef37c80f0a6def3e682f16ad08265f4ae0d432e22b09b6b081f",
+      "sourceFingerprint": "911067d4ce68f9d3aedccc51e2fb4bb2c1ff4d5a409294102938bb8dcf96d1e8",
       "output": {
         "path": "public/ui/mobs/old_marrowshell.webp",
         "bytes": 3422,
@@ -8401,10 +8376,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -8419,11 +8394,11 @@
         "resolved": "#cfc6b0",
         "strength": 0.25
       },
-      "sourceFingerprint": "13c473a39d6f854cf209a5ab3b8b5b273dd21c52cfcc14f22feed218a164650f",
+      "sourceFingerprint": "b0dd7ca102b652d3307fc9907b4d780f92896a94e147612c10c8da6b0bb4d09a",
       "output": {
         "path": "public/ui/mobs/ossuary_sentinel.webp",
-        "bytes": 2192,
-        "sha256": "175c315804bb3cdbe42b65c8a69ff74b9a2bde7363450e150be10d414cec1b99"
+        "bytes": 2130,
+        "sha256": "f65421597005763a0482549bee312f11e38c80393a4ba15912e819116eec7beb"
       }
     },
     {
@@ -8639,10 +8614,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -8657,11 +8632,11 @@
         "resolved": "#b9b2a4",
         "strength": 0.25
       },
-      "sourceFingerprint": "7dc5b24eec1930478747e95a65bf252b182fb9cdd98dc83e5eb5ed0dbfc5fd1f",
+      "sourceFingerprint": "b0064686a5f6772c006b3e3a2f046bec311e0fca72280b8a40c22bc26b495ece",
       "output": {
         "path": "public/ui/mobs/reliquary_bonewalker.webp",
-        "bytes": 2164,
-        "sha256": "4c6176fae14c333b3d80f2dbccd8ae76a7eba7bf4a5e6f3af1c75feef2c94457"
+        "bytes": 2120,
+        "sha256": "b6d250ca874fa58dfc8481c6f922d3fe369df24b598248cdf678cd3a4da2b73a"
       }
     },
     {
@@ -8801,10 +8776,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -8819,11 +8794,11 @@
         "resolved": "#9ba8a0",
         "strength": 0.55
       },
-      "sourceFingerprint": "5ec88d1784e2d8590bd0a75a16195dff54da33a83e538984ade09c83bfc1fb70",
+      "sourceFingerprint": "fe71bf8d0316807327063c68c9b0093dd2c89dfacc9c25852c15624f298211ee",
       "output": {
         "path": "public/ui/mobs/reliquary_ledger_wraith.webp",
-        "bytes": 2060,
-        "sha256": "b5934118bc61d9e086cb813fa3ed3b3374d94222feb054c18acc3635468f6c49"
+        "bytes": 2004,
+        "sha256": "312b4f6c4911c8177ed12b2a5d784fb2f7fad005edb5868ce7b020522c0d0cd7"
       }
     },
     {
@@ -8894,10 +8869,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -8912,11 +8887,11 @@
         "resolved": "#d5dbdb",
         "strength": 0.25
       },
-      "sourceFingerprint": "958caaf68e183f5dd52d7be80a52cd33d20ce69dd6aeaf83d04e729f49f57453",
+      "sourceFingerprint": "f3cd8847edc3d8ef1abd38bf9567a3aa5c4061505b214273c72dba5d5b52786d",
       "output": {
         "path": "public/ui/mobs/restless_bones.webp",
-        "bytes": 2200,
-        "sha256": "e91769f096cae1d68d224370c4d731fefe6e517cf3e2753f80dc43908dbf2de7"
+        "bytes": 2148,
+        "sha256": "606e1aa5e72aa6661b53db9f4c63dbff0c9a822e62c828fcabb4ca389bd8cbe4"
       }
     },
     {
@@ -8929,7 +8904,7 @@
           "url": "models/creatures/wildlife_wolf.glb",
           "path": "public/models/creatures/wildlife_wolf.glb",
           "bytes": 522236,
-          "sha256": "20fcfbe89e19bfa4b4640cf2cea7b66017abdc47355ac70b5e64171e883fc8c0"
+          "sha256": "83b94a1cf597f2ef745552dad2b3ec65e0d9cde9a4b470e8590d84a25ab7420e"
         },
         "idle": "Idle",
         "height": 1.47,
@@ -8946,7 +8921,7 @@
         "resolved": "#8c8270",
         "strength": 0.3
       },
-      "sourceFingerprint": "355688538bc0847f7d32e202283eb798f727b2884b0346c6ccf9dcbd7c64db18",
+      "sourceFingerprint": "216673fc69c58a8642b3a0330575b0ccd8eaa1597e27a0d3758a4bd8245cb709",
       "output": {
         "path": "public/ui/mobs/ridge_stalker.webp",
         "bytes": 2360,
@@ -8996,10 +8971,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -9014,11 +8989,11 @@
         "resolved": "#c8cfc8",
         "strength": 0.25
       },
-      "sourceFingerprint": "7e20fa1b112677260cff9a08bc8710e336d5697ad68720c570ff60169f59b341",
+      "sourceFingerprint": "f8cd25e5c3f2214a040d8b606942747402633e463a805999ebe1cfd8544fa142",
       "output": {
         "path": "public/ui/mobs/rift_bonewalker.webp",
-        "bytes": 2184,
-        "sha256": "2a70a08d3a71908769b6b49ae15f5bc9c386258816f01f52fc108879ded17724"
+        "bytes": 2118,
+        "sha256": "2634ff21e10e2f2d012b01267c0581a61ca3d3d65bd1862f0fb553852159c2f1"
       }
     },
     {
@@ -9179,10 +9154,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -9197,11 +9172,11 @@
         "resolved": "#b9c4a8",
         "strength": 0.25
       },
-      "sourceFingerprint": "cf80db5b6df9fc1a9e0156f94274a47076e9e723c74385fc8bca55acc0743705",
+      "sourceFingerprint": "71d88893ac691d8de0cf849dd76081f1ff167ef67d6ce901ab3e6be9fc67a4b2",
       "output": {
         "path": "public/ui/mobs/rift_boss_necro.webp",
-        "bytes": 2200,
-        "sha256": "b91501de8a7ee155f41198de5c5fbed00a646e969e3c6592173a3fa8e0bdeac9"
+        "bytes": 2128,
+        "sha256": "eff4f4c2e6272b15d746cba2da31da86953755be8f7ffccbe35156ca8ff4588f"
       }
     },
     {
@@ -9350,7 +9325,7 @@
           "url": "models/creatures/wildlife_spider.glb",
           "path": "public/models/creatures/wildlife_spider.glb",
           "bytes": 648284,
-          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
+          "sha256": "ed0e68af14367fc2d100c7ae91a820aef45888d6ce00e58c5e6aee0b99bd7e49"
         },
         "idle": "Idle",
         "height": 1.4,
@@ -9367,7 +9342,7 @@
         "resolved": "#7cb342",
         "strength": 0.35
       },
-      "sourceFingerprint": "62054254e9f28035385f28e1b454219386f847445c52dd446ff0c9026eeb2a56",
+      "sourceFingerprint": "2b86535d75532161a383f78aafe5041a1458bbcaf1f2d0cd5b353c6d698661ff",
       "output": {
         "path": "public/ui/mobs/rift_boss_venom.webp",
         "bytes": 1886,
@@ -10183,10 +10158,10 @@
         "model": {
           "url": "models/creatures/woc_crypt_lady_bonechill.glb",
           "path": "public/models/creatures/woc_crypt_lady_bonechill.glb",
-          "bytes": 1418492,
-          "sha256": "8cea55c607de19032b3176ef77f32b442b018629123aadab332795147c06506d"
+          "bytes": 511072,
+          "sha256": "73941316600a0ebe5225f24c99ba0d255f99536683cd83ba1afcca6ccc40855a"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 6.749,
         "yaw": null,
         "hover": 0.544,
@@ -10201,11 +10176,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "b3ce339fa8e420e705ae15006eb0b81a0a91e4b9ce47814f02969a2833c2ac3e",
+      "sourceFingerprint": "34315d9967dbe045277a192ff698a6264264b2c6f96420538ebca4a79c9a34ec",
       "output": {
         "path": "public/ui/mobs/rimeweb.webp",
-        "bytes": 2272,
-        "sha256": "03ea70c6b3aa9a22dd2d9083d2614c2c5a37042c61faaf3f52e1bacdf38b0012"
+        "bytes": 2488,
+        "sha256": "886614ce4a47d5d00b98a14b62bef277c45360c1196559753f303479c0ae08da"
       }
     },
     {
@@ -10218,7 +10193,7 @@
           "url": "models/creatures/wildlife_spider.glb",
           "path": "public/models/creatures/wildlife_spider.glb",
           "bytes": 648284,
-          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
+          "sha256": "ed0e68af14367fc2d100c7ae91a820aef45888d6ce00e58c5e6aee0b99bd7e49"
         },
         "idle": "Idle",
         "height": 1.4,
@@ -10235,7 +10210,7 @@
         "resolved": "#d6eaf8",
         "strength": 0.35
       },
-      "sourceFingerprint": "2ae36faadedd4637a21b5be2d00a5f714aa19dabf622401974d758f8c0f89dde",
+      "sourceFingerprint": "2c1cd38388a761b697d670f72bebd6fa536a2e9c19a5a3c0fbf8ebca6182ce26",
       "output": {
         "path": "public/ui/mobs/rimeweb_hatchling.webp",
         "bytes": 1904,
@@ -10252,7 +10227,7 @@
           "url": "models/creatures/wildlife_spider.glb",
           "path": "public/models/creatures/wildlife_spider.glb",
           "bytes": 648284,
-          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
+          "sha256": "ed0e68af14367fc2d100c7ae91a820aef45888d6ce00e58c5e6aee0b99bd7e49"
         },
         "idle": "Idle",
         "height": 1.4,
@@ -10269,7 +10244,7 @@
         "resolved": "#e4f0fa",
         "strength": 0.35
       },
-      "sourceFingerprint": "2d33735a6be9a5835c44d87991fffb4fa7eff8fa0bd05ef779f64ff568a3f691",
+      "sourceFingerprint": "5e0a77b7a86858b62b7f2b4062da41e77180e19a16820c9ccdb176ca3dcb8fc1",
       "output": {
         "path": "public/ui/mobs/rimeweb_spinner.webp",
         "bytes": 1928,
@@ -10523,10 +10498,10 @@
         "model": {
           "url": "models/creatures/woc_crypt_sexton_marrow.glb",
           "path": "public/models/creatures/woc_crypt_sexton_marrow.glb",
-          "bytes": 2145112,
-          "sha256": "c9a81eefca1f47bc903bec6da253168754eaea70eca0a6d1788775aebd90b14a"
+          "bytes": 446152,
+          "sha256": "e62b014be40c8efcf88e96ba89d736b2de75c1bdb2f849f98ea57264a9ba9a24"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 5.975,
         "yaw": null,
         "hover": -0.56,
@@ -10541,11 +10516,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "28ce99a0618177d4ec3efb19d3c678114a215db7f4613c278c5f7b4671400e2b",
+      "sourceFingerprint": "a277aa9fdf5c714b0c93fde8a77a93ceb341d4a8ca34fd214da9669c872b0577",
       "output": {
         "path": "public/ui/mobs/sexton_marrow.webp",
-        "bytes": 2068,
-        "sha256": "1af7d4577502ba239d35c475f05c260eb6240724eba24c225dc9701ea20a0b51"
+        "bytes": 2298,
+        "sha256": "2c7bc3ff09310b0c0f7f471970f21ab7b18931cecdaf2aec5ffdcad04214b673"
       }
     },
     {
@@ -10626,7 +10601,7 @@
           "url": "models/creatures/wildlife_crab.glb",
           "path": "public/models/creatures/wildlife_crab.glb",
           "bytes": 615080,
-          "sha256": "8de1fd795125e5fc3512ca83a6cbf2ea877af9888e4dee1a8322953af789712d"
+          "sha256": "b5849701cdd77dfb522b325e20e283497c96b5220747d468335b6362a195977a"
         },
         "idle": "Idle",
         "height": 1.2,
@@ -10643,7 +10618,7 @@
         "resolved": "#8898a8",
         "strength": 0.3
       },
-      "sourceFingerprint": "f0d0af71538a25558bf7092fa7f6f38c684829ccb5217fbf73b3a477666c7cca",
+      "sourceFingerprint": "b25c95fdc31bf6818ddd8d81df1ab5f237a96a3b2ba0451594371925141d7ad9",
       "output": {
         "path": "public/ui/mobs/shoal_scuttler.webp",
         "bytes": 3418,
@@ -10660,7 +10635,7 @@
           "url": "models/creatures/wildlife_crab.glb",
           "path": "public/models/creatures/wildlife_crab.glb",
           "bytes": 615080,
-          "sha256": "8de1fd795125e5fc3512ca83a6cbf2ea877af9888e4dee1a8322953af789712d"
+          "sha256": "b5849701cdd77dfb522b325e20e283497c96b5220747d468335b6362a195977a"
         },
         "idle": "Idle",
         "height": 1.2,
@@ -10677,7 +10652,7 @@
         "resolved": "#7a5a3a",
         "strength": 0.3
       },
-      "sourceFingerprint": "7ca9a59207fab9f1f115bb252589147af7f64a2642ebd54d40bbde1b710d217d",
+      "sourceFingerprint": "ab9b3de37e1b216535401c3b20d52a3b9859aa75ae6333facd61f2ddf855a011",
       "output": {
         "path": "public/ui/mobs/shore_scuttler.webp",
         "bytes": 3400,
@@ -10924,7 +10899,7 @@
           "url": "models/creatures/wildlife_wolf.glb",
           "path": "public/models/creatures/wildlife_wolf.glb",
           "bytes": 522236,
-          "sha256": "20fcfbe89e19bfa4b4640cf2cea7b66017abdc47355ac70b5e64171e883fc8c0"
+          "sha256": "83b94a1cf597f2ef745552dad2b3ec65e0d9cde9a4b470e8590d84a25ab7420e"
         },
         "idle": "Idle",
         "height": 1.47,
@@ -10941,7 +10916,7 @@
         "resolved": "#eef4f8",
         "strength": 0.3
       },
-      "sourceFingerprint": "be3897ea0aef5da72643a3cdfa64cf308812396eecde862d4af2b8820a4044d7",
+      "sourceFingerprint": "bcc210bc9594b4ecd61bf715814460ec444963e0787022262cb9b861c46efac5",
       "output": {
         "path": "public/ui/mobs/snowdrift_wolf.webp",
         "bytes": 2534,
@@ -11366,7 +11341,7 @@
           "url": "models/creatures/wildlife_wolf.glb",
           "path": "public/models/creatures/wildlife_wolf.glb",
           "bytes": 522236,
-          "sha256": "20fcfbe89e19bfa4b4640cf2cea7b66017abdc47355ac70b5e64171e883fc8c0"
+          "sha256": "83b94a1cf597f2ef745552dad2b3ec65e0d9cde9a4b470e8590d84a25ab7420e"
         },
         "idle": "Idle",
         "height": 1.47,
@@ -11383,7 +11358,7 @@
         "resolved": "#9db4c8",
         "strength": 0.3
       },
-      "sourceFingerprint": "3fad5bd170323c0904f98b395d9949dd2a5abe76ba94bc790231d3e9eab601ab",
+      "sourceFingerprint": "8b136320baebc0643fe21abaa8d8d3284bdf4f9c0eb3c96897f06f471bbfe9c1",
       "output": {
         "path": "public/ui/mobs/terrace_howler.webp",
         "bytes": 2442,
@@ -11834,7 +11809,7 @@
           "url": "models/creatures/wildlife_crab.glb",
           "path": "public/models/creatures/wildlife_crab.glb",
           "bytes": 615080,
-          "sha256": "8de1fd795125e5fc3512ca83a6cbf2ea877af9888e4dee1a8322953af789712d"
+          "sha256": "b5849701cdd77dfb522b325e20e283497c96b5220747d468335b6362a195977a"
         },
         "idle": "Idle",
         "height": 1.2,
@@ -11851,7 +11826,7 @@
         "resolved": "#e86848",
         "strength": 0.3
       },
-      "sourceFingerprint": "ed0e968166be4997fbac707ecfd03a964fa730c8df1d969dc41770ebdb8c53aa",
+      "sourceFingerprint": "182e60564bf0416a55b89cc23225776d96e0e2b1104363dde10a6fd31ca41674",
       "output": {
         "path": "public/ui/mobs/tide_scuttler.webp",
         "bytes": 3464,
@@ -11867,10 +11842,10 @@
         "model": {
           "url": "models/creatures/tidebound_acolyte.glb",
           "path": "public/models/creatures/tidebound_acolyte.glb",
-          "bytes": 2555740,
-          "sha256": "9b275ebb5fdbb7395d560434a03c563bac10e1de988760b0d2f45b68dd163eb9"
+          "bytes": 485272,
+          "sha256": "687e410d4a2c17d1f7a1badc963366fe69ebdc2cdb0ea6f37ea5207181898d03"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 5,
         "yaw": null,
         "hover": null,
@@ -11885,11 +11860,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "bb37e47536191d48cdc4a31a01d3e3cbf7ecb41d15fd4f102da5e78c66ec50a8",
+      "sourceFingerprint": "602e2d632880a081bb28cbd18382b2e0df631ae7f674d9569b01db3d0898bea2",
       "output": {
         "path": "public/ui/mobs/tidebound_acolyte.webp",
-        "bytes": 2156,
-        "sha256": "83a53555106bb97b552cfc4bd3706f73726de0f098eb1a31d2ed678b177659d7"
+        "bytes": 1904,
+        "sha256": "d3d0960405495d3e66d90a73480cc42b4abefb578591692d332301931069a26f"
       }
     },
     {
@@ -11901,10 +11876,10 @@
         "model": {
           "url": "models/creatures/woc_temple_colossus.glb",
           "path": "public/models/creatures/woc_temple_colossus.glb",
-          "bytes": 2531840,
-          "sha256": "061a040e8c3d00e6da350c790c39c21cd1c4ad15abcbb0c715efee0b617245cc"
+          "bytes": 627216,
+          "sha256": "862033e14230ca32bcc6e4b5de34a801f6373a0ef073daea21571577f6ebb93b"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 7.59090909090909,
         "yaw": null,
         "hover": null,
@@ -11919,11 +11894,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "93e1b78c4437d9625bd74ffa1619122b026940e77ede857d849e25559a4be15f",
+      "sourceFingerprint": "8323b671f2fa0632caf8d1d0ab8e04b0c5b9ff0343fcdafde966604d3d9905b4",
       "output": {
         "path": "public/ui/mobs/tideglass_colossus.webp",
-        "bytes": 3160,
-        "sha256": "4a29298215a081807ba34112a63abffaf41ea2e527116f901abc5ec479b40683"
+        "bytes": 2650,
+        "sha256": "c39cd6d89a57c2ca6f74e664de87bfd360799b5e7dff805935bfc2d1864d0088"
       }
     },
     {
@@ -12836,7 +12811,7 @@
           "url": "models/creatures/wildlife_wolf.glb",
           "path": "public/models/creatures/wildlife_wolf.glb",
           "bytes": 522236,
-          "sha256": "20fcfbe89e19bfa4b4640cf2cea7b66017abdc47355ac70b5e64171e883fc8c0"
+          "sha256": "83b94a1cf597f2ef745552dad2b3ec65e0d9cde9a4b470e8590d84a25ab7420e"
         },
         "idle": "Idle",
         "height": 1.47,
@@ -12853,7 +12828,7 @@
         "resolved": "#4a8a4e",
         "strength": 0.35
       },
-      "sourceFingerprint": "409ed583fcf7023837fe6d36fb68fff316e85633ea3eb18631229e433e62a258",
+      "sourceFingerprint": "d24abbd7812d923215798ecab30d4f45ea2694b0f7cce8f1fe10ead6c5473158",
       "output": {
         "path": "public/ui/mobs/topiary_wolf.webp",
         "bytes": 2330,
@@ -13005,10 +12980,10 @@
         "model": {
           "url": "models/creatures/woc_bastion_captain.glb",
           "path": "public/models/creatures/woc_bastion_captain.glb",
-          "bytes": 2293076,
-          "sha256": "9f20fa42a64de79cd4ba38bf25655b35eb80ce5602f5cd89797f7a67da2c2b27"
+          "bytes": 530128,
+          "sha256": "1ba8ef01650cacea50f50b591e7c620a3f9731706744c8c0d27a740637541a6f"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 7.5,
         "yaw": null,
         "hover": 0.3,
@@ -13023,11 +12998,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "0f434264d9108da34ef64b94c985a79bcab9545f8d74b38d0de68d118391c924",
+      "sourceFingerprint": "8a409e98171893764902a0eece144269a90182812cf7c8198e5fb5d5d89bc599",
       "output": {
         "path": "public/ui/mobs/turretback_hermit.webp",
-        "bytes": 2464,
-        "sha256": "6bb14ddc1d5d3eb7d59faf38fe5e7d9834acd9161e86a0e8571ea0788dec0031"
+        "bytes": 1836,
+        "sha256": "876223b8115f6cab7ed29053c576313a6d4826668b4f22074a86980eac79dad0"
       }
     },
     {
@@ -13039,10 +13014,10 @@
         "model": {
           "url": "models/creatures/woc_bastion_vael.glb",
           "path": "public/models/creatures/woc_bastion_vael.glb",
-          "bytes": 2123388,
-          "sha256": "edb2f8584dcf4bd742aa39d987cd63ed3e018db674d87f0f664fffbf56527a44"
+          "bytes": 581832,
+          "sha256": "0f9c84abe5cbe3ebc34e8b248d6ff4f61f266c92a94fdc4a632c99f1bdb1f979"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 7.357,
         "yaw": null,
         "hover": -0.677,
@@ -13057,11 +13032,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "4b3e133e59058f673145161fb194afefe2b4f17199ea896203622cdf5fddecc1",
+      "sourceFingerprint": "010db41e0d1a78b28730a6383363f3f5c6ccb6cd389ede398c770ee9b3ff0d8c",
       "output": {
         "path": "public/ui/mobs/vael_fog_shade.webp",
-        "bytes": 2028,
-        "sha256": "de69483e5aad02160613d7f2b7612ed21094b4f4c13c500f2049c7d68f27a706"
+        "bytes": 3158,
+        "sha256": "c2c8983794a457ae70a97e6a7fe735ac3cb46dd2e381878d79252f1c3beaa65d"
       }
     },
     {
@@ -13073,10 +13048,10 @@
         "model": {
           "url": "models/creatures/woc_bastion_vael.glb",
           "path": "public/models/creatures/woc_bastion_vael.glb",
-          "bytes": 2123388,
-          "sha256": "edb2f8584dcf4bd742aa39d987cd63ed3e018db674d87f0f664fffbf56527a44"
+          "bytes": 581832,
+          "sha256": "0f9c84abe5cbe3ebc34e8b248d6ff4f61f266c92a94fdc4a632c99f1bdb1f979"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 7.357,
         "yaw": null,
         "hover": -0.677,
@@ -13091,11 +13066,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "4b3e133e59058f673145161fb194afefe2b4f17199ea896203622cdf5fddecc1",
+      "sourceFingerprint": "010db41e0d1a78b28730a6383363f3f5c6ccb6cd389ede398c770ee9b3ff0d8c",
       "output": {
         "path": "public/ui/mobs/vael_the_mistcaller.webp",
-        "bytes": 2028,
-        "sha256": "de69483e5aad02160613d7f2b7612ed21094b4f4c13c500f2049c7d68f27a706"
+        "bytes": 3158,
+        "sha256": "c2c8983794a457ae70a97e6a7fe735ac3cb46dd2e381878d79252f1c3beaa65d"
       }
     },
     {
@@ -13188,10 +13163,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -13206,11 +13181,11 @@
         "resolved": "#c9c2b5",
         "strength": 0.25
       },
-      "sourceFingerprint": "c57cc240c4c73c3e7a14f2d4999e6b18715d2c072e6c057b715955351dda84ec",
+      "sourceFingerprint": "426e5fd7220d1975c3c94b4c8d44e2115128f1a037a387abf87a476b4b74248e",
       "output": {
         "path": "public/ui/mobs/varkas_boneguard.webp",
-        "bytes": 2180,
-        "sha256": "89e4cbc7cc426d820cb125def1231f66ef8ef25aedeb3108ae55df3720532537"
+        "bytes": 2134,
+        "sha256": "1c303a3bfa5c667d716f9d08eb21ef13ab0d489dc9a4dbfc1cb1ef70374894ee"
       }
     },
     {
@@ -13602,7 +13577,7 @@
           "url": "models/creatures/wildlife_wolf.glb",
           "path": "public/models/creatures/wildlife_wolf.glb",
           "bytes": 522236,
-          "sha256": "20fcfbe89e19bfa4b4640cf2cea7b66017abdc47355ac70b5e64171e883fc8c0"
+          "sha256": "83b94a1cf597f2ef745552dad2b3ec65e0d9cde9a4b470e8590d84a25ab7420e"
         },
         "idle": "Idle",
         "height": 1.47,
@@ -13619,7 +13594,7 @@
         "resolved": "#2f2a44",
         "strength": 0.35
       },
-      "sourceFingerprint": "bbe2761f62608f59629e8e2ad32865758a8402f509908017bc1eb663730ae210",
+      "sourceFingerprint": "70cf22bd59e58a2c4696dcdd9cefc1c263ab69e9fbb73020e545fa7308b7e671",
       "output": {
         "path": "public/ui/mobs/void_stalker.webp",
         "bytes": 2326,
@@ -13845,7 +13820,7 @@
           "url": "models/creatures/wildlife_spider.glb",
           "path": "public/models/creatures/wildlife_spider.glb",
           "bytes": 648284,
-          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
+          "sha256": "ed0e68af14367fc2d100c7ae91a820aef45888d6ce00e58c5e6aee0b99bd7e49"
         },
         "idle": "Idle",
         "height": 1.3,
@@ -13862,7 +13837,7 @@
         "resolved": "#4a235a",
         "strength": 0.3
       },
-      "sourceFingerprint": "dff39e71992d5fc1a1ef62dcfa881ac3d849e5e3dae58d51732fe99a49f37c1d",
+      "sourceFingerprint": "4d2e72ed688aa3c75cfb818aef923072d9de82a4823a16eaa5e7a157a8b67055",
       "output": {
         "path": "public/ui/mobs/webwood_spider.webp",
         "bytes": 1842,
@@ -13879,7 +13854,7 @@
           "url": "models/creatures/wildlife_spider.glb",
           "path": "public/models/creatures/wildlife_spider.glb",
           "bytes": 648284,
-          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
+          "sha256": "ed0e68af14367fc2d100c7ae91a820aef45888d6ce00e58c5e6aee0b99bd7e49"
         },
         "idle": "Idle",
         "height": 1.4,
@@ -13896,7 +13871,7 @@
         "resolved": "#3a2740",
         "strength": 0.35
       },
-      "sourceFingerprint": "013f18c93a2f7a91516b7740c0c06a55ebf2917b58a19b3bd6713b91f9d52aaa",
+      "sourceFingerprint": "4b6a90c21d21080ce696dd42014a0ba8021e17c9b1fb040f46e01462ec7b7ab6",
       "output": {
         "path": "public/ui/mobs/widow_hatchling.webp",
         "bytes": 1822,
@@ -13913,7 +13888,7 @@
           "url": "models/creatures/wildlife_spider.glb",
           "path": "public/models/creatures/wildlife_spider.glb",
           "bytes": 648284,
-          "sha256": "2e92a0e414af59d5ca8940db5c3972f5f44d64b2ae48fb7dc3645c089cce914f"
+          "sha256": "ed0e68af14367fc2d100c7ae91a820aef45888d6ce00e58c5e6aee0b99bd7e49"
         },
         "idle": "Idle",
         "height": 1.3,
@@ -13930,7 +13905,7 @@
         "resolved": "#3a3440",
         "strength": 0.3
       },
-      "sourceFingerprint": "7d665f997b7f336f4b53f6c0ce4a232a905c08e7b5ef5fe705279f7f2e07f80a",
+      "sourceFingerprint": "86208dd5d4350de316ed20670b88696a0587ceca3462ca53e1764a817577a7d3",
       "output": {
         "path": "public/ui/mobs/widowsilk_spinner.webp",
         "bytes": 1798,
@@ -14333,10 +14308,10 @@
         "model": {
           "url": "models/creatures/woc_skeleton_minion.glb",
           "path": "public/models/creatures/woc_skeleton_minion.glb",
-          "bytes": 2032664,
-          "sha256": "b8fe897b90eac51834b920eaa8ec37c64c98683111f4a2f800df88dd9e83f9c8"
+          "bytes": 530568,
+          "sha256": "f9811eb48c0c6cf5e9a04871f06375cb44a823c055c404923c8647592adf36e8"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.5,
         "yaw": null,
         "hover": null,
@@ -14351,11 +14326,11 @@
         "resolved": "#6f7f8f",
         "strength": 0.25
       },
-      "sourceFingerprint": "c21b6101397aee5696b4ec2a1b83540133368dc73da628c042c00a8aaf6743e5",
+      "sourceFingerprint": "9bac046593a61ff9162904efd192b51f233697baad34db96475239b8bcdb0e22",
       "output": {
         "path": "public/ui/mobs/wraithbinder_maldrec.webp",
-        "bytes": 2160,
-        "sha256": "d70d147b4dc30532bf3538ed595a1bc8b86ebb5ef8256b294fd71d410b23b7c2"
+        "bytes": 2080,
+        "sha256": "e8625b0681de10611ac1b8e85fa60f2bb24daaf3d394eaebce3a72827a50641d"
       }
     },
     {

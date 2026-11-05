@@ -34,17 +34,6 @@ describe('the boss bodies ride the right bones', () => {
     });
   }
 
-  it('the Shipwreck Captain: no forearm pulls on his waist below the armpits', async () => {
-    // His armpits stand at 1.33 of his 1.9.
-    const vs = await restSkinnedVertices(`${CREATURES}/woc_bastion_captain.glb`);
-    expect(Math.max(...vs.map((v) => v.pos[1]))).toBeCloseTo(1.9, 1);
-    const mixed = vs.filter(
-      (v) =>
-        v.pos[1] < 1.33 && share(v.weights, isForearm) >= 0.1 && share(v.weights, isTorso) >= 0.1,
-    );
-    expect(mixed.length).toBe(0);
-  });
-
   it('the Great Jaguar: nothing at its soles rides its body', async () => {
     // At its in-game size (6.2 yd to the headdress): the soles' band, 0.3 yd up.
     const vs = await restSkinnedVertices(`${CREATURES}/woc_basin_jaguar.glb`);

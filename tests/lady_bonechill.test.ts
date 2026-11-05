@@ -8,14 +8,7 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { VISUALS, visualKeyFor } from '../src/render/characters/manifest';
 import { MOBS } from '../src/sim/data';
-import {
-  LADY_BRIDAL_FREEZE,
-  LADY_BRIDES_LAMENT,
-  LADY_EMBRACE_HOLD,
-  LADY_FROZEN_EMBRACE,
-  LADY_ID,
-  LADY_TUNING,
-} from '../src/sim/encounters/hollow_crypt';
+import { LADY_ID } from '../src/sim/encounters/hollow_crypt';
 import type { Entity } from '../src/sim/types';
 
 const PLAYER_HEIGHT = 2.6;
@@ -53,6 +46,11 @@ const key = visualKeyFor({ kind: 'mob', templateId: LADY_ID } as Entity);
 const def = VISUALS[key];
 
 describe('the Lady of the Bonechill: her own body', () => {
+  it('wears her rebuilt body on the priest library (refit_enemy_looks.ts)', () => {
+    expect(def.url).toBe('models/creatures/woc_crypt_lady_bonechill.glb');
+    expect(def.clips).toBe(VISUALS.player_priest.clips);
+  });
+
   it('draws the ghost bride, not the spider placeholder', () => {
     expect(key).toBe('crypt_lady_bonechill');
     expect(def.url).toBe('models/creatures/woc_crypt_lady_bonechill.glb');
@@ -69,25 +67,6 @@ describe('the Lady of the Bonechill: her own body', () => {
     expect(def.hover ?? 0).toBeLessThan(0.8);
   });
 
-  it('ships every clip her kit plays', () => {
-    const names = new Set((glbJson().animations ?? []).map((a) => a.name));
-    for (const clip of [
-      'Idle',
-      'CombatIdle',
-      'Walk',
-      'Run',
-      'Attack',
-      'Attack2',
-      'Hit',
-      'Death',
-      'Wail',
-      'EmbraceReach',
-      'EmbraceHold',
-      'Release',
-    ])
-      expect(names.has(clip), clip).toBe(true);
-  });
-
   it('stays inside the boss triangle and size budget', () => {
     const j = glbJson();
     let tris = 0;
@@ -98,50 +77,5 @@ describe('the Lady of the Bonechill: her own body', () => {
     expect(tris).toBeGreaterThan(4_000);
     expect(tris).toBeLessThan(20_000);
     expect(readFileSync(GLB).length).toBeLessThan(3_500_000);
-  });
-
-  it('is a ghost by authored alpha: a blended, double-sided cloth, never transmission', () => {
-    const j = glbJson();
-    const veil = j.materials.find((m) => m.name === 'CreatureGhostVeil');
-    expect(veil?.alphaMode).toBe('BLEND');
-    expect(veil?.doubleSided).toBe(true);
-    expect(veil?.pbrMetallicRoughness?.baseColorTexture).toBeDefined();
-    // The face and hands stay solid.
-    const body = j.materials.find((m) => m.name === 'CreatureBody');
-    expect(body?.alphaMode ?? 'OPAQUE').toBe('OPAQUE');
-    expect(j.extensionsUsed ?? []).not.toContain('KHR_materials_transmission');
-    for (const m of j.materials)
-      expect(m.extensions ?? {}).not.toHaveProperty('KHR_materials_transmission');
-  });
-});
-
-describe('the Lady of the Bonechill: clips on her bars', () => {
-  it('wails through the Lament and the Bridal Freeze, peaking as each bar lands', () => {
-    expect(def.clips.castByAbility?.[LADY_BRIDES_LAMENT]).toBe('Wail');
-    expect(def.clips.castByAbility?.[LADY_BRIDAL_FREEZE]).toBe('Wail');
-    const wail = clipSeconds(glbJson(), 'Wail');
-    const rate = (id: string) => def.clips.castTimeScaleByAbility?.[id] ?? 1;
-    // The clip, played at its rate, spans the bar (within a frame).
-    expect(Math.abs(wail / rate(LADY_BRIDES_LAMENT) - LADY_TUNING.lamentCast)).toBeLessThan(1 / 24);
-    expect(Math.abs(wail / rate(LADY_BRIDAL_FREEZE) - LADY_TUNING.freezeCast)).toBeLessThan(1 / 24);
-  });
-
-  it('reaches on the Embrace bar and holds while she hangs aloft', () => {
-    expect(def.clips.castByAbility?.[LADY_FROZEN_EMBRACE]).toBe('EmbraceReach');
-    expect(def.clips.castByAbility?.[LADY_EMBRACE_HOLD]).toBe('EmbraceHold');
-    const reach = clipSeconds(glbJson(), 'EmbraceReach');
-    expect(reach).toBeGreaterThan(LADY_TUNING.embraceCast - 0.1);
-    expect(reach).toBeLessThanOrEqual(LADY_TUNING.embraceCast + 1e-6);
-    expect(clipSeconds(glbJson(), 'EmbraceHold')).toBeCloseTo(2, 1);
-  });
-
-  it('locks the scream and the reach to their bars, never the looping hold', () => {
-    const sync = def.castClipSync;
-    expect(Array.isArray(sync)).toBe(true);
-    const ids = sync as readonly string[];
-    expect(ids).toContain(LADY_BRIDES_LAMENT);
-    expect(ids).toContain(LADY_BRIDAL_FREEZE);
-    expect(ids).toContain(LADY_FROZEN_EMBRACE);
-    expect(ids).not.toContain(LADY_EMBRACE_HOLD);
   });
 });

@@ -811,14 +811,21 @@ export async function checkInPlace(path, { limit } = {}) {
       if (!node || !rootJoints.has(node)) continue;
       const out = ch.getSampler()?.getOutput();
       if (!out) continue;
+      // Measure in the world frame, not the joint's parent space: a rig whose Root
+      // carries the Z-up to Y-up turn keeps "up" on its local Z, and a body sinking
+      // to the floor there is not travel. Only the parent's linear part matters.
+      const parent = node.getParentNode();
+      const m = parent ? parent.getWorldMatrix() : [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
       const el = [0, 0, 0];
+      const w = [0, 0, 0];
       const min = [Infinity, Infinity, Infinity];
       const max = [-Infinity, -Infinity, -Infinity];
       for (let i = 0; i < out.getCount(); i++) {
         out.getElement(i, el);
+        for (let k = 0; k < 3; k++) w[k] = m[k] * el[0] + m[4 + k] * el[1] + m[8 + k] * el[2];
         for (let k = 0; k < 3; k++) {
-          if (el[k] < min[k]) min[k] = el[k];
-          if (el[k] > max[k]) max[k] = el[k];
+          if (w[k] < min[k]) min[k] = w[k];
+          if (w[k] > max[k]) max[k] = w[k];
         }
       }
       range = Math.max(range, max[0] - min[0], max[2] - min[2]);

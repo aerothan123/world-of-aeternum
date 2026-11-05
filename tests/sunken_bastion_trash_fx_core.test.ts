@@ -21,7 +21,6 @@ import * as fxCore from '../src/render/sunken_bastion/bastion_fx_core';
 import { bastionTelegraphSpecs } from '../src/render/sunken_bastion/bastion_fx_core';
 import {
   BASTION_FETTERS_KNEEL_GESTURE,
-  BASTION_PACK_HOWL_GESTURE,
   CHAIN_MAX_LINKS,
   COLUMN_BURST,
   COLUMN_COLLAPSE,
@@ -123,19 +122,6 @@ describe('the boathook', () => {
     // The whole lane plus the reach to the fist fits the pool.
     expect(chainLinkCount(hookSpec().length + 3)).toBeLessThanOrEqual(CHAIN_MAX_LINKS);
   });
-
-  it('plays the thrust on the hook bar, bar-locked, the lunge landing before it ends', () => {
-    const clips = def('drowned_watchman').clips;
-    expect(clips.castByAbility?.[BASTION_BOATHOOK]).toBe('Attack');
-    const rate = clips.castTimeScaleByAbility?.[BASTION_BOATHOOK] ?? 1;
-    const bar = MOBS.drowned_watchman.trashKit?.hook?.castTime ?? 0;
-    // The thrust's contact (0.5 s clip time) lands inside the bar, and the
-    // held reach (to 0.78 s) still holds as the bar ends and the hook flies.
-    expect(0.5 / rate).toBeLessThan(bar);
-    expect(0.78 / rate).toBeGreaterThan(bar);
-    expect(clips.castPlayOut).toContain('Attack');
-    expect(def('drowned_watchman').castClipSync).toEqual([BASTION_BOATHOOK]);
-  });
 });
 
 describe('the Halberd Wall link', () => {
@@ -225,8 +211,8 @@ describe('Carrion Glut', () => {
 describe('Pack Frenzy', () => {
   it('howls on the gesture and burns until the frenzy gutters', () => {
     const clips = def('bastion_warhound').clips;
-    expect(clips.attackByAbility?.[BASTION_PACK_HOWL_GESTURE]).toBe('Howl');
-    expect(clips.flourish).toBe('Howl');
+    // the rebuilt hound plays the wildlife set: it howls on its Cast
+    expect(clips.cast).toBe('Cast');
     expect(PACK_FRENZY_AURA).toBe('pack_frenzy');
     expect(frenzyGlow(8, 8)).toBe(1);
     expect(frenzyGlow(0.75, 8)).toBeCloseTo(0.5);
