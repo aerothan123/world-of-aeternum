@@ -1030,17 +1030,21 @@ export const MUSIC_PLAN = [
   },
 ];
 
-/** Section tuples to the API's composition plan shape. */
+/** Section tuples to the API's chunked composition plan (the music_v2 shape): one
+ *  chunk per section, its text the bracketed section name then its lyric lines
+ *  (an instrumental section carries an inline direction instead), and the song's
+ *  global styles repeated on every chunk ahead of the section's own. */
 export function toCompositionPlan(plan) {
   return {
-    positive_global_styles: plan.positive_global_styles,
-    negative_global_styles: plan.negative_global_styles,
-    sections: plan.sections.map(([section_name, duration_ms, local, lines]) => ({
-      section_name,
-      positive_local_styles: local,
-      negative_local_styles: [],
+    chunks: plan.sections.map(([section_name, duration_ms, local, lines]) => ({
+      text:
+        lines.length > 0
+          ? `[${section_name}]\n${lines.join('\n')}`
+          : `[${section_name}]\n{instrumental}`,
       duration_ms,
-      lines,
+      positive_styles: [...plan.positive_global_styles, ...local].slice(0, 50),
+      negative_styles: plan.negative_global_styles.slice(0, 50),
+      context_adherence: 'high',
     })),
   };
 }
