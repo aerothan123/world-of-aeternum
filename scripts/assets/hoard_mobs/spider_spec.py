@@ -6,7 +6,13 @@ the body's radius of the leg hub, and each connected piece that is long and thin
 a leg. Its bones run hub-side end, highest point (the knee), tip.
 
   blender --background --python spider_spec.py -- <raw.glb> <out.json> --name Name --key key
-      [--rotate-z deg] [--hub x,y] [--body-radius r]
+      [--rotate-z deg] [--hub x,y] [--body-radius r] [--legs n]
+
+The right body radius depends on the model: too small and the legs stay joined
+through the body ring into one piece, too large and they are cut off. With
+--legs n the script searches hubs along the body axis and radii for the cut that
+yields n legs split evenly between the sides (the given --hub/--body-radius are
+the fallback when no cut does).
 """
 import json
 import math
@@ -41,40 +47,70 @@ bm.from_mesh(obj.data)
 bmesh.ops.remove_doubles(bm, verts=bm.verts, dist=1e-4)
 bm.verts.ensure_lookup_table()
 floor = min(v.co.z for v in bm.verts)
-flat = lambda co: Vector((co.x - HUB.x, co.y - HUB.y, 0))
-outside = {v.index for v in bm.verts if flat(v.co).length > BODY_R}
-seen, pieces = set(), []
-for start in outside:
-    if start in seen:
-        continue
-    stack, piece = [start], []
-    seen.add(start)
-    while stack:
-        cur = stack.pop()
-        piece.append(bm.verts[cur].co.copy())
-        for edge in bm.verts[cur].link_edges:
-            other = edge.other_vert(bm.verts[cur]).index
-            if other in outside and other not in seen:
-                seen.add(other)
-                stack.append(other)
-    pieces.append(piece)
+LEG_COUNT = int(opt('--legs', 0))
 
-legs = []
-for piece in pieces:
-    near = min(piece, key=lambda co: flat(co).length)
-    tip = max(piece, key=lambda co: flat(co).length)
-    reach = flat(tip).length - flat(near).length
-    centre = sum(piece, Vector()) / len(piece)
-    # The abdomen and the head also leave the hub: they sit on the midline and are fat.
-    if reach < 0.12 or len(piece) < 25 or (abs(centre.y - HUB.y) < 0.05 and abs(tip.y - HUB.y) < 0.08):
-        continue
-    inner = sorted(piece, key=lambda co: flat(co).length)[: max(3, len(piece) // 10)]
-    attach = sum(inner, Vector()) / len(inner)
-    knee = max(piece, key=lambda co: co.z)
-    along = (flat(knee).length - flat(attach).length) / max(1e-6, reach)
-    if not 0.2 < along < 0.8:
-        knee = (attach + tip) / 2 + Vector((0, 0, 0.04))
-    legs.append({'attach': attach, 'knee': knee, 'tip': Vector((tip.x, tip.y, floor)), 'count': len(piece)})
+
+def find_legs(hub, body_r):
+    """The legs found by cutting the welded mesh at body_r around hub, plus the cut."""
+    flat = lambda co: Vector((co.x - hub.x, co.y - hub.y, 0))
+    outside = {v.index for v in bm.verts if flat(v.co).length > body_r}
+    seen, pieces = set(), []
+    for start in outside:
+        if start in seen:
+            continue
+        stack, piece = [start], []
+        seen.add(start)
+        while stack:
+            cur = stack.pop()
+            piece.append(bm.verts[cur].co.copy())
+            for edge in bm.verts[cur].link_edges:
+                other = edge.other_vert(bm.verts[cur]).index
+                if other in outside and other not in seen:
+                    seen.add(other)
+                    stack.append(other)
+        pieces.append(piece)
+    found = []
+    for piece in pieces:
+        near = min(piece, key=lambda co: flat(co).length)
+        tip = max(piece, key=lambda co: flat(co).length)
+        reach = flat(tip).length - flat(near).length
+        centre = sum(piece, Vector()) / len(piece)
+        # The abdomen and the head also leave the hub: they sit on the midline and are fat.
+        if reach < 0.12 or len(piece) < 25 or (abs(centre.y - hub.y) < 0.05 and abs(tip.y - hub.y) < 0.08):
+            continue
+        inner = sorted(piece, key=lambda co: flat(co).length)[: max(3, len(piece) // 10)]
+        attach = sum(inner, Vector()) / len(inner)
+        knee = max(piece, key=lambda co: co.z)
+        along = (flat(knee).length - flat(attach).length) / max(1e-6, reach)
+        if not 0.2 < along < 0.8:
+            knee = (attach + tip) / 2 + Vector((0, 0, 0.04))
+        found.append({'attach': attach, 'knee': knee, 'tip': Vector((tip.x, tip.y, floor)), 'count': len(piece)})
+    return found, outside
+
+
+def balance(found, hub):
+    left = sum(1 for leg in found if leg['tip'].y > hub.y)
+    return abs(left - (len(found) - left))
+
+
+legs, outside = find_legs(HUB, BODY_R)
+if LEG_COUNT and (len(legs) != LEG_COUNT or balance(legs, HUB)):
+    xs = [v.co.x for v in bm.verts]
+    span = max(xs) - min(xs)
+    best = None
+    for i in range(-6, 7):
+        hub = Vector((HUB.x + span * 0.03 * i, HUB.y, 0))
+        for j in range(4, 26):
+            body_r = span * 0.02 * j
+            found, cut = find_legs(hub, body_r)
+            # Fewest legs missed, then the most even split, then the smallest cut
+            # (the longest legs).
+            score = (abs(len(found) - LEG_COUNT), balance(found, hub), body_r)
+            if best is None or score < best[0]:
+                best = (score, hub, body_r, found, cut)
+    _, HUB, BODY_R, legs, outside = best
+    print('SEARCH hub', round(HUB.x, 3), 'radius', round(BODY_R, 3), 'legs', len(legs))
+flat = lambda co: Vector((co.x - HUB.x, co.y - HUB.y, 0))
 print('LEGS', len(legs), [leg['count'] for leg in legs])
 
 body = [v.co for v in bm.verts if v.index not in outside or abs(v.co.y - HUB.y) < 0.06]
