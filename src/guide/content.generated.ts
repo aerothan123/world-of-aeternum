@@ -2618,6 +2618,156 @@ export const GUIDE_ZONES: GuideZoneInfo[] = [
       "troll",
       "undead"
     ]
+  },
+  {
+    "id": "saltmeads",
+    "name": "The Saltmeads",
+    "min": 11,
+    "max": 13,
+    "biome": "gale",
+    "hub": "Panwick",
+    "pois": [
+      "Panwick",
+      "The Brine Pans",
+      "Gannet Stack",
+      "The Wrack Shallows",
+      "The Saltmeads Gate"
+    ],
+    "welcome": "Grey water, white pans and the smell of brine. Panwick boils salt for half the south, but lately the tide brings in more than weed, and the gannets will not land on the stack.",
+    "families": [
+      "beast",
+      "burrower",
+      "undead"
+    ]
+  },
+  {
+    "id": "wychwold",
+    "name": "The Wychwold",
+    "min": 12,
+    "max": 14,
+    "biome": "vale",
+    "hub": "Elmhallow",
+    "pois": [
+      "Elmhallow",
+      "The Knotted Elm",
+      "Charcoal Hollow",
+      "The Sunk Lane",
+      "The Salt Way"
+    ],
+    "welcome": "The Wychwold was old before the Hearthbinding. The charcoal burners still work its hollows, the Bracken Circle still keeps its oldest elm, and something under the roots has begun to stir.",
+    "families": [
+      "beast",
+      "spider",
+      "undead"
+    ]
+  },
+  {
+    "id": "tinmarch",
+    "name": "The Tinmarch",
+    "min": 13,
+    "max": 15,
+    "biome": "peaks",
+    "hub": "Wheal Patience",
+    "pois": [
+      "Wheal Patience",
+      "The Stannary Stones",
+      "Blackadit",
+      "Tinners' Ford",
+      "The Chalk Pass"
+    ],
+    "welcome": "Tin, spoil and wind. The Gilt Measure keeps Wheal Patience working by lamplight, and the miners swear the old Blackadit was sealed before any of them were born. Someone has opened it.",
+    "families": [
+      "beast",
+      "burrower",
+      "humanoid",
+      "elemental"
+    ]
+  },
+  {
+    "id": "rookcliffs",
+    "name": "The Rookcliffs",
+    "min": 14,
+    "max": 16,
+    "biome": "gale",
+    "hub": "Kestrel Point",
+    "pois": [
+      "Kestrel Point",
+      "The Sea Stacks",
+      "Rook Hollow",
+      "The Hushmist Light",
+      "The Rook Ford"
+    ],
+    "welcome": "The world ends here, or seems to. West of the cliffs the grey mist sits on the sea and swallows every sound, and the Lanternwardens at Kestrel Point keep a light burning at its edge.",
+    "families": [
+      "beast",
+      "burrower",
+      "undead",
+      "elemental"
+    ]
+  },
+  {
+    "id": "sedgemarch",
+    "name": "The Sedgemarch",
+    "min": 16,
+    "max": 18,
+    "biome": "marsh",
+    "hub": "Withyholt",
+    "pois": [
+      "Withyholt",
+      "The Withy Beds",
+      "Heron Mere",
+      "The Drowned Causey",
+      "The Sedge Neck"
+    ],
+    "welcome": "Reed and sedge as far as the mist. Withyholt weaves the baskets half the west carries, and its people know which paths the fen keeps and which it gives back.",
+    "families": [
+      "beast",
+      "mudfin",
+      "troll",
+      "undead"
+    ]
+  },
+  {
+    "id": "harrowfells",
+    "name": "The Harrowfells",
+    "min": 17,
+    "max": 19,
+    "biome": "peaks",
+    "hub": "Fellgate",
+    "pois": [
+      "Fellgate",
+      "The Cairn Field",
+      "Harrow Tarn",
+      "The Iron Ring",
+      "The Fell Neck"
+    ],
+    "welcome": "A war was ended on these fells long ago, and the cairns were raised to keep it ended. Fellgate stands watch over the field, and every night the watch counts the cairns again.",
+    "families": [
+      "beast",
+      "humanoid",
+      "ogre",
+      "undead"
+    ]
+  },
+  {
+    "id": "wardmere",
+    "name": "The Wardmere",
+    "min": 18,
+    "max": 20,
+    "biome": "fen",
+    "hub": "Lanternfold",
+    "pois": [
+      "Lanternfold",
+      "The Ward Mere",
+      "The Last Beacon",
+      "The Westering Pier",
+      "The Ward Neck"
+    ],
+    "welcome": "The last shore the Lanternwardens hold. Past the Ward Mere the mist comes in like a tide, and Lanternfold keeps its lamps lit all day so that no one walks into it by mistake.",
+    "families": [
+      "elemental",
+      "reptile"
+    ]
   }
 ];
 
