@@ -30,6 +30,7 @@ import { routes as battlegroundRoutes } from '../battleground';
 import { routes as cardRoutes } from '../card_routes';
 import { routes as characterRoutes } from '../characters';
 import { routes as claudiumRoutes } from '../claudium';
+import { routes as clientAnalyticsRoutes } from '../client_analytics';
 import { routes as deedsRoutes } from '../deeds';
 import { routes as desktopLoginRoutes } from '../desktop_login_routes';
 import { routes as discordRoutes } from '../discord';
@@ -144,6 +145,7 @@ export const apiRoutes: readonly RouteDef[] = [
   ...adSpendRoutes,
   ...guildRosterRoutes,
   ...worldQuestLeaderboardRoutes,
+  ...clientAnalyticsRoutes,
   // new:endpoint spreads appear above this line (npm run new:endpoint)
 ];
 

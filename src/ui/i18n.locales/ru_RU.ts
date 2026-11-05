@@ -26268,4 +26268,13 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'seasonal.thatchgrin.sleepYell': 'Солнце встало. Обратно на шест, снова сторожить.',
   'seasonal.pumpkins.progress': "{label}: {current}/{total}",
 
+  'analyticsPrompt.title': 'Помогите улучшить Wyndlewood',
+  'analyticsPrompt.body': 'Разрешить Wyndlewood собирать данные об использовании и производительности? Если вы согласитесь, игра будет отправлять на наши собственные серверы грубые счётчики (число сеансов, время игры с шагом в пять минут, примерную частоту кадров) и периодические отчёты о производительности вашего устройства и времени кадров.',
+  'analyticsPrompt.noThirdParty': 'Ничего не передаётся рекламным или аналитическим компаниям, и ничего не отправляется, пока вы не выберете «Делиться».',
+  'analyticsPrompt.privacyLink': 'Прочитать политику конфиденциальности',
+  'analyticsPrompt.changeLater': 'Это можно изменить в любой момент в настройках.',
+  'analyticsPrompt.share': 'Делиться',
+  'analyticsPrompt.decline': 'Не делиться',
+  'hudChrome.options.shareAnalytics': 'Делиться данными об использовании и производительности',
+  'hudChrome.options.shareAnalyticsNote': 'Выключено, пока вы не включите. Грубые игровые счётчики и отчёты о производительности отправляются только Wyndlewood и никогда другим компаниям.',
 };

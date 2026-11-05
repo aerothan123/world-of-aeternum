@@ -158,28 +158,21 @@ function toCanonicalExternalUrl(
 // the same behavior as the web build (chosen posture), so the CSP allow-lists exactly
 // these and nothing more. Grouped by the directive each feeds.
 const CSP_ORIGINS = {
-  // <script src> that index.html loads: Google Tag Manager (gtag) and the Meta Pixel
-  // loader. Cloudflare Turnstile's api.js is added separately (it also needs frame-src).
-  script: ['https://www.googletagmanager.com', 'https://connect.facebook.net'],
-  // fetch/beacon endpoints those tags talk to.
-  connect: [
-    'https://www.google-analytics.com',
-    'https://www.googletagmanager.com',
-    'https://connect.facebook.net',
-    'https://www.facebook.com',
-  ],
-  // Image origins the web client loads: tracking-pixel beacons and Discord
-  // linked profile pictures (nameplates, HUD widget,
-  // target frame, inspect). Discord PFPs use DISCORD_CDN_BASE in
-  // server/discord_oauth.ts (`cdn.discordapp.com`); without that origin here the
-  // desktop CSP blocks every avatar while the browser build (no CSP) still
-  // paints them, which is exactly the desktop-only regression we hit on
-  // release/v0.34.0.
-  img: [
-    'https://www.google-analytics.com',
-    'https://www.facebook.com',
-    'https://cdn.discordapp.com',
-  ],
+  // <script src> origins index.html loads. None: the upstream Google Tag Manager and
+  // Meta Pixel loaders were removed (Wyndlewood ships no third-party analytics; the
+  // opt-in first-party counters in src/game/first_party_analytics.ts post to the
+  // game's own API origin, which connect-src already allows). Cloudflare Turnstile's
+  // api.js is added separately (it also needs frame-src).
+  script: [],
+  // fetch/beacon endpoints beyond the API origin. None (see script above).
+  connect: [],
+  // Image origins the web client loads: Discord linked profile pictures
+  // (nameplates, HUD widget, target frame, inspect). Discord PFPs use
+  // DISCORD_CDN_BASE in server/discord_oauth.ts (`cdn.discordapp.com`); without
+  // that origin here the desktop CSP blocks every avatar while the browser build
+  // (no CSP) still paints them, which is exactly the desktop-only regression we
+  // hit on release/v0.34.0.
+  img: ['https://cdn.discordapp.com'],
   // Cloudflare Turnstile: api.js (script) plus the challenge iframe (frame).
   turnstile: 'https://challenges.cloudflare.com',
   // Stripe Embedded Checkout for the Claudium store (src/net/stripe_checkout.ts loads

@@ -24501,4 +24501,13 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'seasonal.thatchgrin.wakeYell': '夜幕降臨南瓜田！誰敢踏進我的田地？',
   'seasonal.thatchgrin.sleepYell': '太陽出來了。回到木樁上，繼續看守。',
   'seasonal.pumpkins.progress': '{label}：{current}/{total}',
+  'analyticsPrompt.title': '協助改進 Wyndlewood',
+  'analyticsPrompt.body': 'Wyndlewood 可以收集使用與效能資料嗎？若你同意，遊戲會向我們自己的伺服器傳送粗略計數（工作階段次數、以五分鐘為單位的遊玩時間、大致影格率）以及關於你的裝置與影格時間的定期效能報告。',
+  'analyticsPrompt.noThirdParty': '不會向任何廣告或分析公司傳送資料；除非你選擇分享，否則不會傳送任何內容。',
+  'analyticsPrompt.privacyLink': '閱讀隱私權政策',
+  'analyticsPrompt.changeLater': '你可以隨時在選項中變更此設定。',
+  'analyticsPrompt.share': '分享',
+  'analyticsPrompt.decline': '不分享',
+  'hudChrome.options.shareAnalytics': '分享使用與效能資料',
+  'hudChrome.options.shareAnalyticsNote': '預設關閉，需要你主動開啟。只會向 Wyndlewood 傳送粗略的遊玩計數與效能報告，絕不傳送給其他公司。',
 };

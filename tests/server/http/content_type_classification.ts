@@ -141,6 +141,7 @@ export const API_CONTENT_TYPE: Readonly<Record<string, ContentTypeClass>> = {
   '/api/guilds/roster': PROBLEM_JSON,
   '/api/reliquary/rarity': PROBLEM_JSON,
   '/api/deeds/broadcasts': PROBLEM_JSON,
+  '/api/telemetry': PROBLEM_JSON,
   '/api/discord/queue-pings': PROBLEM_JSON,
   '/api/steam/link': PROBLEM_JSON,
   '/api/steam/status': PROBLEM_JSON,

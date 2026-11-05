@@ -277,6 +277,10 @@ import { createAccessLogSink } from './http/access_log';
 import { setAttackSignalSink } from './http/attack_signals';
 import { registerBusinessMetrics } from './http/business_metrics';
 import { handleClientError } from './http/client_error';
+import {
+  registerClientAnalyticsMetrics,
+  setClientAnalyticsMetricsSink,
+} from './http/client_analytics_metrics';
 import { registerClientPerfMetrics, setClientPerfMetricsSink } from './http/client_perf_metrics';
 import { type Config, DEFAULT_DISPATCH, type DispatchMode, loadConfig } from './http/config';
 import { registerDiscordBotMetrics } from './http/discord_bot_metrics';
@@ -3529,6 +3533,8 @@ export async function startServer(): Promise<http.Server> {
   // The client-perf beacon series (server/http/client_perf_metrics.ts): the
   // perf-report ingest emits through this slot after each stored row.
   setClientPerfMetricsSink(registerClientPerfMetrics(httpMetrics.registry));
+  // The opt-in first-party analytics counters (server/client_analytics.ts).
+  setClientAnalyticsMetricsSink(registerClientAnalyticsMetrics(httpMetrics.registry));
   registerParseMetrics(httpMetrics.registry, game.parseCapture.counters);
   // Hand the same live source to /livez, so a wedged loop answers 503 from outside
   // the process. Registered HERE rather than read from the route arm: the /livez arm

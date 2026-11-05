@@ -25818,4 +25818,13 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'seasonal.thatchgrin.wakeYell': '夜が畑に降りたぞ！ わしの畑を歩くのは誰だ？',
   'seasonal.thatchgrin.sleepYell': '日が昇った。柱に戻って、また見張りだ。',
   'seasonal.pumpkins.progress': '{label}：{current}/{total}',
+  'analyticsPrompt.title': 'Wyndlewood の改善にご協力ください',
+  'analyticsPrompt.body': 'Wyndlewood が利用状況とパフォーマンスのデータを収集してもよろしいですか？同意すると、ゲームは大まかなカウント（セッション数、5分単位のプレイ時間、おおよそのフレームレート）と、お使いのデバイスとフレーム時間に関する定期的なパフォーマンスレポートを当社のサーバーに送信します。',
+  'analyticsPrompt.noThirdParty': '広告会社や分析会社には一切送信しません。「共有する」を選ばない限り、何も送信されません。',
+  'analyticsPrompt.privacyLink': 'プライバシーポリシーを読む',
+  'analyticsPrompt.changeLater': 'この設定はオプションからいつでも変更できます。',
+  'analyticsPrompt.share': '共有する',
+  'analyticsPrompt.decline': '共有しない',
+  'hudChrome.options.shareAnalytics': '利用状況とパフォーマンスのデータを共有',
+  'hudChrome.options.shareAnalyticsNote': 'オンにしない限りオフのままです。大まかなプレイのカウントとパフォーマンスレポートを Wyndlewood にのみ送信し、他社には送信しません。',
 };

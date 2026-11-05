@@ -3107,6 +3107,9 @@ export const hudChromeStrings = {
     // default (wordy, M16: the five non-Latin fills land in this same change).
     showAuraCaster: 'Show Aura Caster in Tooltips',
     highContrastBackground: 'High-Contrast Background',
+    shareAnalytics: 'Share Usage and Performance Data',
+    shareAnalyticsNote:
+      'Off unless you turn it on. Sends coarse play counters and performance reports to Wyndlewood only, never to other companies.',
     // Interface panel toggle: also engage auto-attack when using an offensive
     // ability, so white swings start without a separate Attack press (on by default).
     startAttackOnAbility: 'Auto-Attack on Ability Use',

@@ -25823,4 +25823,13 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'seasonal.thatchgrin.wakeYell': '밭에 밤이 내린다! 누가 내 밭을 걷느냐?',
   'seasonal.thatchgrin.sleepYell': '해가 떴군. 기둥으로 돌아가 다시 지켜봐야지.',
   'seasonal.pumpkins.progress': '{label}: {current}/{total}',
+  'analyticsPrompt.title': 'Wyndlewood 개선에 도움 주기',
+  'analyticsPrompt.body': 'Wyndlewood가 사용 및 성능 데이터를 수집해도 될까요? 동의하면 게임이 대략적인 집계(세션 수, 5분 단위의 플레이 시간, 대략적인 프레임 속도)와 기기 및 프레임 시간에 대한 주기적인 성능 보고서를 저희 서버로 보냅니다.',
+  'analyticsPrompt.noThirdParty': '광고 회사나 분석 회사에는 어떤 데이터도 보내지 않으며, 공유를 선택하지 않으면 아무것도 보내지 않습니다.',
+  'analyticsPrompt.privacyLink': '개인정보 처리방침 읽기',
+  'analyticsPrompt.changeLater': '이 설정은 옵션에서 언제든지 바꿀 수 있습니다.',
+  'analyticsPrompt.share': '공유',
+  'analyticsPrompt.decline': '공유 안 함',
+  'hudChrome.options.shareAnalytics': '사용 및 성능 데이터 공유',
+  'hudChrome.options.shareAnalyticsNote': '직접 켜지 않으면 꺼져 있습니다. 대략적인 플레이 집계와 성능 보고서를 Wyndlewood에만 보내며 다른 회사에는 보내지 않습니다.',
 };

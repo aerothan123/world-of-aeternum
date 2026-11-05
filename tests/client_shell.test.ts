@@ -124,13 +124,6 @@ const hudTs = readFileSync(new URL('../src/ui/hud.ts', import.meta.url), 'utf8')
   /\r\n/g,
   '\n',
 );
-// The Meta pixel SENDER, extracted whole out of hud.ts at the Masterwrought
-// phase 18 sweep (analytics glue belongs in src/game/, not in a coordinator).
-// The level-5 trigger stayed in the HUD, so the pin below reads both halves.
-const metaPixelTs = readFileSync(
-  new URL('../src/game/meta_pixel.ts', import.meta.url),
-  'utf8',
-).replace(/\r\n/g, '\n');
 const mobileActionRingTs = readFileSync(
   new URL('../src/ui/hud/action_bar/mobile_action_ring_controller.ts', import.meta.url),
   'utf8',
@@ -1079,51 +1072,23 @@ describe('client HTML shell', () => {
     expect(serverAliases).toContain("['/support', '/support.html']");
   });
 
-  it('loads Meta Pixel outside local development and tracks level 5', () => {
-    expect(html).toContain('https://connect.facebook.net/en_US/fbevents.js');
-    expect(html).toContain("fbq('init', '1692101265042180');");
-    expect(html).toContain("fbq('track', 'PageView');");
-    expect(html).toContain(
-      'https://www.facebook.com/tr?id=1692101265042180&ev=PageView&noscript=1',
-    );
-    expect(html).toContain(
-      "if (!['localhost', '127.0.0.1', '[::1]'].includes(location.hostname)) {",
-    );
-    // The sender moved to src/game/meta_pixel.ts, so the two arities are pinned
-    // in their new home. Both halves of the chain are read, not just the one
-    // that moved: the sender alone is inert without a caller, and the HUD's
-    // trigger alone proves nothing about what reaches the pixel.
-    expect(metaPixelTs).toContain(
-      "if (options) fbq('trackCustom', eventName, data ?? {}, options);",
-    );
-    expect(metaPixelTs).toContain("else fbq('trackCustom', eventName, data ?? {});");
-    expect(hudTs).toContain("import { trackMetaPixel } from '../game/meta_pixel';");
-    expect(hudTs).toContain('if (ev.level === 5) {');
-    // Whitespace-collapsed: this call sits deep enough that biome re-wraps it
-    // with any nearby edit, and the pin is about the CALL, not the indentation.
-    expect(hudTs.replace(/\s+/g, ' ')).toContain(
-      "trackMetaPixel( 'ReachedLevel5', { level: ev.level },",
-    );
-    expect(hudTs).toContain('characterId ? { eventID: `lvl5_$' + '{characterId}` } : undefined');
-    // main.ts used to carry a BYTE-IDENTICAL private copy of the sender, and
-    // these two lines pinned that copy's arities. The Phase 18 QA collapsed it
-    // onto src/game/meta_pixel.ts (src/main.ts is a firewall, not a home), so the
-    // arities are pinned ONCE, in metaPixelTs above, and behaviorally in
-    // tests/meta_pixel.test.ts. What main.ts owes now is only that it reaches the
-    // shared sender rather than re-implementing it: while the duplicate stood, its
-    // three events were guarded by nothing behavioral at all.
-    expect(mainTs).toContain(
-      "import { trackCommunityLinkClicks, trackMetaPixel } from './game/meta_pixel';",
-    );
-    expect(mainTs).not.toContain("fbq('trackCustom'");
-    expect(mainTs).toContain(
-      'registered.accountId ? { eventID: `acct_$' + '{registered.accountId}` } : undefined',
-    );
-    // The GitHub/Discord click events moved with trackCommunityLinkClicks to the shared
-    // sender's module, which the landing-first boot also binds before the client loads.
-    expect(mainTs).toContain('trackCommunityLinkClicks();');
-    expect(metaPixelTs).toContain("'GitHubClick'");
-    expect(metaPixelTs).toContain("'DiscordClick'");
+  it('ships no upstream third-party tracker (Google tag, Meta Pixel) in either entry', () => {
+    // Wyndlewood removed the upstream Google Analytics property and Meta Pixel: the only
+    // analytics is the opt-in first-party module (src/game/first_party_analytics.ts).
+    for (const [name, entry] of [
+      ['index.html', html],
+      ['play.html', playHtml],
+    ] as const) {
+      expect(entry, name).not.toContain('googletagmanager.com');
+      expect(entry, name).not.toContain('G-BR5Z7GT7C2');
+      expect(entry, name).not.toContain('connect.facebook.net');
+      expect(entry, name).not.toContain('facebook.com/tr');
+      expect(entry, name).not.toContain('fbq(');
+    }
+    expect(existsSync(new URL('../src/game/meta_pixel.ts', import.meta.url))).toBe(false);
+    expect(hudTs).not.toContain('trackMetaPixel');
+    expect(mainTs).not.toContain('trackMetaPixel');
+    expect(mainTs).not.toContain('trackCommunityLinkClicks');
   });
 
   it('keeps the $WOC contract address box off the landing page', () => {

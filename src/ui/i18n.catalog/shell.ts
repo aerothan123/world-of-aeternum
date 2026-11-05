@@ -423,6 +423,16 @@ export const shellStrings = {
       changeLater: 'You can change this any time in Options, under Graphics Quality.',
       confirm: 'Continue',
     },
+    // The first-launch analytics consent prompt (src/ui/analytics_consent_prompt.ts).
+    analyticsPrompt: {
+      title: 'Help Improve Wyndlewood',
+      body: 'May Wyndlewood collect usage and performance data? If you agree, the game sends coarse counters (sessions, play time in five-minute steps, a rough frame rate) and periodic performance reports about your device and frame times to our own servers.',
+      noThirdParty: 'Nothing is sent to advertising or analytics companies, and nothing is sent at all unless you choose Share.',
+      privacyLink: 'Read the Privacy Policy',
+      changeLater: 'You can change this any time in Options.',
+      share: 'Share',
+      decline: 'Do Not Share',
+    },
     serverUnavailable: {
       title: 'Project H - World Unavailable',
       logoAlt: 'Project H',

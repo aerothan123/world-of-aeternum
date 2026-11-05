@@ -1,18 +1,19 @@
 import { createHash } from 'node:crypto';
 import type { IncomingMessage } from 'node:http';
 
-const DEFAULT_PIXEL_ID = '1692101265042180';
 const DEFAULT_API_VERSION = 'v21.0';
 const SEND_TIMEOUT_MS = 3000;
 
-const PIXEL_ID = process.env.META_CAPI_PIXEL_ID ?? DEFAULT_PIXEL_ID;
+// No baked default: the upstream project's pixel id was removed, so the Conversions
+// API stays dark until an operator provisions BOTH their own pixel id and token.
+const PIXEL_ID = (process.env.META_CAPI_PIXEL_ID ?? '').trim();
 const ACCESS_TOKEN = process.env.META_CAPI_ACCESS_TOKEN ?? '';
 const TEST_CODE = process.env.META_CAPI_TEST_EVENT_CODE ?? '';
 const API_VERSION = process.env.META_CAPI_API_VERSION ?? DEFAULT_API_VERSION;
-const ENABLED = ACCESS_TOKEN.length > 0;
+const ENABLED = ACCESS_TOKEN.length > 0 && PIXEL_ID.length > 0;
 
 if (!ENABLED) {
-  console.log('[capi] META_CAPI_ACCESS_TOKEN unset; Conversions API disabled.');
+  console.log('[capi] META_CAPI_ACCESS_TOKEN or META_CAPI_PIXEL_ID unset; Conversions API disabled.');
 }
 
 /** Whether the Conversions API is configured for this process. Callers with

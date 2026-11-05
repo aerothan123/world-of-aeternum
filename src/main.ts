@@ -178,7 +178,6 @@ import {
   resetLoadProfile,
   summarizeLoadProfile,
 } from './game/load_profiler';
-import { trackCommunityLinkClicks, trackMetaPixel } from './game/meta_pixel';
 import {
   interfaceModeFromSetting,
   isPhoneTouchDevice,
@@ -584,6 +583,7 @@ import {
 } from './ui/two_factor_setup';
 import { UiEffectsApplier } from './ui/ui_effects_applier';
 import { hydrateIcons } from './ui/ui_icons';
+import { runWorldEntryLegalSteps } from './ui/world_entry_legal';
 import { type IWorld, ONLINE_WORLD_INCOMPATIBLE_MESSAGE } from './world_api';
 
 const CLICK_MOVE_WAYPOINT_STOP = 0.8; // yards; intermediate A* corners should roll through, not stutter-stop
@@ -1082,6 +1082,7 @@ async function prepareWorldEntry(): Promise<boolean> {
   } else {
     requestPreferredFullscreen();
   }
+  if (!(await runWorldEntryLegalSteps(api.token))) return false;
   await promptGraphicsChoiceOnFirstLogin();
   syncAppViewport();
   window.setTimeout(syncAppViewport, 250);
@@ -8190,7 +8191,7 @@ function wireStartScreens(): Promise<void> {
         const email = ($('#login-email') as unknown as HTMLInputElement).value.trim();
         const optIn =
           ($('#login-marketing') as unknown as HTMLInputElement | null)?.checked === true;
-        const registered = await api.register(
+        await api.register(
           username,
           password,
           email,
@@ -8202,11 +8203,6 @@ function wireStartScreens(): Promise<void> {
             marketingOptIn: optIn,
             locale: getLanguage(),
           },
-        );
-        trackMetaPixel(
-          'AccountCreated',
-          {},
-          registered.accountId ? { eventID: `acct_${registered.accountId}` } : undefined,
         );
       }
     } catch (err) {
@@ -8808,7 +8804,6 @@ function wireStartScreens(): Promise<void> {
     void renderAccountPortal();
   });
   setupNavBtn($('#nav-btn-logout'), '#hero-view', logoutAccount);
-  trackCommunityLinkClicks();
   setupAccountPortal();
   let showExternalAuthChoice: ((choice: ExternalAuthLoginChoice) => void) | null = null;
   // "Continue with Discord": first-class login at the top of the auth form.
