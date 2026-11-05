@@ -1601,14 +1601,14 @@ export const ZONE2_QUESTS: Record<string, QuestDef> = {
     name: 'Silk and Venom',
     giverNpcId: 'herbalist_yara',
     turnInNpcId: 'herbalist_yara',
-    text: 'Widow venom is the only thing that draws fen-rot from a wound: I bled a man of it just this morning. But the thicket west of the road has gone from nuisance to horror; the webs are taking deer whole now. Kill 10 widows and cut me 6 venom sacs, whole and unburst.',
+    text: 'The fog-sick are coming in from the drowned hamlets faster than I can bed them: fevered, and forgetting their own names. Widow venom, drawn fine, is the only thing that keeps their heads clear. But the thicket west of the road has gone from nuisance to horror; the webs are taking deer whole now. Kill 10 widows and cut me 6 venom sacs, whole and unburst.',
     completionText:
-      'Whole sacs, every one. You have steadier hands than half the surgeons in the south, $N.',
+      'Whole sacs, every one. A woman asked me this morning who her husband was. Tonight she will remember. You have steadier hands than half the surgeons in the south, $N.',
     objectives: [
       { type: 'kill', targetMobId: 'mire_widow', count: 10, label: 'Mirefen Widow slain' },
       { type: 'collect', itemId: 'widow_venom_sac', count: 6, label: 'Widow Venom Sac' },
     ],
-    xpReward: 1200,
+    xpReward: 540,
     copperReward: 450,
     itemRewards: {},
     minLevel: 8,
@@ -1641,13 +1641,13 @@ export const ZONE2_QUESTS: Record<string, QuestDef> = {
     name: 'The Drowned Dead',
     giverNpcId: 'brother_aldric_fen',
     turnInNpcId: 'brother_aldric_fen',
-    text: 'Travelers drowned on the causeway are walking out of the lakes, $N, still hung with the weeds they died in. This is no restless haunting. Drowning leaves no marks; it makes obedient corpses. Someone is filling this fen like a tithing box. Return 12 of the Drowned Dead to their rest.',
+    text: 'The dead walking out of the lakes are sailors, $N. I know the cut of their coats: the crews of the ships that went missing off the harbor these past years, still hung with the weeds they died in. The sea took them, and something brought them here to stand guard in the fog. Return 12 of the Drowned Dead to their rest.',
     completionText:
-      'Each one you fell is a stolen soul set free. But the one who drowned them is still pouring water.',
+      'Each one you fell is a sailor set free. Some of them still carried Eastbrook harbor tokens in their pockets. Whoever drowned them is filling this fen like a tithing box, and the box is not yet full.',
     objectives: [
       { type: 'kill', targetMobId: 'drowned_dead', count: 12, label: 'Drowned Dead laid to rest' },
     ],
-    xpReward: 1400,
+    xpReward: 1300,
     copperReward: 500,
     itemRewards: {},
     minLevel: 9,
@@ -1774,8 +1774,9 @@ export const ZONE2_QUESTS: Record<string, QuestDef> = {
     name: 'Robes in the Reeds',
     giverNpcId: 'scout_maren',
     turnInNpcId: 'scout_maren',
-    text: 'There, north past the third lake, where the mist never lifts. Grey robes, grey banners: Gravecallers, camped in the open like they already own the fen. They have stopped hiding, $N, which means they think they have already won. Prove them wrong. Cut down 12 of their cultists.',
-    completionText: 'Twelve robes face-down in the mud. Now they know the fen watches back.',
+    text: 'There, north past the third lake, where the mist never lifts. Grey robes, grey banners: Gravecallers, camped in the open like they already own the fen. This is no handful of fanatics, $N. It is a cell of something larger, paid and supplied, and they have stopped hiding, which means they think they have already won. Prove them wrong. Cut down 12 of their cultists.',
+    completionText:
+      'Twelve robes face-down in the mud. Every one carried the same pay, and not one would say whose. Now they know the fen watches back.',
     objectives: [
       {
         type: 'kill',
@@ -1784,7 +1785,7 @@ export const ZONE2_QUESTS: Record<string, QuestDef> = {
         label: 'Gravecaller Cultist slain',
       },
     ],
-    xpReward: 1800,
+    xpReward: 880,
     copperReward: 700,
     itemRewards: {},
     minLevel: 11,
@@ -1796,7 +1797,7 @@ export const ZONE2_QUESTS: Record<string, QuestDef> = {
     turnInNpcId: 'brother_aldric_fen',
     text: "Maren's reports name summoners among the cultists, voices that call the drowned up out of the water like hounds to a whistle. Their ciphers will spell out the chain of command. Silence 8 summoners and bring me 4 of their ciphers.",
     completionText:
-      "Every cipher is countersigned 'Deacon Voss', and addressed onward to a 'Fogbinder' in the Bastion. Morthen's master, $N. We have found him.",
+      "Every cipher is countersigned 'Deacon Voss' and addressed to a 'Fogbinder' in the Bastion. And here, $N, a price list: so much a summer, so much a wedding, so much a name. Someone is buying memories. That is where the vanished villages went.",
     objectives: [
       {
         type: 'kill',
@@ -1806,7 +1807,7 @@ export const ZONE2_QUESTS: Record<string, QuestDef> = {
       },
       { type: 'collect', itemId: 'cult_cipher', count: 4, label: 'Gravecaller Cipher' },
     ],
-    xpReward: 1900,
+    xpReward: 1760,
     copperReward: 750,
     itemRewards: {},
     requiresQuest: 'q_cult_camp',
@@ -1816,13 +1817,13 @@ export const ZONE2_QUESTS: Record<string, QuestDef> = {
     name: 'The Deacon of the Mire',
     giverNpcId: 'warden_fenwick',
     turnInNpcId: 'warden_fenwick',
-    text: 'So a deacon of the Gravecallers stands at the heart of that camp, singing my drowned wardens up out of the lakes to serve him. His hymn ends today. Take the camp road north, $N, and put Deacon Voss in the ground, deep enough that nobody sings HIM back up.',
+    text: 'So a deacon of the Gravecallers stands at the heart of that camp, singing my drowned wardens up out of the lakes to serve him. Maren says he carries a chart he never lets out of his sight, and I want to know why. His hymn ends today. Take the camp road north, $N, and put Deacon Voss in the ground, deep enough that nobody sings HIM back up.',
     completionText:
-      'Voss is dead and the mist over the camp is already thinning. You have broken their voice in the fen. Now only the Bastion remains.',
+      'Voss is dead, and in his coat was a chart of the Sunken Bastion, drawn by someone who has walked its drowned halls. The mist over the camp is already thinning. Now only the Bastion remains.',
     objectives: [
       { type: 'kill', targetMobId: 'deacon_voss', count: 1, label: 'Deacon Voss slain' },
     ],
-    xpReward: 2200,
+    xpReward: 2020,
     copperReward: 1000,
     itemRewards: {
       warrior: 'deacons_cleaver',
@@ -1839,13 +1840,13 @@ export const ZONE2_QUESTS: Record<string, QuestDef> = {
     name: 'The Sunken Bastion',
     giverNpcId: 'brother_aldric_fen',
     turnInNpcId: 'brother_aldric_fen',
-    text: "The Sunken Bastion, a knight's hold that drowned in the fen a century ago, is where Voss's letters point, and where this Fogbinder sings his drowning hymns. The cult has warded its door with grave-stones. Bring me one of the ward stones, $N, and I will unweave the seal.",
+    text: "The Sunken Bastion, a knight's hold that drowned in the fen a century ago, is where Voss's chart points. The old warden rolls say it once kept a Hearthpin safe, and the bells everyone keeps hearing ring from inside it. The cult has warded its door with grave-stones. Bring me one of the ward stones, $N, and I will unweave the seal.",
     completionText:
-      'The ward parts like rotten rope. The door stands open... and the dark below it is listening.',
+      'The ward parts like rotten rope. Ivara sent word that the Hearthpin fragment from the Hollow Crypt went warm at the very hour you brought me this stone. Whatever the Bastion keeps, the fragment knows it is there. The door stands open, and the dark below it is listening.',
     objectives: [
       { type: 'collect', itemId: 'bastion_ward_stone', count: 1, label: 'Bastion Ward Stone' },
     ],
-    xpReward: 1200,
+    xpReward: 1010,
     copperReward: 500,
     itemRewards: { warrior: 'bastion_kite_shield' },
     requiresQuest: 'q_deacon',
@@ -1883,9 +1884,9 @@ export const ZONE2_QUESTS: Record<string, QuestDef> = {
     name: 'The Fogbinder',
     giverNpcId: 'brother_aldric_fen',
     turnInNpcId: 'brother_aldric_fen',
-    text: "At the bottom of the Bastion waits Vael the Fogbinder, Morthen's master, Voss's master, the voice that has drowned a hundred travelers to raise itself an army. He is far beyond any one hero: take four companions, no fewer. End him, $N, and the fen's dead may finally lie still.",
+    text: "At the bottom of the Bastion waits Vael the Fogbinder: Morthen's master, Voss's master, the one who woke Knight-Commander Olen's bells and set them pulling the tide against Eastbrook's harbor. He is far beyond any one hero: take four companions, no fewer. Silence the bells, $N, end him, and the fen's dead may finally lie still.",
     completionText:
-      "Vael is dead, and the mist is lifting for the first time in years. But Maren heard his last words, and they freeze my blood: 'The Wyrm stirs beneath the peaks.' The sect serves something older than we ever guessed, $N. Rest while you can: the mountains are next.",
+      "Vael is dead, the bells are silent, and Captain Fenlow writes that the harbor tide came in gentle this morning for the first time in a month. Maren took a chart from Vael's hand: a temple beneath the marsh, and a road from it into the peaks. His last words were 'The Wyrm stirs beneath the peaks.' Rest while you can, $N: the mountains are next.",
     objectives: [
       {
         type: 'kill',
@@ -1894,7 +1895,7 @@ export const ZONE2_QUESTS: Record<string, QuestDef> = {
         label: 'Vael the Fogbinder slain',
       },
     ],
-    xpReward: 2800,
+    xpReward: 2020,
     copperReward: 2500,
     itemRewards: { warrior: 'mistcallers_edge', mage: 'vaels_mist_staff', rogue: 'riptide_dirk' },
     requiresQuest: 'q_bastion_door',

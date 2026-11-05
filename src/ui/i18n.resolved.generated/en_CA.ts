@@ -28391,8 +28391,8 @@ export const en_CA: EnTranslations = {
       },
       "q_hollow": {
         "title": "Into the Hollow",
-        "text": "Morthen the Gravecaller waits at the bottom of the Hollow Crypt, ringed by the elite dead he has raised. He is far beyond any one hero: take four companions, no fewer. End him, and the Vale's dead will finally sleep.",
-        "completion": "The whispering has stopped. You have done what the whole Vale could not, {playerName}. The dead sleep, and Eastbrook owes you everything it has.",
+        "text": "The door we left shut stands open now, and Morthen the Gravecaller waits at the bottom of the Hollow Crypt, ringed by the elite dead he has raised. He is guarding something down there, something that has kept this Vale warm longer than any of us have been alive. He is far beyond any one hero: take four companions, no fewer. End him, and bring back whatever he was keeping.",
+        "completion": "The whispering has stopped, and you came up carrying a piece of a Hearthpin, warm as a hand. When I held it I heard bells, {playerName}, slow and deep, ringing somewhere under the sea. The Vale's dead sleep at last. I fear the drowned do not.",
         "objectives": {
           "0": {
             "label": "Morthen the Gravecaller slain"
@@ -28451,8 +28451,8 @@ export const en_CA: EnTranslations = {
       },
       "q_fenbridge_muster": {
         "title": "Muster at Fenbridge",
-        "text": "Morthen's writings named a master in the northern marsh, a 'Fogbinder.' Now Warden Fenwick has sounded the muster horn at Fenbridge, and I do not believe in coincidence, {playerName}. Take the causeway north, pull the muster order from the gatepost, and present it to the Warden.",
-        "completion": "Aldric's seal, is it? Then you'll do. The fen has been swallowing my patrols whole, and I need every blade that floats.",
+        "text": "Villages along the northern marsh are vanishing into the fog, {playerName}: not burned, not raided, simply gone, with the paths still leading up to where they stood. Warden Fenwick has sounded the muster horn at Fenbridge, and Morthen's writings named a 'Fogbinder' in that same marsh. I do not believe in coincidence. Take the causeway north, pull the muster order from the gatepost, and present it to the Warden.",
+        "completion": "Aldric's seal, is it? Then you'll do. Three hamlets have gone into the fog this month, and my patrols keep coming back with fewer names than they left with. I need every blade that floats.",
         "objectives": {
           "0": {
             "label": "Fenbridge Muster Order"
@@ -28507,8 +28507,8 @@ export const en_CA: EnTranslations = {
       },
       "q_prowlers": {
         "title": "Teeth of the Fen",
-        "text": "The mire prowlers have learned what a supply mule sounds like, and now they hunt the causeway itself. Last week they dragged a courier into the reeds not fifty paces from this gate. Thin them out, {playerName}: twelve dead prowlers ought to teach the rest fear.",
-        "completion": "Twelve, and not a bite on you? The causeway breathes easier tonight.",
+        "text": "The mire prowlers are not hunting the causeway out of hunger, {playerName}. The ground they denned on has gone into the fog, and they came out of it running. Now they have learned what a supply mule sounds like, and last week they dragged a courier into the reeds not fifty paces from this gate. Thin them out: twelve dead prowlers ought to teach the rest fear.",
+        "completion": "Twelve, and not a bite on you? The causeway breathes easier tonight. I only wish I knew what frightened them worse than you did.",
         "objectives": {
           "0": {
             "label": "Mire Prowler slain"
@@ -28537,8 +28537,8 @@ export const en_CA: EnTranslations = {
       },
       "q_deepfen": {
         "title": "The Deepfen Stirs",
-        "text": "The Deepfen mudfins kept to their shallows for twenty years. Now they swarm the east bank like flies on a carcass, and my wardens say they are dragging things up from the lake bed. Whatever has them stirred, I want it stopped. Cull 12 of the snappers.",
-        "completion": "That will push them back to the mud for a while. But something set them digging, and I mean to learn what.",
+        "text": "The Deepfen mudfins kept to their shallows for twenty years. Now they swarm the east bank, dredging the lake bed day and night, and my wardens swear someone on the far shore pays them for what they haul up. I do not know who, and I do not like a marsh with a market in it. Cull 12 of the snappers and break their digging.",
+        "completion": "That will push them back to the mud for a while. But a mudfin does not dig for pay unless someone taught it what pay is. Somebody out there is buying, and I mean to learn what.",
         "objectives": {
           "0": {
             "label": "Deepfen Snapper slain"
@@ -28548,7 +28548,7 @@ export const en_CA: EnTranslations = {
       "q_idols": {
         "title": "Idols of the Deep",
         "text": "Fenwick's wardens say the fish-men dredge idols from the lake bottom and clutch them like holy relics. If those idols are what I fear, I must see them with my own eyes. Take 5 from the Deepfen snappers: they will not part with them kindly.",
-        "completion": "Gravecaller work, older than Morthen, older than me. The sect did not begin in Eastbrook, {playerName}. It began here, and the lake has been keeping its secrets.",
+        "completion": "Look here, {playerName}, at the binding on each one: the same cold black cord the Proving Shore beacon was tied with. Gravecaller work, older than Morthen, older than me. Whoever ties these knots has been patient for a very long time.",
         "objectives": {
           "0": {
             "label": "Waterlogged Idol"
@@ -28577,8 +28577,8 @@ export const en_CA: EnTranslations = {
       },
       "q_widows": {
         "title": "Silk and Venom",
-        "text": "Widow venom is the only thing that draws fen-rot from a wound: I bled a man of it just this morning. But the thicket west of the road has gone from nuisance to horror; the webs are taking deer whole now. Kill 10 widows and cut me 6 venom sacs, whole and unburst.",
-        "completion": "Whole sacs, every one. You have steadier hands than half the surgeons in the south, {playerName}.",
+        "text": "The fog-sick are coming in from the drowned hamlets faster than I can bed them: fevered, and forgetting their own names. Widow venom, drawn fine, is the only thing that keeps their heads clear. But the thicket west of the road has gone from nuisance to horror; the webs are taking deer whole now. Kill 10 widows and cut me 6 venom sacs, whole and unburst.",
+        "completion": "Whole sacs, every one. A woman asked me this morning who her husband was. Tonight she will remember. You have steadier hands than half the surgeons in the south, {playerName}.",
         "objectives": {
           "0": {
             "label": "Mirefen Widow slain"
@@ -28603,8 +28603,8 @@ export const en_CA: EnTranslations = {
       },
       "q_drowned": {
         "title": "The Drowned Dead",
-        "text": "Travelers drowned on the causeway are walking out of the lakes, {playerName}, still hung with the weeds they died in. This is no restless haunting. Drowning leaves no marks; it makes obedient corpses. Someone is filling this fen like a tithing box. Return 12 of the Drowned Dead to their rest.",
-        "completion": "Each one you fell is a stolen soul set free. But the one who drowned them is still pouring water.",
+        "text": "The dead walking out of the lakes are sailors, {playerName}. I know the cut of their coats: the crews of the ships that went missing off the harbor these past years, still hung with the weeds they died in. The sea took them, and something brought them here to stand guard in the fog. Return 12 of the Drowned Dead to their rest.",
+        "completion": "Each one you fell is a sailor set free. Some of them still carried Eastbrook harbor tokens in their pockets. Whoever drowned them is filling this fen like a tithing box, and the box is not yet full.",
         "objectives": {
           "0": {
             "label": "Drowned Dead laid to rest"
@@ -28673,8 +28673,8 @@ export const en_CA: EnTranslations = {
       },
       "q_cult_camp": {
         "title": "Robes in the Reeds",
-        "text": "There, north past the third lake, where the mist never lifts. Grey robes, grey banners: Gravecallers, camped in the open like they already own the fen. They have stopped hiding, {playerName}, which means they think they have already won. Prove them wrong. Cut down 12 of their cultists.",
-        "completion": "Twelve robes face-down in the mud. Now they know the fen watches back.",
+        "text": "There, north past the third lake, where the mist never lifts. Grey robes, grey banners: Gravecallers, camped in the open like they already own the fen. This is no handful of fanatics, {playerName}. It is a cell of something larger, paid and supplied, and they have stopped hiding, which means they think they have already won. Prove them wrong. Cut down 12 of their cultists.",
+        "completion": "Twelve robes face-down in the mud. Every one carried the same pay, and not one would say whose. Now they know the fen watches back.",
         "objectives": {
           "0": {
             "label": "Gravecaller Cultist slain"
@@ -28684,7 +28684,7 @@ export const en_CA: EnTranslations = {
       "q_summoners": {
         "title": "Stopping the Summoning",
         "text": "Maren's reports name summoners among the cultists, voices that call the drowned up out of the water like hounds to a whistle. Their ciphers will spell out the chain of command. Silence 8 summoners and bring me 4 of their ciphers.",
-        "completion": "Every cipher is countersigned 'Deacon Voss', and addressed onward to a 'Fogbinder' in the Bastion. Morthen's master, {playerName}. We have found him.",
+        "completion": "Every cipher is countersigned 'Deacon Voss' and addressed to a 'Fogbinder' in the Bastion. And here, {playerName}, a price list: so much a summer, so much a wedding, so much a name. Someone is buying memories. That is where the vanished villages went.",
         "objectives": {
           "0": {
             "label": "Gravecaller Summoner slain"
@@ -28696,8 +28696,8 @@ export const en_CA: EnTranslations = {
       },
       "q_deacon": {
         "title": "The Deacon of the Mire",
-        "text": "So a deacon of the Gravecallers stands at the heart of that camp, singing my drowned wardens up out of the lakes to serve him. His hymn ends today. Take the camp road north, {playerName}, and put Deacon Voss in the ground, deep enough that nobody sings HIM back up.",
-        "completion": "Voss is dead and the mist over the camp is already thinning. You have broken their voice in the fen. Now only the Bastion remains.",
+        "text": "So a deacon of the Gravecallers stands at the heart of that camp, singing my drowned wardens up out of the lakes to serve him. Maren says he carries a chart he never lets out of his sight, and I want to know why. His hymn ends today. Take the camp road north, {playerName}, and put Deacon Voss in the ground, deep enough that nobody sings HIM back up.",
+        "completion": "Voss is dead, and in his coat was a chart of the Sunken Bastion, drawn by someone who has walked its drowned halls. The mist over the camp is already thinning. Now only the Bastion remains.",
         "objectives": {
           "0": {
             "label": "Deacon Voss slain"
@@ -28706,8 +28706,8 @@ export const en_CA: EnTranslations = {
       },
       "q_bastion_door": {
         "title": "The Sunken Bastion",
-        "text": "The Sunken Bastion, a knight's hold that drowned in the fen a century ago, is where Voss's letters point, and where this Fogbinder sings his drowning hymns. The cult has warded its door with grave-stones. Bring me one of the ward stones, {playerName}, and I will unweave the seal.",
-        "completion": "The ward parts like rotten rope. The door stands open... and the dark below it is listening.",
+        "text": "The Sunken Bastion, a knight's hold that drowned in the fen a century ago, is where Voss's chart points. The old warden rolls say it once kept a Hearthpin safe, and the bells everyone keeps hearing ring from inside it. The cult has warded its door with grave-stones. Bring me one of the ward stones, {playerName}, and I will unweave the seal.",
+        "completion": "The ward parts like rotten rope. Ivara sent word that the Hearthpin fragment from the Hollow Crypt went warm at the very hour you brought me this stone. Whatever the Bastion keeps, the fragment knows it is there. The door stands open, and the dark below it is listening.",
         "objectives": {
           "0": {
             "label": "Bastion Ward Stone"
@@ -28726,8 +28726,8 @@ export const en_CA: EnTranslations = {
       },
       "q_mistcaller": {
         "title": "The Fogbinder",
-        "text": "At the bottom of the Bastion waits Vael the Fogbinder, Morthen's master, Voss's master, the voice that has drowned a hundred travelers to raise itself an army. He is far beyond any one hero: take four companions, no fewer. End him, {playerName}, and the fen's dead may finally lie still.",
-        "completion": "Vael is dead, and the mist is lifting for the first time in years. But Maren heard his last words, and they freeze my blood: 'The Wyrm stirs beneath the peaks.' The sect serves something older than we ever guessed, {playerName}. Rest while you can: the mountains are next.",
+        "text": "At the bottom of the Bastion waits Vael the Fogbinder: Morthen's master, Voss's master, the one who woke Knight-Commander Olen's bells and set them pulling the tide against Eastbrook's harbor. He is far beyond any one hero: take four companions, no fewer. Silence the bells, {playerName}, end him, and the fen's dead may finally lie still.",
+        "completion": "Vael is dead, the bells are silent, and Captain Fenlow writes that the harbor tide came in gentle this morning for the first time in a month. Maren took a chart from Vael's hand: a temple beneath the marsh, and a road from it into the peaks. His last words were 'The Wyrm stirs beneath the peaks.' Rest while you can, {playerName}: the mountains are next.",
         "objectives": {
           "0": {
             "label": "Vael the Fogbinder slain"

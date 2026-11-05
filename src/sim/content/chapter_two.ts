@@ -65,6 +65,13 @@ export const CHAPTER_TWO_RETUNED_SHIPPED_QUESTS: Readonly<Record<string, readonl
     q_prowlers: [7, 'medium'],
     q_deepfen: [8, 'medium'],
     q_idols: [8, 'medium'],
+    q_widows: [8, 'medium'],
+    q_drowned: [9, 'large'],
+    q_cult_camp: [11, 'medium'],
+    q_summoners: [11, 'large'],
+    q_deacon: [12, 'large'],
+    q_bastion_door: [12, 'medium'],
+    q_mistcaller: [12, 'large'],
   });
 
 // Shipped NPCs the chapter speaks through (ids frozen; display names as shipped
