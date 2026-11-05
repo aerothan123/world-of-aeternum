@@ -241,6 +241,15 @@ def water_material():
         )
     except Exception as err:
         W.log("water lighting mode: %s" % err)
+    # The sea is one huge quad: translucent fog is per vertex by default, so
+    # its four far corners fogged the whole surface to the haze colour (the
+    # milky white sea of v10 and v11). Fog it per pixel instead.
+    for k in ("compute_fog_per_pixel", "b_compute_fog_per_pixel"):
+        try:
+            m.set_editor_property(k, True)
+            break
+        except Exception as err:
+            W.log("water %s: %s" % (k, err))
     g = G(m)
     scene = g.node(unreal.MaterialExpressionSceneDepth, 4)
     pixel = g.node(unreal.MaterialExpressionPixelDepth, 4)
