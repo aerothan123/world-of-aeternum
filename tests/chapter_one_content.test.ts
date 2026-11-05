@@ -94,14 +94,14 @@ describe('Chapter One content', () => {
     // "Reconciled with the town layout"): building centres and how far a
     // chapter point keeps from each.
     const lots: [string, number, number, number][] = [
-      ['meadow house 1', 36.3, -14.2, 8],
+      ['meadow townhouse', 38.5, -14.2, 8],
       ['meadow house 2', 48.8, -17.6, 8],
       ['meadow house 3', 18.7, -33.4, 8],
       ['meadow house 4', 45.8, -30.8, 8],
       ['meadow well', 57, -29, 4],
-      ['row terrace', -22.5, -86.3, 9],
+      ['row terrace', -26, -84, 9],
       ['stone cottage', -72, -86, 8],
-      ['red cottage', -72.5, -45.1, 8],
+      ['red cottage', -76.5, -45.1, 8],
     ];
     const points: [string, number, number][] = [];
     for (const def of CHAPTER_ONE_OBJECTS)

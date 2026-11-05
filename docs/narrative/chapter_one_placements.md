@@ -19,7 +19,7 @@ Crypt door is at (80, 90).
 | `scout_neris` | Neris Snowmantle | (75, -40), the eastern lookout past Meadow Lane |
 | `gravekeeper_holven` | Bertram Ashcombe | (25, -106), the burial gate |
 | `innkeeper_jorren` | Jorren | (12, -84), the riverside inn counter |
-| `herbalist_olvessa` | Olvessa | (-30, -76), the herb terrace |
+| `herbalist_olvessa` | Olvessa | (-38, -77), the herb terrace west of the row terrace |
 | `gardener_della` | Della Brindlepot | (-13.2, -72.8), the riverside garden |
 | `carpenter_pella` | Wenna Nookwright | (-45, -87), the carpenter's yard north of the main street |
 | `fisherman_tobbin` | Tobbin Wickerby | (-278, -4), the Proving Shore jetty |
@@ -95,14 +95,28 @@ earlier id moves. The full coordinate list lives in the source; the groups are:
 
 ## Reconciled with the town layout
 
-The town crew's Eastbrook relayout puts Meadow Lane along z -24 off (30, -30)
-with houses at (36.3, -14.2), (48.8, -17.6), (18.7, -33.4) and (45.8, -30.8)
-and a well at (57, -29); a row terrace at (-22.5, -86.3); a stone cottage at
-(-72, -86); and a red cottage at (-72.5, -45.1), every door facing north or
-south. Chapter One keeps clear of all of them
-(`tests/chapter_one_content.test.ts`, the town-lot clearance case): Silven's
-stall goods and the board's rivet and hinge drops moved out from under the
-terrace, Wenna's yard moved to the free ground at about (-45, -87), and
-Della's escort passes behind the Meadow Lane houses' back gardens. Every camp keeps at
-least 11 yards past its radius from every lot. The spot at about (-78, -45)
-beside the red cottage stays free for a later garden or board.
+The town crew's final Eastbrook relayout (origin/feature/town-kit at
+f4289316) puts Meadow Lane along z -24 off (30, -30) with houses at
+(38.5, -14.2) (the green townhouse), (48.8, -17.6), (18.7, -33.4) and
+(45.8, -30.8) and a well at (57, -29); the row terrace at (-26, -84); the
+stone cottage at (-72, -86); and the red cottage at (-76.5, -45.1), every
+door facing north or south. Chapter One keeps clear of all of them
+(`tests/chapter_one_content.test.ts`, the town-lot clearance case):
+
+- Silven's stall goods sit in front of the terrace's street face: heavy
+  parcel (-29.5, -95.5), soft parcel (-27.5, -96.5), delivery slips
+  (-26.5, -95.5), (-24.5, -96), (-23, -97), cart tag (-27, -97); the board's
+  rivet packets at x -31.5 and hinge bundles at x -33.5, z -93.5 to -95.9.
+- Olvessa's herb terrace moved west of the row terrace: Olvessa (-38, -77),
+  dried herb packets and reed mulch at x -40.5 (z -73.3 to -78.7), the
+  dew-damp cloth (-34, -79); the windwhistle patches and balm stay at about
+  (-35, -70).
+- The carpenter's yard (still free in the final layout): Wenna (-45, -87),
+  workbench (-46.5, -84), housing noticeboard (-43, -83), practice marker
+  (-44, -80.5).
+- Della's garden stays where it was, by the riverside (turnips about
+  (-12, -70), carrots about (-16.5, -72), Della at (-13.2, -72.8)); nothing
+  Chapter One owns stands at the red cottage, and the quest board stays at
+  (5, -89). Della's escort runs (-14.1, -58.4), (-10, -48), (8, -36),
+  (30, -45), (55, -45) to the eastern lookout (75, -42.5).
+- Every camp keeps at least 11 yards past its radius from every lot.

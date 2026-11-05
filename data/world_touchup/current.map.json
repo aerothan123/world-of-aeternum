@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-460f2-499ad8ec-e8bdf9fc-14b3-b4ad9a78-f493dfc8",
+    "id": "live-460f0-b9b6e5a1-1df920d1-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "460f2-499ad8ec-e8bdf9fc",
+    "overworldBase": "460f0-b9b6e5a1-1df920d1",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -6377,8 +6377,8 @@
         "name": "Olvessa",
         "title": "Herb Terrace Keeper",
         "pos": {
-          "x": -30,
-          "z": -76
+          "x": -38,
+          "z": -77
         },
         "facing": 0,
         "color": 7048739,
@@ -7693,8 +7693,8 @@
         "name": "Dew-Damp Cloth",
         "positions": [
           {
-            "x": -31.5,
-            "z": -77
+            "x": -34,
+            "z": -79
           }
         ]
       },
@@ -7969,15 +7969,15 @@
         "name": "Dried Herb Packet",
         "positions": [
           {
-            "x": -28.5,
+            "x": -40.5,
             "z": -77.5
           },
           {
-            "x": -28.5,
+            "x": -40.5,
             "z": -78.7
           },
           {
-            "x": -28.5,
+            "x": -40.5,
             "z": -76.3
           }
         ]
@@ -7987,15 +7987,15 @@
         "name": "Reed Mulch Bundle",
         "positions": [
           {
-            "x": -28.5,
+            "x": -40.5,
             "z": -74.5
           },
           {
-            "x": -28.5,
+            "x": -40.5,
             "z": -75.7
           },
           {
-            "x": -28.5,
+            "x": -40.5,
             "z": -73.3
           }
         ]
