@@ -7,9 +7,11 @@
 // End User License Agreement (docs/legal/eula.md, public/eula.html).
 //
 // Bump a document's version whenever its text changes in a way players must
-// accept again: every account is then asked once more on its next world entry
-// (the prompt marks which document changed), and the new acceptance is
-// recorded per account. The values are opaque tokens (date plus a short tag),
+// accept again: the server (GET /api/legal-acceptance) then reports that
+// document as outdated for every account, so any client (the web client and
+// the future Unreal client alike) asks once more on the next world entry and
+// the new acceptance is recorded per account. The server copy of these values
+// is the authority; a client shows and posts the versions the server reported. The values are opaque tokens (date plus a short tag),
 // compared for equality only. The current drafts are TEMPLATES awaiting lawyer
 // review, and the publisher entity is still the [PUBLISHER LEGAL NAME]
 // placeholder.
@@ -27,6 +29,14 @@ export const PRIVACY_VERSION = '2026-11-05-draft';
 export const LEGAL_DOC_IDS = ['terms', 'privacy', 'eula'] as const;
 export type LegalDocId = (typeof LEGAL_DOC_IDS)[number];
 
+/** The site path of each document's full text (server/static_fallback.ts serves
+ *  them; a client resolves them against its realm origin). */
+export const LEGAL_DOC_PATHS: Readonly<Record<LegalDocId, string>> = Object.freeze({
+  terms: '/terms',
+  privacy: '/privacy',
+  eula: '/eula',
+});
+
 /** One version token per document. */
 export type LegalVersions = Readonly<Record<LegalDocId, string>>;
 
@@ -41,9 +51,6 @@ export const CURRENT_LEGAL_VERSIONS: LegalVersions = Object.freeze({
 export function isLegalVersionToken(raw: unknown): raw is string {
   return typeof raw === 'string' && /^[0-9]{4}-[0-9]{2}-[0-9]{2}-[a-z0-9-]{1,24}$/.test(raw);
 }
-
-/** Kept for the callers that named the EULA token check. */
-export const isEulaVersionToken = isLegalVersionToken;
 
 /** Read a { terms, privacy, eula } record; a missing or malformed field reads as null. */
 export function parseLegalVersions(raw: unknown): Record<LegalDocId, string | null> {
@@ -60,4 +67,12 @@ export function legalVersionsCurrent(
 ): boolean {
   if (!accepted) return false;
   return LEGAL_DOC_IDS.every((id) => accepted[id] === current[id]);
+}
+
+/** The documents whose current version `accepted` does not name, in prompt order. */
+export function outdatedLegalDocs(
+  accepted: Readonly<Record<LegalDocId, string | null>> | null | undefined,
+  current: LegalVersions = CURRENT_LEGAL_VERSIONS,
+): LegalDocId[] {
+  return LEGAL_DOC_IDS.filter((id) => accepted?.[id] !== current[id]);
 }
