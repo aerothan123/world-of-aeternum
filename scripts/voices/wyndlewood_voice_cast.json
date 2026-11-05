@@ -1,0 +1,920 @@
+{
+  "alchemist_verane": {
+    "name": "Alchemist Verane",
+    "title": "Master of the Apothecary",
+    "gender": "female",
+    "brief": "A woman in their thirties: a master of the apothecary, gentle, attentive and unhurried, speaking with a mild Scottish burr. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "4h3mgPSnnu3KX5ffLcGm",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "apothecary_lin": {
+    "name": "Ivara Fenmoss",
+    "title": "Herbalist",
+    "gender": "female",
+    "brief": "A woman in her fifties: a gentle, watchful herbalist whose calm can turn quietly unsettling, speaking with a light West Country lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "0f9fzpoXjlGhBUSv4LEW",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "apprentice_wren": {
+    "name": "Apprentice Wren",
+    "title": null,
+    "gender": "female",
+    "brief": "A woman in their early twenties: a villager, friendly and down to earth, speaking with a crisp Southern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "I2Xun5HScJu2nCJMxa9R",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "archivist_tullo": {
+    "name": "Archivist Tullo",
+    "title": "Reader of Stones",
+    "gender": "male",
+    "brief": "A man in their thirties: a reader of stones, thoughtful, measured and a little wry, speaking with a lilting Welsh accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "8oI5U62inpvcZSFP8Q6i",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "armorer_hode": {
+    "name": "Armorer Hode",
+    "title": "Master Armorer",
+    "gender": "male",
+    "brief": "A man in their fifties: a master armorer, practical, blunt and hardworking, speaking with a gentle Northern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "eQjpy16TSj06IG3qOefd",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "astronomer_cassian": {
+    "name": "Astronomer Cassian",
+    "title": "Watcher at the Vigil",
+    "gender": "male",
+    "brief": "A man in their forties: a watcher at the vigil, steady, alert and plain-spoken, speaking with a lilting Welsh accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "0ekraGT8Xhn8RifNJkxT",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "auctioneer_voss": {
+    "name": "Auctioneer Voss",
+    "title": "Keeper of the World Market",
+    "gender": "male",
+    "brief": "A man in their fifties: a keeper of the world market, brisk, sociable and businesslike, speaking with a soft Irish lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "cRyuSwEzscrlwLqjdLNS",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "aurorist_veyla": {
+    "name": "Aurorist Veyla",
+    "title": "Reader of the Lights",
+    "gender": "female",
+    "brief": "A woman in their fifties: a reader of the lights, friendly and down to earth, speaking with a gentle Northern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "rvszhZhocM91Ul7zippV",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "bellkeeper_tam": {
+    "name": "Bellkeeper Tam",
+    "title": "Watchbell Keeper",
+    "gender": "male",
+    "brief": "A man in their thirties: a watchbell keeper, steady, alert and plain-spoken, speaking with a soft rural English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "S0X7IHajbm8gG50VwPlg",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "bridgewright_alden": {
+    "name": "Bridgewright Alden",
+    "title": "Master of the Fenway",
+    "gender": "male",
+    "brief": "A man in their fifties: a master of the fenway, practical, blunt and hardworking, speaking with a soft rural English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "4qXiFvt5CwpxPX9LOsNo",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "brother_aldric": {
+    "name": "Brother Aldric",
+    "title": "Priest of the Vale",
+    "gender": "male",
+    "brief": "A man in their forties: a priest of the vale, thoughtful, measured and a little wry, speaking with a crisp Southern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "NMlnpWaeZwNPP2wHl7v8",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "brother_halven": {
+    "name": "Brother Halven",
+    "title": "Reliquary Keeper",
+    "gender": "male",
+    "brief": "A man in their fifties: a reliquary keeper, thoughtful, measured and a little wry, speaking with a mild Scottish burr. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "hRBVRl9FtQ8m23kJRqyP",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "bursar_aldous_crane": {
+    "name": "Bursar Aldous Crane",
+    "title": "The Gilded Strongbox",
+    "gender": "male",
+    "brief": "A man in their thirties: a the gilded strongbox, brisk, sociable and businesslike, speaking with a soft rural English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "v7R5z8GdCCZWCVaGZETO",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "bursar_fernando": {
+    "name": "Bursar Fernando",
+    "title": "The Gilded Strongbox",
+    "gender": "male",
+    "brief": "A man in their thirties: a the gilded strongbox, brisk, sociable and businesslike, speaking with a mild Scottish burr. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "mDw9CI1ccI2mhPCqXdHB",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "bursar_petra_vell": {
+    "name": "Bursar Petra Vell",
+    "title": "The Gilded Strongbox",
+    "gender": "female",
+    "brief": "A woman in their forties: a the gilded strongbox, brisk, sociable and businesslike, speaking with a soft Irish lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "6jM9bmuR7JDGGEE9LzTI",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "captain_thessaly": {
+    "name": "Captain Thessaly",
+    "title": "Highwatch Captain",
+    "gender": "female",
+    "brief": "A woman in their fifties: a highwatch captain, steady, alert and plain-spoken, speaking with a soft Irish lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "j1Jc9A9tfGxXR2SvRrrj",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "card_master": {
+    "name": "Card Master",
+    "title": "Dealer of Chance",
+    "gender": "male",
+    "brief": "A man in their thirties: a dealer of chance, brisk, sociable and businesslike, speaking with a soft rural English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "kup53SYcXBlsea5L2bCI",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "carpenter_pella": {
+    "name": "Wenna Nookwright",
+    "title": "Carpenter",
+    "gender": "female",
+    "brief": "A woman in their fifties: a carpenter, practical, blunt and hardworking, speaking with a gentle Northern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "vb3ZQk2ixK4dMfvHAKZ6",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "castaway_navigator": {
+    "name": "Navigator Suli",
+    "title": null,
+    "gender": "male",
+    "brief": "A man in their thirties: a villager, weathered, easygoing and salt of the earth, speaking with a soft rural English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "VLXo7CLZik0MWsjf1Ta3",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "chronicler_edda_hartwell": {
+    "name": "Chronicler Zenzie",
+    "title": "The Peaks Chronicle",
+    "gender": "female",
+    "brief": "A woman in their forties: a the peaks chronicle, thoughtful, measured and a little wry, speaking with a soft Irish lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "eqe0QJOYHe3GF4Npybwj",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "chronicler_osric_fenn": {
+    "name": "Chronicler Osric Fenn",
+    "title": "The Marsh Chronicle",
+    "gender": "male",
+    "brief": "A man in their thirties: a the marsh chronicle, thoughtful, measured and a little wry, speaking with a crisp Southern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "tOGcprrUmivOlquQXUMM",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "chronicler_saul": {
+    "name": "Saul the Chronicler",
+    "title": "The Vale Chronicle",
+    "gender": "male",
+    "brief": "A man in their fifties: a the vale chronicle, thoughtful, measured and a little wry, speaking with a lilting Welsh accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "7axQePCUfGupHWb0ezy2",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "cook_marlow": {
+    "name": "Cook Marlow",
+    "title": "Master of the Kitchens",
+    "gender": "male",
+    "brief": "A man in their fifties: a master of the kitchens, warm, chatty and hospitable, speaking with a lilting Welsh accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "Dd6DdoKAE9cu5XdsJWC8",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "escort_della": {
+    "name": "escort_della",
+    "title": null,
+    "gender": null,
+    "brief": "A person in their fifties: a villager, friendly and down to earth, speaking with a light West Country lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "K6NC0M8EmbsNWyHO1gSl",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "escort_neris": {
+    "name": "escort_neris",
+    "title": null,
+    "gender": null,
+    "brief": "A person in their forties: a villager, friendly and down to earth, speaking with a light West Country lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "W5ATevKY7UMOsQI1wkOd",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "ferryman_odo": {
+    "name": "Captain Fenlow Tippet",
+    "title": "Ferry Captain",
+    "gender": "male",
+    "brief": "A man in his late fifties: a gruff, wry ferry captain with a stubborn streak and a soft heart under it, speaking with a light West Country lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "JpXBOAYKmeU5KKaEal46",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "ferrymaster_caddow": {
+    "name": "Ferrymaster Caddow",
+    "title": "Keeper of the Lantern Ferries",
+    "gender": "male",
+    "brief": "A man in their forties: a keeper of the lantern ferries, thoughtful, measured and a little wry, speaking with a soft rural English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "rLUDvRtctuWxnmeAYprQ",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "fisher_bram": {
+    "name": "Fisher Bram",
+    "title": null,
+    "gender": "male",
+    "brief": "A man in their forties: a villager, weathered, easygoing and salt of the earth, speaking with a lilting Welsh accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "O6d7mE4sQaZPN3mSyTBF",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "fisher_nell": {
+    "name": "Frightened Nell",
+    "title": "Gullhaven Fisher",
+    "gender": "female",
+    "brief": "A woman in their thirties: a gullhaven fisher, weathered, easygoing and salt of the earth, speaking with a crisp Southern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "15ih08MMqS7qCMteKwF4",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "fisherman_brandt": {
+    "name": "Fisherman Brandt",
+    "title": "Old Salt",
+    "gender": "male",
+    "brief": "A man in old age: a old salt, weathered, easygoing and salt of the earth, speaking with a light West Country lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "djloJ68sLmRUkfewT41x",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "fisherman_tobbin": {
+    "name": "Tobbin Wickerby",
+    "title": "Fisherman",
+    "gender": "male",
+    "brief": "A man in his fifties: a talkative, friendly, superstitious fisherman, speaking with a crisp Southern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "qgm7daFpvvq5CiJJBQoD",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "foreman_odell": {
+    "name": "Foreman Odell",
+    "title": "Mine Foreman",
+    "gender": "male",
+    "brief": "A man in their thirties: a mine foreman, practical, blunt and hardworking, speaking with a soft Irish lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "mRIds7K1NStA0p3BT8MZ",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "forgemistress_darva": {
+    "name": "Brunna Flintmorrow",
+    "title": "Master of the Forge",
+    "gender": "female",
+    "brief": "A woman in her forties: a proud, direct master smith with no patience for foolishness, speaking with a soft Irish lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "PJxw9mhsfjC5kXakHUAq",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "fury": {
+    "name": "FURY",
+    "title": "Honor Quartermaster",
+    "gender": "male",
+    "brief": "A man in their thirties: a honor quartermaster, brisk, sociable and businesslike, speaking with a gentle Northern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "WX3uiILh6m3Qie0O1Z57",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "gardener_della": {
+    "name": "Della Brindlepot",
+    "title": "Gardener",
+    "gender": "female",
+    "brief": "A woman in their thirties: a gardener, gentle, attentive and unhurried, speaking with a lilting Welsh accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "FGwaJmKHyUxhhwQQRF3J",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "gardener_yew": {
+    "name": "Gardener Yew",
+    "title": "The Last Gardener",
+    "gender": "male",
+    "brief": "A man in their fifties: a the last gardener, gentle, attentive and unhurried, speaking with a soft Irish lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "NBipDcmD2KvU3D2YVLwq",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "gatecaptain_brannoc": {
+    "name": "Gatecaptain Brannoc",
+    "title": "Commander of Wyrmwatch",
+    "gender": "male",
+    "brief": "A man in their fifties: a commander of wyrmwatch, steady, alert and plain-spoken, speaking with a soft Irish lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "EvsHu3RMyKYTDv0ttw32",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "gatewarden_pell": {
+    "name": "Gatewarden Pell",
+    "title": "Keeper of the Garden Gate",
+    "gender": "male",
+    "brief": "A man in their forties: a keeper of the garden gate, steady, alert and plain-spoken, speaking with a mild Scottish burr. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "Dejgy87zH38kkp6skghg",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "gravedigger_mosley": {
+    "name": "Gravedigger Mosley",
+    "title": null,
+    "gender": "male",
+    "brief": "A man in their fifties: a villager, friendly and down to earth, speaking with a crisp Southern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "ISI00m2CPkTH6NgaunZX",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "gravekeeper_holven": {
+    "name": "Bertram Ashcombe",
+    "title": "Gravekeeper",
+    "gender": "male",
+    "brief": "A man in their forties: a gravekeeper, thoughtful, measured and a little wry, speaking with a crisp Southern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "VOE9bkJmJ1nWC1nQQWDJ",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "harbormaster_odile": {
+    "name": "Harbormaster Odile",
+    "title": "Harbormaster of Wickharbor",
+    "gender": "female",
+    "brief": "A woman in their fifties: a harbormaster of wickharbor, weathered, easygoing and salt of the earth, speaking with a light West Country lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "0vVDMC5KZZbQBpMwdcns",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "head_gardener_amaranth": {
+    "name": "Head Gardener Amaranth",
+    "title": "Head Gardener of the Evergarden",
+    "gender": "female",
+    "brief": "A woman in their thirties: a head gardener of the evergarden, gentle, attentive and unhurried, speaking with a soft Irish lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "j1uftodSi9A8yzY15bxU",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "hearthkeeper_maeve": {
+    "name": "Hearthkeeper Maeve",
+    "title": "Keeper of the Hearth-Lodge",
+    "gender": "female",
+    "brief": "A woman in their thirties: a keeper of the hearth-lodge, thoughtful, measured and a little wry, speaking with a light West Country lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "WYNOKjWiOlfCIZbRaE5v",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "herbalist_olvessa": {
+    "name": "Olvessa",
+    "title": "Herb Terrace Keeper",
+    "gender": "female",
+    "brief": "A woman in her seventies: a compassionate, patient marsh healer with an air of old mystery, speaking with a soft Irish lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "O4THd7ChrOOWi8iF9jXc",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "herbalist_yara": {
+    "name": "Herbalist Yara",
+    "title": "Bracken Circle Quartermaster",
+    "gender": "female",
+    "brief": "A woman in their thirties: a bracken circle quartermaster, brisk, sociable and businesslike, speaking with a crisp Southern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "wIKQOlAQZgY7OUPF5aRw",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "hermit_okku": {
+    "name": "Okrim",
+    "title": "The Man Who Went In",
+    "gender": "male",
+    "brief": "A man in their forties: a the man who went in, friendly and down to earth, speaking with a light West Country lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "PZnr51NeMjAlWrbsaVlI",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "heroic_quartermaster": {
+    "name": "Quartermaster Vex",
+    "title": "Heroic Quartermaster",
+    "gender": "male",
+    "brief": "A man in their thirties: a heroic quartermaster, brisk, sociable and businesslike, speaking with a mild Scottish burr. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "e5IpqKdUws05GljHAeFL",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "huntsman_deral": {
+    "name": "Huntsman Deral",
+    "title": "Warden of the Herds",
+    "gender": "male",
+    "brief": "A man in their fifties: a warden of the herds, steady, alert and plain-spoken, speaking with a gentle Northern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "OwSpzYg87HFccwOeciJV",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "ignivar": {
+    "name": "Ignivar Ashcaller",
+    "title": null,
+    "gender": "male",
+    "brief": "A colossal living forge elemental: a booming, crackling male voice like a furnace given speech, with a metallic ring under every word. Not human-sounding.",
+    "voice_id": "pKMDHJGvJa9lCEeWkJap",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "innkeeper_jorren": {
+    "name": "Jorren",
+    "title": "Innkeeper",
+    "gender": "male",
+    "brief": "A man in his forties: a cheerfully gloomy tavern keeper brimming with odd stories, speaking with a light West Country lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "Eo96ITNQM7ZM1T445x9i",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "keeper_bram": {
+    "name": "Keeper Bram",
+    "title": "Keeper of the Old Beacon",
+    "gender": "male",
+    "brief": "A man in old age: a keeper of the old beacon, thoughtful, measured and a little wry, speaking with a mild Scottish burr. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "L1eRVWjRgrKGcKy31ow9",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "keeper_saelwyn": {
+    "name": "Keeper Saelwyn",
+    "title": "Keeper of the Hollow",
+    "gender": "female",
+    "brief": "A woman in their fifties: a keeper of the hollow, thoughtful, measured and a little wry, speaking with a soft Irish lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "3jeQ8cT3YWyyIWpq3sxu",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "lamplighter_sorrel": {
+    "name": "Lamplighter Sorrel",
+    "title": "Keeper of the Nightgate",
+    "gender": "male",
+    "brief": "A man in their forties: a keeper of the nightgate, thoughtful, measured and a little wry, speaking with a mild Scottish burr. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "z1PZ27s3AtT6OURsVOEV",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "lampman_cobb": {
+    "name": "Lampman Cobb",
+    "title": "Keeper of the Crowgate Lanterns",
+    "gender": "male",
+    "brief": "A man in their fifties: a keeper of the crowgate lanterns, thoughtful, measured and a little wry, speaking with a crisp Southern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "LhL9gH5QVCpulRYk5Wav",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "lira_dewsong": {
+    "name": "Lira Dewsong",
+    "title": "Night-Gardener of Moonrest",
+    "gender": "female",
+    "brief": "A woman in their fifties: a night-gardener of moonrest, gentle, attentive and unhurried, speaking with a gentle Northern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "4oPXqSmTTfqK2G2oOAob",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "loremaster_caddis": {
+    "name": "Loremaster Caddis",
+    "title": "Loremaster",
+    "gender": "male",
+    "brief": "A man in their fifties: a loremaster, thoughtful, measured and a little wry, speaking with a gentle Northern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "yHiC3QnFHIOoiZlAaEwY",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "loremother_bryn": {
+    "name": "Loremother Bryn",
+    "title": "Voice of the Shrine",
+    "gender": "female",
+    "brief": "A woman in old age: a voice of the shrine, thoughtful, measured and a little wry, speaking with a soft Irish lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "qTJh3LbKIFY06PizcvIk",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "marshal_redbrook": {
+    "name": "Warden Corren Stoutvale",
+    "title": "Lanternwarden Commander",
+    "gender": "male",
+    "brief": "A man in his forties: an honourable, organised and perpetually tired warden commander, speaking with a gentle Northern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "H5dOBK3dgCs3DLTxkgXJ",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "mender_saul": {
+    "name": "Mender Saul",
+    "title": "Field Surgeon",
+    "gender": "male",
+    "brief": "A man in their thirties: a field surgeon, gentle, attentive and unhurried, speaking with a light West Country lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "uA2eMfNhppICjg8AOZQc",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "mother_sedge": {
+    "name": "Mother Sedge",
+    "title": "Fen-Witch of Willowweep",
+    "gender": "female",
+    "brief": "A woman in old age: a fen-witch of willowweep, friendly and down to earth, speaking with a crisp Southern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "O29vSD3JyhV1pD9OI4bW",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "netter_maris": {
+    "name": "Netter Maris",
+    "title": "Eel-Netter of Bridgemere",
+    "gender": "female",
+    "brief": "A woman in their fifties: a eel-netter of bridgemere, weathered, easygoing and salt of the earth, speaking with a gentle Northern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "wdUXhR5NpmAi1k7N9Jis",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "nythraxis": {
+    "name": "Nythraxis, Scourge of Thornpeak",
+    "title": null,
+    "gender": "male",
+    "brief": "An ancient undead king of a fallen kingdom: a vast, cold, slow and regal male voice, cruel and grieving, with a hollow, echoing weight. Not human-sounding.",
+    "voice_id": "5nGDtL0GPcZy6M5FyXoC",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "orchardist_pomeline": {
+    "name": "Orchardist Pomeline",
+    "title": "Keeper of the Gilded Rows",
+    "gender": "female",
+    "brief": "A woman in their thirties: a keeper of the gilded rows, gentle, attentive and unhurried, speaking with a gentle Northern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "xBc3jQbq19MGE2OssceY",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "pearlmother_isha": {
+    "name": "Pearl-Mother Isha",
+    "title": "Elder of the Divers",
+    "gender": "female",
+    "brief": "A woman in old age: a elder of the divers, friendly and down to earth, speaking with a light West Country lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "y2TOh4pyIuh9TIgOaLmN",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "provisioner_fenna": {
+    "name": "Provisioner Fenna",
+    "title": "Eldershine Provisioner",
+    "gender": "female",
+    "brief": "A woman in old age: a eldershine provisioner, brisk, sociable and businesslike, speaking with a soft rural English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "3GAX21J7rwGJIrM5jUJZ",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "provisioner_hale": {
+    "name": "Provisioner Hale",
+    "title": "Provisioner",
+    "gender": "male",
+    "brief": "A man in their fifties: a provisioner, brisk, sociable and businesslike, speaking with a soft Irish lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "A04UwXuYNN3wfZjbWnan",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "quartermaster_bree": {
+    "name": "Quartermaster Bree",
+    "title": "Highwatch Quartermaster",
+    "gender": "female",
+    "brief": "A woman in their thirties: a highwatch quartermaster, steady, alert and plain-spoken, speaking with a crisp Southern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "O3DB2B4oLgNDehXxsBwy",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "quartermaster_edda": {
+    "name": "Quartermaster Edda",
+    "title": "Redoubt Armorer",
+    "gender": "female",
+    "brief": "A woman in their forties: a redoubt armorer, brisk, sociable and businesslike, speaking with a lilting Welsh accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "ckiK9I2aaOrSqZtrDPTp",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "quartermaster_sela": {
+    "name": "Quartermaster Sela",
+    "title": "Keeper of the Garrison Stores",
+    "gender": "female",
+    "brief": "A woman in their forties: a keeper of the garrison stores, brisk, sociable and businesslike, speaking with a crisp Southern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "6snhyfKCGbe9AutJ43vt",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "reeve_ottoline": {
+    "name": "Reeve Ottoline",
+    "title": "Reeve of Lanternmere",
+    "gender": "female",
+    "brief": "A woman in their thirties: a reeve of lanternmere, friendly and down to earth, speaking with a lilting Welsh accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "MCxEBmgrIbHBfL0NowNz",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "riftwatch_ollun": {
+    "name": "Riftwatch Ollun",
+    "title": "Breach Scholar",
+    "gender": "male",
+    "brief": "A man in their forties: a breach scholar, steady, alert and plain-spoken, speaking with a mild Scottish burr. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "42zR43QGn0EQJX5pMkW6",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "salvage_boss_ryna": {
+    "name": "Salvage-Boss Ryna",
+    "title": "Mistress of the Wreck Line",
+    "gender": "female",
+    "brief": "A woman in their fifties: a mistress of the wreck line, weathered, easygoing and salt of the earth, speaking with a lilting Welsh accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "sd3anRwJL7YrOjFxCUPb",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "salvager_edda": {
+    "name": "Salvager Edda",
+    "title": "Wreckfield Salvager",
+    "gender": "female",
+    "brief": "A woman in their thirties: a wreckfield salvager, weathered, easygoing and salt of the earth, speaking with a crisp Southern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "JbUzoCGIJZNmFnuR1Uhv",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "scout_einna": {
+    "name": "Scout Einna",
+    "title": "Snowline Scout",
+    "gender": "female",
+    "brief": "A woman in their forties: a snowline scout, steady, alert and plain-spoken, speaking with a mild Scottish burr. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "P8fsuIWa2WCWtpuu1gUd",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "scout_maren": {
+    "name": "Scout Maren",
+    "title": "Marshal's Scout",
+    "gender": "female",
+    "brief": "A woman in their forties: a marshal's scout, steady, alert and plain-spoken, speaking with a crisp Southern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "izSiERbgGQpc6awhiaeB",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "scout_neris": {
+    "name": "Neris Snowmantle",
+    "title": "Lanternwarden Scout",
+    "gender": "female",
+    "brief": "A woman in her thirties: a quiet, dependable wilderness guide with a dry sense of humour, speaking with a mild Scottish burr. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "vroc7n6sAtaoozB2mTKf",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "scout_yerrin": {
+    "name": "Scout Yerrin",
+    "title": "Far-Dune Watcher",
+    "gender": "female",
+    "brief": "A woman in their thirties: a far-dune watcher, steady, alert and plain-spoken, speaking with a lilting Welsh accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "QSy78sRXlXeaAjnG6XAX",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "sexton_marrow": {
+    "name": "Sexton Marrow",
+    "title": "Sexton of Gibbetmere",
+    "gender": "male",
+    "brief": "A man in old age: a sexton of gibbetmere, thoughtful, measured and a little wry, speaking with a crisp Southern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "y2gHTmIn3ukScrjGE5u0",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "smith_haldren": {
+    "name": "Smith Haldren",
+    "title": "Armorer & Weaponsmith",
+    "gender": "male",
+    "brief": "A man in their fifties: a armorer & weaponsmith, practical, blunt and hardworking, speaking with a lilting Welsh accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "RBEDSpUK9sEXEsLaQv6P",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "socketwright_skerrit": {
+    "name": "Maben Skerrit",
+    "title": "the Socketwright",
+    "gender": "male",
+    "brief": "A man in their fifties: a the socketwright, practical, blunt and hardworking, speaking with a lilting Welsh accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "GLfIFUa2NVFgjwMPdN56",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "spirit_healer": {
+    "name": "The Pale Keeper",
+    "title": "Warden of the Dead",
+    "gender": "female",
+    "brief": "A woman in their fifties: a warden of the dead, steady, alert and plain-spoken, speaking with a soft rural English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "4KcVM3Doz64iHM7WwSSJ",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "stablemaster_marla": {
+    "name": "Marla Hitchen",
+    "title": "Stablemaster",
+    "gender": "female",
+    "brief": "A woman in her forties: a warm, practical innkeeper, protective, quick to feed anyone in need, speaking with a lilting Welsh accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "QKnzA20hFlNWbH0yHqPG",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "strandwatcher_pell": {
+    "name": "Strandwatcher Pell",
+    "title": "Watcher of the Tanglemouth",
+    "gender": "male",
+    "brief": "A man in their fifties: a watcher of the tanglemouth, steady, alert and plain-spoken, speaking with a soft rural English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "8QkKwkdDAwKbGbZyEZL5",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "tanner_hesk": {
+    "name": "Tanner Hesk",
+    "title": "Master of the Tannery",
+    "gender": "male",
+    "brief": "A man in their forties: a master of the tannery, practical, blunt and hardworking, speaking with a mild Scottish burr. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "iRUvxvOMxIT90hg7XXkk",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "the_merchant": {
+    "name": "The Merchant",
+    "title": "Keeper of the World Market",
+    "gender": "male",
+    "brief": "A man in their forties: a keeper of the world market, brisk, sociable and businesslike, speaking with a crisp Southern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "14kfDBQPqKQMdmEKUWeD",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "tidewatcher_ondrel": {
+    "name": "Ondrel Vane",
+    "title": "Tidewatcher",
+    "gender": "male",
+    "brief": "A man in their forties: a tidewatcher, steady, alert and plain-spoken, speaking with a light West Country lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "Gb1slmGWU5ICYIljvizk",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "tinker_gizzel": {
+    "name": "Tinker Gizzel",
+    "title": "Master of the Toolworks",
+    "gender": "male",
+    "brief": "A man in their forties: a master of the toolworks, practical, blunt and hardworking, speaking with a light West Country lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "x3yiLYubV68gTlknwWRi",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "trader_wilkes": {
+    "name": "Silven Brackett",
+    "title": "Provisioner",
+    "gender": "male",
+    "brief": "A man in his thirties: a charming, ambitious merchant with a ready smile and a sharp eye for a deal, speaking with a light West Country lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "igCT6Krrq0wcBwaxuRxf",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "trapper_brosk": {
+    "name": "Trapper Brosk",
+    "title": "Shiverfen Trapper",
+    "gender": "male",
+    "brief": "A man in their forties: a shiverfen trapper, outdoorsy, terse and capable, speaking with a soft rural English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "VWOS76jkwTiIcJZBcarD",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "varkhul": {
+    "name": "Varkhul, Forgefather of the Last Flame",
+    "title": null,
+    "gender": "male",
+    "brief": "A towering forge-father of molten iron: a deep, gravelly, rumbling male voice, proud and weary, heavy as an anvil. Not human-sounding.",
+    "voice_id": "rfNhWyTK0EUOZAYovsSt",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "vicar_creel": {
+    "name": "Vicar Creel",
+    "title": "Last Vicar of the Mournstone",
+    "gender": "male",
+    "brief": "A man in their fifties: a last vicar of the mournstone, thoughtful, measured and a little wry, speaking with a light West Country lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "DL1lcbXmbu7TMWPlOigw",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "warden_coalfast": {
+    "name": "Warden Coalfast",
+    "title": "Redoubt Commander",
+    "gender": "male",
+    "brief": "A man in their thirties: a redoubt commander, steady, alert and plain-spoken, speaking with a lilting Welsh accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "tHxqFGTO5YREe0OPLewD",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "warden_fenwick": {
+    "name": "Warden Fenwick",
+    "title": "Warden of Fenbridge",
+    "gender": "male",
+    "brief": "A man in their fifties: a warden of fenbridge, steady, alert and plain-spoken, speaking with a gentle Northern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "ApqLLZMUNQF17SsM7ZAF",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "warden_kaldra": {
+    "name": "Warden Kaldra",
+    "title": "Warden of Icemantle",
+    "gender": "female",
+    "brief": "A woman in their thirties: a warden of icemantle, steady, alert and plain-spoken, speaking with a crisp Southern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "vR28Yemj10fr2vhrksrM",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "wardsmith_orun": {
+    "name": "Wardsmith Orun",
+    "title": "Keeper of the Old Forges",
+    "gender": "male",
+    "brief": "A man in old age: a keeper of the old forges, practical, blunt and hardworking, speaking with a gentle Northern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "CSRU8HTmLM30AHbKuAO8",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "watcher_maren": {
+    "name": "Watcher Maren",
+    "title": "The Windway Watch",
+    "gender": "female",
+    "brief": "A woman in their forties: a the windway watch, steady, alert and plain-spoken, speaking with a gentle Northern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "1laInbY1cbZui8VwcjLG",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "waykeeper_pell": {
+    "name": "Waykeeper Pell",
+    "title": "Keeper of the Amberfen Steps",
+    "gender": "female",
+    "brief": "A woman in their fifties: a keeper of the amberfen steps, thoughtful, measured and a little wry, speaking with a soft Irish lilt. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "1GwDB2QCc3sNSWRHaVi7",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "waywatcher_sorrel": {
+    "name": "Waywatcher Sorrel",
+    "title": "Watcher of the Goldmelt",
+    "gender": "female",
+    "brief": "A woman in old age: a watcher of the goldmelt, steady, alert and plain-spoken, speaking with a mild Scottish burr. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "xKS6oGNKvCPeYakyEmlU",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "weaver_amelle": {
+    "name": "Weaver Amelle",
+    "title": "Moonfleece Weaver",
+    "gender": "female",
+    "brief": "A woman in their fifties: a moonfleece weaver, practical, blunt and hardworking, speaking with a crisp Southern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "IT1wt3OsfoAUDqGjIkFK",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "weaver_ottilie": {
+    "name": "Weaver Ottilie",
+    "title": "Master of the Loom",
+    "gender": "female",
+    "brief": "A woman in their fifties: a master of the loom, practical, blunt and hardworking, speaking with a soft rural English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "MjwMjwchF38pz9HuD5nw",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "wickmother_sorrel": {
+    "name": "Wickmother Sorrel",
+    "title": "Keeper of the Hedgewick Inn",
+    "gender": "female",
+    "brief": "A woman in old age: a keeper of the hedgewick inn, thoughtful, measured and a little wry, speaking with a mild Scottish burr. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "6Qdmep4lwKdaFXSfAp79",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  },
+  "widow_tansy": {
+    "name": "Widow Tansy",
+    "title": "Candlewright of Gibbetmere",
+    "gender": "female",
+    "brief": "A woman in old age: a candlewright of gibbetmere, practical, blunt and hardworking, speaking with a crisp Southern English accent. A natural, characterful fantasy villager voice with clear diction, an original voice, not an imitation of anyone.",
+    "voice_id": "JqqCul94olSoVGjvJRA9",
+    "designed": "2026-11-05",
+    "tier": "pro"
+  }
+}
