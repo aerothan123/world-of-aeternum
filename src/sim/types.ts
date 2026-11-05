@@ -1851,6 +1851,9 @@ export interface ItemInstancePayload {
   signer?: string;
   /** Remaining charges for a per-effect-limited item, keyed by effect id. */
   charges?: Record<string, number>;
+  /** Durability points this copy has lost (src/sim/durability/). Absent on an
+   *  undamaged copy; repairing removes it. */
+  wear?: number;
   /** Quality/stat values baked into this specific copy at creation time.
    *  `quality` is legacy-only under the masterwork model: crafted
    *  outputs are deterministic and new crafts never write it (persisted
@@ -8707,6 +8710,11 @@ export interface Entity extends ClientMirroredEntityFields {
   // Character training controls movement for every cosmetic mount model
   // (riding_training.ts: 3 is the level 10 apprentice rank).
   ridingTier: 0 | 1 | 2 | 3;
+  // Runtime-only combat wear counters (src/sim/durability/durability.ts): hits
+  // taken and physical hits landed since the last point of wear, and the
+  // round-robin armor turn. Absent until the first counted hit; never saved
+  // and never on the wire.
+  durabilityWear?: { taken: number; dealt: number; turn: number };
   // Mount summon/dismount transition (players only; 0 = idle). Seconds left in the
   // call-the-mount summon or the dismount, driven per tick by updateMountTransition
   // (src/sim/mounts.ts). The sim READS it: player_motion.stepPlayerMotion roots the

@@ -711,7 +711,7 @@ import {
   instancePartyTradeLine,
   instanceTitleHtml,
   itemNumber,
-  itemRequiredLevelLine,
+  itemGateLines,
   materialMakersMarkLines,
   tooltipEffectiveQuality,
   vendorSellTooltipLine,
@@ -6529,7 +6529,7 @@ export class Hud {
     if (requiredClasses) {
       html += `<div class="tt-sub">${esc(t('itemUi.tooltip.classes', { classes: requiredClasses.map(classDisplayName).join(', ') }))}</div>`;
     }
-    html += itemRequiredLevelLine(item, wearer.level) + treasureMapTooltipLine(item);
+    html += itemGateLines(item, wearer.level, instance) + treasureMapTooltipLine(item);
     html += this.itemProcBlock(item) + trinketTooltipLines(item, this.sim.player);
     if (compare !== 'noset') html += this.itemSetBlock(item);
     html += materialMakersMarkLines(item, instance, materialSources);
@@ -14208,7 +14208,7 @@ export class Hud {
     // unknown-id arm (R34) keeps the button live for grays only the server's
     // newer table can classify; that helper's doc owns the
     // enabled-quoting-zero trade the two rules compose into.
-    const sellJunkState = sellJunkButtonState(this.sim.inventory, ITEMS);
+    const sellJunkState = sellJunkButtonState(this.sim.inventory, ITEMS, this.sim, npc);
     const buyAndRefresh = (buy: () => void) => {
       buy();
       if ($('#bags').style.display !== 'none') this.renderBags();

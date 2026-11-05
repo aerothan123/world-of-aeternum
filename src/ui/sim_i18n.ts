@@ -235,6 +235,11 @@ const baseEnTable = {
   'error.mountBuyLevelApprentice': 'You must be level 10 to buy a mount.',
   'log.apprenticeRidingLearned':
     'You have learned Apprentice Riding. You can now summon and ride a mount.',
+  // Gear durability and repair (src/sim/durability/durability.ts).
+  'log.gearRepaired': 'Your equipment has been repaired.',
+  'log.gearBroken': 'One of your items has broken. Repair it at an armorer or weaponsmith.',
+  'error.nothingToRepair': 'Nothing needs repairing.',
+  'error.cannotRepairHere': 'This merchant cannot repair your equipment.',
   'log.advancedRidingLearned': 'You have learned Advanced Riding. Your mount speed is increased by {speed}%.',
   // Riding lesson (src/sim/mounts_training.ts). The shared "Too far away." /
   // "Not enough money." / "You can't do that while dead." refusals are reused

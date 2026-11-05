@@ -101,6 +101,7 @@ import {
 } from './material_item_custody';
 import type { MaterialComposition } from './material_sources';
 import { mountOwned, summonMountItem } from './mounts';
+import { REPAIR_ALL_SERVICE_ID, repairAllAtNpc } from './durability';
 import { learnRiding } from './mounts_training';
 import { APPRENTICE_RIDING_MIN_LEVEL, canRide } from './riding_training';
 import { battlefieldExperienceTrickle } from './professions/battlefield_xp';
@@ -1450,6 +1451,12 @@ export function buyItem(
   const def = ITEMS[itemId];
   if (npc?.kind !== 'npc' || npc.vendorItems.length === 0) {
     ctx.error(meta.entityId, 'That merchant is not available.');
+    return;
+  }
+  // Repair All (src/sim/durability/): a vendor service, never stock; the
+  // durability system owns every gate (repairing NPC, range, cost).
+  if (itemId === REPAIR_ALL_SERVICE_ID) {
+    repairAllAtNpc(ctx, meta, p, npc);
     return;
   }
   if (!npc.vendorItems.includes(itemId)) {

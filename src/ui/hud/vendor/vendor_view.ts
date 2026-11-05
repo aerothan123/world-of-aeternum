@@ -17,6 +17,8 @@ import {
 import { resolveVendorRowGate, type VendorRowGate } from '../../../sim/content/vendor_row_gates';
 import type { FactionId } from '../../../sim/factions';
 import { junkSellableSlot } from '../../../sim/items';
+import { npcRepairs, repairAllCost } from '../../../sim/durability';
+import type { PlayerEquipment, PlayerEquipmentInstances } from '../../../sim/entity';
 import {
   nextRidingTier,
   type RidingTier,
@@ -322,13 +324,38 @@ export function buildVendorView(
  * therefore sees a live button quoting zero that sells nothing, the accepted
  * cosmetic cost of never stranding real junk unsellable on a stale bundle.
  */
+/** The vendor window's Repair All button (src/sim/durability/): shown only at
+ *  a repairing NPC; `cost` is the full repair price right now. */
+export interface VendorRepairState {
+  cost: number;
+}
+
+/** The vendor action row: the Sell Junk button and, at a repairing NPC, the
+ *  Repair All button (`repair`). The gear inputs are optional so a caller with
+ *  no gear view (and every older test) builds the junk half alone. */
 export function sellJunkButtonState(
   inventory: readonly InvSlot[],
   items: Readonly<Record<string, ItemDef>>,
-): { enabled: boolean; proceeds: number } {
+  gear?: {
+    equipment: PlayerEquipment;
+    equipmentInstances: PlayerEquipmentInstances;
+  },
+  npc?: { templateId?: string | null },
+): { enabled: boolean; proceeds: number; repair?: VendorRepairState } {
   const junk = inventory.filter((slot) => junkSellableSlot(items[slot.itemId], slot));
   const hasUnknownSlots = inventory.some((slot) => knownItemDef(items, slot.itemId) === undefined);
+  const repair =
+    gear && npc && npcRepairs(npc.templateId ?? undefined)
+      ? {
+          cost: repairAllCost({
+            equipment: gear.equipment,
+            equipmentInstance: gear.equipmentInstances,
+            inventory,
+          }),
+        }
+      : undefined;
   return {
+    ...(repair ? { repair } : {}),
     enabled: junk.length > 0 || hasUnknownSlots,
     // junkSellableSlot only passes defs that carry a sell value, so the ?? 0
     // is unreachable belt-and-braces, never a quote change.

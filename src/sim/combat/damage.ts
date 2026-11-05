@@ -24,6 +24,11 @@
 // (enforced by tests/architecture.test.ts).
 
 import { rollBossBuddyDrops } from '../buddy_drops';
+import {
+  onPlayerDeathForDurability,
+  onPlayerHitDealtForDurability,
+  onPlayerHitTakenForDurability,
+} from '../durability';
 import { MEMBERSHIP_XP_MULTIPLIER } from '../content/membership';
 import { ABILITIES, DELVES, GROUP_XP_BONUS, ITEMS, MOBS } from '../data';
 import * as deedsMod from '../deeds';
@@ -1251,6 +1256,11 @@ export function dealDamage(
   // that finishes them. Only real damage on a live player counts, and the
   // battleground module owns every other rule (same match, opposing teams, the
   // assist window); this hub only reports the hit.
+  // Gear wear from landed hits (src/sim/durability/): deterministic counters, no rng.
+  if (amount > 0) {
+    onPlayerHitTakenForDurability(ctx, target, source);
+    onPlayerHitDealtForDurability(ctx, source, target, school);
+  }
   if (source && amount > 0 && target.kind === 'player' && !target.dead) {
     ctx.bgOnPlayerDamaged(target, source);
     // World PvP assists: the same idea for a flagged victim in the open world
@@ -1613,6 +1623,8 @@ export function handleDeath(
   // and the clear loop would erase it out from under the hook. (The player-block
   // counters and side effects stay below; only this pure read-of-threat moves up.)
   if (e.kind === 'player') deedsMod.onPlayerDeathForDeeds(ctx, e);
+  // A death to the world costs every worn piece 10% durability (src/sim/durability/).
+  if (e.kind === 'player') onPlayerDeathForDurability(ctx, e, killer);
 
   // the dead drop off every hate table (and any taunt lock on them)
   for (const m of ctx.entities.values()) {

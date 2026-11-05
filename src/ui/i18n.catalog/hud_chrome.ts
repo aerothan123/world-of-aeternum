@@ -6947,6 +6947,7 @@ export const hudChromeStrings = {
   },
   itemTooltip: {
     requiresLevel: 'Requires Level {level}',
+    durability: 'Durability {current} / {max}',
     riftTier: '{tier}-rank Rift item',
     riftUpgrade: 'Rift upgrade {level}/{max}',
     riftSockets: 'Rift gems {used}/{total}',

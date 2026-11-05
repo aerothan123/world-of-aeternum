@@ -14,6 +14,7 @@ import {
   factionDisplayName,
   STANDING_TIER_LABELS,
 } from '../../../sim/factions';
+import { REPAIR_ALL_SERVICE_ID } from '../../../sim/durability';
 import { ridingMoveSpeedPct, ridingTierBefore } from '../../../sim/riding_training';
 import type { ItemInstancePayload } from '../../../sim/types';
 import type { VendorBuyOptions } from '../../../sim/vendor_buy_stack';
@@ -71,6 +72,8 @@ export interface VendorWindowDeps extends PainterHostPresentation {
   sellJunk: {
     enabled: boolean;
     proceeds: number;
+    /** Present at a repairing NPC (vendor_view.ts sellJunkButtonState). */
+    repair?: { cost: number };
   };
 }
 
@@ -422,6 +425,31 @@ export function renderVendorWindow(
       `<div class="tt-sub">${esc(t('itemUi.vendor.sellJunkHint'))}</div><div class="tt-sub">${esc(t('itemUi.vendor.sellJunkNoBuyback'))}</div>`,
   );
   el.appendChild(sellJunk);
+
+  // Repair All (src/sim/durability/): only at an armorer or weapon vendor; the
+  // purchase rides the ordinary buy command with the service id.
+  const repair = deps.sellJunk.repair;
+  if (repair) {
+    const repairBtn = document.createElement('button');
+    repairBtn.type = 'button';
+    repairBtn.className = 'vendor-repair-all ui-btn';
+    repairBtn.disabled = repair.cost <= 0;
+    repairBtn.innerHTML = `<span class="vi-name">${esc(t('itemUi.vendor.repairAll'))}</span>${repair.cost > 0 ? `<span class="vi-price">${deps.moneyHtml(repair.cost)}</span>` : ''}`;
+    repairBtn.setAttribute(
+      'aria-label',
+      repair.cost > 0
+        ? t('itemUi.vendor.repairAllAria', { price: formatLocalizedMoney(repair.cost) })
+        : t('itemUi.vendor.repairAllNone'),
+    );
+    repairBtn.dataset.focusKey = 'repair-all';
+    repairBtn.addEventListener('click', () => deps.onBuy(REPAIR_ALL_SERVICE_ID));
+    deps.attachTooltip(
+      repairBtn,
+      () =>
+        `<div class="tt-sub">${esc(t(repair.cost > 0 ? 'itemUi.vendor.repairAllHint' : 'itemUi.vendor.repairAllNone'))}</div>`,
+    );
+    el.appendChild(repairBtn);
+  }
 
   const buybackTitle = document.createElement('div');
   buybackTitle.className = 'vendor-section-title';
