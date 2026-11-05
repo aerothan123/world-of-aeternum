@@ -915,6 +915,18 @@ told so, which drops a far bake still queued for it) are
   look needs no term: it is a pure function of the templateId, so a pooled body
   only ever returns to the NPC it was built for.
 
+## Stylized character test (dev-only `?stylizedchars=1`)
+An owner look review, not a shipping lane. `stylized_char_test_core.ts` (pure: the
+switch, the entity rule, the two defs derived from `player_warrior`) and
+`stylized_char_test_flag.ts` (the DEV-only, read-once URL leaf) put two finished,
+single-mesh bodies (`models/chars/test_stylized/`) on the male warrior player and on
+`trader_wilkes`, through `authoredRigOverride` (an explicit model choice, so no
+composed look, no NPC props, no WOC head or armor). With the flag off nothing
+registers. The bodies are Tripo auto-rigged meshes refit onto `WOC_Armored_Rig` by
+`scripts/assets/stylized_char_test/fit_woc_rig.mjs` (header of `fit_woc_rig_core.mjs`:
+why rotations-only clips allow a joint refit), so they play the shipped WOC library
+and ClipMap unchanged. Pinned by `tests/stylized_char_test.test.ts`.
+
 ## Adding things (module-first: where NEW work lands, and its test)
 - **New family/key:** a declarative `VisualDef` in `VISUALS` (existing `ClipMap`
   or a new factory if the rig's clip names differ), wired via

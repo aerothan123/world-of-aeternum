@@ -567,6 +567,7 @@ something this file marks as restricted, ask first: tony@levystreet.com.
 | Generated gather node model (node_herb_goldleaf) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
 | Generated gather node model (node_herb_sunpetal) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
 | Generated gather node model (node_herb_depleted) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Stylized character test bodies (warrior_stylized, quartermaster_stylized; dev-only) | World of ClaudeCraft | Project-generated from original text prompts (Tripo AI 3D), refit onto the WOC rig by scripts/assets/stylized_char_test | Project asset | With the project only |
 
 ### Orbital Lightning
 

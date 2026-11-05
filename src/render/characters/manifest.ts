@@ -216,6 +216,8 @@ import { SANCTUM_BOSS_LOOKS, SANCTUM_BOSS_MOB_KEYS } from './sanctum_boss_looks'
 import { SANCTUM_MOB_KEYS, sanctumCreatureLooks } from './sanctum_creature_looks';
 import { seasonalTrickLooks } from './seasonal_trick_looks';
 import type { SeatClipSet } from './seat_clips';
+import { stylizedTestDefs, stylizedTestKeyFor } from './stylized_char_test_core';
+import { stylizedCharsEnabled } from './stylized_char_test_flag';
 import type { WeaponLoadout } from './weapon_loadout_core';
 import { WILDHEART_MOB_KEYS, wildheartPlaceholderLooks } from './wildheart_creature_looks';
 import { type WocFit, wocAnimsUrl, wocBaseUrl } from './woc_armor_core';
@@ -8142,6 +8144,9 @@ VISUALS.player_druid_female = wocFemale(VISUALS.player_druid, WOC_DRUID_FEMALE_M
 SKINS.player_druid_female = [null, null, null, null, null, null];
 VISUALS.player_shaman_female = wocFemale(VISUALS.player_shaman, WOC_SHAMAN_FEMALE_MANIFEST);
 SKINS.player_shaman_female = [null, null, null, null, null, null];
+// The stylized character TEST bodies (dev-only `?stylizedchars=1`; off, nothing
+// registers): stylized_char_test_core.ts.
+if (stylizedCharsEnabled()) Object.assign(VISUALS, stylizedTestDefs(VISUALS.player_warrior));
 
 /** The KayKit def each WOC-bodied class derives its `_modular` fallback from. */
 export const KAYKIT_BASELINES: Partial<Record<PlayerClass, VisualDef>> = {
@@ -8775,6 +8780,9 @@ export function mobVisualKey(templateId: string): string {
  *  cannot dead-end the visual build. An explicit model choice beats both the
  *  NPC_KEYS default, an NPC_LOOKS look and a composed one. Null = none authored. */
 export function authoredRigOverride(e: Entity): string | null {
+  // The dev-only stylized test bodies are an explicit model choice the same way.
+  const test = stylizedTestKeyFor(e, stylizedCharsEnabled());
+  if (test && VISUALS[test]) return test;
   return e.kind === 'npc' && e.visualKey && VISUALS[e.visualKey] ? e.visualKey : null;
 }
 
@@ -8782,6 +8790,8 @@ const MOB_FALLBACK_KEY = 'mob_bandit';
 
 export function visualKeyFor(e: Entity): string {
   if (e.kind === 'player') {
+    const test = authoredRigOverride(e);
+    if (test) return test;
     if (isMechWearer(e)) return 'player_mech';
     return playerVisualKey(e.templateId, e.modularAppearance);
   }
