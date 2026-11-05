@@ -18,6 +18,9 @@ foreach ($a in $models) {
   $f = Invoke-RestMethod -Uri "https://api.polyhaven.com/files/$a" -Headers $ua
   $g = $f.gltf.'1k'.gltf
   $jobs += [pscustomobject]@{ asset = $a; file = "$($a)_1k.gltf"; url = $g.url }
+  # the glTF ships JPG colour with no alpha: fetch the cut-out mask beside it
+  $mask = if ($f.Alpha) { $f.Alpha } else { $f.opacity }
+  if ($mask) { $jobs += [pscustomobject]@{ asset = $a; file = "cutout/$($a)_alpha_1k.png"; url = $mask.'1k'.png.url } }
   foreach ($p in $g.include.PSObject.Properties) {
     $jobs += [pscustomobject]@{ asset = $a; file = $p.Name; url = $p.Value.url }
   }

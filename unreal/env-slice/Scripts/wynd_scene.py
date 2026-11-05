@@ -143,7 +143,7 @@ def foliage_materials(mesh, leaves_only=True):
         o = mi.get_editor_property("base_property_overrides")
         for k, v in (
             ("override_two_sided", True), ("two_sided", True),
-            ("override_shading_model", True), ("shading_model", unreal.MaterialShadingModel.MSM_TWOSIDED_FOLIAGE),
+            ("override_shading_model", False),
         ):
             try:
                 o.set_editor_property(k, v)
@@ -151,6 +151,7 @@ def foliage_materials(mesh, leaves_only=True):
                 W.log("foliage override %s: %s" % (k, err))
         mi.set_editor_property("base_property_overrides", o)
         unreal.MaterialEditingLibrary.update_material_instance(mi)
+        lib.save_loaded_asset(mi)
         FOLIAGE_TWO_SIDED.add(mi.get_path_name())
 
 
@@ -158,6 +159,8 @@ def instancer(label, mesh, cast_shadow=True, cull=None):
     """An actor holding one instanced static mesh component, added through the
     subobject subsystem so it is a real editor component of the level."""
     a = spawn(unreal.StaticMeshActor, label="WYND_" + label)
+    # instances are added in actor space: pin the holder at the origin
+    a.set_actor_location(unreal.Vector(0, 0, 0), False, False)
     a.static_mesh_component.set_mobility(unreal.ComponentMobility.STATIC)
     sds = unreal.get_engine_subsystem(unreal.SubobjectDataSubsystem)
     root = sds.k2_gather_subobject_data_for_instance(a)[0]
@@ -185,9 +188,8 @@ def build_scatter(sl):
         if not ms:
             continue
         lo, hi = bounds
-        for m in ms:
-            foliage_materials(m)
         comps = [instancer("scatter_" + m.get_name(), m) for m in ms]
+        batch = []
         for rec in recs:
             sx, sy, sz = W.fit_scale(rec["fit"], lo, hi)
             sink = 0.05 * (hi[2] - lo[2]) * sz if rec["species"] != "rock" else 0.3 * W.UNIT * sz
@@ -196,9 +198,10 @@ def build_scatter(sl):
                 unreal.Rotator(0, 0, W.yaw_ue(rec["rotY"])),
                 unreal.Vector(sx, sy, sz),
             )
-            for c in comps:
-                c.add_instance(t)
+            batch.append(t)
             total += 1
+        for c in comps:
+            c.add_instances(batch, False, False)
     sl.stats["scatter"] = total
 
 
@@ -225,10 +228,9 @@ def build_ground_cover(sl, areas, step=0.38):
             for p in lib.list_assets(W.PH + "/Plants/" + asset, True, False)
         ]
         meshes = [m for m in meshes if isinstance(m, unreal.StaticMesh)]
-        for m in meshes:
-            foliage_materials(m, leaves_only=False)
         comps[asset] = [instancer("cover_%s_%s" % (asset, m.get_name()), m, False, 9000) for m in meshes]
         counts[asset] = 0
+    batches = {asset: [] for asset in comps}
     seen = set()
     for cx, cz, r in areas:
         n = int(r / step)
@@ -254,10 +256,14 @@ def build_ground_cover(sl, areas, step=0.38):
                             unreal.Rotator(rng.uniform(-6, 6), rng.uniform(-6, 6), rng.uniform(0, 360)),
                             unreal.Vector(s, s, s),
                         )
-                        for c in comps[asset]:
-                            c.add_instance(t)
+                        batches[asset].append(t)
                         counts[asset] += 1
                         break
+    # one batched add per component: a per-instance add rebuilds the
+    # component's instance buffers every call (quadratic in the count)
+    for asset, ts in batches.items():
+        for c in comps[asset]:
+            c.add_instances(ts, False, False)
     sl.stats["groundCover"] = counts
 
 

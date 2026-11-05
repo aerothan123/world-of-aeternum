@@ -128,14 +128,19 @@ def terrain_material():
         arm = g.lerp(arm, s["arm"], a, arm_o, "RGB")
         alb_o = nor_o = arm_o = ""
     # macro colour: the game's baked tint, normalised around a mid grey
-    ts = g.node(unreal.MaterialExpressionScalarParameter, 6, parameter_name="TintStrength", default_value=0.35)
-    tn = g.op(unreal.MaterialExpressionMultiply, tint, g.const(2.4), "RGB")
+    # divided by the vale turf's mean linear tint, so the macro term varies
+    # brightness and hue around 1 instead of shifting the whole ground yellow
+    ts = g.node(unreal.MaterialExpressionScalarParameter, 6, parameter_name="TintStrength", default_value=0.3)
+    mean = g.node(
+        unreal.MaterialExpressionConstant3Vector, 6, constant=unreal.LinearColor(0.43, 0.51, 0.21, 1.0)
+    )
+    tn = g.op(unreal.MaterialExpressionDivide, tint, mean, "RGB")
     macro = g.lerp(g.const(1.0), tn, ts)
     warm = g.node(
         unreal.MaterialExpressionVectorParameter,
         6,
         parameter_name="Warmth",
-        default_value=unreal.LinearColor(1.04, 1.0, 0.9, 1.0),
+        default_value=unreal.LinearColor(1.0, 1.0, 0.97, 1.0),
     )
     alb = g.op(unreal.MaterialExpressionMultiply, alb, macro)
     alb = g.op(unreal.MaterialExpressionMultiply, alb, warm)
