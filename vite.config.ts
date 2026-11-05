@@ -117,6 +117,8 @@ const STATIC_PAGE_ALIASES = new Map([
   ['/privacy/', '/privacy.html'],
   ['/terms', '/terms.html'],
   ['/terms/', '/terms.html'],
+  ['/eula', '/eula.html'],
+  ['/eula/', '/eula.html'],
   ['/merch', '/merch.html'],
   ['/merch/', '/merch.html'],
   ['/press', '/press.html'],

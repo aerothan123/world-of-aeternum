@@ -423,7 +423,20 @@ export const shellStrings = {
       changeLater: 'You can change this any time in Options, under Graphics Quality.',
       confirm: 'Continue',
     },
-    // The first-launch analytics consent prompt (src/ui/analytics_consent_prompt.ts).
+    // The first-launch legal prompts (src/ui/eula_prompt.ts,
+    // src/ui/analytics_consent_prompt.ts). Drafts pending lawyer review.
+    legalPrompt: {
+      title: 'End User License Agreement',
+      body: 'Before you play, please read and accept the Wyndlewood End User License Agreement. It works together with the Terms of Service and the Privacy Policy.',
+      earlyAccess:
+        'Wyndlewood is in Early Access: features, balance, and content will change, and progress may be reset once at full launch as announced on the store page.',
+      eulaLink: 'End User License Agreement',
+      termsLink: 'Terms of Service',
+      privacyLink: 'Privacy Policy',
+      version: 'Agreement version {version}',
+      accept: 'I Accept',
+      decline: 'Decline',
+    },
     analyticsPrompt: {
       title: 'Help Improve Wyndlewood',
       body: 'May Wyndlewood collect usage and performance data? If you agree, the game sends coarse counters (sessions, play time in five-minute steps, a rough frame rate) and periodic performance reports about your device and frame times to our own servers.',
