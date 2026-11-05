@@ -52,7 +52,11 @@ function rig() {
     trees: () => trees,
     ground: () => 0,
     puff: () => {},
-    audio: () => ({ playAt: (id: string) => sounds.push(id) }) as never,
+    audio: () =>
+      ({
+        playAt: (id: string) => sounds.push(id),
+        gatherStrike: (kind: string) => sounds.push(kind),
+      }) as never,
   });
   const fell = () => {
     felled = new Map([[ID, { id: ID, x: X, z: Z, regrowAt: 300 }]]);
@@ -100,7 +104,10 @@ describe('TreeFellingView', () => {
     for (let t = 0; t < TREE_FALL_TOTAL_SECONDS + 0.5; t += 0.1) r.view.update(0.1);
     expect(r.view.stats().falling).toBe(0);
     expect(r.scene.children.length).toBe(before + 1); // the stump pool stays
-    expect(r.sounds).toContain('rift_boulder_impact');
+    // the trunk creaks as it starts to tip, then crashes once on impact
+    expect(r.sounds.filter((s) => s === 'tree_creak')).toHaveLength(1);
+    expect(r.sounds.filter((s) => s === 'tree_crash')).toHaveLength(1);
+    expect(r.sounds.indexOf('tree_creak')).toBeLessThan(r.sounds.indexOf('tree_crash'));
   });
 
   it('a regrow restores the original matrix, shadow slot and occluder radius', () => {
@@ -117,7 +124,7 @@ describe('TreeFellingView', () => {
     expect([...r.shadowRow.source.slice(16, 32)].every((v) => v === 1)).toBe(true);
   });
 
-  it('plays one axe hit per swing while a body chops, and the swing clip', () => {
+  it('loops the swing clip while a body chops, leaving the axe strikes to the swing itself', () => {
     const r = rig();
     r.entities.set(7, { castingAbility: TREE_CHOP_CAST_ID });
     r.view.handleEvent({
@@ -126,8 +133,11 @@ describe('TreeFellingView', () => {
       chopTreeId: ID,
     } as never);
     for (let t = 0; t < 3; t += 0.05) r.view.update(0.05);
-    expect(r.sounds.filter((s) => s === 'ui_gather_wood')).toHaveLength(3);
-    expect(r.view.castClipFor({ id: 7, castingAbility: TREE_CHOP_CAST_ID })).toBe('chop_tree');
-    expect(r.view.castClipFor({ id: 8, castingAbility: 'fireball' })).toBe('fireball');
+    // the strikes land on the swing clip's own contact (gather_strike_audio.ts),
+    // never on a timer here, so a chop is never doubled
+    expect(r.sounds).toHaveLength(0);
+    const pos = { x: X, z: Z };
+    expect(r.view.castClipFor({ id: 7, castingAbility: TREE_CHOP_CAST_ID, pos })).toBe('chop_tree');
+    expect(r.view.castClipFor({ id: 8, castingAbility: 'fireball', pos })).toBe('fireball');
   });
 });

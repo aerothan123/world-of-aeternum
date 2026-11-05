@@ -180,9 +180,19 @@ describe('buildManifest', () => {
     // tide-wave boss cues) bring that total to 393 (release/v0.44.0 merge
     // into feature/buried-hoards), the Mirefen tavern's room bed, amb_tavern, makes 394,
     // and the Lantern Hall Destrier's whinny as it rears (mount_neigh_lantern_hall_destrier,
-    // synthesized) makes 408, mount cues 41.
+    // synthesized) makes 408, mount cues 41. The four gathering strike cues (the pick,
+    // the axe, and a felled tree's creak and crash, scripts/sfx/gather_strike_sfx.mjs)
+    // make 412.
     const keys = new Set(SFX.map((entry) => entry.key));
-    expect(keys.size).toBe(408);
+    expect(keys.size).toBe(412);
+    for (const key of [
+      'impact_gather_pick',
+      'impact_gather_axe',
+      'impact_tree_creak',
+      'impact_tree_crash',
+    ]) {
+      expect(keys.has(key), key).toBe(true);
+    }
     expect([...keys].filter((key) => key.startsWith('hoard_')).sort()).toEqual([
       'hoard_entrance_hum',
       'hoard_entrance_open',
@@ -293,7 +303,7 @@ describe('buildManifest', () => {
     // purely filesystem-discovered.
     const mobFamilyKeys = [...keys].filter((key) => key.startsWith('mob_'));
     expect(mobFamilyKeys).toHaveLength(65); // 13 families x 5 actions
-    expect(SFX_FIXED_CATALOG_KEYS).toHaveLength(408);
+    expect(SFX_FIXED_CATALOG_KEYS).toHaveLength(412);
     expect([...SFX_FIXED_CATALOG_KEYS].sort()).toEqual([...keys].sort());
   });
 });

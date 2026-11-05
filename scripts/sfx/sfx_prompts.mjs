@@ -19,6 +19,7 @@
 // hit (the engine pitch-randomizes and alternates to avoid repetition).
 
 import { FURY_SFX } from './fury_sfx.mjs';
+import { GATHER_STRIKE_SFX } from './gather_strike_prompts.mjs';
 import { UI_SFX_CATALOG } from './ui_sfx.mjs';
 import { WARRIOR_CONTACT_SFX } from './warrior_contact_sfx.mjs';
 import { WARRIOR_FALLBACK_SFX } from './warrior_fallback_sfx.mjs';
@@ -1254,6 +1255,13 @@ export const SFX = [
   { key: 'spell_gurglegreen_cauldron', custom: true },
   { key: 'gurglegreen_bubble_loop', custom: true, loop: true },
   { key: 'spell_gurglegreen_quaff', custom: true },
+  // Gathering strikes: ElevenLabs takes auditioned and trimmed by
+  // scripts/sfx/gather_strike_sfx.mjs (prompts in gather_strike_prompts.mjs; CREDITS.md),
+  // all DRY: the outdoor echo is the runtime reverb send (src/game/outdoor_reverb_bus.ts).
+  // One take per tool contact of any gathering body in hearing range
+  // (src/render/gather_strike_audio.ts), and a felled tree's creak and crash
+  // (src/render/tree_felling.ts). Multi-take.
+  ...GATHER_STRIKE_SFX,
 ];
 
 // Family ids that have creature vocalizations (used by the integration layer to

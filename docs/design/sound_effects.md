@@ -145,6 +145,51 @@ which already computes interpolated position, `loco.speed/moving`, `swimming`,
 - **Listener:** after the camera is positioned (~L1583), `sink.setListener(camPos,
   forward)`.
 
+### Gathering strikes and the outdoor reverb
+Every pick strike on a vein and every axe bite into a trunk is its own cue, for the
+local player and every other gatherer the client draws, and it rings out through a
+natural outdoor echo.
+- **Timing:** `src/render/gather_strike_audio.ts` reads each drawn body's live gather
+  swing (`CharacterVisual.gatherSwingCycle`: the mine or chop loop's phase and the
+  clip's measured tool contact, `ClipMap.contacts`) and fires `sink.gatherStrike` the
+  frame the swing crosses its contact (`src/render/gather_strike_core.ts`). A body whose
+  rig is not advancing (behind the camera) coasts on its last swing period. Remote
+  bodies need no wire field: the swing is derived from the cast id every snapshot
+  carries plus the static node table (`gather_pose_core.ts`), on both `Sim` and
+  `ClientWorld` alike.
+- **Mix:** `Sfx.gatherStrike` plays the clip through a long-range panner
+  (`GATHER_REF_DISTANCE` to `GATHER_HEAR_RANGE`) with a distance low-pass, plus a
+  pre-panner send into one shared reverb. The send falls off far slower than the dry
+  hit, so a far miner is mostly echo (`src/game/gather_strike_mix.ts`).
+- **Reverb:** `src/game/outdoor_reverb_bus.ts`, built on the first strike, two
+  `ConvolverNode` lanes (normalize off) crossfading on an environment change and feeding
+  the effects master, so the Sound Effects slider scales the echo with the hit. The
+  responses are generated, deterministic and energy-normalized
+  (`src/game/outdoor_reverb_ir.ts`): discrete terrain echoes plus a darkening diffuse
+  tail, per environment (`open`, `cliffs`, `forest`, `cave`), chosen from the listener's
+  biome and dungeon state (`reverbEnvFor`).
+- **Voices:** a nearest-first pool of `GATHER_STRIKE_VOICES` (`admitStrikeVoice`): a
+  nearer strike steals the farthest live one, the listener's own always plays, so a crowd
+  of miners never stacks into noise.
+- **Clips:** `impact_gather_pick`, `impact_gather_axe`, `impact_tree_creak`,
+  `impact_tree_crash`, all DRY ElevenLabs takes (prompts in
+  `scripts/sfx/gather_strike_prompts.mjs`). `scripts/sfx/gather_strike_sfx.mjs` generates
+  several candidates per cue, auditions them by measurement (onset, attack, crest, hit
+  count, tail, brightness, low body), keeps the best, trims each to a tight attack and
+  its first hit, and conforms it; the kept raw masters live in
+  `scripts/sfx/sources/gather/`, so `build` reproduces the shipped files without spend.
+  The pick is a LAYERED build (`layers` on its row in `gather_strike_prompts.mjs`): a
+  punchy stone attack cut to its first hit over a stone-crack body take, through a
+  gentle transient shaper and compressor, picked by ear from the audition demos
+  (`gather_styles_demo.mjs`, `gather_rock_demo.mjs`) after takes whose ring read as
+  metal on metal were rejected by a late-tonality check. The axe is the "heavy"
+  direction (the most low-mid body). The audition candidates stay under
+  `scripts/sfx/sources/gather/variants/`; the pick, axe and tree-fall levels are
+  balanced in `sfx_gain_map.json` so a close pick and a close axe sit together and a
+  far tree fall stays under them.
+  `scripts/sfx/gather_reverb_demo.mjs` renders a listening demo through the same mix and
+  responses. The personal `ui_gather_*` cast and completion cues are unchanged.
+
 ### Combat / event integration — `src/ui/hud.ts`
 `handleEvents()` (~L2991–3279) already iterates drained `SimEvent`s with live
 entity positions. It imports the `sfx` singleton (precedent: it already imports

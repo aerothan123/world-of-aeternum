@@ -1,0 +1,7 @@
+{
+  "trim": 0.9,
+  "pairs": [
+    { "attack": "ringing/cand_2", "ring": "punchy/cand_5" },
+    { "attack": "punchy/cand_8", "ring": "punchy/cand_3" }
+  ]
+}

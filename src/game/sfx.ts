@@ -11,13 +11,23 @@
 // pool of persistent looping sources for ambience and sustained spell casts.
 
 import { apiUrl } from '../client_origin';
-import type { PointSoundSource } from '../render/audio_sink';
+import type { GatherStrikeKind, PointSoundSource } from '../render/audio_sink';
 import { GFX } from '../render/gfx';
 import { ABILITIES } from '../sim/data';
 import type { BiomeId } from '../sim/types';
 import { isAbilityMomentRecorded } from './ability_sfx_coverage';
 import { resumeWhenAllowed } from './audio_unlock';
 import { isMeleeAudioId, meleeAudioSample } from './fury_audio_core';
+import {
+  admitStrikeVoice,
+  GATHER_HEAR_RANGE,
+  GATHER_REF_DISTANCE,
+  GATHER_STRIKE_SFX,
+  gatherStrikeMix,
+  newStrikeVoicePool,
+  releaseStrikeVoice,
+  reverbEnvFor,
+} from './gather_strike_mix';
 import { mountAudioKey } from './mount_audio_key';
 import {
   advanceInterruptibleMountEngine,
@@ -28,6 +38,8 @@ import {
   mountEngineIdleAudible,
   mountEngineLoopActive,
 } from './mount_engine_state';
+import { OutdoorReverbBus } from './outdoor_reverb_bus';
+import type { ReverbEnv } from './outdoor_reverb_ir';
 import {
   SFX_CATALOG_HASH,
   SFX_CLIPS,
@@ -203,6 +215,17 @@ export interface PlayOpts {
   voiceKey?: string;
   /** Seconds to crossfade when replacing an existing `voiceKey` voice. */
   voiceCrossfade?: number;
+  /** Panner falloff overrides (playAt): full level within `refDistance`, silent
+   *  (and culled) past `maxDistance`. Default the shared REF/MAX_DISTANCE. */
+  refDistance?: number;
+  maxDistance?: number;
+  /** A low-pass before the panner (playAt), Hz: distance air absorption. */
+  lowpassHz?: number;
+  /** A pre-panner send (playAt, after the low-pass) into a shared effect bus (the
+   *  outdoor reverb) at `sendGain`, so the effect's level does not follow the dry
+   *  falloff. */
+  send?: AudioNode;
+  sendGain?: number;
 }
 
 interface LoopSlot {
@@ -336,6 +359,12 @@ class Sfx {
   private synthNoise: AudioBuffer | null = null;
   private abilityVoiceEnds = new Float64Array(ABILITY_VOICES);
   private abilityEnd = 0; // max scheduled end of the recipe being built
+  // Gathering strikes (gatherStrike): the shared outdoor reverb, built on the
+  // first strike; the space it rings in (the listener's biome, via ambience());
+  // and the nearest-first strike voice pool (gather_strike_mix.ts).
+  private reverb: OutdoorReverbBus | null = null;
+  private reverbEnv: ReverbEnv = 'open';
+  private readonly strikeVoices = newStrikeVoicePool();
 
   /** Set SFX volume (0..1). Shares the `sfxVolume` slider with `audio`. */
   setVolume(v: number): void {
@@ -403,6 +432,7 @@ class Sfx {
     const ctx = this.ctx;
     this.ctx = null;
     this.master = null;
+    this.reverb = null;
     this.clips = SFX_CLIPS;
     this.clipsReady = null;
     if (ctx) void ctx.close().catch(() => {});
@@ -715,7 +745,7 @@ class Sfx {
     const ctx = this.ctx,
       master = this.busFor(key);
     if (!ctx || !master) return false;
-    if (this.tooFar(x, z)) return false;
+    if (this.tooFar(x, z, opts?.maxDistance)) return false;
     const variantIndex = this.nextVariantIndex(key);
     const cacheKey = assetCacheKey(key, variantIndex);
     const buf = this.buffers.get(cacheKey);
@@ -759,7 +789,7 @@ class Sfx {
       (opts?.gain ?? 1) *
       (this.entry(key)?.gain ?? 1) *
       (jitter ? 1 + (Math.random() * 2 - 1) * 0.1 : 1);
-    const panner = this.makePanner(x, y, z);
+    const panner = this.makePanner(x, y, z, opts?.refDistance, opts?.maxDistance);
     const priorVoice = opts?.voiceKey ? this.keyedOneShots.get(opts.voiceKey) : undefined;
     const voiceCrossfade = Math.max(0, opts?.voiceCrossfade ?? 0);
     if (priorVoice) {
@@ -782,7 +812,18 @@ class Sfx {
     if (opts?.voiceKey) {
       this.keyedOneShots.set(opts.voiceKey, { src, gain: g, panner });
     }
-    src.connect(g).connect(panner).connect(master);
+    const lowpass = opts?.lowpassHz && opts.lowpassHz < 18000 ? ctx.createBiquadFilter() : null;
+    if (lowpass && opts?.lowpassHz) {
+      lowpass.type = 'lowpass';
+      lowpass.frequency.value = opts.lowpassHz;
+      src.connect(g).connect(lowpass).connect(panner).connect(master);
+    } else src.connect(g).connect(panner).connect(master);
+    const send = opts?.send && opts.sendGain ? ctx.createGain() : null;
+    if (send && opts?.send && opts.sendGain) {
+      send.gain.value = opts.sendGain;
+      // after the air absorption: a far strike's echo is as dark as its hit
+      (lowpass ?? g).connect(send).connect(opts.send);
+    }
     this.active++;
     this.residency?.acquire(cacheKey);
     src.onended = () => {
@@ -794,6 +835,8 @@ class Sfx {
       src.disconnect();
       g.disconnect();
       panner.disconnect();
+      lowpass?.disconnect();
+      send?.disconnect();
     };
     this.applyEnvelope(
       src,
@@ -888,6 +931,41 @@ class Sfx {
         /* stop unsupported in stub */
       }
     }
+  }
+
+  /** One gathering strike (a pick on a vein, an axe in a trunk) or a felled tree's
+   *  creak or crash at a world point, for any body in hearing range: a tight dry hit
+   *  through a long-range panner (darkened with distance) plus a pre-panner send into
+   *  the shared outdoor reverb, whose share of the sound grows with distance, under
+   *  a small nearest-first voice pool so a crowd of miners never stacks into noise
+   *  (gather_strike_mix.ts). The variant and a slight pitch and level jitter are
+   *  playAt's own. */
+  gatherStrike(kind: GatherStrikeKind, x: number, y: number, z: number, self: boolean): void {
+    const ctx = this.ctx;
+    const master = this.master;
+    if (!ctx || !master) return;
+    const distance = Math.hypot(x - this.lx, z - this.lz);
+    const mix = gatherStrikeMix(distance, this.reverbEnv, kind);
+    if (!mix) return;
+    const slot = admitStrikeVoice(
+      this.strikeVoices,
+      self ? 0 : distance,
+      ctx.currentTime,
+      mix.hold,
+    );
+    if (slot < 0) return;
+    this.reverb ??= new OutdoorReverbBus(ctx, master, this.reverbEnv);
+    const played = this.playAt(GATHER_STRIKE_SFX[kind], x, y, z, {
+      gain: mix.gain,
+      cooldown: 0,
+      refDistance: GATHER_REF_DISTANCE,
+      maxDistance: GATHER_HEAR_RANGE,
+      lowpassHz: mix.lowpassHz,
+      send: this.reverb.input,
+      sendGain: mix.send,
+      voiceKey: `gather_strike_${slot}`,
+    });
+    if (!played) releaseStrikeVoice(this.strikeVoices, slot);
   }
 
   /** Non-positional one-shot (personal/UI sounds that shouldn't pan). */
@@ -1927,6 +2005,8 @@ class Sfx {
     points: readonly AmbientPointSource[] = [],
     eye?: AmbienceEye,
   ): void {
+    this.reverbEnv = reverbEnvFor(biome, inDungeon);
+    this.reverb?.setEnvironment(this.reverbEnv);
     this.ambient('amb_dungeon', inDungeon ? 0.3 : 0);
     // Sowfield crowd murmur (procedural bed): quiet chatter on the grounds,
     // swelling while a match is live (the renderer passes 0 / ~0.4 / 1).

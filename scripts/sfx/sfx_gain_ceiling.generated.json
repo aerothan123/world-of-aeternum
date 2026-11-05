@@ -799,6 +799,40 @@
       }
     ]
   },
+  "impact_gather_axe": {
+    "ceilingDb": 5.2,
+    "tracks": [
+      {
+        "filename": "impact_gather_axe_1.mp3",
+        "sha256": "9e1beaf9e310865c2241ef3cbc41ec3261fb0592d89d701618299e0f82b16252",
+        "size": 15717,
+        "peakDb": -6.2
+      },
+      {
+        "filename": "impact_gather_axe_2.mp3",
+        "sha256": "a8d9c939ea421413d6fe4106b96764ef1ddd11b263a30cbf89f97357d1b48334",
+        "size": 5686,
+        "peakDb": -6.3
+      }
+    ]
+  },
+  "impact_gather_pick": {
+    "ceilingDb": 5.2,
+    "tracks": [
+      {
+        "filename": "impact_gather_pick_1.mp3",
+        "sha256": "252ecc456a330c4b79fa9d7457004055f99df461b6b02bf65bd801e275d4b0a9",
+        "size": 15090,
+        "peakDb": -6.2
+      },
+      {
+        "filename": "impact_gather_pick_2.mp3",
+        "sha256": "2765b16802d8681b26b4f3c28781af6ace82a2b2bd3d5b219452b133b4f58074",
+        "size": 15717,
+        "peakDb": -6.2
+      }
+    ]
+  },
   "impact_gourdfall": {
     "ceilingDb": 6.7,
     "tracks": [
@@ -931,6 +965,40 @@
         "sha256": "22d856bdb1dae9ab31695ecbe88981073e91e72564f1b9a37316688e043a9bf6",
         "size": 63991,
         "peakDb": -7.2
+      }
+    ]
+  },
+  "impact_tree_crash": {
+    "ceilingDb": 5.3,
+    "tracks": [
+      {
+        "filename": "impact_tree_crash_1.mp3",
+        "sha256": "cd2618da034f887747044d64574c0ee36f2928787eb5ff416bfd97e49e3831b4",
+        "size": 54587,
+        "peakDb": -6.5
+      },
+      {
+        "filename": "impact_tree_crash_2.mp3",
+        "sha256": "ccea75db47fdf4ff278be70b92f9f723acfc53a70e04c7cd8509485cfb48bc50",
+        "size": 40168,
+        "peakDb": -6.3
+      }
+    ]
+  },
+  "impact_tree_creak": {
+    "ceilingDb": 5.3,
+    "tracks": [
+      {
+        "filename": "impact_tree_creak_1.mp3",
+        "sha256": "9af85e9c04fd1dbbce675cf8cf55bf95e1b98fc5d3e0cdc119303ba38a85acf0",
+        "size": 35779,
+        "peakDb": -6.3
+      },
+      {
+        "filename": "impact_tree_creak_2.mp3",
+        "sha256": "1faa31189275b9c58faf505490e07510a464b3deeff7d54d7182b46b2ea8cef8",
+        "size": 26375,
+        "peakDb": -6.7
       }
     ]
   },

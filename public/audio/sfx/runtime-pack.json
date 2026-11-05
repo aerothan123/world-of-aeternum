@@ -1,8 +1,8 @@
 {
   "format": "woc-sfx-runtime-pack",
   "version": 1,
-  "bundleId": "6ae5c59e328b2f09bfe4c434d28d84f20eccbb806d5263fa45766d2f5b2da3b9",
-  "catalogHash": "f99bd919389d3f6da682ca4e7abcf80c9b7502f1948dea464c76f429f0602863",
+  "bundleId": "cec64d83399c255046e9269864e02ab4941cba3f64f96635ea69979beb04b5f1",
+  "catalogHash": "c5f520bd8419a9cce1eadb7e3d9fcdc825d2007828628a4c491dd8b9aab7f9f7",
   "clips": {
     "amb_birds": {
       "variants": [
@@ -1036,6 +1036,42 @@
       "gain": 1.698244,
       "playbackRate": 1
     },
+    "impact_gather_axe": {
+      "variants": [
+        {
+          "id": "1",
+          "url": "/audio/sfx/impact_gather_axe_1.mp3?v=9e1beaf9e310",
+          "bytes": 15717,
+          "sha256": "9e1beaf9e310865c2241ef3cbc41ec3261fb0592d89d701618299e0f82b16252"
+        },
+        {
+          "id": "2",
+          "url": "/audio/sfx/impact_gather_axe_2.mp3?v=a8d9c939ea42",
+          "bytes": 5686,
+          "sha256": "a8d9c939ea421413d6fe4106b96764ef1ddd11b263a30cbf89f97357d1b48334"
+        }
+      ],
+      "gain": 0.707946,
+      "playbackRate": 1
+    },
+    "impact_gather_pick": {
+      "variants": [
+        {
+          "id": "1",
+          "url": "/audio/sfx/impact_gather_pick_1.mp3?v=252ecc456a33",
+          "bytes": 15090,
+          "sha256": "252ecc456a330c4b79fa9d7457004055f99df461b6b02bf65bd801e275d4b0a9"
+        },
+        {
+          "id": "2",
+          "url": "/audio/sfx/impact_gather_pick_2.mp3?v=2765b16802d8",
+          "bytes": 15717,
+          "sha256": "2765b16802d8681b26b4f3c28781af6ace82a2b2bd3d5b219452b133b4f58074"
+        }
+      ],
+      "gain": 1.778279,
+      "playbackRate": 1
+    },
     "impact_gourdfall": {
       "variants": [
         {
@@ -1178,6 +1214,42 @@
         }
       ],
       "gain": 1,
+      "playbackRate": 1
+    },
+    "impact_tree_crash": {
+      "variants": [
+        {
+          "id": "1",
+          "url": "/audio/sfx/impact_tree_crash_1.mp3?v=cd2618da034f",
+          "bytes": 54587,
+          "sha256": "cd2618da034f887747044d64574c0ee36f2928787eb5ff416bfd97e49e3831b4"
+        },
+        {
+          "id": "2",
+          "url": "/audio/sfx/impact_tree_crash_2.mp3?v=ccea75db47fd",
+          "bytes": 40168,
+          "sha256": "ccea75db47fdf4ff278be70b92f9f723acfc53a70e04c7cd8509485cfb48bc50"
+        }
+      ],
+      "gain": 0.446684,
+      "playbackRate": 1
+    },
+    "impact_tree_creak": {
+      "variants": [
+        {
+          "id": "1",
+          "url": "/audio/sfx/impact_tree_creak_1.mp3?v=9af85e9c04fd",
+          "bytes": 35779,
+          "sha256": "9af85e9c04fd1dbbce675cf8cf55bf95e1b98fc5d3e0cdc119303ba38a85acf0"
+        },
+        {
+          "id": "2",
+          "url": "/audio/sfx/impact_tree_creak_2.mp3?v=1faa31189275",
+          "bytes": 26375,
+          "sha256": "1faa31189275b9c58faf505490e07510a464b3deeff7d54d7182b46b2ea8cef8"
+        }
+      ],
+      "gain": 0.398107,
       "playbackRate": 1
     },
     "impact_warrior_avatar_rise": {
