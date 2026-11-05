@@ -434,5 +434,11 @@ export const SOUTHERN_REACHES_PROPS: ZonePropsDef = {
     { key: 'wq_waterlogged_barrel', x: -250, z: -458, rot: 1.6 },
     // the Cider Mere's landing
     { key: 'rowboat', x: 432, z: -398, rot: -0.9 },
+    // the mill on Blossom Rise, over the orchards
+    { key: 'hexWindmill', x: 467, z: -293, rot: -0.5, scale: 8, r: 4.5, h: 12 },
+    // the old watch below the Grey Tor
+    { key: 'hexWatchtower', x: 67.5, z: -453.5, rot: 1.1, scale: 6.5, r: 3, h: 8 },
+    // the coast watch on the White Head
+    { key: 'hexWatchtower', x: -475, z: -286, rot: -2.4, scale: 6.5, r: 3, h: 8 },
   ],
 };

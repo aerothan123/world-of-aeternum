@@ -274,6 +274,9 @@ export const LOW_REACHES_PROPS: ZonePropsDef = {
   crates: [
     [372, -646, 0.4],
     [352, -646, 1.2],
+    // Panwick's salt store, sacks stacked against the weather
+    [386, -652, 2],
+    [389.5, -650, 0.8],
     [-320, -660, 0.7],
     [-340, -660, 1.9],
     [-256, -812, 0.5],
@@ -285,6 +288,8 @@ export const LOW_REACHES_PROPS: ZonePropsDef = {
     { x: A.stannaryStones.x, z: A.stannaryStones.z, ringR: 8, columns: 8, omit: [3, 6] },
     // the Knotted Elm's old ring of hearth stones
     { x: A.knottedElm.x, z: A.knottedElm.z, ringR: 7, columns: 7, omit: [1, 4], bare: true },
+    // the charcoal burners' stone ring in Charcoal Hollow
+    { x: 80.5, z: -791, ringR: 6, columns: 6, omit: [2] },
   ],
   fences: [
     // Panwick's pan rails
@@ -306,5 +311,9 @@ export const LOW_REACHES_PROPS: ZonePropsDef = {
     { key: 'hanging_cage', x: -268, z: -818, rot: 0.3 },
     { key: 'bone_pile', x: -250, z: -804, rot: 1.1 },
     { key: 'wq_damaged_crate', x: -282, z: -806, rot: 2.0 },
+    // the Brine Pans' wind pump, lifting the sea into the pans
+    { key: 'hexWindmill', x: 419.5, z: -700.5, rot: 0.6, scale: 8, r: 4.5, h: 12 },
+    // Wheal Patience's engine house stack, the Tinmarch's tallest mark
+    { key: 'hexTower', x: -311.5, z: -652.5, rot: 0.4, scale: 7, r: 3.5, h: 15 },
   ],
 };

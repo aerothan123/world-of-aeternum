@@ -337,5 +337,38 @@ export const WEST_MARCH_PROPS: ZonePropsDef = {
     // the Westering Pier's landing (the planned ferry stop)
     { key: 'rowboat', x: -656, z: 290, rot: -1.2 },
     { key: 'wq_waterlogged_barrel', x: -660, z: 304, rot: 0.9 },
+    // Kestrel Point's lookout over the Rook Way
+    { key: 'hexWatchtower', x: -683, z: -652, rot: -0.6, scale: 6.5, r: 3, h: 8 },
+    // the Hushmist Light, the Lanternwardens' tower at the mist's edge
+    { key: 'hexTower', x: -839.5, z: -686, rot: 1.6, scale: 8, r: 4, h: 17 },
+    // the drainage mill over the Withy Beds
+    { key: 'hexWindmill', x: -786, z: -420, rot: 2.2, scale: 8, r: 4.5, h: 12 },
+    // a siege engine left by the Iron Ring, never fired again
+    { key: 'hexTowerCatapult', x: -756, z: -62, rot: 2.0, scale: 7, r: 3.5, h: 10 },
+    // the old march wall across the Fell Neck, broken through for the road
+    { key: 'hexWall', x: -731.5, z: -179, rot: 1.2, scale: 7, r: 4, h: 8 },
+    // the Last Beacon's keeper's tower
+    { key: 'hexWatchtower', x: -761.5, z: 448.5, rot: 0.7, scale: 6.5, r: 3, h: 8 },
+    // Lanternfold's chapel, where the lanterns are lit for the lost
+    { key: 'hexChurch', x: -716.5, z: 330.5, rot: -1.6, scale: 7, r: 5, h: 12 },
+  ],
+  // the Westering Pier: a real landing facing the Willowfen, the planned
+  // ferry stop (enlarged like the Proving Shore pier so it reads from the sea)
+  docks: [
+    {
+      x: -671.5,
+      z: 292,
+      rot: -Math.PI / 2,
+      scale: 1.5,
+      hutLocal: { x: 2.8, z: 2.4, hw: 1.7, hd: 1.5 },
+    },
+  ],
+  // reeds along the Heron Mere's east shallows
+  marshReeds: [
+    [-618, -407],
+    [-622, -401],
+    [-614, -413],
+    [-626, -409],
+    [-619, -396],
   ],
 };
