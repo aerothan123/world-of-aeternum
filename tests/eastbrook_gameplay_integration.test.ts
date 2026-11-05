@@ -1374,7 +1374,9 @@ describe('Eastbrook runtime collision, spawn, and services', () => {
             x: EASTBROOK_LAYOUT.services.mailbox.position.x,
             z: EASTBROOK_LAYOUT.services.mailbox.position.z,
           },
-          ...MAILBOXES.slice(1),
+          // every other shipped perch, the frontier towns included (data.ts
+          // appends content/frontier/mailboxes.ts after MAILBOXES)
+          ...(BUILTIN_WORLD.services?.mailboxes ?? MAILBOXES).slice(1),
         ],
       },
     };

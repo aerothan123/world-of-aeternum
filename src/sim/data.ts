@@ -127,6 +127,7 @@ import {
   LOW_REACHES_ROADS,
   LOW_REACHES_ZONES,
 } from './content/frontier/low_reaches';
+import { FRONTIER_MAILBOXES } from './content/frontier/mailboxes';
 import {
   SOUTHERN_REACHES_CAMPS,
   SOUTHERN_REACHES_PROPS,
@@ -1156,7 +1157,7 @@ export const BASE_WORLD: WorldContent = {
   playerStart: PLAYER_START,
   services: {
     stations: STATIONS,
-    mailboxes: MAILBOXES,
+    mailboxes: [...MAILBOXES, ...FRONTIER_MAILBOXES],
     noticeboards: NOTICEBOARDS,
     musterBoards: MUSTER_BOARDS,
     graveyards: OVERWORLD_GRAVEYARDS,

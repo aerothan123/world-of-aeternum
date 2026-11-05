@@ -75,5 +75,14 @@ export function withoutFrontierContent(world: WorldContent): WorldContent {
       return !end || !isFrontierPoint(end.x, end.z);
     }),
     props,
+    // the frontier towns' Ravenpost perches (content/frontier/mailboxes.ts)
+    ...(world.services
+      ? {
+          services: {
+            ...world.services,
+            mailboxes: world.services.mailboxes?.filter((box) => !isFrontierPoint(box.x, box.z)),
+          },
+        }
+      : {}),
   };
 }
