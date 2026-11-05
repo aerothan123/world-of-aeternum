@@ -7,6 +7,7 @@
 // (tests/electron_shell_guards.test.ts). Only node:crypto is required (for CSP
 // hashing); no electron imports.
 
+const { LOCAL_DEV_API_ORIGIN } = require('./brand.cjs');
 const { createHash } = require('node:crypto');
 
 // The only permissions the game legitimately uses (pointerLock for mouselook,
@@ -139,7 +140,7 @@ function isExternalDocumentUrl(urlString) {
 function toCanonicalExternalUrl(
   urlString,
   _appOrigin = 'app://worldofclaudecraft',
-  apiOrigin = 'https://worldofclaudecraft.com',
+  apiOrigin = LOCAL_DEV_API_ORIGIN,
 ) {
   let parsed;
   try {
@@ -147,7 +148,7 @@ function toCanonicalExternalUrl(
   } catch {
     return urlString;
   }
-  const base = apiOrigin || 'https://worldofclaudecraft.com';
+  const base = apiOrigin || LOCAL_DEV_API_ORIGIN;
   if (parsed.protocol === 'app:' || parsed.protocol === 'file:') {
     return new URL(`${parsed.pathname}${parsed.search}${parsed.hash}`, base).toString();
   }

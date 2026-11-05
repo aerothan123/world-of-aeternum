@@ -1,4 +1,4 @@
-import { GAME_NAME } from './brand';
+import { DESKTOP_DEEP_LINK_SCHEME, GAME_NAME } from './brand';
 import { applyFrameGeometrySetting } from './game/frame_geometry_settings';
 import { createSubscriptionStoreHooks, storeSnapshotForHud } from './net/subscription_sdk';
 import { captureReferralSlug } from './referral_signup';
@@ -5598,7 +5598,7 @@ async function completeDesktopBrowserLogin(): Promise<boolean> {
   try {
     const { code } = await api.createDesktopLoginCode();
     if (!code) throw new Error('missing desktop login code');
-    location.href = `worldofclaudecraft://desktop-login?code=${encodeURIComponent(code)}`;
+    location.href = `${DESKTOP_DEEP_LINK_SCHEME}://desktop-login?code=${encodeURIComponent(code)}`;
   } catch (err) {
     loginError(userFacingApiError(err));
     show('#login-panel');
@@ -6878,15 +6878,6 @@ function updateSeoMetadata(lang: SupportedLanguage): void {
 
   const jsonLd = document.getElementById('structured-data') as HTMLScriptElement | null;
   if (jsonLd) {
-    const sameAs = [
-      'https://github.com/levy-street/world-of-claudecraft',
-      'https://discord.com/invite/worldofclaudecraft',
-      'https://www.youtube.com/@WoClaudeCraft',
-      'https://x.com/WoClaudecraft',
-      'https://www.instagram.com/worldofclaudecraft/',
-      'https://www.tiktok.com/@worldofclaudecraft',
-      'https://www.reddit.com/r/WorldofClaudecraft/',
-    ];
     jsonLd.textContent = JSON.stringify(
       {
         '@context': 'https://schema.org',
@@ -6895,7 +6886,6 @@ function updateSeoMetadata(lang: SupportedLanguage): void {
             '@type': 'WebSite',
             '@id': 'https://worldofclaudecraft.com/#website',
             name: GAME_NAME,
-            alternateName: 'World of Claudecraft',
             url: canonicalHref,
             inLanguage: languageTag(lang),
             description: t('seo.description'),
@@ -6906,16 +6896,14 @@ function updateSeoMetadata(lang: SupportedLanguage): void {
           {
             '@type': 'Organization',
             '@id': 'https://worldofclaudecraft.com/#organization',
-            name: 'World of ClaudeCraft',
+            name: GAME_NAME,
             url: 'https://worldofclaudecraft.com/',
             logo: 'https://worldofclaudecraft.com/woc_logo_square.webp',
-            sameAs,
           },
           {
             '@type': 'VideoGame',
             '@id': 'https://worldofclaudecraft.com/#game',
             name: GAME_NAME,
-            alternateName: 'World of Claudecraft',
             genre: t('seo.genre'),
             playMode: t('seo.playMode'),
             applicationCategory: t('seo.applicationCategory'),
@@ -6927,7 +6915,6 @@ function updateSeoMetadata(lang: SupportedLanguage): void {
             publisher: {
               '@id': 'https://worldofclaudecraft.com/#organization',
             },
-            sameAs,
           },
         ],
       },
@@ -7799,7 +7786,7 @@ function wireStartScreens(): Promise<void> {
     // in place (doAuth -> api.login) without ever leaving the app. Only "Continue with
     // Discord" bounces to the external browser (wired below), because its OAuth redirect
     // would be blocked by the shell's in-app navigation guard; it returns a one-time code
-    // via the worldofclaudecraft://desktop-login deep link (onLoginCode ->
+    // via the wyndlewood://desktop-login deep link (onLoginCode ->
     // completeDesktopAppLogin).
     show('#login-panel');
   };

@@ -14,7 +14,8 @@
 // installer are the same code and differ only by this stamp. WOC_DISTRIBUTION
 // overrides it for local testing of any path in `electron .` / electron:dev.
 
-const { PRODUCTION_API_ORIGIN, updateChannelForOrigin } = require('./update_guard.cjs');
+const { LOCAL_DEV_API_ORIGIN, PRODUCTION_API_ORIGIN } = require('./brand.cjs');
+const { updateChannelForOrigin } = require('./update_guard.cjs');
 
 const DISTRIBUTIONS = new Set(['website', 'steam', 'epic']);
 
@@ -78,7 +79,12 @@ function resolveDesktopOrigins({ packagedMetadata, env, isPackaged } = {}) {
     if (typeof stampedValue === 'string' && stampedValue !== '') return stampedValue;
     return '';
   };
-  const apiOrigin = pick(env?.VITE_DESKTOP_API_ORIGIN, stamped.apiOrigin) || PRODUCTION_API_ORIGIN;
+  // Unstamped and unset: the production origin when one is provisioned, else the
+  // local dev server (never an upstream host).
+  const apiOrigin =
+    pick(env?.VITE_DESKTOP_API_ORIGIN, stamped.apiOrigin) ||
+    PRODUCTION_API_ORIGIN ||
+    LOCAL_DEV_API_ORIGIN;
   const loginOrigin = pick(env?.VITE_DESKTOP_LOGIN_ORIGIN, stamped.loginOrigin) || apiOrigin;
   return { apiOrigin, loginOrigin };
 }

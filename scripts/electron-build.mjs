@@ -11,6 +11,9 @@ import {
   stampChannelFeedFiles,
 } from './electron-builder-config.mjs';
 import { buildElectronVendor } from './electron-vendor.mjs';
+import brand from '../electron/brand.cjs';
+
+const { LOCAL_DEV_API_ORIGIN, PRODUCTION_API_ORIGIN } = brand;
 
 // Usage: node scripts/electron-build.mjs [pack|build] [website|steam|epic]
 //  - pack: --dir only (fast local verification); build: full installers.
@@ -39,7 +42,10 @@ const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const npmCommand = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 const electronBuilderCommand =
   process.platform === 'win32' ? 'electron-builder.cmd' : 'electron-builder';
-const defaultOrigin = 'https://worldofclaudecraft.com';
+// No hardcoded game domain (electron/brand.cjs PRODUCTION_API_ORIGIN, empty until
+// the owner provisions one): a full build must name its origin, while a local
+// `pack` falls back to the local dev server so a smoke-test install still boots.
+const defaultOrigin = PRODUCTION_API_ORIGIN || (mode === 'pack' ? LOCAL_DEV_API_ORIGIN : '');
 // Resolve the web origins ONCE: apiOrigin feeds both the Vite client build and
 // the wocDesktop stamp below (so the packaged main process always agrees with
 // what the bundle was baked with); loginOrigin is stamped for the main process
@@ -47,6 +53,13 @@ const defaultOrigin = 'https://worldofclaudecraft.com';
 // electron/desktop_config.cjs reads the stamp instead. Set-but-empty env vars
 // (CI matrices) mean "unset", hence || rather than ??.
 const apiOrigin = process.env.VITE_DESKTOP_API_ORIGIN || defaultOrigin;
+if (!apiOrigin) {
+  console.error(
+    'electron-build: set VITE_DESKTOP_API_ORIGIN to the Wyndlewood game server origin ' +
+      '(there is no built-in production origin yet; see electron/brand.cjs).',
+  );
+  process.exit(1);
+}
 const loginOrigin = process.env.VITE_DESKTOP_LOGIN_ORIGIN || apiOrigin;
 const env = {
   ...process.env,
@@ -175,6 +188,8 @@ const config = desktopBuilderConfig({
   epicProductId: process.env.WOC_EPIC_PRODUCT_ID || '',
   epicDeploymentId: process.env.WOC_EPIC_DEPLOYMENT_ID || '',
   epicClientId: process.env.WOC_EPIC_CLIENT_ID || '',
+  // The Wyndlewood Discord application id for Rich Presence (owner-provisioned).
+  discordAppId: process.env.WOC_DISCORD_APP_ID || '',
 });
 const configDir = mkdtempSync(path.join(tmpdir(), 'woc-eb-'));
 const configPath = path.join(configDir, 'electron-builder.json');

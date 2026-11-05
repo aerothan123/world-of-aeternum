@@ -33,7 +33,8 @@ function linuxPrimeDevConfig() {
 }
 
 const viteUrl = process.env.VITE_DEV_SERVER_URL ?? 'http://127.0.0.1:5173';
-const onlineOrigin = process.env.VITE_DESKTOP_API_ORIGIN ?? 'https://worldofclaudecraft.com';
+// The local server unless told otherwise: there is no hardcoded game domain.
+const onlineOrigin = process.env.VITE_DESKTOP_API_ORIGIN ?? 'http://localhost:8787';
 const npmCommand = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 const electronCommand = process.platform === 'win32' ? 'electron.cmd' : 'electron';
 // Node 20.12+ refuses to spawn a .cmd shim without a shell (EINVAL, the

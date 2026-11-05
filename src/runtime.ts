@@ -1,4 +1,7 @@
-const DEFAULT_DESKTOP_API_ORIGIN = 'https://worldofclaudecraft.com';
+// No hardcoded game domain: a desktop bundle is always built with
+// VITE_DESKTOP_API_ORIGIN (scripts/electron-build.mjs refuses without one); an
+// unconfigured dev bundle talks to the local server.
+const DEFAULT_DESKTOP_API_ORIGIN = 'http://localhost:8787';
 
 export function normalizeOrigin(raw: string): string {
   const trimmed = raw.trim().replace(/\/+$/, '');

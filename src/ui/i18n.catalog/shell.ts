@@ -12,21 +12,21 @@ export const shellStrings = {
       headline: 'Adventure with friends.',
       contribute: 'Contribute to the game',
       tools: 'Tools',
-      records: 'WoC Records',
-      scout: 'WoC Scout',
-      parseService: 'WoC Parse Service',
+      records: 'Records',
+      scout: 'Scout',
+      parseService: 'Parse Service',
     },
     seo: {
-      title: 'Project H: Sandbox MMO (World of ClaudeCraft fork)',
+      title: 'Wyndlewood',
       description:
-        'Play Project H, a free browser MMO. Explore, complete quests, and run dungeons with friends. No download required.',
+        'Play Wyndlewood, a free browser MMO. Explore, complete quests, and run dungeons with friends. No download required.',
       genre: 'MMORPG',
       playMode: 'Multiplayer',
       applicationCategory: 'Game',
       operatingSystem: 'Web browser',
-      officialLabel: 'Official Project H website',
+      officialLabel: 'Official Wyndlewood website',
       officialBody:
-        'The official home of Project H. Play online, read the wiki, and find community links here.',
+        'The official home of Wyndlewood. Play online, read the wiki, and find community links here.',
     },
     a11y: {
       goHome: 'Go to homepage',
@@ -34,9 +34,9 @@ export const shellStrings = {
       mainNavigation: 'Main navigation',
       languageSelection: 'Language selection',
       characterActions: 'Character actions',
-      githubProject: 'Open the Project H GitHub project',
-      discordCommunity: 'Join the Project H Discord community',
-      donateProject: 'Donate to support Project H',
+      githubProject: 'View the open-source World of ClaudeCraft engine Wyndlewood is built on, on GitHub',
+      discordCommunity: 'Join the Wyndlewood Discord community',
+      donateProject: 'Donate to support Wyndlewood',
     },
     entryGuard: {
       title: 'Graphics lowered',
@@ -166,16 +166,16 @@ export const shellStrings = {
         // the update core deliberately supports): rendering '' through the
         // {version} slot above would read "Update  is ready".
         updateReadyTitleNoVersion: 'Update is ready',
-        updateReadyBody: 'Restart Project H to apply the update.',
+        updateReadyBody: 'Restart Wyndlewood to apply the update.',
         partyInviteTitle: 'Party invite',
         partyInviteBody: '{name} invited you to a party.',
       },
       crash: {
-        title: 'Project H',
+        title: 'Wyndlewood',
         body: 'The game view stopped working. Reload it?',
         reload: 'Reload',
         quit: 'Quit',
-        fatalBody: 'Project H hit an unexpected error and needs to close.',
+        fatalBody: 'Wyndlewood hit an unexpected error and needs to close.',
       },
       // The host diagnostic's native save dialog (electron/host_diag.cjs): the
       // shell opens an OS file dialog, which has no i18n runtime of its own, so
@@ -401,12 +401,12 @@ export const shellStrings = {
       iosInstallDetail:
         'For true fullscreen on iPhone or iPad, install this page to your Home Screen first.',
       iosShareStep: 'In Safari, tap Share, then Add to Home Screen.',
-      iosOpenStep: 'Open Project H from the new Home Screen icon.',
+      iosOpenStep: 'Open Wyndlewood from the new Home Screen icon.',
       androidStandaloneDetail: 'You are in fullscreen app mode. Keep the device in landscape.',
       androidInstallDetail:
         'For fullscreen on Android, install this page or add it to your Home screen first.',
       androidInstallStep: 'In Chrome, tap the menu, then Install app or Add to Home screen.',
-      androidOpenStep: 'Open Project H from the new icon.',
+      androidOpenStep: 'Open Wyndlewood from the new icon.',
       otherStandaloneDetail: 'Keep your device in landscape fullscreen.',
       otherInstallDetail:
         'Install or add this page to your Home screen for the best fullscreen mobile experience.',
@@ -434,11 +434,11 @@ export const shellStrings = {
       decline: 'Do Not Share',
     },
     serverUnavailable: {
-      title: 'Project H - World Unavailable',
-      logoAlt: 'Project H',
+      title: 'Wyndlewood - World Unavailable',
+      logoAlt: 'Wyndlewood',
       eyebrow: 'World maintenance',
       heading: 'The world is temporarily unavailable.',
-      body: 'We are restarting the game service and expect Claudemoon to return shortly. This page will keep checking automatically.',
+      body: 'We are restarting the game service and expect the world to return shortly. This page will keep checking automatically.',
       status: 'Back soon',
     },
   },
@@ -1470,7 +1470,7 @@ export const shellStrings = {
       logoAlt: 'World of ClaudeCraft',
       eyebrow: 'Realm maintenance',
       heading: 'The realm is temporarily unavailable.',
-      body: 'We are restarting the game service and expect Claudemoon to return shortly. This page will keep checking automatically.',
+      body: 'We are restarting the game service and expect the world to return shortly. This page will keep checking automatically.',
       status: 'Back soon',
     },
   },

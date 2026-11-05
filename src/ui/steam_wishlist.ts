@@ -1,5 +1,6 @@
 import type { DesktopBridge } from '../runtime';
 import { desktopBridge } from '../runtime';
+import { STEAM_STORE_URL } from '../brand';
 
 // The "Wishlist on Steam" reminder: one quiet, permanently visible link to the
 // store page, repeated on every shell surface that already carries the Donate
@@ -17,11 +18,13 @@ import { desktopBridge } from '../runtime';
 // byte-identical blocks, pinned by tests/steam_wishlist.test.ts) and the
 // styling in hud.css / shell.css, so nothing here builds DOM.
 
-/** Valve app id for World of ClaudeCraft. */
-export const STEAM_APP_ID = 4897790;
-
-/** The store page every wishlist surface links out to. */
-export const STEAM_WISHLIST_URL = `https://store.steampowered.com/app/${STEAM_APP_ID}/World_of_ClaudeCraft/`;
+/**
+ * The store page every wishlist surface links out to: the owner-configured
+ * Wyndlewood page (src/brand.ts STEAM_STORE_URL), or '' while it does not exist,
+ * in which case every surface stays hidden. The upstream project's store page
+ * (app 4897790) was removed in the rebrand.
+ */
+export const STEAM_WISHLIST_URL = STEAM_STORE_URL;
 
 /**
  * Body class the stylesheet hides every wishlist surface behind. The native-app
@@ -47,7 +50,13 @@ export const STEAM_WISHLIST_PENDING_BODY_CLASS = 'steam-wishlist-pending';
  * - `nativeApp`: the iOS / Android shells, which hide outbound store links the
  *   same way they already hide Donate.
  */
-export function steamWishlistSuppressed(env: { nativeApp: boolean; steamBuild: boolean }): boolean {
+export function steamWishlistSuppressed(env: {
+  nativeApp: boolean;
+  steamBuild: boolean;
+  storeUrl?: string;
+}): boolean {
+  // No store page configured yet: nothing to wishlist, so every surface hides.
+  if ((env.storeUrl ?? STEAM_WISHLIST_URL) === '') return true;
   return env.nativeApp || env.steamBuild;
 }
 
@@ -82,6 +91,18 @@ export async function syncSteamWishlistVisibility(
     .document?.body ?? null,
 ): Promise<void> {
   if (!body) return;
-  body.classList.toggle(STEAM_BUILD_BODY_CLASS, await isSteamDistribution(bridge));
+  // The static markup carries a neutral store href; point every surface at the
+  // configured page, and hide them all (the same body class) while none exists.
+  if (STEAM_WISHLIST_URL !== '') {
+    for (const link of globalThis.document?.querySelectorAll<HTMLAnchorElement>(
+      'a.steam-wishlist',
+    ) ?? []) {
+      link.href = STEAM_WISHLIST_URL;
+    }
+  }
+  body.classList.toggle(
+    STEAM_BUILD_BODY_CLASS,
+    STEAM_WISHLIST_URL === '' || (await isSteamDistribution(bridge)),
+  );
   body.classList.toggle(STEAM_WISHLIST_PENDING_BODY_CLASS, false);
 }

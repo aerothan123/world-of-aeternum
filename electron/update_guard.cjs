@@ -18,7 +18,9 @@
 // track still cannot flip a shipped app to another backend. No electron
 // imports; callers pass everything in.
 
-const PRODUCTION_API_ORIGIN = 'https://worldofclaudecraft.com';
+// The production origin comes from the one brand module (empty until the owner
+// provisions the Wyndlewood domain, so every build reads the 'dev' track until then).
+const { PRODUCTION_API_ORIGIN } = require('./brand.cjs');
 
 // Normalize an origin-ish string to its URL origin so 'https://x.com' and
 // 'https://x.com/' compare equal; null when the value is not a parseable
@@ -36,7 +38,8 @@ function apiOriginKey(value) {
 }
 
 function isProductionApiOrigin(origin) {
-  return apiOriginKey(origin) === PRODUCTION_API_ORIGIN;
+  if (PRODUCTION_API_ORIGIN === '') return false;
+  return apiOriginKey(origin) === apiOriginKey(PRODUCTION_API_ORIGIN);
 }
 
 // The electron-updater channel for a build baked with this API origin. Only

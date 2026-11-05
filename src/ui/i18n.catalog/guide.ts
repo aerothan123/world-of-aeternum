@@ -11,8 +11,8 @@
 
 export const guideStrings = {
   // Brand + shared chrome.
-  brand: 'Project H',
-  brandShort: 'Project H',
+  brand: 'Wyndlewood',
+  brandShort: 'Wyndlewood',
   tagline: 'A classic-style MMO you play free in your browser.',
   skipToContent: 'Skip to main content',
   loading: 'Loading...',
@@ -108,7 +108,7 @@ export const guideStrings = {
     github: 'Source on GitHub',
     discord: 'Join the Discord',
     communityWiki: 'Community Wiki',
-    rights: 'Project H',
+    rights: 'Wyndlewood',
     linksLabel: 'Play and community links',
     // Player-guide links (the English /mmorpgs, /games-like pages beside the game).
     guidesLabel: 'Player guides',
@@ -149,7 +149,7 @@ export const guideStrings = {
   // Home / overview landing.
   home: {
     eyebrow: 'Classic-style browser MMO',
-    title: 'Project H',
+    title: 'Wyndlewood',
     subtitle: 'Explore the world, take on quests, and tackle dungeons with friends.',
     ctaPlay: 'Play Now',
     ctaLearn: 'How to Play',
@@ -947,7 +947,7 @@ export const guideStrings = {
       'Touch controls appear on their own, and the layout sizes itself to your screen: a compact arrangement on a small phone, a standard one on a larger phone, and a roomier one on a tablet.\n\nYour abilities sit in a ring rather than a number row: the attack button with four action buttons beside it, and a page toggle that swaps the ring between its {pages} pages, which together reach all {slots} of your ability slots whether or not the extra desktop bars are switched on. The fifth arc position of that ring is your consumables seat: tap it to use what is seated there, or hold it, or swipe it inward, to open a row that fills itself from what you are carrying. Around the ring sit the buttons a touch player reaches for most, swapping target, using what is in front of you, and jumping.\n\nOne Quick Actions control sits at the bottom edge in place of a row of buttons. It opens onto everything else: mount, chat, map, bags, social, quests, character, spellbook, game menu, and a More entry holding the rest of your windows, the Dungeon Finder, PvP, emotes and the wiki among them. Windows fill the screen here rather than floating over it.\n\nMoving your unit frames is a desktop thing: on touch the layout places them for you.',
     railTitle: 'The button rail',
     railBody:
-      'Down in the bottom right corner of the screen, a long way from the minimap, sits a rail of small square buttons, one per window, arranged in two short columns side by side. Most of them are printed with their default key.\n\nThe first column covers your character, spellbook, talents, quest log, Book of Deeds, professions, world map, bags, and crafting. The second opens with the WOC Store and runs on through PvP, the Dungeon Finder, the Vale Cup, Card Duel, the leaderboard, emotes, music, friends and guild, this wiki, and the game menu. A few more join them only when they apply.',
+      'Down in the bottom right corner of the screen, a long way from the minimap, sits a rail of small square buttons, one per window, arranged in two short columns side by side. Most of them are printed with their default key.\n\nThe first column covers your character, spellbook, talents, quest log, Book of Deeds, professions, world map, bags, and crafting. The second opens with the Wyndlewood Store and runs on through PvP, the Dungeon Finder, the Vale Cup, Card Duel, the leaderboard, emotes, music, friends and guild, this wiki, and the game menu. A few more join them only when they apply.',
   },
 
   // Slash Commands reference: the chat command surface, grouped by purpose.
@@ -1313,7 +1313,7 @@ export const guideStrings = {
       'The item that is a mount. Keep a pair in your bags or your bank and that mount is yours; use them to ride. Reins can be traded, mailed, and sold to other players.',
     claudiumTerm: 'Claudium',
     claudiumDef:
-      'The currency of the WOC Store, spent on cosmetics and nothing else. It never buys power or progression.',
+      'The currency of the Wyndlewood Store, spent on cosmetics and nothing else. It never buys power or progression.',
     worldTerm: 'World',
     worldDef:
       'One shared copy of the online game, with its own players, market, and standings. This guide also calls it a realm, and your character lives on the world you made it on.',
@@ -1751,7 +1751,7 @@ export const guideStrings = {
   worldPage: {
     heading: 'The world',
     intro:
-      "Project H is one continuous land you cross on foot. The old road runs south to north through the starting valley, the marsh, and the peaks, and it keeps climbing past them into the hollow beyond and the snow country at the top of the map. A column of higher realms opens off that road to the west and another to the east, and an island sits off the Vale's east coast. There is no fast travel, no flight paths, and no taxis: every journey is walked or ridden, so getting there is part of the adventure.\n\nThe land also keeps time. A day and night cycle runs on a real clock shared by everyone on your world, so the sky grades from dawn through noon to dusk and dark for all of you at once, the moon comes and goes through its phases, and the light on the ground changes with it. The dial around your minimap is where you read the hour.",
+      "Wyndlewood is one continuous land you cross on foot. The old road runs south to north through the starting valley, the marsh, and the peaks, and it keeps climbing past them into the hollow beyond and the snow country at the top of the map. A column of higher realms opens off that road to the west and another to the east, and an island sits off the Vale's east coast. There is no fast travel, no flight paths, and no taxis: every journey is walked or ridden, so getting there is part of the adventure.\n\nThe land also keeps time. A day and night cycle runs on a real clock shared by everyone on your world, so the sky grades from dawn through noon to dusk and dark for all of you at once, the moon comes and goes through its phases, and the light on the ground changes with it. The dial around your minimap is where you read the hour.",
     hub: 'Home base',
     mapHeading: 'The road and the realms beyond',
     mapSub:

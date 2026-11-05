@@ -5,6 +5,7 @@
 // the bot pushes into. Mirrors the wallet.ts shell shape (each account-scoped
 // handler takes a pre-resolved accountId from the route).
 
+import { COMMUNITY_DISCORD_INVITE_URL } from '../src/brand';
 import { randomBytes } from 'node:crypto';
 import type http from 'node:http';
 import { GAME_NAME } from '../src/brand';
@@ -112,7 +113,7 @@ const STATE_TTL_MINUTES = 10;
 // (the player may also type a password / 2FA code on the link path), a bit longer
 // than the OAuth state TTL since a human decision sits in the middle.
 const PENDING_LOGIN_TTL_MINUTES = 15;
-const DEFAULT_INVITE = 'https://discord.com/invite/worldofclaudecraft';
+const DEFAULT_INVITE = COMMUNITY_DISCORD_INVITE_URL;
 const NATIVE_DISCORD_REDIRECT = 'worldofclaudecraft://discord-auth';
 const NATIVE_REDIRECT_STATE_PREFIX = `${NATIVE_DISCORD_REDIRECT}?challenge=`;
 // Marks a login start that ran in the desktop app's SYSTEM BROWSER (Electron/Steam,

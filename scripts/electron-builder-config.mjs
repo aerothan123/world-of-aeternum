@@ -160,6 +160,7 @@ export function desktopBuilderConfig({
   epicProductId = '',
   epicDeploymentId = '',
   epicClientId = '',
+  discordAppId = '',
 }) {
   if (distribution !== 'website' && distribution !== 'steam' && distribution !== 'epic') {
     throw new Error(`unknown desktop distribution: ${distribution}`);
@@ -184,6 +185,10 @@ export function desktopBuilderConfig({
       ...(apiOrigin ? { apiOrigin } : {}),
       ...(loginOrigin ? { loginOrigin } : {}),
       ...(crashSubmitUrl ? { crashSubmitUrl } : {}),
+      // The Discord Rich Presence application id (electron/discord_presence.cjs
+      // resolveDiscordClientId). Config-driven: stamped only when WOC_DISCORD_APP_ID
+      // was set at build time; an unstamped build keeps presence inert.
+      ...(discordAppId ? { discordAppId } : {}),
       // The Steamworks app id electron/steam.cjs initializes with; stamped
       // for the steam channel only (website builds never touch Steam). The
       // steam branch below refuses to build without a numeric id, so the
