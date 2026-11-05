@@ -2,6 +2,11 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { ITEM_ART_PENDING, iconDataUrl, itemImageUrl } from '../src/ui/icons';
+import {
+  WYNDLEWOOD_ITEM_BATCH,
+  WYNDLEWOOD_PROVENANCE_RECORD,
+  wyndlewoodRecord,
+} from './helpers/wyndlewood_art';
 
 const hoardIds = (pieces: string[]) =>
   ['rare_', '', 'legendary_'].flatMap((prefix) => pieces.map((piece) => `${prefix}${piece}`));
@@ -147,8 +152,12 @@ describe.each(batches)('integration 45 accepted art: $id', (batch) => {
       const asset = record.assets.find((a: { id: string }) => a.id === id);
       const bytes = readFileSync(`public${url}`);
       const hash = createHash('sha256').update(bytes).digest('hex');
-      expect(hash, id).toBe(asset.acceptedSha256);
-      expect(bytes.length, id).toBe(asset.acceptedBytes);
+      // The Wyndlewood repaint superseded the accepted v0.45 painting; the live bytes are
+      // pinned by the repaint's provenance record, and the batch record stays history.
+      const repaint = wyndlewoodRecord(`public${url}`);
+      expect(hash, id).toBe(repaint.shippingSha256);
+      expect(bytes.length, id).toBe(repaint.shippingBytes);
+      expect(hash, id).not.toBe(asset.acceptedSha256);
       expect(bytes.length, id).toBeLessThanOrEqual(15 * 1024);
       expect(asset.generation.prompt, id).toContain(id);
       hashes.add(hash);
@@ -156,8 +165,9 @@ describe.each(batches)('integration 45 accepted art: $id', (batch) => {
         b.itemIds?.includes(id),
       );
       expect(owners, id).toHaveLength(1);
-      expect(owners[0].batchId, id).toBe(batch.id);
-      expect(owners[0].provenanceRecord, id).toBe(recordPath);
+      // One current owner: the Wyndlewood repaint batch, whose record pins the bytes above.
+      expect(owners[0].batchId, id).toBe(WYNDLEWOOD_ITEM_BATCH);
+      expect(owners[0].provenanceRecord, id).toBe(WYNDLEWOOD_PROVENANCE_RECORD);
       if (batch.replacements) {
         expect(asset.superseded.batchId, id).toBe(
           batch.supersededBatch ?? 'hoard-boss-loot-icons-2026-09-20',

@@ -9,6 +9,14 @@ import {
   measureAlpha,
   validateAcceptedArtManifest,
 } from '../scripts/lib/icon_asset_audit.mjs';
+import {
+  supersededItemMapping,
+  WYNDLEWOOD_ITEM_BATCH,
+  withWyndlewoodRepaintPins,
+  wyndlewoodAuraRow,
+  wyndlewoodCreditsLabel,
+  wyndlewoodRecordOrNull,
+} from './helpers/wyndlewood_art';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const evidenceDir = 'docs/achievements/masterwrought-art-completion-2026-09-02';
@@ -333,8 +341,18 @@ async function assertSupplementalPin(
 ): Promise<void> {
   const file = path.join(repoRoot, 'public', asset.runtimeUrl.slice(1));
   const bytes = readFileSync(file);
-  expect(bytes.length, `${asset.kind}:${asset.id} bytes`).toBe(asset.acceptedBytes);
-  expect(hash(bytes), `${asset.kind}:${asset.id} sha256`).toBe(asset.acceptedSha256);
+  // A file the Wyndlewood repaint replaced is pinned by its repaint record; the rest keep
+  // the accepted completion pins.
+  const repaint = wyndlewoodRecordOrNull(`public${asset.runtimeUrl}`);
+  expect(bytes.length, `${asset.kind}:${asset.id} bytes`).toBe(
+    repaint?.shippingBytes ?? asset.acceptedBytes,
+  );
+  expect(hash(bytes), `${asset.kind}:${asset.id} sha256`).toBe(
+    repaint?.shippingSha256 ?? asset.acceptedSha256,
+  );
+  if (repaint) {
+    expect(hash(bytes), `${asset.kind}:${asset.id} superseded`).not.toBe(asset.acceptedSha256);
+  }
   const image = sharp(bytes, { failOn: 'warning' });
   const metadata = await image.metadata();
   expect(metadata.width, `${asset.kind}:${asset.id} width`).toBe(contract.width);
@@ -690,7 +708,10 @@ describe('Masterwrought art completion evidence', () => {
   it('passes the shared image audit with exact current shipping metadata and geometry', async () => {
     const value = manifest();
     expect(() => validateAcceptedArtManifest(value)).not.toThrow();
-    const report = await auditIconAssets({ manifest: value, repoRoot });
+    // The repaint superseded every audited painting: audit the live art against the
+    // repaint pins, with every family contract unchanged.
+    const repinned = withWyndlewoodRepaintPins(value);
+    const report = await auditIconAssets({ manifest: repinned, repoRoot });
     expect(report.summary).toMatchObject({
       ok: true,
       assetCount: 176,
@@ -700,7 +721,7 @@ describe('Masterwrought art completion evidence', () => {
     expect(report.exactDuplicates).toEqual([]);
 
     const manifestByKey = new Map(
-      value.assets.map((asset) => [`${asset.kind}:${asset.id}`, asset]),
+      repinned.assets.map((asset) => [`${asset.kind}:${asset.id}`, asset]),
     );
     for (const audited of report.assets) {
       const asset = manifestByKey.get(`${audited.kind}:${audited.id}`);
@@ -740,19 +761,11 @@ describe('Masterwrought art completion evidence', () => {
       license: 'World of ClaudeCraft original art (project-owned, created for this game)',
     });
 
-    const auras = readJson<{
-      assets: Array<{
-        auraId: string;
-        acceptedSha256: string;
-        acceptedBytes: number;
-        sourceProvenance: string;
-      }>;
-    }>('public/ui/auras/mapping.json');
-    expect(auras.assets.find(({ auraId }) => auraId === 'well_fed')).toMatchObject({
-      acceptedSha256: '574bc0be1b4c524e2d49395a7e102b135ea8f78792a2b0cd667aa26dc223b602',
-      acceptedBytes: 3468,
-      sourceProvenance: `${evidenceDir}/generation-reports/root-special.json`,
-    });
+    // Well Fed is a Wyndlewood repaint now: its aura row names the repaint cell.
+    const auras = readJson<{ assets: Array<{ auraId: string }> }>('public/ui/auras/mapping.json');
+    expect(auras.assets.filter(({ auraId }) => auraId === 'well_fed')).toEqual([
+      wyndlewoodAuraRow('well_fed'),
+    ]);
 
     const markers = readJson<{
       entries: Array<{
@@ -781,7 +794,10 @@ describe('Masterwrought art completion evidence', () => {
 
   it('preserves the 1209-item completion union separately from the Crucible additions', () => {
     const value = manifest();
-    const mapping = readJson<ItemMapping>('public/ui/items/mapping.json');
+    // The batch lineage below is audited against the item mapping as it stood before the
+    // Wyndlewood repaint (the frozen archive); the repaint then took over every owner.
+    const mapping = supersededItemMapping<ItemMapping>();
+    const liveMapping = readJson<ItemMapping>('public/ui/items/mapping.json');
     const currentBatch = mapping.generatedBatches.find(({ batchId: id }) => id === batchId);
     expect(currentBatch?.itemIds).toEqual(value.targetSets.items);
 
@@ -843,7 +859,14 @@ describe('Masterwrought art completion evidence', () => {
     // + the sprite buddy's whistle render: 2,184.
     // Restored feral staff and eight Season 2 jewelry paintings add nine owners.
     // Halloween adds 27 item-art owners outside the sealed historical set.
-    expect(currentOwnerIds).toHaveLength(2191);
+    // + the 18 housing furniture icons (bba29634): 2,209.
+    expect(currentOwnerIds).toHaveLength(2209);
+    // The repaint batch is now the one owner of exactly that superseded owner set.
+    expect(liveMapping.entries).toEqual([]);
+    expect(liveMapping.generatedBatches.map(({ batchId: id }) => id)).toEqual([
+      WYNDLEWOOD_ITEM_BATCH,
+    ]);
+    expect(liveMapping.generatedBatches[0].itemIds).toEqual(sorted(currentOwnerIds));
     for (const id of datedIds) {
       expect(currentOwnerIds.includes(id), `${id} still has a current mapping owner`).toBe(true);
     }
@@ -1254,6 +1277,14 @@ describe('Masterwrought art completion evidence', () => {
       'writ_of_the_trickster',
     ]);
     expect(datedIds.filter((id) => halloweenIds.has(id))).toEqual([]);
+    // The housing furniture renders (furniture-renders-2026-11-04), additive the same way.
+    const furnitureBatches = mapping.generatedBatches.filter(
+      ({ batchId: id }) => id === 'furniture-renders-2026-11-04',
+    );
+    expect(furnitureBatches).toHaveLength(1);
+    const furnitureIds = new Set(furnitureBatches[0].itemIds);
+    expect(furnitureIds.size).toBe(18);
+    expect(datedIds.filter((id) => furnitureIds.has(id))).toEqual([]);
 
     const completionOwnerIds = currentOwnerIds.filter(
       (id) =>
@@ -1290,7 +1321,8 @@ describe('Masterwrought art completion evidence', () => {
         !buddyIds.has(id) &&
         !backlogAdditiveIds.has(id) &&
         !lanternHallIds.has(id) &&
-        !halloweenIds.has(id),
+        !halloweenIds.has(id) &&
+        !furnitureIds.has(id),
     );
     expect(completionOwnerIds).toHaveLength(1209);
     expect(sorted(completionOwnerIds)).toEqual(completionDatedIds);
@@ -1332,6 +1364,10 @@ describe('Masterwrought art completion evidence', () => {
   });
 
   it('pins the operative credits and consolidated supersession lineage', () => {
+    const WYNDLEWOOD_AURA_ROW_SHA256 =
+      '9cb2b13953d655daad58c8899e1603056237860c88df18fef81c1249c2353ed5';
+    const WYNDLEWOOD_DEED_ROW_SHA256 =
+      'f1ead8ec589f68e21d4914167ddecc1b38defa24a32e0bf2cf6a950ab198e091';
     const credits = readFileSync(path.join(repoRoot, 'CREDITS.md'), 'utf8');
     const requiredRows = [
       [
@@ -1342,14 +1378,10 @@ describe('Masterwrought art completion evidence', () => {
         '| Masterwrought art-completion wave (181 painted assets',
         '93b63a5bd6aff180f185ced2b760b34b70271747c0cbaad92415abf10c0a2786',
       ],
-      [
-        '| Exact runtime aura paintings (`public/ui/auras/*.webp`)',
-        '0accf6ccfced9b22e02350828672d519f1c52ccbab6436a8336bb5f29d70aa39',
-      ],
-      [
-        '| Masterwrought farming, fishing, and promotion deed crests',
-        '796fa371a23b0d54bb939abd49e17867168b75009c269684f66712c663b5a2ac',
-      ],
+      // The Wyndlewood repaint's aura and deed rows replace the superseded aura-painting
+      // and Masterwrought deed-crest rows.
+      [`| ${wyndlewoodCreditsLabel('public/ui/auras')}`, WYNDLEWOOD_AURA_ROW_SHA256],
+      [`| ${wyndlewoodCreditsLabel('public/ui/deeds')}`, WYNDLEWOOD_DEED_ROW_SHA256],
       [
         '| HUD chrome launcher icons (`public/ui/chrome/*.webp`',
         'd93e1808bea695afe46fbae5d9f98ee0a90a704b8e3b70a2bbac431a3fa96896',
@@ -1358,7 +1390,7 @@ describe('Masterwrought art completion evidence', () => {
         '| Map and minimap marker paintings (`public/ui/map-markers/*.webp`)',
         'c9ff4351802321cffcbdcf145ef4db9b853d9900889eb00bbc222418326c500c',
       ],
-    ] as const;
+    ];
     const rows = credits.split('\n');
     for (const [prefix, expectedHash] of requiredRows) {
       const matches = rows.filter((row) => row.startsWith(prefix));

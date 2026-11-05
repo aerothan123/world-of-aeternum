@@ -2,6 +2,11 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { iconDataUrl, itemImageUrl, weaponIconUrl } from '../src/ui/icons';
+import {
+  WYNDLEWOOD_ITEM_BATCH,
+  WYNDLEWOOD_PROVENANCE_RECORD,
+  wyndlewoodRecord,
+} from './helpers/wyndlewood_art';
 
 const batches = [
   {
@@ -78,8 +83,12 @@ describe.each(batches)('integration 45 faction paintings: $family', (batch) => {
       const asset = record.assets.find((a: { id: string }) => a.id === id);
       const bytes = readFileSync(`public${url}`);
       const hash = createHash('sha256').update(bytes).digest('hex');
-      expect(hash, id).toBe(asset.acceptedSha256);
-      expect(bytes.length, id).toBe(asset.acceptedBytes);
+      // The Wyndlewood repaint superseded the accepted v0.45 painting; the live bytes are
+      // pinned by the repaint's provenance record, and the batch record stays history.
+      const repaint = wyndlewoodRecord(`public${url}`);
+      expect(hash, id).toBe(repaint.shippingSha256);
+      expect(bytes.length, id).toBe(repaint.shippingBytes);
+      expect(hash, id).not.toBe(asset.acceptedSha256);
       expect(bytes.length, id).toBeLessThanOrEqual(15 * 1024);
       expect(asset.generation.prompt, id).toContain(id);
       expect(asset.superseded.batchId, id).toBe(
@@ -93,8 +102,9 @@ describe.each(batches)('integration 45 faction paintings: $family', (batch) => {
         b.itemIds?.includes(id),
       );
       expect(owners, id).toHaveLength(1);
-      expect(owners[0].batchId, id).toBe(batchId);
-      expect(owners[0].provenanceRecord, id).toBe(recordPath);
+      // One current owner: the Wyndlewood repaint batch, whose record pins the bytes above.
+      expect(owners[0].batchId, id).toBe(WYNDLEWOOD_ITEM_BATCH);
+      expect(owners[0].provenanceRecord, id).toBe(WYNDLEWOOD_PROVENANCE_RECORD);
       hashes.add(hash);
     }
     expect(hashes.size, 'each authored item has its own painting').toBe(ids.length);

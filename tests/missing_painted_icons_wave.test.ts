@@ -19,6 +19,16 @@ import {
   weaponIconUrl,
 } from '../src/ui/icons';
 import { ITEM_WEAPON_VARIANTS } from '../src/ui/weapon_variants';
+import {
+  WYNDLEWOOD_ITEM_BATCH,
+  WYNDLEWOOD_LICENSE,
+  WYNDLEWOOD_OWNER,
+  WYNDLEWOOD_PROVENANCE_RECORD,
+  WYNDLEWOOD_SOURCE,
+  wyndlewoodAbilityRow,
+  wyndlewoodCreditsLabel,
+  wyndlewoodRecord,
+} from './helpers/wyndlewood_art';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const manifestPath = path.join(
@@ -230,7 +240,6 @@ function expectedAssetLocations(asset: RasterAsset): {
   return { runtimeUrl, shippingPath: `public${runtimeUrl}` };
 }
 
-const GENERATED_ABILITY_SOURCE_PACK = 'woc_openai_missing_painted_icons_2026_08_01';
 const ALLOWED_REFERENCE_ROLES = [
   'composition reference',
   'frame reference',
@@ -422,12 +431,15 @@ describe('missing painted icon accepted-art manifest', () => {
       const file = path.join(repoRoot, expectedLocation.shippingPath);
       expect(file).toBe(publicFile(asset.runtimeUrl));
       const bytes = readFileSync(file);
-      const currentPin = resolvedShippingPin(asset);
-      expect(bytes.length, `${asset.id} accepted byte pin`).toBe(currentPin.acceptedBytes);
+      // The last accepted pin (after any item-art-consistency supersession) is history now:
+      // the Wyndlewood repaint replaced it, and the repaint record pins the live bytes.
+      const supersededPin = resolvedShippingPin(asset);
+      const repaint = wyndlewoodRecord(expectedLocation.shippingPath);
+      const liveHash = createHash('sha256').update(bytes).digest('hex');
+      expect(bytes.length, `${asset.id} repaint byte pin`).toBe(repaint.shippingBytes);
       expect(bytes.length, `${asset.id} weight ceiling`).toBeLessThanOrEqual(15 * 1024);
-      expect(createHash('sha256').update(bytes).digest('hex'), `${asset.id} hash pin`).toBe(
-        currentPin.acceptedSha256,
-      );
+      expect(liveHash, `${asset.id} repaint hash pin`).toBe(repaint.shippingSha256);
+      expect(liveHash, `${asset.id} superseded hash`).not.toBe(supersededPin.acceptedSha256);
       const decoded = await sharp(bytes).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
       expect(decoded.info.width, `${asset.id} width`).toBe(128);
       expect(decoded.info.height, `${asset.id} height`).toBe(128);
@@ -515,12 +527,11 @@ describe('missing painted ability integration', () => {
     }
   });
 
-  it('gives every generated ability an explicit non-CraftPix provenance owner', () => {
+  it('gives every generated ability one explicit non-CraftPix repaint owner', () => {
     const accepted = manifest();
     const assetById = new Map(
       accepted.assets.filter((asset) => asset.kind === 'ability').map((asset) => [asset.id, asset]),
     );
-    const mapped: string[] = [];
     const allEntries: Array<{ className: string; entry: AbilityMappingEntry }> = [];
     for (const className of [
       'druid',
@@ -537,45 +548,26 @@ describe('missing painted ability integration', () => {
         readFileSync(path.join(repoRoot, `public/ui/skills/${className}/mapping.json`), 'utf8'),
       ) as {
         licenseScope?: string;
+        license?: string;
         abilities: AbilityMappingEntry[];
       };
-      expect(mapping.licenseScope).toContain('explicitly override');
+      // The Wyndlewood repaint made every row's art Wyndlewood-owned, so the file licence is
+      // the repaint's and the CraftPix override scope no longer applies.
+      expect(mapping.licenseScope).toBeUndefined();
+      expect(mapping.license).toBe(WYNDLEWOOD_LICENSE);
       allEntries.push(...mapping.abilities.map((entry) => ({ className, entry })));
-      const generated = mapping.abilities.filter(
-        (entry) => entry.sourcePack === GENERATED_ABILITY_SOURCE_PACK,
-      );
-      for (const entry of generated) {
-        mapped.push(entry.abilityId);
-        const asset = assetById.get(entry.abilityId);
-        expect(asset, `${entry.abilityId} manifest owner`).toBeDefined();
-        expect(entry.source).toBe('OpenAI built-in image generation');
-        expect(entry.owner).toBe('World of ClaudeCraft');
-        expect(entry.license).toContain('project asset');
-        expect(entry.license).not.toContain('CraftPix');
-        expect(entry.sourceFile).toBe(asset?.source.path);
-        expect(entry.output).toBe(`${entry.abilityId}.webp`);
-        expect(entry.references).toEqual(asset?.generation.references);
-        expect(entry.generationPrompt).toBe(asset?.generation.prompt);
-      }
     }
-    expect(sorted(mapped)).toEqual(accepted.targetSets.abilities);
 
-    const targets = new Set(accepted.targetSets.abilities);
     for (const id of accepted.targetSets.abilities) {
+      expect(assetById.get(id), `${id} manifest owner`).toBeDefined();
       const owners = allEntries.filter(({ entry }) => entry.abilityId === id);
       expect(owners, `${id} must have exactly one mapping owner`).toHaveLength(1);
-      expect(owners[0].entry.sourcePack, `${id} mapping owner`).toBe(GENERATED_ABILITY_SOURCE_PACK);
       expect(owners[0].className, `${id} mapping class`).toBe(ABILITIES[id].class);
+      expect(owners[0].entry, `${id} repaint owner row`).toEqual(
+        wyndlewoodAbilityRow(owners[0].className, id),
+      );
+      expect(owners[0].entry.license).not.toContain('CraftPix');
     }
-    expect(
-      allEntries
-        .filter(
-          ({ entry }) =>
-            targets.has(entry.abilityId) && entry.sourcePack !== GENERATED_ABILITY_SOURCE_PACK,
-        )
-        .map(({ entry }) => entry.abilityId),
-      'generated abilities must not also appear as ordinary CraftPix entries',
-    ).toEqual([]);
   });
 });
 
@@ -599,7 +591,7 @@ describe('missing painted item integration', () => {
     }
   });
 
-  it('owns every target exactly once in truthful generated item batches', () => {
+  it('owns every target exactly once in the truthful Wyndlewood repaint batch', () => {
     const accepted = manifest();
     const assetById = new Map(
       accepted.assets.filter((asset) => asset.kind === 'item').map((asset) => [asset.id, asset]),
@@ -628,23 +620,26 @@ describe('missing painted item integration', () => {
       expect(owners, `${id} generated provenance owner`).toHaveLength(1);
       const owner = owners[0];
       const asset = assetById.get(id);
-      expect(owner.source).toBe('OpenAI built-in image generation');
-      expect(owner.owner).toBe('World of ClaudeCraft');
-      expect(owner.license).toContain('project asset');
+      // The one owner is the Wyndlewood repaint batch, whose record pins every target.
+      expect(owner).toMatchObject({
+        batchId: WYNDLEWOOD_ITEM_BATCH,
+        source: WYNDLEWOOD_SOURCE,
+        owner: WYNDLEWOOD_OWNER,
+        license: WYNDLEWOOD_LICENSE,
+        provenanceRecord: WYNDLEWOOD_PROVENANCE_RECORD,
+      });
       expect(owner.styleReference).toBeTruthy();
       expect(owner.commonPrompt).toBeTruthy();
       expect(owner.itemIds).toEqual(sorted(new Set(owner.itemIds)));
+      expect(wyndlewoodRecord(`public/ui/items/${id}.webp`).subject, id).toBeTruthy();
+      // The superseded lineage stays intact in the accepted-art records.
+      expect(asset, `${id} accepted asset`).toBeDefined();
       const supersession = itemConsistencyManifest().supersedes.find(({ itemId }) => itemId === id);
       if (supersession) {
-        expect(owner.batchId).toBe('item-art-consistency-2026-08-09');
-        expect(owner.provenanceRecord).toBe('docs/achievements/item-art-consistency-2026-08-09/');
         expect(supersession.previous.shipping).toMatchObject({
           sha256: asset?.acceptedSha256,
           bytes: asset?.acceptedBytes,
         });
-      } else {
-        expect(owner.styleReferencesByItem?.[id]).toEqual(asset?.generation.references);
-        expect(owner.itemDirections?.[id]?.generationPrompt).toBe(asset?.generation.prompt);
       }
     }
   });
@@ -734,31 +729,31 @@ describe('missing painted deed and Heroic weapon integration', () => {
       'utf8',
     );
     const creditRows = credits.split('\n');
-    const commissionedRow = creditRows.find((line) =>
-      line.startsWith('| Book of Deeds achievement icons'),
-    );
-    const generatedRow = creditRows.find((line) =>
-      line.startsWith('| Generated Book of Deeds additions'),
-    );
-    expect(commissionedRow).toContain('excluding the project-generated additions credited below');
-    expect(generatedRow).toContain('World of ClaudeCraft');
-    expect(generatedRow).toContain('OpenAI built-in image generation');
+    // The Wyndlewood repaint replaced every crest: its deeds row is the one operative credit,
+    // and the upstream commissioned and generated crest rows are gone, so no id is still
+    // credited to the art it no longer ships.
+    expect(credits).toContain(wyndlewoodCreditsLabel('public/ui/deeds'));
+    expect(
+      creditRows.filter(
+        (line) =>
+          line.startsWith('| Book of Deeds achievement icons') ||
+          line.startsWith('| Generated Book of Deeds additions'),
+      ),
+    ).toEqual([]);
     for (const id of accepted.targetSets.deeds) {
-      expect(credits, `${id} credits`).toContain(id);
-      expect(generatedRow, `${id} generated credit owner`).toContain(`\`${id}\``);
+      expect(wyndlewoodRecord(`public/ui/deeds/${id}.webp`).subject, `${id} repaint`).toBeTruthy();
       expect(
         creditRows.filter((line) => line.includes(`\`${id}\``)),
-        `${id} must occur in exactly one credit row`,
-      ).toHaveLength(1);
+        `${id} must not keep a stale upstream credit row`,
+      ).toEqual([]);
       expect(provenance, `${id} full deed lineage`).toContain(id);
       expect(iconDataUrl('crest', `deed_${id}`), `${id} Book/wiki URL`).toBe(
         `/ui/deeds/${id}.webp`,
       );
     }
     // The phase 20 bottom-map chronicle crests ride the professions-tuning
-    // provenance doc rather than this wave's manifest; pin their credit and
-    // lineage rows the same way (the review round: the "fourteen" count
-    // alone would stay green with all six ids deleted from the row).
+    // provenance doc rather than this wave's manifest; pin their repaint record and
+    // lineage rows the same way.
     const PHASE20_DEED_ART_IDS = [
       'chr_willowfen_gatherer',
       'chr_willowfen_first_cast',
@@ -772,11 +767,11 @@ describe('missing painted deed and Heroic weapon integration', () => {
       'utf8',
     );
     for (const id of PHASE20_DEED_ART_IDS) {
-      expect(generatedRow, `${id} generated credit owner`).toContain(`\`${id}\``);
+      expect(wyndlewoodRecord(`public/ui/deeds/${id}.webp`).subject, `${id} repaint`).toBeTruthy();
       expect(
         creditRows.filter((line) => line.includes(`\`${id}\``)),
-        `${id} must occur in exactly one credit row`,
-      ).toHaveLength(1);
+        `${id} must not keep a stale upstream credit row`,
+      ).toEqual([]);
       expect(tuningProvenance, `${id} prompt/lineage record`).toContain(`\`${id}\``);
     }
   });

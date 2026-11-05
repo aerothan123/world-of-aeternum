@@ -21,6 +21,17 @@ import {
   iconDataUrl,
   itemImageUrl,
 } from '../src/ui/icons';
+import {
+  WYNDLEWOOD_ITEM_BATCH,
+  WYNDLEWOOD_LICENSE,
+  WYNDLEWOOD_OWNER,
+  WYNDLEWOOD_PROVENANCE_RECORD,
+  WYNDLEWOOD_SOURCE,
+  withWyndlewoodRepaintPins,
+  wyndlewoodAbilityRow,
+  wyndlewoodCreditsLabel,
+  wyndlewoodRecord,
+} from './helpers/wyndlewood_art';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const manifestPath = path.join(repoRoot, 'docs/achievements/release-v034-additional-art.json');
@@ -54,7 +65,6 @@ const RETIRED_HASHES = {
   proceduralSignet: 'c90769f6d7ace5473315bb0916574cd1ae65e8c12f5fa760797e81bc6b3eebf2',
 } as const;
 
-const GENERATED_ABILITY_PACK = 'woc_openai_release_v034_audit_2026_08_02';
 const GENERATED_SOURCE = 'OpenAI built-in image generation';
 const GENERATED_OWNER = 'World of ClaudeCraft';
 
@@ -212,19 +222,6 @@ function currentComparator(
   };
 }
 
-function creditRow(credits: string, prefix: string): string {
-  const matches = credits.split('\n').filter((line) => line.startsWith(`| ${prefix}`));
-  expect(matches, `${prefix} credit row`).toHaveLength(1);
-  return matches[0] ?? '';
-}
-
-function creditCells(row: string): string[] {
-  return row
-    .split('|')
-    .slice(1, -1)
-    .map((cell) => cell.trim());
-}
-
 describe('release v0.34 additional painted art', () => {
   it('pins the exact nine-target scope and complete repository-owned generation record', () => {
     expect(existsSync(manifestPath), 'the accepted-art manifest must be committed').toBe(true);
@@ -305,7 +302,9 @@ describe('release v0.34 additional painted art', () => {
   });
 
   it('audits exact shipping identity, colour, alpha geometry, and visual uniqueness', async () => {
-    const accepted = manifest();
+    // The Wyndlewood repaint superseded all nine paintings: audit the live art against its
+    // repaint pins under the unchanged contracts, visual uniqueness included.
+    const accepted = withWyndlewoodRepaintPins(manifest());
     const report = await auditIconAssets({ manifest: accepted, repoRoot });
     expect(report.summary).toEqual({
       ok: true,
@@ -355,9 +354,15 @@ describe('release v0.34 additional painted art', () => {
       deed: hashOwners(path.join(repoRoot, 'public/ui/deeds')),
     };
     for (const asset of accepted.assets) {
-      expect(byKind[asset.kind].get(asset.acceptedSha256), `${asset.id} hash owners`).toEqual([
+      // Each repainted file is the sole owner of its repaint bytes, and the superseded
+      // accepted bytes ship nowhere.
+      const repaint = wyndlewoodRecord(`public${asset.runtimeUrl}`);
+      expect(byKind[asset.kind].get(repaint.shippingSha256), `${asset.id} hash owners`).toEqual([
         `public${asset.runtimeUrl}`,
       ]);
+      expect(byKind[asset.kind].has(asset.acceptedSha256), `${asset.id} superseded bytes`).toBe(
+        false,
+      );
     }
 
     const martensGuiseHash = hashFile(
@@ -370,9 +375,9 @@ describe('release v0.34 additional painted art', () => {
 
     expect(martensGuiseHash).not.toBe(RETIRED_HASHES.duplicatedMarten);
     expect(martensGuiseHash).not.toBe(prowlHash);
-    expect(byKind.ability.get(RETIRED_HASHES.duplicatedMarten)).toEqual([
-      'public/ui/skills/druid/prowl.webp',
-    ]);
+    // Prowl, the painting Marten's Guise once duplicated, is itself a repaint now, so the
+    // duplicated bytes ship nowhere.
+    expect(byKind.ability.has(RETIRED_HASHES.duplicatedMarten)).toBe(false);
     expect(satchelHash).not.toBe(RETIRED_HASHES.hueShiftedSatchel);
     expect(satchelHash).not.toBe(linenHash);
     expect(byKind.item.has(RETIRED_HASHES.hueShiftedSatchel)).toBe(false);
@@ -433,7 +438,7 @@ describe('release v0.34 additional painted art', () => {
     }
   });
 
-  it("owns Marten's Guise exactly once with explicit generated-art provenance", () => {
+  it("owns Marten's Guise exactly once with explicit repaint provenance", () => {
     const accepted = manifest();
     const asset = accepted.assets.find(
       (candidate) => candidate.kind === 'ability' && candidate.id === ABILITY_IDS[0],
@@ -453,24 +458,16 @@ describe('release v0.34 additional painted art', () => {
     }
     const owners = entries.filter(({ entry }) => entry.abilityId === ABILITY_IDS[0]);
     expect(owners).toHaveLength(1);
-    expect(owners[0]).toMatchObject({
+    // The Wyndlewood repaint owns it now; the accepted generation record stays as history.
+    expect(owners[0]).toEqual({
       className: 'hunter',
-      entry: {
-        abilityId: ABILITY_IDS[0],
-        sourcePack: GENERATED_ABILITY_PACK,
-        sourceFile: asset?.source.path,
-        output: `${ABILITY_IDS[0]}.webp`,
-        source: GENERATED_SOURCE,
-        owner: GENERATED_OWNER,
-        references: asset?.generation.references,
-        generationPrompt: asset?.generation.prompt,
-      },
+      entry: wyndlewoodAbilityRow('hunter', ABILITY_IDS[0]),
     });
-    expect(owners[0].entry.license).toContain('project asset');
     expect(owners[0].entry.license).not.toContain('CraftPix');
+    expect(asset?.generation.prompt.length).toBeGreaterThan(100);
   });
 
-  it('owns both item replacements exactly once in nonprocedural generated batches', () => {
+  it('owns both item replacements exactly once in the nonprocedural repaint batch', () => {
     const accepted = manifest();
     const mapping = JSON.parse(
       readFileSync(path.join(repoRoot, 'public/ui/items/mapping.json'), 'utf8'),
@@ -488,63 +485,53 @@ describe('release v0.34 additional painted art', () => {
       const owners = mapping.generatedBatches.filter((batch) => batch.itemIds.includes(id));
       expect(owners, `${id} mapping owner`).toHaveLength(1);
       const owner = owners[0];
+      // One current owner: the Wyndlewood repaint batch (no procedural compositor).
       expect(owner).toMatchObject({
-        source: GENERATED_SOURCE,
-        owner: GENERATED_OWNER,
-        itemIds: [id],
-        styleReferencesByItem: { [id]: asset?.generation.references },
+        batchId: WYNDLEWOOD_ITEM_BATCH,
+        source: WYNDLEWOOD_SOURCE,
+        owner: WYNDLEWOOD_OWNER,
+        license: WYNDLEWOOD_LICENSE,
+        provenanceRecord: WYNDLEWOOD_PROVENANCE_RECORD,
       });
-      expect(owner.batchId).toContain('release-v034-additional-art');
-      expect(owner.license).toContain('project asset');
-      expect(owner.commonPrompt).toBe(asset?.generation.prompt);
+      expect(owner.commonPrompt).toBeTruthy();
       expect(owner.styleReference).toBeTruthy();
       expect(owner.itemIds).toEqual(sorted(new Set(owner.itemIds)));
-      const directionPrompt = owner.itemDirections?.[id]?.generationPrompt;
-      if (directionPrompt !== undefined) expect(directionPrompt).toBe(asset?.generation.prompt);
+      expect(asset?.generation.prompt.length, `${id} superseded prompt`).toBeGreaterThan(100);
       expect(JSON.stringify(owner).toLowerCase()).not.toMatch(
         /procedural icon compositor|renderproceduraliconpng|deterministic compositor|hue-shift/,
       );
     }
   });
 
-  it('credits generated ownership without erasing licensed reference lineage', () => {
+  it('credits repaint ownership without erasing the superseded generation lineage', () => {
     const credits = readFileSync(path.join(repoRoot, 'CREDITS.md'), 'utf8');
     const provenance = readFileSync(
       path.join(repoRoot, 'docs/achievements/professions-tuning-art-provenance.md'),
       'utf8',
     );
-    const itemRow = creditRow(credits, 'Generated item icon rebrand');
-    const abilityRow = creditRow(credits, 'Generated class ability additions');
-    const deedRow = creditRow(credits, 'Generated Book of Deeds additions');
-    const commissionedDeedRow = creditRow(credits, 'Book of Deeds achievement icons');
-
-    for (const [row, label] of [
-      [itemRow, 'item'],
-      [abilityRow, 'ability'],
-      [deedRow, 'deed'],
-    ] as const) {
-      const cells = creditCells(row);
-      expect(cells[1], `${label} generated-art owner`).toBe(GENERATED_OWNER);
-      expect(cells[2], `${label} generated-art source`).toContain(GENERATED_SOURCE);
-      expect(cells[2], `${label} manifest`).toContain(
-        'docs/achievements/release-v034-additional-art.json',
-      );
-      expect(cells[3], `${label} project license`).toContain('Project asset');
+    // The repaint's per-directory rows license all nine targets; the superseded generated
+    // rows are gone, so no target id is still credited to art it no longer ships.
+    for (const dir of ['public/ui/items', 'public/ui/skills', 'public/ui/deeds']) {
+      expect(credits).toContain(wyndlewoodCreditsLabel(dir));
     }
-    expect(abilityRow).toContain(GENERATED_ABILITY_PACK);
-    for (const id of ITEM_IDS) {
-      expect(count(credits, id), `${id} credit ownership`).toBe(1);
-      expect(itemRow).toContain(id);
+    const rows = credits.split('\n');
+    for (const prefix of [
+      'Generated item icon rebrand',
+      'Generated Book of Deeds additions',
+      'Book of Deeds achievement icons',
+    ]) {
+      expect(
+        rows.filter((line) => line.startsWith(`| ${prefix}`)),
+        `${prefix} superseded row`,
+      ).toEqual([]);
+    }
+    for (const id of [...ITEM_IDS, ...DEED_IDS]) {
+      expect(count(credits, id), `${id} stale credit`).toBe(0);
     }
     for (const id of DEED_IDS) {
-      expect(count(credits, id), `${id} credit ownership`).toBe(1);
-      expect(deedRow).toContain(id);
-      expect(commissionedDeedRow).not.toContain(id);
       expect(provenance, `${id} provenance`).toContain(id);
     }
-    expect(commissionedDeedRow).toContain('excluding the project-generated additions');
     expect(provenance).toContain(GENERATED_SOURCE);
     expect(provenance).toContain('docs/achievements/release-v034-additional-art.json');
-    expect(credits).toContain('CraftPix Premium');
   });
 });

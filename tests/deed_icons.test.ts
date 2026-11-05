@@ -8,6 +8,10 @@ import { DEED_ORDER, DEEDS } from '../src/sim/content/deeds';
 import { DEED_IMAGE_IDS } from '../src/ui/deed_image_ids';
 import { DEED_BESPOKE_CRESTS, deedCrestId } from '../src/ui/deeds_view';
 import { DEED_ART_PENDING, deedImageUrl, hasCrestRecipe, iconDataUrl } from '../src/ui/icons';
+import { wyndlewoodCreditsLabel, wyndlewoodRecord } from './helpers/wyndlewood_art';
+
+// Opaque-enough (alpha >= 8) pixels of the Wyndlewood deed medallion at 128px.
+const WYNDLEWOOD_MEDALLION_VISIBLE_PIXELS = 7742;
 
 // Gate for the committed Book of Deeds WebP icons (mirror of tests/skill_icons.test.ts and
 // tests/item_icons.test.ts). Art under public/ui/deeds/<deed_id>.webp is the source of truth
@@ -170,7 +174,7 @@ describe('Book of Deeds webp icons', () => {
     }
   });
 
-  it('records the five generated crests and their licensed reference lineage', () => {
+  it('credits the five repainted crests and keeps their superseded reference lineage', () => {
     const credits = readFileSync(path.join(repoRoot, 'CREDITS.md'), 'utf8');
     const provenancePath = path.join(
       repoRoot,
@@ -180,13 +184,17 @@ describe('Book of Deeds webp icons', () => {
       true,
     );
     const provenance = readFileSync(provenancePath, 'utf8');
+    // The Wyndlewood repaint replaced the five generated crests; the operative credit is the
+    // repaint's deeds row, each crest has its own repaint record, and the superseded
+    // generation lineage stays in the professions provenance record.
+    expect(credits).toContain(wyndlewoodCreditsLabel('public/ui/deeds'));
     for (const id of BRANCH_DEED_ART_IDS) {
-      expect(credits, `${id} must remain in the operative media credits`).toContain(id);
+      const bytes = readFileSync(path.join(deedsDir, `${id}.webp`));
+      expect(createHash('sha256').update(bytes).digest('hex'), id).toBe(
+        wyndlewoodRecord(`public/ui/deeds/${id}.webp`).shippingSha256,
+      );
       expect(provenance, `${id} must retain its prompt/lineage record`).toContain(id);
     }
-    expect(credits).toContain('OpenAI built-in image generation');
-    expect(credits).toContain('grubjaw_tusk');
-    expect(credits).toContain('old_cragmaws_pelt');
     expect(provenance).toContain('CraftPix Premium');
     expect(provenance).toContain('simple_fishing_pole');
   });
@@ -317,9 +325,10 @@ describe('Book of Deeds webp icons', () => {
         0.5,
       );
       expect(Math.abs((minY + maxY) / 2 - 63.5), `${id} vertical center`).toBe(0);
-      const coverage = visible / (decoded.info.width * decoded.info.height);
-      expect(coverage, `${id} visible coverage`).toBeGreaterThanOrEqual(0.41);
-      expect(coverage, `${id} visible coverage`).toBeLessThanOrEqual(0.45);
+      // The Wyndlewood repaint frames every crest in one code-built medallion (a fixed disc
+      // and metal ring, scripts/assets/wyndlewood_2d/slice_install.mjs), so the shipped
+      // 128px alpha footprint is exact rather than a composed window.
+      expect(visible, `${id} visible pixels`).toBe(WYNDLEWOOD_MEDALLION_VISIBLE_PIXELS);
     }
   });
 
@@ -441,63 +450,58 @@ describe('Book of Deeds webp icons', () => {
   });
 
   it('the Masterwrought crest provenance record matches the committed bytes', () => {
-    // The contract pinned beside the blob (the PR #3295 authored-art lesson):
-    // docs/achievements/masterwrought-phase05-art/README.md records accepted
-    // sha256 hashes for the three hand-authored jewelcrafting crests, and a
-    // bulk art-normalization pass preferentially hits hand-authored files.
-    // These literals are the same hashes the README records; a re-encode
-    // that moves the bytes reds HERE naming the crest, and the fix is to
-    // re-review and move BOTH the pin and the provenance record, never to
-    // bump the pin alone. CREDITS.md must keep naming both crest rows.
-    const ACCEPTED_CREST_SHA256: Record<string, string> = {
-      prog_jewelcrafting_rare: '057a867ec786493771e9bdd9a1100f38694bb6c7aeffca4de78fb9fd6896f5dd',
-      prog_jewelcrafting_50: '5edc61e01ce5f20dbf525c1430dc1709a1bc58ff550e0f49bb0a5ca7a4f68d8a',
+    // The contract pinned beside the blob (the PR #3295 authored-art lesson): a re-encode
+    // that moves the bytes reds HERE naming the crest, and the fix is to re-review and move
+    // BOTH the pin and the provenance record, never to bump the pin alone. The Wyndlewood
+    // repaint replaced the six hand-authored crests, so the live pins below are the repaint
+    // bytes and the record they must agree with is scripts/assets/wyndlewood_2d/provenance.json.
+    const REPAINTED_CREST_SHA256: Record<string, string> = {
+      prog_jewelcrafting_rare: 'fde8c17c565c65c942f91c2a4c83294105bbc356b17df96dae2b938cc7a54bfa',
+      prog_jewelcrafting_50: '2b8e3f6217c6a5ec67e591cacd3a6e4b46dc3ade7e6c5811351ffb11688de612',
       prog_grandmaster_jewelcrafting:
-        'f3ff906d390920499779101c7d361be8b81d07398ab9c0133778ed5daed8ee49',
-    };
-    // The phase 06 inscription trio, same contract, recorded in the phase 06
-    // provenance README; its superseded crest SVG sources remain in git history.
-    const ACCEPTED_PHASE06_CREST_SHA256: Record<string, string> = {
-      prog_inscription_rare: 'a165b790da1fb23e97bf4824df7595383ea14550a4f566e583054d113abe9368',
-      prog_inscription_50: 'a9dc7528e104550baf7bed4f864fee96cb68d90e60fe6a9385bae65f18de9ab4',
+        '08b5b949dea9b31eca6658e8883bc0731ccfd632ee02531485350d088a727233',
+      prog_inscription_rare: '4e8c6bfda5f170084adcbe576a6823ee52b8e32836e520c20546b07960e0af5e',
+      prog_inscription_50: '31cb3be9573ec62752253cbae8574a41644525c831779635988360bc7748ff03',
       prog_grandmaster_inscription:
-        'cee13b0815db111d330e11cc29773f6ab6d9c793ba1e5b47b04d56d74057498e',
+        'a3f18310d7c2c17677655d27f85cbc8dd33f996aa50d278b69e6e4441ea95c13',
     };
-    for (const [id, sha] of Object.entries({
-      ...ACCEPTED_CREST_SHA256,
-      ...ACCEPTED_PHASE06_CREST_SHA256,
-    })) {
+    for (const [id, sha] of Object.entries(REPAINTED_CREST_SHA256)) {
       const bytes = readFileSync(path.join(deedsDir, `${id}.webp`));
       expect(
         createHash('sha256').update(bytes).digest('hex'),
         `${id}.webp drifted from its accepted provenance hash`,
       ).toBe(sha);
+      expect(wyndlewoodRecord(`public/ui/deeds/${id}.webp`).shippingSha256, id).toBe(sha);
     }
-    // The provenance READMEs record the same hashes (the pin and the
-    // record cannot drift apart silently), and CREDITS carries the rows.
+    // The superseded hand-authored hashes stay recorded in the phase READMEs (history), and
+    // CREDITS licenses the repaint through its deeds row.
+    const SUPERSEDED_CREST_SHA256: Record<string, string> = {
+      prog_jewelcrafting_rare: '057a867ec786493771e9bdd9a1100f38694bb6c7aeffca4de78fb9fd6896f5dd',
+      prog_jewelcrafting_50: '5edc61e01ce5f20dbf525c1430dc1709a1bc58ff550e0f49bb0a5ca7a4f68d8a',
+      prog_grandmaster_jewelcrafting:
+        'f3ff906d390920499779101c7d361be8b81d07398ab9c0133778ed5daed8ee49',
+    };
+    const SUPERSEDED_PHASE06_CREST_SHA256: Record<string, string> = {
+      prog_inscription_rare: 'a165b790da1fb23e97bf4824df7595383ea14550a4f566e583054d113abe9368',
+      prog_inscription_50: 'a9dc7528e104550baf7bed4f864fee96cb68d90e60fe6a9385bae65f18de9ab4',
+      prog_grandmaster_inscription:
+        'cee13b0815db111d330e11cc29773f6ab6d9c793ba1e5b47b04d56d74057498e',
+    };
     const readme = readFileSync(
       path.join(repoRoot, 'docs/achievements/masterwrought-phase05-art/README.md'),
       'utf8',
     );
-    for (const sha of Object.values(ACCEPTED_CREST_SHA256)) {
-      expect(readme, 'provenance README must record the accepted hash').toContain(sha);
+    for (const sha of Object.values(SUPERSEDED_CREST_SHA256)) {
+      expect(readme, 'provenance README must record the superseded hash').toContain(sha);
     }
     const readme06 = readFileSync(
       path.join(repoRoot, 'docs/achievements/masterwrought-phase06-art/README.md'),
       'utf8',
     );
-    for (const sha of Object.values(ACCEPTED_PHASE06_CREST_SHA256)) {
-      expect(readme06, 'phase 06 provenance README must record the accepted hash').toContain(sha);
+    for (const sha of Object.values(SUPERSEDED_PHASE06_CREST_SHA256)) {
+      expect(readme06, 'phase 06 provenance README must record the superseded hash').toContain(sha);
     }
     const credits = readFileSync(path.join(repoRoot, 'CREDITS.md'), 'utf8');
-    expect(credits).toContain('prog_jewelcrafting_rare');
-    expect(credits).toContain('prog_jewelcrafting_50');
-    expect(credits).toContain('prog_grandmaster_jewelcrafting');
-    // The phase 06 crests are excluded from the blanket deed-art row (it
-    // carves out "the project-generated additions credited below"), so each
-    // id must appear in its own CREDITS row or it is credited nowhere.
-    expect(credits).toContain('prog_inscription_rare');
-    expect(credits).toContain('prog_inscription_50');
-    expect(credits).toContain('prog_grandmaster_inscription');
+    expect(credits).toContain(wyndlewoodCreditsLabel('public/ui/deeds'));
   });
 });

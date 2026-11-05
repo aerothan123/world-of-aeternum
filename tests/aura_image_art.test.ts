@@ -7,6 +7,11 @@ import { describe, expect, it } from 'vitest';
 import { resolveHudAuraIconUrl } from '../src/ui/aura_icon_runtime';
 import { AURA_FILE_IMAGE_IDS, AURA_IMAGE_IDS, auraImageUrl, iconDataUrl } from '../src/ui/icons';
 import { MOB_AURA_IMAGE_IDS } from '../src/ui/mob_aura_icon_art';
+import {
+  wyndlewoodAuraRow,
+  wyndlewoodCreditsLabel,
+  wyndlewoodRecord,
+} from './helpers/wyndlewood_art';
 
 describe('exact runtime aura paintings', () => {
   const auraArtDir = path.join(process.cwd(), 'public/ui/auras');
@@ -424,24 +429,11 @@ describe('exact runtime aura paintings', () => {
     const hashes = new Set<string>();
     for (const entry of mappedEntries) {
       expect(entry.output, entry.auraId).toBe(`${entry.auraId}.webp`);
-      expect(entry.source, entry.auraId).toBe('OpenAI built-in image generation');
-      expect(entry.owner, entry.auraId).toBe('World of ClaudeCraft');
-      expect(entry.license, entry.auraId).toContain('project asset');
-      expect(entry.sourceSha256, entry.auraId).toMatch(/^[0-9a-f]{64}$/);
-      expect(
-        {
-          auraId: entry.auraId,
-          sourceFile: entry.sourceFile,
-          sourceBytes: entry.sourceBytes,
-          sourceSha256: entry.sourceSha256,
-          acceptedSha256: entry.acceptedSha256,
-          acceptedBytes: entry.acceptedBytes,
-          acceptedArtManifest: entry.acceptedArtManifest,
-          references: entry.references.map(({ path: referencePath }) => referencePath),
-          sourceProvenance: entry.sourceProvenance,
-        },
-        entry.auraId,
-      ).toEqual(acceptedById.get(entry.auraId));
+      // The Wyndlewood repaint superseded every accepted aura painting: the row now names
+      // its repaint cell, and the accepted manifests stay as the superseded lineage.
+      expect(entry, entry.auraId).toEqual(wyndlewoodAuraRow(entry.auraId));
+      const superseded = acceptedById.get(entry.auraId);
+      expect(superseded, entry.auraId).toBeDefined();
 
       const url = auraImageUrl(entry.auraId);
       expect(url, entry.auraId).toBe(`/ui/auras/${entry.auraId}.webp`);
@@ -450,9 +442,11 @@ describe('exact runtime aura paintings', () => {
       const hash = createHash('sha256').update(bytes).digest('hex');
       const metadata = await sharp(bytes).metadata();
 
-      expect(bytes.length, entry.auraId).toBe(entry.acceptedBytes);
+      const repaint = wyndlewoodRecord(`public/ui/auras/${entry.output}`);
+      expect(bytes.length, entry.auraId).toBe(repaint.shippingBytes);
       expect(bytes.length, entry.auraId).toBeLessThanOrEqual(15 * 1024);
-      expect(hash, entry.auraId).toBe(entry.acceptedSha256);
+      expect(hash, entry.auraId).toBe(repaint.shippingSha256);
+      expect(hash, entry.auraId).not.toBe(superseded?.acceptedSha256);
       expect(metadata, entry.auraId).toMatchObject({
         format: 'webp',
         width: 128,
@@ -464,7 +458,7 @@ describe('exact runtime aura paintings', () => {
     }
     expect(hashes.size).toBe(expectedIds.length);
     expect(readFileSync(path.join(process.cwd(), 'CREDITS.md'), 'utf8')).toContain(
-      'Exact runtime aura paintings',
+      wyndlewoodCreditsLabel('public/ui/auras'),
     );
   });
 
@@ -543,20 +537,9 @@ describe('exact runtime aura paintings', () => {
     for (const entry of entries) {
       const accepted = manifestById.get(entry.auraId);
       expect(accepted, entry.auraId).toBeDefined();
-      expect(entry).toMatchObject({
-        output: `${entry.auraId}.webp`,
-        sourceFile: accepted?.sourceFile,
-        sourceBytes: accepted?.sourceBytes,
-        source: 'OpenAI built-in image generation',
-        owner: 'World of ClaudeCraft',
-        acceptedArtManifest: mobManifest,
-        sourceSha256: accepted?.sourceSha256,
-        acceptedSha256: accepted?.acceptedSha256,
-        acceptedBytes: accepted?.acceptedBytes,
-        sourceProvenance: 'tmp/imagegen/v039-second-pass/mob-aura-families/provenance.json',
-      });
-      expect(entry.license).toContain('project asset');
-      expect(entry.references).toEqual(accepted?.references);
+      // The repaint superseded the accepted mob-aura painting; the row names its repaint
+      // cell and the accepted manifest stays as the superseded lineage.
+      expect(entry, entry.auraId).toEqual(wyndlewoodAuraRow(entry.auraId));
       expect(accepted?.runtimeIds.length, entry.auraId).toBeGreaterThan(0);
       expect(accepted?.carrierCount, entry.auraId).toBeGreaterThan(0);
       expect(accepted?.prompt, entry.auraId).toMatch(/\b(text|letters)\b/i);
@@ -567,9 +550,11 @@ describe('exact runtime aura paintings', () => {
       const bytes = readFileSync(path.join(process.cwd(), 'public', url.slice(1)));
       const hash = createHash('sha256').update(bytes).digest('hex');
       const metadata = await sharp(bytes).metadata();
-      expect(bytes.length, entry.auraId).toBe(accepted?.acceptedBytes);
+      const repaint = wyndlewoodRecord(`public/ui/auras/${entry.output}`);
+      expect(bytes.length, entry.auraId).toBe(repaint.shippingBytes);
       expect(bytes.length, entry.auraId).toBeLessThanOrEqual(15 * 1024);
-      expect(hash, entry.auraId).toBe(accepted?.acceptedSha256);
+      expect(hash, entry.auraId).toBe(repaint.shippingSha256);
+      expect(hash, entry.auraId).not.toBe(accepted?.acceptedSha256);
       expect(metadata, entry.auraId).toMatchObject({
         format: 'webp',
         width: 128,

@@ -67,7 +67,8 @@ describe('Vampiric Touch presentation', () => {
     const bytes = readFileSync('public/ui/skills/priest/vampiric_touch.webp');
     expect(bytes.byteLength).toBeLessThanOrEqual(15 * 1024);
     expect(createHash('sha256').update(bytes).digest('hex')).toBe(
-      'c8e6d89e51703686dd36e30edf96351547a542c0e6940073591cda4e1adb5f77',
+      // The Wyndlewood repaint (scripts/assets/wyndlewood_2d/provenance.json).
+      '7519eb003bf5977857227462f125f8aa0ee477e9431d47d41e8d776ac3692727',
     );
     expect(await sharp(bytes).metadata()).toMatchObject({
       width: 128,
@@ -84,8 +85,8 @@ describe('Vampiric Touch presentation', () => {
     ).toEqual([
       expect.objectContaining({
         output: 'vampiric_touch.webp',
-        owner: 'World of ClaudeCraft',
-        sourcePack: 'woc_openai_vampiric_touch_2026_10_07',
+        owner: 'Wyndlewood',
+        sourcePack: 'wyndlewood-2d-v1',
       }),
     ]);
   });

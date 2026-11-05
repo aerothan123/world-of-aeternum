@@ -8,6 +8,11 @@ import { FAMILY_CREST_ART_IDS, STATUS_CREST_ART_IDS } from '../src/ui/crest_icon
 import { DEED_IMAGE_IDS } from '../src/ui/deed_image_ids';
 import { SPEC_ART_IDS } from '../src/ui/spec_icon_art';
 import { ITEM_WEAPON_VARIANTS } from '../src/ui/weapon_variants';
+import {
+  withWyndlewoodRepaintPins,
+  wyndlewoodCreditsLabel,
+  wyndlewoodRecord,
+} from './helpers/wyndlewood_art';
 
 const repoRoot = path.join(__dirname, '..');
 const evidenceDir = 'docs/achievements/placeholder-art-completion-2026-08-09';
@@ -213,11 +218,14 @@ function assertHistoricalOrSupersededFile(asset: ManifestAsset): void {
   const file = path.join(repoRoot, 'public', asset.runtimeUrl.slice(1));
   expect(existsSync(file), asset.runtimeUrl).toBe(true);
   const bytes = readFileSync(file);
-  const currentPin = resolvedCompletionAssetPin(asset);
-  expect(bytes.length, `${asset.runtimeUrl} bytes`).toBe(currentPin.acceptedBytes);
-  expect(createHash('sha256').update(bytes).digest('hex'), `${asset.runtimeUrl} sha256`).toBe(
-    currentPin.acceptedSha256,
-  );
+  // The last accepted pin is history now: the Wyndlewood repaint replaced it, and the
+  // repaint record pins the live bytes.
+  const supersededPin = resolvedCompletionAssetPin(asset);
+  const repaint = wyndlewoodRecord(`public${asset.runtimeUrl}`);
+  const liveHash = createHash('sha256').update(bytes).digest('hex');
+  expect(bytes.length, `${asset.runtimeUrl} bytes`).toBe(repaint.shippingBytes);
+  expect(liveHash, `${asset.runtimeUrl} sha256`).toBe(repaint.shippingSha256);
+  expect(liveHash, `${asset.runtimeUrl} superseded sha256`).not.toBe(supersededPin.acceptedSha256);
 }
 
 function supplementalRuntimeUrl(asset: SupplementalAsset): string {
@@ -416,7 +424,12 @@ describe('v0.36 placeholder-art completion evidence', () => {
       asset.acceptedBytes = resolved.acceptedBytes;
     }
     expect(resolvedSupersessions).toBe(4);
-    const report = await auditIconAssets({ manifest: currentManifest, repoRoot });
+    // Then the Wyndlewood repaint superseded every audited painting: audit the live art
+    // against its repaint pins under the unchanged contracts.
+    const report = await auditIconAssets({
+      manifest: withWyndlewoodRepaintPins(currentManifest),
+      repoRoot,
+    });
     expect(report.summary).toMatchObject({
       ok: true,
       assetCount: 153,
@@ -535,19 +548,20 @@ describe('v0.36 placeholder-art completion evidence', () => {
   it('links the operative art brief and scoped media credits to the completion record', () => {
     const credits = readFileSync(path.join(repoRoot, 'CREDITS.md'), 'utf8');
     expect(credits).toContain(evidenceDir);
-    expect(credits).toContain('v0.36 placeholder-art completion Book of Deeds additions');
-    expect(credits).toContain(
-      'Thirty original crests generated with OpenAI built-in image generation',
-    );
+    // The thirty v0.36 crests are Wyndlewood repaints now, licensed by the repaint's deeds row.
+    expect(credits).toContain(wyndlewoodCreditsLabel('public/ui/deeds'));
+    for (const id of manifest().targetSets.deeds) {
+      expect(wyndlewoodRecord(`public/ui/deeds/${id}.webp`).subject, id).toBeTruthy();
+    }
     expect(credits).toContain('Historical v0.36 painted per-item weapon inventory wave');
     expect(credits).toContain('119 base-weapon paintings');
     expect(credits).toContain('v0.36 generated specialization emblems');
     expect(credits).toContain('Twenty-one original square emblems generated');
     expect(credits).toContain('v0.36 generated creature-family and status crests');
     expect(credits).toContain('Thirteen original family crests and four original status crests');
-    expect(credits).toContain(
-      'the four v0.36 replacements retain exact prompts, ordered reference roles, hashes, and processing',
-    );
+    // The four v0.36 item replacements, credited with the item rebrand row before, are
+    // Wyndlewood repaints licensed by the repaint's items row.
+    expect(credits).toContain(wyndlewoodCreditsLabel('public/ui/items'));
     expect(credits).toContain('Deterministically corrected mob target portraits');
     expect(credits).toContain('replaces eighteen stale portraits');
 

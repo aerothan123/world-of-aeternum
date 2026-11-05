@@ -69,7 +69,9 @@ describe('currency art', () => {
         needle: "currencyIconHtml('honor')",
         count: 2,
       },
-      'src/ui/claudium_window.ts': { needle: "currencyImageUrl('woc_token')", count: 1 },
+      // The $WOC rails left the Claudium store (7078c1f6, no cryptocurrency in Project H),
+      // so the store must no longer render the token painting.
+      'src/ui/claudium_window.ts': { needle: "currencyImageUrl('woc_token')", count: 0 },
       'src/ui/hud.ts': {
         needle: "coinIconUrl: () => iconDataUrl('item', 'coin_gold')",
         count: 1,

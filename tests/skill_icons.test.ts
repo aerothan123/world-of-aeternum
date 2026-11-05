@@ -11,6 +11,15 @@ import { ABILITIES, abilitiesKnownAt } from '../src/sim/content/classes';
 import { computeTalentModifiers, emptyAllocation } from '../src/sim/content/talents';
 import { ABILITY_ART_PENDING, ABILITY_IMAGE_IDS, abilityImageUrl } from '../src/ui/icons';
 import { PALADIN_TALENT_IMAGE_IDS } from '../src/ui/talent_icons';
+import {
+  WYNDLEWOOD_LICENSE,
+  WYNDLEWOOD_OWNER,
+  WYNDLEWOOD_PACK,
+  WYNDLEWOOD_PROVENANCE_RECORD,
+  WYNDLEWOOD_SOURCE,
+  wyndlewoodAbilityRow,
+  wyndlewoodRecord,
+} from './helpers/wyndlewood_art';
 
 // Gate for the committed WebP class ability icons. The art under
 // public/ui/skills/<class>/<id>.webp is the source of truth (WebP only, no PNG/JPG in the
@@ -325,8 +334,10 @@ const NORMALIZED_SKILL_IDS = {
 const SKILL_NORMALIZATION_SOURCE_COMMIT = '32abfff7b0cbee34123dc36f69ed3fcab24f7a65';
 const SKILL_NORMALIZATION_HISTORY_DIGEST =
   '82d3ef8c0631a6bbdab0022c88fe2cc0d0256c55a1f279d75f300fa0f8d7f835';
+// Re-pinned for the Wyndlewood repaint: every normalized icon's one owner row now names its
+// repaint cell in scripts/assets/wyndlewood_2d/provenance.json.
 const SKILL_NORMALIZATION_OWNERSHIP_DIGEST =
-  'a12ca388cf11019ceeff901d7ade678d7770b468fbfc9783e317dbce987e18da';
+  '405fc3daf44e87f41b1fae43ad29911acf9550c7aacb5839fe409f25bba05b5e';
 const SKILL_NORMALIZATION_EVIDENCE_DIGEST =
   '281e073038f41c7ac0f7f020795451e2faec297b464ce373d2a1566dc9cc01b1';
 
@@ -410,7 +421,7 @@ describe('class ability webp icons', () => {
     expect(missing).toEqual([]);
   });
 
-  it('uses the owner-provided Fireball Form and Counterspell artwork', () => {
+  it('uses the Wyndlewood repaint of the former owner-provided Fireball Form and Counterspell', () => {
     expect(abilityImageUrl('fireball_form')).toBe('/ui/skills/mage/fireball_form.webp');
     expect(abilityImageUrl('counterspell')).toBe('/ui/skills/mage/counterspell.webp');
 
@@ -423,21 +434,13 @@ describe('class ability webp icons', () => {
         output: string;
       }>;
     };
-    const requested = new Map(
-      mapping.abilities
-        .filter(({ abilityId }) => ['fireball_form', 'counterspell'].includes(abilityId))
-        .map(({ abilityId, sourceFile, output }) => [abilityId, { sourceFile, output }]),
-    );
-    expect(Object.fromEntries(requested)).toEqual({
-      fireball_form: {
-        sourceFile: 'owner-provided artwork (Fireball Form)',
-        output: 'fireball_form.webp',
-      },
-      counterspell: {
-        sourceFile: 'owner-provided artwork (Counterspell)',
-        output: 'counterspell.webp',
-      },
-    });
+    // The repaint replaced the owner-provided artwork, so each row names its repaint cell.
+    for (const id of ['fireball_form', 'counterspell']) {
+      expect(
+        mapping.abilities.filter(({ abilityId }) => abilityId === id),
+        id,
+      ).toEqual([wyndlewoodAbilityRow('mage', id)]);
+    }
   });
 
   it('uses the owner-provided painted icons for both Chronomancy abilities', () => {
@@ -463,11 +466,8 @@ describe('class ability webp icons', () => {
 
       for (const id of ids) {
         expect(abilityImageUrl(id)).toBe(`/ui/skills/${cls}/${id}.webp`);
-        expect(entries.get(id)).toMatchObject({
-          abilityId: id,
-          sourcePack: 'OpenAI image generation through Codex',
-          output: `${id}.webp`,
-        });
+        // Repainted by Wyndlewood: the recorded provenance is the repaint's sheet cell.
+        expect(entries.get(id)).toEqual(wyndlewoodAbilityRow(cls, id));
       }
     }
   });
@@ -512,9 +512,11 @@ describe('class ability webp icons', () => {
       abilities: Array<{ abilityId: string }>;
       generatedBatches: Array<{ abilityIds?: string[]; talentIds?: string[] }>;
     };
-    const generatedIds = mapping.generatedBatches.flatMap(
-      ({ abilityIds, talentIds }) => abilityIds ?? talentIds ?? [],
-    );
+    // A batch may list ability ids, talent ids, or (the Wyndlewood repaint batch) both.
+    const generatedIds = mapping.generatedBatches.flatMap(({ abilityIds, talentIds }) => [
+      ...(abilityIds ?? []),
+      ...(talentIds ?? []),
+    ]);
     const mappedIds = [...mapping.abilities.map(({ abilityId }) => abilityId), ...generatedIds];
     const committedIds = readdirSync(warlockDir)
       .filter((name) => name.endsWith('.webp'))
@@ -669,7 +671,7 @@ describe('class ability webp icons', () => {
     );
   });
 
-  it('E) pins the normalized shipping bytes while preserving source-art ownership', {
+  it('E) keeps the normalization history and pins its repainted successors', {
     // Sharp re-normalization over the whole shipping icon set: measured
     // ~19s inside a loaded 2-worker CI shard (timed out at the 20s default
     // on run 31768, the borderline-default class), ~1s solo. 60s follows
@@ -798,14 +800,20 @@ describe('class ability webp icons', () => {
       expect(owners[0]?.output, `${asset.id} owner keeps the canonical output`).toBe(
         `${asset.id}.webp`,
       );
+      // The Wyndlewood repaint superseded the normalized painting: the one owner row names
+      // its repaint cell, and the live bytes are pinned by the repaint's provenance record.
+      expect(owners[0], `${asset.id} repaint owner row`).toEqual(
+        wyndlewoodAbilityRow(asset.class, asset.id),
+      );
       ownershipRows.push({ class: asset.class, entry: owners[0] as SkillMappingEntry });
 
       const file = path.join(publicDir, asset.runtimeUrl.replace(/^\//, ''));
       const bytes = readFileSync(file);
-      expect(bytes.length, `${asset.id} accepted bytes`).toBe(asset.acceptedBytes);
-      expect(createHash('sha256').update(bytes).digest('hex'), `${asset.id} accepted hash`).toBe(
-        asset.acceptedSha256,
-      );
+      const repaint = wyndlewoodRecord(`public${asset.runtimeUrl}`);
+      const liveHash = createHash('sha256').update(bytes).digest('hex');
+      expect(bytes.length, `${asset.id} repaint bytes`).toBe(repaint.shippingBytes);
+      expect(liveHash, `${asset.id} repaint hash`).toBe(repaint.shippingSha256);
+      expect(liveHash, `${asset.id} superseded normalized hash`).not.toBe(asset.acceptedSha256);
       const metadata = await sharp(bytes).metadata();
       expect(metadata, asset.id).toMatchObject({
         format: 'webp',
@@ -922,14 +930,23 @@ describe('class ability webp icons', () => {
     expect(paintedIds).toEqual(choiceIds);
     expect(mappedIds).toEqual(choiceIds);
     expect(fileIds).toEqual(choiceIds);
-    expect(mapping.generatedSource).toBe('OpenAI image generation, original project artwork');
-    expect(mapping.license).toContain('project-owned original art');
+    // Every Paladin painting is a Wyndlewood repaint, so the upstream pack claims are gone.
+    expect(mapping.generatedSource).toBeUndefined();
+    expect(mapping.license).toBe(WYNDLEWOOD_LICENSE);
 
     const choiceNames = new Map(choices.map(({ id, name }) => [id, name]));
     for (const entry of mapping.talents) {
-      expect(entry.name, entry.talentId).toBe(choiceNames.get(entry.talentId));
-      expect(entry.sourceFile, entry.talentId).toBe(mapping.generatedSource);
-      expect(entry.confidence, entry.talentId).toBe('high');
+      const repaint = wyndlewoodRecord(`public/ui/skills/paladin/${entry.output}`);
+      expect(entry, entry.talentId).toEqual({
+        talentId: entry.talentId,
+        name: choiceNames.get(entry.talentId),
+        output: `${entry.talentId}.webp`,
+        sourcePack: WYNDLEWOOD_PACK,
+        sourceFile: `${WYNDLEWOOD_PROVENANCE_RECORD}#${repaint.sheet}/${repaint.cell}`,
+        source: WYNDLEWOOD_SOURCE,
+        owner: WYNDLEWOOD_OWNER,
+        license: WYNDLEWOOD_LICENSE,
+      });
     }
   });
 
@@ -947,7 +964,7 @@ describe('class ability webp icons', () => {
     ).toEqual([]);
   });
 
-  it('F) every accepted generated addition is unique, opaque, exact 128px art', async () => {
+  it('F) every repainted former generated addition is unique, opaque, exact 128px art', async () => {
     const pins = missingWaveAbilityPins();
     expect(pins).toHaveLength(90);
     const hashes = new Set<string>();
@@ -974,14 +991,13 @@ describe('class ability webp icons', () => {
           license?: string;
         }>;
       };
-      for (const entry of mapping.abilities.filter(
-        ({ sourcePack }) => sourcePack === 'woc_openai_missing_painted_icons_2026_08_01',
+      // The wave's rows were repainted by Wyndlewood: each now names its repaint cell.
+      for (const pin of pins.filter(({ runtimeUrl }) =>
+        runtimeUrl.startsWith(`/ui/skills/${className}/`),
       )) {
-        expect(entry.source, entry.abilityId).toBe('OpenAI built-in image generation');
-        expect(entry.owner, entry.abilityId).toBe('World of ClaudeCraft');
-        expect(entry.license, entry.abilityId).toContain('project asset');
-        expect(entry.license, entry.abilityId).not.toContain('CraftPix');
-        mapped.add(entry.abilityId);
+        const owners = mapping.abilities.filter(({ abilityId }) => abilityId === pin.id);
+        expect(owners, pin.id).toEqual([wyndlewoodAbilityRow(className, pin.id)]);
+        mapped.add(pin.id);
       }
     }
     expect([...mapped].sort()).toEqual(pins.map(({ id }) => id).sort());
@@ -991,13 +1007,14 @@ describe('class ability webp icons', () => {
       expect(abilityImageUrl(pin.id), `${pin.id} runtime URL`).toBe(pin.runtimeUrl);
       const file = path.join(publicDir, pin.runtimeUrl.replace(/^\//, ''));
       const bytes = readFileSync(file);
-      expect(bytes.length, `${pin.id} accepted bytes`).toBe(pin.acceptedBytes);
+      const repaint = wyndlewoodRecord(`public${pin.runtimeUrl}`);
+      const liveHash = createHash('sha256').update(bytes).digest('hex');
+      expect(bytes.length, `${pin.id} repaint bytes`).toBe(repaint.shippingBytes);
       expect(bytes.length, `${pin.id} weight ceiling`).toBeLessThanOrEqual(15 * 1024);
-      expect(createHash('sha256').update(bytes).digest('hex'), `${pin.id} accepted hash`).toBe(
-        pin.acceptedSha256,
-      );
-      expect(hashes.has(pin.acceptedSha256), `${pin.id} duplicate painted encoding`).toBe(false);
-      hashes.add(pin.acceptedSha256);
+      expect(liveHash, `${pin.id} repaint hash`).toBe(repaint.shippingSha256);
+      expect(liveHash, `${pin.id} superseded wave hash`).not.toBe(pin.acceptedSha256);
+      expect(hashes.has(liveHash), `${pin.id} duplicate painted encoding`).toBe(false);
+      hashes.add(liveHash);
       const decoded = await sharp(bytes).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
       expect(decoded.info.width, `${pin.id} width`).toBe(128);
       expect(decoded.info.height, `${pin.id} height`).toBe(128);

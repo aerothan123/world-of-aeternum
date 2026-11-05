@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { ITEM_ART_PENDING, itemImageUrl } from '../src/ui/icons';
+import { wyndlewoodRecord } from './helpers/wyndlewood_art';
 
 const batches = [
   { cls: 'warrior', specs: ['arms', 'fury', 'prot'] },
@@ -32,7 +33,7 @@ describe.each(batches)('Season 2 $cls painted inventory art', ({ cls, specs }) =
     }
   });
 
-  it('pins each accepted painting to its shipping bytes and its own generation prompt', () => {
+  it('pins each repainted set to its shipping bytes and keeps its accepted prompt history', () => {
     const manifest = JSON.parse(readFileSync(path.resolve(batchPath), 'utf8')) as {
       assets: Array<{
         id: string;
@@ -46,8 +47,13 @@ describe.each(batches)('Season 2 $cls painted inventory art', ({ cls, specs }) =
     for (const asset of manifest.assets) {
       expect(asset.runtimeUrl).toBe(itemImageUrl(asset.id));
       const bytes = readFileSync(path.resolve(`public${asset.runtimeUrl}`));
-      expect(bytes.length, asset.id).toBe(asset.acceptedBytes);
-      expect(createHash('sha256').update(bytes).digest('hex'), asset.id).toBe(asset.acceptedSha256);
+      // The Wyndlewood repaint superseded the accepted Season 2 painting; the live bytes
+      // are pinned by the repaint's provenance record, and the manifest stays history.
+      const repaint = wyndlewoodRecord(`public${asset.runtimeUrl}`);
+      const hash = createHash('sha256').update(bytes).digest('hex');
+      expect(bytes.length, asset.id).toBe(repaint.shippingBytes);
+      expect(hash, asset.id).toBe(repaint.shippingSha256);
+      expect(hash, asset.id).not.toBe(asset.acceptedSha256);
       expect(asset.generation.prompt.length, asset.id).toBeGreaterThan(100);
     }
   });

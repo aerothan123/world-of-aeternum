@@ -10,6 +10,11 @@ import {
   ITEM_ART_PENDING,
   itemImageUrl,
 } from '../src/ui/icons';
+import {
+  wyndlewoodAbilityRow,
+  wyndlewoodAuraRow,
+  wyndlewoodRecord,
+} from './helpers/wyndlewood_art';
 
 interface AcceptedAsset {
   kind: 'ability' | 'aura';
@@ -22,16 +27,6 @@ interface AcceptedAsset {
   acceptedSha256: string;
   references: string[];
   prompt: string;
-}
-
-interface MappingAsset {
-  id: string;
-  runtimeUrl: string;
-  sourcePath: string;
-  sourceSha256: string;
-  acceptedBytes: number;
-  acceptedSha256: string;
-  references: string[];
 }
 
 const repoRoot = process.cwd();
@@ -206,8 +201,11 @@ describe('release v0.39 icon-art first-pass lineage', () => {
       const file = path.join(repoRoot, 'public', asset.runtimeUrl.slice(1));
       const bytes = readFileSync(file);
       const hash = createHash('sha256').update(bytes).digest('hex');
-      expect(bytes.length, asset.id).toBe(asset.acceptedBytes);
-      expect(hash, asset.id).toBe(asset.acceptedSha256);
+      // The Wyndlewood repaint superseded the accepted painting; its record pins the bytes.
+      const repaint = wyndlewoodRecord(`public${asset.runtimeUrl}`);
+      expect(bytes.length, asset.id).toBe(repaint.shippingBytes);
+      expect(hash, asset.id).toBe(repaint.shippingSha256);
+      expect(hash, `${asset.id} superseded`).not.toBe(asset.acceptedSha256);
       shippingHashes.add(hash);
     }
     expect(shippingHashes.size).toBe(expectedIds.length);
@@ -230,72 +228,24 @@ describe('release v0.39 icon-art first-pass lineage', () => {
     expect(hashes.size).toBe(2);
   });
 
-  it('keeps public mapping provenance identical to the sealed acceptance record', () => {
+  it('hands every sealed first-pass identity to exactly one repaint mapping row', () => {
     const record = JSON.parse(readFileSync(recordPath, 'utf8')) as { assets: AcceptedAsset[] };
     const petMapping = JSON.parse(
       readFileSync(path.join(repoRoot, 'public/ui/skills/pet/mapping.json'), 'utf8'),
-    ) as {
-      abilities: Array<{
-        abilityId: string;
-        output: string;
-        sourceFile: string;
-        sourceSha256: string;
-        acceptedBytes: number;
-        acceptedSha256: string;
-        references: Array<{ path: string }>;
-      }>;
-    };
+    ) as { abilities: Array<{ abilityId: string }> };
     const auraMapping = JSON.parse(
       readFileSync(path.join(repoRoot, 'public/ui/auras/mapping.json'), 'utf8'),
-    ) as {
-      assets: Array<{
-        auraId: string;
-        output: string;
-        sourceFile: string;
-        sourceSha256: string;
-        acceptedBytes: number;
-        acceptedSha256: string;
-        references: Array<{ path: string }>;
-      }>;
-    };
-    const mapped: MappingAsset[] = [
-      ...petMapping.abilities.map((entry) => ({
-        id: entry.abilityId,
-        runtimeUrl: `/ui/skills/pet/${entry.output}`,
-        sourcePath: entry.sourceFile,
-        sourceSha256: entry.sourceSha256,
-        acceptedBytes: entry.acceptedBytes,
-        acceptedSha256: entry.acceptedSha256,
-        references: entry.references.map(({ path: referencePath }) => referencePath),
-      })),
-      ...auraMapping.assets
-        .filter(({ auraId }) => auraId === 'cheater_mark')
-        .map((entry) => ({
-          id: entry.auraId,
-          runtimeUrl: `/ui/auras/${entry.output}`,
-          sourcePath: entry.sourceFile,
-          sourceSha256: entry.sourceSha256,
-          acceptedBytes: entry.acceptedBytes,
-          acceptedSha256: entry.acceptedSha256,
-          references: entry.references.map(({ path: referencePath }) => referencePath),
-        })),
-    ];
-    const acceptedById = new Map(record.assets.map((asset) => [asset.id, asset]));
-
-    expect(mapped.map(({ id }) => id).sort()).toEqual(record.assets.map(({ id }) => id).sort());
-    for (const mapping of mapped) {
-      const accepted = acceptedById.get(mapping.id);
-      expect(accepted, `${mapping.id} accepted record`).toBeDefined();
-      expect(mapping, mapping.id).toEqual({
-        id: accepted?.id,
-        runtimeUrl: accepted?.runtimeUrl,
-        sourcePath: accepted?.sourcePath,
-        sourceSha256: accepted?.sourceSha256,
-        acceptedBytes: accepted?.acceptedBytes,
-        acceptedSha256: accepted?.acceptedSha256,
-        references: accepted?.references,
-      });
+    ) as { assets: Array<{ auraId: string }> };
+    const cheaterMark = auraMapping.assets.filter(({ auraId }) => auraId === 'cheater_mark');
+    // The sealed record stays the superseded lineage; each identity's one current row is the
+    // Wyndlewood repaint row naming its provenance cell.
+    expect(
+      [...petMapping.abilities.map(({ abilityId }) => abilityId), 'cheater_mark'].sort(),
+    ).toEqual(record.assets.map(({ id }) => id).sort());
+    for (const entry of petMapping.abilities) {
+      expect(entry, entry.abilityId).toEqual(wyndlewoodAbilityRow('pet', entry.abilityId));
     }
+    expect(cheaterMark).toEqual([wyndlewoodAuraRow('cheater_mark')]);
   });
 });
 

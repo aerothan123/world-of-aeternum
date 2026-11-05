@@ -21,6 +21,15 @@ import {
 } from '../src/ui/icons';
 import { ITEM_ART_PLACEHOLDERS } from '../src/ui/item_art_placeholders';
 import { ITEM_WEAPON_VARIANTS } from '../src/ui/weapon_variants';
+import {
+  supersededItemMapping,
+  WYNDLEWOOD_ITEM_BATCH,
+  WYNDLEWOOD_LICENSE,
+  WYNDLEWOOD_OWNER,
+  WYNDLEWOOD_PROVENANCE_RECORD,
+  WYNDLEWOOD_SOURCE,
+  wyndlewoodRecord,
+} from './helpers/wyndlewood_art';
 
 // Gate for the committed WebP item icons (mirror of tests/skill_icons.test.ts). Art under
 // public/ui/items/<id>.webp is the source of truth (WebP only), served by itemImageUrl or
@@ -304,6 +313,26 @@ type Mapping = {
 };
 const mapping = (): Mapping =>
   JSON.parse(readFileSync(path.join(itemsDir, 'mapping.json'), 'utf8')) as Mapping;
+// The item mapping as it stood before the Wyndlewood repaint moved every item into its one
+// batch: the superseded ordinary entries and batches the lineage checks below audit.
+const supersededMapping = (): Mapping => supersededItemMapping<Mapping>();
+
+/** Every repainted item has exactly one current owner: the Wyndlewood repaint batch. */
+function expectWyndlewoodOwner(m: Mapping, id: string): void {
+  expect(
+    m.entries.some((entry) => entry.itemId === id),
+    `${id} ordinary owner`,
+  ).toBe(false);
+  const owners = (m.generatedBatches ?? []).filter((batch) => batch.itemIds.includes(id));
+  expect(owners, `${id} one current repaint owner`).toHaveLength(1);
+  expect(owners[0], id).toMatchObject({
+    batchId: WYNDLEWOOD_ITEM_BATCH,
+    source: WYNDLEWOOD_SOURCE,
+    owner: WYNDLEWOOD_OWNER,
+    license: WYNDLEWOOD_LICENSE,
+    provenanceRecord: WYNDLEWOOD_PROVENANCE_RECORD,
+  });
+}
 
 function missingPaintedWaveItemIds(): string[] {
   const accepted = JSON.parse(
@@ -560,14 +589,19 @@ describe('item webp icons', () => {
     }
     expect(m.generatedBatches, 'generated art must retain its batch provenance').not.toEqual([]);
     for (const batch of m.generatedBatches ?? []) {
-      expect(batch.source).toBeTruthy();
-      expect(batch.license).toContain('project asset');
+      expect(batch.source).toBe(WYNDLEWOOD_SOURCE);
+      expect(batch.license).toBe(WYNDLEWOOD_LICENSE);
       expect(batch.styleReference).toBeTruthy();
       expect(batch.commonPrompt).toBeTruthy();
     }
-    // The remaining legacy bag family is project-owned ordinary art. Silkspun
-    // Satchel, the seven bank-storage replacements, and Masterwrought's
-    // Sunspun Haversack belong only to generatedBatches.
+    // The Wyndlewood repaint owns every bag, the backpack pseudo-item included.
+    for (const id of [...BAG_IDS, 'backpack']) expectWyndlewoodOwner(m, id);
+
+    // Superseded lineage (the pre-repaint mapping): the legacy bag family was
+    // project-owned ordinary art, while Silkspun Satchel, the seven bank-storage
+    // replacements, and Masterwrought's Sunspun Haversack belonged only to
+    // generatedBatches.
+    const old = supersededMapping();
     const generatedBagIds = new Set<string>([
       ...BANK_STORAGE_PAINTED_BAG_IDS,
       'silkspun_satchel',
@@ -578,25 +612,25 @@ describe('item webp icons', () => {
       'allied_vanguard_duffel',
     ]);
     for (const id of [...BAG_IDS.filter((bagId) => !generatedBagIds.has(bagId)), 'backpack']) {
-      const entry = m.entries.find((e) => e.itemId === id);
+      const entry = old.entries.find((e) => e.itemId === id);
       expect(entry?.license, `${id} must carry its own license override`).toContain(
         'World of ClaudeCraft original art',
       );
     }
     for (const id of generatedBagIds) {
       expect(
-        m.entries.some((entry) => entry.itemId === id),
+        old.entries.some((entry) => entry.itemId === id),
         `${id} ordinary owner`,
       ).toBe(false);
     }
-    const silkspunOwners = (m.generatedBatches ?? []).filter((batch) =>
+    const silkspunOwners = (old.generatedBatches ?? []).filter((batch) =>
       batch.itemIds.includes('silkspun_satchel'),
     );
     expect(silkspunOwners, 'silkspun_satchel generated-art owner').toHaveLength(1);
     expect(silkspunOwners[0].source).toBe('OpenAI built-in image generation');
     expect(silkspunOwners[0].license).toContain('project asset');
 
-    const replacementBatch = (m.generatedBatches ?? []).filter(
+    const replacementBatch = (old.generatedBatches ?? []).filter(
       ({ batchId }) => batchId === 'bank-storage-painted-bags-2026-08-25',
     );
     expect(replacementBatch, 'bank-storage painted bag provenance owner').toHaveLength(1);
@@ -615,7 +649,12 @@ describe('item webp icons', () => {
   });
 
   it('F0) pins the authored mount-icon sources and Mech Bird render batch', () => {
-    const m = mapping();
+    // The repaint owns all three icons today; their authored sources stay pinned in the
+    // superseded mapping.
+    for (const id of ['reins_lanternback_troll', 'reins_chimeglass_tortoise', 'reins_mech_bird']) {
+      expectWyndlewoodOwner(mapping(), id);
+    }
+    const m = supersededMapping();
     expect(m.entries.find(({ itemId }) => itemId === 'reins_lanternback_troll')).toEqual({
       itemId: 'reins_lanternback_troll',
       name: "Lamplighter's Yoke: Grumbol",
@@ -680,34 +719,35 @@ describe('item webp icons', () => {
     });
     expect(contract.reviewSizes).toEqual([128, 40, 28, 22]);
     expect(contract.circularCropReviewSize).toBe(64);
+    // The anchors are re-pinned to the Wyndlewood repaint of each named item.
     expect(contract.anchors).toEqual([
       {
         itemId: 'eastbrook_buckler',
-        sha256: '2c4d58c9050f1fdfd88b4e3aacbeeb90e4b859709145bee38be3db380685e156',
+        sha256: 'eecd697486b47719601dc4cf2b8b44982bf80eb79b500d1b8b2c69ecd4c69ed5',
       },
       {
         itemId: 'kingsbane_last_oath',
-        sha256: '0435d8e1ec593676ba939150177fb4fa1e439e763fef8e8fe375ba359265ca30',
+        sha256: '1c75646669fdc858f0872254f02296834d7a86eea8aaf84eec4c423319a48cde',
       },
       {
         itemId: 'cinderweave_raiment',
-        sha256: '345a2760fc15f5b24937878709d24229ca1a13f96eda16c5ad6871213a3f48e4',
+        sha256: 'c17e480f60ccc8b52fe488bbe7c4109d94afff9936c617d5646c2590d129ff1c',
       },
       {
         itemId: 'linen_pouch',
-        sha256: 'b526923bf6aa8e9c06395c80fcb97f3bdbe87e0f1f5a55eee4217f7389b08937',
+        sha256: '9ea59e2ed6828cdd82c59e70053a34c1f6fc25ac3391fcd336437bbc4dad5e8c',
       },
       {
         itemId: 'anglers_feast_platter',
-        sha256: '0ea8b9e92b170e277ab08a7c00daa73d641cb8803b2b8290de251a9a68f5a644',
+        sha256: '783996c1b7b837bc42606dcdd7d6ba8422dc1767750adaa57c30b8841e21a8e6',
       },
       {
         itemId: 'firebottle',
-        sha256: 'c3965ddb8daa75ba1b8eb5adb75845ac3220e2eb2af0f5db3ad8d28cebd7b122',
+        sha256: '1fff3a7e4a6b9b2941df3a4a36885eb55ad17d1e44463cd63d8fc9be4190d61b',
       },
       {
         itemId: 'arcanite_mining_pick',
-        sha256: '1f68e6bfbc521b2eb7c67cf7931bad05d1c68d68b132b7cf328d6c0d135f43b6',
+        sha256: '2bb4bcb61ea0ae70d3cd1ef8a183c54f9ecd87b413a98ac90313450f5f91154d',
       },
     ]);
     for (const anchor of contract.anchors) {
@@ -761,8 +801,11 @@ describe('item webp icons', () => {
     }
   });
 
-  it('F2) ships the complete project-owned professions material art set', () => {
-    const m = mapping();
+  it('F2) ships the complete professions material art set and keeps its commissioned lineage', () => {
+    // Every material is a Wyndlewood repaint now; the commissioned professions lineage below
+    // is audited against the superseded mapping.
+    for (const id of PROFESSION_MATERIAL_IDS) expectWyndlewoodOwner(mapping(), id);
+    const m = supersededMapping();
     const canonical = [...PROFESSION_MATERIAL_IDS].sort();
     const files = new Set(webpFiles().map((file) => path.basename(file, '.webp')));
     const projectOwnedIds = m.entries
@@ -831,9 +874,11 @@ describe('item webp icons', () => {
       expect(hash, `${id} must not regress to the retired generated placeholder`).not.toBe(
         RETIRED_PLACEHOLDER_SHA256[id],
       );
-      expect(hash, `${id} must remain the accepted, centered shipping painting`).toBe(
-        ACCEPTED_TUNING_ICON_SHA256[id],
+      // The Wyndlewood repaint superseded the accepted tuning painting.
+      expect(hash, `${id} must remain the repainted shipping painting`).toBe(
+        wyndlewoodRecord(`public/ui/items/${id}.webp`).shippingSha256,
       );
+      expect(hash, `${id} superseded tuning painting`).not.toBe(ACCEPTED_TUNING_ICON_SHA256[id]);
 
       const decoded = await sharp(file).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
       expect(decoded.info.width, `${id} decoded width`).toBe(128);
@@ -844,31 +889,22 @@ describe('item webp icons', () => {
         `${id} must keep an opaque item backdrop`,
       ).toBe(true);
 
-      const owners = (m.generatedBatches ?? []).filter((batch) => batch.itemIds.includes(id));
-      expect(owners, `${id} must have exactly one generated-art provenance owner`).toHaveLength(1);
-      expect(owners[0].source).toBe('OpenAI built-in image generation');
+      expectWyndlewoodOwner(m, id);
     }
   });
 
-  it('F4) records every final-wave item once as project-generated art', () => {
+  it('F4) records every final-wave item once, as Wyndlewood repaint art', () => {
     const ids = missingPaintedWaveItemIds();
     expect(ids).toHaveLength(101);
     expect(ids).toEqual([...new Set(ids)].sort());
     const m = mapping();
     for (const id of ids) {
       expect(itemImageUrl(id), `${id} runtime URL`).toBe(`/ui/items/${id}.webp`);
-      expect(
-        m.entries.some((entry) => entry.itemId === id),
-        `${id} must not be an ordinary mapping entry`,
-      ).toBe(false);
-      const owners = (m.generatedBatches ?? []).filter((batch) => batch.itemIds.includes(id));
-      expect(owners, `${id} must have one generated provenance owner`).toHaveLength(1);
-      expect(owners[0].source).toBe('OpenAI built-in image generation');
-      expect(owners[0].license).toContain('project asset');
+      expectWyndlewoodOwner(m, id);
     }
   });
 
-  it('F5) pins the accepted bank-storage bag paintings and retired placeholder lineage', async () => {
+  it('F5) pins the repainted bank-storage bags and their accepted and placeholder lineage', async () => {
     const value = JSON.parse(
       readFileSync(path.join(repoRoot, BANK_STORAGE_PAINTED_BAG_MANIFEST), 'utf8'),
     ) as {
@@ -913,6 +949,7 @@ describe('item webp icons', () => {
     expect(value.supersedes.map(({ itemId }) => itemId)).toEqual(BANK_STORAGE_PAINTED_BAG_IDS);
 
     const m = mapping();
+    const old = supersededMapping();
     const assetById = new Map(value.assets.map((asset) => [asset.id, asset]));
     const supersessionById = new Map(value.supersedes.map((record) => [record.itemId, record]));
     for (const id of BANK_STORAGE_PAINTED_BAG_IDS) {
@@ -926,14 +963,19 @@ describe('item webp icons', () => {
       expect(hash, `${id} must not regress to its retired SVG placeholder`).not.toBe(
         RETIRED_BANK_STORAGE_PLACEHOLDER_SHA256[id],
       );
-      expect(hash, `${id} accepted painting`).toBe(ACCEPTED_BANK_STORAGE_PAINTING_SHA256[id]);
+      // The Wyndlewood repaint superseded the accepted bank-storage painting.
+      const repaint = wyndlewoodRecord(`public/ui/items/${id}.webp`);
+      expect(hash, `${id} repainted painting`).toBe(repaint.shippingSha256);
+      expect(bytes.length, `${id} repainted bytes`).toBe(repaint.shippingBytes);
+      expect(hash, `${id} superseded accepted painting`).not.toBe(
+        ACCEPTED_BANK_STORAGE_PAINTING_SHA256[id],
+      );
       expect(asset, `${id} accepted-art asset`).toMatchObject({
         acceptedSha256: ACCEPTED_BANK_STORAGE_PAINTING_SHA256[id],
-        acceptedBytes: bytes.length,
       });
       expect(asset?.generation.promptRecord.verbatimToolCallAvailable).toBe(true);
       expect(asset?.generation.promptRecord.commonPrompt).toBe(
-        (m.generatedBatches ?? []).find(
+        (old.generatedBatches ?? []).find(
           ({ batchId }) => batchId === 'bank-storage-painted-bags-2026-08-25',
         )?.commonPrompt,
       );
@@ -964,18 +1006,11 @@ describe('item webp icons', () => {
         replacement: {
           batchId: 'bank-storage-painted-bags-2026-08-25',
           acceptedSha256: ACCEPTED_BANK_STORAGE_PAINTING_SHA256[id],
-          acceptedBytes: bytes.length,
+          acceptedBytes: asset?.acceptedBytes,
         },
       });
 
-      expect(
-        m.entries.some(({ itemId }) => itemId === id),
-        `${id} retired ordinary owner`,
-      ).toBe(false);
-      expect(
-        (m.generatedBatches ?? []).filter(({ itemIds }) => itemIds.includes(id)),
-        `${id} one current generated owner`,
-      ).toHaveLength(1);
+      expectWyndlewoodOwner(m, id);
     }
   });
 

@@ -12,6 +12,11 @@ import {
   petFeedButtonState,
   petSpecialButtonState,
 } from '../src/ui/pet_action_icons';
+import {
+  wyndlewoodAbilityRow,
+  wyndlewoodCreditsLabel,
+  wyndlewoodRecord,
+} from './helpers/wyndlewood_art';
 
 // Regression guard for "Repeated icons on hunter class": the pet action bar used to pass
 // class ability ids to the icon resolver, so pet buttons borrowed other classes' spell
@@ -51,9 +56,6 @@ describe('pet action bar icons', () => {
         source: string;
         owner: string;
         license: string;
-        sourceSha256: string;
-        acceptedSha256: string;
-        acceptedBytes: number;
       }>;
     };
     const committedIds = readdirSync(petArtDir)
@@ -76,10 +78,7 @@ describe('pet action bar icons', () => {
     const hashes = new Set<string>();
     for (const entry of mapping.abilities) {
       expect(entry.output, entry.abilityId).toBe(`${entry.abilityId}.webp`);
-      expect(entry.source, entry.abilityId).toBe('OpenAI built-in image generation');
-      expect(entry.owner, entry.abilityId).toBe('World of ClaudeCraft');
-      expect(entry.license, entry.abilityId).toContain('project asset');
-      expect(entry.sourceSha256, entry.abilityId).toMatch(/^[0-9a-f]{64}$/);
+      expect(entry, entry.abilityId).toEqual(wyndlewoodAbilityRow('pet', entry.abilityId));
 
       const url = abilityImageUrl(entry.abilityId);
       expect(url, entry.abilityId).toBe(`/ui/skills/pet/${entry.abilityId}.webp`);
@@ -88,9 +87,10 @@ describe('pet action bar icons', () => {
       const hash = createHash('sha256').update(bytes).digest('hex');
       const metadata = await sharp(bytes).metadata();
 
-      expect(bytes.length, entry.abilityId).toBe(entry.acceptedBytes);
+      const repaint = wyndlewoodRecord(`public/ui/skills/pet/${entry.output}`);
+      expect(bytes.length, entry.abilityId).toBe(repaint.shippingBytes);
       expect(bytes.length, entry.abilityId).toBeLessThanOrEqual(15 * 1024);
-      expect(hash, entry.abilityId).toBe(entry.acceptedSha256);
+      expect(hash, entry.abilityId).toBe(repaint.shippingSha256);
       expect(metadata, entry.abilityId).toMatchObject({
         format: 'webp',
         width: 128,
@@ -102,7 +102,7 @@ describe('pet action bar icons', () => {
     }
     expect(hashes.size).toBe(expectedIds.length);
     expect(readFileSync(path.join(process.cwd(), 'CREDITS.md'), 'utf8')).toContain(
-      'Shared pet action-bar command icons',
+      wyndlewoodCreditsLabel('public/ui/skills'),
     );
   });
 

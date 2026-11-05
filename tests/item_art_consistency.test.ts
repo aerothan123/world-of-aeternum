@@ -11,6 +11,43 @@ import { HOARD_ITEMS } from '../src/sim/content/hoard_loot';
 import { QUEST_LEVELING_GEAR_ITEMS } from '../src/sim/content/quest_leveling_gear';
 import { ITEMS } from '../src/sim/data';
 import { ITEM_ART_PENDING } from '../src/ui/icons';
+import {
+  supersededItemMapping,
+  WYNDLEWOOD_ITEM_BATCH,
+  WYNDLEWOOD_LICENSE,
+  WYNDLEWOOD_PROVENANCE_RECORD,
+  WYNDLEWOOD_SOURCE,
+  WYNDLEWOOD_SUPERSEDED_ITEM_MAPPING,
+  wyndlewoodCreditsLabel,
+  wyndlewoodProvenance,
+  wyndlewoodRecord,
+} from './helpers/wyndlewood_art';
+
+/** The live item mapping: after the repaint, one Wyndlewood batch owns exactly these ids. */
+function expectRepaintOwnsExactly(ids: string[]): void {
+  const live = JSON.parse(readFileSync('public/ui/items/mapping.json', 'utf8')) as {
+    entries: unknown[];
+    generatedBatches: Array<{ batchId?: string; itemIds: string[] } & Record<string, unknown>>;
+  };
+  expect(live.entries).toEqual([]);
+  expect(live.generatedBatches).toHaveLength(1);
+  expect(live.generatedBatches[0]).toMatchObject({
+    batchId: WYNDLEWOOD_ITEM_BATCH,
+    source: WYNDLEWOOD_SOURCE,
+    license: WYNDLEWOOD_LICENSE,
+    provenanceRecord: WYNDLEWOOD_PROVENANCE_RECORD,
+  });
+  expect(live.generatedBatches[0].itemIds).toEqual(ids);
+}
+
+/** A repainted file ships its pinned repaint bytes, never the superseded accepted ones. */
+function expectRepaintSupersedes(file: string, supersededSha256: string): void {
+  const bytes = readFileSync(file);
+  const repaint = wyndlewoodRecord(file);
+  expect(bytes.length, file).toBe(repaint.shippingBytes);
+  expect(createHash('sha256').update(bytes).digest('hex'), file).toBe(repaint.shippingSha256);
+  expect(repaint.shippingSha256, `${file} superseded`).not.toBe(supersededSha256);
+}
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const evidenceDir = 'docs/achievements/item-art-consistency-2026-08-09';
@@ -863,7 +900,8 @@ describe('item-art consistency accepted-art provenance', () => {
       true,
     );
     const verdict = readJson<FinalAuditVerdict>(CURRENT_VERDICT_PATH);
-    const mapping = readJson<ItemMapping>('public/ui/items/mapping.json');
+    // The batch lineage is audited against the pre-repaint mapping archive.
+    const mapping = supersededItemMapping<ItemMapping>();
     // This verdict is a dated, frozen snapshot (1209 files / 1224 defs): additive art
     // (the Field Kit) has landed since, so the live mapping and live ITEMS have grown
     // past it. The checks below bind the verdict to its own recorded passIds, not to
@@ -1078,10 +1116,13 @@ describe('item-art consistency accepted-art provenance', () => {
     expect(sheetSetDigest.digest('hex')).toBe(verdict.evidence.sheetSetSha256);
 
     // Recomputed over exactly the dated passIds set (not the live shipping
-    // directory), so this stays a check on the frozen snapshot's own bytes.
+    // directory). The Wyndlewood repaint replaced every one of those files, so the
+    // live digest is the repaint's (pinned below) and the verdict's own digest
+    // stays pinned as the superseded snapshot.
     const shippingCatalogDigest = createHash('sha256');
     for (const id of datedIds) {
       const bytes = readFileSync(path.join(repoRoot, `public/ui/items/${id}.webp`));
+      expect(sha256(bytes), id).toBe(wyndlewoodRecord(`public/ui/items/${id}.webp`).shippingSha256);
       shippingCatalogDigest.update(`${id}\0${sha256(bytes)}\0${bytes.length}\n`);
     }
     expect(verdict.evidence.shippingCatalogSha256).toBe(
@@ -1091,11 +1132,15 @@ describe('item-art consistency accepted-art provenance', () => {
       // icons, so the release's own value holds unchanged.
       'e08ee4e613a4f3b777df8235f197a669fe39ef50217e8886f3bd7e6ba6f27df8',
     );
-    expect(shippingCatalogDigest.digest('hex')).toBe(verdict.evidence.shippingCatalogSha256);
+    expect(shippingCatalogDigest.digest('hex')).toBe(
+      'efd7f0f3b0bd0175443cba7067c19e25e87b96f544689c584b5c5e9b5f793593',
+    );
   });
 
   it('extends the dated catalog with the Field Kit as one additive current owner', () => {
-    const mapping = readJson<ItemMapping>('public/ui/items/mapping.json');
+    // The owner chain below is audited against the item mapping as it stood before the
+    // Wyndlewood repaint (the frozen archive); the repaint batch then took over every owner.
+    const mapping = supersededItemMapping<ItemMapping>();
     const currentOwnerIds = [
       ...mapping.entries.map(({ itemId }) => itemId),
       ...mapping.generatedBatches.flatMap(({ itemIds }) => itemIds),
@@ -1104,6 +1149,7 @@ describe('item-art consistency accepted-art provenance', () => {
       .filter((name) => name.endsWith('.webp'))
       .map((name) => name.slice(0, -'.webp'.length));
     expect(sorted(currentOwnerIds)).toEqual(sorted(shippingIds));
+    expectRepaintOwnsExactly(sorted(currentOwnerIds));
     // 1,255 dated (including the Forgebreaker quest's forgefathers_ember proof
     // item, already recorded in the dated verdict) + the Field Kit (1) + the
     // release's 25 Nythraxis gap-fill and Bramblehide mapping owners
@@ -1136,8 +1182,9 @@ describe('item-art consistency accepted-art provenance', () => {
     // Icon backlog adds 135 Season 2 armour icons, five referral icons, the Horse Whistle, and Nightwing Chimaera.
     // Wobbles the Slime's reins (reins_wobbles_slime, a render of the shipped mount): 2,183.
     // + the sprite buddy's whistle: 2,184 owners / 2,214 items.
-    expect(new Set(currentOwnerIds).size).toBe(2191);
-    expect(shippingIds).toHaveLength(2191);
+    // + the 18 housing furniture icons (furniture-renders-2026-11-04, bba29634): 2,209.
+    expect(new Set(currentOwnerIds).size).toBe(2209);
+    expect(shippingIds).toHaveLength(2209);
     // The restored legacy whistle and charm definitions add 36 item ids.
     // All five referral rewards now own paintings; only the retired Phoenix remains pending.
     // Wobbles the Slime's reins (reins_wobbles_slime, a render of the shipped mount): 2,213.
@@ -1306,9 +1353,7 @@ describe('item-art consistency accepted-art provenance', () => {
     }>('docs/achievements/membership-items-2026-10-05/accepted-art.json');
     expect(sorted(membershipArt.assets.map(({ id }) => id))).toEqual(sorted(membershipBatchIds));
     for (const asset of membershipArt.assets) {
-      const bytes = readFileSync(path.join(repoRoot, `public/ui/items/${asset.id}.webp`));
-      expect(bytes.length, asset.id).toBe(asset.acceptedBytes);
-      expect(sha256(bytes), asset.id).toBe(asset.acceptedSha256);
+      expectRepaintSupersedes(`public/ui/items/${asset.id}.webp`, asset.acceptedSha256);
     }
     const referralBatchIds = mapping.generatedBatches
       .filter(({ batchId }) => batchId === 'referral-items-2026-10-07')
@@ -1327,9 +1372,7 @@ describe('item-art consistency accepted-art provenance', () => {
     }>('docs/achievements/referral-items-2026-10-07/accepted-art.json');
     expect(sorted(referralArt.assets.map(({ id }) => id))).toEqual(sorted(referralBatchIds));
     for (const asset of referralArt.assets) {
-      const bytes = readFileSync(path.join(repoRoot, `public/ui/items/${asset.id}.webp`));
-      expect(bytes.length, asset.id).toBe(asset.acceptedBytes);
-      expect(sha256(bytes), asset.id).toBe(asset.acceptedSha256);
+      expectRepaintSupersedes(`public/ui/items/${asset.id}.webp`, asset.acceptedSha256);
     }
     // The OSSBrain PR #3781 reconcile's two reins owners are additive beyond
     // this whole historical chain too, the same way the Field Kit is, and so
@@ -1427,6 +1470,8 @@ describe('item-art consistency accepted-art provenance', () => {
               'gourdlight-eve-sheaf-icon-2026-10-18',
               'gourdlight-eve-daily-icons-2026-10-18',
               'gourdlight-eve-toy-icons-2026-10-18',
+              // The housing furniture renders (bba29634).
+              'furniture-renders-2026-11-04',
             ].includes(batchId ?? ''),
           )
           .flatMap(({ itemIds }) => itemIds),
@@ -1448,9 +1493,7 @@ describe('item-art consistency accepted-art provenance', () => {
     expect(asset.acceptedSha256).toBe(
       '603d3b5da0f2aeee5773b7ca755c76ee5cc60b18a926abb0e81790f83d734d9d',
     );
-    const shippingBytes = readFileSync(path.join(repoRoot, 'public/ui/items/field_kit.webp'));
-    expect(shippingBytes.length).toBe(asset.acceptedBytes);
-    expect(sha256(shippingBytes)).toBe(asset.acceptedSha256);
+    expectRepaintSupersedes('public/ui/items/field_kit.webp', asset.acceptedSha256);
     // Only the review modes this record actually names: this batch was not put
     // through the full identity-display-name-and-id sheet review, and there is
     // no fresh global visual verdict over the current 1256-icon catalog (the
@@ -1577,7 +1620,14 @@ describe('item-art consistency accepted-art provenance', () => {
       value.supersedes.filter(({ historicalAcceptedArt }) => historicalAcceptedArt),
     ).toHaveLength(10);
 
-    const mapping = readJson<ItemMapping>('public/ui/items/mapping.json');
+    // The live mapping: one Wyndlewood batch owns every shipping icon. The supersession
+    // graph below is audited against the pre-repaint archive.
+    const liveMapping = readJson<ItemMapping>('public/ui/items/mapping.json');
+    expect(
+      liveMapping.license,
+      'no ordinary item inherits the retired CraftPix default',
+    ).toBeUndefined();
+    const mapping = supersededItemMapping<ItemMapping>();
     expect(
       mapping.license,
       'no ordinary item inherits the retired CraftPix default',
@@ -1614,7 +1664,8 @@ describe('item-art consistency accepted-art provenance', () => {
     // The membership weapon batch (membership-weapon-2026-10-14, PR 4281): 60.
     // Backlog replacements consolidate old owners into a net 21 additional batches; Lantern
     // Hall's seal and its horse's reins add two: 83.
-    expect(mapping.generatedBatches).toHaveLength(90);
+    // + the housing furniture renders (furniture-renders-2026-11-04): 91.
+    expect(mapping.generatedBatches).toHaveLength(91);
     const batch = mapping.generatedBatches.find(({ batchId }) => batchId === BATCH_ID);
     expect(batch).toBeDefined();
     expect(batch).toMatchObject({
@@ -1693,7 +1744,8 @@ describe('item-art consistency accepted-art provenance', () => {
     // Staff of Changing batch (PR 4281) adds one: 1510.
     // Backlog adds 141 files; replacements preserve the remaining owner count.
     // + the sprite buddy's whistle render (buddy-whistle-icons batch): 1,652.
-    expect(priorGeneratedIds).toHaveLength(1657);
+    // + the 18 housing furniture renders: 1,675.
+    expect(priorGeneratedIds).toHaveLength(1675);
     const allCurrentOwnerIds = [
       ...mapping.entries.map(({ itemId }) => itemId),
       ...mapping.generatedBatches.flatMap(({ itemIds }) => itemIds),
@@ -1702,8 +1754,10 @@ describe('item-art consistency accepted-art provenance', () => {
     // + the five-dungeon rework (PR 4352) on the v0.45.0 integration: 2005 + Nightwing Chimaera mount: 2182.
     // Wobbles the Slime's reins (reins_wobbles_slime, a render of the shipped mount) adds one ordinary entry: 2,183.
     // + the sprite buddy's whistle render: 2,184.
-    expect(allCurrentOwnerIds).toHaveLength(2191);
-    expect(new Set(allCurrentOwnerIds).size).toBe(2191);
+    // + the 18 housing furniture renders: 2,209.
+    expect(allCurrentOwnerIds).toHaveLength(2209);
+    expect(new Set(allCurrentOwnerIds).size).toBe(2209);
+    expectRepaintOwnsExactly(sorted(allCurrentOwnerIds));
     expect({
       entries: mapping.entries.length,
       priorGenerated: priorGeneratedIds.length,
@@ -1726,7 +1780,8 @@ describe('item-art consistency accepted-art provenance', () => {
       // + the five-dungeon rework (PR 4352) on the v0.45.0 integration: 1475.
       // Plus 34 restored buddy provenance owners, and the membership staff: 1510.
       // Restored feral staff and eight Season 2 jewelry paintings.
-      priorGenerated: 1657,
+      // + the 18 housing furniture renders = 1675.
+      priorGenerated: 1675,
       historicalAudit: 274,
       masterwroughtCompletion: 165,
       crucibleProfessions: 46,
@@ -1834,6 +1889,8 @@ describe('item-art consistency accepted-art provenance', () => {
                 'gourdlight-eve-sheaf-icon-2026-10-18',
                 'gourdlight-eve-daily-icons-2026-10-18',
                 'gourdlight-eve-toy-icons-2026-10-18',
+                // The housing furniture renders (bba29634).
+                'furniture-renders-2026-11-04',
               ].includes(batchId),
           )
           .flatMap(({ itemIds }) => itemIds),
@@ -2013,9 +2070,10 @@ describe('item-art consistency accepted-art provenance', () => {
     // Plus the Mirefen world-boss branch and Balgath's loot (15 items) = 1890.
     // + the five-dungeon rework (PR 4352) on the v0.45.0 integration: 2005.
     // Wobbles the Slime's reins: 2,183.
-    if (ownerIds.length !== 2191)
-      violations.push(`mapping owner count: ${ownerIds.length} != 2191`);
-    if (fileIds.length !== 2191) violations.push(`shipping WebP count: ${fileIds.length} != 2191`);
+    // + the 18 housing furniture icons (bba29634): 2,209, all one Wyndlewood repaint batch.
+    if (ownerIds.length !== 2209)
+      violations.push(`mapping owner count: ${ownerIds.length} != 2209`);
+    if (fileIds.length !== 2209) violations.push(`shipping WebP count: ${fileIds.length} != 2209`);
     for (const id of ids) {
       const ownerCount = ownerCountById.get(id) ?? 0;
       if (ownerCount !== 1) violations.push(`${id}: current owner count ${ownerCount} != 1`);
@@ -2045,6 +2103,11 @@ describe('item-art consistency accepted-art provenance', () => {
           }
           const hash = sha256(bytes);
           hashOwners.set(hash, [...(hashOwners.get(hash) ?? []), id]);
+          const repaint = wyndlewoodProvenance()[`public/ui/items/${id}.webp`];
+          if (!repaint) violations.push(`${id}: no Wyndlewood provenance record`);
+          else if (repaint.shippingSha256 !== hash) {
+            violations.push(`${id}: bytes drifted from the repaint record`);
+          }
           try {
             const decoded = await sharp(bytes).raw().toBuffer({ resolveWithObject: true });
             if (decoded.info.width !== 128 || decoded.info.height !== 128) {
@@ -2081,13 +2144,14 @@ describe('item-art consistency accepted-art provenance', () => {
     expect(violations, `full item catalog violations:\n${violations.join('\n')}`).toEqual([]);
   }, 60_000);
 
-  it('credits generated replacements without erasing reference or mount-model lineage', () => {
+  it('credits the repaint without erasing reference or mount-model lineage', () => {
     const credits = readFileSync(path.join(repoRoot, 'CREDITS.md'), 'utf8');
     expect(credits).toContain('Historical CraftPix item identity references');
-    expect(credits).toContain('Item-art consistency replacement paintings');
-    expect(credits).toContain('255 licensed CraftPix');
-    expect(credits).toContain('nine project-owned mount renders');
-    expect(credits).toContain('ten prior project-generated paintings');
+    // The item-art consistency replacement paintings are Wyndlewood repaints now: the
+    // repaint's items row licenses them, and the superseded replacement row is gone.
+    expect(credits).toContain(wyndlewoodCreditsLabel('public/ui/items'));
+    expect(credits).not.toContain('| Item-art consistency replacement paintings');
+    expect(existsSync(WYNDLEWOOD_SUPERSEDED_ITEM_MAPPING)).toBe(true);
     expect(credits).toContain('[item-art consistency lineage]');
     expect(credits).toContain('Rideable mount models');
     expect(credits).toContain('thunderstrut_gobbler');

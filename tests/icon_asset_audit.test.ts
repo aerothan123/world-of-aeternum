@@ -21,6 +21,7 @@ import {
   runIconAssetAudit,
   validateAcceptedArtManifest,
 } from '../scripts/lib/icon_asset_audit.mjs';
+import { withWyndlewoodRepaintPins } from './helpers/wyndlewood_art';
 
 const REPO_ROOT = path.join(__dirname, '..');
 const CLI = path.join(REPO_ROOT, 'scripts/icon_asset_audit.mjs');
@@ -930,6 +931,10 @@ describe('icon asset audit', () => {
       asset.acceptedBytes = supersession.replacement.acceptedBytes;
     }
     expect(resolvedSupersessions).toBe(6);
+    // Then the Wyndlewood repaint superseded every audited painting: audit the live art against
+    // its repaint pins (and the shared deed medallion geometry) under the unchanged contracts.
+    const repinned = withWyndlewoodRepaintPins(value);
+    value.assets = repinned.assets;
 
     // The 512px human-review sheets normally use ignored generation sources. This CI fixture
     // changes those review paths to committed shipping WebPs while preserving every accepted
@@ -957,13 +962,19 @@ describe('icon asset audit', () => {
       assetCount: 194,
       issueCount: 0,
       exactDuplicateGroupCount: 0,
-      perceptualCandidateCount: 1,
+      perceptualCandidateCount: 5,
       contactSheetCount: 95,
     });
     expect(report.assets.every((asset) => asset.issues.length === 0)).toBe(true);
     expect(report.exactDuplicates).toEqual([]);
+    // The measured near-duplicate review pairs of the repainted set (review flags, not
+    // issues): same-family subjects sharing a silhouette.
     expect(report.perceptualCandidates.map(({ left, right }) => [left, right])).toEqual([
-      ['item:sunken_idol_mantle', 'item:wreck_wardens_mantle'],
+      ['ability:power_infusion', 'ability:prayer_of_healing'],
+      ['deed:dgn_wildheart_basin_heroic', 'deed:pvp_card_duel_first_win'],
+      ['item:fountain_court_mantle', 'item:frostmane_mantle'],
+      ['item:mantle_of_the_meredark', 'item:mantle_of_the_unbroken_shore'],
+      ['item:monument_north', 'item:monument_overlook'],
     ]);
     expect(report.contactSheets).toHaveLength(95);
     expect(

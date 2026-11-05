@@ -903,11 +903,14 @@ describe('item-art audit builder', () => {
       // + the sprite buddy's whistle render: 2186 / 2215, re-measured with --verify-only.
       // Release adds five painted owners; measured with --verify-only on the combined tree.
       // Restored feral staff and eight jewelry paintings; measured with --verify-only.
-      catalogSha256: '5ef9cee82541194673dc4768027c5f0b6f0667b11c63f251501db76473f75b58',
-      catalogBytes: 1196985,
+      // 2209 / 2238 with the 18 housing furniture icons (bba29634), and every catalog record
+      // the Wyndlewood repaint's bytes (shipping catalog re-hashed), measured with
+      // `node scripts/item_art_audit.mjs --verify-only` on feature/asset-rights.
+      catalogSha256: 'd21379d617cf1b8ec2651c9ef327eddd9c33be57da451168f0ff2e1259e8f419',
+      catalogBytes: 1206141,
       rendererFingerprint: '41f5404c4d6d9643c8f03b9d88a8546e44564cc03a1baabdd4a72cb9258a2da7',
-      catalogCount: 2191,
-      liveItemCount: 2220,
+      catalogCount: 2209,
+      liveItemCount: 2238,
       generatedHeroicDefinitions: 116,
       heroicDefinitionsWithOwnWebp: 86,
       heroicWeaponArtAliases: 30,
@@ -925,7 +928,7 @@ describe('item-art audit builder', () => {
         identity: 45,
       },
       sheetSetSha256: null,
-      shippingCatalogSha256: '1ce5db8bb37fa5ce649ebbe18dfc23033f71c30674578a65291856e750195d0b',
+      shippingCatalogSha256: '25dafc8d1b8d2a56394cddc25c04a5c34b740738f8e4c67304bc46a35c2a9a10',
       machineChecksPassed: true,
       verdict: null,
     });

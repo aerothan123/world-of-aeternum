@@ -5,6 +5,7 @@ import { DEEDS } from '../src/sim/content/deeds';
 import { DEED_IMAGE_IDS } from '../src/ui/deed_image_ids';
 import { deedCrestId } from '../src/ui/deeds_view';
 import { DEED_ART_PENDING, deedImageUrl, iconDataUrl } from '../src/ui/icons';
+import { wyndlewoodRecord } from './helpers/wyndlewood_art';
 
 const batches = [
   {
@@ -134,8 +135,12 @@ describe.each(batches)('integration 45 deed art: $id', (batch) => {
       const bytes = readFileSync(`public${url}`);
       const hash = createHash('sha256').update(bytes).digest('hex');
       const asset = record.assets.find((a: { id: string }) => a.id === id);
-      expect(hash, id).toBe(asset.acceptedSha256);
-      expect(bytes.length, id).toBe(asset.acceptedBytes);
+      // The Wyndlewood repaint superseded the accepted v0.45 crest; the live bytes are
+      // pinned by the repaint's provenance record, and the batch record stays history.
+      const repaint = wyndlewoodRecord(`public${url}`);
+      expect(hash, id).toBe(repaint.shippingSha256);
+      expect(bytes.length, id).toBe(repaint.shippingBytes);
+      expect(hash, id).not.toBe(asset.acceptedSha256);
       expect(bytes.length, id).toBeLessThanOrEqual(15 * 1024);
       expect(asset.generation.prompt, id).toContain(id);
       expect(asset.generation.transparentBackground, id).toBe(true);

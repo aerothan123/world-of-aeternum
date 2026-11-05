@@ -12,6 +12,12 @@ import { GUIDE_DEEDS } from '../src/guide/content.generated';
 import { DEED_ORDER } from '../src/sim/content/deeds';
 import { DEED_IMAGE_IDS } from '../src/ui/deed_image_ids';
 import { DEED_ART_PENDING, deedImageUrl } from '../src/ui/icons';
+import {
+  withWyndlewoodRepaintPins,
+  wyndlewoodCreditsLabel,
+  wyndlewoodRecord,
+  wyndlewoodRecordOrNull,
+} from './helpers/wyndlewood_art';
 
 const repoRoot = path.join(__dirname, '..');
 const evidenceDir = path.join(repoRoot, 'docs/achievements/release-art-audit-v036-2026-08-10');
@@ -157,7 +163,10 @@ describe('v0.36 release-audit Reliquary deed art', () => {
     expect(() => validateAcceptedArtManifest(accepted)).not.toThrow();
     expect(accepted.assets.map(({ id }) => id)).toEqual([...RELIQUARY_DEED_IDS]);
 
-    const report = await auditIconAssets({ manifest: accepted, repoRoot });
+    // The Wyndlewood repaint superseded all nine crests: audit the live art against the
+    // repaint pins (and the shared medallion geometry) under the unchanged contracts.
+    const repinned = withWyndlewoodRepaintPins(accepted);
+    const report = await auditIconAssets({ manifest: repinned, repoRoot });
     expect(report.summary).toMatchObject({
       ok: true,
       assetCount: RELIQUARY_DEED_IDS.length,
@@ -167,7 +176,7 @@ describe('v0.36 release-audit Reliquary deed art', () => {
     expect(report.exactDuplicates).toEqual([]);
     expect(report.assets.every(({ issues }) => issues.length === 0)).toBe(true);
 
-    const acceptedById = new Map(accepted.assets.map((asset) => [asset.id, asset]));
+    const acceptedById = new Map(repinned.assets.map((asset) => [asset.id, asset]));
     for (const measured of report.assets) {
       const pin = acceptedById.get(measured.id as ReliquaryDeedId);
       expect(pin, `${measured.id} accepted pin`).toBeDefined();
@@ -211,8 +220,10 @@ describe('v0.36 release-audit Reliquary deed art', () => {
       'feat_guild_writ_runner',
       'feat_guild_hallsworn',
       'feat_guild_of_lantern_hall',
+      // Tree chopping's first felled tree rides the progression crest.
+      'prog_first_felling',
     ]);
-    expect(DEED_ORDER).toHaveLength(369);
+    expect(DEED_ORDER).toHaveLength(370);
     expect(DEED_IMAGE_IDS.size).toBe(356);
     expect(sorted(DEED_IMAGE_IDS)).toEqual(
       sorted(DEED_ORDER.filter((id) => !DEED_ART_PENDING.has(id))),
@@ -249,6 +260,15 @@ describe('v0.36 release-audit Reliquary deed art', () => {
       );
       const file = path.join(repoRoot, reference.repositoryPath);
       const bytes = readFileSync(file);
+      // A reference the Wyndlewood repaint has since replaced keeps its generation-time pin
+      // as history; its live bytes are the repaint's.
+      const repaint = wyndlewoodRecordOrNull(reference.repositoryPath);
+      if (repaint) {
+        expect(sha256(bytes), `${reference.id} repainted reference`).toBe(repaint.shippingSha256);
+        expect(sha256(bytes), `${reference.id} superseded reference`).not.toBe(reference.sha256);
+        expect(reference.sha256, `${reference.id} reference sha256`).toMatch(/^[0-9a-f]{64}$/);
+        continue;
+      }
       expect(bytes.length, `${reference.id} reference bytes`).toBe(reference.bytes);
       expect(sha256(bytes), `${reference.id} reference sha256`).toBe(reference.sha256);
       const metadata = await sharp(bytes).metadata();
@@ -363,15 +383,17 @@ describe('v0.36 release-audit Reliquary deed art', () => {
     const credits = readFileSync(path.join(repoRoot, 'CREDITS.md'), 'utf8');
     const brief = readFileSync(path.join(repoRoot, 'docs/achievements/icon-brief.md'), 'utf8');
     const lineage = readFileSync(path.join(evidenceDir, 'reliquary-deed-art.md'), 'utf8');
+    // The nine crests are Wyndlewood repaints now: the repaint's deeds row licenses them,
+    // the superseded batch row is gone, and the accepted lineage stays in the evidence record.
     const creditRows = credits
       .split('\n')
       .filter((line) => line.startsWith('| v0.36 release-audit Reliquary Book of Deeds additions'));
-    expect(creditRows).toHaveLength(1);
-    expect(creditRows[0]).toContain('release-art-audit-v036-2026-08-10/reliquary-deed-art.md');
+    expect(creditRows).toEqual([]);
+    expect(credits).toContain(wyndlewoodCreditsLabel('public/ui/deeds'));
     expect(lineage).toContain('Status: accepted');
 
     for (const id of RELIQUARY_DEED_IDS) {
-      expect(creditRows[0], `${id} credit`).toContain(`\`${id}\``);
+      expect(wyndlewoodRecord(`public/ui/deeds/${id}.webp`).subject, `${id} repaint`).toBeTruthy();
       expect(brief, `${id} icon brief`).toContain(`\`${id}\``);
     }
   });

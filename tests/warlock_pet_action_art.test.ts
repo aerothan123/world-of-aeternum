@@ -4,6 +4,7 @@ import path from 'node:path';
 import sharp from 'sharp';
 import { describe, expect, it } from 'vitest';
 import { abilityImageUrl } from '../src/ui/icons';
+import { wyndlewoodAbilityRow, wyndlewoodRecord } from './helpers/wyndlewood_art';
 
 const ACCEPTED_PATH = path.resolve(
   'docs/achievements/release-art-audit-v036-2026-08-10/warlock-pet-action-art.accepted.json',
@@ -39,7 +40,7 @@ const sha256 = (bytes: Buffer): string => createHash('sha256').update(bytes).dig
 describe('Warlock pet signature action art', () => {
   const accepted = JSON.parse(readFileSync(ACCEPTED_PATH, 'utf8')) as AcceptedManifest;
 
-  it('pins the exact accepted batch and detailed mapping records', () => {
+  it('keeps the accepted batch history and the repainted mapping records', () => {
     expect(accepted.schemaVersion).toBe(1);
     expect(accepted.batch).toBe('warlock-pet-action-art-2026-08-10');
     expect(accepted.visualReview).toEqual(
@@ -47,29 +48,16 @@ describe('Warlock pet signature action art', () => {
     );
     expect(accepted.assets.map(({ id }) => id)).toEqual(EXPECTED_IDS);
 
+    // The Wyndlewood repaint superseded both accepted paintings and rewrote their mapping
+    // rows; the accepted manifest stays as history and each row now names its repaint cell.
     const mappingBytes = readFileSync(path.resolve(accepted.mapping.path));
-    expect(mappingBytes.length).toBe(accepted.mapping.bytes);
-    expect(sha256(mappingBytes)).toBe(accepted.mapping.sha256);
+    expect(sha256(mappingBytes)).not.toBe(accepted.mapping.sha256);
     const mapping = JSON.parse(mappingBytes.toString('utf8')) as {
-      abilities: Array<{
-        abilityId: string;
-        generatedResultPath?: string;
-        generationPrompt?: string;
-        references?: unknown[];
-        owner?: string;
-        license?: string;
-      }>;
+      abilities: Array<{ abilityId: string }>;
     };
     for (const id of EXPECTED_IDS) {
-      const record = mapping.abilities.find(({ abilityId }) => abilityId === id);
-      expect(record, id).toMatchObject({
-        abilityId: id,
-        owner: 'World of ClaudeCraft',
-        license: 'World of ClaudeCraft project-generated art, project asset, rights reserved',
-      });
-      expect(record?.generatedResultPath, `${id} generated result`).toMatch(/\/exec-[^/]+\.png$/);
-      expect(record?.generationPrompt?.length, `${id} exact prompt`).toBeGreaterThan(500);
-      expect(record?.references, `${id} ordered references`).toHaveLength(4);
+      const records = mapping.abilities.filter(({ abilityId }) => abilityId === id);
+      expect(records, id).toEqual([wyndlewoodAbilityRow('warlock', id)]);
     }
   });
 
@@ -79,8 +67,10 @@ describe('Warlock pet signature action art', () => {
       const bytes = readFileSync(path.resolve(asset.shipping.path));
       const metadata = await sharp(bytes).metadata();
       const stats = await sharp(bytes).stats();
-      expect(bytes.length, asset.id).toBe(asset.shipping.bytes);
-      expect(sha256(bytes), asset.id).toBe(asset.shipping.sha256);
+      const repaint = wyndlewoodRecord(asset.shipping.path);
+      expect(bytes.length, asset.id).toBe(repaint.shippingBytes);
+      expect(sha256(bytes), asset.id).toBe(repaint.shippingSha256);
+      expect(sha256(bytes), asset.id).not.toBe(asset.shipping.sha256);
       expect(metadata, asset.id).toMatchObject({
         format: 'webp',
         width: 128,
@@ -88,9 +78,8 @@ describe('Warlock pet signature action art', () => {
         space: 'srgb',
       });
       expect(stats.isOpaque, asset.id).toBe(true);
-      expect(asset.shipping.deterministicReencodeMatch, asset.id).toBe(true);
       expect(abilityImageUrl(asset.id), asset.id).toBe(`/ui/skills/warlock/${asset.id}.webp`);
-      hashes.add(asset.shipping.sha256);
+      hashes.add(sha256(bytes));
     }
     expect(hashes.size).toBe(EXPECTED_IDS.length);
   });
