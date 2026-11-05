@@ -4086,7 +4086,6 @@ const ITEM_ENTITY_IDS = [
   'c2_marked_bog_alder',
   'c2_fen_workbench',
   'c2_rotten_span',
-  'c2_loan_fishing_rod',
 ] as const;
 
 type ItemEntityId = (typeof ITEM_ENTITY_IDS)[number];
@@ -4113,7 +4112,6 @@ const APPENDED_ITEM_NAMES: Partial<Record<ItemEntityId, string>> = {
   c2_marked_bog_alder: 'Marked Bog Alder',
   c2_fen_workbench: "Fenbridge Boardwright's Bench",
   c2_rotten_span: 'Rotten Boardwalk Span',
-  c2_loan_fishing_rod: "Teasel's Spare Rod",
   // Wyndlewood Chapter One (content/chapter_one.ts).
   c1_dry_supply_bundle: 'Dry Supply Bundle',
   c1_black_wick_knot: 'Black Wick Knot',

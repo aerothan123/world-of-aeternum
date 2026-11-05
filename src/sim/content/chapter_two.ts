@@ -186,18 +186,8 @@ export const CHAPTER_TWO_ITEMS: Record<string, ItemDef> = {
     'c2_32_bridge_fenbridge_trusts',
     2,
   ),
-  c2_paddy_crop_bundle: qi('c2_paddy_crop_bundle', 'Paddy Crop Bundle', 'c2_33_paddy_work_fog', 5),
-  c2_paddy_eel: qi('c2_paddy_eel', 'Paddy Eel', 'c2_33_paddy_work_fog', 3),
-  // Teasel's spare rod: a working fishing implement, like Tobbin's in Chapter One.
-  c2_loan_fishing_rod: {
-    id: 'c2_loan_fishing_rod',
-    name: "Teasel's Spare Rod",
-    kind: 'tool',
-    quality: 'common',
-    use: { type: 'fishing' },
-    sellValue: 0,
-    questId: 'c2_33_paddy_work_fog',
-  },
+  c2_paddy_crop_bundle: qi('c2_paddy_crop_bundle', 'Paddy Crop Bundle', 'c2_33_paddy_work_fog', 4),
+  c2_paddy_eel: qi('c2_paddy_eel', 'Paddy Eel', 'c2_33_paddy_work_fog', 2),
 };
 
 /** Interact-only world objects (inspected or used, never picked up). */
@@ -279,18 +269,24 @@ export const CHAPTER_TWO_OBJECTS: GroundObjectDef[] = objects(2_147_210_000, [
       { x: -9, z: 224 },
       { x: -10, z: 233 },
       { x: -11, z: 240 },
-      { x: -9, z: 247 },
       { x: -10, z: 255 },
     ],
   ],
-  ['c2_loan_fishing_rod', "Teasel's Spare Rod", [{ x: -8, z: 229 }]],
+  // His two eel traps on the same bank, full by morning.
+  [
+    'c2_paddy_eel',
+    'Full Eel Trap',
+    [
+      { x: -8, z: 229 },
+      { x: -9, z: 247 },
+    ],
+  ],
 ]);
 
 /** Quest catches (quests/quest_fishing_catch.ts): the harbor fish off the
- *  Eastbrook town steps, the eels on the Deepfen Shallows' south-east bank. */
+ *  Eastbrook town steps. */
 export const CHAPTER_TWO_CATCH_SPOTS: readonly QuestCatchSpot[] = Object.freeze([
   { itemId: 'c2_harbor_fish', x: -94, z: -60, radius: 6 },
-  { itemId: 'c2_paddy_eel', x: -79, z: 270, radius: 7 },
 ]);
 
 export const CHAPTER_TWO_QUESTS: Record<string, QuestDef> = {
@@ -394,12 +390,11 @@ export const CHAPTER_TWO_QUESTS: Record<string, QuestDef> = {
     TEASEL,
     TEASEL,
     'hearthwright_compact',
-    'There is a harvest standing in my west paddy, and I do not remember sowing it. My hands do, apparently. Bundle what is ripe, borrow my spare rod, and pull a few eels out of the shallows before they eat the rest.',
+    'There is a harvest standing in my west paddy, and I do not remember sowing it. My hands do, apparently. Bundle what is ripe along the causeway bank, and empty my two eel traps before the eels eat the rest.',
     'Good rice, fat eels, and not one memory of planting either. I have decided to be grateful rather than frightened. It is easier on the knees.',
     [
-      collect('c2_paddy_crop_bundle', 5, 'Paddy Crop Bundle'),
-      collect('c2_loan_fishing_rod', 1, "Teasel's Spare Rod"),
-      collect('c2_paddy_eel', 3, 'Paddy Eel caught at the shallows'),
+      collect('c2_paddy_crop_bundle', 4, 'Paddy Crop Bundle'),
+      collect('c2_paddy_eel', 2, 'Paddy Eel taken from the traps'),
     ],
     { shareable: false },
   ),

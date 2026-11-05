@@ -1,0 +1,7 @@
+tests/chapter_two_content.test.ts
+tests/progression.test.ts
+tests/item_art_consistency.test.ts
+tests/item_icons.test.ts
+tests/localization_coverage.test.ts
+tests/deeds_content.test.ts
+tests/interact_object_credit.test.ts

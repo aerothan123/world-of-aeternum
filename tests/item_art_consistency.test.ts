@@ -903,8 +903,8 @@ describe('item-art consistency accepted-art provenance', () => {
     // + the six Project H phase 3 home station ids: 2,239.
     // + Wyndlewood Chapter One's quest item and object ids (content/chapter_one.ts,
     // all on the procedural pending ledger): 2,315.
-    // + Wyndlewood Chapter Two's 17 core quest items, still on the pending ledger: 2,332.
-    expect(Object.keys(ITEMS)).toHaveLength(2332);
+    // + Wyndlewood Chapter Two's 16 core quest items, still on the pending ledger: 2,331.
+    expect(Object.keys(ITEMS)).toHaveLength(2331);
     expect(Object.values(verdict.auditScope.groups).reduce((sum, count) => sum + count, 0)).toBe(
       1255,
     );
@@ -1150,8 +1150,8 @@ describe('item-art consistency accepted-art provenance', () => {
     // + the six Project H phase 3 home station ids: 2,239.
     // + Wyndlewood Chapter One's quest item and object ids (content/chapter_one.ts,
     // all on the procedural pending ledger): 2,315.
-    // + Wyndlewood Chapter Two's 17 core quest items, still on the pending ledger: 2,332.
-    expect(Object.keys(ITEMS)).toHaveLength(2332);
+    // + Wyndlewood Chapter Two's 16 core quest items, still on the pending ledger: 2,331.
+    expect(Object.keys(ITEMS)).toHaveLength(2331);
 
     const datedVerdict = readJson<FinalAuditVerdict>(CURRENT_VERDICT_PATH);
     const oldPassIds = sorted(datedVerdict.visualVerdict.passIds);
