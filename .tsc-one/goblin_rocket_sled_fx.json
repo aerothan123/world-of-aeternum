@@ -1,1 +1,10 @@
-{"extends":"../tsconfig.json","include":[],"files":["../src/render/types/n8ao.d.ts","../src/render/types/three_keyframe_track.d.ts","../tests/ffprobe-static.d.ts","../tests/goblin_rocket_sled_fx.test.ts"]}
+{
+  "extends": "../tsconfig.json",
+  "include": [],
+  "files": [
+    "../src/render/types/n8ao.d.ts",
+    "../src/render/types/three_keyframe_track.d.ts",
+    "../tests/ffprobe-static.d.ts",
+    "../tests/goblin_rocket_sled_fx.test.ts"
+  ]
+}
