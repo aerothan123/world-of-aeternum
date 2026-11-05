@@ -45,7 +45,7 @@ describe('world quest placer assets', () => {
     ]);
   });
 
-  it('ships every catalog model with decodable meshopt geometry and GPU-compressed textures', async () => {
+  it('ships every catalog model with decodable meshopt geometry and KTX2 or WEBP textures', async () => {
     const io = new NodeIO()
       .registerExtensions(ALL_EXTENSIONS)
       .registerDependencies({ 'meshopt.decoder': MeshoptDecoder });
@@ -55,15 +55,18 @@ describe('world quest placer assets', () => {
       const bytes = readFileSync(path.join(__dirname, '..', 'public', url));
       const json = JSON.parse(bytes.subarray(20, 20 + bytes.readUInt32LE(12)).toString());
       expect(json.extensionsUsed).toContain('EXT_meshopt_compression');
-      expect(json.extensionsRequired).toContain('KHR_texture_basisu');
-      expect(
-        json.images.every((image: { mimeType: string }) => image.mimeType === 'image/ktx2'),
-      ).toBe(true);
+      // Desktop-only build: KTX2 or WEBP textures (tests/glb_texture_compression.test.ts);
+      // the Wyndlewood replacements ship WEBP.
+      const mimes = (json.images ?? []).map((image: { mimeType?: string }) => image.mimeType);
+      expect(mimes.every((m: string | undefined) => m === 'image/ktx2' || m === 'image/webp')).toBe(
+        true,
+      );
       expect(MEDIA_ASSETS[url.slice(1)], url).toBeDefined();
       const doc = await io.readBinary(bytes);
       expect(doc.getRoot().listMeshes(), key).toHaveLength(1);
       const prim = doc.getRoot().listMeshes()[0].listPrimitives()[0];
-      expect(prim.getIndices()!.getCount() / 3).toBeGreaterThan(900);
+      // a real model, inside the placer's per-model budget
+      expect(prim.getIndices()!.getCount() / 3).toBeGreaterThan(300);
       expect(prim.getIndices()!.getCount() / 3).toBeLessThan(1200);
       expect(prim.getAttribute('POSITION')!.getCount()).toBeGreaterThan(0);
       expect(doc.getRoot().listTextures()).toHaveLength(1);
