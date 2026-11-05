@@ -1,6 +1,8 @@
 // Wyndlewood Chapter One (content/chapter_one.ts): every reference resolves,
 // every placement stands on dry open ground, the chain runs in the owner's
 // order, and it stops at the Hollow Crypt's sealed door.
+import fs from 'node:fs';
+import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { isBlocked } from '../src/sim/colliders';
 import {
@@ -87,6 +89,47 @@ describe('Chapter One content', () => {
     }
   });
 
+  it('keeps clear of the town layout lots (houses, terrace, cottages, well)', () => {
+    // The town crew's Eastbrook relayout (docs/narrative/chapter_one_placements.md,
+    // "Reconciled with the town layout"): building centres and how far a
+    // chapter point keeps from each.
+    const lots: [string, number, number, number][] = [
+      ['meadow house 1', 36.3, -14.2, 8],
+      ['meadow house 2', 48.8, -17.6, 8],
+      ['meadow house 3', 18.7, -33.4, 8],
+      ['meadow house 4', 45.8, -30.8, 8],
+      ['meadow well', 57, -29, 4],
+      ['row terrace', -22.5, -86.3, 9],
+      ['stone cottage', -72, -86, 8],
+      ['red cottage', -72.5, -45.1, 8],
+    ];
+    const points: [string, number, number][] = [];
+    for (const def of CHAPTER_ONE_OBJECTS)
+      for (const p of def.positions) points.push([def.itemId, p.x, p.z]);
+    for (const npc of Object.values(CHAPTER_ONE_NPCS)) points.push([npc.id, npc.pos.x, npc.pos.z]);
+    for (const esc of Object.values(CHAPTER_ONE_ESCORTS)) {
+      points.push([esc.id, esc.start.x, esc.start.z]);
+      for (const w of esc.waypoints) points.push([esc.id, w.x, w.z]);
+    }
+    const near: string[] = [];
+    for (const [id, x, z] of points) {
+      for (const [lot, lx, lz, clear] of lots) {
+        if (Math.hypot(x - lx, z - lz) < clear) near.push(`${id}@${x},${z} by ${lot}`);
+      }
+    }
+    expect(near).toEqual([]);
+    // Every camp stands at least 11 yards past its radius from every lot.
+    for (const camp of CHAPTER_ONE_CAMPS) {
+      for (const [lot, lx, lz] of lots) {
+        const d = Math.hypot(camp.center.x - lx, camp.center.z - lz);
+        expect(d, `${camp.mobId} by ${lot}`).toBeGreaterThanOrEqual(camp.radius + 11);
+      }
+    }
+    // Nell keeps her yard where the layout leaves room for it.
+    const pella = CHAPTER_ONE_NPCS.carpenter_pella.pos;
+    expect(Math.hypot(pella.x + 45, pella.z + 87)).toBeLessThan(3);
+  });
+
   it('runs the main story in the owner order and ends outside the sealed crypt', () => {
     const chain = [
       'c1_01_arrival',
@@ -112,6 +155,58 @@ describe('Chapter One content', () => {
     }
     expect(QUESTS.c1_26_promise_paint.completionText).toContain(OATHLESS_KING_TITLE);
     expect(QUESTS.q_whispers.completionText).toContain(OATHLESS_KING_TITLE);
+  });
+
+  it('gives no new townsfolk a first name one letter off a shipped NPC name', () => {
+    // The clash rule (docs/narrative/wyndlewood_decisions.md): Pella beside
+    // the shipped Pells and Holven beside Brother Halven read as one person,
+    // so the newcomers ship under different first names (ids unchanged).
+    const near = (a: string, b: string): boolean => {
+      if (a === b) return true;
+      if (Math.abs(a.length - b.length) > 1) return false;
+      const dp = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]);
+      for (let j = 1; j <= b.length; j++) dp[0][j] = j;
+      for (let i = 1; i <= a.length; i++)
+        for (let j = 1; j <= b.length; j++)
+          dp[i][j] = Math.min(
+            dp[i - 1][j] + 1,
+            dp[i][j - 1] + 1,
+            dp[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1),
+          );
+      return dp[a.length][b.length] <= 1;
+    };
+    const chapter = new Set(Object.keys(CHAPTER_ONE_NPCS));
+    const shippedWords = new Set<string>();
+    for (const npc of Object.values(NPCS)) {
+      if (chapter.has(npc.id)) continue;
+      for (const word of npc.name.toLowerCase().split(/[^a-z]+/)) {
+        if (word.length >= 4) shippedWords.add(word);
+      }
+    }
+    const clashes: string[] = [];
+    for (const npc of Object.values(CHAPTER_ONE_NPCS)) {
+      const first = npc.name.toLowerCase().split(' ')[0];
+      for (const word of shippedWords) if (near(first, word)) clashes.push(`${npc.name} ~ ${word}`);
+    }
+    expect(clashes).toEqual([]);
+  });
+
+  it('keeps the Oathless King in its one constant', () => {
+    // wyndlewood_lore.ts is the only source that spells the title out.
+    const roots = ['src/sim', 'src/ui', 'src/guide', 'server'];
+    const hits: string[] = [];
+    const walk = (dir: string): void => {
+      for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
+        const p = path.join(dir, ent.name);
+        if (ent.isDirectory()) walk(p);
+        else if (/\.ts$/.test(ent.name) && !/generated/.test(p)) {
+          const text = fs.readFileSync(p, 'utf8');
+          if (text.includes('Oathless King')) hits.push(p.replace(/\\/g, '/'));
+        }
+      }
+    };
+    for (const root of roots) if (fs.existsSync(root)) walk(root);
+    expect(hits).toEqual(['src/sim/content/wyndlewood_lore.ts']);
   });
 
   it('writes no em dash, en dash or emoji into the chapter prose', () => {

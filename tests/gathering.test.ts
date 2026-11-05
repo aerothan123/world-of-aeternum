@@ -405,7 +405,9 @@ describe('isHarvestableCorpse', () => {
       'gourdlight_swelling_gourd',
     ])
       expect(untagged).toContain(MOBS[id]);
-    expect(untagged).toHaveLength(304);
+    // Wyndlewood Chapter One's other six templates (content/chapter_one.ts:
+    // its two escortees and the four built on untagged shipped bodies): 310.
+    expect(untagged).toHaveLength(310);
     for (const m of untagged) expect(isHarvestableCorpse(m.componentTags)).toBe(false);
     // The three literals above are the load-bearing ones; this sum states that
     // they partition MOBS, so a template that fell out of all three would read

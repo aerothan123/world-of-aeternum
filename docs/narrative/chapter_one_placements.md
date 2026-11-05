@@ -17,11 +17,11 @@ Crypt door is at (80, 90).
 | NPC (template id) | Display name | Position |
 | --- | --- | --- |
 | `scout_neris` | Neris Snowmantle | (75, -40), the eastern lookout past Meadow Lane |
-| `gravekeeper_holven` | Holven Marr | (25, -106), the burial gate |
+| `gravekeeper_holven` | Bertram Hollis | (25, -106), the burial gate |
 | `innkeeper_jorren` | Jorren | (12, -84), the riverside inn counter |
 | `herbalist_olvessa` | Olvessa | (-30, -76), the herb terrace |
 | `gardener_della` | Della Brindlepot | (-13.2, -72.8), the riverside garden |
-| `carpenter_pella` | Pella Nookwright | (-40, -104), the carpenter's yard |
+| `carpenter_pella` | Nell Nookwright | (-45, -87), the carpenter's yard north of the main street |
 | `fisherman_tobbin` | Tobbin Wickerby | (-278, -4), the Proving Shore jetty |
 
 ## Camps (all `offStream`, so no shipped spawn shifts)
@@ -59,10 +59,12 @@ earlier id moves. The full coordinate list lives in the source; the groups are:
   prayer boards, founding map and reading desk (around 15, -111).
 - The inn: tapping panels, rent notice, speaking pipe, bread heel and saucer
   (around 14, -85), and the public hearth (10.3, -86.5).
-- Silven's stall: parcels, delivery slips and the cart tag (around -25, -94).
+- Silven's stall: parcels, delivery slips and the cart tag (around -26, -96),
+  in front of the row terrace's street face rather than under it.
 - Brunna's public furnace (-4.6, -116.8), beside the forge.
-- Pella's yard: workbench (-38, -106), housing noticeboard (-42, -101.5),
-  furnishing practice marker (-44, -107).
+- Nell's yard: workbench (-46.5, -84), housing noticeboard (-43, -83),
+  furnishing practice marker (-44, -80.5), on the free ground the town layout
+  keeps for it north of the main street.
 - The root hedge and the bone pit: silvermint and waxed bindings (around
   5, -56); lamp oil cups by the eastern lookout (around 73, -40); face veils
   on the approach (70.4, -49.6) and (74.5, -47); the three bound grave lamps
@@ -87,6 +89,20 @@ earlier id moves. The full coordinate list lives in the source; the groups are:
   (73, -46) to the eastern lookout (75, -42.5); two briarbitten foxes ambush
   at the second waypoint.
 - Della (quest 17): from the willow footbridge end of the brook path
-  (-14.1, -58.4) by (-10, -48), (8, -36), (30, -45) and (55, -45) to the
+  (-14.1, -58.4) by (-10, -48), (10, -40), (30, -45) and (55, -45) to the
   eastern lookout (75, -42.5). The start keeps 45 yards
   clear of the Eastbrook freight yard world quest.
+
+## Reconciled with the town layout
+
+The town crew's Eastbrook relayout puts Meadow Lane along z -24 off (30, -30)
+with houses at (36.3, -14.2), (48.8, -17.6), (18.7, -33.4) and (45.8, -30.8)
+and a well at (57, -29); a row terrace at (-22.5, -86.3); a stone cottage at
+(-72, -86); and a red cottage at (-72.5, -45.1), every door facing north or
+south. Chapter One keeps clear of all of them
+(`tests/chapter_one_content.test.ts`, the town-lot clearance case): Silven's
+stall goods and the board's rivet and hinge drops moved out from under the
+terrace, Nell's yard moved to the free ground at about (-45, -87), and
+Della's escort passes south of the Meadow Lane houses. Every camp keeps at
+least 11 yards past its radius from every lot. The spot at about (-78, -45)
+beside the red cottage stays free for a later garden or board.

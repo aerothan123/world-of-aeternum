@@ -3301,7 +3301,7 @@ export const NPC_LOOKS: Record<string, NpcLookDef> = {
     },
     props: 'spear',
   },
-  // Holven Marr, gravekeeper: weathered and grey, a scythe for the long grass.
+  // Bertram Hollis, gravekeeper: weathered and grey, a scythe for the long grass.
   gravekeeper_holven: {
     cls: 'priest',
     app: {
@@ -3357,7 +3357,7 @@ export const NPC_LOOKS: Record<string, NpcLookDef> = {
     },
     props: 'knife',
   },
-  // Pella Nookwright, carpenter: sawdust in her red braid, a hammer at hand.
+  // Nell Nookwright, carpenter: sawdust in her red braid, a hammer at hand.
   carpenter_pella: {
     cls: 'warrior',
     app: {

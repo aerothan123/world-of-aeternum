@@ -20,6 +20,8 @@ if ($From -and $To) {
 }
 foreach ($g in $Gen.Split(',')) {
   switch ($g) {
+    'touchup' { node "$N\rebase_touchup.mjs" *>> $log }
+    'tscbase' { Copy-Item "$N\logs\r7.tsc.log" "$N\logs\tsc_base.log" -Force }
     'icons' { node "$N\import_c1_icons.mjs" *>> $log }
     'media' { node scripts/build_media_manifest.mjs generate *>> $log }
     'i18n' { cmd /c npm run i18n:gen *>> $log }

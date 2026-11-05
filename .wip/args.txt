@@ -1,1 +1,1 @@
--From af88dbbd9ce19310ff0a085af898d220d21197d3 -To origin/wip/wyndlewood-story-transport -Gen icons,media,tsc -List l7.txt -Tag r7
+-From df4bd6786c48a931e67762e31ef2be0781c80dc1 -To origin/wip/wyndlewood-story-transport -Gen tscbase,touchup,i18n,wiki,media,tsc,biome,status -List l8.txt -Tag r8

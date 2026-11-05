@@ -1138,8 +1138,10 @@ describe('item-art consistency accepted-art provenance', () => {
     // Icon backlog adds 135 Season 2 armour icons, five referral icons, the Horse Whistle, and Nightwing Chimaera.
     // Wobbles the Slime's reins (reins_wobbles_slime, a render of the shipped mount): 2,183.
     // + the sprite buddy's whistle: 2,184 owners / 2,214 items.
-    expect(new Set(currentOwnerIds).size).toBe(2191);
-    expect(shippingIds).toHaveLength(2191);
+    // + the 18 player housing furniture renders (furniture-renders-2026-11-04) and Wyndlewood
+    // Chapter One's 76 painted quest icons (chapter-one-painted-icons-2026-11-04): 2,285.
+    expect(new Set(currentOwnerIds).size).toBe(2285);
+    expect(shippingIds).toHaveLength(2285);
     // The restored legacy whistle and charm definitions add 36 item ids.
     // All five referral rewards now own paintings; only the retired Phoenix remains pending.
     // Wobbles the Slime's reins (reins_wobbles_slime, a render of the shipped mount): 2,213.
@@ -1617,8 +1619,9 @@ describe('item-art consistency accepted-art provenance', () => {
     // Buddy whistle and charm provenance add two batches.
     // The membership weapon batch (membership-weapon-2026-10-14, PR 4281): 60.
     // Backlog replacements consolidate old owners into a net 21 additional batches; Lantern
-    // Hall's seal and its horse's reins add two: 83.
-    expect(mapping.generatedBatches).toHaveLength(90);
+    // Hall's seal and its horse's reins add two: 83. The furniture renders and Wyndlewood
+    // Chapter One's painted icons add one batch each: 92.
+    expect(mapping.generatedBatches).toHaveLength(92);
     const batch = mapping.generatedBatches.find(({ batchId }) => batchId === BATCH_ID);
     expect(batch).toBeDefined();
     expect(batch).toMatchObject({
@@ -1706,8 +1709,8 @@ describe('item-art consistency accepted-art provenance', () => {
     // + the five-dungeon rework (PR 4352) on the v0.45.0 integration: 2005 + Nightwing Chimaera mount: 2182.
     // Wobbles the Slime's reins (reins_wobbles_slime, a render of the shipped mount) adds one ordinary entry: 2,183.
     // + the sprite buddy's whistle render: 2,184.
-    expect(allCurrentOwnerIds).toHaveLength(2191);
-    expect(new Set(allCurrentOwnerIds).size).toBe(2191);
+    expect(allCurrentOwnerIds).toHaveLength(2285);
+    expect(new Set(allCurrentOwnerIds).size).toBe(2285);
     expect({
       entries: mapping.entries.length,
       priorGenerated: priorGeneratedIds.length,
@@ -2017,9 +2020,9 @@ describe('item-art consistency accepted-art provenance', () => {
     // Plus the Mirefen world-boss branch and Balgath's loot (15 items) = 1890.
     // + the five-dungeon rework (PR 4352) on the v0.45.0 integration: 2005.
     // Wobbles the Slime's reins: 2,183.
-    if (ownerIds.length !== 2191)
-      violations.push(`mapping owner count: ${ownerIds.length} != 2191`);
-    if (fileIds.length !== 2191) violations.push(`shipping WebP count: ${fileIds.length} != 2191`);
+    if (ownerIds.length !== 2285)
+      violations.push(`mapping owner count: ${ownerIds.length} != 2285`);
+    if (fileIds.length !== 2285) violations.push(`shipping WebP count: ${fileIds.length} != 2285`);
     for (const id of ids) {
       const ownerCount = ownerCountById.get(id) ?? 0;
       if (ownerCount !== 1) violations.push(`${id}: current owner count ${ownerCount} != 1`);
