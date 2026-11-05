@@ -49,3 +49,39 @@ persistence, tests), not a rename.
 - Systems the bible assumes that do not exist yet: moral-choice branches, boat
   repair, quest credit for fishing and for real-tree chopping. Each lands as its
   own sim module before the quests that need it.
+
+## 6. Integration record (feature/wyndlewood-story)
+- **Factions.** The three provisional ids migrate on load: `church_order` to
+  `lanternwardens`, `automatons` to `hearthwright_compact`, `rift_watch` to
+  `gilt_measure` (`src/sim/factions.ts` LEGACY_FACTION_IDS; the successor key
+  wins when a save holds both). `bracken_circle` is new. The Pale Accord is a
+  hostile mob grouping, not a standing ladder. Currency and deed ids stay
+  frozen; the three shipped faction deed ladders keep their triggers (design
+  rule 9) and now name the successors, and the Bracken Circle's pair is
+  appended. The all-banners meta still asks for the shipped three.
+- **The Oathless King.** Lives in one constant,
+  `src/sim/content/wyndlewood_lore.ts` OATHLESS_KING_TITLE. Still awaiting
+  owner sign-off.
+- **NPC renames shipped (display only, ids frozen).** Ferryman Odo is Captain
+  Fenlow Tippet, Marshal Redbrook is Warden Corren Stoutvale, Trader Wilkes is
+  Silven Brackett, Apothecary Lin is Ivara Fenmoss, Forgemistress Darva is
+  Brunna Flintmorrow.
+- **Renames not applied, by design.** The owner's Chapter One places Corren,
+  Brunna, Neris, Jorren and Olvessa in Eastbrook, so Brunna maps onto the
+  Eastbrook forge NPC (Darva) rather than Armorer Hode, Corren onto the
+  Eastbrook marshal rather than Drillmaster Rook, and Neris, Jorren and
+  Olvessa ship as new Eastbrook townsfolk. Drillmaster Rook, Armorer Hode,
+  Scout Einna, Innkeeper Maudie (Mirefen) and Herbalist Yara (Fenbridge, now
+  the Bracken Circle quartermaster) keep their names. Owner call whether those
+  five still need the bible's names elsewhere.
+- **Clashes.** Holven Rusk (the bible's crypt caretaker) folds into the shipped
+  Sexton Marrow; the owner's Holven Marr ships as Eastbrook's gravekeeper. Holven
+  Marr vs Brother Halven and Pella Nookwright vs the existing Pell NPCs ship
+  as-is (full names differ, different towns); the smallest display-only fix,
+  if the owner wants one, is a first-name swap on the new NPC only (ids are
+  new, so nothing persisted changes). The Pale Choir is written as the Pale
+  Accord's liturgy. Ossivar, the two Garricks and the two Hesters are not
+  shipped by this pass.
+- **Chapter One.** The owner's quest set is committed verbatim as
+  `docs/narrative/chapter_one_quests.txt`; positions are in
+  `docs/narrative/chapter_one_placements.md`.
