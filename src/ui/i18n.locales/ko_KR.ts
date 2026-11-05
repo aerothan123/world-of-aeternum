@@ -15590,6 +15590,7 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'entities.items.furn_braided_rug.name': '땋은 러그',
   'entities.items.furn_table_lantern.name': '탁상 랜턴',
   'entities.items.furn_folding_worktable.name': '접이식 작업대',
+  'entities.items.furn_woven_rug_painted.name': '타원형 양모 러그',
   'entities.items.furn_rustic_wardrobe.name': '널빤지 옷장',
   'entities.items.furn_rustic_cupboard.name': '부엌 찬장',
   'entities.items.furn_straw_cot.name': '짚 간이침대',

@@ -17633,6 +17633,7 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'entities.items.furn_braided_rug.name': 'Плетёный коврик',
   'entities.items.furn_table_lantern.name': 'Настольный фонарь',
   'entities.items.furn_folding_worktable.name': 'Складной верстак',
+  'entities.items.furn_woven_rug_painted.name': 'Овальный шерстяной ковёр',
   'entities.items.furn_rustic_wardrobe.name': 'Дощатый шкаф',
   'entities.items.furn_rustic_cupboard.name': 'Кухонный буфет',
   'entities.items.furn_straw_cot.name': 'Соломенная лежанка',

@@ -24970,6 +24970,9 @@ export const en_XA: EnTranslations = {
       "furn_herb_drying_rack": {
         "name": "[Ĥéŕƀ Ðŕýíñĝ Ŕáçķ]"
       },
+      "furn_woven_rug_painted": {
+        "name": "[Óʋáļ Ŵóóļ Ŕúĝ]"
+      },
       "membership_staff": {
         "name": "[Šţáƒƒ óƒ Çĥáñĝíñĝ]"
       },

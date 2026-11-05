@@ -138,7 +138,7 @@ export const FURNITURE_DEFS: readonly FurnitureDef[] = Object.freeze([
   { itemId: 'furn_bookcase', kind: 'wall', renderKey: 'wynNobleBookcase', scale: 2.2 },
   { itemId: 'furn_keg', kind: 'floor', renderKey: 'kcasKeg', scale: 1.2 },
   { itemId: 'furn_barrel', kind: 'floor', renderKey: 'wynRusticBarrel', scale: 1 },
-  { itemId: 'furn_woven_rug', kind: 'rug', renderKey: 'wynWovenRugPainted', scale: 0.05 },
+  { itemId: 'furn_woven_rug', kind: 'rug', renderKey: 'rug', scale: 1 },
   { itemId: 'furn_candlestick', kind: 'table', renderKey: 'kcasCandleTriple', scale: 1.2 },
   // Phase 3: every placed chest adds HOUSE_CHEST_SLOTS of pooled house storage.
   // Drawn with the painted small chest (the Wyndlewood kit) since the props
@@ -244,6 +244,8 @@ export const FURNITURE_DEFS: readonly FurnitureDef[] = Object.freeze([
   { itemId: 'furn_potting_bench', kind: 'floor', renderKey: 'wynPottingBench', scale: 1.2 },
   { itemId: 'furn_spool_rack', kind: 'floor', renderKey: 'wynSpoolRack', scale: 1.4 },
   { itemId: 'furn_herb_drying_rack', kind: 'floor', renderKey: 'wynHerbDryingRack', scale: 1.6 },
+  // The Wyndlewood rustic family (assets_src/wyndlewood_props/furniture_catalog.json).
+  { itemId: 'furn_woven_rug_painted', kind: 'rug', renderKey: 'wynWovenRugPainted', scale: 0.05 },
 ]);
 
 const DEF_BY_ITEM: ReadonlyMap<string, FurnitureDef> = new Map(
@@ -337,7 +339,7 @@ export const FURNITURE_ITEMS: Record<string, ItemDef> = {
   furn_rag_runner: furnitureItem('furn_rag_runner', 'Rag Runner', 9),
   furn_canopy_bed: furnitureItem('furn_canopy_bed', 'Canopy Bed', 154),
   furn_highback_chair: furnitureItem('furn_highback_chair', 'High-Backed Chair', 39),
-  furn_banquet_table: furnitureItem('furn_banquet_table', 'Banquet Table', 108),
+  furn_banquet_table: furnitureItem('furn_banquet_table', 'Banquet Table', 45),
   furn_writing_desk: furnitureItem('furn_writing_desk', 'Writing Desk', 74),
   furn_velvet_settee: furnitureItem('furn_velvet_settee', 'Velvet Settee', 79),
   furn_display_cabinet: furnitureItem('furn_display_cabinet', 'Display Cabinet', 112),
@@ -349,4 +351,5 @@ export const FURNITURE_ITEMS: Record<string, ItemDef> = {
   furn_potting_bench: furnitureItem('furn_potting_bench', 'Potting Bench', 12),
   furn_spool_rack: furnitureItem('furn_spool_rack', 'Spool Rack', 12),
   furn_herb_drying_rack: furnitureItem('furn_herb_drying_rack', 'Herb Drying Rack', 11),
+  furn_woven_rug_painted: furnitureItem('furn_woven_rug_painted', 'Oval Wool Rug', 16),
 };

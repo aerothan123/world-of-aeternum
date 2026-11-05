@@ -736,7 +736,7 @@
       "id": "bridge_stone_arch",
       "category": "bridge",
       "height": 4,
-      "faceLimit": 4000,
+      "faceLimit": 2800,
       "prompt": "old single arch stone bridge, a long humped deck of weathered grey fieldstone with low parapet walls on both sides, moss and ivy on the arch, seen at three-quarter view, no ground plane, no water"
     },
     {

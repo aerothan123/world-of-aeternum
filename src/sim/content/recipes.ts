@@ -5385,7 +5385,7 @@ export const FURNISHING_RECIPES: ProfessionRecipeRecord[] = [
     professionId: 'furnishing',
     resultItemId: 'furn_banquet_table',
     resultCount: 1,
-    // Input 180 vs output 108.
+    // Input 180 vs output 45 (fully vendor-fed: under the 60 cheapest achievable input).
     reagents: [{ itemId: 'ashwood_log', count: 3 }],
     skillReq: 0,
     itemLevelBudget: 12,
@@ -5560,6 +5560,22 @@ export const FURNISHING_RECIPES: ProfessionRecipeRecord[] = [
     skillReq: 0,
     itemLevelBudget: 7,
     level: 7,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
+  {
+    id: 'recipe_furn_woven_rug_painted',
+    professionId: 'furnishing',
+    resultItemId: 'furn_woven_rug_painted',
+    resultCount: 1,
+    // Input 28 vs output 16.
+    reagents: [
+      { itemId: 'linen_scrap', count: 6 },
+      { itemId: 'rough_hide', count: 2 },
+    ],
+    skillReq: 0,
+    itemLevelBudget: 8,
+    level: 8,
     stationType: 'toolworks',
     acquisition: ['trainer'],
   },

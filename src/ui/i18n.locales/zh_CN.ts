@@ -16505,6 +16505,7 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'entities.items.furn_braided_rug.name': '编织地毯',
   'entities.items.furn_table_lantern.name': '桌灯',
   'entities.items.furn_folding_worktable.name': '折叠工作台',
+  'entities.items.furn_woven_rug_painted.name': '椭圆羊毛地毯',
   'entities.items.furn_rustic_wardrobe.name': '木板衣柜',
   'entities.items.furn_rustic_cupboard.name': '厨房橱柜',
   'entities.items.furn_straw_cot.name': '草垫小床',

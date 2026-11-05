@@ -121,7 +121,7 @@ describe('the furniture catalog (content)', () => {
   it('every furniture def is a merged, non-equippable, non-junk common item with a name', () => {
     // twelve phase-2 pieces, the six phase-3 home stations, and the painted
     // Wyndlewood kit pieces (assets_src/wyndlewood_props/furniture_catalog.json)
-    FURNITURE_ITEM_IDS.length.toBe(59);
+    expect(FURNITURE_ITEM_IDS.length).toBe(60);
     for (const def of FURNITURE_DEFS) {
       const item = ITEMS[def.itemId];
       expect(item, def.itemId).toBe(FURNITURE_ITEMS[def.itemId]);

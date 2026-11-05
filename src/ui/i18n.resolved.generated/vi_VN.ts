@@ -24970,6 +24970,9 @@ export const vi_VN: EnTranslations = {
       "furn_herb_drying_rack": {
         "name": "Herb Drying Rack"
       },
+      "furn_woven_rug_painted": {
+        "name": "Oval Wool Rug"
+      },
       "membership_staff": {
         "name": "Trượng Biến Đổi"
       },

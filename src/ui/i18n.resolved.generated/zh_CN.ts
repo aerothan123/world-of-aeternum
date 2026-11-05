@@ -24970,6 +24970,9 @@ export const zh_CN: EnTranslations = {
       "furn_herb_drying_rack": {
         "name": "草药晾架"
       },
+      "furn_woven_rug_painted": {
+        "name": "椭圆羊毛地毯"
+      },
       "membership_staff": {
         "name": "万变法杖"
       },

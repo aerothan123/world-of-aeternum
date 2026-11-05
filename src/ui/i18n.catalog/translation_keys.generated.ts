@@ -5905,6 +5905,7 @@ export type TranslationKeyFlat =
   | 'entities.items.furn_wooden_chair.name'
   | 'entities.items.furn_wooden_stool.name'
   | 'entities.items.furn_woven_rug.name'
+  | 'entities.items.furn_woven_rug_painted.name'
   | 'entities.items.furn_writing_desk.name'
   | 'entities.items.furnace_march_greaves.name'
   | 'entities.items.furyforged_gauntlets.name'

@@ -221,7 +221,6 @@ export const WYN_PROP_MODELS = {
     2.62,
     3.77,
   ),
-  bridge_stone_arch: wynModel('bridge_stone_arch', 'wynStoneArch', 'bridge', 4, 3.34, 6.25),
   bridge_willow_footbridge: wynModel(
     'bridge_willow_footbridge',
     'wynWillowFootbridge',
@@ -514,6 +513,7 @@ export const WYN_PROP_MODELS = {
     0.52,
     0.67,
   ),
+  bridge_stone_arch: wynModel('bridge_stone_arch', 'wynStoneArch', 'bridge', 4, 3.34, 6.25),
   // fill_rows: new rows land above this line (scripts/assets/wyndlewood_props/fill_rows.mjs).
 } as const satisfies Record<string, WynPropModel>;
 

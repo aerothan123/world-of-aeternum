@@ -68,6 +68,27 @@ const ALL_JOBS = [
     spec: { url: '/models/props/wyn_furn_braided_rug.glb', pitch: 1.05 },
   },
 ];
+// Every other painted Wyndlewood catalogue piece
+// (assets_src/wyndlewood_props/furniture_catalog.json) renders from its kit
+// model once that model ships; rugs are seen from above.
+{
+  const { existsSync } = await import('node:fs');
+  const cat = JSON.parse(
+    await readFile('assets_src/wyndlewood_props/furniture_catalog.json', 'utf8'),
+  );
+  const rows = [
+    ...cat.new.map((n) => ({ itemId: n.itemId, model: n.itemId, rug: n.kind === 'rug' })),
+    ...cat.repoint.map((r) => ({ itemId: r.itemId, model: r.model, rug: false })),
+  ];
+  for (const r of rows) {
+    const url = `/models/props/wyn_${r.model}.glb`;
+    if (!existsSync(`public${url}`)) continue;
+    const at = ALL_JOBS.findIndex((job) => job.itemId === r.itemId);
+    const job = { itemId: r.itemId, spec: { url, pitch: r.rug ? 1.05 : PITCH } };
+    if (at >= 0) ALL_JOBS[at] = job;
+    else ALL_JOBS.push(job);
+  }
+}
 // ONLY=id,id renders just those icons (a new batch), leaving the rest of the
 // committed set byte-identical.
 const ONLY = process.env.ONLY ? new Set(process.env.ONLY.split(',')) : null;

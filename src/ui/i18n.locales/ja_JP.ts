@@ -15636,6 +15636,7 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'entities.items.furn_braided_rug.name': '編み込みラグ',
   'entities.items.furn_table_lantern.name': '卓上ランタン',
   'entities.items.furn_folding_worktable.name': '折りたたみ作業台',
+  'entities.items.furn_woven_rug_painted.name': '楕円のウールラグ',
   'entities.items.furn_rustic_wardrobe.name': '板張りの衣装棚',
   'entities.items.furn_rustic_cupboard.name': '台所の食器棚',
   'entities.items.furn_straw_cot.name': '藁の簡易寝台',

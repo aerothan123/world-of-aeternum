@@ -24970,6 +24970,9 @@ export const ru_RU: EnTranslations = {
       "furn_herb_drying_rack": {
         "name": "Сушилка для трав"
       },
+      "furn_woven_rug_painted": {
+        "name": "Овальный шерстяной ковёр"
+      },
       "membership_staff": {
         "name": "Посох перемен"
       },

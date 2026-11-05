@@ -24970,6 +24970,9 @@ export const ko_KR: EnTranslations = {
       "furn_herb_drying_rack": {
         "name": "약초 건조대"
       },
+      "furn_woven_rug_painted": {
+        "name": "타원형 양모 러그"
+      },
       "membership_staff": {
         "name": "변화의 지팡이"
       },

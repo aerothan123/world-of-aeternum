@@ -24970,6 +24970,9 @@ export const ja_JP: EnTranslations = {
       "furn_herb_drying_rack": {
         "name": "薬草干しの棚"
       },
+      "furn_woven_rug_painted": {
+        "name": "楕円のウールラグ"
+      },
       "membership_staff": {
         "name": "変化の杖"
       },

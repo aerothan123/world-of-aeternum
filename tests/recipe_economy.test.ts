@@ -247,6 +247,7 @@ describe('THE ECONOMY INVARIANT', () => {
       'recipe_bronze_hoe',
       // Player housing (Project H) phase 2: the bookcase is six vendor-stocked
       // ashwood logs (360) against a 60 output.
+      'recipe_furn_banquet_table',
       'recipe_furn_bookcase',
       'recipe_goldleaf_mana_draught',
       'recipe_goldleaf_sickle',
@@ -664,7 +665,7 @@ describe('REFERENTIAL INTEGRITY', () => {
         FURNISHING_RECIPES.length +
         HOUSE_STATION_RECIPES.length,
     );
-    expect(FURNISHING_RECIPES, 'the Furnishing catalog is 53 rows').toHaveLength(53);
+    expect(FURNISHING_RECIPES, 'the Furnishing catalog is 54 rows').toHaveLength(54);
     expect(HOUSE_STATION_RECIPES, 'the home station catalog is six rows').toHaveLength(6);
     // The sibling literal for the 11o term: two rows, both trainer-taught.
     expect(ENGINEERING_ONRAMP_RECIPES, 'the engineering on-ramp is two rows').toHaveLength(2);

@@ -76,7 +76,7 @@ describe('HouseFurnitureVisuals', () => {
       [2, other],
     ]);
     const { partsCache } = houseFurnitureInternalsForTest;
-    partsCache.delete('kcasChair');
+    partsCache.delete('wynRusticChair');
     visuals.sync(entities);
     expect(visuals.standingIds()).toEqual([1]);
     // Not loaded yet: the empty group stands in for the click proxy.
@@ -84,7 +84,7 @@ describe('HouseFurnitureVisuals', () => {
     // The model lands: the next sync rebuilds the piece with it, at the
     // catalog scale.
     const geo = new THREE.BoxGeometry(1, 1, 1);
-    partsCache.set('kcasChair', [{ geo, mat: new THREE.MeshBasicMaterial() }]);
+    partsCache.set('wynRusticChair', [{ geo, mat: new THREE.MeshBasicMaterial() }]);
     visuals.sync(entities);
     const group = groupOf(scene, 1) as THREE.Group;
     expect(group.children).toHaveLength(1);
@@ -93,7 +93,7 @@ describe('HouseFurnitureVisuals', () => {
     // And a third sync leaves it alone.
     visuals.sync(entities);
     expect(groupOf(scene, 1)).toBe(group);
-    partsCache.delete('kcasChair');
+    partsCache.delete('wynRusticChair');
     visuals.dispose();
     expect(groupOf(scene, 1)).toBeUndefined();
   });
