@@ -5366,8 +5366,29 @@ export const ko_KR: EnTranslations = {
       "itemName": "{item}, {quality}",
       "tooltip": "{quality}: 아이템 레벨 +{levels}. 강화 후에도 유지됩니다."
     },
+    "townProject": {
+      "progress": "{project}: {stage}. {done} of {needed} bundles are in. Each bundle is {items}.",
+      "complete": "{project} is complete. The town thanks you.",
+      "contribute": "Contribute",
+      "bundleItem": "{count} {item}",
+      "bundleJoin": " and ",
+      "name": {
+        "eastbrook_yard_well": "The Yard Well",
+        "eastbrook_yard_well_shaft": "Line the shaft",
+        "eastbrook_yard_well_roof": "Raise the roof",
+        "eastbrook_yard_well_winch": "Hang the winch",
+        "eastbrook_street_lamps": "The Main Street Lamps",
+        "eastbrook_street_lamps_posts": "Set the posts",
+        "eastbrook_street_lamps_lanterns": "Hang the lanterns"
+      }
+    },
+    "durability": {
+      "low": "Your equipment is badly damaged. Repair it at an armorer, a weaponsmith or a forge.",
+      "broken": "Some of your equipment is broken and gives no stats. Repair it at an armorer, a weaponsmith or a forge."
+    },
     "itemTooltip": {
       "requiresLevel": "필요 레벨 {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "{tier} 등급 균열 아이템",
       "riftUpgrade": "균열 강화 {level}/{max}",
       "riftSockets": "균열 보석 {used}/{total}",
@@ -8028,6 +8049,7 @@ export const ko_KR: EnTranslations = {
       "denied": {
         "badLot": "그 집은 판매하지 않습니다.",
         "owned": "이미 집을 소유하고 있습니다.",
+        "accountOwned": "Your account already has a house. An account can own one house.",
         "range": "{house}의 정문에서 너무 멉니다.",
         "money": "{house}을(를) 살 돈이 부족합니다.",
         "dead": "죽은 상태에서는 집을 구매할 수 없습니다.",
@@ -17513,6 +17535,11 @@ export const ko_KR: EnTranslations = {
       "levelClass": "{level}레벨 {className}"
     },
     "vendor": {
+      "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "기본 기승 훈련",
       "advancedRiding": "고급 기승 훈련",
       "ridingSpeed": "탈것에 탄 동안 이동 속도가 {speed}% 증가합니다. 모든 탈것에 적용됩니다.",

@@ -29,6 +29,7 @@ export function houseName(lotId: string): string | null {
 const DENY_KEYS: Record<HouseDenyReason, TranslationKey> = {
   bad_lot: 'hudChrome.housing.denied.badLot',
   owned: 'hudChrome.housing.denied.owned',
+  account_owned: 'hudChrome.housing.denied.accountOwned',
   range: 'hudChrome.housing.denied.range',
   money: 'hudChrome.housing.denied.money',
   dead: 'hudChrome.housing.denied.dead',

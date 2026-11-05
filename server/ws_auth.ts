@@ -28,6 +28,7 @@ import {
 } from '../src/world_api';
 import { sanitizeAppearance } from '../src/world_api/appearance';
 import { accountAdmissionsFor } from './account_admission';
+import { type AccountHouseForJoin, annotateAccountHouse } from './account_house_migration';
 import type { AccountMountItemsRow } from './account_mount_items_core';
 import type {
   AccountChatMuteStatus,
@@ -36,6 +37,7 @@ import type {
   CharacterRow,
   TokenScope,
 } from './db';
+import { SERVER_EARLY_ACCESS } from './early_access_flags';
 import type { GameServer } from './game';
 import { noteClientFrame } from './keepalive_sweep';
 import type { MembershipAuthorization } from './membership_service';
@@ -104,6 +106,9 @@ function rejectHandshake(ws: WebSocket, error: string): void {
 export interface WsAuthDeps {
   game: GameServer;
   getMembership?: (accountId: number) => Promise<MembershipAuthorization>;
+  /** One house per account, shared by all its characters: the account's house
+   *  for a joining character (server/account_house_migration.ts). */
+  accountHouse?: (accountId: number, characterId: number) => Promise<AccountHouseForJoin>;
   referralArmourForAccount?: (accountId: number) => Promise<ReferralArmourEntitlement | null>;
   accountAndScopeForToken: (
     token: string,
@@ -349,6 +354,7 @@ export function createWsAuth(deps: WsAuthDeps): WsAuthHandlers {
           row.membership_slot,
           { ...membership, active: membership.active && membership.authorizedUntil > Date.now() },
           Date.now(),
+          SERVER_EARLY_ACCESS.membership,
         );
       if (membershipLocked(character)) {
         rejectHandshake(ws, WS_AUTH_ERROR.membershipRequired);
@@ -574,6 +580,7 @@ export function createWsAuth(deps: WsAuthDeps): WsAuthHandlers {
                 rejectHandshake(ws, WS_AUTH_ERROR.forceRename);
                 return;
               }
+              await annotateAccountHouse(deps.accountHouse, accountId, refreshedCharacter);
               admittedCharacter = refreshedCharacter;
               // Re-read even if the initial query returned after revocation,
               // before this probe existed. Check the probe AFTER that await to

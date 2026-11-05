@@ -8,6 +8,7 @@ import {
   courierPayloadFits,
 } from '../src/sim/courier';
 import { applyMembershipBankInventoryPlan } from '../src/sim/membership_bank';
+import { SERVER_EARLY_ACCESS } from './early_access_flags';
 import type { Sim } from '../src/sim/sim';
 import { tradeInfoFor } from '../src/sim/social/trade';
 import type { InvSlot } from '../src/sim/types';
@@ -477,7 +478,8 @@ export class MembershipGameServices {
           if (repairArmour) this.host.sim.claimMembershipArmour(session.pid);
           if (seconds <= 0) {
             this.host.send(session, { t: 'account_bank', info: null });
-            if (session.membershipSlot)
+            // Early Access: membership switched off never strands a slot character.
+            if (session.membershipSlot && SERVER_EARLY_ACCESS.membership)
               this.host.kick(session, 'membership required for this character');
           }
         }
@@ -495,6 +497,9 @@ export class MembershipGameServices {
   }
 
   async redeem(session: ClientSession, index?: number): Promise<void> {
+    // Early Access: a held token is never spent while membership is switched
+    // off, so its 30 days are still there when the switch comes back on.
+    if (!SERVER_EARLY_ACCESS.membership) return;
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 5_000);
     try {

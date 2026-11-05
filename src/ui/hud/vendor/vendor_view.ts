@@ -15,9 +15,11 @@ import {
   resolveFactionVendorRowGate,
 } from '../../../sim/content/faction_vendors';
 import { resolveVendorRowGate, type VendorRowGate } from '../../../sim/content/vendor_row_gates';
+import { npcRepairs, repairAllCost } from '../../../sim/durability';
+import type { PlayerEquipment, PlayerEquipmentInstances } from '../../../sim/entity';
 import type { FactionId } from '../../../sim/factions';
 import { junkSellableSlot } from '../../../sim/items';
-import { type RidingTier, ridingTrainingFee } from '../../../sim/riding_training';
+import { nextRidingTier, type RidingTier, ridingTrainingFee } from '../../../sim/riding_training';
 import type { InvSlot, ItemDef, ItemInstancePayload } from '../../../sim/types';
 import { bulkBuyQuantity, vendorCountForced } from '../../../sim/vendor_buy_stack';
 import { vendorStackSize } from '../../../sim/vendor_stack';
@@ -34,7 +36,8 @@ export type VendorMultiple = 1 | 5 | 10 | 'custom';
 export const VENDOR_MULTIPLES: readonly VendorMultiple[] = [1, 5, 10, 'custom'];
 
 export interface VendorGoodsRow {
-  ridingRank?: 1 | 2;
+  /** The riding rank this row teaches (riding_training.ts: 3 apprentice, 1, 2). */
+  ridingRank?: 1 | 2 | 3;
   itemId: string;
   item: ItemDef;
   /** Server-matching price for one purchase. Either component may be zero. */
@@ -256,7 +259,7 @@ export function buildVendorView(
     const canAffordFaction = !factionMarks || playerFactionMarks >= factionMarks.amount;
     const canAffordToken = !token || heldCount(balances.inventory, token.itemId) >= token.count;
     goods.push({
-      ...(item.teachesRiding ? { ridingRank: (ridingTier === 0 ? 1 : 2) as 1 | 2 } : {}),
+      ...(item.teachesRiding ? { ridingRank: (nextRidingTier(ridingTier) ?? 2) as 1 | 2 | 3 } : {}),
       itemId,
       item,
       price,
@@ -317,13 +320,38 @@ export function buildVendorView(
  * therefore sees a live button quoting zero that sells nothing, the accepted
  * cosmetic cost of never stranding real junk unsellable on a stale bundle.
  */
+/** The vendor window's Repair All button (src/sim/durability/): shown only at
+ *  a repairing NPC; `cost` is the full repair price right now. */
+export interface VendorRepairState {
+  cost: number;
+}
+
+/** The vendor action row: the Sell Junk button and, at a repairing NPC, the
+ *  Repair All button (`repair`). The gear inputs are optional so a caller with
+ *  no gear view (and every older test) builds the junk half alone. */
 export function sellJunkButtonState(
   inventory: readonly InvSlot[],
   items: Readonly<Record<string, ItemDef>>,
-): { enabled: boolean; proceeds: number } {
+  gear?: {
+    equipment: PlayerEquipment;
+    equipmentInstances: PlayerEquipmentInstances;
+  },
+  npc?: { templateId?: string | null },
+): { enabled: boolean; proceeds: number; repair?: VendorRepairState } {
   const junk = inventory.filter((slot) => junkSellableSlot(items[slot.itemId], slot));
   const hasUnknownSlots = inventory.some((slot) => knownItemDef(items, slot.itemId) === undefined);
+  const repair =
+    gear && npc && npcRepairs(npc.templateId ?? undefined)
+      ? {
+          cost: repairAllCost({
+            equipment: gear.equipment,
+            equipmentInstance: gear.equipmentInstances,
+            inventory,
+          }),
+        }
+      : undefined;
   return {
+    ...(repair ? { repair } : {}),
     enabled: junk.length > 0 || hasUnknownSlots,
     // junkSellableSlot only passes defs that carry a sell value, so the ?? 0
     // is unreachable belt-and-braces, never a quote change.

@@ -28,6 +28,7 @@ import { WISP_MAZE_QUEST_ID } from '../content/world_quest_wisp_maze';
 import { DUNGEONS, ITEMS, QUESTS } from '../data';
 import { formatMoney } from '../format_money';
 import { removePreferFungible } from '../items';
+import { grantLifeSkillStanding } from '../life_skills/standing_seam';
 import { grantFreshLoot } from '../loot/fresh_quality_grant';
 import type { ArchetypeState } from '../professions/archetype';
 import { armCadence, cadenceBlockedKeys } from '../professions/cadence';
@@ -62,6 +63,7 @@ import {
 import { playerHoldsQuestItem } from './quest_item_presence';
 import { grantQuestRecipeReward, validateQuestRecipeReward } from './quest_recipe_rewards';
 import { defaultRewardChoice, questFixedReward, resolveRewardChoice } from './quest_reward_choice';
+import { questLevelOf, questRewardXp } from './quest_xp';
 import { weeklyLockedQuestIds, weeklyQuestLockoutId } from './weekly_quest_lock';
 
 // Pure quest-state computation, shared by the sim and the network client. Relocated
@@ -542,12 +544,18 @@ export function turnInQuestCore(
   const chosen = rewardChoice ?? defaultRewardChoice(quest, meta.cls, meta.talents.spec);
   if (chosen) grantFreshLoot(ctx, chosen, 1, meta.entityId, rewardOpts);
   grantQuestRecipeReward(ctx, quest, meta);
-  ctx.grantXp(quest.xpReward, meta);
+  // Level-formula XP with the classic out-level reduction (quests/quest_xp.ts).
+  const turnInLevel = ctx.entities.get(meta.entityId)?.level ?? 1;
+  ctx.grantXp(questRewardXp(quest, turnInLevel), meta);
   // Arm the repeat-cadence window (work orders): the quest stays
   // unavailable (computeQuestState) until now + repeatCadenceTicks, server-
   // authoritative and persisted per character with zero-default omission.
   if (quest.repeatCadenceTicks && quest.repeatCadenceTicks > 0) {
     armCadence(meta.questCadence, questId, ctx.tickCount, quest.repeatCadenceTicks);
+    // A crafter work order also pays Hearthwright standing (life_skills seam).
+    if (questId.startsWith('q_prof_workorder_')) {
+      grantLifeSkillStanding(ctx, meta, 'workOrder', questLevelOf(quest));
+    }
   }
   // A weekly quest locks until the realm's weekly reset (weekly_quest_lock.ts); a
   // daily one rides the same lock to the next daily reset.

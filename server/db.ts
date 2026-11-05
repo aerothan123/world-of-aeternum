@@ -133,9 +133,11 @@ import { SCHEMA_ADVISORY_LOCK_KEY } from './schema_lock';
 
 export { recordReferral } from './referral_armour_db';
 
+import { ACCOUNT_HOUSE_MIGRATION_SCHEMA, migrateAccountHouses } from './account_house_migration';
 import { migrateLegacyAccountSocial } from './account_social_migration';
 import {
   LEGACY_SEEKER_ENTITLEMENT_SCHEMA,
+  LEGACY_WALLET_LINK_SCHEMA,
   LEGACY_WOC_MARKET_SCHEMA,
 } from './legacy_crypto_schema_db';
 import { MEMBERSHIP_TOKEN_RECEIPTS_SCHEMA } from './membership_token_delivery_db';
@@ -937,23 +939,7 @@ CREATE TABLE IF NOT EXISTS chat_violations (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 CREATE INDEX IF NOT EXISTS chat_violations_account ON chat_violations(account_id, created_at DESC);
--- LEGACY (no longer read or written): the retired Solana wallet links. Project
--- H uses no cryptocurrency; the DDL stays so persisted databases load unchanged.
-CREATE TABLE IF NOT EXISTS wallet_links (
-  account_id INT PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,
-  pubkey TEXT NOT NULL UNIQUE,
-  linked_at TIMESTAMPTZ NOT NULL DEFAULT now()
-);
--- LEGACY (no longer read or written): the retired wallet sign-to-link challenges.
-CREATE TABLE IF NOT EXISTS wallet_link_challenges (
-  nonce TEXT PRIMARY KEY,
-  account_id INT NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
-  address TEXT NOT NULL,
-  message TEXT NOT NULL,
-  expires_at TIMESTAMPTZ NOT NULL,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
-);
-CREATE INDEX IF NOT EXISTS wallet_link_challenges_account ON wallet_link_challenges(account_id);
+${LEGACY_WALLET_LINK_SCHEMA}
 -- Steam account links (the deeds achievement mirror). Copies the wallet_links
 -- shape: one Steam account per WoCC account (account_id is the PK) and one
 -- WoCC account per Steam id (steam_id is UNIQUE). A row is a cosmetic-mirror
@@ -1401,6 +1387,7 @@ export async function ensureSchema(): Promise<void> {
     // The World Market sold-volume store (qr-19-sold-volume-four-seam-wiring):
     // realm x day x tracked-item daily aggregates, no FK, additive, idempotent.
     await client.query(MARKET_SOLD_VOLUME_SCHEMA);
+    await client.query(ACCOUNT_HOUSE_MIGRATION_SCHEMA); // one house per account audit
     // Seed chat-filter defaults once (idempotent), under the same advisory lock.
     await seedChatFilterDefaults(client);
     // Partitioned World Market backfill: runs inside this same advisory-lock
@@ -1488,6 +1475,7 @@ export async function ensureSchema(): Promise<void> {
     // Separate bounded transactions on this dedicated boot connection. Traffic
     // starts only after the restartable account-edge migration has completed.
     await migrateLegacyAccountSocial(client);
+    await migrateAccountHouses(client, REALM, (line) => console.log(line)); // one per account
   } catch (err) {
     await client.query('ROLLBACK').catch(() => {});
     throw err;

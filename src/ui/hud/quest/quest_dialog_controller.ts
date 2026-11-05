@@ -7,6 +7,7 @@ import { craftsForPairTarget } from '../../../sim/professions/archetype';
 import { professionQuestSelectionTargets } from '../../../sim/quests/profession_quest_effects';
 import { npcQuestMarkerKind, type QuestMarkerKind } from '../../../sim/quests/quest_marker_kind';
 import { questFixedReward } from '../../../sim/quests/quest_reward_choice';
+import { questRewardXp } from '../../../sim/quests/quest_xp';
 import { dist2d, type Entity, type ItemDef, questObjectiveRequired } from '../../../sim/types';
 import { WEEKLY_KEEPER_ID } from '../../../sim/weekly_rewards';
 import type { IWorld } from '../../../world_api';
@@ -975,7 +976,7 @@ export class QuestDialogController {
     const world = this.deps.world();
     const quest = QUESTS[questId];
     let html = `<div class="qd-sub">${esc(t('questUi.detail.rewards'))}</div>`;
-    html += `<div class="qd-obj">${esc(t('questUi.detail.xpReward', { xp: this.deps.text.number(quest.xpReward) }))} &nbsp; ${this.deps.text.money(quest.copperReward)}</div>`;
+    html += `<div class="qd-obj">${esc(t('questUi.detail.xpReward', { xp: this.deps.text.number(questRewardXp(quest, world.player.level)) }))} &nbsp; ${this.deps.text.money(quest.copperReward)}</div>`;
     // Authored gear joins the choice list below; only a non-gear authored reward
     // (or any authored reward on a quest without choices) is a fixed row.
     const rewardItemId = questFixedReward(quest, world.cfg.playerClass);

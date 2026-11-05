@@ -5366,8 +5366,29 @@ export const ja_JP: EnTranslations = {
       "itemName": "{item}、{quality}",
       "tooltip": "{quality}：アイテムレベル +{levels}。強化後も維持されます。"
     },
+    "townProject": {
+      "progress": "{project}: {stage}. {done} of {needed} bundles are in. Each bundle is {items}.",
+      "complete": "{project} is complete. The town thanks you.",
+      "contribute": "Contribute",
+      "bundleItem": "{count} {item}",
+      "bundleJoin": " and ",
+      "name": {
+        "eastbrook_yard_well": "The Yard Well",
+        "eastbrook_yard_well_shaft": "Line the shaft",
+        "eastbrook_yard_well_roof": "Raise the roof",
+        "eastbrook_yard_well_winch": "Hang the winch",
+        "eastbrook_street_lamps": "The Main Street Lamps",
+        "eastbrook_street_lamps_posts": "Set the posts",
+        "eastbrook_street_lamps_lanterns": "Hang the lanterns"
+      }
+    },
+    "durability": {
+      "low": "Your equipment is badly damaged. Repair it at an armorer, a weaponsmith or a forge.",
+      "broken": "Some of your equipment is broken and gives no stats. Repair it at an armorer, a weaponsmith or a forge."
+    },
     "itemTooltip": {
       "requiresLevel": "必要レベル {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "{tier}ランク・リフト装備",
       "riftUpgrade": "リフト強化 {level}/{max}",
       "riftSockets": "リフト宝石 {used}/{total}",
@@ -8028,6 +8049,7 @@ export const ja_JP: EnTranslations = {
       "denied": {
         "badLot": "その家は売りに出されていない。",
         "owned": "すでに家を所有している。",
+        "accountOwned": "Your account already has a house. An account can own one house.",
         "range": "{house}の正面の扉から遠すぎる。",
         "money": "{house}を買う余裕がない。",
         "dead": "死亡中は家を購入できない。",
@@ -17513,6 +17535,11 @@ export const ja_JP: EnTranslations = {
       "levelClass": "レベル{level} {className}"
     },
     "vendor": {
+      "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "騎乗訓練",
       "advancedRiding": "上級騎乗訓練",
       "ridingSpeed": "騎乗中の移動速度が{speed}%上昇します。すべてのマウントに適用されます。",

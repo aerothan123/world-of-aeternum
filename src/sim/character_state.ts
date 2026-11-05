@@ -128,6 +128,16 @@ export interface CharacterState extends ReferralRewardState {
   // who never bought one (zero-default omission); sanitizeHouseState is the one
   // load path. Forward-only: a pre-housing binary drops it on save.
   house?: SavedHouseState;
+  // Host-supplied at join, NEVER written by a save (savedCharacterStorage
+  // omits it): the name of the character on this account who holds the
+  // account's one house (server/account_house_join.ts). Absent offline.
+  accountHouseHolder?: string;
+  // Host-supplied at join, NEVER written by a save: the account house key
+  // (`acct:<id>`) every character of the account shares its house under.
+  accountHouseKey?: string;
+  // Life skills (src/sim/life_skills/life_skill_state.ts): the daily standing
+  // ledger behind the per-activity caps. Absent until the first grant.
+  lifeSkillStanding?: import('./life_skills/life_skill_state').LifeSkillStandingLedger;
   // Player housing (Project H) phase 2: the Furnishing craft's skill counter
   // (off the ring, so off craftSkills). Absent at zero; sanitizeFurnishingSkill
   // is the one load path. Forward-only like `house`.
@@ -308,7 +318,9 @@ export interface CharacterState extends ReferralRewardState {
   mountTrainingFeePaid?: boolean;
   // Riding skill purchased from Marla (80g). Optional and absent until bought.
   ridingTrained?: boolean;
-  ridingTier?: 1 | 2;
+  // 2 = Advanced Riding, 3 = Apprentice Riding (riding_training.ts); 1 is implied
+  // by ridingTrained and not written.
+  ridingTier?: 1 | 2 | 3;
   // PBE boost kit version applied (server/pbe_boost.ts); absent outside PBE.
   pbeBoostKit?: number;
   delveMarks?: number;

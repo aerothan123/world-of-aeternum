@@ -220,6 +220,7 @@ import {
 } from './chat_ignore_core';
 import { CHAT_TEMPLATE_KEYS, localizeChatBody } from './chat_templates';
 import { wireChromeFocus } from './chrome_focus_wiring';
+import { classCss } from './class_css';
 import { ClaudiumLauncherBalance } from './claudium_launcher_balance_core';
 import { createClaudiumPurchaseFacet } from './claudium_purchase_bridge';
 import { type ClaudiumRail, type ClaudiumSnapshot, ClaudiumWindow } from './claudium_window';
@@ -498,6 +499,7 @@ import { RiteController } from './hud/delve/rite_controller';
 import { DungeonPrompts, fctAvoidanceText, wardHitText } from './hud/dungeon';
 import { applyDungeonGuideSpeech } from './hud/dungeon/dungeon_guide_speech';
 import { DungeonTrackerPainter } from './hud/dungeon/dungeon_tracker_painter';
+import { DurabilityPainter, durabilityView } from './hud/durability';
 import { createFinderSurfaces } from './hud/expeditions';
 import { factionRewardTooltipLines } from './hud/faction_reward_tooltip_view';
 import { FiestaController } from './hud/fiesta/fiesta_controller';
@@ -709,8 +711,8 @@ import {
   instanceLockLine,
   instancePartyTradeLine,
   instanceTitleHtml,
+  itemGateLines,
   itemNumber,
-  itemRequiredLevelLine,
   materialMakersMarkLines,
   tooltipEffectiveQuality,
   vendorSellTooltipLine,
@@ -914,7 +916,7 @@ import {
   reliquaryRelicPageId,
   reliquaryRelicPageIndex,
 } from './reliquary_view';
-import { curatorRankNameKey, ReliquaryWindow } from './reliquary_window';
+import { curatorRankDisplayName, ReliquaryWindow } from './reliquary_window';
 import { closeReportWindow, openReportWindow } from './report_window';
 import { type RestLabelKey, restStateOf, restView } from './rest_indicator';
 import { paintRestIndicator } from './rest_indicator_painter';
@@ -1204,10 +1206,6 @@ const PET_MODE_DESC_KEYS: Record<PetMode, TranslationKey> = {
   aggressive: 'hud.pet.aggressiveDesc',
   assist: 'hud.pet.assistDesc',
 };
-// Classic class colors (CLASSES[cls].color is a 0xRRGGBB number) as a CSS
-// string, used to color-code party members on the minimap and in the frames.
-const classCss = (cls: string): string =>
-  `#${((CLASSES as Record<string, { color: number }>)[cls]?.color ?? 0x5fa8ff).toString(16).padStart(6, '0')}`;
 
 // The OFFLINE ignore store. Online, the ignore list is server-persisted and
 // arrives on the `social` frame, so this set is not consulted at all (see the
@@ -1243,11 +1241,6 @@ function appendChildSpan(parent: HTMLElement, className: string): HTMLElement {
   if (className) span.className = className;
   parent.appendChild(span);
   return span;
-}
-
-/** Named Curator rank for rank-up toast/banner (cosmetic chrome only). */
-function curatorRankDisplayName(rank: number): string {
-  return t(curatorRankNameKey(rank), { rank: formatNumber(rank) });
 }
 
 // Module-scope (created once, not per frame): freedAttackSlotAbility's abilityDef
@@ -4675,6 +4668,7 @@ export class Hud {
   });
   // Player frame: the vitals bar painter (hud/vitals/) over the family element
   // set: static name/portrait, cached heraldry and self PvP risk hosts.
+  private readonly durability = new DurabilityPainter(this.writerFacet, $('#dura-figure'));
   private readonly playerFramePainter = new VitalsPainter(this.writerFacet, {
     frame: this.playerFrameEl,
     pvpRisk: { badge: $('#pf-pvp'), minimap: $('#minimap-disc') },
@@ -6528,7 +6522,7 @@ export class Hud {
     if (requiredClasses) {
       html += `<div class="tt-sub">${esc(t('itemUi.tooltip.classes', { classes: requiredClasses.map(classDisplayName).join(', ') }))}</div>`;
     }
-    html += itemRequiredLevelLine(item, wearer.level) + treasureMapTooltipLine(item);
+    html += itemGateLines(item, wearer.level, instance) + treasureMapTooltipLine(item);
     html += this.itemProcBlock(item) + trinketTooltipLines(item, this.sim.player);
     if (compare !== 'noset') html += this.itemSetBlock(item);
     html += materialMakersMarkLines(item, instance, materialSources);
@@ -8450,6 +8444,7 @@ export class Hud {
     // gate) only ever shows/works while standing in a town hub. Cheap zone
     // check, gated to the slow tier since it changes only on foot travel.
     if (slowHud) {
+      this.durability.paint(durabilityView(sim.equipment, sim.equipmentInstances, ITEMS));
       const inTown = this.isInTown();
       const townFocusBtn = document.getElementById('mm-town-focus');
       if (townFocusBtn) townFocusBtn.style.display = inTown ? '' : 'none';
@@ -11722,6 +11717,7 @@ export class Hud {
         case 'housePurchased':
         case 'houseDenied':
         case 'houseFurniture': // Project H housing (src/ui/hud/housing/)
+        case 'townProject': // town restoration (life_skills/town_projects.ts)
           handleHouseEvent(ev, this, (x, l, ok) => this.showPrompt(x, l, ok, () => {}), sim);
           break;
         case 'gatherRareEvent': {
@@ -14199,7 +14195,7 @@ export class Hud {
     // unknown-id arm (R34) keeps the button live for grays only the server's
     // newer table can classify; that helper's doc owns the
     // enabled-quoting-zero trade the two rules compose into.
-    const sellJunkState = sellJunkButtonState(this.sim.inventory, ITEMS);
+    const sellJunkState = sellJunkButtonState(this.sim.inventory, ITEMS, this.sim, npc);
     const buyAndRefresh = (buy: () => void) => {
       buy();
       if ($('#bags').style.display !== 'none') this.renderBags();

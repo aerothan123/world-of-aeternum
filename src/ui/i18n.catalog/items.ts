@@ -236,6 +236,11 @@ const itemStringsEn = {
       levelClass: 'Level {level} {className}',
     },
     vendor: {
+      apprenticeRiding: 'Apprentice Riding Training',
+      repairAll: 'Repair All',
+      repairAllAria: 'Repair all equipment for {price}',
+      repairAllHint: 'Repairs every damaged item you wear and carry.',
+      repairAllNone: 'Nothing needs repairing.',
       basicRiding: 'Riding Training',
       advancedRiding: 'Advanced Riding Training',
       ridingSpeed:

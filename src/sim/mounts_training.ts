@@ -28,9 +28,12 @@ import { MOUNT_RACE_START_PLATFORM, STABLE_PADDOCK, TRAINING_MOUNT_KEY } from '.
 import { QUESTS } from './data';
 import { forceDismount, forceTrainingMount } from './mounts';
 import {
+  APPRENTICE_RIDING_TIER,
   BASIC_RIDING_FEE_COPPER,
+  nextRidingTier,
   ridingMoveSpeedPct,
   ridingTrainingFee,
+  ridingTrainingMinLevel,
   ridingTrainingTier,
 } from './riding_training';
 import type { PlayerMeta } from './sim';
@@ -83,6 +86,8 @@ const NOTICE_SUCCESS = "Marla takes the Valorsteed's reins. Well ridden.";
 const NOTICE_LEFT_YARD =
   'You leave the paddock and the lesson ends. Come back to Marla to try again.';
 const NOTICE_RIDING_LEARNED = 'You have learned Riding. You can now summon and ride a mount.';
+const NOTICE_APPRENTICE_LEARNED =
+  'You have learned Apprentice Riding. You can now summon and ride a mount.';
 
 function findStablemaster(ctx: SimContext): Entity | null {
   for (const e of ctx.entities.values()) {
@@ -91,8 +96,9 @@ function findStablemaster(ctx: SimContext): Entity | null {
   return null;
 }
 
-/** Purchase the next riding rank from Marla (80g basic, 1000g advanced).
- *  Checks level 20, proximity, sufficient copper, and that a rank remains.
+/** Purchase the next riding rank from Marla (riding_training.ts ladder: 2g
+ *  Apprentice at level 10, then 80g Riding and 1000g Advanced at level 20).
+ *  Checks the rank's level, proximity, sufficient copper, and that a rank remains.
  *  On success advances the character's training, charges its fee, and emits
  *  a notice toast. The npcId param identifies which NPC the client is interacting
  *  with (validated against the stablemaster template). */
@@ -100,13 +106,14 @@ export function learnRiding(
   ctx: SimContext,
   npcId: number,
   pid?: number,
-  expectedTier: 0 | 1 = 0,
+  expectedTier: 0 | 1 | 3 = 0,
 ): void {
   const r = ctx.resolve(pid);
   if (!r) return;
   const { meta, e } = r;
   const tier = ridingTrainingTier(meta);
-  if (tier === 2 || tier !== expectedTier) {
+  const next = nextRidingTier(tier);
+  if (next === null || tier !== expectedTier) {
     ctx.error(meta.entityId, 'You have already learned Riding.');
     return;
   }
@@ -114,8 +121,13 @@ export function learnRiding(
     ctx.error(meta.entityId, "You can't do that while dead.");
     return;
   }
-  if (e.level < MOUNT_TRAIN_MIN_LEVEL) {
-    ctx.error(meta.entityId, 'You must be level 20 to learn Riding.');
+  if (e.level < ridingTrainingMinLevel(tier)) {
+    ctx.error(
+      meta.entityId,
+      tier === 0
+        ? 'You must be level 10 to learn Apprentice Riding.'
+        : 'You must be level 20 to learn Riding.',
+    );
     return;
   }
   const npc = ctx.entities.get(npcId);
@@ -133,14 +145,22 @@ export function learnRiding(
     return;
   }
   meta.copper -= fee;
-  meta.ridingTrained = true;
-  meta.ridingTier = tier === 0 ? 1 : 2;
-  e.ridingTier = meta.ridingTier;
+  if (next === APPRENTICE_RIDING_TIER) {
+    // The apprentice rank rides without the legacy ridingTrained flag, which
+    // keeps meaning the level 20 Riding rank (the lesson quest's gate).
+    meta.ridingTier = APPRENTICE_RIDING_TIER;
+  } else {
+    meta.ridingTrained = true;
+    meta.ridingTier = next as 1 | 2;
+  }
+  e.ridingTier = meta.ridingTier ?? 0;
   ctx.notice(
     meta.entityId,
-    tier === 0
-      ? NOTICE_RIDING_LEARNED
-      : `You have learned Advanced Riding. Your mount speed is increased by ${Math.round(ridingMoveSpeedPct(2) * 100)}%.`,
+    next === APPRENTICE_RIDING_TIER
+      ? NOTICE_APPRENTICE_LEARNED
+      : next === 1
+        ? NOTICE_RIDING_LEARNED
+        : `You have learned Advanced Riding. Your mount speed is increased by ${Math.round(ridingMoveSpeedPct(2) * 100)}%.`,
   );
 }
 

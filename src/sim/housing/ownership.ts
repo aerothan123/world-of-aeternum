@@ -7,6 +7,7 @@
 // Every outcome is a personal, text-free SimEvent (houseOffer / housePurchased
 // / houseDenied); the client localizes from the ids.
 
+import { accountHouseSharer } from '../character_storage';
 import { type HouseLotDef, houseLotById, houseLotForDungeon } from '../content/house_lots';
 import { FURNISHING_STARTER_RECIPE_IDS } from '../content/recipes';
 import type { PlayerMeta } from '../sim';
@@ -62,6 +63,8 @@ export interface HouseView {
  *  The durable character id when the host supplies one (relogs rejoin the same
  *  copy), else the entity id (offline and headless hosts). */
 export function houseInstanceKey(meta: PlayerMeta): string {
+  // The account's one house: every character of the account enters ONE copy.
+  if (meta.accountHouseKey) return `house:${meta.accountHouseKey}`;
   return meta.characterId !== undefined
     ? `house:char:${meta.characterId}`
     : `house:pid:${meta.entityId}`;
@@ -90,6 +93,11 @@ export function houseEntryKey(
   if (e.ghost) return null;
   if (meta.house?.lot === lot.id || devBypass) return houseInstanceKey(meta);
   if (preflightOnly) return null;
+  if (meta.accountHouseHolder !== undefined && !meta.house) {
+    // One house per account: another character holds it, so no sale prompt.
+    if (houseOfferDue(meta, lot.id, ctx.time)) deny(ctx, meta.entityId, lot.id, 'account_owned');
+    return null;
+  }
   if (houseOfferDue(meta, lot.id, ctx.time)) {
     ctx.emit({
       type: 'houseOffer',
@@ -106,7 +114,7 @@ function deny(
   ctx: SimContext,
   pid: number,
   lotId: string,
-  reason: 'bad_lot' | 'owned' | 'range' | 'money' | 'dead',
+  reason: 'bad_lot' | 'owned' | 'account_owned' | 'range' | 'money' | 'dead',
 ): false {
   ctx.emit({ type: 'houseDenied', pid, lotId, reason });
   return false;
@@ -115,7 +123,9 @@ function deny(
 /**
  * Buy the house on `lotId` for the calling player. Server-authoritative: the
  * lot must exist, the buyer must be alive, own no house yet, stand within
- * HOUSE_PURCHASE_RANGE of its door and carry the price. Returns whether the
+ * HOUSE_PURCHASE_RANGE of its door and carry the price. One house per
+ * account: a character whose account house is held by another character
+ * (HousingPlayerState.accountHouseHolder) is refused. Returns whether the
  * purchase went through.
  */
 export function buyHouse(ctx: SimContext, lotId: string, pid?: number): boolean {
@@ -126,11 +136,25 @@ export function buyHouse(ctx: SimContext, lotId: string, pid?: number): boolean 
   if (!lot) return deny(ctx, id, lotId, 'bad_lot');
   if (r.e.dead || r.e.ghost) return deny(ctx, id, lotId, 'dead');
   if (r.meta.house) return deny(ctx, id, lotId, 'owned');
+  if (r.meta.accountHouseHolder !== undefined) return deny(ctx, id, lotId, 'account_owned');
+  // Server-side race close: another character of the account online right now
+  // already owns (or just bought) the house.
+  if (accountHouseSharer(ctx.players, r.meta)) return deny(ctx, id, lotId, 'account_owned');
   const door = { x: lot.doorPos.x, y: r.e.pos.y, z: lot.doorPos.z };
   if (dist2d(r.e.pos, door) > HOUSE_PURCHASE_RANGE) return deny(ctx, id, lotId, 'range');
   if (r.meta.copper < lot.priceCopper) return deny(ctx, id, lotId, 'money');
   r.meta.copper -= lot.priceCopper;
   r.meta.house = { lot: lot.id, boughtDay: ctx.resetDay, furniture: {}, storage: [] };
+  // Every online character of the same account shares the new house at once.
+  if (r.meta.accountHouseKey) {
+    for (const other of ctx.players.values()) {
+      if (other !== r.meta && other.accountHouseKey === r.meta.accountHouseKey) {
+        other.house = r.meta.house;
+        other.accountHouseHolder = undefined;
+        other.wireRev++;
+      }
+    }
+  }
   // Phase 2: a new owner knows the two starter Furnishing recipes outright
   // (the rest are taught at the toolworks), so the house is furnishable from
   // the day it is bought. Idempotent: knownRecipes is a set.

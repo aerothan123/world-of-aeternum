@@ -51,6 +51,7 @@ import { interactIgnivarRaidLore } from './ignivar_raid_lore';
 import { isInRaidInstance } from './instances/dungeons';
 import { FERRY_BELL_OBJECT_ID, tryRingFerryBell } from './interactions/ferry_bell';
 import { HUT_OBJECT_ID, tryBurnHut } from './interactions/firebottle_hut';
+import { tryContributeAtTownProject } from './life_skills/town_projects';
 import { mobLootSource } from './loot/awarded_loot_hold';
 import { hasSharedLootRights as computeSharedLootRights, lootHasGoneFfa } from './loot/loot_ffa';
 import {
@@ -632,6 +633,9 @@ export function interact(
   // Escort start: standing near an idle escortee whose quest this player has
   // active begins the walk (escort.ts picks the nearest eligible one).
   if (tryStartEscort(ctx, p, r.meta)) return;
+  // Town restoration (life_skills/town_projects.ts): standing at a project
+  // site, the press hands in one bundle of the current stage's materials.
+  if (tryContributeAtTownProject(ctx, r.meta, p)) return;
   let bestCorpse: Entity | null = null;
   let bestCorpseD2 = INTERACT_RANGE * INTERACT_RANGE;
   let bestObj: Entity | null = null;

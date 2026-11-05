@@ -5366,8 +5366,29 @@ export const zh_CN: EnTranslations = {
       "itemName": "{item}，{quality}",
       "tooltip": "{quality}：+{levels} 物品等级。强化后仍会保留。"
     },
+    "townProject": {
+      "progress": "{project}: {stage}. {done} of {needed} bundles are in. Each bundle is {items}.",
+      "complete": "{project} is complete. The town thanks you.",
+      "contribute": "Contribute",
+      "bundleItem": "{count} {item}",
+      "bundleJoin": " and ",
+      "name": {
+        "eastbrook_yard_well": "The Yard Well",
+        "eastbrook_yard_well_shaft": "Line the shaft",
+        "eastbrook_yard_well_roof": "Raise the roof",
+        "eastbrook_yard_well_winch": "Hang the winch",
+        "eastbrook_street_lamps": "The Main Street Lamps",
+        "eastbrook_street_lamps_posts": "Set the posts",
+        "eastbrook_street_lamps_lanterns": "Hang the lanterns"
+      }
+    },
+    "durability": {
+      "low": "Your equipment is badly damaged. Repair it at an armorer, a weaponsmith or a forge.",
+      "broken": "Some of your equipment is broken and gives no stats. Repair it at an armorer, a weaponsmith or a forge."
+    },
     "itemTooltip": {
       "requiresLevel": "需要等级 {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "{tier}级裂隙物品",
       "riftUpgrade": "裂隙强化 {level}/{max}",
       "riftSockets": "裂隙宝石 {used}/{total}",
@@ -8028,6 +8049,7 @@ export const zh_CN: EnTranslations = {
       "denied": {
         "badLot": "这座房屋不出售。",
         "owned": "你已经拥有一座房屋。",
+        "accountOwned": "Your account already has a house. An account can own one house.",
         "range": "你离{house}的前门太远了。",
         "money": "你买不起{house}。",
         "dead": "死亡状态下无法购买房屋。",
@@ -17513,6 +17535,11 @@ export const zh_CN: EnTranslations = {
       "levelClass": "{level} 级 {className}"
     },
     "vendor": {
+      "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "骑术训练",
       "advancedRiding": "高级骑术训练",
       "ridingSpeed": "骑乘时的移动速度提高{speed}%。适用于所有坐骑。",

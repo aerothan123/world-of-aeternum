@@ -5366,8 +5366,29 @@ export const tr_TR: EnTranslations = {
       "itemName": "{item}, {quality}",
       "tooltip": "{quality}: +{levels} öğe seviyeleri. Yükseltmeler sırasında korunur."
     },
+    "townProject": {
+      "progress": "{project}: {stage}. {done} of {needed} bundles are in. Each bundle is {items}.",
+      "complete": "{project} is complete. The town thanks you.",
+      "contribute": "Contribute",
+      "bundleItem": "{count} {item}",
+      "bundleJoin": " and ",
+      "name": {
+        "eastbrook_yard_well": "The Yard Well",
+        "eastbrook_yard_well_shaft": "Line the shaft",
+        "eastbrook_yard_well_roof": "Raise the roof",
+        "eastbrook_yard_well_winch": "Hang the winch",
+        "eastbrook_street_lamps": "The Main Street Lamps",
+        "eastbrook_street_lamps_posts": "Set the posts",
+        "eastbrook_street_lamps_lanterns": "Hang the lanterns"
+      }
+    },
+    "durability": {
+      "low": "Your equipment is badly damaged. Repair it at an armorer, a weaponsmith or a forge.",
+      "broken": "Some of your equipment is broken and gives no stats. Repair it at an armorer, a weaponsmith or a forge."
+    },
     "itemTooltip": {
       "requiresLevel": "Gereken Seviye {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "{tier} dereceli Yarık eşyası",
       "riftUpgrade": "Yarık yükseltmesi {level}/{max}",
       "riftSockets": "Yarık mücevherleri {used}/{total}",
@@ -8028,6 +8049,7 @@ export const tr_TR: EnTranslations = {
       "denied": {
         "badLot": "That house is not for sale.",
         "owned": "You already own a house.",
+        "accountOwned": "Your account already has a house. An account can own one house.",
         "range": "You are too far from the front door of {house}.",
         "money": "You cannot afford {house}.",
         "dead": "You cannot buy a house while dead.",
@@ -17513,6 +17535,11 @@ export const tr_TR: EnTranslations = {
       "levelClass": "{level}. seviye {className}"
     },
     "vendor": {
+      "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "Binicilik Eğitimi",
       "advancedRiding": "İleri Binicilik Eğitimi",
       "ridingSpeed": "Binekteyken hareket hızını {speed}% artırır. Tüm binekler için geçerlidir.",

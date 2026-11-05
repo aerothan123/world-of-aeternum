@@ -52,6 +52,7 @@ import {
   verifyLoginTwoFactor,
 } from './account';
 import { loadAccountBuddies } from './account_buddies_db';
+import { accountHouseForJoin } from './account_house_migration';
 import { loadAccountLedger } from './account_ledger_db';
 import { accountLedgerKeysFor } from './account_ledger_keys_cache';
 import { relicRecordsIdle } from './account_ledger_records';
@@ -152,6 +153,7 @@ import {
 } from './characters';
 import { pruneChatViolationsBatch } from './chat_filter_db';
 import {
+  claudiumPathEnabled,
   claudiumPreAuthMutationRateLimited,
   configureClaudiumRuntime,
   handleClaudiumApi,
@@ -444,6 +446,7 @@ import {
 } from './storage_purchases';
 import { configureSuspicionFlagDataset, suspicionFlagsIdle } from './suspicion_flags';
 import { listSuspicionFlagDataset } from './suspicion_flags_db';
+import { TownProjectsStore } from './town_projects_store';
 import { passesTurnstile } from './turnstile';
 import { pruneUnstuckReportsBatch } from './unstuck_db';
 import { stopUnstuckRecords, UNSTUCK_RECORD_SHUTDOWN_DRAIN_MS } from './unstuck_records';
@@ -2618,6 +2621,10 @@ async function handleApi(req: http.IncomingMessage, res: http.ServerResponse): P
         return json(res, 429, { error: 'rate limited' });
       return handleGitHubUnlink(req, res, accountId);
     }
+    // Early Access: a switched-off Claudium store exposes no /api/claudium path.
+    if (url.startsWith('/api/claudium') && !claudiumPathEnabled(url.split('?')[0])) {
+      return json(res, 404, { error: 'unknown endpoint' });
+    }
     if (req.method === 'POST' && url === '/api/claudium/stripe/webhook') {
       return handleClaudiumStripeWebhook(req, res);
     }
@@ -3353,6 +3360,13 @@ export async function startServer(): Promise<http.Server> {
   // releases the deliberately silent-inert Phase 2 wire).
   await game.loadGuildBanks();
   await game.loadRifts();
+  // Town restoration projects: the realm-wide counters (server/town_projects_store.ts).
+  const townProjects = new TownProjectsStore(game.sim.ctx, REALM, {
+    load: (key) => loadWorldState(key),
+    save: (key, data) => saveWorldState(key, data),
+  });
+  await townProjects.load();
+  townProjects.start();
   await game.loadChatFilter();
   await game.realmMotd.load();
   await game.loadBlockedIps();
@@ -3457,6 +3471,8 @@ export async function startServer(): Promise<http.Server> {
   const wsAuth = createWsAuth({
     game,
     getMembership,
+    accountHouse: (accountId, characterId) =>
+      accountHouseForJoin(pool, accountId, REALM, characterId),
     referralArmourForAccount,
     accountAndScopeForToken,
     moderationStatusForAccount,
@@ -3810,6 +3826,8 @@ export async function startServer(): Promise<http.Server> {
     await game.saveMarket();
     await game.saveMail();
     await game.saveRifts();
+    townProjects.stop();
+    await townProjects.saveIfChanged();
     await game.endAllPlaySessions();
     // Drain any bank_ledger writes still queued on the FIFO tail BEFORE the lease
     // sweep: once the leases drop, a replacement process can load the same character

@@ -3822,9 +3822,9 @@ export class ClientWorld extends ReconWireState implements IWorld {
     return this.selfOwnedMounts;
   }
   ridingTrained(): boolean {
-    return this.selfRidingTrained;
+    return this.selfRidingTrained || this.player.ridingTier === 3; // apprentice rides too
   }
-  ridingTrainingTier(): 0 | 1 | 2 {
+  ridingTrainingTier(): 0 | 1 | 2 | 3 {
     return this.player.ridingTier || (this.selfRidingTrained ? 1 : 0);
   }
   toggleMounted(): void {
@@ -3855,7 +3855,7 @@ export class ClientWorld extends ReconWireState implements IWorld {
     this.cmd({ cmd: 'buddy_autoloot', on: enabled });
   }
   // Training purchases are confirmed by the next authoritative snapshot.
-  learnRiding(npcId: number, expectedTier: 0 | 1 = 0): void {
+  learnRiding(npcId: number, expectedTier: 0 | 1 | 3 = 0): void {
     this.cmd({
       cmd: 'learn_riding',
       npc: npcId,

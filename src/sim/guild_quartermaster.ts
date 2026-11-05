@@ -33,6 +33,7 @@ import { mountOwned } from './mounts';
 import type { PlayerMeta } from './sim';
 import type { SimContext } from './sim_context';
 import type { Entity, GuildCosmeticRefusal } from './types';
+import { canRide } from './riding_training';
 
 /** The account-wide cosmetics ledger the buyer's host owns. Offline it is the Sim's own
  *  accountCosmetics mirror; on the server it is the acting session's cosmetics (never the
@@ -138,7 +139,7 @@ export function buyGuildCosmetic(
   }
   if (offer.kind === 'mount') {
     // the stable's own gate (items.ts buyItem): reins are no use to a rider who cannot ride
-    if (!meta.ridingTrained) {
+    if (!canRide(meta)) {
       refuse('riding');
       return;
     }
