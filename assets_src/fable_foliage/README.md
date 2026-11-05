@@ -23,3 +23,16 @@ Tripo-generated replacements (scripts/asset_pipeline prop lane, storybook style 
 | rock_1 | fable_rock_1 | prop_fable_rock_1_mw1udiu1 |
 | rock_2 | fable_rock_2 | prop_fable_rock_2_mw1ufdpn |
 | rock_3 | fable_rocks | prop_fable_rocks_mw1thywr |
+
+## Leaf sheets
+
+`leaf_sheets/` holds the painted sprite sheets the leaf-card atlases are cut from (Tripo text-to-image, original text-only prompts, stored as WEBP). `scripts/assets/fit_fable_foliage.mjs` keys each sheet off its flat background, finds its separate cluster islands, and packs the cells `LEAF_ATLASES` in `scripts/assets/fable_leaf_cards_core.mjs` names into one atlas per family.
+
+| sheet | prompt subject |
+|---|---|
+| broadleaf_a | broad oval leaves on twigs, some drooping |
+| broadleaf_b | rounded oak-like and linden-like leaves, drooping willow-like fronds |
+| blossom | small shrub leaves with pink and white blossoms |
+| pine_a | drooping fir bough sprays of fine needles |
+| pine_b | layered pine branch tips with pale new growth |
+| twig_dry | bare gnarled twigs with a few dry curled leaves |
