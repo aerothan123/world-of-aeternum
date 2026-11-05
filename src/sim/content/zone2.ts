@@ -1543,11 +1543,11 @@ export const ZONE2_QUESTS: Record<string, QuestDef> = {
     turnInNpcId: 'brother_aldric_fen',
     text: "Fenwick's wardens say the fish-men dredge idols from the lake bottom and clutch them like holy relics. If those idols are what I fear, I must see them with my own eyes. Take 5 from the Deepfen snappers: they will not part with them kindly.",
     completionText:
-      'Gravecaller work, older than Morthen, older than me. The sect did not begin in Eastbrook, $N. It began here, and the lake has been keeping its secrets.',
+      'Look here, $N, at the binding on each one: the same cold black cord the Proving Shore beacon was tied with. Gravecaller work, older than Morthen, older than me. Whoever ties these knots has been patient for a very long time.',
     objectives: [
       { type: 'collect', itemId: 'waterlogged_idol', count: 5, label: 'Waterlogged Idol' },
     ],
-    xpReward: 1050,
+    xpReward: 540,
     copperReward: 400,
     itemRewards: {},
     requiresQuest: 'q_deepfen',

@@ -25,6 +25,7 @@ import {
   CHAPTER_TWO_GATED_BUNDLES,
   CHAPTER_TWO_GATED_CATCH_SPOTS,
 } from '../src/sim/content/chapter_two_bundles';
+import { C2_ORWIN, CHAPTER_TWO_KINDLEMOOR } from '../src/sim/content/chapter_two_kindlemoor';
 import { ESCORTS, GROUND_OBJECTS, ITEMS, MOBS, NPCS, QUESTS, ZONES, zoneAt } from '../src/sim/data';
 import type { QuestDef } from '../src/sim/types';
 import { XP_TABLE } from '../src/sim/types';
@@ -309,8 +310,17 @@ describe('Chapter Two gated bundles', () => {
   }
 
   it('stands its records on shipped ground already on dry open ground today', () => {
-    // The pickers' trout spot (Eastbrook's town steps) is the gated record
-    // outside a frontier zone.
+    // Orwin (Eastbrook), Yara's mixing table (Fenbridge) and the pickers' trout
+    // spot (Eastbrook's town steps) are the gated records outside a frontier zone.
+    const orwin = CHAPTER_TWO_KINDLEMOOR.npcs[C2_ORWIN];
+    expect(dryAndOpen(orwin.pos.x, orwin.pos.z)).toBe(true);
+    expect(zoneAt(orwin.pos.x, orwin.pos.z).id).toBe('eastbrook_vale');
+    const table = CHAPTER_TWO_KINDLEMOOR.objects.find((g) => g.itemId === 'c2_fen_mixing_table');
+    expect(table).toBeDefined();
+    for (const p of table?.positions ?? []) {
+      expect(dryAndOpen(p.x, p.z)).toBe(true);
+      expect(zoneAt(p.x, p.z).id).toBe('mirefen_marsh');
+    }
     const trout = CHAPTER_TWO_GATED_CATCH_SPOTS.find((s) => s.itemId === 'c2_pickers_trout');
     expect(trout).toBeDefined();
     if (trout) {

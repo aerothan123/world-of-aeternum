@@ -64,6 +64,7 @@ export const CHAPTER_TWO_RETUNED_SHIPPED_QUESTS: Readonly<Record<string, readonl
     q_fenbridge_muster: [7, 'medium'],
     q_prowlers: [7, 'medium'],
     q_deepfen: [8, 'medium'],
+    q_idols: [8, 'medium'],
   });
 
 // Shipped NPCs the chapter speaks through (ids frozen; display names as shipped
