@@ -19,6 +19,8 @@ export interface HeightReport {
   maxVertexErrCm: number;
   /** worst |bilinear(decoded) - sim| at off-grid points, centimetres (Landscape triangle interpolation bound) */
   maxOffGridErrCm: number;
+  /** sim position (yards) of the cell centre that has the worst between-vertex error */
+  maxOffGridAt: { x: number; z: number } | null;
   samples: number;
 }
 
@@ -41,6 +43,7 @@ export function validateTileHeights(
   const n = TILE_VERTS;
   let maxV = 0;
   let maxO = 0;
+  let maxAt: { x: number; z: number } | null = null;
   let samples = 0;
   for (let j = 0; j < n; j += stride) {
     for (let i = 0; i < n; i += stride) {
@@ -63,7 +66,10 @@ export function validateTileHeights(
         const h11 = decodeHeight(heights[(j + 1) * n + i + 1], enc);
         const bil = (h00 + h10 + h01 + h11) / 4;
         const e2 = Math.abs(bil - terrainHeight(cx, cz, seed)) * 100;
-        if (e2 > maxO) maxO = e2;
+        if (e2 > maxO) {
+          maxO = e2;
+          maxAt = { x: cx, z: cz };
+        }
       }
     }
   }
@@ -71,6 +77,7 @@ export function validateTileHeights(
     tile: name,
     maxVertexErrCm: Math.round(maxV * 1000) / 1000,
     maxOffGridErrCm: Math.round(maxO * 1000) / 1000,
+    maxOffGridAt: maxAt,
     samples,
   };
 }

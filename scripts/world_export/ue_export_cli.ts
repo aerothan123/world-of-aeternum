@@ -14,7 +14,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
+import { zoneAt } from '../../src/sim/data';
 import { WORLD_SEED } from '../../src/sim/world_seed';
+import { knownFeatures } from './ue_known_features';
 import { IncrementalWriter, readPreviousFiles, stableJson } from './ue_manifest';
 import { allRoads } from './ue_roads';
 import {
@@ -196,6 +198,7 @@ const manifest = {
       offGridScope:
         'cells whose four corners lie inside a zone rect; padding cells are in tiles/*/zone_mask.png',
       withinTwoCm: worstVertex <= 2,
+      knownFeatures: knownFeatures(heightReports, (x, z) => zoneAt(x, z).id),
     },
     assets,
   },
