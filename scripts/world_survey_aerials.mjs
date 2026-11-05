@@ -10,6 +10,9 @@
 //
 // GRAPHICS_PRESET (default 3 high), ONLY (comma list of zone ids), TARGETS
 // (JSON file of [{ id, x, z, dist?, height? }] overriding the zone hubs).
+// LAPS (default 1): extra laps revisit every target without a screenshot and
+// log the long-session memory readout (JS heap, renderer geometry and texture
+// counts, resident zone count) after each stop, to check desktop eviction.
 import fs from 'node:fs';
 import path from 'node:path';
 import puppeteer from 'puppeteer-core';
@@ -74,11 +77,34 @@ if (process.env.TARGETS) {
       cx: ((z.xMin ?? -180) + (z.xMax ?? 180)) / 2, cz: (z.zMin + z.zMax) / 2 }));
   `);
 }
-for (const t of targets) {
-  if (ONLY && !ONLY.has(t.id)) continue;
-  const cx = t.cx ?? t.x;
-  const cz = t.cz ?? t.z;
-  await run(`
+const LAPS = Number(process.env.LAPS ?? 1);
+const memory = () =>
+  run(`
+    const g = window.__game;
+    const r = g.renderer;
+    let info = null;
+    for (const k of Object.keys(r)) { const v = r[k]; if (v && v.info && v.info.memory) { info = v.info.memory; break; } }
+    return { heapMb: performance.memory ? Math.round(performance.memory.usedJSHeapSize / 1048576) : null,
+      geometries: info ? info.geometries : null, textures: info ? info.textures : null,
+      zones: r.preparedZones ? r.preparedZones.size : null };
+  `).catch(() => null);
+for (let lap = 0; lap < LAPS; lap++)
+  for (const t of targets) {
+    if (ONLY && !ONLY.has(t.id)) continue;
+    if (lap > 0) {
+      await run(`
+      const g = window.__game; const p = g.sim.player;
+      const pos = g.sim.groundPos(${t.cx ?? t.x}, ${t.cz ?? t.z});
+      p.pos = { ...pos }; p.prevPos = { ...pos }; p.vx = 0; p.vy = 0; p.vz = 0;
+      g.renderer.editorCam = null;
+    `);
+      await sleep(GPU ? 10000 : 20000);
+      console.log('lap', lap, t.id, JSON.stringify(await memory()));
+      continue;
+    }
+    const cx = t.cx ?? t.x;
+    const cz = t.cz ?? t.z;
+    await run(`
     const g = window.__game;
     const p = g.sim.player;
     const pos = g.sim.groundPos(${cx}, ${cz});
@@ -86,10 +112,10 @@ for (const t of targets) {
     p.vx = 0; p.vy = 0; p.vz = 0;
     g.renderer.editorCam = null;
   `);
-  await sleep(GPU ? 12000 : 25000);
-  const dist = t.dist ?? 250;
-  const height = t.height ?? 230;
-  await run(`
+    await sleep(GPU ? 12000 : 25000);
+    const dist = t.dist ?? 250;
+    const height = t.height ?? 230;
+    await run(`
     const g = window.__game;
     const T = g.renderer.camera.position.constructor;
     const ty = g.sim.groundPos(${cx}, ${cz}).y;
@@ -98,13 +124,13 @@ for (const t of targets) {
       pos: new T(${cx}, ty + ${height}, ${cz} - ${dist}),
     };
   `);
-  await sleep(GPU ? 9000 : 18000);
-  const file = path.join(OUT, `${PREFIX}${t.id}.png`);
-  await page.screenshot({ path: file });
-  const perf = await run(
-    'const s = window.__game.perf && window.__game.perf.snapshot ? window.__game.perf.snapshot() : null; return s ? { fps: s.fps, drawCalls: s.drawCalls ?? s.calls, tris: s.triangles ?? s.tris } : null;',
-  ).catch(() => null);
-  console.log('wrote', file, JSON.stringify(perf));
-}
+    await sleep(GPU ? 9000 : 18000);
+    const file = path.join(OUT, `${PREFIX}${t.id}.png`);
+    await page.screenshot({ path: file });
+    const perf = await run(
+      'const s = window.__game.perf && window.__game.perf.snapshot ? window.__game.perf.snapshot() : null; return s ? { fps: s.fps, drawCalls: s.drawCalls ?? s.calls, tris: s.triangles ?? s.tris } : null;',
+    ).catch(() => null);
+    console.log('wrote', file, JSON.stringify(perf), JSON.stringify(await memory()));
+  }
 await run('window.__game.renderer.editorCam = null;');
 await browser.close();
