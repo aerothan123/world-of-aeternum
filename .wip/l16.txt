@@ -1,0 +1,6 @@
+tests/chapter_one_content.test.ts
+tests/quest_mechanics_wyndlewood.test.ts
+tests/town_board.test.ts
+tests/eastbrook_camp_spacing.test.ts
+tests/interact_object_credit.test.ts
+tests/escort_quest.test.ts

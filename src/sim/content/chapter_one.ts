@@ -134,7 +134,7 @@ export const CHAPTER_ONE_NPCS: Record<string, NpcDef> = {
     C1_OLVESSA,
     'Olvessa',
     'Herb Terrace Keeper',
-    { x: -30, z: -76 },
+    { x: -38, z: -77 },
     0,
     0x6b8e23,
     'Mud remembers every footprint, and so do the herbs. Tread kindly here.',
@@ -495,7 +495,7 @@ export const CHAPTER_ONE_OBJECTS: GroundObjectDef[] = [
     { x: 8, z: -52 },
     { x: -2, z: -60 },
   ]),
-  obj('c1_dew_damp_cloth', [{ x: -31.5, z: -77 }]),
+  obj('c1_dew_damp_cloth', [{ x: -34, z: -79 }]),
   obj('c1_windwhistle_patch', [
     { x: -35.5, z: -70 },
     { x: -38.2, z: -69.2 },
@@ -558,14 +558,14 @@ export const CHAPTER_ONE_OBJECTS: GroundObjectDef[] = [
     { x: 8.4, z: -80.9 },
   ]),
   obj('c1_dried_herb_packet', [
-    { x: -28.5, z: -77.5 },
-    { x: -28.5, z: -78.7 },
-    { x: -28.5, z: -76.3 },
+    { x: -40.5, z: -77.5 },
+    { x: -40.5, z: -78.7 },
+    { x: -40.5, z: -76.3 },
   ]),
   obj('c1_reed_mulch_bundle', [
-    { x: -28.5, z: -74.5 },
-    { x: -28.5, z: -75.7 },
-    { x: -28.5, z: -73.3 },
+    { x: -40.5, z: -74.5 },
+    { x: -40.5, z: -75.7 },
+    { x: -40.5, z: -73.3 },
   ]),
   obj('c1_lantern_oil_cup', [
     { x: 73.5, z: -39 },
