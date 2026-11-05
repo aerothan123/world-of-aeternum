@@ -9,9 +9,10 @@ import { ensureLocaleLoaded, setLanguage, t } from '../src/ui/i18n';
 import { localizeSimText } from '../src/ui/sim_i18n';
 
 const FACTIONS = [
-  ['rift_watch', 'hudChrome.currencies.riftWatchMark'],
-  ['church_order', 'hudChrome.currencies.churchOrderCrest'],
-  ['automatons', 'hudChrome.currencies.automatonCog'],
+  ['gilt_measure', 'hudChrome.currencies.giltMark'],
+  ['lanternwardens', 'hudChrome.currencies.lanternCrest'],
+  ['hearthwright_compact', 'hudChrome.currencies.hearthwrightCog'],
+  ['bracken_circle', 'hudChrome.currencies.brackenAcorn'],
 ] as const;
 
 afterEach(() => setLanguage('en'));

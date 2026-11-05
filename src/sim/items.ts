@@ -73,6 +73,7 @@ import {
   type FactionId,
   factionCurrencyName,
   factionDisplayName,
+  freshFactionCurrencies,
   STANDING_TIER_LABELS,
 } from './factions';
 import { formatMoney } from './format_money';
@@ -1520,7 +1521,7 @@ export function buyItem(
   let requiredFaction: FactionId | undefined;
   if (hasFactionPrice && factionGate.requirement) {
     requiredFaction =
-      factionGate.requirement.factionId ?? vendorFactionForNpc(npc.templateId) ?? 'church_order';
+      factionGate.requirement.factionId ?? vendorFactionForNpc(npc.templateId) ?? 'lanternwardens';
   }
   // Dead players (released ghosts included) cannot buy, matching the rest of
   // the vendor family (sellItem / sellAllJunk / buyBackItem below).
@@ -1671,7 +1672,7 @@ export function buyItem(
   if (tokenCost) ctx.removeItem(tokenCost.itemId, tokenCost.count, meta.entityId);
   if (hasFactionPrice && requiredFaction && !freeVendor) {
     if (!meta.factionCurrencies) {
-      meta.factionCurrencies = { rift_watch: 0, church_order: 0, automatons: 0 };
+      meta.factionCurrencies = freshFactionCurrencies();
     }
     meta.factionCurrencies[requiredFaction] -= factionCurrencyCost;
   }

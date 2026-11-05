@@ -3979,6 +3979,88 @@
   body.reduce-motion #guild-board-window .gb-presence .gb-presence-dot {
     animation: none;
   }
+  /* The town quest board's notices tab (src/ui/hud/guild_board/town_board_panel.ts):
+     a tab strip over the body, then one pinned notice card per posting. */
+  #guild-board-window .tb-tabs {
+    display: flex;
+    gap: 6px;
+    margin: 0 0 6px;
+    padding: 0 4px 6px;
+    border-bottom: 1px solid var(--color-border-showcase);
+  }
+  #guild-board-window .tb-tab {
+    padding: 4px 12px;
+    border: 1px solid var(--color-border-showcase);
+    border-radius: 4px;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+  }
+  #guild-board-window .tb-tab.active {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+  #guild-board-window .tb-intro {
+    margin: 2px 4px 8px;
+    opacity: 0.85;
+  }
+  #guild-board-window .tb-notices {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 10px;
+    padding: 0 4px 8px;
+  }
+  #guild-board-window .tb-notice {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 12px;
+    border: 1px solid var(--color-border-showcase);
+    border-radius: 4px;
+    background: rgba(238, 222, 186, 0.06);
+  }
+  #guild-board-window .tb-title {
+    margin: 0;
+    font-size: 15px;
+    color: var(--gold);
+  }
+  #guild-board-window .tb-poster {
+    font-size: 12px;
+    opacity: 0.75;
+  }
+  #guild-board-window .tb-text {
+    margin: 2px 0;
+    font-size: 13px;
+    line-height: 1.35;
+  }
+  #guild-board-window .tb-objectives {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 12px;
+  }
+  #guild-board-window .tb-rewards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    font-size: 12px;
+    opacity: 0.9;
+  }
+  #guild-board-window .tb-action {
+    margin-top: auto;
+    padding-top: 4px;
+  }
+  #guild-board-window .tb-status {
+    font-size: 12px;
+    opacity: 0.8;
+  }
+  #guild-board-window .tb-status.tb-ready {
+    color: var(--gold);
+    opacity: 1;
+  }
+  #guild-board-window .tb-done,
+  #guild-board-window .tb-locked {
+    opacity: 0.65;
+  }
   /* The category chip on the recruiting sub-line: the same green family as
      the accepting status, read as a tag rather than a status. */
   #guild-board-window .gb-tag {

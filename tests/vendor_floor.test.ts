@@ -854,6 +854,9 @@ describe('stock rows: the phase 11n pulls', () => {
       npc_rift_watch_quartermaster: 18,
       npc_church_order_quartermaster: 18,
       npc_automaton_quartermaster: 17,
+      // The Bracken Circle quartermaster (Wyndlewood): Herbalist Yara sells
+      // the three allied rows (FACTION_VENDOR_STOCK.bracken_circle).
+      herbalist_yara: 3,
       // The Mirefen tavern's innkeeper (feature/walkable-tavern-aaa): bread and water
       // for the road and the marsh's own fare, six existing food and drink rows.
       innkeeper_maudie: 6,

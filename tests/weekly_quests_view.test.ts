@@ -93,7 +93,7 @@ describe('the commendation view', () => {
       {
         weeklyQuest: { questId: 'wk_raid', week: 'wk_2', count: 1, state: 'completed' },
         weeklyQuestResetAtMs: 0,
-        factions: { rift_watch: 3000, church_order: 0, automatons: 0 },
+        factions: { gilt_measure: 3000, lanternwardens: 0, hearthwright_compact: 0 },
         player: { level: 10 },
       },
       0,
@@ -101,9 +101,10 @@ describe('the commendation view', () => {
     expect(view.commendation?.heading).toBe("Emissary's commendation");
     expect(view.commendation?.note).toContain('1,000');
     expect(view.commendation?.options.map((o) => [o.factionId, o.capped, o.claimed])).toEqual([
-      ['rift_watch', true, false],
-      ['church_order', false, false],
-      ['automatons', false, false],
+      ['gilt_measure', true, false],
+      ['lanternwardens', false, false],
+      ['hearthwright_compact', false, false],
+      ['bracken_circle', false, false],
     ]);
     expect(view.commendation?.claimedText).toBeNull();
   });
@@ -116,7 +117,7 @@ describe('the commendation view', () => {
           week: 'wk_2',
           count: 1,
           state: 'completed',
-          commended: 'church_order',
+          commended: 'lanternwardens',
         },
         weeklyQuestResetAtMs: 0,
         factions: {},
@@ -124,11 +125,11 @@ describe('the commendation view', () => {
       },
       0,
     );
-    expect(view.commendation?.options.find((o) => o.factionId === 'church_order')?.claimed).toBe(
+    expect(view.commendation?.options.find((o) => o.factionId === 'lanternwardens')?.claimed).toBe(
       true,
     );
     expect(view.commendation?.claimedText).toBe(
-      "This week's commendation went to the Church Order.",
+      "This week's commendation went to the Lanternwardens.",
     );
   });
 

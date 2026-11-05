@@ -27,6 +27,7 @@ import {
   type FactionId,
   factionDisplayName,
   maxStandingForLevel,
+  migrateFactionId,
 } from './factions';
 import { formatMoney } from './format_money';
 import { DAILY_LOCKOUT_RAID_ROOMS, WEEKLY_LOCKOUT_RAID_ROOMS } from './instances/dungeons';
@@ -268,12 +269,9 @@ export function sanitizeWeeklyQuestProgress(value: unknown): WeeklyQuestProgress
     typeof row.count === 'number' && Number.isFinite(row.count)
       ? Math.max(0, Math.min(quest.count, Math.floor(row.count)))
       : 0;
-  const commended =
-    row.state === 'completed' &&
-    typeof row.commended === 'string' &&
-    (FACTION_IDS as readonly string[]).includes(row.commended)
-      ? row.commended
-      : undefined;
+  // A commendation saved under a provisional faction id reads as its
+  // successor (factions.ts LEGACY_FACTION_IDS).
+  const commended = row.state === 'completed' ? migrateFactionId(row.commended) : undefined;
   const carried = row.state === 'completed' && commended === undefined && row.carried === true;
   return {
     questId: quest.id,

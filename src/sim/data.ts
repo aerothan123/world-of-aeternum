@@ -5,12 +5,31 @@ import { SHADOW_GUARDS, SHADOW_NPC_DEF } from './content/world_quest_shadow';
 import { bindFenbridgeActiveWorldGetter } from './fenbridge_touchup';
 import { applyWorldTouchup } from './world_touchup';
 import { WORLD_TOUCHUP } from './world_touchup.generated';
+
 // Content merge layer. Actual game content lives in sim/content/* — one
 // module per zone plus classes (abilities), shared items, and dungeons —
 // so content can grow without everything colliding in one file. This module
 // merges those records into the flat tables the rest of the engine consumes,
 // and owns the world-layout constants.
 
+import {
+  CHAPTER_ONE_CAMPS,
+  CHAPTER_ONE_ESCORTS,
+  CHAPTER_ONE_ITEMS,
+  CHAPTER_ONE_MOBS,
+  CHAPTER_ONE_NPCS,
+  CHAPTER_ONE_OBJECTS,
+  CHAPTER_ONE_QUESTS,
+  chapterOneNpcQuestIds,
+  TOWN_BOARD_QUESTS,
+} from './content/chapter_one';
+import {
+  applyChapterTwoReaches,
+  CHAPTER_TWO_ITEMS,
+  CHAPTER_TWO_OBJECTS,
+  CHAPTER_TWO_QUESTS,
+  chapterTwoNpcQuestIds,
+} from './content/chapter_two';
 import { BASE_ITEMS } from './content/items';
 import {
   isAuthoredMapPresentation,
@@ -498,6 +517,10 @@ export const ITEMS: Record<string, ItemDef> = mergeItems(
   GOURDLIGHT_DAILY_ITEMS,
   // Player housing (Project H) phase 2: the crafted furniture.
   FURNITURE_ITEMS,
+  // Wyndlewood Chapter One's quest items and inspected objects (content/chapter_one.ts).
+  CHAPTER_ONE_ITEMS,
+  // Wyndlewood Chapter Two's core quest items and objects (content/chapter_two.ts).
+  CHAPTER_TWO_ITEMS,
 );
 
 export type { AggregatedSetEffect } from './content/item_sets';
@@ -544,6 +567,8 @@ export const MOBS: Record<string, MobTemplate> = {
   // Gourdlight Eve's field boss and his adds (raised only while the event runs,
   // seasonal/scarecrow.ts; in no camp and no world-boss slot). Appended last.
   ...GOURDLIGHT_SCARECROW_MOBS,
+  // Wyndlewood Chapter One's creatures and escortees (content/chapter_one.ts).
+  ...CHAPTER_ONE_MOBS,
 };
 
 // Heroic upgraded drop variants: generated from the base item + mob loot tables and
@@ -615,6 +640,9 @@ export const NPCS: Record<string, NpcDef> = {
   // Gourdlight Eve's keeper (content/gourdlight_eve.ts): a dynamic singleton under a
   // reserved id, raised only while the event runs (seasonal/seasonal_tick.ts).
   ...GOURDLIGHT_EVE_NPCS,
+  // Wyndlewood Chapter One's new townsfolk (content/chapter_one.ts), appended
+  // last so every NPC placed before them keeps its entity id.
+  ...CHAPTER_ONE_NPCS,
 };
 
 // Graveyards + the Spirit Healer: re-exported so the Sim and spirit.ts import the
@@ -649,7 +677,23 @@ export const QUESTS: Record<string, QuestDef> = {
   ...HUB_PRACTICE_QUESTS,
   ...GOURDLIGHT_EVE_QUESTS,
   ...GOURDLIGHT_DAILY_QUESTS,
+  // Wyndlewood Chapter One and the Eastbrook quest board (content/chapter_one.ts).
+  ...CHAPTER_ONE_QUESTS,
+  ...TOWN_BOARD_QUESTS,
+  // Wyndlewood Chapter Two's core quests (content/chapter_two.ts).
+  ...CHAPTER_TWO_QUESTS,
 };
+
+// The chapter's quests ride their givers', turn-ins' and talk targets'
+// questIds lists (a town-board posting sits on its poster for the turn-in row
+// only, quests/quest_marker_kind.ts).
+for (const lists of [chapterOneNpcQuestIds(), chapterTwoNpcQuestIds()]) {
+  for (const [npcId, questIds] of Object.entries(lists)) {
+    const npc = NPCS[npcId];
+    if (!npc) continue;
+    for (const questId of questIds) if (!npc.questIds.includes(questId)) npc.questIds.push(questId);
+  }
+}
 
 // The choose-one leveling gear rides on the quest records (QuestDef.choiceRewards),
 // so the resolver, the turn-in, item levels and the dialogs all read one field.
@@ -680,6 +724,10 @@ export const QUEST_ORDER: string[] = [
   // the seasonal events' quests (open only while their event runs)
   ...Object.keys(GOURDLIGHT_EVE_QUESTS),
   ...Object.keys(GOURDLIGHT_DAILY_QUESTS),
+  // Wyndlewood Chapter One and the Eastbrook quest board, appended last.
+  ...Object.keys(CHAPTER_ONE_QUESTS),
+  ...Object.keys(TOWN_BOARD_QUESTS),
+  ...Object.keys(CHAPTER_TWO_QUESTS),
 ];
 
 // The owner's Quest Workshop quests (content/workshop_quests.generated.ts, a
@@ -755,6 +803,9 @@ export const CAMPS: CampDef[] = [
   // private streams (mob/idle_rng.ts) move: a content append like this one
   // legitimately re-mints the parity goldens without touching a draw digest.
   ...PROVING_SHORE_CAMPS,
+  // Wyndlewood Chapter One's camps (content/chapter_one.ts): offStream, appended
+  // last by the same rule.
+  ...CHAPTER_ONE_CAMPS,
   // The Eastbrook hub dummy is NOT a camp: it spawns with its sparring master
   // after the player (sim/hub_practice.ts), so it consumes only trailing ids.
 ];
@@ -775,6 +826,7 @@ export const ESCORTS: Record<string, EscortDef> = {
   ...PALMREACH_ESCORTS,
   ...FARSHORE_ESCORTS,
   ...WORLD_QUEST_ESCORTS,
+  ...CHAPTER_ONE_ESCORTS,
 };
 
 export const GROUND_OBJECTS: GroundObjectDef[] = [
@@ -795,6 +847,10 @@ export const GROUND_OBJECTS: GroundObjectDef[] = [
   ...FARSHORE_OBJECTS,
   ...PROVING_SHORE_OBJECTS,
   ...WORLD_QUEST_OBJECTS,
+  // Wyndlewood Chapter One's objects (reserved high entity ids, content/chapter_one.ts).
+  ...CHAPTER_ONE_OBJECTS,
+  // Wyndlewood Chapter Two's core objects (reserved high entity ids, content/chapter_two.ts).
+  ...CHAPTER_TWO_OBJECTS,
 ];
 
 // The content table itself (deep-frozen there), so every reader resolves a
@@ -1080,6 +1136,21 @@ export const ZONES: ZoneDef[] = [
   FARSHORE_ZONE,
   PROVING_SHORE_ZONE,
 ];
+
+// Wyndlewood Chapter Two's Southern Reaches quests (content/chapter_two.ts):
+// merged, appended last, only when the zone table carries their zones (the
+// world crew's feature/world-expansion row). Without those zones nothing of
+// the bundle exists and the core chapter plays around it.
+applyChapterTwoReaches({
+  zoneIds: ZONES.map((zone) => zone.id),
+  items: ITEMS,
+  mobs: MOBS,
+  npcs: NPCS,
+  quests: QUESTS,
+  questOrder: QUEST_ORDER,
+  camps: CAMPS,
+  objects: GROUND_OBJECTS,
+});
 
 export const WORLD_SIZE = 360; // the original strip's width (one grid column)
 // A zone without an explicit x-range spans the original strip column.

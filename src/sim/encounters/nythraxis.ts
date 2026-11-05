@@ -187,9 +187,10 @@ import {
 } from '../nythraxis_soul_rend';
 import {
   hasInteractObjectCredit,
-  interactObjectCreditKey,
   recordInteractObjectCredit,
 } from '../quests/interact_object_credit';
+import { applyQuestObjectUse, questObjectUseReady } from '../quests/quest_object_use';
+import { questObjectCreditKey } from '../quests/quest_station_craft';
 import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
 import { addThreat, clearThreat, SUMMONED_ADD_THREAT_SEED, threatEntries } from '../threat';
@@ -3102,11 +3103,15 @@ export function interactObjectForQuests(ctx: SimContext, obj: Entity, meta: Play
       // three times on the nearest watchbell finished "The Three Bells" without
       // walking the coast. Checked after the re-summon so a lost Bound Guardian
       // stays reachable.
-      const creditKey = interactObjectCreditKey(objectiveIndex, obj.pos);
-      if (hasInteractObjectCredit(qp, creditKey)) {
+      // A crafting station credits every use (quests/quest_station_craft.ts).
+      const creditKey = questObjectCreditKey(objective, objectiveIndex, obj.pos);
+      if (creditKey !== null && hasInteractObjectCredit(qp, creditKey)) {
         ctx.error(meta.entityId, 'You have already done this one.');
         return;
       }
+      // Use-item-on-object objectives (quests/quest_object_use.ts).
+      if (!questObjectUseReady(ctx, meta, objective)) return;
+      applyQuestObjectUse(ctx, meta, objective);
       const shared = sharedNythraxisObjectParticipants(ctx, meta, obj, qp.questId, objectiveIndex);
       for (const member of shared) {
         const memberQp = member.questLog.get(qp.questId);
@@ -3115,8 +3120,10 @@ export function interactObjectForQuests(ctx: SimContext, obj: Entity, meta: Play
         if (memberQp.counts[objectiveIndex] >= required) continue;
         // A party member who already took this object's credit does not take it
         // twice, even when a groupmate re-triggers the shared interact.
-        if (hasInteractObjectCredit(memberQp, creditKey)) continue;
-        recordInteractObjectCredit(memberQp, creditKey);
+        if (creditKey !== null) {
+          if (hasInteractObjectCredit(memberQp, creditKey)) continue;
+          recordInteractObjectCredit(memberQp, creditKey);
+        }
         memberQp.counts[objectiveIndex]++;
         member.counters.questProgress++;
         ctx.emit({

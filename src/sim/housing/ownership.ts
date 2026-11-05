@@ -10,6 +10,7 @@
 import { accountHouseSharer } from '../character_storage';
 import { type HouseLotDef, houseLotById, houseLotForDungeon } from '../content/house_lots';
 import { FURNISHING_STARTER_RECIPE_IDS } from '../content/recipes';
+import { recordFactionActivityOnce } from '../faction_activity';
 import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
 import { DT, dist2d, type Entity } from '../types';
@@ -160,6 +161,9 @@ export function buyHouse(ctx: SimContext, lotId: string, pid?: number): boolean 
   // the day it is bought. Idempotent: knownRecipes is a set.
   for (const recipeId of FURNISHING_STARTER_RECIPE_IDS) r.meta.knownRecipes.add(recipeId);
   ctx.emit({ type: 'housePurchased', pid: id, lotId: lot.id });
+  // Hearthwright Compact standing for founding a household, once per
+  // character (faction_activity.ts; a resale and rebuy never pays again).
+  recordFactionActivityOnce(ctx, r.meta, 'house_founded', 'first_house', null);
   return true;
 }
 

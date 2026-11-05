@@ -61,9 +61,10 @@ const gossipRowSig = (rows: { questId: string; kind: QuestMarkerKind }[]): strin
 
 /** The Allied Hearthstone attune row's localized hub label, per faction. */
 const HEARTH_HUB_KEYS: Readonly<Record<FactionId, TranslationKey>> = {
-  rift_watch: 'hudChrome.factionRewards.hub_rift_watch',
-  church_order: 'hudChrome.factionRewards.hub_church_order',
-  automatons: 'hudChrome.factionRewards.hub_automatons',
+  lanternwardens: 'hudChrome.factionRewards.hub_lanternwardens',
+  hearthwright_compact: 'hudChrome.factionRewards.hub_hearthwright_compact',
+  bracken_circle: 'hudChrome.factionRewards.hub_bracken_circle',
+  gilt_measure: 'hudChrome.factionRewards.hub_gilt_measure',
 };
 
 export interface QuestDialogTextPort {

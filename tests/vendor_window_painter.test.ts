@@ -1764,7 +1764,7 @@ describe('renderVendorWindow faction currencies', () => {
       price: {
         copper: 0,
         honor: 0,
-        factionMarks: { factionId: 'rift_watch', amount: 15 },
+        factionMarks: { factionId: 'gilt_measure', amount: 15 },
       },
       quantity: 1,
       affordable: true,
@@ -1775,7 +1775,7 @@ describe('renderVendorWindow faction currencies', () => {
       buyback: [],
       honorBalance: 0,
       hasHonorGoods: false,
-      vendorFactionId: 'rift_watch',
+      vendorFactionId: 'gilt_measure',
       factionCurrencyBalance: 45,
       multiple: 1,
     };
@@ -1784,10 +1784,10 @@ describe('renderVendorWindow faction currencies', () => {
 
     const balance = el.querySelector('.faction-currency-balance');
     expect(balance).not.toBeNull();
-    expect(balance?.textContent).toContain('Rift Watch Mark: 45');
+    expect(balance?.textContent).toContain('Gilt Mark: 45');
 
     const price = el.querySelector('.faction-currency-price');
     expect(price).not.toBeNull();
-    expect(price?.textContent).toContain('15 Rift Watch Mark');
+    expect(price?.textContent).toContain('15 Gilt Mark');
   });
 });

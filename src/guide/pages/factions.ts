@@ -1,4 +1,5 @@
-// Factions and Standing: a spoiler-safe overview of the three allied factions, how world
+// Factions and Standing: a spoiler-safe overview of the four allied factions (and the
+// hostile one they stand against), how world
 // quests raise standing with them, the six standing tiers and each faction's titles, the
 // quartermasters, where standing is read in game, and the deeds it records. Names, roles,
 // hubs, and tier names only (guide spoiler policy): no standing thresholds, no per-quest
@@ -20,7 +21,7 @@ export const factions: GuidePage = {
         ${pageHeader('guide.factionsPage.heading', 'guide.factionsPage.intro')}
         ${section(
           'guide.factionsPage.whoHeading',
-          `${p('guide.factionsPage.whoBody')}${p('guide.factionsPage.riftWatchBody')}${p('guide.factionsPage.churchOrderBody')}${p('guide.factionsPage.automatonsBody')}`,
+          `${p('guide.factionsPage.whoBody')}${p('guide.factionsPage.lanternwardensBody')}${p('guide.factionsPage.hearthwrightBody')}${p('guide.factionsPage.brackenBody')}${p('guide.factionsPage.giltBody')}${p('guide.factionsPage.paleAccordBody')}`,
         )}
         ${section(
           'guide.factionsPage.earningHeading',
@@ -28,7 +29,7 @@ export const factions: GuidePage = {
         )}
         ${section(
           'guide.factionsPage.tiersHeading',
-          `${p('guide.factionsPage.tiersBody')}${p('guide.factionsPage.riftWatchTitles')}${p('guide.factionsPage.churchOrderTitles')}${p('guide.factionsPage.automatonsTitles')}`,
+          `${p('guide.factionsPage.tiersBody')}${p('guide.factionsPage.lanternwardensTitles')}${p('guide.factionsPage.hearthwrightTitles')}${p('guide.factionsPage.brackenTitles')}${p('guide.factionsPage.giltTitles')}`,
         )}
         ${section('guide.factionsPage.quartermastersHeading', p('guide.factionsPage.quartermastersBody'))}
         ${section('guide.factionsPage.readingHeading', p('guide.factionsPage.readingBody'))}

@@ -1,0 +1,594 @@
+WYNDLEWOOD
+CHAPTER ONE: THE SHORE THAT REMEMBERS
+Levels 1 to 4
+
+The 28 quests contain 12 main quests and 12 side stories: eight standalone quests and four two-part chains. The 12 daily templates follow separately.
+
+Additional townsfolk: Tobbin Wickerby, a fisherman; Pella Nookwright, a carpenter; Della Brindlepot, a gardener; and Holven Marr, a gravekeeper.
+
+Story notes are designer-only. The player discovers evidence of coordinated wrongdoing, but does not learn the Pale Accord's name, leadership, or full purpose.
+
+========================================
+THE PROVING SHORE
+========================================
+
+01
+
+Title: An Arrival Without a Ticket
+Type: main
+Level: 1
+Giver and turn-in NPC: Fenlow, beside the beached skiff on the Proving Shore's southern beach.
+Prerequisite quest: none
+Objectives: Collect 3 Dry Supply Bundles from wreckage along the southern beach; inspect the Broken Lifeboat; return to Fenlow.
+Offer text: "You're breathing, which puts you ahead of your luggage. Gather anything dry from that wreckage while I fetch a blanket. We can discuss your unusual choice of landing place once your teeth stop chattering."
+Progress text: "Have you found enough dry supplies to make yourself useful rather than merely damp?"
+Completion text: "There's bread in that bundle and a blanket without too many holes. Sit a moment, then we'll work out what brought your boat onto the rocks."
+Reward faction: Lanternwardens
+Story note: The wreck introduces the consequences of a tampered shore signal without revealing who altered it.
+
+02
+
+Title: The Beacon That Lied
+Type: main
+Level: 1
+Giver and turn-in NPC: Fenlow, outside the ferry hut on the Proving Shore.
+Prerequisite quest: An Arrival Without a Ticket
+Objectives: Kill 4 Bristlejaw Shore Rats on the northern headland path; inspect the Northern Beacon; collect 2 Black Wick Knots from its opened lantern housing.
+Offer text: "That beacon should have guided your boat clear of the rocks, not invited it onto them. Someone's been up there, and the rats along the path have started biting anything with a shadow. Have a look inside the lantern, but don't touch anything still burning."
+Progress text: "What was inside the beacon that shouldn't have been?"
+Completion text: "That cord is cold enough to numb my fingers, yet the lantern was lit. I'll wrap it up for Eastbrook's priest, because I prefer my mysteries somewhere other than aboard my boat."
+Reward faction: Lanternwardens
+Story note: A Pale Accord cell is testing treated cord that also appears in later grave rituals.
+
+03
+
+Title: The Fish Must Be Consulted
+Type: side
+Level: 1
+Giver and turn-in NPC: Tobbin Wickerby, at the Proving Shore fishing jetty.
+Prerequisite quest: An Arrival Without a Ticket
+Objectives: Collect 1 Loan Fishing Rod from Tobbin's tackle rack; catch 4 Shore Minnows at the jetty; place the minnows in Tobbin's floating keep-net.
+Offer text: "Before we discuss fishing, you should understand that the fish consider themselves the injured party. Borrow my spare rod and catch a few minnows for the keep-net. Gently, please, because we're studying them rather than inviting them to supper."
+Progress text: "Have the fish agreed to participate?"
+Completion text: "Four healthy minnows, and not one signed complaint. We'll release them after I've checked their scales, which is more courtesy than they showed my last sandwich."
+Reward faction: Bracken Circle
+Story note: standalone
+
+04
+
+Title: Every Board Counts
+Type: chain 1 part 1
+Level: 1
+Giver and turn-in NPC: Fenlow, beside the damaged ferry walkway on the Proving Shore.
+Prerequisite quest: An Arrival Without a Ticket
+Objectives: Collect 1 Loan Woodcutting Axe from Fenlow's tool chest; gather 4 Shore Pine Logs from marked harvestable pines in the western copse; place them on the ferry's timber rack.
+Offer text: "The cargo walkway has developed an interest in dropping people into the sea. Bring me four sound pine logs from the marked trees behind the hut. Leave the old nesting tree alone, unless you'd like to negotiate with thirty furious gulls."
+Progress text: "Have you brought timber that looks more trustworthy than the walkway?"
+Completion text: "Those will do nicely, and the gulls appear to have spared you. Now we can turn this pile into something people may confidently stand upon."
+Reward faction: Hearthwright Compact
+Story note: standalone
+
+05
+
+Title: Something Solid Underfoot
+Type: chain 1 part 2
+Level: 1
+Giver and turn-in NPC: Fenlow, beside the damaged ferry walkway on the Proving Shore.
+Prerequisite quest: Every Board Counts
+Objectives: Collect 1 Packet of Deck Nails from Fenlow's tool chest; craft 2 Walkway Panels at the ferry workbench using the supplied timber; install them at the 2 marked gaps in the cargo walkway.
+Offer text: "You've provided the wood, so now comes the business of convincing it to become a walkway. Use my bench and the nails in that chest. I've marked the gaps, although the sea showing through them is also a useful clue."
+Progress text: "Are both gaps covered, or should I continue warning the passengers?"
+Completion text: "That feels solid enough for a loaded handcart. It's a small repair, but someone will get home dry because you bothered."
+Reward faction: Hearthwright Compact
+Story note: standalone
+
+06
+
+Title: An Admiral Among Crabs
+Type: side
+Level: 1
+Giver and turn-in NPC: Tobbin Wickerby, at the Proving Shore fishing jetty.
+Prerequisite quest: An Arrival Without a Ticket
+Objectives: Collect 1 Bait Herring from Tobbin's bait tub; bait the Empty Crab Pot beneath the old jetty; retrieve 1 Salt-Crumpled Hat from the captured crab.
+Offer text: "A crab has stolen my hat and now refuses to recognize my authority. Bait the pot beneath the jetty and retrieve it without hurting the little scoundrel. I want my hat back, not a diplomatic incident."
+Progress text: "Has the admiral surrendered his headwear?"
+Completion text: "That's my hat, though the crab has improved its ventilation. Let him out once you're finished, because he has already suffered the indignity of being caught by breakfast."
+Reward faction: Hearthwright Compact
+Story note: standalone
+
+07
+
+Title: Across Before the Kettle Boils
+Type: main
+Level: 2
+Giver and turn-in NPC: Fenlow, at the Proving Shore ferry landing; Brother Aldric, on the Eastbrook chapel steps.
+Prerequisite quest: The Beacon That Lied
+Objectives: Collect 1 Wrapped Beacon Sample from Fenlow; board the mainland ferry at the boarding bell; deliver the sample to Brother Aldric at Eastbrook chapel.
+Offer text: "Eastbrook lies upriver, where people generally arrive through doors rather than shipwrecks. Take this wrapped cord to Brother Aldric at the chapel. Tell him I want an explanation, preferably one that doesn't involve buying a new ferry."
+Progress text: "Have you brought the bundle Fenlow sent ahead word about?"
+Completion text: "Welcome to Eastbrook, and thank you for bringing this safely. Jorren will find you a warm meal while I examine the cord, but I would like you to return afterward."
+Reward faction: Gilt Measure
+Story note: The physical evidence travels with the player from the island to Eastbrook.
+
+========================================
+EASTBROOK: A PLACE IN TOWN
+========================================
+
+08
+
+Title: Someone to Vouch for You
+Type: main
+Level: 2
+Giver and turn-in NPC: Brother Aldric, on the Eastbrook chapel steps.
+Prerequisite quest: Across Before the Kettle Boils
+Objectives: Deliver 1 Beacon Thread Sample, supplied by Aldric, to Ivara at the apothecary; speak to Corren at the training yard; speak to Silven at the market stall; inspect the Eastbrook quest board outside the riverside inn.
+Offer text: "A stranger needn't remain one for long here. Take a sample to Ivara, introduce yourself to Corren and Silven, and look at the work posted outside the inn. Eastbrook has room for another pair of willing hands."
+Progress text: "Have you met the people who can help you find your feet?"
+Completion text: "Then you have somewhere to begin, and people who know your name. Ivara has already sent word that the thread troubles her, though she cannot yet say why."
+Reward faction: Hearthwright Compact
+Story note: Establishes the town's support network while keeping the beacon evidence under investigation.
+
+09
+
+Title: Buckles Before Glory
+Type: side
+Level: 2
+Giver and turn-in NPC: Brunna, at the Eastbrook armorer's forge.
+Prerequisite quest: Someone to Vouch for You
+Objectives: Gather 6 Copper Ore from exposed veins in the eastern quarry; craft 2 Copper Ingots at Brunna's public furnace using 3 ore per ingot; deliver the ingots to Brunna.
+Offer text: "The watch wants new breastplates, but half their existing straps won't hold a buckle. Bring me copper and smelt it cleanly. We can discuss glorious weapons after everyone can keep their armor on."
+Progress text: "Are those ingots ready, or are we still defending the town with loose straps?"
+Completion text: "That's clean metal, and I can work with it. A buckle won't earn a ballad, but it might keep the person wearing it alive."
+Reward faction: Hearthwright Compact
+Story note: standalone
+
+10
+
+Title: Handle With Considerable Doubt
+Type: side
+Level: 2
+Giver and turn-in NPC: Silven, at the Eastbrook market stall.
+Prerequisite quest: Someone to Vouch for You
+Objectives: Collect 1 Heavy Parcel and 1 Soft Parcel from Silven's packing bench; deliver the Heavy Parcel to Ivara at the apothecary; deliver the Soft Parcel to Brunna at the forge.
+Offer text: "Two labels were exchanged in a minor outbreak of administrative enthusiasm. Ivara needs her mortar, and Brunna needs her padded gloves. Please correct matters before either discovers an exciting new use for the other's order."
+Progress text: "Has everyone received what they actually paid for?"
+Completion text: "Both deliveries are accounted for, and neither customer has demanded my head. That is what I call a successful trading day."
+Reward faction: Gilt Measure
+Story note: standalone
+
+11
+
+Title: The Cold End of the Garden
+Type: chain 2 part 1
+Level: 2
+Giver and turn-in NPC: Della Brindlepot, at Eastbrook's riverside garden.
+Prerequisite quest: Someone to Vouch for You
+Objectives: Harvest 4 Healthy Turnips from the southern beds; collect 3 Blackened Root Samples from the northern bed; inspect the Frosted Fence Stake beside that bed.
+Offer text: "The south bed grows turnips, while the north bed appears to be growing disappointment. Its soil is cold enough to keep butter, even at noon. Bring me good vegetables and a few bad roots before the whole patch decides it's winter."
+Progress text: "Have you worked out which end of my garden still understands the season?"
+Completion text: "At least we'll have something for supper. That cord around the fence stake wasn't there when I planted, and I'd like to know who put it there."
+Reward faction: Hearthwright Compact
+Story note: An optional discovery shows that someone has planted a small corruption source in cultivated soil.
+
+12
+
+Title: Nothing Good Tied to a Root
+Type: chain 2 part 2
+Level: 2
+Giver and turn-in NPC: Della Brindlepot, at the riverside garden; Ivara, at the Eastbrook apothecary.
+Prerequisite quest: The Cold End of the Garden
+Objectives: Collect 2 Waxed Root Ties from beneath the garden's northern fence; gather 3 Meadow Balm Leaves from the nearby brook bank; deliver the ties and leaves to Ivara.
+Offer text: "I've dug down beside that stake, and someone has tied knots around my roots. Knots, in a vegetable garden, as though the turnips might escape. Take the bindings to Ivara, along with balm for the plants we've had to disturb."
+Progress text: "Have you brought both bindings and fresh balm?"
+Completion text: "The wax draws warmth from whatever touches it, which explains Della's damaged crop. Removing it should help the bed recover, but please tell her to report anyone digging near her fence."
+Reward faction: Bracken Circle
+Story note: The Pale Accord's treated bindings connect domestic damage to the same material found at the beacon.
+
+13
+
+Title: Flowers Facing Down
+Type: main
+Level: 2
+Giver and turn-in NPC: Brother Aldric, on the Eastbrook chapel steps.
+Prerequisite quest: Someone to Vouch for You
+Objectives: Inspect 3 Freshly Disturbed Graves in the chapel garden; speak to Holven Marr at the burial gate; collect 1 Black Cloth Snag from the gate hinge.
+Offer text: "Holven found the flowers on three graves pushed into the soil, blossoms first. That is not one of our customs, nor a child's joke I recognize. Ask him what he saw and examine the graves without disturbing their occupants."
+Progress text: "What did Holven see beside those graves?"
+Completion text: "He heard someone counting after midnight, and this cloth matches the thread Fenlow sent. I would rather have found a thoughtless vandal than someone so careful."
+Reward faction: Lanternwardens
+Story note: Deliberately marked graves provide the first mainland evidence of organized ritual activity.
+
+========================================
+EASTBROOK: THE RESTLESS EDGE
+========================================
+
+14
+
+Title: The Man Buried on Tuesday
+Type: main
+Level: 3
+Giver and turn-in NPC: Brother Aldric, at Eastbrook chapel.
+Prerequisite quest: Flowers Facing Down
+Objectives: Kill 4 Gravestirred Fieldhands in the chapel's outer burial ground; restore 2 Overturned Name Stones; collect 1 Unlit Grave Lamp from beside the opened central grave.
+Offer text: "Holven saw a man walking whom we buried together on Tuesday. I have checked the grave, and I fear there is no gentle explanation. Put the Gravestirred to rest and restore their name stones, because whatever moves them now must not take their names as well."
+Progress text: "Are the outer graves quiet again?"
+Completion text: "Thank you for treating them as people rather than obstacles. This lamp was never part of their burial, and I will find out who placed it there."
+Reward faction: Lanternwardens
+Story note: Introduces the Gravestirred and a planted ritual object without identifying the people responsible.
+
+15
+
+Title: The Warmth Gone Missing
+Type: main
+Level: 3
+Giver and turn-in NPC: Brother Aldric, at Eastbrook chapel; Ivara, at the apothecary.
+Prerequisite quest: The Man Buried on Tuesday
+Objectives: Kill 3 Briarbitten Foxes at the northern root hedge; gather 3 Cold Silvermint Sprigs beneath that hedge; collect 2 Waxed Bindings from exposed roots; deliver the samples to Ivara.
+Offer text: "The roots beside the burial ground have blackened, and even the foxes there have turned savage. Ivara believes the damage may tell us more than the graves alone. Take her herbs from the cold patches and anything tied among the roots."
+Progress text: "Have you brought samples from the damaged hedge?"
+Completion text: "The soil has been drained of warmth, not poisoned. These bindings match the beacon thread, which means the trouble has been carried here by someone with hands."
+Reward faction: Bracken Circle
+Story note: Connects corrupted wildlife, damaged plants, and grave stirring to a shared method.
+
+16
+
+Title: Please Do Not Pick the Choir
+Type: side
+Level: 3
+Giver and turn-in NPC: Olvessa, at the herb terrace beside Eastbrook's brook.
+Prerequisite quest: Someone to Vouch for You
+Objectives: Collect 3 Dew-Damp Cloths from Olvessa's basket; place them over 3 Windwhistle Flower Patches at the old footbridge; gather 3 Windwhistle Leaves from the soothed plants.
+Offer text: "Those flowers beneath the bridge have been singing since dawn, and even a happy song becomes tiresome by the seventeenth verse. Lay a damp cloth over each patch before taking a leaf. You needn't pluck the whole choir to borrow a little music."
+Progress text: "Did you soothe the flowers before gathering their leaves?"
+Completion text: "These leaves still carry a lovely little hum. I'll use them gently, and perhaps the bridge will enjoy a quiet afternoon."
+Reward faction: Bracken Circle
+Story note: standalone
+
+17
+
+Title: Della Takes the Long Way
+Type: side
+Level: 3
+Giver and turn-in NPC: Neris, at Eastbrook's northern lookout.
+Prerequisite quest: The Warmth Gone Missing
+Objectives: Speak to Della beside her overturned handcart at the willow footbridge; collect 3 Seed Sacks from the nearby bank; escort Della along the marked brook path to the northern lookout.
+Offer text: "Della took her handcart over the willow path after I warned her about the washout. I've found a wheel, but she shouted back when I called, so there's hope. Bring her and those seed sacks home before she attempts to repair the river."
+Progress text: "Have you reached Della at the footbridge?"
+Completion text: "She came back arguing, which is usually a good sign. Thank you for taking the sacks as well, because she would have gone straight back for them."
+Reward faction: Lanternwardens
+Story note: standalone
+
+18
+
+Title: Three Knocks for Supper
+Type: chain 3 part 1
+Level: 3
+Giver and turn-in NPC: Jorren, behind the counter at Eastbrook's riverside inn.
+Prerequisite quest: Someone to Vouch for You
+Objectives: Inspect 3 Tapping Wall Panels beside the inn pantry; collect 1 Nibbled Rent Notice from the pantry floor; examine the Disused Speaking Pipe behind the flour bin.
+Offer text: "Something in my pantry knocks three times whenever I serve supper. The guests say it's a ghost, but ghosts have never previously shown such an interest in dumplings. Find the cause before somebody starts selling tickets."
+Progress text: "Has our invisible diner left anything besides complaints?"
+Completion text: "Those flour prints are smaller than a mouse's, and something has eaten the word 'rent.' Whatever lives in that wall has already understood the expensive part of lodging."
+Reward faction: Hearthwright Compact
+Story note: standalone
+
+19
+
+Title: A Guest Between the Shelves
+Type: chain 3 part 2
+Level: 3
+Giver and turn-in NPC: Jorren, behind the counter at Eastbrook's riverside inn.
+Prerequisite quest: Three Knocks for Supper
+Objectives: Speak to Olvessa at the herb terrace about the flour prints; collect 1 Bread Heel from Jorren's counter; place it on the Empty Pantry Saucer; collect 1 Missing Pantry Key from the saucer after the visitor appears.
+Offer text: "My pantry key has vanished, and the knocking has become rather impatient. Ask Olvessa what leaves tiny flour prints, then offer our visitor something from the kitchen. I'd prefer a negotiated settlement to dismantling my inn."
+Progress text: "Has the pantry guest accepted our terms?"
+Completion text: "A cupboard spirit was tapping through the old speaking pipe to ask for food. It returned my key and offered three buttons for its room, so I believe we're making progress."
+Reward faction: Hearthwright Compact
+Story note: standalone
+
+20
+
+Title: The Order Nobody Signed
+Type: main
+Level: 3
+Giver and turn-in NPC: Brother Aldric, at Eastbrook chapel; Silven, at the market stall.
+Prerequisite quest: The Warmth Gone Missing
+Objectives: Deliver 1 Waxed Binding, supplied by Aldric, to Silven; inspect 3 Lamp-Supply Delivery Slips on Silven's ledger desk; collect 1 Amended Cart Tag from his storeroom packing table.
+Offer text: "Someone needed wax, cord, and lamps for these workings, and those things pass through ordinary hands before reaching wicked ones. Silven may recognize the supplies. Ask what he sold, not what he believes, and let the records answer."
+Progress text: "Have you checked the delivery slips against that cart tag?"
+Completion text: "Three buyers used three different names, but all their orders went on the same cart. The destination was Old Kiln Lane, and I dislike being made useful without knowing to whom."
+Reward faction: Gilt Measure
+Story note: Trade records reveal coordination within a small cell, not the identity or reach of the Pale Accord.
+
+========================================
+EASTBROOK: A WARNING, NOT A VICTORY
+========================================
+
+21
+
+Title: Where the Watch Cannot See
+Type: main
+Level: 4
+Giver and turn-in NPC: Brother Aldric, at Eastbrook chapel; Neris, at the charcoal store lookout above Old Kiln Lane.
+Prerequisite quest: The Order Nobody Signed
+Objectives: Speak to Neris at the Old Kiln Lane milepost; escort her to the charcoal store lookout; collect 2 Discarded Face Veils from thorn bushes along the marked approach.
+Offer text: "Neris has found where the supply cart left the road. Go with her while she follows the tracks, and watch the hedges when her eyes are on the ground. We need to know who is there before anyone attempts heroics."
+Progress text: "Have you checked the bushes along our approach?"
+Completion text: "There are people below us tending lamps around an open pit, and something in that pit keeps trying to stand. I'll send word to Aldric while you keep those veils."
+Reward faction: Lanternwardens
+Story note: The player witnesses a local cult operation but hears no faction name or explanation of its larger purpose.
+
+22
+
+Title: A Place for What You Keep
+Type: chain 4 part 1
+Level: 4
+Giver and turn-in NPC: Pella Nookwright, at Eastbrook's carpenter's yard.
+Prerequisite quest: Someone to Vouch for You
+Objectives: Gather 4 Vale Oak Logs from marked harvestable trees in the western coppice; collect 1 Hinge Packet from Brunna at the forge; craft 1 Small Storage Chest at Pella's public workbench; inspect the Housing Noticeboard beside the yard.
+Offer text: "You keep bringing useful things back to town, and pockets have limits. Build yourself a chest while you consider where you'd like to live. You needn't own a house to begin making a home."
+Progress text: "Does your chest close properly, or have you built a particularly ambitious box?"
+Completion text: "That chest is yours, including everything you eventually manage to squeeze into it. Keep it safe until you've chosen a place, and don't let Silven convince you that hinges count as luxury fittings."
+Reward faction: Hearthwright Compact
+Story note: standalone
+
+23
+
+Title: Room for a Working Life
+Type: chain 4 part 2
+Level: 4
+Giver and turn-in NPC: Pella Nookwright, at Eastbrook's carpenter's yard.
+Prerequisite quest: A Place for What You Keep
+Objectives: Gather 3 Vale Oak Logs from the western coppice; craft 1 Folding Worktable at Pella's bench; interact with the Furnishing Practice Marker inside her demonstration cottage.
+Offer text: "A home ought to hold something you made, and somewhere to make the next thing. Build a folding worktable, then try arranging it in my demonstration cottage. No purchase required, and please resist testing the walls with an axe."
+Progress text: "Have you tried the worktable in the cottage?"
+Completion text: "There you are, with room to work and enough floor left to walk across. Keep the table alongside your chest, because a useful home can begin with very little."
+Reward faction: Hearthwright Compact
+Story note: standalone
+
+24
+
+Title: The Sandwich Emergency
+Type: side
+Level: 4
+Giver and turn-in NPC: Corren, at the Eastbrook training yard.
+Prerequisite quest: Someone to Vouch for You
+Objectives: Kill 4 Orchard Boars around the southern patrol shelter; collect 3 Stolen Lunch Baskets from the nearby orchard; return the baskets to Corren.
+Offer text: "The patrol lunches have been stolen twice, and I will not have hungry recruits making decisions with spears. Clear the boars from the shelter and recover the baskets. For the record, I have withdrawn my earlier accusation of organized sabotage."
+Progress text: "Are the lunches recovered and the shelter safe?"
+Completion text: "The watch will eat, and I shall amend my report to say 'persistent livestock.' Nobody needs to know how long I spent questioning the baker."
+Reward faction: Lanternwardens
+Story note: standalone
+
+25
+
+Title: Someone Has Been Teaching Them
+Type: main
+Level: 4
+Giver and turn-in NPC: Brother Aldric, at Eastbrook chapel.
+Prerequisite quest: Where the Watch Cannot See
+Objectives: Kill 3 Veiled Rite Tenders at the open-air bone pit behind the abandoned charcoal store; extinguish 3 Bound Grave Lamps around the pit; collect 1 Soot-Folded Instruction Sheet from a defeated Rite Tender.
+Offer text: "Neris saw the dead rise when those lamps were lit and collapse when one went out. The people tending them attacked our messenger, so there can be no mistaking their intent. Stop the workings and bring back any instructions you find, because someone taught them this."
+Progress text: "Are all three lamps extinguished?"
+Completion text: "The pit is quiet, and those remains can finally be buried properly. These instructions look copied rather than composed, which means the people you stopped may not be the ones who began this."
+Reward faction: Lanternwardens
+Story note: Defeating one surface cell establishes a larger unseen source without exposing the Pale Accord's organization.
+
+26
+
+Title: The Promise Under the Paint
+Type: main
+Level: 4
+Giver and turn-in NPC: Brother Aldric, at the chapel reading desk.
+Prerequisite quest: Someone Has Been Teaching Them
+Objectives: Collect 2 Founders' Prayer Boards from the chapel loft; examine the Faded Founding Map behind the chapel's loose wall panel; compare the recovered instruction sheet with the prayer boards at Aldric's reading desk.
+Offer text: "This copied verse resembles a promise recorded in the Age of First Hearths, though someone has twisted its meaning. Fetch the old prayer boards from the loft and examine the map behind the painted panel. Our founders may have left us a warning worth hearing."
+Progress text: "Have you compared the verse with the founding records?"
+Completion text: "The original promise forbids keeping the dead in service to a crown, while this copy demands their obedience. An old cautionary verse calls such a ruler the Oathless King. The map places the promised resting ground beneath the Hollow Crypt."
+Reward faction: Hearthwright Compact
+Story note: The rites derive from Vauldren Sere's legacy, but the player learns only a folklore title and a possible destination.
+
+27
+
+Title: Supper, Despite Everything
+Type: side
+Level: 4
+Giver and turn-in NPC: Jorren, behind the counter at Eastbrook's riverside inn.
+Prerequisite quest: The Promise Under the Paint
+Objectives: Gather 2 Brook Trout from the town fishing steps and 3 Garden Carrots from the communal plot; craft 3 Covered Stew Bowls at the inn's public hearth; deliver 1 bowl each to Corren, Brunna, and Olvessa at their usual workstations.
+Offer text: "Everyone's been working late and pretending they aren't hungry. Help me make a few proper meals, then take them to the people too stubborn to stop. Terrible news can wait while somebody eats a carrot."
+Progress text: "Have all three bowls reached people rather than passing dogs?"
+Completion text: "Good, because they'll look after the rest of us better with something warm inside them. I've kept a bowl for you, and that wasn't an invitation to argue."
+Reward faction: Hearthwright Compact
+Story note: standalone
+
+28
+
+Title: A Door We Leave Shut
+Type: main
+Level: 4
+Giver and turn-in NPC: Brother Aldric, on the Eastbrook chapel steps.
+Prerequisite quest: The Promise Under the Paint
+Objectives: Read 2 Boundary Warnings along the marked Crypt Road; inspect the Outer Wicket overlooking the Hollow Crypt's sealed entrance without crossing it; deliver 1 Sealed Watch Warning, supplied by Aldric, to Neris at the Crypt Road watchpost; return to Aldric.
+Offer text: "The map leads to the Hollow Crypt, but finding a door does not oblige us to open it. Read the boundary stones and give Neris this warning. Stay outside the wicket, whatever you hear beyond it, and come back to me."
+Progress text: "Have you reached the outer wicket and warned Neris without crossing the boundary?"
+Completion text: "Fresh wax beneath the sealed doors is warning enough, and you were right to leave them shut. We will need experienced company before going farther. For tonight, Eastbrook has a watch on the road and one more reason to sleep."
+Reward faction: Lanternwardens
+Story note: Points toward the Hollow Crypt, a level 7 to 10 dungeon; all objectives remain on a safe exterior route, and the chapter does not unlock or enter it.
+
+========================================
+EASTBROOK QUEST BOARD
+12 REPEATABLE DAILY TEMPLATES
+========================================
+
+Daily rules: Variables in braces are filled from the permitted choices in each Objectives field. Select one matching target and location pair per posting. Daily counts never include named quest characters, protected trees, unique story objects, or dungeon enemies.
+
+Completing "Someone to Vouch for You" introduces the board. Individual postings still require their listed level. All daily objectives are available without waiting for a particular time of day.
+
+D01
+
+Title: Board Bounty: {TARGET}
+Type: daily
+Level: 2
+Giver and turn-in NPC: Eastbrook quest board, posted by Corren; Corren, at the training yard.
+Prerequisite quest: Someone to Vouch for You
+Objectives: Kill {COUNT} {TARGET} at {LOCATION}; report to Corren. Count: 4 to 6. Target/location pairs: Culvert Rats at the town drainage ditch, or Ditch Beetles beside the western roadside.
+Offer text: "We've had reports of {TARGET} troubling people at {LOCATION}. Remove {COUNT} of them and check your footing while you're there. I don't want a rescue operation attached to a routine patrol."
+Progress text: "Have you dealt with the full number listed on the board?"
+Completion text: "That should make the route safer for ordinary traffic. Good work, and thank you for returning without requiring a stretcher."
+Reward faction: Lanternwardens
+Story note: standalone
+
+D02
+
+Title: Clear Space for Honest Work
+Type: daily
+Level: 3
+Giver and turn-in NPC: Eastbrook quest board, posted by Brunna; Brunna, at the armorer's forge.
+Prerequisite quest: Someone to Vouch for You
+Objectives: Kill {COUNT} {TARGET} at {LOCATION}; report to Brunna. Count: 3 to 5. Target/location pairs: Quarry Burrowers at the eastern quarry, or Claygnaw Mites at the southern clay cut.
+Offer text: "The workers at {LOCATION} need their hands for tools, not for beating off {TARGET}. Clear {COUNT} from the worksite. I'll pay for a safe shift rather than another tale about why the ore hasn't arrived."
+Progress text: "Can the workers get back to their tools?"
+Completion text: "Then we can get something useful made today. You've earned your pay without needing to swing a hammer."
+Reward faction: Hearthwright Compact
+Story note: standalone
+
+D03
+
+Title: Teeth Along the Verge
+Type: daily
+Level: 4
+Giver and turn-in NPC: Eastbrook quest board, posted by Neris; Neris, at the northern lookout.
+Prerequisite quest: Someone to Vouch for You
+Objectives: Kill {COUNT} {TARGET} at {LOCATION}; report to Neris. Count: 3 to 5. Target/location pairs: Briarbitten Foxes at the northern root hedge, or Bramble Hounds beside the southern patrol track.
+Offer text: "I've marked where {TARGET} are approaching the road at {LOCATION}. Deal with {COUNT}, but leave the healthy wildlife alone. We're protecting a path, not emptying the countryside."
+Progress text: "Are those predators still coming close to the road?"
+Completion text: "I'll check the verge again on my next round. For now, the travelers behind you have a safer walk."
+Reward faction: Lanternwardens
+Story note: Wildlife corruption remains a local danger, but this daily provides no new evidence about its source.
+
+D04
+
+Title: Metal for the Morning Shift
+Type: daily
+Level: 2
+Giver and turn-in NPC: Eastbrook quest board, posted by Brunna; Brunna, at the armorer's forge.
+Prerequisite quest: Someone to Vouch for You
+Objectives: Gather {COUNT} {TARGET} at {LOCATION}; deliver the ore to Brunna. Count: 4 to 8. Target/location pairs: Copper Ore at the eastern quarry, or Tin Ore at the exposed brook cutting.
+Offer text: "I need {COUNT} pieces of {TARGET} from {LOCATION}. Bring sound ore rather than a sack of interesting gravel. The furnace has enough opinions without being fed rubbish."
+Progress text: "Have you gathered the full order of usable ore?"
+Completion text: "That's a proper load, and the forge can use all of it. Come back another day when you need honest work."
+Reward faction: Hearthwright Compact
+Story note: standalone
+
+D05
+
+Title: Wood That Has a Future
+Type: daily
+Level: 2
+Giver and turn-in NPC: Eastbrook quest board, posted by Pella Nookwright; Pella, at the carpenter's yard.
+Prerequisite quest: Someone to Vouch for You
+Objectives: Gather {COUNT} {TARGET} at {LOCATION}; deliver the logs to Pella. Count: 3 to 6. Target/location pairs: Vale Oak Logs from marked trees in the western coppice, or Riverside Alder Logs from marked trees in the managed brook grove.
+Offer text: "I've orders waiting for {COUNT} {TARGET}, and {LOCATION} has trees marked for cutting. Leave the unmarked ones standing. Good carpentry begins before the wood reaches the bench."
+Progress text: "Have you brought the marked timber rather than somebody's favorite shade tree?"
+Completion text: "These will become something useful instead of remaining a sketch on my wall. I'll put the offcuts aside as well, because waste makes expensive furniture."
+Reward faction: Hearthwright Compact
+Story note: standalone
+
+D06
+
+Title: Fresh Leaves, Clean Hands
+Type: daily
+Level: 2
+Giver and turn-in NPC: Eastbrook quest board, posted by Ivara; Ivara, at the apothecary.
+Prerequisite quest: Someone to Vouch for You
+Objectives: Gather {COUNT} {TARGET} at {LOCATION}; deliver them to Ivara. Count: 3 to 5. Target/location pairs: Silvermint Sprigs in the eastern meadow, or Meadow Balm Leaves along the town brook.
+Offer text: "I need {COUNT} fresh {TARGET} from {LOCATION}. Take the healthy growth and leave enough for each plant to recover. A treatment gathered carelessly begins with an injury of its own."
+Progress text: "Are the leaves fresh and free of damaged growth?"
+Completion text: "These are exactly what I needed. Thank you for bringing them promptly rather than letting them wilt beneath a collection of wolf teeth."
+Reward faction: Bracken Circle
+Story note: standalone
+
+D07
+
+Title: A Receipt Is a Beautiful Thing
+Type: daily
+Level: 2
+Giver and turn-in NPC: Eastbrook quest board, posted by Silven; Silven, at the market stall.
+Prerequisite quest: Someone to Vouch for You
+Objectives: Collect {COUNT} {TARGET} from Silven's packing bench; deliver them to {RECIPIENT} at {DESTINATION}; return to Silven. Count: 2 to 4. Paired orders: Rivet Packets to Brunna at the forge, or Hinge Bundles to Pella at the carpenter's yard.
+Offer text: "Please take {COUNT} {TARGET} to {RECIPIENT} at {DESTINATION}. The goods are paid for, properly labeled, and not yours to inspect for personal inspiration. Bring confirmation back, and we shall both enjoy the rare pleasure of an uncomplicated transaction."
+Progress text: "Has the recipient confirmed the entire delivery?"
+Completion text: "Everything is signed for, so everybody knows whom to blame if it goes missing later. Your payment, happily, is considerably less complicated."
+Reward faction: Gilt Measure
+Story note: standalone
+
+D08
+
+Title: Lunch Before Complaints
+Type: daily
+Level: 2
+Giver and turn-in NPC: Eastbrook quest board, posted by Jorren; Jorren, at the riverside inn.
+Prerequisite quest: Someone to Vouch for You
+Objectives: Collect {COUNT} {TARGET} from the inn's kitchen hatch; deliver them to {RECIPIENT} at {DESTINATION}; return to Jorren. Count: 2 to 5. Paired orders: Covered Stew Bowls to Corren at the training yard, or Bread Bundles to Neris at the northern lookout.
+Offer text: "I've prepared {COUNT} {TARGET} for {RECIPIENT}. Take them straight to {DESTINATION}, because hungry people can turn a short delay into a lifelong grievance. Anything you smell along the way remains part of the delivery."
+Progress text: "Has the food reached the people it was cooked for?"
+Completion text: "Good, because the kitchen was already receiving complaints from imaginary future customers. There's something small for you on the counter, and this time you're permitted to eat it."
+Reward faction: Hearthwright Compact
+Story note: standalone
+
+D09
+
+Title: Small Parcels, Growing Things
+Type: daily
+Level: 3
+Giver and turn-in NPC: Eastbrook quest board, posted by Olvessa; Olvessa, at the herb terrace.
+Prerequisite quest: Someone to Vouch for You
+Objectives: Collect {COUNT} {TARGET} from Olvessa's supply shelf; deliver them to {RECIPIENT} at {DESTINATION}; return to Olvessa. Count: 2 to 4. Paired orders: Dried Herb Packets to Ivara at the apothecary, or Reed Mulch Bundles to Della at the riverside garden.
+Offer text: "I've set aside {COUNT} {TARGET} for {RECIPIENT} at {DESTINATION}. Carry them gently and keep them dry. Things that grow deserve a little care even when they're wrapped in string."
+Progress text: "Have the bundles reached their proper hands?"
+Completion text: "Then something will be tended that might otherwise have been neglected. Small journeys can do a surprising amount of good."
+Reward faction: Bracken Circle
+Story note: standalone
+
+D10
+
+Title: A Road Checked Properly
+Type: daily
+Level: 2
+Giver and turn-in NPC: Eastbrook quest board, posted by Corren; Corren, at the training yard.
+Prerequisite quest: Someone to Vouch for You
+Objectives: Inspect {COUNT} distinct {TARGET} along {LOCATION}; report to Corren. Count: 2 to 4. Target/location pairs: Road Checkposts along the south road, or Quay Inspection Posts along the riverside walk.
+Offer text: "Check {COUNT} {TARGET} along {LOCATION} and report what you actually find. Do not substitute what a passing merchant claims his cousin saw. We have an entire council for that."
+Progress text: "Have you checked every post named in your assignment?"
+Completion text: "That's a useful report, with places and observations rather than adjectives. I'll pass it to the next watch before they set out."
+Reward faction: Lanternwardens
+Story note: standalone
+
+D11
+
+Title: Leave a Light Behind You
+Type: daily
+Level: 3
+Giver and turn-in NPC: Eastbrook quest board, posted by Neris; Neris, at the northern lookout.
+Prerequisite quest: Someone to Vouch for You
+Objectives: Collect {COUNT} Lantern Oil Cups from Neris's supply box; service {COUNT} distinct {TARGET} along {LOCATION}; report to Neris. Count: 2 to 4. Target/location pairs: Watch Lanterns on the Briar Gate circuit, or Bridge Signal Lamps along the old mill walk.
+Offer text: "Several lamps along {LOCATION} are running low. Take oil for {COUNT} {TARGET} and check their shutters while you're there. Someone coming home late should be able to see the next safe place."
+Progress text: "Are all the assigned lamps supplied and working?"
+Completion text: "I'll be able to follow that line of lights on tonight's round. So will everyone else who needs to reach home."
+Reward faction: Lanternwardens
+Story note: standalone
+
+D12
+
+Title: The Road, Not the Rumor
+Type: daily
+Level: 3
+Giver and turn-in NPC: Eastbrook quest board, posted by Silven; Silven, at the market stall.
+Prerequisite quest: Someone to Vouch for You
+Objectives: Inspect {COUNT} distinct {TARGET} at {LOCATION}; report the inspection to Silven. Count: 2 to 3. Target/location pairs: Water-Level Gauges at the town's brook crossings, or Cargo Mooring Rings along the market quay.
+Offer text: "I've heard three alarming accounts of {LOCATION}, none from anyone who's visited it today. Inspect {COUNT} {TARGET} and bring me facts. Rumors are remarkably expensive when attached to a delivery schedule."
+Progress text: "Do you have an actual inspection report for me?"
+Completion text: "Excellent, because now I can arrange deliveries around the conditions rather than the gossip. Reliable information is a commodity I am occasionally willing to pay for."
+Reward faction: Gilt Measure
+Story note: standalone
