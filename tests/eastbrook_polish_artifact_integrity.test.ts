@@ -1440,7 +1440,7 @@ const ACCEPTED_POLISH_V2_METADATA_SHA256 =
   // No capture was retaken.
   // Re-minted for the Wyndlewood wallet-package removal: pnpm-lock.yaml (a
   // fingerprinted input) lost the Reown and Solana stack. No capture was retaken.
-  '03d023483007afba2c8e609c53bc76551679c1769b93a19a4aa41c93c552a421';
+  '55475fee0cc108df2b33ff2495d1196803d55322ae06fbc958911c5db6261b60';
 const ACCEPTED_POLISH_V2_COMPOSITE_PROVENANCE =
   // Re-minted for the Studio town-dressing promotion: eastbrook_town.ts stands its micro batch
   // down under promotedScenery.authoredTownDressing. No capture was retaken.
@@ -1500,7 +1500,7 @@ const ACCEPTED_POLISH_V2_COMPOSITE_PROVENANCE =
   // No capture was retaken.
   // Re-minted for the Wyndlewood wallet-package removal: pnpm-lock.yaml (a
   // fingerprinted input) lost the Reown and Solana stack. No capture was retaken.
-  'a9847eebc91d1d102839d740f55a60c86e69ae59c4d6cad293a22c307902b0fb';
+  'a6b93cbd752456ed2afacb6e94b99df90f5a5e3083de3b794495bc156e348293';
 const ACCEPTED_POLISH_V2_METADATA = readJsonFile<CaptureMetadata>(ACCEPTED_POLISH_V2_METADATA_PATH);
 const ACCEPTED_POLISH_V2_PROVENANCE = ACCEPTED_POLISH_V2_METADATA.polishProvenance;
 const ACCEPTED_POLISH_V2_TOWN_CONTRACT = ACCEPTED_POLISH_V2_METADATA.records[0]?.townContract;
@@ -2912,7 +2912,7 @@ describe('Eastbrook polish performance and contact evidence', () => {
       // Re-minted for the Wyndlewood wallet-package removal (pnpm-lock.yaml moved);
       // this second-order performance seal follows the swept evidence bytes. No
       // capture was retaken.
-    ).toBe('d950d2000c50d900380864db562dc038b5370321d99f92909bedcae62aab9fc7');
+    ).toBe('a9617e8406b59783b89e949651c5ad6abaa71d7f43b1b3f8bb537aa84546dd32');
   });
 
   it('binds every historical after record to its accepted source and asset provenance', () => {

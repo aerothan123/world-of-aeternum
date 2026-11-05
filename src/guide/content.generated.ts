@@ -2594,7 +2594,9 @@ export const GUIDE_ZONES: GuideZoneInfo[] = [
     "families": [
       "beast",
       "spider",
-      "undead"
+      "humanoid",
+      "undead",
+      "elemental"
     ]
   },
   {
@@ -2614,6 +2616,7 @@ export const GUIDE_ZONES: GuideZoneInfo[] = [
     "welcome": "The Gilt Measure came to the white cliffs for chalk and stayed for what was under it. Someone else is digging further down, by lantern-less dark, and the prospectors at Coinwell would very much like to know who.",
     "families": [
       "beast",
+      "spider",
       "burrower",
       "humanoid",
       "troll",
@@ -2946,6 +2949,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "still": "/guide-stills/mob_wolf__2f2a44__s35.webp"
       },
       {
+        "name": "Windfall Boar",
+        "min": 6,
+        "max": 7,
+        "rare": false,
+        "templateId": "windfall_boar",
+        "model": "mob_wolf",
+        "tint": "#935116",
+        "tintStrength": 0.35,
+        "still": "/guide-stills/mob_wolf__935116__s35.webp"
+      },
+      {
         "name": "Mire Prowler",
         "min": 7,
         "max": 8,
@@ -2957,6 +2971,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "still": "/guide-stills/mob_wolf__4d5656__s35.webp"
       },
       {
+        "name": "Moor Hound",
+        "min": 8,
+        "max": 9,
+        "rare": false,
+        "templateId": "moor_hound",
+        "model": "mob_wolf",
+        "tint": "#6e5a44",
+        "tintStrength": 0.35,
+        "still": "/guide-stills/mob_wolf__6e5a44__s35.webp"
+      },
+      {
         "name": "Bog Bloat",
         "min": 9,
         "max": 11,
@@ -2966,6 +2991,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "tint": "#6b8e23",
         "tintStrength": 0.45,
         "still": "/guide-stills/mob_murloc__6b8e23__s45.webp"
+      },
+      {
+        "name": "Chalk Cliff Gull",
+        "min": 11,
+        "max": 12,
+        "rare": false,
+        "templateId": "chalk_cliff_gull",
+        "model": "mob_wolf",
+        "tint": "#e8e4da",
+        "tintStrength": 0.35,
+        "still": "/guide-stills/mob_wolf__e8e4da__s35.webp"
       },
       {
         "name": "Ridge Stalker",
@@ -3152,6 +3188,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "templateId": "spider_egg",
         "model": "mob_spider_egg_sac",
         "still": "/guide-stills/mob_spider_egg_sac.webp"
+      },
+      {
+        "name": "Dig Crawler",
+        "min": 11,
+        "max": 12,
+        "rare": false,
+        "templateId": "dig_crawler",
+        "model": "mob_spider",
+        "tint": "#5b5048",
+        "tintStrength": 0.35,
+        "still": "/guide-stills/mob_spider__5b5048__s35.webp"
       },
       {
         "name": "Canopy Weaver",
@@ -3429,6 +3476,24 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "still": "/guide-stills/player_priest.webp"
       },
       {
+        "name": "Waybill Cutpurse",
+        "min": 6,
+        "max": 7,
+        "rare": false,
+        "templateId": "waybill_cutpurse",
+        "model": "player_rogue",
+        "still": "/guide-stills/player_rogue.webp"
+      },
+      {
+        "name": "Moor Bandit",
+        "min": 9,
+        "max": 10,
+        "rare": false,
+        "templateId": "moor_bandit",
+        "model": "player_rogue",
+        "still": "/guide-stills/player_rogue.webp"
+      },
+      {
         "name": "Gravecaller Cultist",
         "min": 10,
         "max": 12,
@@ -3454,6 +3519,15 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "templateId": "gravecaller_summoner",
         "model": "player_warlock_female",
         "still": "/guide-stills/player_warlock_female.webp"
+      },
+      {
+        "name": "Veiled Digger",
+        "min": 11,
+        "max": 12,
+        "rare": false,
+        "templateId": "veiled_digger",
+        "model": "player_rogue",
+        "still": "/guide-stills/player_rogue.webp"
       },
       {
         "name": "Broodsworn Zealot",
@@ -3645,6 +3719,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
   {
     "family": "elemental",
     "creatures": [
+      {
+        "name": "Peatfire Wisp",
+        "min": 9,
+        "max": 10,
+        "rare": false,
+        "templateId": "peatfire_wisp",
+        "model": "mob_elemental",
+        "tint": "#e0782e",
+        "tintStrength": 0.4,
+        "still": "/guide-stills/mob_elemental__e0782e.webp"
+      },
       {
         "name": "Duskwisp",
         "min": 15,
@@ -10903,7 +10988,7 @@ export const GUIDE_PROF_CRAFTS: GuideProfCraft[] = [
         "hub": "Highwatch"
       },
       {
-        "name": "Apothecary Lin",
+        "name": "Ivara Fenmoss",
         "title": "Herbalist",
         "hub": "Eastbrook"
       }
@@ -16103,7 +16188,7 @@ export const GUIDE_PROF_CRAFTS: GuideProfCraft[] = [
         "hub": "Highwatch"
       },
       {
-        "name": "Apothecary Lin",
+        "name": "Ivara Fenmoss",
         "title": "Herbalist",
         "hub": "Eastbrook"
       }
@@ -22299,7 +22384,7 @@ export const GUIDE_PROF_STATIONS: GuideProfStations = {
       "hub": "Eastbrook",
       "zone": "Eastbrook Vale",
       "master": {
-        "name": "Apothecary Lin",
+        "name": "Ivara Fenmoss",
         "title": "Herbalist"
       }
     },

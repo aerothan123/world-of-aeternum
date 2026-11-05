@@ -742,7 +742,7 @@ const PINNED_POLISH_COMPOSITE_FINGERPRINT =
   // No capture was retaken.
   // Re-minted for the Wyndlewood wallet-package removal: pnpm-lock.yaml (a
   // fingerprinted input) lost the Reown and Solana stack. No capture was retaken.
-  'a9847eebc91d1d102839d740f55a60c86e69ae59c4d6cad293a22c307902b0fb';
+  'a6b93cbd752456ed2afacb6e94b99df90f5a5e3083de3b794495bc156e348293';
 
 function validPolishAttributionTargets(): AttributionTargetFixture[] {
   return [
