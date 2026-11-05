@@ -19,7 +19,8 @@
 //
 // The correct base is the same one the selective gate already resolves:
 // scripts/lib/gate_discovery.mjs `resolveSelectBase` (env override, then the
-// newest `origin/release/*` by version sort, then `origin/main`, then
+// newest `origin/release/*` by version sort, then the fork integration
+// branches in its `INTEGRATION_BRANCHES`, then `origin/main`, then
 // `origin/HEAD`, each verified with `git rev-parse --verify`). Reuse it
 // rather than re-deriving base resolution a second, different way; an
 // unresolvable base is a hard error here too, matching that module's
