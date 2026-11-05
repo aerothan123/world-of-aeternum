@@ -147,6 +147,7 @@ import {
 import { bakeWocShadowStandIn } from './woc_shadow_stand_in';
 import { prepareWocSitClips } from './woc_sit_pose';
 import { WYND_WEAPON_ACCESSORY } from './wynd_weapon_models';
+import { WYND_SEAT_DONORS } from './wynd_weapon_replacements';
 
 const DEFAULT_TINT_STRENGTH = 0.4;
 
@@ -408,6 +409,14 @@ interface VariantGrip {
 }
 // Exported for the same grip pins: an accessory family named in
 // KAYKIT_WEAPON_ACCESSORY without a row here (or a rig node) has no grip.
+// A retired inherited model (wynd_weapon_replacements.ts) rides its tier look's grip family. A
+// crossbow keeps its own: it seats on the kit crossbow's node until a crossbow base is made.
+for (const [key, source] of Object.entries(WYND_SEAT_DONORS)) {
+  const family = KAYKIT_WEAPON_ACCESSORY[source];
+  const own = KAYKIT_WEAPON_ACCESSORY[key];
+  if (family && own && own !== 'VAR_CROSSBOW') KAYKIT_WEAPON_ACCESSORY[key] = family;
+}
+
 export const VARIANT_GRIPS: Record<string, VariantGrip> = {
   VAR_SWORD: { lift: 0.04, maxHeight: 2.0 },
   VAR_DAGGER: { lift: 0.04, maxHeight: 1.4 },

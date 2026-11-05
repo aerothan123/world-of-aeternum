@@ -23,6 +23,7 @@ import { beforeAll, describe, expect, it } from 'vitest';
 import { KAYKIT_WEAPON_ACCESSORY, VARIANT_GRIPS } from '../src/render/characters/assets';
 import { heldWeaponSize, LOW_TIER_WEAPON_SIZE } from '../src/render/characters/held_item_size_core';
 import { variantGripTransform, WEAPON_GRIP_OVERRIDES } from '../src/render/characters/weapon_grip';
+import { WYND_SEAT_DONORS } from '../src/render/characters/wynd_weapon_replacements';
 import { ITEM_WEAPON_VARIANTS } from '../src/ui/weapon_variants';
 
 type Vec3 = [number, number, number];
@@ -35,7 +36,14 @@ const PACK = /_(starter|field|rare|epic)(_|$)/;
  *  and the hunter's crossbow on the kit crossbow's node (their own tests). */
 const KEYS = Object.keys(KAYKIT_WEAPON_ACCESSORY)
   .filter((key) => PACK.test(key) && VARIANT_GRIPS[KAYKIT_WEAPON_ACCESSORY[key]] !== undefined)
+  // a retired pack key holds a byte copy of a tier look measured here under its own name
+  .filter((key) => !Object.hasOwn(WYND_SEAT_DONORS, key))
   .sort();
+
+/** The measured key whose geometry a drawn key carries: a retired key is its tier look, and every
+ *  tier of a base shares the starter's mesh. */
+const measured = (key: string): string =>
+  (WYND_SEAT_DONORS[key] ?? key).replace(/_(mid|fine)$/, '_starter');
 
 /** Heights across the middle of the fist, in the slot's frame. */
 const PALM = [-0.05, -0.025, 0, 0.025, 0.05];
@@ -52,18 +60,7 @@ const NO_HANDLE_FAMILIES: ReadonlySet<string> = new Set(['VAR_BOW', 'VAR_BOOK'])
 
 /** Shapes whose working end is one-sided: the side it overhangs the handle by more is the
  *  cut. (A double-bit axe, a straight dagger and a hammer have no such side.) */
-const ONE_SIDED = [
-  'axe_starter',
-  'axe_field',
-  'axe_rare_a',
-  'axe_epic_gravecleaver',
-  'axe_wynd',
-  'dagger_rare_b',
-] as const;
-
-/** Curved blades whose POINT has a side. At rest it curls up, away from the ground: the
- *  dragonfang curling at the ground hung like a hook (owner review: upside down). */
-const POINT_UP = ['dagger_epic_dragonfang'] as const;
+const ONE_SIDED = ['axe_wynd'] as const;
 
 const meshes = new Map<string, Tri[]>();
 
@@ -201,22 +198,11 @@ function overhang(key: string, hand: Hand): { minusX: number; plusX: number } {
   return { minusX, plusX };
 }
 
-/** Which side of the handle the weapon's far point falls on, along the slot's X. */
-function point(key: string, hand: Hand): number {
-  const axis = palm(key, hand).centre[0];
-  let tip: Vec3 | null = null;
-  for (const tri of inSlot(key, hand)) {
-    for (const p of tri) if (!tip || p[1] > tip[1]) tip = p;
-  }
-  if (!tip) throw new Error(`${key} has no mesh`);
-  return tip[0] - axis;
-}
-
 describe('pack weapons in the hand', () => {
   it('covers every pack weapon an item draws', () => {
     const drawn = new Set(Object.values(ITEM_WEAPON_VARIANTS).filter((key) => PACK.test(key)));
     expect(drawn.size).toBeGreaterThan(50);
-    for (const key of drawn) expect(KEYS, key).toContain(key);
+    for (const key of drawn) expect(KEYS, key).toContain(measured(key));
     for (const key of KEYS) expect(meshes.get(key)?.length ?? 0, key).toBeGreaterThan(100);
   });
 
@@ -250,10 +236,10 @@ describe('pack weapons in the hand', () => {
     const lowTier = new Set(
       Object.entries(ITEM_WEAPON_VARIANTS)
         .filter(([itemId, key]) => PACK.test(key) && heldWeaponSize(itemId) < 1)
-        .map(([, key]) => key),
+        .map(([, key]) => measured(key)),
     );
-    // the starter and field sets
-    expect(lowTier.size).toBeGreaterThan(20);
+    // the tier looks the starter and field items draw, through the copies that hold them
+    expect(lowTier.size).toBeGreaterThan(5);
     for (const key of lowTier) {
       for (const hand of ['r', 'l'] as const) {
         const { centre, widest } = palm(key, hand, LOW_TIER_WEAPON_SIZE);
@@ -267,9 +253,9 @@ describe('pack weapons in the hand', () => {
 
   it('turn a one-sided head to the cut: down at rest, at the enemy in the stance', () => {
     const oneSided = KEYS.filter((key) => ONE_SIDED.some((shape) => key.startsWith(shape)));
-    // the starter axe, three field axes, three rare ones, two epic ones, three curved daggers,
-    // and the WYNDLEWOOD single-bit axes, one and two hand (a starter look stands for its three)
-    expect(oneSided).toHaveLength(14);
+    // the WYNDLEWOOD single-bit axes, one and two hand: a starter look stands for its three, and
+    // for every retired axe that now holds a copy of it
+    expect(oneSided).toHaveLength(2);
     for (const key of oneSided) {
       const right = overhang(key, 'r');
       const left = overhang(key, 'l');
@@ -280,43 +266,6 @@ describe('pack weapons in the hand', () => {
     }
   });
 
-  it('curls the point of a fang up at rest, not at the ground', () => {
-    const fangs = KEYS.filter((key) => POINT_UP.some((shape) => key.startsWith(shape)));
-    expect(fangs).toHaveLength(3);
-    for (const key of fangs) {
-      // the right slot's +X is the ground side at rest; the left slot mirrors it
-      expect(point(key, 'r'), `${key} right hand`).toBeLessThan(-0.05);
-      expect(point(key, 'l'), `${key} left hand`).toBeGreaterThan(0.05);
-      // a hilt a fist long: nothing wider than a handle anywhere the fist closes
-      for (const hand of ['r', 'l'] as const) {
-        const tris = inSlot(key, hand);
-        for (const height of [-0.09, -0.045, 0, 0.045, 0.09]) {
-          const cut = section(tris, height);
-          expect(cut.x[1] - cut.x[0], `${key} ${hand} at ${height}`).toBeLessThan(HANDLE_WIDTH);
-        }
-      }
-    }
-    // the measure itself: a straight dagger's point is on its handle's line
-    expect(Math.abs(point('dagger_field_iron', 'r'))).toBeLessThan(0.01);
-  });
-
-  // The starter staff's leather wrap is a band a touch thicker than the wood either side of
-  // it, a fist and a quarter long. Owner review: the hand held the staff behind it.
-  it('closes the fist on the wrap of the starter staff', () => {
-    const tris = inSlot('staff_starter', 'r');
-    const width = (height: number): number => {
-      const cut = section(tris, height);
-      return cut.x[1] - cut.x[0];
-    };
-    // the fist spans -0.092 to 0.096
-    for (const height of [-0.09, -0.045, 0, 0.045, 0.09]) {
-      expect(width(height), `across the fist at ${height}`).toBeGreaterThan(0.088);
-    }
-    // bare wood just past the fist, butt side and crook side
-    expect(width(-0.14)).toBeLessThan(0.086);
-    expect(width(0.14)).toBeLessThan(0.086);
-  });
-
   it('measures a real overhang on the one-sided shapes and none on the rest', () => {
     // the measure itself: an axe bit overhangs its haft far more to one side, a double-bit
     // axe and a straight dagger do not
@@ -324,8 +273,7 @@ describe('pack weapons in the hand', () => {
       const { minusX, plusX } = overhang(key, 'r');
       return Math.abs(plusX - minusX);
     };
-    expect(lopsided('axe_field_iron')).toBeGreaterThan(0.25);
-    expect(lopsided('axe_rare_b_ember')).toBeLessThan(0.03);
-    expect(lopsided('dagger_field_iron')).toBeLessThan(0.03);
+    expect(lopsided('axe_wynd_starter')).toBeGreaterThan(0.25);
+    expect(lopsided('dagger_wynd_starter')).toBeLessThan(0.03);
   });
 });

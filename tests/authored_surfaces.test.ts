@@ -15,6 +15,7 @@ import {
   VISUALS,
 } from '../src/render/characters/manifest';
 import { WYND_MODEL_KEYS } from '../src/render/characters/wynd_weapon_models';
+import { WYND_SEAT_DONORS } from '../src/render/characters/wynd_weapon_replacements';
 import { HELD_TOOL_VARIANTS } from '../src/ui/held_tool_variants';
 import { ITEM_WEAPON_VARIANTS } from '../src/ui/weapon_variants';
 
@@ -121,7 +122,6 @@ const LEGACY_UNFLAGGED_DEFS = new Set([
  *  (left as shipped on request). A new authored weapon goes in
  *  AUTHORED_HELD_MODELS instead. */
 const LEGACY_POLISHED_HELD_MODELS = new Set([
-  'ice_fang',
   'purple_axe', // same Tripo family as purple_dagger; landed after this guard was cut
   'purple_dagger',
   'purple_sword', // same Tripo family as purple_dagger; landed after this guard was cut
@@ -451,8 +451,11 @@ describe('authored surfaces', () => {
     // rare models (37 pack finishes and 13 repaints of them) and the 27 epic models
     // plus Balgath's three on the v0.45.0 integration (the Foreman's Barrowmaul, the
     // Shardpike and the Craterglass Stave), plus the 25 gathering tools
-    // plus every WYNDLEWOOD tier look (wynd_weapon_models.ts)
-    expect(AUTHORED_HELD_MODELS.size).toBe(138 + WYND_MODEL_KEYS.length);
+    // plus every WYNDLEWOOD tier look (wynd_weapon_models.ts) and every retired inherited model
+    // that now holds one (wynd_weapon_replacements.ts), most of which were here already
+    expect(AUTHORED_HELD_MODELS.size).toBeGreaterThanOrEqual(138 + WYND_MODEL_KEYS.length);
+    for (const key of Object.keys(WYND_SEAT_DONORS))
+      expect(AUTHORED_HELD_MODELS.has(key), key).toBe(true);
   });
 
   it('flags exactly the replaced creature and mount rigs, never a player body', () => {

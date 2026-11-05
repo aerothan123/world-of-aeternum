@@ -243,6 +243,7 @@ import {
 } from './woc_character_manifest';
 import { withWocKeyedAnimations, wocKeyedAnimsUrl } from './woc_keyed_animations';
 import { WYND_MODEL_KEYS, WYND_RIMLESS_MODEL_KEYS } from './wynd_weapon_models';
+import { WYND_SEAT_DONORS } from './wynd_weapon_replacements';
 import { wyndHeldModelKey } from './wynd_weapon_tier_core';
 
 export interface EmoteClipSpec {
@@ -2367,6 +2368,8 @@ export const AUTHORED_HELD_MODELS: ReadonlySet<string> = new Set([
   'shield_epic_votive_ember_warden',
   // The WYNDLEWOOD tier set (wynd_weapon_models.ts): painted atlases of their own
   ...WYND_MODEL_KEYS,
+  // the retired inherited models, which now hold tier looks (wynd_weapon_replacements.ts)
+  ...Object.keys(WYND_SEAT_DONORS),
 ]);
 
 /** True when a held-prop GLB url resolves to one of AUTHORED_HELD_MODELS (a held weapon
@@ -2401,6 +2404,9 @@ export const RIMLESS_HELD_MODELS: ReadonlySet<string> = new Set([
   'shield_epic_votive_bone_votive',
   'shield_epic_votive_ember_warden',
   ...WYND_RIMLESS_MODEL_KEYS,
+  ...Object.entries(WYND_SEAT_DONORS)
+    .filter(([, source]) => WYND_RIMLESS_MODEL_KEYS.includes(source))
+    .map(([key]) => key),
 ]);
 
 /** True when a held-prop GLB url resolves to one of RIMLESS_HELD_MODELS. */

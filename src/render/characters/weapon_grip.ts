@@ -10,6 +10,8 @@
 // still sit slightly wrong. WEAPON_GRIP_OVERRIDES layers a per-WEAPON nudge on
 // top so one model fits the hand nicely without retuning the whole family.
 
+import { WYND_SEAT_DONORS } from './wynd_weapon_replacements';
+
 /** Per-weapon grip fine-tune, applied ON TOP of the family VariantGrip. Every
  *  field is optional and defaults to identity, so an absent override reproduces
  *  the exact prior behavior. `pos` is a hand-local offset ADDED to the family
@@ -334,6 +336,14 @@ export const WEAPON_GRIP_OVERRIDES: Record<string, WeaponGripOverride> = {
   // The crozier's shaft runs beside its origin too.
   hammer_epic_spring_verdant_ivory: { pos: [0.051, 0, 0.009] },
 };
+
+// A retired inherited model (wynd_weapon_replacements.ts) now holds its tier look's bytes, so it
+// takes that look's fit; a fit tuned for the retired shape would put the new one off the fist.
+for (const [key, source] of Object.entries(WYND_SEAT_DONORS)) {
+  const fit = WEAPON_GRIP_OVERRIDES[source];
+  if (fit) WEAPON_GRIP_OVERRIDES[key] = fit;
+  else delete WEAPON_GRIP_OVERRIDES[key];
+}
 
 export interface GripTransform {
   position: [number, number, number];

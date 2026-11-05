@@ -219,29 +219,6 @@ describe('streamed weapon-skin prewarm staging', () => {
     expect(stage.group?.children).toEqual([staged]);
   });
 
-  it('releases the untextured ring surface with its failed unit', () => {
-    const key = 'astravyr_fang_of_the_fallen_star';
-    for (const tier of ['low', 'ultra'] as const) {
-      const restore = gfxInternalsForTest.overrideSettings(gfxInternalsForTest.settingsFor(tier));
-      try {
-        const stage = createWeaponVfxPrewarmSkinStage(new THREE.Scene());
-        const ring = stage
-          .stage(key)
-          .getObjectByName(`prewarm-skin-host:${key}:ring_gold`) as THREE.Mesh;
-        expect(ring?.isMesh, tier).toBe(true);
-        const geometryDispose = vi.spyOn(ring.geometry, 'dispose');
-        const materialDispose = vi.spyOn(ring.material as THREE.Material, 'dispose');
-
-        stage.disposeFailedUnit(`weapon-skins:compile:${key}`);
-
-        expect(geometryDispose, tier).toHaveBeenCalledTimes(1);
-        expect(materialDispose, tier).toHaveBeenCalledTimes(1);
-      } finally {
-        restore();
-      }
-    }
-  });
-
   describe('a throw while the host surfaces are built', () => {
     const key = 'astravyr_fang_of_the_fallen_star';
 
@@ -270,7 +247,7 @@ describe('streamed weapon-skin prewarm staging', () => {
         .filter((h) => h !== undefined)
         .sort();
 
-    it('disposes both surfaces when createWeaponVfx throws', () => {
+    it('disposes the host surface when createWeaponVfx throws', () => {
       const restore = gfxInternalsForTest.overrideSettings(
         gfxInternalsForTest.settingsFor('ultra'),
       );
@@ -290,12 +267,9 @@ describe('streamed weapon-skin prewarm staging', () => {
           expect(() => buildWeaponVfxPrewarmSkinGroup(key)).toThrow('stub createWeaponVfx failure'),
         );
         expect(thrown).toBe(true);
-        // The textured host is the tall box, the ring the small one.
-        expect(boxHeights(disposed.geometries)).toEqual([0.1, 1]);
-        expect(disposed.materials.sort()).toEqual([
-          'weapon-vfx-prewarm-host:ring_gold',
-          'weapon-vfx-prewarm-host:textured',
-        ]);
+        // The textured host is the one surface: no shipped skin has an untextured part now.
+        expect(boxHeights(disposed.geometries)).toEqual([1]);
+        expect(disposed.materials).toEqual(['weapon-vfx-prewarm-host:textured']);
       } finally {
         Object.defineProperty(spec, 'tier', {
           configurable: true,
@@ -306,58 +280,6 @@ describe('streamed weapon-skin prewarm staging', () => {
         restore();
       }
     });
-
-    it('disposes the textured surface when the ring worn layer throws', () => {
-      const restore = gfxInternalsForTest.overrideSettings(
-        gfxInternalsForTest.settingsFor('ultra'),
-      );
-      const wornThrow = vi.spyOn(wornStone, 'applyRiggedWornDetail').mockImplementationOnce(() => {
-        throw new Error('stub worn layer failure');
-      });
-      try {
-        const disposed = disposedDuring(() =>
-          expect(() => buildWeaponVfxPrewarmSkinGroup(key)).toThrow('stub worn layer failure'),
-        );
-        expect(wornThrow).toHaveBeenCalledTimes(1);
-        // The ring never finished building, so only the textured host was
-        // built; neither half of the ring was ever handed to the GPU.
-        expect(boxHeights(disposed.geometries)).toEqual([1]);
-        expect(disposed.materials).toEqual(['weapon-vfx-prewarm-host:textured']);
-      } finally {
-        wornThrow.mockRestore();
-        restore();
-      }
-    });
-  });
-
-  it('keys the ring host on the worn textures at compile time, not at build', async () => {
-    // The worn layer's customProgramCacheKey reads the family textures each
-    // time three asks for it, so the host links the textured variant the live
-    // ring draws only if the textures are resident when the entry COMPILES.
-    // They are: the boot lane that prepares them opens before the
-    // assetsReady() gating the Renderer (tests/defer_launcher_preloads.test.ts),
-    // and a profile rebuild prepares the target's before building its
-    // renderer (tests/graphics_rebuild_coordinator.test.ts).
-    const key = 'astravyr_fang_of_the_fallen_star';
-    const restore = gfxInternalsForTest.overrideSettings(gfxInternalsForTest.settingsFor('ultra'));
-    const ktx2 = vi
-      .spyOn(assetLoader, 'loadKtx2Texture')
-      .mockImplementation(() => Promise.resolve(new THREE.CompressedTexture([], 1, 1)));
-    try {
-      const group = buildWeaponVfxPrewarmSkinGroup(key);
-      const ring = group.getObjectByName(`prewarm-skin-host:${key}:ring_gold`) as THREE.Mesh;
-      const material = ring.material as THREE.MeshStandardMaterial;
-      expect(material.customProgramCacheKey()).toMatch(/^surface-detail\|off\|-\|-\|-\|-\|o\|/);
-
-      await wornStone.prepareSurfaceDetailProfileAssets(GFX);
-
-      expect(ktx2).toHaveBeenCalled();
-      expect(material.customProgramCacheKey()).toMatch(/^surface-detail\|on\|-\|-\|met\|-\|o\|/);
-      disposeWeaponVfxPrewarmSkinGroups([group]);
-    } finally {
-      ktx2.mockRestore();
-      restore();
-    }
   });
 
   it('maps only the two per-skin unit ids to a key', () => {
@@ -878,8 +800,9 @@ describe('buildWeaponVfxPrewarmGroup', () => {
       if (object.userData.__vfx) shells.push(object);
     });
 
-    // A ratchet, kept literal on purpose: one host surface per GLB material.
-    expect(hosts).toBe(29);
+    // A ratchet, kept literal on purpose: one host surface per GLB material (one per skin
+    // since the retired Astravyr ring went with its file).
+    expect(hosts).toBe(28);
     for (const key of Object.keys(WEAPON_VFX)) {
       expect(names, `spec ${key} missing from the prewarm group`).toContain(
         `prewarm-skin-host:${key}`,

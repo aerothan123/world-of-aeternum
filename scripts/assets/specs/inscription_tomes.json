@@ -1,28 +1,4 @@
 {
-  "items": [
-    {
-      "src": "tmp/asset_src/inscription_tomes/tome_silverleaf-final.glb",
-      "out": "models/weapons/tome_silverleaf.glb",
-      "type": "static",
-      "keepExtras": true
-    },
-    {
-      "src": "tmp/asset_src/inscription_tomes/tome_goldleaf-final.glb",
-      "out": "models/weapons/tome_goldleaf.glb",
-      "type": "static",
-      "keepExtras": true
-    },
-    {
-      "src": "tmp/asset_src/inscription_tomes/tome_sunpetal-final.glb",
-      "out": "models/weapons/tome_sunpetal.glb",
-      "type": "static",
-      "keepExtras": true
-    },
-    {
-      "src": "tmp/asset_src/inscription_tomes/tome_voidbound-final.glb",
-      "out": "models/weapons/tome_voidbound.glb",
-      "type": "static",
-      "keepExtras": true
-    }
-  ]
+  "items": [],
+  "note": "RETIRED (asset rights, 2026-11-05): the held model at this path is now a WYNDLEWOOD tier look (src/render/characters/wynd_weapon_replacements.ts), so this spec builds nothing."
 }

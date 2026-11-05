@@ -410,7 +410,7 @@ describe('the weapon-skin prewarm host warms the program the live weapon draws',
       expect(main.alphaMode ?? 'OPAQUE', key).toBe('OPAQUE');
       expect(!!main.pbrMetallicRoughness?.metallicRoughnessTexture, key).toBe(true);
       expect(!!main.normalTexture, key).toBe(true);
-      expect(!!main.occlusionTexture, key).toBe(true);
+      expect(!!main.occlusionTexture, key).toBe(false);
       expect(!!main.emissiveTexture, key).toBe(false);
       expect(Object.keys(main.extensions ?? {}), key).toEqual([]);
       expect(WEAPON_VFX_DOUBLE_SIDED_SKINS.has(key), key).toBe(main.doubleSided === true);
@@ -426,7 +426,7 @@ describe('the weapon-skin prewarm host warms the program the live weapon draws',
       expect(WEAPON_VFX_UNTEXTURED_PARTS[key] ?? [], key).toEqual(untextured.map((m) => m.name));
     }
     expect([...WEAPON_VFX_DOUBLE_SIDED_SKINS].every((key) => key in WEAPON_VFX)).toBe(true);
-    expect(Object.keys(WEAPON_VFX_UNTEXTURED_PARTS)).toEqual(['astravyr_fang_of_the_fallen_star']);
+    expect(Object.keys(WEAPON_VFX_UNTEXTURED_PARTS)).toEqual([]);
   });
 
   it.each(PROFILES)(
@@ -492,17 +492,16 @@ describe('the weapon-skin prewarm host warms the program the live weapon draws',
           // An absolute pin on the live ring, since the host and the live rig
           // share one worn helper and the parity above cannot see it vanish
           // from both at once.
-          expect(ringKeys.size).toBe(1);
-          const [ringKey] = ringKeys;
-          if (worn) expect(ringKey.startsWith(WORN_METAL_KEY_HEAD), ringKey).toBe(true);
-          else expect(ringKey).not.toContain('surface-detail|');
+          // No shipped skin has an untextured part since the tier looks replaced the inherited
+          // skins (the Astravyr ring was the one), so no live draw lacks UVs.
+          expect(ringKeys.size).toBe(0);
           // The release host never matched a live weapon on any tier, so the
           // comparison above is not trivially true.
           expect(releaseHits).toEqual([]);
           // No dead key: every program the entry warms is one a sighting asks
-          // for. Textured single-sided, textured double-sided, and the ring.
+          // for. Textured single-sided and textured double-sided (no skin has a ring now).
           expect([...hostUnion].map(tag).sort()).toEqual([...liveUnion].map(tag).sort());
-          expect(hostUnion.size).toBe(3);
+          expect(hostUnion.size).toBe(2);
         },
         overrides,
       );
@@ -605,8 +604,9 @@ describe('the weapon-skin prewarm host outlives live skin churn', () => {
       const controlDisposals: string[] = [];
       listenForDisposal(hostResourcesOf(control), controlDisposals);
       disposeWeaponVfxPrewarmSkinGroup(control);
-      // Both surfaces' geometry and material; the shared one-pixel map stays.
-      expect(controlDisposals).toHaveLength(4);
+      // The host surface's geometry and material (no skin has a second, untextured part since
+      // the retired Astravyr ring); the shared one-pixel map stays.
+      expect(controlDisposals).toHaveLength(2);
 
       const hostResources = new Set<HostResource>();
       const hostKeysBefore = new Set<string>();
@@ -656,8 +656,10 @@ describe('the weapon-skin prewarm host outlives live skin churn', () => {
 
       // The live chain really churned: every swap drew a fresh exclusive
       // clone and disposed it exactly once.
-      expect(watched.size).toBe(7);
-      expect(liveDisposals).toHaveLength(7);
+      // Seven swaps; a tier-look skin draws one clone per primitive, so at least seven clones,
+      // each disposed once.
+      expect(watched.size).toBeGreaterThanOrEqual(7);
+      expect(liveDisposals).toHaveLength(watched.size);
       expect(new Set(liveDisposals)).toEqual(watched);
       expect(hostDisposals).toEqual([]);
       const hostKeysAfter = new Set<string>();
@@ -665,7 +667,8 @@ describe('the weapon-skin prewarm host outlives live skin churn', () => {
         for (const hostKey of drawKeys(group, isHostSurface)) hostKeysAfter.add(hostKey);
       }
       expect([...hostKeysAfter].sort()).toEqual([...hostKeysBefore].sort());
-      expect(hostKeysAfter.size).toBe(3);
+      // textured single-sided and double-sided: no skin has a ring part now
+      expect(hostKeysAfter.size).toBe(2);
     });
   });
 });

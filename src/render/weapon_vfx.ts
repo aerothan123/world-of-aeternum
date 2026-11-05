@@ -3790,28 +3790,21 @@ function weaponVfxPrewarmHostMap(): THREE.Texture {
 /**
  * The shipped GLB material shape of each catalog skin, as far as it reaches a
  * program cache key. Every skin's main material carries base colour,
- * metal-rough, normal and occlusion textures and is opaque; what varies is
+ * metal-rough and normal textures (no occlusion) and is opaque; what varies is
  * `doubleSided`, and one GLB adds an untextured part. Pinned against each
  * GLB's own JSON by tests/weapon_skin_prewarm_host.test.ts, so a re-exported
  * skin that changes either fails there instead of linking live.
  */
 export const WEAPON_VFX_DOUBLE_SIDED_SKINS: ReadonlySet<string> = new Set([
-  'ice_fang',
-  'solheim_last_light_of_the_dawn',
-  'skyrender_the_firmament_s_wound',
   'cosmarch_spire_of_the_endless_void',
-  'meteorlatch_the_sky_s_last_judgment',
-  'rude_awakening_sword',
-  'rimecrusher',
-  'frostbite',
-  'shard_of_everwinter',
+  'duskwick_staff',
   'forgeheart_stave',
+  'hoarfrost_vigil',
+  'rimelight_staff',
 ]);
 
 /** Untextured, single-sided extra materials, by GLB material name. */
-export const WEAPON_VFX_UNTEXTURED_PARTS: Readonly<Record<string, readonly string[]>> = {
-  astravyr_fang_of_the_fallen_star: ['ring_gold'],
-};
+export const WEAPON_VFX_UNTEXTURED_PARTS: Readonly<Record<string, readonly string[]>> = {};
 
 /**
  * The textured host surface, in the class and texture slots the worn skin
@@ -3837,7 +3830,6 @@ function prewarmHostTexturedMaterial(side: THREE.Side): THREE.Material {
     color: 0xffffff,
     map,
     normalMap: map,
-    aoMap: map,
     side,
   });
   addRimGlow(material);

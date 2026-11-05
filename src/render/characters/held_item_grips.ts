@@ -1,4 +1,5 @@
 import { WYND_SHIELD_ACCESSORIES } from './wynd_weapon_models';
+import { WYND_SEAT_DONORS } from './wynd_weapon_replacements';
 
 export interface HandGrip {
   position: [number, number, number];
@@ -34,6 +35,15 @@ export const KAYKIT_SHIELD_ACCESSORIES = {
   // The WYNDLEWOOD round board (wynd_weapon_models.ts): origin at its middle, the heater's seat.
   ...WYND_SHIELD_ACCESSORIES,
 } as const;
+
+// A retired inherited shield (wynd_weapon_replacements.ts) now holds the tier board, whose origin
+// is its middle: it takes the tier board's seat, not the retired shape's.
+for (const [key, source] of Object.entries(WYND_SEAT_DONORS)) {
+  const seat = (WYND_SHIELD_ACCESSORIES as Record<string, string>)[source];
+  if (seat && Object.hasOwn(KAYKIT_SHIELD_ACCESSORIES, key)) {
+    (KAYKIT_SHIELD_ACCESSORIES as Record<string, string>)[key] = seat;
+  }
+}
 
 // Extracted from the authored accessory nodes in the original KayKit knight
 // rig. Left-hand shields sit flat against the forearm; the right-hand rows are

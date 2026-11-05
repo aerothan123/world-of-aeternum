@@ -932,7 +932,8 @@ describe('grip override wiring (editor saves reach the game)', () => {
     expect(bare.position).toEqual([0, 0.05, 0]);
     expect(bare.quaternion).toEqual([0, 1, 0, 0]);
     expect(bare.scale).toBe(1);
-    const row = WEAPON_GRIP_OVERRIDES.solheim_last_light_of_the_dawn;
+    // a fit with an offset and a turn (the WYNDLEWOOD staff steps into the fist)
+    const row = WEAPON_GRIP_OVERRIDES.staff_wynd_starter;
     expect(row).toBeTruthy();
     const tuned = variantGripTransform(1.2, false, 0.05, 1.6, row);
     expect(tuned.scale).toBeCloseTo((row?.scale ?? 1) * 1, 5);
