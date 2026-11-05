@@ -1,11 +1,13 @@
 import * as THREE from 'three';
 import { biomeHazeUniforms, hasBiomeHazeField } from '../biome_haze_field';
+import { GFX } from '../gfx';
 import { applyTextureAnisotropy } from '../texture_anisotropy';
 import type { WaterWaveUniforms } from '../water_simulation';
 import { buildOceanFoamTexels, OCEAN_FOAM_SIZE } from './ocean_foam_core';
 import type { OceanSurfaceUniforms } from './ocean_simulation';
 import { oceanDepthFragment, oceanSurfaceFragment, oceanSurfaceVertex } from './ocean_surface_glsl';
 import { waterCharacterUniforms } from './water_character_field';
+import { CLASSIC_OCEAN_LOOK, oceanLookFor } from './water_style_core';
 
 // The ShaderMaterial every water surface draws with. One instance serves every
 // sheet of the overworld (the zone sheets and the horizon apron), so the shared
@@ -37,7 +39,7 @@ export interface OceanSkyUniforms {
  * w whitecap strength.
  */
 export const OCEAN_LOOK: THREE.IUniform<THREE.Vector4> = {
-  value: new THREE.Vector4(5.5, 0.07, 0.8, 1),
+  value: new THREE.Vector4(...CLASSIC_OCEAN_LOOK),
 };
 /**
  * 1 while the palette lab's water row owns the colours (setWaterPalette), 0
@@ -132,6 +134,9 @@ export function createOceanSurfaceMaterial(
 ): THREE.ShaderMaterial {
   const zoneHaze = hasBiomeHazeField();
   const cascades = ocean.shade.length;
+  // The shared look knobs follow the session's world style (a style change
+  // rides the full graphics rebuild, which builds the surfaces again).
+  OCEAN_LOOK.value.set(...oceanLookFor(GFX.worldStyle));
   const shaderOpts = {
     cascades,
     underside: opts?.underside === true,

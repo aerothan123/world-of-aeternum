@@ -1347,6 +1347,7 @@ const RENDER_PURE_CORES = [
   'src/render/ocean/ocean_spectrum_core.ts',
   'src/render/ocean/ocean_foam_core.ts',
   'src/render/ocean/water_character_core.ts',
+  'src/render/ocean/water_style_core.ts',
   'src/render/ocean/water_liveness_core.ts',
   'src/render/battleground_core.ts',
   'src/render/battleground_fx_core.ts',
