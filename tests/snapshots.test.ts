@@ -7248,7 +7248,8 @@ describe('full self-state snapshot delta fixture', () => {
       const meta = sim.meta(session.pid)!;
       const marla = [...sim.entities.values()].find((e) => e.templateId === 'stablemaster_marla')!;
       player.pos = { ...marla.pos };
-      meta.copper = 10_800_000;
+      // The full ladder: Apprentice (20_000) then Riding then Advanced.
+      meta.copper = 10_820_000;
       const send = (ridingTier: number) =>
         server.handleMessage(
           session,
@@ -7262,6 +7263,10 @@ describe('full self-state snapshot delta fixture', () => {
         );
       send(0);
       send(0);
+      expect(meta.copper).toBe(10_800_000);
+      expect(player.ridingTier).toBe(3);
+      send(3);
+      send(3);
       expect(meta.copper).toBe(10_000_000);
       expect(player.ridingTier).toBe(1);
       send(1);
