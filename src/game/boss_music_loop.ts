@@ -15,29 +15,30 @@ import { scoreCueUrl } from './music_tracks';
 export const DEFAULT_BOSS_TRACK_URL = '/audio/dungeon-boss-fight.mp3';
 
 /** Boss template id to the score cue its fight plays (music_score.ts cues): the risen
- *  dead, the old wild's great beasts, the raid's dragon, and the shared dungeon boss
- *  cue for knights and the drowned. Hydra heads share one encounter cue. */
+ *  dead, the old wild's great beasts, the powers of the sea and tide (the Sunken Bastion
+ *  and Drowned Temple bosses, Ysolei), the raid's dragon, and the shared dungeon boss
+ *  cue for the rest. Hydra heads share one encounter cue. */
 export const BOSS_TRACK_CUES: Readonly<Record<string, string>> = Object.freeze({
   morthen: 'wyn_boss_undead',
   sexton_marrow: 'wyn_boss_undead',
   rimeweb: 'wyn_boss_wild',
   cantor_ilvane: 'wyn_boss_undead',
   crypt_knellwyrm: 'wyn_boss_undead',
-  knight_commander_olen: 'wyn_boss_dungeon',
-  gaoler_ossick: 'wyn_boss_undead',
-  vael_the_mistcaller: 'wyn_boss_dungeon',
+  knight_commander_olen: 'wyn_boss_tide',
+  gaoler_ossick: 'wyn_boss_tide',
+  vael_the_mistcaller: 'wyn_boss_tide',
   korgath_the_bound: 'wyn_boss_wild',
   grand_necromancer_velkhar: 'wyn_boss_undead',
   korzul_the_gravewyrm: 'wyn_boss_raid_dragon',
   wildheart_beastmaster: 'wyn_boss_wild',
   the_gorgebloom: 'wyn_boss_wild',
   wildheart_high_priest: 'wyn_boss_wild',
-  choirmother_selthe: 'wyn_boss_undead',
-  mere_hydra_head_left: 'wyn_boss_dungeon',
-  mere_hydra_head_center: 'wyn_boss_dungeon',
-  mere_hydra_head_right: 'wyn_boss_dungeon',
-  tideglass_colossus: 'wyn_boss_dungeon',
-  ysolei: 'wyn_boss_dungeon',
+  choirmother_selthe: 'wyn_boss_tide',
+  mere_hydra_head_left: 'wyn_boss_tide',
+  mere_hydra_head_center: 'wyn_boss_tide',
+  mere_hydra_head_right: 'wyn_boss_tide',
+  tideglass_colossus: 'wyn_boss_tide',
+  ysolei: 'wyn_boss_tide',
 });
 
 /** Boss template id to its fight track URL (a cue not generated yet is left out, so

@@ -91,6 +91,7 @@ output minute (measured on the clean takes).
 | wyn_town_gourdlight | town | creator | 90.1 | 90 | 2750 | 2026-11-05 | music_v2 | no |
 | wyn_minigame_playful | minigame | creator | 75.1 | 75 | ? | 2026-11-05 | music_v2 | no |
 | wyn_minigame_tense | minigame | creator | 75.1 | 75 | ? | 2026-11-05 | music_v2 | no |
+| wyn_boss_tide | boss | pro | 90.1 | 90 | ? | 2026-11-05 | music_v2 | no |
 | wyn_song_kettle_before_the_candle | song | creator | 140.1 | 140 | 1925 | 2026-11-05 | music_v2 | yes |
 | wyn_song_usually_is | song | creator | 132.1 | 132 | ? | 2026-11-05 | music_v2 | yes |
 | wyn_song_raise_the_beam | song | creator | 120.1 | 120 | 5775 | 2026-11-05 | music_v2 | yes |
@@ -98,4 +99,4 @@ output minute (measured on the clean takes).
 | wyn_song_keep_to_the_road | song | creator | 150.1 | 150 | 2062 | 2026-11-05 | music_v2 | yes |
 | wyn_song_five_witnesses | song | creator | 120.1 | 120 | 2888 | 2026-11-05 | music_v2 | yes |
 
-Shipped: 82 cues, 118.7 minutes. Measured credits: 96238 (34 takes unmeasured). Free-tier music takes: 0.
+Shipped: 83 cues, 120.2 minutes. Measured credits: 96238 (35 takes unmeasured). Free-tier music takes: 0.

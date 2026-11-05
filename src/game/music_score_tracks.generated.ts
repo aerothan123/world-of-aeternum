@@ -85,6 +85,7 @@ export const SCORE_TRACK_FILES: Readonly<Record<string, ScoreTrackFile>> = {
   wyn_town_gourdlight: { url: '/audio/music/wyn/wyn_town_gourdlight.mp3?v=13235cfa0fb7', seconds: 90.1 },
   wyn_minigame_playful: { url: '/audio/music/wyn/wyn_minigame_playful.mp3?v=56c4d4d02252', seconds: 75.1 },
   wyn_minigame_tense: { url: '/audio/music/wyn/wyn_minigame_tense.mp3?v=e000b1a9d07f', seconds: 75.1 },
+  wyn_boss_tide: { url: '/audio/music/wyn/wyn_boss_tide.mp3?v=f2d6cd73dd07', seconds: 90.1 },
   wyn_song_kettle_before_the_candle: { url: '/audio/music/wyn/wyn_song_kettle_before_the_candle.mp3?v=0f81f3f3062a', seconds: 140.1 },
   wyn_song_usually_is: { url: '/audio/music/wyn/wyn_song_usually_is.mp3?v=18844b5f3f9c', seconds: 132.1 },
   wyn_song_raise_the_beam: { url: '/audio/music/wyn/wyn_song_raise_the_beam.mp3?v=919bbd4c229a', seconds: 120.1 },

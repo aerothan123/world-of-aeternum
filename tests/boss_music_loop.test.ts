@@ -70,6 +70,14 @@ describe('per-boss fight tracks', () => {
     expect(BOSS_TRACK_URLS.morthen).toBe(MORTHEN_URL);
     expect(BOSS_TRACK_URLS.korzul_the_gravewyrm).toBe(scoreCueUrl('wyn_boss_raid_dragon'));
     expect(BOSS_TRACK_URLS.wildheart_beastmaster).toBe(scoreCueUrl('wyn_boss_wild'));
+    for (const id of [
+      'mere_hydra_head_center',
+      'vael_the_mistcaller',
+      'ysolei',
+      'tideglass_colossus',
+    ]) {
+      expect(BOSS_TRACK_URLS[id], id).toBe(scoreCueUrl('wyn_boss_tide'));
+    }
     expect(BOSS_TRACK_URLS.mere_hydra_head_left).toBe(BOSS_TRACK_URLS.mere_hydra_head_center);
     expect(BOSS_TRACK_URLS.mere_hydra_head_right).toBe(BOSS_TRACK_URLS.mere_hydra_head_center);
     for (const id of DUNGEON_BOSS_IDS) {

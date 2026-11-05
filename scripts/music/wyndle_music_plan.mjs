@@ -704,6 +704,18 @@ export const MUSIC_PLAN = [
     prompt: `${body} ${LOOPABLE}`,
   })),
 
+  {
+    key: 'wyn_boss_tide',
+    group: 'boss',
+    seconds: 90,
+    tier: 2,
+    prompt:
+      'Boss battle against a great power of the sea and the drowned deep. Deep low strings ' +
+      'heaving in slow tidal swells under fast string ostinatos, tolling bell tones, a pulsing ' +
+      'low drum like a heartbeat beneath the waves, surging horns and a dark wordless choir, ' +
+      'G minor, about 140 bpm, relentless battle intensity. Starts strongly on the downbeat ' +
+      'and ends on a held chord that leads straight back into the opening, so it loops.',
+  },
   // In-world songs (original lyrics). Composition plans with sung sections.
   {
     key: 'wyn_song_kettle_before_the_candle',

@@ -269,8 +269,9 @@ candidates, the home-page `main-theme.mp3` and the shared `dungeon-boss-fight.mp
   (`ZONE_STREAM_CUES` and `COMBAT_STREAM_URLS` in `src/game/music_tracks.ts`).
 - Every boss with a track of its own now fights to a score boss cue (`BOSS_TRACK_CUES` in
   `src/game/boss_music_loop.ts`): the risen dead to `wyn_boss_undead`, the old wild's
-  beasts to `wyn_boss_wild`, Korzul to `wyn_boss_raid_dragon`, the rest to
-  `wyn_boss_dungeon`.
+  beasts to `wyn_boss_wild`, the sea and tide bosses (the Sunken Bastion's three, the
+  Drowned Temple's Choirmother, Hydra and Tideglass Colossus, and Ysolei) to
+  `wyn_boss_tide`, Korzul to `wyn_boss_raid_dragon`.
 - The Crucible floors (`CRUCIBLE_FLOOR_CUES`): the forge halls, `wyn_crucible_heart`,
   `wyn_crucible_assembly` and the campaign finale `wyn_boss_final`.
 - The world-quest minigames (`MINIGAME_MUSIC_CUES`): `wyn_minigame_tense` for the quick,

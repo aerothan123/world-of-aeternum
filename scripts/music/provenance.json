@@ -655,6 +655,14 @@
       "requestedSeconds": 75,
       "credits": null,
       "sung": false
+    },
+    "wyn_boss_tide": {
+      "date": "2026-11-05",
+      "planTier": "pro",
+      "model": "music_v2",
+      "requestedSeconds": 90,
+      "credits": null,
+      "sung": false
     }
   }
 }
