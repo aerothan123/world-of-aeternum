@@ -15,10 +15,19 @@
 //           copper, xp }
 //   held  the self delta keys whose last value is retained (keep-prior rule)
 //   changed  { key: value } for each delta key this snapshot's self carried
+//   self.lxp, self.rxp, self.inv [[itemId, count]], self.qlog [[questId, state, counts]]
+//            (sorted), self.qdone (sorted), self.cds [[ability, remaining]] (sorted),
+//            self.timer [mode, time] (the prepareSnapshotTimers result for this frame)
+//   auras    [[entityId, [[id, name, kind, remaining, duration, perm, value, stacks,
+//            charges, src, school]]]] for every entity wearing any, by id
+//   events   the SimEvents ClientWorld queued since the previous snapshot (drainEvents)
+//   Timer values encode +inf (permanent) as -1 and NaN or absent as null.
+//   Sorts are plain code-unit order (Array.prototype.sort), never locale order.
 
 import { gunzipSync } from 'node:zlib';
 import { vi } from 'vitest';
 import type { ClientWorld } from '../../src/net/online';
+import { snapshotTimerWireMode } from '../../src/net/snapshot_timer_wire';
 import { bareClient } from './bare_client';
 
 export interface RecordedFrame {
@@ -36,9 +45,18 @@ export interface GoldenRow {
     recon: number[] | null;
     copper: number;
     xp: number;
+    lxp: number;
+    rxp: number;
+    timer: [string, number | null];
+    inv: unknown[];
+    qlog: unknown[];
+    qdone: string[];
+    cds: unknown[];
   };
   held: string[];
   changed: Record<string, unknown>;
+  auras: unknown[];
+  events: unknown[];
 }
 
 /** Parses the recorder's `<arrival ms>\t<raw frame>` lines (optionally gzipped). */
@@ -55,6 +73,14 @@ export function parseRecordedFrames(buf: Buffer): RecordedFrame[] {
 
 const n = (v: unknown, d: number | null): unknown => (v === undefined ? d : v);
 
+/** A timer value as the digest encodes it: -1 for an infinite (permanent) one, null for NaN or absent. */
+function enc(v: unknown): number | null {
+  if (typeof v !== 'number' || Number.isNaN(v)) return null;
+  return Number.isFinite(v) ? v : -1;
+}
+
+const byCodeUnit = (a: string, b: string): number => (a < b ? -1 : a > b ? 1 : 0);
+
 export function goldenDigest(frames: RecordedFrame[], deltaKeys: readonly string[]): GoldenRow[] {
   const hello = frames.map((f) => JSON.parse(f.text)).find((m) => m.t === 'hello');
   if (!hello) throw new Error('recording has no hello frame');
@@ -68,6 +94,11 @@ export function goldenDigest(frames: RecordedFrame[], deltaKeys: readonly string
   try {
     frames.forEach((frame, i) => {
       const msg = JSON.parse(frame.text);
+      if (msg.t === 'events') {
+        clock = frame.ms;
+        client.onMessage(frame.text);
+        return;
+      }
       if (msg.t !== 'snap') return;
       clock = frame.ms;
       client.applySnapshot(msg);
@@ -101,13 +132,72 @@ export function goldenDigest(frames: RecordedFrame[], deltaKeys: readonly string
                 ],
           copper: client.copper,
           xp: client.xp,
+          lxp: client.lifetimeXp,
+          rxp: client.restedXp,
+          timer: timerOf(msg),
+          inv: (client.inventory as { itemId?: string; count?: number }[]).map((slot) => [
+            slot.itemId ?? null,
+            slot.count ?? null,
+          ]),
+          qlog: [
+            ...(
+              client.questLog as Map<string, { questId: string; state: string; counts: number[] }>
+            ).values(),
+          ]
+            .sort((a, b) => byCodeUnit(a.questId, b.questId))
+            .map((q) => [q.questId, q.state, [...q.counts]]),
+          qdone: [...(client.questsDone as Set<string>)].sort(byCodeUnit),
+          cds: [
+            ...(
+              (client.entities.get(pid)?.cooldowns ?? new Map()) as Map<string, number>
+            ).entries(),
+          ]
+            .sort((a, b) => byCodeUnit(a[0], b[0]))
+            .map(([k, v]) => [k, enc(v)]),
         },
-        held: [...held.keys()].sort(),
+        held: [...held.keys()].sort(byCodeUnit),
         changed,
+        auras: auraRows(client as ClientWorld),
+        events: JSON.parse(JSON.stringify(client.drainEvents())),
       });
     });
   } finally {
     spy.mockRestore();
+  }
+  return rows;
+}
+
+/** prepareSnapshotTimers' answer for one frame: the mode and the stable clock, if any. */
+function timerOf(snap: { tw?: unknown; time?: unknown }): [string, number | null] {
+  const mode = snapshotTimerWireMode(snap.tw);
+  const t = snap.time;
+  const time =
+    mode === 'stable' && typeof t === 'number' && Number.isFinite(t) && t >= 0 ? t : null;
+  return [mode, time];
+}
+
+function auraRows(client: ClientWorld): unknown[] {
+  const rows: unknown[] = [];
+  const ids = [...client.entities.keys()].sort((a, b) => a - b);
+  for (const id of ids) {
+    const e = client.entities.get(id);
+    if (!e || !e.auras || e.auras.length === 0) continue;
+    rows.push([
+      id,
+      e.auras.map((a) => [
+        a.id ?? null,
+        a.name ?? null,
+        a.kind ?? null,
+        enc(a.remaining),
+        enc(a.duration),
+        a.permanent ? 1 : 0,
+        a.value ?? null,
+        a.stacks ?? null,
+        a.charges ?? null,
+        a.sourceId ?? null,
+        a.school ?? null,
+      ]),
+    ]);
   }
   return rows;
 }

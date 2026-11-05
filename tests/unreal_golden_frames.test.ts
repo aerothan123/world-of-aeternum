@@ -15,8 +15,9 @@ import { type GoldenRow, goldenDigest, parseRecordedFrames } from './helpers/unr
 
 const ROOT = resolve(import.meta.dirname, '..');
 const DIR = join(ROOT, 'tests/fixtures/unreal_golden');
-const FRAMES = join(DIR, 'session.frames.tsv.gz');
-const EXPECTED = join(DIR, 'session.expected.jsonl.gz');
+// session: a Node-recorded walk. ue_route: recorded by the Unreal client itself while it
+// walked, targeted, attacked, cast and interacted (-WyndRecord).
+const SESSIONS = ['session', 'ue_route'] as const;
 
 function encodeRows(rows: GoldenRow[]): Buffer {
   return gzipSync(`${rows.map((r) => JSON.stringify(r)).join('\n')}\n`, { level: 9 });
@@ -30,7 +31,9 @@ function decodeRows(buf: Buffer): GoldenRow[] {
     .map((l) => JSON.parse(l) as GoldenRow);
 }
 
-describe('unreal golden frames', () => {
+describe.each(SESSIONS)('unreal golden frames: %s', (name) => {
+  const FRAMES = join(DIR, `${name}.frames.tsv.gz`);
+  const EXPECTED = join(DIR, `${name}.expected.jsonl.gz`);
   const frames = parseRecordedFrames(readFileSync(FRAMES));
   const { allDeltaKeys } = readProtocol(ROOT);
   const rows = goldenDigest(frames, allDeltaKeys);
@@ -60,6 +63,7 @@ describe('unreal golden frames', () => {
       prev = now;
     }
     expect(snaps.length).toBeGreaterThan(100);
+    console.log(`${name}: ${rows.reduce((a, r) => a + r.events.length, 0)} events`);
     expect(full).toBeGreaterThan(0);
     expect(lite).toBeGreaterThan(0);
     expect(kept).toBeGreaterThan(0);
@@ -68,7 +72,7 @@ describe('unreal golden frames', () => {
     // Reported for the record; a session that never sees an entity leave still
     // pins every other path, and the C++ suite covers pruning synthetically.
     console.log(
-      `golden: ${snaps.length} snaps, ${full} full, ${lite} lite, ${kept} keep ids, ${pruned} prunes`,
+      `golden ${name}: ${snaps.length} snaps, ${full} full, ${lite} lite, ${kept} keep ids, ${pruned} prunes`,
     );
   });
 });

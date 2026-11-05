@@ -8,7 +8,7 @@
 
 namespace WyndProtocol
 {
-inline constexpr const TCHAR* ExportHash = TEXT("3076f6a0a8e9958d");
+inline constexpr const TCHAR* ExportHash = TEXT("544c32e8d7af51d1");
 inline constexpr int32 OnlineWorldLayoutVersion = 48;
 inline constexpr const TCHAR* AuthType = TEXT("auth-world-48");
 inline constexpr int32 StableTimerWireVersion = 3;
@@ -520,5 +520,26 @@ inline constexpr const TCHAR* CapabilityDeltaKeys[] = {
 	TEXT("de"),
 };
 inline constexpr int32 NumCapabilityDeltaKeys = 2;
+
+inline constexpr const TCHAR* PersistentEngineAuraIds[] = {
+	TEXT("spirit_bomb_progress"),
+	TEXT("hunter_efficient_rhythm_progress"),
+	TEXT("hunter_efficient_rhythm_ready"),
+	TEXT("hunter_fang_chorus_counter"),
+	TEXT("hunting_momentum"),
+	TEXT("hunter_overdraw_counter"),
+	TEXT("stampede_ready"),
+	TEXT("priest_benison_prayers"),
+	TEXT("shaman_flow_state_progress"),
+	TEXT("shaman_flow_state_ready"),
+	TEXT("shaman_pyrebrand_mastery"),
+	TEXT("shaman_thunder_charges"),
+	TEXT("shaman_warspirit_cadence"),
+	TEXT("moontide"),
+	TEXT("sunwake"),
+	TEXT("old_blood"),
+	TEXT("verdance"),
+};
+inline constexpr int32 NumPersistentEngineAuraIds = 17;
 
 } // namespace WyndProtocol

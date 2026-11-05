@@ -498,5 +498,24 @@
     "wqrr",
     "xp"
   ],
-  "capabilityDeltaKeys": ["auras", "de"]
+  "capabilityDeltaKeys": ["auras", "de"],
+  "persistentEngineAuraIds": [
+    "spirit_bomb_progress",
+    "hunter_efficient_rhythm_progress",
+    "hunter_efficient_rhythm_ready",
+    "hunter_fang_chorus_counter",
+    "hunting_momentum",
+    "hunter_overdraw_counter",
+    "stampede_ready",
+    "priest_benison_prayers",
+    "shaman_flow_state_progress",
+    "shaman_flow_state_ready",
+    "shaman_pyrebrand_mastery",
+    "shaman_thunder_charges",
+    "shaman_warspirit_cadence",
+    "moontide",
+    "sunwake",
+    "old_blood",
+    "verdance"
+  ]
 }

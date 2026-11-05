@@ -173,6 +173,7 @@ export interface ProtocolExport {
   dispatchOnlyCommands: string[];
   allDeltaKeys: string[];
   capabilityDeltaKeys: string[];
+  persistentEngineAuraIds: string[];
 }
 
 export function readProtocol(root: string): ProtocolExport {
@@ -232,6 +233,10 @@ export function readProtocol(root: string): ProtocolExport {
     capabilityDeltaKeys: strList(
       readConst(root, 'tests/snapshots.test.ts', 'CAPABILITY_DELTA_KEYS'),
       'capability delta',
+    ),
+    persistentEngineAuraIds: strList(
+      readConst(root, 'src/sim/persistent_aura.ts', 'PERSISTENT_ENGINE_AURA_IDS'),
+      'persistent auras',
     ),
   };
   return out;
@@ -300,6 +305,7 @@ ${cppList('CommandNames', p.commandNames)}
 ${cppList('DispatchOnlyCommands', p.dispatchOnlyCommands)}
 ${cppList('AllDeltaKeys', p.allDeltaKeys)}
 ${cppList('CapabilityDeltaKeys', p.capabilityDeltaKeys)}
+${cppList('PersistentEngineAuraIds', p.persistentEngineAuraIds)}
 } // namespace WyndProtocol
 `;
 }
