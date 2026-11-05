@@ -9,8 +9,6 @@
 // (analytics_consent.ts reading the live settings), so turning the Options toggle
 // off stops the very next event; nothing is queued while consent is off.
 
-import { apiUrl } from '../client_origin';
-import { isDesktopAppRuntime } from '../runtime';
 import {
   ANALYTICS_SCHEMA_VERSION,
   type AnalyticsEventBody,
@@ -19,6 +17,8 @@ import {
   type AnalyticsPlatform,
   analyticsFpsBucket,
 } from '../analytics_events';
+import { apiUrl } from '../client_origin';
+import { isDesktopAppRuntime } from '../runtime';
 import { analyticsAllowed } from './analytics_consent';
 import { Settings } from './settings';
 

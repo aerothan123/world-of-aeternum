@@ -24511,8 +24511,10 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'seasonal.thatchgrin.sleepYell': '太陽出來了。回到木樁上，繼續看守。',
   'seasonal.pumpkins.progress': '{label}：{current}/{total}',
   'legalPrompt.title': '玩家協議',
-  'legalPrompt.body': '開始遊戲前，請閱讀並接受服務條款、隱私權政策和最終使用者授權協議。下方每段摘要都附有完整文件的連結。',
-  'legalPrompt.earlyAccess': 'Wyndlewood 正處於搶先體驗階段：功能、平衡與內容都會變動，正式發售時進度可能依商店頁面的公告重置一次。',
+  'legalPrompt.body':
+    '開始遊戲前，請閱讀並接受服務條款、隱私權政策和最終使用者授權協議。下方每段摘要都附有完整文件的連結。',
+  'legalPrompt.earlyAccess':
+    'Wyndlewood 正處於搶先體驗階段：功能、平衡與內容都會變動，正式發售時進度可能依商店頁面的公告重置一次。',
   'legalPrompt.eulaLink': '終端使用者授權協議',
   'legalPrompt.termsLink': '服務條款',
   'legalPrompt.privacyLink': '隱私權政策',
@@ -24520,14 +24522,17 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'legalPrompt.accept': '我接受',
   'legalPrompt.decline': '拒絕',
   'analyticsPrompt.title': '協助改進 Wyndlewood',
-  'analyticsPrompt.body': 'Wyndlewood 可以收集使用與效能資料嗎？若你同意，遊戲會向我們自己的伺服器傳送粗略計數（工作階段次數、以五分鐘為單位的遊玩時間、大致影格率）以及關於你的裝置與影格時間的定期效能報告。',
-  'analyticsPrompt.noThirdParty': '不會向任何廣告或分析公司傳送資料；除非你選擇分享，否則不會傳送任何內容。',
+  'analyticsPrompt.body':
+    'Wyndlewood 可以收集使用與效能資料嗎？若你同意，遊戲會向我們自己的伺服器傳送粗略計數（工作階段次數、以五分鐘為單位的遊玩時間、大致影格率）以及關於你的裝置與影格時間的定期效能報告。',
+  'analyticsPrompt.noThirdParty':
+    '不會向任何廣告或分析公司傳送資料；除非你選擇分享，否則不會傳送任何內容。',
   'analyticsPrompt.privacyLink': '閱讀隱私權政策',
   'analyticsPrompt.changeLater': '你可以隨時在選項中變更此設定。',
   'analyticsPrompt.share': '分享',
   'analyticsPrompt.decline': '不分享',
   'hudChrome.options.shareAnalytics': '分享使用與效能資料',
-  'hudChrome.options.shareAnalyticsNote': '預設關閉，需要你主動開啟。只會向 Wyndlewood 傳送粗略的遊玩計數與效能報告，絕不傳送給其他公司。',
+  'hudChrome.options.shareAnalyticsNote':
+    '預設關閉，需要你主動開啟。只會向 Wyndlewood 傳送粗略的遊玩計數與效能報告，絕不傳送給其他公司。',
   'hudChrome.addons.menuEntry': '插件',
   'hudChrome.addons.title': '插件',
   'hudChrome.addons.close': '關閉',
@@ -24611,30 +24616,41 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'hudChrome.auth.steamError': '無法使用 Steam 登入，請再試一次。',
   'hudChrome.auth.steamNoTicket': 'Steam 未執行。請啟動 Steam 後再試一次。',
   'hudChrome.auth.steamUnavailable': 'Steam 登入目前無法使用。',
-  'apiError.steam.unlink_last_login': 'Steam 是你登入此帳號的唯一方式。請先新增電子郵件與密碼，再解除連結。',
+  'apiError.steam.unlink_last_login':
+    'Steam 是你登入此帳號的唯一方式。請先新增電子郵件與密碼，再解除連結。',
   'loading.maintenance': '伺服器正在維護，請稍後再試。',
-  'loading.updateRequired': '需要更新：目前的遊戲版本已過期。請重新啟動 Steam 以更新，然後再試一次。',
+  'loading.updateRequired':
+    '需要更新：目前的遊戲版本已過期。請重新啟動 Steam 以更新，然後再試一次。',
   'hudChrome.maintenance.beginsInMinute': '伺服器維護將在 1 分鐘後開始。',
   'hudChrome.maintenance.beginsInMinutes': '伺服器維護將在 {count} 分鐘後開始。',
   'hudChrome.maintenance.beginsInSeconds': '伺服器維護將在 {count} 秒後開始。',
   'hudChrome.maintenance.begun': '伺服器維護已開始，暫停新的登入。',
   'hudChrome.maintenance.cancelled': '伺服器維護已取消。',
   'hudChrome.maintenance.ended': '伺服器維護已結束，現已開放登入。',
-  'apiError.steam.not_owned': '這個 Steam 帳號尚未擁有本遊戲。請先在 Steam 上取得遊戲，然後再試一次。',
-  'apiError.steam.reauth_required': '請輸入你的密碼（若已開啟雙重驗證，還需輸入驗證碼）以連結 Steam。',
+  'apiError.steam.not_owned':
+    '這個 Steam 帳號尚未擁有本遊戲。請先在 Steam 上取得遊戲，然後再試一次。',
+  'apiError.steam.reauth_required':
+    '請輸入你的密碼（若已開啟雙重驗證，還需輸入驗證碼）以連結 Steam。',
   'apiError.store.disabled': '搶先體驗期間商店無法使用。',
   'legalPrompt.updated': '自你上次接受後已更新',
   'legalPrompt.readFull': '閱讀完整文件',
-  'legalPrompt.publisher': '發行商：[PUBLISHER LEGAL NAME]（在確定發行商之前的預留文字）。這些文件是等待法律審查的草案。',
+  'legalPrompt.publisher':
+    '發行商：[PUBLISHER LEGAL NAME]（在確定發行商之前的預留文字）。這些文件是等待法律審查的草案。',
   'legalPrompt.terms.age': '你必須年滿 13 歲，或由父母或監護人代你同意。',
-  'legalPrompt.terms.fairPlay': '公平遊戲：禁止作弊、機器人、自動化、利用漏洞、騷擾，或以真錢交易物品或金幣。',
-  'legalPrompt.terms.virtualItems': '虛擬物品、貨幣和進度沒有金錢價值。Steam 版本中的任何購買都透過 Steam 進行。',
-  'legalPrompt.terms.enforcement': '違反規則的帳號可能會被警告、禁言、停權或封鎖。你可以向客服申訴。',
-  'legalPrompt.privacy.account': '我們會保存你的帳號、角色和進度，並使用你的 IP 位址等技術資料來運作伺服器、阻止作弊和濫用。',
+  'legalPrompt.terms.fairPlay':
+    '公平遊戲：禁止作弊、機器人、自動化、利用漏洞、騷擾，或以真錢交易物品或金幣。',
+  'legalPrompt.terms.virtualItems':
+    '虛擬物品、貨幣和進度沒有金錢價值。Steam 版本中的任何購買都透過 Steam 進行。',
+  'legalPrompt.terms.enforcement':
+    '違反規則的帳號可能會被警告、禁言、停權或封鎖。你可以向客服申訴。',
+  'legalPrompt.privacy.account':
+    '我們會保存你的帳號、角色和進度，並使用你的 IP 位址等技術資料來運作伺服器、阻止作弊和濫用。',
   'legalPrompt.privacy.public': '聊天、角色名稱、公會和排行榜對其他玩家可見。',
-  'legalPrompt.privacy.analytics': '除非你主動開啟，否則分析功能保持關閉，且不會向任何廣告或分析公司傳送資料。',
+  'legalPrompt.privacy.analytics':
+    '除非你主動開啟，否則分析功能保持關閉，且不會向任何廣告或分析公司傳送資料。',
   'legalPrompt.privacy.rights': '你可以隨時匯出你的資料並刪除你的帳號。',
   'legalPrompt.eula.license': '本遊戲是授權給你使用，而非出售給你，僅供你個人非商業遊玩。',
-  'legalPrompt.eula.restrictions': '不得複製、轉售或逆向工程本遊戲，也不得對其使用作弊、機器人或漏洞利用。',
+  'legalPrompt.eula.restrictions':
+    '不得複製、轉售或逆向工程本遊戲，也不得對其使用作弊、機器人或漏洞利用。',
   'apiError.legal_acceptance.invalid_input': '這些協議已經更新。請重新載入並接受目前的版本。',
 };

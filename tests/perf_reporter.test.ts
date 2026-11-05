@@ -16,6 +16,7 @@ const consent = vi.hoisted(() => ({ allowed: true }));
 vi.mock('../src/game/first_party_analytics', () => ({
   liveAnalyticsAllowed: () => consent.allowed,
 }));
+
 import { GPU_TIMER_UNAVAILABLE } from '../src/render/gpu_timer_probe_core';
 import { POST_REVEAL_LINK_WINDOW_MS } from '../src/render/post_reveal_links_core';
 import { shaderWarmAuditSnapshot } from '../src/render/shader_warm_audit';
@@ -2688,4 +2689,3 @@ describe('perf reporter host essentials', () => {
     });
   });
 });
-

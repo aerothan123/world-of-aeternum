@@ -126,18 +126,44 @@ function video(file) {
   const out = path.join(root, file);
   const probe = JSON.parse(
     execFileSync(ffprobe.path, [
-      '-v', 'error', '-select_streams', 'v:0', '-show_entries',
-      'stream=width,height:format=duration', '-of', 'json', out,
+      '-v',
+      'error',
+      '-select_streams',
+      'v:0',
+      '-show_entries',
+      'stream=width,height:format=duration',
+      '-of',
+      'json',
+      out,
     ]).toString(),
   );
   const { width, height } = probe.streams[0];
   const duration = Math.max(2, Math.min(20, Number(probe.format?.duration) || 8));
   const tmp = `${out}.tmp.mp4`;
   execFileSync(ffmpegPath, [
-    '-y', '-loglevel', 'error', '-loop', '1', '-i', bannerPath, '-t', String(duration),
-    '-vf', `scale=${width}:${height}:force_original_aspect_ratio=increase,crop=${width}:${height},format=yuv420p`,
-    '-r', '24', '-c:v', 'libx264', '-preset', 'slow', '-crf', '24', '-movflags', '+faststart',
-    '-an', tmp,
+    '-y',
+    '-loglevel',
+    'error',
+    '-loop',
+    '1',
+    '-i',
+    bannerPath,
+    '-t',
+    String(duration),
+    '-vf',
+    `scale=${width}:${height}:force_original_aspect_ratio=increase,crop=${width}:${height},format=yuv420p`,
+    '-r',
+    '24',
+    '-c:v',
+    'libx264',
+    '-preset',
+    'slow',
+    '-crf',
+    '24',
+    '-movflags',
+    '+faststart',
+    '-an',
+    tmp,
   ]);
   writeFileSync(out, readFileSync(tmp));
   rmSync(tmp);

@@ -8,12 +8,12 @@ import {
   courierPayloadFits,
 } from '../src/sim/courier';
 import { applyMembershipBankInventoryPlan } from '../src/sim/membership_bank';
-import { SERVER_EARLY_ACCESS } from './early_access_flags';
 import type { Sim } from '../src/sim/sim';
 import { tradeInfoFor } from '../src/sim/social/trade';
 import type { InvSlot } from '../src/sim/types';
 import { bankLedgerSaveEffects } from './bank_ledger_session';
 import type { CharacterSaveArgs } from './character_save_args';
+import { SERVER_EARLY_ACCESS } from './early_access_flags';
 import type { ClientSession } from './game';
 import { CUSTODY_PARCEL_LETTERS, confirmCustodyParcelBooked } from './mail_custody_overlay';
 import { transferCourierAccountLeg } from './membership_bank_db';

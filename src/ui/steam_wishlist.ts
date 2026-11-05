@@ -1,6 +1,6 @@
+import { STEAM_STORE_URL } from '../brand';
 import type { DesktopBridge } from '../runtime';
 import { desktopBridge } from '../runtime';
-import { STEAM_STORE_URL } from '../brand';
 
 // The "Wishlist on Steam" reminder: one quiet, permanently visible link to the
 // store page, repeated on every shell surface that already carries the Donate

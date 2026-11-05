@@ -25828,8 +25828,10 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'seasonal.thatchgrin.sleepYell': '日が昇った。柱に戻って、また見張りだ。',
   'seasonal.pumpkins.progress': '{label}：{current}/{total}',
   'legalPrompt.title': 'プレイヤー規約',
-  'legalPrompt.body': 'プレイする前に、利用規約、プライバシーポリシー、エンドユーザー使用許諾契約をお読みのうえ同意してください。以下の各要約から全文にアクセスできます。',
-  'legalPrompt.earlyAccess': 'Wyndlewood は早期アクセス中です。機能、バランス、コンテンツは変更され、正式リリース時にはストアページで告知のとおり進行状況が一度リセットされる場合があります。',
+  'legalPrompt.body':
+    'プレイする前に、利用規約、プライバシーポリシー、エンドユーザー使用許諾契約をお読みのうえ同意してください。以下の各要約から全文にアクセスできます。',
+  'legalPrompt.earlyAccess':
+    'Wyndlewood は早期アクセス中です。機能、バランス、コンテンツは変更され、正式リリース時にはストアページで告知のとおり進行状況が一度リセットされる場合があります。',
   'legalPrompt.eulaLink': 'エンドユーザー使用許諾契約',
   'legalPrompt.termsLink': '利用規約',
   'legalPrompt.privacyLink': 'プライバシーポリシー',
@@ -25837,14 +25839,17 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'legalPrompt.accept': '同意する',
   'legalPrompt.decline': '同意しない',
   'analyticsPrompt.title': 'Wyndlewood の改善にご協力ください',
-  'analyticsPrompt.body': 'Wyndlewood が利用状況とパフォーマンスのデータを収集してもよろしいですか？同意すると、ゲームは大まかなカウント（セッション数、5分単位のプレイ時間、おおよそのフレームレート）と、お使いのデバイスとフレーム時間に関する定期的なパフォーマンスレポートを当社のサーバーに送信します。',
-  'analyticsPrompt.noThirdParty': '広告会社や分析会社には一切送信しません。「共有する」を選ばない限り、何も送信されません。',
+  'analyticsPrompt.body':
+    'Wyndlewood が利用状況とパフォーマンスのデータを収集してもよろしいですか？同意すると、ゲームは大まかなカウント（セッション数、5分単位のプレイ時間、おおよそのフレームレート）と、お使いのデバイスとフレーム時間に関する定期的なパフォーマンスレポートを当社のサーバーに送信します。',
+  'analyticsPrompt.noThirdParty':
+    '広告会社や分析会社には一切送信しません。「共有する」を選ばない限り、何も送信されません。',
   'analyticsPrompt.privacyLink': 'プライバシーポリシーを読む',
   'analyticsPrompt.changeLater': 'この設定はオプションからいつでも変更できます。',
   'analyticsPrompt.share': '共有する',
   'analyticsPrompt.decline': '共有しない',
   'hudChrome.options.shareAnalytics': '利用状況とパフォーマンスのデータを共有',
-  'hudChrome.options.shareAnalyticsNote': 'オンにしない限りオフのままです。大まかなプレイのカウントとパフォーマンスレポートを Wyndlewood にのみ送信し、他社には送信しません。',
+  'hudChrome.options.shareAnalyticsNote':
+    'オンにしない限りオフのままです。大まかなプレイのカウントとパフォーマンスレポートを Wyndlewood にのみ送信し、他社には送信しません。',
   'hudChrome.addons.menuEntry': 'アドオン',
   'hudChrome.addons.title': 'アドオン',
   'hudChrome.addons.close': '閉じる',
@@ -25933,32 +25938,48 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.addons.perm.secureActions': 'アクションボタン',
   'hudChrome.auth.steamLoginCta': 'Steamで続行',
   'hudChrome.auth.steamError': 'Steamでサインインできませんでした。もう一度お試しください。',
-  'hudChrome.auth.steamNoTicket': 'Steamが起動していません。Steamを起動してからもう一度お試しください。',
+  'hudChrome.auth.steamNoTicket':
+    'Steamが起動していません。Steamを起動してからもう一度お試しください。',
   'hudChrome.auth.steamUnavailable': '現在Steamでのサインインはご利用いただけません。',
-  'apiError.steam.unlink_last_login': 'このアカウントにはSteamでしかサインインできません。連携を解除する前にメールアドレスとパスワードを追加してください。',
+  'apiError.steam.unlink_last_login':
+    'このアカウントにはSteamでしかサインインできません。連携を解除する前にメールアドレスとパスワードを追加してください。',
   'loading.maintenance': 'レルムはメンテナンス中です。しばらくしてからもう一度お試しください。',
-  'loading.updateRequired': 'アップデートが必要です：このバージョンのゲームは古くなっています。Steamを再起動して更新してから、もう一度お試しください。',
+  'loading.updateRequired':
+    'アップデートが必要です：このバージョンのゲームは古くなっています。Steamを再起動して更新してから、もう一度お試しください。',
   'hudChrome.maintenance.beginsInMinute': '1分後にレルムのメンテナンスを開始します。',
   'hudChrome.maintenance.beginsInMinutes': '{count}分後にレルムのメンテナンスを開始します。',
   'hudChrome.maintenance.beginsInSeconds': '{count}秒後にレルムのメンテナンスを開始します。',
-  'hudChrome.maintenance.begun': 'レルムのメンテナンスを開始しました。新規ログインは締め切られています。',
+  'hudChrome.maintenance.begun':
+    'レルムのメンテナンスを開始しました。新規ログインは締め切られています。',
   'hudChrome.maintenance.cancelled': 'レルムのメンテナンスは中止されました。',
   'hudChrome.maintenance.ended': 'レルムのメンテナンスが終了しました。ログインを再開しています。',
-  'apiError.steam.not_owned': 'このSteamアカウントはまだゲームを所有していません。Steamでゲームを入手してから、もう一度お試しください。',
-  'apiError.steam.reauth_required': 'Steamを連携するには、パスワード（二段階認証が有効な場合は認証コードも）を入力してください。',
+  'apiError.steam.not_owned':
+    'このSteamアカウントはまだゲームを所有していません。Steamでゲームを入手してから、もう一度お試しください。',
+  'apiError.steam.reauth_required':
+    'Steamを連携するには、パスワード（二段階認証が有効な場合は認証コードも）を入力してください。',
   'apiError.store.disabled': 'アーリーアクセス期間中はストアを利用できません。',
   'legalPrompt.updated': '前回の同意以降に更新されました',
   'legalPrompt.readFull': '全文を読む',
-  'legalPrompt.publisher': '発行元：[PUBLISHER LEGAL NAME]（発行元が決まるまでの仮の表記）。これらの文書は法務レビュー待ちの草案です。',
+  'legalPrompt.publisher':
+    '発行元：[PUBLISHER LEGAL NAME]（発行元が決まるまでの仮の表記）。これらの文書は法務レビュー待ちの草案です。',
   'legalPrompt.terms.age': '13 歳以上であるか、保護者の同意が必要です。',
-  'legalPrompt.terms.fairPlay': '公正にプレイしてください：チート、ボット、自動化、不具合の悪用、嫌がらせ、アイテムやゴールドの現金取引は禁止です。',
-  'legalPrompt.terms.virtualItems': '仮想アイテム、通貨、進行状況に金銭的価値はありません。Steam 版での購入はすべて Steam を通じて行われます。',
-  'legalPrompt.terms.enforcement': '規則に違反したアカウントは、警告、チャット禁止、一時停止、または永久停止となる場合があります。サポートに異議を申し立てることができます。',
-  'legalPrompt.privacy.account': 'アカウント、キャラクター、進行状況を保存し、サーバーの運営やチート・不正行為の防止のために IP アドレスなどの技術データを使用します。',
-  'legalPrompt.privacy.public': 'チャット、キャラクター名、ギルド、ランキングは他のプレイヤーに表示されます。',
-  'legalPrompt.privacy.analytics': '分析はあなたが有効にしない限りオフで、広告会社や分析会社には何も送信されません。',
+  'legalPrompt.terms.fairPlay':
+    '公正にプレイしてください：チート、ボット、自動化、不具合の悪用、嫌がらせ、アイテムやゴールドの現金取引は禁止です。',
+  'legalPrompt.terms.virtualItems':
+    '仮想アイテム、通貨、進行状況に金銭的価値はありません。Steam 版での購入はすべて Steam を通じて行われます。',
+  'legalPrompt.terms.enforcement':
+    '規則に違反したアカウントは、警告、チャット禁止、一時停止、または永久停止となる場合があります。サポートに異議を申し立てることができます。',
+  'legalPrompt.privacy.account':
+    'アカウント、キャラクター、進行状況を保存し、サーバーの運営やチート・不正行為の防止のために IP アドレスなどの技術データを使用します。',
+  'legalPrompt.privacy.public':
+    'チャット、キャラクター名、ギルド、ランキングは他のプレイヤーに表示されます。',
+  'legalPrompt.privacy.analytics':
+    '分析はあなたが有効にしない限りオフで、広告会社や分析会社には何も送信されません。',
   'legalPrompt.privacy.rights': 'データのエクスポートとアカウントの削除はいつでも行えます。',
-  'legalPrompt.eula.license': '本ゲームは販売ではなく使用許諾であり、個人的な非商業的プレイのためのものです。',
-  'legalPrompt.eula.restrictions': 'ゲームの複製、転売、リバースエンジニアリング、またはチート、ボット、不具合の悪用は禁止です。',
-  'apiError.legal_acceptance.invalid_input': '規約が更新されました。再読み込みして最新のバージョンに同意してください。',
+  'legalPrompt.eula.license':
+    '本ゲームは販売ではなく使用許諾であり、個人的な非商業的プレイのためのものです。',
+  'legalPrompt.eula.restrictions':
+    'ゲームの複製、転売、リバースエンジニアリング、またはチート、ボット、不具合の悪用は禁止です。',
+  'apiError.legal_acceptance.invalid_input':
+    '規約が更新されました。再読み込みして最新のバージョンに同意してください。',
 };

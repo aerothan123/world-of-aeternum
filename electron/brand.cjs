@@ -39,7 +39,11 @@ const LOCAL_DEV_API_ORIGIN = 'http://localhost:8787';
  * cache in the old folder. resolveUserDataDir keeps using an old folder when
  * one exists and the new one does not yet.
  */
-const LEGACY_USER_DATA_NAMES = Object.freeze(['Project H', 'World of ClaudeCraft', 'world-of-claudecraft']);
+const LEGACY_USER_DATA_NAMES = Object.freeze([
+  'Project H',
+  'World of ClaudeCraft',
+  'world-of-claudecraft',
+]);
 
 /**
  * Pick the user-data folder: the current (productName) folder when it exists or

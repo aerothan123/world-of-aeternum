@@ -4194,7 +4194,7 @@ const APPENDED_ITEM_NAMES: Partial<Record<ItemEntityId, string>> = {
   c1_housing_noticeboard: 'Housing Noticeboard',
   c1_practice_marker: 'Furnishing Practice Marker',
   c1_inn_hearth: "The Inn's Public Hearth",
-    // Player housing (Wyndlewood) phase 2 furniture (content/furniture.ts).
+  // Player housing (Wyndlewood) phase 2 furniture (content/furniture.ts).
   furn_wooden_chair: 'Wooden Chair',
   furn_wooden_stool: 'Wooden Stool',
   furn_oak_bench: 'Oak Bench',

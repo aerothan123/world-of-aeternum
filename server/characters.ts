@@ -87,6 +87,7 @@ import {
   scopeAllowsMutation,
 } from './db';
 import { recentDeedsForCharacter } from './deeds_db';
+import { SERVER_EARLY_ACCESS } from './early_access_flags';
 import { ctxAccountId } from './http/context';
 import { gameMetricsCounters } from './http/game_signals';
 import { withBody } from './http/middleware/body';
@@ -103,7 +104,6 @@ import type { Ctx, Middleware, RouteDef } from './http/types';
 import { isUniqueViolation, json, moderationErrorBody } from './http_util';
 import { getMembership } from './membership_service';
 import { countOfflineFenceRefusal } from './offline_fence_refusals';
-import { SERVER_EARLY_ACCESS } from './early_access_flags';
 import { REALM } from './realm';
 import {
   REFERRAL_CHARACTER_BONUS,

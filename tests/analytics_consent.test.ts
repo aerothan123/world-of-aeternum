@@ -47,14 +47,16 @@ describe('analytics consent policy', () => {
     const fresh = { shareAnalytics: false, analyticsPromptAnswered: false };
     expect(shouldPromptAnalyticsConsent(fresh, { automated: false })).toBe(true);
     expect(shouldPromptAnalyticsConsent(fresh, { automated: true })).toBe(false);
-    expect(
-      shouldPromptAnalyticsConsent(analyticsConsentPatch(false), { automated: false }),
-    ).toBe(false);
+    expect(shouldPromptAnalyticsConsent(analyticsConsentPatch(false), { automated: false })).toBe(
+      false,
+    );
   });
 
   it('the prompt treats Escape and the decline button as NO (never an implicit yes)', () => {
     const src = readFileSync(new URL('../src/ui/legal_choice_dialog.ts', import.meta.url), 'utf8');
-    expect(src).toContain("if (e.key === 'Escape') {\n        e.preventDefault();\n        close(false);");
+    expect(src).toContain(
+      "if (e.key === 'Escape') {\n        e.preventDefault();\n        close(false);",
+    );
     expect(src).toContain("decline.addEventListener('click', () => close(false));");
   });
 });
@@ -63,7 +65,11 @@ describe('first-party analytics sender', () => {
   it('sends nothing while consent is off, and re-checks consent at every send', () => {
     let allowed = false;
     const post = vi.fn();
-    const analytics = createFirstPartyAnalytics({ allowed: () => allowed, post, platform: 'desktop' });
+    const analytics = createFirstPartyAnalytics({
+      allowed: () => allowed,
+      post,
+      platform: 'desktop',
+    });
     expect(analytics.record('session_start')).toBe(false);
     expect(post).not.toHaveBeenCalled();
     allowed = true;
@@ -82,7 +88,12 @@ describe('first-party analytics sender', () => {
       '60plus',
     );
     const body = JSON.parse(post.mock.calls[0][0] as string);
-    expect(body).toEqual({ v: ANALYTICS_SCHEMA_VERSION, event: 'play_interval', platform: 'web', fps: '60plus' });
+    expect(body).toEqual({
+      v: ANALYTICS_SCHEMA_VERSION,
+      event: 'play_interval',
+      platform: 'web',
+      fps: '60plus',
+    });
     expect(parseAnalyticsEventBody(body)).toEqual(body);
   });
 
@@ -98,7 +109,10 @@ describe('first-party analytics sender', () => {
   });
 
   it('posts only to the game API origin, never a third-party host', () => {
-    const src = readFileSync(new URL('../src/game/first_party_analytics.ts', import.meta.url), 'utf8');
+    const src = readFileSync(
+      new URL('../src/game/first_party_analytics.ts', import.meta.url),
+      'utf8',
+    );
     expect(src).toContain("fetch(apiUrl('/api/telemetry')");
     expect(src).not.toMatch(/https?:\/\//);
   });
@@ -139,7 +153,10 @@ describe('analytics wire vocabulary', () => {
       'play_interval',
       'session_end',
     ]);
-    const policy = readFileSync(new URL('../docs/legal/privacy-policy.md', import.meta.url), 'utf8');
+    const policy = readFileSync(
+      new URL('../docs/legal/privacy-policy.md', import.meta.url),
+      'utf8',
+    );
     for (const event of ANALYTICS_EVENTS) expect(policy).toContain(`\`${event}\``);
   });
 });

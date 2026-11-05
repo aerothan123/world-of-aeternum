@@ -24492,8 +24492,10 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'seasonal.thatchgrin.sleepYell': '太阳出来了。回到木桩上，继续看守。',
   'seasonal.pumpkins.progress': '{label}：{current}/{total}',
   'legalPrompt.title': '玩家协议',
-  'legalPrompt.body': '开始游戏前，请阅读并接受服务条款、隐私政策和最终用户许可协议。下方每段摘要都附有完整文档的链接。',
-  'legalPrompt.earlyAccess': 'Wyndlewood 正处于抢先体验阶段：功能、平衡和内容都会变化，正式发售时进度可能按商店页面的公告重置一次。',
+  'legalPrompt.body':
+    '开始游戏前，请阅读并接受服务条款、隐私政策和最终用户许可协议。下方每段摘要都附有完整文档的链接。',
+  'legalPrompt.earlyAccess':
+    'Wyndlewood 正处于抢先体验阶段：功能、平衡和内容都会变化，正式发售时进度可能按商店页面的公告重置一次。',
   'legalPrompt.eulaLink': '最终用户许可协议',
   'legalPrompt.termsLink': '服务条款',
   'legalPrompt.privacyLink': '隐私政策',
@@ -24501,14 +24503,17 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'legalPrompt.accept': '我接受',
   'legalPrompt.decline': '拒绝',
   'analyticsPrompt.title': '帮助改进 Wyndlewood',
-  'analyticsPrompt.body': 'Wyndlewood 可以收集使用和性能数据吗？如果你同意，游戏会向我们自己的服务器发送粗略计数（会话次数、以五分钟为单位的游戏时长、大致帧率）以及关于你的设备和帧时间的定期性能报告。',
-  'analyticsPrompt.noThirdParty': '不会向任何广告或分析公司发送数据；除非你选择分享，否则不会发送任何内容。',
+  'analyticsPrompt.body':
+    'Wyndlewood 可以收集使用和性能数据吗？如果你同意，游戏会向我们自己的服务器发送粗略计数（会话次数、以五分钟为单位的游戏时长、大致帧率）以及关于你的设备和帧时间的定期性能报告。',
+  'analyticsPrompt.noThirdParty':
+    '不会向任何广告或分析公司发送数据；除非你选择分享，否则不会发送任何内容。',
   'analyticsPrompt.privacyLink': '阅读隐私政策',
   'analyticsPrompt.changeLater': '你可以随时在选项中更改此设置。',
   'analyticsPrompt.share': '分享',
   'analyticsPrompt.decline': '不分享',
   'hudChrome.options.shareAnalytics': '分享使用和性能数据',
-  'hudChrome.options.shareAnalyticsNote': '默认关闭，需要你主动开启。只会向 Wyndlewood 发送粗略的游戏计数和性能报告，绝不发送给其他公司。',
+  'hudChrome.options.shareAnalyticsNote':
+    '默认关闭，需要你主动开启。只会向 Wyndlewood 发送粗略的游戏计数和性能报告，绝不发送给其他公司。',
   'hudChrome.addons.menuEntry': '插件',
   'hudChrome.addons.title': '插件',
   'hudChrome.addons.close': '关闭',
@@ -24591,7 +24596,8 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.auth.steamError': '无法使用 Steam 登录，请重试。',
   'hudChrome.auth.steamNoTicket': 'Steam 未运行。请启动 Steam 后重试。',
   'hudChrome.auth.steamUnavailable': 'Steam 登录暂时不可用。',
-  'apiError.steam.unlink_last_login': 'Steam 是你登录此账号的唯一方式。请先添加邮箱和密码，再解除关联。',
+  'apiError.steam.unlink_last_login':
+    'Steam 是你登录此账号的唯一方式。请先添加邮箱和密码，再解除关联。',
   'loading.maintenance': '服务器正在维护，请稍后再试。',
   'loading.updateRequired': '需要更新：当前游戏版本已过期。请重启 Steam 进行更新，然后重试。',
   'hudChrome.maintenance.beginsInMinute': '服务器维护将在 1 分钟后开始。',
@@ -24600,21 +24606,30 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.maintenance.begun': '服务器维护已开始，暂停新的登录。',
   'hudChrome.maintenance.cancelled': '服务器维护已取消。',
   'hudChrome.maintenance.ended': '服务器维护已结束，现已开放登录。',
-  'apiError.steam.not_owned': '这个 Steam 账户还没有拥有本游戏。请先在 Steam 上获取游戏，然后重试。',
-  'apiError.steam.reauth_required': '请输入你的密码（如已开启两步验证，还需输入验证码）以关联 Steam。',
+  'apiError.steam.not_owned':
+    '这个 Steam 账户还没有拥有本游戏。请先在 Steam 上获取游戏，然后重试。',
+  'apiError.steam.reauth_required':
+    '请输入你的密码（如已开启两步验证，还需输入验证码）以关联 Steam。',
   'apiError.store.disabled': '抢先体验期间商店不可用。',
   'legalPrompt.updated': '自你上次接受后已更新',
   'legalPrompt.readFull': '阅读完整文档',
-  'legalPrompt.publisher': '发行方：[PUBLISHER LEGAL NAME]（在确定发行方之前的占位符）。这些文件是等待法律审核的草案。',
+  'legalPrompt.publisher':
+    '发行方：[PUBLISHER LEGAL NAME]（在确定发行方之前的占位符）。这些文件是等待法律审核的草案。',
   'legalPrompt.terms.age': '你必须年满 13 岁，或由父母或监护人代你同意。',
-  'legalPrompt.terms.fairPlay': '公平游戏：禁止作弊、机器人、自动化、利用漏洞、骚扰，或用真钱交易物品或金币。',
-  'legalPrompt.terms.virtualItems': '虚拟物品、货币和进度没有金钱价值。Steam 版本中的任何购买都通过 Steam 进行。',
-  'legalPrompt.terms.enforcement': '违反规则的账号可能会被警告、禁言、暂停或封禁。你可以向客服申诉。',
-  'legalPrompt.privacy.account': '我们会保存你的账号、角色和进度，并使用你的 IP 地址等技术数据来运行服务器、阻止作弊和滥用。',
+  'legalPrompt.terms.fairPlay':
+    '公平游戏：禁止作弊、机器人、自动化、利用漏洞、骚扰，或用真钱交易物品或金币。',
+  'legalPrompt.terms.virtualItems':
+    '虚拟物品、货币和进度没有金钱价值。Steam 版本中的任何购买都通过 Steam 进行。',
+  'legalPrompt.terms.enforcement':
+    '违反规则的账号可能会被警告、禁言、暂停或封禁。你可以向客服申诉。',
+  'legalPrompt.privacy.account':
+    '我们会保存你的账号、角色和进度，并使用你的 IP 地址等技术数据来运行服务器、阻止作弊和滥用。',
   'legalPrompt.privacy.public': '聊天、角色名、公会和排行榜对其他玩家可见。',
-  'legalPrompt.privacy.analytics': '除非你主动开启，否则分析功能保持关闭，且不会向任何广告或分析公司发送数据。',
+  'legalPrompt.privacy.analytics':
+    '除非你主动开启，否则分析功能保持关闭，且不会向任何广告或分析公司发送数据。',
   'legalPrompt.privacy.rights': '你可以随时导出你的数据并删除你的账号。',
   'legalPrompt.eula.license': '本游戏是授权给你使用，而非出售给你，仅供你个人非商业游玩。',
-  'legalPrompt.eula.restrictions': '不得复制、转售或逆向工程本游戏，也不得对其使用作弊、机器人或漏洞利用。',
+  'legalPrompt.eula.restrictions':
+    '不得复制、转售或逆向工程本游戏，也不得对其使用作弊、机器人或漏洞利用。',
   'apiError.legal_acceptance.invalid_input': '这些协议已经更新。请重新加载并接受当前版本。',
 };

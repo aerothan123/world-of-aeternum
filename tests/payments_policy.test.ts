@@ -20,7 +20,9 @@ describe('external payments policy', () => {
 
   it('the Stripe checkout checks the policy before loading Stripe.js', () => {
     const src = readFileSync(new URL('../src/net/stripe_checkout.ts', import.meta.url), 'utf8');
-    const gate = src.indexOf("if (!externalPaymentsEnabled()) throw new Error('external_payments_disabled');");
+    const gate = src.indexOf(
+      "if (!externalPaymentsEnabled()) throw new Error('external_payments_disabled');",
+    );
     expect(gate).toBeGreaterThan(-1);
     expect(gate).toBeLessThan(src.indexOf('await loadStripeScript();'));
   });

@@ -34,7 +34,8 @@ export const shellStrings = {
       mainNavigation: 'Main navigation',
       languageSelection: 'Language selection',
       characterActions: 'Character actions',
-      githubProject: 'View the open-source World of ClaudeCraft engine Wyndlewood is built on, on GitHub',
+      githubProject:
+        'View the open-source World of ClaudeCraft engine Wyndlewood is built on, on GitHub',
       discordCommunity: 'Join the Wyndlewood Discord community',
       donateProject: 'Donate to support Wyndlewood',
     },
@@ -470,7 +471,8 @@ export const shellStrings = {
     analyticsPrompt: {
       title: 'Help Improve Wyndlewood',
       body: 'May Wyndlewood collect usage and performance data? If you agree, the game sends coarse counters (sessions, play time in five-minute steps, a rough frame rate) and periodic performance reports about your device and frame times to our own servers.',
-      noThirdParty: 'Nothing is sent to advertising or analytics companies, and nothing is sent at all unless you choose Share.',
+      noThirdParty:
+        'Nothing is sent to advertising or analytics companies, and nothing is sent at all unless you choose Share.',
       privacyLink: 'Read the Privacy Policy',
       changeLater: 'You can change this any time in Options.',
       share: 'Share',

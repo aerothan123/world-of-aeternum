@@ -7035,8 +7035,7 @@ export const hudChromeStrings = {
   // Town restoration projects (src/ui/hud/housing/town_project_view.ts):
   // {project} and {stage} are the names below; {items} the joined bundle.
   townProject: {
-    progress:
-      '{project}: {stage}. {done} of {needed} bundles are in. Each bundle is {items}.',
+    progress: '{project}: {stage}. {done} of {needed} bundles are in. Each bundle is {items}.',
     complete: '{project} is complete. The town thanks you.',
     contribute: 'Contribute',
     bundleItem: '{count} {item}',
@@ -7054,7 +7053,8 @@ export const hudChromeStrings = {
   // The HUD durability indicator (src/ui/hud/durability/).
   durability: {
     low: 'Your equipment is badly damaged. Repair it at an armorer, a weaponsmith or a forge.',
-    broken: 'Some of your equipment is broken and gives no stats. Repair it at an armorer, a weaponsmith or a forge.',
+    broken:
+      'Some of your equipment is broken and gives no stats. Repair it at an armorer, a weaponsmith or a forge.',
   },
   itemTooltip: {
     requiresLevel: 'Requires Level {level}',

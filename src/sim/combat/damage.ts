@@ -24,14 +24,14 @@
 // (enforced by tests/architecture.test.ts).
 
 import { rollBossBuddyDrops } from '../buddy_drops';
+import { MEMBERSHIP_XP_MULTIPLIER } from '../content/membership';
+import { ABILITIES, DELVES, GROUP_XP_BONUS, ITEMS, MOBS } from '../data';
+import * as deedsMod from '../deeds';
 import {
   onPlayerDeathForDurability,
   onPlayerHitDealtForDurability,
   onPlayerHitTakenForDurability,
 } from '../durability';
-import { MEMBERSHIP_XP_MULTIPLIER } from '../content/membership';
-import { ABILITIES, DELVES, GROUP_XP_BONUS, ITEMS, MOBS } from '../data';
-import * as deedsMod from '../deeds';
 import { reflectionIgnoresHit } from '../encounters/drowned_temple/reflection_guard';
 import { bastionWardHitPoints } from '../encounters/sunken_bastion/ward_hits';
 import { recalcPlayerStats } from '../entity';

@@ -20,9 +20,9 @@ import {
   TOOL_EFFECTS,
 } from '../content/professions';
 import { ITEMS } from '../data';
+import { gatherActivity, recordFactionActivity } from '../faction_activity';
 import { lifeSkillGatherXp } from '../life_skills/life_skill_xp';
 import { grantLifeSkillStanding } from '../life_skills/standing_seam';
-import { gatherActivity, recordFactionActivity } from '../faction_activity';
 import { gatheredMaterialSources } from '../material_gatherer';
 import { forceDismount } from '../mounts';
 import { gatherNodesFor, type ObjectMoves } from '../moved_objects';

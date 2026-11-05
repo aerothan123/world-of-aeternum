@@ -1025,15 +1025,11 @@ describe('client HTML shell', () => {
     expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/terms</loc>');
     expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/data-deletion</loc>');
     expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/support</loc>');
-    expect(privacyHtml).toContain(
-      '<link rel="canonical" href="/privacy" />',
-    );
+    expect(privacyHtml).toContain('<link rel="canonical" href="/privacy" />');
     expect(privacyHtml).toContain('<h1>Privacy Policy</h1>');
     expect(privacyHtml).toContain('href="/support">Support</a>');
     expect(privacyHtml).toContain('href="/data-deletion">Data Deletion</a>');
-    expect(termsHtml).toContain(
-      '<link rel="canonical" href="/terms" />',
-    );
+    expect(termsHtml).toContain('<link rel="canonical" href="/terms" />');
     expect(termsHtml).toContain('<h1>Terms of Service</h1>');
     // The legal pages are Wyndlewood drafts: no upstream operator, Ko-fi, Solana or $WOC.
     for (const page of [privacyHtml, termsHtml]) {
@@ -1045,17 +1041,13 @@ describe('client HTML shell', () => {
     }
     expect(termsHtml).toContain('href="/support">Support</a>');
     expect(termsHtml).toContain('href="/data-deletion">Data Deletion</a>');
-    expect(dataDeletionHtml).toContain(
-      '<link rel="canonical" href="/data-deletion" />',
-    );
+    expect(dataDeletionHtml).toContain('<link rel="canonical" href="/data-deletion" />');
     expect(dataDeletionHtml).toContain('<h1>Data Deletion</h1>');
     // The upstream contact is gone; the support address is an owner placeholder.
     expect(dataDeletionHtml).not.toContain('levystreet.com');
     expect(dataDeletionHtml).toContain('href="mailto:support@wyndlewood.invalid"');
     expect(dataDeletionHtml).toContain('href="/support">Support</a>');
-    expect(supportHtml).toContain(
-      '<link rel="canonical" href="/support" />',
-    );
+    expect(supportHtml).toContain('<link rel="canonical" href="/support" />');
     expect(supportHtml).toContain('<h1>Support</h1>');
     expect(supportHtml).not.toContain('levystreet.com');
     expect(supportHtml).toContain('href="mailto:support@wyndlewood.invalid"');

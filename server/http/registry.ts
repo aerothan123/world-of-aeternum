@@ -40,6 +40,7 @@ import { routes as githubRoutes } from '../github';
 import { routes as guildRosterRoutes } from '../guild_roster';
 import { routes as internalRoutes } from '../internal';
 import { routes as leaderboardRoutes } from '../leaderboard';
+import { routes as legalAcceptanceRoutes } from '../legal_acceptance';
 import { routes as mapsRoutes } from '../maps_routes';
 import { routes as oauthRoutes } from '../oauth';
 import { routes as otaUpdatesRoutes } from '../ota_updates';
@@ -50,7 +51,6 @@ import { routes as steamRoutes } from '../steam';
 import { routes as steamLoginRoutes } from '../steam_login';
 import { routes as userAssetsRoutes } from '../user_assets_routes';
 import { routes as worldQuestLeaderboardRoutes } from '../world_quest_leaderboard';
-import { routes as legalAcceptanceRoutes } from '../legal_acceptance';
 // new:endpoint imports appear above this line (npm run new:endpoint)
 import { type CompiledPattern, compilePattern } from './path_pattern';
 import { createRouter, type MatchResult } from './router';

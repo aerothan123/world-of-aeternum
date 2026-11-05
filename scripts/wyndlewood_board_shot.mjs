@@ -60,7 +60,11 @@ const rows = await page.evaluate(
 console.log('board rows', rows);
 
 // A Chapter One quest dialog: Brother Aldric offering "Flowers Facing Down".
-await page.evaluate(() => window.__game.hud.openGuildBoard && document.querySelector('#guild-board-window .close, #guild-board-window [data-close]')?.click());
+await page.evaluate(
+  () =>
+    window.__game.hud.openGuildBoard &&
+    document.querySelector('#guild-board-window .close, #guild-board-window [data-close]')?.click(),
+);
 await page.evaluate(() => {
   const s = window.__game.sim;
   const aldric = [...s.entities.values()].find((e) => e.templateId === 'brother_aldric');

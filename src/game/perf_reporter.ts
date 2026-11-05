@@ -8,8 +8,8 @@ import {
   type HostEssentialsProbe,
   hostEssentialsPayloadFields,
 } from './desktop_host_essentials';
-import { frameCadenceBeaconBlock, frameCadenceBeaconFields } from './frame_cadence_wiring';
 import { liveAnalyticsAllowed } from './first_party_analytics';
+import { frameCadenceBeaconBlock, frameCadenceBeaconFields } from './frame_cadence_wiring';
 import { createGpuAdapterProbe } from './gpu_adapter_probe';
 import { collectLoadSpans } from './load_profiler';
 import { localDevPerfTraceEnabled, type PerfMonitor, type PerfSnapshot } from './perf';

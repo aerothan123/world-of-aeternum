@@ -25833,8 +25833,10 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'seasonal.thatchgrin.sleepYell': '해가 떴군. 기둥으로 돌아가 다시 지켜봐야지.',
   'seasonal.pumpkins.progress': '{label}: {current}/{total}',
   'legalPrompt.title': '플레이어 약관',
-  'legalPrompt.body': '플레이하기 전에 서비스 약관, 개인정보 처리방침, 최종 사용자 라이선스 계약을 읽고 동의해 주세요. 아래 각 요약에서 전체 문서로 이동할 수 있습니다.',
-  'legalPrompt.earlyAccess': 'Wyndlewood는 앞서 해보기 단계입니다. 기능, 밸런스, 콘텐츠는 변경되며, 정식 출시 때 상점 페이지에 공지된 대로 진행 상황이 한 번 초기화될 수 있습니다.',
+  'legalPrompt.body':
+    '플레이하기 전에 서비스 약관, 개인정보 처리방침, 최종 사용자 라이선스 계약을 읽고 동의해 주세요. 아래 각 요약에서 전체 문서로 이동할 수 있습니다.',
+  'legalPrompt.earlyAccess':
+    'Wyndlewood는 앞서 해보기 단계입니다. 기능, 밸런스, 콘텐츠는 변경되며, 정식 출시 때 상점 페이지에 공지된 대로 진행 상황이 한 번 초기화될 수 있습니다.',
   'legalPrompt.eulaLink': '최종 사용자 라이선스 계약',
   'legalPrompt.termsLink': '서비스 약관',
   'legalPrompt.privacyLink': '개인정보 처리방침',
@@ -25842,14 +25844,17 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'legalPrompt.accept': '동의합니다',
   'legalPrompt.decline': '거부',
   'analyticsPrompt.title': 'Wyndlewood 개선에 도움 주기',
-  'analyticsPrompt.body': 'Wyndlewood가 사용 및 성능 데이터를 수집해도 될까요? 동의하면 게임이 대략적인 집계(세션 수, 5분 단위의 플레이 시간, 대략적인 프레임 속도)와 기기 및 프레임 시간에 대한 주기적인 성능 보고서를 저희 서버로 보냅니다.',
-  'analyticsPrompt.noThirdParty': '광고 회사나 분석 회사에는 어떤 데이터도 보내지 않으며, 공유를 선택하지 않으면 아무것도 보내지 않습니다.',
+  'analyticsPrompt.body':
+    'Wyndlewood가 사용 및 성능 데이터를 수집해도 될까요? 동의하면 게임이 대략적인 집계(세션 수, 5분 단위의 플레이 시간, 대략적인 프레임 속도)와 기기 및 프레임 시간에 대한 주기적인 성능 보고서를 저희 서버로 보냅니다.',
+  'analyticsPrompt.noThirdParty':
+    '광고 회사나 분석 회사에는 어떤 데이터도 보내지 않으며, 공유를 선택하지 않으면 아무것도 보내지 않습니다.',
   'analyticsPrompt.privacyLink': '개인정보 처리방침 읽기',
   'analyticsPrompt.changeLater': '이 설정은 옵션에서 언제든지 바꿀 수 있습니다.',
   'analyticsPrompt.share': '공유',
   'analyticsPrompt.decline': '공유 안 함',
   'hudChrome.options.shareAnalytics': '사용 및 성능 데이터 공유',
-  'hudChrome.options.shareAnalyticsNote': '직접 켜지 않으면 꺼져 있습니다. 대략적인 플레이 집계와 성능 보고서를 Wyndlewood에만 보내며 다른 회사에는 보내지 않습니다.',
+  'hudChrome.options.shareAnalyticsNote':
+    '직접 켜지 않으면 꺼져 있습니다. 대략적인 플레이 집계와 성능 보고서를 Wyndlewood에만 보내며 다른 회사에는 보내지 않습니다.',
   'hudChrome.addons.menuEntry': '애드온',
   'hudChrome.addons.title': '애드온',
   'hudChrome.addons.close': '닫기',
@@ -25935,32 +25940,46 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.addons.perm.secureActions': '행동 버튼',
   'hudChrome.auth.steamLoginCta': 'Steam으로 계속',
   'hudChrome.auth.steamError': 'Steam으로 로그인할 수 없습니다. 다시 시도해 주세요.',
-  'hudChrome.auth.steamNoTicket': 'Steam이 실행 중이 아닙니다. Steam을 실행한 후 다시 시도해 주세요.',
+  'hudChrome.auth.steamNoTicket':
+    'Steam이 실행 중이 아닙니다. Steam을 실행한 후 다시 시도해 주세요.',
   'hudChrome.auth.steamUnavailable': '지금은 Steam 로그인을 사용할 수 없습니다.',
-  'apiError.steam.unlink_last_login': '이 계정에 로그인하는 방법은 Steam뿐입니다. 연결을 해제하기 전에 이메일과 비밀번호를 추가해 주세요.',
+  'apiError.steam.unlink_last_login':
+    '이 계정에 로그인하는 방법은 Steam뿐입니다. 연결을 해제하기 전에 이메일과 비밀번호를 추가해 주세요.',
   'loading.maintenance': '렐름이 점검 중입니다. 잠시 후 다시 시도해 주세요.',
-  'loading.updateRequired': '업데이트 필요: 이 버전의 게임은 오래되었습니다. Steam을 다시 시작해 업데이트한 후 다시 시도해 주세요.',
+  'loading.updateRequired':
+    '업데이트 필요: 이 버전의 게임은 오래되었습니다. Steam을 다시 시작해 업데이트한 후 다시 시도해 주세요.',
   'hudChrome.maintenance.beginsInMinute': '1분 후 렐름 점검이 시작됩니다.',
   'hudChrome.maintenance.beginsInMinutes': '{count}분 후 렐름 점검이 시작됩니다.',
   'hudChrome.maintenance.beginsInSeconds': '{count}초 후 렐름 점검이 시작됩니다.',
   'hudChrome.maintenance.begun': '렐름 점검이 시작되었습니다. 새로운 로그인은 막혀 있습니다.',
   'hudChrome.maintenance.cancelled': '렐름 점검이 취소되었습니다.',
   'hudChrome.maintenance.ended': '렐름 점검이 끝났습니다. 다시 로그인할 수 있습니다.',
-  'apiError.steam.not_owned': '이 Steam 계정은 아직 게임을 보유하고 있지 않습니다. Steam에서 게임을 구매한 후 다시 시도해 주세요.',
-  'apiError.steam.reauth_required': 'Steam을 연결하려면 비밀번호(2단계 인증을 사용 중이면 인증 코드도)를 입력해 주세요.',
+  'apiError.steam.not_owned':
+    '이 Steam 계정은 아직 게임을 보유하고 있지 않습니다. Steam에서 게임을 구매한 후 다시 시도해 주세요.',
+  'apiError.steam.reauth_required':
+    'Steam을 연결하려면 비밀번호(2단계 인증을 사용 중이면 인증 코드도)를 입력해 주세요.',
   'apiError.store.disabled': '앞서 해보기 기간에는 상점을 이용할 수 없습니다.',
   'legalPrompt.updated': '마지막으로 동의한 이후 변경됨',
   'legalPrompt.readFull': '전체 문서 읽기',
-  'legalPrompt.publisher': '배급사: [PUBLISHER LEGAL NAME] (배급사가 정해질 때까지의 임시 표기). 이 문서들은 법률 검토를 기다리는 초안입니다.',
+  'legalPrompt.publisher':
+    '배급사: [PUBLISHER LEGAL NAME] (배급사가 정해질 때까지의 임시 표기). 이 문서들은 법률 검토를 기다리는 초안입니다.',
   'legalPrompt.terms.age': '만 13세 이상이거나 부모 또는 보호자의 동의가 있어야 합니다.',
-  'legalPrompt.terms.fairPlay': '공정하게 플레이하세요: 치트, 봇, 자동화, 버그 악용, 괴롭힘, 아이템이나 골드의 현금 거래는 금지됩니다.',
-  'legalPrompt.terms.virtualItems': '가상 아이템, 화폐, 진행 상황에는 금전적 가치가 없습니다. Steam 버전의 모든 구매는 Steam을 통해 이루어집니다.',
-  'legalPrompt.terms.enforcement': '규칙을 어긴 계정은 경고, 채팅 금지, 정지 또는 영구 제재를 받을 수 있습니다. 고객 지원에 이의를 제기할 수 있습니다.',
-  'legalPrompt.privacy.account': '계정, 캐릭터, 진행 상황을 저장하며, 서버 운영과 치트 및 악용 방지를 위해 IP 주소 같은 기술 데이터를 사용합니다.',
+  'legalPrompt.terms.fairPlay':
+    '공정하게 플레이하세요: 치트, 봇, 자동화, 버그 악용, 괴롭힘, 아이템이나 골드의 현금 거래는 금지됩니다.',
+  'legalPrompt.terms.virtualItems':
+    '가상 아이템, 화폐, 진행 상황에는 금전적 가치가 없습니다. Steam 버전의 모든 구매는 Steam을 통해 이루어집니다.',
+  'legalPrompt.terms.enforcement':
+    '규칙을 어긴 계정은 경고, 채팅 금지, 정지 또는 영구 제재를 받을 수 있습니다. 고객 지원에 이의를 제기할 수 있습니다.',
+  'legalPrompt.privacy.account':
+    '계정, 캐릭터, 진행 상황을 저장하며, 서버 운영과 치트 및 악용 방지를 위해 IP 주소 같은 기술 데이터를 사용합니다.',
   'legalPrompt.privacy.public': '채팅, 캐릭터 이름, 길드, 순위표는 다른 플레이어에게 표시됩니다.',
-  'legalPrompt.privacy.analytics': '분석은 직접 켜지 않는 한 꺼져 있으며, 광고 또는 분석 회사로는 아무것도 전송되지 않습니다.',
+  'legalPrompt.privacy.analytics':
+    '분석은 직접 켜지 않는 한 꺼져 있으며, 광고 또는 분석 회사로는 아무것도 전송되지 않습니다.',
   'legalPrompt.privacy.rights': '언제든지 데이터를 내보내고 계정을 삭제할 수 있습니다.',
-  'legalPrompt.eula.license': '이 게임은 판매가 아닌 사용 허가이며, 개인적인 비상업적 플레이를 위한 것입니다.',
-  'legalPrompt.eula.restrictions': '게임을 복제, 재판매 또는 리버스 엔지니어링하거나, 치트, 봇, 버그 악용을 사용하지 마세요.',
-  'apiError.legal_acceptance.invalid_input': '약관이 변경되었습니다. 다시 불러온 뒤 최신 버전에 동의해 주세요.',
+  'legalPrompt.eula.license':
+    '이 게임은 판매가 아닌 사용 허가이며, 개인적인 비상업적 플레이를 위한 것입니다.',
+  'legalPrompt.eula.restrictions':
+    '게임을 복제, 재판매 또는 리버스 엔지니어링하거나, 치트, 봇, 버그 악용을 사용하지 마세요.',
+  'apiError.legal_acceptance.invalid_input':
+    '약관이 변경되었습니다. 다시 불러온 뒤 최신 버전에 동의해 주세요.',
 };

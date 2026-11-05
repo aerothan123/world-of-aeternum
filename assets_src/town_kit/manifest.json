@@ -20,10 +20,7 @@
     {
       "id": "station_forge_canopy",
       "category": "crafting",
-      "serves": [
-        "weaponcrafting",
-        "armorcrafting"
-      ],
+      "serves": ["weaponcrafting", "armorcrafting"],
       "description": "blacksmith forge workstation: a squat rounded stone forge hearth with glowing coals and a leather bellows, a sturdy iron anvil on a tree stump beside it, a wooden quench barrel, hammers and tongs on a rack, all sheltered under a crooked open timber canopy on four posts with a mossy shingle roof, no walls, no ground plane",
       "conceptPrompt": "blacksmith forge workstation: a squat rounded stone forge hearth with glowing coals and a leather bellows, a sturdy iron anvil on a tree stump beside it, a wooden quench barrel, hammers and tongs on a rack, all sheltered under a crooked open timber canopy on four posts with a mossy shingle roof, no walls, no ground plane, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -40,11 +37,7 @@
       "pipelineJob": "town_station_forge_canopy_b0",
       "triangles": 2736,
       "bytes": 129092,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 4.5,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -65,9 +58,7 @@
     {
       "id": "station_anvil_armorer",
       "category": "crafting",
-      "serves": [
-        "armorcrafting"
-      ],
+      "serves": ["armorcrafting"],
       "description": "armorsmith open-air workstation: a large iron anvil on a thick oak stump, a wooden armor stand holding a steel breastplate and helmet, a pedal grindstone wheel and a stone quench trough, grouped close together, no roof, no ground plane",
       "conceptPrompt": "armorsmith open-air workstation: a large iron anvil on a thick oak stump, a wooden armor stand holding a steel breastplate and helmet, a pedal grindstone wheel and a stone quench trough, grouped close together, no roof, no ground plane, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -84,11 +75,7 @@
       "pipelineJob": "town_station_anvil_armorer_b0",
       "triangles": 2742,
       "bytes": 99032,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 2.2,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -109,10 +96,7 @@
     {
       "id": "station_smelter",
       "category": "crafting",
-      "serves": [
-        "smelting",
-        "mining refinement"
-      ],
+      "serves": ["smelting", "mining refinement"],
       "description": "ore smelting furnace workstation: a tall rounded clay and fieldstone bloomery furnace with a short chimney and a glowing orange mouth, a big leather bellows, a small wooden cart of raw ore beside it, a neat stack of metal ingots, no ground plane",
       "conceptPrompt": "ore smelting furnace workstation: a tall rounded clay and fieldstone bloomery furnace with a short chimney and a glowing orange mouth, a big leather bellows, a small wooden cart of raw ore beside it, a neat stack of metal ingots, no ground plane, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -129,11 +113,7 @@
       "pipelineJob": "town_station_smelter_b0",
       "triangles": 2579,
       "bytes": 117056,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 4,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -154,10 +134,7 @@
     {
       "id": "station_tannery_rack",
       "category": "crafting",
-      "serves": [
-        "leatherworking",
-        "skinning refinement"
-      ],
+      "serves": ["leatherworking", "skinning refinement"],
       "description": "leatherworking tannery workstation: two tall wooden frames with brown animal hides stretched and laced with rope, a round wooden tanning tub, a low scraping bench with a hide draped over it, grouped together, no ground plane",
       "conceptPrompt": "leatherworking tannery workstation: two tall wooden frames with brown animal hides stretched and laced with rope, a round wooden tanning tub, a low scraping bench with a hide draped over it, grouped together, no ground plane, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -174,11 +151,7 @@
       "pipelineJob": "town_station_tannery_rack_b0",
       "triangles": 2546,
       "bytes": 104704,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 3,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -199,9 +172,7 @@
     {
       "id": "station_loom_awning",
       "category": "crafting",
-      "serves": [
-        "tailoring"
-      ],
+      "serves": ["tailoring"],
       "description": "tailoring workstation: a wooden floor loom with colorful half-woven cloth, wicker baskets of yarn spools, a spinning wheel beside it, all under a striped red and cream cloth awning on four wooden poles, no ground plane",
       "conceptPrompt": "tailoring workstation: a wooden floor loom with colorful half-woven cloth, wicker baskets of yarn spools, a spinning wheel beside it, all under a striped red and cream cloth awning on four wooden poles, no ground plane, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -218,11 +189,7 @@
       "pipelineJob": "town_station_loom_awning_b0",
       "triangles": 2780,
       "bytes": 96672,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 3.6,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -243,10 +210,7 @@
     {
       "id": "station_alchemy_table",
       "category": "crafting",
-      "serves": [
-        "alchemy",
-        "herbalism refinement"
-      ],
+      "serves": ["alchemy", "herbalism refinement"],
       "description": "alchemy workstation: a sturdy crooked wooden workbench with a bubbling copper alembic still, glass flasks of green and purple potions, a small iron cauldron on a brazier at one end, bundles of drying herbs hanging from a wooden crossbar above, no ground plane",
       "conceptPrompt": "alchemy workstation: a sturdy crooked wooden workbench with a bubbling copper alembic still, glass flasks of green and purple potions, a small iron cauldron on a brazier at one end, bundles of drying herbs hanging from a wooden crossbar above, no ground plane, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -263,11 +227,7 @@
       "pipelineJob": "town_station_alchemy_table_b0",
       "triangles": 2770,
       "bytes": 117048,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 2.6,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -288,9 +248,7 @@
     {
       "id": "station_cooking_hearth",
       "category": "crafting",
-      "serves": [
-        "cooking"
-      ],
+      "serves": ["cooking"],
       "description": "outdoor cooking workstation: a rounded stone hearth with a black iron cooking pot over a small fire, a roasting spit, a wooden chopping table with vegetables and a cleaver, sheltered under a small open timber lean-to roof with mossy shingles, no ground plane",
       "conceptPrompt": "outdoor cooking workstation: a rounded stone hearth with a black iron cooking pot over a small fire, a roasting spit, a wooden chopping table with vegetables and a cleaver, sheltered under a small open timber lean-to roof with mossy shingles, no ground plane, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -307,11 +265,7 @@
       "pipelineJob": "town_station_cooking_hearth_b0",
       "triangles": 2599,
       "bytes": 128988,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 3.8,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -332,9 +286,7 @@
     {
       "id": "station_enchanting_altar",
       "category": "crafting",
-      "serves": [
-        "enchanting"
-      ],
+      "serves": ["enchanting"],
       "description": "arcane enchanting workstation: a carved stone and dark wood table with glowing blue runes on its edges, a violet crystal held in a brass ring on a stand above it, an open spellbook and candles on the table, a round carved rune stone base, no ground plane",
       "conceptPrompt": "arcane enchanting workstation: a carved stone and dark wood table with glowing blue runes on its edges, a violet crystal held in a brass ring on a stand above it, an open spellbook and candles on the table, a round carved rune stone base, no ground plane, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -351,11 +303,7 @@
       "pipelineJob": "town_station_enchanting_altar_b0",
       "triangles": 2839,
       "bytes": 111916,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 2.6,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -376,9 +324,7 @@
     {
       "id": "station_jeweler_bench",
       "category": "crafting",
-      "serves": [
-        "jewelcrafting"
-      ],
+      "serves": ["jewelcrafting"],
       "description": "jewelcrafting workstation: a small sturdy wooden jeweler's bench with a brass magnifying lens on a jointed arm, a tiny bench vise, trays of colorful cut gemstones, a small foot-powered polishing wheel, a hanging lantern on a hook, no ground plane",
       "conceptPrompt": "jewelcrafting workstation: a small sturdy wooden jeweler's bench with a brass magnifying lens on a jointed arm, a tiny bench vise, trays of colorful cut gemstones, a small foot-powered polishing wheel, a hanging lantern on a hook, no ground plane, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -395,11 +341,7 @@
       "pipelineJob": "town_station_jeweler_bench_b0",
       "triangles": 2985,
       "bytes": 118752,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 1.8,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -420,9 +362,7 @@
     {
       "id": "station_engineering_bench",
       "category": "crafting",
-      "serves": [
-        "engineering"
-      ],
+      "serves": ["engineering"],
       "description": "engineering workstation: a heavy wooden workbench covered in big brass gears and cogs, a hand-cranked clockwork contraption, a bench vise, a pegboard of wrenches and hammers on the back, a small barrel of bolts beside it, no ground plane",
       "conceptPrompt": "engineering workstation: a heavy wooden workbench covered in big brass gears and cogs, a hand-cranked clockwork contraption, a bench vise, a pegboard of wrenches and hammers on the back, a small barrel of bolts beside it, no ground plane, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -439,11 +379,7 @@
       "pipelineJob": "town_station_engineering_bench_b0",
       "triangles": 2760,
       "bytes": 101412,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 2.4,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -464,9 +400,7 @@
     {
       "id": "station_scribe_desk",
       "category": "crafting",
-      "serves": [
-        "inscription"
-      ],
+      "serves": ["inscription"],
       "description": "inscription workstation: a slanted wooden scribe's writing desk with parchment, an inkwell and quill, stacks of leather books and scroll cases, a tall candle, a small bookshelf of tomes standing beside the desk, no ground plane",
       "conceptPrompt": "inscription workstation: a slanted wooden scribe's writing desk with parchment, an inkwell and quill, stacks of leather books and scroll cases, a tall candle, a small bookshelf of tomes standing beside the desk, no ground plane, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -483,11 +417,7 @@
       "pipelineJob": "town_station_scribe_desk_b0",
       "triangles": 2798,
       "bytes": 99748,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 2.2,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -508,10 +438,7 @@
     {
       "id": "station_woodshop",
       "category": "crafting",
-      "serves": [
-        "woodworking",
-        "logging refinement"
-      ],
+      "serves": ["woodworking", "logging refinement"],
       "description": "woodworking workstation: a pair of sturdy wooden sawhorses holding a long plank with a bow saw resting on it, a chopping stump with an axe stuck in it, a neat stack of cut lumber, a small foot-pedal wood lathe, grouped together, no ground plane",
       "conceptPrompt": "woodworking workstation: a pair of sturdy wooden sawhorses holding a long plank with a bow saw resting on it, a chopping stump with an axe stuck in it, a neat stack of cut lumber, a small foot-pedal wood lathe, grouped together, no ground plane, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -528,11 +455,7 @@
       "pipelineJob": "town_station_woodshop_b0",
       "triangles": 2616,
       "bytes": 102172,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 1.8,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -553,10 +476,7 @@
     {
       "id": "station_stonecutter",
       "category": "crafting",
-      "serves": [
-        "stonecutting",
-        "masonry refinement"
-      ],
+      "serves": ["stonecutting", "masonry refinement"],
       "description": "stonecutting workstation: a heavy stone-topped wooden work table with a half-carved stone block on it, mallets and chisels, a small pile of rough cut stone blocks beside it, a hand-cranked stone grinding wheel, no ground plane",
       "conceptPrompt": "stonecutting workstation: a heavy stone-topped wooden work table with a half-carved stone block on it, mallets and chisels, a small pile of rough cut stone blocks beside it, a hand-cranked stone grinding wheel, no ground plane, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -573,11 +493,7 @@
       "pipelineJob": "town_station_stonecutter_b0",
       "triangles": 2795,
       "bytes": 88244,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 1.8,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -615,11 +531,7 @@
       "pipelineJob": "town_house_cottage_thatch_b0",
       "triangles": 3547,
       "bytes": 87680,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 6,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -657,11 +569,7 @@
       "pipelineJob": "town_house_cottage_redtile_b0",
       "triangles": 3884,
       "bytes": 97636,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 6,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -700,12 +608,7 @@
             "reason": "the single-image build left the back face unpainted; this side faces a street",
             "turnaroundCredits": 5,
             "turnaround": "assets_src/town_kit/housing/house_townhouse_slate/turnaround.jpg",
-            "views": [
-              "front",
-              "left",
-              "right",
-              "back"
-            ],
+            "views": ["front", "left", "right", "back"],
             "modelTask": "bd66b641-d369-48ad-a9e9-aab9fc222b01",
             "credits": 110
           }
@@ -714,11 +617,7 @@
       "pipelineJob": "town_house_townhouse_slate_mv",
       "triangles": 3777,
       "bytes": 156080,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 9,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -758,11 +657,7 @@
             "reason": "the single-image build left the back face unpainted; this side faces a street",
             "turnaroundCredits": 5,
             "turnaround": "assets_src/town_kit/housing/house_townhouse_green/turnaround.jpg",
-            "views": [
-              "front",
-              "left",
-              "back"
-            ],
+            "views": ["front", "left", "back"],
             "modelTask": "522676c7-7913-4cc3-a164-8c9f29cdf78c",
             "credits": 110
           }
@@ -771,11 +666,7 @@
       "pipelineJob": "town_house_townhouse_green_mv",
       "triangles": 3795,
       "bytes": 156836,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 9,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -814,11 +705,7 @@
       "pipelineJob": "town_house_timber_jettied_b0",
       "triangles": 3852,
       "bytes": 160992,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 10,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -856,11 +743,7 @@
       "pipelineJob": "town_house_timber_corner_tall_b0",
       "triangles": 3788,
       "bytes": 106972,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 12,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -898,11 +781,7 @@
       "pipelineJob": "town_house_stone_thatch_b0",
       "triangles": 3689,
       "bytes": 155232,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 6,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -940,11 +819,7 @@
       "pipelineJob": "town_house_row_terrace_b0",
       "triangles": 3847,
       "bytes": 122484,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 9,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -965,9 +840,7 @@
     {
       "id": "civic_trading_post",
       "category": "civic",
-      "serves": [
-        "trading post"
-      ],
+      "serves": ["trading post"],
       "description": "village trading post building: an open-fronted timber market hall with a long wooden counter facing the viewer, brass merchant scales on the counter, crates of goods and hanging cloth bolts behind it, a mossy shingle roof with a wide overhang, a blank hanging shop sign, compact standalone building shown whole with empty margin on every side",
       "conceptPrompt": "village trading post building: an open-fronted timber market hall with a long wooden counter facing the viewer, brass merchant scales on the counter, crates of goods and hanging cloth bolts behind it, a mossy shingle roof with a wide overhang, a blank hanging shop sign, compact standalone building shown whole with empty margin on every side, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -978,19 +851,13 @@
         "credits": 55
       },
       "rerolls": {
-        "concepts": [
-          "762ff676-af8d-4ce0-8ac8-c8383655cc25"
-        ],
+        "concepts": ["762ff676-af8d-4ce0-8ac8-c8383655cc25"],
         "builds": []
       },
       "pipelineJob": "town_civic_trading_post_b0",
       "triangles": 3773,
       "bytes": 121608,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 7,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -1011,9 +878,7 @@
     {
       "id": "civic_auction_house",
       "category": "civic",
-      "serves": [
-        "auction house"
-      ],
+      "serves": ["auction house"],
       "description": "grand village auction hall: a two-storey timber and stone hall with a wide open arched arcade front facing the viewer, colorful plain cloth banners, a small bell turret on the ridge, a raised wooden podium inside the arcade, a red tile roof, standalone building",
       "conceptPrompt": "grand village auction hall: a two-storey timber and stone hall with a wide open arched arcade front facing the viewer, colorful plain cloth banners, a small bell turret on the ridge, a raised wooden podium inside the arcade, a red tile roof, standalone building, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -1030,11 +895,7 @@
       "pipelineJob": "town_civic_auction_house_b0",
       "triangles": 3828,
       "bytes": 139216,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 11,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -1055,9 +916,7 @@
     {
       "id": "civic_storage_shed",
       "category": "civic",
-      "serves": [
-        "storage"
-      ],
+      "serves": ["storage"],
       "description": "open-front village storage shed: a timber lean-to shed with a mossy shingle roof, the whole front open toward the viewer, inside clearly visible rows of iron-banded wooden storage chests, stacked crates and barrels, standalone building",
       "conceptPrompt": "open-front village storage shed: a timber lean-to shed with a mossy shingle roof, the whole front open toward the viewer, inside clearly visible rows of iron-banded wooden storage chests, stacked crates and barrels, standalone building, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -1074,11 +933,7 @@
       "pipelineJob": "town_civic_storage_shed_b0",
       "triangles": 3727,
       "bytes": 125424,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 4.5,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -1099,9 +954,7 @@
     {
       "id": "civic_storage_barn",
       "category": "civic",
-      "serves": [
-        "storage"
-      ],
+      "serves": ["storage"],
       "description": "village storage warehouse barn with wide open double doors facing the viewer showing wooden shelves of iron-banded chests, crates and sacks inside, a hay loft door above with a wooden hoist beam, weathered plank walls, a shingle roof, standalone building",
       "conceptPrompt": "village storage warehouse barn with wide open double doors facing the viewer showing wooden shelves of iron-banded chests, crates and sacks inside, a hay loft door above with a wooden hoist beam, weathered plank walls, a shingle roof, standalone building, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -1118,11 +971,7 @@
       "pipelineJob": "town_civic_storage_barn_b0",
       "triangles": 3755,
       "bytes": 133880,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 7.5,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -1143,10 +992,7 @@
     {
       "id": "civic_town_board",
       "category": "civic",
-      "serves": [
-        "town board",
-        "quests"
-      ],
+      "serves": ["town board", "quests"],
       "description": "village notice board: a wide wooden board under a small pitched shingle roof on two thick posts, covered in pinned blank parchment notices, a small lantern hanging from one post, no ground plane",
       "conceptPrompt": "village notice board: a wide wooden board under a small pitched shingle roof on two thick posts, covered in pinned blank parchment notices, a small lantern hanging from one post, no ground plane, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -1163,11 +1009,7 @@
       "pipelineJob": "town_civic_town_board_b0",
       "triangles": 2309,
       "bytes": 105056,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 3.2,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -1188,9 +1030,7 @@
     {
       "id": "civic_inn_tavern",
       "category": "civic",
-      "serves": [
-        "inn"
-      ],
+      "serves": ["inn"],
       "description": "large three-storey fairytale village inn and tavern, stone ground floor with timber-frame upper floors, several crooked chimneys, a hanging painted sign showing a tankard, a wide front door facing the viewer with barrels beside it, warm glowing windows, a steep mossy shingle roof, standalone building",
       "conceptPrompt": "large three-storey fairytale village inn and tavern, stone ground floor with timber-frame upper floors, several crooked chimneys, a hanging painted sign showing a tankard, a wide front door facing the viewer with barrels beside it, warm glowing windows, a steep mossy shingle roof, standalone building, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -1207,11 +1047,7 @@
       "pipelineJob": "town_civic_inn_tavern_b0",
       "triangles": 3762,
       "bytes": 166468,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 13,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -1232,9 +1068,7 @@
     {
       "id": "civic_bank_strongbox",
       "category": "civic",
-      "serves": [
-        "bank"
-      ],
+      "serves": ["bank"],
       "description": "sturdy village bank building: a compact square stone building with thick walls, a heavy iron-bound wooden front door facing the viewer, small barred windows, a slate roof, a carved round coin emblem above the door, iron wall lanterns, standalone building",
       "conceptPrompt": "sturdy village bank building: a compact square stone building with thick walls, a heavy iron-bound wooden front door facing the viewer, small barred windows, a slate roof, a carved round coin emblem above the door, iron wall lanterns, standalone building, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -1251,11 +1085,7 @@
       "pipelineJob": "town_civic_bank_strongbox_b0",
       "triangles": 3805,
       "bytes": 142888,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 8,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -1276,10 +1106,7 @@
     {
       "id": "civic_stable",
       "category": "civic",
-      "serves": [
-        "stable",
-        "mounts"
-      ],
+      "serves": ["stable", "mounts"],
       "description": "village stable building: a long open-fronted timber barn with three empty stalls facing the viewer, low wooden gates, stacked hay bales, an open hay loft under the gable, a wooden water trough in front, saddles on a rail, a mossy shingle roof, standalone building",
       "conceptPrompt": "village stable building: a long open-fronted timber barn with three empty stalls facing the viewer, low wooden gates, stacked hay bales, an open hay loft under the gable, a wooden water trough in front, saddles on a rail, a mossy shingle roof, standalone building, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -1296,11 +1123,7 @@
       "pipelineJob": "town_civic_stable_b0",
       "triangles": 3619,
       "bytes": 134180,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 6,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -1321,10 +1144,7 @@
     {
       "id": "civic_market_stall_fruit",
       "category": "civic",
-      "serves": [
-        "market",
-        "vendor"
-      ],
+      "serves": ["market", "vendor"],
       "description": "village market stall: a wooden stall with a striped red and cream cloth canopy, a counter piled with baskets of fruit and vegetables, wooden crates underneath, no ground plane",
       "conceptPrompt": "village market stall: a wooden stall with a striped red and cream cloth canopy, a counter piled with baskets of fruit and vegetables, wooden crates underneath, no ground plane, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -1341,11 +1161,7 @@
       "pipelineJob": "town_civic_market_stall_fruit_b0",
       "triangles": 2412,
       "bytes": 128052,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 3.2,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -1366,10 +1182,7 @@
     {
       "id": "civic_market_stall_cloth",
       "category": "civic",
-      "serves": [
-        "market",
-        "vendor"
-      ],
+      "serves": ["market", "vendor"],
       "description": "village market stall: a wooden stall with a blue and gold scalloped cloth canopy, bolts of colorful fabric and hanging woven rugs, clay pottery on the counter, no ground plane",
       "conceptPrompt": "village market stall: a wooden stall with a blue and gold scalloped cloth canopy, bolts of colorful fabric and hanging woven rugs, clay pottery on the counter, no ground plane, fantasy environment prop, resting on the ground, upright, storybook fantasy game asset in the spirit of a whimsical English fairytale countryside, charming slightly crooked and rounded shapes, soft hand-painted texture with warm baked light, lush saturated but soft colors, mossy weathered details, crisp readable silhouette, clean game-ready topology, no photorealism, single object, centered, full object in frame, three-quarter view, plain white opaque background, even diffuse studio lighting, crisp silhouette, no halos or fringing, no drop shadow, no extra objects, no text, no watermark, no logo",
       "tripo": {
@@ -1386,11 +1199,7 @@
       "pipelineJob": "town_civic_market_stall_cloth_b0",
       "triangles": 2155,
       "bytes": 85148,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 3.2,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -1428,11 +1237,7 @@
       "pipelineJob": "town_civic_well_b0",
       "triangles": 2377,
       "bytes": 85484,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 3.2,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -1464,19 +1269,13 @@
         "credits": 55
       },
       "rerolls": {
-        "concepts": [
-          "370ab24e-8188-473c-86cc-a90e5eeb0676"
-        ],
+        "concepts": ["370ab24e-8188-473c-86cc-a90e5eeb0676"],
         "builds": []
       },
       "pipelineJob": "town_civic_fountain_b0",
       "triangles": 2396,
       "bytes": 78960,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 3.5,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -1514,11 +1313,7 @@
       "pipelineJob": "town_prop_lamp_post_b0",
       "triangles": 1507,
       "bytes": 76112,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 3.4,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -1556,11 +1351,7 @@
       "pipelineJob": "town_prop_cart_goods_b0",
       "triangles": 1836,
       "bytes": 88928,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 2,
       "rotateYDeg": 270,
       "footprintYards": {
@@ -1598,11 +1389,7 @@
       "pipelineJob": "town_prop_clutter_set_b0",
       "triangles": 1885,
       "bytes": 85964,
-      "textures": [
-        "Color 512x512",
-        "ORM 512x512",
-        "NormalGL 512x512"
-      ],
+      "textures": ["Color 512x512", "ORM 512x512", "NormalGL 512x512"],
       "heightYards": 1.6,
       "rotateYDeg": 270,
       "footprintYards": {

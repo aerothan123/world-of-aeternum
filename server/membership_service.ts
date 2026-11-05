@@ -1,12 +1,12 @@
 import { MEMBERSHIP_OFF, type MembershipSnapshot } from '../src/membership_contract';
 import { SUBSCRIPTION_OFF, type SubscriptionSnapshot } from '../src/subscription_contract';
+import { SERVER_EARLY_ACCESS } from './early_access_flags';
 import {
   loadMembershipBatch,
   type MembershipBatchSource,
   membershipBatchAccountIds,
 } from './membership_batch';
 import { prepaidMembershipExpiresAt } from './membership_db';
-import { SERVER_EARLY_ACCESS } from './early_access_flags';
 import { gameSubscriptionSnapshot } from './subscription_proxy';
 
 export const MEMBERSHIP_CACHE_TTL_MS = 15_000;

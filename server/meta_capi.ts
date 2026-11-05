@@ -13,7 +13,9 @@ const API_VERSION = process.env.META_CAPI_API_VERSION ?? DEFAULT_API_VERSION;
 const ENABLED = ACCESS_TOKEN.length > 0 && PIXEL_ID.length > 0;
 
 if (!ENABLED) {
-  console.log('[capi] META_CAPI_ACCESS_TOKEN or META_CAPI_PIXEL_ID unset; Conversions API disabled.');
+  console.log(
+    '[capi] META_CAPI_ACCESS_TOKEN or META_CAPI_PIXEL_ID unset; Conversions API disabled.',
+  );
 }
 
 /** Whether the Conversions API is configured for this process. Callers with

@@ -1,5 +1,4 @@
 import { parkCatEnergy, takeCatFormEntryEnergy } from './combat/cat_form_energy';
-import { isBroken } from './durability/durability_rules';
 import { resetCraftedCollectionState } from './combat/crafted_collection_effects';
 import { SPOREMENDER_ARMOR_MULT } from './combat/druid_sporemender';
 import { clearUnequippedBenisonPrayers } from './combat/priest/benison_dawnweave';
@@ -8,6 +7,7 @@ import { crucibleCollectionFamilyForSet } from './content/crucible_collections';
 import type { TalentModifiers } from './content/talents';
 import { resolveActiveWeaponSkin } from './content/weapon_skin_rules';
 import { aggregateSetBonuses, CLASSES, ITEMS, MOBS, type NpcDef } from './data';
+import { isBroken } from './durability/durability_rules';
 import { canDualWield, isShieldItem } from './equipment_rules';
 import { activeItemInstanceStats } from './item_instance_stats';
 import { meetsLevelRequirement } from './item_level_req';

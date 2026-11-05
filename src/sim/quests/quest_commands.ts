@@ -64,8 +64,8 @@ import {
 import { playerHoldsQuestItem } from './quest_item_presence';
 import { grantQuestRecipeReward, validateQuestRecipeReward } from './quest_recipe_rewards';
 import { defaultRewardChoice, questFixedReward, resolveRewardChoice } from './quest_reward_choice';
-import { questLevelOf, questRewardXp } from './quest_xp';
 import { grantQuestStandingReward } from './quest_standing_reward';
+import { questLevelOf, questRewardXp } from './quest_xp';
 import { weeklyLockedQuestIds, weeklyQuestLockoutId } from './weekly_quest_lock';
 
 // Pure quest-state computation, shared by the sim and the network client. Relocated

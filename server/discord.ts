@@ -5,10 +5,9 @@
 // the bot pushes into. Mirrors the wallet.ts shell shape (each account-scoped
 // handler takes a pre-resolved accountId from the route).
 
-import { COMMUNITY_DISCORD_INVITE_URL } from '../src/brand';
 import { randomBytes } from 'node:crypto';
 import type http from 'node:http';
-import { GAME_NAME } from '../src/brand';
+import { COMMUNITY_DISCORD_INVITE_URL, GAME_NAME } from '../src/brand';
 import {
   canClaimSwag,
   DISCORD_REWARD_GRANTS,

@@ -56,7 +56,9 @@ describe('license notices ship with the desktop build', () => {
     }
     const license = readFileSync(new URL('../LICENSE', import.meta.url), 'utf8');
     expect(license).toContain('Copyright (c) 2026 Levy Street');
-    expect(license).toContain('The above copyright notice and this permission notice shall be included');
+    expect(license).toContain(
+      'The above copyright notice and this permission notice shall be included',
+    );
   });
 });
 

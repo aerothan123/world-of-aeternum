@@ -8,13 +8,13 @@
 // one panel and reports clicks back through the injected callbacks.
 
 import { ITEMS } from '../../../sim/data';
+import { REPAIR_ALL_SERVICE_ID } from '../../../sim/durability';
 import {
   FACTION_CURRENCY_IDS,
   factionCurrencyName,
   factionDisplayName,
   STANDING_TIER_LABELS,
 } from '../../../sim/factions';
-import { REPAIR_ALL_SERVICE_ID } from '../../../sim/durability';
 import { ridingMoveSpeedPct, ridingTierBefore } from '../../../sim/riding_training';
 import type { ItemInstancePayload } from '../../../sim/types';
 import type { VendorBuyOptions } from '../../../sim/vendor_buy_stack';
