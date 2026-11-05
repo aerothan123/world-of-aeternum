@@ -431,6 +431,11 @@ def build(cover_areas):
     else:
         build_ground_cover(sl, cover_areas)
     sun = build_lights(sl)
+    sl.stats["meshSources"] = {
+        "registry": len(W.MESH_SOURCES["registry"]),
+        "placeholder": sorted(W.MESH_SOURCES["placeholder"]),
+    }
+    sl.stats["natureActors"] = sum(1 for a in actors.get_all_level_actors() if nature_owned(a))
     W.log("scene stats %s" % sl.stats)
     return sl, sun
 

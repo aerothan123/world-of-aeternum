@@ -86,10 +86,10 @@ SKIP_MESH = re.compile(r"(_LOD[1-9]|_collider|_collision|_shadow)$", re.I)
 # The asset-convert crew's converted meshes (Content/Wyndlewood/Assets/
 # asset_registry.json, keyed by the GLB path without /models/ and .glb,
 # e.g. props/eastbrook_bank). A registry mesh of an allowed category is
-# placed instead of the placeholder import; WYND_REGISTRY_CATS widens the
-# set (comma list, or "all").
+# placed instead of the placeholder import. Every category by default;
+# WYND_REGISTRY_CATS narrows it (a comma list such as "Buildings,Props").
 _REGISTRY = None
-REGISTRY_CATS = [c for c in os.environ.get("WYND_REGISTRY_CATS", "Buildings").split(",") if c]
+REGISTRY_CATS = [c for c in os.environ.get("WYND_REGISTRY_CATS", "all").split(",") if c]
 
 
 def registry():
@@ -113,10 +113,17 @@ def registry_mesh(glb_path):
     return m if isinstance(m, unreal.StaticMesh) else None
 
 
+# which GLB paths resolved to a converted mesh and which fell back to the
+# placeholder import, for the build's stats
+MESH_SOURCES = {"registry": set(), "placeholder": set()}
+
+
 def model_meshes(glb_path):
     reg = registry_mesh(glb_path)
     if reg:
+        MESH_SOURCES["registry"].add(glb_path)
         return [reg]
+    MESH_SOURCES["placeholder"].add(glb_path)
     folder = model_folder(glb_path)
     out = []
     for p in unreal.EditorAssetLibrary.list_assets(folder, recursive=True, include_folder=False):
