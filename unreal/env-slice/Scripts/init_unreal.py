@@ -16,6 +16,8 @@ if os.environ.get("WYND_RUN") == "1":
             return
         unreal.unregister_slate_post_tick_callback(_state["handle"])
         project = unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_dir())
-        runpy.run_path(os.path.join(project, "Scripts", "run_slice.py"))
+        # WYND_SCRIPT picks another Scripts/ entry (e.g. test_building.py)
+        script = os.environ.get("WYND_SCRIPT", "run_slice.py")
+        runpy.run_path(os.path.join(project, "Scripts", script))
 
     _state["handle"] = unreal.register_slate_post_tick_callback(_boot)

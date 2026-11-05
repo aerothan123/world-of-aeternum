@@ -78,10 +78,29 @@ def spawn(cls, loc=None, rot=None, label=None):
     return a
 
 
+def nature_owned(a):
+    """The nature crew's actors: labelled Nature_* or carrying a component
+    tagged WyndNature. The build never deletes or edits them."""
+    if a.get_actor_label().startswith("Nature_"):
+        return True
+    for c in a.get_components_by_class(unreal.ActorComponent):
+        if "WyndNature" in [str(t) for t in c.component_tags]:
+            return True
+    return False
+
+
 def clear_level():
+    """Remove only this build's own WYND_* actors from the previous run."""
     for a in actors.get_all_level_actors():
-        if a.get_actor_label().startswith("WYND_"):
+        if a.get_actor_label().startswith("WYND_") and not nature_owned(a):
             actors.destroy_actor(a)
+
+
+# When the nature crew owns the grass and flowers, this file exists and the
+# build places no placeholder cover of its own.
+def nature_owns_cover():
+    project = unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_dir())
+    return os.path.exists(os.path.join(project, "Config", "nature_owns_cover.flag"))
 
 
 def build_terrain(sl, mat=None, water=True):
@@ -404,10 +423,13 @@ def build(cover_areas):
         build_terrain(ex, WM.terrain_instance(terrain, name, ex.export), water=False)
         build_props(ex)
         build_scatter(ex)
-        if name in SLICE_COVER_AREAS:
+        if name in SLICE_COVER_AREAS and not nature_owns_cover():
             build_ground_cover(ex, SLICE_COVER_AREAS[name])
         sl.stats[name] = ex.stats
-    build_ground_cover(sl, cover_areas)
+    if nature_owns_cover():
+        sl.stats["groundCover"] = "nature crew (Config/nature_owns_cover.flag)"
+    else:
+        build_ground_cover(sl, cover_areas)
     sun = build_lights(sl)
     W.log("scene stats %s" % sl.stats)
     return sl, sun
