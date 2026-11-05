@@ -11,6 +11,7 @@
 import { BUDDY_ART_PENDING_ITEM_IDS } from '../sim/content/buddies';
 import { CHAPTER_ONE_ART_PENDING_ITEM_IDS } from '../sim/content/chapter_one';
 import { CHAPTER_TWO_ART_PENDING_ITEM_IDS } from '../sim/content/chapter_two';
+import { CHAPTER_TWO_GATED_ART_PENDING_ITEM_IDS } from '../sim/content/chapter_two_bundles';
 import { FURNITURE_ART_PENDING_ITEM_IDS } from '../sim/content/furniture';
 import { HOLLOW_CRYPT_ART_PENDING_ITEM_IDS } from '../sim/content/hollow_crypt_items';
 import { IGNIVAR_ART_PENDING_ITEM_IDS } from '../sim/content/ignivar_loot';
@@ -5876,6 +5877,7 @@ export const ITEM_ART_PENDING = new Set<string>([
   // procedural quest icons until their painted wave is commissioned (the
   // Southern Reaches ids only once their zones merge them into ITEMS).
   ...CHAPTER_TWO_ART_PENDING_ITEM_IDS.filter((id) => Object.hasOwn(ITEMS, id)),
+  ...CHAPTER_TWO_GATED_ART_PENDING_ITEM_IDS.filter((id) => Object.hasOwn(ITEMS, id)),
 ]);
 
 /** Static URL of an item's (or a UI pseudo-item's) image icon, or null if it uses a recipe. */

@@ -7,6 +7,7 @@ import { describe, expect, it } from 'vitest';
 import { validateAcceptedArtManifest } from '../scripts/lib/icon_asset_audit.mjs';
 import { CHAPTER_ONE_ART_PENDING_ITEM_IDS } from '../src/sim/content/chapter_one';
 import { CHAPTER_TWO_ART_PENDING_ITEM_IDS } from '../src/sim/content/chapter_two';
+import { CHAPTER_TWO_GATED_ART_PENDING_ITEM_IDS } from '../src/sim/content/chapter_two_bundles';
 import { FURNITURE_ART_PENDING_ITEM_IDS } from '../src/sim/content/furniture';
 import { SEASON2_JEWELRY_IDS, SEASON2_SETS } from '../src/sim/content/pvp_honor_season2';
 import { ITEMS } from '../src/sim/data';
@@ -440,6 +441,8 @@ describe('item webp icons', () => {
         // Wyndlewood Chapter Two's (content/chapter_two.ts): procedural quest
         // icons until their painted wave is commissioned.
         ...CHAPTER_TWO_ART_PENDING_ITEM_IDS.filter((id) => Object.hasOwn(ITEMS, id)),
+        // The gated bundles' (content/chapter_two_bundles.ts), once merged.
+        ...CHAPTER_TWO_GATED_ART_PENDING_ITEM_IDS.filter((id) => Object.hasOwn(ITEMS, id)),
       ].sort(),
     );
     // And the inverse: an id with committed art must still win the static url.

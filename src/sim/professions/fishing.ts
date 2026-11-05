@@ -23,6 +23,7 @@
 import { isActionLockingFormAuraKind } from '../combat/forms';
 import { QUEST_CATCH_SPOTS as CHAPTER_ONE_CATCH_SPOTS } from '../content/chapter_one';
 import { CHAPTER_TWO_CATCH_SPOTS } from '../content/chapter_two';
+import { CHAPTER_TWO_GATED_CATCH_SPOTS } from '../content/chapter_two_bundles';
 import { FISHING_RARE_ID, FISHING_TABLES_BY_BAND, isRawCookingCatch } from '../content/items';
 import { DEEPFEN_SHALLOWS_LAKE } from '../content/zone2';
 import { ITEMS, zoneAt } from '../data';
@@ -55,7 +56,12 @@ import {
 } from './tools';
 
 /** Every authored quest-catch spot (quests/quest_fishing_catch.ts). */
-const QUEST_CATCH_SPOTS = [...CHAPTER_ONE_CATCH_SPOTS, ...CHAPTER_TWO_CATCH_SPOTS];
+const QUEST_CATCH_SPOTS = [
+  ...CHAPTER_ONE_CATCH_SPOTS,
+  ...CHAPTER_TWO_CATCH_SPOTS,
+  // Inert until their quests merge (content/chapter_two_bundles.ts).
+  ...CHAPTER_TWO_GATED_CATCH_SPOTS,
+];
 
 const SWIM_DEPTH = PLAYER_SWIM_DEPTH; // ground this far under the water line = deep water
 // Facing-forward sample ring the fishable-water check walks. Exported so

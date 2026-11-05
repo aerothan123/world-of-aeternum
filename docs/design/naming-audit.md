@@ -1083,6 +1083,38 @@ the major game wikis (Wowhead, warcraft.wiki.gg, RuneScape, UESP, Guild Wars 2).
 | the Gourdsworn | the title of Gourdlight Eve's whole-event meta deed (`feat_gourdlight_eve_complete`, round 12) | KEEP. Quoted exact-phrase searches for "Gourdsworn" and "the Gourdsworn", plus a coined-token search scoped to Wowhead, warcraft.wiki.gg, the RuneScape and OSRS wikis, the FFXIV wiki, the GW2 wiki, UESP, the PoE wiki and the Diablo wiki, returned no hit in any game. The nearest results were different tokens: WoW's "Death Foursworn" achievement, GW2's "Bladesworn" specialization, ESL's "Guildsworn" card and the unrelated games "Godsworn", "Crowsworn" and "Ironsworn". WoW's Hallow's End title is "the Hallowed", a different word; "-sworn" is a shared English suffix. |
 | Gourdlight, Start to Finish / Every Doorstep / At Hester's Beck and Call / Three Towns Startled | the round 12 whole-event meta and its three section Feats | KEEP. Plain English phrases built on this event's own names (Gourdlight, Hester); no coined token beyond those already audited above. |
 
+### Wyndlewood Chapter Two, the gated quests (web-checked 2026-11-05)
+
+Scope: the new player-visible names in `src/sim/content/chapter_two.ts` (the
+Applewold additions), `chapter_two_kindlemoor.ts` and
+`chapter_two_chalkbarrow.ts`. Method: a quoted exact-phrase web search per name
+(several names OR-joined per query) plus a coined-token search, read against
+Wowhead and warcraft.wiki.gg, the RuneScape and OSRS wikis, the FFXIV wiki
+(consolegameswiki), the GW2 wiki, UESP, LOTRO and the PoE and Diablo wikis.
+Quest titles come from the design crew's outline
+(`docs/design/wyndlewood-chapter-two-outline.md`) and were searched the same way.
+
+| Name | Where | Verdict |
+|---|---|---|
+| Salvage Rights | outline quest 42 title | RENAMED before shipping to **Strongboxes on the Shoals**. "Salvage Rights" is a WoW quest title (Wowhead quest 48943, warcraft.wiki.gg "Salvage Rights"), the same role. The replacement has no exact-phrase hit. |
+| Ember Sprite | outline quest 16's fire creature | RENAMED before shipping to **Peatfire Wisp**. "Ember Sprite" is an FFXIV enemy (consolegameswiki "Ember Sprite") and an indie game enemy, the same role. "Peatfire" and "Peatfire Wisp" have no game hit; "wisp" is shared fantasy English. |
+| Orwin Pellock | the bible's Eastbrook historian (`historian_orwin`) | KEEP. No exact-phrase hit anywhere; the nearest results are real people named Orwin or Pollock. |
+| Tamsin Bracewell | the Ferncross camp warden | KEEP. No exact-phrase hit; Tamsin is a common Cornish given name (novels, not games). |
+| Agnes Tarnby | the circle keeper Quest 18 escorts | KEEP. No exact-phrase hit. |
+| Ambrose Pennick | the Coinwell claim-master | KEEP. No exact-phrase hit. |
+| Nettie Saltmarsh | the Coinwell camp cook | KEEP. No exact-phrase hit; the nearest is the unrelated novel "The Saltmarsh Murders". |
+| Kindle Ore | outline quest 36's warm ore | KEEP. No game item of that name (the hits are e-readers and generic ore pages); it borrows the world crew's own Kindlemoor. |
+| Hearthpin Fragment | the bible's Hearthpin, first shipped as an item | KEEP. No game hit for "Hearthpin"; the nearest are Hearthstone pins (merchandise) and unrelated indie titles ("Hearth Keys", "Hearth & Candle"). |
+| Veiled Digger, Dig Crawler | the Unlit Dig's cell and its vermin | KEEP. No game hit for either phrase (only digging games' titles). |
+| Moor Hound, Moor Bandit | the Kindlemoor's beasts and road thieves | KEEP. No game creature of either exact name; "moorhound" appears only as a fan-wiki dog breed in a different form. Plain English. |
+| Chalk Cliff Gull, Bell-Struck Fish | the White Head's gulls and the tide quest's catch | KEEP. No exact-phrase hit; RuneScape's plain "Gull" is a different full name. |
+| The Press Will Not Turn, Cord in the Cider Vat, Seed for a Second Planting, A Kitchen for the Pickers, Moor Hounds at the Peat Cuts, Fires That Should Not Burn, Bandit Pay, A Keeper's Escort, The First Hearth Ring, Ash From Before the Kingdom, Heath Herbs for the Fen Healers, Coin for a Quiet Road, The Claim Nobody Filed, Ore With a Will, Lanterns That Will Not Light, What the Dig Was For, Chalk Cliff Nests, Bells at Low Tide, A Tide Road to the Fortress | the outline's other quest titles | KEEP. No exact-phrase hit in any game wiki for any of them (the nearest are LOTRO's "A Poultice for Our Hurts" and WoW's "Empty Nests", different phrases). Plain English. |
+| Item and object names (Borrowed Orchard Axe, Orchard Oak Log, Oak Press Gear, Cold Black Cord, Hedge Sorrel, Second-Planting Seed Pouch, Fresh Brook Trout, Picker's Apple, Orchard Pie, Moor Hound Pelt, Pail of Tarn Water, Purse of New Gilt Coin, Hearth Ash Sample, Heath Mallow, Marsh Poultice, Sealed Gilt Payment, Forged Claim Paper, Borrowed Assay Pick, Kindle Test Ingot, Lit Lamp Taper, Bell-Casting Pattern, Nest-Stolen Button, Tide Gauge Mallet, Borrowed Chalk Chisel, Chalk Block, Tide-Road Brace, Sealed Wreck Strongbox, and the fixtures) | the gated bundles' quest items | GENERIC. Plain descriptive English built on this world's own names (Gilt Measure, Kindlemoor, Coinwell); no coined token beyond those audited above. |
+
+The NPCs who travel (Della Brindlepot, Wenna Nookwright, Ivara Fenmoss, Brunna
+Flintmorrow, Warden Corren Stoutvale, Captain Fenlow Tippet) keep their
+shipped display names on second records; no new name.
+
 ## Recorded for the maintainer (stopping rule: no unilateral rename)
 
 STATUS 2026-08-20, SETTLED BY THE MAINTAINER, and the scope is narrow on purpose.

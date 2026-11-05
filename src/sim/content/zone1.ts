@@ -1336,13 +1336,13 @@ export const ZONE1_QUESTS: Record<string, QuestDef> = {
     name: 'Into the Hollow',
     giverNpcId: 'brother_aldric',
     turnInNpcId: 'brother_aldric',
-    text: "Morthen the Gravecaller waits at the bottom of the Hollow Crypt, ringed by the elite dead he has raised. He is far beyond any one hero: take four companions, no fewer. End him, and the Vale's dead will finally sleep.",
+    text: 'The door we left shut stands open now, and Morthen the Gravecaller waits at the bottom of the Hollow Crypt, ringed by the elite dead he has raised. He is guarding something down there, something that has kept this Vale warm longer than any of us have been alive. He is far beyond any one hero: take four companions, no fewer. End him, and bring back whatever he was keeping.',
     completionText:
-      'The whispering has stopped. You have done what the whole Vale could not, $N. The dead sleep, and Eastbrook owes you everything it has.',
+      "The whispering has stopped, and you came up carrying a piece of a Hearthpin, warm as a hand. When I held it I heard bells, $N, slow and deep, ringing somewhere under the sea. The Vale's dead sleep at last. I fear the drowned do not.",
     objectives: [
       { type: 'kill', targetMobId: 'morthen', count: 1, label: 'Morthen the Gravecaller slain' },
     ],
-    xpReward: 1500,
+    xpReward: 1080,
     copperReward: 10000,
     itemRewards: {
       warrior: 'gravecaller_blade',
