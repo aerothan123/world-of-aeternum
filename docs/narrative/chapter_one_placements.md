@@ -89,7 +89,7 @@ earlier id moves. The full coordinate list lives in the source; the groups are:
   (73, -46) to the eastern lookout (75, -42.5); two briarbitten foxes ambush
   at the second waypoint.
 - Della (quest 17): from the willow footbridge end of the brook path
-  (-14.1, -58.4) by (-10, -48), (10, -40), (30, -45) and (55, -45) to the
+  (-14.1, -58.4) by (-10, -48), (8, -36), (30, -45) and (55, -45) to the
   eastern lookout (75, -42.5). The start keeps 45 yards
   clear of the Eastbrook freight yard world quest.
 
@@ -103,6 +103,6 @@ south. Chapter One keeps clear of all of them
 (`tests/chapter_one_content.test.ts`, the town-lot clearance case): Silven's
 stall goods and the board's rivet and hinge drops moved out from under the
 terrace, Wenna's yard moved to the free ground at about (-45, -87), and
-Della's escort passes south of the Meadow Lane houses. Every camp keeps at
+Della's escort passes behind the Meadow Lane houses' back gardens. Every camp keeps at
 least 11 yards past its radius from every lot. The spot at about (-78, -45)
 beside the red cottage stays free for a later garden or board.

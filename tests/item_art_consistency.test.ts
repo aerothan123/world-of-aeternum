@@ -903,7 +903,8 @@ describe('item-art consistency accepted-art provenance', () => {
     // + the six Project H phase 3 home station ids: 2,239.
     // + Wyndlewood Chapter One's quest item and object ids (content/chapter_one.ts,
     // all on the procedural pending ledger): 2,315.
-    expect(Object.keys(ITEMS)).toHaveLength(2315);
+    // + Wyndlewood Chapter Two's 17 core quest items, still on the pending ledger: 2,332.
+    expect(Object.keys(ITEMS)).toHaveLength(2332);
     expect(Object.values(verdict.auditScope.groups).reduce((sum, count) => sum + count, 0)).toBe(
       1255,
     );
@@ -1149,7 +1150,8 @@ describe('item-art consistency accepted-art provenance', () => {
     // + the six Project H phase 3 home station ids: 2,239.
     // + Wyndlewood Chapter One's quest item and object ids (content/chapter_one.ts,
     // all on the procedural pending ledger): 2,315.
-    expect(Object.keys(ITEMS)).toHaveLength(2315);
+    // + Wyndlewood Chapter Two's 17 core quest items, still on the pending ledger: 2,332.
+    expect(Object.keys(ITEMS)).toHaveLength(2332);
 
     const datedVerdict = readJson<FinalAuditVerdict>(CURRENT_VERDICT_PATH);
     const oldPassIds = sorted(datedVerdict.visualVerdict.passIds);
@@ -1700,7 +1702,8 @@ describe('item-art consistency accepted-art provenance', () => {
     // Staff of Changing batch (PR 4281) adds one: 1510.
     // Backlog adds 141 files; replacements preserve the remaining owner count.
     // + the sprite buddy's whistle render (buddy-whistle-icons batch): 1,652.
-    expect(priorGeneratedIds).toHaveLength(1657);
+    // + the 18 furniture renders and Chapter One's 76 painted icons: 1,751.
+    expect(priorGeneratedIds).toHaveLength(1751);
     const allCurrentOwnerIds = [
       ...mapping.entries.map(({ itemId }) => itemId),
       ...mapping.generatedBatches.flatMap(({ itemIds }) => itemIds),
@@ -1733,7 +1736,7 @@ describe('item-art consistency accepted-art provenance', () => {
       // + the five-dungeon rework (PR 4352) on the v0.45.0 integration: 1475.
       // Plus 34 restored buddy provenance owners, and the membership staff: 1510.
       // Restored feral staff and eight Season 2 jewelry paintings.
-      priorGenerated: 1657,
+      priorGenerated: 1751,
       historicalAudit: 274,
       masterwroughtCompletion: 165,
       crucibleProfessions: 46,

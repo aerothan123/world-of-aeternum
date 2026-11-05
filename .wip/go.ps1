@@ -20,15 +20,16 @@ if ($From -and $To) {
 }
 foreach ($g in $Gen.Split(',')) {
   switch ($g) {
-    'touchup' { node "$N\rebase_touchup.mjs" *>> $log }
+    'touchup' { node "$N\rebase_touchup.mjs" 2>&1 | Out-File $log -Append -Encoding utf8 }
     'tscbase' { Copy-Item "$N\logs\r7.tsc.log" "$N\logs\tsc_base.log" -Force }
-    'icons' { node "$N\import_c1_icons.mjs" *>> $log }
-    'media' { node scripts/build_media_manifest.mjs generate *>> $log }
-    'i18n' { cmd /c npm run i18n:gen *>> $log }
-    'wiki' { cmd /c npm run wiki:content *>> $log }
+    'qlg' { cmd /c npx tsx scripts/quest_leveling_gear_gen.ts 2>&1 | Out-File $log -Append -Encoding utf8 }
+    'icons' { node "$N\import_c1_icons.mjs" 2>&1 | Out-File $log -Append -Encoding utf8 }
+    'media' { node scripts/build_media_manifest.mjs generate 2>&1 | Out-File $log -Append -Encoding utf8 }
+    'i18n' { cmd /c npm run i18n:gen 2>&1 | Out-File $log -Append -Encoding utf8 }
+    'wiki' { cmd /c npm run wiki:content 2>&1 | Out-File $log -Append -Encoding utf8 }
     'tsc' {
       node_modules\.bin\tsc --noEmit -p tsconfig.json *> "$N\logs\$Tag.tsc.log"
-      & "$N\tscdiff.ps1" -Name "$Tag.tsc" *>> $log
+      & "$N\tscdiff.ps1" -Name "$Tag.tsc" 2>&1 | Out-File $log -Append -Encoding utf8
     }
     'biome' {
       $files = (git status --porcelain | ForEach-Object { $_.Substring(3).Trim('"') } | Where-Object { $_ -match '\.(ts|mjs)$' -and $_ -notmatch 'generated|i18n.locales' })
@@ -39,6 +40,6 @@ foreach ($g in $Gen.Split(',')) {
   }
   if ($g) { "== gen $g done exit $LASTEXITCODE" | Out-File $log -Append -Encoding utf8 }
 }
-if ($List) { $env:VT_CWD=$W; node "$N\vt2.mjs" "$N\tx\$List" *>> $log }
-if ($Post) { & "$N\tx\$Post" *>> $log }
+if ($List) { $env:VT_CWD=$W; node "$N\vt2.mjs" "$N\tx\$List" 2>&1 | Out-File $log -Append -Encoding utf8 }
+if ($Post) { & "$N\tx\$Post" 2>&1 | Out-File $log -Append -Encoding utf8 }
 "END $(Get-Date -Format o)" | Out-File $log -Append -Encoding utf8

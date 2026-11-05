@@ -683,9 +683,9 @@ export const CHAPTER_ONE_ESCORTS: Record<string, EscortDef> = {
     start: { x: -14.1, z: -58.4 },
     waypoints: [
       { x: -10, z: -48 },
-      // South of the Meadow Lane houses' back gardens (the lane runs along
+      // Behind the Meadow Lane houses' back gardens (the lane runs along
       // z -24), clear of the fox den at (5, -55).
-      { x: 10, z: -40 },
+      { x: 8, z: -36 },
       { x: 30, z: -45 },
       { x: 55, z: -45 },
       { x: 75, z: -42.5 },

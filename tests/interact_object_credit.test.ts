@@ -229,7 +229,8 @@ describe('every multi-count interact objective has enough distinct objects to fi
     // Plus Wyndlewood Chapter One (content/chapter_one.ts): twelve multi-count
     // interact objectives across the story quests and board dailies, every one
     // authored with at least as many distinct objects as its count.
-    expect(interactObjectives.filter((o) => o.count > 1).length).toBe(39);
+    // 42 with Wyndlewood Chapter Two's three multi-count use-item steps.
+    expect(interactObjectives.filter((o) => o.count > 1).length).toBe(42);
   });
 
   it.each(

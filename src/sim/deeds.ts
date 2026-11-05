@@ -134,6 +134,11 @@ export const GROUND_PICKUP_PROVING_QUESTS: readonly string[] = [
   'c1_21_watch_cannot_see',
   'c1_26_promise_paint',
   'c1_04_every_board',
+  // Wyndlewood Chapter Two's core quests (content/chapter_two.ts), the same rule.
+  'c2_01_ship_sank_twice',
+  'c2_12_door_we_left_shut',
+  'c2_28_remembered_roofs',
+  'c2_33_paddy_work_fog',
 ];
 
 // The highest level any giantslayer-creditable mob can ever spawn at: S-rank
