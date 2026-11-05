@@ -11,7 +11,10 @@ import {
   CLASSIC_CLIFF_AXIS,
   CLASSIC_CLIFF_CHALK,
   CLASSIC_CLIFF_WALL,
+  CLASSIC_MUD_TAP,
+  CLASSIC_SNOW_TAP,
   patchRefinedCliffGlsl,
+  patchRefinedDetailGlsl,
   refinedSplatGlsl,
 } from '../src/render/world_style_glsl';
 import {
@@ -19,7 +22,9 @@ import {
   PAINTED_GROUND_SETS,
   REFINED_BASE_LAYER_ROLES,
   REFINED_CLIFF,
+  REFINED_DETAIL,
   REFINED_EXTRA_LAYER_FILES,
+  REFINED_GROUND,
   REFINED_LAYER_COBBLE,
   REFINED_LAYER_FOREST,
   REFINED_LAYER_MOSS,
@@ -166,7 +171,7 @@ describe('painted ground weights', () => {
       variantNoise: 0,
       snow: 1,
     });
-    expect(w).toEqual({ forest: 0, paving: 0, moss: 0 });
+    expect(w).toEqual({ forest: 0, paving: 0, moss: 0, shoreSand: 0 });
   });
 
   it('keeps the painted meadow on the biome tone (its mean is the tone)', () => {
@@ -258,5 +263,47 @@ describe('refined cliffs', () => {
   it('keeps only part of the turf tint on a steep face', () => {
     const src = refinedSplatGlsl(refinedTerrainProfile('high'));
     expect(src).toContain('rockAlb * mix(vec3(1.0), wocWsTint, 0.30000)');
+  });
+});
+
+describe('refined shore stone and ground detail', () => {
+  const flatRock = { ...base, grass: 0, rock: 1, normalY: 1 };
+  it('turns flat rock just above the waterline to sand, not cobbles', () => {
+    const shore = refinedGroundWeights({ ...flatRock, heightAboveWater: 0.3 });
+    expect(shore.paving).toBe(0);
+    expect(shore.shoreSand).toBeCloseTo(REFINED_GROUND.shoreSandMax, 6);
+    const town = refinedGroundWeights({ ...flatRock, heightAboveWater: 10 });
+    expect(town.shoreSand).toBe(0);
+    expect(town.paving).toBeCloseTo(REFINED_GROUND.pavingMax, 6);
+    // a cliff is never flat: no shore sand on a wall at the waterline
+    const wall = refinedGroundWeights({ ...flatRock, normalY: 0.3, heightAboveWater: 0.3 });
+    expect(wall.shoreSand).toBe(0);
+  });
+
+  it('carries the shore fade and the sand tone in the shader', () => {
+    const src = refinedSplatGlsl(refinedTerrainProfile('high'));
+    expect(src).toContain('float wocWsPvShore = 1.0 - smoothstep(');
+    expect(src).toContain('* (1.0 - wocWsPvShore)');
+    expect(src).toContain('uWsSandMean * mix(vec3(1.0), wocWsTint, 0.3)');
+    expect(src).toContain(`wallW * ${REFINED_CLIFF.neutral.toFixed(5)}`);
+  });
+
+  it('doubles the mud and snow taps once each, Classic anchors present', () => {
+    const terrain = readFileSync(path.join(ROOT, 'src/render/terrain.ts'), 'utf8');
+    expect(terrain.split(CLASSIC_MUD_TAP).length - 1).toBe(1);
+    expect(terrain.split(CLASSIC_SNOW_TAP).length - 1).toBe(1);
+    const out = patchRefinedDetailGlsl(`a\n${CLASSIC_MUD_TAP}\nb ${CLASSIC_SNOW_TAP} c`);
+    expect(out).not.toContain(CLASSIC_MUD_TAP);
+    expect(out.split('WOC_L_MUD').length - 1).toBe(2);
+    expect(out.split('WOC_L_SNOW').length - 1).toBe(2);
+    expect(out).toContain(`${REFINED_DETAIL.mudScale2.toFixed(5)}`);
+    expect(() => patchRefinedDetailGlsl('none')).toThrow(/mud tap anchor missing/);
+  });
+
+  it('compresses the cliff crack highlights', () => {
+    const out = patchRefinedCliffGlsl(
+      `${CLASSIC_CLIFF_WALL}\n${CLASSIC_CLIFF_AXIS}\n${CLASSIC_CLIFF_CHALK}`,
+    );
+    expect(out).toContain(`min(rockAlb, vec3(${REFINED_CLIFF.highlightCap.toFixed(5)}))`);
   });
 });

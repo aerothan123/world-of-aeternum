@@ -20,6 +20,7 @@ import {
 } from './world_style_core';
 import {
   REFINED_CLIFF,
+  REFINED_DETAIL,
   REFINED_GROUND,
   REFINED_LAYER_COBBLE,
   REFINED_LAYER_FOREST,
@@ -141,12 +142,19 @@ function paintedGroundGlsl(c: RefinedSplatComposite): {
     paving: `if ( wocHasRock && wocHW.z > 0.01 ) {
             // Town paving: rock weight on near-flat ground is laid stone (a
             // cliff is never flat), painted cobbles in the road's own tint.
-            float wocWsPvW = wocHW.z * smoothstep(${f(g.pavingFlatLo)}, ${f(g.pavingFlatHi)}, an.y)
-              * ${f(g.pavingMax)} * ${open};
+            // Not on a beach: flat rock just above the waterline is shore
+            // stone the surf wore to sand, so it fades from cobbles to sand.
+            float wocWsPvFlat = smoothstep(${f(g.pavingFlatLo)}, ${f(g.pavingFlatHi)}, an.y);
+            float wocWsPvShore = 1.0 - smoothstep(${f(WATER_LEVEL + g.pavingShoreLo)}, ${f(WATER_LEVEL + g.pavingShoreHi)}, vWPos.y);
+            float wocWsPvW = wocHW.z * wocWsPvFlat * ${f(g.pavingMax)} * ${open} * (1.0 - wocWsPvShore);
             if ( wocWsPvW > 0.002 ) {
               vec3 wocWsPv = WOC_ALB(tuv * ${f(g.pavingScale)} + vec2(0.07, 0.45), ${f(REFINED_LAYER_COBBLE)})
                 * ${f(g.pavingGain)} * wocWsTint;
               alb = mix(alb, wocWsPv, wocWsPvW);
+            }
+            float wocWsShS = wocHW.z * wocWsPvFlat * wocWsPvShore * ${f(g.shoreSandMax)} * ${open};
+            if ( wocWsShS > 0.002 ) {
+              alb = mix(alb, uWsSandMean * mix(vec3(1.0), wocWsTint, 0.3), wocWsShS);
             }
           }`,
     sand: `if ( wocHasSand && wocHW.w > 0.01 ) {
@@ -222,6 +230,8 @@ export function refinedSplatGlsl(
             float wocWsSt = (wocHW.x + wocHW.y)
               * smoothstep(${f(b.steepHi)}, ${f(b.steepLo)}, an.y) * ${f(b.steepMax)};
             alb = mix(alb, rockAlb * mix(vec3(1.0), wocWsTint, ${f(REFINED_CLIFF.turfTint)}), wocWsSt);
+            // A wall reads as warm neutral stone, never green-cast.
+            alb = mix(alb, vec3(dot(alb, ${lumaW})) * vec3(1.03, 1.0, 0.95), wallW * ${f(REFINED_CLIFF.neutral)});
           }`
               : ''
           }
@@ -297,8 +307,34 @@ export function patchRefinedCliffGlsl(frag: string): string {
   out = replaceOnce(
     out,
     CLASSIC_CLIFF_CHALK,
-    `rockAlb = mix(rockAlb, vec3(0.68, 0.70, 0.67), ${f(c.chalk)});`,
+    `rockAlb = mix(rockAlb, vec3(0.68, 0.70, 0.67), ${f(c.chalk)});
+        rockAlb = mix(min(rockAlb, vec3(${f(c.highlightCap)})), rockAlb, ${f(c.highlightKeep)});`,
     'splat cliff chalk',
+  );
+  return out;
+}
+
+/** The Classic splat's marsh mud and snow taps, which Refined doubles into a
+ *  rotated second-scale blend (REFINED_DETAIL). */
+export const CLASSIC_MUD_TAP = 'dirtFlat = mix(dirtFlat, WOC_ALB(tuv * 0.8, WOC_L_MUD), vExtra.x);';
+export const CLASSIC_SNOW_TAP = 'WOC_ALB(tuv * 0.7, WOC_L_SNOW)';
+
+/** Refined mud and snow over the compiled Classic splat (see REFINED_DETAIL). */
+export function patchRefinedDetailGlsl(frag: string): string {
+  const d = REFINED_DETAIL;
+  let out = replaceOnce(
+    frag,
+    CLASSIC_MUD_TAP,
+    `dirtFlat = mix(dirtFlat, mix(WOC_ALB(tuv * 0.8, WOC_L_MUD),
+          WOC_ALB(vec2(tuv.y, -tuv.x) * ${f(d.mudScale2)} + vec2(0.31, 0.17), WOC_L_MUD),
+          smoothstep(0.3, 0.7, macro2)), vExtra.x);`,
+    'splat mud tap',
+  );
+  out = replaceOnce(
+    out,
+    CLASSIC_SNOW_TAP,
+    `mix(WOC_ALB(tuv * 0.7, WOC_L_SNOW), WOC_ALB(vec2(-tuv.y, tuv.x) * ${f(d.snowScale2)} + vec2(0.53, 0.29), WOC_L_SNOW), ${f(d.snowMix)})`,
+    'splat snow tap',
   );
   return out;
 }
@@ -318,6 +354,7 @@ export function patchRefinedSplatShader(
     'splat common',
   );
   frag = patchRefinedCliffGlsl(frag);
+  frag = patchRefinedDetailGlsl(frag);
   frag = replaceOnce(
     frag,
     '        // snow cover on the peaks/rim, by baked per-vertex weight',

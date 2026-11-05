@@ -125,6 +125,13 @@ export const REFINED_GROUND = {
   pavingMax: 0.92,
   pavingScale: 0.8,
   pavingGain: 0.95,
+  /** Flat rock in this band above the waterline (yards) is not paving but
+   *  surf-worn shore stone: the cobbles fade out and the painted sand tone
+   *  takes up to shoreSandMax of it (the starter beach drew a dark cobble
+   *  patch where its rock weight met the sand). */
+  pavingShoreLo: 0.6,
+  pavingShoreHi: 3,
+  shoreSandMax: 0.85,
   /** Wet moss on turf: the marsh weight, and the band just above the
    *  waterline, broken by the low end of the variant noise. */
   mossMarsh: 0.72,
@@ -159,6 +166,23 @@ export const REFINED_CLIFF = {
   /** Share of the turf tint a steep face's rock keeps (the rest of the face
    *  is neutral stone, so a grassy hillside's cliff stops reading green). */
   turfTint: 0.3,
+  /** Share of a wall's final albedo pulled to a warm neutral of its own
+   *  value (the hillside's green vertex tint still cast the stone green). */
+  neutral: 0.45,
+  /** The painted slate's crack highlights compressed toward this linear
+   *  value (keep: share of the uncompressed highlight that survives). */
+  highlightCap: 0.5,
+  highlightKeep: 0.35,
+} as const;
+
+/** Refined ground detail: a second, rotated sample of the mud and snow
+ *  layers at another scale, blended by the hill-scale macro noise (mud) or
+ *  evenly (snow), so marsh roads stop showing one tile of clumps and the
+ *  snow's directional strokes stop lining up into streaks. */
+export const REFINED_DETAIL = {
+  mudScale2: 0.37,
+  snowScale2: 0.31,
+  snowMix: 0.5,
 } as const;
 
 const clamp01 = (v: number): number => (v < 0 ? 0 : v > 1 ? 1 : v);
@@ -201,6 +225,8 @@ export interface RefinedGroundWeights {
   readonly forest: number;
   readonly paving: number;
   readonly moss: number;
+  /** Flat shore rock drawn as the painted sand tone. */
+  readonly shoreSand: number;
 }
 
 /** JS mirror of the shader's painted-term weights at one ground point. */
@@ -213,15 +239,17 @@ export function refinedGroundWeights(i: RefinedGroundInput): RefinedGroundWeight
     g.forestMax *
     (g.forestFloorNoise + (1 - g.forestFloorNoise) * i.variantNoise) *
     open;
-  const paving =
-    i.rock * smoothstep(g.pavingFlatLo, g.pavingFlatHi, i.normalY) * g.pavingMax * open;
+  const flat = smoothstep(g.pavingFlatLo, g.pavingFlatHi, i.normalY);
+  const shoreStone = 1 - smoothstep(g.pavingShoreLo, g.pavingShoreHi, i.heightAboveWater);
+  const paving = i.rock * flat * g.pavingMax * open * (1 - shoreStone);
+  const shoreSand = i.rock * flat * shoreStone * g.shoreSandMax * open;
   const shore = 1 - smoothstep(0.25, 2.6, i.heightAboveWater);
   const moss =
     i.grass *
     Math.max(clamp01(i.marsh) * g.mossMarsh, shore * g.mossShore) *
     smoothstep(g.mossNoiseHi, g.mossNoiseLo, i.variantNoise) *
     open;
-  return { forest, paving, moss };
+  return { forest, paving, moss, shoreSand };
 }
 
 /** JS mirror of the painted meadow's detail over the biome tone: the painted
