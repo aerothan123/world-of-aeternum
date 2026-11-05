@@ -97,14 +97,46 @@ describe('the town kit models', () => {
     }
   });
 
+  // The high-detail pass (owner-approved, town kit detail pass): after the
+  // slate townhouse pilot, every placed house and civic block ships a Tripo
+  // H3.1 detailed build, so those get the building budget the pass asks for
+  // (up to 15000 triangles, 1024 px maps) instead of the low-poly prop budget,
+  // and the crafting stations keep the 6000 triangle cap at 1024 px maps.
+  // Every other piece keeps the old pin.
+  const DETAIL_BUILDING = { triangles: 15000, bytes: 470 * 1024, texture: 1024 } as const;
+  const DETAIL_STATION = { triangles: 6000, bytes: 470 * 1024, texture: 1024 } as const;
+  const DETAIL_BUDGET: Readonly<
+    Record<string, { triangles: number; bytes: number; texture: number }>
+  > = {
+    house_townhouse_slate: DETAIL_BUILDING,
+    house_townhouse_green: DETAIL_BUILDING,
+    house_timber_jettied: DETAIL_BUILDING,
+    house_timber_corner_tall: DETAIL_BUILDING,
+    house_stone_thatch: DETAIL_BUILDING,
+    house_cottage_redtile: DETAIL_BUILDING,
+    house_row_terrace: DETAIL_BUILDING,
+    civic_trading_post: DETAIL_BUILDING,
+    civic_storage_shed: DETAIL_BUILDING,
+    civic_stable: DETAIL_BUILDING,
+  };
+  const budgetFor = (id: string) =>
+    DETAIL_BUDGET[id] ??
+    (id.startsWith('station_')
+      ? DETAIL_STATION
+      : { triangles: 6000, bytes: 350 * 1024, texture: 512 });
   it('stay inside the prop budget: at most 6000 triangles, 350 KB and 512 px WEBP maps each', () => {
     for (const [id, m] of measured) {
-      expect(m.triangles, `${id} triangles`).toBeLessThanOrEqual(6000);
-      expect(m.bytes, `${id} bytes`).toBeLessThanOrEqual(350 * 1024);
+      const budget = budgetFor(id);
+      expect(m.triangles, `${id} triangles`).toBeLessThanOrEqual(budget.triangles);
+      expect(m.bytes, `${id} bytes`).toBeLessThanOrEqual(budget.bytes);
       for (const tex of m.textures) {
         expect(['image/webp', 'image/ktx2'], `${id} texture`).toContain(tex.mime);
-        expect(Math.max(tex.w, tex.h), `${id} texture size`).toBeLessThanOrEqual(512);
+        expect(Math.max(tex.w, tex.h), `${id} texture size`).toBeLessThanOrEqual(budget.texture);
       }
+    }
+    // The detail pass really shipped: the buildings carry the detailed geometry.
+    for (const id of Object.keys(DETAIL_BUDGET)) {
+      expect(measured.get(id)?.triangles, id).toBeGreaterThan(6000);
     }
   });
 
