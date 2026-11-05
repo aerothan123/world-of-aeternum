@@ -97,8 +97,8 @@ earlier id moves. The full coordinate list lives in the source; the groups are:
 
 The town crew's final Eastbrook relayout (origin/feature/town-kit at
 f4289316) puts Meadow Lane along z -24 off (30, -30) with houses at
-(38.5, -14.2) (the green townhouse), (48.8, -17.6), (18.7, -33.4) and
-(45.8, -30.8) and a well at (57, -29); the row terrace at (-26, -84); the
+(36.3, -14.2) (the timber house), (48.8, -17.6), (18.7, -33.4) and the green
+townhouse at (38.5, -30.8) (moved west from 45.8), and a well at (57, -29); the row terrace at (-26, -84); the
 stone cottage at (-72, -86); and the red cottage at (-76.5, -45.1), every
 door facing north or south. Chapter One keeps clear of all of them
 (`tests/chapter_one_content.test.ts`, the town-lot clearance case):
