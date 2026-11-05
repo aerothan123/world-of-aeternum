@@ -418,3 +418,69 @@ id), and the parity scenarios in `tests/parity/scenarios.ts`.
    benches bind to the existing types, and own types stay a later phase.
 4. Housing: 10 to 14 house lots across housing streets A and B.
 5. Stable: at the north road gate.
+
+## 10. As built (phase 2)
+
+The placements live in `src/sim/eastbrook_layout.ts` (`TOWN_KIT_ASSETS` and the
+`YARD`, `MARKET_ROW`, `SQUARE_KIT`, `GATE_KIT` and `HOUSING` groups behind
+`EASTBROOK_LAYOUT.townKit`); every placement carries its reach, its collider and
+its front standing point, and `tests/town_kit_assets.test.ts` pins the rules
+below rather than the numbers.
+
+- **How the kit ships.** Each placed piece is a decor prop row
+  (`src/sim/content/zone1.ts` appends the kit to `decorProps`): a box collider
+  from the placement, the static decor merge, the deferred preload lane and the
+  band reveal gate (`src/render/town_kit_props.ts` registers the 29 GLBs in
+  `PROP_ASSET_DEFS`; every piece collides, so every tier draws every piece). Houses are
+  SEALED boxes whose doors are house lots, so no kit piece needs a camera
+  interior. Grass never grows through a kit floor (`src/render/foliage_core.ts`)
+  and the map's detail overlay draws the kit's houses and civic blocks, the well
+  and the square stalls from the active world's decor rows
+  (`src/ui/town_kit_map_marks.ts`).
+- **The crafting yard.** One U-shaped yard south of the square holds all 13
+  benches round an aisle that the crafts lane runs into. The west rim holds the
+  cooking hearth, the forge canopy, the armorer's anvil and the jeweler's bench,
+  with the smelter, the stonecutter and the enchanting altar in a second row
+  behind them; the east rim holds the alchemy table, the loom, the tannery rack
+  and the engineering bench; the woodshop and the scribe's desk close the
+  south end. The four kept stations
+  (forge, kitchens, loom, toolworks) keep their ids and move to their benches'
+  front points (`dressed: true` stations draw no procedural cluster); the yard
+  adds `station_eastbrook_apothecary` and `station_eastbrook_tannery`. Every
+  bench stands inside every station's 20 yd gate.
+- **Yard masters.** Darva, Marlow, Ottilie and Gizzel stand a stride out from
+  their own benches, facing out into the aisle. Apothecary Lin masters the
+  alchemy table from its north end, facing the square, so she stays one of
+  the square's starter combat givers. Tamsin Tanwick, Tanner of the Yard (new,
+  IP-checked in `docs/design/naming-audit.md`), works the tannery rack. A
+  station master teaches its station type's ladder (`buildTrainView`), so
+  Lin and Tamsin teach the same alchemy, inscription and leatherworking rungs
+  as Verane and Hesk; the guide prose says so.
+- **Market Row.** The trading post and the storage shed stand side by side on
+  the main street west of the square (the trading post a yard back so the
+  street's corner lamp keeps its post), with a goods cart and a clutter set
+  between them and the kit's cloth stall at the row's west end. The
+  Merchant keeps the World Market from the trading post's counter (the gold
+  stall he kept stays on the square as market dressing); Bursar Fernando and
+  his banker chest keep the storage shed. The walk-in bank keeps the Weekly
+  Vault and the card master.
+- **The square.** The kit's fruit stall dresses its north-west corner; the two
+  painted stalls, the board and the monument are unchanged.
+- **The stable.** At the north road gate on the road's west verge, facing the
+  road, with a low corral fence (three rails) on its north flank; it stands
+  back far enough that the wolves guidance curve passes clear of it. The old
+  forge-yard fence retired with the forge lot.
+- **Housing: 10 Eastbrook lots** (the old one plus 9 kit lots,
+  `src/sim/content/house_lots.ts`, `kitLot`): the row terrace on the harbour
+  rise north of the landing green (three lots, one per door, with the well in
+  front); street B along the main street (the corner house, the stone cottage,
+  the red-roof cottage and the green townhouse); and the slate townhouse and the
+  timber house facing the shore road below the landing green. No house stands
+  in the ferry bell landing's sightline up the main street.
+- **Rerolls.** The green and slate townhouses were rerolled through a Tripo
+  multiview build (a 4096 by 2048 turnaround sheet cut into views) because
+  their single-image backs were unpainted and face a street; 230 credits
+  (`assets_src/town_kit/manifest.json`, `spend.phase2`).
+- **Live-world touch-up.** The kit changes `BASE_WORLD`, so the Fenbridge-only
+  touch-up was rebased onto the new baseline with its changes byte-identical
+  (`data/world_touchup/current.map.json`, `src/sim/world_touchup.generated.ts`).

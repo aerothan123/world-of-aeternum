@@ -3926,3 +3926,17 @@ the named source in the rename table is the durable citation):
 - Wrathwing: https://calamitymod.fandom.com/wiki/Wrathwing
 - Wyrmcult Grand Robe: https://warcraft.wiki.gg/wiki/Wyrmcult
 - Wyvern Sting: https://warcraft.wiki.gg/wiki/Wyvern_Sting
+
+## Town kit phase 2 additions (2026-11-04)
+
+The Eastbrook relayout (`docs/design/town-layout-eastbrook.md`) added these
+player-visible names, each checked at authoring time:
+
+- Tamsin Tanwick (NPC, the crafting yard's tanner): CLEAR. "Tamsin" is a
+  common English given name; the coined surname "Tanwick" and the full name
+  returned no game character, place or item on exact-phrase and coined-token
+  searches, and the repo has no other Tamsin or Tanwick.
+- Tanner of the Yard (her title): GENERIC.
+- West, Middle and East Terrace House, Slate Townhouse, Corner House, Stone
+  Cottage, Red Roof Cottage, Timber House, Green Townhouse (house lots):
+  GENERIC descriptive English.
