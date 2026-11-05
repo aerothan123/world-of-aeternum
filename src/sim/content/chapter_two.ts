@@ -237,7 +237,7 @@ export const CHAPTER_TWO_OBJECTS: GroundObjectDef[] = objects(2_147_210_000, [
     [
       { x: 9, z: 247 },
       { x: -11, z: 259 },
-      { x: 9, z: 273 },
+      { x: 1, z: 265 },
     ],
   ],
   [
@@ -246,7 +246,7 @@ export const CHAPTER_TWO_OBJECTS: GroundObjectDef[] = objects(2_147_210_000, [
     [
       { x: 10.5, z: 249 },
       { x: -9.5, z: 261 },
-      { x: 10.5, z: 275 },
+      { x: 2.5, z: 263 },
     ],
   ],
   // Provisioner Hale's boardwalk work: alders west of the road, the bench by
@@ -257,7 +257,7 @@ export const CHAPTER_TWO_OBJECTS: GroundObjectDef[] = objects(2_147_210_000, [
     [
       { x: -19, z: 278 },
       { x: -23, z: 284 },
-      { x: -18, z: 289 },
+      { x: -21, z: 279.5 },
       { x: -25, z: 274 },
     ],
   ],
@@ -270,19 +270,20 @@ export const CHAPTER_TWO_OBJECTS: GroundObjectDef[] = objects(2_147_210_000, [
       { x: -3, z: 290 },
     ],
   ],
-  // Farmer Teasel's paddy edge on the way to the Deepfen Shallows.
+  // Farmer Teasel's harvest, bundled where his west paddy meets the causeway
+  // road south of Fenbridge, and his spare rod beside it.
   [
     'c2_paddy_crop_bundle',
     'Paddy Crop Bundle',
     [
-      { x: -58, z: 300 },
-      { x: -62, z: 306 },
-      { x: -57, z: 312 },
-      { x: -64, z: 296 },
-      { x: -61, z: 316 },
+      { x: -9, z: 224 },
+      { x: -10, z: 233 },
+      { x: -11, z: 240 },
+      { x: -4, z: 246 },
+      { x: -10, z: 255 },
     ],
   ],
-  ['c2_loan_fishing_rod', "Teasel's Spare Rod", [{ x: -55, z: 305 }]],
+  ['c2_loan_fishing_rod', "Teasel's Spare Rod", [{ x: -8, z: 229 }]],
 ]);
 
 /** Quest catches (quests/quest_fishing_catch.ts): the harbor fish off the

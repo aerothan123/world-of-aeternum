@@ -1435,6 +1435,9 @@ describe('item-art consistency accepted-art provenance', () => {
               'gourdlight-eve-sheaf-icon-2026-10-18',
               'gourdlight-eve-daily-icons-2026-10-18',
               'gourdlight-eve-toy-icons-2026-10-18',
+              // Player housing furniture renders and Wyndlewood Chapter One's paintings
+              'furniture-renders-2026-11-04',
+              'chapter-one-painted-icons-2026-11-04',
             ].includes(batchId ?? ''),
           )
           .flatMap(({ itemIds }) => itemIds),
@@ -1844,6 +1847,9 @@ describe('item-art consistency accepted-art provenance', () => {
                 'gourdlight-eve-sheaf-icon-2026-10-18',
                 'gourdlight-eve-daily-icons-2026-10-18',
                 'gourdlight-eve-toy-icons-2026-10-18',
+                // Player housing furniture renders and Wyndlewood Chapter One's paintings
+                'furniture-renders-2026-11-04',
+                'chapter-one-painted-icons-2026-11-04',
               ].includes(batchId),
           )
           .flatMap(({ itemIds }) => itemIds),

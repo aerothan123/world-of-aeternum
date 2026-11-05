@@ -1,0 +1,13 @@
+tests/chapter_two_content.test.ts
+tests/chapter_one_content.test.ts
+tests/item_art_consistency.test.ts
+tests/item_icons.test.ts
+tests/interact_object_credit.test.ts
+tests/deeds_content.test.ts
+tests/localization_coverage.test.ts
+tests/quest_leveling_gear.test.ts
+tests/progression.test.ts
+tests/escort_quest.test.ts
+tests/quest_mechanics_wyndlewood.test.ts
+tests/professions_fishing.test.ts
+tests/guide.test.ts
