@@ -51,6 +51,7 @@ import { interactIgnivarRaidLore } from './ignivar_raid_lore';
 import { isInRaidInstance } from './instances/dungeons';
 import { FERRY_BELL_OBJECT_ID, tryRingFerryBell } from './interactions/ferry_bell';
 import { HUT_OBJECT_ID, tryBurnHut } from './interactions/firebottle_hut';
+import { tryContributeAtTownProject } from './life_skills/town_projects';
 import { mobLootSource } from './loot/awarded_loot_hold';
 import { hasSharedLootRights as computeSharedLootRights, lootHasGoneFfa } from './loot/loot_ffa';
 import {
@@ -83,7 +84,6 @@ import {
 } from './types';
 import { talkToWeeklyKeeper } from './weekly_rewards';
 import { markWorldBossLooted } from './world_boss';
-import { tryContributeAtTownProject } from './life_skills/town_projects';
 import { forgeStationForEntity } from './world_quest_forging';
 import { isFarshoreSalvageEntity } from './world_quest_salvage';
 

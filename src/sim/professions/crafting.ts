@@ -82,6 +82,7 @@ import { ITEMS } from '../data';
 import { atHouseStation } from '../housing/house_stations';
 import { slotStatMultForItem } from '../item_budget';
 import { countUnlockedInSlots, removeUnlockedFromSlots } from '../item_lock';
+import { lifeSkillCraftXp } from '../life_skills/life_skill_xp';
 import { grantFreshLoot } from '../loot/fresh_quality_grant';
 import { holdsMaterialSignature } from '../material_signatures';
 import {
@@ -134,7 +135,6 @@ import { materialTierBonusForReagents } from './material_tier';
 import { isStationActive, partySharedStationSatisfies } from './mobile_station';
 import { PERFECTING_HEADSTART_RANK } from './perfecting';
 import { withPerfectingBonus } from './perfecting_bonus';
-import { lifeSkillCraftXp } from '../life_skills/life_skill_xp';
 import { gainSecondaryCraftSkill } from './secondary_skill';
 import { isAtStation, stationTypeForCraft } from './stations';
 import type { ProfessionReagent, ProfessionRecipeRecord } from './types';

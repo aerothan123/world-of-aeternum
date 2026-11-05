@@ -20,6 +20,8 @@ import {
   TOOL_EFFECTS,
 } from '../content/professions';
 import { ITEMS } from '../data';
+import { lifeSkillGatherXp } from '../life_skills/life_skill_xp';
+import { grantLifeSkillStanding } from '../life_skills/standing_seam';
 import { gatheredMaterialSources } from '../material_gatherer';
 import { forceDismount } from '../mounts';
 import { gatherNodesFor, type ObjectMoves } from '../moved_objects';
@@ -53,8 +55,6 @@ import {
 import { type GatherToolBeltHolder, ownedGatherTools, toolBelt } from './gather_tool_slots';
 import { type MaterialRarity, nodeMaterialFor } from './gathering_materials';
 import { fineGradeReachable, harvestGradeItemId } from './material_grades';
-import { lifeSkillGatherXp } from '../life_skills/life_skill_xp';
-import { grantLifeSkillStanding } from '../life_skills/standing_seam';
 import { proficiencyBandFor } from './proficiency_bands';
 import {
   applyToolEffectUse,

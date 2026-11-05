@@ -23,7 +23,11 @@
 //
 // Deterministic: no rng, no clock.
 
-import { TOWN_PROJECT_SITE_RADIUS, TOWN_PROJECTS, type TownProjectDef } from '../content/town_projects';
+import {
+  TOWN_PROJECT_SITE_RADIUS,
+  TOWN_PROJECTS,
+  type TownProjectDef,
+} from '../content/town_projects';
 import { outLevelXpFactor } from '../quests/quest_xp';
 import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';

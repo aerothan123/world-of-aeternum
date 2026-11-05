@@ -7,7 +7,11 @@
 // counters per project, so it never grows beyond the project catalog; a row
 // for a project this build does not know is carried through unchanged.
 
-import { loadTownProjects, serializeTownProjects, townProjectsRev } from '../src/sim/life_skills/town_projects';
+import {
+  loadTownProjects,
+  serializeTownProjects,
+  townProjectsRev,
+} from '../src/sim/life_skills/town_projects';
 
 export const TOWN_PROJECTS_SAVE_MS = 30_000;
 

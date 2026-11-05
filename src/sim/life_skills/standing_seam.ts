@@ -20,7 +20,11 @@ import { awardFactionReputation, FACTION_IDS, type FactionId } from '../factions
 import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
 import { zeroDiff } from '../types';
-import { type LifeSkillStandingLedger, lifeSkillDailyRoom, recordLifeSkillStanding } from './life_skill_state';
+import {
+  type LifeSkillStandingLedger,
+  lifeSkillDailyRoom,
+  recordLifeSkillStanding,
+} from './life_skill_state';
 
 export type LifeSkillFactionRole = 'hearthwright' | 'bracken';
 
@@ -35,10 +39,7 @@ export const LIFE_SKILL_STANDING = {
   workOrder: { role: 'hearthwright', base: 100, dailyCap: 400 },
   townProject: { role: 'hearthwright', base: 25, dailyCap: 200 },
   gather: { role: 'bracken', base: 2, dailyCap: 150 },
-} as const satisfies Record<
-  string,
-  { role: LifeSkillFactionRole; base: number; dailyCap: number }
->;
+} as const satisfies Record<string, { role: LifeSkillFactionRole; base: number; dailyCap: number }>;
 
 export type LifeSkillStandingActivity = keyof typeof LIFE_SKILL_STANDING;
 

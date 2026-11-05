@@ -28,6 +28,7 @@ import { WISP_MAZE_QUEST_ID } from '../content/world_quest_wisp_maze';
 import { DUNGEONS, ITEMS, QUESTS } from '../data';
 import { formatMoney } from '../format_money';
 import { removePreferFungible } from '../items';
+import { grantLifeSkillStanding } from '../life_skills/standing_seam';
 import { grantFreshLoot } from '../loot/fresh_quality_grant';
 import type { ArchetypeState } from '../professions/archetype';
 import { armCadence, cadenceBlockedKeys } from '../professions/cadence';
@@ -62,7 +63,6 @@ import {
 import { playerHoldsQuestItem } from './quest_item_presence';
 import { grantQuestRecipeReward, validateQuestRecipeReward } from './quest_recipe_rewards';
 import { defaultRewardChoice, questFixedReward, resolveRewardChoice } from './quest_reward_choice';
-import { grantLifeSkillStanding } from '../life_skills/standing_seam';
 import { questLevelOf, questRewardXp } from './quest_xp';
 import { weeklyLockedQuestIds, weeklyQuestLockoutId } from './weekly_quest_lock';
 

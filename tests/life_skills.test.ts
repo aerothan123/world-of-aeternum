@@ -8,8 +8,8 @@ import { TownProjectsStore } from '../server/town_projects_store';
 import { TOWN_PROJECTS } from '../src/sim/content/town_projects';
 import { FACTION_IDS } from '../src/sim/factions';
 import {
-  factionForRole,
   FATIGUE_FLOOR,
+  factionForRole,
   isTrivialTask,
   lifeSkillDailyRoom,
   lifeSkillFatigueMult,
@@ -157,7 +157,8 @@ describe('town restoration projects', () => {
     expect(townProjectProgress(sim.ctx, WELL.id)).toEqual({ stage: 0, bundles: 1 });
     expect(townProjectsRev(sim.ctx)).toBe(rev + 1);
     expect(sim.xp - xpBefore).toBe(townProjectBundleXp(WELL, 5));
-    for (let i = 1; i < stage.bundlesNeeded; i++) tryContributeAtTownProject(sim.ctx, m, sim.player);
+    for (let i = 1; i < stage.bundlesNeeded; i++)
+      tryContributeAtTownProject(sim.ctx, m, sim.player);
     expect(townProjectProgress(sim.ctx, WELL.id)).toEqual({ stage: 1, bundles: 0 });
     expect(townProjectStageDone(sim.ctx, stage.id)).toBe(true);
     expect(townProjectStageDone(sim.ctx, WELL.stages[1].id)).toBe(false);
@@ -177,7 +178,10 @@ describe('town restoration projects', () => {
       eastbrook_street_lamps: { stage: 0, bundles: 9999 },
       future_project: { stage: 2, bundles: 1 },
     });
-    expect(townProjectProgress(sim.ctx, WELL.id)).toEqual({ stage: WELL.stages.length, bundles: 0 });
+    expect(townProjectProgress(sim.ctx, WELL.id)).toEqual({
+      stage: WELL.stages.length,
+      bundles: 0,
+    });
     const lamps = TOWN_PROJECTS[1];
     expect(townProjectProgress(sim.ctx, lamps.id).bundles).toBe(lamps.stages[0].bundlesNeeded - 1);
     expect(serializeTownProjects(sim.ctx).future_project).toEqual({ stage: 2, bundles: 1 });

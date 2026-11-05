@@ -53,7 +53,6 @@ import {
 } from './account';
 import { loadAccountBuddies } from './account_buddies_db';
 import { accountHouseHolderName } from './account_house_migration';
-import { TownProjectsStore } from './town_projects_store';
 import { loadAccountLedger } from './account_ledger_db';
 import { accountLedgerKeysFor } from './account_ledger_keys_cache';
 import { relicRecordsIdle } from './account_ledger_records';
@@ -443,6 +442,7 @@ import {
 } from './storage_purchases';
 import { configureSuspicionFlagDataset, suspicionFlagsIdle } from './suspicion_flags';
 import { listSuspicionFlagDataset } from './suspicion_flags_db';
+import { TownProjectsStore } from './town_projects_store';
 import { passesTurnstile } from './turnstile';
 import { pruneUnstuckReportsBatch } from './unstuck_db';
 import { stopUnstuckRecords, UNSTUCK_RECORD_SHUTDOWN_DRAIN_MS } from './unstuck_records';
