@@ -10,7 +10,6 @@ import { VISUALS, visualKeyFor } from '../src/render/characters/manifest';
 import {
   isTemplePilgrimFrenzyCue,
   stepTempleShellStance,
-  TEMPLE_MOONSPAWN_RISE,
   TEMPLE_MOONSPAWN_RISE_WINDOW,
   TEMPLE_PILGRIM_FRENZY_GESTURE,
   TEMPLE_SENTINEL_SHELL_CLOSED,
@@ -677,15 +676,16 @@ describe('the Lagoon Snapper: the sacred nautilus', () => {
 });
 
 describe('the Moonspawn: a spirit of the Drowned Moon, no longer a murloc', () => {
-  it('has its own body and climbs out of the shore when it is called', () => {
+  it('has its own rebuilt body on the wildlife clip set (refit_enemy_looks.ts)', () => {
     expect(clipsOf('public/models/creatures/temple_moonspawn.glb').sort()).toEqual(
-      ['Attack', 'Attack2', 'Cast', 'Death', 'Hit', 'Idle', 'Rise', 'Run', 'Walk'].sort(),
+      ['Attack', 'Cast', 'Death', 'Hit', 'Idle', 'Run', 'Walk'].sort(),
     );
     const v = visualOf('moonspawn');
     expect(v.url).toMatch(/temple_moonspawn\.glb$/);
     expect(v.url).not.toMatch(/murloc/);
-    expect(v.clips.entrance).toBe('Rise');
-    expect(v.entranceGesture).toBe(TEMPLE_MOONSPAWN_RISE);
+    // the rebuilt lizard has no Rise of its own: it simply arrives when called
+    expect(v.clips.entrance).toBeUndefined();
+    expect(v.entranceGesture).toBeUndefined();
     expect(v.authoredAtlas).toBe(true);
     // Drawn 3.5 at its 0.9: 1.3 times the 2.6 player.
     expect(v.height * (MOBS.moonspawn.scale ?? 1)).toBeCloseTo(3.5, 1);

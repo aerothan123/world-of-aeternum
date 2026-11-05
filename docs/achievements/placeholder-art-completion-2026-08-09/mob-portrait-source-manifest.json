@@ -6,7 +6,7 @@
     "bytes": 1510,
     "sha256": "bb0b6bacba9acb12568c3bbbe536e4442cb2964266cffef890f27ee4915dcf2a"
   },
-  "rendererFingerprint": "6691dd5cf75d3cae741c537505822b04692b86eb45dc5aa79535f25dbb91a184",
+  "rendererFingerprint": "928f6a9fd5ee55c51b1900893b3446da58d6555b50c71b6c0f336dabcf140f34",
   "renderEnv": {
     "schemaVersion": 1,
     "platform": "win32",
@@ -39,7 +39,7 @@
     "browserBundle": {
       "entry": "scripts/wiki/stills_render_entry.js",
       "bytes": 6865902,
-      "sha256": "d8fc9ab8ac73831dfcbbc5fcd43f1485674f0e1f1c43f38e216047809b7a294f",
+      "sha256": "967ed88529a9996db80da031a4d6f22ef2ab8523a8bb8e298615ccf72576d67f",
       "esbuildVersion": "0.28.1"
     },
     "output": {
@@ -7171,8 +7171,8 @@
         "model": {
           "url": "models/creatures/temple_moonspawn.glb",
           "path": "public/models/creatures/temple_moonspawn.glb",
-          "bytes": 1855672,
-          "sha256": "228c2574b76c5a9e9df49f8cb9bc9920193b7bca23a9f3f8335cfaedef43dc3a"
+          "bytes": 508780,
+          "sha256": "6cbe312ce3ee11121289df7bcac1db5cc12d2ef2dcd96914317178bd72d16a77"
         },
         "idle": "Idle",
         "height": 3.89,
@@ -7189,11 +7189,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "1aa23a5931bee1aed11569fe3be99be368f4ffe87e29f9ec2bf909e3ffe11f37",
+      "sourceFingerprint": "325cc8c8bb4b160c3240b5c802d4a8d846f83c2e7f7cbcc3a72c1de2ce9a8ee4",
       "output": {
         "path": "public/ui/mobs/moonspawn.webp",
-        "bytes": 3530,
-        "sha256": "d8b0fcb16e8bf21705d5e8b70e9fd08575e7a97a811a0d9f709bb7c268aa27ff"
+        "bytes": 2324,
+        "sha256": "f7a49d41e11ca92a67a6ad93f41ee253246390f2bf9e367c045707a40e223047"
       }
     },
     {

@@ -75,6 +75,8 @@ export const REFIT_ENEMY_FILES: Readonly<Record<string, RefitBody>> = {
   'bastion_ghost_sailor.glb': { base: 'player_warrior' },
   // the Drowned Temple's Pale Choir Acolyte
   'temple_acolyte.glb': { base: 'player_priest' },
+  // Ysolei's summoned spirit lizard, on its own four-legged rig
+  'temple_moonspawn.glb': { base: 'beast' },
   // the Drowned Temple's sea-glass giant
   'woc_temple_colossus.glb': { base: 'player_warrior', props: false },
 };
