@@ -1202,8 +1202,11 @@ describe('entry HTML and i18n chrome', () => {
     // The retro catch-up summary stays plain by design (it names no single
     // relic to jump to), so nothing after the retroCount gate may go node-built.
     expect(handler).not.toMatch(/plan\.retroCount > 0[\s\S]*logNodes/);
-    // Shared key table (window export) so toast/banner cannot desync from Overview.
-    expect(hud).toContain('curatorRankNameKey');
+    // Shared key table (window export) so toast/banner cannot desync from Overview:
+    // the HUD names the rank through the window's curatorRankDisplayName, which
+    // reads the same curatorRankNameKey table.
+    expect(hud).toContain('curatorRankDisplayName');
+    expect(painter).toMatch(/curatorRankDisplayName[\s\S]*curatorRankNameKey\(rank\)/);
     // Pure-core definition (view) + re-export from the painter for existing imports.
     expect(view).toContain('export function curatorRankNameKey');
     expect(painter).toMatch(/export\s*\{[^}]*curatorRankNameKey/);

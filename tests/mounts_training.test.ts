@@ -597,6 +597,9 @@ describe('riding_training and the phase 21 count axis', () => {
     sim.setPlayerLevel(20);
     const meta = metaOf(sim);
     meta.copper = 810_000;
+    // Riding (the level 20 rank) follows Apprentice Riding (riding_training.ts).
+    meta.ridingTier = 3;
+    sim.player.ridingTier = 3;
     standAtMarla(sim);
     sim.buyItem(marlaOf(sim).id, 'riding_training', { count: 5 }, sim.playerId);
     sim.tick();
@@ -629,7 +632,10 @@ describe('new-player path: buy riding at Marla, then complete the lesson', () =>
     expect(meta.questLog.has(RIDING_LESSONS_QUEST_ID)).toBe(false);
 
     // (b) buyItem riding_training deducts exactly 800_000
-    //     and grants ridingTrained; leaves exactly 10_000 copper.
+    //     and grants ridingTrained; leaves exactly 10_000 copper. Riding
+    //     follows the level 10 Apprentice rank (riding_training.ts), held here.
+    meta.ridingTier = 3;
+    sim.player.ridingTier = 3;
     standAtMarla(sim);
     sim.buyItem(marla.id, 'riding_training', undefined, sim.playerId);
     sim.tick();

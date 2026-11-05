@@ -616,6 +616,9 @@ const HOT_PAINTERS: ReadonlyArray<ScannedPainter> = [
   // The vitals bar (Project H): composes UnitFramePainter and adds one elided
   // toggleClass (the low-health tint); no raw writes, no layout reads.
   { file: 'hud/vitals/vitals_painter.ts', allow: {}, reflowAllow: {} },
+  // The durability figure (src/sim/durability/): elided setAttr/toggleClass on
+  // one static element, slow band only; no raw writes, no layout reads.
+  { file: 'hud/durability/durability_painter.ts', allow: {}, reflowAllow: {} },
   { file: 'paladin_devotion_painter.ts', allow: {}, reflowAllow: {} },
   // Event-time celebration painters (a skill level-up, a faction standing
   // tier): they draw only through the CelebrationHost seam (log, banner
