@@ -8,16 +8,29 @@
 // node scripts/assets/fit_village_fence.mjs
 import { NodeIO } from '@gltf-transform/core';
 import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
-import { dequantize, getBounds, meshopt, transformPrimitive } from '@gltf-transform/functions';
-import { MeshoptDecoder, MeshoptEncoder } from 'meshoptimizer';
+import {
+  dequantize,
+  getBounds,
+  meshopt,
+  simplify,
+  transformPrimitive,
+  weld,
+} from '@gltf-transform/functions';
+import { MeshoptDecoder, MeshoptEncoder, MeshoptSimplifier } from 'meshoptimizer';
 
 const SRC = 'assets_src/props/village_fence.glb';
 const OUT = 'public/models/props/fence.glb';
 /** The old module's authored frame (re-measured from the shipped KayKit rail). */
 export const FENCE_FRAME = { length: 0.79, height: 0.326, minY: -0.003, maxDepth: 0.2 };
+/** Shipped triangle ceiling. The village lays hundreds of rail modules (and
+ *  every one casts a shadow), so the full Tripo rail put the fences alone
+ *  over a hundred thousand triangles a view; pinned by
+ *  tests/village_fence_budget.test.ts. */
+export const FENCE_TRIANGLE_BUDGET = 600;
 
 await MeshoptDecoder.ready;
 await MeshoptEncoder.ready;
+await MeshoptSimplifier.ready;
 const io = new NodeIO()
   .registerExtensions(ALL_EXTENSIONS)
   .registerDependencies({ 'meshopt.decoder': MeshoptDecoder, 'meshopt.encoder': MeshoptEncoder });
@@ -59,6 +72,23 @@ for (const node of root.listNodes()) {
 // on the material name; the rail keeps the old module's.
 for (const mat of root.listMaterials()) mat.setName('Wood');
 for (const mesh of root.listMeshes()) mesh.setName('Fence');
+const triangles = () =>
+  root
+    .listMeshes()
+    .flatMap((mesh) => mesh.listPrimitives())
+    .reduce(
+      (n, p) => n + (p.getIndices()?.getCount() ?? p.getAttribute('POSITION').getCount()) / 3,
+      0,
+    );
+const rawTris = triangles();
+for (const error of [0.01, 0.03, 0.08]) {
+  if (triangles() <= FENCE_TRIANGLE_BUDGET) break;
+  await doc.transform(
+    weld(),
+    simplify({ simplifier: MeshoptSimplifier, ratio: FENCE_TRIANGLE_BUDGET / triangles(), error }),
+  );
+}
+console.log('fence triangles', rawTris, '->', triangles());
 await doc.transform(meshopt({ encoder: MeshoptEncoder, level: 'medium' }));
 await io.write(OUT, doc);
 const b = getBounds(scene);

@@ -1639,7 +1639,7 @@ export const MEDIA_ASSETS: Record<string, string> =
   "models/props/fenbridge_provision_stall.glb": "/media/models/props/fenbridge_provision_stall.163ee89cb4c2.glb",
   "models/props/fenbridge_scout_lodge.glb": "/media/models/props/fenbridge_scout_lodge.996268df7dd9.glb",
   "models/props/fenbridge_warden_gatehouse.glb": "/media/models/props/fenbridge_warden_gatehouse.5f31c8cf2863.glb",
-  "models/props/fence.glb": "/media/models/props/fence.d6551e11de08.glb",
+  "models/props/fence.glb": "/media/models/props/fence.17fe37c78307.glb",
   "models/props/flower_bed_round.glb": "/media/models/props/flower_bed_round.cde5b4ee26e5.glb",
   "models/props/flower_bed_square_a.glb": "/media/models/props/flower_bed_square_a.ea96c4343658.glb",
   "models/props/flower_bed_square_b.glb": "/media/models/props/flower_bed_square_b.7658163bf7c2.glb",
