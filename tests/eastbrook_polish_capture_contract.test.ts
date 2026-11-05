@@ -742,7 +742,7 @@ const PINNED_POLISH_COMPOSITE_FINGERPRINT =
   // No capture was retaken.
   // Re-minted for the Wyndlewood wallet-package removal: pnpm-lock.yaml (a
   // fingerprinted input) lost the Reown and Solana stack. No capture was retaken.
-  'a6b93cbd752456ed2afacb6e94b99df90f5a5e3083de3b794495bc156e348293';
+  '6015ea307780df1d7f0aefa007a7348202be27781de896a2dfbd5eae848079b8';
 
 function validPolishAttributionTargets(): AttributionTargetFixture[] {
   return [
@@ -1186,7 +1186,7 @@ describe('Eastbrook polish capture contract', () => {
       // engineering bench, and the camera stands in the yard aisle.
       'toolworks-service-perimeter': {
         camera: { x: -10.5, y: 7, z: -123 },
-        target: { x: -15.789166666666667, y: 5, z: -125.6 },
+        target: { x: -15.894166666666667, y: 5, z: -125.6 },
       },
       'stall-world-market': {
         camera: { x: -16, y: 6, z: -93 },
@@ -1342,11 +1342,11 @@ describe('Eastbrook polish capture contract', () => {
       type: 'toolworks',
       masterNpcId: 'tinker_gizzel',
       // Town kit (phase 2): the crafting yard's engineering bench front.
-      position: { x: -15.789166666666667, z: -125.6 },
+      position: { x: -15.894166666666667, z: -125.6 },
     });
     expect(tinker).toMatchObject({
       anchorId: 'station_eastbrook_toolworks',
-      position: { x: -14.189166666666667, z: -125.6 },
+      position: { x: -14.294166666666667, z: -125.6 },
       facing: 1.5707963267948966,
     });
     expect(
@@ -1548,7 +1548,7 @@ describe('Eastbrook polish capture contract', () => {
       'apothecary-lin': {
         subject: 'apothecary_lin',
         camera: { x: -14.2, y: 6, z: -107.5 },
-        target: { x: -16.425, y: 2.5, z: -109.2 },
+        target: { x: -16.471153846153847, y: 2.5, z: -109.2 },
       },
       'ravenpost-chronicler': {
         subject: 'chronicler_saul',

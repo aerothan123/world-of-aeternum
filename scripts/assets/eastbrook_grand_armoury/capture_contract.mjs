@@ -368,14 +368,14 @@ export const EASTBROOK_TOWN_POLISH_CAPTURE_VIEWS = Object.freeze([
   // World of ClaudeCraft Studio map's arrangement: she stands at
   // (-24.5, -112.5) between the square and her shop down on the strand,
   // facing the square. Town kit (phase 2): she masters the crafting yard's
-  // alchemy table from its north end at (-16.425, -109.2), facing the square;
+  // alchemy table from its north end at (-16.47, -109.2), facing the square;
   // the camera stands 2.8 yd out on her public-facing side, a step east of
   // her line to the square so the provisions stall's canopy stays out of it.
   Object.freeze({
     name: 'apothecary-lin',
     subject: 'apothecary_lin',
     camera: Object.freeze({ x: -14.2, y: 6, z: -107.5 }),
-    target: Object.freeze({ x: -16.425, y: 2.5, z: -109.2 }),
+    target: Object.freeze({ x: -16.471153846153847, y: 2.5, z: -109.2 }),
   }),
   Object.freeze({
     name: 'ravenpost-mailbox',
@@ -497,7 +497,7 @@ export const EASTBROOK_TOWN_POLISH_MATCHED_VIEW_OVERRIDES = Object.freeze({
   // bench; the camera stands in the yard aisle on Gizzel's public side.
   'toolworks-service-perimeter': Object.freeze({
     camera: Object.freeze({ x: -10.5, y: 7, z: -123 }),
-    target: Object.freeze({ x: -15.789166666666667, y: 5, z: -125.6 }),
+    target: Object.freeze({ x: -15.894166666666667, y: 5, z: -125.6 }),
   }),
   // Moved in lockstep with the polish view above for owner round 6b: this entry
   // has always mirrored that view exactly, and a matched shot aimed at the
