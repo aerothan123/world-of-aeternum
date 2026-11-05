@@ -706,7 +706,7 @@ import {
   ridingTrainingTier as ridingTierOf,
 } from './riding_training';
 import { Rng } from './rng';
-import { resolveSavedPosExit } from './saved_pos_exit';
+import { resolveSavedPosExit, savedPlacement } from './saved_pos_exit';
 import * as seasonalMod from './seasonal';
 import { updatePuppetMovement } from './seasonal/scarecrow_puppet';
 import * as seatingMod from './seating';
@@ -2747,7 +2747,7 @@ export class Sim {
     // Characters saved inside a dungeon instance rejoin at its entrance (the
     // shared rule in saved_pos_exit.ts, which the character list reads too so
     // the roster's zone label matches where the character actually lands).
-    const savedExit = resolveSavedPosExit(savedState?.pos);
+    const savedExit = resolveSavedPosExit(savedState?.pos, savedState?.posEpoch);
     let savedPos = savedExit.pos;
     if (savedPos && !savedExit.instanceExit) {
       // Authored towns can grow across release boundaries. A living character
@@ -3906,8 +3906,7 @@ export class Sim {
         e.resource,
         e.savedMana,
       ),
-      pos: riftExit?.pos ?? gatesMod.ferrySavePosition(e), // never the sea: a ride saves the destination pier
-      facing: riftExit?.facing ?? e.facing,
+      ...savedPlacement(riftExit, gatesMod.ferrySavePosition(e), e.facing), // a ride saves its pier
       // Death state: a released spirit resumes its corpse run on relog, and a
       // dead-but-unreleased corpse auto-releases on load (see addPlayer).
       dead: e.dead,

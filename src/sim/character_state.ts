@@ -99,6 +99,11 @@ export interface CharacterState extends ReferralRewardState {
   resource: number;
   pos: { x: number; z: number };
   facing: number;
+  // The save-position epoch (data.ts SAVE_POS_EPOCH), written on every save
+  // since the world started growing east. Absent marks a save from before the
+  // stamp, the only kind the legacy instance-plane rule (data.ts
+  // migrateLegacyInstancePos) may remap; a stamped pos is always literal.
+  posEpoch?: number;
   equipment: PlayerEquipment;
   // Per-slot ItemInstancePayload for whichever equipped piece carries one (an
   // enchanted item's rolled.stats or a rift-forged upgrade's payload).

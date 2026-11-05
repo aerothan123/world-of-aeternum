@@ -467,7 +467,7 @@ export function buildCharacterList(
       // addPlayer applies, so an instance save reads as its door's zone; null
       // for a mid-match battleground save that resumes at the world start).
       // Character select labels the roster row with it.
-      zoneId: savedZoneId(c.state?.pos),
+      zoneId: savedZoneId(c.state?.pos, c.state?.posEpoch),
       // The raid lockouts this character still carries (lockout id -> unlock
       // epoch ms), filtered against the host clock the same way addPlayer
       // loads them, so character select can list them without a login.

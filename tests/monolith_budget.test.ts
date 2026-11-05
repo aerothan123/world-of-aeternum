@@ -1289,7 +1289,9 @@ const MONOLITHS: MonolithRow[] = [
     // LOWERED 11404 -> 11396 with the gathering tool belt: toolEffectSlotsFor moved into
     // professions/tool_effect_slot_views.ts, paying for the belt's load, save and grant
     // hooks. wc -l. Exact count.
-    ceiling: 11396,
+    // LOWERED 11396 -> 11395 with the save-position epoch: the save's pos and
+    // facing fields moved into saved_pos_exit.ts savedPlacement. wc -l. Exact.
+    ceiling: 11395,
     seam: 'a sim system module behind SimContext (src/sim/CLAUDE.md)',
   },
   {

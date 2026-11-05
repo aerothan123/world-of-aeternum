@@ -1677,15 +1677,30 @@ export function arenaOriginAt(z: number): { x: number; z: number; slot: number }
   return { x: o.x, z: o.z, slot: best };
 }
 
+// The save-position epoch every save from this build stamps
+// (CharacterState.posEpoch, written by saved_pos_exit.ts savedPlacement).
+// Epoch 2 means "the instance plane is at INSTANCE_X_BASE": the position is
+// read literally, so an overworld save east of x 600 (the expansion's east
+// march) stays where it is. An UNSTAMPED save predates the stamp and may
+// still carry a pre-move instance position, so only it takes the legacy rule.
+export const SAVE_POS_EPOCH = 2;
+
 // Saved positions from before the instance plane moved east (stage 2 of the
 // world grid) sit in the old bands at x 600..5400+. Map them to the same
 // door the old load rule would have chosen, using the OLD layout frozen as
 // literals: dungeons at 900+index*600 past threshold 600, the delve band
 // from 4773. Anything unmapped falls back exactly like the old rule did.
-export function migrateLegacyInstancePos(pos: { x: number; z: number }): {
+// Keyed on the save's epoch first: a stamped save is never legacy, whatever
+// its x (an instance save of this era sits on the real band at x ~100k and
+// the band rules in saved_pos_exit.ts own it).
+export function migrateLegacyInstancePos(
+  pos: { x: number; z: number },
+  posEpoch?: number,
+): {
   x: number;
   z: number;
 } | null {
+  if (typeof posEpoch === 'number' && posEpoch >= SAVE_POS_EPOCH) return null; // stamped: literal
   if (pos.x <= 600 || pos.x >= INSTANCE_X_BASE) return null; // not a legacy instance pos
   if (pos.x >= 4773) {
     const delve = DELVE_LIST.find((d) => d.index === Math.round((pos.x - 4800) / 600));

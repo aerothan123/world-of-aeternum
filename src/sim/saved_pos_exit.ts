@@ -15,6 +15,7 @@ import {
   isBgPos,
   isDelvePos,
   migrateLegacyInstancePos,
+  SAVE_POS_EPOCH,
   zoneAt,
 } from './data';
 import { dungeonDoorPos } from './moved_objects';
@@ -45,9 +46,14 @@ export interface SavedPosExit {
  *
  * Saves from before the instance plane moved east (see data.ts) resolve all
  * the way to their door first, so they ARE an instance exit and take the same
- * exemption the two band branches do.
+ * exemption the two band branches do. Only an UNSTAMPED save can be one of
+ * those: `posEpoch` (CharacterState.posEpoch) at SAVE_POS_EPOCH or above means
+ * the position is literal, so an overworld save east of x 600 is kept.
  */
-export function resolveSavedPosExit(saved: SavedPos | null | undefined): SavedPosExit {
+export function resolveSavedPosExit(
+  saved: SavedPos | null | undefined,
+  posEpoch?: number,
+): SavedPosExit {
   // The server feeds this untrusted JSONB (characters.state is a column that
   // can predate every current rule): a malformed position is "no position",
   // never a NaN that the legacy-migration arithmetic would quietly resolve to
@@ -56,7 +62,7 @@ export function resolveSavedPosExit(saved: SavedPos | null | undefined): SavedPo
   let pos: SavedPos | null = valid ? { x: saved.x, z: saved.z } : null;
   let instanceExit = false;
   if (pos) {
-    const migrated = migrateLegacyInstancePos(pos);
+    const migrated = migrateLegacyInstancePos(pos, posEpoch);
     if (migrated) {
       pos = migrated;
       instanceExit = true;
@@ -90,9 +96,25 @@ export function resolveSavedPosExit(saved: SavedPos | null | undefined): SavedPo
  * Character select labels each roster row with this, so the account owner can
  * see where every character is without logging each one in.
  */
-export function savedZoneId(saved: SavedPos | null | undefined): string | null {
-  const exit = resolveSavedPosExit(saved);
+export function savedZoneId(saved: SavedPos | null | undefined, posEpoch?: number): string | null {
+  const exit = resolveSavedPosExit(saved, posEpoch);
   const pos = exit.pos ?? getActiveWorldContent().playerStart;
   if (pos.x >= INSTANCE_X_BASE) return null;
   return zoneAt(pos.x, pos.z).id;
+}
+
+/** The placement fields a save writes: where the character resumes, its
+ *  facing, and the position epoch that tells a later load to read `pos`
+ *  literally (never as a pre-move instance position). A live rift or hoard
+ *  run saves its overworld return spot instead (rift/save_position.ts). */
+export function savedPlacement(
+  riftExit: { pos: SavedPos; facing: number } | null | undefined,
+  pos: SavedPos,
+  facing: number,
+): { pos: SavedPos; facing: number; posEpoch: number } {
+  return {
+    pos: riftExit?.pos ?? pos,
+    facing: riftExit?.facing ?? facing,
+    posEpoch: SAVE_POS_EPOCH,
+  };
 }
