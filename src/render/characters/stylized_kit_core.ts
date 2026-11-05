@@ -12,6 +12,7 @@
 // rig, one cut), which is how a kit mixes. Pure data and three-free; node names mirror
 // build_stylized_kit.mjs.
 
+import type { ArmorType, EquipSlot } from '../../sim/types';
 import type { WocFit } from './woc_armor_core';
 import type {
   WocAppearanceSlot,
@@ -233,6 +234,152 @@ export function stylizedDrawableWorn(
     out[slot] = null;
   }
   return out ?? worn;
+}
+
+/** The armor type each set reads as, so a worn item shows a piece of its own weight. */
+export const STYLIZED_SET_ARMOR: Readonly<Record<StylizedSet, ArmorType>> = {
+  plate: 'mail',
+  paladin: 'mail',
+  hunter: 'mail',
+  shaman: 'mail',
+  leather: 'leather',
+  rogue: 'leather',
+  druid: 'leather',
+  mage: 'cloth',
+  priest: 'cloth',
+  warlock: 'cloth',
+};
+
+/** The set an item of an armor type shows on a body whose class set is a different weight. */
+const ARMOR_STAND_IN: Readonly<Record<ArmorType, StylizedSet>> = {
+  mail: 'plate',
+  leather: 'leather',
+  cloth: 'mage',
+};
+
+/** Game equip slot -> stylized armor slot (the WOC table plus the legs a stylized body
+ *  draws: its trousers are a piece of the kit, not part of the base). */
+export const STYLIZED_SLOT_BY_EQUIP_SLOT: Readonly<Partial<Record<EquipSlot, string>>> = {
+  helmet: 'head',
+  shoulder: 'arms',
+  gloves: 'hands',
+  chest: 'chest',
+  waist: 'waist',
+  legs: 'legs',
+  feet: 'feet',
+};
+
+/** The stylized set a WOC display row's set stands for (the warrior set is the plate one),
+ *  or null for a set the kit has no counterpart for. */
+export function stylizedSetOfDisplay(wocSet: string): StylizedSet | null {
+  const set = wocSet === 'warrior' ? 'plate' : wocSet;
+  return (STYLIZED_SETS as readonly string[]).includes(set) ? (set as StylizedSet) : null;
+}
+
+/** The set one worn item shows: its display row's set when the kit has it, else its own
+ *  class's set when that is the item's weight, else the weight's stand-in set; the class
+ *  set for an item with no armor type at all. */
+export function stylizedSetForItem(
+  classSet: StylizedSet,
+  armorType: ArmorType | null,
+  displaySet: string | null,
+): StylizedSet {
+  const shown = displaySet ? stylizedSetOfDisplay(displaySet) : null;
+  if (shown) return shown;
+  if (!armorType || STYLIZED_SET_ARMOR[classSet] === armorType) return classSet;
+  return ARMOR_STAND_IN[armorType];
+}
+
+/** What a worn item is, for the gear mapping (the dev hook reads the item table). */
+export interface StylizedItemLookup {
+  armorType(itemId: string): ArmorType | null;
+  displaySet(itemId: string): string | null;
+}
+
+/**
+ * The worn set a stylized body's EQUIPMENT resolves to: every armor slot holding an item
+ * shows that item's piece (stylizedSetForItem) in the wearer's fit, an empty slot shows the
+ * bare body region under it. Only the plate set has a helm, so a head item of any other
+ * set leaves the hair showing. `helmHidden` (the paperdoll eye) empties the head slot.
+ */
+export function stylizedGearWorn(
+  fit: WocFit,
+  equipped: Readonly<Partial<Record<EquipSlot, string>>> | null | undefined,
+  helmHidden: boolean,
+  classSet: StylizedSet,
+  items: StylizedItemLookup,
+): WocWorn {
+  const worn: Record<string, string | null> = { back: null };
+  for (const [equipSlot, slot] of Object.entries(STYLIZED_SLOT_BY_EQUIP_SLOT) as [
+    EquipSlot,
+    string,
+  ][]) {
+    const itemId = equipped?.[equipSlot] ?? null;
+    if (!itemId) {
+      worn[slot] = null;
+      continue;
+    }
+    const set = stylizedSetForItem(classSet, items.armorType(itemId), items.displaySet(itemId));
+    worn[slot] = slot !== 'head' || HELMED.has(set) ? stylizedItemId(fit, set, slot) : null;
+  }
+  if (helmHidden) worn.head = null;
+  return worn;
+}
+
+const catalogCache = new Map<WocFit, ReadonlyMap<string, WocArmorItem>>();
+
+/** Every stylized piece of a fit, by asset id: how a worn piece of a set outside the body's
+ *  own manifest resolves (woc_armor_catalog.ts wocItemRecord), the way a WOC body reaches
+ *  its fit's whole catalog. Its file loads only once a worn piece names its set. */
+export function stylizedFitCatalog(fit: WocFit): ReadonlyMap<string, WocArmorItem> {
+  let hit = catalogCache.get(fit);
+  if (!hit) {
+    const map = new Map<string, WocArmorItem>();
+    for (const set of STYLIZED_SETS) {
+      for (const [id, item] of Object.entries(stylizedSetItems(fit, set))) map.set(id, item);
+    }
+    hit = map;
+    catalogCache.set(fit, hit);
+  }
+  return hit;
+}
+
+/** The slots whose pieces meet: each set is cut to close against its OWN neighbour, so where
+ *  two sets (or a set and a bare slot) meet, a sliver of the body between them is hidden by
+ *  neither. */
+const SEAMS: readonly (readonly [string, string])[] = [
+  ['chest', 'waist'],
+  ['chest', 'arms'],
+  ['arms', 'hands'],
+  ['waist', 'legs'],
+  ['legs', 'feet'],
+];
+
+/**
+ * The mixed-kit seam: `wanted` (the parts a stylized body draws) plus the bare body regions
+ * under both sides of every seam whose two sides are not one set, so the body fills the gap
+ * instead of the far side of the armor showing through it. Untouched (the same set back)
+ * for any other body and for a kit that is one set throughout.
+ */
+export function stylizedSeamFill(
+  manifest: WocCharacterManifest,
+  worn: WocWorn,
+  wanted: Set<string>,
+): Set<string> {
+  if (!manifest.ownHead) return wanted;
+  const setOf = (slot: string): string | null => {
+    const id = worn[slot];
+    if (!id) return null;
+    return (manifest.items[id] ?? stylizedFitCatalog(manifest.fit).get(id))?.set ?? null;
+  };
+  for (const [a, b] of SEAMS) {
+    if (setOf(a) === setOf(b)) continue;
+    for (const slot of [a, b]) {
+      for (const n of manifest.appearance[`body_${slot}`]?.variants.default?.nodes ?? [])
+        wanted.add(n);
+    }
+  }
+  return wanted;
 }
 
 /** The face and hair a dev review asks for, onto the manifest's defaults. */

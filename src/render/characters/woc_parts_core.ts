@@ -22,7 +22,7 @@
 // like the class's own; which armor FILES a worn set needs is wocWornSets.
 
 import type { EquipSlot, PlayerClass } from '../../sim/types';
-import { wocFitCatalog, wocItemRecord, wocSetSlotAsset } from './woc_armor_catalog';
+import { wocCatalogFor, wocFitCatalog, wocItemRecord, wocSetSlotAsset } from './woc_armor_catalog';
 import type { WocCharacterManifest } from './woc_character_manifest';
 import { WOC_ITEM_DISPLAY } from './woc_item_display';
 
@@ -166,7 +166,7 @@ export function wocAllPartNames(manifest: WocCharacterManifest): readonly string
   if (hit) return hit;
   const names = new Set<string>(wocBodyPartNames(manifest));
   for (const item of Object.values(manifest.items)) for (const n of item.nodes) names.add(n);
-  for (const item of wocFitCatalog(manifest.fit).values()) for (const n of item.nodes) names.add(n);
+  for (const item of wocCatalogFor(manifest).values()) for (const n of item.nodes) names.add(n);
   const out = [...names];
   allPartNamesCache.set(manifest, out);
   return out;

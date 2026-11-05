@@ -5,6 +5,7 @@
 // Pure and three-free; woc_parts_core.ts resolves worn ids through it, so an
 // item that shows another set's piece dresses exactly like the wearer's own.
 
+import { stylizedFitCatalog } from './stylized_kit_core';
 import type { WocFit } from './woc_armor_core';
 import {
   WOC_CLASS_SETS,
@@ -120,10 +121,17 @@ export function wocFitCatalog(fit: WocFit): ReadonlyMap<string, WocArmorItem> {
   return hit;
 }
 
-/** An item by asset id: the manifest's own, else any set in its fit's catalog. */
+/** An item by asset id: the manifest's own, else any set in its fit's catalog (for a
+ *  stylized body, its fit's stylized catalog: stylized_kit_core.ts). */
 export function wocItemRecord(
   manifest: WocCharacterManifest,
   id: string,
 ): WocArmorItem | undefined {
-  return manifest.items[id] ?? wocFitCatalog(manifest.fit).get(id);
+  return manifest.items[id] ?? wocCatalogFor(manifest).get(id);
+}
+
+/** Every catalog item a manifest can wear beyond its own: its fit's WOC catalog, or the
+ *  stylized one for a stylized body (wocAllPartNames resolves their nodes). */
+export function wocCatalogFor(manifest: WocCharacterManifest): ReadonlyMap<string, WocArmorItem> {
+  return manifest.ownHead ? stylizedFitCatalog(manifest.fit) : wocFitCatalog(manifest.fit);
 }
