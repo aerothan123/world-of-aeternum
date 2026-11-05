@@ -8,8 +8,9 @@
 //   Gilt Measure          trading, market sales, delivery and commerce work, buy orders
 //
 // This module is the ONE seam every system calls to pay activity standing
-// (recordFactionActivity): the kill credit and the gathering and fishing
-// completions here (world quests pick their faction by objective type,
+// (recordFactionActivity): the kill credit, the gathering, fishing and craft
+// completions, story escorts (escort.ts) and the first house bought
+// (housing/ownership.ts) here (world quests pick their faction by objective type,
 // factions.ts worldQuestFaction); crafting, housing, market
 // and life-skill systems on other branches call the same function with their
 // own activity id, so no system depends on another's internals. Quests and
@@ -38,6 +39,7 @@ export type FactionActivity =
   | 'craft'
   | 'build'
   | 'housing'
+  | 'house_founded'
   | 'town_restoration'
   | 'crafted_delivery'
   | 'gather'
@@ -58,6 +60,7 @@ export const FACTION_ACTIVITY_SOURCES: Readonly<Record<FactionActivity, FactionI
   craft: 'hearthwright_compact',
   build: 'hearthwright_compact',
   housing: 'hearthwright_compact',
+  house_founded: 'hearthwright_compact',
   town_restoration: 'hearthwright_compact',
   crafted_delivery: 'hearthwright_compact',
   gather: 'bracken_circle',
@@ -81,6 +84,8 @@ export const FACTION_ACTIVITY_STANDING: Readonly<Record<FactionActivity, number>
   craft: 2,
   build: 2,
   housing: 2,
+  // Once per character (recordFactionActivityOnce): the first house bought.
+  house_founded: 50,
   town_restoration: 5,
   crafted_delivery: 5,
   gather: 1,
@@ -91,6 +96,19 @@ export const FACTION_ACTIVITY_STANDING: Readonly<Record<FactionActivity, number>
   commerce: 5,
   buy_order: 2,
 };
+
+/** The steady per-action trades: their standing accrues without a loot line
+ *  of its own (a herb, a fish or a craft already prints its result line, and
+ *  a "+1 standing" after every one would bury the log; the Reputation tab
+ *  shows the total). Everything else announces its gain. */
+export const QUIET_FACTION_ACTIVITIES: ReadonlySet<FactionActivity> = new Set<FactionActivity>([
+  'combat',
+  'gather',
+  'fishing',
+  'craft',
+  'trade',
+  'market_sale',
+]);
 
 /** Content this many levels under the player is grey and pays no standing. */
 export const GREY_LEVEL_GAP = 5;
@@ -109,7 +127,7 @@ export function factionActivityStanding(
 
 /**
  * THE seam: pay `meta` the standing one activity event earns, with the
- * player's own loot line. Returns the standing actually gained (the shared
+ * player's own loot line (none for QUIET_FACTION_ACTIVITIES). Returns the standing actually gained (the shared
  * caps may clip it). `amount` overrides the per-event table (world quests).
  */
 export function recordFactionActivity(
@@ -127,12 +145,33 @@ export function recordFactionActivity(
   const result = awardFactionReputation(meta, factionId, award, player.level);
   if (result.gained <= 0) return 0;
   ctx.markDeedsDirty(meta.entityId);
-  ctx.emit({
-    type: 'loot',
-    text: `+${result.gained} ${factionDisplayName(factionId)} Standing.`,
-    pid: meta.entityId,
-  });
+  if (!QUIET_FACTION_ACTIVITIES.has(activity)) {
+    ctx.emit({
+      type: 'loot',
+      text: `+${result.gained} ${factionDisplayName(factionId)} Standing.`,
+      pid: meta.entityId,
+    });
+  }
   return result.gained;
+}
+
+/**
+ * A one-off milestone (the first house bought, a restoration finished): pays
+ * like recordFactionActivity the first time `markId` is seen on this
+ * character and never again (the mark lives in the persisted visited set, so
+ * selling and rebuying, or a relog, never pays twice). Returns the gain.
+ */
+export function recordFactionActivityOnce(
+  ctx: SimContext,
+  meta: PlayerMeta,
+  activity: FactionActivity,
+  markId: string,
+  contentLevel: number | null,
+): number {
+  const key = `faction_activity:${markId}`;
+  if (meta.deedStats.visited.has(key)) return 0;
+  ctx.markVisited(meta, key);
+  return recordFactionActivity(ctx, meta, activity, contentLevel);
 }
 
 /** The activity a mob kill counts as: Pale Accord cultists for the Lanternwardens. */

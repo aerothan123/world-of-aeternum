@@ -158,6 +158,8 @@ export const HOSTILE_FACTIONS: Readonly<Record<HostileFactionId, HostileFactionD
         'tidebound_acolyte',
         'vael_the_mistcaller',
         'korzul_the_gravewyrm',
+        // Wyndlewood Chapter One's local cell (content/chapter_one.ts).
+        'veiled_rite_tender',
       ]),
     }),
   });

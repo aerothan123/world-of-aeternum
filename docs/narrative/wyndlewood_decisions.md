@@ -76,10 +76,15 @@ persistence, tests), not a rename.
   five still need the bible's names elsewhere.
 - **Clashes.** Holven Rusk (the bible's crypt caretaker) folds into the shipped
   Sexton Marrow; the owner's Holven Marr ships as Eastbrook's gravekeeper. Holven
-  Marr vs Brother Halven and Pella Nookwright vs the existing Pell NPCs ship
-  as-is (full names differ, different towns); the smallest display-only fix,
-  if the owner wants one, is a first-name swap on the new NPC only (ids are
-  new, so nothing persisted changes). The Pale Choir is written as the Pale
+  Marr ships as Bertram Ashcombe and Pella Nookwright as Wenna Nookwright: a
+  display-only first-name swap on the new NPCs (ids `gravekeeper_holven` and
+  `carpenter_pella` are new and unchanged), so neither reads as Brother Halven
+  or one of the five shipped Pells, and the gravekeeper no longer echoes Sexton
+  Marrow. Both names were web-checked against the game wikis (no game
+  character hits). `tests/chapter_one_content.test.ts` keeps every new
+  townsperson's first name off every shipped NPC name word and more than one
+  letter from Pell and Halven.
+  The Pale Choir is written as the Pale
   Accord's liturgy. Ossivar, the two Garricks and the two Hesters are not
   shipped by this pass.
 - **Chapter One.** The owner's quest set is committed verbatim as

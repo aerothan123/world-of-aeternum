@@ -5,13 +5,21 @@ import { WORLD_QUESTS } from '../src/sim/content/world_quests';
 import {
   FACTION_ACTIVITY_SOURCES,
   FACTION_ACTIVITY_STANDING,
+  type FactionActivity,
   factionActivityStanding,
-  gatherActivity,
   GREY_LEVEL_GAP,
+  gatherActivity,
   killActivity,
+  QUIET_FACTION_ACTIVITIES,
   recordFactionActivity,
+  recordFactionActivityOnce,
 } from '../src/sim/faction_activity';
-import { FACTION_IDS, HOSTILE_FACTIONS, worldQuestFaction } from '../src/sim/factions';
+import {
+  FACTION_IDS,
+  HOSTILE_FACTIONS,
+  MAX_STANDING,
+  worldQuestFaction,
+} from '../src/sim/factions';
 import { onMobKilledForQuests } from '../src/sim/quests/quest_credit';
 import { Sim } from '../src/sim/sim';
 import { WORLD_SEED } from '../src/sim/world_seed';
@@ -59,10 +67,22 @@ describe('the seam', () => {
     const s = sim();
     const meta = s.players.get(s.player.id)!;
     s.drainEvents();
-    expect(recordFactionActivity(s.ctx, meta, 'market_sale', null)).toBe(1);
-    expect(meta.factions.gilt_measure).toBe(1);
+    expect(recordFactionActivity(s.ctx, meta, 'commerce', null)).toBe(5);
+    expect(meta.factions.gilt_measure).toBe(5);
     const loot = s.drainEvents().filter((e) => e.type === 'loot');
-    expect(loot.map((e) => (e as { text: string }).text)).toContain('+1 Gilt Measure Standing.');
+    expect(loot.map((e) => (e as { text: string }).text)).toContain('+5 Gilt Measure Standing.');
+  });
+
+  it('accrues the steady trades without a loot line of their own', () => {
+    const s = sim();
+    const meta = s.players.get(s.player.id)!;
+    s.drainEvents();
+    for (const activity of QUIET_FACTION_ACTIVITIES) {
+      expect(recordFactionActivity(s.ctx, meta, activity, null), activity).toBeGreaterThan(0);
+    }
+    expect(s.drainEvents().filter((e) => e.type === 'loot')).toEqual([]);
+    expect(meta.factions.gilt_measure).toBeGreaterThan(0);
+    expect(meta.factions.bracken_circle).toBeGreaterThan(0);
   });
 
   it('pays the Lanternwardens for a Pale Accord kill through the kill credit', () => {
@@ -92,5 +112,48 @@ describe('world quests pick their faction by activity, never by zone', () => {
     expect([...(byType.get('kill') ?? [])]).toEqual(['lanternwardens']);
     if (byType.has('gather')) expect([...byType.get('gather')!]).toEqual(['bracken_circle']);
     if (byType.has('delivery')) expect([...byType.get('delivery')!]).toEqual(['gilt_measure']);
+  });
+});
+
+describe('one-off milestones', () => {
+  it('pays a milestone once per character, however often it repeats', () => {
+    const s = sim();
+    const meta = s.players.get(s.player.id)!;
+    const first = recordFactionActivityOnce(s.ctx, meta, 'house_founded', 'first_house', null);
+    expect(first).toBe(FACTION_ACTIVITY_STANDING.house_founded);
+    expect(recordFactionActivityOnce(s.ctx, meta, 'house_founded', 'first_house', null)).toBe(0);
+    expect(meta.factions.hearthwright_compact).toBe(first);
+  });
+});
+
+describe('one character can max all four allied factions', () => {
+  it('reaches Champion with every faction at once from activities alone', () => {
+    const s = sim(20);
+    const meta = s.players.get(s.player.id)!;
+    // One repeatable activity per faction: nothing any faction pays takes
+    // standing from another (no opposed ladders), so a character that keeps
+    // at all four trades caps all four.
+    const repeatable: Record<string, FactionActivity> = {
+      lanternwardens: 'pale_accord_kill',
+      hearthwright_compact: 'craft',
+      bracken_circle: 'gather',
+      gilt_measure: 'commerce',
+    };
+    for (const factionId of FACTION_IDS) {
+      const activity = repeatable[factionId];
+      expect(FACTION_ACTIVITY_SOURCES[activity]).toBe(factionId);
+      let guard = 0;
+      while (meta.factions[factionId] < MAX_STANDING && guard++ < 100_000) {
+        recordFactionActivity(s.ctx, meta, activity, 20);
+      }
+    }
+    for (const factionId of FACTION_IDS) {
+      expect(meta.factions[factionId], factionId).toBe(MAX_STANDING);
+    }
+  });
+
+  it('gives every faction a repeatable world-quest activity on the board', () => {
+    const owners = new Set(WORLD_QUESTS.map((quest) => worldQuestFaction(quest)));
+    expect([...owners].sort()).toEqual([...FACTION_IDS].sort());
   });
 });

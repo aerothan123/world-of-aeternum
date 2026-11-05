@@ -158,7 +158,7 @@ describe('crafting stations (quests/quest_station_craft.ts)', () => {
     expect(s.countItem('c1_supper_stew_bowl')).toBe(0);
   });
 
-  it("builds Pella's chest as the real housing storage chest", () => {
+  it("builds Wenna's chest as the real housing storage chest", () => {
     const s = sim();
     const qp = activate(s, 'c1_22_place_you_keep');
     talkTo(s, 'forgemistress_darva');

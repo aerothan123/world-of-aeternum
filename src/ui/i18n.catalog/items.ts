@@ -4069,6 +4069,23 @@ const ITEM_ENTITY_IDS = [
   'c1_housing_noticeboard',
   'c1_practice_marker',
   'c1_inn_hearth',
+  // Wyndlewood Chapter Two's core quest items and objects (content/chapter_two.ts).
+  'c2_dry_cargo_crate',
+  'c2_harbor_fish',
+  'c2_listening_horn',
+  'c2_crypt_key',
+  'c2_memory_wet_keepsake',
+  'c2_loan_hatchet',
+  'c2_bog_alder_log',
+  'c2_boardwalk_plank',
+  'c2_paddy_crop_bundle',
+  'c2_paddy_eel',
+  'c2_cargo_mark',
+  'c2_jetty_post',
+  'c2_overnight_house',
+  'c2_marked_bog_alder',
+  'c2_fen_workbench',
+  'c2_rotten_span',
 ] as const;
 
 type ItemEntityId = (typeof ITEM_ENTITY_IDS)[number];
@@ -4078,6 +4095,23 @@ type ItemEntityTranslation = { name: string };
 type ItemEntityTranslations = Record<ItemEntityId, ItemEntityTranslation>;
 
 const APPENDED_ITEM_NAMES: Partial<Record<ItemEntityId, string>> = {
+  // Wyndlewood Chapter Two (content/chapter_two.ts).
+  c2_dry_cargo_crate: 'Suspiciously Dry Cargo Crate',
+  c2_harbor_fish: 'Skittish Harbor Fish',
+  c2_listening_horn: 'Borrowed Listening Horn',
+  c2_crypt_key: "Sexton's Crypt Key",
+  c2_memory_wet_keepsake: 'Memory-Wet Keepsake',
+  c2_loan_hatchet: 'Borrowed Bog Hatchet',
+  c2_bog_alder_log: 'Bog Alder Log',
+  c2_boardwalk_plank: 'Boardwalk Plank',
+  c2_paddy_crop_bundle: 'Paddy Crop Bundle',
+  c2_paddy_eel: 'Paddy Eel',
+  c2_cargo_mark: 'Stenciled Cargo Mark',
+  c2_jetty_post: 'Old Jetty Post',
+  c2_overnight_house: 'House That Was Not Here Yesterday',
+  c2_marked_bog_alder: 'Marked Bog Alder',
+  c2_fen_workbench: "Fenbridge Boardwright's Bench",
+  c2_rotten_span: 'Rotten Boardwalk Span',
   // Wyndlewood Chapter One (content/chapter_one.ts).
   c1_dry_supply_bundle: 'Dry Supply Bundle',
   c1_black_wick_knot: 'Black Wick Knot',
@@ -4151,7 +4185,7 @@ const APPENDED_ITEM_NAMES: Partial<Record<ItemEntityId, string>> = {
   c1_ferry_workbench: 'Ferry Workbench',
   c1_walkway_gap: 'Walkway Gap',
   c1_public_furnace: "Brunna's Public Furnace",
-  c1_pella_workbench: "Pella's Public Workbench",
+  c1_pella_workbench: "Wenna's Public Workbench",
   c1_housing_noticeboard: 'Housing Noticeboard',
   c1_practice_marker: 'Furnishing Practice Marker',
   c1_inn_hearth: "The Inn's Public Hearth",
