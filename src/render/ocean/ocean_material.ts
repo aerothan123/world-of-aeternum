@@ -145,6 +145,8 @@ export function createOceanSurfaceMaterial(
     // From below there is nothing to trace: the ceiling has no capture arm.
     ssrSteps: opts?.underside ? 0 : Math.max(0, Math.floor(opts?.ssrSteps ?? 0)),
     apron: opts?.apron !== undefined,
+    // The painted pass rides the same rebuild as the look knobs above.
+    refined: GFX.worldStyle === 'refined',
   };
   const samplers: Record<string, THREE.IUniform> = {};
   ocean.shade.forEach((u, i) => {

@@ -1350,6 +1350,7 @@ const RENDER_PURE_CORES = [
   'src/render/ocean/water_style_core.ts',
   'src/render/rock_material_core.ts',
   'src/render/rock_grass_clear_core.ts',
+  'src/render/ocean/ocean_painted_core.ts',
   'src/render/ocean/water_liveness_core.ts',
   'src/render/battleground_core.ts',
   'src/render/battleground_fx_core.ts',
