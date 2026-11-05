@@ -1,0 +1,85 @@
+{
+  "serverName": "Wyndlewood",
+  "roles": [
+    { "name": "Founder", "color": "#dcb46a", "hoist": true },
+    { "name": "Developer", "color": "#4a8fd6", "hoist": true },
+    { "name": "Moderator", "color": "#3fae6a", "hoist": true, "mentionable": true },
+    { "name": "Playtester", "color": "#2fa8a0", "hoist": true },
+    { "name": "Early Access", "color": "#e08a3c" },
+    { "name": "Lanternwardens", "color": "#5b7fbf" },
+    { "name": "Hearthwright Compact", "color": "#c0603a" },
+    { "name": "Bracken Circle", "color": "#5f8d3a" },
+    { "name": "Gilt Measure", "color": "#c9a24a" },
+    { "name": "Member", "color": "#a3a89a" }
+  ],
+  "categories": [
+    {
+      "name": "Welcome",
+      "channels": [
+        { "name": "welcome", "topic": "Start here. Every adventure begins with a ferry.", "readOnly": true, "postRoles": ["Founder", "Developer"] },
+        { "name": "rules", "topic": "The Hearth Rules.", "readOnly": true, "postRoles": ["Founder", "Developer", "Moderator"] },
+        { "name": "announcements", "topic": "News from the Wyndlewood team.", "readOnly": true, "postRoles": ["Founder", "Developer"] },
+        { "name": "patch-notes", "topic": "What changed in each build.", "readOnly": true, "postRoles": ["Founder", "Developer"] },
+        { "name": "roadmap", "topic": "What we are building next.", "readOnly": true, "postRoles": ["Founder", "Developer"] }
+      ]
+    },
+    {
+      "name": "Community",
+      "channels": [
+        { "name": "general", "topic": "Talk about anything Wyndlewood." },
+        { "name": "introductions", "topic": "Say hello. What kind of adventurer are you?" },
+        { "name": "screenshots", "topic": "Share your best moments in the world." },
+        { "name": "fan-art", "topic": "Your art of Wyndlewood." },
+        { "name": "off-topic", "topic": "Everything else." }
+      ]
+    },
+    {
+      "name": "The Game",
+      "channels": [
+        { "name": "lore-and-story", "topic": "Theories and story talk. Use spoiler tags for playtest details." },
+        { "name": "housing-showcase", "topic": "Show off your home." },
+        { "name": "crafting-and-trade", "topic": "Recipes, markets and trades. No real-money trading." },
+        { "name": "guild-recruitment", "topic": "Find or advertise a guild." },
+        { "name": "looking-for-group", "topic": "Find a party for quests and dungeons." }
+      ]
+    },
+    {
+      "name": "Early Access",
+      "channels": [
+        { "name": "playtest-info", "topic": "How playtesting works and how to join.", "readOnly": true, "postRoles": ["Founder", "Developer"] },
+        { "name": "bug-reports", "topic": "What you did, what you expected, what happened. Screenshots help.", "slowmode": 30 },
+        { "name": "feedback", "topic": "How does the game feel?" },
+        { "name": "suggestions", "topic": "Ideas for Wyndlewood." }
+      ]
+    },
+    {
+      "name": "Factions",
+      "channels": [
+        { "name": "lanternwardens", "topic": "Keepers of the roads and the night watch." },
+        { "name": "hearthwright-compact", "topic": "Crafters, builders and homesteaders." },
+        { "name": "bracken-circle", "topic": "Herbalists and keepers of the wild places." },
+        { "name": "gilt-measure", "topic": "Merchants, bankers and traders." }
+      ]
+    },
+    {
+      "name": "Live",
+      "channels": [
+        { "name": "game-activity", "topic": "Notable moments from the realm.", "readOnly": true, "postRoles": ["Founder", "Developer"] },
+        { "name": "realm-chat", "topic": "Chat relayed with the game." }
+      ]
+    },
+    {
+      "name": "Voice",
+      "channels": [
+        { "name": "Tavern", "type": "voice" },
+        { "name": "Party 1", "type": "voice" },
+        { "name": "Party 2", "type": "voice" },
+        { "name": "Dev Stream", "type": "voice" }
+      ]
+    }
+  ],
+  "pruneDefaults": [
+    { "name": "general", "category": "Text Channels" },
+    { "name": "General", "type": "voice", "category": "Voice Channels" }
+  ]
+}
