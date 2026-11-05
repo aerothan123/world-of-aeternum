@@ -1438,7 +1438,9 @@ const ACCEPTED_POLISH_V2_METADATA_SHA256 =
   // No capture was retaken.
   // Re-minted for v0.45.4 graphics and dungeon loading optimizations in renderer.ts.
   // No capture was retaken.
-  '880c0b511d74b6bfc180c2c11297cdbf4932c92d87528bc9a8d8e20a4e9db632';
+  // Re-minted for the Wyndlewood wallet-package removal: pnpm-lock.yaml (a
+  // fingerprinted input) lost the Reown and Solana stack. No capture was retaken.
+  '03d023483007afba2c8e609c53bc76551679c1769b93a19a4aa41c93c552a421';
 const ACCEPTED_POLISH_V2_COMPOSITE_PROVENANCE =
   // Re-minted for the Studio town-dressing promotion: eastbrook_town.ts stands its micro batch
   // down under promotedScenery.authoredTownDressing. No capture was retaken.
@@ -1496,7 +1498,9 @@ const ACCEPTED_POLISH_V2_COMPOSITE_PROVENANCE =
   // No capture was retaken.
   // Re-minted for v0.45.4 graphics and dungeon loading optimizations in renderer.ts.
   // No capture was retaken.
-  'ffd2da58022d92efb024cd844eb81a07df56bb5756dc63c0e9ac90ca1cab83f5';
+  // Re-minted for the Wyndlewood wallet-package removal: pnpm-lock.yaml (a
+  // fingerprinted input) lost the Reown and Solana stack. No capture was retaken.
+  'a9847eebc91d1d102839d740f55a60c86e69ae59c4d6cad293a22c307902b0fb';
 const ACCEPTED_POLISH_V2_METADATA = readJsonFile<CaptureMetadata>(ACCEPTED_POLISH_V2_METADATA_PATH);
 const ACCEPTED_POLISH_V2_PROVENANCE = ACCEPTED_POLISH_V2_METADATA.polishProvenance;
 const ACCEPTED_POLISH_V2_TOWN_CONTRACT = ACCEPTED_POLISH_V2_METADATA.records[0]?.townContract;
@@ -2905,7 +2909,10 @@ describe('Eastbrook polish performance and contact evidence', () => {
       // release/v0.45.3: recomputed from the swept evidence. No capture was retaken.
       // v0.45.4 graphics and dungeon loading optimizations in renderer.ts:
       // recomputed from the swept evidence. No capture was retaken.
-    ).toBe('c6bf8b2f56c698b97b1f6e737f8a866321fdb439c9e4dc4bd7a2b212a48eaa7e');
+      // Re-minted for the Wyndlewood wallet-package removal (pnpm-lock.yaml moved);
+      // this second-order performance seal follows the swept evidence bytes. No
+      // capture was retaken.
+    ).toBe('d950d2000c50d900380864db562dc038b5370321d99f92909bedcae62aab9fc7');
   });
 
   it('binds every historical after record to its accepted source and asset provenance', () => {

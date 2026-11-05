@@ -52,16 +52,7 @@ import {
   DAILY_REWARD_EVENTS_CONCURRENT_INDEX_SQL,
   DAILY_REWARD_EVENTS_INVALID_INDEX_CHECK_SQL,
   DAILY_REWARD_EVENTS_INVALID_INDEX_DROP_SQL,
-  WOC_MARKET_OPS_CLOSED_INDEX_SQL,
-  WOC_MARKET_OPS_CLOSED_INVALID_INDEX_CHECK_SQL,
-  WOC_MARKET_OPS_CLOSED_INVALID_INDEX_DROP_SQL,
-  WOC_MARKET_SALES_REALM_INDEX_SQL,
-  WOC_MARKET_SALES_REALM_INVALID_INDEX_CHECK_SQL,
-  WOC_MARKET_SALES_REALM_INVALID_INDEX_DROP_SQL,
-  WOC_MARKET_SALES_SELLER_INDEX_SQL,
-  WOC_MARKET_SALES_SELLER_INVALID_INDEX_CHECK_SQL,
-  WOC_MARKET_SALES_SELLER_INVALID_INDEX_DROP_SQL,
-} from './legacy_crypto_schema_db';
+} from './daily_reward_events_index';
 import {
   PLAY_SESSIONS_OPEN_INDEX_SQL,
   PLAY_SESSIONS_OPEN_INVALID_INDEX_CHECK_SQL,
@@ -99,7 +90,7 @@ export const CONCURRENT_INDEX_MIGRATIONS: readonly ConcurrentIndexMigration[] = 
     checkSql: PLAYER_METRICS_INVALID_INDEX_CHECK_SQL,
     dropSql: PLAYER_METRICS_INVALID_INDEX_DROP_SQL,
   },
-  // LEGACY (server/legacy_crypto_schema_db.ts): the retired Daily Rewards log.
+  // LEGACY (server/daily_reward_events_index.ts): the retired Daily Rewards log.
   {
     name: 'daily_reward_events_account_day_created_id',
     createSql: DAILY_REWARD_EVENTS_CONCURRENT_INDEX_SQL,
@@ -171,23 +162,10 @@ export const CONCURRENT_INDEX_MIGRATIONS: readonly ConcurrentIndexMigration[] = 
     checkSql: BANK_LEDGER_ACCOUNT_INVALID_INDEX_CHECK_SQL,
     dropSql: BANK_LEDGER_ACCOUNT_INVALID_INDEX_DROP_SQL,
   },
-  // The Exchange's seller click-through read (woc_market_db.ts
-  // salesForSeller). See woc_market_sales_seller_index.ts.
-  // LEGACY (server/legacy_crypto_schema_db.ts): the retired Exchange tables.
-  {
-    name: 'woc_market_sales_seller',
-    createSql: WOC_MARKET_SALES_SELLER_INDEX_SQL,
-    checkSql: WOC_MARKET_SALES_SELLER_INVALID_INDEX_CHECK_SQL,
-    dropSql: WOC_MARKET_SALES_SELLER_INVALID_INDEX_DROP_SQL,
-  },
-  // The internal dashboard's Sold and Cancelled listing filters. Appended,
-  // never inserted: the migration order is load-bearing and pinned.
-  {
-    name: 'woc_market_ops_closed_created',
-    createSql: WOC_MARKET_OPS_CLOSED_INDEX_SQL,
-    checkSql: WOC_MARKET_OPS_CLOSED_INVALID_INDEX_CHECK_SQL,
-    dropSql: WOC_MARKET_OPS_CLOSED_INVALID_INDEX_DROP_SQL,
-  },
+  // The retired $WOC Exchange entries (woc_market_sales_seller and
+  // woc_market_ops_closed_created) sat here; their tables are dropped by
+  // server/legacy_crypto_drop_db.ts, so the registry no longer names them
+  // (a CONCURRENTLY build on a missing table would fail every boot).
   // The partial ordered reader for large per-account movements. New entries
   // append after every previously shipped migration, never replace or move an
   // old entry (the release's ops-closed entry above shipped first, so this
@@ -209,15 +187,8 @@ export const CONCURRENT_INDEX_MIGRATIONS: readonly ConcurrentIndexMigration[] = 
     checkSql: BANK_LEDGER_GUILD_MONEY_INVALID_INDEX_CHECK_SQL,
     dropSql: BANK_LEDGER_GUILD_MONEY_INVALID_INDEX_DROP_SQL,
   },
-  // The Exchange's realm-wide Sales History read (woc_market_db.ts
-  // salesForRealm). Appended after every prior migration, never moved (the
-  // order is pinned). See woc_market_sales_realm_index.ts.
-  {
-    name: 'woc_market_sales_realm_created',
-    createSql: WOC_MARKET_SALES_REALM_INDEX_SQL,
-    checkSql: WOC_MARKET_SALES_REALM_INVALID_INDEX_CHECK_SQL,
-    dropSql: WOC_MARKET_SALES_REALM_INVALID_INDEX_DROP_SQL,
-  },
+  // The retired Exchange sales-history entry (woc_market_sales_realm_created)
+  // sat here; see the note above.
   {
     name: 'referrals_referrer_referee',
     createSql: REFERRAL_FRIEND_PAGE_INDEX_SQL,
