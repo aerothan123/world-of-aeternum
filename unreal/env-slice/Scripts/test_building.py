@@ -42,6 +42,35 @@ for m in meshes:
                 t = mel.get_material_instance_texture_parameter_value(mi, n)
                 line += " | %s=%s" % (n, t.get_name() if t else None)
         W.log("test " + line)
+    if os.environ.get("WYND_TEST_DEBUG") == "1":
+        # Swap every slot, on THIS test component only, for a bare unlit
+        # material that samples the slot's own BaseColorTex on UV0. If the
+        # atlas shows, the mesh UVs and textures are fine and the flat look
+        # comes from the master graph; if it stays flat, the built UVs are.
+        import wynd_materials as WM
+
+        dbg_path = W.PLACEHOLDERS + "/Materials/M_TexDebug"
+        dbg = WM.fresh_material(dbg_path)
+        dbg.set_editor_property("shading_model", unreal.MaterialShadingModel.MSM_UNLIT)
+        dbg.set_editor_property("used_with_nanite", True)
+        g = WM.G(dbg)
+        s = g.node(
+            unreal.MaterialExpressionTextureSampleParameter2D, 2,
+            parameter_name="Tex", texture=unreal.EditorAssetLibrary.load_asset("/Engine/EngineResources/DefaultTexture"),
+        )
+        mel.connect_material_property(s, "RGB", unreal.MaterialProperty.MP_EMISSIVE_COLOR)
+        mel.recompile_material(dbg)
+        unreal.EditorAssetLibrary.save_loaded_asset(dbg)
+        for i in range(c.get_num_materials()):
+            src = c.get_material(i)
+            tex = None
+            if isinstance(src, unreal.MaterialInstance):
+                tex = mel.get_material_instance_texture_parameter_value(src, "BaseColorTex")
+            if not tex:
+                continue
+            mi = c.create_dynamic_material_instance(i, dbg)
+            mi.set_texture_parameter_value("Tex", tex)
+        W.log("test debug material applied to %d slots" % c.get_num_materials())
 
 sun = actors.spawn_actor_from_class(unreal.DirectionalLight, unreal.Vector(0, 0, 2000), unreal.Rotator(-35, 0, 40))
 sun.set_actor_label("WYND_Test_Sun")
