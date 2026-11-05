@@ -190,6 +190,9 @@ const config = desktopBuilderConfig({
   epicClientId: process.env.WOC_EPIC_CLIENT_ID || '',
   // The Wyndlewood Discord application id for Rich Presence (owner-provisioned).
   discordAppId: process.env.WOC_DISCORD_APP_ID || '',
+  // The desktop shell allows Stripe's checkout origins only when this build turns
+  // the Claudium store on (the same switch the client bundle reads).
+  cardCheckout: process.env.VITE_CLAUDIUM_ENABLED === '1',
 });
 const configDir = mkdtempSync(path.join(tmpdir(), 'woc-eb-'));
 const configPath = path.join(configDir, 'electron-builder.json');

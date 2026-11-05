@@ -161,6 +161,7 @@ export function desktopBuilderConfig({
   epicDeploymentId = '',
   epicClientId = '',
   discordAppId = '',
+  cardCheckout = false,
 }) {
   if (distribution !== 'website' && distribution !== 'steam' && distribution !== 'epic') {
     throw new Error(`unknown desktop distribution: ${distribution}`);
@@ -189,6 +190,10 @@ export function desktopBuilderConfig({
       // resolveDiscordClientId). Config-driven: stamped only when WOC_DISCORD_APP_ID
       // was set at build time; an unstamped build keeps presence inert.
       ...(discordAppId ? { discordAppId } : {}),
+      // Whether the shell may load Stripe's card checkout (electron/shell_guards.cjs
+      // CARD_CHECKOUT_SUBFRAME_ORIGINS): stamped true only when the build turned the
+      // Claudium store on; an unstamped build names no payment origin.
+      ...(cardCheckout === true ? { cardCheckout: true } : {}),
       // The Steamworks app id electron/steam.cjs initializes with; stamped
       // for the steam channel only (website builds never touch Steam). The
       // steam branch below refuses to build without a numeric id, so the
