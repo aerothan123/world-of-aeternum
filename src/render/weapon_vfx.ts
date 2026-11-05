@@ -3797,9 +3797,9 @@ function weaponVfxPrewarmHostMap(): THREE.Texture {
  */
 export const WEAPON_VFX_DOUBLE_SIDED_SKINS: ReadonlySet<string> = new Set([
   'cosmarch_spire_of_the_endless_void',
-  'duskwick_staff',
   'forgeheart_stave',
   'hoarfrost_vigil',
+  'ice_fang',
   'rimelight_staff',
 ]);
 

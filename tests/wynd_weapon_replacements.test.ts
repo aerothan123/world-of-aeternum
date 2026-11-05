@@ -13,7 +13,11 @@ import {
   WYND_MODEL_KEYS,
   WYND_SHIELD_ACCESSORIES,
 } from '../src/render/characters/wynd_weapon_models';
-import { WYND_REPLACED_MODELS } from '../src/render/characters/wynd_weapon_replacements';
+import {
+  WYND_HERO_MODELS,
+  WYND_REPLACED_MODELS,
+  WYND_SEAT_DONORS,
+} from '../src/render/characters/wynd_weapon_replacements';
 
 const DIR = 'public/models/weapons';
 const sha = (key: string): string =>
@@ -98,7 +102,7 @@ const RETIRED = Object.entries(WYND_REPLACED_MODELS);
 
 describe('retired inherited weapon models', () => {
   it('each holds its tier look byte for byte', () => {
-    expect(RETIRED.length).toBeGreaterThan(150);
+    expect(RETIRED.length + Object.keys(WYND_HERO_MODELS).length).toBeGreaterThan(150);
     for (const [key, source] of RETIRED) {
       expect(WYND_MODEL_KEYS, key).toContain(source);
       expect(sha(key), key).toBe(sha(source));
@@ -108,7 +112,7 @@ describe('retired inherited weapon models', () => {
   it('leaves nothing inherited and restricted in the weapons folder', () => {
     const allowed = new Set([
       ...WYND_MODEL_KEYS,
-      ...Object.keys(WYND_REPLACED_MODELS),
+      ...Object.keys(WYND_SEAT_DONORS),
       ...KAYKIT_CC0,
       ...GATHERING_TOOLS,
       ...CLAUDIUM_PENDING_REMOVAL,
@@ -120,7 +124,7 @@ describe('retired inherited weapon models', () => {
   });
 
   it('seat each one the way its tier look sits: grip fit, family and shield seat', () => {
-    for (const [key, source] of RETIRED) {
+    for (const [key, source] of Object.entries(WYND_SEAT_DONORS)) {
       expect(WEAPON_GRIP_OVERRIDES[key], key).toEqual(WEAPON_GRIP_OVERRIDES[source]);
       const own = KAYKIT_WEAPON_ACCESSORY[key];
       if (own && own !== 'VAR_CROSSBOW' && KAYKIT_WEAPON_ACCESSORY[source]) {
@@ -130,6 +134,22 @@ describe('retired inherited weapon models', () => {
       if (seat && Object.hasOwn(WYND_SHIELD_ACCESSORIES, source)) {
         expect(seat, key).toBe(WYND_SHIELD_ACCESSORIES[source]);
       }
+    }
+  });
+
+  it('gives each hero key its own model, one material inside the held-model budget', () => {
+    for (const [key, source] of Object.entries(WYND_HERO_MODELS)) {
+      expect(sha(key), key).not.toBe(sha(source));
+      const buf = readFileSync(`${DIR}/${key}.glb`);
+      const json = JSON.parse(buf.subarray(20, 20 + buf.readUInt32LE(12)).toString('utf8'));
+      expect(json.materials.length, key).toBe(1);
+      let tris = 0;
+      for (const mesh of json.meshes) {
+        for (const prim of mesh.primitives)
+          tris += json.accessors[prim.indices ?? prim.attributes.POSITION].count / 3;
+      }
+      expect(tris, key).toBeLessThanOrEqual(1500);
+      expect(buf.length, key).toBeLessThan(150_000);
     }
   });
 });
