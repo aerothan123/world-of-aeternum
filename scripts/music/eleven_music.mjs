@@ -39,8 +39,8 @@ const API = 'https://api.elevenlabs.io';
 const MODEL = process.env.WYN_MUSIC_MODEL || 'music_v2';
 /** Integrated loudness of the shipped cues (LUFS). Matches the existing zone
  *  remasters (measured with `measure`), so the new score sits in the same mix. */
-const TARGET_LUFS = -18;
-const STINGER_LUFS = -17;
+const TARGET_LUFS = -15.5;
+const STINGER_LUFS = -15;
 const TRUE_PEAK = -1.5;
 
 const mode = process.argv[2] ?? 'estimate';
