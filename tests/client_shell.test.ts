@@ -1026,30 +1026,40 @@ describe('client HTML shell', () => {
     expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/data-deletion</loc>');
     expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/support</loc>');
     expect(privacyHtml).toContain(
-      '<link rel="canonical" href="https://worldofclaudecraft.com/privacy" />',
+      '<link rel="canonical" href="/privacy" />',
     );
     expect(privacyHtml).toContain('<h1>Privacy Policy</h1>');
     expect(privacyHtml).toContain('href="/support">Support</a>');
     expect(privacyHtml).toContain('href="/data-deletion">Data Deletion</a>');
     expect(termsHtml).toContain(
-      '<link rel="canonical" href="https://worldofclaudecraft.com/terms" />',
+      '<link rel="canonical" href="/terms" />',
     );
-    expect(termsHtml).toContain('<h1>Terms and Conditions</h1>');
+    expect(termsHtml).toContain('<h1>Terms of Service</h1>');
+    // The legal pages are Wyndlewood drafts: no upstream operator, Ko-fi, Solana or $WOC.
+    for (const page of [privacyHtml, termsHtml]) {
+      for (const banned of ['Levy Street', 'Dream Home AI', 'Ko-fi', 'Solana', '$WOC']) {
+        expect(page).not.toContain(banned);
+      }
+      expect(page).toContain('[PUBLISHER LEGAL NAME]');
+      expect(page).toContain('DRAFT TEMPLATE');
+    }
     expect(termsHtml).toContain('href="/support">Support</a>');
     expect(termsHtml).toContain('href="/data-deletion">Data Deletion</a>');
     expect(dataDeletionHtml).toContain(
-      '<link rel="canonical" href="https://worldofclaudecraft.com/data-deletion" />',
+      '<link rel="canonical" href="/data-deletion" />',
     );
     expect(dataDeletionHtml).toContain('<h1>Data Deletion</h1>');
-    expect(dataDeletionHtml).toContain('href="mailto:woc@levystreet.com"');
-    expect(dataDeletionHtml).toContain('href="https://discord.com/invite/worldofclaudecraft"');
+    // The upstream contact is gone; the support address is an owner placeholder.
+    expect(dataDeletionHtml).not.toContain('levystreet.com');
+    expect(dataDeletionHtml).toContain('href="mailto:support@wyndlewood.invalid"');
     expect(dataDeletionHtml).toContain('href="/support">Support</a>');
     expect(supportHtml).toContain(
-      '<link rel="canonical" href="https://worldofclaudecraft.com/support" />',
+      '<link rel="canonical" href="/support" />',
     );
     expect(supportHtml).toContain('<h1>Support</h1>');
-    expect(supportHtml).toContain('href="mailto:woc@levystreet.com"');
-    expect(supportHtml).toContain('href="https://discord.com/invite/worldofclaudecraft"');
+    expect(supportHtml).not.toContain('levystreet.com');
+    expect(supportHtml).toContain('href="mailto:support@wyndlewood.invalid"');
+    expect(supportHtml).not.toContain('discord.com/invite/worldofclaudecraft');
     expect(supportHtml).toContain('href="/data-deletion">Data Deletion page</a>');
     expect(supportHtml).toContain('"@type": "ContactPage"');
     // The crypto token whitepaper is retired: no footer link, no shipped PDF.

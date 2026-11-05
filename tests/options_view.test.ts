@@ -1100,6 +1100,7 @@ describe('options_view: interface dispatch matrix (cluster 5)', () => {
       labelKey: 'hudChrome.options.forceHighPerfGpu',
     });
     expect(desktop.filter((c) => c.control === 'note')).toEqual([
+      { control: 'note', textKey: 'hudChrome.options.shareAnalyticsNote', category: 'general' },
       { control: 'note', textKey: 'hudChrome.options.confirmVendorSellNote', category: 'general' },
       {
         control: 'note',
