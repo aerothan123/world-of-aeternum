@@ -221,7 +221,18 @@ export function resolveSelectBase({ env = {}, run }) {
     const probe = run('git', ['rev-parse', '--verify', `${candidate}^{commit}`]);
     const failure = launchFailure(probe);
     if (failure) return { base: null, reason: failure };
-    if (probe.status === 0) return { base: candidate, reason: `integration base ${candidate}` };
+    if (probe.status !== 0) continue;
+    if (INTEGRATION_BRANCHES.includes(candidate)) {
+      // Fail toward more tests: when HEAD is already contained in the integration
+      // branch (a detached checkout of its tip, or a branch merged into it) the
+      // committed diff against it is EMPTY, so fall through to the next, wider
+      // base instead. Only an explicit "not an ancestor" (exit 1) keeps it.
+      const contained = run('git', ['merge-base', '--is-ancestor', 'HEAD', candidate]);
+      const containedFailure = launchFailure(contained);
+      if (containedFailure) return { base: null, reason: containedFailure };
+      if (contained.status !== 1) continue;
+    }
+    return { base: candidate, reason: `integration base ${candidate}` };
   }
   return { base: null, reason: UNRESOLVED_BASE_REASON };
 }
@@ -237,8 +248,11 @@ export function resolveSelectBase({ env = {}, run }) {
  * where `origin/main` WAS present it is the stale upstream tip, so the diff
  * swept in the fork's whole drift instead of the branch's own change. A
  * candidate that does not resolve is skipped, so upstream checkouts that lack
- * these refs keep the release, then main, then HEAD order unchanged. The
- * `GATE_SELECT_BASE` env override still beats all of them.
+ * these refs keep the release, then main, then HEAD order unchanged. A
+ * candidate is also skipped (falling through to the wider origin/main) when it
+ * is the branch being diffed or already contains HEAD, because either would
+ * give an empty committed diff. The `GATE_SELECT_BASE` env override still
+ * beats all of them.
  */
 export const INTEGRATION_BRANCHES = Object.freeze(['origin/feature/player-housing']);
 

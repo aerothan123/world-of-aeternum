@@ -165,6 +165,7 @@ describe('resolveChangedBaseRef', () => {
         return { status: 0 };
       }
       if (args[0] === 'rev-parse') return { status: 128 };
+      if (args[0] === 'merge-base') return { status: 1 };
       throw new Error(`unexpected git ${args.join(' ')}`);
     };
     expect(resolveChangedBaseRef({ env: {}, run })).toBe(INTEGRATION_BRANCHES[0]);
@@ -177,6 +178,7 @@ describe('resolveChangedBaseRef', () => {
         return { status: 0, stdout: 'feature/some-crew\n' };
       }
       if (args[0] === 'rev-parse') return { status: 0 };
+      if (args[0] === 'merge-base') return { status: 1 };
       throw new Error(`unexpected git ${args.join(' ')}`);
     };
     expect(resolveChangedBaseRef({ env: {}, run })).toBe(INTEGRATION_BRANCHES[0]);
@@ -212,6 +214,41 @@ describe('resolveChangedBaseRef', () => {
       expect(probed).not.toContain(`${integration}^{commit}`);
     },
   );
+
+  // A detached checkout of the integration tip (or a branch already merged into
+  // it) has an EMPTY committed diff against it, so the resolver must widen.
+  it('falls through to origin/main when HEAD is already contained in the integration branch', () => {
+    const run: Run = (_cmd, args) => {
+      if (args[0] === 'for-each-ref') return { status: 0, stdout: '' };
+      if (args[0] === 'rev-parse' && args[1] === '--abbrev-ref')
+        return { status: 0, stdout: 'HEAD\n' };
+      if (args[0] === 'rev-parse') return { status: 0 };
+      if (args[0] === 'merge-base') {
+        expect(args).toEqual(['merge-base', '--is-ancestor', 'HEAD', INTEGRATION_BRANCHES[0]]);
+        return { status: 0 };
+      }
+      throw new Error(`unexpected git ${args.join(' ')}`);
+    };
+    expect(resolveChangedBaseRef({ env: {}, run })).toBe('origin/main');
+  });
+
+  it('treats a failing containment probe as "do not use", never as a usable base', () => {
+    const run: Run = (_cmd, args) => {
+      if (args[0] === 'for-each-ref') return { status: 0, stdout: '' };
+      if (args[0] === 'rev-parse' && args[1] === '--abbrev-ref') {
+        return { status: 0, stdout: 'feature/some-crew\n' };
+      }
+      if (args[0] === 'rev-parse' && args[2] === `${INTEGRATION_BRANCHES[0]}^{commit}`) {
+        return { status: 0 };
+      }
+      if (args[0] === 'rev-parse') return { status: 128 };
+      if (args[0] === 'merge-base') return { status: 128 };
+      throw new Error(`unexpected git ${args.join(' ')}`);
+    };
+    expect(() => resolveChangedBaseRef({ env: {}, run })).toThrow(
+      /could not resolve a --since base ref/,
+    );
+  });
 
   it('fails closed when the integration branch is the current branch and nothing else resolves', () => {
     const integration = INTEGRATION_BRANCHES[0];
