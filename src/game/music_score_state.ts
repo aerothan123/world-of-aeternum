@@ -35,6 +35,8 @@ export interface ScoreState {
   stingers: Map<string, ScoreStingerTrack>;
   /** AudioContext time the last sting started (stings never stack). */
   lastStingAt: number;
+  /** The kind of the last sting rung, or null. */
+  lastStingKind: string | null;
   /** AudioContext time the stinger duck lifts, or -1 when no duck is held. */
   duckUntil: number;
 }
@@ -52,6 +54,7 @@ export function scoreStateFor(director: object): ScoreState {
       signals: null,
       stingers: new Map(),
       lastStingAt: Number.NEGATIVE_INFINITY,
+      lastStingKind: null,
       duckUntil: -1,
     };
     STATE.set(director, s);

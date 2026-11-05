@@ -255,3 +255,33 @@ spent on the shared account in the same seconds.
    `public/audio/music/wyn/`, regenerates `src/game/music_score_tracks.generated.ts` and the
    ledger. A new place needs its routing row in `src/game/music_score.ts`.
 4. `npx vitest run tests/music_score.test.ts tests/music_score_layer.test.ts`.
+
+## Asset rights: the inherited soundtrack is gone
+
+Under the owner's asset-rights decision (docs/launch/asset-rights-inventory.md, music crew)
+every inherited music file was removed: the upstream streamed remasters in
+`public/audio/music/*.mp3` (zones, towns, dungeons, battle themes, minigames, the
+Gourdlight Eve theme), the per-boss cues including Morthen's, the four Crucible floor
+productions, the Ignivar raid suite, the Proving Shore island cue and its audition
+candidates, the home-page `main-theme.mp3` and the shared `dungeon-boss-fight.mp3`.
+
+- Every zone, rift, Ignivar room and battle theme streams a score cue
+  (`ZONE_STREAM_CUES` and `COMBAT_STREAM_URLS` in `src/game/music_tracks.ts`).
+- Every boss with a track of its own now fights to a score boss cue (`BOSS_TRACK_CUES` in
+  `src/game/boss_music_loop.ts`): the risen dead to `wyn_boss_undead`, the old wild's
+  beasts to `wyn_boss_wild`, Korzul to `wyn_boss_raid_dragon`, the rest to
+  `wyn_boss_dungeon`.
+- The Crucible floors (`CRUCIBLE_FLOOR_CUES`): the forge halls, `wyn_crucible_heart`,
+  `wyn_crucible_assembly` and the campaign finale `wyn_boss_final`.
+- The world-quest minigames (`MINIGAME_MUSIC_CUES`): `wyn_minigame_tense` for the quick,
+  timed ones and `wyn_minigame_playful` for the careful ones.
+- Gourdlight Eve plays `wyn_town_gourdlight`.
+- The home page plays the title theme and the shared boss loop the dungeon boss cue, built
+  in place over `public/audio/main-theme.mp3` and `public/audio/dungeon-boss-fight.mp3` so
+  their stable paths and loaders did not change.
+- The interface level-up chime now stands down while the score's level-up sting rings
+  (`claimScoreStinger`), so the two never double; with music off the chime still plays.
+
+The seven new cues were generated on the paid plan from original prompts (the ledger has
+them), described by instrumentation, mood, tempo and mode only, with no reference to the
+removed tracks.

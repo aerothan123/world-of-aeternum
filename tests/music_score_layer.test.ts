@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { InstanceMusicController, type InstanceMusicInput } from '../src/game/instance_music';
 import { MusicDirector } from '../src/game/music';
 import {
+  claimScoreStinger,
   playStinger,
   SCORE_RELEASE_AFTER_S,
   SCORE_RESIDENT_STREAMS,
@@ -240,6 +241,22 @@ describe('music_score_layer', () => {
     expect(playStinger(d, 'death')).toBe(true);
     // and never twice in a row
     expect(playStinger(d, 'death')).toBe(false);
+  });
+
+  it('lets the interface level-up chime stand down while the score sting rings', () => {
+    need('wyn_sting_level_up');
+    d.update('vale', false);
+    const base = { level: 4, dead: false, questsDone: 2, deeds: 1, hasHouse: false };
+    tick(d, { signals: base });
+    tick(d, { signals: { ...base, level: 5 } });
+    // the world diff rang it first: the facade's claim reports it sounding, no second copy
+    const before = FakeAudio.instances.length;
+    expect(claimScoreStinger('level_up')).toBe(true);
+    expect(FakeAudio.instances.length).toBe(before);
+    // muted, the score cannot ring it, so the facade keeps its own chime
+    I(d).ctx.currentTime = 30;
+    d.setVolume(0);
+    expect(claimScoreStinger('level_up')).toBe(false);
   });
 
   it('switches on only on the HUD path (a day phase in the input)', () => {

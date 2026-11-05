@@ -107,7 +107,7 @@ describe('the Gourdlight Eve town theme', () => {
     for (const e of theme.events) expect(e.beat + 0.01).toBeLessThan(theme.bars * 4);
     expect(THEME_TRIM.town_gourdlight).toBeGreaterThan(0);
     expect(ZONE_STREAM_URLS.town_gourdlight).toMatch(
-      /^\/audio\/music\/town_gourdlight\.mp3\?v=[a-f0-9]{12}$/,
+      /^\/audio\/music\/wyn\/wyn_town_gourdlight\.mp3\?v=[a-f0-9]{12}$/,
     );
   });
 });

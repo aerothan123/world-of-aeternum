@@ -91,6 +91,7 @@ function rewind(el: HTMLAudioElement | null): void {
  * the director's own update(), at the HUD's medium music cadence.
  */
 export function tickScore(director: object, input: ScoreTickInput): void {
+  scoreDirector = director;
   const h = director as ScoreHost;
   const state = scoreStateFor(director);
   state.night = scoreNight(state.night, dayWeightForPhase(input.dayPhase));
@@ -111,7 +112,7 @@ export function tickScore(director: object, input: ScoreTickInput): void {
 
   const stings = input.signals ? stingersFor(state.signals, input.signals) : [];
   if (input.signals) state.signals = { ...input.signals };
-  if (stings.length > 0) playStinger(director, stings[0]);
+  if (stings.length > 0) claimStinger(director, stings[0]);
   else if (discovered) playStinger(director, 'discovery');
   if (state.duckUntil >= 0 && now >= state.duckUntil) liftDuck(h, state, now);
 }
@@ -232,11 +233,34 @@ export function playStinger(director: object, kind: ScoreStinger): boolean {
   rewind(track.el);
   void track.el.play().catch(() => {});
   state.lastStingAt = now;
+  state.lastStingKind = kind;
   state.duckUntil = now + Math.max(1, file.seconds - 0.5);
   for (const stream of duckable(h)) {
     stream.gain.gain.setTargetAtTime(stream.target * STINGER_DUCK, now, 0.08);
   }
   return true;
+}
+
+/** The director the layer last ticked (the HUD's), for the interface cue facade. */
+let scoreDirector: object | null = null;
+
+/** Ring `kind` unless that same sting is already ringing; true when it is sounding
+ *  (just now or within STINGER_SPACING_S), so a caller can skip a cue that would double
+ *  it. Both the world diff and the interface facade claim through here, in either order. */
+function claimStinger(director: object, kind: ScoreStinger): boolean {
+  const state = scoreStateFor(director);
+  const now = (director as ScoreHost).ctx?.currentTime ?? 0;
+  if (state.lastStingKind === kind && now - state.lastStingAt < STINGER_SPACING_S) return true;
+  return playStinger(director, kind);
+}
+
+/**
+ * For the interface cue facade (audio.ts): ring the score's `kind` sting on the HUD's
+ * director and report whether it is sounding. False while the score layer has not run,
+ * the music is muted or the cue is not generated, so the caller keeps its own cue then.
+ */
+export function claimScoreStinger(kind: ScoreStinger): boolean {
+  return scoreDirector !== null && claimStinger(scoreDirector, kind);
 }
 
 function* duckable(h: ScoreHost): Iterable<ZoneStreamTrack> {

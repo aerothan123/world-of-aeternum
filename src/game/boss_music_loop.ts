@@ -7,32 +7,48 @@
 // A boss with a dedicated production of its own is a row in
 // BOSS_TRACK_URLS; every other boss fight keeps the shared default loop.
 
-/** The shared boss-fight loop every boss without its own track plays. */
+import { scoreCueUrl } from './music_tracks';
+
+/** The shared boss-fight loop every boss without its own track plays. The file is the
+ *  Wyndlewood score's dungeon boss cue (wyn_boss_dungeon), built in place at this stable
+ *  path so the decode fallback and its tests keep one URL. */
 export const DEFAULT_BOSS_TRACK_URL = '/audio/dungeon-boss-fight.mp3';
 
-/** Boss template id to its own fight track. Hydra heads share one encounter cue. */
-export const BOSS_TRACK_URLS: Readonly<Record<string, string>> = {
-  morthen: '/audio/music/boss_morthen.mp3?v=664edb19bfe2',
-  sexton_marrow: '/audio/music/boss_sexton_marrow.mp3?v=6f57b2380d05',
-  rimeweb: '/audio/music/boss_rimeweb.mp3?v=964cbe52e766',
-  cantor_ilvane: '/audio/music/boss_cantor_ilvane.mp3?v=bfc9e92331e7',
-  crypt_knellwyrm: '/audio/music/boss_crypt_knellwyrm.mp3?v=87bbe6faffa7',
-  knight_commander_olen: '/audio/music/boss_knight_commander_olen.mp3?v=6d7f30388338',
-  gaoler_ossick: '/audio/music/boss_gaoler_ossick.mp3?v=a303cf1a7df5',
-  vael_the_mistcaller: '/audio/music/boss_vael_the_mistcaller.mp3?v=40ae26b99931',
-  korgath_the_bound: '/audio/music/boss_korgath_the_bound.mp3?v=c1850e0db7e1',
-  grand_necromancer_velkhar: '/audio/music/boss_grand_necromancer_velkhar.mp3?v=83428ec74728',
-  korzul_the_gravewyrm: '/audio/music/boss_korzul_the_gravewyrm.mp3?v=ca10564cb613',
-  wildheart_beastmaster: '/audio/music/boss_wildheart_beastmaster.mp3?v=f0f648c63ddb',
-  the_gorgebloom: '/audio/music/boss_the_gorgebloom.mp3?v=a657f10af536',
-  wildheart_high_priest: '/audio/music/boss_wildheart_high_priest.mp3?v=ab150b2c36f3',
-  choirmother_selthe: '/audio/music/boss_choirmother_selthe.mp3?v=8da9fa646949',
-  mere_hydra_head_left: '/audio/music/boss_mere_hydra.mp3?v=046af2f68534',
-  mere_hydra_head_center: '/audio/music/boss_mere_hydra.mp3?v=046af2f68534',
-  mere_hydra_head_right: '/audio/music/boss_mere_hydra.mp3?v=046af2f68534',
-  tideglass_colossus: '/audio/music/boss_tideglass_colossus.mp3?v=d18a194458a7',
-  ysolei: '/audio/music/boss_ysolei.mp3?v=82d59ef43e4d',
-};
+/** Boss template id to the score cue its fight plays (music_score.ts cues): the risen
+ *  dead, the old wild's great beasts, the raid's dragon, and the shared dungeon boss
+ *  cue for knights and the drowned. Hydra heads share one encounter cue. */
+export const BOSS_TRACK_CUES: Readonly<Record<string, string>> = Object.freeze({
+  morthen: 'wyn_boss_undead',
+  sexton_marrow: 'wyn_boss_undead',
+  rimeweb: 'wyn_boss_wild',
+  cantor_ilvane: 'wyn_boss_undead',
+  crypt_knellwyrm: 'wyn_boss_undead',
+  knight_commander_olen: 'wyn_boss_dungeon',
+  gaoler_ossick: 'wyn_boss_undead',
+  vael_the_mistcaller: 'wyn_boss_dungeon',
+  korgath_the_bound: 'wyn_boss_wild',
+  grand_necromancer_velkhar: 'wyn_boss_undead',
+  korzul_the_gravewyrm: 'wyn_boss_raid_dragon',
+  wildheart_beastmaster: 'wyn_boss_wild',
+  the_gorgebloom: 'wyn_boss_wild',
+  wildheart_high_priest: 'wyn_boss_wild',
+  choirmother_selthe: 'wyn_boss_undead',
+  mere_hydra_head_left: 'wyn_boss_dungeon',
+  mere_hydra_head_center: 'wyn_boss_dungeon',
+  mere_hydra_head_right: 'wyn_boss_dungeon',
+  tideglass_colossus: 'wyn_boss_dungeon',
+  ysolei: 'wyn_boss_dungeon',
+});
+
+/** Boss template id to its fight track URL (a cue not generated yet is left out, so
+ *  that boss plays the shared default loop). */
+export const BOSS_TRACK_URLS: Readonly<Record<string, string>> = Object.freeze(
+  Object.fromEntries(
+    Object.entries(BOSS_TRACK_CUES)
+      .map(([id, cue]) => [id, scoreCueUrl(cue)] as const)
+      .filter((e): e is readonly [string, string] => e[1] !== null),
+  ),
+);
 
 /** The fight track for a boss template, or null when it has none of its own. */
 export function bossTrackFor(templateId: string): string | null {

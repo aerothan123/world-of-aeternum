@@ -1,12 +1,24 @@
-// Final owner-supplied productions, separate from the procedural authoring zones.
+// The Crucible's floor scores: each Ignivar floor owns its whole soundtrack, pulls and
+// quiet stretches included, so each streams one Wyndlewood score cue (music_score.ts).
+import { scoreCueUrl } from './music_tracks';
+
 export type CrucibleFloor = 1 | 2 | 3 | 4;
 
-export const CRUCIBLE_STREAM_URLS: Readonly<Record<CrucibleFloor, string>> = {
-  1: '/audio/music/a_way_through_the_embers.mp3?v=14a001b98e5b',
-  2: '/audio/music/even_iron_must_yield.mp3?v=ebd0f6c6b99d',
-  3: '/audio/music/a_fate_still_unwritten.mp3?v=78d0bc42726a',
-  4: '/audio/music/the_future_is_not_yours_to_keep.mp3?v=a6e896149cb0',
-};
+/** The score cue each floor plays: the forge halls, the molten heart, and the
+ *  campaign-scale finale for the innermost floor. */
+export const CRUCIBLE_FLOOR_CUES: Readonly<Record<CrucibleFloor, string>> = Object.freeze({
+  1: 'wyn_dungeon_ancient_forge',
+  2: 'wyn_crucible_heart',
+  3: 'wyn_crucible_assembly',
+  4: 'wyn_boss_final',
+});
+
+export const CRUCIBLE_STREAM_URLS: Readonly<Record<CrucibleFloor, string>> = Object.freeze({
+  1: scoreCueUrl(CRUCIBLE_FLOOR_CUES[1]) ?? '',
+  2: scoreCueUrl(CRUCIBLE_FLOOR_CUES[2]) ?? '',
+  3: scoreCueUrl(CRUCIBLE_FLOOR_CUES[3]) ?? '',
+  4: scoreCueUrl(CRUCIBLE_FLOOR_CUES[4]) ?? '',
+});
 
 const FLOORS: Readonly<Record<string, CrucibleFloor>> = {
   ignivar_forge_approach: 1,
