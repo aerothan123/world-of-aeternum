@@ -31,19 +31,27 @@ describe('currencies tab html', () => {
   it('paints one row per faction with its currency icon, name, note and balance', () => {
     const html = currenciesTabHtml(
       worldStub({
-        factionCurrencies: { rift_watch: 50, church_order: 20, automatons: 5 },
+        factionCurrencies: {
+          gilt_measure: 50,
+          lanternwardens: 20,
+          hearthwright_compact: 5,
+          bracken_circle: 7,
+        },
       }),
     );
-    expect(html.match(/char-cur-row is-faction/g)).toHaveLength(3);
+    expect(html.match(/char-cur-row is-faction/g)).toHaveLength(4);
     expect(html).toContain('currency-rift_watch_mark');
-    expect(html).toContain('Rift Watch Mark');
+    expect(html).toContain('Gilt Mark');
     expect(html).toContain('>50<');
     expect(html).toContain('currency-church_order_crest');
-    expect(html).toContain('Order Crest');
+    expect(html).toContain('Lantern Crest');
     expect(html).toContain('>20<');
     expect(html).toContain('currency-automaton_cog');
-    expect(html).toContain('Automaton Cog');
+    expect(html).toContain('Hearthwright Cog');
     expect(html).toContain('>5<');
+    expect(html).toContain('currency-bracken_circle_acorn');
+    expect(html).toContain('Bracken Acorn');
+    expect(html).toContain('>7<');
   });
 
   it('escapes every value and clamps corrupt balances', () => {

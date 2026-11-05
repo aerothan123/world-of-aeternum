@@ -1522,16 +1522,16 @@ export const hudChromeStrings = {
   },
   // The live ferry notes (tutorial_greeting_view.ts /
   // tutorial_greeting_window.ts): the town-bell homecoming, the island
-  // welcome from Ferryman Odo, and the close button they share.
+  // welcome from Captain Fenlow, and the close button they share.
   tutorialGreeting: {
     eastbrookGuidanceNote:
-      'Welcome to Eastbrook! Marshal Redbrook has work for you in the town square. Turn on golden guidance to find him and follow Wolves at the Door, or explore on your own. You can change this later in Options, Interface, Combat.',
+      'Welcome to Eastbrook! Warden Corren has work for you in the town square. Turn on golden guidance to find him and follow Wolves at the Door, or explore on your own. You can change this later in Options, Interface, Combat.',
     guidanceOn: 'Turn guidance on',
     guidanceOff: 'Turn guidance off',
     guidanceSetting: 'Eastbrook golden guidance',
     bellHomeNote:
       'Back from the shore already? That was the ferry bell you rang. Its twin hangs right beside you on the quay: ring it any time and the crossing will carry you back to the Proving Shore. No harm done either way.',
-    // Ferryman Odo's island welcome, shown once for a character's first
+    // Captain Fenlow's island welcome, shown once for a character's first
     // arrival: the greeting ferry lands beside his pier.
     // Deliberately short (CX: the old note was a wall of text at the exact
     // moment a new player wants to look at the world). It says where they
@@ -1554,9 +1554,9 @@ export const hudChromeStrings = {
     moveBodyTouch:
       'Use the movement stick to move and drag the screen to look around. Take a few steps to begin.',
     talkBodyTouch:
-      'Stand close to Marshal Redbrook and tap the Use button to speak, then accept his task.',
+      'Stand close to Warden Corren and tap the Use button to speak, then accept his task.',
     returnBodyTouch:
-      'Your task is done. Return to Marshal Redbrook and tap the Use button to turn it in.',
+      'Your task is done. Return to Warden Corren and tap the Use button to turn it in.',
     doneBodyTouch:
       'You have the basics, {name}. The Vale is yours to explore. Tap More, then Quests, to review your quest log anytime. Good hunting.',
     // Appended to the slay-step body (hud.tutorial.slayBody) so first-time players
@@ -1810,7 +1810,7 @@ export const hudChromeStrings = {
     // The word between sequenced keycap chips ("D then W"): press order made
     // explicit, the playtest ask.
     keycapThen: 'then',
-    // Ferryman Odo's guiding voice: the CAPTION rows the coach card shows
+    // Captain Fenlow's guiding voice: the CAPTION rows the coach card shows
     // while the (English) VO clip plays. Each row mirrors one
     // scripts/voices/extra_lines.mjs guide__odo__* line; reword the two
     // together. WORDY by M16, so the five non-Latin overlays carry fills.
@@ -1823,7 +1823,7 @@ export const hudChromeStrings = {
     voiceVeerOff: 'Hold up, friend, that is the wrong way. The golden path is behind you.',
     voiceGraduate:
       'The bell is rung for you. Eastbrook waits across the water, and you are ready for it.',
-    // The closing card once Ferryman Odo has the last hand-in: ring home.
+    // The closing card once Captain Fenlow has the last hand-in: ring home.
     bellTitle: 'Ring the bell',
     bellBody:
       'Your crossing is earned. Walk to the ferry bell beside the pier and press {interactKey}, or left-click it, to sail for Eastbrook.',
@@ -4203,6 +4203,15 @@ export const hudChromeStrings = {
     churchOrderCrestNote: 'World Quests in Church Order zones',
     automatonCog: 'Automaton Cog',
     automatonCogNote: 'World Quests in Automaton zones',
+    // The Wyndlewood factions' marks (src/sim/factions.ts factionCurrencyName).
+    lanternCrest: 'Lantern Crest',
+    lanternCrestNote: 'World Quests in Lanternwarden lands',
+    hearthwrightCog: 'Hearthwright Cog',
+    hearthwrightCogNote: 'World Quests in Hearthwright Compact lands',
+    brackenAcorn: 'Bracken Acorn',
+    brackenAcornNote: 'World Quests in Bracken Circle lands',
+    giltMark: 'Gilt Mark',
+    giltMarkNote: 'World Quests in Gilt Measure lands',
   },
   // The world quest hover card (src/ui/hud/map/world_quest_tooltip_view.ts) and the
   // plain reward texts world_quest_view.ts builds for the screen-reader summary.
@@ -4214,25 +4223,53 @@ export const hudChromeStrings = {
     standingReward: '+{amount} {faction} Standing',
     currencyReward: '+{amount} {currency}',
   },
+  // The town quest board's notices tab (src/ui/hud/guild_board/town_board_panel.ts).
+  townBoard: {
+    tabNotices: 'Notices',
+    tabGuilds: 'Guilds',
+    intro: 'Work posted for today. Take a notice here and return it to whoever posted it.',
+    empty: 'Nothing is posted today. Check back after the next daily reset.',
+    postedBy: 'Posted by {npc}',
+    objective: '{label}: {count}',
+    rewardXp: '{amount} XP',
+    accept: 'Take Notice',
+    taken: 'In your quest log',
+    ready: 'Return to {npc}',
+    done: 'Done for today',
+    locked: 'Not yet open to you',
+    lockedLevel: 'Requires level {level}',
+    notAtBoard: 'You must be at the notice board to take that posting.',
+    needItem: 'You need the right item to use on that.',
+  },
   // The world quest entry banner (src/ui/hud/quest/world_quest_banner_view.ts):
   // the smaller line under the quest name when a world quest becomes active.
   worldQuestBanner: {
     subtitle: 'World Quest',
   },
-  // The Reputation tab (src/ui/hud/reputation/). Faction and tier names are
-  // PROVISIONAL: the World Quests scope leaves the final names to narrative.
+  // The Reputation tab (src/ui/hud/reputation/). The Wyndlewood factions
+  // (docs/narrative/wyndlewood_bible.md section 5); the provisional
+  // rift_watch / church_order / automatons rows are retired keys
+  // (scripts/i18n_retired_keys.mjs).
   reputation: {
     intro:
-      'All three factions progress at once: every world quest counts toward the faction of its zone.',
+      'All four factions progress at once: every world quest counts toward the faction of its zone.',
     faction: {
       rift_watch: 'Rift Watch',
       church_order: 'Church Order',
       automatons: 'Automatons',
+      lanternwardens: 'Lanternwardens',
+      hearthwright_compact: 'Hearthwright Compact',
+      bracken_circle: 'Bracken Circle',
+      gilt_measure: 'Gilt Measure',
     },
     hub: {
       rift_watch: 'Drifthaven',
       church_order: 'Brother Aldric',
       automatons: 'Wyrmwatch',
+      lanternwardens: 'Eastbrook',
+      hearthwright_compact: 'Wyrmwatch',
+      bracken_circle: 'Fenbridge',
+      gilt_measure: 'Drifthaven',
     },
     hubLine: '{hub} . {zone}',
     tier: {
@@ -4266,6 +4303,38 @@ export const hudChromeStrings = {
         trusted: 'Mechanist',
         proven: 'Artificer',
         vanguard: 'Forgemaster',
+        champion: 'Champion',
+      },
+      lanternwardens: {
+        unknown: 'Outsider',
+        recognized: 'Lamplighter',
+        trusted: 'Lanternbearer',
+        proven: 'Warden',
+        vanguard: 'Lanternwarden',
+        champion: 'Champion',
+      },
+      hearthwright_compact: {
+        unknown: 'Outsider',
+        recognized: 'Hand',
+        trusted: 'Journeyman',
+        proven: 'Hearthwright',
+        vanguard: 'Master Hearthwright',
+        champion: 'Champion',
+      },
+      bracken_circle: {
+        unknown: 'Outsider',
+        recognized: 'Seedling',
+        trusted: 'Grovefriend',
+        proven: 'Greenkeeper',
+        vanguard: 'Circle Elder',
+        champion: 'Champion',
+      },
+      gilt_measure: {
+        unknown: 'Outsider',
+        recognized: 'Client',
+        trusted: 'Associate',
+        proven: 'Factor',
+        vanguard: 'Magnate',
         champion: 'Champion',
       },
     },
@@ -8750,6 +8819,10 @@ export const hudChromeStrings = {
     hub_rift_watch: 'Drifthaven (The Rift Watch)',
     hub_church_order: 'Eastbrook Vale (The Church Order)',
     hub_automatons: 'Wyrmwatch (The Automatons)',
+    hub_lanternwardens: 'Eastbrook Vale (The Lanternwardens)',
+    hub_hearthwright_compact: 'Wyrmwatch (The Hearthwright Compact)',
+    hub_bracken_circle: 'Fenbridge (The Bracken Circle)',
+    hub_gilt_measure: 'Drifthaven (The Gilt Measure)',
     riftGliderUse:
       'Use: Unfolds the glider, slowing falling speed for 30 sec. Landing or taking damage cancels the effect. (2 min cooldown)',
     targetDummyUse:

@@ -24,7 +24,14 @@ const V039_COHORT_IDS = [
 // each mark reuses its faction's reward item icon byte for byte, recorded in
 // mapping.json with that item art as its source rather than in the v0.39
 // accepted cohort.
-const FACTION_MARK_IDS = ['rift_watch_mark', 'church_order_crest', 'automaton_cog'];
+// The Bracken Circle's acorn (Wyndlewood) joins them, cut the same way from
+// the silverleaf herb icon until its own art is painted.
+const FACTION_MARK_IDS = [
+  'rift_watch_mark',
+  'church_order_crest',
+  'automaton_cog',
+  'bracken_circle_acorn',
+];
 
 const ACCEPTED_CURRENCY_ART_SHA256 =
   'd71254050852510a7d1eb374e6693d360291bc5db261a55e146be67d9d7a3cb4';

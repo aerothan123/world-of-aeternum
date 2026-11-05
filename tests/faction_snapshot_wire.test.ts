@@ -18,37 +18,79 @@ describe('faction standing and reroll owner wire', () => {
       worldQuestReplacements: {},
     };
     applyFactionSelfWire(target, {
-      fac: { rift_watch: 30, church_order: 1_200, automatons: 0 },
-      facCur: { rift_watch: 25, church_order: 10, automatons: 0 },
+      fac: { gilt_measure: 30, lanternwardens: 1_200, hearthwright_compact: 0, bracken_circle: 0 },
+      facCur: { gilt_measure: 25, lanternwardens: 10, hearthwright_compact: 0, bracken_circle: 0 },
     });
-    expect(target.factions).toEqual({ rift_watch: 30, church_order: 1_200, automatons: 0 });
-    expect(target.factionCurrencies).toEqual({ rift_watch: 25, church_order: 10, automatons: 0 });
+    expect(target.factions).toEqual({
+      gilt_measure: 30,
+      lanternwardens: 1_200,
+      hearthwright_compact: 0,
+      bracken_circle: 0,
+    });
+    expect(target.factionCurrencies).toEqual({
+      gilt_measure: 25,
+      lanternwardens: 10,
+      hearthwright_compact: 0,
+      bracken_circle: 0,
+    });
     expect(Object.isFrozen(target.factions)).toBe(true);
     expect(Object.isFrozen(target.factionCurrencies)).toBe(true);
   });
 
   it('omission retains the previous mirror; a malformed record is clamped, never trusted', () => {
     const target = {
-      factions: Object.freeze({ rift_watch: 30, church_order: 0, automatons: 0 }),
-      factionCurrencies: Object.freeze({ rift_watch: 15, church_order: 0, automatons: 0 }),
+      factions: Object.freeze({
+        gilt_measure: 30,
+        lanternwardens: 0,
+        hearthwright_compact: 0,
+        bracken_circle: 0,
+      }),
+      factionCurrencies: Object.freeze({
+        gilt_measure: 15,
+        lanternwardens: 0,
+        hearthwright_compact: 0,
+        bracken_circle: 0,
+      }),
       worldQuestRerollCycle: cycle,
       worldQuestReplacements: Object.freeze({}),
     };
     applyFactionSelfWire(target, {});
-    expect(target.factions).toEqual({ rift_watch: 30, church_order: 0, automatons: 0 });
-    expect(target.factionCurrencies).toEqual({ rift_watch: 15, church_order: 0, automatons: 0 });
+    expect(target.factions).toEqual({
+      gilt_measure: 30,
+      lanternwardens: 0,
+      hearthwright_compact: 0,
+      bracken_circle: 0,
+    });
+    expect(target.factionCurrencies).toEqual({
+      gilt_measure: 15,
+      lanternwardens: 0,
+      hearthwright_compact: 0,
+      bracken_circle: 0,
+    });
     expect(target.worldQuestRerollCycle).toBe(cycle);
     applyFactionSelfWire(target, {
-      fac: { rift_watch: -5, church_order: MAX_STANDING * 10, automatons: 'x', bogus: 9 },
-      facCur: { rift_watch: -10, church_order: 50.8, automatons: 'invalid', bogus: 99 },
+      fac: {
+        gilt_measure: -5,
+        lanternwardens: MAX_STANDING * 10,
+        hearthwright_compact: 'x',
+        bogus: 9,
+        bracken_circle: 0,
+      },
+      facCur: {
+        gilt_measure: -10,
+        lanternwardens: 50.8,
+        hearthwright_compact: 'invalid',
+        bogus: 99,
+        bracken_circle: 0,
+      },
     });
-    expect(target.factions.rift_watch).toBe(0);
-    expect(target.factions.church_order).toBe(MAX_STANDING);
-    expect(target.factions.automatons).toBe(0);
+    expect(target.factions.gilt_measure).toBe(0);
+    expect(target.factions.lanternwardens).toBe(MAX_STANDING);
+    expect(target.factions.hearthwright_compact).toBe(0);
     expect('bogus' in target.factions).toBe(false);
-    expect(target.factionCurrencies.rift_watch).toBe(0);
-    expect(target.factionCurrencies.church_order).toBe(50);
-    expect(target.factionCurrencies.automatons).toBe(0);
+    expect(target.factionCurrencies.gilt_measure).toBe(0);
+    expect(target.factionCurrencies.lanternwardens).toBe(50);
+    expect(target.factionCurrencies.hearthwright_compact).toBe(0);
     expect('bogus' in target.factionCurrencies).toBe(false);
   });
 
@@ -75,17 +117,17 @@ describe('faction standing and reroll owner wire', () => {
     const sim = new Sim({ seed: 7, playerClass: 'warrior' });
     const client = bareClient(1);
     client.applyQuestSelfSnapshot({
-      fac: { rift_watch: 60, church_order: 0, automatons: 0 },
-      facCur: { rift_watch: 30, church_order: 10, automatons: 5 },
+      fac: { gilt_measure: 60, lanternwardens: 0, hearthwright_compact: 0, bracken_circle: 0 },
+      facCur: { gilt_measure: 30, lanternwardens: 10, hearthwright_compact: 5, bracken_circle: 0 },
       wqrr: cycle,
       wqrep: {},
     });
     expect(Object.keys(client.factions).sort()).toEqual(Object.keys(sim.factions).sort());
-    expect(client.factions.rift_watch).toBe(60);
+    expect(client.factions.gilt_measure).toBe(60);
     expect(Object.keys(client.factionCurrencies).sort()).toEqual(
       Object.keys(sim.factionCurrencies).sort(),
     );
-    expect(client.factionCurrencies.rift_watch).toBe(30);
+    expect(client.factionCurrencies.gilt_measure).toBe(30);
     expect(client.worldQuestRerollCycle).toBe(cycle);
     expect(typeof sim.worldQuestRerollCycle).toBe(typeof client.worldQuestRerollCycle);
     // Clue Scrolls: both worlds expose the same cursor shape; a fresh
@@ -112,7 +154,9 @@ describe('clue hunt owner wire (cluh)', () => {
         step: number;
       } | null,
     };
-    applyFactionSelfWire(target, { fac: { rift_watch: 1, church_order: 0, automatons: 0 } });
+    applyFactionSelfWire(target, {
+      fac: { gilt_measure: 1, lanternwardens: 0, hearthwright_compact: 0, bracken_circle: 0 },
+    });
     expect(target.clueHunt).toEqual({ huntId: hunt.id, step: 1 });
     applyFactionSelfWire(target, { cluh: null });
     expect(target.clueHunt).toBeNull();

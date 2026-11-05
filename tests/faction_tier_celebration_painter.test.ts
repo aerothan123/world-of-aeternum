@@ -34,33 +34,33 @@ describe('paintFactionTierCelebrations', () => {
     paintFactionTierCelebrations(
       host,
       [
-        { factionId: 'rift_watch', fromTier: 'recognized', toTier: 'trusted' },
-        { factionId: 'automatons', fromTier: 'proven', toTier: 'vanguard' },
+        { factionId: 'gilt_measure', fromTier: 'recognized', toTier: 'trusted' },
+        { factionId: 'hearthwright_compact', fromTier: 'proven', toTier: 'vanguard' },
       ],
       false,
     );
     expect(calls.log).toEqual([
       [
-        'You are now Trusted with the Rift Watch. Your faction title is now Riftwalker.',
+        'You are now Trusted with the Gilt Measure. Your faction title is now Associate.',
         HUD_LOG.NOTICE,
       ],
       [
-        'You are now Vanguard with the Automatons. Your faction title is now Forgemaster.',
+        'You are now Vanguard with the Hearthwright Compact. Your faction title is now Master Hearthwright.',
         HUD_LOG.NOTICE,
       ],
     ]);
     expect(calls.banners).toEqual([
       [
-        'Now Vanguard with the Automatons',
+        'Now Vanguard with the Hearthwright Compact',
         'deed',
         'deed',
         true,
         undefined,
-        'Faction title: Forgemaster',
+        'Faction title: Master Hearthwright',
       ],
     ]);
     expect(calls.announced).toEqual([
-      'You are now Vanguard with the Automatons. Your faction title is now Forgemaster.',
+      'You are now Vanguard with the Hearthwright Compact. Your faction title is now Master Hearthwright.',
     ]);
     expect(chime).toHaveBeenCalledTimes(1);
   });
@@ -70,11 +70,11 @@ describe('paintFactionTierCelebrations', () => {
     const { host, calls } = recordedHost(true);
     paintFactionTierCelebrations(
       host,
-      [{ factionId: 'church_order', fromTier: 'vanguard', toTier: 'champion' }],
+      [{ factionId: 'lanternwardens', fromTier: 'vanguard', toTier: 'champion' }],
       true,
     );
     expect(calls.banners[0]?.[3]).toBe(false);
-    expect(calls.banners[0]?.[0]).toBe('Now Champion with the Church Order');
+    expect(calls.banners[0]?.[0]).toBe('Now Champion with the Lanternwardens');
     expect(chime).not.toHaveBeenCalled();
   });
 });

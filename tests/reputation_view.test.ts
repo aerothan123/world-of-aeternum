@@ -31,6 +31,7 @@ describe('reputation view: one row per allied faction', () => {
       'palmreach',
       'eastbrook_vale',
       'drakelands',
+      'mirefen_marsh',
     ]);
     for (const row of view.rows) {
       expect(row.tier).toBe('unknown');
@@ -41,7 +42,7 @@ describe('reputation view: one row per allied faction', () => {
   });
 
   it('fills the bar inside the current tier and names the tier that comes next', () => {
-    const row = buildReputationRow('rift_watch', 3_400, 20);
+    const row = buildReputationRow('gilt_measure', 3_400, 20);
     expect(row.tier).toBe('trusted');
     expect(row.nextTier).toBe('proven');
     expect(row.tierProgress).toBe(3_400 - STANDING_THRESHOLDS.trusted);
@@ -51,7 +52,7 @@ describe('reputation view: one row per allied faction', () => {
   });
 
   it('a Champion row has no next tier and reads full', () => {
-    const row = buildReputationRow('church_order', MAX_STANDING + 500, 20);
+    const row = buildReputationRow('lanternwardens', MAX_STANDING + 500, 20);
     expect(row.tier).toBe('champion');
     expect(row.nextTier).toBeNull();
     expect(row.percent).toBe(100);
@@ -59,13 +60,13 @@ describe('reputation view: one row per allied faction', () => {
   });
 
   it('says when the character level, not the points, is what caps the track', () => {
-    const atCap = buildReputationRow('automatons', LOW_LEVEL_MAX_STANDING, 12);
+    const atCap = buildReputationRow('hearthwright_compact', LOW_LEVEL_MAX_STANDING, 12);
     expect(atCap.tier).toBe('trusted');
     expect(atCap.cappedByLevel).toBe(true);
     expect(atCap.levelCap).toBe(LOW_LEVEL_MAX_STANDING);
-    const belowCap = buildReputationRow('automatons', 500, 12);
+    const belowCap = buildReputationRow('hearthwright_compact', 500, 12);
     expect(belowCap.cappedByLevel).toBe(false);
-    const sameAtSixteen = buildReputationRow('automatons', LOW_LEVEL_MAX_STANDING, 16);
+    const sameAtSixteen = buildReputationRow('hearthwright_compact', LOW_LEVEL_MAX_STANDING, 16);
     expect(sameAtSixteen.cappedByLevel).toBe(false);
   });
 });
@@ -103,7 +104,7 @@ describe('reputation view: the day summary', () => {
 
   it('counts completed quests against the board and the time until the reset', () => {
     const view = buildReputationView({
-      factions: { rift_watch: 30 },
+      factions: { gilt_measure: 30 },
       level: 20,
       worldQuestLog: log([
         ['wq_a', 'completed'],
@@ -157,9 +158,10 @@ describe('reputation view: faction emblem art', () => {
     // Literal pins: the art path is what the page requests, so a resolver that
     // drifts to another faction's image (or to null) must fail here.
     expect(byFaction).toEqual({
-      rift_watch: '/ui/currency/rift_watch_mark.webp',
-      church_order: '/ui/currency/church_order_crest.webp',
-      automatons: '/ui/currency/automaton_cog.webp',
+      gilt_measure: '/ui/currency/rift_watch_mark.webp',
+      lanternwardens: '/ui/currency/church_order_crest.webp',
+      hearthwright_compact: '/ui/currency/automaton_cog.webp',
+      bracken_circle: '/ui/currency/bracken_circle_acorn.webp',
     });
     expect(new Set(Object.values(byFaction)).size).toBe(FACTION_IDS.length);
     for (const url of Object.values(byFaction)) {

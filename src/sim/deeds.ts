@@ -120,6 +120,20 @@ export const GROUND_PICKUP_PROVING_QUESTS: readonly string[] = [
   'q_wyrm_sigils',
   'q_sanctum_gate',
   'q_glimmermere_light',
+  // Wyndlewood Chapter One (content/chapter_one.ts): every quest collecting a
+  // ground-only quest item.
+  'c1_01_arrival',
+  'c1_02_beacon_lied',
+  'c1_11_cold_garden',
+  'c1_12_tied_to_root',
+  'c1_13_flowers_down',
+  'c1_14_buried_tuesday',
+  'c1_15_warmth_missing',
+  'c1_18_three_knocks',
+  'c1_20_order_unsigned',
+  'c1_21_watch_cannot_see',
+  'c1_26_promise_paint',
+  'c1_04_every_board',
 ];
 
 // The highest level any giantslayer-creditable mob can ever spawn at: S-rank
@@ -962,6 +976,7 @@ export const METER_DIRTY_KEYS: Record<DeedMeterId, readonly string[]> = {
   standingRiftWatch: [],
   standingChurchOrder: [],
   standingAutomatons: [],
+  standingBrackenCircle: [],
   // Reads the top-level PlayerMeta.clueCasketsOpened count, never a deedStats
   // ledger, so no narrow key could name it; the one writer (the casket open
   // site in clue_casket.ts) marks a full pass right after the increment.
@@ -1080,9 +1095,13 @@ const METERS: Record<DeedMeterId, (meta: PlayerMeta) => number> = {
   // Faction standing per allied faction (awardFactionReputation only adds).
   // Optional chaining: a legacy save restores without the block until the
   // first award seeds it.
-  standingRiftWatch: (m) => m.factions?.rift_watch ?? 0,
-  standingChurchOrder: (m) => m.factions?.church_order ?? 0,
-  standingAutomatons: (m) => m.factions?.automatons ?? 0,
+  // Meter ids are frozen deed triggers; each reads its Wyndlewood successor
+  // (rift_watch is the Gilt Measure, church_order the Lanternwardens,
+  // automatons the Hearthwright Compact; factions.ts LEGACY_FACTION_IDS).
+  standingRiftWatch: (m) => m.factions?.gilt_measure ?? 0,
+  standingChurchOrder: (m) => m.factions?.lanternwardens ?? 0,
+  standingAutomatons: (m) => m.factions?.hearthwright_compact ?? 0,
+  standingBrackenCircle: (m) => m.factions?.bracken_circle ?? 0,
   // Lifetime Treasure Caskets opened. Tolerates a missing field the same way.
   clueCasketsOpened: (m) => m.clueCasketsOpened ?? 0,
   vcupWins: (m) => m.vcupWins,
