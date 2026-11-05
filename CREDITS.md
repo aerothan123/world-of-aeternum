@@ -569,6 +569,31 @@ something this file marks as restricted, ask first: tony@levystreet.com.
 | Generated gather node model (node_herb_goldleaf) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
 | Generated gather node model (node_herb_sunpetal) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
 | Generated gather node model (node_herb_depleted) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (wyn_quest_northern_beacon) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (wyn_quest_broken_lifeboat) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (wyn_quest_beached_skiff) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (wyn_quest_eastbrook_quest_board) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (wyn_quest_housing_noticeboard) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (wyn_quest_hollow_crypt_entrance) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (wyn_quest_crypt_outer_wicket) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (wyn_quest_bone_pit) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (wyn_quest_supply_bundle) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D), split from one sheet generation | Project asset | With the project only |
+| Generated prop model (wyn_quest_wreck_crate) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D), split from one sheet generation | Project asset | With the project only |
+| Generated prop model (wyn_quest_crab_pot) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D), split from one sheet generation | Project asset | With the project only |
+| Generated prop model (wyn_quest_walkway_panel) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D), split from one sheet generation | Project asset | With the project only |
+| Generated prop model (wyn_quest_grave_lamp_unlit) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D), split from one sheet generation | Project asset | With the project only |
+| Generated prop model (wyn_quest_grave_lamp_bound) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D), split from one sheet generation | Project asset | With the project only |
+| Generated prop model (wyn_quest_name_stone) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D), split from one sheet generation | Project asset | With the project only |
+| Generated prop model (wyn_quest_boundary_stone) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D), split from one sheet generation | Project asset | With the project only |
+| Generated prop model (wyn_quest_pantry_saucer) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D), split from one sheet generation | Project asset | With the project only |
+| Generated prop model (wyn_quest_speaking_pipe) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D), split from one sheet generation | Project asset | With the project only |
+| Generated prop model (wyn_quest_walkway_gap) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D), split from one sheet generation | Project asset | With the project only |
+| Generated prop model (wyn_furn_cottage_bed) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (wyn_furn_cottage_table) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (wyn_furn_cottage_chair) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (wyn_furn_cottage_shelf) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (wyn_furn_small_storage_chest) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (wyn_furn_folding_worktable) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
 
 ### Orbital Lightning
 

@@ -1,0 +1,170 @@
+{
+  "note": "Wyndlewood props kit (props crew): Chapter One quest objects, landmarks and housing furniture. Each entry runs through scripts/asset_pipeline (Tripo text-to-image concept, then the prop lane image-to-model, normalize, preview). A `sheet` entry is ONE generation of several separate small objects, split afterwards into one GLB per part (tmp/props_kit/split.mjs) so small pieces cost a fraction of a model each. Ids are generic model ids and carry no player-visible names; the shipped GLB is public/models/props/wyn_<id>.glb.",
+  "assets": [
+    {
+      "id": "quest_northern_beacon",
+      "category": "quest",
+      "height": 7,
+      "faceLimit": 4000,
+      "prompt": "coastal signal beacon tower: a squat round weathered fieldstone tower on a rocky base with a short wooden stair up one side, topped by a big black iron lantern housing with its glass door hanging open and a dark wick inside, salt stains and moss on the stones, a coil of rope on a hook, no ground plane"
+    },
+    {
+      "id": "quest_broken_lifeboat",
+      "category": "quest",
+      "height": 1.3,
+      "faceLimit": 3000,
+      "prompt": "wrecked small wooden rowing lifeboat lying tilted on its side, cracked hull planks with one big splintered hole, a snapped oar, tangled rope and strands of seaweed draped over the gunwale, faded blue paint, no ground plane"
+    },
+    {
+      "id": "quest_beached_skiff",
+      "category": "quest",
+      "height": 1.5,
+      "faceLimit": 3000,
+      "prompt": "small sturdy wooden fishing skiff resting upright, pulled up out of the water, two oars laid across the bench seats, a coiled rope at the bow, a folded wool blanket and a small lantern on the middle bench, cream and teal painted planks, no ground plane"
+    },
+    {
+      "id": "quest_eastbrook_quest_board",
+      "category": "quest",
+      "height": 3.4,
+      "faceLimit": 3000,
+      "prompt": "large village work notice board: a sturdy oak frame board on two thick posts under a small pitched mossy shingle roof, many pinned parchment postings with red wax seals and string, a small iron lantern hanging from the roof edge, a wooden trough of rolled scrolls fixed below the board, no ground plane"
+    },
+    {
+      "id": "quest_housing_noticeboard",
+      "category": "quest",
+      "height": 2.4,
+      "faceLimit": 2500,
+      "prompt": "carpenter's yard noticeboard: a single sturdy wooden post holding a small board topped with a carved little cottage roof shape, pinned paper sketches of cottage floor plans and a hand drawn plot map, a measuring stick and a chalk pouch hanging on a nail, no ground plane"
+    },
+    {
+      "id": "quest_hollow_crypt_entrance",
+      "category": "quest",
+      "height": 6,
+      "faceLimit": 4000,
+      "prompt": "ancient sealed crypt entrance set into a grassy mossy hillside mound: a heavy carved grey stone portal with a deep arched frame, two massive closed stone doors bound with rusted iron bands and sealed with drips of pale wax, worn stone steps leading down to the doors, a carved hearth flame symbol on the lintel, ivy creeping over the stones"
+    },
+    {
+      "id": "quest_crypt_outer_wicket",
+      "category": "quest",
+      "height": 2.2,
+      "faceLimit": 2500,
+      "prompt": "small closed wrought iron wicket gate between two square stone gateposts, set in a short section of old dry stone wall on either side, the gate held shut with a rusty chain, moss and lichen on the stones, no ground plane"
+    },
+    {
+      "id": "quest_bone_pit",
+      "category": "quest",
+      "height": 1.0,
+      "faceLimit": 3000,
+      "prompt": "shallow open earth pit ringed with rough stones and soot blackened soil, old weathered bones and a cracked clay pot lying in the pit, short wooden stakes tied with black waxed cord standing around the rim, a low wide round piece of ground seen from above at an angle"
+    },
+    {
+      "id": "sheet_shore_smalls",
+      "category": "quest",
+      "height": 0.9,
+      "faceLimit": 6000,
+      "sheetPrompt": "four separate small seaside objects standing apart in one row with wide empty space between them: a dry supply bundle of oiled canvas tied with rope, a broken wooden crate with loose planks, a round wicker and rope crab pot trap, a flat rectangular wooden walkway panel of planks nailed to two crossbars",
+      "assign": [2, 1, 0, 3],
+      "sheet": [
+        { "id": "quest_supply_bundle", "height": 0.55 },
+        { "id": "quest_wreck_crate", "height": 0.7 },
+        { "id": "quest_crab_pot", "height": 0.6 },
+        { "id": "quest_walkway_panel", "height": 0.25 }
+      ]
+    },
+    {
+      "id": "sheet_grave_smalls",
+      "category": "quest",
+      "height": 1.1,
+      "faceLimit": 6000,
+      "sheetPrompt": "four separate graveyard objects standing apart in one row with wide empty space between them: an unlit old iron grave lamp on a short stone post, a matching iron grave lamp wrapped tightly in black waxed cord with a pale cold blue flame inside, a plain unmarked rounded granite headstone slab with a completely smooth flat front, no carving, no face, no letters, a tall rough standing boundary stone carved with a simple open hand symbol and no letters",
+      "assign": [1, 0, 2, 3],
+      "sheet": [
+        { "id": "quest_grave_lamp_unlit", "height": 0.95 },
+        { "id": "quest_grave_lamp_bound", "height": 1.15 },
+        { "id": "quest_name_stone", "height": 0.8 },
+        { "id": "quest_boundary_stone", "height": 1.3 }
+      ]
+    },
+    {
+      "id": "sheet_inn_smalls",
+      "category": "quest",
+      "height": 1.0,
+      "faceLimit": 6000,
+      "sheetPrompt": "three separate objects standing apart in one row with wide empty space between them: a small shallow glazed clay saucer with a few bread crumbs, an old brass speaking pipe tube that rises from a wooden wall plank and bends into a flared trumpet mouth with a little hinged cap, a short broken section of wooden boardwalk on posts with two missing planks leaving gaps",
+      "assign": [1, 0, 2],
+      "dropNeedles": true,
+      "sheet": [
+        { "id": "quest_pantry_saucer", "height": 0.12, "clipAboveFrac": 0.4 },
+        { "id": "quest_speaking_pipe", "height": 0.9 },
+        { "id": "quest_walkway_gap", "height": 0.8 }
+      ]
+    },
+    {
+      "id": "furn_cottage_bed",
+      "category": "furniture",
+      "family": "cottage",
+      "height": 1.3,
+      "faceLimit": 3000,
+      "prompt": "cosy cottage single bed: a chunky carved oak bed frame with rounded posts and a heart cut-out headboard, a thick patchwork quilt in warm red, ochre and cream squares, a plump pillow, a folded wool blanket at the foot, no ground plane"
+    },
+    {
+      "id": "furn_cottage_table",
+      "category": "furniture",
+      "family": "cottage",
+      "height": 0.85,
+      "faceLimit": 2000,
+      "prompt": "rustic cottage table: a thick plank oak tabletop with rounded worn edges on four sturdy turned legs joined by a low stretcher, a simple linen runner down the middle, no ground plane"
+    },
+    {
+      "id": "furn_cottage_chair",
+      "category": "furniture",
+      "family": "cottage",
+      "height": 1.1,
+      "faceLimit": 2000,
+      "prompt": "rustic cottage chair: a chunky carved wooden chair with a heart shaped cut-out in the tall backrest, a woven rush seat, slightly crooked sturdy legs, no ground plane"
+    },
+    {
+      "id": "furn_cottage_shelf",
+      "category": "furniture",
+      "family": "cottage",
+      "height": 1.8,
+      "faceLimit": 2500,
+      "prompt": "freestanding rustic wooden shelf unit with three crooked plank shelves on carved side boards, holding clay jars, a few leather books, a small potted herb and a folded cloth, flat back, no ground plane"
+    },
+    {
+      "id": "furn_braided_rug",
+      "category": "furniture",
+      "family": "cottage",
+      "height": 0.06,
+      "faceLimit": 1500,
+      "prompt": "oval braided rag rug lying flat, concentric rings of warm red, ochre, sage green and cream braided fabric, thick soft rounded edge, seen from above at a low angle",
+      "procedural": "rug_disc",
+      "texturePrompt": "flat top-down orthographic view of an oval braided rag rug filling the whole frame, concentric braided rings of warm red, ochre, sage green and cream wool, soft hand-painted storybook texture, even lighting, no shadow, no background visible at the centre, plain white background around the oval",
+      "proceduralNote": "Tripo modelled only the pompom rim of the first build (no rug body), so the rug is a procedural oval disc (tmp/props_kit/rug_disc.mjs) wearing a generated top-down texture."
+    },
+    {
+      "id": "furn_table_lantern",
+      "category": "furniture",
+      "family": "cottage",
+      "height": 0.45,
+      "faceLimit": 1500,
+      "prompt": "small unlit table lantern: a dark bronze and iron frame with a ring handle on top, four amber tinted opaque glass panes, a stubby cream candle inside, a little brass base, no ground plane"
+    },
+    {
+      "id": "furn_small_storage_chest",
+      "category": "furniture",
+      "family": "rustic",
+      "height": 0.75,
+      "faceLimit": 2000,
+      "prompt": "small sturdy wooden storage chest with a gently domed lid, oak planks, black iron corner bands, two big strap hinges and a round iron hasp on the front, no ground plane"
+    },
+    {
+      "id": "furn_folding_worktable",
+      "category": "furniture",
+      "family": "crafter",
+      "height": 1.0,
+      "faceLimit": 2500,
+      "prompt": "folding carpenter's worktable: a sturdy plank tabletop on crossed folding trestle legs, a wooden bench vise at one end, a mallet, a hand plane and two chisels lying on top, a few curled wood shavings, no ground plane"
+    }
+  ]
+}
