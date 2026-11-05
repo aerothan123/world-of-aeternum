@@ -188,7 +188,7 @@ function prepareTerrainTex(key: string, file: string, srgb: boolean): Promise<vo
 /** Prepare the terrain texture channel selected by an explicit target profile. */
 export function prepareTerrainProfileAssets(target: Readonly<GfxSettings>): Promise<void> {
   if (!target.terrainSplat) return Promise.resolve();
-  // World Style Refined paints the grass, dirt, rock and sand layers from the
+  // World Style Refined paints the grass, dirt, rock, sand, mud and snow layers from the
   // painted storybook sets (world_style_ground_core.ts), into the SAME packed
   // layers; Classic resolves every name below to the shipped photo.
   const style = target.worldStyle;
@@ -211,7 +211,7 @@ export function prepareTerrainProfileAssets(target: Readonly<GfxSettings>): Prom
     prepareTerrainTex('rockN', splatLayerFile('rockN', 'Rock026_NormalGL.jpg', style), false),
     prepareTerrainTex('sandC', splatLayerFile('sandC', 'Ground080_Color.jpg', style), true),
     prepareTerrainTex('sandN', splatLayerFile('sandN', 'Ground080_NormalGL.jpg', style), false),
-    prepareTerrainTex('mudC', 'Ground071_Color.jpg', true),
+    prepareTerrainTex('mudC', splatLayerFile('mudC', 'Ground071_Color.jpg', style), true),
     // Snow010A is a near-BLANK image: mean 235, sd 2.24, range 228-245, under
     // 1% contrast, so any ground the snow layer owns renders as flat white and
     // reads as a missing texture (SPACEY, 2026-09-22: "the terrain texures are
@@ -221,9 +221,14 @@ export function prepareTerrainProfileAssets(target: Readonly<GfxSettings>): Prom
     // is available if more relief is wanted. Authored maps only: the built-in
     // world keeps the snow it shipped with (the key is resolved once per page,
     // and a page never swaps between the built-in world and an authored one).
+    // Refined paints both from the storybook snow set.
     prepareTerrainTex(
       'snowC',
-      isBuiltinWorldActive() ? 'Snow010A_Color.jpg' : 'Snow004_Color.jpg',
+      splatLayerFile(
+        'snowC',
+        isBuiltinWorldActive() ? 'Snow010A_Color.jpg' : 'Snow004_Color.jpg',
+        style,
+      ),
       true,
     ),
     // The packs' relief channels, packed offline into one RGBA texture by

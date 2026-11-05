@@ -19,6 +19,7 @@ import {
   type RefinedTerrainProfile,
 } from './world_style_core';
 import {
+  REFINED_CLIFF,
   REFINED_GROUND,
   REFINED_LAYER_COBBLE,
   REFINED_LAYER_FOREST,
@@ -216,10 +217,11 @@ export function refinedSplatGlsl(
             p.steepRock
               ? `if ( wocHasRock ) {
             // Steep faces the splat weights left as turf turn to rock; rockAlb
-            // is already wall-projected, so cliffs do not stretch.
+            // is already wall-projected, so cliffs do not stretch. The face
+            // keeps only part of the turf tint, so it reads as stone.
             float wocWsSt = (wocHW.x + wocHW.y)
               * smoothstep(${f(b.steepHi)}, ${f(b.steepLo)}, an.y) * ${f(b.steepMax)};
-            alb = mix(alb, rockAlb * wocWsTint, wocWsSt);
+            alb = mix(alb, rockAlb * mix(vec3(1.0), wocWsTint, ${f(REFINED_CLIFF.turfTint)}), wocWsSt);
           }`
               : ''
           }
@@ -267,6 +269,40 @@ export function refinedSplatGlsl(
         // snow cover on the peaks/rim, by baked per-vertex weight`;
 }
 
+/** The Classic splat's wall-projection onset, wall-plane weight and chalk
+ *  soften, the three lines the Refined cliff retunes (REFINED_CLIFF). */
+export const CLASSIC_CLIFF_WALL = 'float wallW = clamp(1.0 - an.y * 1.45, 0.0, 1.0);';
+export const CLASSIC_CLIFF_AXIS = 'float axisW = an.x / max(1e-4, an.x + an.z);';
+export const CLASSIC_CLIFF_CHALK = 'rockAlb = mix(rockAlb, vec3(0.68, 0.70, 0.67), 0.38);';
+
+/** Refined cliffs over the compiled Classic splat: an earlier wall
+ *  projection (a steep face never stretches the flat projection down its
+ *  slope), a narrowed wall-plane crossfade (no ghosted double strokes on a
+ *  diagonal face) and a lighter chalk soften (the painted plates keep their
+ *  contrast). */
+export function patchRefinedCliffGlsl(frag: string): string {
+  const c = REFINED_CLIFF;
+  let out = replaceOnce(
+    frag,
+    CLASSIC_CLIFF_WALL,
+    `float wallW = 1.0 - smoothstep(${f(c.wallFull)}, ${f(c.wallFlat)}, an.y);`,
+    'splat cliff wall',
+  );
+  out = replaceOnce(
+    out,
+    CLASSIC_CLIFF_AXIS,
+    `float axisW = smoothstep(${f(c.axisLo)}, ${f(c.axisHi)}, an.x / max(1e-4, an.x + an.z));`,
+    'splat cliff axis',
+  );
+  out = replaceOnce(
+    out,
+    CLASSIC_CLIFF_CHALK,
+    `rockAlb = mix(rockAlb, vec3(0.68, 0.70, 0.67), ${f(c.chalk)});`,
+    'splat cliff chalk',
+  );
+  return out;
+}
+
 /** Apply the Refined arm to a compiled splat terrain shader (after its own
  *  Classic onBeforeCompile ran). */
 export function patchRefinedSplatShader(
@@ -281,6 +317,7 @@ export function patchRefinedSplatShader(
         uniform float uWsLayers;${PALETTE_GLSL}`,
     'splat common',
   );
+  frag = patchRefinedCliffGlsl(frag);
   frag = replaceOnce(
     frag,
     '        // snow cover on the peaks/rim, by baked per-vertex weight',

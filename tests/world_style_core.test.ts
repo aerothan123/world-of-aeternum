@@ -88,7 +88,7 @@ describe('Refined terrain blend weights', () => {
   it('turns steep turf to rock and leaves flat turf alone', () => {
     expect(refinedBlendWeights(flatMeadow).steepRock).toBe(0);
     const cliff = refinedBlendWeights({ ...flatMeadow, normalY: 0.4 });
-    expect(cliff.steepRock).toBeCloseTo(0.7, 5);
+    expect(cliff.steepRock).toBeCloseTo(0.88, 5);
     const bank = refinedBlendWeights({ ...flatMeadow, normalY: 0.62 });
     expect(bank.steepRock).toBeGreaterThan(0);
     expect(bank.steepRock).toBeLessThan(cliff.steepRock);

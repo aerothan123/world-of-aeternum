@@ -12,9 +12,11 @@
 // public/textures/terrain/<Key>_{Color,NormalGL,Roughness,AmbientOcclusion}.jpg
 // (1024 JPEG, colour sRGB, single-channel greyscale for roughness and AO).
 //
-// Usage: node scripts/assets/build_painted_ground.mjs [--src <dir>] [--pin]
-//   --src <dir>  source directory (default: the spec's srcDir)
-//   --pin        write each source's sha256 into the spec instead of checking it
+// Usage: node scripts/assets/build_painted_ground.mjs [--src <dir>] [--pin] [--only <keys>]
+//   --src <dir>    source directory (default: the spec's srcDir)
+//   --pin          write each source's sha256 into the spec instead of checking it
+//   --only <keys>  comma-separated set keys (PaintedSnow,PaintedMud): build only
+//                  those, so a new set never needs every older source on disk
 // Then: node scripts/build_media_manifest.mjs generate
 import { createHash } from 'node:crypto';
 import fs from 'node:fs';
@@ -29,6 +31,8 @@ const SPEC = path.join(ROOT, 'scripts/assets/specs/painted_ground.json');
 const args = process.argv.slice(2);
 const pin = args.includes('--pin');
 const srcArg = args.indexOf('--src');
+const onlyArg = args.indexOf('--only');
+const only = onlyArg >= 0 ? new Set(args[onlyArg + 1].split(',')) : null;
 const spec = JSON.parse(fs.readFileSync(SPEC, 'utf8'));
 const srcDir = path.resolve(ROOT, srcArg >= 0 ? args[srcArg + 1] : spec.srcDir);
 const outDir = path.join(ROOT, spec.outDir);
@@ -37,6 +41,7 @@ const size = spec.size;
 const jpeg = { quality: 88, mozjpeg: true, chromaSubsampling: '4:4:4' };
 
 for (const item of spec.items) {
+  if (only && !only.has(item.key)) continue;
   const file = path.join(srcDir, item.src);
   const bytes = fs.readFileSync(file);
   const sha = createHash('sha256').update(bytes).digest('hex');

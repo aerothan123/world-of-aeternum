@@ -118,7 +118,7 @@ export const REFINED_BLEND = {
   /** Steep faces (normal y under hi, full at lo) turn to rock. */
   steepHi: 0.74,
   steepLo: 0.5,
-  steepMax: 0.7,
+  steepMax: 0.88,
   /** Damp band above the waterline, in yards. */
   shoreNear: 0.25,
   shoreFar: 2.6,
