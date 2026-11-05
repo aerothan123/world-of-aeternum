@@ -132,7 +132,14 @@ async function generate() {
       continue;
     }
     writeFileSync(file, audio);
-    const after = await subscription();
+    // The credit count settles a few seconds after the audio returns: poll until it
+    // moves so each take's cost is measured on its own (another crew may spend too,
+    // so a cost is an upper bound, never an undercount).
+    let after = await subscription();
+    for (let i = 0; i < 15 && before && after && after.character_count === before.character_count; i++) {
+      await new Promise((r) => setTimeout(r, 3000));
+      after = await subscription();
+    }
     const cost = before && after ? after.character_count - before.character_count : null;
     if (cost !== null) spent += cost;
     ledger.takes[cue.key] = {
