@@ -119,8 +119,9 @@ function furnitureEntities(sim: Sim): Entity[] {
 
 describe('the furniture catalog (content)', () => {
   it('every furniture def is a merged, non-equippable, non-junk common item with a name', () => {
-    // twelve phase-2 pieces plus the six phase-3 home stations
-    expect(FURNITURE_ITEM_IDS.length).toBe(18);
+    // twelve phase-2 pieces, the six phase-3 home stations, and the seven
+    // painted Wyndlewood cottage style-test pieces
+    expect(FURNITURE_ITEM_IDS.length).toBe(25);
     for (const def of FURNITURE_DEFS) {
       const item = ITEMS[def.itemId];
       expect(item, def.itemId).toBe(FURNITURE_ITEMS[def.itemId]);

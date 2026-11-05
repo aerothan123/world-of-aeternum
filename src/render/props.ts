@@ -105,6 +105,7 @@ import {
 import { buildWickharborHarbor, wickharborHarborPrewarmParts } from './wickharbor_harbor';
 import { buildWickharborWharf, wickharborWharfPrewarmParts } from './wickharbor_wharf';
 import { applySurfaceDetail, type WornFamilyPick, wornFamilyFor } from './worn_stone';
+import { WYN_PROP_DEFS, WYN_PROP_LOW_TIER_KEYS } from './wyndlewood_props';
 import {
   buildWyrmwatchHarbor,
   wyrmwatchHarborHouseLights,
@@ -475,6 +476,9 @@ export const PROP_ASSET_DEFS: Record<string, PropAssetDef> = {
   // scripts/assets/muster_camp/), placed by src/render/muster_camps.ts through the decor
   // walk below rather than through ZonePropsDef.decorProps: render-only, no colliders.
   ...MUSTER_KIT_PROP_DEFS,
+  // The Wyndlewood props kit (render/wyndlewood_props.ts): quest objects,
+  // landmarks and housing furniture, named by stable model key.
+  ...WYN_PROP_DEFS,
 };
 
 export type PropKey = keyof typeof PROP_ASSET_DEFS;
@@ -542,6 +546,8 @@ const LOW_TIER_PROP_KEYS: readonly PropKey[] = [
   // The muster camps' structure (walls, gate, tower, tents, rack, lantern, and the torch
   // the command gate burns on every preset); its clutter pieces are not drawn on low.
   ...MUSTER_LOW_TIER_KIT_KEYS,
+  // Every Wyndlewood kit model is something a player walks to or uses.
+  ...WYN_PROP_LOW_TIER_KEYS,
 ];
 
 /**

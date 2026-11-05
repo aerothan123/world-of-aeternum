@@ -3,8 +3,8 @@
 // that says what each piece IS to the housing system: the anchor KIND it fits
 // (src/sim/housing/cottage_layout.ts HOUSE_COTTAGE_ANCHORS) and the render
 // key the owner's private interior draws it with (src/render/house_furniture.ts
-// clones the matching KayKit castle GLB the Dawnhold dressing already ships;
-// 'rug' is the procedural rug plane).
+// clones the matching KayKit castle GLB the Dawnhold dressing already ships, or
+// a painted Wyndlewood kit model; 'rug' is the procedural rug plane).
 //
 // Furniture is crafted by the Furnishing profession (content/recipes.ts
 // FURNISHING_RECIPES), carried in the bags like any other item, and placed
@@ -58,7 +58,17 @@ export type FurnitureRenderKey =
   | 'kcasCandleTriple'
   | 'anvil'
   | 'weaponStand'
-  | 'rug';
+  | 'rug'
+  // The Wyndlewood painted furniture (content/wyndlewood_props.ts WYN_PROP_MODELS
+  // furniture rows, registered by render/wyndlewood_props.ts).
+  | 'wynCottageBed'
+  | 'wynCottageTable'
+  | 'wynCottageChair'
+  | 'wynCottageShelf'
+  | 'wynBraidedRug'
+  | 'wynTableLantern'
+  | 'wynSmallStorageChest'
+  | 'wynFoldingWorktable';
 
 export interface FurnitureDef {
   /** The item id (the ItemDef key and the persisted placement value). */
@@ -87,7 +97,9 @@ export const FURNITURE_DEFS: readonly FurnitureDef[] = Object.freeze([
   { itemId: 'furn_woven_rug', kind: 'rug', renderKey: 'rug', scale: 1 },
   { itemId: 'furn_candlestick', kind: 'table', renderKey: 'kcasCandleTriple', scale: 1.2 },
   // Phase 3: every placed chest adds HOUSE_CHEST_SLOTS of pooled house storage.
-  { itemId: 'furn_storage_chest', kind: 'floor', renderKey: 'kcasChest', scale: 1.3 },
+  // Drawn with the painted small chest (the Wyndlewood kit) since the props
+  // crew's style pass; the item and its storage function are unchanged.
+  { itemId: 'furn_storage_chest', kind: 'floor', renderKey: 'wynSmallStorageChest', scale: 0.85 },
   // Reserved for phase 4 (trophies): placeable decoration today, no buff.
   { itemId: 'furn_trophy_plaque', kind: 'wall', renderKey: 'kcasShelfSmall', scale: 1.2 },
   // Phase 3: the six home crafting stations, one per StationType
@@ -135,6 +147,16 @@ export const FURNITURE_DEFS: readonly FurnitureDef[] = Object.freeze([
     scale: 1.5,
     stationType: 'toolworks',
   },
+  // The Wyndlewood cottage style test (props crew, assets_src/wyndlewood_props):
+  // painted pieces in the cottage, rustic and crafter families. Decoration
+  // only. `scale` is the standing height in yards.
+  { itemId: 'furn_cottage_bed', kind: 'floor', renderKey: 'wynCottageBed', scale: 1.3 },
+  { itemId: 'furn_cottage_table', kind: 'floor', renderKey: 'wynCottageTable', scale: 0.9 },
+  { itemId: 'furn_cottage_chair', kind: 'floor', renderKey: 'wynCottageChair', scale: 1.15 },
+  { itemId: 'furn_cottage_shelf', kind: 'wall', renderKey: 'wynCottageShelf', scale: 1.8 },
+  { itemId: 'furn_braided_rug', kind: 'rug', renderKey: 'wynBraidedRug', scale: 0.05 },
+  { itemId: 'furn_table_lantern', kind: 'table', renderKey: 'wynTableLantern', scale: 0.5 },
+  { itemId: 'furn_folding_worktable', kind: 'floor', renderKey: 'wynFoldingWorktable', scale: 1 },
 ]);
 
 const DEF_BY_ITEM: ReadonlyMap<string, FurnitureDef> = new Map(
@@ -199,4 +221,11 @@ export const FURNITURE_ITEMS: Record<string, ItemDef> = {
   furn_station_tannery: furnitureItem('furn_station_tannery', 'Home Tanning Table', 40),
   furn_station_loom: furnitureItem('furn_station_loom', 'Home Loom', 40),
   furn_station_toolworks: furnitureItem('furn_station_toolworks', 'Home Toolworks', 40),
+  furn_cottage_bed: furnitureItem('furn_cottage_bed', 'Cottage Bed', 28),
+  furn_cottage_table: furnitureItem('furn_cottage_table', 'Cottage Table', 15),
+  furn_cottage_chair: furnitureItem('furn_cottage_chair', 'Cottage Chair', 12),
+  furn_cottage_shelf: furnitureItem('furn_cottage_shelf', 'Cottage Shelf', 17),
+  furn_braided_rug: furnitureItem('furn_braided_rug', 'Braided Rug', 11),
+  furn_table_lantern: furnitureItem('furn_table_lantern', 'Table Lantern', 8),
+  furn_folding_worktable: furnitureItem('furn_folding_worktable', 'Folding Worktable', 17),
 };

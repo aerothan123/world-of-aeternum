@@ -3992,6 +3992,14 @@ const ITEM_ENTITY_IDS = [
   'furn_station_tannery',
   'furn_station_loom',
   'furn_station_toolworks',
+  // The Wyndlewood cottage style test (content/furniture.ts).
+  'furn_cottage_bed',
+  'furn_cottage_table',
+  'furn_cottage_chair',
+  'furn_cottage_shelf',
+  'furn_braided_rug',
+  'furn_table_lantern',
+  'furn_folding_worktable',
 ] as const;
 
 type ItemEntityId = (typeof ITEM_ENTITY_IDS)[number];
@@ -4021,6 +4029,14 @@ const APPENDED_ITEM_NAMES: Partial<Record<ItemEntityId, string>> = {
   furn_station_tannery: 'Home Tanning Table',
   furn_station_loom: 'Home Loom',
   furn_station_toolworks: 'Home Toolworks',
+  // The Wyndlewood cottage style test (content/furniture.ts).
+  furn_cottage_bed: 'Cottage Bed',
+  furn_cottage_table: 'Cottage Table',
+  furn_cottage_chair: 'Cottage Chair',
+  furn_cottage_shelf: 'Cottage Shelf',
+  furn_braided_rug: 'Braided Rug',
+  furn_table_lantern: 'Table Lantern',
+  furn_folding_worktable: 'Folding Worktable',
   // Gourdlight Eve (content/gourdlight_eve.ts).
   gourdlight_sweet: 'Gourdlight Sweet',
   gourdlight_treat_pouch: 'Gourdlight Treat Pouch',

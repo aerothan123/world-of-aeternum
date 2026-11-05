@@ -4934,6 +4934,117 @@ export const FURNISHING_RECIPES: ProfessionRecipeRecord[] = [
     level: 10,
     stationType: 'toolworks',
     acquisition: ['trainer'],
+  },  // The Wyndlewood cottage style test (content/furniture.ts): painted pieces
+  // on the same terms as the phase-2 rows.
+  {
+    id: 'recipe_furn_cottage_bed',
+    professionId: 'furnishing',
+    resultItemId: 'furn_cottage_bed',
+    resultCount: 1,
+    // Input 44 vs output 28.
+    reagents: [
+      { itemId: 'ironbark_log', count: 8 },
+      { itemId: 'linen_scrap', count: 4 },
+    ],
+    skillReq: 0,
+    itemLevelBudget: 8,
+    level: 8,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
+  {
+    id: 'recipe_furn_cottage_table',
+    professionId: 'furnishing',
+    resultItemId: 'furn_cottage_table',
+    resultCount: 1,
+    // Input 24 vs output 15.
+    reagents: [
+      { itemId: 'ironbark_log', count: 6 },
+    ],
+    skillReq: 0,
+    itemLevelBudget: 7,
+    level: 7,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
+  {
+    id: 'recipe_furn_cottage_chair',
+    professionId: 'furnishing',
+    resultItemId: 'furn_cottage_chair',
+    resultCount: 1,
+    // Input 19 vs output 12.
+    reagents: [
+      { itemId: 'ironbark_log', count: 4 },
+      { itemId: 'linen_scrap', count: 1 },
+    ],
+    skillReq: 0,
+    itemLevelBudget: 6,
+    level: 6,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
+  {
+    id: 'recipe_furn_cottage_shelf',
+    professionId: 'furnishing',
+    resultItemId: 'furn_cottage_shelf',
+    resultCount: 1,
+    // Input 28 vs output 17.
+    reagents: [
+      { itemId: 'ironbark_log', count: 6 },
+      { itemId: 'copper_ore', count: 1 },
+    ],
+    skillReq: 0,
+    itemLevelBudget: 8,
+    level: 8,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
+  {
+    id: 'recipe_furn_braided_rug',
+    professionId: 'furnishing',
+    resultItemId: 'furn_braided_rug',
+    resultCount: 1,
+    // Input 18 vs output 11.
+    reagents: [
+      { itemId: 'linen_scrap', count: 6 },
+    ],
+    skillReq: 0,
+    itemLevelBudget: 6,
+    level: 6,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
+  {
+    id: 'recipe_furn_table_lantern',
+    professionId: 'furnishing',
+    resultItemId: 'furn_table_lantern',
+    resultCount: 1,
+    // Input 12 vs output 8.
+    reagents: [
+      { itemId: 'ironbark_log', count: 1 },
+      { itemId: 'copper_ore', count: 2 },
+    ],
+    skillReq: 0,
+    itemLevelBudget: 6,
+    level: 6,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
+  {
+    id: 'recipe_furn_folding_worktable',
+    professionId: 'furnishing',
+    resultItemId: 'furn_folding_worktable',
+    resultCount: 1,
+    // Input 28 vs output 17.
+    reagents: [
+      { itemId: 'ironbark_log', count: 6 },
+      { itemId: 'copper_ore', count: 1 },
+    ],
+    skillReq: 0,
+    itemLevelBudget: 8,
+    level: 8,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
   },
 ];
 

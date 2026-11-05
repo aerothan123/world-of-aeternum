@@ -7,7 +7,7 @@
 // bundled stills entry, same server, same sharp finishing); the outputs land
 // in public/ui/items/ and are committed like any painted icon.
 //
-// Run: node scripts/render_furniture_icons.mjs
+// Run: node scripts/render_furniture_icons.mjs   (ONLY=furn_a,furn_b for a batch)
 
 import { writeFileSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
@@ -37,7 +37,6 @@ const FURNITURE_MODELS = {
   furn_keg: '/models/biome/kcas_keg.glb',
   furn_barrel: '/models/biome/kcas_barrel.glb',
   furn_candlestick: '/models/dungeon/candle_triple.glb',
-  furn_storage_chest: '/models/dungeon/chest.glb',
   furn_trophy_plaque: '/models/dungeon/shelf_small.glb',
   furn_station_forge: '/models/props/anvil.glb',
   furn_station_kitchens: '/models/dungeon/bartop_a_medium.glb',
@@ -45,8 +44,17 @@ const FURNITURE_MODELS = {
   furn_station_tannery: '/models/dungeon/table_round_medium.glb',
   furn_station_loom: '/models/dungeon/table_long_tablecloth.glb',
   furn_station_toolworks: '/models/props/weapon_stand.glb',
+  // The painted Wyndlewood kit (src/sim/content/wyndlewood_props.ts). The
+  // storage chest moved onto the painted small chest with it.
+  furn_storage_chest: '/models/props/wyn_furn_small_storage_chest.glb',
+  furn_cottage_bed: '/models/props/wyn_furn_cottage_bed.glb',
+  furn_cottage_table: '/models/props/wyn_furn_cottage_table.glb',
+  furn_cottage_chair: '/models/props/wyn_furn_cottage_chair.glb',
+  furn_cottage_shelf: '/models/props/wyn_furn_cottage_shelf.glb',
+  furn_table_lantern: '/models/props/wyn_furn_table_lantern.glb',
+  furn_folding_worktable: '/models/props/wyn_furn_folding_worktable.glb',
 };
-const JOBS = [
+const ALL_JOBS = [
   ...Object.entries(FURNITURE_MODELS).map(([itemId, url]) => ({
     itemId,
     spec: { url, pitch: PITCH },
@@ -55,7 +63,15 @@ const JOBS = [
     itemId: 'furn_woven_rug',
     spec: { url: '/models/medieval_village_v2/props/Carpet_02.glb', pitch: 1.05 },
   },
+  {
+    itemId: 'furn_braided_rug',
+    spec: { url: '/models/props/wyn_furn_braided_rug.glb', pitch: 1.05 },
+  },
 ];
+// ONLY=id,id renders just those icons (a new batch), leaving the rest of the
+// committed set byte-identical.
+const ONLY = process.env.ONLY ? new Set(process.env.ONLY.split(',')) : null;
+const JOBS = ONLY ? ALL_JOBS.filter((job) => ONLY.has(job.itemId)) : ALL_JOBS;
 
 const bundled = await esbuild.build({
   entryPoints: [path.join(root, 'scripts', 'wiki', 'stills_render_entry.js')],

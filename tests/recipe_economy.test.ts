@@ -664,7 +664,7 @@ describe('REFERENTIAL INTEGRITY', () => {
         FURNISHING_RECIPES.length +
         HOUSE_STATION_RECIPES.length,
     );
-    expect(FURNISHING_RECIPES, 'the Furnishing catalog is twelve rows').toHaveLength(12);
+    expect(FURNISHING_RECIPES, 'the Furnishing catalog is nineteen rows').toHaveLength(19);
     expect(HOUSE_STATION_RECIPES, 'the home station catalog is six rows').toHaveLength(6);
     // The sibling literal for the 11o term: two rows, both trainer-taught.
     expect(ENGINEERING_ONRAMP_RECIPES, 'the engineering on-ramp is two rows').toHaveLength(2);
