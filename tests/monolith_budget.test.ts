@@ -508,7 +508,10 @@ const MONOLITHS: MonolithRow[] = [
     // src/ui/loot_text_i18n_core.ts, net of the feed's composition, its event
     // hook and its per-frame update. Merged with the tree Chop prompt (-2, the
     // farm press notice moved to interact_affordances_controller.ts): 17454.
-    ceiling: 17454,
+    // LOWERED 17454 -> 17452 (Wyndlewood durability figure): the Curator rank
+    // name helper moved to src/ui/reliquary_window.ts, paying for the
+    // durability painter field and its slow-band paint. wc -l. Exact count.
+    ceiling: 17452,
     seam: 'pure view core + thin painter on PainterHost (src/ui/CLAUDE.md)',
   },
   {

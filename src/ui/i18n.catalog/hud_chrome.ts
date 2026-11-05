@@ -6945,6 +6945,11 @@ export const hudChromeStrings = {
     itemName: '{item}, {quality}',
     tooltip: '{quality}: +{levels} item levels. Retained through upgrades.',
   },
+  // The HUD durability indicator (src/ui/hud/durability/).
+  durability: {
+    low: 'Your equipment is badly damaged. Repair it at an armorer, a weaponsmith or a forge.',
+    broken: 'Some of your equipment is broken and gives no stats. Repair it at an armorer, a weaponsmith or a forge.',
+  },
   itemTooltip: {
     requiresLevel: 'Requires Level {level}',
     durability: 'Durability {current} / {max}',

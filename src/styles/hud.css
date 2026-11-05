@@ -14187,6 +14187,28 @@
     width: 14px;
     height: 14px;
   }
+  /* ---------- durability figure ---------- */
+  /* The classic armor figure (src/ui/hud/durability/): a small shield glyph
+     beside the minimap, OUTSIDE the disc so it claims no rim corner. Shown only
+     while worn gear is low (warning tint) or broken (danger tint). */
+  #dura-figure {
+    position: absolute;
+    left: -22px;
+    top: 50%;
+    width: 16px;
+    height: 20px;
+    border: 2px solid currentColor;
+    border-radius: 3px 3px 9px 9px;
+    background: color-mix(in srgb, currentColor 35%, transparent);
+    color: var(--color-warning);
+    pointer-events: auto;
+  }
+  #dura-figure.is-broken {
+    color: var(--color-danger);
+  }
+  #dura-figure[hidden] {
+    display: none;
+  }
   /* ---------- intro logo overlay ---------- */
   /* Wordmark shown fading in/hold/out over the opening of the first-spawn intro
      cinematic (spawn_cinematic.ts): intro_logo_overlay.ts drives opacity/display
