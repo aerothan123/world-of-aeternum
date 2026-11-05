@@ -1121,6 +1121,9 @@ const RENDER_PURE_CORES = [
   'src/render/seated_pose_core.ts',
   'src/render/seat_pick_core.ts',
   'src/render/ambience_state_core.ts',
+  // which zone and town ambience beds play where the player stands, and how wooded it is
+  'src/render/region_ambience_core.ts',
+  'src/render/forest_density_core.ts',
   'src/render/ability_vfx/cast_admission_core.ts',
   'src/render/ability_vfx/physical_choreography_core.ts',
   'src/render/ability_vfx/signature_core.ts',

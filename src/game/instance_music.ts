@@ -1,3 +1,4 @@
+import { houseLotForDungeon } from '../sim/content/house_lots';
 import { delveAt, dungeonAt, isBgPos, isDelvePos, type ZoneDef } from '../sim/data';
 import type { MapMusic } from '../sim/types';
 import { bossTrackFor } from './boss_music_loop';
@@ -8,6 +9,8 @@ import {
   riftMusicZoneForTheme,
   shouldResetMusicForDungeonEntry,
 } from './music';
+import { isPaleAccordTemplate, type ScoreSignals, scoreBossUrl, venueAt } from './music_score';
+import { tickScore } from './music_score_layer';
 import { ALL_MUSIC_ZONES } from './music_zones';
 import { seasonalMusicZone } from './seasonal_music';
 
@@ -56,6 +59,12 @@ export interface InstanceMusicInput {
   // running event may score its towns with its own theme (seasonal_music.ts); an
   // authored map's own track and a rift floor are never swapped.
   seasonalEvent?: string | null;
+  // The day/night cycle phase (render/day_night_clock.ts currentDayNightPhase). Present
+  // on the HUD path (authored_map_music.ts), it switches the Wyndlewood score layer on
+  // (music_score_layer.ts); absent, the director plays its remastered streams only.
+  dayPhase?: number;
+  // The world readings the score's stingers diff (null before the player exists).
+  scoreSignals?: ScoreSignals | null;
 }
 
 export interface InstanceMusicDecision {
@@ -68,6 +77,10 @@ export interface InstanceMusicDecision {
   bossTrackUrl: string | null;
   instanceId: string | null;
   crucibleFloor: CrucibleFloor | null;
+  // A Pale Accord mob (music_score.ts isPaleAccordTemplate) has the player in its sights.
+  paleAccordFoe: boolean;
+  // The engaged boss's template (a bespoke-track boss or the raid boss), or null.
+  bossTemplateId: string | null;
 }
 
 export interface InstanceMusicPort {
@@ -114,14 +127,23 @@ export function instanceMusicDecision(input: InstanceMusicInput): InstanceMusicD
   let aggroed = false;
   let bossEngaged = false;
   let bossTrackUrl: string | null = null;
+  let bossTemplateId: string | null = null;
+  let paleAccordFoe = false;
   for (const entity of input.entities) {
     if (entity.kind !== 'mob' || entity.dead) continue;
-    if (entity.aggroTargetId === input.playerId) aggroed = true;
-    if (entity.templateId === RAID_BOSS_ID && entity.aggroTargetId !== null) bossEngaged = true;
+    if (entity.aggroTargetId === input.playerId) {
+      aggroed = true;
+      if (isPaleAccordTemplate(entity.templateId)) paleAccordFoe = true;
+    }
+    if (entity.templateId === RAID_BOSS_ID && entity.aggroTargetId !== null) {
+      bossEngaged = true;
+      bossTemplateId = entity.templateId;
+    }
     const track = bossTrackFor(entity.templateId);
     if (track !== null && entity.aggroTargetId !== null) {
       bossEngaged = true;
       bossTrackUrl = track;
+      bossTemplateId = entity.templateId;
     }
   }
 
@@ -182,6 +204,8 @@ export function instanceMusicDecision(input: InstanceMusicInput): InstanceMusicD
     bossTrackUrl: crucibleFloor === null ? bossTrackUrl : null,
     crucibleFloor,
     instanceId: musicInstanceId,
+    paleAccordFoe,
+    bossTemplateId,
   };
 }
 
@@ -205,13 +229,42 @@ export class InstanceMusicController {
     } else if (this.bossTrack && input.now - this.bossTrack.seenAt >= RECENT_BOSS_COMBAT_MS) {
       this.bossTrack = null;
     }
-    if (this.bossTrack) this.music.setBossCombat(true, this.bossTrack.url);
+    const scored = input.dayPhase !== undefined;
+    // The score's boss cues take the shared default loop (and the raid dragon); a boss
+    // with a bespoke track keeps it. Without the score, exactly the old calls.
+    const scoreBoss =
+      scored && (this.bossTrack !== null || decision.bossEngaged)
+        ? scoreBossUrl(
+            this.bossTrack?.url ?? null,
+            decision.bossTemplateId,
+            decision.instanceId,
+            decision.paleAccordFoe,
+          )
+        : null;
+    if (this.bossTrack) this.music.setBossCombat(true, scoreBoss ?? this.bossTrack.url);
+    else if (scoreBoss !== null) this.music.setBossCombat(decision.bossEngaged, scoreBoss);
     else this.music.setBossCombat(decision.bossEngaged);
     // Give the boss cue ownership before the normal combat score can start.
     if (decision.crucibleFloor !== null) {
       this.music.update(decision.zone, decision.musicCombat, decision.crucibleFloor);
     } else {
       this.music.update(decision.zone, decision.musicCombat);
+    }
+    if (scored) {
+      const instanceId = decision.instanceId;
+      tickScore(this.music, {
+        zone: decision.zone,
+        zoneId: input.zone.id,
+        combat: decision.musicCombat,
+        paleAccord: decision.paleAccordFoe,
+        instanceId,
+        home: instanceId !== null && houseLotForDungeon(instanceId) !== undefined,
+        venue: input.inDungeon ? null : venueAt(input.playerPos.x, input.playerPos.z),
+        dayPhase: input.dayPhase ?? 0.5,
+        signals: input.scoreSignals ?? null,
+        suspended: decision.crucibleFloor !== null,
+        rand: Math.random,
+      });
     }
     return decision;
   }

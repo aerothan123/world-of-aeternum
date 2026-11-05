@@ -365,6 +365,10 @@ class Sfx {
   private reverb: OutdoorReverbBus | null = null;
   private reverbEnv: ReverbEnv = 'open';
   private readonly strikeVoices = newStrikeVoicePool();
+  // Region beds (regionBeds, the frame's first ambience call): the share of the older biome
+  // loops ambience() keeps under them, and the space a dense wood rings in.
+  private regionLegacy = 1;
+  private regionReverb: ReverbEnv | null = null;
 
   /** Set SFX volume (0..1). Shares the `sfxVolume` slider with `audio`. */
   setVolume(v: number): void {
@@ -2005,18 +2009,22 @@ class Sfx {
     points: readonly AmbientPointSource[] = [],
     eye?: AmbienceEye,
   ): void {
-    this.reverbEnv = reverbEnvFor(biome, inDungeon);
+    this.reverbEnv = (!inDungeon && this.regionReverb) || reverbEnvFor(biome, inDungeon);
     this.reverb?.setEnvironment(this.reverbEnv);
+    const legacy = this.regionLegacy;
     this.ambient('amb_dungeon', inDungeon ? 0.3 : 0);
     // Sowfield crowd murmur (procedural bed): quiet chatter on the grounds,
     // swelling while a match is live (the renderer passes 0 / ~0.4 / 1).
     this.ambient('amb_crowd', crowd > 0 ? 0.08 + 0.18 * Math.min(1, crowd) : 0);
-    this.ambient('amb_wind_vale', !inDungeon && (biome === 'vale' || biome === 'beach') ? 0.12 : 0);
+    this.ambient(
+      'amb_wind_vale',
+      !inDungeon && (biome === 'vale' || biome === 'beach') ? 0.12 * legacy : 0,
+    );
     this.ambient(
       'amb_birds',
       !inDungeon &&
         (biome === 'vale' || biome === 'jungle' || biome === 'garden' || biome === 'gale')
-        ? 0.12
+        ? 0.12 * legacy
         : 0,
     );
     // The dusk realm shares the marsh's low still-air bed, kept quieter: a
@@ -2042,7 +2050,7 @@ class Sfx {
                       : biome === 'garden'
                         ? 0.07 // bees in the beds
                         : 0;
-    this.ambient('amb_wind_marsh', !inDungeon ? marshBed : 0);
+    this.ambient('amb_wind_marsh', !inDungeon ? marshBed * legacy : 0);
     // the Frostveil shares the peaks' ridge wind, a touch stronger in the mist;
     // desert/volcano (paint-only) borrow the peaks ridge bed too. 0.12 matches
     // amb_wind_vale's mix target: peaks/vale/marsh are generated to the same
@@ -2118,6 +2126,24 @@ class Sfx {
     };
     blast(196, 0, 0.5);
     blast(261.6, 0.42, 0.9);
+  }
+
+  /** Per-frame region beds (src/render/region_ambience_core.ts): each long zone or town
+   *  soundscape loops non-positionally on the Ambience bus at its gain (ramped by loop(),
+   *  stopped at 0), and the older biome loops' share and the wood's reverb space are kept
+   *  for the ambience() call that follows. Gains are quantized so a step does not re-arm
+   *  every ramp each frame. */
+  regionBeds(beds: {
+    readonly keys: readonly string[];
+    readonly gains: ArrayLike<number>;
+    readonly legacyScale: number;
+    readonly reverbEnv: ReverbEnv | null;
+  }): void {
+    for (let i = 0; i < beds.keys.length; i++) {
+      this.ambient(beds.keys[i], Math.round(beds.gains[i] * 400) / 400);
+    }
+    this.regionLegacy = Math.round(beds.legacyScale * 50) / 50;
+    this.regionReverb = beds.reverbEnv;
   }
 
   /** Per-frame update of the map-authored point sounds (the editor's Sound

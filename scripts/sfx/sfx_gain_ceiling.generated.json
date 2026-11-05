@@ -1,4 +1,70 @@
 {
+  "amb_bed_forest": {
+    "ceilingDb": 4,
+    "tracks": [
+      {
+        "filename": "amb_bed_forest.mp3",
+        "sha256": "da0d9bd8d2c596e9e0134ed05a8573b6945a082ddfae1b9e2e0e2dedb0058771",
+        "size": 440991,
+        "peakDb": -5
+      }
+    ]
+  },
+  "amb_bed_marsh": {
+    "ceilingDb": 4.5,
+    "tracks": [
+      {
+        "filename": "amb_bed_marsh.mp3",
+        "sha256": "047b5fa6774f586ab99dc95e241677bf2038b90a13340de9fc4a1b85a48b2638",
+        "size": 440991,
+        "peakDb": -5.5
+      }
+    ]
+  },
+  "amb_bed_meadow": {
+    "ceilingDb": 4.2,
+    "tracks": [
+      {
+        "filename": "amb_bed_meadow.mp3",
+        "sha256": "5974d4609253b5785c6e2c03cef492507ec73500a66e9237ada439d8ed1aa4c1",
+        "size": 440991,
+        "peakDb": -5.2
+      }
+    ]
+  },
+  "amb_bed_shore": {
+    "ceilingDb": 3.1,
+    "tracks": [
+      {
+        "filename": "amb_bed_shore.mp3",
+        "sha256": "f7e2402659bedf6b917e15b226b32083b8968a91859107b6cbfbd4bb1a9c8d7b",
+        "size": 313095,
+        "peakDb": -4.1
+      }
+    ]
+  },
+  "amb_bed_town_day": {
+    "ceilingDb": 5.1,
+    "tracks": [
+      {
+        "filename": "amb_bed_town_day.mp3",
+        "sha256": "a74802f126abf2d1464f26bb42b43748b88687a3b87f46b7a2fe1ef826d5b35e",
+        "size": 440991,
+        "peakDb": -6.1
+      }
+    ]
+  },
+  "amb_bed_town_night": {
+    "ceilingDb": 5.1,
+    "tracks": [
+      {
+        "filename": "amb_bed_town_night.mp3",
+        "sha256": "79cd95b5825bf2ca440749b3aaee32b490155fab46ccb43cf5ab4790a6c700f1",
+        "size": 440991,
+        "peakDb": -6.1
+      }
+    ]
+  },
   "amb_forge": {
     "ceilingDb": 5,
     "tracks": [

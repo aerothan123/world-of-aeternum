@@ -17,6 +17,12 @@ const CLIPS: Record<string, SfxEntry> = SFX_CLIPS;
 // under ambience or movement, or named mount_*, fails here until someone
 // decides it carries nothing a player reacts to and adds it by hand.
 const EVICTABLE_KEYS = [
+  'amb_bed_forest',
+  'amb_bed_marsh',
+  'amb_bed_meadow',
+  'amb_bed_shore',
+  'amb_bed_town_day',
+  'amb_bed_town_night',
   'amb_birds',
   'amb_campfire',
   'amb_dungeon',

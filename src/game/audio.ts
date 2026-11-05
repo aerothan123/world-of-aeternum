@@ -5,6 +5,7 @@
 
 import type { GatherNodeType } from '../sim/types';
 import { isAuraCueId } from './aura_cue_catalog';
+import { claimScoreStinger } from './music_score_layer';
 import { sfx } from './sfx';
 
 // One proc cannot restate itself faster than its own cue is long. The longest cue
@@ -267,6 +268,10 @@ export class GameAudio {
   }
 
   levelUp(): void {
+    // The Wyndlewood score rings its own level-up fanfare on the Music bus; the
+    // interface chime plays only when that sting does not (music muted, score not
+    // running), so the two never double.
+    if (claimScoreStinger('level_up')) return;
     this.playFeedback(UI_CUES.levelUp);
   }
 
