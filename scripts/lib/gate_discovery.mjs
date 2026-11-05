@@ -201,14 +201,64 @@ export function resolveSelectBase({ env = {}, run }) {
           .map((l) => l.trim())
           .filter(Boolean)[0]
       : undefined;
-  for (const candidate of [newestRelease, 'origin/main', 'origin/HEAD'].filter(Boolean)) {
+  /** @type {string | null | undefined} undefined until first asked (lazy: one probe at most) */
+  let currentBranch;
+  const ownRemoteCopy = (/** @type {string} */ candidate) => {
+    if (currentBranch === undefined) {
+      const head = run('git', ['rev-parse', '--abbrev-ref', 'HEAD']);
+      const name = head.status === 0 ? (head.stdout ?? '').trim() : '';
+      currentBranch = name && name !== 'HEAD' ? name : null;
+    }
+    return currentBranch !== null && candidate === `origin/${currentBranch}`;
+  };
+  const candidates = [newestRelease, ...INTEGRATION_BRANCHES, 'origin/main', 'origin/HEAD'];
+  for (const candidate of candidates.filter(Boolean)) {
+    // An integration branch is skipped while it is the branch being diffed: its
+    // origin copy is then the branch's own pushed copy, the @{upstream} trap again.
+    if (INTEGRATION_BRANCHES.includes(candidate)) {
+      if (ownRemoteCopy(candidate)) continue;
+    }
     const probe = run('git', ['rev-parse', '--verify', `${candidate}^{commit}`]);
     const failure = launchFailure(probe);
     if (failure) return { base: null, reason: failure };
-    if (probe.status === 0) return { base: candidate, reason: `integration base ${candidate}` };
+    if (probe.status !== 0) continue;
+    if (INTEGRATION_BRANCHES.includes(candidate)) {
+      // Fail toward more tests: when HEAD is already contained in the integration
+      // branch (a detached checkout of its tip, or a branch merged into it) the
+      // committed diff against it is EMPTY, so fall through to the next, wider
+      // base instead. Only an explicit "not an ancestor" (exit 1) keeps it.
+      const contained = run('git', ['merge-base', '--is-ancestor', 'HEAD', candidate]);
+      const containedFailure = launchFailure(contained);
+      if (containedFailure) return { base: null, reason: containedFailure };
+      if (contained.status !== 1) continue;
+    }
+    return { base: candidate, reason: `integration base ${candidate}` };
   }
-  return { base: null, reason: 'no release branch or origin base could be resolved' };
+  return { base: null, reason: UNRESOLVED_BASE_REASON };
 }
+
+/**
+ * Long-lived integration branches a fork bases its work on, tried after the
+ * newest `origin/release/*` and BEFORE `origin/main`. This is the ONE place to
+ * extend when a fork integrates on a branch other than a release branch.
+ *
+ * Why it exists: a fork with no `origin/release/*` (and often no fetched
+ * `origin/main`, because its worktrees fetch explicit refspecs only) resolved
+ * nothing, so `npm run ci:changed` and the pre-push hook failed every push. And
+ * where `origin/main` WAS present it is the stale upstream tip, so the diff
+ * swept in the fork's whole drift instead of the branch's own change. A
+ * candidate that does not resolve is skipped, so upstream checkouts that lack
+ * these refs keep the release, then main, then HEAD order unchanged. A
+ * candidate is also skipped (falling through to the wider origin/main) when it
+ * is the branch being diffed or already contains HEAD, because either would
+ * give an empty committed diff. The `GATE_SELECT_BASE` env override still
+ * beats all of them.
+ */
+export const INTEGRATION_BRANCHES = Object.freeze(['origin/feature/player-housing']);
+
+/** The reason string when no candidate resolves (the caller turns it into a hard stop). */
+export const UNRESOLVED_BASE_REASON =
+  'no release branch, integration branch, or origin base could be resolved';
 
 /**
  * Every path this branch changed: committed since the merge base, plus anything

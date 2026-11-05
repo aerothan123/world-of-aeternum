@@ -38,7 +38,6 @@ function data(characterImage: HTMLCanvasElement): PlayerCardData {
     combatStats: [],
     gear: [],
     topPercent: null,
-    balance: null,
     devTier: null,
     devMergedPrs: null,
     referralHandle: 'adventurer',
