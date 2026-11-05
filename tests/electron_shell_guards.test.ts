@@ -121,7 +121,8 @@ describe('navigationAllowed', () => {
     const allowed = (url: string, main: boolean) =>
       navigationAllowed(url, main, app, policy.origins, policy.hostSuffixes);
     expect(policy.origins.has('https://challenges.cloudflare.com')).toBe(true);
-    for (const origin of CARD_CHECKOUT_SUBFRAME_ORIGINS) expect(policy.origins.has(origin)).toBe(true);
+    for (const origin of CARD_CHECKOUT_SUBFRAME_ORIGINS)
+      expect(policy.origins.has(origin)).toBe(true);
     expect(policy.hostSuffixes).toEqual([...CARD_CHECKOUT_SUBFRAME_HOST_SUFFIXES]);
     for (const url of [
       'https://js.stripe.com/v3/embedded-checkout-inner.html',

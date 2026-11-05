@@ -306,12 +306,7 @@ function buildContentSecurityPolicy({ apiOrigin, scriptHashes = [], cardCheckout
   ]
     .filter(Boolean)
     .join(' ');
-  const imgSrc = [
-    "img-src 'self' data: blob:",
-    apiOrigin,
-    ...CSP_ORIGINS.img,
-    ...stripe.img,
-  ]
+  const imgSrc = ["img-src 'self' data: blob:", apiOrigin, ...CSP_ORIGINS.img, ...stripe.img]
     .filter(Boolean)
     .join(' ');
   return [
