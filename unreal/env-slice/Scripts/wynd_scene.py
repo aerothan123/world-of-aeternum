@@ -229,6 +229,12 @@ COVER = [
     ("flower_cornflower", "flowers", 0.12, (0.9, 1.2)),
 ]
 COVER_ROOT = W.PLACEHOLDERS + "/Cover/"
+# Placeholder cover areas (game x, z, radius) for slices without look shots:
+# on the Proving Shore, Dawnrest Camp where players spawn (content/
+# proving_shore.ts hub -300, 50), the Old Pier path and the Practice Yard.
+SLICE_COVER_AREAS = {
+    "proving_shore": [(-300.0, 50.0, 48.0), (-280.0, 0.0, 30.0), (-336.0, -14.0, 28.0)],
+}
 
 
 def build_ground_cover(sl, areas, step=0.3):
@@ -243,7 +249,8 @@ def build_ground_cover(sl, areas, step=0.3):
             for p in lib.list_assets(COVER_ROOT + asset, True, False)
         ]
         meshes = [m for m in meshes if isinstance(m, unreal.StaticMesh)]
-        comps[asset] = [instancer("cover_%s_%s" % (asset, m.get_name()), m, False, 9000) for m in meshes]
+        tag = (sl.name + "_") if sl.name else ""
+        comps[asset] = [instancer("cover_%s%s_%s" % (tag, asset, m.get_name()), m, False, 9000) for m in meshes]
         counts[asset] = 0
     batches = {asset: [] for asset in comps}
     seen = set()
@@ -390,13 +397,15 @@ def build(cover_areas):
     build_props(sl)
     build_scatter(sl)
     # further slices (the Proving Shore spawn island): their own terrain
-    # through a material instance, props and scatter; no ground cover yet
+    # through a material instance, props, scatter and placeholder cover
     for name in W.EXTRA_SLICES:
         ex = Slice(name)
         ex.mesh_cache = sl.mesh_cache
         build_terrain(ex, WM.terrain_instance(terrain, name, ex.export), water=False)
         build_props(ex)
         build_scatter(ex)
+        if name in SLICE_COVER_AREAS:
+            build_ground_cover(ex, SLICE_COVER_AREAS[name])
         sl.stats[name] = ex.stats
     build_ground_cover(sl, cover_areas)
     sun = build_lights(sl)

@@ -138,6 +138,20 @@ try {
       { shot, phase: PHASE[shot.time] },
     );
     await delay(SETTLE_MS);
+    // Parking the hero far away is an arrival: the presentation gate holds
+    // the world draw while the destination prepares (src/game/
+    // presentation_gate.ts worldDrawHeld), so no pinned frame is drawn and a
+    // screenshot would keep the stale chase view. Wait until pinned draws
+    // are flowing again (a busy PC can take a minute) before sampling.
+    let flowing = false;
+    for (let i = 0; i < 60 && !flowing; i++) {
+      const before = await page.evaluate(() => window.__lookPinDraws ?? 0);
+      await delay(2000);
+      const after = await page.evaluate(() => window.__lookPinDraws ?? 0);
+      flowing = after - before >= 30;
+    }
+    note(`${shot.name} pinned draws flowing: ${flowing}`);
+    await delay(1500);
     const frame = await page.evaluate(async (ms) => {
       const dts = [];
       let last = performance.now();
