@@ -146,6 +146,7 @@ export class QuestLogWindow {
       quests,
       selectedQuestId: this.selected,
       playerClass: world.cfg.playerClass,
+      playerLevel: world.player.level,
       completedCount: world.questsDone.size,
       collapsedGroupIds: [...this.collapsedGroups],
     });

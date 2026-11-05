@@ -30,6 +30,7 @@ import {
 } from '../src/sim/data';
 import { canEquipItem } from '../src/sim/equipment_rules';
 import { HARVEST_COMPONENT_ITEMS, NODE_MATERIAL_TABLE } from '../src/sim/professions/gathering';
+import { questBaseXp } from '../src/sim/quests/quest_xp';
 import { Sim } from '../src/sim/sim';
 import { ALL_CLASSES, MAX_LEVEL, XP_TABLE, type ZoneDef } from '../src/sim/types';
 import { terrainHeight, WATER_LEVEL } from '../src/sim/world';
@@ -458,7 +459,7 @@ describe('xp pacing budget (no forced grinding)', () => {
       const giver = NPCS[q.giverNpcId];
       if (!giver || giver.pos.z < zone.zMin || giver.pos.z >= zone.zMax) continue;
       count++;
-      xp += q.xpReward;
+      xp += questBaseXp(q);
       for (const obj of q.objectives) {
         let mobId: string | undefined;
         let kills = 0;
@@ -499,7 +500,11 @@ describe('xp pacing budget (no forced grinding)', () => {
       if (budget.count === 0) return; // zone content not built yet
       const [lo, hi] = zone.levelRange;
       const needed = xpNeeded(lo, hi);
-      const available = budget.xp + budget.killXp;
+      // The level 16 to 20 zones overlap on purpose (wyndlewood-game-plan-progression.md,
+      // section 3): a player finishes that band across several of them, so the band is
+      // budgeted as one pool at the 10%-of-bar quest pacing.
+      const pool = lo >= 16 ? ZONES.filter((z) => z.levelRange[0] >= 16) : [zone];
+      const available = pool.map(questsForZone).reduce((sum, b) => sum + b.xp + b.killXp, 0);
       const headroom = available / needed;
       expect(
         headroom,

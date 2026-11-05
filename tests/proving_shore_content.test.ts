@@ -24,6 +24,7 @@ import {
 } from '../src/sim/content/proving_shore';
 import { ITEMS, ZONES } from '../src/sim/data';
 import { FERRY_BELL_TOWN_LANDING } from '../src/sim/interactions/ferry_bell';
+import { questBaseXp } from '../src/sim/quests/quest_xp';
 import { mobXpValue, xpForLevel } from '../src/sim/types';
 import { groundHeight, provingLandness, terrainSteepnessAt, WATER_LEVEL } from '../src/sim/world';
 import { WORLD_SEED } from '../src/sim/world_seed';
@@ -240,7 +241,7 @@ describe('proving shore placement', () => {
     const toLevel3 = xpForLevel(1) + xpForLevel(2);
     const toLevel4 = toLevel3 + xpForLevel(3);
     const questXp = PROVING_SHORE_QUEST_ORDER.reduce(
-      (sum, id) => sum + PROVING_SHORE_QUESTS[id].xpReward,
+      (sum, id) => sum + questBaseXp(PROVING_SHORE_QUESTS[id]),
       0,
     );
     const forcedKills = PROVING_SHORE_QUESTS.q_ps_strike_true.objectives[0].count ?? 0;
@@ -254,7 +255,7 @@ describe('proving shore placement', () => {
       (forcedKills + forcedCrabs) * mobXpValue(1, 2) + forcedBoss * mobXpValue(2, 2);
     const maxKillXp =
       forcedKills * mobXpValue(1, 1) + (forcedCrabs + forcedBoss) * mobXpValue(2, 1);
-    const sailXp = PROVING_SHORE_QUESTS.q_ps_set_sail.xpReward;
+    const sailXp = questBaseXp(PROVING_SHORE_QUESTS.q_ps_set_sail);
     expect(questXp + minKillXp).toBeGreaterThanOrEqual(toLevel3);
     expect(questXp - sailXp + maxKillXp).toBeLessThan(toLevel3);
     expect(questXp).toBeLessThan(toLevel4);

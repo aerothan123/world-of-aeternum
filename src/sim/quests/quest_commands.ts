@@ -62,6 +62,7 @@ import {
 import { playerHoldsQuestItem } from './quest_item_presence';
 import { grantQuestRecipeReward, validateQuestRecipeReward } from './quest_recipe_rewards';
 import { defaultRewardChoice, questFixedReward, resolveRewardChoice } from './quest_reward_choice';
+import { questRewardXp } from './quest_xp';
 import { weeklyLockedQuestIds, weeklyQuestLockoutId } from './weekly_quest_lock';
 
 // Pure quest-state computation, shared by the sim and the network client. Relocated
@@ -542,7 +543,9 @@ export function turnInQuestCore(
   const chosen = rewardChoice ?? defaultRewardChoice(quest, meta.cls, meta.talents.spec);
   if (chosen) grantFreshLoot(ctx, chosen, 1, meta.entityId, rewardOpts);
   grantQuestRecipeReward(ctx, quest, meta);
-  ctx.grantXp(quest.xpReward, meta);
+  // Level-formula XP with the classic out-level reduction (quests/quest_xp.ts).
+  const turnInLevel = ctx.entities.get(meta.entityId)?.level ?? 1;
+  ctx.grantXp(questRewardXp(quest, turnInLevel), meta);
   // Arm the repeat-cadence window (work orders): the quest stays
   // unavailable (computeQuestState) until now + repeatCadenceTicks, server-
   // authoritative and persisted per character with zero-default omission.
