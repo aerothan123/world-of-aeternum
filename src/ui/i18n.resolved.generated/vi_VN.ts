@@ -2872,6 +2872,8 @@ export const vi_VN: EnTranslations = {
       "alwaysShowAllBuffs": "Luôn Hiện Mọi Buff",
       "showAuraCaster": "Hiển Thị Người Thi Triển Hào Quang Trong Chú Thích",
       "highContrastBackground": "Nền Tương Phản Cao",
+      "shareAnalytics": "Share Usage and Performance Data",
+      "shareAnalyticsNote": "Off unless you turn it on. Sends coarse play counters and performance reports to Wyndlewood only, never to other companies.",
       "startAttackOnAbility": "Tự Đánh Khi Dùng Kỹ Năng",
       "stopAutoAttackOnTargetSwitch": "Dừng Tự Đánh Khi Đổi Mục Tiêu",
       "walkByAutoloot": "Tự Nhặt Đồ Khi Đi Ngang",
@@ -15811,6 +15813,26 @@ export const vi_VN: EnTranslations = {
     "ultraDesc": "Cấu hình cố định có hình ảnh phong phú nhất. Phù hợp với card đồ họa cao cấp.",
     "changeLater": "Bạn có thể thay đổi bất cứ lúc nào trong Tùy Chọn, ở mục Chất Lượng Đồ Họa.",
     "confirm": "Tiếp Tục"
+  },
+  "legalPrompt": {
+    "title": "End User License Agreement",
+    "body": "Before you play, please read and accept the Wyndlewood End User License Agreement. It works together with the Terms of Service and the Privacy Policy.",
+    "earlyAccess": "Wyndlewood is in Early Access: features, balance, and content will change, and progress may be reset once at full launch as announced on the store page.",
+    "eulaLink": "End User License Agreement",
+    "termsLink": "Terms of Service",
+    "privacyLink": "Privacy Policy",
+    "version": "Agreement version {version}",
+    "accept": "I Accept",
+    "decline": "Decline"
+  },
+  "analyticsPrompt": {
+    "title": "Help Improve Wyndlewood",
+    "body": "May Wyndlewood collect usage and performance data? If you agree, the game sends coarse counters (sessions, play time in five-minute steps, a rough frame rate) and periodic performance reports about your device and frame times to our own servers.",
+    "noThirdParty": "Nothing is sent to advertising or analytics companies, and nothing is sent at all unless you choose Share.",
+    "privacyLink": "Read the Privacy Policy",
+    "changeLater": "You can change this any time in Options.",
+    "share": "Share",
+    "decline": "Do Not Share"
   },
   "serverUnavailable": {
     "title": "World of ClaudeCraft - Thế Giới Không Khả Dụng",

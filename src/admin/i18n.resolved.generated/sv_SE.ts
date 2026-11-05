@@ -12,7 +12,7 @@
 import type { AdminTranslations } from '../i18n.en';
 
 export const sv_SE: AdminTranslations = {
-  "app.title": "Project H - Admin",
+  "app.title": "Wyndlewood - Admin",
   "app.shortTitle": "WoC-admin",
   "auth.username": "Användarnamn",
   "auth.password": "Lösenord",

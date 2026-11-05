@@ -113,6 +113,9 @@ const REGISTRY_ONLY_PATHS = new Set<string>([
   '/api/world-quests/leaderboard',
   '/api/reliquary/rarity',
   '/api/deeds/broadcasts',
+  '/api/eula',
+  '/api/eula/accept',
+  '/api/telemetry',
   '/api/discord/queue-pings',
   '/api/characters/:id/deeds-recent',
   '/api/characters/:id/appearance-reroll',
@@ -312,6 +315,10 @@ describe('registry completeness: migrated baseline (public reads + auth + charac
     { method: 'GET', path: '/api/world-quests/leaderboard' },
     { method: 'GET', path: '/api/deeds/broadcasts' },
     { method: 'POST', path: '/api/deeds/broadcasts' },
+    // The EULA record and the opt-in analytics ingest: registry-only, new routes.
+    { method: 'GET', path: '/api/eula' },
+    { method: 'POST', path: '/api/eula/accept' },
+    { method: 'POST', path: '/api/telemetry' },
     // The queue-pop Discord DM opt-in toggle (server/discord_queue_pings.ts):
     // registry-only on the deeds broadcasts shape.
     { method: 'GET', path: '/api/discord/queue-pings' },

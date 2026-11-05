@@ -2872,6 +2872,8 @@ export const zh_CN: EnTranslations = {
       "alwaysShowAllBuffs": "始终显示所有增益",
       "showAuraCaster": "在提示中显示光环施放者",
       "highContrastBackground": "高对比度背景",
+      "shareAnalytics": "分享使用和性能数据",
+      "shareAnalyticsNote": "默认关闭，需要你主动开启。只会向 Wyndlewood 发送粗略的游戏计数和性能报告，绝不发送给其他公司。",
       "startAttackOnAbility": "使用技能时自动攻击",
       "stopAutoAttackOnTargetSwitch": "切换目标时停止自动攻击",
       "walkByAutoloot": "路过自动拾取",
@@ -15811,6 +15813,26 @@ export const zh_CN: EnTranslations = {
     "ultraDesc": "画面最丰富的固定预设。适合高端显卡。",
     "changeLater": "你可以随时在选项的“图形质量”中更改此设置。",
     "confirm": "继续"
+  },
+  "legalPrompt": {
+    "title": "最终用户许可协议",
+    "body": "开始游戏前，请阅读并接受 Wyndlewood 最终用户许可协议。该协议与服务条款和隐私政策共同适用。",
+    "earlyAccess": "Wyndlewood 正处于抢先体验阶段：功能、平衡和内容都会变化，正式发售时进度可能按商店页面的公告重置一次。",
+    "eulaLink": "最终用户许可协议",
+    "termsLink": "服务条款",
+    "privacyLink": "隐私政策",
+    "version": "协议版本 {version}",
+    "accept": "我接受",
+    "decline": "拒绝"
+  },
+  "analyticsPrompt": {
+    "title": "帮助改进 Wyndlewood",
+    "body": "Wyndlewood 可以收集使用和性能数据吗？如果你同意，游戏会向我们自己的服务器发送粗略计数（会话次数、以五分钟为单位的游戏时长、大致帧率）以及关于你的设备和帧时间的定期性能报告。",
+    "noThirdParty": "不会向任何广告或分析公司发送数据；除非你选择分享，否则不会发送任何内容。",
+    "privacyLink": "阅读隐私政策",
+    "changeLater": "你可以随时在选项中更改此设置。",
+    "share": "分享",
+    "decline": "不分享"
   },
   "serverUnavailable": {
     "title": "World of ClaudeCraft - 服务器不可用",

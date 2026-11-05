@@ -95,10 +95,10 @@ describe('releaseFeedUrl', () => {
     );
   });
 
-  it('refuses to self-host the production origin without an explicit feed URL', () => {
-    expect(() => releaseFeedUrl({ origin: 'https://worldofclaudecraft.com' })).toThrow(
-      /--feed-url/,
-    );
+  it('treats the former upstream production origin as an ordinary self-hosted origin', () => {
+    // Wyndlewood has no provisioned production origin (electron/brand.cjs), so no
+    // origin is refused here; the official-feed refusal re-arms once one is set.
+    expect(() => releaseFeedUrl({ origin: 'https://worldofclaudecraft.com' })).not.toThrow();
   });
 });
 

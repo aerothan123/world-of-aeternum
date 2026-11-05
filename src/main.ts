@@ -1,4 +1,4 @@
-import { GAME_NAME } from './brand';
+import { DESKTOP_DEEP_LINK_SCHEME, GAME_NAME } from './brand';
 import { applyFrameGeometrySetting } from './game/frame_geometry_settings';
 import { createSubscriptionStoreHooks, storeSnapshotForHud } from './net/subscription_sdk';
 import { captureReferralSlug } from './referral_signup';
@@ -178,7 +178,6 @@ import {
   resetLoadProfile,
   summarizeLoadProfile,
 } from './game/load_profiler';
-import { trackCommunityLinkClicks, trackMetaPixel } from './game/meta_pixel';
 import {
   interfaceModeFromSetting,
   isPhoneTouchDevice,
@@ -584,6 +583,7 @@ import {
 } from './ui/two_factor_setup';
 import { UiEffectsApplier } from './ui/ui_effects_applier';
 import { hydrateIcons } from './ui/ui_icons';
+import { runWorldEntryLegalSteps } from './ui/world_entry_legal';
 import { type IWorld, ONLINE_WORLD_INCOMPATIBLE_MESSAGE } from './world_api';
 
 const CLICK_MOVE_WAYPOINT_STOP = 0.8; // yards; intermediate A* corners should roll through, not stutter-stop
@@ -1082,6 +1082,7 @@ async function prepareWorldEntry(): Promise<boolean> {
   } else {
     requestPreferredFullscreen();
   }
+  if (!(await runWorldEntryLegalSteps(api.token))) return false;
   await promptGraphicsChoiceOnFirstLogin();
   syncAppViewport();
   window.setTimeout(syncAppViewport, 250);
@@ -1929,7 +1930,6 @@ async function startGame(
     onMenu: () => hud.toggleOptionsMenu(),
     onSocial: () => hud.toggleSocial(),
     onDiscord: () => openDiscordEntry(),
-    onDonate: () => window.open(DONATE_URL, '_blank', 'noopener,noreferrer'),
     onWiki: () => hud.openWiki(),
     onEmotes: () => hud.toggleEmoteWheel(),
     onArena: () => hud.toggleArena(),
@@ -5598,7 +5598,7 @@ async function completeDesktopBrowserLogin(): Promise<boolean> {
   try {
     const { code } = await api.createDesktopLoginCode();
     if (!code) throw new Error('missing desktop login code');
-    location.href = `worldofclaudecraft://desktop-login?code=${encodeURIComponent(code)}`;
+    location.href = `${DESKTOP_DEEP_LINK_SCHEME}://desktop-login?code=${encodeURIComponent(code)}`;
   } catch (err) {
     loginError(userFacingApiError(err));
     show('#login-panel');
@@ -6878,15 +6878,6 @@ function updateSeoMetadata(lang: SupportedLanguage): void {
 
   const jsonLd = document.getElementById('structured-data') as HTMLScriptElement | null;
   if (jsonLd) {
-    const sameAs = [
-      'https://github.com/levy-street/world-of-claudecraft',
-      'https://discord.com/invite/worldofclaudecraft',
-      'https://www.youtube.com/@WoClaudeCraft',
-      'https://x.com/WoClaudecraft',
-      'https://www.instagram.com/worldofclaudecraft/',
-      'https://www.tiktok.com/@worldofclaudecraft',
-      'https://www.reddit.com/r/WorldofClaudecraft/',
-    ];
     jsonLd.textContent = JSON.stringify(
       {
         '@context': 'https://schema.org',
@@ -6895,7 +6886,6 @@ function updateSeoMetadata(lang: SupportedLanguage): void {
             '@type': 'WebSite',
             '@id': 'https://worldofclaudecraft.com/#website',
             name: GAME_NAME,
-            alternateName: 'World of Claudecraft',
             url: canonicalHref,
             inLanguage: languageTag(lang),
             description: t('seo.description'),
@@ -6906,16 +6896,14 @@ function updateSeoMetadata(lang: SupportedLanguage): void {
           {
             '@type': 'Organization',
             '@id': 'https://worldofclaudecraft.com/#organization',
-            name: 'World of ClaudeCraft',
+            name: GAME_NAME,
             url: 'https://worldofclaudecraft.com/',
             logo: 'https://worldofclaudecraft.com/woc_logo_square.webp',
-            sameAs,
           },
           {
             '@type': 'VideoGame',
             '@id': 'https://worldofclaudecraft.com/#game',
             name: GAME_NAME,
-            alternateName: 'World of Claudecraft',
             genre: t('seo.genre'),
             playMode: t('seo.playMode'),
             applicationCategory: t('seo.applicationCategory'),
@@ -6927,7 +6915,6 @@ function updateSeoMetadata(lang: SupportedLanguage): void {
             publisher: {
               '@id': 'https://worldofclaudecraft.com/#organization',
             },
-            sameAs,
           },
         ],
       },
@@ -7131,11 +7118,6 @@ function wireHomepageMusicToggle(): void {
 // ── Discord login/onboarding ─────────────────────────────────────────────────
 // Discord UI is available on web and native unless explicitly disabled at build time.
 const DISCORD_BUILD_ENABLED = String(import.meta.env.VITE_DISCORD_DISABLED ?? '').trim() !== '1';
-// Community links for the mobile More tray. discordInviteUrl() itself now
-// falls back to DEFAULT_DISCORD_INVITE_URL (discord_status.ts) when the
-// server-fed value is not known yet (logged out, offline), so every caller
-// gets the fail-open behavior for free.
-const DONATE_URL = 'https://ko-fi.com/worldofclaudecraft';
 
 // The OAuth flow itself (web popup, native handoff, and the in-game link-error
 // notice a failed relink now surfaces) lives in src/net/discord_oauth_flow.ts;
@@ -7804,7 +7786,7 @@ function wireStartScreens(): Promise<void> {
     // in place (doAuth -> api.login) without ever leaving the app. Only "Continue with
     // Discord" bounces to the external browser (wired below), because its OAuth redirect
     // would be blocked by the shell's in-app navigation guard; it returns a one-time code
-    // via the worldofclaudecraft://desktop-login deep link (onLoginCode ->
+    // via the wyndlewood://desktop-login deep link (onLoginCode ->
     // completeDesktopAppLogin).
     show('#login-panel');
   };
@@ -8190,7 +8172,7 @@ function wireStartScreens(): Promise<void> {
         const email = ($('#login-email') as unknown as HTMLInputElement).value.trim();
         const optIn =
           ($('#login-marketing') as unknown as HTMLInputElement | null)?.checked === true;
-        const registered = await api.register(
+        await api.register(
           username,
           password,
           email,
@@ -8202,11 +8184,6 @@ function wireStartScreens(): Promise<void> {
             marketingOptIn: optIn,
             locale: getLanguage(),
           },
-        );
-        trackMetaPixel(
-          'AccountCreated',
-          {},
-          registered.accountId ? { eventID: `acct_${registered.accountId}` } : undefined,
         );
       }
     } catch (err) {
@@ -8808,7 +8785,6 @@ function wireStartScreens(): Promise<void> {
     void renderAccountPortal();
   });
   setupNavBtn($('#nav-btn-logout'), '#hero-view', logoutAccount);
-  trackCommunityLinkClicks();
   setupAccountPortal();
   let showExternalAuthChoice: ((choice: ExternalAuthLoginChoice) => void) | null = null;
   // "Continue with Discord": first-class login at the top of the auth form.

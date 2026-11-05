@@ -2872,6 +2872,8 @@ export const zh_TW: EnTranslations = {
       "alwaysShowAllBuffs": "始終顯示所有增益",
       "showAuraCaster": "在提示中顯示光環施放者",
       "highContrastBackground": "高對比度背景",
+      "shareAnalytics": "分享使用與效能資料",
+      "shareAnalyticsNote": "預設關閉，需要你主動開啟。只會向 Wyndlewood 傳送粗略的遊玩計數與效能報告，絕不傳送給其他公司。",
       "startAttackOnAbility": "使用技能時自動攻擊",
       "stopAutoAttackOnTargetSwitch": "切換目標時停止自動攻擊",
       "walkByAutoloot": "路過自動拾取",
@@ -15811,6 +15813,26 @@ export const zh_TW: EnTranslations = {
     "ultraDesc": "畫面最豐富的固定預設。適合高階顯示卡。",
     "changeLater": "你可以隨時在選項的「圖形品質」中變更此設定。",
     "confirm": "繼續"
+  },
+  "legalPrompt": {
+    "title": "終端使用者授權協議",
+    "body": "開始遊戲前，請閱讀並接受 Wyndlewood 終端使用者授權協議。此協議與服務條款及隱私權政策共同適用。",
+    "earlyAccess": "Wyndlewood 正處於搶先體驗階段：功能、平衡與內容都會變動，正式發售時進度可能依商店頁面的公告重置一次。",
+    "eulaLink": "終端使用者授權協議",
+    "termsLink": "服務條款",
+    "privacyLink": "隱私權政策",
+    "version": "協議版本 {version}",
+    "accept": "我接受",
+    "decline": "拒絕"
+  },
+  "analyticsPrompt": {
+    "title": "協助改進 Wyndlewood",
+    "body": "Wyndlewood 可以收集使用與效能資料嗎？若你同意，遊戲會向我們自己的伺服器傳送粗略計數（工作階段次數、以五分鐘為單位的遊玩時間、大致影格率）以及關於你的裝置與影格時間的定期效能報告。",
+    "noThirdParty": "不會向任何廣告或分析公司傳送資料；除非你選擇分享，否則不會傳送任何內容。",
+    "privacyLink": "閱讀隱私權政策",
+    "changeLater": "你可以隨時在選項中變更此設定。",
+    "share": "分享",
+    "decline": "不分享"
   },
   "serverUnavailable": {
     "title": "World of ClaudeCraft - 世界不可用",

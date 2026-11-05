@@ -510,7 +510,7 @@ export const hudChromeStrings = {
   // (confirm-first so a mid-fight tap never opens the browser by accident).
   wiki: {
     confirmTitle: 'Open the Wiki?',
-    confirmBody: 'This opens the Project H wiki in your browser. The game keeps running.',
+    confirmBody: 'This opens the Wyndlewood wiki in your browser. The game keeps running.',
     confirmOpen: 'Open Wiki',
     confirmCancel: 'Cancel',
   },
@@ -944,9 +944,9 @@ export const hudChromeStrings = {
         paused: 'Paused',
       },
     },
-    title: 'WOC Store',
-    close: 'Close WOC Store',
-    tabsLabel: 'WOC Store sections',
+    title: 'Wyndlewood Store',
+    close: 'Close Wyndlewood Store',
+    tabsLabel: 'Wyndlewood Store sections',
     storeTab: 'Cosmetic Store',
     membershipsTab: 'Memberships',
     membershipsUnavailable: 'Memberships are unavailable right now. Try again shortly.',
@@ -964,8 +964,8 @@ export const hudChromeStrings = {
     mountOnly: 'Mount only',
     mountBuy: 'Purchase Mount Skin',
     mountScopeLine: 'Account-wide skin. Worn by one character at a time.',
-    loading: 'Loading WOC Store...',
-    error: 'The WOC Store is unavailable right now. Please try again shortly.',
+    loading: 'Loading Wyndlewood Store...',
+    error: 'The Wyndlewood Store is unavailable right now. Please try again shortly.',
     balance: 'Claudium Balance',
     buyClaudium: 'Purchase Claudium',
     owned: 'Owned',
@@ -986,9 +986,9 @@ export const hudChromeStrings = {
     wallet: {
       title: 'Solana wallet',
       unlinked:
-        'Connect a wallet app, then sign once to link its public address to your Project H account. We never receive your recovery phrase or private key.',
+        'Connect a wallet app, then sign once to link its public address to your Wyndlewood account. We never receive your recovery phrase or private key.',
       connectedUnlinked:
-        'The wallet app is connected to this browser, but its public address is not linked to your Project H account yet.',
+        'The wallet app is connected to this browser, but its public address is not linked to your Wyndlewood account yet.',
       linkedDisconnected:
         'Your public address is linked. Reconnect that wallet app when you want to pay with SOL or WOC.',
       linkedConnected: 'Your linked wallet app is connected and ready for SOL or WOC purchases.',
@@ -1006,7 +1006,7 @@ export const hudChromeStrings = {
     // The rotating promo card above chat (src/ui/store_promo_card.ts). The
     // Refer a Friend advert takes its title from the referralCards namespace.
     membershipPromo: {
-      open: 'Membership in the WOC Store',
+      open: 'Membership in the Wyndlewood Store',
       close: 'Close membership promotion',
       eyebrow: 'Account perks',
       title: 'Membership',
@@ -1842,9 +1842,9 @@ export const hudChromeStrings = {
   },
   nativeUpdate: {
     title: 'Update Available',
-    body: 'A new version of Project H is available. Update now for the latest fixes and improvements.',
+    body: 'A new version of Wyndlewood is available. Update now for the latest fixes and improvements.',
     bodyWithVersion:
-      'Version {version} of Project H is available. Update now for the latest fixes and improvements.',
+      'Version {version} of Wyndlewood is available. Update now for the latest fixes and improvements.',
     notNow: 'Not now',
     update: 'Update',
   },
@@ -3107,6 +3107,9 @@ export const hudChromeStrings = {
     // default (wordy, M16: the five non-Latin fills land in this same change).
     showAuraCaster: 'Show Aura Caster in Tooltips',
     highContrastBackground: 'High-Contrast Background',
+    shareAnalytics: 'Share Usage and Performance Data',
+    shareAnalyticsNote:
+      'Off unless you turn it on. Sends coarse play counters and performance reports to Wyndlewood only, never to other companies.',
     // Interface panel toggle: also engage auto-attack when using an offensive
     // ability, so white swings start without a separate Attack press (on by default).
     startAttackOnAbility: 'Auto-Attack on Ability Use',
@@ -3487,8 +3490,8 @@ export const hudChromeStrings = {
       offline: 'Offline',
     },
     diagnostics: {
-      panelAria: 'Project H performance diagnostics',
-      title: 'Project H Performance Doctor',
+      panelAria: 'Wyndlewood performance diagnostics',
+      title: 'Wyndlewood Performance Doctor',
       subtitle: 'A game-specific scan with evidence and code-level fixes.',
       aria: {
         liveMeasurements: 'Live performance measurements',
@@ -3655,7 +3658,7 @@ export const hudChromeStrings = {
         },
       },
       report: {
-        title: 'Project H performance diagnosis',
+        title: 'Wyndlewood performance diagnosis',
         statusLine: 'Status: {status} ({score}/100)',
         capturedLine: 'Captured: {captured}',
         topFindingLine: 'Top finding: {finding}',
@@ -7170,7 +7173,7 @@ export const hudChromeStrings = {
   },
   discord: {
     title: 'Discord',
-    panelTitle: 'Project H',
+    panelTitle: 'Wyndlewood',
     open: 'Discord',
     close: 'Close',
     keybind: 'Discord Panel',
@@ -7395,7 +7398,7 @@ export const hudChromeStrings = {
     // that does not contain the visible text fails WCAG 2.5.3 (Label in Name)
     // for speech input, and the mobile pill's short caption is inside it too.
     wishlist: 'Wishlist on Steam',
-    wishlistAria: 'Wishlist on Steam: open the Project H store page',
+    wishlistAria: 'Wishlist on Steam: open the Wyndlewood store page',
     // The mobile More-tray caption: a 4-column 40px pill cannot hold the full
     // label, so the pill shows this and carries `wishlistAria` as its name.
     wishlistShort: 'Wishlist',
@@ -8655,7 +8658,7 @@ export const hudChromeStrings = {
     enchanting: 'Enchanting',
     tailoring: 'Tailoring',
     leatherworking: 'Leatherworking',
-    // The secondary Furnishing craft (Project H housing phase 2, SECONDARY_CRAFTS).
+    // The secondary Furnishing craft (Wyndlewood housing phase 2, SECONDARY_CRAFTS).
     furnishing: 'Furnishing',
   },
   // Per-enchant display names (Professions 2.0), keyed by the same
@@ -10494,7 +10497,7 @@ export const hudChromeStrings = {
     // sim.rift.raceWorldWin), and the reins come off the CLEAR, not one boss.
     sourceRift: 'Drops from {rank}-rank Rift clears',
     sourceQuest: 'Reward from the quest {quest}',
-    sourceStore: 'Purchased from the WOC Store',
+    sourceStore: 'Purchased from the Wyndlewood Store',
     // Award activities: the player action itself is the source, with no mob,
     // vendor, or quest in between.
     sourceActivityCorpseHarvest: 'Recovered while harvesting creature corpses',
@@ -10865,7 +10868,7 @@ export const hudChromeStrings = {
     tabActivity: 'My Activities',
     // The Sales History tab: every completed sale on the realm, newest first.
     tabHistory: 'Sales History',
-    // The tab strip's own accessible name (the store's 'WOC Store sections'
+    // The tab strip's own accessible name (the store's 'Wyndlewood Store sections'
     // precedent), never the window title twice.
     tabsLabel: '$WOC Exchange sections',
     loading: 'Loading the Exchange...',
@@ -10878,7 +10881,7 @@ export const hudChromeStrings = {
     // launcher unexplained. Never shown on Capacitor native.
     browserOnlyConfirmTitle: 'Open the $WOC Exchange in your browser?',
     browserOnlyConfirmBody:
-      'The $WOC Exchange runs on the browser version of Project H only. This opens Project H in your browser, where you can sign in and open the Exchange; the game keeps running here.',
+      'The $WOC Exchange runs on the browser version of Wyndlewood only. This opens Wyndlewood in your browser, where you can sign in and open the Exchange; the game keeps running here.',
     browserOnlyConfirmOpen: 'Open in Browser',
     browserOnlyConfirmCancel: 'Cancel',
     // Names no cause (an operator pause and an unhealthy price print both
@@ -11343,7 +11346,7 @@ export const hudChromeStrings = {
     progress: '{label}: {count}/{required}',
     done: 'Weekly quest complete: {category}',
   },
-  // Player housing (Project H, src/ui/hud/housing/). {house} is the lot's
+  // Player housing (Wyndlewood, src/ui/hud/housing/). {house} is the lot's
   // localized house name, {price} a formatMoney amount.
   housing: {
     // The door prompt a non-owner gets on walking into a lot's front door.

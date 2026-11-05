@@ -463,7 +463,6 @@ function installMobileControlDom(): {
   emoteButton: FakeElement;
   mountButton: FakeElement;
   discordButton: FakeElement;
-  donateButton: FakeElement;
   wikiButton: FakeElement;
   chatButton: FakeElement;
   barEditorButton: FakeElement;
@@ -491,7 +490,6 @@ function installMobileControlDom(): {
     ['mobile-emote', new FakeElement()],
     ['mobile-mounts', new FakeElement()],
     ['mobile-discord', new FakeElement()],
-    ['mobile-donate', new FakeElement()],
     ['mobile-wiki', new FakeElement()],
     ['mobile-chat', new FakeElement()],
     ['mobile-bar-editor', new FakeElement()],
@@ -533,7 +531,6 @@ function installMobileControlDom(): {
     emoteButton: elements.get('mobile-emote')!,
     mountButton: elements.get('mobile-mounts')!,
     discordButton: elements.get('mobile-discord')!,
-    donateButton: elements.get('mobile-donate')!,
     wikiButton: elements.get('mobile-wiki')!,
     chatButton: elements.get('mobile-chat')!,
     barEditorButton: elements.get('mobile-bar-editor')!,
@@ -567,7 +564,6 @@ function mobileCallbacks() {
     onMenu: noop,
     onSocial: noop,
     onDiscord: noop,
-    onDonate: noop,
     onWiki: noop,
     onEmotes: noop,
     onArena: noop,
@@ -1333,29 +1329,6 @@ describe('MobileControls pointer lifecycle', () => {
     discordButton.dispatchEvent(new Event('click', { bubbles: true, cancelable: true }));
 
     expect(discord).toBe(1);
-  });
-
-  it('fires the Donate callback when the on-screen Donate button is tapped', () => {
-    const { donateButton } = installMobileControlDom();
-    const input = {
-      setTouchMove: () => {},
-      clearTouchMove: () => {},
-      setTouchLook: () => {},
-      setTouchLookVector: () => {},
-    } as unknown as Input;
-
-    let donate = 0;
-    const callbacks = {
-      ...mobileCallbacks(),
-      onDonate: () => {
-        donate += 1;
-      },
-    };
-    new MobileControls(input, callbacks).start();
-
-    donateButton.dispatchEvent(new Event('click', { bubbles: true, cancelable: true }));
-
-    expect(donate).toBe(1);
   });
 
   it('fires the Wiki callback when the More-tray Wiki button is tapped', () => {

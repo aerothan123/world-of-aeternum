@@ -128,8 +128,6 @@ export interface MobileControlCallbacks {
   onSocial(): void;
   /** Open the Discord entry (account panel when available, else the community invite). */
   onDiscord(): void;
-  /** Open the project donation page (external link). */
-  onDonate(): void;
   /** Open the public wiki (confirm-first external link, src/ui/wiki_link.ts). */
   onWiki(): void;
   onEmotes(): void;
@@ -527,7 +525,6 @@ export class MobileControls {
     this.bindButton('mobile-menu-spellbook', () => this.callbacks.onSpellbook());
     this.menuControl = buildMobileMenuControl();
     this.bindButton('mobile-discord', () => this.callbacks.onDiscord());
-    this.bindButton('mobile-donate', () => this.callbacks.onDonate());
     this.bindButton('mobile-wiki', () => this.callbacks.onWiki());
     this.bindButton('mobile-emote', () => this.callbacks.onEmotes());
     this.bindButton('mobile-arena', () => this.callbacks.onArena());

@@ -7,7 +7,6 @@ import type { GamepadKind } from '../game/gamepad_map';
 import type { GraphicsSettingsSnapshot } from '../game/graphics_rebuild_core';
 import { InstanceMusicController, type InstanceMusicDecision } from '../game/instance_music';
 import { bindActionLabel, type Keybinds, keyCapLabel } from '../game/keybinds';
-import { trackMetaPixel } from '../game/meta_pixel';
 import { syncMinigameMusic } from '../game/minigame_music_sync';
 import { music } from '../game/music';
 import { runPetCommand } from '../game/pet_commands';
@@ -11138,14 +11137,6 @@ export class Hud {
             // missed; stacking this on top of the corrected catalog gain was
             // clipping (+3.4dBTP effective).
             sfx.playUi('quest_ready');
-          }
-          if (ev.level === 5) {
-            const characterId = (this.sim as unknown as { characterId?: number }).characterId;
-            trackMetaPixel(
-              'ReachedLevel5',
-              { level: ev.level },
-              characterId ? { eventID: `lvl5_${characterId}` } : undefined,
-            );
           }
           // First talent point (and spec) unlock — nudge the player to the panel.
           if (ev.level === FIRST_TALENT_LEVEL && talentsFor(this.sim.cfg.playerClass)) {

@@ -3970,7 +3970,7 @@ const ITEM_ENTITY_IDS = [
   'thatchgrin_patch_pumpkin',
   'cursed_candle_stub',
   'gourdlight_crow_feather',
-  // Player housing (Project H) phase 2: the crafted furniture
+  // Player housing (Wyndlewood) phase 2: the crafted furniture
   // (content/furniture.ts FURNITURE_ITEMS), resolved BY KEY from
   // APPENDED_ITEM_NAMES; the five non-Latin fills ride the overlays (M16).
   'furn_wooden_chair',
@@ -4001,7 +4001,7 @@ type ItemEntityTranslation = { name: string };
 type ItemEntityTranslations = Record<ItemEntityId, ItemEntityTranslation>;
 
 const APPENDED_ITEM_NAMES: Partial<Record<ItemEntityId, string>> = {
-  // Player housing (Project H) phase 2 furniture (content/furniture.ts).
+  // Player housing (Wyndlewood) phase 2 furniture (content/furniture.ts).
   furn_wooden_chair: 'Wooden Chair',
   furn_wooden_stool: 'Wooden Stool',
   furn_oak_bench: 'Oak Bench',

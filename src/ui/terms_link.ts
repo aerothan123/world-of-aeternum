@@ -14,7 +14,12 @@
 // DOM-free (registered in tests/architecture.test.ts UI_PURE_CORES): the
 // painters hand in the page origin, this module never reads the host.
 
-import { CANONICAL_PRIVACY_URL, CANONICAL_TERMS_URL, NATIVE_APP } from '../client_origin';
+import {
+  CANONICAL_EULA_URL,
+  CANONICAL_PRIVACY_URL,
+  CANONICAL_TERMS_URL,
+  NATIVE_APP,
+} from '../client_origin';
 
 export interface TermsUrlEnv {
   /** True in the Capacitor native app (its WebView origin is not the site). */
@@ -53,4 +58,19 @@ export function resolvePrivacyUrl(env: TermsUrlEnv): string {
 
 export function privacyUrlFor(origin: string): string {
   return resolvePrivacyUrl({ nativeApp: NATIVE_APP, origin });
+}
+
+/** The same-origin path the site serves for the End User License Agreement
+ *  (server/static_fallback.ts and vite.config.ts alias '/eula' to eula.html). */
+export const EULA_PATH = '/eula';
+
+/** Same-origin '/eula' whenever the client is served by the site itself;
+ *  the canonical URL otherwise. */
+export function resolveEulaUrl(env: TermsUrlEnv): string {
+  if (!env.nativeApp && /^https?:\/\//.test(env.origin)) return EULA_PATH;
+  return CANONICAL_EULA_URL;
+}
+
+export function eulaUrlFor(origin: string): string {
+  return resolveEulaUrl({ nativeApp: NATIVE_APP, origin });
 }

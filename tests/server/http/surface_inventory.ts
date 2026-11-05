@@ -1063,6 +1063,40 @@ export const SURFACE_INVENTORY: readonly SurfaceRoute[] = [
     limiter: null,
     requireOwnedExpected: null,
   },
+  // The per-account EULA acceptance record (server/eula.ts): the deeds
+  // broadcasts pair's shape (read-tier GET, full-scope POST). Registry-only.
+  {
+    dispatcher: DISPATCH.mainApi,
+    method: 'GET',
+    path: '/api/eula',
+    handler: 'server/eula.ts eulaStatusHandler (registry-only RouteDef)',
+    contentType: PROBLEM_JSON,
+    authScope: AUTH_SCOPE.bearer,
+    limiter: null,
+    requireOwnedExpected: null,
+  },
+  {
+    dispatcher: DISPATCH.mainApi,
+    method: 'POST',
+    path: '/api/eula/accept',
+    handler: 'server/eula.ts eulaAcceptHandler (registry-only RouteDef)',
+    contentType: PROBLEM_JSON,
+    authScope: AUTH_SCOPE.full,
+    limiter: null,
+    requireOwnedExpected: null,
+  },
+  // The opt-in first-party analytics ingest (server/client_analytics.ts):
+  // anonymous, in-handler per-IP public budget, the deeds rarity shape.
+  {
+    dispatcher: DISPATCH.mainApi,
+    method: 'POST',
+    path: '/api/telemetry',
+    handler: 'server/client_analytics.ts telemetryHandler (registry-only RouteDef)',
+    contentType: PROBLEM_JSON,
+    authScope: AUTH_SCOPE.public,
+    limiter: 'publicReadRateLimited',
+    requireOwnedExpected: null,
+  },
   // The queue-pop Discord DM opt-in toggle (server/discord_queue_pings.ts):
   // the deeds broadcasts pair's shape exactly (read-tier GET, full-scope POST).
   {

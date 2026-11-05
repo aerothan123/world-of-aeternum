@@ -76,6 +76,7 @@ import { cancelDetachedBackend } from './db_backend_cancel';
 import { dbConnectionBudgetWarning } from './db_connection_budget';
 import type { RankedDeedsAccount } from './deeds_board';
 import { DEEDS_SCHEMA } from './deeds_db';
+import { ACCOUNT_EULA_SCHEMA } from './eula_db';
 import { DISCORD_SCHEMA } from './discord_db';
 import { enqueueLinkChange } from './discord_link_changes';
 import { bustDiscordStatus } from './discord_status_cache';
@@ -1336,13 +1337,12 @@ export async function ensureSchema(): Promise<void> {
     // enabled, like the other schema modules.
     await client.query(DISCORD_SCHEMA);
     await client.query(APPLE_AUTH_SCHEMA);
-    // GitHub link tables (links + oauth states) for the developer badge.
-    // FK-references accounts(id), so it runs after SCHEMA. Applied unconditionally
-    // (idempotent), like the Discord tables.
+    // GitHub link tables (developer badge) and the per-account EULA record
+    // (server/eula_db.ts): both FK accounts(id), so after SCHEMA; idempotent.
     await client.query(GITHUB_SCHEMA);
+    await client.query(ACCOUNT_EULA_SCHEMA);
     await client.query(GENERAL_CHAT_QUOTA_SCHEMA);
-    // The in-game /watch staff watchlist (server/staff_watchlist_db.ts).
-    // FK-references accounts(id), so it runs after SCHEMA.
+    // The /watch staff watchlist (server/staff_watchlist_db.ts); FK accounts(id).
     await client.query(STAFF_WATCHLIST_SCHEMA);
     // Tier-2 global rate-limit backstop table (pg-backed fixed-window counters,
     // one row per (policy, key)) for the multi-realm deployment. Applied

@@ -806,6 +806,17 @@ export const BOOL_SETTINGS = {
   // (loadedBoolDefault), so a returning player is never stopped to re-pick a preset they
   // already play on. reset() returns it to false, so Reset to Defaults asks again.
   graphicsPromptAnswered: { def: false },
+  // off by default, and it must stay off: the opt-in for Wyndlewood's first-party
+  // analytics (coarse session and performance counters, src/analytics_events.ts) and
+  // the periodic performance report (src/game/perf_reporter.ts). Nothing is sent
+  // unless the player turned this on, in the first-launch consent prompt
+  // (src/ui/analytics_consent_prompt.ts) or in Options. See
+  // src/game/analytics_consent.ts and docs/legal/privacy-policy.md.
+  shareAnalytics: { def: false },
+  // internal, never shown in the options UI: set true once the player has answered the
+  // analytics consent prompt, so it asks at most once per install. reset() returns it to
+  // false (and shareAnalytics to off), so Reset to Defaults asks again.
+  analyticsPromptAnswered: { def: false },
 } as const;
 
 export type NumericSettingKey = keyof typeof SETTING_RANGES;
