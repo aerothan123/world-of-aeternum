@@ -17491,6 +17491,7 @@ export const nl_NL: EnTranslations = {
       "levelClass": "Niveau {level} {className}"
     },
     "vendor": {
+      "apprenticeRiding": "Apprentice Riding Training",
       "basicRiding": "Rijtraining",
       "advancedRiding": "Gevorderde rijtraining",
       "ridingSpeed": "Verhoogt je bewegingssnelheid tijdens het rijden met {speed}%. Geldt voor elk rijdier.",

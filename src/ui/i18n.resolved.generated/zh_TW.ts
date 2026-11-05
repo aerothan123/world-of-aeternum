@@ -17491,6 +17491,7 @@ export const zh_TW: EnTranslations = {
       "levelClass": "{level} 級 {className}"
     },
     "vendor": {
+      "apprenticeRiding": "Apprentice Riding Training",
       "basicRiding": "騎術訓練",
       "advancedRiding": "進階騎術訓練",
       "ridingSpeed": "騎乘時的移動速度提高{speed}%。適用於所有坐騎。",

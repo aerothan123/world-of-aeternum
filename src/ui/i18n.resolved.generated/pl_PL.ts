@@ -17491,6 +17491,7 @@ export const pl_PL: EnTranslations = {
       "levelClass": "Poziom {level}, {className}"
     },
     "vendor": {
+      "apprenticeRiding": "Apprentice Riding Training",
       "basicRiding": "Trening Jeździecki",
       "advancedRiding": "Zaawansowany trening jeździecki",
       "ridingSpeed": "Zwiększa szybkość ruchu na wierzchowcu o {speed}%. Dotyczy każdego wierzchowca.",

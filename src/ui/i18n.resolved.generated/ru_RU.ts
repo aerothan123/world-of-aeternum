@@ -17491,6 +17491,7 @@ export const ru_RU: EnTranslations = {
       "levelClass": "Уровень {level} {className}"
     },
     "vendor": {
+      "apprenticeRiding": "Apprentice Riding Training",
       "basicRiding": "Обучение верховой езде",
       "advancedRiding": "Продвинутое обучение верховой езде",
       "ridingSpeed": "Повышает скорость передвижения верхом на {speed}%. Действует для всех ездовых обликов.",

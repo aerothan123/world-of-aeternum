@@ -17491,6 +17491,7 @@ export const tr_TR: EnTranslations = {
       "levelClass": "{level}. seviye {className}"
     },
     "vendor": {
+      "apprenticeRiding": "Apprentice Riding Training",
       "basicRiding": "Binicilik Eğitimi",
       "advancedRiding": "İleri Binicilik Eğitimi",
       "ridingSpeed": "Binekteyken hareket hızını {speed}% artırır. Tüm binekler için geçerlidir.",

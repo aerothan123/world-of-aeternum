@@ -17491,6 +17491,7 @@ export const da_DK: EnTranslations = {
       "levelClass": "Niveau {level} {className}"
     },
     "vendor": {
+      "apprenticeRiding": "Apprentice Riding Training",
       "basicRiding": "Ridetræning",
       "advancedRiding": "Avanceret ridetræning",
       "ridingSpeed": "Øger din bevægelseshastighed til hest med {speed}%. Gælder alle ridedyr.",

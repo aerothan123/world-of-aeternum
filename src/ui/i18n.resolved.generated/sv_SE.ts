@@ -17491,6 +17491,7 @@ export const sv_SE: EnTranslations = {
       "levelClass": "Nivå {level} {className}"
     },
     "vendor": {
+      "apprenticeRiding": "Apprentice Riding Training",
       "basicRiding": "Ridträning",
       "advancedRiding": "Avancerad ridträning",
       "ridingSpeed": "Ökar din rörelsehastighet till häst med {speed}%. Gäller alla riddjur.",

@@ -17491,6 +17491,7 @@ export const vi_VN: EnTranslations = {
       "levelClass": "{className} cấp {level}"
     },
     "vendor": {
+      "apprenticeRiding": "Apprentice Riding Training",
       "basicRiding": "Huấn Luyện Cưỡi",
       "advancedRiding": "Huấn Luyện Cưỡi Nâng Cao",
       "ridingSpeed": "Tăng tốc độ di chuyển khi cưỡi thêm {speed}%. Áp dụng cho mọi thú cưỡi.",

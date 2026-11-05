@@ -19525,6 +19525,7 @@ export type TranslationKeyFlat =
   | 'itemUi.tooltip.wellFed'
   | 'itemUi.tooltip.wellFedAura'
   | 'itemUi.vendor.advancedRiding'
+  | 'itemUi.vendor.apprenticeRiding'
   | 'itemUi.vendor.basicRiding'
   | 'itemUi.vendor.buyAria'
   | 'itemUi.vendor.buyAriaWithRequirement'

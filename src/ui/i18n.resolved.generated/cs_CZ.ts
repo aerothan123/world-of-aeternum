@@ -17491,6 +17491,7 @@ export const cs_CZ: EnTranslations = {
       "levelClass": "Úroveň {level} {className}"
     },
     "vendor": {
+      "apprenticeRiding": "Apprentice Riding Training",
       "basicRiding": "Jezdecký výcvik",
       "advancedRiding": "Pokročilý jezdecký výcvik",
       "ridingSpeed": "Zvyšuje rychlost pohybu při jízdě o {speed}%. Platí pro všechna jízdní zvířata.",

@@ -17491,6 +17491,7 @@ export const ja_JP: EnTranslations = {
       "levelClass": "レベル{level} {className}"
     },
     "vendor": {
+      "apprenticeRiding": "Apprentice Riding Training",
       "basicRiding": "騎乗訓練",
       "advancedRiding": "上級騎乗訓練",
       "ridingSpeed": "騎乗中の移動速度が{speed}%上昇します。すべてのマウントに適用されます。",

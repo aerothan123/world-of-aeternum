@@ -17491,6 +17491,7 @@ export const id_ID: EnTranslations = {
       "levelClass": "{className} Level {level}"
     },
     "vendor": {
+      "apprenticeRiding": "Apprentice Riding Training",
       "basicRiding": "Pelatihan Berkuda",
       "advancedRiding": "Pelatihan Berkuda Lanjutan",
       "ridingSpeed": "Meningkatkan kecepatan gerak saat menunggang sebesar {speed}%. Berlaku untuk semua tunggangan.",

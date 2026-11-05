@@ -17491,6 +17491,7 @@ export const pt_BR: EnTranslations = {
       "levelClass": "Nível {level} {className}"
     },
     "vendor": {
+      "apprenticeRiding": "Apprentice Riding Training",
       "basicRiding": "Treinamento de Equitação",
       "advancedRiding": "Treinamento avançado de Equitação",
       "ridingSpeed": "Aumenta sua velocidade de movimento montado em {speed}%. Aplica-se a todas as montarias.",

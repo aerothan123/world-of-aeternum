@@ -17491,6 +17491,7 @@ export const ko_KR: EnTranslations = {
       "levelClass": "{level}레벨 {className}"
     },
     "vendor": {
+      "apprenticeRiding": "Apprentice Riding Training",
       "basicRiding": "기본 기승 훈련",
       "advancedRiding": "고급 기승 훈련",
       "ridingSpeed": "탈것에 탄 동안 이동 속도가 {speed}% 증가합니다. 모든 탈것에 적용됩니다.",

@@ -17491,6 +17491,7 @@ export const en_XA: EnTranslations = {
       "levelClass": "[Ļéʋéļ {level} {className}]"
     },
     "vendor": {
+      "apprenticeRiding": "[Áþþŕéñţíçé Ŕíðíñĝ Ţŕáíñíñĝ]",
       "basicRiding": "[Ŕíðíñĝ Ţŕáíñíñĝ]",
       "advancedRiding": "[Áðʋáñçéð Ŕíðíñĝ Ţŕáíñíñĝ]",
       "ridingSpeed": "[Íñçŕéášé ýóúŕ ɱóʋéɱéñţ šþééð ŵĥíļé ɱóúñţéð ƀý {speed}%. Áþþļíéš ţó éʋéŕý ɱóúñţ.]",
