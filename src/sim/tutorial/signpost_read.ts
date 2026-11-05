@@ -13,8 +13,9 @@
 // no DOM/render/ui/game/net imports, no Math.random/Date.now
 // (tests/architecture.test.ts).
 
+import { C1_BOARD_READ_EVENT, EASTBROOK_BOARD_ID } from '../content/chapter_one';
 import { QUESTS } from '../data';
-import { emitQuestProgress } from '../quests/quest_credit';
+import { emitQuestProgress, onQuestEventForQuests } from '../quests/quest_credit';
 import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
 
@@ -33,6 +34,9 @@ export function creditSignpostRead(
   meta: PlayerMeta,
   noticeboardDefId: string,
 ): void {
+  // Wyndlewood Chapter One's "inspect the Eastbrook quest board" (quest 08).
+  if (noticeboardDefId === EASTBROOK_BOARD_ID)
+    onQuestEventForQuests(ctx, meta, C1_BOARD_READ_EVENT);
   if (noticeboardDefId !== SIGNPOST_NOTICEBOARD_ID) return;
   const qp = meta.questLog.get(SIGNPOST_QUEST_ID);
   if (!qp || qp.state !== 'active') return;

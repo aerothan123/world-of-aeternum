@@ -18,6 +18,7 @@ import type {
   ZoneDef,
   ZonePropsDef,
 } from '../types';
+import { OATHLESS_KING_TITLE, PALE_ACCORD_NAME } from './wyndlewood_lore';
 
 export const TOWN_RADIUS = 26;
 export const GRAVEYARD_POS = { ...EASTBROOK_LAYOUT.services.graveyard.legacyReleasePoint };
@@ -204,10 +205,10 @@ export const ZONE1_ZONE: ZoneDef = {
     // keys, so a mid-list insert renumbers every later landmark's translation.
     { x: -101, z: -54, label: 'Eastbrook Docks', id: 'eastbrook_docks' },
   ],
-  welcome: 'Find Marshal Redbrook in town - he has work for you.',
+  welcome: 'Find Warden Corren in town - he has work for you.',
   welcomeQuestId: 'q_wolves',
   welcomeDone:
-    'Marshal Redbrook has no more work for you - the quaint seaside town where your journey began rests easier for it.',
+    'Warden Corren has no more work for you - the quaint seaside town where your journey began rests easier for it.',
 };
 
 // ---------------------------------------------------------------------------
@@ -720,8 +721,9 @@ export const ZONE1_NPCS: Record<string, NpcDef> = {
   },
   marshal_redbrook: {
     id: 'marshal_redbrook',
-    name: 'Marshal Redbrook',
-    title: 'Town Marshal',
+    // Warden Corren Stoutvale (wyndlewood_bible.md section 10); id frozen.
+    name: 'Warden Corren Stoutvale',
+    title: 'Lanternwarden Commander',
     pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.marshal_redbrook.position },
     facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.marshal_redbrook.facing,
     color: 0xb7950b,
@@ -730,7 +732,8 @@ export const ZONE1_NPCS: Record<string, NpcDef> = {
   },
   trader_wilkes: {
     id: 'trader_wilkes',
-    name: 'Trader Wilkes',
+    // Silven Brackett, the Gilt Measure's man in Eastbrook; id frozen.
+    name: 'Silven Brackett',
     title: 'Provisioner',
     pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.trader_wilkes.position },
     facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.trader_wilkes.facing,
@@ -750,7 +753,7 @@ export const ZONE1_NPCS: Record<string, NpcDef> = {
       // tier-2 or tier-3 land tool opens nothing here; the marsh and the peaks
       // sell the rungs their own veins need, and this counter used to be the
       // one place in the world that sold the whole ladder at the front door.
-      // The tiered rods stay, and Wilkes is now the one counter carrying the
+      // The tiered rods stay, and Silven is now the one counter carrying the
       // WHOLE rod ladder rather than the only one carrying any of it: each
       // zone's water has a required rod tier of its own now
       // (professions/fishing_zones.ts), so the marsh and the peaks stock the
@@ -769,7 +772,8 @@ export const ZONE1_NPCS: Record<string, NpcDef> = {
   },
   apothecary_lin: {
     id: 'apothecary_lin',
-    name: 'Apothecary Lin',
+    // Ivara Fenmoss, Bracken Circle guardian; id frozen.
+    name: 'Ivara Fenmoss',
     title: 'Herbalist',
     pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.apothecary_lin.position },
     facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.apothecary_lin.facing,
@@ -895,7 +899,8 @@ export const ZONE1_NPCS: Record<string, NpcDef> = {
   // guard-safe camp margin (pinned in tests/professions_station_placement.test.ts).
   forgemistress_darva: {
     id: 'forgemistress_darva',
-    name: 'Forgemistress Darva',
+    // Brunna Flintmorrow; id frozen.
+    name: 'Brunna Flintmorrow',
     title: 'Master of the Forge',
     pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.forgemistress_darva.position },
     facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.forgemistress_darva.facing,
@@ -1227,7 +1232,7 @@ export const ZONE1_QUESTS: Record<string, QuestDef> = {
     name: 'The Restless Dead',
     giverNpcId: 'brother_aldric',
     turnInNpcId: 'brother_aldric',
-    text: 'The old ruin on the northwest hill was a chapel once, and its yard a resting place. Something has stirred the dead from their sleep. Put them down and bring me a skull from each you lay to rest, $N, eight in all, so I may speak the rites over them and grant the peace they were denied.',
+    text: 'The old ruin on the northwest hill was a chapel once, and its yard a resting place. Something has stirred the dead from their sleep, the Gravestirred, as the old folk call them. Put them down and bring me a skull from each you lay to rest, $N, eight in all, so I may speak the rites over them and grant the peace they were denied.',
     completionText: 'May they rest now, and may the Light forgive whatever woke them.',
     objectives: [
       {
@@ -1263,8 +1268,7 @@ export const ZONE1_QUESTS: Record<string, QuestDef> = {
     giverNpcId: 'brother_aldric',
     turnInNpcId: 'brother_aldric',
     text: 'You have laid the dead to rest, but they will not stay resting: something calls them back. Search the chapel ruin for any trace of the one doing the calling. If you find a sigil or seal, bring it to me untouched.',
-    completionText:
-      'This sigil... it bears the mark of the Gravecallers, a sect I had prayed was extinct. This is worse than I feared, $N.',
+    completionText: `This sigil... it bears the mark of the Gravecallers, a cell of ${PALE_ACCORD_NAME}, the order that still keeps faith with Vauldren Sere, whom the old verses name ${OATHLESS_KING_TITLE}. I had prayed they were gone. This is worse than I feared, $N.`,
     objectives: [
       { type: 'collect', itemId: 'gravecaller_sigil', count: 1, label: "Gravecaller's Sigil" },
     ],
@@ -1374,9 +1378,8 @@ export const ZONE1_QUESTS: Record<string, QuestDef> = {
     name: "The Gravecaller's Trail",
     giverNpcId: 'brother_aldric',
     turnInNpcId: 'brother_aldric',
-    text: 'Morthen is dead, yet a question gnaws at me: a sect that hid for a century does not spend itself on one village chapel. He kept a grimoire: his rites, his correspondence. If anything of it survives, it lies in the vestry of the ruined chapel above the crypt. Search the ruin and bring me whatever remains of his writings, $N.',
-    completionText:
-      "Morthen wrote to a 'Fogbinder' in the northern fen. The sect is not dead, $N. It has merely been patient.",
+    text: 'Morthen is dead, yet a question gnaws at me: an order that hid for a century does not spend itself on one village chapel. He kept a grimoire: his rites, his correspondence. If anything of it survives, it lies in the vestry of the ruined chapel above the crypt. Search the ruin and bring me whatever remains of his writings, $N.',
+    completionText: `Morthen wrote to a 'Fogbinder' in the northern fen. ${PALE_ACCORD_NAME.charAt(0).toUpperCase()}${PALE_ACCORD_NAME.slice(1)} is not dead, $N. It has merely been patient.`,
     objectives: [
       { type: 'collect', itemId: 'morthen_grimoire', count: 1, label: "Morthen's Grimoire" },
     ],

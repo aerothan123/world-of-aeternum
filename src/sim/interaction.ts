@@ -65,6 +65,7 @@ import { isMusterRack, useMusterRack } from './mirefen_muster';
 import { startCorpseHarvest } from './professions/corpse_harvest_session';
 import { storeLootedSkulls } from './pvp/skull_bag';
 import { isQuestGatedGroundObjectHidden } from './quest_gated_entity';
+import { questUseItemNeed } from './quests/quest_object_use';
 import { corpseHasDecayed } from './respawn_policy';
 import { isRiftForgeNpc } from './rift/forge_gate';
 import type { SimContext } from './sim_context';
@@ -478,7 +479,10 @@ export function pickUpObject(
     const objIdx = quest.objectives.findIndex(
       (o) => o.type === 'collect' && o.itemId === objectItemId,
     );
-    if (objIdx < 0) {
+    // A used item (quests/quest_object_use.ts) has no collect objective: the
+    // pickup allows exactly what the quest's pending uses still need.
+    const useNeed = objIdx < 0 ? questUseItemNeed(def.questId, qp, objectItemId) : 0;
+    if (objIdx < 0 && ctx.countItem(objectItemId, meta.entityId) >= useNeed) {
       ctx.error(meta.entityId, def.pickupEnough ?? `${def.name} offers nothing more.`);
       return false;
     }

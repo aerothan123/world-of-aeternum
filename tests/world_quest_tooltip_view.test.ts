@@ -58,8 +58,8 @@ describe('world quest tooltip model', () => {
     const quest = WORLD_QUESTS_BY_ID.wq_eastbrook_bandits;
     const model = tooltip(quest, { progress: 2 });
     expect(model.title).toBe('Eastbrook Vale: Load freight into the wagon');
-    expect(model.factionId).toBe('church_order');
-    expect(model.factionName).toBe('Church Order');
+    expect(model.factionId).toBe('lanternwardens');
+    expect(model.factionName).toBe('Lanternwardens');
     expect(model.timeRemaining).toBe('10 hours');
     expect(model.objective).toEqual({
       label: 'Load freight into the wagon',
@@ -83,35 +83,35 @@ describe('world quest tooltip model', () => {
     const [standing, currency, , xp] = model.rewards;
     expect(standing).toMatchObject({
       kind: 'standing',
-      factionId: 'church_order',
-      amount: 80,
-      text: '80 Church Order',
+      factionId: 'lanternwardens',
+      amount: 100,
+      text: '100 Lanternwardens',
       iconUrl: '/ui/currency/church_order_crest.webp',
     });
     expect(currency).toMatchObject({
       kind: 'currency',
       currencyId: 'church_order_crest',
       amount: 10,
-      text: '10 Order Crest',
+      text: '10 Lantern Crest',
       iconUrl: '/ui/currency/church_order_crest.webp',
     });
     expect(xp).toEqual({ kind: 'xp', amount: 2784, text: '2,784 experience' });
   });
 
-  it('uses each faction its own art (Rift Watch and Automatons)', () => {
+  it('uses each faction its own art (Gilt Measure and Hearthwright Compact)', () => {
     const rift = tooltip(WORLD_QUESTS_BY_ID.wq_farshore_salvage);
     expect(rift.rewards[0]).toMatchObject({
       kind: 'standing',
-      text: '80 Rift Watch',
+      text: '133 Gilt Measure',
       iconUrl: '/ui/currency/rift_watch_mark.webp',
     });
-    expect(rift.rewards[1]).toMatchObject({ text: '10 Rift Watch Mark' });
+    expect(rift.rewards[1]).toMatchObject({ text: '10 Gilt Mark' });
     const auto = tooltip(WORLD_QUESTS_BY_ID.wq_drakelands_brood);
     expect(auto.rewards[0]).toMatchObject({
-      text: '100 Automatons',
+      text: '133 Hearthwright Compact',
       iconUrl: '/ui/currency/automaton_cog.webp',
     });
-    expect(auto.rewards[1]).toMatchObject({ text: '10 Automaton Cog' });
+    expect(auto.rewards[1]).toMatchObject({ text: '10 Hearthwright Cog' });
   });
 
   it('splits a copper reward into gold, silver and copper parts', () => {
@@ -177,13 +177,13 @@ describe('world quest tooltip html', () => {
     expect(html).toContain(
       '<div class="tt-title">Eastbrook Vale: Load freight into the wagon</div>',
     );
-    expect(html).toContain('<div class="wq-tt-faction">Church Order</div>');
+    expect(html).toContain('<div class="wq-tt-faction">Lanternwardens</div>');
     expect(html).toContain('<span class="wq-tt-label">Time remaining:</span><span>10 hours</span>');
     expect(html).toContain('<div class="wq-tt-rewards-head">Rewards</div>');
     expect(html).toContain('src="/ui/currency/church_order_crest.webp"');
     expect(html).toContain('<span class="wq-tt-crest">');
-    expect(html).toContain('80 Church Order');
-    expect(html).toContain('10 Order Crest');
+    expect(html).toContain('100 Lanternwardens');
+    expect(html).toContain('10 Lantern Crest');
     expect(html).toContain('wq-tt-xp-orb');
     expect(html).toContain('2,784 experience');
   });
@@ -246,13 +246,13 @@ describe('world quest tooltip html', () => {
 
   it('localizes the plain faction and reward texts instead of hard-coded English', async () => {
     const quest = WORLD_QUESTS_BY_ID.wq_eastbrook_bandits;
-    expect(worldQuestFactionLine(quest)).toBe('Faction: Church Order');
-    expect(worldQuestStandingRewardText(quest, 20)).toBe('+80 Church Order standing');
-    expect(worldQuestFactionCurrencyRewardText(quest, 20)).toBe('+10 Order Crest');
+    expect(worldQuestFactionLine(quest)).toBe('Faction: Lanternwardens');
+    expect(worldQuestStandingRewardText(quest, 20)).toBe('+100 Lanternwardens standing');
+    expect(worldQuestFactionCurrencyRewardText(quest, 20)).toBe('+10 Lantern Crest');
     await ensureLocaleLoaded('es');
     setLanguage('es');
     expect(worldQuestFactionLine(quest)).toMatch(/^Facción: /);
-    expect(worldQuestStandingRewardText(quest, 20)).toMatch(/^\+80 de reputación con /);
+    expect(worldQuestStandingRewardText(quest, 20)).toMatch(/^\+100 de reputación con /);
     expect(worldQuestStandingRewardText(quest, 20)).not.toContain('Standing');
   });
 });

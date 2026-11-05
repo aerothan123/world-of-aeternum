@@ -11,76 +11,86 @@ import {
   computeFactionTierUps,
 } from '../src/ui/hud/reputation/faction_tier_celebration_view';
 
-const zero = { rift_watch: 0, church_order: 0, automatons: 0 };
+const zero = { gilt_measure: 0, lanternwardens: 0, hearthwright_compact: 0, bracken_circle: 0 };
 
 describe('computeFactionTierUps', () => {
   it('is silent on the first observation and on a plain gain inside a tier', () => {
-    expect(computeFactionTierUps(null, { ...zero, rift_watch: 5_000 })).toEqual([]);
+    expect(computeFactionTierUps(null, { ...zero, gilt_measure: 5_000 })).toEqual([]);
     expect(
-      computeFactionTierUps({ ...zero, rift_watch: 100 }, { ...zero, rift_watch: 900 }),
+      computeFactionTierUps({ ...zero, gilt_measure: 100 }, { ...zero, gilt_measure: 900 }),
     ).toEqual([]);
   });
 
   it('reports each faction that crossed a tier, once, in faction order, with the tier reached', () => {
     const ups = computeFactionTierUps(
-      { ...zero, rift_watch: 980, automatons: 2_990 },
+      { ...zero, gilt_measure: 980, hearthwright_compact: 2_990 },
       {
-        rift_watch: STANDING_THRESHOLDS.recognized,
-        church_order: 0,
+        gilt_measure: STANDING_THRESHOLDS.recognized,
+        lanternwardens: 0,
         // A jump over two tiers reports only the tier reached.
-        automatons: STANDING_THRESHOLDS.vanguard,
+        hearthwright_compact: STANDING_THRESHOLDS.vanguard,
+        bracken_circle: 0,
       },
     );
     expect(ups).toEqual([
-      { factionId: 'rift_watch', fromTier: 'unknown', toTier: 'recognized' },
-      { factionId: 'automatons', fromTier: 'recognized', toTier: 'vanguard' },
+      { factionId: 'gilt_measure', fromTier: 'unknown', toTier: 'recognized' },
+      { factionId: 'hearthwright_compact', fromTier: 'recognized', toTier: 'vanguard' },
     ]);
   });
 
   it('never reports a drop (a sanitized or reset mirror is not a celebration)', () => {
     expect(
-      computeFactionTierUps({ ...zero, rift_watch: 7_000 }, { ...zero, rift_watch: 0 }),
+      computeFactionTierUps({ ...zero, gilt_measure: 7_000 }, { ...zero, gilt_measure: 0 }),
     ).toEqual([]);
   });
 
   it('treats a missing faction key as zero standing', () => {
-    expect(computeFactionTierUps({}, { rift_watch: 1_000 })).toEqual([
-      { factionId: 'rift_watch', fromTier: 'unknown', toTier: 'recognized' },
+    expect(computeFactionTierUps({}, { gilt_measure: 1_000 })).toEqual([
+      { factionId: 'gilt_measure', fromTier: 'unknown', toTier: 'recognized' },
     ]);
   });
 });
 
 describe('advanceFactionTierObservation', () => {
   it('does nothing before the mirror is synced, then baselines silently', () => {
-    const unsynced = advanceFactionTierObservation(false, null, { ...zero, rift_watch: 3_000 });
+    const unsynced = advanceFactionTierObservation(false, null, { ...zero, gilt_measure: 3_000 });
     expect(unsynced.tierUps).toEqual([]);
     expect(unsynced.prev).toBeNull();
-    const first = advanceFactionTierObservation(true, null, { ...zero, rift_watch: 3_000 });
+    const first = advanceFactionTierObservation(true, null, { ...zero, gilt_measure: 3_000 });
     expect(first.tierUps).toEqual([]);
-    expect(first.prev).toEqual({ rift_watch: 3_000, church_order: 0, automatons: 0 });
+    expect(first.prev).toEqual({
+      gilt_measure: 3_000,
+      lanternwardens: 0,
+      hearthwright_compact: 0,
+      bracken_circle: 0,
+    });
   });
 
   it('diffs against the baseline and advances it in place', () => {
-    const baseline = { ...zero, church_order: 2_990 };
+    const baseline = { ...zero, lanternwardens: 2_990 };
     const obs = advanceFactionTierObservation(true, baseline, {
       ...zero,
-      church_order: STANDING_THRESHOLDS.trusted,
+      lanternwardens: STANDING_THRESHOLDS.trusted,
     });
     expect(obs.tierUps).toEqual([
-      { factionId: 'church_order', fromTier: 'recognized', toTier: 'trusted' },
+      { factionId: 'lanternwardens', fromTier: 'recognized', toTier: 'trusted' },
     ]);
     expect(obs.prev).toBe(baseline);
-    expect(baseline.church_order).toBe(STANDING_THRESHOLDS.trusted);
+    expect(baseline.lanternwardens).toBe(STANDING_THRESHOLDS.trusted);
     // The next drain sees no change.
     expect(
-      advanceFactionTierObservation(true, baseline, { ...zero, church_order: 3_000 }).tierUps,
+      advanceFactionTierObservation(true, baseline, { ...zero, lanternwardens: 3_000 }).tierUps,
     ).toEqual([]);
   });
 });
 
 describe('buildFactionTierCelebrationPlan', () => {
-  const up = { factionId: 'rift_watch', fromTier: 'trusted', toTier: 'proven' } as const;
-  const later = { factionId: 'automatons', fromTier: 'unknown', toTier: 'recognized' } as const;
+  const up = { factionId: 'gilt_measure', fromTier: 'trusted', toTier: 'proven' } as const;
+  const later = {
+    factionId: 'hearthwright_compact',
+    fromTier: 'unknown',
+    toTier: 'recognized',
+  } as const;
 
   it('logs every crossing and plates the last one, chiming once', () => {
     const plan = buildFactionTierCelebrationPlan([up, later], false, false);

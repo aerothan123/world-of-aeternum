@@ -29618,9 +29618,10 @@ function tRaidExtra(key: RaidExtraKey, params?: InterpolationValues): string {
 // factionCurrencyName's English (src/sim/factions.ts) -> the currency labels the
 // Currencies tab already renders, for the faction quartermaster refusal.
 const FACTION_CURRENCY_LABEL_KEYS: Record<string, TranslationKey> = {
-  'Rift Watch Mark': 'hudChrome.currencies.riftWatchMark',
-  'Order Crest': 'hudChrome.currencies.churchOrderCrest',
-  'Automaton Cog': 'hudChrome.currencies.automatonCog',
+  'Lantern Crest': 'hudChrome.currencies.lanternCrest',
+  'Hearthwright Cog': 'hudChrome.currencies.hearthwrightCog',
+  'Bracken Acorn': 'hudChrome.currencies.brackenAcorn',
+  'Gilt Mark': 'hudChrome.currencies.giltMark',
 };
 
 // The /gear readout's English slot labels -> the already-translated itemUi.slots.*

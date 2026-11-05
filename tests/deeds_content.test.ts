@@ -154,8 +154,10 @@ describe('audited launch totals (literals: update deliberately with the catalog)
     // + Lantern Hall (the Highwatch guild): three contract milestones (5, 10, 25) and the
     // quartermaster's three zero-Renown title feats: 352, 3850.
     // + tree chopping's first felling (prog_first_felling, renown 5): 370, 4015.
-    expect(DEED_ORDER.length).toBe(370);
-    expect(ALL.reduce((sum, d) => sum + d.renown, 0)).toBe(4015);
+    // + the Bracken Circle's standing pair (Wyndlewood, 5 + 25): 372, 4045.
+    // + Chapter One's chronicle (chr_shore_that_remembers, 10): 373, 4055.
+    expect(DEED_ORDER.length).toBe(373);
+    expect(ALL.reduce((sum, d) => sum + d.renown, 0)).toBe(4055);
   });
 
   it('ships the audited per-category counts', () => {
@@ -175,8 +177,9 @@ describe('audited launch totals (literals: update deliberately with the catalog)
       // +7 the faction standing ladder (a Trusted and a Champion deed per
       // allied faction plus the all-factions meta), then
       // +1 the sixth lifetime-XP rung (prog_titan), then
-      // +1 tree chopping's first felling (prog_first_felling).
-      progression: 77,
+      // +1 tree chopping's first felling (prog_first_felling), then
+      // +2 the Bracken Circle's Trusted and Champion pair (Wyndlewood).
+      progression: 79,
       // +1 the Buried Hoard goblin catch (cmb_coinsack_caught).
       // +2 the Mirefen world boss pair, +1 the muster's pike drill.
       combat: 14,
@@ -193,7 +196,8 @@ describe('audited launch totals (literals: update deliberately with the catalog)
       dungeon: 63,
       delve: 13,
       // +4 farming first-harvest chronicles (chr_*_first_harvest).
-      chronicle: 53,
+      // +1 Wyndlewood Chapter One's closing chronicle.
+      chronicle: 54,
       // +4 Reliquary Curator rank bridges and +5 Phase 18 completion ladder
       // deeds on top of the release collection set, +1 col_golden_harvest,
       // +1 the Roots Bramblehide set collection (col_set_bramblehide) the
@@ -497,6 +501,11 @@ describe('audited launch totals (literals: update deliberately with the catalog)
       'feat_gourdlight_eve_complete',
       // Tree chopping's first felling (docs/design/tree-chopping.md).
       'prog_first_felling',
+      // The Bracken Circle's standing pair (Wyndlewood's fourth allied faction).
+      'prog_bracken_circle_trusted',
+      'prog_bracken_circle_champion',
+      // Wyndlewood Chapter One's closing chronicle.
+      'chr_shore_that_remembers',
     ]);
     expect(DEEDS.dgn_wildheart_basin.renown).toBe(10);
     expect(DEEDS.dgn_wildheart_basin_heroic.renown).toBe(10);
@@ -894,8 +903,9 @@ describe('audited launch totals (literals: update deliberately with the catalog)
     // faction standing Champion titles (Riftwarden, Dawnkeeper, Forgemaster)
     // three more, and the Clue Scroll tenth-casket title (Treasure Hunter)
     // one more, and the Drowned Temple lore guide's Witness of the Choir
-    // (dgn_drowned_temple_cantor) one more, and Lantern Hall's quartermaster three more.
-    expect(titles.length).toBe(66);
+    // (dgn_drowned_temple_cantor) one more, and Lantern Hall's quartermaster three more,
+    // and the Bracken Circle's Champion title (Circle Elder) one more.
+    expect(titles.length).toBe(67);
     expect(borders.length).toBe(4);
     // Titles and border slugs are unique (one deed per cosmetic).
     const titleTexts = titles.map((d) => (d.reward as { text: string }).text);
@@ -1143,7 +1153,8 @@ describe('frozen trigger + renown catalog (design rule 9: never retro-edit a tri
   // 33 deeds. Stripping them reproduces the release's frozen digest below.
   // Main's frozen catalog is preserved as the prefix; Halloween appends ten feats.
   // Tree chopping appends prog_first_felling (renown 5) at the tail: re-minted.
-  const FROZEN_CATALOG_SHA256 = '01e74f5e5bd8fc4cf7b0cfef5cfcf0408cf962dc0a16ae062690a5d35096c7bf';
+  // Wyndlewood appends the Bracken Circle's standing pair at the tail: re-minted.
+  const FROZEN_CATALOG_SHA256 = '77568a4c762544b6bfccf5873d2b426cd9d1fc46e2478118c3b31b85046a4f48';
 
   it('every shipped deed keeps its trigger and renown unchanged', () => {
     const canonical = JSON.stringify(
@@ -1228,9 +1239,18 @@ describe('frozen trigger + renown catalog (design rule 9: never retro-edit a tri
   // Tree chopping appends prog_first_felling after Gourdlight Eve's checklist;
   // the previous mint is the Gourdlight catalog's 6209fd36... literal (rotated
   // down here), and stripping the one id must reproduce it exactly.
+  //
+  // Wyndlewood appends the Bracken Circle's Trusted and Champion deeds and
+  // Chapter One's chronicle after prog_first_felling; the previous mint is tree chopping's 01e74f5e...
+  // literal (rotated down here), and stripping the three reproduces it exactly
+  // (the three shipped faction ladders kept their triggers, design rule 9).
   const PRE_APPEND_CATALOG_SHA256 =
-    '6209fd36c03fe4f3d6c8a4ba2966d04b4ba0ba2c21128b82db589c50e24697b2';
-  const APPENDED_SINCE: readonly string[] = ['prog_first_felling'];
+    '01e74f5e5bd8fc4cf7b0cfef5cfcf0408cf962dc0a16ae062690a5d35096c7bf';
+  const APPENDED_SINCE: readonly string[] = [
+    'prog_bracken_circle_trusted',
+    'prog_bracken_circle_champion',
+    'chr_shore_that_remembers',
+  ];
 
   it('the catalog minus the ids appended since the previous mint reproduces the previous digest', () => {
     const appended = new Set(APPENDED_SINCE);
@@ -1241,8 +1261,8 @@ describe('frozen trigger + renown catalog (design rule 9: never retro-edit a tri
     // the ferry round trip. Pin the two predecessors too: an append into a known seat,
     // never a scattered insert or a retro-edit (the digest below proves it).
     expect(DEED_ORDER.slice(-2 - APPENDED_SINCE.length)).toEqual([
-      'feat_gourdlight_frights',
       'feat_gourdlight_eve_complete',
+      'prog_first_felling',
       ...APPENDED_SINCE,
     ]);
     const priorRows = DEED_ORDER.filter((id) => !appended.has(id)).map((id) => {
@@ -1474,13 +1494,17 @@ describe('table shape', () => {
     // five-dungeon rework's 24, Morthen's Every Candle Lit, then Lantern Hall's six, the
     // quartermaster's third title last.
     // Tree chopping's first felling appends last, one seat behind everything.
-    expect(DEED_ORDER[DEED_ORDER.length - 52]).toBe('exp_harbor_to_harbor');
-    expect(DEED_ORDER[DEED_ORDER.length - 43]).toBe('cmb_balgath_ten');
-    expect(DEED_ORDER[DEED_ORDER.length - 42]).toBe('cmb_point_taken');
-    expect(DEED_ORDER[DEED_ORDER.length - 18]).toBe('dgn_morthen_candlelight');
-    expect(DEED_ORDER[DEED_ORDER.length - 12]).toBe('feat_guild_of_lantern_hall');
-    expect(DEED_ORDER.at(-2)).toBe('feat_gourdlight_eve_complete');
-    expect(DEED_ORDER.at(-1)).toBe('prog_first_felling');
+    // Then Wyndlewood's three (the Bracken Circle pair, Chapter One's chronicle).
+    expect(DEED_ORDER[DEED_ORDER.length - 55]).toBe('exp_harbor_to_harbor');
+    expect(DEED_ORDER[DEED_ORDER.length - 46]).toBe('cmb_balgath_ten');
+    expect(DEED_ORDER[DEED_ORDER.length - 45]).toBe('cmb_point_taken');
+    expect(DEED_ORDER[DEED_ORDER.length - 21]).toBe('dgn_morthen_candlelight');
+    expect(DEED_ORDER[DEED_ORDER.length - 15]).toBe('feat_guild_of_lantern_hall');
+    expect(DEED_ORDER.at(-5)).toBe('feat_gourdlight_eve_complete');
+    expect(DEED_ORDER.at(-4)).toBe('prog_first_felling');
+    expect(DEED_ORDER.at(-3)).toBe('prog_bracken_circle_trusted');
+    expect(DEED_ORDER.at(-2)).toBe('prog_bracken_circle_champion');
+    expect(DEED_ORDER.at(-1)).toBe('chr_shore_that_remembers');
   });
 
   it('every entry key matches its id and its prefix matches its category', () => {

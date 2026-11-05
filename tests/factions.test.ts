@@ -32,46 +32,40 @@ import {
 } from '../src/ui/world_quest_view';
 
 describe('factions and zone distribution', () => {
-  it('defines the three approved allied factions and their hubs', () => {
-    expect(FACTION_IDS).toEqual(['rift_watch', 'church_order', 'automatons']);
+  it('defines the four Wyndlewood allied factions and their hubs', () => {
+    expect(FACTION_IDS).toEqual([
+      'gilt_measure',
+      'lanternwardens',
+      'hearthwright_compact',
+      'bracken_circle',
+    ]);
 
-    expect(FACTIONS.rift_watch.name).toBe('Rift Watch');
-    expect(FACTIONS.rift_watch.hub.name).toBe('Drifthaven');
-    expect(FACTIONS.rift_watch.hub.zoneId).toBe('palmreach');
+    expect(FACTIONS.gilt_measure.name).toBe('Gilt Measure');
+    expect(FACTIONS.gilt_measure.hub.name).toBe('Drifthaven');
+    expect(FACTIONS.gilt_measure.hub.zoneId).toBe('palmreach');
 
-    expect(FACTIONS.church_order.name).toBe('Church Order');
-    expect(FACTIONS.church_order.hub.name).toBe('Brother Aldric');
-    expect(FACTIONS.church_order.hub.zoneId).toBe('eastbrook_vale');
+    expect(FACTIONS.lanternwardens.name).toBe('Lanternwardens');
+    expect(FACTIONS.lanternwardens.hub.name).toBe('Eastbrook');
+    expect(FACTIONS.lanternwardens.hub.zoneId).toBe('eastbrook_vale');
 
-    expect(FACTIONS.automatons.name).toBe('Automatons');
-    expect(FACTIONS.automatons.hub.name).toBe('Wyrmwatch');
-    expect(FACTIONS.automatons.hub.zoneId).toBe('drakelands');
+    expect(FACTIONS.hearthwright_compact.name).toBe('Hearthwright Compact');
+    expect(FACTIONS.hearthwright_compact.hub.name).toBe('Wyrmwatch');
+    expect(FACTIONS.hearthwright_compact.hub.zoneId).toBe('drakelands');
+
+    expect(FACTIONS.bracken_circle.name).toBe('Bracken Circle');
+    expect(FACTIONS.bracken_circle.hub.name).toBe('Fenbridge');
+    expect(FACTIONS.bracken_circle.hub.zoneId).toBe('mirefen_marsh');
   });
 
-  it('maps all 14 non-tutorial overworld zones to the 3 factions', () => {
-    // Rift Watch: 5 zones
-    expect(factionForZone('farshore')).toBe('rift_watch');
-    expect(factionForZone('farshore_isle')).toBe('rift_watch');
-    expect(factionForZone('palmreach')).toBe('rift_watch');
-    expect(factionForZone('galecrest')).toBe('rift_watch');
-    expect(factionForZone('willowfen')).toBe('rift_watch');
-    expect(factionForZone('veiled_hollow')).toBe('rift_watch');
-
-    // Church Order: 5 zones
-    expect(factionForZone('eastbrook_vale')).toBe('church_order');
-    expect(factionForZone('zone1')).toBe('church_order');
-    expect(factionForZone('mirefen_marsh')).toBe('church_order');
-    expect(factionForZone('zone2')).toBe('church_order');
-    expect(factionForZone('thornpeak_heights')).toBe('church_order');
-    expect(factionForZone('zone3')).toBe('church_order');
-    expect(factionForZone('nightbloom')).toBe('church_order');
-    expect(factionForZone('wraithwood')).toBe('church_order');
-
-    // Automatons: 4 zones
-    expect(factionForZone('drakelands')).toBe('automatons');
-    expect(factionForZone('frostveil')).toBe('automatons');
-    expect(factionForZone('amberfall')).toBe('automatons');
-    expect(factionForZone('evergarden')).toBe('automatons');
+  it('maps all 14 non-tutorial overworld zones to the 4 factions', () => {
+    for (const z of ['palmreach', 'farshore', 'farshore_isle', 'evergarden'])
+      expect(factionForZone(z), z).toBe('gilt_measure');
+    for (const z of ['eastbrook_vale', 'zone1', 'frostveil', 'veiled_hollow', 'wraithwood'])
+      expect(factionForZone(z), z).toBe('lanternwardens');
+    for (const z of ['thornpeak_heights', 'zone3', 'drakelands', 'galecrest'])
+      expect(factionForZone(z), z).toBe('hearthwright_compact');
+    for (const z of ['mirefen_marsh', 'zone2', 'amberfall', 'willowfen', 'nightbloom'])
+      expect(factionForZone(z), z).toBe('bracken_circle');
 
     // Proving Shore (tutorial) is excluded
     expect(factionForZone('proving_shore')).toBeNull();
@@ -120,29 +114,40 @@ describe('standing tiers and thresholds', () => {
   });
 
   it('provides thematic faction flavor titles for each standing rank', () => {
-    // Rift Watch: Outsider -> Watcher -> Riftwalker -> Warden -> Riftwarden -> Champion
-    expect(factionTierTitle('rift_watch', 0)).toBe('Outsider');
-    expect(factionTierTitle('rift_watch', 1_000)).toBe('Watcher');
-    expect(factionTierTitle('rift_watch', 3_000)).toBe('Riftwalker');
-    expect(factionTierTitle('rift_watch', 7_000)).toBe('Warden');
-    expect(factionTierTitle('rift_watch', 13_000)).toBe('Riftwarden');
-    expect(factionTierTitle('rift_watch', 20_000)).toBe('Champion');
-
-    // Church Order: Outsider -> Acolyte -> Keeper -> Templar -> Dawnkeeper -> Champion
-    expect(factionTierTitle('church_order', 0)).toBe('Outsider');
-    expect(factionTierTitle('church_order', 1_000)).toBe('Acolyte');
-    expect(factionTierTitle('church_order', 3_000)).toBe('Keeper');
-    expect(factionTierTitle('church_order', 7_000)).toBe('Templar');
-    expect(factionTierTitle('church_order', 13_000)).toBe('Dawnkeeper');
-    expect(factionTierTitle('church_order', 20_000)).toBe('Champion');
-
-    // Automatons: Outsider -> Operator -> Mechanist -> Artificer -> Forgemaster -> Champion
-    expect(factionTierTitle('automatons', 0)).toBe('Outsider');
-    expect(factionTierTitle('automatons', 1_000)).toBe('Operator');
-    expect(factionTierTitle('automatons', 3_000)).toBe('Mechanist');
-    expect(factionTierTitle('automatons', 7_000)).toBe('Artificer');
-    expect(factionTierTitle('automatons', 13_000)).toBe('Forgemaster');
-    expect(factionTierTitle('automatons', 20_000)).toBe('Champion');
+    const ladder = (id: Parameters<typeof factionTierTitle>[0]) =>
+      [0, 1_000, 3_000, 7_000, 13_000, 20_000].map((rep) => factionTierTitle(id, rep));
+    expect(ladder('gilt_measure')).toEqual([
+      'Outsider',
+      'Client',
+      'Associate',
+      'Factor',
+      'Magnate',
+      'Champion',
+    ]);
+    expect(ladder('lanternwardens')).toEqual([
+      'Outsider',
+      'Lamplighter',
+      'Lanternbearer',
+      'Warden',
+      'Lanternwarden',
+      'Champion',
+    ]);
+    expect(ladder('hearthwright_compact')).toEqual([
+      'Outsider',
+      'Hand',
+      'Journeyman',
+      'Hearthwright',
+      'Master Hearthwright',
+      'Champion',
+    ]);
+    expect(ladder('bracken_circle')).toEqual([
+      'Outsider',
+      'Seedling',
+      'Grovefriend',
+      'Greenkeeper',
+      'Circle Elder',
+      'Champion',
+    ]);
   });
 
   it('computes standingProgress percentage and remaining points within a tier', () => {
@@ -182,21 +187,21 @@ describe('level brackets and synchronized daily reward math', () => {
     } as unknown as PlayerMeta;
 
     // Advance to 2,980
-    meta.factions.church_order = 2_980;
-    const r1 = awardFactionReputation(meta, 'church_order', 30, 10);
+    meta.factions.lanternwardens = 2_980;
+    const r1 = awardFactionReputation(meta, 'lanternwardens', 30, 10);
     expect(r1.gained).toBe(20);
     expect(r1.total).toBe(3_000);
     expect(r1.tier).toBe('trusted');
     expect(r1.capped).toBe(true);
 
     // Cannot exceed 3,000 while level <= 15
-    const r2 = awardFactionReputation(meta, 'church_order', 30, 15);
+    const r2 = awardFactionReputation(meta, 'lanternwardens', 30, 15);
     expect(r2.gained).toBe(0);
     expect(r2.total).toBe(3_000);
     expect(r2.capped).toBe(true);
 
     // Leveling up to 16 lifts the cap!
-    const r3 = awardFactionReputation(meta, 'church_order', 80, 16);
+    const r3 = awardFactionReputation(meta, 'lanternwardens', 80, 16);
     expect(r3.gained).toBe(80);
     expect(r3.total).toBe(3_080);
     expect(r3.capped).toBe(false);
@@ -205,57 +210,54 @@ describe('level brackets and synchronized daily reward math', () => {
   it('reports the tier before the award so a caller can tell a tier from a plain gain', () => {
     const meta = { ...freshWorldQuestPlayerState() } as unknown as PlayerMeta;
     meta.factions = freshFactionReputation();
-    meta.factions.rift_watch = 980;
-    const crossed = awardFactionReputation(meta, 'rift_watch', 30, 16);
+    meta.factions.gilt_measure = 980;
+    const crossed = awardFactionReputation(meta, 'gilt_measure', 30, 16);
     expect(crossed.previousTier).toBe('unknown');
     expect(crossed.tier).toBe('recognized');
-    const plain = awardFactionReputation(meta, 'rift_watch', 30, 16);
+    const plain = awardFactionReputation(meta, 'gilt_measure', 30, 16);
     expect(plain.previousTier).toBe('recognized');
     expect(plain.tier).toBe('recognized');
     // A capped award that lands exactly on the threshold still reports the tier.
-    meta.factions.rift_watch = 2_990;
-    const capped = awardFactionReputation(meta, 'rift_watch', 500, 10);
+    meta.factions.gilt_measure = 2_990;
+    const capped = awardFactionReputation(meta, 'gilt_measure', 500, 10);
     expect(capped.capped).toBe(true);
     expect(capped.previousTier).toBe('recognized');
     expect(capped.tier).toBe('trusted');
     // Nothing gained, nothing crossed.
-    const stuck = awardFactionReputation(meta, 'rift_watch', 500, 10);
+    const stuck = awardFactionReputation(meta, 'gilt_measure', 500, 10);
     expect(stuck.gained).toBe(0);
     expect(stuck.previousTier).toBe(stuck.tier);
   });
 
-  it('synchronizes daily progression at levels 16-20 (400 rep/day per faction)', () => {
-    // 5 Rift Watch zones * 80 = 400
-    const riftQuest = WORLD_QUESTS_BY_ID.wq_farshore_salvage;
-    expect(worldQuestFaction(riftQuest)).toBe('rift_watch');
-    expect(worldQuestStandingReward(riftQuest, 16)).toBe(80);
-    expect(worldQuestStandingReward(riftQuest, 20)).toBe(80);
-
-    // 5 Church Order zones * 80 = 400
-    const churchQuest = WORLD_QUESTS_BY_ID.wq_eastbrook_bandits;
-    expect(worldQuestFaction(churchQuest)).toBe('church_order');
-    expect(worldQuestStandingReward(churchQuest, 16)).toBe(80);
-    expect(worldQuestStandingReward(churchQuest, 20)).toBe(80);
-
-    // 4 Automaton zones * 100 = 400
-    const automatonQuest = WORLD_QUESTS_BY_ID.wq_drakelands_brood;
-    expect(worldQuestFaction(automatonQuest)).toBe('automatons');
-    expect(worldQuestStandingReward(automatonQuest, 16)).toBe(100);
-    expect(worldQuestStandingReward(automatonQuest, 20)).toBe(100);
-
-    // Full daily circuit: 5*80 + 5*80 + 4*100 = 400 + 400 + 400 = 1,200 total
-    const totalDaily = 5 * 80 + 5 * 80 + 4 * 100;
-    expect(totalDaily).toBe(1_200);
+  it('pays world quests a flat amount per bracket, the faction chosen by activity', () => {
+    // Activities, not zones (faction_activity.ts): the objective type picks the
+    // faction and the bracket alone sets the amount.
+    for (const quest of WORLD_QUESTS) {
+      expect(worldQuestStandingReward(quest, 10), quest.id).toBe(30);
+      expect(worldQuestStandingReward(quest, 16), quest.id).toBe(100);
+      expect(worldQuestStandingReward(quest, 20), quest.id).toBe(100);
+      const byType: Record<string, string> = {
+        kill: 'lanternwardens',
+        escort: 'lanternwardens',
+        gather: 'bracken_circle',
+        delivery: 'gilt_measure',
+        salvage: 'hearthwright_compact',
+        forging: 'hearthwright_compact',
+      };
+      const expected = byType[quest.objective.type];
+      if (expected) expect(worldQuestFaction(quest), quest.id).toBe(expected);
+    }
   });
 });
 
 describe('faction state persistence and invariants', () => {
-  it('starts fresh players with 0 reputation across all three factions', () => {
+  it('starts fresh players with 0 reputation across all four factions', () => {
     const state = freshWorldQuestPlayerState();
     expect(state.factions).toEqual({
-      rift_watch: 0,
-      church_order: 0,
-      automatons: 0,
+      gilt_measure: 0,
+      lanternwardens: 0,
+      hearthwright_compact: 0,
+      bracken_circle: 0,
     });
   });
 
@@ -266,20 +268,22 @@ describe('faction state persistence and invariants', () => {
       worldQuestCycle: 'wq1_10',
     } as unknown as PlayerMeta;
 
-    meta.factions.rift_watch = 1_400;
-    meta.factions.church_order = 3_200;
-    meta.factions.automatons = 800;
+    meta.factions.gilt_measure = 1_400;
+    meta.factions.lanternwardens = 3_200;
+    meta.factions.hearthwright_compact = 800;
 
     const saved = savedWorldQuestState(meta);
     expect(saved.worldQuests?.factions).toEqual({
-      rift_watch: 1_400,
-      church_order: 3_200,
-      automatons: 800,
+      gilt_measure: 1_400,
+      lanternwardens: 3_200,
+      hearthwright_compact: 800,
+      bracken_circle: 0,
     });
     expect(saved.factions).toEqual({
-      rift_watch: 1_400,
-      church_order: 3_200,
-      automatons: 800,
+      gilt_measure: 1_400,
+      lanternwardens: 3_200,
+      hearthwright_compact: 800,
+      bracken_circle: 0,
     });
 
     const targetMeta = {
@@ -289,47 +293,50 @@ describe('faction state persistence and invariants', () => {
 
     restoreWorldQuestState(targetMeta, saved.worldQuests, saved.factions);
     expect(targetMeta.factions).toEqual({
-      rift_watch: 1_400,
-      church_order: 3_200,
-      automatons: 800,
+      gilt_measure: 1_400,
+      lanternwardens: 3_200,
+      hearthwright_compact: 800,
+      bracken_circle: 0,
     });
   });
 
   it('clamps invalid or corrupted save values', () => {
     const sanitized = sanitizeFactionReputation({
-      rift_watch: -500,
-      church_order: 999_999,
-      automatons: 12.7,
+      gilt_measure: -500,
+      lanternwardens: 999_999,
+      hearthwright_compact: 12.7,
       unknown_faction: 1_000,
     });
-    expect(sanitized.rift_watch).toBe(0);
-    expect(sanitized.church_order).toBe(MAX_STANDING);
-    expect(sanitized.automatons).toBe(12);
+    expect(sanitized.gilt_measure).toBe(0);
+    expect(sanitized.lanternwardens).toBe(MAX_STANDING);
+    expect(sanitized.hearthwright_compact).toBe(12);
   });
 });
 
 describe('world quest UI display lines', () => {
   it('clearly formats faction and standing reward strings', () => {
-    const riftQuest = WORLD_QUESTS_BY_ID.wq_farshore_salvage;
-    expect(worldQuestFactionName(riftQuest)).toBe('Rift Watch');
-    expect(worldQuestFactionLine(riftQuest)).toBe('Faction: Rift Watch');
-    expect(worldQuestStandingRewardText(riftQuest, 20)).toBe('+80 Rift Watch standing');
+    const giltQuest = WORLD_QUESTS_BY_ID.wq_farshore_salvage;
+    expect(worldQuestFactionName(giltQuest)).toBe('Gilt Measure');
+    expect(worldQuestFactionLine(giltQuest)).toBe('Faction: Gilt Measure');
+    expect(worldQuestStandingRewardText(giltQuest, 20)).toBe('+133 Gilt Measure standing');
 
-    const churchQuest = WORLD_QUESTS_BY_ID.wq_eastbrook_bandits;
-    expect(worldQuestFactionName(churchQuest)).toBe('Church Order');
-    expect(worldQuestFactionLine(churchQuest)).toBe('Faction: Church Order');
-    expect(worldQuestStandingRewardText(churchQuest, 10)).toBe('+30 Church Order standing');
+    const lanternQuest = WORLD_QUESTS_BY_ID.wq_eastbrook_bandits;
+    expect(worldQuestFactionName(lanternQuest)).toBe('Lanternwardens');
+    expect(worldQuestFactionLine(lanternQuest)).toBe('Faction: Lanternwardens');
+    expect(worldQuestStandingRewardText(lanternQuest, 10)).toBe('+30 Lanternwardens standing');
 
-    const autoQuest = WORLD_QUESTS_BY_ID.wq_drakelands_brood;
-    expect(worldQuestFactionName(autoQuest)).toBe('Automatons');
-    expect(worldQuestFactionLine(autoQuest)).toBe('Faction: Automatons');
-    expect(worldQuestStandingRewardText(autoQuest, 20)).toBe('+100 Automatons standing');
+    const hearthQuest = WORLD_QUESTS_BY_ID.wq_drakelands_brood;
+    expect(worldQuestFactionName(hearthQuest)).toBe('Hearthwright Compact');
+    expect(worldQuestFactionLine(hearthQuest)).toBe('Faction: Hearthwright Compact');
+    expect(worldQuestStandingRewardText(hearthQuest, 20)).toBe(
+      '+133 Hearthwright Compact standing',
+    );
   });
 
   it('includes standing in the unified reward line', () => {
-    const autoQuest = WORLD_QUESTS_BY_ID.wq_drakelands_brood;
-    const line = worldQuestRewardLine(autoQuest, { level: 20, cls: 'warrior', cycle: 'wq1_0' });
-    expect(line).toContain('+100 Automatons standing');
+    const hearthQuest = WORLD_QUESTS_BY_ID.wq_drakelands_brood;
+    const line = worldQuestRewardLine(hearthQuest, { level: 20, cls: 'warrior', cycle: 'wq1_0' });
+    expect(line).toContain('+133 Hearthwright Compact standing');
   });
 });
 describe('simulation WQ completion standing integration', () => {
@@ -347,8 +354,8 @@ describe('simulation WQ completion standing integration', () => {
 
     const meta = sim.meta(sim.playerId);
     if (!meta) throw new Error('Missing player meta');
-    expect(meta.factions.church_order).toBe(0);
-    expect(sim.factions.church_order).toBe(0);
+    expect(meta.factions.lanternwardens).toBe(0);
+    expect(sim.factions.lanternwardens).toBe(0);
 
     const objective = quest.objective;
     if (objective.type !== 'delivery') throw new Error('Expected delivery quest');
@@ -370,7 +377,7 @@ describe('simulation WQ completion standing integration', () => {
       expect(sim.pickUpObject(destination.id)).toBe(true);
     }
 
-    expect(meta.factions.church_order).toBe(30);
-    expect(sim.factions.church_order).toBe(30);
+    expect(meta.factions.lanternwardens).toBe(30);
+    expect(sim.factions.lanternwardens).toBe(30);
   });
 });

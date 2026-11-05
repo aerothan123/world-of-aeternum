@@ -841,7 +841,9 @@ describe('world quest lifecycle', () => {
     const sim = new Sim({ seed: 41, playerClass: 'warrior', autoEquip: true });
     enterQuest(sim, quest, 4);
     expect(sim.worldQuestLog.has(quest.id)).toBe(false);
-    expect(sim.worldQuestCycle).toBe('');
+    // The daily cycle rolls at every level (the town quest board keys its
+    // postings on it, src/sim/town_board/); only the quests wait on level 5.
+    expect(sim.worldQuestCycle).toBe('wq1_0');
     sim.setPlayerLevel(5);
     const events = sim.tick();
     expect(sim.worldQuestLog.get(quest.id)).toEqual({

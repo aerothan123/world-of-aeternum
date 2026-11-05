@@ -17,7 +17,7 @@
 //               budget, and the faction's formulas
 //   Vanguard    a proc weapon at the heroic five-man weapon bar (the only
 //               non-legendary proc weapons outside the two 1.7 daggers)
-//   Champion    the Rift Watch's Viridian Valestrider mount (its reins def
+//   Champion    the Gilt Measure's Viridian Valestrider mount (its reins def
 //               stays in content/items.ts beside the other reins), and
 //               the jewelry gaps: Agility jewels, stamina-line tank jewels,
 //               a SECOND caster and healer ring, each carrying the raid
@@ -25,13 +25,19 @@
 //               raid row it mirrors (a rival, never a tie: dev/bis_gear.ts
 //               orders epics by line total, so an exact tie would silently
 //               swap every dev kit and DPS fixture onto faction stock)
-// Each faction serves one role family across its whole ladder (the three
-// factions progress in parallel, so every character walks all three):
-//   Rift Watch    Agility (rogue, hunter)
-//   Church Order  casters and healers
-//   Automatons    Strength and the stamina line (warrior, paladin, enhancement
-//                 shaman; feral druids wear its jewelry and two-hander, since
-//                 Feral is a Strength spec: content/spec_primary_stat.ts)
+// Each faction serves one role family across its whole ladder (the factions
+// progress in parallel, so every character walks all of them). The three
+// ladders were authored for the provisional factions and passed whole to
+// their Wyndlewood successors (src/sim/factions.ts LEGACY_FACTION_IDS); item
+// ids are frozen, so a row's id may still name its first owner:
+//   Gilt Measure          Agility (rogue, hunter); was the Rift Watch's
+//   Lanternwardens        casters and healers; was the Church Order's
+//   Hearthwright Compact  Strength and the stamina line (warrior, paladin,
+//                         enhancement shaman; feral druids wear its jewelry
+//                         and two-hander, since Feral is a Strength spec:
+//                         content/spec_primary_stat.ts); was the Automatons'
+//   Bracken Circle        the allied rows only for now: its own ladder is a
+//                         follow-up (docs/narrative/wyndlewood_decisions.md)
 // Budgets are COPIED from the live raid and heroic tables, never invented:
 // jewelry mirrors content/ignivar_loot.ts IGNIVAR_JEWELRY_ITEMS (one 25
 // rating, 15 to 16 primary) and content/heroic_vendor.ts; waist and feet
@@ -55,6 +61,7 @@
 
 import type { FactionId, StandingTier } from '../factions';
 import { STANDING_THRESHOLDS } from '../factions';
+import { FENBRIDGE_NPC_PLACEMENTS_BY_ID } from '../fenbridge_layout';
 import { DRIFTHAVEN_NPC_PLACEMENTS_BY_ID } from '../painted_towns';
 import type { ItemDef, NpcDef } from '../types';
 
@@ -99,55 +106,55 @@ function gate(
 /** Gate requirements for every faction-stocked row, by item id. */
 export const FACTION_VENDOR_GATES: Readonly<Record<string, FactionVendorGate>> = Object.freeze({
   // Rift Watch
-  tidewatchers_locket: gate('rift_watch', 'recognized'),
-  rift_watchers_band: gate('rift_watch', 'trusted'),
-  rift_surveyors_satchel: gate('rift_watch', 'trusted'),
-  rift_feather_glider: gate('rift_watch', 'trusted', TOY_MARKS),
-  riftwalkers_tunic: gate('rift_watch', 'proven'),
-  riftwalkers_cord: gate('rift_watch', 'proven'),
-  riftwalkers_treads: gate('rift_watch', 'proven'),
-  formula_riftwalkers_grace: gate('rift_watch', 'proven', FORMULA_MARKS),
-  formula_enchant_feet_shadowstride: gate('rift_watch', 'proven', FORMULA_MARKS),
-  recipe_potion_of_invisibility: gate('rift_watch', 'proven', FORMULA_MARKS),
-  pattern_reinforced_armor_kit: gate('rift_watch', 'proven', FORMULA_MARKS),
-  riftwarden_voidblade: gate('rift_watch', 'vanguard'),
-  champion_rift_band: gate('rift_watch', 'champion'),
-  riftwardens_pendant: gate('rift_watch', 'champion'),
+  tidewatchers_locket: gate('gilt_measure', 'recognized'),
+  rift_watchers_band: gate('gilt_measure', 'trusted'),
+  rift_surveyors_satchel: gate('gilt_measure', 'trusted'),
+  rift_feather_glider: gate('gilt_measure', 'trusted', TOY_MARKS),
+  riftwalkers_tunic: gate('gilt_measure', 'proven'),
+  riftwalkers_cord: gate('gilt_measure', 'proven'),
+  riftwalkers_treads: gate('gilt_measure', 'proven'),
+  formula_riftwalkers_grace: gate('gilt_measure', 'proven', FORMULA_MARKS),
+  formula_enchant_feet_shadowstride: gate('gilt_measure', 'proven', FORMULA_MARKS),
+  recipe_potion_of_invisibility: gate('gilt_measure', 'proven', FORMULA_MARKS),
+  pattern_reinforced_armor_kit: gate('gilt_measure', 'proven', FORMULA_MARKS),
+  riftwarden_voidblade: gate('gilt_measure', 'vanguard'),
+  champion_rift_band: gate('gilt_measure', 'champion'),
+  riftwardens_pendant: gate('gilt_measure', 'champion'),
   // The mount is bought with marks like every other row, at its own figure.
-  reins_avian_strider: gate('rift_watch', 'champion', MOUNT_MARKS),
+  reins_avian_strider: gate('gilt_measure', 'champion', MOUNT_MARKS),
 
   // Church Order
-  order_prayer_beads: gate('church_order', 'recognized'),
-  acolytes_signet: gate('church_order', 'trusted'),
-  dawn_battle_standard: gate('church_order', 'trusted', TOY_MARKS),
-  vestments_of_the_acolyte: gate('church_order', 'proven'),
-  cord_of_the_dawn: gate('church_order', 'proven'),
-  dawnlit_slippers: gate('church_order', 'proven'),
-  formula_dawnfire_etching: gate('church_order', 'proven', FORMULA_MARKS),
-  formula_dawns_benediction: gate('church_order', 'proven', FORMULA_MARKS),
-  formula_enchant_offhand_spirit: gate('church_order', 'proven', FORMULA_MARKS),
-  recipe_elixir_of_mana_regeneration: gate('church_order', 'proven', FORMULA_MARKS),
-  dawnkeeper_consecrated_mace: gate('church_order', 'vanguard'),
-  templar_dawn_shield: gate('church_order', 'vanguard'),
-  champion_dawn_medallion: gate('church_order', 'champion'),
-  champions_dawn_loop: gate('church_order', 'champion'),
-  dawnkeepers_circle: gate('church_order', 'champion'),
+  order_prayer_beads: gate('lanternwardens', 'recognized'),
+  acolytes_signet: gate('lanternwardens', 'trusted'),
+  dawn_battle_standard: gate('lanternwardens', 'trusted', TOY_MARKS),
+  vestments_of_the_acolyte: gate('lanternwardens', 'proven'),
+  cord_of_the_dawn: gate('lanternwardens', 'proven'),
+  dawnlit_slippers: gate('lanternwardens', 'proven'),
+  formula_dawnfire_etching: gate('lanternwardens', 'proven', FORMULA_MARKS),
+  formula_dawns_benediction: gate('lanternwardens', 'proven', FORMULA_MARKS),
+  formula_enchant_offhand_spirit: gate('lanternwardens', 'proven', FORMULA_MARKS),
+  recipe_elixir_of_mana_regeneration: gate('lanternwardens', 'proven', FORMULA_MARKS),
+  dawnkeeper_consecrated_mace: gate('lanternwardens', 'vanguard'),
+  templar_dawn_shield: gate('lanternwardens', 'vanguard'),
+  champion_dawn_medallion: gate('lanternwardens', 'champion'),
+  champions_dawn_loop: gate('lanternwardens', 'champion'),
+  dawnkeepers_circle: gate('lanternwardens', 'champion'),
 
   // Automatons
-  cogwork_choker: gate('automatons', 'recognized'),
-  automaton_cog_ring: gate('automatons', 'trusted'),
-  clockwork_tinkers_pack: gate('automatons', 'trusted'),
-  clockwork_target_dummy: gate('automatons', 'trusted', TOY_MARKS),
-  artificers_welding_cowl: gate('automatons', 'proven'),
-  forgemasters_girdle: gate('automatons', 'proven'),
-  forgemasters_sabatons: gate('automatons', 'proven'),
-  formula_piston_drive: gate('automatons', 'proven', FORMULA_MARKS),
-  formula_enchant_gloves_forged_might: gate('automatons', 'proven', FORMULA_MARKS),
-  schematic_clockwork_shock_bomb: gate('automatons', 'proven', FORMULA_MARKS),
-  plans_dense_sharpening_stone: gate('automatons', 'proven', FORMULA_MARKS),
-  forgemaster_crag_cleaver: gate('automatons', 'vanguard'),
-  champion_forged_loop: gate('automatons', 'champion'),
-  forgewall_gorget: gate('automatons', 'champion'),
+  cogwork_choker: gate('hearthwright_compact', 'recognized'),
+  automaton_cog_ring: gate('hearthwright_compact', 'trusted'),
+  clockwork_tinkers_pack: gate('hearthwright_compact', 'trusted'),
+  clockwork_target_dummy: gate('hearthwright_compact', 'trusted', TOY_MARKS),
+  artificers_welding_cowl: gate('hearthwright_compact', 'proven'),
+  forgemasters_girdle: gate('hearthwright_compact', 'proven'),
+  forgemasters_sabatons: gate('hearthwright_compact', 'proven'),
+  formula_piston_drive: gate('hearthwright_compact', 'proven', FORMULA_MARKS),
+  formula_enchant_gloves_forged_might: gate('hearthwright_compact', 'proven', FORMULA_MARKS),
+  schematic_clockwork_shock_bomb: gate('hearthwright_compact', 'proven', FORMULA_MARKS),
+  plans_dense_sharpening_stone: gate('hearthwright_compact', 'proven', FORMULA_MARKS),
+  forgemaster_crag_cleaver: gate('hearthwright_compact', 'vanguard'),
+  champion_forged_loop: gate('hearthwright_compact', 'champion'),
+  forgewall_gorget: gate('hearthwright_compact', 'champion'),
 
   // Allied rows: every quartermaster, its own marks, the best standing.
   cartographers_ink: gate(undefined, 'recognized', 60),
@@ -877,7 +884,7 @@ export const FACTION_VENDOR_ITEMS: Record<string, ItemDef> = {
 
 /** Every row a faction sells, in ladder order (the vendor window lists them so). */
 export const FACTION_VENDOR_STOCK: Readonly<Record<FactionId, readonly string[]>> = Object.freeze({
-  rift_watch: Object.freeze([
+  gilt_measure: Object.freeze([
     'tidewatchers_locket',
     'cartographers_ink',
     'rift_watchers_band',
@@ -899,7 +906,7 @@ export const FACTION_VENDOR_STOCK: Readonly<Record<FactionId, readonly string[]>
     // headline reward, the only mount a faction sells.
     'reins_avian_strider',
   ]),
-  church_order: Object.freeze([
+  lanternwardens: Object.freeze([
     'order_prayer_beads',
     'cartographers_ink',
     'acolytes_signet',
@@ -919,7 +926,7 @@ export const FACTION_VENDOR_STOCK: Readonly<Record<FactionId, readonly string[]>
     'champions_dawn_loop',
     'dawnkeepers_circle',
   ]),
-  automatons: Object.freeze([
+  hearthwright_compact: Object.freeze([
     'cogwork_choker',
     'cartographers_ink',
     'automaton_cog_ring',
@@ -938,55 +945,67 @@ export const FACTION_VENDOR_STOCK: Readonly<Record<FactionId, readonly string[]>
     'champion_forged_loop',
     'forgewall_gorget',
   ]),
+  // The allied rows only, bought with Bracken Acorns (its own ladder is a
+  // follow-up; see the header).
+  bracken_circle: Object.freeze([
+    'cartographers_ink',
+    'allied_hearthstone',
+    'allied_vanguard_duffel',
+  ]),
 });
 
-/** The 3 Faction Quartermasters and the World Quest Taskmaster. */
+/** The Bracken Circle's quartermaster is Fenbridge's herbalist (template id
+ *  herbalist_yara; content/zone2.ts takes this stock). */
+export const BRACKEN_CIRCLE_QUARTERMASTER_ID = 'herbalist_yara';
+
+/** Three of the four Faction Quartermasters (the Bracken Circle's is
+ *  Fenbridge's herbalist, content/zone2.ts) and the World Quest Taskmaster. */
 export const FACTION_VENDOR_NPCS: Record<string, NpcDef> = {
-  // Rift Watch Quartermaster: Drifthaven (palmreach). He keeps the counter of
+  // Gilt Measure Quartermaster (id frozen from the Rift Watch): Drifthaven (palmreach). He keeps the counter of
   // the provisioner's shop on the square's east side, looking out at the
   // square (sim/painted_towns/drifthaven.ts).
   npc_rift_watch_quartermaster: {
     id: 'npc_rift_watch_quartermaster',
     name: 'Quartermaster Vaelen',
-    title: 'Rift Watch Provisioner',
+    title: 'Gilt Measure Factor',
     pos: { ...DRIFTHAVEN_NPC_PLACEMENTS_BY_ID.npc_rift_watch_quartermaster.position },
     facing: DRIFTHAVEN_NPC_PLACEMENTS_BY_ID.npc_rift_watch_quartermaster.facing,
     color: 0x4a7a9a,
     questIds: [],
     greeting:
-      'The Rift Watch protects the shore and watches the deep tears. Our stores are open to those of recognized standing.',
-    vendorItems: [...FACTION_VENDOR_STOCK.rift_watch],
+      'The Gilt Measure trades on what the coast gives up, and pays for what it learns. Our stores are open to those of recognized standing.',
+    vendorItems: [...FACTION_VENDOR_STOCK.gilt_measure],
   },
 
-  // Church Order Quartermaster: Eastbrook Vale chapel (eastbrook_vale). She
+  // Lanternwarden Quartermaster (id frozen from the Church Order): Eastbrook Vale chapel (eastbrook_vale). She
   // follows the chapel (to the rise west of the square in the Tidehold
   // rebuild) and stands at the foot of its steps three strides from Brother
   // Aldric, toward the bell tower, looking out of its door.
   npc_church_order_quartermaster: {
     id: 'npc_church_order_quartermaster',
-    name: 'Templar Althea',
-    title: 'Church Order Quartermaster',
+    name: 'Captain Althea',
+    title: 'Lanternwarden Quartermaster',
     pos: { x: 13.29, z: -112.84 },
     facing: -0.96,
     color: 0xecd57a,
     questIds: [],
     greeting:
-      'Walk in the Light of the Dawn. The Church Order supplies those who stand with us in service.',
-    vendorItems: [...FACTION_VENDOR_STOCK.church_order],
+      'Keep a lamp lit and a road open. The Lanternwardens supply those who stand the watch with us.',
+    vendorItems: [...FACTION_VENDOR_STOCK.lanternwardens],
   },
 
-  // Automaton Quartermaster: Wyrmwatch (drakelands)
+  // Hearthwright Compact Quartermaster (id frozen from the Automatons): Wyrmwatch (drakelands)
   npc_automaton_quartermaster: {
     id: 'npc_automaton_quartermaster',
     name: 'Artificer Tobrin',
-    title: 'Automaton Requisitioner',
+    title: 'Hearthwright Requisitioner',
     pos: { x: 402, z: 1912 },
     facing: -0.4,
     color: 0xb87333,
     questIds: [],
     greeting:
-      'Precision gears, forged steel, and calibrated power. Authorized operators may draw from our inventory.',
-    vendorItems: [...FACTION_VENDOR_STOCK.automatons],
+      'Sound timber, true steel, and honest work. Members of the Compact may draw from our stores.',
+    vendorItems: [...FACTION_VENDOR_STOCK.hearthwright_compact],
   },
 
   // World Quest Taskmaster: Eastbrook Vale central hub, on the square's west
@@ -1001,7 +1020,7 @@ export const FACTION_VENDOR_NPCS: Record<string, NpcDef> = {
     questIds: [],
     worldQuestBoard: true,
     greeting:
-      'The allied factions post assignments across the realm every day. If an assignment does not suit your skills, you may request one daily reassignment.',
+      'The four allied factions post assignments across the realm every day. If an assignment does not suit your skills, you may request one daily reassignment.',
   },
 };
 
@@ -1019,21 +1038,30 @@ export const FACTION_HUB_LANDINGS: Readonly<
   >
 > = Object.freeze({
   // before the Eastbrook chapel's door, looking out of it toward the square
-  church_order: Object.freeze({
+  lanternwardens: Object.freeze({
     x: 12.55,
     y: 0,
     z: -108.66,
     facing: -0.96,
     name: 'Eastbrook Vale',
   }),
-  rift_watch: Object.freeze({ x: -302, y: 0, z: 812, facing: 0.8, name: 'Drifthaven' }),
-  automatons: Object.freeze({ x: 402, y: 0, z: 1912, facing: -0.4, name: 'Wyrmwatch' }),
+  gilt_measure: Object.freeze({ x: -302, y: 0, z: 812, facing: 0.8, name: 'Drifthaven' }),
+  hearthwright_compact: Object.freeze({ x: 402, y: 0, z: 1912, facing: -0.4, name: 'Wyrmwatch' }),
+  // At Mother Olvessa's apothecary door in Fenbridge, where she stands.
+  bracken_circle: Object.freeze({
+    x: FENBRIDGE_NPC_PLACEMENTS_BY_ID.herbalist_yara.position.x,
+    y: 0,
+    z: FENBRIDGE_NPC_PLACEMENTS_BY_ID.herbalist_yara.position.z,
+    facing: FENBRIDGE_NPC_PLACEMENTS_BY_ID.herbalist_yara.facing,
+    name: 'Fenbridge',
+  }),
 });
 
 /** Return the faction associated with a quartermaster NPC template, if any. */
 export function vendorFactionForNpc(templateId?: string): FactionId | undefined {
-  if (templateId === 'npc_rift_watch_quartermaster') return 'rift_watch';
-  if (templateId === 'npc_church_order_quartermaster') return 'church_order';
-  if (templateId === 'npc_automaton_quartermaster') return 'automatons';
+  if (templateId === 'npc_rift_watch_quartermaster') return 'gilt_measure';
+  if (templateId === 'npc_church_order_quartermaster') return 'lanternwardens';
+  if (templateId === 'npc_automaton_quartermaster') return 'hearthwright_compact';
+  if (templateId === BRACKEN_CIRCLE_QUARTERMASTER_ID) return 'bracken_circle';
   return undefined;
 }

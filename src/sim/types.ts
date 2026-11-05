@@ -6776,16 +6776,35 @@ export type QuestObjective =
       type: 'interact';
       targetObjectItemId?: string;
       targetNpcId?: string;
+      // Use-item-on-object (quests/quest_object_use.ts): the object credits
+      // only while the player carries this item, and spends one per credit.
+      usesItemId?: string;
+      // How many of usesItemId one credit needs (default 1).
+      usesCount?: number;
+      // The used item is shown, not spent (one cloth laid on each patch in turn).
+      keepsUsedItem?: boolean;
+      // What the object gives back on that credit (force-added).
+      yieldsItemId?: string;
+      // How many of yieldsItemId one credit gives (default 1).
+      yieldsCount?: number;
+      // Further inputs one credit spends beside usesItemId (a station recipe).
+      alsoUses?: readonly { itemId: string; count: number }[];
+      // A crafting station (quests/quest_station_craft.ts): every use of the
+      // same object credits once, instead of once per distinct object.
+      station?: boolean;
     })
   // A named world event this player caused, credited by the owning system module (the
   // exemplar: 'balgath_blinded' from src/sim/lance_trial.ts). Label-only in every
   // presentation surface, so a new event costs its emitter one credit call and nothing else.
   | (QuestObjectiveBase & { type: 'event'; eventId: string })
   | (QuestObjectiveBase & { type: 'craft'; recipeId: string })
-  | (QuestObjectiveBase & { type: 'gather' } & (
-        | { nodeType: GatherNodeType; itemId?: string }
-        | { nodeType?: undefined; itemId: string }
-      ))
+  | (QuestObjectiveBase & {
+      type: 'gather';
+      // Only nodes (or choppable trees, src/sim/trees/) standing inside this
+      // ring credit: the marked trees of a named copse, the veins of one
+      // quarry (quests/quest_credit.ts onNodeGatheredForQuests).
+      area?: { x: number; z: number; radius: number };
+    } & ({ nodeType: GatherNodeType; itemId?: string } | { nodeType?: undefined; itemId: string }))
   // Escort: completed by the escort run in src/sim/escort.ts when the walked
   // NPC reaches its final waypoint with this player in credit range. count is
   // always 1; the run starts by interacting with the idle escortee while this
@@ -6983,6 +7002,17 @@ export interface QuestDef {
   // Resolve the first objective's count from the character's return history at
   // acceptance time. The snapshotted value stays stable while the quest is active.
   resolvedObjectiveCounts?: 'archetypeAmends';
+  // A town-board posting (src/sim/town_board/): the noticeboard with this id
+  // offers it, only on the realm days the board's rotation posts it, and the
+  // giver NPC (the poster) takes the turn-in. Accepting needs the player at the
+  // board, never at the NPC (town_board_access.ts, quest_commands.ts).
+  townBoard?: string;
+  // Allied faction standing paid on turn-in (quests/quest_standing_reward.ts),
+  // through awardFactionReputation so the level cap and the tier deeds apply.
+  standingReward?: {
+    factionId: 'lanternwardens' | 'hearthwright_compact' | 'bracken_circle' | 'gilt_measure';
+    amount: number;
+  };
   // Objective-list revision. Bump when a rework changes what an objective INDEX
   // means (a new target, type, or count under the same quest id), so an
   // in-flight save's index-keyed counts stop applying: on restore, a
@@ -7206,7 +7236,7 @@ export type WorldQuestObjective =
 export interface WorldQuestDef {
   id: string;
   zoneId: string;
-  faction?: 'rift_watch' | 'church_order' | 'automatons';
+  faction?: 'lanternwardens' | 'hearthwright_compact' | 'bracken_circle' | 'gilt_measure';
   minLevel: number;
   area: { x: number; z: number; radius: number };
   /** Where the completion champion rises (world_quest_champion.ts), for a
@@ -13261,6 +13291,7 @@ export type DeedMeterId =
   | 'standingRiftWatch'
   | 'standingChurchOrder'
   | 'standingAutomatons'
+  | 'standingBrackenCircle'
   // Clue Scrolls: lifetime Treasure Caskets opened (PlayerMeta.clueCasketsOpened,
   // src/sim/clue_casket.ts). Only ever climbs.
   | 'clueCasketsOpened';

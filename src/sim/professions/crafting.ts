@@ -79,6 +79,7 @@ import {
 } from '../content/professions';
 import { recipeById } from '../content/recipes';
 import { ITEMS } from '../data';
+import { recordFactionActivity } from '../faction_activity';
 import { atHouseStation } from '../housing/house_stations';
 import { slotStatMultForItem } from '../item_budget';
 import { countUnlockedInSlots, removeUnlockedFromSlots } from '../item_lock';
@@ -1767,6 +1768,9 @@ function applyCraftSuccessHooks(
   // The dirty mark also covers the craft-skill gain the resolve applied.
   ctx.markDeedsDirty(meta.entityId);
   ctx.onRecipeCraftedForQuests(recipeId, meta);
+  // Hearthwright Compact standing for a finished craft (faction_activity.ts;
+  // level-free: the materials it spent are the limit).
+  recordFactionActivity(ctx, meta, 'craft', null);
 }
 
 /** The FULL-SHAPE craftResult emit (phase 14), shared by the two sites that

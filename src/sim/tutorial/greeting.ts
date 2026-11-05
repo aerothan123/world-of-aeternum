@@ -34,7 +34,7 @@ function isFreshCharacter(meta: PlayerMeta): boolean {
  *  Returns whether it engaged.
  *
  *  The tutorial is compulsory for every fresh character: a newborn already
- *  ashore (the server rolls fresh rows at PROVING_SHORE_ARRIVAL) gets Odo's
+ *  ashore (the server rolls fresh rows at PROVING_SHORE_ARRIVAL) gets Fenlow's
  *  arrival welcome,
  *  and a fresh character anywhere else (the offline Sim's town spawn, a
  *  legacy save that never played) is ferried straight to the island. The

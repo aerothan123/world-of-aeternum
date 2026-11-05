@@ -1,5 +1,5 @@
 // How to Play / Basics: the low-density newcomer tutorial. Steps mirror the in-game
-// New-Adventurer flow (Marshal Redbrook, Wolves at the Door). Spoiler-free.
+// New-Adventurer flow (Warden Corren, Wolves at the Door). Spoiler-free.
 
 import { esc } from '../../ui/esc';
 import { t } from '../../ui/i18n';

@@ -16,7 +16,9 @@
       "owner": "World of ClaudeCraft",
       "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "A worn warm-gold realm coin embossed with one crowned eight-ray sun.",
-      "references": ["public/ui/items/eastbrook_buckler.webp"],
+      "references": [
+        "public/ui/items/eastbrook_buckler.webp"
+      ],
       "sourceSha256": "9f3309ad0841a5ff1627e87f0c63a21885f51c2960f97f81cf91617ffca23291",
       "acceptedSha256": "44a60a3bf0335dd20b7e2ce7ff31b6cc93b79f13d77300e204450b40af2ca91d",
       "acceptedBytes": 4000
@@ -29,7 +31,9 @@
       "owner": "World of ClaudeCraft",
       "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "A cool sterling-silver realm coin embossed with one crescent moon and star.",
-      "references": ["public/ui/items/eastbrook_buckler.webp"],
+      "references": [
+        "public/ui/items/eastbrook_buckler.webp"
+      ],
       "sourceSha256": "a502830d1d63401766cd9788cebb63e343367b4cfc0f0ee00667e8af6d23dda2",
       "acceptedSha256": "47b1d3fb475b1aeb620812df5c9bfe921593bc521dcac70a9a6cc65165a89e05",
       "acceptedBytes": 3216
@@ -42,7 +46,9 @@
       "owner": "World of ClaudeCraft",
       "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "A reddish-copper realm coin embossed with one oak leaf and acorn.",
-      "references": ["public/ui/items/eastbrook_buckler.webp"],
+      "references": [
+        "public/ui/items/eastbrook_buckler.webp"
+      ],
       "sourceSha256": "5f38bef6d11240ce907e5d807b41a79e60062c0c33156129b74fa855848f15b7",
       "acceptedSha256": "f01372ad1f7010846dca9b87ca1c5654ee55340d9a7bea189092e1e6a6c10ba4",
       "acceptedBytes": 3454
@@ -105,7 +111,9 @@
       "owner": "World of ClaudeCraft",
       "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "Rift Watch Mark: a glowing cyan void and ocean crest for the Rift Watch faction.",
-      "references": ["public/ui/items/rift_watchers_band.webp"],
+      "references": [
+        "public/ui/items/rift_watchers_band.webp"
+      ],
       "sourceSha256": "f3482bcabc765aedfef2f326c4996821f33ecad8b37c84136df0c678f6ecdacd",
       "acceptedSha256": "f3482bcabc765aedfef2f326c4996821f33ecad8b37c84136df0c678f6ecdacd",
       "acceptedBytes": 1820
@@ -118,7 +126,9 @@
       "owner": "World of ClaudeCraft",
       "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "Order Crest: a holy golden sun and dawn medallion for the Church Order faction.",
-      "references": ["public/ui/items/order_prayer_beads.webp"],
+      "references": [
+        "public/ui/items/order_prayer_beads.webp"
+      ],
       "sourceSha256": "fa9332ba194d2099e1e8b1f87263cb00dfab939943cd49097d0a8e3d3cd1ab65",
       "acceptedSha256": "fa9332ba194d2099e1e8b1f87263cb00dfab939943cd49097d0a8e3d3cd1ab65",
       "acceptedBytes": 1402
@@ -131,10 +141,27 @@
       "owner": "World of ClaudeCraft",
       "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "Automaton Cog: an intricate bronze clockwork gear for the Automaton faction.",
-      "references": ["public/ui/items/automaton_cog_ring.webp"],
+      "references": [
+        "public/ui/items/automaton_cog_ring.webp"
+      ],
       "sourceSha256": "456434f5e071a95005d0e094df18a88d49324293f787a6cab02e21075347ee14",
       "acceptedSha256": "456434f5e071a95005d0e094df18a88d49324293f787a6cab02e21075347ee14",
       "acceptedBytes": 1708
+    },
+    {
+      "id": "bracken_circle_acorn",
+      "output": "bracken_circle_acorn.webp",
+      "sourceFile": "public/ui/items/fine_silverleaf_herb.webp",
+      "source": "World of ClaudeCraft faction rewards pipeline",
+      "owner": "World of ClaudeCraft",
+      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "intendedVisualSubject": "Bracken Acorn: the Bracken Circle token, cut from the silverleaf herb icon until its own acorn art is painted.",
+      "references": [
+        "public/ui/items/fine_silverleaf_herb.webp"
+      ],
+      "sourceSha256": "70e117f19a5819f2cc8426bc289ba91b7a88d929c0210631249b2022f6bec9ad",
+      "acceptedSha256": "70e117f19a5819f2cc8426bc289ba91b7a88d929c0210631249b2022f6bec9ad",
+      "acceptedBytes": 2510
     }
   ]
 }

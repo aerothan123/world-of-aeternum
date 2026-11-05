@@ -736,6 +736,7 @@ const UI_PURE_CORES = [
   // The signpost guild board's roster drill-in core (the board itself reuses
   // guild_leaderboard_view above).
   'src/ui/hud/guild_board/guild_roster_view.ts',
+  'src/ui/hud/guild_board/town_board_view.ts',
   // The Rift Forge window's row/affordance core (the Riftwright's service).
   'src/ui/hud/rift_forge/rift_forge_view.ts',
   'src/ui/dev_leaderboard_view.ts',

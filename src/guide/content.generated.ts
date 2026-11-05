@@ -2211,7 +2211,7 @@ export const GUIDE_ZONES: GuideZoneInfo[] = [
       "The Farshore Causeway",
       "Eastbrook Docks"
     ],
-    "welcome": "Find Marshal Redbrook in town - he has work for you.",
+    "welcome": "Find Warden Corren in town - he has work for you.",
     "families": [
       "beast",
       "spider",
@@ -2548,9 +2548,10 @@ export const GUIDE_ZONES: GuideZoneInfo[] = [
       "The Wreck Line",
       "The Gauntlet"
     ],
-    "welcome": "The Proving Shore asks nothing of you but time. Learn the camp, strike the effigies, walk the wreck line and, when you are ready, Ferryman Odo will see you across to the vale. You can also ring the bell to go to the vale directly.",
+    "welcome": "The Proving Shore asks nothing of you but time. Learn the camp, strike the effigies, walk the wreck line and, when you are ready, Captain Fenlow will see you across to the vale. You can also ring the bell to go to the vale directly.",
     "families": [
-      "beast"
+      "beast",
+      "burrower"
     ]
   }
 ];
@@ -2687,6 +2688,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "still": "/guide-stills/mob_boar__935116.webp"
       },
       {
+        "name": "Briarbitten Fox",
+        "min": 3,
+        "max": 4,
+        "rare": false,
+        "templateId": "briarbitten_fox",
+        "model": "mob_wolf",
+        "tint": "#8c8270",
+        "tintStrength": 0.35,
+        "still": "/guide-stills/mob_wolf__8c8270__s35.webp"
+      },
+      {
         "name": "Old Greyjaw",
         "min": 4,
         "max": 4,
@@ -2694,6 +2706,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "templateId": "old_greyjaw",
         "model": "greyjaw",
         "still": "/guide-stills/greyjaw.webp"
+      },
+      {
+        "name": "Orchard Boar",
+        "min": 4,
+        "max": 4,
+        "rare": false,
+        "templateId": "orchard_boar",
+        "model": "mob_wolf",
+        "tint": "#935116",
+        "tintStrength": 0.35,
+        "still": "/guide-stills/mob_wolf__935116__s35.webp"
       },
       {
         "name": "Void Stalker",
@@ -3002,6 +3025,28 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
     "family": "burrower",
     "creatures": [
       {
+        "name": "Bristlejaw Shore Rat",
+        "min": 1,
+        "max": 1,
+        "rare": false,
+        "templateId": "bristlejaw_shore_rat",
+        "model": "mob_kobold",
+        "tint": "#9c640c",
+        "tintStrength": 0.2,
+        "still": "/guide-stills/mob_kobold__9c640c__s20.webp"
+      },
+      {
+        "name": "Culvert Rat",
+        "min": 2,
+        "max": 2,
+        "rare": false,
+        "templateId": "culvert_rat",
+        "model": "mob_kobold",
+        "tint": "#9c640c",
+        "tintStrength": 0.2,
+        "still": "/guide-stills/mob_kobold__9c640c__s20.webp"
+      },
+      {
         "name": "Breach Wretch",
         "min": 3,
         "max": 5,
@@ -3011,6 +3056,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "tint": "#5a4a78",
         "tintStrength": 0.2,
         "still": "/guide-stills/mob_kobold__5a4a78__s20.webp"
+      },
+      {
+        "name": "Quarry Burrower",
+        "min": 3,
+        "max": 3,
+        "rare": false,
+        "templateId": "quarry_burrower",
+        "model": "mob_kobold",
+        "tint": "#9c640c",
+        "tintStrength": 0.2,
+        "still": "/guide-stills/mob_kobold__9c640c__s20.webp"
       },
       {
         "name": "Deeprock Digger",
@@ -3148,6 +3204,15 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "still": "/guide-stills/player_rogue.webp"
       },
       {
+        "name": "Veiled Rite Tender",
+        "min": 4,
+        "max": 4,
+        "rare": false,
+        "templateId": "veiled_rite_tender",
+        "model": "player_priest",
+        "still": "/guide-stills/player_priest.webp"
+      },
+      {
         "name": "Gravecaller Cultist",
         "min": 10,
         "max": 12,
@@ -3260,6 +3325,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
   {
     "family": "undead",
     "creatures": [
+      {
+        "name": "Gravestirred Fieldhand",
+        "min": 3,
+        "max": 3,
+        "rare": false,
+        "templateId": "gravestirred_fieldhand",
+        "model": "skel_minion",
+        "tint": "#d5dbdb",
+        "tintStrength": 0.25,
+        "still": "/guide-stills/skel_minion__d5dbdb__s25.webp"
+      },
       {
         "name": "Restless Bones",
         "min": 5,
@@ -5994,7 +6070,7 @@ export const GUIDE_DEEDS: GuideDeed[] = [
   },
   {
     "id": "prog_rift_watch_trusted",
-    "name": "Trusted by the Rift Watch",
+    "name": "Trusted by the Gilt Measure",
     "category": "progression",
     "renown": 5,
     "feat": false,
@@ -6002,7 +6078,7 @@ export const GUIDE_DEEDS: GuideDeed[] = [
   },
   {
     "id": "prog_church_order_trusted",
-    "name": "Trusted by the Church Order",
+    "name": "Trusted by the Lanternwardens",
     "category": "progression",
     "renown": 5,
     "feat": false,
@@ -6010,7 +6086,7 @@ export const GUIDE_DEEDS: GuideDeed[] = [
   },
   {
     "id": "prog_automatons_trusted",
-    "name": "Trusted by the Automatons",
+    "name": "Trusted by the Hearthwright Compact",
     "category": "progression",
     "renown": 5,
     "feat": false,
@@ -6018,29 +6094,29 @@ export const GUIDE_DEEDS: GuideDeed[] = [
   },
   {
     "id": "prog_rift_watch_champion",
-    "name": "Champion of the Rift Watch",
+    "name": "Champion of the Gilt Measure",
     "category": "progression",
     "renown": 25,
     "feat": false,
-    "rewardTitle": "Riftwarden",
+    "rewardTitle": "Magnate",
     "crest": "/ui/deeds/prog_rift_watch_champion.webp"
   },
   {
     "id": "prog_church_order_champion",
-    "name": "Champion of the Church Order",
+    "name": "Champion of the Lanternwardens",
     "category": "progression",
     "renown": 25,
     "feat": false,
-    "rewardTitle": "Dawnkeeper",
+    "rewardTitle": "Lanternwarden",
     "crest": "/ui/deeds/prog_church_order_champion.webp"
   },
   {
     "id": "prog_automatons_champion",
-    "name": "Champion of the Automatons",
+    "name": "Champion of the Hearthwright Compact",
     "category": "progression",
     "renown": 25,
     "feat": false,
-    "rewardTitle": "Forgemaster",
+    "rewardTitle": "Master Hearthwright",
     "crest": "/ui/deeds/prog_automatons_champion.webp"
   },
   {
@@ -6491,6 +6567,28 @@ export const GUIDE_DEEDS: GuideDeed[] = [
     "name": "The First Fell",
     "category": "progression",
     "renown": 5,
+    "feat": false
+  },
+  {
+    "id": "prog_bracken_circle_trusted",
+    "name": "Trusted by the Bracken Circle",
+    "category": "progression",
+    "renown": 5,
+    "feat": false
+  },
+  {
+    "id": "prog_bracken_circle_champion",
+    "name": "Champion of the Bracken Circle",
+    "category": "progression",
+    "renown": 25,
+    "feat": false,
+    "rewardTitle": "Circle Elder"
+  },
+  {
+    "id": "chr_shore_that_remembers",
+    "name": "The Shore That Remembers",
+    "category": "chronicle",
+    "renown": 10,
     "feat": false
   }
 ];
@@ -8123,15 +8221,15 @@ export const GUIDE_RELIQUARY: GuideReliquaryPage[] = [
       },
       {
         "kind": "title",
-        "name": "Riftwarden"
+        "name": "Magnate"
       },
       {
         "kind": "title",
-        "name": "Dawnkeeper"
+        "name": "Lanternwarden"
       },
       {
         "kind": "title",
-        "name": "Forgemaster"
+        "name": "Master Hearthwright"
       },
       {
         "kind": "title",
@@ -8196,6 +8294,10 @@ export const GUIDE_RELIQUARY: GuideReliquaryPage[] = [
       {
         "kind": "title",
         "name": "the Gourdsworn"
+      },
+      {
+        "kind": "title",
+        "name": "Circle Elder"
       }
     ]
   },
@@ -16300,7 +16402,7 @@ export const GUIDE_PROF_CRAFTS: GuideProfCraft[] = [
     "station": "forge",
     "masters": [
       {
-        "name": "Forgemistress Darva",
+        "name": "Brunna Flintmorrow",
         "title": "Master of the Forge",
         "hub": "Eastbrook"
       }
@@ -16844,7 +16946,7 @@ export const GUIDE_PROF_CRAFTS: GuideProfCraft[] = [
     "station": "forge",
     "masters": [
       {
-        "name": "Forgemistress Darva",
+        "name": "Brunna Flintmorrow",
         "title": "Master of the Forge",
         "hub": "Eastbrook"
       }
@@ -17579,7 +17681,7 @@ export const GUIDE_PROF_CRAFTS: GuideProfCraft[] = [
     "station": "forge",
     "masters": [
       {
-        "name": "Forgemistress Darva",
+        "name": "Brunna Flintmorrow",
         "title": "Master of the Forge",
         "hub": "Eastbrook"
       }
@@ -18749,11 +18851,11 @@ export const GUIDE_PROF_GATHERING: GuideProfGathering[] = [
         "priceCopper": 20,
         "vendors": [
           {
-            "name": "Trader Wilkes",
+            "name": "Silven Brackett",
             "hub": "Eastbrook"
           },
           {
-            "name": "Forgemistress Darva",
+            "name": "Brunna Flintmorrow",
             "hub": "Eastbrook"
           },
           {
@@ -18959,7 +19061,7 @@ export const GUIDE_PROF_GATHERING: GuideProfGathering[] = [
         "priceCopper": 20,
         "vendors": [
           {
-            "name": "Trader Wilkes",
+            "name": "Silven Brackett",
             "hub": "Eastbrook"
           },
           {
@@ -19159,7 +19261,7 @@ export const GUIDE_PROF_GATHERING: GuideProfGathering[] = [
         "priceCopper": 20,
         "vendors": [
           {
-            "name": "Trader Wilkes",
+            "name": "Silven Brackett",
             "hub": "Eastbrook"
           },
           {
@@ -19396,7 +19498,7 @@ export const GUIDE_PROF_GATHERING: GuideProfGathering[] = [
         "priceCopper": 60,
         "vendors": [
           {
-            "name": "Trader Wilkes",
+            "name": "Silven Brackett",
             "hub": "Eastbrook"
           },
           {
@@ -19412,7 +19514,7 @@ export const GUIDE_PROF_GATHERING: GuideProfGathering[] = [
         "priceCopper": 150,
         "vendors": [
           {
-            "name": "Trader Wilkes",
+            "name": "Silven Brackett",
             "hub": "Eastbrook"
           },
           {
@@ -21824,7 +21926,7 @@ export const GUIDE_PROF_ECONOMY: GuideProfEconomy = {
       {
         "id": "q_prof_workorder_forge",
         "name": "Forge Work Order",
-        "master": "Forgemistress Darva",
+        "master": "Brunna Flintmorrow",
         "hub": "Eastbrook",
         "material": "Copper Ore",
         "count": 8,
@@ -21906,7 +22008,7 @@ export const GUIDE_PROF_STATIONS: GuideProfStations = {
       "hub": "Eastbrook",
       "zone": "Eastbrook Vale",
       "master": {
-        "name": "Forgemistress Darva",
+        "name": "Brunna Flintmorrow",
         "title": "Master of the Forge"
       }
     },

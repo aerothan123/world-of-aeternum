@@ -11462,7 +11462,7 @@ export class Hud {
         }
         case 'ferryIslandArrival':
           // Landing on the Proving Shore with the rail not yet started:
-          // Ferryman Odo's welcome note teaches walking and talking and points
+          // Captain Fenlow's welcome note teaches walking and talking and points
           // up the road to Maren. Gated by the SIM's per-character firstVisit
           // (interactions/ferry_bell.ts), not a per-device flag, so every new
           // character is taught even on a browser that has seen it before.
@@ -13240,7 +13240,7 @@ export class Hud {
   }
 
   // The #tutorial-greeting note dialog (the town bell homecoming, Ferryman
-  // Odo's island welcome): one speaker, with a guidance choice on homecoming.
+  // Fenlow's island welcome): one speaker, with a guidance choice on homecoming.
   // Keep focus trapped and the shell above the mobile sheet; both choice
   // buttons and the managed-close registry use the same cleanup path.
   private openTutorialGreetingNote(note: TutorialGreetingNote): void {

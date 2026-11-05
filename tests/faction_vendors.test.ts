@@ -34,25 +34,30 @@ const FORMULA_IDS = [
   'formula_piston_drive',
 ] as const;
 
+// The Bracken Circle quartermaster (Wyndlewood, content/faction_vendors.ts)
+// sells only the allied rows for now: no faction-owned ladder yet, so the
+// ladder-shape pins below cover the three factions that have one.
+const FULL_LADDER_FACTIONS = FACTION_IDS.filter((f) => f !== 'bracken_circle');
+
 describe('Faction Vendors & Reroll NPC content', () => {
   it('registers all three faction quartermasters and the taskmaster in NPCS', () => {
     const qmRift = NPCS.npc_rift_watch_quartermaster;
     expect(qmRift).toBeDefined();
     expect(qmRift.name).toBe('Quartermaster Vaelen');
-    expect(qmRift.title).toBe('Rift Watch Provisioner');
-    expect(qmRift.vendorItems).toEqual([...FACTION_VENDOR_STOCK.rift_watch]);
+    expect(qmRift.title).toBe('Gilt Measure Factor');
+    expect(qmRift.vendorItems).toEqual([...FACTION_VENDOR_STOCK.gilt_measure]);
 
     const qmChurch = NPCS.npc_church_order_quartermaster;
     expect(qmChurch).toBeDefined();
-    expect(qmChurch.name).toBe('Templar Althea');
-    expect(qmChurch.title).toBe('Church Order Quartermaster');
-    expect(qmChurch.vendorItems).toEqual([...FACTION_VENDOR_STOCK.church_order]);
+    expect(qmChurch.name).toBe('Captain Althea');
+    expect(qmChurch.title).toBe('Lanternwarden Quartermaster');
+    expect(qmChurch.vendorItems).toEqual([...FACTION_VENDOR_STOCK.lanternwardens]);
 
     const qmAuto = NPCS.npc_automaton_quartermaster;
     expect(qmAuto).toBeDefined();
     expect(qmAuto.name).toBe('Artificer Tobrin');
-    expect(qmAuto.title).toBe('Automaton Requisitioner');
-    expect(qmAuto.vendorItems).toEqual([...FACTION_VENDOR_STOCK.automatons]);
+    expect(qmAuto.title).toBe('Hearthwright Requisitioner');
+    expect(qmAuto.vendorItems).toEqual([...FACTION_VENDOR_STOCK.hearthwright_compact]);
 
     const taskmaster = NPCS.npc_wq_taskmaster;
     expect(taskmaster).toBeDefined();
@@ -66,7 +71,9 @@ describe('Faction Vendors & Reroll NPC content', () => {
     const stockIds = FACTION_IDS.flatMap((f) => [...FACTION_VENDOR_STOCK[f]]);
     const unique = new Set(stockIds);
     // The three allied rows stand on every ladder; every other row on one.
-    expect(stockIds).toHaveLength(53);
+    // The Bracken Circle (Wyndlewood) sells only the three allied rows until
+    // its own ladder is authored, so it adds 3 listings and no unique row.
+    expect(stockIds).toHaveLength(56);
     expect(unique.size).toBe(47);
     expect([...unique].sort()).toEqual(Object.keys(FACTION_VENDOR_GATES).sort());
     // The Valestrider reins sit with the other reins and the Ink with the quest
@@ -130,7 +137,7 @@ describe('Faction Vendors & Reroll NPC content', () => {
   });
 
   it('every faction ladder covers all five standing tiers, in ladder order', () => {
-    for (const factionId of FACTION_IDS) {
+    for (const factionId of FULL_LADDER_FACTIONS) {
       const tiers = FACTION_VENDOR_STOCK[factionId].map(
         (id) => FACTION_VENDOR_GATES[id].standingTier,
       );
@@ -148,7 +155,7 @@ describe('Faction Vendors & Reroll NPC content', () => {
         .filter((id) => FACTION_VENDOR_GATES[id].standingTier === tier)
         .map((id) => (ITEMS[id].kind === 'recipe' ? 'formula' : (ITEMS[id].slot ?? ITEMS[id].kind)))
         .sort();
-    for (const factionId of FACTION_IDS) {
+    for (const factionId of FULL_LADDER_FACTIONS) {
       // The allied Cartographer's Ink (a quest item) joins every Recognized neck.
       expect(slotsAt(factionId, 'recognized'), factionId).toEqual(['neck', 'quest']);
       expect(slotsAt(factionId, 'trusted'), factionId).toContain('ring');
@@ -160,11 +167,11 @@ describe('Faction Vendors & Reroll NPC content', () => {
         expect.arrayContaining(['neck', 'ring']),
       );
     }
-    // The one mount a faction sells: the Rift Watch's Champion reward.
-    expect(slotsAt('rift_watch', 'champion')).toEqual(['mount', 'neck', 'ring']);
+    // The one mount a faction sells: the Gilt Measure's Champion reward.
+    expect(slotsAt('gilt_measure', 'champion')).toEqual(['mount', 'neck', 'ring']);
     // Trusted adds a toy (the glider, the target dummy, the battle standard).
-    expect(slotsAt('rift_watch', 'trusted')).toEqual(['bag', 'ring', 'tool']);
-    expect(slotsAt('automatons', 'trusted')).toEqual(['bag', 'ring', 'tool']);
+    expect(slotsAt('gilt_measure', 'trusted')).toEqual(['bag', 'ring', 'tool']);
+    expect(slotsAt('hearthwright_compact', 'trusted')).toEqual(['bag', 'ring', 'tool']);
   });
 
   it('correctly maps FACTION_VENDOR_GATES to the exact standing thresholds', () => {
@@ -201,11 +208,11 @@ describe('Faction Vendors & Reroll NPC content', () => {
     expect(FACTION_VENDOR_GATES.cartographers_ink.currencyCost).toBe(60);
     expect(FACTION_VENDOR_GATES.allied_hearthstone.currencyCost).toBe(100);
     expect(FACTION_VENDOR_GATES.allied_vanguard_duffel.currencyCost).toBe(120);
-    // The mount: 500 Rift Watch marks, no coin, an ordinary player reins
+    // The mount: 500 Gilt Measure marks, no coin, an ordinary player reins
     // that never vendor-sells back.
     const reins = ITEMS.reins_avian_strider;
     expect(FACTION_VENDOR_GATES.reins_avian_strider).toMatchObject({
-      factionId: 'rift_watch',
+      factionId: 'gilt_measure',
       standingTier: 'champion',
       currencyCost: 500,
     });
@@ -217,7 +224,7 @@ describe('Faction Vendors & Reroll NPC content', () => {
 
   it('evaluates resolveFactionVendorRowGate accurately', () => {
     const factions = freshFactionReputation();
-    factions.rift_watch = 2_500; // Above Recognized (1,000), below Trusted (3,000)
+    factions.gilt_measure = 2_500; // Above Recognized (1,000), below Trusted (3,000)
 
     const t1 = resolveFactionVendorRowGate('tidewatchers_locket', factions);
     expect(t1.locked).toBe(false);
@@ -227,7 +234,7 @@ describe('Faction Vendors & Reroll NPC content', () => {
     expect(t2.locked).toBe(true);
     expect(t2.requirement?.standingTier).toBe('trusted');
 
-    // Church Order items (standing is 0) -> Locked
+    // Lanternwardens items (standing is 0) -> Locked
     const churchT1 = resolveFactionVendorRowGate('order_prayer_beads', factions);
     expect(churchT1.locked).toBe(true);
 
@@ -421,8 +428,8 @@ describe('Faction vendor purchase authoritative simulation & UI', () => {
     expect(meta).toBeDefined();
     if (!meta) return;
     meta.copper = 100_000;
-    meta.factions.church_order = 500; // Not yet Recognized (requires 1,000)
-    meta.factionCurrencies.church_order = 100; // Plenty of faction marks
+    meta.factions.lanternwardens = 500; // Not yet Recognized (requires 1,000)
+    meta.factionCurrencies.lanternwardens = 100; // Plenty of faction marks
 
     // Find the Church Quartermaster in Eastbrook Vale and move player into range
     const qm = [...sim.entities.values()].find(
@@ -442,14 +449,14 @@ describe('Faction vendor purchase authoritative simulation & UI', () => {
     ).toBe(true);
     expect(sim.countItem('order_prayer_beads')).toBe(0);
     expect(meta.copper).toBe(100_000);
-    expect(meta.factionCurrencies.church_order).toBe(100);
+    expect(meta.factionCurrencies.lanternwardens).toBe(100);
 
     // Increase standing to Recognized (1,000)
-    meta.factions.church_order = 1_000;
+    meta.factions.lanternwardens = 1_000;
     sim.buyItem(qm.id, 'order_prayer_beads');
     expect(sim.countItem('order_prayer_beads')).toBe(1);
-    // Tier 1 costs 15 Order Crests, 0 copper
-    expect(meta.factionCurrencies.church_order).toBe(85);
+    // Tier 1 costs 15 Lantern Crests, 0 copper
+    expect(meta.factionCurrencies.lanternwardens).toBe(85);
     expect(meta.copper).toBe(100_000);
 
     // Attempting to buy Trusted (3,000) still fails
@@ -457,28 +464,28 @@ describe('Faction vendor purchase authoritative simulation & UI', () => {
     expect(sim.countItem('acolytes_signet')).toBe(0);
 
     // Elevate standing to Trusted (3,000), but hold fewer crests than the ring (35)
-    meta.factions.church_order = 3_000;
-    meta.factionCurrencies.church_order = 10;
+    meta.factions.lanternwardens = 3_000;
+    meta.factionCurrencies.lanternwardens = 10;
     sim.drainEvents();
     sim.buyItem(qm.id, 'acolytes_signet');
     expect(
-      sim.drainEvents().some((e) => e.type === 'error' && e.text.includes('Order Crest')),
+      sim.drainEvents().some((e) => e.type === 'error' && e.text.includes('Lantern Crest')),
     ).toBe(true);
     expect(sim.countItem('acolytes_signet')).toBe(0);
-    meta.factionCurrencies.church_order = 50;
+    meta.factionCurrencies.lanternwardens = 50;
     sim.buyItem(qm.id, 'acolytes_signet');
     expect(sim.countItem('acolytes_signet')).toBe(1);
-    expect(meta.factionCurrencies.church_order).toBe(15); // 50 - 35
+    expect(meta.factionCurrencies.lanternwardens).toBe(15); // 50 - 35
     expect(meta.copper).toBe(100_000);
 
     // A Proven formula is refused at Trusted and sold at Proven for 50 crests.
     sim.buyItem(qm.id, 'formula_dawnfire_etching');
     expect(sim.countItem('formula_dawnfire_etching')).toBe(0);
-    meta.factions.church_order = 7_000;
-    meta.factionCurrencies.church_order = 60;
+    meta.factions.lanternwardens = 7_000;
+    meta.factionCurrencies.lanternwardens = 60;
     sim.buyItem(qm.id, 'formula_dawnfire_etching');
     expect(sim.countItem('formula_dawnfire_etching')).toBe(1);
-    expect(meta.factionCurrencies.church_order).toBe(10); // 60 - 50
+    expect(meta.factionCurrencies.lanternwardens).toBe(10); // 60 - 50
     expect(meta.copper).toBe(100_000);
   });
 
@@ -489,7 +496,7 @@ describe('Faction vendor purchase authoritative simulation & UI', () => {
     const meta = sim.meta(pid);
     if (!meta) throw new Error('fixture player missing');
     meta.copper = 2_500_000;
-    meta.factionCurrencies.rift_watch = 499;
+    meta.factionCurrencies.gilt_measure = 499;
     meta.ridingTrained = true;
     const qm = [...sim.entities.values()].find(
       (e) => e.templateId === 'npc_rift_watch_quartermaster',
@@ -498,7 +505,7 @@ describe('Faction vendor purchase authoritative simulation & UI', () => {
     sim.player.pos.x = qm.pos.x;
     sim.player.pos.z = qm.pos.z;
     // Vanguard is not enough.
-    meta.factions.rift_watch = 13_000;
+    meta.factions.gilt_measure = 13_000;
     sim.drainEvents();
     sim.buyItem(qm.id, 'reins_avian_strider');
     expect(
@@ -506,7 +513,7 @@ describe('Faction vendor purchase authoritative simulation & UI', () => {
     ).toBe(true);
     expect(sim.countItem('reins_avian_strider', pid)).toBe(0);
     // Champion, but the riding skill gate comes first.
-    meta.factions.rift_watch = 20_000;
+    meta.factions.gilt_measure = 20_000;
     meta.ridingTrained = false;
     sim.buyItem(qm.id, 'reins_avian_strider');
     expect(sim.countItem('reins_avian_strider', pid)).toBe(0);
@@ -518,13 +525,13 @@ describe('Faction vendor purchase authoritative simulation & UI', () => {
       sim.drainEvents().some((e) => e.type === 'error' && e.text.startsWith('You need 500 ')),
     ).toBe(true);
     expect(sim.countItem('reins_avian_strider', pid)).toBe(0);
-    expect(meta.factionCurrencies.rift_watch).toBe(499);
+    expect(meta.factionCurrencies.gilt_measure).toBe(499);
     expect(meta.copper).toBe(2_500_000);
     // Enough marks: the purchase spends exactly 500 of them and no coin.
-    meta.factionCurrencies.rift_watch = 550;
+    meta.factionCurrencies.gilt_measure = 550;
     sim.buyItem(qm.id, 'reins_avian_strider');
     expect(sim.countItem('reins_avian_strider', pid)).toBe(1);
-    expect(meta.factionCurrencies.rift_watch).toBe(50);
+    expect(meta.factionCurrencies.gilt_measure).toBe(50);
     expect(meta.copper).toBe(2_500_000);
     // One per account: owning the reins IS owning the mount.
     sim.drainEvents();
@@ -533,7 +540,7 @@ describe('Faction vendor purchase authoritative simulation & UI', () => {
       sim.drainEvents().some((e) => e.type === 'error' && e.text.includes('already own')),
     ).toBe(true);
     expect(sim.countItem('reins_avian_strider', pid)).toBe(1);
-    expect(meta.factionCurrencies.rift_watch).toBe(50);
+    expect(meta.factionCurrencies.gilt_measure).toBe(50);
     expect(meta.copper).toBe(2_500_000);
   });
 
@@ -559,9 +566,10 @@ describe('Faction vendor purchase authoritative simulation & UI', () => {
       honor: 0,
       gatheringProficiency: { mining: 0, logging: 0, herbalism: 0 },
       factions: {
-        rift_watch: 1_200, // Recognized
-        church_order: 0,
-        automatons: 8_000, // Proven
+        gilt_measure: 1_200, // Recognized
+        lanternwardens: 0,
+        hearthwright_compact: 8_000, // Proven,
+        bracken_circle: 0,
       },
     };
 
@@ -606,8 +614,18 @@ describe('Faction vendor purchase authoritative simulation & UI', () => {
         copper: 100_000,
         honor: 0,
         gatheringProficiency: { mining: 0, logging: 0, herbalism: 0 },
-        factions: { rift_watch: 0, church_order: 0, automatons: 0 },
-        factionCurrencies: { rift_watch: 0, church_order: 0, automatons: 0 },
+        factions: {
+          gilt_measure: 0,
+          lanternwardens: 0,
+          hearthwright_compact: 0,
+          bracken_circle: 0,
+        },
+        factionCurrencies: {
+          gilt_measure: 0,
+          lanternwardens: 0,
+          hearthwright_compact: 0,
+          bracken_circle: 0,
+        },
         vendorFactionId: factionId,
       };
       const view = buildVendorView(stock, [], ITEMS, balances);
