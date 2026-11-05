@@ -963,6 +963,17 @@ const ZONE_IDS = [
   // Appended last, matching the ZONES order in sim/data.ts.
   'goldcrest_harbor',
   'proving_shore',
+  // The frontier zones (src/sim/content/frontier/), in slot order.
+  'applewold',
+  'kindlemoor',
+  'chalkbarrow_coast',
+  'saltmeads',
+  'wychwold',
+  'tinmarch',
+  'rookcliffs',
+  'sedgemarch',
+  'harrowfells',
+  'wardmere',
 ] as const;
 const DUNGEON_IDS = [
   'hollow_crypt',

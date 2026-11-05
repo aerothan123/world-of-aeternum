@@ -3337,7 +3337,7 @@ describe('autosaves', () => {
       expect(gate.stats().inFlight).toBe(1);
     });
 
-    await server.flushDirtyGuildBooks(session.characterId);
+    await (server as any).saveCharacterWithBackgroundPermit(session);
     await server.persistMailBlob();
 
     expect(saveCharacterAndGuildBankState).toHaveBeenCalledTimes(1);
