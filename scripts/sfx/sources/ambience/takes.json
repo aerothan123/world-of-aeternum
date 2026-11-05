@@ -38,5 +38,105 @@
     "generated": "2026-11-04",
     "tier": "creator",
     "format": "mp3_44100_192"
+  },
+  "amb_bed_shore": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192"
+  },
+  "amb_bed_town_day": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192"
+  },
+  "amb_bed_town_night": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192"
+  },
+  "amb_bed_meadow": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192"
+  },
+  "amb_bed_forest": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192"
+  },
+  "amb_bed_marsh": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192"
+  },
+  "amb_bed_night_wild": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192"
+  },
+  "amb_bed_peaks": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192"
+  },
+  "amb_bed_harbor": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192"
+  },
+  "amb_bed_cave": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192"
+  },
+  "amb_bed_crypt": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192"
+  },
+  "amb_bed_temple": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192"
+  },
+  "amb_bed_jungle": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192"
+  },
+  "amb_bed_frost": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192"
+  },
+  "amb_bed_ember": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192"
+  },
+  "amb_bed_haunt": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192"
+  },
+  "amb_bed_garden": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192"
+  },
+  "amb_bed_amber": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192"
+  },
+  "amb_bed_gale": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192"
+  },
+  "amb_bed_dusk": {
+    "generated": "2026-11-04",
+    "tier": "creator",
+    "format": "mp3_44100_192"
   }
 }
