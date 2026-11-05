@@ -1,0 +1,70 @@
+[
+  {
+    "name": "shore",
+    "anchor": [0, -30],
+    "items": [
+      { "id": "quest_northern_beacon", "at": [-9, -4] },
+      { "id": "quest_beached_skiff", "at": [-1, 0], "yaw": 0.6 },
+      { "id": "quest_broken_lifeboat", "at": [4.5, 0.5], "yaw": -0.5 },
+      { "id": "quest_supply_bundle", "at": [2, 3] },
+      { "id": "quest_wreck_crate", "at": [3.2, 3.4], "yaw": 0.4 },
+      { "id": "quest_crab_pot", "at": [7.2, 2.8] },
+      { "id": "quest_walkway_gap", "at": [10, 0] },
+      { "id": "quest_walkway_panel", "at": [10, 2.6] }
+    ],
+    "shots": [
+      { "name": "wide", "at": [0, 14], "look": [0, 0], "pitch": 0.35, "dist": 12 },
+      { "name": "close", "at": [4.5, 8], "look": [4.5, 2], "pitch": 0.3, "dist": 5 }
+    ]
+  },
+  {
+    "name": "grave",
+    "anchor": [-35, 0],
+    "items": [
+      { "id": "quest_hollow_crypt_entrance", "at": [-10, -6] },
+      { "id": "quest_crypt_outer_wicket", "at": [-2, -1] },
+      { "id": "quest_boundary_stone", "at": [2.5, 0] },
+      { "id": "quest_name_stone", "at": [4, 2] },
+      { "id": "quest_name_stone", "at": [5.2, 2.4], "tilt": -1.45, "lift": 0.2 },
+      { "id": "quest_grave_lamp_unlit", "at": [6.5, 1.5] },
+      { "id": "quest_grave_lamp_bound", "at": [7.6, 1.6] },
+      { "id": "quest_bone_pit", "at": [10.5, -0.5] }
+    ],
+    "shots": [
+      { "name": "wide", "at": [0, 14], "look": [0, -1], "pitch": 0.33, "dist": 13 },
+      { "name": "close", "at": [5.5, 7], "look": [5.5, 1.5], "pitch": 0.25, "dist": 4.5 }
+    ]
+  },
+  {
+    "name": "town",
+    "anchor": [35, 0],
+    "items": [
+      { "id": "quest_eastbrook_quest_board", "at": [-3, 0] },
+      { "id": "quest_housing_noticeboard", "at": [1.5, 0.5] },
+      { "id": "quest_speaking_pipe", "at": [4.5, 0.8] },
+      { "id": "quest_pantry_saucer", "at": [6, 1.6], "scale": 1 }
+    ],
+    "shots": [
+      { "name": "wide", "at": [1, 9], "look": [1, 0.5], "pitch": 0.2, "dist": 7 },
+      { "name": "close", "at": [5, 4.5], "look": [5, 1.2], "pitch": 0.35, "dist": 3 }
+    ]
+  },
+  {
+    "name": "furniture",
+    "anchor": [0, 30],
+    "items": [
+      { "id": "furn_braided_rug", "at": [0, 0] },
+      { "id": "furn_cottage_table", "at": [0, 0] },
+      { "id": "furn_table_lantern", "at": [0.1, 0], "lift": 0.85 },
+      { "id": "furn_cottage_chair", "at": [0, 1.1], "yaw": 3.14 },
+      { "id": "furn_cottage_bed", "at": [-3, -0.6] },
+      { "id": "furn_cottage_shelf", "at": [-0.8, -2.2] },
+      { "id": "furn_small_storage_chest", "at": [1.6, -1.8] },
+      { "id": "furn_folding_worktable", "at": [3.4, -0.6] }
+    ],
+    "shots": [
+      { "name": "wide", "at": [0, 7], "look": [0, -0.5], "pitch": 0.35, "dist": 6.5 },
+      { "name": "close", "at": [-1.5, 4], "look": [-1.5, -0.8], "pitch": 0.3, "dist": 3.5 }
+    ]
+  }
+]

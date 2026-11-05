@@ -27,6 +27,16 @@ foreach ($tok in ($Steps -split ',')) {
     'review' { New-Item -ItemType Directory -Force "tmp/props_kit/review_$Name" | Out-Null; foreach ($i in $idList) { Copy-Item "public/models/props/wyn_$i.glb" "tmp/props_kit/review_$Name/" -Force }; Run review { node tmp/props_kit/preview_dir.mjs "tmp/props_kit/review_$Name" "tmp/props_kit/review_$Name.jpg" } }
     'conceptsheet' { Run conceptsheet { node tmp/props_kit/concept_sheet.mjs "tmp/props_kit/concepts_$Name.jpg" @idList } }
     'icons' { $env:ONLY = ($idList -join ','); Run icons { node scripts/render_furniture_icons.mjs }; Remove-Item Env:ONLY }
+    'shots' {
+      $vite = Start-Process npx -ArgumentList 'vite','--port','5272','--strictPort' -PassThru -WindowStyle Hidden
+      $ok = $false; for ($i = 0; $i -lt 90; $i++) { Start-Sleep 2; try { Invoke-WebRequest -UseBasicParsing http://localhost:5272/ -TimeoutSec 5 | Out-Null; $ok = $true; break } catch {} }
+      Log "vite up $ok"
+      $env:GAME_URL = 'http://localhost:5272'; $env:SHOTS_DIR = "tmp/props_kit/shots_$Name"; $env:GPU = '1'
+      if ($idList.Count -gt 0 -and $idList[0]) { $env:GROUPS = ($idList -join ',') } else { Remove-Item Env:GROUPS -ErrorAction SilentlyContinue }
+      Run shots { node scripts/assets/wyndlewood_props/kit_shots.mjs }
+      # Stop only the vite this step started (its process tree).
+      if ($vite) { taskkill /PID $vite.Id /T /F *>> $Out }
+    }
     'fill' { Run fill { node scripts/assets/wyndlewood_props/fill_rows.mjs } }
     'i18n' { Run i18n { npm run i18n:gen } }
     'wiki' { Run wiki { npm run wiki:content } }
