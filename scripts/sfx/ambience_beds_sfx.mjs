@@ -7,7 +7,10 @@
 //   node scripts/sfx/ambience_beds_sfx.mjs demo [--only <key>]
 //
 // generate keeps the raw take in scripts/sfx/sources/ambience/<key>.source.mp3 and never
-// regenerates one that exists (the account's quota is small). build cuts the raw take into a
+// regenerates one that exists (the quota is shared), records the take's date and the account
+// tier it was made on in scripts/sfx/sources/ambience/takes.json (the licensing ledger,
+// docs/audio/elevenlabs_provenance.md, reads it), and retries once a take that came back
+// near silent. build cuts the raw take into a
 // loop: the tail is crossfaded (equal power) over the head, so the wrap the runtime's plain
 // loop=true playback makes is inaudible, then masters it (loudness and true-peak ceiling) and
 // writes public/audio/sfx/<key>.mp3. demo renders a short listening file per bed that plays
@@ -15,10 +18,11 @@
 //
 // Every take is DRY: the outdoor reverb and the distance crossfades are applied at runtime.
 import { execFileSync, spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { AMBIENCE_BED_PROMPTS } from './ambience_bed_prompts.mjs';
+import { conformSfxAudio } from './conform_audio.mjs';
 import { FFMPEG_PATH } from './ffmpeg_paths.mjs';
 
 const ROOT = fileURLToPath(new URL('../..', import.meta.url));
@@ -28,6 +32,11 @@ const DEMO_DIR = process.env.AMBIENCE_DEMO_DIR ?? join(ROOT, 'tmp/ambience-demo'
 const API = 'https://api.elevenlabs.io';
 const SR = 44100;
 const PROMPT_INFLUENCE = 0.45;
+/** The take's delivery format: 192 kbps needs a paid tier (the free-tier takes were 128). */
+const OUTPUT_FORMAT = process.env.AMBIENCE_OUTPUT_FORMAT ?? 'mp3_44100_192';
+/** A take quieter than this (integrated LUFS) came back near silent: retry it once. */
+const SILENT_TAKE_LUFS = -45;
+const TAKES_FILE = join(SOURCES, 'takes.json');
 /** Seconds of the take's tail folded over its head to hide the wrap. */
 const SEAM_SECONDS = 2.5;
 /** Integrated loudness the beds are mastered to (they sit under everything else). */
@@ -51,6 +60,8 @@ function apiKey() {
   return key;
 }
 
+let lastTier = 'unknown';
+
 async function usage() {
   const res = await fetch(`${API}/v1/user/subscription`, { headers: { 'xi-api-key': apiKey() } });
   if (!res.ok) {
@@ -59,6 +70,7 @@ async function usage() {
   }
   const s = await res.json();
   console.log(`usage: ${s.character_count} / ${s.character_limit} characters (tier ${s.tier})`);
+  lastTier = s.tier;
   return s.character_count;
 }
 
@@ -71,7 +83,7 @@ async function generateOne(bed) {
     model_id: 'eleven_text_to_sound_v2',
   };
   for (let attempt = 0; ; attempt++) {
-    const res = await fetch(`${API}/v1/sound-generation?output_format=mp3_44100_128`, {
+    const res = await fetch(`${API}/v1/sound-generation?output_format=${OUTPUT_FORMAT}`, {
       method: 'POST',
       headers: { 'xi-api-key': apiKey(), 'content-type': 'application/json' },
       body: JSON.stringify(body),
@@ -97,10 +109,26 @@ async function generate() {
     }
     process.stdout.write(`gen ${bed.key} (${bed.request}s)... `);
     writeFileSync(file, await generateOne(bed));
+    const lufs = integratedLufs(file);
+    if (!(lufs > SILENT_TAKE_LUFS)) {
+      renameSync(file, join(SOURCES, `${bed.key}.rejected.mp3`));
+      process.stdout.write(`near silent (${lufs} LUFS), retrying... `);
+      writeFileSync(file, await generateOne(bed));
+    }
     const after = await usage();
+    const takes = existsSync(TAKES_FILE) ? JSON.parse(readFileSync(TAKES_FILE, 'utf8')) : {};
+    takes[bed.key] = { generated: localDate(), tier: lastTier, format: OUTPUT_FORMAT };
+    writeFileSync(TAKES_FILE, `${JSON.stringify(takes, null, 2)}\n`);
     if (before !== null && after !== null) console.log(`  cost ${after - before} characters`);
     before = after;
   }
+}
+
+/** Today's date (YYYY-MM-DD) on the generating machine's own clock. */
+function localDate() {
+  const d = new Date();
+  const p = (n) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
 }
 
 /** Decode to interleaved-free stereo planes at SR. */
@@ -248,6 +276,36 @@ function limit(planes, ceiling) {
   return out;
 }
 
+/** 16-bit PCM WAV of stereo planes (the conform step's input). */
+function writeWav(planes, file) {
+  const [l, r] = planes;
+  const inter = new Float32Array(l.length * 2);
+  for (let i = 0; i < l.length; i++) {
+    inter[2 * i] = l[i];
+    inter[2 * i + 1] = r[i];
+  }
+  execFileSync(
+    FFMPEG_PATH,
+    [
+      '-v',
+      'error',
+      '-y',
+      '-f',
+      'f32le',
+      '-ar',
+      String(SR),
+      '-ac',
+      '2',
+      '-i',
+      'pipe:0',
+      '-c:a',
+      'pcm_s16le',
+      file,
+    ],
+    { input: Buffer.from(inter.buffer) },
+  );
+}
+
 function build() {
   mkdirSync(DEMO_DIR, { recursive: true });
   for (const bed of beds) {
@@ -260,7 +318,22 @@ function build() {
     const looped = makeLoop(m.planes);
     m.planes = looped;
     const out = join(OUT_DIR, `${bed.key}.mp3`);
-    encode(looped, out);
+    // the shipped file meets the production SFX standard (scripts/sfx/conform_audio.mjs:
+    // bitrate, sample rate, channels and the peak ceiling) and keeps the bed's own loudness
+    const wavTmp = join(OUT_DIR, `.${bed.key}.${process.pid}.wav`);
+    writeWav(looped, wavTmp);
+    try {
+      conformSfxAudio({
+        inputFile: wavTmp,
+        outputFile: out,
+        duration: looped[0].length / SR,
+        ffmpegPath: FFMPEG_PATH,
+        channels: 2,
+        preserveLoudness: true,
+      });
+    } finally {
+      rmSync(wavTmp, { force: true });
+    }
     const final = integratedLufs(out);
     console.log(
       `${bed.key}: ${(m.planes[0].length / SR).toFixed(2)} s loop, raw ${m.lufs.toFixed(1)} LUFS, gain ${m.gainDb.toFixed(1)} dB, final ${final.toFixed(1)} LUFS`,

@@ -15,10 +15,12 @@
 export const FOREST_CELL_YARDS = 24;
 /** Side of the square counted round each cell's centre (yards). */
 export const FOREST_REACH_YARDS = 48;
-/** Trees in one counted square at which the ground starts to read as a wood... */
-export const FOREST_TREES_OPEN = 6;
+/** Trees in one counted square at which the ground starts to read as a wood... (measured
+ *  in Eastbrook Vale, 48-yard squares away from town: median 1, 90th percentile 6, the
+ *  densest stand 14) */
+export const FOREST_TREES_OPEN = 3;
 /** ...and at which it is a closed wood. */
-export const FOREST_TREES_CLOSED = 22;
+export const FOREST_TREES_CLOSED = 11;
 export const FOREST_CELLS_PER_FRAME = 2;
 export const FOREST_CACHE_CELLS = 1024;
 
