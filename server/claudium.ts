@@ -48,6 +48,7 @@ import {
   rateLimit,
 } from './http/middleware/rate_limit';
 import type { Ctx, Middleware, RateLimitOutcome, RouteDef } from './http/types';
+import type { EarlyAccessFlags } from '../src/early_access_flags';
 import { SERVER_EARLY_ACCESS } from './early_access_flags';
 import { json, readBinaryBody, readBody } from './http_util';
 import { gameMembershipAnnualClaim, membershipAnnualRecipient } from './membership_annual_store';
@@ -525,9 +526,12 @@ function claudiumHandler(ctx: Ctx): Promise<void> {
  *  Claudium switch is off (server/early_access_flags.ts, Early Access), and the
  *  membership offers it fronts (the subscription and the membership token) stay
  *  closed while membership is off even when the store is on. */
-export function claudiumPathEnabled(path: string): boolean {
-  if (!SERVER_EARLY_ACCESS.claudium) return false;
-  if (/^\/api\/claudium\/(subscription|membership)/.test(path)) return SERVER_EARLY_ACCESS.membership;
+export function claudiumPathEnabled(
+  path: string,
+  flags: EarlyAccessFlags = SERVER_EARLY_ACCESS,
+): boolean {
+  if (!flags.claudium) return false;
+  if (/^\/api\/claudium\/(subscription|membership)/.test(path)) return flags.membership;
   return true;
 }
 
