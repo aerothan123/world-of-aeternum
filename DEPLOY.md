@@ -163,7 +163,7 @@ sudo docker compose ps
 sudo docker inspect -f '{{.State.Health.Status}}' eastbrook-game
 
 # the startup logs are free of errors, and the bot detector line names the
-# implementation you actually expect (`stub (no-op)` or `private`); repeated
+# implementation you actually expect (`flag-only (open build)` or `private`); repeated
 # TypeErrors that mention the detector mean the bundled clone is out of step
 # with the game tree: stop, pull it (step 2), and rebuild
 sudo docker compose logs game --since 10m
@@ -797,7 +797,7 @@ For off-box safety, sync the directory to S3 occasionally:
   so the same rule applies to deploys that run `docker compose build`: the private
   checkout must exist before the image is built. That directory is not part of the
   public checkout. At build time, confirm which implementation was picked:
-  `[build:server] bot detector: stub (no-op)` vs `... bot detector: private`.
+  `[build:server] bot detector: flag-only (open build)` vs `... bot detector: private`.
 - **Anti-bot runtime knobs**: `MAX_WS_PER_IP_HARD` (default `20`) caps simultaneous
   WebSocket connections per source IP; extra connections are refused at the
   handshake. `ANTIBOT_ENFORCE=1` lets the detector act on its findings (e.g. kick);
