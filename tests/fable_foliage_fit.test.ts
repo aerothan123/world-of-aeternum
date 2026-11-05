@@ -615,7 +615,9 @@ describe('fable foliage shipped models', () => {
         // rocks and the mushroom keep their (capped) Tripo source; the fern,
         // the densest dressing, ships at its own lower cap (FERN_BUDGET),
         // still several times the old 288-triangle card fern
-        expect(tris(m.whole), target.name).toBeGreaterThan(target.kind === 'fern' ? 1000 : 1500);
+        expect(tris(m.whole), target.name).toBeGreaterThan(
+          (target.kind as string) === 'fern' ? 1000 : 1500,
+        );
         continue;
       }
       if ('twigs' in card) {
