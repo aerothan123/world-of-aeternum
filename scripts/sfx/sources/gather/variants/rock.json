@@ -1,5 +1,9 @@
 {
-  "kept": ["quarry/cand_1", "rock/cand_4", "quarry/cand_5", "rock/cand_1"],
+  "kept": [
+    "quarry/cand_1",
+    "rock/cand_4",
+    "quarry/cand_5"
+  ],
   "layered": [
     {
       "attack": "quarry/cand_1",
