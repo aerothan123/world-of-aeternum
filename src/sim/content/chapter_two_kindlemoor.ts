@@ -198,6 +198,9 @@ const RING_STONES = [0, 1, 2, 3, 4].map((i) => {
     z: Math.round((HEARTH_RING.z + 9 * Math.sin(a)) * 2) / 2,
   };
 });
+// The fifth stone's evenly spaced spot sits on blocked ground after the world
+// relayout; stand it one yard in, on open ground (still on the nine-yard ring's edge).
+RING_STONES[4] = { x: HEARTH_RING.x + 2.5, z: HEARTH_RING.z - 7.5 };
 
 const OBJECTS = objects(2_147_230_000, [
   // Quest 16: the fires in the peat cuts, beside the wisps that feed on them.
@@ -221,7 +224,7 @@ const OBJECTS = objects(2_147_230_000, [
       { x: HEARTH_RING.x + 4, z: HEARTH_RING.z + 4 },
       { x: HEARTH_RING.x - 2, z: HEARTH_RING.z + 4 },
       { x: HEARTH_RING.x + 4, z: HEARTH_RING.z - 4 },
-      { x: HEARTH_RING.x - 3, z: HEARTH_RING.z - 3 },
+      { x: HEARTH_RING.x - 3.5, z: HEARTH_RING.z - 3.5 },
     ],
   ],
   // Quest 21: mallow on the open heath off the Heath Way, and Yara's table

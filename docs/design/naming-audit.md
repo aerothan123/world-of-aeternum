@@ -3972,3 +3972,19 @@ player-visible names, each checked at authoring time:
 - West, Middle and East Terrace House, Slate Townhouse, Corner House, Stone
   Cottage, Red Roof Cottage, Timber House, Green Townhouse (house lots):
   GENERIC descriptive English.
+
+## Integration wave 1 additions (2026-11-05)
+
+Pressford's gardener and carpenter (Chapter Two, `src/sim/content/chapter_two.ts`)
+stopped reusing the Chapter One display names Della Brindlepot and Wenna
+Nookwright and became their own people. Each new name was checked at authoring
+time:
+
+- Hester Applegarth (NPC, Pressford's gardener): CLEAR. "Hester" is a common
+  English given name and "Applegarth" is a plain English surname (an apple
+  enclosure). The full-name exact-phrase search and a gardener-NPC search of the
+  major game wikis returned no character, place or item of that name.
+- Bryony Cooperwick (NPC, Pressford's carpenter): CLEAR. "Bryony" is a common
+  English given name; "Cooperwick" is a coined compound of "cooper" and "wick"
+  and the coined-token and full-name searches returned nothing.
+- Hester's Field Bench (object): GENERIC possessive plus descriptive English.

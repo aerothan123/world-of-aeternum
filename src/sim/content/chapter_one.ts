@@ -495,7 +495,7 @@ export const CHAPTER_ONE_OBJECTS: GroundObjectDef[] = [
     { x: 8, z: -52 },
     { x: -2, z: -60 },
   ]),
-  obj('c1_dew_damp_cloth', [{ x: -34, z: -79 }]),
+  obj('c1_dew_damp_cloth', [{ x: -33.5, z: -78.5 }]),
   obj('c1_windwhistle_patch', [
     { x: -35.5, z: -70 },
     { x: -38.2, z: -69.2 },
@@ -585,7 +585,7 @@ export const CHAPTER_ONE_OBJECTS: GroundObjectDef[] = [
   obj('c1_watch_lantern', [
     { x: -10, z: -67 },
     { x: 5, z: -66 },
-    { x: 15, z: -64 },
+    { x: 14, z: -63.5 },
   ]),
   obj('c1_water_level_gauge', [
     { x: -40, z: -70 },

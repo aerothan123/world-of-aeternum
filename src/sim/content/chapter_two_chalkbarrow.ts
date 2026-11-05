@@ -47,12 +47,13 @@ const SILVEN = 'trader_wilkes';
 
 export const C2_CLAIM_MASTER = 'claim_master_ambrose';
 export const C2_COINWELL_COOK = 'cook_nettie_saltmarsh';
-/** Chapter One townsfolk who travel to Coinwell (outline Act E): second
- *  records, display names unchanged (the brother_aldric_fen precedent). */
+/** Shipped townsfolk who travel to Coinwell (outline Act E): second records,
+ *  display names unchanged (the brother_aldric_fen precedent). The carpenter is
+ *  Pressford's Bryony Cooperwick (chapter_two.ts), not a Chapter One name. */
 export const C2_BRUNNA_COINWELL = 'forgemistress_darva_coinwell';
 export const C2_CORREN_COINWELL = 'marshal_redbrook_coinwell';
 export const C2_FENLOW_COINWELL = 'ferryman_odo_coinwell';
-export const C2_WENNA_COINWELL = 'carpenter_pella_coinwell';
+export const C2_BRYONY_COINWELL = 'carpenter_bryony_coinwell';
 
 const NPCS: Record<string, NpcDef> = {
   [C2_CLAIM_MASTER]: npc(
@@ -100,9 +101,9 @@ const NPCS: Record<string, NpcDef> = {
     0x3f5f7f,
     'I came round the coast by boat. The sea kept changing its mind about where the shore was.',
   ),
-  [C2_WENNA_COINWELL]: npc(
-    C2_WENNA_COINWELL,
-    'Wenna Nookwright',
+  [C2_BRYONY_COINWELL]: npc(
+    C2_BRYONY_COINWELL,
+    'Bryony Cooperwick',
     'Carpenter',
     { x: COINWELL_YARD.x + 8, z: COINWELL_YARD.z + 6 },
     Math.PI,
@@ -276,7 +277,7 @@ const OBJECTS = objects(2_147_240_000, [
     [
       { x: WHITE_HEAD.x - 8, z: WHITE_HEAD.z - 10 },
       { x: WHITE_HEAD.x - 12, z: WHITE_HEAD.z + 2 },
-      { x: WHITE_HEAD.x - 4, z: WHITE_HEAD.z + 12 },
+      { x: WHITE_HEAD.x - 4, z: WHITE_HEAD.z + 10 },
     ],
   ],
   // Quest 41: the chalk faces under the head, the camp bench and the footings
@@ -300,8 +301,8 @@ const OBJECTS = objects(2_147_240_000, [
     'c2_tide_road_footing',
     'Tide-Road Footing',
     [
-      { x: WRECKERS_COVE.x + 6, z: WRECKERS_COVE.z - 12 },
-      { x: WRECKERS_COVE.x + 14, z: WRECKERS_COVE.z - 18 },
+      { x: WRECKERS_COVE.x + 4, z: WRECKERS_COVE.z - 6 },
+      { x: WRECKERS_COVE.x + 10, z: WRECKERS_COVE.z - 2 },
     ],
   ],
   // Quest 42: the strongboxes the shoals keep giving back.
@@ -311,7 +312,7 @@ const OBJECTS = objects(2_147_240_000, [
     [
       { x: WRECKERS_COVE.x - 6, z: WRECKERS_COVE.z - 6 },
       { x: WRECKERS_COVE.x + 6, z: WRECKERS_COVE.z - 6 },
-      { x: WRECKERS_COVE.x, z: WRECKERS_COVE.z - 12 },
+      { x: WRECKERS_COVE.x - 4, z: WRECKERS_COVE.z - 10 },
       { x: WRECKERS_COVE.x - 10, z: WRECKERS_COVE.z + 2 },
     ],
   ],
@@ -456,8 +457,8 @@ const QUESTS: Record<string, QuestDef> = {
     'A Tide Road to the Fortress',
     12,
     'medium',
-    C2_WENNA_COINWELL,
-    C2_WENNA_COINWELL,
+    C2_BRYONY_COINWELL,
+    C2_BRYONY_COINWELL,
     'hearthwright_compact',
     "There is a road under the sea. The old builders laid it from Wreckers' Cove to the drowned fortress, and at the lowest tide its first stones show. It needs braces before anyone sets foot on it. Take my chisel, cut chalk blocks from the faces under the White Head, shape two braces at the camp bench, and set them on the footings in the cove. Measure twice. The sea will not let you measure a third time.",
     'They hold. I stood on the first brace and the sea pushed at it and the brace pushed back. Somebody built this road a very long time ago because they meant to come home along it, $N. Now somebody can.',

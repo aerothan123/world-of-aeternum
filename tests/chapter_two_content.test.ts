@@ -68,19 +68,45 @@ function resolves(
   return problems;
 }
 
-const fresh = (ids: readonly string[]): ChapterTwoGatedTables => ({
-  zoneIds: ids,
-  items: { ...ITEMS },
-  mobs: { ...MOBS },
-  npcs: Object.fromEntries(
-    Object.entries(NPCS).map(([id, npc]) => [id, { ...npc, questIds: [...npc.questIds] }]),
-  ),
-  quests: { ...QUESTS },
-  questOrder: [],
-  camps: [],
-  objects: [],
-  escorts: { ...ESCORTS },
-});
+// The live tables already carry every bundle whose zones are in ZONES (data.ts
+// merges them at load), so a "fresh" table set strips the gated records first:
+// the merge under test must start from the tables as they stand without them.
+const without = <T>(table: Record<string, T>, ids: ReadonlySet<string>): Record<string, T> =>
+  Object.fromEntries(Object.entries(table).filter(([id]) => !ids.has(id)));
+const gatedIds = (pick: (b: ChapterTwoBundle) => Record<string, unknown> | undefined) =>
+  new Set(CHAPTER_TWO_GATED_BUNDLES.flatMap((b) => Object.keys(pick(b) ?? {})));
+
+const fresh = (ids: readonly string[]): ChapterTwoGatedTables => {
+  const gatedQuestIds = gatedIds((b) => b.quests);
+  const gatedNpcIds = gatedIds((b) => b.npcs);
+  return {
+    zoneIds: ids,
+    items: without(
+      ITEMS,
+      gatedIds((b) => b.items),
+    ),
+    mobs: without(
+      MOBS,
+      gatedIds((b) => b.mobs),
+    ),
+    npcs: Object.fromEntries(
+      Object.entries(NPCS)
+        .filter(([id]) => !gatedNpcIds.has(id))
+        .map(([id, npc]) => [
+          id,
+          { ...npc, questIds: npc.questIds.filter((q) => !gatedQuestIds.has(q)) },
+        ]),
+    ),
+    quests: without(QUESTS, gatedQuestIds),
+    questOrder: [],
+    camps: [],
+    objects: [],
+    escorts: without(
+      ESCORTS,
+      gatedIds((b) => b.escorts),
+    ),
+  };
+};
 
 const allGatedQuests = CHAPTER_TWO_GATED_BUNDLES.flatMap((b) => Object.values(b.quests));
 

@@ -472,11 +472,11 @@ const PRESSFORD_YARD = { x: 306, z: -300 };
 
 export const C2_CIDER_MASTER = 'cider_master_mabel';
 export const C2_WATCH_SERGEANT = 'sergeant_ivo_bramwell';
-/** Chapter One townsfolk on the road south (outline Act B): the same people,
- *  standing in Pressford while the Applewold quests run (the brother_aldric_fen
- *  precedent: a second NPC record, the display name unchanged). */
-export const C2_DELLA_PRESSFORD = 'gardener_della_pressford';
-export const C2_WENNA_PRESSFORD = 'carpenter_pella_pressford';
+/** Pressford's gardener and carpenter (outline Act B). They once reused the
+ *  Chapter One townsfolk's display names; they are their own people now, with
+ *  original names (IP-checked, docs/design/naming-audit.md protocol). */
+export const C2_HESTER_PRESSFORD = 'gardener_hester_pressford';
+export const C2_BRYONY_PRESSFORD = 'carpenter_bryony_pressford';
 
 export function npc(
   id: string,
@@ -509,18 +509,18 @@ const REACHES_NPCS: Record<string, NpcDef> = {
     0x5f6f86,
     'The causeway is one road with the sea on both sides. I like it that way. Fewer directions to be ambushed from.',
   ),
-  [C2_DELLA_PRESSFORD]: npc(
-    C2_DELLA_PRESSFORD,
-    'Della Brindlepot',
+  [C2_HESTER_PRESSFORD]: npc(
+    C2_HESTER_PRESSFORD,
+    'Hester Applegarth',
     'Gardener',
     { x: PRESSFORD.x + 20, z: PRESSFORD.z - 2 },
     -Math.PI / 2,
     0xc49a6c,
     'Pressford grows apples the way Eastbrook grows opinions: everywhere, and mostly on purpose.',
   ),
-  [C2_WENNA_PRESSFORD]: npc(
-    C2_WENNA_PRESSFORD,
-    'Wenna Nookwright',
+  [C2_BRYONY_PRESSFORD]: npc(
+    C2_BRYONY_PRESSFORD,
+    'Bryony Cooperwick',
     'Carpenter',
     { x: PRESSFORD.x - 6, z: PRESSFORD.z + 9 },
     0,
@@ -607,7 +607,7 @@ const REACHES_FIXTURES: Record<string, string> = {
   c2_great_press: 'Great Cider Press',
   c2_cider_vat: 'Seized Cider Vat',
   c2_sorrel_patch: 'Hedge Sorrel Patch',
-  c2_field_bench: "Della's Field Bench",
+  c2_field_bench: "Hester's Field Bench",
   c2_blighted_row: 'Blighted Orchard Row',
   c2_laden_apple_tree: 'Laden Apple Tree',
   c2_pressford_hearth: 'Pressford Cookhouse Hearth',
@@ -642,9 +642,9 @@ const REACHES_OBJECTS: GroundObjectDef[] = objects(2_147_220_000, [
     'Misremembered Tally Stick',
     [
       { x: PRESSFORD.x - 6, z: PRESSFORD.z - 4 },
-      { x: PRESSFORD.x + 8, z: PRESSFORD.z + 6 },
+      { x: PRESSFORD.x + 9, z: PRESSFORD.z + 6.5 },
       { x: PRESSFORD.x - 2, z: PRESSFORD.z - 8 },
-      { x: PRESSFORD.x + 6, z: PRESSFORD.z - 4 },
+      { x: PRESSFORD.x + 8, z: PRESSFORD.z - 4 },
     ],
   ],
   [
@@ -659,7 +659,7 @@ const REACHES_OBJECTS: GroundObjectDef[] = objects(2_147_220_000, [
       { x: BLOSSOM_RISE.x - 13, z: BLOSSOM_RISE.z - 20 },
     ],
   ],
-  // Quest 09: the oaks Wenna marked behind the press yard, its bench and the press.
+  // Quest 09: the oaks Bryony marked behind the press yard, its bench and the press.
   [
     'c2_marked_orchard_oak',
     'Marked Orchard Oak',
@@ -686,7 +686,7 @@ const REACHES_OBJECTS: GroundObjectDef[] = objects(2_147_220_000, [
       { x: PRESSFORD.x + 11, z: PRESSFORD.z + 11 },
     ],
   ],
-  // Quest 11: sorrel on the slope below Blossom Rise, Della's bench and her rows.
+  // Quest 11: sorrel on the slope below Blossom Rise, Hester's bench and her rows.
   [
     'c2_sorrel_patch',
     'Hedge Sorrel Patch',
@@ -698,7 +698,7 @@ const REACHES_OBJECTS: GroundObjectDef[] = objects(2_147_220_000, [
       { x: BLOSSOM_RISE.x - 32, z: BLOSSOM_RISE.z + 12 },
     ],
   ],
-  ['c2_field_bench', "Della's Field Bench", [{ x: PRESSFORD.x + 24, z: PRESSFORD.z + 2 }]],
+  ['c2_field_bench', "Hester's Field Bench", [{ x: PRESSFORD.x + 24, z: PRESSFORD.z + 2 }]],
   [
     'c2_blighted_row',
     'Blighted Orchard Row',
@@ -841,8 +841,8 @@ const REACHES_QUESTS: Record<string, QuestDef> = {
     'The Press Will Not Turn',
     7,
     'medium',
-    C2_WENNA_PRESSFORD,
-    C2_WENNA_PRESSFORD,
+    C2_BRYONY_PRESSFORD,
+    C2_BRYONY_PRESSFORD,
     'hearthwright_compact',
     'The great press seized overnight. Not rusted, not broken: seized, as if it decided it had pressed enough. Its main gear has split clean through, and oak is the only wood that will take that load. Take my axe, fell the oaks I have marked behind the yard, and cut me a new gear at the town bench. Then fit it, and we shall see who is more stubborn.',
     'Listen to that. Wood on wood, and the whole town leaning out of its windows to hear it. A press is only a gear and a promise, $N, and you have just kept the second one for them.',
@@ -886,8 +886,8 @@ const REACHES_QUESTS: Record<string, QuestDef> = {
     'Seed for a Second Planting',
     7,
     'medium',
-    C2_DELLA_PRESSFORD,
-    C2_DELLA_PRESSFORD,
+    C2_HESTER_PRESSFORD,
+    C2_HESTER_PRESSFORD,
     'bracken_circle',
     'Three rows here went grey in a single night. Not dead, mind you, just tired of being trees. Before the frost comes I mean to sow them again. Pick me some hedge sorrel from under Blossom Rise, the roots bind the seed, and I will show you how to make a pouch of it at my bench. Then sow the grey rows, and talk to them nicely while you do.',
     'Look, green already, and they are not even pretending to be slow about it. Some ground only needs to be told it is wanted. I find the same is true of most people, $N, and nearly all gardeners.',
