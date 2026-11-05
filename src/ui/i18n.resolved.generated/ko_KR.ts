@@ -9451,6 +9451,12 @@ export const ko_KR: EnTranslations = {
         "farshoreBlurb": "균열의 들판 위로 하늘이 찢어지고, 틈이 열릴 때마다 걸헤이븐이 종을 울리는 모래톱 건너의 섬.",
         "provingName": "수련의 해안",
         "provingBlurb": "해협 건너의 조용한 훈련 섬. 골짜기가 무언가를 요구하기 전에, 새내기 모험가들이 이곳에서 첫걸음을 다집니다.",
+        "applewoldName": "The Applewold",
+        "applewoldBlurb": "Orchard downs past the Farshore causeway, where Pressford keeps the cider presses turning.",
+        "kindlemoorName": "The Kindlemoor",
+        "kindlemoorBlurb": "Open heath over standing stones older than the first kingdom, watched from the camp at Ferncross.",
+        "chalkbarrowName": "The Chalkbarrow Coast",
+        "chalkbarrowBlurb": "White cliffs and chalk downs, where prospectors dig at Coinwell and someone else digs deeper.",
         "nightName": "밤꽃 평원",
         "nightBlurb": "꽃이 길을 밝히고 문레스트가 밤을 지새우는, 별이 쏟아지는 한밤의 나라.",
         "hauntName": "망령숲",
@@ -10455,6 +10461,18 @@ export const ko_KR: EnTranslations = {
       "farshoreGreeting": "Ferrywalk를 건너오셨소? 그렇다면 일주일 만의 첫 손님이오. 워든이 한 번 살펴보고 싶어 할 게요.",
       "farshoreGreeter": "종지기 탐, 선착장",
       "farshorePlaceNotes": "걸헤이븐은 섬의 유일한 마을이자 마지막 보루입니다. 선착장은 Ferrywalk가 뭍에 닿는 곳으로, 곶 위에 경종이 서 있습니다. 감시 초원은 마을 남동쪽 고지를 지키며, 그곳에서 균열감시자가 다음 찢김의 기척에 귀를 기울입니다. 찢겨진 절벽은 섬 남쪽 끝에서 갈라져 있고, 균열의 들판은 걸헤이븐 동쪽의 망가진 곡식 이랑으로, 그곳의 찢김을 통해 넘어온 것들이 아직 기어다니고 있습니다.",
+      "applewoldBlurb": "Orchard country south of the Farshore, reached over a causeway from the island. The orchards have turned strange, and the boars no longer fear the dogs.",
+      "applewoldGreeting": "Road is open as far as Pressford. Past that, keep your eyes on the trees.",
+      "applewoldGreeter": "A Lanternwarden at Causeway Watch",
+      "applewoldPlaceNotes": "Pressford is the press-town at the heart of the downs. Causeway Watch guards the head of the causeway, the Cider Mere lies east of town, Blossom Rise crowns the eastern lobe, the Old Press is a fallen pressing-house to the west, and the South Downs roll down to the sea.",
+      "kindlemoorBlurb": "A wide heath west of the Applewold, where nothing grows tall and nothing is new. The Bracken Circle watches stones that have lately grown warm.",
+      "kindlemoorGreeting": "Walk softly near the ring. The stones remember more than we do.",
+      "kindlemoorGreeter": "A keeper of the Bracken Circle at Ferncross",
+      "kindlemoorPlaceNotes": "Ferncross is the Bracken Circle camp at the moor road. The First Hearth Ring stands south-west of it, the Moor Tarn lies to the west, the Grey Tor rises in the south-east, and the Heath Way runs east to the Applewold.",
+      "chalkbarrowBlurb": "Chalk downs and white cliffs at the south-west of the reaches, where the prospectors of Coinwell Camp are not the only ones digging.",
+      "chalkbarrowGreeting": "If you hear picks after dark, they are not ours.",
+      "chalkbarrowGreeter": "A prospector at Coinwell Camp",
+      "chalkbarrowPlaceNotes": "Coinwell Camp is the prospectors' base on the downs. The Unlit Dig lies to the south-west, Chalk Mere sits west of camp, the White Head is the headland in the north-west, and Wreckers' Cove opens to the south-east.",
       "provingBlurb": "골짜기에서 해협을 건넌 곳에 있는 조용한 섬으로, 훈련장으로 쓰입니다. 야영지 하나, 수련장 하나, 잔해가 널린 바닷가, 그리고 양방향으로 다니는 나룻배가 있습니다.",
       "provingGreeting": "골짜기가 고마워했던 영웅은 모두 지금 당신이 선 자리에 서 있었어요. 그리고 그때는 하나같이 칼의 어느 쪽을 쥐어야 하는지도 몰랐죠.",
       "provingGreeter": "교관 마렌, 새벽쉼터 야영지",
@@ -30713,6 +30731,72 @@ export const ko_KR: EnTranslations = {
           },
           "4": {
             "label": "건틀릿"
+          }
+        }
+      },
+      "applewold": {
+        "name": "The Applewold",
+        "welcome": "The causeway ends in apple country. Pressford keeps the presses turning and the Lanternwardens keep the road, but the orchards have gone strange, and the boars have stopped fearing the dogs.",
+        "pois": {
+          "0": {
+            "label": "Pressford"
+          },
+          "1": {
+            "label": "Causeway Watch"
+          },
+          "2": {
+            "label": "The Cider Mere"
+          },
+          "3": {
+            "label": "Blossom Rise"
+          },
+          "4": {
+            "label": "The Old Press"
+          },
+          "5": {
+            "label": "The South Downs"
+          }
+        }
+      },
+      "kindlemoor": {
+        "name": "The Kindlemoor",
+        "welcome": "Nothing grows tall on the Kindlemoor, and nothing here is new. The Bracken Circle keeps watch over stones that were old when the first kingdom was young, and lately the stones have been warm to the touch.",
+        "pois": {
+          "0": {
+            "label": "Ferncross"
+          },
+          "1": {
+            "label": "The First Hearth Ring"
+          },
+          "2": {
+            "label": "The Moor Tarn"
+          },
+          "3": {
+            "label": "The Grey Tor"
+          },
+          "4": {
+            "label": "The Heath Way"
+          }
+        }
+      },
+      "chalkbarrow_coast": {
+        "name": "The Chalkbarrow Coast",
+        "welcome": "The Gilt Measure came to the white cliffs for chalk and stayed for what was under it. Someone else is digging further down, by lantern-less dark, and the prospectors at Coinwell would very much like to know who.",
+        "pois": {
+          "0": {
+            "label": "Coinwell Camp"
+          },
+          "1": {
+            "label": "The Unlit Dig"
+          },
+          "2": {
+            "label": "Chalk Mere"
+          },
+          "3": {
+            "label": "The White Head"
+          },
+          "4": {
+            "label": "Wreckers' Cove"
           }
         }
       },

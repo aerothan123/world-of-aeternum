@@ -215,6 +215,17 @@ export const guideStrings = {
       provingName: 'The Proving Shore',
       provingBlurb:
         'A quiet training island across the strait, where new adventurers find their feet before the vale asks anything of them.',
+      // The Southern Reaches, the expansion's first frontier row (own stems: they
+      // share the vale and gale biomes).
+      applewoldName: 'The Applewold',
+      applewoldBlurb:
+        'Orchard downs past the Farshore causeway, where Pressford keeps the cider presses turning.',
+      kindlemoorName: 'The Kindlemoor',
+      kindlemoorBlurb:
+        'Open heath over standing stones older than the first kingdom, watched from the camp at Ferncross.',
+      chalkbarrowName: 'The Chalkbarrow Coast',
+      chalkbarrowBlurb:
+        'White cliffs and chalk downs, where prospectors dig at Coinwell and someone else digs deeper.',
       nightName: 'The Nightbloom',
       nightBlurb:
         'A country of starry midnight where the flowers light the paths and Moonrest keeps its vigil.',
@@ -1873,6 +1884,26 @@ export const guideStrings = {
     farshoreGreeter: 'Bellkeeper Tam, the Landing',
     farshorePlaceNotes:
       "Gullhaven is the island's only town and its redoubt. The Landing is where the Ferrywalk comes ashore, with a watchbell standing over the point; the Watch Meadow keeps the high ground southeast of town, where a riftwatcher listens for the next break; the Sundered Cliffs crack open at the island's southern end; and the Riftfields are the wracked grain rows east of Gullhaven, still crawling with what came through the break there.",
+    // The Southern Reaches (applewold, kindlemoor, chalkbarrow_coast): frontier
+    // zones that share the vale and gale biomes, so each has its own stem.
+    applewoldBlurb:
+      'Orchard country south of the Farshore, reached over a causeway from the island. The orchards have turned strange, and the boars no longer fear the dogs.',
+    applewoldGreeting: 'Road is open as far as Pressford. Past that, keep your eyes on the trees.',
+    applewoldGreeter: 'A Lanternwarden at Causeway Watch',
+    applewoldPlaceNotes:
+      'Pressford is the press-town at the heart of the downs. Causeway Watch guards the head of the causeway, the Cider Mere lies east of town, Blossom Rise crowns the eastern lobe, the Old Press is a fallen pressing-house to the west, and the South Downs roll down to the sea.',
+    kindlemoorBlurb:
+      'A wide heath west of the Applewold, where nothing grows tall and nothing is new. The Bracken Circle watches stones that have lately grown warm.',
+    kindlemoorGreeting: 'Walk softly near the ring. The stones remember more than we do.',
+    kindlemoorGreeter: 'A keeper of the Bracken Circle at Ferncross',
+    kindlemoorPlaceNotes:
+      'Ferncross is the Bracken Circle camp at the moor road. The First Hearth Ring stands south-west of it, the Moor Tarn lies to the west, the Grey Tor rises in the south-east, and the Heath Way runs east to the Applewold.',
+    chalkbarrowBlurb:
+      'Chalk downs and white cliffs at the south-west of the reaches, where the prospectors of Coinwell Camp are not the only ones digging.',
+    chalkbarrowGreeting: 'If you hear picks after dark, they are not ours.',
+    chalkbarrowGreeter: 'A prospector at Coinwell Camp',
+    chalkbarrowPlaceNotes:
+      "Coinwell Camp is the prospectors' base on the downs. The Unlit Dig lies to the south-west, Chalk Mere sits west of camp, the White Head is the headland in the north-west, and Wreckers' Cove opens to the south-east.",
     // The Proving Shore (proving_shore). It renders in the vale biome, so it
     // carries its own stem for the same anchor-collision reason as the
     // Farshore above.

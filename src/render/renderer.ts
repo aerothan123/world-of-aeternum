@@ -971,7 +971,7 @@ import { activeShadowRadius, applyWorldStyleGrade, applyWorldStyleSunTint } from
 import { surfaceDetailPrewarmTextures } from './worn_stone';
 import { buildYumiMaze, type YumiMazeView } from './yumi_maze';
 import { YumiTeamMarkers } from './yumi_team_markers';
-import { zonesEligibleForEviction } from './zone_eviction_core';
+import { pickZoneToEvict } from './zone_eviction_core';
 import {
   sweepZoneFeatures,
   type ZoneFeatureEntry,
@@ -4068,16 +4068,16 @@ export class Renderer {
     this.pumpVisibleZonePrepareQueue();
   }
 
-  // Thin consumer of zone_eviction_core.ts's zonesEligibleForEviction; no-op on unconstrained hosts.
+  // Thin consumer of zone_eviction_core.ts's pickZoneToEvict (desktop sheds past its zone budget).
   private evictFarZoneIfConstrained(currentZoneId: string, playerX: number, playerZ: number): void {
-    if (!GFX.constrainedMemory) return;
-    const zoneId = zonesEligibleForEviction(
+    const zoneId = pickZoneToEvict(
       this.sim.cfg.world?.zones ?? ZONES,
       this.preparedZones,
       currentZoneId,
       playerX,
       playerZ,
-    )[0];
+      GFX.constrainedMemory,
+    );
     if (!zoneId) return;
     const zone = (this.sim.cfg.world?.zones ?? ZONES).find((z) => z.id === zoneId);
     if (!zone) return;

@@ -21,6 +21,9 @@ import {
 } from '../src/sim/data';
 
 // The real lattice src/render/terrain.ts builds on: 18 x 44 cells of 60 yd.
+// The scenarios below reproduce reports on the shipped world, so they run over the
+// shipped zones only (the expansion frontier's zones set openBorders).
+const SHIPPED_ZONES = ZONES.filter((zone) => !zone.openBorders);
 const CHUNK_SIZE = 60;
 const GRID: ChunkGrid = {
   size: CHUNK_SIZE,
@@ -39,7 +42,7 @@ function cellOwner(cx: number, cz: number): string | null {
   const x = GRID.originX + (cx + 0.5) * GRID.size;
   const z = GRID.originZ + (cz + 0.5) * GRID.size;
   return (
-    ZONES.find(
+    SHIPPED_ZONES.find(
       (zone) =>
         z >= zone.zMin &&
         z < zone.zMax &&
@@ -107,7 +110,7 @@ describe('nearest unbuilt ground', () => {
       new Set(['eastbrook_vale', 'farshore_isle']),
       new Set(['drakelands', 'frostveil', 'wraithwood']),
       new Set(['thornpeak_heights', 'mirefen_marsh']),
-      new Set(ZONES.map((zone) => zone.id)),
+      new Set(SHIPPED_ZONES.map((zone) => zone.id)),
     ];
     for (const built of builtSets) {
       const isPending = pendingOutside(built);
@@ -165,7 +168,7 @@ describe('nearest unbuilt ground', () => {
       }
     }
     expect(unowned.length).toBe(60);
-    const isPending = pendingOutside(new Set(ZONES.map((zone) => zone.id)));
+    const isPending = pendingOutside(new Set(SHIPPED_ZONES.map((zone) => zone.id)));
     // Stand in the middle of an unowned cell: even at zero distance it must not
     // clamp, and the full biome request is granted.
     for (const [cx, cz] of unowned.slice(0, 12)) {
@@ -203,7 +206,7 @@ describe('nearest unbuilt ground', () => {
     expect(calls).toBeLessThan(60);
 
     calls = 0;
-    const allResident = pendingOutside(new Set(ZONES.map((zone) => zone.id)));
+    const allResident = pendingOutside(new Set(SHIPPED_ZONES.map((zone) => zone.id)));
     const countedResident: GroundPendingAt = (cx, cz) => {
       calls++;
       return allResident(cx, cz);
@@ -242,7 +245,7 @@ describe('outdoor fog clamp on unbuilt ground', () => {
   });
 
   it('caps every request at the rendering envelope even with the world built', () => {
-    const all = pendingOutside(new Set(ZONES.map((zone) => zone.id)));
+    const all = pendingOutside(new Set(SHIPPED_ZONES.map((zone) => zone.id)));
     expect(fogFarForBuiltGround(GRID, all, 0, 0, MAX_OUTDOOR_FOG_FAR + 500)).toBe(
       MAX_OUTDOOR_FOG_FAR,
     );

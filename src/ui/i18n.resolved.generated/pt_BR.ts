@@ -9451,6 +9451,12 @@ export const pt_BR: EnTranslations = {
         "farshoreBlurb": "Uma ilha além do banco de areia, onde o céu se rasga sobre os Campos das Fendas e Gullhaven toca seu sino a cada brecha.",
         "provingName": "A Costa da Provação",
         "provingBlurb": "Uma ilha de treinamento tranquila do outro lado do estreito, onde novos aventureiros encontram o próprio ritmo antes de o vale pedir qualquer coisa deles.",
+        "applewoldName": "The Applewold",
+        "applewoldBlurb": "Orchard downs past the Farshore causeway, where Pressford keeps the cider presses turning.",
+        "kindlemoorName": "The Kindlemoor",
+        "kindlemoorBlurb": "Open heath over standing stones older than the first kingdom, watched from the camp at Ferncross.",
+        "chalkbarrowName": "The Chalkbarrow Coast",
+        "chalkbarrowBlurb": "White cliffs and chalk downs, where prospectors dig at Coinwell and someone else digs deeper.",
         "nightName": "Nightbloom",
         "nightBlurb": "Um país de meia-noite estrelada onde as flores iluminam os caminhos e Moonrest mantém sua vigília.",
         "hauntName": "Wraithwood",
@@ -10455,6 +10461,18 @@ export const pt_BR: EnTranslations = {
       "farshoreGreeting": "Você veio pelo Ferrywalk? Então é o primeiro em uma semana, e o Guardião vai querer dar uma olhada em você.",
       "farshoreGreeter": "Guardião do Sino Tam, o Desembarque",
       "farshorePlaceNotes": "Gullhaven é a única cidade da ilha e o seu reduto. O Desembarque é onde o Ferrywalk chega à costa, com um sino de vigia erguido sobre a ponta; o Prado da Vigia ocupa o terreno alto a sudeste da cidade, onde um vigia de fendas escuta pela próxima brecha; as Falésias Rompidas se abrem no extremo sul da ilha; e os Campos das Fendas são as fileiras de grãos arruinadas a leste de Gullhaven, ainda fervilhando com o que veio pela brecha ali.",
+      "applewoldBlurb": "Orchard country south of the Farshore, reached over a causeway from the island. The orchards have turned strange, and the boars no longer fear the dogs.",
+      "applewoldGreeting": "Road is open as far as Pressford. Past that, keep your eyes on the trees.",
+      "applewoldGreeter": "A Lanternwarden at Causeway Watch",
+      "applewoldPlaceNotes": "Pressford is the press-town at the heart of the downs. Causeway Watch guards the head of the causeway, the Cider Mere lies east of town, Blossom Rise crowns the eastern lobe, the Old Press is a fallen pressing-house to the west, and the South Downs roll down to the sea.",
+      "kindlemoorBlurb": "A wide heath west of the Applewold, where nothing grows tall and nothing is new. The Bracken Circle watches stones that have lately grown warm.",
+      "kindlemoorGreeting": "Walk softly near the ring. The stones remember more than we do.",
+      "kindlemoorGreeter": "A keeper of the Bracken Circle at Ferncross",
+      "kindlemoorPlaceNotes": "Ferncross is the Bracken Circle camp at the moor road. The First Hearth Ring stands south-west of it, the Moor Tarn lies to the west, the Grey Tor rises in the south-east, and the Heath Way runs east to the Applewold.",
+      "chalkbarrowBlurb": "Chalk downs and white cliffs at the south-west of the reaches, where the prospectors of Coinwell Camp are not the only ones digging.",
+      "chalkbarrowGreeting": "If you hear picks after dark, they are not ours.",
+      "chalkbarrowGreeter": "A prospector at Coinwell Camp",
+      "chalkbarrowPlaceNotes": "Coinwell Camp is the prospectors' base on the downs. The Unlit Dig lies to the south-west, Chalk Mere sits west of camp, the White Head is the headland in the north-west, and Wreckers' Cove opens to the south-east.",
       "provingBlurb": "Uma ilha tranquila do outro lado do estreito a partir do vale, mantida como terreno de treinamento: um acampamento, um pátio de treinamento, uma praia semeada de destroços, e uma balsa que vai e volta.",
       "provingGreeting": "Todos os heróis que o vale já agradeceu estiveram onde você está agora, e nenhum deles sabia qual ponta da lâmina segurar.",
       "provingGreeter": "Instrutora Maren, Acampamento Dawnrest",
@@ -30713,6 +30731,72 @@ export const pt_BR: EnTranslations = {
           },
           "4": {
             "label": "A Pista"
+          }
+        }
+      },
+      "applewold": {
+        "name": "The Applewold",
+        "welcome": "The causeway ends in apple country. Pressford keeps the presses turning and the Lanternwardens keep the road, but the orchards have gone strange, and the boars have stopped fearing the dogs.",
+        "pois": {
+          "0": {
+            "label": "Pressford"
+          },
+          "1": {
+            "label": "Causeway Watch"
+          },
+          "2": {
+            "label": "The Cider Mere"
+          },
+          "3": {
+            "label": "Blossom Rise"
+          },
+          "4": {
+            "label": "The Old Press"
+          },
+          "5": {
+            "label": "The South Downs"
+          }
+        }
+      },
+      "kindlemoor": {
+        "name": "The Kindlemoor",
+        "welcome": "Nothing grows tall on the Kindlemoor, and nothing here is new. The Bracken Circle keeps watch over stones that were old when the first kingdom was young, and lately the stones have been warm to the touch.",
+        "pois": {
+          "0": {
+            "label": "Ferncross"
+          },
+          "1": {
+            "label": "The First Hearth Ring"
+          },
+          "2": {
+            "label": "The Moor Tarn"
+          },
+          "3": {
+            "label": "The Grey Tor"
+          },
+          "4": {
+            "label": "The Heath Way"
+          }
+        }
+      },
+      "chalkbarrow_coast": {
+        "name": "The Chalkbarrow Coast",
+        "welcome": "The Gilt Measure came to the white cliffs for chalk and stayed for what was under it. Someone else is digging further down, by lantern-less dark, and the prospectors at Coinwell would very much like to know who.",
+        "pois": {
+          "0": {
+            "label": "Coinwell Camp"
+          },
+          "1": {
+            "label": "The Unlit Dig"
+          },
+          "2": {
+            "label": "Chalk Mere"
+          },
+          "3": {
+            "label": "The White Head"
+          },
+          "4": {
+            "label": "Wreckers' Cove"
           }
         }
       },

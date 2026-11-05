@@ -2119,7 +2119,7 @@ const MONOLITHS: MonolithRow[] = [
     // Merge of the four dungeon entrances (#4478): both parents' additions combine
     // (ours is the palm scatter's decoration exclusion check), exact merged count,
     // within the release/v0.45.0 ceiling the branch was held to.
-    ceiling: 5133,
+    ceiling: 5074,
     seam: 'zone/terrain data as content records; logic as sim sibling modules',
   },
   {

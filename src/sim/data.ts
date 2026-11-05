@@ -122,6 +122,12 @@ import {
   FARSHORE_ZONE,
 } from './content/farshore';
 import {
+  SOUTHERN_REACHES_CAMPS,
+  SOUTHERN_REACHES_PROPS,
+  SOUTHERN_REACHES_ROADS,
+  SOUTHERN_REACHES_ZONES,
+} from './content/frontier/southern_reaches';
+import {
   FROSTVEIL_CAMPS,
   FROSTVEIL_ESCORTS,
   FROSTVEIL_ITEMS,
@@ -239,6 +245,7 @@ import {
   PROVING_SHORE_ZONE,
 } from './content/proving_shore';
 import { QUEST_CHOICE_REWARDS } from './content/quest_choice_rewards';
+
 import { QUEST_LEVELING_GEAR_ITEMS } from './content/quest_leveling_gear';
 import {
   REALM_CAMPS,
@@ -755,6 +762,9 @@ export const CAMPS: CampDef[] = [
   // private streams (mob/idle_rng.ts) move: a content append like this one
   // legitimately re-mints the parity goldens without touching a draw digest.
   ...PROVING_SHORE_CAMPS,
+  // The Southern Reaches (the expansion's first frontier row) append after every
+  // shipped camp, all offStream, by the same rule.
+  ...SOUTHERN_REACHES_CAMPS,
   // The Eastbrook hub dummy is NOT a camp: it spawns with its sparring master
   // after the player (sim/hub_practice.ts), so it consumes only trailing ids.
 ];
@@ -963,6 +973,7 @@ export const ROADS: { x: number; z: number }[][] = [
   ...GALECREST_ROADS,
   ...FARSHORE_ROADS,
   ...PROVING_SHORE_ROADS,
+  ...SOUTHERN_REACHES_ROADS,
 ];
 
 // Paired overworld portals (src/sim/portals.ts checks these each tick).
@@ -997,6 +1008,7 @@ export const PROPS: ZonePropsDef = mergeProps([
   GALECREST_PROPS,
   FARSHORE_PROPS,
   PROVING_SHORE_PROPS,
+  SOUTHERN_REACHES_PROPS,
 ]);
 
 function mergeProps(sets: ZonePropsDef[]): ZonePropsDef {
@@ -1079,6 +1091,8 @@ export const ZONES: ZoneDef[] = [
   GALECREST_ZONE,
   FARSHORE_ZONE,
   PROVING_SHORE_ZONE,
+  // The world expansion's frontier zones append LAST (src/sim/frontier/).
+  ...SOUTHERN_REACHES_ZONES,
 ];
 
 export const WORLD_SIZE = 360; // the original strip's width (one grid column)
@@ -1393,11 +1407,19 @@ export function zoneContaining(x: number, z: number): ZoneDef | null {
 // STRIP_ZONES in stack order exactly as they always did; COLUMN_ZONES blend
 // in sideways via columnBlendAt. With no columns registered both are inert
 // and the world is byte-identical to the strip era.
+// Frontier zones (openBorders, src/sim/frontier/) join neither cascade: their
+// ground and its blends come from frontier/terrain.ts, and a zero-weight term
+// in a shipped blend would still move the core world's floats by an ulp.
 export const STRIP_ZONES: readonly ZoneDef[] = ZONES.filter(
-  (zn) => (zn.xMin ?? STRIP_MIN_X) <= STRIP_MIN_X && (zn.xMax ?? STRIP_MAX_X) >= STRIP_MAX_X,
+  (zn) =>
+    !zn.openBorders &&
+    (zn.xMin ?? STRIP_MIN_X) <= STRIP_MIN_X &&
+    (zn.xMax ?? STRIP_MAX_X) >= STRIP_MAX_X,
 );
 export const COLUMN_ZONES: readonly ZoneDef[] = ZONES.filter(
-  (zn) => (zn.xMin ?? STRIP_MIN_X) > STRIP_MIN_X || (zn.xMax ?? STRIP_MAX_X) < STRIP_MAX_X,
+  (zn) =>
+    !zn.openBorders &&
+    ((zn.xMin ?? STRIP_MIN_X) > STRIP_MIN_X || (zn.xMax ?? STRIP_MAX_X) < STRIP_MAX_X),
 );
 
 function sm01(raw: number): number {

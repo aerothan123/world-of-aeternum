@@ -2552,6 +2552,72 @@ export const GUIDE_ZONES: GuideZoneInfo[] = [
     "families": [
       "beast"
     ]
+  },
+  {
+    "id": "applewold",
+    "name": "The Applewold",
+    "min": 6,
+    "max": 9,
+    "biome": "vale",
+    "hub": "Pressford",
+    "pois": [
+      "Pressford",
+      "Causeway Watch",
+      "The Cider Mere",
+      "Blossom Rise",
+      "The Old Press",
+      "The South Downs"
+    ],
+    "welcome": "The causeway ends in apple country. Pressford keeps the presses turning and the Lanternwardens keep the road, but the orchards have gone strange, and the boars have stopped fearing the dogs.",
+    "families": [
+      "beast",
+      "mudfin",
+      "humanoid"
+    ]
+  },
+  {
+    "id": "kindlemoor",
+    "name": "The Kindlemoor",
+    "min": 8,
+    "max": 11,
+    "biome": "gale",
+    "hub": "Ferncross",
+    "pois": [
+      "Ferncross",
+      "The First Hearth Ring",
+      "The Moor Tarn",
+      "The Grey Tor",
+      "The Heath Way"
+    ],
+    "welcome": "Nothing grows tall on the Kindlemoor, and nothing here is new. The Bracken Circle keeps watch over stones that were old when the first kingdom was young, and lately the stones have been warm to the touch.",
+    "families": [
+      "beast",
+      "spider",
+      "undead"
+    ]
+  },
+  {
+    "id": "chalkbarrow_coast",
+    "name": "The Chalkbarrow Coast",
+    "min": 10,
+    "max": 13,
+    "biome": "gale",
+    "hub": "Coinwell Camp",
+    "pois": [
+      "Coinwell Camp",
+      "The Unlit Dig",
+      "Chalk Mere",
+      "The White Head",
+      "Wreckers' Cove"
+    ],
+    "welcome": "The Gilt Measure came to the white cliffs for chalk and stayed for what was under it. Someone else is digging further down, by lantern-less dark, and the prospectors at Coinwell would very much like to know who.",
+    "families": [
+      "beast",
+      "burrower",
+      "humanoid",
+      "troll",
+      "undead"
+    ]
   }
 ];
 
