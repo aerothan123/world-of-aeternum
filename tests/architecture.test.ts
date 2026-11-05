@@ -208,6 +208,13 @@ describe('live graphics profile architecture', () => {
 // import), so it is registered here even though it lives in src/game. Paths are
 // repo-relative for the failure messages.
 const UI_PURE_CORES = [
+  // The add-on platform's pure cores (src/ui/hud/addons/, docs/design/addon-api.md).
+  'src/ui/hud/addons/addon_manifest_core.ts',
+  'src/ui/hud/addons/addon_snapshot_core.ts',
+  'src/ui/hud/addons/addon_event_filter_core.ts',
+  'src/ui/hud/addons/addon_widget_core.ts',
+  'src/ui/hud/addons/addon_runtime_core.ts',
+  'src/ui/hud/addons/addons_window_view.ts',
   'src/ui/hud/referral_cards/referral_reward_core.ts',
   'src/ui/hud/courier/courier_core.ts',
   'src/ui/hud/referral_cards/referral_cards_view.ts',
@@ -3100,6 +3107,14 @@ const UI_PAINTER_HELPERS = [
 // the English catalog, it is a maintainer fix during the release locale fill:
 // contributors do not edit those files.
 const UI_DOM_MODULES = [
+  // The add-on platform's host adapters: the runtime (workers, the sandbox
+  // iframe, storage), the add-on frame layer, the Addons window, its mount, and
+  // the worker prelude (worker-side code that names the globals it deletes).
+  'src/ui/hud/addons/addon_runtime_controller.ts',
+  'src/ui/hud/addons/addon_frames_controller.ts',
+  'src/ui/hud/addons/addons_window_controller.ts',
+  'src/ui/hud/addons/addons_mount.ts',
+  'src/ui/hud/addons/addon_worker_prelude.ts',
   'src/ui/footer_shell.ts',
   'src/ui/hud/referral_cards/referral_reward_celebration_window.ts',
   'src/ui/hud/referral_cards/referral_cards_controller.ts',

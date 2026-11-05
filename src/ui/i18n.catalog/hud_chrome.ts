@@ -8,6 +8,7 @@ import { courierStrings } from './courier';
 // Assembled into `en` by ./index.ts under the `hudChrome` namespace. Kept as its
 // own module (no per-locale blocks) so new chrome keys are an English-only add.
 
+import { addonStrings } from './addons';
 import { armoryCollectionStrings, armorySkinStrings } from './armory';
 import { cosmeticsStrings } from './cosmetics';
 import { guildHallStrings } from './guild_hall';
@@ -11421,4 +11422,5 @@ export const hudChromeStrings = {
       station: 'Once placed, lets you craft recipes that need the {station} at home.',
     },
   },
+  addons: addonStrings,
 };

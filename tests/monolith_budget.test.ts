@@ -508,7 +508,11 @@ const MONOLITHS: MonolithRow[] = [
     // src/ui/loot_text_i18n_core.ts, net of the feed's composition, its event
     // hook and its per-frame update. Merged with the tree Chop prompt (-2, the
     // farm press notice moved to interact_affordances_controller.ts): 17454.
-    ceiling: 17454,
+    // LOWERED 17454 -> 17443 with the add-on platform: the emote wheel's slot
+    // persistence moved to src/ui/emote_wheel_store.ts, net of the add-on mount,
+    // its event feed, its fast-band tick, its Escape close and the secure
+    // toggleWindow table (src/ui/hud/addons/).
+    ceiling: 17443,
     seam: 'pure view core + thin painter on PainterHost (src/ui/CLAUDE.md)',
   },
   {

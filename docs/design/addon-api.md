@@ -63,9 +63,13 @@ escape probe `scripts/addon_sandbox_probe.mjs`.
   add-on and the iframe drops out of the conversation after the spawn.
 - **The prelude** (`addon_worker_prelude.ts`, a self-contained function serialized with
   `toString()`) runs first in each worker: it captures what it needs, deletes every
-  network and storage global, freezes the `wynd` API object, and only then loads the
-  add-on's files with a captured `importScripts`, so a syntax or load error in an add-on
-  is caught and reported as a load error instead of killing the runtime.
+  network and storage global, and freezes the `wynd` API object. The bootstrap builds ONE
+  worker script: the prelude call, then the add-on files in load order, then a load
+  trailer (`addonWorkerScript`). One script rather than `importScripts`, because the
+  desktop shell's CSP (inherited by the sandbox) allows `blob:` workers but not `blob:`
+  script imports. A syntax error fails the whole worker script, and a top-level throw
+  stops before the trailer; either way the add-on never reports `ready`, and the host
+  records a load error. All add-on code runs in strict mode.
 - **Host modules** (all under `src/ui/hud/addons/`): pure cores for the manifest, the
   snapshot, the event filter, the widget op validator, permissions, budgets and saved
   variables; DOM controllers for the runtime (workers, routing, watchdog), the add-on
@@ -428,11 +432,17 @@ account. Overheal and absorbs arrive in the same events.
   entities and third-party events never leak; there is no op that acts; secure actions
   only on trusted clicks and from the allowlist.
 - `tests/addon_worker_prelude.test.ts`: the prelude in a fake worker scope: globals
-  deleted, handler isolation, timers, saved variables round trip, derived events.
+  deleted, handler isolation, string timers refused, saved variables round trip, derived
+  events, syntax and top-level load errors.
 - `tests/addon_runtime.test.ts`: routing, budgets, watchdog termination, auto-disable,
   boot sentinel and safe mode, saved-variable persistence per account and character.
 - `tests/electron_addons.test.ts`: folder scan, path containment, size caps, Workshop
   listing and publish with an injected fake `steamworks.js`.
-- `scripts/addon_sandbox_probe.mjs`: real Chromium (Edge headless), loads the real
-  bootstrap and prelude and runs an escape suite (network, storage, eval, DOM, parent,
-  infinite loop), with and without the desktop shell's CSP.
+- `scripts/addon_sandbox_probe.mjs`: real Chromium (Edge or Chrome headless), bundles the
+  real sandbox host and prelude, serves the real bootstrap, and runs an escape suite
+  (fetch, XHR, WebSocket, EventSource, importScripts, dynamic import, eval, Function via
+  constructor, string timers, IndexedDB, Cache, BroadcastChannel, nested Worker,
+  WebAssembly, sendBeacon, blob URLs, document, localStorage, the desktop bridge, the game
+  global) plus a `for (;;) {}` add-on, with no page CSP and under the desktop shell's own
+  CSP. It fails if any path opens, if the server sees a single request, or if the page's
+  main thread lags.
