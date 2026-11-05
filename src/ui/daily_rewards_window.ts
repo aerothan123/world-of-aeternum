@@ -40,6 +40,7 @@ import type { dailyRewardsStoreSnapshot } from './store_snapshot_adapter';
 import { storeSpendControllers } from './store_spend_controllers';
 import { StoreSubscription } from './store_subscription';
 import { StoreSurfaceRuntime } from './store_surface_runtime';
+import { storeTabAllowed, storeTabs } from './store_surfaces_core';
 import {
   type ArmorySection,
   type ArmorySkinRow,
@@ -194,7 +195,7 @@ export class DailyRewardsWindow {
   }
 
   openStore(tab: 'store' | 'memberships' = 'store'): void {
-    if (!this.storeEnabled()) return;
+    if (!this.storeEnabled() || !storeTabAllowed(tab)) return;
     if (!this.isOpen) {
       this.tab = tab;
       this.toggle();
@@ -276,9 +277,8 @@ export class DailyRewardsWindow {
       this.close();
       return;
     }
-    // The store is the window's only surface: with no economy hooks attached
-    // (offline, or before login) there is nothing to open.
-    if (!this.storeEnabled()) return;
+    // The store is the only surface: no hooks (offline) or a store-off build opens nothing.
+    if (!this.storeEnabled() || storeTabs().length === 0) return;
     this.openerFocus = this.deps.captureFocus();
     this.deps.closeOthers();
     this.invalidateStoreSurface();
@@ -339,7 +339,7 @@ export class DailyRewardsWindow {
     const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-woc-store-tab]'));
     const select = (button: HTMLButtonElement, focus: boolean): void => {
       const tab = button.dataset.wocStoreTab;
-      if (tab !== 'store' && tab !== 'memberships') return;
+      if ((tab !== 'store' && tab !== 'memberships') || !storeTabAllowed(tab)) return;
       if (tab !== this.tab) this.invalidateStoreSurface();
       this.tab = tab;
       this.syncTabs();

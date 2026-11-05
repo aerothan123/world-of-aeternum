@@ -8299,6 +8299,9 @@ export const zh_CN: EnTranslations = {
       "stepup_wallet_mismatch": "该确认签发后绑定的钱包已变更。请重新发起出售。",
       "stepup_binding_mismatch": "该钱包确认与本次出售不符。请重新发起出售。",
       "stepup_signature_invalid": "钱包签名验证失败。请重新发起出售。"
+    },
+    "store": {
+      "disabled": "抢先体验期间商店不可用。"
     }
   },
   "clues": {

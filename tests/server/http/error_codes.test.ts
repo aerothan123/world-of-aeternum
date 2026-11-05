@@ -164,6 +164,8 @@ const EXPECTED_CODES = [
   'world_quest_block.reason_required',
   'world_quest_block.already_blocked',
   'world_quest_block.not_blocked',
+  // Early Access store gating (server/claudium.ts sendStoreDisabled).
+  'store.disabled',
 ];
 
 describe('ERROR_CODES catalog', () => {

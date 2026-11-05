@@ -8299,6 +8299,9 @@ export const en: EnTranslations = {
       "stepup_wallet_mismatch": "Your linked wallet changed since this confirmation was issued. Start the sale again.",
       "stepup_binding_mismatch": "That wallet confirmation does not match this sale. Start the sale again.",
       "stepup_signature_invalid": "The wallet signature did not verify. Start the sale again."
+    },
+    "store": {
+      "disabled": "The store is not available in Early Access."
     }
   },
   "clues": {

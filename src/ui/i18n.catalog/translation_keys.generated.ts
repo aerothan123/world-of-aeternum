@@ -391,6 +391,7 @@ export type TranslationKeyFlat =
   | 'apiError.steam.disabled'
   | 'apiError.steam.invalid_ticket'
   | 'apiError.steam.upstream'
+  | 'apiError.store.disabled'
   | 'apiError.two_factor.already_enabled'
   | 'apiError.two_factor.code_invalid'
   | 'apiError.two_factor.not_enabled'

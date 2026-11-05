@@ -8299,6 +8299,9 @@ export const da_DK: EnTranslations = {
       "stepup_wallet_mismatch": "Din tilknyttede pung har ændret sig, siden denne bekræftelse blev udstedt. Start salget forfra.",
       "stepup_binding_mismatch": "Den pungbekræftelse passer ikke til dette salg. Start salget forfra.",
       "stepup_signature_invalid": "Pungens underskrift kunne ikke verificeres. Start salget forfra."
+    },
+    "store": {
+      "disabled": "The store is not available in Early Access."
     }
   },
   "clues": {

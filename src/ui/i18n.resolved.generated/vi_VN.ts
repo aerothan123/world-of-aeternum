@@ -8299,6 +8299,9 @@ export const vi_VN: EnTranslations = {
       "stepup_wallet_mismatch": "Ví đã liên kết của bạn đã thay đổi kể từ khi xác nhận này được cấp. Hãy bắt đầu lại việc bán.",
       "stepup_binding_mismatch": "Xác nhận ví đó không khớp với giao dịch bán này. Hãy bắt đầu lại việc bán.",
       "stepup_signature_invalid": "Chữ ký ví không xác minh được. Hãy bắt đầu lại việc bán."
+    },
+    "store": {
+      "disabled": "The store is not available in Early Access."
     }
   },
   "clues": {

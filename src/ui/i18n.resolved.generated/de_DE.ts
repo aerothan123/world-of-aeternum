@@ -8299,6 +8299,9 @@ export const de_DE: EnTranslations = {
       "stepup_wallet_mismatch": "Dein verknüpftes Wallet hat sich geändert, seit diese Bestätigung ausgestellt wurde. Starte den Verkauf erneut.",
       "stepup_binding_mismatch": "Diese Wallet-Bestätigung passt nicht zu diesem Verkauf. Starte den Verkauf erneut.",
       "stepup_signature_invalid": "Die Wallet-Signatur konnte nicht verifiziert werden. Starte den Verkauf erneut."
+    },
+    "store": {
+      "disabled": "The store is not available in Early Access."
     }
   },
   "clues": {

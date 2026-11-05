@@ -8299,6 +8299,9 @@ export const ja_JP: EnTranslations = {
       "stepup_wallet_mismatch": "この確認の発行後に連携済みウォレットが変更されました。販売をやり直してください。",
       "stepup_binding_mismatch": "そのウォレット確認はこの販売と一致しません。販売をやり直してください。",
       "stepup_signature_invalid": "ウォレット署名を検証できませんでした。販売をやり直してください。"
+    },
+    "store": {
+      "disabled": "アーリーアクセス期間中はストアを利用できません。"
     }
   },
   "clues": {

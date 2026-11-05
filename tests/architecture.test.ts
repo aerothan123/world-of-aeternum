@@ -219,6 +219,8 @@ const UI_PURE_CORES = [
   'src/ui/graphics_choice_core.ts',
   // The first-launch EULA gate's decision (Wyndlewood legal, src/ui/eula_prompt.ts consumes it).
   'src/ui/eula_gate_core.ts',
+  // Which store, membership and cosmetic-shop surfaces the build may reach (Early Access switches).
+  'src/ui/store_surfaces_core.ts',
   'src/ui/frame_menu_core.ts',
   'src/ui/loot_quality_view.ts',
   // The store purchase loot window and membership congratulation (painter:

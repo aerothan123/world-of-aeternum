@@ -413,6 +413,11 @@ export const ERROR_CODES = deepFreeze({
   'woc_market.stepup_binding_mismatch': { params: [] },
   // The wallet signature did not verify against the challenge (403).
   'woc_market.stepup_signature_invalid': { params: [] },
+
+  // store: the Early Access monetization switches (server/early_access_flags.ts).
+  // A store, membership or cosmetic-shop route on a realm with that switch off
+  // (MEMBERSHIP_ENABLED / CLAUDIUM_ENABLED unset) (404).
+  'store.disabled': { params: [] },
 } as const);
 
 /** A stable error code: one of the keys of ERROR_CODES. */

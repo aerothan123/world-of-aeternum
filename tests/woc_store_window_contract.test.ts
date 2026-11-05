@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { STORAGE_SKUS } from '../src/sim/content/storage_charters';
+import { wocStoreTabsHtml } from '../src/ui/daily_rewards_chrome_view';
 
 // Strip comments so a pin can never be satisfied by prose. Every assertion in
 // this file is a source scan, so a commented-out copy of a load-bearing line
@@ -108,8 +109,12 @@ const hudChromeCatalog = readSource('../src/ui/i18n.catalog/hud_chrome.ts');
 describe('WOC Store window contract', () => {
   it('opens on the Cosmetic Store tab beside Memberships, with no Daily Rewards tab', () => {
     expect(storeWindow).toContain("private tab: 'store' | 'memberships' = 'store'");
-    expect(dailyRewardsChrome).toContain('data-woc-store-tab="store"');
-    expect(dailyRewardsChrome).toContain('data-woc-store-tab="memberships"');
+    // The strip renders only the tabs the build sells (store_surfaces_core.ts);
+    // with both Early Access switches on it is the Store beside Memberships.
+    const strip = wocStoreTabsHtml(['store', 'memberships']);
+    expect(strip).toContain('data-woc-store-tab="store"');
+    expect(strip).toContain('data-woc-store-tab="memberships"');
+    expect(strip).not.toContain('data-woc-store-tab="rewards"');
     expect(dailyRewardsChrome).not.toContain('data-woc-store-tab="rewards"');
   });
 
@@ -348,7 +353,7 @@ describe('WOC Store window contract', () => {
   });
 
   it('keeps the store and Claudium out of native builds', () => {
-    expect(main).toContain('dailyRewardsEnabled: true');
+    expect(main).toContain('dailyRewardsEnabled: CLAUDIUM_ENABLED,');
     expect(main).not.toContain('walletCapabilityReady');
     expect(main).toContain('devCommandsEnabled: import.meta.env.DEV');
     const economyWiring = main.slice(

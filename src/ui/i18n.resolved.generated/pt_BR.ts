@@ -8299,6 +8299,9 @@ export const pt_BR: EnTranslations = {
       "stepup_wallet_mismatch": "Sua carteira vinculada mudou desde que essa confirmação foi emitida. Inicie a venda novamente.",
       "stepup_binding_mismatch": "Essa confirmação da carteira não corresponde a essa venda. Inicie a venda novamente.",
       "stepup_signature_invalid": "A assinatura da carteira não pôde ser verificada. Inicie a venda novamente."
+    },
+    "store": {
+      "disabled": "The store is not available in Early Access."
     }
   },
   "clues": {

@@ -8299,6 +8299,9 @@ export const sv_SE: EnTranslations = {
       "stepup_wallet_mismatch": "Din länkade plånbok har ändrats sedan den här bekräftelsen utfärdades. Starta försäljningen igen.",
       "stepup_binding_mismatch": "Den plånboksbekräftelsen matchar inte den här försäljningen. Starta försäljningen igen.",
       "stepup_signature_invalid": "Plånbokssignaturen kunde inte verifieras. Starta försäljningen igen."
+    },
+    "store": {
+      "disabled": "The store is not available in Early Access."
     }
   },
   "clues": {

@@ -8299,6 +8299,9 @@ export const it_IT: EnTranslations = {
       "stepup_wallet_mismatch": "Il tuo portafoglio collegato è cambiato da quando questa conferma è stata emessa. Avvia di nuovo la vendita.",
       "stepup_binding_mismatch": "Quella conferma del portafoglio non corrisponde a questa vendita. Avvia di nuovo la vendita.",
       "stepup_signature_invalid": "La firma del portafoglio non è stata verificata. Avvia di nuovo la vendita."
+    },
+    "store": {
+      "disabled": "The store is not available in Early Access."
     }
   },
   "clues": {

@@ -25841,4 +25841,5 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'analyticsPrompt.decline': '공유 안 함',
   'hudChrome.options.shareAnalytics': '사용 및 성능 데이터 공유',
   'hudChrome.options.shareAnalyticsNote': '직접 켜지 않으면 꺼져 있습니다. 대략적인 플레이 집계와 성능 보고서를 Wyndlewood에만 보내며 다른 회사에는 보내지 않습니다.',
+  'apiError.store.disabled': '앞서 해보기 기간에는 상점을 이용할 수 없습니다.',
 };

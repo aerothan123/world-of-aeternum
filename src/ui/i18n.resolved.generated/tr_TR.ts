@@ -8299,6 +8299,9 @@ export const tr_TR: EnTranslations = {
       "stepup_wallet_mismatch": "Bu onay verildiğinden beri bağlı cüzdanınız değişti. Satışı yeniden başlatın.",
       "stepup_binding_mismatch": "O cüzdan onayı bu satışla eşleşmiyor. Satışı yeniden başlatın.",
       "stepup_signature_invalid": "Cüzdan imzası doğrulanamadı. Satışı yeniden başlatın."
+    },
+    "store": {
+      "disabled": "The store is not available in Early Access."
     }
   },
   "clues": {

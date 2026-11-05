@@ -948,6 +948,7 @@ import {
   storePromoSlides,
 } from './store_promo_card';
 import { dailyRewardsStoreSnapshot } from './store_snapshot_adapter';
+import { storeLauncherLive, storeTabAllowed } from './store_surfaces_core';
 import { SwingTimerBars } from './swing_timer_bars';
 import { localizeSystemText } from './system_text_i18n';
 import { TalentsWindow } from './talents_window';
@@ -8308,9 +8309,8 @@ export class Hud {
     return this.features.dailyRewardsEnabled;
   }
 
-  /** The Store opens only once the online economy hooks are attached. */
   private storeLauncherLive(): boolean {
-    return this.dailyRewardsEnabled() && this.claudiumHooks !== null;
+    return this.dailyRewardsEnabled() && storeLauncherLive(this.claudiumHooks !== null);
   }
 
   private syncDailyRewardsSurfaceLabels(): void {
@@ -16231,7 +16231,7 @@ export class Hud {
   }
 
   openWocStore(tab: 'store' | 'memberships' = 'store'): void {
-    if (!this.storeLauncherLive()) return;
+    if (!this.storeLauncherLive() || !storeTabAllowed(tab)) return;
     this.dailyRewardsWindow.openStore(tab);
   }
 

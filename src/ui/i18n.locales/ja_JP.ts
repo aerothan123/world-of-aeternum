@@ -25836,4 +25836,5 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'analyticsPrompt.decline': '共有しない',
   'hudChrome.options.shareAnalytics': '利用状況とパフォーマンスのデータを共有',
   'hudChrome.options.shareAnalyticsNote': 'オンにしない限りオフのままです。大まかなプレイのカウントとパフォーマンスレポートを Wyndlewood にのみ送信し、他社には送信しません。',
+  'apiError.store.disabled': 'アーリーアクセス期間中はストアを利用できません。',
 };

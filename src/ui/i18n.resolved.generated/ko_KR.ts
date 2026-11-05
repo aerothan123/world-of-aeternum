@@ -8299,6 +8299,9 @@ export const ko_KR: EnTranslations = {
       "stepup_wallet_mismatch": "이 확인이 발급된 후 연동된 지갑이 변경되었습니다. 판매를 다시 시작하세요.",
       "stepup_binding_mismatch": "해당 지갑 확인은 이 판매와 일치하지 않습니다. 판매를 다시 시작하세요.",
       "stepup_signature_invalid": "지갑 서명을 확인할 수 없습니다. 판매를 다시 시작하세요."
+    },
+    "store": {
+      "disabled": "앞서 해보기 기간에는 상점을 이용할 수 없습니다."
     }
   },
   "clues": {

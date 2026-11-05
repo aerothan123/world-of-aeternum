@@ -14,6 +14,7 @@
 // until the legacy ladder is removed.
 
 import type * as http from 'node:http';
+import type { EarlyAccessFlags } from '../src/early_access_flags';
 import { MEMBERSHIP_TOKEN_SKU } from '../src/membership_token_contract';
 import { isStoreMountSkinId } from '../src/sim/content/mount_skins';
 import { isKnownStorageSkuId } from '../src/sim/content/storage_charters';
@@ -38,6 +39,7 @@ import {
   grantAccountWeaponSkins,
   moderationStatusForAccount,
 } from './db';
+import { SERVER_EARLY_ACCESS } from './early_access_flags';
 import { ctxAccountId } from './http/context';
 import { type BearerActiveGuardDb, createActiveGuard } from './http/middleware/bearer_active_guard';
 import {
@@ -48,8 +50,6 @@ import {
   rateLimit,
 } from './http/middleware/rate_limit';
 import type { Ctx, Middleware, RateLimitOutcome, RouteDef } from './http/types';
-import type { EarlyAccessFlags } from '../src/early_access_flags';
-import { SERVER_EARLY_ACCESS } from './early_access_flags';
 import { json, readBinaryBody, readBody } from './http_util';
 import { gameMembershipAnnualClaim, membershipAnnualRecipient } from './membership_annual_store';
 import {
@@ -535,11 +535,19 @@ export function claudiumPathEnabled(
   return true;
 }
 
-/** The Early Access gate every Claudium route runs first: a closed path answers
- *  exactly like an unknown endpoint, so a switched-off realm exposes nothing. */
+/** The answer a switched-off store, membership or cosmetic-shop path gives:
+ *  a 404 carrying the stable `store.disabled` code (server/http/error_codes.ts),
+ *  so the client localizes it and nothing behind the gate (auth, rate limits,
+ *  the economy service) runs. Shared by the RouteDef gate below and the legacy
+ *  /api/claudium prefix arm in server/main.ts (the dual-edit pair). */
+export function sendStoreDisabled(res: http.ServerResponse): void {
+  json(res, 404, { error: 'store disabled', code: 'store.disabled' });
+}
+
+/** The Early Access gate every Claudium route runs first. */
 const earlyAccessGate: Middleware = async (ctx, next) => {
   if (!claudiumPathEnabled(ctx.req.url?.split('?')[0] ?? '')) {
-    json(ctx.res, 404, { error: 'unknown endpoint' });
+    sendStoreDisabled(ctx.res);
     return;
   }
   await next();

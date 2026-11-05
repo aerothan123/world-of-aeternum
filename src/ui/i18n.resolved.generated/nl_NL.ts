@@ -8299,6 +8299,9 @@ export const nl_NL: EnTranslations = {
       "stepup_wallet_mismatch": "Je gekoppelde portemonnee is veranderd sinds deze bevestiging werd uitgegeven. Start de verkoop opnieuw.",
       "stepup_binding_mismatch": "Die portemonneebevestiging komt niet overeen met deze verkoop. Start de verkoop opnieuw.",
       "stepup_signature_invalid": "De portemonneehandtekening kon niet worden geverifieerd. Start de verkoop opnieuw."
+    },
+    "store": {
+      "disabled": "The store is not available in Early Access."
     }
   },
   "clues": {

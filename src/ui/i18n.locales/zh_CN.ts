@@ -24500,4 +24500,5 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'analyticsPrompt.decline': '不分享',
   'hudChrome.options.shareAnalytics': '分享使用和性能数据',
   'hudChrome.options.shareAnalyticsNote': '默认关闭，需要你主动开启。只会向 Wyndlewood 发送粗略的游戏计数和性能报告，绝不发送给其他公司。',
+  'apiError.store.disabled': '抢先体验期间商店不可用。',
 };

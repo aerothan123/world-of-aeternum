@@ -26286,4 +26286,5 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'analyticsPrompt.decline': 'Не делиться',
   'hudChrome.options.shareAnalytics': 'Делиться данными об использовании и производительности',
   'hudChrome.options.shareAnalyticsNote': 'Выключено, пока вы не включите. Грубые игровые счётчики и отчёты о производительности отправляются только Wyndlewood и никогда другим компаниям.',
+  'apiError.store.disabled': 'Магазин недоступен в раннем доступе.',
 };

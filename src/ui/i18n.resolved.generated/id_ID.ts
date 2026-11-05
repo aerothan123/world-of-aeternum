@@ -8299,6 +8299,9 @@ export const id_ID: EnTranslations = {
       "stepup_wallet_mismatch": "Dompet tertaut Anda berubah sejak konfirmasi ini diterbitkan. Mulai penjualan lagi dari awal.",
       "stepup_binding_mismatch": "Konfirmasi dompet itu tidak cocok dengan penjualan ini. Mulai penjualan lagi dari awal.",
       "stepup_signature_invalid": "Tanda tangan dompet itu tidak terverifikasi. Mulai penjualan lagi dari awal."
+    },
+    "store": {
+      "disabled": "The store is not available in Early Access."
     }
   },
   "clues": {
