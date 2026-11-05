@@ -1,0 +1,34 @@
+{
+  "id": "simple-damage-meter",
+  "name": "Simple Damage Meter",
+  "version": "1.0.0",
+  "apiVersion": 1,
+  "author": "Wyndlewood SDK",
+  "description": "Party damage or healing per second for the current fight, as sorted bars. /sdm reset clears it.",
+  "permissions": ["combatLog", "party"],
+  "files": ["main.js"],
+  "savedVariables": { "account": true },
+  "slashCommands": ["sdm"],
+  "settings": [
+    {
+      "key": "mode",
+      "type": "choice",
+      "label": "Show",
+      "default": "damage",
+      "options": [
+        { "value": "damage", "label": "Damage" },
+        { "value": "healing", "label": "Healing" }
+      ]
+    },
+    {
+      "key": "rows",
+      "type": "slider",
+      "label": "Rows",
+      "default": 5,
+      "min": 1,
+      "max": 10,
+      "step": 1
+    }
+  ],
+  "tags": ["Combat", "Meters"]
+}
