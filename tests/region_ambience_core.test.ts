@@ -19,7 +19,7 @@ import {
 } from '../src/render/region_ambience_core';
 import { PROVING_SHORE_ZONE } from '../src/sim/content/proving_shore';
 import { ZONE1_ZONE } from '../src/sim/content/zone1';
-import { ZONES, zoneAt } from '../src/sim/data';
+import { DUNGEONS, ZONES, zoneAt } from '../src/sim/data';
 
 // The region beds (src/render/region_ambience_core.ts): which long zone and town
 // soundscapes play where the player stands, and how they crossfade.
@@ -133,7 +133,7 @@ describe('region_ambience_core', () => {
     );
   });
 
-  it('plays a dungeon interior bed in place of the zone beds, and none in a house', () => {
+  it('plays a dungeon interior bed in place of the zone beds, and the hearth in a house', () => {
     const crypt = sampleRegionAmbienceInto(
       createRegionAmbience(),
       {
@@ -151,8 +151,15 @@ describe('region_ambience_core', () => {
     expect(crypt.legacyScale).toBeCloseTo(LEGACY_FLOOR, 5);
     expect(REGION_BED_KEYS[interiorBedIndex('cave')]).toBe('amb_bed_cave');
     expect(REGION_BED_KEYS[interiorBedIndex('drowned_temple')]).toBe('amb_bed_temple');
-    expect(REGION_BED_KEYS[interiorBedIndex('ignivar_depths')]).toBe('amb_bed_ember');
-    expect(interiorBedIndex('house')).toBe(-1);
+    expect(REGION_BED_KEYS[interiorBedIndex('ignivar_depths')]).toBe('amb_bed_forge');
+    expect(REGION_BED_KEYS[interiorBedIndex('lastkeep')]).toBe('amb_bed_castle');
+    expect(REGION_BED_KEYS[interiorBedIndex('dawnhold')]).toBe('amb_bed_palace');
+    expect(REGION_BED_KEYS[interiorBedIndex('sunken_bastion')]).toBe('amb_bed_bastion');
+    expect(REGION_BED_KEYS[interiorBedIndex('nythraxis')]).toBe('amb_bed_lair');
+    expect(REGION_BED_KEYS[interiorBedIndex('mine')]).toBe('amb_bed_mine');
+    expect(REGION_BED_KEYS[interiorBedIndex('wildheart')]).toBe('amb_bed_wildheart');
+    expect(REGION_BED_KEYS[interiorBedIndex('house')]).toBe('amb_bed_house');
+    expect(interiorBedIndex('arena')).toBe(-1);
     expect(interiorBedIndex(null)).toBe(-1);
     expect(interiorBedIndex('toString')).toBe(-1);
   });
@@ -167,6 +174,12 @@ describe('region_ambience_core', () => {
       if (zone) expect(zone.hub, t.zoneId).toBeDefined();
     }
     expect(ZONES.find((z) => z.id === 'eastbrook_vale')?.hub).toBeDefined();
+  });
+
+  it('gives every shipped dungeon interior a bed', () => {
+    for (const d of Object.values(DUNGEONS)) {
+      expect(interiorBedIndex(d.interior ?? null), d.id).toBeGreaterThanOrEqual(0);
+    }
   });
 
   it('hands a wooded meadow to the forest bed and its reverb space', () => {

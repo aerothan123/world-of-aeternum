@@ -13,9 +13,9 @@
 //     density (the caller's forest sampler), so a wood in the vale sounds like a wood;
 //   * day and night are one weight (the caller's dayWeight), so dusk blends the town's two
 //     variants, and the meadow's larks into the country's crickets, instead of switching.
-// Inside an instance the bed follows the dungeon's interior (cave, crypt, stone hall, the
-// fire depths); a house, an arena or an unmapped interior plays none (the older dungeon air
-// alone). It also names the reverb space a dense wood implies (null: keep the biome's own),
+// Inside an instance the bed follows the dungeon's interior (cave, mine, crypt, stone hall,
+// keep, palace, flooded bastion, forge, the raid cavern, the jungle caldera, and the player
+// house's hearth); an unmapped interior plays none (the older dungeon air alone). It also names the reverb space a dense wood implies (null: keep the biome's own),
 // and how much of the older beds (the short wind, birdsong and dungeon loops) still plays
 // under the new ones.
 //
@@ -46,26 +46,40 @@ export const REGION_BED_KEYS = [
   'amb_bed_amber',
   'amb_bed_gale',
   'amb_bed_dusk',
+  'amb_bed_wildheart',
+  'amb_bed_castle',
+  'amb_bed_palace',
+  'amb_bed_bastion',
+  'amb_bed_forge',
+  'amb_bed_lair',
+  'amb_bed_mine',
+  'amb_bed_house',
 ] as const;
 export type RegionBedKey = (typeof REGION_BED_KEYS)[number];
 
 const bed = (key: RegionBedKey): number => REGION_BED_KEYS.indexOf(key);
-const SHORE = bed('amb_bed_shore');
 const TOWN_DAY = bed('amb_bed_town_day');
 const TOWN_NIGHT = bed('amb_bed_town_night');
 const MEADOW = bed('amb_bed_meadow');
 const FOREST = bed('amb_bed_forest');
-const MARSH = bed('amb_bed_marsh');
 const NIGHT_WILD = bed('amb_bed_night_wild');
 const HARBOR = bed('amb_bed_harbor');
 const CAVE = bed('amb_bed_cave');
 const CRYPT = bed('amb_bed_crypt');
 const TEMPLE = bed('amb_bed_temple');
-const EMBER = bed('amb_bed_ember');
+const WILDHEART = bed('amb_bed_wildheart');
+const CASTLE = bed('amb_bed_castle');
+const PALACE = bed('amb_bed_palace');
+const BASTION = bed('amb_bed_bastion');
+const FORGE = bed('amb_bed_forge');
+const LAIR = bed('amb_bed_lair');
+const MINE = bed('amb_bed_mine');
+const HOUSE = bed('amb_bed_house');
 
 /** Each bed's loop gain at full weight: every master's measured loudness (the build log of
  *  scripts/sfx/ambience_beds_sfx.mjs) brought to about -30 LUFS effective, a little over
- *  the old 8 s biome loops these replace; interiors sit a touch lower. */
+ *  the old 8 s biome loops these replace; interiors sit a touch lower, the house lower
+ *  still. */
 export const REGION_BED_GAINS: Readonly<Record<RegionBedKey, number>> = Object.freeze({
   amb_bed_shore: 0.34,
   amb_bed_town_day: 0.46,
@@ -87,6 +101,14 @@ export const REGION_BED_GAINS: Readonly<Record<RegionBedKey, number>> = Object.f
   amb_bed_amber: 0.46,
   amb_bed_gale: 0.31,
   amb_bed_dusk: 0.37,
+  amb_bed_wildheart: 0.28,
+  amb_bed_castle: 0.48,
+  amb_bed_palace: 0.41,
+  amb_bed_bastion: 0.61,
+  amb_bed_forge: 0.28,
+  amb_bed_lair: 0.27,
+  amb_bed_mine: 1,
+  amb_bed_house: 1,
 });
 
 /** How far each way the zone bed's taps reach (yards). */
@@ -161,24 +183,26 @@ const ZONE_BED_BY_BIOME: Readonly<Partial<Record<BiomeId, RegionBedKey>>> = Obje
   gale: 'amb_bed_gale',
 });
 
-/** Each dungeon interior's bed. A house, an arena and anything unmapped play none. */
+/** Each dungeon interior's bed. Anything unmapped plays none. */
 const INTERIOR_BED: Readonly<Record<string, number>> = Object.freeze({
   cave: CAVE,
-  mine: CAVE,
-  nythraxis: CAVE,
+  mine: MINE,
+  nythraxis: LAIR,
   crypt: CRYPT,
   hollow_crypt: CRYPT,
   gravewyrm_sanctum: CRYPT,
   sanctum: TEMPLE,
   temple: TEMPLE,
   drowned_temple: TEMPLE,
-  sunken_bastion: TEMPLE,
-  lastkeep: TEMPLE,
-  dawnhold: TEMPLE,
-  ignivar: EMBER,
-  ignivar_approach: EMBER,
-  ignivar_lift: EMBER,
-  ignivar_depths: EMBER,
+  sunken_bastion: BASTION,
+  lastkeep: CASTLE,
+  dawnhold: PALACE,
+  ignivar: FORGE,
+  ignivar_approach: FORGE,
+  ignivar_lift: FORGE,
+  ignivar_depths: FORGE,
+  wildheart: WILDHEART,
+  house: HOUSE,
 });
 
 /** The bed index a dungeon interior plays, or -1 for none. */

@@ -185,30 +185,39 @@ describe('buildManifest', () => {
     // make 412. The six region beds (the island surf, Eastbrook by day and by night, the
     // meadow, the forest and the marsh, scripts/sfx/ambience_beds_sfx.mjs) make 418, and the
     // fourteen Phase B beds (the night country, each realm, the harbour, and the cave, crypt
-    // and hall interiors) make 432.
+    // and hall interiors) make 432, and the eight Phase C interiors (the jungle caldera, keep,
+    // palace, flooded bastion, forge, raid cavern, mine and the house hearth) make 440.
     const keys = new Set(SFX.map((entry) => entry.key));
-    expect(keys.size).toBe(432);
+    expect(keys.size).toBe(440);
     expect([...keys].filter((key) => key.startsWith('amb_bed_')).sort()).toEqual([
       'amb_bed_amber',
+      'amb_bed_bastion',
+      'amb_bed_castle',
       'amb_bed_cave',
       'amb_bed_crypt',
       'amb_bed_dusk',
       'amb_bed_ember',
       'amb_bed_forest',
+      'amb_bed_forge',
       'amb_bed_frost',
       'amb_bed_gale',
       'amb_bed_garden',
       'amb_bed_harbor',
       'amb_bed_haunt',
+      'amb_bed_house',
       'amb_bed_jungle',
+      'amb_bed_lair',
       'amb_bed_marsh',
       'amb_bed_meadow',
+      'amb_bed_mine',
       'amb_bed_night_wild',
+      'amb_bed_palace',
       'amb_bed_peaks',
       'amb_bed_shore',
       'amb_bed_temple',
       'amb_bed_town_day',
       'amb_bed_town_night',
+      'amb_bed_wildheart',
     ]);
     for (const key of [
       'impact_gather_pick',
@@ -328,7 +337,7 @@ describe('buildManifest', () => {
     // purely filesystem-discovered.
     const mobFamilyKeys = [...keys].filter((key) => key.startsWith('mob_'));
     expect(mobFamilyKeys).toHaveLength(65); // 13 families x 5 actions
-    expect(SFX_FIXED_CATALOG_KEYS).toHaveLength(432);
+    expect(SFX_FIXED_CATALOG_KEYS).toHaveLength(440);
     expect([...SFX_FIXED_CATALOG_KEYS].sort()).toEqual([...keys].sort());
   });
 });

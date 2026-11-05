@@ -125,4 +125,54 @@ export const AMBIENCE_BED_PROMPTS = [
     prompt:
       'Hushed twilight valley: a faint low breeze, soft evening insects, an uneasy stillness. No music.',
   },
+  // --- Phase C (the paid plan): an interior of their own for the instances that borrowed
+  // one, and the player house.
+  {
+    key: 'amb_bed_wildheart',
+    request: 30,
+    prompt:
+      'Hidden jungle caldera: a distant waterfall roar, a river rushing over stones, humid insects, far tropical birds. No music.',
+  },
+  {
+    key: 'amb_bed_castle',
+    request: 30,
+    prompt:
+      'Empty stone keep on a sea cliff: wind moaning through narrow windows, a far shutter creak, distant surf, cold hush. No music.',
+  },
+  {
+    key: 'amb_bed_palace',
+    request: 30,
+    prompt:
+      'Sunlit palace conservatory: a small indoor fountain, songbirds through open windows, leaves stirring, a warm hush. No music.',
+  },
+  {
+    key: 'amb_bed_bastion',
+    request: 30,
+    prompt:
+      'Half-flooded stone fortress: water lapping at walls, slow heavy drips, old stone groaning, hollow gurgles. No music.',
+  },
+  {
+    key: 'amb_bed_forge',
+    request: 30,
+    prompt:
+      'Vast underground forge hall: low roar of molten metal, bubbling lava channels, hissing steam, a deep rumble. No music.',
+  },
+  {
+    key: 'amb_bed_lair',
+    request: 30,
+    prompt:
+      'Enormous dark cavern: deep resonant air, a low distant rumble, trickling grit, slow echoing drips. No music.',
+  },
+  {
+    key: 'amb_bed_mine',
+    request: 30,
+    prompt:
+      'Old mine tunnel: creaking timber supports, trickling dust and gravel, distant dripping water, a low draught. No music.',
+  },
+  {
+    key: 'amb_bed_house',
+    request: 30,
+    prompt:
+      'Cozy cottage room: a crackling hearth fire, soft timber creaks, a muffled breeze outside, warm quiet room tone. No music.',
+  },
 ];

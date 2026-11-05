@@ -10,6 +10,28 @@
       }
     ]
   },
+  "amb_bed_bastion": {
+    "ceilingDb": 4.6,
+    "tracks": [
+      {
+        "filename": "amb_bed_bastion.mp3",
+        "sha256": "9906ec4a7a0d8d4f90bfac88f79e77fec90480a898a107997ccdaddd67825aa0",
+        "size": 440991,
+        "peakDb": -5.6
+      }
+    ]
+  },
+  "amb_bed_castle": {
+    "ceilingDb": 5.4,
+    "tracks": [
+      {
+        "filename": "amb_bed_castle.mp3",
+        "sha256": "06b12fc989857c2f795a844e3444058176e21e00346f9b3c934a0ecff8fdd8be",
+        "size": 440991,
+        "peakDb": -6.4
+      }
+    ]
+  },
   "amb_bed_cave": {
     "ceilingDb": 4.3,
     "tracks": [
@@ -62,6 +84,17 @@
         "sha256": "da0d9bd8d2c596e9e0134ed05a8573b6945a082ddfae1b9e2e0e2dedb0058771",
         "size": 440991,
         "peakDb": -5
+      }
+    ]
+  },
+  "amb_bed_forge": {
+    "ceilingDb": 8.6,
+    "tracks": [
+      {
+        "filename": "amb_bed_forge.mp3",
+        "sha256": "93e155b01980dac62ba79d1f643128fad0b1a92ada05fe81d1d201b3c542e6af",
+        "size": 440991,
+        "peakDb": -9.6
       }
     ]
   },
@@ -120,6 +153,17 @@
       }
     ]
   },
+  "amb_bed_house": {
+    "ceilingDb": 5.1,
+    "tracks": [
+      {
+        "filename": "amb_bed_house.mp3",
+        "sha256": "6c783c1854e4f959c427c4ddd7fbc96df62916330a1daf038dae19732f9414dd",
+        "size": 440991,
+        "peakDb": -6.1
+      }
+    ]
+  },
   "amb_bed_jungle": {
     "ceilingDb": 9.8,
     "tracks": [
@@ -128,6 +172,17 @@
         "sha256": "06f591842e54b4a8d24e8d5f1e13b880687f19979942cc983cd9cef1e06b481f",
         "size": 440991,
         "peakDb": -10.8
+      }
+    ]
+  },
+  "amb_bed_lair": {
+    "ceilingDb": 5.4,
+    "tracks": [
+      {
+        "filename": "amb_bed_lair.mp3",
+        "sha256": "13ac45158e8f2fac2984f06dc6b92248febf6a10a5b233d9b01a3f780f7eb592",
+        "size": 440991,
+        "peakDb": -6.4
       }
     ]
   },
@@ -153,6 +208,17 @@
       }
     ]
   },
+  "amb_bed_mine": {
+    "ceilingDb": 4.5,
+    "tracks": [
+      {
+        "filename": "amb_bed_mine.mp3",
+        "sha256": "3a0d7031d6b9bfa47ab14fb49d0d5c214877199b0ab76807827373ef85dbe8c0",
+        "size": 440991,
+        "peakDb": -5.5
+      }
+    ]
+  },
   "amb_bed_night_wild": {
     "ceilingDb": 3.8,
     "tracks": [
@@ -161,6 +227,17 @@
         "sha256": "88268215a77325de55572e5f8862ad20ea06517515c988ce4642b0ade1bd32bf",
         "size": 440991,
         "peakDb": -4.8
+      }
+    ]
+  },
+  "amb_bed_palace": {
+    "ceilingDb": 4.5,
+    "tracks": [
+      {
+        "filename": "amb_bed_palace.mp3",
+        "sha256": "f171f98c6b419b2d02872b344e6f4fec03cef565079d51cc13320c16fe1536a0",
+        "size": 440991,
+        "peakDb": -5.5
       }
     ]
   },
@@ -216,6 +293,17 @@
         "sha256": "79cd95b5825bf2ca440749b3aaee32b490155fab46ccb43cf5ab4790a6c700f1",
         "size": 440991,
         "peakDb": -6.1
+      }
+    ]
+  },
+  "amb_bed_wildheart": {
+    "ceilingDb": 7.7,
+    "tracks": [
+      {
+        "filename": "amb_bed_wildheart.mp3",
+        "sha256": "81fe65c1f63c0a2269c1207de7e57d641dab24fe49af07fcff7fda298345d3b7",
+        "size": 440991,
+        "peakDb": -8.7
       }
     ]
   },
