@@ -24847,6 +24847,27 @@ export const en_XA: EnTranslations = {
       "furn_station_toolworks": {
         "name": "[Ĥóɱé Ţóóļŵóŕķš]"
       },
+      "furn_cottage_bed": {
+        "name": "[Çóţţáĝé Ɓéð]"
+      },
+      "furn_cottage_table": {
+        "name": "[Çóţţáĝé Ţáƀļé]"
+      },
+      "furn_cottage_chair": {
+        "name": "[Çóţţáĝé Çĥáíŕ]"
+      },
+      "furn_cottage_shelf": {
+        "name": "[Çóţţáĝé Šĥéļƒ]"
+      },
+      "furn_braided_rug": {
+        "name": "[Ɓŕáíðéð Ŕúĝ]"
+      },
+      "furn_table_lantern": {
+        "name": "[Ţáƀļé Ļáñţéŕñ]"
+      },
+      "furn_folding_worktable": {
+        "name": "[Ƒóļðíñĝ Ŵóŕķţáƀļé]"
+      },
       "membership_staff": {
         "name": "[Šţáƒƒ óƒ Çĥáñĝíñĝ]"
       },

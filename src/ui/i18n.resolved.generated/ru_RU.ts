@@ -24847,6 +24847,27 @@ export const ru_RU: EnTranslations = {
       "furn_station_toolworks": {
         "name": "Домашняя мастерская"
       },
+      "furn_cottage_bed": {
+        "name": "Деревенская кровать"
+      },
+      "furn_cottage_table": {
+        "name": "Деревенский стол"
+      },
+      "furn_cottage_chair": {
+        "name": "Деревенский стул"
+      },
+      "furn_cottage_shelf": {
+        "name": "Деревенская полка"
+      },
+      "furn_braided_rug": {
+        "name": "Плетёный коврик"
+      },
+      "furn_table_lantern": {
+        "name": "Настольный фонарь"
+      },
+      "furn_folding_worktable": {
+        "name": "Складной верстак"
+      },
       "membership_staff": {
         "name": "Посох перемен"
       },

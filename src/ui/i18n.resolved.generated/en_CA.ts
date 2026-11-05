@@ -24847,6 +24847,27 @@ export const en_CA: EnTranslations = {
       "furn_station_toolworks": {
         "name": "Home Toolworks"
       },
+      "furn_cottage_bed": {
+        "name": "Cottage Bed"
+      },
+      "furn_cottage_table": {
+        "name": "Cottage Table"
+      },
+      "furn_cottage_chair": {
+        "name": "Cottage Chair"
+      },
+      "furn_cottage_shelf": {
+        "name": "Cottage Shelf"
+      },
+      "furn_braided_rug": {
+        "name": "Braided Rug"
+      },
+      "furn_table_lantern": {
+        "name": "Table Lantern"
+      },
+      "furn_folding_worktable": {
+        "name": "Folding Worktable"
+      },
       "membership_staff": {
         "name": "Staff of Changing"
       },

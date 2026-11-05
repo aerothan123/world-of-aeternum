@@ -594,6 +594,8 @@ something this file marks as restricted, ask first: tony@levystreet.com.
 | Generated prop model (wyn_furn_cottage_shelf) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
 | Generated prop model (wyn_furn_small_storage_chest) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
 | Generated prop model (wyn_furn_folding_worktable) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (wyn_furn_table_lantern) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (wyn_furn_braided_rug) | World of ClaudeCraft | Project-generated: procedural mesh with a Tripo AI generated texture | Project asset | With the project only |
 
 ### Orbital Lightning
 

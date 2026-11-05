@@ -24847,6 +24847,27 @@ export const zh_CN: EnTranslations = {
       "furn_station_toolworks": {
         "name": "家用工具坊"
       },
+      "furn_cottage_bed": {
+        "name": "农舍床"
+      },
+      "furn_cottage_table": {
+        "name": "农舍桌"
+      },
+      "furn_cottage_chair": {
+        "name": "农舍椅"
+      },
+      "furn_cottage_shelf": {
+        "name": "农舍置物架"
+      },
+      "furn_braided_rug": {
+        "name": "编织地毯"
+      },
+      "furn_table_lantern": {
+        "name": "桌灯"
+      },
+      "furn_folding_worktable": {
+        "name": "折叠工作台"
+      },
       "membership_staff": {
         "name": "万变法杖"
       },

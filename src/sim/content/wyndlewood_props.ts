@@ -85,6 +85,8 @@ export const WYN_PROP_MODELS = {
   furn_cottage_shelf: wynModel('furn_cottage_shelf', 'wynCottageShelf', 'furniture', 1.8, 1.07, 1.74),
   furn_small_storage_chest: wynModel('furn_small_storage_chest', 'wynSmallStorageChest', 'furniture', 0.75, 0.7, 0.52),
   furn_folding_worktable: wynModel('furn_folding_worktable', 'wynFoldingWorktable', 'furniture', 1, 1.4, 0.69),
+  furn_braided_rug: wynModel('furn_braided_rug', 'wynBraidedRug', 'furniture', 0.05, 1.8, 2.6),
+  furn_table_lantern: wynModel('furn_table_lantern', 'wynTableLantern', 'furniture', 0.45, 0.32, 0.4),
   // fill_rows: new rows land above this line (scripts/assets/wyndlewood_props/fill_rows.mjs).
 } as const satisfies Record<string, WynPropModel>;
 

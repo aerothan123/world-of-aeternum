@@ -24847,6 +24847,27 @@ export const ko_KR: EnTranslations = {
       "furn_station_toolworks": {
         "name": "가정용 공방"
       },
+      "furn_cottage_bed": {
+        "name": "오두막 침대"
+      },
+      "furn_cottage_table": {
+        "name": "오두막 탁자"
+      },
+      "furn_cottage_chair": {
+        "name": "오두막 의자"
+      },
+      "furn_cottage_shelf": {
+        "name": "오두막 선반"
+      },
+      "furn_braided_rug": {
+        "name": "땋은 러그"
+      },
+      "furn_table_lantern": {
+        "name": "탁상 랜턴"
+      },
+      "furn_folding_worktable": {
+        "name": "접이식 작업대"
+      },
       "membership_staff": {
         "name": "변화의 지팡이"
       },

@@ -24847,6 +24847,27 @@ export const ja_JP: EnTranslations = {
       "furn_station_toolworks": {
         "name": "家庭用の工作台"
       },
+      "furn_cottage_bed": {
+        "name": "コテージのベッド"
+      },
+      "furn_cottage_table": {
+        "name": "コテージのテーブル"
+      },
+      "furn_cottage_chair": {
+        "name": "コテージの椅子"
+      },
+      "furn_cottage_shelf": {
+        "name": "コテージの棚"
+      },
+      "furn_braided_rug": {
+        "name": "編み込みラグ"
+      },
+      "furn_table_lantern": {
+        "name": "卓上ランタン"
+      },
+      "furn_folding_worktable": {
+        "name": "折りたたみ作業台"
+      },
       "membership_staff": {
         "name": "変化の杖"
       },
