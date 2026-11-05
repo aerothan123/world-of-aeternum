@@ -5364,6 +5364,22 @@ export const en_XA: EnTranslations = {
       "itemName": "[{item}, {quality}]",
       "tooltip": "[{quality}: +{levels} íţéɱ ļéʋéļš. Ŕéţáíñéð ţĥŕóúĝĥ úþĝŕáðéš.]"
     },
+    "townProject": {
+      "progress": "[{project}: {stage}. {done} óƒ {needed} ƀúñðļéš áŕé íñ. Éáçĥ ƀúñðļé íš {items}.]",
+      "complete": "[{project} íš çóɱþļéţé. Ţĥé ţóŵñ ţĥáñķš ýóú.]",
+      "contribute": "[Çóñţŕíƀúţé]",
+      "bundleItem": "[{count} {item}]",
+      "bundleJoin": "[ áñð ]",
+      "name": {
+        "eastbrook_yard_well": "[Ţĥé Ýáŕð Ŵéļļ]",
+        "eastbrook_yard_well_shaft": "[Ļíñé ţĥé šĥáƒţ]",
+        "eastbrook_yard_well_roof": "[Ŕáíšé ţĥé ŕóóƒ]",
+        "eastbrook_yard_well_winch": "[Ĥáñĝ ţĥé ŵíñçĥ]",
+        "eastbrook_street_lamps": "[Ţĥé Ɱáíñ Šţŕééţ Ļáɱþš]",
+        "eastbrook_street_lamps_posts": "[Šéţ ţĥé þóšţš]",
+        "eastbrook_street_lamps_lanterns": "[Ĥáñĝ ţĥé ļáñţéŕñš]"
+      }
+    },
     "durability": {
       "low": "[Ýóúŕ éɋúíþɱéñţ íš ƀáðļý ðáɱáĝéð. Ŕéþáíŕ íţ áţ áñ áŕɱóŕéŕ, á ŵéáþóñšɱíţĥ óŕ á ƒóŕĝé.]",
       "broken": "[Šóɱé óƒ ýóúŕ éɋúíþɱéñţ íš ƀŕóķéñ áñð ĝíʋéš ñó šţáţš. Ŕéþáíŕ íţ áţ áñ áŕɱóŕéŕ, á ŵéáþóñšɱíţĥ óŕ á ƒóŕĝé.]"

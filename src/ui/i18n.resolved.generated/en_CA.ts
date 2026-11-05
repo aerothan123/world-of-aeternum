@@ -5364,6 +5364,22 @@ export const en_CA: EnTranslations = {
       "itemName": "{item}, {quality}",
       "tooltip": "{quality}: +{levels} item levels. Retained through upgrades."
     },
+    "townProject": {
+      "progress": "{project}: {stage}. {done} of {needed} bundles are in. Each bundle is {items}.",
+      "complete": "{project} is complete. The town thanks you.",
+      "contribute": "Contribute",
+      "bundleItem": "{count} {item}",
+      "bundleJoin": " and ",
+      "name": {
+        "eastbrook_yard_well": "The Yard Well",
+        "eastbrook_yard_well_shaft": "Line the shaft",
+        "eastbrook_yard_well_roof": "Raise the roof",
+        "eastbrook_yard_well_winch": "Hang the winch",
+        "eastbrook_street_lamps": "The Main Street Lamps",
+        "eastbrook_street_lamps_posts": "Set the posts",
+        "eastbrook_street_lamps_lanterns": "Hang the lanterns"
+      }
+    },
     "durability": {
       "low": "Your equipment is badly damaged. Repair it at an armorer, a weaponsmith or a forge.",
       "broken": "Some of your equipment is broken and gives no stats. Repair it at an armorer, a weaponsmith or a forge."
