@@ -5366,6 +5366,7 @@ export const ru_RU: EnTranslations = {
     },
     "itemTooltip": {
       "requiresLevel": "Требуется уровень {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "Предмет разлома ранга {tier}",
       "riftUpgrade": "Улучшение разлома {level}/{max}",
       "riftSockets": "Самоцветы разлома {used}/{total}",
@@ -17492,6 +17493,10 @@ export const ru_RU: EnTranslations = {
     },
     "vendor": {
       "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "Обучение верховой езде",
       "advancedRiding": "Продвинутое обучение верховой езде",
       "ridingSpeed": "Повышает скорость передвижения верхом на {speed}%. Действует для всех ездовых обликов.",

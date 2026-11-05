@@ -5366,6 +5366,7 @@ export const it_IT: EnTranslations = {
     },
     "itemTooltip": {
       "requiresLevel": "Richiede livello {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "Oggetto dello Squarcio di rango {tier}",
       "riftUpgrade": "Potenziamento dello squarcio {level}/{max}",
       "riftSockets": "Gemme dello squarcio {used}/{total}",
@@ -17492,6 +17493,10 @@ export const it_IT: EnTranslations = {
     },
     "vendor": {
       "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "Addestramento all'Equitazione",
       "advancedRiding": "Addestramento avanzato all'Equitazione",
       "ridingSpeed": "Aumenta la velocità di movimento in sella del {speed}%. Si applica a tutte le cavalcature.",

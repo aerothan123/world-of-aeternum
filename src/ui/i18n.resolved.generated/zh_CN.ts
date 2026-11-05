@@ -5366,6 +5366,7 @@ export const zh_CN: EnTranslations = {
     },
     "itemTooltip": {
       "requiresLevel": "需要等级 {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "{tier}级裂隙物品",
       "riftUpgrade": "裂隙强化 {level}/{max}",
       "riftSockets": "裂隙宝石 {used}/{total}",
@@ -17492,6 +17493,10 @@ export const zh_CN: EnTranslations = {
     },
     "vendor": {
       "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "骑术训练",
       "advancedRiding": "高级骑术训练",
       "ridingSpeed": "骑乘时的移动速度提高{speed}%。适用于所有坐骑。",

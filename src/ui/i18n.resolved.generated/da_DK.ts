@@ -5366,6 +5366,7 @@ export const da_DK: EnTranslations = {
     },
     "itemTooltip": {
       "requiresLevel": "Kræver niveau {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "{tier}-rangs Rift-genstand",
       "riftUpgrade": "Rift-opgradering {level}/{max}",
       "riftSockets": "Rift-juveler {used}/{total}",
@@ -17492,6 +17493,10 @@ export const da_DK: EnTranslations = {
     },
     "vendor": {
       "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "Ridetræning",
       "advancedRiding": "Avanceret ridetræning",
       "ridingSpeed": "Øger din bevægelseshastighed til hest med {speed}%. Gælder alle ridedyr.",

@@ -5366,6 +5366,7 @@ export const sv_SE: EnTranslations = {
     },
     "itemTooltip": {
       "requiresLevel": "Kräver nivå {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "Revföremål av grad {tier}",
       "riftUpgrade": "Revuppgradering {level}/{max}",
       "riftSockets": "Revstenar {used}/{total}",
@@ -17492,6 +17493,10 @@ export const sv_SE: EnTranslations = {
     },
     "vendor": {
       "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "Ridträning",
       "advancedRiding": "Avancerad ridträning",
       "ridingSpeed": "Ökar din rörelsehastighet till häst med {speed}%. Gäller alla riddjur.",

@@ -5366,6 +5366,7 @@ export const en_XA: EnTranslations = {
     },
     "itemTooltip": {
       "requiresLevel": "[Ŕéɋúíŕéš Ļéʋéļ {level}]",
+      "durability": "[Ðúŕáƀíļíţý {current} / {max}]",
       "riftTier": "[{tier}-ŕáñķ Ŕíƒţ íţéɱ]",
       "riftUpgrade": "[Ŕíƒţ úþĝŕáðé {level}/{max}]",
       "riftSockets": "[Ŕíƒţ ĝéɱš {used}/{total}]",
@@ -17492,6 +17493,10 @@ export const en_XA: EnTranslations = {
     },
     "vendor": {
       "apprenticeRiding": "[Áþþŕéñţíçé Ŕíðíñĝ Ţŕáíñíñĝ]",
+      "repairAll": "[Ŕéþáíŕ Áļļ]",
+      "repairAllAria": "[Ŕéþáíŕ áļļ éɋúíþɱéñţ ƒóŕ {price}]",
+      "repairAllHint": "[Ŕéþáíŕš éʋéŕý ðáɱáĝéð íţéɱ ýóú ŵéáŕ áñð çáŕŕý.]",
+      "repairAllNone": "[Ñóţĥíñĝ ñééðš ŕéþáíŕíñĝ.]",
       "basicRiding": "[Ŕíðíñĝ Ţŕáíñíñĝ]",
       "advancedRiding": "[Áðʋáñçéð Ŕíðíñĝ Ţŕáíñíñĝ]",
       "ridingSpeed": "[Íñçŕéášé ýóúŕ ɱóʋéɱéñţ šþééð ŵĥíļé ɱóúñţéð ƀý {speed}%. Áþþļíéš ţó éʋéŕý ɱóúñţ.]",

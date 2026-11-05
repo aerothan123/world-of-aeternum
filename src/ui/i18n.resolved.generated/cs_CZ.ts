@@ -5366,6 +5366,7 @@ export const cs_CZ: EnTranslations = {
     },
     "itemTooltip": {
       "requiresLevel": "Vyžaduje úroveň {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "Trhlinový předmět stupně {tier}",
       "riftUpgrade": "Vylepšení trhliny {level}/{max}",
       "riftSockets": "Trhlinové drahokamy {used}/{total}",
@@ -17492,6 +17493,10 @@ export const cs_CZ: EnTranslations = {
     },
     "vendor": {
       "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "Jezdecký výcvik",
       "advancedRiding": "Pokročilý jezdecký výcvik",
       "ridingSpeed": "Zvyšuje rychlost pohybu při jízdě o {speed}%. Platí pro všechna jízdní zvířata.",

@@ -5366,6 +5366,7 @@ export const ko_KR: EnTranslations = {
     },
     "itemTooltip": {
       "requiresLevel": "필요 레벨 {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "{tier} 등급 균열 아이템",
       "riftUpgrade": "균열 강화 {level}/{max}",
       "riftSockets": "균열 보석 {used}/{total}",
@@ -17492,6 +17493,10 @@ export const ko_KR: EnTranslations = {
     },
     "vendor": {
       "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "기본 기승 훈련",
       "advancedRiding": "고급 기승 훈련",
       "ridingSpeed": "탈것에 탄 동안 이동 속도가 {speed}% 증가합니다. 모든 탈것에 적용됩니다.",

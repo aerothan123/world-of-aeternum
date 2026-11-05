@@ -5366,6 +5366,7 @@ export const es: EnTranslations = {
     },
     "itemTooltip": {
       "requiresLevel": "Requiere nivel {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "Objeto de Brecha de rango {tier}",
       "riftUpgrade": "Mejora de brecha {level}/{max}",
       "riftSockets": "Gemas de brecha {used}/{total}",
@@ -17492,6 +17493,10 @@ export const es: EnTranslations = {
     },
     "vendor": {
       "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "Entrenamiento de Monta",
       "advancedRiding": "Entrenamiento avanzado de Monta",
       "ridingSpeed": "Aumenta tu velocidad de movimiento al montar un {speed}%. Se aplica a todas las monturas.",

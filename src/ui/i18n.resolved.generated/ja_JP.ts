@@ -5366,6 +5366,7 @@ export const ja_JP: EnTranslations = {
     },
     "itemTooltip": {
       "requiresLevel": "必要レベル {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "{tier}ランク・リフト装備",
       "riftUpgrade": "リフト強化 {level}/{max}",
       "riftSockets": "リフト宝石 {used}/{total}",
@@ -17492,6 +17493,10 @@ export const ja_JP: EnTranslations = {
     },
     "vendor": {
       "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "騎乗訓練",
       "advancedRiding": "上級騎乗訓練",
       "ridingSpeed": "騎乗中の移動速度が{speed}%上昇します。すべてのマウントに適用されます。",

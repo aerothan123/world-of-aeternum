@@ -5366,6 +5366,7 @@ export const nl_NL: EnTranslations = {
     },
     "itemTooltip": {
       "requiresLevel": "Vereist niveau {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "{tier}-rangs Rift-voorwerp",
       "riftUpgrade": "Rift-verbetering {level}/{max}",
       "riftSockets": "Riftjuwelen {used}/{total}",
@@ -17492,6 +17493,10 @@ export const nl_NL: EnTranslations = {
     },
     "vendor": {
       "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "Rijtraining",
       "advancedRiding": "Gevorderde rijtraining",
       "ridingSpeed": "Verhoogt je bewegingssnelheid tijdens het rijden met {speed}%. Geldt voor elk rijdier.",

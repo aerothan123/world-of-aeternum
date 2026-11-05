@@ -5366,6 +5366,7 @@ export const vi_VN: EnTranslations = {
     },
     "itemTooltip": {
       "requiresLevel": "Yêu cầu Cấp {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "Vật phẩm Rạn Nứt hạng {tier}",
       "riftUpgrade": "Nâng cấp Rạn Nứt {level}/{max}",
       "riftSockets": "Ngọc Rạn Nứt {used}/{total}",
@@ -17492,6 +17493,10 @@ export const vi_VN: EnTranslations = {
     },
     "vendor": {
       "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "Huấn Luyện Cưỡi",
       "advancedRiding": "Huấn Luyện Cưỡi Nâng Cao",
       "ridingSpeed": "Tăng tốc độ di chuyển khi cưỡi thêm {speed}%. Áp dụng cho mọi thú cưỡi.",

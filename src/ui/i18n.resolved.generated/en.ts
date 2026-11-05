@@ -5366,6 +5366,7 @@ export const en: EnTranslations = {
     },
     "itemTooltip": {
       "requiresLevel": "Requires Level {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "{tier}-rank Rift item",
       "riftUpgrade": "Rift upgrade {level}/{max}",
       "riftSockets": "Rift gems {used}/{total}",
@@ -17492,6 +17493,10 @@ export const en: EnTranslations = {
     },
     "vendor": {
       "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "Riding Training",
       "advancedRiding": "Advanced Riding Training",
       "ridingSpeed": "Increase your movement speed while mounted by {speed}%. Applies to every mount.",

@@ -5366,6 +5366,7 @@ export const tr_TR: EnTranslations = {
     },
     "itemTooltip": {
       "requiresLevel": "Gereken Seviye {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "{tier} dereceli Yarık eşyası",
       "riftUpgrade": "Yarık yükseltmesi {level}/{max}",
       "riftSockets": "Yarık mücevherleri {used}/{total}",
@@ -17492,6 +17493,10 @@ export const tr_TR: EnTranslations = {
     },
     "vendor": {
       "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "Binicilik Eğitimi",
       "advancedRiding": "İleri Binicilik Eğitimi",
       "ridingSpeed": "Binekteyken hareket hızını {speed}% artırır. Tüm binekler için geçerlidir.",

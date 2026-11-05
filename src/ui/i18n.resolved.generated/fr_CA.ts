@@ -5366,6 +5366,7 @@ export const fr_CA: EnTranslations = {
     },
     "itemTooltip": {
       "requiresLevel": "Niveau requis : {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "Objet de faille de rang {tier}",
       "riftUpgrade": "Amélioration de faille {level}/{max}",
       "riftSockets": "Gemmes de faille {used}/{total}",
@@ -17492,6 +17493,10 @@ export const fr_CA: EnTranslations = {
     },
     "vendor": {
       "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "Entraînement d'équitation",
       "advancedRiding": "Entraînement avancé d'équitation",
       "ridingSpeed": "Augmente votre vitesse de déplacement à monture de {speed}%. S'applique à toutes les montures.",

@@ -5366,6 +5366,7 @@ export const pt_BR: EnTranslations = {
     },
     "itemTooltip": {
       "requiresLevel": "Requer Nível {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "Item da Fenda de nível {tier}",
       "riftUpgrade": "Aprimoramento da fenda {level}/{max}",
       "riftSockets": "Gemas da fenda {used}/{total}",
@@ -17492,6 +17493,10 @@ export const pt_BR: EnTranslations = {
     },
     "vendor": {
       "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "Treinamento de Equitação",
       "advancedRiding": "Treinamento avançado de Equitação",
       "ridingSpeed": "Aumenta sua velocidade de movimento montado em {speed}%. Aplica-se a todas as montarias.",

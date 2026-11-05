@@ -5366,6 +5366,7 @@ export const de_DE: EnTranslations = {
     },
     "itemTooltip": {
       "requiresLevel": "Benötigt Stufe {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "Riss-Gegenstand (Rang {tier})",
       "riftUpgrade": "Riss-Aufwertung {level}/{max}",
       "riftSockets": "Riss-Edelsteine {used}/{total}",
@@ -17492,6 +17493,10 @@ export const de_DE: EnTranslations = {
     },
     "vendor": {
       "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "Reitausbildung",
       "advancedRiding": "Fortgeschrittene Reitausbildung",
       "ridingSpeed": "Erhöht dein Bewegungstempo beim Reiten um {speed}%. Gilt für jedes Reittier.",

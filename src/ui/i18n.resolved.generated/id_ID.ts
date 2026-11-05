@@ -5366,6 +5366,7 @@ export const id_ID: EnTranslations = {
     },
     "itemTooltip": {
       "requiresLevel": "Membutuhkan Level {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "Barang Rift peringkat {tier}",
       "riftUpgrade": "Peningkatan Rift {level}/{max}",
       "riftSockets": "Permata Rift {used}/{total}",
@@ -17492,6 +17493,10 @@ export const id_ID: EnTranslations = {
     },
     "vendor": {
       "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "Pelatihan Berkuda",
       "advancedRiding": "Pelatihan Berkuda Lanjutan",
       "ridingSpeed": "Meningkatkan kecepatan gerak saat menunggang sebesar {speed}%. Berlaku untuk semua tunggangan.",

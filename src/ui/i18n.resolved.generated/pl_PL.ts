@@ -5366,6 +5366,7 @@ export const pl_PL: EnTranslations = {
     },
     "itemTooltip": {
       "requiresLevel": "Wymaga poziomu {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "Przedmiot Szczeliny rangi {tier}",
       "riftUpgrade": "Ulepszenie Szczeliny {level}/{max}",
       "riftSockets": "Klejnoty Szczeliny {used}/{total}",
@@ -17492,6 +17493,10 @@ export const pl_PL: EnTranslations = {
     },
     "vendor": {
       "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "Trening Jeździecki",
       "advancedRiding": "Zaawansowany trening jeździecki",
       "ridingSpeed": "Zwiększa szybkość ruchu na wierzchowcu o {speed}%. Dotyczy każdego wierzchowca.",
