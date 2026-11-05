@@ -2,7 +2,6 @@
   "class": "paladin",
   "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)",
   "iconSize": 128,
-  "sourcePack": "tmp/asset_src/paladin-skill-icons (CraftPix — see license.txt)",
   "runtimeDir": "public/ui/skills/paladin",
   "abilities": [
     {
@@ -465,133 +464,186 @@
       "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     }
   ],
-  "generatedSource": "OpenAI image generation, original project artwork",
   "talents": [
     {
       "talentId": "pal_r5_radiant_stride",
       "name": "Radiant Stride",
-      "sourceFile": "OpenAI image generation, original project artwork",
       "output": "pal_r5_radiant_stride.webp",
-      "confidence": "high"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_014/9",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "talentId": "pal_r5_steadfast_step",
       "name": "Steadfast Step",
-      "sourceFile": "OpenAI image generation, original project artwork",
       "output": "pal_r5_steadfast_step.webp",
-      "confidence": "high"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_014/10",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "talentId": "pal_r5_divine_steed",
       "name": "Divine Steed",
-      "sourceFile": "OpenAI image generation, original project artwork",
       "output": "pal_r5_divine_steed.webp",
-      "confidence": "high"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_014/8",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "talentId": "pal_r8_enduring_protection",
       "name": "Enduring Protection",
-      "sourceFile": "OpenAI image generation, original project artwork",
       "output": "pal_r8_enduring_protection.webp",
-      "confidence": "high"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_014/11",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "talentId": "pal_r8_steady_hands",
       "name": "Steady Hands",
-      "sourceFile": "OpenAI image generation, original project artwork",
       "output": "pal_r8_steady_hands.webp",
-      "confidence": "high"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_014/13",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "talentId": "pal_r8_recurring_grace",
       "name": "Recurring Grace",
-      "sourceFile": "OpenAI image generation, original project artwork",
       "output": "pal_r8_recurring_grace.webp",
-      "confidence": "high"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_014/12",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "talentId": "pal_r11_fist_of_justice",
       "name": "Fist of Justice",
-      "sourceFile": "OpenAI image generation, original project artwork",
       "output": "pal_r11_fist_of_justice.webp",
-      "confidence": "high"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_013/13",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "talentId": "pal_r11_double_sentence",
       "name": "Double Sentence",
-      "sourceFile": "OpenAI image generation, original project artwork",
       "output": "pal_r11_double_sentence.webp",
-      "confidence": "high"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_013/12",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "talentId": "pal_r11_radiant_shackles",
       "name": "Radiant Shackles",
-      "sourceFile": "OpenAI image generation, original project artwork",
       "output": "pal_r11_radiant_shackles.webp",
-      "confidence": "high"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_013/14",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "talentId": "pal_r14_zeal",
       "name": "Zeal",
-      "sourceFile": "OpenAI image generation, original project artwork",
       "output": "pal_r14_zeal.webp",
-      "confidence": "high"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_014/1",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "talentId": "pal_r14_sacred_reserve",
       "name": "Sacred Reserve",
-      "sourceFile": "OpenAI image generation, original project artwork",
       "output": "pal_r14_sacred_reserve.webp",
-      "confidence": "high"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_014/0",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "talentId": "pal_r14_divine_purpose",
       "name": "Divine Purpose",
-      "sourceFile": "OpenAI image generation, original project artwork",
       "output": "pal_r14_divine_purpose.webp",
-      "confidence": "high"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_013/15",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "talentId": "pal_r17_extended_dawn",
       "name": "Extended Dawn",
-      "sourceFile": "OpenAI image generation, original project artwork",
       "output": "pal_r17_extended_dawn.webp",
-      "confidence": "high"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_014/2",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "talentId": "pal_r17_radiant_wrath",
       "name": "Radiant Wrath",
-      "sourceFile": "OpenAI image generation, original project artwork",
       "output": "pal_r17_radiant_wrath.webp",
-      "confidence": "high"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_014/3",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "talentId": "pal_r17_sanctified_fervor",
       "name": "Sanctified Fervor",
-      "sourceFile": "OpenAI image generation, original project artwork",
       "output": "pal_r17_sanctified_fervor.webp",
-      "confidence": "high"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_014/4",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "talentId": "pal_r20_aura_mastery",
       "name": "Sacred Concord",
-      "sourceFile": "OpenAI image generation, original project artwork",
       "output": "pal_r20_aura_mastery.webp",
-      "confidence": "high"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_014/5",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "talentId": "pal_r20_dawn_echo",
       "name": "Dawn Echo",
-      "sourceFile": "OpenAI image generation, original project artwork",
       "output": "pal_r20_dawn_echo.webp",
-      "confidence": "high"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_014/6",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     },
     {
       "talentId": "pal_r20_perpetual_sun",
       "name": "Perpetual Sun",
-      "sourceFile": "OpenAI image generation, original project artwork",
       "output": "pal_r20_perpetual_sun.webp",
-      "confidence": "high"
+      "sourcePack": "wyndlewood-2d-v1",
+      "sourceFile": "scripts/assets/wyndlewood_2d/provenance.json#skills_014/7",
+      "source": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)"
     }
   ],
   "sourcePacks": [

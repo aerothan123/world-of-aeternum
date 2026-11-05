@@ -29,31 +29,31 @@
     "anchors": [
       {
         "itemId": "eastbrook_buckler",
-        "sha256": "2c4d58c9050f1fdfd88b4e3aacbeeb90e4b859709145bee38be3db380685e156"
+        "sha256": "eecd697486b47719601dc4cf2b8b44982bf80eb79b500d1b8b2c69ecd4c69ed5"
       },
       {
         "itemId": "kingsbane_last_oath",
-        "sha256": "0435d8e1ec593676ba939150177fb4fa1e439e763fef8e8fe375ba359265ca30"
+        "sha256": "1c75646669fdc858f0872254f02296834d7a86eea8aaf84eec4c423319a48cde"
       },
       {
         "itemId": "cinderweave_raiment",
-        "sha256": "345a2760fc15f5b24937878709d24229ca1a13f96eda16c5ad6871213a3f48e4"
+        "sha256": "c17e480f60ccc8b52fe488bbe7c4109d94afff9936c617d5646c2590d129ff1c"
       },
       {
         "itemId": "linen_pouch",
-        "sha256": "b526923bf6aa8e9c06395c80fcb97f3bdbe87e0f1f5a55eee4217f7389b08937"
+        "sha256": "9ea59e2ed6828cdd82c59e70053a34c1f6fc25ac3391fcd336437bbc4dad5e8c"
       },
       {
         "itemId": "anglers_feast_platter",
-        "sha256": "0ea8b9e92b170e277ab08a7c00daa73d641cb8803b2b8290de251a9a68f5a644"
+        "sha256": "783996c1b7b837bc42606dcdd7d6ba8422dc1767750adaa57c30b8841e21a8e6"
       },
       {
         "itemId": "firebottle",
-        "sha256": "c3965ddb8daa75ba1b8eb5adb75845ac3220e2eb2af0f5db3ad8d28cebd7b122"
+        "sha256": "1fff3a7e4a6b9b2941df3a4a36885eb55ad17d1e44463cd63d8fc9be4190d61b"
       },
       {
         "itemId": "arcanite_mining_pick",
-        "sha256": "1f68e6bfbc521b2eb7c67cf7931bad05d1c68d68b132b7cf328d6c0d135f43b6"
+        "sha256": "2bb4bcb61ea0ae70d3cd1ef8a183c54f9ecd87b413a98ac90313450f5f91154d"
       }
     ]
   },

@@ -2,7 +2,6 @@
   "class": "priest",
   "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)",
   "iconSize": 128,
-  "sourcePack": "tmp/asset_src/priest-skill-icons (CraftPix premium)",
   "runtimeDir": "public/ui/skills/priest",
   "abilities": [
     {

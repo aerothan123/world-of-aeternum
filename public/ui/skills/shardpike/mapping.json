@@ -37,13 +37,15 @@
   ],
   "generatedBatches": [
     {
-      "name": "shardpike-mechanic-icons-2026-08-20",
-      "generator": "OpenAI gpt-image-2 via scripts/asset_pipeline/lib/openai_image.mjs",
-      "artDirection": "Three original borderless painted dark-fantasy MMORPG mechanic icons using one field-made Shardpike and stepped action silhouettes and brightness: brace gathers, thrust detonates, release is spent.",
+      "name": "wyndlewood-2d-skills-v1",
+      "generator": "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images",
+      "owner": "Wyndlewood",
+      "license": "Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)",
+      "provenanceRecord": "scripts/assets/wyndlewood_2d/provenance.json",
       "abilityIds": [
         "lance_brace",
-        "lance_thrust",
-        "lance_release"
+        "lance_release",
+        "lance_thrust"
       ]
     }
   ]

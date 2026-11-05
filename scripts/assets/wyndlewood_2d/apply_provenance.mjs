@@ -1,8 +1,12 @@
 // Wyndlewood 2D replacement, step 5: point each family's mapping.json at the new art.
 // Every replaced id leaves its upstream entry or batch (an emptied upstream batch is dropped)
-// and joins one Wyndlewood record, so each icon keeps exactly one provenance owner.
+// and joins one Wyndlewood record, so each icon keeps exactly one provenance owner. Every run
+// then pins each replaced file's shipped bytes (shippingSha256, shippingBytes) into
+// provenance.json, so the content tests hold the live art to its exact accepted encoding;
+// run it after the family converters.
 //
 // usage: node scripts/assets/wyndlewood_2d/apply_provenance.mjs [--family items,skills,auras]
+import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -15,12 +19,14 @@ const arg = (k, d) => {
   return i === -1 ? d : process.argv[i + 1];
 };
 const fams = arg('--family', 'items,skills,auras').split(',').filter(Boolean);
-const prov = JSON.parse(readFileSync(join(here, 'provenance.json'), 'utf8'));
+const provPath = join(here, 'provenance.json');
+const prov = JSON.parse(readFileSync(provPath, 'utf8'));
 export const LICENSE =
   'Wyndlewood original art (owned by the Wyndlewood project owner, created for this game)';
 export const SOURCE =
   "Tripo text-to-image (seedream_v4) from original text prompts on the Wyndlewood owner's paid Tripo plan; no reference images";
 const PACK = 'wyndlewood-2d-v1';
+const SKILL_BATCH = 'wyndlewood-2d-skills-v1';
 const REC = 'scripts/assets/wyndlewood_2d/provenance.json';
 const readJson = (p) => JSON.parse(readFileSync(join(root, p), 'utf8'));
 const writeJson = (p, v) => writeFileSync(join(root, p), `${JSON.stringify(v, null, 2)}\n`);
@@ -48,6 +54,13 @@ if (fams.includes('items')) {
     provenanceRecord: REC,
     itemIds: [...ids].sort(),
   });
+  // The style contract's visual anchors pin the shipped bytes of named items; a repainted
+  // anchor is re-pinned to its repaint.
+  for (const anchor of m.styleContract?.anchors ?? []) {
+    if (!ids.has(anchor.itemId)) continue;
+    const bytes = readFileSync(join(root, `public/ui/items/${anchor.itemId}.webp`));
+    anchor.sha256 = createHash('sha256').update(bytes).digest('hex');
+  }
   writeJson(p, m);
   console.log('[w2d] items mapping', ids.size);
 }
@@ -71,17 +84,59 @@ if (fams.includes('skills')) {
     const m = readJson(p);
     const ids = new Set(replaced(`public/ui/skills/${cls}/`));
     let n = 0;
-    for (const a of m.abilities ?? []) {
+    // Ability rows and (Paladin) choice-talent rows both own a painted file.
+    const rows = [
+      ...(m.abilities ?? []).map((a) => ['abilityId', a]),
+      ...(m.talents ?? []).map((a) => ['talentId', a]),
+    ];
+    for (const [idKey, a] of rows) {
       const id = (a.output ?? '').replace(/\.webp$/, '');
       const key = `public/ui/skills/${cls}/${a.output}`;
       if (!ids.has(id)) continue;
-      for (const k of Object.keys(a)) if (!['abilityId', 'output'].includes(k)) delete a[k];
+      // A talent row keeps its display name, which its choice-row parity suite pins.
+      const keep = idKey === 'talentId' ? [idKey, 'name', 'output'] : [idKey, 'output'];
+      for (const k of Object.keys(a)) if (!keep.includes(k)) delete a[k];
       a.sourcePack = PACK;
       a.sourceFile = `${REC}#${prov[key].sheet}/${prov[key].cell}`;
       a.source = SOURCE;
       a.owner = 'Wyndlewood';
       a.license = LICENSE;
       n++;
+    }
+    // Upstream generation batches hand their repainted ids to one Wyndlewood batch (the same
+    // rule as the items family); an emptied upstream batch is dropped.
+    if (Array.isArray(m.generatedBatches)) {
+      const moved = { abilityIds: new Set(), talentIds: new Set() };
+      m.generatedBatches = m.generatedBatches
+        .filter((b) => b.name !== SKILL_BATCH)
+        .map((b) => {
+          const out = { ...b };
+          for (const k of ['abilityIds', 'talentIds']) {
+            if (!Array.isArray(out[k])) continue;
+            for (const i of out[k]) if (ids.has(i)) moved[k].add(i);
+            out[k] = out[k].filter((i) => !ids.has(i));
+          }
+          return out;
+        })
+        .filter((b) => (b.abilityIds ?? []).length + (b.talentIds ?? []).length > 0);
+      for (const b of (readJson(p).generatedBatches ?? []).filter((x) => x.name === SKILL_BATCH))
+        for (const k of ['abilityIds', 'talentIds']) for (const i of b[k] ?? []) moved[k].add(i);
+      if (moved.abilityIds.size + moved.talentIds.size > 0) {
+        m.generatedBatches.push({
+          name: SKILL_BATCH,
+          generator: SOURCE,
+          owner: 'Wyndlewood',
+          license: LICENSE,
+          provenanceRecord: REC,
+          ...(moved.abilityIds.size ? { abilityIds: [...moved.abilityIds].sort() } : {}),
+          ...(moved.talentIds.size ? { talentIds: [...moved.talentIds].sort() } : {}),
+        });
+      }
+    }
+    // Once every row is repainted, the file-level upstream pack claims no longer describe it.
+    if (rows.every(([, a]) => a.sourcePack === PACK)) {
+      delete m.sourcePack;
+      delete m.generatedSource;
     }
     m.license = LICENSE;
     m.sourcePacks = [PACK];
@@ -163,3 +218,13 @@ if (fams.includes('misc') || fams.includes('wide')) {
     console.log('[w2d] mapping', p, n);
   }
 }
+
+for (const [file, record] of Object.entries(prov)) {
+  const abs = join(root, file);
+  if (!existsSync(abs)) throw new Error(`[w2d] provenance names a missing file: ${file}`);
+  const bytes = readFileSync(abs);
+  record.shippingSha256 = createHash('sha256').update(bytes).digest('hex');
+  record.shippingBytes = bytes.length;
+}
+writeFileSync(provPath, `${JSON.stringify(prov, null, 2)}\n`);
+console.log('[w2d] shipping pins', Object.keys(prov).length);
