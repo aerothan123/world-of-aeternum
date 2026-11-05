@@ -8631,6 +8631,18 @@
         "furn_woven_rug"
       ],
       "commonPrompt": "Not a text-to-image prompt: an in-engine render of each piece's own model (scripts/wiki/stills_render_entry.js, camera pitched 24 degrees down, the rug 60), trimmed and composited on the item-icon vignette at 128px."
+    },
+    {
+      "batchId": "painted-ui-icons-2026-11-04",
+      "source": "Tripo text-to-image (seedream), one original text prompt per item, no reference images; 2048px output cropped square, reduced to a 512px master and the shipped 128px WebP (quality 82)",
+      "owner": "World of ClaudeCraft",
+      "license": "World of ClaudeCraft project-generated art (Tripo paid-plan license), project asset, rights reserved",
+      "styleReference": "docs/design/item-icon-art-style.md (woc-item-icon-v1) and the Wyndlewood painted world direction; text prompts only",
+      "provenanceRecord": "Tripo account task ledger kept by the interface crew; prompt recorded below",
+      "itemIds": [
+        "infernal_quiver"
+      ],
+      "commonPrompt": "An epic archer's quiver of scorched black leather bound with molten-orange glowing iron bands, a bundle of ember-fletched arrows rising from its mouth, faint heat shimmer, standing upright. Hand-painted fantasy MMORPG inventory icon, one complete object centered, warm top-left key light, cool bottom-right shadow, opaque dark umber painted vignette, no text, no frame, no UI."
     }
   ]
 }

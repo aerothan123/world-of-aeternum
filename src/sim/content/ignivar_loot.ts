@@ -3297,9 +3297,9 @@ export const IGNIVAR_LOOT_ITEM_IDS: readonly string[] = Object.keys(IGNIVAR_LOOT
 // the start. ITEM_ART_PENDING (src/ui/icons.ts) serves the procedural icon
 // for any id listed here, and the item-art audit CLI
 // (scripts/item_art_audit.mjs) excludes it from the
-// every-live-item-has-art sweep. Open entry: the hunter quiver, added after
-// that wave; its painted icon is owed by the next item-art pass.
-export const IGNIVAR_ART_PENDING_ITEM_IDS: readonly string[] = ['infernal_quiver'];
+// every-live-item-has-art sweep. EMPTY since the hunter quiver's painting
+// landed (painted-ui-icons-2026-11-04); the seam stays for the next park.
+export const IGNIVAR_ART_PENDING_ITEM_IDS: readonly string[] = [];
 
 // The Crucible Quartermaster's redemption stock: every set piece priced at
 // exactly one sigil of its slot and class group. The buy path additionally

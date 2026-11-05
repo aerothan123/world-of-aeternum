@@ -575,7 +575,7 @@ describe('unknown ids fall through to the caller fallback', () => {
     expect(
       procedural,
       `catalogued item relics with only procedural art:\n${procedural.join('\n')}`,
-    ).toEqual(['infernal_quiver']);
+    ).toEqual([]);
     // All Season 2 pieces must remain on the shelf and resolve their own painting.
     const season2Armor = SEASON2_SETS.flatMap((set) => set.itemIds);
     expect(season2Armor).toHaveLength(135);
