@@ -1,0 +1,11 @@
+# The Unreal project lives on E:\WyndlewoodUnreal\EnvSlice; only its text
+# sources (project file, Config, Python editor scripts) are kept here.
+Binaries/
+Intermediate/
+Saved/
+DerivedDataCache/
+Content/
+Build/
+*.uasset
+*.umap
+*.sln

@@ -357,9 +357,10 @@ export function collectPlacements(
       x: bd.x,
       z: bd.z,
       rotY: bd.rot,
-      fit: bd.height
-        ? { mode: 'height', height: bd.height }
-        : { mode: 'maxDim', size: Math.max(bd.w, bd.d) },
+      // painted town buildings are authored in yards and stand at one
+      // uniform scale of 1 (render/eastbrook_placed_building.ts); w, d and
+      // height are their native dimensions, not a fit target
+      fit: { mode: 'raw', scale: 1 },
       seatOnGround: true,
     });
   }
