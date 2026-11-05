@@ -44,15 +44,67 @@ Branch `feature/rebrand`. Companion to `docs/launch/early-access-readiness.md`
 
 ## Not finished (follow-ups)
 
-- **Locale overlays** still say "World of ClaudeCraft" or "Project H" in the 20
-  non-English locales for every reworded brand key (English-only rule; the
-  maintainer locale pass must refill them). The reworded keys are the
-  `seo.*`, `a11y.*`, `pwa.*`, `update.*`, `mobilePreflight.*Open*`,
-  `serverUnavailable.*`, `guide.brand*`, `hudChrome.wocStore.*`,
-  `hudChrome.wikiConfirm.*`, `hudChrome.perfDiagnostics.*`, and
-  `world.entered` server matcher rows; diff
-  `src/ui/i18n.resolved.generated/en.ts` against `feature/player-housing` for the
-  exact list.
+- **Locale overlays** (the 20 non-English locales) still render the old brand
+  ("World of ClaudeCraft" or "Project H") for every reworded English key: the
+  English-only rule leaves overlays to the maintainer locale pass, and the
+  registry does not mark a reworded row `pending`, so `npm run i18n:worklist`
+  will NOT list them. The reworded keys (English changed on this branch versus
+  `feature/player-housing`):
+  `hudChrome.wiki.confirmBody`,
+  `hudChrome.wocStore.title`,
+  `hudChrome.wocStore.close`,
+  `hudChrome.wocStore.tabsLabel`,
+  `hudChrome.wocStore.loading`,
+  `hudChrome.wocStore.error`,
+  `hudChrome.wocStore.wallet.unlinked`,
+  `hudChrome.wocStore.wallet.connectedUnlinked`,
+  `hudChrome.wocStore.membershipPromo.open`,
+  `hudChrome.nativeUpdate.body`,
+  `hudChrome.nativeUpdate.bodyWithVersion`,
+  `hudChrome.perf.diagnostics.panelAria`,
+  `hudChrome.perf.diagnostics.title`,
+  `hudChrome.perf.diagnostics.report.title`,
+  `hudChrome.discord.panelTitle`,
+  `hudChrome.steam.wishlistAria`,
+  `hudChrome.cosmetics.storeOnly`,
+  `hudChrome.cosmetics.skinsEmpty`,
+  `hudChrome.reliquary.sourceStore`,
+  `hudChrome.wocMarket.browserOnlyConfirmBody`,
+  `guide.brand`,
+  `guide.brandShort`,
+  `guide.footer.rights`,
+  `guide.home.title`,
+  `guide.interfacePage.railBody`,
+  `guide.glossary.claudiumDef`,
+  `guide.worldPage.intro`,
+  `footer.copyright`,
+  `mode.playAria`,
+  `wallet.standaloneAppHelp`,
+  `wallet.manualReturnStandaloneHelp`,
+  `wallet.browser.safety`,
+  `wallet.browser.completeBody`,
+  `playerCard.shareText`,
+  `playerCard.nativeShareTitle`,
+  `landing.records`,
+  `landing.scout`,
+  `landing.parseService`,
+  `seo.title`,
+  `seo.description`,
+  `seo.officialLabel`,
+  `seo.officialBody`,
+  `a11y.githubProject`,
+  `a11y.discordCommunity`,
+  `a11y.donateProject`,
+  `desktop.notify.updateReadyBody`,
+  `desktop.crash.title`,
+  `desktop.crash.fatalBody`,
+  `mobilePreflight.iosOpenStep`,
+  `mobilePreflight.androidOpenStep`,
+  `serverUnavailable.title`,
+  `serverUnavailable.logoAlt`,
+  `serverUnavailable.body`.
+  The server-matcher rows `world.entered` in `src/ui/server_i18n.ts` and
+  `src/ui/server_i18n.newlocales.ts` were updated in place (brand token only).
 - **Website-only surfaces** still point at upstream: SEO canonical and hreflang
   links, the landing desktop-download links (`updates.worldofclaudecraft.com`),
   `public/links.html`, `public/press.html`, `public/merch.html`, the sitemap,

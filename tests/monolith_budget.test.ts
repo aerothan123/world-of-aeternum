@@ -508,7 +508,9 @@ const MONOLITHS: MonolithRow[] = [
     // src/ui/loot_text_i18n_core.ts, net of the feed's composition, its event
     // hook and its per-frame update. Merged with the tree Chop prompt (-2, the
     // farm press notice moved to interact_affordances_controller.ts): 17454.
-    ceiling: 17454,
+    // LOWERED 17454 -> 17445 when the Wyndlewood rebrand removed the upstream
+    // Meta Pixel level-5 event and its import. wc -l. Exact count.
+    ceiling: 17445,
     seam: 'pure view core + thin painter on PainterHost (src/ui/CLAUDE.md)',
   },
   {
@@ -1552,7 +1554,10 @@ const MONOLITHS: MonolithRow[] = [
     // Daily Rewards, holder flair) was removed outright.
     // LOWERED 9539 -> 9538 with the gathering tool belt (the gather-tool use hook now
     // passes the world and lost a comment line). wc -l. Exact count.
-    ceiling: 9538,
+    // LOWERED 9538 -> 9514 at the Wyndlewood rebrand: the upstream Meta Pixel
+    // calls, the Ko-fi donate wiring and the upstream JSON-LD sameAs list left,
+    // net of the one-line legal-steps hook (src/ui/world_entry_legal.ts). Exact.
+    ceiling: 9514,
     seam: 'a src/game/ or src/ui/ sibling module; main.ts is a firewall, not a home',
   },
   {
