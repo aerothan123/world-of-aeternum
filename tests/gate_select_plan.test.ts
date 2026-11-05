@@ -12,6 +12,7 @@ import {
   listChangedPaths,
   listTestFiles,
   resolveSelectBase,
+  UNRESOLVED_BASE_REASON,
 } from '../scripts/lib/gate_discovery.mjs';
 import {
   buildFullSuiteArgs,
@@ -749,7 +750,7 @@ describe('branch diff resolution', () => {
   it('never resolves a base if the caret peel arrives cmd.exe-mangled', () => {
     const r = resolveSelectBase({ env: {}, run: caretAwareRun(true) });
     expect(r.base).toBeNull();
-    expect(r.reason).toBe('no release branch or origin base could be resolved');
+    expect(r.reason).toBe(UNRESOLVED_BASE_REASON);
   });
 
   // A swallowed git failure narrows the run silently, which is the one direction

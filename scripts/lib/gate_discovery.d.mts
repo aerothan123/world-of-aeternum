@@ -32,6 +32,9 @@ export function collectSuiteVisibility(io: {
   counts: { blind: number; partial: number; graph: number };
 };
 
+export const INTEGRATION_BRANCHES: readonly string[];
+export const UNRESOLVED_BASE_REASON: string;
+
 export function resolveSelectBase(io: {
   env?: Record<string, string | undefined>;
   run: (cmd: string, args: string[]) => { status: number | null; stdout?: string };
