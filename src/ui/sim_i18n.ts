@@ -230,6 +230,11 @@ const baseEnTable = {
   'error.ridingTrainLevel': 'You must be level 20 to learn Riding.',
   'error.ridingWrongNpc': 'You must speak to Marla Hitchen to learn Riding.',
   'log.ridingLearned': 'You have learned Riding. You can now summon and ride a mount.',
+  // Apprentice Riding, the level 10 first rank (src/sim/riding_training.ts).
+  'error.apprenticeRidingTrainLevel': 'You must be level 10 to learn Apprentice Riding.',
+  'error.mountBuyLevelApprentice': 'You must be level 10 to buy a mount.',
+  'log.apprenticeRidingLearned':
+    'You have learned Apprentice Riding. You can now summon and ride a mount.',
   'log.advancedRidingLearned': 'You have learned Advanced Riding. Your mount speed is increased by {speed}%.',
   // Riding lesson (src/sim/mounts_training.ts). The shared "Too far away." /
   // "Not enough money." / "You can't do that while dead." refusals are reused
