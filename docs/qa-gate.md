@@ -195,7 +195,10 @@ changes we understand; everything else gets the old bar. Failing toward *more* t
 is the only safe direction, which is also why
 an unresolvable diff base or a failing `git diff` is a hard stop rather than an empty
 changed set. The diff is taken against the BRANCH base, not just the dirty working tree:
-`GATE_SELECT_BASE` overrides it, otherwise the tracking branch is used.
+`GATE_SELECT_BASE` overrides it; otherwise `resolveSelectBase`
+(`scripts/lib/gate_discovery.mjs`) tries the newest `origin/release/*`, then the fork
+integration branches listed in its `INTEGRATION_BRANCHES` (skipped while that branch is the
+one being diffed), then `origin/main`, then `origin/HEAD`. Never `@{upstream}`.
 
 **Reading a shadow run.** It reports two numbers. *Escapes* (a file the full suite
 failed that selection skipped) is the strict signal, but it is empty on any green

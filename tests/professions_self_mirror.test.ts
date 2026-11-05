@@ -13,11 +13,11 @@ import {
   type ProfessionsSelfMirrors,
 } from '../src/net/professions_self_mirror';
 import type { FarmPlotView } from '../src/sim/professions/farm_projection';
-import { choppableTreesNear } from '../src/sim/trees/tree_registry';
 import {
   HARVEST_PREFERENCE_ALL,
   HARVEST_PREFERENCE_ALL_TOKEN,
 } from '../src/sim/professions/harvest_preference';
+import { choppableTreesNear } from '../src/sim/trees/tree_registry';
 import type {
   CommissionOrderView,
   CraftingIdentityView,
@@ -76,6 +76,7 @@ function freshTarget(): ProfessionsSelfMirrors {
     lastSalvageResult: null,
     gatheringProficiency: {},
     toolEffectSlots: [],
+    gatherToolSlots: {},
     harvestPreference: null,
     townFocusPending: null,
     gatheringGoal: null,
