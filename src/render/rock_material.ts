@@ -23,6 +23,8 @@ export function createRockMaterial(
   refined: boolean,
 ): THREE.MeshStandardMaterial {
   const mat = base.clone();
+  // A traceable program label (module:role) for live-program reports.
+  mat.name = 'rock_material:world-rock';
   mat.vertexColors = true;
   applyInstanceCollapse(mat, 'rock');
   if (refined) {
