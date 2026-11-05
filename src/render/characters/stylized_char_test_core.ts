@@ -30,6 +30,7 @@ import {
   stylizedNpcUrl,
 } from './stylized_npc_looks';
 import { WOC_STYLIZED_DIR, type WocFit } from './woc_armor_core';
+import { WYN_P0_CLIPS, WYN_P0_GAIT, wynAnimsUrl, wynBaseUrl } from './wyn_rig_core';
 
 /** The URL switch, read once per session. */
 export const STYLIZED_CHARS_PARAM = 'stylizedchars';
@@ -85,11 +86,13 @@ export const STOUT_ARM_DIALS: readonly BoneDialDef[] = [
  * `stylizedkit` pick) adds the sets it borrows to every manifest, so only a review that asks
  * for a mix loads more than a body's own set. Each townsperson (stylized_npc_looks.ts) is one
  * fixed body holding nothing, its run a calm jog (the walk cycle played faster), a stout one's
- * arms dialled clear of its belly.
+ * arms dialled clear of its belly. `rig` (the dev `stylizedrig` pick) set to `wyn` draws the
+ * players on WYN-H1 instead (wyn_rig_core.ts): its own base, clip library, ClipMap and gait.
  */
 export function stylizedTestDefs(
   visuals: Readonly<Record<string, VisualDef>>,
   reviewKit: string | null = null,
+  rig: string | null = null,
 ): Record<string, VisualDef> {
   const defs: Record<string, VisualDef> = {};
   const warrior = visuals.player_warrior;
@@ -121,6 +124,18 @@ export function stylizedTestDefs(
         lazyPreload: true,
         wocCharacter: stylizedManifest(fit, def.wocCharacter, classSet, extra),
       };
+      if (rig === 'wyn') {
+        const gait = WYN_P0_GAIT[fit];
+        Object.assign(defs[stylizedPlayerKey(cls, fit)], {
+          url: wynBaseUrl(fit),
+          animUrls: [wynAnimsUrl(fit)],
+          clips: WYN_P0_CLIPS,
+          walkRef: gait.walkRef,
+          walkBackRef: gait.walkRef,
+          strafeRef: gait.walkRef,
+          runRef: gait.runRef,
+        });
+      }
     }
   }
   return defs;

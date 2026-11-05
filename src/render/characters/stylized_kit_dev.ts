@@ -53,6 +53,9 @@ export function stylizedKitFor(
   const helm = stylizedReviewParam('helm');
   const hide = helm === 'on' ? false : helm === 'off' ? true : helmHidden;
   const classSet = stylizedClassSetOf(manifest);
+  // WYN-H1 P0 has no armor files on its own skeleton yet: the body draws bare
+  if (stylizedReviewParam('rig') === 'wyn')
+    return stylizedKitWorn(manifest.fit, 'bare', hide, classSet);
   if (asked && isStylizedKit(asked)) return stylizedKitWorn(manifest.fit, asked, hide, classSet);
   return stylizedGearWorn(manifest.fit, equipped, hide, classSet, ITEM_LOOKUP);
 }

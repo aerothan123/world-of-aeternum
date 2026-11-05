@@ -8147,7 +8147,10 @@ SKINS.player_shaman_female = [null, null, null, null, null, null];
 // The stylized character review bodies (dev-only `?stylizedchars=1`; off, nothing
 // registers): stylized_char_test_core.ts.
 if (stylizedCharsEnabled()) {
-  Object.assign(VISUALS, stylizedTestDefs(VISUALS, stylizedReviewParam('kit')));
+  Object.assign(
+    VISUALS,
+    stylizedTestDefs(VISUALS, stylizedReviewParam('kit'), stylizedReviewParam('rig')),
+  );
 }
 
 /** The KayKit def each WOC-bodied class derives its `_modular` fallback from. */

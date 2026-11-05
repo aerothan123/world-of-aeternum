@@ -1,6 +1,6 @@
 // Whether this session runs the stylized character review (`?stylizedchars=1`), and the
 // review's own picks (`stylizedkit=plate|leather|mixed|bare`, `stylizedface=default|b|c`,
-// `stylizedhair=h1|h2|h3|none`, `stylizedhelm=on|off`), read ONCE at module load. Dev builds
+// `stylizedhair=h1|h2|h3|none`, `stylizedhelm=on|off`, `stylizedrig=wyn`), read ONCE at module load. Dev builds
 // only: a production bundle constant-folds `import.meta.env.DEV` to false, so none of it can
 // be reached there, and a host without a location (Node, the headless env, every test) always
 // runs stock.
@@ -23,6 +23,6 @@ export function stylizedCharsEnabled(): boolean {
 }
 
 /** A review pick (`stylizedkit`, `stylizedface`, `stylizedhair`, `stylizedhelm`), or null. */
-export function stylizedReviewParam(name: 'kit' | 'face' | 'hair' | 'helm'): string | null {
+export function stylizedReviewParam(name: 'kit' | 'face' | 'hair' | 'helm' | 'rig'): string | null {
   return params?.get(`stylized${name}`) ?? null;
 }

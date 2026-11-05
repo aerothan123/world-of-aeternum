@@ -568,6 +568,7 @@ something this file marks as restricted, ask first: tony@levystreet.com.
 | Generated gather node model (node_herb_sunpetal) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
 | Generated gather node model (node_herb_depleted) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
 | Stylized character review assets (dev-only): the fixed-outfit townsfolk bodies `models/chars/test_stylized/{fenlow,corren,ivara,silven,brunna,neris,jorren,olvessa,aldric,tamsin,tobbin,pella,della,holven}_stylized.glb` and the modular player kit `models/chars/players/woc_stylized/` (male and female bases with faces and hairstyles, the plate and leather sets and one set per class: paladin, hunter, rogue, priest, mage, warlock, shaman, druid) | World of ClaudeCraft | Project-generated from original text prompts (Tripo AI 3D, no reference images), refit onto the WOC rig by `scripts/assets/stylized_char_test` and conformed and cut into slots by `scripts/assets/stylized_chars` | Project asset | With the project only |
+| WYN-H1 humanoid rig, P0 (dev-only): the stylized male and female bodies rebound onto the Wyndlewood skeleton, with its Idle, Walk and Run clips (`models/chars/wyn/`) | World of ClaudeCraft | Project-authored: joints placed from landmarks on our own body meshes and clips keyed from scratch by `scripts/rig` (no third-party rig or clip data) | Project asset | With the project only |
 
 ### Orbital Lightning
 
