@@ -2,13 +2,13 @@
 // Wyndlewood Discord server admin: a small, idempotent REST tool that brings
 // the community server in line with a declarative spec (roles, categories,
 // channels, topics, slow mode, read-only announcement channels, icon) and
-// posts prepared messages with images.
+// posts prepared messages with images or audio clips.
 //
 // Usage (run from the repo root):
 //   node scripts/discord/server_admin.mjs whoami
 //   node scripts/discord/server_admin.mjs apply  [spec.json] [--prune-defaults]
 //   node scripts/discord/server_admin.mjs icon   <image.png>
-//   node scripts/discord/server_admin.mjs post   <channel-name> <message.md> [image ...]
+//   node scripts/discord/server_admin.mjs post   <channel-name> <message.md> [image or audio file ...]
 //
 // Env: DISCORD_BOT_TOKEN (required), DISCORD_GUILD_ID (optional: defaults to
 // the single guild the bot is in whose name matches spec.serverName).
@@ -32,7 +32,15 @@ const P = {
   ADD_REACTIONS: 1n << 6n,
 };
 const CHANNEL_TYPE = { text: 0, voice: 2, category: 4 };
-const MIME = { '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.gif': 'image/gif', '.webp': 'image/webp' };
+const MIME = {
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.gif': 'image/gif',
+  '.webp': 'image/webp',
+  '.mp3': 'audio/mpeg',
+  '.ogg': 'audio/ogg',
+};
 
 const token = process.env.DISCORD_BOT_TOKEN;
 if (!token) {
