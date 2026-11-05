@@ -29,11 +29,14 @@ import { terrainHeight } from '../src/sim/world';
 import { sellJunkButtonState } from '../src/ui/hud/vendor/vendor_view';
 import { itemDurabilityLine } from '../src/ui/item_instance_tooltip';
 
-const REPAIR_NPC = Object.keys(NPCS).find((id) => npcRepairs(id) && NPCS[id].pos)!;
+const REPAIR_NPC = Object.keys(NPCS).find((id) => npcRepairs(id) && !NPCS[id].dynamic);
+// Any other merchant (a food, potion or general vendor): sells, never repairs.
 const FOOD_NPC = Object.keys(NPCS).find((id) => {
   const def = NPCS[id];
-  return def.pos && (def.vendorItems?.length ?? 0) > 0 && npcRoleFor(def) === 'foodVendor';
-})!;
+  const role = npcRoleFor(def);
+  return !def.dynamic && (def.vendorItems?.length ?? 0) > 0 && !npcRepairs(id) && role !== null;
+});
+if (!REPAIR_NPC || !FOOD_NPC) throw new Error('missing a repairing or a plain merchant NPC');
 
 const WORLD: WorldContent = {
   ...BUILTIN_WORLD,
