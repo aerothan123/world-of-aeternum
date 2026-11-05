@@ -1,1 +1,0 @@
-{"extends":"../tsconfig.json","include":[],"files":["../src/render/types/n8ao.d.ts","../src/render/types/three_keyframe_track.d.ts","../tests/ffprobe-static.d.ts","../tests/player_card_render.test.ts"]}
