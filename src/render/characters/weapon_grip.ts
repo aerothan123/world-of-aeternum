@@ -235,6 +235,28 @@ export const WEAPON_GRIP_OVERRIDES: Record<string, WeaponGripOverride> = {
   mace_wynd_starter: { scale: 0.72 },
   mace_wynd_mid: { scale: 0.72 },
   mace_wynd_fine: { scale: 0.72 },
+  // The second WYNDLEWOOD set, measured by tests/pack_weapon_hand_seat.test.ts. The dagger
+  // draws at the pack daggers' 0.7. The wand was generated leaning about 10 degrees off its
+  // file axis and is stood up straight. The one-hand axe turns its bit to the cut like the
+  // two-hand one and draws at 0.9, so its chunky haft still closes in the fist. The
+  // greatsword file is the arming sword's length, so it takes 1.2 to read two-handed, and
+  // the maul 1.15 beside the two-hand axe's 1.25. The spear file is head-down already, the
+  // way the hand carries a polearm, so it needs no turn.
+  dagger_wynd_starter: { scale: 0.7 },
+  dagger_wynd_mid: { scale: 0.7 },
+  dagger_wynd_fine: { scale: 0.7 },
+  wand_wynd_starter: { rot: [0, 0, -10] },
+  wand_wynd_mid: { rot: [0, 0, -10] },
+  wand_wynd_fine: { rot: [0, 0, -10] },
+  axe_wynd_starter: { rot: [0, 180, 0], scale: 0.9 },
+  axe_wynd_mid: { rot: [0, 180, 0], scale: 0.9 },
+  axe_wynd_fine: { rot: [0, 180, 0], scale: 0.9 },
+  sword_wynd_2h_starter: { scale: 1.2 },
+  sword_wynd_2h_mid: { scale: 1.2 },
+  sword_wynd_2h_fine: { scale: 1.2 },
+  hammer_wynd_2h_starter: { scale: 1.15 },
+  hammer_wynd_2h_mid: { scale: 1.15 },
+  hammer_wynd_2h_fine: { scale: 1.15 },
   // The rare staves and polearms, by the same recipe as the field ones: head-up files,
   // turned back in the hand.
   staff_rare_a_teal: { rot: [180, 0, 0] },

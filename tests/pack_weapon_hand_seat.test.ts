@@ -268,8 +268,8 @@ describe('pack weapons in the hand', () => {
   it('turn a one-sided head to the cut: down at rest, at the enemy in the stance', () => {
     const oneSided = KEYS.filter((key) => ONE_SIDED.some((shape) => key.startsWith(shape)));
     // the starter axe, three field axes, three rare ones, two epic ones, three curved daggers,
-    // and the WYNDLEWOOD single-bit axe (its starter look stands for its three)
-    expect(oneSided).toHaveLength(13);
+    // and the WYNDLEWOOD single-bit axes, one and two hand (a starter look stands for its three)
+    expect(oneSided).toHaveLength(14);
     for (const key of oneSided) {
       const right = overhang(key, 'r');
       const left = overhang(key, 'l');

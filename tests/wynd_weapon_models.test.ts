@@ -139,7 +139,7 @@ describe('wynd tier recolour rules', () => {
       );
       expect(trimmed, type).toBe(true);
     }
-    for (const type of ['sword', 'axe2h', 'mace', 'staff', 'bow', 'tome']) {
+    for (const type of TYPES.filter((t) => t !== 'shield')) {
       expect(
         [0.1, 0.3, 0.5, 0.7].some((t) => inGripZone(type, t)),
         type,
@@ -149,7 +149,7 @@ describe('wynd tier recolour rules', () => {
 });
 
 describe('wynd tier set wiring', () => {
-  it('ships twenty-one looks, seven bases by three tiers', () => {
+  it('ships the three tier looks of every base', () => {
     expect(WYND_MODEL_KEYS.length).toBe(TYPES.length * WYND_WEAPON_TIERS.length);
     expect(new Set(WYND_MODEL_KEYS).size).toBe(WYND_MODEL_KEYS.length);
   });
@@ -183,6 +183,10 @@ describe('wynd tier set wiring', () => {
     for (const tier of WYND_WEAPON_TIERS) {
       expect(WEAPON_GRIP_OVERRIDES[wyndModelKey('staff', tier)]?.rot).toEqual([180, 0, 0]);
       expect(WEAPON_GRIP_OVERRIDES[wyndModelKey('axe2h', tier)]?.scale).toBe(1.25);
+      // both single-bit axes face the cut; the greatsword outgrows the arming sword
+      expect(WEAPON_GRIP_OVERRIDES[wyndModelKey('axe2h', tier)]?.rot).toEqual([0, 180, 0]);
+      expect(WEAPON_GRIP_OVERRIDES[wyndModelKey('axe1h', tier)]?.rot).toEqual([0, 180, 0]);
+      expect(WEAPON_GRIP_OVERRIDES[wyndModelKey('greatsword', tier)]?.scale).toBeGreaterThan(1);
     }
   });
 
@@ -207,7 +211,8 @@ describe('wynd tier set wiring', () => {
       expect(bytes, `${key} bytes`).toBeLessThan(150_000);
       total += bytes;
     }
-    expect(total).toBeLessThan(2_600_000);
+    // the average look stays well under the per-file cap
+    expect(total / WYND_MODEL_KEYS.length).toBeLessThan(125_000);
   });
 
   it('registers the tier resolver as a pure render core', () => {

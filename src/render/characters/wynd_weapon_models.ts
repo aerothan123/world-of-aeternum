@@ -2,7 +2,7 @@
 // three tier looks (starter, mid, fine) by scripts/assets/wynd_weapons (same mesh and UVs,
 // the atlas recoloured by what each texel shows and where it sits on the weapon, plus small
 // gilt and gem add-ons on the fine tier drawn from that same atlas). Gear progression reads
-// on the model without a generation per item: 7 bases, 21 looks.
+// on the model without a generation per item: one base per weapon type, three looks each.
 //
 // Pure data, no three.js: the grip-family table (KAYKIT_WEAPON_ACCESSORY in assets.ts), the
 // shield seats (held_item_grips.ts), the authored-surface and rimless sets (manifest.ts) and
@@ -22,6 +22,12 @@ export const WYND_WEAPON_BASES = {
   bow: { stem: 'bow_wynd', family: 'VAR_BOW' },
   shield: { stem: 'shield_wynd', family: 'Heater_Shield', shield: true },
   tome: { stem: 'tome_wynd', family: 'VAR_BOOK' },
+  dagger: { stem: 'dagger_wynd', family: 'VAR_DAGGER' },
+  wand: { stem: 'wand_wynd', family: 'VAR_WAND' },
+  spear: { stem: 'spear_wynd', family: 'VAR_POLEARM' },
+  axe1h: { stem: 'axe_wynd', family: 'VAR_AXE' },
+  greatsword: { stem: 'sword_wynd_2h', family: 'VAR_SWORD' },
+  maul: { stem: 'hammer_wynd_2h', family: 'VAR_HAMMER' },
 } as const satisfies Record<string, { stem: string; family: string; shield?: true }>;
 export type WyndWeaponType = keyof typeof WYND_WEAPON_BASES;
 
