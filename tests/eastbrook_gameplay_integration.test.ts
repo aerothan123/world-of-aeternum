@@ -12,7 +12,14 @@ import { MAILBOXES } from '../src/sim/content/mailboxes';
 import { STATION_RADIUS, STATIONS } from '../src/sim/content/professions';
 import { FURY_ENTITY_ID, FURY_NPC_ID } from '../src/sim/content/pvp_honor';
 import { ZONE1_CAMPS, ZONE1_NPCS, ZONE1_PROPS, ZONE1_ROADS } from '../src/sim/content/zone1';
-import { BUILTIN_WORLD, CAMPS, PLAYER_START, QUESTS, setActiveWorldContent } from '../src/sim/data';
+import {
+  BUILTIN_WORLD,
+  CAMPS,
+  NPCS,
+  PLAYER_START,
+  QUESTS,
+  setActiveWorldContent,
+} from '../src/sim/data';
 import {
   EASTBROOK_LAYOUT,
   EASTBROOK_NPC_PLACEMENTS_BY_ID,
@@ -815,25 +822,38 @@ describe('Eastbrook authored gameplay data integration', () => {
   // as one huddle. Each master still works their own station, which is the
   // failure this bound exists to catch.
   it('moves the four Eastbrook stations with their masters and preserves every other station field', () => {
-    for (const station of STATIONS.slice(0, 4)) {
+    // The town kit (phase 2) adds the crafting yard's apothecary and tannery
+    // after the shipped rows; all six Eastbrook stations read the layout.
+    const eastbrook = [...STATIONS.slice(0, 4), ...STATIONS.slice(6)];
+    expect(eastbrook.map((s) => s.id)).toEqual([
+      'station_eastbrook_forge',
+      'station_eastbrook_kitchens',
+      'station_eastbrook_loom',
+      'station_eastbrook_toolworks',
+      'station_eastbrook_apothecary',
+      'station_eastbrook_tannery',
+    ]);
+    for (const station of eastbrook) {
+      expect(station.zoneId).toBe('eastbrook_vale');
+      expect(station.dressed).toBe(true);
       const placement = EASTBROOK_STATIONS_BY_ID[station.id];
       expect(station.pos).toEqual(placement.position);
       expect(station.type).toBe(placement.type);
       expect(station.masterNpcId).toBe(placement.masterNpcId);
       expect(
         Math.hypot(
-          station.pos.x - ZONE1_NPCS[station.masterNpcId].pos.x,
-          station.pos.z - ZONE1_NPCS[station.masterNpcId].pos.z,
+          station.pos.x - NPCS[station.masterNpcId].pos.x,
+          station.pos.z - NPCS[station.masterNpcId].pos.z,
         ),
       ).toBeGreaterThanOrEqual(1);
       expect(
         Math.hypot(
-          station.pos.x - ZONE1_NPCS[station.masterNpcId].pos.x,
-          station.pos.z - ZONE1_NPCS[station.masterNpcId].pos.z,
+          station.pos.x - NPCS[station.masterNpcId].pos.x,
+          station.pos.z - NPCS[station.masterNpcId].pos.z,
         ),
       ).toBeLessThanOrEqual(4.5);
     }
-    expect(STATIONS.slice(4)).toEqual([
+    expect(STATIONS.slice(4, 6)).toEqual([
       {
         id: 'station_fenbridge_tannery',
         type: 'tannery',
@@ -1158,7 +1178,15 @@ describe('Eastbrook runtime collision, spawn, and services', () => {
         (building) => ({ id: `${building.id}:entrance`, point: building.frontStandingPoint }),
       ),
     ];
-    expect(destinations).toHaveLength(29);
+    // Town kit (phase 2): the yard's two new stations and the tanner joined
+    // the services (32), and every kit house and civic block's front step is
+    // walked to and from the square as well.
+    expect(destinations).toHaveLength(32);
+    const kitFronts = EASTBROOK_LAYOUT.townKit
+      .filter((kit) => kit.role === 'house' || kit.role === 'civic')
+      .map((kit) => ({ id: `${kit.id}:front`, point: kit.frontStandingPoint }));
+    expect(kitFronts.length).toBeGreaterThanOrEqual(10);
+    destinations.push(...kitFronts);
     const moverProfiles = [
       { id: 'player', bodyRadius: PLAYER_BODY_RADIUS },
       // Pet locomotion deliberately shares PLAYER_BODY_RADIUS; keep this

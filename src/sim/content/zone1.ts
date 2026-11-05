@@ -2185,6 +2185,23 @@ export const ZONE1_PROPS: ZonePropsDef = {
     // walk-through like every flower, set off the painted track
     { key: 'shrubFlowering', x: 55, z: -66, rot: -1.2, scale: 0.95 },
     { key: 'shrubFlowering', x: 50, z: -76, rot: 0.3, scale: 0.9 },
+    // The town kit (town kit phase 2, docs/design/town-layout-eastbrook.md):
+    // the crafting yard's benches, Market Row, the square's corner stalls, the
+    // stable and the housing streets, each a box collider on its walls (the
+    // layout's `collider`, trimmed off the eaves) and its whole reach as the
+    // clearance radius scatter and roads keep. APPENDED last, after every
+    // earlier decor row.
+    ...EASTBROOK_LAYOUT.townKit.map((kit) => ({
+      key: kit.propKey,
+      x: kit.position.x,
+      z: kit.position.z,
+      rot: kit.rotation,
+      scale: kit.scale,
+      r: Math.hypot(kit.reach.halfWidth, kit.reach.halfDepth),
+      h: kit.height,
+      hw: kit.collider.halfWidth,
+      hd: kit.collider.halfDepth,
+    })),
   ],
   docks: [{ x: -64, z: 60, rot: -2.2, hutLocal: { x: 2.8, z: 2.4, hw: 1.7, hd: 1.5 } }],
   // The first two tents, the first two crates and the first campfire are the

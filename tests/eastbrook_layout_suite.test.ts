@@ -979,8 +979,12 @@ describe('authoritative Eastbrook replacement plan', () => {
     );
     expect(provisions).toBeDefined();
     expect(npcsByAnchor.has('eastbrook_market_stall_provisions')).toBe(false);
+    // Town kit (phase 2): The Merchant keeps the World Market from the trading
+    // post on Market Row now, so the gold stall is keeperless dressing too.
+    expect(npcsByAnchor.has('eastbrook_market_stall_world_market')).toBe(false);
     for (const stall of EASTBROOK_LAYOUT.market.stalls) {
       if (stall.id === 'eastbrook_market_stall_provisions') continue;
+      if (stall.id === 'eastbrook_market_stall_world_market') continue;
       const vendor = npcsByAnchor.get(stall.id);
       expect(vendor, `missing vendor for ${stall.id}`).toBeDefined();
       if (!vendor) throw new Error(`missing vendor for ${stall.id}`);
@@ -1001,7 +1005,7 @@ describe('authoritative Eastbrook replacement plan', () => {
     }
   });
 
-  it('pins only low smithy-yard fences', () => {
+  it('pins only the low stable-corral fences', () => {
     // Re-pinned 2026-08 for the harbor move (d19aa33f76,
     // docs/design/eastbrook-revamp/site-plan.md): the yard fences derive
     // from the smithy, which moved to the crafts district at (-2, -122);
@@ -1010,6 +1014,9 @@ describe('authoritative Eastbrook replacement plan', () => {
     // placed smithy stands on the square now, so the yard fences derive from
     // FORGE_LOT, the kit workshop's old lot at that same (-2, -122), and
     // close the crafts yard off from the green where they always stood.
+    // Re-pinned for the town kit (phase 2): the crafting yard's benches took
+    // the forge lot, so its fence retired, and the only fences left are the
+    // stable corral's low rails at the north road gate (still low).
     expect(
       EASTBROOK_LAYOUT.fences.map((fence) => ({
         id: fence.id,
@@ -1021,44 +1028,26 @@ describe('authoritative Eastbrook replacement plan', () => {
       })),
     ).toEqual([
       {
-        id: 'eastbrook_fence_smithy_west',
-        district: 'smithy_yard',
-        start: {
-          x: 5.155417527999327,
-          z: -124.0124611797498,
-        },
-        end: {
-          x: 3.5454485841994785,
-          z: -124.81744565164973,
-        },
+        id: 'eastbrook_fence_corral_west',
+        district: 'stable_corral',
+        start: { x: 21, z: -55.6 },
+        end: { x: 21, z: -51 },
         width: 0.28,
         height: 0.9,
       },
       {
-        id: 'eastbrook_fence_smithy_outer',
-        district: 'smithy_yard',
-        start: {
-          x: 5.289581606649314,
-          z: -123.60996894379986,
-        },
-        end: {
-          x: 1.0857738089497104,
-          z: -115.20235334840064,
-        },
+        id: 'eastbrook_fence_corral_north',
+        district: 'stable_corral',
+        start: { x: 20.65, z: -51 },
+        end: { x: 15.35, z: -51 },
         width: 0.28,
         height: 0.9,
       },
       {
-        id: 'eastbrook_fence_smithy_east',
-        district: 'smithy_yard',
-        start: {
-          x: 0.6832815729997472,
-          z: -115.06818926975066,
-        },
-        end: {
-          x: -0.9266873708001011,
-          z: -115.87317374165059,
-        },
+        id: 'eastbrook_fence_corral_east',
+        district: 'stable_corral',
+        start: { x: 15, z: -51 },
+        end: { x: 15, z: -55.6 },
         width: 0.28,
         height: 0.9,
       },
@@ -1120,7 +1109,9 @@ describe('wall and road geometry', () => {
     // harbour end of the main street, so the nearest LAYOUT solid was the
     // apothecary's shop on the square. Re-pinned again for the World of
     // ClaudeCraft Studio map's arrangement: the inn up the slope north of the
-    // farm plots is the nearest now, still seventy yards off.
+    // farm plots is the nearest now, still seventy yards off. Re-pinned for
+    // the town kit (phase 2): the stable corral's low rails at the north road
+    // gate are the nearest layout solid now, still over fifty yards off.
     const wanderTarget = { x: 29.4338221478, z: 0.9998592577 };
     expect(EASTBROOK_LAYOUT.wall.segments).toHaveLength(0);
     const clearances = nonWallSolidObbs()
@@ -1130,8 +1121,8 @@ describe('wall and road geometry', () => {
       }))
       .sort((left, right) => left.clearance - right.clearance);
     expect(clearances[0]).toEqual({
-      id: 'eastbrook_inn',
-      clearance: 74.03488192823825,
+      id: 'eastbrook_fence_corral_north',
+      clearance: 52.59848413930419,
     });
     expect(clearances[0].clearance).toBeGreaterThan(PLAYER_RADIUS);
   });
@@ -1145,7 +1136,9 @@ describe('wall and road geometry', () => {
     // spreads these entries by index). Re-pinned for the World of ClaudeCraft
     // Studio map's arrangement: the north road swings round the smithy's
     // forge shelter, the crafts lane stops short of the apothecary's shop, and
-    // the inn lane climbs to the inn's door north of the farm plots.
+    // the inn lane climbs to the inn's door north of the farm plots. Town kit
+    // (phase 2): the crafts lane ends in the crafting yard's aisle, its last
+    // bend retired so it stops short of the tannery rack.
     expect(
       EASTBROOK_LAYOUT.roads.map((road) => ({
         id: road.id,
@@ -1261,10 +1254,6 @@ describe('wall and road geometry', () => {
           {
             x: -12,
             z: -123,
-          },
-          {
-            x: -18.5,
-            z: -121.5,
           },
         ],
       },
@@ -1503,6 +1492,11 @@ describe('layout clearance and service anchors', () => {
     // and its stones) moved beside the chapel, the loom left its lot to the
     // apothecary's shop for the lane's last bend, and Saul and FURY stepped
     // round the north road's new swing.
+    // Re-pinned for the town kit (phase 2, docs/design/town-layout-eastbrook.md
+    // section 10): every station stands at its crafting-yard bench's front
+    // point and the yard adds the apothecary and the tannery; each yard master
+    // stands at their bench; the_merchant keeps the trading post and
+    // bursar_fernando the storage shed on Market Row; tanner_tamsin is new.
     expect(EASTBROOK_LAYOUT.services.playerStart).toEqual({
       id: 'eastbrook_player_start',
       position: { x: -94, z: -58 },
@@ -1615,8 +1609,8 @@ describe('layout clearance and service anchors', () => {
         type: 'forge',
         masterNpcId: 'forgemistress_darva',
         position: {
-          x: -6.293250516799596,
-          z: -124.1466252583998,
+          x: -3.738888888888889,
+          z: -113.8,
         },
         interactionRadius: 20,
       },
@@ -1625,8 +1619,8 @@ describe('layout clearance and service anchors', () => {
         type: 'kitchens',
         masterNpcId: 'cook_marlow',
         position: {
-          x: -42.82589170715949,
-          z: -90.73189846640925,
+          x: -3.168421052631579,
+          z: -108.5,
         },
         interactionRadius: 20,
       },
@@ -1635,8 +1629,8 @@ describe('layout clearance and service anchors', () => {
         type: 'loom',
         masterNpcId: 'weaver_ottilie',
         position: {
-          x: -18.5,
-          z: -116.5,
+          x: -15.133333333333333,
+          z: -116.6,
         },
         interactionRadius: 20,
       },
@@ -1645,8 +1639,28 @@ describe('layout clearance and service anchors', () => {
         type: 'toolworks',
         masterNpcId: 'tinker_gizzel',
         position: {
-          x: -13.614789156231515,
-          z: -124.42218373434727,
+          x: -15.789166666666667,
+          z: -125.6,
+        },
+        interactionRadius: 20,
+      },
+      {
+        id: 'station_eastbrook_apothecary',
+        type: 'apothecary',
+        masterNpcId: 'apothecary_lin',
+        position: {
+          x: -15.925,
+          z: -112,
+        },
+        interactionRadius: 20,
+      },
+      {
+        id: 'station_eastbrook_tannery',
+        type: 'tannery',
+        masterNpcId: 'tanner_tamsin',
+        position: {
+          x: -15.194666666666667,
+          z: -121.2,
         },
         interactionRadius: 20,
       },
@@ -1661,16 +1675,10 @@ describe('layout clearance and service anchors', () => {
         npc.anchorId,
       ]),
     ).toEqual([
-      [
-        'the_merchant',
-        -19.333512834321652,
-        -95.49976921301501,
-        2.4805494847391065,
-        'eastbrook_market_stall_world_market',
-      ],
+      ['the_merchant', -29, -103.27857142857142, 0, 'kit_trading_post'],
       ['marshal_redbrook', 1.5, -95.3, -1.9787985229559204, 'eastbrook_noticeboard'],
       ['trader_wilkes', -25, -94, 2.1995926132103296, 'eastbrook_civic_square'],
-      ['apothecary_lin', -24.5, -112.5, 0.7853981633974483, 'eastbrook_apothecary'],
+      ['apothecary_lin', -16.425, -109.2, 0.3248722924348787, 'station_eastbrook_apothecary'],
       [
         'brother_aldric',
         15.011652086947231,
@@ -1686,14 +1694,8 @@ describe('layout clearance and service anchors', () => {
         'eastbrook_smithy',
       ],
       ['fisherman_brandt', -22.3, -104.6, 1.2672255874712333, 'eastbrook_civic_square'],
-      ['foreman_odell', -3.5, -104.5, -1.3370531459259951, 'eastbrook_civic_square'],
-      [
-        'bursar_fernando',
-        -55.21592057176678,
-        -105.19195954108784,
-        0.7853981633974481,
-        'eastbrook_bank',
-      ],
+      ['foreman_odell', 1.8, -102.6, -1.5328398816065827, 'eastbrook_civic_square'],
+      ['bursar_fernando', -41, -102.66, 0, 'kit_storage_shed'],
       [
         'card_master',
         -48.85195954108786,
@@ -1704,27 +1706,34 @@ describe('layout clearance and service anchors', () => {
       ['chronicler_saul', 10.2, -87.5, 0.5880026035475675, 'mailbox_eastbrook'],
       [
         'forgemistress_darva',
-        -8.171547617899419,
-        -120.39003105620014,
-        -2.0344439357957027,
+        -5.338888888888889,
+        -113.8,
+        -1.5707963267948966,
         'station_eastbrook_forge',
       ],
       [
         'cook_marlow',
-        -42.62589170715949,
-        -92.23189846640925,
-        -0.669638945676638,
+        -4.768421052631579,
+        -108.5,
+        -1.5707963267948966,
         'station_eastbrook_kitchens',
       ],
-      ['weaver_ottilie', -20.5, -117.5, 1.1071487177940904, 'station_eastbrook_loom'],
+      ['weaver_ottilie', -13.533333333333333, -116.6, 1.5707963267948966, 'station_eastbrook_loom'],
       [
         'tinker_gizzel',
-        -16.277350098112613,
-        -122.64714310642654,
-        0.5880026035475675,
+        -14.189166666666667,
+        -125.6,
+        1.5707963267948966,
         'station_eastbrook_toolworks',
       ],
       ['fury', 21, -83.5, -2.0570389598824015, 'eastbrook_chapel'],
+      [
+        'tanner_tamsin',
+        -13.594666666666667,
+        -121.2,
+        1.5707963267948966,
+        'station_eastbrook_tannery',
+      ],
     ]);
 
     const pointAnchors = [

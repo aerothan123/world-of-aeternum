@@ -90,6 +90,7 @@ import { DROWNED_TEMPLE_MOBS } from './content/drowned_temple';
 import { CANTOR_NPCS } from './content/drowned_temple_cantor';
 import { DROWNED_TEMPLE_ITEMS } from './content/drowned_temple_items';
 import { DUNGEON_DEFS, DUNGEON_KEEPSAKE_ITEMS, DUNGEON_MOBS } from './content/dungeons';
+import { EASTBROOK_YARD_NPCS } from './content/eastbrook_yard_npcs';
 import { FORGEFATHER_ISLE_TERRAIN_EDITS } from './content/ember_coast';
 import {
   EVERGARDEN_CAMPS,
@@ -615,6 +616,10 @@ export const NPCS: Record<string, NpcDef> = {
   // Gourdlight Eve's keeper (content/gourdlight_eve.ts): a dynamic singleton under a
   // reserved id, raised only while the event runs (seasonal/seasonal_tick.ts).
   ...GOURDLIGHT_EVE_NPCS,
+  // The Eastbrook crafting yard's tannery master (content/eastbrook_yard_npcs.ts,
+  // the town kit relayout), appended last so every NPC placed before her keeps
+  // its entity id.
+  ...EASTBROOK_YARD_NPCS,
 };
 
 // Graveyards + the Spirit Healer: re-exported so the Sim and spirit.ts import the

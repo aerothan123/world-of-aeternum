@@ -367,13 +367,15 @@ export const EASTBROOK_TOWN_POLISH_CAPTURE_VIEWS = Object.freeze([
   // captures retain their original camera records and frozen source identity.
   // World of ClaudeCraft Studio map's arrangement: she stands at
   // (-24.5, -112.5) between the square and her shop down on the strand,
-  // facing the square. The target is her stand; the camera holds its 5 yd on
-  // her public-facing side, toward the square.
+  // facing the square. Town kit (phase 2): she masters the crafting yard's
+  // alchemy table from its north end at (-16.425, -109.2), facing the square;
+  // the camera stands 2.8 yd out on her public-facing side, a step east of
+  // her line to the square so the provisions stall's canopy stays out of it.
   Object.freeze({
     name: 'apothecary-lin',
     subject: 'apothecary_lin',
-    camera: Object.freeze({ x: -20.96, y: 6, z: -108.96 }),
-    target: Object.freeze({ x: -24.5, y: 2.5, z: -112.5 }),
+    camera: Object.freeze({ x: -14.2, y: 6, z: -107.5 }),
+    target: Object.freeze({ x: -16.425, y: 2.5, z: -109.2 }),
   }),
   Object.freeze({
     name: 'ravenpost-mailbox',
@@ -491,9 +493,11 @@ export const EASTBROOK_TOWN_POLISH_MATCHED_VIEW_OVERRIDES = Object.freeze({
   // Tidehold: the toolworks building retired with the kit shells, and the
   // toolworks station still stands on its old front standing point with
   // Tinker Gizzel beside it, so this view keeps its station framing as is.
+  // Town kit (phase 2): the station moved to the crafting yard's engineering
+  // bench; the camera stands in the yard aisle on Gizzel's public side.
   'toolworks-service-perimeter': Object.freeze({
-    camera: Object.freeze({ x: -11, y: 7, z: -120 }),
-    target: Object.freeze({ x: -13.614789156231515, y: 5, z: -124.42218373434727 }),
+    camera: Object.freeze({ x: -10.5, y: 7, z: -123 }),
+    target: Object.freeze({ x: -15.789166666666667, y: 5, z: -125.6 }),
   }),
   // Moved in lockstep with the polish view above for owner round 6b: this entry
   // has always mirrored that view exactly, and a matched shot aimed at the

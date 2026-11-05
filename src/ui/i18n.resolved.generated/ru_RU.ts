@@ -27717,6 +27717,11 @@ export const ru_RU: EnTranslations = {
         "title": "Хозяин дубильни",
         "greeting": "Шкура хороша ровно настолько, насколько хороша выделка, {className}. Чаны готовы, дело за тобой."
       },
+      "tanner_tamsin": {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "greeting": "Fresh hides on the racks today, {className}. Scrape with the grain, never against it."
+      },
       "alchemist_verane": {
         "name": "Алхимик Веран",
         "title": "Хозяин аптекарской",

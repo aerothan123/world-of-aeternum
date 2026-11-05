@@ -27717,6 +27717,11 @@ export const id_ID: EnTranslations = {
         "title": "Tuan Penyamakan Kulit",
         "greeting": "Kulit hanya akan bagus jika penyamakannya, {className}. Tong sudah siap saat Anda siap."
       },
+      "tanner_tamsin": {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "greeting": "Fresh hides on the racks today, {className}. Scrape with the grain, never against it."
+      },
       "alchemist_verane": {
         "name": "Alkemis Verane",
         "title": "Master Apoteker",

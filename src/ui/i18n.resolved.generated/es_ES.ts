@@ -27717,6 +27717,11 @@ export const es_ES: EnTranslations = {
         "title": "Maestro de la curtiduría",
         "greeting": "Una piel es tan buena como su curtido, {className}. Las tinas estarán listas cuando tú lo estés."
       },
+      "tanner_tamsin": {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "greeting": "Fresh hides on the racks today, {className}. Scrape with the grain, never against it."
+      },
       "alchemist_verane": {
         "name": "Alquimista Verane",
         "title": "Maestro del boticario",

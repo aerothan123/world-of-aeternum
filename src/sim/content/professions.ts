@@ -578,6 +578,7 @@ export const STATIONS: readonly StationDef[] = [
     zoneId: ZONE1_ZONE.id,
     pos: { ...EASTBROOK_STATIONS_BY_ID.station_eastbrook_forge.position },
     masterNpcId: 'forgemistress_darva',
+    dressed: true,
   },
   {
     id: 'station_eastbrook_kitchens',
@@ -585,6 +586,7 @@ export const STATIONS: readonly StationDef[] = [
     zoneId: ZONE1_ZONE.id,
     pos: { ...EASTBROOK_STATIONS_BY_ID.station_eastbrook_kitchens.position },
     masterNpcId: 'cook_marlow',
+    dressed: true,
   },
   {
     id: 'station_eastbrook_loom',
@@ -592,6 +594,7 @@ export const STATIONS: readonly StationDef[] = [
     zoneId: ZONE1_ZONE.id,
     pos: { ...EASTBROOK_STATIONS_BY_ID.station_eastbrook_loom.position },
     masterNpcId: 'weaver_ottilie',
+    dressed: true,
   },
   {
     id: 'station_eastbrook_toolworks',
@@ -599,6 +602,7 @@ export const STATIONS: readonly StationDef[] = [
     zoneId: ZONE1_ZONE.id,
     pos: { ...EASTBROOK_STATIONS_BY_ID.station_eastbrook_toolworks.position },
     masterNpcId: 'tinker_gizzel',
+    dressed: true,
   },
   {
     id: 'station_fenbridge_tannery',
@@ -614,5 +618,24 @@ export const STATIONS: readonly StationDef[] = [
     // East of the Highwatch well, between it and the loremaster.
     pos: { x: 7, z: 660 },
     masterNpcId: 'alchemist_verane',
+  },
+  // APPENDED (town kit phase 2): the Eastbrook crafting yard's own alchemy
+  // bench and tannery racks, so every craft with a station type has one in
+  // the starter town (docs/design/town-layout-eastbrook.md section 4.3).
+  {
+    id: 'station_eastbrook_apothecary',
+    type: 'apothecary',
+    zoneId: ZONE1_ZONE.id,
+    pos: { ...EASTBROOK_STATIONS_BY_ID.station_eastbrook_apothecary.position },
+    masterNpcId: 'apothecary_lin',
+    dressed: true,
+  },
+  {
+    id: 'station_eastbrook_tannery',
+    type: 'tannery',
+    zoneId: ZONE1_ZONE.id,
+    pos: { ...EASTBROOK_STATIONS_BY_ID.station_eastbrook_tannery.position },
+    masterNpcId: 'tanner_tamsin',
+    dressed: true,
   },
 ];

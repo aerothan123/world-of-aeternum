@@ -27717,6 +27717,11 @@ export const ko_KR: EnTranslations = {
         "title": "무두질장의 주인",
         "greeting": "가죽은 무두질이 전부다, {className}. 무두통은 준비됐으니 너만 오면 된다."
       },
+      "tanner_tamsin": {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "greeting": "Fresh hides on the racks today, {className}. Scrape with the grain, never against it."
+      },
       "alchemist_verane": {
         "name": "연금술사 베레인",
         "title": "약방의 주인",

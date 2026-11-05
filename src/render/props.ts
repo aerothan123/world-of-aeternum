@@ -95,6 +95,7 @@ import {
 } from './scenery_detail';
 import { shipWakePrewarmParts } from './ship_wake';
 import { mergeBandDepth, mergeStaticMeshes, normalizedStaticGeometry } from './static_merge';
+import { TOWN_KIT_LOW_TIER_KEYS, TOWN_KIT_PROP_DEFS } from './town_kit_props';
 import { buildScheduledShips, type FerryViewSource } from './transport_ferry_ships';
 import {
   buildTransportShipView,
@@ -475,6 +476,8 @@ export const PROP_ASSET_DEFS: Record<string, PropAssetDef> = {
   // scripts/assets/muster_camp/), placed by src/render/muster_camps.ts through the decor
   // walk below rather than through ZonePropsDef.decorProps: render-only, no colliders.
   ...MUSTER_KIT_PROP_DEFS,
+  // The Eastbrook town kit (render/town_kit_props.ts), placed through decorProps.
+  ...TOWN_KIT_PROP_DEFS,
 };
 
 export type PropKey = keyof typeof PROP_ASSET_DEFS;
@@ -542,6 +545,8 @@ const LOW_TIER_PROP_KEYS: readonly PropKey[] = [
   // The muster camps' structure (walls, gate, tower, tents, rack, lantern, and the torch
   // the command gate burns on every preset); its clutter pieces are not drawn on low.
   ...MUSTER_LOW_TIER_KIT_KEYS,
+  // Every Eastbrook town kit piece collides, so every tier draws it.
+  ...TOWN_KIT_LOW_TIER_KEYS,
 ];
 
 /**

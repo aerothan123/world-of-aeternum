@@ -10583,6 +10583,11 @@ export const GUIDE_PROF_CRAFTS: GuideProfCraft[] = [
         "name": "Alchemist Verane",
         "title": "Master of the Apothecary",
         "hub": "Highwatch"
+      },
+      {
+        "name": "Apothecary Lin",
+        "title": "Herbalist",
+        "hub": "Eastbrook"
       }
     ],
     "specialization": {
@@ -13191,6 +13196,11 @@ export const GUIDE_PROF_CRAFTS: GuideProfCraft[] = [
         "name": "Tanner Hesk",
         "title": "Master of the Tannery",
         "hub": "Fenbridge"
+      },
+      {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "hub": "Eastbrook"
       }
     ],
     "specialization": {
@@ -15773,6 +15783,11 @@ export const GUIDE_PROF_CRAFTS: GuideProfCraft[] = [
         "name": "Alchemist Verane",
         "title": "Master of the Apothecary",
         "hub": "Highwatch"
+      },
+      {
+        "name": "Apothecary Lin",
+        "title": "Herbalist",
+        "hub": "Eastbrook"
       }
     ],
     "specialization": {
@@ -21958,6 +21973,26 @@ export const GUIDE_PROF_STATIONS: GuideProfStations = {
       "master": {
         "name": "Alchemist Verane",
         "title": "Master of the Apothecary"
+      }
+    },
+    {
+      "id": "station_eastbrook_apothecary",
+      "type": "apothecary",
+      "hub": "Eastbrook",
+      "zone": "Eastbrook Vale",
+      "master": {
+        "name": "Apothecary Lin",
+        "title": "Herbalist"
+      }
+    },
+    {
+      "id": "station_eastbrook_tannery",
+      "type": "tannery",
+      "hub": "Eastbrook",
+      "zone": "Eastbrook Vale",
+      "master": {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard"
       }
     }
   ]

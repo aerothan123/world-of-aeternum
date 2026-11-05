@@ -24,6 +24,7 @@
 // PRICES ARE PLACEHOLDERS (copper), scaled by the town's place on the leveling
 // road, pending a balance pass. They are not classic-era figures.
 
+import { EASTBROOK_TOWN_KIT_BY_ID, townKitDoorPoint } from '../eastbrook_layout';
 import type { DungeonDef } from '../types';
 
 export interface HouseLotDef {
@@ -43,6 +44,44 @@ export interface HouseLotDef {
   readonly leaveOffset: { readonly x: number; readonly z: number };
   /** Purchase price in copper (placeholder, see the header). */
   readonly priceCopper: number;
+  /** A town kit house's door index (the row terrace has three; every other
+   *  kit house one, door 0). Absent for an authored town building's lot. */
+  readonly kitDoor?: number;
+}
+
+// The Eastbrook housing streets (town kit phase 2,
+// docs/design/town-layout-eastbrook.md section 4.4): every sealed kit house
+// on street A (the harbour rise terrace) and street B (the main street
+// between the inn lane and the bank) is a lot. Its door is the kit house's
+// front (sim/eastbrook_layout.ts townKitDoorPoint) and leaving steps 3 yd
+// straight out of its facade.
+const KIT_LEAVE_STEP = 3;
+function kitLot(
+  id: string,
+  name: string,
+  buildingId: string,
+  index: number,
+  priceCopper: number,
+  kitDoor = 0,
+): HouseLotDef {
+  const house = EASTBROOK_TOWN_KIT_BY_ID[buildingId];
+  if (!house) throw new Error(`missing Eastbrook kit house ${buildingId}`);
+  const door = townKitDoorPoint(buildingId, kitDoor);
+  return Object.freeze({
+    id,
+    name,
+    buildingId,
+    zoneId: 'eastbrook_vale',
+    dungeonId: `house_${id}`,
+    index,
+    doorPos: Object.freeze({ x: door.x, z: door.z }),
+    leaveOffset: Object.freeze({
+      x: Math.sin(house.rotation) * KIT_LEAVE_STEP,
+      z: Math.cos(house.rotation) * KIT_LEAVE_STEP,
+    }),
+    priceCopper,
+    kitDoor,
+  });
 }
 
 export const HOUSE_LOTS: readonly HouseLotDef[] = Object.freeze([
@@ -79,6 +118,17 @@ export const HOUSE_LOTS: readonly HouseLotDef[] = Object.freeze([
     leaveOffset: Object.freeze({ x: -2.94, z: 0.6 }),
     priceCopper: 50_00_00,
   }),
+  // APPENDED (town kit phase 2): the Eastbrook housing streets. Ids and
+  // indexes are new and never reused, like every lot above.
+  kitLot('eastbrook_terrace_west', 'West Terrace House', 'kit_house_a_terrace', 18, 8_00_00, 0),
+  kitLot('eastbrook_terrace_middle', 'Middle Terrace House', 'kit_house_a_terrace', 19, 8_00_00, 1),
+  kitLot('eastbrook_terrace_east', 'East Terrace House', 'kit_house_a_terrace', 20, 8_00_00, 2),
+  kitLot('eastbrook_slate_townhouse', 'Slate Townhouse', 'kit_house_b1', 21, 12_00_00),
+  kitLot('eastbrook_corner_house', 'Corner House', 'kit_house_b2', 22, 14_00_00),
+  kitLot('eastbrook_stone_cottage', 'Stone Cottage', 'kit_house_b3', 23, 10_00_00),
+  kitLot('eastbrook_red_roof_cottage', 'Red Roof Cottage', 'kit_house_b4', 24, 10_00_00),
+  kitLot('eastbrook_timber_house', 'Timber House', 'kit_house_b5', 25, 12_00_00),
+  kitLot('eastbrook_green_townhouse', 'Green Townhouse', 'kit_house_b6', 26, 12_00_00),
 ]);
 
 /** Every persisted lot id (the load sanitizer's allowlist). */

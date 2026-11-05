@@ -27717,6 +27717,11 @@ export const vi_VN: EnTranslations = {
         "title": "Bậc thầy của xưởng thuộc da",
         "greeting": "Da chỉ tốt bằng khả năng thuộc da của nó, {className}. Các thùng đã sẵn sàng khi bạn sẵn sàng."
       },
+      "tanner_tamsin": {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "greeting": "Fresh hides on the racks today, {className}. Scrape with the grain, never against it."
+      },
       "alchemist_verane": {
         "name": "Nhà giả kim Verane",
         "title": "Bậc thầy của nhà bào chế thuốc",

@@ -819,6 +819,8 @@ describe('stock rows: the phase 11n pulls', () => {
       trader_wilkes: 15,
       cook_marlow: 6,
       tanner_hesk: 4,
+      // Town kit (phase 2): the Eastbrook crafting yard's tanner.
+      tanner_tamsin: 3,
       alchemist_verane: 5,
       weaver_ottilie: 6,
       quartermaster_finch: 1,

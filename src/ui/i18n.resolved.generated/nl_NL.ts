@@ -27717,6 +27717,11 @@ export const nl_NL: EnTranslations = {
         "title": "Meester van de leerlooierij",
         "greeting": "Een huid is slechts zo goed als zijn bruining, {className}. De vaten zijn klaar als jij dat bent."
       },
+      "tanner_tamsin": {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "greeting": "Fresh hides on the racks today, {className}. Scrape with the grain, never against it."
+      },
       "alchemist_verane": {
         "name": "Alchemist Verane",
         "title": "Meester van de apotheek",

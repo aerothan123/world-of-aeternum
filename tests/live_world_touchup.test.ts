@@ -27,6 +27,7 @@ import {
   setActiveWorldContent,
   studioContentActive,
 } from '../src/sim/data';
+import { EASTBROOK_NPC_PLACEMENTS_BY_ID } from '../src/sim/eastbrook_layout';
 import { FENBRIDGE_LAYOUT, localToWorld } from '../src/sim/fenbridge_layout';
 import { activeFenbridgeLayout } from '../src/sim/fenbridge_touchup';
 import { isResting } from '../src/sim/progression/xp';
@@ -391,7 +392,14 @@ describe('live-world touch-up pipeline', () => {
       expect(entity?.pos.x, npc.id).toBeCloseTo(npc.position.x, 6);
       expect(entity?.pos.z, npc.id).toBeCloseTo(npc.position.z, 6);
     }
-    expect(BUILTIN_WORLD.npcs.weaver_ottilie.pos).toEqual({ x: -20.5, z: -117.5 });
+    // The weaver keeps her Eastbrook stand at the crafting yard's loom (town
+    // kit phase 2); the Fenbridge patch never moves her.
+    expect(BUILTIN_WORLD.npcs.weaver_ottilie.pos).toEqual({
+      x: EASTBROOK_NPC_PLACEMENTS_BY_ID.weaver_ottilie.position.x,
+      z: EASTBROOK_NPC_PLACEMENTS_BY_ID.weaver_ottilie.position.z,
+    });
+    expect(BUILTIN_WORLD.npcs.weaver_ottilie.pos.x).toBeCloseTo(-13.533, 2);
+    expect(BUILTIN_WORLD.npcs.weaver_ottilie.pos.z).toBeCloseTo(-116.6, 2);
 
     // 5. Petra Vell's banker chest and Crooked Reed Inn rest area follow the moved buildings.
     const petra = layout.services.npcs.find((n) => n.id === 'bursar_petra_vell');

@@ -597,6 +597,7 @@ const NPC_IDS = [
   'weaver_ottilie', // crafting-station master: loom (Eastbrook, zone 1)
   'tinker_gizzel', // crafting-station master: toolworks (Eastbrook, zone 1)
   'tanner_hesk', // crafting-station master: tannery (Fenbridge, zone 2)
+  'tanner_tamsin', // crafting-station master: tannery (the Eastbrook crafting yard, zone 1)
   'alchemist_verane', // crafting-station master: apothecary (Highwatch, zone 3)
   'guildmaster_hesper_dunmore', // the Highwatch guild's guildmaster (zone 3)
   'contract_clerk_tobias_wren', // the Highwatch guild's contract clerk (zone 3)
