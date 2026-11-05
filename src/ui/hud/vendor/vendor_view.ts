@@ -15,15 +15,11 @@ import {
   resolveFactionVendorRowGate,
 } from '../../../sim/content/faction_vendors';
 import { resolveVendorRowGate, type VendorRowGate } from '../../../sim/content/vendor_row_gates';
-import type { FactionId } from '../../../sim/factions';
-import { junkSellableSlot } from '../../../sim/items';
 import { npcRepairs, repairAllCost } from '../../../sim/durability';
 import type { PlayerEquipment, PlayerEquipmentInstances } from '../../../sim/entity';
-import {
-  nextRidingTier,
-  type RidingTier,
-  ridingTrainingFee,
-} from '../../../sim/riding_training';
+import type { FactionId } from '../../../sim/factions';
+import { junkSellableSlot } from '../../../sim/items';
+import { nextRidingTier, type RidingTier, ridingTrainingFee } from '../../../sim/riding_training';
 import type { InvSlot, ItemDef, ItemInstancePayload } from '../../../sim/types';
 import { bulkBuyQuantity, vendorCountForced } from '../../../sim/vendor_buy_stack';
 import { vendorStackSize } from '../../../sim/vendor_stack';

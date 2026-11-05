@@ -11,7 +11,6 @@
 // contract: changing one is a wire change that must land in the client matcher in the
 // same commit.
 
-import { annotateAccountHouseHolder } from './account_house_migration';
 import { randomUUID } from 'node:crypto';
 import type { EventEmitter } from 'node:events';
 import type * as http from 'node:http';
@@ -29,6 +28,7 @@ import {
 } from '../src/world_api';
 import { sanitizeAppearance } from '../src/world_api/appearance';
 import { accountAdmissionsFor } from './account_admission';
+import { annotateAccountHouseHolder } from './account_house_migration';
 import type { AccountMountItemsRow } from './account_mount_items_core';
 import type {
   AccountChatMuteStatus,
@@ -37,6 +37,7 @@ import type {
   CharacterRow,
   TokenScope,
 } from './db';
+import { SERVER_EARLY_ACCESS } from './early_access_flags';
 import type { GameServer } from './game';
 import { noteClientFrame } from './keepalive_sweep';
 import type { MembershipAuthorization } from './membership_service';
@@ -44,7 +45,6 @@ import { negotiateMovementWireVersion } from './movement_wire_version';
 import type { ReferralArmourEntitlement } from './referral_armour_db';
 import { kickStoragePurchaseRecovery } from './storage_purchases';
 import type { HandshakeFlushMode } from './ws_buffer';
-import { SERVER_EARLY_ACCESS } from './early_access_flags';
 
 // The {t:'error', error} rejection strings, by the exact value the client reads
 // and localizes. Each is part of the wire contract (see the module header).

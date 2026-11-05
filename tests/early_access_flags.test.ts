@@ -34,7 +34,12 @@ describe('early access flags', () => {
 describe('membership switched off (realm default)', () => {
   it('every account reads as a non-member without touching storage', async () => {
     let reads = 0;
-    const active = { active: true, expiresAt: Date.now() + 1e9, authorizedUntil: Date.now() + 1e9, recurringExpiresAt: null };
+    const active = {
+      active: true,
+      expiresAt: Date.now() + 1e9,
+      authorizedUntil: Date.now() + 1e9,
+      recurringExpiresAt: null,
+    };
     const inner = {
       get: async () => {
         reads++;

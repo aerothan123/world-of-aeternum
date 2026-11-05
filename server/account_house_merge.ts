@@ -95,7 +95,9 @@ function keepOrder(a: AccountHouseRow & { house: HouseRecord }, b: typeof a): nu
  *  one item per placed piece (in anchor order, so the plan is deterministic). */
 export function releasedSlots(house: HouseRecord): unknown[] {
   const out = [...storageRows(house)];
-  for (const [, itemId] of furnitureEntries(house).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))) {
+  for (const [, itemId] of furnitureEntries(house).sort(([a], [b]) =>
+    a < b ? -1 : a > b ? 1 : 0,
+  )) {
     if (typeof itemId === 'string' && itemId !== '') out.push({ itemId, count: 1 });
   }
   return out;
@@ -114,7 +116,11 @@ export function planAccountHouseMerge(rows: readonly AccountHouseRow[]): Account
   for (const row of rest) {
     const slots = releasedSlots(row.house);
     moved.push(...slots);
-    released.push({ characterId: row.characterId, originalHouse: row.house, movedSlots: slots.length });
+    released.push({
+      characterId: row.characterId,
+      originalHouse: row.house,
+      movedSlots: slots.length,
+    });
   }
   const keptHouse: Record<string, unknown> = { ...kept.house };
   if (moved.length > 0) keptHouse.storage = [...storageRows(kept.house), ...moved];

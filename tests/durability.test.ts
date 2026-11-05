@@ -68,7 +68,9 @@ function recalc(sim: Sim): void {
 }
 
 function npcEntity(sim: Sim, templateId: string): Entity {
-  const npc = [...sim.entities.values()].find((e) => e.kind === 'npc' && e.templateId === templateId);
+  const npc = [...sim.entities.values()].find(
+    (e) => e.kind === 'npc' && e.templateId === templateId,
+  );
   if (!npc) throw new Error(`missing npc ${templateId}`);
   return npc;
 }
@@ -94,7 +96,9 @@ describe('durability rules (classic values)', () => {
     expect(maxDurabilityFor(chest('uncommon'))).toBe(100);
     expect(maxDurabilityFor(chest('common'))).toBe(80);
     expect(maxDurabilityFor(chest('rare'))).toBe(120);
-    expect(maxDurabilityFor({ id: 'r', name: 'r', kind: 'armor', slot: 'ring' } as ItemDef)).toBe(0);
+    expect(maxDurabilityFor({ id: 'r', name: 'r', kind: 'armor', slot: 'ring' } as ItemDef)).toBe(
+      0,
+    );
     expect(maxDurabilityFor(undefined)).toBe(0);
     expect(maxDurabilityFor(ITEMS[CHEST])).toBe(80);
   });
@@ -259,6 +263,8 @@ describe('persistence and tooltip', () => {
     expect(itemDurabilityLine(ITEMS[CHEST])).toContain('80 / 80');
     expect(itemDurabilityLine(ITEMS[CHEST], { wear: 30 })).toContain('50 / 80');
     expect(itemDurabilityLine(ITEMS[CHEST], { wear: 80 })).toContain('tt-red');
-    expect(itemDurabilityLine({ id: 'r', name: 'r', kind: 'armor', slot: 'ring' } as ItemDef)).toBe('');
+    expect(itemDurabilityLine({ id: 'r', name: 'r', kind: 'armor', slot: 'ring' } as ItemDef)).toBe(
+      '',
+    );
   });
 });

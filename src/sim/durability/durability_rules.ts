@@ -149,7 +149,10 @@ export const DURABILITY_LOW_FRACTION = 0.25;
 
 export type DurabilityState = 'ok' | 'low' | 'broken';
 
-export function durabilityState(item: ItemDef | undefined, wear: number | undefined): DurabilityState {
+export function durabilityState(
+  item: ItemDef | undefined,
+  wear: number | undefined,
+): DurabilityState {
   const max = maxDurabilityFor(item);
   if (max === 0) return 'ok';
   const cur = currentDurability(item, wear);

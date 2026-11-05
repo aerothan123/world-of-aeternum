@@ -34,13 +34,21 @@ export function ridingTierCanRide(tier: number): boolean {
 
 /** Whether the character may summon and ride (apprentice or better). The legacy
  *  ridingTrained flag still means the level 20 Riding rank. */
-export function canRide(state: { ridingTier?: number; ridingTrained?: boolean } | undefined): boolean {
+export function canRide(
+  state: { ridingTier?: number; ridingTrained?: boolean } | undefined,
+): boolean {
   return ridingTierCanRide(ridingTrainingTier(state));
 }
 
 /** The rank the next purchase teaches from `tier`, or null when fully trained. */
 export function nextRidingTier(tier: RidingTier): RidingTier | null {
-  return tier === 0 ? APPRENTICE_RIDING_TIER : tier === APPRENTICE_RIDING_TIER ? 1 : tier === 1 ? 2 : null;
+  return tier === 0
+    ? APPRENTICE_RIDING_TIER
+    : tier === APPRENTICE_RIDING_TIER
+      ? 1
+      : tier === 1
+        ? 2
+        : null;
 }
 
 /** The tier a player holds when the row teaching `rank` is offered (the

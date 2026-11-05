@@ -105,9 +105,9 @@ export async function migrateAccountHouses(
           continue;
         }
         const houses = await client.query(ACCOUNT_HOUSES_SQL, [accountId, realm]);
-        const rows: AccountHouseRow[] = ((houses?.rows ?? []) as { id: number; house: unknown }[]).map(
-          (row) => ({ characterId: row.id, house: row.house }),
-        );
+        const rows: AccountHouseRow[] = (
+          (houses?.rows ?? []) as { id: number; house: unknown }[]
+        ).map((row) => ({ characterId: row.id, house: row.house }));
         const plan = planAccountHouseMerge(rows);
         if (!plan) {
           await client.query('ROLLBACK');

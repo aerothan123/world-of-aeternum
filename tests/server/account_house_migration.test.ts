@@ -51,7 +51,8 @@ class FakeDb {
     if (sql.startsWith('SELECT account_id FROM characters')) {
       const counts = new Map<number, number>();
       for (const c of this.chars) {
-        if (c.realm === params[0] && has(c)) counts.set(c.account_id, (counts.get(c.account_id) ?? 0) + 1);
+        if (c.realm === params[0] && has(c))
+          counts.set(c.account_id, (counts.get(c.account_id) ?? 0) + 1);
       }
       return {
         rows: [...counts]
@@ -108,7 +109,9 @@ class FakeDb {
 
 const furnished = (n: number) =>
   Object.fromEntries(
-    ['hearth_floor_1', 'hearth_floor_2', 'hearth_floor_3'].slice(0, n).map((a) => [a, 'furn_barrel']),
+    ['hearth_floor_1', 'hearth_floor_2', 'hearth_floor_3']
+      .slice(0, n)
+      .map((a) => [a, 'furn_barrel']),
   );
 
 function seeded(): FakeDb {
@@ -122,8 +125,12 @@ function seeded(): FakeDb {
       name: 'Aster',
       state: {
         level: 9,
-        house: { lot: 'eastbrook_quay_cottage', boughtDay: '2026-10-01', furniture: furnished(1),
-          storage: [{ itemId: 'copper_ore', count: 7 }] },
+        house: {
+          lot: 'eastbrook_quay_cottage',
+          boughtDay: '2026-10-01',
+          furniture: furnished(1),
+          storage: [{ itemId: 'copper_ore', count: 7 }],
+        },
       },
     },
     {
@@ -133,7 +140,11 @@ function seeded(): FakeDb {
       name: 'Bryn',
       state: {
         level: 14,
-        house: { lot: 'fenbridge_warden_gatehouse', boughtDay: '2026-10-05', furniture: furnished(3) },
+        house: {
+          lot: 'fenbridge_warden_gatehouse',
+          boughtDay: '2026-10-05',
+          furniture: furnished(3),
+        },
       },
     },
     {
@@ -141,16 +152,43 @@ function seeded(): FakeDb {
       account_id: 1,
       realm: 'r1',
       name: 'Corin',
-      state: { level: 3, house: { lot: 'highwatch_watch_house', storage: [{ itemId: 'x', count: 2 }] } },
+      state: {
+        level: 3,
+        house: { lot: 'highwatch_watch_house', storage: [{ itemId: 'x', count: 2 }] },
+      },
     },
     // Account 1 on another realm: its own economy, untouched.
-    { id: 14, account_id: 1, realm: 'r2', name: 'Dell', state: { house: { lot: 'eastbrook_quay_cottage' } } },
+    {
+      id: 14,
+      account_id: 1,
+      realm: 'r2',
+      name: 'Dell',
+      state: { house: { lot: 'eastbrook_quay_cottage' } },
+    },
     // Account 2: one house, untouched.
-    { id: 21, account_id: 2, realm: 'r1', name: 'Esk', state: { house: { lot: 'eastbrook_quay_cottage' } } },
+    {
+      id: 21,
+      account_id: 2,
+      realm: 'r1',
+      name: 'Esk',
+      state: { house: { lot: 'eastbrook_quay_cottage' } },
+    },
     { id: 22, account_id: 2, realm: 'r1', name: 'Fay', state: { level: 2 } },
     // Account 3: two houses, but one character is online (live lease).
-    { id: 31, account_id: 3, realm: 'r1', name: 'Gil', state: { house: { lot: 'eastbrook_quay_cottage' } } },
-    { id: 32, account_id: 3, realm: 'r1', name: 'Hob', state: { house: { lot: 'fenbridge_warden_gatehouse' } } },
+    {
+      id: 31,
+      account_id: 3,
+      realm: 'r1',
+      name: 'Gil',
+      state: { house: { lot: 'eastbrook_quay_cottage' } },
+    },
+    {
+      id: 32,
+      account_id: 3,
+      realm: 'r1',
+      name: 'Hob',
+      state: { house: { lot: 'fenbridge_warden_gatehouse' } },
+    },
   ];
   db.leases = [{ character_id: 32, live: true }];
   return db;
@@ -158,7 +196,9 @@ function seeded(): FakeDb {
 
 describe('migrateAccountHouses', () => {
   it('ships additive, idempotent DDL', () => {
-    expect(ACCOUNT_HOUSE_MIGRATION_SCHEMA).toMatch(/CREATE TABLE IF NOT EXISTS account_house_migrations/);
+    expect(ACCOUNT_HOUSE_MIGRATION_SCHEMA).toMatch(
+      /CREATE TABLE IF NOT EXISTS account_house_migrations/,
+    );
     expect(ACCOUNT_HOUSE_MIGRATION_SCHEMA).toMatch(/CREATE INDEX IF NOT EXISTS/);
     expect(ACCOUNT_HOUSE_MIGRATION_SCHEMA).not.toMatch(/DROP|ALTER/);
   });
@@ -220,7 +260,9 @@ describe('migrateAccountHouses', () => {
       return real(text, params);
     };
     await expect(migrateAccountHouses(db as never, 'r1')).rejects.toThrow('boom');
-    expect(db.chars.filter((c) => c.account_id === 1 && c.realm === 'r1' && c.state.house)).toHaveLength(3);
+    expect(
+      db.chars.filter((c) => c.account_id === 1 && c.realm === 'r1' && c.state.house),
+    ).toHaveLength(3);
     expect(db.audit).toEqual([]);
   });
 });
@@ -237,13 +279,20 @@ describe('join-time holder', () => {
       row,
     );
     expect(row.state.accountHouseHolder).toBe('Esk');
-    const owner = { id: 21, state: { house: { lot: 'eastbrook_quay_cottage' } } as Record<string, unknown> };
+    const owner = {
+      id: 21,
+      state: { house: { lot: 'eastbrook_quay_cottage' } } as Record<string, unknown>,
+    };
     await annotateAccountHouseHolder(async () => 'Nope', 2, owner);
     expect(owner.state.accountHouseHolder).toBeUndefined();
     const failing = { id: 22, state: {} as Record<string, unknown> };
-    await annotateAccountHouseHolder(async () => {
-      throw new Error('db down');
-    }, 2, failing);
+    await annotateAccountHouseHolder(
+      async () => {
+        throw new Error('db down');
+      },
+      2,
+      failing,
+    );
     expect(failing.state.accountHouseHolder).toBeUndefined();
   });
 });

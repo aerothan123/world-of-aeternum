@@ -1,7 +1,6 @@
 // FIRST import on purpose: loads .env before realm.ts (or any other module
 // with an import-time process.env read) evaluates. See server/env.ts.
 import './env';
-import { accountHouseHolderName } from './account_house_migration';
 import { randomUUID } from 'node:crypto';
 import * as fs from 'node:fs';
 import * as http from 'node:http';
@@ -53,6 +52,7 @@ import {
   verifyLoginTwoFactor,
 } from './account';
 import { loadAccountBuddies } from './account_buddies_db';
+import { accountHouseHolderName } from './account_house_migration';
 import { loadAccountLedger } from './account_ledger_db';
 import { accountLedgerKeysFor } from './account_ledger_keys_cache';
 import { relicRecordsIdle } from './account_ledger_records';

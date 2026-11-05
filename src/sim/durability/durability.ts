@@ -17,7 +17,7 @@
 
 import { ITEMS, NPCS } from '../data';
 import { recalcPlayerStats } from '../entity';
-import { npcRoleFor, type NpcRole } from '../npc_role';
+import { type NpcRole, npcRoleFor } from '../npc_role';
 import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
 import {
@@ -62,7 +62,10 @@ export function npcRepairs(templateId: string | undefined): boolean {
 }
 
 /** The worn copy's current wear (0 when the slot is empty or undamaged). */
-export function slotWear(meta: Pick<PlayerMeta, 'equipment' | 'equipmentInstance'>, slot: EquipSlot): number {
+export function slotWear(
+  meta: Pick<PlayerMeta, 'equipment' | 'equipmentInstance'>,
+  slot: EquipSlot,
+): number {
   const itemId = meta.equipment[slot];
   return itemId ? wearOf(ITEMS[itemId], meta.equipmentInstance[slot]?.wear) : 0;
 }
@@ -93,7 +96,11 @@ function refresh(ctx: SimContext, meta: PlayerMeta, e: Entity, broke: boolean): 
 
 /** A death costs every worn piece 10% of its maximum, but only a death to the
  *  world: a player (or a player's pet) as the killer costs nothing. */
-export function onPlayerDeathForDurability(ctx: SimContext, e: Entity, killer: Entity | null): void {
+export function onPlayerDeathForDurability(
+  ctx: SimContext,
+  e: Entity,
+  killer: Entity | null,
+): void {
   if (e.kind !== 'player') return;
   const owner = killer?.ownerId != null ? ctx.entities.get(killer.ownerId) : undefined;
   if (killer?.kind === 'player' || owner?.kind === 'player') return;
@@ -118,7 +125,11 @@ function counters(e: Entity): NonNullable<Entity['durabilityWear']> {
 
 /** A landed hit on a player from a non-player source wears one worn armor
  *  piece a point every HITS_TAKEN_PER_POINT hits (round-robin). */
-export function onPlayerHitTakenForDurability(ctx: SimContext, target: Entity, source: Entity | null): void {
+export function onPlayerHitTakenForDurability(
+  ctx: SimContext,
+  target: Entity,
+  source: Entity | null,
+): void {
   if (target.kind !== 'player' || target.dead || !source || source.kind === 'player') return;
   const c = counters(target);
   if (++c.taken < HITS_TAKEN_PER_POINT) return;
@@ -136,8 +147,14 @@ export function onPlayerHitTakenForDurability(ctx: SimContext, target: Entity, s
 
 /** A player's landed physical hit on a non-player wears the main-hand weapon
  *  a point every HITS_DEALT_PER_POINT hits. */
-export function onPlayerHitDealtForDurability(ctx: SimContext, source: Entity | null, target: Entity, school: string): void {
-  if (!source || source.kind !== 'player' || target.kind === 'player' || school !== 'physical') return;
+export function onPlayerHitDealtForDurability(
+  ctx: SimContext,
+  source: Entity | null,
+  target: Entity,
+  school: string,
+): void {
+  if (!source || source.kind !== 'player' || target.kind === 'player' || school !== 'physical')
+    return;
   const c = counters(source);
   if (++c.dealt < HITS_DEALT_PER_POINT) return;
   c.dealt = 0;
