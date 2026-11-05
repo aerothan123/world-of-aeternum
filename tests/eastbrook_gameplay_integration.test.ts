@@ -468,9 +468,10 @@ describe('Eastbrook authored gameplay data integration', () => {
   // carries gateId null and there is no gate crossing to contain. Round 3
   // added the inn lane (appended last, the by-index spread rule), trimmed
   // the beach promenade to the pulled-in strand, and re-tied the coast
-  // track to hug the new waterline.
+  // track to hug the new waterline. The town kit spread appended Meadow Lane,
+  // the housing quarter's lane, on the same rule.
   it('keeps every preserved exterior road on its authored prefix with no gate crossing', () => {
-    expect(ZONE1_ROADS).toHaveLength(7);
+    expect(ZONE1_ROADS).toHaveLength(8);
     for (let index = 0; index < EASTBROOK_LAYOUT.roads.length; index++) {
       const authored = EASTBROOK_LAYOUT.roads[index];
       expect(ZONE1_ROADS[index].slice(0, authored.points.length)).toEqual(authored.points);
@@ -484,6 +485,7 @@ describe('Eastbrook authored gameplay data integration', () => {
       { x: -9, z: -100.4 },
       { x: -96, z: -66 },
       { x: -44, z: -98 },
+      { x: 64, z: -24 },
     ]);
   });
 

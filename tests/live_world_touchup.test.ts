@@ -398,7 +398,7 @@ describe('live-world touch-up pipeline', () => {
       x: EASTBROOK_NPC_PLACEMENTS_BY_ID.weaver_ottilie.position.x,
       z: EASTBROOK_NPC_PLACEMENTS_BY_ID.weaver_ottilie.position.z,
     });
-    expect(BUILTIN_WORLD.npcs.weaver_ottilie.pos.x).toBeCloseTo(-13.533, 2);
+    expect(BUILTIN_WORLD.npcs.weaver_ottilie.pos.x).toBeCloseTo(-13.678, 2);
     expect(BUILTIN_WORLD.npcs.weaver_ottilie.pos.z).toBeCloseTo(-116.6, 2);
 
     // 5. Petra Vell's banker chest and Crooked Reed Inn rest area follow the moved buildings.

@@ -51,8 +51,8 @@ export interface HouseLotDef {
 
 // The Eastbrook housing streets (town kit phase 2,
 // docs/design/town-layout-eastbrook.md section 4.4): every sealed kit house
-// on street A (the harbour rise terrace) and street B (the main street
-// between the inn lane and the bank) is a lot. Its door is the kit house's
+// in the housing quarter (Meadow Lane beyond the stable, the old main-street
+// lots and the harbour rise) is a lot. Its door is the kit house's
 // front (sim/eastbrook_layout.ts townKitDoorPoint) and leaving steps 3 yd
 // straight out of its facade.
 const KIT_LEAVE_STEP = 3;
@@ -119,7 +119,8 @@ export const HOUSE_LOTS: readonly HouseLotDef[] = Object.freeze([
     priceCopper: 50_00_00,
   }),
   // APPENDED (town kit phase 2): the Eastbrook housing streets. Ids and
-  // indexes are new and never reused, like every lot above.
+  // indexes are new and never reused, like every lot above. The terrace faces
+  // south toward the civic square, as it did on the harbour rise.
   kitLot('eastbrook_terrace_west', 'West Terrace House', 'kit_house_a_terrace', 18, 8_00_00, 0),
   kitLot('eastbrook_terrace_middle', 'Middle Terrace House', 'kit_house_a_terrace', 19, 8_00_00, 1),
   kitLot('eastbrook_terrace_east', 'East Terrace House', 'kit_house_a_terrace', 20, 8_00_00, 2),

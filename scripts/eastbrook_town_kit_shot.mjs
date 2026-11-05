@@ -121,18 +121,21 @@ async function sample() {
   `);
 }
 
-const STATIONS = [
-  // From the ferry bell's town landing (FERRY_BELL_TOWN_LANDING), up into town.
-  { name: 'quay-overview', at: [-92.5, -46.5], look: [-60, -66], pitch: 0.55, dist: 24 },
-  // The crafting yard south of the square, from its square end.
-  { name: 'crafting-yard', at: [-7, -100], look: [-9, -118], pitch: 0.5, dist: 15 },
-  // Market Row: the trading post and the storage shed from the main street.
-  { name: 'market-row', at: [-34, -97], look: [-35, -108], pitch: 0.3, dist: 13 },
-  // Housing street B down the main street.
-  { name: 'housing-street', at: [-52, -74], look: [-62, -92], pitch: 0.3, dist: 13 },
-  // Housing street A: the row terrace on the harbour rise.
-  { name: 'housing-terrace', at: [-74, -60], look: [-78, -44.5], pitch: 0.28, dist: 13 },
-];
+// STATIONS_JSON swaps in a custom list of {name, at, look, pitch, dist} stations.
+const STATIONS = process.env.STATIONS_JSON
+  ? JSON.parse(process.env.STATIONS_JSON)
+  : [
+      // From the ferry bell's town landing (FERRY_BELL_TOWN_LANDING), up into town.
+      { name: 'quay-overview', at: [-92.5, -46.5], look: [-60, -66], pitch: 0.55, dist: 24 },
+      // The crafting yard south of the square, from its square end.
+      { name: 'crafting-yard', at: [-7, -100], look: [-9, -118], pitch: 0.5, dist: 15 },
+      // Market Row: the trading post and the storage shed from the main street.
+      { name: 'market-row', at: [-34, -97], look: [-35, -108], pitch: 0.3, dist: 13 },
+      // Housing street B down the main street.
+      { name: 'housing-street', at: [-52, -74], look: [-62, -92], pitch: 0.3, dist: 13 },
+      // Housing street A: the row terrace on the harbour rise.
+      { name: 'housing-terrace', at: [-74, -60], look: [-78, -44.5], pitch: 0.28, dist: 13 },
+    ];
 
 const perf = {};
 for (const s of STATIONS) {

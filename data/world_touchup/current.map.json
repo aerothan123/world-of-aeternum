@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-4395d-60622a0f-56e06eff-14b3-b4ad9a78-f493dfc8",
+    "id": "live-4398e-3ef5ef28-b90404b8-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "4395d-60622a0f-56e06eff",
+    "overworldBase": "4398e-3ef5ef28-b90404b8",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -3463,7 +3463,7 @@
         "title": "Keeper of the World Market",
         "pos": {
           "x": -29,
-          "z": -103.27857142857142
+          "z": -103.79285714285714
         },
         "facing": 0,
         "color": 13938487,
@@ -3528,10 +3528,10 @@
         "name": "Apothecary Lin",
         "title": "Herbalist",
         "pos": {
-          "x": -16.425,
+          "x": -16.471153846153847,
           "z": -109.2
         },
-        "facing": 0.3248722924348787,
+        "facing": 0.33061826155045143,
         "color": 8207512,
         "questIds": [
           "q_spiders"
@@ -3640,8 +3640,8 @@
         "name": "Bursar Fernando",
         "title": "The Gilded Strongbox",
         "pos": {
-          "x": -41,
-          "z": -102.66
+          "x": -41.6,
+          "z": -102.88933333333333
         },
         "facing": 0,
         "color": 13214247,
@@ -3680,7 +3680,7 @@
         "name": "Forgemistress Darva",
         "title": "Master of the Forge",
         "pos": {
-          "x": -5.338888888888889,
+          "x": -5.772222222222222,
           "z": -113.8
         },
         "facing": -1.5707963267948966,
@@ -3702,7 +3702,7 @@
         "name": "Cook Marlow",
         "title": "Master of the Kitchens",
         "pos": {
-          "x": -4.768421052631579,
+          "x": -4.967368421052631,
           "z": -108.5
         },
         "facing": -1.5707963267948966,
@@ -3729,7 +3729,7 @@
         "name": "Weaver Ottilie",
         "title": "Master of the Loom",
         "pos": {
-          "x": -13.533333333333333,
+          "x": -13.677777777777779,
           "z": -116.6
         },
         "facing": 1.5707963267948966,
@@ -3754,7 +3754,7 @@
         "name": "Tinker Gizzel",
         "title": "Master of the Toolworks",
         "pos": {
-          "x": -14.189166666666667,
+          "x": -14.294166666666667,
           "z": -125.6
         },
         "facing": 1.5707963267948966,
@@ -6205,7 +6205,7 @@
         "name": "Tamsin Tanwick",
         "title": "Tanner of the Yard",
         "pos": {
-          "x": -13.594666666666667,
+          "x": -13.844,
           "z": -121.2
         },
         "facing": 1.5707963267948966,
@@ -7447,6 +7447,28 @@
         {
           "x": -44,
           "z": -98
+        }
+      ],
+      [
+        {
+          "x": 18,
+          "z": -24
+        },
+        {
+          "x": 27,
+          "z": -24
+        },
+        {
+          "x": 30,
+          "z": -30
+        },
+        {
+          "x": 33,
+          "z": -24
+        },
+        {
+          "x": 64,
+          "z": -24
         }
       ],
       [

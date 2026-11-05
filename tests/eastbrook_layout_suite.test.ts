@@ -1030,24 +1030,24 @@ describe('authoritative Eastbrook replacement plan', () => {
       {
         id: 'eastbrook_fence_corral_west',
         district: 'stable_corral',
-        start: { x: 21, z: -55.6 },
-        end: { x: 21, z: -51 },
+        start: { x: 21, z: -54.6 },
+        end: { x: 21, z: -50 },
         width: 0.28,
         height: 0.9,
       },
       {
         id: 'eastbrook_fence_corral_north',
         district: 'stable_corral',
-        start: { x: 20.65, z: -51 },
-        end: { x: 15.35, z: -51 },
+        start: { x: 20.65, z: -50 },
+        end: { x: 15.35, z: -50 },
         width: 0.28,
         height: 0.9,
       },
       {
         id: 'eastbrook_fence_corral_east',
         district: 'stable_corral',
-        start: { x: 15, z: -51 },
-        end: { x: 15, z: -55.6 },
+        start: { x: 15, z: -50 },
+        end: { x: 15, z: -54.6 },
         width: 0.28,
         height: 0.9,
       },
@@ -1112,6 +1112,8 @@ describe('wall and road geometry', () => {
     // farm plots is the nearest now, still seventy yards off. Re-pinned for
     // the town kit (phase 2): the stable corral's low rails at the north road
     // gate are the nearest layout solid now, still over fifty yards off.
+    // The scale pass nudged the corral a yard north to clear the larger
+    // stable, so the rails sit a yard closer, still over fifty yards off.
     const wanderTarget = { x: 29.4338221478, z: 0.9998592577 };
     expect(EASTBROOK_LAYOUT.wall.segments).toHaveLength(0);
     const clearances = nonWallSolidObbs()
@@ -1122,7 +1124,7 @@ describe('wall and road geometry', () => {
       .sort((left, right) => left.clearance - right.clearance);
     expect(clearances[0]).toEqual({
       id: 'eastbrook_fence_corral_north',
-      clearance: 52.59848413930419,
+      clearance: 51.61279701040464,
     });
     expect(clearances[0].clearance).toBeGreaterThan(PLAYER_RADIUS);
   });
@@ -1381,6 +1383,37 @@ describe('wall and road geometry', () => {
           },
         ],
       },
+      {
+        id: 'meadow_lane',
+        existingRoadPoint: {
+          x: 30,
+          z: -30,
+        },
+        gateId: null,
+        halfWidth: 1.5,
+        points: [
+          {
+            x: 18,
+            z: -24,
+          },
+          {
+            x: 27,
+            z: -24,
+          },
+          {
+            x: 30,
+            z: -30,
+          },
+          {
+            x: 33,
+            z: -24,
+          },
+          {
+            x: 64,
+            z: -24,
+          },
+        ],
+      },
     ]);
     expect(EASTBROOK_LAYOUT.roads.find((road) => road.id === 'bandit')?.points).toContainEqual({
       x: -12,
@@ -1609,7 +1642,7 @@ describe('layout clearance and service anchors', () => {
         type: 'forge',
         masterNpcId: 'forgemistress_darva',
         position: {
-          x: -3.738888888888889,
+          x: -4.1722222222222225,
           z: -113.8,
         },
         interactionRadius: 20,
@@ -1619,7 +1652,7 @@ describe('layout clearance and service anchors', () => {
         type: 'kitchens',
         masterNpcId: 'cook_marlow',
         position: {
-          x: -3.168421052631579,
+          x: -3.367368421052632,
           z: -108.5,
         },
         interactionRadius: 20,
@@ -1629,7 +1662,7 @@ describe('layout clearance and service anchors', () => {
         type: 'loom',
         masterNpcId: 'weaver_ottilie',
         position: {
-          x: -15.133333333333333,
+          x: -15.277777777777779,
           z: -116.6,
         },
         interactionRadius: 20,
@@ -1639,7 +1672,7 @@ describe('layout clearance and service anchors', () => {
         type: 'toolworks',
         masterNpcId: 'tinker_gizzel',
         position: {
-          x: -15.789166666666667,
+          x: -15.894166666666667,
           z: -125.6,
         },
         interactionRadius: 20,
@@ -1649,7 +1682,7 @@ describe('layout clearance and service anchors', () => {
         type: 'apothecary',
         masterNpcId: 'apothecary_lin',
         position: {
-          x: -15.925,
+          x: -15.971153846153847,
           z: -112,
         },
         interactionRadius: 20,
@@ -1659,7 +1692,7 @@ describe('layout clearance and service anchors', () => {
         type: 'tannery',
         masterNpcId: 'tanner_tamsin',
         position: {
-          x: -15.194666666666667,
+          x: -15.443999999999999,
           z: -121.2,
         },
         interactionRadius: 20,
@@ -1675,10 +1708,16 @@ describe('layout clearance and service anchors', () => {
         npc.anchorId,
       ]),
     ).toEqual([
-      ['the_merchant', -29, -103.27857142857142, 0, 'kit_trading_post'],
+      ['the_merchant', -29, -103.79285714285714, 0, 'kit_trading_post'],
       ['marshal_redbrook', 1.5, -95.3, -1.9787985229559204, 'eastbrook_noticeboard'],
       ['trader_wilkes', -25, -94, 2.1995926132103296, 'eastbrook_civic_square'],
-      ['apothecary_lin', -16.425, -109.2, 0.3248722924348787, 'station_eastbrook_apothecary'],
+      [
+        'apothecary_lin',
+        -16.471153846153847,
+        -109.2,
+        0.33061826155045143,
+        'station_eastbrook_apothecary',
+      ],
       [
         'brother_aldric',
         15.011652086947231,
@@ -1695,7 +1734,7 @@ describe('layout clearance and service anchors', () => {
       ],
       ['fisherman_brandt', -22.3, -104.6, 1.2672255874712333, 'eastbrook_civic_square'],
       ['foreman_odell', 1.8, -102.6, -1.5328398816065827, 'eastbrook_civic_square'],
-      ['bursar_fernando', -41, -102.66, 0, 'kit_storage_shed'],
+      ['bursar_fernando', -41.6, -102.88933333333333, 0, 'kit_storage_shed'],
       [
         'card_master',
         -48.85195954108786,
@@ -1706,34 +1745,28 @@ describe('layout clearance and service anchors', () => {
       ['chronicler_saul', 10.2, -87.5, 0.5880026035475675, 'mailbox_eastbrook'],
       [
         'forgemistress_darva',
-        -5.338888888888889,
+        -5.772222222222222,
         -113.8,
         -1.5707963267948966,
         'station_eastbrook_forge',
       ],
       [
         'cook_marlow',
-        -4.768421052631579,
+        -4.967368421052631,
         -108.5,
         -1.5707963267948966,
         'station_eastbrook_kitchens',
       ],
-      ['weaver_ottilie', -13.533333333333333, -116.6, 1.5707963267948966, 'station_eastbrook_loom'],
+      ['weaver_ottilie', -13.677777777777779, -116.6, 1.5707963267948966, 'station_eastbrook_loom'],
       [
         'tinker_gizzel',
-        -14.189166666666667,
+        -14.294166666666667,
         -125.6,
         1.5707963267948966,
         'station_eastbrook_toolworks',
       ],
       ['fury', 21, -83.5, -2.0570389598824015, 'eastbrook_chapel'],
-      [
-        'tanner_tamsin',
-        -13.594666666666667,
-        -121.2,
-        1.5707963267948966,
-        'station_eastbrook_tannery',
-      ],
+      ['tanner_tamsin', -13.844, -121.2, 1.5707963267948966, 'station_eastbrook_tannery'],
     ]);
 
     const pointAnchors = [

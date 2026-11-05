@@ -2030,6 +2030,7 @@ export const ZONE1_ROADS: { x: number; z: number }[][] = [
   [...EASTBROOK_LAYOUT.roads[4].points], // civic link across the squares
   [...EASTBROOK_LAYOUT.roads[5].points, { x: -96, z: -66 }], // the quay walk, joining the flank track (the freed dig ground)
   [...EASTBROOK_LAYOUT.roads[6].points], // the inn lane down to the main street
+  [...EASTBROOK_LAYOUT.roads[7].points], // Meadow Lane: across the meadow from the coast track bend (housing)
 ];
 
 // ---------------------------------------------------------------------------

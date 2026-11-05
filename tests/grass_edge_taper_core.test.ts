@@ -149,10 +149,11 @@ describe('grass edge taper core', () => {
       PROPS.buildings,
       BUILTIN_WORLD.grassClear,
     );
-    // Moving from open turf at (-48, -78) and (-32, -94) toward the Eastbrook hub/road near
+    // Moving from open turf at (-49, -75) and (-32, -94) toward the Eastbrook hub/road near
     // Trader Wilkes (z = -94). The open-turf probe stepped from (-45, -80) when the town
-    // kit's red-roof cottage (town kit phase 2) took the plot just south of it.
-    expect(grassEdgeTaperAt(ctx, -48, -78, roadDistance(-48, -78))).toBe(1);
+    // kit's red-roof cottage (town kit phase 2) took the plot just south of it, and north
+    // again to (-49, -75) when the spread's timber house took that plot.
+    expect(grassEdgeTaperAt(ctx, -49, -75, roadDistance(-49, -75))).toBe(1);
     const samples = [-32, -30, -28, -26.8].map((x) => {
       const z = -94;
       const taper = grassEdgeTaperAt(ctx, x, z, roadDistance(x, z));
