@@ -418,6 +418,10 @@ export const ERROR_CODES = deepFreeze({
   // A store, membership or cosmetic-shop route on a realm with that switch off
   // (MEMBERSHIP_ENABLED / CLAUDIUM_ENABLED unset) (404).
   'store.disabled': { params: [] },
+  // legal_acceptance: POST /api/legal-acceptance named a version of the Terms,
+  // the Privacy Policy or the EULA that is not the current one (a client built
+  // before the documents changed) (400).
+  'legal_acceptance.invalid_input': { params: [] },
 } as const);
 
 /** A stable error code: one of the keys of ERROR_CODES. */

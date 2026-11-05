@@ -217,8 +217,9 @@ const UI_PURE_CORES = [
   'src/ui/frame_presets_core.ts',
   // The landing select's and first-login prompt's shared graphics-choice policy.
   'src/ui/graphics_choice_core.ts',
-  // The first-launch EULA gate's decision (Wyndlewood legal, src/ui/eula_prompt.ts consumes it).
-  'src/ui/eula_gate_core.ts',
+  // The first-launch legal acceptance gate's decision and view model
+  // (src/ui/legal_acceptance_controller.ts paints it).
+  'src/ui/legal_acceptance_core.ts',
   // Which store, membership and cosmetic-shop surfaces the build may reach (Early Access switches).
   'src/ui/store_surfaces_core.ts',
   'src/ui/frame_menu_core.ts',
@@ -3121,9 +3122,11 @@ const UI_DOM_MODULES = [
   'src/ui/boot_splash.ts',
   // The first-login graphics prompt: a top-level pre-game modal reading the URL and navigator.
   'src/ui/graphics_choice_prompt.ts',
-  // The first-launch legal modals (EULA gate, analytics consent) and their shared dialog.
+  // The first-launch legal modals (agreements gate, analytics consent), the
+  // agreements painter, and the analytics prompt's dialog.
   'src/ui/legal_choice_dialog.ts',
-  'src/ui/eula_prompt.ts',
+  'src/ui/legal_acceptance_prompt.ts',
+  'src/ui/legal_acceptance_controller.ts',
   'src/ui/analytics_consent_prompt.ts',
   // The landing-first boot (body classes, splash lift, prefetch, held clicks) and the
   // characters-created counter it shares with main.ts.

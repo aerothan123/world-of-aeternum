@@ -1,6 +1,6 @@
-// The one small two-button modal both first-launch legal prompts use (the EULA
-// gate, src/ui/eula_prompt.ts, and the analytics consent prompt,
-// src/ui/analytics_consent_prompt.ts). It borrows the first-login graphics
+// The small two-button modal the analytics consent prompt uses
+// (src/ui/analytics_consent_prompt.ts); the agreements gate has its own
+// view-core plus painter pair (legal_acceptance_core.ts / _controller.ts). It borrows the first-login graphics
 // prompt's chrome (graphics-prompt-* classes in src/styles/shell.css) so no new
 // CSS ships, and its shape: a self-contained top-level modal with a focus trap,
 // a dialog root, and every key stopped at the backdrop.
