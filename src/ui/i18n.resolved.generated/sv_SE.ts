@@ -8302,6 +8302,9 @@ export const sv_SE: EnTranslations = {
     },
     "store": {
       "disabled": "The store is not available in Early Access."
+    },
+    "legal_acceptance": {
+      "invalid_input": "These agreements have changed. Reload and accept the current versions."
     }
   },
   "clues": {
@@ -15818,13 +15821,32 @@ export const sv_SE: EnTranslations = {
     "confirm": "Fortsätt"
   },
   "legalPrompt": {
-    "title": "End User License Agreement",
-    "body": "Before you play, please read and accept the Wyndlewood End User License Agreement. It works together with the Terms of Service and the Privacy Policy.",
+    "title": "Player Agreements",
+    "body": "Before you play, please read and accept the Terms of Service, the Privacy Policy, and the End User License Agreement. Each summary below links to the full document.",
     "earlyAccess": "Wyndlewood is in Early Access: features, balance, and content will change, and progress may be reset once at full launch as announced on the store page.",
     "eulaLink": "End User License Agreement",
     "termsLink": "Terms of Service",
     "privacyLink": "Privacy Policy",
-    "version": "Agreement version {version}",
+    "version": "Version {version}",
+    "updated": "Updated since you last accepted",
+    "readFull": "Read the full document",
+    "publisher": "Published by [PUBLISHER LEGAL NAME] (a placeholder until the publisher is named). These documents are drafts awaiting legal review.",
+    "terms": {
+      "age": "You must be at least 13 years old, or have a parent or guardian agree for you.",
+      "fairPlay": "Play fairly: no cheating, bots, automation, bug exploits, harassment, or trading items or gold for real money.",
+      "virtualItems": "Virtual items, currency, and progress have no money value. Any purchase in the Steam build goes through Steam.",
+      "enforcement": "Accounts that break the rules may be warned, muted, suspended, or banned. You can appeal to support."
+    },
+    "privacy": {
+      "account": "We store your account, characters, and progress, and use technical data such as your IP address to run the servers and stop cheating and abuse.",
+      "public": "Chat, character names, guilds, and leaderboards are visible to other players.",
+      "analytics": "Analytics are off unless you turn them on, and nothing is sent to advertising or analytics companies.",
+      "rights": "You can export your data and delete your account at any time."
+    },
+    "eula": {
+      "license": "The game is licensed to you, not sold, for your own non-commercial play.",
+      "restrictions": "Do not copy, resell, or reverse engineer the game, or use cheats, bots, or exploits against it."
+    },
     "accept": "I Accept",
     "decline": "Decline"
   },

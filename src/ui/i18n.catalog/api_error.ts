@@ -180,10 +180,10 @@ export const apiErrorStrings = {
     // reuses hudChrome.discord.swag.needPoints
     swag_points: 'Not enough points.',
     // The queue-pings toggle body was not a boolean (server/discord_queue_pings.ts).
-    invalid_input: 'These agreements have changed. Reload and accept the current versions.',
+    invalid_input: 'Invalid input.',
   },
   deeds: {
-    invalid_input: 'These agreements have changed. Reload and accept the current versions.',
+    invalid_input: 'Invalid input.',
   },
   // The public guild roster read behind the signpost guild board
   // (server/guild_roster.ts).
@@ -230,7 +230,7 @@ export const apiErrorStrings = {
     reauth_bad_two_factor: 'That code is not valid, try again.',
   },
   ota_updates: {
-    invalid_input: 'These agreements have changed. Reload and accept the current versions.',
+    invalid_input: 'Invalid input.',
   },
   seeker: {
     native_only: 'Seeker entitlement is available only in the native app.',
@@ -268,7 +268,7 @@ export const apiErrorStrings = {
   // woc_market: the RETIRED $WOC Exchange family. The codes are append-only, so
   // their rows stay, but nothing emits them since the Exchange was removed.
   woc_market: {
-    invalid_input: 'These agreements have changed. Reload and accept the current versions.',
+    invalid_input: 'Invalid input.',
     disabled: 'The $WOC Exchange is not available on this realm.',
     paused: 'Exchange trading is paused. Auctions keep counting down.',
     wallet_required: 'Link and verify a wallet before trading on the Exchange.',

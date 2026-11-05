@@ -9,16 +9,18 @@
 // module is the thin network + storage glue between them.
 
 import { apiUrl } from '../client_origin';
-import { CURRENT_LEGAL_VERSIONS, type LegalDocId, parseLegalVersions } from '../legal_versions';
+import { CURRENT_LEGAL_VERSIONS, type LegalDocId, type LegalVersions } from '../legal_versions';
+import { showLegalAcceptanceDialog } from './legal_acceptance_controller';
 import {
   type AcceptedVersions,
   LEGAL_LOCAL_KEY,
+  type LegalServerStatus,
   legalAcceptanceView,
   legalGateDecision,
   localLegalRecord,
+  parseLegalServerStatus,
   parseLocalLegalRecord,
 } from './legal_acceptance_core';
-import { showLegalAcceptanceDialog } from './legal_acceptance_controller';
 import { eulaUrlFor, privacyUrlFor, termsUrlFor } from './terms_link';
 
 function readLocal(): AcceptedVersions | null {
@@ -29,40 +31,36 @@ function readLocal(): AcceptedVersions | null {
   }
 }
 
-function writeLocal(): void {
+function writeLocal(current: LegalVersions): void {
   try {
-    localStorage.setItem(LEGAL_LOCAL_KEY, localLegalRecord(CURRENT_LEGAL_VERSIONS));
+    localStorage.setItem(LEGAL_LOCAL_KEY, localLegalRecord(current));
   } catch {
     // Private mode or blocked storage: the server record still holds it.
   }
 }
 
-/** The account's record, null when it never accepted, undefined when unknown. */
-async function fetchServerAccepted(
-  token: string | null,
-): Promise<AcceptedVersions | null | undefined> {
+/** The server's current versions and this account's record, undefined when unknown. */
+async function fetchServerStatus(token: string | null): Promise<LegalServerStatus | undefined> {
   if (!token) return undefined;
   try {
     const res = await fetch(apiUrl('/api/legal-acceptance'), {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (!res.ok) return undefined;
-    const data = (await res.json()) as { accepted?: unknown };
-    return data.accepted && typeof data.accepted === 'object'
-      ? parseLegalVersions(data.accepted)
-      : null;
+    return parseLegalServerStatus(await res.json());
   } catch {
     return undefined;
   }
 }
 
-async function recordServerAcceptance(token: string | null): Promise<void> {
+/** Post the versions the SERVER offered; the server refuses any other. */
+async function recordServerAcceptance(token: string | null, current: LegalVersions): Promise<void> {
   if (!token) return;
   try {
     await fetch(apiUrl('/api/legal-acceptance'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-      body: JSON.stringify(CURRENT_LEGAL_VERSIONS),
+      body: JSON.stringify(current),
     });
   } catch {
     // Kept locally; the next entry's 'pass-sync' records it on the server.
@@ -86,25 +84,25 @@ let pending: Promise<boolean> | null = null;
 export function ensureLegalAccepted(token: string | null): Promise<boolean> {
   if (pending) return pending;
   pending = (async () => {
-    const serverAccepted = await fetchServerAccepted(token);
+    const status = await fetchServerStatus(token);
+    // The server's versions are the authority; the bundled ones are only the
+    // offline world's (no account) and the unreachable-server fallback.
+    const current = status?.current ?? CURRENT_LEGAL_VERSIONS;
+    const serverAccepted = status ? status.accepted : undefined;
     const localAccepted = readLocal();
-    const decision = legalGateDecision({
-      current: CURRENT_LEGAL_VERSIONS,
-      serverAccepted,
-      localAccepted,
-    });
+    const decision = legalGateDecision({ current, serverAccepted, localAccepted });
     if (decision === 'pass') return true;
     if (decision === 'pass-sync') {
-      void recordServerAcceptance(token);
+      void recordServerAcceptance(token, current);
       return true;
     }
     const accepted = await showLegalAcceptanceDialog(
-      legalAcceptanceView(serverAccepted ?? localAccepted),
+      legalAcceptanceView(serverAccepted ?? localAccepted, current),
       { urlFor },
     );
     if (!accepted) return false;
-    writeLocal();
-    await recordServerAcceptance(token);
+    writeLocal(current);
+    await recordServerAcceptance(token, current);
     return true;
   })().finally(() => {
     pending = null;

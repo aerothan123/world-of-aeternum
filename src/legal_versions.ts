@@ -11,8 +11,9 @@
 // document as outdated for every account, so any client (the web client and
 // the future Unreal client alike) asks once more on the next world entry and
 // the new acceptance is recorded per account. The server copy of these values
-// is the authority; a client shows and posts the versions the server reported. The values are opaque tokens (date plus a short tag),
-// compared for equality only. The current drafts are TEMPLATES awaiting lawyer
+// is the authority; a client shows and posts the versions the server reported.
+// The values are opaque tokens (date plus a short tag), compared for equality
+// only. The current drafts are TEMPLATES awaiting lawyer
 // review, and the publisher entity is still the [PUBLISHER LEGAL NAME]
 // placeholder.
 //

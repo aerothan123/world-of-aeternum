@@ -25,6 +25,7 @@ import {
   LEGAL_DOC_IDS,
   type LegalDocId,
   type LegalVersions,
+  outdatedLegalDocs,
   parseLegalVersions,
 } from '../legal_versions';
 import type { TranslationKey } from './i18n';
@@ -53,7 +54,10 @@ export interface LegalGateInputs {
   localAccepted: AcceptedVersions | null;
 }
 
-function allCurrent(accepted: AcceptedVersions | null | undefined, current: LegalVersions): boolean {
+function allCurrent(
+  accepted: AcceptedVersions | null | undefined,
+  current: LegalVersions,
+): boolean {
   return !!accepted && LEGAL_DOC_IDS.every((id) => accepted[id] === current[id]);
 }
 
@@ -70,7 +74,27 @@ export function documentsToAccept(
   accepted: AcceptedVersions | null | undefined,
   current: LegalVersions = CURRENT_LEGAL_VERSIONS,
 ): LegalDocId[] {
-  return LEGAL_DOC_IDS.filter((id) => accepted?.[id] !== current[id]);
+  return outdatedLegalDocs(accepted, current);
+}
+
+/** What GET /api/legal-acceptance reported: the SERVER's current versions (the
+ *  authority) and this account's record (null when it never accepted). */
+export interface LegalServerStatus {
+  current: LegalVersions;
+  accepted: AcceptedVersions | null;
+}
+
+/** Read the GET /api/legal-acceptance body; undefined when it is not the
+ *  expected shape (an older server, a proxy page), so the caller falls back to
+ *  the bundled versions instead of trusting garbage. */
+export function parseLegalServerStatus(raw: unknown): LegalServerStatus | undefined {
+  if (!raw || typeof raw !== 'object') return undefined;
+  const body = raw as { current?: unknown; accepted?: unknown };
+  const current = parseLegalVersions(body.current);
+  if (LEGAL_DOC_IDS.some((id) => current[id] === null)) return undefined;
+  const accepted =
+    body.accepted && typeof body.accepted === 'object' ? parseLegalVersions(body.accepted) : null;
+  return { current: current as LegalVersions, accepted };
 }
 
 /** Parse the stored local record. The EULA-only gate wrote { v }; the current

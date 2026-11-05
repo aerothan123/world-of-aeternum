@@ -8302,6 +8302,9 @@ export const zh_CN: EnTranslations = {
     },
     "store": {
       "disabled": "抢先体验期间商店不可用。"
+    },
+    "legal_acceptance": {
+      "invalid_input": "这些协议已经更新。请重新加载并接受当前版本。"
     }
   },
   "clues": {
@@ -15818,13 +15821,32 @@ export const zh_CN: EnTranslations = {
     "confirm": "继续"
   },
   "legalPrompt": {
-    "title": "最终用户许可协议",
-    "body": "开始游戏前，请阅读并接受 Wyndlewood 最终用户许可协议。该协议与服务条款和隐私政策共同适用。",
+    "title": "玩家协议",
+    "body": "开始游戏前，请阅读并接受服务条款、隐私政策和最终用户许可协议。下方每段摘要都附有完整文档的链接。",
     "earlyAccess": "Wyndlewood 正处于抢先体验阶段：功能、平衡和内容都会变化，正式发售时进度可能按商店页面的公告重置一次。",
     "eulaLink": "最终用户许可协议",
     "termsLink": "服务条款",
     "privacyLink": "隐私政策",
-    "version": "协议版本 {version}",
+    "version": "版本 {version}",
+    "updated": "自你上次接受后已更新",
+    "readFull": "阅读完整文档",
+    "publisher": "发行方：[PUBLISHER LEGAL NAME]（在确定发行方之前的占位符）。这些文件是等待法律审核的草案。",
+    "terms": {
+      "age": "你必须年满 13 岁，或由父母或监护人代你同意。",
+      "fairPlay": "公平游戏：禁止作弊、机器人、自动化、利用漏洞、骚扰，或用真钱交易物品或金币。",
+      "virtualItems": "虚拟物品、货币和进度没有金钱价值。Steam 版本中的任何购买都通过 Steam 进行。",
+      "enforcement": "违反规则的账号可能会被警告、禁言、暂停或封禁。你可以向客服申诉。"
+    },
+    "privacy": {
+      "account": "我们会保存你的账号、角色和进度，并使用你的 IP 地址等技术数据来运行服务器、阻止作弊和滥用。",
+      "public": "聊天、角色名、公会和排行榜对其他玩家可见。",
+      "analytics": "除非你主动开启，否则分析功能保持关闭，且不会向任何广告或分析公司发送数据。",
+      "rights": "你可以随时导出你的数据并删除你的账号。"
+    },
+    "eula": {
+      "license": "本游戏是授权给你使用，而非出售给你，仅供你个人非商业游玩。",
+      "restrictions": "不得复制、转售或逆向工程本游戏，也不得对其使用作弊、机器人或漏洞利用。"
+    },
     "accept": "我接受",
     "decline": "拒绝"
   },
