@@ -560,13 +560,14 @@ describe('meteor/flamestrike asset binding', () => {
   const sfxDir = path.join(repoRoot, 'public/audio/sfx');
 
   // Pinned via `sha256sum public/audio/sfx/meteor.mp3 public/audio/sfx/flamestrike.mp3`
-  // against the recordings committed by d83aab74ac (the swap fix). A byte-distinct
+  // against the original Wyndlewood recordings that replaced the inherited pair
+  // (scripts/sfx/rights_replacement_prompts_upstream.mjs); first pinned at d83aab74ac. A byte-distinct
   // check alone cannot catch a RE-swap: two swapped files are still byte-distinct
   // from each other, and the original bug here was a missing meteor.mp3, not a
   // swap. Pinning each file's own literal hash catches both a re-swap and either
   // file silently changing out from under the binding.
-  const METEOR_SHA256 = 'd57a0627c1bfe6daacd67706c2359347af522be0c89ba13466dcb58d94b77416';
-  const FLAMESTRIKE_SHA256 = 'bd4257d3567b43f5228066cba5f1dff5c31b205c9314bfb4c7f0d6cbfebcdf15';
+  const METEOR_SHA256 = 'd1d9bf7629cafaa18c68e421f25f3367f16c9571df2ce880163d85e85ea17894';
+  const FLAMESTRIKE_SHA256 = '17334f02938b9d614e2b78d6c9dc3ae66c689ce346a3cb8ece8b67d4bbcda978';
 
   it('pins meteor.mp3 and flamestrike.mp3 to their exact committed recordings', () => {
     const meteor = readFileSync(path.join(sfxDir, 'meteor.mp3'));

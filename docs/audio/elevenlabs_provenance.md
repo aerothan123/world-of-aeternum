@@ -67,3 +67,11 @@ From a PC runner that loads the key from `.env` without printing it:
   `REGION_BED_GAINS` entry against the build log's final loudness.
 - **Gathering:** use `gather_strike_sfx.mjs` (generate, select, build), then record the new
   master in `scripts/sfx/sources/gather/takes.json`.
+
+## Rights replacement takes (paid plan)
+
+The inherited CC BY-NC recordings and the upstream generated and project-only sound effects are
+replaced in place by original takes on the paid plan (see docs/audio/rights_replacement_plan.md).
+Every raw take is in scripts/sfx/sources/rights/ with its generation date, plan tier and exact
+prompt in scripts/sfx/sources/rights/takes.json. The voice cast's takes are ledgered on
+feature/wyndlewood-voices in docs/audio/elevenlabs_provenance_voices.md.
