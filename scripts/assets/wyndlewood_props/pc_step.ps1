@@ -1,7 +1,7 @@
 # Props crew runner (Windows): every step of one kit pass in one hidden job, so
 # a pass needs one launch and one log read. Steps are named on the command
 # line and run in order; the log lands in tmp/props_kit/<Name>.log.
-#   powershell -File scripts/assets/wyndlewood_props/pc_step.ps1 -Name pass1 -Steps "rugtex,lantern,..."
+#   powershell -File scripts/assets/wyndlewood_props/pc_step.ps1 -Name pass1 -Steps "builds=a+b,apply=a+b,tsc"
 param([string]$Name, [string]$Steps, [string]$Ids = '', [string]$Msg = '', [string]$Body = '')
 $env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User')
 Set-Location C:\Users\cdero\Apps\woa-props
@@ -12,9 +12,12 @@ $Out = "tmp/props_kit/$Name.log"
 "start $(Get-Date -Format o) $Steps" | Out-File $Out -Encoding utf8
 function Log($t) { $t | Out-File $Out -Append -Encoding utf8 }
 function Run($label, [scriptblock]$b) { Log "== $label"; & $b *>> $Out; Log "== $label exit $LASTEXITCODE" }
-$idList = $Ids -split ' ' | Where-Object { $_ -ne '' }
-foreach ($s in ($Steps -split ',')) {
-  switch ($s.Trim()) {
+# A step may carry its own ids: name=id1+id2 (else the -Ids list).
+foreach ($tok in ($Steps -split ',')) {
+  $parts = $tok.Trim() -split '=', 2
+  $s = $parts[0]
+  $idList = if ($parts.Count -gt 1) { $parts[1] -split '\+' } else { $Ids -split ' ' | Where-Object { $_ -ne '' } }
+  switch ($s) {
     'concepts' { Run concepts { node tmp/props_kit/concepts.mjs @idList } }
     'builds' { Run builds { node tmp/props_kit/build.mjs @idList } }
     'rugtex' { Run rugtex { node tmp/props_kit/rug_tex.mjs furn_braided_rug } }
@@ -24,6 +27,7 @@ foreach ($s in ($Steps -split ',')) {
     'review' { New-Item -ItemType Directory -Force "tmp/props_kit/review_$Name" | Out-Null; foreach ($i in $idList) { Copy-Item "public/models/props/wyn_$i.glb" "tmp/props_kit/review_$Name/" -Force }; Run review { node tmp/props_kit/preview_dir.mjs "tmp/props_kit/review_$Name" "tmp/props_kit/review_$Name.jpg" } }
     'conceptsheet' { Run conceptsheet { node tmp/props_kit/concept_sheet.mjs "tmp/props_kit/concepts_$Name.jpg" @idList } }
     'icons' { $env:ONLY = ($idList -join ','); Run icons { node scripts/render_furniture_icons.mjs }; Remove-Item Env:ONLY }
+    'fill' { Run fill { node scripts/assets/wyndlewood_props/fill_rows.mjs } }
     'i18n' { Run i18n { npm run i18n:gen } }
     'wiki' { Run wiki { npm run wiki:content } }
     'manifest' { Run manifest { node scripts/build_media_manifest.mjs generate } }
