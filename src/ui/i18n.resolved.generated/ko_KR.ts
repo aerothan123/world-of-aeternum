@@ -24973,6 +24973,15 @@ export const ko_KR: EnTranslations = {
       "furn_woven_rug_painted": {
         "name": "타원형 양모 러그"
       },
+      "furn_noble_wardrobe": {
+        "name": "조각 옷장"
+      },
+      "furn_candelabra": {
+        "name": "가지 촛대"
+      },
+      "furn_crate_stack": {
+        "name": "상자 더미"
+      },
       "membership_staff": {
         "name": "변화의 지팡이"
       },

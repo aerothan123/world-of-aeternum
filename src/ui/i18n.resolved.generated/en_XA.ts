@@ -24973,6 +24973,15 @@ export const en_XA: EnTranslations = {
       "furn_woven_rug_painted": {
         "name": "[Óʋáļ Ŵóóļ Ŕúĝ]"
       },
+      "furn_noble_wardrobe": {
+        "name": "[Çáŕʋéð Ŵáŕðŕóƀé]"
+      },
+      "furn_candelabra": {
+        "name": "[Çáñðéļáƀŕá]"
+      },
+      "furn_crate_stack": {
+        "name": "[Çŕáţé Šţáçķ]"
+      },
       "membership_staff": {
         "name": "[Šţáƒƒ óƒ Çĥáñĝíñĝ]"
       },

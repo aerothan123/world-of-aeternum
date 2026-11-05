@@ -112,7 +112,13 @@ export type FurnitureRenderKey =
   | 'wynSawhorse'
   | 'wynPottingBench'
   | 'wynSpoolRack'
-  | 'wynHerbDryingRack';
+  | 'wynHerbDryingRack'
+  | 'wynHomeTannery'
+  | 'wynHomeLoom'
+  | 'wynHomeToolworks'
+  | 'wynNobleWardrobe'
+  | 'wynCandelabra'
+  | 'wynCrateStack';
 
 export interface FurnitureDef {
   /** The item id (the ItemDef key and the persisted placement value). */
@@ -173,22 +179,22 @@ export const FURNITURE_DEFS: readonly FurnitureDef[] = Object.freeze([
   {
     itemId: 'furn_station_tannery',
     kind: 'floor',
-    renderKey: 'kcasTableRoundMedium',
-    scale: 1.1,
+    renderKey: 'wynHomeTannery',
+    scale: 1.4,
     stationType: 'tannery',
   },
   {
     itemId: 'furn_station_loom',
     kind: 'floor',
-    renderKey: 'kcasTableCloth',
-    scale: 1.2,
+    renderKey: 'wynHomeLoom',
+    scale: 1.3,
     stationType: 'loom',
   },
   {
     itemId: 'furn_station_toolworks',
     kind: 'floor',
-    renderKey: 'weaponStand',
-    scale: 1.5,
+    renderKey: 'wynHomeToolworks',
+    scale: 1.2,
     stationType: 'toolworks',
   },
   // The Wyndlewood cottage style test (props crew, assets_src/wyndlewood_props):
@@ -246,6 +252,11 @@ export const FURNITURE_DEFS: readonly FurnitureDef[] = Object.freeze([
   { itemId: 'furn_herb_drying_rack', kind: 'floor', renderKey: 'wynHerbDryingRack', scale: 1.6 },
   // The Wyndlewood rustic family (assets_src/wyndlewood_props/furniture_catalog.json).
   { itemId: 'furn_woven_rug_painted', kind: 'rug', renderKey: 'wynWovenRugPainted', scale: 0.05 },
+  // The Wyndlewood noble family (assets_src/wyndlewood_props/furniture_catalog.json).
+  { itemId: 'furn_noble_wardrobe', kind: 'floor', renderKey: 'wynNobleWardrobe', scale: 2.2 },
+  { itemId: 'furn_candelabra', kind: 'table', renderKey: 'wynCandelabra', scale: 0.6 },
+  // The Wyndlewood crafter family (assets_src/wyndlewood_props/furniture_catalog.json).
+  { itemId: 'furn_crate_stack', kind: 'floor', renderKey: 'wynCrateStack', scale: 1.3 },
 ]);
 
 const DEF_BY_ITEM: ReadonlyMap<string, FurnitureDef> = new Map(
@@ -352,4 +363,7 @@ export const FURNITURE_ITEMS: Record<string, ItemDef> = {
   furn_spool_rack: furnitureItem('furn_spool_rack', 'Spool Rack', 12),
   furn_herb_drying_rack: furnitureItem('furn_herb_drying_rack', 'Herb Drying Rack', 11),
   furn_woven_rug_painted: furnitureItem('furn_woven_rug_painted', 'Oval Wool Rug', 16),
+  furn_noble_wardrobe: furnitureItem('furn_noble_wardrobe', 'Carved Wardrobe', 146),
+  furn_candelabra: furnitureItem('furn_candelabra', 'Candelabra', 12),
+  furn_crate_stack: furnitureItem('furn_crate_stack', 'Crate Stack', 14),
 };

@@ -63,7 +63,12 @@
       "height": 0.9,
       "faceLimit": 6000,
       "sheetPrompt": "four separate small seaside objects standing apart in one row with wide empty space between them: a dry supply bundle of oiled canvas tied with rope, a broken wooden crate with loose planks, a round wicker and rope crab pot trap, a flat rectangular wooden walkway panel of planks nailed to two crossbars",
-      "assign": [2, 1, 0, 3],
+      "assign": [
+        2,
+        1,
+        0,
+        3
+      ],
       "sheet": [
         {
           "id": "quest_supply_bundle",
@@ -89,15 +94,22 @@
       "height": 1.1,
       "faceLimit": 6000,
       "sheetPrompt": "four separate graveyard objects standing apart in one row with wide empty space between them: an unlit old iron grave lamp on a short stone post, a matching iron grave lamp wrapped tightly in black waxed cord with a pale cold blue flame inside, a plain unmarked rounded granite headstone slab with a completely smooth flat front, no carving, no face, no letters, a tall rough standing boundary stone carved with a simple open hand symbol and no letters",
-      "assign": [1, 0, 2, 3],
+      "assign": [
+        1,
+        0,
+        2,
+        3
+      ],
       "sheet": [
         {
           "id": "quest_grave_lamp_unlit",
-          "height": 0.95
+          "height": 0.95,
+          "skip": true
         },
         {
           "id": "quest_grave_lamp_bound",
-          "height": 1.15
+          "height": 1.15,
+          "skip": true
         },
         {
           "id": "quest_name_stone",
@@ -115,7 +127,11 @@
       "height": 1,
       "faceLimit": 6000,
       "sheetPrompt": "three separate objects standing apart in one row with wide empty space between them: a small shallow glazed clay saucer with a few bread crumbs, an old brass speaking pipe tube that rises from a wooden wall plank and bends into a flared trumpet mouth with a little hinged cap, a short broken section of wooden boardwalk on posts with two missing planks leaving gaps",
-      "assign": [1, 0, 2],
+      "assign": [
+        1,
+        0,
+        2
+      ],
       "dropNeedles": true,
       "sheet": [
         {
@@ -176,7 +192,10 @@
       "procedural": "rug_disc",
       "texturePrompt": "flat top-down orthographic view of an oval braided rag rug filling the whole frame, concentric braided rings of warm red, ochre, sage green and cream wool, soft hand-painted storybook texture, even lighting, no shadow, no background visible at the centre, plain white background around the oval",
       "proceduralNote": "Tripo modelled only the pompom rim of the first build (no rug body), so the rug is a procedural oval disc (scripts/assets/wyndlewood_props/rug.mjs) wearing a generated top-down texture.",
-      "size": [2.6, 1.8]
+      "size": [
+        2.6,
+        1.8
+      ]
     },
     {
       "id": "furn_table_lantern",
@@ -217,7 +236,8 @@
         {
           "id": "furn_rustic_stool",
           "height": 0.55,
-          "family": "rustic"
+          "family": "rustic",
+          "skip": true
         },
         {
           "id": "furn_rustic_bench",
@@ -231,7 +251,12 @@
           "skip": true
         }
       ],
-      "assign": [0, 2, 1, 3]
+      "assign": [
+        0,
+        2,
+        1,
+        3
+      ]
     },
     {
       "id": "sheet_furn_rustic_storage",
@@ -262,7 +287,12 @@
           "family": "rustic"
         }
       ],
-      "assign": [3, 1, 2, 0]
+      "assign": [
+        3,
+        1,
+        2,
+        0
+      ]
     },
     {
       "id": "sheet_furn_rustic_misc",
@@ -292,7 +322,12 @@
           "family": "rustic"
         }
       ],
-      "assign": [3, 1, 0, 2]
+      "assign": [
+        3,
+        1,
+        0,
+        2
+      ]
     },
     {
       "id": "sheet_furn_rustic_small",
@@ -324,7 +359,12 @@
           "family": "rustic"
         }
       ],
-      "assign": [1, 3, 0, 2]
+      "assign": [
+        1,
+        3,
+        0,
+        2
+      ]
     },
     {
       "id": "sheet_furn_cottage_seating",
@@ -354,7 +394,12 @@
           "family": "cottage"
         }
       ],
-      "assign": [2, 0, 1, 3]
+      "assign": [
+        2,
+        0,
+        1,
+        3
+      ]
     },
     {
       "id": "sheet_furn_cottage_storage",
@@ -384,7 +429,12 @@
           "family": "cottage"
         }
       ],
-      "assign": [3, 1, 2, 0]
+      "assign": [
+        3,
+        1,
+        2,
+        0
+      ]
     },
     {
       "id": "sheet_furn_cottage_small",
@@ -414,7 +464,12 @@
           "family": "cottage"
         }
       ],
-      "assign": [3, 2, 0, 1]
+      "assign": [
+        3,
+        2,
+        0,
+        1
+      ]
     },
     {
       "id": "sheet_furn_noble_main",
@@ -444,7 +499,12 @@
           "family": "noble"
         }
       ],
-      "assign": [0, 1, 3, 2]
+      "assign": [
+        0,
+        1,
+        3,
+        2
+      ]
     },
     {
       "id": "sheet_furn_noble_more",
@@ -475,7 +535,12 @@
           "skip": true
         }
       ],
-      "assign": [1, 2, 0, 3]
+      "assign": [
+        1,
+        2,
+        0,
+        3
+      ]
     },
     {
       "id": "sheet_furn_noble_small",
@@ -507,7 +572,12 @@
           "family": "noble"
         }
       ],
-      "assign": [0, 2, 3, 1]
+      "assign": [
+        0,
+        2,
+        3,
+        1
+      ]
     },
     {
       "id": "sheet_furn_crafter_a",
@@ -519,7 +589,8 @@
         {
           "id": "furn_tool_rack",
           "height": 1.2,
-          "family": "crafter"
+          "family": "crafter",
+          "skip": true
         },
         {
           "id": "furn_sawhorse",
@@ -537,7 +608,12 @@
           "family": "crafter"
         }
       ],
-      "assign": [1, 3, 0, 2]
+      "assign": [
+        1,
+        3,
+        0,
+        2
+      ]
     },
     {
       "id": "sheet_furn_crafter_b",
@@ -570,7 +646,12 @@
           "skip": true
         }
       ],
-      "assign": [1, 0, 3, 2]
+      "assign": [
+        1,
+        0,
+        3,
+        2
+      ]
     },
     {
       "id": "sheet_furn_home_stations_a",
@@ -595,7 +676,11 @@
           "family": "crafter"
         }
       ],
-      "assign": [1, 0, 2]
+      "assign": [
+        1,
+        0,
+        2
+      ]
     },
     {
       "id": "sheet_furn_home_stations_b",
@@ -630,7 +715,10 @@
       "family": "noble",
       "height": 0.04,
       "procedural": "rug_rect",
-      "size": [3.2, 2.2],
+      "size": [
+        3.2,
+        2.2
+      ],
       "texturePrompt": "flat top-down orthographic view of a rectangular noble manor carpet filling the whole frame, deep red field with a gold and navy border and a simple leaf and vine medallion pattern, soft hand-painted storybook texture, even lighting, no shadow, no text"
     },
     {
@@ -639,7 +727,10 @@
       "family": "cottage",
       "height": 0.04,
       "procedural": "rug_rect",
-      "size": [2.8, 1],
+      "size": [
+        2.8,
+        1
+      ],
       "texturePrompt": "flat top-down orthographic view of a long rectangular woven rag rug runner filling the whole frame, cheerful stripes of rose, cream, sage and sky blue cotton rags, soft hand-painted storybook texture, even lighting, no shadow, no text"
     },
     {
@@ -648,7 +739,10 @@
       "family": "rustic",
       "height": 0.05,
       "procedural": "rug_disc",
-      "size": [3, 2.2],
+      "size": [
+        3,
+        2.2
+      ],
       "texturePrompt": "flat top-down orthographic view of an oval rustic woven wool rug filling the whole frame, earthy brown, rust and oatmeal concentric woven bands with a simple zigzag border, soft hand-painted storybook texture, even lighting, no shadow, plain white background around the oval"
     },
     {
@@ -674,7 +768,8 @@
       "sheet": [
         {
           "id": "ruin_toppled_pillar",
-          "height": 0.9
+          "height": 0.9,
+          "skip": true
         },
         {
           "id": "ruin_hearthstone",
@@ -686,10 +781,16 @@
         },
         {
           "id": "ruin_hearth_ring",
-          "height": 0.45
+          "height": 0.45,
+          "skip": true
         }
       ],
-      "assign": [1, 0, 2, 3]
+      "assign": [
+        1,
+        0,
+        2,
+        3
+      ]
     },
     {
       "id": "shrine_first_hearth",
@@ -712,7 +813,8 @@
         },
         {
           "id": "shrine_cairn",
-          "height": 1
+          "height": 1,
+          "skip": true
         },
         {
           "id": "shrine_standing_stone",
@@ -723,7 +825,12 @@
           "height": 1
         }
       ],
-      "assign": [1, 0, 2, 3]
+      "assign": [
+        1,
+        0,
+        2,
+        3
+      ]
     },
     {
       "id": "bridge_plank_footbridge",
@@ -770,7 +877,12 @@
           "height": 0.6
         }
       ],
-      "assign": [1, 2, 3, 0]
+      "assign": [
+        1,
+        2,
+        3,
+        0
+      ]
     },
     {
       "id": "sheet_accord_traces_b",
@@ -796,7 +908,12 @@
           "height": 0.45
         }
       ],
-      "assign": [3, 0, 2, 1]
+      "assign": [
+        3,
+        0,
+        2,
+        1
+      ]
     },
     {
       "id": "sheet_outpost_lanternwardens",
@@ -812,7 +929,8 @@
         },
         {
           "id": "outpost_warden_brazier",
-          "height": 1.4
+          "height": 1.4,
+          "skip": true
         },
         {
           "id": "outpost_warden_rack",
@@ -824,7 +942,12 @@
           "skip": true
         }
       ],
-      "assign": [2, 1, 0, 3]
+      "assign": [
+        2,
+        1,
+        0,
+        3
+      ]
     },
     {
       "id": "sheet_outpost_hearthwright",
@@ -850,7 +973,12 @@
           "height": 3
         }
       ],
-      "assign": [1, 0, 2, 3]
+      "assign": [
+        1,
+        0,
+        2,
+        3
+      ]
     },
     {
       "id": "sheet_outpost_bracken",
@@ -876,7 +1004,12 @@
           "height": 3
         }
       ],
-      "assign": [0, 3, 2, 1]
+      "assign": [
+        0,
+        3,
+        2,
+        1
+      ]
     },
     {
       "id": "sheet_outpost_gilt",
@@ -904,7 +1037,554 @@
           "height": 3
         }
       ],
-      "assign": [0, 1, 3, 2]
+      "assign": [
+        0,
+        1,
+        3,
+        2
+      ]
+    },
+    {
+      "id": "sheet_furn_redo_a",
+      "category": "furniture",
+      "height": 1,
+      "faceLimit": 6000,
+      "sheetPrompt": "exactly 3 separate objects standing far apart in ONE straight horizontal line from left to right, wide empty white space between each, nothing stacked above another, none touching: a small oak ale keg lying on a sturdy wooden cradle with a brass tap, a neat stack of three wooden supply crates, a round wooden stool with three thick straight legs",
+      "sheet": [
+        {
+          "id": "furn_rustic_keg",
+          "height": 0.85,
+          "family": "rustic",
+          "skip": true
+        },
+        {
+          "id": "furn_crate_stack",
+          "height": 1.3,
+          "family": "crafter"
+        },
+        {
+          "id": "furn_rustic_stool",
+          "height": 0.55,
+          "family": "rustic"
+        }
+      ],
+      "assign": [
+        1,
+        0,
+        2
+      ]
+    },
+    {
+      "id": "sheet_furn_redo_b",
+      "category": "furniture",
+      "height": 1,
+      "faceLimit": 6000,
+      "sheetPrompt": "exactly 3 separate objects standing far apart in ONE straight horizontal line from left to right, wide empty white space between each, nothing stacked above another, none touching: a tall carved dark walnut wardrobe with two doors and brass handles, a tall brass five arm candelabra with white candles, a flat wooden wall board with pegs holding a saw, a hammer and chisels",
+      "sheet": [
+        {
+          "id": "furn_noble_wardrobe",
+          "height": 2.2,
+          "family": "noble"
+        },
+        {
+          "id": "furn_candelabra",
+          "height": 0.6,
+          "family": "noble"
+        },
+        {
+          "id": "furn_tool_rack",
+          "height": 1.2,
+          "family": "crafter"
+        }
+      ],
+      "assign": [
+        2,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "sheet_furn_redo_stations",
+      "category": "furniture",
+      "height": 1,
+      "faceLimit": 7000,
+      "sheetPrompt": "exactly 3 separate objects standing far apart in ONE straight horizontal line from left to right, wide empty white space between each, nothing stacked above another, none touching: a leather tanning table with a hide stretched on an upright wooden frame, a small wooden floor loom with half woven striped cloth, a sturdy toolworks bench with an iron vise and a grinding wheel",
+      "sheet": [
+        {
+          "id": "furn_home_tannery",
+          "height": 1.4,
+          "family": "crafter"
+        },
+        {
+          "id": "furn_home_loom",
+          "height": 1.3,
+          "family": "crafter"
+        },
+        {
+          "id": "furn_home_toolworks",
+          "height": 1.2,
+          "family": "crafter"
+        }
+      ],
+      "assign": [
+        1,
+        2,
+        0
+      ]
+    },
+    {
+      "id": "sheet_world_redo",
+      "category": "ruin",
+      "height": 1,
+      "faceLimit": 7000,
+      "sheetPrompt": "exactly 4 separate objects standing far apart in ONE straight horizontal line from left to right, wide empty white space between each, nothing stacked above another, none touching: a weathered pale stone round pillar lying fallen on its side in two broken drums with moss, a low ring of rough hearth stones around grey ash, a neat conical stone cairn of stacked flat stones, an iron signal brazier bowl on three iron legs",
+      "sheet": [
+        {
+          "id": "ruin_toppled_pillar",
+          "height": 0.9,
+          "category": "ruin"
+        },
+        {
+          "id": "ruin_hearth_ring",
+          "height": 0.45,
+          "category": "ruin"
+        },
+        {
+          "id": "shrine_cairn",
+          "height": 1,
+          "category": "shrine"
+        },
+        {
+          "id": "outpost_warden_brazier",
+          "height": 1.4,
+          "category": "outpost"
+        }
+      ],
+      "assign": [
+        0,
+        3,
+        1,
+        2
+      ]
+    },
+    {
+      "id": "sheet_grave_lamps",
+      "category": "quest",
+      "height": 1,
+      "faceLimit": 5000,
+      "sheetPrompt": "exactly 2 separate objects standing far apart in ONE straight horizontal line from left to right, wide empty white space between each, nothing stacked above another, none touching: two copies of the SAME old graveyard lamp, a short carved stone post topped by a black iron lantern cage; the left one cold and unlit with dark glass, the right one identical but lit with a pale blue-white flame and wrapped in black waxed cord",
+      "sheet": [
+        {
+          "id": "quest_grave_lamp_unlit",
+          "height": 1.5
+        },
+        {
+          "id": "quest_grave_lamp_bound",
+          "height": 1.5
+        }
+      ],
+      "assign": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sheet_rights_wreck",
+      "category": "quest",
+      "height": 1,
+      "faceLimit": 6000,
+      "sheetPrompt": "exactly 3 separate objects standing far apart in ONE straight horizontal line from left to right, wide empty white space between each, nothing stacked above another, none touching: a loose pile of broken weathered ship planks with rusty nails, a big rusty iron ship anchor lying on its side, a curved fragment of a wooden ship hull with exposed ribs and barnacles",
+      "sheet": [
+        {
+          "id": "rights_broken_planks",
+          "height": 0.6
+        },
+        {
+          "id": "rights_fallen_anchor",
+          "height": 0.9
+        },
+        {
+          "id": "rights_hull_fragment",
+          "height": 1.6
+        }
+      ],
+      "assign": [
+        1,
+        2,
+        0
+      ]
+    },
+    {
+      "id": "rights_shipwreck_hull",
+      "category": "quest",
+      "height": 6,
+      "faceLimit": 8000,
+      "prompt": "large wrecked wooden sailing ship hull lying tilted on its side on a beach, broken open amidships with exposed ribs, a snapped mast stump, torn sail cloth, weathered teal and cream painted planks, seaweed and barnacles, no water, no ground plane"
+    },
+    {
+      "id": "sheet_rights_crypt",
+      "category": "quest",
+      "height": 1,
+      "faceLimit": 6000,
+      "sheetPrompt": "exactly 2 separate objects standing far apart in ONE straight horizontal line from left to right, wide empty white space between them, none touching: a flat round ritual circle of low carved grey stones set in a ring on dark soil, scattered with loose abstract swirling chalk lines and stubby candles, no stars, no symbols, no letters; a heavy weathered stone archway holding closed oak double doors banded with iron",
+      "sheet": [
+        {
+          "id": "rights_crypt_ritual_circle",
+          "height": 0.35
+        },
+        {
+          "id": "rights_dungeon_door_arch",
+          "height": 4
+        }
+      ],
+      "assign": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sheet_rights_marsh_a",
+      "category": "quest",
+      "height": 1,
+      "faceLimit": 7000,
+      "sheetPrompt": "exactly 4 separate objects standing far apart in ONE straight horizontal line from left to right, wide empty white space between each, nothing stacked above another, none touching: a short rickety footbridge of grey weathered planks on stilts, a broken fragment of a carved mossy stone wayside shrine, a crooked wooden stake holding a cluster of pale dripping marsh candles, a leaning wooden gallows frame holding a cracked green bronze bell",
+      "rights": true,
+      "sheet": [
+        {
+          "id": "rights_marsh_plank_bridge",
+          "target": "public/models/props/marsh_plank_bridge.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_marsh_shrine_fragment",
+          "target": "public/models/props/marsh_shrine_fragment.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_marsh_corpse_candle",
+          "target": "public/models/props/marsh_corpse_candle.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_marsh_bell_gallows",
+          "target": "public/models/props/marsh_bell_gallows.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_marsh_a_extra",
+          "height": 1,
+          "skip": true
+        }
+      ]
+    },
+    {
+      "id": "sheet_rights_marsh_b",
+      "category": "quest",
+      "height": 1,
+      "faceLimit": 7000,
+      "sheetPrompt": "exactly 4 separate objects standing far apart in ONE straight horizontal line from left to right, wide empty white space between each, nothing stacked above another, none touching: a tapered old wooden sluice post with an iron wheel and a rusty gate slot, a bare twisted dead swamp tree with drooping grey moss, a dense clump of tall cattail reeds, a low wall of tangled grey mangrove roots",
+      "rights": true,
+      "sheet": [
+        {
+          "id": "rights_marsh_sluice_post",
+          "target": "public/models/props/marsh_sluice_post.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_marsh_dead_tree",
+          "target": "public/models/props/marsh_dead_tree.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_marsh_reed_cluster",
+          "target": "public/models/props/marsh_reed_cluster.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_marsh_root_wall",
+          "target": "public/models/props/marsh_root_wall.glb",
+          "height": 1
+        }
+      ]
+    },
+    {
+      "id": "sheet_rights_wild_a",
+      "category": "quest",
+      "height": 1,
+      "faceLimit": 7000,
+      "sheetPrompt": "exactly 4 separate objects standing far apart in ONE straight horizontal line from left to right, wide empty white space between each, nothing stacked above another, none touching: a tall carved jungle wooden totem pole with stacked painted tribal masks and feathers, a huge curling giant fern plant, a crumbling mossy stepped stone ruin wall with carved faces, a rocky animal den mouth framed by roots and bones",
+      "rights": true,
+      "sheet": [
+        {
+          "id": "rights_wildheart_mask_totem",
+          "target": "public/models/props/wildheart_mask_totem.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_wildheart_giant_fern",
+          "target": "public/models/props/wildheart_giant_fern.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_wildheart_ancestor_ruin",
+          "target": "public/models/props/wildheart_ancestor_ruin.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_wildheart_beast_den",
+          "target": "public/models/props/wildheart_beast_den.glb",
+          "height": 1
+        }
+      ]
+    },
+    {
+      "id": "sheet_rights_wild_b",
+      "category": "quest",
+      "height": 1,
+      "faceLimit": 7000,
+      "sheetPrompt": "exactly 3 separate objects standing far apart in ONE straight horizontal line from left to right, wide empty white space between each, nothing stacked above another, none touching: a tall pale limestone cliff outcrop with vines and ledges, a small stepped jungle stone pyramid shrine with a stair up the front, a heavy stone gateway arch carved as the open jaws of a great snarling jungle cat",
+      "rights": true,
+      "sheet": [
+        {
+          "id": "rights_wildheart_limestone_cliff",
+          "target": "public/models/props/wildheart_limestone_cliff.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_wildheart_ritual_pyramid",
+          "target": "public/models/props/wildheart_ritual_pyramid.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_wildheart_jaguar_gate",
+          "target": "public/models/props/wildheart_jaguar_gate.glb",
+          "height": 1
+        }
+      ]
+    },
+    {
+      "id": "sheet_rights_ign_a",
+      "category": "quest",
+      "height": 1,
+      "faceLimit": 7000,
+      "sheetPrompt": "exactly 4 separate objects standing far apart in ONE straight horizontal line from left to right, wide empty white space between each, nothing stacked above another, none touching in a volcanic mountain forge fortress of dark iron, riveted bronze and black basalt with faint glowing ember seams: a massive iron anvil on a basalt block, a roaring stone forge hearth with bellows, a tall iron lava smelting furnace with a glowing mouth, a heavy riveted iron press machine",
+      "rights": true,
+      "sheet": [
+        {
+          "id": "rights_ign_anvil",
+          "target": "public/models/dungeon/ignivar_prop_anvil.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_forge",
+          "target": "public/models/dungeon/ignivar_prop_forge.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_lava_furnace",
+          "target": "public/models/dungeon/ignivar_prop_lava_furnace.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_press_machine",
+          "target": "public/models/dungeon/ignivar_prop_press_machine.glb",
+          "height": 1
+        }
+      ]
+    },
+    {
+      "id": "sheet_rights_ign_b",
+      "category": "quest",
+      "height": 1,
+      "faceLimit": 7000,
+      "sheetPrompt": "exactly 4 separate objects standing far apart in ONE straight horizontal line from left to right, wide empty white space between each, nothing stacked above another, none touching in a volcanic mountain forge fortress of dark iron, riveted bronze and black basalt with faint glowing ember seams: a squat bronze siege cannon on a wheeled carriage, a huge carved basalt dragon head wall mount with glowing eyes, a tall basalt pillar coiled by a carved dragon, a round basalt fountain basin full of lava",
+      "rights": true,
+      "sheet": [
+        {
+          "id": "rights_ign_cannon",
+          "target": "public/models/dungeon/ignivar_prop_cannon.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_dragon_head",
+          "target": "public/models/dungeon/ignivar_prop_dragon_head.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_dragon_pillar",
+          "target": "public/models/dungeon/ignivar_prop_dragon_pillar.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_fountain_base",
+          "target": "public/models/dungeon/ignivar_prop_fountain_base.glb",
+          "height": 1
+        }
+      ]
+    },
+    {
+      "id": "sheet_rights_ign_c",
+      "category": "quest",
+      "height": 1,
+      "faceLimit": 7000,
+      "sheetPrompt": "exactly 4 separate objects standing far apart in ONE straight horizontal line from left to right on the ground, wide empty white space between each, no frame, no beam, no ceiling, nothing joining them, in a volcanic mountain forge fortress style of dark iron and riveted bronze: a coiled heap of heavy iron chain lying on the floor, a long iron chain standing upright as a tall loose vertical coil with a ring at its top, a single giant iron chain link standing on edge, a big iron hook on a short chain lying on the floor",
+      "rights": true,
+      "sheet": [
+        {
+          "id": "rights_ign_chain",
+          "target": "public/models/dungeon/ignivar_prop_chain.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_chain_hanging",
+          "target": "public/models/dungeon/ignivar_prop_chain_hanging.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_chain_link",
+          "target": "public/models/dungeon/ignivar_prop_chain_link.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_hanging_hook",
+          "target": "public/models/dungeon/ignivar_prop_hanging_hook.glb",
+          "height": 1
+        }
+      ]
+    },
+    {
+      "id": "sheet_rights_ign_d",
+      "category": "quest",
+      "height": 1,
+      "faceLimit": 7000,
+      "sheetPrompt": "exactly 4 separate objects standing far apart in ONE straight horizontal line from left to right, wide empty white space between each, nothing stacked above another, none touching in a volcanic mountain forge fortress of dark iron, riveted bronze and black basalt with faint glowing ember seams: a boxy iron machine of meshing bronze gears, a flat rusty iron wall panel covered in large gears, one huge upright iron cogwheel on an axle stand, a round riveted iron steam boiler machine with gauges",
+      "rights": true,
+      "sheet": [
+        {
+          "id": "rights_ign_gear_machine",
+          "target": "public/models/dungeon/ignivar_prop_gear_machine.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_gear_wall_rusty",
+          "target": "public/models/dungeon/ignivar_prop_gear_wall_rusty.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_gate_gear",
+          "target": "public/models/dungeon/ignivar_prop_gate_gear.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_steam_machine_round",
+          "target": "public/models/dungeon/ignivar_prop_steam_machine_round.glb",
+          "height": 1
+        }
+      ]
+    },
+    {
+      "id": "sheet_rights_ign_e",
+      "category": "quest",
+      "height": 1,
+      "faceLimit": 7000,
+      "sheetPrompt": "exactly 4 separate objects standing far apart in ONE straight horizontal line from left to right, wide empty white space between each, nothing stacked above another, none touching in a volcanic mountain forge fortress of dark iron, riveted bronze and black basalt with faint glowing ember seams: a long bent industrial iron pipe with flanges, a cluster of bundled brass steam pipes with valves, an iron hand water pump on a stone base, a tall glowing iron reactor core cylinder in a cage",
+      "rights": true,
+      "sheet": [
+        {
+          "id": "rights_ign_industrial_pipe",
+          "target": "public/models/dungeon/ignivar_prop_industrial_pipe.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_steam_pipes",
+          "target": "public/models/dungeon/ignivar_prop_steam_pipes.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_water_pump",
+          "target": "public/models/dungeon/ignivar_prop_water_pump.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_reactor",
+          "target": "public/models/dungeon/ignivar_prop_reactor.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_e_extra",
+          "height": 1,
+          "skip": true
+        }
+      ]
+    },
+    {
+      "id": "sheet_rights_ign_f",
+      "category": "quest",
+      "height": 1,
+      "faceLimit": 7000,
+      "sheetPrompt": "exactly 4 separate objects standing far apart in ONE straight horizontal line from left to right, wide empty white space between each, nothing stacked above another, none touching in a volcanic mountain forge fortress of dark iron, riveted bronze and black basalt with faint glowing ember seams: a straight basalt channel trough of flowing glowing lava, a curved basalt lava channel trough, a carved basalt lava spout outlet with lava pouring, a square iron framed lava port hatch in a stone block",
+      "rights": true,
+      "sheet": [
+        {
+          "id": "rights_ign_lava_channel",
+          "target": "public/models/dungeon/ignivar_prop_lava_channel.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_lava_channel_curved",
+          "target": "public/models/dungeon/ignivar_prop_lava_channel_curved.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_lava_outlet",
+          "target": "public/models/dungeon/ignivar_prop_lava_outlet.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_lava_port",
+          "target": "public/models/dungeon/ignivar_prop_lava_port.glb",
+          "height": 1
+        }
+      ]
+    },
+    {
+      "id": "sheet_rights_ign_g",
+      "category": "quest",
+      "height": 1,
+      "faceLimit": 7000,
+      "sheetPrompt": "exactly 4 separate objects standing far apart in ONE straight horizontal line from left to right, wide empty white space between each, nothing stacked above another, none touching in a volcanic mountain forge fortress of dark iron, riveted bronze and black basalt with faint glowing ember seams: a flat basalt wall slab with glowing lava cracks, a thick basalt pillar with lava veins, a slim iron banded stone pillar, a tall square fortress tower pillar of basalt blocks",
+      "rights": true,
+      "sheet": [
+        {
+          "id": "rights_ign_lava_face",
+          "target": "public/models/dungeon/ignivar_prop_lava_face.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_lava_pillar",
+          "target": "public/models/dungeon/ignivar_prop_lava_pillar.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_pillar_slim",
+          "target": "public/models/dungeon/ignivar_prop_pillar_slim.glb",
+          "height": 1
+        },
+        {
+          "id": "rights_ign_tower_pillar",
+          "target": "public/models/dungeon/ignivar_prop_tower_pillar.glb",
+          "height": 1
+        }
+      ]
+    },
+    {
+      "id": "rights_wildheart_canopy_tree",
+      "category": "quest",
+      "height": 14,
+      "faceLimit": 8000,
+      "rights": true,
+      "target": "public/models/props/wildheart_jungle_canopy_tree.glb",
+      "prompt": "a towering jungle canopy tree with a buttressed root base, a tall straight trunk wrapped in vines and a broad flat crown of dense layered leaves, hand painted storybook style, no ground plane"
     }
   ]
 }

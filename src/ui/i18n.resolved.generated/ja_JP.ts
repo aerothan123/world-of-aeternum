@@ -24973,6 +24973,15 @@ export const ja_JP: EnTranslations = {
       "furn_woven_rug_painted": {
         "name": "楕円のウールラグ"
       },
+      "furn_noble_wardrobe": {
+        "name": "彫刻入りの衣装棚"
+      },
+      "furn_candelabra": {
+        "name": "枝付き燭台"
+      },
+      "furn_crate_stack": {
+        "name": "積み重ねた木箱"
+      },
       "membership_staff": {
         "name": "変化の杖"
       },

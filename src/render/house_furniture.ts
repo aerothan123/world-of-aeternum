@@ -121,6 +121,12 @@ const KCAS_KEYS = [
   'wynPottingBench',
   'wynSpoolRack',
   'wynHerbDryingRack',
+  'wynHomeTannery',
+  'wynHomeLoom',
+  'wynHomeToolworks',
+  'wynNobleWardrobe',
+  'wynCandelabra',
+  'wynCrateStack',
 ] as const satisfies readonly Exclude<FurnitureRenderKey, 'rug'>[];
 type KcasKey = (typeof KCAS_KEYS)[number];
 

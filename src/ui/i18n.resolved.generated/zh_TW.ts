@@ -24973,6 +24973,15 @@ export const zh_TW: EnTranslations = {
       "furn_woven_rug_painted": {
         "name": "橢圓羊毛地毯"
       },
+      "furn_noble_wardrobe": {
+        "name": "雕花衣櫃"
+      },
+      "furn_candelabra": {
+        "name": "枝形燭台"
+      },
+      "furn_crate_stack": {
+        "name": "木箱堆"
+      },
       "membership_staff": {
         "name": "萬變法杖"
       },

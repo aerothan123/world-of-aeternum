@@ -24973,6 +24973,15 @@ export const ru_RU: EnTranslations = {
       "furn_woven_rug_painted": {
         "name": "Овальный шерстяной ковёр"
       },
+      "furn_noble_wardrobe": {
+        "name": "Резной шкаф"
+      },
+      "furn_candelabra": {
+        "name": "Канделябр"
+      },
+      "furn_crate_stack": {
+        "name": "Штабель ящиков"
+      },
       "membership_staff": {
         "name": "Посох перемен"
       },

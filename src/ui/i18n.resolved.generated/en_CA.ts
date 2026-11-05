@@ -24973,6 +24973,15 @@ export const en_CA: EnTranslations = {
       "furn_woven_rug_painted": {
         "name": "Oval Wool Rug"
       },
+      "furn_noble_wardrobe": {
+        "name": "Carved Wardrobe"
+      },
+      "furn_candelabra": {
+        "name": "Candelabra"
+      },
+      "furn_crate_stack": {
+        "name": "Crate Stack"
+      },
       "membership_staff": {
         "name": "Staff of Changing"
       },

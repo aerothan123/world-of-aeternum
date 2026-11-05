@@ -5579,6 +5579,48 @@ export const FURNISHING_RECIPES: ProfessionRecipeRecord[] = [
     stationType: 'toolworks',
     acquisition: ['trainer'],
   },
+  {
+    id: 'recipe_furn_noble_wardrobe',
+    professionId: 'furnishing',
+    resultItemId: 'furn_noble_wardrobe',
+    resultCount: 1,
+    // Input 244 vs output 146.
+    reagents: [
+      { itemId: 'ashwood_log', count: 4 },
+      { itemId: 'copper_ore', count: 1 },
+    ],
+    skillReq: 0,
+    itemLevelBudget: 12,
+    level: 12,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
+  {
+    id: 'recipe_furn_candelabra',
+    professionId: 'furnishing',
+    resultItemId: 'furn_candelabra',
+    resultCount: 1,
+    // Input 20 vs output 12.
+    reagents: [{ itemId: 'copper_ore', count: 5 }],
+    skillReq: 0,
+    itemLevelBudget: 10,
+    level: 10,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
+  {
+    id: 'recipe_furn_crate_stack',
+    professionId: 'furnishing',
+    resultItemId: 'furn_crate_stack',
+    resultCount: 1,
+    // Input 24 vs output 14.
+    reagents: [{ itemId: 'ironbark_log', count: 6 }],
+    skillReq: 0,
+    itemLevelBudget: 6,
+    level: 6,
+    stationType: 'toolworks',
+    acquisition: ['trainer'],
+  },
 ];
 
 // Phase 3: the six home crafting stations (content/furniture.ts

@@ -4035,6 +4035,9 @@ const ITEM_ENTITY_IDS = [
   'furn_spool_rack',
   'furn_herb_drying_rack',
   'furn_woven_rug_painted',
+  'furn_noble_wardrobe',
+  'furn_candelabra',
+  'furn_crate_stack',
 ] as const;
 
 type ItemEntityId = (typeof ITEM_ENTITY_IDS)[number];
@@ -4072,6 +4075,9 @@ const APPENDED_ITEM_NAMES: Partial<Record<ItemEntityId, string>> = {
   furn_braided_rug: 'Braided Rug',
   furn_table_lantern: 'Table Lantern',
   furn_folding_worktable: 'Folding Worktable',
+  furn_noble_wardrobe: 'Carved Wardrobe',
+  furn_candelabra: 'Candelabra',
+  furn_crate_stack: 'Crate Stack',
   furn_woven_rug_painted: 'Oval Wool Rug',
   furn_rustic_wardrobe: 'Plank Wardrobe',
   furn_rustic_cupboard: 'Kitchen Cupboard',
