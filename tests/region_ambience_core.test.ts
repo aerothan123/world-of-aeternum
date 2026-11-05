@@ -5,6 +5,7 @@ import { ForestDensitySampler } from '../src/render/forest_density_core';
 import {
   createRegionAmbience,
   dayWeightForPhase,
+  interiorBedIndex,
   LEGACY_FLOOR,
   REGION_BED_GAINS,
   REGION_BED_KEYS,
@@ -12,12 +13,13 @@ import {
   type RegionZone,
   sampleRegionAmbienceInto,
   TOWN_FADE_YARDS,
+  TOWN_SOUNDSCAPES,
   ZONE_BLEND_YARDS,
   zoneBedIndex,
 } from '../src/render/region_ambience_core';
 import { PROVING_SHORE_ZONE } from '../src/sim/content/proving_shore';
 import { ZONE1_ZONE } from '../src/sim/content/zone1';
-import { zoneAt } from '../src/sim/data';
+import { ZONES, zoneAt } from '../src/sim/data';
 
 // The region beds (src/render/region_ambience_core.ts): which long zone and town
 // soundscapes play where the player stands, and how they crossfade.
@@ -42,6 +44,7 @@ function at(x: number, z: number, opts: { day?: number; forest?: number; dungeon
       x,
       z,
       inDungeon: opts.dungeon ?? false,
+      dungeonInterior: null,
       dayWeight: opts.day ?? 1,
       forestDensity: opts.forest ?? 0,
     },
@@ -60,7 +63,14 @@ describe('region_ambience_core', () => {
     expect(camp).toBeDefined();
     const r = sampleRegionAmbienceInto(
       createRegionAmbience(),
-      { x: camp?.x ?? 0, z: camp?.z ?? 0, inDungeon: false, dayWeight: 1, forestDensity: 0 },
+      {
+        x: camp?.x ?? 0,
+        z: camp?.z ?? 0,
+        inDungeon: false,
+        dungeonInterior: null,
+        dayWeight: 1,
+        forestDensity: 0,
+      },
       zoneAt,
       () => undefined,
     );
@@ -112,8 +122,51 @@ describe('region_ambience_core', () => {
     const dusk = at(-200, 0, { day: 0.5 });
     expect(weight(dusk, 'amb_bed_town_day')).toBeCloseTo(0.5, 5);
     expect(weight(dusk, 'amb_bed_town_night')).toBeCloseTo(0.5, 5);
-    // the meadow thins at night but is not gone
-    expect(weight(at(-120, 0, { day: 0 }), 'amb_bed_meadow')).toBeGreaterThan(0.3);
+    // after dark the meadow's larks give way to the country's crickets
+    const field = at(-120, 0, { day: 0 });
+    expect(weight(field, 'amb_bed_meadow')).toBe(0);
+    expect(weight(field, 'amb_bed_night_wild')).toBeCloseTo(1, 5);
+    const twilight = at(-120, 0, { day: 0.5 });
+    expect(weight(twilight, 'amb_bed_meadow') + weight(twilight, 'amb_bed_night_wild')).toBeCloseTo(
+      1,
+      5,
+    );
+  });
+
+  it('plays a dungeon interior bed in place of the zone beds, and none in a house', () => {
+    const crypt = sampleRegionAmbienceInto(
+      createRegionAmbience(),
+      {
+        x: 5000,
+        z: 0,
+        inDungeon: true,
+        dungeonInterior: 'hollow_crypt',
+        dayWeight: 1,
+        forestDensity: 0,
+      },
+      strip,
+      byId,
+    );
+    expect(weight(crypt, 'amb_bed_crypt')).toBe(1);
+    expect(crypt.legacyScale).toBeCloseTo(LEGACY_FLOOR, 5);
+    expect(REGION_BED_KEYS[interiorBedIndex('cave')]).toBe('amb_bed_cave');
+    expect(REGION_BED_KEYS[interiorBedIndex('drowned_temple')]).toBe('amb_bed_temple');
+    expect(REGION_BED_KEYS[interiorBedIndex('ignivar_depths')]).toBe('amb_bed_ember');
+    expect(interiorBedIndex('house')).toBe(-1);
+    expect(interiorBedIndex(null)).toBe(-1);
+    expect(interiorBedIndex('toString')).toBe(-1);
+  });
+
+  it('gives every shipped zone a bed, and every listed town a zone with a hub', () => {
+    for (const zone of ZONES) {
+      expect(zoneBedIndex(zone), zone.id).toBeGreaterThanOrEqual(0);
+    }
+    // a town whose zone is not in the shipped list yet (Goldcrest Harbor) simply stays silent
+    for (const t of TOWN_SOUNDSCAPES) {
+      const zone = ZONES.find((z) => z.id === t.zoneId);
+      if (zone) expect(zone.hub, t.zoneId).toBeDefined();
+    }
+    expect(ZONES.find((z) => z.id === 'eastbrook_vale')?.hub).toBeDefined();
   });
 
   it('hands a wooded meadow to the forest bed and its reverb space', () => {
@@ -126,7 +179,7 @@ describe('region_ambience_core', () => {
     expect(edge.reverbEnv).toBeNull();
   });
 
-  it('is silent in a dungeon and keeps the older loops whole there', () => {
+  it('is silent in an unmapped instance and keeps the older loops whole there', () => {
     const r = at(-120, 0, { dungeon: true });
     for (let i = 0; i < r.weights.length; i++) expect(r.weights[i]).toBe(0);
     expect(r.legacyScale).toBe(1);

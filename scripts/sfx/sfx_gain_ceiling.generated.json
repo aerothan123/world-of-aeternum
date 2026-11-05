@@ -1,4 +1,59 @@
 {
+  "amb_bed_amber": {
+    "ceilingDb": 4.3,
+    "tracks": [
+      {
+        "filename": "amb_bed_amber.mp3",
+        "sha256": "654d38340778aa2d982bd1607f1c743e2b89e397d87ff2420f05719e8bf63ddb",
+        "size": 440991,
+        "peakDb": -5.3
+      }
+    ]
+  },
+  "amb_bed_cave": {
+    "ceilingDb": 4.3,
+    "tracks": [
+      {
+        "filename": "amb_bed_cave.mp3",
+        "sha256": "dd03fda43f1e714a67f3dbba3300196445a30744e451ad83023f418e06d9062d",
+        "size": 440991,
+        "peakDb": -5.3
+      }
+    ]
+  },
+  "amb_bed_crypt": {
+    "ceilingDb": 5.4,
+    "tracks": [
+      {
+        "filename": "amb_bed_crypt.mp3",
+        "sha256": "d4290b926179077a0fd44991ad6fdd2f8a887a80e17057c6e116dbfb8ceedcd2",
+        "size": 440991,
+        "peakDb": -6.4
+      }
+    ]
+  },
+  "amb_bed_dusk": {
+    "ceilingDb": 4.3,
+    "tracks": [
+      {
+        "filename": "amb_bed_dusk.mp3",
+        "sha256": "f7fe3f51137ef84113beba72a41cf8ca81146b3367c3936db6d50fd86fa62d50",
+        "size": 440991,
+        "peakDb": -5.3
+      }
+    ]
+  },
+  "amb_bed_ember": {
+    "ceilingDb": 5.4,
+    "tracks": [
+      {
+        "filename": "amb_bed_ember.mp3",
+        "sha256": "e84517f9e1b13e17b2012fbb01763259735e9778d3c33c62e67b78bccb5ca3df",
+        "size": 440991,
+        "peakDb": -6.4
+      }
+    ]
+  },
   "amb_bed_forest": {
     "ceilingDb": 4,
     "tracks": [
@@ -7,6 +62,72 @@
         "sha256": "da0d9bd8d2c596e9e0134ed05a8573b6945a082ddfae1b9e2e0e2dedb0058771",
         "size": 440991,
         "peakDb": -5
+      }
+    ]
+  },
+  "amb_bed_frost": {
+    "ceilingDb": 5.9,
+    "tracks": [
+      {
+        "filename": "amb_bed_frost.mp3",
+        "sha256": "e7eef66e236f451152443ef927fb74a6f1d4abd755ab221aefe26f7883ce45d8",
+        "size": 440991,
+        "peakDb": -6.9
+      }
+    ]
+  },
+  "amb_bed_gale": {
+    "ceilingDb": 4,
+    "tracks": [
+      {
+        "filename": "amb_bed_gale.mp3",
+        "sha256": "b6a430af67ac44a7cf7c1e3d87f41b45fa0d3d4225d341d7659ce3b4de7fc651",
+        "size": 440991,
+        "peakDb": -5
+      }
+    ]
+  },
+  "amb_bed_garden": {
+    "ceilingDb": 3.5,
+    "tracks": [
+      {
+        "filename": "amb_bed_garden.mp3",
+        "sha256": "1b840340a803e2dfa60ee82ac7dfcafdd00cb95706a9ae804e62cb38e7a3091f",
+        "size": 440991,
+        "peakDb": -4.5
+      }
+    ]
+  },
+  "amb_bed_harbor": {
+    "ceilingDb": 5.3,
+    "tracks": [
+      {
+        "filename": "amb_bed_harbor.mp3",
+        "sha256": "3eb3155ee635b862553f7c04e00b2dd575272d536bbbfe6c1d7b930eb73b0aa4",
+        "size": 440991,
+        "peakDb": -6.3
+      }
+    ]
+  },
+  "amb_bed_haunt": {
+    "ceilingDb": 4.5,
+    "tracks": [
+      {
+        "filename": "amb_bed_haunt.mp3",
+        "sha256": "a0a7505f982c5307dc28911d9d87d8dacd123eaaacfccb56aa7338feec5c99f0",
+        "size": 440991,
+        "peakDb": -5.5
+      }
+    ]
+  },
+  "amb_bed_jungle": {
+    "ceilingDb": 9.8,
+    "tracks": [
+      {
+        "filename": "amb_bed_jungle.mp3",
+        "sha256": "06f591842e54b4a8d24e8d5f1e13b880687f19979942cc983cd9cef1e06b481f",
+        "size": 440991,
+        "peakDb": -10.8
       }
     ]
   },
@@ -32,6 +153,28 @@
       }
     ]
   },
+  "amb_bed_night_wild": {
+    "ceilingDb": 3.8,
+    "tracks": [
+      {
+        "filename": "amb_bed_night_wild.mp3",
+        "sha256": "88268215a77325de55572e5f8862ad20ea06517515c988ce4642b0ade1bd32bf",
+        "size": 440991,
+        "peakDb": -4.8
+      }
+    ]
+  },
+  "amb_bed_peaks": {
+    "ceilingDb": 4,
+    "tracks": [
+      {
+        "filename": "amb_bed_peaks.mp3",
+        "sha256": "e0b6245b462f614d7837f0d707952ba7c9395396234c8c18869a9e09282d837f",
+        "size": 440991,
+        "peakDb": -5
+      }
+    ]
+  },
   "amb_bed_shore": {
     "ceilingDb": 3.1,
     "tracks": [
@@ -40,6 +183,17 @@
         "sha256": "f7e2402659bedf6b917e15b226b32083b8968a91859107b6cbfbd4bb1a9c8d7b",
         "size": 313095,
         "peakDb": -4.1
+      }
+    ]
+  },
+  "amb_bed_temple": {
+    "ceilingDb": 5.5,
+    "tracks": [
+      {
+        "filename": "amb_bed_temple.mp3",
+        "sha256": "82118b6282cf4624d4d418610e79cfc94801c8388d0abadf1309b7449ecf234e",
+        "size": 440991,
+        "peakDb": -6.5
       }
     ]
   },

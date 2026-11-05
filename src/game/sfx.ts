@@ -2012,7 +2012,7 @@ class Sfx {
     this.reverbEnv = (!inDungeon && this.regionReverb) || reverbEnvFor(biome, inDungeon);
     this.reverb?.setEnvironment(this.reverbEnv);
     const legacy = this.regionLegacy;
-    this.ambient('amb_dungeon', inDungeon ? 0.3 : 0);
+    this.ambient('amb_dungeon', inDungeon ? 0.3 * legacy : 0);
     // Sowfield crowd murmur (procedural bed): quiet chatter on the grounds,
     // swelling while a match is live (the renderer passes 0 / ~0.4 / 1).
     this.ambient('amb_crowd', crowd > 0 ? 0.08 + 0.18 * Math.min(1, crowd) : 0);
@@ -2064,7 +2064,7 @@ class Sfx {
           : biome === 'gale'
             ? 0.24
             : 0;
-    this.ambient('amb_wind_peaks', !inDungeon ? peaksBed : 0);
+    this.ambient('amb_wind_peaks', !inDungeon ? peaksBed * legacy : 0);
     this.ambient('amb_rain', precip === 'rain' ? 0.11 : 0); // sharp clip, kept very low
     this.ambient('amb_snow', precip === 'snow' ? 0.13 : 0);
     this.ambient('amb_water', nearWater ? 0.18 : 0);

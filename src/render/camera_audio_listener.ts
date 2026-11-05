@@ -6,7 +6,7 @@
 // take the first-person hook without growing the coordinator.
 
 import type * as THREE from 'three';
-import { activeZoneList, zoneAt } from '../sim/data';
+import { activeZoneList, dungeonAt, zoneAt } from '../sim/data';
 import type { Entity, ZoneDef } from '../sim/types';
 import { generateDecorationsInBounds } from '../sim/world';
 import { type createAmbienceState, sampleAmbienceInto } from './ambience_state_core';
@@ -110,6 +110,7 @@ function sampleRegionBeds(
       x: eye.x,
       z: eye.z,
       inDungeon,
+      dungeonInterior: inDungeon ? (dungeonAt(eye.x)?.interior ?? null) : null,
       dayWeight: dayWeightForPhase(currentDayNightPhase()),
       forestDensity: inDungeon ? 0 : st.forest.sample(eye.x, eye.z),
     },
