@@ -178,8 +178,15 @@ def cover_master():
     m.set_editor_property("used_with_nanite", True)
     g = WM.G(m)
     vc = g.node(unreal.MaterialExpressionVertexColor, 3)
+    # the glTF colours are linear, but the import stores them as sRGB bytes
+    # and the node decodes them again, so the first render came out near
+    # black: undo the second decode with a 1/2.2 power
+    pw = g.node(unreal.MaterialExpressionPower, 2)
+    g.link(vc, "RGB", pw, "Base")
+    g.link(g.const(1.0 / 2.2), "", pw, "Exponent")
+    vc = pw
     br = g.node(unreal.MaterialExpressionScalarParameter, 3, parameter_name="Brightness", default_value=1.0)
-    col = g.op(unreal.MaterialExpressionMultiply, vc, br, "RGB", "")
+    col = g.op(unreal.MaterialExpressionMultiply, vc, br)
     mel.connect_material_property(col, "", MP.MP_BASE_COLOR)
     sss = g.op(unreal.MaterialExpressionMultiply, col, g.const(0.6))
     mel.connect_material_property(sss, "", MP.MP_SUBSURFACE_COLOR)

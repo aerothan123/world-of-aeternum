@@ -40,8 +40,12 @@ except Exception as err:
     W.log("throttle setting unavailable (%s); Config/DefaultEditorPerProjectUserSettings.ini sets it" % err)
 
 os.makedirs(W.OUT, exist_ok=True)
-if not level.new_level(W.MAP):
+# the main map is World Partition with One File Per Actor: load it when it
+# exists (a new_level over it would replace it), create it partitioned if not
+if unreal.EditorAssetLibrary.does_asset_exist(W.MAP):
     level.load_level(W.MAP)
+else:
+    level.new_level(W.MAP, True)
 
 t0 = time.time()
 cover = []

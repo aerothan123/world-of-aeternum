@@ -33,7 +33,15 @@ TINT_MEAN = (0.493, 0.53, 0.249)
 
 
 def fresh_material(path):
+    """An empty material at `path`. An existing one is cleared in place
+    rather than deleted: a delete fails while instances still reference it
+    (and an unattended create over it is refused), and clearing keeps every
+    instance and mesh slot pointing at the same asset."""
     if lib.does_asset_exist(path):
+        m = lib.load_asset(path)
+        if isinstance(m, unreal.Material):
+            mel.delete_all_material_expressions(m)
+            return m
         lib.delete_asset(path)
     pkg, name = path.rsplit("/", 1)
     return tools.create_asset(name, pkg, unreal.Material, unreal.MaterialFactoryNew())
