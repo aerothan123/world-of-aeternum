@@ -963,17 +963,6 @@ const ZONE_IDS = [
   // Appended last, matching the ZONES order in sim/data.ts.
   'goldcrest_harbor',
   'proving_shore',
-  // The frontier zones (src/sim/content/frontier/), in slot order.
-  'applewold',
-  'kindlemoor',
-  'chalkbarrow_coast',
-  'saltmeads',
-  'wychwold',
-  'tinmarch',
-  'rookcliffs',
-  'sedgemarch',
-  'harrowfells',
-  'wardmere',
 ] as const;
 const DUNGEON_IDS = [
   'hollow_crypt',
@@ -1083,15 +1072,18 @@ export type QuestTranslation = {
 // which no literal union can name: the generated locale tables carry those
 // rows and are typed against this shape.
 type QuestTranslations = Record<QuestId, QuestTranslation> & Record<string, QuestTranslation>;
-type ZoneTranslations = Record<
-  ZoneId,
-  {
-    name: string;
-    welcome: string;
-    welcomeDone?: string;
-    pois: Record<number, { label: string }>;
-  }
->;
+type ZoneTranslation = {
+  name: string;
+  welcome: string;
+  welcomeDone?: string;
+  pois: Record<number, { label: string }>;
+};
+// Same shape as QuestTranslations: ZONE_IDS keeps the shipped zones required,
+// and the index signature admits every zone appended to ZONES after them (the
+// frontier rows, Studio zones). makeEnglishWorldEntities() emits a row per
+// ZONE_SOURCE entry and the generated locale tables are typed against this
+// shape, so a new zone needs no hand edit here to type-check.
+type ZoneTranslations = Record<ZoneId, ZoneTranslation> & Record<string, ZoneTranslation>;
 type DungeonTranslations = Record<
   DungeonId,
   { name: string; enterText: string; leaveText: string }
