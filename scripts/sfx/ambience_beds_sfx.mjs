@@ -18,10 +18,11 @@
 //
 // Every take is DRY: the outdoor reverb and the distance crossfades are applied at runtime.
 import { execFileSync, spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { AMBIENCE_BED_PROMPTS } from './ambience_bed_prompts.mjs';
+import { conformSfxAudio } from './conform_audio.mjs';
 import { FFMPEG_PATH } from './ffmpeg_paths.mjs';
 
 const ROOT = fileURLToPath(new URL('../..', import.meta.url));
@@ -275,6 +276,36 @@ function limit(planes, ceiling) {
   return out;
 }
 
+/** 16-bit PCM WAV of stereo planes (the conform step's input). */
+function writeWav(planes, file) {
+  const [l, r] = planes;
+  const inter = new Float32Array(l.length * 2);
+  for (let i = 0; i < l.length; i++) {
+    inter[2 * i] = l[i];
+    inter[2 * i + 1] = r[i];
+  }
+  execFileSync(
+    FFMPEG_PATH,
+    [
+      '-v',
+      'error',
+      '-y',
+      '-f',
+      'f32le',
+      '-ar',
+      String(SR),
+      '-ac',
+      '2',
+      '-i',
+      'pipe:0',
+      '-c:a',
+      'pcm_s16le',
+      file,
+    ],
+    { input: Buffer.from(inter.buffer) },
+  );
+}
+
 function build() {
   mkdirSync(DEMO_DIR, { recursive: true });
   for (const bed of beds) {
@@ -287,7 +318,22 @@ function build() {
     const looped = makeLoop(m.planes);
     m.planes = looped;
     const out = join(OUT_DIR, `${bed.key}.mp3`);
-    encode(looped, out);
+    // the shipped file meets the production SFX standard (scripts/sfx/conform_audio.mjs:
+    // bitrate, sample rate, channels and the peak ceiling) and keeps the bed's own loudness
+    const wavTmp = join(OUT_DIR, `.${bed.key}.${process.pid}.wav`);
+    writeWav(looped, wavTmp);
+    try {
+      conformSfxAudio({
+        inputFile: wavTmp,
+        outputFile: out,
+        duration: looped[0].length / SR,
+        ffmpegPath: FFMPEG_PATH,
+        channels: 2,
+        preserveLoudness: true,
+      });
+    } finally {
+      rmSync(wavTmp, { force: true });
+    }
     const final = integratedLufs(out);
     console.log(
       `${bed.key}: ${(m.planes[0].length / SR).toFixed(2)} s loop, raw ${m.lufs.toFixed(1)} LUFS, gain ${m.gainDb.toFixed(1)} dB, final ${final.toFixed(1)} LUFS`,

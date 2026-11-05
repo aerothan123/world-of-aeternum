@@ -1,16 +1,16 @@
 {
   "format": "woc-sfx-runtime-pack",
   "version": 1,
-  "bundleId": "fc7636263906bb2ee16dba791e3170c9e43629cfa3842bc8cc417470ccf44d4f",
+  "bundleId": "09831d95005a7ea3529dd35e3e877afc584ba09c34811273cba2d52ece59f149",
   "catalogHash": "6cdaf5e6d376098d4969c6fb53639f83333d9907a9ac05045100d8f95196d000",
   "clips": {
     "amb_bed_amber": {
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_amber.mp3?v=46dd7a662a8b",
-          "bytes": 440991,
-          "sha256": "46dd7a662a8b791b9ef4c580e04315fdf38158d1e30b0e348141ca6741bf6856"
+          "url": "/audio/sfx/amb_bed_amber.mp3?v=354e29d1e066",
+          "bytes": 661464,
+          "sha256": "354e29d1e066347f09cb2c1487f1ff4fe898ffae9358c90a055e3b788111387f"
         }
       ],
       "gain": 1,
@@ -20,9 +20,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_bastion.mp3?v=9906ec4a7a0d",
-          "bytes": 440991,
-          "sha256": "9906ec4a7a0d8d4f90bfac88f79e77fec90480a898a107997ccdaddd67825aa0"
+          "url": "/audio/sfx/amb_bed_bastion.mp3?v=1dc883f307d3",
+          "bytes": 661464,
+          "sha256": "1dc883f307d32f0d686dde7a108decb8322e68723c7f95a3f2af54164acb9e05"
         }
       ],
       "gain": 1,
@@ -32,9 +32,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_castle.mp3?v=06b12fc98985",
-          "bytes": 440991,
-          "sha256": "06b12fc989857c2f795a844e3444058176e21e00346f9b3c934a0ecff8fdd8be"
+          "url": "/audio/sfx/amb_bed_castle.mp3?v=32cffb810f9b",
+          "bytes": 661464,
+          "sha256": "32cffb810f9bd8ba5c680c1d338507d551ab9447773dcde29d332341d585460b"
         }
       ],
       "gain": 1,
@@ -44,9 +44,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_cave.mp3?v=49ba0daa60c7",
-          "bytes": 440991,
-          "sha256": "49ba0daa60c7ce27529926ea2e0fbe5b6431d724e5acbd6273ad45a16609f74c"
+          "url": "/audio/sfx/amb_bed_cave.mp3?v=0308c2b5d28c",
+          "bytes": 661464,
+          "sha256": "0308c2b5d28cc388e5446e6b3d8809899050c5f63b5d01f8a55c9edc5da305d6"
         }
       ],
       "gain": 1,
@@ -56,9 +56,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_crypt.mp3?v=547db2349d20",
-          "bytes": 440991,
-          "sha256": "547db2349d20279cac079550cae4085162e82603396d86c122cc44479c81169d"
+          "url": "/audio/sfx/amb_bed_crypt.mp3?v=60500b98ba05",
+          "bytes": 661464,
+          "sha256": "60500b98ba05e72e0e782813797fb59c522b550a07b7fd9aa152e0c9b6911b5d"
         }
       ],
       "gain": 1,
@@ -68,9 +68,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_dusk.mp3?v=0276f0830d12",
-          "bytes": 440991,
-          "sha256": "0276f0830d1267db5b2f1079a953ffbce7ecf794668274dc2d80944e48abe734"
+          "url": "/audio/sfx/amb_bed_dusk.mp3?v=8870238a8ce7",
+          "bytes": 661464,
+          "sha256": "8870238a8ce74161a7590ce8601fbe5b34414bd09ccc473575e694d762f7f172"
         }
       ],
       "gain": 1,
@@ -80,9 +80,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_ember.mp3?v=deeec377e4d6",
-          "bytes": 440991,
-          "sha256": "deeec377e4d6b6ca94b5c3f8cbe5500d50f45e4ddf616611de8effaa540df45e"
+          "url": "/audio/sfx/amb_bed_ember.mp3?v=33a37d070502",
+          "bytes": 661464,
+          "sha256": "33a37d070502c735f9fb2830de4ba2b0dfde57ae6925aad1fd1232faf49a5586"
         }
       ],
       "gain": 1,
@@ -92,9 +92,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_forest.mp3?v=37f2d2da2b7c",
-          "bytes": 440991,
-          "sha256": "37f2d2da2b7c94e3a6e87ccd9eecdfe30ed8fecb752949572ed435d27f3fdc2a"
+          "url": "/audio/sfx/amb_bed_forest.mp3?v=d60b0cfe7432",
+          "bytes": 661464,
+          "sha256": "d60b0cfe7432797cb300026a1982878419b7bf49707145f4d5c132bceb445366"
         }
       ],
       "gain": 1,
@@ -104,9 +104,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_forge.mp3?v=93e155b01980",
-          "bytes": 440991,
-          "sha256": "93e155b01980dac62ba79d1f643128fad0b1a92ada05fe81d1d201b3c542e6af"
+          "url": "/audio/sfx/amb_bed_forge.mp3?v=d032277b135e",
+          "bytes": 661464,
+          "sha256": "d032277b135e7792b2b089cd71cd56dd84f0d488aa29a200f931c16c5dafde43"
         }
       ],
       "gain": 1,
@@ -116,9 +116,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_frost.mp3?v=f5bfd729033e",
-          "bytes": 440991,
-          "sha256": "f5bfd729033e766fe64c9505b397fead89c38770fc3bc60c0f05d39a7c719e1b"
+          "url": "/audio/sfx/amb_bed_frost.mp3?v=2a1dc559dc3f",
+          "bytes": 661464,
+          "sha256": "2a1dc559dc3f377942bf8824d627f7069a50e06b3e598a56af179781017cc98e"
         }
       ],
       "gain": 1,
@@ -128,9 +128,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_gale.mp3?v=dda61ba3c7a0",
-          "bytes": 440991,
-          "sha256": "dda61ba3c7a0640414d1b3081026c6a4732ae7f80137920c06903c935148a29a"
+          "url": "/audio/sfx/amb_bed_gale.mp3?v=f25ac01d04c1",
+          "bytes": 661464,
+          "sha256": "f25ac01d04c1a6b91ceef6eda64d015c4e01e22f6131a1287f4a0eebcf7d28a8"
         }
       ],
       "gain": 1,
@@ -140,9 +140,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_garden.mp3?v=c7cc73ae2cec",
-          "bytes": 440991,
-          "sha256": "c7cc73ae2cec941baee1aa140e4b02be6dda536ca8d2c977c36681bdd0e2e2a0"
+          "url": "/audio/sfx/amb_bed_garden.mp3?v=6b4667cec8cf",
+          "bytes": 661464,
+          "sha256": "6b4667cec8cfa41e063d9b44f95b9691e46d2de20baff8076466c8e21ae8c34e"
         }
       ],
       "gain": 1,
@@ -152,9 +152,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_harbor.mp3?v=a6ee9c5a5049",
-          "bytes": 440991,
-          "sha256": "a6ee9c5a504993aae6eab1ad747f02279621d9a93d4c7ceacc36c274da85b51a"
+          "url": "/audio/sfx/amb_bed_harbor.mp3?v=db1b9f325c55",
+          "bytes": 661464,
+          "sha256": "db1b9f325c55aeacc4dfff894ef9e4a98ee689d830033c9eed457c267d90b43e"
         }
       ],
       "gain": 1,
@@ -164,9 +164,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_haunt.mp3?v=6f3d67c1d791",
-          "bytes": 440991,
-          "sha256": "6f3d67c1d791f33086b8c5c77d0cf3e41c8cb2b08d3d97011263fb923c7b5f30"
+          "url": "/audio/sfx/amb_bed_haunt.mp3?v=018ac8322464",
+          "bytes": 661464,
+          "sha256": "018ac8322464950cd170b35304ae82caa2b60a098545f13c1d8ceb7bba85e285"
         }
       ],
       "gain": 1,
@@ -176,9 +176,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_house.mp3?v=6c783c1854e4",
-          "bytes": 440991,
-          "sha256": "6c783c1854e4f959c427c4ddd7fbc96df62916330a1daf038dae19732f9414dd"
+          "url": "/audio/sfx/amb_bed_house.mp3?v=e3dfa8fb0d0e",
+          "bytes": 661464,
+          "sha256": "e3dfa8fb0d0e356ca8d233659710d6f2d7734fc66b2487f01fd5b393696026bc"
         }
       ],
       "gain": 1,
@@ -188,9 +188,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_jungle.mp3?v=256fc5fd10f7",
-          "bytes": 440991,
-          "sha256": "256fc5fd10f703b991aa29a9957e0f30a5fbba77100e6ccd5d62fc86ba6e98d8"
+          "url": "/audio/sfx/amb_bed_jungle.mp3?v=13b0647a81ef",
+          "bytes": 661464,
+          "sha256": "13b0647a81ef91f0eba6abe87f25dcc6e64fbb4123f5ed97ceba02bce74b45f4"
         }
       ],
       "gain": 1,
@@ -200,9 +200,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_lair.mp3?v=13ac45158e8f",
-          "bytes": 440991,
-          "sha256": "13ac45158e8f2fac2984f06dc6b92248febf6a10a5b233d9b01a3f780f7eb592"
+          "url": "/audio/sfx/amb_bed_lair.mp3?v=5fed5ea052b0",
+          "bytes": 661464,
+          "sha256": "5fed5ea052b0dcce508228970ce1171a0abd1076baa323984f27e6d73fa1526a"
         }
       ],
       "gain": 1,
@@ -212,9 +212,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_marsh.mp3?v=cd17be60fc09",
-          "bytes": 440991,
-          "sha256": "cd17be60fc09893430f616fb68110c65a9d72d8743aa3566d8b48554a042a463"
+          "url": "/audio/sfx/amb_bed_marsh.mp3?v=8e38d8bde0a8",
+          "bytes": 661464,
+          "sha256": "8e38d8bde0a8997ac772adc8719daa81ab675d3f27d7f8b4cf973c3afd3e0606"
         }
       ],
       "gain": 1,
@@ -224,9 +224,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_meadow.mp3?v=74a8c0c2bd43",
-          "bytes": 440991,
-          "sha256": "74a8c0c2bd43c07525b0c7cc59e97d1831fa687e63ecc5271db4dd2e70d08354"
+          "url": "/audio/sfx/amb_bed_meadow.mp3?v=a6806158bb30",
+          "bytes": 661464,
+          "sha256": "a6806158bb30cd93c698e836c54211a190474a7b20c0924627c43a91120d6fb9"
         }
       ],
       "gain": 1,
@@ -236,9 +236,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_mine.mp3?v=3a0d7031d6b9",
-          "bytes": 440991,
-          "sha256": "3a0d7031d6b9bfa47ab14fb49d0d5c214877199b0ab76807827373ef85dbe8c0"
+          "url": "/audio/sfx/amb_bed_mine.mp3?v=8a6d6385ee9d",
+          "bytes": 661464,
+          "sha256": "8a6d6385ee9d3a189395d5ab1106ac2a3b0f3c055fece0d30500e1a192fda01d"
         }
       ],
       "gain": 1,
@@ -248,9 +248,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_night_wild.mp3?v=94a9e3485810",
-          "bytes": 440991,
-          "sha256": "94a9e34858102029dcdfd41afae331136cd6ee5cfcb98ebb7a3cb11d7a0f1b7c"
+          "url": "/audio/sfx/amb_bed_night_wild.mp3?v=b29f63e58c10",
+          "bytes": 661464,
+          "sha256": "b29f63e58c10185cd724ec83f5b14cf7c41a80f0db9930daa5b3d8ea4dbb3d1f"
         }
       ],
       "gain": 1,
@@ -260,9 +260,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_palace.mp3?v=f171f98c6b41",
-          "bytes": 440991,
-          "sha256": "f171f98c6b419b2d02872b344e6f4fec03cef565079d51cc13320c16fe1536a0"
+          "url": "/audio/sfx/amb_bed_palace.mp3?v=c1dd50fb1fd9",
+          "bytes": 661464,
+          "sha256": "c1dd50fb1fd99f46081793d48688b635cec744019e52e1a6e7f7f0cd51e4e9d2"
         }
       ],
       "gain": 1,
@@ -272,9 +272,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_peaks.mp3?v=2b55c609e320",
-          "bytes": 440991,
-          "sha256": "2b55c609e3202d7368c43e5d3f931742d4c8c9bd94469a76fff39bf84527f4d6"
+          "url": "/audio/sfx/amb_bed_peaks.mp3?v=c3738db770ac",
+          "bytes": 661464,
+          "sha256": "c3738db770acfabac17869bc16e9e8fa7daa7f99201a89cef954bb5d39971a1a"
         }
       ],
       "gain": 1,
@@ -284,9 +284,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_shore.mp3?v=249c77914bc7",
-          "bytes": 313095,
-          "sha256": "249c77914bc7fde29ae8ead034ba3134cf346eed1ffffbc115a09d7b2cfe17d0"
+          "url": "/audio/sfx/amb_bed_shore.mp3?v=9776752b9dbf",
+          "bytes": 469621,
+          "sha256": "9776752b9dbf0c6a4d76c95b1f9fc24b0bcf83feb47dbd6ca99f1e13a325a3f7"
         }
       ],
       "gain": 1,
@@ -296,9 +296,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_temple.mp3?v=76e4cbc38055",
-          "bytes": 440991,
-          "sha256": "76e4cbc380556655ece2b4fcc4f3b8fad0fa8e7e6d0add71094c77e5ab5dd977"
+          "url": "/audio/sfx/amb_bed_temple.mp3?v=214e63d65acb",
+          "bytes": 661464,
+          "sha256": "214e63d65acb7899e62e1683105e84968b1eb4d3ab4452f92028837bf625f282"
         }
       ],
       "gain": 1,
@@ -308,9 +308,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_town_day.mp3?v=07af0fa81b70",
-          "bytes": 440991,
-          "sha256": "07af0fa81b70b52d615f3da2e437e704b8ee594cce1ec637543e9765c7854c5b"
+          "url": "/audio/sfx/amb_bed_town_day.mp3?v=4ea85e133099",
+          "bytes": 661464,
+          "sha256": "4ea85e133099c68de8c10ce9161076d07b7e98b51eb70be26f9c029e22f800f7"
         }
       ],
       "gain": 1,
@@ -320,9 +320,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_town_night.mp3?v=65058c0dade7",
-          "bytes": 440991,
-          "sha256": "65058c0dade74ab6a1a3b065155ce2db2cefe31185f21df8679a85bb6c3248eb"
+          "url": "/audio/sfx/amb_bed_town_night.mp3?v=d9a07916755a",
+          "bytes": 661464,
+          "sha256": "d9a07916755a95a746a35cce5b044dabdc501ac845be4fcf06dfdc8df9a73d22"
         }
       ],
       "gain": 1,
@@ -332,9 +332,9 @@
       "variants": [
         {
           "id": "main",
-          "url": "/audio/sfx/amb_bed_wildheart.mp3?v=81fe65c1f63c",
-          "bytes": 440991,
-          "sha256": "81fe65c1f63c0a2269c1207de7e57d641dab24fe49af07fcff7fda298345d3b7"
+          "url": "/audio/sfx/amb_bed_wildheart.mp3?v=2c2457abf1fb",
+          "bytes": 661464,
+          "sha256": "2c2457abf1fb4a85a97e738026ef4d432f97ec54c4c6a8efdd28f9884a4b4536"
         }
       ],
       "gain": 1,
