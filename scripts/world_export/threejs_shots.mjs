@@ -98,11 +98,23 @@ try {
         // last moment: on each draw of the main camera (the composer passes
         // draw through the same WebGLRenderer.render).
         window.__lookPose = pose;
+        // Re-read the live renderer and camera on every draw: a slow boot
+        // can rebuild either after this runs (a single-shot run once drew
+        // the chase camera at its default fov because the pin sat on a
+        // stale pair).
         if (!r.webgl.__lookPinned) {
           const orig = r.webgl.render.bind(r.webgl);
           r.webgl.render = (scene, cam) => {
             const p = window.__lookPose;
-            if (p && cam === r.camera) {
+            // A fresh character on the starter island draws through an
+            // intro camera rather than renderer.camera, so any 16:9
+            // perspective view camera is pinned too (shadow and cube
+            // cameras are not 16:9).
+            const view =
+              cam === window.__game.renderer.camera ||
+              (cam?.isPerspectiveCamera && Math.abs(cam.aspect - 16 / 9) < 0.02);
+            if (p && view) {
+              window.__lookPinDraws = (window.__lookPinDraws ?? 0) + 1;
               // the game camera hangs under a boom rig, so its local pose is
               // not its world pose: write the world matrices directly and
               // stop the scene graph from recomputing them
@@ -144,6 +156,9 @@ try {
         meanFrameMs: dts.reduce((a, b) => a + b, 0) / dts.length,
         p95FrameMs: dts[Math.floor(dts.length * 0.95)],
         fov: window.__game.renderer.camera.fov,
+        // draws the pose pin rewrote; 0 means the shot is the chase camera
+        pinnedDraws: window.__lookPinDraws ?? 0,
+        sameRenderer: window.__game.renderer.webgl.__lookPinned === true,
       };
     }, SAMPLE_MS);
     const file = path.join(OUT, `threejs_${shot.name}.png`);

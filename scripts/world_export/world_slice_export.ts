@@ -61,6 +61,17 @@ export interface ExportBounds {
  *  an engine terrain maps one to one. */
 export const EASTBROOK_VALE_SLICE: ExportBounds = { minX: -224, maxX: 224, minZ: -224, maxZ: 224 };
 
+/** The Proving Shore, the starter island the server spawns fresh players on
+ *  (content/proving_shore.ts PROVING_SHORE_RECT, x -540 to -180, z -180 to
+ *  180, hub Dawnrest Camp at -300, 50), padded 4 yd to a 368 yd square. */
+export const PROVING_SHORE_SLICE: ExportBounds = { minX: -544, maxX: -176, minZ: -184, maxZ: 184 };
+
+/** The slices the export can write, by output name. */
+export const EXPORT_SLICES: Readonly<Record<string, ExportBounds>> = {
+  eastbrook_vale: EASTBROOK_VALE_SLICE,
+  proving_shore: PROVING_SHORE_SLICE,
+};
+
 /** Ground layers in splat order. */
 export const GROUND_LAYERS = ['grass', 'dirt', 'sand', 'rock', 'cobble'] as const;
 export type GroundLayer = (typeof GROUND_LAYERS)[number];

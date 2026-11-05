@@ -85,7 +85,9 @@ class G:
         self.link(a, ao, e, "")
         return e
 
-    def tex(self, path, uv, kind):
+    def tex(self, path, uv, kind, param=None):
+        """A texture sample; with `param` it is a texture parameter a
+        material instance can swap (the per-slice rasters)."""
         t = lib.load_asset(path)
         st = {
             "color": unreal.MaterialSamplerType.SAMPLERTYPE_COLOR,
@@ -93,12 +95,17 @@ class G:
             "masks": unreal.MaterialSamplerType.SAMPLERTYPE_MASKS,
             "linear": unreal.MaterialSamplerType.SAMPLERTYPE_LINEAR_COLOR,
         }[kind]
+        props = {
+            "texture": t,
+            "sampler_type": st,
+            "sampler_source": unreal.SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS,
+        }
+        if param:
+            props["parameter_name"] = param
         e = self.node(
-            unreal.MaterialExpressionTextureSample,
+            unreal.MaterialExpressionTextureSampleParameter2D if param else unreal.MaterialExpressionTextureSample,
             4,
-            texture=t,
-            sampler_type=st,
-            sampler_source=unreal.SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS,
+            **props,
         )
         if uv is not None:
             self.link(uv, "", e, "UVs")
@@ -115,20 +122,23 @@ def terrain_material():
     # raster UVs from world position, not the mesh UV channel (the importer
     # is free to repack UV0): u = (x - minX) / size, v = (z - minZ) / size,
     # with UE X = game x and UE Y = game z (wynd_common frame)
+    # The bounds and rasters are parameters defaulting to the vale, so each
+    # further slice is a material instance (terrain_instance below).
     b = W.load_json("manifest.json")["bounds"]
     size = (b["maxX"] - b["minX"]) * W.UNIT
-    shifted = g.op(
-        unreal.MaterialExpressionSubtract,
-        wxy,
-        g.node(
-            unreal.MaterialExpressionConstant2Vector, 6,
-            r=b["minX"] * W.UNIT, g=b["minZ"] * W.UNIT,
-        ),
+    smin = g.node(
+        unreal.MaterialExpressionVectorParameter, 6,
+        parameter_name="SliceMin",
+        default_value=unreal.LinearColor(b["minX"] * W.UNIT, b["minZ"] * W.UNIT, 0, 0),
     )
-    uv0 = g.op(unreal.MaterialExpressionDivide, shifted, g.const(size))
-    ctrl = g.tex(W.ROOT + "/Rasters/splat_control", uv0, "linear")
-    cob = g.tex(W.ROOT + "/Rasters/splat_cobble", uv0, "linear")
-    tint = g.tex(W.ROOT + "/Rasters/tint", uv0, "color")
+    smin_rg = g.node(unreal.MaterialExpressionComponentMask, 5, r=True, g=True, b=False, a=False)
+    g.link(smin, "", smin_rg, "")
+    shifted = g.op(unreal.MaterialExpressionSubtract, wxy, smin_rg)
+    ssize = g.node(unreal.MaterialExpressionScalarParameter, 6, parameter_name="SliceSize", default_value=size)
+    uv0 = g.op(unreal.MaterialExpressionDivide, shifted, ssize)
+    ctrl = g.tex(W.ROOT + "/Rasters/splat_control", uv0, "linear", "SplatControl")
+    cob = g.tex(W.ROOT + "/Rasters/splat_cobble", uv0, "linear", "SplatCobble")
+    tint = g.tex(W.ROOT + "/Rasters/tint", uv0, "color", "Tint")
     sets = []
     for name, ph, tile in LAYERS:
         uv = g.op(unreal.MaterialExpressionDivide, wxy, g.const(tile * W.UNIT))
@@ -262,3 +272,30 @@ def water_material():
     mel.recompile_material(m)
     lib.save_loaded_asset(m)
     return m
+
+
+def terrain_instance(parent, name, export):
+    """MI_Terrain_<name>: M_Terrain pointed at another slice's bounds and
+    rasters (W.slice_folder("Rasters", name))."""
+    path = W.LANDSCAPE + "/MI_Terrain_" + name
+    if lib.does_asset_exist(path):
+        mi = lib.load_asset(path)
+    else:
+        pkg, leaf = path.rsplit("/", 1)
+        mi = tools.create_asset(leaf, pkg, unreal.MaterialInstanceConstant, unreal.MaterialInstanceConstantFactoryNew())
+    mel.set_material_instance_parent(mi, parent)
+    b = W.load_json("manifest.json", export)["bounds"]
+    mel.set_material_instance_vector_parameter_value(
+        mi, "SliceMin", unreal.LinearColor(b["minX"] * W.UNIT, b["minZ"] * W.UNIT, 0, 0)
+    )
+    mel.set_material_instance_scalar_parameter_value(mi, "SliceSize", (b["maxX"] - b["minX"]) * W.UNIT)
+    rasters = W.slice_folder("Rasters", name)
+    for param, tex in (("SplatControl", "splat_control"), ("SplatCobble", "splat_cobble"), ("Tint", "tint")):
+        t = lib.load_asset(rasters + "/" + tex)
+        if t:
+            mel.set_material_instance_texture_parameter_value(mi, param, t)
+        else:
+            W.log("terrain instance %s: raster %s missing" % (name, tex))
+    mel.update_material_instance(mi)
+    lib.save_loaded_asset(mi)
+    return mi

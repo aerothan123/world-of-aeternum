@@ -47,19 +47,34 @@ def import_texture(src, dest, compression=None, srgb=True, force=False):
     return tex
 
 
-def main():
-    manifest = W.load_json("manifest.json")
-    stats = {"terrain": 0, "models": 0, "textures": 0, "plants": 0, "failed": []}
+def import_slice(export, name, stats):
+    """One export slice's terrain tiles, models and rasters (the models share
+    one folder per GLB path across slices)."""
+    manifest = W.load_json("manifest.json", export)
     n = int(manifest["terrainTiles"]["perSide"])
+    terrain = W.slice_folder("Terrain", name)
     for i in range(manifest["terrainTiles"]["count"]):
-        name = "terrain_%d_%d" % (i % n, i // n)
-        r = import_folder(os.path.join(W.EXPORT, "terrain", name + ".glb"), W.ROOT + "/Terrain/" + name)
+        tile = "terrain_%d_%d" % (i % n, i // n)
+        r = import_folder(os.path.join(export, "terrain", tile + ".glb"), terrain + "/" + tile)
         stats["terrain"] += 1 if r != 0 else 0
     for m in manifest["models"]:
-        src = os.path.join(W.EXPORT, m["path"].lstrip("/").replace("/", os.sep))
+        src = os.path.join(export, m["path"].lstrip("/").replace("/", os.sep))
         if import_folder(src, W.model_folder(m["path"])) == 0:
             stats["failed"].append(m["path"])
         stats["models"] += 1
+    rasters = W.slice_folder("Rasters", name)
+    import_texture(os.path.join(export, "splat_control.png"), rasters, TC.TC_VECTOR_DISPLACEMENTMAP, False, True)
+    import_texture(os.path.join(export, "splat_cobble.png"), rasters, TC.TC_VECTOR_DISPLACEMENTMAP, False, True)
+    import_texture(os.path.join(export, "tint.png"), rasters, None, True, True)
+    return manifest
+
+
+def main():
+    stats = {"terrain": 0, "models": 0, "textures": 0, "plants": 0, "failed": [], "slices": []}
+    manifest = import_slice(W.EXPORT, None, stats)
+    for extra in W.EXTRA_SLICES:
+        import_slice(W.slice_export(extra), extra, stats)
+        stats["slices"].append(extra)
     # the slice's own placeholder ground cover (cover_meshes.ts), until the
     # nature crew's PCG grass and flowers replace it
     stats["cover"] = 0
@@ -67,10 +82,6 @@ def main():
         src = os.path.join(W.EXPORT, "cover", name + ".glb")
         if import_folder(src, W.PLACEHOLDERS + "/Cover/" + name) != 0:
             stats["cover"] += 1
-    rasters = W.ROOT + "/Rasters"
-    import_texture(os.path.join(W.EXPORT, "splat_control.png"), rasters, TC.TC_VECTOR_DISPLACEMENTMAP, False, True)
-    import_texture(os.path.join(W.EXPORT, "splat_cobble.png"), rasters, TC.TC_VECTOR_DISPLACEMENTMAP, False, True)
-    import_texture(os.path.join(W.EXPORT, "tint.png"), rasters, None, True, True)
     for asset in sorted(os.listdir(W.THIRD_PARTY)):
         d = os.path.join(W.THIRD_PARTY, asset)
         if not os.path.isdir(d):

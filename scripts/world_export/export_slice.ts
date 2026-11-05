@@ -2,7 +2,10 @@
 // JSON, every referenced GLB copied next to them, plus a manifest. Run through
 // export_slice.mjs (which starts Node with the tsx loader).
 //
-//   node scripts/world_export/export_slice.mjs [outDir] [--cells 1024]
+//   node scripts/world_export/export_slice.mjs [outDir] [--cells 1024] [--slice eastbrook_vale]
+//
+// --slice picks a named area from EXPORT_SLICES (world_slice_export.ts):
+// eastbrook_vale (default) or proving_shore, the starter island.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -14,7 +17,7 @@ import { engineGlb } from './engine_glb';
 import { object3DToGlb } from './procedural_glb';
 import { terrainTiles } from './terrain_mesh';
 import {
-  EASTBROOK_VALE_SLICE,
+  EXPORT_SLICES,
   exportWorldSlice,
   parsePropAssetUrls,
   quantizeHeights,
@@ -23,15 +26,22 @@ import {
 
 const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const args = process.argv.slice(2);
-const cellsAt = args.indexOf('--cells');
-const cells = cellsAt >= 0 ? Number(args[cellsAt + 1]) : 1024;
-const positional = args.filter((a, i) => !a.startsWith('--') && args[i - 1] !== '--cells');
-const outDir = path.resolve(positional[0] ?? 'tmp/world_export/eastbrook_vale');
+const flag = (name: string): string | undefined => {
+  const at = args.indexOf(name);
+  return at >= 0 ? args[at + 1] : undefined;
+};
+const cells = Number(flag('--cells') ?? 1024);
+const sliceName = flag('--slice') ?? 'eastbrook_vale';
+const bounds = EXPORT_SLICES[sliceName];
+if (!bounds)
+  throw new Error(`unknown --slice ${sliceName}; one of ${Object.keys(EXPORT_SLICES).join(', ')}`);
+const positional = args.filter((a, i) => !a.startsWith('--') && !args[i - 1]?.startsWith('--'));
+const outDir = path.resolve(positional[0] ?? `tmp/world_export/${sliceName}`);
 
 const t0 = Date.now();
 const propSource = fs.readFileSync(path.join(repo, 'src/render/props.ts'), 'utf8');
 const propUrls = parsePropAssetUrls(propSource);
-const ex = exportWorldSlice(EASTBROOK_VALE_SLICE, WORLD_SEED, (k) => propUrls[k] ?? null, cells);
+const ex = exportWorldSlice(bounds, WORLD_SEED, (k) => propUrls[k] ?? null, cells);
 const sampleMs = Date.now() - t0;
 
 fs.mkdirSync(outDir, { recursive: true });
@@ -119,15 +129,18 @@ const bakeProcedural = async (
     procedural.push({ path: rel, error: err instanceof Error ? err.message : String(err) });
   }
 };
-await bakeProcedural('eastbrook_harbor', async () =>
-  (await import('../../src/render/eastbrook_harbor')).buildEastbrookHarbor(WORLD_SEED),
-);
-await bakeProcedural('eastbrook_weekly_vault', async () => {
-  const { buildEastbrookWeeklyVault } = await import('../../src/render/eastbrook_weekly_vault');
-  const { terrainHeight } = await import('../../src/sim/world');
-  const v = buildEastbrookWeeklyVault((x, z) => terrainHeight(x, z, WORLD_SEED));
-  return (v as { group?: THREE.Object3D }).group ?? (v as unknown as THREE.Object3D);
-});
+// both pieces stand in the Eastbrook hub, so only that slice carries them
+if (sliceName === 'eastbrook_vale') {
+  await bakeProcedural('eastbrook_harbor', async () =>
+    (await import('../../src/render/eastbrook_harbor')).buildEastbrookHarbor(WORLD_SEED),
+  );
+  await bakeProcedural('eastbrook_weekly_vault', async () => {
+    const { buildEastbrookWeeklyVault } = await import('../../src/render/eastbrook_weekly_vault');
+    const { terrainHeight } = await import('../../src/sim/world');
+    const v = buildEastbrookWeeklyVault((x, z) => terrainHeight(x, z, WORLD_SEED));
+    return (v as { group?: THREE.Object3D }).group ?? (v as unknown as THREE.Object3D);
+  });
+}
 
 // GLBs: each referenced file is rewritten under its public path as a plain
 // glTF binary (meshopt decoded, attributes dequantized, KTX2 and WebP decoded
@@ -212,7 +225,7 @@ const countBy = (keys: readonly string[]): Record<string, number> => {
 const extensions = countBy(models.flatMap((m) => m.extensionsUsed));
 const manifest = {
   generator: 'scripts/world_export/export_slice.mjs',
-  slice: 'eastbrook_vale',
+  slice: sliceName,
   ...ex.meta,
   heightEncoding: { file: 'heightmap.r16', type: 'uint16le', min: hMin, max: hMax },
   rasters: {

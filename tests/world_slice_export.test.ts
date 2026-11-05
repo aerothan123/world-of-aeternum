@@ -13,6 +13,7 @@ import {
   collectScatter,
   decorationSpecies,
   EASTBROOK_VALE_SLICE,
+  EXPORT_SLICES,
   GROUND_LAYERS,
   keyLights,
   parsePropAssetUrls,
@@ -21,6 +22,7 @@ import {
   sampleHeights,
 } from '../scripts/world_export/world_slice_export';
 import { sunDirection } from '../src/render/day_night_core';
+import { isOnProvingShore } from '../src/sim/content/proving_shore';
 import { getActiveWorldContent } from '../src/sim/data';
 import { EASTBROOK_LAYOUT } from '../src/sim/eastbrook_layout';
 import { generateGroundDressing } from '../src/sim/ground_dressing';
@@ -183,6 +185,21 @@ describe('world slice export', () => {
     for (let i = 0; i < pos.length; i += 3) minX = Math.min(minX, pos[i]);
     expect(minX).toBeCloseTo(9, 6);
     expect(prim.getMaterial()?.getRoughnessFactor()).toBeCloseTo(0.9, 6);
+  });
+
+  it('names a Proving Shore slice that holds the starter island', () => {
+    const s = EXPORT_SLICES.proving_shore;
+    expect(EXPORT_SLICES.eastbrook_vale).toEqual(B);
+    expect(s.maxX - s.minX).toBe(s.maxZ - s.minZ);
+    // the island's hub, Dawnrest Camp, where the server spawns fresh players
+    expect(isOnProvingShore(-300, 50)).toBe(true);
+    for (const [x, z] of [
+      [-300, 50],
+      [-540, -180],
+      [-181, 179],
+    ]) {
+      expect(x >= s.minX && x <= s.maxX && z >= s.minZ && z <= s.maxZ).toBe(true);
+    }
   });
 
   it('writes deterministic vertex-coloured ground cover', async () => {

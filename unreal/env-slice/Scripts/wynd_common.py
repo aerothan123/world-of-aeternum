@@ -42,9 +42,29 @@ def yaw_ue(rot_y):
     return -math.degrees(rot_y)
 
 
-def load_json(name):
-    with open(os.path.join(EXPORT, name), "r", encoding="utf8") as f:
+def load_json(name, export=None):
+    with open(os.path.join(export or EXPORT, name), "r", encoding="utf8") as f:
         return json.load(f)
+
+
+# Further export slices built beside the vale, each its own export folder
+# next to EXPORT (export_slice.mjs --slice <name>): the Proving Shore is the
+# starter island the server spawns players on. Each gets its own terrain and
+# raster folders and a material instance of M_Terrain with its bounds.
+EXTRA_SLICES = [
+    s for s in os.environ.get("WYND_EXTRA_SLICES", "proving_shore").split(",")
+    if s and os.path.isdir(os.path.join(os.path.dirname(EXPORT), s))
+]
+
+
+def slice_export(name):
+    return os.path.join(os.path.dirname(EXPORT), name)
+
+
+def slice_folder(kind, name=None):
+    """Content folder of a slice's terrain or rasters: the vale keeps the
+    plain Terrain and Rasters folders; another slice gets Terrain_<name>."""
+    return ROOT + "/" + kind + ("_" + name if name else "")
 
 
 def model_folder(glb_path):

@@ -19,12 +19,12 @@ actors = unreal.get_editor_subsystem(unreal.EditorActorSubsystem)
 class Raster:
     """Bilinear reader over one of the export's row-major rasters."""
 
-    def __init__(self, manifest, name, typecode, scale=1.0, offset=0.0):
+    def __init__(self, manifest, name, typecode, scale=1.0, offset=0.0, export=None):
         self.res = manifest["res"]
         self.b = manifest["bounds"]
         self.step = manifest["step"]
         self.a = array.array(typecode)
-        with open(os.path.join(W.EXPORT, name), "rb") as f:
+        with open(os.path.join(export or W.EXPORT, name), "rb") as f:
             self.a.frombytes(f.read())
         self.scale = scale
         self.offset = offset
@@ -43,14 +43,21 @@ class Raster:
 
 
 class Slice:
-    def __init__(self):
-        self.manifest = W.load_json("manifest.json")
+    """One export slice: the vale (name None) or a further slice by name
+    (wynd_common.EXTRA_SLICES), read from its own export folder."""
+
+    def __init__(self, name=None):
+        self.name = name
+        self.export = W.slice_export(name) if name else W.EXPORT
+        self.manifest = W.load_json("manifest.json", self.export)
         he = self.manifest["heightEncoding"]
-        self.height = Raster(self.manifest, "heightmap.r16", "H", (he["max"] - he["min"]) / 65535.0, he["min"])
-        self.grass = Raster(self.manifest, "grass_density.u8", "B", 1 / 255.0)
-        self.flowers = Raster(self.manifest, "flower_density.u8", "B", 1 / 255.0)
-        self.lights = W.load_json("lights.json")
-        self.sea = W.load_json("water.json")["seaLevel"]
+        self.height = Raster(
+            self.manifest, "heightmap.r16", "H", (he["max"] - he["min"]) / 65535.0, he["min"], self.export
+        )
+        self.grass = Raster(self.manifest, "grass_density.u8", "B", 1 / 255.0, 0.0, self.export)
+        self.flowers = Raster(self.manifest, "flower_density.u8", "B", 1 / 255.0, 0.0, self.export)
+        self.lights = W.load_json("lights.json", self.export)
+        self.sea = W.load_json("water.json", self.export)["seaLevel"]
         self.stats = {}
         self.mesh_cache = {}
 
@@ -77,10 +84,10 @@ def clear_level():
             actors.destroy_actor(a)
 
 
-def build_terrain(sl):
-    mat = WM.terrain_material()
+def build_terrain(sl, mat=None, water=True):
+    mat = mat or WM.terrain_material()
     n = 0
-    for p in lib.list_assets(W.ROOT + "/Terrain", recursive=True, include_folder=False):
+    for p in lib.list_assets(W.slice_folder("Terrain", sl.name), recursive=True, include_folder=False):
         m = lib.load_asset(p)
         if not isinstance(m, unreal.StaticMesh):
             continue
@@ -89,12 +96,15 @@ def build_terrain(sl):
         a.static_mesh_component.set_material(0, mat)
         n += 1
     sl.stats["terrainTiles"] = n
+    if not water:
+        return mat
     water = WM.water_material()
     plane = lib.load_asset("/Engine/BasicShapes/Plane")
     a = actors.spawn_actor_from_object(plane, W.to_ue(0, sl.sea, 0), unreal.Rotator(0, 0, 0))
     a.set_actor_label("WYND_Water")
     a.set_actor_scale3d(unreal.Vector(3000, 3000, 1))
     a.static_mesh_component.set_material(0, water)
+    return mat
 
 
 def place(sl, rec, label):
@@ -118,8 +128,8 @@ def place(sl, rec, label):
 def build_props(sl):
     placed = 0
     missing = set()
-    for i, rec in enumerate(W.load_json("placements.json")):
-        k = place(sl, rec, "%s_%d" % (rec["source"], i))
+    for i, rec in enumerate(W.load_json("placements.json", sl.export)):
+        k = place(sl, rec, "%s%s_%d" % (sl.name + "_" if sl.name else "", rec["source"], i))
         if not k:
             missing.add(rec["path"])
         placed += 1 if k else 0
@@ -180,7 +190,7 @@ def instancer(label, mesh, cast_shadow=True, cull=None):
 
 def build_scatter(sl):
     groups = {}
-    for rec in W.load_json("scatter.json"):
+    for rec in W.load_json("scatter.json", sl.export):
         groups.setdefault(rec["path"], []).append(rec)
     total = 0
     for path, recs in groups.items():
@@ -376,9 +386,18 @@ def set_time(sl, sun, key):
 def build(cover_areas):
     clear_level()
     sl = Slice()
-    build_terrain(sl)
+    terrain = build_terrain(sl)
     build_props(sl)
     build_scatter(sl)
+    # further slices (the Proving Shore spawn island): their own terrain
+    # through a material instance, props and scatter; no ground cover yet
+    for name in W.EXTRA_SLICES:
+        ex = Slice(name)
+        ex.mesh_cache = sl.mesh_cache
+        build_terrain(ex, WM.terrain_instance(terrain, name, ex.export), water=False)
+        build_props(ex)
+        build_scatter(ex)
+        sl.stats[name] = ex.stats
     build_ground_cover(sl, cover_areas)
     sun = build_lights(sl)
     W.log("scene stats %s" % sl.stats)
