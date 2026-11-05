@@ -18,6 +18,7 @@ import {
   BARK_ALBEDO_TARGETS,
   BARK_GRADE_GAIN,
   BROADLEAF_TRUNK_TOP,
+  blendTangentNormals,
   classifyFableTriangles,
   coniferLabels,
   DEAD_HEIGHT_SCALE,
@@ -30,6 +31,8 @@ import {
   LEAF_GRADE_GAIN,
   leafGradeGains,
   RELIEF_KINDS,
+  ROCK_BUDGET,
+  ROCK_RELIEF_OVER_BAKED,
   rasterizeUvMask,
   remapUvsToAtlasCell,
   removeSmallIslands,
@@ -698,6 +701,45 @@ describe('fable foliage shipped models', () => {
       expect(out, `${url} ${name}`).toBe(geo);
       expect(Array.from(out.getAttribute('position').array)).toEqual(Array.from(before));
       expect(out.getAttribute('color')).toBeUndefined();
+    }
+  });
+});
+
+describe('rock relief over the baked normal', () => {
+  const flat = [128, 128, 255];
+  const px = (...v: number[][]) => Uint8Array.from(v.flat());
+  const dec = (b: Uint8Array, i: number) => [0, 1, 2].map((k) => (b[i * 3 + k] / 255) * 2 - 1);
+
+  it('returns the baked texel where the painted relief is flat', () => {
+    const baked = px([200, 90, 220], [60, 160, 230]);
+    const out = blendTangentNormals(baked, px(flat, flat), ROCK_RELIEF_OVER_BAKED);
+    for (let i = 0; i < 2; i++) {
+      const a = dec(baked, i);
+      const len = Math.hypot(a[0], a[1], a[2]);
+      const b = dec(out, i);
+      for (let k = 0; k < 3; k++) expect(b[k]).toBeCloseTo(a[k] / len, 1);
+    }
+  });
+
+  it('adds the painted slope on a flat baked texel, scaled by the weight', () => {
+    const out = blendTangentNormals(px(flat), px([200, 128, 220]), 0.5);
+    const n = dec(out, 0);
+    expect(n[0]).toBeGreaterThan(0.1);
+    expect(Math.abs(n[1])).toBeLessThan(0.02);
+    expect(Math.hypot(n[0], n[1], n[2])).toBeCloseTo(1, 1);
+    const full = dec(blendTangentNormals(px(flat), px([200, 128, 220]), 1), 0);
+    expect(full[0]).toBeGreaterThan(n[0]);
+  });
+
+  it('rejects maps of different sizes', () => {
+    expect(() => blendTangentNormals(px(flat), px(flat, flat))).toThrow(/differ/);
+  });
+
+  it('keeps the rock budget a capped scatter budget', () => {
+    expect(ROCK_BUDGET).toBeGreaterThan(2600);
+    expect(ROCK_BUDGET).toBeLessThanOrEqual(4400);
+    for (const t of FABLE_FOLIAGE_TARGETS.filter((x) => x.kind === 'rock')) {
+      expect(t.budget).toBe(ROCK_BUDGET);
     }
   });
 });

@@ -24,6 +24,7 @@ import {
   atlasLayout,
   BARK_ALBEDO_TARGETS,
   BARK_GRADE_GAIN,
+  blendTangentNormals,
   classifyFableTriangles,
   FABLE_FOLIAGE_TARGETS,
   FABLE_KIND_MATERIALS,
@@ -34,6 +35,7 @@ import {
   leafGradeGains,
   paintedReliefNormals,
   RELIEF_KINDS,
+  ROCK_RELIEF_OVER_BAKED,
   rasterizeUvMask,
   remapUvsToAtlasCell,
   SPLIT_KINDS,
@@ -74,7 +76,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '.
 const SRC_DIR = path.join(ROOT, 'assets_src', 'fable_foliage');
 const SHEET_DIR = path.join(SRC_DIR, 'leaf_sheets');
 const OUT_DIR = path.join(ROOT, 'public', 'models', 'foliage');
-const ROCK_ATLAS_TILE = 512;
+const ROCK_ATLAS_TILE = 768;
 
 const args = process.argv.slice(2);
 const onlyArg = args.find((a) => a.startsWith('--only'));
@@ -132,7 +134,10 @@ async function readSource(name) {
     .raw()
     .toBuffer({ resolveWithObject: true });
   const image = { data, width: info.width, height: info.height, channels: info.channels };
-  return { positions, normals, uvs, indices, webp, image };
+  // the source's own baked tangent-space normal map, when it has one
+  const normalTex = prim.getMaterial().getNormalTexture();
+  const normalImage = normalTex?.getImage() ? Buffer.from(normalTex.getImage()) : null;
+  return { positions, normals, uvs, indices, webp, image, normalImage };
 }
 
 /** Simplify to the triangle budget, keeping original vertices, then compact. */
@@ -232,7 +237,41 @@ async function buildRockAtlas(sources) {
     .composite(composites)
     .webp({ quality: 88, effort: 6, alphaQuality: 100 })
     .toBuffer();
-  return { atlas, layout };
+  // The sources' own baked normals, packed into the same cells (a source
+  // without one gets a flat cell), as raw rgb rows from the atlas top.
+  const normalComposites = await Promise.all(
+    sources.map(async (s, i) => ({
+      input: await sharp(
+        s.normalImage ?? {
+          create: {
+            width: ROCK_ATLAS_TILE,
+            height: ROCK_ATLAS_TILE,
+            channels: 3,
+            background: { r: 128, g: 128, b: 255 },
+          },
+        },
+      )
+        .resize(ROCK_ATLAS_TILE, ROCK_ATLAS_TILE)
+        .removeAlpha()
+        .png()
+        .toBuffer(),
+      left: (i % layout.cols) * ROCK_ATLAS_TILE,
+      top: Math.floor(i / layout.cols) * ROCK_ATLAS_TILE,
+    })),
+  );
+  const baked = await sharp({
+    create: {
+      width: layout.cols * ROCK_ATLAS_TILE,
+      height: layout.rows * ROCK_ATLAS_TILE,
+      channels: 3,
+      background: { r: 128, g: 128, b: 255 },
+    },
+  })
+    .composite(normalComposites)
+    .removeAlpha()
+    .raw()
+    .toBuffer();
+  return { atlas, layout, baked: new Uint8Array(baked.buffer, baked.byteOffset, baked.length) };
 }
 
 const srgbToLin = (c) => {
@@ -457,16 +496,20 @@ const ALPHA = {
   Flowers: ['MASK', 0.2],
 };
 
-/** The painted relief normal map of a sheet (webp bytes in, webp bytes out). */
-async function reliefFor(webp, opts) {
+/** The painted relief normal map of a sheet (webp bytes in, webp bytes out).
+ *  With `baked` (raw rgb of the same size), the painted relief is layered
+ *  over that baked normal map at ROCK_RELIEF_OVER_BAKED instead of standing
+ *  alone. */
+async function reliefFor(webp, opts, baked = null) {
   const { data, info } = await sharp(webp)
     .removeAlpha()
     .raw()
     .toBuffer({ resolveWithObject: true });
-  const rgb = paintedReliefNormals(
+  const painted = paintedReliefNormals(
     { data, width: info.width, height: info.height, channels: info.channels },
     opts,
   );
+  const rgb = baked ? blendTangentNormals(baked, painted, ROCK_RELIEF_OVER_BAKED) : painted;
   return sharp(Buffer.from(rgb), { raw: { width: info.width, height: info.height, channels: 3 } })
     .webp({ quality: 90, effort: 6 })
     .toBuffer();
@@ -713,7 +756,7 @@ for (const target of targets) {
   }
   const reliefOpts = RELIEF_KINDS[target.kind];
   if (reliefOpts && target.kind === 'rock' && !rockAtlas.relief) {
-    rockAtlas.relief = await reliefFor(rockAtlas.atlas, reliefOpts);
+    rockAtlas.relief = await reliefFor(rockAtlas.atlas, reliefOpts, rockAtlas.baked);
   }
   const relief = !reliefOpts
     ? null

@@ -73,8 +73,9 @@ const T = (name, kind, height, minY, x, z, budget, extra = {}) =>
 export const FULL_SOURCE = 4400;
 /** Triangle budget of a rock: the densest scatter, so a capped one, but
  *  rich enough that a near boulder's silhouette stops reading as facets
- *  (its painted relief map carries the surface). */
-export const ROCK_BUDGET = 2600;
+ *  (its own baked normal map, with the painted relief over it, carries the
+ *  surface). */
+export const ROCK_BUDGET = 4200;
 /** Height of a fitted dead tree as a fraction of the old snag's. */
 export const DEAD_HEIGHT_SCALE = 0.8;
 const dead = (name, oldHeight, x, z, oldFootprint) =>
@@ -940,6 +941,39 @@ export function paintedReliefNormals(image, { strength = 3.2, blur = 2 } = {}) {
   }
   return out;
 }
+
+/**
+ * Whiteout blend of two tangent-space normal maps (rgb bytes, same size):
+ * the `base` map (a source's own baked normal, which carries the sculpted
+ * chips and cracks) with the `detail` map (the painted relief) layered on at
+ * `detailWeight`. The xy slopes add and z multiplies, so a flat detail texel
+ * returns the base texel and a flat base returns the scaled detail. Returns
+ * new rgb bytes.
+ */
+export function blendTangentNormals(base, detail, detailWeight = 1) {
+  if (base.length !== detail.length) throw new Error('normal maps differ in size');
+  const out = new Uint8Array(base.length);
+  const dec = (v) => (v / 255) * 2 - 1;
+  for (let i = 0; i < base.length; i += 3) {
+    const bx = dec(base[i]);
+    const by = dec(base[i + 1]);
+    const bz = Math.max(1e-3, dec(base[i + 2]));
+    const dx = dec(detail[i]) * detailWeight;
+    const dy = dec(detail[i + 1]) * detailWeight;
+    const dz = Math.max(1e-3, 1 + (dec(detail[i + 2]) - 1) * detailWeight);
+    const x = bx + dx;
+    const y = by + dy;
+    const z = bz * dz;
+    const len = Math.hypot(x, y, z);
+    out[i] = Math.round(((x / len) * 0.5 + 0.5) * 255);
+    out[i + 1] = Math.round(((y / len) * 0.5 + 0.5) * 255);
+    out[i + 2] = Math.round(((z / len) * 0.5 + 0.5) * 255);
+  }
+  return out;
+}
+
+/** Share of the painted relief layered over a rock's own baked normal map. */
+export const ROCK_RELIEF_OVER_BAKED = 0.6;
 
 /** Kinds whose own sheet carries a painted relief normal map. */
 export const RELIEF_KINDS = Object.freeze({

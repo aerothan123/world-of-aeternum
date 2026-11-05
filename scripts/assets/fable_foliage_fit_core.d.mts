@@ -210,4 +210,10 @@ export interface ReliefOptions {
   readonly blur?: number;
 }
 export function paintedReliefNormals(image: TextureImage, opts?: ReliefOptions): Uint8Array;
+export function blendTangentNormals(
+  base: Uint8Array,
+  detail: Uint8Array,
+  detailWeight?: number,
+): Uint8Array;
+export const ROCK_RELIEF_OVER_BAKED: number;
 export const RELIEF_KINDS: Readonly<Partial<Record<FableKind, Readonly<Required<ReliefOptions>>>>>;
