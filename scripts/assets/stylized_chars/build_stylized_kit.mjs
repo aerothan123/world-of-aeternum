@@ -50,7 +50,8 @@ if (FIT !== 'male' && FIT !== 'female') throw new Error('--fit male|female');
 const KIT = JSON.parse(readFileSync(resolve(opt('kit')), 'utf8'))[FIT];
 const OUT = resolve(REPO, opt('out', 'public/models/chars/players/woc_stylized'));
 const LOD = !args.includes('--no-lod');
-// --only <set,set>: build just these sets (the base is measured, not rewritten)
+// --only <set,set>: build just these sets (the base is measured, not rewritten unless --base;
+// `--only none --base` rebuilds the base alone)
 const ONLY = opt('only') ? new Set(opt('only').split(',')) : null;
 mkdirSync(resolve(OUT, 'armor'), { recursive: true });
 const log = (...a) => console.log(new Date().toISOString().slice(11, 19), ...a);
@@ -345,20 +346,19 @@ async function rigid(path, { widthScale, topLift, back, dropShell }) {
       const o = (y * info.width + x) * 4;
       return [data[o], data[o + 1], data[o + 2]];
     };
+    // pale and unsaturated: the shell's white and its shaded rim (hair is never this grey)
+    const pale = ([r, g, b]) => {
+      const mx = Math.max(r, g, b);
+      return mx > 150 && (mx - Math.min(r, g, b)) / Math.max(1, mx) < 0.18;
+    };
     keep = [];
     for (let t = 0; t < idx.length; t += 3) {
-      let u = 0;
-      let v = 0;
-      for (let k = 0; k < 3; k++) {
-        const e = UV.getElement(idx[t + k], []);
-        u += e[0] / 3;
-        v += e[1] / 3;
-      }
-      const [r, g, b] = at(u, v);
-      const mx = Math.max(r, g, b);
-      const mn = Math.min(r, g, b);
-      const shell = mx > 170 && (mx - mn) / Math.max(1, mx) < 0.14;
-      if (!shell) keep.push(idx[t], idx[t + 1], idx[t + 2]);
+      // the centroid and the three corners: a shell edge triangle shows white at most of them
+      const uvs = [0, 1, 2].map((k) => UV.getElement(idx[t + k], []));
+      const centroid = [0, 1].map((a) => (uvs[0][a] + uvs[1][a] + uvs[2][a]) / 3);
+      let hits = 0;
+      for (const [u, v] of [centroid, ...uvs]) if (pale(at(u, v))) hits++;
+      if (hits < 2) keep.push(idx[t], idx[t + 1], idx[t + 2]);
     }
     log('hair shell dropped', (idx.length - keep.length) / 3, 'of', idx.length / 3, 'tris');
   }
@@ -465,7 +465,7 @@ measureCranium(base);
   }
   bindHeight = hi - lo;
 }
-if (!ONLY) {
+if (!ONLY || args.includes('--base')) {
   const s = await scaffold();
   const body = matte(
     s.doc,
