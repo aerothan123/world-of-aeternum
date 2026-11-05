@@ -241,7 +241,7 @@ export function refinedSplatGlsl(
           }
           // Damp band just above the waterline: darker, warmer soil under the
           // turf (with the mud photo on the rich tiers).
-          float wocWsShore = (wocHW.x + wocHW.y) * (1.0 - smoothstep(
+          float wocWsShore = (wocHW.x + wocHW.y * ${f(b.shoreDirt)}) * (1.0 - smoothstep(
             ${f(WATER_LEVEL + b.shoreNear)}, ${f(WATER_LEVEL + b.shoreFar)}, vWPos.y))
             * ${f(b.shoreMax)} * (1.0 - vExtra.y);
           if ( wocWsShore > 0.002 ) {

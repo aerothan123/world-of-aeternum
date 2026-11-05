@@ -101,6 +101,12 @@ describe('Refined terrain blend weights', () => {
     expect(mid.shoreMud).toBeGreaterThan(0);
     expect(mid.shoreMud).toBeLessThan(shore.shoreMud);
   });
+  it('keeps the damp band light on a trail that runs onto the beach', () => {
+    const turf = refinedBlendWeights({ ...flatMeadow, heightAboveWater: 0.2 });
+    const trail = refinedBlendWeights({ ...flatMeadow, grass: 0, dirt: 1, heightAboveWater: 0.2 });
+    expect(trail.shoreMud).toBeGreaterThan(0);
+    expect(trail.shoreMud).toBeLessThan(turf.shoreMud * 0.3);
+  });
   it('never touches sand or rock layers themselves', () => {
     const beach = refinedBlendWeights({ ...flatMeadow, grass: 0, sand: 1, normalY: 0.3 });
     expect(beach).toEqual({ grassVariant: 0, gravel: 0, steepRock: 0, shoreMud: 0 });

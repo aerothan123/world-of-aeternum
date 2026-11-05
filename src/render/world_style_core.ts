@@ -123,6 +123,11 @@ export const REFINED_BLEND = {
   shoreNear: 0.25,
   shoreFar: 2.6,
   shoreMax: 0.55,
+  /** Share of the damp band a TRAIL's dirt takes (turf takes all of it). A
+   *  path that runs down onto a beach is already dark packed earth; the full
+   *  band and its mud photo over it printed a near-black patch on the starter
+   *  beach (probed: dirt weight 0.9 at 1 to 2 yd above the water, no rock). */
+  shoreDirt: 0.2,
 } as const;
 
 export interface RefinedBlendInput {
@@ -176,7 +181,7 @@ export function refinedBlendWeights(i: RefinedBlendInput): RefinedBlendWeights {
   const steepRock =
     (i.grass + i.dirt) * smoothstepGlsl(b.steepHi, b.steepLo, i.normalY) * b.steepMax;
   const shoreMud =
-    (i.grass + i.dirt) *
+    (i.grass + i.dirt * b.shoreDirt) *
     (1 - smoothstepGlsl(b.shoreNear, b.shoreFar, i.heightAboveWater)) *
     b.shoreMax;
   return { grassVariant, gravel, steepRock, shoreMud };
