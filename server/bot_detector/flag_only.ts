@@ -34,6 +34,8 @@ const HOUR_MS = 60 * MINUTE_MS;
 /** A pause this long in commands ends a "run" for the no_breaks signal. */
 const BREAK_GAP_MS = 2 * MINUTE_MS;
 /** How long a signal stays on the evidence list after it last held. */
+/** Longer than the host's refresh floor (suspicion_flags.ts), so a re-offer is admitted. */
+const REFRESH_CONFIRM_MS = 15_000;
 const EVIDENCE_TTL_MS = 30 * MINUTE_MS;
 
 export const FLAG_ONLY_DEFAULTS = Object.freeze({
@@ -64,6 +66,9 @@ interface SessionState {
   recordedDetails: string | null;
   /** A host write is awaiting its answer; one write at a time per session. */
   inFlight: boolean;
+  /** A refresh text offered but not yet confirmed, and when it was first offered. */
+  offered: string | null;
+  offeredAt: number;
 }
 
 const CONFIG_META: ReadonlyArray<{
@@ -228,11 +233,27 @@ export function createBotDetector(): BotDetector {
   const detailsFor = (s: SessionState): string =>
     `Automated review flag (score ${score(s)}): ${[...s.evidence.values()].map((e) => e.detail).join(' ')}`;
 
-  function settle(s: SessionState): void {
+  /**
+   * Push the current summary through the host. A refresh the host throttles is
+   * acknowledged `true` without being written (the host paces refreshes and a
+   * detector "may call as often as it likes"), so a `true` alone does not prove
+   * the text landed. A refreshed text therefore counts as recorded only after
+   * it was offered twice at least REFRESH_CONFIRM_MS apart (longer than the
+   * host's refresh floor, so the second offer is admitted if the first was
+   * dropped); until then it is offered again on a later tick.
+   */
+  function settle(s: SessionState, now: number): void {
     if (!host || s.inFlight) return;
     const details = detailsFor(s);
     const first = s.recordedDetails === null;
     if (!first && details === s.recordedDetails) return;
+    const confirming = !first && s.offered === details;
+    if (confirming && now - s.offeredAt < REFRESH_CONFIRM_MS) return;
+    const confirmed = confirming;
+    if (!first && !confirmed) {
+      s.offered = details;
+      s.offeredAt = now;
+    }
     s.inFlight = true;
     const write = first
       ? host.recordSuspicionFlag({ accountId: s.ref.accountId, details })
@@ -240,10 +261,18 @@ export function createBotDetector(): BotDetector {
     void write.then(
       (ok) => {
         s.inFlight = false;
-        if (ok) s.recordedDetails = details;
+        if (!ok) {
+          s.offered = null;
+          return;
+        }
+        if (first || confirmed) {
+          s.recordedDetails = details;
+          s.offered = null;
+        }
       },
       () => {
         s.inFlight = false;
+        s.offered = null;
       },
     );
   }
@@ -262,6 +291,8 @@ export function createBotDetector(): BotDetector {
         evidence: new Map(),
         recordedDetails: null,
         inFlight: false,
+        offered: null,
+        offeredAt: 0,
       });
       return ctx;
     },
@@ -289,7 +320,7 @@ export function createBotDetector(): BotDetector {
       if (!s || !settings.enabled) return 'none';
       rollMinute(s, now);
       evaluate(s, now);
-      if (score(s) >= settings.flagThreshold) settle(s);
+      if (score(s) >= settings.flagThreshold) settle(s, now);
       return 'none';
     },
     listSuspiciousPlayers(): SuspiciousPlayer[] {

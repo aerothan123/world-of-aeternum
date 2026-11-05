@@ -85,6 +85,16 @@ async function acceptHandler(ctx: Ctx): Promise<void> {
   json(ctx.res, 200, { accepted: CURRENT_LEGAL_VERSIONS });
 }
 
+/** The retired /api/eula pair (EULA-only clients cached before the Terms and
+ *  Privacy gate). It never reports or records anything: a stale client cannot
+ *  read an "accepted" answer and skip the gate, and cannot record a partial
+ *  acceptance. It answers the stable legal_acceptance code ("these agreements
+ *  have changed, reload"), and a cached client that treats any failure as
+ *  "unknown" is stopped by the reload message, not by this route alone. */
+function retiredEulaHandler(ctx: Ctx): void {
+  json(ctx.res, 400, { error: 'client outdated', code: INVALID_INPUT_CODE });
+}
+
 const readAccount = requireAccount({ scope: 'read' });
 const activeAccount = requireAccount({ scope: 'active' });
 
@@ -102,5 +112,19 @@ export const routes: RouteDef[] = [
     surface: 'api',
     middleware: [activeAccount, withBody()],
     handler: acceptHandler,
+  },
+  {
+    method: 'GET',
+    path: '/api/eula',
+    surface: 'api',
+    middleware: [readAccount],
+    handler: retiredEulaHandler,
+  },
+  {
+    method: 'POST',
+    path: '/api/eula/accept',
+    surface: 'api',
+    middleware: [activeAccount, withBody()],
+    handler: retiredEulaHandler,
   },
 ];

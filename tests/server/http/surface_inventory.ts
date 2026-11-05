@@ -1085,6 +1085,28 @@ export const SURFACE_INVENTORY: readonly SurfaceRoute[] = [
     limiter: null,
     requireOwnedExpected: null,
   },
+  // The retired EULA-only pair (server/legal_acceptance.ts retiredEulaHandler):
+  // kept so a stale cached client gets the stable legal_acceptance error.
+  {
+    dispatcher: DISPATCH.mainApi,
+    method: 'GET',
+    path: '/api/eula',
+    handler: 'server/legal_acceptance.ts retiredEulaHandler (registry-only RouteDef)',
+    contentType: PROBLEM_JSON,
+    authScope: AUTH_SCOPE.bearer,
+    limiter: null,
+    requireOwnedExpected: null,
+  },
+  {
+    dispatcher: DISPATCH.mainApi,
+    method: 'POST',
+    path: '/api/eula/accept',
+    handler: 'server/legal_acceptance.ts retiredEulaHandler (registry-only RouteDef)',
+    contentType: PROBLEM_JSON,
+    authScope: AUTH_SCOPE.full,
+    limiter: null,
+    requireOwnedExpected: null,
+  },
   // The opt-in first-party analytics ingest (server/client_analytics.ts):
   // anonymous, in-handler per-IP public budget, the deeds rarity shape.
   {
