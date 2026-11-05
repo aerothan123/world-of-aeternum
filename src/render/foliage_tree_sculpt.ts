@@ -713,6 +713,12 @@ export function resolveTreeLeafColor(
   return out.setRGB(0.46 * v, 0.86 * v, 1.05 * v);
 }
 
+/** Whether a baked foliage geometry came from an authored storybook model
+ *  (its glTF primitive extras, which GLTFLoader puts on `userData`). */
+export function isAuthoredFoliageGeometry(geo: THREE.BufferGeometry): boolean {
+  return (geo.userData as { fableFoliage?: unknown }).fableFoliage === true;
+}
+
 /**
  * Entry point called by `extractParts(url)` in `src/render/foliage.ts` before
  * `foliageMaterial` is constructed, so `color` attributes automatically enable
@@ -725,6 +731,10 @@ export function sculptFoliageTreeGeometry(
   bakedGeo: THREE.BufferGeometry,
   lean = false,
 ): THREE.BufferGeometry {
+  // The storybook replacements (scripts/assets/fit_fable_foliage.mjs) are
+  // authored crowns and trunks, not the stock kit this module rebuilds: their
+  // primitives carry the `fableFoliage` extra and draw as shipped.
+  if (isAuthoredFoliageGeometry(bakedGeo)) return bakedGeo;
   const oakIdx = oakVariantIndexFromUrl(url);
   if (oakIdx !== null) {
     if (materialName === 'Bark_NormalTree') {

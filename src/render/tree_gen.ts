@@ -50,6 +50,7 @@ import {
   treeSwayWaveGlsl,
 } from './tree_sway';
 import { DEFAULT_TRUNK, type TrunkDef, trunkDef } from './tree_trunks.generated';
+import { paintRefinedCanopy } from './world_style_foliage';
 
 // The parameter record, canopy shapes and leaf orientations now live in
 // sim/tree_params.ts so the map document can sanitize them without importing
@@ -428,6 +429,8 @@ function leafMaterial(o: LeafMaterialOpts): THREE.MeshStandardMaterial {
     })
     .catch(() => {});
   configureLeafShader(mat, o, true);
+  // World Style Refined: the painterly canopy arm (world_style_foliage.ts).
+  paintRefinedCanopy(mat);
   leafMats.set(key, mat);
   return mat;
 }

@@ -198,7 +198,7 @@ export const PROP_NATURAL_SIZE: Readonly<Record<string, PropNaturalSize>> = {
   mushroomGlowCluster: { x: 0.7752, y: 0.9723, z: 0.8618, cx: 0, cz: 0.0013, minY: -0.489 },
   mushroomRed: { x: 0.174, y: 0.2028, z: 0.2009, cx: 0.0009, cz: 0.005, minY: -0.05 },
   mushroomTan: { x: 0.1914, y: 0.1539, z: 0.221, cx: 0.0009, cz: 0.005, minY: -0.05 },
-  oakTree: { x: 3.8255, y: 9.4384, z: 3.7552, cx: 0.1157, cz: -0.2019, minY: -0.2428 },
+  oakTree: { x: 5.873, y: 9.438, z: 5.4986, cx: -0.2069, cz: 0.3256, minY: -0.243 },
   oreRocks: { x: 0.3037, y: 0.0801, z: 0.2619, cx: -0.0199, cz: 0.0132, minY: 0 },
   pixieMushroomHouse: { x: 3.3266, y: 4, z: 3.311, cx: 0, cz: 0, minY: 0 },
   rockLargeD: { x: 1.0688, y: 0.5683, z: 1.0303, cx: 0, cz: 0, minY: -0.05 },

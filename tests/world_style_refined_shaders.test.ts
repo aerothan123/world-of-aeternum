@@ -112,7 +112,10 @@ describe('Refined splat terrain', () => {
 // Static tap budget: the texture fetches each Refined arm adds over Classic
 // (the WOC_ALB macro and textureLod/texture2D calls in the composed fragment).
 // Several sit behind a weight branch, so this is the worst case per pixel.
-const REFINED_TAP_BUDGET: Record<string, number> = { medium: 4, high: 8, insane: 8 };
+// The painted ground (world_style_ground_core.ts) adds up to six: two painted
+// meadow octaves on the baked-grass arm, then forest floor, wet moss, paving
+// and dune ripples, each behind its own weight branch.
+const REFINED_TAP_BUDGET: Record<string, number> = { medium: 10, high: 14, insane: 14 };
 const taps = (src: string): number =>
   (src.match(/\bWOC_ALB\s*\(|\btexture2D\s*\(|\btextureLod\s*\(|\btexture\s*\(/g) ?? []).length;
 
@@ -164,7 +167,7 @@ describe('Refined sky dome', () => {
     for (const zoneHaze of [false, true]) {
       const classic = skyZoneHazeInternalsForTest.skyFrag(zoneHaze);
       const refined = withRefinedSky(classic);
-      expect(refined).toContain('Cloud layer: fbm on the dome plane');
+      expect(refined).toContain('Cloud layer: billowy painted cumulus');
       expect(refined).toContain('uniform vec2 uWsCloudDrift;');
       expect(refined).toContain('Refined horizon haze');
       expect(samplerCount(refined)).toBe(samplerCount(classic));

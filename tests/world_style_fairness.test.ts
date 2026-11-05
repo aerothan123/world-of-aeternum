@@ -1,5 +1,5 @@
 // World Style Refined fairness (docs/design/graphics-settings-fairness.md):
-// the Refined ground palette and the per-time-of-day output grade must keep
+// the Refined ground (per-layer earth tint, then palette) and the per-time-of-day output grade must keep
 // every ground telegraph colour at least as readable against the ground as
 // Classic does, and the aerial haze must never reach the near field where
 // telegraphs, AoE markers and melee reads live. Pure: the JS mirrors of the
@@ -8,8 +8,10 @@ import { describe, expect, it } from 'vitest';
 import { TELEGRAPH_THREAT_COLORS } from '../src/render/floor_telegraph/telegraph_look_core';
 import {
   REFINED_AERIAL_CLEAR_YD,
+  type RefinedEarthLayer,
   refinedAerialAmount,
   refinedAtmosphere,
+  refinedEarthTint,
   refinedPalette,
 } from '../src/render/world_style_core';
 
@@ -30,6 +32,17 @@ const GROUND: Record<string, Rgb> = {
   sand: [0.78, 0.7, 0.52],
   rock: [0.5, 0.5, 0.5],
 };
+// The splat layer each tone stands on (the Refined per-layer earth tint).
+const LAYER: Record<string, RefinedEarthLayer> = {
+  grass: 'grass',
+  dryGrass: 'grass',
+  dirt: 'dirt',
+  gravel: 'dirt',
+  sand: 'sand',
+  rock: 'rock',
+};
+const refinedGround = (name: string, c: Rgb): Rgb =>
+  refinedPalette(refinedEarthTint(c, LAYER[name]));
 
 // The phases a player fights in: noon, golden hour, blue hour, night.
 const PHASES: [string, number, number][] = [
@@ -77,13 +90,13 @@ describe('ground telegraphs stay readable on the Refined ground', () => {
             // Refined: the painterly ground, then the time-of-day grade on
             // the whole frame (the telegraph rides the same output grade).
             const rGround = grade(
-              refinedPalette(ground),
+              refinedGround(name, ground),
               a.gradeGain,
               a.gradeSaturation,
               a.gradeLift,
             );
             const rTele = grade(
-              over(tele, refinedPalette(ground), coverage),
+              over(tele, refinedGround(name, ground), coverage),
               a.gradeGain,
               a.gradeSaturation,
               a.gradeLift,

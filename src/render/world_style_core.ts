@@ -19,6 +19,7 @@
 // lowers exposure and never drops saturation below REFINED_GRADE_MIN_SAT.
 
 import type { GfxTier } from './gfx';
+import { REFINED_EXTRA_LAYER_FILES } from './world_style_ground_core';
 
 export type WorldStyle = 'classic' | 'refined';
 
@@ -93,11 +94,9 @@ export function refinedTerrainProfileKey(p: RefinedTerrainProfile): string {
 }
 
 /** The extra albedo layers Refined appends to the packed splat array (after
- *  the six Classic layers, so every Classic WOC_L_* index is unchanged). */
-export const REFINED_ALBEDO_LAYER_FILES = {
-  grassVariantC: 'Grass004_Color.jpg',
-  gravelC: 'Gravel024_Color.jpg',
-} as const;
+ *  the six Classic layers, so every Classic WOC_L_* index is unchanged); the
+ *  painted-ground roster behind them is world_style_ground_core.ts. */
+export const REFINED_ALBEDO_LAYER_FILES = REFINED_EXTRA_LAYER_FILES;
 export const REFINED_LAYER_GRASS_B = 6;
 export const REFINED_LAYER_GRAVEL = 7;
 
@@ -109,11 +108,13 @@ export const REFINED_BLEND = {
   variantHi: 0.66,
   /** Most of a meadow the dry variant may own. */
   variantMax: 0.62,
-  /** Gravel weight on the dirt layer: path shoulders take most of it. */
-  gravelEdge: 0.55,
-  gravelCore: 0.1,
-  gravelNoise: 0.25,
-  gravelMax: 0.6,
+  /** Gravel weight on the dirt layer: path shoulders take most of it. Kept
+   *  light: the painted path set carries its own pebbles, and the gravel
+   *  photo only roughens the worn margin. */
+  gravelEdge: 0.3,
+  gravelCore: 0.05,
+  gravelNoise: 0.12,
+  gravelMax: 0.35,
   /** Steep faces (normal y under hi, full at lo) turn to rock. */
   steepHi: 0.74,
   steepLo: 0.5,
@@ -184,8 +185,10 @@ export function refinedBlendWeights(i: RefinedBlendInput): RefinedBlendWeights {
 /** The warm painterly ground palette: a per-channel balance and a mild
  *  saturation pull, applied to the composed albedo (both GLSL arms read it). */
 export const REFINED_PALETTE = {
-  balance: [1.045, 1.0, 0.9] as const,
-  saturation: 0.9,
+  // Gentle: the painted sets already carry warm earth, so a strong warm
+  // balance on top double-warmed paths and sand toward orange.
+  balance: [1.03, 1.0, 0.93] as const,
+  saturation: 0.88,
   /** Dry meadow tint the grass variant carries (straw gold over green). */
   dryGrass: [1.1, 1.0, 0.72] as const,
   /** Gravel tint toward the trail's earth tone. */
@@ -193,6 +196,44 @@ export const REFINED_PALETTE = {
   /** Damp shore multiply (darker, a touch warm). */
   dampShore: [0.66, 0.6, 0.52] as const,
 } as const;
+
+/** The storybook earth tints, one per splat layer, applied by layer weight
+ *  before the palette: a sunlit yellow-green meadow floor, warm ochre packed
+ *  earth on roads and paths, soft cream beach sand and a softened warm-grey
+ *  rock with a faint violet cast. `soften` pulls the dirt and rock photo
+ *  detail toward a luminance pivot, so the ground reads painted, not photo. */
+export const REFINED_EARTH = {
+  grass: [1.03, 1.02, 0.86] as const,
+  dirt: [0.99, 0.99, 0.97] as const,
+  sand: [1.0, 1.0, 1.0] as const,
+  rock: [1.02, 0.99, 1.02] as const,
+  /** Worn grassy margin of a trail: share of the shoulder that greens over. */
+  pathGreen: 0.42,
+  /** The olive the trail margin greens toward (times its own luminance). */
+  pathGreenTint: [0.96, 1.08, 0.56] as const,
+  /** Detail contrast kept on the dirt and rock layers (1 as authored). The
+   *  painted sets ARE the painterly detail now, so they keep nearly all of it. */
+  soften: 0.97,
+  /** Luminance pivot the soften pull converges on (linear albedo, near the
+   *  mean of the dirt and rock photos so the layer keeps its brightness). */
+  softenPivot: 0.36,
+} as const;
+
+export type RefinedEarthLayer = 'grass' | 'dirt' | 'sand' | 'rock';
+
+/** JS mirror of the shader's per-layer earth tint and soften on one fully
+ *  weighted layer texel (before refinedPalette). */
+export function refinedEarthTint(
+  rgb: readonly [number, number, number],
+  layer: RefinedEarthLayer,
+): [number, number, number] {
+  const e = REFINED_EARTH;
+  const t = e[layer];
+  const l = 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
+  const soft = layer === 'dirt' || layer === 'rock' ? e.soften : 1;
+  const k = (e.softenPivot + (l - e.softenPivot) * soft) / Math.max(l, 1e-3);
+  return [rgb[0] * t[0] * k, rgb[1] * t[1] * k, rgb[2] * t[2] * k];
+}
 
 /** JS mirror of the shader's palette step, for the decal-contrast pin. */
 export function refinedPalette(rgb: readonly [number, number, number]): [number, number, number] {
@@ -287,42 +328,47 @@ interface Phase {
 
 // Four anchor looks; the live atmosphere is their blend by the phase weights.
 const NOON: Phase = {
-  gain: [1.0, 1.0, 0.985],
-  sat: 1.04,
-  lift: [0.0, 0.0, 0.004],
+  // Storybook afternoon: a gentle warm cast, raised cool-blue shadow floor
+  // and a slightly compressed range (gain under 1 plus lift), so midday reads
+  // soft and golden rather than crisp and neutral. The midday air is kept
+  // clear: a lower shadow lift and a thinner, bluer aerial haze (it read
+  // milky), while distance still softens into a gentle sky-blue.
+  gain: [1.0, 0.975, 0.93],
+  sat: 1.15,
+  lift: [0.003, 0.005, 0.012],
   exposure: 1.0,
-  aerial: [0.64, 0.72, 0.82],
-  aerialAmt: 0.46,
-  zenith: [0.2, 0.4, 0.82],
-  horizon: [0.66, 0.75, 0.86],
-  glow: [0.32, 0.28, 0.2],
-  cloudLit: [0.9, 0.89, 0.86],
-  cloudShade: [0.56, 0.62, 0.72],
-  cover: 0.42,
-  cloudOp: 0.5,
-  sun: [1.0, 0.975, 0.93],
-  light: 1.05,
-  ambient: 0.95,
-  fog: [0.96, 0.99, 1.05],
+  aerial: [0.64, 0.73, 0.9],
+  aerialAmt: 0.32,
+  zenith: [0.14, 0.38, 0.92],
+  horizon: [0.8, 0.82, 0.82],
+  glow: [0.5, 0.4, 0.24],
+  cloudLit: [1.06, 1.03, 0.96],
+  cloudShade: [0.66, 0.68, 0.8],
+  cover: 0.44,
+  cloudOp: 0.92,
+  sun: [1.06, 0.97, 0.82],
+  light: 1.02,
+  ambient: 1.06,
+  fog: [1.02, 1.0, 0.97],
 };
 const GOLDEN: Phase = {
-  gain: [1.04, 1.0, 0.93],
-  sat: 1.08,
-  lift: [0.006, 0.003, 0.0],
+  gain: [1.06, 0.99, 0.86],
+  sat: 1.12,
+  lift: [0.008, 0.006, 0.012],
   exposure: 1.02,
-  aerial: [0.86, 0.74, 0.62],
-  aerialAmt: 0.42,
-  zenith: [0.3, 0.38, 0.64],
-  horizon: [1.05, 0.7, 0.44],
-  glow: [0.95, 0.6, 0.3],
-  cloudLit: [1.08, 0.74, 0.52],
-  cloudShade: [0.46, 0.42, 0.52],
-  cover: 0.4,
-  cloudOp: 0.66,
-  sun: [1.04, 0.97, 0.88],
-  light: 1.0,
-  ambient: 0.97,
-  fog: [1.02, 0.99, 0.95],
+  aerial: [0.95, 0.76, 0.54],
+  aerialAmt: 0.5,
+  zenith: [0.32, 0.38, 0.6],
+  horizon: [1.15, 0.74, 0.42],
+  glow: [1.2, 0.72, 0.32],
+  cloudLit: [1.2, 0.8, 0.52],
+  cloudShade: [0.5, 0.44, 0.54],
+  cover: 0.46,
+  cloudOp: 0.78,
+  sun: [1.08, 0.94, 0.76],
+  light: 1.02,
+  ambient: 1.1,
+  fog: [1.06, 0.98, 0.88],
 };
 const BLUE: Phase = {
   gain: [0.96, 0.98, 1.05],

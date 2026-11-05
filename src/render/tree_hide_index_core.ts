@@ -18,6 +18,9 @@ export interface TreeHideIndexEntry {
   x: number;
   z: number;
   r: number;
+  /** How far from (x, z) the tree can occlude (its crown's far edge);
+   *  the trunk radius when unset. */
+  reach?: number;
   prefetched: boolean;
 }
 
@@ -55,7 +58,7 @@ interface Cell {
 export class TreeHideIndex {
   /** Number of trees the index was built over: a grown registry rebuilds. */
   readonly count: number;
-  /** The largest trunk radius, the segment box's margin. */
+  /** The largest reach (trunk radius or crown edge), the segment box's margin. */
   readonly maxR: number;
   /** Trees whose fade is in flight (ghosted or fading back), by tree index. */
   readonly active = new Set<number>();
@@ -82,7 +85,8 @@ export class TreeHideIndex {
     let clamped = 0;
     for (let i = 0; i < trees.length; i++) {
       const t = trees[i];
-      if (t.r > maxR) maxR = t.r;
+      const reach = Math.max(t.r, t.reach ?? 0);
+      if (reach > maxR) maxR = reach;
       const rawCx = Math.floor(t.x / cellSize);
       const rawCz = Math.floor(t.z / cellSize);
       const cx = clampCell(rawCx);
@@ -128,7 +132,7 @@ export class TreeHideIndex {
     cell.unlatched.length = last;
   }
 
-  /** Every tree whose trunk circle can touch the segment from (ax, az) to
+  /** Every tree whose trunk or crown circle can touch the segment from (ax, az) to
    *  (bx, bz): the cells under the segment's box grown by the largest radius.
    *  Each visited tree is stamped for the frame. */
   forEachNearSegment(

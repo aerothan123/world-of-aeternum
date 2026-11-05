@@ -159,6 +159,7 @@ import { freezeStaticMatrices } from './static_matrix';
 import { groundGrassColorAt, groundLushnessAt } from './terrain_chunk_build';
 import { type FlowerKind, flowerTuftTexture, grassTuftTexture } from './textures';
 import { hideableGhostSources, type TreeHideable, updateTreeHides } from './tree_hide_fade';
+import { paintRefinedCanopy, paintRefinedGrass, refinedDressLift } from './world_style_foliage';
 import { applySurfaceDetail, foliageWornFamilyFor } from './worn_stone';
 
 // The renderer seeds the far-placement mirrors through this module's surface.
@@ -936,10 +937,10 @@ interface ModelPart {
   isLeaf: boolean;
 }
 
-// one shared material per (collapse role, source-material name): dedupes
-// textures across the 5 pine / 5 oak files which all reference the same bark +
-// leaf sheets, while a tree material can never share an instance (and so a
-// collapse window) with a dressing one
+// one shared material per (collapse role, source-material name, map name):
+// dedupes the sheet a kit's variants share (the twisted trees), keeps each
+// storybook model's own baked texture, and a tree material never shares an
+// instance (and so a collapse window) with a dressing one
 const materialCache = new Map<string, THREE.Material>();
 
 /** Drop profile-derived foliage parts/materials while retaining source URL recipes. */
@@ -955,7 +956,7 @@ function foliageMaterial(
   hasVertexColors: boolean,
   role: CollapseRole,
 ): THREE.Material {
-  const key = `${role}:${src.name}`;
+  const key = `${role}:${src.name}:${(src as THREE.MeshStandardMaterial).map?.name ?? ''}`;
   const cached = materialCache.get(key);
   if (cached) return cached;
   const std = src as THREE.MeshStandardMaterial;
@@ -1007,6 +1008,7 @@ function foliageMaterial(
   // (needle/leaf break-up) instead; unknown names no-op inside.
   applyCanopyDetail(mat, src.name);
   if (pol.leaf && std.map) reuseLeafMapSampleForEmissive(mat);
+  if (pol.leaf || !MAT_POLICY[src.name]) paintRefinedCanopy(mat, pol.leaf);
   if (role === 'tree') withInstancedDitherFade(mat);
   materialCache.set(key, mat);
   return mat;
@@ -1028,7 +1030,7 @@ function toFloatAttribute(
 
 function bakeGeometry(mesh: THREE.Mesh): THREE.BufferGeometry {
   const src = mesh.geometry;
-  const out = new THREE.BufferGeometry();
+  const out = Object.assign(new THREE.BufferGeometry(), { userData: { ...src.userData } });
   for (const name of ['position', 'normal', 'uv', 'color']) {
     const attr = src.getAttribute(name);
     if (attr) out.setAttribute(name, toFloatAttribute(attr));
@@ -2154,7 +2156,7 @@ function buildDressing(
     fern: [1.06, 1.02, 0.88],
   };
   for (const kind of ['bush', 'bushFlowers', 'fern'] as const) {
-    const lift = albedoLift[kind];
+    const lift = kind === 'fern' ? albedoLift[kind] : refinedDressLift(albedoLift[kind]);
     if (!lift) continue;
     for (const part of kindParts[kind]) {
       if (part.material.name === 'Flowers') continue;
@@ -2621,6 +2623,7 @@ function buildGrassRing(
         }),
   );
   applyGrassShader(mat, uniforms, capCollapseBand);
+  paintRefinedGrass(mat, 'uv.y');
   // Chunk meshes are built per frame as you walk, so no boot compile root ever
   // sees this material (ground_decor_prewarm.ts).
   registerGroundDecorPrewarmDraw({ geometry: geo, material: mat, instanceColor: true });

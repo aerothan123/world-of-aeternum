@@ -32,73 +32,64 @@ const ROOT = path.join(__dirname, '..');
 const BOUNDS_TOLERANCE = 0.05;
 const QUIET = new Logger(Logger.Verbosity.WARN);
 
-const PINE = { bark: 'Bark_NormalTree', leaves: ['Leaves_Pine'] };
-const OAK = { bark: 'Bark_NormalTree', leaves: ['Leaves_NormalTree'] };
-const TWISTED = { bark: 'Bark_TwistedTree', leaves: ['Leaves_TwistedTree'] };
+// The storybook oaks (scripts/assets/fit_fable_foliage.mjs) wear their baked
+// WEBP bark sheet and the shared WEBP leaf-card atlas, and no normal map; the
+// twisted kit keeps its KTX2 bark, normal and leaf sheets.
+const OAK = {
+  bark: 'Bark_NormalTree',
+  leaves: ['Leaves_NormalTree'],
+  barkNormal: null,
+  textures: 2,
+  textureExtension: 'EXT_texture_webp',
+};
+const TWISTED = {
+  bark: 'Bark_TwistedTree',
+  leaves: ['Leaves_TwistedTree'],
+  barkNormal: 'Bark_TwistedTree_Normal',
+  textures: 3,
+  textureExtension: 'KHR_texture_basisu',
+};
 
 const EXPECTED = [
   {
-    model: 'pine_1',
-    sourceSha256: '18d21cee2d4141a31ca6c238836e66242d4ca259a874eb2c53c120ba94491f2d',
-    budget: 1200,
-    outputSha256: 'b2de7d8d93daa807835d42ea92aa0fb5817adce00a57e7c9e1365fbedf15a1b0',
-    materials: PINE,
-    sourceBark: { triangles: 3121, vertices: 2126 },
-    bark: { triangles: 1200, vertices: 890 },
-  },
-  {
-    model: 'pine_2',
-    sourceSha256: 'e3c2d2a2b06b7ad2fb9d186e72797a00287b786d595539c0994880cbcc944bb5',
-    budget: 1200,
-    outputSha256: 'bac6680a8c26a13d19ff5bb58a8ec0331b7976978e2213ed81959a0191474da7',
-    materials: PINE,
-    sourceBark: { triangles: 2827, vertices: 1866 },
-    bark: { triangles: 1200, vertices: 854 },
-  },
-  {
-    model: 'pine_4',
-    sourceSha256: '25b84be096d31f1ff8d542fd4c5fadb7b1c68f9aa15e3e558625d0ecde5378be',
-    budget: 1200,
-    outputSha256: '26982681dd59ecfb996ad77a3f764eb276b99074fd88f9edb06afd36f8be9618',
-    materials: PINE,
-    sourceBark: { triangles: 2125, vertices: 1511 },
-    bark: { triangles: 1200, vertices: 890 },
-  },
-  {
     model: 'oak_1',
-    sourceSha256: '9510f3ba02e6395e7ea0b4f766652d9159efcd9593ac56b5f907f7553d6dc5e1',
-    budget: 1600,
-    outputSha256: '81898a4faeb28a10a0a6b9afea6e3a5ea6fa311990555043a9b2453bdfea881d',
+    sourceSha256: 'd38f3eaf035c06f911003d908eba2b1dc9742094d12ced8299a780631fa1de00',
+    budget: 480,
+    keepSeams: true,
+    outputSha256: 'b2309dd7d62476b40c6c8096401b8aec925dccfa7619e8703640d32307af9501',
     materials: OAK,
-    sourceBark: { triangles: 4312, vertices: 2862 },
-    bark: { triangles: 1600, vertices: 1124 },
+    sourceBark: { triangles: 611, vertices: 969 },
+    bark: { triangles: 480, vertices: 841 },
   },
   {
     model: 'oak_2',
-    sourceSha256: 'eeea227bbd3779ed6b932aa75d9170b49a601743af2eee055e52ef97803f7bc6',
-    budget: 1600,
-    outputSha256: '261c498990b3a6e653b1e9be8ec7df32996ab3e7d04585c39aacc7badb22bc03',
+    sourceSha256: 'c96851d51e4b86fda605fa9af7b9be3df332a6ec1ad9fbcdb4ad8d380ca664a0',
+    budget: 470,
+    keepSeams: true,
+    outputSha256: '6ef8732598dd07f18841c8e7c93c230478d9f1c622e6615bbb8e9845f0d1cbf7',
     materials: OAK,
-    sourceBark: { triangles: 4274, vertices: 2776 },
-    bark: { triangles: 1600, vertices: 1099 },
+    sourceBark: { triangles: 736, vertices: 1031 },
+    bark: { triangles: 470, vertices: 759 },
   },
   {
     model: 'oak_4',
-    sourceSha256: 'a8d015f28af796a92bbfa083f50b5d53f187c9db12bc04ebefe8a3b8269fb0e7',
-    budget: 1600,
-    outputSha256: 'a460a56a29ff568587bd7bc56a2fc8c4012aed8267b8111ea853413a91506a9c',
+    sourceSha256: 'ae59752b50a19fd31e2d3088696870bad1ac73e79405f24217edb298f6280453',
+    budget: 480,
+    keepSeams: true,
+    outputSha256: '6be8bdfef6be2713450ed79a286a2321a52d07cb0e0fd6cb20b78c18f3792e5e',
     materials: OAK,
-    sourceBark: { triangles: 3252, vertices: 2110 },
-    bark: { triangles: 1600, vertices: 1080 },
+    sourceBark: { triangles: 663, vertices: 1027 },
+    bark: { triangles: 480, vertices: 830 },
   },
   {
     model: 'oak_5',
-    sourceSha256: '6de684b3a783d6406444c351bc55fedd2a467ddc71840174c9bf9c45438173ae',
-    budget: 1600,
-    outputSha256: '6cc4d1c19cc6a44e331866e60e40121d5d10605d62264fb1783b888bde060c05',
+    sourceSha256: '024894e048779493e7802f881b054a841fd9522c46e4ba5f72f8f5a9c1579d30',
+    budget: 530,
+    keepSeams: true,
+    outputSha256: 'ecda9509471c6954f6ca9eedf7bb6b9428072b54dd6bb92a1c841f9f72865fcd',
     materials: OAK,
-    sourceBark: { triangles: 1862, vertices: 1188 },
-    bark: { triangles: 1600, vertices: 1032 },
+    sourceBark: { triangles: 587, vertices: 951 },
+    bark: { triangles: 530, vertices: 898 },
   },
   {
     model: 'twisted_1',
@@ -298,9 +289,11 @@ function decimate(
   document: Document,
   barkTriangleBudget: number,
   simplifier: FoliageBarkSimplifier = MeshoptSimplifier,
+  keepSeams = false,
 ) {
   return decimateFoliageBarkDocument(document, {
     barkTriangleBudget,
+    keepSeams,
     simplifier,
     encoder: MeshoptEncoder,
   });
@@ -321,10 +314,11 @@ describe('foliage field bark decimation', () => {
 
   it('keeps the stage table complete and independently pinned', () => {
     expect(FOLIAGE_FIELD_BARK_ASSETS).toEqual(
-      EXPECTED.map(({ model, sourceSha256, budget, outputSha256 }) => ({
+      EXPECTED.map(({ model, sourceSha256, budget, outputSha256, ...rest }) => ({
         sourcePath: sourceUrl(model),
         sourceSha256,
         barkTriangleBudget: budget,
+        ...('keepSeams' in rest ? { keepSeams: rest.keepSeams } : {}),
         outputPath: fieldUrl(model),
         outputSha256,
       })),
@@ -340,6 +334,7 @@ describe('foliage field bark decimation', () => {
     expect(fieldTableUrls.sort()).toEqual(
       FOLIAGE_FIELD_BARK_ASSETS.map(({ outputPath }) => outputPath).sort(),
     );
+    expect(treeUrl('pine', 1)).toBe('models/foliage/pine_1.glb');
     expect(treeUrl('pine', 5)).toBe('models/foliage/pine_5.glb');
     expect(treeUrl('oak', 3)).toBe('models/foliage/oak_3.glb');
   });
@@ -385,7 +380,12 @@ describe('foliage field bark decimation', () => {
   for (const asset of EXPECTED) {
     it(`rebuilds ${asset.model}_field byte for byte from its source through the stage`, async () => {
       const document = await io.read(path.join(ROOT, 'public', sourceUrl(asset.model)));
-      const report = await decimate(document, asset.budget);
+      const report = await decimate(
+        document,
+        asset.budget,
+        MeshoptSimplifier,
+        'keepSeams' in asset && asset.keepSeams,
+      );
       const rebuiltSha256 = createHash('sha256')
         .update(await io.writeBinary(document))
         .digest('hex');
@@ -424,8 +424,8 @@ describe('foliage field bark decimation', () => {
 
       for (const bark of [sourceBark, outputBark]) {
         expect(bark.getMaterial()?.getName()).toBe(asset.materials.bark);
-        expect(bark.getMaterial()?.getNormalTexture()?.getName()).toBe(
-          `${asset.materials.bark}_Normal`,
+        expect(bark.getMaterial()?.getNormalTexture()?.getName() ?? null).toBe(
+          asset.materials.barkNormal,
         );
       }
       for (const parts of [sourceParts, outputParts]) {
@@ -452,9 +452,9 @@ describe('foliage field bark decimation', () => {
         sourceParts.others.map(primitiveTriangleAttributeFingerprint),
       );
       expect(textureRecords(output)).toEqual(textureRecords(source));
-      expect(textureRecords(output)).toHaveLength(3);
+      expect(textureRecords(output)).toHaveLength(asset.materials.textures);
       expect(extensionLists(output)).toEqual(extensionLists(source));
-      expect(extensionLists(output).required).toContain('KHR_texture_basisu');
+      expect(extensionLists(output).required).toContain(asset.materials.textureExtension);
 
       expectBoundsClose(modelBounds(output), modelBounds(source));
       expectBoundsClose(worldBarkBounds(output, outputBark), worldBarkBounds(source, sourceBark));
@@ -507,6 +507,21 @@ describe('foliage bark decimation guards', () => {
   beforeAll(async () => {
     await MeshoptEncoder.ready;
     await MeshoptSimplifier.ready;
+  });
+
+  it('collapses across uv seams only without keepSeams', async () => {
+    const seen: (readonly string[] | undefined)[] = [];
+    const budget = 60;
+    const recording: FoliageBarkSimplifier = {
+      simplify: (indices, _positions, _stride, _target, _error, flags) => {
+        seen.push(flags);
+        return [indices.slice(0, budget * 3), 0];
+      },
+      getScale: () => 1,
+    };
+    await decimate(treeDocument().document, budget, recording).catch(() => undefined);
+    await decimate(treeDocument().document, budget, recording, true).catch(() => undefined);
+    expect(seen).toEqual([['Permissive'], []]);
   });
 
   it('holds the simplified bark inside its budget window', async () => {
@@ -589,7 +604,7 @@ describe('foliage field bark consumers', () => {
   const decimatedSources = EXPECTED.map(({ model }) => sourceUrl(model));
   const fieldCopies = EXPECTED.map(({ model }) => fieldUrl(model));
 
-  it('points the world foliage field at exactly the ten field copies', () => {
+  it('points the world foliage field at exactly the seven field copies', () => {
     const { allFoliageModelUrls, lowTierFoliageModelUrls, highTierFoliageModelUrls } =
       foliagePreloadInternalsForTest;
     const all = [...allFoliageModelUrls()];
@@ -598,7 +613,7 @@ describe('foliage field bark consumers', () => {
     expect([...highTierFoliageModelUrls()].sort()).toEqual(all.sort());
     expect([...lowTierFoliageModelUrls()].sort()).toEqual(
       [
-        'models/foliage/pine_1_field.glb',
+        'models/foliage/pine_1.glb',
         'models/foliage/oak_1_field.glb',
         'models/foliage/twisted_1_field.glb',
         'models/foliage/dead_1.glb',
@@ -609,7 +624,16 @@ describe('foliage field bark consumers', () => {
         'models/foliage/mushroom.glb',
       ].sort(),
     );
-    for (const kept of ['pine_5', 'oak_3', 'dead_1', 'dead_2', 'dead_3']) {
+    for (const kept of [
+      'pine_1',
+      'pine_2',
+      'pine_4',
+      'pine_5',
+      'oak_3',
+      'dead_1',
+      'dead_2',
+      'dead_3',
+    ]) {
       expect(all).toContain(sourceUrl(kept));
     }
     for (const url of all) {

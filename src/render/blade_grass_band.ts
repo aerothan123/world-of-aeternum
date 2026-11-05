@@ -32,7 +32,13 @@ import {
 } from '../sim/data';
 import { grassClearedAt } from '../sim/grass_clear';
 import { roadDistance, terrainCutAtHeight, terrainHeight, zoneBiomeAt } from '../sim/world';
-import { bladeSwayGlsl, clusterGeometry, clusterPlacementPad, mulberry32 } from './blade_grass';
+import {
+  BLADE_HEIGHT_FROM_SHADE_GLSL,
+  bladeSwayGlsl,
+  clusterGeometry,
+  clusterPlacementPad,
+  mulberry32,
+} from './blade_grass';
 import {
   activateDenseSlot,
   type DenseSlotState,
@@ -81,6 +87,15 @@ import {
 } from './meadow_tuning';
 import { bladeSectorAxis, renderLayerDisabled } from './render_dev_flags';
 import { groundGrassColorAt, groundLushnessAt } from './terrain_chunk_build';
+import { paintRefinedGrass } from './world_style_foliage';
+import { paintedClumpCoverage, paintedClumpHeight } from './world_style_foliage_core';
+import { paintRefinedBloom } from './world_style_grass';
+import {
+  bladeClusterShape,
+  paintedClumpWidth,
+  paintedClumpWidthMax,
+  paintedGrassCoverageScale,
+} from './world_style_grass_core';
 
 export interface BladeGrassBandView {
   group: THREE.Group;
@@ -128,7 +143,7 @@ export function buildBladeGrassBand(
   const POOL = GRID_W * GRID_W;
 
   const rng = mulberry32(seed ^ 0x6b1a);
-  const geo = clusterGeometry(rng, 2);
+  const geo = clusterGeometry(rng, 2, bladeClusterShape(GFX.worldStyle));
   const mat = new THREE.MeshStandardMaterial({
     vertexColors: true,
     roughness: 0.92,
@@ -217,6 +232,9 @@ export function buildBladeGrassBand(
       #endif`,
     );
   };
+  // World Style Refined: the same painted-meadow arm as the near carpet.
+  paintRefinedGrass(mat, BLADE_HEIGHT_FROM_SHADE_GLSL);
+  paintRefinedBloom(mat, BLADE_HEIGHT_FROM_SHADE_GLSL);
 
   // the carpet's sector split, verbatim: one mesh per sector of the slot grid,
   // all on this one geometry and material (blade_grass_sector_pool.ts)
@@ -225,7 +243,7 @@ export function buildBladeGrassBand(
     axis: bladeSectorAxis(),
     geometry: geo,
     material: mat,
-    clusterPad: clusterPlacementPad(geo),
+    clusterPad: clusterPlacementPad(geo) * paintedClumpWidthMax(GFX.worldStyle),
   });
   for (const mesh of sectorPool.meshes) group.add(mesh);
 
@@ -270,7 +288,11 @@ export function buildBladeGrassBand(
     if (ok) {
       const lush = groundLushnessAt(x, z, seed);
       const biomeDensity = GRASS_BIOME_DENSITY[zoneBiomeAt(x, z)] ?? 1;
-      const baseCoverage = meadowCoverage(lush) * Math.min(biomeDensity, 1.2);
+      const baseCoverage =
+        meadowCoverage(lush) *
+        Math.min(biomeDensity, 1.2) *
+        paintedClumpCoverage(GFX.worldStyle, x, z) *
+        paintedGrassCoverageScale(GFX.worldStyle);
       const rd = roadDistance(x, z);
       ok = r1 < baseCoverage;
       if (ok) ok = rd > GRASS_ROAD_INNER_RADIUS;
@@ -292,14 +314,16 @@ export function buildBladeGrassBand(
           const edgeTaper = grassEdgeTaperAt(edgeTaperCtx, x, z, rd);
           if (r1 < baseCoverage * grassEdgeCoverageScale(edgeTaper)) {
             const baseScale = meadowClusterScale(lush, hash(ci, cj, 3), hash(ci, cj, 4));
-            const s = baseScale * grassEdgeWidthScale(edgeTaper);
+            const s =
+              baseScale * grassEdgeWidthScale(edgeTaper) * paintedClumpWidth(GFX.worldStyle, x, z);
             q.setFromAxisAngle(up, r1 * 12.9);
             const rLean = hash(ci, cj, 5);
             leanAxis.set(Math.sin(rLean * 41.3), 0, Math.cos(rLean * 41.3));
             q.premultiply(qLean.setFromAxisAngle(leanAxis, rLean * 0.21));
             const sy =
               meadowClusterHeight(baseScale, lush, hash(ci, cj, 6)) *
-              grassEdgeHeightScale(edgeTaper);
+              grassEdgeHeightScale(edgeTaper) *
+              paintedClumpHeight(GFX.worldStyle, x, z);
             m.compose(v.set(x, h - 0.02, z), q, sv.set(s, sy, s));
             groundGrassColorAt(x, z, seed, c);
             c.multiplyScalar(1.18);

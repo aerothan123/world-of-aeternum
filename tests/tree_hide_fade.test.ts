@@ -7,9 +7,12 @@ import { describe, expect, it, vi } from 'vitest';
 import type { InstancedOccluderGhosts } from '../src/render/instanced_occluder_ghosts';
 import { OCCLUDER_FADE_PREFETCH_YD, stepOccluderFade } from '../src/render/occluder_fade_core';
 import {
+  CROWN_FADE_INSET,
   cameraSegmentHitsTree,
+  prepareTreeCrown,
   stepTreeHide,
   type TreeHideable,
+  treeCrownOf,
   updateTreeHides,
 } from '../src/render/tree_hide_fade';
 import { TreeHideIndex } from '../src/render/tree_hide_index_core';
@@ -319,5 +322,76 @@ describe('updateTreeHides over a grown registry', () => {
     );
     expect(added.ghosts.length).toBeGreaterThan(0);
     expect(added.hidden).toBe(true);
+  });
+});
+
+describe('crown fade', () => {
+  // A leaning storybook oak: trunk at the origin, the crown's leaf bounds
+  // offset to +x and starting low, under an instance scale of 1.5.
+  const oak = (): TreeHideable => ({
+    x: 0,
+    z: 0,
+    r: 0.55,
+    topY: 11,
+    hidden: false,
+    alpha: 1,
+    ghosts: [],
+    parts: [
+      {
+        mesh: {
+          material: { name: 'Bark_NormalTree' },
+          geometry: {
+            boundingBox: { min: { x: -0.4, y: 0, z: -0.4 }, max: { x: 0.4, y: 6, z: 0.4 } },
+          },
+        } as unknown as TreeHideable['parts'][number]['mesh'],
+        index: 0,
+        visibleMatrix: { elements: [1.5, 0, 0, 0, 0, 1.5, 0, 0, 0, 0, 1.5, 0, 0, 0, 0, 1] },
+      } as unknown as TreeHideable['parts'][number],
+      {
+        mesh: {
+          material: { name: 'Leaves_NormalTree' },
+          geometry: { boundingBox: { min: { x: -2, y: 2.4, z: -3 }, max: { x: 4, y: 7, z: 3 } } },
+        } as unknown as TreeHideable['parts'][number]['mesh'],
+        index: 0,
+        visibleMatrix: { elements: [1.5, 0, 0, 0, 0, 1.5, 0, 0, 0, 0, 1.5, 0, 0, 0, 0, 1] },
+      } as unknown as TreeHideable['parts'][number],
+    ],
+    prefetched: false,
+    shadows: [],
+  });
+
+  it('derives the crown cylinder from the leaf parts only', () => {
+    const crown = treeCrownOf(oak());
+    expect(crown).not.toBeNull();
+    expect(crown?.x).toBeCloseTo(1.5, 6);
+    expect(crown?.z).toBeCloseTo(0, 6);
+    expect(crown?.bottomY).toBeCloseTo(3.6, 6);
+    expect(crown?.topY).toBeCloseTo(10.5, 6);
+    expect(crown?.r).toBeCloseTo((CROWN_FADE_INSET * (9 + 9)) / 4, 6);
+    const bare = oak();
+    bare.parts = bare.parts.slice(0, 1);
+    expect(treeCrownOf(bare)).toBeNull();
+  });
+
+  it('fades a crown the camera boom runs through, though the trunk is clear', () => {
+    const t = oak();
+    prepareTreeCrown(t);
+    // eye beside the crown, camera up inside it, the trunk well off the segment
+    expect(cameraSegmentHitsTree(t, 9, 1.7, 3, 4, 4.5, 2)).toBe(true);
+    // the same boom with a trunk-only record never fades: the old blind spot
+    const trunkOnly = { ...oak(), crown: null, reach: 0.55 };
+    expect(cameraSegmentHitsTree(trunkOnly, 9, 1.7, 3, 4, 4.5, 2)).toBe(false);
+    // a boom that stays under the crown keeps the tree
+    expect(cameraSegmentHitsTree(t, 9, 1.7, 3, 4, 2.6, 2)).toBe(false);
+    // a boom clear of the crown circle keeps it too
+    expect(cameraSegmentHitsTree(t, 12, 1.7, 9, 9, 5, 9)).toBe(false);
+  });
+
+  it('widens the index query by the crown reach', () => {
+    const t = oak();
+    prepareTreeCrown(t);
+    expect(t.reach).toBeGreaterThan(5);
+    const index = new TreeHideIndex([t], 16);
+    expect(index.maxR).toBe(t.reach);
   });
 });

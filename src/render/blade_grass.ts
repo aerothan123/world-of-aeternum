@@ -54,6 +54,17 @@ import { paletteLabPanelEnabled } from './palette_lab';
 import { bladeSectorAxis, renderLayerDisabled } from './render_dev_flags';
 import { groundGrassColorAt, groundLushnessAt } from './terrain_chunk_build';
 import { GRASS_WIND_TIME_SCALE } from './tree_sway';
+import { paintRefinedGrass } from './world_style_foliage';
+import { paintedClumpCoverage, paintedClumpHeight } from './world_style_foliage_core';
+import { paintRefinedBloom } from './world_style_grass';
+import {
+  type BladeClusterShape,
+  bladeClusterShape,
+  CLASSIC_BLADE_SHAPE,
+  paintedClumpWidth,
+  paintedClumpWidthMax,
+  paintedGrassCoverageScale,
+} from './world_style_grass_core';
 
 // Near-field blade carpet: a single InstancedMesh of low-poly SOLID grass
 // clusters riding a toroidal grid around the player. The card-tuft system in
@@ -125,11 +136,21 @@ export function mulberry32(seed: number): () => number {
 // Exported (geometry unchanged): the mid-band (blade_grass_band.ts) and the
 // ground bake (grass_ground_bake.ts) must use these EXACT clusters so the
 // carpet, the band, and the painted ground are one look by construction.
-export function clusterGeometry(rng: () => number, segments: 2 | 3 = 3): THREE.BufferGeometry {
+/** The blade's 0..1 height from its vertex shade (clusterGeometry writes
+ *  0.86 at the root and 1.1 at the tip), for shader arms that need it. */
+export const BLADE_HEIGHT_FROM_SHADE_GLSL = '(color.r - 0.86) / 0.24';
+
+export function clusterGeometry(
+  rng: () => number,
+  segments: 2 | 3 = 3,
+  shape: BladeClusterShape = CLASSIC_BLADE_SHAPE,
+): THREE.BufferGeometry {
   const positions: number[] = [];
   const colors: number[] = [];
   const indices: number[] = [];
-  const BLADES = 9;
+  // The recipe (world_style_grass_core.ts): the shipped 9 ribbons by default,
+  // the World Style Refined painted clump on the carpet and band.
+  const BLADES = shape.blades;
   for (let b = 0; b < BLADES; b++) {
     // even fan for coverage, jittered so blades overlap into a lush patch clump
     const yaw = (b / BLADES) * Math.PI * 2 + (rng() - 0.5) * 1.4;
@@ -141,10 +162,10 @@ export function clusterGeometry(rng: () => number, segments: 2 | 3 = 3): THREE.B
     // outward bow so the 9 wide ribbons fountain into a cohesive Genshin patch
     const tilt = 0.08 + rng() * 0.36;
     const bow = 0.12 + rng() * 0.42;
-    const len = 0.58 + rng() * 0.52;
-    const w0 = 0.095 + rng() * 0.045;
-    const w1 = w0 * 0.74;
-    const w2 = w0 * 0.42;
+    const len = (0.58 + rng() * 0.52) * shape.lenMul;
+    const w0 = (0.095 + rng() * 0.045) * shape.widthMul;
+    const w1 = w0 * shape.midTaper;
+    const w2 = w0 * shape.tipTaper;
     const base = positions.length / 3;
     // widths run perpendicular to the lean so the silhouette shows the bow
     const px = -sin;
@@ -158,13 +179,20 @@ export function clusterGeometry(rng: () => number, segments: 2 | 3 = 3): THREE.B
       // from the ground it grows in
       colors.push(shade, shade, shade);
     };
+    // A blunt painted tip (shape.tipWidth > 0) ends the ribbon in a short
+    // flat edge instead of a point: one extra vertex and triangle.
+    const tipW = w0 * shape.tipWidth;
     if (segments === 2) {
-      const wMid = w0 * 0.62;
+      const wMid = w0 * shape.bandMidTaper;
       put(-w0, 0, 0.86);
       put(w0, 0, 0.86);
       put(-wMid, 0.56, 0.98);
       put(wMid, 0.56, 0.98);
-      put(0, 1.0, 1.1);
+      if (tipW > 0) {
+        put(-tipW, 1.0, 1.1);
+        put(tipW, 1.0, 1.1);
+        indices.push(base + 3, base + 5, base + 4);
+      } else put(0, 1.0, 1.1);
       indices.push(
         base,
         base + 1,
@@ -183,7 +211,11 @@ export function clusterGeometry(rng: () => number, segments: 2 | 3 = 3): THREE.B
       put(w1, 0.45, 0.95);
       put(-w2, 0.78, 1.03);
       put(w2, 0.78, 1.03);
-      put(0, 1.0, 1.1);
+      if (tipW > 0) {
+        put(-tipW, 1.0, 1.1);
+        put(tipW, 1.0, 1.1);
+        indices.push(base + 5, base + 7, base + 6);
+      } else put(0, 1.0, 1.1);
       indices.push(
         base,
         base + 1,
@@ -315,7 +347,7 @@ export function buildBladeGrass(
   const POOL = GRID_W * GRID_W;
 
   const rng = mulberry32(seed ^ 0x6b1a);
-  const geo = clusterGeometry(rng);
+  const geo = clusterGeometry(rng, 3, bladeClusterShape(GFX.worldStyle));
   const mat = new THREE.MeshStandardMaterial({
     vertexColors: true,
     roughness: 0.92,
@@ -370,6 +402,10 @@ export function buildBladeGrass(
       #endif`,
     );
   };
+  // World Style Refined: the painted-meadow colour arm, chained once at build
+  // (world_style_foliage.ts). The vertex shade runs 0.86 root to 1.1 tip.
+  paintRefinedGrass(mat, BLADE_HEIGHT_FROM_SHADE_GLSL);
+  paintRefinedBloom(mat, BLADE_HEIGHT_FROM_SHADE_GLSL);
   const uPlayerPos = { value: new THREE.Vector2(1e9, 1e9) };
 
   // One mesh per sector instead of one uncullable pool mesh: every sector
@@ -381,7 +417,7 @@ export function buildBladeGrass(
     axis: bladeSectorAxis(),
     geometry: geo,
     material: mat,
-    clusterPad: clusterPlacementPad(geo),
+    clusterPad: clusterPlacementPad(geo) * paintedClumpWidthMax(GFX.worldStyle),
   });
   for (const mesh of sectorPool.meshes) group.add(mesh);
 
@@ -425,7 +461,11 @@ export function buildBladeGrass(
       // bare between them (squared for hard patch edges)
       const lush = groundLushnessAt(x, z, seed);
       const biomeDensity = GRASS_BIOME_DENSITY[zoneBiomeAt(x, z)] ?? 1;
-      const baseCoverage = meadowCoverage(lush) * Math.min(biomeDensity, 1.2);
+      const baseCoverage =
+        meadowCoverage(lush) *
+        Math.min(biomeDensity, 1.2) *
+        paintedClumpCoverage(GFX.worldStyle, x, z) *
+        paintedGrassCoverageScale(GFX.worldStyle);
       const rd = roadDistance(x, z);
       // higher floor + gain than the tufts: coverage is the carpet's job,
       // the patch structure just modulates it
@@ -454,7 +494,8 @@ export function buildBladeGrass(
           const edgeTaper = grassEdgeTaperAt(edgeTaperCtx, x, z, rd);
           if (r1 < baseCoverage * grassEdgeCoverageScale(edgeTaper)) {
             const baseScale = meadowClusterScale(lush, hash(ci, cj, 3), hash(ci, cj, 4));
-            const s = baseScale * grassEdgeWidthScale(edgeTaper);
+            const s =
+              baseScale * grassEdgeWidthScale(edgeTaper) * paintedClumpWidth(GFX.worldStyle, x, z);
             q.setFromAxisAngle(up, r1 * 12.9);
             // whole-cluster lean, a hashed direction and up to ~12 degrees:
             // neighbouring tufts tip different ways instead of standing in a
@@ -464,7 +505,8 @@ export function buildBladeGrass(
             q.premultiply(qLean.setFromAxisAngle(leanAxis, rLean * 0.21));
             const sy =
               meadowClusterHeight(baseScale, lush, hash(ci, cj, 6)) *
-              grassEdgeHeightScale(edgeTaper);
+              grassEdgeHeightScale(edgeTaper) *
+              paintedClumpHeight(GFX.worldStyle, x, z);
             m.compose(v.set(x, h - 0.02, z), q, sv.set(s, sy, s));
             groundGrassColorAt(x, z, seed, c);
             // slight lift over the raw ground tint: blades catch more sky

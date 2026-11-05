@@ -910,6 +910,14 @@ const RENDER_PURE_CORES = [
   // World Style Classic/Refined: setting resolution, terrain blend weights, the
   // per-time-of-day atmosphere curves (world_style.ts, world_style_glsl.ts)
   'src/render/world_style_core.ts',
+  // Refined painted grass and canopy paint (world_style_foliage.ts)
+  'src/render/world_style_foliage_core.ts',
+  // Refined painted storybook ground: set per surface role, layer files, the
+  // painted-term weights (terrain.ts, world_style_glsl.ts)
+  'src/render/world_style_ground_core.ts',
+  // Refined chunky painted grass: cluster shape, clump width, flower drifts
+  // (blade_grass.ts, blade_grass_band.ts, world_style_grass.ts)
+  'src/render/world_style_grass_core.ts',
   // the bystander attack cue read as the damage event it mirrors (renderer.ts handleEvent)
   'src/render/attack_cue_core.ts',
   'src/render/courier_visual_core.ts',
