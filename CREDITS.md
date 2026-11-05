@@ -569,6 +569,8 @@ something this file marks as restricted, ask first: tony@levystreet.com.
 | Generated gather node model (node_herb_goldleaf) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
 | Generated gather node model (node_herb_sunpetal) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
 | Generated gather node model (node_herb_depleted) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated creature model (wildlife_wolf, `public/models/creatures/wildlife_wolf.glb`; rig and clips authored in Blender, scripts/assets/creatures) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated creature model (wildlife_boar, `public/models/creatures/wildlife_boar.glb`; rig and clips authored in Blender, scripts/assets/creatures) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
 
 ### Orbital Lightning
 

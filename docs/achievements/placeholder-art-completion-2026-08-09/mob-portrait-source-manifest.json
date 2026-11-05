@@ -6,17 +6,17 @@
     "bytes": 1510,
     "sha256": "bb0b6bacba9acb12568c3bbbe536e4442cb2964266cffef890f27ee4915dcf2a"
   },
-  "rendererFingerprint": "62769378878f05d6b44a916bdb3145f710872f92ef9e6ab6bfd2d72385fd01ef",
+  "rendererFingerprint": "9c68310c5a3e4107cc2b0d2120b6a024e5757543e880f17f0cd5ed3840623857",
   "renderEnv": {
     "schemaVersion": 1,
-    "platform": "darwin",
-    "arch": "arm64",
+    "platform": "win32",
+    "arch": "x64",
     "gpuVendor": "Google Inc. (Google)",
-    "gpuRenderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+    "gpuRenderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
     "browserMajor": "156",
-    "browserVersion": "Chrome/156.0.8078.74",
+    "browserVersion": "Edg/156.0.4314.58",
     "requestedBackend": "swiftshader",
-    "fingerprint": "9d557a3eb124d4b56ba598134261e432742c42c2c3e6c918df522c59de3d290d"
+    "fingerprint": "1fa7c946843b473ca28607b5f42b16260be5c23febad302a3d5c6cf1a79c0358"
   },
   "renderer": {
     "trackedFiles": [
@@ -38,8 +38,8 @@
     ],
     "browserBundle": {
       "entry": "scripts/wiki/stills_render_entry.js",
-      "bytes": 6843349,
-      "sha256": "7622f08da9908015ba1a13363086c172379fbd1cccba48ad3ec51b64ea672518",
+      "bytes": 6865920,
+      "sha256": "330c87fecb418124b8f266860b13da28aa8f61aed4e9f857e1b70fceb267d540",
       "esbuildVersion": "0.28.1"
     },
     "output": {
@@ -3520,34 +3520,34 @@
       "id": "forest_wolf",
       "family": "beast",
       "finderEncounter": false,
-      "visualKey": "mob_wolf",
+      "visualKey": "wildlife_wolf",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/wolf_basic.glb",
-          "path": "public/models/creatures/wolf_basic.glb",
-          "bytes": 369180,
-          "sha256": "1d8c3c652467f2e4ba8b9746f926eda43254adf5ddaaca722dce582ec629d381"
+          "url": "models/creatures/wildlife_wolf.glb",
+          "path": "public/models/creatures/wildlife_wolf.glb",
+          "bytes": 522236,
+          "sha256": "20fcfbe89e19bfa4b4640cf2cea7b66017abdc47355ac70b5e64171e883fc8c0"
         },
         "idle": "Idle",
         "height": 1.47,
-        "yaw": null,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
         "weaponFix": null,
-        "tintStrength": 0.35
+        "tintStrength": 0.3
       },
       "tint": {
         "source": "entity",
         "authored": "entity",
         "resolved": "#7f8c8d",
-        "strength": 0.35
+        "strength": 0.3
       },
-      "sourceFingerprint": "c17816b6f525c8e7c7c73b4aab8b1b7eb90525be7f28cecffe8748f5b654e417",
+      "sourceFingerprint": "7a0c5e9ba0274624003d2ab378a026392f0321bdecf9da4f0bdf281b7010c0e0",
       "output": {
         "path": "public/ui/mobs/forest_wolf.webp",
-        "bytes": 2044,
-        "sha256": "bfd9c0dca83b08a24280bccca194c7f0b4fa01a6a50e357fa890d9e477822122"
+        "bytes": 2382,
+        "sha256": "a23823dd5d309851be655639ef3b911840be6ab1feed625d4cd4d8bb613b7d8c"
       }
     },
     {
@@ -10918,34 +10918,34 @@
       "id": "snowdrift_wolf",
       "family": "beast",
       "finderEncounter": false,
-      "visualKey": "mob_wolf",
+      "visualKey": "wildlife_wolf",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/wolf_basic.glb",
-          "path": "public/models/creatures/wolf_basic.glb",
-          "bytes": 369180,
-          "sha256": "1d8c3c652467f2e4ba8b9746f926eda43254adf5ddaaca722dce582ec629d381"
+          "url": "models/creatures/wildlife_wolf.glb",
+          "path": "public/models/creatures/wildlife_wolf.glb",
+          "bytes": 522236,
+          "sha256": "20fcfbe89e19bfa4b4640cf2cea7b66017abdc47355ac70b5e64171e883fc8c0"
         },
         "idle": "Idle",
         "height": 1.47,
-        "yaw": null,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
         "weaponFix": null,
-        "tintStrength": 0.35
+        "tintStrength": 0.3
       },
       "tint": {
         "source": "entity",
         "authored": "entity",
         "resolved": "#eef4f8",
-        "strength": 0.35
+        "strength": 0.3
       },
-      "sourceFingerprint": "5b0f83e5130402c60bb1e06cc6d6cce98dc8a67b3213e63795f91b4dbbdcc8e7",
+      "sourceFingerprint": "be3897ea0aef5da72643a3cdfa64cf308812396eecde862d4af2b8820a4044d7",
       "output": {
         "path": "public/ui/mobs/snowdrift_wolf.webp",
-        "bytes": 2120,
-        "sha256": "95f6c744d5822780b6040a0da6e93bb7a0932716f9e05678c180178cd3eafa7d"
+        "bytes": 2534,
+        "sha256": "71318925ae8442ff3ef96a5000a02356366be45915991027efc9c76d6cc9297c"
       }
     },
     {
@@ -11577,34 +11577,34 @@
       "id": "thicket_boar",
       "family": "beast",
       "finderEncounter": false,
-      "visualKey": "mob_boar",
+      "visualKey": "wildlife_boar",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/wild_boar.glb",
-          "path": "public/models/creatures/wild_boar.glb",
-          "bytes": 318604,
-          "sha256": "de4e128ddd963b5804560b7c87de96f8963bb8beefd68f2d68961f946c4fa455"
+          "url": "models/creatures/wildlife_boar.glb",
+          "path": "public/models/creatures/wildlife_boar.glb",
+          "bytes": 573984,
+          "sha256": "99c759419f4bdc0f28e89d9b8ae065a3c874c65fbe99db852ddf0786457db8ba"
         },
-        "idle": "Idle1",
+        "idle": "Idle",
         "height": 1.45,
-        "yaw": null,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
         "weaponFix": null,
-        "tintStrength": 0.4
+        "tintStrength": 0.3
       },
       "tint": {
         "source": "entity",
         "authored": "entity",
         "resolved": "#6a4e38",
-        "strength": 0.4
+        "strength": 0.3
       },
-      "sourceFingerprint": "66f18f088572b2c9aba37e7a67ca0afb5db3351a29db17fdb0de09f0be5985da",
+      "sourceFingerprint": "c4d3e35c1d7cdb0cd774c247f16a1f0ba232e69148c261b2be87209a43dbd636",
       "output": {
         "path": "public/ui/mobs/thicket_boar.webp",
-        "bytes": 2770,
-        "sha256": "7ff23e9b55487595675d79e972c69026131cb0fa0a7bf8dcc986c047b4cb48fb"
+        "bytes": 1900,
+        "sha256": "4951df3866a9341d34f3185b906beb6e14ff0f3a1fafccfd2370438fc9d648ac"
       }
     },
     {
@@ -13941,34 +13941,34 @@
       "id": "wild_boar",
       "family": "beast",
       "finderEncounter": false,
-      "visualKey": "mob_boar",
+      "visualKey": "wildlife_boar",
       "renderSpec": {
         "model": {
-          "url": "models/creatures/wild_boar.glb",
-          "path": "public/models/creatures/wild_boar.glb",
-          "bytes": 318604,
-          "sha256": "de4e128ddd963b5804560b7c87de96f8963bb8beefd68f2d68961f946c4fa455"
+          "url": "models/creatures/wildlife_boar.glb",
+          "path": "public/models/creatures/wildlife_boar.glb",
+          "bytes": 573984,
+          "sha256": "99c759419f4bdc0f28e89d9b8ae065a3c874c65fbe99db852ddf0786457db8ba"
         },
-        "idle": "Idle1",
+        "idle": "Idle",
         "height": 1.45,
-        "yaw": null,
+        "yaw": -1.5707963267948966,
         "hover": null,
         "show": null,
         "attach": [],
         "weaponFix": null,
-        "tintStrength": 0.4
+        "tintStrength": 0.3
       },
       "tint": {
         "source": "entity",
         "authored": "entity",
         "resolved": "#935116",
-        "strength": 0.4
+        "strength": 0.3
       },
-      "sourceFingerprint": "951d84dc27cf080fa36f5f602f8728c9fe2da070b6beb5d4fb30a6da588bfc19",
+      "sourceFingerprint": "cfe55555a856ca78133fd26c04520fa8254d2e738a8a45ff5c86d54cd62a6465",
       "output": {
         "path": "public/ui/mobs/wild_boar.webp",
-        "bytes": 2782,
-        "sha256": "f09a2ab1c150719a71fcf3d1ae5d4dfbb3fcc6aae564fa63d4323331e092badc"
+        "bytes": 1950,
+        "sha256": "e1a09c547e162ffcd7e54624327835c5dcc03deda21ae06d3bee92d9e61a3987"
       }
     },
     {

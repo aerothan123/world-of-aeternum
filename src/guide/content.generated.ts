@@ -2659,10 +2659,10 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "max": 2,
         "rare": false,
         "templateId": "forest_wolf",
-        "model": "mob_wolf",
+        "model": "wildlife_wolf",
         "tint": "#7f8c8d",
-        "tintStrength": 0.35,
-        "still": "/guide-stills/mob_wolf__7f8c8d__s35.webp"
+        "tintStrength": 0.3,
+        "still": "/guide-stills/wildlife_wolf__7f8c8d__s30.webp"
       },
       {
         "name": "Shore Scuttler",
@@ -2681,10 +2681,10 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "max": 3,
         "rare": false,
         "templateId": "wild_boar",
-        "model": "mob_boar",
+        "model": "wildlife_boar",
         "tint": "#935116",
-        "tintStrength": 0.4,
-        "still": "/guide-stills/mob_boar__935116.webp"
+        "tintStrength": 0.3,
+        "still": "/guide-stills/wildlife_boar__935116__s30.webp"
       },
       {
         "name": "Old Greyjaw",
@@ -2763,10 +2763,10 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "max": 18,
         "rare": false,
         "templateId": "snowdrift_wolf",
-        "model": "mob_wolf",
+        "model": "wildlife_wolf",
         "tint": "#eef4f8",
-        "tintStrength": 0.35,
-        "still": "/guide-stills/mob_wolf__eef4f8__s35.webp"
+        "tintStrength": 0.3,
+        "still": "/guide-stills/wildlife_wolf__eef4f8__s30.webp"
       },
       {
         "name": "Gilded Stag",
@@ -2840,10 +2840,10 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "max": 20,
         "rare": false,
         "templateId": "thicket_boar",
-        "model": "mob_boar",
+        "model": "wildlife_boar",
         "tint": "#6a4e38",
-        "tintStrength": 0.4,
-        "still": "/guide-stills/mob_boar__6a4e38.webp"
+        "tintStrength": 0.3,
+        "still": "/guide-stills/wildlife_boar__6a4e38__s30.webp"
       },
       {
         "name": "Tide Scuttler",
@@ -22470,22 +22470,24 @@ export const GUIDE_MODELS: Record<string, GuideModelSpec> = {
     "height": 2.5,
     "yaw": -1.5707963267948966
   },
-  "mob_wolf": {
-    "url": "models/creatures/wolf_basic.glb",
+  "wildlife_wolf": {
+    "url": "models/creatures/wildlife_wolf.glb",
     "idle": "Idle",
     "height": 1.47,
-    "tintStrength": 0.35
+    "yaw": -1.5707963267948966,
+    "tintStrength": 0.3
   },
   "greyjaw": {
     "url": "models/creatures/greyjaw.glb",
     "idle": "Idle",
     "height": 2.05
   },
-  "mob_boar": {
-    "url": "models/creatures/wild_boar.glb",
-    "idle": "Idle1",
+  "wildlife_boar": {
+    "url": "models/creatures/wildlife_boar.glb",
+    "idle": "Idle",
     "height": 1.45,
-    "tintStrength": 0.4
+    "yaw": -1.5707963267948966,
+    "tintStrength": 0.3
   },
   "mob_spider": {
     "url": "models/creatures/spider.glb",
@@ -22511,6 +22513,12 @@ export const GUIDE_MODELS: Record<string, GuideModelSpec> = {
     "idle": "Idle",
     "height": 2.5,
     "tintStrength": 0.25
+  },
+  "mob_wolf": {
+    "url": "models/creatures/wolf_basic.glb",
+    "idle": "Idle",
+    "height": 1.47,
+    "tintStrength": 0.35
   },
   "mob_spider_egg_sac": {
     "url": "models/creatures/spider_egg_sac.glb",

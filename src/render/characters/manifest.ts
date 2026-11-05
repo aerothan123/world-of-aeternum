@@ -218,6 +218,7 @@ import { seasonalTrickLooks } from './seasonal_trick_looks';
 import type { SeatClipSet } from './seat_clips';
 import type { WeaponLoadout } from './weapon_loadout_core';
 import { WILDHEART_MOB_KEYS, wildheartPlaceholderLooks } from './wildheart_creature_looks';
+import { WILDLIFE_LOOKS, WILDLIFE_MOB_KEYS } from './wildlife_looks';
 import { type WocFit, wocAnimsUrl, wocBaseUrl } from './woc_armor_core';
 import wocAutoAttackContacts from './woc_autoattack_contacts.json';
 import {
@@ -8227,6 +8228,8 @@ Object.assign(VISUALS, sanctumCreatureLooks(VISUALS));
 Object.assign(VISUALS, SANCTUM_BOSS_LOOKS);
 // Gourdlight Eve's trick bodies, the bat and the skeleton (seasonal_trick_looks.ts).
 Object.assign(VISUALS, seasonalTrickLooks(VISUALS));
+// WYNDLEWOOD's painted wildlife bodies (wildlife_looks.ts).
+Object.assign(VISUALS, WILDLIFE_LOOKS);
 
 /** The composed-body variant of a class visual (every class has one). */
 export function modularVisualKey(cls: PlayerClass): string {
@@ -8611,6 +8614,9 @@ const MOB_KEYS: Record<string, string> = {
   rift_stormscale: 'mob_hoard_stormscale_drake',
   rift_boneclad: 'mob_hoard_boneclad_warrior',
   rift_marrow_golem: 'skel_golem',
+  // WYNDLEWOOD's painted wildlife (wildlife_looks.ts), last so it wins over the
+  // older bodies those templates drew above.
+  ...WILDLIFE_MOB_KEYS,
 };
 
 const FAMILY_KEYS: Record<string, string> = {
