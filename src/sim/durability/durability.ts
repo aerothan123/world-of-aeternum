@@ -20,7 +20,14 @@ import { recalcPlayerStats } from '../entity';
 import { npcRoleFor, type NpcRole } from '../npc_role';
 import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
-import { dist2d, type Entity, type EquipSlot, INTERACT_RANGE, type ItemInstancePayload } from '../types';
+import {
+  dist2d,
+  type Entity,
+  type EquipSlot,
+  INTERACT_RANGE,
+  type InvSlot,
+  type ItemInstancePayload,
+} from '../types';
 import {
   DURABILITY_SLOTS,
   deathWearFor,
@@ -140,7 +147,11 @@ export function onPlayerHitDealtForDurability(ctx: SimContext, source: Entity | 
 }
 
 /** The copper a full repair (worn gear and bagged copies) costs right now. */
-export function repairAllCost(meta: Pick<PlayerMeta, 'equipment' | 'equipmentInstance' | 'inventory'>): number {
+export function repairAllCost(
+  meta: Pick<PlayerMeta, 'equipment' | 'equipmentInstance'> & {
+    inventory: readonly InvSlot[];
+  },
+): number {
   let total = 0;
   for (const slot of DURABILITY_SLOTS) {
     const itemId = meta.equipment[slot];

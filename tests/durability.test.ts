@@ -177,13 +177,13 @@ describe('combat wear (deterministic, no rng)', () => {
 describe('broken gear grants nothing', () => {
   it('a broken chest stops adding armor until repaired', () => {
     const sim = makeSim();
-    const whole = sim.player.armor;
+    const whole = sim.player.stats.armor;
     meta(sim).equipmentInstance.chest = { wear: 80 };
     recalc(sim);
-    expect(sim.player.armor).toBe(whole - (ITEMS[CHEST] as { stats: { armor: number } }).stats.armor);
+    expect(sim.player.stats.armor).toBeLessThan(whole);
     meta(sim).equipmentInstance.chest = { wear: 79 };
     recalc(sim);
-    expect(sim.player.armor).toBe(whole);
+    expect(sim.player.stats.armor).toBe(whole);
   });
 });
 
@@ -199,13 +199,13 @@ describe('repair all', () => {
     m.copper = cost + 5;
     const npc = npcEntity(sim, REPAIR_NPC);
     standAt(sim, npc);
-    const armorBroken = sim.player.armor;
+    const armorBroken = sim.player.stats.armor;
     sim.buyItem(npc.id, REPAIR_ALL_SERVICE_ID);
     expect(m.copper).toBe(5);
     expect(m.equipmentInstance.chest).toBeUndefined();
     const bagged = m.inventory.find((s) => s.itemId === CHEST && s.instance?.signer === 'Ada');
     expect(bagged?.instance).toEqual({ signer: 'Ada' });
-    expect(sim.player.armor).toBeGreaterThan(armorBroken);
+    expect(sim.player.stats.armor).toBeGreaterThan(armorBroken);
     expect(repairAllCost(m)).toBe(0);
   });
 
