@@ -13,11 +13,11 @@ same paths, so no code path changes.
 
 | Class | CREDITS rows | Meaning |
 |---|---|---|
-| OK to ship | 0 | OK to ship (CC0, MIT, CC BY with attribution, OFL) |
-| Wyndlewood original | 402 | made by the Wyndlewood fork (owner's accounts); OK to ship once provenance is recorded |
-| Restricted: permission required | 0 | No, permission required (Levy Street rights reserved, CraftPix licence to Levy Street, owner-provided to Levy Street) |
-| Restricted: CC BY-NC | 0 | CC BY-NC 4.0 (commercial grant to Levy Street only) |
-| Restricted: with the project only | 0 | With the project only (upstream project art; replaced per owner decision) |
+| OK to ship | 41 | OK to ship (CC0, MIT, CC BY with attribution, OFL) |
+| Wyndlewood original | 38 | made by the Wyndlewood fork (owner's accounts); OK to ship once provenance is recorded |
+| Restricted: permission required | 140 | No, permission required (Levy Street rights reserved, CraftPix licence to Levy Street, owner-provided to Levy Street) |
+| Restricted: CC BY-NC | 9 | CC BY-NC 4.0 (commercial grant to Levy Street only) |
+| Restricted: with the project only | 174 | With the project only (upstream project art; replaced per owner decision) |
 | Unlisted | see below | not listed in CREDITS.md (unrecorded, not free) |
 
 Restricted files by replacement owner (file counts are from the tree; one file can be named by
@@ -47,375 +47,11 @@ These rows were added by the fork, not inherited. They were written in the upstr
 
 | CREDITS row | AI provenance |
 |---|---|
-| Hunter Bear Trap and Phosphor Flask ability icons (public/ui/skills/hunter/bear_trap.webp, ... | AI-generated |
-| Hunter Play Dead and Tactical Camo ability icons (public/ui/skills/hunter/) | AI-generated |
-| Hunter Scatterbolt ability icon (public/ui/skills/hunter/scatterbolt.webp) | AI-generated |
-| Character models + animations (knight, mage, rogue, barbarian, hooded rogue), weapons/shields | deterministic |
-| WOC player characters (all nine classes, both body types: public/models/chars/players/woc/ (a base ... | AI-generated: Tripo under the owner's paid Tripo plan |
-| Skeleton character models + animations, bone weapons | deterministic |
-| Skeleton minion rig + FREE-tier animations (rebuilt as skeleton_minion_free.glb, backing the ... | deterministic |
-| Dungeon modular kit (walls, floors, pillars, torches, banners, chests, furniture; also the ... | deterministic |
-| Graveyard/crypt props, dead trees, lanterns | deterministic |
-| Extra character animation library (Rig_Medium) | deterministic |
-| Animated creatures (wolf, bull, fox, stag, alpaca, spider, frog, goblin, orc, yeti, giant, demon, ... | deterministic |
-| Stylized Nature MegaKit (trees, rocks, bushes, mushrooms, grass) | deterministic |
-| Medieval Village Pack (houses, inn, blacksmith, well, market, cart) | deterministic |
-| Fantasy Props MegaKit (barrels, crates, lanterns, furniture, smithy) | deterministic |
-| Nature Kit (modular cliffs), Graveyard Kit, Pirate Kit (docks/boats), Fantasy Town Kit, Castle Kit, ... | deterministic |
-| Pirate Kit (palm trees, docks, ship, chests, cannon, anchor, beach rocks, beach house) | deterministic |
-| LowPoly Animated Fish (dolphin, shark, manta ray, whale, clownfish, blue tang, puffer, swordfish, ... | deterministic |
-| Modular Dungeons Pack (stone walls, arches, pillar, floor tile, wall banner, trap door, horse ... | deterministic |
-| Medieval Village MegaKit (wagon, crate, fences, vines, arch, exterior stairs, castle bases, castle ... | deterministic |
-| Survival Kit (tents, bedrolls, campfires, signpost, sand rocks) | deterministic |
-| Watercraft Kit (sail boats, fishing boat, rowboat, buoys) | deterministic |
-| Modular Dungeon Kit (corridor and room tiles, stairs, gates) | deterministic |
-| Mini Dungeon (trap, wood structure, supports, column, banner) | deterministic |
-| Medieval Hexagon Pack (hex buildings, hex tiles, walls, bridge) | deterministic |
-| Canyon Terrain Asset (cacti, desert tree, canyon rock formations, boulders, mesas) | deterministic |
-| Mines and Cave Modular Set (mine carts, rails, ladder, cave rocks, entrances, supports, platforms) | deterministic |
-| Terrain PBR textures (Grass001, Ground023, Rock026, Rock051, Rock060, Ground071, Ground080, ... | deterministic |
-| Terrain PBR textures, biome set (Ground054, Ground095A, Ground093A, Rock029, Lava004, Gravel024, ... | deterministic |
-| Thornhollow battleground terrain textures (public/textures/battleground/*.jpg) | deterministic |
-| Thornhollow wall tower (public/models/city/wall_tower.glb) | deterministic |
-| Laverock walking and running animation bank (public/models/creatures/temple_laverock_locomotion.glb) | deterministic |
-| Thornhollow ground decals (public/textures/battleground/decals/*.webp) | deterministic |
-| Thornhollow Fields rune pad bodies (public/models/battleground/rune_damage.glb, rune_defense.glb, ... | AI-generated: Tripo under the owner's paid Tripo plan |
-| Surface-detail PBR textures for the triplanar material families (Bark012, Bricks076A/B, Fabric030, ... | deterministic |
-| Ignivar perimeter lava (public/textures/encounters/ignivar/ignivar_lava_original.webp) | AI-generated |
-| Canopy clump-detail textures (Moss002; NormalGL/AmbientOcclusion under public/textures/foliage/) | deterministic |
-| Tree Generator leaf-card atlases (public/textures/foliage/leaves/*.png) | deterministic |
-| Tree Generator foundation trunks (public/models/foliage/trunks/*.glb) | deterministic |
-| Tidehold town kit (public/models/tidehold/{house_a..e,tavern,tavern_b,smithy,market,hall,shop_a,shop ... | AI-generated |
-| Eastbrook Weekly Vault placeable model (public/models/tidehold/vault.glb, its .lod.glb far twin and ... | deterministic |
-| Fenbridge's Fenrire look of the painted Tidehold buildings (public/models/tidehold/fenrire/{hall,hou ... | AI-generated |
-| Highwatch's Alpine slate look of the painted Tidehold buildings ... | AI-generated |
-| Highwatch adventurers' guild, Lantern Hall (public/models/tidehold/highwatch/guild.glb, and its ... | AI-generated: Tripo under the owner's paid Tripo plan |
-| The pantile town look of the painted Tidehold buildings (public/models/tidehold/pantile/{house_a,sho ... | AI-generated |
-| The shakes town look of the painted Tidehold buildings (public/models/tidehold/shakes/{hall,house_a, ... | AI-generated |
-| The diamond town look of the painted Tidehold buildings (public/models/tidehold/diamond/{hall,house_ ... | deterministic |
-| The brick town look of the painted Tidehold buildings (public/models/tidehold/brick/{hall,house_a,sh ... | deterministic |
-| The thatch town look of the painted Tidehold buildings (public/models/tidehold/thatch/{hall,house_a, ... | deterministic |
-| Gourdlight Eve seasonal kit (public/models/props/gourdlight_decor.glb: the carved pumpkins, gourds, ... | AI-generated |
-| Gourdlight Eve field boss and mount (public/models/creatures/gourdlight_{thatchgrin,strawling,swelli ... | AI-generated |
-| WOC Terrain Textures and WOC Asset Textures packs (the source images under ... | deterministic |
-| Worn-metal surface-detail PBR texture (RustCoarse01, from rust_coarse_01; ... | deterministic |
-| Medieval wood surface-detail PBR texture (MedievalWood, from medieval_wood; ... | deterministic |
-| HDRI environment maps (kloofendal_48d_partly_cloudy_puresky, belfast_open_field, kiara_1_dawn, ... | deterministic |
-| Vale Cup practice-pitch skybox (env/space_galaxy.jpg, the 360 degree Milky Way panorama) | deterministic |
-| Water normal maps (waternormals.jpg, Water_1/2_M_Normal.jpg) | deterministic |
-| Basis Universal KTX2 transcoder (public/basis/basis_transcoder.js/.wasm, copied from three r165 ... | deterministic |
-| Biome backdrop panoramas (vale_backdrop.webp, marsh_backdrop.webp, peaks_backdrop.webp and 4K ... | deterministic |
-| Fel meteor POWERFUL VFX sprite (public/vfx/fel_meteor_impact.png) | AI-generated |
-| Loading-screen artwork (public/textures/loading/*.webp) | AI-generated |
-| Website fractured portal (public/website-fractured-portal-v1.svg, ... | AI-generated |
-| Website feature icons (public/website-feature-classes-v1.webp, public/website-feature-open-v1.webp) | AI-generated |
-| Website stone gateway (public/website-stone-gateway-v2.svg) | AI-generated |
-| Website parchment scroll (public/website-parchment-scroll-v1.svg, ... | AI-generated |
-| Eastbrook website hero (public/website-hero-eastbrook-v1.webp) | AI-generated |
-| Galecrest website hero (public/website-hero-galecrest-v1.webp) | AI-generated |
-| Drakelands website hero (public/website-hero-drakelands-v1.webp) | AI-generated |
-| Thornpeak website hero (public/website-hero-thornpeak-v1.webp) | AI-generated |
-| Elite dragon rank emblem (public/ui/ranks/elite-dragon-frame.webp) | AI-generated |
-| Warfare Season 2 Warrior item icons (public/ui/items/vanguard_warrior_*.webp) | AI-generated |
-| Warfare Season 2 Rogue item icons (public/ui/items/vanguard_rogue_*.webp) | AI-generated |
-| Warfare Season 2 Druid item icons (public/ui/items/vanguard_druid_*.webp) | AI-generated |
-| Buried Hoards arcane icons (four objects, three tiers) | AI-generated |
-| Buried Hoards frost icons (four objects, three tiers) | AI-generated |
-| Buried Hoards ember icons (four objects, three tiers) | AI-generated |
-| Buried Hoards storm icons (four objects, three tiers) | AI-generated |
-| Buried Hoards brute icons (four objects, three tiers) | AI-generated |
-| Buried Hoards venom icons (four objects, three tiers) | AI-generated |
-| Buried Hoards necro icons (four objects, three tiers) | AI-generated |
-| Buried Hoards tide icons (four objects, three tiers) | AI-generated |
-| Faction rift vendor icons | AI-generated |
-| Faction church vendor icons | AI-generated |
-| Faction automaton vendor icons | AI-generated |
-| Clue item icons | AI-generated |
-| Rewards item icons | AI-generated |
-| Bastion dungeon item icons | AI-generated |
-| Temple dungeon item icons | AI-generated |
-| Wildheart dungeon item icons | AI-generated |
-| Gravewyrm dungeon item icons | AI-generated |
-| Crypt dungeon item icons | AI-generated |
-| Bastion-blues dungeon item icons | AI-generated |
-| Temple-blues dungeon item icons | AI-generated |
-| Crypt-blues dungeon item icons | AI-generated |
-| Friendship referral reward icons (five former temporary aliases) | AI-generated |
-| Warfare Season 2 Warlock item icons (public/ui/items/vanguard_warlock_*.webp) | AI-generated |
-| Warfare Season 2 Mage item icons (public/ui/items/vanguard_mage_*.webp) | AI-generated |
-| Warfare Season 2 Shaman item icons (public/ui/items/vanguard_shaman_*.webp) | AI-generated |
-| Warfare Season 2 Priest item icons (public/ui/items/vanguard_priest_*.webp) | AI-generated |
-| Warfare Season 2 Hunter item icons (public/ui/items/vanguard_hunter_*.webp) | AI-generated |
-| Warfare Season 2 Paladin item icons (public/ui/items/vanguard_paladin_*.webp) | AI-generated |
-| Leaderboard podium medals (public/ui/leaderboard/medal_{gold,silver,bronze}.webp) | AI-generated |
-| Eastbrook Vale rebuild master concept, nine turnaround sheets, full-color surface-atlas source, and ... | AI-generated |
-| Eastbrook finishing-pass master concept and Ravenpost mailbox / noticeboard turnaround sheets ... | AI-generated |
-| Ignivar raid expansion automata, Forgefather, warhammer, and grand-forge concepts ... | AI-generated |
-| Eastbrook shared surface atlas (public/textures/eastbrook_surface_atlas.webp; accepted source and ... | AI-generated |
-| Fenbridge rebuild master concept and fourteen isolated turnaround sheets ... | AI-generated |
-| Fenbridge shared surface maps (public/textures/fenbridge_surface_atlas.webp, ... | AI-generated |
-| Meshy creature models (tolling_bell, spider_egg_sac from the Drowned Litany, yumi_cat from Protect ... | AI-generated |
-| Legacy Claudium prototype weapon models and source images (emberfang, Red Skull, and Purple sets, ... | deterministic |
-| Starter weapon models (the five starting weapons, the starting shield, the hunter's crossbow and ... | AI-generated: Tripo under the owner's paid Tripo plan |
-| Common and uncommon "field" weapon models (ten plain shapes in up to three painted looks, ... | AI-generated: Tripo under the owner's paid Tripo plan |
-| Rare weapon models (two designs per weapon type in up to three painted finishes, and two rare ... | AI-generated: Tripo under the owner's paid Tripo plan |
-| Epic weapon models (one design per named weapon line in up to three painted finishes, and two epic ... | AI-generated: Tripo under the owner's paid Tripo plan |
-| Bag icons (public/ui/items/{backpack,linen_pouch,travelers_knapsack,wolfhide_satchel,gravewoven_bag, ... | deterministic |
-| Historical CraftPix item identity references for the item-art consistency replacements (255 ... | deterministic |
-| Professions 2.0 commissioned art set (public/ui/professions/*.webp except gather_farming.webp, the ... | deterministic |
-| Masterwrought art-completion wave (181 painted assets across public/ui/items/, public/ui/deeds/, ... | AI-generated |
-| Bank-storage painted bag catalog (public/ui/items/{wayfarers_backpack,burlap_reagent_pouch,necromanc ... | AI-generated |
-| Field Kit gathering-tool icon (public/ui/items/field_kit.webp, batch ... | AI-generated |
-| Generated item icon rebrand (public/ui/items/*.webp, exact IDs under generatedBatches in ... | AI-generated |
-| Item-art consistency replacement paintings (public/ui/items/*.webp, exact IDs in the ... | AI-generated |
-| Class ability icons (public/ui/skills/<class>/*.webp, excluding entries with an explicit ... | deterministic |
-| v0.29 Hunter, Shaman, and Priest class rework ability icons (31 files recorded as project-generated ... | AI-generated |
-| Generated class ability additions (public/ui/skills/<class>/*.webp, exact ... | AI-generated |
-| v0.29 Hunter, Shaman, and Priest class rework ability icons (31 files recorded as project-generated ... | AI-generated |
-| Paladin overhaul and talent ability icons (entries marked as OpenAI-generated original project ... | AI-generated |
-| Generated Warlock spell and talent icons (exact IDs under generatedBatches in ... | AI-generated |
-| Warlock pet signature action icons (emberkin_felbolt, gloomshade_abyssal_chain) | AI-generated |
-| Shared pet action-bar command icons (public/ui/skills/pet/*.webp) | AI-generated |
-| Exact runtime aura paintings (public/ui/auras/*.webp) | AI-generated |
-| v0.39 second-pass legacy class-icon replacements (58 exact entries in the Druid, Hunter, Mage, ... | AI-generated |
-| v0.39 second-pass gameplay UI paintings (public/ui/currency/*.webp, public/ui/delve-affixes/*.webp, ... | AI-generated |
-| Collective Reversal and Hourglass of Suspension ability icons ... | deterministic |
-| Season 1 Armory weapon models, source images, generated store thumbnails, and promotional card ... | AI-generated: Tripo under the owner's paid Tripo plan |
-| Membership and Refer a Friend promotional cards (public/ui/store/membership-promo.webp, ... | AI-generated: Tripo under the owner's paid Tripo plan |
 | Painted storybook ground textures (public/textures/terrain/Painted{Meadow,DryGrass,Dirt,Cobble,Sand, ... | AI-generated: Tripo under the owner's paid Tripo plan |
-| Tripo3d vegetation prop models (public/models/props/reeds.glb) | AI-generated: Tripo under the owner's paid Tripo plan |
 | Storybook world foliage models (public/models/foliage/{oak_1..oak_5,pine_1..pine_5,dead_1..dead_3,bu ... | AI-generated: Tripo under the owner's paid Tripo plan |
 | Storybook leaf-card atlases (Fable_LeafCards_Broadleaf, Fable_LeafCards_Conifer and ... | AI-generated: Tripo under the owner's paid Tripo plan |
-| Mirefen mudfin hut models (public/models/props/mudfin_hut_a.glb, mudfin_hut_b.glb) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Claudium visual asset set (public/claudium/: coin, UI icons, and denomination stacks; excludes the ... | deterministic |
-| Sampled interface and event sound effects (public/audio/sfx/ui_*.mp3, except ui_level_up.mp3 and ... | deterministic |
-| Integration 45 foundations deed crests (exp_the_last_keep, exp_dawnhold_castle, ... | AI-generated |
-| Integration 45 crucible deed crests (dgn_ignivar, dgn_ignivar_heroic, dgn_varkhul, ... | AI-generated |
-| Integration 45 worldquests deed crests (exp_arcane_calligraphy, exp_arcane_calligraphy_gold, ... | AI-generated |
-| Integration 45 factions deed crests (prog_rift_watch_trusted, prog_church_order_trusted, ... | AI-generated |
-| Integration 45 adventures deed crests (exp_clue_first_casket, exp_clue_ten_caskets, ... | AI-generated |
-| Integration 45 bastion deed crests (dgn_olen_buttress, dgn_ossick_moored, dgn_vael_beacon, ... | AI-generated |
-| Integration 45 temple deed crests (dgn_selthe_pitch, dgn_colossus_mirror, dgn_ysolei_high_and_dry, ... | AI-generated |
-| Integration 45 crypt deed crests (dgn_crypt_knellwyrm, dgn_marrow_tidy, dgn_lady_nobody_hanging, ... | AI-generated |
-| Integration 45 wildheart deed crests (dgn_beastmaster_apart, dgn_gorgebloom_clean, ... | AI-generated |
-| Integration 45 gravewyrm deed crests (dgn_korgath_all_chains, dgn_korgath_still_bound, ... | AI-generated |
-| Book of Deeds achievement icons (public/ui/deeds/*.webp, excluding the project-generated additions ... | deterministic |
-| Generated Book of Deeds additions (chr_peaks_gatherer, chr_marsh_rares_ii, chr_peaks_rares_ii, ... | AI-generated |
-| v0.36 placeholder-art completion Book of Deeds additions (chr_amberfall_first_cast, ... | AI-generated |
-| v0.36 release-audit Reliquary Book of Deeds additions (col_reliquary_rank_2, col_reliquary_rank_3, ... | AI-generated |
-| Masterwrought jewelcrafting Book of Deeds addition (prog_jewelcrafting_rare under public/ui/deeds/) | AI-generated |
-| Gourdlight Eve Book of Deeds addition (feat_gourdlight_guise under public/ui/deeds/) | AI-generated |
-| Masterwrought jewelcrafting milestone crests (prog_jewelcrafting_50, prog_grandmaster_jewelcrafting ... | AI-generated |
-| Masterwrought inscription milestone crests (prog_inscription_rare, prog_inscription_50, ... | AI-generated |
-| Masterwrought farming, fishing, and promotion deed crests (col_deepest_cast, prog_first_planting, ... | AI-generated |
-| Historical v0.36 painted per-item weapon inventory wave (119 base-weapon paintings recorded by ... | AI-generated |
-| v0.36 generated specialization emblems (public/ui/specs/{paladin,hunter,rogue,priest,shaman,warlock, ... | AI-generated |
-| v0.36 generated creature-family and status crests (public/ui/crests/families/*.webp and ... | AI-generated |
-| Deterministically corrected mob target portraits (public/ui/mobs/{bogtoad,breach_wretch,castaway_nav ... | deterministic |
-| Ignivar raid target portraits (public/ui/mobs/{ignivar_cinder_artificer,ignivar_crucible_warden,igni ... | deterministic |
-| HUD chrome launcher icons (public/ui/chrome/*.webp, one per primary destination in the side rail ... | AI-generated |
-| Map and minimap marker paintings (public/ui/map-markers/*.webp) | AI-generated |
-| World-map continent overview plate (public/map_art/world_overview.webp, the painted backdrop of the ... | AI-generated |
-| Guide webfonts (public/fonts/*.woff2: Cinzel by Natanael Gama; Alegreya and Alegreya Sans by Juan ... | deterministic |
-| Owner-provided Mage artwork (fireball_form.webp, counterspell.webp) | deterministic |
-| Owner-provided Druid artwork (public/ui/skills/druid/cat_form.webp, the Cat Form lynx head) | deterministic |
-| Temporal clock sound effect (public/audio/sfx/temporal_clock.mp3) | deterministic |
-| Remastered streamed soundtrack (public/audio/music/*.mp3: town, overworld, dungeon, and battle ... | deterministic |
-| Original Ignivar raid ambient suite retained for authoring (ignivar_forge_approach, ... | deterministic |
-| Crucible floor soundtrack (final assets listed in the [floor soundtrack source ... | deterministic |
-| Proving Shore candidate cues (docs/music/proving-shore-candidates/*.mp3, the audition decision ... | deterministic |
-| Proving Shore island cue (public/audio/music/proving_shore.mp3, "Welcome to Adventure") | deterministic |
-| Morthen the Gravecaller boss-fight cue (public/audio/music/boss_morthen.mp3) | AI-generated: ElevenLabs, generated 2026-11-04 while the account was on the FREE tier; regenerate on the paid plan before release |
-| Dungeon boss-fight cues (public/audio/music/boss_*.mp3, excluding Morthen) | AI-generated: ElevenLabs, generated 2026-11-04 while the account was on the FREE tier; regenerate on the paid plan before release |
-| Rideable mount models (valorsteed, grag_bear, stalkglider_snail, aether_hover_cycle, ... | AI-generated: Tripo under the owner's paid Tripo plan |
-| Drakemaw Raptor mount (public/models/mounts/drakemaw_raptor.glb, also the Friendship Raptor's body) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Dreadspark Groundshaker rideable mount model (public/models/mounts/terrorspark_groundshaker.glb) | deterministic |
-| Masterwrought inscription tome held models (public/models/weapons/{tome_silverleaf,tome_goldleaf,tom ... | deterministic |
-| Goblin Rocket Sled mount (public/models/mounts/goblin_rocket_sled.glb) and item painting ... | AI-generated |
-| Lanternback Troll rideable mount model (public/models/mounts/lanternback_troll.glb) | deterministic |
-| Lanternback Troll reins icon (public/ui/items/reins_lanternback_troll.webp) | deterministic |
-| Lantern Hall Destrier rideable mount model (public/models/mounts/lantern_hall_destrier.glb) | deterministic |
-| Lantern Hall Destrier reins icon (public/ui/items/reins_lantern_hall_destrier.webp) | deterministic |
-| Blade of Lantern Hall sword appearance (public/models/weapons/lantern_hall_sword.glb, ... | deterministic |
-| Lantern Hall elemental weapon appearances: Hearthbrand, Squallcrest, Rimelight Staff, Duskwick ... | deterministic |
-| Nightwing Chimaera rideable mount model (public/models/mounts/nightwing_chimera.glb) and reins icon ... | AI-generated: Tripo under the owner's paid Tripo plan |
-| Chimeglass Tortoise rideable mount model (public/models/mounts/chimeglass_tortoise.glb) | deterministic |
-| Chimeglass Tortoise reins icon (public/ui/items/reins_chimeglass_tortoise.webp) | deterministic |
-| Wobbles the Slime rideable mount model (public/models/mounts/wobbles_slime.glb) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Wobbles the Slime reins icon (public/ui/items/reins_wobbles_slime.webp) | deterministic |
-| Rift dimensional gate model (public/models/props/rift_portal.glb) | AI-generated |
-| Rift arcane flame + rune monolith props (public/models/props/rift_flame.glb, rift_rune.glb) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Eastbrook ferry transport ship (public/models/props/eastbrook_ferry.glb: hull, sails, sea-serpent ... | deterministic |
-| Harbor route marker signpost (public/models/props/harbor_route_marker.glb: post, arrow board, ... | deterministic |
-| Wyrmwatch cliff harbor (public/models/props/wyrmwatch_harbor.glb: the Drakelands ferry berth's ... | deterministic |
-| Wickharbor ferry wharf (public/models/props/wickharbor_wharf.glb: the Wickharbor ferry berth's ... | deterministic |
-| Wickharbor harbor (public/models/props/wickharbor_harbor.glb: Wickharbor's shore boardwalk, the ... | deterministic |
-| Mirefen tavern (public/models/props/mirefen_tavern.glb: the walk-in inn on the Fenbridge road, its ... | AI-generated: Tripo under the owner's paid Tripo plan |
-| Drowned Temple creatures (public/models/creatures/temple_*.glb except temple_ice_wraith.glb, ... | deterministic |
-| Drowned Temple Ice Wraith (public/models/creatures/temple_ice_wraith.glb) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Drowned Temple kit (public/models/props/drowned_temple_kit.glb: the pearl-stone columns, the ... | deterministic |
-| Sunken Bastion spectral sailor (public/models/creatures/bastion_ghost_sailor.glb) and haunted brig ... | deterministic |
-| Enemy and dungeon boss bodies made through the designer's model guide ... | AI-generated: Tripo under the owner's paid Tripo plan |
-| Gravewyrm Sanctum Seal Gate (public/models/props/sanctum_seal_gate.glb, ... | deterministic |
-| Gravewyrm Sanctum interior kit (public/models/props/gravewyrm_sanctum_interior.glb: the Lock ... | deterministic |
-| Gravewyrm Sanctum Korgath maul clips (public/models/creatures/woc_sanctum_korgath_clips.glb: a clip ... | deterministic |
-| Sunken Bastion Drowned Gate Tower (public/models/props/sunken_bastion_entrance.glb, ... | deterministic |
-| Hollow Crypt Fallen Chapel (public/models/props/hollow_crypt_entrance.glb, ... | deterministic |
-| Drowned Temple Moon Stair (public/models/props/drowned_temple_entrance.glb, ... | deterministic |
-| Wildheart Basin Jaguar Maw (public/models/props/wildheart_basin_entrance.glb, ... | deterministic |
-| Ignivar raid forge-mech dressing props (public/models/dungeon/ignivar_prop_*.glb: beams, pillars, ... | AI-generated: Tripo under the owner's paid Tripo plan |
-| Drakelands rebuild kit props (public/models/drakelands_kit/*.glb: town buildings and bases, church, ... | AI-generated: Tripo under the owner's paid Tripo plan |
-| Realm sky HDRIs (hollow_dusk, ember_storm, frost_twilight, amber_sunset, fen_day, nightbloom_dream, ... | deterministic |
-| Zone map overlays (public/map_art/*.png) | deterministic |
-| Infernal Citadel props (public/models/props/infernal_brazier.glb, infernal_altar.glb, ... | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated class skin-suit set "Prismatic Vanguard" (suit_prismatic, all classes, ... | deterministic |
-| Generated class skin-suit set "Liquid Chrome" (suit_chrome, all classes, ... | deterministic |
-| Remaining generated world, interface, event, and ambience sound effects not attributed below ... | AI-generated: ElevenLabs, generated 2026-11-04 while the account was on the FREE tier; regenerate on the paid plan before release |
-| Ignivar encounter voice lines (public/audio/voice/ignivar/*.mp3) | AI-generated: ElevenLabs, generated 2026-11-04 while the account was on the FREE tier; regenerate on the paid plan before release |
-| Varkhul encounter voice lines (public/audio/voice/varkhul/*.mp3) | AI-generated: ElevenLabs, generated 2026-11-04 while the account was on the FREE tier; regenerate on the paid plan before release |
-| Lantern Hall Destrier whinny takes (mount_neigh_lantern_hall_destrier_1.mp3, ... | AI-generated: ElevenLabs, generated 2026-11-04 while the account was on the FREE tier; regenerate on the paid plan before release |
-| Valorsteed gallop layer (mount_run_valorsteed.mp3) | deterministic |
-| Mount footfall layers (mount_run_grag_bear.mp3, mount_run_shadowjump_toad.mp3, ... | deterministic |
-| Stalk-Glider slime layer (mount_run_stalkglider_snail.mp3) | deterministic |
-| Shadow-Jump Toad slime layer (mount_run_shadowjump_toad.mp3) | deterministic |
-| Hover-Cycle movement layer (mount_run_aether_hover_cycle.mp3) | deterministic |
-| Stormfeather and Grand Gobbler wing layers (mount_run_stormfeather_griffin.mp3, ... | deterministic |
-| Dreadspark Groundshaker movement layer (mount_run_terrorspark_groundshaker.mp3) | deterministic |
-| Mirefen tavern room bed (amb_tavern.mp3) | deterministic |
-| Gourdlight Eve sound effects (proj_gourdfall_whistle.mp3, impact_gourdfall.mp3, ... | deterministic |
 | Gathering strike sound effects (impact_gather_pick_{1,2}.mp3, impact_gather_axe_{1,2}.mp3, ... | AI-generated: ElevenLabs, generated 2026-11-04 while the account was on the FREE tier; regenerate on the paid plan before release |
 | Outdoor reverb impulse responses (generated at runtime by src/game/outdoor_reverb_ir.ts) | deterministic |
-| Cluckwork Mech Bird take set (mount_run_mech_bird.mp3, mount_idle_mech_bird.mp3, ... | deterministic |
-| Bonebound Rickshaw rolling loop (mount_loop_rickshaw_mount.mp3) | deterministic |
-| Quest event sounds (quest_accept, quest_ready, quest_complete) | deterministic |
-| Lockpick minigame sounds (lockpick_*) | deterministic |
-| Wand auto-attack sounds (wand_*) | deterministic |
-| Level-up and Book of Deeds achievement chimes (ui_level_up, ui_achievement) | deterministic |
-| Magic-school impact and casting-support one-shots (impact_*, heal_impact, buff_apply, debuff_apply, ... | deterministic |
-| Magic-school projectile launches (proj_*) | deterministic |
-| Melee, footstep, movement, combat-reaction, and player-state sounds (melee_*, foot_*, move_*, ... | deterministic |
-| Creature vocalizations, every mob family (mob_*) | deterministic |
-| Generated prop model (marsh_plank_bridge) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (marsh_shrine_fragment) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (marsh_corpse_candle) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (marsh_bell_gallows) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (marsh_sluice_post) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (marsh_dead_tree) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (marsh_reed_cluster) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (yumi_brazier_stand) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (yumi_torch_handle) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (dungeon_door_arch) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (crypt_ritual_circle) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (delve_module_exit) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (delve_surface_exit) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (delve_rite_shrine_bell) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (delve_rite_shrine_candle) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (delve_rite_shrine_reed) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (delve_rite_shrine_skull) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (delve_pressure_plate) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (marsh_root_wall) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated creature model + animations (training_dummy) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated creature model + animations (gravewing) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated character form + animations (lich_form) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Contributor-provided animated raid boss model and fire VFX (ignivar_herald) | deterministic |
-| Contributor-provided animated raid add models (cinder_artificer, crucible_warden, ember_sentinel) | deterministic |
-| Generated prop model (engineering_workbench) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (alchemy_cauldron) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (cooking_spit) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (leatherworking_rack) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (tailoring_loom) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (inscription_lectern) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (enchanting_altar) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (jewelcrafting_bench) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Great Maze prop models (public/models/props/maze_hedge_wall.glb, maze_hedge_arch.glb, ... | deterministic |
-| Evergarden flower bed models (public/models/props/flower_bed_square_a.glb, flower_bed_square_b.glb, ... | deterministic |
-| Galecrest monument models (public/models/props/ship_monument.glb, golden_horse_statue.glb) | deterministic |
-| Generated prop model (mining_ore_cart) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (herbalism_drying_rack) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (banker_chest) | deterministic |
-| Generated landmark model (eastbrook_grand_armoury) | deterministic |
-| Generated Eastbrook town kit (eastbrook_bank, eastbrook_smithy, eastbrook_inn, eastbrook_chapel, ... | deterministic |
-| Generated Eastbrook Realm Builder monument (eastbrook_realm_builder_monument, plus its 8-view ... | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated Eastbrook Ravenpost mailbox (mailbox_pillar) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated Eastbrook public noticeboard (eastbrook_noticeboard) | deterministic |
-| Generated Mirefen muster camp kit (muster_palisade, muster_barricade, muster_gate, ... | deterministic |
-| Generated muster training effigy and stake mallet (muster_effigy, muster_mallet) | deterministic |
-| Generated Balgath Boulder Toss VFX kit (public/models/vfx/balgath_boulder.glb: boulder, chunk_0 to ... | deterministic |
-| Generated Balgath Starwake VFX kit (public/models/vfx/balgath_starwake.glb: star_crystal_0 to ... | deterministic |
-| Generated farming prop set (public/models/props/farm_bed.glb, farm_sprout.glb, ... | deterministic |
-| Generated prop model (maledict_eye) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated creature model + animations (emberkin) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated creature model + animations (pyre_colossus) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated creature model + animations (gloomshade_abyssal_guardian) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated creature models + animations (hoard_abyssal_maw, hoard_hoarfrost_warden) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated creature models (hoard_emberforge_tyrant, hoard_archon_nyxaris, hoard_tempest_vharok) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated hoard room creatures (hoard_tide_thrall, hoard_frost_revenant, hoard_ember_fiend, ... | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated cave boss models (hoard_boss_mushroom, hoard_bloat_cap) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated cave boss models (hoard_boss_mole, hoard_boss_bat, hoard_boss_mimic) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated Fenbridge town kit (fenbridge_warden_gatehouse, fenbridge_crooked_reed_inn, ... | deterministic |
-| Generated prop model (wildheart_jaguar_gate) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (wildheart_ritual_pyramid) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (wildheart_canopy_platform) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (wildheart_rope_bridge) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (wildheart_beast_den) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (wildheart_mask_totem) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated creature model + animations (wildheart_ravager) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated creature model + animations (wildheart_hexcaller) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated creature model + animations (wildheart_beastmaster) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated creature model + animations (wildheart_high_priest) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (wildheart_limestone_cliff) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated creature model + animations (wildheart_stalker) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (wildheart_giant_fern) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (wildheart_ancestor_ruin) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (wildheart_jungle_canopy_tree) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (streetlamp_eastbrook_civic) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (streetlamp_mirefen_witchflame) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (streetlamp_thornpeak_beacon) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (streetlamp_veiled_crystal) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (streetlamp_drakelands_brazier) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (streetlamp_frostveil_icicle) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (streetlamp_amberfall_crystal) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (streetlamp_willowfen_reed) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (streetlamp_nightbloom_moonflower) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (streetlamp_wraithwood_ghost) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (streetlamp_palmreach_totem) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (streetlamp_evergarden_flower) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (frostveil_ice_spire) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (streetlamp_galecrest_mast) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (streetlamp_farshore_coral) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated creature model + animations (bear_form, the druid Bear Form quadruped) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Druid cat form model and animations (public/models/creatures/druid_cat_form.glb) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Ignivar Ashcaller creature model + animations (public/models/creatures/ignivar_ashcaller.glb) | deterministic |
-| Generated prop model (varkhul_grand_forge) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (wreckage_broken_planks) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (wreckage_waterlogged_barrel) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (wreckage_damaged_crate) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (wreckage_fallen_anchor) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (wreckage_hull_fragment) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (wreckage_capsized_rowboat) | AI-generated: Tripo under the owner's paid Tripo plan |
-| World Quests shipwreck placement kit (public/models/world_quests/shipwreck/) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Confection Cascade candy atlas (public/ui/minigames/confection-candies.webp) | AI-generated |
-| Confection Cascade walnut coffer material (public/ui/minigames/confection-walnut.webp) | AI-generated |
-| Confection Cascade artisan frame, brass hardware and result seals (public/ui/minigames/*-v4.webp) | AI-generated |
-| Confection Cascade symmetrical emerald ornament (public/ui/minigames/confection-jewels-v5.webp) | AI-generated |
-| Confection Cascade solid emerald and winged lock hardware (public/ui/minigames/*-v6.webp) | AI-generated |
-| Confection Cascade polished gold hardware mounts (public/ui/minigames/*-v7.webp) | AI-generated |
-| Generated prop model (nythraxis_bone_spike) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated prop model (nythraxis_binding_cage) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Buddy model, animations, faces and whistle icon (Flicker and Glimmer, the flame-sprite pair, ... | deterministic |
-| Generated prop model (windrider_glider_flight) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated creature model + animations (balgath_foreman) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated creature model + animations (balgath_cyclops) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated weapon model + icon (balgath_barrowmaul_hammer) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated weapon model + icon (shardpike_spear) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Shardpike world-boss item and mechanic icons (skerrits_shardpike, lance_brace, lance_thrust, ... | AI-generated |
-| Balgath eye-ward world-boss status badges (eye_ward_sealed, eye_ward_open, eye_ward_blinded) | AI-generated |
-| Foreman's Wage world-boss item icons (foremans_wage_band, mirelight_locket, fenwright_grips) | AI-generated |
-| Generated buddy model + animations (horse, the low-poly pony companion, ... | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated buddy model, animations and whistle icon (sapling, public/models/buddies/sapling.glb) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Generated creature model + animations (sporemender_form) | AI-generated: Tripo under the owner's paid Tripo plan |
-| Ley Beam Alignment celestial frame and crystal heart (public/ui/minigames/ley-*-v1.webp) | AI-generated |
-| Generated prop model (spore_burster) | AI-generated: Tripo under the owner's paid Tripo plan |
 | Generated weapon model + icon (sunpetal_sickle) | AI-generated: Tripo under the owner's paid Tripo plan |
 | Generated weapon model + icon (ironbark_axe) | AI-generated: Tripo under the owner's paid Tripo plan |
 | Generated weapon model + icon (mithril_mining_pick) | AI-generated: Tripo under the owner's paid Tripo plan |
@@ -515,6 +151,384 @@ are not loaded by the game; they must not ship in a build and should leave the r
 
 Line numbers are CREDITS.md lines at the base commit. "Files" is the number of tree files the
 row's paths and ids match (the JSON lists them).
+
+### Characters crew
+
+| Line | Asset | Class | Files | Example path | Used in |
+|---|---|---|---|---|---|
+| 99 | WOC player characters (all nine classes, both body types: public/models/chars/players/woc/ (a base and an ... | permission | 102 | `public/models/chars/players/woc/anims_female.glb` | every player character and NPC on the WOC rig |
+| 317 | Generated class skin-suit set "Prismatic Vanguard" (suit_prismatic, all classes, ... | project only | 7 | `public/textures/skins/barbarian/alt_suit_prismatic.png` | see asset text |
+| 318 | Generated class skin-suit set "Liquid Chrome" (suit_chrome, all classes, ... | project only | 7 | `public/textures/skins/barbarian/alt_suit_chrome.png` | see asset text |
+
+### Creatures crew
+
+| Line | Asset | Class | Files | Example path | Used in |
+|---|---|---|---|---|---|
+| 125 | Laverock walking and running animation bank (public/models/creatures/temple_laverock_locomotion.glb) | project only | 1 | `public/models/creatures/temple_laverock_locomotion.glb` | mobs and bosses in the world and dungeons |
+| 144 | Gourdlight Eve field boss and mount (public/models/creatures/gourdlight_{thatchgrin,strawling,swelling_gourd}. ... | project only | 4 | `public/models/creatures/gourdlight_strawling.glb` | mobs and bosses in the world and dungeons; rideable mounts |
+| 202 | Meshy creature models (tolling_bell, spider_egg_sac from the Drowned Litany, yumi_cat from Protect Yumi, in ... | project only | 211 | `public/models/creatures/alpaca.glb` | mobs and bosses in the world and dungeons |
+| 265 | Owner-provided Mage artwork (fireball_form.webp, counterspell.webp) | permission | 2 | `public/ui/skills/mage/counterspell.webp` | action bars, spellbook, talent tree, cast bars and tooltips |
+| 276 | Rideable mount models (valorsteed, grag_bear, stalkglider_snail, aether_hover_cycle, shadowjump_toad, ... | project only | 25 | `public/models/mounts/aether_hover_cycle.glb` | rideable mounts |
+| 277 | Drakemaw Raptor mount (public/models/mounts/drakemaw_raptor.glb, also the Friendship Raptor's body) | project only | 1 | `public/models/mounts/drakemaw_raptor.glb` | rideable mounts |
+| 278 | Dreadspark Groundshaker rideable mount model (public/models/mounts/terrorspark_groundshaker.glb) | permission | 1 | `public/models/mounts/terrorspark_groundshaker.glb` | rideable mounts |
+| 281 | Lanternback Troll rideable mount model (public/models/mounts/lanternback_troll.glb) | permission | 1 | `public/models/mounts/lanternback_troll.glb` | rideable mounts |
+| 290 | Wobbles the Slime rideable mount model (public/models/mounts/wobbles_slime.glb) | project only | 1 | `public/models/mounts/wobbles_slime.glb` | rideable mounts |
+| 300 | Drowned Temple creatures (public/models/creatures/temple_*.glb except temple_ice_wraith.glb, credited in the ... | permission | 12 | `public/models/creatures/temple_acolyte.glb` | mobs and bosses in the world and dungeons |
+| 301 | Drowned Temple Ice Wraith (public/models/creatures/temple_ice_wraith.glb) | project only | 1 | `public/models/creatures/temple_ice_wraith.glb` | mobs and bosses in the world and dungeons |
+| 303 | Sunken Bastion spectral sailor (public/models/creatures/bastion_ghost_sailor.glb) and haunted brig ... | permission | 2 | `public/models/creatures/bastion_ghost_sailor.glb` | mobs and bosses in the world and dungeons; world props and town buildings |
+| 304 | Enemy and dungeon boss bodies made through the designer's model guide (public/models/creatures/woc_*.glb, ... | permission | 36 | `public/models/creatures/woc_basin_beastmaster.glb` | mobs and bosses in the world and dungeons; world props and town buildings |
+| 307 | Gravewyrm Sanctum Korgath maul clips (public/models/creatures/woc_sanctum_korgath_clips.glb: a clip donor, no ... | permission | 1 | `public/models/creatures/woc_sanctum_korgath_clips.glb` | mobs and bosses in the world and dungeons |
+| 314 | Realm sky HDRIs (hollow_dusk, ember_storm, frost_twilight, amber_sunset, fen_day, nightbloom_dream, ... | project only | 0 |  | see asset text |
+| 382 | Creature vocalizations, every mob family (mob_*) | CC BY-NC | 184 | `public/audio/sfx/mob_beast_aggro_1.mp3` | combat, UI and world sound effects |
+| 407 | Generated creature model + animations (training_dummy) | project only | 2 | `public/models/creatures/training_dummy.glb` | mobs and bosses in the world and dungeons |
+| 408 | Generated creature model + animations (gravewing) | project only | 1 | `public/models/creatures/gravewing.glb` | mobs and bosses in the world and dungeons |
+| 409 | Generated character form + animations (lich_form) | project only | 0 |  | see asset text |
+| 410 | Contributor-provided animated raid boss model and fire VFX (ignivar_herald) | project only | 1 | `public/models/creatures/ignivar_herald.glb` | mobs and bosses in the world and dungeons |
+| 437 | Generated creature model + animations (emberkin) | project only | 3 | `public/models/creatures/emberkin.glb` | action bars, spellbook, talent tree, cast bars and tooltips; mobs and bosses in the world and dungeons |
+| 438 | Generated creature model + animations (pyre_colossus) | project only | 2 | `public/models/creatures/pyre_colossus.glb` | mobs and bosses in the world and dungeons |
+| 439 | Generated creature model + animations (gloomshade_abyssal_guardian) | project only | 1 | `public/models/creatures/gloomshade_abyssal_guardian.glb` | mobs and bosses in the world and dungeons |
+| 440 | Generated creature models + animations (hoard_abyssal_maw, hoard_hoarfrost_warden) | project only | 2 | `public/models/creatures/hoard_abyssal_maw.glb` | mobs and bosses in the world and dungeons |
+| 441 | Generated creature models (hoard_emberforge_tyrant, hoard_archon_nyxaris, hoard_tempest_vharok) | project only | 3 | `public/models/creatures/hoard_archon_nyxaris.glb` | mobs and bosses in the world and dungeons |
+| 442 | Generated hoard room creatures (hoard_tide_thrall, hoard_frost_revenant, hoard_ember_fiend, ... | project only | 0 |  | see asset text |
+| 443 | Generated cave boss models (hoard_boss_mushroom, hoard_bloat_cap) | project only | 4 | `public/models/creatures/hoard_bloat_cap.glb` | mobs and bosses in the world and dungeons |
+| 444 | Generated cave boss models (hoard_boss_mole, hoard_boss_bat, hoard_boss_mimic) | project only | 6 | `public/models/creatures/hoard_boss_bat.glb` | mobs and bosses in the world and dungeons |
+| 449 | Generated prop model (wildheart_canopy_platform) | project only | 1 | `public/models/props/wildheart_canopy_platform.glb` | world props and town buildings |
+| 453 | Generated creature model + animations (wildheart_ravager) | project only | 3 | `public/models/creatures/wildheart_ravager.glb` | mobs and bosses in the world and dungeons |
+| 454 | Generated creature model + animations (wildheart_hexcaller) | project only | 3 | `public/models/creatures/wildheart_hexcaller.glb` | mobs and bosses in the world and dungeons |
+| 455 | Generated creature model + animations (wildheart_beastmaster) | project only | 3 | `public/models/creatures/wildheart_beastmaster.glb` | mobs and bosses in the world and dungeons |
+| 456 | Generated creature model + animations (wildheart_high_priest) | project only | 3 | `public/models/creatures/wildheart_high_priest.glb` | mobs and bosses in the world and dungeons |
+| 458 | Generated creature model + animations (wildheart_stalker) | project only | 3 | `public/models/creatures/wildheart_stalker.glb` | mobs and bosses in the world and dungeons |
+| 471 | Generated prop model (streetlamp_wraithwood_ghost) | project only | 1 | `public/models/props/streetlamp_wraithwood_ghost.glb` | world props and town buildings |
+| 477 | Generated creature model + animations (bear_form, the druid Bear Form quadruped) | project only | 0 |  | see asset text |
+| 478 | Druid cat form model and animations (public/models/creatures/druid_cat_form.glb) | project only | 1 | `public/models/creatures/druid_cat_form.glb` | mobs and bosses in the world and dungeons |
+| 479 | Ignivar Ashcaller creature model + animations (public/models/creatures/ignivar_ashcaller.glb) | project only | 1 | `public/models/creatures/ignivar_ashcaller.glb` | mobs and bosses in the world and dungeons |
+| 496 | Buddy model, animations, faces and whistle icon (Flicker and Glimmer, the flame-sprite pair, ... | project only | 1 | `public/models/buddies/sprites.glb` | see asset text |
+| 498 | Generated creature model + animations (balgath_foreman) | project only | 0 |  | see asset text |
+| 499 | Generated creature model + animations (balgath_cyclops) | project only | 2 | `public/models/creatures/balgath_cyclops.glb` | mobs and bosses in the world and dungeons |
+| 505 | Generated buddy model + animations (horse, the low-poly pony companion, public/models/buddies/horse.glb) | project only | 1 | `public/models/buddies/horse.glb` | see asset text |
+| 506 | Generated buddy model, animations and whistle icon (sapling, public/models/buddies/sapling.glb) | project only | 1 | `public/models/buddies/sapling.glb` | see asset text |
+| 507 | Generated creature model + animations (sporemender_form) | project only | 2 | `public/models/creatures/sporemender_form.glb` | action bars, spellbook, talent tree, cast bars and tooltips; mobs and bosses in the world and dungeons |
+
+### Creatures crew (re-render with scripts/render_finder_portraits.mjs once the mob models are replaced)
+
+| Line | Asset | Class | Files | Example path | Used in |
+|---|---|---|---|---|---|
+| 259 | Deterministically corrected mob target portraits (public/ui/mobs/{bogtoad,breach_wretch,castaway_navigator,cin ... | project only | 18 | `public/ui/mobs/bogtoad.webp` | see asset text |
+| 260 | Ignivar raid target portraits (public/ui/mobs/{ignivar_cinder_artificer,ignivar_crucible_warden,ignivar_ember_ ... | project only | 6 | `public/ui/mobs/ignivar_cinder_artificer.webp` | see asset text |
+
+### Weapons crew
+
+| Line | Asset | Class | Files | Example path | Used in |
+|---|---|---|---|---|---|
+| 203 | Legacy Claudium prototype weapon models and source images (emberfang, Red Skull, and Purple sets, in ... | permission | 402 | `public/models/weapons/adv_dagger.glb` | held weapons, armory, character sheet previews |
+| 204 | Starter weapon models (the five starting weapons, the starting shield, the hunter's crossbow and the ... | permission | 188 | `public/models/weapons/axe_starter.glb` | held weapons, armory, character sheet previews |
+| 205 | Common and uncommon "field" weapon models (ten plain shapes in up to three painted looks, ... | permission | 203 | `public/models/weapons/axe_field_bronze.glb` | held weapons, armory, character sheet previews |
+| 206 | Rare weapon models (two designs per weapon type in up to three painted finishes, and two rare shield designs: ... | permission | 230 | `public/models/weapons/axe_rare_a_ember.glb` | held weapons, armory, character sheet previews |
+| 207 | Epic weapon models (one design per named weapon line in up to three painted finishes, and two epic shield ... | permission | 207 | `public/models/weapons/axe_epic_gravecleaver_fossil_gravegreen.glb` | held weapons, armory, character sheet previews |
+| 228 | Season 1 Armory weapon models, source images, generated store thumbnails, and promotional card (Guildmark, ... | permission | 447 | `public/models/weapons/adv_dagger.glb` | held weapons, armory, character sheet previews |
+| 279 | Masterwrought inscription tome held models (public/models/weapons/{tome_silverleaf,tome_goldleaf,tome_sunpetal ... | permission | 4 | `public/models/weapons/tome_goldleaf.glb` | held weapons, armory, character sheet previews |
+| 313 | Drakelands rebuild kit props (public/models/drakelands_kit/*.glb: town buildings and bases, church, barracks, ... | project only | 20 | `public/models/drakelands_kit/barracks.glb` | see asset text |
+| 431 | Generated Mirefen muster camp kit (muster_palisade, muster_barricade, muster_gate, muster_watchtower, ... | project only | 0 |  | see asset text |
+
+### Weapons crew (model) + 2D crew (icon)
+
+| Line | Asset | Class | Files | Example path | Used in |
+|---|---|---|---|---|---|
+| 500 | Generated weapon model + icon (balgath_barrowmaul_hammer) | project only | 2 | `public/models/weapons/balgath_barrowmaul_hammer.glb` | held weapons, armory, character sheet previews |
+| 501 | Generated weapon model + icon (shardpike_spear) | project only | 2 | `public/models/weapons/shardpike_spear.glb` | held weapons, armory, character sheet previews |
+
+### Props crew
+
+| Line | Asset | Class | Files | Example path | Used in |
+|---|---|---|---|---|---|
+| 124 | Thornhollow wall tower (public/models/city/wall_tower.glb) | project only | 1 | `public/models/city/wall_tower.glb` | see asset text |
+| 126 | Thornhollow ground decals (public/textures/battleground/decals/*.webp) | project only | 2 | `public/textures/battleground/decals/blood_pool.webp` | see asset text |
+| 127 | Thornhollow Fields rune pad bodies (public/models/battleground/rune_damage.glb, rune_defense.glb, ... | project only | 3 | `public/models/battleground/rune_damage.glb` | see asset text |
+| 129 | Ignivar perimeter lava (public/textures/encounters/ignivar/ignivar_lava_original.webp) | project only | 1 | `public/textures/encounters/ignivar/ignivar_lava_original.webp` | see asset text |
+| 131 | Tree Generator leaf-card atlases (public/textures/foliage/leaves/*.png) | project only | 27 | `public/textures/foliage/leaves/acacia.png` | see asset text |
+| 132 | Tree Generator foundation trunks (public/models/foliage/trunks/*.glb) | project only | 6 | `public/models/foliage/trunks/acacia.glb` | see asset text |
+| 133 | Tidehold town kit (public/models/tidehold/{house_a..e,tavern,tavern_b,smithy,market,hall,shop_a,shop_b,bank}.g ... | project only | 13 | `public/models/tidehold/bank.glb` | world props and town buildings |
+| 134 | Eastbrook Weekly Vault placeable model (public/models/tidehold/vault.glb, its .lod.glb far twin and .half / ... | project only | 1 | `public/models/tidehold/vault.glb` | world props and town buildings |
+| 135 | Fenbridge's Fenrire look of the painted Tidehold buildings (public/models/tidehold/fenrire/{hall,house_a,shop_ ... | project only | 5 | `public/models/tidehold/fenrire/hall.glb` | world props and town buildings |
+| 136 | Highwatch's Alpine slate look of the painted Tidehold buildings (public/models/tidehold/highwatch/{bank,hall,h ... | project only | 6 | `public/models/tidehold/highwatch/bank.glb` | world props and town buildings |
+| 138 | The pantile town look of the painted Tidehold buildings (public/models/tidehold/pantile/{house_a,shop_a,tavern ... | project only | 3 | `public/models/tidehold/pantile/house_a.glb` | world props and town buildings |
+| 139 | The shakes town look of the painted Tidehold buildings (public/models/tidehold/shakes/{hall,house_a,tavern}.gl ... | project only | 3 | `public/models/tidehold/shakes/hall.glb` | world props and town buildings |
+| 140 | The diamond town look of the painted Tidehold buildings (public/models/tidehold/diamond/{hall,house_c,shop_a,s ... | project only | 5 | `public/models/tidehold/diamond/hall.glb` | world props and town buildings |
+| 141 | The brick town look of the painted Tidehold buildings (public/models/tidehold/brick/{hall,house_a,shop_a,smith ... | project only | 5 | `public/models/tidehold/brick/hall.glb` | world props and town buildings |
+| 142 | The thatch town look of the painted Tidehold buildings (public/models/tidehold/thatch/{hall,house_a,house_b,sm ... | project only | 5 | `public/models/tidehold/thatch/hall.glb` | world props and town buildings |
+| 145 | WOC Terrain Textures and WOC Asset Textures packs (the source images under scripts/assets/blender_tidehold/, ... | project only | 200 | `scripts/assets/blender_tidehold/AUTHORING.md` | see asset text |
+| 152 | Biome backdrop panoramas (vale_backdrop.webp, marsh_backdrop.webp, peaks_backdrop.webp and 4K variants) | project only | 0 |  | see asset text |
+| 153 | Fel meteor POWERFUL VFX sprite (public/vfx/fel_meteor_impact.png) | project only | 1 | `public/vfx/fel_meteor_impact.png` | see asset text |
+| 199 | Eastbrook shared surface atlas (public/textures/eastbrook_surface_atlas.webp; accepted source and comparison ... | project only | 3 | `docs/screenshots/eastbrook-vale-rebuild/materials/eastbrook-surface-atlas-comparison.png` | repo docs only (not loaded by the game) |
+| 201 | Fenbridge shared surface maps (public/textures/fenbridge_surface_atlas.webp, fenbridge_surface_normal.webp, ... | project only | 4 | `docs/design/fenbridge-rebuild/materials/fenbridge-surface-atlas-source.png` | repo docs only (not loaded by the game) |
+| 231 | Tripo3d vegetation prop models (public/models/props/reeds.glb) | permission | 1 | `public/models/props/reeds.glb` | world props and town buildings |
+| 234 | Mirefen mudfin hut models (public/models/props/mudfin_hut_a.glb, mudfin_hut_b.glb) | permission | 2 | `public/models/props/mudfin_hut_a.glb` | world props and town buildings |
+| 292 | Rift dimensional gate model (public/models/props/rift_portal.glb) | project only | 1 | `public/models/props/rift_portal.glb` | world props and town buildings |
+| 293 | Rift arcane flame + rune monolith props (public/models/props/rift_flame.glb, rift_rune.glb) | project only | 2 | `public/models/props/rift_flame.glb` | world props and town buildings |
+| 295 | Harbor route marker signpost (public/models/props/harbor_route_marker.glb: post, arrow board, anchor roundel, ... | permission | 1 | `public/models/props/harbor_route_marker.glb` | world props and town buildings |
+| 296 | Wyrmwatch cliff harbor (public/models/props/wyrmwatch_harbor.glb: the Drakelands ferry berth's quays, ... | permission | 1 | `public/models/props/wyrmwatch_harbor.glb` | world props and town buildings |
+| 297 | Wickharbor ferry wharf (public/models/props/wickharbor_wharf.glb: the Wickharbor ferry berth's plank wharf, ... | permission | 1 | `public/models/props/wickharbor_wharf.glb` | world props and town buildings |
+| 298 | Wickharbor harbor (public/models/props/wickharbor_harbor.glb: Wickharbor's shore boardwalk, the great quay ... | permission | 1 | `public/models/props/wickharbor_harbor.glb` | world props and town buildings |
+| 299 | Mirefen tavern (public/models/props/mirefen_tavern.glb: the walk-in inn on the Fenbridge road, its common ... | permission | 3 | `public/models/props/mirefen_tavern.glb` | world props and town buildings |
+| 302 | Drowned Temple kit (public/models/props/drowned_temple_kit.glb: the pearl-stone columns, the drowned choir ... | permission | 1 | `public/models/props/drowned_temple_kit.glb` | world props and town buildings |
+| 305 | Gravewyrm Sanctum Seal Gate (public/models/props/sanctum_seal_gate.glb, sanctum_seal_gate_props.glb, ... | permission | 3 | `public/models/props/sanctum_seal_gate.glb` | world props and town buildings |
+| 306 | Gravewyrm Sanctum interior kit (public/models/props/gravewyrm_sanctum_interior.glb: the Lock Terrace's slate ... | permission | 1 | `public/models/props/gravewyrm_sanctum_interior.glb` | world props and town buildings |
+| 308 | Sunken Bastion Drowned Gate Tower (public/models/props/sunken_bastion_entrance.glb, ... | permission | 3 | `public/models/props/sunken_bastion_entrance.glb` | world props and town buildings |
+| 309 | Hollow Crypt Fallen Chapel (public/models/props/hollow_crypt_entrance.glb, hollow_crypt_entrance_walls.glb, ... | permission | 4 | `public/models/props/hollow_crypt_entrance.glb` | world props and town buildings |
+| 310 | Drowned Temple Moon Stair (public/models/props/drowned_temple_entrance.glb, ... | permission | 3 | `public/models/props/drowned_temple_entrance.glb` | world props and town buildings |
+| 311 | Wildheart Basin Jaguar Maw (public/models/props/wildheart_basin_entrance.glb, ... | permission | 3 | `public/models/props/wildheart_basin_entrance.glb` | world props and town buildings |
+| 312 | Ignivar raid forge-mech dressing props (public/models/dungeon/ignivar_prop_*.glb: beams, pillars, the rusty ... | project only | 50 | `public/models/dungeon/ignivar_prop_anvil.glb` | see asset text |
+| 316 | Infernal Citadel props (public/models/props/infernal_brazier.glb, infernal_altar.glb, demon_idol.glb, ... | project only | 10 | `public/models/props/bone_pile.glb` | world props and town buildings |
+| 379 | Magic-school impact and casting-support one-shots (impact_*, heal_impact, buff_apply, debuff_apply, ... | CC BY-NC | 102 | `public/audio/sfx/buff_apply.mp3` | combat, UI and world sound effects |
+| 380 | Magic-school projectile launches (proj_*) | CC BY-NC | 7 | `public/audio/sfx/proj_arcane.mp3` | combat, UI and world sound effects |
+| 388 | Generated prop model (marsh_plank_bridge) | project only | 1 | `public/models/props/marsh_plank_bridge.glb` | world props and town buildings |
+| 389 | Generated prop model (marsh_shrine_fragment) | project only | 1 | `public/models/props/marsh_shrine_fragment.glb` | world props and town buildings |
+| 390 | Generated prop model (marsh_corpse_candle) | project only | 1 | `public/models/props/marsh_corpse_candle.glb` | world props and town buildings |
+| 391 | Generated prop model (marsh_bell_gallows) | project only | 1 | `public/models/props/marsh_bell_gallows.glb` | world props and town buildings |
+| 392 | Generated prop model (marsh_sluice_post) | project only | 1 | `public/models/props/marsh_sluice_post.glb` | world props and town buildings |
+| 393 | Generated prop model (marsh_dead_tree) | project only | 1 | `public/models/props/marsh_dead_tree.glb` | world props and town buildings |
+| 394 | Generated prop model (marsh_reed_cluster) | project only | 1 | `public/models/props/marsh_reed_cluster.glb` | world props and town buildings |
+| 395 | Generated prop model (yumi_brazier_stand) | project only | 1 | `public/models/props/yumi_brazier_stand.glb` | world props and town buildings |
+| 396 | Generated prop model (yumi_torch_handle) | project only | 1 | `public/models/props/yumi_torch_handle.glb` | world props and town buildings |
+| 397 | Generated prop model (dungeon_door_arch) | project only | 1 | `public/models/props/dungeon_door_arch.glb` | world props and town buildings |
+| 398 | Generated prop model (crypt_ritual_circle) | project only | 1 | `public/models/quest/crypt_ritual_circle.glb` | see asset text |
+| 399 | Generated prop model (delve_module_exit) | project only | 1 | `public/models/props/delve_module_exit.glb` | world props and town buildings |
+| 400 | Generated prop model (delve_surface_exit) | project only | 2 | `public/models/props/delve_surface_exit.glb` | world map and minimap; world props and town buildings |
+| 401 | Generated prop model (delve_rite_shrine_bell) | project only | 1 | `public/models/props/delve_rite_shrine_bell.glb` | world props and town buildings |
+| 402 | Generated prop model (delve_rite_shrine_candle) | project only | 1 | `public/models/props/delve_rite_shrine_candle.glb` | world props and town buildings |
+| 403 | Generated prop model (delve_rite_shrine_reed) | project only | 1 | `public/models/props/delve_rite_shrine_reed.glb` | world props and town buildings |
+| 404 | Generated prop model (delve_rite_shrine_skull) | project only | 1 | `public/models/props/delve_rite_shrine_skull.glb` | world props and town buildings |
+| 405 | Generated prop model (delve_pressure_plate) | project only | 1 | `public/models/props/delve_pressure_plate.glb` | world props and town buildings |
+| 406 | Generated prop model (marsh_root_wall) | project only | 1 | `public/models/props/marsh_root_wall.glb` | world props and town buildings |
+| 411 | Contributor-provided animated raid add models (cinder_artificer, crucible_warden, ember_sentinel) | project only | 3 | `public/models/creatures/cinder_artificer.glb` | mobs and bosses in the world and dungeons |
+| 412 | Generated prop model (engineering_workbench) | project only | 1 | `public/models/props/engineering_workbench.glb` | world props and town buildings |
+| 413 | Generated prop model (alchemy_cauldron) | project only | 1 | `public/models/props/alchemy_cauldron.glb` | world props and town buildings |
+| 414 | Generated prop model (cooking_spit) | project only | 1 | `public/models/props/cooking_spit.glb` | world props and town buildings |
+| 415 | Generated prop model (leatherworking_rack) | project only | 1 | `public/models/props/leatherworking_rack.glb` | world props and town buildings |
+| 416 | Generated prop model (tailoring_loom) | project only | 1 | `public/models/props/tailoring_loom.glb` | world props and town buildings |
+| 417 | Generated prop model (inscription_lectern) | project only | 1 | `public/models/props/inscription_lectern.glb` | world props and town buildings |
+| 418 | Generated prop model (enchanting_altar) | project only | 1 | `public/models/props/enchanting_altar.glb` | world props and town buildings |
+| 419 | Generated prop model (jewelcrafting_bench) | project only | 1 | `public/models/props/jewelcrafting_bench.glb` | world props and town buildings |
+| 420 | Great Maze prop models (public/models/props/maze_hedge_wall.glb, maze_hedge_arch.glb, leafy_fox_statue.glb) | project only | 3 | `public/models/props/leafy_fox_statue.glb` | world props and town buildings |
+| 421 | Evergarden flower bed models (public/models/props/flower_bed_square_a.glb, flower_bed_square_b.glb, ... | project only | 3 | `public/models/props/flower_bed_round.glb` | world props and town buildings |
+| 422 | Galecrest monument models (public/models/props/ship_monument.glb, golden_horse_statue.glb) | project only | 2 | `public/models/props/golden_horse_statue.glb` | world props and town buildings |
+| 423 | Generated prop model (mining_ore_cart) | project only | 1 | `public/models/props/mining_ore_cart.glb` | world props and town buildings |
+| 424 | Generated prop model (herbalism_drying_rack) | project only | 1 | `public/models/props/herbalism_drying_rack.glb` | world props and town buildings |
+| 425 | Generated prop model (banker_chest) | project only | 1 | `public/models/props/banker_chest.glb` | world props and town buildings |
+| 426 | Generated landmark model (eastbrook_grand_armoury) | project only | 1 | `public/models/props/eastbrook_grand_armoury.glb` | world props and town buildings |
+| 427 | Generated Eastbrook town kit (eastbrook_bank, eastbrook_smithy, eastbrook_inn, eastbrook_chapel, ... | project only | 0 |  | see asset text |
+| 428 | Generated Eastbrook Realm Builder monument (eastbrook_realm_builder_monument, plus its 8-view impostor atlas) | project only | 0 |  | see asset text |
+| 429 | Generated Eastbrook Ravenpost mailbox (mailbox_pillar) | project only | 0 |  | see asset text |
+| 430 | Generated Eastbrook public noticeboard (eastbrook_noticeboard) | project only | 0 |  | see asset text |
+| 432 | Generated muster training effigy and stake mallet (muster_effigy, muster_mallet) | project only | 0 |  | see asset text |
+| 433 | Generated Balgath Boulder Toss VFX kit (public/models/vfx/balgath_boulder.glb: boulder, chunk_0 to chunk_5, ... | project only | 1 | `public/models/vfx/balgath_boulder.glb` | see asset text |
+| 434 | Generated Balgath Starwake VFX kit (public/models/vfx/balgath_starwake.glb: star_crystal_0 to star_crystal_5, ... | project only | 1 | `public/models/vfx/balgath_starwake.glb` | see asset text |
+| 435 | Generated farming prop set (public/models/props/farm_bed.glb, farm_sprout.glb, farm_grain_stage2.glb, ... | project only | 17 | `public/models/props/farm_bed.glb` | world props and town buildings |
+| 436 | Generated prop model (maledict_eye) | project only | 1 | `public/models/props/maledict_eye.glb` | world props and town buildings |
+| 445 | Generated Fenbridge town kit (fenbridge_warden_gatehouse, fenbridge_crooked_reed_inn, ... | project only | 0 |  | see asset text |
+| 447 | Generated prop model (wildheart_jaguar_gate) | project only | 1 | `public/models/props/wildheart_jaguar_gate.glb` | world props and town buildings |
+| 448 | Generated prop model (wildheart_ritual_pyramid) | project only | 1 | `public/models/props/wildheart_ritual_pyramid.glb` | world props and town buildings |
+| 450 | Generated prop model (wildheart_rope_bridge) | project only | 1 | `public/models/props/wildheart_rope_bridge.glb` | world props and town buildings |
+| 451 | Generated prop model (wildheart_beast_den) | project only | 1 | `public/models/props/wildheart_beast_den.glb` | world props and town buildings |
+| 452 | Generated prop model (wildheart_mask_totem) | project only | 1 | `public/models/props/wildheart_mask_totem.glb` | world props and town buildings |
+| 457 | Generated prop model (wildheart_limestone_cliff) | project only | 1 | `public/models/props/wildheart_limestone_cliff.glb` | world props and town buildings |
+| 459 | Generated prop model (wildheart_giant_fern) | project only | 1 | `public/models/props/wildheart_giant_fern.glb` | world props and town buildings |
+| 460 | Generated prop model (wildheart_ancestor_ruin) | project only | 1 | `public/models/props/wildheart_ancestor_ruin.glb` | world props and town buildings |
+| 461 | Generated prop model (wildheart_jungle_canopy_tree) | project only | 1 | `public/models/props/wildheart_jungle_canopy_tree.glb` | world props and town buildings |
+| 462 | Generated prop model (streetlamp_eastbrook_civic) | project only | 1 | `public/models/props/streetlamp_eastbrook_civic.glb` | world props and town buildings |
+| 463 | Generated prop model (streetlamp_mirefen_witchflame) | project only | 1 | `public/models/props/streetlamp_mirefen_witchflame.glb` | world props and town buildings |
+| 464 | Generated prop model (streetlamp_thornpeak_beacon) | project only | 1 | `public/models/props/streetlamp_thornpeak_beacon.glb` | world props and town buildings |
+| 465 | Generated prop model (streetlamp_veiled_crystal) | project only | 1 | `public/models/props/streetlamp_veiled_crystal.glb` | world props and town buildings |
+| 466 | Generated prop model (streetlamp_drakelands_brazier) | project only | 1 | `public/models/props/streetlamp_drakelands_brazier.glb` | world props and town buildings |
+| 467 | Generated prop model (streetlamp_frostveil_icicle) | project only | 1 | `public/models/props/streetlamp_frostveil_icicle.glb` | world props and town buildings |
+| 468 | Generated prop model (streetlamp_amberfall_crystal) | project only | 1 | `public/models/props/streetlamp_amberfall_crystal.glb` | world props and town buildings |
+| 469 | Generated prop model (streetlamp_willowfen_reed) | project only | 1 | `public/models/props/streetlamp_willowfen_reed.glb` | world props and town buildings |
+| 470 | Generated prop model (streetlamp_nightbloom_moonflower) | project only | 1 | `public/models/props/streetlamp_nightbloom_moonflower.glb` | world props and town buildings |
+| 472 | Generated prop model (streetlamp_palmreach_totem) | project only | 1 | `public/models/props/streetlamp_palmreach_totem.glb` | world props and town buildings |
+| 473 | Generated prop model (streetlamp_evergarden_flower) | project only | 1 | `public/models/props/streetlamp_evergarden_flower.glb` | world props and town buildings |
+| 474 | Generated prop model (frostveil_ice_spire) | project only | 1 | `public/models/props/frostveil_ice_spire.glb` | world props and town buildings |
+| 475 | Generated prop model (streetlamp_galecrest_mast) | project only | 1 | `public/models/props/streetlamp_galecrest_mast.glb` | world props and town buildings |
+| 476 | Generated prop model (streetlamp_farshore_coral) | project only | 1 | `public/models/props/streetlamp_farshore_coral.glb` | world props and town buildings |
+| 480 | Generated prop model (varkhul_grand_forge) | project only | 1 | `public/models/props/varkhul_grand_forge.glb` | world props and town buildings |
+| 481 | Generated prop model (wreckage_broken_planks) | project only | 1 | `public/models/props/wreckage_broken_planks.glb` | world props and town buildings |
+| 482 | Generated prop model (wreckage_waterlogged_barrel) | project only | 1 | `public/models/props/wreckage_waterlogged_barrel.glb` | world props and town buildings |
+| 483 | Generated prop model (wreckage_damaged_crate) | project only | 1 | `public/models/props/wreckage_damaged_crate.glb` | world props and town buildings |
+| 484 | Generated prop model (wreckage_fallen_anchor) | project only | 1 | `public/models/props/wreckage_fallen_anchor.glb` | world props and town buildings |
+| 485 | Generated prop model (wreckage_hull_fragment) | project only | 1 | `public/models/props/wreckage_hull_fragment.glb` | world props and town buildings |
+| 486 | Generated prop model (wreckage_capsized_rowboat) | project only | 1 | `public/models/props/wreckage_capsized_rowboat.glb` | world props and town buildings |
+| 487 | World Quests shipwreck placement kit (public/models/world_quests/shipwreck/) | project only | 7 | `public/models/world_quests/shipwreck/broken_planks.glb` | see asset text |
+| 494 | Generated prop model (nythraxis_bone_spike) | project only | 2 | `public/models/props/nythraxis_bone_spike.glb` | world props and town buildings |
+| 495 | Generated prop model (nythraxis_binding_cage) | project only | 1 | `public/models/props/nythraxis_binding_cage.glb` | world props and town buildings |
+| 497 | Generated prop model (windrider_glider_flight) | project only | 1 | `public/models/props/windrider_glider_flight.glb` | world props and town buildings |
+| 538 | Generated prop model (spore_burster) | project only | 1 | `public/models/props/spore_burster.glb` | world props and town buildings |
+
+### Ambience/audio crew (sound effects)
+
+| Line | Asset | Class | Files | Example path | Used in |
+|---|---|---|---|---|---|
+| 236 | Sampled interface and event sound effects (public/audio/sfx/ui_*.mp3, except ui_level_up.mp3 and ... | project only | 123 | `public/audio/sfx/ui_achievement.mp3` | combat, UI and world sound effects |
+| 267 | Temporal clock sound effect (public/audio/sfx/temporal_clock.mp3) | permission | 1 | `public/audio/sfx/temporal_clock.mp3` | combat, UI and world sound effects |
+| 287 | Nightwing Chimaera rideable mount model (public/models/mounts/nightwing_chimera.glb) and reins icon ... | project only | 2 | `public/models/mounts/nightwing_chimera.glb` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips; rideable mounts |
+| 288 | Chimeglass Tortoise rideable mount model (public/models/mounts/chimeglass_tortoise.glb) | permission | 1 | `public/models/mounts/chimeglass_tortoise.glb` | rideable mounts |
+| 289 | Chimeglass Tortoise reins icon (public/ui/items/reins_chimeglass_tortoise.webp) | permission | 1 | `public/ui/items/reins_chimeglass_tortoise.webp` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 358 | Remaining generated world, interface, event, and ambience sound effects not attributed below ... | project only | 747 | `public/audio/sfx/amb_birds.mp3` | combat, UI and world sound effects |
+| 361 | Lantern Hall Destrier whinny takes (mount_neigh_lantern_hall_destrier_1.mp3, ... | project only | 2 | `public/audio/sfx/mount_neigh_lantern_hall_destrier_1.mp3` | combat, UI and world sound effects |
+| 368 | Dreadspark Groundshaker movement layer (mount_run_terrorspark_groundshaker.mp3) | project only | 1 | `public/audio/sfx/mount_run_terrorspark_groundshaker.mp3` | combat, UI and world sound effects |
+| 369 | Mirefen tavern room bed (amb_tavern.mp3) | project only | 1 | `public/audio/sfx/amb_tavern.mp3` | combat, UI and world sound effects |
+| 370 | Gourdlight Eve sound effects (proj_gourdfall_whistle.mp3, impact_gourdfall.mp3, ... | project only | 13 | `public/audio/sfx/gurglegreen_bubble_loop.mp3` | combat, UI and world sound effects |
+| 373 | Cluckwork Mech Bird take set (mount_run_mech_bird.mp3, mount_idle_mech_bird.mp3, mount_jump_mech_bird.mp3, ... | project only | 4 | `public/audio/sfx/mount_idle_mech_bird.mp3` | combat, UI and world sound effects |
+| 374 | Bonebound Rickshaw rolling loop (mount_loop_rickshaw_mount.mp3) | CC BY-NC | 1 | `public/audio/sfx/mount_loop_rickshaw_mount.mp3` | combat, UI and world sound effects |
+| 375 | Quest event sounds (quest_accept, quest_ready, quest_complete) | CC BY-NC | 3 | `public/audio/sfx/quest_accept_1.mp3` | combat, UI and world sound effects |
+| 376 | Lockpick minigame sounds (lockpick_*) | CC BY-NC | 14 | `public/audio/sfx/lockpick_advanced_1.mp3` | combat, UI and world sound effects |
+| 377 | Wand auto-attack sounds (wand_*) | CC BY-NC | 9 | `public/audio/sfx/wand_arcane_1.mp3` | combat, UI and world sound effects |
+| 378 | Level-up and Book of Deeds achievement chimes (ui_level_up, ui_achievement) | CC BY-NC | 2 | `public/audio/sfx/ui_achievement.mp3` | Book of Deeds window, deed toasts; combat, UI and world sound effects |
+| 381 | Melee, footstep, movement, combat-reaction, and player-state sounds (melee_*, foot_*, move_*, combat_*, ... | CC BY-NC | 166 | `public/audio/music/combat_1.mp3` | combat, UI and world sound effects; streamed soundtrack |
+
+### Ambience/audio crew (voices)
+
+| Line | Asset | Class | Files | Example path | Used in |
+|---|---|---|---|---|---|
+| 359 | Ignivar encounter voice lines (public/audio/voice/ignivar/*.mp3) | permission | 12 | `public/audio/voice/ignivar/yell__another_spark_extinguished.mp3` | boss encounter voice lines |
+| 360 | Varkhul encounter voice lines (public/audio/voice/varkhul/*.mp3) | permission | 5 | `public/audio/voice/varkhul/yell__every_blow_will_feed_the_furnace_in_my_chest_by_ember_stone_.mp3` | boss encounter voice lines |
+
+### Music crew
+
+| Line | Asset | Class | Files | Example path | Used in |
+|---|---|---|---|---|---|
+| 268 | Remastered streamed soundtrack (public/audio/music/*.mp3: town, overworld, dungeon, and battle themes) | project only | 58 | `public/audio/music/a_fate_still_unwritten.mp3` | streamed soundtrack |
+| 269 | Original Ignivar raid ambient suite retained for authoring (ignivar_forge_approach, ignivar_raid_arena, ... | project only | 3 | `public/audio/music/ignivar_forge_approach.mp3` | streamed soundtrack |
+| 270 | Crucible floor soundtrack (final assets listed in the [floor soundtrack source ... | project only | 0 |  | see asset text |
+| 271 | Proving Shore candidate cues (docs/music/proving-shore-candidates/*.mp3, the audition decision record) | project only | 3 | `docs/music/proving-shore-candidates/proving-shore-a-first-light-at-dawnrest.mp3` | repo docs only (not loaded by the game) |
+| 272 | Proving Shore island cue (public/audio/music/proving_shore.mp3, "Welcome to Adventure") | project only | 1 | `public/audio/music/proving_shore.mp3` | streamed soundtrack |
+| 273 | Morthen the Gravecaller boss-fight cue (public/audio/music/boss_morthen.mp3) | project only | 1 | `public/audio/music/boss_morthen.mp3` | streamed soundtrack |
+| 274 | Dungeon boss-fight cues (public/audio/music/boss_*.mp3, excluding Morthen) | project only | 18 | `public/audio/music/boss_cantor_ilvane.mp3` | streamed soundtrack |
+
+### This crew (2D)
+
+| Line | Asset | Class | Files | Example path | Used in |
+|---|---|---|---|---|---|
+| 95 | Hunter Bear Trap and Phosphor Flask ability icons (public/ui/skills/hunter/bear_trap.webp, ... | permission | 2 | `public/ui/skills/hunter/bear_trap.webp` | action bars, spellbook, talent tree, cast bars and tooltips |
+| 96 | Hunter Play Dead and Tactical Camo ability icons (public/ui/skills/hunter/) | permission | 46 | `public/ui/skills/hunter/aimed_shot.webp` | action bars, spellbook, talent tree, cast bars and tooltips |
+| 97 | Hunter Scatterbolt ability icon (public/ui/skills/hunter/scatterbolt.webp) | permission | 1 | `public/ui/skills/hunter/scatterbolt.webp` | action bars, spellbook, talent tree, cast bars and tooltips |
+| 137 | Highwatch adventurers' guild, Lantern Hall (public/models/tidehold/highwatch/guild.glb, and its ... | permission | 3 | `public/models/tidehold/highwatch/guild.glb` | world props and town buildings |
+| 143 | Gourdlight Eve seasonal kit (public/models/props/gourdlight_decor.glb: the carved pumpkins, gourds, lanterns, ... | project only | 6 | `public/models/props/gourdlight_decor.glb` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips; world props and town buildings |
+| 154 | Loading-screen artwork (public/textures/loading/*.webp) | project only | 11 | `public/textures/loading/crystal-delve.webp` | see asset text |
+| 155 | Website fractured portal (public/website-fractured-portal-v1.svg, public/website-fractured-portal-v2.svg, ... | permission | 5 | `public/website-fractured-portal-v1.svg` | website and landing pages (also bundled into the desktop build) |
+| 156 | Website feature icons (public/website-feature-classes-v1.webp, public/website-feature-open-v1.webp) | permission | 2 | `public/website-feature-classes-v1.webp` | website and landing pages (also bundled into the desktop build) |
+| 157 | Website stone gateway (public/website-stone-gateway-v2.svg) | permission | 1 | `public/website-stone-gateway-v2.svg` | website and landing pages (also bundled into the desktop build) |
+| 158 | Website parchment scroll (public/website-parchment-scroll-v1.svg, public/website-parchment-scroll-v2.svg) | permission | 2 | `public/website-parchment-scroll-v1.svg` | website and landing pages (also bundled into the desktop build) |
+| 159 | Eastbrook website hero (public/website-hero-eastbrook-v1.webp) | permission | 1 | `public/website-hero-eastbrook-v1.webp` | website and landing pages (also bundled into the desktop build) |
+| 160 | Galecrest website hero (public/website-hero-galecrest-v1.webp) | permission | 1 | `public/website-hero-galecrest-v1.webp` | website and landing pages (also bundled into the desktop build) |
+| 161 | Drakelands website hero (public/website-hero-drakelands-v1.webp) | permission | 1 | `public/website-hero-drakelands-v1.webp` | website and landing pages (also bundled into the desktop build) |
+| 162 | Thornpeak website hero (public/website-hero-thornpeak-v1.webp) | permission | 1 | `public/website-hero-thornpeak-v1.webp` | website and landing pages (also bundled into the desktop build) |
+| 163 | Elite dragon rank emblem (public/ui/ranks/elite-dragon-frame.webp) | permission | 1 | `public/ui/ranks/elite-dragon-frame.webp` | see asset text |
+| 164 | Warfare Season 2 Warrior item icons (public/ui/items/vanguard_warrior_*.webp) | permission | 15 | `public/ui/items/vanguard_warrior_arms_chest.webp` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 165 | Warfare Season 2 Rogue item icons (public/ui/items/vanguard_rogue_*.webp) | permission | 15 | `public/ui/items/vanguard_rogue_assassination_chest.webp` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 166 | Warfare Season 2 Druid item icons (public/ui/items/vanguard_druid_*.webp) | permission | 15 | `public/ui/items/vanguard_druid_balance_chest.webp` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 167 | Buried Hoards arcane icons (four objects, three tiers) | permission | 0 |  | see asset text |
+| 168 | Buried Hoards frost icons (four objects, three tiers) | permission | 0 |  | see asset text |
+| 169 | Buried Hoards ember icons (four objects, three tiers) | permission | 0 |  | see asset text |
+| 170 | Buried Hoards storm icons (four objects, three tiers) | permission | 0 |  | see asset text |
+| 171 | Buried Hoards brute icons (four objects, three tiers) | permission | 0 |  | see asset text |
+| 172 | Buried Hoards venom icons (four objects, three tiers) | permission | 0 |  | see asset text |
+| 173 | Buried Hoards necro icons (four objects, three tiers) | permission | 0 |  | see asset text |
+| 174 | Buried Hoards tide icons (four objects, three tiers) | permission | 0 |  | see asset text |
+| 175 | Faction rift vendor icons | permission | 0 |  | see asset text |
+| 176 | Faction church vendor icons | permission | 0 |  | see asset text |
+| 177 | Faction automaton vendor icons | permission | 0 |  | see asset text |
+| 178 | Clue item icons | permission | 0 |  | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 179 | Rewards item icons | permission | 0 |  | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 180 | Bastion dungeon item icons | permission | 0 |  | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 181 | Temple dungeon item icons | permission | 0 |  | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 182 | Wildheart dungeon item icons | permission | 0 |  | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 183 | Gravewyrm dungeon item icons | permission | 0 |  | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 184 | Crypt dungeon item icons | permission | 0 |  | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 185 | Bastion-blues dungeon item icons | permission | 0 |  | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 186 | Temple-blues dungeon item icons | permission | 0 |  | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 187 | Crypt-blues dungeon item icons | permission | 0 |  | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 188 | Friendship referral reward icons (five former temporary aliases) | permission | 0 |  | see asset text |
+| 189 | Warfare Season 2 Warlock item icons (public/ui/items/vanguard_warlock_*.webp) | permission | 15 | `public/ui/items/vanguard_warlock_affliction_chest.webp` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 190 | Warfare Season 2 Mage item icons (public/ui/items/vanguard_mage_*.webp) | permission | 15 | `public/ui/items/vanguard_mage_arcane_chest.webp` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 191 | Warfare Season 2 Shaman item icons (public/ui/items/vanguard_shaman_*.webp) | permission | 15 | `public/ui/items/vanguard_shaman_elemental_chest.webp` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 192 | Warfare Season 2 Priest item icons (public/ui/items/vanguard_priest_*.webp) | permission | 15 | `public/ui/items/vanguard_priest_discipline_chest.webp` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 193 | Warfare Season 2 Hunter item icons (public/ui/items/vanguard_hunter_*.webp) | permission | 15 | `public/ui/items/vanguard_hunter_beast_mastery_chest.webp` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 194 | Warfare Season 2 Paladin item icons (public/ui/items/vanguard_paladin_*.webp) | permission | 15 | `public/ui/items/vanguard_paladin_holy_chest.webp` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 195 | Leaderboard podium medals (public/ui/leaderboard/medal_{gold,silver,bronze}.webp) | permission | 3 | `public/ui/leaderboard/medal_bronze.webp` | see asset text |
+| 208 | Bag icons (public/ui/items/{backpack,linen_pouch,travelers_knapsack,wolfhide_satchel,gravewoven_bag,mistcaller ... | project only | 7 | `public/ui/items/backpack.webp` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 209 | Historical CraftPix item identity references for the item-art consistency replacements (255 pre-task icons, ... | permission | 0 |  | see asset text |
+| 210 | Professions 2.0 commissioned art set (public/ui/professions/*.webp except gather_farming.webp, the ... | permission | 27 | `public/ui/items/mapping.json` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips; profession windows and trainers |
+| 211 | Masterwrought art-completion wave (181 painted assets across public/ui/items/, public/ui/deeds/, ... | permission | 2571 | `public/ui/auras/well_fed.webp` | buff and debuff frames; Book of Deeds window, deed toasts; HUD side rail and mobile bar launchers |
+| 212 | Bank-storage painted bag catalog (public/ui/items/{wayfarers_backpack,burlap_reagent_pouch,necromancers_reagen ... | permission | 8 | `public/ui/items/burlap_reagent_pouch.webp` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 213 | Field Kit gathering-tool icon (public/ui/items/field_kit.webp, batch ... | permission | 2 | `public/ui/items/field_kit.webp` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 214 | Generated item icon rebrand (public/ui/items/*.webp, exact IDs under generatedBatches in ... | permission | 2210 | `public/ui/items/abyssal_loop.webp` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 215 | Item-art consistency replacement paintings (public/ui/items/*.webp, exact IDs in the ... | permission | 2210 | `public/ui/items/abyssal_loop.webp` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 216 | Class ability icons (public/ui/skills/<class>/*.webp, excluding entries with an explicit project-generated or ... | permission | 496 | `public/ui/skills/druid/barkskin.webp` | action bars, spellbook, talent tree, cast bars and tooltips |
+| 217 | v0.29 Hunter, Shaman, and Priest class rework ability icons (31 files recorded as project-generated in the ... | permission | 11 | `public/ui/skills/druid/mapping.json` | action bars, spellbook, talent tree, cast bars and tooltips |
+| 218 | Generated class ability additions (public/ui/skills/<class>/*.webp, exact ... | permission | 506 | `public/ui/skills/druid/barkskin.webp` | action bars, spellbook, talent tree, cast bars and tooltips |
+| 219 | v0.29 Hunter, Shaman, and Priest class rework ability icons (31 files recorded as project-generated in the ... | permission | 11 | `public/ui/skills/druid/mapping.json` | action bars, spellbook, talent tree, cast bars and tooltips |
+| 220 | Paladin overhaul and talent ability icons (entries marked as OpenAI-generated original project artwork in ... | permission | 1 | `public/ui/skills/paladin/mapping.json` | action bars, spellbook, talent tree, cast bars and tooltips |
+| 221 | Generated Warlock spell and talent icons (exact IDs under generatedBatches in ... | permission | 1 | `public/ui/skills/warlock/mapping.json` | action bars, spellbook, talent tree, cast bars and tooltips |
+| 222 | Warlock pet signature action icons (emberkin_felbolt, gloomshade_abyssal_chain) | permission | 0 |  | see asset text |
+| 223 | Shared pet action-bar command icons (public/ui/skills/pet/*.webp) | permission | 8 | `public/ui/skills/pet/pet_aggressive.webp` | action bars, spellbook, talent tree, cast bars and tooltips |
+| 224 | Exact runtime aura paintings (public/ui/auras/*.webp) | permission | 130 | `public/ui/auras/affliction_doom.webp` | buff and debuff frames |
+| 225 | v0.39 second-pass legacy class-icon replacements (58 exact entries in the Druid, Hunter, Mage, Priest, Rogue, ... | permission | 11 | `public/ui/skills/druid/mapping.json` | action bars, spellbook, talent tree, cast bars and tooltips |
+| 226 | v0.39 second-pass gameplay UI paintings (public/ui/currency/*.webp, public/ui/delve-affixes/*.webp, ... | permission | 40 | `public/ui/currency/automaton_cog.webp` | see asset text |
+| 227 | Collective Reversal and Hourglass of Suspension ability icons (public/ui/skills/mage/collective_reversal.webp, ... | permission | 2 | `public/ui/skills/mage/collective_reversal.webp` | action bars, spellbook, talent tree, cast bars and tooltips |
+| 229 | Membership and Refer a Friend promotional cards (public/ui/store/membership-promo.webp, ... | permission | 2 | `public/ui/store/membership-promo.webp` | see asset text |
+| 235 | Claudium visual asset set (public/claudium/: coin, UI icons, and denomination stacks; excludes the two ... | permission | 44 | `public/claudium/ASSETS.md` | see asset text |
+| 237 | Integration 45 foundations deed crests (exp_the_last_keep, exp_dawnhold_castle, soc_strongbox_outfitter, ... | permission | 0 |  | Book of Deeds window, deed toasts |
+| 238 | Integration 45 crucible deed crests (dgn_ignivar, dgn_ignivar_heroic, dgn_varkhul, dgn_varkhul_heroic, ... | permission | 0 |  | Book of Deeds window, deed toasts |
+| 239 | Integration 45 worldquests deed crests (exp_arcane_calligraphy, exp_arcane_calligraphy_gold, ... | permission | 0 |  | Book of Deeds window, deed toasts |
+| 240 | Integration 45 factions deed crests (prog_rift_watch_trusted, prog_church_order_trusted, ... | permission | 0 |  | Book of Deeds window, deed toasts |
+| 241 | Integration 45 adventures deed crests (exp_clue_first_casket, exp_clue_ten_caskets, cmb_coinsack_caught, ... | permission | 0 |  | Book of Deeds window, deed toasts |
+| 242 | Integration 45 bastion deed crests (dgn_olen_buttress, dgn_ossick_moored, dgn_vael_beacon, dgn_turretback, ... | permission | 0 |  | Book of Deeds window, deed toasts |
+| 243 | Integration 45 temple deed crests (dgn_selthe_pitch, dgn_colossus_mirror, dgn_ysolei_high_and_dry, ... | permission | 0 |  | Book of Deeds window, deed toasts |
+| 244 | Integration 45 crypt deed crests (dgn_crypt_knellwyrm, dgn_marrow_tidy, dgn_lady_nobody_hanging, ... | permission | 0 |  | Book of Deeds window, deed toasts |
+| 245 | Integration 45 wildheart deed crests (dgn_beastmaster_apart, dgn_gorgebloom_clean, dgn_zulgar_uncaught, ... | permission | 0 |  | Book of Deeds window, deed toasts |
+| 246 | Integration 45 gravewyrm deed crests (dgn_korgath_all_chains, dgn_korgath_still_bound, dgn_velkhar_cold, ... | permission | 0 |  | Book of Deeds window, deed toasts |
+| 247 | Book of Deeds achievement icons (public/ui/deeds/*.webp, excluding the project-generated additions credited ... | permission | 357 | `public/ui/deeds/chr_amberfall_first_cast.webp` | Book of Deeds window, deed toasts |
+| 248 | Generated Book of Deeds additions (chr_peaks_gatherer, chr_marsh_rares_ii, chr_peaks_rares_ii, chr_gleamstag, ... | permission | 356 | `public/ui/deeds/chr_amberfall_first_cast.webp` | Book of Deeds window, deed toasts |
+| 249 | v0.36 placeholder-art completion Book of Deeds additions (chr_amberfall_first_cast, chr_amberfall_gatherer, ... | permission | 356 | `public/ui/deeds/chr_amberfall_first_cast.webp` | Book of Deeds window, deed toasts |
+| 250 | v0.36 release-audit Reliquary Book of Deeds additions (col_reliquary_rank_2, col_reliquary_rank_3, ... | permission | 356 | `public/ui/deeds/chr_amberfall_first_cast.webp` | Book of Deeds window, deed toasts |
+| 251 | Masterwrought jewelcrafting Book of Deeds addition (prog_jewelcrafting_rare under public/ui/deeds/) | permission | 356 | `public/ui/deeds/chr_amberfall_first_cast.webp` | Book of Deeds window, deed toasts |
+| 252 | Gourdlight Eve Book of Deeds addition (feat_gourdlight_guise under public/ui/deeds/) | permission | 356 | `public/ui/deeds/chr_amberfall_first_cast.webp` | Book of Deeds window, deed toasts |
+| 253 | Masterwrought jewelcrafting milestone crests (prog_jewelcrafting_50, prog_grandmaster_jewelcrafting under ... | permission | 356 | `public/ui/deeds/chr_amberfall_first_cast.webp` | Book of Deeds window, deed toasts |
+| 254 | Masterwrought inscription milestone crests (prog_inscription_rare, prog_inscription_50, ... | permission | 356 | `public/ui/deeds/chr_amberfall_first_cast.webp` | Book of Deeds window, deed toasts |
+| 255 | Masterwrought farming, fishing, and promotion deed crests (col_deepest_cast, prog_first_planting, ... | permission | 356 | `public/ui/deeds/chr_amberfall_first_cast.webp` | Book of Deeds window, deed toasts |
+| 256 | Historical v0.36 painted per-item weapon inventory wave (119 base-weapon paintings recorded by ... | permission | 0 |  | see asset text |
+| 257 | v0.36 generated specialization emblems (public/ui/specs/{paladin,hunter,rogue,priest,shaman,warlock,druid}/*.w ... | permission | 21 | `public/ui/specs/druid/balance.webp` | see asset text |
+| 258 | v0.36 generated creature-family and status crests (public/ui/crests/families/*.webp and ... | permission | 17 | `public/ui/crests/families/beast.webp` | see asset text |
+| 261 | HUD chrome launcher icons (public/ui/chrome/*.webp, one per primary destination in the side rail and mobile ... | permission | 21 | `public/ui/chrome/arena.webp` | HUD side rail and mobile bar launchers |
+| 262 | Map and minimap marker paintings (public/ui/map-markers/*.webp) | permission | 29 | `public/ui/map-markers/delve_entrance.webp` | world map and minimap |
+| 263 | World-map continent overview plate (public/map_art/world_overview.webp, the painted backdrop of the ... | permission | 1 | `public/map_art/world_overview.webp` | world map and minimap |
+| 266 | Owner-provided Druid artwork (public/ui/skills/druid/cat_form.webp, the Cat Form lynx head) | permission | 1 | `public/ui/skills/druid/cat_form.webp` | action bars, spellbook, talent tree, cast bars and tooltips |
+| 280 | Goblin Rocket Sled mount (public/models/mounts/goblin_rocket_sled.glb) and item painting ... | permission | 2 | `public/models/mounts/goblin_rocket_sled.glb` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips; rideable mounts |
+| 282 | Lanternback Troll reins icon (public/ui/items/reins_lanternback_troll.webp) | permission | 1 | `public/ui/items/reins_lanternback_troll.webp` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 284 | Lantern Hall Destrier reins icon (public/ui/items/reins_lantern_hall_destrier.webp) | permission | 1 | `public/ui/items/reins_lantern_hall_destrier.webp` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 285 | Blade of Lantern Hall sword appearance (public/models/weapons/lantern_hall_sword.glb, ... | permission | 3 | `public/models/weapons/lantern_hall_sword.glb` | held weapons, armory, character sheet previews |
+| 286 | Lantern Hall elemental weapon appearances: Hearthbrand, Squallcrest, Rimelight Staff, Duskwick Staff ... | permission | 188 | `public/models/weapons/duskwick_staff.glb` | held weapons, armory, character sheet previews |
+| 291 | Wobbles the Slime reins icon (public/ui/items/reins_wobbles_slime.webp) | permission | 1 | `public/ui/items/reins_wobbles_slime.webp` | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 294 | Eastbrook ferry transport ship (public/models/props/eastbrook_ferry.glb: hull, sails, sea-serpent figurehead, ... | permission | 1 | `public/models/props/eastbrook_ferry.glb` | world props and town buildings |
+| 315 | Zone map overlays (public/map_art/*.png) | project only | 16 | `public/map_art/amberfall.png` | world map and minimap |
+| 488 | Confection Cascade candy atlas (public/ui/minigames/confection-candies.webp) | project only | 1 | `public/ui/minigames/confection-candies.webp` | see asset text |
+| 489 | Confection Cascade walnut coffer material (public/ui/minigames/confection-walnut.webp) | project only | 1 | `public/ui/minigames/confection-walnut.webp` | see asset text |
+| 490 | Confection Cascade artisan frame, brass hardware and result seals (public/ui/minigames/*-v4.webp) | project only | 6 | `public/ui/minigames/confection-clasp-v4.webp` | see asset text |
+| 491 | Confection Cascade symmetrical emerald ornament (public/ui/minigames/confection-jewels-v5.webp) | project only | 1 | `public/ui/minigames/confection-jewels-v5.webp` | see asset text |
+| 492 | Confection Cascade solid emerald and winged lock hardware (public/ui/minigames/*-v6.webp) | project only | 2 | `public/ui/minigames/confection-jewels-v6.webp` | see asset text |
+| 493 | Confection Cascade polished gold hardware mounts (public/ui/minigames/*-v7.webp) | project only | 2 | `public/ui/minigames/confection-jewels-v7.webp` | see asset text |
+| 502 | Shardpike world-boss item and mechanic icons (skerrits_shardpike, lance_brace, lance_thrust, lance_release) | permission | 0 |  | see asset text |
+| 503 | Balgath eye-ward world-boss status badges (eye_ward_sealed, eye_ward_open, eye_ward_blinded) | permission | 0 |  | see asset text |
+| 504 | Foreman's Wage world-boss item icons (foremans_wage_band, mirelight_locket, fenwright_grips) | permission | 0 |  | bags, bank, character sheet, loot, vendors, mail, auction, tooltips |
+| 537 | Ley Beam Alignment celestial frame and crystal heart (public/ui/minigames/ley-*-v1.webp) | project only | 2 | `public/ui/minigames/ley-frame-v1.webp` | see asset text |
+
+### Docs-only evidence (not shipped in the game; 2D crew removes it from the build and repo)
+
+| Line | Asset | Class | Files | Example path | Used in |
+|---|---|---|---|---|---|
+| 196 | Eastbrook Vale rebuild master concept, nine turnaround sheets, full-color surface-atlas source, and ... | permission | 1 | `docs/screenshots/eastbrook-vale-rebuild/concepts/master-concept.png` | repo docs only (not loaded by the game) |
+| 197 | Eastbrook finishing-pass master concept and Ravenpost mailbox / noticeboard turnaround sheets ... | permission | 1 | `docs/screenshots/eastbrook-vale-rebuild/polish/concepts/master-concept.png` | repo docs only (not loaded by the game) |
+| 198 | Ignivar raid expansion automata, Forgefather, warhammer, and grand-forge concepts ... | permission | 9 | `docs/screenshots/ignivar-raid-expansion/concepts/ignivar_cinder_artificer.png` | repo docs only (not loaded by the game) |
+| 200 | Fenbridge rebuild master concept and fourteen isolated turnaround sheets ... | permission | 15 | `docs/design/fenbridge-rebuild/references/boardwalk-turnaround.png` | repo docs only (not loaded by the game) |
 
 ### Restricted assets with no CREDITS row
 
