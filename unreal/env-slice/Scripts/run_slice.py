@@ -32,11 +32,12 @@ if ONLY:
     SHOTS = [s for s in SHOTS if s["name"] in ONLY]
 
 level = unreal.get_editor_subsystem(unreal.LevelEditorSubsystem)
-perf = unreal.get_default_object(unreal.EditorPerformanceSettings)
-try:
-    perf.set_editor_property("throttle_cpu_when_not_foreground", False)
+try:  # keep ticking at full rate while the editor window is in the background
+    perf = unreal.load_object(None, "/Script/UnrealEd.Default__EditorPerformanceSettings")
+    perf.set_editor_property("bThrottleCPUWhenNotForeground", False)
+    W.log("background throttle off")
 except Exception as err:
-    W.log("throttle setting: %s" % err)
+    W.log("throttle setting unavailable (%s); Config/DefaultEditorPerProjectUserSettings.ini sets it" % err)
 
 os.makedirs(W.OUT, exist_ok=True)
 if not level.new_level(W.MAP):
@@ -90,6 +91,9 @@ def finish():
         json.dump({"buildSeconds": build_s, "stats": sl.stats, "shots": state["results"]}, f, indent=1)
     level.eject_pilot_level_actor()
     unreal.EditorLevelLibrary.save_current_level()
+    if os.environ.get("WYND_KEEP") == "1":
+        W.log("done; editor kept open")
+        return
     W.log("done; quitting")
     unreal.SystemLibrary.quit_editor()
 

@@ -61,10 +61,17 @@ const png = async (name: string, data: Uint8Array, channels: 1 | 3 | 4): Promise
     .png()
     .toFile(path.join(outDir, name));
 };
+// No alpha channel: importers "infill" the colour of fully transparent PNG
+// pixels, which would rewrite every weight wherever the fourth layer is 0.
 const splatBytes = quantizeUnit(ex.splat);
-const control = new Uint8Array(res * res * 4);
-for (let o = 0; o < res * res; o++) control.set(splatBytes.subarray(o * 5 + 1, o * 5 + 5), o * 4);
-await png('splat_control.png', control, 4);
+const control = new Uint8Array(res * res * 3);
+const cobble = new Uint8Array(res * res);
+for (let o = 0; o < res * res; o++) {
+  control.set(splatBytes.subarray(o * 5 + 1, o * 5 + 4), o * 3);
+  cobble[o] = splatBytes[o * 5 + 4];
+}
+await png('splat_control.png', control, 3);
+await png('splat_cobble.png', cobble, 1);
 await png('tint.png', quantizeUnit(tint), 3);
 await png('grass_density.png', quantizeUnit(ex.grassDensity), 1);
 await png('flower_density.png', quantizeUnit(ex.flowerDensity), 1);
@@ -161,8 +168,9 @@ const manifest = {
     png: {
       splatControl: {
         file: 'splat_control.png',
-        channels: 'r dirt, g sand, b rock, a cobble; grass = 1 - sum',
+        channels: 'r dirt, g sand, b rock; grass = 1 - sum - cobble',
       },
+      splatCobble: 'splat_cobble.png',
       tint: 'tint.png',
       grass: 'grass_density.png',
       flowers: 'flower_density.png',

@@ -54,7 +54,8 @@ try {
   });
   await dismissEntryOverlays(page).catch(() => {});
   await page.addStyleTag({
-    content: '#hud, .hud, #ui-root, .nameplate, canvas.minimap, #banner, #subzone-banner { display: none !important; }',
+    content:
+      '#hud, .hud, #ui-root, .nameplate, canvas.minimap, #banner, #subzone-banner { display: none !important; }',
   });
   for (const shot of LOOK.shots.filter((s) => !ONLY.length || ONLY.includes(s.name))) {
     await page.evaluate(

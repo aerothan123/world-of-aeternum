@@ -97,6 +97,7 @@ def terrain_material():
     g.link(wp, "", wxy, "")
     uv0 = g.node(unreal.MaterialExpressionTextureCoordinate, 5)
     ctrl = g.tex(W.ROOT + "/Rasters/splat_control", uv0, "linear")
+    cob = g.tex(W.ROOT + "/Rasters/splat_cobble", uv0, "linear")
     tint = g.tex(W.ROOT + "/Rasters/tint", uv0, "color")
     sets = []
     for name, ph, tile in LAYERS:
@@ -114,11 +115,11 @@ def terrain_material():
     alb, nor, arm = sets[0]["alb"], sets[0]["nor"], sets[0]["arm"]
     alb_o = nor_o = arm_o = "RGB"
     contrast = g.node(unreal.MaterialExpressionScalarParameter, 6, parameter_name="EdgeContrast", default_value=5.0)
-    for s, chan in zip(sets[1:], ["R", "G", "B", "A"]):
+    for s, (src, chan) in zip(sets[1:], [(ctrl, "R"), (ctrl, "G"), (ctrl, "B"), (cob, "R")]):
         # alpha = saturate((w - 0.5 + (h - 0.5) * 0.6) * contrast + 0.5)
         hh = g.op(unreal.MaterialExpressionSubtract, s["hgt"], g.const(0.5), "R")
         hh = g.op(unreal.MaterialExpressionMultiply, hh, g.const(0.6))
-        ww = g.op(unreal.MaterialExpressionSubtract, ctrl, g.const(0.5), chan)
+        ww = g.op(unreal.MaterialExpressionSubtract, src, g.const(0.5), chan)
         a = g.op(unreal.MaterialExpressionAdd, ww, hh)
         a = g.op(unreal.MaterialExpressionMultiply, a, contrast)
         a = g.sat(g.op(unreal.MaterialExpressionAdd, a, g.const(0.5)))
@@ -182,8 +183,12 @@ def water_material():
             1,
             constant=unreal.LinearColor(0.35, 0.09, 0.05, 1.0),
         )
-        g.link(scat, "", out, "Scattering Coefficients")
-        g.link(absorb, "", out, "Absorption Coefficients")
+        for src, names in (
+            (scat, ("ScatteringCoefficients", "Scattering Coefficients")),
+            (absorb, ("AbsorptionCoefficients", "Absorption Coefficients")),
+        ):
+            if not any(mel.connect_material_expressions(src, "", out, n) for n in names):
+                W.log("water output input not found: %s" % (names,))
     except Exception as err:
         W.log("water output node unavailable: %s" % err)
     mel.recompile_material(m)

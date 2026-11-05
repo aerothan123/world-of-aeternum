@@ -127,10 +127,48 @@ def build_props(sl):
     sl.stats["placementsMissingMesh"] = sorted(missing)
 
 
+FOLIAGE_TWO_SIDED = set()
+
+
+def foliage_materials(mesh, leaves_only=True):
+    """Leaf and grass cards light through from behind: two-sided foliage
+    shading on their material instances (bark and rock keep default lit)."""
+    for sm in mesh.get_editor_property("static_materials"):
+        mi = sm.get_editor_property("material_interface")
+        if not isinstance(mi, unreal.MaterialInstanceConstant) or mi.get_path_name() in FOLIAGE_TWO_SIDED:
+            continue
+        name = mi.get_name().lower()
+        if leaves_only and not any(k in name for k in ("leaf", "leaves", "grass", "fern", "flower", "bush")):
+            continue
+        o = mi.get_editor_property("base_property_overrides")
+        for k, v in (
+            ("override_two_sided", True), ("two_sided", True),
+            ("override_shading_model", True), ("shading_model", unreal.MaterialShadingModel.MSM_TWOSIDED_FOLIAGE),
+        ):
+            try:
+                o.set_editor_property(k, v)
+            except Exception as err:
+                W.log("foliage override %s: %s" % (k, err))
+        mi.set_editor_property("base_property_overrides", o)
+        unreal.MaterialEditingLibrary.update_material_instance(mi)
+        FOLIAGE_TWO_SIDED.add(mi.get_path_name())
+
+
 def instancer(label, mesh, cast_shadow=True, cull=None):
-    a = spawn(unreal.Actor, label="WYND_" + label)
-    c = a.add_component_by_class(unreal.InstancedStaticMeshComponent, False, unreal.Transform(), False)
+    """An actor holding one instanced static mesh component, added through the
+    subobject subsystem so it is a real editor component of the level."""
+    a = spawn(unreal.StaticMeshActor, label="WYND_" + label)
+    a.static_mesh_component.set_mobility(unreal.ComponentMobility.STATIC)
+    sds = unreal.get_engine_subsystem(unreal.SubobjectDataSubsystem)
+    root = sds.k2_gather_subobject_data_for_instance(a)[0]
+    params = unreal.AddNewSubobjectParams(
+        parent_handle=root, new_class=unreal.InstancedStaticMeshComponent, blueprint_context=None
+    )
+    handle, fail = sds.add_new_subobject(params)
+    data = unreal.SubobjectDataBlueprintFunctionLibrary.get_data(handle)
+    c = unreal.SubobjectDataBlueprintFunctionLibrary.get_object(data)
     c.set_static_mesh(mesh)
+    c.set_mobility(unreal.ComponentMobility.STATIC)
     c.set_editor_property("cast_shadow", cast_shadow)
     if cull:
         c.set_editor_property("instance_end_cull_distance", int(cull))
@@ -147,6 +185,8 @@ def build_scatter(sl):
         if not ms:
             continue
         lo, hi = bounds
+        for m in ms:
+            foliage_materials(m)
         comps = [instancer("scatter_" + m.get_name(), m) for m in ms]
         for rec in recs:
             sx, sy, sz = W.fit_scale(rec["fit"], lo, hi)
@@ -173,7 +213,7 @@ COVER = [
 ]
 
 
-def build_ground_cover(sl, areas, step=0.55):
+def build_ground_cover(sl, areas, step=0.38):
     """Jittered-grid instances inside each (x, z, radius) area, kept with the
     exported density as the probability. Deterministic (fixed seed)."""
     rng = random.Random(20061)
@@ -185,6 +225,8 @@ def build_ground_cover(sl, areas, step=0.55):
             for p in lib.list_assets(W.PH + "/Plants/" + asset, True, False)
         ]
         meshes = [m for m in meshes if isinstance(m, unreal.StaticMesh)]
+        for m in meshes:
+            foliage_materials(m, leaves_only=False)
         comps[asset] = [instancer("cover_%s_%s" % (asset, m.get_name()), m, False, 9000) for m in meshes]
         counts[asset] = 0
     seen = set()
@@ -204,7 +246,7 @@ def build_ground_cover(sl, areas, step=0.55):
                 roll = rng.random()
                 acc = 0.0
                 for asset, raster, keep, (s0, s1) in COVER:
-                    acc += keep * dens[raster] / 2.2
+                    acc += keep * dens[raster] / 1.4
                     if roll < acc:
                         s = rng.uniform(s0, s1)
                         t = unreal.Transform(
@@ -236,7 +278,7 @@ def build_lights(sl):
     sc = sky.light_component
     sc.set_editor_property("real_time_capture", True)
     sc.set_editor_property("mobility", unreal.ComponentMobility.MOVABLE)
-    sc.set_editor_property("intensity", 1.0)
+    sc.set_editor_property("intensity", 1.4)
     cloud = spawn(unreal.VolumetricCloud, label="WYND_Clouds")
     cm = lib.load_asset("/Engine/EngineSky/VolumetricClouds/m_SimpleVolumetricCloud_Inst")
     if cm:
@@ -275,7 +317,7 @@ def build_lights(sl):
     for i, pl in enumerate(sl.lights["pointLights"]):
         a = spawn(unreal.PointLight, loc=W.to_ue(pl["x"], pl["y"], pl["z"]), label="WYND_Lamp_%d" % i)
         c = a.light_component
-        c.set_editor_property("intensity", 1400.0)
+        c.set_editor_property("intensity", 12.0)
         c.set_editor_property("attenuation_radius", pl["range"] * W.UNIT * 1.4)
         c.set_editor_property("light_color", unreal.Color(r=255, g=184, b=107, a=255))
         c.set_editor_property("cast_shadows", False)

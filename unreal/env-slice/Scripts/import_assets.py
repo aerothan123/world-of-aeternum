@@ -33,9 +33,9 @@ def import_folder(src, dest):
     return run_task(src, dest)
 
 
-def import_texture(src, dest, compression=None, srgb=True):
+def import_texture(src, dest, compression=None, srgb=True, force=False):
     path = dest + "/" + os.path.splitext(os.path.basename(src))[0]
-    if REIMPORT or not lib.does_asset_exist(path):
+    if force or REIMPORT or not lib.does_asset_exist(path):
         run_task(src, dest)
     tex = lib.load_asset(path)
     if not tex:
@@ -61,8 +61,9 @@ def main():
             stats["failed"].append(m["path"])
         stats["models"] += 1
     rasters = W.ROOT + "/Rasters"
-    import_texture(os.path.join(W.EXPORT, "splat_control.png"), rasters, TC.TC_VECTOR_DISPLACEMENTMAP, False)
-    import_texture(os.path.join(W.EXPORT, "tint.png"), rasters, None, True)
+    import_texture(os.path.join(W.EXPORT, "splat_control.png"), rasters, TC.TC_VECTOR_DISPLACEMENTMAP, False, True)
+    import_texture(os.path.join(W.EXPORT, "splat_cobble.png"), rasters, TC.TC_VECTOR_DISPLACEMENTMAP, False, True)
+    import_texture(os.path.join(W.EXPORT, "tint.png"), rasters, None, True, True)
     for asset in sorted(os.listdir(W.THIRD_PARTY)):
         d = os.path.join(W.THIRD_PARTY, asset)
         if not os.path.isdir(d):
