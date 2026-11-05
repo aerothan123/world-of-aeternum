@@ -53,7 +53,7 @@ export function parseRecordedFrames(buf: Buffer): RecordedFrame[] {
   return out;
 }
 
-const n = (v: unknown, d: number): unknown => (v === undefined ? d : v);
+const n = (v: unknown, d: number | null): unknown => (v === undefined ? d : v);
 
 export function goldenDigest(frames: RecordedFrame[], deltaKeys: readonly string[]): GoldenRow[] {
   const hello = frames.map((f) => JSON.parse(f.text)).find((m) => m.t === 'hello');
