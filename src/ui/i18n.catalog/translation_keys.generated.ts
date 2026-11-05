@@ -15564,6 +15564,7 @@ export type TranslationKeyFlat =
   | 'hudChrome.housing.anchorKind.wall'
   | 'hudChrome.housing.anchorLabel'
   | 'hudChrome.housing.buy'
+  | 'hudChrome.housing.denied.accountOwned'
   | 'hudChrome.housing.denied.anchorEmpty'
   | 'hudChrome.housing.denied.anchorKind'
   | 'hudChrome.housing.denied.anchorTaken'

@@ -8027,6 +8027,7 @@ export const ja_JP: EnTranslations = {
       "denied": {
         "badLot": "その家は売りに出されていない。",
         "owned": "すでに家を所有している。",
+        "accountOwned": "Your account already has a house. An account can own one house.",
         "range": "{house}の正面の扉から遠すぎる。",
         "money": "{house}を買う余裕がない。",
         "dead": "死亡中は家を購入できない。",

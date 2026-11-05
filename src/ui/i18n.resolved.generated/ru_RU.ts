@@ -8027,6 +8027,7 @@ export const ru_RU: EnTranslations = {
       "denied": {
         "badLot": "Этот дом не продаётся.",
         "owned": "У вас уже есть дом.",
+        "accountOwned": "Your account already has a house. An account can own one house.",
         "range": "Вы слишком далеко от парадной двери дома «{house}».",
         "money": "Вам не по карману дом «{house}».",
         "dead": "Нельзя купить дом, пока вы мертвы.",

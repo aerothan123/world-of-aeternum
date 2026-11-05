@@ -8027,6 +8027,7 @@ export const ko_KR: EnTranslations = {
       "denied": {
         "badLot": "그 집은 판매하지 않습니다.",
         "owned": "이미 집을 소유하고 있습니다.",
+        "accountOwned": "Your account already has a house. An account can own one house.",
         "range": "{house}의 정문에서 너무 멉니다.",
         "money": "{house}을(를) 살 돈이 부족합니다.",
         "dead": "죽은 상태에서는 집을 구매할 수 없습니다.",

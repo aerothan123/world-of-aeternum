@@ -8027,6 +8027,7 @@ export const tr_TR: EnTranslations = {
       "denied": {
         "badLot": "That house is not for sale.",
         "owned": "You already own a house.",
+        "accountOwned": "Your account already has a house. An account can own one house.",
         "range": "You are too far from the front door of {house}.",
         "money": "You cannot afford {house}.",
         "dead": "You cannot buy a house while dead.",

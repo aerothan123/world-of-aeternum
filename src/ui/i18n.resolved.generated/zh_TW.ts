@@ -8027,6 +8027,7 @@ export const zh_TW: EnTranslations = {
       "denied": {
         "badLot": "這棟房屋不出售。",
         "owned": "你已經擁有一棟房屋。",
+        "accountOwned": "Your account already has a house. An account can own one house.",
         "range": "你離{house}的前門太遠了。",
         "money": "你買不起{house}。",
         "dead": "死亡狀態下無法購買房屋。",
