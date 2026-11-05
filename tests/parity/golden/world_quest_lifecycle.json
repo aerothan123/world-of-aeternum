@@ -824,10 +824,10 @@
           },
           "equipmentInstance": {},
           "factionCurrencies": {
-            "church_order": 10
+            "lanternwardens": 10
           },
           "factions": {
-            "church_order": 80
+            "lanternwardens": 80
           },
           "gatherTools": {
             "herbalism": {
@@ -1042,12 +1042,12 @@
           },
           "equipmentInstance": {},
           "factionCurrencies": {
-            "church_order": 20,
-            "rift_watch": 10
+            "lanternwardens": 20,
+            "gilt_measure": 10
           },
           "factions": {
-            "church_order": 160,
-            "rift_watch": 80
+            "lanternwardens": 160,
+            "gilt_measure": 80
           },
           "gatherTools": {
             "herbalism": {
@@ -1286,12 +1286,12 @@
           },
           "equipmentInstance": {},
           "factionCurrencies": {
-            "church_order": 20,
-            "rift_watch": 10
+            "lanternwardens": 20,
+            "gilt_measure": 10
           },
           "factions": {
-            "church_order": 160,
-            "rift_watch": 80
+            "lanternwardens": 160,
+            "gilt_measure": 80
           },
           "gatherTools": {
             "herbalism": {
@@ -1508,12 +1508,12 @@
           },
           "equipmentInstance": {},
           "factionCurrencies": {
-            "church_order": 20,
-            "rift_watch": 10
+            "lanternwardens": 20,
+            "gilt_measure": 10
           },
           "factions": {
-            "church_order": 160,
-            "rift_watch": 80
+            "lanternwardens": 160,
+            "gilt_measure": 80
           },
           "gatherTools": {
             "herbalism": {
