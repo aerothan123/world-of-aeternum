@@ -71,16 +71,20 @@ describe('provider usage metrics', () => {
     recordUsageCacheEvent('github.contributors', 'failure', now);
     recordUsageCacheEvent('github.contributors', 'eviction', now);
 
-    const cache = providerUsageSnapshot(now).caches.find((row) => row.key === 'github.contributors');
-    expect(cache).toEqual(expect.objectContaining({
-      entries: 3,
-      maxEntries: 1024,
-      hits: 1,
-      misses: 1,
-      staleRefreshes: 1,
-      stores: 1,
-      failures: 1,
-      evictions: 1,
-    }));
+    const cache = providerUsageSnapshot(now).caches.find(
+      (row) => row.key === 'github.contributors',
+    );
+    expect(cache).toEqual(
+      expect.objectContaining({
+        entries: 3,
+        maxEntries: 1024,
+        hits: 1,
+        misses: 1,
+        staleRefreshes: 1,
+        stores: 1,
+        failures: 1,
+        evictions: 1,
+      }),
+    );
   });
 });
