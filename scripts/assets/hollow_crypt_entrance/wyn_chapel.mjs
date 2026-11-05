@@ -77,8 +77,8 @@ function noise2(x, y, k = 0) {
 }
 
 // ---- palette (sRGB, converted to linear on write) ------------------------------------
-const STONE = [0.74, 0.7, 0.62];
-const STONE_COOL = [0.62, 0.63, 0.6];
+const STONE = [0.6, 0.54, 0.45];
+const STONE_COOL = [0.5, 0.52, 0.5];
 const MOSS = [0.38, 0.5, 0.24];
 const LICHEN = [0.66, 0.66, 0.42];
 const WOOD = [0.46, 0.32, 0.2];
@@ -160,7 +160,7 @@ const mesh = (piece, mat) => {
 function stoneColour(x, y, z, top, seedK, tint = STONE) {
   const course = Math.floor(y / 0.42);
   const block = Math.floor((x + z) / 0.85 + (course % 2) * 0.5);
-  let c = mul(tint, 0.86 + 0.22 * hash(course, block, seedK));
+  let c = mul(tint, 0.78 + 0.36 * hash(course, block, seedK));
   const fy = y / 0.42 - course;
   if (fy < 0.12 || fy > 0.92) c = mul(c, 0.82); // mortar line, soft
   const n = noise2(x * 0.9 + seedK, z * 0.9 + y * 0.7, 3);
