@@ -384,7 +384,7 @@ describe('compatibleFinderRoles', () => {
     expect(compatibleFinderRoles('druid', 4, null)).toEqual(['tank', 'healer', 'dps']);
     expect(compatibleFinderRoles('priest', 4, null)).toEqual(['healer', 'dps']);
     expect(compatibleFinderRoles('shaman', 4, null)).toEqual(['healer', 'dps']);
-    expect(compatibleFinderRoles('mage', 4, null)).toEqual(['dps']);
+    expect(compatibleFinderRoles('mage', 4, null)).toEqual(['healer', 'dps']);
     expect(compatibleFinderRoles('rogue', 4, null)).toEqual(['dps']);
     expect(compatibleFinderRoles('hunter', 4, null)).toEqual(['dps']);
     expect(compatibleFinderRoles('warlock', 4, null)).toEqual(['dps']);
@@ -399,7 +399,7 @@ describe('compatibleFinderRoles', () => {
     expect(compatibleFinderRoles('warrior', 10, 'dps')).toEqual(['tank', 'dps']);
     expect(compatibleFinderRoles('druid', 20, 'healer')).toEqual(['tank', 'healer', 'dps']);
     expect(compatibleFinderRoles('druid', 20, 'tank')).toEqual(['tank', 'healer', 'dps']);
-    expect(compatibleFinderRoles('mage', 20, 'dps')).toEqual(['dps']);
+    expect(compatibleFinderRoles('mage', 20, 'dps')).toEqual(['healer', 'dps']);
   });
 
   it('allows class roles without an active specialization at every level', () => {
