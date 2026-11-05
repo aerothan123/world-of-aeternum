@@ -601,7 +601,12 @@ describe('riding_training and the phase 21 count axis', () => {
     meta.ridingTier = 3;
     sim.player.ridingTier = 3;
     standAtMarla(sim);
-    sim.buyItem(marlaOf(sim).id, 'riding_training', { count: 5 }, sim.playerId);
+    sim.buyItem(
+      marlaOf(sim).id,
+      'riding_training',
+      { count: 5, expectedRidingTier: 3 },
+      sim.playerId,
+    );
     sim.tick();
     expect(meta.ridingTrained).toBe(true);
     // One purchase, one 800000c debit: never five.
@@ -637,7 +642,7 @@ describe('new-player path: buy riding at Marla, then complete the lesson', () =>
     meta.ridingTier = 3;
     sim.player.ridingTier = 3;
     standAtMarla(sim);
-    sim.buyItem(marla.id, 'riding_training', undefined, sim.playerId);
+    sim.buyItem(marla.id, 'riding_training', { expectedRidingTier: 3 }, sim.playerId);
     sim.tick();
     expect(meta.ridingTrained).toBe(true);
     expect(meta.copper).toBe(10_000);
