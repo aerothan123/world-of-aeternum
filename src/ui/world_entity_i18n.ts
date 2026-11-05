@@ -1010,7 +1010,7 @@ type ZoneTranslation = {
 // frontier rows, Studio zones). makeEnglishWorldEntities() emits a row per
 // ZONE_SOURCE entry and the generated locale tables are typed against this
 // shape, so a new zone needs no hand edit here to type-check.
-type ZoneTranslations = Record<ZoneId, ZoneTranslation>;
+type ZoneTranslations = Record<ZoneId, ZoneTranslation> & Record<string, ZoneTranslation>;
 type DungeonTranslations = Record<
   DungeonId,
   { name: string; enterText: string; leaveText: string }

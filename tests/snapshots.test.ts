@@ -3316,8 +3316,9 @@ describe('autosaves', () => {
   });
 
   // The WOC dirty-book preflush half of this pin retired with the crypto market
-  // (flushDirtyGuildBooks is gone); the guild-bank save permit is pinned by the
-  // autosave test above. Mail persistence still holds the permit innermost.
+  // (flushDirtyGuildBooks is gone, so no preflush path is left to gate); the
+  // guild-book autosave write itself is pinned by the test above. Mail
+  // persistence still holds the permit innermost.
   it('gates mail persistence at its innermost DB call', async () => {
     const gate = createBackgroundDbGate(1, 0);
     const server = new GameServer(undefined, gate);
