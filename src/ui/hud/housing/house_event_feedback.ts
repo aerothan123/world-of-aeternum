@@ -59,7 +59,7 @@ export function handleHouseEvent(
   ev: HouseEvent | TownProjectEvent,
   host: HouseFeedbackHost,
   prompt: HousePromptFn,
-  world: { buyHouse(lotId: string): void; interact(): void },
+  world: { buyHouse(lotId: string): void; interact?(): void },
 ): void {
   if (ev.type === 'townProject') {
     // The restoration project window: progress and the bundle it asks for,
@@ -67,7 +67,7 @@ export function handleHouseEvent(
     const view = townProjectWindowPlan(ev);
     if (!view) return;
     if (view.canContribute) {
-      prompt(esc(view.text), t('hudChrome.townProject.contribute'), () => world.interact());
+      prompt(esc(view.text), t('hudChrome.townProject.contribute'), () => world.interact?.());
     } else host.showBanner(view.text);
     return;
   }
