@@ -29,6 +29,7 @@ import {
   LEAF_ALBEDO_TARGETS,
   LEAF_GRADE_GAIN,
   leafGradeGains,
+  RELIEF_KINDS,
   rasterizeUvMask,
   remapUvsToAtlasCell,
   removeSmallIslands,
@@ -42,6 +43,11 @@ import {
   trunkAnchor,
   trunkCoreLabels,
 } from '../scripts/assets/fable_foliage_fit_core.mjs';
+import {
+  KIND_ATLAS,
+  LEAF_ATLASES,
+  LEAF_CARD_KINDS,
+} from '../scripts/assets/fable_leaf_cards_core.mjs';
 import { sculptFoliageTreeGeometry } from '../src/render/foliage_tree_sculpt';
 
 const ROOT = path.join(__dirname, '..');
@@ -396,7 +402,7 @@ describe('fable foliage shipped models', () => {
     it(`ships ${target.name} on the renderer's names and the old model's fit`, () => {
       const { prims, doc } = shipped.get(target.name) as Shipped;
       const m = FABLE_KIND_MATERIALS[target.kind];
-      const expected = [m.bark, m.leaf, m.flower, m.whole].filter(Boolean);
+      const expected = [m.bark, m.leaf, m.flower, m.twig, m.whole].filter(Boolean);
       expect(prims.map(({ prim }) => prim.getMaterial()?.getName()).sort()).toEqual(
         expected.sort(),
       );
@@ -417,8 +423,23 @@ describe('fable foliage shipped models', () => {
       expect(triangles).toBeLessThanOrEqual(Math.ceil(target.budget * 1.1));
       expect(max[1] - min[1]).toBeCloseTo(target.height, 2);
       expect(min[1]).toBeCloseTo(target.minY, 2);
-      // one baked sheet, shared by every part of the file
-      expect(doc.getRoot().listTextures()).toHaveLength(1);
+      // the model's own baked sheet (bark, stone, cap) plus, on a leaf-card
+      // kind, its family's leaf atlas; a bush's whole crown is cards
+      const names = doc
+        .getRoot()
+        .listTextures()
+        .map((t) => t.getName())
+        .sort();
+      const atlas = KIND_ATLAS[target.kind as keyof typeof KIND_ATLAS];
+      const own = target.kind === 'rock' ? 'Fable_Rocks' : `Fable_${target.name}`;
+      // a stone or cap sheet also carries its painted relief normal map
+      if (!atlas)
+        expect(names).toEqual(
+          RELIEF_KINDS[target.kind as keyof typeof RELIEF_KINDS] ? [own, `${own}_Relief`] : [own],
+        );
+      else if (target.kind === 'bush' || target.kind === 'flowering_bush')
+        expect(names).toEqual([LEAF_ATLASES[atlas].name]);
+      else expect(names).toEqual([own, LEAF_ATLASES[atlas].name].sort());
       if (target.kind === 'broadleaf' || target.kind === 'conifer' || target.kind === 'dead') {
         const bark = prims.find(({ prim }) => prim.getMaterial()?.getName() === m.bark);
         if (!bark) throw new Error('no bark primitive');
@@ -450,32 +471,18 @@ describe('fable foliage shipped models', () => {
     });
   }
 
-  /** One shipped model as a single soup, with each triangle's material. */
-  const soup = (name: string) => {
-    const { prims } = shipped.get(name) as Shipped;
-    const positions: number[] = [];
-    const indices: number[] = [];
-    const material: string[] = [];
-    for (const { prim, positions: p, indices: idx } of prims) {
-      const base = positions.length / 3;
-      positions.push(...p);
-      for (const i of idx) indices.push(base + i);
-      for (let t = 0; t < idx.length / 3; t++) material.push(prim.getMaterial()?.getName() ?? '');
-    }
-    return { positions, indices, material };
-  };
-
   /** Area-weighted mean sRGB of a primitive's triangles on its sheet. */
   const meanColour = async (name: string, materialName: string) => {
-    const { prims, doc } = shipped.get(name) as Shipped;
-    const image = doc.getRoot().listTextures()[0].getImage();
+    const { prims } = shipped.get(name) as Shipped;
+    const owner = prims.find(({ prim }) => prim.getMaterial()?.getName() === materialName);
+    const image = owner?.prim.getMaterial()?.getBaseColorTexture()?.getImage();
     if (!image) throw new Error(`${name} has no sheet`);
     const { data, info } = await sharp(Buffer.from(image))
       .removeAlpha()
       .raw()
       .toBuffer({ resolveWithObject: true });
     const sheet = { data, width: info.width, height: info.height, channels: info.channels };
-    const part = prims.find(({ prim }) => prim.getMaterial()?.getName() === materialName);
+    const part = owner;
     if (!part) throw new Error(`${name} has no ${materialName}`);
     const { areas } = triangleGeometry(part.indices, part.positions);
     const sum = [0, 0, 0];
@@ -498,8 +505,51 @@ describe('fable foliage shipped models', () => {
     (t) => t.kind === 'broadleaf' || t.kind === 'conifer',
   )) {
     it(`keeps ${target.name}'s trunk core in the bark, drawn bark brown`, async () => {
-      const bark = FABLE_KIND_MATERIALS[target.kind].bark as string;
-      const { positions, indices, material } = soup(target.name);
+      // The split runs on the Tripo source (every source is under the fit's
+      // budget, so the fit never simplifies it first). The shipped crown is
+      // leaf cards over a hull pulled in toward the trunk, so the trunk core
+      // is read on the source the classifier labelled, not the shipped soup.
+      const source = await io.read(
+        path.join(ROOT, 'assets_src/fable_foliage', `${target.name}.glb`),
+      );
+      const node = source
+        .getRoot()
+        .listNodes()
+        .find((n) => n.getMesh());
+      const prim = node?.getMesh()?.listPrimitives()[0];
+      if (!node || !prim) throw new Error(`${target.name}: no source mesh`);
+      const e = node.getWorldMatrix();
+      const pos = prim.getAttribute('POSITION');
+      const uv = prim.getAttribute('TEXCOORD_0');
+      if (!pos || !uv) throw new Error(`${target.name}: no source attributes`);
+      const positions = new Float32Array(pos.getCount() * 3);
+      const uvs = new Float32Array(uv.getCount() * 2);
+      const v = [0, 0, 0];
+      const t2 = [0, 0];
+      for (let i = 0; i < pos.getCount(); i++) {
+        pos.getElement(i, v);
+        positions[i * 3] = e[0] * v[0] + e[4] * v[1] + e[8] * v[2] + e[12];
+        positions[i * 3 + 1] = e[1] * v[0] + e[5] * v[1] + e[9] * v[2] + e[13];
+        positions[i * 3 + 2] = e[2] * v[0] + e[6] * v[1] + e[10] * v[2] + e[14];
+        uv.getElement(i, t2);
+        uvs[i * 2] = t2[0];
+        uvs[i * 2 + 1] = t2[1];
+      }
+      const indices = Uint32Array.from(prim.getIndices()?.getArray() ?? []);
+      expect(indices.length / 3).toBeLessThanOrEqual(target.budget);
+      const webp = prim.getMaterial()?.getBaseColorTexture()?.getImage();
+      if (!webp) throw new Error(`${target.name}: no source texture`);
+      const { data, info } = await sharp(Buffer.from(webp))
+        .removeAlpha()
+        .raw()
+        .toBuffer({ resolveWithObject: true });
+      const image = { data, width: info.width, height: info.height, channels: info.channels };
+      const { labels: split } = classifyFableTriangles(target.kind, {
+        indices,
+        positions,
+        uvs,
+        image,
+      });
       const geometry = triangleGeometry(indices, positions);
       const bounds = indexedBounds(indices, positions);
       const top = target.kind === 'broadleaf' ? BROADLEAF_TRUNK_TOP : 0.85;
@@ -509,10 +559,11 @@ describe('fable foliage shipped models', () => {
       for (let t = 0; t < labels.length; t++) {
         if (labels[t] !== 0) continue;
         core += geometry.areas[t];
-        if (material[t] === bark) inBark += geometry.areas[t];
+        if (split[t] === 0) inBark += geometry.areas[t];
       }
       expect(core).toBeGreaterThan(0);
       expect(inBark / core).toBeGreaterThan(0.97);
+      const bark = FABLE_KIND_MATERIALS[target.kind].bark as string;
       // a trunk sheet reads brown, not leaf green: red leads green and blue,
       // on the field copy too (a collapse across a uv seam stretches trunk
       // triangles over the leaf islands of the shared sheet)
@@ -544,40 +595,84 @@ describe('fable foliage shipped models', () => {
     }
   });
 
-  it('keeps the whole Tripo source on every model but the rocks', () => {
+  it('keeps the trunks and covers every crown in leaf cards over a shrunk hull', () => {
     for (const target of FABLE_FOLIAGE_TARGETS) {
-      const triangles = (shipped.get(target.name) as Shipped).prims.reduce(
-        (n, p) => n + p.indices.length / 3,
-        0,
-      );
-      // the old kit counts these replaced: the storybook set is denser
-      expect(triangles, target.name).toBeGreaterThan(target.kind === 'rock' ? 1500 : 3000);
+      const { prims } = shipped.get(target.name) as Shipped;
+      const m = FABLE_KIND_MATERIALS[target.kind];
+      const tris = (name?: string) =>
+        prims
+          .filter(({ prim }) => prim.getMaterial()?.getName() === name)
+          .reduce((n, p) => n + p.indices.length / 3, 0);
+      const card = LEAF_CARD_KINDS[target.kind as keyof typeof LEAF_CARD_KINDS];
+      if (!card) {
+        // rocks and the mushroom keep their (capped) Tripo source
+        expect(tris(m.whole), target.name).toBeGreaterThan(1500);
+        continue;
+      }
+      if ('twigs' in card) {
+        // a snag keeps its whole bark and wears twig cards on its branch ends
+        expect(tris(m.bark), target.name).toBeGreaterThan(3000);
+        expect(tris(m.twig), target.name).toBeGreaterThanOrEqual(60);
+        continue;
+      }
+      // the crown is the simplified hull plus at least as many card triangles
+      const leaf = tris(m.leaf) + tris(m.flower);
+      expect(leaf, target.name).toBeGreaterThan(card.hull.budget * 1.4);
+      expect(leaf, target.name).toBeLessThan(target.budget);
     }
   });
 
-  it('bakes an opaque sheet, so the leaf alpha test never punches holes', async () => {
+  it('bakes opaque own sheets and cut-out leaf atlases', async () => {
     for (const target of FABLE_FOLIAGE_TARGETS) {
-      const texture = (shipped.get(target.name) as Shipped).doc.getRoot().listTextures()[0];
-      const image = texture.getImage();
-      if (!image) throw new Error(`${target.name} has no image`);
-      const stats = await sharp(Buffer.from(image)).stats();
-      expect(stats.channels.length === 3 || stats.channels[3].min === 255, target.name).toBe(true);
+      for (const texture of (shipped.get(target.name) as Shipped).doc.getRoot().listTextures()) {
+        const image = texture.getImage();
+        if (!image) throw new Error(`${target.name} has no image`);
+        const stats = await sharp(Buffer.from(image)).stats();
+        const atlas = texture.getName().startsWith('Fable_LeafCards_');
+        if (atlas) {
+          // the cards are cut out by the alpha test
+          expect(stats.channels.length, target.name).toBe(4);
+          expect(stats.channels[3].min, target.name).toBe(0);
+          expect(stats.channels[3].max, target.name).toBe(255);
+        } else {
+          // the leaf alpha test never punches holes in a trunk, stone or cap
+          expect(stats.channels.length === 3 || stats.channels[3].min === 255, target.name).toBe(
+            true,
+          );
+        }
+      }
     }
   });
 
-  it('gives each tree its own sheet name and the three rocks one shared sheet', () => {
-    const sheet = (name: string) => {
-      const t = (shipped.get(name) as Shipped).doc.getRoot().listTextures()[0];
-      return { name: t.getName(), bytes: Buffer.from(t.getImage() ?? []) };
-    };
-    const trees = FABLE_FOLIAGE_TARGETS.filter((t) => t.kind !== 'rock').map(
-      (t) => sheet(t.name).name,
+  it('gives each model its own sheet name, the rocks one sheet and each card family one atlas', () => {
+    const textures = (name: string) =>
+      (shipped.get(name) as Shipped).doc
+        .getRoot()
+        .listTextures()
+        .map((t) => ({ name: t.getName(), bytes: Buffer.from(t.getImage() ?? []) }));
+    const own = FABLE_FOLIAGE_TARGETS.filter((t) => t.kind !== 'rock').flatMap((t) =>
+      textures(t.name)
+        .filter((x) => !x.name.startsWith('Fable_LeafCards_') && !x.name.endsWith('_Relief'))
+        .map((x) => x.name),
     );
-    expect(new Set(trees).size).toBe(trees.length);
-    const rocks = ['rock_1', 'rock_2', 'rock_3'].map(sheet);
+    expect(new Set(own).size).toBe(own.length);
+    const rocks = ['rock_1', 'rock_2', 'rock_3'].map((n) => textures(n)[0]);
     expect(new Set(rocks.map((r) => r.name))).toEqual(new Set(['Fable_Rocks']));
     expect(rocks[1].bytes.equals(rocks[0].bytes)).toBe(true);
     expect(rocks[2].bytes.equals(rocks[0].bytes)).toBe(true);
+    // one name and the same bytes in every file of a family, so the
+    // renderer's per-map material cache keeps one GPU copy per family
+    for (const [family, spec] of Object.entries(LEAF_ATLASES)) {
+      const copies = FABLE_FOLIAGE_TARGETS.filter(
+        (t) => KIND_ATLAS[t.kind as keyof typeof KIND_ATLAS] === family,
+      ).map((t) => {
+        const found = textures(t.name).find((x) => x.name === spec.name);
+        if (!found) throw new Error(`${t.name} has no ${spec.name}`);
+        return found.bytes;
+      });
+      expect(copies.length, family).toBeGreaterThan(0);
+      for (const c of copies) expect(c.equals(copies[0]), family).toBe(true);
+    }
   });
 
   it('keys the foliage material cache on the map name and carries the geometry extras', () => {

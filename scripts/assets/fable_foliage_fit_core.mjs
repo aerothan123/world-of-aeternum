@@ -23,7 +23,11 @@
 export const FABLE_KIND_MATERIALS = Object.freeze({
   broadleaf: Object.freeze({ bark: 'Bark_NormalTree', leaf: 'Leaves_NormalTree' }),
   conifer: Object.freeze({ bark: 'Bark_NormalTree', leaf: 'Leaves_Pine' }),
-  dead: Object.freeze({ bark: 'Bark_DeadTree' }),
+  // The snags' twig cards (fable_leaf_cards_core.mjs) wear the kit's
+  // twisted-tree leaf name: a leaf policy (alpha cut, double sided) that no
+  // storybook tree's crown uses, so the renderer's per-(role, name, map)
+  // material cache gives the twigs a material of their own.
+  dead: Object.freeze({ bark: 'Bark_DeadTree', twig: 'Leaves_TwistedTree' }),
   // The bushes keep the leaf names their old models wore: `Leaves` is the
   // fern's name, and dressing materials are shared per (role, name), so a
   // bush named `Leaves` would draw with the fern's texture (or the fern
@@ -67,6 +71,10 @@ const T = (name, kind, height, minY, x, z, budget, extra = {}) =>
 
 /** Triangle budget that keeps a whole Tripo source (every one is under it). */
 export const FULL_SOURCE = 4400;
+/** Triangle budget of a rock: the densest scatter, so a capped one, but
+ *  rich enough that a near boulder's silhouette stops reading as facets
+ *  (its painted relief map carries the surface). */
+export const ROCK_BUDGET = 2600;
 /** Height of a fitted dead tree as a fraction of the old snag's. */
 export const DEAD_HEIGHT_SCALE = 0.8;
 const dead = (name, oldHeight, x, z, oldFootprint) =>
@@ -105,9 +113,9 @@ export const FABLE_FOLIAGE_TARGETS = Object.freeze([
     spreadCap: 1,
   }),
   T('mushroom', 'mushroom', 0.464, -0.017, -0.052, -0.056, FULL_SOURCE),
-  T('rock_1', 'rock', 2.26, -0.271, -0.115, 0.345, 1600, { footprint: [3.225, 2.989] }),
-  T('rock_2', 'rock', 1.899, -0.051, -0.189, 0.08, 1600, { footprint: [3.049, 2.479] }),
-  T('rock_3', 'rock', 2.316, -0.316, -0.114, 0.848, 1600, { footprint: [3.42, 3.476] }),
+  T('rock_1', 'rock', 2.26, -0.271, -0.115, 0.345, ROCK_BUDGET, { footprint: [3.225, 2.989] }),
+  T('rock_2', 'rock', 1.899, -0.051, -0.189, 0.08, ROCK_BUDGET, { footprint: [3.049, 2.479] }),
+  T('rock_3', 'rock', 2.316, -0.316, -0.114, 0.848, ROCK_BUDGET, { footprint: [3.42, 3.476] }),
 ]);
 
 /** How much wider than the old model a fitted tree crown may spread. */
@@ -877,3 +885,64 @@ export function applyLeafGrade(image, mask, gains) {
   }
   return { ...image, data };
 }
+
+// ---------------------------------------------------------------------------
+// painted relief
+
+/**
+ * Painted relief for a stone or cap sheet: a tangent-space normal map
+ * (glTF convention, green up) derived from the sheet's own painted value,
+ * so the brush strokes, cracks and moss clumps catch the light instead of
+ * the low-poly facets carrying all the shading. The value is box-blurred
+ * `blur` texels (twice) into a height field, darker meaning lower, and its
+ * slope at `strength` texels of height per unit of value tilts the normal.
+ * Returns rgb bytes, width by height, row-major from the image top.
+ */
+export function paintedReliefNormals(image, { strength = 3.2, blur = 2 } = {}) {
+  const { data, width, height, channels } = image;
+  let h = new Float32Array(width * height);
+  for (let i = 0; i < width * height; i++) {
+    const o = i * channels;
+    h[i] = (0.2126 * data[o] + 0.7152 * data[o + 1] + 0.0722 * data[o + 2]) / 255;
+  }
+  const boxPass = (src, horizontal) => {
+    const out = new Float32Array(src.length);
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        let s = 0;
+        let n = 0;
+        for (let k = -blur; k <= blur; k++) {
+          const xx = horizontal ? Math.min(width - 1, Math.max(0, x + k)) : x;
+          const yy = horizontal ? y : Math.min(height - 1, Math.max(0, y + k));
+          s += src[yy * width + xx];
+          n++;
+        }
+        out[y * width + x] = s / n;
+      }
+    }
+    return out;
+  };
+  for (let pass = 0; pass < 2; pass++) h = boxPass(boxPass(h, true), false);
+  const at = (x, y) =>
+    h[Math.min(height - 1, Math.max(0, y)) * width + Math.min(width - 1, Math.max(0, x))];
+  const out = new Uint8Array(width * height * 3);
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const dx = (at(x + 1, y) - at(x - 1, y)) * 0.5 * strength;
+      // image rows run down the sheet; the normal map's green runs up it
+      const dy = (at(x, y - 1) - at(x, y + 1)) * 0.5 * strength;
+      const len = Math.hypot(dx, dy, 1);
+      const o = (y * width + x) * 3;
+      out[o] = Math.round(((-dx / len) * 0.5 + 0.5) * 255);
+      out[o + 1] = Math.round(((-dy / len) * 0.5 + 0.5) * 255);
+      out[o + 2] = Math.round(((1 / len) * 0.5 + 0.5) * 255);
+    }
+  }
+  return out;
+}
+
+/** Kinds whose own sheet carries a painted relief normal map. */
+export const RELIEF_KINDS = Object.freeze({
+  rock: Object.freeze({ strength: 3.2, blur: 2 }),
+  mushroom: Object.freeze({ strength: 2.2, blur: 1 }),
+});

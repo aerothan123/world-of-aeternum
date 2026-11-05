@@ -32,14 +32,14 @@ const ROOT = path.join(__dirname, '..');
 const BOUNDS_TOLERANCE = 0.05;
 const QUIET = new Logger(Logger.Verbosity.WARN);
 
-// The storybook oaks (scripts/assets/fit_fable_foliage.mjs) wear one baked
-// WEBP sheet on both parts and no normal map; the twisted kit keeps its KTX2
-// bark, normal and leaf sheets.
+// The storybook oaks (scripts/assets/fit_fable_foliage.mjs) wear their baked
+// WEBP bark sheet and the shared WEBP leaf-card atlas, and no normal map; the
+// twisted kit keeps its KTX2 bark, normal and leaf sheets.
 const OAK = {
   bark: 'Bark_NormalTree',
   leaves: ['Leaves_NormalTree'],
   barkNormal: null,
-  textures: 1,
+  textures: 2,
   textureExtension: 'EXT_texture_webp',
 };
 const TWISTED = {
@@ -53,40 +53,40 @@ const TWISTED = {
 const EXPECTED = [
   {
     model: 'oak_1',
-    sourceSha256: 'd2d4e8f5181b00f37bd83833b60cb8e1e1ebe2bc20f665bf18e9ffb7f9bec87d',
+    sourceSha256: 'd38f3eaf035c06f911003d908eba2b1dc9742094d12ced8299a780631fa1de00',
     budget: 480,
     keepSeams: true,
-    outputSha256: '23e336ae6d1662dffe8f76c70a69d3f02fbe537cb65f77cfc376497c8e5994c2',
+    outputSha256: 'b2309dd7d62476b40c6c8096401b8aec925dccfa7619e8703640d32307af9501',
     materials: OAK,
     sourceBark: { triangles: 611, vertices: 969 },
     bark: { triangles: 480, vertices: 841 },
   },
   {
     model: 'oak_2',
-    sourceSha256: '8dc4c2499901fdde7f9cbe46bb7969badd44296150baf3b0059ecffd96bd2edd',
-    budget: 420,
+    sourceSha256: 'c96851d51e4b86fda605fa9af7b9be3df332a6ec1ad9fbcdb4ad8d380ca664a0',
+    budget: 470,
     keepSeams: true,
-    outputSha256: '86764c5923aab3ae0fa65adf0562e6038842d54017d5b371030dc0af4d919fa7',
+    outputSha256: '6ef8732598dd07f18841c8e7c93c230478d9f1c622e6615bbb8e9845f0d1cbf7',
     materials: OAK,
     sourceBark: { triangles: 736, vertices: 1031 },
-    bark: { triangles: 420, vertices: 697 },
+    bark: { triangles: 470, vertices: 759 },
   },
   {
     model: 'oak_4',
-    sourceSha256: 'c765344102ec3e8b833ffe2d937db76c06d93617922324701e81c2bd25ffad0c',
+    sourceSha256: 'ae59752b50a19fd31e2d3088696870bad1ac73e79405f24217edb298f6280453',
     budget: 480,
     keepSeams: true,
-    outputSha256: 'f74eec8b7e4f63d7ad89d7da8f73ae0fdf40fd426de01d368b142b7c7edc6974',
+    outputSha256: '6be8bdfef6be2713450ed79a286a2321a52d07cb0e0fd6cb20b78c18f3792e5e',
     materials: OAK,
     sourceBark: { triangles: 663, vertices: 1027 },
     bark: { triangles: 480, vertices: 830 },
   },
   {
     model: 'oak_5',
-    sourceSha256: '584d816b262718828a2c072b615a8549929c4aa684d65fcf05d9822c8397a809',
+    sourceSha256: '024894e048779493e7802f881b054a841fd9522c46e4ba5f72f8f5a9c1579d30',
     budget: 530,
     keepSeams: true,
-    outputSha256: '142699d7f2fbf56c1e36776143cbc0a10f1adc3592c77fc006588e09cde5167e',
+    outputSha256: 'ecda9509471c6954f6ca9eedf7bb6b9428072b54dd6bb92a1c841f9f72865fcd',
     materials: OAK,
     sourceBark: { triangles: 587, vertices: 951 },
     bark: { triangles: 530, vertices: 898 },

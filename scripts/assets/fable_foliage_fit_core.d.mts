@@ -11,6 +11,7 @@ export interface FableKindMaterials {
   readonly bark?: string;
   readonly leaf?: string;
   readonly flower?: string;
+  readonly twig?: string;
   readonly whole?: string;
 }
 
@@ -34,6 +35,7 @@ export interface FableFoliageTarget {
 export const FABLE_FOLIAGE_TARGETS: readonly FableFoliageTarget[];
 export const TREE_SPREAD_CAP: number;
 export const FULL_SOURCE: number;
+export const ROCK_BUDGET: number;
 export const DEAD_HEIGHT_SCALE: number;
 export const BROADLEAF_TRUNK_TOP: number;
 export const TRUNK_ANCHOR_BAND: readonly [number, number];
@@ -202,3 +204,10 @@ export function applyLeafGrade(
   mask: ArrayLike<number>,
   gains: readonly number[],
 ): TextureImage & { data: Uint8Array };
+
+export interface ReliefOptions {
+  readonly strength?: number;
+  readonly blur?: number;
+}
+export function paintedReliefNormals(image: TextureImage, opts?: ReliefOptions): Uint8Array;
+export const RELIEF_KINDS: Readonly<Partial<Record<FableKind, Readonly<Required<ReliefOptions>>>>>;
