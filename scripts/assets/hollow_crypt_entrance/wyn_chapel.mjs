@@ -162,14 +162,14 @@ function stoneColour(x, y, z, top, seedK, tint = STONE) {
   const block = Math.floor((x + z) / 0.85 + (course % 2) * 0.5);
   let c = mul(tint, 0.78 + 0.36 * hash(course, block, seedK));
   const fy = y / 0.42 - course;
-  if (fy < 0.12 || fy > 0.92) c = mul(c, 0.82); // mortar line, soft
+  if (fy < 0.12 || fy > 0.92) c = mul(c, 0.62); // mortar line
   const n = noise2(x * 0.9 + seedK, z * 0.9 + y * 0.7, 3);
   c = mix(c, STONE_COOL, 0.25 * n);
   const g = ground(x, z);
   const low = Math.max(0, 1 - (y - g) / 0.9);
-  c = mix(c, MOSS, 0.55 * low * (0.6 + 0.4 * n));
+  c = mix(c, MOSS, 0.35 * low * (0.6 + 0.4 * n));
   const nearTop = Math.max(0, 1 - (top - y) / 0.5);
-  c = mix(c, MOSS, 0.45 * nearTop * noise2(x * 2, z * 2, 7));
+  c = mix(c, MOSS, 0.3 * nearTop * noise2(x * 2, z * 2, 7));
   if (noise2(x * 1.7, y * 1.7 + z, 11) > 0.78) c = mix(c, LICHEN, 0.35);
   return c;
 }

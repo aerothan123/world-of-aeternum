@@ -82,7 +82,7 @@ const sites = await run(`
       const ys = [];
       for (const [dx, dz] of [[0,0],[-9,0],[9,0],[0,-6],[0,6],[-9,6],[9,6]]) ys.push(g.sim.groundPos(x + dx, z + dz).y);
       const lo = Math.min(...ys), hi = Math.max(...ys);
-      if (lo < y0 + 0.8 || hi - lo > 1.4) continue;
+      if (lo < y0 + 0.25 || hi - lo > 1.4) continue;
       if (found.some((s) => Math.hypot(s.x - x, s.z - z) < 34)) continue;
       found.push({ x, z });
     }
@@ -94,14 +94,15 @@ await run(`
   const g = window.__game;
   const rows = ${JSON.stringify(rows)};
   const sites = ${JSON.stringify(sites)};
-  for (let i = 0; i < rows.length && i < sites.length; i++) {
+  for (let i = 0; i < rows.length; i++) {
+    const site = { x: sites[i % sites.length].x, z: sites[i % sites.length].z - Math.floor(i / sites.length) * 10 };
     const total = rows[i].items.reduce((s, it) => s + Math.max(it.w, 0.6) + 1.4, 0);
-    let x = sites[i].x - total / 2;
+    let x = site.x - total / 2;
     for (const it of rows[i].items) {
       const w = Math.max(it.w, 0.6);
       const gltf = await loadGltf(it.url);
       const obj = gltf.scene.clone(true);
-      const p = g.sim.groundPos(x + w / 2, sites[i].z);
+      const p = g.sim.groundPos(x + w / 2, site.z);
       obj.position.set(p.x, p.y, p.z);
       obj.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
       g.renderer.scene.add(obj);
@@ -115,24 +116,42 @@ async function hideHudAndPlayer() {
     const main = g.renderer.webgl.domElement;
     for (const el of document.body.querySelectorAll('*')) el.style.visibility = 'hidden';
     main.style.visibility = 'visible';
-    // the player: every small scene root standing on the player's spot
+    // the player: any small object (or group) whose bounds hold the player's spot
     const p = g.sim.player.pos;
     window.__hidden = [];
-    const v = new main.ownerDocument.defaultView.Object();
-    for (const root of g.renderer.scene.children) {
-      if (!root.visible) continue;
-      let near = false;
-      let big = false;
-      root.traverse((o) => {
-        if (!o.isMesh) return;
-        o.geometry.computeBoundingSphere?.();
-        const r = (o.geometry.boundingSphere?.radius ?? 0) * Math.max(o.scale.x, o.scale.y, o.scale.z);
-        if (r > 4) big = true;
-        const w = o.getWorldPosition(o.position.clone());
-        if (Math.hypot(w.x - p.x, w.z - p.z) < 2.2 && Math.abs(w.y - p.y) < 3) near = true;
-      });
-      if (near && !big) { root.visible = false; window.__hidden.push(root); }
-    }
+    const Box3 = g.renderer.scene.position.constructor.prototype.constructor;
+    void Box3;
+    const box = new (Object.getPrototypeOf(g.renderer.camera).constructor === Object ? Object : window.__THREEBox ?? Object)();
+    void box;
+    const visit = (o, depth) => {
+      if (!o.visible || depth > 4) return;
+      if (o.isMesh || o.isGroup || o.type === 'Object3D') {
+        const bb = { min: { x: Infinity, y: Infinity, z: Infinity }, max: { x: -Infinity, y: -Infinity, z: -Infinity } };
+        let meshes = 0;
+        o.traverse((m) => {
+          if (!m.isMesh || m.isInstancedMesh) return;
+          meshes++;
+          m.geometry.computeBoundingBox?.();
+          const gb = m.geometry.boundingBox;
+          if (!gb) return;
+          m.updateWorldMatrix(true, false);
+          const e = m.matrixWorld.elements;
+          for (const cx of [gb.min.x, gb.max.x]) for (const cy of [gb.min.y, gb.max.y]) for (const cz of [gb.min.z, gb.max.z]) {
+            const wx = e[0] * cx + e[4] * cy + e[8] * cz + e[12];
+            const wy = e[1] * cx + e[5] * cy + e[9] * cz + e[13];
+            const wz = e[2] * cx + e[6] * cy + e[10] * cz + e[14];
+            bb.min.x = Math.min(bb.min.x, wx); bb.max.x = Math.max(bb.max.x, wx);
+            bb.min.y = Math.min(bb.min.y, wy); bb.max.y = Math.max(bb.max.y, wy);
+            bb.min.z = Math.min(bb.min.z, wz); bb.max.z = Math.max(bb.max.z, wz);
+          }
+        });
+        const small = meshes > 0 && bb.max.x - bb.min.x < 3.5 && bb.max.z - bb.min.z < 3.5 && bb.max.y - bb.min.y < 3.5;
+        const holds = p.x > bb.min.x - 0.6 && p.x < bb.max.x + 0.6 && p.z > bb.min.z - 0.6 && p.z < bb.max.z + 0.6 && p.y > bb.min.y - 1 && p.y < bb.max.y + 1;
+        if (small && holds) { o.visible = false; window.__hidden.push(o); return; }
+      }
+      for (const c of o.children) visit(c, depth + 1);
+    };
+    for (const c of g.renderer.scene.children) visit(c, 0);
     void v;
   `);
 }
@@ -158,11 +177,15 @@ async function shoot(name) {
   await page.screenshot({ path: file });
   console.log('wrote', file);
 }
-for (let i = 0; i < rows.length && i < sites.length; i++) {
+for (let i = 0; i < rows.length; i++) {
+  const site = {
+    x: sites[i % sites.length].x,
+    z: sites[i % sites.length].z - Math.floor(i / sites.length) * 10,
+  };
   const total = rows[i].items.reduce((s, it) => s + Math.max(it.w, 0.6) + 1.4, 0);
   const tall = Math.max(...rows[i].items.map((it) => it.h));
-  const back = Math.max(5, total * 0.34, tall * 1.3);
-  await stand(sites[i].x, sites[i].z + back, sites[i].x, sites[i].z, 0.5, 5);
+  const back = Math.max(4, total * 0.26, tall * 1.1);
+  await stand(site.x, site.z + back, site.x, site.z, 0.7, 4);
   await shoot(`row-${String(i + 1).padStart(2, '0')}-${rows[i].name}`);
   await run(`for (const r of window.__hidden ?? []) r.visible = true; window.__hidden = [];`);
 }
