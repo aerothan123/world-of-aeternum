@@ -1,8 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 
-// The captain wears a rebuilt body on the WOC rig now (refit_enemy_looks.ts); the
-// sailor and the ship keep the ghost-crew builds (scripts/assets/bastion_ghost_crew/).
+// The captain and the sailor wear rebuilt bodies on the WOC rig now
+// (refit_enemy_looks.ts); the ship keeps its ghost-crew build (scripts/assets/bastion_ghost_crew/).
 const FILES: Record<string, string> = {};
 
 function asset(name: string, folder = 'creatures') {
@@ -15,54 +15,6 @@ function asset(name: string, folder = 'creatures') {
 }
 
 describe('Bastion authored spectral assets', () => {
-  it.each(['sailor'])(
-    '%s has a skinned body, distinct action clips and compressed atlas',
-    (name) => {
-      const glb = asset(name);
-      expect(glb.skins.length).toBeGreaterThan(0);
-      expect(glb.skins[0].joints.length).toBeGreaterThan(30);
-      const clips = glb.animations.map((a: { name: string }) => a.name);
-      for (const clip of [
-        'Idle',
-        'Walk',
-        'Run',
-        'Attack',
-        'Cast',
-        'Hit',
-        'Death',
-        'Broadside',
-        'Anchor',
-        'Boarding',
-      ]) {
-        expect(clips).toContain(clip);
-      }
-      expect(glb.images.length).toBeGreaterThanOrEqual(3);
-      expect(glb.images.every((i: { mimeType: string }) => i.mimeType === 'image/ktx2')).toBe(true);
-      expect(glb.extensionsUsed).toContain('EXT_meshopt_compression');
-      expect(
-        glb.materials.some(
-          (m: { name: string; alphaMode?: string }) =>
-            m.name === 'GhostWisps' && m.alphaMode === 'BLEND',
-        ),
-      ).toBe(true);
-      const death = glb.animations.find((a: { name: string }) => a.name === 'Death');
-      const idle = glb.animations.find((a: { name: string }) => a.name === 'Idle');
-      expect(death.samplers).not.toEqual(idle.samplers);
-      for (const animation of glb.animations) {
-        expect(animation.channels.length).toBeGreaterThan(10);
-        const duration = Math.max(
-          ...animation.samplers.map(
-            (sampler: { input: number }) => glb.accessors[sampler.input].max[0],
-          ),
-        );
-        expect(duration).toBeGreaterThan(0.25);
-        expect(duration).toBeLessThan(5);
-        if (animation.name === 'Anchor' || animation.name === 'Boarding')
-          expect(duration).toBeCloseTo(2, 3);
-      }
-    },
-  );
-
   it('ship ships as a bounded compressed mesh without texture allocations', () => {
     const glb = asset('ship', 'props');
     expect(glb.meshes.length).toBe(1);

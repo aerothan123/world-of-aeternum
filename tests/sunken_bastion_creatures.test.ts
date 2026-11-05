@@ -11,7 +11,6 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { VISUALS, visualKeyFor } from '../src/render/characters/manifest';
 import { MOBS } from '../src/sim/data';
-import { BASTION_PIERCING_BOLT } from '../src/sim/mob/trash_kit/bastion_cast_ids';
 import type { Entity } from '../src/sim/types';
 
 function glbJson(url: string): { animations?: { name: string }[]; nodes?: { name?: string }[] } {
@@ -49,13 +48,11 @@ function referencedClips(key: string): string[] {
   return out;
 }
 
-// The captain, the Turnkey, the drowned garrison, the Chanter and the acolyte wear
+// The captain, the Turnkey, the drowned garrison (the arbalest and the prisoner too), the
+// Wreckbound Sailor, the Chanter and the acolyte wear
 // rebuilt bodies on the WOC rig with no clips of their own (refit_enemy_looks.ts).
 const ROSTER: Record<string, { glb: string; unique: string[] }> = {
-  barnacle_crawler: { glb: 'bastion_ghost_sailor.glb', unique: ['Attack2', 'Death', 'Cast'] },
   bastion_warhound: { glb: 'bastion_warhound.glb', unique: ['Attack', 'Cast'] },
-  fogbound_arbalest: { glb: 'drowned_arbalest.glb', unique: ['Aim', 'Shoot'] },
-  shackled_prisoner: { glb: 'drowned_prisoner.glb', unique: ['Attack', 'Attack2'] },
 };
 
 describe('the Sunken Bastion creature roster', () => {
@@ -127,21 +124,6 @@ describe('the Sunken Bastion creature roster', () => {
     // stature: over three players tall as drawn.
     expect(def.authoredAtlas).toBe(true);
     expect((def.height * MOBS.gaol_turnkey.scale) / 2.6).toBeGreaterThanOrEqual(3);
-  });
-
-  it('carries a real crossbow drill on the arbalest', () => {
-    const def = VISUALS[keyOf('fogbound_arbalest')];
-    expect(def.clips.attack).toEqual(['Shoot']);
-    // The Piercing Bolt's loose lands as its 2 s bar ends, the reload plays out.
-    expect(def.clips.castByAbility?.[BASTION_PIERCING_BOLT]).toBe('Aim');
-    expect(def.clips.castTimeScaleByAbility?.[BASTION_PIERCING_BOLT]).toBe(1);
-    expect(def.clips.castPlayOut).toContain('Aim');
-    expect(def.attackTimeScale).toBe(1);
-    // The crossbow's moving parts ship as their own bones and are animated:
-    // the bolt vanishes and the string snaps forward at the loose.
-    const nodes = glbNodeNames(def.url);
-    for (const bone of ['Bolt', 'StringD', 'StringR', 'Crank'])
-      expect(nodes.has(bone), bone).toBe(true);
   });
 
   it('leaves the Sanctum Thawcaller its own body when the Chanter changed', () => {

@@ -6,7 +6,7 @@
     "bytes": 1510,
     "sha256": "bb0b6bacba9acb12568c3bbbe536e4442cb2964266cffef890f27ee4915dcf2a"
   },
-  "rendererFingerprint": "b0d13a523cac9c10c6e438de76885637aa7aace44ac3e7033cedead4c6c36636",
+  "rendererFingerprint": "6691dd5cf75d3cae741c537505822b04692b86eb45dc5aa79535f25dbb91a184",
   "renderEnv": {
     "schemaVersion": 1,
     "platform": "win32",
@@ -39,7 +39,7 @@
     "browserBundle": {
       "entry": "scripts/wiki/stills_render_entry.js",
       "bytes": 6865902,
-      "sha256": "71719e17c8700b363698ecc07c2a6c56bfdfe2cb6dfcfa68844f2dd45bdfabfb",
+      "sha256": "d8fc9ab8ac73831dfcbbc5fcd43f1485674f0e1f1c43f38e216047809b7a294f",
       "esbuildVersion": "0.28.1"
     },
     "output": {
@@ -399,10 +399,10 @@
         "model": {
           "url": "models/creatures/bastion_ghost_sailor.glb",
           "path": "public/models/creatures/bastion_ghost_sailor.glb",
-          "bytes": 2176272,
-          "sha256": "007aaa1e67bf2b952befeb58e9c34d86c1731129bdded2b461732244c960b2f3"
+          "bytes": 617124,
+          "sha256": "065703b40c8f2c0cb24ae308aeff50aec330d0f0c8dae5dd6b1938a8b876e7f3"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 2.8,
         "yaw": null,
         "hover": 0.2,
@@ -417,11 +417,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "7c51c54d6e75c8091edb6d6f0895bde75ef54e042fe25a088d7003935537225e",
+      "sourceFingerprint": "b92d42957d497187ae1ef00f1924f4be915abeed07cd7e255641d8141f9fe920",
       "output": {
         "path": "public/ui/mobs/barnacle_crawler.webp",
-        "bytes": 2316,
-        "sha256": "2b22f4890af23ac79c5a6878c6af3d0021ac4c73441efd7626e7b8e740304c87"
+        "bytes": 2406,
+        "sha256": "12ab065a8c7f25d374e312d77d1ef8c14ea3afeadd5ab10ca835eb3d64f07e76"
       }
     },
     {
@@ -3466,10 +3466,10 @@
         "model": {
           "url": "models/creatures/drowned_arbalest.glb",
           "path": "public/models/creatures/drowned_arbalest.glb",
-          "bytes": 2701772,
-          "sha256": "c886085b52e4cdf5411647beb87a99c8bfe128541ffb7ce171d08f3301068893"
+          "bytes": 524040,
+          "sha256": "0b8ca31d8239f5332aa38468f11544d01f34c6dd01a1d49d8aba5de21d073a62"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 5.61,
         "yaw": null,
         "hover": null,
@@ -3484,11 +3484,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "7bd23df3a22eb502e85898e74dd582508080cc6d152dda353f1ad373a3bed723",
+      "sourceFingerprint": "cc16d6cb9b8b414a09b1bbceb737652850374fb35a354e23628d821632baf289",
       "output": {
         "path": "public/ui/mobs/fogbound_arbalest.webp",
-        "bytes": 2338,
-        "sha256": "db700eec4259b01244cd1dd44cb25df0fb1071a82df6f6c46f16ab1defb4657a"
+        "bytes": 2194,
+        "sha256": "e5e35df513a8463000dfdbabaf244490176680643706906502f5d61eaceb68d0"
       }
     },
     {
@@ -8410,10 +8410,10 @@
         "model": {
           "url": "models/creatures/temple_acolyte.glb",
           "path": "public/models/creatures/temple_acolyte.glb",
-          "bytes": 3129744,
-          "sha256": "8b8ca9cee5ce60b377d1241f343be04ca632cbcdc45ddbafbd884017e02658ec"
+          "bytes": 503380,
+          "sha256": "a0c9b2764cfe3ff95c2fca812478d6005b40cd46b99ca6bba42cf451667e5353"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 5.2,
         "yaw": null,
         "hover": null,
@@ -8428,11 +8428,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "9cd85c3dceec9b5b1ef9829d98b991601599f93ff90dbcce9067d44e7657fd1f",
+      "sourceFingerprint": "2ad7614a3b774f429f2ade8d278e6f6da1b8f9583fd72030a93c7942dbe4fbf4",
       "output": {
         "path": "public/ui/mobs/pale_choir_acolyte.webp",
-        "bytes": 3310,
-        "sha256": "e9165c24157fee9aa29dac94c92c1c624181c98bbdf62b2abce6f24bc8518d7b"
+        "bytes": 3096,
+        "sha256": "e25364c10b4d8ad29a891d22c604f336a861c3860236a3c9a399af996d5b760e"
       }
     },
     {
@@ -10532,10 +10532,10 @@
         "model": {
           "url": "models/creatures/drowned_prisoner.glb",
           "path": "public/models/creatures/drowned_prisoner.glb",
-          "bytes": 2507028,
-          "sha256": "b59ed852323830ce141e572758ec97200b74e4b7564738bac0defb0bc0e633df"
+          "bytes": 625312,
+          "sha256": "e01f13e55e1e31842df3e30e57edd8c9ad1082c9f39679fb599e1a2f97181236"
         },
-        "idle": "Idle",
+        "idle": "Woc_Idle",
         "height": 5.06,
         "yaw": null,
         "hover": null,
@@ -10550,11 +10550,11 @@
         "resolved": null,
         "strength": null
       },
-      "sourceFingerprint": "a27331fc82b7864c139ae8d1c8a63dd36d9e594e597782916b0f9c4adf224913",
+      "sourceFingerprint": "c1465a3c227633896bbb2f62e8e9da09c94b3834085efcbdfbca2abd4ee1c024",
       "output": {
         "path": "public/ui/mobs/shackled_prisoner.webp",
-        "bytes": 2526,
-        "sha256": "c60b9447f152e7300ae3e87906532fa90f1fc32a501387a3c38ed0edbcb289db"
+        "bytes": 1954,
+        "sha256": "25a9a62669968e38886b2467903e9108c3135d654a003254ce59b8baff2eb103"
       }
     },
     {

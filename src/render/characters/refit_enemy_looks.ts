@@ -23,7 +23,8 @@ export type RefitBase =
   | 'player_rogue'
   | 'player_priest'
   | 'player_warlock'
-  | 'player_paladin';
+  | 'player_paladin'
+  | 'player_hunter';
 
 /** One rebuilt body: the class it plays, and whether the old def's hand-slot props
  *  still hang on it (false when the new mesh carries its own weapons). */
@@ -67,6 +68,13 @@ export const REFIT_ENEMY_FILES: Readonly<Record<string, RefitBody>> = {
   'woc_crypt_lady_bonechill.glb': { base: 'player_priest' },
   // the garrison's war mastiff, on its own four-legged rig
   'bastion_warhound.glb': { base: 'beast' },
+  // the wall's marksman (his crossbow slung on his back) and the gaol's chained dead
+  'drowned_arbalest.glb': { base: 'player_hunter', props: false },
+  'drowned_prisoner.glb': { base: 'player_warrior' },
+  // the Wreckbound Sailor the barnacle crawler key draws
+  'bastion_ghost_sailor.glb': { base: 'player_warrior' },
+  // the Drowned Temple's Pale Choir Acolyte
+  'temple_acolyte.glb': { base: 'player_priest' },
   // the Drowned Temple's sea-glass giant
   'woc_temple_colossus.glb': { base: 'player_warrior', props: false },
 };

@@ -20,7 +20,6 @@ import { TELEGRAPH_ACCENTS } from '../src/render/floor_telegraph/telegraph_look_
 import * as fxCore from '../src/render/sunken_bastion/bastion_fx_core';
 import { bastionTelegraphSpecs } from '../src/render/sunken_bastion/bastion_fx_core';
 import {
-  BASTION_FETTERS_KNEEL_GESTURE,
   CHAIN_MAX_LINKS,
   COLUMN_BURST,
   COLUMN_COLLAPSE,
@@ -260,15 +259,17 @@ describe('Brine Column', () => {
 });
 
 describe('Snapped Fetters', () => {
-  it('kneels on the gesture and holds the kneel while the aura lasts', () => {
+  it('holds an aura-held loop while the aura lasts, and the rebuilt prisoner holds none', () => {
     const d = def('shackled_prisoner');
     expect(d.url).toBe('models/creatures/drowned_prisoner.glb');
-    expect(d.clips.attackByAbility?.[BASTION_FETTERS_KNEEL_GESTURE]).toBe('Kneel');
-    expect(d.clips.heldByAura?.[BASTION_SNAPPED_FETTERS]).toBe('KneelLoop');
+    // the rebuilt prisoner plays the warrior library (refit_enemy_looks.ts): no kneel of
+    // his own, so his freed aura holds no clip; the hold itself still works for a rig with one
+    expect(d.clips.heldByAura?.[BASTION_SNAPPED_FETTERS]).toBeUndefined();
+    const held = { [BASTION_SNAPPED_FETTERS]: 'KneelLoop' };
     const freed = [{ id: BASTION_SNAPPED_FETTERS, kind: 'buff_dr', remaining: 3 }];
-    expect(auraHeldClip(d.clips.heldByAura, freed)).toBe('KneelLoop');
-    expect(auraHeldClip(d.clips.heldByAura, [{ id: 'x', kind: 'stun', remaining: 3 }])).toBeNull();
-    expect(auraHeldClip(d.clips.heldByAura, [{ ...freed[0], remaining: 0 }])).toBeNull();
+    expect(auraHeldClip(held, freed)).toBe('KneelLoop');
+    expect(auraHeldClip(held, [{ id: 'x', kind: 'stun', remaining: 3 }])).toBeNull();
+    expect(auraHeldClip(held, [{ ...freed[0], remaining: 0 }])).toBeNull();
     expect(auraHeldClip(undefined, freed)).toBeNull();
     // The aura-held pose is no stun: the dazed loop never fires off it.
     expect(stunIdleClip('Stunned', freed)).toBeNull();
