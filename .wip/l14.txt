@@ -1,0 +1,3 @@
+tests/chapter_two_content.test.ts
+tests/progression.test.ts
+tests/professions_fishing.test.ts

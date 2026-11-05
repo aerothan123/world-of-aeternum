@@ -287,10 +287,10 @@ export const CHAPTER_TWO_OBJECTS: GroundObjectDef[] = objects(2_147_210_000, [
 ]);
 
 /** Quest catches (quests/quest_fishing_catch.ts): the harbor fish off the
- *  Eastbrook town steps, the eels at the Deepfen Shallows' paddy edge. */
+ *  Eastbrook town steps, the eels on the Deepfen Shallows' south-east bank. */
 export const CHAPTER_TWO_CATCH_SPOTS: readonly QuestCatchSpot[] = Object.freeze([
   { itemId: 'c2_harbor_fish', x: -94, z: -60, radius: 6 },
-  { itemId: 'c2_paddy_eel', x: -72, z: 310, radius: 7 },
+  { itemId: 'c2_paddy_eel', x: -79, z: 270, radius: 7 },
 ]);
 
 export const CHAPTER_TWO_QUESTS: Record<string, QuestDef> = {
