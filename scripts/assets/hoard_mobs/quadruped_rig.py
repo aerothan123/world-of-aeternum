@@ -211,10 +211,19 @@ def ease(a, b, t):
 HEAD_UP = {'Chest': MOTION.get('chestUp', 0.0), 'Head': MOTION.get('headUp', 0.0)}
 
 
+# Opt-in (wildlife bodies, scripts/assets/creatures/): a spec with a Neck bone hands
+# part of every head turn to the neck, so a long-necked animal bends along it
+# instead of hinging at the skull. A spec without one poses exactly as before.
+HAS_NECK = any(b[0] == 'Neck' for b in SPEC['bones'])
+NECK_SHARE = MOTION.get('neckShare', 0.45) if HAS_NECK else 0.0
+
+
 def stance(chest=0.0, head=0.0, head_yaw=0.0, jaw=0.0):
+    pitch = HEAD_UP['Head'] + head
     return {
         'Chest': {'turn': [('Y', HEAD_UP['Chest'] + chest)]},
-        'Head': {'turn': [('Y', HEAD_UP['Head'] + head), ('Z', head_yaw)]},
+        'Neck': {'turn': [('Y', NECK_SHARE * pitch), ('Z', NECK_SHARE * head_yaw)]},
+        'Head': {'turn': [('Y', (1 - NECK_SHARE) * pitch), ('Z', (1 - NECK_SHARE) * head_yaw)]},
         'Jaw': {'turn': [('Y', jaw)]},
     }
 
@@ -282,24 +291,50 @@ def clip_idle(t):
     return pose
 
 
-def gait(t, stride, bob, lean, tail):
-    pose = stance(chest=lean + 1.5 * wave(t, 2), head=-lean * 0.6 + 2 * wave(t, 2, 0.2),
-                  head_yaw=-3 * wave(t), jaw=2)
-    pose['Hips'] = {'move': (0, 0, -bob * (1 + wave(t, 2))), 'turn': [('Z', 3 * wave(t))]}
-    pose['Spine'] = {'turn': [('Z', -3 * wave(t))]}
-    for kind, side, phase in (('fore', 'L', 0.0), ('hind', 'R', 0.0), ('fore', 'R', 0.5), ('hind', 'L', 0.5)):
-        leg(pose, kind, side, stride * wave(t, 1, phase), max(0.0, math.cos(2 * math.pi * (t - phase))))
+# Footfall phases per leg (fraction of the cycle). The trot (diagonal pairs) is every
+# hoard body's walk and run. Opt-in for wildlife: "walkGait": "lateral" is the
+# four-beat walk of a dog or a boar (hind, fore, hind, fore down one side then the
+# other), and "runGait": "gallop" the rotary gallop of a wolf or a fox (the hind
+# pair, then the fore pair, a beat apart), whose spine flexes and extends once per
+# stride and whose body rises once (the suspension), not twice.
+GAITS = {
+    'trot': {('fore', 'L'): 0.0, ('hind', 'R'): 0.0, ('fore', 'R'): 0.5, ('hind', 'L'): 0.5},
+    'lateral': {('hind', 'L'): 0.0, ('fore', 'L'): 0.25, ('hind', 'R'): 0.5, ('fore', 'R'): 0.75},
+    'gallop': {('hind', 'L'): 0.0, ('hind', 'R'): 0.1, ('fore', 'L'): 0.45, ('fore', 'R'): 0.55},
+}
+GAIT_ORDER = (('fore', 'L'), ('hind', 'R'), ('fore', 'R'), ('hind', 'L'))
+
+
+def gait(t, stride, bob, lean, tail, kind='trot'):
+    phases = GAITS[kind]
+    beats = 1 if kind == 'gallop' else 2
+    pose = stance(chest=lean + 1.5 * wave(t, beats), head=-lean * 0.6 + 2 * wave(t, beats, 0.2),
+                  head_yaw=0 if kind == 'gallop' else -3 * wave(t), jaw=2)
+    pose['Hips'] = {'move': (0, 0, -bob * (1 + wave(t, beats))),
+                    'turn': [('Z', 0 if kind == 'gallop' else 3 * wave(t))]}
+    pose['Spine'] = {'turn': [('Z', 0 if kind == 'gallop' else -3 * wave(t))]}
+    if kind == 'gallop':
+        # Gather (hind feet under, back rounded) then stretch (legs flung out).
+        flex = MOTION.get('spineFlex', 7) * wave(t, 1, 0.2)
+        pose['Hips']['turn'].append(('Y', -flex))
+        pose['Spine']['turn'].append(('Y', flex))
+        pose['Chest']['turn'].append(('Y', 0.6 * flex))
+    for key in GAIT_ORDER:
+        phase = phases[key]
+        leg(pose, key[0], key[1], stride * wave(t, 1, phase), max(0.0, math.cos(2 * math.pi * (t - phase))))
     step_limbs(pose, t, stride)
     soft_parts(pose, t, tail=tail, tent=1.6)
     return pose
 
 
 def clip_walk(t):
-    return gait(t, MOTION.get('walkStride', 20), MOTION.get('bob', 0.006), 0, 1.2)
+    return gait(t, MOTION.get('walkStride', 20), MOTION.get('bob', 0.006), 0, 1.2,
+                SPEC.get('walkGait', 'trot'))
 
 
 def clip_run(t):
-    return gait(t, MOTION.get('runStride', 30), MOTION.get('bob', 0.006) * 2, 5, 1.6)
+    return gait(t, MOTION.get('runStride', 30), MOTION.get('bob', 0.006) * 2, 5, 1.6,
+                SPEC.get('runGait', 'trot'))
 
 
 def clip_attack(t):
@@ -475,8 +510,8 @@ def clip_emerge(t):
 # name: (function, seconds)
 CLIPS = {
     'Idle': (clip_idle, 3.0),
-    'Walk': (clip_walk, 1.0),
-    'Run': (clip_run, 0.62),
+    'Walk': (clip_walk, MOTION.get('walkSeconds', 1.0)),
+    'Run': (clip_run, MOTION.get('runSeconds', 0.62)),
     'Attack': (clip_attack_claws if SPEC.get('attackStyle') == 'claws' else clip_attack,
                MOTION.get('attackSeconds', 1.0)),
     'Cast': (clip_cast_rear if SPEC.get('castStyle') == 'rear' else clip_cast,
