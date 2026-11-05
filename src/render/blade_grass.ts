@@ -163,7 +163,7 @@ export function clusterGeometry(
     // each blade leaves the ground at its own angle: a base tilt plus a graceful
     // outward bow so the 9 wide ribbons fountain into a cohesive Genshin patch
     const tilt = 0.08 + rng() * 0.36;
-    const bow = 0.12 + rng() * 0.42;
+    const bow = (0.12 + rng() * 0.42) * shape.bowMul;
     const len = (0.58 + rng() * 0.52) * shape.lenMul;
     const w0 = (0.095 + rng() * 0.045) * shape.widthMul;
     const w1 = w0 * shape.midTaper;

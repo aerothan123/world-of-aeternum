@@ -44,9 +44,12 @@ describe('painted cluster shape', () => {
     expect(painted.getAttribute('position').count).toBeLessThan(
       classic.getAttribute('position').count,
     );
-    // a pointed tip: one top vertex per blade, never the old blunt edge
-    expect(PAINTED_BLADE_SHAPE.tipWidth).toBe(0);
-    expect(painted.getAttribute('position').count).toBe(PAINTED_BLADE_SHAPE.blades * 7);
+    // a soft rounded tip: a narrow two-vertex end (never the old broad blunt
+    // edge, never a needle point), still fewer vertices than Classic's 9 x 7
+    expect(PAINTED_BLADE_SHAPE.tipWidth).toBeGreaterThan(0);
+    expect(PAINTED_BLADE_SHAPE.tipWidth).toBeLessThan(0.25);
+    expect(painted.getAttribute('position').count).toBe(PAINTED_BLADE_SHAPE.blades * 8);
+    expect(PAINTED_BLADE_SHAPE.blades * 8).toBeLessThan(CLASSIC_BLADE_SHAPE.blades * 7);
     // the root ribbon width: vertices 0 and 1 of the first blade, a little
     // fuller than Classic's hair-fine blades but nowhere near a broad ribbon
     const rootWidth = (g: ReturnType<typeof clusterGeometry>) => {
