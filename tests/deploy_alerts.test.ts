@@ -38,7 +38,12 @@ describe('off-machine backup script', () => {
   it('is strict-mode bash that parses', () => {
     expect(backup.startsWith('#!/usr/bin/env bash')).toBe(true);
     expect(backup).toContain('set -euo pipefail');
-    execFileSync('bash', ['-n', path.join(root, 'deploy/backup_offsite.sh')]);
+    // The parse check needs a POSIX bash; a Windows checkout (CRLF, or WSL's
+    // bash.exe with path translation) cannot run it faithfully, so it is a
+    // Linux/macOS (CI) check only.
+    if (process.platform !== 'win32') {
+      execFileSync('bash', ['-n', path.join(root, 'deploy/backup_offsite.sh')]);
+    }
   });
 
   it('carries no credential: keys come from the env file and rclone config', () => {
