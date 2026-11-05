@@ -1,0 +1,320 @@
+{
+  "foot_grass": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Footsteps of one person in leather boots walking slowly across soft grass, eight separate steps with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "foot_dirt": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Footsteps of one person in leather boots walking slowly along a packed dirt path, eight separate steps with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "foot_stone": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Footsteps of one person in leather boots walking slowly on flat stone paving, eight separate steps with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "foot_wood": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Footsteps of one person in leather boots walking slowly on old wooden floorboards, eight separate steps with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "foot_snow": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Footsteps of one person in leather boots walking slowly through crunchy fresh snow, eight separate steps with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "foot_water": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Footsteps of one person in leather boots walking slowly wading through shallow ankle-deep water, splashy, eight separate steps with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "move_jump": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Five separate jump take-offs by one adventurer: a short cloth and leather rustle and a soft push-off from the ground, with a clear silent pause between each. No voice. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "move_land": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Four separate landings of one adventurer in boots after a short jump onto dirt: a thud with a light rattle of gear, with a clear silent pause between each. No voice. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "move_splash": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Three separate splashes of a person jumping feet first into a lake, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "move_swim": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "One person swimming breaststroke at the water surface, five separate strokes with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "melee_swing_light": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Seven separate quick whooshes of a light dagger slicing through the air, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "melee_swing_blade": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Seven separate whooshes of a one-handed steel sword swung through the air, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "melee_swing_heavy": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Seven separate deep heavy whooshes of a two-handed axe swung hard through the air, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "melee_unarmed": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Seven separate bare-fist punches landing on a padded leather target, a dull meaty thud each, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "melee_bow": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Five separate shots of a wooden longbow: the string's release twang and a short arrow whoosh, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "combat_block": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Three separate sword blows striking a wooden shield with an iron rim, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "combat_parry": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Three separate sword-on-sword parries: a sharp bright steel clash with a short scrape, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "combat_dodge": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Three separate quick evasive sidesteps: a fast cloth and leather swish with a light boot scuff, with a clear silent pause between each. No voice. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "combat_crit": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Three separate brutal heavy weapon hits on armour: a deep crunching impact with a metal clang, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "player_hurt": {
+    "generated": "2026-11-05",
+    "tier": "unknown",
+    "format": "mp3_44100_192",
+    "prompt": "Five separate short pained grunts from an adult man taking a hit in a fight, with a clear silent pause between each. Non-verbal, no words. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "player_hurt_female": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Five separate short pained grunts from an adult woman taking a hit in a fight, with a clear silent pause between each. Non-verbal, no words. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "player_death": {
+    "generated": "2026-11-05",
+    "tier": "unknown",
+    "format": "mp3_44100_192",
+    "prompt": "Three separate dying groans from an adult man collapsing in battle, each a long fading exhale, with a clear silent pause between each. Non-verbal, no words. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "player_death_female": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Three separate dying groans from an adult woman collapsing in battle, each a long fading exhale, with a clear silent pause between each. Non-verbal, no words. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "quest_accept": {
+    "generated": "2026-11-05",
+    "tier": "unknown",
+    "format": "mp3_44100_192",
+    "prompt": "A short warm notification sound: a gentle plucked harp arpeggio rising over two seconds, soft and bright, dry, nothing else."
+  },
+  "quest_ready": {
+    "generated": "2026-11-05",
+    "tier": "unknown",
+    "format": "mp3_44100_192",
+    "prompt": "A short soft notification sound: two gentle hand-bell chimes on a rising interval with a light shimmer, dry, nothing else."
+  },
+  "quest_complete": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "A short satisfying reward flourish: a bright rising plucked harp run and soft hand bells resolving on a warm major chord, about three seconds, dry."
+  },
+  "ui_level_up": {
+    "generated": "2026-11-05",
+    "tier": "unknown",
+    "format": "mp3_44100_192",
+    "prompt": "A short joyful milestone flourish: a rising shimmer of hand bells over a warm wooden flute swell, resolving on a bright major chord, about four seconds, dry."
+  },
+  "ui_achievement": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "A short proud accomplishment sting: a bright glockenspiel run ending on one soft frame-drum hit, about three seconds, dry."
+  },
+  "mob_beast_aggro": {
+    "generated": "2026-11-05",
+    "tier": "unknown",
+    "format": "mp3_44100_192",
+    "prompt": "Two separate short aggressive snarls of a large wild animal, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "mob_beast_attack": {
+    "generated": "2026-11-05",
+    "tier": "unknown",
+    "format": "mp3_44100_192",
+    "prompt": "Three separate quick vicious bite snaps with growls of a large wild animal, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "mob_beast_death": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Two separate final dying groans, each fading out of a large wild animal, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "mob_beast_hurt": {
+    "generated": "2026-11-05",
+    "tier": "unknown",
+    "format": "mp3_44100_192",
+    "prompt": "Two separate short pained yelping growls of a large wild animal, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "mob_beast_idle": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Two separate low calm snuffles with a breathy grumble of a large wild animal, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "mob_beast_wolf_aggro": {
+    "generated": "2026-11-05",
+    "tier": "unknown",
+    "format": "mp3_44100_192",
+    "prompt": "Two separate snarling growls with bared teeth of a grey wolf, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "mob_beast_wolf_attack": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Three separate quick snapping bites with snarls of a grey wolf, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "mob_beast_wolf_death": {
+    "generated": "2026-11-05",
+    "tier": "unknown",
+    "format": "mp3_44100_192",
+    "prompt": "Two separate dying whimpers, each fading out of a grey wolf, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "mob_beast_wolf_hurt": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Two separate sharp pained yelps of a grey wolf, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "mob_beast_wolf_idle": {
+    "generated": "2026-11-05",
+    "tier": "unknown",
+    "format": "mp3_44100_192",
+    "prompt": "Three separate quiet sniffs and short low huffs of a grey wolf, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "mob_boar_aggro": {
+    "generated": "2026-11-05",
+    "tier": "unknown",
+    "format": "mp3_44100_192",
+    "prompt": "Three separate loud squealing grunts of an angry wild boar, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "mob_boar_attack": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Four separate short aggressive charging grunts and squeals of an angry wild boar, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "mob_boar_death": {
+    "generated": "2026-11-05",
+    "tier": "unknown",
+    "format": "mp3_44100_192",
+    "prompt": "Two separate dying squeals, each fading out of an angry wild boar, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "mob_boar_hurt": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Two separate sharp pained squeals of an angry wild boar, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "mob_boar_idle": {
+    "generated": "2026-11-05",
+    "tier": "unknown",
+    "format": "mp3_44100_192",
+    "prompt": "Two separate snuffling, rooting grunts of an angry wild boar, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "mob_burrower_aggro": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Two separate angry hissing chitters of a small burrowing creature with clicking mandibles, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "mob_burrower_attack": {
+    "generated": "2026-11-05",
+    "tier": "unknown",
+    "format": "mp3_44100_192",
+    "prompt": "Three separate fast clicking mandible snaps with hisses of a small burrowing creature with clicking mandibles, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "mob_burrower_death": {
+    "generated": "2026-11-05",
+    "tier": "unknown",
+    "format": "mp3_44100_192",
+    "prompt": "Two separate dying chittering rattles, each fading out of a small burrowing creature with clicking mandibles, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "mob_burrower_hurt": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Two separate sharp pained squeaking hisses of a small burrowing creature with clicking mandibles, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "mob_burrower_idle": {
+    "generated": "2026-11-05",
+    "tier": "unknown",
+    "format": "mp3_44100_192",
+    "prompt": "Two separate soft clicking chitters of a small burrowing creature with clicking mandibles, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience."
+  },
+  "mob_humanoid_aggro": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Two separate short angry wordless battle shouts of a rough adult man, a bandit, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience. Non-verbal, no words."
+  },
+  "mob_humanoid_attack": {
+    "generated": "2026-11-05",
+    "tier": "unknown",
+    "format": "mp3_44100_192",
+    "prompt": "Three separate strained effort grunts swinging a weapon of a rough adult man, a bandit, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience. Non-verbal, no words."
+  },
+  "mob_humanoid_death": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Two separate dying groans, each fading out of a rough adult man, a bandit, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience. Non-verbal, no words."
+  },
+  "mob_humanoid_hurt": {
+    "generated": "2026-11-05",
+    "tier": "unknown",
+    "format": "mp3_44100_192",
+    "prompt": "Two separate short pained grunts of a rough adult man, a bandit, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience. Non-verbal, no words."
+  },
+  "mob_humanoid_idle": {
+    "generated": "2026-11-05",
+    "tier": "creator",
+    "format": "mp3_44100_192",
+    "prompt": "Two separate bored sighs and a throat clearing of a rough adult man, a bandit, with a clear silent pause between each. Close-mic and completely dry: no reverb, no music, no ambience. Non-verbal, no words."
+  }
+}
