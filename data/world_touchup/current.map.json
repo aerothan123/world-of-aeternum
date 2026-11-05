@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-47a6e-a7445110-bd56c1e0-14b3-b4ad9a78-f493dfc8",
+    "id": "live-49d12-4d90670a-e9faa23a-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "47a6e-a7445110-bd56c1e0",
+    "overworldBase": "49d12-4d90670a-e9faa23a",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -3581,7 +3581,10 @@
           "c1_d07_receipt_hinges",
           "c1_d12_road_not_rumor",
           "c2_01_ship_sank_twice",
-          "c2_02_whose_seal"
+          "c2_02_whose_seal",
+          "c2_17_bandit_pay",
+          "c2_34_coin_quiet_road",
+          "c2_42_strongboxes_shoals"
         ],
         "greeting": "Fresh bread, clean water, fair prices. What can I get you?",
         "vendorItems": [
@@ -3654,7 +3657,8 @@
           "c1_25_someone_teaching",
           "c1_26_promise_paint",
           "c1_28_door_left_shut",
-          "c2_12_door_we_left_shut"
+          "c2_12_door_we_left_shut",
+          "c2_10_cord_in_cider_vat"
         ],
         "greeting": "The Light keep you. Even the dead find no rest here of late."
       },
@@ -4014,7 +4018,8 @@
         "color": 8207512,
         "questIds": [
           "q_widows",
-          "q_broodmother"
+          "q_broodmother",
+          "c2_21_heath_herbs_fen"
         ],
         "greeting": "Mind the thicket west of the road. The webs are thick as sailcloth this season.",
         "vendorItems": [
@@ -6371,7 +6376,8 @@
           "c1_27_supper_despite",
           "c1_d08_lunch_stew",
           "c1_d08_lunch_bread",
-          "c2_03_bells_from_steps"
+          "c2_03_bells_from_steps",
+          "c2_14_kitchen_for_pickers"
         ],
         "greeting": "It could be worse. Usually is. Sit, eat, and tell me which way the trouble is walking today."
       },
@@ -6477,7 +6483,9 @@
         "questIds": [
           "c2_02_whose_seal",
           "c2_07_pressford_remembers",
-          "c2_08_pests_windfalls"
+          "c2_08_pests_windfalls",
+          "c2_10_cord_in_cider_vat",
+          "c2_14_kitchen_for_pickers"
         ],
         "greeting": "Pressford makes the best cider in the Reaches, and the second best, and most of the third."
       },
@@ -6497,6 +6505,177 @@
           "c2_06_watch_holds_road"
         ],
         "greeting": "The causeway is one road with the sea on both sides. I like it that way. Fewer directions to be ambushed from."
+      },
+      "gardener_della_pressford": {
+        "id": "gardener_della_pressford",
+        "name": "Della Brindlepot",
+        "title": "Gardener",
+        "pos": {
+          "x": 352,
+          "z": -320
+        },
+        "facing": -1.5707963267948966,
+        "color": 12884588,
+        "questIds": [
+          "c2_11_second_planting"
+        ],
+        "greeting": "Pressford grows apples the way Eastbrook grows opinions: everywhere, and mostly on purpose."
+      },
+      "carpenter_pella_pressford": {
+        "id": "carpenter_pella_pressford",
+        "name": "Wenna Nookwright",
+        "title": "Carpenter",
+        "pos": {
+          "x": 326,
+          "z": -309
+        },
+        "facing": 0,
+        "color": 9333574,
+        "questIds": [
+          "c2_09_press_will_not_turn"
+        ],
+        "greeting": "I came to look at one press. They have shown me four, and a cart, and a fence with feelings."
+      },
+      "warden_tamsin_bracewell": {
+        "id": "warden_tamsin_bracewell",
+        "name": "Tamsin Bracewell",
+        "title": "Ferncross Camp Warden",
+        "pos": {
+          "x": 35,
+          "z": -313
+        },
+        "facing": 3.141592653589793,
+        "color": 6126138,
+        "questIds": [
+          "c2_15_moor_hounds",
+          "c2_16_fires_should_not_burn",
+          "c2_17_bandit_pay",
+          "c2_18_keepers_escort"
+        ],
+        "greeting": "The moor is quiet today. I have learned not to trust that, and I advise you to learn it faster than I did."
+      },
+      "apothecary_lin_ring": {
+        "id": "apothecary_lin_ring",
+        "name": "Ivara Fenmoss",
+        "title": "Herbalist",
+        "pos": {
+          "x": -36,
+          "z": -395
+        },
+        "facing": -2.356194490192345,
+        "color": 7048782,
+        "questIds": [
+          "c2_19_first_hearth_ring",
+          "c2_20_ash_before_kingdom"
+        ],
+        "greeting": "The stones are listening. Be polite."
+      },
+      "historian_orwin": {
+        "id": "historian_orwin",
+        "name": "Orwin Pellock",
+        "title": "Historian",
+        "pos": {
+          "x": 5,
+          "z": -101.5
+        },
+        "facing": 1.5707963267948966,
+        "color": 8019086,
+        "questIds": [
+          "c2_20_ash_before_kingdom"
+        ],
+        "greeting": "That is either impossible or extremely inconvenient. Possibly both. Have I eaten today?"
+      },
+      "claim_master_ambrose": {
+        "id": "claim_master_ambrose",
+        "name": "Ambrose Pennick",
+        "title": "Coinwell Claim-Master",
+        "pos": {
+          "x": -314,
+          "z": -333
+        },
+        "facing": 3.141592653589793,
+        "color": 11570492,
+        "questIds": [
+          "c2_34_coin_quiet_road",
+          "c2_35_claim_nobody_filed",
+          "c2_37_lanterns_will_not_light"
+        ],
+        "greeting": "Every stone on this coast belongs to somebody. My job is knowing who, and my headache is everyone else knowing better."
+      },
+      "cook_nettie_saltmarsh": {
+        "id": "cook_nettie_saltmarsh",
+        "name": "Nettie Saltmarsh",
+        "title": "Coinwell Camp Cook",
+        "pos": {
+          "x": -323,
+          "z": -330
+        },
+        "facing": 0,
+        "color": 10706239,
+        "questIds": [
+          "c2_39_chalk_cliff_nests"
+        ],
+        "greeting": "Stew is ready when it is ready, and it is never ready when the gulls are watching."
+      },
+      "forgemistress_darva_coinwell": {
+        "id": "forgemistress_darva_coinwell",
+        "name": "Brunna Flintmorrow",
+        "title": "Master of the Forge",
+        "pos": {
+          "x": -340,
+          "z": -316
+        },
+        "facing": 1.5707963267948966,
+        "color": 9128491,
+        "questIds": [
+          "c2_36_ore_with_a_will"
+        ],
+        "greeting": "Metal tells the truth. People rarely bother. This ore is telling me something, and I do not like its tone."
+      },
+      "marshal_redbrook_coinwell": {
+        "id": "marshal_redbrook_coinwell",
+        "name": "Warden Corren Stoutvale",
+        "title": "Lanternwarden Commander",
+        "pos": {
+          "x": -310,
+          "z": -342
+        },
+        "facing": -1.5707963267948966,
+        "color": 12031243,
+        "questIds": [
+          "c2_38_what_dig_was_for"
+        ],
+        "greeting": "Eastbrook can spare me for a week. The Dig cannot be spared another day."
+      },
+      "ferryman_odo_coinwell": {
+        "id": "ferryman_odo_coinwell",
+        "name": "Captain Fenlow Tippet",
+        "title": "Ferry Captain",
+        "pos": {
+          "x": -306,
+          "z": -326
+        },
+        "facing": 2.356194490192345,
+        "color": 4153215,
+        "questIds": [
+          "c2_40_bells_low_tide"
+        ],
+        "greeting": "I came round the coast by boat. The sea kept changing its mind about where the shore was."
+      },
+      "carpenter_pella_coinwell": {
+        "id": "carpenter_pella_coinwell",
+        "name": "Wenna Nookwright",
+        "title": "Carpenter",
+        "pos": {
+          "x": -336,
+          "z": -312
+        },
+        "facing": 3.141592653589793,
+        "color": 9333574,
+        "questIds": [
+          "c2_41_tide_road_fortress"
+        ],
+        "greeting": "Chalk is only stone that has not made up its mind. I can work with that."
       }
     },
     "objects": [
@@ -8564,6 +8743,482 @@
           {
             "x": 455,
             "z": -312
+          }
+        ]
+      },
+      {
+        "itemId": "c2_marked_orchard_oak",
+        "name": "Marked Orchard Oak",
+        "positions": [
+          {
+            "x": 296,
+            "z": -292
+          },
+          {
+            "x": 292,
+            "z": -298
+          },
+          {
+            "x": 298,
+            "z": -286
+          },
+          {
+            "x": 290,
+            "z": -290
+          }
+        ]
+      },
+      {
+        "itemId": "c2_pressford_workbench",
+        "name": "Pressford Town Workbench",
+        "positions": [
+          {
+            "x": 309,
+            "z": -298
+          }
+        ]
+      },
+      {
+        "itemId": "c2_great_press",
+        "name": "Great Cider Press",
+        "positions": [
+          {
+            "x": 345,
+            "z": -320
+          }
+        ]
+      },
+      {
+        "itemId": "c2_cider_vat",
+        "name": "Seized Cider Vat",
+        "positions": [
+          {
+            "x": 344,
+            "z": -309
+          }
+        ]
+      },
+      {
+        "itemId": "c2_cold_black_cord",
+        "name": "Cold Black Cord",
+        "positions": [
+          {
+            "x": 345.5,
+            "z": -307.5
+          },
+          {
+            "x": 343,
+            "z": -307
+          }
+        ]
+      },
+      {
+        "itemId": "c2_sorrel_patch",
+        "name": "Hedge Sorrel Patch",
+        "positions": [
+          {
+            "x": 438,
+            "z": -286
+          },
+          {
+            "x": 434,
+            "z": -292
+          },
+          {
+            "x": 440,
+            "z": -294
+          },
+          {
+            "x": 432,
+            "z": -284
+          },
+          {
+            "x": 436,
+            "z": -280
+          }
+        ]
+      },
+      {
+        "itemId": "c2_field_bench",
+        "name": "Della's Field Bench",
+        "positions": [
+          {
+            "x": 356,
+            "z": -316
+          }
+        ]
+      },
+      {
+        "itemId": "c2_blighted_row",
+        "name": "Blighted Orchard Row",
+        "positions": [
+          {
+            "x": 360,
+            "z": -324
+          },
+          {
+            "x": 362,
+            "z": -314
+          },
+          {
+            "x": 358,
+            "z": -308
+          }
+        ]
+      },
+      {
+        "itemId": "c2_laden_apple_tree",
+        "name": "Laden Apple Tree",
+        "positions": [
+          {
+            "x": 428,
+            "z": -296
+          },
+          {
+            "x": 426,
+            "z": -288
+          },
+          {
+            "x": 430,
+            "z": -282
+          }
+        ]
+      },
+      {
+        "itemId": "c2_pressford_hearth",
+        "name": "Pressford Cookhouse Hearth",
+        "positions": [
+          {
+            "x": 322,
+            "z": -320
+          }
+        ]
+      },
+      {
+        "itemId": "c2_pickers_rest",
+        "name": "Orchard Pickers' Rest",
+        "positions": [
+          {
+            "x": 422,
+            "z": -302
+          },
+          {
+            "x": 418,
+            "z": -294
+          },
+          {
+            "x": 424,
+            "z": -286
+          },
+          {
+            "x": 416,
+            "z": -282
+          }
+        ]
+      },
+      {
+        "itemId": "c2_fuelless_fire",
+        "name": "Fire With Nothing to Burn",
+        "positions": [
+          {
+            "x": -36,
+            "z": -310
+          },
+          {
+            "x": -44,
+            "z": -302
+          },
+          {
+            "x": -38,
+            "z": -298
+          }
+        ]
+      },
+      {
+        "itemId": "c2_standing_stone",
+        "name": "Ring Standing Stone",
+        "positions": [
+          {
+            "x": -39,
+            "z": -405
+          },
+          {
+            "x": -45,
+            "z": -396.5
+          },
+          {
+            "x": -55.5,
+            "z": -399.5
+          },
+          {
+            "x": -55.5,
+            "z": -410.5
+          },
+          {
+            "x": -45,
+            "z": -413.5
+          }
+        ]
+      },
+      {
+        "itemId": "c2_hearth_stone",
+        "name": "The Hearth Stone",
+        "positions": [
+          {
+            "x": -47,
+            "z": -404
+          }
+        ]
+      },
+      {
+        "itemId": "c2_hearth_ash",
+        "name": "Hearth Ash Sample",
+        "positions": [
+          {
+            "x": -44,
+            "z": -401
+          },
+          {
+            "x": -50,
+            "z": -401
+          },
+          {
+            "x": -44,
+            "z": -409
+          },
+          {
+            "x": -51,
+            "z": -408
+          }
+        ]
+      },
+      {
+        "itemId": "c2_heath_mallow_patch",
+        "name": "Heath Mallow Patch",
+        "positions": [
+          {
+            "x": 112,
+            "z": -396
+          },
+          {
+            "x": 118,
+            "z": -404
+          },
+          {
+            "x": 126,
+            "z": -398
+          },
+          {
+            "x": 122,
+            "z": -410
+          },
+          {
+            "x": 130,
+            "z": -406
+          },
+          {
+            "x": 114,
+            "z": -410
+          }
+        ]
+      },
+      {
+        "itemId": "c2_fen_mixing_table",
+        "name": "Yara's Mixing Table",
+        "positions": [
+          {
+            "x": 0.5,
+            "z": 324
+          }
+        ]
+      },
+      {
+        "itemId": "c2_claim_post",
+        "name": "Coinwell Claim Post",
+        "positions": [
+          {
+            "x": -300,
+            "z": -350
+          },
+          {
+            "x": -332,
+            "z": -356
+          }
+        ]
+      },
+      {
+        "itemId": "c2_forged_claim_paper",
+        "name": "Forged Claim Paper",
+        "positions": [
+          {
+            "x": -290,
+            "z": -372
+          },
+          {
+            "x": -296,
+            "z": -380
+          },
+          {
+            "x": -286,
+            "z": -386
+          }
+        ]
+      },
+      {
+        "itemId": "c2_marked_kindle_vein",
+        "name": "Marked Kindle Ore Vein",
+        "positions": [
+          {
+            "x": -380,
+            "z": -410
+          },
+          {
+            "x": -386,
+            "z": -404
+          },
+          {
+            "x": -374,
+            "z": -416
+          },
+          {
+            "x": -392,
+            "z": -414
+          },
+          {
+            "x": -382,
+            "z": -420
+          },
+          {
+            "x": -370,
+            "z": -408
+          }
+        ]
+      },
+      {
+        "itemId": "c2_coinwell_forge",
+        "name": "Coinwell Camp Forge",
+        "positions": [
+          {
+            "x": -347,
+            "z": -314
+          }
+        ]
+      },
+      {
+        "itemId": "c2_dig_lamp",
+        "name": "Unlit Dig Lamp",
+        "positions": [
+          {
+            "x": -402,
+            "z": -430
+          },
+          {
+            "x": -400,
+            "z": -438
+          },
+          {
+            "x": -406,
+            "z": -424
+          },
+          {
+            "x": -398,
+            "z": -426
+          }
+        ]
+      },
+      {
+        "itemId": "c2_bell_casting_pattern",
+        "name": "Bell-Casting Pattern",
+        "positions": [
+          {
+            "x": -420,
+            "z": -434
+          }
+        ]
+      },
+      {
+        "itemId": "c2_tide_gauge",
+        "name": "Tide Gauge",
+        "positions": [
+          {
+            "x": -478,
+            "z": -310
+          },
+          {
+            "x": -482,
+            "z": -298
+          },
+          {
+            "x": -474,
+            "z": -288
+          }
+        ]
+      },
+      {
+        "itemId": "c2_chalk_face",
+        "name": "Cut Chalk Face",
+        "positions": [
+          {
+            "x": -456,
+            "z": -316
+          },
+          {
+            "x": -462,
+            "z": -320
+          },
+          {
+            "x": -450,
+            "z": -322
+          },
+          {
+            "x": -458,
+            "z": -326
+          }
+        ]
+      },
+      {
+        "itemId": "c2_coinwell_workbench",
+        "name": "Coinwell Camp Workbench",
+        "positions": [
+          {
+            "x": -338,
+            "z": -320
+          }
+        ]
+      },
+      {
+        "itemId": "c2_tide_road_footing",
+        "name": "Tide-Road Footing",
+        "positions": [
+          {
+            "x": -270,
+            "z": -452
+          },
+          {
+            "x": -262,
+            "z": -458
+          }
+        ]
+      },
+      {
+        "itemId": "c2_wreck_strongbox",
+        "name": "Sealed Wreck Strongbox",
+        "positions": [
+          {
+            "x": -282,
+            "z": -446
+          },
+          {
+            "x": -270,
+            "z": -446
+          },
+          {
+            "x": -276,
+            "z": -452
+          },
+          {
+            "x": -286,
+            "z": -438
           }
         ]
       }

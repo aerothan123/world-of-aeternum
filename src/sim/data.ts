@@ -24,12 +24,12 @@ import {
   TOWN_BOARD_QUESTS,
 } from './content/chapter_one';
 import {
-  applyChapterTwoReaches,
   CHAPTER_TWO_ITEMS,
   CHAPTER_TWO_OBJECTS,
   CHAPTER_TWO_QUESTS,
   chapterTwoNpcQuestIds,
 } from './content/chapter_two';
+import { applyChapterTwoGatedBundles } from './content/chapter_two_bundles';
 import { BASE_ITEMS } from './content/items';
 import {
   isAuthoredMapPresentation,
@@ -1178,11 +1178,12 @@ export const ZONES: ZoneDef[] = [
   ...WEST_MARCH_ZONES,
 ];
 
-// Wyndlewood Chapter Two's Southern Reaches quests (content/chapter_two.ts):
-// merged, appended last, only when the zone table carries their zones (the
-// world crew's feature/world-expansion row). Without those zones nothing of
-// the bundle exists and the core chapter plays around it.
-applyChapterTwoReaches({
+// Wyndlewood Chapter Two's gated quests (content/chapter_two_bundles.ts: the
+// Applewold, the Kindlemoor and the Chalkbarrow Coast): each bundle merged,
+// appended last, only when the zone table carries its zones (the world crew's
+// feature/world-expansion row). Without those zones nothing of a bundle exists
+// and the core chapter plays around it.
+applyChapterTwoGatedBundles({
   zoneIds: ZONES.map((zone) => zone.id),
   items: ITEMS,
   mobs: MOBS,
@@ -1191,6 +1192,7 @@ applyChapterTwoReaches({
   questOrder: QUEST_ORDER,
   camps: CAMPS,
   objects: GROUND_OBJECTS,
+  escorts: ESCORTS,
 });
 
 export const WORLD_SIZE = 360; // the original strip's width (one grid column)
