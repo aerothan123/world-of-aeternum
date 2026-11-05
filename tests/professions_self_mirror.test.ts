@@ -76,6 +76,7 @@ function freshTarget(): ProfessionsSelfMirrors {
     lastSalvageResult: null,
     gatheringProficiency: {},
     toolEffectSlots: [],
+    gatherToolSlots: {},
     harvestPreference: null,
     townFocusPending: null,
     gatheringGoal: null,
