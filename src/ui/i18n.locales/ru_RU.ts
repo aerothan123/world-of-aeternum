@@ -26268,4 +26268,9 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'seasonal.thatchgrin.sleepYell': 'Солнце встало. Обратно на шест, снова сторожить.',
   'seasonal.pumpkins.progress': "{label}: {current}/{total}",
 
+  'hudChrome.auth.steamLoginCta': 'Продолжить через Steam',
+  'hudChrome.auth.steamError': 'Не удалось войти через Steam. Попробуйте ещё раз.',
+  'hudChrome.auth.steamNoTicket': 'Steam не запущен. Запустите Steam и попробуйте снова.',
+  'hudChrome.auth.steamUnavailable': 'Вход через Steam сейчас недоступен.',
+  'apiError.steam.unlink_last_login': 'Steam остаётся единственным способом входа в эту учётную запись. Добавьте email и пароль, прежде чем отвязывать его.',
 };

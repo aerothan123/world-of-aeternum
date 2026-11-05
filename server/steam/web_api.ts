@@ -19,9 +19,11 @@ const UPSTREAM_TIMEOUT_MS = 5000;
  *  'upstream' outcome is NEVER treated as proof in either direction. */
 export type VerifyOutcome = TicketVerdict | { kind: 'upstream' };
 
-/** Ask Steam whether the ticket proves a Steam id for our app. */
+/** Ask Steam whether the ticket proves a Steam id for our app. `identity`
+ *  defaults to the link identity; the login route passes LOGIN_TICKET_IDENTITY
+ *  so a link ticket and a login ticket can never stand in for each other. */
 export async function verifyLinkTicket(
-  opts: { key: string; appId: number; ticket: string },
+  opts: { key: string; appId: number; ticket: string; identity?: string },
   fetchImpl: typeof fetch = fetch,
 ): Promise<VerifyOutcome> {
   let res: Response;

@@ -5055,6 +5055,10 @@ export const ko_KR: EnTranslations = {
     "auth": {
       "appleLoginCta": "Apple로 계속하기",
       "appleError": "Apple로 로그인할 수 없습니다. 다시 시도해 주세요.",
+      "steamLoginCta": "Steam으로 계속",
+      "steamError": "Steam으로 로그인할 수 없습니다. 다시 시도해 주세요.",
+      "steamNoTicket": "Steam이 실행 중이 아닙니다. Steam을 실행한 후 다시 시도해 주세요.",
+      "steamUnavailable": "지금은 Steam 로그인을 사용할 수 없습니다.",
       "appleChoiceIntro": "새 계정을 만들거나 Apple을 기존 계정에 연결하세요.",
       "appleChoiceExpired": "Apple 로그인이 만료되었습니다. Apple로 다시 로그인해 주세요.",
       "forgotPrompt": "비밀번호를 잊으셨나요?",
@@ -8200,7 +8204,8 @@ export const ko_KR: EnTranslations = {
       "banned": "해당 Steam 계정은 연동할 수 없습니다.",
       "already_linked": "계정에 이미 연동된 Steam 계정이 있습니다.",
       "account_taken": "해당 Steam 계정은 이미 다른 계정에 연결되어 있습니다.",
-      "upstream": "Steam이 응답하지 않습니다. 잠시 후 다시 시도해 주세요."
+      "upstream": "Steam이 응답하지 않습니다. 잠시 후 다시 시도해 주세요.",
+      "unlink_last_login": "이 계정에 로그인하는 방법은 Steam뿐입니다. 연결을 해제하기 전에 이메일과 비밀번호를 추가해 주세요."
     },
     "epic": {
       "disabled": "현재 Epic 연동을 사용할 수 없습니다.",

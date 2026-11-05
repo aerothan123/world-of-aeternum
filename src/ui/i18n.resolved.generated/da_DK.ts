@@ -5055,6 +5055,10 @@ export const da_DK: EnTranslations = {
     "auth": {
       "appleLoginCta": "Fortsæt med Apple",
       "appleError": "Kunne ikke logge ind med Apple. Prøv igen.",
+      "steamLoginCta": "Continue with Steam",
+      "steamError": "Could not sign in with Steam. Please try again.",
+      "steamNoTicket": "Steam is not running. Start Steam, then try again.",
+      "steamUnavailable": "Steam sign-in is not available right now.",
       "appleChoiceIntro": "Opret en ny konto, eller knyt Apple til en konto, du allerede har.",
       "appleChoiceExpired": "Dette Apple-login er udløbet. Log ind med Apple igen.",
       "forgotPrompt": "Glemt adgangskode?",
@@ -8200,7 +8204,8 @@ export const da_DK: EnTranslations = {
       "banned": "Den Steam-konto kan ikke tilknyttes.",
       "already_linked": "Din konto har allerede en tilknyttet Steam-konto.",
       "account_taken": "Den Steam-konto er allerede knyttet til en anden konto.",
-      "upstream": "Steam svarede ikke. Prøv igen om et øjeblik."
+      "upstream": "Steam svarede ikke. Prøv igen om et øjeblik.",
+      "unlink_last_login": "Steam is your only way to sign in to this account. Add an email and password before unlinking it."
     },
     "epic": {
       "disabled": "Epic-tilknytning er ikke tilgængelig lige nu.",

@@ -4,6 +4,7 @@ import type { DesktopBridge } from '../runtime';
 import { desktopBridge } from '../runtime';
 import { userFacingApiError } from './api_error_i18n';
 import { t } from './i18n';
+import { wireSteamLogin } from './steam_login';
 import { syncSteamWishlistVisibility } from './steam_wishlist';
 
 // Steam account link (the deeds achievement mirror), a stacked card beside the
@@ -147,7 +148,11 @@ async function startSteamLink(api: Api): Promise<void> {
   }
 }
 
-export function wireSteamLink(api: Api): void {
+// onSignedIn (src/main.ts completeOnlineAuth) is the one hand-off Steam
+// sign-in needs back into the shell; optional so play.html-style callers keep
+// the link-only wiring.
+export function wireSteamLink(api: Api, onSignedIn?: () => Promise<void>): void {
+  if (onSignedIn) void wireSteamLogin(api, onSignedIn);
   // The one shell-boot moment the client's Steam surfaces are wired, so the
   // wishlist reminder's build probe rides along here rather than adding another
   // call to src/main.ts (a firewall, and pinned at its monolith ceiling). The

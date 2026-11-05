@@ -11,12 +11,15 @@ One codebase produces three distribution channels:
 | steam | `npm run electron:build:steam` | `release-steam/` loose per-OS layouts | SteamPipe depots only (in-app updater OFF) |
 | epic | `npm run electron:build:epic` | `release-epic/` loose Win+Mac layouts | Epic BPT only (in-app updater OFF) |
 
-Sign-in is email and Discord only, identical to the web flow: email/password logs in
-inside the app, and "Continue with Discord" opens the player's default browser on the
-`/desktop-login` page, which hands a one-time code back to the app over the
-`worldofclaudecraft://desktop-login` deep link. There is no Steam or Epic sign-in on
-any channel; on the Steam channel the shell's one Steam surface is the account-link
-ticket behind the Book of Deeds achievement mirror (`electron/steam.cjs`). Epic
+Sign-in: email/password logs in inside the app, and "Continue with Discord" opens
+the player's default browser on the `/desktop-login` page, which hands a one-time code
+back to the app over the `worldofclaudecraft://desktop-login` deep link. On the Steam
+channel the login panel also shows "Continue with Steam" (`src/ui/steam_login.ts`)
+when the server advertises `steam.login`: the shell mints a web-api ticket for the
+`wyndlewood-login` identity (`electron/steam.cjs`), `POST /api/auth/steam`
+(`server/steam_login.ts`) verifies it with the publisher key, and a first sign-in
+creates the account with no separate registration. The account-link ticket behind
+the Book of Deeds achievement mirror is unchanged. There is no Epic sign-in. Epic
 account-link and achievement mirror surfaces live under
 `docs/epic-games-integration/` (dark by default; see `DEPLOY.md`). Packaging,
 BuildPatchTool upload, portal checklist, and server env keys are in this runbook

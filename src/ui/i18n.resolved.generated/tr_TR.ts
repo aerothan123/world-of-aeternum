@@ -5055,6 +5055,10 @@ export const tr_TR: EnTranslations = {
     "auth": {
       "appleLoginCta": "Apple ile Devam Et",
       "appleError": "Apple ile oturum açılamadı. Lütfen tekrar dene.",
+      "steamLoginCta": "Continue with Steam",
+      "steamError": "Could not sign in with Steam. Please try again.",
+      "steamNoTicket": "Steam is not running. Start Steam, then try again.",
+      "steamUnavailable": "Steam sign-in is not available right now.",
       "appleChoiceIntro": "Yeni bir hesap oluştur veya Apple hesabını mevcut hesabına bağla.",
       "appleChoiceExpired": "Bu Apple oturum açma işleminin süresi doldu. Lütfen Apple ile yeniden oturum aç.",
       "forgotPrompt": "Şifreni mi unuttun?",
@@ -8200,7 +8204,8 @@ export const tr_TR: EnTranslations = {
       "banned": "Bu Steam hesabı bağlanamaz.",
       "already_linked": "Hesabına zaten bağlı bir Steam hesabı var.",
       "account_taken": "Bu Steam hesabı zaten başka bir hesaba bağlı.",
-      "upstream": "Steam yanıt vermedi. Birazdan tekrar dene."
+      "upstream": "Steam yanıt vermedi. Birazdan tekrar dene.",
+      "unlink_last_login": "Steam is your only way to sign in to this account. Add an email and password before unlinking it."
     },
     "epic": {
       "disabled": "Epic bağlantısı şu anda kullanılamıyor.",

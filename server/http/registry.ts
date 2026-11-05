@@ -46,6 +46,7 @@ import { routes as realmBuilderRoutes } from '../realm_builder';
 import { routes as reliquaryRoutes } from '../reliquary';
 import { routes as reportsRoutes } from '../reports';
 import { routes as steamRoutes } from '../steam';
+import { routes as steamLoginRoutes } from '../steam_login';
 import { routes as userAssetsRoutes } from '../user_assets_routes';
 import { routes as worldQuestLeaderboardRoutes } from '../world_quest_leaderboard';
 // new:endpoint imports appear above this line (npm run new:endpoint)
@@ -137,6 +138,7 @@ export const apiRoutes: readonly RouteDef[] = [
   ...deedsRoutes,
   ...discordQueuePingsRoutes,
   ...steamRoutes,
+  ...steamLoginRoutes,
   ...battlegroundRoutes,
   ...epicRoutes,
   ...otaUpdatesRoutes,

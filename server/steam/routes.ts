@@ -2,12 +2,15 @@
 // twin, by design, like server/deeds.ts). Everything answers steam.disabled
 // until STEAM_ENABLED=1.
 //
-// THE HARD RULE, pinned by tests/server/steam_routes.test.ts: linking is
-// allowed, LOGIN WITH STEAM DOES NOT EXIST. Nothing in server/steam/ calls
-// newToken, reads or writes auth_tokens, or mints any credential; a
-// steam_links row is a cosmetic-mirror pointer for the deeds achievement
-// mirror, never an identity or session source. Login stays email + Discord
-// only, everywhere, always.
+// THE HARD RULE, pinned by tests/server/steam_routes.test.ts: nothing in
+// server/steam/ calls newToken, reads or writes auth_tokens, or mints any
+// credential. Steam LOGIN exists since the Wyndlewood Early Access decision,
+// but it lives OUTSIDE this directory (server/steam_login.ts) so the link
+// surface stays credential-free. What changed for these routes: a
+// steam_links row can now be the ONLY way into an account a first Steam
+// sign-in provisioned, so unlink and reclaim-by-proof both refuse to strip
+// the row from such an account while it holds characters
+// (steamLinkOwnerStanding).
 //
 // POST /api/steam/link { ticket }: the client (desktop shell only in v1)
 // obtains a Steam session ticket bound to the wocc-link identity and posts
@@ -32,6 +35,7 @@ import {
   displaceSteamLink,
   insertSteamLink,
   steamLinkForAccount,
+  steamLinkOwnerStanding,
 } from './steam_db';
 import { isTicketShape } from './ticket';
 import { verifyLinkTicket } from './web_api';
@@ -79,6 +83,14 @@ async function linkHandler(ctx: Ctx): Promise<void> {
     // controls the Steam login always wins in steady state. (The server-issued
     // identity-challenge in ticket.ts is the stronger future design; today the
     // fresh-ticket displacement is the reclaim path.)
+    // Never strand progress: when the current holder is a Steam-only account
+    // (provisioned by a first Steam sign-in, no other login) that holds
+    // characters, its link is its only credential, so the reclaim refuses
+    // instead of orphaning it. An empty Steam-only account may be displaced.
+    const standing = await steamLinkOwnerStanding(owner);
+    if (!standing.hasOtherLogin && standing.hasCharacters) {
+      throw new HttpError(409, 'steam.account_taken');
+    }
     const displaced = await displaceSteamLink(accountId, steamId);
     if (displaced.result === 'account_linked') throw new HttpError(409, 'steam.already_linked');
     if (displaced.result === 'steam_taken') throw new HttpError(409, 'steam.account_taken');
@@ -99,9 +111,16 @@ async function linkHandler(ctx: Ctx): Promise<void> {
   json(ctx.res, 200, { linked: true, steamId });
 }
 
-/** DELETE /api/steam/link: drop the caller's link. Idempotent. */
+/** DELETE /api/steam/link: drop the caller's link. Idempotent (refused only
+ *  when the link is the account's last way to sign in). */
 async function unlinkHandler(ctx: Ctx): Promise<void> {
   const accountId = ctxAccountId(ctx);
+  // A Steam-only account (no password, email, Discord or Apple) would become
+  // unreachable without its link: refuse until the player adds another login.
+  if ((await steamLinkForAccount(accountId)) !== null) {
+    const standing = await steamLinkOwnerStanding(accountId);
+    if (!standing.hasOtherLogin) throw new HttpError(409, 'steam.unlink_last_login');
+  }
   await deleteSteamLink(accountId);
   onLinkChanged(accountId, null);
   json(ctx.res, 200, { unlinked: true });

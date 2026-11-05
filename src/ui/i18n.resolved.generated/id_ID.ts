@@ -5055,6 +5055,10 @@ export const id_ID: EnTranslations = {
     "auth": {
       "appleLoginCta": "Lanjutkan dengan Apple",
       "appleError": "Tidak dapat masuk dengan Apple. Silakan coba lagi.",
+      "steamLoginCta": "Continue with Steam",
+      "steamError": "Could not sign in with Steam. Please try again.",
+      "steamNoTicket": "Steam is not running. Start Steam, then try again.",
+      "steamUnavailable": "Steam sign-in is not available right now.",
       "appleChoiceIntro": "Buat akun baru, atau tautkan Apple ke akun yang sudah kamu miliki.",
       "appleChoiceExpired": "Sesi masuk dengan Apple itu telah kedaluwarsa. Silakan masuk lagi dengan Apple.",
       "forgotPrompt": "Lupa kata sandi?",
@@ -8200,7 +8204,8 @@ export const id_ID: EnTranslations = {
       "banned": "Akun Steam itu tidak dapat ditautkan.",
       "already_linked": "Akunmu sudah memiliki akun Steam yang tertaut.",
       "account_taken": "Akun Steam itu sudah tertaut ke akun lain.",
-      "upstream": "Steam tidak merespons. Coba lagi dalam beberapa saat."
+      "upstream": "Steam tidak merespons. Coba lagi dalam beberapa saat.",
+      "unlink_last_login": "Steam is your only way to sign in to this account. Add an email and password before unlinking it."
     },
     "epic": {
       "disabled": "Penautan Epic sedang tidak tersedia.",

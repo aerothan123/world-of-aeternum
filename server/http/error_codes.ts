@@ -197,7 +197,7 @@ export const ERROR_CODES = deepFreeze({
 
   // --- Steam link family codes (server/steam/). The whole surface is
   // env-gated: with STEAM_ENABLED unset every route answers steam.disabled.
-  // Linking is cosmetic-mirror only; login with Steam does not exist. ---
+  // Steam login (POST /api/auth/steam, server/steam_login.ts) reuses these. ---
 
   // The Steam surface is not enabled on this server (feature-off 503).
   'steam.disabled': { params: [] },
@@ -211,6 +211,8 @@ export const ERROR_CODES = deepFreeze({
   'steam.account_taken': { params: [] },
   // The Steam Web API could not be reached or answered garbage (503).
   'steam.upstream': { params: [] },
+  // Unlink refused: the Steam link is this account's only way to sign in (409).
+  'steam.unlink_last_login': { params: [] },
 
   // --- Epic link family codes (server/epic/). The whole surface is
   // env-gated: with EPIC_ENABLED unset every route answers epic.disabled.

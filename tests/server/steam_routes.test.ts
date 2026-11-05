@@ -19,6 +19,7 @@ vi.mock('../../server/steam/steam_db', () => ({
   insertSteamLink: vi.fn(async () => 'ok'),
   displaceSteamLink: vi.fn(async () => ({ result: 'ok', displacedAccountId: null })),
   deleteSteamLink: vi.fn(async () => {}),
+  steamLinkOwnerStanding: vi.fn(async () => ({ hasOtherLogin: true, hasCharacters: false })),
 }));
 vi.mock('../../server/steam/web_api', () => ({
   verifyLinkTicket: vi.fn(async () => ({ kind: 'ok', steamId: '76561198000000001' })),
@@ -60,6 +61,7 @@ import {
   displaceSteamLink,
   insertSteamLink,
   steamLinkForAccount,
+  steamLinkOwnerStanding,
 } from '../../server/steam/steam_db';
 import {
   isTicketShape,
@@ -76,6 +78,7 @@ const accountForSteamIdMock = vi.mocked(accountForSteamId);
 const insertMock = vi.mocked(insertSteamLink);
 const displaceMock = vi.mocked(displaceSteamLink);
 const deleteMock = vi.mocked(deleteSteamLink);
+const standingMock = vi.mocked(steamLinkOwnerStanding);
 const verifyMock = vi.mocked(verifyLinkTicket);
 const reconcileMock = vi.mocked(reconcileLink);
 const onLinkChangedMock = vi.mocked(onLinkChanged);
@@ -137,6 +140,7 @@ afterEach(() => {
   insertMock.mockResolvedValue('ok');
   displaceMock.mockResolvedValue({ result: 'ok', displacedAccountId: null });
   verifyMock.mockResolvedValue({ kind: 'ok', steamId: STEAM_ID });
+  standingMock.mockResolvedValue({ hasOtherLogin: true, hasCharacters: false });
 });
 
 // ---------------------------------------------------------------------------
@@ -390,6 +394,70 @@ describe('DELETE /api/steam/link', () => {
   });
 });
 
+describe('Steam-only accounts keep their only login (Steam login provisioned them)', () => {
+  const linkedRow = {
+    accountId: ACCOUNT.accountId,
+    steamId: STEAM_ID,
+    createdAt: '2026-01-01T00:00:00.000Z',
+  };
+
+  it('unlink refuses 409 steam.unlink_last_login when the link is the only login', async () => {
+    enableSteam();
+    linkForAccountMock.mockResolvedValue(linkedRow);
+    standingMock.mockResolvedValue({ hasOtherLogin: false, hasCharacters: true });
+    const ctx = fakeCtx({ method: 'DELETE', url: '/api/steam/link', account: ACCOUNT });
+    await expect(routeFor('DELETE', '/api/steam/link').handler(ctx)).rejects.toMatchObject({
+      status: 409,
+      code: 'steam.unlink_last_login',
+    });
+    expect(deleteMock).not.toHaveBeenCalled();
+  });
+
+  it('unlink still proceeds for an account with another login', async () => {
+    enableSteam();
+    linkForAccountMock.mockResolvedValue(linkedRow);
+    standingMock.mockResolvedValue({ hasOtherLogin: true, hasCharacters: true });
+    const ctx = fakeCtx({ method: 'DELETE', url: '/api/steam/link', account: ACCOUNT });
+    await routeFor('DELETE', '/api/steam/link').handler(ctx);
+    expect(captured(ctx.res).status).toBe(200);
+    expect(deleteMock).toHaveBeenCalledWith(ACCOUNT.accountId);
+  });
+
+  it('reclaim-by-proof refuses to strand a Steam-only account that holds characters', async () => {
+    enableSteam();
+    accountForSteamIdMock.mockResolvedValue(99);
+    standingMock.mockResolvedValue({ hasOtherLogin: false, hasCharacters: true });
+    const ctx = fakeCtx({
+      method: 'POST',
+      url: '/api/steam/link',
+      account: ACCOUNT,
+      body: { ticket: GOOD_TICKET },
+    });
+    await expect(routeFor('POST', '/api/steam/link').handler(ctx)).rejects.toMatchObject({
+      status: 409,
+      code: 'steam.account_taken',
+    });
+    expect(standingMock).toHaveBeenCalledWith(99);
+    expect(displaceMock).not.toHaveBeenCalled();
+  });
+
+  it('reclaim-by-proof may displace an EMPTY Steam-only account (nothing is lost)', async () => {
+    enableSteam();
+    accountForSteamIdMock.mockResolvedValue(99);
+    standingMock.mockResolvedValue({ hasOtherLogin: false, hasCharacters: false });
+    displaceMock.mockResolvedValue({ result: 'ok', displacedAccountId: 99 });
+    const ctx = fakeCtx({
+      method: 'POST',
+      url: '/api/steam/link',
+      account: ACCOUNT,
+      body: { ticket: GOOD_TICKET },
+    });
+    await routeFor('POST', '/api/steam/link').handler(ctx);
+    expect(captured(ctx.res).status).toBe(200);
+    expect(displaceMock).toHaveBeenCalledWith(ACCOUNT.accountId, STEAM_ID);
+  });
+});
+
 describe('GET /api/steam/status', () => {
   it('reports a linked caller with the steam id', async () => {
     enableSteam();
@@ -552,7 +620,7 @@ describe('ticket helpers (pure)', () => {
 // The forbidden-login rule: the steam domain can never mint credentials.
 // ---------------------------------------------------------------------------
 
-describe('login with Steam does not exist', () => {
+describe('the steam link domain never mints a credential (login lives in server/steam_login.ts)', () => {
   const STEAM_DIR = path.resolve(process.cwd(), 'server/steam');
 
   // The source files the rule covers, exactly. The `>= 7` floor this replaces

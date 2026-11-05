@@ -723,8 +723,13 @@ For off-box safety, sync the directory to S3 occasionally:
   and a publisher Web API key in `STEAM_WEB_API_KEY` (partner.steam-api.com)
   in the server runtime env. Docker Compose passes these three variables from
   the host `.env` into the game container. The key is a secret: it must never
-  appear in logs or client code. Linking is a cosmetic mirror for deed
-  achievements only; login with Steam does not exist.
+  appear in logs or client code. With the surface on, **Steam login** is on
+  too (`POST /api/auth/steam`, `server/steam_login.ts`): the Steam build's
+  "Continue with Steam" signs a player in with their Steam session and a first
+  sign-in creates the account, no separate registration. `STEAM_LOGIN_ENABLED=0`
+  keeps the link-only behavior. Login tickets are single-use per realm process;
+  run Steam login on ONE realm process (or move the replay guard into Postgres
+  first, see `server/steam/CLAUDE.md`).
 - **Epic link + achievement mirror**: players can link an Epic account so
   their Book of Deeds achievements mirror to Epic Online Services
   (`server/epic/`). It is **off until configured** (merge-safe dark default):

@@ -5055,6 +5055,10 @@ export const es_ES: EnTranslations = {
     "auth": {
       "appleLoginCta": "Continuar con Apple",
       "appleError": "No se pudo iniciar sesión con Apple. Inténtalo de nuevo.",
+      "steamLoginCta": "Continue with Steam",
+      "steamError": "Could not sign in with Steam. Please try again.",
+      "steamNoTicket": "Steam is not running. Start Steam, then try again.",
+      "steamUnavailable": "Steam sign-in is not available right now.",
       "appleChoiceIntro": "Crea una cuenta nueva o vincula Apple a una que ya tengas.",
       "appleChoiceExpired": "Ese inicio de sesión con Apple ha caducado. Vuelve a iniciar sesión con Apple.",
       "forgotPrompt": "¿Olvidaste tu contraseña?",
@@ -8200,7 +8204,8 @@ export const es_ES: EnTranslations = {
       "banned": "Esa cuenta de Steam no se puede vincular.",
       "already_linked": "Tu cuenta ya tiene una cuenta de Steam vinculada.",
       "account_taken": "Esa cuenta de Steam ya está vinculada a otra cuenta.",
-      "upstream": "Steam no respondió. Inténtalo de nuevo en un momento."
+      "upstream": "Steam no respondió. Inténtalo de nuevo en un momento.",
+      "unlink_last_login": "Steam is your only way to sign in to this account. Add an email and password before unlinking it."
     },
     "epic": {
       "disabled": "La vinculación con Epic no está disponible en este momento.",

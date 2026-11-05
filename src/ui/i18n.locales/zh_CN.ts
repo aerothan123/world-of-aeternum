@@ -24482,4 +24482,9 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'seasonal.thatchgrin.wakeYell': '夜幕降临南瓜田！谁敢踏进我的田地？',
   'seasonal.thatchgrin.sleepYell': '太阳出来了。回到木桩上，继续看守。',
   'seasonal.pumpkins.progress': '{label}：{current}/{total}',
+  'hudChrome.auth.steamLoginCta': '使用 Steam 继续',
+  'hudChrome.auth.steamError': '无法使用 Steam 登录，请重试。',
+  'hudChrome.auth.steamNoTicket': 'Steam 未运行。请启动 Steam 后重试。',
+  'hudChrome.auth.steamUnavailable': 'Steam 登录暂时不可用。',
+  'apiError.steam.unlink_last_login': 'Steam 是你登录此账号的唯一方式。请先添加邮箱和密码，再解除关联。',
 };

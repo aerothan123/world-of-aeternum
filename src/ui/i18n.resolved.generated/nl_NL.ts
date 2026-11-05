@@ -5055,6 +5055,10 @@ export const nl_NL: EnTranslations = {
     "auth": {
       "appleLoginCta": "Ga verder met Apple",
       "appleError": "Aanmelden met Apple is mislukt. Probeer het opnieuw.",
+      "steamLoginCta": "Continue with Steam",
+      "steamError": "Could not sign in with Steam. Please try again.",
+      "steamNoTicket": "Steam is not running. Start Steam, then try again.",
+      "steamUnavailable": "Steam sign-in is not available right now.",
       "appleChoiceIntro": "Maak een nieuw account of koppel Apple aan een bestaand account.",
       "appleChoiceExpired": "Deze aanmelding bij Apple is verlopen. Meld je opnieuw aan met Apple.",
       "forgotPrompt": "Wachtwoord vergeten?",
@@ -8200,7 +8204,8 @@ export const nl_NL: EnTranslations = {
       "banned": "Dat Steam-account kan niet worden gekoppeld.",
       "already_linked": "Je account heeft al een gekoppeld Steam-account.",
       "account_taken": "Dat Steam-account is al aan een ander account gekoppeld.",
-      "upstream": "Steam reageerde niet. Probeer het zo meteen opnieuw."
+      "upstream": "Steam reageerde niet. Probeer het zo meteen opnieuw.",
+      "unlink_last_login": "Steam is your only way to sign in to this account. Add an email and password before unlinking it."
     },
     "epic": {
       "disabled": "Epic-koppeling is momenteel niet beschikbaar.",

@@ -7741,7 +7741,7 @@ function wireStartScreens(): Promise<void> {
   void loadProjectStats(() => api.projectStats());
   wireHomepageMusicToggle();
   wireGithubLink();
-  wireSteamLink(api);
+  wireSteamLink(api, () => completeOnlineAuth());
   wireEpicLink(api);
 
   // mode select

@@ -4,10 +4,12 @@
 // ONLY, deliberately mirroring server/deeds_db.ts: modules that stub the db
 // module in tests never need fakes for these functions.
 //
-// A steam_links row is a cosmetic-mirror pointer (which Steam account mirrors
-// this WoCC account's deed unlocks), never an identity or session source.
+// A steam_links row says which Steam account belongs to this account: the
+// deeds achievement mirror reads it, and since Wyndlewood's Steam login the
+// login route (server/steam_login.ts, deliberately outside this directory)
+// resolves a verified Steam id to its account through accountForSteamId.
 // Nothing in this module (or anywhere in server/steam/) reads or writes
-// auth_tokens or mints credentials; the forbidden-login test pins that.
+// auth_tokens or mints credentials; the forbidden-mint scan pins that.
 
 import { pool } from '../db';
 import { isUniqueViolation } from '../http_util';
@@ -159,4 +161,37 @@ export async function displaceSteamLink(
   } finally {
     client.release();
   }
+}
+
+/** Whether an account can still sign in WITHOUT its Steam link, and whether it
+ *  holds any characters. Since Steam login (server/steam_login.ts), an account
+ *  provisioned by a first Steam sign-in has NO other credential: no chosen
+ *  password, no email to reset one with, no Discord or Apple link. Its
+ *  steam_links row is then its only way in, so the link routes must never strip
+ *  that row from an account that holds progress (unlink refuses, displacement
+ *  refuses). An empty Steam-only account (no characters) may still be displaced:
+ *  nothing is lost, and that is exactly the "I clicked Continue with Steam
+ *  before linking my old account" path. */
+export interface SteamLinkOwnerStanding {
+  hasOtherLogin: boolean;
+  hasCharacters: boolean;
+}
+
+export async function steamLinkOwnerStanding(accountId: number): Promise<SteamLinkOwnerStanding> {
+  const res = await pool.query(
+    `SELECT (a.password_set
+             OR COALESCE(btrim(a.email), '') <> ''
+             OR EXISTS (SELECT 1 FROM discord_links d WHERE d.account_id = a.id)
+             OR EXISTS (SELECT 1 FROM apple_auth_links l WHERE l.account_id = a.id)) AS has_other_login,
+            EXISTS (SELECT 1 FROM characters c WHERE c.account_id = a.id) AS has_characters
+       FROM accounts a WHERE a.id = $1`,
+    [accountId],
+  );
+  const row = res.rows[0];
+  // A vanished account has nothing to protect: read it as fully protected-free.
+  if (!row) return { hasOtherLogin: true, hasCharacters: false };
+  return {
+    hasOtherLogin: row.has_other_login === true,
+    hasCharacters: row.has_characters === true,
+  };
 }

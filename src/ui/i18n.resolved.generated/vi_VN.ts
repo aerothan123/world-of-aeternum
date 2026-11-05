@@ -5055,6 +5055,10 @@ export const vi_VN: EnTranslations = {
     "auth": {
       "appleLoginCta": "Tiếp Tục với Apple",
       "appleError": "Không thể đăng nhập bằng Apple. Vui lòng thử lại.",
+      "steamLoginCta": "Continue with Steam",
+      "steamError": "Could not sign in with Steam. Please try again.",
+      "steamNoTicket": "Steam is not running. Start Steam, then try again.",
+      "steamUnavailable": "Steam sign-in is not available right now.",
       "appleChoiceIntro": "Tạo tài khoản mới, hoặc liên kết Apple với tài khoản bạn đã có.",
       "appleChoiceExpired": "Lần đăng nhập bằng Apple đó đã hết hạn. Vui lòng đăng nhập lại bằng Apple.",
       "forgotPrompt": "Quên mật khẩu?",
@@ -8200,7 +8204,8 @@ export const vi_VN: EnTranslations = {
       "banned": "Không thể liên kết tài khoản Steam đó.",
       "already_linked": "Tài khoản của bạn đã liên kết với một tài khoản Steam.",
       "account_taken": "Tài khoản Steam đó đã được liên kết với một tài khoản khác.",
-      "upstream": "Steam không phản hồi. Hãy thử lại sau giây lát."
+      "upstream": "Steam không phản hồi. Hãy thử lại sau giây lát.",
+      "unlink_last_login": "Steam is your only way to sign in to this account. Add an email and password before unlinking it."
     },
     "epic": {
       "disabled": "Hiện không thể liên kết Epic.",

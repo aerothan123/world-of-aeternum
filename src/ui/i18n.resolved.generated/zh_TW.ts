@@ -5055,6 +5055,10 @@ export const zh_TW: EnTranslations = {
     "auth": {
       "appleLoginCta": "透過 Apple 繼續",
       "appleError": "無法透過 Apple 登入。請再試一次。",
+      "steamLoginCta": "使用 Steam 繼續",
+      "steamError": "無法使用 Steam 登入，請再試一次。",
+      "steamNoTicket": "Steam 未執行。請啟動 Steam 後再試一次。",
+      "steamUnavailable": "Steam 登入目前無法使用。",
       "appleChoiceIntro": "建立新帳戶，或將 Apple 連結到現有帳戶。",
       "appleChoiceExpired": "Apple 登入已過期。請再次使用 Apple 登入。",
       "forgotPrompt": "忘記密碼？",
@@ -8200,7 +8204,8 @@ export const zh_TW: EnTranslations = {
       "banned": "該 Steam 帳號無法連結。",
       "already_linked": "你的帳號已連結一個 Steam 帳號。",
       "account_taken": "該 Steam 帳號已連結到另一個帳號。",
-      "upstream": "Steam 未回應。請稍後重試。"
+      "upstream": "Steam 未回應。請稍後重試。",
+      "unlink_last_login": "Steam 是你登入此帳號的唯一方式。請先新增電子郵件與密碼，再解除連結。"
     },
     "epic": {
       "disabled": "Epic 連結目前無法使用。",

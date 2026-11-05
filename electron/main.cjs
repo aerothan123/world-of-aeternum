@@ -1050,6 +1050,20 @@ ipcMain.handle('desktop-steam-link-settled', (event) => {
   return null;
 });
 
+// Steam login tickets (POST /api/auth/steam): same trust gate and never-throws
+// contract as the link ticket, on the login identity. Answers
+// { ticket, personaName } or null.
+ipcMain.handle('desktop-steam-login-ticket', async (event) => {
+  if (!trustedSender(event)) return null;
+  return await steamShell.getLoginTicket();
+});
+
+ipcMain.handle('desktop-steam-login-settled', (event) => {
+  if (!trustedSender(event)) return null;
+  steamShell.cancelLoginTicket();
+  return null;
+});
+
 // Whether this shell can mint link tickets at all (steam distribution or the
 // unpackaged dev loop): the renderer hides the Link button when false instead
 // of offering a click whose ticket can never exist (website builds). Computed

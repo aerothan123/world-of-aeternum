@@ -25823,4 +25823,9 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'seasonal.thatchgrin.wakeYell': '밭에 밤이 내린다! 누가 내 밭을 걷느냐?',
   'seasonal.thatchgrin.sleepYell': '해가 떴군. 기둥으로 돌아가 다시 지켜봐야지.',
   'seasonal.pumpkins.progress': '{label}: {current}/{total}',
+  'hudChrome.auth.steamLoginCta': 'Steam으로 계속',
+  'hudChrome.auth.steamError': 'Steam으로 로그인할 수 없습니다. 다시 시도해 주세요.',
+  'hudChrome.auth.steamNoTicket': 'Steam이 실행 중이 아닙니다. Steam을 실행한 후 다시 시도해 주세요.',
+  'hudChrome.auth.steamUnavailable': '지금은 Steam 로그인을 사용할 수 없습니다.',
+  'apiError.steam.unlink_last_login': '이 계정에 로그인하는 방법은 Steam뿐입니다. 연결을 해제하기 전에 이메일과 비밀번호를 추가해 주세요.',
 };

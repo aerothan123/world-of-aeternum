@@ -5055,6 +5055,10 @@ export const ru_RU: EnTranslations = {
     "auth": {
       "appleLoginCta": "Продолжить с Apple",
       "appleError": "Не удалось войти через Apple. Попробуйте ещё раз.",
+      "steamLoginCta": "Продолжить через Steam",
+      "steamError": "Не удалось войти через Steam. Попробуйте ещё раз.",
+      "steamNoTicket": "Steam не запущен. Запустите Steam и попробуйте снова.",
+      "steamUnavailable": "Вход через Steam сейчас недоступен.",
       "appleChoiceIntro": "Создайте новую учётную запись или привяжите Apple к существующей.",
       "appleChoiceExpired": "Вход через Apple истёк. Войдите через Apple ещё раз.",
       "forgotPrompt": "Забыли пароль?",
@@ -8200,7 +8204,8 @@ export const ru_RU: EnTranslations = {
       "banned": "Этот аккаунт Steam нельзя привязать.",
       "already_linked": "К вашему аккаунту уже привязан аккаунт Steam.",
       "account_taken": "Этот аккаунт Steam уже привязан к другому аккаунту.",
-      "upstream": "Steam не отвечает. Повторите попытку чуть позже."
+      "upstream": "Steam не отвечает. Повторите попытку чуть позже.",
+      "unlink_last_login": "Steam остаётся единственным способом входа в эту учётную запись. Добавьте email и пароль, прежде чем отвязывать его."
     },
     "epic": {
       "disabled": "Привязка Epic сейчас недоступна.",

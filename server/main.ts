@@ -420,6 +420,7 @@ import {
 import { STATIC_PAGE_ALIASES, spaFallbackStatus } from './static_fallback';
 import { readStaticSfxSnapshot, type StaticSfxSnapshot } from './static_sfx';
 import { stopSteamMirror } from './steam/mirror';
+import { configureSteamLoginRuntime } from './steam_login';
 import {
   beginStoragePurchase,
   claimStoragePurchaseSpend,
@@ -2239,7 +2240,7 @@ async function handleApi(req: http.IncomingMessage, res: http.ServerResponse): P
         // statusHandler (server/leaderboard.ts) carries the same players_cap field.
         players_cap: canonicalPlayersCap(),
         names: [...liveGame().clients.values()].map((s) => s.name),
-        steam: { enabled: false },
+        steam: { enabled: false, login: false },
         epic: { enabled: false },
         // The /dev GUI capability advert. NOT hardcoded like steam.enabled above:
         // the dev_* cheats ride the websocket dispatcher, which this arm serves
@@ -2853,6 +2854,12 @@ configureAuthRuntime({
 });
 configureAppleAuthRuntime({
   isIpBlocked: (ip) => liveGame().isIpBlocked(ip),
+});
+// Steam login (server/steam_login.ts): the same IP-block gate and the same
+// Turnstile decision (desktop origins admitted by Origin) as the login routes.
+configureSteamLoginRuntime({
+  isIpBlocked: (ip) => liveGame().isIpBlocked(ip),
+  passesTurnstile: (req, body) => passesTurnstile(req, body, activeConfig().turnstileSecret),
 });
 
 // Inject the main.ts runtime the ported character handlers (server/characters.ts) need

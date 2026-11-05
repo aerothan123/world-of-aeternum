@@ -25818,4 +25818,9 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'seasonal.thatchgrin.wakeYell': '夜が畑に降りたぞ！ わしの畑を歩くのは誰だ？',
   'seasonal.thatchgrin.sleepYell': '日が昇った。柱に戻って、また見張りだ。',
   'seasonal.pumpkins.progress': '{label}：{current}/{total}',
+  'hudChrome.auth.steamLoginCta': 'Steamで続行',
+  'hudChrome.auth.steamError': 'Steamでサインインできませんでした。もう一度お試しください。',
+  'hudChrome.auth.steamNoTicket': 'Steamが起動していません。Steamを起動してからもう一度お試しください。',
+  'hudChrome.auth.steamUnavailable': '現在Steamでのサインインはご利用いただけません。',
+  'apiError.steam.unlink_last_login': 'このアカウントにはSteamでしかサインインできません。連携を解除する前にメールアドレスとパスワードを追加してください。',
 };

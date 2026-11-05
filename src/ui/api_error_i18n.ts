@@ -136,6 +136,7 @@ export const API_ERROR_KEYS = {
   'steam.already_linked': 'apiError.steam.already_linked',
   'steam.account_taken': 'apiError.steam.account_taken',
   'steam.upstream': 'apiError.steam.upstream',
+  'steam.unlink_last_login': 'apiError.steam.unlink_last_login',
   // epic: the env-gated Epic link family (server/epic/).
   'epic.disabled': 'apiError.epic.disabled',
   'epic.invalid_token': 'apiError.epic.invalid_token',

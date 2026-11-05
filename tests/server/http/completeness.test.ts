@@ -118,6 +118,7 @@ const REGISTRY_ONLY_PATHS = new Set<string>([
   '/api/characters/:id/appearance-reroll',
   '/api/steam/link',
   '/api/steam/status',
+  '/api/auth/steam',
   '/api/battleground/leaderboard',
   '/api/epic/link',
   '/api/epic/status',
@@ -330,6 +331,8 @@ describe('registry completeness: migrated baseline (public reads + auth + charac
     { method: 'POST', path: '/api/steam/link' },
     { method: 'DELETE', path: '/api/steam/link' },
     { method: 'GET', path: '/api/steam/status' },
+    // Steam login (server/steam_login.ts): registry-only, env-gated dark.
+    { method: 'POST', path: '/api/auth/steam' },
     // The Epic link trio (server/epic/routes.ts): registry-only twin of Steam,
     // env-gated dark until EPIC_ENABLED=1.
     { method: 'POST', path: '/api/epic/link' },

@@ -198,6 +198,7 @@ services:
       STEAM_ENABLED: ${STEAM_ENABLED:-}
       STEAM_APP_ID: ${STEAM_APP_ID:-}
       STEAM_WEB_API_KEY: ${STEAM_WEB_API_KEY:-}
+      STEAM_LOGIN_ENABLED: ${STEAM_LOGIN_ENABLED:-}
       # Optional Epic account link and Book of Deeds achievement mirror.
       # Dark unless EPIC_ENABLED is exactly 1 (see DEPLOY.md). Secrets stay on
       # the host .env; never commit real values.

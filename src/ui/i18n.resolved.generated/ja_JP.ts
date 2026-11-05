@@ -5055,6 +5055,10 @@ export const ja_JP: EnTranslations = {
     "auth": {
       "appleLoginCta": "Appleで続ける",
       "appleError": "Appleでサインインできませんでした。もう一度お試しください。",
+      "steamLoginCta": "Steamで続行",
+      "steamError": "Steamでサインインできませんでした。もう一度お試しください。",
+      "steamNoTicket": "Steamが起動していません。Steamを起動してからもう一度お試しください。",
+      "steamUnavailable": "現在Steamでのサインインはご利用いただけません。",
       "appleChoiceIntro": "新しいアカウントを作成するか、Appleを既存のアカウントに連携します。",
       "appleChoiceExpired": "Appleでのサインインの有効期限が切れました。もう一度お試しください。",
       "forgotPrompt": "パスワードをお忘れですか？",
@@ -8200,7 +8204,8 @@ export const ja_JP: EnTranslations = {
       "banned": "そのSteamアカウントは連携できません。",
       "already_linked": "このアカウントには既にSteamアカウントが連携されています。",
       "account_taken": "そのSteamアカウントは既に別のアカウントに連携されています。",
-      "upstream": "Steamから応答がありません。しばらくしてからもう一度お試しください。"
+      "upstream": "Steamから応答がありません。しばらくしてからもう一度お試しください。",
+      "unlink_last_login": "このアカウントにはSteamでしかサインインできません。連携を解除する前にメールアドレスとパスワードを追加してください。"
     },
     "epic": {
       "disabled": "Epic連携は現在利用できません。",

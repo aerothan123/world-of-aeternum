@@ -5055,6 +5055,10 @@ export const cs_CZ: EnTranslations = {
     "auth": {
       "appleLoginCta": "Pokračovat přes Apple",
       "appleError": "Přihlášení přes Apple se nezdařilo. Zkus to znovu.",
+      "steamLoginCta": "Continue with Steam",
+      "steamError": "Could not sign in with Steam. Please try again.",
+      "steamNoTicket": "Steam is not running. Start Steam, then try again.",
+      "steamUnavailable": "Steam sign-in is not available right now.",
       "appleChoiceIntro": "Vytvoř nový účet, nebo propoj Apple s účtem, který už máš.",
       "appleChoiceExpired": "Platnost tohoto přihlášení přes Apple vypršela. Přihlas se přes Apple znovu.",
       "forgotPrompt": "Zapomenuté heslo?",
@@ -8200,7 +8204,8 @@ export const cs_CZ: EnTranslations = {
       "banned": "Tento účet Steam nelze propojit.",
       "already_linked": "Tvůj účet už má propojený účet Steam.",
       "account_taken": "Tento účet Steam už je propojený s jiným účtem.",
-      "upstream": "Steam neodpověděl. Zkus to za chvíli znovu."
+      "upstream": "Steam neodpověděl. Zkus to za chvíli znovu.",
+      "unlink_last_login": "Steam is your only way to sign in to this account. Add an email and password before unlinking it."
     },
     "epic": {
       "disabled": "Propojení s Epic momentálně není k dispozici.",

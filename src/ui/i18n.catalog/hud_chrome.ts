@@ -6402,6 +6402,10 @@ export const hudChromeStrings = {
   auth: {
     appleLoginCta: 'Continue with Apple',
     appleError: 'Could not sign in with Apple. Please try again.',
+    steamLoginCta: 'Continue with Steam',
+    steamError: 'Could not sign in with Steam. Please try again.',
+    steamNoTicket: 'Steam is not running. Start Steam, then try again.',
+    steamUnavailable: 'Steam sign-in is not available right now.',
     appleChoiceIntro: 'Create a new account, or link Apple to one you already have.',
     appleChoiceExpired: 'That Apple sign-in expired. Please sign in with Apple again.',
     forgotPrompt: 'Forgot password?',

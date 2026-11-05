@@ -130,6 +130,11 @@ contextBridge.exposeInMainWorld('wocDesktop', {
   // rejected) so the shell can cancel the Steam auth ticket (Valve's
   // CancelAuthTicket contract). Fire-and-forget; the main handler is idempotent.
   steamLinkSettled: () => ipcRenderer.invoke('desktop-steam-link-settled'),
+  // A Steam LOGIN ticket ({ ticket, personaName }) for POST /api/auth/steam, or
+  // null when Steam is unavailable. Never rejects (steam.cjs owns the failures).
+  steamLoginTicket: () => ipcRenderer.invoke('desktop-steam-login-ticket'),
+  // Signal that the login POST settled so the shell cancels that ticket.
+  steamLoginSettled: () => ipcRenderer.invoke('desktop-steam-login-settled'),
   // An Epic link proof (string) for POST /api/epic/link, or null when Epic is
   // unavailable (website/steam build, no launcher exchange code, adapter
   // missing). The main-process handler never rejects; epic.cjs owns every

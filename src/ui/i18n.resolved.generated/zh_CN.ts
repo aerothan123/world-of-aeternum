@@ -5055,6 +5055,10 @@ export const zh_CN: EnTranslations = {
     "auth": {
       "appleLoginCta": "通过 Apple 继续",
       "appleError": "无法通过 Apple 登录。请重试。",
+      "steamLoginCta": "使用 Steam 继续",
+      "steamError": "无法使用 Steam 登录，请重试。",
+      "steamNoTicket": "Steam 未运行。请启动 Steam 后重试。",
+      "steamUnavailable": "Steam 登录暂时不可用。",
       "appleChoiceIntro": "创建新帐户，或将 Apple 关联到现有帐户。",
       "appleChoiceExpired": "Apple 登录已过期。请再次使用 Apple 登录。",
       "forgotPrompt": "忘记密码？",
@@ -8200,7 +8204,8 @@ export const zh_CN: EnTranslations = {
       "banned": "该 Steam 账号无法关联。",
       "already_linked": "你的账号已关联一个 Steam 账号。",
       "account_taken": "该 Steam 账号已关联到另一个账号。",
-      "upstream": "Steam 未响应。请稍后重试。"
+      "upstream": "Steam 未响应。请稍后重试。",
+      "unlink_last_login": "Steam 是你登录此账号的唯一方式。请先添加邮箱和密码，再解除关联。"
     },
     "epic": {
       "disabled": "Epic 关联当前不可用。",

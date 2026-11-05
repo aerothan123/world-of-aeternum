@@ -652,6 +652,8 @@ describe('electron IPC channel contract (preload <-> main)', () => {
       'steamLinkTicket',
       'steamLinkSupported',
       'steamLinkSettled',
+      'steamLoginTicket',
+      'steamLoginSettled',
       'epicLinkProof',
       'epicLinkSupported',
       'epicLinkSettled',
