@@ -130,6 +130,19 @@ const LEGACY_POLISHED_HELD_MODELS = new Set([
 
 /** The creature and mount defs whose authored atlas showed the low-tier film. */
 const AUTHORED_ATLAS_DEFS = [
+  // WYNDLEWOOD's painted wildlife (wildlife_looks.ts) and the Chapter One humanoid
+  // bodies refit on the WOC rig (story_mob_looks.ts, the painted single mesh keeps
+  // its class def's flag).
+  'wildlife_wolf',
+  'wildlife_boar',
+  'wildlife_fox',
+  'wildlife_bear',
+  'wildlife_rat',
+  'wildlife_spider',
+  'wildlife_crab',
+  'wildlife_beetle',
+  'story_gravestirred_fieldhand',
+  'story_veiled_rite_tender',
   // The sprite buddy: Blender-painted orb gradients.
   'buddy_sprites',
   'form_cat',
