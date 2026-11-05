@@ -2872,6 +2872,8 @@ export const ko_KR: EnTranslations = {
       "alwaysShowAllBuffs": "모든 버프를 항상 표시",
       "showAuraCaster": "툴팁에 효과 시전자 표시",
       "highContrastBackground": "고대비 배경",
+      "shareAnalytics": "사용 및 성능 데이터 공유",
+      "shareAnalyticsNote": "직접 켜지 않으면 꺼져 있습니다. 대략적인 플레이 집계와 성능 보고서를 Wyndlewood에만 보내며 다른 회사에는 보내지 않습니다.",
       "startAttackOnAbility": "스킬 사용 시 자동 공격",
       "stopAutoAttackOnTargetSwitch": "대상 전환 시 자동 공격 중지",
       "walkByAutoloot": "지나가며 자동 획득",
@@ -15811,6 +15813,26 @@ export const ko_KR: EnTranslations = {
     "ultraDesc": "가장 풍부한 고정 프리셋. 고급 그래픽 카드에 적합합니다.",
     "changeLater": "옵션의 그래픽 품질에서 언제든지 변경할 수 있습니다.",
     "confirm": "계속"
+  },
+  "legalPrompt": {
+    "title": "최종 사용자 라이선스 계약",
+    "body": "플레이하기 전에 Wyndlewood 최종 사용자 라이선스 계약을 읽고 동의해 주세요. 이 계약은 서비스 약관 및 개인정보 처리방침과 함께 적용됩니다.",
+    "earlyAccess": "Wyndlewood는 앞서 해보기 단계입니다. 기능, 밸런스, 콘텐츠는 변경되며, 정식 출시 때 상점 페이지에 공지된 대로 진행 상황이 한 번 초기화될 수 있습니다.",
+    "eulaLink": "최종 사용자 라이선스 계약",
+    "termsLink": "서비스 약관",
+    "privacyLink": "개인정보 처리방침",
+    "version": "계약 버전 {version}",
+    "accept": "동의합니다",
+    "decline": "거부"
+  },
+  "analyticsPrompt": {
+    "title": "Wyndlewood 개선에 도움 주기",
+    "body": "Wyndlewood가 사용 및 성능 데이터를 수집해도 될까요? 동의하면 게임이 대략적인 집계(세션 수, 5분 단위의 플레이 시간, 대략적인 프레임 속도)와 기기 및 프레임 시간에 대한 주기적인 성능 보고서를 저희 서버로 보냅니다.",
+    "noThirdParty": "광고 회사나 분석 회사에는 어떤 데이터도 보내지 않으며, 공유를 선택하지 않으면 아무것도 보내지 않습니다.",
+    "privacyLink": "개인정보 처리방침 읽기",
+    "changeLater": "이 설정은 옵션에서 언제든지 바꿀 수 있습니다.",
+    "share": "공유",
+    "decline": "공유 안 함"
   },
   "serverUnavailable": {
     "title": "World of ClaudeCraft - 월드 이용 불가",

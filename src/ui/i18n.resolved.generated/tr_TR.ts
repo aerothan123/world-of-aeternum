@@ -2872,6 +2872,8 @@ export const tr_TR: EnTranslations = {
       "alwaysShowAllBuffs": "Her Zaman Tüm Güçlendirmeleri Göster",
       "showAuraCaster": "İpuçlarında Aura Vericisini Göster",
       "highContrastBackground": "Yüksek Kontrastlı Arka Plan",
+      "shareAnalytics": "Share Usage and Performance Data",
+      "shareAnalyticsNote": "Off unless you turn it on. Sends coarse play counters and performance reports to Wyndlewood only, never to other companies.",
       "startAttackOnAbility": "Yetenek Kullanımında Otomatik Saldırı",
       "stopAutoAttackOnTargetSwitch": "Hedef Değiştirince Otomatik Saldırıyı Durdur",
       "walkByAutoloot": "Yanından Geçerken Otomatik Yağma",
@@ -15811,6 +15813,26 @@ export const tr_TR: EnTranslations = {
     "ultraDesc": "Görsel açıdan en zengin sabit ön ayar. Üst düzey bir ekran kartına uygundur.",
     "changeLater": "Bunu istediğin zaman Seçenekler içindeki Grafik Kalitesi bölümünden değiştirebilirsin.",
     "confirm": "Devam Et"
+  },
+  "legalPrompt": {
+    "title": "End User License Agreement",
+    "body": "Before you play, please read and accept the Wyndlewood End User License Agreement. It works together with the Terms of Service and the Privacy Policy.",
+    "earlyAccess": "Wyndlewood is in Early Access: features, balance, and content will change, and progress may be reset once at full launch as announced on the store page.",
+    "eulaLink": "End User License Agreement",
+    "termsLink": "Terms of Service",
+    "privacyLink": "Privacy Policy",
+    "version": "Agreement version {version}",
+    "accept": "I Accept",
+    "decline": "Decline"
+  },
+  "analyticsPrompt": {
+    "title": "Help Improve Wyndlewood",
+    "body": "May Wyndlewood collect usage and performance data? If you agree, the game sends coarse counters (sessions, play time in five-minute steps, a rough frame rate) and periodic performance reports about your device and frame times to our own servers.",
+    "noThirdParty": "Nothing is sent to advertising or analytics companies, and nothing is sent at all unless you choose Share.",
+    "privacyLink": "Read the Privacy Policy",
+    "changeLater": "You can change this any time in Options.",
+    "share": "Share",
+    "decline": "Do Not Share"
   },
   "serverUnavailable": {
     "title": "World of ClaudeCraft - Dünya Kullanılamıyor",

@@ -2872,6 +2872,8 @@ export const da_DK: EnTranslations = {
       "alwaysShowAllBuffs": "Vis altid alle forstærkninger",
       "showAuraCaster": "Vis Aura-kastende i Tooltips",
       "highContrastBackground": "Baggrund med høj kontrast",
+      "shareAnalytics": "Share Usage and Performance Data",
+      "shareAnalyticsNote": "Off unless you turn it on. Sends coarse play counters and performance reports to Wyndlewood only, never to other companies.",
       "startAttackOnAbility": "Autoangreb ved brug af evne",
       "stopAutoAttackOnTargetSwitch": "Stop autoangreb ved målskift",
       "walkByAutoloot": "Auto-plyndring i forbifarten",
@@ -15811,6 +15813,26 @@ export const da_DK: EnTranslations = {
     "ultraDesc": "Den visuelt rigeste faste forudindstilling. Passer til et grafikkort i topklassen.",
     "changeLater": "Du kan altid ændre dette i Indstillinger under Grafikkvalitet.",
     "confirm": "Fortsæt"
+  },
+  "legalPrompt": {
+    "title": "End User License Agreement",
+    "body": "Before you play, please read and accept the Wyndlewood End User License Agreement. It works together with the Terms of Service and the Privacy Policy.",
+    "earlyAccess": "Wyndlewood is in Early Access: features, balance, and content will change, and progress may be reset once at full launch as announced on the store page.",
+    "eulaLink": "End User License Agreement",
+    "termsLink": "Terms of Service",
+    "privacyLink": "Privacy Policy",
+    "version": "Agreement version {version}",
+    "accept": "I Accept",
+    "decline": "Decline"
+  },
+  "analyticsPrompt": {
+    "title": "Help Improve Wyndlewood",
+    "body": "May Wyndlewood collect usage and performance data? If you agree, the game sends coarse counters (sessions, play time in five-minute steps, a rough frame rate) and periodic performance reports about your device and frame times to our own servers.",
+    "noThirdParty": "Nothing is sent to advertising or analytics companies, and nothing is sent at all unless you choose Share.",
+    "privacyLink": "Read the Privacy Policy",
+    "changeLater": "You can change this any time in Options.",
+    "share": "Share",
+    "decline": "Do Not Share"
   },
   "serverUnavailable": {
     "title": "World of ClaudeCraft - Verden utilgængelig",

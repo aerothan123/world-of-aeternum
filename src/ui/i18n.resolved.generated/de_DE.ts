@@ -2872,6 +2872,8 @@ export const de_DE: EnTranslations = {
       "alwaysShowAllBuffs": "Immer alle Stärkungszauber anzeigen",
       "showAuraCaster": "Wirker der Aura in Tooltips anzeigen",
       "highContrastBackground": "Hintergrund mit hohem Kontrast",
+      "shareAnalytics": "Share Usage and Performance Data",
+      "shareAnalyticsNote": "Off unless you turn it on. Sends coarse play counters and performance reports to Wyndlewood only, never to other companies.",
       "startAttackOnAbility": "Auto-Angriff bei Fähigkeitseinsatz",
       "stopAutoAttackOnTargetSwitch": "Automatischen Angriff bei Zielwechsel stoppen",
       "walkByAutoloot": "Plündern im Vorbeigehen",
@@ -15811,6 +15813,26 @@ export const de_DE: EnTranslations = {
     "ultraDesc": "Die optisch aufwendigste feste Voreinstellung. Für eine High-End-Grafikkarte geeignet.",
     "changeLater": "Du kannst dies jederzeit in den Optionen unter Grafikqualität ändern.",
     "confirm": "Weiter"
+  },
+  "legalPrompt": {
+    "title": "End User License Agreement",
+    "body": "Before you play, please read and accept the Wyndlewood End User License Agreement. It works together with the Terms of Service and the Privacy Policy.",
+    "earlyAccess": "Wyndlewood is in Early Access: features, balance, and content will change, and progress may be reset once at full launch as announced on the store page.",
+    "eulaLink": "End User License Agreement",
+    "termsLink": "Terms of Service",
+    "privacyLink": "Privacy Policy",
+    "version": "Agreement version {version}",
+    "accept": "I Accept",
+    "decline": "Decline"
+  },
+  "analyticsPrompt": {
+    "title": "Help Improve Wyndlewood",
+    "body": "May Wyndlewood collect usage and performance data? If you agree, the game sends coarse counters (sessions, play time in five-minute steps, a rough frame rate) and periodic performance reports about your device and frame times to our own servers.",
+    "noThirdParty": "Nothing is sent to advertising or analytics companies, and nothing is sent at all unless you choose Share.",
+    "privacyLink": "Read the Privacy Policy",
+    "changeLater": "You can change this any time in Options.",
+    "share": "Share",
+    "decline": "Do Not Share"
   },
   "serverUnavailable": {
     "title": "World of ClaudeCraft - Welt nicht verfügbar",

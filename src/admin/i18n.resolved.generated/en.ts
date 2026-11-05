@@ -12,8 +12,8 @@
 import type { AdminTranslations } from '../i18n.en';
 
 export const en: AdminTranslations = {
-  "app.title": "Project H - Admin",
-  "app.shortTitle": "Project H Admin",
+  "app.title": "Wyndlewood - Admin",
+  "app.shortTitle": "Wyndlewood Admin",
   "auth.username": "Username",
   "auth.password": "Password",
   "auth.signIn": "Sign in",

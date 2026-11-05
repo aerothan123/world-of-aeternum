@@ -2872,6 +2872,8 @@ export const ja_JP: EnTranslations = {
       "alwaysShowAllBuffs": "すべてのバフを常に表示",
       "showAuraCaster": "ツールチップに効果の使用者を表示",
       "highContrastBackground": "高コントラスト背景",
+      "shareAnalytics": "利用状況とパフォーマンスのデータを共有",
+      "shareAnalyticsNote": "オンにしない限りオフのままです。大まかなプレイのカウントとパフォーマンスレポートを Wyndlewood にのみ送信し、他社には送信しません。",
       "startAttackOnAbility": "アビリティ使用時に自動攻撃",
       "stopAutoAttackOnTargetSwitch": "ターゲット切り替え時に自動攻撃を停止",
       "walkByAutoloot": "通りがかり自動ルート",
@@ -15811,6 +15813,26 @@ export const ja_JP: EnTranslations = {
     "ultraDesc": "最も豊かな固定プリセット。ハイエンドのグラフィックカード向けです。",
     "changeLater": "この設定はオプションの「グラフィック品質」でいつでも変更できます。",
     "confirm": "続ける"
+  },
+  "legalPrompt": {
+    "title": "エンドユーザー使用許諾契約",
+    "body": "プレイする前に、Wyndlewood のエンドユーザー使用許諾契約をお読みのうえ同意してください。この契約は利用規約およびプライバシーポリシーとあわせて適用されます。",
+    "earlyAccess": "Wyndlewood は早期アクセス中です。機能、バランス、コンテンツは変更され、正式リリース時にはストアページで告知のとおり進行状況が一度リセットされる場合があります。",
+    "eulaLink": "エンドユーザー使用許諾契約",
+    "termsLink": "利用規約",
+    "privacyLink": "プライバシーポリシー",
+    "version": "契約バージョン {version}",
+    "accept": "同意する",
+    "decline": "同意しない"
+  },
+  "analyticsPrompt": {
+    "title": "Wyndlewood の改善にご協力ください",
+    "body": "Wyndlewood が利用状況とパフォーマンスのデータを収集してもよろしいですか？同意すると、ゲームは大まかなカウント（セッション数、5分単位のプレイ時間、おおよそのフレームレート）と、お使いのデバイスとフレーム時間に関する定期的なパフォーマンスレポートを当社のサーバーに送信します。",
+    "noThirdParty": "広告会社や分析会社には一切送信しません。「共有する」を選ばない限り、何も送信されません。",
+    "privacyLink": "プライバシーポリシーを読む",
+    "changeLater": "この設定はオプションからいつでも変更できます。",
+    "share": "共有する",
+    "decline": "共有しない"
   },
   "serverUnavailable": {
     "title": "World of ClaudeCraft - ワールド利用不可",

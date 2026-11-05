@@ -1116,7 +1116,7 @@ export const en: EnTranslations = {
     },
     "wiki": {
       "confirmTitle": "Open the Wiki?",
-      "confirmBody": "This opens the Project H wiki in your browser. The game keeps running.",
+      "confirmBody": "This opens the Wyndlewood wiki in your browser. The game keeps running.",
       "confirmOpen": "Open Wiki",
       "confirmCancel": "Cancel"
     },
@@ -1408,9 +1408,9 @@ export const en: EnTranslations = {
           "paused": "Paused"
         }
       },
-      "title": "WOC Store",
-      "close": "Close WOC Store",
-      "tabsLabel": "WOC Store sections",
+      "title": "Wyndlewood Store",
+      "close": "Close Wyndlewood Store",
+      "tabsLabel": "Wyndlewood Store sections",
       "storeTab": "Cosmetic Store",
       "membershipsTab": "Memberships",
       "membershipsUnavailable": "Memberships are unavailable right now. Try again shortly.",
@@ -1423,8 +1423,8 @@ export const en: EnTranslations = {
       "mountOnly": "Mount only",
       "mountBuy": "Purchase Mount Skin",
       "mountScopeLine": "Account-wide skin. Worn by one character at a time.",
-      "loading": "Loading WOC Store...",
-      "error": "The WOC Store is unavailable right now. Please try again shortly.",
+      "loading": "Loading Wyndlewood Store...",
+      "error": "The Wyndlewood Store is unavailable right now. Please try again shortly.",
       "balance": "Claudium Balance",
       "buyClaudium": "Purchase Claudium",
       "owned": "Owned",
@@ -1440,8 +1440,8 @@ export const en: EnTranslations = {
       "armoryBody": "Limited weapon skins from the Season 1 Armory. Account-wide, purely cosmetic, and shown to everyone around you.",
       "wallet": {
         "title": "Solana wallet",
-        "unlinked": "Connect a wallet app, then sign once to link its public address to your Project H account. We never receive your recovery phrase or private key.",
-        "connectedUnlinked": "The wallet app is connected to this browser, but its public address is not linked to your Project H account yet.",
+        "unlinked": "Connect a wallet app, then sign once to link its public address to your Wyndlewood account. We never receive your recovery phrase or private key.",
+        "connectedUnlinked": "The wallet app is connected to this browser, but its public address is not linked to your Wyndlewood account yet.",
         "linkedDisconnected": "Your public address is linked. Reconnect that wallet app when you want to pay with SOL or WOC.",
         "linkedConnected": "Your linked wallet app is connected and ready for SOL or WOC purchases.",
         "mismatched": "A different wallet is connected. Verify it to replace the linked address, or reconnect the linked wallet.",
@@ -1632,7 +1632,7 @@ export const en: EnTranslations = {
       },
       "seasonOne": "Season 1",
       "membershipPromo": {
-        "open": "Membership in the WOC Store",
+        "open": "Membership in the Wyndlewood Store",
         "close": "Close membership promotion",
         "eyebrow": "Account perks",
         "title": "Membership",
@@ -2072,8 +2072,8 @@ export const en: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "Update Available",
-      "body": "A new version of Project H is available. Update now for the latest fixes and improvements.",
-      "bodyWithVersion": "Version {version} of Project H is available. Update now for the latest fixes and improvements.",
+      "body": "A new version of Wyndlewood is available. Update now for the latest fixes and improvements.",
+      "bodyWithVersion": "Version {version} of Wyndlewood is available. Update now for the latest fixes and improvements.",
       "notNow": "Not now",
       "update": "Update"
     },
@@ -2872,6 +2872,8 @@ export const en: EnTranslations = {
       "alwaysShowAllBuffs": "Always Show All Buffs",
       "showAuraCaster": "Show Aura Caster in Tooltips",
       "highContrastBackground": "High-Contrast Background",
+      "shareAnalytics": "Share Usage and Performance Data",
+      "shareAnalyticsNote": "Off unless you turn it on. Sends coarse play counters and performance reports to Wyndlewood only, never to other companies.",
       "startAttackOnAbility": "Auto-Attack on Ability Use",
       "stopAutoAttackOnTargetSwitch": "Stop Auto-Attack on Target Switch",
       "walkByAutoloot": "Walk-by Autoloot",
@@ -3086,8 +3088,8 @@ export const en: EnTranslations = {
         "offline": "Offline"
       },
       "diagnostics": {
-        "panelAria": "Project H performance diagnostics",
-        "title": "Project H Performance Doctor",
+        "panelAria": "Wyndlewood performance diagnostics",
+        "title": "Wyndlewood Performance Doctor",
         "subtitle": "A game-specific scan with evidence and code-level fixes.",
         "aria": {
           "liveMeasurements": "Live performance measurements",
@@ -3235,7 +3237,7 @@ export const en: EnTranslations = {
           }
         },
         "report": {
-          "title": "Project H performance diagnosis",
+          "title": "Wyndlewood performance diagnosis",
           "statusLine": "Status: {status} ({score}/100)",
           "capturedLine": "Captured: {captured}",
           "topFindingLine": "Top finding: {finding}",
@@ -5438,7 +5440,7 @@ export const en: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "Project H",
+      "panelTitle": "Wyndlewood",
       "open": "Discord",
       "close": "Close",
       "keybind": "Discord Panel",
@@ -5624,7 +5626,7 @@ export const en: EnTranslations = {
       "benefits": "Link your Steam account from the desktop app to mirror the deeds you earn into Steam achievements.",
       "noTicket": "Steam did not provide a link ticket. Start Steam, then try again.",
       "wishlist": "Wishlist on Steam",
-      "wishlistAria": "Wishlist on Steam: open the Project H store page",
+      "wishlistAria": "Wishlist on Steam: open the Wyndlewood store page",
       "wishlistShort": "Wishlist"
     },
     "epic": {
@@ -7377,13 +7379,13 @@ export const en: EnTranslations = {
       "applied": "Applied",
       "owned": "Owned",
       "notCollected": "Not collected",
-      "storeOnly": "Available in the WOC Store",
+      "storeOnly": "Available in the Wyndlewood Store",
       "preview": "Preview",
       "previewAria": "Preview {name}",
       "cardAria": "{name}, {rarity}",
       "mountsIntro": "Choose your mount appearance here. Riding training determines speed. Keep the mount item in any character's bags or bank to share its appearance across your account.",
       "mountsNoMount": "Learn riding from Stablemaster Marla to summon a mount.",
-      "skinsEmpty": "No weapon skins owned yet. Visit the WOC Store.",
+      "skinsEmpty": "No weapon skins owned yet. Visit the Wyndlewood Store.",
       "skinsApplyHint": "Equip a {type} to apply this skin.",
       "mechIntro": "The Combat Mech replaces this character's body. One chroma is worn at a time.",
       "mechEmpty": "No Combat Mech chromas owned yet."
@@ -7484,7 +7486,7 @@ export const en: EnTranslations = {
       "sourceDelve": "Found in the delve {delve}",
       "sourceRift": "Drops from {rank}-rank Rift clears",
       "sourceQuest": "Reward from the quest {quest}",
-      "sourceStore": "Purchased from the WOC Store",
+      "sourceStore": "Purchased from the Wyndlewood Store",
       "sourceActivityCorpseHarvest": "Recovered while harvesting creature corpses",
       "sourceActivityMasterworkCraft": "Earned by crafting a masterwork",
       "sourceActivityRiftFirstClear": "Awarded to every member of the party that wins a ranked Rift's first clear",
@@ -7710,7 +7712,7 @@ export const en: EnTranslations = {
       "loadFailed": "The Exchange could not be reached. Try again shortly.",
       "disabledRealm": "The $WOC Exchange is not available on this realm.",
       "browserOnlyConfirmTitle": "Open the $WOC Exchange in your browser?",
-      "browserOnlyConfirmBody": "The $WOC Exchange runs on the browser version of Project H only. This opens Project H in your browser, where you can sign in and open the Exchange; the game keeps running here.",
+      "browserOnlyConfirmBody": "The $WOC Exchange runs on the browser version of Wyndlewood only. This opens Wyndlewood in your browser, where you can sign in and open the Exchange; the game keeps running here.",
       "browserOnlyConfirmOpen": "Open in Browser",
       "browserOnlyConfirmCancel": "Cancel",
       "pausedBanner": "Trading is paused. Auctions keep counting down; new listings, bids, offers, and payments wait until trading resumes, and a payment already sent still settles.",
@@ -9297,8 +9299,8 @@ export const en: EnTranslations = {
     }
   },
   "guide": {
-    "brand": "Project H",
-    "brandShort": "Project H",
+    "brand": "Wyndlewood",
+    "brandShort": "Wyndlewood",
     "tagline": "A classic-style MMO you play free in your browser.",
     "skipToContent": "Skip to main content",
     "loading": "Loading...",
@@ -9375,7 +9377,7 @@ export const en: EnTranslations = {
       "github": "Source on GitHub",
       "discord": "Join the Discord",
       "communityWiki": "Community Wiki",
-      "rights": "Project H",
+      "rights": "Wyndlewood",
       "linksLabel": "Play and community links",
       "guidesLabel": "Player guides",
       "guideFree": "Free MMORPGs",
@@ -9407,7 +9409,7 @@ export const en: EnTranslations = {
     },
     "home": {
       "eyebrow": "Classic-style browser MMO",
-      "title": "Project H",
+      "title": "Wyndlewood",
       "subtitle": "Explore the world, take on quests, and tackle dungeons with friends.",
       "ctaPlay": "Play Now",
       "ctaLearn": "How to Play",
@@ -9845,7 +9847,7 @@ export const en: EnTranslations = {
       "mobileBody": "Touch controls appear on their own, and the layout sizes itself to your screen: a compact arrangement on a small phone, a standard one on a larger phone, and a roomier one on a tablet.\n\nYour abilities sit in a ring rather than a number row: the attack button with four action buttons beside it, and a page toggle that swaps the ring through the rest of your slots, up to seven pages once you have all three action bars switched on. The fifth arc position of that ring is your consumables seat: tap it to use what is seated there, or hold it, or swipe it inward, to open a row that fills itself from what you are carrying. Around the ring sit the buttons a touch player reaches for most, swapping target, using what is in front of you, and jumping.\n\nOne Quick Actions control sits at the bottom edge in place of a row of buttons. It opens onto everything else: mount, chat, map, bags, social, quests, character, spellbook, settings, and a More entry holding the rest of your windows, the Dungeon Finder, PvP, the Vale Cup, emotes and the wiki among them. Windows fill the screen here rather than floating over it.\n\nMoving your unit frames is a desktop thing: on touch the layout places them for you.",
       "mobileBodyTwoPages": "Touch controls appear on their own, and the layout sizes itself to your screen: a compact arrangement on a small phone, a standard one on a larger phone, and a roomier one on a tablet.\n\nYour abilities sit in a ring rather than a number row: the attack button with four action buttons beside it, and a page toggle that swaps the ring between its {pages} pages, which together reach all {slots} of your ability slots whether or not the extra desktop bars are switched on. The fifth arc position of that ring is your consumables seat: tap it to use what is seated there, or hold it, or swipe it inward, to open a row that fills itself from what you are carrying. Around the ring sit the buttons a touch player reaches for most, swapping target, using what is in front of you, and jumping.\n\nOne Quick Actions control sits at the bottom edge in place of a row of buttons. It opens onto everything else: mount, chat, map, bags, social, quests, character, spellbook, game menu, and a More entry holding the rest of your windows, the Dungeon Finder, PvP, emotes and the wiki among them. Windows fill the screen here rather than floating over it.\n\nMoving your unit frames is a desktop thing: on touch the layout places them for you.",
       "railTitle": "The button rail",
-      "railBody": "Down in the bottom right corner of the screen, a long way from the minimap, sits a rail of small square buttons, one per window, arranged in two short columns side by side. Most of them are printed with their default key.\n\nThe first column covers your character, spellbook, talents, quest log, Book of Deeds, professions, world map, bags, and crafting. The second opens with the WOC Store and runs on through PvP, the Dungeon Finder, the Vale Cup, Card Duel, the leaderboard, emotes, music, friends and guild, this wiki, and the game menu. A few more join them only when they apply."
+      "railBody": "Down in the bottom right corner of the screen, a long way from the minimap, sits a rail of small square buttons, one per window, arranged in two short columns side by side. Most of them are printed with their default key.\n\nThe first column covers your character, spellbook, talents, quest log, Book of Deeds, professions, world map, bags, and crafting. The second opens with the Wyndlewood Store and runs on through PvP, the Dungeon Finder, the Vale Cup, Card Duel, the leaderboard, emotes, music, friends and guild, this wiki, and the game menu. A few more join them only when they apply."
     },
     "commandsPage": {
       "intro": "Every command you can type into chat, grouped by what it is for, with its short forms.",
@@ -10070,7 +10072,7 @@ export const en: EnTranslations = {
       "reinsTerm": "Reins",
       "reinsDef": "The item that is a mount. Keep a pair in your bags or your bank and that mount is yours; use them to ride. Reins can be traded, mailed, and sold to other players.",
       "claudiumTerm": "Claudium",
-      "claudiumDef": "The currency of the WOC Store, spent on cosmetics and nothing else. It never buys power or progression.",
+      "claudiumDef": "The currency of the Wyndlewood Store, spent on cosmetics and nothing else. It never buys power or progression.",
       "worldTerm": "World",
       "worldDef": "One shared copy of the online game, with its own players, market, and standings. This guide also calls it a realm, and your character lives on the world you made it on."
     },
@@ -10389,7 +10391,7 @@ export const en: EnTranslations = {
     },
     "worldPage": {
       "heading": "The world",
-      "intro": "Project H is one continuous land you cross on foot. The old road runs south to north through the starting valley, the marsh, and the peaks, and it keeps climbing past them into the hollow beyond and the snow country at the top of the map. A column of higher realms opens off that road to the west and another to the east, and an island sits off the Vale's east coast. There is no fast travel, no flight paths, and no taxis: every journey is walked or ridden, so getting there is part of the adventure.\n\nThe land also keeps time. A day and night cycle runs on a real clock shared by everyone on your world, so the sky grades from dawn through noon to dusk and dark for all of you at once, the moon comes and goes through its phases, and the light on the ground changes with it. The dial around your minimap is where you read the hour.",
+      "intro": "Wyndlewood is one continuous land you cross on foot. The old road runs south to north through the starting valley, the marsh, and the peaks, and it keeps climbing past them into the hollow beyond and the snow country at the top of the map. A column of higher realms opens off that road to the west and another to the east, and an island sits off the Vale's east coast. There is no fast travel, no flight paths, and no taxis: every journey is walked or ridden, so getting there is part of the adventure.\n\nThe land also keeps time. A day and night cycle runs on a real clock shared by everyone on your world, so the sky grades from dawn through noon to dusk and dark for all of you at once, the moon comes and goes through its phases, and the light on the ground changes with it. The dial around your minimap is where you read the hour.",
       "hub": "Home base",
       "mapHeading": "The road and the realms beyond",
       "mapSub": "The quest trail runs south to north up the middle of the map: valley, marsh, peaks, and on past them into the hollow and the snow beyond. The other realms open off that road rather than after it, through gates east and west of the marsh road, with the island of the Farshore reached from the Vale's east coast. What keeps you out of the far realms is their level bands, not the walk: five of them share the top band, so once you are ready you can take them in any order. The Farshore is the exception, low-level country you can visit early.",
@@ -13943,7 +13945,7 @@ export const en: EnTranslations = {
     "realmName": "World Name"
   },
   "footer": {
-    "copyright": "2026 Project H",
+    "copyright": "2026 Wyndlewood",
     "githubLink": "https://github.com/levy-street/world-of-claudecraft",
     "githubLabel": "Open Source Project",
     "whitepaper": "Whitepaper",
@@ -14009,7 +14011,7 @@ export const en: EnTranslations = {
     "serverOnline": "Online",
     "serverOffline": "Offline",
     "play": "Play",
-    "playAria": "Play Project H",
+    "playAria": "Play Wyndlewood",
     "playLoading": "Loading",
     "playStarting": "Starting",
     "serverLabel": "Choose your world",
@@ -14498,12 +14500,12 @@ export const en: EnTranslations = {
     "extensionHelp": "Choose an installed browser wallet, or open Reown AppKit for Phantom, Solflare, Backpack, and more.",
     "mobileAppHelp": "Choose Phantom or Solflare. Your wallet app will ask for approval. Keep this game open and return to it when finished.",
     "seekerAppHelp": "Continue with Seed Vault Wallet. Review the connection and verification requests in Seed Vault, then return to the game.",
-    "standaloneAppHelp": "Wallet connections are not available in the Home Screen app yet. Open Project H in Safari or Chrome to use Phantom or Solflare.",
+    "standaloneAppHelp": "Wallet connections are not available in the Home Screen app yet. Open Wyndlewood in Safari or Chrome to use Phantom or Solflare.",
     "openAppTitle": "Continue in {wallet}",
     "openAppHelp": "Open {wallet} to review this request. Keep this game tab open while the wallet app is active.",
     "openAppButton": "Open {wallet}",
     "manualReturnBrowserHelp": "After approval, return to this game tab. If iOS opens another browser, close it and return to the original browser manually.",
-    "manualReturnStandaloneHelp": "After approval, return to Project H from your Home Screen. If iOS opens a browser, close it and reopen the Home Screen app manually.",
+    "manualReturnStandaloneHelp": "After approval, return to Wyndlewood from your Home Screen. If iOS opens a browser, close it and reopen the Home Screen app manually.",
     "preparingAppButton": "Preparing {wallet}...",
     "walletAppUnavailable": "{wallet} could not be prepared. Close this window and try again.",
     "flowConnect": "Choose a wallet. Verification continues automatically.",
@@ -14519,12 +14521,12 @@ export const en: EnTranslations = {
       "paymentBody": "Choose the wallet linked to your account and approve the transaction in this browser.",
       "stepUpBody": "Choose the wallet linked to your account and sign the $WOC Exchange authorization message. Signing is free and moves no funds.",
       "extensionHelp": "No compatible wallet extension was found. Install or unlock Phantom, Solflare, or another Solana browser wallet, then retry.",
-      "safety": "Project H never asks for your recovery phrase or private key.",
+      "safety": "Wyndlewood never asks for your recovery phrase or private key.",
       "continueWith": "Continue with {wallet}",
       "reviewTitle": "Review in your wallet",
       "reviewBody": "Follow the prompt from {wallet}. Keep this browser page open.",
       "completeTitle": "Wallet authorization complete",
-      "completeBody": "You can return to the Project H desktop app.",
+      "completeBody": "You can return to the Wyndlewood desktop app.",
       "returnButton": "Return to desktop app",
       "failed": "Wallet authorization failed or expired. Return to the desktop app and try again.",
       "retry": "Retry"
@@ -14630,8 +14632,8 @@ export const en: EnTranslations = {
     "footerCta": "Forge your legend: {siteUrl}",
     "arenaStat": "Arena",
     "shareTierBit": ", {tier}-rank $WOC holder",
-    "shareText": "I'm forging my legend in Project H: Level {level} {className}{tierBit}. Join my world:",
-    "nativeShareTitle": "Project H",
+    "shareText": "I'm forging my legend in Wyndlewood: Level {level} {className}{tierBit}. Join my world:",
+    "nativeShareTitle": "Wyndlewood",
     "fileNameFallback": "player",
     "actionShareX": "Share to X",
     "actionCopyReferral": "Copy Referral Link",
@@ -15496,19 +15498,19 @@ export const en: EnTranslations = {
     "headline": "Adventure with friends.",
     "contribute": "Contribute to the game",
     "tools": "Tools",
-    "records": "WoC Records",
-    "scout": "WoC Scout",
-    "parseService": "WoC Parse Service"
+    "records": "Records",
+    "scout": "Scout",
+    "parseService": "Parse Service"
   },
   "seo": {
-    "title": "Project H: Sandbox MMO (World of ClaudeCraft fork)",
-    "description": "Play Project H, a free browser MMO. Explore, complete quests, and run dungeons with friends. No download required.",
+    "title": "Wyndlewood",
+    "description": "Play Wyndlewood, a free browser MMO. Explore, complete quests, and run dungeons with friends. No download required.",
     "genre": "MMORPG",
     "playMode": "Multiplayer",
     "applicationCategory": "Game",
     "operatingSystem": "Web browser",
-    "officialLabel": "Official Project H website",
-    "officialBody": "The official home of Project H. Play online, read the wiki, and find community links here."
+    "officialLabel": "Official Wyndlewood website",
+    "officialBody": "The official home of Wyndlewood. Play online, read the wiki, and find community links here."
   },
   "a11y": {
     "goHome": "Go to homepage",
@@ -15516,9 +15518,9 @@ export const en: EnTranslations = {
     "mainNavigation": "Main navigation",
     "languageSelection": "Language selection",
     "characterActions": "Character actions",
-    "githubProject": "Open the Project H GitHub project",
-    "discordCommunity": "Join the Project H Discord community",
-    "donateProject": "Donate to support Project H"
+    "githubProject": "View the open-source World of ClaudeCraft engine Wyndlewood is built on, on GitHub",
+    "discordCommunity": "Join the Wyndlewood Discord community",
+    "donateProject": "Donate to support Wyndlewood"
   },
   "entryGuard": {
     "title": "Graphics lowered",
@@ -15617,16 +15619,16 @@ export const en: EnTranslations = {
     "notify": {
       "updateReadyTitle": "Update {version} is ready",
       "updateReadyTitleNoVersion": "Update is ready",
-      "updateReadyBody": "Restart Project H to apply the update.",
+      "updateReadyBody": "Restart Wyndlewood to apply the update.",
       "partyInviteTitle": "Party invite",
       "partyInviteBody": "{name} invited you to a party."
     },
     "crash": {
-      "title": "Project H",
+      "title": "Wyndlewood",
       "body": "The game view stopped working. Reload it?",
       "reload": "Reload",
       "quit": "Quit",
-      "fatalBody": "Project H hit an unexpected error and needs to close."
+      "fatalBody": "Wyndlewood hit an unexpected error and needs to close."
     },
     "hostDiag": {
       "saveTitle": "Save system report",
@@ -15793,11 +15795,11 @@ export const en: EnTranslations = {
     "iosStandaloneDetail": "You are in home-screen fullscreen mode. Keep the device in landscape.",
     "iosInstallDetail": "For true fullscreen on iPhone or iPad, install this page to your Home Screen first.",
     "iosShareStep": "In Safari, tap Share, then Add to Home Screen.",
-    "iosOpenStep": "Open Project H from the new Home Screen icon.",
+    "iosOpenStep": "Open Wyndlewood from the new Home Screen icon.",
     "androidStandaloneDetail": "You are in fullscreen app mode. Keep the device in landscape.",
     "androidInstallDetail": "For fullscreen on Android, install this page or add it to your Home screen first.",
     "androidInstallStep": "In Chrome, tap the menu, then Install app or Add to Home screen.",
-    "androidOpenStep": "Open Project H from the new icon.",
+    "androidOpenStep": "Open Wyndlewood from the new icon.",
     "otherStandaloneDetail": "Keep your device in landscape fullscreen.",
     "otherInstallDetail": "Install or add this page to your Home screen for the best fullscreen mobile experience."
   },
@@ -15812,12 +15814,32 @@ export const en: EnTranslations = {
     "changeLater": "You can change this any time in Options, under Graphics Quality.",
     "confirm": "Continue"
   },
+  "legalPrompt": {
+    "title": "End User License Agreement",
+    "body": "Before you play, please read and accept the Wyndlewood End User License Agreement. It works together with the Terms of Service and the Privacy Policy.",
+    "earlyAccess": "Wyndlewood is in Early Access: features, balance, and content will change, and progress may be reset once at full launch as announced on the store page.",
+    "eulaLink": "End User License Agreement",
+    "termsLink": "Terms of Service",
+    "privacyLink": "Privacy Policy",
+    "version": "Agreement version {version}",
+    "accept": "I Accept",
+    "decline": "Decline"
+  },
+  "analyticsPrompt": {
+    "title": "Help Improve Wyndlewood",
+    "body": "May Wyndlewood collect usage and performance data? If you agree, the game sends coarse counters (sessions, play time in five-minute steps, a rough frame rate) and periodic performance reports about your device and frame times to our own servers.",
+    "noThirdParty": "Nothing is sent to advertising or analytics companies, and nothing is sent at all unless you choose Share.",
+    "privacyLink": "Read the Privacy Policy",
+    "changeLater": "You can change this any time in Options.",
+    "share": "Share",
+    "decline": "Do Not Share"
+  },
   "serverUnavailable": {
-    "title": "Project H - World Unavailable",
-    "logoAlt": "Project H",
+    "title": "Wyndlewood - World Unavailable",
+    "logoAlt": "Wyndlewood",
     "eyebrow": "World maintenance",
     "heading": "The world is temporarily unavailable.",
-    "body": "We are restarting the game service and expect Claudemoon to return shortly. This page will keep checking automatically.",
+    "body": "We are restarting the game service and expect the world to return shortly. This page will keep checking automatically.",
     "status": "Back soon"
   },
   "hud": {
