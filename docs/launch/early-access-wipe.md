@@ -48,8 +48,25 @@ audit ledgers.
 
 Cleared for the realm (`WIPE_REALM_CLEARS`): the World Market and Ravenpost
 books, rift state, mail custody parcels, guild bank books, world quest scores,
-sold-volume price history, and the derived account wealth rows. Every
-character's state is reset to a newborn of its class on the starting shore.
+sold-volume price history, the derived account wealth rows, and account houses
+(`account_houses` from `feature/core-systems`, when present: houses are bought
+with gold, so they are progress; `account_house_migrations` is an audit and is
+kept). Every character's state is reset to a newborn of its class on the
+starting shore.
+
+Paid bank capacity survives: slots bought with money (Claudium storage
+purchases) are an entitlement. The wiped bank keeps exactly the slots the
+applied receipts prove (`storage_purchase_applied_receipts`, after minus
+before), or the whole old `purchasedSlots` when a receipt cannot say, plus
+`appliedStorageKeys` so a replayed receipt still refuses. Its items and the
+gold-bought rungs reset.
+
+Refused instead of cleared (`WIPE_BLOCKERS`, counted in the dry run): anything
+in flight that may carry real money or a paid delivery: an open legacy crypto
+market row (listing, unbooked custody claim, live bid, pending directed offer,
+unfinished settlement), a referral reward delivery or transfer still bound to a
+realm character, and a storage purchase still pending or unresolved. Settle or
+resolve them first; closed market history is kept as evidence.
 
 ### Procedure (launch day)
 
@@ -76,10 +93,14 @@ character's state is reset to a newborn of its class on the starting shore.
      --confirm "WIPE <realm> <N> CHARACTERS" --operator "<your name>"
    ```
 
-   It refuses if any character lease is live (the game is still running), if
-   the phrase does not match the current count, or if this realm was already
-   wiped (`--allow-repeat` exists only for a restore-and-rewipe drill on a
-   copy). It is one transaction: an error changes nothing.
+   It refuses if the realm process heartbeat is fresh (the game is still
+   running: stop it and wait two minutes, `HEARTBEAT_STALE_SECONDS`), if any
+   character lease is live, if a `WIPE_BLOCKERS` obligation is open, if the
+   phrase does not match the current count, or if this realm was already wiped
+   (`--allow-repeat` exists only for a restore-and-rewipe drill on a copy). It
+   is one transaction: an error changes nothing. While it runs it holds the
+   realm's advisory key, and a realm process that tries to boot meanwhile
+   refuses (`server/realm_heartbeat.ts`, the boot fence).
 6. Start the game with `MAINTENANCE_MODE=1`, log in as staff, check a veteran
    character (level 1, deeds and title intact, appearance intact), then end
    maintenance.

@@ -134,6 +134,7 @@ import {
   characterDeleteHttpRefusal,
   characterDeleteRequestSignal,
 } from './character_delete_http';
+import { PROCESS_LEASE_HOLDER } from './character_lease_db';
 import { initialCharacterState } from './character_newborn';
 import { bustAllLifetimeXpRankCache } from './character_rank_cache';
 import { characterSheet, SHEET_RECENT_DEEDS, type SheetRank } from './character_sheet';
@@ -393,6 +394,7 @@ import {
 import { createPgRateLimitStore } from './ratelimit_db';
 import { isPublicCorsPath, publicOriginFromRequest, REALM, REALM_DIRECTORY } from './realm';
 import { publishRealmBuilderRoll } from './realm_builder';
+import { startRealmHeartbeat } from './realm_heartbeat';
 import { referralCapacityEarned } from './referral_account_entitlements_db';
 import { referralArmourForAccount, resolveReferralSignup } from './referral_armour_db';
 import { registerReferralMetrics } from './referral_metrics';
@@ -3236,6 +3238,7 @@ export async function startServer(): Promise<http.Server> {
     }
   }
   await ensureSchema();
+  await startRealmHeartbeat(pool, REALM, PROCESS_LEASE_HOLDER); // launch wipe fence
   await seedOAuthClients();
   const game = liveGame();
   const bankLedgerGrowthMonitor = createBankLedgerGrowthMonitor({

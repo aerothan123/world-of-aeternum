@@ -4,8 +4,10 @@ import { describe, expect, it } from 'vitest';
 import { initialCharacterState } from '../server/character_newborn';
 import {
   planLaunchWipe,
+  WIPE_BLOCKERS,
   WIPE_KEEP_KEYS,
   WIPE_REALM_CLEARS,
+  wipeBankState,
   wipeCharacterState,
   wipeConfirmationPhrase,
 } from '../server/launch_wipe_core';
@@ -93,5 +95,51 @@ describe('planLaunchWipe', () => {
     expect(plan.realmClears).toBe(WIPE_REALM_CLEARS);
     expect(plan.confirmation).toBe('WIPE Wyndlewood 2 CHARACTERS');
     expect(wipeConfirmationPhrase('x', 0)).toBe('WIPE x 0 CHARACTERS');
+  });
+});
+
+describe('wipeBankState: paid capacity is an entitlement, not progress', () => {
+  const fresh = { inventory: [], purchasedSlots: 0, bonusSlots: 0 };
+  const paidBank = {
+    inventory: [{ id: 'gold_bar', count: 9 }],
+    purchasedSlots: 24,
+    bonusSlots: 6,
+    appliedStorageKeys: ['k1', 'k2'],
+  };
+
+  it('keeps exactly the receipt-proven paid slots and the applied keys, drops the items', () => {
+    expect(wipeBankState(paidBank, fresh, 12)).toEqual({
+      inventory: [],
+      purchasedSlots: 12,
+      bonusSlots: 0,
+      appliedStorageKeys: ['k1', 'k2'],
+    });
+  });
+
+  it('keeps the whole purchasedSlots when a receipt cannot say (never takes paid capacity)', () => {
+    expect(wipeBankState(paidBank, fresh, null)).toMatchObject({ purchasedSlots: 24 });
+  });
+
+  it('never grants more than the old bank had, and lands on a ladder rung', () => {
+    expect(wipeBankState(paidBank, fresh, 99)).toMatchObject({ purchasedSlots: 24 });
+    expect(wipeBankState(paidBank, fresh, 13)).toMatchObject({ purchasedSlots: 12 });
+  });
+
+  it('a bank with no paid grant resets to the fresh bank (gold rungs are progress)', () => {
+    expect(wipeBankState({ purchasedSlots: 18, inventory: [] }, fresh, null)).toBe(fresh);
+    expect(wipeBankState(undefined, fresh, null)).toBe(fresh);
+  });
+
+  it('wipeCharacterState carries the paid bank through the full reset', () => {
+    const next = wipeCharacterState({ level: 30, bank: paidBank }, { level: 1, bank: fresh }, 6);
+    expect(next.bank).toMatchObject({ purchasedSlots: 6, appliedStorageKeys: ['k1', 'k2'] });
+    expect((next.bank as { inventory: unknown[] }).inventory).toEqual([]);
+  });
+
+  it('lists every in-flight paid obligation that refuses a real wipe', () => {
+    expect(WIPE_BLOCKERS).toContain('woc_market unfinished settlements');
+    expect(WIPE_BLOCKERS).toContain('referral bond deliveries in flight');
+    expect(WIPE_BLOCKERS).toContain('storage purchases pending or unresolved');
+    expect(WIPE_REALM_CLEARS).toContain('account_houses (when present)');
   });
 });

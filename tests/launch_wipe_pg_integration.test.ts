@@ -30,6 +30,7 @@ describeDb('launch wipe against a seeded realm (REAL Postgres)', () => {
   let pool: PgPool;
   let wipe: typeof import('../server/launch_wipe_db');
   let newborn: typeof import('../server/character_newborn');
+  let heartbeat: typeof import('../server/realm_heartbeat');
   let ids: { veteran: number; fresh: number; other: number; account: number; guild: number };
 
   const fresh = (row: { cls: string; name: string }) =>
@@ -47,6 +48,7 @@ describeDb('launch wipe against a seeded realm (REAL Postgres)', () => {
     pool = db.pool;
     wipe = await import('../server/launch_wipe_db');
     newborn = await import('../server/character_newborn');
+    heartbeat = await import('../server/realm_heartbeat');
 
     const acct = await pool.query(
       `INSERT INTO accounts (username, password_hash, cosmetics)
@@ -65,6 +67,13 @@ describeDb('launch wipe against a seeded realm (REAL Postgres)', () => {
       renown: 10,
       activeTitle: 'the Dauntless',
       skin: 2,
+      // 24 bought slots: 12 of them paid for with money (one applied receipt).
+      bank: {
+        inventory: [{ id: 'gold_bar', count: 9 }],
+        purchasedSlots: 24,
+        bonusSlots: 0,
+        appliedStorageKeys: ['paid-key-1'],
+      },
     };
     const mk = async (name: string, realm: string, level: number, state: unknown) =>
       Number(
@@ -104,6 +113,13 @@ describeDb('launch wipe against a seeded realm (REAL Postgres)', () => {
     await pool.query(
       `INSERT INTO guild_banks (guild_id, realm, data) VALUES ($1, $2, '{"tabs":[]}')`,
       [guild, REALM],
+    );
+    await pool.query(
+      `INSERT INTO storage_purchase_applied_receipts
+         (source_purchase_id, realm, account_id, character_id, item_id, expected_cost_claudium,
+          idempotency_key, purchased_slots_before, purchased_slots_after, applied_at)
+       VALUES (1, $1, $2, $3, 'bank_storage_12', 500, 'paid-key-1', 6, 18, now())`,
+      [REALM, account, veteran],
     );
     ids = { veteran, fresh: freshId, other, account, guild };
   }, 60_000);
@@ -154,6 +170,65 @@ describeDb('launch wipe against a seeded realm (REAL Postgres)', () => {
     expect(wrong).toMatchObject({ ok: false, reason: 'confirmation_mismatch' });
   });
 
+  it('refuses a running process (fresh heartbeat) and an in-flight paid obligation', async () => {
+    const realRun = () =>
+      wipe.runLaunchWipe(pool, {
+        realm: REALM,
+        operator: 'test',
+        dryRun: false,
+        confirmation: `WIPE ${REALM} 2 CHARACTERS`,
+        freshStateFor: fresh,
+      });
+    await pool.query(heartbeat.REALM_HEARTBEAT_SCHEMA);
+    await heartbeat.beatRealmHeartbeat(pool, REALM, 'live-proc');
+    expect(await realRun()).toMatchObject({ ok: false, reason: 'process_running' });
+    await pool.query(
+      "UPDATE realm_process_heartbeats SET beat_at = now() - interval '10 minutes' WHERE realm = $1",
+      [REALM],
+    );
+
+    await pool.query(
+      `INSERT INTO storage_purchases
+         (realm, account_id, character_id, item_id, expected_cost_claudium, idempotency_key)
+       VALUES ($1, $2, $3, 'bank_storage_6', 250, 'pending-key')`,
+      [REALM, ids.account, ids.veteran],
+    );
+    const dry = await wipe.runLaunchWipe(pool, {
+      realm: REALM,
+      operator: 'test',
+      dryRun: true,
+      freshStateFor: fresh,
+    });
+    expect(dry.ok && dry.plan.blockers?.['storage purchases pending or unresolved']).toBe(1);
+    expect(await realRun()).toMatchObject({ ok: false, reason: 'open_obligations' });
+    await pool.query("DELETE FROM storage_purchases WHERE idempotency_key = 'pending-key'");
+  });
+
+  it('the boot fence: a realm process cannot boot while a wipe holds the realm key', async () => {
+    const holder = await pool.connect();
+    try {
+      await holder.query('BEGIN');
+      await holder.query(`SELECT pg_advisory_xact_lock(${heartbeat.LAUNCH_WIPE_LOCK_KEY_SQL})`, [
+        REALM,
+      ]);
+      await expect(heartbeat.startRealmHeartbeat(pool, REALM, 'booting')).rejects.toThrow(
+        /refusing to boot: a launch wipe/,
+      );
+      await holder.query('COMMIT');
+    } finally {
+      holder.release();
+    }
+    const stop = await heartbeat.startRealmHeartbeat(pool, REALM, 'booting', {
+      intervalMs: 60_000,
+    });
+    stop();
+    // That boot stamped a fresh beat: age it so the wipe below may run.
+    await pool.query(
+      "UPDATE realm_process_heartbeats SET beat_at = now() - interval '10 minutes' WHERE realm = $1",
+      [REALM],
+    );
+  });
+
   it('wipes progress, keeps deeds, cosmetics, accounts and other realms, once', async () => {
     const r = await wipe.runLaunchWipe(pool, {
       realm: REALM,
@@ -175,6 +250,11 @@ describeDb('launch wipe against a seeded realm (REAL Postgres)', () => {
     expect(st.renown).toBe(10);
     expect(st.activeTitle).toBe('the Dauntless');
     expect(st.skin).toBe(2);
+    // Paid capacity survives exactly (receipt: 6 to 18 = 12 slots); items and
+    // the gold-bought rungs reset.
+    expect(st.bank.purchasedSlots).toBe(12);
+    expect(st.bank.appliedStorageKeys).toEqual(['paid-key-1']);
+    expect(st.bank.inventory).toEqual([]);
 
     const other = await pool.query('SELECT level FROM characters WHERE id = $1', [ids.other]);
     expect(other.rows[0].level).toBe(15);
@@ -216,7 +296,7 @@ describeDb('launch wipe against a seeded realm (REAL Postgres)', () => {
       'SELECT dry_run FROM launch_wipe_runs WHERE realm = $1 ORDER BY id',
       [REALM],
     );
-    expect(runs.rows.map((row) => row.dry_run)).toEqual([true, false]);
+    expect(runs.rows.map((row) => row.dry_run)).toEqual([true, true, false]);
 
     const again = await wipe.runLaunchWipe(pool, {
       realm: REALM,
@@ -226,5 +306,48 @@ describeDb('launch wipe against a seeded realm (REAL Postgres)', () => {
       freshStateFor: fresh,
     });
     expect(again).toMatchObject({ ok: false, reason: 'already_wiped' });
+  });
+  it('unlink is one statement that counts only a VERIFIED email as another login', async () => {
+    const steamDb = await import('../server/steam/steam_db');
+    const acct = Number(
+      (
+        await pool.query(
+          `INSERT INTO accounts (username, password_hash, password_set)
+           VALUES ('steamonly', 'x', FALSE) RETURNING id`,
+        )
+      ).rows[0].id,
+    );
+    await pool.query('INSERT INTO steam_links (account_id, steam_id) VALUES ($1, $2)', [
+      acct,
+      '76561198000000077',
+    ]);
+    expect(await steamDb.deleteSteamLinkIfReachable(acct)).toBe('last_login');
+    await pool.query("UPDATE accounts SET email = 'a@example.com' WHERE id = $1", [acct]);
+    expect(await steamDb.deleteSteamLinkIfReachable(acct)).toBe('last_login');
+    await pool.query('UPDATE accounts SET email_verified_at = now() WHERE id = $1', [acct]);
+    expect(await steamDb.deleteSteamLinkIfReachable(acct)).toBe('deleted');
+    expect(await steamDb.deleteSteamLinkIfReachable(acct)).toBe('none');
+  });
+
+  it('a password reset revokes the Steam link with the sessions', async () => {
+    const db = await import('../server/db');
+    await pool.query('DELETE FROM steam_links WHERE account_id = $1', [ids.account]);
+    await pool.query('INSERT INTO steam_links (account_id, steam_id) VALUES ($1, $2)', [
+      ids.account,
+      '76561198000000088',
+    ]);
+    await pool.query(
+      `INSERT INTO password_reset_requests (account_id, token_hash, expires_at)
+       VALUES ($1, 'reset-hash', now() + interval '1 hour')`,
+      [ids.account],
+    );
+    expect(await db.consumePasswordResetRequest('reset-hash', 'new-hash')).toEqual({
+      accountId: ids.account,
+    });
+    const left = await pool.query(
+      'SELECT count(*)::int AS n FROM steam_links WHERE account_id = $1',
+      [ids.account],
+    );
+    expect(left.rows[0].n).toBe(0);
   });
 });

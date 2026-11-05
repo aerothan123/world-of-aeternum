@@ -22,10 +22,28 @@
 //   - Guilds and their membership are social, not progress: kept. Their BANK
 //     books are progress: cleared.
 //
+//   - PAID bank capacity: slots bought with money (Claudium storage
+//     purchases, bank.appliedStorageKeys) are an entitlement, not progress.
+//     The wiped bank keeps exactly the paid slots (from the applied receipts;
+//     the whole purchasedSlots when a receipt cannot say) and its applied
+//     keys, so a replayed receipt still refuses. Gold-bought rungs reset.
+//
 // What the realm clears (WIPE_REALM_CLEARS): the World Market and Ravenpost
 // books, rift state, mail custody parcels, guild bank books, world quest
-// scores and sold-volume price history, and the derived account wealth rows
-// (recomputed by the next sweep).
+// scores and sold-volume price history, the derived account wealth rows
+// (recomputed by the next sweep), and account houses (feature/core-systems
+// account_houses, when that table exists: houses are bought with gold, so
+// they are progress; the migration audit is kept).
+//
+// What REFUSES the wipe (WIPE_BLOCKERS) instead of being cleared: anything
+// still in flight that may carry real money or a paid delivery. The retired
+// crypto World Market (woc_market_*: an open listing, custody claim, bid,
+// directed offer or unfinished settlement), a referral reward delivery or
+// transfer still bound to a realm character (character deletion refuses on
+// the same rows), and a storage purchase still pending or unresolved. Closed
+// market history (sales, settlements, strikes, terms) is evidence: kept.
+
+import { BANK_EXPANSION_SLOTS } from '../src/sim/bank';
 
 /** characters.state keys a wipe carries over unchanged (cosmetics + Book of
  *  Deeds). Anything not listed is progress and resets. Adding a key here is
@@ -65,22 +83,77 @@ export const WIPE_REALM_CLEARS = [
   'world_quest_scores',
   'market_sold_volume',
   'account_wealth',
+  'account_houses (when present)',
+] as const;
+
+/** In-flight obligations that refuse a real wipe (counted in the dry run). */
+export const WIPE_BLOCKERS = [
+  'woc_market open listings',
+  'woc_market unbooked custody claims',
+  'woc_market live bids',
+  'woc_market pending directed offers',
+  'woc_market unfinished settlements',
+  'referral bond deliveries in flight',
+  'referral transfers in flight',
+  'storage purchases pending or unresolved',
 ] as const;
 
 type StateRecord = Record<string, unknown>;
+
+/** The ladder granularity (src/sim/bank.ts BANK_EXPANSION_SLOTS); a carried
+ *  slot count always lands on a rung. */
+const RUNG = BANK_EXPANSION_SLOTS;
+
+/**
+ * The bank a wiped character keeps: an empty bank (items are progress) with
+ * the PAID capacity carried. `paidSlots` is the receipts' sum of
+ * purchased_slots_after minus purchased_slots_before, or null when no receipt
+ * can say (a legacy backfill row): then the whole old purchasedSlots is kept,
+ * so a wipe can never take paid capacity away. No applied keys means nothing
+ * was paid for, and the fresh bank wins untouched.
+ */
+export function wipeBankState(
+  oldBank: unknown,
+  freshBank: unknown,
+  paidSlots: number | null,
+): unknown {
+  if (oldBank === null || typeof oldBank !== 'object') return freshBank;
+  const old = oldBank as { purchasedSlots?: unknown; appliedStorageKeys?: unknown };
+  const keys = Array.isArray(old.appliedStorageKeys)
+    ? old.appliedStorageKeys.filter((k): k is string => typeof k === 'string')
+    : [];
+  if (keys.length === 0) return freshBank;
+  const oldSlots =
+    typeof old.purchasedSlots === 'number' && Number.isFinite(old.purchasedSlots)
+      ? Math.max(0, old.purchasedSlots)
+      : 0;
+  const wanted = paidSlots === null ? oldSlots : Math.min(oldSlots, Math.max(0, paidSlots));
+  const slots = Math.floor(wanted / RUNG) * RUNG;
+  const base =
+    freshBank !== null && typeof freshBank === 'object'
+      ? (freshBank as StateRecord)
+      : { inventory: [], bonusSlots: 0 };
+  return { ...base, purchasedSlots: slots, appliedStorageKeys: [...keys] };
+}
 
 /**
  * The wiped state: the newborn state with every kept key copied over from the
  * old one. A kept key absent from the old state stays absent (the newborn's
  * default wins), so a pre-feature save never gains an empty field.
  */
-export function wipeCharacterState(oldState: unknown, fresh: StateRecord): StateRecord {
+export function wipeCharacterState(
+  oldState: unknown,
+  fresh: StateRecord,
+  paidStorageSlots: number | null = null,
+): StateRecord {
   const next: StateRecord = { ...fresh };
   if (oldState === null || typeof oldState !== 'object') return next;
   const old = oldState as StateRecord;
   for (const key of WIPE_KEEP_KEYS) {
     if (Object.hasOwn(old, key) && old[key] !== undefined) next[key] = old[key];
   }
+  const bank = wipeBankState(old.bank, fresh.bank, paidStorageSlots);
+  if (bank !== undefined) next.bank = bank;
   return next;
 }
 
@@ -107,6 +180,8 @@ export interface WipeCharacterRow {
 }
 
 export interface WipePlan {
+  /** Blocker counts (WIPE_BLOCKERS order); any nonzero refuses a real run. */
+  blockers?: Record<string, number>;
   realm: string;
   characters: number;
   levelsReset: number;
