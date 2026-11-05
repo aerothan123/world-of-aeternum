@@ -3,6 +3,7 @@
 // forced grinding. These tests are content-shape tests: they run against
 // whatever the content modules currently export, so they hold as zones grow.
 import { describe, expect, it } from 'vitest';
+import { QUEST_CATCH_SPOTS } from '../src/sim/content/chapter_one';
 import { CHOICE_ROW_LEVELS, CHOICE_ROWS } from '../src/sim/content/choice_rows';
 import { FACTION_VENDOR_GATES } from '../src/sim/content/faction_vendors';
 import { FARM_CROPS } from '../src/sim/content/farm_crops';
@@ -66,7 +67,19 @@ function collectItemAcquirable(itemId: string, recipes = ALL_RECIPES): boolean {
   // collect objective only the vendor arm satisfies on the merged tree.)
   const fromVendor = Object.values(NPCS).some((n) => n.vendorItems?.includes(itemId) === true);
   const fromCraft = recipes.some((r) => r.resultItemId === itemId && r.resultCount > 0);
+  // Quest-handed items: what a use-item or station objective yields
+  // (quests/quest_object_use.ts yieldsItemId), what a quest supplies on accept
+  // (requiredItems), and a quest's own catch at its fishing spot
+  // (quests/quest_fishing_catch.ts QUEST_CATCH_SPOTS).
+  const fromQuest = Object.values(QUESTS).some(
+    (q) =>
+      (q.requiredItems ?? []).includes(itemId) ||
+      q.objectives.some((o) => o.type === 'interact' && o.yieldsItemId === itemId),
+  );
+  const fromQuestCatch = QUEST_CATCH_SPOTS.some((spot) => spot.itemId === itemId);
   return (
+    fromQuest ||
+    fromQuestCatch ||
     fromLoot ||
     fromGround ||
     fromScript ||
@@ -101,7 +114,13 @@ describe('content referential integrity', () => {
         }
         if (obj.type === 'gather') {
           if (!obj.nodeType && !obj.itemId) problems.push(`${q.id}: gather target missing`);
-          if (obj.nodeType && !GATHER_NODES.some((node) => node.type === obj.nodeType)) {
+          // 'wood' is answered by the choppable world trees (src/sim/trees/),
+          // which credit gather objectives without a GATHER_NODES row.
+          if (
+            obj.nodeType &&
+            obj.nodeType !== 'wood' &&
+            !GATHER_NODES.some((node) => node.type === obj.nodeType)
+          ) {
             problems.push(`${q.id}: gather node type ${obj.nodeType} missing`);
           }
           if (obj.itemId) {

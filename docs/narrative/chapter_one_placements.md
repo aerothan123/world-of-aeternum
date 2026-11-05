@@ -16,7 +16,7 @@ Crypt door is at (80, 90).
 
 | NPC (template id) | Display name | Position |
 | --- | --- | --- |
-| `scout_neris` | Neris Snowmantle | (25, -25), the northern lookout |
+| `scout_neris` | Neris Snowmantle | (75, -40), the eastern lookout past Meadow Lane |
 | `gravekeeper_holven` | Holven Marr | (25, -106), the burial gate |
 | `innkeeper_jorren` | Jorren | (12, -84), the riverside inn counter |
 | `herbalist_olvessa` | Olvessa | (-30, -76), the herb terrace |
@@ -32,7 +32,7 @@ Crypt door is at (80, 90).
 | `gravestirred_fieldhand` | (45, -118) | 7 | 4 |
 | `briarbitten_fox` | (5, -55) | 7 | 4 |
 | `orchard_boar` | (-15.7, -138.1) | 8 | 4 |
-| `veiled_rite_tender` | (40, -30) | 5 | 3 |
+| `veiled_rite_tender` | (92, -46) | 5 | 3 |
 | `culvert_rat` | (-60, -135) | 7 | 5 |
 | `quarry_burrower` | (5, 175) | 7 | 4 |
 
@@ -64,8 +64,10 @@ earlier id moves. The full coordinate list lives in the source; the groups are:
 - Pella's yard: workbench (-38, -106), housing noticeboard (-42, -101.5),
   furnishing practice marker (-44, -107).
 - The root hedge and the bone pit: silvermint and waxed bindings (around
-  5, -56); face veils on the approach (around 23, -31); the three bound grave
-  lamps (around 41, -31).
+  5, -56); lamp oil cups by the eastern lookout (around 73, -40); face veils
+  on the approach (70.4, -49.6) and (74.5, -47); the three bound grave lamps
+  (96, -43), (88, -50) and (96, -50). The bone pit moved east of Meadow Lane
+  so the town kit's houses (Meadow Lane along z -24) keep their clearance.
 - The Crypt Road: two boundary warnings (40, 25) and (48, 40); the outer
   wicket (55, 55), well outside the restless-bones camp at (82, 78).
 - Board dailies: road checkposts on the south road, quay posts on the riverside
@@ -81,8 +83,10 @@ earlier id moves. The full coordinate list lives in the source; the groups are:
 
 ## Escorts
 
-- Neris (quest 21): from the Old Kiln Lane milepost (20, -40) to the charcoal
-  store lookout (25, -27).
+- Neris (quest 21): from the lane milepost (70, -56) through (71, -51) and
+  (73, -46) to the eastern lookout (75, -42.5); two briarbitten foxes ambush
+  at the second waypoint.
 - Della (quest 17): from the willow footbridge end of the brook path
-  (-14.1, -58.4) to the northern lookout (22, -27). The start keeps 45 yards
+  (-14.1, -58.4) by (-10, -48), (8, -36), (30, -45) and (55, -45) to the
+  eastern lookout (75, -42.5). The start keeps 45 yards
   clear of the Eastbrook freight yard world quest.

@@ -901,7 +901,9 @@ describe('item-art consistency accepted-art provenance', () => {
     // + the sprite buddy's whistle (whistle_sprites): 2,214.
     // + the twelve Project H furniture ids (content/furniture.ts): 2,233.
     // + the six Project H phase 3 home station ids: 2,239.
-    expect(Object.keys(ITEMS)).toHaveLength(2239);
+    // + Wyndlewood Chapter One's quest item and object ids (content/chapter_one.ts,
+    // all on the procedural pending ledger): 2,315.
+    expect(Object.keys(ITEMS)).toHaveLength(2315);
     expect(Object.values(verdict.auditScope.groups).reduce((sum, count) => sum + count, 0)).toBe(
       1255,
     );
@@ -1143,7 +1145,9 @@ describe('item-art consistency accepted-art provenance', () => {
     // Wobbles the Slime's reins (reins_wobbles_slime, a render of the shipped mount): 2,213.
     // + the twelve Project H furniture ids (content/furniture.ts): 2,233.
     // + the six Project H phase 3 home station ids: 2,239.
-    expect(Object.keys(ITEMS)).toHaveLength(2239);
+    // + Wyndlewood Chapter One's quest item and object ids (content/chapter_one.ts,
+    // all on the procedural pending ledger): 2,315.
+    expect(Object.keys(ITEMS)).toHaveLength(2315);
 
     const datedVerdict = readJson<FinalAuditVerdict>(CURRENT_VERDICT_PATH);
     const oldPassIds = sorted(datedVerdict.visualVerdict.passIds);

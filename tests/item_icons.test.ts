@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 import { describe, expect, it } from 'vitest';
 import { validateAcceptedArtManifest } from '../scripts/lib/icon_asset_audit.mjs';
+import { CHAPTER_ONE_ART_PENDING_ITEM_IDS } from '../src/sim/content/chapter_one';
 import { FURNITURE_ART_PENDING_ITEM_IDS } from '../src/sim/content/furniture';
 import { SEASON2_JEWELRY_IDS, SEASON2_SETS } from '../src/sim/content/pvp_honor_season2';
 import { ITEMS } from '../src/sim/data';
@@ -428,7 +429,15 @@ describe('item webp icons', () => {
     expect(
       [...ITEM_ART_PENDING].sort(),
       'art debt is enumerated and re-pinned deliberately, never grown quietly',
-    ).toEqual(['infernal_quiver', ...FURNITURE_ART_PENDING_ITEM_IDS].sort());
+    ).toEqual(
+      [
+        'infernal_quiver',
+        ...FURNITURE_ART_PENDING_ITEM_IDS,
+        // Wyndlewood Chapter One's quest items and objects (content/chapter_one.ts):
+        // procedural quest icons until their painted wave is commissioned.
+        ...CHAPTER_ONE_ART_PENDING_ITEM_IDS,
+      ].sort(),
+    );
     // And the inverse: an id with committed art must still win the static url.
     expect(itemImageUrl('linen_pouch')).toBe('/ui/items/linen_pouch.webp');
   });

@@ -17,6 +17,7 @@ import type {
   ZoneDef,
   ZonePropsDef,
 } from '../types';
+import { FACTION_VENDOR_STOCK } from './faction_vendors';
 import { FERAL } from './items';
 import {
   MUSTER_CIRCUIT,
@@ -1332,11 +1333,13 @@ export const ZONE2_NPCS: Record<string, NpcDef> = {
   herbalist_yara: {
     id: 'herbalist_yara',
     name: 'Herbalist Yara',
-    title: 'Herbalist',
+    title: 'Bracken Circle Quartermaster',
     pos: { ...FENBRIDGE_NPC_PLACEMENTS_BY_ID.herbalist_yara.position },
     facing: FENBRIDGE_NPC_PLACEMENTS_BY_ID.herbalist_yara.facing,
     color: 0x7d3c98,
     questIds: ['q_widows', 'q_broodmother'],
+    // The Bracken Circle's quartermaster (content/faction_vendors.ts).
+    vendorItems: [...FACTION_VENDOR_STOCK.bracken_circle],
     greeting: 'Mind the thicket west of the road. The webs are thick as sailcloth this season.',
   },
   scout_maren: {

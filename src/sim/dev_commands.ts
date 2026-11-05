@@ -309,7 +309,7 @@ export function handleDevChat(
     return null;
   }
 
-  // /dev rep <rift_watch|church_order|automatons|all> <amount>: award faction
+  // /dev rep <faction id|all> <amount>: award faction
   // standing the way a world-quest turn-in does (same level cap), so the
   // quartermasters' standing gates can be exercised without the daily grind.
   const repMatch = /^\/dev\s+rep\s+(\S+)\s+(\d+)\s*$/i.exec(raw);
@@ -323,7 +323,7 @@ export function handleDevChat(
       emitDevLog(
         ctx,
         pid,
-        `[dev] Unknown faction "${repMatch[1]}": rift_watch, church_order, automatons or all.`,
+        `[dev] Unknown faction "${repMatch[1]}": ${FACTION_IDS.join(', ')} or all.`,
       );
       return null;
     }

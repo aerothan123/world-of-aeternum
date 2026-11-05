@@ -20,14 +20,14 @@ describe('quest snapshot wire', () => {
       questsDone: new Set(['q_done']),
       worldQuestCycle: '2030-01-02',
       worldQuestLog: new Map([['wq_test', worldQuest]]),
-      factions: { rift_watch: 30, church_order: 0, automatons: 0 },
-      factionCurrencies: { rift_watch: 10, church_order: 5, automatons: 0 },
+      factions: { gilt_measure: 30, lanternwardens: 0, hearthwright_compact: 0 },
+      factionCurrencies: { gilt_measure: 10, lanternwardens: 5, hearthwright_compact: 0 },
       worldQuestRerollCycle: 'wq1_1',
       worldQuestReplacements: { wq_test: 'wq_other' },
       weeklyQuest: null,
       clueHunt: { huntId: 'hunt_test', step: 2 },
       guildContracts: { week: 'wk_9', done: ['phantom_old'], lifetime: 4 },
-      alliedHearthstoneAttunement: 'rift_watch',
+      alliedHearthstoneAttunement: 'gilt_measure',
     } as unknown as PlayerMeta;
     const sim = {
       worldQuestExpiresAtMs: 1_893_542_400_000,
@@ -50,7 +50,7 @@ describe('quest snapshot wire', () => {
       // The Buried Hoard treasure map (null until one is read).
       ['tmap', null],
       // The Allied Hearthstone's bound hub (null while unbound).
-      ['ahs', 'rift_watch'],
+      ['ahs', 'gilt_measure'],
       ['wqrr', meta.worldQuestRerollCycle],
       ['wqrep', { wq_test: 'wq_other' }],
       ['wkq', null],

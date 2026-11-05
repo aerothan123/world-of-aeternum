@@ -3286,6 +3286,118 @@ export const NPC_LOOKS: Record<string, NpcLookDef> = {
     },
     props: 'none',
   },
+  // === Wyndlewood Chapter One's townsfolk (content/chapter_one.ts) ==========
+  // Neris Snowmantle, Lanternwarden scout: frost-pale hair, a spear for the road.
+  scout_neris: {
+    cls: 'hunter',
+    app: {
+      gender: 'female',
+      ...head('braid', 'none', 'default', 'almond', 'soft', 'default', 'default', 'lobes'),
+      ...skin(30, 0.4, 0.55),
+      ...hair(210, 0.1, 0.85),
+      ...eyes(200, 0.5, 0.5),
+      headShape: shape({ eyeSpacing: 0.22, eyeSize: 0.1, eyeTilt: 0.35, chinWidth: 0.48 }),
+      bodyScale: 1.01,
+    },
+    props: 'spear',
+  },
+  // Holven Marr, gravekeeper: weathered and grey, a scythe for the long grass.
+  gravekeeper_holven: {
+    cls: 'priest',
+    app: {
+      gender: 'male',
+      ...head('swept', 'boxed', 'rounded', 'hooded', 'aquiline', 'default'),
+      ...skin(24, 0.3, 0.45),
+      ...hair(30, 0.1, 0.55),
+      ...eyes(90, 0.3, 0.35),
+      headShape: shape({ eyeSpacing: 0.12, eyeSize: -0.2, eyeTilt: -0.3, chinWidth: 0.58 }),
+      bodyScale: 0.98,
+    },
+    props: 'scythe',
+  },
+  // Jorren, innkeeper: broad and cheerfully gloomy.
+  innkeeper_jorren: {
+    cls: 'warrior',
+    app: {
+      gender: 'male',
+      ...head('undercut', 'goatee', 'relaxed', 'default', 'broad', 'smirk'),
+      ...skin(22, 0.5, 0.48),
+      ...hair(15, 0.5, 0.25),
+      ...eyes(35, 0.5, 0.35),
+      headShape: shape({ eyeSpacing: 0.05, eyeSize: 0.4, eyeTilt: 0.1, chinWidth: 0.7 }),
+      bodyScale: 1.03,
+    },
+    props: 'none',
+  },
+  // Olvessa, herb terrace keeper: silver hair, a walking staff.
+  herbalist_olvessa: {
+    cls: 'druid',
+    app: {
+      gender: 'female',
+      ...head('crown', 'none', 'soft_arch', 'almond', 'soft', 'relaxed'),
+      ...skin(28, 0.35, 0.6),
+      ...hair(0, 0, 0.75),
+      ...eyes(110, 0.45, 0.4),
+      headShape: shape({ eyeSpacing: -0.12, eyeSize: -0.1, eyeTilt: 0.15, chinWidth: 0.52 }),
+      bodyScale: 0.97,
+    },
+    props: 'walking_staff',
+  },
+  // Della Brindlepot, gardener: sun-browned, a knife for the beds.
+  gardener_della: {
+    cls: 'shaman',
+    app: {
+      gender: 'female',
+      ...head('braid', 'none', 'default', 'almond', 'soft', 'default'),
+      ...skin(26, 0.55, 0.5),
+      ...hair(28, 0.6, 0.35),
+      ...eyes(30, 0.5, 0.35),
+      headShape: shape({ eyeSpacing: 0.3, eyeSize: 0.2, eyeTilt: -0.2, chinWidth: 0.6 }),
+      bodyScale: 0.99,
+    },
+    props: 'knife',
+  },
+  // Pella Nookwright, carpenter: sawdust in her red braid, a hammer at hand.
+  carpenter_pella: {
+    cls: 'warrior',
+    app: {
+      gender: 'female',
+      ...head('braid', 'none', 'default', 'almond', 'soft', 'default', 'default', 'lobes'),
+      ...skin(32, 0.45, 0.42),
+      ...hair(12, 0.7, 0.32),
+      ...eyes(45, 0.4, 0.3),
+      headShape: shape({ eyeSpacing: -0.25, eyeSize: 0.3, eyeTilt: 0.2, chinWidth: 0.55 }),
+      bodyScale: 1.0,
+    },
+    props: 'hammer',
+  },
+  // Tobbin Wickerby, fisherman: salt-bleached hair, sea-grey eyes.
+  fisherman_tobbin: {
+    cls: 'rogue',
+    app: {
+      gender: 'male',
+      ...head('shoulder', 'boxed', 'soft_arch', 'almond', 'default', 'default', 'default', 'lobes'),
+      ...skin(27, 0.6, 0.4),
+      ...hair(40, 0.3, 0.62),
+      ...eyes(190, 0.5, 0.45),
+      headShape: shape({ eyeSize: 0.12, eyeTilt: 0.3, chinWidth: 0.64 }),
+      bodyScale: 0.98,
+    },
+    props: 'none',
+  },
+  // Veiled Rite Tender: a Pale Accord lamp-keeper, grave-pale behind the veil.
+  veiled_rite_tender: {
+    cls: 'priest',
+    app: {
+      gender: 'male',
+      ...head('swept', 'moustache', 'default', 'hooded', 'default', 'default'),
+      ...skin(240, 0.08, 0.7),
+      ...hair(0, 0, 0.9),
+      ...eyes(260, 0.2, 0.6),
+      headShape: shape({ eyeSpacing: 0.4, eyeSize: -0.4, eyeTilt: -0.5, chinWidth: 0.45 }),
+    },
+    props: 'tome',
+  },
 };
 
 /**
@@ -3309,6 +3421,9 @@ function baseId(templateId: string): string {
   if (templateId === 'guardian_muster_standard_sword') return 'muster_sergeant';
   // Brother Aldric stands in every hub (`_fen`, `_highwatch`, `_raid`).
   if (templateId.startsWith('brother_aldric')) return 'brother_aldric';
+  // Wyndlewood Chapter One's escortees are the townsfolk themselves.
+  if (templateId === 'escort_neris') return 'scout_neris';
+  if (templateId === 'escort_della') return 'gardener_della';
   return templateId;
 }
 
@@ -3360,6 +3475,11 @@ export const MOB_LOOK_IDS: ReadonlySet<string> = new Set([
   'crypt_crow_caller',
   'hedge_knight',
   'the_wreck_warden',
+  // Wyndlewood Chapter One (content/chapter_one.ts): its two escortees and the
+  // Pale Accord's lamp-keepers.
+  'escort_neris',
+  'escort_della',
+  'veiled_rite_tender',
 ]);
 
 // Looks resolve once per templateId, alias ids included: the table is static, a

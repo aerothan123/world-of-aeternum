@@ -87,6 +87,7 @@ const ENEMY_BODIES: Record<string, string> = {
   crypt_crow_caller: 'player_rogue',
   hedge_knight: 'player_paladin',
   the_wreck_warden: 'player_warrior',
+  veiled_rite_tender: 'player_priest',
 };
 const roster = Object.entries(NPC_LOOKS) as [string, NpcLookDef][];
 
@@ -206,6 +207,8 @@ describe('npc looks roster', () => {
     expect(escortees).toEqual([
       'apprentice_wren',
       'castaway_navigator',
+      'escort_della',
+      'escort_neris',
       'fisher_bram',
       'gravedigger_mosley',
     ]);
@@ -220,6 +223,9 @@ describe('npc looks roster', () => {
       castaway_navigator: 'player_rogue',
       fisher_bram: 'player_rogue',
       gravedigger_mosley: 'player_rogue',
+      // Wyndlewood Chapter One escortees wear their townsfolk looks (baseId).
+      escort_della: 'player_shaman_female',
+      escort_neris: 'player_hunter_female',
     };
     for (const id of escortees) {
       const look = npcLookFor(id, 'mob');

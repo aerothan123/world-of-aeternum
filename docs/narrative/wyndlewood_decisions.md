@@ -85,3 +85,23 @@ persistence, tests), not a rename.
 - **Chapter One.** The owner's quest set is committed verbatim as
   `docs/narrative/chapter_one_quests.txt`; positions are in
   `docs/narrative/chapter_one_placements.md`.
+
+### Standing comes from activities (owner decision, Chapter One integration)
+
+- Faction standing is earned by what a player does, not where. Lanternwardens:
+  combat, patrols, escorts, road protection, Pale Accord kills. Hearthwright
+  Compact: crafting, building, housing, town restoration, crafted deliveries.
+  Bracken Circle: gathering (herbs, wood, fishing), wildlife, cleansing.
+  Gilt Measure: trading, market sales, delivery and commerce work, buy orders.
+- The seam is `recordFactionActivity` in `src/sim/faction_activity.ts`
+  (activity to faction table `FACTION_ACTIVITY_SOURCES`, per-event amounts
+  `FACTION_ACTIVITY_STANDING`, no standing from content five or more levels
+  below the player). Gathering, fishing, crafting and Pale Accord kills call
+  it today; other systems call it with an activity id and need no internals.
+- Rotating world quests now credit the faction chosen by the objective type
+  (`worldQuestFaction`), a flat amount per level bracket; the zone ownership
+  table stays for hubs and maps only, and a world quest's explicit `faction`
+  field is no longer read.
+- Chapter One quests and board dailies keep their listed faction.
+- The all-banners Book of Deeds meta keeps its three shipped deeds (deed
+  triggers are never retro-edited); the Bracken Circle deeds were appended.
