@@ -3315,21 +3315,14 @@ describe('autosaves', () => {
     await head;
   });
 
-  it('gates WOC dirty-book preflush and mail persistence at their innermost DB calls', async () => {
+  // The WOC dirty-book preflush half of this pin retired with the crypto market
+  // (flushDirtyGuildBooks is gone, so no preflush path is left to gate); the
+  // guild-book autosave write itself is pinned by the test above. Mail
+  // persistence still holds the permit innermost.
+  it('gates mail persistence at its innermost DB call', async () => {
     const gate = createBackgroundDbGate(1, 0);
     const server = new GameServer(undefined, gate);
-    const session = joinServer(server, fakeWs(), 1, 'Testa', 'warrior', { accountMountItems: [] });
-    const guildId = 914;
-    server.sim.loadGuildBank(guildId, {
-      treasury: 0,
-      inventory: [],
-      purchasedSlots: 0,
-    });
-    session.dirtyGuildBanks.set(guildId, 1);
-    vi.mocked(saveCharacterAndGuildBankState).mockImplementationOnce(async () => {
-      expect(gate.stats().inFlight).toBe(1);
-      return true;
-    });
+    joinServer(server, fakeWs(), 1, 'Testa', 'warrior', { accountMountItems: [] });
     // Mail persistence rides the partitioned writer (#3561); a freshly joined
     // character already has dirty welcome-letter partitions, so the innermost
     // DB call still fires and can assert the permit is held.
@@ -3337,15 +3330,13 @@ describe('autosaves', () => {
       expect(gate.stats().inFlight).toBe(1);
     });
 
-    await server.flushDirtyGuildBooks(session.characterId);
     await server.persistMailBlob();
 
-    expect(saveCharacterAndGuildBankState).toHaveBeenCalledTimes(1);
     expect(saveMailPartitions).toHaveBeenCalledTimes(1);
     expect(gate.stats()).toMatchObject({
       inFlight: 0,
       waiting: 0,
-      acquired: 2,
+      acquired: 1,
     });
   });
 

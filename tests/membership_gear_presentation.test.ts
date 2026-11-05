@@ -48,7 +48,6 @@ function cardDps(world: IWorld): string | undefined {
     characterImage: 'data:image/png;base64,test',
     referral: null,
     standing: null,
-    balance: null,
     showDevBadges: false,
     slotName: (slot) => slot,
   });
