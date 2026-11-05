@@ -22,6 +22,10 @@ foreach ($tok in ($Steps -split ',')) {
     'builds' { Run builds { node tmp/props_kit/build.mjs @idList } }
     'rugtex' { Run rugtex { node tmp/props_kit/rug_tex.mjs furn_braided_rug } }
     'rug' { New-Item -ItemType Directory -Force tmp/props_kit/procedural | Out-Null; Run rug { node tmp/props_kit/rug_disc.mjs tmp/props_kit/concepts/furn_braided_rug_tex0.png tmp/props_kit/procedural/wyn_furn_braided_rug.glb 2.6 1.8 0.05 } }
+    'rugs' { foreach ($i in $idList) { Run "rug $i" { node scripts/assets/wyndlewood_props/rug.mjs $i } } }
+    'probe' { foreach ($i in $idList) { $d = "tmp/props_kit/probe/$i"; Remove-Item -Recurse -Force $d -ErrorAction SilentlyContinue; Run "probe $i" { node tmp/props_kit/split.mjs $i "tmp/asset_pipeline/wyn_${i}_b0/raw.glb" $d } ; New-Item -ItemType Directory -Force tmp/props_kit/probe_all | Out-Null; Copy-Item "$d/wyn_*.glb" tmp/props_kit/probe_all/ -Force } }
+    'probesheet' { Run probesheet { node tmp/props_kit/preview_dir.mjs tmp/props_kit/probe_all "tmp/props_kit/probe_$Name.jpg" hero,front } }
+    'split' { foreach ($i in $idList) { $d = "tmp/props_kit/split/" + ($i -replace '^sheet_','' -replace '_smalls$',''); Remove-Item -Recurse -Force $d -ErrorAction SilentlyContinue; Run "split $i" { node tmp/props_kit/split.mjs $i "tmp/asset_pipeline/wyn_${i}_b0/raw.glb" $d } } }
     'lantern' { Run lantern { node tmp/props_kit/build.mjs furn_table_lantern } }
     'apply' { Run apply { node tmp/props_kit/apply.mjs @idList } }
     'review' { New-Item -ItemType Directory -Force "tmp/props_kit/review_$Name" | Out-Null; foreach ($i in $idList) { Copy-Item "public/models/props/wyn_$i.glb" "tmp/props_kit/review_$Name/" -Force }; Run review { node tmp/props_kit/preview_dir.mjs "tmp/props_kit/review_$Name" "tmp/props_kit/review_$Name.jpg" } }

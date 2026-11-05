@@ -63,12 +63,29 @@
       "height": 0.9,
       "faceLimit": 6000,
       "sheetPrompt": "four separate small seaside objects standing apart in one row with wide empty space between them: a dry supply bundle of oiled canvas tied with rope, a broken wooden crate with loose planks, a round wicker and rope crab pot trap, a flat rectangular wooden walkway panel of planks nailed to two crossbars",
-      "assign": [2, 1, 0, 3],
+      "assign": [
+        2,
+        1,
+        0,
+        3
+      ],
       "sheet": [
-        { "id": "quest_supply_bundle", "height": 0.55 },
-        { "id": "quest_wreck_crate", "height": 0.7 },
-        { "id": "quest_crab_pot", "height": 0.6 },
-        { "id": "quest_walkway_panel", "height": 0.25 }
+        {
+          "id": "quest_supply_bundle",
+          "height": 0.55
+        },
+        {
+          "id": "quest_wreck_crate",
+          "height": 0.7
+        },
+        {
+          "id": "quest_crab_pot",
+          "height": 0.6
+        },
+        {
+          "id": "quest_walkway_panel",
+          "height": 0.25
+        }
       ]
     },
     {
@@ -77,12 +94,29 @@
       "height": 1.1,
       "faceLimit": 6000,
       "sheetPrompt": "four separate graveyard objects standing apart in one row with wide empty space between them: an unlit old iron grave lamp on a short stone post, a matching iron grave lamp wrapped tightly in black waxed cord with a pale cold blue flame inside, a plain unmarked rounded granite headstone slab with a completely smooth flat front, no carving, no face, no letters, a tall rough standing boundary stone carved with a simple open hand symbol and no letters",
-      "assign": [1, 0, 2, 3],
+      "assign": [
+        1,
+        0,
+        2,
+        3
+      ],
       "sheet": [
-        { "id": "quest_grave_lamp_unlit", "height": 0.95 },
-        { "id": "quest_grave_lamp_bound", "height": 1.15 },
-        { "id": "quest_name_stone", "height": 0.8 },
-        { "id": "quest_boundary_stone", "height": 1.3 }
+        {
+          "id": "quest_grave_lamp_unlit",
+          "height": 0.95
+        },
+        {
+          "id": "quest_grave_lamp_bound",
+          "height": 1.15
+        },
+        {
+          "id": "quest_name_stone",
+          "height": 0.8
+        },
+        {
+          "id": "quest_boundary_stone",
+          "height": 1.3
+        }
       ]
     },
     {
@@ -91,12 +125,26 @@
       "height": 1.0,
       "faceLimit": 6000,
       "sheetPrompt": "three separate objects standing apart in one row with wide empty space between them: a small shallow glazed clay saucer with a few bread crumbs, an old brass speaking pipe tube that rises from a wooden wall plank and bends into a flared trumpet mouth with a little hinged cap, a short broken section of wooden boardwalk on posts with two missing planks leaving gaps",
-      "assign": [1, 0, 2],
+      "assign": [
+        1,
+        0,
+        2
+      ],
       "dropNeedles": true,
       "sheet": [
-        { "id": "quest_pantry_saucer", "height": 0.12, "clipAboveFrac": 0.4 },
-        { "id": "quest_speaking_pipe", "height": 0.9 },
-        { "id": "quest_walkway_gap", "height": 0.8 }
+        {
+          "id": "quest_pantry_saucer",
+          "height": 0.12,
+          "clipAboveFrac": 0.4
+        },
+        {
+          "id": "quest_speaking_pipe",
+          "height": 0.9
+        },
+        {
+          "id": "quest_walkway_gap",
+          "height": 0.8
+        }
       ]
     },
     {
@@ -135,12 +183,16 @@
       "id": "furn_braided_rug",
       "category": "furniture",
       "family": "cottage",
-      "height": 0.06,
+      "height": 0.05,
       "faceLimit": 1500,
       "prompt": "oval braided rag rug lying flat, concentric rings of warm red, ochre, sage green and cream braided fabric, thick soft rounded edge, seen from above at a low angle",
       "procedural": "rug_disc",
       "texturePrompt": "flat top-down orthographic view of an oval braided rag rug filling the whole frame, concentric braided rings of warm red, ochre, sage green and cream wool, soft hand-painted storybook texture, even lighting, no shadow, no background visible at the centre, plain white background around the oval",
-      "proceduralNote": "Tripo modelled only the pompom rim of the first build (no rug body), so the rug is a procedural oval disc (tmp/props_kit/rug_disc.mjs) wearing a generated top-down texture."
+      "proceduralNote": "Tripo modelled only the pompom rim of the first build (no rug body), so the rug is a procedural oval disc (scripts/assets/wyndlewood_props/rug.mjs) wearing a generated top-down texture.",
+      "size": [
+        2.6,
+        1.8
+      ]
     },
     {
       "id": "furn_table_lantern",
@@ -165,6 +217,705 @@
       "height": 1.0,
       "faceLimit": 2500,
       "prompt": "folding carpenter's worktable: a sturdy plank tabletop on crossed folding trestle legs, a wooden bench vise at one end, a mallet, a hand plane and two chisels lying on top, a few curled wood shavings, no ground plane"
+    },
+    {
+      "id": "sheet_furn_rustic_seating",
+      "category": "furniture",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "four separate pieces of simple rustic farmhouse furniture in plain honey oak planks with iron nails: a plank chair with a slatted back, a round three-legged milking stool, a long plank bench, a long trestle dining table",
+      "sheet": [
+        {
+          "id": "furn_rustic_chair",
+          "height": 1.1,
+          "family": "rustic"
+        },
+        {
+          "id": "furn_rustic_stool",
+          "height": 0.55,
+          "family": "rustic"
+        },
+        {
+          "id": "furn_rustic_bench",
+          "height": 0.6,
+          "family": "rustic"
+        },
+        {
+          "id": "furn_trestle_table",
+          "height": 0.85,
+          "family": "rustic"
+        }
+      ]
+    },
+    {
+      "id": "sheet_furn_rustic_storage",
+      "category": "furniture",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "four separate pieces of rustic farmhouse storage furniture in plain oak with iron bands: a small ale keg on a wooden cradle with a tap, an upright iron banded barrel, a tall plank wardrobe with two doors, a squat kitchen cupboard with two doors and a drawer",
+      "sheet": [
+        {
+          "id": "furn_rustic_keg",
+          "height": 0.85,
+          "family": "rustic"
+        },
+        {
+          "id": "furn_rustic_barrel",
+          "height": 1.0,
+          "family": "rustic"
+        },
+        {
+          "id": "furn_rustic_wardrobe",
+          "height": 2.0,
+          "family": "rustic"
+        },
+        {
+          "id": "furn_rustic_cupboard",
+          "height": 1.1,
+          "family": "rustic"
+        }
+      ]
+    },
+    {
+      "id": "sheet_furn_rustic_misc",
+      "category": "furniture",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "four separate pieces of rustic farmhouse furniture: a low wooden cot bed with a straw mattress and a rough wool blanket, a wooden wash stand with a ceramic basin and pitcher, a woven wicker basket full of firewood logs, a flat wooden wall peg rail with a cloak and a hat hanging on it",
+      "sheet": [
+        {
+          "id": "furn_straw_cot",
+          "height": 0.7,
+          "family": "rustic"
+        },
+        {
+          "id": "furn_wash_stand",
+          "height": 1.05,
+          "family": "rustic"
+        },
+        {
+          "id": "furn_log_basket",
+          "height": 0.6,
+          "family": "rustic"
+        },
+        {
+          "id": "furn_peg_rail",
+          "height": 0.9,
+          "family": "rustic"
+        }
+      ]
+    },
+    {
+      "id": "sheet_furn_rustic_small",
+      "category": "furniture",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "four separate small rustic tabletop objects: a tall iron candlestick holder with three cream candles, a small square iron candle lantern with a ring handle, a clay water jug with two clay cups, a wooden bread board with a round loaf and a knife",
+      "sheet": [
+        {
+          "id": "furn_rustic_candlestick",
+          "height": 0.45,
+          "family": "rustic"
+        },
+        {
+          "id": "furn_candle_lantern",
+          "height": 0.4,
+          "family": "rustic"
+        },
+        {
+          "id": "furn_water_jug",
+          "height": 0.32,
+          "family": "rustic"
+        },
+        {
+          "id": "furn_bread_board",
+          "height": 0.2,
+          "family": "rustic"
+        }
+      ]
+    },
+    {
+      "id": "sheet_furn_cottage_seating",
+      "category": "furniture",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "four separate pieces of cosy painted cottage furniture with soft rounded shapes: a padded armchair with a floral cream and rose fabric seat, a wooden rocking chair with a knitted cushion, a round pedestal table with a lace doily, a tall kitchen dresser hutch with shelves of blue and white plates above two cupboard doors",
+      "sheet": [
+        {
+          "id": "furn_cottage_armchair",
+          "height": 1.1,
+          "family": "cottage"
+        },
+        {
+          "id": "furn_rocking_chair",
+          "height": 1.15,
+          "family": "cottage"
+        },
+        {
+          "id": "furn_cottage_round_table",
+          "height": 0.8,
+          "family": "cottage"
+        },
+        {
+          "id": "furn_cottage_dresser",
+          "height": 2.0,
+          "family": "cottage"
+        }
+      ]
+    },
+    {
+      "id": "sheet_furn_cottage_storage",
+      "category": "furniture",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "four separate pieces of cosy painted cottage furniture: a tall wardrobe painted sage green with hand painted flowers on the doors, a low wooden blanket chest with a folded patchwork quilt on its lid, a small round side table with a drawer, a three tier wooden plant stand holding pots of flowers",
+      "sheet": [
+        {
+          "id": "furn_painted_wardrobe",
+          "height": 2.0,
+          "family": "cottage"
+        },
+        {
+          "id": "furn_quilt_chest",
+          "height": 0.7,
+          "family": "cottage"
+        },
+        {
+          "id": "furn_side_table",
+          "height": 0.7,
+          "family": "cottage"
+        },
+        {
+          "id": "furn_flower_stand",
+          "height": 1.1,
+          "family": "cottage"
+        }
+      ]
+    },
+    {
+      "id": "sheet_furn_cottage_small",
+      "category": "furniture",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "four separate small cosy cottage decorations: a round wooden wall clock with a painted face and no numbers, a framed oil painting of green hills and a river in a carved gold frame, a clay pot of bright red and yellow flowers, a porcelain tea set of a teapot and two cups on a small tray",
+      "sheet": [
+        {
+          "id": "furn_wall_clock",
+          "height": 0.55,
+          "family": "cottage"
+        },
+        {
+          "id": "furn_landscape_painting",
+          "height": 0.8,
+          "family": "cottage"
+        },
+        {
+          "id": "furn_potted_flowers",
+          "height": 0.45,
+          "family": "cottage"
+        },
+        {
+          "id": "furn_tea_set",
+          "height": 0.25,
+          "family": "cottage"
+        }
+      ]
+    },
+    {
+      "id": "sheet_furn_noble_main",
+      "category": "furniture",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "four separate pieces of grand noble manor furniture in dark carved walnut with deep red velvet and brass trim: a four poster canopy bed with red velvet curtains, a tall high backed carved chair with a red velvet seat, a long polished banquet table, a tall carved bookcase full of leather books",
+      "sheet": [
+        {
+          "id": "furn_canopy_bed",
+          "height": 2.3,
+          "family": "noble"
+        },
+        {
+          "id": "furn_highback_chair",
+          "height": 1.5,
+          "family": "noble"
+        },
+        {
+          "id": "furn_banquet_table",
+          "height": 0.85,
+          "family": "noble"
+        },
+        {
+          "id": "furn_noble_bookcase",
+          "height": 2.2,
+          "family": "noble"
+        }
+      ]
+    },
+    {
+      "id": "sheet_furn_noble_more",
+      "category": "furniture",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "four separate pieces of grand noble manor furniture in dark carved walnut with deep red velvet and brass trim: a writing desk with an inkwell and quill, a two seat velvet settee, a glass fronted display cabinet with silver cups inside, a tall carved wardrobe with brass handles",
+      "sheet": [
+        {
+          "id": "furn_writing_desk",
+          "height": 1.1,
+          "family": "noble"
+        },
+        {
+          "id": "furn_velvet_settee",
+          "height": 1.0,
+          "family": "noble"
+        },
+        {
+          "id": "furn_display_cabinet",
+          "height": 2.0,
+          "family": "noble"
+        },
+        {
+          "id": "furn_noble_wardrobe",
+          "height": 2.2,
+          "family": "noble"
+        }
+      ]
+    },
+    {
+      "id": "sheet_furn_noble_small",
+      "category": "furniture",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "four separate noble manor decorations: a tall brass five arm candelabra with white candles, a woven wall tapestry in deep red and gold showing a simple stag in a forest with no text, a carved wooden shield plaque for a wall with a crossed pair of antlers mounted on it, a brass world globe on a carved wooden floor stand",
+      "sheet": [
+        {
+          "id": "furn_candelabra",
+          "height": 0.6,
+          "family": "noble"
+        },
+        {
+          "id": "furn_wall_tapestry",
+          "height": 1.6,
+          "family": "noble"
+        },
+        {
+          "id": "furn_shield_plaque",
+          "height": 0.9,
+          "family": "noble"
+        },
+        {
+          "id": "furn_globe_stand",
+          "height": 1.2,
+          "family": "noble"
+        }
+      ]
+    },
+    {
+      "id": "sheet_furn_crafter_a",
+      "category": "furniture",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "four separate pieces of craftsman workshop furniture in sturdy oak: a wooden wall tool rack holding saws, hammers and chisels, a sturdy wooden sawhorse with a plank on it, a gardener's potting bench with clay pots and a trowel, a tall wooden rack of colorful thread spools and yarn balls",
+      "sheet": [
+        {
+          "id": "furn_tool_rack",
+          "height": 1.2,
+          "family": "crafter"
+        },
+        {
+          "id": "furn_sawhorse",
+          "height": 0.75,
+          "family": "crafter"
+        },
+        {
+          "id": "furn_potting_bench",
+          "height": 1.2,
+          "family": "crafter"
+        },
+        {
+          "id": "furn_spool_rack",
+          "height": 1.4,
+          "family": "crafter"
+        }
+      ]
+    },
+    {
+      "id": "sheet_furn_crafter_b",
+      "category": "furniture",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "four separate pieces of craftsman workshop furniture: a standing wooden drying rack hung with bundles of dried herbs and flowers, a narrow wall shelf of glass jars of colorful powders and seeds, a stack of three wooden supply crates, a tailor's dress form mannequin on a wooden tripod stand",
+      "sheet": [
+        {
+          "id": "furn_herb_drying_rack",
+          "height": 1.6,
+          "family": "crafter"
+        },
+        {
+          "id": "furn_jar_shelf",
+          "height": 1.0,
+          "family": "crafter"
+        },
+        {
+          "id": "furn_crate_stack",
+          "height": 1.3,
+          "family": "crafter"
+        },
+        {
+          "id": "furn_dress_form",
+          "height": 1.6,
+          "family": "crafter"
+        }
+      ]
+    },
+    {
+      "id": "sheet_furn_home_stations_a",
+      "category": "furniture",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "three separate small home crafting stations for a cottage workshop: a small home forge of a stone brazier full of glowing coals with an anvil on a stump beside it, a small iron cookstove with a stew pot and a chopping board on a short counter, an apothecary bench with glass bottles, a mortar and pestle and hanging herbs",
+      "sheet": [
+        {
+          "id": "furn_home_forge",
+          "height": 1.2,
+          "family": "crafter"
+        },
+        {
+          "id": "furn_home_kitchen",
+          "height": 1.3,
+          "family": "crafter"
+        },
+        {
+          "id": "furn_home_apothecary",
+          "height": 1.4,
+          "family": "crafter"
+        }
+      ]
+    },
+    {
+      "id": "sheet_furn_home_stations_b",
+      "category": "furniture",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "three separate small home crafting stations for a cottage workshop: a leather tanning table with a hide stretched on a wooden frame and scraping tools, a small wooden table loom with half woven striped cloth, a toolworks bench with a vise, a grinding wheel and a rack of hand tools",
+      "sheet": [
+        {
+          "id": "furn_home_tannery",
+          "height": 1.4,
+          "family": "crafter"
+        },
+        {
+          "id": "furn_home_loom",
+          "height": 1.3,
+          "family": "crafter"
+        },
+        {
+          "id": "furn_home_toolworks",
+          "height": 1.2,
+          "family": "crafter"
+        }
+      ]
+    },
+    {
+      "id": "furn_noble_carpet",
+      "category": "furniture",
+      "family": "noble",
+      "height": 0.04,
+      "procedural": "rug_rect",
+      "size": [
+        3.2,
+        2.2
+      ],
+      "texturePrompt": "flat top-down orthographic view of a rectangular noble manor carpet filling the whole frame, deep red field with a gold and navy border and a simple leaf and vine medallion pattern, soft hand-painted storybook texture, even lighting, no shadow, no text"
+    },
+    {
+      "id": "furn_rag_runner",
+      "category": "furniture",
+      "family": "cottage",
+      "height": 0.04,
+      "procedural": "rug_rect",
+      "size": [
+        2.8,
+        1.0
+      ],
+      "texturePrompt": "flat top-down orthographic view of a long rectangular woven rag rug runner filling the whole frame, cheerful stripes of rose, cream, sage and sky blue cotton rags, soft hand-painted storybook texture, even lighting, no shadow, no text"
+    },
+    {
+      "id": "furn_woven_rug_painted",
+      "category": "furniture",
+      "family": "rustic",
+      "height": 0.05,
+      "procedural": "rug_disc",
+      "size": [
+        3.0,
+        2.2
+      ],
+      "texturePrompt": "flat top-down orthographic view of an oval rustic woven wool rug filling the whole frame, earthy brown, rust and oatmeal concentric woven bands with a simple zigzag border, soft hand-painted storybook texture, even lighting, no shadow, plain white background around the oval"
+    },
+    {
+      "id": "ruin_hearth_arch",
+      "category": "ruin",
+      "height": 5,
+      "faceLimit": 4000,
+      "prompt": "ancient ruined stone archway of an old hearth hall, a single tall broken arch of weathered pale stone blocks with carved flame and hearth motifs, one side crumbling, ivy and moss climbing it, fallen blocks at its feet, no ground plane"
+    },
+    {
+      "id": "ruin_hall_wall",
+      "category": "ruin",
+      "height": 4,
+      "faceLimit": 4000,
+      "prompt": "long ruined stone wall segment of an ancient hall, weathered pale stone with a crumbling top edge, a carved fireplace hearth niche in the middle and one arched window opening, moss and ivy, fallen stones at its base, no ground plane"
+    },
+    {
+      "id": "sheet_ruin_smalls",
+      "category": "ruin",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "four separate ancient ruin pieces of weathered pale carved stone with moss: a toppled round pillar drum lying on its side, a waist high standing hearthstone carved with a spiral flame, a low cluster of square foundation stones, a ring of broken hearth stones around old grey ash",
+      "sheet": [
+        {
+          "id": "ruin_toppled_pillar",
+          "height": 0.9
+        },
+        {
+          "id": "ruin_hearthstone",
+          "height": 1.2
+        },
+        {
+          "id": "ruin_foundation_stones",
+          "height": 0.6
+        },
+        {
+          "id": "ruin_hearth_ring",
+          "height": 0.45
+        }
+      ]
+    },
+    {
+      "id": "shrine_first_hearth",
+      "category": "shrine",
+      "height": 2.2,
+      "faceLimit": 4000,
+      "prompt": "ancient hearth shrine: a waist high carved pale stone altar with a shallow bronze ember bowl on top holding warm glowing embers, small offering niches with candles in its sides, two short carved posts tied with faded ribbons on either side, moss at its base, no ground plane"
+    },
+    {
+      "id": "sheet_shrine_smalls",
+      "category": "shrine",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "four separate small wayside hearth shrines: a little wooden post shrine with a tiny shingled roof sheltering a candle niche, a neat stone cairn with a carved flame mark on its top stone, a tall slim standing stone carved with a hearth and flame symbol and no letters, a carved stone pedestal holding a wide offering bowl",
+      "sheet": [
+        {
+          "id": "shrine_wayside_post",
+          "height": 1.6
+        },
+        {
+          "id": "shrine_cairn",
+          "height": 1.0
+        },
+        {
+          "id": "shrine_standing_stone",
+          "height": 2.2
+        },
+        {
+          "id": "shrine_offering_bowl",
+          "height": 1.0
+        }
+      ]
+    },
+    {
+      "id": "bridge_plank_footbridge",
+      "category": "bridge",
+      "height": 2.0,
+      "faceLimit": 4000,
+      "prompt": "small wooden arched footbridge for a stream, curved plank deck with simple wooden hand rails on both sides, sturdy log posts at each end, moss on the planks, seen from the side at three-quarter view, no ground plane, no water"
+    },
+    {
+      "id": "bridge_stone_arch",
+      "category": "bridge",
+      "height": 4.0,
+      "faceLimit": 4000,
+      "prompt": "old single arch stone bridge, a long humped deck of weathered grey fieldstone with low parapet walls on both sides, moss and ivy on the arch, seen at three-quarter view, no ground plane, no water"
+    },
+    {
+      "id": "bridge_willow_footbridge",
+      "category": "bridge",
+      "height": 1.8,
+      "faceLimit": 4000,
+      "prompt": "rustic footbridge of split logs and planks with hand rails woven from bent willow branches, slightly crooked, resting on two log pilings at each end, seen at three-quarter view, no ground plane, no water"
+    },
+    {
+      "id": "sheet_accord_traces_a",
+      "category": "accord",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "four separate small sinister ritual traces in a quiet countryside: a cluster of short wooden stakes tied together with black waxed cord, a flat stone covered in pale melted wax and three pale stubby candles, a torn pale grey veil cloth caught on a thorny branch, a small wooden crate packed with coils of black waxed cord and lamp wicks",
+      "sheet": [
+        {
+          "id": "accord_bound_stakes",
+          "height": 0.8
+        },
+        {
+          "id": "accord_wax_stone",
+          "height": 0.4
+        },
+        {
+          "id": "accord_veil_thorn",
+          "height": 1.0
+        },
+        {
+          "id": "accord_cord_crate",
+          "height": 0.6
+        }
+      ]
+    },
+    {
+      "id": "sheet_accord_traces_b",
+      "category": "accord",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "four separate small sinister ritual traces: a ring of small pale chalk marked stones on a patch of dark soil, a short iron post with a hook holding an unlit iron lamp wrapped in black cord, a lifted loose flagstone revealing a small hidden wooden box, a stack of pale tallow wax blocks tied with twine",
+      "sheet": [
+        {
+          "id": "accord_chalk_ring",
+          "height": 0.3
+        },
+        {
+          "id": "accord_lamp_hook",
+          "height": 1.6
+        },
+        {
+          "id": "accord_hidden_cache",
+          "height": 0.45
+        },
+        {
+          "id": "accord_wax_blocks",
+          "height": 0.45
+        }
+      ]
+    },
+    {
+      "id": "sheet_outpost_lanternwardens",
+      "category": "outpost",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "four separate pieces of a road watch outpost of lantern keeping wardens in deep blue and silver: a tall iron lantern on a wooden post, an iron signal brazier on a tripod, a wooden rack holding spears and spare lanterns, a banner stand with a deep blue banner showing a simple silver lantern emblem and no text",
+      "sheet": [
+        {
+          "id": "outpost_warden_lantern_post",
+          "height": 3.2
+        },
+        {
+          "id": "outpost_warden_brazier",
+          "height": 1.4
+        },
+        {
+          "id": "outpost_warden_rack",
+          "height": 1.8
+        },
+        {
+          "id": "outpost_warden_banner",
+          "height": 3.0
+        }
+      ]
+    },
+    {
+      "id": "sheet_outpost_hearthwright",
+      "category": "outpost",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "four separate pieces of a builders guild work camp in warm red and oak: a hand cart loaded with planks and cut stone, a short section of wooden scaffolding with a ladder, a pile of cut stone blocks with mallets and chisels, a banner stand with a warm red banner showing a simple gold hammer over a hearth flame emblem and no text",
+      "sheet": [
+        {
+          "id": "outpost_hearthwright_cart",
+          "height": 1.4
+        },
+        {
+          "id": "outpost_hearthwright_scaffold",
+          "height": 3.0
+        },
+        {
+          "id": "outpost_hearthwright_stones",
+          "height": 0.9
+        },
+        {
+          "id": "outpost_hearthwright_banner",
+          "height": 3.0
+        }
+      ]
+    },
+    {
+      "id": "sheet_outpost_bracken",
+      "category": "outpost",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "four separate pieces of a forest wardens camp in moss green and bark brown: a tall woven willow totem pole with a deer skull and hanging feathers, two wooden planter boxes of herbs and ferns, a small moss covered stone seed shrine with acorns in a bowl, a banner stand with a moss green banner showing a simple fern leaf emblem and no text",
+      "sheet": [
+        {
+          "id": "outpost_bracken_totem",
+          "height": 2.6
+        },
+        {
+          "id": "outpost_bracken_planters",
+          "height": 0.7
+        },
+        {
+          "id": "outpost_bracken_seed_shrine",
+          "height": 1.0
+        },
+        {
+          "id": "outpost_bracken_banner",
+          "height": 3.0
+        }
+      ]
+    },
+    {
+      "id": "sheet_outpost_gilt",
+      "category": "outpost",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "four separate pieces of a merchant guild trading post in black and gold: a brass balance scale on a carved wooden pedestal, a heavy iron strongbox chest with gold trim, a wooden lectern holding a big open ledger book, a banner stand with a black banner showing a simple gold balance scale emblem and no text",
+      "sheet": [
+        {
+          "id": "outpost_gilt_scale",
+          "height": 1.4
+        },
+        {
+          "id": "outpost_gilt_strongbox",
+          "height": 0.8
+        },
+        {
+          "id": "outpost_gilt_ledger",
+          "height": 1.3
+        },
+        {
+          "id": "outpost_gilt_banner",
+          "height": 3.0
+        }
+      ]
+    },
+    {
+      "id": "sheet_outpost_pale",
+      "category": "outpost",
+      "height": 1.0,
+      "faceLimit": 7000,
+      "sheetPrompt": "four separate pieces of a hidden pale cult hideout in bone white and grey: a small stacked stone shrine holding a wax sealed clay urn, a cluster of tall pale candles in black iron stands, a pale grey hooded banner on a crooked pole with a simple broken circle emblem and no text, a low table covered in a grey cloth with a candle and folded papers",
+      "sheet": [
+        {
+          "id": "outpost_pale_urn_shrine",
+          "height": 1.2
+        },
+        {
+          "id": "outpost_pale_candles",
+          "height": 1.4
+        },
+        {
+          "id": "outpost_pale_banner",
+          "height": 2.8
+        },
+        {
+          "id": "outpost_pale_table",
+          "height": 0.9
+        }
+      ]
     }
   ]
 }

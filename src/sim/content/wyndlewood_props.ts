@@ -12,15 +12,26 @@
 // from w and d times that scale. Every model is floor-seated (min y 0),
 // centred on x/z, with the concept's front turned to +z.
 //
-// Categories: `quest` (Chapter One quest objects and landmarks, placed by the
-// story crew's own content records, never here) and `furniture` (drawn
-// inside a player house through content/furniture.ts FurnitureDef renderKey).
+// Categories: `quest` (Chapter One quest objects and landmarks), `furniture`
+// (drawn inside a player house through content/furniture.ts FurnitureDef
+// renderKey), and the world dressing families: `ruin` and `shrine` (the Age of
+// First Hearths), `bridge`, `accord` (unnamed Pale Accord traces) and
+// `outpost` (faction outpost dressing). Everything but furniture is placed by
+// the story, town and world crews through their own content records, never
+// here.
 //
 // Data only: no placement, no collider, no player-visible text. Ids and keys
 // are append-only once shipped, because placements and furniture records
 // name them.
 
-export type WynPropCategory = 'quest' | 'furniture';
+export type WynPropCategory =
+  | 'quest'
+  | 'furniture'
+  | 'ruin'
+  | 'shrine'
+  | 'bridge'
+  | 'accord'
+  | 'outpost';
 
 export interface WynPropModel {
   /** The shipped file (public/ relative URL). */
