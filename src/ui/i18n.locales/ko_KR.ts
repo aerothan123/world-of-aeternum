@@ -1293,7 +1293,8 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.options.gfxWorldStyle': '월드 스타일',
   'hudChrome.options.gfxWorldStyleClassic': '클래식',
   'hudChrome.options.gfxWorldStyleRefined': '정제됨',
-  'hudChrome.options.gfxWorldStyleNote': '정제됨은 질감 있는 지면, 더 따뜻한 빛, 먼 곳의 안개, 흘러가는 구름으로 세계를 그립니다. 클래식은 원래 모습을 유지합니다. 어느 쪽도 전투 중에 보이는 정보는 바꾸지 않습니다.',
+  'hudChrome.options.gfxWorldStyleNote':
+    '정제됨은 질감 있는 지면, 더 따뜻한 빛, 먼 곳의 안개, 흘러가는 구름으로 세계를 그립니다. 클래식은 원래 모습을 유지합니다. 어느 쪽도 전투 중에 보이는 정보는 바꾸지 않습니다.',
   'hudChrome.options.overlays': '오버레이',
   'hudChrome.options.targetAurasBelowFrame': '대상 강화 및 약화 효과를 프레임 아래에 표시',
   'hudChrome.reputation.hubLine': '{hub} . {zone}',
@@ -25831,15 +25832,19 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.addons.masterHint': '인터페이스를 다시 불러오면 변경 사항이 적용됩니다.',
   'hudChrome.addons.reloadNeeded': '이 변경 사항을 적용하려면 UI를 다시 불러오세요.',
   'hudChrome.addons.leaveSafe': '지금 애드온 불러오기',
-  'hudChrome.addons.safeCrash': '애드온이 시작되는 동안 게임이 예기치 않게 종료되어, 이번 세션은 애드온 없이 안전 모드로 시작되었습니다.',
+  'hudChrome.addons.safeCrash':
+    '애드온이 시작되는 동안 게임이 예기치 않게 종료되어, 이번 세션은 애드온 없이 안전 모드로 시작되었습니다.',
   'hudChrome.addons.safeRequested': '안전 모드로 다시 시작했으므로 애드온을 불러오지 않았습니다.',
   'hudChrome.addons.safeUrl': '시작할 때 안전 모드가 요청되어 애드온을 불러오지 않았습니다.',
-  'hudChrome.addons.workshopUnavailable': '현재 Steam 창작마당을 사용할 수 없어 로컬 폴더의 애드온만 표시합니다.',
-  'hudChrome.addons.empty': '설치된 애드온이 없습니다. Steam 창작마당에서 구독하거나 애드온 폴더에 애드온 폴더를 넣으세요.',
+  'hudChrome.addons.workshopUnavailable':
+    '현재 Steam 창작마당을 사용할 수 없어 로컬 폴더의 애드온만 표시합니다.',
+  'hudChrome.addons.empty':
+    '설치된 애드온이 없습니다. Steam 창작마당에서 구독하거나 애드온 폴더에 애드온 폴더를 넣으세요.',
   'hudChrome.addons.reload': 'UI 다시 불러오기',
   'hudChrome.addons.openFolder': '애드온 폴더 열기',
   'hudChrome.addons.restartSafe': '안전 모드로 다시 시작',
-  'hudChrome.addons.memoryNote': '애드온 워커는 힙 크기를 보고하지 않으므로 메모리는 인터페이스 위젯과 저장 데이터로 표시합니다.',
+  'hudChrome.addons.memoryNote':
+    '애드온 워커는 힙 크기를 보고하지 않으므로 메모리는 인터페이스 위젯과 저장 데이터로 표시합니다.',
   'hudChrome.addons.enable': '{name} 사용',
   'hudChrome.addons.version': '버전 {version}',
   'hudChrome.addons.by': '제작자 {author}',
@@ -25849,11 +25854,13 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.addons.resetSaved': '저장 데이터 초기화',
   'hudChrome.addons.resetDone': '{name}의 저장 데이터를 지웠습니다.',
   'hudChrome.addons.publish': '창작마당에 게시',
-  'hudChrome.addons.stats': 'CPU {cpu}ms/초, 메시지 {msgs}개/초, 위젯 {widgets}개, 저장 {kb}KB, 오류 {errors}개',
+  'hudChrome.addons.stats':
+    'CPU {cpu}ms/초, 메시지 {msgs}개/초, 위젯 {widgets}개, 저장 {kb}KB, 오류 {errors}개',
   'hudChrome.addons.optionsTitle': '{name} 옵션',
   'hudChrome.addons.back': '뒤로',
   'hudChrome.addons.publishTitle': '{name} 게시',
-  'hudChrome.addons.publishHint': '이 폴더를 Steam 창작마당에 업로드합니다. 처음 업로드하면 아이템이 만들어지고, 이후에는 업데이트됩니다.',
+  'hudChrome.addons.publishHint':
+    '이 폴더를 Steam 창작마당에 업로드합니다. 처음 업로드하면 아이템이 만들어지고, 이후에는 업데이트됩니다.',
   'hudChrome.addons.changeNote': '변경 사항',
   'hudChrome.addons.publishConfirm': '게시',
   'hudChrome.addons.publishing': '창작마당에 게시하는 중...',
@@ -25863,11 +25870,14 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.addons.visibility.unlisted': '목록에 없음',
   'hudChrome.addons.visibility.public': '공개',
   'hudChrome.addons.publishResult.published': '아이템 {id}(으)로 창작마당에 게시했습니다.',
-  'hudChrome.addons.publishResult.agreement': '아이템 {id}(으)로 업로드했습니다. 공개하려면 아이템 페이지에서 Steam 창작마당 법적 동의서에 동의하세요.',
-  'hudChrome.addons.publishResult.noSteam': 'Steam이 실행 중이 아니어서 애드온을 게시할 수 없습니다.',
+  'hudChrome.addons.publishResult.agreement':
+    '아이템 {id}(으)로 업로드했습니다. 공개하려면 아이템 페이지에서 Steam 창작마당 법적 동의서에 동의하세요.',
+  'hudChrome.addons.publishResult.noSteam':
+    'Steam이 실행 중이 아니어서 애드온을 게시할 수 없습니다.',
   'hudChrome.addons.publishResult.invalid': '애드온 폴더가 검증을 통과하지 못했습니다.',
   'hudChrome.addons.publishResult.notFound': '애드온 폴더를 찾을 수 없습니다.',
-  'hudChrome.addons.publishResult.failed': '게시에 실패했습니다. 자세한 내용은 데스크톱 로그를 확인하세요.',
+  'hudChrome.addons.publishResult.failed':
+    '게시에 실패했습니다. 자세한 내용은 데스크톱 로그를 확인하세요.',
   'hudChrome.addons.status.disabled': '사용 안 함',
   'hudChrome.addons.status.loading': '불러오는 중',
   'hudChrome.addons.status.running': '실행 중',
@@ -25879,7 +25889,8 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.addons.status.invalid': '잘못된 애드온',
   'hudChrome.addons.stop.errors': '오류가 반복되어 중지되었습니다. 다시 사용하면 재시도합니다.',
   'hudChrome.addons.stop.hang': '응답하지 않아 중지되었습니다. 다시 사용하면 재시도합니다.',
-  'hudChrome.addons.stop.flood': '인터페이스 업데이트를 너무 많이 보내 중지되었습니다. 다시 사용하면 재시도합니다.',
+  'hudChrome.addons.stop.flood':
+    '인터페이스 업데이트를 너무 많이 보내 중지되었습니다. 다시 사용하면 재시도합니다.',
   'hudChrome.addons.stop.load': '불러오지 못했습니다.',
   'hudChrome.addons.invalidJson': 'addon.json 파일이 올바른 JSON이 아닙니다.',
   'hudChrome.addons.invalidField': 'addon.json 파일의 "{field}"에 문제가 있습니다.',

@@ -16994,7 +16994,7 @@
   #addons-window {
     width: 100%;
     max-width: 660px;
-    max-height: 80vh;
+    max-height: 80dvh;
     overflow-y: auto;
     z-index: 30;
     font-family: var(--ui-font);

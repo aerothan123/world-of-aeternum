@@ -31,18 +31,25 @@ export interface AddonSourceList {
   localFolder: string | null;
 }
 
-function devExamples(): AddonPackage[] {
+async function devExamples(): Promise<AddonPackage[]> {
   if (!import.meta.env.DEV) return [];
-  const raw = import.meta.glob('/sdk/addons/examples/*/*.{json,js}', {
+  // Lazy (not eager) so the glob's imports live inside this dead-in-production
+  // branch and never reach a production bundle.
+  const loaders = import.meta.glob('/sdk/addons/examples/*/*.{json,js}', {
     query: '?raw',
     import: 'default',
-    eager: true,
-  }) as Record<string, string>;
+  }) as Record<string, () => Promise<string>>;
   const byFolder = new Map<string, AddonPackage>();
-  for (const [path, text] of Object.entries(raw)) {
+  for (const [path, load] of Object.entries(loaders)) {
     const m = /\/sdk\/addons\/examples\/([^/]+)\/([^/]+)$/.exec(path);
     if (!m) continue;
     const [, folder, file] = m;
+    let text: string;
+    try {
+      text = await load();
+    } catch {
+      continue;
+    }
     let pkg = byFolder.get(folder);
     if (!pkg) {
       pkg = { origin: 'dev', folder, manifestText: '', files: {} };
@@ -68,7 +75,7 @@ function fromDesktop(p: DesktopAddonPackage): AddonPackage {
 /** Gather every available package. Never throws: a failed shell call degrades
  *  to the dev examples (or nothing). */
 export async function listAddonPackages(): Promise<AddonSourceList> {
-  const packages = devExamples();
+  const packages = await devExamples();
   const bridge = desktopBridge();
   let list: DesktopAddonList | null = null;
   if (bridge?.listAddons) {

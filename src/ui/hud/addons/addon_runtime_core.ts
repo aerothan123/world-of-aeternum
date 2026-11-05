@@ -24,6 +24,9 @@ export const ADDON_BUDGET = {
   maxPrintChars: 400,
   maxCommBytes: 16 * 1024,
   printsPerSecond: 10,
+  /** All add-ons' saved data together: they share the game's own storage, so
+   *  a cap keeps add-ons from crowding out the game's settings and layouts. */
+  savedBytesTotal: 2 * 1024 * 1024,
 } as const;
 
 export type AddonStatus =

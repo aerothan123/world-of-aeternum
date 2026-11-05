@@ -1308,7 +1308,8 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.options.gfxWorldStyle': 'ワールドスタイル',
   'hudChrome.options.gfxWorldStyleClassic': 'クラシック',
   'hudChrome.options.gfxWorldStyleRefined': 'リファイン',
-  'hudChrome.options.gfxWorldStyleNote': 'リファインは、テクスチャのある地面、暖かな光、遠景のかすみ、流れる雲で世界を描きます。クラシックは元の見た目を保ちます。どちらも戦闘中に見える情報は変わりません。',
+  'hudChrome.options.gfxWorldStyleNote':
+    'リファインは、テクスチャのある地面、暖かな光、遠景のかすみ、流れる雲で世界を描きます。クラシックは元の見た目を保ちます。どちらも戦闘中に見える情報は変わりません。',
   'hudChrome.options.overlays': 'オーバーレイ',
   'hudChrome.options.targetAurasBelowFrame': 'ターゲットオーラをフレームの下に表示',
   'hudChrome.reputation.hubLine': '{hub}。{zone}',
@@ -25826,15 +25827,21 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.addons.masterHint': 'インターフェースを再読み込みすると変更が反映されます。',
   'hudChrome.addons.reloadNeeded': 'この変更を反映するにはUIを再読み込みしてください。',
   'hudChrome.addons.leaveSafe': '今すぐアドオンを読み込む',
-  'hudChrome.addons.safeCrash': 'アドオンの起動中にゲームが予期せず終了したため、このセッションはアドオンなしのセーフモードで起動しました。',
-  'hudChrome.addons.safeRequested': 'セーフモードで再起動したため、アドオンは読み込まれていません。',
-  'hudChrome.addons.safeUrl': '起動時にセーフモードが指定されたため、アドオンは読み込まれていません。',
-  'hudChrome.addons.workshopUnavailable': '現在 Steam ワークショップを利用できないため、ローカルフォルダーのアドオンのみ表示しています。',
-  'hudChrome.addons.empty': 'アドオンがインストールされていません。Steam ワークショップで購読するか、アドオンフォルダーにアドオンのフォルダーを置いてください。',
+  'hudChrome.addons.safeCrash':
+    'アドオンの起動中にゲームが予期せず終了したため、このセッションはアドオンなしのセーフモードで起動しました。',
+  'hudChrome.addons.safeRequested':
+    'セーフモードで再起動したため、アドオンは読み込まれていません。',
+  'hudChrome.addons.safeUrl':
+    '起動時にセーフモードが指定されたため、アドオンは読み込まれていません。',
+  'hudChrome.addons.workshopUnavailable':
+    '現在 Steam ワークショップを利用できないため、ローカルフォルダーのアドオンのみ表示しています。',
+  'hudChrome.addons.empty':
+    'アドオンがインストールされていません。Steam ワークショップで購読するか、アドオンフォルダーにアドオンのフォルダーを置いてください。',
   'hudChrome.addons.reload': 'UIを再読み込み',
   'hudChrome.addons.openFolder': 'アドオンフォルダーを開く',
   'hudChrome.addons.restartSafe': 'セーフモードで再起動',
-  'hudChrome.addons.memoryNote': 'アドオンのワーカーはヒープサイズを報告しないため、メモリはUIウィジェットと保存データで表示しています。',
+  'hudChrome.addons.memoryNote':
+    'アドオンのワーカーはヒープサイズを報告しないため、メモリはUIウィジェットと保存データで表示しています。',
   'hudChrome.addons.enable': '{name} を有効化',
   'hudChrome.addons.version': 'バージョン {version}',
   'hudChrome.addons.by': '作者 {author}',
@@ -25844,11 +25851,13 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.addons.resetSaved': '保存データをリセット',
   'hudChrome.addons.resetDone': '{name} の保存データを消去しました。',
   'hudChrome.addons.publish': 'ワークショップに公開',
-  'hudChrome.addons.stats': 'CPU {cpu} ms/秒、{msgs} メッセージ/秒、ウィジェット {widgets}、保存 {kb} KB、エラー {errors}',
+  'hudChrome.addons.stats':
+    'CPU {cpu} ms/秒、{msgs} メッセージ/秒、ウィジェット {widgets}、保存 {kb} KB、エラー {errors}',
   'hudChrome.addons.optionsTitle': '{name} のオプション',
   'hudChrome.addons.back': '戻る',
   'hudChrome.addons.publishTitle': '{name} を公開',
-  'hudChrome.addons.publishHint': 'このフォルダーを Steam ワークショップにアップロードします。初回はアイテムを作成し、以降は更新します。',
+  'hudChrome.addons.publishHint':
+    'このフォルダーを Steam ワークショップにアップロードします。初回はアイテムを作成し、以降は更新します。',
   'hudChrome.addons.changeNote': '変更内容',
   'hudChrome.addons.publishConfirm': '公開',
   'hudChrome.addons.publishing': 'ワークショップに公開しています...',
@@ -25858,11 +25867,14 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.addons.visibility.unlisted': '限定公開',
   'hudChrome.addons.visibility.public': '公開',
   'hudChrome.addons.publishResult.published': 'アイテム {id} としてワークショップに公開しました。',
-  'hudChrome.addons.publishResult.agreement': 'アイテム {id} としてアップロードしました。表示するにはアイテムページで Steam ワークショップの法的同意書に同意してください。',
-  'hudChrome.addons.publishResult.noSteam': 'Steam が起動していないため、アドオンを公開できませんでした。',
+  'hudChrome.addons.publishResult.agreement':
+    'アイテム {id} としてアップロードしました。表示するにはアイテムページで Steam ワークショップの法的同意書に同意してください。',
+  'hudChrome.addons.publishResult.noSteam':
+    'Steam が起動していないため、アドオンを公開できませんでした。',
   'hudChrome.addons.publishResult.invalid': 'アドオンフォルダーが検証に合格しませんでした。',
   'hudChrome.addons.publishResult.notFound': 'アドオンフォルダーが見つかりませんでした。',
-  'hudChrome.addons.publishResult.failed': '公開に失敗しました。詳細はデスクトップのログを確認してください。',
+  'hudChrome.addons.publishResult.failed':
+    '公開に失敗しました。詳細はデスクトップのログを確認してください。',
   'hudChrome.addons.status.disabled': '無効',
   'hudChrome.addons.status.loading': '読み込み中',
   'hudChrome.addons.status.running': '実行中',
@@ -25872,9 +25884,11 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.addons.status.tooNew': 'より新しいゲームバージョンが必要',
   'hudChrome.addons.status.outdated': '古いバージョン',
   'hudChrome.addons.status.invalid': '無効なアドオン',
-  'hudChrome.addons.stop.errors': 'エラーが繰り返されたため停止しました。再度有効にすると再試行します。',
+  'hudChrome.addons.stop.errors':
+    'エラーが繰り返されたため停止しました。再度有効にすると再試行します。',
   'hudChrome.addons.stop.hang': '応答しなくなったため停止しました。再度有効にすると再試行します。',
-  'hudChrome.addons.stop.flood': 'インターフェースの更新を送りすぎたため停止しました。再度有効にすると再試行します。',
+  'hudChrome.addons.stop.flood':
+    'インターフェースの更新を送りすぎたため停止しました。再度有効にすると再試行します。',
   'hudChrome.addons.stop.load': '読み込みに失敗しました。',
   'hudChrome.addons.invalidJson': 'addon.json ファイルが有効な JSON ではありません。',
   'hudChrome.addons.invalidField': 'addon.json ファイルの「{field}」に問題があります。',

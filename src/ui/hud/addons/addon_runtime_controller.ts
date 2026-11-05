@@ -139,6 +139,8 @@ export class AddonRuntime {
   sources: AddonSourceList | null = null;
   private state: AddonPersistedState;
   private readonly live = new Map<string, Live>();
+  /** Stored saved-variable sizes seen this session, for the shared budget. */
+  private readonly savedSizes = new Map<string, number>();
   private readonly frames: AddonFramesController;
   private readonly layer: HTMLElement;
   private sandbox: AddonSandboxHost | null = null;
@@ -466,6 +468,8 @@ export class AddonRuntime {
         startedAt: now,
       };
       e.stats.savedBytes = (savedAccount?.length ?? 0) + (savedChar?.length ?? 0);
+      if (savedAccount !== null) this.savedSizes.set(accountKey, savedAccount.length);
+      if (savedChar !== null) this.savedSizes.set(charKey, savedChar.length);
       this.live.set(e.key, live);
       const gen = this.generation;
       channel.port1.onmessage = (ev) => {
@@ -568,7 +572,16 @@ export class AddonRuntime {
           this.countError(key, 'saved: too large or not an object');
           break;
         }
-        this.safeSet(savedVariableKey(m.id, msg.scope as SavedScope, this.character()), json);
+        const storeKey = savedVariableKey(m.id, msg.scope as SavedScope, this.character());
+        const prev = this.savedSizes.get(storeKey) ?? 0;
+        let total = 0;
+        for (const n of this.savedSizes.values()) total += n;
+        if (total - prev + json.length > ADDON_BUDGET.savedBytesTotal) {
+          this.countError(key, 'saved: the shared add-on storage budget is full');
+          break;
+        }
+        this.savedSizes.set(storeKey, json.length);
+        this.safeSet(storeKey, json);
         break;
       }
       case 'slash': {

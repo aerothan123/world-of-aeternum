@@ -110,14 +110,14 @@ player's machine (files, other apps), or (g) attack other add-ons.
 | (a)(b) eval of internals | `eval`, `new Function`, string `setTimeout` | CSP forbids eval in the worker (no `unsafe-eval`); there is no game object in the worker to evaluate against | escape probe: `EvalError` |
 | (b) automation | call a host op that moves, casts, targets, uses, sends chat | there is no such op; the op allowlist is closed and unknown ops are rejected and counted as errors | `tests/addon_fairness.test.ts` |
 | (b) one-button rotation | a button whose action is decided at click time | secure actions are declared props, executed by the host on a trusted click; the add-on is not consulted; secure props are frozen in combat | `tests/addon_fairness.test.ts` |
-| (b) synthetic clicks | `el.click()` or a forged message claiming a click | the worker cannot touch the DOM; the host requires `event.isTrusted`; clicks travel host to worker only | `tests/addon_frames.test.ts` |
+| (b) synthetic clicks | `el.click()` or a forged message claiming a click | the worker cannot touch the DOM; the host requires `event.isTrusted`; clicks travel host to worker only | `tests/addon_runtime.test.ts` |
 | (d) hidden data | ask for enemy cooldowns, far entities, cast data | the snapshot is built from HUD-visible fields only, entities beyond the minimap radius never appear, the event filter drops events between third parties | `tests/addon_fairness.test.ts` |
 | (e) freeze | `while(true){}`, deep recursion, giant allocations | runs on a worker thread; heartbeat watchdog terminates a worker that misses pings for 3 s; host processing per add-on per frame is capped (ops and milliseconds); a backlog over the cap kills the add-on | `tests/addon_runtime.test.ts`, escape probe (infinite loop) |
 | (e) DOM flood | create 100k widgets, megabyte strings | widget, text, and op caps per add-on; over-cap ops are rejected | `tests/addon_widget_core.test.ts` |
 | (e) crash loop | throw in every handler | errors are caught in the prelude and counted; 25 errors in 60 s auto-disables; a crash during load trips the boot sentinel and the next launch starts in safe mode | `tests/addon_runtime.test.ts` |
 | (f) machine | read or write files | the worker has no file API; the Electron side reads add-on folders itself with path containment checks and size caps, never executes anything, and saved variables live in the game's own storage | `tests/electron_addons.test.ts` |
 | (g) other add-ons | read another add-on's saved data or frames | per-add-on worker, per-add-on storage keys, widget ids scoped by add-on id; inter-add-on messages only between declared dependencies | `tests/addon_runtime.test.ts` |
-| UI spoofing | draw a fake login or purchase prompt | add-on frames sit in their own layer below game windows and modals, cannot use game CSS classes, and every add-on frame carries a `data-addon` marker; text only, no HTML | `tests/addon_frames.test.ts` |
+| UI spoofing | draw a fake login or purchase prompt | add-on frames sit in their own layer below game windows and modals, cannot use game CSS classes, and every add-on frame carries a `data-addon` marker; text only, no HTML | `tests/addon_runtime.test.ts` |
 | phishing text | print "click here" links into chat | prints are plain text, prefixed with the add-on name, never parsed for links | `tests/addon_runtime.test.ts` |
 
 **Residual risks (accepted, documented):** an add-on can show misleading text inside its
@@ -265,8 +265,8 @@ no HTML, no URL and no image prop in v1 (the reason is exfiltration and spoofing
 icons by ability or item id are a planned v2 prop). Anchoring is relative to the parent
 box (CSS percent position plus translate), so text auto-sizes without layout reads.
 
-**Drag.** A top-level frame with `movable: true` and a `name` can be dragged by the player
-(not while the game interface is locked if the player chose so). The host owns the drag,
+**Drag.** A top-level frame with `movable: true` and a `name` can be dragged by the player.
+The host owns the drag,
 persists the position per add-on per frame name (`woc_addon_layout_v1`), re-applies it
 when the add-on creates the frame again, and sends `FRAME_MOVED`. Add-ons cannot move the
 pointer or start a drag.
@@ -279,7 +279,10 @@ pointer or start a drag.
 `wynd.saved.account` and `wynd.saved.character` are plain objects (present when the
 manifest declares them). They are restored before `LOADED` and written back when the
 add-on calls `wynd.saved.save()`, automatically every 10 s when changed, and on `LOGOUT`.
-Values must be JSON. Caps: 256 KB per scope. Keys: `woc_addon_sv_v1:<id>:account`,
+Values must be JSON. Caps: 256 KB per scope, and 2 MB for all add-ons together (they
+share the game's own browser storage, so the cap keeps them from crowding out settings and
+layouts). The durable path is the periodic 10 s flush; the `LOGOUT` flush is best effort
+because the page may be gone before the write lands. Keys: `woc_addon_sv_v1:<id>:account`,
 `woc_addon_sv_v1:<id>:char:<realm>:<character>`. Removing an add-on keeps its data;
 the Addons window has "Reset saved data".
 
@@ -333,8 +336,8 @@ the classic secure-template model; it keeps "one input, one action, chosen by th
   4,000 ops stops the add-on.
 - **Boot sentinel**: a flag set while add-ons spawn and cleared after 10 s of stable
   running. If the game dies in that window, the next launch starts in safe mode and says
-  so. Safe mode is also one click in the Addons window ("Restart in safe mode") and the
-  `?addons=safe` URL flag in dev.
+  so. Safe mode is also one click in the Addons window ("Restart in safe mode"), the
+  `--safe-mode` launch argument of the desktop app, and the `?addons=safe` URL flag in dev.
 - **Stats** (Addons window): CPU ms per second (measured in the worker around every
   handler and timer), messages per second, widget count, saved data size, error count,
   last errors. Worker heap size is not observable from the page (no cross-origin
@@ -425,7 +428,8 @@ account. Overheal and absorbs arrive in the same events.
 
 ## 11. Testing
 
-- `tests/addon_manifest.test.ts`: manifest validation, version compatibility, load order.
+- `tests/addon_manifest.test.ts`: manifest validation, version compatibility, load order,
+  and the shipped SDK examples.
 - `tests/addon_widget_core.test.ts`: op validation, caps, color/anchor sanitizing,
   combat lockdown deferral.
 - `tests/addon_fairness.test.ts`: the snapshot holds only HUD-visible fields; far
@@ -434,8 +438,12 @@ account. Overheal and absorbs arrive in the same events.
 - `tests/addon_worker_prelude.test.ts`: the prelude in a fake worker scope: globals
   deleted, handler isolation, string timers refused, saved variables round trip, derived
   events, syntax and top-level load errors.
-- `tests/addon_runtime.test.ts`: routing, budgets, watchdog termination, auto-disable,
-  boot sentinel and safe mode, saved-variable persistence per account and character.
+- `tests/addon_runtime.test.ts`: the real runtime, the serialized prelude in an in-process
+  worker stand-in (`tests/helpers/addon_fake_worker.ts`) and the real SDK examples:
+  loading, frames reaching the DOM, events and slash commands, saved-variable persistence
+  per account and per character, auto-disable on errors, the hang watchdog, the flood
+  stop, load errors, the boot sentinel and safe mode, forged worker messages, the trusted
+  secure-click path, combat lockdown, and the Addons window.
 - `tests/electron_addons.test.ts`: folder scan, path containment, size caps, Workshop
   listing and publish with an injected fake `steamworks.js`.
 - `scripts/addon_sandbox_probe.mjs`: real Chromium (Edge or Chrome headless), bundles the

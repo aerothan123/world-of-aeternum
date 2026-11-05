@@ -2872,7 +2872,8 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.options.gfxWorldStyle': '世界风格',
   'hudChrome.options.gfxWorldStyleClassic': '经典',
   'hudChrome.options.gfxWorldStyleRefined': '精致',
-  'hudChrome.options.gfxWorldStyleNote': '精致风格以带纹理的地面、更温暖的光照、远处的薄雾和飘动的云彩描绘世界。经典风格保留原始外观。两者都不会改变你在战斗中能看到的内容。',
+  'hudChrome.options.gfxWorldStyleNote':
+    '精致风格以带纹理的地面、更温暖的光照、远处的薄雾和飘动的云彩描绘世界。经典风格保留原始外观。两者都不会改变你在战斗中能看到的内容。',
   'hudChrome.options.overlays': '光环',
   'hudChrome.options.targetAurasBelowFrame': '目标光环显示在框体下方',
   'hudChrome.reputation.hubLine': '{hub} . {zone}',
@@ -24490,10 +24491,12 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.addons.masterHint': '重新加载界面后更改生效。',
   'hudChrome.addons.reloadNeeded': '重新加载界面以应用此更改。',
   'hudChrome.addons.leaveSafe': '立即加载插件',
-  'hudChrome.addons.safeCrash': '插件启动时游戏意外关闭，因此本次会话以安全模式启动，未加载任何插件。',
+  'hudChrome.addons.safeCrash':
+    '插件启动时游戏意外关闭，因此本次会话以安全模式启动，未加载任何插件。',
   'hudChrome.addons.safeRequested': '你以安全模式重新启动，因此未加载插件。',
   'hudChrome.addons.safeUrl': '启动时请求了安全模式，因此未加载插件。',
-  'hudChrome.addons.workshopUnavailable': 'Steam 创意工坊当前不可用，因此仅列出本地文件夹中的插件。',
+  'hudChrome.addons.workshopUnavailable':
+    'Steam 创意工坊当前不可用，因此仅列出本地文件夹中的插件。',
   'hudChrome.addons.empty': '尚未安装插件。请在 Steam 创意工坊订阅，或将插件文件夹放入插件文件夹。',
   'hudChrome.addons.reload': '重新加载界面',
   'hudChrome.addons.openFolder': '打开插件文件夹',
@@ -24508,11 +24511,13 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.addons.resetSaved': '重置保存数据',
   'hudChrome.addons.resetDone': '已清除 {name} 的保存数据。',
   'hudChrome.addons.publish': '发布到创意工坊',
-  'hudChrome.addons.stats': 'CPU {cpu} 毫秒/秒，{msgs} 条消息/秒，{widgets} 个控件，已保存 {kb} KB，{errors} 个错误',
+  'hudChrome.addons.stats':
+    'CPU {cpu} 毫秒/秒，{msgs} 条消息/秒，{widgets} 个控件，已保存 {kb} KB，{errors} 个错误',
   'hudChrome.addons.optionsTitle': '{name} 选项',
   'hudChrome.addons.back': '返回',
   'hudChrome.addons.publishTitle': '发布 {name}',
-  'hudChrome.addons.publishHint': '将此文件夹上传到 Steam 创意工坊。首次上传会创建物品，之后的上传会更新它。',
+  'hudChrome.addons.publishHint':
+    '将此文件夹上传到 Steam 创意工坊。首次上传会创建物品，之后的上传会更新它。',
   'hudChrome.addons.changeNote': '更新说明',
   'hudChrome.addons.publishConfirm': '发布',
   'hudChrome.addons.publishing': '正在发布到创意工坊...',
@@ -24522,7 +24527,8 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.addons.visibility.unlisted': '不公开列出',
   'hudChrome.addons.visibility.public': '公开',
   'hudChrome.addons.publishResult.published': '已作为物品 {id} 发布到创意工坊。',
-  'hudChrome.addons.publishResult.agreement': '已上传为物品 {id}。请在物品页面接受 Steam 创意工坊法律协议以使其可见。',
+  'hudChrome.addons.publishResult.agreement':
+    '已上传为物品 {id}。请在物品页面接受 Steam 创意工坊法律协议以使其可见。',
   'hudChrome.addons.publishResult.noSteam': 'Steam 未运行，因此无法发布插件。',
   'hudChrome.addons.publishResult.invalid': '插件文件夹未通过验证。',
   'hudChrome.addons.publishResult.notFound': '未找到插件文件夹。',

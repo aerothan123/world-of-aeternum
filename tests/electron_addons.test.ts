@@ -271,7 +271,8 @@ describe('createAddonsShell', () => {
 
 describe('shell integration points', () => {
   it('exposes the lazy steamworks client for the Workshop glue', () => {
-    const init = vi.fn(() => ({ workshop: {} }));
+    // The facade's typings model only the ticket surface; the workshop client is opaque.
+    const init = vi.fn(() => ({ workshop: {} })) as unknown as (appId: number) => object;
     const shell = createSteamShell({
       distribution: 'steam',
       isPackaged: true,

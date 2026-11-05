@@ -2873,7 +2873,8 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'hudChrome.options.gfxWorldStyle': '世界風格',
   'hudChrome.options.gfxWorldStyleClassic': '經典',
   'hudChrome.options.gfxWorldStyleRefined': '精緻',
-  'hudChrome.options.gfxWorldStyleNote': '精緻風格以帶紋理的地面、更溫暖的光照、遠處的薄霧和飄動的雲彩描繪世界。經典風格保留原始外觀。兩者都不會改變你在戰鬥中能看到的內容。',
+  'hudChrome.options.gfxWorldStyleNote':
+    '精緻風格以帶紋理的地面、更溫暖的光照、遠處的薄霧和飄動的雲彩描繪世界。經典風格保留原始外觀。兩者都不會改變你在戰鬥中能看到的內容。',
   'hudChrome.options.overlays': '疊加顯示',
   'hudChrome.options.targetAurasBelowFrame': '光環顯示在目標框下方',
   'hudChrome.reputation.hubLine': '{hub} . {zone}',
@@ -24509,15 +24510,18 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'hudChrome.addons.masterHint': '重新載入介面後變更生效。',
   'hudChrome.addons.reloadNeeded': '重新載入介面以套用此變更。',
   'hudChrome.addons.leaveSafe': '立即載入插件',
-  'hudChrome.addons.safeCrash': '插件啟動時遊戲意外關閉，因此本次工作階段以安全模式啟動，未載入任何插件。',
+  'hudChrome.addons.safeCrash':
+    '插件啟動時遊戲意外關閉，因此本次工作階段以安全模式啟動，未載入任何插件。',
   'hudChrome.addons.safeRequested': '你以安全模式重新啟動，因此未載入插件。',
   'hudChrome.addons.safeUrl': '啟動時要求了安全模式，因此未載入插件。',
-  'hudChrome.addons.workshopUnavailable': 'Steam 工作坊目前無法使用，因此僅列出本機資料夾中的插件。',
+  'hudChrome.addons.workshopUnavailable':
+    'Steam 工作坊目前無法使用，因此僅列出本機資料夾中的插件。',
   'hudChrome.addons.empty': '尚未安裝插件。請在 Steam 工作坊訂閱，或將插件資料夾放入插件資料夾。',
   'hudChrome.addons.reload': '重新載入介面',
   'hudChrome.addons.openFolder': '開啟插件資料夾',
   'hudChrome.addons.restartSafe': '以安全模式重新啟動',
-  'hudChrome.addons.memoryNote': '記憶體以介面元件和儲存資料表示，因為插件工作執行緒不會回報其堆積大小。',
+  'hudChrome.addons.memoryNote':
+    '記憶體以介面元件和儲存資料表示，因為插件工作執行緒不會回報其堆積大小。',
   'hudChrome.addons.enable': '啟用 {name}',
   'hudChrome.addons.version': '版本 {version}',
   'hudChrome.addons.by': '作者 {author}',
@@ -24527,11 +24531,13 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'hudChrome.addons.resetSaved': '重設儲存資料',
   'hudChrome.addons.resetDone': '已清除 {name} 的儲存資料。',
   'hudChrome.addons.publish': '發佈到工作坊',
-  'hudChrome.addons.stats': 'CPU {cpu} 毫秒/秒，{msgs} 則訊息/秒，{widgets} 個元件，已儲存 {kb} KB，{errors} 個錯誤',
+  'hudChrome.addons.stats':
+    'CPU {cpu} 毫秒/秒，{msgs} 則訊息/秒，{widgets} 個元件，已儲存 {kb} KB，{errors} 個錯誤',
   'hudChrome.addons.optionsTitle': '{name} 選項',
   'hudChrome.addons.back': '返回',
   'hudChrome.addons.publishTitle': '發佈 {name}',
-  'hudChrome.addons.publishHint': '將此資料夾上傳到 Steam 工作坊。首次上傳會建立項目，之後的上傳會更新它。',
+  'hudChrome.addons.publishHint':
+    '將此資料夾上傳到 Steam 工作坊。首次上傳會建立項目，之後的上傳會更新它。',
   'hudChrome.addons.changeNote': '更新說明',
   'hudChrome.addons.publishConfirm': '發佈',
   'hudChrome.addons.publishing': '正在發佈到工作坊...',
@@ -24541,7 +24547,8 @@ export const zh_TW: Partial<Record<TranslationKey, string>> = {
   'hudChrome.addons.visibility.unlisted': '不公開列出',
   'hudChrome.addons.visibility.public': '公開',
   'hudChrome.addons.publishResult.published': '已作為項目 {id} 發佈到工作坊。',
-  'hudChrome.addons.publishResult.agreement': '已上傳為項目 {id}。請在項目頁面接受 Steam 工作坊法律協議以使其可見。',
+  'hudChrome.addons.publishResult.agreement':
+    '已上傳為項目 {id}。請在項目頁面接受 Steam 工作坊法律協議以使其可見。',
   'hudChrome.addons.publishResult.noSteam': 'Steam 未執行，因此無法發佈插件。',
   'hudChrome.addons.publishResult.invalid': '插件資料夾未通過驗證。',
   'hudChrome.addons.publishResult.notFound': '找不到插件資料夾。',

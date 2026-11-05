@@ -128,6 +128,78 @@ describe('the snapshot only carries HUD-visible data', () => {
   });
 });
 
+describe('the snapshot on a ClientWorld-shaped mirror', () => {
+  it('builds out-of-interest party members from the party frame fields only', () => {
+    const { sim } = world();
+    const player = sim.player;
+    // An online mirror: the party member is NOT in interest (no entity), so only
+    // the PartyMemberInfo row the party frame paints is available.
+    const mirror = {
+      cfg: sim.cfg,
+      entities: new Map([[player.id, player]]),
+      playerId: player.id,
+      player,
+      realm: 'test',
+      partyInfo: {
+        leader: player.id,
+        raid: false,
+        master: sim.partyInfo?.master ?? null,
+        members: [
+          {
+            pid: player.id,
+            name: player.name,
+            cls: 'warrior',
+            level: 5,
+            hp: 1,
+            mhp: 1,
+            res: 0,
+            mres: 0,
+            rtype: null,
+            x: 0,
+            z: 0,
+            dead: 0,
+            inCombat: 0,
+            group: 1,
+          },
+          {
+            pid: 9999,
+            name: 'Faraway',
+            cls: 'priest',
+            level: 7,
+            hp: 40,
+            mhp: 80,
+            res: 10,
+            mres: 100,
+            rtype: 'mana',
+            x: 900,
+            z: 900,
+            dead: 0,
+            inCombat: 1,
+            group: 1,
+            auras: [{ id: 'renew', kind: 'hot', remaining: 4 }],
+          },
+        ],
+      },
+      inventory: [],
+      equipment: {},
+      copper: 0,
+      questLog: new Map(),
+    } as unknown as IWorld;
+    const perms = new Set<AddonPermission>(['party']);
+    const snap = createAddonSnapshotBuilder().build(mirror, 1, perms);
+    expect(snap.units.party1).toMatchObject({
+      name: 'Faraway',
+      hp: 40,
+      hpMax: 80,
+      inCombat: true,
+      cast: null,
+    });
+    expect(snap.units.party1.auras.map((a) => a.id)).toEqual(['renew']);
+    expect(JSON.stringify(snap)).not.toContain('900');
+    expect(snap.party?.members.map((m) => m.unit)).toEqual(['player', 'party1']);
+  });
+});
+
 describe('the combat log filter keeps only own and party combat', () => {
   it('passes own damage, drops third parties, other players personal events and cues', () => {
     const { sim, w } = world();
