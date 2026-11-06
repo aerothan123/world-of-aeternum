@@ -56,6 +56,9 @@ const SCRIPTED_COLLECT_ITEMS = new Set(['the_codfather', PATCH_PUMPKIN_ID, CURSE
 function collectItemAcquirable(itemId: string, recipes = ALL_RECIPES): boolean {
   const fromLoot = Object.values(MOBS).some((m) => m.loot.some((l) => l.itemId === itemId));
   const fromGround = GROUND_OBJECTS.some((g) => g.itemId === itemId);
+  // A walk-in instance's own ground object: the Last Keep's signet and
+  // Dawnhold's posy, which Chapters Four and Five ask the player to carry out.
+  const fromInstance = DUNGEON_LIST.some((d) => (d.objects ?? []).some((g) => g.itemId === itemId));
   const fromScript = SCRIPTED_COLLECT_ITEMS.has(itemId);
   const fromNode = Object.values(NODE_MATERIAL_TABLE).some((byZone) =>
     Object.values(byZone).some((row) => row.itemId === itemId),
@@ -86,6 +89,7 @@ function collectItemAcquirable(itemId: string, recipes = ALL_RECIPES): boolean {
     fromQuestCatch ||
     fromLoot ||
     fromGround ||
+    fromInstance ||
     fromScript ||
     fromNode ||
     fromHarvest ||
