@@ -3988,3 +3988,29 @@ time:
   English given name; "Cooperwick" is a coined compound of "cooper" and "wick"
   and the coined-token and full-name searches returned nothing.
 - Hester's Field Bench (object): GENERIC possessive plus descriptive English.
+
+## Wyndlewood Chapters Three to Seven (2026-11-06)
+
+The new proper nouns of `src/sim/content/story_chapters.ts`, checked at
+authoring time with exact-phrase and coined-token searches against the major
+game wikis. Full table and context: `docs/narrative/chapters_3_to_7_plan.md`.
+
+- Veska Noll (mob, Pale Accord lieutenant): CLEAR. No game result for the full
+  name; "Noll" is a plain surname.
+- Hamlin Vellthorn (mob, the bible's Garrick Vellthorn): CLEAR. Renamed from
+  Garrick so he never reads as the shipped Garrick Holt; "Vellthorn" and the
+  full name returned no game result. "Osgar" was rejected first (a World of
+  Warcraft NPC, Osgar Smitehammer).
+- Odrik Caskwell (NPC, mine foreman): CLEAR. No game result for the full name
+  or "Caskwell". Internal near-miss with Foreman Odell, left for the owner.
+- Eshmara Veilthorn (NPC, Lady of Dawnhold): CLEAR. No game result for
+  "Eshmara" or "Veilthorn".
+- Raska Emberhollow (NPC, dragon researcher): CLEAR. No game result for the
+  full name or "Emberhollow".
+- Skarveth the Cinderbound (mob, dragon): CLEAR. No game result for "Skarveth";
+  "Cinderbound" has no game-wiki hit.
+- The Marsh That Remembers, Iron Hearts and Empty Crowns, The Kingdom Behind
+  the Mist, Ash, Ice, and the Sleeping Crown, The Last Hearthlight (chronicle
+  deeds, the bible's chapter titles): CLEAR. No exact game hit.
+- Quest titles and the quest items and objects (Fogbound Doorstep, Willful Ore,
+  Thinning Veil, Remembering Oak and the rest): GENERIC descriptive English.
