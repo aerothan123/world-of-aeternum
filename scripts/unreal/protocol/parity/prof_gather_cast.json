@@ -1,0 +1,1269 @@
+{
+ "suite": "prof_gather_cast",
+ "source": "gathering.ts gatherCastDurationSec, trees/tree_chop.ts, proficiency_bands.ts",
+ "note": "node cast seconds, tree swings and seconds, required axe tier; band cases carry only proficiency",
+ "cases": [
+  {
+   "in": {
+    "nodeTier": 1,
+    "toolTier": 0,
+    "band": 0
+   },
+   "out": {
+    "node": 2.5,
+    "treeSwings": 4,
+    "tree": 4,
+    "treeTool": 1
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 1,
+    "toolTier": 0,
+    "band": 1
+   },
+   "out": {
+    "node": 2.35,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 1
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 1,
+    "toolTier": 0,
+    "band": 2
+   },
+   "out": {
+    "node": 2.2,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 1
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 1,
+    "toolTier": 1,
+    "band": 0
+   },
+   "out": {
+    "node": 2.5,
+    "treeSwings": 4,
+    "tree": 4,
+    "treeTool": 1
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 1,
+    "toolTier": 1,
+    "band": 1
+   },
+   "out": {
+    "node": 2.35,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 1
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 1,
+    "toolTier": 1,
+    "band": 2
+   },
+   "out": {
+    "node": 2.2,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 1
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 1,
+    "toolTier": 2,
+    "band": 0
+   },
+   "out": {
+    "node": 2.1,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 1
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 1,
+    "toolTier": 2,
+    "band": 1
+   },
+   "out": {
+    "node": 1.9500000000000002,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 1
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 1,
+    "toolTier": 2,
+    "band": 2
+   },
+   "out": {
+    "node": 1.8,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 1
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 1,
+    "toolTier": 3,
+    "band": 0
+   },
+   "out": {
+    "node": 1.7,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 1
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 1,
+    "toolTier": 3,
+    "band": 1
+   },
+   "out": {
+    "node": 1.55,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 1
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 1,
+    "toolTier": 3,
+    "band": 2
+   },
+   "out": {
+    "node": 1.5,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 1
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 1,
+    "toolTier": 4,
+    "band": 0
+   },
+   "out": {
+    "node": 1.5,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 1
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 1,
+    "toolTier": 4,
+    "band": 1
+   },
+   "out": {
+    "node": 1.5,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 1
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 1,
+    "toolTier": 4,
+    "band": 2
+   },
+   "out": {
+    "node": 1.5,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 1
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 1,
+    "toolTier": 5,
+    "band": 0
+   },
+   "out": {
+    "node": 1.5,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 1
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 1,
+    "toolTier": 5,
+    "band": 1
+   },
+   "out": {
+    "node": 1.5,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 1
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 1,
+    "toolTier": 5,
+    "band": 2
+   },
+   "out": {
+    "node": 1.5,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 1
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 2,
+    "toolTier": 0,
+    "band": 0
+   },
+   "out": {
+    "node": 2.5,
+    "treeSwings": 5,
+    "tree": 5,
+    "treeTool": 2
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 2,
+    "toolTier": 0,
+    "band": 1
+   },
+   "out": {
+    "node": 2.35,
+    "treeSwings": 4,
+    "tree": 4,
+    "treeTool": 2
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 2,
+    "toolTier": 0,
+    "band": 2
+   },
+   "out": {
+    "node": 2.2,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 2
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 2,
+    "toolTier": 1,
+    "band": 0
+   },
+   "out": {
+    "node": 2.5,
+    "treeSwings": 5,
+    "tree": 5,
+    "treeTool": 2
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 2,
+    "toolTier": 1,
+    "band": 1
+   },
+   "out": {
+    "node": 2.35,
+    "treeSwings": 4,
+    "tree": 4,
+    "treeTool": 2
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 2,
+    "toolTier": 1,
+    "band": 2
+   },
+   "out": {
+    "node": 2.2,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 2
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 2,
+    "toolTier": 2,
+    "band": 0
+   },
+   "out": {
+    "node": 2.5,
+    "treeSwings": 5,
+    "tree": 5,
+    "treeTool": 2
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 2,
+    "toolTier": 2,
+    "band": 1
+   },
+   "out": {
+    "node": 2.35,
+    "treeSwings": 4,
+    "tree": 4,
+    "treeTool": 2
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 2,
+    "toolTier": 2,
+    "band": 2
+   },
+   "out": {
+    "node": 2.2,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 2
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 2,
+    "toolTier": 3,
+    "band": 0
+   },
+   "out": {
+    "node": 2.1,
+    "treeSwings": 4,
+    "tree": 4,
+    "treeTool": 2
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 2,
+    "toolTier": 3,
+    "band": 1
+   },
+   "out": {
+    "node": 1.9500000000000002,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 2
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 2,
+    "toolTier": 3,
+    "band": 2
+   },
+   "out": {
+    "node": 1.8,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 2
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 2,
+    "toolTier": 4,
+    "band": 0
+   },
+   "out": {
+    "node": 1.7,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 2
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 2,
+    "toolTier": 4,
+    "band": 1
+   },
+   "out": {
+    "node": 1.55,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 2
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 2,
+    "toolTier": 4,
+    "band": 2
+   },
+   "out": {
+    "node": 1.5,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 2
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 2,
+    "toolTier": 5,
+    "band": 0
+   },
+   "out": {
+    "node": 1.5,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 2
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 2,
+    "toolTier": 5,
+    "band": 1
+   },
+   "out": {
+    "node": 1.5,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 2
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 2,
+    "toolTier": 5,
+    "band": 2
+   },
+   "out": {
+    "node": 1.5,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 2
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 3,
+    "toolTier": 0,
+    "band": 0
+   },
+   "out": {
+    "node": 2.5,
+    "treeSwings": 6,
+    "tree": 6,
+    "treeTool": 3
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 3,
+    "toolTier": 0,
+    "band": 1
+   },
+   "out": {
+    "node": 2.35,
+    "treeSwings": 5,
+    "tree": 5,
+    "treeTool": 3
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 3,
+    "toolTier": 0,
+    "band": 2
+   },
+   "out": {
+    "node": 2.2,
+    "treeSwings": 4,
+    "tree": 4,
+    "treeTool": 3
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 3,
+    "toolTier": 1,
+    "band": 0
+   },
+   "out": {
+    "node": 2.5,
+    "treeSwings": 6,
+    "tree": 6,
+    "treeTool": 3
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 3,
+    "toolTier": 1,
+    "band": 1
+   },
+   "out": {
+    "node": 2.35,
+    "treeSwings": 5,
+    "tree": 5,
+    "treeTool": 3
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 3,
+    "toolTier": 1,
+    "band": 2
+   },
+   "out": {
+    "node": 2.2,
+    "treeSwings": 4,
+    "tree": 4,
+    "treeTool": 3
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 3,
+    "toolTier": 2,
+    "band": 0
+   },
+   "out": {
+    "node": 2.5,
+    "treeSwings": 6,
+    "tree": 6,
+    "treeTool": 3
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 3,
+    "toolTier": 2,
+    "band": 1
+   },
+   "out": {
+    "node": 2.35,
+    "treeSwings": 5,
+    "tree": 5,
+    "treeTool": 3
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 3,
+    "toolTier": 2,
+    "band": 2
+   },
+   "out": {
+    "node": 2.2,
+    "treeSwings": 4,
+    "tree": 4,
+    "treeTool": 3
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 3,
+    "toolTier": 3,
+    "band": 0
+   },
+   "out": {
+    "node": 2.5,
+    "treeSwings": 6,
+    "tree": 6,
+    "treeTool": 3
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 3,
+    "toolTier": 3,
+    "band": 1
+   },
+   "out": {
+    "node": 2.35,
+    "treeSwings": 5,
+    "tree": 5,
+    "treeTool": 3
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 3,
+    "toolTier": 3,
+    "band": 2
+   },
+   "out": {
+    "node": 2.2,
+    "treeSwings": 4,
+    "tree": 4,
+    "treeTool": 3
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 3,
+    "toolTier": 4,
+    "band": 0
+   },
+   "out": {
+    "node": 2.1,
+    "treeSwings": 5,
+    "tree": 5,
+    "treeTool": 3
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 3,
+    "toolTier": 4,
+    "band": 1
+   },
+   "out": {
+    "node": 1.9500000000000002,
+    "treeSwings": 4,
+    "tree": 4,
+    "treeTool": 3
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 3,
+    "toolTier": 4,
+    "band": 2
+   },
+   "out": {
+    "node": 1.8,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 3
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 3,
+    "toolTier": 5,
+    "band": 0
+   },
+   "out": {
+    "node": 1.7,
+    "treeSwings": 4,
+    "tree": 4,
+    "treeTool": 3
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 3,
+    "toolTier": 5,
+    "band": 1
+   },
+   "out": {
+    "node": 1.55,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 3
+   }
+  },
+  {
+   "in": {
+    "nodeTier": 3,
+    "toolTier": 5,
+    "band": 2
+   },
+   "out": {
+    "node": 1.5,
+    "treeSwings": 3,
+    "tree": 3,
+    "treeTool": 3
+   }
+  },
+  {
+   "in": {
+    "proficiency": 0
+   },
+   "out": {
+    "band": 0
+   }
+  },
+  {
+   "in": {
+    "proficiency": 5
+   },
+   "out": {
+    "band": 0
+   }
+  },
+  {
+   "in": {
+    "proficiency": 10
+   },
+   "out": {
+    "band": 0
+   }
+  },
+  {
+   "in": {
+    "proficiency": 15
+   },
+   "out": {
+    "band": 0
+   }
+  },
+  {
+   "in": {
+    "proficiency": 20
+   },
+   "out": {
+    "band": 0
+   }
+  },
+  {
+   "in": {
+    "proficiency": 25
+   },
+   "out": {
+    "band": 0
+   }
+  },
+  {
+   "in": {
+    "proficiency": 30
+   },
+   "out": {
+    "band": 0
+   }
+  },
+  {
+   "in": {
+    "proficiency": 35
+   },
+   "out": {
+    "band": 0
+   }
+  },
+  {
+   "in": {
+    "proficiency": 40
+   },
+   "out": {
+    "band": 0
+   }
+  },
+  {
+   "in": {
+    "proficiency": 45
+   },
+   "out": {
+    "band": 0
+   }
+  },
+  {
+   "in": {
+    "proficiency": 50
+   },
+   "out": {
+    "band": 0
+   }
+  },
+  {
+   "in": {
+    "proficiency": 55
+   },
+   "out": {
+    "band": 0
+   }
+  },
+  {
+   "in": {
+    "proficiency": 60
+   },
+   "out": {
+    "band": 0
+   }
+  },
+  {
+   "in": {
+    "proficiency": 65
+   },
+   "out": {
+    "band": 0
+   }
+  },
+  {
+   "in": {
+    "proficiency": 70
+   },
+   "out": {
+    "band": 0
+   }
+  },
+  {
+   "in": {
+    "proficiency": 75
+   },
+   "out": {
+    "band": 0
+   }
+  },
+  {
+   "in": {
+    "proficiency": 80
+   },
+   "out": {
+    "band": 0
+   }
+  },
+  {
+   "in": {
+    "proficiency": 85
+   },
+   "out": {
+    "band": 0
+   }
+  },
+  {
+   "in": {
+    "proficiency": 90
+   },
+   "out": {
+    "band": 0
+   }
+  },
+  {
+   "in": {
+    "proficiency": 95
+   },
+   "out": {
+    "band": 0
+   }
+  },
+  {
+   "in": {
+    "proficiency": 100
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 105
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 110
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 115
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 120
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 125
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 130
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 135
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 140
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 145
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 150
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 155
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 160
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 165
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 170
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 175
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 180
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 185
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 190
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 195
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 200
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 205
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 210
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 215
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 220
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 225
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 230
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 235
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 240
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 245
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 250
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 255
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 260
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 265
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 270
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 275
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 280
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 285
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 290
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 295
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 300
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 305
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 310
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 315
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 320
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 99.75
+   },
+   "out": {
+    "band": 0
+   }
+  },
+  {
+   "in": {
+    "proficiency": 100
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 199.5
+   },
+   "out": {
+    "band": 1
+   }
+  },
+  {
+   "in": {
+    "proficiency": 200
+   },
+   "out": {
+    "band": 2
+   }
+  },
+  {
+   "in": {
+    "proficiency": 0.25
+   },
+   "out": {
+    "band": 0
+   }
+  }
+ ]
+}

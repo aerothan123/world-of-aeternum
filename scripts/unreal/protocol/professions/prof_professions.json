@@ -1,0 +1,103 @@
+{
+ "gathering": [
+  {
+   "id": "mining",
+   "maxSkill": 100
+  },
+  {
+   "id": "logging",
+   "maxSkill": 100
+  },
+  {
+   "id": "herbalism",
+   "maxSkill": 100
+  },
+  {
+   "id": "fishing",
+   "maxSkill": 200
+  },
+  {
+   "id": "farming",
+   "maxSkill": 100
+  }
+ ],
+ "crafting": [
+  {
+   "id": "engineering",
+   "maxSkill": 125,
+   "stationType": "toolworks",
+   "specializedAt": 75,
+   "materialDiscountPct": 0.2
+  },
+  {
+   "id": "alchemy",
+   "maxSkill": 125,
+   "stationType": "apothecary",
+   "specializedAt": 75,
+   "materialDiscountPct": 0.2
+  },
+  {
+   "id": "cooking",
+   "maxSkill": 125,
+   "stationType": "kitchens",
+   "specializedAt": 75,
+   "materialDiscountPct": 0.2
+  },
+  {
+   "id": "leatherworking",
+   "maxSkill": 125,
+   "stationType": "tannery",
+   "specializedAt": 75,
+   "materialDiscountPct": 0.2
+  },
+  {
+   "id": "tailoring",
+   "maxSkill": 125,
+   "stationType": "loom",
+   "specializedAt": 75,
+   "materialDiscountPct": 0.2
+  },
+  {
+   "id": "inscription",
+   "maxSkill": 125,
+   "stationType": null,
+   "specializedAt": 75,
+   "materialDiscountPct": 0.2
+  },
+  {
+   "id": "enchanting",
+   "maxSkill": 125,
+   "stationType": null,
+   "specializedAt": 75,
+   "materialDiscountPct": 0.2
+  },
+  {
+   "id": "jewelcrafting",
+   "maxSkill": 125,
+   "stationType": null,
+   "specializedAt": 75,
+   "materialDiscountPct": 0.2
+  },
+  {
+   "id": "weaponcrafting",
+   "maxSkill": 125,
+   "stationType": "forge",
+   "specializedAt": 75,
+   "materialDiscountPct": 0.2
+  },
+  {
+   "id": "armorcrafting",
+   "maxSkill": 125,
+   "stationType": "forge",
+   "specializedAt": 75,
+   "materialDiscountPct": 0.2
+  },
+  {
+   "id": "furnishing",
+   "maxSkill": 125,
+   "stationType": null,
+   "specializedAt": 75,
+   "materialDiscountPct": 0.2
+  }
+ ]
+}
