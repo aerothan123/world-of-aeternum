@@ -111,6 +111,41 @@ def load_all_cells():
     return len(guids)
 
 
+NATURE_KINDS = ("grass", "flower", "fern", "tree", "rock", "reed")
+
+
+def nature_census():
+    """Read-only count of the nature crew's actors (after load_all_cells): per
+    kind by label keyword, plus overlaps, meaning actors of one kind whose
+    locations agree to 0.5 m (a stale build left beside a fresh one). The
+    build never deletes or edits these."""
+    kinds = {k: 0 for k in NATURE_KINDS + ("other",)}
+    seen = {}
+    labels = []
+    for a in actors.get_all_level_actors():
+        if not nature_owned(a):
+            continue
+        label = a.get_actor_label()
+        low = label.lower()
+        kind = next((k for k in NATURE_KINDS if k in low), "other")
+        kinds[kind] += 1
+        p = a.get_actor_location()
+        key = (kind, round(p.x / 50.0), round(p.y / 50.0))
+        seen.setdefault(key, []).append(label)
+        labels.append(label)
+    overlaps = {}
+    for (kind, _, _), group in seen.items():
+        if len(group) > 1:
+            overlaps.setdefault(kind, []).append(group)
+    return {
+        "total": len(labels),
+        "byKind": kinds,
+        "overlapGroups": {k: len(v) for k, v in overlaps.items()},
+        "overlapSamples": {k: v[:3] for k, v in overlaps.items()},
+        "otherSamples": [l for l in labels if not any(k in l.lower() for k in NATURE_KINDS)][:8],
+    }
+
+
 def clear_level():
     """Remove only this build's own WYND_* actors from the previous run."""
     for a in actors.get_all_level_actors():
@@ -465,7 +500,7 @@ def build(cover_areas):
         "registry": len(W.MESH_SOURCES["registry"]),
         "placeholder": sorted(W.MESH_SOURCES["placeholder"]),
     }
-    sl.stats["natureActors"] = sum(1 for a in actors.get_all_level_actors() if nature_owned(a))
+    sl.stats["nature"] = nature_census()
     W.log("scene stats %s" % sl.stats)
     return sl, sun
 
