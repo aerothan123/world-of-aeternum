@@ -22,6 +22,13 @@ export interface TerrainTile {
 
 /** How far each tile's edge skirt hangs below the edge, in yards. */
 export const SKIRT_DEPTH = 1.5;
+/**
+ * How far each skirt's lower edge leans out past the tile, in yards. A plumb
+ * skirt sits edge-on in the zero-width plane two tiles share, so a hairline
+ * crack seen from above still showed sky past both skirts (the v17 seam
+ * shot); leaning out, each skirt reaches under its neighbour and fills it.
+ */
+export const SKIRT_FLARE = 0.5;
 
 export async function terrainTiles(ex: WorldSliceExport, tilesPerSide = 8): Promise<TerrainTile[]> {
   const { res, step, bounds } = ex.meta;
@@ -73,11 +80,26 @@ export async function terrainTiles(ex: WorldSliceExport, tilesPerSide = 8): Prom
         Array.from({ length: n }, (_, b) => b * n + n - 1), // x = tile max
       ];
       let sv = n * n;
+      // outward direction (x, z) of each edge above, for the flare
+      const outward: [number, number][] = [
+        [0, -1],
+        [0, 1],
+        [-1, 0],
+        [1, 0],
+      ];
       const skirtOf: number[][] = [];
-      for (const edge of edges) {
+      for (const [e, edge] of edges.entries()) {
+        const [ox, oz] = outward[e];
         const row: number[] = [];
         for (const v of edge) {
-          pos.set([pos[v * 3], pos[v * 3 + 1] - SKIRT_DEPTH, pos[v * 3 + 2]], sv * 3);
+          pos.set(
+            [
+              pos[v * 3] + ox * SKIRT_FLARE,
+              pos[v * 3 + 1] - SKIRT_DEPTH,
+              pos[v * 3 + 2] + oz * SKIRT_FLARE,
+            ],
+            sv * 3,
+          );
           nor.set(nor.subarray(v * 3, v * 3 + 3), sv * 3);
           col.set(col.subarray(v * 4, v * 4 + 4), sv * 4);
           uv.set(uv.subarray(v * 2, v * 2 + 2), sv * 2);

@@ -6,7 +6,7 @@ import { coverGlbs } from '../scripts/world_export/cover_meshes';
 import { engineGlb, WEB_ONLY_EXTENSIONS } from '../scripts/world_export/engine_glb';
 import { EXPORT_SCRIPT } from '../scripts/world_export/export_slice.mjs';
 import { object3DToGlb } from '../scripts/world_export/procedural_glb';
-import { SKIRT_DEPTH, terrainTiles } from '../scripts/world_export/terrain_mesh';
+import { SKIRT_DEPTH, SKIRT_FLARE, terrainTiles } from '../scripts/world_export/terrain_mesh';
 import type { WorldSliceExport } from '../scripts/world_export/world_slice_export';
 import {
   collectPlacements,
@@ -165,6 +165,9 @@ describe('world slice export', () => {
     // the grid, then one skirt row per edge hanging SKIRT_DEPTH below it
     expect(prim.getAttribute('COLOR_0')?.getCount()).toBe(65 * 65 + 4 * 65);
     expect(pos[65 * 65 * 3 + 1]).toBeCloseTo(pos[1] - SKIRT_DEPTH, 5);
+    // and leans out past the tile's z-min edge, under its neighbour
+    expect(pos[65 * 65 * 3]).toBeCloseTo(pos[0], 5);
+    expect(pos[65 * 65 * 3 + 2]).toBeCloseTo(pos[2] - SKIRT_FLARE, 5);
   });
 
   it('resolves the prop asset table and ships its entry script', () => {

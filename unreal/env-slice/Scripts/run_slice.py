@@ -30,6 +30,17 @@ with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "look_shots.j
     SHOTS = json.load(_f)["shots"]
 if ONLY:
     SHOTS = [s for s in SHOTS if s["name"] in ONLY]
+# WYND_DIAG=1: each shot is taken as is and once per WYND_DIAG_MODES variant,
+# to find what draws a dark patch: nonature (every nature actor temporarily
+# hidden in the editor, a transient view flag that is never saved; their
+# actors are not edited), nocloudshadow (this build's sun), nolumen and novsm
+# (console toggles) and flatmat (this build's own terrain tiles drawn with
+# the engine's plain grey material). All are reset before the level saves.
+DIAG = os.environ.get("WYND_DIAG") == "1"
+DIAG_MODES = [m for m in os.environ.get("WYND_DIAG_MODES", "nonature,nocloudshadow").split(",") if m]
+if DIAG:
+    SHOTS = [dict(s, name=s["name"] + ("_" + mode if mode else ""), diag=mode) for s in SHOTS
+             for mode in [None] + DIAG_MODES]
 
 level = unreal.get_editor_subsystem(unreal.LevelEditorSubsystem)
 try:  # keep ticking at full rate while the editor window is in the background
@@ -60,7 +71,7 @@ build_s = time.time() - t0
 # target so a blotch can be told apart from terrain shading (read-only)
 for s in SHOTS:
     if s.get("probeRadius"):
-        tx, _, tz = s["target"]
+        tx, _, tz = s.get("probeAt") or s["target"]
         near = S.nature_near(tx, tz, s["probeRadius"])
         sl.stats.setdefault("natureNear", {})[s["name"]] = near
         W.log("nature near %s: %s" % (s["name"], near))
@@ -90,8 +101,32 @@ for s in SHOTS:
 state = {"i": -1, "frame": 0, "deltas": [], "task": None, "wait": 0, "results": []}
 
 
+_tile_mats = {}
+
+
+def set_diag(mode):
+    hide = mode == "nonature"
+    flat = lib_flat() if mode == "flatmat" else None
+    for a in unreal.get_editor_subsystem(unreal.EditorActorSubsystem).get_all_level_actors():
+        if S.nature_owned(a):
+            a.set_is_temporarily_hidden_in_editor(hide)
+        elif a.get_actor_label().startswith("WYND_terrain_"):
+            smc = a.static_mesh_component
+            _tile_mats.setdefault(a.get_actor_label(), smc.get_material(0))
+            smc.set_material(0, flat or _tile_mats[a.get_actor_label()])
+    sun.light_component.set_editor_property("cast_cloud_shadows", mode != "nocloudshadow")
+    cmd("r.DynamicGlobalIlluminationMethod %d" % (0 if mode == "nolumen" else 1))
+    cmd("r.Shadow.Virtual.Enable %d" % (0 if mode == "novsm" else 1))
+
+
+def lib_flat():
+    return unreal.EditorAssetLibrary.load_asset("/Engine/BasicShapes/BasicShapeMaterial")
+
+
 def begin(i):
     s = SHOTS[i]
+    if DIAG:
+        set_diag(s.get("diag"))
     S.set_time(sl, sun, s["time"])
     level.pilot_level_actor(cams[i])
     state.update(i=i, frame=0, deltas=[], task=None, wait=0)
@@ -102,6 +137,8 @@ def finish():
     with open(os.path.join(W.OUT, "shots.json"), "w") as f:
         json.dump({"buildSeconds": build_s, "stats": sl.stats, "shots": state["results"]}, f, indent=1)
     level.eject_pilot_level_actor()
+    if DIAG:  # back to the normal state first: the hide flag is transient
+        set_diag(None)  # and the cloud-shadow switch is this build's own sun
     unreal.EditorLevelLibrary.save_current_level()
     if os.environ.get("WYND_KEEP") == "1":
         W.log("done; editor kept open")

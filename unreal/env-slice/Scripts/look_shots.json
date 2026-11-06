@@ -15,7 +15,9 @@
       "eye": [9.0, 1.9, -62.0],
       "target": [-2.0, 1.5, -18.0],
       "focal": 28.0,
-      "time": "late_afternoon"
+      "time": "late_afternoon",
+      "probeAt": [3.0, 0.0, -40.0],
+      "probeRadius": 25.0
     },
     {
       "name": "harbour_shore",

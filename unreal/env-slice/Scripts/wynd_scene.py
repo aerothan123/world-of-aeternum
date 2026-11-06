@@ -155,15 +155,17 @@ def nature_near(x, z, radius):
     for a in actors.get_all_level_actors():
         if not nature_owned(a):
             continue
-        n = 0
         for c in a.get_components_by_class(unreal.InstancedStaticMeshComponent):
+            n = 0
             for i in range(c.get_instance_count()):
                 t = c.get_instance_transform(i, True)
                 dx, dy = t.translation.x - cx, t.translation.y - cy
                 if dx * dx + dy * dy <= r2:
                     n += 1
-        if n:
-            out[a.get_actor_label()] = n
+            if n:
+                sm = c.get_editor_property("static_mesh")
+                key = "%s | %s" % (a.get_actor_label(), sm.get_name() if sm else "?")
+                out[key] = out.get(key, 0) + n
     return out
 
 
