@@ -139,6 +139,32 @@ def terrain_material():
     ctrl = g.tex(W.ROOT + "/Rasters/splat_control", uv0, "linear", "SplatControl")
     cob = g.tex(W.ROOT + "/Rasters/splat_cobble", uv0, "linear", "SplatCobble")
     tint = g.tex(W.ROOT + "/Rasters/tint", uv0, "color", "Tint")
+    # UseVertexSplat (static switch, off by default): the whole-world mesh
+    # tiles (export/world_mesh) bake the splat into COLOR_0 instead of a
+    # per-slice raster: r dirt, g sand, b rock, a cobble, grass the remainder.
+    # On, the weights come from the vertex colour and the slice-raster tint
+    # is dropped (its UVs only cover one slice).
+    vcol = g.node(unreal.MaterialExpressionVertexColor, 5)
+
+    def splat_switch(on, on_out, off, off_out):
+        sw = g.node(unreal.MaterialExpressionStaticSwitchParameter, 3,
+                    parameter_name="UseVertexSplat", default_value=False)
+        g.link(on, on_out, sw, "True")
+        g.link(off, off_out, sw, "False")
+        return sw
+
+    def channel(src, r=False, gg=False, bb=False, a=False):
+        mk = g.node(unreal.MaterialExpressionComponentMask, 2, r=r, g=gg, b=bb, a=a)
+        g.link(src, "", mk, "")
+        return mk
+
+    ctrl_sw = splat_switch(vcol, "", ctrl, "RGBA")
+    weights = [
+        (channel(ctrl_sw, r=True), ""),
+        (channel(ctrl_sw, gg=True), ""),
+        (channel(ctrl_sw, bb=True), ""),
+        (splat_switch(vcol, "A", cob, "R"), ""),
+    ]
     sets = []
     for name, ph, tile in LAYERS:
         uv = g.op(unreal.MaterialExpressionDivide, wxy, g.const(tile * W.UNIT))
@@ -175,7 +201,7 @@ def terrain_material():
     alb, nor, arm = sets[0]["alb"], sets[0]["nor"], sets[0]["arm"]
     alb_o, nor_o, arm_o = "", "RGB", "RGB"
     contrast = g.node(unreal.MaterialExpressionScalarParameter, 6, parameter_name="EdgeContrast", default_value=5.0)
-    for s, (src, chan) in zip(sets[1:], [(ctrl, "R"), (ctrl, "G"), (ctrl, "B"), (cob, "R")]):
+    for s, (src, chan) in zip(sets[1:], weights):
         # alpha = saturate((w - 0.5 + (h - 0.5) * 0.6) * contrast + 0.5)
         hh = g.op(unreal.MaterialExpressionSubtract, s["hgt"], g.const(0.5), "R")
         hh = g.op(unreal.MaterialExpressionMultiply, hh, g.const(0.6))
@@ -195,7 +221,7 @@ def terrain_material():
         unreal.MaterialExpressionConstant3Vector, 6, constant=unreal.LinearColor(*TINT_MEAN, 1.0)
     )
     tn = g.op(unreal.MaterialExpressionDivide, tint, mean, "RGB")
-    macro = g.lerp(g.const(1.0), tn, ts)
+    macro = splat_switch(g.const(1.0), "", g.lerp(g.const(1.0), tn, ts), "")
     warm = g.node(
         unreal.MaterialExpressionVectorParameter,
         6,
@@ -210,7 +236,7 @@ def terrain_material():
     g.link(arm, "", rough, "")
     debug = os.environ.get("WYND_TERRAIN_DEBUG")
     if debug == "splat":  # r dirt, g sand, b rock as colour
-        mel.connect_material_property(ctrl, "RGB", MP.MP_BASE_COLOR)
+        mel.connect_material_property(channel(ctrl_sw, r=True, gg=True, bb=True), "", MP.MP_BASE_COLOR)
     elif debug == "grass":  # the grass layer alone
         mel.connect_material_property(sets[0]["alb"], "", MP.MP_BASE_COLOR)
     else:
@@ -305,6 +331,23 @@ def terrain_instance(parent, name, export):
             mel.set_material_instance_texture_parameter_value(mi, param, t)
         else:
             W.log("terrain instance %s: raster %s missing" % (name, tex))
+    mel.update_material_instance(mi)
+    lib.save_loaded_asset(mi)
+    return mi
+
+
+def terrain_vertex_instance(parent, name="world"):
+    """MI_Terrain_<name> with UseVertexSplat on: for terrain tiles that carry
+    the splat weights in their vertex colour (export/world_mesh), so no
+    per-slice rasters or bounds are needed."""
+    path = W.LANDSCAPE + "/MI_Terrain_" + name
+    if lib.does_asset_exist(path):
+        mi = lib.load_asset(path)
+    else:
+        pkg, leaf = path.rsplit("/", 1)
+        mi = tools.create_asset(leaf, pkg, unreal.MaterialInstanceConstant, unreal.MaterialInstanceConstantFactoryNew())
+    mel.set_material_instance_parent(mi, parent)
+    mel.set_material_instance_static_switch_parameter_value(mi, "UseVertexSplat", True)
     mel.update_material_instance(mi)
     lib.save_loaded_asset(mi)
     return mi
