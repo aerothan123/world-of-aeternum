@@ -10,9 +10,26 @@
 // the C++ automation test recomputes from the tables and compares.
 // tests/unreal_character_export.test.ts fails when the committed copy is stale.
 
-import { type ClipMap, VISUALS } from '../../src/render/characters/manifest';
-import { normalizeAppearance } from '../../src/render/characters/modular';
+import {
+  KAYKIT_HAND_GRIPS,
+  KAYKIT_WEAPON_ACCESSORY,
+  VARIANT_GRIPS,
+} from '../../src/render/characters/assets';
+import { heldWeaponSize } from '../../src/render/characters/held_item_size_core';
+import {
+  type AttachDef,
+  type ClipMap,
+  itemOffhandModelUrl,
+  itemWeaponModelUrl,
+  NPC_PROP_ATTACH,
+  VISUALS,
+} from '../../src/render/characters/manifest';
+import { DEFAULT_APPEARANCE, normalizeAppearance } from '../../src/render/characters/modular';
 import { MOB_LOOK_IDS, npcLookFor } from '../../src/render/characters/npc_looks';
+import {
+  variantGripTransform,
+  WEAPON_GRIP_OVERRIDES,
+} from '../../src/render/characters/weapon_grip';
 import {
   WOC_SHIPPED_SETS,
   wocFitCatalog,
@@ -40,6 +57,9 @@ import {
   wocHeadVisibleNodes,
 } from '../../src/render/characters/woc_head_catalog';
 import {
+  WOC_BODY_SKIN_REF,
+  WOC_HEAD_TINT_TABLE,
+  wocHeadHairFallbackRef,
   wocHeadLookFromAppearance,
   wocWornHidesHair,
 } from '../../src/render/characters/woc_head_look_core';
@@ -51,7 +71,9 @@ import {
   wocVisibleParts,
   wocWornFromEquipment,
 } from '../../src/render/characters/woc_parts_core';
-import { CLASSES, MOBS, NPCS } from '../../src/sim/data';
+import { WOC_SUIT_SKIN_GATE } from '../../src/render/characters/woc_skin_tint_core';
+import { wocTintSrgbHsv } from '../../src/render/characters/woc_tint_hsv_core';
+import { CLASSES, ITEMS, MOBS, NPCS } from '../../src/sim/data';
 import type { EquipSlot } from '../../src/sim/types';
 
 export const CHARACTER_EXPORT_FILE = 'character_visuals.json';
@@ -130,7 +152,9 @@ function bodyDefs() {
       attackTimeScale: def.attackTimeScale ?? null,
       walkBackRef: def.walkBackRef ?? null,
       clips: clipsOf(def.clips),
-      attach: (def.attach ?? []).map((a) => ({ model: modelKey(a.url), bone: a.bone })),
+      attach: (def.attach ?? []).map(attachOf),
+      weaponSlots: [...(def.weaponSlots ?? [])],
+      offhandSlot: def.offhandSlot ?? null,
       manifest: manifestOf(m),
     };
   }
@@ -182,6 +206,104 @@ function headFor(app: Record<string, unknown> | null) {
     nodesUnderHelm: wocHeadVisibleNodes(state.type, state.look, { helm: true }),
     morphs: Object.fromEntries(Object.entries(state.morphs).sort(([a], [b]) => (a < b ? -1 : 1))),
     files: [...files].sort(),
+    colors: state.colors,
+  };
+}
+
+/** One held prop (manifest.ts AttachDef), its model as a registry key. */
+function attachOf(a: AttachDef) {
+  return {
+    model: modelKey(a.url),
+    bone: a.bone,
+    position: a.position ?? null,
+    rotationY: a.rotationY ?? null,
+    gripRef: a.gripRef ?? null,
+    swapOnly: a.swapOnly ?? false,
+  };
+}
+
+/** A registry key from a weapon url (null stays null). */
+const weaponKey = (url: string | null) => (url ? modelKey(url) : null);
+
+/** Held weapons: each item's held models and size, the NPC prop sets, and every
+ *  referenced model's grip (assets.ts attachProp: the variant-pack lift, flip and clamp
+ *  with its fine-tune, else the KayKit hand grip). */
+function weaponsOf(bodies: Record<string, unknown>) {
+  const items: Record<string, unknown> = {};
+  const models = new Set<string>();
+  for (const id of Object.keys(ITEMS).sort()) {
+    const main = weaponKey(itemWeaponModelUrl(id));
+    const off = weaponKey(itemOffhandModelUrl(id));
+    if (!main && !off) continue;
+    items[id] = { main, off, size: heldWeaponSize(id) };
+    if (main) models.add(main);
+    if (off) models.add(off);
+  }
+  const npcProps: Record<string, unknown> = {};
+  for (const [set, list] of Object.entries(NPC_PROP_ATTACH)) {
+    npcProps[set] = list.map(attachOf);
+    for (const a of list) models.add(modelKey(a.url));
+  }
+  for (const b of Object.values(bodies) as { attach: { model: string }[] }[]) {
+    for (const a of b.attach) models.add(a.model);
+  }
+  const grips: Record<string, unknown> = {};
+  for (const key of [...models].sort()) {
+    const base = key.slice(key.lastIndexOf('/') + 1);
+    const accessory = KAYKIT_WEAPON_ACCESSORY[base] ?? null;
+    grips[key] = {
+      accessory,
+      variant: accessory ? (VARIANT_GRIPS[accessory] ?? null) : null,
+      override: WEAPON_GRIP_OVERRIDES[base] ?? null,
+      hand: accessory ? (KAYKIT_HAND_GRIPS[accessory] ?? null) : null,
+    };
+  }
+  return { items, npcProps, grips };
+}
+
+/** Each tint row with the sRGB hue and saturation the shader reads of its reference. */
+function tintRow(r: { role: string; ref: readonly number[]; surface?: string }) {
+  const [h, sat] = wocTintSrgbHsv(r.ref as [number, number, number]);
+  return { role: r.role, ref: [...r.ref], surface: r.surface ?? null, hs: [h, sat] };
+}
+
+function tintsOf() {
+  return {
+    table: Object.fromEntries(
+      HEAD_TYPES.map((t) => [
+        t,
+        Object.fromEntries(Object.entries(WOC_HEAD_TINT_TABLE[t]).map(([k, r]) => [k, tintRow(r)])),
+      ]),
+    ),
+    bodySkin: Object.fromEntries(HEAD_TYPES.map((t) => [t, tintRow(WOC_BODY_SKIN_REF[t])])),
+    hairFallback: Object.fromEntries(
+      HEAD_TYPES.map((t) => {
+        const r = wocHeadHairFallbackRef(t);
+        return [t, r ? tintRow(r) : null];
+      }),
+    ),
+    suitGate: { ...WOC_SUIT_SKIN_GATE },
+    // the colour fields an appearance carries, their clamp and default (modular.ts
+    // normalizeAppearance); a brow field with no value of its own follows the hair's
+    colorFields: [
+      ['skinHue', 0, 360],
+      ['skinSat', 0, 1],
+      ['skinLight', 0.12, 0.95],
+      ['hairHue', 0, 360],
+      ['hairSat', 0, 1],
+      ['hairLight', 0.02, 0.95],
+      ['eyeHue', 0, 360],
+      ['eyeSat', 0, 1],
+      ['eyeLight', 0.03, 0.9],
+      ['browHue', 0, 360],
+      ['browSat', 0, 1],
+      ['browLight', 0.02, 0.95],
+    ].map(([key, lo, hi]) => ({
+      key,
+      lo,
+      hi,
+      def: (DEFAULT_APPEARANCE as unknown as Record<string, number>)[key as string],
+    })),
   };
 }
 
@@ -287,7 +409,31 @@ function cases() {
       { kind: 'player', cls, gender: 'female' },
     ]),
   ].map((c) => ({ ...c, key: playerKeyOf(c.cls, c.gender) }));
-  return { worn, heads, keys };
+  // the variant-pack grip (weapon_grip.ts variantGripTransform) for a spread of heights,
+  // both hands, with and without a fine-tune row
+  const grips: unknown[] = [];
+  const overridden = Object.keys(WEAPON_GRIP_OVERRIDES).sort().slice(0, 6);
+  for (const [lift, maxHeight] of [
+    [0.04, 2.0],
+    [0.18, 2.4],
+  ]) {
+    for (const height of [0.5, 1.6, 3.2]) {
+      for (const left of [false, true]) {
+        for (const base of [null, ...overridden]) {
+          const override = base ? WEAPON_GRIP_OVERRIDES[base] : undefined;
+          grips.push({
+            height,
+            left,
+            lift,
+            maxHeight,
+            override: override ?? null,
+            out: variantGripTransform(height, left, lift, maxHeight, override),
+          });
+        }
+      }
+    }
+  }
+  return { worn, heads, keys, grips };
 }
 
 function playerKeyOf(cls: string, gender: string): string {
@@ -298,9 +444,12 @@ function playerKeyOf(cls: string, gender: string): string {
 }
 
 export function buildCharacterExport() {
+  const bodies = bodyDefs();
   return {
     files: importFiles(),
-    bodies: bodyDefs(),
+    bodies,
+    weapons: weaponsOf(bodies),
+    tints: tintsOf(),
     catalogs: Object.fromEntries(FITS.map((fit) => [fit, catalogOf(fit)])),
     equipToArmorSlot: { ...WOC_ARMOR_SLOT_BY_EQUIP_SLOT },
     itemDisplay: Object.fromEntries(
