@@ -4173,6 +4173,17 @@ export const DEEDS: Record<string, DeedDef> = {
     renown: 10,
     trigger: { kind: 'quest', questId: 'c1_28_door_left_shut' },
   },
+  // Wyndlewood Chapters Three to Seven (content/story_chapters.ts): one
+  // chronicle per chapter on its closing quest. Cosmetic only; appended at the
+  // END. Names IP-checked (docs/narrative/chapters_3_to_7_plan.md).
+  chr_marsh_that_remembers: {
+    id: 'chr_marsh_that_remembers',
+    name: 'The Marsh That Remembers',
+    desc: "Finish Chapter Three: pour Mirefen's stolen memories home, and carry the Drowned Temple's oldest memory up the mountain.",
+    category: 'chronicle',
+    renown: 10,
+    trigger: { kind: 'quest', questId: 'c3_08_records_in_the_mountain' },
+  },
 };
 
 for (const def of Object.values(DEEDS)) {

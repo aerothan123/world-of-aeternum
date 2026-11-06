@@ -139,6 +139,10 @@ export const GROUND_PICKUP_PROVING_QUESTS: readonly string[] = [
   'c2_12_door_we_left_shut',
   'c2_28_remembered_roofs',
   'c2_33_paddy_work_fog',
+  // Wyndlewood Chapters Three to Seven (content/story_chapters.ts), the same rule.
+  'c3_02_mud_remembers',
+  'c3_03_machine_in_the_reeds',
+  'c3_06_mistress_of_the_harvest',
 ];
 
 // The highest level any giantslayer-creditable mob can ever spawn at: S-rank

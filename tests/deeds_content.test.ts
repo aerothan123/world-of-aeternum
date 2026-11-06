@@ -156,8 +156,9 @@ describe('audited launch totals (literals: update deliberately with the catalog)
     // + tree chopping's first felling (prog_first_felling, renown 5): 370, 4015.
     // + the Bracken Circle's standing pair (Wyndlewood, 5 + 25): 372, 4045.
     // + Chapter One's chronicle (chr_shore_that_remembers, 10): 373, 4055.
-    expect(DEED_ORDER.length).toBe(373);
-    expect(ALL.reduce((sum, d) => sum + d.renown, 0)).toBe(4055);
+    // + Wyndlewood Chapter Three's chronicle (10 each): 374, 4065.
+    expect(DEED_ORDER.length).toBe(374);
+    expect(ALL.reduce((sum, d) => sum + d.renown, 0)).toBe(4065);
   });
 
   it('ships the audited per-category counts', () => {
@@ -197,7 +198,8 @@ describe('audited launch totals (literals: update deliberately with the catalog)
       delve: 13,
       // +4 farming first-harvest chronicles (chr_*_first_harvest).
       // +1 Wyndlewood Chapter One's closing chronicle.
-      chronicle: 54,
+      // +1 Wyndlewood Chapter Three's chronicle.
+      chronicle: 55,
       // +4 Reliquary Curator rank bridges and +5 Phase 18 completion ladder
       // deeds on top of the release collection set, +1 col_golden_harvest,
       // +1 the Roots Bramblehide set collection (col_set_bramblehide) the
@@ -506,6 +508,8 @@ describe('audited launch totals (literals: update deliberately with the catalog)
       'prog_bracken_circle_champion',
       // Wyndlewood Chapter One's closing chronicle.
       'chr_shore_that_remembers',
+      // Wyndlewood Chapter Three's chronicle (content/story_chapters.ts).
+      'chr_marsh_that_remembers',
     ]);
     expect(DEEDS.dgn_wildheart_basin.renown).toBe(10);
     expect(DEEDS.dgn_wildheart_basin_heroic.renown).toBe(10);
@@ -1154,7 +1158,8 @@ describe('frozen trigger + renown catalog (design rule 9: never retro-edit a tri
   // Main's frozen catalog is preserved as the prefix; Halloween appends ten feats.
   // Tree chopping appends prog_first_felling (renown 5) at the tail: re-minted.
   // Wyndlewood appends the Bracken Circle's standing pair at the tail: re-minted.
-  const FROZEN_CATALOG_SHA256 = '77568a4c762544b6bfccf5873d2b426cd9d1fc46e2478118c3b31b85046a4f48';
+  // Wyndlewood Chapter Three's chronicle appended at the tail: re-minted.
+  const FROZEN_CATALOG_SHA256 = '52bd2520a1b9f192a141c91f06af4fc86aa65901028cfa4c25110ad80448c75c';
 
   it('every shipped deed keeps its trigger and renown unchanged', () => {
     const canonical = JSON.stringify(
@@ -1246,10 +1251,13 @@ describe('frozen trigger + renown catalog (design rule 9: never retro-edit a tri
   // (the three shipped faction ladders kept their triggers, design rule 9).
   const PRE_APPEND_CATALOG_SHA256 =
     '01e74f5e5bd8fc4cf7b0cfef5cfcf0408cf962dc0a16ae062690a5d35096c7bf';
+  // Wyndlewood Chapter Three's chronicle append behind Chapter One's,
+  // against the same previous mint.
   const APPENDED_SINCE: readonly string[] = [
     'prog_bracken_circle_trusted',
     'prog_bracken_circle_champion',
     'chr_shore_that_remembers',
+    'chr_marsh_that_remembers',
   ];
 
   it('the catalog minus the ids appended since the previous mint reproduces the previous digest', () => {
@@ -1494,17 +1502,19 @@ describe('table shape', () => {
     // five-dungeon rework's 24, Morthen's Every Candle Lit, then Lantern Hall's six, the
     // quartermaster's third title last.
     // Tree chopping's first felling appends last, one seat behind everything.
-    // Then Wyndlewood's three (the Bracken Circle pair, Chapter One's chronicle).
-    expect(DEED_ORDER[DEED_ORDER.length - 55]).toBe('exp_harbor_to_harbor');
-    expect(DEED_ORDER[DEED_ORDER.length - 46]).toBe('cmb_balgath_ten');
-    expect(DEED_ORDER[DEED_ORDER.length - 45]).toBe('cmb_point_taken');
-    expect(DEED_ORDER[DEED_ORDER.length - 21]).toBe('dgn_morthen_candlelight');
-    expect(DEED_ORDER[DEED_ORDER.length - 15]).toBe('feat_guild_of_lantern_hall');
-    expect(DEED_ORDER.at(-5)).toBe('feat_gourdlight_eve_complete');
-    expect(DEED_ORDER.at(-4)).toBe('prog_first_felling');
-    expect(DEED_ORDER.at(-3)).toBe('prog_bracken_circle_trusted');
-    expect(DEED_ORDER.at(-2)).toBe('prog_bracken_circle_champion');
-    expect(DEED_ORDER.at(-1)).toBe('chr_shore_that_remembers');
+    // Then Wyndlewood's three (the Bracken Circle pair, Chapter One's chronicle),
+    // then Chapter Three's chronicle.
+    expect(DEED_ORDER[DEED_ORDER.length - 56]).toBe('exp_harbor_to_harbor');
+    expect(DEED_ORDER[DEED_ORDER.length - 47]).toBe('cmb_balgath_ten');
+    expect(DEED_ORDER[DEED_ORDER.length - 46]).toBe('cmb_point_taken');
+    expect(DEED_ORDER[DEED_ORDER.length - 22]).toBe('dgn_morthen_candlelight');
+    expect(DEED_ORDER[DEED_ORDER.length - 16]).toBe('feat_guild_of_lantern_hall');
+    expect(DEED_ORDER.at(-6)).toBe('feat_gourdlight_eve_complete');
+    expect(DEED_ORDER.at(-5)).toBe('prog_first_felling');
+    expect(DEED_ORDER.at(-4)).toBe('prog_bracken_circle_trusted');
+    expect(DEED_ORDER.at(-3)).toBe('prog_bracken_circle_champion');
+    expect(DEED_ORDER.at(-2)).toBe('chr_shore_that_remembers');
+    expect(DEED_ORDER.slice(-1)).toEqual(['chr_marsh_that_remembers']);
   });
 
   it('every entry key matches its id and its prefix matches its category', () => {

@@ -460,6 +460,8 @@ const MOB_IDS = [
   'quarry_burrower',
   'escort_neris',
   'escort_della',
+  // Wyndlewood Chapters Three to Seven's named foes (content/story_chapters.ts).
+  'c3_veska_noll',
 ] as const;
 
 const NPC_IDS = [
@@ -943,6 +945,15 @@ const QUEST_IDS = [
   'c2_28_remembered_roofs',
   'c2_32_bridge_fenbridge_trusts',
   'c2_33_paddy_work_fog',
+  // Wyndlewood Chapters Three to Seven (content/story_chapters.ts).
+  'c3_01_fog_takes_a_village',
+  'c3_02_mud_remembers',
+  'c3_03_machine_in_the_reeds',
+  'c3_04_letters_for_the_tarn',
+  'c3_05_frightened_or_dangerous',
+  'c3_06_mistress_of_the_harvest',
+  'c3_07_what_the_temple_keeps',
+  'c3_08_records_in_the_mountain',
 ] as const;
 
 const ZONE_IDS = [

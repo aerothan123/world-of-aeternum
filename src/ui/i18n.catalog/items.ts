@@ -4091,6 +4091,17 @@ const ITEM_ENTITY_IDS = [
   'c2_marked_bog_alder',
   'c2_fen_workbench',
   'c2_rotten_span',
+  // Wyndlewood Chapters Three to Seven's quest items and objects
+  // (content/story_chapters.ts).
+  'c3_memory_silt',
+  'c3_engine_cog',
+  'c3_harvest_ledger',
+  'c3_calming_reed_bundle',
+  'c3_harvested_memory_jar',
+  'c3_first_age_rubbing',
+  'c3_fogbound_doorstep',
+  'c3_harvest_engine',
+  'c3_wader_nest',
 ] as const;
 
 type ItemEntityId = (typeof ITEM_ENTITY_IDS)[number];
@@ -4117,6 +4128,16 @@ const APPENDED_ITEM_NAMES: Partial<Record<ItemEntityId, string>> = {
   c2_marked_bog_alder: 'Marked Bog Alder',
   c2_fen_workbench: "Fenbridge Boardwright's Bench",
   c2_rotten_span: 'Rotten Boardwalk Span',
+  // Wyndlewood Chapters Three to Seven (content/story_chapters.ts).
+  c3_memory_silt: 'Memory Silt',
+  c3_engine_cog: 'Brass Memory Cog',
+  c3_harvest_ledger: 'Accord Harvest Ledger',
+  c3_calming_reed_bundle: 'Bundle of Calming Reeds',
+  c3_harvested_memory_jar: 'Harvested Memory Jar',
+  c3_first_age_rubbing: 'First Age Temple Rubbing',
+  c3_fogbound_doorstep: 'Fogbound Doorstep',
+  c3_harvest_engine: 'Accord Memory Engine',
+  c3_wader_nest: 'Frightened Wader Nest',
   // Wyndlewood Chapter One (content/chapter_one.ts).
   c1_dry_supply_bundle: 'Dry Supply Bundle',
   c1_black_wick_knot: 'Black Wick Knot',

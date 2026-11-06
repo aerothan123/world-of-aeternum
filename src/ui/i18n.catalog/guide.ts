@@ -2052,6 +2052,11 @@ export const guideStrings = {
     sagaMarshTitle: 'The marsh: a tithe of souls',
     sagaMarshBody:
       'In Mirefen the drownings are no accident. Someone is filling the fen like a tithing box, raising obedient dead from every traveler the water takes. Chase the orders up the chain to a Fogbinder in the drowned bastion, whose last words name something older still, stirring beneath the peaks.',
+    // Wyndlewood Chapters Three to Seven (src/sim/content/story_chapters.ts),
+    // spoiler-safe in the same way: no endings, no boss names.
+    sagaMemoryTitle: 'The marsh that remembers',
+    sagaMemoryBody:
+      'After the bells fall silent, whole houses walk into the Mirefen fog. Someone is harvesting what the marsh remembers, and the trail runs up the mountain to a temple under a tarn that keeps the oldest memory of all: the morning the first hearths were bound.',
     sagaPeaksTitle: 'The peaks: what the tithe was for',
     sagaPeaksBody:
       "On Thornpeak the whole scheme comes clear. Every soul stolen since the Vale was a tithe poured toward the cult's grim work in the mountain's heart. The trail that began in a chapel yard ends here, in a five-player descent to face the hand behind it all. We will let you find out who waits at the bottom.",

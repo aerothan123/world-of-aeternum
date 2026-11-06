@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-49d2d-d3c69295-dc90bf05-14b3-b4ad9a78-f493dfc8",
+    "id": "live-4a323-3d11f039-9ec37a29-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "49d2d-d3c69295-dc90bf05",
+    "overworldBase": "4a323-3d11f039-9ec37a29",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -3472,6 +3472,15 @@
         },
         "radius": 7,
         "count": 4
+      },
+      {
+        "mobId": "c3_veska_noll",
+        "center": {
+          "x": -30,
+          "z": 770
+        },
+        "radius": 2,
+        "count": 1
       }
     ],
     "npcs": {
@@ -3886,7 +3895,8 @@
           "q_summoners",
           "q_bastion_door",
           "q_mistcaller",
-          "q_highwatch_summons"
+          "q_highwatch_summons",
+          "c3_04_letters_for_the_tarn"
         ],
         "greeting": "The Light keep you above the water, $N. The dead in this fen do not sleep: they wade."
       },
@@ -3944,7 +3954,7 @@
         },
         "facing": -1.5707963267948966,
         "color": 8207512,
-        "questIds": ["q_widows", "q_broodmother", "c2_21_heath_herbs_fen"],
+        "questIds": ["q_widows", "q_broodmother", "c2_21_heath_herbs_fen", "c3_02_mud_remembers"],
         "greeting": "Mind the thicket west of the road. The webs are thick as sailcloth this season.",
         "vendorItems": ["cartographers_ink", "allied_hearthstone", "allied_vanguard_duffel"]
       },
@@ -3958,7 +3968,7 @@
         },
         "facing": 3.0569469092959145,
         "color": 8218120,
-        "questIds": ["q_troll_fetishes", "q_cult_camp", "q_olen"],
+        "questIds": ["q_troll_fetishes", "q_cult_camp", "q_olen", "c3_03_machine_in_the_reeds"],
         "greeting": "Quiet feet and a short blade keep you breathing out here. Speak quick, for I am due back in the reeds."
       },
       "bursar_petra_vell": {
@@ -3985,7 +3995,7 @@
         },
         "facing": 1.5707963267948966,
         "color": 4171371,
-        "questIds": ["c2_28_remembered_roofs"],
+        "questIds": ["c2_28_remembered_roofs", "c3_01_fog_takes_a_village"],
         "greeting": "Mind the damp on the pages, $N. The fen eats more books than readers ever will."
       },
       "tanner_hesk": {
@@ -4270,7 +4280,13 @@
         },
         "facing": -0.6805212246672144,
         "color": 3894949,
-        "questIds": ["q_kobold_tunnels", "q_elementals", "q_shard_cores", "q_kazzix"],
+        "questIds": [
+          "q_kobold_tunnels",
+          "q_elementals",
+          "q_shard_cores",
+          "q_kazzix",
+          "c3_08_records_in_the_mountain"
+        ],
         "greeting": "Mind the loose shale, $C. The mountain has been... restless of late. I intend to learn why."
       },
       "auctioneer_voss": {
@@ -4385,7 +4401,12 @@
           "q_drowned_choir",
           "q_palecoil",
           "q_silence_the_choir",
-          "q_drowned_moon"
+          "q_drowned_moon",
+          "c3_04_letters_for_the_tarn",
+          "c3_05_frightened_or_dangerous",
+          "c3_06_mistress_of_the_harvest",
+          "c3_07_what_the_temple_keeps",
+          "c3_08_records_in_the_mountain"
         ],
         "greeting": "The mere drinks the moonlight, $C, and gives back the drowned. I have watched that gate for thirty nights, and tonight it is open."
       },
@@ -8946,6 +8967,126 @@
           {
             "x": -286,
             "z": -438
+          }
+        ]
+      },
+      {
+        "itemId": "c3_fogbound_doorstep",
+        "name": "Fogbound Doorstep",
+        "positions": [
+          {
+            "x": 33,
+            "z": 249.5
+          },
+          {
+            "x": 29,
+            "z": 253
+          },
+          {
+            "x": 24,
+            "z": 250
+          }
+        ]
+      },
+      {
+        "itemId": "c3_memory_silt",
+        "name": "Memory Silt",
+        "positions": [
+          {
+            "x": 45,
+            "z": 445
+          },
+          {
+            "x": 51,
+            "z": 443.5
+          },
+          {
+            "x": 49.5,
+            "z": 449
+          },
+          {
+            "x": 44.5,
+            "z": 451
+          },
+          {
+            "x": 40,
+            "z": 448
+          }
+        ]
+      },
+      {
+        "itemId": "c3_harvest_engine",
+        "name": "Accord Memory Engine",
+        "positions": [
+          {
+            "x": 55,
+            "z": 480
+          },
+          {
+            "x": 61,
+            "z": 478.5
+          },
+          {
+            "x": 59.5,
+            "z": 484
+          }
+        ]
+      },
+      {
+        "itemId": "c3_engine_cog",
+        "name": "Brass Memory Cog",
+        "positions": [
+          {
+            "x": 54.5,
+            "z": 486
+          },
+          {
+            "x": 50,
+            "z": 483
+          },
+          {
+            "x": 49.5,
+            "z": 477.5
+          }
+        ]
+      },
+      {
+        "itemId": "c3_wader_nest",
+        "name": "Frightened Wader Nest",
+        "positions": [
+          {
+            "x": -45,
+            "z": 790
+          },
+          {
+            "x": -39,
+            "z": 791
+          },
+          {
+            "x": -42.5,
+            "z": 795.5
+          }
+        ]
+      },
+      {
+        "itemId": "c3_harvested_memory_jar",
+        "name": "Harvested Memory Jar",
+        "positions": [
+          {
+            "x": -24,
+            "z": 768.5
+          },
+          {
+            "x": -25.5,
+            "z": 774
+          },
+          {
+            "x": -30.5,
+            "z": 776
+          },
+          {
+            "x": -35,
+            "z": 773
           }
         ]
       }

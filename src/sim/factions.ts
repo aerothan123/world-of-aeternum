@@ -160,6 +160,8 @@ export const HOSTILE_FACTIONS: Readonly<Record<HostileFactionId, HostileFactionD
         'korzul_the_gravewyrm',
         // Wyndlewood Chapter One's local cell (content/chapter_one.ts).
         'veiled_rite_tender',
+        // Wyndlewood Chapter Three's memory harvester (content/chapter_three.ts).
+        'c3_veska_noll',
       ]),
     }),
   });

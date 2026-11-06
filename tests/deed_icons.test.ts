@@ -387,11 +387,12 @@ describe('Book of Deeds webp icons', () => {
     // contract milestones and three quartermaster titles) join after it, on the pending ledger.
     // Tree chopping's first-felling deed joins on the progression crest: 370 live.
     // Wyndlewood's three (the Bracken Circle pair and Chapter One's chronicle)
-    // join the pending ledger after it: 373 live.
-    expect(DEED_ORDER, 'the merged live deed catalog').toHaveLength(373);
+    // join the pending ledger after it: 373 live. Wyndlewood Chapter Three's chronicle
+    // join behind them: 374 live, 18 pending.
+    expect(DEED_ORDER, 'the merged live deed catalog').toHaveLength(374);
     expect(DEED_IMAGE_IDS.size, 'every live deed but the pending set is painted').toBe(356);
-    expect(DEED_ART_PENDING_IDS).toHaveLength(17);
-    expect(DEED_ART_PENDING_IDS.at(-1)).toBe('chr_shore_that_remembers');
+    expect(DEED_ART_PENDING_IDS).toHaveLength(18);
+    expect(DEED_ART_PENDING_IDS.at(-1)).toBe('chr_marsh_that_remembers');
     expect(DEED_ART_PENDING_IDS.slice(0, 7)).toEqual([
       'prog_titan',
       'pvp_flag_1h',

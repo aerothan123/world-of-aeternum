@@ -10,6 +10,7 @@ import { CHAPTER_TWO_ART_PENDING_ITEM_IDS } from '../src/sim/content/chapter_two
 import { CHAPTER_TWO_GATED_ART_PENDING_ITEM_IDS } from '../src/sim/content/chapter_two_bundles';
 import { FURNITURE_ART_PENDING_ITEM_IDS } from '../src/sim/content/furniture';
 import { SEASON2_JEWELRY_IDS, SEASON2_SETS } from '../src/sim/content/pvp_honor_season2';
+import { STORY_CHAPTERS_ART_PENDING_ITEM_IDS } from '../src/sim/content/story_chapters';
 import { ITEMS } from '../src/sim/data';
 import type { ItemDef } from '../src/sim/types';
 import {
@@ -443,6 +444,8 @@ describe('item webp icons', () => {
         ...CHAPTER_TWO_ART_PENDING_ITEM_IDS.filter((id) => Object.hasOwn(ITEMS, id)),
         // The gated bundles' (content/chapter_two_bundles.ts), once merged.
         ...CHAPTER_TWO_GATED_ART_PENDING_ITEM_IDS.filter((id) => Object.hasOwn(ITEMS, id)),
+        // Chapters Three to Seven's (content/story_chapters.ts), the same debt.
+        ...STORY_CHAPTERS_ART_PENDING_ITEM_IDS.filter((id) => Object.hasOwn(ITEMS, id)),
       ].sort(),
     );
     // And the inverse: an id with committed art must still win the static url.

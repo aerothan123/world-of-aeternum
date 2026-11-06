@@ -17,6 +17,7 @@ import { HOLLOW_CRYPT_ART_PENDING_ITEM_IDS } from '../sim/content/hollow_crypt_i
 import { IGNIVAR_ART_PENDING_ITEM_IDS } from '../sim/content/ignivar_loot';
 import { isRawCookingCatch } from '../sim/content/items';
 import { QUEST_SHIELD_ART_PENDING_ITEM_IDS } from '../sim/content/quest_shields';
+import { STORY_CHAPTERS_ART_PENDING_ITEM_IDS } from '../sim/content/story_chapters';
 import {
   BRAMBLEHIDE_ART_PENDING_ITEM_IDS,
   NYTHRAXIS_GAP_ART_PENDING_ITEM_IDS,
@@ -5878,6 +5879,9 @@ export const ITEM_ART_PENDING = new Set<string>([
   // Southern Reaches ids only once their zones merge them into ITEMS).
   ...CHAPTER_TWO_ART_PENDING_ITEM_IDS.filter((id) => Object.hasOwn(ITEMS, id)),
   ...CHAPTER_TWO_GATED_ART_PENDING_ITEM_IDS.filter((id) => Object.hasOwn(ITEMS, id)),
+  // Wyndlewood Chapters Three to Seven (content/story_chapters.ts): procedural
+  // quest icons until their painted wave is commissioned.
+  ...STORY_CHAPTERS_ART_PENDING_ITEM_IDS.filter((id) => Object.hasOwn(ITEMS, id)),
 ]);
 
 /** Static URL of an item's (or a UI pseudo-item's) image icon, or null if it uses a recipe. */
@@ -5928,6 +5932,8 @@ export const DEED_ART_PENDING: ReadonlySet<string> = new Set([
   'prog_bracken_circle_champion',
   // Wyndlewood Chapter One's chronicle (content/chapter_one.ts).
   'chr_shore_that_remembers',
+  // Wyndlewood Chapters Three to Seven's chronicles (content/story_chapters.ts).
+  'chr_marsh_that_remembers',
 ]);
 /** Static URL of a deed crest's painted art, or null when the crest id has no committed image. */
 export function deedImageUrl(crestId: string): string | null {

@@ -31,6 +31,9 @@ const TYPES = [
 const SAGA = [
   ['guide.questsPage.sagaValeTitle', 'guide.questsPage.sagaValeBody'],
   ['guide.questsPage.sagaMarshTitle', 'guide.questsPage.sagaMarshBody'],
+  // Wyndlewood Chapters Three to Seven, in campaign order: the peaks beat is
+  // Chapter Six's sanctum, so it sits between the forge and the last ring.
+  ['guide.questsPage.sagaMemoryTitle', 'guide.questsPage.sagaMemoryBody'],
   ['guide.questsPage.sagaPeaksTitle', 'guide.questsPage.sagaPeaksBody'],
 ] as const;
 

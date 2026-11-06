@@ -10761,6 +10761,8 @@ export const fr_FR: EnTranslations = {
       "sagaValeBody": "À Eastbrook, les morts ne reposent pas, et le sceau qui en est la cause appartient à une secte que l'on croyait disparue depuis longtemps. Remontez-en la trace jusqu'à un Appelant des tombes œuvrant dans la crypte de la chapelle, et ses propres papiers vous orientent vers la fagne au nord.",
       "sagaMarshTitle": "Le marais : un tribut d'âmes",
       "sagaMarshBody": "À Mirefen, les noyades ne sont pas un accident. Quelqu'un remplit la fagne comme un tronc d'offrandes, relevant des morts obéissants de chaque voyageur que l'eau emporte. Remontez les ordres de maillon en maillon jusqu'à un Fogbinder dans le bastion noyé, dont les derniers mots nomment quelque chose de plus ancien encore, qui s'agite sous les sommets.",
+      "sagaMemoryTitle": "The marsh that remembers",
+      "sagaMemoryBody": "After the bells fall silent, whole houses walk into the Mirefen fog. Someone is harvesting what the marsh remembers, and the trail runs up the mountain to a temple under a tarn that keeps the oldest memory of all: the morning the first hearths were bound.",
       "sagaPeaksTitle": "Les sommets : à quoi servait le tribut",
       "sagaPeaksBody": "Sur Thornpeak, tout le complot s'éclaire. Chaque âme dérobée depuis le Val était un tribut versé pour la sinistre œuvre du culte au cœur de la montagne. La piste qui a commencé dans un cimetière de chapelle s'achève ici, dans une descente à cinq joueurs pour affronter la main derrière tout cela. Nous vous laisserons découvrir qui attend tout au fond.",
       "sideTitle": "Des fils en marge de la route principale",
@@ -25439,6 +25441,33 @@ export const fr_FR: EnTranslations = {
       "c2_rotten_span": {
         "name": "Rotten Boardwalk Span"
       },
+      "c3_memory_silt": {
+        "name": "Memory Silt"
+      },
+      "c3_engine_cog": {
+        "name": "Brass Memory Cog"
+      },
+      "c3_harvest_ledger": {
+        "name": "Accord Harvest Ledger"
+      },
+      "c3_calming_reed_bundle": {
+        "name": "Bundle of Calming Reeds"
+      },
+      "c3_harvested_memory_jar": {
+        "name": "Harvested Memory Jar"
+      },
+      "c3_first_age_rubbing": {
+        "name": "First Age Temple Rubbing"
+      },
+      "c3_fogbound_doorstep": {
+        "name": "Fogbound Doorstep"
+      },
+      "c3_harvest_engine": {
+        "name": "Accord Memory Engine"
+      },
+      "c3_wader_nest": {
+        "name": "Frightened Wader Nest"
+      },
       "membership_staff": {
         "name": "Bâton du changement"
       },
@@ -27582,6 +27611,9 @@ export const fr_FR: EnTranslations = {
       },
       "escort_della": {
         "name": "Della Brindlepot"
+      },
+      "c3_veska_noll": {
+        "name": "Mistress Veska Noll"
       },
       "ironvein_foreman": {
         "name": "Contremaître Veinefer"
@@ -31547,6 +31579,101 @@ export const fr_FR: EnTranslations = {
           },
           "1": {
             "label": "Paddy Eel taken from the traps"
+          }
+        }
+      },
+      "c3_01_fog_takes_a_village": {
+        "title": "The Fog Takes a Village",
+        "text": "The bells are quiet, and I was ready to write a tidy ending. Then the fog came up the causeway last night and took three houses with it. Not burned, not fallen: gone, and their doorsteps left behind like shoes outside a door. Walk the north edge of Fenbridge, {playerName}, and look at what is left. I need to know whether I am recording a theft or a disappearance.",
+        "completion": "Each step is worn by feet that are not there, and each one is warm. The fog did not swallow those families. Something took the memory of the houses and let the wood follow. I would call it impossible, but my pen has stopped believing me.",
+        "objectives": {
+          "0": {
+            "label": "Fogbound doorstep examined"
+          }
+        }
+      },
+      "c3_02_mud_remembers": {
+        "title": "Mud Remembers Every Footprint",
+        "text": "Osric's doorsteps are not the only thing that has gone strange. The bog south of the drowned fields has started to shine, a little, the way a pond shines with a face in it. Scoop me some of that silt, and burst the bog bloats that keep wallowing in it before they swallow the rest. Gloves, {playerName}. Whatever is in that mud wants to be held.",
+        "completion": "Look closely. The silt is full of little pictures: a kitchen, a wedding, a boy with a kite. These are memories, sunk out of somebody and left to settle. The mud remembers every footprint, the old healers said. I always thought that was a saying.",
+        "objectives": {
+          "0": {
+            "label": "Memory Silt"
+          },
+          "1": {
+            "label": "Bog Bloat burst"
+          }
+        }
+      },
+      "c3_03_machine_in_the_reeds": {
+        "title": "The Machine in the Reeds",
+        "text": "Yara's silt runs downhill to the robed camp in the south reeds, and so do the cart tracks. The robes of the Pale Accord have dragged machines out there, brass things that hum when you stand near them, and summoners feed them with something they pull out of the air. Kill the summoners, wreck three of the engines and bring me the cogs they shed. I want to show the Warden what we are fighting.",
+        "completion": "Brass, old brass, older than Fenbridge. These cogs were cut for a kingdom nobody remembers, and the Accord has been turning them to draw the marsh dry of its past. The engines are quiet now. The fog is not, but it is thinner.",
+        "objectives": {
+          "0": {
+            "label": "Accord summoner slain"
+          },
+          "1": {
+            "label": "Memory engine broken"
+          },
+          "2": {
+            "label": "Brass Memory Cog"
+          }
+        }
+      },
+      "c3_04_letters_for_the_tarn": {
+        "title": "A Ledger for the Tarn",
+        "text": "Maren found a ledger in the wreckage, and it is not a list of names. It is a list of places, and the last of them is the Glimmermere, a tarn high on Thornpeak where a tidewatcher named Ondrel Vane keeps a lonely vigil. Whoever signed this ledger has gone ahead of us. Carry it north, {playerName}, and put it in his hands before she reaches whatever she is looking for.",
+        "completion": "Veska Noll. I have seen that signature on the tide charts, written in a hand that is not mine, in my own tower. She has been here for weeks, and I have been forgetting her every morning. Thank you for bringing me the reminder.",
+        "objectives": {
+          "0": {
+            "label": "Harvest ledger handed to Ondrel Vane"
+          }
+        }
+      },
+      "c3_05_frightened_or_dangerous": {
+        "title": "Frightened or Dangerous",
+        "text": "The waders on the east shore have started attacking anyone who comes near their nests, and the votaries in the shallows are using the noise to cover their work. I do not think the waders are wicked. I think they are frightened, and frightened things bite. Lay these reeds across three of their nests to quiet them, then put down the votaries who keep stirring the water.",
+        "completion": "The shore is quiet, and nothing had to die for it that was only scared. The votaries are another matter. They were not frightened at all. They were busy, and their work points across the tarn to the drowned stair.",
+        "objectives": {
+          "0": {
+            "label": "Wader nest calmed"
+          },
+          "1": {
+            "label": "Drowned Votary put down"
+          }
+        }
+      },
+      "c3_06_mistress_of_the_harvest": {
+        "title": "Mistress of the Harvest",
+        "text": "She is camped on the east shore, in plain sight, and I keep forgetting to look at her. Veska Noll has filled jars with everything Mirefen lost: the houses, the faces, the boy with the kite. Stop her, {playerName}. Then bring the jars back to me, unopened. If there is a way to pour a memory home, the temple below the tarn will know it.",
+        "completion": "Four jars, still warm, and the woman who filled them gone quiet. She said the Hearthpins were a cage, and that she was only opening the door. Perhaps she believed it. The memories in these jars did not ask to be let out.",
+        "objectives": {
+          "0": {
+            "label": "Mistress Veska Noll defeated"
+          },
+          "1": {
+            "label": "Harvested Memory Jar"
+          }
+        }
+      },
+      "c3_07_what_the_temple_keeps": {
+        "title": "What the Temple Keeps",
+        "text": "Veska was only the hand. The Drowned Temple is where the memory she wanted lies, the oldest one the marsh ever held: the morning the first hearths were bound. Something wearing the moon's face sits on it now and drinks. Gather friends, go down the drowned stair, and end the thing that feeds there. Nobody should go into that water alone.",
+        "completion": "You saw it, didn't you? The first hearths lit in a ring, and the people who lit them giving something of themselves to make it hold. The temple will keep that memory now, for anyone who needs it. You may have just saved the most important thing nobody remembers.",
+        "objectives": {
+          "0": {
+            "label": "Ysolei, Avatar of the Drowned Moon defeated in the Drowned Temple"
+          }
+        }
+      },
+      "c3_08_records_in_the_mountain": {
+        "title": "Records in the Mountain",
+        "text": "The temple showed you how the Hearthpins were made, but not how to make one again. Nobody can repair them with ordinary magic. The old records say the first smiths worked in the mountain forges above Highwatch. Take this rubbing of the temple wall up the road to Loremaster Caddis. If anyone can read a smith's hand, it is him.",
+        "completion": "This is forge script, and older than any I have read. It names a fortress where the first smiths kept their records, and a forge that has started burning again without anyone to feed it. I have waited my whole life to be this worried. Sit down, {playerName}. We have work.",
+        "objectives": {
+          "0": {
+            "label": "Temple rubbing brought to Loremaster Caddis"
           }
         }
       },

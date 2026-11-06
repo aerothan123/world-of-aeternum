@@ -6891,6 +6891,13 @@ export const GUIDE_DEEDS: GuideDeed[] = [
     "category": "chronicle",
     "renown": 10,
     "feat": false
+  },
+  {
+    "id": "chr_marsh_that_remembers",
+    "name": "The Marsh That Remembers",
+    "category": "chronicle",
+    "renown": 10,
+    "feat": false
   }
 ];
 

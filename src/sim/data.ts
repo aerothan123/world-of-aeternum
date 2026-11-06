@@ -31,6 +31,7 @@ import {
 } from './content/chapter_two';
 import { applyChapterTwoGatedBundles } from './content/chapter_two_bundles';
 import { BASE_ITEMS } from './content/items';
+import { applyStoryChapters } from './content/story_chapters';
 import {
   isAuthoredMapPresentation,
   usesOverworldSiteDressing,
@@ -1184,6 +1185,19 @@ export const ZONES: ZoneDef[] = [
 // feature/world-expansion row). Without those zones nothing of a bundle exists
 // and the core chapter plays around it.
 applyChapterTwoGatedBundles({
+  zoneIds: ZONES.map((zone) => zone.id),
+  items: ITEMS,
+  mobs: MOBS,
+  npcs: NPCS,
+  quests: QUESTS,
+  questOrder: QUEST_ORDER,
+  camps: CAMPS,
+  objects: GROUND_OBJECTS,
+  escorts: ESCORTS,
+});
+// Wyndlewood Chapters Three to Seven (content/story_chapters.ts): the same
+// seam, one bundle per chapter, appended after the Chapter Two bundles.
+applyStoryChapters({
   zoneIds: ZONES.map((zone) => zone.id),
   items: ITEMS,
   mobs: MOBS,
