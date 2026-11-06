@@ -2,7 +2,7 @@
 // slash-command definitions + routing, role-sync diffing, embed/message building,
 // and voice-presence shaping. Kept separate from the ws/fetch IO (gateway.ts,
 // discord_api.ts, server_client.ts) so it is unit-tested without a network. This
-// is the same pure/IO split the server uses (wallet_link.ts vs wallet.ts).
+// is the same pure/IO split the server uses elsewhere (a pure core beside its _db module).
 
 import { GAME_NAME } from '../src/brand';
 import { specialRoleByKey, specialRoleByName } from '../src/sim/discord_roles';

@@ -2,7 +2,7 @@
 
 # World of ClaudeCraft
 
-**Volbreng quests, vorm een groep en raid een handgemaakte wereld, gratis in je browser. Open source, web3 en nu meteen online.**
+**Volbreng quests, vorm een groep en raid een handgemaakte wereld, gratis in je browser. Open source en nu meteen online.**
 
 **Officiële website: https://worldofclaudecraft.com/**
 
@@ -20,7 +20,7 @@
 
 [English](../../README.md) · [Español](README.es.md) · [Español (España)](README.es_ES.md) · [Français](README.fr_FR.md) · [Français (Canada)](README.fr_CA.md) · [Italiano](README.it_IT.md) · [Deutsch](README.de_DE.md) · [简体中文](README.zh_CN.md) · [繁體中文](README.zh_TW.md) · [한국어](README.ko_KR.md) · [日本語](README.ja_JP.md) · [Português (Brasil)](README.pt_BR.md) · [Русский](README.ru_RU.md) · [Čeština](README.cs_CZ.md) · **Nederlands** · [Polski](README.pl_PL.md) · [Bahasa Indonesia](README.id_ID.md) · [Türkçe](README.tr_TR.md) · [Svenska](README.sv_SE.md) · [Tiếng Việt](README.vi_VN.md) · [Dansk](README.da_DK.md)
 
-[Speel nu](https://worldofclaudecraft.com/) · [Host je eigen wereld](#host-your-own-world-one-command) · [Train een agent](#train-an-agent-headless-rl) · [Web3](#web3) · [Bijdragen](CONTRIBUTING.nl_NL.md) · [Discord](https://discord.com/invite/worldofclaudecraft)
+[Speel nu](https://worldofclaudecraft.com/) · [Host je eigen wereld](#host-your-own-world-one-command) · [Train een agent](#train-an-agent-headless-rl) · [Bijdragen](CONTRIBUTING.nl_NL.md) · [Discord](https://discord.com/invite/worldofclaudecraft)
 
 ![World of ClaudeCraft titelscherm](../../docs/screenshots/title-screen.jpg)
 
@@ -55,8 +55,6 @@ Dezelfde seed, dezelfde wereld, overal. Veel van wat je ziet wordt nog altijd ti
 - **Native apps op elk platform**: ondertekende desktop-installers voor Windows, Linux en macOS met automatische updates en optionele spiegeling van Steam-achievements, plus iOS- en Android-builds, allemaal met dezelfde browserclient en dezelfde online wereld.
 - **Schaalt mee met de machine die je hebt**: grafische presets en een automatische framerate-governor ruilen visuele rijkdom in voor vloeiendheid, en worden gehouden aan een eerlijkheidsregel die voorkomt dat ze ooit iets verbergen waar een speler op reageert.
 - **Headless RL-omgeving** met Gymnasium-bindings, reward shaping en een benchmark-modus.
-- **$WOC-utility, volledig optioneel**: koppel een Solana-wallet voor holder-flair, Daily Rewards en een kortingsoptie bij het betalen in de cosmetische winkel. De game blijft gratis te spelen en non-custodial.
-- **Season 1 Armory**: verzamel cosmetische wapenskins via de WOC Store, met Claudium dat je koopt met fiat, SOL, USDC of $WOC. Cosmetica geven nooit gevechtskracht.
 
 ## Schermafbeeldingen
 
@@ -180,28 +178,6 @@ env.close()
 
 Het protocol en de bindings staan beschreven in `headless/CLAUDE.md` en `python/CLAUDE.md`.
 
-<a id="web3"></a>
-
-## Web3
-
-World of ClaudeCraft is web3-native rond **$WOC**, onze community-token op Solana. Verbind een Solana-wallet, koppel hem met één handtekening aan je account (non-custodial, geen transactie om goed te keuren), en je alleen-lezen $WOC-saldo verschijnt in de HUD naast een cosmetische holder-tier-badge.
-
-$WOC heeft ook optionele utility in de live game:
-
-- **WOC Store**: koop Claudium, de cosmetische eenrichtingsvaluta, met fiat, SOL, USDC of $WOC. De $WOC-betaalroute is goedkoper dan de andere.
-- **Season 1 Armory**: geef Claudium uit aan collecties cosmetische wapenskins. Aankopen in de winkel voegen geen stats of gevechtskracht toe.
-- **Daily Rewards**: geverifieerde holders die in aanmerking komen, kunnen punten verdienen met een dagelijkse spin en roulerende taken, en daarna meedingen naar een deel van de dagelijkse prijzenpot.
-
-Niets hiervan is nodig om te spelen. Het koppelen van een wallet is optioneel en non-custodial, er is geen pay-to-win, en de hele game speelt prima zonder ooit een wallet te verbinden.
-
-**$WOC contract-adres (Solana):**
-
-```
-3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth
-```
-
-Meer over de token op [worldofclaudecraft.com](https://worldofclaudecraft.com/).
-
 ## Een rondleiding door de wereld
 
 ### De negen classes
@@ -262,8 +238,6 @@ Ranked-overwinningen en Fiesta-takedowns betalen **Honor** uit, dat de kwartierm
 - **Guilds**: charters, rosters, ranks en guild chat.
 - **The Guide**: een doorzoekbare wiki op de site op `/wiki` over classes, wezens, zones en deeds, rechtstreeks gegenereerd uit live game-content zodat hij niet kan afwijken van de wereld die hij documenteert.
 - **The Vale Cup en Card Duel**: boarball in het Sowfield-stadion ten zuiden van Eastbrook, in formats van 1v1 tot 5v5, en een snel kaartspel voor twee spelers dat door de Card Master in de stad wordt gehost.
-- **Daily Rewards**: geverifieerde $WOC-holders kunnen leaderboard-punten verdienen met een dagelijkse spin en roulerende taken, met automatische uitbetalingen uit de dagelijkse prijzenpot.
-- **WOC Store en Season 1 Armory**: koop Claudium met fiat, SOL, USDC of $WOC, en geef het daarna uit aan puur cosmetische wapenskins.
 - **Eten en drinken**: ga zitten om te herstellen, onderbroken door schade of opstaan, en ja, je kunt tegelijk eten en drinken.
 - **Vendors** die food en water kopen en eerlijke witte gear verkopen, met munten getoond in gold, silver en copper.
 - **Een persoonlijke bank** (the Gilded Strongbox): bursars in elke hubstad houden een kluis per personage bij, van 24 slots tot 96 met uitbreidingen die je met munten koopt, plus bonusslots die je online verdient voor een geverifieerd e-mailadres, gekoppelde accounts en referrals.
@@ -414,7 +388,7 @@ Wat je zou moeten verwijderen of vervangen voordat je herdistribueert:
 - de **CraftPix class-ability-pictogrammen** onder `public/ui/skills/` zijn door Levy Street gekocht en **mogen niet worden herdistribueerd**, dus koop je eigen licentie als je ze wilt meeleveren;
 - de **@jamiecypher-geluidseffecten** vallen onder CC BY-NC 4.0, dus deel ze niet-commercieel met naamsvermelding, maar de commerciële toestemming geldt alleen voor dit project;
 - de **winkel- en prestige-kunst** (Season 1 Armory, de Claudium-set, de professies-kunstset, Book of Deeds-pictogrammen, het elite-drakenembleem) is in opdracht gemaakte commerciële kunst en **de rechten zijn voorbehouden**;
-- de **merktekens van derden** (Twitch, X, Kick, YouTube, Discord, Solana, USDC) zijn handelsmerken van hun eigenaren en zijn niet van ons om door te licentiëren;
+- de **merktekens van derden** (Twitch, X, Kick, YouTube, Discord) zijn handelsmerken van hun eigenaren en zijn niet van ons om door te licentiëren;
 - een handvol **pictogrammen en opnames die met toestemming worden gebruikt** hebben toestemming nodig om door te geven.
 
 [CREDITS.md](../../CREDITS.md) is de gezaghebbende lijst, met per asset een kolom over herdistributie. Waar een asset daar vermeld staat, gaat die licentie boven de MIT-licentie van het project. Dat register wordt nog aangevuld, dus een media-asset die er niet in staat is niet-geregistreerd in plaats van vrij: vraag het na voordat je erop vertrouwt. Voor broncode geldt het omgekeerde, en alles wat niet is uitgezonderd is MIT.

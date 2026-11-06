@@ -30,8 +30,36 @@ surface below.
   wallet string, pinned by the landing, static and legal page checks in
   `tests/crypto_removed.test.ts`.
 
+## Removed in the second pass (`fix/remove-crypto`)
+
+- **Android Solana Store flavor.** The `solanaStore` product flavor, its
+  Mobile Wallet Adapter plugin, encrypted wallet-token store, backup rules,
+  unit and instrumentation suites, and the `com.solanamobile` /
+  `io.github.funkatronics` dependencies are gone; `play` is the one flavor and
+  `docs/mobile-store-release.md` documents only the Play artifact.
+- **Payment-rail art.** The Solana and USDC brand marks under
+  `public/claudium/icons/` (unused since the rails left) and their credits.
+- **Docs.** The wallet-link, marketplace, P2P token trade and holder-flair
+  PRDs, the marketplace hardening packet, the market runbook and the market
+  screenshots. The README (and every translation of it) no longer has a Web3
+  section, a token contract address, or Solana and USDC in its brand marks.
+- **Dead styles.** The holder-tier nameplate badge and halo, the wallet-only
+  CTA states, the player-card wallet toggle, the token coin chip, and the
+  trade window's token arm (rules and orphaned comments).
+
 ## Kept on purpose (not oversights)
 
+- **The Exchange letters** (`woc_market_delivery`, `woc_market_return`,
+  `woc_market_sold` in `src/sim/content/letters.ts`). Letter ids are persisted
+  on booked mail rows, so an existing mailbox must still render them; their
+  text names no chain, token or wallet.
+- **The `woc_token` currency art** stays in the accepted v0.39 currency cohort
+  (a hash-pinned history record) but no live surface paints it.
+- **The launch wipe's `woc_market_*` blockers** (`server/launch_wipe_core.ts`)
+  probe with `to_regclass`, so they read zero on a dropped schema and still
+  refuse a wipe on a database that predates the drop.
+- **The `.wallet-cta` / `.cs-wallet` class names** style the GitHub, Steam
+  and Epic link rows on character select; only the names are historical.
 - **Error codes** `wallet.*`, `seeker.*` and `woc_market.*` in
   `server/http/error_codes.ts`, and their `apiError.*` mirrors in
   `src/ui/api_error_i18n.ts` and `src/ui/i18n.catalog/api_error.ts`. The catalog

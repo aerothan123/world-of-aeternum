@@ -433,27 +433,8 @@
   .np-ai.ai-tag {
     display: inline-block;
   }
-  /* $WOC holder-tier flair badge, inline to the left of a player's name. The
-     legibility outline is layered with a static per-tier halo (the "stand out"
-     knob): the glow hue comes from the painter via --holder-glow, the blur
-     strength from the named --holder-halo tunable in tokens.css. No animation, so
-     it is reduced-motion safe. Falls back to transparent (no halo) when unset. */
-  .np-tier {
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    vertical-align: middle;
-    margin-right: 3px;
-    filter: drop-shadow(0 1px 1px #000)
-      drop-shadow(0 0 var(--holder-halo) var(--holder-glow, transparent));
-  }
-  /* Band IV regalia (Worldbearer, Sovereign): a moderately stronger halo. */
-  .np-tier.np-tier-regalia {
-    filter: drop-shadow(0 1px 1px #000)
-      drop-shadow(0 0 var(--holder-halo-strong) var(--holder-glow, transparent));
-  }
-  /* developer-badge flair, inline to the left of a player's name. Mirrors the
-     holder badge: a legibility outline plus a static per-tier halo, the hue from
+  /* developer-badge flair, inline to the left of a player's name: a legibility
+     outline plus a static per-tier halo, the hue from
      the painter via --dev-glow and the blur strength from the shared --holder-halo
      tunable (tokens.css). No animation, so it is reduced-motion safe. Falls back to
      transparent (no halo) when unset. */
@@ -13839,7 +13820,7 @@
   }
 
   /* ---------- trade window ---------- */
-  /* The host chrome the $WOC arm sits inside: on the themed tokens (no
+  /* The trade window chrome: on the themed tokens (no
      literal hex: the wells and inputs on --color-bg-input, the accepted tick
      on the success token, the hint on the muted text token), radii on
      --radius-sm, spacing on the --spacing-* scale with the dense 3px cell
@@ -13922,9 +13903,6 @@
   .trade-money input.coininput {
     width: 52px;
   }
-  /* The $WOC price field joins this declaration rather than restating it: the
-     two are the same control in the same window, and a second copy of the
-     colours would drift the moment either is retuned. */
   .trade-money input {
     width: 80px;
     user-select: text;
@@ -13956,92 +13934,11 @@
     margin: 0;
   }
 
-  /* ---------- trade window: the $WOC arm ---------- */
-  /* Tokens only, no literals (src/styles/CLAUDE.md): the arm is ordinary window
-     chrome and inherits the panel's palette (the accent is --color-accent, the
-     themed contrast-repaired one; a bare --accent is defined nowhere). Money
-     lines read at 13px, warnings at the 12px floor in parchment, metadata at
-     the 12px floor in muted; every figure is tabular. Owl spacing (the sibling
-     margin, not the flex gap) so an empty derived line costs no height and yet
-     STAYS in the accessibility tree: the hint is the arm's live region and a
-     display: none region drops out of it between announcements. */
-
-  /* An empty line costs nothing, except the three money lines that arrive
-     asynchronously (the estimate lands a debounce and a round trip after the
-     first keystroke): those keep their slot so Send never moves under a hand
-     that is already reaching for it. */
-
   /* A disabled coin field must READ as disabled, not merely refuse input. */
   .trade-money .coininput:disabled {
     opacity: 0.45;
     cursor: not-allowed;
   }
-  /* The standing offer, read in the Money row in place of that side's gold:
-     its own line under the label, in the accent, tabular. */
-
-  /* The ONE waiting ring both money surfaces use (the Exchange's busy line and
-     inline bond rows, the arm's Pay button and waiting lines): a plain rotating
-     arc in the accent over a faint accent ring, sized and inline-block so it
-     draws inside a button too. prefers-reduced-motion drops the spin rather
-     than the element, so the waiting state still reads as waiting. */
-  .woc-spinner {
-    display: inline-block;
-    flex: 0 0 auto;
-    width: 11px;
-    height: 11px;
-    margin-right: 6px;
-    vertical-align: -1px;
-    border: 2px solid color-mix(in srgb, var(--color-accent) 30%, transparent);
-    border-top-color: var(--color-accent);
-    border-radius: 50%;
-    animation: woc-spin 0.9s linear infinite;
-  }
-  /* Inside a flex line the container's gap owns the spacing. */
-  @keyframes woc-spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .woc-spinner {
-      animation: none;
-    }
-  }
-  body.reduce-motion .woc-spinner {
-    animation: none;
-  }
-  /* The currency switch: a group of two pressed-state toggles under a hairline,
-     the pressed one in the accent with a 2px underline (shape as well as tone,
-     so it survives forced colours), not the maroon action-button gradient. */
-
-  /* A price the connected wallet cannot cover. The figure carries the refusal
-     itself, because that is the number being typed at; the hint below says why
-     and the Send button is disabled alongside it, so the state never rests on
-     colour alone. */
-  /* The warnings and the block reason are the copy a player acts on: parchment
-     at the floor, with a hairline accent rule as the second signal. Notes and
-     the disabled-affordance hint are metadata: muted at the floor. */
-
-  /* The consent row (R9): checkbox beside its caption, the terms link on the
-     same line at the same size so the two read as one sentence, wrapping as a
-     unit when the column is narrow. */
-
-  /* 24px is the absolute minimum target in src/ui/CLAUDE.md, and a consent box
-     is the one control the server will not take money without: 18px cleared the
-     13px UA default but stopped short of the floor. The mobile sheet already
-     floors both consent boxes at 24 (hud.mobile.css); this is the desktop half
-     of the same rule. */
-
-  /* The consent link is a keyboard target on a money surface: a token ring,
-     not the UA fallback (the trade window's other controls are .btn / .x-btn,
-     which already carry theirs). */
-  /* Button hierarchy on a money surface (DESIGN.md 10.1): the ONE commitment
-     button per face (Offer, Pay, Sign) wears the primary treatment, the ways
-     out (Withdraw, Decline, Cancel sale, Not now) the quiet one, so nothing
-     tells the player two adjacent maroon buttons apart by reading alone. The
-     primary is the shared .btn primitive with the accent as its edge and a
-     subdued accent tint over the panel; the quiet one is the same primitive
-     without its fill. Paired actions share one row. */
 
   /* ---------- elite target frame ---------- */
   /* Rank chrome binds to the TARGET's own portrait via the direct-child

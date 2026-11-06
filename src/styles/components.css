@@ -7644,23 +7644,6 @@
     justify-content: center;
     margin: 0 0 10px;
   }
-  #player-card-modal .pc-wallet-toggle {
-    min-width: 210px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
-  #player-card-modal .pc-wallet-toggle.off {
-    opacity: 0.78;
-  }
-  #player-card-modal .pc-toggle-state {
-    color: var(--gold);
-    font-weight: 700;
-  }
-  #player-card-modal .pc-wallet-toggle.off .pc-toggle-state {
-    color: #9b8b62;
-  }
   #player-card-modal .pc-actions {
     display: flex;
     flex-wrap: wrap;
@@ -7706,7 +7689,6 @@
   }
   @media (pointer: coarse) {
     #player-card-modal .pc-pose,
-    #player-card-modal .pc-wallet-toggle,
     #player-card-modal .pc-actions .btn {
       min-height: 40px;
       box-sizing: border-box;
@@ -9075,7 +9057,7 @@
     padding-top: var(--spacing-sm);
     margin-top: var(--spacing-xs);
   }
-  /* coins stay right-aligned whether or not the $WOC chip is present */
+  /* coins stay right-aligned beside the Claudium launcher */
   #bags .money .money-inline {
     margin-left: auto;
   }
@@ -9098,16 +9080,6 @@
     height: 20px;
     object-fit: contain;
     filter: drop-shadow(0 0 4px rgb(74 201 239 / 55%));
-  }
-  .woc-coin {
-    display: inline-block;
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    background:
-      url("/ui/currency/woc_token.webp") center / cover no-repeat,
-      radial-gradient(circle at 35% 30%, #c9a3ff, #6b3fa0);
-    box-shadow: 0 0 4px rgba(150, 90, 230, 0.5);
   }
   /* WoW-style slot grid: square cells, the item icon fills the cell, quality
      drives the cell border (the .q-* classes below), the stack count sits as a

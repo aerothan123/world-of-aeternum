@@ -51,10 +51,9 @@ HTTP/WS plumbing (`server/http/`, `ws_buffer.ts`, `http_util.ts`, `static_cache.
 `ratelimit.ts`, `turnstile.ts`); auth and identity (OAuth, TOTP, the Apple/GitHub/Discord
 links, `native_attestation.ts`, `web_login_guard.ts`, the `email/` and `bot_detector/`
 modules); platform auth (`server/steam/` and `server/epic/` ticket auth + web APIs,
-`desktop_login.ts` / `desktop_login_routes.ts`); real-money and web3 economy (`wallet.ts` /
-`wallet_link.ts` / `woc_balance.ts`, the `seeker_*` entitlement + Solana RPC modules,
-`desktop_wallet_handoff.ts`, `claudium_proxy.ts`, and the client's
-`src/net/stripe_checkout.ts`); telemetry egress (`server/parse/`, especially `shipper.ts`);
+`desktop_login.ts` / `desktop_login_routes.ts`); the real-money economy (`claudium_proxy.ts`
+and the client's `src/net/stripe_checkout.ts`; the game ships no crypto, so any wallet,
+token or chain code reappearing is itself a finding); telemetry egress (`server/parse/`, especially `shipper.ts`);
 moderation and admin (`admin.ts`, `admin_db.ts`, `moderation_db.ts`, `ip_block*.ts`,
 `content_moderation_db.ts`); and the daily-rewards payout path (the `daily_rewards*.ts`
 modules plus the excluded-accounts moderation view). `src/admin/` is in scope too. Always
