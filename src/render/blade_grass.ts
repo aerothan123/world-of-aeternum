@@ -3,12 +3,12 @@ import {
   getActiveWorldContent,
   isBuiltinWorldActive,
   isBuiltinWorldContent,
-  WORLD_MAX_X,
   WORLD_MAX_Z,
   WORLD_MIN_Z,
 } from '../sim/data';
 import { grassClearedAt } from '../sim/grass_clear';
 import { roadDistance, terrainCutAtHeight, terrainHeight, zoneBiomeAt } from '../sim/world';
+import { insideWorldX } from '../sim/world_x_edge';
 import {
   activateDenseSlot,
   type DenseSlotState,
@@ -52,8 +52,10 @@ import {
 } from './meadow_tuning';
 import { paletteLabPanelEnabled } from './palette_lab';
 import { bladeSectorAxis, renderLayerDisabled } from './render_dev_flags';
+import { rockGrassClearAt } from './rock_grass_clear';
 import { groundGrassColorAt, groundLushnessAt } from './terrain_chunk_build';
 import { GRASS_WIND_TIME_SCALE } from './tree_sway';
+import { worldStyleRefined } from './world_style';
 import { paintRefinedGrass } from './world_style_foliage';
 import { paintedClumpCoverage, paintedClumpHeight } from './world_style_foliage_core';
 import { paintRefinedBloom } from './world_style_grass';
@@ -161,7 +163,7 @@ export function clusterGeometry(
     // each blade leaves the ground at its own angle: a base tilt plus a graceful
     // outward bow so the 9 wide ribbons fountain into a cohesive Genshin patch
     const tilt = 0.08 + rng() * 0.36;
-    const bow = 0.12 + rng() * 0.42;
+    const bow = (0.12 + rng() * 0.42) * shape.bowMul;
     const len = (0.58 + rng() * 0.52) * shape.lenMul;
     const w0 = (0.095 + rng() * 0.045) * shape.widthMul;
     const w1 = w0 * shape.midTaper;
@@ -346,6 +348,9 @@ export function buildBladeGrass(
   const GRID_W = Math.ceil((RADIUS * 2) / CELL); // slots per axis
   const POOL = GRID_W * GRID_W;
 
+  // Refined keeps a bare collar at each scatter rock's foot
+  // (rock_grass_clear_core.ts); Classic placement is unchanged.
+  const rockCollar = worldStyleRefined();
   const rng = mulberry32(seed ^ 0x6b1a);
   const geo = clusterGeometry(rng, 3, bladeClusterShape(GFX.worldStyle));
   const mat = new THREE.MeshStandardMaterial({
@@ -455,7 +460,7 @@ export function buildBladeGrass(
     const r1 = hash(ci, cj, 1);
     const x = ci * CELL + (r1 - 0.5) * CELL * 1.3;
     const z = cj * CELL + (hash(ci, cj, 2) - 0.5) * CELL * 1.3;
-    let ok = Math.abs(x) <= WORLD_MAX_X - 16 && z >= WORLD_MIN_Z + 16 && z <= WORLD_MAX_Z - 16;
+    let ok = insideWorldX(x) >= 16 && z >= WORLD_MIN_Z + 16 && z <= WORLD_MAX_Z - 16;
     if (ok) {
       // same soil-noise gate as the card tufts: dense on lush patches,
       // bare between them (squared for hard patch edges)
@@ -479,6 +484,7 @@ export function buildBladeGrass(
       if (ok) ok = !grassClearedAt(activeContent.grassClear, x, z);
       if (ok) ok = !insideGrassHubExclusion(activeContent.zones, x, z, GRASS_HUB_INNER_RADIUS);
       if (ok) ok = !insidePavedGrassExclusion(x, z);
+      if (ok && rockCollar) ok = !rockGrassClearAt(seed, x, z);
       if (ok) ok = !insideEastbrookGrassExclusion(townExclusions, x, z, 0.85);
       if (ok) ok = !insideAnyBuildingFootprint(activeContent.props.buildings, x, z, 0.85);
       if (ok) {

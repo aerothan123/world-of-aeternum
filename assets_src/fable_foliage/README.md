@@ -19,10 +19,15 @@ Tripo-generated replacements (scripts/asset_pipeline prop lane, storybook style 
 | dead_3 | fable_dead_3 | prop_fable_dead_3_mw1v2xrz |
 | bush | fable_bush | prop_fable_bush_mw1u6gu0 |
 | bush_flowers | fable_bush_flowers | prop_fable_bush_flowers_mw1u855n |
-| mushroom | fable_mushroom | prop_fable_mushroom_mw1ubgew |
-| rock_1 | fable_rock_1 | prop_fable_rock_1_mw1udiu1 |
-| rock_2 | fable_rock_2 | prop_fable_rock_2_mw1ufdpn |
-| rock_3 | fable_rocks | prop_fable_rocks_mw1thywr |
+| mushroom | env_mushroom_hifi | prop_env_mushroom_hifi_mw30qiht |
+| fern | env_fern_hifi | prop_env_fern_hifi_mw30qiiq |
+| rock_1 | env_rock_1_hifi | prop_env_rock_1_hifi_mw2wgl58 |
+| rock_2 | env_rock_2_hifi | prop_env_rock_2_hifi_mw2wgl9j |
+| rock_3 | env_rock_3_hifi | prop_env_rock_3_hifi_mw2wl9n3 |
+
+The rocks are the detailed second set: original text-only Tripo text-to-image concepts (a tall mossy granite boulder, a wide split boulder, a compact four-stone mound; muted warm grey stone) built by the prop lane on the H-series model (`--model hifi --face-limit 8000 --max-texture 1024`). The fit keeps each one's own baked normal map and layers the painted relief over it (`blendTangentNormals`, `ROCK_RELIEF_OVER_BAKED`).
+
+The mushroom and the fern are the second dressing set, built the same way (`--model hifi`, `--max-texture 1024`) from original text-only concepts: a cluster of four plump ochre and chestnut forest mushrooms on a mossy leaf-litter mound (`--face-limit 4000`), and a low clump of broad arching fronds on a small soil patch (`--face-limit 3000`, fitted down to `FERN_BUDGET` because ferns are the densest dressing).
 
 ## Leaf sheets
 

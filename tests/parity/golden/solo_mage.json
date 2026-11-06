@@ -14,8 +14,8 @@
     {
       "tick": 0,
       "time": 0,
-      "nextId": 1015,
-      "state": "24f8547f",
+      "nextId": 1198,
+      "state": "3b487dbd",
       "events": "741638a5",
       "rng": {
         "draws": 0,
@@ -64,7 +64,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1007,
+          "entityId": 1190,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -134,7 +134,7 @@
           "fiveSecondRule": 99,
           "healPower": 13,
           "hp": 54,
-          "id": 1007,
+          "id": 1190,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -178,9 +178,9 @@
     {
       "tick": 20,
       "time": 1,
-      "nextId": 1016,
-      "state": "6b8f4723",
-      "events": "39ab706c",
+      "nextId": 1199,
+      "state": "0b050abf",
+      "events": "da3020d3",
       "rng": {
         "draws": 2,
         "digest": "a1c65985"
@@ -189,9 +189,9 @@
     {
       "tick": 40,
       "time": 2,
-      "nextId": 1016,
-      "state": "6d86f52a",
-      "events": "7fb82d6e",
+      "nextId": 1199,
+      "state": "17d2ed58",
+      "events": "419db2b2",
       "rng": {
         "draws": 2,
         "digest": "a1c65985"
@@ -200,9 +200,9 @@
     {
       "tick": 60,
       "time": 3,
-      "nextId": 1016,
-      "state": "203d235a",
-      "events": "f605beba",
+      "nextId": 1199,
+      "state": "5215cfca",
+      "events": "92600a79",
       "rng": {
         "draws": 136,
         "digest": "e230e6f0"
@@ -211,9 +211,9 @@
     {
       "tick": 80,
       "time": 4,
-      "nextId": 1016,
-      "state": "9d9d4e81",
-      "events": "f8f6577c",
+      "nextId": 1199,
+      "state": "04fd9a6e",
+      "events": "c673299b",
       "rng": {
         "draws": 304,
         "digest": "1b76d31b"
@@ -222,9 +222,9 @@
     {
       "tick": 100,
       "time": 5,
-      "nextId": 1016,
-      "state": "924b6214",
-      "events": "25f66fc6",
+      "nextId": 1199,
+      "state": "24116fa8",
+      "events": "6c127f7e",
       "rng": {
         "draws": 507,
         "digest": "7cc40d26"
@@ -233,9 +233,9 @@
     {
       "tick": 120,
       "time": 6,
-      "nextId": 1016,
-      "state": "29311135",
-      "events": "1a7d4b73",
+      "nextId": 1199,
+      "state": "c2be00c4",
+      "events": "a2d97a79",
       "rng": {
         "draws": 713,
         "digest": "4951bae4"
@@ -244,8 +244,8 @@
     {
       "tick": 128,
       "time": 6.4,
-      "nextId": 1016,
-      "state": "a8f565c6",
+      "nextId": 1199,
+      "state": "19545787",
       "events": "741638a5",
       "rng": {
         "draws": 796,
@@ -313,7 +313,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1007,
+          "entityId": 1190,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -377,7 +377,7 @@
           "aiState": "idle",
           "attackPower": 10,
           "castRemaining": 1.7,
-          "castTargetId": 1015,
+          "castTargetId": 1198,
           "castTotal": 2.5,
           "castingAbility": "frostbolt",
           "combatTimer": 0.55,
@@ -386,12 +386,12 @@
           "detonateTimer": "Infinity",
           "dodgeChance": 0.056,
           "facing": 0.41413,
-          "fallStartY": 7.996591,
+          "fallStartY": -5.05,
           "fiveSecondRule": 1.55,
           "gcdRemaining": 0.7,
           "healPower": 26,
           "hp": 49984,
-          "id": 1007,
+          "id": 1190,
           "inCombat": true,
           "kind": "player",
           "level": 10,
@@ -403,7 +403,7 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "y": 7.996591,
+            "y": -5.05,
             "z": -1000
           },
           "potionCooldownUntil": -1,
@@ -423,7 +423,7 @@
             "sta": 32,
             "str": 10
           },
-          "targetId": 1015,
+          "targetId": 1198,
           "templateId": "mage",
           "weapon": {
             "max": 6,
@@ -432,7 +432,7 @@
           }
         },
         {
-          "aggroTargetId": 1007,
+          "aggroTargetId": 1190,
           "aiState": "attack",
           "auras": [
             {
@@ -442,7 +442,7 @@
               "name": "Cinderbolt",
               "remaining": 2.2,
               "school": "fire",
-              "sourceId": 1007,
+              "sourceId": 1190,
               "tickInterval": 2,
               "tickTimer": 0.2,
               "value": 1
@@ -454,7 +454,7 @@
               "name": "Rimelance",
               "remaining": 4.6,
               "school": "frost",
-              "sourceId": 1007,
+              "sourceId": 1190,
               "value": 0.6
             }
           ],
@@ -465,16 +465,16 @@
           "detonateTimer": "Infinity",
           "dodgeChance": 0.05,
           "facing": -2.727462,
-          "fallStartY": 7.996591,
+          "fallStartY": -13.3,
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 8912,
-          "id": 1015,
+          "id": 1198,
           "inCombat": true,
           "kind": "mob",
           "leashAnchor": {
             "x": 1.50747,
-            "y": 7.58069,
+            "y": -5.05,
             "z": -996.57043
           },
           "level": 5,
@@ -486,29 +486,29 @@
           "petMode": "defensive",
           "pos": {
             "x": 1.50747,
-            "y": 7.58069,
+            "y": -5.05,
             "z": -996.57043
           },
           "potionCooldownUntil": -1,
           "spawnPos": {
-            "y": 7.996591,
+            "y": -13.3,
             "z": -982
           },
           "stats": {
             "armor": 40
           },
           "swingTimer": 1.45,
-          "tappedById": 1007,
+          "tappedById": 1190,
           "templateId": "forest_wolf",
           "threat": [
             [
-              1007,
+              1190,
               89
             ]
           ],
           "wanderTarget": {
             "x": 6.768469,
-            "y": 1.718128,
+            "y": -13.3,
             "z": -985.829397
           },
           "wanderTimer": 27.45,

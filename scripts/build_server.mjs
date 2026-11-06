@@ -1,13 +1,13 @@
 // Bundles the authoritative server. The bot detector is resolved through the
 // abstract `#bot-detector` specifier: the private implementation if its clone is
-// present, otherwise the open-source no-op stub. Mirrors the resolution in
+// present, otherwise the open-source flag-only detector. Mirrors the resolution in
 // vite.config.ts (vitest/dev) and tsconfig.json `paths` (typecheck).
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import * as esbuild from 'esbuild';
 
 const privateImpl = fileURLToPath(new URL('../private/bot_detector/src/index.ts', import.meta.url));
-const stubImpl = fileURLToPath(new URL('../server/bot_detector/stub.ts', import.meta.url));
+const stubImpl = fileURLToPath(new URL('../server/bot_detector/flag_only.ts', import.meta.url));
 const usePrivate = existsSync(privateImpl);
 
 await esbuild.build({
@@ -69,4 +69,4 @@ await esbuild.build({
   outfile: 'dist-server/migrate_release_gifts.cjs',
 });
 
-console.log(`[build:server] bot detector: ${usePrivate ? 'private' : 'stub (no-op)'}`);
+console.log(`[build:server] bot detector: ${usePrivate ? 'private' : 'flag-only (open build)'}`);

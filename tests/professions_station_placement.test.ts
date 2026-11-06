@@ -167,7 +167,7 @@ describe('station and master placement safety (derived from content)', () => {
     }
   });
 
-  it('pins the master-to-zone assignment: four Eastbrook anchors, tannery in Fenbridge, apothecary in Highwatch', () => {
+  it('pins the master-to-zone assignment: six Eastbrook yard anchors, a tannery in Fenbridge, an apothecary in Highwatch', () => {
     expect(STATIONS.map((s) => [s.masterNpcId, s.zoneId, s.id, s.type])).toEqual([
       ['forgemistress_darva', 'eastbrook_vale', 'station_eastbrook_forge', 'forge'],
       ['cook_marlow', 'eastbrook_vale', 'station_eastbrook_kitchens', 'kitchens'],
@@ -175,6 +175,9 @@ describe('station and master placement safety (derived from content)', () => {
       ['tinker_gizzel', 'eastbrook_vale', 'station_eastbrook_toolworks', 'toolworks'],
       ['tanner_hesk', 'mirefen_marsh', 'station_fenbridge_tannery', 'tannery'],
       ['alchemist_verane', 'thornpeak_heights', 'station_highwatch_apothecary', 'apothecary'],
+      // Town kit phase 2: the crafting yard adds Eastbrook's own two.
+      ['apothecary_lin', 'eastbrook_vale', 'station_eastbrook_apothecary', 'apothecary'],
+      ['tanner_tamsin', 'eastbrook_vale', 'station_eastbrook_tannery', 'tannery'],
     ]);
   });
 });

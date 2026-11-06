@@ -165,6 +165,11 @@ import {
   runConcurrentIndexMigrations,
   saveMarketState,
 } from '../server/db';
+import {
+  LEGACY_CRYPTO_CONCURRENT_INDEXES,
+  LEGACY_CRYPTO_DROP_SCHEMA,
+  LEGACY_CRYPTO_TABLES,
+} from '../server/legacy_crypto_drop_db';
 import { RATELIMIT_PRUNE_SQL } from '../server/ratelimit_db';
 import type { MarketSave } from '../src/sim/sim';
 
@@ -354,7 +359,6 @@ describe('ensureSchema wires every schema module at boot', () => {
       'CREATE TABLE IF NOT EXISTS character_leases',
       'CREATE TABLE IF NOT EXISTS guild_banks',
       'CREATE TABLE IF NOT EXISTS mail_custody_parcels',
-      'CREATE TABLE IF NOT EXISTS woc_market_listings',
     ]) {
       const tableIndex = h.calls.findIndex((sql) => sql.includes(guarded));
       expect(tableIndex, `${guarded} must be applied before the guard`).toBeGreaterThanOrEqual(0);
@@ -822,15 +826,51 @@ describe('ensureSchema wires every schema module at boot', () => {
     expect(h.calls.indexOf('COMMIT')).toBeGreaterThan(motdAt);
   });
 
-  it('still applies the LEGACY $WOC Exchange schema (listings plus a dependent table)', async () => {
-    // LEGACY_WOC_MARKET_SCHEMA (server/legacy_crypto_schema_db.ts) keeps the
-    // retired marketplace tables defined so persisted databases keep loading
-    // (the tables are never dropped). Deleting its ensureSchema line in
-    // server/db.ts must fail here.
+  it('drops the retired crypto tables after every CREATE and before the writer guard', async () => {
+    // LEGACY_CRYPTO_DROP_SCHEMA (server/legacy_crypto_drop_db.ts): Wyndlewood
+    // ships no crypto feature, so the wallet-link, Seeker-claim and $WOC
+    // Exchange tables are dropped (idempotently, IF EXISTS) instead of being
+    // re-created on every boot. Nothing may CREATE them any more, the drop must
+    // follow the last CREATE (a referencing FK created later would be dropped
+    // by CASCADE in silence), and the source-writer guard that used to trigger
+    // on the market tables must no longer name them.
     await ensureSchema();
     const applied = h.calls.join('\n');
-    expect(applied).toContain('CREATE TABLE IF NOT EXISTS woc_market_listings');
-    expect(applied).toContain('CREATE TABLE IF NOT EXISTS woc_market_bids');
+    expect(applied).not.toContain('CREATE TABLE IF NOT EXISTS woc_market_listings');
+    expect(applied).not.toContain('CREATE TABLE IF NOT EXISTS wallet_links');
+    expect(applied).not.toContain('CREATE TABLE IF NOT EXISTS seeker_entitlement_claims');
+    expect(applied).not.toContain('woc_msw_guard_woc_market_listings');
+    const dropAt = h.calls.findIndex((sql) => sql === LEGACY_CRYPTO_DROP_SCHEMA);
+    expect(dropAt).toBeGreaterThan(-1);
+    for (const table of LEGACY_CRYPTO_TABLES) {
+      expect(h.calls[dropAt]).toContain(`DROP TABLE IF EXISTS ${table} CASCADE;`);
+    }
+    // After the core SCHEMA (the accounts table every crypto table FK'd) and
+    // after the late storage-purchase fragment that precedes it in
+    // ensureSchema; only the writer-guard and ledger-budget fragments follow.
+    const accountsAt = h.calls.findIndex((sql) =>
+      sql.includes('CREATE TABLE IF NOT EXISTS accounts'),
+    );
+    const storagePurchaseAt = h.calls.findIndex((sql) =>
+      sql.includes('CREATE TABLE IF NOT EXISTS storage_purchases'),
+    );
+    expect(accountsAt).toBeGreaterThan(-1);
+    expect(storagePurchaseAt).toBeGreaterThan(-1);
+    expect(dropAt).toBeGreaterThan(accountsAt);
+    expect(dropAt).toBeGreaterThan(storagePurchaseAt);
+    const guardAt = h.calls.findIndex((sql) =>
+      sql.includes('CREATE OR REPLACE TRIGGER woc_msw_guard_characters'),
+    );
+    expect(guardAt).toBeGreaterThan(dropAt);
+    expect(h.calls.indexOf('COMMIT')).toBeGreaterThan(dropAt);
+    // Referencing tables drop before their referents, so CASCADE never has to
+    // reach outside the crypto family.
+    expect(LEGACY_CRYPTO_TABLES.indexOf('woc_market_bids')).toBeLessThan(
+      LEGACY_CRYPTO_TABLES.indexOf('woc_market_listings'),
+    );
+    expect(LEGACY_CRYPTO_TABLES.indexOf('wallet_link_challenges')).toBeLessThan(
+      LEGACY_CRYPTO_TABLES.indexOf('wallet_links'),
+    );
   });
 
   it('applies the compact player-metrics schema without a boot backfill', async () => {
@@ -948,17 +988,16 @@ describe('ensureSchema wires every schema module at boot', () => {
     const broadAccountIdx = h.calls.findIndex((sql) =>
       sql.includes('CREATE INDEX CONCURRENTLY IF NOT EXISTS bank_ledger_account_recent'),
     );
-    const sellerSalesIdx = h.calls.findIndex((sql) =>
-      sql.includes('CREATE INDEX CONCURRENTLY IF NOT EXISTS woc_market_sales_seller'),
-    );
     const largeMovementIdx = h.calls.findIndex((sql) =>
       sql.includes('CREATE INDEX CONCURRENTLY IF NOT EXISTS bank_ledger_account_large_recent'),
     );
     expect(broadAccountIdx).toBeGreaterThan(worst10sIdx);
     expect(h.calls[broadAccountIdx]).toContain('ON bank_ledger(account_id, id DESC)');
     expect(h.calls[broadAccountIdx]).not.toContain('WHERE');
-    expect(sellerSalesIdx).toBeGreaterThan(broadAccountIdx);
-    expect(largeMovementIdx).toBeGreaterThan(sellerSalesIdx);
+    // The retired woc_market_sales_seller build used to sit between these two;
+    // its table is dropped now (server/legacy_crypto_drop_db.ts).
+    expect(h.calls.some((sql) => sql.includes('woc_market_sales_seller'))).toBe(false);
+    expect(largeMovementIdx).toBeGreaterThan(broadAccountIdx);
     expect(h.calls[largeMovementIdx]).toContain('ON bank_ledger(account_id, id DESC)');
     expect(h.calls[largeMovementIdx]).toContain('WHERE abs(copper_delta) >= 100000');
     expect(largeMovementIdx).toBeLessThan(sessionUnlock);
@@ -1361,13 +1400,17 @@ describe('ensureSchema wires every schema module at boot', () => {
       'player_reports_retention_created',
       'chat_violations_retention_created',
       'bank_ledger_account_recent',
-      'woc_market_sales_seller',
-      'woc_market_ops_closed_created',
+      // The three retired $WOC Exchange entries (woc_market_sales_seller,
+      // woc_market_ops_closed_created, woc_market_sales_realm_created) left
+      // this list with their tables: LEGACY_CRYPTO_CONCURRENT_INDEXES names
+      // them, and the pin below keeps them out for good.
       'bank_ledger_account_large_recent',
       'bank_ledger_container_money_recent',
-      'woc_market_sales_realm_created',
       'referrals_referrer_referee',
     ]);
+    for (const retired of LEGACY_CRYPTO_CONCURRENT_INDEXES) {
+      expect(CONCURRENT_INDEX_MIGRATIONS.some((m) => m.name === retired)).toBe(false);
+    }
     const guildPrefix = CONCURRENT_INDEX_MIGRATIONS.find(
       (m) => m.name === 'guilds_realm_lower_name_prefix',
     );
@@ -1493,33 +1536,6 @@ describe('ensureSchema wires every schema module at boot', () => {
     );
     expect(chatViolationsRetention?.dropSql).toBe(
       'DROP INDEX CONCURRENTLY IF EXISTS chat_violations_retention_created',
-    );
-    // The Exchange seller click-through read (salesForSeller): concurrent,
-    // never boot DDL, because woc_market_sales is keep-forever and a
-    // transactional build would grow into a boot-time write-blocking lock on
-    // the money path's insertSale.
-    const wocSalesSeller = CONCURRENT_INDEX_MIGRATIONS.find(
-      (m) => m.name === 'woc_market_sales_seller',
-    );
-    expect(wocSalesSeller?.createSql).toContain(
-      'ON woc_market_sales(realm, seller_name, created_at DESC)',
-    );
-    expect(wocSalesSeller?.checkSql).toContain("to_regclass('woc_market_sales_seller')");
-    expect(wocSalesSeller?.dropSql).toBe(
-      'DROP INDEX CONCURRENTLY IF EXISTS woc_market_sales_seller',
-    );
-    const wocOpsClosed = CONCURRENT_INDEX_MIGRATIONS.find(
-      (m) => m.name === 'woc_market_ops_closed_created',
-    );
-    expect(wocOpsClosed?.createSql).toContain(
-      'ON woc_market_listings(realm, resolution, created_at DESC, id DESC)',
-    );
-    expect(wocOpsClosed?.createSql).toContain(
-      "WHERE directed_buyer_account IS NULL AND status = 'closed'",
-    );
-    expect(wocOpsClosed?.checkSql).toContain("to_regclass('woc_market_ops_closed_created')");
-    expect(wocOpsClosed?.dropSql).toBe(
-      'DROP INDEX CONCURRENTLY IF EXISTS woc_market_ops_closed_created',
     );
   });
 

@@ -208,6 +208,13 @@ describe('live graphics profile architecture', () => {
 // import), so it is registered here even though it lives in src/game. Paths are
 // repo-relative for the failure messages.
 const UI_PURE_CORES = [
+  // The add-on platform's pure cores (src/ui/hud/addons/, docs/design/addon-api.md).
+  'src/ui/hud/addons/addon_manifest_core.ts',
+  'src/ui/hud/addons/addon_snapshot_core.ts',
+  'src/ui/hud/addons/addon_event_filter_core.ts',
+  'src/ui/hud/addons/addon_widget_core.ts',
+  'src/ui/hud/addons/addon_runtime_core.ts',
+  'src/ui/hud/addons/addons_window_view.ts',
   'src/ui/hud/referral_cards/referral_reward_core.ts',
   'src/ui/hud/courier/courier_core.ts',
   'src/ui/hud/referral_cards/referral_cards_view.ts',
@@ -217,6 +224,11 @@ const UI_PURE_CORES = [
   'src/ui/frame_presets_core.ts',
   // The landing select's and first-login prompt's shared graphics-choice policy.
   'src/ui/graphics_choice_core.ts',
+  // The first-launch legal acceptance gate's decision and view model
+  // (src/ui/legal_acceptance_controller.ts paints it).
+  'src/ui/legal_acceptance_core.ts',
+  // Which store, membership and cosmetic-shop surfaces the build may reach (Early Access switches).
+  'src/ui/store_surfaces_core.ts',
   'src/ui/frame_menu_core.ts',
   'src/ui/loot_quality_view.ts',
   // The store purchase loot window and membership congratulation (painter:
@@ -595,6 +607,8 @@ const UI_PURE_CORES = [
   'src/ui/grant_line_view.ts',
   'src/ui/hud/professions/farming_view.ts',
   'src/ui/hud/housing/house_feedback_view.ts',
+  // Town restoration project window text (life_skills/town_projects.ts).
+  'src/ui/hud/housing/town_project_view.ts',
   'src/ui/hud/housing/house_furnish_view.ts',
   'src/ui/hud/housing/house_storage_view.ts',
   'src/ui/hud/housing/furniture_tooltip_view.ts',
@@ -736,6 +750,7 @@ const UI_PURE_CORES = [
   // The signpost guild board's roster drill-in core (the board itself reuses
   // guild_leaderboard_view above).
   'src/ui/hud/guild_board/guild_roster_view.ts',
+  'src/ui/hud/guild_board/town_board_view.ts',
   // The Rift Forge window's row/affordance core (the Riftwright's service).
   'src/ui/hud/rift_forge/rift_forge_view.ts',
   'src/ui/dev_leaderboard_view.ts',
@@ -832,6 +847,8 @@ const UI_PURE_CORES = [
   'src/ui/pet_frame_view.ts',
   // The vitals bar: the player's descriptor of the unit_frame family (Project H).
   'src/ui/hud/vitals/vitals_view.ts',
+  // The HUD durability figure (src/sim/durability/).
+  'src/ui/hud/durability/durability_view.ts',
   'src/ui/loading_backdrop_core.ts',
   'src/ui/loading_slow_hint_core.ts',
   'src/ui/reconnect_status_core.ts',
@@ -1114,6 +1131,9 @@ const RENDER_PURE_CORES = [
   'src/render/seated_pose_core.ts',
   'src/render/seat_pick_core.ts',
   'src/render/ambience_state_core.ts',
+  // which zone and town ambience beds play where the player stands, and how wooded it is
+  'src/render/region_ambience_core.ts',
+  'src/render/forest_density_core.ts',
   'src/render/ability_vfx/cast_admission_core.ts',
   'src/render/ability_vfx/physical_choreography_core.ts',
   'src/render/ability_vfx/signature_core.ts',
@@ -1349,6 +1369,10 @@ const RENDER_PURE_CORES = [
   'src/render/ocean/ocean_spectrum_core.ts',
   'src/render/ocean/ocean_foam_core.ts',
   'src/render/ocean/water_character_core.ts',
+  'src/render/ocean/water_style_core.ts',
+  'src/render/rock_material_core.ts',
+  'src/render/rock_grass_clear_core.ts',
+  'src/render/ocean/ocean_painted_core.ts',
   'src/render/ocean/water_liveness_core.ts',
   'src/render/battleground_core.ts',
   'src/render/battleground_fx_core.ts',
@@ -3100,6 +3124,14 @@ const UI_PAINTER_HELPERS = [
 // the English catalog, it is a maintainer fix during the release locale fill:
 // contributors do not edit those files.
 const UI_DOM_MODULES = [
+  // The add-on platform's host adapters: the runtime (workers, the sandbox
+  // iframe, storage), the add-on frame layer, the Addons window, its mount, and
+  // the worker prelude (worker-side code that names the globals it deletes).
+  'src/ui/hud/addons/addon_runtime_controller.ts',
+  'src/ui/hud/addons/addon_frames_controller.ts',
+  'src/ui/hud/addons/addons_window_controller.ts',
+  'src/ui/hud/addons/addons_mount.ts',
+  'src/ui/hud/addons/addon_worker_prelude.ts',
   'src/ui/footer_shell.ts',
   'src/ui/hud/referral_cards/referral_reward_celebration_window.ts',
   'src/ui/hud/referral_cards/referral_cards_controller.ts',
@@ -3117,6 +3149,12 @@ const UI_DOM_MODULES = [
   'src/ui/boot_splash.ts',
   // The first-login graphics prompt: a top-level pre-game modal reading the URL and navigator.
   'src/ui/graphics_choice_prompt.ts',
+  // The first-launch legal modals (agreements gate, analytics consent), the
+  // agreements painter, and the analytics prompt's dialog.
+  'src/ui/legal_choice_dialog.ts',
+  'src/ui/legal_acceptance_prompt.ts',
+  'src/ui/legal_acceptance_controller.ts',
+  'src/ui/analytics_consent_prompt.ts',
   // The landing-first boot (body classes, splash lift, prefetch, held clicks) and the
   // characters-created counter it shares with main.ts.
   'src/ui/landing_first.ts',
@@ -3394,6 +3432,7 @@ const UI_DOM_MODULES = [
   'src/ui/spellbook_window.ts',
   'src/ui/start_skin_picker_portraits.ts',
   'src/ui/steam_link.ts',
+  'src/ui/steam_login.ts',
   'src/ui/steam_wishlist.ts',
   'src/ui/store_decision_prompt.ts',
   // Resolves and mints the body-level host a Store decision takes while an

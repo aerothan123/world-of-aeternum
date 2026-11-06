@@ -8,6 +8,15 @@ import { jitteredPerfReportDelay } from '../src/game/perf_report_schedule';
 import { perfReporterInternalsForTest, startPerfReporter } from '../src/game/perf_reporter';
 import { SHADER_WARM_BEACON_TEXT_MAX } from '../src/game/perf_shader_warm_core';
 import { Settings } from '../src/game/settings';
+
+// The reporter is strictly opt-in (src/game/analytics_consent.ts): these suites
+// exercise the SENDING path, so the live consent probe answers yes here. The
+// no-consent gate itself is pinned in tests/analytics_consent.test.ts.
+const consent = vi.hoisted(() => ({ allowed: true }));
+vi.mock('../src/game/first_party_analytics', () => ({
+  liveAnalyticsAllowed: () => consent.allowed,
+}));
+
 import { GPU_TIMER_UNAVAILABLE } from '../src/render/gpu_timer_probe_core';
 import { POST_REVEAL_LINK_WINDOW_MS } from '../src/render/post_reveal_links_core';
 import { shaderWarmAuditSnapshot } from '../src/render/shader_warm_audit';
@@ -1686,6 +1695,26 @@ describe('perf reporter worst-window drain', () => {
     delete (globalThis as any).document;
     delete (globalThis as any).window;
     delete (globalThis as any).location;
+  });
+
+  it('sends NOTHING while the player has not opted in (strictly opt-in telemetry)', async () => {
+    const fetchImpl = vi.fn(async () => ({ ok: true, status: 200, text: async () => '' }));
+    installReporterFlowGlobals(fetchImpl);
+    const { perf, drainWorstWindow } = fakePerf();
+    const stop = startPerfReporter({
+      perf,
+      settings: new Settings(),
+      tokenProvider: () => null,
+      characterIdProvider: () => null,
+      analyticsAllowed: () => false,
+    });
+    try {
+      await vi.advanceTimersByTimeAsync(30 * 60_000);
+      expect(fetchImpl).not.toHaveBeenCalled();
+      expect(drainWorstWindow).not.toHaveBeenCalled();
+    } finally {
+      stop();
+    }
   });
 
   it('drains the worst window exactly once after a successful send', async () => {

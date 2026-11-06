@@ -29,12 +29,21 @@ import {
 } from '../src/render/far_terrain_core';
 import { WORLD_MAX_X, WORLD_MAX_Z, WORLD_MIN_X, WORLD_MIN_Z } from '../src/sim/data';
 import { terrainHeight, WATER_LEVEL } from '../src/sim/world';
+import { CORE_WORLD } from '../src/sim/world_core_bounds';
 
 const SEED = 20061; // the fixed built-in world seed (src/main.ts)
 const MAX_OUTDOOR = 850; // zone_streaming.ts envelope
 
-// The whole-world diagonal the vista must cover for "see the whole game".
-const WORLD_DIAGONAL = Math.hypot(WORLD_MAX_X - WORLD_MIN_X, WORLD_MAX_Z - WORLD_MIN_Z);
+// The shipped zone grid's diagonal. The whole-world vista was sized when the
+// world was that box; the expansion frontier (src/sim/frontier/) grows past it
+// chapter by chapter, and the far edge there is the Hushmist, not open view.
+// Whether high and ultra should keep seeing the whole grown world (a bigger
+// envelope, more far tiles drawn) is a render-performance call left to the
+// render crew; until then the tiers must still see the whole shipped grid.
+const CORE_DIAGONAL = Math.hypot(
+  CORE_WORLD.maxX - CORE_WORLD.minX,
+  CORE_WORLD.maxZ - CORE_WORLD.minZ,
+);
 
 describe('farVistaPlan: per-tier vista envelopes', () => {
   it('low tier and constrained devices keep the classic renderer exactly', () => {
@@ -49,11 +58,11 @@ describe('farVistaPlan: per-tier vista envelopes', () => {
     }
   });
 
-  it('high and ultra see the whole world: envelope beats the map diagonal', () => {
+  it('high and ultra see the whole shipped grid: envelope beats its diagonal', () => {
     for (const tier of ['high', 'ultra'] as const) {
       const plan = farVistaPlan(tier, false);
       expect(plan.enabled).toBe(true);
-      expect(plan.envelopeFar).toBeGreaterThanOrEqual(WORLD_DIAGONAL);
+      expect(plan.envelopeFar).toBeGreaterThanOrEqual(CORE_DIAGONAL);
       expect(plan.cameraFar).toBeGreaterThan(plan.envelopeFar);
     }
   });

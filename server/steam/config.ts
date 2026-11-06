@@ -26,3 +26,12 @@ export function steamWebApiKey(env: NodeJS.ProcessEnv = process.env): string | n
   const raw = (env.STEAM_WEB_API_KEY ?? '').trim();
   return raw === '' ? null : raw;
 }
+
+/** True when Steam LOGIN (POST /api/auth/steam, server/steam_login.ts) is live:
+ *  the Steam surface must be on (STEAM_ENABLED=1) and STEAM_LOGIN_ENABLED must
+ *  not be the explicit opt-out '0'. Login defaults ON with the surface, because
+ *  the Steam build has no other first-launch path that needs no separate
+ *  account; an operator can still keep link-only with STEAM_LOGIN_ENABLED=0. */
+export function steamLoginEnabled(env: NodeJS.ProcessEnv = process.env): boolean {
+  return steamEnabled(env) && (env.STEAM_LOGIN_ENABLED ?? '').trim() !== '0';
+}

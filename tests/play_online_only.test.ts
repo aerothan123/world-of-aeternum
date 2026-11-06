@@ -105,11 +105,10 @@ describe('/play uses the landing hero backdrop', () => {
   });
 });
 
-describe('/play keeps its tracking and SEO head', () => {
-  it('play.html keeps the Google tag with the localhost guard', () => {
-    expect(playHtml).toContain('googletagmanager.com/gtag/js?id=G-BR5Z7GT7C2');
-    expect(playHtml).toContain("gtag('config', 'G-BR5Z7GT7C2')");
-    expect(playHtml).toContain("['localhost', '127.0.0.1', '[::1]'].includes(location.hostname)");
+describe('/play keeps its SEO head and no upstream tracking', () => {
+  it('play.html ships no upstream Google tag (Wyndlewood analytics is opt-in first party)', () => {
+    expect(playHtml).not.toContain('googletagmanager.com');
+    expect(playHtml).not.toContain('G-BR5Z7GT7C2');
   });
 
   it('play.html keeps its canonical /play SEO surface', () => {

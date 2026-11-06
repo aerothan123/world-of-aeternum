@@ -20,7 +20,7 @@ import {
 const PKG = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
 
 const APPIMAGE = '/home/deck/Applications/world-of-claudecraft.AppImage';
-const SCHEME = 'worldofclaudecraft';
+const SCHEME = 'wyndlewood';
 const APPS_DIR = '/home/deck/.local/share/applications';
 const ENTRY_PATH = `${APPS_DIR}/world-of-claudecraft-appimage.desktop`;
 
@@ -141,7 +141,7 @@ describe('the .desktop entry filename (a cross-package literal)', () => {
 
   it('uses the shipping product name for the entry Name', () => {
     expect(PRODUCT_NAME).toBe(PKG.build.productName);
-    expect(PRODUCT_NAME).toBe('Project H');
+    expect(PRODUCT_NAME).toBe('Wyndlewood');
   });
 
   it('registers the same scheme package.json declares to electron-builder', () => {
@@ -150,7 +150,9 @@ describe('the .desktop entry filename (a cross-package literal)', () => {
     // too, or the callback URL lands on a handler nobody registered.
     expect(PKG.build.protocols[0].schemes).toContain(SCHEME);
     const main = readFileSync(new URL('../electron/main.cjs', import.meta.url), 'utf8');
-    expect(main).toContain(`const deepLinkProtocol = '${SCHEME}';`);
+    // main.cjs reads the scheme from electron/brand.cjs; the brand test pins its value.
+    expect(main).toContain('const deepLinkProtocol = DEEP_LINK_SCHEME;');
+    expect(require('../electron/brand.cjs').DEEP_LINK_SCHEME).toBe(SCHEME);
   });
 });
 
@@ -317,11 +319,11 @@ describe('buildDesktopEntry', () => {
       [
         '[Desktop Entry]',
         'Type=Application',
-        'Name=Project H',
+        'Name=Wyndlewood',
         `Exec=${APPIMAGE} %u`,
         `TryExec=${APPIMAGE}`,
         'Icon=world-of-claudecraft',
-        'StartupWMClass=Project H',
+        'StartupWMClass=Wyndlewood',
         'Terminal=false',
         'Categories=Game;',
         `MimeType=x-scheme-handler/${SCHEME};`,

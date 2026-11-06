@@ -38,6 +38,7 @@ import {
 } from '../server/discord_status_cache';
 import { resetNativeDiscordHandoffsForTest } from '../server/native_discord_handoff';
 import { resetAuthFailures, resetDiscordRateLimits } from '../server/ratelimit';
+import { COMMUNITY_DISCORD_INVITE_URL } from '../src/brand';
 
 function makeReq(opts: { url?: string; body?: unknown; origin?: string } = {}): any {
   const req: any =
@@ -272,7 +273,9 @@ describe('GET /api/discord (status)', () => {
     expect(data.linked).toBe(false);
     expect(data.points).toBe(0);
     expect(data.statusTier).toBe(0);
-    expect(data.inviteUrl).toBe('https://discord.com/invite/worldofclaudecraft');
+    // The upstream invite was removed; the default is the config point
+    // COMMUNITY_DISCORD_INVITE_URL (src/brand.ts) until the owner sets it.
+    expect(data.inviteUrl).toBe(COMMUNITY_DISCORD_INVITE_URL);
   });
 
   it('reports linked status, points and derived tier', async () => {

@@ -25,6 +25,7 @@ await writeFile(
   sourcePath,
   `
 import { ABILITIES, CLASSES, DUNGEON_LIST, ITEMS, MOBS, NPCS, QUEST_ORDER, QUESTS, ZONES } from '../../src/sim/data';
+import { questBaseXp } from '../../src/sim/quests/quest_xp';
 import { mediawikiAbilityDescription } from '../../scripts/mediawiki/ability_description';
 
 const css = ${JSON.stringify(css)};
@@ -259,7 +260,7 @@ for (const [id, quest] of Object.entries(QUESTS)) {
   const objectives = quest.objectives.map((obj) => (obj.label ?? obj.type) + ': ' + (obj.count ?? 1));
   const rewards = Object.values(quest.itemRewards ?? {}).map((itemId) => ITEMS[itemId]).filter(Boolean);
   add(titleBy.quest.get(id), section('Quest text', quest.text) + section('Facts', table([
-    ['Zone', zoneForQuest(id)], ['XP reward', String(quest.xpReward)], ['Copper reward', money(quest.copperReward)], ['Minimum level', quest.minLevel ? String(quest.minLevel) : 'None'], ['Requires quest', quest.requiresQuest ? (QUESTS[quest.requiresQuest]?.name ?? quest.requiresQuest) : 'None'],
+    ['Zone', zoneForQuest(id)], ['XP reward', String(questBaseXp(quest))], ['Copper reward', money(quest.copperReward)], ['Minimum level', quest.minLevel ? String(quest.minLevel) : 'None'], ['Requires quest', quest.requiresQuest ? (QUESTS[quest.requiresQuest]?.name ?? quest.requiresQuest) : 'None'],
   ])) + section('Objectives', bullets(objectives)) + section('Completion', quest.completionText) + (rewards.length ? section('Rewards', bullets(rewards.map((item) => link(titleBy.item.get(item.id), item.name)))) : ''), ['Quests', zoneForQuest(id)]);
 }
 

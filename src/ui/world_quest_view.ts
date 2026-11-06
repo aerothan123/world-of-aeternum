@@ -126,15 +126,17 @@ export function worldQuestItemRewardText(
 // The sim's factionDisplayName / factionCurrencyName are English data labels;
 // every player-facing faction and currency name renders from these catalog keys.
 const FACTION_NAME_KEY: Readonly<Record<FactionId, TranslationKey>> = {
-  rift_watch: 'hudChrome.reputation.faction.rift_watch',
-  church_order: 'hudChrome.reputation.faction.church_order',
-  automatons: 'hudChrome.reputation.faction.automatons',
+  lanternwardens: 'hudChrome.reputation.faction.lanternwardens',
+  hearthwright_compact: 'hudChrome.reputation.faction.hearthwright_compact',
+  bracken_circle: 'hudChrome.reputation.faction.bracken_circle',
+  gilt_measure: 'hudChrome.reputation.faction.gilt_measure',
 };
 
 const FACTION_CURRENCY_NAME_KEY: Readonly<Record<FactionId, TranslationKey>> = {
-  rift_watch: 'hudChrome.currencies.riftWatchMark',
-  church_order: 'hudChrome.currencies.churchOrderCrest',
-  automatons: 'hudChrome.currencies.automatonCog',
+  lanternwardens: 'hudChrome.currencies.lanternCrest',
+  hearthwright_compact: 'hudChrome.currencies.hearthwrightCog',
+  bracken_circle: 'hudChrome.currencies.brackenAcorn',
+  gilt_measure: 'hudChrome.currencies.giltMark',
 };
 
 const whole = (value: number): string => formatNumber(value, { maximumFractionDigits: 0 });

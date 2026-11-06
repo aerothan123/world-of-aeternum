@@ -7,8 +7,8 @@ export type UpdateChannel = 'latest' | 'dev';
 export const PRODUCTION_API_ORIGIN: string;
 
 export function apiOriginKey(value: unknown): string | null;
-export function isProductionApiOrigin(origin: unknown): boolean;
-export function updateChannelForOrigin(apiOrigin: unknown): UpdateChannel;
+export function isProductionApiOrigin(origin: unknown, production?: string): boolean;
+export function updateChannelForOrigin(apiOrigin: unknown, production?: string): UpdateChannel;
 
 export interface UpdateOfferVerdict {
   ok: boolean;

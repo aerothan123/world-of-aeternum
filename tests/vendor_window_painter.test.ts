@@ -118,12 +118,18 @@ describe('renderVendorWindow / renderHeroicVendorWindow: dialog root (accessible
     const row = requireElement<HTMLButtonElement>(el, '.vendor-item');
     row.click();
     row.dispatchEvent(new MouseEvent('click', { bubbles: true, ctrlKey: true }));
-    expect(calls).toEqual([{ expectedRidingTier: 0 }, { expectedRidingTier: 0 }]);
+    // Riding (rank 1) is taught after Apprentice Riding (tier 3, level 10).
+    expect(calls).toEqual([{ expectedRidingTier: 3 }, { expectedRidingTier: 3 }]);
     goods.ridingRank = 2;
     goods.price.copper = 10_000_000;
     renderVendorWindow(el, 'Trainer', view, deps({ onBuy: (_id, opts) => calls.push(opts) }));
     requireElement<HTMLButtonElement>(el, '.vendor-item').click();
     expect(calls[2]).toEqual({ expectedRidingTier: 1 });
+    goods.ridingRank = 3;
+    goods.price.copper = 20_000;
+    renderVendorWindow(el, 'Trainer', view, deps({ onBuy: (_id, opts) => calls.push(opts) }));
+    requireElement<HTMLButtonElement>(el, '.vendor-item').click();
+    expect(calls[3]).toEqual({ expectedRidingTier: 0 });
   });
   it('renderVendorWindow marks #vendor-window as a labeled dialog', () => {
     const view: VendorView = {
@@ -1758,7 +1764,7 @@ describe('renderVendorWindow faction currencies', () => {
       price: {
         copper: 0,
         honor: 0,
-        factionMarks: { factionId: 'rift_watch', amount: 15 },
+        factionMarks: { factionId: 'gilt_measure', amount: 15 },
       },
       quantity: 1,
       affordable: true,
@@ -1769,7 +1775,7 @@ describe('renderVendorWindow faction currencies', () => {
       buyback: [],
       honorBalance: 0,
       hasHonorGoods: false,
-      vendorFactionId: 'rift_watch',
+      vendorFactionId: 'gilt_measure',
       factionCurrencyBalance: 45,
       multiple: 1,
     };
@@ -1778,10 +1784,10 @@ describe('renderVendorWindow faction currencies', () => {
 
     const balance = el.querySelector('.faction-currency-balance');
     expect(balance).not.toBeNull();
-    expect(balance?.textContent).toContain('Rift Watch Mark: 45');
+    expect(balance?.textContent).toContain('Gilt Mark: 45');
 
     const price = el.querySelector('.faction-currency-price');
     expect(price).not.toBeNull();
-    expect(price?.textContent).toContain('15 Rift Watch Mark');
+    expect(price?.textContent).toContain('15 Gilt Mark');
   });
 });

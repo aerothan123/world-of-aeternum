@@ -12,7 +12,7 @@
 // with the number the harvest gate enforces.
 //
 // ADVISORY, not enforcement (R22, docs/design/professions-tuning-packet-review.md):
-// every counter sells ahead freely, the way Wilkes always sold the whole rod
+// every counter sells ahead freely, the way Silven always sold the whole rod
 // ladder (R20), and so do the market, trade, mail, and buyback. What is gated
 // is the WIELD: the harvest gate refuses to put an unearned tool to work
 // (professions/wield_gate.ts, read by gathering.ts harvestNode and the grade

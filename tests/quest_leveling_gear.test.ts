@@ -38,8 +38,15 @@ const WORLD_BOSS_ENCOUNTER_QUESTS = new Set([
   'q_socketwrights_due',
 ]);
 
+// Wyndlewood's chapter quests (content/chapter_one.ts, content/chapter_two.ts)
+// wait for their own reward pass: re-running the generator for them re-bakes
+// the shipped band items' levels and stats (the quests that offer a piece set
+// its item level), so their rows land with that reviewed diff, not silently.
+const WYNDLEWOOD_CHAPTER_QUEST = /^c[12]_/;
+
 function levelingQuest(q: QuestDef): boolean {
   if (q.retired || q.repeatable) return false;
+  if (WYNDLEWOOD_CHAPTER_QUEST.test(q.id)) return false;
   // The tutorial island keeps its own rewards (owner call, 2026-10-07).
   if (PROVING_SHORE_QUESTS[q.id]) return false;
   if (WORLD_BOSS_ENCOUNTER_QUESTS.has(q.id)) return false;

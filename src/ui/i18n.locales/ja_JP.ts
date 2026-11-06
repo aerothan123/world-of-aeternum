@@ -923,6 +923,10 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'entities.items.schematic_clockwork_shock_bomb.name': '設計図：ぜんまい式衝撃爆弾',
   'entities.mobs.rift_marrow_golem.name': '骨髄のゴーレム',
   'hudChrome.currencies.automatonCog': 'オートマトンの歯車',
+  'hudChrome.currencies.lanternCrest': 'ランタンの紋章',
+  'hudChrome.currencies.hearthwrightCog': '炉辺匠の歯車',
+  'hudChrome.currencies.brackenAcorn': '羊歯の輪のどんぐり',
+  'hudChrome.currencies.giltMark': '金秤の証票',
   'hudChrome.currencies.automatonCogNote': 'オートマトン地域のワールドクエスト',
   'hudChrome.currencies.churchOrderCrest': '修道会の紋章',
   'hudChrome.currencies.churchOrderCrestNote': '教会修道会地域のワールドクエスト',
@@ -1308,7 +1312,8 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.options.gfxWorldStyle': 'ワールドスタイル',
   'hudChrome.options.gfxWorldStyleClassic': 'クラシック',
   'hudChrome.options.gfxWorldStyleRefined': 'リファイン',
-  'hudChrome.options.gfxWorldStyleNote': 'リファインは、テクスチャのある地面、暖かな光、遠景のかすみ、流れる雲で世界を描きます。クラシックは元の見た目を保ちます。どちらも戦闘中に見える情報は変わりません。',
+  'hudChrome.options.gfxWorldStyleNote':
+    'リファインは、テクスチャのある地面、暖かな光、遠景のかすみ、流れる雲で世界を描きます。クラシックは元の見た目を保ちます。どちらも戦闘中に見える情報は変わりません。',
   'hudChrome.options.overlays': 'オーバーレイ',
   'hudChrome.options.targetAurasBelowFrame': 'ターゲットオーラをフレームの下に表示',
   'hudChrome.reputation.hubLine': '{hub}。{zone}',
@@ -20424,6 +20429,10 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.reputation.faction.rift_watch': 'リフトの見張り',
   'hudChrome.reputation.faction.church_order': '教会修道会',
   'hudChrome.reputation.faction.automatons': 'オートマトン',
+  'hudChrome.reputation.faction.lanternwardens': 'ランタンの守り手',
+  'hudChrome.reputation.faction.hearthwright_compact': '炉辺匠の盟約',
+  'hudChrome.reputation.faction.bracken_circle': '羊歯の輪',
+  'hudChrome.reputation.faction.gilt_measure': '金秤商会',
   'hudChrome.reputation.hub.rift_watch': 'ドリフトヘイヴン',
   'hudChrome.reputation.hub.church_order': 'アルドリック修士',
   'hudChrome.reputation.hub.automatons': 'ワームウォッチ',
@@ -25818,4 +25827,159 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'seasonal.thatchgrin.wakeYell': '夜が畑に降りたぞ！ わしの畑を歩くのは誰だ？',
   'seasonal.thatchgrin.sleepYell': '日が昇った。柱に戻って、また見張りだ。',
   'seasonal.pumpkins.progress': '{label}：{current}/{total}',
+  'legalPrompt.title': 'プレイヤー規約',
+  'legalPrompt.body':
+    'プレイする前に、利用規約、プライバシーポリシー、エンドユーザー使用許諾契約をお読みのうえ同意してください。以下の各要約から全文にアクセスできます。',
+  'legalPrompt.earlyAccess':
+    'Wyndlewood は早期アクセス中です。機能、バランス、コンテンツは変更され、正式リリース時にはストアページで告知のとおり進行状況が一度リセットされる場合があります。',
+  'legalPrompt.eulaLink': 'エンドユーザー使用許諾契約',
+  'legalPrompt.termsLink': '利用規約',
+  'legalPrompt.privacyLink': 'プライバシーポリシー',
+  'legalPrompt.version': 'バージョン {version}',
+  'legalPrompt.accept': '同意する',
+  'legalPrompt.decline': '同意しない',
+  'analyticsPrompt.title': 'Wyndlewood の改善にご協力ください',
+  'analyticsPrompt.body':
+    'Wyndlewood が利用状況とパフォーマンスのデータを収集してもよろしいですか？同意すると、ゲームは大まかなカウント（セッション数、5分単位のプレイ時間、おおよそのフレームレート）と、お使いのデバイスとフレーム時間に関する定期的なパフォーマンスレポートを当社のサーバーに送信します。',
+  'analyticsPrompt.noThirdParty':
+    '広告会社や分析会社には一切送信しません。「共有する」を選ばない限り、何も送信されません。',
+  'analyticsPrompt.privacyLink': 'プライバシーポリシーを読む',
+  'analyticsPrompt.changeLater': 'この設定はオプションからいつでも変更できます。',
+  'analyticsPrompt.share': '共有する',
+  'analyticsPrompt.decline': '共有しない',
+  'hudChrome.options.shareAnalytics': '利用状況とパフォーマンスのデータを共有',
+  'hudChrome.options.shareAnalyticsNote':
+    'オンにしない限りオフのままです。大まかなプレイのカウントとパフォーマンスレポートを Wyndlewood にのみ送信し、他社には送信しません。',
+  'hudChrome.addons.menuEntry': 'アドオン',
+  'hudChrome.addons.title': 'アドオン',
+  'hudChrome.addons.close': '閉じる',
+  'hudChrome.addons.masterToggle': 'アドオンを読み込む',
+  'hudChrome.addons.loadOutdated': '古いアドオンも読み込む',
+  'hudChrome.addons.masterHint': 'インターフェースを再読み込みすると変更が反映されます。',
+  'hudChrome.addons.reloadNeeded': 'この変更を反映するにはUIを再読み込みしてください。',
+  'hudChrome.addons.leaveSafe': '今すぐアドオンを読み込む',
+  'hudChrome.addons.safeCrash':
+    'アドオンの起動中にゲームが予期せず終了したため、このセッションはアドオンなしのセーフモードで起動しました。',
+  'hudChrome.addons.safeRequested':
+    'セーフモードで再起動したため、アドオンは読み込まれていません。',
+  'hudChrome.addons.safeUrl':
+    '起動時にセーフモードが指定されたため、アドオンは読み込まれていません。',
+  'hudChrome.addons.workshopUnavailable':
+    '現在 Steam ワークショップを利用できないため、ローカルフォルダーのアドオンのみ表示しています。',
+  'hudChrome.addons.empty':
+    'アドオンがインストールされていません。Steam ワークショップで購読するか、アドオンフォルダーにアドオンのフォルダーを置いてください。',
+  'hudChrome.addons.reload': 'UIを再読み込み',
+  'hudChrome.addons.openFolder': 'アドオンフォルダーを開く',
+  'hudChrome.addons.restartSafe': 'セーフモードで再起動',
+  'hudChrome.addons.memoryNote':
+    'アドオンのワーカーはヒープサイズを報告しないため、メモリはUIウィジェットと保存データで表示しています。',
+  'hudChrome.addons.enable': '{name} を有効化',
+  'hudChrome.addons.version': 'バージョン {version}',
+  'hudChrome.addons.by': '作者 {author}',
+  'hudChrome.addons.permissions': '権限',
+  'hudChrome.addons.options': 'オプション',
+  'hudChrome.addons.showErrors': 'エラー（{count}）',
+  'hudChrome.addons.resetSaved': '保存データをリセット',
+  'hudChrome.addons.resetDone': '{name} の保存データを消去しました。',
+  'hudChrome.addons.publish': 'ワークショップに公開',
+  'hudChrome.addons.stats':
+    'CPU {cpu} ms/秒、{msgs} メッセージ/秒、ウィジェット {widgets}、保存 {kb} KB、エラー {errors}',
+  'hudChrome.addons.optionsTitle': '{name} のオプション',
+  'hudChrome.addons.back': '戻る',
+  'hudChrome.addons.publishTitle': '{name} を公開',
+  'hudChrome.addons.publishHint':
+    'このフォルダーを Steam ワークショップにアップロードします。初回はアイテムを作成し、以降は更新します。',
+  'hudChrome.addons.changeNote': '変更内容',
+  'hudChrome.addons.publishConfirm': '公開',
+  'hudChrome.addons.publishing': 'ワークショップに公開しています...',
+  'hudChrome.addons.visibility.label': '公開範囲',
+  'hudChrome.addons.visibility.private': '非公開',
+  'hudChrome.addons.visibility.friends': 'フレンドのみ',
+  'hudChrome.addons.visibility.unlisted': '限定公開',
+  'hudChrome.addons.visibility.public': '公開',
+  'hudChrome.addons.publishResult.published': 'アイテム {id} としてワークショップに公開しました。',
+  'hudChrome.addons.publishResult.agreement':
+    'アイテム {id} としてアップロードしました。表示するにはアイテムページで Steam ワークショップの法的同意書に同意してください。',
+  'hudChrome.addons.publishResult.noSteam':
+    'Steam が起動していないため、アドオンを公開できませんでした。',
+  'hudChrome.addons.publishResult.invalid': 'アドオンフォルダーが検証に合格しませんでした。',
+  'hudChrome.addons.publishResult.notFound': 'アドオンフォルダーが見つかりませんでした。',
+  'hudChrome.addons.publishResult.failed':
+    '公開に失敗しました。詳細はデスクトップのログを確認してください。',
+  'hudChrome.addons.status.disabled': '無効',
+  'hudChrome.addons.status.loading': '読み込み中',
+  'hudChrome.addons.status.running': '実行中',
+  'hudChrome.addons.status.error': '読み込みエラー',
+  'hudChrome.addons.status.stopped': '停止',
+  'hudChrome.addons.status.blocked': '未読み込み',
+  'hudChrome.addons.status.tooNew': 'より新しいゲームバージョンが必要',
+  'hudChrome.addons.status.outdated': '古いバージョン',
+  'hudChrome.addons.status.invalid': '無効なアドオン',
+  'hudChrome.addons.stop.errors':
+    'エラーが繰り返されたため停止しました。再度有効にすると再試行します。',
+  'hudChrome.addons.stop.hang': '応答しなくなったため停止しました。再度有効にすると再試行します。',
+  'hudChrome.addons.stop.flood':
+    'インターフェースの更新を送りすぎたため停止しました。再度有効にすると再試行します。',
+  'hudChrome.addons.stop.load': '読み込みに失敗しました。',
+  'hudChrome.addons.invalidJson': 'addon.json ファイルが有効な JSON ではありません。',
+  'hudChrome.addons.invalidField': 'addon.json ファイルの「{field}」に問題があります。',
+  'hudChrome.addons.blockedPending': 'ワークショップからダウンロード中です。',
+  'hudChrome.addons.blockedDuplicate': 'ID が {id} の別のアドオンがすでに読み込まれています。',
+  'hudChrome.addons.blockedDependency': '必要なアドオンがないか読み込まれていません：{id}。',
+  'hudChrome.addons.origin.dev': '開発者向けサンプル',
+  'hudChrome.addons.origin.local': 'ローカル',
+  'hudChrome.addons.origin.workshop': 'ワークショップ',
+  'hudChrome.addons.perm.party': 'パーティーとレイド',
+  'hudChrome.addons.perm.combatLog': '戦闘ログ',
+  'hudChrome.addons.perm.chat': 'チャットを読む（ささやきを含む）',
+  'hudChrome.addons.perm.minimap': 'ミニマップ',
+  'hudChrome.addons.perm.inventory': 'バッグと装備',
+  'hudChrome.addons.perm.quests': 'クエストログ',
+  'hudChrome.addons.perm.secureActions': 'アクションボタン',
+  'hudChrome.auth.steamLoginCta': 'Steamで続行',
+  'hudChrome.auth.steamError': 'Steamでサインインできませんでした。もう一度お試しください。',
+  'hudChrome.auth.steamNoTicket':
+    'Steamが起動していません。Steamを起動してからもう一度お試しください。',
+  'hudChrome.auth.steamUnavailable': '現在Steamでのサインインはご利用いただけません。',
+  'apiError.steam.unlink_last_login':
+    'このアカウントにはSteamでしかサインインできません。連携を解除する前にメールアドレスとパスワードを追加してください。',
+  'loading.maintenance': 'レルムはメンテナンス中です。しばらくしてからもう一度お試しください。',
+  'loading.updateRequired':
+    'アップデートが必要です：このバージョンのゲームは古くなっています。Steamを再起動して更新してから、もう一度お試しください。',
+  'hudChrome.maintenance.beginsInMinute': '1分後にレルムのメンテナンスを開始します。',
+  'hudChrome.maintenance.beginsInMinutes': '{count}分後にレルムのメンテナンスを開始します。',
+  'hudChrome.maintenance.beginsInSeconds': '{count}秒後にレルムのメンテナンスを開始します。',
+  'hudChrome.maintenance.begun':
+    'レルムのメンテナンスを開始しました。新規ログインは締め切られています。',
+  'hudChrome.maintenance.cancelled': 'レルムのメンテナンスは中止されました。',
+  'hudChrome.maintenance.ended': 'レルムのメンテナンスが終了しました。ログインを再開しています。',
+  'apiError.steam.not_owned':
+    'このSteamアカウントはまだゲームを所有していません。Steamでゲームを入手してから、もう一度お試しください。',
+  'apiError.steam.reauth_required':
+    'Steamを連携するには、パスワード（二段階認証が有効な場合は認証コードも）を入力してください。',
+  'apiError.store.disabled': 'アーリーアクセス期間中はストアを利用できません。',
+  'legalPrompt.updated': '前回の同意以降に更新されました',
+  'legalPrompt.readFull': '全文を読む',
+  'legalPrompt.publisher':
+    '発行元：[PUBLISHER LEGAL NAME]（発行元が決まるまでの仮の表記）。これらの文書は法務レビュー待ちの草案です。',
+  'legalPrompt.terms.age': '13 歳以上であるか、保護者の同意が必要です。',
+  'legalPrompt.terms.fairPlay':
+    '公正にプレイしてください：チート、ボット、自動化、不具合の悪用、嫌がらせ、アイテムやゴールドの現金取引は禁止です。',
+  'legalPrompt.terms.virtualItems':
+    '仮想アイテム、通貨、進行状況に金銭的価値はありません。Steam 版での購入はすべて Steam を通じて行われます。',
+  'legalPrompt.terms.enforcement':
+    '規則に違反したアカウントは、警告、チャット禁止、一時停止、または永久停止となる場合があります。サポートに異議を申し立てることができます。',
+  'legalPrompt.privacy.account':
+    'アカウント、キャラクター、進行状況を保存し、サーバーの運営やチート・不正行為の防止のために IP アドレスなどの技術データを使用します。',
+  'legalPrompt.privacy.public':
+    'チャット、キャラクター名、ギルド、ランキングは他のプレイヤーに表示されます。',
+  'legalPrompt.privacy.analytics':
+    '分析はあなたが有効にしない限りオフで、広告会社や分析会社には何も送信されません。',
+  'legalPrompt.privacy.rights': 'データのエクスポートとアカウントの削除はいつでも行えます。',
+  'legalPrompt.eula.license':
+    '本ゲームは販売ではなく使用許諾であり、個人的な非商業的プレイのためのものです。',
+  'legalPrompt.eula.restrictions':
+    'ゲームの複製、転売、リバースエンジニアリング、またはチート、ボット、不具合の悪用は禁止です。',
+  'apiError.legal_acceptance.invalid_input':
+    '規約が更新されました。再読み込みして最新のバージョンに同意してください。',
 };

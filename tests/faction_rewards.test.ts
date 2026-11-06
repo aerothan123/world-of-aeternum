@@ -12,7 +12,7 @@ describe('Allied Faction World Quest Rewards & Toys', () => {
       const sim = new Sim({ seed: 101, playerClass: 'paladin', autoEquip: false });
       const meta = sim.meta(sim.playerId)!;
       sim.addItem('allied_hearthstone', 1);
-      meta.alliedHearthstoneAttunement = 'church_order';
+      meta.alliedHearthstoneAttunement = 'lanternwardens';
 
       // Dead test: useItem returns without teleporting
       sim.player.dead = true;
@@ -42,10 +42,10 @@ describe('Allied Faction World Quest Rewards & Toys', () => {
       // Position player far away from any hub
       sim.player.pos = { x: 50, y: 0, z: 50 };
 
-      // Attune to Church Order (Eastbrook Vale)
-      const success = attuneAlliedHearthstone(sim.ctx, sim.player, meta, 'church_order');
+      // Attune to Lanternwardens (Eastbrook Vale)
+      const success = attuneAlliedHearthstone(sim.ctx, sim.player, meta, 'lanternwardens');
       expect(success).toBe(true);
-      expect(meta.alliedHearthstoneAttunement).toBe('church_order');
+      expect(meta.alliedHearthstoneAttunement).toBe('lanternwardens');
 
       // Use hearthstone: starts 10-second cast
       sim.drainEvents();
@@ -57,7 +57,7 @@ describe('Allied Faction World Quest Rewards & Toys', () => {
       for (let i = 0; i < 201; i++) sim.tick();
 
       // Check player was teleported to Eastbrook Vale landing
-      const eastbrookLanding = FACTION_HUB_LANDINGS.church_order;
+      const eastbrookLanding = FACTION_HUB_LANDINGS.lanternwardens;
       expect(sim.player.pos.x).toBeCloseTo(eastbrookLanding.x, 0.1);
       expect(sim.player.pos.z).toBeCloseTo(eastbrookLanding.z, 0.1);
 
@@ -81,12 +81,12 @@ describe('Allied Faction World Quest Rewards & Toys', () => {
       expect(sim.player.castingAbility).toBeNull();
       meta.moveInput.forward = false;
 
-      // Attune to Rift Watch (Drifthaven) and successfully finish cast
-      attuneAlliedHearthstone(sim.ctx, sim.player, meta, 'rift_watch');
+      // Attune to Gilt Measure (Drifthaven) and successfully finish cast
+      attuneAlliedHearthstone(sim.ctx, sim.player, meta, 'gilt_measure');
       sim.useItem('allied_hearthstone');
       for (let i = 0; i < 201; i++) sim.tick();
 
-      const riftLanding = FACTION_HUB_LANDINGS.rift_watch;
+      const riftLanding = FACTION_HUB_LANDINGS.gilt_measure;
       expect(sim.player.pos.x).toBeCloseTo(riftLanding.x, 0.1);
       expect(sim.player.pos.z).toBeCloseTo(riftLanding.z, 0.1);
     });
@@ -97,8 +97,8 @@ describe('Allied Faction World Quest Rewards & Toys', () => {
       const sim = new Sim({ seed: 103, playerClass: 'warrior', autoEquip: false });
       const meta = sim.meta(sim.playerId)!;
       meta.copper = 500_000;
-      meta.factions.church_order = 15_000; // Vanguard standing (>= 13k)
-      meta.factionCurrencies.church_order = 200; // Tier 4 duffel costs 100 crests
+      meta.factions.lanternwardens = 15_000; // Vanguard standing (>= 13k)
+      meta.factionCurrencies.lanternwardens = 200; // Tier 4 duffel costs 100 crests
 
       const def = ITEMS.allied_vanguard_duffel;
       expect(def).toBeDefined();

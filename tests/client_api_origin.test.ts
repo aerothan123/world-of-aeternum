@@ -178,9 +178,9 @@ describe('apiUrl resolution per host', () => {
     expect(apiUrl('/api/perf-report')).toBe('/api/perf-report');
   });
 
-  it('resolves the packaged shell to the compiled-in production origin', async () => {
+  it('resolves an unconfigured shell to the local dev server, never an upstream domain', async () => {
     const apiUrl = await apiUrlFor(SHELL_USER_AGENT);
-    expect(apiUrl('/api/perf-report')).toBe('https://worldofclaudecraft.com/api/perf-report');
+    expect(apiUrl('/api/perf-report')).toBe('http://localhost:8787/api/perf-report');
   });
 
   it('resolves the shell to a configured origin when the build sets one', async () => {
@@ -215,7 +215,7 @@ describe('apiUrl resolution per host', () => {
     // src/runtime.ts's own contract, which tests/runtime.test.ts does not
     // cover. One level above apiUrl: it decides WHETHER to prefix, never where.
     for (const [name, value] of Object.entries(BLANK_BUILD_ENV)) vi.stubEnv(name, value);
-    expect(runtimeApiOrigin(SHELL_USER_AGENT)).toBe('https://worldofclaudecraft.com');
+    expect(runtimeApiOrigin(SHELL_USER_AGENT)).toBe('http://localhost:8787');
     expect(runtimeApiOrigin(BROWSER_USER_AGENT)).toBe('');
   });
 });

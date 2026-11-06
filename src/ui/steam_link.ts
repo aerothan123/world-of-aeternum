@@ -1,10 +1,13 @@
 import type { Api } from '../net/online';
 import { DESKTOP_APP } from '../net/online';
+import { linkStepUpNeeds, type SteamLinkProof, steamLinkWithProof } from '../net/steam_link_client';
 import type { DesktopBridge } from '../runtime';
 import { desktopBridge } from '../runtime';
 import { userFacingApiError } from './api_error_i18n';
 import { t } from './i18n';
+import { wireSteamLogin } from './steam_login';
 import { syncSteamWishlistVisibility } from './steam_wishlist';
+import { classifyAuthCode } from './two_factor_setup';
 
 // Steam account link (the deeds achievement mirror), a stacked card beside the
 // GitHub one. Entirely capability-driven: the group renders ONLY when the
@@ -99,6 +102,58 @@ export async function refreshSteamLinkStatus(api: Api): Promise<void> {
 // re-entry until the whole attempt settles.
 let linkInFlight = false;
 
+const PROOF_ID = 'steam-link-proof';
+
+/** Reveal the step-up inputs the server asked for (steam.reauth_required),
+ *  right after the Link button; the next click sends their values. Built in
+ *  code from existing auth.* strings, so the panel markup stays untouched. */
+function showLinkProofInputs(needs: { password: boolean; code: boolean }): void {
+  const button = document.getElementById('btn-steam-link');
+  if (!button) return;
+  let box = document.getElementById(PROOF_ID);
+  if (!box) {
+    box = document.createElement('span');
+    box.id = PROOF_ID;
+    button.insertAdjacentElement('afterend', box);
+  }
+  box.replaceChildren();
+  const add = (
+    id: string,
+    type: string,
+    placeholderKey: 'auth.password' | 'auth.twoFactorPlaceholder',
+    autocomplete: AutoFill,
+  ) => {
+    const input = document.createElement('input');
+    input.id = id;
+    input.type = type;
+    input.autocomplete = autocomplete;
+    input.placeholder = t(placeholderKey);
+    input.ariaLabel = t(placeholderKey);
+    box?.appendChild(input);
+    return input;
+  };
+  const first = needs.password
+    ? add('steam-link-password', 'password', 'auth.password', 'current-password')
+    : null;
+  const second = needs.code
+    ? add('steam-link-code', 'text', 'auth.twoFactorPlaceholder', 'one-time-code')
+    : null;
+  (first ?? second)?.focus();
+}
+
+/** The proof the visible step-up inputs hold (empty when none are shown). */
+function readLinkProof(): SteamLinkProof {
+  const password = (document.getElementById('steam-link-password') as HTMLInputElement | null)
+    ?.value;
+  const raw = (document.getElementById('steam-link-code') as HTMLInputElement | null)?.value ?? '';
+  const factor = raw ? classifyAuthCode(raw) : { code: '', recoveryCode: '' };
+  return {
+    ...(password ? { password } : {}),
+    ...(factor.code ? { code: factor.code } : {}),
+    ...(factor.recoveryCode ? { recoveryCode: factor.recoveryCode } : {}),
+  };
+}
+
 async function startSteamLink(api: Api): Promise<void> {
   if (linkInFlight) return;
   linkInFlight = true;
@@ -117,8 +172,11 @@ async function startSteamLink(api: Api): Promise<void> {
       return;
     }
     try {
-      await api.steamLink(ticket);
+      await steamLinkWithProof(api, ticket, readLinkProof());
+      document.getElementById(PROOF_ID)?.remove();
     } catch (err) {
+      const needs = linkStepUpNeeds(err);
+      if (needs) showLinkProofInputs(needs);
       // Refresh BEFORE flashing. The unlinked branch of refreshSteamLinkStatus
       // toggles #steam-status hidden, and the flash's restore guard only
       // protects a textContent overwrite, not the hidden toggle; a refresh
@@ -147,7 +205,11 @@ async function startSteamLink(api: Api): Promise<void> {
   }
 }
 
-export function wireSteamLink(api: Api): void {
+// onSignedIn (src/main.ts completeOnlineAuth) is the one hand-off Steam
+// sign-in needs back into the shell; optional so play.html-style callers keep
+// the link-only wiring.
+export function wireSteamLink(api: Api, onSignedIn?: () => Promise<void>): void {
+  if (onSignedIn) void wireSteamLogin(api, onSignedIn);
   // The one shell-boot moment the client's Steam surfaces are wired, so the
   // wishlist reminder's build probe rides along here rather than adding another
   // call to src/main.ts (a firewall, and pinned at its monolith ceiling). The

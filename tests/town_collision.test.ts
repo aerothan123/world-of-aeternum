@@ -4,12 +4,14 @@ import { getActiveWorldContent, NPCS, OVERWORLD_GRAVEYARDS, PLAYER_START } from 
 import { PLAYER_BODY_RADIUS } from '../src/sim/pathfind';
 import { MAX_STEP_HEIGHT } from '../src/sim/physics';
 import { GRAVE_COUNT, graveHeight, graveOffset } from '../src/sim/prop_layout';
-import { STATION_PROP_SIZES, townPropPlacements } from '../src/sim/town_props';
+import { STATION_PROP_SIZES, stationAnchor, townPropPlacements } from '../src/sim/town_props';
 import { groundHeight } from '../src/sim/world';
 
 // Use the same relocated service anchors as the renderer and collider builder.
 const stations = () => getActiveWorldContent().services?.stations ?? [];
-const anchors = () => stations().map((st) => ({ type: st.type, x: st.pos.x, z: st.pos.z }));
+// stationAnchor carries `dressed`, so a station whose kit bench is its face
+// (Eastbrook's crafting yard) adds no procedural cluster here either.
+const anchors = () => stations().map(stationAnchor);
 const townNpcs = () => {
   const out: { x: number; z: number }[] = [];
   for (const npc of Object.values(NPCS)) {
@@ -38,7 +40,10 @@ describe('town furniture blocks', () => {
       expect(isBlocked(SEED, prop.x, prop.z, R), `${prop.x},${prop.z}`).toBe(true);
       checked++;
     }
-    expect(checked).toBeGreaterThan(10);
+    // Town kit (phase 2): Eastbrook's six stations are dressed by their yard
+    // benches (box colliders, tests/town_kit_assets.test.ts), so only the
+    // Fenbridge and Highwatch clusters remain here.
+    expect(checked).toBeGreaterThanOrEqual(5);
   });
 
   it('blocks the headstones, except the one a Spirit Healer stands on', () => {
@@ -75,7 +80,7 @@ describe('town furniture is traversable, not a maze of walls', () => {
       ).toBeCloseTo(expected, 6);
       pinned++;
     }
-    expect(pinned).toBeGreaterThan(10);
+    expect(pinned).toBeGreaterThanOrEqual(5);
   });
 
   it('grows the headstones through the authored height ladder', () => {

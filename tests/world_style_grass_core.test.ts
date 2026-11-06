@@ -44,9 +44,12 @@ describe('painted cluster shape', () => {
     expect(painted.getAttribute('position').count).toBeLessThan(
       classic.getAttribute('position').count,
     );
-    // a pointed tip: one top vertex per blade, never the old blunt edge
+    // no blunt tip vertex: the soft look comes from the fuller taper, so a
+    // Refined clump costs no more triangles than the narrow painted blade
     expect(PAINTED_BLADE_SHAPE.tipWidth).toBe(0);
+    expect(PAINTED_BLADE_SHAPE.tipTaper).toBeGreaterThan(0.5);
     expect(painted.getAttribute('position').count).toBe(PAINTED_BLADE_SHAPE.blades * 7);
+    expect(PAINTED_BLADE_SHAPE.blades * 7).toBeLessThan(CLASSIC_BLADE_SHAPE.blades * 7);
     // the root ribbon width: vertices 0 and 1 of the first blade, a little
     // fuller than Classic's hair-fine blades but nowhere near a broad ribbon
     const rootWidth = (g: ReturnType<typeof clusterGeometry>) => {

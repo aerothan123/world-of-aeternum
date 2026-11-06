@@ -486,7 +486,7 @@ export function coachGlowBagItemId(
 }
 
 // ---------------------------------------------------------------------------
-// Ferryman Odo's guiding voice: the clip key (rendered by the ElevenLabs
+// Captain Fenlow's guiding voice: the clip key (rendered by the ElevenLabs
 // pipeline from scripts/voices/extra_lines.mjs, whose guide__odo__* texts
 // mirror these captions in English) plus the LOCALIZED caption row the coach
 // card shows while the line plays. tests/coach_prompt_view.test.ts holds the
@@ -522,7 +522,7 @@ export const GUIDE_VOICE_LINES: Readonly<
 
 /** How far from the golden trail counts as veering off (the trail legs are
  *  straight chords of winding roads, so this carries real slack), and how
- *  long the player must stay out before Odo says anything. */
+ *  long the player must stay out before Fenlow says anything. */
 export const VEER_OFF_YD = 30;
 export const VEER_GRACE_MS = 5000;
 export const VEER_NUDGE_COOLDOWN_MS = 45000;

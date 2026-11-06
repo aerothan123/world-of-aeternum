@@ -8,6 +8,7 @@ import { courierStrings } from './courier';
 // Assembled into `en` by ./index.ts under the `hudChrome` namespace. Kept as its
 // own module (no per-locale blocks) so new chrome keys are an English-only add.
 
+import { addonStrings } from './addons';
 import { armoryCollectionStrings, armorySkinStrings } from './armory';
 import { cosmeticsStrings } from './cosmetics';
 import { guildHallStrings } from './guild_hall';
@@ -199,6 +200,16 @@ export const hudChromeStrings = {
     remove: 'Delete',
     saved: 'Done.',
     failed: 'Could not save or load the preset.',
+  },
+  // Realm maintenance broadcasts (server/maintenance.ts), re-localized from the
+  // server's English by src/ui/maintenance_text_i18n.ts.
+  maintenance: {
+    beginsInMinute: 'Realm maintenance begins in 1 minute.',
+    beginsInMinutes: 'Realm maintenance begins in {count} minutes.',
+    beginsInSeconds: 'Realm maintenance begins in {count} seconds.',
+    begun: 'Realm maintenance has begun. New logins are closed.',
+    cancelled: 'Realm maintenance was cancelled.',
+    ended: 'Realm maintenance is over. Logins are open again.',
   },
   frameMenus: {
     hide: 'Hide Frame',
@@ -510,7 +521,7 @@ export const hudChromeStrings = {
   // (confirm-first so a mid-fight tap never opens the browser by accident).
   wiki: {
     confirmTitle: 'Open the Wiki?',
-    confirmBody: 'This opens the Project H wiki in your browser. The game keeps running.',
+    confirmBody: 'This opens the Wyndlewood wiki in your browser. The game keeps running.',
     confirmOpen: 'Open Wiki',
     confirmCancel: 'Cancel',
   },
@@ -665,7 +676,7 @@ export const hudChromeStrings = {
         'You are banned from Daily Rewards for another {remaining}. Access returns {until}. Reason: {reason}',
     },
   },
-  // The trade window's $WOC arm (docs/prd/woc/p2p-woc-trade.md): selling a
+  // The trade window's $WOC arm (retired, docs/launch/crypto-removal.md): selling a
   // staged item to the player you are trading with, for $WOC.
   trade: {
     // The neutral end of a trade session, for when the business the window
@@ -944,9 +955,9 @@ export const hudChromeStrings = {
         paused: 'Paused',
       },
     },
-    title: 'WOC Store',
-    close: 'Close WOC Store',
-    tabsLabel: 'WOC Store sections',
+    title: 'Wyndlewood Store',
+    close: 'Close Wyndlewood Store',
+    tabsLabel: 'Wyndlewood Store sections',
     storeTab: 'Cosmetic Store',
     membershipsTab: 'Memberships',
     membershipsUnavailable: 'Memberships are unavailable right now. Try again shortly.',
@@ -964,8 +975,8 @@ export const hudChromeStrings = {
     mountOnly: 'Mount only',
     mountBuy: 'Purchase Mount Skin',
     mountScopeLine: 'Account-wide skin. Worn by one character at a time.',
-    loading: 'Loading WOC Store...',
-    error: 'The WOC Store is unavailable right now. Please try again shortly.',
+    loading: 'Loading Wyndlewood Store...',
+    error: 'The Wyndlewood Store is unavailable right now. Please try again shortly.',
     balance: 'Claudium Balance',
     buyClaudium: 'Purchase Claudium',
     owned: 'Owned',
@@ -986,9 +997,9 @@ export const hudChromeStrings = {
     wallet: {
       title: 'Solana wallet',
       unlinked:
-        'Connect a wallet app, then sign once to link its public address to your Project H account. We never receive your recovery phrase or private key.',
+        'Connect a wallet app, then sign once to link its public address to your Wyndlewood account. We never receive your recovery phrase or private key.',
       connectedUnlinked:
-        'The wallet app is connected to this browser, but its public address is not linked to your Project H account yet.',
+        'The wallet app is connected to this browser, but its public address is not linked to your Wyndlewood account yet.',
       linkedDisconnected:
         'Your public address is linked. Reconnect that wallet app when you want to pay with SOL or WOC.',
       linkedConnected: 'Your linked wallet app is connected and ready for SOL or WOC purchases.',
@@ -1006,7 +1017,7 @@ export const hudChromeStrings = {
     // The rotating promo card above chat (src/ui/store_promo_card.ts). The
     // Refer a Friend advert takes its title from the referralCards namespace.
     membershipPromo: {
-      open: 'Membership in the WOC Store',
+      open: 'Membership in the Wyndlewood Store',
       close: 'Close membership promotion',
       eyebrow: 'Account perks',
       title: 'Membership',
@@ -1522,16 +1533,16 @@ export const hudChromeStrings = {
   },
   // The live ferry notes (tutorial_greeting_view.ts /
   // tutorial_greeting_window.ts): the town-bell homecoming, the island
-  // welcome from Ferryman Odo, and the close button they share.
+  // welcome from Captain Fenlow, and the close button they share.
   tutorialGreeting: {
     eastbrookGuidanceNote:
-      'Welcome to Eastbrook! Marshal Redbrook has work for you in the town square. Turn on golden guidance to find him and follow Wolves at the Door, or explore on your own. You can change this later in Options, Interface, Combat.',
+      'Welcome to Eastbrook! Warden Corren has work for you in the town square. Turn on golden guidance to find him and follow Wolves at the Door, or explore on your own. You can change this later in Options, Interface, Combat.',
     guidanceOn: 'Turn guidance on',
     guidanceOff: 'Turn guidance off',
     guidanceSetting: 'Eastbrook golden guidance',
     bellHomeNote:
       'Back from the shore already? That was the ferry bell you rang. Its twin hangs right beside you on the quay: ring it any time and the crossing will carry you back to the Proving Shore. No harm done either way.',
-    // Ferryman Odo's island welcome, shown once for a character's first
+    // Captain Fenlow's island welcome, shown once for a character's first
     // arrival: the greeting ferry lands beside his pier.
     // Deliberately short (CX: the old note was a wall of text at the exact
     // moment a new player wants to look at the world). It says where they
@@ -1554,9 +1565,9 @@ export const hudChromeStrings = {
     moveBodyTouch:
       'Use the movement stick to move and drag the screen to look around. Take a few steps to begin.',
     talkBodyTouch:
-      'Stand close to Marshal Redbrook and tap the Use button to speak, then accept his task.',
+      'Stand close to Warden Corren and tap the Use button to speak, then accept his task.',
     returnBodyTouch:
-      'Your task is done. Return to Marshal Redbrook and tap the Use button to turn it in.',
+      'Your task is done. Return to Warden Corren and tap the Use button to turn it in.',
     doneBodyTouch:
       'You have the basics, {name}. The Vale is yours to explore. Tap More, then Quests, to review your quest log anytime. Good hunting.',
     // Appended to the slay-step body (hud.tutorial.slayBody) so first-time players
@@ -1810,7 +1821,7 @@ export const hudChromeStrings = {
     // The word between sequenced keycap chips ("D then W"): press order made
     // explicit, the playtest ask.
     keycapThen: 'then',
-    // Ferryman Odo's guiding voice: the CAPTION rows the coach card shows
+    // Captain Fenlow's guiding voice: the CAPTION rows the coach card shows
     // while the (English) VO clip plays. Each row mirrors one
     // scripts/voices/extra_lines.mjs guide__odo__* line; reword the two
     // together. WORDY by M16, so the five non-Latin overlays carry fills.
@@ -1823,7 +1834,7 @@ export const hudChromeStrings = {
     voiceVeerOff: 'Hold up, friend, that is the wrong way. The golden path is behind you.',
     voiceGraduate:
       'The bell is rung for you. Eastbrook waits across the water, and you are ready for it.',
-    // The closing card once Ferryman Odo has the last hand-in: ring home.
+    // The closing card once Captain Fenlow has the last hand-in: ring home.
     bellTitle: 'Ring the bell',
     bellBody:
       'Your crossing is earned. Walk to the ferry bell beside the pier and press {interactKey}, or left-click it, to sail for Eastbrook.',
@@ -1842,9 +1853,9 @@ export const hudChromeStrings = {
   },
   nativeUpdate: {
     title: 'Update Available',
-    body: 'A new version of Project H is available. Update now for the latest fixes and improvements.',
+    body: 'A new version of Wyndlewood is available. Update now for the latest fixes and improvements.',
     bodyWithVersion:
-      'Version {version} of Project H is available. Update now for the latest fixes and improvements.',
+      'Version {version} of Wyndlewood is available. Update now for the latest fixes and improvements.',
     notNow: 'Not now',
     update: 'Update',
   },
@@ -3107,6 +3118,9 @@ export const hudChromeStrings = {
     // default (wordy, M16: the five non-Latin fills land in this same change).
     showAuraCaster: 'Show Aura Caster in Tooltips',
     highContrastBackground: 'High-Contrast Background',
+    shareAnalytics: 'Share Usage and Performance Data',
+    shareAnalyticsNote:
+      'Off unless you turn it on. Sends coarse play counters and performance reports to Wyndlewood only, never to other companies.',
     // Interface panel toggle: also engage auto-attack when using an offensive
     // ability, so white swings start without a separate Attack press (on by default).
     startAttackOnAbility: 'Auto-Attack on Ability Use',
@@ -3487,8 +3501,8 @@ export const hudChromeStrings = {
       offline: 'Offline',
     },
     diagnostics: {
-      panelAria: 'Project H performance diagnostics',
-      title: 'Project H Performance Doctor',
+      panelAria: 'Wyndlewood performance diagnostics',
+      title: 'Wyndlewood Performance Doctor',
       subtitle: 'A game-specific scan with evidence and code-level fixes.',
       aria: {
         liveMeasurements: 'Live performance measurements',
@@ -3655,7 +3669,7 @@ export const hudChromeStrings = {
         },
       },
       report: {
-        title: 'Project H performance diagnosis',
+        title: 'Wyndlewood performance diagnosis',
         statusLine: 'Status: {status} ({score}/100)',
         capturedLine: 'Captured: {captured}',
         topFindingLine: 'Top finding: {finding}',
@@ -4203,6 +4217,15 @@ export const hudChromeStrings = {
     churchOrderCrestNote: 'World Quests in Church Order zones',
     automatonCog: 'Automaton Cog',
     automatonCogNote: 'World Quests in Automaton zones',
+    // The Wyndlewood factions' marks (src/sim/factions.ts factionCurrencyName).
+    lanternCrest: 'Lantern Crest',
+    lanternCrestNote: 'World Quests in Lanternwarden lands',
+    hearthwrightCog: 'Hearthwright Cog',
+    hearthwrightCogNote: 'World Quests in Hearthwright Compact lands',
+    brackenAcorn: 'Bracken Acorn',
+    brackenAcornNote: 'World Quests in Bracken Circle lands',
+    giltMark: 'Gilt Mark',
+    giltMarkNote: 'World Quests in Gilt Measure lands',
   },
   // The world quest hover card (src/ui/hud/map/world_quest_tooltip_view.ts) and the
   // plain reward texts world_quest_view.ts builds for the screen-reader summary.
@@ -4214,25 +4237,53 @@ export const hudChromeStrings = {
     standingReward: '+{amount} {faction} Standing',
     currencyReward: '+{amount} {currency}',
   },
+  // The town quest board's notices tab (src/ui/hud/guild_board/town_board_panel.ts).
+  townBoard: {
+    tabNotices: 'Notices',
+    tabGuilds: 'Guilds',
+    intro: 'Work posted for today. Take a notice here and return it to whoever posted it.',
+    empty: 'Nothing is posted today. Check back after the next daily reset.',
+    postedBy: 'Posted by {npc}',
+    objective: '{label}: {count}',
+    rewardXp: '{amount} XP',
+    accept: 'Take Notice',
+    taken: 'In your quest log',
+    ready: 'Return to {npc}',
+    done: 'Done for today',
+    locked: 'Not yet open to you',
+    lockedLevel: 'Requires level {level}',
+    notAtBoard: 'You must be at the notice board to take that posting.',
+    needItem: 'You need the right item to use on that.',
+  },
   // The world quest entry banner (src/ui/hud/quest/world_quest_banner_view.ts):
   // the smaller line under the quest name when a world quest becomes active.
   worldQuestBanner: {
     subtitle: 'World Quest',
   },
-  // The Reputation tab (src/ui/hud/reputation/). Faction and tier names are
-  // PROVISIONAL: the World Quests scope leaves the final names to narrative.
+  // The Reputation tab (src/ui/hud/reputation/). The Wyndlewood factions
+  // (docs/narrative/wyndlewood_bible.md section 5); the provisional
+  // rift_watch / church_order / automatons rows are retired keys
+  // (scripts/i18n_retired_keys.mjs).
   reputation: {
     intro:
-      'All three factions progress at once: every world quest counts toward the faction of its zone.',
+      'All four factions progress at once: every world quest counts toward the faction of its zone.',
     faction: {
       rift_watch: 'Rift Watch',
       church_order: 'Church Order',
       automatons: 'Automatons',
+      lanternwardens: 'Lanternwardens',
+      hearthwright_compact: 'Hearthwright Compact',
+      bracken_circle: 'Bracken Circle',
+      gilt_measure: 'Gilt Measure',
     },
     hub: {
       rift_watch: 'Drifthaven',
       church_order: 'Brother Aldric',
       automatons: 'Wyrmwatch',
+      lanternwardens: 'Eastbrook',
+      hearthwright_compact: 'Wyrmwatch',
+      bracken_circle: 'Fenbridge',
+      gilt_measure: 'Drifthaven',
     },
     hubLine: '{hub} . {zone}',
     tier: {
@@ -4266,6 +4317,38 @@ export const hudChromeStrings = {
         trusted: 'Mechanist',
         proven: 'Artificer',
         vanguard: 'Forgemaster',
+        champion: 'Champion',
+      },
+      lanternwardens: {
+        unknown: 'Outsider',
+        recognized: 'Lamplighter',
+        trusted: 'Lanternbearer',
+        proven: 'Warden',
+        vanguard: 'Lanternwarden',
+        champion: 'Champion',
+      },
+      hearthwright_compact: {
+        unknown: 'Outsider',
+        recognized: 'Hand',
+        trusted: 'Journeyman',
+        proven: 'Hearthwright',
+        vanguard: 'Master Hearthwright',
+        champion: 'Champion',
+      },
+      bracken_circle: {
+        unknown: 'Outsider',
+        recognized: 'Seedling',
+        trusted: 'Grovefriend',
+        proven: 'Greenkeeper',
+        vanguard: 'Circle Elder',
+        champion: 'Champion',
+      },
+      gilt_measure: {
+        unknown: 'Outsider',
+        recognized: 'Client',
+        trusted: 'Associate',
+        proven: 'Factor',
+        vanguard: 'Magnate',
         champion: 'Champion',
       },
     },
@@ -6402,6 +6485,10 @@ export const hudChromeStrings = {
   auth: {
     appleLoginCta: 'Continue with Apple',
     appleError: 'Could not sign in with Apple. Please try again.',
+    steamLoginCta: 'Continue with Steam',
+    steamError: 'Could not sign in with Steam. Please try again.',
+    steamNoTicket: 'Steam is not running. Start Steam, then try again.',
+    steamUnavailable: 'Steam sign-in is not available right now.',
     appleChoiceIntro: 'Create a new account, or link Apple to one you already have.',
     appleChoiceExpired: 'That Apple sign-in expired. Please sign in with Apple again.',
     forgotPrompt: 'Forgot password?',
@@ -6945,8 +7032,33 @@ export const hudChromeStrings = {
     itemName: '{item}, {quality}',
     tooltip: '{quality}: +{levels} item levels. Retained through upgrades.',
   },
+  // Town restoration projects (src/ui/hud/housing/town_project_view.ts):
+  // {project} and {stage} are the names below; {items} the joined bundle.
+  townProject: {
+    progress: '{project}: {stage}. {done} of {needed} bundles are in. Each bundle is {items}.',
+    complete: '{project} is complete. The town thanks you.',
+    contribute: 'Contribute',
+    bundleItem: '{count} {item}',
+    bundleJoin: ' and ',
+    name: {
+      eastbrook_yard_well: 'The Yard Well',
+      eastbrook_yard_well_shaft: 'Line the shaft',
+      eastbrook_yard_well_roof: 'Raise the roof',
+      eastbrook_yard_well_winch: 'Hang the winch',
+      eastbrook_street_lamps: 'The Main Street Lamps',
+      eastbrook_street_lamps_posts: 'Set the posts',
+      eastbrook_street_lamps_lanterns: 'Hang the lanterns',
+    },
+  },
+  // The HUD durability indicator (src/ui/hud/durability/).
+  durability: {
+    low: 'Your equipment is badly damaged. Repair it at an armorer, a weaponsmith or a forge.',
+    broken:
+      'Some of your equipment is broken and gives no stats. Repair it at an armorer, a weaponsmith or a forge.',
+  },
   itemTooltip: {
     requiresLevel: 'Requires Level {level}',
+    durability: 'Durability {current} / {max}',
     riftTier: '{tier}-rank Rift item',
     riftUpgrade: 'Rift upgrade {level}/{max}',
     riftSockets: 'Rift gems {used}/{total}',
@@ -7170,7 +7282,7 @@ export const hudChromeStrings = {
   },
   discord: {
     title: 'Discord',
-    panelTitle: 'Project H',
+    panelTitle: 'Wyndlewood',
     open: 'Discord',
     close: 'Close',
     keybind: 'Discord Panel',
@@ -7395,7 +7507,7 @@ export const hudChromeStrings = {
     // that does not contain the visible text fails WCAG 2.5.3 (Label in Name)
     // for speech input, and the mobile pill's short caption is inside it too.
     wishlist: 'Wishlist on Steam',
-    wishlistAria: 'Wishlist on Steam: open the Project H store page',
+    wishlistAria: 'Wishlist on Steam: open the Wyndlewood store page',
     // The mobile More-tray caption: a 4-column 40px pill cannot hold the full
     // label, so the pill shows this and carries `wishlistAria` as its name.
     wishlistShort: 'Wishlist',
@@ -8655,7 +8767,7 @@ export const hudChromeStrings = {
     enchanting: 'Enchanting',
     tailoring: 'Tailoring',
     leatherworking: 'Leatherworking',
-    // The secondary Furnishing craft (Project H housing phase 2, SECONDARY_CRAFTS).
+    // The secondary Furnishing craft (Wyndlewood housing phase 2, SECONDARY_CRAFTS).
     furnishing: 'Furnishing',
   },
   // Per-enchant display names (Professions 2.0), keyed by the same
@@ -8750,6 +8862,10 @@ export const hudChromeStrings = {
     hub_rift_watch: 'Drifthaven (The Rift Watch)',
     hub_church_order: 'Eastbrook Vale (The Church Order)',
     hub_automatons: 'Wyrmwatch (The Automatons)',
+    hub_lanternwardens: 'Eastbrook Vale (The Lanternwardens)',
+    hub_hearthwright_compact: 'Wyrmwatch (The Hearthwright Compact)',
+    hub_bracken_circle: 'Fenbridge (The Bracken Circle)',
+    hub_gilt_measure: 'Drifthaven (The Gilt Measure)',
     riftGliderUse:
       'Use: Unfolds the glider, slowing falling speed for 30 sec. Landing or taking damage cancels the effect. (2 min cooldown)',
     targetDummyUse:
@@ -10494,7 +10610,7 @@ export const hudChromeStrings = {
     // sim.rift.raceWorldWin), and the reins come off the CLEAR, not one boss.
     sourceRift: 'Drops from {rank}-rank Rift clears',
     sourceQuest: 'Reward from the quest {quest}',
-    sourceStore: 'Purchased from the WOC Store',
+    sourceStore: 'Purchased from the Wyndlewood Store',
     // Award activities: the player action itself is the source, with no mob,
     // vendor, or quest in between.
     sourceActivityCorpseHarvest: 'Recovered while harvesting creature corpses',
@@ -10835,7 +10951,7 @@ export const hudChromeStrings = {
   arenaGate: {
     minLevelNote: 'Requires level {level}',
   },
-  // The $WOC Exchange window (docs/prd/woc/marketplace.md): USD-denominated
+  // The $WOC Exchange window (retired, docs/launch/crypto-removal.md): USD-denominated
   // auctions settled in $WOC, browser web + website desktop only,
   // config-gated server-side.
   // Every USD amount renders through formatNumber currency options and every
@@ -10865,7 +10981,7 @@ export const hudChromeStrings = {
     tabActivity: 'My Activities',
     // The Sales History tab: every completed sale on the realm, newest first.
     tabHistory: 'Sales History',
-    // The tab strip's own accessible name (the store's 'WOC Store sections'
+    // The tab strip's own accessible name (the store's 'Wyndlewood Store sections'
     // precedent), never the window title twice.
     tabsLabel: '$WOC Exchange sections',
     loading: 'Loading the Exchange...',
@@ -10873,12 +10989,12 @@ export const hudChromeStrings = {
     disabledRealm: 'The $WOC Exchange is not available on this realm.',
     // The wrapped DESKTOP shell's (Electron, Steam, packaged website build)
     // launcher confirm dialog (retired with the Exchange): the Exchange
-    // itself stays fail-closed there (docs/prd/woc/marketplace.md), so this
+    // itself stays fail-closed there (retired, docs/launch/crypto-removal.md), so this
     // hands the player off to the browser build instead of leaving the
     // launcher unexplained. Never shown on Capacitor native.
     browserOnlyConfirmTitle: 'Open the $WOC Exchange in your browser?',
     browserOnlyConfirmBody:
-      'The $WOC Exchange runs on the browser version of Project H only. This opens Project H in your browser, where you can sign in and open the Exchange; the game keeps running here.',
+      'The $WOC Exchange runs on the browser version of Wyndlewood only. This opens Wyndlewood in your browser, where you can sign in and open the Exchange; the game keeps running here.',
     browserOnlyConfirmOpen: 'Open in Browser',
     browserOnlyConfirmCancel: 'Cancel',
     // Names no cause (an operator pause and an unhealthy price print both
@@ -11228,7 +11344,7 @@ export const hudChromeStrings = {
     listingStatusCancelled: 'Cancelled',
     listingStatusSuspended: 'Suspended',
     listingStatusUnsold: 'Unsold',
-    // The character-select read-only Exchange panel (docs/prd/woc/marketplace.md
+    // The character-select read-only Exchange panel (retired, docs/launch/crypto-removal.md
     // "Character-select browsing"): a browse/sales-history-only view reachable
     // before any character enters the world, with no bid/buy/sell controls. It
     // reuses every other wocMarket.* string above (title, tabs, columns,
@@ -11343,7 +11459,7 @@ export const hudChromeStrings = {
     progress: '{label}: {count}/{required}',
     done: 'Weekly quest complete: {category}',
   },
-  // Player housing (Project H, src/ui/hud/housing/). {house} is the lot's
+  // Player housing (Wyndlewood, src/ui/hud/housing/). {house} is the lot's
   // localized house name, {price} a formatMoney amount.
   housing: {
     // The door prompt a non-owner gets on walking into a lot's front door.
@@ -11355,6 +11471,8 @@ export const hudChromeStrings = {
     denied: {
       badLot: 'That house is not for sale.',
       owned: 'You already own a house.',
+      // One house per account (src/sim/housing/ownership.ts).
+      accountOwned: 'Your account already has a house. An account can own one house.',
       range: 'You are too far from the front door of {house}.',
       money: 'You cannot afford {house}.',
       dead: 'You cannot buy a house while dead.',
@@ -11421,4 +11539,5 @@ export const hudChromeStrings = {
       station: 'Once placed, lets you craft recipes that need the {station} at home.',
     },
   },
+  addons: addonStrings,
 };

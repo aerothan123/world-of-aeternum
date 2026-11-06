@@ -12,7 +12,7 @@
     "isolatedModules": true,
     "types": ["vite/client", "node"],
     "paths": {
-      "#bot-detector": ["./private/bot_detector/src/index.ts", "./server/bot_detector/stub.ts"]
+      "#bot-detector": ["./private/bot_detector/src/index.ts", "./server/bot_detector/flag_only.ts"]
     }
   },
   "include": ["src", "headless", "tests", "server", "private", "bot"]

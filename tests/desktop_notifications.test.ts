@@ -203,7 +203,7 @@ describe('initDesktopNotifications update trigger', () => {
       {
         kind: 'update-ready',
         title: 'Update 0.38.0 is ready',
-        body: 'Restart Project H to apply the update.',
+        body: 'Restart Wyndlewood to apply the update.',
       },
     ]);
   });
@@ -219,7 +219,7 @@ describe('initDesktopNotifications update trigger', () => {
       {
         kind: 'update-ready',
         title: 'Update is ready',
-        body: 'Restart Project H to apply the update.',
+        body: 'Restart Wyndlewood to apply the update.',
       },
     ]);
     expect(sent[0].title).not.toContain('  ');

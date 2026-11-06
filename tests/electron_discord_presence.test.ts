@@ -319,14 +319,14 @@ describe('discord candidate socket paths', () => {
 });
 
 describe('discord app id resolution', () => {
-  it('ships the official application id as the baked default', () => {
-    // Pinned to the LITERAL, not through the constant production reads: the
-    // registration under the name "World of ClaudeCraft" carries exactly this
-    // snowflake, and a drifted digit would dial a stranger's app while every
-    // shape check stays green. Owner provisioning decision, 2026-08-15.
-    expect(DEFAULT_DISCORD_APP_ID).toBe('1537920691200983141');
-    expect(resolveDiscordClientId({})).toBe('1537920691200983141');
-    expect(resolveDiscordClientId(undefined)).toBe('1537920691200983141');
+  it('bakes no application id: presence is inert until the build stamps one', () => {
+    // The upstream World of ClaudeCraft registration id was removed in the
+    // Wyndlewood rebrand; the id is config-driven (env, then the build stamp).
+    expect(DEFAULT_DISCORD_APP_ID).toBeNull();
+    expect(resolveDiscordClientId({})).toBeNull();
+    expect(resolveDiscordClientId(undefined)).toBeNull();
+    expect(resolveDiscordClientId({}, APP_ID)).toBe(APP_ID);
+    expect(resolveDiscordClientId(undefined, 'junk')).toBeNull();
   });
 
   it('lets a valid env id override the default, and nothing else through', () => {

@@ -12,7 +12,7 @@ export interface IWorldMounts {
    *  Required before summoning any mount. */
   ridingTrained(): boolean;
   /** Character riding rank: untrained, +70% speed, or +110% speed. */
-  ridingTrainingTier(): 0 | 1 | 2;
+  ridingTrainingTier(): 0 | 1 | 2 | 3;
   /** Dismount instantly if riding; otherwise summon the trained ride with the
    *  selected cosmetic. An active lesson lends its training steed. */
   toggleMounted(): void;

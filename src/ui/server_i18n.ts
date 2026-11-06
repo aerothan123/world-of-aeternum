@@ -21,6 +21,7 @@ import {
   t,
   tPlural,
 } from './i18n';
+import { localizeMaintenanceText } from './maintenance_text_i18n';
 import { SERVER_NEW } from './server_i18n.newlocales';
 import { IN_GAME_MODERATION_MESSAGES } from './server_i18n_moderation';
 
@@ -495,7 +496,7 @@ export const DICT: Record<string, Record<string, string>> = {
     'guild.rankLeader': 'el Maestro de hermandad',
     'guild.rankOfficer': 'un Oficial',
     'guild.rankMember': 'un Miembro',
-    'world.entered': '{name} ha entrado en Project H.',
+    'world.entered': '{name} ha entrado en Wyndlewood.',
     'world.left': '{name} ha abandonado el mundo. ({reason})',
     'world.leaveLogout': 'cerró sesión',
     'world.leaveDisconnect': 'se desconectó',
@@ -664,7 +665,7 @@ export const DICT: Record<string, Record<string, string>> = {
     'guild.rankLeader': 'el Maestro de hermandad',
     'guild.rankOfficer': 'un Oficial',
     'guild.rankMember': 'un Miembro',
-    'world.entered': '{name} ha entrado en Project H.',
+    'world.entered': '{name} ha entrado en Wyndlewood.',
     'world.left': '{name} ha abandonado el mundo. ({reason})',
     'world.leaveLogout': 'ha cerrado sesión',
     'world.leaveDisconnect': 'se ha desconectado',
@@ -834,7 +835,7 @@ export const DICT: Record<string, Record<string, string>> = {
     'guild.rankLeader': 'le maître de guilde',
     'guild.rankOfficer': 'un officier',
     'guild.rankMember': 'un membre',
-    'world.entered': '{name} a rejoint Project H.',
+    'world.entered': '{name} a rejoint Wyndlewood.',
     'world.left': '{name} a quitté le monde. ({reason})',
     'world.leaveLogout': 'déconnexion',
     'world.leaveDisconnect': 'déconnecté',
@@ -1004,7 +1005,7 @@ export const DICT: Record<string, Record<string, string>> = {
     'guild.rankLeader': 'le maître de guilde',
     'guild.rankOfficer': 'un officier',
     'guild.rankMember': 'un membre',
-    'world.entered': '{name} est entré dans Project H.',
+    'world.entered': '{name} est entré dans Wyndlewood.',
     'world.left': '{name} a quitté le monde. ({reason})',
     'world.leaveLogout': 'déconnexion',
     'world.leaveDisconnect': 'déconnecté',
@@ -1168,7 +1169,7 @@ export const DICT: Record<string, Record<string, string>> = {
     'guild.rankLeader': 'il Maestro di Gilda',
     'guild.rankOfficer': 'un Ufficiale',
     'guild.rankMember': 'un Membro',
-    'world.entered': '{name} è entrato in Project H.',
+    'world.entered': '{name} è entrato in Wyndlewood.',
     'world.left': '{name} ha lasciato il mondo. ({reason})',
     'world.leaveLogout': 'disconnesso',
     'world.leaveDisconnect': 'connessione interrotta',
@@ -1337,7 +1338,7 @@ export const DICT: Record<string, Record<string, string>> = {
     'guild.rankLeader': 'der Gildenmeister',
     'guild.rankOfficer': 'ein Offizier',
     'guild.rankMember': 'ein Mitglied',
-    'world.entered': '{name} hat Project H betreten.',
+    'world.entered': '{name} hat Wyndlewood betreten.',
     'world.left': '{name} hat die Welt verlassen. ({reason})',
     'world.leaveLogout': 'abgemeldet',
     'world.leaveDisconnect': 'Verbindung getrennt',
@@ -1493,7 +1494,7 @@ export const DICT: Record<string, Record<string, string>> = {
     'guild.rankLeader': '会长',
     'guild.rankOfficer': '官员',
     'guild.rankMember': '会员',
-    'world.entered': '{name}进入了Project H。',
+    'world.entered': '{name}进入了Wyndlewood。',
     'world.left': '{name}离开了游戏。（{reason}）',
     'world.leaveLogout': '已登出',
     'world.leaveDisconnect': '已断开连接',
@@ -1647,7 +1648,7 @@ export const DICT: Record<string, Record<string, string>> = {
     'guild.rankLeader': '會長',
     'guild.rankOfficer': '幹部',
     'guild.rankMember': '成員',
-    'world.entered': '{name} 進入了 Project H。',
+    'world.entered': '{name} 進入了 Wyndlewood。',
     'world.left': '{name} 已離開了這個世界。（{reason}）',
     'world.leaveLogout': '已登出',
     'world.leaveDisconnect': '已斷線',
@@ -1805,7 +1806,7 @@ export const DICT: Record<string, Record<string, string>> = {
     'guild.rankLeader': '길드장',
     'guild.rankOfficer': '장교',
     'guild.rankMember': '길드원',
-    'world.entered': '{name}님이 Project H에 입장했습니다.',
+    'world.entered': '{name}님이 Wyndlewood에 입장했습니다.',
     'world.left': '{name}님이 세계를 떠났습니다. ({reason})',
     'world.leaveLogout': '접속 종료',
     'world.leaveDisconnect': '연결 끊김',
@@ -1965,7 +1966,7 @@ export const DICT: Record<string, Record<string, string>> = {
     'guild.rankLeader': 'ギルドマスター',
     'guild.rankOfficer': 'オフィサー',
     'guild.rankMember': 'メンバー',
-    'world.entered': '{name}がProject Hに参加しました。',
+    'world.entered': '{name}がWyndlewoodに参加しました。',
     'world.left': '{name}がワールドから退出しました。（{reason}）',
     'world.leaveLogout': 'ログアウト',
     'world.leaveDisconnect': '接続切断',
@@ -2131,7 +2132,7 @@ export const DICT: Record<string, Record<string, string>> = {
     'guild.rankLeader': 'o Mestre da Guilda',
     'guild.rankOfficer': 'um Oficial',
     'guild.rankMember': 'um Membro',
-    'world.entered': '{name} entrou em Project H.',
+    'world.entered': '{name} entrou em Wyndlewood.',
     'world.left': '{name} saiu do mundo. ({reason})',
     'world.leaveLogout': 'desconectou-se',
     'world.leaveDisconnect': 'desconectado',
@@ -2294,7 +2295,7 @@ export const DICT: Record<string, Record<string, string>> = {
     'guild.rankLeader': 'глава гильдии',
     'guild.rankOfficer': 'офицер',
     'guild.rankMember': 'участник',
-    'world.entered': '{name} входит в Project H.',
+    'world.entered': '{name} входит в Wyndlewood.',
     'world.left': '{name} покидает мир. ({reason})',
     'world.leaveLogout': 'вышел из игры',
     'world.leaveDisconnect': 'отключился',
@@ -3054,6 +3055,8 @@ const RULES: Rule[] = [
 
 // Returns the localized form of a server message, or null if it is not one of ours.
 export function localizeServerText(text: string): string | null {
+  const maintenanceLine = localizeMaintenanceText(text);
+  if (maintenanceLine) return maintenanceLine;
   if (text === 'Bound friends are linked by their referral invitation.')
     return t('hud.social.boundFriendLink');
   const restart = RESTART_MESSAGES[text]?.[getLanguage()];

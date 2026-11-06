@@ -1,3 +1,4 @@
+import { externalPaymentsEnabled } from '../payments_policy';
 import type { ClaudiumStripeIntent } from './economy_sdk';
 
 declare global {
@@ -104,6 +105,10 @@ export async function openStripeCheckout(
     .querySelector<HTMLButtonElement>('.stripe-checkout-close')
     ?.addEventListener('click', close);
   try {
+    // Never on the desktop (Steam) build, and never on a web build that did not
+    // opt in (src/payments_policy.ts): the overlay shows the ordinary failed
+    // state and Stripe.js is never loaded.
+    if (!externalPaymentsEnabled()) throw new Error('external_payments_disabled');
     await loadStripeScript();
     const stripe = window.Stripe?.(intent.publishableKey);
     if (!stripe) throw new Error('stripe_unavailable');

@@ -143,16 +143,16 @@ describe('weekly quest wire', () => {
     const client = bareClient(7);
     const send = vi.fn();
     Object.assign(client, { cmd: send });
-    client.commendWeeklyQuest('church_order');
+    client.commendWeeklyQuest('lanternwardens');
     expect(send).toHaveBeenCalledExactlyOnceWith({
       cmd: 'world_quest_weekly_commend',
-      faction: 'church_order',
+      faction: 'lanternwardens',
     });
     const commend = vi.fn();
     const sim = { commendWeeklyQuest: commend } as unknown as Sim;
     dispatchWorldQuestWire(sim, send.mock.calls[0][0], 7);
-    expect(commend).toHaveBeenCalledExactlyOnceWith('church_order', 7);
-    for (const faction of [undefined, null, 3, {}, ['rift_watch']])
+    expect(commend).toHaveBeenCalledExactlyOnceWith('lanternwardens', 7);
+    for (const faction of [undefined, null, 3, {}, ['gilt_measure']])
       commendWeeklyQuestWire(sim, { cmd: 'world_quest_weekly_commend', faction } as never, 7);
     expect(commend).toHaveBeenCalledTimes(1);
   });
@@ -165,10 +165,10 @@ describe('weekly quest wire', () => {
         week: 'wk_2',
         count: 1,
         state: 'completed',
-        commended: 'automatons',
+        commended: 'hearthwright_compact',
       },
     });
-    expect(target.weeklyQuest?.commended).toBe('automatons');
+    expect(target.weeklyQuest?.commended).toBe('hearthwright_compact');
     applyQuestSelfWire(target, {
       wkq: { questId: 'wk_raid', week: 'wk_2', count: 1, state: 'completed', commended: 'nobody' },
     });

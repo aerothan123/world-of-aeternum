@@ -16,6 +16,7 @@
 // browser, and the headless RL env.
 
 import { QUESTS } from '../data';
+import { killActivity, recordFactionActivity } from '../faction_activity';
 import { countAcrossGrades, materialGradeIds } from '../professions/material_grades';
 import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
@@ -79,6 +80,10 @@ function creditDiscreteQuestObjectives(
 }
 
 export function onMobKilledForQuests(ctx: SimContext, mob: Entity, meta: PlayerMeta): void {
+  // Lanternwarden standing for a Pale Accord kill (faction_activity.ts): the
+  // same per-credited-player hook, so a kill pays everyone the quest pays.
+  const killAct = killActivity(mob.templateId);
+  if (killAct) recordFactionActivity(ctx, meta, killAct, mob.level);
   creditDiscreteQuestObjectives(
     ctx,
     meta,
@@ -143,6 +148,13 @@ export function onNodeGatheredForQuests(
   creditDiscreteQuestObjectives(ctx, meta, (objective) => {
     if (objective.type !== 'gather') return false;
     if (objective.nodeType !== undefined && objective.nodeType !== node.type) return false;
+    // An area-bound gather (the marked trees of one copse) credits only a node
+    // standing inside its ring.
+    if (objective.area) {
+      const dx = node.pos.x - objective.area.x;
+      const dz = node.pos.z - objective.area.z;
+      if (dx * dx + dz * dz > objective.area.radius * objective.area.radius) return false;
+    }
     // Grade-aware like the collect arm below (D8): `itemId` is the id the
     // harvest actually granted, which is the FINE grade whenever the player's
     // tool outclasses the material, so matching the declared id alone would

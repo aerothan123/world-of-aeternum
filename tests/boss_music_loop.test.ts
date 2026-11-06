@@ -9,9 +9,10 @@ import {
   type InstanceMusicInput,
   instanceMusicDecision,
 } from '../src/game/instance_music';
+import { scoreCueUrl } from '../src/game/music_tracks';
 import { DUNGEONS, instanceOrigin, MOBS, ZONES } from '../src/sim/data';
 
-const MORTHEN_URL = '/audio/music/boss_morthen.mp3?v=664edb19bfe2';
+const MORTHEN_URL = scoreCueUrl('wyn_boss_undead') ?? '';
 const DUNGEON_BOSS_IDS = [
   'morthen',
   'sexton_marrow',
@@ -64,19 +65,26 @@ const morthen = (aggroTargetId: number | null): InstanceMusicEntity => ({
 });
 
 describe('per-boss fight tracks', () => {
-  it('ships one versioned cue per dungeon boss, preserving Morthen and sharing the Hydra cue', () => {
+  it('gives every dungeon boss a versioned Wyndlewood score cue, the Hydra heads one', () => {
     expect(Object.keys(BOSS_TRACK_URLS).sort()).toEqual([...DUNGEON_BOSS_IDS].sort());
     expect(BOSS_TRACK_URLS.morthen).toBe(MORTHEN_URL);
-    expect(BOSS_TRACK_URLS.rimeweb).toContain('boss_rimeweb.mp3?v=964cbe52e766');
-    expect(BOSS_TRACK_URLS.the_gorgebloom).toContain('boss_the_gorgebloom.mp3?v=a657f10af536');
-    expect(BOSS_TRACK_URLS.wildheart_high_priest).toContain(
-      'boss_wildheart_high_priest.mp3?v=ab150b2c36f3',
-    );
+    expect(BOSS_TRACK_URLS.korzul_the_gravewyrm).toBe(scoreCueUrl('wyn_boss_raid_dragon'));
+    expect(BOSS_TRACK_URLS.wildheart_beastmaster).toBe(scoreCueUrl('wyn_boss_wild'));
+    for (const id of [
+      'mere_hydra_head_center',
+      'vael_the_mistcaller',
+      'ysolei',
+      'tideglass_colossus',
+    ]) {
+      expect(BOSS_TRACK_URLS[id], id).toBe(scoreCueUrl('wyn_boss_tide'));
+    }
     expect(BOSS_TRACK_URLS.mere_hydra_head_left).toBe(BOSS_TRACK_URLS.mere_hydra_head_center);
     expect(BOSS_TRACK_URLS.mere_hydra_head_right).toBe(BOSS_TRACK_URLS.mere_hydra_head_center);
-    expect(new Set(Object.values(BOSS_TRACK_URLS)).size).toBe(18);
     for (const id of DUNGEON_BOSS_IDS) {
       expect(MOBS[id], id).toBeDefined();
+      expect(BOSS_TRACK_URLS[id], id).toMatch(
+        /^\/audio\/music\/wyn\/[a-z0-9_]+\.mp3\?v=[a-f0-9]{12}$/,
+      );
       const [asset, hash] = BOSS_TRACK_URLS[id].split('?v=');
       const bytes = readFileSync(path.join(__dirname, '..', 'public', asset));
       expect(createHash('sha256').update(bytes).digest('hex').slice(0, 12), id).toBe(hash);

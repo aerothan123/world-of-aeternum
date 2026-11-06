@@ -30,6 +30,7 @@ import { WEAPON_SKINS } from './content/weapon_skins';
 import { ITEMS } from './data';
 import { grantDeed } from './deeds';
 import { mountOwned } from './mounts';
+import { canRide } from './riding_training';
 import type { PlayerMeta } from './sim';
 import type { SimContext } from './sim_context';
 import type { Entity, GuildCosmeticRefusal } from './types';
@@ -138,7 +139,7 @@ export function buyGuildCosmetic(
   }
   if (offer.kind === 'mount') {
     // the stable's own gate (items.ts buyItem): reins are no use to a rider who cannot ride
-    if (!meta.ridingTrained) {
+    if (!canRide(meta)) {
       refuse('riding');
       return;
     }

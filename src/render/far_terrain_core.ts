@@ -33,6 +33,7 @@ import {
 import { fbm2 } from '../sim/rng';
 import type { BiomeId } from '../sim/types';
 import { terrainHeight, WATER_LEVEL, zoneBiomeAt } from '../sim/world';
+import { insideWorldX } from '../sim/world_x_edge';
 import {
   FAR_CELL_PROBES,
   farCellOvershoot,
@@ -794,11 +795,7 @@ export function farGroundColor(
   // weather. Halved, and still altitude-weighted (tall silhouettes recede,
   // valleys stay grounded), so the rim keeps its real rock and snow and the
   // atmosphere over it is the part that moves.
-  const edge = Math.max(
-    Math.abs(x) - (WORLD_MAX_X - 70),
-    WORLD_MIN_Z + 70 - z,
-    z - (WORLD_MAX_Z - 70),
-  );
+  const edge = Math.max(70 - insideWorldX(x), WORLD_MIN_Z + 70 - z, z - (WORLD_MAX_Z - 70));
   const rim = clamp01(edge / 64);
   if (rim > 0) {
     const alt = softRamp(h, 12, 42, cellRise);

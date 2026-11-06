@@ -45,7 +45,7 @@ describe('Allied Hearthstone attunement', () => {
   it('binding by use in an allied hub costs no cast and no cooldown', () => {
     const sim = hearthSim();
     const meta = sim.meta(sim.playerId)!;
-    const hub = FACTION_HUB_LANDINGS.automatons;
+    const hub = FACTION_HUB_LANDINGS.hearthwright_compact;
     placeAt(sim, hub.x + 5, hub.z + 5);
 
     const revBefore = meta.wireRev;
@@ -53,7 +53,7 @@ describe('Allied Hearthstone attunement', () => {
     expect(texts(sim.drainEvents())).toContain(
       'Your Allied Hearthstone is now attuned to Wyrmwatch.',
     );
-    expect(meta.alliedHearthstoneAttunement).toBe('automatons');
+    expect(meta.alliedHearthstoneAttunement).toBe('hearthwright_compact');
     // The bump is what makes the server's owner gate re-send the `ahs` key.
     expect(meta.wireRev).toBeGreaterThan(revBefore);
     // The bind is the whole action: no 10 s cast toward the hub the player
@@ -76,39 +76,39 @@ describe('Allied Hearthstone attunement', () => {
   it('a use in a hub while already attuned elsewhere still teleports to the bound hub', () => {
     const sim = hearthSim();
     const meta = sim.meta(sim.playerId)!;
-    meta.alliedHearthstoneAttunement = 'church_order';
-    const wyrmwatch = FACTION_HUB_LANDINGS.automatons;
+    meta.alliedHearthstoneAttunement = 'lanternwardens';
+    const wyrmwatch = FACTION_HUB_LANDINGS.hearthwright_compact;
     placeAt(sim, wyrmwatch.x, wyrmwatch.z);
     sim.useItem('allied_hearthstone');
-    expect(meta.alliedHearthstoneAttunement).toBe('church_order');
+    expect(meta.alliedHearthstoneAttunement).toBe('lanternwardens');
     expect(sim.player.castingAbility).toBe('allied_hearthstone');
   });
 
   it('keeps the attunement through serializeCharacter and addPlayer', () => {
     const sim = hearthSim();
     const meta = sim.meta(sim.playerId)!;
-    meta.alliedHearthstoneAttunement = 'rift_watch';
+    meta.alliedHearthstoneAttunement = 'gilt_measure';
     const state = sim.serializeCharacter(sim.playerId);
     if (!state) throw new Error('missing state');
-    expect(state.worldQuests?.alliedHearthstone).toBe('rift_watch');
+    expect(state.worldQuests?.alliedHearthstone).toBe('gilt_measure');
 
     const restored = new Sim({ seed: 4402, playerClass: 'mage', noPlayer: true });
     const pid = restored.addPlayer('mage', 'Binder', { state });
-    expect(restored.meta(pid)?.alliedHearthstoneAttunement).toBe('rift_watch');
-    expect(restored.serializeCharacter(pid)?.worldQuests?.alliedHearthstone).toBe('rift_watch');
+    expect(restored.meta(pid)?.alliedHearthstoneAttunement).toBe('gilt_measure');
+    expect(restored.serializeCharacter(pid)?.worldQuests?.alliedHearthstone).toBe('gilt_measure');
   });
 
   it('keeps a purchased stone and its chosen hub after reload without spending more currency', () => {
     const sim = new Sim({ seed: 4410, playerClass: 'mage', autoEquip: false });
     const meta = sim.meta(sim.playerId)!;
     const tobrin = npcByTemplate(sim, 'npc_automaton_quartermaster');
-    meta.factions.automatons = 13_000;
-    meta.factionCurrencies.automatons = 125;
+    meta.factions.hearthwright_compact = 13_000;
+    meta.factionCurrencies.hearthwright_compact = 125;
     meta.copper = 12_345;
     placeAt(sim, tobrin.pos.x, tobrin.pos.z);
     sim.buyItem(tobrin.id, 'allied_hearthstone');
     expect(sim.countItem('allied_hearthstone')).toBe(1);
-    expect(meta.factionCurrencies.automatons).toBe(25);
+    expect(meta.factionCurrencies.hearthwright_compact).toBe(25);
     expect(meta.copper).toBe(12_345);
     sim.attuneAlliedHearthstone(tobrin.id);
     const state = sim.serializeCharacter(sim.playerId);
@@ -117,7 +117,7 @@ describe('Allied Hearthstone attunement', () => {
     const restored = new Sim({ seed: 4411, playerClass: 'mage', noPlayer: true });
     const pid = restored.addPlayer('mage', 'Buyer', { state });
     const loaded = restored.meta(pid)!;
-    expect(loaded.alliedHearthstoneAttunement).toBe('automatons');
+    expect(loaded.alliedHearthstoneAttunement).toBe('hearthwright_compact');
     expect(restored.countItem('allied_hearthstone', pid)).toBe(1);
     const player = restored.entities.get(pid)!;
     player.pos = restored.ctx.groundPos(WICKHARBOR.x, WICKHARBOR.z);
@@ -126,10 +126,10 @@ describe('Allied Hearthstone attunement', () => {
     restored.useItem('allied_hearthstone', pid);
     expect(player.castingAbility).toBe('allied_hearthstone');
     runTicks(restored, 201);
-    const hub = FACTION_HUB_LANDINGS.automatons;
+    const hub = FACTION_HUB_LANDINGS.hearthwright_compact;
     expect(Math.hypot(player.pos.x - hub.x, player.pos.z - hub.z)).toBeLessThan(1);
     expect(restored.countItem('allied_hearthstone', pid)).toBe(1);
-    expect(loaded.factionCurrencies.automatons).toBe(25);
+    expect(loaded.factionCurrencies.hearthwright_compact).toBe(25);
     expect(loaded.copper).toBe(12_345);
   });
 
@@ -154,7 +154,9 @@ describe('Allied Hearthstone attunement', () => {
   it('writes nothing for an unbound stone and drops an unknown saved hub', () => {
     const sim = hearthSim();
     expect(sim.serializeCharacter(sim.playerId)?.worldQuests?.alliedHearthstone).toBeUndefined();
-    expect(sanitizeAlliedHearthstoneAttunement('automatons')).toBe('automatons');
+    expect(sanitizeAlliedHearthstoneAttunement('hearthwright_compact')).toBe(
+      'hearthwright_compact',
+    );
     expect(sanitizeAlliedHearthstoneAttunement('south_reach')).toBeUndefined();
     expect(sanitizeAlliedHearthstoneAttunement(7)).toBeUndefined();
     expect(sanitizeAlliedHearthstoneAttunement(undefined)).toBeUndefined();
@@ -163,25 +165,25 @@ describe('Allied Hearthstone attunement', () => {
   it('a faction quartermaster re-attunes the stone to its hub', () => {
     const sim = hearthSim();
     const meta = sim.meta(sim.playerId)!;
-    meta.alliedHearthstoneAttunement = 'church_order';
+    meta.alliedHearthstoneAttunement = 'lanternwardens';
     const tobrin = npcByTemplate(sim, 'npc_automaton_quartermaster');
     placeAt(sim, tobrin.pos.x + 2, tobrin.pos.z);
 
     const revBefore = meta.wireRev;
     sim.attuneAlliedHearthstone(tobrin.id);
-    expect(meta.alliedHearthstoneAttunement).toBe('automatons');
+    expect(meta.alliedHearthstoneAttunement).toBe('hearthwright_compact');
     expect(meta.wireRev).toBeGreaterThan(revBefore);
     expect(texts(sim.drainEvents())).toContain(
       'Your Allied Hearthstone is now attuned to Wyrmwatch.',
     );
-    expect(sim.alliedHearthstoneAttunement).toBe('automatons');
+    expect(sim.alliedHearthstoneAttunement).toBe('hearthwright_compact');
     expect(sim.player.castingAbility).toBeNull();
   });
 
   it('a rebind to the hub already bound is a silent no-op, and the dead cannot bind', () => {
     const sim = hearthSim();
     const meta = sim.meta(sim.playerId)!;
-    meta.alliedHearthstoneAttunement = 'automatons';
+    meta.alliedHearthstoneAttunement = 'hearthwright_compact';
     const tobrin = npcByTemplate(sim, 'npc_automaton_quartermaster');
     placeAt(sim, tobrin.pos.x + 2, tobrin.pos.z);
     sim.drainEvents();
@@ -229,7 +231,7 @@ describe('Allied Hearthstone attunement', () => {
       { cmd: 'allied_hearthstone_attune', npcId: tobrin.id },
       sim.playerId,
     );
-    expect(sim.meta(sim.playerId)?.alliedHearthstoneAttunement).toBe('automatons');
+    expect(sim.meta(sim.playerId)?.alliedHearthstoneAttunement).toBe('hearthwright_compact');
     // A malformed id never reaches the sim.
     sim.meta(sim.playerId)!.alliedHearthstoneAttunement = undefined;
     dispatchWorldQuestWire(sim, { cmd: 'allied_hearthstone_attune', npcId: 'x' }, sim.playerId);
@@ -238,10 +240,10 @@ describe('Allied Hearthstone attunement', () => {
 
   it('mirrors the attunement from the ahs self key on the client', () => {
     const target: { alliedHearthstoneAttunement?: FactionId | null } = {};
-    applyFactionSelfWire(target, { ahs: 'automatons' });
-    expect(target.alliedHearthstoneAttunement).toBe('automatons');
+    applyFactionSelfWire(target, { ahs: 'hearthwright_compact' });
+    expect(target.alliedHearthstoneAttunement).toBe('hearthwright_compact');
     applyFactionSelfWire(target, {});
-    expect(target.alliedHearthstoneAttunement).toBe('automatons');
+    expect(target.alliedHearthstoneAttunement).toBe('hearthwright_compact');
     applyFactionSelfWire(target, { ahs: null });
     expect(target.alliedHearthstoneAttunement).toBeNull();
     applyFactionSelfWire(target, { ahs: 'south_reach' });

@@ -397,7 +397,7 @@ describe('web-session gate on the consent POSTs', () => {
     expect(r.status).toBe(401);
     expect(r.body).toEqual({
       error: 'access_denied',
-      error_description: 'log in to your Project H account first',
+      error_description: 'log in to your Wyndlewood account first',
     });
     expect(db.accountAndScopeForToken).not.toHaveBeenCalled();
     expect(oauthDb.getOAuthClient).not.toHaveBeenCalled();

@@ -5,6 +5,7 @@ import {
   WATER_FOAM_WIDTH_YARDS,
   WATER_SEABED_CLAMP_YARDS,
 } from '../water_core';
+import { paintedWaterGlsl } from './ocean_painted_core';
 import {
   OCEAN_LOOP_SECONDS,
   OCEAN_VARIANCE_LOG2_K_MAX,
@@ -54,6 +55,11 @@ export interface OceanSurfaceShaderOptions {
   ssrSteps: number;
   /** The horizon apron's variant: discard inside every built fine sheet. */
   apron: boolean;
+  /**
+   * World Style Refined's painted pass (ocean_painted_core.ts). Absent or
+   * false emits the Classic text byte for byte.
+   */
+  refined?: boolean;
 }
 
 /** How many fine-sheet rects the apron variant can test (zones plus gaps). */
@@ -658,7 +664,7 @@ ${
   float foamCov = clamp(whitecap + surf + contactFoam + wakeFoam, 0.0, 0.95);
   vec3 foamCol = (sunRad * (0.35 + 0.55 * clamp(dot(N, L), 0.0, 1.0)) * sunUp + ambient * 0.9) * 0.92;
   col = mix(col, foamCol, foamCov);
-  keep *= 1.0 - foamCov;
+  keep *= 1.0 - foamCov;${opts.refined === true ? paintedWaterGlsl() : ''}
 
   // The surface fades out where the water thins to nothing on the shore; the
   // wash line outlives it, the way surf is the last thing to dry.

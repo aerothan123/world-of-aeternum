@@ -796,31 +796,32 @@ describe('/dev farmgrow (farming grow-now)', () => {
 describe('/dev rep', () => {
   it('awards faction standing under the world-quest level cap, per faction or all', () => {
     const sim = devSim();
-    sim.chat('/dev rep rift_watch 1500');
+    sim.chat('/dev rep gilt_measure 1500');
     // Level 1 sits under the low-level cap (3,000), so the award lands whole.
-    expect(sim.meta(sim.player.id)?.factions?.rift_watch).toBe(1500);
-    sim.chat('/dev rep rift_watch 5000');
-    expect(sim.meta(sim.player.id)?.factions?.rift_watch).toBe(3000);
+    expect(sim.meta(sim.player.id)?.factions?.gilt_measure).toBe(1500);
+    sim.chat('/dev rep gilt_measure 5000');
+    expect(sim.meta(sim.player.id)?.factions?.gilt_measure).toBe(3000);
     sim.chat('/dev level 20');
     sim.chat('/dev rep all 20000');
     expect(sim.meta(sim.player.id)?.factions).toEqual({
-      rift_watch: 20000,
-      church_order: 20000,
-      automatons: 20000,
+      gilt_measure: 20000,
+      lanternwardens: 20000,
+      hearthwright_compact: 20000,
+      bracken_circle: 20000,
     });
   });
 
   it('rejects an unknown faction and is inert without devCommands', () => {
     const sim = devSim();
     sim.chat('/dev rep nobody 100');
-    expect(sim.meta(sim.player.id)?.factions?.rift_watch ?? 0).toBe(0);
+    expect(sim.meta(sim.player.id)?.factions?.gilt_measure ?? 0).toBe(0);
     const plain = new Sim({
       seed: 42,
       playerClass: 'warrior',
       devCommands: false,
       world: EMPTY_TEST_WORLD,
     });
-    plain.chat('/dev rep rift_watch 1500');
-    expect(plain.meta(plain.player.id)?.factions?.rift_watch ?? 0).toBe(0);
+    plain.chat('/dev rep gilt_measure 1500');
+    expect(plain.meta(plain.player.id)?.factions?.gilt_measure ?? 0).toBe(0);
   });
 });

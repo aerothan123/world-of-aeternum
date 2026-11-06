@@ -18,7 +18,9 @@
 // track still cannot flip a shipped app to another backend. No electron
 // imports; callers pass everything in.
 
-const PRODUCTION_API_ORIGIN = 'https://worldofclaudecraft.com';
+// The production origin comes from the one brand module (empty until the owner
+// provisions the Wyndlewood domain, so every build reads the 'dev' track until then).
+const { PRODUCTION_API_ORIGIN } = require('./brand.cjs');
 
 // Normalize an origin-ish string to its URL origin so 'https://x.com' and
 // 'https://x.com/' compare equal; null when the value is not a parseable
@@ -35,15 +37,19 @@ function apiOriginKey(value) {
   return parsed.origin;
 }
 
-function isProductionApiOrigin(origin) {
-  return apiOriginKey(origin) === PRODUCTION_API_ORIGIN;
+// `production` defaults to the provisioned origin (electron/brand.cjs); it is a
+// parameter so the track split stays testable while none is provisioned.
+function isProductionApiOrigin(origin, production = PRODUCTION_API_ORIGIN) {
+  const productionKey = apiOriginKey(production);
+  if (productionKey === null) return false;
+  return apiOriginKey(origin) === productionKey;
 }
 
 // The electron-updater channel for a build baked with this API origin. Only
 // the exact production origin earns the production channel; anything else,
 // including a missing or garbage value, fails safe onto 'dev'.
-function updateChannelForOrigin(apiOrigin) {
-  return isProductionApiOrigin(apiOrigin) ? 'latest' : 'dev';
+function updateChannelForOrigin(apiOrigin, production = PRODUCTION_API_ORIGIN) {
+  return isProductionApiOrigin(apiOrigin, production) ? 'latest' : 'dev';
 }
 
 // Decide whether an offered update (electron-updater's UpdateInfo, which is

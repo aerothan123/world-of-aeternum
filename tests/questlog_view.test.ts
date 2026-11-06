@@ -13,6 +13,7 @@
 
 import { describe, expect, it } from 'vitest';
 import { NPCS, QUESTS, zoneAt } from '../src/sim/data';
+import { questBaseXp } from '../src/sim/quests/quest_xp';
 import type { PlayerClass, QuestProgress } from '../src/sim/types';
 import { buildQuestLogView, type QuestLogInput } from '../src/ui/hud/quest/questlog_view';
 
@@ -184,7 +185,7 @@ describe('buildQuestLogView: selected quest detail', () => {
       input({ quests: [progress('sim', QUEST_A.id, 'active')], selectedQuestId: QUEST_A.id }),
     );
     const d = v.detail!;
-    expect(d.xpReward).toBe(QUEST_A.xpReward);
+    expect(d.xpReward).toBe(questBaseXp(QUEST_A));
     expect(d.copperReward).toBe(QUEST_A.copperReward);
     expect(d.turnInNpcId).toBe(QUEST_A.turnInNpcId);
     expect(d.suggestedPlayers).toBe(QUEST_A.suggestedPlayers);

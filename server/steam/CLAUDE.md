@@ -1,7 +1,10 @@
 # server/steam
 
-Env-gated Steam integration: link-not-login account association plus the
-deed-to-Steam achievement mirror. The registry entry point is `index.ts`, and it
+Env-gated Steam integration: account association (the link) plus the
+deed-to-Steam achievement mirror. Steam LOGIN (Wyndlewood decision, Nov 2026)
+is built on top of these pieces but lives OUTSIDE this directory, in
+`server/steam_login.ts` + `server/steam_login_core.ts`, so this directory stays
+credential-free. The registry entry point is `index.ts`, and it
 exports `routes` ONLY; everything else imports the concrete module (`./config`
 for the flag, `./mirror` for the observer), because the barrel drags `routes.ts`
 into the importer's graph and breaks tests that partial-mock the db module.
@@ -34,16 +37,33 @@ never awaits any of it.
   link cache the routes overwrite synchronously.
 - `achievement_map.ts` - deed id to `ACH_*` name, hard cap 100. A shipped ACH
   name is PERMANENT: entries may be added, never renamed or reused.
-- `steam_db.ts` - the `steam_links` SQL boundary (DDL in `db.ts` SCHEMA):
+- `steam_db.ts` - the `steam_links` SQL boundary (plus `steamLinkOwnerStanding`,
+  the read that protects a Steam-only account's last login) (DDL in `db.ts` SCHEMA):
   `account_id` PK, `steam_id` UNIQUE, plain INSERT (replacing a link is an
   explicit unlink-then-link, never an upsert).
 - `config.ts` - the env gate, read LIVE per call (never a boot-time snapshot).
 
 ## Rules
-- **Linking is allowed; LOGIN WITH STEAM DOES NOT EXIST.** Nothing here calls
-  `newToken` or touches `auth_tokens`; a `steam_links` row is a cosmetic-mirror
-  pointer, never an identity or credential source.
+- **Nothing in this directory mints a credential.** Nothing here calls
+  `newToken`, `saveToken` or `createAccount`, or touches `auth_tokens`;
   `tests/server/steam_routes.test.ts` source-scans the directory for this.
+  Steam login is the one module that turns a Steam proof into a session, and
+  it is `server/steam_login.ts` (POST `/api/auth/steam`), pinned by
+  `tests/server/steam_login.test.ts`.
+- **Two ticket identities, never interchangeable.** The link ticket is bound to
+  `TICKET_IDENTITY` (`wocc-link`), the login ticket to `LOGIN_TICKET_IDENTITY`
+  (`wyndlewood-login`); `electron/steam.cjs` pins both literals. A link ticket
+  can never sign anyone in, and a login ticket can never re-point a link.
+- **A `steam_links` row can be an account's ONLY login.** A first Steam sign-in
+  provisions an account with no password and no email. So `DELETE
+  /api/steam/link` refuses with `steam.unlink_last_login` while the account has
+  no other login (`steamLinkOwnerStanding`), and reclaim-by-proof refuses
+  (`steam.account_taken`) to displace a Steam-only account that holds
+  characters; an EMPTY Steam-only account may still be displaced (the "clicked
+  Continue with Steam before linking my old account" path).
+- **Login tickets are single-use per process** (`createTicketReplayGuard`,
+  bounded, TTL ten minutes). Wyndlewood runs one realm process; a multi-realm
+  deploy must move the guard into Postgres before it ships.
 - The client is never trusted to name its own Steam id: the server verifies
   the posted ticket upstream with the publisher key and takes the id from the
   verified response. VAC- and publisher-banned accounts are refused.
@@ -53,6 +73,8 @@ never awaits any of it.
   deeds recorder or the game loop.
 
 ## Config
+`STEAM_LOGIN_ENABLED` (default on with the surface; `0` keeps link-only)
+gates Steam login; `/api/status` advertises it as `steam.login`.
 `STEAM_ENABLED=1` turns the surface on; default off, every route answers
 `steam.disabled` and the mirror is inert. `STEAM_APP_ID` and
 `STEAM_WEB_API_KEY` are read only when enabled and only inside this directory;

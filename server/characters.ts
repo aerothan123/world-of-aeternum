@@ -87,6 +87,7 @@ import {
   scopeAllowsMutation,
 } from './db';
 import { recentDeedsForCharacter } from './deeds_db';
+import { SERVER_EARLY_ACCESS } from './early_access_flags';
 import { ctxAccountId } from './http/context';
 import { gameMetricsCounters } from './http/game_signals';
 import { withBody } from './http/middleware/body';
@@ -406,7 +407,12 @@ export function buildCharacterList(
     characters: chars.map((c) => ({
       id: c.id,
       membershipSlot: c.membership_slot === true,
-      membershipLocked: membershipCharacterLocked(c.membership_slot, membership, nowMs),
+      membershipLocked: membershipCharacterLocked(
+        c.membership_slot,
+        membership,
+        nowMs,
+        SERVER_EARLY_ACCESS.membership,
+      ),
       name: c.name,
       class: c.class,
       level: c.level,
@@ -467,7 +473,7 @@ export function buildCharacterList(
       // addPlayer applies, so an instance save reads as its door's zone; null
       // for a mid-match battleground save that resumes at the world start).
       // Character select labels the roster row with it.
-      zoneId: savedZoneId(c.state?.pos),
+      zoneId: savedZoneId(c.state?.pos, c.state?.posEpoch),
       // The raid lockouts this character still carries (lockout id -> unlock
       // epoch ms), filtered against the host clock the same way addPlayer
       // loads them, so character select can list them without a login.

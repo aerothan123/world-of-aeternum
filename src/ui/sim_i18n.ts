@@ -230,6 +230,23 @@ const baseEnTable = {
   'error.ridingTrainLevel': 'You must be level 20 to learn Riding.',
   'error.ridingWrongNpc': 'You must speak to Marla Hitchen to learn Riding.',
   'log.ridingLearned': 'You have learned Riding. You can now summon and ride a mount.',
+  // Apprentice Riding, the level 10 first rank (src/sim/riding_training.ts).
+  'error.apprenticeRidingTrainLevel': 'You must be level 10 to learn Apprentice Riding.',
+  'error.mountBuyLevelApprentice': 'You must be level 10 to buy a mount.',
+  'log.apprenticeRidingLearned':
+    'You have learned Apprentice Riding. You can now summon and ride a mount.',
+  // Gear durability and repair (src/sim/durability/durability.ts).
+  'log.gearRepaired': 'Your equipment has been repaired.',
+  'log.gearBroken': 'One of your items has broken. Repair it at an armorer or weaponsmith.',
+  'error.nothingToRepair': 'Nothing needs repairing.',
+  'error.cannotRepairHere': 'This merchant cannot repair your equipment.',
+  // Town restoration projects (src/sim/life_skills/town_projects.ts). {project}
+  // and {stage} are the content's English names.
+  'log.townProjectComplete': '{project} is complete. The town thanks you.',
+  'log.townProjectNeeds':
+    '{project}: {stage} needs a bundle of materials. {done} of {needed} bundles are in.',
+  'log.townProjectStageDone': '{project}: {stage} is finished. The town thanks you.',
+  'log.townProjectContributed': 'You contribute to {project}: {stage}, {done} of {needed} bundles.',
   'log.advancedRidingLearned': 'You have learned Advanced Riding. Your mount speed is increased by {speed}%.',
   // Riding lesson (src/sim/mounts_training.ts). The shared "Too far away." /
   // "Not enough money." / "You can't do that while dead." refusals are reused
@@ -29618,9 +29635,10 @@ function tRaidExtra(key: RaidExtraKey, params?: InterpolationValues): string {
 // factionCurrencyName's English (src/sim/factions.ts) -> the currency labels the
 // Currencies tab already renders, for the faction quartermaster refusal.
 const FACTION_CURRENCY_LABEL_KEYS: Record<string, TranslationKey> = {
-  'Rift Watch Mark': 'hudChrome.currencies.riftWatchMark',
-  'Order Crest': 'hudChrome.currencies.churchOrderCrest',
-  'Automaton Cog': 'hudChrome.currencies.automatonCog',
+  'Lantern Crest': 'hudChrome.currencies.lanternCrest',
+  'Hearthwright Cog': 'hudChrome.currencies.hearthwrightCog',
+  'Bracken Acorn': 'hudChrome.currencies.brackenAcorn',
+  'Gilt Mark': 'hudChrome.currencies.giltMark',
 };
 
 // The /gear readout's English slot labels -> the already-translated itemUi.slots.*
@@ -29705,6 +29723,36 @@ function localizeSimMoneyText(text: string): string {
 }
 
 const RULES: Rule[] = [
+  // Town restoration projects (src/sim/life_skills/town_projects.ts): project
+  // and stage names are content English, spliced verbatim.
+  {
+    re: /^(.+) is complete\. The town thanks you\.$/,
+    build: (m) => tSim('log.townProjectComplete', { project: m[1] }),
+  },
+  {
+    re: /^(.+?): (.+) needs a bundle of materials\. (\d+) of (\d+) bundles are in\.$/,
+    build: (m) =>
+      tSim('log.townProjectNeeds', {
+        project: m[1],
+        stage: m[2],
+        done: formatNumber(Number(m[3])),
+        needed: formatNumber(Number(m[4])),
+      }),
+  },
+  {
+    re: /^(.+?): (.+) is finished\. The town thanks you\.$/,
+    build: (m) => tSim('log.townProjectStageDone', { project: m[1], stage: m[2] }),
+  },
+  {
+    re: /^You contribute to (.+?): (.+), (\d+) of (\d+) bundles\.$/,
+    build: (m) =>
+      tSim('log.townProjectContributed', {
+        project: m[1],
+        stage: m[2],
+        done: formatNumber(Number(m[3])),
+        needed: formatNumber(Number(m[4])),
+      }),
+  },
   {
     re: /^You have learned Advanced Riding\. Your mount speed is increased by (\d+)%\.$/,
     build: (m) => tSim('log.advancedRidingLearned', { speed: formatNumber(Number(m[1]), { useGrouping: false }) }),

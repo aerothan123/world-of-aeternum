@@ -44,7 +44,7 @@ import { vendorStackSize } from './vendor_stack';
  *  every such stale call site into a compile error instead. */
 export interface VendorBuyOptions {
   /** Riding service quote rank; a stale quote never purchases the next rank. */
-  expectedRidingTier?: 0 | 1;
+  expectedRidingTier?: 0 | 1 | 3;
   /** Row units (purchases) to buy in one command; omitted or 1 is the
    *  ordinary single purchase and stays byte-identical on the wire. */
   count?: number;

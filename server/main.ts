@@ -1,7 +1,6 @@
 // FIRST import on purpose: loads .env before realm.ts (or any other module
 // with an import-time process.env read) evaluates. See server/env.ts.
 import './env';
-import { randomUUID } from 'node:crypto';
 import * as fs from 'node:fs';
 import * as http from 'node:http';
 import * as path from 'node:path';
@@ -10,7 +9,6 @@ import { WebSocketServer } from 'ws';
 import type { MembershipSnapshot } from '../src/membership_contract';
 import { bankGrantStorageSlots } from '../src/sim/bank';
 import { DEEDS } from '../src/sim/content/deeds';
-import { PROVING_SHORE_ARRIVAL } from '../src/sim/content/proving_shore';
 import { GUILD_BOARD_CATEGORY_PARAM } from '../src/sim/guild_board_category';
 import {
   LEADERBOARD_MAX,
@@ -19,10 +17,7 @@ import {
   paginateLeaderboard,
 } from '../src/sim/leaderboard_page';
 import { settleAllWorldPvpSpoils } from '../src/sim/pvp/world_pvp_spoils';
-import { Sim } from '../src/sim/sim';
-import type { PlayerClass } from '../src/sim/types';
 import { virtualLevel } from '../src/sim/types';
-import { WORLD_SEED } from '../src/sim/world_seed';
 import {
   type DeedsLeaderboardEntry,
   type DeedsLeaderboardSelf,
@@ -52,6 +47,7 @@ import {
   verifyLoginTwoFactor,
 } from './account';
 import { loadAccountBuddies } from './account_buddies_db';
+import { accountHouseForJoin } from './account_house_migration';
 import { loadAccountLedger } from './account_ledger_db';
 import { accountLedgerKeysFor } from './account_ledger_keys_cache';
 import { relicRecordsIdle } from './account_ledger_records';
@@ -139,6 +135,8 @@ import {
   characterDeleteHttpRefusal,
   characterDeleteRequestSignal,
 } from './character_delete_http';
+import { PROCESS_LEASE_HOLDER } from './character_lease_db';
+import { initialCharacterState } from './character_newborn';
 import { bustAllLifetimeXpRankCache } from './character_rank_cache';
 import { characterSheet, SHEET_RECENT_DEEDS, type SheetRank } from './character_sheet';
 import {
@@ -152,11 +150,13 @@ import {
 } from './characters';
 import { pruneChatViolationsBatch } from './chat_filter_db';
 import {
+  claudiumPathEnabled,
   claudiumPreAuthMutationRateLimited,
   configureClaudiumRuntime,
   handleClaudiumApi,
   handleClaudiumStripeWebhook,
   handleMembershipStripeWebhook,
+  sendStoreDisabled,
 } from './claudium';
 import { claudiumSpendDetailed } from './claudium_proxy';
 import { configureCommunityTestAccounts } from './community_test_accounts';
@@ -242,6 +242,7 @@ import {
   handleDesktopLoginExchange,
   issueDesktopLoginCode,
 } from './desktop_login';
+import { assertDevCommandsBootSafe } from './dev_commands_boot_guard';
 import {
   configureDiscordRuntime,
   handleDiscordCallback,
@@ -276,6 +277,10 @@ import { configurePaidGuildCreateBackgroundGate } from './guild_create_db';
 import { createAccessLogSink } from './http/access_log';
 import { setAttackSignalSink } from './http/attack_signals';
 import { registerBusinessMetrics } from './http/business_metrics';
+import {
+  registerClientAnalyticsMetrics,
+  setClientAnalyticsMetricsSink,
+} from './http/client_analytics_metrics';
 import { handleClientError } from './http/client_error';
 import { registerClientPerfMetrics, setClientPerfMetricsSink } from './http/client_perf_metrics';
 import { type Config, DEFAULT_DISPATCH, type DispatchMode, loadConfig } from './http/config';
@@ -328,6 +333,7 @@ import {
 } from './leaderboard';
 import { findLiveSessionForCharacter, resolveLiveCharacterFrom } from './live_character_resolver';
 import { pruneMailCustodyParcelsBatch } from './mail_custody_overlay';
+import { configureMaintenance, maintenance } from './maintenance';
 import { MAX_MAP_SAVE_BYTES } from './maps';
 import {
   mapDeleteCore,
@@ -395,6 +401,7 @@ import {
 import { createPgRateLimitStore } from './ratelimit_db';
 import { isPublicCorsPath, publicOriginFromRequest, REALM, REALM_DIRECTORY } from './realm';
 import { publishRealmBuilderRoll } from './realm_builder';
+import { startRealmHeartbeat } from './realm_heartbeat';
 import { referralCapacityEarned } from './referral_account_entitlements_db';
 import { referralArmourForAccount, resolveReferralSignup } from './referral_armour_db';
 import { registerReferralMetrics } from './referral_metrics';
@@ -420,6 +427,7 @@ import {
 import { STATIC_PAGE_ALIASES, spaFallbackStatus } from './static_fallback';
 import { readStaticSfxSnapshot, type StaticSfxSnapshot } from './static_sfx';
 import { stopSteamMirror } from './steam/mirror';
+import { configureSteamLoginRuntime } from './steam_login';
 import {
   beginStoragePurchase,
   claimStoragePurchaseSpend,
@@ -440,6 +448,7 @@ import {
 } from './storage_purchases';
 import { configureSuspicionFlagDataset, suspicionFlagsIdle } from './suspicion_flags';
 import { listSuspicionFlagDataset } from './suspicion_flags_db';
+import { TownProjectsStore } from './town_projects_store';
 import { passesTurnstile } from './turnstile';
 import { pruneUnstuckReportsBatch } from './unstuck_db';
 import { stopUnstuckRecords, UNSTUCK_RECORD_SHUTDOWN_DRAIN_MS } from './unstuck_records';
@@ -541,35 +550,6 @@ function liveGame(): GameServer {
   // constructor default keeps DB-mocked unit worlds independent from config.
   gameInstance ??= new GameServer(undefined, majorBackgroundDbGate);
   return gameInstance;
-}
-
-function initialCharacterState(
-  cls: PlayerClass,
-  name: string,
-  skin: number,
-): import('../src/sim/sim').CharacterState {
-  // Wall-clock injection is load-bearing for persistence: every blob that
-  // reaches Postgres must be written on the epoch base (farm_persist.ts
-  // clock-base doctrine), never the sim-clock default that starts at zero.
-  const sim = new Sim({
-    seed: WORLD_SEED,
-    playerClass: cls,
-    playerName: name,
-    lockoutNowMs: () => Date.now(),
-    mintItemGuid: randomUUID,
-  });
-  sim.setPlayerSkin(sim.playerId, skin);
-  const character = sim.serializeCharacter(sim.playerId);
-  if (!character) throw new Error('failed to serialize initial character');
-  // A newborn begins ON the Proving Shore (the coached tutorial), no opt-in
-  // ferry ride: the persisted row is what decides an online spawn (addPlayer
-  // prefers savedPos over playerStart), so island entry costs no sim change,
-  // keeps the offline default spawn untouched, and leaves every parity
-  // golden byte-identical. The greeting sweep sees the fresh character
-  // already ashore and plays Odo's arrival instead of Bryn's ferry offer.
-  character.pos = { x: PROVING_SHORE_ARRIVAL.x, z: PROVING_SHORE_ARRIVAL.z };
-  character.facing = PROVING_SHORE_ARRIVAL.facing;
-  return character;
 }
 
 // Newborn-state seam for tests (the boardReadTestSeam precedent): pins that
@@ -2239,7 +2219,7 @@ async function handleApi(req: http.IncomingMessage, res: http.ServerResponse): P
         // statusHandler (server/leaderboard.ts) carries the same players_cap field.
         players_cap: canonicalPlayersCap(),
         names: [...liveGame().clients.values()].map((s) => s.name),
-        steam: { enabled: false },
+        steam: { enabled: false, login: false },
         epic: { enabled: false },
         // The /dev GUI capability advert. NOT hardcoded like steam.enabled above:
         // the dev_* cheats ride the websocket dispatcher, which this arm serves
@@ -2614,6 +2594,10 @@ async function handleApi(req: http.IncomingMessage, res: http.ServerResponse): P
         return json(res, 429, { error: 'rate limited' });
       return handleGitHubUnlink(req, res, accountId);
     }
+    // Early Access: a switched-off Claudium store exposes no /api/claudium path.
+    if (url.startsWith('/api/claudium') && !claudiumPathEnabled(url.split('?')[0])) {
+      return sendStoreDisabled(res);
+    }
     if (req.method === 'POST' && url === '/api/claudium/stripe/webhook') {
       return handleClaudiumStripeWebhook(req, res);
     }
@@ -2853,6 +2837,12 @@ configureAuthRuntime({
 });
 configureAppleAuthRuntime({
   isIpBlocked: (ip) => liveGame().isIpBlocked(ip),
+});
+// Steam login (server/steam_login.ts): the same IP-block gate and the same
+// Turnstile decision (desktop origins admitted by Origin) as the login routes.
+configureSteamLoginRuntime({
+  isIpBlocked: (ip) => liveGame().isIpBlocked(ip),
+  passesTurnstile: (req, body) => passesTurnstile(req, body, activeConfig().turnstileSecret),
 });
 
 // Inject the main.ts runtime the ported character handlers (server/characters.ts) need
@@ -3231,6 +3221,9 @@ export function routeHttpRequest(req: http.IncomingMessage, res: http.ServerResp
 // ---------------------------------------------------------------------------
 
 export async function startServer(): Promise<http.Server> {
+  // Refuse a production boot that arms the /dev cheat set (dev_commands_boot_guard.ts),
+  // before config, the DB wait, or any listener.
+  assertDevCommandsBootSafe(process.env);
   // Load + validate the whole environment ONCE, before anything else (before the
   // 120x500ms DB retry loop), so a garbage flag or a missing required value fails fast
   // with a clear message rather than after a minute of connection retries. This
@@ -3257,6 +3250,7 @@ export async function startServer(): Promise<http.Server> {
     }
   }
   await ensureSchema();
+  await startRealmHeartbeat(pool, REALM, PROCESS_LEASE_HOLDER); // launch wipe fence
   await seedOAuthClients();
   const game = liveGame();
   const bankLedgerGrowthMonitor = createBankLedgerGrowthMonitor({
@@ -3349,6 +3343,13 @@ export async function startServer(): Promise<http.Server> {
   // releases the deliberately silent-inert Phase 2 wire).
   await game.loadGuildBanks();
   await game.loadRifts();
+  // Town restoration projects: the realm-wide counters (server/town_projects_store.ts).
+  const townProjects = new TownProjectsStore(game.sim.ctx, REALM, {
+    load: (key) => loadWorldState(key),
+    save: (key, data) => saveWorldState(key, data),
+  });
+  await townProjects.load();
+  townProjects.start();
   await game.loadChatFilter();
   await game.realmMotd.load();
   await game.loadBlockedIps();
@@ -3450,9 +3451,17 @@ export async function startServer(): Promise<http.Server> {
     maxPayload: WS_MAX_PAYLOAD_BYTES,
     perMessageDeflate: wsPerMessageDeflateOptions(config.wsPerMessageDeflate),
   });
+  // Realm maintenance (server/maintenance.ts): broadcasts ride the game's system
+  // line; the WS gate below reads the same controller.
+  configureMaintenance((text) => game.broadcastSystem(text));
+  if (maintenance().gateActive())
+    console.warn('MAINTENANCE_MODE=1: realm booted closed to non-staff');
   const wsAuth = createWsAuth({
     game,
+    maintenanceGateActive: () => maintenance().gateActive(),
     getMembership,
+    accountHouse: (accountId, characterId) =>
+      accountHouseForJoin(pool, accountId, REALM, characterId),
     referralArmourForAccount,
     accountAndScopeForToken,
     moderationStatusForAccount,
@@ -3529,6 +3538,8 @@ export async function startServer(): Promise<http.Server> {
   // The client-perf beacon series (server/http/client_perf_metrics.ts): the
   // perf-report ingest emits through this slot after each stored row.
   setClientPerfMetricsSink(registerClientPerfMetrics(httpMetrics.registry));
+  // The opt-in first-party analytics counters (server/client_analytics.ts).
+  setClientAnalyticsMetricsSink(registerClientAnalyticsMetrics(httpMetrics.registry));
   registerParseMetrics(httpMetrics.registry, game.parseCapture.counters);
   // Hand the same live source to /livez, so a wedged loop answers 503 from outside
   // the process. Registered HERE rather than read from the route arm: the /livez arm
@@ -3804,6 +3815,8 @@ export async function startServer(): Promise<http.Server> {
     await game.saveMarket();
     await game.saveMail();
     await game.saveRifts();
+    townProjects.stop();
+    await townProjects.saveIfChanged();
     await game.endAllPlaySessions();
     // Drain any bank_ledger writes still queued on the FIFO tail BEFORE the lease
     // sweep: once the leases drop, a replacement process can load the same character

@@ -74,7 +74,7 @@ import type { LiveReportTarget } from './moderation_db';
 import { recordUsageMetric } from './provider_usage';
 import { guildBoardPresenceRateLimited, publicReadRateLimited } from './ratelimit';
 import { REALM, REALM_DIRECTORY } from './realm';
-import { steamEnabled } from './steam/config';
+import { steamEnabled, steamLoginEnabled } from './steam/config';
 
 // ---------------------------------------------------------------------------
 // Named constants (single source of truth for the query decoders + fixed args).
@@ -772,7 +772,7 @@ async function statusHandler(ctx: Ctx): Promise<void> {
     realm: REALM,
     players_online: rt.playersOnline(),
     players_cap: rt.playersCap(),
-    steam: { enabled: steamEnabled() },
+    steam: { enabled: steamEnabled(), login: steamLoginEnabled() },
     epic: { enabled: epicEnabled() },
     dev_commands: process.env.ALLOW_DEV_COMMANDS === '1',
     profiler_invulnerability: process.env.ALLOW_DEV_COMMANDS === '1',

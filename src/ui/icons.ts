@@ -9,6 +9,9 @@
 // has a proper icon. Results are cached as data URLs.
 
 import { BUDDY_ART_PENDING_ITEM_IDS } from '../sim/content/buddies';
+import { CHAPTER_ONE_ART_PENDING_ITEM_IDS } from '../sim/content/chapter_one';
+import { CHAPTER_TWO_ART_PENDING_ITEM_IDS } from '../sim/content/chapter_two';
+import { CHAPTER_TWO_GATED_ART_PENDING_ITEM_IDS } from '../sim/content/chapter_two_bundles';
 import { FURNITURE_ART_PENDING_ITEM_IDS } from '../sim/content/furniture';
 import { HOLLOW_CRYPT_ART_PENDING_ITEM_IDS } from '../sim/content/hollow_crypt_items';
 import { IGNIVAR_ART_PENDING_ITEM_IDS } from '../sim/content/ignivar_loot';
@@ -5867,6 +5870,14 @@ export const ITEM_ART_PENDING = new Set<string>([
   ...FURNITURE_ART_PENDING_ITEM_IDS,
   ...Object.keys(ITEM_ART_PLACEHOLDERS),
   ...QUEST_SHIELD_ART_PENDING_ITEM_IDS,
+  // Wyndlewood Chapter One's quest items (content/chapter_one.ts): EMPTY since
+  // its painted wave (chapter-one-painted-icons-2026-11-04) landed.
+  ...CHAPTER_ONE_ART_PENDING_ITEM_IDS,
+  // Wyndlewood Chapter Two's quest items and objects (content/chapter_two.ts):
+  // procedural quest icons until their painted wave is commissioned (the
+  // Southern Reaches ids only once their zones merge them into ITEMS).
+  ...CHAPTER_TWO_ART_PENDING_ITEM_IDS.filter((id) => Object.hasOwn(ITEMS, id)),
+  ...CHAPTER_TWO_GATED_ART_PENDING_ITEM_IDS.filter((id) => Object.hasOwn(ITEMS, id)),
 ]);
 
 /** Static URL of an item's (or a UI pseudo-item's) image icon, or null if it uses a recipe. */
@@ -5911,6 +5922,12 @@ export const DEED_ART_PENDING: ReadonlySet<string> = new Set([
   'feat_guild_of_lantern_hall',
   // The first felled tree (tree chopping): progression crest until commissioned.
   'prog_first_felling',
+  // The Bracken Circle's standing pair (src/sim/factions.ts, the fourth allied
+  // faction): progression crest until commissioned.
+  'prog_bracken_circle_trusted',
+  'prog_bracken_circle_champion',
+  // Wyndlewood Chapter One's chronicle (content/chapter_one.ts).
+  'chr_shore_that_remembers',
 ]);
 /** Static URL of a deed crest's painted art, or null when the crest id has no committed image. */
 export function deedImageUrl(crestId: string): string | null {

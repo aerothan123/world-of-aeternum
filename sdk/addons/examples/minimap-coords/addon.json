@@ -1,0 +1,16 @@
+{
+  "id": "minimap-coords",
+  "name": "Minimap Coordinates",
+  "version": "1.0.0",
+  "apiVersion": 1,
+  "author": "Wyndlewood SDK",
+  "description": "Coordinates, heading and a count of what the minimap shows, plus an optional square radar that redraws the minimap's own markers. /mmc radar toggles it.",
+  "permissions": ["minimap"],
+  "files": ["main.js"],
+  "savedVariables": { "account": true },
+  "slashCommands": ["mmc"],
+  "settings": [
+    { "key": "radar", "type": "toggle", "label": "Show the square radar", "default": true }
+  ],
+  "tags": ["Map", "Interface"]
+}

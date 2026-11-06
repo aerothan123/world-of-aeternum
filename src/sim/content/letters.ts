@@ -223,25 +223,25 @@ export const WORLD_QUEST_REWARD_LETTER: LetterDef = {
 export const QUEST_LETTERS: Record<string, LetterDef> = {
   q_wolves: {
     letterId: 'letter_q_wolves',
-    senderName: 'Marshal Redbrook',
+    senderName: 'Warden Corren',
     subject: 'The pens are quiet again',
     body:
       'The herders can sleep with both eyes shut for once, and that is your ' +
       'doing. I have told the Ravenpost to carry you a little something from ' +
       'the watch fund.\n\n' +
-      'Keep your blade oiled.\n- Marshal Redbrook',
+      'Keep your blade oiled.\n- Warden Corren',
     copper: 15,
     delaySeconds: 90,
   },
   q_greyjaw: {
     letterId: 'letter_q_greyjaw',
-    senderName: 'Marshal Redbrook',
+    senderName: 'Warden Corren',
     subject: 'Old Greyjaw, at last',
     body:
       'Word travels fast in a town this small. The herders drank to your ' +
-      'health last night, and Wilkes swears the wolf was the size of a cart. ' +
+      'health last night, and Silven swears the wolf was the size of a cart. ' +
       'Let them embellish: you earned it.\n\n' +
-      'Share a meal on the watch.\n- Marshal Redbrook',
+      'Share a meal on the watch.\n- Warden Corren',
     items: [{ itemId: 'roasted_boar', count: 2 }],
     delaySeconds: 120,
   },
@@ -445,31 +445,31 @@ export const MASTER_TIER_LETTERS: Record<string, Record<number, LetterDef>> = {
   'weaponcrafting+armorcrafting': {
     1: {
       letterId: 'prof_tier_weaponcrafting_armorcrafting_1',
-      senderName: 'Forgemistress Darva',
+      senderName: 'Brunna',
       subject: 'A spark worth noting',
       body: 'Word reaches my forge that one of your majors now holds at uncommon work. It is the smallest rung on a long climb, but you earned it at the anvil, not by asking. Keep the fire hot.',
     },
     2: {
       letterId: 'prof_tier_weaponcrafting_armorcrafting_2',
-      senderName: 'Forgemistress Darva',
+      senderName: 'Brunna',
       subject: 'Rare work, and earned',
       body: 'They tell me a major of yours has reached rare work. That is the rung where sloppy hands fall away and the real smiths are left standing. You are still standing. Good.',
     },
     3: {
       letterId: 'prof_tier_weaponcrafting_armorcrafting_3',
-      senderName: 'Forgemistress Darva',
+      senderName: 'Brunna',
       subject: 'The metal answers you now',
       body: 'A major of yours has climbed past rare into serious work. The metal answers a hand like that, no longer fighting it. Do not let the praise soften your arm.',
     },
     4: {
       letterId: 'prof_tier_weaponcrafting_armorcrafting_4',
-      senderName: 'Forgemistress Darva',
+      senderName: 'Brunna',
       subject: 'Near the top of the ladder',
       body: 'One of your majors stands a single rung below mastery. Few hands I have known reach this height, and fewer keep their edge here. Finish the climb.',
     },
     5: {
       letterId: 'prof_tier_weaponcrafting_armorcrafting_5',
-      senderName: 'Forgemistress Darva',
+      senderName: 'Brunna',
       subject: 'Mastery, at last',
       body: 'A major of yours has reached mastery, the highest a hand can climb. I do not give praise freely, so hear this once: the forge is proud of you. Now go teach the fire something new.',
     },

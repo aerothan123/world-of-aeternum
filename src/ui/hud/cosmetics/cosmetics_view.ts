@@ -13,6 +13,7 @@
 
 import {
   ALL_MOUNT_SKIN_IDS,
+  isStoreMountSkinId,
   type MountSkinId,
   mountSkinDef,
 } from '../../../sim/content/mount_skins';
@@ -25,6 +26,7 @@ import {
   type WeaponSkinRarity,
 } from '../../../sim/content/weapon_skins';
 import type { SkinCatalog, SkinRank, WeaponSkinType } from '../../../sim/types';
+import { storeCatalogListed } from '../../store_surfaces_core';
 import { type TabStripModel, tabStripModel } from '../../tab_strip_view';
 import type { BuddyCosmeticsSnapshot } from './buddy_cosmetics_view';
 
@@ -111,12 +113,18 @@ export interface MechChromaCard {
 }
 
 /** Every catalog mount skin in store order, owned or not, so the tab doubles
- *  as the catalog a player has not bought into yet. */
-export function mountSkinCards(s: CosmeticsSnapshot): MountSkinCard[] {
+ *  as the catalog a player has not bought into yet. With the store switched
+ *  off (store_surfaces_core.ts, Early Access) an unowned store skin is not
+ *  listed: the window stays a wardrobe and never advertises a closed shop. */
+export function mountSkinCards(
+  s: CosmeticsSnapshot,
+  catalogListed: boolean = storeCatalogListed(),
+): MountSkinCard[] {
   return ALL_MOUNT_SKIN_IDS.filter(
     (id) =>
       s.ownedMountSkins.includes(id) ||
-      !['terrorspark_groundshaker', 'drakemaw_raptor'].includes(id),
+      (!['terrorspark_groundshaker', 'drakemaw_raptor'].includes(id) &&
+        (catalogListed || !isStoreMountSkinId(id))),
   ).map((id) => {
     const owned = s.ownedMountSkins.includes(id);
     const worn = owned && s.wornMountSkin === id;

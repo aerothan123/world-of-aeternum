@@ -1,0 +1,110 @@
+# Prometheus alert rule TEMPLATES for the Wyndlewood realm (server metrics at
+# GET /metrics, bearer METRICS_TOKEN; see DEPLOY.md "Operational notes").
+# Every metric named here exists in server/ today; tests/deploy_alerts.test.ts
+# fails if one is renamed or removed. Thresholds are starting points: tune them
+# against a week of real traffic before paging anyone at night.
+#
+# Load into Prometheus with `rule_files: [ /etc/prometheus/wyndlewood.rules.yml ]`
+# and route the `severity` label in Alertmanager (page = wake someone,
+# ticket = next working day). No credentials live in this file.
+groups:
+  - name: wyndlewood-realm
+    rules:
+      - alert: RealmDown
+        expr: up{job="wyndlewood"} == 0
+        for: 2m
+        labels: { severity: page }
+        annotations:
+          summary: "Realm metrics endpoint unreachable for 2 minutes"
+          runbook: "docs/launch/live-ops-runbook.md#realm-down"
+
+      - alert: DevCommandsOnPublicRealm
+        # The realm advertises dev_commands in /api/status: the /dev cheat set is
+        # armed. The boot guard should make this impossible; page if it is not.
+        expr: woc_dev_commands_enabled{job="wyndlewood"} == 1
+        labels: { severity: page }
+        annotations:
+          summary: "Dev commands are armed on the public realm (ALLOW_DEV_COMMANDS=1)"
+          runbook: "docs/launch/live-ops-runbook.md#production-guard-for-dev-commands"
+
+      - alert: SimTickRateLow
+        expr: woc_sim_tick_hz < 17
+        for: 5m
+        labels: { severity: page }
+        annotations:
+          summary: "Authoritative loop below 17 Hz (target 20) for 5 minutes"
+          runbook: "docs/launch/live-ops-runbook.md#slow-loop"
+
+      - alert: SimTickStallSpikes
+        expr: max_over_time(woc_sim_tick_phase_seconds{phase="total",stat="max"}[10m]) > 0.25
+        for: 10m
+        labels: { severity: ticket }
+        annotations:
+          summary: "Loop passes over 250 ms keep recurring (read stat=max, never p95)"
+          runbook: "docs/launch/live-ops-runbook.md#slow-loop"
+
+      - alert: EventLoopLag
+        expr: nodejs_eventloop_lag_max_seconds > 1
+        for: 5m
+        labels: { severity: ticket }
+        annotations:
+          summary: "Node event loop lag over 1 s (work outside the tick body: saves, sweeps)"
+          runbook: "docs/launch/live-ops-runbook.md#slow-loop"
+
+      - alert: DbPoolSaturated
+        expr: woc_db_pool_clients{state="waiting"} > 0
+        for: 5m
+        labels: { severity: page }
+        annotations:
+          summary: "Callers waiting for a Postgres client for 5 minutes"
+          runbook: "docs/launch/live-ops-runbook.md#database"
+
+      - alert: DbBackendCancelsRising
+        expr: rate(woc_db_backend_cancel_requests_total[10m]) > 0.05
+        for: 10m
+        labels: { severity: ticket }
+        annotations:
+          summary: "Transactions hitting their wall deadlines (saturation precursor)"
+          runbook: "docs/launch/live-ops-runbook.md#database"
+
+      - alert: CharacterSavesQueueing
+        expr: woc_character_save_pending_keys > 8
+        for: 10m
+        labels: { severity: ticket }
+        annotations:
+          summary: "Character-save FIFO keys stay above twice the autosave wave"
+          runbook: "docs/launch/live-ops-runbook.md#database"
+
+      - alert: WsFloodKicks
+        expr: increase(woc_ws_rate_kicks_total[15m]) > 20
+        labels: { severity: ticket }
+        annotations:
+          summary: "Many sessions kicked by the inbound flood window (bots or a client bug)"
+          runbook: "docs/launch/live-ops-runbook.md#abuse"
+
+      - alert: PlayersDroppedToZero
+        expr: woc_players_online == 0 and (woc_players_online offset 30m) > 20
+        for: 5m
+        labels: { severity: page }
+        annotations:
+          summary: "Everyone left within 30 minutes: realm reachable but players cannot stay"
+          runbook: "docs/launch/live-ops-runbook.md#realm-down"
+
+      - alert: MetricsCollectorStale
+        expr: woc_metrics_collector_snapshot_age_seconds > 600
+        for: 10m
+        labels: { severity: ticket }
+        annotations:
+          summary: "Business metrics snapshot older than 10 minutes"
+          runbook: "docs/launch/live-ops-runbook.md#metrics"
+
+  - name: wyndlewood-host
+    rules:
+      - alert: BackupMissing
+        # The off-machine backup script touches this textfile metric on success
+        # (deploy/backup_offsite.sh BACKUP_METRIC_FILE, node_exporter textfile collector).
+        expr: time() - wyndlewood_backup_last_success_timestamp_seconds > 26 * 3600
+        labels: { severity: page }
+        annotations:
+          summary: "No successful off-machine backup in over 26 hours"
+          runbook: "docs/launch/backup-restore-runbook.md"

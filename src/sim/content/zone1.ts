@@ -18,6 +18,7 @@ import type {
   ZoneDef,
   ZonePropsDef,
 } from '../types';
+import { OATHLESS_KING_TITLE, PALE_ACCORD_NAME } from './wyndlewood_lore';
 
 export const TOWN_RADIUS = 26;
 export const GRAVEYARD_POS = { ...EASTBROOK_LAYOUT.services.graveyard.legacyReleasePoint };
@@ -204,10 +205,10 @@ export const ZONE1_ZONE: ZoneDef = {
     // keys, so a mid-list insert renumbers every later landmark's translation.
     { x: -101, z: -54, label: 'Eastbrook Docks', id: 'eastbrook_docks' },
   ],
-  welcome: 'Find Marshal Redbrook in town - he has work for you.',
+  welcome: 'Find Warden Corren in town - he has work for you.',
   welcomeQuestId: 'q_wolves',
   welcomeDone:
-    'Marshal Redbrook has no more work for you - the quaint seaside town where your journey began rests easier for it.',
+    'Warden Corren has no more work for you - the quaint seaside town where your journey began rests easier for it.',
 };
 
 // ---------------------------------------------------------------------------
@@ -720,8 +721,9 @@ export const ZONE1_NPCS: Record<string, NpcDef> = {
   },
   marshal_redbrook: {
     id: 'marshal_redbrook',
-    name: 'Marshal Redbrook',
-    title: 'Town Marshal',
+    // Warden Corren Stoutvale (wyndlewood_bible.md section 10); id frozen.
+    name: 'Warden Corren Stoutvale',
+    title: 'Lanternwarden Commander',
     pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.marshal_redbrook.position },
     facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.marshal_redbrook.facing,
     color: 0xb7950b,
@@ -730,7 +732,8 @@ export const ZONE1_NPCS: Record<string, NpcDef> = {
   },
   trader_wilkes: {
     id: 'trader_wilkes',
-    name: 'Trader Wilkes',
+    // Silven Brackett, the Gilt Measure's man in Eastbrook; id frozen.
+    name: 'Silven Brackett',
     title: 'Provisioner',
     pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.trader_wilkes.position },
     facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.trader_wilkes.facing,
@@ -750,7 +753,7 @@ export const ZONE1_NPCS: Record<string, NpcDef> = {
       // tier-2 or tier-3 land tool opens nothing here; the marsh and the peaks
       // sell the rungs their own veins need, and this counter used to be the
       // one place in the world that sold the whole ladder at the front door.
-      // The tiered rods stay, and Wilkes is now the one counter carrying the
+      // The tiered rods stay, and Silven is now the one counter carrying the
       // WHOLE rod ladder rather than the only one carrying any of it: each
       // zone's water has a required rod tier of its own now
       // (professions/fishing_zones.ts), so the marsh and the peaks stock the
@@ -769,7 +772,8 @@ export const ZONE1_NPCS: Record<string, NpcDef> = {
   },
   apothecary_lin: {
     id: 'apothecary_lin',
-    name: 'Apothecary Lin',
+    // Ivara Fenmoss, Bracken Circle guardian; id frozen.
+    name: 'Ivara Fenmoss',
     title: 'Herbalist',
     pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.apothecary_lin.position },
     facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.apothecary_lin.facing,
@@ -895,7 +899,8 @@ export const ZONE1_NPCS: Record<string, NpcDef> = {
   // guard-safe camp margin (pinned in tests/professions_station_placement.test.ts).
   forgemistress_darva: {
     id: 'forgemistress_darva',
-    name: 'Forgemistress Darva',
+    // Brunna Flintmorrow; id frozen.
+    name: 'Brunna Flintmorrow',
     title: 'Master of the Forge',
     pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.forgemistress_darva.position },
     facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.forgemistress_darva.facing,
@@ -1227,7 +1232,7 @@ export const ZONE1_QUESTS: Record<string, QuestDef> = {
     name: 'The Restless Dead',
     giverNpcId: 'brother_aldric',
     turnInNpcId: 'brother_aldric',
-    text: 'The old ruin on the northwest hill was a chapel once, and its yard a resting place. Something has stirred the dead from their sleep. Put them down and bring me a skull from each you lay to rest, $N, eight in all, so I may speak the rites over them and grant the peace they were denied.',
+    text: 'The old ruin on the northwest hill was a chapel once, and its yard a resting place. Something has stirred the dead from their sleep, the Gravestirred, as the old folk call them. Put them down and bring me a skull from each you lay to rest, $N, eight in all, so I may speak the rites over them and grant the peace they were denied.',
     completionText: 'May they rest now, and may the Light forgive whatever woke them.',
     objectives: [
       {
@@ -1263,8 +1268,7 @@ export const ZONE1_QUESTS: Record<string, QuestDef> = {
     giverNpcId: 'brother_aldric',
     turnInNpcId: 'brother_aldric',
     text: 'You have laid the dead to rest, but they will not stay resting: something calls them back. Search the chapel ruin for any trace of the one doing the calling. If you find a sigil or seal, bring it to me untouched.',
-    completionText:
-      'This sigil... it bears the mark of the Gravecallers, a sect I had prayed was extinct. This is worse than I feared, $N.',
+    completionText: `This sigil... it bears the mark of the Gravecallers, a cell of ${PALE_ACCORD_NAME}, the order that still keeps faith with Vauldren Sere, whom the old verses name ${OATHLESS_KING_TITLE}. I had prayed they were gone. This is worse than I feared, $N.`,
     objectives: [
       { type: 'collect', itemId: 'gravecaller_sigil', count: 1, label: "Gravecaller's Sigil" },
     ],
@@ -1332,13 +1336,13 @@ export const ZONE1_QUESTS: Record<string, QuestDef> = {
     name: 'Into the Hollow',
     giverNpcId: 'brother_aldric',
     turnInNpcId: 'brother_aldric',
-    text: "Morthen the Gravecaller waits at the bottom of the Hollow Crypt, ringed by the elite dead he has raised. He is far beyond any one hero: take four companions, no fewer. End him, and the Vale's dead will finally sleep.",
+    text: 'The door we left shut stands open now, and Morthen the Gravecaller waits at the bottom of the Hollow Crypt, ringed by the elite dead he has raised. He is guarding something down there, something that has kept this Vale warm longer than any of us have been alive. He is far beyond any one hero: take four companions, no fewer. End him, and bring back whatever he was keeping.',
     completionText:
-      'The whispering has stopped. You have done what the whole Vale could not, $N. The dead sleep, and Eastbrook owes you everything it has.',
+      "The whispering has stopped, and you came up carrying a piece of a Hearthpin, warm as a hand. When I held it I heard bells, $N, slow and deep, ringing somewhere under the sea. The Vale's dead sleep at last. I fear the drowned do not.",
     objectives: [
       { type: 'kill', targetMobId: 'morthen', count: 1, label: 'Morthen the Gravecaller slain' },
     ],
-    xpReward: 1500,
+    xpReward: 1080,
     copperReward: 10000,
     itemRewards: {
       warrior: 'gravecaller_blade',
@@ -1374,9 +1378,8 @@ export const ZONE1_QUESTS: Record<string, QuestDef> = {
     name: "The Gravecaller's Trail",
     giverNpcId: 'brother_aldric',
     turnInNpcId: 'brother_aldric',
-    text: 'Morthen is dead, yet a question gnaws at me: a sect that hid for a century does not spend itself on one village chapel. He kept a grimoire: his rites, his correspondence. If anything of it survives, it lies in the vestry of the ruined chapel above the crypt. Search the ruin and bring me whatever remains of his writings, $N.',
-    completionText:
-      "Morthen wrote to a 'Fogbinder' in the northern fen. The sect is not dead, $N. It has merely been patient.",
+    text: 'Morthen is dead, yet a question gnaws at me: an order that hid for a century does not spend itself on one village chapel. He kept a grimoire: his rites, his correspondence. If anything of it survives, it lies in the vestry of the ruined chapel above the crypt. Search the ruin and bring me whatever remains of his writings, $N.',
+    completionText: `Morthen wrote to a 'Fogbinder' in the northern fen. ${PALE_ACCORD_NAME.charAt(0).toUpperCase()}${PALE_ACCORD_NAME.slice(1)} is not dead, $N. It has merely been patient.`,
     objectives: [
       { type: 'collect', itemId: 'morthen_grimoire', count: 1, label: "Morthen's Grimoire" },
     ],
@@ -2030,6 +2033,7 @@ export const ZONE1_ROADS: { x: number; z: number }[][] = [
   [...EASTBROOK_LAYOUT.roads[4].points], // civic link across the squares
   [...EASTBROOK_LAYOUT.roads[5].points, { x: -96, z: -66 }], // the quay walk, joining the flank track (the freed dig ground)
   [...EASTBROOK_LAYOUT.roads[6].points], // the inn lane down to the main street
+  [...EASTBROOK_LAYOUT.roads[7].points], // Meadow Lane: across the meadow from the coast track bend (housing)
 ];
 
 // ---------------------------------------------------------------------------
@@ -2185,6 +2189,23 @@ export const ZONE1_PROPS: ZonePropsDef = {
     // walk-through like every flower, set off the painted track
     { key: 'shrubFlowering', x: 55, z: -66, rot: -1.2, scale: 0.95 },
     { key: 'shrubFlowering', x: 50, z: -76, rot: 0.3, scale: 0.9 },
+    // The town kit (town kit phase 2, docs/design/town-layout-eastbrook.md):
+    // the crafting yard's benches, Market Row, the square's corner stalls, the
+    // stable and the housing streets, each a box collider on its walls (the
+    // layout's `collider`, trimmed off the eaves) and its whole reach as the
+    // clearance radius scatter and roads keep. APPENDED last, after every
+    // earlier decor row.
+    ...EASTBROOK_LAYOUT.townKit.map((kit) => ({
+      key: kit.propKey,
+      x: kit.position.x,
+      z: kit.position.z,
+      rot: kit.rotation,
+      scale: kit.scale,
+      r: Math.hypot(kit.reach.halfWidth, kit.reach.halfDepth),
+      h: kit.height,
+      hw: kit.collider.halfWidth,
+      hd: kit.collider.halfDepth,
+    })),
   ],
   docks: [{ x: -64, z: 60, rot: -2.2, hutLocal: { x: 2.8, z: 2.4, hw: 1.7, hd: 1.5 } }],
   // The first two tents, the first two crates and the first campfire are the

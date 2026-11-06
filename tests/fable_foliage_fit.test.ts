@@ -18,6 +18,7 @@ import {
   BARK_ALBEDO_TARGETS,
   BARK_GRADE_GAIN,
   BROADLEAF_TRUNK_TOP,
+  blendTangentNormals,
   classifyFableTriangles,
   coniferLabels,
   DEAD_HEIGHT_SCALE,
@@ -29,7 +30,12 @@ import {
   LEAF_ALBEDO_TARGETS,
   LEAF_GRADE_GAIN,
   leafGradeGains,
+  paintedTexelMask,
   RELIEF_KINDS,
+  ROCK_ALBEDO_TARGET,
+  ROCK_BUDGET,
+  ROCK_GRADE_GAIN,
+  ROCK_RELIEF_OVER_BAKED,
   rasterizeUvMask,
   remapUvsToAtlasCell,
   removeSmallIslands,
@@ -394,6 +400,7 @@ describe('fable foliage shipped models', () => {
         'bush',
         'bush_flowers',
         'mushroom',
+        'fern',
       ].sort(),
     );
   });
@@ -605,8 +612,12 @@ describe('fable foliage shipped models', () => {
           .reduce((n, p) => n + p.indices.length / 3, 0);
       const card = LEAF_CARD_KINDS[target.kind as keyof typeof LEAF_CARD_KINDS];
       if (!card) {
-        // rocks and the mushroom keep their (capped) Tripo source
-        expect(tris(m.whole), target.name).toBeGreaterThan(1500);
+        // rocks and the mushroom keep their (capped) Tripo source; the fern,
+        // the densest dressing, ships at its own lower cap (FERN_BUDGET = 600),
+        // still above the old 288-triangle card fern
+        expect(tris(m.whole), target.name).toBeGreaterThan(
+          (target.kind as string) === 'fern' ? 400 : 1500,
+        );
         continue;
       }
       if ('twigs' in card) {
@@ -698,6 +709,66 @@ describe('fable foliage shipped models', () => {
       expect(out, `${url} ${name}`).toBe(geo);
       expect(Array.from(out.getAttribute('position').array)).toEqual(Array.from(before));
       expect(out.getAttribute('color')).toBeUndefined();
+    }
+  });
+});
+
+describe('rock relief over the baked normal', () => {
+  const flat = [128, 128, 255];
+  const px = (...v: number[][]) => Uint8Array.from(v.flat());
+  const dec = (b: Uint8Array, i: number) => [0, 1, 2].map((k) => (b[i * 3 + k] / 255) * 2 - 1);
+
+  it('returns the baked texel where the painted relief is flat', () => {
+    const baked = px([200, 90, 220], [60, 160, 230]);
+    const out = blendTangentNormals(baked, px(flat, flat), ROCK_RELIEF_OVER_BAKED);
+    for (let i = 0; i < 2; i++) {
+      const a = dec(baked, i);
+      const len = Math.hypot(a[0], a[1], a[2]);
+      const b = dec(out, i);
+      for (let k = 0; k < 3; k++) expect(b[k]).toBeCloseTo(a[k] / len, 1);
+    }
+  });
+
+  it('adds the painted slope on a flat baked texel, scaled by the weight', () => {
+    const out = blendTangentNormals(px(flat), px([200, 128, 220]), 0.5);
+    const n = dec(out, 0);
+    expect(n[0]).toBeGreaterThan(0.1);
+    expect(Math.abs(n[1])).toBeLessThan(0.02);
+    expect(Math.hypot(n[0], n[1], n[2])).toBeCloseTo(1, 1);
+    const full = dec(blendTangentNormals(px(flat), px([200, 128, 220]), 1), 0);
+    expect(full[0]).toBeGreaterThan(n[0]);
+  });
+
+  it('rejects maps of different sizes', () => {
+    expect(() => blendTangentNormals(px(flat), px(flat, flat))).toThrow(/differ/);
+  });
+
+  it('grades a dark rock sheet onto the rock albedo target, skipping unused black', () => {
+    // two painted texels (dark warm grey) and one unused black texel
+    const image = {
+      data: Uint8Array.from([90, 85, 60, 100, 95, 70, 0, 0, 0]),
+      width: 3,
+      height: 1,
+      channels: 3,
+    };
+    const mask = paintedTexelMask(image);
+    expect(Array.from(mask)).toEqual([1, 1, 0]);
+    const gains = leafGradeGains(image, mask, ROCK_ALBEDO_TARGET, ROCK_GRADE_GAIN);
+    for (const g of gains) {
+      expect(g).toBeGreaterThanOrEqual(ROCK_GRADE_GAIN[0]);
+      expect(g).toBeLessThanOrEqual(ROCK_GRADE_GAIN[1]);
+    }
+    // the sheet brightens, and the unused texel stays black
+    const out = applyLeafGrade(image, mask, gains);
+    expect(out.data[0]).toBeGreaterThan(90);
+    expect(Array.from(out.data.slice(6))).toEqual([0, 0, 0]);
+  });
+
+  it('keeps the rock budget a capped scatter budget', () => {
+    expect(ROCK_BUDGET).toBeGreaterThan(2600);
+    expect(ROCK_BUDGET).toBeLessThanOrEqual(4400);
+    for (const t of FABLE_FOLIAGE_TARGETS.filter((x) => x.kind === 'rock')) {
+      expect(t.budget).toBe(ROCK_BUDGET);
     }
   });
 });

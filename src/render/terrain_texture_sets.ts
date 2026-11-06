@@ -181,6 +181,8 @@ export const TERRAIN_TEXTURE_SETS: readonly TerrainTextureSet[] = [
     paintDefault: true,
   },
   { key: 'PaintedMoss', name: 'Storybook Moss', color: 0x5c7032, maps: ALL4, paintDefault: true },
+  { key: 'PaintedMud', name: 'Storybook Mud', color: 0x705c44, maps: ALL4, paintDefault: true },
+  { key: 'PaintedSnow', name: 'Storybook Snow', color: 0xe2e7ee, maps: ALL4, paintDefault: true },
   // ---- Object materials for the Build tool (CC0 from ambientCG.com, 1K,
   // converted like the Yoge sets: 1024 JPEG q85, GL normals). Not paint
   // swatches: they exist for built models (stairs, walls, props) through the

@@ -17,7 +17,7 @@ function rig(weeklyQuest: WeeklyQuestProgress | null = null) {
     weeklyQuest,
     weeklyQuestResetAtMs: Date.now() + 3_600_000,
     player: { level: 8, name: 'Ari' },
-    factions: { rift_watch: 3000, church_order: 0, automatons: 0 },
+    factions: { gilt_measure: 3000, lanternwardens: 0, hearthwright_compact: 0 },
     chooseWeeklyQuest,
     commendWeeklyQuest,
   };
@@ -92,29 +92,30 @@ describe('weekly quests window', () => {
     r.window.open();
     const buttons = [...r.el.querySelectorAll<HTMLButtonElement>('[data-wk-commend]')];
     expect(buttons.map((b) => [b.dataset.wkCommend, b.disabled])).toEqual([
-      // Level 8 sits under the low-level cap and the Rift Watch is already there.
-      ['rift_watch', true],
-      ['church_order', false],
-      ['automatons', false],
+      // Level 8 sits under the low-level cap and the Gilt Measure is already there.
+      ['gilt_measure', true],
+      ['lanternwardens', false],
+      ['hearthwright_compact', false],
+      ['bracken_circle', false],
     ]);
     expect(r.el.querySelector('.wk-foot')).toBeNull();
     expect(r.el.querySelector('.wk-commend-note')?.textContent).toContain('1,000');
     buttons[1].click();
-    expect(r.commendWeeklyQuest).toHaveBeenCalledExactlyOnceWith('church_order');
+    expect(r.commendWeeklyQuest).toHaveBeenCalledExactlyOnceWith('lanternwardens');
     // Once the mirror carries the claim, every button is inert and the line names it.
     r.world.weeklyQuest = {
       questId: 'wk_raid',
       week: 'wk_2',
       count: 1,
       state: 'completed',
-      commended: 'church_order',
+      commended: 'lanternwardens',
     };
     r.window.refreshIfChanged();
     expect(
       [...r.el.querySelectorAll<HTMLButtonElement>('[data-wk-commend]')].every((b) => b.disabled),
     ).toBe(true);
     expect(r.el.querySelector('.wk-commend-note')?.textContent).toBe(
-      "This week's commendation went to the Church Order.",
+      "This week's commendation went to the Lanternwardens.",
     );
   });
 });

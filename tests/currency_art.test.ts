@@ -24,7 +24,14 @@ const V039_COHORT_IDS = [
 // each mark reuses its faction's reward item icon byte for byte, recorded in
 // mapping.json with that item art as its source rather than in the v0.39
 // accepted cohort.
-const FACTION_MARK_IDS = ['rift_watch_mark', 'church_order_crest', 'automaton_cog'];
+// The Bracken Circle's acorn (Wyndlewood) joins them, cut the same way from
+// the silverleaf herb icon until its own art is painted.
+const FACTION_MARK_IDS = [
+  'rift_watch_mark',
+  'church_order_crest',
+  'automaton_cog',
+  'bracken_circle_acorn',
+];
 
 const ACCEPTED_CURRENCY_ART_SHA256 =
   'd71254050852510a7d1eb374e6693d360291bc5db261a55e146be67d9d7a3cb4';
@@ -69,7 +76,7 @@ describe('currency art', () => {
         needle: "currencyIconHtml('honor')",
         count: 2,
       },
-      'src/ui/claudium_window.ts': { needle: "currencyImageUrl('woc_token')", count: 1 },
+      'src/ui/claudium_window.ts': { needle: "currencyImageUrl('woc_token')", count: 0 },
       'src/ui/hud.ts': {
         needle: "coinIconUrl: () => iconDataUrl('item', 'coin_gold')",
         count: 1,
@@ -103,7 +110,9 @@ describe('currency art', () => {
         }
       }
     }
-    expect(css, 'woc_token').toContain('url("/ui/currency/woc_token.webp")');
+    // The retired $WOC token art keeps its accepted-cohort record (history), but
+    // no live surface paints it any more (docs/launch/crypto-removal.md).
+    expect(css, 'woc_token').not.toContain('/ui/currency/woc_token.webp');
   });
 
   it('keeps registry, mapping, and opaque shipping files in exact parity', async () => {

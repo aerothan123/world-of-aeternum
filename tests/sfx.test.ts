@@ -1546,3 +1546,63 @@ describe('amb_tavern: the tavern bed follows the listener through its lowpass', 
     );
   });
 });
+
+describe('regionBeds: the zone and town beds and their hand-off to the biome loops', () => {
+  interface Slot {
+    target: number;
+    panner: unknown;
+  }
+  const loops = () => (sfx as unknown as { loops: Map<string, Slot> }).loops;
+  const readout = (meadow: number, legacyScale: number, reverbEnv: 'forest' | null) => ({
+    keys: ['amb_bed_meadow', 'amb_bed_town_day'],
+    gains: new Float32Array([meadow, 0]),
+    legacyScale,
+    reverbEnv,
+  });
+
+  beforeEach(() => {
+    const buffers = (sfx as unknown as { buffers: Map<string, { duration: number }> }).buffers;
+    for (const key of ['amb_bed_meadow', 'amb_bed_town_day', 'amb_wind_vale', 'amb_birds']) {
+      buffers.set(key, { duration: 27.5 });
+    }
+    for (const id of ['amb_bed_meadow', 'amb_bed_town_day', 'amb_wind_vale', 'amb_birds']) {
+      sfx.unloop(id, 0);
+    }
+  });
+
+  it('loops each bed non-positionally at its quantized gain and stops a silent one', () => {
+    sfx.regionBeds(readout(0.3, 1, null));
+    const slot = loops().get('amb_bed_meadow');
+    expect(slot?.panner).toBeNull();
+    expect(slot?.target).toBeCloseTo(0.3 * SFX_CLIPS.amb_bed_meadow.gain, 6);
+    expect(loops().has('amb_bed_town_day')).toBe(false);
+  });
+
+  it('turns the older vale loops down by the legacy share, and back up without beds', () => {
+    sfx.regionBeds(readout(0.3, 0.2, null));
+    sfx.ambience('vale', false, null, false);
+    expect(loops().get('amb_wind_vale')?.target).toBeCloseTo(
+      0.12 * 0.2 * SFX_CLIPS.amb_wind_vale.gain,
+      6,
+    );
+    expect(loops().get('amb_birds')?.target).toBeCloseTo(0.12 * 0.2 * SFX_CLIPS.amb_birds.gain, 6);
+    sfx.regionBeds(readout(0, 1, null));
+    sfx.ambience('vale', false, null, false);
+    expect(loops().get('amb_wind_vale')?.target).toBeCloseTo(
+      0.12 * SFX_CLIPS.amb_wind_vale.gain,
+      6,
+    );
+  });
+
+  it('rings strikes in the wood the readout names, but never overrides a dungeon', () => {
+    const env = () => (sfx as unknown as { reverbEnv: string }).reverbEnv;
+    sfx.regionBeds(readout(0.3, 0.2, 'forest'));
+    sfx.ambience('vale', false, null, false);
+    expect(env()).toBe('forest');
+    sfx.ambience('vale', true, null, false);
+    expect(env()).toBe('cave');
+    sfx.regionBeds(readout(0.3, 0.2, null));
+    sfx.ambience('vale', false, null, false);
+    expect(env()).toBe('open');
+  });
+});

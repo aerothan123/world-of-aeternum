@@ -64,6 +64,41 @@ export function rockHeightOf(d: Decoration, seed: number): number {
   return rockHeight(d.x, d.z, d.scale, seed);
 }
 
+/** Share of scatter rocks rolled as a landmark boulder. */
+export const ROCK_LANDMARK_CHANCE = 0.05;
+/** Landmark boulder scale range (lower bound, span). */
+export const ROCK_LANDMARK_SCALE: readonly [number, number] = [1.9, 0.8];
+/** Share of scatter rocks rolled as small dressing stones, and their shrink. */
+export const ROCK_PEBBLE_CHANCE = 0.18;
+export const ROCK_PEBBLE_SHRINK = 0.6;
+
+/**
+ * `Decoration.scale` for a scatter anchor at grid cell (gx, gz). Trees keep the
+ * historic 0.7 to 1.6 roll. Rocks take the same base roll, then a separate,
+ * seed-stable draw sorts a few into small dressing stones (most fall under the
+ * collider bar) and a rare few into landmark boulders (1.9 to 2.7 scale, about
+ * 2 to 3 yd tall). Collision follows automatically: `colliders.ts` and the
+ * renderer both read this one scale through `rockHeight`/`rockRadius`, so the
+ * bigger silhouette and its collider can never disagree.
+ */
+export function decorationScale(
+  kind: Decoration['kind'],
+  gx: number,
+  gz: number,
+  seed: number,
+): number {
+  const cx = Math.round(gx);
+  const cz = Math.round(gz);
+  const base = 0.7 + hash2(cx, cz, seed + 13) * 0.9;
+  if (kind !== 'rock') return base;
+  const roll = hash2(cx, cz, seed + 131);
+  if (roll < ROCK_LANDMARK_CHANCE) {
+    return ROCK_LANDMARK_SCALE[0] + (roll / ROCK_LANDMARK_CHANCE) * ROCK_LANDMARK_SCALE[1];
+  }
+  if (roll > 1 - ROCK_PEBBLE_CHANCE) return base * ROCK_PEBBLE_SHRINK;
+  return base;
+}
+
 /** Collider radius for this rock (yards). */
 export function rockRadius(scale: number): number {
   return ROCK_RADIUS_PER_SCALE * scale;
