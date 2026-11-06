@@ -785,6 +785,8 @@ function spawnServer() {
       ...process.env,
       PERF_TICK_LOG: '1',
       ALLOW_DEV_COMMANDS: '1',
+      // The boot guard honors dev commands only under an explicit dev WOC_ENV.
+      WOC_ENV: 'development',
       MAX_WS_PER_IP_HARD: String(BOT_COUNT + 5),
     },
     stdio: ['ignore', 'pipe', 'pipe'],

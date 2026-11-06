@@ -6,7 +6,6 @@ import {
   getActiveWorldContent,
   isBuiltinWorldActive,
   isBuiltinWorldContent,
-  WORLD_MAX_X,
   WORLD_MAX_Z,
   WORLD_MIN_Z,
 } from '../sim/data';
@@ -25,6 +24,7 @@ import {
   WATER_LEVEL,
   zoneBiomeAt,
 } from '../sim/world';
+import { insideWorldX } from '../sim/world_x_edge';
 import { type LoadedGltf, loadGltf, releaseGltf } from './assets/loader';
 import { registerDeferredPreload } from './assets/preload';
 import { attachBiomeHaze } from './biome_haze_field';
@@ -153,12 +153,14 @@ import {
   reorderInstanceDataByStableRank,
 } from './perceptual_lod_core';
 import { collectBuildingImpostors } from './props';
+import { createRockMaterial, rockColorway } from './rock_material';
 import { prepareSceneryDetailMesh } from './scenery_detail';
 import { makeShadowOnlyMaterial } from './shadow_only_material';
 import { freezeStaticMatrices } from './static_matrix';
 import { groundGrassColorAt, groundLushnessAt } from './terrain_chunk_build';
 import { type FlowerKind, flowerTuftTexture, grassTuftTexture } from './textures';
 import { hideableGhostSources, type TreeHideable, updateTreeHides } from './tree_hide_fade';
+import { worldStyleRefined } from './world_style';
 import { paintRefinedCanopy, paintRefinedGrass, refinedDressLift } from './world_style_foliage';
 import { applySurfaceDetail, foliageWornFamilyFor } from './worn_stone';
 
@@ -1104,23 +1106,6 @@ function extractParts(url: string): ModelPart[] {
   return parts;
 }
 
-// Upward-facing rock vertices blend toward `tint` (moss or snow dust) and the
-// underside picks up baked AO; both multiply the texture + per-instance gray.
-function bakeTopTint(geo: THREE.BufferGeometry, tint: THREE.Color): THREE.BufferGeometry {
-  const nrm = geo.attributes.normal as THREE.BufferAttribute;
-  const arr = new Float32Array(nrm.count * 3);
-  for (let i = 0; i < nrm.count; i++) {
-    const upness = nrm.getY(i);
-    const t = THREE.MathUtils.smoothstep(upness, 0.25, 0.85);
-    const ao = 1 + Math.min(0, upness) * 0.25;
-    arr[i * 3] = (1 + (tint.r - 1) * t) * ao;
-    arr[i * 3 + 1] = (1 + (tint.g - 1) * t) * ao;
-    arr[i * 3 + 2] = (1 + (tint.b - 1) * t) * ao;
-  }
-  geo.setAttribute('color', new THREE.BufferAttribute(arr, 3));
-  return geo;
-}
-
 // biome tint lerped toward white + per-instance HSL jitter, deterministic
 // from world position
 const tmpWhite = new THREE.Color(1, 1, 1);
@@ -1826,38 +1811,15 @@ function buildTrees(
 
   // rocks: 3 single variants + a merged 3-boulder cluster, each in a mossy-top
   // and a snow-dusted colorway (baked vertex colors over the rock texture)
+  // (rock_material.ts: the material, the Refined fill, the colorways)
   const rockParts = modelUrls.rock.map(extractParts);
-  // source rock GLBs ship no COLOR_0, so the cached material resolves with
-  // vertexColors:false — but every rock geometry below goes through
-  // bakeTopTint (moss/snow vertex colors). Clone with vertexColors on, or
-  // the colorways are inert. (Safe to clone: rocks take no wind hook.)
-  const rockMat = (rockParts[0][0].material as THREE.MeshStandardMaterial).clone();
-  rockMat.vertexColors = true;
-  // clone() drops shader hooks, so the clone re-takes its collapse window.
-  // The rock window on both arms: the lean slab culls from its near edge.
-  applyInstanceCollapse(rockMat, 'rock');
-  const colorway = (tint: THREE.Color): THREE.BufferGeometry[] => {
-    const singles = rockParts.map((parts) => bakeTopTint(parts[0].geometry.clone(), tint));
-    const member = (
-      gi: number,
-      x: number,
-      y: number,
-      z: number,
-      ry: number,
-      s: number,
-    ): THREE.BufferGeometry =>
-      singles[gi % singles.length]
-        .clone()
-        .applyMatrix4(m.compose(v.set(x, y, z), q.setFromAxisAngle(up, ry), sv.set(s, s, s)));
-    const cluster = mergeGeometries([
-      member(0, -0.55, 0, 0.15, 0.3, 0.85),
-      member(1, 0.95, -0.12, 0.45, 1.4, 0.62),
-      member(2, 0.2, 0.6, -0.35, 2.4, 0.48),
-    ]);
-    return [...singles, cluster]; // [single x3, cluster]
-  };
-  const mossRocks = colorway(new THREE.Color(0.58, 0.88, 0.42));
-  const snowRocks = colorway(new THREE.Color(1.5, 1.55, 1.65));
+  const rockMat = createRockMaterial(
+    rockParts[0][0].material as THREE.MeshStandardMaterial,
+    worldStyleRefined(),
+  );
+  const rockGeos = rockParts.map((parts) => parts[0].geometry);
+  const mossRocks = rockColorway(rockGeos, new THREE.Color(0.58, 0.88, 0.42));
+  const snowRocks = rockColorway(rockGeos, new THREE.Color(1.5, 1.55, 1.65));
   const rockPart = (geometry: THREE.BufferGeometry) => [
     { geometry, material: rockMat as THREE.Material, isLeaf: false },
   ];
@@ -2871,8 +2833,7 @@ function buildGrassRing(
         const x = i * step + (hashAt(i, j, 1) - 0.5) * step * 1.4;
         const z = j * step + (hashAt(i, j, 2) - 0.5) * step * 1.4;
         if (x < minX || x >= maxX || z < minZ || z >= maxZ) continue;
-        if (Math.abs(x) > WORLD_MAX_X - 16 || z < WORLD_MIN_Z + 16 || z > WORLD_MAX_Z - 16)
-          continue;
+        if (insideWorldX(x) < 16 || z < WORLD_MIN_Z + 16 || z > WORLD_MAX_Z - 16) continue;
         const tuftBiome = zoneBiomeAt(x, z);
         // the Evergarden lawn is mown bare, but around the plantings grass
         // grows back the way a real bed does: through every parterre bed

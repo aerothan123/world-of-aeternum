@@ -151,7 +151,7 @@ describe('the painted towns recipe', () => {
         PAINTED_TOWNS.some((town) => nearTown(town, landing.x, landing.z, 80)),
       )
       .map(([faction]) => faction);
-    expect(checked).toEqual(['rift_watch']);
+    expect(checked).toEqual(['gilt_measure']);
   });
 
   it('stands only shipped files: each look carries its models with every texture tier', () => {

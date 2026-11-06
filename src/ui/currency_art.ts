@@ -10,6 +10,7 @@ export const CURRENCY_IMAGE_IDS: ReadonlySet<string> = new Set([
   'rift_watch_mark',
   'church_order_crest',
   'automaton_cog',
+  'bracken_circle_acorn',
 ]);
 
 const CURRENCY_ICON_DIR = '/ui/currency';
@@ -20,8 +21,9 @@ export function currencyImageUrl(id: string): string | null {
 }
 
 /** A faction's emblem art. The factions have no dedicated crest image, so the
- *  emblem is the faction's own currency art (the Rift Watch Mark, the Church
- *  Order Crest, the Automaton Cog), which callers set inside a crest frame. The
+ *  emblem is the faction's own currency art (the Gilt Mark, the Lantern Crest,
+ *  the Hearthwright Cog, the Bracken Acorn; the three inherited ones keep their
+ *  provisional file ids), which callers set inside a crest frame. The
  *  one resolver for it: the Reputation tab and the world quest card both read it. */
 export function factionEmblemImageUrl(factionId: FactionId): string | null {
   return currencyImageUrl(FACTION_CURRENCY_IDS[factionId]);

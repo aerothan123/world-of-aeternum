@@ -29,7 +29,9 @@ export function computeBorderEdges(zones: readonly ZoneDef[]): BorderEdge[] {
   const zx1 = (zn: ZoneDef) => zn.xMax ?? STRIP_MAX_X;
   const edges: BorderEdge[] = [];
   for (const a of zones) {
+    if (a.openBorders) continue;
     for (const b of zones) {
+      if (b.openBorders) continue;
       // horizontal edge: b sits directly north of a, rects overlapping in x
       if (a.zMax === b.zMin) {
         const lo = Math.max(zx0(a), zx0(b));

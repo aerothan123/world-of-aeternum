@@ -428,7 +428,16 @@ describe('Eastbrook Grand Armoury gameplay preservation', () => {
   it('keeps the toolworks prop cluster attached to the authored station anchor', () => {
     const station = STATIONS.find((candidate) => candidate.id === 'station_eastbrook_toolworks');
     if (!station) throw new Error('Eastbrook toolworks station is missing');
-    const props = stationPropPlacements(STATIONS).filter(
+    // Town kit (phase 2): the shipped station is DRESSED, its crafting-yard
+    // engineering bench is its visible face, so it draws no procedural
+    // cluster at all; the cluster offsets still hold for an undressed copy.
+    expect(station.dressed).toBe(true);
+    expect(
+      stationPropPlacements(STATIONS).filter(
+        (placement) => placement.stationId === 'station_eastbrook_toolworks',
+      ),
+    ).toEqual([]);
+    const props = stationPropPlacements([{ ...station, dressed: false }]).filter(
       (placement) => placement.stationId === 'station_eastbrook_toolworks',
     );
     // The anchor prop stands BESIDE the station point (solid furniture

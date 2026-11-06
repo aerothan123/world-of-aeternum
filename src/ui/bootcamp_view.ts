@@ -210,7 +210,7 @@ export function coachFocus(stateOf: (questId: string) => CoachState | null): Coa
 /** Where the arrow points while each quest's task is underway (the giver and
  *  turn-in states aim at the NPCs themselves). Coordinates mirror the quest
  *  content: the effigy yard, the scuttler strand's anchor, Finch's stall,
- *  the signpost's reading spot, and Odo at the crossing. The crate line
+ *  the signpost's reading spot, and Fenlow at the crossing. The crate line
  *  deliberately carries NO marker (null): the crates line the path itself,
  *  and the card says so. */
 export const COACH_ACTIVE_TARGETS: Readonly<Record<string, { x: number; z: number } | null>> = {

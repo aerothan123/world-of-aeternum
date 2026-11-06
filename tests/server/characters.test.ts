@@ -56,13 +56,14 @@ import {
   resetCharacterMutationRateLimits,
   resetRateLimitClock,
 } from '../../server/ratelimit';
+import { DEFAULT_REALM_NAME } from '../../server/realm';
 import { DEEDS_RECENT_CAP } from '../../src/sim/deeds';
 import type { CharacterState } from '../../src/sim/sim';
 import { type FakeRes, fakeCtx } from './helpers';
 
 // The realm this test process serves (REALM_NAME unset -> the default). The list
 // handlers stamp it onto every body, so it is the expected `realm` field.
-const REALM = 'Claudemoon';
+const REALM = DEFAULT_REALM_NAME;
 
 // A well-formed bearer header (64 lowercase-hex, matching characters.ts BEARER_PATTERN).
 const BEARER = `Bearer ${'a'.repeat(64)}`;

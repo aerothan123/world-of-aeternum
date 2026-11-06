@@ -41,7 +41,7 @@ export const FONT_OPTIONS: readonly MeterFontOption[] = [
     id: 'alegreya_sans',
     name: 'Alegreya Sans (WoC HUD)',
     family: 'var(--font-ui)',
-    desc: 'Canonical interface typography for Project H.',
+    desc: 'Canonical interface typography for Wyndlewood.',
     sample: '1. Chronomancer 138.9k (13.5k, 26%)',
   },
   {

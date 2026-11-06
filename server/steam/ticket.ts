@@ -33,6 +33,13 @@
  *  ticket minted for any other consumer fails verification here. */
 export const TICKET_IDENTITY = 'wocc-link';
 
+/** The identity string the LOGIN ticket is bound to (POST /api/auth/steam,
+ *  server/steam_login.ts). Deliberately distinct from TICKET_IDENTITY: a ticket
+ *  minted for the cosmetic link can never sign anyone in, and a login ticket can
+ *  never re-point a link. The desktop shell pins the same literal
+ *  (electron/steam.cjs LOGIN_TICKET_IDENTITY); both sides pin it in tests. */
+export const LOGIN_TICKET_IDENTITY = 'wyndlewood-login';
+
 // The hex shape clamp. A web-api session ticket is a variable-length byte
 // blob (it embeds the account's license list, so size varies per account);
 // Steam's GetTicketForWebApiResponse_t caps it at k_nCubTicketMaxLength =
@@ -75,6 +82,19 @@ export function buildAuthenticateUserTicketUrl(opts: {
   url.searchParams.set('appid', String(opts.appId));
   url.searchParams.set('ticket', opts.ticket);
   url.searchParams.set('identity', opts.identity ?? TICKET_IDENTITY);
+  return url.toString();
+}
+
+/** ISteamUser/CheckAppOwnership on the partner host (publisher key). */
+export function buildCheckAppOwnershipUrl(opts: {
+  key: string;
+  appId: number;
+  steamId: string;
+}): string {
+  const url = new URL(`${PARTNER_API_HOST}/ISteamUser/CheckAppOwnership/v2/`);
+  url.searchParams.set('key', opts.key);
+  url.searchParams.set('steamid', opts.steamId);
+  url.searchParams.set('appid', String(opts.appId));
   return url.toString();
 }
 

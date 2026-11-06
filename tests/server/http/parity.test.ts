@@ -464,8 +464,10 @@ describe('/api dispatch parity (legacy flag vs new flag)', () => {
     );
     expect(oldCap.status).toBe(200);
     expect(newCap.status).toBe(200);
-    expect(JSON.parse(oldCap.body as string).steam).toEqual({ enabled: false });
-    expect(JSON.parse(newCap.body as string).steam).toEqual({ enabled: true });
+    // login rides the same gate (Steam login, server/steam_login.ts, is
+    // registry-only too), so the legacy arm hardcodes it false as well.
+    expect(JSON.parse(oldCap.body as string).steam).toEqual({ enabled: false, login: false });
+    expect(JSON.parse(newCap.body as string).steam).toEqual({ enabled: true, login: true });
   });
 
   it('the /api/status epic advert DIVERGES under EPIC_ENABLED=1: false on legacy, true on new', async () => {

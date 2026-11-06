@@ -109,6 +109,11 @@ import {
 // Re-export pure rank chrome helpers so existing imports keep resolving.
 export { CURATOR_RANK_NAME_KEYS, curatorRankNameKey };
 
+/** Named Curator rank for the rank-up toast/banner (cosmetic chrome only). */
+export function curatorRankDisplayName(rank: number): string {
+  return t(curatorRankNameKey(rank), { rank: formatNumber(rank) });
+}
+
 const NAV_LABEL_KEYS: Record<ReliquaryNavId, TranslationKey> = {
   overview: 'hudChrome.reliquary.navOverview',
   conquerors: 'hudChrome.reliquary.navConquerors',

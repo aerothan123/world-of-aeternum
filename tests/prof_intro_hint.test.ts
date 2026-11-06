@@ -26,10 +26,12 @@ describe('profession intro hint row', () => {
     expect(GUILD_LETTER_SPOKESMAN_NPC_ID).toBe('smith_haldren');
   });
 
-  it('shows for every one of the six station masters pre-completion', () => {
-    // The six resident masters (STATIONS masterNpcId): the letter's dead end
-    // is Haldren, but the shared dialog builder covers all masters.
-    expect(STATIONS.length).toBe(6);
+  it('shows for every one of the eight station masters pre-completion', () => {
+    // The eight resident masters (STATIONS masterNpcId; the Eastbrook crafting
+    // yard added the apothecary and the tannery in town kit phase 2): the
+    // letter's dead end is Haldren, but the shared dialog builder covers all
+    // masters.
+    expect(STATIONS.length).toBe(8);
     for (const station of STATIONS) {
       expect(isProfessionMasterNpc(station.masterNpcId, STATIONS), station.masterNpcId).toBe(true);
       expect(hintVisible(station.masterNpcId, 'available', false), station.masterNpcId).toBe(true);

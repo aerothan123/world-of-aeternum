@@ -1,0 +1,691 @@
+{
+  "schemaVersion": 1,
+  "batchId": "chapter-one-painted-icons-2026-11-04",
+  "note": "Chapter One quest and reward item icons, painted from original text-only prompts (no reference images) on the project Tripo account, downscaled to the 128 px ship size. The 512 px masters stay outside the repo.",
+  "assets": [
+    {
+      "id": "c1_amended_cart_tag",
+      "runtimeUrl": "/ui/items/c1_amended_cart_tag.webp",
+      "acceptedSha256": "a40813688ee9ed8393d224ed8988eb5f1e29246cc4a936fb6ab1750ea5e5f914",
+      "acceptedBytes": 1706,
+      "generator": "Tripo AI text-to-image",
+      "task": "58e7f12b-fb89-4118-8fef-d5f159b885ba",
+      "prompt": "A small wooden cart tag on a loop of string, a patched corner and fresh chalk smudge, no writing. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_bait_herring",
+      "runtimeUrl": "/ui/items/c1_bait_herring.webp",
+      "acceptedSha256": "57aaeb35447731a93cb7f65f77c88d26128b5a27f7381ad0ee1bf70935f9adfd",
+      "acceptedBytes": 1574,
+      "generator": "Tripo AI text-to-image",
+      "task": "2cf78aeb-ec17-44d4-94b4-6cc34b71a344",
+      "prompt": "A single silver bait herring with a glistening wet scale sheen, lying on its side. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_beacon_thread_sample",
+      "runtimeUrl": "/ui/items/c1_beacon_thread_sample.webp",
+      "acceptedSha256": "e9119ec861b59042df241c0df90ac8b2b0f75c8eb8e502096415a4f89e91af3e",
+      "acceptedBytes": 1738,
+      "generator": "Tripo AI text-to-image",
+      "task": "741b0c4c-efe3-426f-99fb-148112b2da25",
+      "prompt": "A short coil of thick tarred beacon thread wound around a small wooden bobbin. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_black_cloth_snag",
+      "runtimeUrl": "/ui/items/c1_black_cloth_snag.webp",
+      "acceptedSha256": "d0f472bf2f5da3eea7a56872b2403a07ff7982d511e2f191f419b453fff1ed15",
+      "acceptedBytes": 1760,
+      "generator": "Tripo AI text-to-image",
+      "task": "5ea56303-e4ce-45df-b771-ad9578c60492",
+      "prompt": "A torn scrap of black cloth snagged on a short thorny twig, frayed edges. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_black_wick_knot",
+      "runtimeUrl": "/ui/items/c1_black_wick_knot.webp",
+      "acceptedSha256": "e9c7dc066e0b7a2e49037635b7e4ea1858f1722434c3e03c0814a993bc1d163f",
+      "acceptedBytes": 1670,
+      "generator": "Tripo AI text-to-image",
+      "task": "742ac5e4-bfd3-4c61-8202-30f8827286ed",
+      "prompt": "A short loose coil of braided black lamp wick with one simple knot in the middle and sooty frayed ends. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_blackened_root_sample",
+      "runtimeUrl": "/ui/items/c1_blackened_root_sample.webp",
+      "acceptedSha256": "3c41c47b1a262f3adeb9b37601376275731c51c348357fb5af59c8c4f366713e",
+      "acceptedBytes": 2258,
+      "generator": "Tripo AI text-to-image",
+      "task": "8cb4c7db-6db9-41df-946f-251895e78151",
+      "prompt": "A gnarled vegetable root sample turned sickly black with blight, small hair roots, a little dark soil. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_bound_grave_lamp",
+      "runtimeUrl": "/ui/items/c1_bound_grave_lamp.webp",
+      "acceptedSha256": "b9ae2d8e3143e2cea9de0d206bb2226b8e15305e50691d9ae0c2936dbba6e2ce",
+      "acceptedBytes": 1442,
+      "generator": "Tripo AI text-to-image",
+      "task": "b643ef92-ba20-41b9-843d-020cf3470dfa",
+      "prompt": "A small iron grave lamp bound with waxed cord, its wick freshly lit with a soft warm flame. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_boundary_warning",
+      "runtimeUrl": "/ui/items/c1_boundary_warning.webp",
+      "acceptedSha256": "a4b6c69c9ec50e95c61344980848d2e32e7ef439a6b9d1d2c7ccc923550f0eec",
+      "acceptedBytes": 1890,
+      "generator": "Tripo AI text-to-image",
+      "task": "1c01fc74-e779-4b2b-a786-a2badc591865",
+      "prompt": "A weathered wooden warning post with a red painted band and a hanging iron bell, no lettering. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_bread_bundle",
+      "runtimeUrl": "/ui/items/c1_bread_bundle.webp",
+      "acceptedSha256": "0a25bbe3018f88c47a036db68902b64a65e8ddbfd4263a1504229ba92da387b8",
+      "acceptedBytes": 2902,
+      "generator": "Tripo AI text-to-image",
+      "task": "06381d9b-fd1f-4625-b3f1-444fea0b5f49",
+      "prompt": "Two round loaves of bread bundled in a linen cloth tied with string. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_bread_heel",
+      "runtimeUrl": "/ui/items/c1_bread_heel.webp",
+      "acceptedSha256": "48eb9a409575d78c349db0c7850efe1314c4b41ed367d77f7fb50c8bb71a4f1e",
+      "acceptedBytes": 2254,
+      "generator": "Tripo AI text-to-image",
+      "task": "a85dfb57-b12b-42de-94cd-134d1410fb60",
+      "prompt": "The crusty heel end of a round brown loaf of bread, a few crumbs. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_broken_lifeboat",
+      "runtimeUrl": "/ui/items/c1_broken_lifeboat.webp",
+      "acceptedSha256": "b927ea53a129cc9dc355b42cea856779dc852f9d3688da418b76de88bba20860",
+      "acceptedBytes": 2628,
+      "generator": "Tripo AI text-to-image",
+      "task": "ea8e13a5-f81d-4997-bc52-8abeb83419ed",
+      "prompt": "A small broken wooden rowing lifeboat with a cracked hull and a snapped oar. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_brook_trout",
+      "runtimeUrl": "/ui/items/c1_brook_trout.webp",
+      "acceptedSha256": "7cb95e0bd7334f960dee849b4ca612341f78540e2c68646d1a126abf8207ee0f",
+      "acceptedBytes": 2314,
+      "generator": "Tripo AI text-to-image",
+      "task": "e0e1c60f-974b-4598-9039-8021b7340087",
+      "prompt": "A speckled brook trout with olive back and red spots, wet and glistening. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_cold_silvermint_sprig",
+      "runtimeUrl": "/ui/items/c1_cold_silvermint_sprig.webp",
+      "acceptedSha256": "f7aede7af3db06ebdeb7aba346b9d3d1438896a2828674625edce6a2c8f75c83",
+      "acceptedBytes": 2490,
+      "generator": "Tripo AI text-to-image",
+      "task": "6e09721c-28fc-4534-a4ee-aa097af4d3c5",
+      "prompt": "A sprig of pale silvermint herb with frosty silver-green leaves and a few ice crystals. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_copper_ingot",
+      "runtimeUrl": "/ui/items/c1_copper_ingot.webp",
+      "acceptedSha256": "60f449b4a3b1e92e20d252906bc7de8e7ce35b0ae10a80233b32dc5dea88a65c",
+      "acceptedBytes": 1738,
+      "generator": "Tripo AI text-to-image",
+      "task": "c6fb0f1c-ddc6-4efe-ad2e-7d272e3da5b3",
+      "prompt": "A single copper ingot bar with a warm orange metal sheen and a stamped top, no letters. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_covered_stew_bowl",
+      "runtimeUrl": "/ui/items/c1_covered_stew_bowl.webp",
+      "acceptedSha256": "029d33c8b33ae07a29080adbbc4f9774c5727ff797865b8b51e329a944154036",
+      "acceptedBytes": 2556,
+      "generator": "Tripo AI text-to-image",
+      "task": "fe5ed31f-9f0c-4189-b8e9-25aa2e2f9901",
+      "prompt": "A wooden bowl of hot stew covered with a cloth, a little steam escaping. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_deck_nails",
+      "runtimeUrl": "/ui/items/c1_deck_nails.webp",
+      "acceptedSha256": "92771baeeb1e1bbfafe9a02797bb79ff51aa0395cf7ba2db34bb35c8753202fe",
+      "acceptedBytes": 2274,
+      "generator": "Tripo AI text-to-image",
+      "task": "15579d33-a895-4ee6-ba6b-3d8d0bf5323e",
+      "prompt": "A small cloth packet spilling a handful of square iron deck nails. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_delivery_slip",
+      "runtimeUrl": "/ui/items/c1_delivery_slip.webp",
+      "acceptedSha256": "4986599de3ccc7336356a003a15aff6c1254ac8a7c851180e650b5d614883221",
+      "acceptedBytes": 1532,
+      "generator": "Tripo AI text-to-image",
+      "task": "c7532bec-1912-4a86-931e-1ad5b1e62ca0",
+      "prompt": "A small torn delivery slip of brown paper pinned with a nail, blank with no writing. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_dew_damp_cloth",
+      "runtimeUrl": "/ui/items/c1_dew_damp_cloth.webp",
+      "acceptedSha256": "96b4a632b58d9870d4378546371487711d8e166e165a48bb9db1de20a0cf3f16",
+      "acceptedBytes": 1648,
+      "generator": "Tripo AI text-to-image",
+      "task": "d0b412a1-0e43-4d5f-a248-876199a223f9",
+      "prompt": "A folded square of rough cloth damp with morning dew, beads of water on the weave. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_discarded_face_veil",
+      "runtimeUrl": "/ui/items/c1_discarded_face_veil.webp",
+      "acceptedSha256": "9eb807f274dbb98db8ce8d48e5c801a829aa5252bc6e102e005d41843c24dc65",
+      "acceptedBytes": 1488,
+      "generator": "Tripo AI text-to-image",
+      "task": "e74abecd-31a8-49e3-8216-155aca2c2d0f",
+      "prompt": "A crumpled black gauze face veil lying in a loose heap, frayed hem. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_disturbed_grave",
+      "runtimeUrl": "/ui/items/c1_disturbed_grave.webp",
+      "acceptedSha256": "7e74bd0a615644e992643566fde887912104875a15c0ce341cba0071350ce334",
+      "acceptedBytes": 1824,
+      "generator": "Tripo AI text-to-image",
+      "task": "b61b4c14-0074-4eac-8a5c-dd4b4e38054d",
+      "prompt": "A freshly disturbed grave mound of dark earth with a small plain wooden marker leaning over. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_dried_herb_packet",
+      "runtimeUrl": "/ui/items/c1_dried_herb_packet.webp",
+      "acceptedSha256": "09c3fec7791bb6f072b62e5e3d7320a76806d7e0b231fff3043a4bffb6040d65",
+      "acceptedBytes": 2620,
+      "generator": "Tripo AI text-to-image",
+      "task": "1f51fa03-ba87-4a23-9612-547b63c9b2d2",
+      "prompt": "A paper packet of dried herbs, bunches of grey-green leaves poking out of the top. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_dry_supply_bundle",
+      "runtimeUrl": "/ui/items/c1_dry_supply_bundle.webp",
+      "acceptedSha256": "04915544cb836cdf588a2d1b2602106809480b10614f6c73de87b323d39100f0",
+      "acceptedBytes": 2276,
+      "generator": "Tripo AI text-to-image",
+      "task": "98a9cccd-2242-46ef-9cc8-bb9487e94af4",
+      "prompt": "A dry supply bundle: a rolled canvas pack tied with leather straps, a loaf and a small tin cup tucked under the straps. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_empty_crab_pot",
+      "runtimeUrl": "/ui/items/c1_empty_crab_pot.webp",
+      "acceptedSha256": "853ce042e0e2e7a2b450cf22fbedde717fcf79496b13ac234397d72b2738bab3",
+      "acceptedBytes": 3400,
+      "generator": "Tripo AI text-to-image",
+      "task": "b8eba77f-71ea-45bb-829b-9257c2938c41",
+      "prompt": "An empty wicker and rope crab pot trap with a funnel opening. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_ferry_workbench",
+      "runtimeUrl": "/ui/items/c1_ferry_workbench.webp",
+      "acceptedSha256": "637a9d9e59b2f0024f53550da14175090d27952921c525ae1792f813ae25a90a",
+      "acceptedBytes": 2338,
+      "generator": "Tripo AI text-to-image",
+      "task": "2773c40f-b755-421f-8bcb-5517d86f562c",
+      "prompt": "A sturdy wooden workbench with a vice, a mallet and wood shavings. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_founders_prayer_board",
+      "runtimeUrl": "/ui/items/c1_founders_prayer_board.webp",
+      "acceptedSha256": "4e762348f30ee74db8c40686a79282de9c77e425aca083c9507089ed0da60096",
+      "acceptedBytes": 2142,
+      "generator": "Tripo AI text-to-image",
+      "task": "e749a378-b1a8-4d5d-bdcd-4587d637aa8d",
+      "prompt": "A small carved wooden prayer board with a simple sun and leaf relief, worn smooth by hands, no letters. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_founding_map",
+      "runtimeUrl": "/ui/items/c1_founding_map.webp",
+      "acceptedSha256": "ec399dfddef03ff49548bdfd1fa2b654f920ed312945ea44e0154735c61943ed",
+      "acceptedBytes": 2470,
+      "generator": "Tripo AI text-to-image",
+      "task": "8c820ec9-d2e4-4eda-b648-ced87f2999d3",
+      "prompt": "A faded rolled parchment map half unrolled showing a coastline and a small harbour, no lettering. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_frosted_fence_stake",
+      "runtimeUrl": "/ui/items/c1_frosted_fence_stake.webp",
+      "acceptedSha256": "871438c28c806563bbbc4075a771076c2402a5219c255b453814ff3fcff9486c",
+      "acceptedBytes": 2832,
+      "generator": "Tripo AI text-to-image",
+      "task": "c769d567-186b-4974-932d-e91baab93f75",
+      "prompt": "A wooden fence stake covered in white frost and tiny icicles. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_garden_carrot",
+      "runtimeUrl": "/ui/items/c1_garden_carrot.webp",
+      "acceptedSha256": "65a16d10725dc01c4b931597e9c9ea8619d38a2c1742473eb6bbe6b16e305378",
+      "acceptedBytes": 2052,
+      "generator": "Tripo AI text-to-image",
+      "task": "9c443428-6412-4fbc-930b-47c3279c32a0",
+      "prompt": "A fresh orange garden carrot with a feathery green top and a little soil, lying diagonally. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_healthy_turnip",
+      "runtimeUrl": "/ui/items/c1_healthy_turnip.webp",
+      "acceptedSha256": "3f91f59000a5fd40cb25566147093867cf94b5c340dd275a9af4ffdec7d95ca5",
+      "acceptedBytes": 2220,
+      "generator": "Tripo AI text-to-image",
+      "task": "4ae2bc75-1833-4169-85b3-984fb317fe0c",
+      "prompt": "A single plump healthy turnip, white root blushing purple at the shoulder, crisp green leafy top, a little garden soil on the root. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_heavy_parcel",
+      "runtimeUrl": "/ui/items/c1_heavy_parcel.webp",
+      "acceptedSha256": "076d04bab5315d4a00401a67b8fdcf870f68c954bd27e52cc4f06168cfa76114",
+      "acceptedBytes": 2032,
+      "generator": "Tripo AI text-to-image",
+      "task": "e36d5ac7-244a-4755-b248-d579e7e485bf",
+      "prompt": "A heavy square parcel wrapped in brown oilcloth and tied crosswise with thick hemp twine, a blob of red sealing wax on top, slightly sagging corners. Hand-painted fantasy MMORPG inventory icon. One complete object centered with a small margin, filling about 70 percent of a square frame, readable three-quarter view. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted vignette background with a faint contact shadow. No text, no letters, no numbers, no writing, no frame, no border, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_hinge_bundle",
+      "runtimeUrl": "/ui/items/c1_hinge_bundle.webp",
+      "acceptedSha256": "100487f619b114e2e061ea2758abd854535377917587bc84af19dfb445bf359c",
+      "acceptedBytes": 2122,
+      "generator": "Tripo AI text-to-image",
+      "task": "f858333e-77c5-4518-88f1-f3157c78838b",
+      "prompt": "A bundle of three black iron door hinges tied together with twine. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_hinge_packet",
+      "runtimeUrl": "/ui/items/c1_hinge_packet.webp",
+      "acceptedSha256": "6ac3f11fab869fba73b262ae4608626fdc88517ac908abc86444f4032d69f945",
+      "acceptedBytes": 1944,
+      "generator": "Tripo AI text-to-image",
+      "task": "b504d167-d2fc-43e2-959c-ac3658bbc186",
+      "prompt": "A small paper packet holding two small brass hinges and screws. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_housing_noticeboard",
+      "runtimeUrl": "/ui/items/c1_housing_noticeboard.webp",
+      "acceptedSha256": "ef9cb13bb3a4e95e56bd33a14eda20903358e82a7e648369f091dd5a75a14349",
+      "acceptedBytes": 1970,
+      "generator": "Tripo AI text-to-image",
+      "task": "b588292a-bbd9-4dec-80d0-ed1378c7acb9",
+      "prompt": "A small roofed wooden noticeboard with pinned blank papers fluttering, no writing. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_inn_hearth",
+      "runtimeUrl": "/ui/items/c1_inn_hearth.webp",
+      "acceptedSha256": "4863c1cab8dbde877f82459bf366dca922c1dfd57c3d9b96bbb892713c7d8246",
+      "acceptedBytes": 3148,
+      "generator": "Tripo AI text-to-image",
+      "task": "a32469e6-7a8c-4065-a62f-dc16d85d03fe",
+      "prompt": "A cosy stone inn hearth with a crackling log fire and an iron kettle. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_instruction_sheet",
+      "runtimeUrl": "/ui/items/c1_instruction_sheet.webp",
+      "acceptedSha256": "f9fc02cf0e477796ef649181dd0c6263de454a55032e25819e7f733b0b979e86",
+      "acceptedBytes": 2020,
+      "generator": "Tripo AI text-to-image",
+      "task": "d499fa5e-6451-4b96-bcf1-fe37f815a59f",
+      "prompt": "A soot-stained folded sheet of paper with scorched corners, blank with only smudges, no writing. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_keep_net",
+      "runtimeUrl": "/ui/items/c1_keep_net.webp",
+      "acceptedSha256": "346d02e4e0bbffa629fe801edae6c4a3919eead92523ccbb959b00aaf021e7df",
+      "acceptedBytes": 2504,
+      "generator": "Tripo AI text-to-image",
+      "task": "ac8f57c6-76db-4b9d-8da6-ea7ae88e167c",
+      "prompt": "A floating fishing keep net with cork floats and a wooden hoop. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_lantern_oil_cup",
+      "runtimeUrl": "/ui/items/c1_lantern_oil_cup.webp",
+      "acceptedSha256": "8a97a4ea1ce7d575fd3c8d482483894b0eba48b43a50a2d0eecc51821d1b9f97",
+      "acceptedBytes": 1704,
+      "generator": "Tripo AI text-to-image",
+      "task": "40c5f7c6-0390-4450-a5b2-6897e1cfcea5",
+      "prompt": "A small tin cup brimming with golden lantern oil, a glossy surface. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_loan_fishing_rod",
+      "runtimeUrl": "/ui/items/c1_loan_fishing_rod.webp",
+      "acceptedSha256": "7b84902899ae8ffd1c98d655d69b438d31f796bbc677acc9be45c880da8d1c16",
+      "acceptedBytes": 1924,
+      "generator": "Tripo AI text-to-image",
+      "task": "962f195f-f434-42e8-ae29-64c24f330c01",
+      "prompt": "A simple wooden fishing rod with a cork grip, a brass reel and a coil of line, laid diagonally. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_loan_woodcutting_axe",
+      "runtimeUrl": "/ui/items/c1_loan_woodcutting_axe.webp",
+      "acceptedSha256": "b42fa85af0d1ba9e5dbe3a3b50c77cc611b0691e120feafb72da3b31772608fb",
+      "acceptedBytes": 1880,
+      "generator": "Tripo AI text-to-image",
+      "task": "c781f953-38b3-4f87-94a4-3138e3a552b7",
+      "prompt": "A plain woodcutting axe with a worn ash handle and a steel head, laid diagonally. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_marked_shore_pine",
+      "runtimeUrl": "/ui/items/c1_marked_shore_pine.webp",
+      "acceptedSha256": "367d969024afcbd647d0b8d19ab4a31051aada11901bacc67e641e48daf4f5db",
+      "acceptedBytes": 2230,
+      "generator": "Tripo AI text-to-image",
+      "task": "762c7b00-e415-4a5b-999d-4134e0d028d5",
+      "prompt": "A young shore pine tree with a blaze of white paint marked on its trunk. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_meadow_balm_leaf",
+      "runtimeUrl": "/ui/items/c1_meadow_balm_leaf.webp",
+      "acceptedSha256": "0139e35f193a43afac8ebe5b1ed8985622678ffadff1b6b2dd9764190b0e205c",
+      "acceptedBytes": 1988,
+      "generator": "Tripo AI text-to-image",
+      "task": "24d23cf6-8bcc-4c58-8694-64921ace2e68",
+      "prompt": "A broad soft green meadow balm leaf with fine fuzz and a dewdrop, its stem freshly cut. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the square. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_missing_pantry_key",
+      "runtimeUrl": "/ui/items/c1_missing_pantry_key.webp",
+      "acceptedSha256": "817cbc3c89ba528d1f4f028c2cad2e7491fc1457daa9972b2c485ebf5d6765e3",
+      "acceptedBytes": 1632,
+      "generator": "Tripo AI text-to-image",
+      "task": "0072771a-ee06-42a9-afab-f97f0e0814ce",
+      "prompt": "An old iron pantry key with a round bow and simple bit, tied to a short faded ribbon. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_name_stone",
+      "runtimeUrl": "/ui/items/c1_name_stone.webp",
+      "acceptedSha256": "0a3a2150a27005bc41b130ea3d63e4d0d93a423505bf411520731fb306005b18",
+      "acceptedBytes": 2764,
+      "generator": "Tripo AI text-to-image",
+      "task": "ad681dd0-c705-4b18-9b38-9a88d474d046",
+      "prompt": "An overturned small weathered headstone lying on its side in grass, moss on the edges, no carved letters. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_nibbled_rent_notice",
+      "runtimeUrl": "/ui/items/c1_nibbled_rent_notice.webp",
+      "acceptedSha256": "7223dd3d869ff55d6135216074098c63efdecce6d303f6016cdd4ca54b12680f",
+      "acceptedBytes": 2412,
+      "generator": "Tripo AI text-to-image",
+      "task": "b104ad63-6be7-4eed-8eaf-4ec9c9ec4c1a",
+      "prompt": "A rolled paper notice nibbled by mice along one edge, a broken wax seal, blank weathered paper with no writing. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_northern_beacon",
+      "runtimeUrl": "/ui/items/c1_northern_beacon.webp",
+      "acceptedSha256": "afb0d3e5305b328a0b34c24030740f9bf78187d9ed9a6fd0df90cd665b9bdca5",
+      "acceptedBytes": 1866,
+      "generator": "Tripo AI text-to-image",
+      "task": "3d540fc7-106d-4e58-913b-4fca79626ce6",
+      "prompt": "A stone beacon brazier on a short pillar with an iron fire basket, cold and unlit. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_outer_wicket",
+      "runtimeUrl": "/ui/items/c1_outer_wicket.webp",
+      "acceptedSha256": "bd3007583ec86e2199595bed12495d3cdd5c91bf0c4ef8f56052c414fd19e6de",
+      "acceptedBytes": 2668,
+      "generator": "Tripo AI text-to-image",
+      "task": "aea3c2a7-b0c8-4f40-ae9d-e937ccd939e3",
+      "prompt": "A small wooden wicket gate in a low stone wall, iron latch. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_pantry_saucer",
+      "runtimeUrl": "/ui/items/c1_pantry_saucer.webp",
+      "acceptedSha256": "6828ba713ff75825dc9f485edb0be28a17fcaa734cdc9930b659b4456f3a1d10",
+      "acceptedBytes": 2670,
+      "generator": "Tripo AI text-to-image",
+      "task": "b3cd391a-ee6c-4399-ad97-c19db06db38c",
+      "prompt": "An empty glazed pantry saucer with a few crumbs, a cream colour with a blue rim. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_pella_workbench",
+      "runtimeUrl": "/ui/items/c1_pella_workbench.webp",
+      "acceptedSha256": "7682f80c0b34367a8bde86055fcf6febd57ce74942439fbbc75fc3656407ad96",
+      "acceptedBytes": 2718,
+      "generator": "Tripo AI text-to-image",
+      "task": "7039492c-dca0-4946-8e8e-670eec577f6a",
+      "prompt": "A public carpenter's workbench with saw, square and planed boards. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_practice_marker",
+      "runtimeUrl": "/ui/items/c1_practice_marker.webp",
+      "acceptedSha256": "334178f88461434b88654efc8c37a535b3aa7bc354aabae50893835b47e016ac",
+      "acceptedBytes": 1502,
+      "generator": "Tripo AI text-to-image",
+      "task": "806d4530-834b-4c0a-b7ec-ef6b65254953",
+      "prompt": "A small wooden practice marker stake with a ribbon flag and a chalk circle on the ground. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_public_furnace",
+      "runtimeUrl": "/ui/items/c1_public_furnace.webp",
+      "acceptedSha256": "3d95eb067cc0b88ae4839870abc6b7a31f9671af3f89980110c791619d20bc00",
+      "acceptedBytes": 1862,
+      "generator": "Tripo AI text-to-image",
+      "task": "cbe361c9-ede5-44c2-893b-43e0db621218",
+      "prompt": "A squat stone public smelting furnace with a glowing orange mouth and a chimney. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_quay_inspection_post",
+      "runtimeUrl": "/ui/items/c1_quay_inspection_post.webp",
+      "acceptedSha256": "8c3e31e4e9983ac8f971c6650c051199eeab7ea9252553ab4ecc7b371e5fcec1",
+      "acceptedBytes": 1912,
+      "generator": "Tripo AI text-to-image",
+      "task": "2b7037e6-9030-45ed-ae37-f20d61025c89",
+      "prompt": "A stout harbour mooring and inspection post with coiled rope and an iron ring. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_reading_desk",
+      "runtimeUrl": "/ui/items/c1_reading_desk.webp",
+      "acceptedSha256": "957faa3ed6e8905079ac0861f0c389eea9781d24a02816bdbcf0cc16fb7ba8a8",
+      "acceptedBytes": 1938,
+      "generator": "Tripo AI text-to-image",
+      "task": "ec45ad07-d587-4bd8-a1e3-efdb10d31f6c",
+      "prompt": "A small slanted wooden reading desk with an open blank book and a candle. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_reed_mulch_bundle",
+      "runtimeUrl": "/ui/items/c1_reed_mulch_bundle.webp",
+      "acceptedSha256": "0355973f6ec7f0d72c76508e04de6f1d9b1fcebdedf2ab7bbfc8721151cfcf63",
+      "acceptedBytes": 2944,
+      "generator": "Tripo AI text-to-image",
+      "task": "44cb77b3-070a-4074-9d44-2a0f25b3d570",
+      "prompt": "A bundle of cut dry river reeds bound with twine for mulch, golden straw colour. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_rivet_packet",
+      "runtimeUrl": "/ui/items/c1_rivet_packet.webp",
+      "acceptedSha256": "df5ba15502a53a3599849f9de62db8bc430a08237a34e67b20d52ffe4221b360",
+      "acceptedBytes": 2606,
+      "generator": "Tripo AI text-to-image",
+      "task": "d6e43d07-bbac-4918-b55a-b8a6a935b4c8",
+      "prompt": "A small paper packet spilling a handful of copper rivets. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_road_checkpost",
+      "runtimeUrl": "/ui/items/c1_road_checkpost.webp",
+      "acceptedSha256": "81d6ecf7811b50dfe996fecfce54fd67be28c5f38f51aba0693972083e29dbb0",
+      "acceptedBytes": 1654,
+      "generator": "Tripo AI text-to-image",
+      "task": "aa06aff5-6f68-4759-98e8-b591d38b76a2",
+      "prompt": "A wooden road checkpost barrier pole on a post with a small roof and a lantern. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_salt_crumpled_hat",
+      "runtimeUrl": "/ui/items/c1_salt_crumpled_hat.webp",
+      "acceptedSha256": "7de7508c6cfdb285e2f034dcae9246b653004729308bb76533649262cde652c7",
+      "acceptedBytes": 2442,
+      "generator": "Tripo AI text-to-image",
+      "task": "de6d5b8e-17cc-438d-9b85-7bcb5fcbb564",
+      "prompt": "A battered sailor's felt hat crusted with white sea salt, its brim crumpled and bent. Hand-painted fantasy MMORPG inventory icon. One complete object centered with a small margin, filling about 70 percent of a square frame, readable three-quarter view. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the square. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_sealed_watch_warning",
+      "runtimeUrl": "/ui/items/c1_sealed_watch_warning.webp",
+      "acceptedSha256": "9064e0c62d21869cf3de35ae26fd0c3bf95df5987c7735eccf485e1f661def17",
+      "acceptedBytes": 2130,
+      "generator": "Tripo AI text-to-image",
+      "task": "344bb7b4-baf2-4500-b4da-2427be9c1e60",
+      "prompt": "A tightly rolled scroll closed with a dark green wax seal and a cord, no writing visible. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_shore_minnow",
+      "runtimeUrl": "/ui/items/c1_shore_minnow.webp",
+      "acceptedSha256": "d7bece2e7cccfc7af42ed7afb8b03c09f6cd779cfecdd707c699113c1c8c7519",
+      "acceptedBytes": 1756,
+      "generator": "Tripo AI text-to-image",
+      "task": "993ad427-7378-4fd3-9183-50791244d5e9",
+      "prompt": "A tiny silvery shore minnow fish with a pale belly and a glint on the scales. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_shore_pine_log",
+      "runtimeUrl": "/ui/items/c1_shore_pine_log.webp",
+      "acceptedSha256": "eebf1e9de5b4e9fc7c1e7266a52f03a76a6d87e748ed10f3e145599190fadb66",
+      "acceptedBytes": 1902,
+      "generator": "Tripo AI text-to-image",
+      "task": "a444ffbd-19b7-47f9-8363-b297fe4361f6",
+      "prompt": "A short cut log of shore pine with rough reddish bark and visible rings on the cut end. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_soft_parcel",
+      "runtimeUrl": "/ui/items/c1_soft_parcel.webp",
+      "acceptedSha256": "7402eefaa64748d5ae6615bbd2b484700a3f59a25d0599a52b50deb5c686da5c",
+      "acceptedBytes": 3498,
+      "generator": "Tripo AI text-to-image",
+      "task": "8c8c0930-8629-4d8b-9bef-fe3704b810ce",
+      "prompt": "A soft squashy parcel of folded cloth goods wrapped in pale linen and tied with a ribbon, gently rounded. Hand-painted fantasy MMORPG inventory icon. One complete object centered with a small margin, filling about 70 percent of a square frame, readable three-quarter view. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the square. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_speaking_pipe",
+      "runtimeUrl": "/ui/items/c1_speaking_pipe.webp",
+      "acceptedSha256": "5e5613aa0ab01a0a27cfa8c02e33e5d4a0c6a9d6d7f657e0563ecb3830c185bf",
+      "acceptedBytes": 2102,
+      "generator": "Tripo AI text-to-image",
+      "task": "36c1bda0-aef2-4354-a5f7-186e6996bf21",
+      "prompt": "A disused brass speaking pipe with a flared mouthpiece and a hinged cap, dull and dented. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_stolen_lunch_basket",
+      "runtimeUrl": "/ui/items/c1_stolen_lunch_basket.webp",
+      "acceptedSha256": "459034b513c4bb0abf026d6ea535673aabe5c29db93a445c8deff034a98cee14",
+      "acceptedBytes": 2070,
+      "generator": "Tripo AI text-to-image",
+      "task": "ce23fb7b-ea99-469e-a87f-5fa2eaee6852",
+      "prompt": "A small wicker lunch basket with a checked cloth cover peeking open, an apple and bread inside. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_supper_stew_bowl",
+      "runtimeUrl": "/ui/items/c1_supper_stew_bowl.webp",
+      "acceptedSha256": "dc4bf08f6021cbd372156afa6bcef923bacca5e86fc14f7eefd73b605fa38aae",
+      "acceptedBytes": 2494,
+      "generator": "Tripo AI text-to-image",
+      "task": "7b0fdd29-0d73-49ff-979c-3718a65f35e9",
+      "prompt": "A deep earthenware bowl of supper stew with a wooden spoon, covered halfway by a cloth. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_supplied_binding",
+      "runtimeUrl": "/ui/items/c1_supplied_binding.webp",
+      "acceptedSha256": "901b010a93bfb82e48a863507177243f13513066066ddca99f3974d5a972cbc0",
+      "acceptedBytes": 2016,
+      "generator": "Tripo AI text-to-image",
+      "task": "541c3c62-a6d4-4d72-aa3d-0159bf11e984",
+      "prompt": "A neat sample roll of waxed binding cord wrapped around a small wooden spindle. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_tapping_wall_panel",
+      "runtimeUrl": "/ui/items/c1_tapping_wall_panel.webp",
+      "acceptedSha256": "0872725cb0f373d8de6bdae0ebf3ac74a92b82a315fa38ce2335a3cbbd57ecc3",
+      "acceptedBytes": 1666,
+      "generator": "Tripo AI text-to-image",
+      "task": "3bcb0ee3-5caa-4a57-b6d8-61d06791b95c",
+      "prompt": "A section of old timber wall panelling with one loose board slightly pulled out. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_timber_rack",
+      "runtimeUrl": "/ui/items/c1_timber_rack.webp",
+      "acceptedSha256": "0613b8af7f86ed7018ab040125ae0c7b432ca270166e9855a73b17b960493899",
+      "acceptedBytes": 2566,
+      "generator": "Tripo AI text-to-image",
+      "task": "0d2fc8d3-95a9-4d5b-adc2-c60c93534518",
+      "prompt": "A wooden ferry timber rack stacked with cut planks. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_unlit_grave_lamp",
+      "runtimeUrl": "/ui/items/c1_unlit_grave_lamp.webp",
+      "acceptedSha256": "fc2beed5397a0d424bbda9e1d5079109143d8c9713f793cb5a3642705485c329",
+      "acceptedBytes": 1456,
+      "generator": "Tripo AI text-to-image",
+      "task": "c4e9d6ff-1204-42e3-a630-5189623ed5ed",
+      "prompt": "An unlit small iron grave lamp with a cold glass chimney and a looped carrying ring, slightly rusted. Hand-painted fantasy MMORPG inventory icon. One complete object centered with a small margin, filling about 70 percent of a square frame, readable three-quarter view. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the square. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_walkway_gap",
+      "runtimeUrl": "/ui/items/c1_walkway_gap.webp",
+      "acceptedSha256": "7a714c859e99704201f1747e3d1dc62a8e4a578d2dab7ffe1d1f46b16585e9e9",
+      "acceptedBytes": 2568,
+      "generator": "Tripo AI text-to-image",
+      "task": "e5e6ca60-3888-4cb1-ac0b-84b222cb06f9",
+      "prompt": "A gap in a wooden plank walkway over water, two boards missing and splintered ends. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_walkway_panel",
+      "runtimeUrl": "/ui/items/c1_walkway_panel.webp",
+      "acceptedSha256": "522e2c610af24d8d5ffe77f75b323b3f0108949b3905a7b5e950764c9176425c",
+      "acceptedBytes": 2482,
+      "generator": "Tripo AI text-to-image",
+      "task": "c950d05f-64a1-4208-be08-d9e58f3a5291",
+      "prompt": "A plank walkway panel of four weathered boards held by two crosspieces. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_watch_lantern",
+      "runtimeUrl": "/ui/items/c1_watch_lantern.webp",
+      "acceptedSha256": "55795873fa59453e18df65ee9a437c3918d6eabc05fb4a7cced754e2c2f76ca8",
+      "acceptedBytes": 1178,
+      "generator": "Tripo AI text-to-image",
+      "task": "0d03fea7-1024-42f9-8952-98e203fb93c9",
+      "prompt": "A tall iron watch lantern on a short hook pole with a warm glow inside the glass. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_water_level_gauge",
+      "runtimeUrl": "/ui/items/c1_water_level_gauge.webp",
+      "acceptedSha256": "961279ed8f1619bfed079607c1dabca18856cdcd17f2fafecfee823d2be2ca9c",
+      "acceptedBytes": 2090,
+      "generator": "Tripo AI text-to-image",
+      "task": "8dd7e7b7-04f3-4f06-bd4b-655aed01ba55",
+      "prompt": "A wooden water level gauge staff with painted notches standing in water, no numbers. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_waxed_binding",
+      "runtimeUrl": "/ui/items/c1_waxed_binding.webp",
+      "acceptedSha256": "4bbb9302f622bc338eb15be2a789e8a693cc504e89de7cef8665a5bad5f8507a",
+      "acceptedBytes": 2274,
+      "generator": "Tripo AI text-to-image",
+      "task": "88ca15e4-532c-478b-8db3-1ea9d2b12dbd",
+      "prompt": "A roll of waxed linen binding strip, amber-yellow wax coating, loosely unrolled end. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_waxed_root_tie",
+      "runtimeUrl": "/ui/items/c1_waxed_root_tie.webp",
+      "acceptedSha256": "b30d9f778c5f50f8349bf0844894827ccc6fee0616e69c0e5a0704b5382caaa2",
+      "acceptedBytes": 2428,
+      "generator": "Tripo AI text-to-image",
+      "task": "540588e9-5c6a-48b0-8bef-0b8f06ddd676",
+      "prompt": "A bundle of pale roots bound with a strip of yellow waxed cord tied in a neat knot. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_windwhistle_leaf",
+      "runtimeUrl": "/ui/items/c1_windwhistle_leaf.webp",
+      "acceptedSha256": "a78c3dd4d01a54f6e9aba2d23db5bc3b79e2f42fcd38e26808dcb79024713b19",
+      "acceptedBytes": 1760,
+      "generator": "Tripo AI text-to-image",
+      "task": "d8f29a4d-3d9f-4930-a7d7-32351eefd50f",
+      "prompt": "A long curled windwhistle leaf, slender pale green blade rolled into a little whistle tube. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_windwhistle_patch",
+      "runtimeUrl": "/ui/items/c1_windwhistle_patch.webp",
+      "acceptedSha256": "41f4804a4f64286f7250e3e7485398265e801eae2b583ef3ec322857c60c024f",
+      "acceptedBytes": 3044,
+      "generator": "Tripo AI text-to-image",
+      "task": "7febc3cd-fa3c-4dd5-8751-92cf7e97a812",
+      "prompt": "A small clump of windwhistle flowers, pale blue bell flowers on slender stems with long curled leaves. Painterly concept-art study of one object floating in dark space, as if for a fantasy role-playing game. The object is centered, complete, large, seen in a readable three-quarter view. Behind it is only a smooth dark brown painted atmosphere that fades to near black at the corners: nothing is under or behind the object, it does not rest on any panel, tile, plaque, board, table, card or square. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the picture. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    },
+    {
+      "id": "c1_wrapped_beacon_sample",
+      "runtimeUrl": "/ui/items/c1_wrapped_beacon_sample.webp",
+      "acceptedSha256": "ed9c2be8ec857bb9d9187ffc78ba7e744fd2fe0d9054e7993bbe6baa1233a2a4",
+      "acceptedBytes": 2008,
+      "generator": "Tripo AI text-to-image",
+      "task": "b1c044f3-c832-446c-ae5a-8bcd9f379a28",
+      "prompt": "A small sample of beacon fuel wrapped in waxed cloth and tied with twine, a smudge of soot on the wrapping. Hand-painted fantasy MMORPG inventory icon. One complete object centered with a small margin, filling about 70 percent of a square frame, readable three-quarter view. Warm key light from the top left, cool soft shadow toward the bottom right, tactile painted materials with visible brushwork, soft natural storybook colours, a little more realistic than a cartoon, chunky readable silhouette. Opaque dark umber painted background with a soft even vignette and a faint contact shadow, no visible light beam. The object is large and fills most of the square. No text, no letters, no numbers, no writing, no picture frame, no border, no edge trim, no UI, no hands, no people, no watermark, not a photo, not a 3D render, not pixel art."
+    }
+  ]
+}

@@ -55,7 +55,7 @@ export function ferryBellHomeNoteFor(world: {
     : buildFerryBellHomeNote();
 }
 
-/** Ferryman Odo's island welcome: shown on a character's first arrival at the
+/** Captain Fenlow's island welcome: shown on a character's first arrival at the
  *  Proving Shore, directing the newcomer up the road to Maren. The gate is
  *  PER-CHARACTER, not per-device: the sim computes it from the quest log
  *  (interactions/ferry_bell.ts isFirstIslandVisit) and the HUD arm renders on

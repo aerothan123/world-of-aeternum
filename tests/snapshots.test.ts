@@ -3315,21 +3315,14 @@ describe('autosaves', () => {
     await head;
   });
 
-  it('gates WOC dirty-book preflush and mail persistence at their innermost DB calls', async () => {
+  // The WOC dirty-book preflush half of this pin retired with the crypto market
+  // (flushDirtyGuildBooks is gone, so no preflush path is left to gate); the
+  // guild-book autosave write itself is pinned by the test above. Mail
+  // persistence still holds the permit innermost.
+  it('gates mail persistence at its innermost DB call', async () => {
     const gate = createBackgroundDbGate(1, 0);
     const server = new GameServer(undefined, gate);
-    const session = joinServer(server, fakeWs(), 1, 'Testa', 'warrior', { accountMountItems: [] });
-    const guildId = 914;
-    server.sim.loadGuildBank(guildId, {
-      treasury: 0,
-      inventory: [],
-      purchasedSlots: 0,
-    });
-    session.dirtyGuildBanks.set(guildId, 1);
-    vi.mocked(saveCharacterAndGuildBankState).mockImplementationOnce(async () => {
-      expect(gate.stats().inFlight).toBe(1);
-      return true;
-    });
+    joinServer(server, fakeWs(), 1, 'Testa', 'warrior', { accountMountItems: [] });
     // Mail persistence rides the partitioned writer (#3561); a freshly joined
     // character already has dirty welcome-letter partitions, so the innermost
     // DB call still fires and can assert the permit is held.
@@ -3337,15 +3330,13 @@ describe('autosaves', () => {
       expect(gate.stats().inFlight).toBe(1);
     });
 
-    await server.flushDirtyGuildBooks(session.characterId);
     await server.persistMailBlob();
 
-    expect(saveCharacterAndGuildBankState).toHaveBeenCalledTimes(1);
     expect(saveMailPartitions).toHaveBeenCalledTimes(1);
     expect(gate.stats()).toMatchObject({
       inFlight: 0,
       waiting: 0,
-      acquired: 2,
+      acquired: 1,
     });
   });
 
@@ -6273,9 +6264,14 @@ function dirtyEveryDeltaField(): {
   // `cluh`: an active clue hunt on a shipped hunt id (the client decoder
   // drops an id the pool does not know, so a made-up one would mirror null).
   meta.clueHunt = { huntId: CLUE_HUNTS[0].id, step: 1 };
-  meta.factionCurrencies = { rift_watch: 17, church_order: 29, automatons: 41 };
+  meta.factionCurrencies = {
+    gilt_measure: 17,
+    lanternwardens: 29,
+    hearthwright_compact: 41,
+    bracken_circle: 0,
+  };
   meta.treasureMap = { rarity: 'epic', siteId: TREASURE_SITES[0].id, seed: 78123 };
-  meta.alliedHearthstoneAttunement = 'automatons';
+  meta.alliedHearthstoneAttunement = 'hearthwright_compact';
   server.sim.worldQuestExpiresAtMs = FAR_FUTURE_MS;
   meta.worldQuestLog.set('wq_eastbrook_bandits', {
     questId: 'wq_eastbrook_bandits',
@@ -6774,9 +6770,14 @@ describe('full self-state snapshot delta fixture', () => {
     const client = bareClient(leader.pid);
     (client as any).applySnapshot(lastSnap(fc.sent));
 
-    expect(client.factionCurrencies).toEqual({ rift_watch: 17, church_order: 29, automatons: 41 });
+    expect(client.factionCurrencies).toEqual({
+      gilt_measure: 17,
+      lanternwardens: 29,
+      hearthwright_compact: 41,
+      bracken_circle: 0,
+    });
     expect(client.treasureMap).toEqual({ rarity: 'epic', siteId: TREASURE_SITES[0].id });
-    expect(client.alliedHearthstoneAttunement).toBe('automatons');
+    expect(client.alliedHearthstoneAttunement).toBe('hearthwright_compact');
     expect(client.myHouse).toEqual({
       lotId: 'eastbrook_quay_cottage',
       furniture: { hearth_floor_1: 'furn_wooden_chair' },
@@ -7248,7 +7249,8 @@ describe('full self-state snapshot delta fixture', () => {
       const meta = sim.meta(session.pid)!;
       const marla = [...sim.entities.values()].find((e) => e.templateId === 'stablemaster_marla')!;
       player.pos = { ...marla.pos };
-      meta.copper = 10_800_000;
+      // The full ladder: Apprentice (20_000) then Riding then Advanced.
+      meta.copper = 10_820_000;
       const send = (ridingTier: number) =>
         server.handleMessage(
           session,
@@ -7262,6 +7264,10 @@ describe('full self-state snapshot delta fixture', () => {
         );
       send(0);
       send(0);
+      expect(meta.copper).toBe(10_800_000);
+      expect(player.ridingTier).toBe(3);
+      send(3);
+      send(3);
       expect(meta.copper).toBe(10_000_000);
       expect(player.ridingTier).toBe(1);
       send(1);

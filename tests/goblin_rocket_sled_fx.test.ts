@@ -322,6 +322,7 @@ describe('the shared pair on both tiers', () => {
     dynamicLights: 1,
     particleEffects: 1,
     ghostFade: 0,
+    worldStyle: 1,
   };
   let restore: GfxProfile | null = null;
 

@@ -30,6 +30,7 @@ import { routes as battlegroundRoutes } from '../battleground';
 import { routes as cardRoutes } from '../card_routes';
 import { routes as characterRoutes } from '../characters';
 import { routes as claudiumRoutes } from '../claudium';
+import { routes as clientAnalyticsRoutes } from '../client_analytics';
 import { routes as deedsRoutes } from '../deeds';
 import { routes as desktopLoginRoutes } from '../desktop_login_routes';
 import { routes as discordRoutes } from '../discord';
@@ -39,6 +40,7 @@ import { routes as githubRoutes } from '../github';
 import { routes as guildRosterRoutes } from '../guild_roster';
 import { routes as internalRoutes } from '../internal';
 import { routes as leaderboardRoutes } from '../leaderboard';
+import { routes as legalAcceptanceRoutes } from '../legal_acceptance';
 import { routes as mapsRoutes } from '../maps_routes';
 import { routes as oauthRoutes } from '../oauth';
 import { routes as otaUpdatesRoutes } from '../ota_updates';
@@ -46,6 +48,7 @@ import { routes as realmBuilderRoutes } from '../realm_builder';
 import { routes as reliquaryRoutes } from '../reliquary';
 import { routes as reportsRoutes } from '../reports';
 import { routes as steamRoutes } from '../steam';
+import { routes as steamLoginRoutes } from '../steam_login';
 import { routes as userAssetsRoutes } from '../user_assets_routes';
 import { routes as worldQuestLeaderboardRoutes } from '../world_quest_leaderboard';
 // new:endpoint imports appear above this line (npm run new:endpoint)
@@ -137,6 +140,7 @@ export const apiRoutes: readonly RouteDef[] = [
   ...deedsRoutes,
   ...discordQueuePingsRoutes,
   ...steamRoutes,
+  ...steamLoginRoutes,
   ...battlegroundRoutes,
   ...epicRoutes,
   ...otaUpdatesRoutes,
@@ -144,6 +148,8 @@ export const apiRoutes: readonly RouteDef[] = [
   ...adSpendRoutes,
   ...guildRosterRoutes,
   ...worldQuestLeaderboardRoutes,
+  ...clientAnalyticsRoutes,
+  ...legalAcceptanceRoutes,
   // new:endpoint spreads appear above this line (npm run new:endpoint)
 ];
 

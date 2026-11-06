@@ -18,6 +18,7 @@ import { FARM_CROPS, type FarmCropDef } from '../src/sim/content/farm_crops';
 import { farmBedById } from '../src/sim/content/farm_patches';
 import { ITEMS, NPCS, QUESTS } from '../src/sim/data';
 import { FARMER_TRADE_RANGE } from '../src/sim/professions/farmer_npcs';
+import { questBaseXp } from '../src/sim/quests/quest_xp';
 import { type PlayerMeta, Sim } from '../src/sim/sim';
 import type { Entity, SimEvent } from '../src/sim/types';
 import { terrainHeight } from '../src/sim/world';
@@ -182,7 +183,7 @@ describe('the go-live journey: q_farm_intro at Farmer Jessica, end to end', () =
     h.sim.talkToNpc(h.jessica.id, h.pid);
     expect(h.sim.questState(QUEST_ID, h.pid)).toBe('done');
     expect(h.sim.copper - copperBefore).toBe(QUESTS[QUEST_ID].copperReward);
-    expect(h.sim.xp - xpBefore).toBe(QUESTS[QUEST_ID].xpReward);
+    expect(h.sim.xp - xpBefore).toBe(questBaseXp(QUESTS[QUEST_ID]));
     // The rewards are the q_prof_intro template's, pinned as literals so a
     // retune is a visible edit.
     expect(QUESTS[QUEST_ID].xpReward).toBe(150);

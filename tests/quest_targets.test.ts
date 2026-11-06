@@ -383,11 +383,11 @@ describe('questObjectiveAreas', () => {
     // matter are containment (no node loses its marker) and zone residency (an
     // area whose centre lands in the wrong band is culled off every map).
     // Driven by every node type that a shipped quest actually gathers, not just
-    // ore: today that is ore and herb, and herb is the one three of the four
-    // gather objectives use, so pinning ore alone would leave the common case
-    // uncovered. Wood has no gather quest yet and so cannot be reached through
-    // this path at all; the type-level property that would catch it lives in the
-    // zone-residency arm below, which loops all three.
+    // ore: ore and herb from the Mirefen chain, and wood since Wyndlewood
+    // Chapter One's Hearthwright quests (content/chapter_one.ts) sent players to
+    // chop it. Wood is gathered from overworld trees, not nodes (tree chopping
+    // retired the wood stands), so it has no cluster to enclose and the node arm
+    // skips it; the zone-residency arm below still loops all three types.
     const typed = GATHER_NODE_TYPES.map((type) => {
       for (const quest of Object.values(QUESTS)) {
         const objectiveIndex = quest.objectives.findIndex(
@@ -397,9 +397,13 @@ describe('questObjectiveAreas', () => {
       }
       return null;
     }).filter((entry): entry is NonNullable<typeof entry> => entry !== null);
-    expect(typed.map((t) => t.type)).toEqual(['ore', 'herb']);
+    expect(typed.map((t) => t.type)).toEqual(['ore', 'wood', 'herb']);
+    const nodeTyped = typed.filter(({ type }) =>
+      activeGatherNodes().some((node) => node.type === type),
+    );
+    expect(nodeTyped.map((t) => t.type)).toEqual(['ore', 'herb']);
 
-    for (const { type, quest, objectiveIndex } of typed) {
+    for (const { type, quest, objectiveIndex } of nodeTyped) {
       const areas = questObjectiveAreas(activeLog(quest));
       const nodes = activeGatherNodes().filter((node) => node.type === type);
       expect(nodes.length).toBeGreaterThan(0);

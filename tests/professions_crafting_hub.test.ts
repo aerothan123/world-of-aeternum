@@ -66,7 +66,7 @@ const tannery = stationsOfType(STATIONS, 'tannery')[0];
 const NOWHERE = { x: 5000, z: 5000 };
 
 describe('station content', () => {
-  it('pins the six stations: id, type, zone, and resident master', () => {
+  it('pins the eight stations: id, type, zone, and resident master', () => {
     expect(
       STATIONS.map((s) => ({ id: s.id, type: s.type, zoneId: s.zoneId, master: s.masterNpcId })),
     ).toEqual([
@@ -105,6 +105,19 @@ describe('station content', () => {
         type: 'apothecary',
         zoneId: ZONE3_ZONE.id,
         master: 'alchemist_verane',
+      },
+      // Town kit (phase 2): the Eastbrook crafting yard's own two.
+      {
+        id: 'station_eastbrook_apothecary',
+        type: 'apothecary',
+        zoneId: ZONE1_ZONE.id,
+        master: 'apothecary_lin',
+      },
+      {
+        id: 'station_eastbrook_tannery',
+        type: 'tannery',
+        zoneId: ZONE1_ZONE.id,
+        master: 'tanner_tamsin',
       },
     ]);
     expect(STATION_RADIUS).toBe(20);

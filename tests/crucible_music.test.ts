@@ -8,6 +8,7 @@ import {
   type InstanceMusicInput,
   instanceMusicDecision,
 } from '../src/game/instance_music';
+import { scoreCueUrl } from '../src/game/music_tracks';
 import { DUNGEONS, instanceOrigin, ZONES } from '../src/sim/data';
 
 const rooms = [
@@ -175,17 +176,17 @@ describe('Crucible floor soundtrack', () => {
     expect(port.resetForDungeonEntry).toHaveBeenCalledTimes(6);
   });
 
-  it('ships four distinct final exports with clean filenames and matching cache hashes', () => {
+  it('streams four distinct Wyndlewood score cues, one per floor, with matching cache hashes', () => {
     expect(CRUCIBLE_STREAM_URLS).toEqual({
-      1: '/audio/music/a_way_through_the_embers.mp3?v=14a001b98e5b',
-      2: '/audio/music/even_iron_must_yield.mp3?v=ebd0f6c6b99d',
-      3: '/audio/music/a_fate_still_unwritten.mp3?v=78d0bc42726a',
-      4: '/audio/music/the_future_is_not_yours_to_keep.mp3?v=a6e896149cb0',
+      1: scoreCueUrl('wyn_dungeon_ancient_forge'),
+      2: scoreCueUrl('wyn_crucible_heart'),
+      3: scoreCueUrl('wyn_crucible_assembly'),
+      4: scoreCueUrl('wyn_boss_final'),
     });
     const urls = Object.values(CRUCIBLE_STREAM_URLS);
     expect(new Set(urls).size).toBe(4);
     for (const url of urls) {
-      expect(url).toMatch(/^\/audio\/music\/[a-z_]+\.mp3\?v=[a-f0-9]{12}$/);
+      expect(url).toMatch(/^\/audio\/music\/wyn\/[a-z_]+\.mp3\?v=[a-f0-9]{12}$/);
       const [asset, hash] = url.split('?v=');
       const bytes = readFileSync(path.join(__dirname, '..', 'public', asset));
       expect(createHash('sha256').update(bytes).digest('hex').slice(0, 12)).toBe(hash);

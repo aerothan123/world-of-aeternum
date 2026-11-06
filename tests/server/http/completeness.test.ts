@@ -113,11 +113,16 @@ const REGISTRY_ONLY_PATHS = new Set<string>([
   '/api/world-quests/leaderboard',
   '/api/reliquary/rarity',
   '/api/deeds/broadcasts',
+  '/api/eula',
+  '/api/eula/accept',
+  '/api/legal-acceptance',
+  '/api/telemetry',
   '/api/discord/queue-pings',
   '/api/characters/:id/deeds-recent',
   '/api/characters/:id/appearance-reroll',
   '/api/steam/link',
   '/api/steam/status',
+  '/api/auth/steam',
   '/api/battleground/leaderboard',
   '/api/epic/link',
   '/api/epic/status',
@@ -312,6 +317,12 @@ describe('registry completeness: migrated baseline (public reads + auth + charac
     { method: 'GET', path: '/api/world-quests/leaderboard' },
     { method: 'GET', path: '/api/deeds/broadcasts' },
     { method: 'POST', path: '/api/deeds/broadcasts' },
+    // The player-agreement record and the opt-in analytics ingest: registry-only, new routes.
+    { method: 'GET', path: '/api/legal-acceptance' },
+    { method: 'POST', path: '/api/legal-acceptance' },
+    { method: 'GET', path: '/api/eula' },
+    { method: 'POST', path: '/api/eula/accept' },
+    { method: 'POST', path: '/api/telemetry' },
     // The queue-pop Discord DM opt-in toggle (server/discord_queue_pings.ts):
     // registry-only on the deeds broadcasts shape.
     { method: 'GET', path: '/api/discord/queue-pings' },
@@ -330,6 +341,8 @@ describe('registry completeness: migrated baseline (public reads + auth + charac
     { method: 'POST', path: '/api/steam/link' },
     { method: 'DELETE', path: '/api/steam/link' },
     { method: 'GET', path: '/api/steam/status' },
+    // Steam login (server/steam_login.ts): registry-only, env-gated dark.
+    { method: 'POST', path: '/api/auth/steam' },
     // The Epic link trio (server/epic/routes.ts): registry-only twin of Steam,
     // env-gated dark until EPIC_ENABLED=1.
     { method: 'POST', path: '/api/epic/link' },
@@ -579,8 +592,9 @@ describe('registry completeness: oauth + internal surfaces (server/oauth.ts, ser
     // have no rows since #2791, and the winners mark retired with Daily
     // Rewards) plus the two registry-only rows (POST /internal/discord/flex-batch
     // and GET /internal/discord/outbox), which have no legacy ladder arm by
-    // design.
-    expect(internalLadder.length).toBe(10);
+    // design, plus the registry-only maintenance pair (POST and GET
+    // /internal/maintenance, server/maintenance.ts).
+    expect(internalLadder.length).toBe(12);
   });
 
   it('registers exactly the oauth POST ladder routes', () => {

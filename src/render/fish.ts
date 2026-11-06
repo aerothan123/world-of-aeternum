@@ -1,13 +1,8 @@
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-import {
-  DUNGEON_X_THRESHOLD,
-  getActiveWorldContent,
-  WORLD_MAX_X,
-  WORLD_MAX_Z,
-  WORLD_MIN_Z,
-} from '../sim/data';
+import { DUNGEON_X_THRESHOLD, getActiveWorldContent, WORLD_MAX_Z, WORLD_MIN_Z } from '../sim/data';
 import { terrainHeight, waterLevel, waterLevelAt } from '../sim/world';
+import { insideWorldX } from '../sim/world_x_edge';
 import { loadGltf } from './assets/loader';
 import { registerDeferredPreload } from './assets/preload';
 import { GFX } from './gfx';
@@ -120,7 +115,7 @@ export function isLeapableWater(
   z: number,
   depthAt: (x: number, z: number) => number,
 ): boolean {
-  if (Math.abs(x) > WORLD_MAX_X - 8) return false;
+  if (insideWorldX(x) < 8) return false;
   if (z < WORLD_MIN_Z + 8 || z > WORLD_MAX_Z - 8) return false;
   return depthAt(x, z) >= WATER_MARGIN;
 }

@@ -9,6 +9,7 @@ import {
   STRIP_MIN_X,
   WORLD_MAX_X,
   WORLD_MAX_Z,
+  WORLD_MIN_X,
   WORLD_MIN_Z,
   zoneXBounds,
 } from '../sim/data';
@@ -41,7 +42,7 @@ import {
   nightLightUniforms,
 } from './night_light_field';
 import { renderLayerDisabled } from './render_dev_flags';
-import { activeTerrainGridBox } from './terrain_grid_core';
+import { activeTerrainGridBox, DETAIL_MAP_BOX } from './terrain_grid_core';
 
 // The terrain relief ladder (GFX.terrainRelief, one source for the tier
 // ladder and the Advanced Terrain Detail dial): 0 none (medium and below),
@@ -188,7 +189,7 @@ function prepareTerrainTex(key: string, file: string, srgb: boolean): Promise<vo
 /** Prepare the terrain texture channel selected by an explicit target profile. */
 export function prepareTerrainProfileAssets(target: Readonly<GfxSettings>): Promise<void> {
   if (!target.terrainSplat) return Promise.resolve();
-  // World Style Refined paints the grass, dirt, rock and sand layers from the
+  // World Style Refined paints the grass, dirt, rock, sand, mud and snow layers from the
   // painted storybook sets (world_style_ground_core.ts), into the SAME packed
   // layers; Classic resolves every name below to the shipped photo.
   const style = target.worldStyle;
@@ -211,7 +212,7 @@ export function prepareTerrainProfileAssets(target: Readonly<GfxSettings>): Prom
     prepareTerrainTex('rockN', splatLayerFile('rockN', 'Rock026_NormalGL.jpg', style), false),
     prepareTerrainTex('sandC', splatLayerFile('sandC', 'Ground080_Color.jpg', style), true),
     prepareTerrainTex('sandN', splatLayerFile('sandN', 'Ground080_NormalGL.jpg', style), false),
-    prepareTerrainTex('mudC', 'Ground071_Color.jpg', true),
+    prepareTerrainTex('mudC', splatLayerFile('mudC', 'Ground071_Color.jpg', style), true),
     // Snow010A is a near-BLANK image: mean 235, sd 2.24, range 228-245, under
     // 1% contrast, so any ground the snow layer owns renders as flat white and
     // reads as a missing texture (SPACEY, 2026-09-22: "the terrain texures are
@@ -221,9 +222,14 @@ export function prepareTerrainProfileAssets(target: Readonly<GfxSettings>): Prom
     // is available if more relief is wanted. Authored maps only: the built-in
     // world keeps the snow it shipped with (the key is resolved once per page,
     // and a page never swaps between the built-in world and an authored one).
+    // Refined paints both from the storybook snow set.
     prepareTerrainTex(
       'snowC',
-      isBuiltinWorldActive() ? 'Snow010A_Color.jpg' : 'Snow004_Color.jpg',
+      splatLayerFile(
+        'snowC',
+        isBuiltinWorldActive() ? 'Snow010A_Color.jpg' : 'Snow004_Color.jpg',
+        style,
+      ),
       true,
     ),
     // The packs' relief channels, packed offline into one RGBA texture by
@@ -399,8 +405,13 @@ const LOD_BUILD_LANES = 2;
 // world but is baked sparsely by zone, so keep it compact enough that entering
 // a new region never turns tens of thousands of height samples into a
 // second boot. At the current bounds this is roughly 3yd/texel.
-const NORMAL_TEX_W = 320;
-const NORMAL_TEX_H = 960;
+// The world-planar maps span the real east-west pair (the West March put the
+// west edge past the old mirror of the east one).
+const TERRAIN_WORLD_W = WORLD_MAX_X - WORLD_MIN_X;
+// The macro normal map keeps the shipped texel density (320 x 960 over the
+// 1080 x 2600 shipped box) however far the frontier grows the world.
+const NORMAL_TEX_W = Math.round((320 * TERRAIN_WORLD_W) / 1080);
+const NORMAL_TEX_H = Math.round((960 * (WORLD_MAX_Z - WORLD_MIN_Z)) / 2600);
 // nudged up from 1.35: at 3yd/texel the macro relief was reading flat next
 // to the strengthened per-material detail normals
 const NORMAL_TEX_STRENGTH = 1.55;
@@ -510,7 +521,7 @@ function weldCutRim(state: ChunkGeometryArrays): {
         uvs[vi * 2] = 0;
         uvs[vi * 2 + 1] = 0;
       } else {
-        uvs[vi * 2] = (rim.positions[i * 3] + WORLD_MAX_X) / (WORLD_MAX_X * 2);
+        uvs[vi * 2] = (rim.positions[i * 3] - WORLD_MIN_X) / TERRAIN_WORLD_W;
         uvs[vi * 2 + 1] = (rim.positions[i * 3 + 2] - WORLD_MIN_Z) / worldDepth;
       }
     }
@@ -654,7 +665,7 @@ function bakeNormalRegion(
 ): void {
   const w = NORMAL_TEX_W,
     h = NORMAL_TEX_H;
-  const worldW = WORLD_MAX_X * 2;
+  const worldW = TERRAIN_WORLD_W;
   const worldD = WORLD_MAX_Z - WORLD_MIN_Z;
   const stepX = worldW / w;
   const stepZ = worldD / h;
@@ -669,7 +680,7 @@ function bakeNormalRegion(
     const z = WORLD_MIN_Z + (j + 0.5) * stepZ;
     for (let i = hi0; i <= hi1; i++) {
       heights[(j - hj0) * hw + (i - hi0)] = meshTerrainHeight(
-        -WORLD_MAX_X + (i + 0.5) * stepX,
+        WORLD_MIN_X + (i + 0.5) * stepX,
         z,
         seed,
       );
@@ -2608,8 +2619,8 @@ function buildLambertMaterial(brush: BrushUniforms): THREE.MeshLambertMaterial {
         '#include <map_fragment>',
         `#ifdef USE_MAP
         vec2 wocDetailUv = vec2(
-          (vWocWPos.x + ${WORLD_MAX_X.toFixed(1)}) / ${(WORLD_MAX_X * 2).toFixed(1)},
-          (vWocWPos.z - ${WORLD_MIN_Z.toFixed(1)}) / ${(WORLD_MAX_Z - WORLD_MIN_Z).toFixed(1)}
+          (vWocWPos.x + ${(-DETAIL_MAP_BOX.minX).toFixed(1)}) / ${(DETAIL_MAP_BOX.maxX - DETAIL_MAP_BOX.minX).toFixed(1)},
+          (vWocWPos.z - ${DETAIL_MAP_BOX.minZ.toFixed(1)}) / ${(DETAIL_MAP_BOX.maxZ - DETAIL_MAP_BOX.minZ).toFixed(1)}
         ) * vec2(160.0, 480.0);
         diffuseColor *= texture2D( map, wocDetailUv );
         #endif`,
@@ -2967,7 +2978,7 @@ export function buildTerrain(seed: number, priorityPoint?: { x: number; z: numbe
   // densest band; the walls sit far from every hub, so hub-distance LOD alone
   // hands the steepest, most looked-at cliffs the coarsest grid.
   const wallChunkAt = (x0: number, z0: number, size: number): boolean => {
-    if (x0 < -WORLD_MAX_X + WALL_LOD_RIM_MARGIN || x0 + size > WORLD_MAX_X - WALL_LOD_RIM_MARGIN) {
+    if (x0 < WORLD_MIN_X + WALL_LOD_RIM_MARGIN || x0 + size > WORLD_MAX_X - WALL_LOD_RIM_MARGIN) {
       return true;
     }
     if (z0 < WORLD_MIN_Z + WALL_LOD_RIM_MARGIN || z0 + size > WORLD_MAX_Z - WALL_LOD_RIM_MARGIN) {
@@ -3480,9 +3491,9 @@ export function buildTerrain(seed: number, priorityPoint?: { x: number; z: numbe
       minZ,
       maxX,
       maxZ,
-      -WORLD_MAX_X,
+      WORLD_MIN_X,
       WORLD_MIN_Z,
-      WORLD_MAX_X * 2,
+      TERRAIN_WORLD_W,
       WORLD_MAX_Z - WORLD_MIN_Z,
       NORMAL_TEX_W,
       NORMAL_TEX_H,
@@ -3887,9 +3898,9 @@ export function buildTerrain(seed: number, priorityPoint?: { x: number; z: numbe
         minZ,
         maxX,
         maxZ,
-        -WORLD_MAX_X,
+        WORLD_MIN_X,
         WORLD_MIN_Z,
-        WORLD_MAX_X * 2,
+        TERRAIN_WORLD_W,
         WORLD_MAX_Z - WORLD_MIN_Z,
         NORMAL_TEX_W,
         NORMAL_TEX_H,

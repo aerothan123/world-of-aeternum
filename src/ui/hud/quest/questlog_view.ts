@@ -18,6 +18,7 @@
 
 import { NPCS, QUESTS, zoneAt } from '../../../sim/data';
 import { questFixedReward } from '../../../sim/quests/quest_reward_choice';
+import { questLevelOf, questRewardXp } from '../../../sim/quests/quest_xp';
 import type { PlayerClass, QuestProgress } from '../../../sim/types';
 import { questObjectiveRequired } from '../../../sim/types';
 
@@ -87,6 +88,9 @@ export interface QuestLogInput {
   /** The painter-owned current selection (Hud state, like the inline window). */
   selectedQuestId: string | null;
   playerClass: PlayerClass;
+  /** The player's level, for the out-level XP reduction (quests/quest_xp.ts).
+   *  Absent prices the quest at its own level. */
+  playerLevel?: number;
   /** sim.questsDone.size, for the title summary. */
   completedCount: number;
   collapsedGroupIds?: readonly string[];
@@ -167,7 +171,7 @@ export function buildQuestLogView(input: QuestLogInput): QuestLogView {
             done: qp.counts[i] >= required,
           };
         }),
-        xpReward: quest.xpReward,
+        xpReward: questRewardXp(quest, input.playerLevel ?? questLevelOf(quest)),
         copperReward: quest.copperReward,
         rewardItemId: questFixedReward(quest, playerClass) ?? null,
         turnInNpcId: quest.turnInNpcId,

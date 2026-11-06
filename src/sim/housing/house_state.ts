@@ -3,9 +3,13 @@
 // and entry rules live in ./ownership.ts, the furniture rules in
 // ./furnishing.ts.
 //
-// Ownership is PER CHARACTER and lives inside the character's own save blob,
-// exactly like the bank vault (the anti-dupe rule: one blob, one owner, one
-// write path). One house per character in phase 1.
+// The record lives inside ONE character's own save blob, exactly like the
+// bank vault (the anti-dupe rule: one blob, one owner, one write path). The
+// owner decision (Wyndlewood, 2026-11) is one house per ACCOUNT: the server
+// consolidates any account holding several into the most-furnished one at boot
+// (server/account_house_migration.ts) and tells every other character of the
+// account who holds it (HousingPlayerState.accountHouseHolder), so buyHouse
+// refuses a second. The saved shape is unchanged and read forever.
 //
 // Persisted shape (CharacterState.house): absent for every character who has
 // never bought a house, so their saves stay byte-equal (zero-default omission).
@@ -51,6 +55,17 @@ export interface HousingPlayerState {
   house?: HouseOwnership;
   /** The Furnishing skill counter (0 to the craft's maxSkill), persisted. */
   furnishingSkill: number;
+  /** Runtime-only, host-supplied (one house per ACCOUNT): the name of another
+   *  character on this account and realm who holds the account's house, so
+   *  this one may not buy a second. Set at join from the server's account
+   *  read (CharacterState.accountHouseHolder); never persisted. */
+  accountHouseHolder?: string;
+  /** Runtime-only, host-supplied: the account this character's house belongs
+   *  to (`acct:<id>`). Every online character with the same key shares ONE
+   *  live HouseOwnership object (character_storage.ts restore, ownership.ts
+   *  buyHouse), so all of an account's characters enter, decorate and use the
+   *  same house and storage. Never persisted. */
+  accountHouseKey?: string;
   /** Runtime-only: the change signal for the owner-only `hst` wire key
    *  (bank.ts bankWireRev's twin): bumped by every write a houseStorageFor
    *  projection can observe (a deposit, a withdrawal, a chest placed or taken

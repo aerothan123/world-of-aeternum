@@ -75,37 +75,6 @@ of them is reviewed.
 
 ## Accepted exceptions
 
-### GHSA-hqr4-qq8f-hg3x: stream-json JSONC comment parsing can take quadratic time
-
-**Reviewed 2026-10-24. Severity** moderate. **Path**
-`@reown/appkit-adapter-solana > @solana/web3.js > jayson > stream-json@1.9.1`.
-The [advisory](https://github.com/advisories/GHSA-hqr4-qq8f-hg3x) is fixed in
-3.6.0, whose module layout is incompatible with jayson's 1.x imports.
-
-**Not reachable here.** The browser Solana bundle imports
-`jayson/lib/client/browser`, which loads only `uuid` and `generateRequest`.
-It never loads the stream-json-backed server utilities, including the JSONC
-parser/verifier. This is the same browser boundary recorded for
-GHSA-528h-pc64-c93x, independently checked against the installed packages.
-
-**Retire this entry when** jayson adopts stream-json >=3.6.0, removes it, or
-WoC starts using jayson's server/stream APIs. Recheck reachability on wallet upgrades.
-
-### GHSA-mjw6-4jj6-33hc: stream-json Assembler prototype pollution
-
-**Reviewed 2026-10-24. Severity** moderate. **Path**
-`@reown/appkit-adapter-solana > @solana/web3.js > jayson > stream-json@1.9.1`.
-The [advisory](https://github.com/advisories/GHSA-mjw6-4jj6-33hc) is fixed in
-3.6.0. Do not force that incompatible major into jayson's 1.x imports.
-
-**Not reachable here.** The installed Solana browser bundle uses jayson's
-browser client, not its server utilities or stream-json Assembler. The
-browser-client dependency closure is checked by
-`tests/dependency_exception_reachability.test.ts`.
-
-**Retire this entry when** a compatible patched consumer ships or a new
-application path imports stream-json; the latter requires fresh security review.
-
 ### GHSA-ch52-4w7c-c8xp: http-cache-semantics accepts private cookies through max-stale
 
 **Reviewed 2026-10-24. Severity** high. **Path**
@@ -126,111 +95,32 @@ Got HTTP caching or introducing a runtime consumer of this package.
 
 ### GHSA-mrhx-c7xc-m3w5: Zod parses oversized constrained collections
 
-**Reviewed 2026-10-24. Severity** high. **Paths**
-`@reown/appkit-wallet > zod@3.22.4` and `chromium-bidi > zod@3.25.76`.
-The [upstream fix](https://github.com/colinhacks/zod/pull/6652) ships in Zod
-4.6.6. Neither consumer has a compatible patched Zod 3 release; forcing a
-major upgrade would change their validation API.
+**Reviewed 2026-10-24, narrowed 2026-11-05. Severity** high. **Path**
+`chromium-bidi > zod@3.25.76` (the second path, `@reown/appkit-wallet >
+zod@3.22.4`, left with the wallet stack on 2026-11-05 and its patch was
+retired). The [upstream fix](https://github.com/colinhacks/zod/pull/6652)
+ships in Zod 4.6.6. The consumer has no compatible patched Zod 3 release;
+forcing a major upgrade would change its validation API.
 
-**Locally patched.** The version-scoped pnpm patches backport early rejection
+**Locally patched.** The version-scoped pnpm patch backports early rejection
 for oversized Array `.max()`/`.length()` and Set `.max()`/`.size()` constraints
-to both installed versions. Zod 3 Map has no corresponding size constraint.
-CommonJS and ESM implementations are patched, including the 3.22.4 UMD
-bundle and 3.25.76 TypeScript source.
-`tests/zod_collection_limits.test.ts` loads each consumer's actual dependency
+to the installed version. Zod 3 Map has no corresponding size constraint.
+CommonJS and ESM implementations are patched, including the 3.25.76
+TypeScript source.
+`tests/zod_collection_limits.test.ts` loads the consumer's actual dependency
 and verifies zero element/refinement visits on oversize, sync/async error paths,
 valid transforms, and preserved undersize behavior. The unpatched versions
 fail the oversized-input tests. The audit exception is necessary because the
 registry sees version numbers, not pnpm patch contents.
 
-**Scope limit.** Like upstream, this fix does not bound unconstrained collections
-or all incoming wallet messages. Local email/social settings do not prove the
-wallet frame unreachable because AppKit can replace them with remote project
-configuration. No general wallet-message resource-exhaustion protection is claimed.
+**Scope limit.** Like upstream, this fix does not bound unconstrained collections.
 Zod 3.25.76 also ships unpatched `v4`/`v4-mini` exports; no current application
 or installed consumer imports them. Introducing those imports invalidates this
 exception until those paths are patched or upgraded.
 
-**Retire this entry and both patches when** both consumers adopt an upstream
+**Retire this entry and the patch when** chromium-bidi adopts an upstream
 patched compatible release. Recheck all executable entry points when changing
 versions or adding consumers.
-
-### GHSA-3gc7-fjrx-p6mg: bigint-buffer buffer overflow in `toBigIntLE()`
-
-**Severity** high (CVSS 7.5). **Path**
-`@reown/appkit-adapter-solana > @solana/spl-token > @solana/buffer-layout-utils > bigint-buffer`.
-
-**Unfixable upstream.** The advisory lists no patched version
-(`patched_versions: <0.0.0`), and `@solana/buffer-layout-utils` still declares
-`bigint-buffer@^1.1.5` at its latest release (0.3.0), so the wallet stack has
-nothing to move to.
-
-**Not reachable here.** The overflow is in the package's native C++ addon, on
-the `converter.toBigInt` branch. No shipped module imports the Solana stack any
-more (the wallet bridge that loaded it in the browser through a dynamic import
-was removed with the crypto features; the dependency itself leaves in a separate
-manifest change). When it was live, it only ran in the browser. `bigint-buffer` declares a `browser` field remapping
-`dist/node.js` to `dist/browser.js`, and the browser build never assigns
-`converter`, so `toBigIntLE` always returns through the pure-JS path. Verified
-against the built bundle: the emitted chunk contains no `bindings(` call and no
-native loader.
-
-**Retire this entry when** a patched `bigint-buffer` ships, or
-`@solana/buffer-layout-utils` drops the dependency.
-
-### GHSA-w5hq-g745-h8pq: uuid missing buffer bounds check in v3/v5/v6
-
-**Severity** moderate. **Path**
-`@reown/appkit-adapter-solana > @solana/web3.js > jayson > uuid` (uuid 8.3.2).
-
-**Not reachable here.** The missing bounds check is only exercised when the
-caller passes a `buf` argument to v3/v5/v6. The single consumer, `jayson`, calls
-`uuid.v4()` with no arguments at all three of its call sites
-(`lib/utils.js`, `lib/generateRequest.js`, `lib/client/browser/index.js`), so
-the vulnerable branch is never entered.
-
-**Not overridden** rather than ignored because `jayson` pins `uuid@^8.3.2` and
-the patched floor is 11.1.1: forcing that selector across a major would be a
-larger and riskier change than the advisory warrants, for a path that cannot
-reach the defect.
-
-**Retire this entry when** `jayson` (or `@solana/web3.js`) moves to uuid 11+.
-
-### GHSA-528h-pc64-c93x: stream-json path filters are O(depth^2) on nested input
-
-**Severity** medium (CVSS 6.2). **Path**
-`@solana/web3.js > jayson > stream-json` (stream-json 1.9.1).
-
-**Unfixable without breaking the consumer.** The advisory's patched floor is
-3.5.0, but `jayson@4.3.0` requires `stream-json@^1.9.1` and reads it through
-paths that only exist on the 1.x layout (`stream-json/streamers/StreamValues`,
-`stream-json/utils/Verifier`, both loaded at the top of `jayson/lib/utils.js`).
-Forcing the override past 1.x (a prior state of this override pinned
-`^3.5.0`) does not "fix" the advisory, it makes `jayson/lib/utils.js` throw
-`MODULE_NOT_FOUND` on load, since those paths moved under `src/` in stream-json
-3.x. There is no stream-json version that is both `>=3.5.0` and importable by
-this jayson release.
-
-**Not reachable here, on two independent grounds.**
-
-1. This repo never loads the file that requires stream-json at all. The only
-   consumer, `@solana/web3.js`, requires exactly `jayson/lib/client/browser` in
-   all three of its bundles (`lib/index.cjs.js`, `lib/index.browser.cjs.js`,
-   `lib/index.native.js`), and that module only requires `uuid` and
-   `jayson/lib/generateRequest`, never `jayson/lib/utils`. `jayson/lib/utils.js`
-   (the file with the `stream-json/streamers/StreamValues` /
-   `stream-json/utils/Verifier` requires) backs jayson's server and TCP/stream
-   clients, none of which this repo's dependency graph reaches.
-2. Even if it were reached, the advisory itself scopes the defect to the
-   `pick`/`ignore`/`filter`/`replace` path filters in
-   `src/core/filters/filter-base.js`, which recompute the full nesting-stack
-   path string on every checkable token. The `StreamValues` streamer jayson
-   actually imports is explicitly called out by the advisory as not affected:
-   "the `streamArray`/`streamObject`/`streamValues` streamers use `asm.depth`
-   (an O(1) getter), so they don't exhibit this."
-
-**Retire this entry when** `jayson` bumps its own `stream-json` dependency to
-`>=3.5.0` (adopting the v3 API surface) or drops `stream-json` entirely.
 
 ### GHSA-gcqx-w48m-w2h4: deepmerge mergeObject() allows prototype poisoning of returned objects
 
@@ -289,3 +179,124 @@ reddens the asset suites. Use the size-preserving in-place re-mint
 prints; see `scripts/assets/CLAUDE.md`. This is the real cost of a dependency
 bump in this repo, and the reason to batch dependency updates deliberately
 rather than take them as a drip.
+
+## Retired exceptions
+
+Kept as history: the reachability arguments below were correct while the
+wallet stack was installed, and they say what to re-check if a package ever
+returns. The whole family (`@reown/*`, `@solana/*`, `@wallet-standard/*`,
+`bs58`, `@noble/curves`, `tweetnacl`) left `package.json` on 2026-11-05
+(Wyndlewood launch blockers: Steam does not allow blockchain games), which
+took `jayson`, `stream-json`, `bigint-buffer`, the `uuid@8` copy and the
+`zod@3.22.4` copy out of `pnpm-lock.yaml` with it. The `stream-json@1`
+override retired for the same reason. If any of these packages comes back,
+its entry below is a review prompt, not a standing exception: re-verify
+before re-adding the id to `ignoreGhsas`.
+
+### RETIRED 2026-11-05: GHSA-hqr4-qq8f-hg3x: stream-json JSONC comment parsing can take quadratic time
+
+**Reviewed 2026-10-24. Severity** moderate. **Path**
+`@reown/appkit-adapter-solana > @solana/web3.js > jayson > stream-json@1.9.1`.
+The [advisory](https://github.com/advisories/GHSA-hqr4-qq8f-hg3x) is fixed in
+3.6.0, whose module layout is incompatible with jayson's 1.x imports.
+
+**Not reachable here.** The browser Solana bundle imports
+`jayson/lib/client/browser`, which loads only `uuid` and `generateRequest`.
+It never loads the stream-json-backed server utilities, including the JSONC
+parser/verifier. This is the same browser boundary recorded for
+GHSA-528h-pc64-c93x, independently checked against the installed packages.
+
+**Retire this entry when** jayson adopts stream-json >=3.6.0, removes it, or
+WoC starts using jayson's server/stream APIs. Recheck reachability on wallet upgrades.
+
+### RETIRED 2026-11-05: GHSA-mjw6-4jj6-33hc: stream-json Assembler prototype pollution
+
+**Reviewed 2026-10-24. Severity** moderate. **Path**
+`@reown/appkit-adapter-solana > @solana/web3.js > jayson > stream-json@1.9.1`.
+The [advisory](https://github.com/advisories/GHSA-mjw6-4jj6-33hc) is fixed in
+3.6.0. Do not force that incompatible major into jayson's 1.x imports.
+
+**Not reachable here.** The installed Solana browser bundle uses jayson's
+browser client, not its server utilities or stream-json Assembler. The
+browser-client dependency closure is checked by
+`tests/dependency_exception_reachability.test.ts`.
+
+**Retire this entry when** a compatible patched consumer ships or a new
+application path imports stream-json; the latter requires fresh security review.
+
+### RETIRED 2026-11-05: GHSA-3gc7-fjrx-p6mg: bigint-buffer buffer overflow in `toBigIntLE()`
+
+**Severity** high (CVSS 7.5). **Path**
+`@reown/appkit-adapter-solana > @solana/spl-token > @solana/buffer-layout-utils > bigint-buffer`.
+
+**Unfixable upstream.** The advisory lists no patched version
+(`patched_versions: <0.0.0`), and `@solana/buffer-layout-utils` still declares
+`bigint-buffer@^1.1.5` at its latest release (0.3.0), so the wallet stack has
+nothing to move to.
+
+**Not reachable here.** The overflow is in the package's native C++ addon, on
+the `converter.toBigInt` branch. No shipped module imports the Solana stack any
+more (the wallet bridge that loaded it in the browser through a dynamic import
+was removed with the crypto features; the dependency itself leaves in a separate
+manifest change). When it was live, it only ran in the browser. `bigint-buffer` declares a `browser` field remapping
+`dist/node.js` to `dist/browser.js`, and the browser build never assigns
+`converter`, so `toBigIntLE` always returns through the pure-JS path. Verified
+against the built bundle: the emitted chunk contains no `bindings(` call and no
+native loader.
+
+**Retire this entry when** a patched `bigint-buffer` ships, or
+`@solana/buffer-layout-utils` drops the dependency.
+
+### RETIRED 2026-11-05: GHSA-w5hq-g745-h8pq: uuid missing buffer bounds check in v3/v5/v6
+
+**Severity** moderate. **Path**
+`@reown/appkit-adapter-solana > @solana/web3.js > jayson > uuid` (uuid 8.3.2).
+
+**Not reachable here.** The missing bounds check is only exercised when the
+caller passes a `buf` argument to v3/v5/v6. The single consumer, `jayson`, calls
+`uuid.v4()` with no arguments at all three of its call sites
+(`lib/utils.js`, `lib/generateRequest.js`, `lib/client/browser/index.js`), so
+the vulnerable branch is never entered.
+
+**Not overridden** rather than ignored because `jayson` pins `uuid@^8.3.2` and
+the patched floor is 11.1.1: forcing that selector across a major would be a
+larger and riskier change than the advisory warrants, for a path that cannot
+reach the defect.
+
+**Retire this entry when** `jayson` (or `@solana/web3.js`) moves to uuid 11+.
+
+### RETIRED 2026-11-05: GHSA-528h-pc64-c93x: stream-json path filters are O(depth^2) on nested input
+
+**Severity** medium (CVSS 6.2). **Path**
+`@solana/web3.js > jayson > stream-json` (stream-json 1.9.1).
+
+**Unfixable without breaking the consumer.** The advisory's patched floor is
+3.5.0, but `jayson@4.3.0` requires `stream-json@^1.9.1` and reads it through
+paths that only exist on the 1.x layout (`stream-json/streamers/StreamValues`,
+`stream-json/utils/Verifier`, both loaded at the top of `jayson/lib/utils.js`).
+Forcing the override past 1.x (a prior state of this override pinned
+`^3.5.0`) does not "fix" the advisory, it makes `jayson/lib/utils.js` throw
+`MODULE_NOT_FOUND` on load, since those paths moved under `src/` in stream-json
+3.x. There is no stream-json version that is both `>=3.5.0` and importable by
+this jayson release.
+
+**Not reachable here, on two independent grounds.**
+
+1. This repo never loads the file that requires stream-json at all. The only
+   consumer, `@solana/web3.js`, requires exactly `jayson/lib/client/browser` in
+   all three of its bundles (`lib/index.cjs.js`, `lib/index.browser.cjs.js`,
+   `lib/index.native.js`), and that module only requires `uuid` and
+   `jayson/lib/generateRequest`, never `jayson/lib/utils`. `jayson/lib/utils.js`
+   (the file with the `stream-json/streamers/StreamValues` /
+   `stream-json/utils/Verifier` requires) backs jayson's server and TCP/stream
+   clients, none of which this repo's dependency graph reaches.
+2. Even if it were reached, the advisory itself scopes the defect to the
+   `pick`/`ignore`/`filter`/`replace` path filters in
+   `src/core/filters/filter-base.js`, which recompute the full nesting-stack
+   path string on every checkable token. The `StreamValues` streamer jayson
+   actually imports is explicitly called out by the advisory as not affected:
+   "the `streamArray`/`streamObject`/`streamValues` streamers use `asm.depth`
+   (an O(1) getter), so they don't exhibit this."
+
+**Retire this entry when** `jayson` bumps its own `stream-json` dependency to
+`>=3.5.0` (adopting the v3 API surface) or drops `stream-json` entirely.

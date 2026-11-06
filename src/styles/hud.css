@@ -14187,6 +14187,28 @@
     width: 14px;
     height: 14px;
   }
+  /* ---------- durability figure ---------- */
+  /* The classic armor figure (src/ui/hud/durability/): a small shield glyph
+     beside the minimap, OUTSIDE the disc so it claims no rim corner. Shown only
+     while worn gear is low (warning tint) or broken (danger tint). */
+  #dura-figure {
+    position: absolute;
+    left: -22px;
+    top: 50%;
+    width: 16px;
+    height: 20px;
+    border: 2px solid currentColor;
+    border-radius: 3px 3px 9px 9px;
+    background: color-mix(in srgb, currentColor 35%, transparent);
+    color: var(--color-warning);
+    pointer-events: auto;
+  }
+  #dura-figure.is-broken {
+    color: var(--color-danger);
+  }
+  #dura-figure[hidden] {
+    display: none;
+  }
   /* ---------- intro logo overlay ---------- */
   /* Wordmark shown fading in/hold/out over the opening of the first-spawn intro
      cinematic (spawn_cinematic.ts): intro_logo_overlay.ts drives opacity/display
@@ -16914,5 +16936,173 @@
      the last two pixels of the screen. */
   #bottom-bar {
     bottom: 0;
+  }
+
+  /* ---------- add-on layer and AddOns window ---------- */
+  /* docs/design/addon-api.md. Add-on frames live in their own layer under every
+     game window, prompt and banner; only interactive add-on widgets take the
+     pointer, so an add-on cannot swallow clicks meant for the game. Add-on
+     colors arrive as validated inline values (addon_widget_core.ts); every
+     default below is a token. */
+  #addon-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  #addon-layer .addon-root {
+    position: absolute;
+    inset: 0;
+  }
+  .addon-w {
+    position: absolute;
+    box-sizing: border-box;
+    pointer-events: none;
+    color: var(--color-text-light);
+    font-family: var(--ui-font);
+    font-size: 12px;
+    line-height: 1.25;
+    white-space: nowrap;
+  }
+  .addon-w--interactive {
+    pointer-events: auto;
+  }
+  .addon-w--movable {
+    cursor: move;
+  }
+  .addon-w--bordered {
+    border-width: 1px;
+    border-style: solid;
+  }
+  .addon-w--wrap {
+    white-space: normal;
+  }
+  .addon-w--text {
+    text-shadow: 0 1px 2px var(--color-art-shadow);
+  }
+  .addon-w--bar {
+    overflow: hidden;
+    background-color: var(--color-bar-track);
+  }
+  .addon-bar-fill {
+    position: absolute;
+    inset: 0;
+    transform-origin: left center;
+    background-color: var(--color-accent);
+  }
+  .addon-bar-fill--vertical {
+    transform-origin: center bottom;
+  }
+  .addon-w--button {
+    padding: 2px 8px;
+    border: 1px solid var(--color-border-default);
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-light);
+    font: inherit;
+    cursor: pointer;
+  }
+  .addon-w--button:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 1px;
+  }
+  .addon-sandbox-frame {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 0;
+    visibility: hidden;
+  }
+  #addons-window {
+    width: 100%;
+    max-width: 660px;
+    max-height: 80dvh;
+    overflow-y: auto;
+    z-index: 30;
+    font-family: var(--ui-font);
+    font-size: 13px;
+  }
+  #addons-window .addons-top,
+  #addons-window .addons-actions,
+  #addons-window .addons-row-actions,
+  #addons-window .addons-perms {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+  #addons-window .addons-actions {
+    margin-top: 10px;
+  }
+  #addons-window .addons-hint,
+  #addons-window .addons-detail,
+  #addons-window .addons-desc,
+  #addons-window .addons-stats {
+    margin: 4px 0;
+  }
+  #addons-window .addons-notice,
+  #addons-window .addons-banner {
+    margin: 8px 0;
+    padding: 6px 8px;
+    border: 1px solid var(--color-border-default);
+    color: var(--color-text-light);
+  }
+  #addons-window .addons-list {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 0;
+  }
+  #addons-window .addons-row {
+    padding: 8px 0;
+    border-top: 1px solid var(--color-border-default);
+  }
+  #addons-window .addons-row-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px;
+  }
+  #addons-window .addons-name {
+    color: var(--gold);
+    font-family: var(--title-font);
+  }
+  #addons-window .addons-chip {
+    padding: 0 6px;
+    border: 1px solid var(--color-border-default);
+    border-radius: 8px;
+    font-size: 11px;
+  }
+  #addons-window .addons-status--good {
+    color: var(--color-text-success);
+  }
+  #addons-window .addons-status--bad {
+    color: var(--color-text-error);
+  }
+  #addons-window .addons-status--warn {
+    color: var(--color-warning);
+  }
+  #addons-window .addons-status--muted {
+    color: var(--color-text-muted);
+  }
+  #addons-window .addons-errors {
+    margin: 4px 0 0 18px;
+    padding: 0;
+    color: var(--color-text-error);
+    font-size: 12px;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  #addons-window .addons-settings {
+    display: grid;
+    gap: 6px;
+  }
+  #addons-window .addons-field {
+    display: block;
+    color: var(--gold);
+  }
+  #addons-window select,
+  #addons-window input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
   }
 }

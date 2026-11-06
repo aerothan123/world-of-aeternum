@@ -1806,6 +1806,19 @@ export class MinimapPainter {
           ctx.stroke();
           break;
         }
+        case 'town-project': {
+          // A town restoration site: a small square plinth in the station
+          // colour, procedural (no sprite). Tier-identical, never gated.
+          const r = geometry.farmSproutRadius;
+          ctx.fillStyle = colors.station;
+          ctx.strokeStyle = colors.outline;
+          ctx.lineWidth = geometry.markerOutlineWidth;
+          ctx.beginPath();
+          ctx.rect(Math.round(m.mx - r), Math.round(m.my - r), r * 2, r * 2);
+          ctx.fill();
+          ctx.stroke();
+          break;
+        }
         case 'gather-node': {
           // Four independent cached variants make both facts visible: ready is
           // full color, cooldown is grayscale inside a broken neutral ring,

@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { resolveChangedBaseRef } from '../scripts/lib/ci_changed_base.mjs';
 import { buildBiomeArgs } from '../scripts/lib/ci_changed_biome_args.mjs';
+import { INTEGRATION_BRANCHES } from '../scripts/lib/gate_discovery.mjs';
 
 // The injected-run suites below structurally cannot see an orchestrator's own
 // spawn flags, and that blind spot bit all three once: through cmd.exe, the
@@ -150,6 +151,119 @@ describe('resolveChangedBaseRef', () => {
     };
     const ref = resolveChangedBaseRef({ env: {}, run });
     expect(ref).toBe('origin/HEAD');
+  });
+
+  // A fork with no origin/release/* (and no fetched origin/main) used to fail
+  // every push here: the integration branch is now a named fallback.
+  it('falls back to the fork integration branch when no release branch resolves', () => {
+    const run: Run = (_cmd, args) => {
+      if (args[0] === 'for-each-ref') return { status: 0, stdout: '' };
+      if (args[0] === 'rev-parse' && args[1] === '--abbrev-ref') {
+        return { status: 0, stdout: 'fix/tsc-baseline\n' };
+      }
+      if (args[0] === 'rev-parse' && args.includes(`${INTEGRATION_BRANCHES[0]}^{commit}`)) {
+        return { status: 0 };
+      }
+      if (args[0] === 'rev-parse') return { status: 128 };
+      if (args[0] === 'merge-base') return { status: 1 };
+      throw new Error(`unexpected git ${args.join(' ')}`);
+    };
+    expect(resolveChangedBaseRef({ env: {}, run })).toBe(INTEGRATION_BRANCHES[0]);
+  });
+
+  it('prefers the integration branch over a stale origin/main when both resolve', () => {
+    const run: Run = (_cmd, args) => {
+      if (args[0] === 'for-each-ref') return { status: 0, stdout: '' };
+      if (args[0] === 'rev-parse' && args[1] === '--abbrev-ref') {
+        return { status: 0, stdout: 'feature/some-crew\n' };
+      }
+      if (args[0] === 'rev-parse') return { status: 0 };
+      if (args[0] === 'merge-base') return { status: 1 };
+      throw new Error(`unexpected git ${args.join(' ')}`);
+    };
+    expect(resolveChangedBaseRef({ env: {}, run })).toBe(INTEGRATION_BRANCHES[0]);
+  });
+
+  it('still prefers the newest release branch over the integration branch', () => {
+    const run: Run = (_cmd, args) => {
+      if (args[0] === 'for-each-ref') return { status: 0, stdout: 'origin/release/v0.36.0\n' };
+      if (args[0] === 'rev-parse' && args[1] === '--verify') return { status: 0 };
+      throw new Error(`unexpected git ${args.join(' ')}`);
+    };
+    expect(resolveChangedBaseRef({ env: {}, run })).toBe('origin/release/v0.36.0');
+  });
+
+  it(
+    'skips the integration branch while it is the branch being diffed (its origin copy ' +
+      'is then the branch itself, the @{upstream} trap)',
+    () => {
+      const integration = INTEGRATION_BRANCHES[0];
+      const probed: string[] = [];
+      const run: Run = (_cmd, args) => {
+        if (args[0] === 'for-each-ref') return { status: 0, stdout: '' };
+        if (args[0] === 'rev-parse' && args[1] === '--abbrev-ref') {
+          return { status: 0, stdout: `${integration.replace(/^origin\//, '')}\n` };
+        }
+        if (args[0] === 'rev-parse' && args[1] === '--verify') {
+          probed.push(args[2]);
+          return { status: 0 };
+        }
+        throw new Error(`unexpected git ${args.join(' ')}`);
+      };
+      expect(resolveChangedBaseRef({ env: {}, run })).toBe('origin/main');
+      expect(probed).not.toContain(`${integration}^{commit}`);
+    },
+  );
+
+  // A detached checkout of the integration tip (or a branch already merged into
+  // it) has an EMPTY committed diff against it, so the resolver must widen.
+  it('falls through to origin/main when HEAD is already contained in the integration branch', () => {
+    const run: Run = (_cmd, args) => {
+      if (args[0] === 'for-each-ref') return { status: 0, stdout: '' };
+      if (args[0] === 'rev-parse' && args[1] === '--abbrev-ref')
+        return { status: 0, stdout: 'HEAD\n' };
+      if (args[0] === 'rev-parse') return { status: 0 };
+      if (args[0] === 'merge-base') {
+        expect(args).toEqual(['merge-base', '--is-ancestor', 'HEAD', INTEGRATION_BRANCHES[0]]);
+        return { status: 0 };
+      }
+      throw new Error(`unexpected git ${args.join(' ')}`);
+    };
+    expect(resolveChangedBaseRef({ env: {}, run })).toBe('origin/main');
+  });
+
+  it('treats a failing containment probe as "do not use", never as a usable base', () => {
+    const run: Run = (_cmd, args) => {
+      if (args[0] === 'for-each-ref') return { status: 0, stdout: '' };
+      if (args[0] === 'rev-parse' && args[1] === '--abbrev-ref') {
+        return { status: 0, stdout: 'feature/some-crew\n' };
+      }
+      if (args[0] === 'rev-parse' && args[2] === `${INTEGRATION_BRANCHES[0]}^{commit}`) {
+        return { status: 0 };
+      }
+      if (args[0] === 'rev-parse') return { status: 128 };
+      if (args[0] === 'merge-base') return { status: 128 };
+      throw new Error(`unexpected git ${args.join(' ')}`);
+    };
+    expect(() => resolveChangedBaseRef({ env: {}, run })).toThrow(
+      /could not resolve a --since base ref/,
+    );
+  });
+
+  it('fails closed when the integration branch is the current branch and nothing else resolves', () => {
+    const integration = INTEGRATION_BRANCHES[0];
+    const run: Run = (_cmd, args) => {
+      if (args[0] === 'for-each-ref') return { status: 0, stdout: '' };
+      if (args[0] === 'rev-parse' && args[1] === '--abbrev-ref') {
+        return { status: 0, stdout: `${integration.replace(/^origin\//, '')}\n` };
+      }
+      if (args[0] === 'rev-parse' && args[2] === `${integration}^{commit}`) return { status: 0 };
+      if (args[0] === 'rev-parse') return { status: 128 };
+      throw new Error(`unexpected git ${args.join(' ')}`);
+    };
+    expect(() => resolveChangedBaseRef({ env: {}, run })).toThrow(
+      /could not resolve a --since base ref/,
+    );
   });
 
   it('throws a clear error when nothing resolves, rather than silently narrowing', () => {

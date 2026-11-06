@@ -5,12 +5,31 @@ import { SHADOW_GUARDS, SHADOW_NPC_DEF } from './content/world_quest_shadow';
 import { bindFenbridgeActiveWorldGetter } from './fenbridge_touchup';
 import { applyWorldTouchup } from './world_touchup';
 import { WORLD_TOUCHUP } from './world_touchup.generated';
+
 // Content merge layer. Actual game content lives in sim/content/* — one
 // module per zone plus classes (abilities), shared items, and dungeons —
 // so content can grow without everything colliding in one file. This module
 // merges those records into the flat tables the rest of the engine consumes,
 // and owns the world-layout constants.
 
+import {
+  CHAPTER_ONE_CAMPS,
+  CHAPTER_ONE_ESCORTS,
+  CHAPTER_ONE_ITEMS,
+  CHAPTER_ONE_MOBS,
+  CHAPTER_ONE_NPCS,
+  CHAPTER_ONE_OBJECTS,
+  CHAPTER_ONE_QUESTS,
+  chapterOneNpcQuestIds,
+  TOWN_BOARD_QUESTS,
+} from './content/chapter_one';
+import {
+  CHAPTER_TWO_ITEMS,
+  CHAPTER_TWO_OBJECTS,
+  CHAPTER_TWO_QUESTS,
+  chapterTwoNpcQuestIds,
+} from './content/chapter_two';
+import { applyChapterTwoGatedBundles } from './content/chapter_two_bundles';
 import { BASE_ITEMS } from './content/items';
 import {
   isAuthoredMapPresentation,
@@ -90,6 +109,7 @@ import { DROWNED_TEMPLE_MOBS } from './content/drowned_temple';
 import { CANTOR_NPCS } from './content/drowned_temple_cantor';
 import { DROWNED_TEMPLE_ITEMS } from './content/drowned_temple_items';
 import { DUNGEON_DEFS, DUNGEON_KEEPSAKE_ITEMS, DUNGEON_MOBS } from './content/dungeons';
+import { EASTBROOK_YARD_NPCS } from './content/eastbrook_yard_npcs';
 import { FORGEFATHER_ISLE_TERRAIN_EDITS } from './content/ember_coast';
 import {
   EVERGARDEN_CAMPS,
@@ -121,6 +141,25 @@ import {
   FARSHORE_ROADS,
   FARSHORE_ZONE,
 } from './content/farshore';
+import {
+  LOW_REACHES_CAMPS,
+  LOW_REACHES_PROPS,
+  LOW_REACHES_ROADS,
+  LOW_REACHES_ZONES,
+} from './content/frontier/low_reaches';
+import { FRONTIER_MAILBOXES } from './content/frontier/mailboxes';
+import {
+  SOUTHERN_REACHES_CAMPS,
+  SOUTHERN_REACHES_PROPS,
+  SOUTHERN_REACHES_ROADS,
+  SOUTHERN_REACHES_ZONES,
+} from './content/frontier/southern_reaches';
+import {
+  WEST_MARCH_CAMPS,
+  WEST_MARCH_PROPS,
+  WEST_MARCH_ROADS,
+  WEST_MARCH_ZONES,
+} from './content/frontier/west_march';
 import {
   FROSTVEIL_CAMPS,
   FROSTVEIL_ESCORTS,
@@ -498,6 +537,10 @@ export const ITEMS: Record<string, ItemDef> = mergeItems(
   GOURDLIGHT_DAILY_ITEMS,
   // Player housing (Project H) phase 2: the crafted furniture.
   FURNITURE_ITEMS,
+  // Wyndlewood Chapter One's quest items and inspected objects (content/chapter_one.ts).
+  CHAPTER_ONE_ITEMS,
+  // Wyndlewood Chapter Two's core quest items and objects (content/chapter_two.ts).
+  CHAPTER_TWO_ITEMS,
 );
 
 export type { AggregatedSetEffect } from './content/item_sets';
@@ -544,6 +587,8 @@ export const MOBS: Record<string, MobTemplate> = {
   // Gourdlight Eve's field boss and his adds (raised only while the event runs,
   // seasonal/scarecrow.ts; in no camp and no world-boss slot). Appended last.
   ...GOURDLIGHT_SCARECROW_MOBS,
+  // Wyndlewood Chapter One's creatures and escortees (content/chapter_one.ts).
+  ...CHAPTER_ONE_MOBS,
 };
 
 // Heroic upgraded drop variants: generated from the base item + mob loot tables and
@@ -615,6 +660,13 @@ export const NPCS: Record<string, NpcDef> = {
   // Gourdlight Eve's keeper (content/gourdlight_eve.ts): a dynamic singleton under a
   // reserved id, raised only while the event runs (seasonal/seasonal_tick.ts).
   ...GOURDLIGHT_EVE_NPCS,
+  // Wyndlewood Chapter One's new townsfolk (content/chapter_one.ts), appended
+  // last so every NPC placed before them keeps its entity id.
+  ...CHAPTER_ONE_NPCS,
+  // The Eastbrook crafting yard's tannery master (content/eastbrook_yard_npcs.ts,
+  // the town kit relayout), appended last so every NPC placed before her keeps
+  // its entity id.
+  ...EASTBROOK_YARD_NPCS,
 };
 
 // Graveyards + the Spirit Healer: re-exported so the Sim and spirit.ts import the
@@ -649,7 +701,23 @@ export const QUESTS: Record<string, QuestDef> = {
   ...HUB_PRACTICE_QUESTS,
   ...GOURDLIGHT_EVE_QUESTS,
   ...GOURDLIGHT_DAILY_QUESTS,
+  // Wyndlewood Chapter One and the Eastbrook quest board (content/chapter_one.ts).
+  ...CHAPTER_ONE_QUESTS,
+  ...TOWN_BOARD_QUESTS,
+  // Wyndlewood Chapter Two's core quests (content/chapter_two.ts).
+  ...CHAPTER_TWO_QUESTS,
 };
+
+// The chapter's quests ride their givers', turn-ins' and talk targets'
+// questIds lists (a town-board posting sits on its poster for the turn-in row
+// only, quests/quest_marker_kind.ts).
+for (const lists of [chapterOneNpcQuestIds(), chapterTwoNpcQuestIds()]) {
+  for (const [npcId, questIds] of Object.entries(lists)) {
+    const npc = NPCS[npcId];
+    if (!npc) continue;
+    for (const questId of questIds) if (!npc.questIds.includes(questId)) npc.questIds.push(questId);
+  }
+}
 
 // The choose-one leveling gear rides on the quest records (QuestDef.choiceRewards),
 // so the resolver, the turn-in, item levels and the dialogs all read one field.
@@ -680,6 +748,10 @@ export const QUEST_ORDER: string[] = [
   // the seasonal events' quests (open only while their event runs)
   ...Object.keys(GOURDLIGHT_EVE_QUESTS),
   ...Object.keys(GOURDLIGHT_DAILY_QUESTS),
+  // Wyndlewood Chapter One and the Eastbrook quest board, appended last.
+  ...Object.keys(CHAPTER_ONE_QUESTS),
+  ...Object.keys(TOWN_BOARD_QUESTS),
+  ...Object.keys(CHAPTER_TWO_QUESTS),
 ];
 
 // The owner's Quest Workshop quests (content/workshop_quests.generated.ts, a
@@ -755,6 +827,16 @@ export const CAMPS: CampDef[] = [
   // private streams (mob/idle_rng.ts) move: a content append like this one
   // legitimately re-mints the parity goldens without touching a draw digest.
   ...PROVING_SHORE_CAMPS,
+  // Wyndlewood Chapter One's camps (content/chapter_one.ts): offStream, appended
+  // last by the same rule.
+  ...CHAPTER_ONE_CAMPS,
+  // The Southern Reaches (the expansion's first frontier row) append after every
+  // shipped camp, all offStream, by the same rule.
+  ...SOUTHERN_REACHES_CAMPS,
+  // The Low Reaches and the West March (the next frontier row and column)
+  // append after the Southern Reaches, all offStream, by the same rule.
+  ...LOW_REACHES_CAMPS,
+  ...WEST_MARCH_CAMPS,
   // The Eastbrook hub dummy is NOT a camp: it spawns with its sparring master
   // after the player (sim/hub_practice.ts), so it consumes only trailing ids.
 ];
@@ -775,6 +857,7 @@ export const ESCORTS: Record<string, EscortDef> = {
   ...PALMREACH_ESCORTS,
   ...FARSHORE_ESCORTS,
   ...WORLD_QUEST_ESCORTS,
+  ...CHAPTER_ONE_ESCORTS,
 };
 
 export const GROUND_OBJECTS: GroundObjectDef[] = [
@@ -795,6 +878,10 @@ export const GROUND_OBJECTS: GroundObjectDef[] = [
   ...FARSHORE_OBJECTS,
   ...PROVING_SHORE_OBJECTS,
   ...WORLD_QUEST_OBJECTS,
+  // Wyndlewood Chapter One's objects (reserved high entity ids, content/chapter_one.ts).
+  ...CHAPTER_ONE_OBJECTS,
+  // Wyndlewood Chapter Two's core objects (reserved high entity ids, content/chapter_two.ts).
+  ...CHAPTER_TWO_OBJECTS,
 ];
 
 // The content table itself (deep-frozen there), so every reader resolves a
@@ -963,6 +1050,9 @@ export const ROADS: { x: number; z: number }[][] = [
   ...GALECREST_ROADS,
   ...FARSHORE_ROADS,
   ...PROVING_SHORE_ROADS,
+  ...SOUTHERN_REACHES_ROADS,
+  ...LOW_REACHES_ROADS,
+  ...WEST_MARCH_ROADS,
 ];
 
 // Paired overworld portals (src/sim/portals.ts checks these each tick).
@@ -997,6 +1087,9 @@ export const PROPS: ZonePropsDef = mergeProps([
   GALECREST_PROPS,
   FARSHORE_PROPS,
   PROVING_SHORE_PROPS,
+  SOUTHERN_REACHES_PROPS,
+  LOW_REACHES_PROPS,
+  WEST_MARCH_PROPS,
 ]);
 
 function mergeProps(sets: ZonePropsDef[]): ZonePropsDef {
@@ -1079,7 +1172,28 @@ export const ZONES: ZoneDef[] = [
   GALECREST_ZONE,
   FARSHORE_ZONE,
   PROVING_SHORE_ZONE,
+  // The world expansion's frontier zones append LAST (src/sim/frontier/).
+  ...SOUTHERN_REACHES_ZONES,
+  ...LOW_REACHES_ZONES,
+  ...WEST_MARCH_ZONES,
 ];
+
+// Wyndlewood Chapter Two's gated quests (content/chapter_two_bundles.ts: the
+// Applewold, the Kindlemoor and the Chalkbarrow Coast): each bundle merged,
+// appended last, only when the zone table carries its zones (the world crew's
+// feature/world-expansion row). Without those zones nothing of a bundle exists
+// and the core chapter plays around it.
+applyChapterTwoGatedBundles({
+  zoneIds: ZONES.map((zone) => zone.id),
+  items: ITEMS,
+  mobs: MOBS,
+  npcs: NPCS,
+  quests: QUESTS,
+  questOrder: QUEST_ORDER,
+  camps: CAMPS,
+  objects: GROUND_OBJECTS,
+  escorts: ESCORTS,
+});
 
 export const WORLD_SIZE = 360; // the original strip's width (one grid column)
 // A zone without an explicit x-range spans the original strip column.
@@ -1121,7 +1235,7 @@ export const BASE_WORLD: WorldContent = {
   playerStart: PLAYER_START,
   services: {
     stations: STATIONS,
-    mailboxes: MAILBOXES,
+    mailboxes: [...MAILBOXES, ...FRONTIER_MAILBOXES],
     noticeboards: NOTICEBOARDS,
     musterBoards: MUSTER_BOARDS,
     graveyards: OVERWORLD_GRAVEYARDS,
@@ -1393,11 +1507,19 @@ export function zoneContaining(x: number, z: number): ZoneDef | null {
 // STRIP_ZONES in stack order exactly as they always did; COLUMN_ZONES blend
 // in sideways via columnBlendAt. With no columns registered both are inert
 // and the world is byte-identical to the strip era.
+// Frontier zones (openBorders, src/sim/frontier/) join neither cascade: their
+// ground and its blends come from frontier/terrain.ts, and a zero-weight term
+// in a shipped blend would still move the core world's floats by an ulp.
 export const STRIP_ZONES: readonly ZoneDef[] = ZONES.filter(
-  (zn) => (zn.xMin ?? STRIP_MIN_X) <= STRIP_MIN_X && (zn.xMax ?? STRIP_MAX_X) >= STRIP_MAX_X,
+  (zn) =>
+    !zn.openBorders &&
+    (zn.xMin ?? STRIP_MIN_X) <= STRIP_MIN_X &&
+    (zn.xMax ?? STRIP_MAX_X) >= STRIP_MAX_X,
 );
 export const COLUMN_ZONES: readonly ZoneDef[] = ZONES.filter(
-  (zn) => (zn.xMin ?? STRIP_MIN_X) > STRIP_MIN_X || (zn.xMax ?? STRIP_MAX_X) < STRIP_MAX_X,
+  (zn) =>
+    !zn.openBorders &&
+    ((zn.xMin ?? STRIP_MIN_X) > STRIP_MIN_X || (zn.xMax ?? STRIP_MAX_X) < STRIP_MAX_X),
 );
 
 function sm01(raw: number): number {
@@ -1655,15 +1777,30 @@ export function arenaOriginAt(z: number): { x: number; z: number; slot: number }
   return { x: o.x, z: o.z, slot: best };
 }
 
+// The save-position epoch every save from this build stamps
+// (CharacterState.posEpoch, written by saved_pos_exit.ts savedPlacement).
+// Epoch 2 means "the instance plane is at INSTANCE_X_BASE": the position is
+// read literally, so an overworld save east of x 600 (the expansion's east
+// march) stays where it is. An UNSTAMPED save predates the stamp and may
+// still carry a pre-move instance position, so only it takes the legacy rule.
+export const SAVE_POS_EPOCH = 2;
+
 // Saved positions from before the instance plane moved east (stage 2 of the
 // world grid) sit in the old bands at x 600..5400+. Map them to the same
 // door the old load rule would have chosen, using the OLD layout frozen as
 // literals: dungeons at 900+index*600 past threshold 600, the delve band
 // from 4773. Anything unmapped falls back exactly like the old rule did.
-export function migrateLegacyInstancePos(pos: { x: number; z: number }): {
+// Keyed on the save's epoch first: a stamped save is never legacy, whatever
+// its x (an instance save of this era sits on the real band at x ~100k and
+// the band rules in saved_pos_exit.ts own it).
+export function migrateLegacyInstancePos(
+  pos: { x: number; z: number },
+  posEpoch?: number,
+): {
   x: number;
   z: number;
 } | null {
+  if (typeof posEpoch === 'number' && posEpoch >= SAVE_POS_EPOCH) return null; // stamped: literal
   if (pos.x <= 600 || pos.x >= INSTANCE_X_BASE) return null; // not a legacy instance pos
   if (pos.x >= 4773) {
     const delve = DELVE_LIST.find((d) => d.index === Math.round((pos.x - 4800) / 600));

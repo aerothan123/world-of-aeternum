@@ -502,7 +502,7 @@ function drainHud(synced: boolean): DrainHarness {
     craftSkills: {},
     gatheringProficiency: {},
     // The faction tier observer rides the same drain tail (and sync flag).
-    factions: { rift_watch: 0, church_order: 0, automatons: 0 },
+    factions: { gilt_measure: 0, lanternwardens: 0, hearthwright_compact: 0 },
     // The concrete worlds carry far more; handleEvents with an empty drain
     // reads only this slice (the six sibling harnesses are the precedent).
   };

@@ -7,6 +7,14 @@ import {
 } from '../world_api';
 import { STABLE_TIMER_WIRE_VERSION } from './snapshot_timer_wire';
 
+declare const __APP_VERSION__: string;
+
+/** The bundle version (Vite define), with the same typeof guard as
+ *  src/ui/app_version.ts so a define-less harness still builds the frame. */
+function bundleVersion(): string {
+  return typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '0.0.0';
+}
+
 /** The world socket's URL for this page (moved from online.ts, which
  *  re-exports it): the desktop shell dials its API origin, every other host
  *  the page's own. */
@@ -27,6 +35,7 @@ export function buildWebSocketAuthMessage(
   timerWire: typeof STABLE_TIMER_WIRE_VERSION;
   petSpecialWire: typeof PET_SPECIAL_WIRE_VERSION;
   movementWire: 2;
+  clientVersion: string;
 } {
   return {
     t: ONLINE_WORLD_AUTH_TYPE,
@@ -41,5 +50,8 @@ export function buildWebSocketAuthMessage(
     timerWire: STABLE_TIMER_WIRE_VERSION,
     petSpecialWire: PET_SPECIAL_WIRE_VERSION,
     movementWire: 2,
+    // The bundle version for the realm's minimum-client gate
+    // (server/client_version_gate.ts, MIN_CLIENT_VERSION).
+    clientVersion: bundleVersion(),
   };
 }

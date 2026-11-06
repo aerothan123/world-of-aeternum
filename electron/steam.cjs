@@ -1,7 +1,9 @@
 'use strict';
 
-// The desktop shell's ONLY Steam surface: producing a link ticket for the
-// account-link handshake (POST /api/steam/link verifies it server-side).
+// The desktop shell's Steam surface: producing the auth tickets the server
+// verifies, one for the account-link handshake (POST /api/steam/link) and one
+// for Steam login (POST /api/auth/steam), plus the overlay enable hook
+// (electron/steam_overlay.cjs owns that decision).
 // Lives beside desktop_config.cjs for the same reason: every decision worth
 // pinning is made here, Node-testable with injected fakes, and
 // electron/main.cjs stays a thin consumer.
@@ -24,6 +26,11 @@ const SPACEWAR_APP_ID = 480;
  *  TICKET_IDENTITY in server/steam/ticket.ts (the server verifies with the
  *  same value); both sides pin the literal in their tests. */
 const LINK_TICKET_IDENTITY = 'wocc-link';
+
+/** The identity string the LOGIN ticket is bound to. MUST equal
+ *  LOGIN_TICKET_IDENTITY in server/steam/ticket.ts. Distinct from the link
+ *  identity so a link ticket can never sign anyone in (and vice versa). */
+const LOGIN_TICKET_IDENTITY = 'wyndlewood-login';
 
 // Whether this build may touch Steam at all. The env override applies ONLY to
 // unpackaged checkouts (`electron .` / electron:dev with WOC_STEAM_DEV=1): a
@@ -77,6 +84,7 @@ function createSteamShell({
   const loadSteamworks = requireSteamworks ?? (() => require('steamworks.js'));
   let client = null;
   let lastTicket = null;
+  let lastLoginTicket = null;
 
   // Cancelling must never break the ticket path (the never-throws contract
   // below): the handle may lack cancel() and cancel itself may throw; either
@@ -147,12 +155,73 @@ function createSteamShell({
     lastTicket = null;
   }
 
-  return { enabled, appId, getLinkTicket, cancelLinkTicket };
+  // The initialized steamworks.js client (or null) for the add-on Workshop glue
+  // (electron/addons.cjs). Same lazy, retry-on-next-call init as the tickets.
+  function workshopClient() {
+    return clientOrNull();
+  }
+
+  // The hex login ticket plus the player's Steam persona name (an untrusted
+  // username hint for a first sign-in; the server takes the Steam id from the
+  // verified ticket only), or null on every failure path. Same handle
+  // discipline as the link ticket, on its own slot so a link and a login can
+  // never cancel each other's live handle.
+  async function getLoginTicket() {
+    try {
+      if (lastLoginTicket) {
+        cancelQuietly(lastLoginTicket);
+        lastLoginTicket = null;
+      }
+      const c = clientOrNull();
+      if (!c || typeof c.auth?.getAuthTicketForWebApi !== 'function') return null;
+      const ticket = await c.auth.getAuthTicketForWebApi(LOGIN_TICKET_IDENTITY);
+      const bytes = typeof ticket?.getBytes === 'function' ? ticket.getBytes() : null;
+      if (!bytes || bytes.length === 0) {
+        cancelQuietly(ticket);
+        return null;
+      }
+      lastLoginTicket = ticket;
+      let personaName = '';
+      try {
+        const name = c.localplayer?.getName?.();
+        if (typeof name === 'string') personaName = name.slice(0, 64);
+      } catch {}
+      return { ticket: Buffer.from(bytes).toString('hex'), personaName };
+    } catch (err) {
+      log?.warn?.('[steam] login ticket failed', err?.message ?? err);
+      return null;
+    }
+  }
+
+  function cancelLoginTicket() {
+    cancelQuietly(lastLoginTicket);
+    lastLoginTicket = null;
+  }
+
+  // Initialize the Steam API once the app is ready, so the overlay (Windows
+  // Steam build) has a live Steam session from the first frame instead of only
+  // after the first ticket. Same never-throws, retry-later contract as the
+  // ticket paths: a Steam client that is not running just leaves it null.
+  function warmUp() {
+    return clientOrNull() !== null;
+  }
+
+  return {
+    enabled,
+    appId,
+    getLinkTicket,
+    cancelLinkTicket,
+    getLoginTicket,
+    cancelLoginTicket,
+    warmUp,
+    client: workshopClient,
+  };
 }
 
 module.exports = {
   SPACEWAR_APP_ID,
   LINK_TICKET_IDENTITY,
+  LOGIN_TICKET_IDENTITY,
   steamIntegrationEnabled,
   resolveSteamAppId,
   createSteamShell,

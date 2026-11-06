@@ -10,6 +10,7 @@
 // Draws ZERO rng (displacePlayer only moves and emits), so the click's tick
 // position cannot fork the deterministic draw order. `src/sim`-pure.
 
+import { C1_FERRY_CROSSED_EVENT } from '../content/chapter_one';
 import {
   isOnProvingShore,
   PROVING_SHORE_ARRIVAL,
@@ -17,6 +18,7 @@ import {
 } from '../content/proving_shore';
 import { bumpDeedStat } from '../deeds';
 import { displacePlayer } from '../displacement';
+import { onQuestEventForQuests } from '../quests/quest_credit';
 import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
 import type { Entity } from '../types';
@@ -78,6 +80,8 @@ export function tryRingFerryBell(
     // the first time (its own localStorage one-shot), in case the ride was a
     // misclick. Emitted every ride; the one-shot is presentation-only.
     ctx.emit({ type: 'ferryBellHome', pid: p.id });
+    // Wyndlewood Chapter One's crossing (content/chapter_one.ts quest 07).
+    onQuestEventForQuests(ctx, meta, C1_FERRY_CROSSED_EVENT);
     // The graduation moment ("Ready for an Adventure",
     // content/deeds.ts prog_ready_for_an_adventure): this home ride with the
     // whole rail handed in. The rail is strict (each quest requires the

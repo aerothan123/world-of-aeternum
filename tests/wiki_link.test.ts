@@ -53,9 +53,7 @@ describe('promptWikiVisit', () => {
     expect(confirm).toHaveBeenCalledTimes(1);
     const [title, body, okText, cancelText, onOk] = confirm.mock.calls[0];
     expect(title).toBe('Open the Wiki?');
-    expect(body).toBe(
-      'This opens the World of ClaudeCraft wiki in your browser. The game keeps running.',
-    );
+    expect(body).toBe('This opens the Wyndlewood wiki in your browser. The game keeps running.');
     expect(okText).toBe('Open Wiki');
     expect(cancelText).toBe('Cancel');
 

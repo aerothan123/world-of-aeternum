@@ -109,7 +109,7 @@ describe('minigame music assets', () => {
     for (const track of tracks) {
       const url = MINIGAME_MUSIC_URLS[track];
       expect(url).toBeDefined();
-      const relative = url.replace(/^\//, '');
+      const relative = url.split('?')[0].replace(/^\//, '');
       const filePath = path.join(publicDir, ...relative.split('/'));
       expect(existsSync(filePath), `Asset missing for ${track}: ${filePath}`).toBe(true);
     }

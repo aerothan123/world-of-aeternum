@@ -16,10 +16,11 @@
 // fades in over the dusk ramp with its emissive rather than existing as new
 // daylight geometry, which would be a world-content change nobody asked for.
 import * as THREE from 'three';
-import { WORLD_MAX_X, WORLD_MAX_Z, WORLD_MIN_Z } from '../sim/data';
+import { WORLD_MAX_Z, WORLD_MIN_Z } from '../sim/data';
 import { hash2 } from '../sim/rng';
 import type { BiomeId } from '../sim/types';
 import { roadDistance, terrainHeight, WATER_LEVEL, zoneBiomeAt } from '../sim/world';
+import { insideWorldX } from '../sim/world_x_edge';
 import { EMISSIVE_GLOW, GFX } from './gfx';
 import { registerGroundDecorPrewarmDraw } from './ground_decor_prewarm';
 import {
@@ -146,7 +147,7 @@ export function buildNightAccents(seed = 0): NightAccentsView {
     biomeAt: (x: number, z: number) => zoneBiomeAt(x, z),
     excluded: (x: number, z: number, groundY: number): boolean => {
       if (groundY < WATER_LEVEL + FLORA_WATER_CLEAR) return true;
-      if (Math.abs(x) > WORLD_MAX_X - 6 || z < WORLD_MIN_Z + 6 || z > WORLD_MAX_Z - 6) return true;
+      if (insideWorldX(x) < 6 || z < WORLD_MIN_Z + 6 || z > WORLD_MAX_Z - 6) return true;
       return roadDistance(x, z) < FLORA_ROAD_CLEAR;
     },
   };
@@ -226,7 +227,7 @@ export function buildNightAccents(seed = 0): NightAccentsView {
     const reach = Math.sqrt(rng()) * FIREFLY_RADIUS;
     const x = px + Math.cos(angle) * reach;
     const z = pz + Math.sin(angle) * reach;
-    if (Math.abs(x) > WORLD_MAX_X - 8 || z < WORLD_MIN_Z + 8 || z > WORLD_MAX_Z - 8) return false;
+    if (insideWorldX(x) < 8 || z < WORLD_MIN_Z + 8 || z > WORLD_MAX_Z - 8) return false;
     const groundY = terrainHeight(x, z, seed);
     if (!fireflyHabitat(groundY, WATER_LEVEL, zoneBiomeAt(x, z))) return false;
     flyHomeX[i] = x;

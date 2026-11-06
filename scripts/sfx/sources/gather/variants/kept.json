@@ -1,17 +1,1 @@
-{
-  "heavy": {
-    "impact_gather_pick": [3, 1],
-    "impact_gather_axe": [1, 2]
-  },
-  "ringing": {
-    "impact_gather_pick": [3, 1],
-    "impact_gather_axe": [1, 2]
-  },
-  "crunchy": {
-    "impact_gather_pick": [2, 3],
-    "impact_gather_axe": [3, 4]
-  },
-  "punchy": {
-    "impact_gather_pick": [8, 2]
-  }
-}
+{}

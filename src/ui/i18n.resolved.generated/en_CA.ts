@@ -685,6 +685,14 @@ export const en_CA: EnTranslations = {
       "saved": "Done.",
       "failed": "Could not save or load the preset."
     },
+    "maintenance": {
+      "beginsInMinute": "Realm maintenance begins in 1 minute.",
+      "beginsInMinutes": "Realm maintenance begins in {count} minutes.",
+      "beginsInSeconds": "Realm maintenance begins in {count} seconds.",
+      "begun": "Realm maintenance has begun. New logins are closed.",
+      "cancelled": "Realm maintenance was cancelled.",
+      "ended": "Realm maintenance is over. Logins are open again."
+    },
     "frameMenus": {
       "hide": "Hide Frame",
       "units": "Unit Frames",
@@ -1116,7 +1124,7 @@ export const en_CA: EnTranslations = {
     },
     "wiki": {
       "confirmTitle": "Open the Wiki?",
-      "confirmBody": "This opens the Project H wiki in your browser. The game keeps running.",
+      "confirmBody": "This opens the Wyndlewood wiki in your browser. The game keeps running.",
       "confirmOpen": "Open Wiki",
       "confirmCancel": "Cancel"
     },
@@ -1408,9 +1416,9 @@ export const en_CA: EnTranslations = {
           "paused": "Paused"
         }
       },
-      "title": "WOC Store",
-      "close": "Close WOC Store",
-      "tabsLabel": "WOC Store sections",
+      "title": "Wyndlewood Store",
+      "close": "Close Wyndlewood Store",
+      "tabsLabel": "Wyndlewood Store sections",
       "storeTab": "Cosmetic Store",
       "membershipsTab": "Memberships",
       "membershipsUnavailable": "Memberships are unavailable right now. Try again shortly.",
@@ -1423,8 +1431,8 @@ export const en_CA: EnTranslations = {
       "mountOnly": "Mount only",
       "mountBuy": "Purchase Mount Skin",
       "mountScopeLine": "Account-wide skin. Worn by one character at a time.",
-      "loading": "Loading WOC Store...",
-      "error": "The WOC Store is unavailable right now. Please try again shortly.",
+      "loading": "Loading Wyndlewood Store...",
+      "error": "The Wyndlewood Store is unavailable right now. Please try again shortly.",
       "balance": "Claudium Balance",
       "buyClaudium": "Purchase Claudium",
       "owned": "Owned",
@@ -1440,8 +1448,8 @@ export const en_CA: EnTranslations = {
       "armoryBody": "Limited weapon skins from the Season 1 Armory. Account-wide, purely cosmetic, and shown to everyone around you.",
       "wallet": {
         "title": "Solana wallet",
-        "unlinked": "Connect a wallet app, then sign once to link its public address to your Project H account. We never receive your recovery phrase or private key.",
-        "connectedUnlinked": "The wallet app is connected to this browser, but its public address is not linked to your Project H account yet.",
+        "unlinked": "Connect a wallet app, then sign once to link its public address to your Wyndlewood account. We never receive your recovery phrase or private key.",
+        "connectedUnlinked": "The wallet app is connected to this browser, but its public address is not linked to your Wyndlewood account yet.",
         "linkedDisconnected": "Your public address is linked. Reconnect that wallet app when you want to pay with SOL or WOC.",
         "linkedConnected": "Your linked wallet app is connected and ready for SOL or WOC purchases.",
         "mismatched": "A different wallet is connected. Verify it to replace the linked address, or reconnect the linked wallet.",
@@ -1632,7 +1640,7 @@ export const en_CA: EnTranslations = {
       },
       "seasonOne": "Season 1",
       "membershipPromo": {
-        "open": "Membership in the WOC Store",
+        "open": "Membership in the Wyndlewood Store",
         "close": "Close membership promotion",
         "eyebrow": "Account perks",
         "title": "Membership",
@@ -1929,7 +1937,7 @@ export const en_CA: EnTranslations = {
       "clearArmed": "Tap a slot to clear it."
     },
     "tutorialGreeting": {
-      "eastbrookGuidanceNote": "Welcome to Eastbrook! Marshal Redbrook has work for you in the town square. Turn on golden guidance to find him and follow Wolves at the Door, or explore on your own. You can change this later in Options, Interface, Combat.",
+      "eastbrookGuidanceNote": "Welcome to Eastbrook! Warden Corren has work for you in the town square. Turn on golden guidance to find him and follow Wolves at the Door, or explore on your own. You can change this later in Options, Interface, Combat.",
       "guidanceOn": "Turn guidance on",
       "guidanceOff": "Turn guidance off",
       "guidanceSetting": "Eastbrook golden guidance",
@@ -1939,8 +1947,8 @@ export const en_CA: EnTranslations = {
     },
     "tutorial": {
       "moveBodyTouch": "Use the movement stick to move and drag the screen to look around. Take a few steps to begin.",
-      "talkBodyTouch": "Stand close to Marshal Redbrook and tap the Use button to speak, then accept his task.",
-      "returnBodyTouch": "Your task is done. Return to Marshal Redbrook and tap the Use button to turn it in.",
+      "talkBodyTouch": "Stand close to Warden Corren and tap the Use button to speak, then accept his task.",
+      "returnBodyTouch": "Your task is done. Return to Warden Corren and tap the Use button to turn it in.",
       "doneBodyTouch": "You have the basics, {name}. The Vale is yours to explore. Tap More, then Quests, to review your quest log anytime. Good hunting.",
       "slayTargetHint": "New to combat? Press {targetKey} or click a wolf to target it, then use an action bar ability to attack it.",
       "slayTargetHintTouch": "New to combat? Tap a wolf to target it, then tap an action bar ability to attack it.",
@@ -2072,8 +2080,8 @@ export const en_CA: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "Update Available",
-      "body": "A new version of Project H is available. Update now for the latest fixes and improvements.",
-      "bodyWithVersion": "Version {version} of Project H is available. Update now for the latest fixes and improvements.",
+      "body": "A new version of Wyndlewood is available. Update now for the latest fixes and improvements.",
+      "bodyWithVersion": "Version {version} of Wyndlewood is available. Update now for the latest fixes and improvements.",
       "notNow": "Not now",
       "update": "Update"
     },
@@ -2872,6 +2880,8 @@ export const en_CA: EnTranslations = {
       "alwaysShowAllBuffs": "Always Show All Buffs",
       "showAuraCaster": "Show Aura Caster in Tooltips",
       "highContrastBackground": "High-Contrast Background",
+      "shareAnalytics": "Share Usage and Performance Data",
+      "shareAnalyticsNote": "Off unless you turn it on. Sends coarse play counters and performance reports to Wyndlewood only, never to other companies.",
       "startAttackOnAbility": "Auto-Attack on Ability Use",
       "stopAutoAttackOnTargetSwitch": "Stop Auto-Attack on Target Switch",
       "walkByAutoloot": "Walk-by Autoloot",
@@ -3086,8 +3096,8 @@ export const en_CA: EnTranslations = {
         "offline": "Offline"
       },
       "diagnostics": {
-        "panelAria": "Project H performance diagnostics",
-        "title": "Project H Performance Doctor",
+        "panelAria": "Wyndlewood performance diagnostics",
+        "title": "Wyndlewood Performance Doctor",
         "subtitle": "A game-specific scan with evidence and code-level fixes.",
         "aria": {
           "liveMeasurements": "Live performance measurements",
@@ -3235,7 +3245,7 @@ export const en_CA: EnTranslations = {
           }
         },
         "report": {
-          "title": "Project H performance diagnosis",
+          "title": "Wyndlewood performance diagnosis",
           "statusLine": "Status: {status} ({score}/100)",
           "capturedLine": "Captured: {captured}",
           "topFindingLine": "Top finding: {finding}",
@@ -3656,7 +3666,15 @@ export const en_CA: EnTranslations = {
       "churchOrderCrest": "Order Crest",
       "churchOrderCrestNote": "World Quests in Church Order zones",
       "automatonCog": "Automaton Cog",
-      "automatonCogNote": "World Quests in Automaton zones"
+      "automatonCogNote": "World Quests in Automaton zones",
+      "lanternCrest": "Lantern Crest",
+      "lanternCrestNote": "World Quests in Lanternwarden lands",
+      "hearthwrightCog": "Hearthwright Cog",
+      "hearthwrightCogNote": "World Quests in Hearthwright Compact lands",
+      "brackenAcorn": "Bracken Acorn",
+      "brackenAcornNote": "World Quests in Bracken Circle lands",
+      "giltMark": "Gilt Mark",
+      "giltMarkNote": "World Quests in Gilt Measure lands"
     },
     "worldQuestTooltip": {
       "factionLine": "Faction: {faction}",
@@ -3666,20 +3684,45 @@ export const en_CA: EnTranslations = {
       "standingReward": "+{amount} {faction} Standing",
       "currencyReward": "+{amount} {currency}"
     },
+    "townBoard": {
+      "tabNotices": "Notices",
+      "tabGuilds": "Guilds",
+      "intro": "Work posted for today. Take a notice here and return it to whoever posted it.",
+      "empty": "Nothing is posted today. Check back after the next daily reset.",
+      "postedBy": "Posted by {npc}",
+      "objective": "{label}: {count}",
+      "rewardXp": "{amount} XP",
+      "accept": "Take Notice",
+      "taken": "In your quest log",
+      "ready": "Return to {npc}",
+      "done": "Done for today",
+      "locked": "Not yet open to you",
+      "lockedLevel": "Requires level {level}",
+      "notAtBoard": "You must be at the notice board to take that posting.",
+      "needItem": "You need the right item to use on that."
+    },
     "worldQuestBanner": {
       "subtitle": "World Quest"
     },
     "reputation": {
-      "intro": "All three factions progress at once: every world quest counts toward the faction of its zone.",
+      "intro": "All four factions progress at once: every world quest counts toward the faction of its zone.",
       "faction": {
         "rift_watch": "Rift Watch",
         "church_order": "Church Order",
-        "automatons": "Automatons"
+        "automatons": "Automatons",
+        "lanternwardens": "Lanternwardens",
+        "hearthwright_compact": "Hearthwright Compact",
+        "bracken_circle": "Bracken Circle",
+        "gilt_measure": "Gilt Measure"
       },
       "hub": {
         "rift_watch": "Drifthaven",
         "church_order": "Brother Aldric",
-        "automatons": "Wyrmwatch"
+        "automatons": "Wyrmwatch",
+        "lanternwardens": "Eastbrook",
+        "hearthwright_compact": "Wyrmwatch",
+        "bracken_circle": "Fenbridge",
+        "gilt_measure": "Drifthaven"
       },
       "hubLine": "{hub} . {zone}",
       "tier": {
@@ -3713,6 +3756,38 @@ export const en_CA: EnTranslations = {
           "trusted": "Mechanist",
           "proven": "Artificer",
           "vanguard": "Forgemaster",
+          "champion": "Champion"
+        },
+        "lanternwardens": {
+          "unknown": "Outsider",
+          "recognized": "Lamplighter",
+          "trusted": "Lanternbearer",
+          "proven": "Warden",
+          "vanguard": "Lanternwarden",
+          "champion": "Champion"
+        },
+        "hearthwright_compact": {
+          "unknown": "Outsider",
+          "recognized": "Hand",
+          "trusted": "Journeyman",
+          "proven": "Hearthwright",
+          "vanguard": "Master Hearthwright",
+          "champion": "Champion"
+        },
+        "bracken_circle": {
+          "unknown": "Outsider",
+          "recognized": "Seedling",
+          "trusted": "Grovefriend",
+          "proven": "Greenkeeper",
+          "vanguard": "Circle Elder",
+          "champion": "Champion"
+        },
+        "gilt_measure": {
+          "unknown": "Outsider",
+          "recognized": "Client",
+          "trusted": "Associate",
+          "proven": "Factor",
+          "vanguard": "Magnate",
           "champion": "Champion"
         }
       },
@@ -5055,6 +5130,10 @@ export const en_CA: EnTranslations = {
     "auth": {
       "appleLoginCta": "Continue with Apple",
       "appleError": "Could not sign in with Apple. Please try again.",
+      "steamLoginCta": "Continue with Steam",
+      "steamError": "Could not sign in with Steam. Please try again.",
+      "steamNoTicket": "Steam is not running. Start Steam, then try again.",
+      "steamUnavailable": "Steam sign-in is not available right now.",
       "appleChoiceIntro": "Create a new account, or link Apple to one you already have.",
       "appleChoiceExpired": "That Apple sign-in expired. Please sign in with Apple again.",
       "forgotPrompt": "Forgot password?",
@@ -5364,8 +5443,29 @@ export const en_CA: EnTranslations = {
       "itemName": "{item}, {quality}",
       "tooltip": "{quality}: +{levels} item levels. Retained through upgrades."
     },
+    "townProject": {
+      "progress": "{project}: {stage}. {done} of {needed} bundles are in. Each bundle is {items}.",
+      "complete": "{project} is complete. The town thanks you.",
+      "contribute": "Contribute",
+      "bundleItem": "{count} {item}",
+      "bundleJoin": " and ",
+      "name": {
+        "eastbrook_yard_well": "The Yard Well",
+        "eastbrook_yard_well_shaft": "Line the shaft",
+        "eastbrook_yard_well_roof": "Raise the roof",
+        "eastbrook_yard_well_winch": "Hang the winch",
+        "eastbrook_street_lamps": "The Main Street Lamps",
+        "eastbrook_street_lamps_posts": "Set the posts",
+        "eastbrook_street_lamps_lanterns": "Hang the lanterns"
+      }
+    },
+    "durability": {
+      "low": "Your equipment is badly damaged. Repair it at an armorer, a weaponsmith or a forge.",
+      "broken": "Some of your equipment is broken and gives no stats. Repair it at an armorer, a weaponsmith or a forge."
+    },
     "itemTooltip": {
       "requiresLevel": "Requires Level {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "{tier}-rank Rift item",
       "riftUpgrade": "Rift upgrade {level}/{max}",
       "riftSockets": "Rift gems {used}/{total}",
@@ -5438,7 +5538,7 @@ export const en_CA: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "Project H",
+      "panelTitle": "Wyndlewood",
       "open": "Discord",
       "close": "Close",
       "keybind": "Discord Panel",
@@ -5624,7 +5724,7 @@ export const en_CA: EnTranslations = {
       "benefits": "Link your Steam account from the desktop app to mirror the deeds you earn into Steam achievements.",
       "noTicket": "Steam did not provide a link ticket. Start Steam, then try again.",
       "wishlist": "Wishlist on Steam",
-      "wishlistAria": "Wishlist on Steam: open the Project H store page",
+      "wishlistAria": "Wishlist on Steam: open the Wyndlewood store page",
       "wishlistShort": "Wishlist"
     },
     "epic": {
@@ -6402,6 +6502,10 @@ export const en_CA: EnTranslations = {
       "hub_rift_watch": "Drifthaven (The Rift Watch)",
       "hub_church_order": "Eastbrook Vale (The Church Order)",
       "hub_automatons": "Wyrmwatch (The Automatons)",
+      "hub_lanternwardens": "Eastbrook Vale (The Lanternwardens)",
+      "hub_hearthwright_compact": "Wyrmwatch (The Hearthwright Compact)",
+      "hub_bracken_circle": "Fenbridge (The Bracken Circle)",
+      "hub_gilt_measure": "Drifthaven (The Gilt Measure)",
       "riftGliderUse": "Use: Unfolds the glider, slowing falling speed for 30 sec. Landing or taking damage cancels the effect. (2 min cooldown)",
       "targetDummyUse": "Use: Deploys a mechanical target dummy in the open world for 2 minutes to practice combat abilities. (5 min cooldown)",
       "battleStandardUse": "Use: Plants the Consecrated Dawn Battle Standard for 5 min. Players out of combat within 15 yards of it regenerate 10% more health, and mana users also restore mana equal to 5% of their Spirit, every 2 sec. Staying near it for 10 sec grants Blessing of the Dawn, increasing Strength, Agility, Stamina, Intellect, and Spirit by 5% for 30 min. (5 min cooldown)",
@@ -7377,13 +7481,13 @@ export const en_CA: EnTranslations = {
       "applied": "Applied",
       "owned": "Owned",
       "notCollected": "Not collected",
-      "storeOnly": "Available in the WOC Store",
+      "storeOnly": "Available in the Wyndlewood Store",
       "preview": "Preview",
       "previewAria": "Preview {name}",
       "cardAria": "{name}, {rarity}",
       "mountsIntro": "Choose your mount appearance here. Riding training determines speed. Keep the mount item in any character's bags or bank to share its appearance across your account.",
       "mountsNoMount": "Learn riding from Stablemaster Marla to summon a mount.",
-      "skinsEmpty": "No weapon skins owned yet. Visit the WOC Store.",
+      "skinsEmpty": "No weapon skins owned yet. Visit the Wyndlewood Store.",
       "skinsApplyHint": "Equip a {type} to apply this skin.",
       "mechIntro": "The Combat Mech replaces this character's body. One chroma is worn at a time.",
       "mechEmpty": "No Combat Mech chromas owned yet."
@@ -7484,7 +7588,7 @@ export const en_CA: EnTranslations = {
       "sourceDelve": "Found in the delve {delve}",
       "sourceRift": "Drops from {rank}-rank Rift clears",
       "sourceQuest": "Reward from the quest {quest}",
-      "sourceStore": "Purchased from the WOC Store",
+      "sourceStore": "Purchased from the Wyndlewood Store",
       "sourceActivityCorpseHarvest": "Recovered while harvesting creature corpses",
       "sourceActivityMasterworkCraft": "Earned by crafting a masterwork",
       "sourceActivityRiftFirstClear": "Awarded to every member of the party that wins a ranked Rift's first clear",
@@ -7710,7 +7814,7 @@ export const en_CA: EnTranslations = {
       "loadFailed": "The Exchange could not be reached. Try again shortly.",
       "disabledRealm": "The $WOC Exchange is not available on this realm.",
       "browserOnlyConfirmTitle": "Open the $WOC Exchange in your browser?",
-      "browserOnlyConfirmBody": "The $WOC Exchange runs on the browser version of Project H only. This opens Project H in your browser, where you can sign in and open the Exchange; the game keeps running here.",
+      "browserOnlyConfirmBody": "The $WOC Exchange runs on the browser version of Wyndlewood only. This opens Wyndlewood in your browser, where you can sign in and open the Exchange; the game keeps running here.",
       "browserOnlyConfirmOpen": "Open in Browser",
       "browserOnlyConfirmCancel": "Cancel",
       "pausedBanner": "Trading is paused. Auctions keep counting down; new listings, bids, offers, and payments wait until trading resumes, and a payment already sent still settles.",
@@ -8026,6 +8130,7 @@ export const en_CA: EnTranslations = {
       "denied": {
         "badLot": "That house is not for sale.",
         "owned": "You already own a house.",
+        "accountOwned": "Your account already has a house. An account can own one house.",
         "range": "You are too far from the front door of {house}.",
         "money": "You cannot afford {house}.",
         "dead": "You cannot buy a house while dead.",
@@ -8079,6 +8184,93 @@ export const en_CA: EnTranslations = {
         "how": "Right-click it in your bags while standing in your house.",
         "chest": "Once placed, adds {slots} slots to your house storage.",
         "station": "Once placed, lets you craft recipes that need the {station} at home."
+      }
+    },
+    "addons": {
+      "menuEntry": "AddOns",
+      "title": "AddOns",
+      "close": "Close",
+      "masterToggle": "Load add-ons",
+      "loadOutdated": "Load out of date add-ons",
+      "masterHint": "Changes take effect when you reload the interface.",
+      "reloadNeeded": "Reload UI to apply this change.",
+      "leaveSafe": "Load add-ons now",
+      "safeCrash": "The game closed unexpectedly while add-ons were starting, so this session started in safe mode with no add-ons.",
+      "safeRequested": "You restarted in safe mode, so no add-ons are loaded.",
+      "safeUrl": "Safe mode was requested at launch, so no add-ons are loaded.",
+      "workshopUnavailable": "Steam Workshop is not available right now, so only add-ons in your local folder are listed.",
+      "empty": "No add-ons installed. Subscribe to some on the Steam Workshop, or put an add-on folder in your add-ons folder.",
+      "reload": "Reload UI",
+      "openFolder": "Open add-ons folder",
+      "restartSafe": "Restart in safe mode",
+      "memoryNote": "Memory is shown as interface widgets and saved data, because add-on workers do not report their heap size.",
+      "enable": "Enable {name}",
+      "version": "Version {version}",
+      "by": "by {author}",
+      "permissions": "Permissions",
+      "options": "Options",
+      "showErrors": "Errors ({count})",
+      "resetSaved": "Reset saved data",
+      "resetDone": "Saved data cleared for {name}.",
+      "publish": "Publish to Workshop",
+      "stats": "CPU {cpu} ms/s, {msgs} messages/s, {widgets} widgets, saved {kb} KB, {errors} errors",
+      "optionsTitle": "{name} options",
+      "back": "Back",
+      "publishTitle": "Publish {name}",
+      "publishHint": "Uploads this folder to the Steam Workshop. The first upload creates the item; later uploads update it.",
+      "changeNote": "Change note",
+      "publishConfirm": "Publish",
+      "publishing": "Publishing to the Workshop...",
+      "visibility": {
+        "label": "Visibility",
+        "private": "Private",
+        "friends": "Friends only",
+        "unlisted": "Unlisted",
+        "public": "Public"
+      },
+      "publishResult": {
+        "published": "Published to the Workshop as item {id}.",
+        "agreement": "Uploaded as item {id}. Accept the Steam Workshop legal agreement on the item page to make it visible.",
+        "noSteam": "Steam is not running, so the add-on could not be published.",
+        "invalid": "The add-on folder did not pass validation.",
+        "notFound": "The add-on folder was not found.",
+        "failed": "Publishing failed. The desktop log has the details."
+      },
+      "status": {
+        "disabled": "Disabled",
+        "loading": "Loading",
+        "running": "Running",
+        "error": "Load error",
+        "stopped": "Stopped",
+        "blocked": "Not loaded",
+        "tooNew": "Needs a newer game version",
+        "outdated": "Out of date",
+        "invalid": "Invalid add-on"
+      },
+      "stop": {
+        "errors": "Stopped after repeated errors. Enable it again to retry.",
+        "hang": "Stopped because it stopped responding. Enable it again to retry.",
+        "flood": "Stopped because it sent too many interface updates. Enable it again to retry.",
+        "load": "Failed to load."
+      },
+      "invalidJson": "Its addon.json file is not valid JSON.",
+      "invalidField": "Its addon.json file has a problem in \"{field}\".",
+      "blockedPending": "Still downloading from the Workshop.",
+      "blockedDuplicate": "Another add-on with the id {id} is already loaded.",
+      "blockedDependency": "A required add-on is missing or not loading: {id}.",
+      "origin": {
+        "dev": "Developer example",
+        "local": "Local",
+        "workshop": "Workshop"
+      },
+      "perm": {
+        "party": "Party and raid",
+        "combatLog": "Combat log",
+        "chat": "Reads your chat, whispers included",
+        "minimap": "Minimap",
+        "inventory": "Bags and equipment",
+        "quests": "Quest log",
+        "secureActions": "Action buttons"
       }
     }
   },
@@ -8200,7 +8392,10 @@ export const en_CA: EnTranslations = {
       "banned": "That Steam account cannot be linked.",
       "already_linked": "Your account already has a linked Steam account.",
       "account_taken": "That Steam account is already linked to another account.",
-      "upstream": "Steam did not respond. Try again in a moment."
+      "upstream": "Steam did not respond. Try again in a moment.",
+      "unlink_last_login": "Steam is your only way to sign in to this account. Add an email and password before unlinking it.",
+      "not_owned": "This Steam account does not own the game yet. Get it on Steam, then try again.",
+      "reauth_required": "Enter your password (and your two-factor code, if it is on) to link Steam."
     },
     "epic": {
       "disabled": "Epic linking is not available right now.",
@@ -8297,6 +8492,12 @@ export const en_CA: EnTranslations = {
       "stepup_wallet_mismatch": "Your linked wallet changed since this confirmation was issued. Start the sale again.",
       "stepup_binding_mismatch": "That wallet confirmation does not match this sale. Start the sale again.",
       "stepup_signature_invalid": "The wallet signature did not verify. Start the sale again."
+    },
+    "store": {
+      "disabled": "The store is not available in Early Access."
+    },
+    "legal_acceptance": {
+      "invalid_input": "These agreements have changed. Reload and accept the current versions."
     }
   },
   "clues": {
@@ -9297,8 +9498,8 @@ export const en_CA: EnTranslations = {
     }
   },
   "guide": {
-    "brand": "Project H",
-    "brandShort": "Project H",
+    "brand": "Wyndlewood",
+    "brandShort": "Wyndlewood",
     "tagline": "A classic-style MMO you play free in your browser.",
     "skipToContent": "Skip to main content",
     "loading": "Loading...",
@@ -9375,7 +9576,7 @@ export const en_CA: EnTranslations = {
       "github": "Source on GitHub",
       "discord": "Join the Discord",
       "communityWiki": "Community Wiki",
-      "rights": "Project H",
+      "rights": "Wyndlewood",
       "linksLabel": "Play and community links",
       "guidesLabel": "Player guides",
       "guideFree": "Free MMORPGs",
@@ -9407,7 +9608,7 @@ export const en_CA: EnTranslations = {
     },
     "home": {
       "eyebrow": "Classic-style browser MMO",
-      "title": "Project H",
+      "title": "Wyndlewood",
       "subtitle": "Explore the world, take on quests, and tackle dungeons with friends.",
       "ctaPlay": "Play Now",
       "ctaLearn": "How to Play",
@@ -9451,6 +9652,26 @@ export const en_CA: EnTranslations = {
         "farshoreBlurb": "An island across the sandbar, where the sky tears open over the Riftfields and Gullhaven rings its bell for every breach.",
         "provingName": "The Proving Shore",
         "provingBlurb": "A quiet training island across the strait, where new adventurers find their feet before the vale asks anything of them.",
+        "applewoldName": "The Applewold",
+        "applewoldBlurb": "Orchard downs past the Farshore causeway, where Pressford keeps the cider presses turning.",
+        "kindlemoorName": "The Kindlemoor",
+        "kindlemoorBlurb": "Open heath over standing stones older than the first kingdom, watched from the camp at Ferncross.",
+        "chalkbarrowName": "The Chalkbarrow Coast",
+        "chalkbarrowBlurb": "White cliffs and chalk downs, where prospectors dig at Coinwell and someone else digs deeper.",
+        "saltmeadsName": "The Saltmeads",
+        "saltmeadsBlurb": "Salt marsh and pan villages on a grey coast south of the Applewold, where Panwick boils brine for half the south.",
+        "wychwoldName": "The Wychwold",
+        "wychwoldBlurb": "An old elm wold of charcoal burners, where the Bracken Circle keeps the Knotted Elm at Elmhallow.",
+        "tinmarchName": "The Tinmarch",
+        "tinmarchBlurb": "Tin moor and spoil heaps below the chalk cliffs, worked by lamplight from the mine camp at Wheal Patience.",
+        "rookcliffsName": "The Rookcliffs",
+        "rookcliffsBlurb": "Sea stacks and rookeries at the edge of the Hushmist, watched from the Lanternwarden lookout at Kestrel Point.",
+        "sedgemarchName": "The Sedgemarch",
+        "sedgemarchBlurb": "Reed fen and withy beds as far as the mist, home to the basket village of Withyholt.",
+        "harrowfellsName": "The Harrowfells",
+        "harrowfellsBlurb": "High fells over an old battlefield, where the watch at Fellgate counts the cairns every night.",
+        "wardmereName": "The Wardmere",
+        "wardmereBlurb": "The last shore the Lanternwardens hold before the Hushmist, kept lit day and night from Lanternfold.",
         "nightName": "The Nightbloom",
         "nightBlurb": "A country of starry midnight where the flowers light the paths and Moonrest keeps its vigil.",
         "hauntName": "The Wraithwood",
@@ -9500,7 +9721,7 @@ export const en_CA: EnTranslations = {
       "step1Title": "Make a character",
       "step1Body": "Pick a class and a look, give your hero a name, and enter the world. You can make more characters later.",
       "step2Title": "Find your first quest",
-      "step2Body": "Marshal Redbrook is waiting in the starting town with Wolves at the Door, and Foreman Odell nearby has work too. Talk to either to take your first quest.",
+      "step2Body": "Warden Corren is waiting in the starting town with Wolves at the Door, and Foreman Odell nearby has work too. Talk to either to take your first quest.",
       "step3Title": "Move and look around",
       "step3Body": "Move with W, A, S, D. Hold the right mouse button and drag to look around. That is most of it.",
       "step4Title": "Fight something",
@@ -9845,7 +10066,7 @@ export const en_CA: EnTranslations = {
       "mobileBody": "Touch controls appear on their own, and the layout sizes itself to your screen: a compact arrangement on a small phone, a standard one on a larger phone, and a roomier one on a tablet.\n\nYour abilities sit in a ring rather than a number row: the attack button with four action buttons beside it, and a page toggle that swaps the ring through the rest of your slots, up to seven pages once you have all three action bars switched on. The fifth arc position of that ring is your consumables seat: tap it to use what is seated there, or hold it, or swipe it inward, to open a row that fills itself from what you are carrying. Around the ring sit the buttons a touch player reaches for most, swapping target, using what is in front of you, and jumping.\n\nOne Quick Actions control sits at the bottom edge in place of a row of buttons. It opens onto everything else: mount, chat, map, bags, social, quests, character, spellbook, settings, and a More entry holding the rest of your windows, the Dungeon Finder, PvP, the Vale Cup, emotes and the wiki among them. Windows fill the screen here rather than floating over it.\n\nMoving your unit frames is a desktop thing: on touch the layout places them for you.",
       "mobileBodyTwoPages": "Touch controls appear on their own, and the layout sizes itself to your screen: a compact arrangement on a small phone, a standard one on a larger phone, and a roomier one on a tablet.\n\nYour abilities sit in a ring rather than a number row: the attack button with four action buttons beside it, and a page toggle that swaps the ring between its {pages} pages, which together reach all {slots} of your ability slots whether or not the extra desktop bars are switched on. The fifth arc position of that ring is your consumables seat: tap it to use what is seated there, or hold it, or swipe it inward, to open a row that fills itself from what you are carrying. Around the ring sit the buttons a touch player reaches for most, swapping target, using what is in front of you, and jumping.\n\nOne Quick Actions control sits at the bottom edge in place of a row of buttons. It opens onto everything else: mount, chat, map, bags, social, quests, character, spellbook, game menu, and a More entry holding the rest of your windows, the Dungeon Finder, PvP, emotes and the wiki among them. Windows fill the screen here rather than floating over it.\n\nMoving your unit frames is a desktop thing: on touch the layout places them for you.",
       "railTitle": "The button rail",
-      "railBody": "Down in the bottom right corner of the screen, a long way from the minimap, sits a rail of small square buttons, one per window, arranged in two short columns side by side. Most of them are printed with their default key.\n\nThe first column covers your character, spellbook, talents, quest log, Book of Deeds, professions, world map, bags, and crafting. The second opens with the WOC Store and runs on through PvP, the Dungeon Finder, the Vale Cup, Card Duel, the leaderboard, emotes, music, friends and guild, this wiki, and the game menu. A few more join them only when they apply."
+      "railBody": "Down in the bottom right corner of the screen, a long way from the minimap, sits a rail of small square buttons, one per window, arranged in two short columns side by side. Most of them are printed with their default key.\n\nThe first column covers your character, spellbook, talents, quest log, Book of Deeds, professions, world map, bags, and crafting. The second opens with the Wyndlewood Store and runs on through PvP, the Dungeon Finder, the Vale Cup, Card Duel, the leaderboard, emotes, music, friends and guild, this wiki, and the game menu. A few more join them only when they apply."
     },
     "commandsPage": {
       "intro": "Every command you can type into chat, grouped by what it is for, with its short forms.",
@@ -10070,7 +10291,7 @@ export const en_CA: EnTranslations = {
       "reinsTerm": "Reins",
       "reinsDef": "The item that is a mount. Keep a pair in your bags or your bank and that mount is yours; use them to ride. Reins can be traded, mailed, and sold to other players.",
       "claudiumTerm": "Claudium",
-      "claudiumDef": "The currency of the WOC Store, spent on cosmetics and nothing else. It never buys power or progression.",
+      "claudiumDef": "The currency of the Wyndlewood Store, spent on cosmetics and nothing else. It never buys power or progression.",
       "worldTerm": "World",
       "worldDef": "One shared copy of the online game, with its own players, market, and standings. This guide also calls it a realm, and your character lives on the world you made it on."
     },
@@ -10389,7 +10610,7 @@ export const en_CA: EnTranslations = {
     },
     "worldPage": {
       "heading": "The world",
-      "intro": "Project H is one continuous land you cross on foot. The old road runs south to north through the starting valley, the marsh, and the peaks, and it keeps climbing past them into the hollow beyond and the snow country at the top of the map. A column of higher realms opens off that road to the west and another to the east, and an island sits off the Vale's east coast. There is no fast travel, no flight paths, and no taxis: every journey is walked or ridden, so getting there is part of the adventure.\n\nThe land also keeps time. A day and night cycle runs on a real clock shared by everyone on your world, so the sky grades from dawn through noon to dusk and dark for all of you at once, the moon comes and goes through its phases, and the light on the ground changes with it. The dial around your minimap is where you read the hour.",
+      "intro": "Wyndlewood is one continuous land you cross on foot. The old road runs south to north through the starting valley, the marsh, and the peaks, and it keeps climbing past them into the hollow beyond and the snow country at the top of the map. A column of higher realms opens off that road to the west and another to the east, and an island sits off the Vale's east coast. There is no fast travel, no flight paths, and no taxis: every journey is walked or ridden, so getting there is part of the adventure.\n\nThe land also keeps time. A day and night cycle runs on a real clock shared by everyone on your world, so the sky grades from dawn through noon to dusk and dark for all of you at once, the moon comes and goes through its phases, and the light on the ground changes with it. The dial around your minimap is where you read the hour.",
       "hub": "Home base",
       "mapHeading": "The road and the realms beyond",
       "mapSub": "The quest trail runs south to north up the middle of the map: valley, marsh, peaks, and on past them into the hollow and the snow beyond. The other realms open off that road rather than after it, through gates east and west of the marsh road, with the island of the Farshore reached from the Vale's east coast. What keeps you out of the far realms is their level bands, not the walk: five of them share the top band, so once you are ready you can take them in any order. The Farshore is the exception, low-level country you can visit early.",
@@ -10409,7 +10630,7 @@ export const en_CA: EnTranslations = {
       "jungleBlurb": "A tropical tangle of palms, white sand, and loud birds, with the beach-town of Drifthaven keeping a fire lit on the strand.",
       "gardenBlurb": "A hedge-maze garden realm still trimmed by no gardener anyone has seen, entered past Hedgewick and its fountain courts.",
       "valeGreeting": "Keep your blade close. The Vale is not what it was.",
-      "valeGreeter": "Marshal Redbrook, Eastbrook",
+      "valeGreeter": "Warden Corren, Eastbrook",
       "marshGreeting": "Hold at the gate. Past those reeds, the fen does the killing for us.",
       "marshGreeter": "Warden Fenwick, Fenbridge",
       "peaksGreeting": "Two hundred years this wall has held. It will not break on my watch, but it groans.",
@@ -10455,6 +10676,46 @@ export const en_CA: EnTranslations = {
       "farshoreGreeting": "You came over the Ferrywalk? Then you are the first in a week, and the Warden will want to look you over.",
       "farshoreGreeter": "Bellkeeper Tam, the Landing",
       "farshorePlaceNotes": "Gullhaven is the island's only town and its redoubt. The Landing is where the Ferrywalk comes ashore, with a watchbell standing over the point; the Watch Meadow keeps the high ground southeast of town, where a riftwatcher listens for the next break; the Sundered Cliffs crack open at the island's southern end; and the Riftfields are the wracked grain rows east of Gullhaven, still crawling with what came through the break there.",
+      "applewoldBlurb": "Orchard country south of the Farshore, reached over a causeway from the island. The orchards have turned strange, and the boars no longer fear the dogs.",
+      "applewoldGreeting": "Road is open as far as Pressford. Past that, keep your eyes on the trees.",
+      "applewoldGreeter": "A Lanternwarden at Causeway Watch",
+      "applewoldPlaceNotes": "Pressford is the press-town at the heart of the downs. Causeway Watch guards the head of the causeway, the Cider Mere lies east of town, Blossom Rise crowns the eastern lobe, the Old Press is a fallen pressing-house to the west, and the South Downs roll down to the sea.",
+      "kindlemoorBlurb": "A wide heath west of the Applewold, where nothing grows tall and nothing is new. The Bracken Circle watches stones that have lately grown warm.",
+      "kindlemoorGreeting": "Walk softly near the ring. The stones remember more than we do.",
+      "kindlemoorGreeter": "A keeper of the Bracken Circle at Ferncross",
+      "kindlemoorPlaceNotes": "Ferncross is the Bracken Circle camp at the moor road. The First Hearth Ring stands south-west of it, the Moor Tarn lies to the west, the Grey Tor rises in the south-east, and the Heath Way runs east to the Applewold.",
+      "chalkbarrowBlurb": "Chalk downs and white cliffs at the south-west of the reaches, where the prospectors of Coinwell Camp are not the only ones digging.",
+      "chalkbarrowGreeting": "If you hear picks after dark, they are not ours.",
+      "chalkbarrowGreeter": "A prospector at Coinwell Camp",
+      "chalkbarrowPlaceNotes": "Coinwell Camp is the prospectors' base on the downs. The Unlit Dig lies to the south-west, Chalk Mere sits west of camp, the White Head is the headland in the north-west, and Wreckers' Cove opens to the south-east.",
+      "saltmeadsBlurb": "A grey salt coast south of the Applewold, reached over the Saltmeads Gate. The tides have started bringing in more than salt.",
+      "saltmeadsGreeting": "Mind the pans, and mind the tide. It has been coming in wrong.",
+      "saltmeadsGreeter": "A salt boiler at Panwick",
+      "saltmeadsPlaceNotes": "Panwick is the pan-town at the head of the downs. The Saltmeads Gate is the causeway in from the Applewold, the Brine Pans lie east of town, Gannet Stack rises at the south-east corner, the Wrack Shallows are the wreck-strewn flats to the south-west, and the Salt Way runs west into the Wychwold.",
+      "wychwoldBlurb": "An old elm wold between the Saltmeads and the Tinmarch, where the charcoal burners work and something under the roots has begun to stir.",
+      "wychwoldGreeting": "Leave the elm be. It was here first, and it remembers.",
+      "wychwoldGreeter": "A keeper of the Bracken Circle at Elmhallow",
+      "wychwoldPlaceNotes": "Elmhallow is the Bracken Circle lodge at the heart of the wold. The Knotted Elm stands south-west of it in its ring of hearth stones, Charcoal Hollow smokes to the south-east, the Sunk Lane runs west toward the Tinmarch, and the Salt Way leaves east for the Saltmeads.",
+      "tinmarchBlurb": "Tin moor below the chalk cliffs, also reached by the Chalk Pass from the Chalkbarrow Coast. Someone has opened the old Blackadit.",
+      "tinmarchGreeting": "Lamps lit, eyes open. Nobody goes near the Blackadit alone.",
+      "tinmarchGreeter": "A Gilt Measure foreman at Wheal Patience",
+      "tinmarchPlaceNotes": "Wheal Patience is the mine camp at the north of the moor. The Chalk Pass climbs north to the Chalkbarrow Coast, the Stannary Stones stand to the south-west, the Blackadit opens in the south-east, Tinners' Ford crosses east into the Wychwold, and the Rook Way runs west to the Rook Ford and the West March.",
+      "rookcliffsBlurb": "Sea stacks and rookeries at the south-west corner of the world, where the grey Hushmist sits on the sea and swallows every sound.",
+      "rookcliffsGreeting": "That light is the last one. Past it, the mist takes the sound right out of your boots.",
+      "rookcliffsGreeter": "A Lanternwarden at Kestrel Point",
+      "rookcliffsPlaceNotes": "Kestrel Point is the Lanternwarden lookout in the north of the cliffs. The Rook Ford crosses east to the Tinmarch, the Hushmist Light burns on the west shore, the Sea Stacks stand off the south-west corner, Rook Hollow lies to the south-east, and the Sedge Neck leads north into the Sedgemarch.",
+      "sedgemarchBlurb": "Reed fen and withy beds north of the Rookcliffs. Withyholt knows which paths the fen keeps and which it gives back.",
+      "sedgemarchGreeting": "Stay on the withies. The fen is patient, and it is hungry.",
+      "sedgemarchGreeter": "A basket weaver at Withyholt",
+      "sedgemarchPlaceNotes": "Withyholt is the basket village on the dry rise in the middle of the fen. The Withy Beds lie to the south-west, Heron Mere to the south-east, the Drowned Causey runs off to the north-west, the Sedge Neck leads south to the Rookcliffs, and the Fell Neck climbs north to the Harrowfells.",
+      "harrowfellsBlurb": "High fells over an old battlefield north of the Sedgemarch. The cairns were raised to keep a war ended, and the dead beneath them are not resting.",
+      "harrowfellsGreeting": "Count them with me. If there are more cairns than last night, we run.",
+      "harrowfellsGreeter": "A cairn watcher at Fellgate",
+      "harrowfellsPlaceNotes": "Fellgate is the watch post below the high fell. The Cairn Field spreads to the north-west, Harrow Tarn lies east of the post, the Iron Ring stands just west of it, the Fell Neck leads south to the Sedgemarch, and the Ward Neck runs north to the Wardmere.",
+      "wardmereBlurb": "The last shore the Lanternwardens hold before the Hushmist, where the mist comes in like a tide past the Ward Mere.",
+      "wardmereGreeting": "Keep to the lamps. Anyone who walks out past them walks out alone.",
+      "wardmereGreeter": "A Lanternwarden at Lanternfold",
+      "wardmerePlaceNotes": "Lanternfold is the Lanternwardens' lamp-lit post in the middle of the shore. The Ward Mere lies to the north-east, the Last Beacon stands on its crag to the north-west, the Westering Pier faces the ferry lane to the east, and the Ward Neck leads south to the Harrowfells.",
       "provingBlurb": "A quiet island across the strait from the vale, kept as a training ground: a camp, a practice yard, a wreck-strewn strand, and a ferry that runs both ways.",
       "provingGreeting": "Every hero the vale has ever thanked stood where you stand now, and not one of them knew which end of a blade to hold.",
       "provingGreeter": "Instructor Maren, Dawnrest Camp",
@@ -10472,7 +10733,7 @@ export const en_CA: EnTranslations = {
       "heading": "Quests",
       "intro": "Quests are the heart of the world and the fastest way to level. Here is how they work.",
       "acceptTitle": "Finding and accepting",
-      "acceptBody": "People with a marker over their head have work for you, and the mark tells you which kind. A gold exclamation mark means a quest you can take right now, and a gold question mark means a quest you have finished and can hand in. On a nameplate you will also see a gray question mark, which means you are on that quest but are not done yet. Repeatable work uses the same marks in blue: a bright blue exclamation mark is a job you have done before and can take again, and the same mark dimmed is one still inside its wait. Every mark but the gray one shows on nameplates, on the minimap, and on the world map, so you can spot work from across town. In Eastbrook, Marshal Redbrook is waiting with Wolves at the Door, one of the first quests you can take.",
+      "acceptBody": "People with a marker over their head have work for you, and the mark tells you which kind. A gold exclamation mark means a quest you can take right now, and a gold question mark means a quest you have finished and can hand in. On a nameplate you will also see a gray question mark, which means you are on that quest but are not done yet. Repeatable work uses the same marks in blue: a bright blue exclamation mark is a job you have done before and can take again, and the same mark dimmed is one still inside its wait. Every mark but the gray one shows on nameplates, on the minimap, and on the world map, so you can spot work from across town. In Eastbrook, Warden Corren is waiting with Wolves at the Door, one of the first quests you can take.",
       "objectivesTitle": "Objectives",
       "objectivesBody": "Slay certain enemies, gather items, or interact with something in the world. The on-screen tracker counts your progress as you go. If you change your mind, you can drop a quest from your quest log and pick it up again from its giver later.",
       "turninTitle": "Turning in",
@@ -10719,27 +10980,36 @@ export const en_CA: EnTranslations = {
     },
     "factionsPage": {
       "heading": "Factions and Standing",
-      "intro": "Three allied factions each keep watch over their own corner of the realm, and every world quest you finish in their lands raises your standing with them. Standing climbs through six tiers, each with a title of its own, and opens a quartermaster stock piece by piece along the way.",
-      "whoHeading": "The three factions",
-      "whoBody": "Each faction is tied to a group of zones, so where you are doing world quests decides which faction the credit goes to. You never pick a side: all three keep their own tally, and none of them ever asks you to turn on another.",
+      "intro": "Four allied factions each look after their own corner of Wyndlewood, and every world quest you finish in their lands raises your standing with them. Standing climbs through six tiers, each with a title of its own, and opens a quartermaster stock piece by piece along the way.",
+      "whoHeading": "The four factions",
+      "whoBody": "Each faction is tied to a group of zones, so where you are doing world quests decides which faction the credit goes to. You never pick a side: all four keep their own tally, and none of them ever asks you to turn on another.",
+      "lanternwardensBody": "The Lanternwardens keep the roads and the settlements safe: guards, explorers and patrols who look for the missing and stand between travelers and whatever the dark sends. Their lands are Eastbrook Vale, the Frostveil Reach, the Veiled Hollow and the Wraithwood. Their quartermaster keeps the Eastbrook chapel steps.",
+      "hearthwrightBody": "The Hearthwright Compact is a loose federation of builders, miners, smiths and makers who believe strong communities are built by practical work. Their lands are Thornpeak Heights, the Drakelands and the Galecrest, and their hub is Wyrmwatch, in the Drakelands.",
+      "brackenBody": "The Bracken Circle is an old fellowship of druids, herbalists and woodland keepers who guard the old agreements between people and the wild. Their lands are Mirefen Marsh, the Amberfall, the Willowfen and the Nightbloom, and Herbalist Yara keeps their stores in Fenbridge.",
+      "giltBody": "The Gilt Measure gathers merchants, prospectors and financiers who see opportunity in a changing world, and not all of them are dishonest. Their lands are the Palmreach, the Farshore and the Evergarden, and their hub is Drifthaven, on the Palmreach.",
+      "paleAccordBody": "One faction keeps no standing with anyone. The Pale Accord works in secret, its cells disguised as scholars and concerned neighbors, and every allied banner counts them an enemy.",
       "riftWatchBody": "The Rift Watch guards the shore and watches the deep tears. Their lands are the coast: the Farshore, the Palmreach, the Galecrest, the Willowfen and the Veiled Hollow. Their hub is Drifthaven, on the Palmreach.",
       "churchOrderBody": "The Church Order holds the heartland of the realm: Eastbrook Vale, Mirefen Marsh, Thornpeak Heights, the Nightbloom and the Wraithwood. Brother Aldric speaks for them from Eastbrook Vale.",
       "automatonsBody": "The Automatons keep the forges of the far reaches: the Drakelands, the Frostveil Reach, the Amberfall and the Evergarden. Their hub is Wyrmwatch, in the Drakelands.",
       "earningHeading": "Earning standing",
-      "earningBody": "Standing comes from world quests. Every world quest counts toward the faction of the zone it is set in, and because the three factions cover different zones, all three progress at once as you work your way across the map. Taskmaster Kaelen in Eastbrook opens the World Quests board on the map, and the board is also where you may replace one world quest each day if the day's assignment does not suit you.",
+      "earningBody": "Standing comes from world quests. Every world quest counts toward the faction of the zone it is set in, and because the four factions cover different zones, all four progress at once as you work your way across the map. Taskmaster Kaelen in Eastbrook opens the World Quests board on the map, and the board is also where you may replace one world quest each day if the day's assignment does not suit you.",
       "weeklyBody": "The weekly emissary in Eastbrook Vale adds a second road: finish the week's charge and you may name one faction to receive his commendation of standing, once a week, at the window where you took the charge.",
       "lowLevelNote": "Standing pauses at a tier for lower-level characters and resumes as you level, so a young character can start earning early without running out of road.",
       "tiersHeading": "Standing tiers",
       "tiersBody": "Every faction climbs the same six tiers: Unknown, Recognized, Trusted, Proven, Vanguard and Champion. Each faction gives its own name to each rung, and that name becomes your title with them.",
+      "lanternwardensTitles": "With the Lanternwardens you are an Outsider, then a Lamplighter, a Lanternbearer, a Warden, a Lanternwarden and at last a Champion.",
+      "hearthwrightTitles": "With the Hearthwright Compact you are an Outsider, then a Hand, a Journeyman, a Hearthwright, a Master Hearthwright and at last a Champion.",
+      "brackenTitles": "With the Bracken Circle you are an Outsider, then a Seedling, a Grovefriend, a Greenkeeper, a Circle Elder and at last a Champion.",
+      "giltTitles": "With the Gilt Measure you are an Outsider, then a Client, an Associate, a Factor, a Magnate and at last a Champion.",
       "riftWatchTitles": "With the Rift Watch you are an Outsider, then a Watcher, a Riftwalker, a Warden, a Riftwarden and at last a Champion.",
       "churchOrderTitles": "With the Church Order you are an Outsider, then an Acolyte, a Keeper, a Templar, a Dawnkeeper and at last a Champion.",
       "automatonsTitles": "With the Automatons you are an Outsider, then an Operator, a Mechanist, an Artificer, a Forgemaster and at last a Champion.",
       "quartermastersHeading": "Quartermasters",
-      "quartermastersBody": "Each faction keeps a quartermaster at its hub: Quartermaster Vaelen for the Rift Watch in Drifthaven, Templar Althea for the Church Order at the Eastbrook chapel, and Artificer Tobrin for the Automatons in Wyrmwatch. Each sells a small stock of jewelry, armor, weapons and bags, unlocked tier by tier as your standing with that faction grows, and paid for in ordinary coin.",
+      "quartermastersBody": "Each faction keeps a quartermaster at its hub: Captain Althea for the Lanternwardens at the Eastbrook chapel, Artificer Tobrin for the Hearthwright Compact in Wyrmwatch, Herbalist Yara for the Bracken Circle in Fenbridge, and Quartermaster Vaelen for the Gilt Measure in Drifthaven. Each sells a small stock of jewelry, armor, weapons and bags, unlocked tier by tier as your standing with that faction grows, and paid for in ordinary coin.",
       "readingHeading": "Where to read it",
       "readingBody": "The Reputation tab of the character sheet (C) shows each faction with its current standing, a bar toward the next tier, and the title that standing has earned you. The chat log reports every standing gain as it lands, and reaching a new tier shows a celebration banner on screen.",
       "deedsHeading": "Deeds",
-      "deedsBody": "The Book of Deeds keeps score of your standing too: reaching Trusted with a faction and reaching Champion with a faction each record a deed, and reaching Champion with all three is a deed of its own. Like every deed these are cosmetic, never power, and the Champion deeds grant a title you can wear."
+      "deedsBody": "The Book of Deeds keeps score of your standing too: reaching Trusted with a faction and reaching Champion with a faction each record a deed, and reaching Champion with all four is a deed of its own. Like every deed these are cosmetic, never power, and the Champion deeds grant a title you can wear."
     },
     "deedsPage": {
       "intro": "The Book of Deeds is where the world keeps score of all you have done, from your first steps out of the starting valley to the hardest fights the realm can offer. Earn deeds as you play, wear the titles they grant, and watch your Renown climb.",
@@ -10981,7 +11251,7 @@ export const en_CA: EnTranslations = {
       "perfectingBody": "A finished apex piece is not the end of its story. Its owner, with 125 skill in the craft that made it, can walk the piece up four ranks of Perfecting. Each attempt spends one Maker's Ember, one Sundered Essence, and one Prismglass Setting, and succeeds four times in five; a miss costs the materials and nothing else, the piece is never harmed or set back. The first attempt binds the piece to the one perfecting it, so a copy meant for sale is sold before the work begins. A Perfected piece carries a stat bonus over its base, and Perfected is exactly what the Lucent Infusion waits for: the one enchant the Enchanting page marks Perfected only lands on nothing less.\n\nThe walk can begin one rank in. A masterwork proc on an apex craft cannot finish the piece a tier finer, since apex is already the top of the ladder, so it grants the head start instead: the piece comes off the bench at the first rank of Perfecting, with three ranks left to walk rather than four. It is the same roll and the same odds the Masterworks section on every craft page publishes, spent on a rank instead of a quality.",
       "promotionBody": "The last step is the orange promotion, and it is the Deed of Making's whole purpose. Bring a Perfected piece and one Deed of Making, an inscriptionist's skill-125 writ, and the copy is promoted into a legendary carrying a name of your own choosing. No roll rides it: the promotion is deterministic, the stats do not change at all, and what changes is the name and the color. The deed is tradable, so the scribe and the wearer need never be the same person, and the family cap keeps its one extra line: a character wears at most one legendary Masterwrought piece among their two.",
       "stationsHeading": "Stations and the three hubs",
-      "stationsBody": "Six typed stations serve the nine station-bound crafts, spread across the three town hubs. Eastbrook holds the forge (Weaponcrafting, Armorcrafting, and Jewelcrafting all share it), the kitchens, the loom, and the toolworks; Fenbridge keeps the tannery, and Highwatch the apothecary (Alchemy and Inscription share that bench). Each station has a resident master beside it who trains recipes, posts work orders, and offers the unbind service.\n\nThe working radius is 20 yards, roughly the station's own yard, so you craft standing at the anvil rather than from across town. Enchanting alone has no station: it works anywhere by design.",
+      "stationsBody": "Eight typed stations serve the nine station-bound crafts, spread across the three town hubs. Eastbrook's crafting yard south of the square holds the forge (Weaponcrafting, Armorcrafting, and Jewelcrafting all share it), the kitchens, the loom, the toolworks, a tannery, and an apothecary; Fenbridge keeps a tannery too, and Highwatch an apothecary (Alchemy and Inscription share that bench). Each station has a resident master beside it who trains recipes, posts work orders, and offers the unbind service.\n\nThe working radius is 20 yards, roughly the station's own yard, so you craft standing at the anvil rather than from across town. Enchanting alone has no station: it works anywhere by design.",
       "deedsHeading": "Deeds that remember the journey",
       "deedsBody": "The Book of Deeds walks beside every step of this. Your first attunement earns Craftsworn and your first masterwork earns Masterwright, both wearable as titles. All ten earnable crafts mark a milestone deed at 50 skill and crown their caps with a Grandmaster title, while Fishing gets Old Salt at 100 proficiency and the Master Angler title at 200.\n\nThere are quieter pages too: deeds for your first harvest and first craft, for the rare finds luck turns up in the field, and for taking up salvage. All of it is cosmetic, titles and Renown only. A deed never grants power; it only proves you were there.",
       "startHeading": "Where to start",
@@ -11048,25 +11318,25 @@ export const en_CA: EnTranslations = {
         "engineering": "Engineering builds the tools every serious gatherer ends up wanting: the tier 4 and tier 5 picks, axes and sickles, and the three fishing rods that climb from tier 4 to tier 6, none of which any counter will ever sell for coin, each one consuming the tool below it.",
         "enchanting": "Enchanting takes gear apart and puts the power back in: break unwanted pieces into arcane materials, then spend them on a permanent stat bonus for a piece you mean to keep. Breaking and enchanting need no station and no trainer, and anyone can start on day one; only its three trainer recipes ask more, the two charms and the Lucent Reagent, taught and worked at the toolworks.",
         "jewelcrafting": "Jewelcrafting is the finer bench of the Eastbrook forge: rings and necklaces in copper, iron, and rare osmium, with a Strength ring, an Intellect ring, and an Agility necklace on every rung. Jewelry has no armor and no class lock, so its customers are simply everyone with fingers and a neck.",
-        "inscription": "Inscription is the writing desk of the Highwatch apothecary: caster tomes for the offhand and stamina scrolls for everyone, milled from the same herbs the draughts beside them use. Its scrolls are the second door into the battle-elixir buffs, so even a fighter who never holds a book has reason to knock."
+        "inscription": "Inscription is the writing desk of the apothecary: caster tomes for the offhand and stamina scrolls for everyone, milled from the same herbs the draughts beside them use. Its scrolls are the second door into the battle-elixir buffs, so even a fighter who never holds a book has reason to knock."
       },
       "craftProse": {
         "weaponcrafting": {
           "identityHeading": "The edge every fighter shops for",
-          "identityBody": "Someone in every group wants this craft's work, because the rare rung alone covers all three appetites: the Osmium Warblade for Strength melee, the Glyphsteel War Axe for Agility fighters, and the Highpine Battle Staff, an Intellect and Spirit stave for the robe crowd.\n\nOn the craft ring it stands between Armorcrafting and Jewelcrafting. Its living identity is the Smith, the Weaponcrafting and Armorcrafting pair, sworn before Forgemistress Darva at the forge by working three ore veins with your own hands; the Bladewright pair with Jewelcrafting is named on the ring too, and though Jewelcrafting now works its own 0-to-50 jewelry ladder at this same forge, the pair still waits for its oath quest before it can be sworn.",
+          "identityBody": "Someone in every group wants this craft's work, because the rare rung alone covers all three appetites: the Osmium Warblade for Strength melee, the Glyphsteel War Axe for Agility fighters, and the Highpine Battle Staff, an Intellect and Spirit stave for the robe crowd.\n\nOn the craft ring it stands between Armorcrafting and Jewelcrafting. Its living identity is the Smith, the Weaponcrafting and Armorcrafting pair, sworn before Brunna at the forge by working three ore veins with your own hands; the Bladewright pair with Jewelcrafting is named on the ring too, and though Jewelcrafting now works its own 0-to-50 jewelry ladder at this same forge, the pair still waits for its oath quest before it can be sworn.",
           "materialsHeading": "What the forge drinks",
-          "materialsBody": "Mining is the backbone. Copper ore comes off the tier 1 veins of Eastbrook Vale, iron ore from Mirefen Marsh, and osmium ore from Thornpeak Heights, and each rung of the ladder steps up the same way. Logging matters more than you might expect: ironbark hafts the boar spear, ashwood shoulders the maul, and a single highpine log forms the battle staff.\n\nThe rest comes from the hunt and the counter. Rough hide for grips is harvested straight off wolf and boar corpses, bone fragments come off the restless dead or out of salvaged common gear, and the forge ladder burns Smithing Flux, 20 copper a jar from Darva herself. If your own mining lags behind, no counter will save you on the ore itself: osmium comes off the Thornpeak veins, off the starter veins of every younger zone but the Farshore (whose veins dig iron), or out of another player's stack, by trade or the World Market. Only the Glyphsteel Bar is bought for coin, from Tinker Gizzel at the toolworks or Quartermaster Bree in Highwatch.",
+          "materialsBody": "Mining is the backbone. Copper ore comes off the tier 1 veins of Eastbrook Vale, iron ore from Mirefen Marsh, and osmium ore from Thornpeak Heights, and each rung of the ladder steps up the same way. Logging matters more than you might expect: ironbark hafts the boar spear, ashwood shoulders the maul, and a single highpine log forms the battle staff.\n\nThe rest comes from the hunt and the counter. Rough hide for grips is harvested straight off wolf and boar corpses, bone fragments come off the restless dead or out of salvaged common gear, and the forge ladder burns Smithing Flux, 20 copper a jar from Brunna herself. If your own mining lags behind, no counter will save you on the ore itself: osmium comes off the Thornpeak veins, off the starter veins of every younger zone but the Farshore (whose veins dig iron), or out of another player's stack, by trade or the World Market. Only the Glyphsteel Bar is bought for coin, from Tinker Gizzel at the toolworks or Quartermaster Bree in Highwatch.",
           "ladderHeading": "The ladder, rung by rung",
-          "ladderBody": "One field recipe, the Eastbrook Arming Sword, is known to everyone from the start and crafts anywhere from hunt drops (a couple of wolf fangs and bone fragments) plus six Smithing Flux off the forge counter. The real ladder is nine trainer recipes in three rungs, all forge-bound: the copper rung (bearded axe, flanged mace, boar spear) is free to learn at skill 0, the iron rung (longsword, maul, dirk) opens at skill 25 for 25 silver a recipe, and the osmium rung (warblade, war axe, battle staff) opens at skill 50 for 1 gold each. Darva teaches a recipe the moment your tier in the craft reaches its own, so each rung unlocks exactly when its skill band begins.\n\nOne more recipe rides the pair: the Gravewyrm Gauntlets, a trainer-taught combination piece that only an attuned Smith with both Weaponcrafting and Armorcrafting at skill 25 can work, and it needs no station at all.",
+          "ladderBody": "One field recipe, the Eastbrook Arming Sword, is known to everyone from the start and crafts anywhere from hunt drops (a couple of wolf fangs and bone fragments) plus six Smithing Flux off the forge counter. The real ladder is nine trainer recipes in three rungs, all forge-bound: the copper rung (bearded axe, flanged mace, boar spear) is free to learn at skill 0, the iron rung (longsword, maul, dirk) opens at skill 25 for 25 silver a recipe, and the osmium rung (warblade, war axe, battle staff) opens at skill 50 for 1 gold each. Brunna teaches a recipe the moment your tier in the craft reaches its own, so each rung unlocks exactly when its skill band begins.\n\nOne more recipe rides the pair: the Gravewyrm Gauntlets, a trainer-taught combination piece that only an attuned Smith with both Weaponcrafting and Armorcrafting at skill 25 can work, and it needs no station at all.",
           "routeHeading": "Masterworks, and a working route to 125",
-          "routeBody": "Any piece with a real stat line, which on this ladder means the iron rung and up, can come off the anvil as a masterwork so long as the finer quality fits inside your tier ceiling; the statless copper commons never proc, because there is nothing in them to improve. Iron and osmium count as tier 1 materials for the masterwork bonus, highpine and glyphsteel as tier 2, and skill sitting above a recipe's own tier adds its own point per tier, so among the osmium three it is the war axe and the battle staff that carry the material edge, and a rung keeps proccing better after you have outgrown it.\n\nRide the copper rung to 25, train the iron rung the day it opens and ride it to 50, then the osmium rung to 75. Above the osmium three sits an apex rung Darva does not teach: its patterns are found, not bought. For a smith whose majors include Weaponcrafting, which today means the sworn Smith, an apex craft pays full gain right to the 125 cap; below a major's ceiling it teaches nothing at all, so an undeclared or hobby smith works one for the weapon, not the points. Either way the osmium recipes carry the climb, fading to half and then quarter gain: budget roughly 150 more crafts to reach the 125 cap, and each craft takes real cast time, so a long batch is paced by duration rather than a quota.\n\nFund the climb as you go: Darva's forge work order takes eight copper ore off your hands every 30 minutes for a little coin and XP, and the iron and osmium rungs sell honestly to leveling melee. The Book of Deeds marks Edge and Temper at skill 50 and crowns Grandmaster Weaponcrafting at 125."
+          "routeBody": "Any piece with a real stat line, which on this ladder means the iron rung and up, can come off the anvil as a masterwork so long as the finer quality fits inside your tier ceiling; the statless copper commons never proc, because there is nothing in them to improve. Iron and osmium count as tier 1 materials for the masterwork bonus, highpine and glyphsteel as tier 2, and skill sitting above a recipe's own tier adds its own point per tier, so among the osmium three it is the war axe and the battle staff that carry the material edge, and a rung keeps proccing better after you have outgrown it.\n\nRide the copper rung to 25, train the iron rung the day it opens and ride it to 50, then the osmium rung to 75. Above the osmium three sits an apex rung Brunna does not teach: its patterns are found, not bought. For a smith whose majors include Weaponcrafting, which today means the sworn Smith, an apex craft pays full gain right to the 125 cap; below a major's ceiling it teaches nothing at all, so an undeclared or hobby smith works one for the weapon, not the points. Either way the osmium recipes carry the climb, fading to half and then quarter gain: budget roughly 150 more crafts to reach the 125 cap, and each craft takes real cast time, so a long batch is paced by duration rather than a quota.\n\nFund the climb as you go: Brunna's forge work order takes eight copper ore off your hands every 30 minutes for a little coin and XP, and the iron and osmium rungs sell honestly to leveling melee. The Book of Deeds marks Edge and Temper at skill 50 and crowns Grandmaster Weaponcrafting at 125."
         },
         "armorcrafting": {
           "identityHeading": "Mail for the front line",
-          "identityBody": "Armorcrafting's ladder reads like a soldier's career: the plain riveted copper girdle, sabatons, and gauntlets to start, the ironlink hauberk, legguards, and spaulders with their first real stat lines, and the rare osmiumscale greathelm, cuirass, and leggings, Strength and Stamina pieces with armor numbers at the very top of a crafter's art.\n\nIt has a quieter side too: the Eastbrook Warded Leggings, a caster-statted field common, and the Kilnscale Mantle, a rare Intellect and Spirit mail shoulder at skill 75, keep the spell-minded mail wearers on the customer list. On the ring it sits between Weaponcrafting and Engineering; the Smith pair with Weaponcrafting is sworn before Forgemistress Darva, while the Gearwright pair with Engineering is named but has no oath quest yet.",
+          "identityBody": "Armorcrafting's ladder reads like a soldier's career: the plain riveted copper girdle, sabatons, and gauntlets to start, the ironlink hauberk, legguards, and spaulders with their first real stat lines, and the rare osmiumscale greathelm, cuirass, and leggings, Strength and Stamina pieces with armor numbers at the very top of a crafter's art.\n\nIt has a quieter side too: the Eastbrook Warded Leggings, a caster-statted field common, and the Kilnscale Mantle, a rare Intellect and Spirit mail shoulder at skill 75, keep the spell-minded mail wearers on the customer list. On the ring it sits between Weaponcrafting and Engineering; the Smith pair with Weaponcrafting is sworn before Brunna, while the Gearwright pair with Engineering is named but has no oath quest yet.",
           "materialsHeading": "Ore by the sackful",
           "materialsBody": "No craft eats ore faster. The ironlink hauberk alone takes five iron ore, and every osmiumscale piece wants three or four osmium plus a glyphsteel bar, so a serious armorcrafter mines Mirefen Marsh and Thornpeak Heights or pays someone who does. Copper feeds the first rung, straight from the veins by the Copper Dig.\n\nAround the metal go the soft parts: rough hide harvested off wolf and boar corpses, bone fragments off the restless dead (or salvaged out of common gear), and Smithing Flux jars (20 copper each at the forge) in nearly every recipe. No counter sells osmium: the impatient buy it off other players or mine it themselves, on Thornpeak or the starter veins of ten of the eleven younger zones (the Farshore alone digs iron).",
-          "ladderHeading": "Learning at Darva's forge",
+          "ladderHeading": "Learning at Brunna's forge",
           "ladderBody": "Two field commons, the Eastbrook Chainmail Vest and the Warded Leggings, are known from the start and craft anywhere. The trainer ladder is nine recipes in three rungs at the Eastbrook forge: the copper rung is free at skill 0, the ironlink rung costs 25 silver a recipe at skill 25, and the osmiumscale rung costs 1 gold each at skill 50, with each rung teachable the moment your tier reaches it.\n\nBeyond the ladder sit two specials. The Boundstone Helm is one of the two Smith combination recipes (the Gravewyrm Gauntlets are its sibling on the weaponcrafting side), trainer-taught, station-free, and workable only by an attuned Smith with both crafts at skill 25. The Kilnscale Mantle needs no teacher at all: everyone knows it from the start, and nothing but the forge and the materials gates working it. Its listed skill of 75 is about gain, not permission: with Armorcrafting as a major it pays full skill gain from the very first hammer stroke to 99, so a Smith with osmium to spare can lean on it early. Below a major's ceiling the tier 3 recipe teaches nothing, so an undeclared or hobby armorcrafter works it for the piece, not the points.",
           "routeHeading": "Masterworks, and a working route to 125",
           "routeBody": "From the ironlink rung up, every craft rolls the masterwork chance; the armor-only copper commons cannot proc, since a masterwork improves stats and they carry none. Iron counts as a tier 1 material for the proc and glyphsteel as tier 2.\n\nThe climb is the standard three-rung ride: copper to 25, ironlink to 50, osmiumscale to 75, training each rung the day it opens. Where Armorcrafting gets lucky is the stretch after 75: the Kilnscale Mantle is a tier 3 recipe, so it pays full gain to 99 and half after, which means the last fifty points take about 75 crafts instead of the 150 a craft without a capstone needs. Each mantle costs seven osmium ore and five Smithing Flux, so stock up in Thornpeak and at the forge counter before you start the run.\n\nDarva's work order buys eight copper ore every 30 minutes for coin and XP, a nice sink for the low-tier ore you outgrow. The Book of Deeds marks Hammer and Plate at skill 50, and Grandmaster Armorcrafting waits at the 125 cap."
@@ -11087,7 +11357,7 @@ export const en_CA: EnTranslations = {
           "materialsHeading": "The hunt is the harvest",
           "materialsBody": "Leatherworking is the craft where your leveling route and your supply line are the same thing: rough hide is harvested straight off hide-bearing corpses, wolves and boars above all, and each corpse serves one harvester only, first come first served. A rare or better harvest roll also grants a Pristine Hide, a signed specimen the Mirewarden Jerkin calls for, so bank every one you find.\n\nThe supporting cast is small: spider legs and silk, homespun cloth off humanoids, a single osmium ore in each mirewarden rare piece (six in the Duskhide Wraps), and a Tanning Agent at 16 copper from the tannery counter. Osmium itself is never counter-bought: mine it yourself, on Thornpeak or nearly any younger zone's starter veins (the Farshore alone digs iron), or buy it off another player.",
           "ladderHeading": "Trained in Fenbridge",
-          "ladderBody": "Here is the wrinkle: the tannery stands in Fenbridge, on the Mirefen Marsh road, making Leatherworking the one deep craft trained out in the marsh. Tanner Hesk teaches the ladder at his vats: the Fenbridge hide rung free at skill 0, the marshstalker rung at 25 silver a recipe from skill 25, and the mirewarden rung at 1 gold each from skill 50, each rung opening as your tier reaches it.\n\nThree recipes skip the trainer: the field commons (the Tanned Leather Jerkin and Eastbrook Druid's Hide) craft anywhere from the start, and the Duskhide Wraps are known to everyone at skill 50, tannery-bound. Note that the Outfitter oath itself is sworn back in Eastbrook with Ottilie; only the teaching happens in the marsh.",
+          "ladderBody": "Two tanneries teach the same ladder: Tamsin Tanwick's rack in the Eastbrook crafting yard and Tanner Hesk's vats in Fenbridge, on the Mirefen Marsh road: the Fenbridge hide rung free at skill 0, the marshstalker rung at 25 silver a recipe from skill 25, and the mirewarden rung at 1 gold each from skill 50, each rung opening as your tier reaches it.\n\nThree recipes skip the trainer: the field commons (the Tanned Leather Jerkin and Eastbrook Druid's Hide) craft anywhere from the start, and the Duskhide Wraps are known to everyone at skill 50, tannery-bound. The Outfitter oath itself is sworn in Eastbrook with Ottilie.",
           "routeHeading": "Masterworks, and a working route to 125",
           "routeBody": "Any piece with real stats rolls the masterwork chance so long as the finer quality fits inside your tier ceiling, the statted Eastbrook Druid's Hide included, and a signed Pristine Hide in a Mirewarden Jerkin provides the signed-reagent bonus automatically; osmium counts as a tier 1 material for the proc. The statless hide commons cannot proc.\n\nLevel it the natural way: harvest every wolf and boar you kill from level one, let the two field commons carry you to 25 wherever you stand, then train the hide rung at the vats when the quests pull you into the marsh anyway. Marshstalker carries you to 50, and the mirewarden pieces and Duskhide Wraps carry the rare tier from 50 to 75. Past 75 those tier 2 recipes fade to half and then quarter gain, about 150 crafts for the final fifty points to the 125 cap; below a major's ceiling they still match the rare-quality craft ceiling instead of hard-zeroing.\n\nThe mobile tannery matters more for this craft than any other: specialize at 75 and a saddlebag of hides becomes finished gear at the campfire instead of a walk back to Fenbridge. Hesk's tannery work order buys eight rough hides every 30 minutes, a tidy return on skins you were collecting regardless, and the Book of Deeds marks Tanner's Trade at skill 50 with Grandmaster Leatherworking at the cap."
         },
@@ -11098,13 +11368,13 @@ export const en_CA: EnTranslations = {
           "materialsHeading": "A pantry fed by rod, knife, and furrow",
           "materialsBody": "Fishing stocks the signature ingredients, zone by zone: raw mirror trout and river perch from the waters of Eastbrook Vale, marsh pike and bog eel from Mirefen Marsh, frostgill trout and slatefin carp from Thornpeak Heights. Three more answer to skill instead of to any zone: the deepbarb catfish, the hollowgill sturgeon and the stillmere salmon rise in every water alike once your catch band is deep enough to reach them, and the apex kitchen rungs are built on the first two. Raw catches never restore health on their own: they are kitchen reagents, and the cooked meals are what you eat. The rungs mix the zones freely (the free rung already wants marsh pike, the mid rung Thornpeak's frostgill, and the rare supper folds the Vale's mirror trout back in), so a cook who fishes wherever the road goes never runs dry.\n\nThe butcher's side comes off harvested corpses: game meat from boars and their kin, and, on a rare or better harvest roll, a signed Prime Cut, the centerpiece of the grand roast. Herbs season the better dishes, one ashwood log smokes the eel, and Cooking Salt runs 8 copper a pouch from Marlow's own stall.\n\nThe third supplier is the garden bed, and it is the newest of them. Grain and vegetables now sit in the trainer dishes themselves rather than only in the farm kitchen's own recipes: Vale Wheat binds the free-rung skewer, the game stew takes wheat and Bog Beet together, a Brook Carrot goes into the chowder, Marsh Rice is the bed the carp supper is served on, and Marlow's Grand Roast folds in two Highland Barley and two Frost Gourds off the Highwatch terraces. Seasoned Stock, the intermediate every apex dish flows through, simmers rice and beet in with the meat. Each of these crops can be planted at or below the skill its dish unlocks at, so a cook who also farms is never held up by the pantry, and nothing came off a bill to make room.\n\nThe garden reaches the top of the kitchen too, and that is what finally tells the three apex role dishes apart. They were the same bill under three names; now each takes its own terrace crop: two Frost Gourds into the Stonepot Stew, two Highland Barley onto the Warspice Skewers, two Thornpeak Cabbage into the Sageleaf Chowder. The crops cost the same to the copper, so the choice is flavor and never price, and all three ask exactly the same of the garden, so the role you pick is never also a gate you climb. They are terrace crops either way: growing your own means a Skysilver Hoe and the Farming to swing it, whichever plate you cook. Above them The Laden Hearth takes the Evergarden beds themselves, two Evergarden Greens and a Fine Evergarden Greens, one of the longest bills in the game. A Fine crop is not something you plant for: it is the better grade a skilled farmer's harvest sometimes turns up, so the top of the kitchen now wants a farmer who has been at it a while.\n\nThree apex feasts share the top rung with the hearth and tie it for length: a Stonepot Feast, a Warspice Feast and a Sageleaf Feast, one per role. Each folds a single Evergarden Greens, the kitchen's own Seasoned Stock, a Wyrmfall Core and the whole deep-water catch ladder into one table, and a serving off that table is the matching apex plate, so the three bills are identical and only the dish on them differs.",
           "ladderHeading": "From jerky to the grand roast",
-          "ladderBody": "Salted Jerky is the field recipe: known from the start, one spider leg, craftable anywhere, the trail food of every fresh adventurer. The trainer ladder cooks at the Eastbrook kitchens on the east side of the square: the free rung at skill 0 (the perch, Hunter's Game Skewer, Herbed Marsh Pike), the mid rung at skill 25 for 25 silver a recipe (Ashwood Smoked Eel, Goldleaf Game Stew, Frostgill Chowder), and the rare rung at skill 50 for 1 gold each (Silvered Carp Supper, Angler's Feast Platter, Marlow's Grand Roast).\n\nBatch dishes stretch your ingredients: the smoked eel and the game stew serve two per craft, and the feast platter serves three. Marlow teaches each rung the moment your tier in Cooking reaches it.",
+          "ladderBody": "Salted Jerky is the field recipe: known from the start, one spider leg, craftable anywhere, the trail food of every fresh adventurer. The trainer ladder cooks at the Eastbrook kitchens in the crafting yard south of the square: the free rung at skill 0 (the perch, Hunter's Game Skewer, Herbed Marsh Pike), the mid rung at skill 25 for 25 silver a recipe (Ashwood Smoked Eel, Goldleaf Game Stew, Frostgill Chowder), and the rare rung at skill 50 for 1 gold each (Silvered Carp Supper, Angler's Feast Platter, Marlow's Grand Roast).\n\nBatch dishes stretch your ingredients: the smoked eel and the game stew serve two per craft, and the feast platter serves three. Marlow teaches each rung the moment your tier in Cooking reaches it.",
           "routeHeading": "Specialization, not masterworks, and the route to 125",
           "routeBody": "Cooking is the honest exception to the masterwork story: a meal has no stat line to improve, so dishes never proc one, and no cook should chase it. The craft's mastery is specialization at 75: a fifth less of every ingredient, which compounds fast on batch dishes, and a mobile field kitchen so dinner gets cooked at the dungeon door.\n\nCook what you catch: pair the climb with a fishing session and the two skills feed each other all the way up. Jerky and the free rung carry you to 25 at a point per craft, the mid rung to 50, and the rare rung to 75. Above the rare rung sits the apex kitchen, the three role dishes and The Laden Hearth: no trainer teaches them, they come off found patterns. For a cook whose majors include Cooking, which today means the sworn Apothecary, an apex craft pays full gain right to the 125 cap; below a major's ceiling it teaches nothing at all, so an undeclared or hobby cook works one for the plate, not the points. Either way the rare dishes carry the last stretch, fading to half and then quarter gain, roughly 150 more crafts. Treat it as stocking, not grinding: a guild eats every serving.\n\nMarlow's kitchens work order buys eight game meat every 30 minutes for coin and XP, and the Book of Deeds marks Seasoned Chef at skill 50 on the way to the Grandmaster Cooking title at 125."
         },
         "alchemy": {
           "identityHeading": "Bottles that win fights",
-          "identityBody": "The craft is worked at the apothecary in Highwatch, home of Alchemist Verane, Master of the Apothecary, who teaches the recipe ladder, sells Glass Vials at 12 copper, and pays coin for herbs through her work order.\n\nOn the craft ring, Alchemy sits with the trial-and-error trades, next to Engineering on one side and Cooking on the other. That gives it two pair identities: the Bombardier (Engineering and Alchemy, taken up before Tinker Gizzel in Eastbrook) and the Apothecary (Alchemy and Cooking, sworn before Cook Marlow). Attune to either pair to make Alchemy a major and let your own signed work teach you back; the Bombardier pair also opens its combination brew, the Elixir of the Bear, while the Apothecary pair ships no combination recipe yet. The 0-to-50 ladder itself never waits, though: every one of those rungs sits inside the rare tier that undeclared crafts work under, so the climb to the cap is open before any oath. Two things sit above that ceiling and pay their skill to a major alone: the Quickening Catalyst, the 75-rung intermediate Verane also teaches, and the found-pattern rungs above the ladder; an undeclared or hobby alchemist brews them for the goods, not the points.",
+          "identityBody": "The craft is worked at an apothecary: the alchemy table Apothecary Lin keeps in the Eastbrook crafting yard, or the Highwatch apothecary, home of Alchemist Verane, Master of the Apothecary. Both teach the recipe ladder; Verane also sells Glass Vials at 12 copper and pays coin for herbs through her work order.\n\nOn the craft ring, Alchemy sits with the trial-and-error trades, next to Engineering on one side and Cooking on the other. That gives it two pair identities: the Bombardier (Engineering and Alchemy, taken up before Tinker Gizzel in Eastbrook) and the Apothecary (Alchemy and Cooking, sworn before Cook Marlow). Attune to either pair to make Alchemy a major and let your own signed work teach you back; the Bombardier pair also opens its combination brew, the Elixir of the Bear, while the Apothecary pair ships no combination recipe yet. The 0-to-50 ladder itself never waits, though: every one of those rungs sits inside the rare tier that undeclared crafts work under, so the climb to the cap is open before any oath. Two things sit above that ceiling and pay their skill to a major alone: the Quickening Catalyst, the 75-rung intermediate Verane also teaches, and the found-pattern rungs above the ladder; an undeclared or hobby alchemist brews them for the goods, not the points.",
           "materialsHeading": "Herbs, glands, glass, and the garden",
           "materialsBody": "Every draught wants a Glass Vial plus herbs matched to its rung: sheenleaf grows in Eastbrook Vale, goldleaf in Mirefen Marsh, and sunpetal in Thornpeak Heights, one herb per zone, so your bottles climb the world alongside you. Herbalism is the natural partner skill, though buying from gatherers or the market works just as well; deeper zones hold higher-tier patches that ask for a better sickle, so keep your tool current if you pick your own.\n\nThe elixir line adds a hunter's ingredient: Venom Glands harvested from venomous corpses, and the top elixir asks for a Pristine Venom Gland, the signed rare specimen a lucky corpse harvest turns up. If you do not harvest yourself, those are exactly the goods worth asking a hunter friend to bring back.\n\nThe elixir line also takes a farm base now, one crop per rung: Vale Wheat in the Elixir of the Boar, Bog Beet in the Vipersear, and a Frost Gourd in the Elixir of the Serpent. That makes the trade run both ways, since the growth tonic a farmer plants with is an alchemist's brew off wild sheenleaf. No herb was moved aside to make room, so a herbalist loses nothing to the change.\n\nThe bench above the ladder asks for the garden too. All three flasks steep a Highland Barley off the Highwatch terraces, the same one in each, and the Grand Cauldron at the very top is banked with two Gilded Sunmelon and a Fine Gilded Sunmelon out of the Evergarden. The sunpetal count on every one of those bills is exactly what it always was: the crops stand beside the herbs rather than in place of them.",
           "ladderHeading": "The recipe ladder",
@@ -11133,11 +11403,11 @@ export const en_CA: EnTranslations = {
         },
         "jewelcrafting": {
           "identityHeading": "The finer work of the forge",
-          "identityBody": "The ladder is three rungs of three: a Strength ring, an Intellect ring, and an Agility necklace, first in copper, again in iron, and once more in rare osmium at the top. Jewelry carries no armor and no class lock, and even the copper pieces arrive with real stat lines, because a ring without stats would be nothing at all.\n\nOn the craft ring it sits between Enchanting and Weaponcrafting, giving it two pair identities: the Gembinder (Enchanting and Jewelcrafting) and the Bladewright (Jewelcrafting and Weaponcrafting). Neither has an oath quest yet, so today Jewelcrafting climbs as everyone's craft: the three rungs of the 0-to-50 ladder all sit inside the rare tier that undeclared crafts work under, so the ladder is open before any oath. Two things sit above that ceiling: the Prismglass Setting, the 75-rung intermediate Darva also teaches, and the found-pattern rung above it; since neither pair can be sworn yet, today they teach nothing to anyone, so cut them for the goods, not the points.",
+          "identityBody": "The ladder is three rungs of three: a Strength ring, an Intellect ring, and an Agility necklace, first in copper, again in iron, and once more in rare osmium at the top. Jewelry carries no armor and no class lock, and even the copper pieces arrive with real stat lines, because a ring without stats would be nothing at all.\n\nOn the craft ring it sits between Enchanting and Weaponcrafting, giving it two pair identities: the Gembinder (Enchanting and Jewelcrafting) and the Bladewright (Jewelcrafting and Weaponcrafting). Neither has an oath quest yet, so today Jewelcrafting climbs as everyone's craft: the three rungs of the 0-to-50 ladder all sit inside the rare tier that undeclared crafts work under, so the ladder is open before any oath. Two things sit above that ceiling: the Prismglass Setting, the 75-rung intermediate Brunna also teaches, and the found-pattern rung above it; since neither pair can be sworn yet, today they teach nothing to anyone, so cut them for the goods, not the points.",
           "materialsHeading": "Ore, dust, and essence",
-          "materialsBody": "The bench runs on mining and breaking. Copper ore comes off the tier 1 veins of Eastbrook Vale, iron ore from Mirefen Marsh, and osmium ore from Thornpeak Heights, with a jar or two of Smithing Flux, 20 copper each from Forgemistress Darva, in every recipe. The other half of every piece comes off the breaking bench: Chime Dust settles the copper rung and Chime Essence the iron and osmium rungs, so a jewelcrafter is an enchanter's steadiest customer, or simply keeps a disenchanting habit of their own.\n\nThe osmium rung adds one refinement: every rare piece takes two iron ore besides its osmium, worked in as solder for the fine settings. No counter sells the ores or the dust: they come out of the world or off another player, by trade or the World Market; only the flux is bought for coin.",
+          "materialsBody": "The bench runs on mining and breaking. Copper ore comes off the tier 1 veins of Eastbrook Vale, iron ore from Mirefen Marsh, and osmium ore from Thornpeak Heights, with a jar or two of Smithing Flux, 20 copper each from Brunna, in every recipe. The other half of every piece comes off the breaking bench: Chime Dust settles the copper rung and Chime Essence the iron and osmium rungs, so a jewelcrafter is an enchanter's steadiest customer, or simply keeps a disenchanting habit of their own.\n\nThe osmium rung adds one refinement: every rare piece takes two iron ore besides its osmium, worked in as solder for the fine settings. No counter sells the ores or the dust: they come out of the world or off another player, by trade or the World Market; only the flux is bought for coin.",
           "ladderHeading": "Taught beside the anvil",
-          "ladderBody": "Jewelcrafting has no station of its own: the whole catalog is worked at the Eastbrook forge, the same anvil Weaponcrafting and Armorcrafting share, and Forgemistress Darva teaches it there. The ladder is nine trainer recipes in three rungs: the copper rung (band, loop, torc) is free at skill 0, the iron rung (signet, loop, choker) costs 25 silver a recipe at skill 25, and the osmium rung (band, loop, amulet) costs 1 gold each at skill 50, each rung teachable the moment your tier in the craft reaches its own.\n\nThere are no field recipes and no combination piece yet: every taught rung is forge-bound trainer work, and the found-pattern rung above them is forge-bound too but bought nowhere, so this craft is learned, and practiced, standing where the smiths stand.",
+          "ladderBody": "Jewelcrafting has no station of its own: the whole catalog is worked at the Eastbrook forge, the same anvil Weaponcrafting and Armorcrafting share, and Brunna teaches it there. The ladder is nine trainer recipes in three rungs: the copper rung (band, loop, torc) is free at skill 0, the iron rung (signet, loop, choker) costs 25 silver a recipe at skill 25, and the osmium rung (band, loop, amulet) costs 1 gold each at skill 50, each rung teachable the moment your tier in the craft reaches its own.\n\nThere are no field recipes and no combination piece yet: every taught rung is forge-bound trainer work, and the found-pattern rung above them is forge-bound too but bought nowhere, so this craft is learned, and practiced, standing where the smiths stand.",
           "routeHeading": "Masterworks, and a working route to 125",
           "routeBody": "There is no statless rung here: every piece on the ladder carries a real stat line, so every craft rolls the masterwork chance so long as the finer quality fits inside your tier ceiling, with iron and osmium counting as tier 1 materials for the proc. The copper and iron rungs, uncommon by make, can masterwork into rare for a hobby or undeclared jewelcrafter alike; the osmium three are rare already, so their epic masterworks wait on a ceiling above rare, which no jewelcrafter has until the craft's pairs open.\n\nThe climb is the standard ride: copper to 25, the iron rung the day it opens to 50, then osmium to 75. Above them sits an apex rung no trainer teaches: its patterns are found, not bought. Read that as an item you can make, not a shortcut up the ladder, because the same ceiling named above applies to skill gain as well as to masterworks: an apex pattern sits well over the rare ceiling every jewelcrafter works under today, so crafting one teaches nothing at all until this craft's pairs open and it can be a major. Whichever you hold, the osmium recipes carry the climb, fading to half and then quarter gain: budget roughly 150 more crafts to reach the 125 cap, and fund them honestly, since every class wears jewelry and most travelers level with their ring and neck slots empty.\n\nThe Book of Deeds marks Polished to Brilliance for your first rare-tier piece, Facet and Filigree at 50 skill, and Grandmaster Jewelcrafting at the 125 cap."
         },
@@ -11148,7 +11418,7 @@ export const en_CA: EnTranslations = {
           "materialsBody": "The desk runs on herbalism and the breaking bench. Sheenleaf comes off the tier 1 herb patches of Eastbrook Vale, goldleaf from Mirefen Marsh, and sunpetal from Thornpeak Heights, ground into pigment with a Glass Vial, 12 copper from the apothecary master, in every recipe. The magical half of the ink comes off the breaking bench: Chime Dust settles the sheenleaf rung, Chime Essence the goldleaf and sunpetal rungs, and the sunpetal scroll binds a pinch of dust back in, so a scribe is an enchanter's steady customer, or keeps a disenchanting habit of their own.\n\nThe sunpetal rung refines both of its recipes: the rare grimoire takes two goldleaf besides its sunpetal, worked in to size the illuminations, and the double scroll batch takes a second essence with that pinch of dust, priced even with the Elixir of the Serpent whose buff it mirrors. No counter sells the herbs or the dust: they come out of the world or off another player; only the vial is bought for coin.",
           "materialsBodyFrostGourd": "The desk runs on herbalism and the breaking bench. Sheenleaf comes off the tier 1 herb patches of Eastbrook Vale, goldleaf from Mirefen Marsh, and sunpetal from Thornpeak Heights, ground into pigment with a Glass Vial, 12 copper from the apothecary master, in every recipe. The magical half of the ink comes off the breaking bench: Chime Dust settles the sheenleaf rung, Chime Essence the goldleaf and sunpetal rungs, and the sunpetal scroll binds a pinch of dust back in, so a scribe is an enchanter's steady customer, or keeps a disenchanting habit of their own.\n\nThe sunpetal rung refines both of its recipes: the rare grimoire takes two goldleaf besides its sunpetal, worked in to size the illuminations, and the double scroll batch takes a second essence with that pinch of dust and a Frost Gourd off the Highwatch terraces, which prices it even with the Elixir of the Serpent whose buff it mirrors. No counter sells the herbs, the dust or the gourd: they come out of the world, a garden bed or off another player; only the vial is bought for coin.",
           "ladderHeading": "Taught beside the alembics",
-          "ladderBody": "Inscription has no station of its own: the whole catalog is worked at the Highwatch apothecary, the same bench Alchemy brews at, and Alchemist Verane teaches it there. The ladder is six trainer recipes in three rungs: the sheenleaf rung (primer and scroll) is free at skill 0, the goldleaf rung (folio and scroll) costs 25 silver a recipe at skill 25, and the sunpetal rung (grimoire and scroll) costs 1 gold each at skill 50, each rung teachable the moment your tier in the craft reaches its own. The rung-50 scroll comes off the desk two at a time.\n\nThere are no field recipes and no combination piece yet: every taught rung is apothecary-bound trainer work, and the found-pattern rung above them is apothecary-bound too but bought nowhere, so this craft is learned, and practiced, standing where the alchemists stand.",
+          "ladderBody": "Inscription has no station of its own: the whole catalog is worked at an apothecary, the same bench Alchemy brews at, in the Eastbrook crafting yard or in Highwatch, and Apothecary Lin and Alchemist Verane both teach it. The ladder is six trainer recipes in three rungs: the sheenleaf rung (primer and scroll) is free at skill 0, the goldleaf rung (folio and scroll) costs 25 silver a recipe at skill 25, and the sunpetal rung (grimoire and scroll) costs 1 gold each at skill 50, each rung teachable the moment your tier in the craft reaches its own. The rung-50 scroll comes off the desk two at a time.\n\nThere are no field recipes and no combination piece yet: every taught rung is apothecary-bound trainer work, and the found-pattern rung above them is apothecary-bound too but bought nowhere, so this craft is learned, and practiced, standing where the alchemists stand.",
           "routeHeading": "Scrolls, elixirs, and a working route to 125",
           "routeBody": "The scrolls are the craft's signature rule: each rung's scroll grants exactly the buff of its band's stamina elixir (the boar, vipersear, and serpent bands), and the two sources share one slot on the buff bar. Reading a scroll over an elixir replaces it, drinking an elixir over a scroll replaces that, and the newest application always wins, so a scroll is an alternative door into the same buff, never a second stack on top of it.\n\nThe tomes carry real stat lines, so every tome craft rolls the masterwork chance so long as the finer quality fits inside your tier ceiling; the scrolls, statless consumables, never proc. The climb is the standard ride: sheenleaf to 25, the goldleaf rung the day it opens to 50, then sunpetal to 75. Above them sits an apex rung Verane does not teach: its pattern is found, not bought. Read that as a tome you can make, not a shortcut up the ladder: an apex pattern sits well over the rare ceiling every scribe works under today, and a recipe above your ceiling teaches nothing at all, so the skill it grants waits on this craft's pairs opening and Inscription becoming a major. Whichever you hold, the sunpetal recipes carry the climb, fading to half and then quarter gain: budget roughly 150 more crafts to reach the 125 cap, and fund them honestly, since the scrolls sell to every class in the game.\n\nThe Book of Deeds marks Written in Fine Ink for your first rare-tier piece, Quill and Pigment at 50 skill, and Grandmaster Inscription at the 125 cap."
         }
@@ -11214,7 +11484,7 @@ export const en_CA: EnTranslations = {
       "treeToolNone": "None",
       "nodesNote": "Where the nodes are, their tier, the tool they need, and what they yield. Every node respawns for you {respawn} seconds after your own harvest, and that timer is yours alone: another gatherer working the same node never delays yours, so there is no node racing and no camping. Each zone up the ladder brings a better material out of tougher ground.",
       "toolsHeading": "Tools",
-      "toolsNoteFishingPageMarks": "Every node needs its trade's tool equipped in its Tools slot on the character sheet, tier 1 included: no pick, no ore, and no pole, no fish. A tool left in your bags gathers nothing; use it from the bags to equip it. The vendor ladder covers tiers 1 to 3 across the three heartland hubs: the tier-1 tool is sold at all three, the rungs above it where the ground that uses them begins (Fenbridge adds tier 2, Highwatch tier 3), and the younger settlements beyond them stock no tools at all, so kit up before you travel. Farming buys elsewhere: its tier-1 hoe is stocked by the farmer who keeps the first allotment (she stands at the Eastbrook allotments, not at any tool counter), and no hoe rung above it is sold for coin anywhere. Every counter sells every rung it stocks freely, and any tool passes by direct trade; every rung also lists on the Market and travels by mail except the four 20-copper land starters (the Copper Mining Pick, the Handaxe, the Gathering Sickle and the Garden Hoe): those are bought at a counter or passed hand to hand, and never sold back, mailed, or listed. What is gated is the wielding. A land tool above tier 1 works only once your proficiency in its own trade has earned it, {tier2Prof} for tier 2, {tier3Prof} for tier 3, and 85 for tier 4 and 100 for tier 5, and the vendor row, the tooltip, and the table below all name the requirement up front. Until then a tool bought ahead simply waits, opening no ground, buying no speed, and minting no fine grades, then wields the moment your counter touches its number. Fishing rods are the one exception: no rod carries a wield requirement, and Trader Wilkes in Eastbrook deliberately stocks the tier 2 and tier 3 rods for anglers buying ahead. A tool sits in its own Tools slot, separate from your gear and with no combat stats, and never wears out, so each is a one-time purchase, and only the tier matters to the gate: a rarer tool of the same tier opens nothing extra. Rarity is not only colour, though. It makes a slotted tool effect last longer, and on a rod it widens the reel window.\n\nA better tool buys three things, not two. It opens higher-tier ground, it shortens the cast, and it improves what comes out: work a vein with a tool ranked ABOVE the zone's own material and the harvest yields the fine grade of it instead of the plain one. The vein has to be one of the zone's full-grade ones, so the easier veins a zone keeps for travellers still yield the ordinary material. Fine materials are what the crafted tool recipes consume, and a fine grade counts as its ordinary version anywhere a recipe or a work order asks for one, so upgrading never strands you: it just means your copper ore arrives as Fine Copper Ore.\n\nAbove the vendor ladder the three node trades each have two crafted tools, tier 4 and tier 5, made at the toolworks (every character knows those two recipes; the skill that climbs for the work is Engineering's), or bought with Delve Marks at the Drowned Litany counter once its clears gates are met: the table below carries the Marks price and the clears each rung asks. No merchant ever sells them for coin. Farming's ladder is the long one: every hoe above the 20-copper starter is crafted, tiers 2 through 5, all four taught by the toolmaker rather than known from the start, and the top two rungs are also stocked at that same Marks counter. Fishing has three of its own, and they are learned rather than known from the start too: the toolmaker teaches the tier 4 Stormreel and the tier 5 Tidewrought, and the tier 6 Clockreel is built from a schematic instead; the Stormreel and the Tidewrought are also stocked at that same Marks counter, behind the same clears gates as the node tools of their tier, and the fishing page's tool table carries their Marks prices. Rods are the one ladder whose top rungs buy ACCESS on the water: every one of the three opens a catch band that skill alone can never reach, so a better rod is not comfort. For the three node trades no node today needs more than tier 3, so their tier 4 and tier 5 tools still buy speed and grade rather than access, and they will be the entry ticket when higher-tier ground arrives. Farming sits between the two: planting is what needs the hoe, so a bed of tier N asks a hoe of tier N right up to the fourth and last crop tier, and only the fifth rung opens no new ground.",
+      "toolsNoteFishingPageMarks": "Every node needs its trade's tool equipped in its Tools slot on the character sheet, tier 1 included: no pick, no ore, and no pole, no fish. A tool left in your bags gathers nothing; use it from the bags to equip it. The vendor ladder covers tiers 1 to 3 across the three heartland hubs: the tier-1 tool is sold at all three, the rungs above it where the ground that uses them begins (Fenbridge adds tier 2, Highwatch tier 3), and the younger settlements beyond them stock no tools at all, so kit up before you travel. Farming buys elsewhere: its tier-1 hoe is stocked by the farmer who keeps the first allotment (she stands at the Eastbrook allotments, not at any tool counter), and no hoe rung above it is sold for coin anywhere. Every counter sells every rung it stocks freely, and any tool passes by direct trade; every rung also lists on the Market and travels by mail except the four 20-copper land starters (the Copper Mining Pick, the Handaxe, the Gathering Sickle and the Garden Hoe): those are bought at a counter or passed hand to hand, and never sold back, mailed, or listed. What is gated is the wielding. A land tool above tier 1 works only once your proficiency in its own trade has earned it, {tier2Prof} for tier 2, {tier3Prof} for tier 3, and 85 for tier 4 and 100 for tier 5, and the vendor row, the tooltip, and the table below all name the requirement up front. Until then a tool bought ahead simply waits, opening no ground, buying no speed, and minting no fine grades, then wields the moment your counter touches its number. Fishing rods are the one exception: no rod carries a wield requirement, and Silven in Eastbrook deliberately stocks the tier 2 and tier 3 rods for anglers buying ahead. A tool sits in its own Tools slot, separate from your gear and with no combat stats, and never wears out, so each is a one-time purchase, and only the tier matters to the gate: a rarer tool of the same tier opens nothing extra. Rarity is not only colour, though. It makes a slotted tool effect last longer, and on a rod it widens the reel window.\n\nA better tool buys three things, not two. It opens higher-tier ground, it shortens the cast, and it improves what comes out: work a vein with a tool ranked ABOVE the zone's own material and the harvest yields the fine grade of it instead of the plain one. The vein has to be one of the zone's full-grade ones, so the easier veins a zone keeps for travellers still yield the ordinary material. Fine materials are what the crafted tool recipes consume, and a fine grade counts as its ordinary version anywhere a recipe or a work order asks for one, so upgrading never strands you: it just means your copper ore arrives as Fine Copper Ore.\n\nAbove the vendor ladder the three node trades each have two crafted tools, tier 4 and tier 5, made at the toolworks (every character knows those two recipes; the skill that climbs for the work is Engineering's), or bought with Delve Marks at the Drowned Litany counter once its clears gates are met: the table below carries the Marks price and the clears each rung asks. No merchant ever sells them for coin. Farming's ladder is the long one: every hoe above the 20-copper starter is crafted, tiers 2 through 5, all four taught by the toolmaker rather than known from the start, and the top two rungs are also stocked at that same Marks counter. Fishing has three of its own, and they are learned rather than known from the start too: the toolmaker teaches the tier 4 Stormreel and the tier 5 Tidewrought, and the tier 6 Clockreel is built from a schematic instead; the Stormreel and the Tidewrought are also stocked at that same Marks counter, behind the same clears gates as the node tools of their tier, and the fishing page's tool table carries their Marks prices. Rods are the one ladder whose top rungs buy ACCESS on the water: every one of the three opens a catch band that skill alone can never reach, so a better rod is not comfort. For the three node trades no node today needs more than tier 3, so their tier 4 and tier 5 tools still buy speed and grade rather than access, and they will be the entry ticket when higher-tier ground arrives. Farming sits between the two: planting is what needs the hoe, so a bed of tier N asks a hoe of tier N right up to the fourth and last crop tier, and only the fifth rung opens no new ground.",
       "toolCrafted": "Crafted ({craft})",
       "toolCraftedOrMarks": "Crafted ({craft}) or {marks} Delve Marks after three Drowned Litany clears",
       "toolCraftedOrMarksHeroic": "Crafted ({craft}) or {marks} Delve Marks after a Heroic Drowned Litany clear",
@@ -13943,7 +14213,7 @@ export const en_CA: EnTranslations = {
     "realmName": "World Name"
   },
   "footer": {
-    "copyright": "2026 Project H",
+    "copyright": "2026 Wyndlewood",
     "githubLink": "https://github.com/levy-street/world-of-claudecraft",
     "githubLabel": "Open Source Project",
     "whitepaper": "Whitepaper",
@@ -14009,7 +14279,7 @@ export const en_CA: EnTranslations = {
     "serverOnline": "Online",
     "serverOffline": "Offline",
     "play": "Play",
-    "playAria": "Play Project H",
+    "playAria": "Play Wyndlewood",
     "playLoading": "Loading",
     "playStarting": "Starting",
     "serverLabel": "Choose your world",
@@ -14498,12 +14768,12 @@ export const en_CA: EnTranslations = {
     "extensionHelp": "Choose an installed browser wallet, or open Reown AppKit for Phantom, Solflare, Backpack, and more.",
     "mobileAppHelp": "Choose Phantom or Solflare. Your wallet app will ask for approval. Keep this game open and return to it when finished.",
     "seekerAppHelp": "Continue with Seed Vault Wallet. Review the connection and verification requests in Seed Vault, then return to the game.",
-    "standaloneAppHelp": "Wallet connections are not available in the Home Screen app yet. Open Project H in Safari or Chrome to use Phantom or Solflare.",
+    "standaloneAppHelp": "Wallet connections are not available in the Home Screen app yet. Open Wyndlewood in Safari or Chrome to use Phantom or Solflare.",
     "openAppTitle": "Continue in {wallet}",
     "openAppHelp": "Open {wallet} to review this request. Keep this game tab open while the wallet app is active.",
     "openAppButton": "Open {wallet}",
     "manualReturnBrowserHelp": "After approval, return to this game tab. If iOS opens another browser, close it and return to the original browser manually.",
-    "manualReturnStandaloneHelp": "After approval, return to Project H from your Home Screen. If iOS opens a browser, close it and reopen the Home Screen app manually.",
+    "manualReturnStandaloneHelp": "After approval, return to Wyndlewood from your Home Screen. If iOS opens a browser, close it and reopen the Home Screen app manually.",
     "preparingAppButton": "Preparing {wallet}...",
     "walletAppUnavailable": "{wallet} could not be prepared. Close this window and try again.",
     "flowConnect": "Choose a wallet. Verification continues automatically.",
@@ -14519,12 +14789,12 @@ export const en_CA: EnTranslations = {
       "paymentBody": "Choose the wallet linked to your account and approve the transaction in this browser.",
       "stepUpBody": "Choose the wallet linked to your account and sign the $WOC Exchange authorization message. Signing is free and moves no funds.",
       "extensionHelp": "No compatible wallet extension was found. Install or unlock Phantom, Solflare, or another Solana browser wallet, then retry.",
-      "safety": "Project H never asks for your recovery phrase or private key.",
+      "safety": "Wyndlewood never asks for your recovery phrase or private key.",
       "continueWith": "Continue with {wallet}",
       "reviewTitle": "Review in your wallet",
       "reviewBody": "Follow the prompt from {wallet}. Keep this browser page open.",
       "completeTitle": "Wallet authorization complete",
-      "completeBody": "You can return to the Project H desktop app.",
+      "completeBody": "You can return to the Wyndlewood desktop app.",
       "returnButton": "Return to desktop app",
       "failed": "Wallet authorization failed or expired. Return to the desktop app and try again.",
       "retry": "Retry"
@@ -14630,8 +14900,8 @@ export const en_CA: EnTranslations = {
     "footerCta": "Forge your legend: {siteUrl}",
     "arenaStat": "Arena",
     "shareTierBit": ", {tier}-rank $WOC holder",
-    "shareText": "I'm forging my legend in Project H: Level {level} {className}{tierBit}. Join my world:",
-    "nativeShareTitle": "Project H",
+    "shareText": "I'm forging my legend in Wyndlewood: Level {level} {className}{tierBit}. Join my world:",
+    "nativeShareTitle": "Wyndlewood",
     "fileNameFallback": "player",
     "actionShareX": "Share to X",
     "actionCopyReferral": "Copy Referral Link",
@@ -15496,19 +15766,19 @@ export const en_CA: EnTranslations = {
     "headline": "Adventure with friends.",
     "contribute": "Contribute to the game",
     "tools": "Tools",
-    "records": "WoC Records",
-    "scout": "WoC Scout",
-    "parseService": "WoC Parse Service"
+    "records": "Records",
+    "scout": "Scout",
+    "parseService": "Parse Service"
   },
   "seo": {
-    "title": "Project H: Sandbox MMO (World of ClaudeCraft fork)",
-    "description": "Play Project H, a free browser MMO. Explore, complete quests, and run dungeons with friends. No download required.",
+    "title": "Wyndlewood",
+    "description": "Play Wyndlewood, a free browser MMO. Explore, complete quests, and run dungeons with friends. No download required.",
     "genre": "MMORPG",
     "playMode": "Multiplayer",
     "applicationCategory": "Game",
     "operatingSystem": "Web browser",
-    "officialLabel": "Official Project H website",
-    "officialBody": "The official home of Project H. Play online, read the wiki, and find community links here."
+    "officialLabel": "Official Wyndlewood website",
+    "officialBody": "The official home of Wyndlewood. Play online, read the wiki, and find community links here."
   },
   "a11y": {
     "goHome": "Go to homepage",
@@ -15516,9 +15786,9 @@ export const en_CA: EnTranslations = {
     "mainNavigation": "Main navigation",
     "languageSelection": "Language selection",
     "characterActions": "Character actions",
-    "githubProject": "Open the Project H GitHub project",
-    "discordCommunity": "Join the Project H Discord community",
-    "donateProject": "Donate to support Project H"
+    "githubProject": "View the open-source World of ClaudeCraft engine Wyndlewood is built on, on GitHub",
+    "discordCommunity": "Join the Wyndlewood Discord community",
+    "donateProject": "Donate to support Wyndlewood"
   },
   "entryGuard": {
     "title": "Graphics lowered",
@@ -15541,6 +15811,8 @@ export const en_CA: EnTranslations = {
     "connectionRejected": "The server closed the connection.",
     "incompatibleWorldVersion": "Game and server versions are incompatible. Reload or update, then try again.",
     "realmFull": "This world is full right now. Please try again in a few minutes.",
+    "maintenance": "The realm is closed for maintenance. Please try again soon.",
+    "updateRequired": "Update required: this version of the game is out of date. Restart Steam to update, then try again.",
     "tooManyConnections": "Too many connections to this world are coming from your network. Please close extra game windows or try again in a few minutes.",
     "messageRateExceeded": "You were disconnected for sending actions too quickly. Please wait a moment and log back in.",
     "kickedByModerator": "A moderator has disconnected you: {reason}",
@@ -15617,16 +15889,16 @@ export const en_CA: EnTranslations = {
     "notify": {
       "updateReadyTitle": "Update {version} is ready",
       "updateReadyTitleNoVersion": "Update is ready",
-      "updateReadyBody": "Restart Project H to apply the update.",
+      "updateReadyBody": "Restart Wyndlewood to apply the update.",
       "partyInviteTitle": "Party invite",
       "partyInviteBody": "{name} invited you to a party."
     },
     "crash": {
-      "title": "Project H",
+      "title": "Wyndlewood",
       "body": "The game view stopped working. Reload it?",
       "reload": "Reload",
       "quit": "Quit",
-      "fatalBody": "Project H hit an unexpected error and needs to close."
+      "fatalBody": "Wyndlewood hit an unexpected error and needs to close."
     },
     "hostDiag": {
       "saveTitle": "Save system report",
@@ -15793,11 +16065,11 @@ export const en_CA: EnTranslations = {
     "iosStandaloneDetail": "You are in home-screen fullscreen mode. Keep the device in landscape.",
     "iosInstallDetail": "For true fullscreen on iPhone or iPad, install this page to your Home Screen first.",
     "iosShareStep": "In Safari, tap Share, then Add to Home Screen.",
-    "iosOpenStep": "Open Project H from the new Home Screen icon.",
+    "iosOpenStep": "Open Wyndlewood from the new Home Screen icon.",
     "androidStandaloneDetail": "You are in fullscreen app mode. Keep the device in landscape.",
     "androidInstallDetail": "For fullscreen on Android, install this page or add it to your Home screen first.",
     "androidInstallStep": "In Chrome, tap the menu, then Install app or Add to Home screen.",
-    "androidOpenStep": "Open Project H from the new icon.",
+    "androidOpenStep": "Open Wyndlewood from the new icon.",
     "otherStandaloneDetail": "Keep your device in landscape fullscreen.",
     "otherInstallDetail": "Install or add this page to your Home screen for the best fullscreen mobile experience."
   },
@@ -15812,12 +16084,51 @@ export const en_CA: EnTranslations = {
     "changeLater": "You can change this any time in Options, under Graphics Quality.",
     "confirm": "Continue"
   },
+  "legalPrompt": {
+    "title": "Player Agreements",
+    "body": "Before you play, please read and accept the Terms of Service, the Privacy Policy, and the End User License Agreement. Each summary below links to the full document.",
+    "earlyAccess": "Wyndlewood is in Early Access: features, balance, and content will change, and progress may be reset once at full launch as announced on the store page.",
+    "eulaLink": "End User License Agreement",
+    "termsLink": "Terms of Service",
+    "privacyLink": "Privacy Policy",
+    "version": "Version {version}",
+    "updated": "Updated since you last accepted",
+    "readFull": "Read the full document",
+    "publisher": "Published by [PUBLISHER LEGAL NAME] (a placeholder until the publisher is named). These documents are drafts awaiting legal review.",
+    "terms": {
+      "age": "You must be at least 13 years old, or have a parent or guardian agree for you.",
+      "fairPlay": "Play fairly: no cheating, bots, automation, bug exploits, harassment, or trading items or gold for real money.",
+      "virtualItems": "Virtual items, currency, and progress have no money value. Any purchase in the Steam build goes through Steam.",
+      "enforcement": "Accounts that break the rules may be warned, muted, suspended, or banned. You can appeal to support."
+    },
+    "privacy": {
+      "account": "We store your account, characters, and progress, and use technical data such as your IP address to run the servers and stop cheating and abuse.",
+      "public": "Chat, character names, guilds, and leaderboards are visible to other players.",
+      "analytics": "Analytics are off unless you turn them on, and nothing is sent to advertising or analytics companies.",
+      "rights": "You can export your data and delete your account at any time."
+    },
+    "eula": {
+      "license": "The game is licensed to you, not sold, for your own non-commercial play.",
+      "restrictions": "Do not copy, resell, or reverse engineer the game, or use cheats, bots, or exploits against it."
+    },
+    "accept": "I Accept",
+    "decline": "Decline"
+  },
+  "analyticsPrompt": {
+    "title": "Help Improve Wyndlewood",
+    "body": "May Wyndlewood collect usage and performance data? If you agree, the game sends coarse counters (sessions, play time in five-minute steps, a rough frame rate) and periodic performance reports about your device and frame times to our own servers.",
+    "noThirdParty": "Nothing is sent to advertising or analytics companies, and nothing is sent at all unless you choose Share.",
+    "privacyLink": "Read the Privacy Policy",
+    "changeLater": "You can change this any time in Options.",
+    "share": "Share",
+    "decline": "Do Not Share"
+  },
   "serverUnavailable": {
-    "title": "Project H - World Unavailable",
-    "logoAlt": "Project H",
+    "title": "Wyndlewood - World Unavailable",
+    "logoAlt": "Wyndlewood",
     "eyebrow": "World maintenance",
     "heading": "The world is temporarily unavailable.",
-    "body": "We are restarting the game service and expect Claudemoon to return shortly. This page will keep checking automatically.",
+    "body": "We are restarting the game service and expect the world to return shortly. This page will keep checking automatically.",
     "status": "Back soon"
   },
   "hud": {
@@ -16421,14 +16732,14 @@ export const en_CA: EnTranslations = {
       "moveTitle": "Find Your Footing",
       "moveBody": "Use {moveKeys} to move and the mouse to look around. Take a few steps to begin.",
       "seekTitle": "Seek the Marshal",
-      "seekBody": "Marshal Redbrook waits in town and has work for a new blade. Follow the marker to reach him.",
+      "seekBody": "Warden Corren waits in town and has work for a new blade. Follow the marker to reach him.",
       "talkTitle": "Take the Task",
-      "talkBody": "Stand close to Marshal Redbrook and press {interactKey} to speak, then accept his task.",
+      "talkBody": "Stand close to Warden Corren and press {interactKey} to speak, then accept his task.",
       "slayTitle": "Wolves at the Door",
       "slayBody": "Hunt the Forest Wolves on the north road. Target one and attack to thin the pack.",
       "slayProgress": "Forest Wolves slain: {current} / {needed}",
       "returnTitle": "Claim Your Reward",
-      "returnBody": "Your task is done. Return to Marshal Redbrook and press {interactKey} to turn it in."
+      "returnBody": "Your task is done. Return to Warden Corren and press {interactKey} to turn it in."
     },
     "markers": {
       "names": {
@@ -17491,6 +17802,11 @@ export const en_CA: EnTranslations = {
       "levelClass": "Level {level} {className}"
     },
     "vendor": {
+      "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "Riding Training",
       "advancedRiding": "Advanced Riding Training",
       "ridingSpeed": "Increase your movement speed while mounted by {speed}%. Applies to every mount.",
@@ -20984,7 +21300,7 @@ export const en_CA: EnTranslations = {
         "name": "Silkbound Remains"
       },
       "gravebound_silk_wraps": {
-        "name": "Gravebound Silk Wraps"
+        "name": "Gravestirred Silk Wraps"
       },
       "mantle_of_the_unhorsed": {
         "name": "Mantle of the Unhorsed"
@@ -24847,6 +25163,282 @@ export const en_CA: EnTranslations = {
       "furn_station_toolworks": {
         "name": "Home Toolworks"
       },
+      "c1_dry_supply_bundle": {
+        "name": "Dry Supply Bundle"
+      },
+      "c1_black_wick_knot": {
+        "name": "Black Wick Knot"
+      },
+      "c1_wrapped_beacon_sample": {
+        "name": "Wrapped Beacon Sample"
+      },
+      "c1_beacon_thread_sample": {
+        "name": "Beacon Thread Sample"
+      },
+      "c1_bait_herring": {
+        "name": "Bait Herring"
+      },
+      "c1_salt_crumpled_hat": {
+        "name": "Salt-Crumpled Hat"
+      },
+      "c1_heavy_parcel": {
+        "name": "Heavy Parcel"
+      },
+      "c1_soft_parcel": {
+        "name": "Soft Parcel"
+      },
+      "c1_healthy_turnip": {
+        "name": "Healthy Turnip"
+      },
+      "c1_blackened_root_sample": {
+        "name": "Blackened Root Sample"
+      },
+      "c1_waxed_root_tie": {
+        "name": "Waxed Root Tie"
+      },
+      "c1_meadow_balm_leaf": {
+        "name": "Meadow Balm Leaf"
+      },
+      "c1_black_cloth_snag": {
+        "name": "Black Cloth Snag"
+      },
+      "c1_unlit_grave_lamp": {
+        "name": "Unlit Grave Lamp"
+      },
+      "c1_cold_silvermint_sprig": {
+        "name": "Cold Silvermint Sprig"
+      },
+      "c1_waxed_binding": {
+        "name": "Waxed Binding"
+      },
+      "c1_dew_damp_cloth": {
+        "name": "Dew-Damp Cloth"
+      },
+      "c1_windwhistle_leaf": {
+        "name": "Windwhistle Leaf"
+      },
+      "c1_nibbled_rent_notice": {
+        "name": "Nibbled Rent Notice"
+      },
+      "c1_bread_heel": {
+        "name": "Bread Heel"
+      },
+      "c1_missing_pantry_key": {
+        "name": "Missing Pantry Key"
+      },
+      "c1_supplied_binding": {
+        "name": "Waxed Binding Sample"
+      },
+      "c1_amended_cart_tag": {
+        "name": "Amended Cart Tag"
+      },
+      "c1_discarded_face_veil": {
+        "name": "Discarded Face Veil"
+      },
+      "c1_stolen_lunch_basket": {
+        "name": "Stolen Lunch Basket"
+      },
+      "c1_instruction_sheet": {
+        "name": "Soot-Folded Instruction Sheet"
+      },
+      "c1_founders_prayer_board": {
+        "name": "Founders' Prayer Board"
+      },
+      "c1_sealed_watch_warning": {
+        "name": "Sealed Watch Warning"
+      },
+      "c1_rivet_packet": {
+        "name": "Rivet Packet"
+      },
+      "c1_hinge_bundle": {
+        "name": "Hinge Bundle"
+      },
+      "c1_covered_stew_bowl": {
+        "name": "Covered Stew Bowl"
+      },
+      "c1_bread_bundle": {
+        "name": "Bread Bundle"
+      },
+      "c1_dried_herb_packet": {
+        "name": "Dried Herb Packet"
+      },
+      "c1_reed_mulch_bundle": {
+        "name": "Reed Mulch Bundle"
+      },
+      "c1_lantern_oil_cup": {
+        "name": "Lantern Oil Cup"
+      },
+      "c1_broken_lifeboat": {
+        "name": "Broken Lifeboat"
+      },
+      "c1_northern_beacon": {
+        "name": "Northern Beacon"
+      },
+      "c1_empty_crab_pot": {
+        "name": "Empty Crab Pot"
+      },
+      "c1_frosted_fence_stake": {
+        "name": "Frosted Fence Stake"
+      },
+      "c1_disturbed_grave": {
+        "name": "Freshly Disturbed Grave"
+      },
+      "c1_name_stone": {
+        "name": "Overturned Name Stone"
+      },
+      "c1_windwhistle_patch": {
+        "name": "Windwhistle Flower Patch"
+      },
+      "c1_tapping_wall_panel": {
+        "name": "Tapping Wall Panel"
+      },
+      "c1_speaking_pipe": {
+        "name": "Disused Speaking Pipe"
+      },
+      "c1_pantry_saucer": {
+        "name": "Empty Pantry Saucer"
+      },
+      "c1_delivery_slip": {
+        "name": "Lamp-Supply Delivery Slip"
+      },
+      "c1_bound_grave_lamp": {
+        "name": "Bound Grave Lamp"
+      },
+      "c1_founding_map": {
+        "name": "Faded Founding Map"
+      },
+      "c1_reading_desk": {
+        "name": "Reading Desk"
+      },
+      "c1_boundary_warning": {
+        "name": "Boundary Warning"
+      },
+      "c1_outer_wicket": {
+        "name": "Outer Wicket"
+      },
+      "c1_road_checkpost": {
+        "name": "Road Checkpost"
+      },
+      "c1_quay_inspection_post": {
+        "name": "Quay Inspection Post"
+      },
+      "c1_watch_lantern": {
+        "name": "Watch Lantern"
+      },
+      "c1_water_level_gauge": {
+        "name": "Water-Level Gauge"
+      },
+      "c1_loan_fishing_rod": {
+        "name": "Loan Fishing Rod"
+      },
+      "c1_shore_minnow": {
+        "name": "Shore Minnow"
+      },
+      "c1_loan_woodcutting_axe": {
+        "name": "Loan Woodcutting Axe"
+      },
+      "c1_shore_pine_log": {
+        "name": "Shore Pine Log"
+      },
+      "c1_deck_nails": {
+        "name": "Packet of Deck Nails"
+      },
+      "c1_walkway_panel": {
+        "name": "Walkway Panel"
+      },
+      "c1_copper_ingot": {
+        "name": "Copper Ingot"
+      },
+      "c1_hinge_packet": {
+        "name": "Hinge Packet"
+      },
+      "c1_brook_trout": {
+        "name": "Brook Trout"
+      },
+      "c1_garden_carrot": {
+        "name": "Garden Carrot"
+      },
+      "c1_supper_stew_bowl": {
+        "name": "Covered Stew Bowl"
+      },
+      "c1_keep_net": {
+        "name": "Floating Keep-Net"
+      },
+      "c1_marked_shore_pine": {
+        "name": "Marked Shore Pine"
+      },
+      "c1_timber_rack": {
+        "name": "Ferry Timber Rack"
+      },
+      "c1_ferry_workbench": {
+        "name": "Ferry Workbench"
+      },
+      "c1_walkway_gap": {
+        "name": "Walkway Gap"
+      },
+      "c1_public_furnace": {
+        "name": "Brunna's Public Furnace"
+      },
+      "c1_pella_workbench": {
+        "name": "Wenna's Public Workbench"
+      },
+      "c1_housing_noticeboard": {
+        "name": "Housing Noticeboard"
+      },
+      "c1_practice_marker": {
+        "name": "Furnishing Practice Marker"
+      },
+      "c1_inn_hearth": {
+        "name": "The Inn's Public Hearth"
+      },
+      "c2_dry_cargo_crate": {
+        "name": "Suspiciously Dry Cargo Crate"
+      },
+      "c2_harbor_fish": {
+        "name": "Skittish Harbor Fish"
+      },
+      "c2_listening_horn": {
+        "name": "Borrowed Listening Horn"
+      },
+      "c2_crypt_key": {
+        "name": "Sexton's Crypt Key"
+      },
+      "c2_memory_wet_keepsake": {
+        "name": "Memory-Wet Keepsake"
+      },
+      "c2_loan_hatchet": {
+        "name": "Borrowed Bog Hatchet"
+      },
+      "c2_bog_alder_log": {
+        "name": "Bog Alder Log"
+      },
+      "c2_boardwalk_plank": {
+        "name": "Boardwalk Plank"
+      },
+      "c2_paddy_crop_bundle": {
+        "name": "Paddy Crop Bundle"
+      },
+      "c2_paddy_eel": {
+        "name": "Paddy Eel"
+      },
+      "c2_cargo_mark": {
+        "name": "Stenciled Cargo Mark"
+      },
+      "c2_jetty_post": {
+        "name": "Old Jetty Post"
+      },
+      "c2_overnight_house": {
+        "name": "House That Was Not Here Yesterday"
+      },
+      "c2_marked_bog_alder": {
+        "name": "Marked Bog Alder"
+      },
+      "c2_fen_workbench": {
+        "name": "Fenbridge Boardwright's Bench"
+      },
+      "c2_rotten_span": {
+        "name": "Rotten Boardwalk Span"
+      },
       "membership_staff": {
         "name": "Staff of Changing"
       },
@@ -26964,6 +27556,33 @@ export const en_CA: EnTranslations = {
       "buddy_phantom": {
         "name": "Phantom"
       },
+      "bristlejaw_shore_rat": {
+        "name": "Bristlejaw Shore Rat"
+      },
+      "gravestirred_fieldhand": {
+        "name": "Gravestirred Fieldhand"
+      },
+      "briarbitten_fox": {
+        "name": "Briarbitten Fox"
+      },
+      "orchard_boar": {
+        "name": "Orchard Boar"
+      },
+      "veiled_rite_tender": {
+        "name": "Veiled Rite Tender"
+      },
+      "culvert_rat": {
+        "name": "Culvert Rat"
+      },
+      "quarry_burrower": {
+        "name": "Quarry Burrower"
+      },
+      "escort_neris": {
+        "name": "Neris Snowmantle"
+      },
+      "escort_della": {
+        "name": "Della Brindlepot"
+      },
       "ironvein_foreman": {
         "name": "Ironvein Foreman"
       },
@@ -27193,17 +27812,17 @@ export const en_CA: EnTranslations = {
         "greeting": "Welcome to the World Market, {className}. Buy from every adventurer in the realm, or set out your own wares and let coin find you."
       },
       "marshal_redbrook": {
-        "name": "Marshal Redbrook",
-        "title": "Town Marshal",
+        "name": "Warden Corren Stoutvale",
+        "title": "Lanternwarden Commander",
         "greeting": "Keep your blade close, {className}. The Vale is not what it was."
       },
       "trader_wilkes": {
-        "name": "Trader Wilkes",
+        "name": "Silven Brackett",
         "title": "Provisioner",
         "greeting": "Fresh bread, clean water, fair prices. What can I get you?"
       },
       "apothecary_lin": {
-        "name": "Apothecary Lin",
+        "name": "Ivara Fenmoss",
         "title": "Herbalist",
         "greeting": "Careful where you step in the northeastern woods, friend."
       },
@@ -27259,7 +27878,7 @@ export const en_CA: EnTranslations = {
       },
       "herbalist_yara": {
         "name": "Herbalist Yara",
-        "title": "Herbalist",
+        "title": "Bracken Circle Quartermaster",
         "greeting": "Mind the thicket west of the road. The webs are thick as sailcloth this season."
       },
       "scout_maren": {
@@ -27674,26 +28293,26 @@ export const en_CA: EnTranslations = {
       },
       "npc_rift_watch_quartermaster": {
         "name": "Quartermaster Vaelen",
-        "title": "Rift Watch Provisioner",
-        "greeting": "The Rift Watch protects the shore and watches the deep tears. Our stores are open to those of recognized standing."
+        "title": "Gilt Measure Factor",
+        "greeting": "The Gilt Measure trades on what the coast gives up, and pays for what it learns. Our stores are open to those of recognized standing."
       },
       "npc_church_order_quartermaster": {
-        "name": "Templar Althea",
-        "title": "Church Order Quartermaster",
-        "greeting": "Walk in the Light of the Dawn. The Church Order supplies those who stand with us in service."
+        "name": "Captain Althea",
+        "title": "Lanternwarden Quartermaster",
+        "greeting": "Keep a lamp lit and a road open. The Lanternwardens supply those who stand the watch with us."
       },
       "npc_automaton_quartermaster": {
         "name": "Artificer Tobrin",
-        "title": "Automaton Requisitioner",
-        "greeting": "Precision gears, forged steel, and calibrated power. Authorized operators may draw from our inventory."
+        "title": "Hearthwright Requisitioner",
+        "greeting": "Sound timber, true steel, and honest work. Members of the Compact may draw from our stores."
       },
       "npc_wq_taskmaster": {
         "name": "Taskmaster Kaelen",
         "title": "World Quest Taskmaster",
-        "greeting": "The allied factions post assignments across the realm every day. If an assignment does not suit your skills, you may request one daily reassignment."
+        "greeting": "The four allied factions post assignments across the realm every day. If an assignment does not suit your skills, you may request one daily reassignment."
       },
       "forgemistress_darva": {
-        "name": "Forgemistress Darva",
+        "name": "Brunna Flintmorrow",
         "title": "Master of the Forge",
         "greeting": "The forge answers to me, {className}. Bring good ore and it will answer to you too."
       },
@@ -27716,6 +28335,11 @@ export const en_CA: EnTranslations = {
         "name": "Tanner Hesk",
         "title": "Master of the Tannery",
         "greeting": "A hide is only as good as its tanning, {className}. The vats are ready when you are."
+      },
+      "tanner_tamsin": {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "greeting": "Fresh hides on the racks today, {className}. Scrape with the grain, never against it."
       },
       "alchemist_verane": {
         "name": "Alchemist Verane",
@@ -27778,8 +28402,8 @@ export const en_CA: EnTranslations = {
         "greeting": "My counter keeps exactly one thing for sale, {playerName}: a spare pouch for what you pick up along the way, when your lesson calls for it. Everything else here is salvage bound for the vale. Coin buys the pouch, and work earns the coin. That is the whole economy, and it never gets more complicated. Only bigger."
       },
       "ferryman_odo": {
-        "name": "Ferryman Odo",
-        "title": "Keeper of the Crossing",
+        "name": "Captain Fenlow Tippet",
+        "title": "Ferry Captain",
         "greeting": "Fresh off the crossing, {playerName}? Warden Tam keeps the Gauntlet on the strand just south of my pier: run his lanes first and your legs will thank you. Every keeper on this shore hands you to the next when your work is done, and the card at the top of your screen always knows the way. When the vale calls you back, ring the bell standing beside my pier and the crossing will set you down in Eastbrook town."
       },
       "bursar_wick": {
@@ -27816,6 +28440,41 @@ export const en_CA: EnTranslations = {
         "name": "Laverock",
         "title": "Last Cantor of the Pale Choir",
         "greeting": "I was the youngest voice of the Pale Choir. On the night of the rite I did not drink, and I ran. Every full moon since, I hear them singing under the water. I must see her before I die. Let me walk behind you. I will not fight, and I will not slow you."
+      },
+      "scout_neris": {
+        "name": "Neris Snowmantle",
+        "title": "Lanternwarden Scout",
+        "greeting": "If the snow speaks, do not answer. Down here it is mostly the hedges, and they talk a great deal."
+      },
+      "gravekeeper_holven": {
+        "name": "Bertram Ashcombe",
+        "title": "Gravekeeper",
+        "greeting": "Mind the paths between the stones. The ones beneath them have earned their quiet."
+      },
+      "innkeeper_jorren": {
+        "name": "Jorren",
+        "title": "Innkeeper",
+        "greeting": "It could be worse. Usually is. Sit, eat, and tell me which way the trouble is walking today."
+      },
+      "herbalist_olvessa": {
+        "name": "Olvessa",
+        "title": "Herb Terrace Keeper",
+        "greeting": "Mud remembers every footprint, and so do the herbs. Tread kindly here."
+      },
+      "gardener_della": {
+        "name": "Della Brindlepot",
+        "title": "Gardener",
+        "greeting": "If it grows, I have argued with it. If it grows well, I won."
+      },
+      "carpenter_pella": {
+        "name": "Wenna Nookwright",
+        "title": "Carpenter",
+        "greeting": "Measure twice, panic once. Then measure again, just to be safe."
+      },
+      "fisherman_tobbin": {
+        "name": "Tobbin Wickerby",
+        "title": "Fisherman",
+        "greeting": "Never trust a fish with good manners. The polite ones are planning something."
       },
       "tidewatcher_ondrel": {
         "name": "Ondrel Vane",
@@ -27912,7 +28571,7 @@ export const en_CA: EnTranslations = {
       },
       "q_bones": {
         "title": "The Restless Dead",
-        "text": "The old ruin on the northwest hill was a chapel once, and its yard a resting place. Something has stirred the dead from their sleep. Put them down and bring me a skull from each you lay to rest, {playerName}, eight in all, so I may speak the rites over them and grant the peace they were denied.",
+        "text": "The old ruin on the northwest hill was a chapel once, and its yard a resting place. Something has stirred the dead from their sleep, the Gravestirred, as the old folk call them. Put them down and bring me a skull from each you lay to rest, {playerName}, eight in all, so I may speak the rites over them and grant the peace they were denied.",
         "completion": "May they rest now, and may the Light forgive whatever woke them.",
         "objectives": {
           "0": {
@@ -27933,7 +28592,7 @@ export const en_CA: EnTranslations = {
       "q_whispers": {
         "title": "Whispers Below",
         "text": "You have laid the dead to rest, but they will not stay resting: something calls them back. Search the chapel ruin for any trace of the one doing the calling. If you find a sigil or seal, bring it to me untouched.",
-        "completion": "This sigil... it bears the mark of the Gravecallers, a sect I had prayed was extinct. This is worse than I feared, {playerName}.",
+        "completion": "This sigil... it bears the mark of the Gravecallers, a cell of the Pale Accord, the order that still keeps faith with Vauldren Sere, whom the old verses name the Oathless King. I had prayed they were gone. This is worse than I feared, {playerName}.",
         "objectives": {
           "0": {
             "label": "Gravecaller's Sigil"
@@ -27975,8 +28634,8 @@ export const en_CA: EnTranslations = {
       },
       "q_hollow": {
         "title": "Into the Hollow",
-        "text": "Morthen the Gravecaller waits at the bottom of the Hollow Crypt, ringed by the elite dead he has raised. He is far beyond any one hero: take four companions, no fewer. End him, and the Vale's dead will finally sleep.",
-        "completion": "The whispering has stopped. You have done what the whole Vale could not, {playerName}. The dead sleep, and Eastbrook owes you everything it has.",
+        "text": "The door we left shut stands open now, and Morthen the Gravecaller waits at the bottom of the Hollow Crypt, ringed by the elite dead he has raised. He is guarding something down there, something that has kept this Vale warm longer than any of us have been alive. He is far beyond any one hero: take four companions, no fewer. End him, and bring back whatever he was keeping.",
+        "completion": "The whispering has stopped, and you came up carrying a piece of a Hearthpin, warm as a hand. When I held it I heard bells, {playerName}, slow and deep, ringing somewhere under the sea. The Vale's dead sleep at last. I fear the drowned do not.",
         "objectives": {
           "0": {
             "label": "Morthen the Gravecaller slain"
@@ -27995,8 +28654,8 @@ export const en_CA: EnTranslations = {
       },
       "q_gravecallers_trail": {
         "title": "The Gravecaller's Trail",
-        "text": "Morthen is dead, yet a question gnaws at me: a sect that hid for a century does not spend itself on one village chapel. He kept a grimoire: his rites, his correspondence. If anything of it survives, it lies in the vestry of the ruined chapel above the crypt. Search the ruin and bring me whatever remains of his writings, {playerName}.",
-        "completion": "Morthen wrote to a 'Fogbinder' in the northern fen. The sect is not dead, {playerName}. It has merely been patient.",
+        "text": "Morthen is dead, yet a question gnaws at me: an order that hid for a century does not spend itself on one village chapel. He kept a grimoire: his rites, his correspondence. If anything of it survives, it lies in the vestry of the ruined chapel above the crypt. Search the ruin and bring me whatever remains of his writings, {playerName}.",
+        "completion": "Morthen wrote to a 'Fogbinder' in the northern fen. The Pale Accord is not dead, {playerName}. It has merely been patient.",
         "objectives": {
           "0": {
             "label": "Morthen's Grimoire"
@@ -28035,8 +28694,8 @@ export const en_CA: EnTranslations = {
       },
       "q_fenbridge_muster": {
         "title": "Muster at Fenbridge",
-        "text": "Morthen's writings named a master in the northern marsh, a 'Fogbinder.' Now Warden Fenwick has sounded the muster horn at Fenbridge, and I do not believe in coincidence, {playerName}. Take the causeway north, pull the muster order from the gatepost, and present it to the Warden.",
-        "completion": "Aldric's seal, is it? Then you'll do. The fen has been swallowing my patrols whole, and I need every blade that floats.",
+        "text": "Villages along the northern marsh are vanishing into the fog, {playerName}: not burned, not raided, simply gone, with the paths still leading up to where they stood. Warden Fenwick has sounded the muster horn at Fenbridge, and Morthen's writings named a 'Fogbinder' in that same marsh. I do not believe in coincidence. Take the causeway north, pull the muster order from the gatepost, and present it to the Warden.",
+        "completion": "Aldric's seal, is it? Then you'll do. Three hamlets have gone into the fog this month, and my patrols keep coming back with fewer names than they left with. I need every blade that floats.",
         "objectives": {
           "0": {
             "label": "Fenbridge Muster Order"
@@ -28091,8 +28750,8 @@ export const en_CA: EnTranslations = {
       },
       "q_prowlers": {
         "title": "Teeth of the Fen",
-        "text": "The mire prowlers have learned what a supply mule sounds like, and now they hunt the causeway itself. Last week they dragged a courier into the reeds not fifty paces from this gate. Thin them out, {playerName}: twelve dead prowlers ought to teach the rest fear.",
-        "completion": "Twelve, and not a bite on you? The causeway breathes easier tonight.",
+        "text": "The mire prowlers are not hunting the causeway out of hunger, {playerName}. The ground they denned on has gone into the fog, and they came out of it running. Now they have learned what a supply mule sounds like, and last week they dragged a courier into the reeds not fifty paces from this gate. Thin them out: twelve dead prowlers ought to teach the rest fear.",
+        "completion": "Twelve, and not a bite on you? The causeway breathes easier tonight. I only wish I knew what frightened them worse than you did.",
         "objectives": {
           "0": {
             "label": "Mire Prowler slain"
@@ -28121,8 +28780,8 @@ export const en_CA: EnTranslations = {
       },
       "q_deepfen": {
         "title": "The Deepfen Stirs",
-        "text": "The Deepfen mudfins kept to their shallows for twenty years. Now they swarm the east bank like flies on a carcass, and my wardens say they are dragging things up from the lake bed. Whatever has them stirred, I want it stopped. Cull 12 of the snappers.",
-        "completion": "That will push them back to the mud for a while. But something set them digging, and I mean to learn what.",
+        "text": "The Deepfen mudfins kept to their shallows for twenty years. Now they swarm the east bank, dredging the lake bed day and night, and my wardens swear someone on the far shore pays them for what they haul up. I do not know who, and I do not like a marsh with a market in it. Cull 12 of the snappers and break their digging.",
+        "completion": "That will push them back to the mud for a while. But a mudfin does not dig for pay unless someone taught it what pay is. Somebody out there is buying, and I mean to learn what.",
         "objectives": {
           "0": {
             "label": "Deepfen Snapper slain"
@@ -28132,7 +28791,7 @@ export const en_CA: EnTranslations = {
       "q_idols": {
         "title": "Idols of the Deep",
         "text": "Fenwick's wardens say the fish-men dredge idols from the lake bottom and clutch them like holy relics. If those idols are what I fear, I must see them with my own eyes. Take 5 from the Deepfen snappers: they will not part with them kindly.",
-        "completion": "Gravecaller work, older than Morthen, older than me. The sect did not begin in Eastbrook, {playerName}. It began here, and the lake has been keeping its secrets.",
+        "completion": "Look here, {playerName}, at the binding on each one: the same cold black cord the Proving Shore beacon was tied with. Gravecaller work, older than Morthen, older than me. Whoever ties these knots has been patient for a very long time.",
         "objectives": {
           "0": {
             "label": "Waterlogged Idol"
@@ -28161,8 +28820,8 @@ export const en_CA: EnTranslations = {
       },
       "q_widows": {
         "title": "Silk and Venom",
-        "text": "Widow venom is the only thing that draws fen-rot from a wound: I bled a man of it just this morning. But the thicket west of the road has gone from nuisance to horror; the webs are taking deer whole now. Kill 10 widows and cut me 6 venom sacs, whole and unburst.",
-        "completion": "Whole sacs, every one. You have steadier hands than half the surgeons in the south, {playerName}.",
+        "text": "The fog-sick are coming in from the drowned hamlets faster than I can bed them: fevered, and forgetting their own names. Widow venom, drawn fine, is the only thing that keeps their heads clear. But the thicket west of the road has gone from nuisance to horror; the webs are taking deer whole now. Kill 10 widows and cut me 6 venom sacs, whole and unburst.",
+        "completion": "Whole sacs, every one. A woman asked me this morning who her husband was. Tonight she will remember. You have steadier hands than half the surgeons in the south, {playerName}.",
         "objectives": {
           "0": {
             "label": "Mirefen Widow slain"
@@ -28187,8 +28846,8 @@ export const en_CA: EnTranslations = {
       },
       "q_drowned": {
         "title": "The Drowned Dead",
-        "text": "Travelers drowned on the causeway are walking out of the lakes, {playerName}, still hung with the weeds they died in. This is no restless haunting. Drowning leaves no marks; it makes obedient corpses. Someone is filling this fen like a tithing box. Return 12 of the Drowned Dead to their rest.",
-        "completion": "Each one you fell is a stolen soul set free. But the one who drowned them is still pouring water.",
+        "text": "The dead walking out of the lakes are sailors, {playerName}. I know the cut of their coats: the crews of the ships that went missing off the harbor these past years, still hung with the weeds they died in. The sea took them, and something brought them here to stand guard in the fog. Return 12 of the Drowned Dead to their rest.",
+        "completion": "Each one you fell is a sailor set free. Some of them still carried Eastbrook harbor tokens in their pockets. Whoever drowned them is filling this fen like a tithing box, and the box is not yet full.",
         "objectives": {
           "0": {
             "label": "Drowned Dead laid to rest"
@@ -28257,8 +28916,8 @@ export const en_CA: EnTranslations = {
       },
       "q_cult_camp": {
         "title": "Robes in the Reeds",
-        "text": "There, north past the third lake, where the mist never lifts. Grey robes, grey banners: Gravecallers, camped in the open like they already own the fen. They have stopped hiding, {playerName}, which means they think they have already won. Prove them wrong. Cut down 12 of their cultists.",
-        "completion": "Twelve robes face-down in the mud. Now they know the fen watches back.",
+        "text": "There, north past the third lake, where the mist never lifts. Grey robes, grey banners: Gravecallers, camped in the open like they already own the fen. This is no handful of fanatics, {playerName}. It is a cell of something larger, paid and supplied, and they have stopped hiding, which means they think they have already won. Prove them wrong. Cut down 12 of their cultists.",
+        "completion": "Twelve robes face-down in the mud. Every one carried the same pay, and not one would say whose. Now they know the fen watches back.",
         "objectives": {
           "0": {
             "label": "Gravecaller Cultist slain"
@@ -28268,7 +28927,7 @@ export const en_CA: EnTranslations = {
       "q_summoners": {
         "title": "Stopping the Summoning",
         "text": "Maren's reports name summoners among the cultists, voices that call the drowned up out of the water like hounds to a whistle. Their ciphers will spell out the chain of command. Silence 8 summoners and bring me 4 of their ciphers.",
-        "completion": "Every cipher is countersigned 'Deacon Voss', and addressed onward to a 'Fogbinder' in the Bastion. Morthen's master, {playerName}. We have found him.",
+        "completion": "Every cipher is countersigned 'Deacon Voss' and addressed to a 'Fogbinder' in the Bastion. And here, {playerName}, a price list: so much a summer, so much a wedding, so much a name. Someone is buying memories. That is where the vanished villages went.",
         "objectives": {
           "0": {
             "label": "Gravecaller Summoner slain"
@@ -28280,8 +28939,8 @@ export const en_CA: EnTranslations = {
       },
       "q_deacon": {
         "title": "The Deacon of the Mire",
-        "text": "So a deacon of the Gravecallers stands at the heart of that camp, singing my drowned wardens up out of the lakes to serve him. His hymn ends today. Take the camp road north, {playerName}, and put Deacon Voss in the ground, deep enough that nobody sings HIM back up.",
-        "completion": "Voss is dead and the mist over the camp is already thinning. You have broken their voice in the fen. Now only the Bastion remains.",
+        "text": "So a deacon of the Gravecallers stands at the heart of that camp, singing my drowned wardens up out of the lakes to serve him. Maren says he carries a chart he never lets out of his sight, and I want to know why. His hymn ends today. Take the camp road north, {playerName}, and put Deacon Voss in the ground, deep enough that nobody sings HIM back up.",
+        "completion": "Voss is dead, and in his coat was a chart of the Sunken Bastion, drawn by someone who has walked its drowned halls. The mist over the camp is already thinning. Now only the Bastion remains.",
         "objectives": {
           "0": {
             "label": "Deacon Voss slain"
@@ -28290,8 +28949,8 @@ export const en_CA: EnTranslations = {
       },
       "q_bastion_door": {
         "title": "The Sunken Bastion",
-        "text": "The Sunken Bastion, a knight's hold that drowned in the fen a century ago, is where Voss's letters point, and where this Fogbinder sings his drowning hymns. The cult has warded its door with grave-stones. Bring me one of the ward stones, {playerName}, and I will unweave the seal.",
-        "completion": "The ward parts like rotten rope. The door stands open... and the dark below it is listening.",
+        "text": "The Sunken Bastion, a knight's hold that drowned in the fen a century ago, is where Voss's chart points. The old warden rolls say it once kept a Hearthpin safe, and the bells everyone keeps hearing ring from inside it. The cult has warded its door with grave-stones. Bring me one of the ward stones, {playerName}, and I will unweave the seal.",
+        "completion": "The ward parts like rotten rope. Ivara sent word that the Hearthpin fragment from the Hollow Crypt went warm at the very hour you brought me this stone. Whatever the Bastion keeps, the fragment knows it is there. The door stands open, and the dark below it is listening.",
         "objectives": {
           "0": {
             "label": "Bastion Ward Stone"
@@ -28310,8 +28969,8 @@ export const en_CA: EnTranslations = {
       },
       "q_mistcaller": {
         "title": "The Fogbinder",
-        "text": "At the bottom of the Bastion waits Vael the Fogbinder, Morthen's master, Voss's master, the voice that has drowned a hundred travelers to raise itself an army. He is far beyond any one hero: take four companions, no fewer. End him, {playerName}, and the fen's dead may finally lie still.",
-        "completion": "Vael is dead, and the mist is lifting for the first time in years. But Maren heard his last words, and they freeze my blood: 'The Wyrm stirs beneath the peaks.' The sect serves something older than we ever guessed, {playerName}. Rest while you can: the mountains are next.",
+        "text": "At the bottom of the Bastion waits Vael the Fogbinder: Morthen's master, Voss's master, the one who woke Knight-Commander Olen's bells and set them pulling the tide against Eastbrook's harbor. He is far beyond any one hero: take four companions, no fewer. Silence the bells, {playerName}, end him, and the fen's dead may finally lie still.",
+        "completion": "Vael is dead, the bells are silent, and Captain Fenlow writes that the harbor tide came in gentle this morning for the first time in a month. Maren took a chart from Vael's hand: a temple beneath the marsh, and a road from it into the peaks. His last words were 'The Wyrm stirs beneath the peaks.' Rest while you can, {playerName}: the mountains are next.",
         "objectives": {
           "0": {
             "label": "Vael the Fogbinder slain"
@@ -30010,11 +30669,11 @@ export const en_CA: EnTranslations = {
       },
       "q_ps_set_sail": {
         "title": "Set Sail",
-        "text": "There is nothing left on this shore you have not already run, beaten, opened, or bought, {playerName}. You are ready, and Eastbrook has real work waiting. Walk back down the shore road to the pier, press F on Ferryman Odo, and tell him I said you have earned your crossing. Press L any time you lose track of what you owe whom: that is your quest log.",
+        "text": "There is nothing left on this shore you have not already run, beaten, opened, or bought, {playerName}. You are ready, and Eastbrook has real work waiting. Walk back down the shore road to the pier, press F on Captain Fenlow, and tell him I said you have earned your crossing. Press L any time you lose track of what you owe whom: that is your quest log.",
         "completion": "Maren said that, did she? High praise from a woman who once made me practice mooring knots for a week. Ring the bell standing beside my pier whenever you are ready, {playerName}, and the crossing will set you down in the middle of Eastbrook town. Mind the wolves.",
         "objectives": {
           "0": {
-            "label": "Report to Ferryman Odo"
+            "label": "Report to Captain Fenlow"
           }
         }
       },
@@ -30213,6 +30872,684 @@ export const en_CA: EnTranslations = {
           }
         }
       },
+      "c1_01_arrival": {
+        "title": "An Arrival Without a Ticket",
+        "text": "You're breathing, which puts you ahead of your luggage. Gather anything dry from that wreckage while I fetch a blanket. We can discuss your unusual choice of landing place once your teeth stop chattering.",
+        "completion": "There's bread in that bundle and a blanket without too many holes. Sit a moment, then we'll work out what brought your boat onto the rocks.",
+        "objectives": {
+          "0": {
+            "label": "Dry Supply Bundle"
+          },
+          "1": {
+            "label": "Broken Lifeboat inspected"
+          }
+        }
+      },
+      "c1_02_beacon_lied": {
+        "title": "The Beacon That Lied",
+        "text": "That beacon should have guided your boat clear of the rocks, not invited it onto them. Someone's been up there, and the rats along the path have started biting anything with a shadow. Have a look inside the lantern, but don't touch anything still burning.",
+        "completion": "That cord is cold enough to numb my fingers, yet the lantern was lit. I'll wrap it up for Eastbrook's priest, because I prefer my mysteries somewhere other than aboard my boat.",
+        "objectives": {
+          "0": {
+            "label": "Bristlejaw Shore Rat slain"
+          },
+          "1": {
+            "label": "Northern Beacon inspected"
+          },
+          "2": {
+            "label": "Black Wick Knot"
+          }
+        }
+      },
+      "c1_06_admiral_crabs": {
+        "title": "An Admiral Among Crabs",
+        "text": "A crab has stolen my hat and now refuses to recognize my authority. Bait the pot beneath the jetty and retrieve it without hurting the little scoundrel. I want my hat back, not a diplomatic incident.",
+        "completion": "That is my hat, though the crab has improved its ventilation. Let him out once you are finished, because he has already suffered the indignity of being caught by breakfast.",
+        "objectives": {
+          "0": {
+            "label": "Crab Pot baited with a Bait Herring"
+          },
+          "1": {
+            "label": "Salt-Crumpled Hat"
+          }
+        }
+      },
+      "c1_07_across": {
+        "title": "Across Before the Kettle Boils",
+        "text": "Eastbrook lies upriver, where people generally arrive through doors rather than shipwrecks. Take this wrapped cord to Brother Aldric at the chapel. Tell him I want an explanation, preferably one that doesn't involve buying a new ferry.",
+        "completion": "Welcome to Eastbrook, and thank you for bringing this safely. Jorren will find you a warm meal while I examine the cord, but I would like you to return afterward.",
+        "objectives": {
+          "0": {
+            "label": "Wrapped Beacon Sample delivered"
+          },
+          "1": {
+            "label": "Mainland ferry boarded"
+          }
+        }
+      },
+      "c1_08_vouch": {
+        "title": "Someone to Vouch for You",
+        "text": "A stranger needn't remain one for long here. Take a sample to Ivara, introduce yourself to Corren and Silven, and look at the work posted outside the inn. Eastbrook has room for another pair of willing hands.",
+        "completion": "Then you have somewhere to begin, and people who know your name. Ivara has already sent word that the thread troubles her, though she cannot yet say why.",
+        "objectives": {
+          "0": {
+            "label": "Beacon Thread Sample delivered to Ivara"
+          },
+          "1": {
+            "label": "Spoke with Corren"
+          },
+          "2": {
+            "label": "Spoke with Silven"
+          },
+          "3": {
+            "label": "Eastbrook quest board inspected"
+          }
+        }
+      },
+      "c1_10_handle_doubt": {
+        "title": "Handle With Considerable Doubt",
+        "text": "Two labels were exchanged in a minor outbreak of administrative enthusiasm. Ivara needs her mortar, and Brunna needs her padded gloves. Please correct matters before either discovers an exciting new use for the other's order.",
+        "completion": "Both deliveries are accounted for, and neither customer has demanded my head. That is what I call a successful trading day.",
+        "objectives": {
+          "0": {
+            "label": "Heavy Parcel delivered to Ivara"
+          },
+          "1": {
+            "label": "Soft Parcel delivered to Brunna"
+          }
+        }
+      },
+      "c1_11_cold_garden": {
+        "title": "The Cold End of the Garden",
+        "text": "The south bed grows turnips, while the north bed appears to be growing disappointment. Its soil is cold enough to keep butter, even at noon. Bring me good vegetables and a few bad roots before the whole patch decides it's winter.",
+        "completion": "At least we'll have something for supper. That cord around the fence stake wasn't there when I planted, and I'd like to know who put it there.",
+        "objectives": {
+          "0": {
+            "label": "Healthy Turnip"
+          },
+          "1": {
+            "label": "Blackened Root Sample"
+          },
+          "2": {
+            "label": "Frosted Fence Stake inspected"
+          }
+        }
+      },
+      "c1_12_tied_to_root": {
+        "title": "Nothing Good Tied to a Root",
+        "text": "I've dug down beside that stake, and someone has tied knots around my roots. Knots, in a vegetable garden, as though the turnips might escape. Take the bindings to Ivara, along with balm for the plants we've had to disturb.",
+        "completion": "The wax draws warmth from whatever touches it, which explains Della's damaged crop. Removing it should help the bed recover, but please tell her to report anyone digging near her fence.",
+        "objectives": {
+          "0": {
+            "label": "Waxed Root Tie"
+          },
+          "1": {
+            "label": "Meadow Balm Leaf"
+          }
+        }
+      },
+      "c1_13_flowers_down": {
+        "title": "Flowers Facing Down",
+        "text": "Bertram found the flowers on three graves pushed into the soil, blossoms first. That is not one of our customs, nor a child's joke I recognize. Ask him what he saw and examine the graves without disturbing their occupants.",
+        "completion": "He heard someone counting after midnight, and this cloth matches the thread Fenlow sent. I would rather have found a thoughtless vandal than someone so careful.",
+        "objectives": {
+          "0": {
+            "label": "Freshly Disturbed Grave inspected"
+          },
+          "1": {
+            "label": "Spoke with Bertram Ashcombe"
+          },
+          "2": {
+            "label": "Black Cloth Snag"
+          }
+        }
+      },
+      "c1_14_buried_tuesday": {
+        "title": "The Man Buried on Tuesday",
+        "text": "Bertram saw a man walking whom we buried together on Tuesday. I have checked the grave, and I fear there is no gentle explanation. Put the Gravestirred to rest and restore their name stones, because whatever moves them now must not take their names as well.",
+        "completion": "Thank you for treating them as people rather than obstacles. This lamp was never part of their burial, and I will find out who placed it there.",
+        "objectives": {
+          "0": {
+            "label": "Gravestirred Fieldhand laid to rest"
+          },
+          "1": {
+            "label": "Overturned Name Stone restored"
+          },
+          "2": {
+            "label": "Unlit Grave Lamp"
+          }
+        }
+      },
+      "c1_15_warmth_missing": {
+        "title": "The Warmth Gone Missing",
+        "text": "The roots beside the burial ground have blackened, and even the foxes there have turned savage. Ivara believes the damage may tell us more than the graves alone. Take her herbs from the cold patches and anything tied among the roots.",
+        "completion": "The soil has been drained of warmth, not poisoned. These bindings match the beacon thread, which means the trouble has been carried here by someone with hands.",
+        "objectives": {
+          "0": {
+            "label": "Briarbitten Fox slain"
+          },
+          "1": {
+            "label": "Cold Silvermint Sprig"
+          },
+          "2": {
+            "label": "Waxed Binding"
+          }
+        }
+      },
+      "c1_16_pick_the_choir": {
+        "title": "Please Do Not Pick the Choir",
+        "text": "Those flowers beneath the bridge have been singing since dawn, and even a happy song becomes tiresome by the seventeenth verse. Lay a damp cloth over each patch before taking a leaf. You needn't pluck the whole choir to borrow a little music.",
+        "completion": "These leaves still carry a lovely little hum. I'll use them gently, and perhaps the bridge will enjoy a quiet afternoon.",
+        "objectives": {
+          "0": {
+            "label": "Windwhistle Flower Patch soothed"
+          },
+          "1": {
+            "label": "Windwhistle Leaf"
+          }
+        }
+      },
+      "c1_17_della_long_way": {
+        "title": "Della Takes the Long Way",
+        "text": "Della took her handcart over the willow path after I warned her about the washout. I've found a wheel, but she shouted back when I called, so there's hope. Bring her and those seed sacks home before she attempts to repair the river.",
+        "completion": "She came back arguing, which is usually a good sign. Thank you for taking the sacks as well, because she would have gone straight back for them.",
+        "objectives": {
+          "0": {
+            "label": "Della escorted home"
+          }
+        }
+      },
+      "c1_18_three_knocks": {
+        "title": "Three Knocks for Supper",
+        "text": "Something in my pantry knocks three times whenever I serve supper. The guests say it's a ghost, but ghosts have never previously shown such an interest in dumplings. Find the cause before somebody starts selling tickets.",
+        "completion": "Those flour prints are smaller than a mouse's, and something has eaten the word 'rent.' Whatever lives in that wall has already understood the expensive part of lodging.",
+        "objectives": {
+          "0": {
+            "label": "Tapping Wall Panel inspected"
+          },
+          "1": {
+            "label": "Nibbled Rent Notice"
+          },
+          "2": {
+            "label": "Disused Speaking Pipe examined"
+          }
+        }
+      },
+      "c1_19_guest_shelves": {
+        "title": "A Guest Between the Shelves",
+        "text": "My pantry key has vanished, and the knocking has become rather impatient. Ask Olvessa what leaves tiny flour prints, then offer our visitor something from the kitchen. I'd prefer a negotiated settlement to dismantling my inn.",
+        "completion": "A cupboard spirit was tapping through the old speaking pipe to ask for food. It returned my key and offered three buttons for its room, so I believe we're making progress.",
+        "objectives": {
+          "0": {
+            "label": "Asked Olvessa about the flour prints"
+          },
+          "1": {
+            "label": "Bread set on the Pantry Saucer"
+          },
+          "2": {
+            "label": "Missing Pantry Key"
+          }
+        }
+      },
+      "c1_20_order_unsigned": {
+        "title": "The Order Nobody Signed",
+        "text": "Someone needed wax, cord, and lamps for these workings, and those things pass through ordinary hands before reaching wicked ones. Silven may recognize the supplies. Ask what he sold, not what he believes, and let the records answer.",
+        "completion": "Three buyers used three different names, but all their orders went on the same cart. The destination was Old Kiln Lane, and I dislike being made useful without knowing to whom.",
+        "objectives": {
+          "0": {
+            "label": "Lamp-Supply Delivery Slip checked"
+          },
+          "1": {
+            "label": "Amended Cart Tag"
+          },
+          "2": {
+            "label": "Waxed Binding delivered to Silven"
+          }
+        }
+      },
+      "c1_21_watch_cannot_see": {
+        "title": "Where the Watch Cannot See",
+        "text": "Neris has found where the supply cart left the road. Go with her while she follows the tracks, and watch the hedges when her eyes are on the ground. We need to know who is there before anyone attempts heroics.",
+        "completion": "There are people below us tending lamps around an open pit, and something in that pit keeps trying to stand. I'll send word to Aldric while you keep those veils.",
+        "objectives": {
+          "0": {
+            "label": "Neris escorted to the lookout"
+          },
+          "1": {
+            "label": "Discarded Face Veil"
+          }
+        }
+      },
+      "c1_24_sandwich_emergency": {
+        "title": "The Sandwich Emergency",
+        "text": "The patrol lunches have been stolen twice, and I will not have hungry recruits making decisions with spears. Clear the boars from the shelter and recover the baskets. For the record, I have withdrawn my earlier accusation of organized sabotage.",
+        "completion": "The watch will eat, and I shall amend my report to say 'persistent livestock.' Nobody needs to know how long I spent questioning the baker.",
+        "objectives": {
+          "0": {
+            "label": "Orchard Boar driven off"
+          },
+          "1": {
+            "label": "Stolen Lunch Basket"
+          }
+        }
+      },
+      "c1_25_someone_teaching": {
+        "title": "Someone Has Been Teaching Them",
+        "text": "Neris saw the dead rise when those lamps were lit and collapse when one went out. The people tending them attacked our messenger, so there can be no mistaking their intent. Stop the workings and bring back any instructions you find, because someone taught them this.",
+        "completion": "The pit is quiet, and those remains can finally be buried properly. These instructions look copied rather than composed, which means the people you stopped may not be the ones who began this.",
+        "objectives": {
+          "0": {
+            "label": "Veiled Rite Tender stopped"
+          },
+          "1": {
+            "label": "Bound Grave Lamp extinguished"
+          },
+          "2": {
+            "label": "Soot-Folded Instruction Sheet"
+          }
+        }
+      },
+      "c1_26_promise_paint": {
+        "title": "The Promise Under the Paint",
+        "text": "This copied verse resembles a promise recorded in the Age of First Hearths, though someone has twisted its meaning. Fetch the old prayer boards from the loft and examine the map behind the painted panel. Our founders may have left us a warning worth hearing.",
+        "completion": "The original promise forbids keeping the dead in service to a crown, while this copy demands their obedience. An old cautionary verse calls such a ruler the Oathless King. The map places the promised resting ground beneath the Hollow Crypt.",
+        "objectives": {
+          "0": {
+            "label": "Founders' Prayer Board"
+          },
+          "1": {
+            "label": "Faded Founding Map examined"
+          },
+          "2": {
+            "label": "Verse compared at the reading desk"
+          }
+        }
+      },
+      "c1_28_door_left_shut": {
+        "title": "A Door We Leave Shut",
+        "text": "The map leads to the Hollow Crypt, but finding a door does not oblige us to open it. Read the boundary stones and give Neris this warning. Stay outside the wicket, whatever you hear beyond it, and come back to me.",
+        "completion": "Fresh wax beneath the sealed doors is warning enough, and you were right to leave them shut. We will need experienced company before going farther. For tonight, Eastbrook has a watch on the road and one more reason to sleep.",
+        "objectives": {
+          "0": {
+            "label": "Boundary Warning read"
+          },
+          "1": {
+            "label": "Outer Wicket inspected"
+          },
+          "2": {
+            "label": "Sealed Watch Warning delivered to Neris"
+          }
+        }
+      },
+      "c1_03_fish_consulted": {
+        "title": "The Fish Must Be Consulted",
+        "text": "Before we discuss fishing, you should understand that the fish consider themselves the injured party. Borrow my spare rod and catch a few minnows for the keep-net. Gently, please, because we're studying them rather than inviting them to supper.",
+        "completion": "Four healthy minnows, and not one signed complaint. We'll release them after I've checked their scales, which is more courtesy than they showed my last sandwich.",
+        "objectives": {
+          "0": {
+            "label": "Loan Fishing Rod from the tackle rack"
+          },
+          "1": {
+            "label": "Shore Minnow caught at the jetty"
+          },
+          "2": {
+            "label": "Minnows placed in the keep-net"
+          }
+        }
+      },
+      "c1_04_every_board": {
+        "title": "Every Board Counts",
+        "text": "The cargo walkway has developed an interest in dropping people into the sea. Bring me four sound pine logs from the marked trees behind the hut. Leave the old nesting tree alone, unless you'd like to negotiate with thirty furious gulls.",
+        "completion": "Those will do nicely, and the gulls appear to have spared you. Now we can turn this pile into something people may confidently stand upon.",
+        "objectives": {
+          "0": {
+            "label": "Loan Woodcutting Axe"
+          },
+          "1": {
+            "label": "Marked Shore Pine felled"
+          },
+          "2": {
+            "label": "Shore Pine Logs placed on the timber rack"
+          }
+        }
+      },
+      "c1_05_solid_underfoot": {
+        "title": "Something Solid Underfoot",
+        "text": "You've provided the wood, so now comes the business of convincing it to become a walkway. Use my bench and the nails in that chest. I've marked the gaps, although the sea showing through them is also a useful clue.",
+        "completion": "That feels solid enough for a loaded handcart. It's a small repair, but someone will get home dry because you bothered.",
+        "objectives": {
+          "0": {
+            "label": "Walkway Panels built at the ferry workbench"
+          },
+          "1": {
+            "label": "Walkway gap repaired"
+          }
+        }
+      },
+      "c1_09_buckles_glory": {
+        "title": "Buckles Before Glory",
+        "text": "The watch wants new breastplates, but half their existing straps won't hold a buckle. Bring me copper and smelt it cleanly. We can discuss glorious weapons after everyone can keep their armor on.",
+        "completion": "That's clean metal, and I can work with it. A buckle won't earn a ballad, but it might keep the person wearing it alive.",
+        "objectives": {
+          "0": {
+            "label": "Copper Ore mined in the eastern quarry"
+          },
+          "1": {
+            "label": "Copper Ingot smelted at the public furnace"
+          },
+          "2": {
+            "label": "Copper Ingots delivered to Brunna"
+          }
+        }
+      },
+      "c1_22_place_you_keep": {
+        "title": "A Place for What You Keep",
+        "text": "You keep bringing useful things back to town, and pockets have limits. Build yourself a chest while you consider where you'd like to live. You needn't own a house to begin making a home.",
+        "completion": "That chest is yours, including everything you eventually manage to squeeze into it. Keep it safe until you've chosen a place, and don't let Silven convince you that hinges count as luxury fittings.",
+        "objectives": {
+          "0": {
+            "label": "Vale Oak felled in the western coppice"
+          },
+          "1": {
+            "label": "Hinge Packet collected from Brunna"
+          },
+          "2": {
+            "label": "Storage Chest built at Wenna's workbench"
+          },
+          "3": {
+            "label": "Housing Noticeboard inspected"
+          }
+        }
+      },
+      "c1_23_working_life": {
+        "title": "Room for a Working Life",
+        "text": "A home ought to hold something you made, and somewhere to make the next thing. Build a worktable, then try arranging it in my demonstration cottage. No purchase required, and please resist testing the walls with an axe.",
+        "completion": "There you are, with room to work and enough floor left to walk across. Keep the table alongside your chest, because a useful home can begin with very little.",
+        "objectives": {
+          "0": {
+            "label": "Vale Oak felled in the western coppice"
+          },
+          "1": {
+            "label": "Worktable built at Wenna's workbench"
+          },
+          "2": {
+            "label": "Worktable tried on the Furnishing Practice Marker"
+          }
+        }
+      },
+      "c1_27_supper_despite": {
+        "title": "Supper, Despite Everything",
+        "text": "Everyone's been working late and pretending they aren't hungry. Help me make a few proper meals, then take them to the people too stubborn to stop. Terrible news can wait while somebody eats a carrot.",
+        "completion": "Good, because they'll look after the rest of us better with something warm inside them. I've kept a bowl for you, and that wasn't an invitation to argue.",
+        "objectives": {
+          "0": {
+            "label": "Stew cooked at the inn hearth (2 Brook Trout, 3 Garden Carrots)"
+          },
+          "1": {
+            "label": "Stew delivered to Corren"
+          },
+          "2": {
+            "label": "Stew delivered to Brunna"
+          },
+          "3": {
+            "label": "Stew delivered to Olvessa"
+          }
+        }
+      },
+      "c1_d01_bounty_culvert": {
+        "title": "Board Bounty: Culvert Rats",
+        "text": "We've had reports of Culvert Rats troubling people at the town drainage ditch. Remove 5 of them and check your footing while you're there. I don't want a rescue operation attached to a routine patrol.",
+        "completion": "That should make the route safer for ordinary traffic. Good work, and thank you for returning without requiring a stretcher.",
+        "objectives": {
+          "0": {
+            "label": "Culvert Rat removed"
+          }
+        }
+      },
+      "c1_d02_clear_quarry": {
+        "title": "Clear Space for Honest Work",
+        "text": "The workers at the eastern quarry need their hands for tools, not for beating off Quarry Burrowers. Clear 4 from the worksite. I'll pay for a safe shift rather than another tale about why the ore hasn't arrived.",
+        "completion": "Then we can get something useful made today. You've earned your pay without needing to swing a hammer.",
+        "objectives": {
+          "0": {
+            "label": "Quarry Burrower cleared"
+          }
+        }
+      },
+      "c1_d03_teeth_verge": {
+        "title": "Teeth Along the Verge",
+        "text": "I've marked where Briarbitten Foxes are approaching the road at the northern root hedge. Deal with 4, but leave the healthy wildlife alone. We're protecting a path, not emptying the countryside.",
+        "completion": "I'll check the verge again on my next round. For now, the travelers behind you have a safer walk.",
+        "objectives": {
+          "0": {
+            "label": "Briarbitten Fox dealt with"
+          }
+        }
+      },
+      "c1_d04_metal_copper": {
+        "title": "Metal for the Morning Shift",
+        "text": "I need 6 pieces of Copper Ore from the eastern quarry. Bring sound ore rather than a sack of interesting gravel. The furnace has enough opinions without being fed rubbish.",
+        "completion": "That's a proper load, and the forge can use all of it. Come back another day when you need honest work.",
+        "objectives": {
+          "0": {
+            "label": "Copper Ore gathered at the eastern quarry"
+          }
+        }
+      },
+      "c1_d05_wood_oak": {
+        "title": "Wood That Has a Future",
+        "text": "I've orders waiting for 4 Vale Oak Logs, and the western coppice has trees marked for cutting. Leave the unmarked ones standing. Good carpentry begins before the wood reaches the bench.",
+        "completion": "These will become something useful instead of remaining a sketch on my wall. I'll put the offcuts aside as well, because waste makes expensive furniture.",
+        "objectives": {
+          "0": {
+            "label": "Vale Oak felled in the western coppice"
+          }
+        }
+      },
+      "c1_d05_wood_alder": {
+        "title": "Wood That Has a Future",
+        "text": "I've orders waiting for 4 Riverside Alder Logs, and the managed brook grove has trees marked for cutting. Leave the unmarked ones standing. Good carpentry begins before the wood reaches the bench.",
+        "completion": "These will become something useful instead of remaining a sketch on my wall. I'll put the offcuts aside as well, because waste makes expensive furniture.",
+        "objectives": {
+          "0": {
+            "label": "Alder felled in the brook grove"
+          }
+        }
+      },
+      "c1_d06_leaves_silvermint": {
+        "title": "Fresh Leaves, Clean Hands",
+        "text": "I need 3 fresh Silvermint Sprigs from the eastern meadow. Take the healthy growth and leave enough for each plant to recover. A treatment gathered carelessly begins with an injury of its own.",
+        "completion": "These are exactly what I needed. Thank you for bringing them promptly rather than letting them wilt beneath a collection of wolf teeth.",
+        "objectives": {
+          "0": {
+            "label": "Silvermint gathered in the eastern meadow"
+          }
+        }
+      },
+      "c1_d07_receipt_rivets": {
+        "title": "A Receipt Is a Beautiful Thing",
+        "text": "Please take 3 Rivet Packets to Brunna at the forge. The goods are paid for, properly labeled, and not yours to inspect for personal inspiration. Bring confirmation back, and we shall both enjoy the rare pleasure of an uncomplicated transaction.",
+        "completion": "Everything is signed for, so everybody knows whom to blame if it goes missing later. Your payment, happily, is considerably less complicated.",
+        "objectives": {
+          "0": {
+            "label": "Rivet Packets delivered to Brunna"
+          }
+        }
+      },
+      "c1_d07_receipt_hinges": {
+        "title": "A Receipt Is a Beautiful Thing",
+        "text": "Please take 3 Hinge Bundles to Wenna at the carpenter's yard. The goods are paid for, properly labeled, and not yours to inspect for personal inspiration. Bring confirmation back, and we shall both enjoy the rare pleasure of an uncomplicated transaction.",
+        "completion": "Everything is signed for, so everybody knows whom to blame if it goes missing later. Your payment, happily, is considerably less complicated.",
+        "objectives": {
+          "0": {
+            "label": "Hinge Bundles delivered to Wenna"
+          }
+        }
+      },
+      "c1_d08_lunch_stew": {
+        "title": "Lunch Before Complaints",
+        "text": "I've prepared 3 Covered Stew Bowls for Corren. Take them straight to the training yard, because hungry people can turn a short delay into a lifelong grievance. Anything you smell along the way remains part of the delivery.",
+        "completion": "Good, because the kitchen was already receiving complaints from imaginary future customers. There's something small for you on the counter, and this time you're permitted to eat it.",
+        "objectives": {
+          "0": {
+            "label": "Covered Stew Bowls delivered to Corren"
+          }
+        }
+      },
+      "c1_d08_lunch_bread": {
+        "title": "Lunch Before Complaints",
+        "text": "I've prepared 3 Bread Bundles for Neris. Take them straight to the northern lookout, because hungry people can turn a short delay into a lifelong grievance. Anything you smell along the way remains part of the delivery.",
+        "completion": "Good, because the kitchen was already receiving complaints from imaginary future customers. There's something small for you on the counter, and this time you're permitted to eat it.",
+        "objectives": {
+          "0": {
+            "label": "Bread Bundles delivered to Neris"
+          }
+        }
+      },
+      "c1_d09_parcels_herbs": {
+        "title": "Small Parcels, Growing Things",
+        "text": "I've set aside 3 Dried Herb Packets for Ivara at the apothecary. Carry them gently and keep them dry. Things that grow deserve a little care even when they're wrapped in string.",
+        "completion": "Then something will be tended that might otherwise have been neglected. Small journeys can do a surprising amount of good.",
+        "objectives": {
+          "0": {
+            "label": "Dried Herb Packets delivered to Ivara"
+          }
+        }
+      },
+      "c1_d09_parcels_mulch": {
+        "title": "Small Parcels, Growing Things",
+        "text": "I've set aside 3 Reed Mulch Bundles for Della at the riverside garden. Carry them gently and keep them dry. Things that grow deserve a little care even when they're wrapped in string.",
+        "completion": "Then something will be tended that might otherwise have been neglected. Small journeys can do a surprising amount of good.",
+        "objectives": {
+          "0": {
+            "label": "Reed Mulch Bundles delivered to Della"
+          }
+        }
+      },
+      "c1_d10_road_checkposts": {
+        "title": "A Road Checked Properly",
+        "text": "Check 3 Road Checkposts along the south road and report what you actually find. Do not substitute what a passing merchant claims his cousin saw. We have an entire council for that.",
+        "completion": "That's a useful report, with places and observations rather than adjectives. I'll pass it to the next watch before they set out.",
+        "objectives": {
+          "0": {
+            "label": "Road Checkpost checked"
+          }
+        }
+      },
+      "c1_d10_quay_posts": {
+        "title": "A Road Checked Properly",
+        "text": "Check 3 Quay Inspection Posts along the riverside walk and report what you actually find. Do not substitute what a passing merchant claims his cousin saw. We have an entire council for that.",
+        "completion": "That's a useful report, with places and observations rather than adjectives. I'll pass it to the next watch before they set out.",
+        "objectives": {
+          "0": {
+            "label": "Quay Inspection Post checked"
+          }
+        }
+      },
+      "c1_d11_light_behind": {
+        "title": "Leave a Light Behind You",
+        "text": "Several lamps along the Briar Gate circuit are running low. Take oil for 3 Watch Lanterns and check their shutters while you are there. Someone coming home late should be able to see the next safe place.",
+        "completion": "I'll be able to follow that line of lights on tonight's round. So will everyone else who needs to reach home.",
+        "objectives": {
+          "0": {
+            "label": "Watch Lantern serviced"
+          }
+        }
+      },
+      "c1_d12_road_not_rumor": {
+        "title": "The Road, Not the Rumor",
+        "text": "I've heard three alarming accounts of the town's brook crossings, none from anyone who's visited them today. Inspect 3 Water-Level Gauges and bring me facts. Rumors are remarkably expensive when attached to a delivery schedule.",
+        "completion": "Excellent, because now I can arrange deliveries around the conditions rather than the gossip. Reliable information is a commodity I am occasionally willing to pay for.",
+        "objectives": {
+          "0": {
+            "label": "Water-Level Gauge inspected"
+          }
+        }
+      },
+      "c2_01_ship_sank_twice": {
+        "title": "Cargo From a Ship That Sank Twice",
+        "text": "Crates have been washing up on the quay all morning, and they are dry inside. Wood that has been under the sea for years does not stay dry, {playerName}, and neither do I when I think about it too long. Bring me three of them and read the mark stenciled on the one the tide left by the bell.",
+        "completion": "Gilt Measure seal, an old one, on a ship the harbor rolls say went down twice: once in a storm, and once again when someone tried to raise her. Either the sea is returning things, or someone wants us to think it is.",
+        "objectives": {
+          "0": {
+            "label": "Suspiciously Dry Cargo Crate"
+          },
+          "1": {
+            "label": "Stenciled Cargo Mark read"
+          }
+        }
+      },
+      "c2_03_bells_from_steps": {
+        "title": "Bells You Can Hear From the Steps",
+        "text": "The fish below the town steps have gone nervous. Not shy, nervous, the way a cat goes nervous before a storm. Catch a few for my kitchen, then hold this old horn to the jetty post and tell me I am imagining the ringing.",
+        "completion": "You heard it too. Bells, under the water, slow as a funeral. Well. The fish are excellent, and I intend to serve them before they hear anything else.",
+        "objectives": {
+          "0": {
+            "label": "Skittish Harbor Fish caught off the town steps"
+          },
+          "1": {
+            "label": "Listened at the old jetty post"
+          }
+        }
+      },
+      "c2_12_door_we_left_shut": {
+        "title": "The Door We Left Shut",
+        "text": "We were right to leave the crypt shut. I would like that on record before I say the next part: it has to be opened now. Look at the Outer Wicket for me, then fetch the key from the sexton's lodge. Bring both your eyes and the key to Brother Aldric, in that order of importance.",
+        "completion": "The wicket's ward has gone cold, and the key is warm. That is backwards in every way that matters. Very well. The crypt opens, and I will pray for whoever goes in first. That will be you.",
+        "objectives": {
+          "0": {
+            "label": "Outer Wicket examined"
+          },
+          "1": {
+            "label": "Sexton's Crypt Key"
+          }
+        }
+      },
+      "c2_28_remembered_roofs": {
+        "title": "Remembered Roofs",
+        "text": "Three houses stand along the causeway road this morning. I have walked that road every day for eleven years, and I would have noticed houses. Knock, look inside, and bring me anything left on the sills. Handle it gently; I suspect it remembers more than we do.",
+        "completion": "A child's shoe, a wedding spoon, a letter to nobody. Each one is wet, and none of them has been near water. Someone is building homes out of what people have forgotten. I will write this down before I forget it as well.",
+        "objectives": {
+          "0": {
+            "label": "Overnight house examined"
+          },
+          "1": {
+            "label": "Memory-Wet Keepsake"
+          }
+        }
+      },
+      "c2_32_bridge_fenbridge_trusts": {
+        "title": "A Bridge Fenbridge Can Trust",
+        "text": "The boardwalk is sinking a hand's width a week, and the fog is not helping. Take my hatchet, fell the alders I have marked, and turn them into planks at the bench. Then replace the two spans that have started making noises a bridge should not make.",
+        "completion": "Solid as a promise, and quieter than most. Fenbridge walks dry tonight because you spent your afternoon on planks instead of glory. I will not forget it, which these days is saying something.",
+        "objectives": {
+          "0": {
+            "label": "Borrowed Bog Hatchet"
+          },
+          "1": {
+            "label": "Marked Bog Alder felled"
+          },
+          "2": {
+            "label": "Boardwalk Planks cut at the bench"
+          },
+          "3": {
+            "label": "Rotten span replaced"
+          }
+        }
+      },
+      "c2_33_paddy_work_fog": {
+        "title": "Paddy Work in the Fog",
+        "text": "There is a harvest standing in my west paddy, and I do not remember sowing it. My hands do, apparently. Bundle what is ripe along the causeway bank, and empty my two eel traps before the eels eat the rest.",
+        "completion": "Good rice, fat eels, and not one memory of planting either. I have decided to be grateful rather than frightened. It is easier on the knees.",
+        "objectives": {
+          "0": {
+            "label": "Paddy Crop Bundle"
+          },
+          "1": {
+            "label": "Paddy Eel taken from the traps"
+          }
+        }
+      },
       "q_drowned_choir": {
         "title": "The Drowned Choir",
         "text": "The waders do not act alone. Among them walk the Drowned Votaries, the cult that sank with the temple, still in their rotted vestments, still singing the prayer from the shore-rocks. Silence eight of them, and bring me six of the offerings they carry. I would know what they mean to give their goddess.",
@@ -30280,8 +31617,8 @@ export const en_CA: EnTranslations = {
     "zones": {
       "eastbrook_vale": {
         "name": "Eastbrook Vale",
-        "welcome": "Find Marshal Redbrook in town - he has work for you.",
-        "welcomeDone": "Marshal Redbrook has no more work for you - the quaint seaside town where your journey began rests easier for it.",
+        "welcome": "Find Warden Corren in town - he has work for you.",
+        "welcomeDone": "Warden Corren has no more work for you - the quaint seaside town where your journey began rests easier for it.",
         "pois": {
           "0": {
             "label": "Eastbrook"
@@ -30697,7 +32034,7 @@ export const en_CA: EnTranslations = {
       },
       "proving_shore": {
         "name": "The Proving Shore",
-        "welcome": "The Proving Shore asks nothing of you but time. Learn the camp, strike the effigies, walk the wreck line and, when you are ready, Ferryman Odo will see you across to the vale. You can also ring the bell to go to the vale directly.",
+        "welcome": "The Proving Shore asks nothing of you but time. Learn the camp, strike the effigies, walk the wreck line and, when you are ready, Captain Fenlow will see you across to the vale. You can also ring the bell to go to the vale directly.",
         "pois": {
           "0": {
             "label": "Dawnrest Camp"
@@ -30713,6 +32050,219 @@ export const en_CA: EnTranslations = {
           },
           "4": {
             "label": "The Gauntlet"
+          }
+        }
+      },
+      "applewold": {
+        "name": "The Applewold",
+        "welcome": "The causeway ends in apple country. Pressford keeps the presses turning and the Lanternwardens keep the road, but the orchards have gone strange, and the boars have stopped fearing the dogs.",
+        "pois": {
+          "0": {
+            "label": "Pressford"
+          },
+          "1": {
+            "label": "Causeway Watch"
+          },
+          "2": {
+            "label": "The Cider Mere"
+          },
+          "3": {
+            "label": "Blossom Rise"
+          },
+          "4": {
+            "label": "The Old Press"
+          },
+          "5": {
+            "label": "The South Downs"
+          }
+        }
+      },
+      "kindlemoor": {
+        "name": "The Kindlemoor",
+        "welcome": "Nothing grows tall on the Kindlemoor, and nothing here is new. The Bracken Circle keeps watch over stones that were old when the first kingdom was young, and lately the stones have been warm to the touch.",
+        "pois": {
+          "0": {
+            "label": "Ferncross"
+          },
+          "1": {
+            "label": "The First Hearth Ring"
+          },
+          "2": {
+            "label": "The Moor Tarn"
+          },
+          "3": {
+            "label": "The Grey Tor"
+          },
+          "4": {
+            "label": "The Heath Way"
+          }
+        }
+      },
+      "chalkbarrow_coast": {
+        "name": "The Chalkbarrow Coast",
+        "welcome": "The Gilt Measure came to the white cliffs for chalk and stayed for what was under it. Someone else is digging further down, by lantern-less dark, and the prospectors at Coinwell would very much like to know who.",
+        "pois": {
+          "0": {
+            "label": "Coinwell Camp"
+          },
+          "1": {
+            "label": "The Unlit Dig"
+          },
+          "2": {
+            "label": "Chalk Mere"
+          },
+          "3": {
+            "label": "The White Head"
+          },
+          "4": {
+            "label": "Wreckers' Cove"
+          }
+        }
+      },
+      "saltmeads": {
+        "name": "The Saltmeads",
+        "welcome": "Grey water, white pans and the smell of brine. Panwick boils salt for half the south, but lately the tide brings in more than weed, and the gannets will not land on the stack.",
+        "pois": {
+          "0": {
+            "label": "Panwick"
+          },
+          "1": {
+            "label": "The Brine Pans"
+          },
+          "2": {
+            "label": "Gannet Stack"
+          },
+          "3": {
+            "label": "The Wrack Shallows"
+          },
+          "4": {
+            "label": "The Saltmeads Gate"
+          }
+        }
+      },
+      "wychwold": {
+        "name": "The Wychwold",
+        "welcome": "The Wychwold was old before the Hearthbinding. The charcoal burners still work its hollows, the Bracken Circle still keeps its oldest elm, and something under the roots has begun to stir.",
+        "pois": {
+          "0": {
+            "label": "Elmhallow"
+          },
+          "1": {
+            "label": "The Knotted Elm"
+          },
+          "2": {
+            "label": "Charcoal Hollow"
+          },
+          "3": {
+            "label": "The Sunk Lane"
+          },
+          "4": {
+            "label": "The Salt Way"
+          }
+        }
+      },
+      "tinmarch": {
+        "name": "The Tinmarch",
+        "welcome": "Tin, spoil and wind. The Gilt Measure keeps Wheal Patience working by lamplight, and the miners swear the old Blackadit was sealed before any of them were born. Someone has opened it.",
+        "pois": {
+          "0": {
+            "label": "Wheal Patience"
+          },
+          "1": {
+            "label": "The Stannary Stones"
+          },
+          "2": {
+            "label": "Blackadit"
+          },
+          "3": {
+            "label": "Tinners' Ford"
+          },
+          "4": {
+            "label": "The Chalk Pass"
+          }
+        }
+      },
+      "rookcliffs": {
+        "name": "The Rookcliffs",
+        "welcome": "The world ends here, or seems to. West of the cliffs the grey mist sits on the sea and swallows every sound, and the Lanternwardens at Kestrel Point keep a light burning at its edge.",
+        "pois": {
+          "0": {
+            "label": "Kestrel Point"
+          },
+          "1": {
+            "label": "The Sea Stacks"
+          },
+          "2": {
+            "label": "Rook Hollow"
+          },
+          "3": {
+            "label": "The Hushmist Light"
+          },
+          "4": {
+            "label": "The Rook Ford"
+          }
+        }
+      },
+      "sedgemarch": {
+        "name": "The Sedgemarch",
+        "welcome": "Reed and sedge as far as the mist. Withyholt weaves the baskets half the west carries, and its people know which paths the fen keeps and which it gives back.",
+        "pois": {
+          "0": {
+            "label": "Withyholt"
+          },
+          "1": {
+            "label": "The Withy Beds"
+          },
+          "2": {
+            "label": "Heron Mere"
+          },
+          "3": {
+            "label": "The Drowned Causey"
+          },
+          "4": {
+            "label": "The Sedge Neck"
+          }
+        }
+      },
+      "harrowfells": {
+        "name": "The Harrowfells",
+        "welcome": "A war was ended on these fells long ago, and the cairns were raised to keep it ended. Fellgate stands watch over the field, and every night the watch counts the cairns again.",
+        "pois": {
+          "0": {
+            "label": "Fellgate"
+          },
+          "1": {
+            "label": "The Cairn Field"
+          },
+          "2": {
+            "label": "Harrow Tarn"
+          },
+          "3": {
+            "label": "The Iron Ring"
+          },
+          "4": {
+            "label": "The Fell Neck"
+          }
+        }
+      },
+      "wardmere": {
+        "name": "The Wardmere",
+        "welcome": "The last shore the Lanternwardens hold. Past the Ward Mere the mist comes in like a tide, and Lanternfold keeps its lamps lit all day so that no one walks into it by mistake.",
+        "pois": {
+          "0": {
+            "label": "Lanternfold"
+          },
+          "1": {
+            "label": "The Ward Mere"
+          },
+          "2": {
+            "label": "The Last Beacon"
+          },
+          "3": {
+            "label": "The Westering Pier"
+          },
+          "4": {
+            "label": "The Ward Neck"
           }
         }
       },
@@ -30856,14 +32406,14 @@ export const en_CA: EnTranslations = {
         "body": "Traveler,\n\nThe Ravenpost has opened its perches across the vale. Seek the raven pillars in Eastbrook, Fenbridge and Highwatch: from any of them you may send letters, coin and goods to other adventurers, and collect whatever the ravens bring you.\n\nEnclosed is a small courtesy for your first stamp.\n\nWings up,\nThe Ravenpost"
       },
       "letter_q_wolves": {
-        "sender": "Marshal Redbrook",
+        "sender": "Warden Corren",
         "subject": "The pens are quiet again",
-        "body": "The herders can sleep with both eyes shut for once, and that is your doing. I have told the Ravenpost to carry you a little something from the watch fund.\n\nKeep your blade oiled.\n- Marshal Redbrook"
+        "body": "The herders can sleep with both eyes shut for once, and that is your doing. I have told the Ravenpost to carry you a little something from the watch fund.\n\nKeep your blade oiled.\n- Warden Corren"
       },
       "letter_q_greyjaw": {
-        "sender": "Marshal Redbrook",
+        "sender": "Warden Corren",
         "subject": "Old Greyjaw, at last",
-        "body": "Word travels fast in a town this small. The herders drank to your health last night, and Wilkes swears the wolf was the size of a cart. Let them embellish: you earned it.\n\nShare a meal on the watch.\n- Marshal Redbrook"
+        "body": "Word travels fast in a town this small. The herders drank to your health last night, and Silven swears the wolf was the size of a cart. Let them embellish: you earned it.\n\nShare a meal on the watch.\n- Warden Corren"
       },
       "letter_q_hollow": {
         "sender": "Brother Aldric",
@@ -30936,27 +32486,27 @@ export const en_CA: EnTranslations = {
         "body": "Guildmate,\n\nThe guild has adopted a new reckoning of mastery. Every hand starts the climb again: your craft skills and your gathering proficiencies have been set to zero.\n\nEverything else is yours, untouched: your recipes, your tools and materials, your bank and gold, your attunements and titles, your deeds and renown, your quests and mail.\n\nThe climb is honest now. Cheap work will not carry you. Seek harder recipes, richer veins, and deeper waters.\n\nWith respect,\nThe Guildhall"
       },
       "prof_tier_weaponcrafting_armorcrafting_1": {
-        "sender": "Forgemistress Darva",
+        "sender": "Brunna",
         "subject": "A spark worth noting",
         "body": "Word reaches my forge that one of your majors now holds at uncommon work. It is the smallest rung on a long climb, but you earned it at the anvil, not by asking. Keep the fire hot."
       },
       "prof_tier_weaponcrafting_armorcrafting_2": {
-        "sender": "Forgemistress Darva",
+        "sender": "Brunna",
         "subject": "Rare work, and earned",
         "body": "They tell me a major of yours has reached rare work. That is the rung where sloppy hands fall away and the real smiths are left standing. You are still standing. Good."
       },
       "prof_tier_weaponcrafting_armorcrafting_3": {
-        "sender": "Forgemistress Darva",
+        "sender": "Brunna",
         "subject": "The metal answers you now",
         "body": "A major of yours has climbed past rare into serious work. The metal answers a hand like that, no longer fighting it. Do not let the praise soften your arm."
       },
       "prof_tier_weaponcrafting_armorcrafting_4": {
-        "sender": "Forgemistress Darva",
+        "sender": "Brunna",
         "subject": "Near the top of the ladder",
         "body": "One of your majors stands a single rung below mastery. Few hands I have known reach this height, and fewer keep their edge here. Finish the climb."
       },
       "prof_tier_weaponcrafting_armorcrafting_5": {
-        "sender": "Forgemistress Darva",
+        "sender": "Brunna",
         "subject": "Mastery, at last",
         "body": "A major of yours has reached mastery, the highest a hand can climb. I do not give praise freely, so hear this once: the forge is proud of you. Now go teach the fire something new."
       },

@@ -70,6 +70,7 @@ import {
   type MapAtlasFilters,
   type MapAtlasRoute,
 } from './map_sidebar_view';
+import { townKitMapMarks } from './town_kit_map_marks';
 import { worldQuestReadsActive, worldQuestReadsCompleted } from './world_quest_progress_state';
 
 // World-map zoom band. zoom 1 = the whole current zone framed square;
@@ -1530,6 +1531,10 @@ function buildDetail(
   for (const building of KIT_BUILDINGS) {
     footprint(building, mapBuildingMarkerKind(building));
   }
+  // Eastbrook's town kit stands as decor props, so it reads from the active
+  // world's own decor rows (town_kit_map_marks.ts).
+  const townKit = townKitMapMarks(authoredProps);
+  for (const building of townKit.buildings) footprint(building, 'house');
   // Walls are authored beside the active world's other static props. Treat each
   // wall OBB as a footprint so the map shows the exact live perimeter and custom
   // worlds neither inherit nor lose geometry through a built-in layout lookup.
@@ -1551,6 +1556,8 @@ function buildDetail(
   };
   for (const w of authoredProps.wells) dot(w.id, w.x, w.z, 'well');
   for (const st of authoredProps.stalls) dot(st.id, st.x, st.z, 'stall');
+  for (const w of townKit.wells) dot(undefined, w.x, w.z, 'well');
+  for (const st of townKit.stalls) dot(undefined, st.x, st.z, 'stall');
   for (const tn of authoredProps.tents) dot(undefined, tn.x, tn.z, 'tent');
   for (const m of authoredProps.mines) dot(undefined, m.x, m.z, 'mine');
   for (const g of authoredProps.graveyards) dot(undefined, g.x, g.z, 'graveyard');

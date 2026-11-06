@@ -13,63 +13,70 @@ import {
 // which feed a build reads; electron/updater.cjs refuses cross-origin
 // artifacts), so these pins protect both sides at once.
 
+// A sample production origin for the track-split pins: Wyndlewood has none
+// provisioned yet (electron/brand.cjs PRODUCTION_API_ORIGIN is empty), so the
+// rule is exercised through the explicit `production` parameter.
+const PROD = 'https://wyndlewood.example';
+
 describe('PRODUCTION_API_ORIGIN', () => {
-  it('is the production site', () => {
-    expect(PRODUCTION_API_ORIGIN).toBe('https://worldofclaudecraft.com');
+  it('is unprovisioned: never an upstream domain, and every build reads the dev track', () => {
+    expect(PRODUCTION_API_ORIGIN).toBe('');
+    expect(isProductionApiOrigin('https://wyndlewood.example')).toBe(false);
+    expect(updateChannelForOrigin('https://wyndlewood.example')).toBe('dev');
   });
 });
 
 describe('apiOriginKey', () => {
   it('normalizes equivalent spellings to one origin', () => {
-    expect(apiOriginKey('https://worldofclaudecraft.com')).toBe('https://worldofclaudecraft.com');
-    expect(apiOriginKey('https://worldofclaudecraft.com/')).toBe('https://worldofclaudecraft.com');
-    expect(apiOriginKey('HTTPS://WorldOfClaudeCraft.COM')).toBe('https://worldofclaudecraft.com');
+    expect(apiOriginKey('https://wyndlewood.example')).toBe('https://wyndlewood.example');
+    expect(apiOriginKey('https://wyndlewood.example/')).toBe('https://wyndlewood.example');
+    expect(apiOriginKey('HTTPS://Wyndlewood.EXAMPLE')).toBe('https://wyndlewood.example');
     expect(apiOriginKey('http://localhost:8787')).toBe('http://localhost:8787');
   });
 
   it('returns null for garbage, empty, non-string, and non-http values', () => {
     expect(apiOriginKey('')).toBeNull();
-    expect(apiOriginKey('worldofclaudecraft.com')).toBeNull();
+    expect(apiOriginKey('wyndlewood.example')).toBeNull();
     expect(apiOriginKey('not a url')).toBeNull();
     expect(apiOriginKey(42)).toBeNull();
     expect(apiOriginKey(undefined)).toBeNull();
-    expect(apiOriginKey('ftp://worldofclaudecraft.com')).toBeNull();
+    expect(apiOriginKey('ftp://wyndlewood.example')).toBeNull();
   });
 });
 
 describe('isProductionApiOrigin', () => {
   it('accepts only the production origin (slash and case tolerant)', () => {
-    expect(isProductionApiOrigin('https://worldofclaudecraft.com')).toBe(true);
-    expect(isProductionApiOrigin('https://worldofclaudecraft.com/')).toBe(true);
+    expect(isProductionApiOrigin('https://wyndlewood.example', PROD)).toBe(true);
+    expect(isProductionApiOrigin('https://wyndlewood.example/', PROD)).toBe(true);
   });
 
   it('rejects dev, staging, localhost, http, subdomains, and garbage', () => {
-    expect(isProductionApiOrigin('https://dev.worldofclaudecraft.com')).toBe(false);
-    expect(isProductionApiOrigin('http://worldofclaudecraft.com')).toBe(false);
-    expect(isProductionApiOrigin('http://localhost:8787')).toBe(false);
-    expect(isProductionApiOrigin('https://worldofclaudecraft.com.evil.example')).toBe(false);
-    expect(isProductionApiOrigin('')).toBe(false);
-    expect(isProductionApiOrigin(undefined)).toBe(false);
+    expect(isProductionApiOrigin('https://dev.wyndlewood.example', PROD)).toBe(false);
+    expect(isProductionApiOrigin('http://wyndlewood.example', PROD)).toBe(false);
+    expect(isProductionApiOrigin('http://localhost:8787', PROD)).toBe(false);
+    expect(isProductionApiOrigin('https://wyndlewood.example.evil.example', PROD)).toBe(false);
+    expect(isProductionApiOrigin('', PROD)).toBe(false);
+    expect(isProductionApiOrigin(undefined, PROD)).toBe(false);
   });
 });
 
 describe('updateChannelForOrigin (the track split)', () => {
   it('production origin publishes and reads the latest channel', () => {
-    expect(updateChannelForOrigin('https://worldofclaudecraft.com')).toBe('latest');
-    expect(updateChannelForOrigin('https://worldofclaudecraft.com/')).toBe('latest');
+    expect(updateChannelForOrigin('https://wyndlewood.example', PROD)).toBe('latest');
+    expect(updateChannelForOrigin('https://wyndlewood.example/', PROD)).toBe('latest');
   });
 
   it('every non-production origin fails safe onto the dev channel', () => {
-    expect(updateChannelForOrigin('https://dev.worldofclaudecraft.com')).toBe('dev');
-    expect(updateChannelForOrigin('http://localhost:8787')).toBe('dev');
-    expect(updateChannelForOrigin('')).toBe('dev');
-    expect(updateChannelForOrigin('garbage')).toBe('dev');
-    expect(updateChannelForOrigin(undefined)).toBe('dev');
+    expect(updateChannelForOrigin('https://dev.wyndlewood.example', PROD)).toBe('dev');
+    expect(updateChannelForOrigin('http://localhost:8787', PROD)).toBe('dev');
+    expect(updateChannelForOrigin('', PROD)).toBe('dev');
+    expect(updateChannelForOrigin('garbage', PROD)).toBe('dev');
+    expect(updateChannelForOrigin(undefined, PROD)).toBe('dev');
   });
 });
 
 describe('evaluateUpdateOffer (the runtime cross-track refusal)', () => {
-  const own = 'https://worldofclaudecraft.com';
+  const own = 'https://wyndlewood.example';
 
   it('accepts an offer stamped with the same origin, slash tolerant', () => {
     expect(
@@ -78,7 +85,7 @@ describe('evaluateUpdateOffer (the runtime cross-track refusal)', () => {
     expect(
       evaluateUpdateOffer({
         apiOrigin: own,
-        info: { wocApiOrigin: 'https://worldofclaudecraft.com/' },
+        info: { wocApiOrigin: 'https://wyndlewood.example/' },
       }),
     ).toEqual({ ok: true, stamped: true });
   });
@@ -103,10 +110,10 @@ describe('evaluateUpdateOffer (the runtime cross-track refusal)', () => {
   it('refuses an offer baked for another backend (the issue 1537 flip)', () => {
     const verdict = evaluateUpdateOffer({
       apiOrigin: own,
-      info: { version: '0.23.0', wocApiOrigin: 'https://dev.worldofclaudecraft.com' },
+      info: { version: '0.23.0', wocApiOrigin: 'https://dev.wyndlewood.example' },
     });
     expect(verdict.ok).toBe(false);
-    expect(verdict.offeredOrigin).toBe('https://dev.worldofclaudecraft.com');
+    expect(verdict.offeredOrigin).toBe('https://dev.wyndlewood.example');
     expect(verdict.expectedOrigin).toBe(own);
   });
 
@@ -133,8 +140,8 @@ describe('evaluateUpdateOffer (the runtime cross-track refusal)', () => {
   it('a dev install accepts its own dev-track artifact', () => {
     expect(
       evaluateUpdateOffer({
-        apiOrigin: 'https://dev.worldofclaudecraft.com',
-        info: { wocApiOrigin: 'https://dev.worldofclaudecraft.com' },
+        apiOrigin: 'https://dev.wyndlewood.example',
+        info: { wocApiOrigin: 'https://dev.wyndlewood.example' },
       }),
     ).toEqual({ ok: true, stamped: true });
   });
