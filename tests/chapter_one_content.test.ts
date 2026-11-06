@@ -211,7 +211,7 @@ describe('Chapter One content', () => {
   it('writes no em dash, en dash or emoji into the chapter prose', () => {
     for (const q of Object.values(ALL)) {
       for (const text of [q.name, q.text, q.completionText]) {
-        expect(text, q.id).not.toMatch(/[–—]|\p{Extended_Pictographic}/u);
+        expect(text, q.id).not.toMatch(/[\u2013\u2014]|\p{Extended_Pictographic}/u);
       }
     }
   });

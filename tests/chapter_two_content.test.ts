@@ -192,17 +192,17 @@ describe('Chapter Two core bundle', () => {
     ];
     for (const q of all) {
       for (const text of [q.name, q.text, q.completionText]) {
-        expect(text, q.id).not.toMatch(/[–—]|\p{Extended_Pictographic}/u);
+        expect(text, q.id).not.toMatch(/[\u2013\u2014]|\p{Extended_Pictographic}/u);
       }
     }
     for (const bundle of CHAPTER_TWO_GATED_BUNDLES) {
       for (const npc of Object.values(bundle.npcs))
         expect(`${npc.name} ${npc.title} ${npc.greeting}`).not.toMatch(
-          /[–—]|\p{Extended_Pictographic}/u,
+          /[\u2013\u2014]|\p{Extended_Pictographic}/u,
         );
       for (const escort of Object.values(bundle.escorts ?? {}))
         expect(`${escort.startText} ${escort.successText} ${escort.failText}`).not.toMatch(
-          /[–—]|\p{Extended_Pictographic}/u,
+          /[\u2013\u2014]|\p{Extended_Pictographic}/u,
         );
     }
   });
