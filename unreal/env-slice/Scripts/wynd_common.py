@@ -113,6 +113,19 @@ def registry_mesh(glb_path):
     return m if isinstance(m, unreal.StaticMesh) else None
 
 
+def canopy_material(glb_path, variant):
+    """(slot, material) for a placement's canopyVariant, from the registry's
+    `canopy_variants: {variant: {slot, material}}` (asset-convert's market
+    stall entry); None when the entry or variant is absent. The slot is a
+    material slot name or index."""
+    key = re.sub(r"\.glb$", "", re.sub(r"^/?models/", "", glb_path.lstrip("/")))
+    v = (registry().get(key) or {}).get("canopy_variants", {}).get(variant)
+    if not v:
+        return None
+    m = unreal.EditorAssetLibrary.load_asset(str(v["material"]).split(".")[0])
+    return (v["slot"], m) if m else None
+
+
 # which GLB paths resolved to a converted mesh and which fell back to the
 # placeholder import, for the build's stats
 MESH_SOURCES = {"registry": set(), "placeholder": set()}

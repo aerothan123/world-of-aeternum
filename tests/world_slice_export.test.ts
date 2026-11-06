@@ -105,6 +105,12 @@ describe('world slice export', () => {
       9,
     );
     for (const p of placements) expect(p.path).toMatch(/^\/models\/.+\.glb$/);
+    // each stall carries the layout's canopy colour for the engine to pick
+    // the canopy material by
+    for (const s of EASTBROOK_LAYOUT.market.stalls) {
+      const p = placements.find((q) => q.id === s.id);
+      if (p) expect(p.canopyVariant).toBe(s.canopyVariant);
+    }
   });
 
   it('exports the procedural scatter one for one with the generators', () => {

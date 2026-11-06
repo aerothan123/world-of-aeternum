@@ -103,6 +103,8 @@ export interface ExportPlacement {
   seatOnGround: boolean;
   /** true where the export had to guess the game's model or size */
   approximate?: true;
+  /** market stalls: the layout's canopy colour (EASTBROOK_LAYOUT stalls) */
+  canopyVariant?: string;
 }
 
 export type ScatterSpecies =
@@ -406,6 +408,7 @@ export function collectPlacements(
       fit: s.height ? { mode: 'height', height: s.height } : { mode: 'maxDim', size: s.r * 2 },
       seatOnGround: true,
       ...(s.assetId ? {} : { approximate: true as const }),
+      ...(s.canopyVariant ? { canopyVariant: s.canopyVariant } : {}),
     });
   }
   for (const [i, f] of P.fences.entries()) {

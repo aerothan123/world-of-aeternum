@@ -217,10 +217,21 @@ def place(sl, rec, label):
         y -= lo[2] * sz
     loc = unreal.Vector(rec["x"] * W.UNIT, rec["z"] * W.UNIT, y)
     rot = unreal.Rotator(0, 0, W.yaw_ue(rec["rotY"]))
+    # market stalls: the layout's canopy colour picks the canopy slot's
+    # material where the registry offers variants (else the mesh default)
+    canopy = W.canopy_material(rec["path"], rec["canopyVariant"]) if rec.get("canopyVariant") else None
     for m in ms:
         a = actors.spawn_actor_from_object(m, loc, rot)
         a.set_actor_label("WYND_%s_%s" % (label, m.get_name()))
         a.set_actor_scale3d(unreal.Vector(sx, sy, sz))
+        if canopy:
+            slot, mat = canopy
+            smc = a.static_mesh_component
+            if isinstance(slot, int):
+                smc.set_material(slot, mat)
+            else:
+                smc.set_material_by_name(slot, mat)
+            sl.stats["canopyVariants"] = sl.stats.get("canopyVariants", 0) + 1
     return len(ms)
 
 
