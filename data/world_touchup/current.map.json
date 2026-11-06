@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-4aee4-ac8f15d4-c8117964-14b3-b4ad9a78-f493dfc8",
+    "id": "live-4b29b-c0eaf5c6-ee100916-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "4aee4-ac8f15d4-c8117964",
+    "overworldBase": "4b29b-c0eaf5c6-ee100916",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -3490,6 +3490,15 @@
         },
         "radius": 2,
         "count": 1
+      },
+      {
+        "mobId": "c6_skarveth_the_cinderbound",
+        "center": {
+          "x": 300,
+          "z": 2330
+        },
+        "radius": 2,
+        "count": 1
       }
     ],
     "npcs": {
@@ -4098,7 +4107,9 @@
           "q_nythraxis_graves",
           "q_nythraxis_sealed_crypt",
           "q_nythraxis_bound_guardian",
-          "q_nythraxis_scourges_end"
+          "q_nythraxis_scourges_end",
+          "c6_06_the_sleeping_crown",
+          "c6_07_renewal_not_repair"
         ],
         "greeting": "From a chapel yard in the Vale to the roof of the world... the trail we have followed ends here. I can feel the mountain listening."
       },
@@ -4707,7 +4718,10 @@
           "q_fv_wolves_at_the_door",
           "q_fv_lights_over_steps",
           "q_fv_howl_above",
-          "q_fv_frostmane_tyrant"
+          "q_fv_frostmane_tyrant",
+          "c6_04_north_to_the_frost",
+          "c6_05_if_the_snow_speaks",
+          "c6_06_the_sleeping_crown"
         ],
         "greeting": "Mind the benches, stranger. The snow keeps what it takes."
       },
@@ -4778,7 +4792,12 @@
         },
         "facing": -0.6,
         "color": 12617800,
-        "questIds": ["q_af_goldmelt_road", "q_af_foxes_in_the_lamplight", "q_af_orchard_call"],
+        "questIds": [
+          "q_af_goldmelt_road",
+          "q_af_foxes_in_the_lamplight",
+          "q_af_orchard_call",
+          "c6_07_renewal_not_repair"
+        ],
         "greeting": "Welcome to Lanternmere, where the harvest never ends and neither does the work."
       },
       "waywatcher_sorrel": {
@@ -6501,7 +6520,13 @@
         },
         "facing": -1.5707963267948966,
         "color": 11883054,
-        "questIds": ["c5_08_dragons_stir"],
+        "questIds": [
+          "c5_08_dragons_stir",
+          "c6_01_technically_a_success",
+          "c6_02_eggs_gone_cold",
+          "c6_03_the_cinderbound",
+          "c6_04_north_to_the_frost"
+        ],
         "greeting": "Stand behind the line. No, the other line. The one that is not on fire."
       }
     },
@@ -9304,6 +9329,64 @@
           {
             "x": 256.5,
             "z": 897.5
+          }
+        ]
+      },
+      {
+        "itemId": "c6_pact_tablet_shard",
+        "name": "Scorched Pact Tablet Shard",
+        "positions": [
+          {
+            "x": 370,
+            "z": 2225
+          },
+          {
+            "x": 376,
+            "z": 2223.5
+          },
+          {
+            "x": 374.5,
+            "z": 2229
+          }
+        ]
+      },
+      {
+        "itemId": "c6_cold_nest",
+        "name": "Cold Dragon Nest",
+        "positions": [
+          {
+            "x": 330,
+            "z": 2250
+          },
+          {
+            "x": 336,
+            "z": 2248.5
+          },
+          {
+            "x": 334.5,
+            "z": 2254
+          },
+          {
+            "x": 329.5,
+            "z": 2256
+          }
+        ]
+      },
+      {
+        "itemId": "c6_barrow_stone",
+        "name": "Dragon Barrow Stone",
+        "positions": [
+          {
+            "x": 31.5,
+            "z": 1652.5
+          },
+          {
+            "x": 32,
+            "z": 1646.5
+          },
+          {
+            "x": 33.5,
+            "z": 1660
           }
         ]
       }

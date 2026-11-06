@@ -463,6 +463,7 @@ const MOB_IDS = [
   // Wyndlewood Chapters Three to Seven's named foes (content/story_chapters.ts).
   'c3_veska_noll',
   'c4_hamlin_vellthorn',
+  'c6_skarveth_the_cinderbound',
 ] as const;
 
 const NPC_IDS = [
@@ -974,6 +975,13 @@ const QUEST_IDS = [
   'c5_06_the_palace_that_remembers',
   'c5_07_the_barrier_breaks',
   'c5_08_dragons_stir',
+  'c6_01_technically_a_success',
+  'c6_02_eggs_gone_cold',
+  'c6_03_the_cinderbound',
+  'c6_04_north_to_the_frost',
+  'c6_05_if_the_snow_speaks',
+  'c6_06_the_sleeping_crown',
+  'c6_07_renewal_not_repair',
 ] as const;
 
 const ZONE_IDS = [

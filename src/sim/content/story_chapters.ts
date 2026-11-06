@@ -7,6 +7,7 @@
 
 import { CHAPTER_FIVE } from './chapter_five';
 import { CHAPTER_FOUR } from './chapter_four';
+import { CHAPTER_SIX } from './chapter_six';
 import { CHAPTER_THREE } from './chapter_three';
 import {
   applyChapterTwoBundle,
@@ -19,6 +20,7 @@ export const STORY_CHAPTER_BUNDLES: readonly ChapterTwoBundle[] = Object.freeze(
   CHAPTER_THREE,
   CHAPTER_FOUR,
   CHAPTER_FIVE,
+  CHAPTER_SIX,
 ]);
 
 /** Merge every chapter whose zones are live. Returns the merged chapters. */

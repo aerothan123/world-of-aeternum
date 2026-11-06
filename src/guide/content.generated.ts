@@ -6912,6 +6912,13 @@ export const GUIDE_DEEDS: GuideDeed[] = [
     "category": "chronicle",
     "renown": 10,
     "feat": false
+  },
+  {
+    "id": "chr_ash_ice_sleeping_crown",
+    "name": "Ash, Ice, and the Sleeping Crown",
+    "category": "chronicle",
+    "renown": 10,
+    "feat": false
   }
 ];
 

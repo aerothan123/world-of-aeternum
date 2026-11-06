@@ -25500,6 +25500,24 @@ export const cs_CZ: EnTranslations = {
       "c5_barrier_stone": {
         "name": "Dawnhold Barrier Stone"
       },
+      "c6_pact_tablet_shard": {
+        "name": "Scorched Pact Tablet Shard"
+      },
+      "c6_ember_lantern": {
+        "name": "Raska's Ember Lantern"
+      },
+      "c6_pact_rubbing": {
+        "name": "Rubbing of the Dragon Pact"
+      },
+      "c6_keeper_testament": {
+        "name": "The Pact Keeper's Testament"
+      },
+      "c6_cold_nest": {
+        "name": "Cold Dragon Nest"
+      },
+      "c6_barrow_stone": {
+        "name": "Dragon Barrow Stone"
+      },
       "membership_staff": {
         "name": "Hůl proměny"
       },
@@ -27649,6 +27667,9 @@ export const cs_CZ: EnTranslations = {
       },
       "c4_hamlin_vellthorn": {
         "name": "Forgemaster Hamlin Vellthorn"
+      },
+      "c6_skarveth_the_cinderbound": {
+        "name": "Skarveth the Cinderbound"
       },
       "ironvein_foreman": {
         "name": "Předák Železné žíly"
@@ -31886,6 +31907,82 @@ export const cs_CZ: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Found Raska Emberhollow in Wyrmwatch"
+          }
+        }
+      },
+      "c6_01_technically_a_success": {
+        "title": "Technically a Success",
+        "text": "The nests were built on tablets. Old ones, carved by people, not dragons, and I need them before the broodguard finish grinding them into gravel. I tried to fetch them myself and set fire to my notes, my boots and, briefly, a broodguard. Thin the broodguard and bring me three shards. Technically my first attempt was a success. It just was not a success for me.",
+        "completion": "Look at this script: half forge-mark, half claw-mark, written together. Dragons and smiths stood at the same table once and made a promise. Somebody broke it, and the dragons have a very long memory for that sort of thing.",
+        "objectives": {
+          "0": {
+            "label": "Dragonkin Broodguard slain"
+          },
+          "1": {
+            "label": "Scorched Pact Tablet Shard"
+          }
+        }
+      },
+      "c6_02_eggs_gone_cold": {
+        "title": "Eggs Gone Cold",
+        "text": "Not every dragon wants us gone. The mothers of the western nests left when the wake began, to go and argue with the rest, and their eggs have gone cold. Take my ember lantern and warm four nests. If we are going to ask dragons for help, it would be polite to have kept their children alive first.",
+        "completion": "Four nests humming again. A mother came back while you were up there, did you see her? She watched you the whole time and did not move. I am going to write that down as a conversation.",
+        "objectives": {
+          "0": {
+            "label": "Cold nest warmed"
+          }
+        }
+      },
+      "c6_03_the_cinderbound": {
+        "title": "The Cinderbound",
+        "text": "Skarveth the Cinderbound has decided that if the Hearthpins are broken, he may as well own the pieces. He is perched above the Drakemaw nests, and every dragon that would listen to us is waiting to see what we do about him. Take friends. Take more friends than that. Bring him down.",
+        "completion": "He is down, and the whole valley saw it. The old ones are not our friends yet, {playerName}, but they have stopped calling us thieves, which in dragon is practically a hug.",
+        "objectives": {
+          "0": {
+            "label": "Skarveth the Cinderbound brought down"
+          }
+        }
+      },
+      "c6_04_north_to_the_frost": {
+        "title": "North to the Frost",
+        "text": "The tablets end in a list of burial places, and every one of them is in the Frostveil Reach. The dragons who signed the pact went north to die. Take my rubbing to Warden Kaldra at the snowline lodge. Neris Snowmantle says Kaldra is the only warden up there who listens before arguing.",
+        "completion": "A rubbing from Raska Emberhollow, and still attached to its paper. She is improving. Yes, I know the barrows. If the snow speaks while you are up there, do not answer it.",
+        "objectives": {
+          "0": {
+            "label": "Pact rubbing brought to Warden Kaldra"
+          }
+        }
+      },
+      "c6_05_if_the_snow_speaks": {
+        "title": "If the Snow Speaks",
+        "text": "The rime has risen around the old dragon barrows, and the elementals walking out of it are not the weather. Break them up, then read the three barrow stones above the lodge. Read them quickly. Whatever is carved there has been waiting a long time for a reader, and it will try to keep you.",
+        "completion": "Three stones, three names, and one line under all of them: the pact was to be renewed each age, by both peoples, at the sanctum under the peaks. Nobody came. Nobody remembered. The thing guarding the sanctum has been waiting for us ever since.",
+        "objectives": {
+          "0": {
+            "label": "Rime Elemental broken"
+          },
+          "1": {
+            "label": "Dragon barrow stone read"
+          }
+        }
+      },
+      "c6_06_the_sleeping_crown": {
+        "title": "The Sleeping Crown",
+        "text": "The sanctum the stones name is the Gravewyrm Sanctum on Thornpeak, and its guardian is the thing the Highwatch brothers have been fighting for a year. It was set there to guard the pact, and it rotted while it waited. Go down with a full party and end it. Then tell Brother Aldric at Highwatch what you find beneath it.",
+        "completion": "A keeper, beneath the wyrm, still breathing? Then the old stories were right about one thing. Sit, {playerName}, and tell me every word it said. I will write them down while my hands still believe me.",
+        "objectives": {
+          "0": {
+            "label": "Korzul the Gravewyrm laid to rest in the Gravewyrm Sanctum"
+          }
+        }
+      },
+      "c6_07_renewal_not_repair": {
+        "title": "Renewal, Not Repair",
+        "text": "The keeper's testament is plain: the Hearthpins were never meant to last forever. They were meant to be renewed, each age, by everyone who lives under them. Defeating the heirs of the Oathless King will not be enough; the bonds have to be made again, together. The testament names the last Hearthpin's resting place beyond the Amberfall. Take it to the Reeve there.",
+        "completion": "Renewal, not repair. My grandmother used to say that about the harvest. I thought it was about apples. Come in, {playerName}. If the end of the world is passing through my woods, it can at least wipe its feet.",
+        "objectives": {
+          "0": {
+            "label": "Pact Keeper's testament brought to Reeve Ottoline"
           }
         }
       },

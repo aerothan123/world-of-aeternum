@@ -4200,6 +4200,14 @@ export const DEEDS: Record<string, DeedDef> = {
     renown: 10,
     trigger: { kind: 'quest', questId: 'c5_08_dragons_stir' },
   },
+  chr_ash_ice_sleeping_crown: {
+    id: 'chr_ash_ice_sleeping_crown',
+    name: 'Ash, Ice, and the Sleeping Crown',
+    desc: 'Finish Chapter Six: find the dragon pact in fire and frost, and learn that the Hearthpins must be renewed, not repaired.',
+    category: 'chronicle',
+    renown: 10,
+    trigger: { kind: 'quest', questId: 'c6_07_renewal_not_repair' },
+  },
 };
 
 for (const def of Object.values(DEEDS)) {

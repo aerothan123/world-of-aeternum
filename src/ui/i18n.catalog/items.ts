@@ -4112,6 +4112,12 @@ const ITEM_ENTITY_IDS = [
   'c5_veil_tear',
   'c5_festival_lantern',
   'c5_barrier_stone',
+  'c6_pact_tablet_shard',
+  'c6_ember_lantern',
+  'c6_pact_rubbing',
+  'c6_keeper_testament',
+  'c6_cold_nest',
+  'c6_barrow_stone',
 ] as const;
 
 type ItemEntityId = (typeof ITEM_ENTITY_IDS)[number];
@@ -4158,6 +4164,12 @@ const APPENDED_ITEM_NAMES: Partial<Record<ItemEntityId, string>> = {
   c5_veil_tear: 'Thinning Veil',
   c5_festival_lantern: 'Thrice-Lit Festival Lantern',
   c5_barrier_stone: 'Dawnhold Barrier Stone',
+  c6_pact_tablet_shard: 'Scorched Pact Tablet Shard',
+  c6_ember_lantern: "Raska's Ember Lantern",
+  c6_pact_rubbing: 'Rubbing of the Dragon Pact',
+  c6_keeper_testament: "The Pact Keeper's Testament",
+  c6_cold_nest: 'Cold Dragon Nest',
+  c6_barrow_stone: 'Dragon Barrow Stone',
   // Wyndlewood Chapter One (content/chapter_one.ts).
   c1_dry_supply_bundle: 'Dry Supply Bundle',
   c1_black_wick_knot: 'Black Wick Knot',
