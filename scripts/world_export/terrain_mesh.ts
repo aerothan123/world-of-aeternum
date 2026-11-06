@@ -29,6 +29,15 @@ export const SKIRT_DEPTH = 1.5;
  * shot); leaning out, each skirt reaches under its neighbour and fills it.
  */
 export const SKIRT_FLARE = 0.5;
+/**
+ * Grid cells each tile runs past its +x and +z edges, under its neighbour.
+ * Skirts alone still left a sky-coloured line along the boundaries (the
+ * v17 seam shot, also with Lumen off and a flat material: an up-facing skirt
+ * seen edge-on reads as sky). With an overlap there is real ground from
+ * both tiles across every boundary, whatever each engine LOD does to its
+ * own edges; the overlapping cell is the same heights and material.
+ */
+export const TILE_OVERLAP = 1;
 
 export async function terrainTiles(ex: WorldSliceExport, tilesPerSide = 8): Promise<TerrainTile[]> {
   const { res, step, bounds } = ex.meta;
@@ -44,18 +53,21 @@ export async function terrainTiles(ex: WorldSliceExport, tilesPerSide = 8): Prom
   const out: TerrainTile[] = [];
   for (let tz = 0; tz < tilesPerSide; tz++) {
     for (let tx = 0; tx < tilesPerSide; tx++) {
-      const n = per + 1;
-      // the n * n grid first, then one skirt row per edge (4 * n vertices)
-      const total = n * n + 4 * n;
+      // TILE_OVERLAP cells past the +x and +z edges, under the neighbour
+      // (none at the slice's outer edge)
+      const nx = per + 1 + (tx < tilesPerSide - 1 ? TILE_OVERLAP : 0);
+      const nz = per + 1 + (tz < tilesPerSide - 1 ? TILE_OVERLAP : 0);
+      // the nx * nz grid first, then one skirt row per edge
+      const total = nx * nz + 2 * nx + 2 * nz;
       const pos = new Float32Array(total * 3);
       const nor = new Float32Array(total * 3);
       const col = new Float32Array(total * 4);
       const uv = new Float32Array(total * 2);
-      for (let b = 0; b < n; b++) {
-        for (let a = 0; a < n; a++) {
+      for (let b = 0; b < nz; b++) {
+        for (let a = 0; a < nx; a++) {
           const i = tx * per + a;
           const j = tz * per + b;
-          const v = b * n + a;
+          const v = b * nx + a;
           const x = bounds.minX + i * step;
           const z = bounds.minZ + j * step;
           pos.set([x, h(i, j), z], v * 3);
@@ -74,12 +86,12 @@ export async function terrainTiles(ex: WorldSliceExport, tilesPerSide = 8): Prom
       // (Nanite clusters, LODs), so the shared edges drift a few
       // centimetres apart and open a sky-coloured seam; the skirt fills it.
       const edges: number[][] = [
-        Array.from({ length: n }, (_, a) => a), // z = tile min
-        Array.from({ length: n }, (_, a) => (n - 1) * n + a), // z = tile max
-        Array.from({ length: n }, (_, b) => b * n), // x = tile min
-        Array.from({ length: n }, (_, b) => b * n + n - 1), // x = tile max
+        Array.from({ length: nx }, (_, a) => a), // z = tile min
+        Array.from({ length: nx }, (_, a) => (nz - 1) * nx + a), // z = tile max
+        Array.from({ length: nz }, (_, b) => b * nx), // x = tile min
+        Array.from({ length: nz }, (_, b) => b * nx + nx - 1), // x = tile max
       ];
-      let sv = n * n;
+      let sv = nx * nz;
       // outward direction (x, z) of each edge above, for the flare
       const outward: [number, number][] = [
         [0, -1],
@@ -107,13 +119,13 @@ export async function terrainTiles(ex: WorldSliceExport, tilesPerSide = 8): Prom
         }
         skirtOf.push(row);
       }
-      const idx = new Uint32Array(per * per * 6 + 4 * per * 12);
+      const idx = new Uint32Array((nx - 1) * (nz - 1) * 6 + (2 * (nx - 1) + 2 * (nz - 1)) * 12);
       let k = 0;
-      for (let b = 0; b < per; b++) {
-        for (let a = 0; a < per; a++) {
-          const v0 = b * n + a;
+      for (let b = 0; b < nz - 1; b++) {
+        for (let a = 0; a < nx - 1; a++) {
+          const v0 = b * nx + a;
           const v1 = v0 + 1;
-          const v2 = v0 + n;
+          const v2 = v0 + nx;
           const v3 = v2 + 1;
           // counter-clockwise seen from +Y (glTF front faces)
           idx.set([v0, v2, v1, v1, v2, v3], k);
@@ -122,7 +134,7 @@ export async function terrainTiles(ex: WorldSliceExport, tilesPerSide = 8): Prom
       }
       for (const [e, edge] of edges.entries()) {
         const low = skirtOf[e];
-        for (let s = 0; s < per; s++) {
+        for (let s = 0; s < edge.length - 1; s++) {
           const [t0, t1, b0, b1] = [edge[s], edge[s + 1], low[s], low[s + 1]];
           // both windings: the strip is seen from either side of the seam
           idx.set([t0, b0, t1, t1, b0, b1, t0, t1, b0, t1, b1, b0], k);

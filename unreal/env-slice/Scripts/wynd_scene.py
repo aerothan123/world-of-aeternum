@@ -509,7 +509,10 @@ def set_time(sl, sun, key):
 
 
 def build(cover_areas):
-    descs = load_all_cells()
+    # WYND_NOLOAD=1 (diagnostics only): leave the World Partition cells
+    # unloaded, so only this build's fresh actors exist, as before v16; the
+    # next normal build loads every cell and clears all WYND_* actors again
+    descs = -1 if os.environ.get("WYND_NOLOAD") == "1" else load_all_cells()
     clear_level()
     sl = Slice()
     sl.stats["wpActorDescs"] = descs

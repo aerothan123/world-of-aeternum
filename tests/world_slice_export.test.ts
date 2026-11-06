@@ -6,7 +6,12 @@ import { coverGlbs } from '../scripts/world_export/cover_meshes';
 import { engineGlb, WEB_ONLY_EXTENSIONS } from '../scripts/world_export/engine_glb';
 import { EXPORT_SCRIPT } from '../scripts/world_export/export_slice.mjs';
 import { object3DToGlb } from '../scripts/world_export/procedural_glb';
-import { SKIRT_DEPTH, SKIRT_FLARE, terrainTiles } from '../scripts/world_export/terrain_mesh';
+import {
+  SKIRT_DEPTH,
+  SKIRT_FLARE,
+  TILE_OVERLAP,
+  terrainTiles,
+} from '../scripts/world_export/terrain_mesh';
 import type { WorldSliceExport } from '../scripts/world_export/world_slice_export';
 import {
   collectPlacements,
@@ -174,6 +179,19 @@ describe('world slice export', () => {
     // and leans out past the tile's z-min edge, under its neighbour
     expect(pos[65 * 65 * 3]).toBeCloseTo(pos[0], 5);
     expect(pos[65 * 65 * 3 + 2]).toBeCloseTo(pos[2] - SKIRT_FLARE, 5);
+    // the min-corner tile runs TILE_OVERLAP cells into its +x and +z
+    // neighbours, so both tiles cover every shared boundary
+    const n0 = 65 + TILE_OVERLAP;
+    const first = (await new NodeIO().readBinary(tiles[0].bytes))
+      .getRoot()
+      .listMeshes()[0]
+      .listPrimitives()[0];
+    const pos0 = first.getAttribute('POSITION')?.getArray() as Float32Array;
+    expect(first.getAttribute('COLOR_0')?.getCount()).toBe(n0 * n0 + 4 * n0);
+    // its far grid corner is sample (64 + overlap, 64 + overlap)
+    expect(pos0[(n0 * n0 - 1) * 3 + 1]).toBe(
+      heights[(64 + TILE_OVERLAP) * res + 64 + TILE_OVERLAP],
+    );
   });
 
   it('resolves the prop asset table and ships its entry script', () => {

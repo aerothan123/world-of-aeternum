@@ -34,8 +34,9 @@ if ONLY:
 # to find what draws a dark patch: nonature (every nature actor temporarily
 # hidden in the editor, a transient view flag that is never saved; their
 # actors are not edited), nocloudshadow (this build's sun), nolumen and novsm
-# (console toggles) and flatmat (this build's own terrain tiles drawn with
-# the engine's plain grey material). All are reset before the level saves.
+# (console toggles), flatmat (this build's own terrain tiles drawn with the
+# engine's plain grey material) and terrainonly (every actor but the
+# terrain, sky and lights temporarily hidden). All reset before the save.
 DIAG = os.environ.get("WYND_DIAG") == "1"
 DIAG_MODES = [m for m in os.environ.get("WYND_DIAG_MODES", "nonature,nocloudshadow").split(",") if m]
 if DIAG:
@@ -75,6 +76,16 @@ for s in SHOTS:
         near = S.nature_near(tx, tz, s["probeRadius"])
         sl.stats.setdefault("natureNear", {})[s["name"]] = near
         W.log("nature near %s: %s" % (s["name"], near))
+if DIAG:  # read-only: what else the World Partition load brings in
+    other = {}
+    for a in unreal.get_editor_subsystem(unreal.EditorActorSubsystem).get_all_level_actors():
+        label = a.get_actor_label()
+        if label.startswith("WYND_") or S.nature_owned(a):
+            continue
+        key = "%s | %s" % (label.split("_")[0], a.get_class().get_name())
+        other[key] = other.get(key, 0) + 1
+    sl.stats["otherActors"] = other
+    W.log("other actors %s" % other)
 world = unreal.EditorLevelLibrary.get_editor_world()
 
 
@@ -104,13 +115,23 @@ state = {"i": -1, "frame": 0, "deltas": [], "task": None, "wait": 0, "results": 
 _tile_mats = {}
 
 
+KEEP_FOR_TERRAINONLY = ("WYND_terrain_", "WYND_Sun", "WYND_Sky", "WYND_Clouds", "WYND_Fog", "WYND_Post",
+                        "WYND_Water", "WYND_Cam_")
+
+
 def set_diag(mode):
     hide = mode == "nonature"
     flat = lib_flat() if mode == "flatmat" else None
     for a in unreal.get_editor_subsystem(unreal.EditorActorSubsystem).get_all_level_actors():
+        label = a.get_actor_label()
+        if mode == "terrainonly":  # every actor but the terrain and the sky and light rig
+            a.set_is_temporarily_hidden_in_editor(not label.startswith(KEEP_FOR_TERRAINONLY))
+            continue
         if S.nature_owned(a):
             a.set_is_temporarily_hidden_in_editor(hide)
-        elif a.get_actor_label().startswith("WYND_terrain_"):
+        else:
+            a.set_is_temporarily_hidden_in_editor(False)
+        if label.startswith("WYND_terrain_"):
             smc = a.static_mesh_component
             _tile_mats.setdefault(a.get_actor_label(), smc.get_material(0))
             smc.set_material(0, flat or _tile_mats[a.get_actor_label()])
