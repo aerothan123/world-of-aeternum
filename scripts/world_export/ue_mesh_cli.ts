@@ -19,6 +19,7 @@ import {
   MESH_YD,
   meshTileName,
   meshTileToGlb,
+  SKIRT_DEPTH,
 } from './ue_terrain_mesh';
 import { decodeHeight, QUAD_YD, TILE_QUADS, TILE_VERTS, TILE_YD } from './ue_tiles';
 
@@ -81,6 +82,28 @@ const skipped: string[] = [];
 const rawPng = async (file: string): Promise<Uint8Array> =>
   new Uint8Array(await sharp(file).raw().toBuffer());
 
+// Zone masks of every tile with padding, so a mesh edge on an exported tile's
+// border can ask whether the quad across it (in the neighbouring tile) exists.
+const masks = new Map<string, Uint8Array | null>();
+for (const [, t] of entries) {
+  masks.set(
+    `${t.tx},${t.tz}`,
+    t.padding ? await rawPng(path.join(worldDir, t.padding.mask)) : null,
+  );
+}
+const insideBeyond =
+  (tx: number, tz: number) =>
+  (i: number, j: number): boolean => {
+    // called only for a lattice coordinate outside 0..510 on at least one axis
+    const dx = i < 0 ? -1 : i >= TILE_VERTS ? 1 : 0;
+    const dz = j < 0 ? -1 : j >= TILE_VERTS ? 1 : 0;
+    const li = i - dx * TILE_QUADS;
+    const lj = j - dz * TILE_QUADS;
+    const m = masks.get(`${tx + dx},${tz + dz}`);
+    if (m === undefined) return false; // no tile there: outside the world
+    return m === null || m[lj * TILE_VERTS + li] !== 0;
+  };
+
 for (const [name, t] of entries) {
   const bi = (t.tx - minTx) * TILE_QUADS;
   const bj = (t.tz - minTz) * TILE_QUADS;
@@ -101,6 +124,7 @@ for (const [name, t] of entries) {
     },
     weights,
     mask,
+    insideBeyondTile: insideBeyond(t.tx, t.tz),
     uvOrigin: { x: originX, z: originZ },
     uvSize: { x: sizeX, z: sizeZ },
   };
@@ -134,6 +158,7 @@ for (const [name, t] of entries) {
         },
         vertices: mesh.vertexCount,
         quads: mesh.quadCount,
+        skirtSegments: mesh.skirtSegments,
         file: rel,
       };
     }
@@ -155,6 +180,7 @@ const manifest = {
     cellsPerMeshTile: MESH_CELLS,
     quadYards: QUAD_YD,
     material: 'one primitive, material slot 0 for M_Terrain',
+    skirts: `two-sided strips hanging ${SKIRT_DEPTH} yd below each mesh edge, same as the slice terrain; omitted on edges that face all-padding`,
     vertexColor:
       'COLOR_0 normalized uint8: r dirt, g sand, b rock, a cobble; grass is 1 - r - g - b - a clamped at 0',
     uv0: 'world-normalized: u = (x - worldMinX) / worldSizeX, v = (z - worldMinZ) / worldSizeZ',

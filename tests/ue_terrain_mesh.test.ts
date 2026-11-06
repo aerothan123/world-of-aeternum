@@ -9,6 +9,7 @@ import {
   type MeshTileInput,
   meshTileName,
   meshTileToGlb,
+  SKIRT_DEPTH,
 } from '../scripts/world_export/ue_terrain_mesh';
 import { QUAD_YD, TILE_VERTS } from '../scripts/world_export/ue_tiles';
 
@@ -43,7 +44,7 @@ describe('terrain mesh tiles', () => {
     if (!m) return;
     expect(m.vertexCount).toBe(MESH_VERTS * MESH_VERTS);
     expect(m.quadCount).toBe(MESH_CELLS * MESH_CELLS);
-    expect(m.indices).toHaveLength(m.quadCount * 6);
+    expect(m.indices).toHaveLength(m.quadCount * 6 + m.skirtSegments * 12);
     // vertex 0 sits at the sub-mesh corner in the game frame
     expect(Array.from(m.positions.slice(0, 3))).toEqual([
       255 + 102 * QUAD_YD,
@@ -96,6 +97,53 @@ describe('terrain mesh tiles', () => {
     expect(m.vertexCount).toBe((cols + 1) * MESH_VERTS);
     // sub-mesh sx = 3 starts at i = 306, past the mask: nothing left
     expect(buildMeshTile(input({ mask }), 3, 0)).toBeNull();
+  });
+
+  it('hangs a two-sided skirt below every edge that has a neighbour', () => {
+    const m = buildMeshTile(input(), 1, 1);
+    expect(m).not.toBeNull();
+    if (!m) return;
+    expect(SKIRT_DEPTH).toBe(1.5);
+    expect(m.skirtSegments).toBe(4 * MESH_CELLS);
+    expect(m.skirtVertexCount).toBe(4 * MESH_VERTS);
+    expect(m.positions).toHaveLength((m.vertexCount + m.skirtVertexCount) * 3);
+    expect(m.indices).toHaveLength(m.quadCount * 6 + m.skirtSegments * 12);
+    // the first skirt vertex is vertex 0 (the mesh's south-west corner) dropped by SKIRT_DEPTH
+    const s = m.vertexCount * 3;
+    expect(m.positions[s]).toBe(m.positions[0]);
+    expect(m.positions[s + 1]).toBeCloseTo(m.positions[1] - SKIRT_DEPTH, 5);
+    expect(m.positions[s + 2]).toBe(m.positions[2]);
+    expect(Array.from(m.colors.slice(m.vertexCount * 4, m.vertexCount * 4 + 4))).toEqual([
+      10, 20, 30, 40,
+    ]);
+    // every index stays valid for the Uint16 buffer
+    expect(Math.max(...m.indices)).toBeLessThan(m.vertexCount + m.skirtVertexCount);
+    // both windings of the first strip: the same triangle seen from either side
+    const ix = Array.from(m.indices.slice(m.quadCount * 6, m.quadCount * 6 + 12));
+    expect(ix.slice(0, 3)).toEqual([ix[0], ix[1], ix[2]]);
+    expect(new Set(ix.slice(0, 3))).toEqual(new Set(ix.slice(6, 9)));
+  });
+
+  it('leaves no skirt on edges that face nothing', () => {
+    // nothing beyond the exported tile: sub-mesh (0, 0) loses its west and south skirts
+    const rim = buildMeshTile(input({ insideBeyondTile: () => false }), 0, 0);
+    expect(rim?.skirtSegments).toBe(2 * MESH_CELLS);
+    // the interior sub-mesh keeps all four
+    expect(buildMeshTile(input({ insideBeyondTile: () => false }), 2, 2)?.skirtSegments).toBe(
+      4 * MESH_CELLS,
+    );
+  });
+
+  it('omits the skirt along an edge that faces padding', () => {
+    const mask = new Uint8Array(n2);
+    for (let j = 0; j < TILE_VERTS; j++)
+      for (let i = 0; i <= 255; i++) mask[j * TILE_VERTS + i] = 255;
+    const m = buildMeshTile(input({ mask }), 2, 0);
+    expect(m).not.toBeNull();
+    if (!m) return;
+    // columns i 204..255 are kept: south and north strips cover 52 cells each, west all 102,
+    // and the east edge (i = 306) lies in padding so it has none
+    expect(m.skirtSegments).toBe(52 + 52 + MESH_CELLS);
   });
 
   it('writes a glTF that follows the slice terrain convention', async () => {
