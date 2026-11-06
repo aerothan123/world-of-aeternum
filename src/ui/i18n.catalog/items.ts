@@ -4118,6 +4118,12 @@ const ITEM_ENTITY_IDS = [
   'c6_keeper_testament',
   'c6_cold_nest',
   'c6_barrow_stone',
+  'c7_willow_withy',
+  'c7_hearthlight_lantern',
+  'c7_remembering_oak',
+  'c7_wandering_mooring_stone',
+  'c7_withy_willow',
+  'c7_rite_bench',
 ] as const;
 
 type ItemEntityId = (typeof ITEM_ENTITY_IDS)[number];
@@ -4170,6 +4176,12 @@ const APPENDED_ITEM_NAMES: Partial<Record<ItemEntityId, string>> = {
   c6_keeper_testament: "The Pact Keeper's Testament",
   c6_cold_nest: 'Cold Dragon Nest',
   c6_barrow_stone: 'Dragon Barrow Stone',
+  c7_willow_withy: 'Pale Willow Withy',
+  c7_hearthlight_lantern: 'Hearthlight Lantern',
+  c7_remembering_oak: 'Remembering Oak',
+  c7_wandering_mooring_stone: 'Wandering Mooring Stone',
+  c7_withy_willow: 'Pale Withy Willow',
+  c7_rite_bench: "Mother Sedge's Rite Bench",
   // Wyndlewood Chapter One (content/chapter_one.ts).
   c1_dry_supply_bundle: 'Dry Supply Bundle',
   c1_black_wick_knot: 'Black Wick Knot',

@@ -982,6 +982,13 @@ const QUEST_IDS = [
   'c6_05_if_the_snow_speaks',
   'c6_06_the_sleeping_crown',
   'c6_07_renewal_not_repair',
+  'c7_01_trees_that_remember',
+  'c7_02_rivers_change_course',
+  'c7_03_the_last_hearthpin',
+  'c7_04_five_banners',
+  'c7_05_lanterns_for_the_rite',
+  'c7_06_the_wildheart_rite',
+  'c7_07_supper_is_getting_cold',
 ] as const;
 
 const ZONE_IDS = [

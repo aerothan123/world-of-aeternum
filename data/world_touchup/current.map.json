@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-4b29b-c0eaf5c6-ee100916-14b3-b4ad9a78-f493dfc8",
+    "id": "live-4b6cd-325a83fc-c707406c-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "4b29b-c0eaf5c6-ee100916",
+    "overworldBase": "4b6cd-325a83fc-c707406c",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -3974,7 +3974,13 @@
         },
         "facing": -1.5707963267948966,
         "color": 8207512,
-        "questIds": ["q_widows", "q_broodmother", "c2_21_heath_herbs_fen", "c3_02_mud_remembers"],
+        "questIds": [
+          "q_widows",
+          "q_broodmother",
+          "c2_21_heath_herbs_fen",
+          "c3_02_mud_remembers",
+          "c7_04_five_banners"
+        ],
         "greeting": "Mind the thicket west of the road. The webs are thick as sailcloth this season.",
         "vendorItems": ["cartographers_ink", "allied_hearthstone", "allied_vanguard_duffel"]
       },
@@ -4796,7 +4802,8 @@
           "q_af_goldmelt_road",
           "q_af_foxes_in_the_lamplight",
           "q_af_orchard_call",
-          "c6_07_renewal_not_repair"
+          "c6_07_renewal_not_repair",
+          "c7_01_trees_that_remember"
         ],
         "greeting": "Welcome to Lanternmere, where the harvest never ends and neither does the work."
       },
@@ -4826,7 +4833,9 @@
         "questIds": [
           "q_af_lanterns_on_the_water",
           "q_af_what_took_the_moorings",
-          "q_af_the_meredark"
+          "q_af_the_meredark",
+          "c7_02_rivers_change_course",
+          "c7_03_the_last_hearthpin"
         ],
         "greeting": "Fog is on the Mere again. When the lanterns go out on the water, wise folk stay ashore."
       },
@@ -4897,7 +4906,16 @@
         },
         "facing": 1.2,
         "color": 8227418,
-        "questIds": ["q_wf_witch_of_willowweep", "q_wf_wisplight_charms", "q_wf_croakers_hush"],
+        "questIds": [
+          "q_wf_witch_of_willowweep",
+          "q_wf_wisplight_charms",
+          "q_wf_croakers_hush",
+          "c7_03_the_last_hearthpin",
+          "c7_04_five_banners",
+          "c7_05_lanterns_for_the_rite",
+          "c7_06_the_wildheart_rite",
+          "c7_07_supper_is_getting_cold"
+        ],
         "greeting": "The willows told me you were coming before your boots left the bridge."
       },
       "lamplighter_sorrel": {
@@ -5851,7 +5869,7 @@
         },
         "facing": 1.5707963267948966,
         "color": 4881050,
-        "questIds": [],
+        "questIds": ["c7_04_five_banners"],
         "greeting": "The Gilt Measure trades on what the coast gives up, and pays for what it learns. Our stores are open to those of recognized standing.",
         "vendorItems": [
           "tidewatchers_locket",
@@ -5884,7 +5902,7 @@
         },
         "facing": -0.96,
         "color": 15521146,
-        "questIds": [],
+        "questIds": ["c7_04_five_banners"],
         "greeting": "Keep a lamp lit and a road open. The Lanternwardens supply those who stand the watch with us.",
         "vendorItems": [
           "order_prayer_beads",
@@ -5917,7 +5935,7 @@
         },
         "facing": -0.4,
         "color": 12088115,
-        "questIds": [],
+        "questIds": ["c7_04_five_banners"],
         "greeting": "Sound timber, true steel, and honest work. Members of the Compact may draw from our stores.",
         "vendorItems": [
           "cogwork_choker",
@@ -6207,7 +6225,8 @@
           "c1_d08_lunch_stew",
           "c1_d08_lunch_bread",
           "c2_03_bells_from_steps",
-          "c2_14_kitchen_for_pickers"
+          "c2_14_kitchen_for_pickers",
+          "c7_07_supper_is_getting_cold"
         ],
         "greeting": "It could be worse. Usually is. Sit, eat, and tell me which way the trouble is walking today."
       },
@@ -9387,6 +9406,78 @@
           {
             "x": 33.5,
             "z": 1660
+          }
+        ]
+      },
+      {
+        "itemId": "c7_remembering_oak",
+        "name": "Remembering Oak",
+        "positions": [
+          {
+            "x": -400,
+            "z": 2010
+          },
+          {
+            "x": -394,
+            "z": 2008.5
+          },
+          {
+            "x": -395.5,
+            "z": 2014
+          }
+        ]
+      },
+      {
+        "itemId": "c7_wandering_mooring_stone",
+        "name": "Wandering Mooring Stone",
+        "positions": [
+          {
+            "x": -310,
+            "z": 2133.5
+          },
+          {
+            "x": -308,
+            "z": 2139
+          },
+          {
+            "x": -314,
+            "z": 2129.5
+          }
+        ]
+      },
+      {
+        "itemId": "c7_withy_willow",
+        "name": "Pale Withy Willow",
+        "positions": [
+          {
+            "x": -400,
+            "z": 430
+          },
+          {
+            "x": -394,
+            "z": 428.5
+          },
+          {
+            "x": -395.5,
+            "z": 434
+          },
+          {
+            "x": -400.5,
+            "z": 436
+          },
+          {
+            "x": -405,
+            "z": 433
+          }
+        ]
+      },
+      {
+        "itemId": "c7_rite_bench",
+        "name": "Mother Sedge's Rite Bench",
+        "positions": [
+          {
+            "x": -404.5,
+            "z": 447
           }
         ]
       }

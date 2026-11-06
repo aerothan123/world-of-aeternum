@@ -4208,6 +4208,14 @@ export const DEEDS: Record<string, DeedDef> = {
     renown: 10,
     trigger: { kind: 'quest', questId: 'c6_07_renewal_not_repair' },
   },
+  chr_last_hearthlight: {
+    id: 'chr_last_hearthlight',
+    name: 'The Last Hearthlight',
+    desc: 'Finish the Unravelling: hold the ring at the Wildheart Basin, wake the last Hearthpin, and come home for supper.',
+    category: 'chronicle',
+    renown: 10,
+    trigger: { kind: 'quest', questId: 'c7_07_supper_is_getting_cold' },
+  },
 };
 
 for (const def of Object.values(DEEDS)) {

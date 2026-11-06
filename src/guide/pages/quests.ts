@@ -36,6 +36,7 @@ const SAGA = [
   ['guide.questsPage.sagaMemoryTitle', 'guide.questsPage.sagaMemoryBody'],
   ['guide.questsPage.sagaForgeTitle', 'guide.questsPage.sagaForgeBody'],
   ['guide.questsPage.sagaPeaksTitle', 'guide.questsPage.sagaPeaksBody'],
+  ['guide.questsPage.sagaRingTitle', 'guide.questsPage.sagaRingBody'],
 ] as const;
 
 // Clue Scrolls: the treasure hunts the daily world-quest board can earn (spoiler-safe:

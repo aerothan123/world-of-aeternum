@@ -5937,6 +5937,7 @@ export const DEED_ART_PENDING: ReadonlySet<string> = new Set([
   'chr_iron_hearts_empty_crowns',
   'chr_kingdom_behind_the_mist',
   'chr_ash_ice_sleeping_crown',
+  'chr_last_hearthlight',
 ]);
 /** Static URL of a deed crest's painted art, or null when the crest id has no committed image. */
 export function deedImageUrl(crestId: string): string | null {

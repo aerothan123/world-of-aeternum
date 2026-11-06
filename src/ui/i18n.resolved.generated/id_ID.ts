@@ -10765,6 +10765,8 @@ export const id_ID: EnTranslations = {
       "sagaMemoryBody": "After the bells fall silent, whole houses walk into the Mirefen fog. Someone is harvesting what the marsh remembers, and the trail runs up the mountain to a temple under a tarn that keeps the oldest memory of all: the morning the first hearths were bound.",
       "sagaForgeTitle": "Iron, mist and old crowns",
       "sagaForgeBody": "Ore that climbs out of the mines and forges that burn with nothing to burn lead you to the records of the first smiths, and from there behind a mist where a forgotten kingdom has been holding the same midsummer feast for centuries. Not every door in this part of the story is opened with a sword.",
+      "sagaRingTitle": "Fire, frost and the last ring",
+      "sagaRingBody": "Dragons wake in the south, barrows speak in the north, and the old pact turns out to be something the world was meant to keep renewing. The last chapter asks every banner in Wyndlewood to stand in one ring, and you are the one who goes and asks them. It ends where it began.",
       "sagaPeaksTitle": "Puncak: untuk apa persembahan itu",
       "sagaPeaksBody": "Di Thornpeak seluruh rencana itu menjadi jelas. Setiap jiwa yang dicuri sejak Lembah adalah persembahan yang dicurahkan untuk pekerjaan kelam sang kultus di jantung gunung. Jejak yang bermula di pekarangan kapel berakhir di sini, dalam sebuah penurunan lima pemain untuk menghadapi tangan di balik semuanya. Kami biarkan kamu sendiri yang mengetahui siapa yang menanti di dasarnya.",
       "sideTitle": "Benang di luar jalan utama",
@@ -25518,6 +25520,24 @@ export const id_ID: EnTranslations = {
       "c6_barrow_stone": {
         "name": "Dragon Barrow Stone"
       },
+      "c7_willow_withy": {
+        "name": "Pale Willow Withy"
+      },
+      "c7_hearthlight_lantern": {
+        "name": "Hearthlight Lantern"
+      },
+      "c7_remembering_oak": {
+        "name": "Remembering Oak"
+      },
+      "c7_wandering_mooring_stone": {
+        "name": "Wandering Mooring Stone"
+      },
+      "c7_withy_willow": {
+        "name": "Pale Withy Willow"
+      },
+      "c7_rite_bench": {
+        "name": "Mother Sedge's Rite Bench"
+      },
       "membership_staff": {
         "name": "Tongkat Perubahan"
       },
@@ -31983,6 +32003,94 @@ export const id_ID: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Pact Keeper's testament brought to Reeve Ottoline"
+          }
+        }
+      },
+      "c7_01_trees_that_remember": {
+        "title": "Trees That Remember",
+        "text": "Three of the old oaks west of the hall have started speaking in their sleep, and the foxes have gone wild listening to them. The oaks remember the first people who walked these woods, {playerName}. If the last Hearthpin is anywhere, they will have watched it pass. Calm the foxes, then put your hand on each oak and listen.",
+        "completion": "They remember the rite. Five peoples in a ring around a pin of living light, and every one of them bringing something they had made. Not gold. Bread, rope, a hinge, a song. The woods have been waiting a long time for somebody to ask.",
+        "objectives": {
+          "0": {
+            "label": "Gloam Fox calmed for good"
+          },
+          "1": {
+            "label": "Listened to a remembering oak"
+          }
+        }
+      },
+      "c7_02_rivers_change_course": {
+        "title": "Rivers Change Their Course",
+        "text": "The mere has moved. Not flooded: moved, a hand's width west every night, and it is taking my mooring stones with it. The lurkers love it. Thin them out, and read the marks on three of the stones that walked. If the water is going somewhere on purpose, I want to know where.",
+        "completion": "Every stone points the same way: north, to the Willowfen. The water is going home to something. Go after it. Mother Sedge at Willowweep will either know what it is, or make you a very good cup of something while she pretends to.",
+        "objectives": {
+          "0": {
+            "label": "Mere Lurker driven off"
+          },
+          "1": {
+            "label": "Wandering mooring stone read"
+          }
+        }
+      },
+      "c7_03_the_last_hearthpin": {
+        "title": "The Last Hearthpin",
+        "text": "The water knows the way, and so does the old witch of Willowweep. Take the fen road north and ask Mother Sedge about the last Hearthpin. Tell her the Amberfall sent you, and that the oaks remember. She likes to be told things she already knows. It saves her the trouble of saying them first.",
+        "completion": "The oaks remember, do they? So do I. The last Hearthpin sleeps under the Wildheart Basin, where every river in this country finally runs. It has been waiting for a ring of five. Pull up a stool, {playerName}. This part takes some planning.",
+        "objectives": {
+          "0": {
+            "label": "Asked Mother Sedge about the last Hearthpin"
+          }
+        }
+      },
+      "c7_04_five_banners": {
+        "title": "Five Banners",
+        "text": "A ring of five, the old rite says, and we are four banners and a handful of dragons. The dragons have already answered. Now you carry word to the rest: the Lanternwardens' captain in Eastbrook, the Hearthwright artificer in Wyrmwatch, the Bracken Circle's herbalist in Fenbridge, and the Gilt Measure's quartermaster in Drifthaven. Tell each one where and when. Do not let any of them make a speech.",
+        "completion": "Swords from the Lanternwardens, tools from the Compact, rites from the Circle, and from the Gilt Measure, rare oils and a very detailed invoice. You are the knot that holds the ring together, {playerName}. Not the chosen one. Just the one who went and asked.",
+        "objectives": {
+          "0": {
+            "label": "The Lanternwardens answered"
+          },
+          "1": {
+            "label": "The Hearthwright Compact answered"
+          },
+          "2": {
+            "label": "The Bracken Circle answered"
+          },
+          "3": {
+            "label": "The Gilt Measure answered"
+          }
+        }
+      },
+      "c7_05_lanterns_for_the_rite": {
+        "title": "Lanterns for the Rite",
+        "text": "The ring needs a light every banner can see, and the old rite says it must be made by hand, not bought. Cut withies from the pale willows in my bed, five good ones, and bend them into a lantern at my bench. It will not be pretty. The first ones never were. That is rather the point.",
+        "completion": "Lopsided, and it leans to the left, and it is the finest thing I have seen made in fifty years. Everything that ever held this world together looked like that the first time. Keep it close. You will want it in the Basin.",
+        "objectives": {
+          "0": {
+            "label": "Pale Willow Withy cut"
+          },
+          "1": {
+            "label": "Hearthlight Lantern bent at the bench"
+          }
+        }
+      },
+      "c7_06_the_wildheart_rite": {
+        "title": "The Wildheart Rite",
+        "text": "The banners are gathering at the Wildheart Basin, and so is everything the Oathless King still commands. His power will come through the Basin's own voice, the old priest who sits on the last Hearthpin and calls himself its master. Go in with a full party, hold the ring, and silence that voice. Then let the pin wake.",
+        "completion": "I felt it from here. Every hearth in the country flared at once, and the old bells rang in towers that lost their bells a hundred years ago. He is sealed away, {playerName}. Not destroyed. Nothing that old is ever destroyed. But sealed, and the ring will hold if we keep tending it.",
+        "objectives": {
+          "0": {
+            "label": "The Voice of the Basin silenced in the Wildheart Basin"
+          }
+        }
+      },
+      "c7_07_supper_is_getting_cold": {
+        "title": "Supper Is Getting Cold",
+        "text": "Go home, {playerName}. I mean it. The world will want you again soon enough; it always does. But tonight there is an inn in Eastbrook with a fire in it, and an innkeeper who has kept a stool by the hearth for you since the day you left. The rest of us can mind the ring for one evening.",
+        "completion": "Well, look who's back. Saved the world, have you? Splendid. Now come inside. Your supper's getting cold. And look out the back window on your way in: the old oak on the hill is blooming. The world is still here, {playerName}. Make something of it.",
+        "objectives": {
+          "0": {
+            "label": "Came home to Eastbrook"
           }
         }
       },

@@ -6919,6 +6919,13 @@ export const GUIDE_DEEDS: GuideDeed[] = [
     "category": "chronicle",
     "renown": 10,
     "feat": false
+  },
+  {
+    "id": "chr_last_hearthlight",
+    "name": "The Last Hearthlight",
+    "category": "chronicle",
+    "renown": 10,
+    "feat": false
   }
 ];
 

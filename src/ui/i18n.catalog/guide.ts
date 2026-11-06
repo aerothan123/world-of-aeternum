@@ -2060,6 +2060,9 @@ export const guideStrings = {
     sagaForgeTitle: 'Iron, mist and old crowns',
     sagaForgeBody:
       'Ore that climbs out of the mines and forges that burn with nothing to burn lead you to the records of the first smiths, and from there behind a mist where a forgotten kingdom has been holding the same midsummer feast for centuries. Not every door in this part of the story is opened with a sword.',
+    sagaRingTitle: 'Fire, frost and the last ring',
+    sagaRingBody:
+      'Dragons wake in the south, barrows speak in the north, and the old pact turns out to be something the world was meant to keep renewing. The last chapter asks every banner in Wyndlewood to stand in one ring, and you are the one who goes and asks them. It ends where it began.',
     sagaPeaksTitle: 'The peaks: what the tithe was for',
     sagaPeaksBody:
       "On Thornpeak the whole scheme comes clear. Every soul stolen since the Vale was a tithe poured toward the cult's grim work in the mountain's heart. The trail that began in a chapel yard ends here, in a five-player descent to face the hand behind it all. We will let you find out who waits at the bottom.",
