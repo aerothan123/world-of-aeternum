@@ -6898,6 +6898,13 @@ export const GUIDE_DEEDS: GuideDeed[] = [
     "category": "chronicle",
     "renown": 10,
     "feat": false
+  },
+  {
+    "id": "chr_iron_hearts_empty_crowns",
+    "name": "Iron Hearts and Empty Crowns",
+    "category": "chronicle",
+    "renown": 10,
+    "feat": false
   }
 ];
 

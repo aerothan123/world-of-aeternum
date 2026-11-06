@@ -462,6 +462,7 @@ const MOB_IDS = [
   'escort_della',
   // Wyndlewood Chapters Three to Seven's named foes (content/story_chapters.ts).
   'c3_veska_noll',
+  'c4_hamlin_vellthorn',
 ] as const;
 
 const NPC_IDS = [
@@ -643,6 +644,8 @@ const NPC_IDS = [
   'gardener_della',
   'carpenter_pella',
   'fisherman_tobbin',
+  // Wyndlewood Chapters Three to Seven's new people (content/story_chapters.ts).
+  'foreman_odrik_caskwell',
 ] as const;
 
 const QUEST_IDS = [
@@ -954,6 +957,13 @@ const QUEST_IDS = [
   'c3_06_mistress_of_the_harvest',
   'c3_07_what_the_temple_keeps',
   'c3_08_records_in_the_mountain',
+  'c4_01_metal_with_a_will',
+  'c4_02_dig_down_not_tomorrow',
+  'c4_03_forges_without_fuel',
+  'c4_04_what_metal_tells',
+  'c4_05_the_keep_road',
+  'c4_06_forgemaster_at_the_gate',
+  'c4_07_last_keep_remembers',
 ] as const;
 
 const ZONE_IDS = [

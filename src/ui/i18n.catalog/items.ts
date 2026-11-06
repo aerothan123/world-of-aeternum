@@ -4102,6 +4102,11 @@ const ITEM_ENTITY_IDS = [
   'c3_fogbound_doorstep',
   'c3_harvest_engine',
   'c3_wader_nest',
+  'c4_willful_ore',
+  'c4_ore_sample',
+  'c4_brunna_letter',
+  'c4_scorched_forge_plan',
+  'c4_unfed_forge',
 ] as const;
 
 type ItemEntityId = (typeof ITEM_ENTITY_IDS)[number];
@@ -4138,6 +4143,11 @@ const APPENDED_ITEM_NAMES: Partial<Record<ItemEntityId, string>> = {
   c3_fogbound_doorstep: 'Fogbound Doorstep',
   c3_harvest_engine: 'Accord Memory Engine',
   c3_wader_nest: 'Frightened Wader Nest',
+  c4_willful_ore: 'Willful Ore',
+  c4_ore_sample: 'Sample of Willful Ore',
+  c4_brunna_letter: "Brunna's Sealed Letter",
+  c4_scorched_forge_plan: 'Scorched Forge Plan',
+  c4_unfed_forge: 'Unfed Mountain Forge',
   // Wyndlewood Chapter One (content/chapter_one.ts).
   c1_dry_supply_bundle: 'Dry Supply Bundle',
   c1_black_wick_knot: 'Black Wick Knot',

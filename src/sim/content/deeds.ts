@@ -4184,6 +4184,14 @@ export const DEEDS: Record<string, DeedDef> = {
     renown: 10,
     trigger: { kind: 'quest', questId: 'c3_08_records_in_the_mountain' },
   },
+  chr_iron_hearts_empty_crowns: {
+    id: 'chr_iron_hearts_empty_crowns',
+    name: 'Iron Hearts and Empty Crowns',
+    desc: "Finish Chapter Four: save the first smiths' records at the Last Keep, and learn how a Hearthpin is forged.",
+    category: 'chronicle',
+    renown: 10,
+    trigger: { kind: 'quest', questId: 'c4_07_last_keep_remembers' },
+  },
 };
 
 for (const def of Object.values(DEEDS)) {

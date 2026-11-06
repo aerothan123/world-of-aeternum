@@ -3413,6 +3413,21 @@ export const NPC_LOOKS: Record<string, NpcLookDef> = {
     },
     props: 'tome',
   },
+  // === Wyndlewood Chapters Three to Seven (content/story_chapters.ts) =======
+  // Odrik Caskwell, mine foreman: soot in the beard, louder than his hammer.
+  foreman_odrik_caskwell: {
+    cls: 'warrior',
+    app: {
+      gender: 'male',
+      ...head('undercut', 'boxed', 'rounded', 'default', 'broad', 'default'),
+      ...skin(24, 0.45, 0.45),
+      ...hair(25, 0.4, 0.3),
+      ...eyes(40, 0.4, 0.35),
+      headShape: shape({ eyeSpacing: 0.1, eyeSize: 0.25, eyeTilt: -0.1, chinWidth: 0.68 }),
+      bodyScale: 1.04,
+    },
+    props: 'hammer',
+  },
 };
 
 /**

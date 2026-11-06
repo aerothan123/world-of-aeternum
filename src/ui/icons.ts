@@ -5934,6 +5934,7 @@ export const DEED_ART_PENDING: ReadonlySet<string> = new Set([
   'chr_shore_that_remembers',
   // Wyndlewood Chapters Three to Seven's chronicles (content/story_chapters.ts).
   'chr_marsh_that_remembers',
+  'chr_iron_hearts_empty_crowns',
 ]);
 /** Static URL of a deed crest's painted art, or null when the crest id has no committed image. */
 export function deedImageUrl(crestId: string): string | null {

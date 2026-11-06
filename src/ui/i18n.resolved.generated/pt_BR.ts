@@ -25468,6 +25468,21 @@ export const pt_BR: EnTranslations = {
       "c3_wader_nest": {
         "name": "Frightened Wader Nest"
       },
+      "c4_willful_ore": {
+        "name": "Willful Ore"
+      },
+      "c4_ore_sample": {
+        "name": "Sample of Willful Ore"
+      },
+      "c4_brunna_letter": {
+        "name": "Brunna's Sealed Letter"
+      },
+      "c4_scorched_forge_plan": {
+        "name": "Scorched Forge Plan"
+      },
+      "c4_unfed_forge": {
+        "name": "Unfed Mountain Forge"
+      },
       "membership_staff": {
         "name": "Cajado da mudança"
       },
@@ -27615,6 +27630,9 @@ export const pt_BR: EnTranslations = {
       "c3_veska_noll": {
         "name": "Mistress Veska Noll"
       },
+      "c4_hamlin_vellthorn": {
+        "name": "Forgemaster Hamlin Vellthorn"
+      },
       "ironvein_foreman": {
         "name": "Capataz Veio de Ferro"
       },
@@ -28507,6 +28525,11 @@ export const pt_BR: EnTranslations = {
         "name": "Tobbin Wickerby",
         "title": "Fisherman",
         "greeting": "Never trust a fish with good manners. The polite ones are planning something."
+      },
+      "foreman_odrik_caskwell": {
+        "name": "Odrik Caskwell",
+        "title": "Mine Foreman",
+        "greeting": "I said dig down, not into tomorrow! Sorry. Habit. The tunnels have been answering back lately."
       },
       "tidewatcher_ondrel": {
         "name": "Ondrel Vane",
@@ -31674,6 +31697,85 @@ export const pt_BR: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Temple rubbing brought to Loremaster Caddis"
+          }
+        }
+      },
+      "c4_01_metal_with_a_will": {
+        "title": "Metal With a Will",
+        "text": "Before we go looking for old forges, we should look at the new trouble. The mine foreman east of town, Odrik Caskwell, swears his tools walk about at night. He also swears the tunnels hum, the ore rolls uphill, and the moon is following him. Some of that is true. Go and find out which part.",
+        "completion": "You're from Caddis? Good. Sit, no, not there, that crate moved on its own this morning. I am not frightened. I am a professional who is extremely alert.",
+        "objectives": {
+          "0": {
+            "label": "Found Odrik Caskwell on the mine road"
+          }
+        }
+      },
+      "c4_02_dig_down_not_tomorrow": {
+        "title": "Dig Down, Not Into Tomorrow",
+        "text": "The kobolds dug too deep and woke something, and now they will not let my crew back into our own tunnels. Clear them off, {playerName}, and while you are at it, pick up the ore lying around the tunnel mouths. Nobody mined it. It climbed out. Use gloves, and do not let it hear you call it ore.",
+        "completion": "Five lumps, all warm, all pointing the same way when I set them down. North and down. Ore does not point, {playerName}. Ore does not do anything. I would like to go back to a world where ore does not do anything.",
+        "objectives": {
+          "0": {
+            "label": "Deeprock Kobold driven out"
+          },
+          "1": {
+            "label": "Willful Ore"
+          }
+        }
+      },
+      "c4_03_forges_without_fuel": {
+        "title": "Forges Without Fuel",
+        "text": "Up on the storm heights there are three old forges nobody has fed in a hundred years, and all three are burning. The storm things up there have started gathering around them like moths. Thin the storm things out, then look at each forge. Tell me what it is making. I am not going up. I have a professional fear of heights.",
+        "completion": "Hammers ringing with no hand on them, and every forge shaping the same piece: a pin, long as your arm, and never finished. The mountain is trying to remember how to make something, {playerName}. It cannot quite do it alone.",
+        "objectives": {
+          "0": {
+            "label": "Stormcrag Elemental scattered"
+          },
+          "1": {
+            "label": "Unfed mountain forge watched"
+          }
+        }
+      },
+      "c4_04_what_metal_tells": {
+        "title": "What the Metal Tells",
+        "text": "There is one smith in the realm who will look at a lump of ore and tell you its family history, and she lives down in Eastbrook. Brunna Flintmorrow. Take her a sample of the willful ore. If she laughs at you, it is ordinary ore. If she goes quiet, run.",
+        "completion": "Metal tells the truth. People rarely bother. This piece was worked once, long before it was dug, by a smith who gave it a piece of herself to make it hold. I have read about that in the old forge songs. I did not think it was a recipe.",
+        "objectives": {
+          "0": {
+            "label": "Willful ore shown to Brunna Flintmorrow"
+          }
+        }
+      },
+      "c4_05_the_keep_road": {
+        "title": "The Keep Road",
+        "text": "The forge songs name one place where the first smiths wrote it all down: the Last Keep, south in the Drakelands. A forgemaster of the old royal line has gone there ahead of us, and he does not want those records read. Take my letter to the Wyrmwatch scout who watches that road. Yerrin misses nothing on that road.",
+        "completion": "Brunna's hand, and Brunna's temper. Yes, he passed. A tall man in a soot-black coat, with a cart full of oil and a face like a funeral. He is at the keep gate now, and he is not there to read.",
+        "objectives": {
+          "0": {
+            "label": "Brunna's letter given to Scout Yerrin"
+          }
+        }
+      },
+      "c4_06_forgemaster_at_the_gate": {
+        "title": "The Forgemaster at the Gate",
+        "text": "Hamlin Vellthorn says the Hearthpins were made by taking pieces of people, and that mending them would only take more. He might be right. That is what frightens me. He is still not allowed to burn the only record of how it was done. Stop him at the gate, and save whatever plans he has not burned yet.",
+        "completion": "He said the old kings lied about the price, and he was not wrong. But a truth burned is a truth nobody gets to argue with. Two plans, scorched at the edges. And the keep doors still standing open behind him.",
+        "objectives": {
+          "0": {
+            "label": "Forgemaster Hamlin Vellthorn stopped"
+          },
+          "1": {
+            "label": "Scorched Forge Plan"
+          }
+        }
+      },
+      "c4_07_last_keep_remembers": {
+        "title": "The Last Keep Remembers",
+        "text": "The plans stop halfway, and the rest is inside. Walk the Last Keep, {playerName}. Nobody fights in there any more; it is all cold halls and old banners. The garrison left its signet on the floor of the entrance hall the day it marched out. Bring it back out with you, and carry it to the Keeper in the Veiled Hollow. The plans say the old kingdom never truly ended. They say it is still there, behind the mist.",
+        "completion": "The garrison signet, and the mist is already thinning around it. The plans were right: a Hearthpin can be forged again, but only by the old powers and the people living now, together. And the door to what is left of the kingdom has started, very quietly, to open.",
+        "objectives": {
+          "0": {
+            "label": "Signet of the Last Keep carried out of the keep"
           }
         }
       },

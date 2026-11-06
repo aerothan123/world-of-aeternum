@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-4a323-3d11f039-9ec37a29-14b3-b4ad9a78-f493dfc8",
+    "id": "live-4a814-58c72696-984a3ae6-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "4a323-3d11f039-9ec37a29",
+    "overworldBase": "4a814-58c72696-984a3ae6",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -3481,6 +3481,15 @@
         },
         "radius": 2,
         "count": 1
+      },
+      {
+        "mobId": "c4_hamlin_vellthorn",
+        "center": {
+          "x": 445,
+          "z": 2136
+        },
+        "radius": 2,
+        "count": 1
       }
     ],
     "npcs": {
@@ -3749,7 +3758,9 @@
           "c1_27_supper_despite",
           "c1_d02_clear_quarry",
           "c1_d04_metal_copper",
-          "c1_d07_receipt_rivets"
+          "c1_d07_receipt_rivets",
+          "c4_04_what_metal_tells",
+          "c4_05_the_keep_road"
         ],
         "greeting": "The forge answers to me, $C. Bring good ore and it will answer to you too.",
         "vendorItems": ["copper_mining_pick", "field_kit", "smithing_flux"]
@@ -4285,7 +4296,8 @@
           "q_elementals",
           "q_shard_cores",
           "q_kazzix",
-          "c3_08_records_in_the_mountain"
+          "c3_08_records_in_the_mountain",
+          "c4_01_metal_with_a_will"
         ],
         "greeting": "Mind the loose shale, $C. The mountain has been... restless of late. I intend to learn why."
       },
@@ -4531,7 +4543,8 @@
           "q_calming_the_deep",
           "q_sunken_court",
           "q_waking_warden",
-          "q_seal_restored"
+          "q_seal_restored",
+          "c4_07_last_keep_remembers"
         ],
         "greeting": "Few of your kind have stood beneath these boughs, $C. Walk gently, and be welcome."
       },
@@ -4659,7 +4672,10 @@
           "q_dk_watcher_at_the_wargate",
           "q_dk_marrow_and_ash",
           "q_dk_scales_of_the_maw",
-          "q_dk_matriarch_of_the_maw"
+          "q_dk_matriarch_of_the_maw",
+          "c4_05_the_keep_road",
+          "c4_06_forgemaster_at_the_gate",
+          "c4_07_last_keep_remembers"
         ],
         "greeting": "Keep low. Sound carries strangely off the glass, and the gate below has ears."
       },
@@ -6424,6 +6440,24 @@
         "color": 9333574,
         "questIds": ["c2_41_tide_road_fortress"],
         "greeting": "Chalk is only stone that has not made up its mind. I can work with that."
+      },
+      "foreman_odrik_caskwell": {
+        "id": "foreman_odrik_caskwell",
+        "name": "Odrik Caskwell",
+        "title": "Mine Foreman",
+        "pos": {
+          "x": 40,
+          "z": 632
+        },
+        "facing": 1.5707963267948966,
+        "color": 8019006,
+        "questIds": [
+          "c4_01_metal_with_a_will",
+          "c4_02_dig_down_not_tomorrow",
+          "c4_03_forges_without_fuel",
+          "c4_04_what_metal_tells"
+        ],
+        "greeting": "I said dig down, not into tomorrow! Sorry. Habit. The tunnels have been answering back lately."
       }
     },
     "objects": [
@@ -9087,6 +9121,64 @@
           {
             "x": -35,
             "z": 773
+          }
+        ]
+      },
+      {
+        "itemId": "c4_willful_ore",
+        "name": "Willful Ore",
+        "positions": [
+          {
+            "x": 84.5,
+            "z": 609.5
+          },
+          {
+            "x": 84.5,
+            "z": 617
+          },
+          {
+            "x": 87.5,
+            "z": 605
+          },
+          {
+            "x": 93,
+            "z": 605
+          },
+          {
+            "x": 98.5,
+            "z": 609.5
+          }
+        ]
+      },
+      {
+        "itemId": "c4_unfed_forge",
+        "name": "Unfed Mountain Forge",
+        "positions": [
+          {
+            "x": 122,
+            "z": 775
+          },
+          {
+            "x": 128,
+            "z": 773.5
+          },
+          {
+            "x": 126.5,
+            "z": 779
+          }
+        ]
+      },
+      {
+        "itemId": "c4_scorched_forge_plan",
+        "name": "Scorched Forge Plan",
+        "positions": [
+          {
+            "x": 441.5,
+            "z": 2131
+          },
+          {
+            "x": 447,
+            "z": 2130.5
           }
         ]
       }
