@@ -146,6 +146,27 @@ def nature_census():
     }
 
 
+def nature_near(x, z, radius):
+    """Read-only: per nature actor, how many of its mesh instances sit within
+    `radius` yd (game frame, horizontal) of (x, z). Used by the diagnostic
+    shots to tell nature's scatter from terrain shading."""
+    cx, cy, r2 = x * W.UNIT, z * W.UNIT, (radius * W.UNIT) ** 2
+    out = {}
+    for a in actors.get_all_level_actors():
+        if not nature_owned(a):
+            continue
+        n = 0
+        for c in a.get_components_by_class(unreal.InstancedStaticMeshComponent):
+            for i in range(c.get_instance_count()):
+                t = c.get_instance_transform(i, True)
+                dx, dy = t.translation.x - cx, t.translation.y - cy
+                if dx * dx + dy * dy <= r2:
+                    n += 1
+        if n:
+            out[a.get_actor_label()] = n
+    return out
+
+
 def clear_level():
     """Remove only this build's own WYND_* actors from the previous run."""
     for a in actors.get_all_level_actors():
@@ -371,7 +392,8 @@ def build_lights(sl):
     lc.set_editor_property("atmosphere_sun_light", True)
     lc.set_editor_property("intensity", 10.5)
     lc.set_editor_property("use_temperature", True)
-    lc.set_editor_property("temperature", 5300.0)
+    # v17 grade: a warmer golden sun (was 5300 K)
+    lc.set_editor_property("temperature", 4900.0)
     lc.set_editor_property("volumetric_scattering_intensity", 1.0)
     # no light-shaft bloom: with a low sun in or near frame it washed the
     # harbour shot out
@@ -380,11 +402,13 @@ def build_lights(sl):
     lc.set_editor_property("light_source_angle", 1.2)
     lc.set_editor_property("cast_cloud_shadows", True)
     atmo = spawn(unreal.SkyAtmosphere, label="WYND_SkyAtmosphere")
-    # a little more Mie haze gives the low sun a warm golden halo across the
-    # sky instead of a grey one (defaults: scale 0.003996, anisotropy 0.8)
+    # a touch more Mie haze than default keeps a golden halo round the low
+    # sun; v16's 0.0065 bleached the whole sky pale, so v17 sits nearer the
+    # default for a deeper blue overhead (defaults: scale 0.003996,
+    # anisotropy 0.8)
     try:
         ac = atmo.get_component_by_class(unreal.SkyAtmosphereComponent)
-        ac.set_editor_property("mie_scattering_scale", 0.0065)
+        ac.set_editor_property("mie_scattering_scale", 0.0046)
         ac.set_editor_property("mie_anisotropy", 0.85)
     except Exception as err:
         W.log("atmosphere tweak skipped: %s" % err)
@@ -399,10 +423,11 @@ def build_lights(sl):
         cloud.volumetric_cloud_component.set_editor_property("material", cm)
     fog = spawn(unreal.ExponentialHeightFog, label="WYND_Fog", loc=W.to_ue(0, -2, 0))
     fc = fog.component
-    fc.set_editor_property("fog_density", 0.009)
-    # a warm cream haze for the golden-hour air, not a grey one
+    fc.set_editor_property("fog_density", 0.006)
+    # distance haze reads sky blue (v16's cream washed the far vale out);
+    # the warm golden air comes from the sun-side directional inscatter
     for k, v in (
-        ("fog_inscattering_luminance", unreal.LinearColor(0.42, 0.36, 0.27, 1.0)),
+        ("fog_inscattering_luminance", unreal.LinearColor(0.26, 0.34, 0.48, 1.0)),
         ("directional_inscattering_luminance", unreal.LinearColor(0.55, 0.42, 0.26, 1.0)),
     ):
         try:
@@ -425,14 +450,18 @@ def build_lights(sl):
         # a little more exposure, saturation and a soft warm highlight
         # gain, still short of orange; no lens flare, softer bloom and a
         # slow eye adaptation so a low sun cannot pump the exposure
-        ("override_auto_exposure_bias", True), ("auto_exposure_bias", 0.35),
+        # third pass (v17): pale and washed out beside the web game, so a
+        # storybook golden hour: less exposure, warmer white balance, more
+        # saturation and contrast, warmth only in the highlights and a cool
+        # lift in the shadows so the sky deepens instead of turning orange
+        ("override_auto_exposure_bias", True), ("auto_exposure_bias", 0.1),
         ("override_auto_exposure_speed_up", True), ("auto_exposure_speed_up", 1.0),
         ("override_auto_exposure_speed_down", True), ("auto_exposure_speed_down", 1.0),
         ("override_auto_exposure_high_percent", True), ("auto_exposure_high_percent", 85.0),
-        ("override_white_temp", True), ("white_temp", 6700.0),
-        ("override_color_saturation", True), ("color_saturation", unreal.Vector4(1.02, 1.1, 1.02, 1.12)),
-        ("override_color_contrast", True), ("color_contrast", unreal.Vector4(1.08, 1.08, 1.08, 1.0)),
-        ("override_color_gain_highlights", True), ("color_gain_highlights", unreal.Vector4(1.03, 1.0, 0.95, 1.0)),
+        ("override_white_temp", True), ("white_temp", 6900.0),
+        ("override_color_saturation", True), ("color_saturation", unreal.Vector4(1.04, 1.1, 1.06, 1.22)),
+        ("override_color_contrast", True), ("color_contrast", unreal.Vector4(1.14, 1.14, 1.14, 1.0)),
+        ("override_color_gain_highlights", True), ("color_gain_highlights", unreal.Vector4(1.05, 1.01, 0.94, 1.0)),
         ("override_color_gamma_shadows", True), ("color_gamma_shadows", unreal.Vector4(1.0, 1.0, 1.04, 1.0)),
         ("override_bloom_intensity", True), ("bloom_intensity", 0.4),
         ("override_lens_flare_intensity", True), ("lens_flare_intensity", 0.0),

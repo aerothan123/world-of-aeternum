@@ -30,6 +30,21 @@
       "target": [-50.0, 0.0, 10.0],
       "focal": 22.0,
       "time": "late_afternoon"
+    },
+    {
+      "name": "seam_x0",
+      "eye": [7.0, 5.0, -66.0],
+      "target": [0.0, 0.0, -50.0],
+      "focal": 30.0,
+      "time": "late_afternoon"
+    },
+    {
+      "name": "cliff_close",
+      "eye": [85.0, 10.0, -152.0],
+      "target": [68.0, 0.0, -131.0],
+      "focal": 30.0,
+      "time": "late_afternoon",
+      "probeRadius": 15.0
     }
   ]
 }

@@ -247,8 +247,21 @@ def terrain_material():
     mel.connect_material_property(g.const(0.0), "", MP.MP_METALLIC)
     m.set_editor_property("used_with_nanite", True)
     mel.recompile_material(m)
+    log_compile_stats(m)
     lib.save_loaded_asset(m)
     return m
+
+
+def log_compile_stats(m):
+    """Instruction counts after a recompile: zero pixel-shader instructions
+    in the full editor means the graph failed and the default material is
+    drawn (a commandlet without an RHI always reports zero)."""
+    try:
+        s = mel.get_statistics(m)
+        W.log("material %s vs=%d ps=%d samplers=%d" % (
+            m.get_name(), s.num_vertex_shader_instructions, s.num_pixel_shader_instructions, s.num_samplers))
+    except Exception as err:
+        W.log("material %s statistics unavailable: %s" % (m.get_name(), err))
 
 
 def water_material():

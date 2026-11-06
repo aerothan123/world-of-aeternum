@@ -56,6 +56,14 @@ for s in SHOTS:
         cover.append((ex * 0.4 + tx * 0.6, ez * 0.4 + tz * 0.6, 46.0))
 sl, sun = S.build(cover)
 build_s = time.time() - t0
+# diagnostic shots name a probe radius: log nature's instances around the
+# target so a blotch can be told apart from terrain shading (read-only)
+for s in SHOTS:
+    if s.get("probeRadius"):
+        tx, _, tz = s["target"]
+        near = S.nature_near(tx, tz, s["probeRadius"])
+        sl.stats.setdefault("natureNear", {})[s["name"]] = near
+        W.log("nature near %s: %s" % (s["name"], near))
 world = unreal.EditorLevelLibrary.get_editor_world()
 
 
