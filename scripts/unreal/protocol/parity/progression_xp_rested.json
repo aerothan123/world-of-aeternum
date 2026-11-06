@@ -1,0 +1,841 @@
+{
+  "suite": "progression_xp_rested",
+  "source": "src/sim/combat/damage.ts grantXp, src/sim/progression/xp.ts updateRested",
+  "note": "accrual cases stand inside the first authored inn; rested values are doubles",
+  "cases": [
+    {
+      "in": {
+        "kind": "grant",
+        "level": 1,
+        "xp": 0,
+        "rested": 0,
+        "amount": 120,
+        "kill": true
+      },
+      "out": {
+        "level": 1,
+        "xp": 120,
+        "rested": 0,
+        "bonus": 0,
+        "awarded": 120
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 1,
+        "xp": 200,
+        "rested": 1000,
+        "amount": 100,
+        "kill": true
+      },
+      "out": {
+        "level": 2,
+        "xp": 0,
+        "rested": 900,
+        "bonus": 100,
+        "awarded": 200
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 1,
+        "xp": 40,
+        "rested": 30.75,
+        "amount": 100,
+        "kill": true
+      },
+      "out": {
+        "level": 1,
+        "xp": 170,
+        "rested": 0.75,
+        "bonus": 30,
+        "awarded": 130
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 1,
+        "xp": 360,
+        "rested": 500,
+        "amount": 120,
+        "kill": true
+      },
+      "out": {
+        "level": 2,
+        "xp": 200,
+        "rested": 380,
+        "bonus": 120,
+        "awarded": 240
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 1,
+        "xp": 360,
+        "rested": 500,
+        "amount": 120,
+        "kill": false
+      },
+      "out": {
+        "level": 2,
+        "xp": 80,
+        "rested": 500,
+        "bonus": 0,
+        "awarded": 120
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 1,
+        "xp": 80,
+        "rested": 0,
+        "amount": 1200,
+        "kill": false
+      },
+      "out": {
+        "level": 2,
+        "xp": 880,
+        "rested": 0,
+        "bonus": 0,
+        "awarded": 1200
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 2,
+        "xp": 0,
+        "rested": 0,
+        "amount": 120,
+        "kill": true
+      },
+      "out": {
+        "level": 2,
+        "xp": 120,
+        "rested": 0,
+        "bonus": 0,
+        "awarded": 120
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 2,
+        "xp": 450,
+        "rested": 1000,
+        "amount": 100,
+        "kill": true
+      },
+      "out": {
+        "level": 2,
+        "xp": 650,
+        "rested": 900,
+        "bonus": 100,
+        "awarded": 200
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 2,
+        "xp": 90,
+        "rested": 30.75,
+        "amount": 100,
+        "kill": true
+      },
+      "out": {
+        "level": 2,
+        "xp": 220,
+        "rested": 0.75,
+        "bonus": 30,
+        "awarded": 130
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 2,
+        "xp": 810,
+        "rested": 500,
+        "amount": 270,
+        "kill": true
+      },
+      "out": {
+        "level": 3,
+        "xp": 450,
+        "rested": 230,
+        "bonus": 270,
+        "awarded": 540
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 2,
+        "xp": 810,
+        "rested": 500,
+        "amount": 270,
+        "kill": false
+      },
+      "out": {
+        "level": 3,
+        "xp": 180,
+        "rested": 500,
+        "bonus": 0,
+        "awarded": 270
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 2,
+        "xp": 180,
+        "rested": 0,
+        "amount": 2700,
+        "kill": false
+      },
+      "out": {
+        "level": 4,
+        "xp": 580,
+        "rested": 0,
+        "bonus": 0,
+        "awarded": 2700
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 5,
+        "xp": 0,
+        "rested": 0,
+        "amount": 120,
+        "kill": true
+      },
+      "out": {
+        "level": 5,
+        "xp": 120,
+        "rested": 0,
+        "bonus": 0,
+        "awarded": 120
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 5,
+        "xp": 1400,
+        "rested": 1000,
+        "amount": 100,
+        "kill": true
+      },
+      "out": {
+        "level": 5,
+        "xp": 1600,
+        "rested": 900,
+        "bonus": 100,
+        "awarded": 200
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 5,
+        "xp": 280,
+        "rested": 30.75,
+        "amount": 100,
+        "kill": true
+      },
+      "out": {
+        "level": 5,
+        "xp": 410,
+        "rested": 0.75,
+        "bonus": 30,
+        "awarded": 130
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 5,
+        "xp": 2520,
+        "rested": 500,
+        "amount": 840,
+        "kill": true
+      },
+      "out": {
+        "level": 6,
+        "xp": 1060,
+        "rested": 0,
+        "bonus": 500,
+        "awarded": 1340
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 5,
+        "xp": 2520,
+        "rested": 500,
+        "amount": 840,
+        "kill": false
+      },
+      "out": {
+        "level": 6,
+        "xp": 560,
+        "rested": 500,
+        "bonus": 0,
+        "awarded": 840
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 5,
+        "xp": 560,
+        "rested": 0,
+        "amount": 8400,
+        "kill": false
+      },
+      "out": {
+        "level": 7,
+        "xp": 2560,
+        "rested": 0,
+        "bonus": 0,
+        "awarded": 8400
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 9,
+        "xp": 0,
+        "rested": 0,
+        "amount": 120,
+        "kill": true
+      },
+      "out": {
+        "level": 9,
+        "xp": 120,
+        "rested": 0,
+        "bonus": 0,
+        "awarded": 120
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 9,
+        "xp": 3250,
+        "rested": 1000,
+        "amount": 100,
+        "kill": true
+      },
+      "out": {
+        "level": 9,
+        "xp": 3450,
+        "rested": 900,
+        "bonus": 100,
+        "awarded": 200
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 9,
+        "xp": 650,
+        "rested": 30.75,
+        "amount": 100,
+        "kill": true
+      },
+      "out": {
+        "level": 9,
+        "xp": 780,
+        "rested": 0.75,
+        "bonus": 30,
+        "awarded": 130
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 9,
+        "xp": 5850,
+        "rested": 500,
+        "amount": 1950,
+        "kill": true
+      },
+      "out": {
+        "level": 10,
+        "xp": 1800,
+        "rested": 0,
+        "bonus": 500,
+        "awarded": 2450
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 9,
+        "xp": 5850,
+        "rested": 500,
+        "amount": 1950,
+        "kill": false
+      },
+      "out": {
+        "level": 10,
+        "xp": 1300,
+        "rested": 500,
+        "bonus": 0,
+        "awarded": 1950
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 9,
+        "xp": 1300,
+        "rested": 0,
+        "amount": 19500,
+        "kill": false
+      },
+      "out": {
+        "level": 11,
+        "xp": 6700,
+        "rested": 0,
+        "bonus": 0,
+        "awarded": 19500
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 14,
+        "xp": 0,
+        "rested": 0,
+        "amount": 120,
+        "kill": true
+      },
+      "out": {
+        "level": 14,
+        "xp": 120,
+        "rested": 0,
+        "bonus": 0,
+        "awarded": 120
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 14,
+        "xp": 6450,
+        "rested": 1000,
+        "amount": 100,
+        "kill": true
+      },
+      "out": {
+        "level": 14,
+        "xp": 6650,
+        "rested": 900,
+        "bonus": 100,
+        "awarded": 200
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 14,
+        "xp": 1290,
+        "rested": 30.75,
+        "amount": 100,
+        "kill": true
+      },
+      "out": {
+        "level": 14,
+        "xp": 1420,
+        "rested": 0.75,
+        "bonus": 30,
+        "awarded": 130
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 14,
+        "xp": 11610,
+        "rested": 500,
+        "amount": 3870,
+        "kill": true
+      },
+      "out": {
+        "level": 15,
+        "xp": 3080,
+        "rested": 0,
+        "bonus": 500,
+        "awarded": 4370
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 14,
+        "xp": 11610,
+        "rested": 500,
+        "amount": 3870,
+        "kill": false
+      },
+      "out": {
+        "level": 15,
+        "xp": 2580,
+        "rested": 500,
+        "bonus": 0,
+        "awarded": 3870
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 14,
+        "xp": 2580,
+        "rested": 0,
+        "amount": 38700,
+        "kill": false
+      },
+      "out": {
+        "level": 16,
+        "xp": 13980,
+        "rested": 0,
+        "bonus": 0,
+        "awarded": 38700
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 19,
+        "xp": 0,
+        "rested": 0,
+        "amount": 120,
+        "kill": true
+      },
+      "out": {
+        "level": 19,
+        "xp": 120,
+        "rested": 0,
+        "bonus": 0,
+        "awarded": 120
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 19,
+        "xp": 10650,
+        "rested": 1000,
+        "amount": 100,
+        "kill": true
+      },
+      "out": {
+        "level": 19,
+        "xp": 10850,
+        "rested": 900,
+        "bonus": 100,
+        "awarded": 200
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 19,
+        "xp": 2130,
+        "rested": 30.75,
+        "amount": 100,
+        "kill": true
+      },
+      "out": {
+        "level": 19,
+        "xp": 2260,
+        "rested": 0.75,
+        "bonus": 30,
+        "awarded": 130
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 19,
+        "xp": 19170,
+        "rested": 500,
+        "amount": 6390,
+        "kill": true
+      },
+      "out": {
+        "level": 20,
+        "xp": 0,
+        "rested": 0,
+        "bonus": 500,
+        "awarded": 6890
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 19,
+        "xp": 19170,
+        "rested": 500,
+        "amount": 6390,
+        "kill": false
+      },
+      "out": {
+        "level": 20,
+        "xp": 0,
+        "rested": 500,
+        "bonus": 0,
+        "awarded": 6390
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 19,
+        "xp": 4260,
+        "rested": 0,
+        "amount": 63900,
+        "kill": false
+      },
+      "out": {
+        "level": 20,
+        "xp": 0,
+        "rested": 0,
+        "bonus": 0,
+        "awarded": 63900
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 20,
+        "xp": 0,
+        "rested": 0,
+        "amount": 120,
+        "kill": true
+      },
+      "out": {
+        "level": 20,
+        "xp": 0,
+        "rested": 0,
+        "bonus": 0,
+        "awarded": 120
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 20,
+        "xp": 11600,
+        "rested": 1000,
+        "amount": 100,
+        "kill": true
+      },
+      "out": {
+        "level": 20,
+        "xp": 11600,
+        "rested": 1000,
+        "bonus": 0,
+        "awarded": 100
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 20,
+        "xp": 2320,
+        "rested": 30.75,
+        "amount": 100,
+        "kill": true
+      },
+      "out": {
+        "level": 20,
+        "xp": 2320,
+        "rested": 30.75,
+        "bonus": 0,
+        "awarded": 100
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 20,
+        "xp": 20880,
+        "rested": 500,
+        "amount": 6960,
+        "kill": true
+      },
+      "out": {
+        "level": 20,
+        "xp": 20880,
+        "rested": 500,
+        "bonus": 0,
+        "awarded": 6960
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 20,
+        "xp": 20880,
+        "rested": 500,
+        "amount": 6960,
+        "kill": false
+      },
+      "out": {
+        "level": 20,
+        "xp": 20880,
+        "rested": 500,
+        "bonus": 0,
+        "awarded": 6960
+      }
+    },
+    {
+      "in": {
+        "kind": "grant",
+        "level": 20,
+        "xp": 4640,
+        "rested": 0,
+        "amount": 69600,
+        "kill": false
+      },
+      "out": {
+        "level": 20,
+        "xp": 4640,
+        "rested": 0,
+        "bonus": 0,
+        "awarded": 69600
+      }
+    },
+    {
+      "in": {
+        "kind": "accrue",
+        "level": 1,
+        "rested": 0,
+        "ticks": 40
+      },
+      "out": {
+        "rested": 0.08333333333333338,
+        "cap": 600
+      }
+    },
+    {
+      "in": {
+        "kind": "accrue",
+        "level": 1,
+        "rested": 599,
+        "ticks": 40
+      },
+      "out": {
+        "rested": 599.0833333333321,
+        "cap": 600
+      }
+    },
+    {
+      "in": {
+        "kind": "accrue",
+        "level": 4,
+        "rested": 0,
+        "ticks": 40
+      },
+      "out": {
+        "rested": 0.4374999999999997,
+        "cap": 3150
+      }
+    },
+    {
+      "in": {
+        "kind": "accrue",
+        "level": 4,
+        "rested": 3149,
+        "ticks": 40
+      },
+      "out": {
+        "rested": 3149.4375000000073,
+        "cap": 3150
+      }
+    },
+    {
+      "in": {
+        "kind": "accrue",
+        "level": 10,
+        "rested": 0,
+        "ticks": 40
+      },
+      "out": {
+        "rested": 1.5833333333333324,
+        "cap": 11400
+      }
+    },
+    {
+      "in": {
+        "kind": "accrue",
+        "level": 10,
+        "rested": 11399,
+        "ticks": 40
+      },
+      "out": {
+        "rested": 11400,
+        "cap": 11400
+      }
+    },
+    {
+      "in": {
+        "kind": "accrue",
+        "level": 19,
+        "rested": 0,
+        "ticks": 40
+      },
+      "out": {
+        "rested": 4.437499999999999,
+        "cap": 31950
+      }
+    },
+    {
+      "in": {
+        "kind": "accrue",
+        "level": 19,
+        "rested": 31949,
+        "ticks": 40
+      },
+      "out": {
+        "rested": 31950,
+        "cap": 31950
+      }
+    },
+    {
+      "in": {
+        "kind": "accrue",
+        "level": 20,
+        "rested": 0,
+        "ticks": 40
+      },
+      "out": {
+        "rested": 0,
+        "cap": 34800
+      }
+    },
+    {
+      "in": {
+        "kind": "accrue",
+        "level": 20,
+        "rested": 34799,
+        "ticks": 40
+      },
+      "out": {
+        "rested": 34799,
+        "cap": 34800
+      }
+    }
+  ]
+}

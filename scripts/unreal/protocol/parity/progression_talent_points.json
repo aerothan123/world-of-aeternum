@@ -1,0 +1,223 @@
+{
+  "suite": "progression_talent_points",
+  "source": "src/sim/content/talents.ts talentPointsAtLevel, talent_rows.ts ROW_LEVELS",
+  "note": "one point (one choice row) per row level reached",
+  "cases": [
+    {
+      "in": {
+        "level": 0
+      },
+      "out": {
+        "points": 0,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 1
+      },
+      "out": {
+        "points": 0,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 2
+      },
+      "out": {
+        "points": 0,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 3
+      },
+      "out": {
+        "points": 0,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 4
+      },
+      "out": {
+        "points": 0,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 5
+      },
+      "out": {
+        "points": 1,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 6
+      },
+      "out": {
+        "points": 1,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 7
+      },
+      "out": {
+        "points": 1,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 8
+      },
+      "out": {
+        "points": 2,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 9
+      },
+      "out": {
+        "points": 2,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 10
+      },
+      "out": {
+        "points": 2,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 11
+      },
+      "out": {
+        "points": 3,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 12
+      },
+      "out": {
+        "points": 3,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 13
+      },
+      "out": {
+        "points": 3,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 14
+      },
+      "out": {
+        "points": 4,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 15
+      },
+      "out": {
+        "points": 4,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 16
+      },
+      "out": {
+        "points": 4,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 17
+      },
+      "out": {
+        "points": 5,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 18
+      },
+      "out": {
+        "points": 5,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 19
+      },
+      "out": {
+        "points": 5,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 20
+      },
+      "out": {
+        "points": 6,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 21
+      },
+      "out": {
+        "points": 6,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 22
+      },
+      "out": {
+        "points": 6,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    },
+    {
+      "in": {
+        "level": 23
+      },
+      "out": {
+        "points": 6,
+        "rowLevels": "5,8,11,14,17,20"
+      }
+    }
+  ]
+}
