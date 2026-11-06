@@ -447,7 +447,9 @@ def build_lights(sl):
     # harbour shot out
     lc.set_editor_property("enable_light_shaft_bloom", False)
     lc.set_editor_property("bloom_scale", 0.15)
-    lc.set_editor_property("light_source_angle", 1.2)
+    # near the real sun's 0.53 degrees: at 1.2 the soft penumbra smeared
+    # building and terrain shadows into dark blobs (v17 cliff and seam shots)
+    lc.set_editor_property("light_source_angle", 0.5)
     lc.set_editor_property("cast_cloud_shadows", True)
     atmo = spawn(unreal.SkyAtmosphere, label="WYND_SkyAtmosphere")
     # a touch more Mie haze than default keeps a golden halo round the low
@@ -464,7 +466,9 @@ def build_lights(sl):
     sc = sky.light_component
     sc.set_editor_property("real_time_capture", True)
     sc.set_editor_property("mobility", unreal.ComponentMobility.MOVABLE)
-    sc.set_editor_property("intensity", 1.7)
+    # more sky fill (was 1.7): shaded ground and canopies read near-black
+    # beside the web game's bright ambient; the shadows stay, lifted
+    sc.set_editor_property("intensity", 2.6)
     cloud = spawn(unreal.VolumetricCloud, label="WYND_Clouds")
     cm = lib.load_asset("/Engine/EngineSky/VolumetricClouds/m_SimpleVolumetricCloud_Inst")
     if cm:
