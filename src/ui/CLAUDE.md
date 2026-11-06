@@ -674,7 +674,7 @@ same file), and each module's header carries its own contract.
   `duration_text.ts` (never a raw `formatDuration` seconds count), and the Terms link's
   href through `terms_link.ts` (same-origin on the site, the canonical page from the
   packaged desktop and Capacitor shells). The $WOC Exchange window and the trade window's
-  token arm that first used them were removed (Project H has no cryptocurrency).
+  token arm that first used them were removed (the game has no cryptocurrency; `docs/launch/crypto-removal.md`).
 - **woc_store_view.ts** (+ **char_skin_window.ts**, **armory_inspect.ts**,
   **armory_labels.ts**, **store_promo_card.ts**, **preview_prewarm_core.ts**): the WOC Store
   and Season 1 Armory. The pure projection reads the skin catalog

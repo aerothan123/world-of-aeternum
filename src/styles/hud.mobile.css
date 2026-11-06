@@ -4955,15 +4955,6 @@
       padding-top: var(--spacing-sm);
     }
   }
-  /* $WOC Exchange browse tab on touch: one column, detail pane stacked under
-     the table. The desktop template reserves a 240px-min side column, which on
-     a 915px landscape phone spent a third of the width on a pane that is empty
-     until a listing is picked, squeezing the five money columns. */
-
-  /* The Solana wallet card stacks on the phone sheet (the Claudium card's own
-     touch rule): the button drops under the sentence at the 44px floor rather
-     than squeezing the copy into half the width. */
-
   /* The dismiss glyph shares the title row so hiding the card is one tap from
      the corner, at the shared 44px touch floor. */
 
@@ -5616,9 +5607,6 @@
   }
   /* The last arm line clears the sticky row when the face is scrolled to its
      end, so nothing rests under it at rest either. */
-  /* The $WOC price field lives in the arm, not in .trade-money, so the coin
-     floor below never reached it: the same 40px / 16px / border-box, wide
-     enough for a four-figure price at the 16px touch font. */
   /* The ways out do not span the sheet: only the commitment button does, so
      a full-width destructive Cancel sale never reads as the primary action
      above the window's own Cancel. */
@@ -5932,7 +5920,6 @@
     font-size: 16px;
   }
   body.mobile-touch #player-card-modal .pc-pose,
-  body.mobile-touch #player-card-modal .pc-wallet-toggle,
   body.mobile-touch #player-card-modal .pc-actions .btn {
     min-height: 40px;
     box-sizing: border-box;

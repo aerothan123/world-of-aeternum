@@ -159,3 +159,31 @@ describe('crypto removal: database', () => {
     expect(LEGACY_CRYPTO_TABLES.filter((t) => t.startsWith('woc_market_')).length).toBe(10);
   });
 });
+
+describe('crypto removal: Android, readmes and payment art', () => {
+  it('builds one Android flavor with no Solana Mobile plugin, wallet adapter or dependency', () => {
+    const gradle = read('android/app/build.gradle');
+    expect(gradle).not.toMatch(/solanaStore|com\.solanamobile|funkatronics|SOLANA_MOBILE/);
+    for (const dir of ['solanaStore', 'testSolanaStore', 'androidTestSolanaStore']) {
+      expect(existsSync(path.join(REPO_ROOT, 'android/app/src', dir)), dir).toBe(false);
+    }
+  });
+
+  it('advertises no token, chain or wallet in the readme or any translation of it', () => {
+    const readmes = ['README.md'];
+    for (const entry of readdirSync(path.join(REPO_ROOT, 'docs/i18n'))) {
+      if (/^README\..+\.md$/.test(entry)) readmes.push(path.join('docs/i18n', entry));
+    }
+    expect(readmes.length).toBeGreaterThan(5);
+    for (const readme of readmes) {
+      const match = /\$WOC\b|solana|usdc|web3|contract address/i.exec(read(readme));
+      expect(match?.[0] ?? null, `${readme} still mentions ${match?.[0]}`).toBeNull();
+    }
+  });
+
+  it('ships no chain payment-rail brand marks', () => {
+    for (const icon of ['solana-icon.webp', 'usdc-icon.webp']) {
+      expect(existsSync(path.join(REPO_ROOT, 'public/claudium/icons', icon)), icon).toBe(false);
+    }
+  });
+});

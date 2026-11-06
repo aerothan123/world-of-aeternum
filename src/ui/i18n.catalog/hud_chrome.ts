@@ -676,7 +676,7 @@ export const hudChromeStrings = {
         'You are banned from Daily Rewards for another {remaining}. Access returns {until}. Reason: {reason}',
     },
   },
-  // The trade window's $WOC arm (docs/prd/woc/p2p-woc-trade.md): selling a
+  // The trade window's $WOC arm (retired, docs/launch/crypto-removal.md): selling a
   // staged item to the player you are trading with, for $WOC.
   trade: {
     // The neutral end of a trade session, for when the business the window
@@ -10951,7 +10951,7 @@ export const hudChromeStrings = {
   arenaGate: {
     minLevelNote: 'Requires level {level}',
   },
-  // The $WOC Exchange window (docs/prd/woc/marketplace.md): USD-denominated
+  // The $WOC Exchange window (retired, docs/launch/crypto-removal.md): USD-denominated
   // auctions settled in $WOC, browser web + website desktop only,
   // config-gated server-side.
   // Every USD amount renders through formatNumber currency options and every
@@ -10989,7 +10989,7 @@ export const hudChromeStrings = {
     disabledRealm: 'The $WOC Exchange is not available on this realm.',
     // The wrapped DESKTOP shell's (Electron, Steam, packaged website build)
     // launcher confirm dialog (retired with the Exchange): the Exchange
-    // itself stays fail-closed there (docs/prd/woc/marketplace.md), so this
+    // itself stays fail-closed there (retired, docs/launch/crypto-removal.md), so this
     // hands the player off to the browser build instead of leaving the
     // launcher unexplained. Never shown on Capacitor native.
     browserOnlyConfirmTitle: 'Open the $WOC Exchange in your browser?',
@@ -11344,7 +11344,7 @@ export const hudChromeStrings = {
     listingStatusCancelled: 'Cancelled',
     listingStatusSuspended: 'Suspended',
     listingStatusUnsold: 'Unsold',
-    // The character-select read-only Exchange panel (docs/prd/woc/marketplace.md
+    // The character-select read-only Exchange panel (retired, docs/launch/crypto-removal.md
     // "Character-select browsing"): a browse/sales-history-only view reachable
     // before any character enters the world, with no bid/buy/sell controls. It
     // reuses every other wocMarket.* string above (title, tabs, columns,

@@ -6,8 +6,8 @@
 | **Owner** | design |
 | **Created** | 2026-07-03 |
 | **Design reference** | Classic-era Wintergrasp / world PvP zones (two teams, contested objectives, honor currency, timed zone events); the degen-gaming thesis and Cambria's extraction loop (risk-native design, seasons, tunable rake) for the stakes layer |
-| **Related systems** | Duel/arena hostility (`src/sim/social/duel.ts`, `src/sim/social/arena.ts`, `isHostileTo`), world boss (`src/sim/world_boss.ts`), rare spawns (`MobTemplate.rare`), currencies (`copper`, `delveMarks` on `CharacterState`), vendors (`NpcDef.vendorItems`), realms (`server/realm.ts`), instance x-bands (`src/sim/data.ts`), wallet verification (`docs/prd/woc/wallet-link.md`), headless RL env (`headless/`, `python/`) |
-| **Companion docs** | `docs/prd/badges.md` (deterministic-currency precedent), `docs/prd/heroic-mythic-dungeons.md`, `docs/prd/woc/holder-cosmetic-flair.md` |
+| **Related systems** | Duel/arena hostility (`src/sim/social/duel.ts`, `src/sim/social/arena.ts`, `isHostileTo`), world boss (`src/sim/world_boss.ts`), rare spawns (`MobTemplate.rare`), currencies (`copper`, `delveMarks` on `CharacterState`), vendors (`NpcDef.vendorItems`), realms (`server/realm.ts`), instance x-bands (`src/sim/data.ts`), wallet verification (retired: the game ships no crypto, see `docs/launch/crypto-removal.md`), headless RL env (`headless/`, `python/`) |
+| **Companion docs** | `docs/prd/badges.md` (deterministic-currency precedent), `docs/prd/heroic-mythic-dungeons.md` |
 | **Implementation handoff** | `docs/prd/FRONTIER_PHASE1_HANDOFF.md` (Phase 1 slices, verified hook points, executor routing) |
 
 ---
@@ -78,7 +78,7 @@ config-plus-small-code follow-up (section 13), not v1.
 | Spatial bands | Overworld x in [-180, 180]; dungeons 900+; arena 4200+; delves 4800+ (delve band is open-ended along x today) | New Frontier band, `FRONTIER_X_MIN = 9000` (leaves headroom for delve growth; `isDelvePos` must gain an upper bound, see handoff gotcha G1) |
 | PvP rewards | Duel/arena kills grant nothing (no XP, no loot) | Honor grants on player kill, with diminishing returns (section 7) |
 | Back attachment (flag) | `src/render/characters/` template system | Team banner attachment tinted per team, plus nameplate tint |
-| Wallet identity | `docs/prd/woc/wallet-link.md`: non-custodial Solana wallet verification | Season deposits/settlement (server boundary only, section 12.2); custody design is its own doc |
+| Wallet identity | Retired with the crypto removal (`docs/launch/crypto-removal.md`); no wallet identity exists | Season deposits/settlement (server boundary only, section 12.2); custody design is its own doc |
 | Agents / automation | Headless RL env (`headless/env_server.ts`, `python/`), one sim in three hosts | The agent server realm (section 12.6) and the economy wind tunnel (section 12.7) |
 
 ## 4. Goals and non-goals
@@ -380,8 +380,8 @@ The pitch in one line: **make money by being good at World of ClaudeCraft.**
 $WOC never enters `src/sim/`. The sim speaks cargo units, honor, and copper; the
 server boundary maps wallet deposits to season entries and sim outcomes to
 settlements, building on the verified wallet identity from
-`docs/prd/woc/wallet-link.md` (custody and settlement mechanics get their own
-doc in `docs/prd/woc/`). What the firewall buys:
+the retired wallet-link design (removed with the crypto removal,
+`docs/launch/crypto-removal.md`). What the firewall buys:
 - The three-host guarantee survives: offline and headless run the identical
   season rules with play stakes, which is what makes 12.7 possible at all.
 - `tests/architecture.test.ts` stays meaningful and gains the token scan.
@@ -509,7 +509,7 @@ Still open:
    tunnel output, not a taste call).
 3. Season deposit denomination and custody mechanics ($WOC native vs
    stable-denominated entries settled in $WOC; escrow design): the
-   `docs/prd/woc/` settlement doc owns this.
+   No settlement exists: the crypto removal retired it.
 4. Does the free Frontier ship to all realms before season 1, or launch
    together? (Lean: free first; it is the funnel and the playtest.)
 5. Mixed human/agent exhibition rules: same bracket, or agents handicapped

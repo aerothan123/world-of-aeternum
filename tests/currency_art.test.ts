@@ -76,7 +76,7 @@ describe('currency art', () => {
         needle: "currencyIconHtml('honor')",
         count: 2,
       },
-      'src/ui/claudium_window.ts': { needle: "currencyImageUrl('woc_token')", count: 1 },
+      'src/ui/claudium_window.ts': { needle: "currencyImageUrl('woc_token')", count: 0 },
       'src/ui/hud.ts': {
         needle: "coinIconUrl: () => iconDataUrl('item', 'coin_gold')",
         count: 1,
@@ -110,7 +110,9 @@ describe('currency art', () => {
         }
       }
     }
-    expect(css, 'woc_token').toContain('url("/ui/currency/woc_token.webp")');
+    // The retired $WOC token art keeps its accepted-cohort record (history), but
+    // no live surface paints it any more (docs/launch/crypto-removal.md).
+    expect(css, 'woc_token').not.toContain('/ui/currency/woc_token.webp');
   });
 
   it('keeps registry, mapping, and opaque shipping files in exact parity', async () => {
