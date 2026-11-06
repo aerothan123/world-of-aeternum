@@ -145,6 +145,7 @@ export const GROUND_PICKUP_PROVING_QUESTS: readonly string[] = [
   'c3_06_mistress_of_the_harvest',
   'c4_02_dig_down_not_tomorrow',
   'c4_06_forgemaster_at_the_gate',
+  'c5_03_two_histories',
 ];
 
 // The highest level any giantslayer-creditable mob can ever spawn at: S-rank

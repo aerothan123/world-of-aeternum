@@ -10763,6 +10763,8 @@ export const zh_CN: EnTranslations = {
       "sagaMarshBody": "在泥沼，溺亡绝非意外。有人正像填满纳贡之箱一般填满这片湿地，从每一个被湖水吞没的旅人身上唤起听命的死者。沿着命令的链条向上追查，直至沉没堡垒中的一名缚雾者，他的临终之言道出了某种更为古老、正在峰巅之下蠢动之物。",
       "sagaMemoryTitle": "The marsh that remembers",
       "sagaMemoryBody": "After the bells fall silent, whole houses walk into the Mirefen fog. Someone is harvesting what the marsh remembers, and the trail runs up the mountain to a temple under a tarn that keeps the oldest memory of all: the morning the first hearths were bound.",
+      "sagaForgeTitle": "Iron, mist and old crowns",
+      "sagaForgeBody": "Ore that climbs out of the mines and forges that burn with nothing to burn lead you to the records of the first smiths, and from there behind a mist where a forgotten kingdom has been holding the same midsummer feast for centuries. Not every door in this part of the story is opened with a sword.",
       "sagaPeaksTitle": "峰巅：贡赋所为何来",
       "sagaPeaksBody": "在 Thornpeak，整个图谋终于水落石出。自 the Vale 以来被窃走的每一个灵魂，都是为这座山岳腹心深处邪教的阴森勾当而倾注的贡赋。始于一座礼拜堂院落的踪迹在此终结，化作一场五人的深入，去直面这一切背后的黑手。至于谁在尽头等候，我们就留给你自己去揭晓吧。",
       "sideTitle": "主路之外的支线",
@@ -25483,6 +25485,21 @@ export const zh_CN: EnTranslations = {
       "c4_unfed_forge": {
         "name": "Unfed Mountain Forge"
       },
+      "c5_court_chronicle_page": {
+        "name": "Court Chronicle Page"
+      },
+      "c5_hearthpin_fragment": {
+        "name": "Borrowed Hearthpin Fragment"
+      },
+      "c5_veil_tear": {
+        "name": "Thinning Veil"
+      },
+      "c5_festival_lantern": {
+        "name": "Thrice-Lit Festival Lantern"
+      },
+      "c5_barrier_stone": {
+        "name": "Dawnhold Barrier Stone"
+      },
       "membership_staff": {
         "name": "万变法杖"
       },
@@ -28530,6 +28547,16 @@ export const zh_CN: EnTranslations = {
         "name": "Odrik Caskwell",
         "title": "Mine Foreman",
         "greeting": "I said dig down, not into tomorrow! Sorry. Habit. The tunnels have been answering back lately."
+      },
+      "lady_eshmara_veilthorn": {
+        "name": "Eshmara Veilthorn",
+        "title": "Lady of Dawnhold",
+        "greeting": "The roses bloomed yesterday, and the day before, and the day before that. You will forgive me if I do not ask what year it is outside."
+      },
+      "researcher_raska_emberhollow": {
+        "name": "Raska Emberhollow",
+        "title": "Dragon Researcher",
+        "greeting": "Stand behind the line. No, the other line. The one that is not on fire."
       },
       "tidewatcher_ondrel": {
         "name": "翁德雷尔·凡恩",
@@ -31776,6 +31803,89 @@ export const zh_CN: EnTranslations = {
         "objectives": {
           "0": {
             "label": "Signet of the Last Keep carried out of the keep"
+          }
+        }
+      },
+      "c5_01_the_mist_opens": {
+        "title": "The Mist Opens",
+        "text": "That signet has done something to the Hollow. The veil we keep has worn thin in three places west of here, and through each one I can hear a festival that ended centuries ago. Look through them for me, {playerName}. Do not step through. Just look, and tell me whether the music is getting closer.",
+        "completion": "Closer, and happier, and exactly the same tune each time. There is a kingdom on the other side of our mist that never noticed it was lost. I have kept this veil all my life and never once wondered what it was keeping in.",
+        "objectives": {
+          "0": {
+            "label": "Looked through a thinning veil"
+          }
+        }
+      },
+      "c5_02_the_feast_that_repeats": {
+        "title": "The Feast That Repeats",
+        "text": "The festival lanterns on the green relight themselves every evening, for a feast nobody here has held. And the sporelings have come up out of the ring to dance around them, which would be charming if they were not trying to eat the dancers. Clear the sporelings, then look at each lantern. I want to know whose feast it is.",
+        "completion": "Every lantern is painted with the same date, the last midsummer of the old kingdom. They have been keeping it ever since. Imagine a party that never ends, {playerName}. Now imagine never being allowed to leave it.",
+        "objectives": {
+          "0": {
+            "label": "Corrupted Sporeling cleared"
+          },
+          "1": {
+            "label": "Festival lantern read"
+          }
+        }
+      },
+      "c5_03_two_histories": {
+        "title": "Two Histories",
+        "text": "Pages have been blowing out of the archive all week, and they are not ours. They are court chronicles from the old kingdom, written in two hands that disagree about everything. One says the guardians betrayed a great scholar. The other says the scholar betrayed the world. Gather the pages from the meadow, please. History is worth more in one pile.",
+        "completion": "Both hands are honest, I think, and both are wrong in the same place: neither will say what the first Hearthpins cost. The kings wrote that part out. Someone in that castle still remembers it, and she will not thank us for asking.",
+        "objectives": {
+          "0": {
+            "label": "Court Chronicle Page"
+          }
+        }
+      },
+      "c5_04_lady_of_dawnhold": {
+        "title": "The Lady of Dawnhold",
+        "text": "The pages name the last ruler of the old kingdom, Lady Eshmara Veilthorn, and they say she sealed her people away to keep them safe. Her castle stands on the garden lawn beyond the Evergarden gate. Go and speak with her, {playerName}. Be courteous. She has been a queen for a very long time, and she has not had a visitor in all of it.",
+        "completion": "A Hearthbearer, at my door. They told me your kind would come to finish what the old guardians began. I sealed this realm so that nobody could finish anything. Sit, if you like. The tea is always fresh. It is always the same tea.",
+        "objectives": {
+          "0": {
+            "label": "Spoke with Lady Eshmara Veilthorn"
+          }
+        }
+      },
+      "c5_05_a_garden_out_of_season": {
+        "title": "A Garden Out of Season",
+        "text": "My hedges were planted to keep the world out. Lately they have decided to keep my people in, and they have grown knights to do it. I do not like what my garden has become, {playerName}. Cut back the hedge knights on the lawns. If they are only doing what I asked of them, then I would like to stop asking.",
+        "completion": "The lawns are quiet, and two of my gardeners walked to the gate this morning just to look through it. They came back, but they went. You do not know what that means to me. I am not sure I do either.",
+        "objectives": {
+          "0": {
+            "label": "Hedge Knight cut back"
+          }
+        }
+      },
+      "c5_06_the_palace_that_remembers": {
+        "title": "The Palace That Remembers",
+        "text": "You have read the guardians' history and the scholar's. Read mine. Walk the halls of Dawnhold, and in the entrance hall you will find a posy from my conservatory, pressed the summer we sealed the gate. Bring it out into the daylight and keep it. I would like one thing from this place to leave it.",
+        "completion": "Out in the sun, and it has not crumbled. Then perhaps none of us would. I kept them here because I was afraid the world would break them. I never asked whether they would rather be broken than kept.",
+        "objectives": {
+          "0": {
+            "label": "Dawnhold Garden Posy carried out of the castle"
+          }
+        }
+      },
+      "c5_07_the_barrier_breaks": {
+        "title": "The Barrier Breaks",
+        "text": "Three stones on this lawn hold the barrier, and I set them with a fragment of a Hearthpin, which I suspect is how all of this started. Take the fragment, touch it to each stone, and let the barrier go. I cannot do it myself. I have tried every morning for a very long time, and every morning I put the fragment down again.",
+        "completion": "There. Do you hear it? Wind from outside, for the first time in my life as a queen. Some of my people will stay, and some will go, and every one of them will choose. Thank you, {playerName}. Now, before you go: something old woke in the south when the barrier fell.",
+        "objectives": {
+          "0": {
+            "label": "Barrier stone released"
+          }
+        }
+      },
+      "c5_08_dragons_stir": {
+        "title": "Dragons Stir",
+        "text": "The old court records say the first Hearthpins were not made by smiths alone. The dragons of the south stood at the forge, and gave something too. If they are waking now, someone who understands dragons should hear about it. My scholars say there is a researcher in Wyrmwatch who has been blown up by more dragons than anyone alive. Go to her.",
+        "completion": "Eshmara Veilthorn sent you? THE Eshmara? Wonderful. Terrible. Wonderful. Every nest in the Drakelands woke at once last night, and I have three pages of notes and one eyebrow left. Technically, that was a successful observation.",
+        "objectives": {
+          "0": {
+            "label": "Found Raska Emberhollow in Wyrmwatch"
           }
         }
       },

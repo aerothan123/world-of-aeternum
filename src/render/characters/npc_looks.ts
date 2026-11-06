@@ -3428,6 +3428,34 @@ export const NPC_LOOKS: Record<string, NpcLookDef> = {
     },
     props: 'hammer',
   },
+  // Eshmara Veilthorn, Lady of Dawnhold: silver-gold hair, a queen out of time.
+  lady_eshmara_veilthorn: {
+    cls: 'priest',
+    app: {
+      gender: 'female',
+      ...head('crown', 'none', 'soft_arch', 'almond', 'soft', 'relaxed'),
+      ...skin(30, 0.3, 0.62),
+      ...hair(45, 0.35, 0.8),
+      ...eyes(280, 0.35, 0.45),
+      headShape: shape({ eyeSpacing: 0.05, eyeSize: 0.05, eyeTilt: 0.2, chinWidth: 0.46 }),
+      bodyScale: 1.0,
+    },
+    props: 'none',
+  },
+  // Raska Emberhollow, dragon researcher: singed red hair, notes always at hand.
+  researcher_raska_emberhollow: {
+    cls: 'mage',
+    app: {
+      gender: 'female',
+      ...head('shoulder', 'none', 'default', 'almond', 'default', 'relaxed'),
+      ...skin(26, 0.5, 0.5),
+      ...hair(10, 0.75, 0.38),
+      ...eyes(120, 0.5, 0.4),
+      headShape: shape({ eyeSpacing: -0.1, eyeSize: 0.35, eyeTilt: 0.25, chinWidth: 0.52 }),
+      bodyScale: 0.98,
+    },
+    props: 'tome',
+  },
 };
 
 /**

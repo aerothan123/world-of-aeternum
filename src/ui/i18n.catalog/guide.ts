@@ -2057,6 +2057,9 @@ export const guideStrings = {
     sagaMemoryTitle: 'The marsh that remembers',
     sagaMemoryBody:
       'After the bells fall silent, whole houses walk into the Mirefen fog. Someone is harvesting what the marsh remembers, and the trail runs up the mountain to a temple under a tarn that keeps the oldest memory of all: the morning the first hearths were bound.',
+    sagaForgeTitle: 'Iron, mist and old crowns',
+    sagaForgeBody:
+      'Ore that climbs out of the mines and forges that burn with nothing to burn lead you to the records of the first smiths, and from there behind a mist where a forgotten kingdom has been holding the same midsummer feast for centuries. Not every door in this part of the story is opened with a sword.',
     sagaPeaksTitle: 'The peaks: what the tithe was for',
     sagaPeaksBody:
       "On Thornpeak the whole scheme comes clear. Every soul stolen since the Vale was a tithe poured toward the cult's grim work in the mountain's heart. The trail that began in a chapel yard ends here, in a five-player descent to face the hand behind it all. We will let you find out who waits at the bottom.",

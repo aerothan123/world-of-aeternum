@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-4a814-58c72696-984a3ae6-14b3-b4ad9a78-f493dfc8",
+    "id": "live-4aee4-ac8f15d4-c8117964-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "4a814-58c72696-984a3ae6",
+    "overworldBase": "4aee4-ac8f15d4-c8117964",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -4544,7 +4544,8 @@
           "q_sunken_court",
           "q_waking_warden",
           "q_seal_restored",
-          "c4_07_last_keep_remembers"
+          "c4_07_last_keep_remembers",
+          "c5_01_the_mist_opens"
         ],
         "greeting": "Few of your kind have stood beneath these boughs, $C. Walk gently, and be welcome."
       },
@@ -4558,7 +4559,13 @@
         },
         "facing": 0,
         "color": 12890250,
-        "questIds": ["q_spore_hearts", "q_wisp_lights", "q_treant_accord", "q_spore_tide"],
+        "questIds": [
+          "q_spore_hearts",
+          "q_wisp_lights",
+          "q_treant_accord",
+          "q_spore_tide",
+          "c5_02_the_feast_that_repeats"
+        ],
         "greeting": "Every light in this valley remembers something, $N. Help me listen."
       },
       "provisioner_fenna": {
@@ -4607,7 +4614,13 @@
         },
         "facing": 2.08,
         "color": 12101848,
-        "questIds": ["q_monument_tour", "q_shards_of_starfall", "q_wardens_echoes"],
+        "questIds": [
+          "q_monument_tour",
+          "q_shards_of_starfall",
+          "q_wardens_echoes",
+          "c5_03_two_histories",
+          "c5_04_lady_of_dawnhold"
+        ],
         "greeting": "The monuments out there have not spoken to anyone in an age. Perhaps they were waiting for fresh ears."
       },
       "huntsman_deral": {
@@ -6458,6 +6471,38 @@
           "c4_04_what_metal_tells"
         ],
         "greeting": "I said dig down, not into tomorrow! Sorry. Habit. The tunnels have been answering back lately."
+      },
+      "lady_eshmara_veilthorn": {
+        "id": "lady_eshmara_veilthorn",
+        "name": "Eshmara Veilthorn",
+        "title": "Lady of Dawnhold",
+        "pos": {
+          "x": 268,
+          "z": 898.5
+        },
+        "facing": 3.141592653589793,
+        "color": 13218784,
+        "questIds": [
+          "c5_04_lady_of_dawnhold",
+          "c5_05_a_garden_out_of_season",
+          "c5_06_the_palace_that_remembers",
+          "c5_07_the_barrier_breaks",
+          "c5_08_dragons_stir"
+        ],
+        "greeting": "The roses bloomed yesterday, and the day before, and the day before that. You will forgive me if I do not ask what year it is outside."
+      },
+      "researcher_raska_emberhollow": {
+        "id": "researcher_raska_emberhollow",
+        "name": "Raska Emberhollow",
+        "title": "Dragon Researcher",
+        "pos": {
+          "x": 420,
+          "z": 1906.5
+        },
+        "facing": -1.5707963267948966,
+        "color": 11883054,
+        "questIds": ["c5_08_dragons_stir"],
+        "greeting": "Stand behind the line. No, the other line. The one that is not on fire."
       }
     },
     "objects": [
@@ -9179,6 +9224,86 @@
           {
             "x": 447,
             "z": 2130.5
+          }
+        ]
+      },
+      {
+        "itemId": "c5_veil_tear",
+        "name": "Thinning Veil",
+        "positions": [
+          {
+            "x": -51.5,
+            "z": 1049.5
+          },
+          {
+            "x": -46,
+            "z": 1048.5
+          },
+          {
+            "x": -47.5,
+            "z": 1054
+          }
+        ]
+      },
+      {
+        "itemId": "c5_festival_lantern",
+        "name": "Thrice-Lit Festival Lantern",
+        "positions": [
+          {
+            "x": -20,
+            "z": 1030
+          },
+          {
+            "x": -14,
+            "z": 1028.5
+          },
+          {
+            "x": -15.5,
+            "z": 1034
+          },
+          {
+            "x": -20.5,
+            "z": 1036
+          }
+        ]
+      },
+      {
+        "itemId": "c5_court_chronicle_page",
+        "name": "Court Chronicle Page",
+        "positions": [
+          {
+            "x": 10,
+            "z": 1070
+          },
+          {
+            "x": 16,
+            "z": 1068.5
+          },
+          {
+            "x": 14.5,
+            "z": 1074
+          },
+          {
+            "x": 9.5,
+            "z": 1076
+          }
+        ]
+      },
+      {
+        "itemId": "c5_barrier_stone",
+        "name": "Dawnhold Barrier Stone",
+        "positions": [
+          {
+            "x": 266.5,
+            "z": 904
+          },
+          {
+            "x": 261.5,
+            "z": 906
+          },
+          {
+            "x": 256.5,
+            "z": 897.5
           }
         ]
       }

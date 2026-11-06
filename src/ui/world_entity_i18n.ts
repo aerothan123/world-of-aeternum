@@ -646,6 +646,8 @@ const NPC_IDS = [
   'fisherman_tobbin',
   // Wyndlewood Chapters Three to Seven's new people (content/story_chapters.ts).
   'foreman_odrik_caskwell',
+  'lady_eshmara_veilthorn',
+  'researcher_raska_emberhollow',
 ] as const;
 
 const QUEST_IDS = [
@@ -964,6 +966,14 @@ const QUEST_IDS = [
   'c4_05_the_keep_road',
   'c4_06_forgemaster_at_the_gate',
   'c4_07_last_keep_remembers',
+  'c5_01_the_mist_opens',
+  'c5_02_the_feast_that_repeats',
+  'c5_03_two_histories',
+  'c5_04_lady_of_dawnhold',
+  'c5_05_a_garden_out_of_season',
+  'c5_06_the_palace_that_remembers',
+  'c5_07_the_barrier_breaks',
+  'c5_08_dragons_stir',
 ] as const;
 
 const ZONE_IDS = [

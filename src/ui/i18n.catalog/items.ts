@@ -4107,6 +4107,11 @@ const ITEM_ENTITY_IDS = [
   'c4_brunna_letter',
   'c4_scorched_forge_plan',
   'c4_unfed_forge',
+  'c5_court_chronicle_page',
+  'c5_hearthpin_fragment',
+  'c5_veil_tear',
+  'c5_festival_lantern',
+  'c5_barrier_stone',
 ] as const;
 
 type ItemEntityId = (typeof ITEM_ENTITY_IDS)[number];
@@ -4148,6 +4153,11 @@ const APPENDED_ITEM_NAMES: Partial<Record<ItemEntityId, string>> = {
   c4_brunna_letter: "Brunna's Sealed Letter",
   c4_scorched_forge_plan: 'Scorched Forge Plan',
   c4_unfed_forge: 'Unfed Mountain Forge',
+  c5_court_chronicle_page: 'Court Chronicle Page',
+  c5_hearthpin_fragment: 'Borrowed Hearthpin Fragment',
+  c5_veil_tear: 'Thinning Veil',
+  c5_festival_lantern: 'Thrice-Lit Festival Lantern',
+  c5_barrier_stone: 'Dawnhold Barrier Stone',
   // Wyndlewood Chapter One (content/chapter_one.ts).
   c1_dry_supply_bundle: 'Dry Supply Bundle',
   c1_black_wick_knot: 'Black Wick Knot',

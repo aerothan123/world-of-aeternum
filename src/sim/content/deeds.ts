@@ -4192,6 +4192,14 @@ export const DEEDS: Record<string, DeedDef> = {
     renown: 10,
     trigger: { kind: 'quest', questId: 'c4_07_last_keep_remembers' },
   },
+  chr_kingdom_behind_the_mist: {
+    id: 'chr_kingdom_behind_the_mist',
+    name: 'The Kingdom Behind the Mist',
+    desc: 'Finish Chapter Five: let the barrier around Dawnhold fall, and leave its people free to choose.',
+    category: 'chronicle',
+    renown: 10,
+    trigger: { kind: 'quest', questId: 'c5_08_dragons_stir' },
+  },
 };
 
 for (const def of Object.values(DEEDS)) {

@@ -5,6 +5,7 @@
 // every zone it stands in is live. data.ts calls applyStoryChapters once,
 // after the Chapter Two gated bundles.
 
+import { CHAPTER_FIVE } from './chapter_five';
 import { CHAPTER_FOUR } from './chapter_four';
 import { CHAPTER_THREE } from './chapter_three';
 import {
@@ -17,6 +18,7 @@ import {
 export const STORY_CHAPTER_BUNDLES: readonly ChapterTwoBundle[] = Object.freeze([
   CHAPTER_THREE,
   CHAPTER_FOUR,
+  CHAPTER_FIVE,
 ]);
 
 /** Merge every chapter whose zones are live. Returns the merged chapters. */

@@ -6905,6 +6905,13 @@ export const GUIDE_DEEDS: GuideDeed[] = [
     "category": "chronicle",
     "renown": 10,
     "feat": false
+  },
+  {
+    "id": "chr_kingdom_behind_the_mist",
+    "name": "The Kingdom Behind the Mist",
+    "category": "chronicle",
+    "renown": 10,
+    "feat": false
   }
 ];
 
