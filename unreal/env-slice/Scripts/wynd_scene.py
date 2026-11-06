@@ -89,6 +89,28 @@ def nature_owned(a):
     return False
 
 
+def load_all_cells():
+    """The main map is World Partition with One File Per Actor, so its actors
+    start unloaded and get_all_level_actors misses them (the nature layer, and
+    this build's own WYND_* actors from earlier runs). Load every actor
+    descriptor before clearing, counting or rendering. Returns the number of
+    descriptors asked for, or -1 when the map is not partitioned."""
+    wp = getattr(unreal, "WorldPartitionBlueprintLibrary", None)
+    if wp is None:
+        W.log("WorldPartitionBlueprintLibrary unavailable; cells not loaded")
+        return -1
+    try:
+        descs = wp.get_actor_descs()
+    except Exception as err:
+        W.log("get_actor_descs failed (%s); not a partitioned map?" % err)
+        return -1
+    guids = [d.guid for d in descs]
+    if guids:
+        ok = wp.load_actors(guids)
+        W.log("world partition: loaded %d actor descs (ok=%s)" % (len(guids), ok))
+    return len(guids)
+
+
 def clear_level():
     """Remove only this build's own WYND_* actors from the previous run."""
     for a in actors.get_all_level_actors():
@@ -410,11 +432,17 @@ def set_time(sl, sun, key):
 
 
 def build(cover_areas):
+    descs = load_all_cells()
     clear_level()
     sl = Slice()
+    sl.stats["wpActorDescs"] = descs
+    # trees, bushes, ferns and rocks belong to the nature crew as well once
+    # it owns the cover: the flag turns off all of this build's scatter
+    nature_cover = nature_owns_cover()
     terrain = build_terrain(sl)
     build_props(sl)
-    build_scatter(sl)
+    if not nature_cover:
+        build_scatter(sl)
     # further slices (the Proving Shore spawn island): their own terrain
     # through a material instance, props, scatter and placeholder cover
     for name in W.EXTRA_SLICES:
@@ -422,12 +450,14 @@ def build(cover_areas):
         ex.mesh_cache = sl.mesh_cache
         build_terrain(ex, WM.terrain_instance(terrain, name, ex.export), water=False)
         build_props(ex)
-        build_scatter(ex)
-        if name in SLICE_COVER_AREAS and not nature_owns_cover():
-            build_ground_cover(ex, SLICE_COVER_AREAS[name])
+        if not nature_cover:
+            build_scatter(ex)
+            if name in SLICE_COVER_AREAS:
+                build_ground_cover(ex, SLICE_COVER_AREAS[name])
         sl.stats[name] = ex.stats
-    if nature_owns_cover():
+    if nature_cover:
         sl.stats["groundCover"] = "nature crew (Config/nature_owns_cover.flag)"
+        sl.stats["scatter"] = "nature crew (Config/nature_owns_cover.flag)"
     else:
         build_ground_cover(sl, cover_areas)
     sun = build_lights(sl)

@@ -69,7 +69,25 @@ def import_slice(export, name, stats):
     return manifest
 
 
+def reimport_terrain():
+    """WYND_TERRAIN_ONLY=1: replace just the terrain tiles of every slice (a
+    terrain_mesh.ts change, such as the edge skirts) and leave the rest."""
+    count = 0
+    for export, name in [(W.EXPORT, None)] + [(W.slice_export(e), e) for e in W.EXTRA_SLICES]:
+        manifest = W.load_json("manifest.json", export)
+        n = int(manifest["terrainTiles"]["perSide"])
+        terrain = W.slice_folder("Terrain", name)
+        for i in range(manifest["terrainTiles"]["count"]):
+            tile = "terrain_%d_%d" % (i % n, i // n)
+            run_task(os.path.join(export, "terrain", tile + ".glb"), terrain + "/" + tile)
+            count += 1
+    W.log("terrain reimported %d tiles" % count)
+
+
 def main():
+    if os.environ.get("WYND_TERRAIN_ONLY") == "1":
+        reimport_terrain()
+        return
     stats = {"terrain": 0, "models": 0, "textures": 0, "plants": 0, "failed": [], "slices": []}
     manifest = import_slice(W.EXPORT, None, stats)
     for extra in W.EXTRA_SLICES:

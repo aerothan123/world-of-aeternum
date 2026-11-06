@@ -6,7 +6,7 @@ import { coverGlbs } from '../scripts/world_export/cover_meshes';
 import { engineGlb, WEB_ONLY_EXTENSIONS } from '../scripts/world_export/engine_glb';
 import { EXPORT_SCRIPT } from '../scripts/world_export/export_slice.mjs';
 import { object3DToGlb } from '../scripts/world_export/procedural_glb';
-import { terrainTiles } from '../scripts/world_export/terrain_mesh';
+import { SKIRT_DEPTH, terrainTiles } from '../scripts/world_export/terrain_mesh';
 import type { WorldSliceExport } from '../scripts/world_export/world_slice_export';
 import {
   collectPlacements,
@@ -160,8 +160,11 @@ describe('world slice export', () => {
     const pos = prim.getAttribute('POSITION')?.getArray() as Float32Array;
     // the tile's first vertex is grid sample (64, 64); its last is the far corner
     expect(pos[1]).toBe(heights[64 * res + 64]);
-    expect(pos[pos.length - 2]).toBe(heights[res * res - 1]);
-    expect(prim.getAttribute('COLOR_0')?.getCount()).toBe(65 * 65);
+    const corner = 65 * 65 - 1;
+    expect(pos[corner * 3 + 1]).toBe(heights[res * res - 1]);
+    // the grid, then one skirt row per edge hanging SKIRT_DEPTH below it
+    expect(prim.getAttribute('COLOR_0')?.getCount()).toBe(65 * 65 + 4 * 65);
+    expect(pos[65 * 65 * 3 + 1]).toBeCloseTo(pos[1] - SKIRT_DEPTH, 5);
   });
 
   it('resolves the prop asset table and ships its entry script', () => {

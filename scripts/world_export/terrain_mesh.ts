@@ -20,6 +20,9 @@ export interface TerrainTile {
   bytes: Uint8Array;
 }
 
+/** How far each tile's edge skirt hangs below the edge, in yards. */
+export const SKIRT_DEPTH = 1.5;
+
 export async function terrainTiles(ex: WorldSliceExport, tilesPerSide = 8): Promise<TerrainTile[]> {
   const { res, step, bounds } = ex.meta;
   const cells = res - 1;
@@ -35,10 +38,12 @@ export async function terrainTiles(ex: WorldSliceExport, tilesPerSide = 8): Prom
   for (let tz = 0; tz < tilesPerSide; tz++) {
     for (let tx = 0; tx < tilesPerSide; tx++) {
       const n = per + 1;
-      const pos = new Float32Array(n * n * 3);
-      const nor = new Float32Array(n * n * 3);
-      const col = new Float32Array(n * n * 4);
-      const uv = new Float32Array(n * n * 2);
+      // the n * n grid first, then one skirt row per edge (4 * n vertices)
+      const total = n * n + 4 * n;
+      const pos = new Float32Array(total * 3);
+      const nor = new Float32Array(total * 3);
+      const col = new Float32Array(total * 4);
+      const uv = new Float32Array(total * 2);
       for (let b = 0; b < n; b++) {
         for (let a = 0; a < n; a++) {
           const i = tx * per + a;
@@ -57,7 +62,30 @@ export async function terrainTiles(ex: WorldSliceExport, tilesPerSide = 8): Prom
           uv.set([(x - bounds.minX) / size, (z - bounds.minZ) / size], v * 2);
         }
       }
-      const idx = new Uint32Array(per * per * 6);
+      // Skirts: each edge row repeated SKIRT_DEPTH below itself and joined to
+      // it with a two-sided strip. Engines simplify each tile on its own
+      // (Nanite clusters, LODs), so the shared edges drift a few
+      // centimetres apart and open a sky-coloured seam; the skirt fills it.
+      const edges: number[][] = [
+        Array.from({ length: n }, (_, a) => a), // z = tile min
+        Array.from({ length: n }, (_, a) => (n - 1) * n + a), // z = tile max
+        Array.from({ length: n }, (_, b) => b * n), // x = tile min
+        Array.from({ length: n }, (_, b) => b * n + n - 1), // x = tile max
+      ];
+      let sv = n * n;
+      const skirtOf: number[][] = [];
+      for (const edge of edges) {
+        const row: number[] = [];
+        for (const v of edge) {
+          pos.set([pos[v * 3], pos[v * 3 + 1] - SKIRT_DEPTH, pos[v * 3 + 2]], sv * 3);
+          nor.set(nor.subarray(v * 3, v * 3 + 3), sv * 3);
+          col.set(col.subarray(v * 4, v * 4 + 4), sv * 4);
+          uv.set(uv.subarray(v * 2, v * 2 + 2), sv * 2);
+          row.push(sv++);
+        }
+        skirtOf.push(row);
+      }
+      const idx = new Uint32Array(per * per * 6 + 4 * per * 12);
       let k = 0;
       for (let b = 0; b < per; b++) {
         for (let a = 0; a < per; a++) {
@@ -68,6 +96,15 @@ export async function terrainTiles(ex: WorldSliceExport, tilesPerSide = 8): Prom
           // counter-clockwise seen from +Y (glTF front faces)
           idx.set([v0, v2, v1, v1, v2, v3], k);
           k += 6;
+        }
+      }
+      for (const [e, edge] of edges.entries()) {
+        const low = skirtOf[e];
+        for (let s = 0; s < per; s++) {
+          const [t0, t1, b0, b1] = [edge[s], edge[s + 1], low[s], low[s + 1]];
+          // both windings: the strip is seen from either side of the seam
+          idx.set([t0, b0, t1, t1, b0, b1, t0, t1, b0, t1, b1, b0], k);
+          k += 12;
         }
       }
       const doc = new Document();
