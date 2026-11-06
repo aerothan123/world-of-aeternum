@@ -38,7 +38,8 @@ if ONLY:
 # engine's plain grey material) and terrainonly (every actor but the
 # terrain, sky and lights temporarily hidden). All reset before the save.
 DIAG = os.environ.get("WYND_DIAG") == "1"
-DIAG_MODES = [m for m in os.environ.get("WYND_DIAG_MODES", "nonature,nocloudshadow").split(",") if m]
+DIAG_MODES = [m.strip() for m in os.environ.get("WYND_DIAG_MODES", "nonature,nocloudshadow").split(",")
+              if m.strip()]
 if DIAG:
     SHOTS = [dict(s, name=s["name"] + ("_" + mode if mode else ""), diag=mode) for s in SHOTS
              for mode in [None] + DIAG_MODES]
@@ -76,16 +77,31 @@ for s in SHOTS:
         near = S.nature_near(tx, tz, s["probeRadius"])
         sl.stats.setdefault("natureNear", {})[s["name"]] = near
         W.log("nature near %s: %s" % (s["name"], near))
+        if DIAG:  # what blocks the sun across the probed patch (read-only)
+            # a probe must never stop the run: an uncaught error here left
+            # the editor open, since the quit only comes at the end
+            try:
+                S.set_time(sl, sun, s["time"])
+                cast = S.shadow_casters(sl, sun, tx, tz, min(s["probeRadius"], 16.0))
+            except Exception as err:
+                cast = {"error": str(err)}
+            sl.stats.setdefault("shadowCasters", {})[s["name"]] = cast
+            W.log("shadow casters %s: %s" % (s["name"], cast))
 if DIAG:  # read-only: what else the World Partition load brings in
-    other = {}
+    other, mine = {}, {}
     for a in unreal.get_editor_subsystem(unreal.EditorActorSubsystem).get_all_level_actors():
         label = a.get_actor_label()
-        if label.startswith("WYND_") or S.nature_owned(a):
+        if S.nature_owned(a):
+            continue
+        if label.startswith("WYND_"):
+            key = "%s | %s" % ("_".join(label.split("_")[:2]), a.get_class().get_name())
+            mine[key] = mine.get(key, 0) + 1
             continue
         key = "%s | %s" % (label.split("_")[0], a.get_class().get_name())
         other[key] = other.get(key, 0) + 1
     sl.stats["otherActors"] = other
-    W.log("other actors %s" % other)
+    sl.stats["wyndActors"] = mine
+    W.log("other actors %s; wynd actors %s" % (other, mine))
 world = unreal.EditorLevelLibrary.get_editor_world()
 
 

@@ -169,6 +169,41 @@ def nature_near(x, z, radius):
     return out
 
 
+def shadow_casters(sl, sun, x, z, radius, step=2.0):
+    """Read-only: from a grid of ground points around (x, z) (game yards),
+    trace toward the sun and count what each ray hits first, by actor label
+    and component. Whatever blocks a ray is what shades that point."""
+    world = unreal.EditorLevelLibrary.get_editor_world()
+    d = sun.get_actor_forward_vector()  # the direction the light travels
+    toward = unreal.Vector(-d.x, -d.y, -d.z)
+    hits, lit, n = {}, 0, 0
+    r = int(radius / step)
+    for gi in range(-r, r + 1):
+        for gj in range(-r, r + 1):
+            px, pz = x + gi * step, z + gj * step
+            start = W.to_ue(px, sl.ground(px, pz) + 0.3, pz)
+            end = unreal.Vector(start.x + toward.x * 30000, start.y + toward.y * 30000,
+                                start.z + toward.z * 30000)
+            res = unreal.SystemLibrary.line_trace_single(
+                world, start, end, unreal.TraceTypeQuery.TRACE_TYPE_QUERY1, True, [],
+                unreal.DrawDebugTrace.NONE, True)
+            hit = res[1] if isinstance(res, tuple) else res
+            n += 1
+            # this engine's Python has no break_hit_result: read the struct's
+            # fields as a tuple and pick the actor and component out of it
+            fields = hit.to_tuple() if hasattr(hit, "to_tuple") else ()
+            actor = next((f for f in fields if isinstance(f, unreal.Actor)), None)
+            comp = next((f for f in fields if isinstance(f, unreal.PrimitiveComponent)), None)
+            if actor is None and comp is not None:
+                actor = comp.get_owner()
+            if actor is None and comp is None:
+                lit += 1
+                continue
+            key = "%s | %s" % (actor.get_actor_label() if actor else "?", comp.get_name() if comp else "?")
+            hits[key] = hits.get(key, 0) + 1
+    return {"points": n, "clear": lit, "hits": dict(sorted(hits.items(), key=lambda kv: -kv[1])[:20])}
+
+
 def clear_level():
     """Remove only this build's own WYND_* actors from the previous run."""
     for a in actors.get_all_level_actors():
