@@ -16,8 +16,9 @@ import { type GoldenRow, goldenDigest, parseRecordedFrames } from './helpers/unr
 const ROOT = resolve(import.meta.dirname, '..');
 const DIR = join(ROOT, 'tests/fixtures/unreal_golden');
 // session: a Node-recorded walk. ue_route: recorded by the Unreal client itself while it
-// walked, targeted, attacked, cast and interacted (-WyndRecord).
-const SESSIONS = ['session', 'ue_route'] as const;
+// walked, targeted, attacked, cast and interacted (-WyndRecord). ue_quest: the Unreal client
+// running the real Proving Shore opening (Run the Gauntlet, then Strike True) with no dev commands.
+const SESSIONS = ['session', 'ue_route', 'ue_quest'] as const;
 
 function encodeRows(rows: GoldenRow[]): Buffer {
   return gzipSync(`${rows.map((r) => JSON.stringify(r)).join('\n')}\n`, { level: 9 });
@@ -74,5 +75,52 @@ describe.each(SESSIONS)('unreal golden frames: %s', (name) => {
     console.log(
       `golden ${name}: ${snaps.length} snaps, ${full} full, ${lite} lite, ${kept} keep ids, ${pruned} prunes`,
     );
+  });
+});
+
+// The ue_quest recording is a real starter flow, so ClientWorld must surface its combat and quest
+// beats in order: both quests accepted, the three Gauntlet flags, the effigy hit and killed by the
+// player, both hand-ins paying xp. (No heal: nothing on the opening hits back, and the bread the
+// client eats mid-fight is refused in combat, which is pinned as the server's error event.)
+describe('unreal golden frames: ue_quest flow', () => {
+  const frames = parseRecordedFrames(readFileSync(join(DIR, 'ue_quest.frames.tsv.gz')));
+  const { allDeltaKeys } = readProtocol(ROOT);
+  const rows = goldenDigest(frames, allDeltaKeys);
+  const events = rows.flatMap((r) => r.events as Record<string, unknown>[]);
+  const self = (
+    frames.map((f) => JSON.parse(f.text)).find((m) => m.t === 'hello') as { pid: number }
+  ).pid;
+  const ofType = (type: string) => events.filter((e) => e.type === type);
+
+  it('pins the quest beats in running order', () => {
+    const beats = events
+      .filter(
+        (e) => e.type === 'questAccepted' || e.type === 'questProgress' || e.type === 'questDone',
+      )
+      .map((e) => `${e.type}:${e.questId}${e.current === undefined ? '' : `:${e.current}`}`);
+    expect(beats).toEqual([
+      'questAccepted:q_ps_the_gauntlet',
+      'questProgress:q_ps_the_gauntlet:1',
+      'questProgress:q_ps_the_gauntlet:2',
+      'questProgress:q_ps_the_gauntlet:3',
+      'questDone:q_ps_the_gauntlet',
+      'questAccepted:q_ps_strike_true',
+      'questProgress:q_ps_strike_true:1',
+      'questDone:q_ps_strike_true',
+    ]);
+    // The digest sorts the done list.
+    expect(rows.at(-1)?.self.qdone).toEqual(['q_ps_strike_true', 'q_ps_the_gauntlet']);
+  });
+
+  it('pins the melee hits, the kill and the xp it pays', () => {
+    const hits = ofType('damage').filter((e) => e.sourceId === self && e.kind === 'hit');
+    expect(hits.length).toBeGreaterThanOrEqual(2);
+    expect(hits.some((e) => e.abilityId === 'heroic_strike')).toBe(true);
+    const target = hits[0].targetId;
+    expect(ofType('death')).toEqual([
+      expect.objectContaining({ entityId: target, killerId: self }),
+    ]);
+    expect(ofType('xp').map((e) => e.amount)).toEqual([100, 50, 60]);
+    expect(ofType('error').map((e) => e.text)).toContain("You can't do that while in combat.");
   });
 });

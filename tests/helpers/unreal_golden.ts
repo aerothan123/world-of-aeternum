@@ -21,6 +21,10 @@
 //   auras    [[entityId, [[id, name, kind, remaining, duration, perm, value, stacks,
 //            charges, src, school]]]] for every entity wearing any, by id
 //   events   the SimEvents ClientWorld queued since the previous snapshot (drainEvents)
+//   self.gear { equip: [[slot, itemId]] (string ids, sorted), stats: [[key, n]] (numbers,
+//            sorted), scalars: [ap, sp, hpw, sh, crit, scb, dodge, blk, bval, crat, hrat, hirat],
+//            cbt, weapon: [min, max, speed] | null, offhand: same, talents: [spec, rows,
+//            loadoutCount, activeLoadout], actionBar: the restore source }
 //   Timer values encode +inf (permanent) as -1 and NaN or absent as null.
 //   Sorts are plain code-unit order (Array.prototype.sort), never locale order.
 
@@ -52,6 +56,7 @@ export interface GoldenRow {
     qlog: unknown[];
     qdone: string[];
     cds: unknown[];
+    gear: Record<string, unknown>;
   };
   held: string[];
   changed: Record<string, unknown>;
@@ -154,6 +159,7 @@ export function goldenDigest(frames: RecordedFrame[], deltaKeys: readonly string
           ]
             .sort((a, b) => byCodeUnit(a[0], b[0]))
             .map(([k, v]) => [k, enc(v)]),
+          gear: gearOf(client as ClientWorld, pid),
         },
         held: [...held.keys()].sort(byCodeUnit),
         changed,
@@ -165,6 +171,54 @@ export function goldenDigest(frames: RecordedFrame[], deltaKeys: readonly string
     spy.mockRestore();
   }
   return rows;
+}
+
+const weaponOf = (w: unknown): number[] | null => {
+  if (!w || typeof w !== 'object') return null;
+  const x = w as { min?: number; max?: number; speed?: number };
+  return [x.min ?? 0, x.max ?? 0, x.speed ?? 0];
+};
+
+function gearOf(client: ClientWorld, pid: number): Record<string, unknown> {
+  // biome-ignore lint/suspicious/noExplicitAny: mirror fields read for the digest
+  const c = client as any;
+  // biome-ignore lint/suspicious/noExplicitAny: entity fields read for the digest
+  const e: any = client.entities.get(pid) ?? {};
+  const entries = (o: unknown, keep: (v: unknown) => boolean) =>
+    o && typeof o === 'object'
+      ? Object.entries(o as Record<string, unknown>)
+          .filter(([, v]) => keep(v))
+          .sort((a, b) => byCodeUnit(a[0], b[0]))
+      : [];
+  const talents = c.talents ?? null;
+  return {
+    equip: entries(c.equipment, (v) => typeof v === 'string'),
+    stats: entries(e.stats, (v) => typeof v === 'number'),
+    scalars: [
+      e.attackPower,
+      e.spellPower,
+      e.healPower,
+      e.spellHaste,
+      e.critChance,
+      e.sharedCritBonus,
+      e.dodgeChance,
+      e.blockChance,
+      e.blockValue,
+      e.critRating,
+      e.hasteRating,
+      e.hitRating,
+    ].map((v) => (typeof v === 'number' ? v : null)),
+    cbt: typeof e.inCombat === 'boolean' ? e.inCombat : null,
+    weapon: weaponOf(e.weapon),
+    offhand: weaponOf(e.offhandWeapon),
+    talents: [
+      talents?.spec ?? null,
+      talents?.rows ?? null,
+      Array.isArray(c.loadouts) ? c.loadouts.length : 0,
+      typeof c.activeLoadout === 'number' ? c.activeLoadout : -1,
+    ],
+    actionBar: c.actionBarRestore?.source ?? null,
+  };
 }
 
 /** prepareSnapshotTimers' answer for one frame: the mode and the stable clock, if any. */
