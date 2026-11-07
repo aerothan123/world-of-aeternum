@@ -11516,6 +11516,10 @@ export const hudChromeStrings = {
     placeAt: 'Place at {anchor}',
     takeBack: 'Take back {item} from {anchor}',
     noSpots: 'No free spot fits this piece.',
+    // A placed chair, stool or bench is a seat (src/sim/housing/house_seats.ts):
+    // {item} is the piece's localized name.
+    sitOn: 'Sit on {item}',
+    sitHint: 'Stand next to a chair, stool or bench to sit on it.',
     furniturePlaced: 'You placed {item} at {anchor}.',
     furnitureRemoved: 'You took back {item} from {anchor}.',
     // '{room}, {kind} {index}', e.g. "Hearth room, floor 1".

@@ -8165,6 +8165,8 @@ export const ru_RU: EnTranslations = {
       "placeAt": "Поставить: {anchor}",
       "takeBack": "Забрать {item} ({anchor})",
       "noSpots": "Нет свободного места для этого предмета.",
+      "sitOn": "Sit on {item}",
+      "sitHint": "Stand next to a chair, stool or bench to sit on it.",
       "furniturePlaced": "Вы поставили {item}: {anchor}.",
       "furnitureRemoved": "Вы забрали {item} ({anchor}).",
       "anchorLabel": "{room}, {kind} {index}",

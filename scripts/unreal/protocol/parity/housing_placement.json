@@ -1,0 +1,189 @@
+{
+  "suite": "housing_placement",
+  "source": "src/sim/housing/furnishing.ts placeFurniture, removeFurniture (a live Sim)",
+  "note": "owner inside their own Quay Cottage copy; furniture is anchor=item sorted, carried is bag item ids",
+  "cases": [
+    {
+      "in": {
+        "op": "place",
+        "anchor": "hearth_floor_1",
+        "item": "furn_storage_chest",
+        "furniture": "",
+        "carried": "baked_bread,furn_storage_chest,furn_wooden_chair,furn_woven_rug,furn_bookcase,furn_candlestick,furn_keg,furn_station_forge"
+      },
+      "out": {
+        "ok": true,
+        "reason": "",
+        "furniture": "hearth_floor_1=furn_storage_chest"
+      }
+    },
+    {
+      "in": {
+        "op": "place",
+        "anchor": "hearth_floor_1",
+        "item": "furn_wooden_chair",
+        "furniture": "hearth_floor_1=furn_storage_chest",
+        "carried": "baked_bread,furn_wooden_chair,furn_woven_rug,furn_bookcase,furn_candlestick,furn_keg,furn_station_forge"
+      },
+      "out": {
+        "ok": false,
+        "reason": "anchor_taken",
+        "furniture": "hearth_floor_1=furn_storage_chest"
+      }
+    },
+    {
+      "in": {
+        "op": "place",
+        "anchor": "hearth_floor_2",
+        "item": "furn_woven_rug",
+        "furniture": "hearth_floor_1=furn_storage_chest",
+        "carried": "baked_bread,furn_wooden_chair,furn_woven_rug,furn_bookcase,furn_candlestick,furn_keg,furn_station_forge"
+      },
+      "out": {
+        "ok": false,
+        "reason": "anchor_kind",
+        "furniture": "hearth_floor_1=furn_storage_chest"
+      }
+    },
+    {
+      "in": {
+        "op": "place",
+        "anchor": "hearth_rug_1",
+        "item": "furn_woven_rug",
+        "furniture": "hearth_floor_1=furn_storage_chest",
+        "carried": "baked_bread,furn_wooden_chair,furn_woven_rug,furn_bookcase,furn_candlestick,furn_keg,furn_station_forge"
+      },
+      "out": {
+        "ok": true,
+        "reason": "",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug"
+      }
+    },
+    {
+      "in": {
+        "op": "place",
+        "anchor": "hearth_wall_1",
+        "item": "furn_bookcase",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug",
+        "carried": "baked_bread,furn_wooden_chair,furn_bookcase,furn_candlestick,furn_keg,furn_station_forge"
+      },
+      "out": {
+        "ok": true,
+        "reason": "",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug;hearth_wall_1=furn_bookcase"
+      }
+    },
+    {
+      "in": {
+        "op": "place",
+        "anchor": "bedroom_floor_1",
+        "item": "furn_candlestick",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug;hearth_wall_1=furn_bookcase",
+        "carried": "baked_bread,furn_wooden_chair,furn_candlestick,furn_keg,furn_station_forge"
+      },
+      "out": {
+        "ok": false,
+        "reason": "anchor_kind",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug;hearth_wall_1=furn_bookcase"
+      }
+    },
+    {
+      "in": {
+        "op": "place",
+        "anchor": "workshop_table_1",
+        "item": "furn_candlestick",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug;hearth_wall_1=furn_bookcase",
+        "carried": "baked_bread,furn_wooden_chair,furn_candlestick,furn_keg,furn_station_forge"
+      },
+      "out": {
+        "ok": true,
+        "reason": "",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug;hearth_wall_1=furn_bookcase;workshop_table_1=furn_candlestick"
+      }
+    },
+    {
+      "in": {
+        "op": "place",
+        "anchor": "cellar_floor_1",
+        "item": "furn_keg",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug;hearth_wall_1=furn_bookcase;workshop_table_1=furn_candlestick",
+        "carried": "baked_bread,furn_wooden_chair,furn_keg,furn_station_forge"
+      },
+      "out": {
+        "ok": false,
+        "reason": "bad_anchor",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug;hearth_wall_1=furn_bookcase;workshop_table_1=furn_candlestick"
+      }
+    },
+    {
+      "in": {
+        "op": "place",
+        "anchor": "hearth_floor_2",
+        "item": "furn_wooden_chair",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug;hearth_wall_1=furn_bookcase;workshop_table_1=furn_candlestick",
+        "carried": "baked_bread,furn_wooden_chair,furn_keg,furn_station_forge"
+      },
+      "out": {
+        "ok": true,
+        "reason": "",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_floor_2=furn_wooden_chair;hearth_rug_1=furn_woven_rug;hearth_wall_1=furn_bookcase;workshop_table_1=furn_candlestick"
+      }
+    },
+    {
+      "in": {
+        "op": "place",
+        "anchor": "workshop_floor_1",
+        "item": "furn_station_forge",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_floor_2=furn_wooden_chair;hearth_rug_1=furn_woven_rug;hearth_wall_1=furn_bookcase;workshop_table_1=furn_candlestick",
+        "carried": "baked_bread,furn_keg,furn_station_forge"
+      },
+      "out": {
+        "ok": true,
+        "reason": "",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_floor_2=furn_wooden_chair;hearth_rug_1=furn_woven_rug;hearth_wall_1=furn_bookcase;workshop_floor_1=furn_station_forge;workshop_table_1=furn_candlestick"
+      }
+    },
+    {
+      "in": {
+        "op": "place",
+        "anchor": "bedroom_floor_2",
+        "item": "furn_oak_bench",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_floor_2=furn_wooden_chair;hearth_rug_1=furn_woven_rug;hearth_wall_1=furn_bookcase;workshop_floor_1=furn_station_forge;workshop_table_1=furn_candlestick",
+        "carried": "baked_bread,furn_keg"
+      },
+      "out": {
+        "ok": false,
+        "reason": "no_item",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_floor_2=furn_wooden_chair;hearth_rug_1=furn_woven_rug;hearth_wall_1=furn_bookcase;workshop_floor_1=furn_station_forge;workshop_table_1=furn_candlestick"
+      }
+    },
+    {
+      "in": {
+        "op": "remove",
+        "anchor": "hearth_floor_3",
+        "item": "",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_floor_2=furn_wooden_chair;hearth_rug_1=furn_woven_rug;hearth_wall_1=furn_bookcase;workshop_floor_1=furn_station_forge;workshop_table_1=furn_candlestick",
+        "carried": "baked_bread,furn_keg"
+      },
+      "out": {
+        "ok": false,
+        "reason": "anchor_empty",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_floor_2=furn_wooden_chair;hearth_rug_1=furn_woven_rug;hearth_wall_1=furn_bookcase;workshop_floor_1=furn_station_forge;workshop_table_1=furn_candlestick"
+      }
+    },
+    {
+      "in": {
+        "op": "remove",
+        "anchor": "hearth_floor_2",
+        "item": "",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_floor_2=furn_wooden_chair;hearth_rug_1=furn_woven_rug;hearth_wall_1=furn_bookcase;workshop_floor_1=furn_station_forge;workshop_table_1=furn_candlestick",
+        "carried": "baked_bread,furn_keg"
+      },
+      "out": {
+        "ok": true,
+        "reason": "",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug;hearth_wall_1=furn_bookcase;workshop_floor_1=furn_station_forge;workshop_table_1=furn_candlestick"
+      }
+    }
+  ]
+}

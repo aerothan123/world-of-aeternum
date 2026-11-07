@@ -1,0 +1,968 @@
+{
+  "suite": "housing_furnish_picker",
+  "source": "src/ui/hud/housing/house_furnish_view.ts furnishOptions",
+  "note": "rows are action:anchor[:item]; free anchors of the kind first, then every occupied anchor",
+  "cases": [
+    {
+      "in": {
+        "item": "furn_wooden_chair",
+        "furniture": ""
+      },
+      "out": [
+        "place:hearth_floor_1",
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_wooden_stool",
+        "furniture": ""
+      },
+      "out": [
+        "place:hearth_floor_1",
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_oak_bench",
+        "furniture": ""
+      },
+      "out": [
+        "place:hearth_floor_1",
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_round_table",
+        "furniture": ""
+      },
+      "out": [
+        "place:hearth_floor_1",
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_long_table",
+        "furniture": ""
+      },
+      "out": [
+        "place:hearth_floor_1",
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_bookcase",
+        "furniture": ""
+      },
+      "out": [
+        "place:hearth_wall_1",
+        "place:bedroom_wall_1",
+        "place:workshop_wall_1"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_keg",
+        "furniture": ""
+      },
+      "out": [
+        "place:hearth_floor_1",
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_barrel",
+        "furniture": ""
+      },
+      "out": [
+        "place:hearth_floor_1",
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_woven_rug",
+        "furniture": ""
+      },
+      "out": [
+        "place:hearth_rug_1",
+        "place:bedroom_rug_1"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_candlestick",
+        "furniture": ""
+      },
+      "out": [
+        "place:workshop_table_1"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_storage_chest",
+        "furniture": ""
+      },
+      "out": [
+        "place:hearth_floor_1",
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_trophy_plaque",
+        "furniture": ""
+      },
+      "out": [
+        "place:hearth_wall_1",
+        "place:bedroom_wall_1",
+        "place:workshop_wall_1"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_station_forge",
+        "furniture": ""
+      },
+      "out": [
+        "place:hearth_floor_1",
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_station_kitchens",
+        "furniture": ""
+      },
+      "out": [
+        "place:hearth_floor_1",
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_station_apothecary",
+        "furniture": ""
+      },
+      "out": [
+        "place:hearth_floor_1",
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_station_tannery",
+        "furniture": ""
+      },
+      "out": [
+        "place:hearth_floor_1",
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_station_loom",
+        "furniture": ""
+      },
+      "out": [
+        "place:hearth_floor_1",
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_station_toolworks",
+        "furniture": ""
+      },
+      "out": [
+        "place:hearth_floor_1",
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3"
+      ]
+    },
+    {
+      "in": {
+        "item": "ironbark_log",
+        "furniture": ""
+      },
+      "out": []
+    },
+    {
+      "in": {
+        "item": "furn_wooden_chair",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug"
+      },
+      "out": [
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3",
+        "remove:hearth_floor_1:furn_storage_chest",
+        "remove:hearth_rug_1:furn_woven_rug"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_wooden_stool",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug"
+      },
+      "out": [
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3",
+        "remove:hearth_floor_1:furn_storage_chest",
+        "remove:hearth_rug_1:furn_woven_rug"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_oak_bench",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug"
+      },
+      "out": [
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3",
+        "remove:hearth_floor_1:furn_storage_chest",
+        "remove:hearth_rug_1:furn_woven_rug"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_round_table",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug"
+      },
+      "out": [
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3",
+        "remove:hearth_floor_1:furn_storage_chest",
+        "remove:hearth_rug_1:furn_woven_rug"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_long_table",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug"
+      },
+      "out": [
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3",
+        "remove:hearth_floor_1:furn_storage_chest",
+        "remove:hearth_rug_1:furn_woven_rug"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_bookcase",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug"
+      },
+      "out": [
+        "place:hearth_wall_1",
+        "place:bedroom_wall_1",
+        "place:workshop_wall_1",
+        "remove:hearth_floor_1:furn_storage_chest",
+        "remove:hearth_rug_1:furn_woven_rug"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_keg",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug"
+      },
+      "out": [
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3",
+        "remove:hearth_floor_1:furn_storage_chest",
+        "remove:hearth_rug_1:furn_woven_rug"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_barrel",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug"
+      },
+      "out": [
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3",
+        "remove:hearth_floor_1:furn_storage_chest",
+        "remove:hearth_rug_1:furn_woven_rug"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_woven_rug",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug"
+      },
+      "out": [
+        "place:bedroom_rug_1",
+        "remove:hearth_floor_1:furn_storage_chest",
+        "remove:hearth_rug_1:furn_woven_rug"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_candlestick",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug"
+      },
+      "out": [
+        "place:workshop_table_1",
+        "remove:hearth_floor_1:furn_storage_chest",
+        "remove:hearth_rug_1:furn_woven_rug"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_storage_chest",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug"
+      },
+      "out": [
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3",
+        "remove:hearth_floor_1:furn_storage_chest",
+        "remove:hearth_rug_1:furn_woven_rug"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_trophy_plaque",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug"
+      },
+      "out": [
+        "place:hearth_wall_1",
+        "place:bedroom_wall_1",
+        "place:workshop_wall_1",
+        "remove:hearth_floor_1:furn_storage_chest",
+        "remove:hearth_rug_1:furn_woven_rug"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_station_forge",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug"
+      },
+      "out": [
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3",
+        "remove:hearth_floor_1:furn_storage_chest",
+        "remove:hearth_rug_1:furn_woven_rug"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_station_kitchens",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug"
+      },
+      "out": [
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3",
+        "remove:hearth_floor_1:furn_storage_chest",
+        "remove:hearth_rug_1:furn_woven_rug"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_station_apothecary",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug"
+      },
+      "out": [
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3",
+        "remove:hearth_floor_1:furn_storage_chest",
+        "remove:hearth_rug_1:furn_woven_rug"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_station_tannery",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug"
+      },
+      "out": [
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3",
+        "remove:hearth_floor_1:furn_storage_chest",
+        "remove:hearth_rug_1:furn_woven_rug"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_station_loom",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug"
+      },
+      "out": [
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3",
+        "remove:hearth_floor_1:furn_storage_chest",
+        "remove:hearth_rug_1:furn_woven_rug"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_station_toolworks",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug"
+      },
+      "out": [
+        "place:hearth_floor_2",
+        "place:hearth_floor_3",
+        "place:hearth_floor_4",
+        "place:bedroom_floor_1",
+        "place:bedroom_floor_2",
+        "place:bedroom_floor_3",
+        "place:workshop_floor_1",
+        "place:workshop_floor_2",
+        "place:workshop_floor_3",
+        "remove:hearth_floor_1:furn_storage_chest",
+        "remove:hearth_rug_1:furn_woven_rug"
+      ]
+    },
+    {
+      "in": {
+        "item": "ironbark_log",
+        "furniture": "hearth_floor_1=furn_storage_chest;hearth_rug_1=furn_woven_rug"
+      },
+      "out": []
+    },
+    {
+      "in": {
+        "item": "furn_wooden_chair",
+        "furniture": "bedroom_floor_1=furn_barrel;bedroom_floor_2=furn_barrel;bedroom_floor_3=furn_barrel;hearth_floor_1=furn_barrel;hearth_floor_2=furn_barrel;hearth_floor_3=furn_barrel;hearth_floor_4=furn_barrel;workshop_floor_1=furn_barrel;workshop_floor_2=furn_barrel;workshop_floor_3=furn_barrel"
+      },
+      "out": [
+        "remove:hearth_floor_1:furn_barrel",
+        "remove:hearth_floor_2:furn_barrel",
+        "remove:hearth_floor_3:furn_barrel",
+        "remove:hearth_floor_4:furn_barrel",
+        "remove:bedroom_floor_1:furn_barrel",
+        "remove:bedroom_floor_2:furn_barrel",
+        "remove:bedroom_floor_3:furn_barrel",
+        "remove:workshop_floor_1:furn_barrel",
+        "remove:workshop_floor_2:furn_barrel",
+        "remove:workshop_floor_3:furn_barrel"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_wooden_stool",
+        "furniture": "bedroom_floor_1=furn_barrel;bedroom_floor_2=furn_barrel;bedroom_floor_3=furn_barrel;hearth_floor_1=furn_barrel;hearth_floor_2=furn_barrel;hearth_floor_3=furn_barrel;hearth_floor_4=furn_barrel;workshop_floor_1=furn_barrel;workshop_floor_2=furn_barrel;workshop_floor_3=furn_barrel"
+      },
+      "out": [
+        "remove:hearth_floor_1:furn_barrel",
+        "remove:hearth_floor_2:furn_barrel",
+        "remove:hearth_floor_3:furn_barrel",
+        "remove:hearth_floor_4:furn_barrel",
+        "remove:bedroom_floor_1:furn_barrel",
+        "remove:bedroom_floor_2:furn_barrel",
+        "remove:bedroom_floor_3:furn_barrel",
+        "remove:workshop_floor_1:furn_barrel",
+        "remove:workshop_floor_2:furn_barrel",
+        "remove:workshop_floor_3:furn_barrel"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_oak_bench",
+        "furniture": "bedroom_floor_1=furn_barrel;bedroom_floor_2=furn_barrel;bedroom_floor_3=furn_barrel;hearth_floor_1=furn_barrel;hearth_floor_2=furn_barrel;hearth_floor_3=furn_barrel;hearth_floor_4=furn_barrel;workshop_floor_1=furn_barrel;workshop_floor_2=furn_barrel;workshop_floor_3=furn_barrel"
+      },
+      "out": [
+        "remove:hearth_floor_1:furn_barrel",
+        "remove:hearth_floor_2:furn_barrel",
+        "remove:hearth_floor_3:furn_barrel",
+        "remove:hearth_floor_4:furn_barrel",
+        "remove:bedroom_floor_1:furn_barrel",
+        "remove:bedroom_floor_2:furn_barrel",
+        "remove:bedroom_floor_3:furn_barrel",
+        "remove:workshop_floor_1:furn_barrel",
+        "remove:workshop_floor_2:furn_barrel",
+        "remove:workshop_floor_3:furn_barrel"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_round_table",
+        "furniture": "bedroom_floor_1=furn_barrel;bedroom_floor_2=furn_barrel;bedroom_floor_3=furn_barrel;hearth_floor_1=furn_barrel;hearth_floor_2=furn_barrel;hearth_floor_3=furn_barrel;hearth_floor_4=furn_barrel;workshop_floor_1=furn_barrel;workshop_floor_2=furn_barrel;workshop_floor_3=furn_barrel"
+      },
+      "out": [
+        "remove:hearth_floor_1:furn_barrel",
+        "remove:hearth_floor_2:furn_barrel",
+        "remove:hearth_floor_3:furn_barrel",
+        "remove:hearth_floor_4:furn_barrel",
+        "remove:bedroom_floor_1:furn_barrel",
+        "remove:bedroom_floor_2:furn_barrel",
+        "remove:bedroom_floor_3:furn_barrel",
+        "remove:workshop_floor_1:furn_barrel",
+        "remove:workshop_floor_2:furn_barrel",
+        "remove:workshop_floor_3:furn_barrel"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_long_table",
+        "furniture": "bedroom_floor_1=furn_barrel;bedroom_floor_2=furn_barrel;bedroom_floor_3=furn_barrel;hearth_floor_1=furn_barrel;hearth_floor_2=furn_barrel;hearth_floor_3=furn_barrel;hearth_floor_4=furn_barrel;workshop_floor_1=furn_barrel;workshop_floor_2=furn_barrel;workshop_floor_3=furn_barrel"
+      },
+      "out": [
+        "remove:hearth_floor_1:furn_barrel",
+        "remove:hearth_floor_2:furn_barrel",
+        "remove:hearth_floor_3:furn_barrel",
+        "remove:hearth_floor_4:furn_barrel",
+        "remove:bedroom_floor_1:furn_barrel",
+        "remove:bedroom_floor_2:furn_barrel",
+        "remove:bedroom_floor_3:furn_barrel",
+        "remove:workshop_floor_1:furn_barrel",
+        "remove:workshop_floor_2:furn_barrel",
+        "remove:workshop_floor_3:furn_barrel"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_bookcase",
+        "furniture": "bedroom_floor_1=furn_barrel;bedroom_floor_2=furn_barrel;bedroom_floor_3=furn_barrel;hearth_floor_1=furn_barrel;hearth_floor_2=furn_barrel;hearth_floor_3=furn_barrel;hearth_floor_4=furn_barrel;workshop_floor_1=furn_barrel;workshop_floor_2=furn_barrel;workshop_floor_3=furn_barrel"
+      },
+      "out": [
+        "place:hearth_wall_1",
+        "place:bedroom_wall_1",
+        "place:workshop_wall_1",
+        "remove:hearth_floor_1:furn_barrel",
+        "remove:hearth_floor_2:furn_barrel",
+        "remove:hearth_floor_3:furn_barrel",
+        "remove:hearth_floor_4:furn_barrel",
+        "remove:bedroom_floor_1:furn_barrel",
+        "remove:bedroom_floor_2:furn_barrel",
+        "remove:bedroom_floor_3:furn_barrel",
+        "remove:workshop_floor_1:furn_barrel",
+        "remove:workshop_floor_2:furn_barrel",
+        "remove:workshop_floor_3:furn_barrel"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_keg",
+        "furniture": "bedroom_floor_1=furn_barrel;bedroom_floor_2=furn_barrel;bedroom_floor_3=furn_barrel;hearth_floor_1=furn_barrel;hearth_floor_2=furn_barrel;hearth_floor_3=furn_barrel;hearth_floor_4=furn_barrel;workshop_floor_1=furn_barrel;workshop_floor_2=furn_barrel;workshop_floor_3=furn_barrel"
+      },
+      "out": [
+        "remove:hearth_floor_1:furn_barrel",
+        "remove:hearth_floor_2:furn_barrel",
+        "remove:hearth_floor_3:furn_barrel",
+        "remove:hearth_floor_4:furn_barrel",
+        "remove:bedroom_floor_1:furn_barrel",
+        "remove:bedroom_floor_2:furn_barrel",
+        "remove:bedroom_floor_3:furn_barrel",
+        "remove:workshop_floor_1:furn_barrel",
+        "remove:workshop_floor_2:furn_barrel",
+        "remove:workshop_floor_3:furn_barrel"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_barrel",
+        "furniture": "bedroom_floor_1=furn_barrel;bedroom_floor_2=furn_barrel;bedroom_floor_3=furn_barrel;hearth_floor_1=furn_barrel;hearth_floor_2=furn_barrel;hearth_floor_3=furn_barrel;hearth_floor_4=furn_barrel;workshop_floor_1=furn_barrel;workshop_floor_2=furn_barrel;workshop_floor_3=furn_barrel"
+      },
+      "out": [
+        "remove:hearth_floor_1:furn_barrel",
+        "remove:hearth_floor_2:furn_barrel",
+        "remove:hearth_floor_3:furn_barrel",
+        "remove:hearth_floor_4:furn_barrel",
+        "remove:bedroom_floor_1:furn_barrel",
+        "remove:bedroom_floor_2:furn_barrel",
+        "remove:bedroom_floor_3:furn_barrel",
+        "remove:workshop_floor_1:furn_barrel",
+        "remove:workshop_floor_2:furn_barrel",
+        "remove:workshop_floor_3:furn_barrel"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_woven_rug",
+        "furniture": "bedroom_floor_1=furn_barrel;bedroom_floor_2=furn_barrel;bedroom_floor_3=furn_barrel;hearth_floor_1=furn_barrel;hearth_floor_2=furn_barrel;hearth_floor_3=furn_barrel;hearth_floor_4=furn_barrel;workshop_floor_1=furn_barrel;workshop_floor_2=furn_barrel;workshop_floor_3=furn_barrel"
+      },
+      "out": [
+        "place:hearth_rug_1",
+        "place:bedroom_rug_1",
+        "remove:hearth_floor_1:furn_barrel",
+        "remove:hearth_floor_2:furn_barrel",
+        "remove:hearth_floor_3:furn_barrel",
+        "remove:hearth_floor_4:furn_barrel",
+        "remove:bedroom_floor_1:furn_barrel",
+        "remove:bedroom_floor_2:furn_barrel",
+        "remove:bedroom_floor_3:furn_barrel",
+        "remove:workshop_floor_1:furn_barrel",
+        "remove:workshop_floor_2:furn_barrel",
+        "remove:workshop_floor_3:furn_barrel"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_candlestick",
+        "furniture": "bedroom_floor_1=furn_barrel;bedroom_floor_2=furn_barrel;bedroom_floor_3=furn_barrel;hearth_floor_1=furn_barrel;hearth_floor_2=furn_barrel;hearth_floor_3=furn_barrel;hearth_floor_4=furn_barrel;workshop_floor_1=furn_barrel;workshop_floor_2=furn_barrel;workshop_floor_3=furn_barrel"
+      },
+      "out": [
+        "place:workshop_table_1",
+        "remove:hearth_floor_1:furn_barrel",
+        "remove:hearth_floor_2:furn_barrel",
+        "remove:hearth_floor_3:furn_barrel",
+        "remove:hearth_floor_4:furn_barrel",
+        "remove:bedroom_floor_1:furn_barrel",
+        "remove:bedroom_floor_2:furn_barrel",
+        "remove:bedroom_floor_3:furn_barrel",
+        "remove:workshop_floor_1:furn_barrel",
+        "remove:workshop_floor_2:furn_barrel",
+        "remove:workshop_floor_3:furn_barrel"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_storage_chest",
+        "furniture": "bedroom_floor_1=furn_barrel;bedroom_floor_2=furn_barrel;bedroom_floor_3=furn_barrel;hearth_floor_1=furn_barrel;hearth_floor_2=furn_barrel;hearth_floor_3=furn_barrel;hearth_floor_4=furn_barrel;workshop_floor_1=furn_barrel;workshop_floor_2=furn_barrel;workshop_floor_3=furn_barrel"
+      },
+      "out": [
+        "remove:hearth_floor_1:furn_barrel",
+        "remove:hearth_floor_2:furn_barrel",
+        "remove:hearth_floor_3:furn_barrel",
+        "remove:hearth_floor_4:furn_barrel",
+        "remove:bedroom_floor_1:furn_barrel",
+        "remove:bedroom_floor_2:furn_barrel",
+        "remove:bedroom_floor_3:furn_barrel",
+        "remove:workshop_floor_1:furn_barrel",
+        "remove:workshop_floor_2:furn_barrel",
+        "remove:workshop_floor_3:furn_barrel"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_trophy_plaque",
+        "furniture": "bedroom_floor_1=furn_barrel;bedroom_floor_2=furn_barrel;bedroom_floor_3=furn_barrel;hearth_floor_1=furn_barrel;hearth_floor_2=furn_barrel;hearth_floor_3=furn_barrel;hearth_floor_4=furn_barrel;workshop_floor_1=furn_barrel;workshop_floor_2=furn_barrel;workshop_floor_3=furn_barrel"
+      },
+      "out": [
+        "place:hearth_wall_1",
+        "place:bedroom_wall_1",
+        "place:workshop_wall_1",
+        "remove:hearth_floor_1:furn_barrel",
+        "remove:hearth_floor_2:furn_barrel",
+        "remove:hearth_floor_3:furn_barrel",
+        "remove:hearth_floor_4:furn_barrel",
+        "remove:bedroom_floor_1:furn_barrel",
+        "remove:bedroom_floor_2:furn_barrel",
+        "remove:bedroom_floor_3:furn_barrel",
+        "remove:workshop_floor_1:furn_barrel",
+        "remove:workshop_floor_2:furn_barrel",
+        "remove:workshop_floor_3:furn_barrel"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_station_forge",
+        "furniture": "bedroom_floor_1=furn_barrel;bedroom_floor_2=furn_barrel;bedroom_floor_3=furn_barrel;hearth_floor_1=furn_barrel;hearth_floor_2=furn_barrel;hearth_floor_3=furn_barrel;hearth_floor_4=furn_barrel;workshop_floor_1=furn_barrel;workshop_floor_2=furn_barrel;workshop_floor_3=furn_barrel"
+      },
+      "out": [
+        "remove:hearth_floor_1:furn_barrel",
+        "remove:hearth_floor_2:furn_barrel",
+        "remove:hearth_floor_3:furn_barrel",
+        "remove:hearth_floor_4:furn_barrel",
+        "remove:bedroom_floor_1:furn_barrel",
+        "remove:bedroom_floor_2:furn_barrel",
+        "remove:bedroom_floor_3:furn_barrel",
+        "remove:workshop_floor_1:furn_barrel",
+        "remove:workshop_floor_2:furn_barrel",
+        "remove:workshop_floor_3:furn_barrel"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_station_kitchens",
+        "furniture": "bedroom_floor_1=furn_barrel;bedroom_floor_2=furn_barrel;bedroom_floor_3=furn_barrel;hearth_floor_1=furn_barrel;hearth_floor_2=furn_barrel;hearth_floor_3=furn_barrel;hearth_floor_4=furn_barrel;workshop_floor_1=furn_barrel;workshop_floor_2=furn_barrel;workshop_floor_3=furn_barrel"
+      },
+      "out": [
+        "remove:hearth_floor_1:furn_barrel",
+        "remove:hearth_floor_2:furn_barrel",
+        "remove:hearth_floor_3:furn_barrel",
+        "remove:hearth_floor_4:furn_barrel",
+        "remove:bedroom_floor_1:furn_barrel",
+        "remove:bedroom_floor_2:furn_barrel",
+        "remove:bedroom_floor_3:furn_barrel",
+        "remove:workshop_floor_1:furn_barrel",
+        "remove:workshop_floor_2:furn_barrel",
+        "remove:workshop_floor_3:furn_barrel"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_station_apothecary",
+        "furniture": "bedroom_floor_1=furn_barrel;bedroom_floor_2=furn_barrel;bedroom_floor_3=furn_barrel;hearth_floor_1=furn_barrel;hearth_floor_2=furn_barrel;hearth_floor_3=furn_barrel;hearth_floor_4=furn_barrel;workshop_floor_1=furn_barrel;workshop_floor_2=furn_barrel;workshop_floor_3=furn_barrel"
+      },
+      "out": [
+        "remove:hearth_floor_1:furn_barrel",
+        "remove:hearth_floor_2:furn_barrel",
+        "remove:hearth_floor_3:furn_barrel",
+        "remove:hearth_floor_4:furn_barrel",
+        "remove:bedroom_floor_1:furn_barrel",
+        "remove:bedroom_floor_2:furn_barrel",
+        "remove:bedroom_floor_3:furn_barrel",
+        "remove:workshop_floor_1:furn_barrel",
+        "remove:workshop_floor_2:furn_barrel",
+        "remove:workshop_floor_3:furn_barrel"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_station_tannery",
+        "furniture": "bedroom_floor_1=furn_barrel;bedroom_floor_2=furn_barrel;bedroom_floor_3=furn_barrel;hearth_floor_1=furn_barrel;hearth_floor_2=furn_barrel;hearth_floor_3=furn_barrel;hearth_floor_4=furn_barrel;workshop_floor_1=furn_barrel;workshop_floor_2=furn_barrel;workshop_floor_3=furn_barrel"
+      },
+      "out": [
+        "remove:hearth_floor_1:furn_barrel",
+        "remove:hearth_floor_2:furn_barrel",
+        "remove:hearth_floor_3:furn_barrel",
+        "remove:hearth_floor_4:furn_barrel",
+        "remove:bedroom_floor_1:furn_barrel",
+        "remove:bedroom_floor_2:furn_barrel",
+        "remove:bedroom_floor_3:furn_barrel",
+        "remove:workshop_floor_1:furn_barrel",
+        "remove:workshop_floor_2:furn_barrel",
+        "remove:workshop_floor_3:furn_barrel"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_station_loom",
+        "furniture": "bedroom_floor_1=furn_barrel;bedroom_floor_2=furn_barrel;bedroom_floor_3=furn_barrel;hearth_floor_1=furn_barrel;hearth_floor_2=furn_barrel;hearth_floor_3=furn_barrel;hearth_floor_4=furn_barrel;workshop_floor_1=furn_barrel;workshop_floor_2=furn_barrel;workshop_floor_3=furn_barrel"
+      },
+      "out": [
+        "remove:hearth_floor_1:furn_barrel",
+        "remove:hearth_floor_2:furn_barrel",
+        "remove:hearth_floor_3:furn_barrel",
+        "remove:hearth_floor_4:furn_barrel",
+        "remove:bedroom_floor_1:furn_barrel",
+        "remove:bedroom_floor_2:furn_barrel",
+        "remove:bedroom_floor_3:furn_barrel",
+        "remove:workshop_floor_1:furn_barrel",
+        "remove:workshop_floor_2:furn_barrel",
+        "remove:workshop_floor_3:furn_barrel"
+      ]
+    },
+    {
+      "in": {
+        "item": "furn_station_toolworks",
+        "furniture": "bedroom_floor_1=furn_barrel;bedroom_floor_2=furn_barrel;bedroom_floor_3=furn_barrel;hearth_floor_1=furn_barrel;hearth_floor_2=furn_barrel;hearth_floor_3=furn_barrel;hearth_floor_4=furn_barrel;workshop_floor_1=furn_barrel;workshop_floor_2=furn_barrel;workshop_floor_3=furn_barrel"
+      },
+      "out": [
+        "remove:hearth_floor_1:furn_barrel",
+        "remove:hearth_floor_2:furn_barrel",
+        "remove:hearth_floor_3:furn_barrel",
+        "remove:hearth_floor_4:furn_barrel",
+        "remove:bedroom_floor_1:furn_barrel",
+        "remove:bedroom_floor_2:furn_barrel",
+        "remove:bedroom_floor_3:furn_barrel",
+        "remove:workshop_floor_1:furn_barrel",
+        "remove:workshop_floor_2:furn_barrel",
+        "remove:workshop_floor_3:furn_barrel"
+      ]
+    },
+    {
+      "in": {
+        "item": "ironbark_log",
+        "furniture": "bedroom_floor_1=furn_barrel;bedroom_floor_2=furn_barrel;bedroom_floor_3=furn_barrel;hearth_floor_1=furn_barrel;hearth_floor_2=furn_barrel;hearth_floor_3=furn_barrel;hearth_floor_4=furn_barrel;workshop_floor_1=furn_barrel;workshop_floor_2=furn_barrel;workshop_floor_3=furn_barrel"
+      },
+      "out": []
+    }
+  ]
+}

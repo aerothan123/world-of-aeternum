@@ -8165,6 +8165,8 @@ export const da_DK: EnTranslations = {
       "placeAt": "Place at {anchor}",
       "takeBack": "Take back {item} from {anchor}",
       "noSpots": "No free spot fits this piece.",
+      "sitOn": "Sit on {item}",
+      "sitHint": "Stand next to a chair, stool or bench to sit on it.",
       "furniturePlaced": "You placed {item} at {anchor}.",
       "furnitureRemoved": "You took back {item} from {anchor}.",
       "anchorLabel": "{room}, {kind} {index}",

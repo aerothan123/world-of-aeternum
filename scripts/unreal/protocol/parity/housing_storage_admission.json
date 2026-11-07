@@ -1,0 +1,79 @@
+{
+  "suite": "housing_storage_admission",
+  "source": "src/ui/hud/housing/house_storage_view.ts houseStorageDepositAllowed",
+  "note": "plain copies (no instance, no lock); a quest item or lent gear is refused",
+  "cases": [
+    {
+      "in": {
+        "item": "furn_wooden_chair"
+      },
+      "out": {
+        "allowed": true
+      }
+    },
+    {
+      "in": {
+        "item": "abyssal_loop"
+      },
+      "out": {
+        "allowed": true
+      }
+    },
+    {
+      "in": {
+        "item": "abysswrought_band"
+      },
+      "out": {
+        "allowed": true
+      }
+    },
+    {
+      "in": {
+        "item": "acolyte_chain_grips"
+      },
+      "out": {
+        "allowed": true
+      }
+    },
+    {
+      "in": {
+        "item": "acolytes_circlet"
+      },
+      "out": {
+        "allowed": true
+      }
+    },
+    {
+      "in": {
+        "item": "amberfall_sap_bucket"
+      },
+      "out": {
+        "allowed": false
+      }
+    },
+    {
+      "in": {
+        "item": "ancient_crypt_door"
+      },
+      "out": {
+        "allowed": false
+      }
+    },
+    {
+      "in": {
+        "item": "ashbone_war_brand"
+      },
+      "out": {
+        "allowed": false
+      }
+    },
+    {
+      "in": {
+        "item": "muster_shardpike"
+      },
+      "out": {
+        "allowed": false
+      }
+    }
+  ]
+}
