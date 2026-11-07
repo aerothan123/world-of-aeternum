@@ -16225,6 +16225,8 @@ export type TranslationKeyFlat =
   | 'hudChrome.housing.room.bedroom'
   | 'hudChrome.housing.room.hearthRoom'
   | 'hudChrome.housing.room.workshop'
+  | 'hudChrome.housing.sitHint'
+  | 'hudChrome.housing.sitOn'
   | 'hudChrome.housing.storage.away'
   | 'hudChrome.housing.storage.carriedEmpty'
   | 'hudChrome.housing.storage.carriedTitle'
