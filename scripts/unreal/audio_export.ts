@@ -110,6 +110,16 @@ import { WORLD_SEED } from '../../src/sim/world_seed';
 import { castCueForAbility, mobVoiceFamily } from '../../src/ui/combat_sfx';
 import { isTalentRowUnlockLevel } from '../../src/ui/row_unlock_toast';
 import { type RefEntity, refRoute } from './audio_sfx_router_ref';
+import { mountAudioKey } from '../../src/game/mount_audio_key';
+import {
+  advanceInterruptibleMountEngine,
+  advanceMountEngine,
+  type MountEngineEntry,
+  mountEngineBendRate,
+  mountEngineIdleAudible,
+  mountEngineLoopActive,
+} from '../../src/game/mount_engine_state';
+import { MOUNTS } from '../../src/sim/content/mounts';
 import type { ParityCase, ParitySuite } from './parity_export';
 
 export const AUDIO_EXPORT_SUBDIR = 'audio';
@@ -1172,7 +1182,82 @@ export function sfxRouterTables() {
   return { mobs, castCues, recipeProfession, refEntities: refEntities() };
 }
 
+// ---- mounts (W15 round 4): the engine state machines and each mount's resolved takes ----
+
+/** advanceMountEngine and advanceInterruptibleMountEngine over scripted input runs. */
+function mountEngineSuite(): ParitySuite {
+  const cases: ParityCase[] = [];
+  const scripts: Array<{ name: string; dt: number; moving: string }> = [
+    { name: 'tap', dt: 0.1, moving: '1100000000' },
+    { name: 'hold', dt: 0.1, moving: '1111111111110000000' },
+    { name: 'stutter', dt: 0.05, moving: '1010101011110011' },
+    { name: 'retap', dt: 0.2, moving: '11111000110000' },
+    { name: 'idle', dt: 0.1, moving: '00000' },
+  ];
+  for (const policy of ['tank', 'interruptible'] as const)
+    for (const startDuration of [0.25, 0.9])
+      for (const s of scripts) {
+        let entry: MountEngineEntry | undefined;
+        const steps: Array<{ state: string; action: string | null; loop: boolean; idle: boolean }> = [];
+        [...s.moving].forEach((c, i) => {
+          const now = 1 + i * s.dt;
+          const d = (policy === 'tank' ? advanceMountEngine : advanceInterruptibleMountEngine)(entry, c === '1', now, startDuration);
+          entry = d.next;
+          steps.push({
+            state: d.next.state,
+            action: d.action,
+            loop: mountEngineLoopActive(d.next.state),
+            idle: mountEngineIdleAudible(d.next.state),
+          });
+        });
+        cases.push({ in: { policy, startDuration, dt: s.dt, moving: s.moving }, out: steps });
+      }
+  for (const reversing of [false, true])
+    for (const airborne of [false, true])
+      for (const hasIdle of [false, true])
+        for (const pivoting of [false, true])
+          cases.push({
+            in: { bend: true, reversing, airborne, hasIdle, pivoting },
+            out: mountEngineBendRate(reversing, airborne, hasIdle, pivoting),
+          });
+  return {
+    suite: 'audio_mount_engine',
+    source: 'src/game/mount_engine_state.ts (both policies, loop and idle audibility, bend rates)',
+    note: 'moving is one char per frame at 1 + i * dt seconds; bend cases carry bend: true',
+    cases,
+  };
+}
+
+/** Each mount's audio donor and the takes sfx.ts resolves for it (by key existence). */
+function mountTakesSuite(): ParitySuite {
+  const has = (k: string) => Object.hasOwn(SFX_CLIPS, k);
+  const cases: ParityCase[] = [];
+  for (const id of [...Object.keys(MOUNTS), 'referral_raptor', 'referral_tank', 'lantern_hall_destrier', 'no_such_mount']) {
+    const a = mountAudioKey(id);
+    const opt = (k: string) => (has(k) ? k : null);
+    cases.push({
+      in: { mountKey: id },
+      out: {
+        audioKey: a,
+        run: opt(`mount_run_${a}`),
+        loop: opt(`mount_loop_${a}`),
+        idle: opt(`mount_idle_${a}`),
+        engineStart: opt(`mount_run_${a}_start`),
+        engineIdle: opt(`mount_run_${a}_idle`),
+        jump: opt(`mount_jump_${a}`) ?? 'move_jump',
+        land: opt(`mount_land_${a}`) ?? 'move_land',
+        summon: opt(`mount_summon_${a}`),
+        neigh: opt(`mount_neigh_${id}`),
+        apex: ['squawk', 'flap'].map((k) => `mount_${k}_${a}`).filter(has),
+      },
+    });
+  }
+  return { suite: 'audio_mount_takes', source: 'src/game/sfx.ts mount key resolution over mount_audio_key.ts', note: '', cases };
+}
+
 export const AUDIO_PARITY_SUITES: Record<string, () => ParitySuite> = {
+  audio_mount_engine: mountEngineSuite,
+  audio_mount_takes: mountTakesSuite,
   audio_sfx_router: sfxRouterSuite,
   audio_stingers: stingerSuite,
   audio_forest_density: forestSuite,
