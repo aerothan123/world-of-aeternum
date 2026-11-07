@@ -4,6 +4,7 @@
 
 import { esc } from './esc';
 import { t } from './i18n';
+import { type StoreTab, storeTabs } from './store_surfaces_core';
 import { svgIcon } from './ui_icons';
 
 export function dailyRewardsTitleHtml(): string {
@@ -13,12 +14,22 @@ export function dailyRewardsTitleHtml(): string {
   );
 }
 
-export function wocStoreTabsHtml(): string {
+/** The tab strip offers only the tabs this build sells (store_surfaces_core.ts):
+ *  with membership switched off there is no Memberships tab to select. */
+export function wocStoreTabsHtml(tabs: readonly StoreTab[] = storeTabs()): string {
+  const label = {
+    store: 'hudChrome.wocStore.storeTab',
+    memberships: 'hudChrome.wocStore.membershipsTab',
+  } as const;
   return (
     '<div class="woc-store-tabs">' +
     `<div class="woc-store-tablist ui-seg" role="tablist" aria-label="${esc(t('hudChrome.wocStore.tabsLabel'))}">` +
-    `<button id="woc-store-tab-store" class="ui-seg-tab" type="button" role="tab" aria-controls="woc-store-panel" data-woc-store-tab="store">${esc(t('hudChrome.wocStore.storeTab'))}</button>` +
-    `<button id="woc-store-tab-memberships" class="ui-seg-tab" type="button" role="tab" aria-controls="woc-store-panel" data-woc-store-tab="memberships">${esc(t('hudChrome.wocStore.membershipsTab'))}</button>` +
+    tabs
+      .map(
+        (tab) =>
+          `<button id="woc-store-tab-${tab}" class="ui-seg-tab" type="button" role="tab" aria-controls="woc-store-panel" data-woc-store-tab="${tab}">${esc(t(label[tab]))}</button>`,
+      )
+      .join('') +
     '</div>' +
     `<span class="woc-store-loading" data-woc-store-loading role="status" aria-live="polite" aria-label="${esc(t('hudChrome.wocStore.loading'))}" aria-busy="false"><i aria-hidden="true"></i></span>` +
     '<span class="visually-hidden" data-membership-announcement role="status" aria-live="polite" aria-atomic="true"></span>' +

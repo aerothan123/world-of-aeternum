@@ -1057,6 +1057,11 @@ export function buildInterfaceControls(
       { value: 2, labelKey: 'hudChrome.options.firstPersonNoBody' },
     ]),
     boolToggle(s, 'landingHighContrast', 'hudChrome.options.highContrastBackground'),
+    // The opt-in for first-party usage and performance data (default off;
+    // src/game/analytics_consent.ts). The first-launch prompt asks once; this is
+    // where the player changes their answer.
+    boolToggle(s, 'shareAnalytics', 'hudChrome.options.shareAnalytics'),
+    note('hudChrome.options.shareAnalyticsNote'),
     boolToggle(s, 'showDevBadges', 'hudChrome.options.showDevBadges'),
     boolToggle(s, 'showPlaytime', 'hudChrome.options.showPlaytime'),
     boolToggle(s, 'showDailyRewardsChest', 'hudChrome.options.showDailyRewardsChest'),

@@ -7,6 +7,7 @@ import { crucibleCollectionFamilyForSet } from './content/crucible_collections';
 import type { TalentModifiers } from './content/talents';
 import { resolveActiveWeaponSkin } from './content/weapon_skin_rules';
 import { aggregateSetBonuses, CLASSES, ITEMS, MOBS, type NpcDef } from './data';
+import { isBroken } from './durability/durability_rules';
 import { canDualWield, isShieldItem } from './equipment_rules';
 import { activeItemInstanceStats } from './item_instance_stats';
 import { meetsLevelRequirement } from './item_level_req';
@@ -365,6 +366,9 @@ export function recalcPlayerStats(
     if (!itemId) continue;
     const baseItem = ITEMS[itemId];
     if (!baseItem) continue;
+    // A broken piece (0 durability, src/sim/durability/) grants nothing until
+    // repaired; it stays worn and rendered like over-level gear.
+    if (isBroken(baseItem, equipmentInstance?.[slot]?.wear)) continue;
     if ((isMembershipArmour(itemId) || isMembershipWeapon(itemId)) && !e.membershipActive) continue;
     if (isReferralArmour(itemId) && !e.referralInviterName) continue;
     const item = referralArmourItem(
@@ -630,7 +634,9 @@ export function recalcPlayerStats(
     ? membershipWeaponItem(baseMainhand, cls, mods?.spec, lvl, !!e.membershipActive)
     : undefined;
   const weapon =
-    mainhand?.weapon && meetsLevelRequirement(lvl, mainhand)
+    mainhand?.weapon &&
+    meetsLevelRequirement(lvl, mainhand) &&
+    !isBroken(baseMainhand, equipmentInstance?.mainhand?.wear)
       ? lootQualityWeapon(
           mainhand,
           isMembershipWeapon(mainhand.id) && !e.membershipActive
@@ -647,7 +653,8 @@ export function recalcPlayerStats(
     canDualWield(cls, mods?.spec) &&
     !(offhand && isMembershipWeapon(offhand.id) && !e.membershipActive) &&
     offhand?.kind === 'weapon' &&
-    meetsLevelRequirement(lvl, offhand)
+    meetsLevelRequirement(lvl, offhand) &&
+    !isBroken(baseOffhand, equipmentInstance?.offhand?.wear)
       ? lootQualityWeapon(offhand, equipmentInstance?.offhand)!
       : null;
   e.offhandWeapon = offhandWeapon;

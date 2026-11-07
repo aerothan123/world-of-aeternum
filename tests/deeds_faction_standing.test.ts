@@ -42,11 +42,19 @@ describe('faction standing deeds', () => {
       meter: 'standingRiftWatch',
       amount: STANDING_THRESHOLDS.champion,
     });
-    expect(DEEDS.prog_rift_watch_champion.reward).toEqual({ kind: 'title', text: 'Riftwarden' });
-    expect(DEEDS.prog_church_order_champion.reward).toEqual({ kind: 'title', text: 'Dawnkeeper' });
-    expect(DEEDS.prog_automatons_champion.reward).toEqual({ kind: 'title', text: 'Forgemaster' });
+    expect(DEEDS.prog_rift_watch_champion.reward).toEqual({ kind: 'title', text: 'Magnate' });
+    expect(DEEDS.prog_church_order_champion.reward).toEqual({
+      kind: 'title',
+      text: 'Lanternwarden',
+    });
+    expect(DEEDS.prog_automatons_champion.reward).toEqual({
+      kind: 'title',
+      text: 'Master Hearthwright',
+    });
     expect(DEEDS.prog_faction_champion_all.trigger).toEqual({
       kind: 'meta',
+      // Frozen (design rule 9): the shipped three; the Bracken Circle's
+      // champion deed stands on its own.
       deedIds: [
         'prog_rift_watch_champion',
         'prog_church_order_champion',
@@ -60,15 +68,15 @@ describe('faction standing deeds', () => {
     const sim = devSim();
     const meta = sim.players.get(sim.playerId)!;
     // Under the threshold: the award marks a pass but nothing is earned.
-    sim.chat(`/dev rep rift_watch ${STANDING_THRESHOLDS.trusted - 1}`);
+    sim.chat(`/dev rep gilt_measure ${STANDING_THRESHOLDS.trusted - 1}`);
     let evs = sim.tick();
     expect(meta.deedsEarned.has('prog_rift_watch_trusted')).toBe(false);
     expect(unlocked(evs, 'prog_rift_watch_trusted')).toBe(0);
 
     // The crossing award (level 1 sits under the 3,000 low-level cap, so the
     // final point lands whole): granted at the tick tail, exactly once.
-    sim.chat('/dev rep rift_watch 1');
-    expect(meta.factions.rift_watch).toBe(STANDING_THRESHOLDS.trusted);
+    sim.chat('/dev rep gilt_measure 1');
+    expect(meta.factions.gilt_measure).toBe(STANDING_THRESHOLDS.trusted);
     expect(meta.deedsEarned.has('prog_rift_watch_trusted')).toBe(false);
     evs = sim.tick();
     expect(meta.deedsEarned.has('prog_rift_watch_trusted')).toBe(true);
@@ -78,7 +86,7 @@ describe('faction standing deeds', () => {
     expect(meta.deedsEarned.has('prog_automatons_trusted')).toBe(false);
     expect(meta.deedsEarned.has('prog_rift_watch_champion')).toBe(false);
     // Already earned: never re-fires.
-    sim.chat('/dev rep rift_watch 1');
+    sim.chat('/dev rep gilt_measure 1');
     evs = sim.tick();
     expect(unlocked(evs, 'prog_rift_watch_trusted')).toBe(0);
   });
@@ -93,7 +101,10 @@ describe('faction standing deeds', () => {
     sim.chat('/dev level 20'); // lifts the low-level standing cap
     sim.chat(`/dev rep all ${STANDING_THRESHOLDS.champion}`);
     const evs = sim.tick();
-    for (const faction of ['rift_watch', 'church_order', 'automatons'] as const) {
+    // Deed ids are frozen on the legacy faction keys (rift_watch is the Gilt
+    // Measure, church_order the Lanternwardens, automatons the Hearthwright
+    // Compact); the Bracken Circle's are new.
+    for (const faction of ['rift_watch', 'church_order', 'automatons', 'bracken_circle'] as const) {
       expect(meta.deedsEarned.has(`prog_${faction}_trusted`), faction).toBe(true);
       expect(meta.deedsEarned.has(`prog_${faction}_champion`), faction).toBe(true);
       expect(unlocked(evs, `prog_${faction}_champion`), faction).toBe(1);
@@ -106,7 +117,7 @@ describe('faction standing deeds', () => {
     // The Champion deed's title is now selectable and reads through IWorld.
     sim.setActiveTitle('prog_rift_watch_champion');
     expect(sim.activeTitle).toBe('prog_rift_watch_champion');
-    expect(DEEDS[sim.activeTitle!].reward).toEqual({ kind: 'title', text: 'Riftwarden' });
+    expect(DEEDS[sim.activeTitle!].reward).toEqual({ kind: 'title', text: 'Magnate' });
     sim.setActiveTitle('prog_automatons_champion');
     expect(sim.activeTitle).toBe('prog_automatons_champion');
   });
@@ -116,16 +127,16 @@ describe('faction standing deeds', () => {
     const meta = sim.players.get(sim.playerId)!;
     const player = sim.entities.get(sim.playerId)!;
     sim.chat('/dev level 20');
-    const quest = WORLD_QUESTS_BY_ID.wq_farshore_salvage; // a Rift Watch zone quest
+    const quest = WORLD_QUESTS_BY_ID.wq_farshore_salvage; // a Gilt Measure zone quest
     const award = worldQuestStandingReward(quest, player.level);
     expect(award).toBeGreaterThan(0);
     // Sit one point short of Trusted, then take the real turn-in reward path.
-    meta.factions.rift_watch = STANDING_THRESHOLDS.trusted - 1;
+    meta.factions.gilt_measure = STANDING_THRESHOLDS.trusted - 1;
     sim.tick();
     expect(meta.deedsEarned.has('prog_rift_watch_trusted')).toBe(false);
 
     awardWorldQuest(sim.ctx, meta, quest);
-    expect(meta.factions.rift_watch).toBe(STANDING_THRESHOLDS.trusted - 1 + award);
+    expect(meta.factions.gilt_measure).toBe(STANDING_THRESHOLDS.trusted - 1 + award);
     const evs = sim.tick();
     expect(meta.deedsEarned.has('prog_rift_watch_trusted')).toBe(true);
     expect(unlocked(evs, 'prog_rift_watch_trusted')).toBe(1);

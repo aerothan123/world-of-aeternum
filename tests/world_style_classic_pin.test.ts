@@ -29,7 +29,12 @@ const CLASSIC_PINS: Record<string, string> = {
   'terrain.splat.high': '03953f522820d52a',
   'terrain.splat.ultra': 'fb15c29c28059137',
   'terrain.splat.insane': 'fb15c29c28059137',
-  'terrain.lambert.low': '1f6def0c41427781',
+  // Re-pinned for the world expansion: the GLSL this hashes is byte-identical
+  // to the pre-expansion tree (64d84727), verified by dumping both. The key
+  // also hashes the hook SOURCE, whose detail-map uv now reads the frozen
+  // shipped box (DETAIL_MAP_BOX, terrain_grid_core.ts) instead of the live
+  // world bounds, so the frontier never stretches the Classic ground texture.
+  'terrain.lambert.low': 'b52d9c7c3af617f3',
   'sky.frag.plain': '943ec6e020bc2d08',
   'sky.frag.zoneHaze': '30b94a672d2f46d6',
   'grade.frag': '70a8a3a8f9a8d222',

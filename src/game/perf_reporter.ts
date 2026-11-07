@@ -8,6 +8,7 @@ import {
   type HostEssentialsProbe,
   hostEssentialsPayloadFields,
 } from './desktop_host_essentials';
+import { liveAnalyticsAllowed } from './first_party_analytics';
 import { frameCadenceBeaconBlock, frameCadenceBeaconFields } from './frame_cadence_wiring';
 import { createGpuAdapterProbe } from './gpu_adapter_probe';
 import { collectLoadSpans } from './load_profiler';
@@ -52,6 +53,11 @@ export interface PerfReporterOptions {
   // R4); null (or absent, for benchmark harness callers) leaves the payload on
   // the legacy gameplay label with null crowd numerators.
   worldTelemetryProvider?: () => WorldTelemetry | null;
+  // The analytics consent probe, read at every send (default: the live settings via
+  // liveAnalyticsAllowed). A player who has not opted in sends NO report; only the
+  // localhost dev trace (localDevPerfTraceEnabled) bypasses it, on a developer's own
+  // machine. Wyndlewood telemetry is strictly opt-in (docs/legal/privacy-policy.md).
+  analyticsAllowed?: () => boolean;
   // True inside the Electron shell, which already forces the discrete GPU
   // (PR #1991), so the perf-doctor 'integrated-gpu' suggestion never fires
   // there (ruling R15). Absent (benchmark harness callers) means false.
@@ -70,7 +76,13 @@ export interface PerfReporterOptions {
   hostEssentialsProbeFactory?: () => HostEssentialsProbe;
 }
 
-export type PerfReporterSkipReason = 'disabled' | 'hidden' | 'not-ready' | 'no-renderer';
+export type PerfReporterSkipReason =
+  | 'disabled'
+  | 'hidden'
+  | 'not-ready'
+  | 'no-renderer'
+  // The player has not opted in to analytics (src/game/analytics_consent.ts).
+  | 'no-consent';
 
 export interface PerfReporterStatus {
   enabled: boolean;
@@ -825,6 +837,10 @@ export function startPerfReporter(options: PerfReporterOptions): () => void {
   function send(sendOptions: { allowHidden?: boolean; final?: boolean } = {}): void {
     timer = null;
     if (stopped) return;
+    if (!devTrace && !(options.analyticsAllowed ?? liveAnalyticsAllowed)()) {
+      skip('no-consent', sendOptions.final ? null : cadenceDelay(REPEAT_REPORT_MS));
+      return;
+    }
     if (
       !sendOptions.allowHidden &&
       (document.visibilityState !== 'visible' || options.shellHidden?.() === true)

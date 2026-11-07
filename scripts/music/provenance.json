@@ -1,0 +1,668 @@
+{
+  "takes": {
+    "wyn_title": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 150,
+      "credits": 0,
+      "sung": false
+    },
+    "wyn_town_eastbrook_day": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 150,
+      "credits": 2062,
+      "sung": false
+    },
+    "wyn_sting_level_up": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 6,
+      "credits": 82,
+      "sung": false
+    },
+    "wyn_region_eastbrook_vale_day": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 120,
+      "credits": 1650,
+      "sung": false
+    },
+    "wyn_region_eastbrook_vale_night": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 90,
+      "credits": 1238,
+      "sung": false
+    },
+    "wyn_region_mirefen_marsh_day": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": 1375,
+      "sung": false
+    },
+    "wyn_region_thornpeak_heights_day": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_town_eastbrook_night": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": 2750,
+      "sung": false
+    },
+    "wyn_combat_pastoral": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_dungeon_hollow_crypt": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": 2337,
+      "sung": false
+    },
+    "wyn_boss_dungeon": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 90,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_home_day": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 110,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_sting_quest_complete": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 6,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_sting_discovery": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 7,
+      "credits": 2928,
+      "sung": false
+    },
+    "wyn_sting_death": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 6,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_sting_deed": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 5,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_sting_home_key": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 6,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_charselect": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 90,
+      "credits": 1471,
+      "sung": false
+    },
+    "wyn_region_proving_shore_day": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_region_farshore_isle_day": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": 2750,
+      "sung": false
+    },
+    "wyn_region_mirefen_marsh_night": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_region_thornpeak_heights_night": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": 1924,
+      "sung": false
+    },
+    "wyn_region_veiled_hollow_day": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": 1375,
+      "sung": false
+    },
+    "wyn_region_drakelands_day": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": 1375,
+      "sung": false
+    },
+    "wyn_region_frostveil_day": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": 1375,
+      "sung": false
+    },
+    "wyn_region_amberfall_day": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": 1375,
+      "sung": false
+    },
+    "wyn_region_willowfen_day": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": 1375,
+      "sung": false
+    },
+    "wyn_region_nightbloom_day": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": 1375,
+      "sung": false
+    },
+    "wyn_region_wraithwood_day": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_region_palmreach_day": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": 2750,
+      "sung": false
+    },
+    "wyn_region_evergarden_day": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": 1375,
+      "sung": false
+    },
+    "wyn_region_galecrest_day": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": 1375,
+      "sung": false
+    },
+    "wyn_town_fenbridge_day": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 110,
+      "credits": 1375,
+      "sung": false
+    },
+    "wyn_town_highwatch_day": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 110,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_town_goldcrest_day": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 110,
+      "credits": 1512,
+      "sung": false
+    },
+    "wyn_combat_marsh": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_combat_highland": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": 3436,
+      "sung": false
+    },
+    "wyn_combat_eerie": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_combat_pale_accord": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_dungeon_sunken_bastion": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": 1924,
+      "sung": false
+    },
+    "wyn_dungeon_drowned_temple": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": 2750,
+      "sung": false
+    },
+    "wyn_dungeon_last_keep": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_dungeon_dawnhold_castle": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_dungeon_gravewyrm_sanctum": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": 4125,
+      "sung": false
+    },
+    "wyn_dungeon_ancient_forge": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_boss_pale_accord": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 90,
+      "credits": 2613,
+      "sung": false
+    },
+    "wyn_boss_raid_dragon": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 90,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_home_night": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 85,
+      "credits": 2407,
+      "sung": false
+    },
+    "wyn_song_kettle_before_the_candle": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 140,
+      "credits": 1925,
+      "sung": true
+    },
+    "wyn_song_usually_is": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 132,
+      "credits": null,
+      "sung": true
+    },
+    "wyn_song_raise_the_beam": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 120,
+      "credits": 5775,
+      "sung": true
+    },
+    "wyn_song_muddlecap_lullaby": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 130,
+      "credits": 2118,
+      "sung": true
+    },
+    "wyn_song_keep_to_the_road": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 150,
+      "credits": 2062,
+      "sung": true
+    },
+    "wyn_region_proving_shore_night": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_region_farshore_isle_night": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_region_veiled_hollow_night": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": 2886,
+      "sung": false
+    },
+    "wyn_region_drakelands_night": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": 962,
+      "sung": false
+    },
+    "wyn_region_frostveil_night": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_region_amberfall_night": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_region_willowfen_night": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": 2886,
+      "sung": false
+    },
+    "wyn_region_nightbloom_night": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_region_wraithwood_night": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": 1924,
+      "sung": false
+    },
+    "wyn_region_palmreach_night": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_region_evergarden_night": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_region_galecrest_night": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": 2886,
+      "sung": false
+    },
+    "wyn_region_southern_reaches_day": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": 1375,
+      "sung": false
+    },
+    "wyn_region_southern_reaches_night": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": 962,
+      "sung": false
+    },
+    "wyn_town_fenbridge_night": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 75,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_town_highwatch_night": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 75,
+      "credits": 1031,
+      "sung": false
+    },
+    "wyn_town_goldcrest_night": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 75,
+      "credits": 2062,
+      "sung": false
+    },
+    "wyn_combat_frost": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_combat_wild": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 70,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_dungeon_wildheart_basin": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 100,
+      "credits": 3299,
+      "sung": false
+    },
+    "wyn_boss_final": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 90,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_song_five_witnesses": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 120,
+      "credits": 2888,
+      "sung": true
+    },
+    "wyn_boss_undead": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 90,
+      "credits": 1238,
+      "sung": false
+    },
+    "wyn_boss_wild": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 90,
+      "credits": 1238,
+      "sung": false
+    },
+    "wyn_crucible_heart": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 110,
+      "credits": 1512,
+      "sung": false
+    },
+    "wyn_crucible_assembly": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 110,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_town_gourdlight": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 90,
+      "credits": 2750,
+      "sung": false
+    },
+    "wyn_minigame_playful": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 75,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_minigame_tense": {
+      "date": "2026-11-05",
+      "planTier": "creator",
+      "model": "music_v2",
+      "requestedSeconds": 75,
+      "credits": null,
+      "sung": false
+    },
+    "wyn_boss_tide": {
+      "date": "2026-11-05",
+      "planTier": "pro",
+      "model": "music_v2",
+      "requestedSeconds": 90,
+      "credits": null,
+      "sung": false
+    }
+  }
+}

@@ -44,10 +44,11 @@ describe('Guide: Factions and Standing page', () => {
     expect(html.match(/\{[a-zA-Z][a-zA-Z0-9_]*\}/g) ?? []).toEqual([]);
   });
 
-  it('names all three factions, pinned to the live faction table', () => {
+  it('names all four allied factions, pinned to the live faction table', () => {
     const text = textOf(renderFactions());
     const names = Object.values(FACTIONS).map((f) => f.name);
-    expect(names.length).toBe(3);
+    // Wyndlewood's four allied factions (src/sim/factions.ts).
+    expect(names.length).toBe(4);
     for (const name of names) expect(text, `faction "${name}" missing`).toContain(name);
   });
 

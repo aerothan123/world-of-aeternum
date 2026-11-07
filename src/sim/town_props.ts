@@ -159,6 +159,19 @@ export interface TownStationAnchor {
   type: string;
   x: number;
   z: number;
+  /** Dressed by authored town decor (StationDef.dressed): no generic cluster
+   *  here, though the point still keeps every other cluster off it. */
+  dressed?: boolean;
+}
+
+/** The anchor a content station record stands for (colliders.ts reads the
+ *  active bundle's stations through this). */
+export function stationAnchor(station: {
+  type: string;
+  pos: { x: number; z: number };
+  dressed?: boolean;
+}): TownStationAnchor {
+  return { type: station.type, x: station.pos.x, z: station.pos.z, dressed: station.dressed };
 }
 
 /**
@@ -173,6 +186,7 @@ export function townPropPlacements(
 ): TownPropPlacement[] {
   const out: TownPropPlacement[] = [];
   for (const st of stations) {
+    if (st.dressed) continue;
     const cluster = STATION_PROP_CLUSTERS[st.type as StationType];
     if (!cluster) continue;
     for (const prop of cluster) {

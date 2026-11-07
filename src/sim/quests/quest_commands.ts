@@ -28,6 +28,7 @@ import { WISP_MAZE_QUEST_ID } from '../content/world_quest_wisp_maze';
 import { DUNGEONS, ITEMS, QUESTS } from '../data';
 import { formatMoney } from '../format_money';
 import { removePreferFungible } from '../items';
+import { grantLifeSkillStanding } from '../life_skills/standing_seam';
 import { grantFreshLoot } from '../loot/fresh_quality_grant';
 import type { ArchetypeState } from '../professions/archetype';
 import { armCadence, cadenceBlockedKeys } from '../professions/cadence';
@@ -39,6 +40,7 @@ import { seasonalBlockedQuestIds } from '../seasonal/seasonal_quests';
 import { activeSeasonalEventOf } from '../seasonal/seasonal_state';
 import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
+import { offDayTownBoardQuestIds, standsAtTownBoard } from '../town_board';
 import { hubHealingAbilityId } from '../tutorial/hub_healing_lesson';
 import {
   dist2d,
@@ -62,6 +64,8 @@ import {
 import { playerHoldsQuestItem } from './quest_item_presence';
 import { grantQuestRecipeReward, validateQuestRecipeReward } from './quest_recipe_rewards';
 import { defaultRewardChoice, questFixedReward, resolveRewardChoice } from './quest_reward_choice';
+import { grantQuestStandingReward } from './quest_standing_reward';
+import { questLevelOf, questRewardXp } from './quest_xp';
 import { weeklyLockedQuestIds, weeklyQuestLockoutId } from './weekly_quest_lock';
 
 // Pure quest-state computation, shared by the sim and the network client. Relocated
@@ -175,8 +179,19 @@ export function repeatBlockedQuestIds(
     ctx.resetDay,
     ctx.seasonal.devDaily,
   );
-  if (cadence.length === 0 && weekly.length === 0 && seasonal.length === 0) return undefined;
-  return new Set([...cadence, ...weekly, ...seasonal]);
+  // Town-board postings not on the board today (town_board/town_board_access.ts),
+  // keyed on the character's realm-day cycle, which the online client mirrors
+  // as wqday, so both worlds read the same day.
+  const offBoard = offDayTownBoardQuestIds(meta.worldQuestCycle);
+  if (
+    cadence.length === 0 &&
+    weekly.length === 0 &&
+    seasonal.length === 0 &&
+    offBoard.length === 0
+  ) {
+    return undefined;
+  }
+  return new Set([...cadence, ...weekly, ...seasonal, ...offBoard]);
 }
 
 function questNpcFor(
@@ -278,6 +293,15 @@ export function acceptQuest(
   }
   if (!validateProfessionQuestSelection(quest, meta, selection)) {
     ctx.error(meta.entityId, 'That profession choice is not available.');
+    return;
+  }
+  if (quest.townBoard !== undefined) {
+    // A town-board posting is taken from the board itself, never its poster.
+    if (!standsAtTownBoard(quest, p.pos)) {
+      ctx.error(meta.entityId, 'You must be at the notice board to take that posting.');
+      return;
+    }
+    finalizeQuestAccept(ctx, questId, quest, meta, selection);
     return;
   }
   const nearby = questNpcFor(ctx, questId, 'giver', p);
@@ -542,12 +566,19 @@ export function turnInQuestCore(
   const chosen = rewardChoice ?? defaultRewardChoice(quest, meta.cls, meta.talents.spec);
   if (chosen) grantFreshLoot(ctx, chosen, 1, meta.entityId, rewardOpts);
   grantQuestRecipeReward(ctx, quest, meta);
-  ctx.grantXp(quest.xpReward, meta);
+  grantQuestStandingReward(ctx, quest, meta);
+  // Level-formula XP with the classic out-level reduction (quests/quest_xp.ts).
+  const turnInLevel = ctx.entities.get(meta.entityId)?.level ?? 1;
+  ctx.grantXp(questRewardXp(quest, turnInLevel), meta);
   // Arm the repeat-cadence window (work orders): the quest stays
   // unavailable (computeQuestState) until now + repeatCadenceTicks, server-
   // authoritative and persisted per character with zero-default omission.
   if (quest.repeatCadenceTicks && quest.repeatCadenceTicks > 0) {
     armCadence(meta.questCadence, questId, ctx.tickCount, quest.repeatCadenceTicks);
+    // A crafter work order also pays Hearthwright standing (life_skills seam).
+    if (questId.startsWith('q_prof_workorder_')) {
+      grantLifeSkillStanding(ctx, meta, 'workOrder', questLevelOf(quest));
+    }
   }
   // A weekly quest locks until the realm's weekly reset (weekly_quest_lock.ts); a
   // daily one rides the same lock to the next daily reset.

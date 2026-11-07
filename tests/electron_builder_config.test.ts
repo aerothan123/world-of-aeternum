@@ -26,7 +26,11 @@ const base = {
   linux: { target: [{ target: 'AppImage', arch: ['x64', 'arm64'] }] },
 };
 
+// The former production origin. Wyndlewood has NO provisioned production origin
+// yet (electron/brand.cjs PRODUCTION_API_ORIGIN is empty), so this is now an
+// ordinary non-production origin: it reads the dev track and derives its own feed.
 const prodOrigin = 'https://worldofclaudecraft.com';
+const prodDerivedFeed = `${prodOrigin}/downloads/desktop`;
 
 describe('desktopBuilderConfig', () => {
   it('stamps the website channel into extraMetadata and keeps the publish feed', () => {
@@ -35,14 +39,14 @@ describe('desktopBuilderConfig', () => {
       distribution: 'website',
       apiOrigin: prodOrigin,
     });
-    expect(config.publish).toEqual({ ...base.publish, channel: 'latest' });
+    expect(config.publish).toEqual({ ...base.publish, url: prodDerivedFeed, channel: 'dev' });
     expect(config.appId).toBe(base.appId);
     expect(config.mac.hardenedRuntime).toBe(true);
   });
 
-  it('routes the production origin to the latest update channel', () => {
+  it('routes every origin to the dev channel while no production origin is provisioned', () => {
     const config = desktopBuilderConfig({ base, distribution: 'website', apiOrigin: prodOrigin });
-    expect(config.publish?.channel).toBe('latest');
+    expect(config.publish?.channel).toBe('dev');
   });
 
   it('routes every non-production origin to the dev update channel (issue 1537)', () => {
@@ -95,7 +99,7 @@ describe('desktopBuilderConfig', () => {
       apiOrigin: prodOrigin,
       updateChannel: '',
     });
-    expect(prod.publish?.channel).toBe('latest');
+    expect(prod.publish?.channel).toBe('dev');
     const dev = desktopBuilderConfig({
       base,
       distribution: 'website',
@@ -477,9 +481,9 @@ const realBuild = JSON.parse(
 describe('self-hosted update feed (docs/desktop-self-hosted-updates.md)', () => {
   const selfOrigin = 'https://104-248-71-233.sslip.io';
 
-  it('resolveUpdateFeedUrl: production keeps the official feed, others derive /downloads/desktop', () => {
+  it('resolveUpdateFeedUrl: with no provisioned production origin, every origin derives /downloads/desktop', () => {
     expect(resolveUpdateFeedUrl({ baseUrl: base.publish.url, apiOrigin: prodOrigin })).toBe(
-      base.publish.url,
+      prodDerivedFeed,
     );
     expect(resolveUpdateFeedUrl({ baseUrl: base.publish.url, apiOrigin: selfOrigin })).toBe(
       `${selfOrigin}/downloads/desktop`,
@@ -510,9 +514,9 @@ describe('self-hosted update feed (docs/desktop-self-hosted-updates.md)', () => 
     ).toThrow(/WOC_DESKTOP_UPDATE_URL/);
   });
 
-  it('production builds are byte-identical to before: official feed url, no version stamp', () => {
+  it('the former production origin is now an ordinary self-hosted build: derived feed, no version stamp', () => {
     const config = desktopBuilderConfig({ base, distribution: 'website', apiOrigin: prodOrigin });
-    expect(config.publish).toEqual({ ...base.publish, channel: 'latest' });
+    expect(config.publish).toEqual({ ...base.publish, url: prodDerivedFeed, channel: 'dev' });
     expect(config.extraMetadata.version).toBeUndefined();
   });
 
@@ -696,6 +700,10 @@ describe('package.json build block: the host diagnostic ships beside the asar', 
     for (const config of [website, steam, epic]) {
       expect((config as unknown as WithResources).extraResources).toEqual([
         { from: 'electron/host_diag/dist/HostDiag.ps1', to: 'host-diag/HostDiag.ps1' },
+        // The license notices ship beside the app (docs/legal/license-review.md).
+        { from: 'LICENSE', to: 'licenses/LICENSE' },
+        { from: 'THIRD_PARTY_NOTICES.md', to: 'licenses/THIRD_PARTY_NOTICES.md' },
+        { from: 'CREDITS.md', to: 'licenses/CREDITS.md' },
       ]);
       for (const exclude of [
         '!electron/host_diag/win/**',

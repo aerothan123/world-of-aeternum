@@ -640,16 +640,16 @@ const hudStringsEn = {
       moveBody: 'Use {moveKeys} to move and the mouse to look around. Take a few steps to begin.',
       seekTitle: 'Seek the Marshal',
       seekBody:
-        'Marshal Redbrook waits in town and has work for a new blade. Follow the marker to reach him.',
+        'Warden Corren waits in town and has work for a new blade. Follow the marker to reach him.',
       talkTitle: 'Take the Task',
       talkBody:
-        'Stand close to Marshal Redbrook and press {interactKey} to speak, then accept his task.',
+        'Stand close to Warden Corren and press {interactKey} to speak, then accept his task.',
       slayTitle: 'Wolves at the Door',
       slayBody: 'Hunt the Forest Wolves on the north road. Target one and attack to thin the pack.',
       slayProgress: 'Forest Wolves slain: {current} / {needed}',
       returnTitle: 'Claim Your Reward',
       returnBody:
-        'Your task is done. Return to Marshal Redbrook and press {interactKey} to turn it in.',
+        'Your task is done. Return to Warden Corren and press {interactKey} to turn it in.',
     },
   },
 };

@@ -6,6 +6,8 @@ import type { MusicZone } from '../src/game/music';
 import {
   COMBAT_STREAM_URLS,
   pickStreamTrackIndex,
+  scoreCueUrl,
+  ZONE_STREAM_CUES,
   ZONE_STREAM_POOLS,
   ZONE_STREAM_URLS,
   zoneStreamUrls,
@@ -21,8 +23,8 @@ function assetPath(url: string): string {
  * file's sha256, same convention as the sampled SFX manifest
  * (scripts/sfx/manifest.mjs). server/static_cache.ts trusts an exact regex
  * match to cache the file immutably, so this suite is the guard rail that
- * catches a swapped-in remaster whose URL hash was not updated to match
- * (recompute via `node scripts/render_music.mjs --hash <file>`). */
+ * catches a swapped-in cue whose URL hash was not updated to match
+ * (rebuild with `node scripts/music/eleven_music.mjs build`). */
 function assetHash(url: string): string {
   return createHash('sha256')
     .update(readFileSync(assetPath(url)))
@@ -30,97 +32,43 @@ function assetHash(url: string): string {
     .slice(0, 12);
 }
 
-describe('remastered soundtrack catalog', () => {
-  it('maps every routable zone to a committed, content-hash-versioned mp3 under public/audio/music', () => {
+const VERSIONED = /^\/audio\/music\/wyn\/[a-z0-9_]+\.mp3\?v=[a-f0-9]{12}$/;
+
+function expectShipped(url: string | null | undefined, label: string): void {
+  expect(url, label).toMatch(VERSIONED);
+  if (!url) return;
+  expect(existsSync(assetPath(url)), `missing asset for ${label}: ${url}`).toBe(true);
+  const [, requestedHash] = url.split('?v=');
+  expect(requestedHash, `stale cache-bust hash for ${label}: ${url}`).toBe(assetHash(url));
+}
+
+describe('streamed soundtrack catalog', () => {
+  it('streams a committed, content-hash-versioned Wyndlewood score cue for every zone', () => {
     for (const [zone, url] of Object.entries(ZONE_STREAM_URLS)) {
-      if (url === null) continue;
-      expect(url, `zone '${zone}'`).toMatch(/^\/audio\/music\/[a-z0-9_]+\.mp3\?v=[a-f0-9]{12}$/);
-      expect(existsSync(assetPath(url)), `missing asset for zone '${zone}': ${url}`).toBe(true);
-      const [, requestedHash] = url.split('?v=');
-      expect(requestedHash, `stale cache-bust hash for zone '${zone}': ${url}`).toBe(
-        assetHash(url),
-      );
+      expectShipped(url, `zone '${zone}'`);
     }
   });
 
-  it('routes each supplied new-zone remaster to its matching music cue', () => {
-    const supplied = {
-      amber: [
-        '/audio/music/amber.mp3',
-        '338cb1c002c2139e3a9900f8145b3bb983d0c84da6168a52d3e3f0197c381440',
-      ],
-      farshore: [
-        '/audio/music/farshore.mp3',
-        '69d713cd3f3c3413e9cafb59fddb0b797fa147a2d80392d073bb076ef32103d6',
-      ],
-      fen: [
-        '/audio/music/fen.mp3',
-        '1ff84a71dd315f5a9c22ce374736bb1b852db7bd804b8557ef2d9eb6dc1e7278',
-      ],
-      frost: [
-        '/audio/music/frost.mp3',
-        '88500e3eb213b721296e48562870adf7b62f375ebcb89caaa44821b2538f22ad',
-      ],
-      gale: [
-        '/audio/music/gale.mp3',
-        'a940defc3275abb593c21bcf0ea8d0477523a62bfbebfa1d83b0904734532a5c',
-      ],
-      garden: [
-        '/audio/music/garden.mp3',
-        '9ec0e18f6d817d991ddadb6390d6908dd17cc6366c9903221c6f1dd784e4fbad',
-      ],
-      jungle: [
-        '/audio/music/jungle.mp3',
-        '9b86b3bbeb7b58e3eb971a8b13a5778c0f91b8bd189dd5824f01f7721ad38848',
-      ],
-      night: [
-        '/audio/music/night.mp3',
-        '44f582c437208d480fc0cb828e1ed91f254ccd4cd0236a0815c97e76fb75394e',
-      ],
-      proving_shore: [
-        '/audio/music/proving_shore.mp3',
-        '51e9b5a6c01f1e7ef1c7f602875de81f50a21d7e6428e9335e828897bb478b7c',
-      ],
-    } as const satisfies Partial<Record<MusicZone, readonly [string, string]>>;
-
-    for (const [zone, [url, expectedHash]] of Object.entries(supplied)) {
-      const versionedUrl = `${url}?v=${expectedHash.slice(0, 12)}`;
-      expect(ZONE_STREAM_URLS[zone as MusicZone], zone).toBe(versionedUrl);
-      const hash = createHash('sha256')
-        .update(readFileSync(assetPath(url)))
-        .digest('hex');
-      expect(hash, `${zone} remaster bytes`).toBe(expectedHash);
+  it('routes each zone to its named score cue', () => {
+    for (const [zone, cue] of Object.entries(ZONE_STREAM_CUES)) {
+      expect(ZONE_STREAM_URLS[zone as MusicZone], zone).toBe(scoreCueUrl(cue));
     }
+    expect(ZONE_STREAM_URLS.vale).toBe(scoreCueUrl('wyn_region_eastbrook_vale_day'));
+    expect(ZONE_STREAM_URLS.town_gourdlight).toBe(scoreCueUrl('wyn_town_gourdlight'));
   });
 
-  it('keeps explicit stand-ins only for new zones without supplied remasters', () => {
-    expect(ZONE_STREAM_URLS.dusk).toBe(ZONE_STREAM_URLS.marsh);
-    expect(ZONE_STREAM_URLS.ember).toBe(ZONE_STREAM_URLS.peaks);
-    expect(ZONE_STREAM_URLS.haunt).toBe(ZONE_STREAM_URLS.marsh);
+  it('references no upstream remaster (every inherited track was removed)', () => {
+    const all = [
+      ...Object.values(ZONE_STREAM_URLS),
+      ...COMBAT_STREAM_URLS,
+      ...Object.values(ZONE_STREAM_POOLS).flat(),
+    ];
+    for (const url of all) expect(url ?? '').toMatch(/^\/audio\/music\/wyn\//);
   });
 
-  it('routes the three Ignivar rooms to three distinct matching remasters', () => {
-    const rooms = [
-      'ignivar_forge_approach',
-      'ignivar_raid_arena',
-      'ignivar_inner_crucible',
-    ] as const;
-    const urls = rooms.map((room) => ZONE_STREAM_URLS[room]);
-
-    expect(new Set(urls).size).toBe(rooms.length);
-    for (const [index, room] of rooms.entries()) {
-      expect(urls[index]).toMatch(new RegExp(`/audio/music/${room}\\.mp3\\?v=[a-f0-9]{12}$`));
-    }
-  });
-
-  it('ships the two battle themes and they exist on disk', () => {
+  it('ships two battle themes on disk', () => {
     expect(COMBAT_STREAM_URLS).toHaveLength(2);
-    for (const url of COMBAT_STREAM_URLS) {
-      expect(url).toMatch(/^\/audio\/music\/combat_[0-9]+\.mp3\?v=[a-f0-9]{12}$/);
-      expect(existsSync(assetPath(url)), `missing combat asset: ${url}`).toBe(true);
-      const [, requestedHash] = url.split('?v=');
-      expect(requestedHash, `stale cache-bust hash: ${url}`).toBe(assetHash(url));
-    }
+    for (const url of COMBAT_STREAM_URLS) expectShipped(url, 'battle theme');
   });
 
   it('covers every MusicZone key exactly once', () => {
@@ -129,7 +77,6 @@ describe('remastered soundtrack catalog', () => {
       'town_fenbridge',
       'town_highwatch',
       'town_goldcrest',
-      // Gourdlight Eve's town theme (seasonal_music.ts swaps it in for the event cities)
       'town_gourdlight',
       'vale',
       'vale_legacy',
@@ -153,7 +100,6 @@ describe('remastered soundtrack catalog', () => {
       'ignivar_forge_approach',
       'ignivar_raid_arena',
       'ignivar_inner_crucible',
-      // The Rift crawls, each standing in on its nearest-mood remaster.
       'rift_frost',
       'rift_ember',
       'rift_venom',
@@ -168,36 +114,15 @@ describe('remastered soundtrack catalog', () => {
 
   // Goldcrest Harbor is the one zone shipping a pair of cues; every other zone
   // resolves to the single stream so the common path stays untouched.
-  it('resolves the capital to both harbor remasters and everyone else to one', () => {
+  it('resolves the capital to both harbor cues and everyone else to one', () => {
     expect(zoneStreamUrls('town_goldcrest')).toEqual([
-      '/audio/music/town_goldcrest_1.mp3?v=0cf44456d0f5',
-      '/audio/music/town_goldcrest_2.mp3?v=c616612609d6',
+      scoreCueUrl('wyn_town_goldcrest_day'),
+      scoreCueUrl('wyn_town_goldcrest_night'),
     ]);
-    expect(zoneStreamUrls('town_highwatch')).toEqual([
-      '/audio/music/town_highwatch.mp3?v=8daa06e91073',
-    ]);
-  });
-
-  // Same content-hash rule the single-url map is held to above: a pooled
-  // remaster is served through the same immutable static cache, so a swapped-in
-  // file whose URL hash was not updated would be served stale forever.
-  it('ships every pooled remaster on disk, content-hash-versioned', () => {
-    for (const [zone, urls] of Object.entries(ZONE_STREAM_POOLS)) {
-      for (const url of urls ?? []) {
-        expect(url, `zone '${zone}'`).toMatch(/^\/audio\/music\/[a-z0-9_]+\.mp3\?v=[a-f0-9]{12}$/);
-        expect(existsSync(assetPath(url)), `missing pooled asset: ${url}`).toBe(true);
-        const [, requestedHash] = url.split('?v=');
-        expect(requestedHash, `stale cache-bust hash for pooled ${url}`).toBe(assetHash(url));
-      }
+    expect(zoneStreamUrls('town_highwatch')).toEqual([scoreCueUrl('wyn_town_highwatch_day')]);
+    for (const urls of Object.values(ZONE_STREAM_POOLS)) {
+      for (const url of urls ?? []) expectShipped(url, 'pooled cue');
     }
-  });
-
-  // The one-url-per-zone map is still read directly (ensureZoneStream's
-  // fallback, tooling); a pooled zone must resolve there too, not to undefined.
-  it('keeps a pooled zone resolvable through the single-url map', () => {
-    expect(ZONE_STREAM_URLS.town_goldcrest).toBe(
-      '/audio/music/town_goldcrest_1.mp3?v=0cf44456d0f5',
-    );
   });
 });
 

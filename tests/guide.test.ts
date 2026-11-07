@@ -2482,7 +2482,7 @@ describe('Guide professions generated content accuracy', () => {
     // the page names the forge and its master instead of "No station needed".
     const jc = GUIDE_PROF_CRAFTS.find((c) => c.id === 'jewelcrafting');
     expect(jc?.station).toBe('forge');
-    expect(jc?.masters.map((m) => m.name)).toContain('Forgemistress Darva');
+    expect(jc?.masters.map((m) => m.name)).toContain('Brunna Flintmorrow');
     // Enchanting keeps the null card by design: its recipe list is a sideline
     // (two toolworks charms) while enchanting itself needs no station.
     const ench = GUIDE_PROF_CRAFTS.find((c) => c.id === 'enchanting');
@@ -3059,7 +3059,7 @@ describe('Guide professions gathering accuracy', () => {
         crafted += 1;
       } else {
         expect(
-          rod.vendors.some((v) => v.name === 'Trader Wilkes' || v.name === 'Fisherman Brandt'),
+          rod.vendors.some((v) => v.name === 'Silven Brackett' || v.name === 'Fisherman Brandt'),
           `${rod.name} must name its stockist`,
         ).toBe(true);
         bought += 1;

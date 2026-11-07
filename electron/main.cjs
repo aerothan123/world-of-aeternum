@@ -24,6 +24,7 @@ const { pathToFileURL } = require('node:url');
 const {
   appNavigationOrigins,
   navigationAllowed,
+  embeddedSubframePolicy,
   isTrustedSender,
   isDevToolsToggleShortcut,
   isSoftwareRenderer,
@@ -55,8 +56,15 @@ const {
   sanitizeDiscordActivity,
 } = require('./discord_presence.cjs');
 const { createSteamShell } = require('./steam.cjs');
+const { createAddonsShell } = require('./addons.cjs');
 const { createEpicShell } = require('./epic.cjs');
-const { PRODUCTION_API_ORIGIN } = require('./update_guard.cjs');
+const {
+  DEEP_LINK_SCHEME,
+  LOCAL_DEV_API_ORIGIN,
+  PRODUCTION_API_ORIGIN,
+  PRODUCT_NAME,
+  resolveUserDataDir,
+} = require('./brand.cjs');
 const {
   MAX_FORWARDED_ERRORS,
   MAX_MIRRORED_CONSOLE_LINES,
@@ -73,6 +81,7 @@ const { createHostEssentials } = require('./host_essentials.cjs');
 const { DEFAULT_SHELL_STRINGS, sanitizeShellStrings } = require('./shell_strings.cjs');
 const { registerLinuxUrlHandler } = require('./linux_url_handler.cjs');
 const { allowGpuUnderSteamOverlay } = require('./steam_overlay_guard.cjs');
+const { applySteamOverlay, planSteamOverlay } = require('./steam_overlay.cjs');
 const { attachRendererCrashRecovery, installProcessCrashGuards } = require('./crash_guard.cjs');
 const { initUpdater } = require('./updater.cjs');
 const {
@@ -117,6 +126,19 @@ const {
 // saver and the GPU opt-out setter each update their own field and persist the whole record,
 // so neither can clobber the other's (the opt-out can be toggled mid-session, with a
 // close-time bounds save still to come).
+//
+// The Wyndlewood rename changed productName, and Electron derives the default
+// user-data folder from it; keep an existing install's folder (its settings,
+// local storage, window memory, shader cache) instead of starting a new one.
+app.setPath(
+  'userData',
+  resolveUserDataDir({
+    current: app.getPath('userData'),
+    appData: app.getPath('appData'),
+    exists: (p) => fs.existsSync(p),
+    join: (...parts) => path.join(...parts),
+  }),
+);
 const desktopPrefsPath = path.join(app.getPath('userData'), DESKTOP_PREFS_FILENAME);
 const desktopPrefs = loadDesktopPrefs(desktopPrefsPath);
 // What THIS process started with, for the settings that only apply at the next launch
@@ -169,7 +191,7 @@ const APP_ORIGIN = 'app://worldofclaudecraft';
 const devServerUrl = app.isPackaged ? undefined : process.env.VITE_DEV_SERVER_URL;
 // Origins the main frame may navigate to (app origin, plus the dev server in dev).
 const appOrigins = appNavigationOrigins(APP_ORIGIN, devServerUrl);
-const deepLinkProtocol = 'worldofclaudecraft';
+const deepLinkProtocol = DEEP_LINK_SCHEME;
 let mainWindow = null;
 // The live window's reveal closure (showMainWindow inside createMainWindow),
 // published so focusMainWindow can route a pre-paint reveal through the SAME
@@ -195,6 +217,9 @@ function readPackagedMetadata() {
   }
 }
 const packagedMetadata = readPackagedMetadata();
+// The subframe allow-list for this build: Turnstile always, Stripe only on a card
+// checkout build (wocDesktop.cardCheckout; see shell_guards.cjs).
+const subframePolicy = embeddedSubframePolicy(packagedMetadata?.wocDesktop?.cardCheckout === true);
 const desktopConfig = resolveDesktopConfig({
   packagedMetadata,
   env: process.env,
@@ -207,7 +232,8 @@ const desktopConfig = resolveDesktopConfig({
 // what the Vite client bundle was baked with; loginOrigin is main-process-only);
 // the VITE_DESKTOP_* env pair is honored on unpackaged checkouts only,
 // mirroring the WOC_DISTRIBUTION hatch closure.
-const apiOrigin = deriveOrigin(desktopConfig.apiOrigin) || PRODUCTION_API_ORIGIN;
+const apiOrigin =
+  deriveOrigin(desktopConfig.apiOrigin) || PRODUCTION_API_ORIGIN || LOCAL_DEV_API_ORIGIN;
 const desktopLoginOrigin = desktopConfig.loginOrigin.replace(/\/+$/, '');
 
 // Crashpad must start before any window exists so native crashes in EVERY
@@ -217,10 +243,10 @@ const desktopLoginOrigin = desktopConfig.loginOrigin.replace(/\/+$/, '');
 // build time, https-only) they upload compressed and rate-limited. No extra
 // user data rides along: the report carries only process/version metadata.
 crashReporter.start({
-  productName: 'Project H',
+  productName: PRODUCT_NAME,
   // companyName is deprecated in Electron 43; the metadata field survives as
   // the _companyName global extra.
-  globalExtra: { _companyName: 'World of ClaudeCraft' },
+  globalExtra: { _companyName: PRODUCT_NAME },
   submitURL: desktopConfig.crashSubmitUrl || undefined,
   uploadToServer: desktopConfig.crashSubmitUrl !== '',
   compress: true,
@@ -338,6 +364,19 @@ log.info(
 // Must be before app 'ready', like the switches above, or Chromium never reads it.
 allowGpuUnderSteamOverlay({ app, log });
 
+// Windows Steam build: hook the Steam overlay (electron/steam_overlay.cjs). Also
+// before 'ready', for the same reason. Off on every other channel and platform,
+// and the --no-steam-overlay launch option keeps the stock GPU process.
+applySteamOverlay({
+  plan: planSteamOverlay({
+    distribution: desktopConfig.distribution,
+    platform: process.platform,
+    argv: process.argv,
+    steamEnabled: !app.isPackaged && process.env.WOC_STEAM_DEV === '1',
+  }),
+  log,
+});
+
 // Player-visible strings for main-process dialogs (crash recovery): the
 // renderer pushes t()-localized values via 'desktop-set-strings'
 // (src/game/desktop_shell_strings.ts); until that first push, e.g. a crash
@@ -389,7 +428,11 @@ function registerAppProtocol() {
   } catch {
     scriptHashes = [];
   }
-  const csp = buildContentSecurityPolicy({ apiOrigin, scriptHashes });
+  // Card checkout (Stripe) origins ride the CSP only when the build stamp says the
+  // Claudium store is on (scripts/electron-build.mjs cardCheckout); a Steam build
+  // made without VITE_CLAUDIUM_ENABLED=1 names no payment origin.
+  const cardCheckout = packagedMetadata?.wocDesktop?.cardCheckout === true;
+  const csp = buildContentSecurityPolicy({ apiOrigin, scriptHashes, cardCheckout });
   const notFound = () =>
     new Response('not found', { status: 404, headers: { 'Content-Security-Policy': csp } });
   protocol.handle('app', async (request) => {
@@ -535,12 +578,11 @@ const notifyGuard = createNotifyGuard({ now: () => Date.now() });
 // Discord Rich Presence (electron/discord_presence.cjs owns the protocol and
 // every failure arm). Built here at module scope because construction does no
 // IO: the first candidate socket is dialed when the game first has something to
-// show, not at boot. The app id resolves to the baked official registration by
-// default (owner provisioning, 2026-08-15), with WOC_DISCORD_APP_ID as the
-// operator override and any set-but-invalid value (WOC_DISCORD_APP_ID=off)
-// keeping the feature inert, the documented fork opt-out.
+// show, not at boot. The app id is config-driven: the WOC_DISCORD_APP_ID env
+// (operator override; any set-but-invalid value such as off keeps it inert),
+// else the build stamp, else none (inert). No upstream id is baked in.
 const discordPresence = createDiscordPresence({
-  clientId: resolveDiscordClientId(process.env),
+  clientId: resolveDiscordClientId(process.env, packagedMetadata?.wocDesktop?.discordAppId),
   connect: (p) => nodeNet.createConnection(p),
   // The walk ends at world-writable /tmp, so a candidate is dialed only when it
   // is a socket this account owns (electron/discord_presence.cjs explains why).
@@ -621,7 +663,7 @@ function createMainWindow() {
     height: restore.height,
     minWidth: MIN_WINDOW_WIDTH,
     minHeight: MIN_WINDOW_HEIGHT,
-    title: 'Project H',
+    title: PRODUCT_NAME,
     backgroundColor: '#05070a',
     // Created hidden and revealed on 'ready-to-show' below, so the player never
     // sees an unpainted white or empty frame before the client boots.
@@ -863,7 +905,15 @@ function createMainWindow() {
   // (event, url) form is deprecated. An off-origin navigation is blocked.
   const guardNavigation = (details) => {
     const isMainFrame = details.isMainFrame !== false;
-    if (!navigationAllowed(details.url, isMainFrame, appOrigins)) {
+    if (
+      !navigationAllowed(
+        details.url,
+        isMainFrame,
+        appOrigins,
+        subframePolicy.origins,
+        subframePolicy.hostSuffixes,
+      )
+    ) {
       details.preventDefault();
       if (
         isMainFrame &&
@@ -1012,7 +1062,7 @@ function handleDeepLink(url) {
   } catch {
     return;
   }
-  if (parsed.protocol !== 'worldofclaudecraft:' || parsed.hostname !== 'desktop-login') return;
+  if (parsed.protocol !== `${deepLinkProtocol}:` || parsed.hostname !== 'desktop-login') return;
   const code = parsed.searchParams.get('code');
   if (!code) return;
   deliverLoginCode(code);
@@ -1035,6 +1085,10 @@ const steamShell = createSteamShell({
   log,
 });
 
+// Steam builds init the Steam API at ready (the overlay wants a live session
+// from the first frame); a no-op on website and Epic builds.
+if (steamShell.enabled) app.whenReady().then(() => steamShell.warmUp());
+
 ipcMain.handle('desktop-steam-link-ticket', async (event) => {
   if (!trustedSender(event)) return null;
   return await steamShell.getLinkTicket();
@@ -1050,6 +1104,20 @@ ipcMain.handle('desktop-steam-link-settled', (event) => {
   return null;
 });
 
+// Steam login tickets (POST /api/auth/steam): same trust gate and never-throws
+// contract as the link ticket, on the login identity. Answers
+// { ticket, personaName } or null.
+ipcMain.handle('desktop-steam-login-ticket', async (event) => {
+  if (!trustedSender(event)) return null;
+  return await steamShell.getLoginTicket();
+});
+
+ipcMain.handle('desktop-steam-login-settled', (event) => {
+  if (!trustedSender(event)) return null;
+  steamShell.cancelLoginTicket();
+  return null;
+});
+
 // Whether this shell can mint link tickets at all (steam distribution or the
 // unpackaged dev loop): the renderer hides the Link button when false instead
 // of offering a click whose ticket can never exist (website builds). Computed
@@ -1057,6 +1125,36 @@ ipcMain.handle('desktop-steam-link-settled', (event) => {
 ipcMain.handle('desktop-steam-capability', (event) => {
   if (!trustedSender(event)) return false;
   return steamShell.enabled;
+});
+
+// Add-ons (electron/addons.cjs): the local AddOns folder under userData plus the
+// installed Steam Workshop items (only on the Steam distribution / WOC_STEAM_DEV
+// dev loop, through the same lazy steamworks.js client as the link tickets). The
+// shell only reads size-capped files and hands their text to the renderer's
+// sandboxed runtime; it never executes add-on code. Every handler resolves.
+const addonsShell = createAddonsShell({
+  userDataDir: app.getPath('userData'),
+  env: process.env,
+  isPackaged: app.isPackaged,
+  argv: process.argv,
+  steamShell,
+  openPath: (p) => shell.openPath(p),
+  log,
+});
+
+ipcMain.handle('desktop-addons-list', async (event) => {
+  if (!trustedSender(event)) return null;
+  return await addonsShell.list();
+});
+
+ipcMain.handle('desktop-addons-open-folder', async (event) => {
+  if (!trustedSender(event)) return false;
+  return await addonsShell.openFolder();
+});
+
+ipcMain.handle('desktop-addons-publish', async (event, request) => {
+  if (!trustedSender(event)) return { ok: false, code: 'failed' };
+  return await addonsShell.publish(request);
 });
 
 // Epic link proofs (electron/epic.cjs). Inert on website/steam builds: the

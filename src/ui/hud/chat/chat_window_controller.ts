@@ -27,6 +27,7 @@ import {
   WHISPER_TAB,
   WHISPER_TAB_LABEL_KEY,
 } from './chat_channels';
+import { runLocalChatCommandHooks } from './local_command_hooks';
 
 const CHAT_TABS_KEY = 'woc_chat_tabs';
 const CHAT_ACTIVE_TAB_KEY = 'woc_chat_active_tab';
@@ -195,6 +196,7 @@ export class ChatWindowController {
   // through, and the Sim prints its classic "online play only" line), and
   // `/share` links the selected quest. Returns true when the line was consumed.
   maybeHandleLocalChatCommand(raw: string): boolean {
+    if (runLocalChatCommandHooks(raw)) return true;
     const whoFilter = parseWhoCommand(raw);
     if (whoFilter !== null && this.deps.openWhoTab(whoFilter)) return true;
     // A bare `/lfg` opens the Groups window; `/lfg <message>` still talks in the LFG channel.

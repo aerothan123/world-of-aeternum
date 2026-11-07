@@ -8,8 +8,10 @@
 Agent-drivable asset creation: generate game-ready weapons, props, rigged creatures, and
 player-class skins via the Tripo API (v3, https://openapi.tripo3d.ai/v3), with an optional
 gpt-image-2 concept-image stage. Output matches the shipped asset conventions exactly (grip
-origins, y=0 bases, in-place clips, WebP 512 textures, meshopt), so a generated asset sits next
-to the existing KayKit/Quaternius-style set without looking imported.
+origins, y=0 bases, in-place clips, WebP 512 textures, meshopt). The art target (2026-11) is a
+storybook, Fable-like fantasy countryside: charming crooked shapes, soft painted textures with warm
+baked light (`lib/prompts.mjs` STYLE_CORE), replacing the earlier KayKit/Quaternius chibi set, so new generations move the world
+toward that look; creatures take heroic, never chibi, proportions.
 
 Run: `node scripts/asset_pipeline/pipeline.mjs <command> [options]` (`--help` prints usage).
 Commands: `weapon`, `prop`, `creature`, `skin`, `skinset`, `skinmodel`, `rig-manual`, `library`,

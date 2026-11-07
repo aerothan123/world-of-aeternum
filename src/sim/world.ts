@@ -33,6 +33,7 @@ import {
 } from './data';
 import { dawnholdPadTarget, dawnholdPadWeight } from './dawnhold_layout';
 import { dockSurfaceHeight, onHarborPlanks } from './deck_surfaces';
+import { decorationScale } from './decoration_dims';
 import { isCuratedGardenScatter, isExcludedDecoration } from './decoration_exclusions';
 import { dungeonFloorLift } from './dungeon_floor';
 import { dawnholdKeepLiftAt, lastKeepLiftAt } from './dungeon_layout';
@@ -45,7 +46,9 @@ import {
   emberNearestOnLink,
 } from './ember_lava_layout';
 import { applyFarshoreShipwreckShore } from './farshore_shipwreck_shore';
+import { applyFrontierTerrain } from './frontier/terrain';
 import { GALE_DECK_FREEBOARD } from './gale_harbor';
+import { applyGalecrestShaping, GALE_LEVEL_PADS } from './galecrest_terrain_pads';
 import { applyGliderApproachPath } from './glider_approach_path';
 import { instancedFieldHeight } from './instances/authored_field/registry';
 import { applyKeepSitePad, keepSitePadWeight } from './keep_site';
@@ -75,6 +78,7 @@ import { applyGardenwalkWestPass, applyThornpeakPocketGrade } from './thornpeak_
 import type { BiomeId, ZoneDef } from './types';
 import { overworldWalkSurface } from './walk_lifts';
 import { applyWispMazePad } from './wisp_maze_ground';
+import { CORE_WORLD } from './world_core_bounds';
 
 // Terrain is a pure function of (x, z, seed): both the sim (ground clamping)
 // and the renderer (mesh) sample the same heightfield, so they always agree.
@@ -1300,7 +1304,7 @@ function applyGardenCoast(x: number, z: number, h: number): number {
   // bound; it is bounded to the world-edge vicinity so it never reaches the
   // instance space at x ~99400. Kept in the mere-cap z-band and clear of the Old
   // Mill headland (x ~504); pinned by tests/world_edge_coast.test.ts.
-  const edgeIn = WORLD_MAX_X - x; // >0 inland of the bound, <0 past it
+  const edgeIn = CORE_WORLD.maxX - x; // >0 inland of the bound, <0 past it
   if (edgeIn > -100 && edgeIn < 60) {
     const gardenEdgeZ = smoothstep(696, 712, z) * (1 - smoothstep(752, 772, z));
     if (gardenEdgeZ > 0) {
@@ -1991,11 +1995,12 @@ function applyWorldEdgeSea(x: number, z: number, h: number): number {
   // (worldXBoundsAt) are a STEP function of z, and consuming them here
   // stood the whole z = 2380 line up as an instant 16yd wall into the sunk
   // sea. tests/world_edge_coast.test.ts sweeps the margins.
-  const dX = x < STRIP_MIN_X ? x - WORLD_MIN_X : x > STRIP_MAX_X ? WORLD_MAX_X - x : Infinity;
+  const dX =
+    x < STRIP_MIN_X ? x - CORE_WORLD.minX : x > STRIP_MAX_X ? CORE_WORLD.maxX - x : Infinity;
   // ...blended across the west column seam so the margin's own onset never
   // steps at the Amberfall's northeast corner
   const northEnd =
-    AMBER_ZMAX + (WORLD_MAX_Z - AMBER_ZMAX) * smoothstep(STRIP_MIN_X - 12, STRIP_MIN_X + 12, x);
+    AMBER_ZMAX + (CORE_WORLD.maxZ - AMBER_ZMAX) * smoothstep(STRIP_MIN_X - 12, STRIP_MIN_X + 12, x);
   const dEdge = Math.min(dX, northEnd - z);
   if (dEdge > 190) return h;
   // two octaves of fixed-seed noise bend the shoreline into deep coves and
@@ -2945,10 +2950,10 @@ export function ridgePassWeight(distanceFromPass: number): number {
 // south of its nominal onset, so every point at or below this bound is provably
 // outside it. Returning before the two fbm2 calls preserves the exact +0 result.
 export function northRimWeight(x: number, z: number): number {
-  if (z <= WORLD_MAX_Z - 53) return 0;
+  if (z <= CORE_WORLD.maxZ - 53) return 0;
   const wobble = (fbm2(x * 0.008, 60.1, 9207, 2) - 0.5) * 46;
   return (
-    smoothstep(WORLD_MAX_Z - 30 + wobble, WORLD_MAX_Z + wobble, z) *
+    smoothstep(CORE_WORLD.maxZ - 30 + wobble, CORE_WORLD.maxZ + wobble, z) *
     (0.32 + 0.68 * fbm2(x * 0.013, 60.2, 9209, 2))
   );
 }
@@ -3907,74 +3912,9 @@ function applyTerrainPads(x: number, z: number, seed: number, h0: number): numbe
       h = h * (1 - w) + 2.0 * w;
     }
   }
-  // The Galecrest's shaping, over the finished height like the bed pads:
-  if (x > 180 && x < 540 && z > 180 && z < 700) {
-    // the Mirror Tarn's bathing shore FIRST: pull the carved banks down onto
-    // one long gentle sandy ramp, so the water is waded into, never fallen
-    // into (the level pads below then win wherever the two overlap)
-    const tdx = x - 300,
-      tdz = z - 560;
-    if (tdx * tdx + tdz * tdz < 32 * 32) {
-      const d = Math.sqrt(tdx * tdx + tdz * tdz);
-      const target = WATER_LEVEL - 2.2 + smoothstep(5, 26, d) * 8.2;
-      const w = 1 - smoothstep(26, 32, d);
-      if (h > target) h = h * (1 - w) + target * w;
-    }
-    // level pads under the raider encampments and the tarn's north-bank
-    // stable barns (the built-in camp flatten only reaches the mob spawn
-    // ring; tents and barns stand wider than that)
-    for (const pad of GALE_LEVEL_PADS) {
-      const dx = x - pad.x,
-        dz = z - pad.z;
-      const padGate = pad.r + 5;
-      if (dx * dx + dz * dz >= padGate * padGate) continue;
-      const d = Math.sqrt(dx * dx + dz * dz);
-      const ch = pad.h ?? terrainHeightUnpadded(pad.x, pad.z, seed);
-      const blend = smoothstep(pad.r, pad.r + 5, d);
-      h = h * blend + ch * (1 - blend);
-    }
-    // the Beacon dock stair's cutting: the headland face is carved down to
-    // the stair's ramp line so the treads climb an open notch instead of
-    // vanishing inside the cliff (mirror of the beacon stair deck in
-    // sim/gale_harbor.ts: center 503.3,325.3 rot 0.99 hl 6.94)
-    const sdx = x - 503.3,
-      sdz = z - 325.3;
-    if (sdx * sdx + sdz * sdz < 10.6 * 10.6) {
-      const dirx = 0.8360259786005205; // sin(0.99)
-      const dirz = 0.5486979929717658; // cos(0.99)
-      const along = sdx * dirx + sdz * dirz;
-      const across = sdx * dirz - sdz * dirx;
-      if (along > -8.4 && along < 8.4 && Math.abs(across) < 4.4) {
-        const topY = terrainHeightUnpadded(497, 321, seed) + 0.1;
-        const botY = Math.max(terrainHeightUnpadded(507, 327, seed), WATER_LEVEL + 0.55) + 0.1;
-        const t = Math.min(1, Math.max(0, (along + 6.94) / 13.88));
-        const rampY = topY + (botY - topY) * t - 0.25;
-        const w =
-          (1 - smoothstep(1.4, 4.4, Math.abs(across))) *
-          (1 - smoothstep(6.94, 8.4, Math.abs(along)));
-        if (h > rampY) h = h * (1 - w) + rampY * w;
-      }
-    }
-  }
-  return h;
+  // The Galecrest's shaping, over the finished height (galecrest_terrain_pads.ts).
+  return applyGalecrestShaping(x, z, seed, h, terrainHeightUnpadded);
 }
-
-// The Galecrest's level ground (terrainHeight above): each pad blends the
-// finished height to its center's, wide enough that every tent, tower,
-// palisade run, and barn sits flush instead of sinking into a rise.
-const GALE_LEVEL_PADS: { x: number; z: number; r: number; h?: number }[] = [
-  { x: 252, z: 250, r: 14 },
-  { x: 210, z: 410, r: 14 },
-  { x: 354, z: 664, r: 14 },
-  // the stable barns' lakeside terrace on the Mirror Tarn's north bank: an
-  // explicit height keeps it a low shelf above the beach, the downs rising
-  // behind it, instead of a high pad with a sheer rim over the water
-  { x: 299, z: 531, r: 12, h: WATER_LEVEL + 3.2 },
-  // the Old Beacon's lawn: one flat disc under the whole tower and spiral
-  // stair, so the stair foot always meets level ground (a sloping lawn left
-  // the first tread hovering and broke click-to-move approaches)
-  { x: 498, z: 308, r: 11 },
-];
 
 function borderSeaGate(x: number, z: number): number {
   if (!Number.isFinite(x) || !Number.isFinite(z)) {
@@ -4303,7 +4243,7 @@ function terrainHeightUnpadded(x: number, z: number, seed: number, skipEdits = f
   // wall) turns swimmers back before the band edge.
   const xb = worldXBoundsAt(z);
   let rimX = Math.max(smoothstep(xb.max - 30, xb.max, x), smoothstep(-xb.min - 30, -xb.min, -x));
-  let rimS = smoothstep(WORLD_MIN_Z + 30, WORLD_MIN_Z, z);
+  let rimS = smoothstep(CORE_WORLD.minZ + 30, CORE_WORLD.minZ, z);
   // The north rim (the Drakelands' Ashen Reach along the world's top edge)
   // wanders and saddles so it reads as an organic mountain coast, not a ruled
   // horizontal wall: its onset line meanders +-23yd in z with low-frequency
@@ -4334,7 +4274,7 @@ function terrainHeightUnpadded(x: number, z: number, seed: number, skipEdits = f
   // inside the northern realms the remaining land rims stay softer than the
   // world's (their coasts and ranges do the framing; the old causeway gate
   // cap is now the Wyrmgate ridge with a real pass through it)
-  const rimScale = z > 960 && z <= WORLD_MAX_Z ? 0.6 : 1;
+  const rimScale = z > 960 && z <= CORE_WORLD.maxZ ? 0.6 : 1;
   const rimW = Math.max(rimX, rimS, rimN);
   if (rimW > 0) {
     // the rim ranges break into ridged summits and saddles instead of one
@@ -4481,6 +4421,8 @@ function terrainHeightUnpadded(x: number, z: number, seed: number, skipEdits = f
   if (terrainRegionHas(region, TERRAIN_APPLIER.fenSouthShore)) {
     h = applyFenSouthShore(x, z, h);
   }
+  // The expansion frontier past the core rect (frontier/terrain.ts; identity inside it).
+  h = applyFrontierTerrain(x, z, seed, h);
   // Gradual shores on every declared lake: the last shaping word before the
   // stand lift and the editor's stamps, so nothing above can re-steepen a
   // shore a player must wade out of.
@@ -4886,7 +4828,7 @@ export function isCliffFace(x: number, z: number, seed: number): boolean {
 }
 
 const DECORATION_STEP = 10;
-const DECORATION_X_START = -(WORLD_MAX_X - 14);
+const DECORATION_X_START = WORLD_MIN_X + 14;
 const DECORATION_X_END = WORLD_MAX_X - 14;
 const DECORATION_Z_START = WORLD_MIN_Z + 14;
 const DECORATION_Z_END = WORLD_MAX_Z - 14;
@@ -4993,9 +4935,8 @@ function decorationAt(seed: number, gx: number, gz: number): Decoration | null {
   const x = gx + ox,
     z = gz + oz;
   if (isExcludedDecoration(x, z) || isCuratedGardenScatter(kind, x, z, zoneBiomeAt)) return null;
-  // The Galecrest paddock is a worked yard and race course. Keep the same
-  // deterministic decoration field out of its apron so no tree becomes an
-  // invisible obstacle across a jump line.
+  // Keep the Galecrest paddock (a worked yard and race course) apron clear so
+  // no tree becomes an invisible obstacle across a jump line.
   if (
     x > STABLE_PADDOCK.x1 - 1 &&
     x < STABLE_PADDOCK.x2 + 1 &&
@@ -5041,7 +4982,7 @@ function decorationAt(seed: number, gx: number, gz: number): Decoration | null {
     kind,
     x,
     z,
-    scale: 0.7 + hash2(Math.round(gx), Math.round(gz), seed + 13) * 0.9,
+    scale: decorationScale(kind, gx, gz, seed),
     variant: Math.floor(hash2(Math.round(gx), Math.round(gz), seed + 77) * 3),
     biome,
   };

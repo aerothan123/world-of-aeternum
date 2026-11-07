@@ -29,7 +29,7 @@ export const TOWN_DRESSING_NATURAL: Readonly<Record<string, { x: number; y: numb
   {
     'props/eastbrook_market_stall': { x: 2.8, y: 2.7, z: 2.2001 },
     'dungeon/bench': { x: 1.75, y: 0.4999, z: 0.7499 },
-    'props/fence': { x: 0.791, y: 0.326, z: 0.0259 },
+    'props/fence': { x: 0.79, y: 0.326, z: 0.1842 },
     'props/fenbridge_mirelight_cistern': { x: 3.6, y: 2.6001, z: 3.6 },
     'props/fenbridge_provision_stall': { x: 3.2, y: 2.8, z: 1.5998 },
     'props/fenbridge_muster_board': { x: 2.4, y: 2.6, z: 0.5999 },

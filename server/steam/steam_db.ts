@@ -4,10 +4,12 @@
 // ONLY, deliberately mirroring server/deeds_db.ts: modules that stub the db
 // module in tests never need fakes for these functions.
 //
-// A steam_links row is a cosmetic-mirror pointer (which Steam account mirrors
-// this WoCC account's deed unlocks), never an identity or session source.
+// A steam_links row says which Steam account belongs to this account: the
+// deeds achievement mirror reads it, and since Wyndlewood's Steam login the
+// login route (server/steam_login.ts, deliberately outside this directory)
+// resolves a verified Steam id to its account through accountForSteamId.
 // Nothing in this module (or anywhere in server/steam/) reads or writes
-// auth_tokens or mints credentials; the forbidden-login test pins that.
+// auth_tokens or mints credentials; the forbidden-mint scan pins that.
 
 import { pool } from '../db';
 import { isUniqueViolation } from '../http_util';
@@ -87,7 +89,9 @@ export async function deleteSteamLink(accountId: number): Promise<void> {
  *  whose link was displaced (null when the Steam id was actually free), so the
  *  caller can flip that account's cached mirror view in-request. */
 export interface SteamLinkDisplaceResult {
-  result: SteamLinkInsert;
+  /** 'holder_protected': the current holder has characters, so the link is
+   *  never taken from it (decided INSIDE the transaction, under the row lock). */
+  result: SteamLinkInsert | 'holder_protected';
   displacedAccountId: number | null;
 }
 
@@ -121,6 +125,19 @@ export async function displaceSteamLink(
     const oldOwner: number | null = existing.rows[0]?.account_id ?? null;
     const displaced = oldOwner !== null && oldOwner !== newAccountId ? oldOwner : null;
     if (displaced !== null) {
+      // Never take a link from an account that holds progress, whatever other
+      // logins it has: a fresh ticket proves control of the Steam account, not
+      // that the realm account is the caller's. Checked here, under the
+      // steam_id row lock, so no check-then-act gap separates the decision
+      // from the delete.
+      const holder = await client.query(
+        'SELECT EXISTS (SELECT 1 FROM characters WHERE account_id = $1) AS has_characters',
+        [displaced],
+      );
+      if (holder.rows[0]?.has_characters === true) {
+        await client.query('ROLLBACK');
+        return { result: 'holder_protected', displacedAccountId: null };
+      }
       await client.query('DELETE FROM steam_links WHERE steam_id = $1 AND account_id <> $2', [
         steamId,
         newAccountId,
@@ -159,4 +176,70 @@ export async function displaceSteamLink(
   } finally {
     client.release();
   }
+}
+
+/** Whether an account can still sign in WITHOUT its Steam link, and whether it
+ *  holds any characters. Since Steam login (server/steam_login.ts), an account
+ *  provisioned by a first Steam sign-in has NO other credential: no chosen
+ *  password, no email to reset one with, no Discord or Apple link. Its
+ *  steam_links row is then its only way in, so the link routes must never strip
+ *  that row from an account that holds progress (unlink refuses, displacement
+ *  refuses). An empty Steam-only account (no characters) may still be displaced:
+ *  nothing is lost, and that is exactly the "I clicked Continue with Steam
+ *  before linking my old account" path. */
+/** A recovery email counts as another login only once VERIFIED: an
+ *  unverified address cannot receive a reset the account owner can trust. */
+const VERIFIED_EMAIL_SQL =
+  "(COALESCE(btrim(a.email), '') <> '' AND a.email_verified_at IS NOT NULL)";
+
+/** The same "another way in" predicate as steamLinkOwnerStanding, for the
+ *  single-statement unlink below (alias a = accounts). */
+const OTHER_LOGIN_SQL = `(a.password_set
+  OR ${VERIFIED_EMAIL_SQL}
+  OR EXISTS (SELECT 1 FROM discord_links d WHERE d.account_id = a.id)
+  OR EXISTS (SELECT 1 FROM apple_auth_links l WHERE l.account_id = a.id))`;
+
+/** How an unlink resolved: 'none' (no link, idempotent), 'deleted', or
+ *  'last_login' (refused: the link is the account's only way in). */
+export type SteamUnlinkResult = 'none' | 'deleted' | 'last_login';
+
+/** Check-and-delete in ONE statement, so no concurrent change to the
+ *  account's other logins can slip between the check and the delete. */
+export async function deleteSteamLinkIfReachable(accountId: number): Promise<SteamUnlinkResult> {
+  const res = await pool.query(
+    `WITH had AS (SELECT 1 FROM steam_links WHERE account_id = $1),
+          del AS (
+            DELETE FROM steam_links s USING accounts a
+             WHERE s.account_id = $1 AND a.id = s.account_id AND ${OTHER_LOGIN_SQL}
+         RETURNING 1)
+     SELECT (SELECT count(*) FROM had)::int AS had, (SELECT count(*) FROM del)::int AS deleted`,
+    [accountId],
+  );
+  const row = res.rows[0] ?? { had: 0, deleted: 0 };
+  if (Number(row.deleted) > 0) return 'deleted';
+  return Number(row.had) > 0 ? 'last_login' : 'none';
+}
+
+export interface SteamLinkOwnerStanding {
+  hasOtherLogin: boolean;
+  hasCharacters: boolean;
+}
+
+export async function steamLinkOwnerStanding(accountId: number): Promise<SteamLinkOwnerStanding> {
+  const res = await pool.query(
+    `SELECT (a.password_set
+             OR ${VERIFIED_EMAIL_SQL}
+             OR EXISTS (SELECT 1 FROM discord_links d WHERE d.account_id = a.id)
+             OR EXISTS (SELECT 1 FROM apple_auth_links l WHERE l.account_id = a.id)) AS has_other_login,
+            EXISTS (SELECT 1 FROM characters c WHERE c.account_id = a.id) AS has_characters
+       FROM accounts a WHERE a.id = $1`,
+    [accountId],
+  );
+  const row = res.rows[0];
+  // A vanished account has nothing to protect: read it as fully protected-free.
+  if (!row) return { hasOtherLogin: true, hasCharacters: false };
+  return {
+    hasOtherLogin: row.has_other_login === true,
+    hasCharacters: row.has_characters === true,
+  };
 }

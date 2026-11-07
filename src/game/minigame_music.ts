@@ -2,6 +2,7 @@
 // No DOM or AudioContext deps.
 
 import type { WorldQuestProgress } from '../sim/types';
+import { scoreCueUrl } from './music_tracks';
 
 export type MinigameTrack =
   | 'forge'
@@ -15,18 +16,26 @@ export type MinigameTrack =
   | 'calligraphy'
   | 'caravan';
 
-export const MINIGAME_MUSIC_URLS: Readonly<Record<MinigameTrack, string>> = Object.freeze({
-  forge: '/audio/music/minigame_forge.mp3',
-  cannon: '/audio/music/minigame_cannon.mp3',
-  glider: '/audio/music/minigame_glider.mp3',
-  pacman: '/audio/music/minigame_pacman.mp3',
-  shadow: '/audio/music/minigame_shadow.mp3',
-  match3: '/audio/music/minigame_match3.mp3',
-  puzzle: '/audio/music/minigame_puzzle.mp3',
-  investigation: '/audio/music/minigame_investigation.mp3',
-  calligraphy: '/audio/music/minigame_calligraphy.mp3',
-  caravan: '/audio/music/minigame_caravan.mp3',
+/** The score cue each activity plays: the quick, timed ones the energetic challenge
+ *  cue, the careful ones the light puzzle cue (music_score.ts). */
+export const MINIGAME_MUSIC_CUES: Readonly<Record<MinigameTrack, string>> = Object.freeze({
+  forge: 'wyn_minigame_tense',
+  cannon: 'wyn_minigame_tense',
+  glider: 'wyn_minigame_tense',
+  pacman: 'wyn_minigame_tense',
+  shadow: 'wyn_minigame_tense',
+  match3: 'wyn_minigame_playful',
+  puzzle: 'wyn_minigame_playful',
+  investigation: 'wyn_minigame_playful',
+  calligraphy: 'wyn_minigame_playful',
+  caravan: 'wyn_minigame_playful',
 });
+
+export const MINIGAME_MUSIC_URLS: Readonly<Record<MinigameTrack, string>> = Object.freeze(
+  Object.fromEntries(
+    Object.entries(MINIGAME_MUSIC_CUES).map(([track, cue]) => [track, scoreCueUrl(cue) ?? '']),
+  ) as Record<MinigameTrack, string>,
+);
 
 export const CARAVAN_MOB_TEMPLATES: ReadonlySet<string> = new Set([
   'eastbrook_freight_caravan',

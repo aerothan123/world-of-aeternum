@@ -113,7 +113,9 @@ describe('Claudium spend entitlement mirroring', () => {
   it('mounts an IP limiter before auth and an account limiter after auth on every mutation', () => {
     for (const { path } of MONETARY_MUTATION_ROUTES) {
       const route = routes.find((entry) => entry.method === 'POST' && entry.path === path);
-      expect(route?.middleware).toHaveLength(3);
+      // The Early Access gate runs first (claudiumPathEnabled), then the
+      // IP limiter, the auth guard and the account limiter.
+      expect(route?.middleware).toHaveLength(4);
     }
   });
 
@@ -820,7 +822,8 @@ describe('Claudium economy-service transport contract', () => {
       const path = '/api/claudium/membership/stripe/webhook';
       const route = routes.find((entry) => entry.method === 'POST' && entry.path === path);
       if (!route) throw new Error(`missing ${path}`);
-      expect(route.middleware ?? []).toHaveLength(0);
+      // Only the Early Access gate: Stripe carries no session to guard.
+      expect(route.middleware ?? []).toHaveLength(1);
       const rawBody = Buffer.from('{\n  "type": "invoice.paid"\n}\n');
       const res = new FakeRes();
 

@@ -48,10 +48,12 @@ export function isFinderRole(value: unknown): value is Role {
 }
 
 // Finder roles express the jobs a class can offer, at every level. Selecting
-// a role never changes or requires an active talent specialization.
+// a role never changes or requires an active talent specialization. The mage
+// heals through Chronomancy, its healer specialization
+// (docs/prd/mage-chronomancy.md), so it queues as a healer too.
 export const FINDER_CLASS_ROLES: Record<Role, readonly PlayerClass[]> = {
   tank: ['warrior', 'paladin', 'druid'],
-  healer: ['paladin', 'priest', 'shaman', 'druid'],
+  healer: ['paladin', 'priest', 'shaman', 'mage', 'druid'],
   dps: ['warrior', 'paladin', 'hunter', 'rogue', 'priest', 'shaman', 'mage', 'warlock', 'druid'],
 };
 

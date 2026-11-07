@@ -2,7 +2,7 @@
 
 # World of ClaudeCraft
 
-**Quest, group up, and raid a hand-built world, free in your browser. Open source, web3, and online right now.**
+**Quest, group up, and raid a hand-built world, free in your browser. Open source and online right now.**
 
 **Official website: https://worldofclaudecraft.com/**
 
@@ -20,7 +20,7 @@
 
 **English** · [Español](docs/i18n/README.es.md) · [Español (España)](docs/i18n/README.es_ES.md) · [Français](docs/i18n/README.fr_FR.md) · [Français (Canada)](docs/i18n/README.fr_CA.md) · [Italiano](docs/i18n/README.it_IT.md) · [Deutsch](docs/i18n/README.de_DE.md) · [简体中文](docs/i18n/README.zh_CN.md) · [繁體中文](docs/i18n/README.zh_TW.md) · [한국어](docs/i18n/README.ko_KR.md) · [日本語](docs/i18n/README.ja_JP.md) · [Português (Brasil)](docs/i18n/README.pt_BR.md) · [Русский](docs/i18n/README.ru_RU.md) · [Čeština](docs/i18n/README.cs_CZ.md) · [Nederlands](docs/i18n/README.nl_NL.md) · [Polski](docs/i18n/README.pl_PL.md) · [Bahasa Indonesia](docs/i18n/README.id_ID.md) · [Türkçe](docs/i18n/README.tr_TR.md) · [Svenska](docs/i18n/README.sv_SE.md) · [Tiếng Việt](docs/i18n/README.vi_VN.md) · [Dansk](docs/i18n/README.da_DK.md)
 
-[Play now](https://worldofclaudecraft.com/) · [Host your own world](#host-your-own-world-one-command) · [Train an agent](#train-an-agent-headless-rl) · [Web3](#web3) · [Contributing](CONTRIBUTING.md) · [Discord](https://discord.com/invite/worldofclaudecraft)
+[Play now](https://worldofclaudecraft.com/) · [Host your own world](#host-your-own-world-one-command) · [Train an agent](#train-an-agent-headless-rl) · [No crypto](#no-crypto) · [Contributing](CONTRIBUTING.md) · [Discord](https://discord.com/invite/worldofclaudecraft)
 
 ![World of ClaudeCraft title screen](docs/screenshots/title-screen.jpg)
 
@@ -59,7 +59,7 @@ Same seed, same world, everywhere. Much of what you see is still drawn from code
 - **Native apps on every platform**: signed desktop installers for Windows, Linux, and macOS with automatic updates and optional Steam achievement mirroring, plus iOS and Android builds, all sharing the browser client and the same online world.
 - **Scales to the machine you have**: graphics presets and an automatic frame-rate governor trade visual richness for smoothness, and are held to a fairness rule that keeps them from ever hiding something a player reacts to.
 - **Headless RL environment** with Gymnasium bindings, reward shaping, and a benchmark mode.
-- **$WOC utility, fully optional**: wallet linking for holder flair, Daily Rewards, the cosmetic WOC Store, and a player-to-player item marketplace (built, ships disabled), all non-custodial; the game never sells power. The details live in [Web3](#web3) below.
+- **No crypto, no pay-for-power**: an optional cosmetic store with ordinary card checkout and no token, wallet or blockchain feature; the game never sells power. See [No crypto](#no-crypto) below.
 
 ## Screenshots
 
@@ -179,26 +179,9 @@ env.close()
 
 The protocol and bindings are documented in `headless/CLAUDE.md` and `python/CLAUDE.md`.
 
-## Web3
+## No crypto
 
-World of ClaudeCraft is web3-native around **$WOC**, our community token on Solana. Connect a Solana wallet, link it to your account with one signature (non-custodial, no transaction to approve), and your read-only $WOC balance shows up in the HUD alongside a cosmetic holder-tier badge.
-
-$WOC also has optional utility in the live game:
-
-- **WOC Store**: buy Claudium, the one-way cosmetic currency, with fiat, SOL, USDC, or $WOC. The $WOC payment rail is discounted against the others.
-- **Season 1 Armory**: spend Claudium on cosmetic weapon-skin collections. Store purchases do not add stats or combat power.
-- **Daily Rewards**: eligible verified holders can earn points through a daily spin and rotating tasks, then compete for a share of the daily prize pool.
-- **$WOC Marketplace** (built, ships disabled): a player-to-player auction house and direct-trade rail where players sell eligible already-earned items, stat-bearing gear included, to each other for $WOC. Every sale settles in $WOC with a 10% fee: 7% to the treasury, 3% burned. The game itself is not a party to any marketplace sale and never sells power; enabling it on a production realm awaits legal sign-off (`docs/prd/woc/marketplace.md`).
-
-None of this is needed to play. Wallet linking is optional and non-custodial, and the game never sells power: nothing bought from us, in any currency, grants stats, gear, or progression. The marketplace, when it enables, is players trading their own earned items with each other. The whole game plays fine without ever connecting a wallet.
-
-**$WOC contract address (Solana):**
-
-```
-3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth
-```
-
-More on the token at [worldofclaudecraft.com](https://worldofclaudecraft.com/).
+The game has no cryptocurrency, token, wallet or blockchain feature of any kind. The optional store sells cosmetics only, through ordinary card checkout, and nothing bought in it grants stats, gear, or progression. `docs/launch/crypto-removal.md` records what was removed and the few historical names that stay on purpose.
 
 ## A tour of the world
 
@@ -423,7 +406,7 @@ What you would need to remove or replace before redistributing:
 - the **CraftPix class ability icons** under `public/ui/skills/` were purchased by Levy Street and **may not be redistributed**, so buy your own licence if you want to ship them;
 - the **@jamiecypher sound effects** are CC BY-NC 4.0, so share them non-commercially with credit, but the commercial grant runs to this project only;
 - the **store and prestige art** (Season 1 Armory, the Claudium set, the professions art set, Book of Deeds icons, the elite dragon emblem) is commissioned commercial art and **rights are reserved**;
-- the **third-party brand marks** (Twitch, X, Kick, YouTube, Discord, Solana, USDC) are trademarks of their owners and are not ours to license on;
+- the **third-party brand marks** (Twitch, X, Kick, YouTube, Discord) are trademarks of their owners and are not ours to license on;
 - a handful of **icons and recordings used with permission** need permission to pass on.
 
 [CREDITS.md](CREDITS.md) is the authoritative list, with a redistribution column per asset. Where an asset is listed there, that license controls over the project's MIT license. That register is still being completed, so a media asset missing from it is unrecorded rather than free: ask before relying on it. Source code is the other way around, and everything not carved out is MIT.

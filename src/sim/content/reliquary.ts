@@ -549,6 +549,9 @@ export const RELIQUARY_HORIZON_TITLES = [
   'feat_pumpkin_hunter',
   // Gourdlight Eve's whole-event meta (round 12): the Gourdsworn, same locked rule.
   'feat_gourdlight_eve_complete',
+  // The Bracken Circle's Champion title (Circle Elder, Wyndlewood's fourth
+  // allied faction), appended per the same locked rule.
+  'prog_bracken_circle_champion',
 ] as const;
 
 // Profession lifetime mark ids (Phase 7). Prefer existing visited namespaces

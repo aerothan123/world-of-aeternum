@@ -210,6 +210,9 @@ const NON_PROFESSIONS_BLOB_FIELDS = [
   'resource',
   'pos',
   'facing',
+  // The save-position epoch beside pos (src/sim/saved_pos_exit.ts savedPlacement):
+  // one small number that marks the position as literal, never crafting state.
+  'posEpoch',
   'dead',
   'ghost',
   'corpsePos',

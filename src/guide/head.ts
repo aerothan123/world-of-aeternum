@@ -9,6 +9,7 @@
 // so re-running on a language switch never duplicates a node. Pure-ish: it only touches
 // document.head and reads the route + the i18n runtime; no app state.
 
+import { COMMUNITY_DISCORD_INVITE_URL } from '../brand';
 import {
   formatNumber,
   getLanguage,
@@ -28,7 +29,7 @@ import { type GuideRoute, hrefFor } from './routes';
 const ORIGIN = 'https://worldofclaudecraft.com';
 const LOGO = `${ORIGIN}/woc_logo_square.webp`;
 const GITHUB_URL = 'https://github.com/levy-street/world-of-claudecraft';
-const DISCORD_URL = 'https://discord.com/invite/worldofclaudecraft';
+const DISCORD_URL = COMMUNITY_DISCORD_INVITE_URL;
 
 // The newcomer FAQ on /guide/faq, kept in lockstep with pages/faq.ts so the FAQPage
 // JSON-LD answers the same questions the visible page does. cap rows splice the level

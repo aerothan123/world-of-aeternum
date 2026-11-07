@@ -197,7 +197,7 @@ export const ERROR_CODES = deepFreeze({
 
   // --- Steam link family codes (server/steam/). The whole surface is
   // env-gated: with STEAM_ENABLED unset every route answers steam.disabled.
-  // Linking is cosmetic-mirror only; login with Steam does not exist. ---
+  // Steam login (POST /api/auth/steam, server/steam_login.ts) reuses these. ---
 
   // The Steam surface is not enabled on this server (feature-off 503).
   'steam.disabled': { params: [] },
@@ -211,6 +211,12 @@ export const ERROR_CODES = deepFreeze({
   'steam.account_taken': { params: [] },
   // The Steam Web API could not be reached or answered garbage (503).
   'steam.upstream': { params: [] },
+  // Unlink refused: the Steam link is this account's only way to sign in (409).
+  'steam.unlink_last_login': { params: [] },
+  // A first Steam sign-in from a Steam account that does not own the game (403).
+  'steam.not_owned': { params: [] },
+  // Linking Steam needs the account password and/or a two-factor code (401).
+  'steam.reauth_required': { params: ['needPassword', 'needCode'] },
 
   // --- Epic link family codes (server/epic/). The whole surface is
   // env-gated: with EPIC_ENABLED unset every route answers epic.disabled.
@@ -413,6 +419,15 @@ export const ERROR_CODES = deepFreeze({
   'woc_market.stepup_binding_mismatch': { params: [] },
   // The wallet signature did not verify against the challenge (403).
   'woc_market.stepup_signature_invalid': { params: [] },
+
+  // store: the Early Access monetization switches (server/early_access_flags.ts).
+  // A store, membership or cosmetic-shop route on a realm with that switch off
+  // (MEMBERSHIP_ENABLED / CLAUDIUM_ENABLED unset) (404).
+  'store.disabled': { params: [] },
+  // legal_acceptance: POST /api/legal-acceptance named a version of the Terms,
+  // the Privacy Policy or the EULA that is not the current one (a client built
+  // before the documents changed) (400).
+  'legal_acceptance.invalid_input': { params: [] },
 } as const);
 
 /** A stable error code: one of the keys of ERROR_CODES. */

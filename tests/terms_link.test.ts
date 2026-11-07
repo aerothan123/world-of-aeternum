@@ -41,7 +41,9 @@ describe('resolveTermsUrl', () => {
   });
 
   it('the canonical URL is the public terms page, and the path is what the site aliases', () => {
-    expect(CANONICAL_TERMS_URL).toBe('https://worldofclaudecraft.com/terms');
+    // Config-driven (VITE_PUBLIC_SITE_ORIGIN, else the API origin); a test build
+    // configures neither, so the canonical URL is the bare path.
+    expect(CANONICAL_TERMS_URL).toBe('/terms');
     expect(TERMS_PATH).toBe('/terms');
     // The test build is the web client (NATIVE_APP false), so an http origin
     // resolves same-origin through the painter-facing helper too.
@@ -74,7 +76,7 @@ describe('resolvePrivacyUrl', () => {
   });
 
   it('canonical privacy URL matches the public policy route', () => {
-    expect(CANONICAL_PRIVACY_URL).toBe('https://worldofclaudecraft.com/privacy');
+    expect(CANONICAL_PRIVACY_URL).toBe('/privacy');
     expect(PRIVACY_PATH).toBe('/privacy');
     expect(privacyUrlFor('http://localhost:3000')).toBe(PRIVACY_PATH);
     expect(privacyUrlFor('app://worldofclaudecraft')).toBe(CANONICAL_PRIVACY_URL);

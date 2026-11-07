@@ -75,7 +75,7 @@ describe('server-sent message localization', () => {
     'That guild name is not allowed.',
     'You have been removed from <Knights>.',
     'Mira has been removed from the guild by Bob.',
-    'Mira has entered Project H.',
+    'Mira has entered Wyndlewood.',
     'Bob has left the world. (disconnected)',
     'Who: 3 players online on Stormforge.',
     'Who: 1 player online on Stormforge.',

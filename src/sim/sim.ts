@@ -704,9 +704,10 @@ import {
   type RidingPlayerState,
   restoreRidingTraining,
   ridingTrainingTier as ridingTierOf,
+  savedRidingFields,
 } from './riding_training';
 import { Rng } from './rng';
-import { resolveSavedPosExit } from './saved_pos_exit';
+import { resolveSavedPosExit, savedPlacement } from './saved_pos_exit';
 import * as seasonalMod from './seasonal';
 import { updatePuppetMovement } from './seasonal/scarecrow_puppet';
 import * as seatingMod from './seating';
@@ -2747,7 +2748,7 @@ export class Sim {
     // Characters saved inside a dungeon instance rejoin at its entrance (the
     // shared rule in saved_pos_exit.ts, which the character list reads too so
     // the roster's zone label matches where the character actually lands).
-    const savedExit = resolveSavedPosExit(savedState?.pos);
+    const savedExit = resolveSavedPosExit(savedState?.pos, savedState?.posEpoch);
     let savedPos = savedExit.pos;
     if (savedPos && !savedExit.instanceExit) {
       // Authored towns can grow across release boundaries. A living character
@@ -3160,7 +3161,7 @@ export class Sim {
           slot.count = 1;
         return normalizeLoadedMaterialSlot(slot);
       });
-      restoreCharacterStorage(meta, s, droppedInstanceJunk, player.id);
+      restoreCharacterStorage(meta, s, droppedInstanceJunk, player.id, this.players);
       // Expired bind-on-pickup party-trade markers retire here and at serialize.
       retirePartyTradeOnLoad(meta, this.lockoutNowMs());
       warnDroppedInstanceKeys(meta.name, droppedInstanceJunk);
@@ -3906,8 +3907,7 @@ export class Sim {
         e.resource,
         e.savedMana,
       ),
-      pos: riftExit?.pos ?? gatesMod.ferrySavePosition(e), // never the sea: a ride saves the destination pier
-      facing: riftExit?.facing ?? e.facing,
+      ...savedPlacement(riftExit, gatesMod.ferrySavePosition(e), e.facing), // a ride saves its pier
       // Death state: a released spirit resumes its corpse run on relog, and a
       // dead-but-unreleased corpse auto-releases on load (see addPlayer).
       dead: e.dead,
@@ -4000,8 +4000,7 @@ export class Sim {
       // Absent until the fee is actually charged (back-compat + parity-stable saves).
       ...(meta.mountTrainingFeePaid ? { mountTrainingFeePaid: true } : {}),
       // Absent until riding skill is purchased (back-compat).
-      ...(meta.ridingTrained ? { ridingTrained: true } : {}),
-      ...(meta.ridingTier === 2 ? { ridingTier: 2 as const } : {}),
+      ...savedRidingFields(meta),
       // Absent outside the PBE (back-compat; server/pbe_boost.ts).
       ...(meta.pbeBoostKit !== undefined ? { pbeBoostKit: meta.pbeBoostKit } : {}),
       craftSkills: { ...meta.craftSkills },
@@ -4126,9 +4125,9 @@ export class Sim {
     return this.ownedMountsFor(this.primaryId);
   }
   ridingTrained(): boolean {
-    return this.players.get(this.primaryId)?.ridingTrained === true;
+    return ridingTierOf(this.players.get(this.primaryId)) !== 0; // any rank can ride
   }
-  ridingTrainingTier(): 0 | 1 | 2 {
+  ridingTrainingTier(): 0 | 1 | 2 | 3 {
     return ridingTierOf(this.players.get(this.primaryId));
   }
   toggleMounted(): void {
@@ -4196,12 +4195,12 @@ export class Sim {
   }
 
   /** Purchase a quoted riding rank through the authoritative training module. */
-  learnRidingFor(npcId: number, pid: number, expectedTier: 0 | 1 = 0): void {
+  learnRidingFor(npcId: number, pid: number, expectedTier: 0 | 1 | 3 = 0): void {
     learnRidingImpl(this.ctx, npcId, pid, expectedTier);
   }
 
   // --- IWorldMounts: learn riding ---
-  learnRiding(npcId: number, expectedTier: 0 | 1 = 0): void {
+  learnRiding(npcId: number, expectedTier: 0 | 1 | 3 = 0): void {
     this.learnRidingFor(npcId, this.primaryId, expectedTier);
   }
 

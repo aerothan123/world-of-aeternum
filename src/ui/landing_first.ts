@@ -32,7 +32,6 @@ import {
   readBrowserEnv,
 } from '../game/browser_env';
 import { shouldUseStaticBackdrop } from '../game/landing_backdrop';
-import { trackCommunityLinkClicks } from '../game/meta_pixel';
 import { Settings } from '../game/settings';
 import { loadingCurtainFadeMs } from '../game/ui_effects_profile';
 import { startSitePresence } from '../site_presence';
@@ -379,7 +378,6 @@ export function runLandingFirst(startGame: () => Promise<unknown>): () => void {
   void syncSteamWishlistVisibility(false);
   captureFirstTouch();
   startSitePresence('home');
-  trackCommunityLinkClicks();
 
   let disposed = false;
   let started = false;

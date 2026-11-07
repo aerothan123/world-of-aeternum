@@ -3479,18 +3479,23 @@ export const DEEDS: Record<string, DeedDef> = {
   // drift from the quartermasters' standing gates. The Champion titles are
   // the factions' vanguard flavor titles (FACTION_TIER_TITLES): the top of
   // each standing ladder is the one place a player can wear them.
+  // Deed ids, meters and triggers are frozen (design rule 9): the three
+  // provisional factions keep their shipped deeds, which now name their
+  // Wyndlewood successors (the meters read the successor standing,
+  // src/sim/deeds.ts). The all-banners meta keeps its shipped three deeds;
+  // the Bracken Circle's pair is appended at the END of the table.
   prog_rift_watch_trusted: {
     id: 'prog_rift_watch_trusted',
-    name: 'Trusted by the Rift Watch',
-    desc: 'Reach Trusted standing with the Rift Watch.',
+    name: 'Trusted by the Gilt Measure',
+    desc: 'Reach Trusted standing with the Gilt Measure.',
     category: 'progression',
     renown: 5,
     trigger: { kind: 'meter', meter: 'standingRiftWatch', amount: STANDING_THRESHOLDS.trusted },
   },
   prog_church_order_trusted: {
     id: 'prog_church_order_trusted',
-    name: 'Trusted by the Church Order',
-    desc: 'Reach Trusted standing with the Church Order.',
+    name: 'Trusted by the Lanternwardens',
+    desc: 'Reach Trusted standing with the Lanternwardens.',
     category: 'progression',
     renown: 5,
     trigger: {
@@ -3501,25 +3506,25 @@ export const DEEDS: Record<string, DeedDef> = {
   },
   prog_automatons_trusted: {
     id: 'prog_automatons_trusted',
-    name: 'Trusted by the Automatons',
-    desc: 'Reach Trusted standing with the Automatons.',
+    name: 'Trusted by the Hearthwright Compact',
+    desc: 'Reach Trusted standing with the Hearthwright Compact.',
     category: 'progression',
     renown: 5,
     trigger: { kind: 'meter', meter: 'standingAutomatons', amount: STANDING_THRESHOLDS.trusted },
   },
   prog_rift_watch_champion: {
     id: 'prog_rift_watch_champion',
-    name: 'Champion of the Rift Watch',
-    desc: 'Reach Champion standing with the Rift Watch.',
+    name: 'Champion of the Gilt Measure',
+    desc: 'Reach Champion standing with the Gilt Measure.',
     category: 'progression',
     renown: 25,
     trigger: { kind: 'meter', meter: 'standingRiftWatch', amount: STANDING_THRESHOLDS.champion },
-    reward: { kind: 'title', text: 'Riftwarden' },
+    reward: { kind: 'title', text: 'Magnate' },
   },
   prog_church_order_champion: {
     id: 'prog_church_order_champion',
-    name: 'Champion of the Church Order',
-    desc: 'Reach Champion standing with the Church Order.',
+    name: 'Champion of the Lanternwardens',
+    desc: 'Reach Champion standing with the Lanternwardens.',
     category: 'progression',
     renown: 25,
     trigger: {
@@ -3527,21 +3532,21 @@ export const DEEDS: Record<string, DeedDef> = {
       meter: 'standingChurchOrder',
       amount: STANDING_THRESHOLDS.champion,
     },
-    reward: { kind: 'title', text: 'Dawnkeeper' },
+    reward: { kind: 'title', text: 'Lanternwarden' },
   },
   prog_automatons_champion: {
     id: 'prog_automatons_champion',
-    name: 'Champion of the Automatons',
-    desc: 'Reach Champion standing with the Automatons.',
+    name: 'Champion of the Hearthwright Compact',
+    desc: 'Reach Champion standing with the Hearthwright Compact.',
     category: 'progression',
     renown: 25,
     trigger: { kind: 'meter', meter: 'standingAutomatons', amount: STANDING_THRESHOLDS.champion },
-    reward: { kind: 'title', text: 'Forgemaster' },
+    reward: { kind: 'title', text: 'Master Hearthwright' },
   },
   prog_faction_champion_all: {
     id: 'prog_faction_champion_all',
     name: 'Champion of Every Banner',
-    desc: 'Reach Champion standing with the Rift Watch, the Church Order and the Automatons.',
+    desc: 'Reach Champion standing with the Gilt Measure, the Lanternwardens and the Hearthwright Compact.',
     category: 'progression',
     renown: 50,
     trigger: {
@@ -4133,6 +4138,40 @@ export const DEEDS: Record<string, DeedDef> = {
     category: 'progression',
     renown: 5,
     trigger: { kind: 'visit', markId: 'felling:tree' },
+  },
+  // The Bracken Circle (Wyndlewood's fourth allied faction): its Trusted and
+  // Champion rungs, appended at the END per the append-only contract. Same
+  // shape and renown as the three shipped ladders; cosmetic title only.
+  prog_bracken_circle_trusted: {
+    id: 'prog_bracken_circle_trusted',
+    name: 'Trusted by the Bracken Circle',
+    desc: 'Reach Trusted standing with the Bracken Circle.',
+    category: 'progression',
+    renown: 5,
+    trigger: { kind: 'meter', meter: 'standingBrackenCircle', amount: STANDING_THRESHOLDS.trusted },
+  },
+  prog_bracken_circle_champion: {
+    id: 'prog_bracken_circle_champion',
+    name: 'Champion of the Bracken Circle',
+    desc: 'Reach Champion standing with the Bracken Circle.',
+    category: 'progression',
+    renown: 25,
+    trigger: {
+      kind: 'meter',
+      meter: 'standingBrackenCircle',
+      amount: STANDING_THRESHOLDS.champion,
+    },
+    reward: { kind: 'title', text: 'Circle Elder' },
+  },
+  // Wyndlewood Chapter One (content/chapter_one.ts), its closing quest: the
+  // chronicle of the shore. Cosmetic only; appended at the END.
+  chr_shore_that_remembers: {
+    id: 'chr_shore_that_remembers',
+    name: 'The Shore That Remembers',
+    desc: "Finish Chapter One: follow the lying beacon's cord to the Hollow Crypt, and leave its door shut.",
+    category: 'chronicle',
+    renown: 10,
+    trigger: { kind: 'quest', questId: 'c1_28_door_left_shut' },
   },
 };
 

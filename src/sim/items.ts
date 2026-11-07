@@ -51,6 +51,7 @@ import { resolveFactionVendorRowGate, vendorFactionForNpc } from './content/fact
 import { isRawCookingCatch } from './content/items';
 import { ITEMS, NPCS } from './data';
 import { markItemDiscovered } from './deeds';
+import { REPAIR_ALL_SERVICE_ID, repairAllAtNpc } from './durability';
 import { openEmissaryCache } from './emissary_cache';
 import { recalcPlayerStats } from './entity';
 import {
@@ -73,6 +74,7 @@ import {
   type FactionId,
   factionCurrencyName,
   factionDisplayName,
+  freshFactionCurrencies,
   STANDING_TIER_LABELS,
 } from './factions';
 import { formatMoney } from './format_money';
@@ -111,6 +113,7 @@ import { placeMobileStationFromItem } from './professions/mobile_station';
 import { useRecipePatternItem } from './professions/pattern_items';
 import { refreshModsForEquipmentChange } from './progression/talents';
 import { useForgebreakerEmber } from './quests/forgebreaker_ember';
+import { APPRENTICE_RIDING_MIN_LEVEL, canRide } from './riding_training';
 import { openGourdlightPouch, openThatchgrinSack, useSeasonalItem } from './seasonal';
 import type { ItemUseResult, PlayerMeta } from './sim';
 import type { SimContext } from './sim_context';
@@ -1451,6 +1454,12 @@ export function buyItem(
     ctx.error(meta.entityId, 'That merchant is not available.');
     return;
   }
+  // Repair All (src/sim/durability/): a vendor service, never stock; the
+  // durability system owns every gate (repairing NPC, range, cost).
+  if (itemId === REPAIR_ALL_SERVICE_ID) {
+    repairAllAtNpc(ctx, meta, p, npc);
+    return;
+  }
   if (!npc.vendorItems.includes(itemId)) {
     ctx.error(meta.entityId, 'That item is not sold here.');
     return;
@@ -1512,7 +1521,7 @@ export function buyItem(
   let requiredFaction: FactionId | undefined;
   if (hasFactionPrice && factionGate.requirement) {
     requiredFaction =
-      factionGate.requirement.factionId ?? vendorFactionForNpc(npc.templateId) ?? 'church_order';
+      factionGate.requirement.factionId ?? vendorFactionForNpc(npc.templateId) ?? 'lanternwardens';
   }
   // Dead players (released ghosts included) cannot buy, matching the rest of
   // the vendor family (sellItem / sellAllJunk / buyBackItem below).
@@ -1557,12 +1566,13 @@ export function buyItem(
   // Emberbristle Broom keeps that purchase rule; riding still requires training.
   if (def.kind === 'mount') {
     const eventKeepsake = !!def.seasonalEvent || def.id === GOURDLIGHT_BROOM_ID;
-    if (!eventKeepsake && !meta.ridingTrained) {
+    if (!eventKeepsake && !canRide(meta)) {
       ctx.error(meta.entityId, 'You must learn to ride first. Find a riding trainer.');
       return;
     }
-    if (!eventKeepsake && p.level < 20) {
-      ctx.error(meta.entityId, 'You must be level 20 to buy a mount.');
+    // The stable horse follows the first riding rank (Apprentice Riding, level 10).
+    if (!eventKeepsake && p.level < APPRENTICE_RIDING_MIN_LEVEL) {
+      ctx.error(meta.entityId, 'You must be level 10 to buy a mount.');
       return;
     }
     if (mountOwned(meta, def.mount)) {
@@ -1662,7 +1672,7 @@ export function buyItem(
   if (tokenCost) ctx.removeItem(tokenCost.itemId, tokenCost.count, meta.entityId);
   if (hasFactionPrice && requiredFaction && !freeVendor) {
     if (!meta.factionCurrencies) {
-      meta.factionCurrencies = { rift_watch: 0, church_order: 0, automatons: 0 };
+      meta.factionCurrencies = freshFactionCurrencies();
     }
     meta.factionCurrencies[requiredFaction] -= factionCurrencyCost;
   }

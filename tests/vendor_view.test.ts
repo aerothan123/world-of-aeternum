@@ -8,7 +8,13 @@ import { adoptedTrophyIds } from './helpers/adopted_trophy_ids';
 describe('riding service rank preview', () => {
   it('offers the next rank at its actual fee and hides fully learned training', () => {
     const balances = { copper: 10_000_000, honor: 0, gatheringProficiency: {} };
-    const basic = buildVendorView(['riding_training'], [], ITEMS, { ...balances, ridingTier: 0 });
+    const apprentice = buildVendorView(['riding_training'], [], ITEMS, {
+      ...balances,
+      ridingTier: 0,
+    });
+    expect(apprentice.goods[0].ridingRank).toBe(3);
+    expect(apprentice.goods[0].price.copper).toBe(20_000);
+    const basic = buildVendorView(['riding_training'], [], ITEMS, { ...balances, ridingTier: 3 });
     expect(basic.goods[0].ridingRank).toBe(1);
     expect(basic.goods[0].price.copper).toBe(800_000);
     const advanced = buildVendorView(['riding_training'], [], ITEMS, {
@@ -410,26 +416,46 @@ describe('buildVendorView count multiples (phase 21)', () => {
   it('lists faction vendor goods with factionMarks price and checks faction currency affordability', () => {
     const view = buildVendorView(['rift_feather_glider'], [], ITEMS, {
       ...RICH,
-      factions: { rift_watch: 500, church_order: 0, automatons: 0 },
-      factionCurrencies: { rift_watch: 10, church_order: 0, automatons: 0 },
-      vendorFactionId: 'rift_watch',
+      factions: {
+        gilt_measure: 500,
+        lanternwardens: 0,
+        hearthwright_compact: 0,
+        bracken_circle: 0,
+      },
+      factionCurrencies: {
+        gilt_measure: 10,
+        lanternwardens: 0,
+        hearthwright_compact: 0,
+        bracken_circle: 0,
+      },
+      vendorFactionId: 'gilt_measure',
     });
     expect(view.goods).toHaveLength(1);
     expect(view.goods[0].price.copper).toBe(0);
     expect(view.goods[0].price.honor).toBe(0);
     expect(view.goods[0].price.factionMarks).toEqual({
-      factionId: 'rift_watch',
+      factionId: 'gilt_measure',
       amount: 40,
     });
     expect(view.goods[0].affordable).toBe(false);
-    expect(view.vendorFactionId).toBe('rift_watch');
+    expect(view.vendorFactionId).toBe('gilt_measure');
     expect(view.factionCurrencyBalance).toBe(10);
 
     const affordableView = buildVendorView(['rift_feather_glider'], [], ITEMS, {
       ...RICH,
-      factions: { rift_watch: 500, church_order: 0, automatons: 0 },
-      factionCurrencies: { rift_watch: 50, church_order: 0, automatons: 0 },
-      vendorFactionId: 'rift_watch',
+      factions: {
+        gilt_measure: 500,
+        lanternwardens: 0,
+        hearthwright_compact: 0,
+        bracken_circle: 0,
+      },
+      factionCurrencies: {
+        gilt_measure: 50,
+        lanternwardens: 0,
+        hearthwright_compact: 0,
+        bracken_circle: 0,
+      },
+      vendorFactionId: 'gilt_measure',
     });
     expect(affordableView.goods[0].affordable).toBe(true);
     expect(affordableView.factionCurrencyBalance).toBe(50);
@@ -438,16 +464,26 @@ describe('buildVendorView count multiples (phase 21)', () => {
   it('lists allied faction vendor goods like cartographers_ink priced in the active vendor faction marks', () => {
     const view = buildVendorView(['cartographers_ink'], [], ITEMS, {
       ...RICH,
-      factions: { rift_watch: 1500, church_order: 0, automatons: 0 },
-      factionCurrencies: { rift_watch: 60, church_order: 0, automatons: 0 },
-      vendorFactionId: 'rift_watch',
+      factions: {
+        gilt_measure: 1500,
+        lanternwardens: 0,
+        hearthwright_compact: 0,
+        bracken_circle: 0,
+      },
+      factionCurrencies: {
+        gilt_measure: 60,
+        lanternwardens: 0,
+        hearthwright_compact: 0,
+        bracken_circle: 0,
+      },
+      vendorFactionId: 'gilt_measure',
     });
     expect(view.goods).toHaveLength(1);
     expect(view.goods[0].itemId).toBe('cartographers_ink');
     expect(view.goods[0].price.copper).toBe(0);
     expect(view.goods[0].price.honor).toBe(0);
     expect(view.goods[0].price.factionMarks).toEqual({
-      factionId: 'rift_watch',
+      factionId: 'gilt_measure',
       amount: 60,
     });
     expect(view.goods[0].affordable).toBe(true);
@@ -458,20 +494,30 @@ describe('buildVendorView count multiples (phase 21)', () => {
     });
     expect(view.goods[0].factionRequirement?.factionId).toBeUndefined();
 
-    // Church Order quartermaster prices in church_order marks and gates on player balance
+    // Church Order quartermaster prices in lanternwardens marks and gates on player balance
     const churchView = buildVendorView(['cartographers_ink'], [], ITEMS, {
       ...RICH,
-      factions: { rift_watch: 1500, church_order: 0, automatons: 0 },
-      factionCurrencies: { rift_watch: 100, church_order: 20, automatons: 0 },
-      vendorFactionId: 'church_order',
+      factions: {
+        gilt_measure: 1500,
+        lanternwardens: 0,
+        hearthwright_compact: 0,
+        bracken_circle: 0,
+      },
+      factionCurrencies: {
+        gilt_measure: 100,
+        lanternwardens: 20,
+        hearthwright_compact: 0,
+        bracken_circle: 0,
+      },
+      vendorFactionId: 'lanternwardens',
     });
     expect(churchView.goods).toHaveLength(1);
     expect(churchView.goods[0].price.factionMarks).toEqual({
-      factionId: 'church_order',
+      factionId: 'lanternwardens',
       amount: 60,
     });
     expect(churchView.goods[0].affordable).toBe(false);
-    // Best standing across allied factions (rift_watch 1500 >= Recognized 1000) unlocks the row
+    // Best standing across allied factions (gilt_measure 1500 >= Recognized 1000) unlocks the row
     expect(churchView.goods[0].requirementUnmet).toBe(false);
 
     // All three allied rows are preserved in goods across any quartermaster
@@ -481,9 +527,19 @@ describe('buildVendorView count multiples (phase 21)', () => {
       ITEMS,
       {
         ...RICH,
-        factions: { rift_watch: 0, church_order: 0, automatons: 15_000 },
-        factionCurrencies: { rift_watch: 0, church_order: 0, automatons: 300 },
-        vendorFactionId: 'automatons',
+        factions: {
+          gilt_measure: 0,
+          lanternwardens: 0,
+          hearthwright_compact: 15_000,
+          bracken_circle: 0,
+        },
+        factionCurrencies: {
+          gilt_measure: 0,
+          lanternwardens: 0,
+          hearthwright_compact: 300,
+          bracken_circle: 0,
+        },
+        vendorFactionId: 'hearthwright_compact',
       },
     );
     expect(allAlliedView.goods.map((g) => g.itemId)).toEqual([
@@ -491,8 +547,8 @@ describe('buildVendorView count multiples (phase 21)', () => {
       'allied_hearthstone',
       'allied_vanguard_duffel',
     ]);
-    expect(allAlliedView.goods.every((g) => g.price.factionMarks?.factionId === 'automatons')).toBe(
-      true,
-    );
+    expect(
+      allAlliedView.goods.every((g) => g.price.factionMarks?.factionId === 'hearthwright_compact'),
+    ).toBe(true);
   });
 });

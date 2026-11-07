@@ -290,6 +290,12 @@ export function updateWorldQuests(ctx: SimContext, meta: PlayerMeta, player: Ent
   ensureGliderInstructor(ctx);
   updateGliderLaunchUpdraft(ctx, meta, player);
   ensureWeeklyEmissary(ctx);
+  // The realm-day cycle rolls at every level: the town board's postings
+  // (src/sim/town_board/) key on it, and they open from level 2.
+  const rotation = ctx.currentWorldQuestRotation();
+  const devCycle = meta.devWorldQuestCycle ?? null;
+  const cycle = devCycle ?? rotation.cycle;
+  resetCycleIfNeeded(ctx, meta, cycle);
   if (player.level < WORLD_QUEST_MIN_LEVEL) {
     clearShadowEncounter(ctx, meta);
     clearInvestigationEncounter(ctx, meta);
@@ -297,10 +303,6 @@ export function updateWorldQuests(ctx: SimContext, meta: PlayerMeta, player: Ent
     for (const progress of meta.worldQuestLog.values()) clearWorldQuestTracing(meta, progress);
     return;
   }
-  const rotation = ctx.currentWorldQuestRotation();
-  const devCycle = meta.devWorldQuestCycle ?? null;
-  const cycle = devCycle ?? rotation.cycle;
-  resetCycleIfNeeded(ctx, meta, cycle);
   // Clue Scrolls: the landmark-step sweep rides this per-player site (one
   // null check per tick with no hunt); the hook itself skips a dead player.
   updateClueHunt(ctx, meta, player);

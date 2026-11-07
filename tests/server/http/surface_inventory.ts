@@ -1063,6 +1063,62 @@ export const SURFACE_INVENTORY: readonly SurfaceRoute[] = [
     limiter: null,
     requireOwnedExpected: null,
   },
+  // The per-account player-agreement record (server/legal_acceptance.ts): the
+  // deeds broadcasts pair's shape (read-tier GET, full-scope POST). Registry-only.
+  {
+    dispatcher: DISPATCH.mainApi,
+    method: 'GET',
+    path: '/api/legal-acceptance',
+    handler: 'server/legal_acceptance.ts statusHandler (registry-only RouteDef)',
+    contentType: PROBLEM_JSON,
+    authScope: AUTH_SCOPE.bearer,
+    limiter: null,
+    requireOwnedExpected: null,
+  },
+  {
+    dispatcher: DISPATCH.mainApi,
+    method: 'POST',
+    path: '/api/legal-acceptance',
+    handler: 'server/legal_acceptance.ts acceptHandler (registry-only RouteDef)',
+    contentType: PROBLEM_JSON,
+    authScope: AUTH_SCOPE.full,
+    limiter: null,
+    requireOwnedExpected: null,
+  },
+  // The retired EULA-only pair (server/legal_acceptance.ts retiredEulaHandler):
+  // kept so a stale cached client gets the stable legal_acceptance error.
+  {
+    dispatcher: DISPATCH.mainApi,
+    method: 'GET',
+    path: '/api/eula',
+    handler: 'server/legal_acceptance.ts retiredEulaHandler (registry-only RouteDef)',
+    contentType: PROBLEM_JSON,
+    authScope: AUTH_SCOPE.bearer,
+    limiter: null,
+    requireOwnedExpected: null,
+  },
+  {
+    dispatcher: DISPATCH.mainApi,
+    method: 'POST',
+    path: '/api/eula/accept',
+    handler: 'server/legal_acceptance.ts retiredEulaHandler (registry-only RouteDef)',
+    contentType: PROBLEM_JSON,
+    authScope: AUTH_SCOPE.full,
+    limiter: null,
+    requireOwnedExpected: null,
+  },
+  // The opt-in first-party analytics ingest (server/client_analytics.ts):
+  // anonymous, in-handler per-IP public budget, the deeds rarity shape.
+  {
+    dispatcher: DISPATCH.mainApi,
+    method: 'POST',
+    path: '/api/telemetry',
+    handler: 'server/client_analytics.ts telemetryHandler (registry-only RouteDef)',
+    contentType: PROBLEM_JSON,
+    authScope: AUTH_SCOPE.public,
+    limiter: 'publicReadRateLimited',
+    requireOwnedExpected: null,
+  },
   // The queue-pop Discord DM opt-in toggle (server/discord_queue_pings.ts):
   // the deeds broadcasts pair's shape exactly (read-tier GET, full-scope POST).
   {
@@ -1160,6 +1216,18 @@ export const SURFACE_INVENTORY: readonly SurfaceRoute[] = [
     contentType: PROBLEM_JSON,
     authScope: AUTH_SCOPE.bearer,
     limiter: null,
+    requireOwnedExpected: null,
+  },
+  // Steam login (server/steam_login.ts): registry-only RouteDef, env-gated
+  // dark (steam.disabled 503 until STEAM_ENABLED=1), per-IP auth limiter.
+  {
+    dispatcher: DISPATCH.mainApi,
+    method: 'POST',
+    path: '/api/auth/steam',
+    handler: 'server/steam_login.ts steamLoginHandler (registry-only RouteDef)',
+    contentType: PROBLEM_JSON,
+    authScope: AUTH_SCOPE.public,
+    limiter: 'rateLimited',
     requireOwnedExpected: null,
   },
   // Epic link family (server/epic/routes.ts): registry-only RouteDefs, twin of
@@ -2406,6 +2474,27 @@ export const SURFACE_INVENTORY: readonly SurfaceRoute[] = [
   // -------------------------------------------------------------------------
   // internal handleInternalApi (/internal/*)
   // -------------------------------------------------------------------------
+  // Realm maintenance (server/maintenance.ts): registry-only, no ladder arm.
+  {
+    dispatcher: DISPATCH.internal,
+    method: 'POST',
+    path: '/internal/maintenance',
+    handler: 'server/internal.ts maintenanceHandler (registry-only RouteDef)',
+    contentType: PROBLEM_JSON,
+    authScope: AUTH_SCOPE.secretDeploy,
+    limiter: null,
+    requireOwnedExpected: null,
+  },
+  {
+    dispatcher: DISPATCH.internal,
+    method: 'GET',
+    path: '/internal/maintenance',
+    handler: 'server/internal.ts maintenance status (registry-only RouteDef)',
+    contentType: PROBLEM_JSON,
+    authScope: AUTH_SCOPE.secretDeploy,
+    limiter: null,
+    requireOwnedExpected: null,
+  },
   {
     dispatcher: DISPATCH.internal,
     method: 'POST',

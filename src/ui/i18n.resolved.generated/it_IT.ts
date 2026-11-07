@@ -685,6 +685,14 @@ export const it_IT: EnTranslations = {
       "saved": "Fatto.",
       "failed": "Non è stato possibile salvare o caricare il preset."
     },
+    "maintenance": {
+      "beginsInMinute": "Realm maintenance begins in 1 minute.",
+      "beginsInMinutes": "Realm maintenance begins in {count} minutes.",
+      "beginsInSeconds": "Realm maintenance begins in {count} seconds.",
+      "begun": "Realm maintenance has begun. New logins are closed.",
+      "cancelled": "Realm maintenance was cancelled.",
+      "ended": "Realm maintenance is over. Logins are open again."
+    },
     "frameMenus": {
       "hide": "Nascondi riquadro",
       "units": "Riquadri unità",
@@ -2872,6 +2880,8 @@ export const it_IT: EnTranslations = {
       "alwaysShowAllBuffs": "Mostra sempre tutti i potenziamenti",
       "showAuraCaster": "Mostra il lanciatore dell'aura nei suggerimenti",
       "highContrastBackground": "Sfondo a contrasto elevato",
+      "shareAnalytics": "Share Usage and Performance Data",
+      "shareAnalyticsNote": "Off unless you turn it on. Sends coarse play counters and performance reports to Wyndlewood only, never to other companies.",
       "startAttackOnAbility": "Attacco automatico all'uso dell'abilita",
       "stopAutoAttackOnTargetSwitch": "Ferma l'Attacco Automatico al Cambio Bersaglio",
       "walkByAutoloot": "Raccolta automatica al passaggio",
@@ -3656,7 +3666,15 @@ export const it_IT: EnTranslations = {
       "churchOrderCrest": "Stemma dell'Ordine",
       "churchOrderCrestNote": "Missioni mondiali nelle zone dell'Ordine della Chiesa",
       "automatonCog": "Ingranaggio Automa",
-      "automatonCogNote": "Missioni mondiali nelle zone Automa"
+      "automatonCogNote": "Missioni mondiali nelle zone Automa",
+      "lanternCrest": "Lantern Crest",
+      "lanternCrestNote": "World Quests in Lanternwarden lands",
+      "hearthwrightCog": "Hearthwright Cog",
+      "hearthwrightCogNote": "World Quests in Hearthwright Compact lands",
+      "brackenAcorn": "Bracken Acorn",
+      "brackenAcornNote": "World Quests in Bracken Circle lands",
+      "giltMark": "Gilt Mark",
+      "giltMarkNote": "World Quests in Gilt Measure lands"
     },
     "worldQuestTooltip": {
       "factionLine": "Fazione: {faction}",
@@ -3666,6 +3684,23 @@ export const it_IT: EnTranslations = {
       "standingReward": "+{amount} Reputazione {faction}",
       "currencyReward": "+{amount} {currency}"
     },
+    "townBoard": {
+      "tabNotices": "Notices",
+      "tabGuilds": "Guilds",
+      "intro": "Work posted for today. Take a notice here and return it to whoever posted it.",
+      "empty": "Nothing is posted today. Check back after the next daily reset.",
+      "postedBy": "Posted by {npc}",
+      "objective": "{label}: {count}",
+      "rewardXp": "{amount} XP",
+      "accept": "Take Notice",
+      "taken": "In your quest log",
+      "ready": "Return to {npc}",
+      "done": "Done for today",
+      "locked": "Not yet open to you",
+      "lockedLevel": "Requires level {level}",
+      "notAtBoard": "You must be at the notice board to take that posting.",
+      "needItem": "You need the right item to use on that."
+    },
     "worldQuestBanner": {
       "subtitle": "Missione Mondiale"
     },
@@ -3674,12 +3709,20 @@ export const it_IT: EnTranslations = {
       "faction": {
         "rift_watch": "Guardia degli Squarci",
         "church_order": "Ordine della Chiesa",
-        "automatons": "Automi"
+        "automatons": "Automi",
+        "lanternwardens": "Lanternwardens",
+        "hearthwright_compact": "Hearthwright Compact",
+        "bracken_circle": "Bracken Circle",
+        "gilt_measure": "Gilt Measure"
       },
       "hub": {
         "rift_watch": "Drifthaven",
         "church_order": "Fratello Aldric",
-        "automatons": "Wyrmwatch"
+        "automatons": "Wyrmwatch",
+        "lanternwardens": "Eastbrook",
+        "hearthwright_compact": "Wyrmwatch",
+        "bracken_circle": "Fenbridge",
+        "gilt_measure": "Drifthaven"
       },
       "hubLine": "{hub} . {zone}",
       "tier": {
@@ -3714,6 +3757,38 @@ export const it_IT: EnTranslations = {
           "proven": "Artefice",
           "vanguard": "Maestro della Forgia",
           "champion": "Campione"
+        },
+        "lanternwardens": {
+          "unknown": "Outsider",
+          "recognized": "Lamplighter",
+          "trusted": "Lanternbearer",
+          "proven": "Warden",
+          "vanguard": "Lanternwarden",
+          "champion": "Champion"
+        },
+        "hearthwright_compact": {
+          "unknown": "Outsider",
+          "recognized": "Hand",
+          "trusted": "Journeyman",
+          "proven": "Hearthwright",
+          "vanguard": "Master Hearthwright",
+          "champion": "Champion"
+        },
+        "bracken_circle": {
+          "unknown": "Outsider",
+          "recognized": "Seedling",
+          "trusted": "Grovefriend",
+          "proven": "Greenkeeper",
+          "vanguard": "Circle Elder",
+          "champion": "Champion"
+        },
+        "gilt_measure": {
+          "unknown": "Outsider",
+          "recognized": "Client",
+          "trusted": "Associate",
+          "proven": "Factor",
+          "vanguard": "Magnate",
+          "champion": "Champion"
         }
       },
       "progress": "{current} / {next}",
@@ -5055,6 +5130,10 @@ export const it_IT: EnTranslations = {
     "auth": {
       "appleLoginCta": "Continua con Apple",
       "appleError": "Impossibile accedere con Apple. Riprova.",
+      "steamLoginCta": "Continue with Steam",
+      "steamError": "Could not sign in with Steam. Please try again.",
+      "steamNoTicket": "Steam is not running. Start Steam, then try again.",
+      "steamUnavailable": "Steam sign-in is not available right now.",
       "appleChoiceIntro": "Crea un nuovo account oppure collega Apple a un account esistente.",
       "appleChoiceExpired": "Questo accesso con Apple è scaduto. Accedi di nuovo con Apple.",
       "forgotPrompt": "Password dimenticata?",
@@ -5364,8 +5443,29 @@ export const it_IT: EnTranslations = {
       "itemName": "{item}, {quality}",
       "tooltip": "{quality}: +{levels} livelli oggetto. Mantenuto attraverso i miglioramenti."
     },
+    "townProject": {
+      "progress": "{project}: {stage}. {done} of {needed} bundles are in. Each bundle is {items}.",
+      "complete": "{project} is complete. The town thanks you.",
+      "contribute": "Contribute",
+      "bundleItem": "{count} {item}",
+      "bundleJoin": " and ",
+      "name": {
+        "eastbrook_yard_well": "The Yard Well",
+        "eastbrook_yard_well_shaft": "Line the shaft",
+        "eastbrook_yard_well_roof": "Raise the roof",
+        "eastbrook_yard_well_winch": "Hang the winch",
+        "eastbrook_street_lamps": "The Main Street Lamps",
+        "eastbrook_street_lamps_posts": "Set the posts",
+        "eastbrook_street_lamps_lanterns": "Hang the lanterns"
+      }
+    },
+    "durability": {
+      "low": "Your equipment is badly damaged. Repair it at an armorer, a weaponsmith or a forge.",
+      "broken": "Some of your equipment is broken and gives no stats. Repair it at an armorer, a weaponsmith or a forge."
+    },
     "itemTooltip": {
       "requiresLevel": "Richiede livello {level}",
+      "durability": "Durability {current} / {max}",
       "riftTier": "Oggetto dello Squarcio di rango {tier}",
       "riftUpgrade": "Potenziamento dello squarcio {level}/{max}",
       "riftSockets": "Gemme dello squarcio {used}/{total}",
@@ -6402,6 +6502,10 @@ export const it_IT: EnTranslations = {
       "hub_rift_watch": "Drifthaven (La Guardia dei Rifti)",
       "hub_church_order": "Valle di Eastbrook (L'Ordine della Chiesa)",
       "hub_automatons": "Wyrmwatch (Automi)",
+      "hub_lanternwardens": "Eastbrook Vale (The Lanternwardens)",
+      "hub_hearthwright_compact": "Wyrmwatch (The Hearthwright Compact)",
+      "hub_bracken_circle": "Fenbridge (The Bracken Circle)",
+      "hub_gilt_measure": "Drifthaven (The Gilt Measure)",
       "riftGliderUse": "Uso: Dispone il deltaplano, rallentando la caduta per 30 sec. L'atterraggio o il danno cancella l'effetto. (2 min di recupero)",
       "targetDummyUse": "Uso: Dispone un bersaglio meccanico nel mondo aperto per 2 minuti per praticare le abilità di combattimento. (5 min di recupero)",
       "battleStandardUse": "Uso: pianta lo Stendardo da Battaglia dell’Alba Consacrata per 5 min. I giocatori fuori dal combattimento entro 15 iarde rigenerano il 10% di salute in più; chi usa mana recupera inoltre mana pari al 5% del proprio Spirito ogni 2 s. Restare vicino per 10 s conferisce Benedizione dell’Alba, aumentando Forza, Agilità, Tempra, Intelletto e Spirito del 5% per 30 min. (Recupero: 5 min)",
@@ -8026,6 +8130,7 @@ export const it_IT: EnTranslations = {
       "denied": {
         "badLot": "That house is not for sale.",
         "owned": "You already own a house.",
+        "accountOwned": "Your account already has a house. An account can own one house.",
         "range": "You are too far from the front door of {house}.",
         "money": "You cannot afford {house}.",
         "dead": "You cannot buy a house while dead.",
@@ -8079,6 +8184,93 @@ export const it_IT: EnTranslations = {
         "how": "Right-click it in your bags while standing in your house.",
         "chest": "Once placed, adds {slots} slots to your house storage.",
         "station": "Once placed, lets you craft recipes that need the {station} at home."
+      }
+    },
+    "addons": {
+      "menuEntry": "AddOns",
+      "title": "AddOns",
+      "close": "Close",
+      "masterToggle": "Load add-ons",
+      "loadOutdated": "Load out of date add-ons",
+      "masterHint": "Changes take effect when you reload the interface.",
+      "reloadNeeded": "Reload UI to apply this change.",
+      "leaveSafe": "Load add-ons now",
+      "safeCrash": "The game closed unexpectedly while add-ons were starting, so this session started in safe mode with no add-ons.",
+      "safeRequested": "You restarted in safe mode, so no add-ons are loaded.",
+      "safeUrl": "Safe mode was requested at launch, so no add-ons are loaded.",
+      "workshopUnavailable": "Steam Workshop is not available right now, so only add-ons in your local folder are listed.",
+      "empty": "No add-ons installed. Subscribe to some on the Steam Workshop, or put an add-on folder in your add-ons folder.",
+      "reload": "Reload UI",
+      "openFolder": "Open add-ons folder",
+      "restartSafe": "Restart in safe mode",
+      "memoryNote": "Memory is shown as interface widgets and saved data, because add-on workers do not report their heap size.",
+      "enable": "Enable {name}",
+      "version": "Version {version}",
+      "by": "by {author}",
+      "permissions": "Permissions",
+      "options": "Options",
+      "showErrors": "Errors ({count})",
+      "resetSaved": "Reset saved data",
+      "resetDone": "Saved data cleared for {name}.",
+      "publish": "Publish to Workshop",
+      "stats": "CPU {cpu} ms/s, {msgs} messages/s, {widgets} widgets, saved {kb} KB, {errors} errors",
+      "optionsTitle": "{name} options",
+      "back": "Back",
+      "publishTitle": "Publish {name}",
+      "publishHint": "Uploads this folder to the Steam Workshop. The first upload creates the item; later uploads update it.",
+      "changeNote": "Change note",
+      "publishConfirm": "Publish",
+      "publishing": "Publishing to the Workshop...",
+      "visibility": {
+        "label": "Visibility",
+        "private": "Private",
+        "friends": "Friends only",
+        "unlisted": "Unlisted",
+        "public": "Public"
+      },
+      "publishResult": {
+        "published": "Published to the Workshop as item {id}.",
+        "agreement": "Uploaded as item {id}. Accept the Steam Workshop legal agreement on the item page to make it visible.",
+        "noSteam": "Steam is not running, so the add-on could not be published.",
+        "invalid": "The add-on folder did not pass validation.",
+        "notFound": "The add-on folder was not found.",
+        "failed": "Publishing failed. The desktop log has the details."
+      },
+      "status": {
+        "disabled": "Disabled",
+        "loading": "Loading",
+        "running": "Running",
+        "error": "Load error",
+        "stopped": "Stopped",
+        "blocked": "Not loaded",
+        "tooNew": "Needs a newer game version",
+        "outdated": "Out of date",
+        "invalid": "Invalid add-on"
+      },
+      "stop": {
+        "errors": "Stopped after repeated errors. Enable it again to retry.",
+        "hang": "Stopped because it stopped responding. Enable it again to retry.",
+        "flood": "Stopped because it sent too many interface updates. Enable it again to retry.",
+        "load": "Failed to load."
+      },
+      "invalidJson": "Its addon.json file is not valid JSON.",
+      "invalidField": "Its addon.json file has a problem in \"{field}\".",
+      "blockedPending": "Still downloading from the Workshop.",
+      "blockedDuplicate": "Another add-on with the id {id} is already loaded.",
+      "blockedDependency": "A required add-on is missing or not loading: {id}.",
+      "origin": {
+        "dev": "Developer example",
+        "local": "Local",
+        "workshop": "Workshop"
+      },
+      "perm": {
+        "party": "Party and raid",
+        "combatLog": "Combat log",
+        "chat": "Reads your chat, whispers included",
+        "minimap": "Minimap",
+        "inventory": "Bags and equipment",
+        "quests": "Quest log",
+        "secureActions": "Action buttons"
       }
     }
   },
@@ -8200,7 +8392,10 @@ export const it_IT: EnTranslations = {
       "banned": "Quell'account Steam non può essere collegato.",
       "already_linked": "Il tuo account ha già un account Steam collegato.",
       "account_taken": "Quell'account Steam è già collegato a un altro account.",
-      "upstream": "Steam non ha risposto. Riprova tra un istante."
+      "upstream": "Steam non ha risposto. Riprova tra un istante.",
+      "unlink_last_login": "Steam is your only way to sign in to this account. Add an email and password before unlinking it.",
+      "not_owned": "This Steam account does not own the game yet. Get it on Steam, then try again.",
+      "reauth_required": "Enter your password (and your two-factor code, if it is on) to link Steam."
     },
     "epic": {
       "disabled": "Il collegamento con Epic non è disponibile al momento.",
@@ -8297,6 +8492,12 @@ export const it_IT: EnTranslations = {
       "stepup_wallet_mismatch": "Il tuo portafoglio collegato è cambiato da quando questa conferma è stata emessa. Avvia di nuovo la vendita.",
       "stepup_binding_mismatch": "Quella conferma del portafoglio non corrisponde a questa vendita. Avvia di nuovo la vendita.",
       "stepup_signature_invalid": "La firma del portafoglio non è stata verificata. Avvia di nuovo la vendita."
+    },
+    "store": {
+      "disabled": "The store is not available in Early Access."
+    },
+    "legal_acceptance": {
+      "invalid_input": "These agreements have changed. Reload and accept the current versions."
     }
   },
   "clues": {
@@ -9451,6 +9652,26 @@ export const it_IT: EnTranslations = {
         "farshoreBlurb": "Un'isola oltre la barra di sabbia, dove il cielo si squarcia sopra i Campi degli Squarci e Gullhaven suona la sua campana per ogni breccia.",
         "provingName": "La Riva della Prova",
         "provingBlurb": "Una tranquilla isola d'addestramento al di là dello stretto, dove i nuovi avventurieri trovano il loro equilibrio prima che la valle chieda loro qualcosa.",
+        "applewoldName": "The Applewold",
+        "applewoldBlurb": "Orchard downs past the Farshore causeway, where Pressford keeps the cider presses turning.",
+        "kindlemoorName": "The Kindlemoor",
+        "kindlemoorBlurb": "Open heath over standing stones older than the first kingdom, watched from the camp at Ferncross.",
+        "chalkbarrowName": "The Chalkbarrow Coast",
+        "chalkbarrowBlurb": "White cliffs and chalk downs, where prospectors dig at Coinwell and someone else digs deeper.",
+        "saltmeadsName": "The Saltmeads",
+        "saltmeadsBlurb": "Salt marsh and pan villages on a grey coast south of the Applewold, where Panwick boils brine for half the south.",
+        "wychwoldName": "The Wychwold",
+        "wychwoldBlurb": "An old elm wold of charcoal burners, where the Bracken Circle keeps the Knotted Elm at Elmhallow.",
+        "tinmarchName": "The Tinmarch",
+        "tinmarchBlurb": "Tin moor and spoil heaps below the chalk cliffs, worked by lamplight from the mine camp at Wheal Patience.",
+        "rookcliffsName": "The Rookcliffs",
+        "rookcliffsBlurb": "Sea stacks and rookeries at the edge of the Hushmist, watched from the Lanternwarden lookout at Kestrel Point.",
+        "sedgemarchName": "The Sedgemarch",
+        "sedgemarchBlurb": "Reed fen and withy beds as far as the mist, home to the basket village of Withyholt.",
+        "harrowfellsName": "The Harrowfells",
+        "harrowfellsBlurb": "High fells over an old battlefield, where the watch at Fellgate counts the cairns every night.",
+        "wardmereName": "The Wardmere",
+        "wardmereBlurb": "The last shore the Lanternwardens hold before the Hushmist, kept lit day and night from Lanternfold.",
         "nightName": "Nightbloom",
         "nightBlurb": "Una terra di mezzanotte stellata dove i fiori illuminano i sentieri e Moonrest veglia senza sosta.",
         "hauntName": "Wraithwood",
@@ -10455,6 +10676,46 @@ export const it_IT: EnTranslations = {
       "farshoreGreeting": "Sei venuto attraverso il Ferrywalk? Allora sei il primo in una settimana, e il Guardiano vorrà darti un'occhiata.",
       "farshoreGreeter": "Guardiano della Campana Tam, l'Approdo",
       "farshorePlaceNotes": "Gullhaven è l'unico paese dell'isola e il suo ridotto. L'Approdo è dove il Ferrywalk tocca la riva, con una campana di vedetta che sovrasta la punta; il Prato della Vedetta tiene l'altura a sud-est del paese, dove una sentinella degli squarci ascolta la prossima breccia; le Scogliere Squarciate si spaccano all'estremità meridionale dell'isola; e i Campi degli Squarci sono i filari di grano devastati a est di Gullhaven, ancora brulicanti di ciò che è passato attraverso la breccia lì.",
+      "applewoldBlurb": "Orchard country south of the Farshore, reached over a causeway from the island. The orchards have turned strange, and the boars no longer fear the dogs.",
+      "applewoldGreeting": "Road is open as far as Pressford. Past that, keep your eyes on the trees.",
+      "applewoldGreeter": "A Lanternwarden at Causeway Watch",
+      "applewoldPlaceNotes": "Pressford is the press-town at the heart of the downs. Causeway Watch guards the head of the causeway, the Cider Mere lies east of town, Blossom Rise crowns the eastern lobe, the Old Press is a fallen pressing-house to the west, and the South Downs roll down to the sea.",
+      "kindlemoorBlurb": "A wide heath west of the Applewold, where nothing grows tall and nothing is new. The Bracken Circle watches stones that have lately grown warm.",
+      "kindlemoorGreeting": "Walk softly near the ring. The stones remember more than we do.",
+      "kindlemoorGreeter": "A keeper of the Bracken Circle at Ferncross",
+      "kindlemoorPlaceNotes": "Ferncross is the Bracken Circle camp at the moor road. The First Hearth Ring stands south-west of it, the Moor Tarn lies to the west, the Grey Tor rises in the south-east, and the Heath Way runs east to the Applewold.",
+      "chalkbarrowBlurb": "Chalk downs and white cliffs at the south-west of the reaches, where the prospectors of Coinwell Camp are not the only ones digging.",
+      "chalkbarrowGreeting": "If you hear picks after dark, they are not ours.",
+      "chalkbarrowGreeter": "A prospector at Coinwell Camp",
+      "chalkbarrowPlaceNotes": "Coinwell Camp is the prospectors' base on the downs. The Unlit Dig lies to the south-west, Chalk Mere sits west of camp, the White Head is the headland in the north-west, and Wreckers' Cove opens to the south-east.",
+      "saltmeadsBlurb": "A grey salt coast south of the Applewold, reached over the Saltmeads Gate. The tides have started bringing in more than salt.",
+      "saltmeadsGreeting": "Mind the pans, and mind the tide. It has been coming in wrong.",
+      "saltmeadsGreeter": "A salt boiler at Panwick",
+      "saltmeadsPlaceNotes": "Panwick is the pan-town at the head of the downs. The Saltmeads Gate is the causeway in from the Applewold, the Brine Pans lie east of town, Gannet Stack rises at the south-east corner, the Wrack Shallows are the wreck-strewn flats to the south-west, and the Salt Way runs west into the Wychwold.",
+      "wychwoldBlurb": "An old elm wold between the Saltmeads and the Tinmarch, where the charcoal burners work and something under the roots has begun to stir.",
+      "wychwoldGreeting": "Leave the elm be. It was here first, and it remembers.",
+      "wychwoldGreeter": "A keeper of the Bracken Circle at Elmhallow",
+      "wychwoldPlaceNotes": "Elmhallow is the Bracken Circle lodge at the heart of the wold. The Knotted Elm stands south-west of it in its ring of hearth stones, Charcoal Hollow smokes to the south-east, the Sunk Lane runs west toward the Tinmarch, and the Salt Way leaves east for the Saltmeads.",
+      "tinmarchBlurb": "Tin moor below the chalk cliffs, also reached by the Chalk Pass from the Chalkbarrow Coast. Someone has opened the old Blackadit.",
+      "tinmarchGreeting": "Lamps lit, eyes open. Nobody goes near the Blackadit alone.",
+      "tinmarchGreeter": "A Gilt Measure foreman at Wheal Patience",
+      "tinmarchPlaceNotes": "Wheal Patience is the mine camp at the north of the moor. The Chalk Pass climbs north to the Chalkbarrow Coast, the Stannary Stones stand to the south-west, the Blackadit opens in the south-east, Tinners' Ford crosses east into the Wychwold, and the Rook Way runs west to the Rook Ford and the West March.",
+      "rookcliffsBlurb": "Sea stacks and rookeries at the south-west corner of the world, where the grey Hushmist sits on the sea and swallows every sound.",
+      "rookcliffsGreeting": "That light is the last one. Past it, the mist takes the sound right out of your boots.",
+      "rookcliffsGreeter": "A Lanternwarden at Kestrel Point",
+      "rookcliffsPlaceNotes": "Kestrel Point is the Lanternwarden lookout in the north of the cliffs. The Rook Ford crosses east to the Tinmarch, the Hushmist Light burns on the west shore, the Sea Stacks stand off the south-west corner, Rook Hollow lies to the south-east, and the Sedge Neck leads north into the Sedgemarch.",
+      "sedgemarchBlurb": "Reed fen and withy beds north of the Rookcliffs. Withyholt knows which paths the fen keeps and which it gives back.",
+      "sedgemarchGreeting": "Stay on the withies. The fen is patient, and it is hungry.",
+      "sedgemarchGreeter": "A basket weaver at Withyholt",
+      "sedgemarchPlaceNotes": "Withyholt is the basket village on the dry rise in the middle of the fen. The Withy Beds lie to the south-west, Heron Mere to the south-east, the Drowned Causey runs off to the north-west, the Sedge Neck leads south to the Rookcliffs, and the Fell Neck climbs north to the Harrowfells.",
+      "harrowfellsBlurb": "High fells over an old battlefield north of the Sedgemarch. The cairns were raised to keep a war ended, and the dead beneath them are not resting.",
+      "harrowfellsGreeting": "Count them with me. If there are more cairns than last night, we run.",
+      "harrowfellsGreeter": "A cairn watcher at Fellgate",
+      "harrowfellsPlaceNotes": "Fellgate is the watch post below the high fell. The Cairn Field spreads to the north-west, Harrow Tarn lies east of the post, the Iron Ring stands just west of it, the Fell Neck leads south to the Sedgemarch, and the Ward Neck runs north to the Wardmere.",
+      "wardmereBlurb": "The last shore the Lanternwardens hold before the Hushmist, where the mist comes in like a tide past the Ward Mere.",
+      "wardmereGreeting": "Keep to the lamps. Anyone who walks out past them walks out alone.",
+      "wardmereGreeter": "A Lanternwarden at Lanternfold",
+      "wardmerePlaceNotes": "Lanternfold is the Lanternwardens' lamp-lit post in the middle of the shore. The Ward Mere lies to the north-east, the Last Beacon stands on its crag to the north-west, the Westering Pier faces the ferry lane to the east, and the Ward Neck leads south to the Harrowfells.",
       "provingBlurb": "Una tranquilla isola al di là dello stretto rispetto alla valle, tenuta come terreno d'addestramento: un accampamento, un campo d'addestramento, una spiaggia disseminata di relitti, e un traghetto che va e viene.",
       "provingGreeting": "Ogni eroe che la valle abbia mai ringraziato è stato dove sei tu ora, e nessuno di loro sapeva da che parte impugnare una lama.",
       "provingGreeter": "Istruttrice Maren, Campo di Dawnrest",
@@ -10722,6 +10983,11 @@ export const it_IT: EnTranslations = {
       "intro": "Tre fazioni alleate vegliano ciascuna sul proprio angolo del reame, e ogni missione mondiale che completi nelle loro terre aumenta la tua reputazione presso di loro. La reputazione sale attraverso sei livelli, ciascuno con un proprio titolo, e sblocca l'assortimento di un quartiermastro pezzo per pezzo lungo il percorso.",
       "whoHeading": "Le tre fazioni",
       "whoBody": "Ogni fazione è legata a un gruppo di zone, quindi il luogo in cui svolgi le missioni mondiali decide a quale fazione va il merito. Non devi mai scegliere una parte: tutte e tre tengono il proprio conteggio, e nessuna ti chiede mai di rivoltarti contro un'altra.",
+      "lanternwardensBody": "The Lanternwardens keep the roads and the settlements safe: guards, explorers and patrols who look for the missing and stand between travelers and whatever the dark sends. Their lands are Eastbrook Vale, the Frostveil Reach, the Veiled Hollow and the Wraithwood. Their quartermaster keeps the Eastbrook chapel steps.",
+      "hearthwrightBody": "The Hearthwright Compact is a loose federation of builders, miners, smiths and makers who believe strong communities are built by practical work. Their lands are Thornpeak Heights, the Drakelands and the Galecrest, and their hub is Wyrmwatch, in the Drakelands.",
+      "brackenBody": "The Bracken Circle is an old fellowship of druids, herbalists and woodland keepers who guard the old agreements between people and the wild. Their lands are Mirefen Marsh, the Amberfall, the Willowfen and the Nightbloom, and Herbalist Yara keeps their stores in Fenbridge.",
+      "giltBody": "The Gilt Measure gathers merchants, prospectors and financiers who see opportunity in a changing world, and not all of them are dishonest. Their lands are the Palmreach, the Farshore and the Evergarden, and their hub is Drifthaven, on the Palmreach.",
+      "paleAccordBody": "One faction keeps no standing with anyone. The Pale Accord works in secret, its cells disguised as scholars and concerned neighbors, and every allied banner counts them an enemy.",
       "riftWatchBody": "La Guardia degli Squarci protegge la costa e veglia sui profondi squarci. Le loro terre sono la costa: Farshore, Palmreach, Galecrest, Willowfen e la Valletta Velata. Il loro fulcro è Drifthaven, sul Palmreach.",
       "churchOrderBody": "L'Ordine della Chiesa tiene il cuore del reame: la Valle di Eastbrook, la Palude di Mirefen, le Alture di Thornpeak, Nightbloom e Wraithwood. Fratello Aldric parla per loro dalla Valle di Eastbrook.",
       "automatonsBody": "Gli Automi custodiscono le fucine delle terre remote: Drakelands, la Distesa di Frostveil, Amberfall ed Evergarden. Il loro fulcro è Wyrmwatch, nelle Drakelands.",
@@ -10731,6 +10997,10 @@ export const it_IT: EnTranslations = {
       "lowLevelNote": "La reputazione si ferma a un livello per i personaggi di livello più basso e riprende man mano che sali di livello, così un personaggio giovane può iniziare a guadagnarla presto senza esaurire la strada.",
       "tiersHeading": "Livelli di reputazione",
       "tiersBody": "Ogni fazione sale attraverso gli stessi sei livelli: Sconosciuta, Riconosciuta, Fidata, Comprovata, Avanguardia e Campione. Ogni fazione dà un proprio nome a ciascun gradino, e quel nome diventa il tuo titolo presso di essa.",
+      "lanternwardensTitles": "With the Lanternwardens you are an Outsider, then a Lamplighter, a Lanternbearer, a Warden, a Lanternwarden and at last a Champion.",
+      "hearthwrightTitles": "With the Hearthwright Compact you are an Outsider, then a Hand, a Journeyman, a Hearthwright, a Master Hearthwright and at last a Champion.",
+      "brackenTitles": "With the Bracken Circle you are an Outsider, then a Seedling, a Grovefriend, a Greenkeeper, a Circle Elder and at last a Champion.",
+      "giltTitles": "With the Gilt Measure you are an Outsider, then a Client, an Associate, a Factor, a Magnate and at last a Champion.",
       "riftWatchTitles": "Con la Guardia degli Squarci sei prima un Estraneo, poi una Vedetta, un Percorritore degli Squarci, un Guardiano, un Guardiano degli Squarci e infine un Campione.",
       "churchOrderTitles": "Con l'Ordine della Chiesa sei prima un Estraneo, poi un Accolito, un Custode, un Templare, un Custode dell'Alba e infine un Campione.",
       "automatonsTitles": "Con gli Automi sei prima un Estraneo, poi un Operatore, un Meccanico, un Artificiere, un Mastro Forgiatore e infine un Campione.",
@@ -15541,6 +15811,8 @@ export const it_IT: EnTranslations = {
     "connectionRejected": "Il server ha chiuso la connessione.",
     "incompatibleWorldVersion": "Le versioni del gioco e del server non sono compatibili. Ricarica o aggiorna, poi riprova.",
     "realmFull": "Questo mondo e al completo in questo momento. Riprova tra qualche minuto.",
+    "maintenance": "The realm is closed for maintenance. Please try again soon.",
+    "updateRequired": "Update required: this version of the game is out of date. Restart Steam to update, then try again.",
     "tooManyConnections": "Troppe connessioni a questo mondo provengono dalla tua rete. Chiudi le finestre di gioco extra o riprova tra qualche minuto.",
     "messageRateExceeded": "Sei stato disconnesso per aver inviato azioni troppo velocemente. Attendi un momento e accedi di nuovo.",
     "kickedByModerator": "Un moderatore ti ha disconnesso: {reason}",
@@ -15811,6 +16083,45 @@ export const it_IT: EnTranslations = {
     "ultraDesc": "La preimpostazione fissa visivamente più ricca. Adatta a una scheda grafica di fascia alta.",
     "changeLater": "Puoi modificare questa scelta in qualsiasi momento in Opzioni, sotto Qualità grafica.",
     "confirm": "Continua"
+  },
+  "legalPrompt": {
+    "title": "Player Agreements",
+    "body": "Before you play, please read and accept the Terms of Service, the Privacy Policy, and the End User License Agreement. Each summary below links to the full document.",
+    "earlyAccess": "Wyndlewood is in Early Access: features, balance, and content will change, and progress may be reset once at full launch as announced on the store page.",
+    "eulaLink": "End User License Agreement",
+    "termsLink": "Terms of Service",
+    "privacyLink": "Privacy Policy",
+    "version": "Version {version}",
+    "updated": "Updated since you last accepted",
+    "readFull": "Read the full document",
+    "publisher": "Published by [PUBLISHER LEGAL NAME] (a placeholder until the publisher is named). These documents are drafts awaiting legal review.",
+    "terms": {
+      "age": "You must be at least 13 years old, or have a parent or guardian agree for you.",
+      "fairPlay": "Play fairly: no cheating, bots, automation, bug exploits, harassment, or trading items or gold for real money.",
+      "virtualItems": "Virtual items, currency, and progress have no money value. Any purchase in the Steam build goes through Steam.",
+      "enforcement": "Accounts that break the rules may be warned, muted, suspended, or banned. You can appeal to support."
+    },
+    "privacy": {
+      "account": "We store your account, characters, and progress, and use technical data such as your IP address to run the servers and stop cheating and abuse.",
+      "public": "Chat, character names, guilds, and leaderboards are visible to other players.",
+      "analytics": "Analytics are off unless you turn them on, and nothing is sent to advertising or analytics companies.",
+      "rights": "You can export your data and delete your account at any time."
+    },
+    "eula": {
+      "license": "The game is licensed to you, not sold, for your own non-commercial play.",
+      "restrictions": "Do not copy, resell, or reverse engineer the game, or use cheats, bots, or exploits against it."
+    },
+    "accept": "I Accept",
+    "decline": "Decline"
+  },
+  "analyticsPrompt": {
+    "title": "Help Improve Wyndlewood",
+    "body": "May Wyndlewood collect usage and performance data? If you agree, the game sends coarse counters (sessions, play time in five-minute steps, a rough frame rate) and periodic performance reports about your device and frame times to our own servers.",
+    "noThirdParty": "Nothing is sent to advertising or analytics companies, and nothing is sent at all unless you choose Share.",
+    "privacyLink": "Read the Privacy Policy",
+    "changeLater": "You can change this any time in Options.",
+    "share": "Share",
+    "decline": "Do Not Share"
   },
   "serverUnavailable": {
     "title": "World of ClaudeCraft - Mondo non disponibile",
@@ -17491,6 +17802,11 @@ export const it_IT: EnTranslations = {
       "levelClass": "Livello {level} {className}"
     },
     "vendor": {
+      "apprenticeRiding": "Apprentice Riding Training",
+      "repairAll": "Repair All",
+      "repairAllAria": "Repair all equipment for {price}",
+      "repairAllHint": "Repairs every damaged item you wear and carry.",
+      "repairAllNone": "Nothing needs repairing.",
       "basicRiding": "Addestramento all'Equitazione",
       "advancedRiding": "Addestramento avanzato all'Equitazione",
       "ridingSpeed": "Aumenta la velocità di movimento in sella del {speed}%. Si applica a tutte le cavalcature.",
@@ -24847,6 +25163,282 @@ export const it_IT: EnTranslations = {
       "furn_station_toolworks": {
         "name": "Home Toolworks"
       },
+      "c1_dry_supply_bundle": {
+        "name": "Dry Supply Bundle"
+      },
+      "c1_black_wick_knot": {
+        "name": "Black Wick Knot"
+      },
+      "c1_wrapped_beacon_sample": {
+        "name": "Wrapped Beacon Sample"
+      },
+      "c1_beacon_thread_sample": {
+        "name": "Beacon Thread Sample"
+      },
+      "c1_bait_herring": {
+        "name": "Bait Herring"
+      },
+      "c1_salt_crumpled_hat": {
+        "name": "Salt-Crumpled Hat"
+      },
+      "c1_heavy_parcel": {
+        "name": "Heavy Parcel"
+      },
+      "c1_soft_parcel": {
+        "name": "Soft Parcel"
+      },
+      "c1_healthy_turnip": {
+        "name": "Healthy Turnip"
+      },
+      "c1_blackened_root_sample": {
+        "name": "Blackened Root Sample"
+      },
+      "c1_waxed_root_tie": {
+        "name": "Waxed Root Tie"
+      },
+      "c1_meadow_balm_leaf": {
+        "name": "Meadow Balm Leaf"
+      },
+      "c1_black_cloth_snag": {
+        "name": "Black Cloth Snag"
+      },
+      "c1_unlit_grave_lamp": {
+        "name": "Unlit Grave Lamp"
+      },
+      "c1_cold_silvermint_sprig": {
+        "name": "Cold Silvermint Sprig"
+      },
+      "c1_waxed_binding": {
+        "name": "Waxed Binding"
+      },
+      "c1_dew_damp_cloth": {
+        "name": "Dew-Damp Cloth"
+      },
+      "c1_windwhistle_leaf": {
+        "name": "Windwhistle Leaf"
+      },
+      "c1_nibbled_rent_notice": {
+        "name": "Nibbled Rent Notice"
+      },
+      "c1_bread_heel": {
+        "name": "Bread Heel"
+      },
+      "c1_missing_pantry_key": {
+        "name": "Missing Pantry Key"
+      },
+      "c1_supplied_binding": {
+        "name": "Waxed Binding Sample"
+      },
+      "c1_amended_cart_tag": {
+        "name": "Amended Cart Tag"
+      },
+      "c1_discarded_face_veil": {
+        "name": "Discarded Face Veil"
+      },
+      "c1_stolen_lunch_basket": {
+        "name": "Stolen Lunch Basket"
+      },
+      "c1_instruction_sheet": {
+        "name": "Soot-Folded Instruction Sheet"
+      },
+      "c1_founders_prayer_board": {
+        "name": "Founders' Prayer Board"
+      },
+      "c1_sealed_watch_warning": {
+        "name": "Sealed Watch Warning"
+      },
+      "c1_rivet_packet": {
+        "name": "Rivet Packet"
+      },
+      "c1_hinge_bundle": {
+        "name": "Hinge Bundle"
+      },
+      "c1_covered_stew_bowl": {
+        "name": "Covered Stew Bowl"
+      },
+      "c1_bread_bundle": {
+        "name": "Bread Bundle"
+      },
+      "c1_dried_herb_packet": {
+        "name": "Dried Herb Packet"
+      },
+      "c1_reed_mulch_bundle": {
+        "name": "Reed Mulch Bundle"
+      },
+      "c1_lantern_oil_cup": {
+        "name": "Lantern Oil Cup"
+      },
+      "c1_broken_lifeboat": {
+        "name": "Broken Lifeboat"
+      },
+      "c1_northern_beacon": {
+        "name": "Northern Beacon"
+      },
+      "c1_empty_crab_pot": {
+        "name": "Empty Crab Pot"
+      },
+      "c1_frosted_fence_stake": {
+        "name": "Frosted Fence Stake"
+      },
+      "c1_disturbed_grave": {
+        "name": "Freshly Disturbed Grave"
+      },
+      "c1_name_stone": {
+        "name": "Overturned Name Stone"
+      },
+      "c1_windwhistle_patch": {
+        "name": "Windwhistle Flower Patch"
+      },
+      "c1_tapping_wall_panel": {
+        "name": "Tapping Wall Panel"
+      },
+      "c1_speaking_pipe": {
+        "name": "Disused Speaking Pipe"
+      },
+      "c1_pantry_saucer": {
+        "name": "Empty Pantry Saucer"
+      },
+      "c1_delivery_slip": {
+        "name": "Lamp-Supply Delivery Slip"
+      },
+      "c1_bound_grave_lamp": {
+        "name": "Bound Grave Lamp"
+      },
+      "c1_founding_map": {
+        "name": "Faded Founding Map"
+      },
+      "c1_reading_desk": {
+        "name": "Reading Desk"
+      },
+      "c1_boundary_warning": {
+        "name": "Boundary Warning"
+      },
+      "c1_outer_wicket": {
+        "name": "Outer Wicket"
+      },
+      "c1_road_checkpost": {
+        "name": "Road Checkpost"
+      },
+      "c1_quay_inspection_post": {
+        "name": "Quay Inspection Post"
+      },
+      "c1_watch_lantern": {
+        "name": "Watch Lantern"
+      },
+      "c1_water_level_gauge": {
+        "name": "Water-Level Gauge"
+      },
+      "c1_loan_fishing_rod": {
+        "name": "Loan Fishing Rod"
+      },
+      "c1_shore_minnow": {
+        "name": "Shore Minnow"
+      },
+      "c1_loan_woodcutting_axe": {
+        "name": "Loan Woodcutting Axe"
+      },
+      "c1_shore_pine_log": {
+        "name": "Shore Pine Log"
+      },
+      "c1_deck_nails": {
+        "name": "Packet of Deck Nails"
+      },
+      "c1_walkway_panel": {
+        "name": "Walkway Panel"
+      },
+      "c1_copper_ingot": {
+        "name": "Copper Ingot"
+      },
+      "c1_hinge_packet": {
+        "name": "Hinge Packet"
+      },
+      "c1_brook_trout": {
+        "name": "Brook Trout"
+      },
+      "c1_garden_carrot": {
+        "name": "Garden Carrot"
+      },
+      "c1_supper_stew_bowl": {
+        "name": "Covered Stew Bowl"
+      },
+      "c1_keep_net": {
+        "name": "Floating Keep-Net"
+      },
+      "c1_marked_shore_pine": {
+        "name": "Marked Shore Pine"
+      },
+      "c1_timber_rack": {
+        "name": "Ferry Timber Rack"
+      },
+      "c1_ferry_workbench": {
+        "name": "Ferry Workbench"
+      },
+      "c1_walkway_gap": {
+        "name": "Walkway Gap"
+      },
+      "c1_public_furnace": {
+        "name": "Brunna's Public Furnace"
+      },
+      "c1_pella_workbench": {
+        "name": "Wenna's Public Workbench"
+      },
+      "c1_housing_noticeboard": {
+        "name": "Housing Noticeboard"
+      },
+      "c1_practice_marker": {
+        "name": "Furnishing Practice Marker"
+      },
+      "c1_inn_hearth": {
+        "name": "The Inn's Public Hearth"
+      },
+      "c2_dry_cargo_crate": {
+        "name": "Suspiciously Dry Cargo Crate"
+      },
+      "c2_harbor_fish": {
+        "name": "Skittish Harbor Fish"
+      },
+      "c2_listening_horn": {
+        "name": "Borrowed Listening Horn"
+      },
+      "c2_crypt_key": {
+        "name": "Sexton's Crypt Key"
+      },
+      "c2_memory_wet_keepsake": {
+        "name": "Memory-Wet Keepsake"
+      },
+      "c2_loan_hatchet": {
+        "name": "Borrowed Bog Hatchet"
+      },
+      "c2_bog_alder_log": {
+        "name": "Bog Alder Log"
+      },
+      "c2_boardwalk_plank": {
+        "name": "Boardwalk Plank"
+      },
+      "c2_paddy_crop_bundle": {
+        "name": "Paddy Crop Bundle"
+      },
+      "c2_paddy_eel": {
+        "name": "Paddy Eel"
+      },
+      "c2_cargo_mark": {
+        "name": "Stenciled Cargo Mark"
+      },
+      "c2_jetty_post": {
+        "name": "Old Jetty Post"
+      },
+      "c2_overnight_house": {
+        "name": "House That Was Not Here Yesterday"
+      },
+      "c2_marked_bog_alder": {
+        "name": "Marked Bog Alder"
+      },
+      "c2_fen_workbench": {
+        "name": "Fenbridge Boardwright's Bench"
+      },
+      "c2_rotten_span": {
+        "name": "Rotten Boardwalk Span"
+      },
       "membership_staff": {
         "name": "Bastone del mutamento"
       },
@@ -26964,6 +27556,33 @@ export const it_IT: EnTranslations = {
       "buddy_phantom": {
         "name": "Fantasma"
       },
+      "bristlejaw_shore_rat": {
+        "name": "Bristlejaw Shore Rat"
+      },
+      "gravestirred_fieldhand": {
+        "name": "Gravestirred Fieldhand"
+      },
+      "briarbitten_fox": {
+        "name": "Briarbitten Fox"
+      },
+      "orchard_boar": {
+        "name": "Orchard Boar"
+      },
+      "veiled_rite_tender": {
+        "name": "Veiled Rite Tender"
+      },
+      "culvert_rat": {
+        "name": "Culvert Rat"
+      },
+      "quarry_burrower": {
+        "name": "Quarry Burrower"
+      },
+      "escort_neris": {
+        "name": "Neris Snowmantle"
+      },
+      "escort_della": {
+        "name": "Della Brindlepot"
+      },
       "ironvein_foreman": {
         "name": "Caposquadra Venaferrata"
       },
@@ -27717,6 +28336,11 @@ export const it_IT: EnTranslations = {
         "title": "Maestro della Conceria",
         "greeting": "Una pelle è buona quanto la sua concia, {className}. Le vasche sono pronte quando lo sei tu."
       },
+      "tanner_tamsin": {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "greeting": "Fresh hides on the racks today, {className}. Scrape with the grain, never against it."
+      },
       "alchemist_verane": {
         "name": "L'alchimista Verane",
         "title": "Maestro dello speziale",
@@ -27816,6 +28440,41 @@ export const it_IT: EnTranslations = {
         "name": "Laverock",
         "title": "Ultimo cantore del Coro Pallido",
         "greeting": "Ero la voce più giovane del Coro Pallido. La notte del rito non bevvi, e fuggii. Da allora, a ogni luna piena li sento cantare sott'acqua. Devo vederla prima di morire. Lascia che ti segua. Non combatterò e non ti rallenterò."
+      },
+      "scout_neris": {
+        "name": "Neris Snowmantle",
+        "title": "Lanternwarden Scout",
+        "greeting": "If the snow speaks, do not answer. Down here it is mostly the hedges, and they talk a great deal."
+      },
+      "gravekeeper_holven": {
+        "name": "Bertram Ashcombe",
+        "title": "Gravekeeper",
+        "greeting": "Mind the paths between the stones. The ones beneath them have earned their quiet."
+      },
+      "innkeeper_jorren": {
+        "name": "Jorren",
+        "title": "Innkeeper",
+        "greeting": "It could be worse. Usually is. Sit, eat, and tell me which way the trouble is walking today."
+      },
+      "herbalist_olvessa": {
+        "name": "Olvessa",
+        "title": "Herb Terrace Keeper",
+        "greeting": "Mud remembers every footprint, and so do the herbs. Tread kindly here."
+      },
+      "gardener_della": {
+        "name": "Della Brindlepot",
+        "title": "Gardener",
+        "greeting": "If it grows, I have argued with it. If it grows well, I won."
+      },
+      "carpenter_pella": {
+        "name": "Wenna Nookwright",
+        "title": "Carpenter",
+        "greeting": "Measure twice, panic once. Then measure again, just to be safe."
+      },
+      "fisherman_tobbin": {
+        "name": "Tobbin Wickerby",
+        "title": "Fisherman",
+        "greeting": "Never trust a fish with good manners. The polite ones are planning something."
       },
       "tidewatcher_ondrel": {
         "name": "Ondrel Vane",
@@ -30213,6 +30872,684 @@ export const it_IT: EnTranslations = {
           }
         }
       },
+      "c1_01_arrival": {
+        "title": "An Arrival Without a Ticket",
+        "text": "You're breathing, which puts you ahead of your luggage. Gather anything dry from that wreckage while I fetch a blanket. We can discuss your unusual choice of landing place once your teeth stop chattering.",
+        "completion": "There's bread in that bundle and a blanket without too many holes. Sit a moment, then we'll work out what brought your boat onto the rocks.",
+        "objectives": {
+          "0": {
+            "label": "Dry Supply Bundle"
+          },
+          "1": {
+            "label": "Broken Lifeboat inspected"
+          }
+        }
+      },
+      "c1_02_beacon_lied": {
+        "title": "The Beacon That Lied",
+        "text": "That beacon should have guided your boat clear of the rocks, not invited it onto them. Someone's been up there, and the rats along the path have started biting anything with a shadow. Have a look inside the lantern, but don't touch anything still burning.",
+        "completion": "That cord is cold enough to numb my fingers, yet the lantern was lit. I'll wrap it up for Eastbrook's priest, because I prefer my mysteries somewhere other than aboard my boat.",
+        "objectives": {
+          "0": {
+            "label": "Bristlejaw Shore Rat slain"
+          },
+          "1": {
+            "label": "Northern Beacon inspected"
+          },
+          "2": {
+            "label": "Black Wick Knot"
+          }
+        }
+      },
+      "c1_06_admiral_crabs": {
+        "title": "An Admiral Among Crabs",
+        "text": "A crab has stolen my hat and now refuses to recognize my authority. Bait the pot beneath the jetty and retrieve it without hurting the little scoundrel. I want my hat back, not a diplomatic incident.",
+        "completion": "That is my hat, though the crab has improved its ventilation. Let him out once you are finished, because he has already suffered the indignity of being caught by breakfast.",
+        "objectives": {
+          "0": {
+            "label": "Crab Pot baited with a Bait Herring"
+          },
+          "1": {
+            "label": "Salt-Crumpled Hat"
+          }
+        }
+      },
+      "c1_07_across": {
+        "title": "Across Before the Kettle Boils",
+        "text": "Eastbrook lies upriver, where people generally arrive through doors rather than shipwrecks. Take this wrapped cord to Brother Aldric at the chapel. Tell him I want an explanation, preferably one that doesn't involve buying a new ferry.",
+        "completion": "Welcome to Eastbrook, and thank you for bringing this safely. Jorren will find you a warm meal while I examine the cord, but I would like you to return afterward.",
+        "objectives": {
+          "0": {
+            "label": "Wrapped Beacon Sample delivered"
+          },
+          "1": {
+            "label": "Mainland ferry boarded"
+          }
+        }
+      },
+      "c1_08_vouch": {
+        "title": "Someone to Vouch for You",
+        "text": "A stranger needn't remain one for long here. Take a sample to Ivara, introduce yourself to Corren and Silven, and look at the work posted outside the inn. Eastbrook has room for another pair of willing hands.",
+        "completion": "Then you have somewhere to begin, and people who know your name. Ivara has already sent word that the thread troubles her, though she cannot yet say why.",
+        "objectives": {
+          "0": {
+            "label": "Beacon Thread Sample delivered to Ivara"
+          },
+          "1": {
+            "label": "Spoke with Corren"
+          },
+          "2": {
+            "label": "Spoke with Silven"
+          },
+          "3": {
+            "label": "Eastbrook quest board inspected"
+          }
+        }
+      },
+      "c1_10_handle_doubt": {
+        "title": "Handle With Considerable Doubt",
+        "text": "Two labels were exchanged in a minor outbreak of administrative enthusiasm. Ivara needs her mortar, and Brunna needs her padded gloves. Please correct matters before either discovers an exciting new use for the other's order.",
+        "completion": "Both deliveries are accounted for, and neither customer has demanded my head. That is what I call a successful trading day.",
+        "objectives": {
+          "0": {
+            "label": "Heavy Parcel delivered to Ivara"
+          },
+          "1": {
+            "label": "Soft Parcel delivered to Brunna"
+          }
+        }
+      },
+      "c1_11_cold_garden": {
+        "title": "The Cold End of the Garden",
+        "text": "The south bed grows turnips, while the north bed appears to be growing disappointment. Its soil is cold enough to keep butter, even at noon. Bring me good vegetables and a few bad roots before the whole patch decides it's winter.",
+        "completion": "At least we'll have something for supper. That cord around the fence stake wasn't there when I planted, and I'd like to know who put it there.",
+        "objectives": {
+          "0": {
+            "label": "Healthy Turnip"
+          },
+          "1": {
+            "label": "Blackened Root Sample"
+          },
+          "2": {
+            "label": "Frosted Fence Stake inspected"
+          }
+        }
+      },
+      "c1_12_tied_to_root": {
+        "title": "Nothing Good Tied to a Root",
+        "text": "I've dug down beside that stake, and someone has tied knots around my roots. Knots, in a vegetable garden, as though the turnips might escape. Take the bindings to Ivara, along with balm for the plants we've had to disturb.",
+        "completion": "The wax draws warmth from whatever touches it, which explains Della's damaged crop. Removing it should help the bed recover, but please tell her to report anyone digging near her fence.",
+        "objectives": {
+          "0": {
+            "label": "Waxed Root Tie"
+          },
+          "1": {
+            "label": "Meadow Balm Leaf"
+          }
+        }
+      },
+      "c1_13_flowers_down": {
+        "title": "Flowers Facing Down",
+        "text": "Bertram found the flowers on three graves pushed into the soil, blossoms first. That is not one of our customs, nor a child's joke I recognize. Ask him what he saw and examine the graves without disturbing their occupants.",
+        "completion": "He heard someone counting after midnight, and this cloth matches the thread Fenlow sent. I would rather have found a thoughtless vandal than someone so careful.",
+        "objectives": {
+          "0": {
+            "label": "Freshly Disturbed Grave inspected"
+          },
+          "1": {
+            "label": "Spoke with Bertram Ashcombe"
+          },
+          "2": {
+            "label": "Black Cloth Snag"
+          }
+        }
+      },
+      "c1_14_buried_tuesday": {
+        "title": "The Man Buried on Tuesday",
+        "text": "Bertram saw a man walking whom we buried together on Tuesday. I have checked the grave, and I fear there is no gentle explanation. Put the Gravestirred to rest and restore their name stones, because whatever moves them now must not take their names as well.",
+        "completion": "Thank you for treating them as people rather than obstacles. This lamp was never part of their burial, and I will find out who placed it there.",
+        "objectives": {
+          "0": {
+            "label": "Gravestirred Fieldhand laid to rest"
+          },
+          "1": {
+            "label": "Overturned Name Stone restored"
+          },
+          "2": {
+            "label": "Unlit Grave Lamp"
+          }
+        }
+      },
+      "c1_15_warmth_missing": {
+        "title": "The Warmth Gone Missing",
+        "text": "The roots beside the burial ground have blackened, and even the foxes there have turned savage. Ivara believes the damage may tell us more than the graves alone. Take her herbs from the cold patches and anything tied among the roots.",
+        "completion": "The soil has been drained of warmth, not poisoned. These bindings match the beacon thread, which means the trouble has been carried here by someone with hands.",
+        "objectives": {
+          "0": {
+            "label": "Briarbitten Fox slain"
+          },
+          "1": {
+            "label": "Cold Silvermint Sprig"
+          },
+          "2": {
+            "label": "Waxed Binding"
+          }
+        }
+      },
+      "c1_16_pick_the_choir": {
+        "title": "Please Do Not Pick the Choir",
+        "text": "Those flowers beneath the bridge have been singing since dawn, and even a happy song becomes tiresome by the seventeenth verse. Lay a damp cloth over each patch before taking a leaf. You needn't pluck the whole choir to borrow a little music.",
+        "completion": "These leaves still carry a lovely little hum. I'll use them gently, and perhaps the bridge will enjoy a quiet afternoon.",
+        "objectives": {
+          "0": {
+            "label": "Windwhistle Flower Patch soothed"
+          },
+          "1": {
+            "label": "Windwhistle Leaf"
+          }
+        }
+      },
+      "c1_17_della_long_way": {
+        "title": "Della Takes the Long Way",
+        "text": "Della took her handcart over the willow path after I warned her about the washout. I've found a wheel, but she shouted back when I called, so there's hope. Bring her and those seed sacks home before she attempts to repair the river.",
+        "completion": "She came back arguing, which is usually a good sign. Thank you for taking the sacks as well, because she would have gone straight back for them.",
+        "objectives": {
+          "0": {
+            "label": "Della escorted home"
+          }
+        }
+      },
+      "c1_18_three_knocks": {
+        "title": "Three Knocks for Supper",
+        "text": "Something in my pantry knocks three times whenever I serve supper. The guests say it's a ghost, but ghosts have never previously shown such an interest in dumplings. Find the cause before somebody starts selling tickets.",
+        "completion": "Those flour prints are smaller than a mouse's, and something has eaten the word 'rent.' Whatever lives in that wall has already understood the expensive part of lodging.",
+        "objectives": {
+          "0": {
+            "label": "Tapping Wall Panel inspected"
+          },
+          "1": {
+            "label": "Nibbled Rent Notice"
+          },
+          "2": {
+            "label": "Disused Speaking Pipe examined"
+          }
+        }
+      },
+      "c1_19_guest_shelves": {
+        "title": "A Guest Between the Shelves",
+        "text": "My pantry key has vanished, and the knocking has become rather impatient. Ask Olvessa what leaves tiny flour prints, then offer our visitor something from the kitchen. I'd prefer a negotiated settlement to dismantling my inn.",
+        "completion": "A cupboard spirit was tapping through the old speaking pipe to ask for food. It returned my key and offered three buttons for its room, so I believe we're making progress.",
+        "objectives": {
+          "0": {
+            "label": "Asked Olvessa about the flour prints"
+          },
+          "1": {
+            "label": "Bread set on the Pantry Saucer"
+          },
+          "2": {
+            "label": "Missing Pantry Key"
+          }
+        }
+      },
+      "c1_20_order_unsigned": {
+        "title": "The Order Nobody Signed",
+        "text": "Someone needed wax, cord, and lamps for these workings, and those things pass through ordinary hands before reaching wicked ones. Silven may recognize the supplies. Ask what he sold, not what he believes, and let the records answer.",
+        "completion": "Three buyers used three different names, but all their orders went on the same cart. The destination was Old Kiln Lane, and I dislike being made useful without knowing to whom.",
+        "objectives": {
+          "0": {
+            "label": "Lamp-Supply Delivery Slip checked"
+          },
+          "1": {
+            "label": "Amended Cart Tag"
+          },
+          "2": {
+            "label": "Waxed Binding delivered to Silven"
+          }
+        }
+      },
+      "c1_21_watch_cannot_see": {
+        "title": "Where the Watch Cannot See",
+        "text": "Neris has found where the supply cart left the road. Go with her while she follows the tracks, and watch the hedges when her eyes are on the ground. We need to know who is there before anyone attempts heroics.",
+        "completion": "There are people below us tending lamps around an open pit, and something in that pit keeps trying to stand. I'll send word to Aldric while you keep those veils.",
+        "objectives": {
+          "0": {
+            "label": "Neris escorted to the lookout"
+          },
+          "1": {
+            "label": "Discarded Face Veil"
+          }
+        }
+      },
+      "c1_24_sandwich_emergency": {
+        "title": "The Sandwich Emergency",
+        "text": "The patrol lunches have been stolen twice, and I will not have hungry recruits making decisions with spears. Clear the boars from the shelter and recover the baskets. For the record, I have withdrawn my earlier accusation of organized sabotage.",
+        "completion": "The watch will eat, and I shall amend my report to say 'persistent livestock.' Nobody needs to know how long I spent questioning the baker.",
+        "objectives": {
+          "0": {
+            "label": "Orchard Boar driven off"
+          },
+          "1": {
+            "label": "Stolen Lunch Basket"
+          }
+        }
+      },
+      "c1_25_someone_teaching": {
+        "title": "Someone Has Been Teaching Them",
+        "text": "Neris saw the dead rise when those lamps were lit and collapse when one went out. The people tending them attacked our messenger, so there can be no mistaking their intent. Stop the workings and bring back any instructions you find, because someone taught them this.",
+        "completion": "The pit is quiet, and those remains can finally be buried properly. These instructions look copied rather than composed, which means the people you stopped may not be the ones who began this.",
+        "objectives": {
+          "0": {
+            "label": "Veiled Rite Tender stopped"
+          },
+          "1": {
+            "label": "Bound Grave Lamp extinguished"
+          },
+          "2": {
+            "label": "Soot-Folded Instruction Sheet"
+          }
+        }
+      },
+      "c1_26_promise_paint": {
+        "title": "The Promise Under the Paint",
+        "text": "This copied verse resembles a promise recorded in the Age of First Hearths, though someone has twisted its meaning. Fetch the old prayer boards from the loft and examine the map behind the painted panel. Our founders may have left us a warning worth hearing.",
+        "completion": "The original promise forbids keeping the dead in service to a crown, while this copy demands their obedience. An old cautionary verse calls such a ruler the Oathless King. The map places the promised resting ground beneath the Hollow Crypt.",
+        "objectives": {
+          "0": {
+            "label": "Founders' Prayer Board"
+          },
+          "1": {
+            "label": "Faded Founding Map examined"
+          },
+          "2": {
+            "label": "Verse compared at the reading desk"
+          }
+        }
+      },
+      "c1_28_door_left_shut": {
+        "title": "A Door We Leave Shut",
+        "text": "The map leads to the Hollow Crypt, but finding a door does not oblige us to open it. Read the boundary stones and give Neris this warning. Stay outside the wicket, whatever you hear beyond it, and come back to me.",
+        "completion": "Fresh wax beneath the sealed doors is warning enough, and you were right to leave them shut. We will need experienced company before going farther. For tonight, Eastbrook has a watch on the road and one more reason to sleep.",
+        "objectives": {
+          "0": {
+            "label": "Boundary Warning read"
+          },
+          "1": {
+            "label": "Outer Wicket inspected"
+          },
+          "2": {
+            "label": "Sealed Watch Warning delivered to Neris"
+          }
+        }
+      },
+      "c1_03_fish_consulted": {
+        "title": "The Fish Must Be Consulted",
+        "text": "Before we discuss fishing, you should understand that the fish consider themselves the injured party. Borrow my spare rod and catch a few minnows for the keep-net. Gently, please, because we're studying them rather than inviting them to supper.",
+        "completion": "Four healthy minnows, and not one signed complaint. We'll release them after I've checked their scales, which is more courtesy than they showed my last sandwich.",
+        "objectives": {
+          "0": {
+            "label": "Loan Fishing Rod from the tackle rack"
+          },
+          "1": {
+            "label": "Shore Minnow caught at the jetty"
+          },
+          "2": {
+            "label": "Minnows placed in the keep-net"
+          }
+        }
+      },
+      "c1_04_every_board": {
+        "title": "Every Board Counts",
+        "text": "The cargo walkway has developed an interest in dropping people into the sea. Bring me four sound pine logs from the marked trees behind the hut. Leave the old nesting tree alone, unless you'd like to negotiate with thirty furious gulls.",
+        "completion": "Those will do nicely, and the gulls appear to have spared you. Now we can turn this pile into something people may confidently stand upon.",
+        "objectives": {
+          "0": {
+            "label": "Loan Woodcutting Axe"
+          },
+          "1": {
+            "label": "Marked Shore Pine felled"
+          },
+          "2": {
+            "label": "Shore Pine Logs placed on the timber rack"
+          }
+        }
+      },
+      "c1_05_solid_underfoot": {
+        "title": "Something Solid Underfoot",
+        "text": "You've provided the wood, so now comes the business of convincing it to become a walkway. Use my bench and the nails in that chest. I've marked the gaps, although the sea showing through them is also a useful clue.",
+        "completion": "That feels solid enough for a loaded handcart. It's a small repair, but someone will get home dry because you bothered.",
+        "objectives": {
+          "0": {
+            "label": "Walkway Panels built at the ferry workbench"
+          },
+          "1": {
+            "label": "Walkway gap repaired"
+          }
+        }
+      },
+      "c1_09_buckles_glory": {
+        "title": "Buckles Before Glory",
+        "text": "The watch wants new breastplates, but half their existing straps won't hold a buckle. Bring me copper and smelt it cleanly. We can discuss glorious weapons after everyone can keep their armor on.",
+        "completion": "That's clean metal, and I can work with it. A buckle won't earn a ballad, but it might keep the person wearing it alive.",
+        "objectives": {
+          "0": {
+            "label": "Copper Ore mined in the eastern quarry"
+          },
+          "1": {
+            "label": "Copper Ingot smelted at the public furnace"
+          },
+          "2": {
+            "label": "Copper Ingots delivered to Brunna"
+          }
+        }
+      },
+      "c1_22_place_you_keep": {
+        "title": "A Place for What You Keep",
+        "text": "You keep bringing useful things back to town, and pockets have limits. Build yourself a chest while you consider where you'd like to live. You needn't own a house to begin making a home.",
+        "completion": "That chest is yours, including everything you eventually manage to squeeze into it. Keep it safe until you've chosen a place, and don't let Silven convince you that hinges count as luxury fittings.",
+        "objectives": {
+          "0": {
+            "label": "Vale Oak felled in the western coppice"
+          },
+          "1": {
+            "label": "Hinge Packet collected from Brunna"
+          },
+          "2": {
+            "label": "Storage Chest built at Wenna's workbench"
+          },
+          "3": {
+            "label": "Housing Noticeboard inspected"
+          }
+        }
+      },
+      "c1_23_working_life": {
+        "title": "Room for a Working Life",
+        "text": "A home ought to hold something you made, and somewhere to make the next thing. Build a worktable, then try arranging it in my demonstration cottage. No purchase required, and please resist testing the walls with an axe.",
+        "completion": "There you are, with room to work and enough floor left to walk across. Keep the table alongside your chest, because a useful home can begin with very little.",
+        "objectives": {
+          "0": {
+            "label": "Vale Oak felled in the western coppice"
+          },
+          "1": {
+            "label": "Worktable built at Wenna's workbench"
+          },
+          "2": {
+            "label": "Worktable tried on the Furnishing Practice Marker"
+          }
+        }
+      },
+      "c1_27_supper_despite": {
+        "title": "Supper, Despite Everything",
+        "text": "Everyone's been working late and pretending they aren't hungry. Help me make a few proper meals, then take them to the people too stubborn to stop. Terrible news can wait while somebody eats a carrot.",
+        "completion": "Good, because they'll look after the rest of us better with something warm inside them. I've kept a bowl for you, and that wasn't an invitation to argue.",
+        "objectives": {
+          "0": {
+            "label": "Stew cooked at the inn hearth (2 Brook Trout, 3 Garden Carrots)"
+          },
+          "1": {
+            "label": "Stew delivered to Corren"
+          },
+          "2": {
+            "label": "Stew delivered to Brunna"
+          },
+          "3": {
+            "label": "Stew delivered to Olvessa"
+          }
+        }
+      },
+      "c1_d01_bounty_culvert": {
+        "title": "Board Bounty: Culvert Rats",
+        "text": "We've had reports of Culvert Rats troubling people at the town drainage ditch. Remove 5 of them and check your footing while you're there. I don't want a rescue operation attached to a routine patrol.",
+        "completion": "That should make the route safer for ordinary traffic. Good work, and thank you for returning without requiring a stretcher.",
+        "objectives": {
+          "0": {
+            "label": "Culvert Rat removed"
+          }
+        }
+      },
+      "c1_d02_clear_quarry": {
+        "title": "Clear Space for Honest Work",
+        "text": "The workers at the eastern quarry need their hands for tools, not for beating off Quarry Burrowers. Clear 4 from the worksite. I'll pay for a safe shift rather than another tale about why the ore hasn't arrived.",
+        "completion": "Then we can get something useful made today. You've earned your pay without needing to swing a hammer.",
+        "objectives": {
+          "0": {
+            "label": "Quarry Burrower cleared"
+          }
+        }
+      },
+      "c1_d03_teeth_verge": {
+        "title": "Teeth Along the Verge",
+        "text": "I've marked where Briarbitten Foxes are approaching the road at the northern root hedge. Deal with 4, but leave the healthy wildlife alone. We're protecting a path, not emptying the countryside.",
+        "completion": "I'll check the verge again on my next round. For now, the travelers behind you have a safer walk.",
+        "objectives": {
+          "0": {
+            "label": "Briarbitten Fox dealt with"
+          }
+        }
+      },
+      "c1_d04_metal_copper": {
+        "title": "Metal for the Morning Shift",
+        "text": "I need 6 pieces of Copper Ore from the eastern quarry. Bring sound ore rather than a sack of interesting gravel. The furnace has enough opinions without being fed rubbish.",
+        "completion": "That's a proper load, and the forge can use all of it. Come back another day when you need honest work.",
+        "objectives": {
+          "0": {
+            "label": "Copper Ore gathered at the eastern quarry"
+          }
+        }
+      },
+      "c1_d05_wood_oak": {
+        "title": "Wood That Has a Future",
+        "text": "I've orders waiting for 4 Vale Oak Logs, and the western coppice has trees marked for cutting. Leave the unmarked ones standing. Good carpentry begins before the wood reaches the bench.",
+        "completion": "These will become something useful instead of remaining a sketch on my wall. I'll put the offcuts aside as well, because waste makes expensive furniture.",
+        "objectives": {
+          "0": {
+            "label": "Vale Oak felled in the western coppice"
+          }
+        }
+      },
+      "c1_d05_wood_alder": {
+        "title": "Wood That Has a Future",
+        "text": "I've orders waiting for 4 Riverside Alder Logs, and the managed brook grove has trees marked for cutting. Leave the unmarked ones standing. Good carpentry begins before the wood reaches the bench.",
+        "completion": "These will become something useful instead of remaining a sketch on my wall. I'll put the offcuts aside as well, because waste makes expensive furniture.",
+        "objectives": {
+          "0": {
+            "label": "Alder felled in the brook grove"
+          }
+        }
+      },
+      "c1_d06_leaves_silvermint": {
+        "title": "Fresh Leaves, Clean Hands",
+        "text": "I need 3 fresh Silvermint Sprigs from the eastern meadow. Take the healthy growth and leave enough for each plant to recover. A treatment gathered carelessly begins with an injury of its own.",
+        "completion": "These are exactly what I needed. Thank you for bringing them promptly rather than letting them wilt beneath a collection of wolf teeth.",
+        "objectives": {
+          "0": {
+            "label": "Silvermint gathered in the eastern meadow"
+          }
+        }
+      },
+      "c1_d07_receipt_rivets": {
+        "title": "A Receipt Is a Beautiful Thing",
+        "text": "Please take 3 Rivet Packets to Brunna at the forge. The goods are paid for, properly labeled, and not yours to inspect for personal inspiration. Bring confirmation back, and we shall both enjoy the rare pleasure of an uncomplicated transaction.",
+        "completion": "Everything is signed for, so everybody knows whom to blame if it goes missing later. Your payment, happily, is considerably less complicated.",
+        "objectives": {
+          "0": {
+            "label": "Rivet Packets delivered to Brunna"
+          }
+        }
+      },
+      "c1_d07_receipt_hinges": {
+        "title": "A Receipt Is a Beautiful Thing",
+        "text": "Please take 3 Hinge Bundles to Wenna at the carpenter's yard. The goods are paid for, properly labeled, and not yours to inspect for personal inspiration. Bring confirmation back, and we shall both enjoy the rare pleasure of an uncomplicated transaction.",
+        "completion": "Everything is signed for, so everybody knows whom to blame if it goes missing later. Your payment, happily, is considerably less complicated.",
+        "objectives": {
+          "0": {
+            "label": "Hinge Bundles delivered to Wenna"
+          }
+        }
+      },
+      "c1_d08_lunch_stew": {
+        "title": "Lunch Before Complaints",
+        "text": "I've prepared 3 Covered Stew Bowls for Corren. Take them straight to the training yard, because hungry people can turn a short delay into a lifelong grievance. Anything you smell along the way remains part of the delivery.",
+        "completion": "Good, because the kitchen was already receiving complaints from imaginary future customers. There's something small for you on the counter, and this time you're permitted to eat it.",
+        "objectives": {
+          "0": {
+            "label": "Covered Stew Bowls delivered to Corren"
+          }
+        }
+      },
+      "c1_d08_lunch_bread": {
+        "title": "Lunch Before Complaints",
+        "text": "I've prepared 3 Bread Bundles for Neris. Take them straight to the northern lookout, because hungry people can turn a short delay into a lifelong grievance. Anything you smell along the way remains part of the delivery.",
+        "completion": "Good, because the kitchen was already receiving complaints from imaginary future customers. There's something small for you on the counter, and this time you're permitted to eat it.",
+        "objectives": {
+          "0": {
+            "label": "Bread Bundles delivered to Neris"
+          }
+        }
+      },
+      "c1_d09_parcels_herbs": {
+        "title": "Small Parcels, Growing Things",
+        "text": "I've set aside 3 Dried Herb Packets for Ivara at the apothecary. Carry them gently and keep them dry. Things that grow deserve a little care even when they're wrapped in string.",
+        "completion": "Then something will be tended that might otherwise have been neglected. Small journeys can do a surprising amount of good.",
+        "objectives": {
+          "0": {
+            "label": "Dried Herb Packets delivered to Ivara"
+          }
+        }
+      },
+      "c1_d09_parcels_mulch": {
+        "title": "Small Parcels, Growing Things",
+        "text": "I've set aside 3 Reed Mulch Bundles for Della at the riverside garden. Carry them gently and keep them dry. Things that grow deserve a little care even when they're wrapped in string.",
+        "completion": "Then something will be tended that might otherwise have been neglected. Small journeys can do a surprising amount of good.",
+        "objectives": {
+          "0": {
+            "label": "Reed Mulch Bundles delivered to Della"
+          }
+        }
+      },
+      "c1_d10_road_checkposts": {
+        "title": "A Road Checked Properly",
+        "text": "Check 3 Road Checkposts along the south road and report what you actually find. Do not substitute what a passing merchant claims his cousin saw. We have an entire council for that.",
+        "completion": "That's a useful report, with places and observations rather than adjectives. I'll pass it to the next watch before they set out.",
+        "objectives": {
+          "0": {
+            "label": "Road Checkpost checked"
+          }
+        }
+      },
+      "c1_d10_quay_posts": {
+        "title": "A Road Checked Properly",
+        "text": "Check 3 Quay Inspection Posts along the riverside walk and report what you actually find. Do not substitute what a passing merchant claims his cousin saw. We have an entire council for that.",
+        "completion": "That's a useful report, with places and observations rather than adjectives. I'll pass it to the next watch before they set out.",
+        "objectives": {
+          "0": {
+            "label": "Quay Inspection Post checked"
+          }
+        }
+      },
+      "c1_d11_light_behind": {
+        "title": "Leave a Light Behind You",
+        "text": "Several lamps along the Briar Gate circuit are running low. Take oil for 3 Watch Lanterns and check their shutters while you are there. Someone coming home late should be able to see the next safe place.",
+        "completion": "I'll be able to follow that line of lights on tonight's round. So will everyone else who needs to reach home.",
+        "objectives": {
+          "0": {
+            "label": "Watch Lantern serviced"
+          }
+        }
+      },
+      "c1_d12_road_not_rumor": {
+        "title": "The Road, Not the Rumor",
+        "text": "I've heard three alarming accounts of the town's brook crossings, none from anyone who's visited them today. Inspect 3 Water-Level Gauges and bring me facts. Rumors are remarkably expensive when attached to a delivery schedule.",
+        "completion": "Excellent, because now I can arrange deliveries around the conditions rather than the gossip. Reliable information is a commodity I am occasionally willing to pay for.",
+        "objectives": {
+          "0": {
+            "label": "Water-Level Gauge inspected"
+          }
+        }
+      },
+      "c2_01_ship_sank_twice": {
+        "title": "Cargo From a Ship That Sank Twice",
+        "text": "Crates have been washing up on the quay all morning, and they are dry inside. Wood that has been under the sea for years does not stay dry, {playerName}, and neither do I when I think about it too long. Bring me three of them and read the mark stenciled on the one the tide left by the bell.",
+        "completion": "Gilt Measure seal, an old one, on a ship the harbor rolls say went down twice: once in a storm, and once again when someone tried to raise her. Either the sea is returning things, or someone wants us to think it is.",
+        "objectives": {
+          "0": {
+            "label": "Suspiciously Dry Cargo Crate"
+          },
+          "1": {
+            "label": "Stenciled Cargo Mark read"
+          }
+        }
+      },
+      "c2_03_bells_from_steps": {
+        "title": "Bells You Can Hear From the Steps",
+        "text": "The fish below the town steps have gone nervous. Not shy, nervous, the way a cat goes nervous before a storm. Catch a few for my kitchen, then hold this old horn to the jetty post and tell me I am imagining the ringing.",
+        "completion": "You heard it too. Bells, under the water, slow as a funeral. Well. The fish are excellent, and I intend to serve them before they hear anything else.",
+        "objectives": {
+          "0": {
+            "label": "Skittish Harbor Fish caught off the town steps"
+          },
+          "1": {
+            "label": "Listened at the old jetty post"
+          }
+        }
+      },
+      "c2_12_door_we_left_shut": {
+        "title": "The Door We Left Shut",
+        "text": "We were right to leave the crypt shut. I would like that on record before I say the next part: it has to be opened now. Look at the Outer Wicket for me, then fetch the key from the sexton's lodge. Bring both your eyes and the key to Brother Aldric, in that order of importance.",
+        "completion": "The wicket's ward has gone cold, and the key is warm. That is backwards in every way that matters. Very well. The crypt opens, and I will pray for whoever goes in first. That will be you.",
+        "objectives": {
+          "0": {
+            "label": "Outer Wicket examined"
+          },
+          "1": {
+            "label": "Sexton's Crypt Key"
+          }
+        }
+      },
+      "c2_28_remembered_roofs": {
+        "title": "Remembered Roofs",
+        "text": "Three houses stand along the causeway road this morning. I have walked that road every day for eleven years, and I would have noticed houses. Knock, look inside, and bring me anything left on the sills. Handle it gently; I suspect it remembers more than we do.",
+        "completion": "A child's shoe, a wedding spoon, a letter to nobody. Each one is wet, and none of them has been near water. Someone is building homes out of what people have forgotten. I will write this down before I forget it as well.",
+        "objectives": {
+          "0": {
+            "label": "Overnight house examined"
+          },
+          "1": {
+            "label": "Memory-Wet Keepsake"
+          }
+        }
+      },
+      "c2_32_bridge_fenbridge_trusts": {
+        "title": "A Bridge Fenbridge Can Trust",
+        "text": "The boardwalk is sinking a hand's width a week, and the fog is not helping. Take my hatchet, fell the alders I have marked, and turn them into planks at the bench. Then replace the two spans that have started making noises a bridge should not make.",
+        "completion": "Solid as a promise, and quieter than most. Fenbridge walks dry tonight because you spent your afternoon on planks instead of glory. I will not forget it, which these days is saying something.",
+        "objectives": {
+          "0": {
+            "label": "Borrowed Bog Hatchet"
+          },
+          "1": {
+            "label": "Marked Bog Alder felled"
+          },
+          "2": {
+            "label": "Boardwalk Planks cut at the bench"
+          },
+          "3": {
+            "label": "Rotten span replaced"
+          }
+        }
+      },
+      "c2_33_paddy_work_fog": {
+        "title": "Paddy Work in the Fog",
+        "text": "There is a harvest standing in my west paddy, and I do not remember sowing it. My hands do, apparently. Bundle what is ripe along the causeway bank, and empty my two eel traps before the eels eat the rest.",
+        "completion": "Good rice, fat eels, and not one memory of planting either. I have decided to be grateful rather than frightened. It is easier on the knees.",
+        "objectives": {
+          "0": {
+            "label": "Paddy Crop Bundle"
+          },
+          "1": {
+            "label": "Paddy Eel taken from the traps"
+          }
+        }
+      },
       "q_drowned_choir": {
         "title": "Il Coro Annegato",
         "text": "I guadatori non agiscono da soli. Tra loro camminano i Devoti Annegati — la setta che affondò col tempio, ancora nelle loro vesti marcite, ancora intenti a cantare la preghiera dalle rocce della riva. Riducine otto al silenzio e portami sei delle offerte che recano. Voglio sapere cosa intendono donare alla loro dea.",
@@ -30713,6 +32050,219 @@ export const it_IT: EnTranslations = {
           },
           "4": {
             "label": "La Corsa a Ostacoli"
+          }
+        }
+      },
+      "applewold": {
+        "name": "The Applewold",
+        "welcome": "The causeway ends in apple country. Pressford keeps the presses turning and the Lanternwardens keep the road, but the orchards have gone strange, and the boars have stopped fearing the dogs.",
+        "pois": {
+          "0": {
+            "label": "Pressford"
+          },
+          "1": {
+            "label": "Causeway Watch"
+          },
+          "2": {
+            "label": "The Cider Mere"
+          },
+          "3": {
+            "label": "Blossom Rise"
+          },
+          "4": {
+            "label": "The Old Press"
+          },
+          "5": {
+            "label": "The South Downs"
+          }
+        }
+      },
+      "kindlemoor": {
+        "name": "The Kindlemoor",
+        "welcome": "Nothing grows tall on the Kindlemoor, and nothing here is new. The Bracken Circle keeps watch over stones that were old when the first kingdom was young, and lately the stones have been warm to the touch.",
+        "pois": {
+          "0": {
+            "label": "Ferncross"
+          },
+          "1": {
+            "label": "The First Hearth Ring"
+          },
+          "2": {
+            "label": "The Moor Tarn"
+          },
+          "3": {
+            "label": "The Grey Tor"
+          },
+          "4": {
+            "label": "The Heath Way"
+          }
+        }
+      },
+      "chalkbarrow_coast": {
+        "name": "The Chalkbarrow Coast",
+        "welcome": "The Gilt Measure came to the white cliffs for chalk and stayed for what was under it. Someone else is digging further down, by lantern-less dark, and the prospectors at Coinwell would very much like to know who.",
+        "pois": {
+          "0": {
+            "label": "Coinwell Camp"
+          },
+          "1": {
+            "label": "The Unlit Dig"
+          },
+          "2": {
+            "label": "Chalk Mere"
+          },
+          "3": {
+            "label": "The White Head"
+          },
+          "4": {
+            "label": "Wreckers' Cove"
+          }
+        }
+      },
+      "saltmeads": {
+        "name": "The Saltmeads",
+        "welcome": "Grey water, white pans and the smell of brine. Panwick boils salt for half the south, but lately the tide brings in more than weed, and the gannets will not land on the stack.",
+        "pois": {
+          "0": {
+            "label": "Panwick"
+          },
+          "1": {
+            "label": "The Brine Pans"
+          },
+          "2": {
+            "label": "Gannet Stack"
+          },
+          "3": {
+            "label": "The Wrack Shallows"
+          },
+          "4": {
+            "label": "The Saltmeads Gate"
+          }
+        }
+      },
+      "wychwold": {
+        "name": "The Wychwold",
+        "welcome": "The Wychwold was old before the Hearthbinding. The charcoal burners still work its hollows, the Bracken Circle still keeps its oldest elm, and something under the roots has begun to stir.",
+        "pois": {
+          "0": {
+            "label": "Elmhallow"
+          },
+          "1": {
+            "label": "The Knotted Elm"
+          },
+          "2": {
+            "label": "Charcoal Hollow"
+          },
+          "3": {
+            "label": "The Sunk Lane"
+          },
+          "4": {
+            "label": "The Salt Way"
+          }
+        }
+      },
+      "tinmarch": {
+        "name": "The Tinmarch",
+        "welcome": "Tin, spoil and wind. The Gilt Measure keeps Wheal Patience working by lamplight, and the miners swear the old Blackadit was sealed before any of them were born. Someone has opened it.",
+        "pois": {
+          "0": {
+            "label": "Wheal Patience"
+          },
+          "1": {
+            "label": "The Stannary Stones"
+          },
+          "2": {
+            "label": "Blackadit"
+          },
+          "3": {
+            "label": "Tinners' Ford"
+          },
+          "4": {
+            "label": "The Chalk Pass"
+          }
+        }
+      },
+      "rookcliffs": {
+        "name": "The Rookcliffs",
+        "welcome": "The world ends here, or seems to. West of the cliffs the grey mist sits on the sea and swallows every sound, and the Lanternwardens at Kestrel Point keep a light burning at its edge.",
+        "pois": {
+          "0": {
+            "label": "Kestrel Point"
+          },
+          "1": {
+            "label": "The Sea Stacks"
+          },
+          "2": {
+            "label": "Rook Hollow"
+          },
+          "3": {
+            "label": "The Hushmist Light"
+          },
+          "4": {
+            "label": "The Rook Ford"
+          }
+        }
+      },
+      "sedgemarch": {
+        "name": "The Sedgemarch",
+        "welcome": "Reed and sedge as far as the mist. Withyholt weaves the baskets half the west carries, and its people know which paths the fen keeps and which it gives back.",
+        "pois": {
+          "0": {
+            "label": "Withyholt"
+          },
+          "1": {
+            "label": "The Withy Beds"
+          },
+          "2": {
+            "label": "Heron Mere"
+          },
+          "3": {
+            "label": "The Drowned Causey"
+          },
+          "4": {
+            "label": "The Sedge Neck"
+          }
+        }
+      },
+      "harrowfells": {
+        "name": "The Harrowfells",
+        "welcome": "A war was ended on these fells long ago, and the cairns were raised to keep it ended. Fellgate stands watch over the field, and every night the watch counts the cairns again.",
+        "pois": {
+          "0": {
+            "label": "Fellgate"
+          },
+          "1": {
+            "label": "The Cairn Field"
+          },
+          "2": {
+            "label": "Harrow Tarn"
+          },
+          "3": {
+            "label": "The Iron Ring"
+          },
+          "4": {
+            "label": "The Fell Neck"
+          }
+        }
+      },
+      "wardmere": {
+        "name": "The Wardmere",
+        "welcome": "The last shore the Lanternwardens hold. Past the Ward Mere the mist comes in like a tide, and Lanternfold keeps its lamps lit all day so that no one walks into it by mistake.",
+        "pois": {
+          "0": {
+            "label": "Lanternfold"
+          },
+          "1": {
+            "label": "The Ward Mere"
+          },
+          "2": {
+            "label": "The Last Beacon"
+          },
+          "3": {
+            "label": "The Westering Pier"
+          },
+          "4": {
+            "label": "The Ward Neck"
           }
         }
       },

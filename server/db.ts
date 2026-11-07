@@ -79,6 +79,7 @@ import { DEEDS_SCHEMA } from './deeds_db';
 import { DISCORD_SCHEMA } from './discord_db';
 import { enqueueLinkChange } from './discord_link_changes';
 import { bustDiscordStatus } from './discord_status_cache';
+import { ACCOUNT_EULA_SCHEMA } from './eula_db';
 import { GENERAL_CHAT_QUOTA_SCHEMA } from './general_chat_quota_schema';
 import { GITHUB_SCHEMA } from './github_db';
 import {
@@ -132,11 +133,9 @@ import { SCHEMA_ADVISORY_LOCK_KEY } from './schema_lock';
 
 export { recordReferral } from './referral_armour_db';
 
+import { ACCOUNT_HOUSE_MIGRATION_SCHEMA, migrateAccountHouses } from './account_house_migration';
 import { migrateLegacyAccountSocial } from './account_social_migration';
-import {
-  LEGACY_SEEKER_ENTITLEMENT_SCHEMA,
-  LEGACY_WOC_MARKET_SCHEMA,
-} from './legacy_crypto_schema_db';
+import { LEGACY_CRYPTO_DROP_SCHEMA } from './legacy_crypto_drop_db';
 import { MEMBERSHIP_TOKEN_RECEIPTS_SCHEMA } from './membership_token_delivery_db';
 import { OAUTH_SCHEMA } from './oauth_db';
 import { runOfflineCharacterSave } from './offline_character_save_db';
@@ -936,25 +935,8 @@ CREATE TABLE IF NOT EXISTS chat_violations (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 CREATE INDEX IF NOT EXISTS chat_violations_account ON chat_violations(account_id, created_at DESC);
--- LEGACY (no longer read or written): the retired Solana wallet links. Project
--- H uses no cryptocurrency; the DDL stays so persisted databases load unchanged.
-CREATE TABLE IF NOT EXISTS wallet_links (
-  account_id INT PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,
-  pubkey TEXT NOT NULL UNIQUE,
-  linked_at TIMESTAMPTZ NOT NULL DEFAULT now()
-);
--- LEGACY (no longer read or written): the retired wallet sign-to-link challenges.
-CREATE TABLE IF NOT EXISTS wallet_link_challenges (
-  nonce TEXT PRIMARY KEY,
-  account_id INT NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
-  address TEXT NOT NULL,
-  message TEXT NOT NULL,
-  expires_at TIMESTAMPTZ NOT NULL,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
-);
-CREATE INDEX IF NOT EXISTS wallet_link_challenges_account ON wallet_link_challenges(account_id);
--- Steam account links (the deeds achievement mirror). Copies the wallet_links
--- shape: one Steam account per WoCC account (account_id is the PK) and one
+-- Steam account links (the deeds achievement mirror). One Steam account per
+-- WoCC account (account_id is the PK) and one
 -- WoCC account per Steam id (steam_id is UNIQUE). A row is a cosmetic-mirror
 -- pointer only, proven by a server-verified session ticket at link time
 -- (server/steam/): it is NEVER an identity or session source, and login stays
@@ -1326,9 +1308,6 @@ export async function ensureSchema(): Promise<void> {
     await client.query(REALM_MOTD_SCHEMA);
     await client.query(SOCIAL_SCHEMA);
     await client.query(ADMIN_GUILDS_SCHEMA);
-    // LEGACY (server/legacy_crypto_schema_db.ts): the retired Seeker claim
-    // table, still applied so persisted databases keep loading unchanged.
-    await client.query(LEGACY_SEEKER_ENTITLEMENT_SCHEMA);
     await client.query(OAUTH_SCHEMA);
     // Discord integration tables (links, oauth states, pending logins, reward
     // economy). FK-references accounts(id), so it runs after SCHEMA. Applied
@@ -1336,13 +1315,12 @@ export async function ensureSchema(): Promise<void> {
     // enabled, like the other schema modules.
     await client.query(DISCORD_SCHEMA);
     await client.query(APPLE_AUTH_SCHEMA);
-    // GitHub link tables (links + oauth states) for the developer badge.
-    // FK-references accounts(id), so it runs after SCHEMA. Applied unconditionally
-    // (idempotent), like the Discord tables.
+    // GitHub link tables (developer badge) and the per-account EULA record
+    // (server/eula_db.ts): both FK accounts(id), so after SCHEMA; idempotent.
     await client.query(GITHUB_SCHEMA);
+    await client.query(ACCOUNT_EULA_SCHEMA);
     await client.query(GENERAL_CHAT_QUOTA_SCHEMA);
-    // The in-game /watch staff watchlist (server/staff_watchlist_db.ts).
-    // FK-references accounts(id), so it runs after SCHEMA.
+    // The /watch staff watchlist (server/staff_watchlist_db.ts); FK accounts(id).
     await client.query(STAFF_WATCHLIST_SCHEMA);
     // Tier-2 global rate-limit backstop table (pg-backed fixed-window counters,
     // one row per (policy, key)) for the multi-realm deployment. Applied
@@ -1393,14 +1371,10 @@ export async function ensureSchema(): Promise<void> {
     // block, unblock). FK-references accounts(id), so it runs after SCHEMA.
     // Applied unconditionally (idempotent), like the other schema modules.
     await client.query(CONTENT_MODERATION_SCHEMA);
-    // LEGACY (server/legacy_crypto_schema_db.ts): the retired $WOC Exchange
-    // tables. Nothing reads or writes them; the DDL is still applied so
-    // persisted databases keep loading unchanged. After SCHEMA: they FK
-    // accounts(id).
-    await client.query(LEGACY_WOC_MARKET_SCHEMA);
     // The World Market sold-volume store (qr-19-sold-volume-four-seam-wiring):
     // realm x day x tracked-item daily aggregates, no FK, additive, idempotent.
     await client.query(MARKET_SOLD_VOLUME_SCHEMA);
+    await client.query(ACCOUNT_HOUSE_MIGRATION_SCHEMA); // one house per account audit
     // Seed chat-filter defaults once (idempotent), under the same advisory lock.
     await seedChatFilterDefaults(client);
     // Partitioned World Market backfill: runs inside this same advisory-lock
@@ -1450,6 +1424,9 @@ export async function ensureSchema(): Promise<void> {
     // Storage purchase parent triggers land late so their first-rollout table
     // locks are held only briefly before COMMIT.
     await client.query(STORAGE_PURCHASE_SCHEMA);
+    // The retired crypto tables are DROPPED here, after every CREATE above and
+    // before the source-writer guard below (server/legacy_crypto_drop_db.ts).
+    await client.query(LEGACY_CRYPTO_DROP_SCHEMA);
     // The source-writer capability guard: HERE because every table it guards
     // now exists (characters, world_state, bank_ledger, character_leases,
     // guild_banks, the mail custody pair, the market tables). Unconditional and
@@ -1488,6 +1465,7 @@ export async function ensureSchema(): Promise<void> {
     // Separate bounded transactions on this dedicated boot connection. Traffic
     // starts only after the restartable account-edge migration has completed.
     await migrateLegacyAccountSocial(client);
+    await migrateAccountHouses(client, REALM, (line) => console.log(line)); // one per account
   } catch (err) {
     await client.query('ROLLBACK').catch(() => {});
     throw err;
@@ -2052,9 +2030,8 @@ export async function createPasswordResetRequest(
 // revoke every session, all in one transaction. The claiming UPDATE ... WHERE
 // consumed_at IS NULL AND expires_at > now() is the race + replay guard: a
 // replayed or expired link matches zero rows and returns null, and two concurrent
-// clicks can never both win. Deleting all auth_tokens signs out every device,
-// which is the right posture for a reset (the account may be recovering from a
-// compromise), unlike the change-password path that keeps the current device.
+// clicks can never both win. Deleting all auth_tokens (and the Steam link,
+// itself a login) signs out every device: a reset may be a compromise recovery.
 export async function consumePasswordResetRequest(
   tokenHash: string,
   newPasswordHash: string,
@@ -2082,6 +2059,7 @@ export async function consumePasswordResetRequest(
       [row.account_id, newPasswordHash],
     );
     await client.query('DELETE FROM auth_tokens WHERE account_id = $1', [row.account_id]);
+    await client.query('DELETE FROM steam_links WHERE account_id = $1', [row.account_id]);
     await client.query('COMMIT');
     // This path writes password_set = TRUE in its OWN transaction (it does not
     // call updatePasswordHash), so it carries its own /api/discord status bust,
@@ -2338,13 +2316,6 @@ export async function exportAccountData(
       ORDER BY last_seen_at DESC`,
     [accountId],
   );
-  const seekerEntitlements = await pool.query(
-    `SELECT mint, claimant_wallet, proof_version, verification_slot, claimed_at
-       FROM seeker_entitlement_claims
-      WHERE account_id = $1
-      ORDER BY claimed_at`,
-    [accountId],
-  );
   // Subject-access completeness for the UA instrumentation: the signup
   // country, the first-touch attribution row, and the per-account analytics
   // event rows are all account-linked personal data, so they ride the export.
@@ -2403,7 +2374,6 @@ export async function exportAccountData(
     })),
     playtimeTotals: playtimeTotals.rows,
     ipAssociations: ipAssociations.rows,
-    seekerEntitlements: seekerEntitlements.rows,
   };
 }
 

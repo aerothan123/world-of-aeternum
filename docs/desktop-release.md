@@ -11,12 +11,15 @@ One codebase produces three distribution channels:
 | steam | `npm run electron:build:steam` | `release-steam/` loose per-OS layouts | SteamPipe depots only (in-app updater OFF) |
 | epic | `npm run electron:build:epic` | `release-epic/` loose Win+Mac layouts | Epic BPT only (in-app updater OFF) |
 
-Sign-in is email and Discord only, identical to the web flow: email/password logs in
-inside the app, and "Continue with Discord" opens the player's default browser on the
-`/desktop-login` page, which hands a one-time code back to the app over the
-`worldofclaudecraft://desktop-login` deep link. There is no Steam or Epic sign-in on
-any channel; on the Steam channel the shell's one Steam surface is the account-link
-ticket behind the Book of Deeds achievement mirror (`electron/steam.cjs`). Epic
+Sign-in: email/password logs in inside the app, and "Continue with Discord" opens
+the player's default browser on the `/desktop-login` page, which hands a one-time code
+back to the app over the `worldofclaudecraft://desktop-login` deep link. On the Steam
+channel the login panel also shows "Continue with Steam" (`src/ui/steam_login.ts`)
+when the server advertises `steam.login`: the shell mints a web-api ticket for the
+`wyndlewood-login` identity (`electron/steam.cjs`), `POST /api/auth/steam`
+(`server/steam_login.ts`) verifies it with the publisher key, and a first sign-in
+creates the account with no separate registration. The account-link ticket behind
+the Book of Deeds achievement mirror is unchanged. There is no Epic sign-in. Epic
 account-link and achievement mirror surfaces live under
 `docs/epic-games-integration/` (dark by default; see `DEPLOY.md`). Packaging,
 BuildPatchTool upload, portal checklist, and server env keys are in this runbook
@@ -818,8 +821,12 @@ Rules that keep this working:
   steam depot alone, asar-unpacked (`scripts/electron-builder-config.mjs`);
   website builds never load it. Achievements reach Steam through the SERVER'S
   Book of Deeds mirror (`server/steam/`), not the client SDK; cloud and rich
-  presence stay unused, and the Steam OVERLAY is not hooked (nothing calls an
-  overlay enable). Gate: `tests/electron_steam.test.ts`.
+  presence stay unused. On Windows the Steam OVERLAY is hooked
+  (`electron/steam_overlay.cjs`: in-process GPU, no direct composition, set
+  before app ready; the `--no-steam-overlay` launch option turns it off), and
+  the Steam API initializes at ready. Gates: `tests/electron_steam.test.ts`,
+  `tests/electron_steam_overlay.test.ts`. Wyndlewood ships the Windows depot
+  only; the upload step is `docs/launch/steam-depot-builds.md`.
 - Updates ship as new SteamPipe builds promoted to the default branch; the in-app
   updater is off in this channel (runtime stamp) AND the build has no publish feed
   (no app-update.yml), so there is nothing to disable manually. Steam policy is that

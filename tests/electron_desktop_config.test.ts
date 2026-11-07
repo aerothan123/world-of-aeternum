@@ -212,14 +212,14 @@ describe('resolveDesktopOrigins (the packaged-build VITE_DESKTOP_* hatch closure
     ).toEqual({ apiOrigin: 'http://localhost:8787', loginOrigin: 'https://login.example.com' });
   });
 
-  it('falls back to the production origin, and login falls back to the api origin', () => {
+  it('falls back to the local dev server (no provisioned production origin), and login to the api origin', () => {
     expect(resolveDesktopOrigins({})).toEqual({
-      apiOrigin: 'https://worldofclaudecraft.com',
-      loginOrigin: 'https://worldofclaudecraft.com',
+      apiOrigin: 'http://localhost:8787',
+      loginOrigin: 'http://localhost:8787',
     });
     expect(resolveDesktopOrigins()).toEqual({
-      apiOrigin: 'https://worldofclaudecraft.com',
-      loginOrigin: 'https://worldofclaudecraft.com',
+      apiOrigin: 'http://localhost:8787',
+      loginOrigin: 'http://localhost:8787',
     });
     expect(
       resolveDesktopOrigins({
@@ -231,8 +231,8 @@ describe('resolveDesktopOrigins (the packaged-build VITE_DESKTOP_* hatch closure
 });
 
 const defaultOrigins = {
-  apiOrigin: 'https://worldofclaudecraft.com',
-  loginOrigin: 'https://worldofclaudecraft.com',
+  apiOrigin: 'http://localhost:8787',
+  loginOrigin: 'http://localhost:8787',
 };
 
 describe('resolveDesktopConfig', () => {
@@ -242,7 +242,9 @@ describe('resolveDesktopConfig', () => {
       distribution: 'website',
       updaterEnabled: true,
       crashSubmitUrl: '',
-      updateChannel: 'latest',
+      // No production origin is provisioned yet (electron/brand.cjs), so the
+      // unstamped local-dev default reads the dev track.
+      updateChannel: 'dev',
       ...defaultOrigins,
     });
   });
@@ -253,7 +255,9 @@ describe('resolveDesktopConfig', () => {
       distribution: 'steam',
       updaterEnabled: false,
       crashSubmitUrl: '',
-      updateChannel: 'latest',
+      // No production origin is provisioned yet (electron/brand.cjs), so the
+      // unstamped local-dev default reads the dev track.
+      updateChannel: 'dev',
       ...defaultOrigins,
     });
   });
@@ -264,7 +268,9 @@ describe('resolveDesktopConfig', () => {
       distribution: 'epic',
       updaterEnabled: false,
       crashSubmitUrl: '',
-      updateChannel: 'latest',
+      // No production origin is provisioned yet (electron/brand.cjs), so the
+      // unstamped local-dev default reads the dev track.
+      updateChannel: 'dev',
       ...defaultOrigins,
     });
   });
@@ -276,7 +282,9 @@ describe('resolveDesktopConfig', () => {
       distribution: 'website',
       updaterEnabled: true,
       crashSubmitUrl: '',
-      updateChannel: 'latest',
+      // No production origin is provisioned yet (electron/brand.cjs), so the
+      // unstamped local-dev default reads the dev track.
+      updateChannel: 'dev',
       ...defaultOrigins,
     });
   });
@@ -287,7 +295,9 @@ describe('resolveDesktopConfig', () => {
       distribution: 'website',
       updaterEnabled: false,
       crashSubmitUrl: '',
-      updateChannel: 'latest',
+      // No production origin is provisioned yet (electron/brand.cjs), so the
+      // unstamped local-dev default reads the dev track.
+      updateChannel: 'dev',
       ...defaultOrigins,
     });
     // Project H has no cryptocurrency: the desktop config carries no Exchange flag.

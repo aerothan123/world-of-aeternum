@@ -100,6 +100,8 @@ function dynamicWindowIds(dir: string = fileURLToPath(new URL(UI_DIR, import.met
 // Windows deliberately NOT brought into the mobile sheet pattern, each with a
 // reason. These pass coverage without a mobile-touch positioning rule.
 const MOBILE_WINDOW_EXCEPTIONS: Record<string, string> = {
+  'addons-window':
+    'desktop shell feature (add-ons load from the local folder and the Steam Workshop); centered and width-clamped by its own base rule, never shown on touch builds',
   'heal-window': 'detached desktop meter; mobile intentionally keeps it hidden',
   'threat-window': 'detached desktop meter; mobile intentionally keeps it hidden',
   'loot-window':
@@ -240,6 +242,8 @@ describe('mobile window coverage (Phase 5 parity)', () => {
     // the same change that gives its window a mobile rule or an exception below.
     expect(dyn.windowClassFiles).toEqual([
       'dev_command_window.ts',
+      // The add-on manager (desktop shell feature; the exception row covers it).
+      'hud/addons/addons_window_controller.ts',
       // The Perfecting window (Masterwrought phase 14) mints its own root and
       // carries the four-edge body.mobile-touch pin in hud.mobile.css.
       'hud/professions/perfecting_window.ts',
@@ -255,6 +259,7 @@ describe('mobile window coverage (Phase 5 parity)', () => {
       'world_quest_puzzle_window.ts',
     ]);
     expect([...dyn.ids].sort()).toEqual([
+      'addons-window',
       'confirm-dialog',
       'dev-command-window',
       'keyboard-map-window',

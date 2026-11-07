@@ -2,6 +2,7 @@
 // teasers for classes, the world, group content, and a short FAQ, in the spirit of
 // kintara.gg. Every string is a t() key; every number goes through formatNumber.
 
+import { COMMUNITY_DISCORD_INVITE_URL } from '../../brand';
 import { esc } from '../../ui/esc';
 import { formatNumber, t } from '../../ui/i18n';
 import { CLASS_CHIPS, LEVEL_CAP, ZONE_COUNT, ZONE_TEASERS } from '../data';
@@ -148,7 +149,7 @@ function communityHtml(): string {
       <p class="guide-section-sub">${esc(t('guide.home.community.body'))}</p>
       <div class="guide-community-cta">
         <a class="guide-cta" href="/play">${esc(t('guide.home.community.play'))}</a>
-        <a class="guide-cta guide-cta-ghost" href="https://discord.com/invite/worldofclaudecraft" target="_blank" rel="noopener">${esc(t('guide.home.community.discord'))}</a>
+        <a class="guide-cta guide-cta-ghost" href="${COMMUNITY_DISCORD_INVITE_URL}" target="_blank" rel="noopener">${esc(t('guide.home.community.discord'))}</a>
         <a class="guide-cta guide-cta-ghost" href="https://github.com/levy-street/world-of-claudecraft" target="_blank" rel="noopener">${esc(t('guide.home.community.github'))}</a>
       </div>
     </section>`;

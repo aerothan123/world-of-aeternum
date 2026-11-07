@@ -313,6 +313,15 @@ export function sanitizeItemInstancePayloadOnLoad(payload: unknown): SanitizedIt
       }
       continue;
     }
+    if (key === 'wear') {
+      // Durability points lost (src/sim/durability/): a non-negative integer
+      // within a sane ceiling; anything else drops alone (drop-only doctrine).
+      if (typeof value !== 'number' || !Number.isInteger(value) || value < 0 || value > 10_000) {
+        delete record[key];
+        dropped.push(key);
+      }
+      continue;
+    }
     if (key === 'partyTrade') {
       // The atomic marker arm (see the contract above): shape-refused or
       // oversized, the whole window drops in one move. Before the generic

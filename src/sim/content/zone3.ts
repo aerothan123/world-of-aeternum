@@ -1259,7 +1259,7 @@ export const ZONE3_NPCS: Record<string, NpcDef> = {
       // each zone hub stocks the tiers its own nodes use; Thornpeak has
       // tier-1 through tier-3 nodes). Rods follow the same rule now that
       // water has a tier: the silverstream row below is this hub's rung, and
-      // Wilkes keeps the whole ladder as the buy-ahead counter (R20).
+      // Silven keeps the whole ladder as the buy-ahead counter (R20).
       'copper_mining_pick',
       'iron_mining_pick',
       'mithril_mining_pick',
@@ -1272,7 +1272,7 @@ export const ZONE3_NPCS: Record<string, NpcDef> = {
       'simple_fishing_pole',
       // The peaks take a tier-3 rod (professions/fishing_zones.ts): the same
       // rule the land tools above follow, now that fishing water has a tier of
-      // its own. Trader Wilkes keeps the whole rod ladder as the one place you
+      // its own. Silven keeps the whole rod ladder as the one place you
       // can buy ahead; this row is so you never have to.
       'silverstream_fishing_rod',
       'field_kit',

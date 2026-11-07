@@ -1,0 +1,13 @@
+{
+  "id": "encounter-timer",
+  "name": "Encounter Timer",
+  "version": "1.0.0",
+  "apiVersion": 1,
+  "author": "Wyndlewood SDK",
+  "description": "Times each fight, remembers your best time per enemy, mirrors the target's cast, and runs your own countdown bars: /et 30 Adds, /et pull 10, /et clear.",
+  "permissions": ["combatLog"],
+  "files": ["main.js"],
+  "savedVariables": { "character": true },
+  "slashCommands": ["et"],
+  "tags": ["Timers", "Combat"]
+}

@@ -19,6 +19,7 @@ import {
   WORKSHOP_QUESTS,
 } from '../src/sim/content/workshop_quests.generated';
 import { BASE_WORLD, NPCS, QUEST_ORDER, QUESTS } from '../src/sim/data';
+import { questBaseXp } from '../src/sim/quests/quest_xp';
 import { Sim } from '../src/sim/sim';
 import type { Entity, NpcDef, QuestDef } from '../src/sim/types';
 import { terrainHeight } from '../src/sim/world';
@@ -238,6 +239,6 @@ describe('a merged workshop quest is a real quest in a real Sim', () => {
     expect(sim.questState(FIXTURE_ID)).toBe('done');
     expect(meta.questsDone.has(FIXTURE_ID)).toBe(true);
     expect(meta.copper - copperBefore).toBe(FIXTURE.copperReward);
-    expect(meta.lifetimeXp - xpBefore).toBe(FIXTURE.xpReward);
+    expect(meta.lifetimeXp - xpBefore).toBe(questBaseXp(FIXTURE));
   });
 });

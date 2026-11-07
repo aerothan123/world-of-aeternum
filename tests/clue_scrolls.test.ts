@@ -714,8 +714,8 @@ describe('the dig step (using the scroll on the spot)', () => {
     // On the spot.
     placeAt(sim, DIG_SPOT.x + 2, DIG_SPOT.z - 2);
     const rev = meta.wireRev;
-    const standingBefore = meta.factions?.automatons ?? 0;
-    const riftBefore = meta.factions?.rift_watch ?? 0;
+    const standingBefore = meta.factions?.hearthwright_compact ?? 0;
+    const riftBefore = meta.factions?.gilt_measure ?? 0;
     sim.useItem(CLUE_SCROLL_ITEM_ID);
     evs = sim.drainEvents();
     expect(meta.clueHunt).toBeNull();
@@ -745,10 +745,12 @@ describe('the dig step (using the scroll on the spot)', () => {
     );
     // The hunt digs in the Drakelands, so the automaton faction is paid, and
     // only it.
-    expect(clueHuntFaction(TEST_HUNT)).toBe('automatons');
-    expect((meta.factions?.automatons ?? 0) - standingBefore).toBe(CLUE_HUNT_STANDING);
-    expect(meta.factions?.rift_watch ?? 0).toBe(riftBefore);
-    expect(ofType(evs, 'loot')[1].text).toBe(`+${CLUE_HUNT_STANDING} Automatons Standing.`);
+    expect(clueHuntFaction(TEST_HUNT)).toBe('hearthwright_compact');
+    expect((meta.factions?.hearthwright_compact ?? 0) - standingBefore).toBe(CLUE_HUNT_STANDING);
+    expect(meta.factions?.gilt_measure ?? 0).toBe(riftBefore);
+    expect(ofType(evs, 'loot')[1].text).toBe(
+      `+${CLUE_HUNT_STANDING} Hearthwright Compact Standing.`,
+    );
     expect(ofType(evs, 'clueHuntStep')[0]).toEqual({
       type: 'clueHuntStep',
       huntId: TEST_HUNT.id,

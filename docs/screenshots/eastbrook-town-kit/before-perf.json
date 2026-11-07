@@ -1,0 +1,27 @@
+{
+  "quay-overview": {
+    "fps": 16,
+    "calls": 614,
+    "tris": 2525377
+  },
+  "crafting-yard": {
+    "fps": 18,
+    "calls": 553,
+    "tris": 1936671
+  },
+  "market-row": {
+    "fps": 28,
+    "calls": 103677,
+    "tris": 372290384
+  },
+  "meadow-lane": {
+    "fps": 30,
+    "calls": 41742,
+    "tris": 287777389
+  },
+  "row-terrace": {
+    "fps": 24,
+    "calls": 660,
+    "tris": 3161428
+  }
+}

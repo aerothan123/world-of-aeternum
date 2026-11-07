@@ -14,20 +14,20 @@ const STONE = [
 describe('hearthstoneAttuneRowFaction', () => {
   it('names each quartermaster hub for a viewer holding the stone', () => {
     expect(hearthstoneAttuneRowFaction('npc_automaton_quartermaster', null, STONE)).toBe(
-      'automatons',
+      'hearthwright_compact',
     );
-    expect(hearthstoneAttuneRowFaction('npc_rift_watch_quartermaster', 'automatons', STONE)).toBe(
-      'rift_watch',
-    );
+    expect(
+      hearthstoneAttuneRowFaction('npc_rift_watch_quartermaster', 'hearthwright_compact', STONE),
+    ).toBe('gilt_measure');
     expect(hearthstoneAttuneRowFaction('npc_church_order_quartermaster', null, STONE)).toBe(
-      'church_order',
+      'lanternwardens',
     );
   });
 
   it('hides the row when already bound to this hub', () => {
-    expect(hearthstoneAttuneRowFaction('npc_automaton_quartermaster', 'automatons', STONE)).toBe(
-      null,
-    );
+    expect(
+      hearthstoneAttuneRowFaction('npc_automaton_quartermaster', 'hearthwright_compact', STONE),
+    ).toBe(null);
   });
 
   it('hides the row without the stone in the bags', () => {
@@ -40,7 +40,7 @@ describe('hearthstoneAttuneRowFaction', () => {
 
   it('hides the row at any NPC that is not a faction quartermaster', () => {
     // Quartermaster Sela keeps Wyrmwatch's garrison stores but is not the
-    // Automatons quartermaster (the reporter tried her first).
+    // Hearthwright Compact quartermaster (the reporter tried her first).
     expect(hearthstoneAttuneRowFaction('quartermaster_sela', null, STONE)).toBe(null);
     expect(hearthstoneAttuneRowFaction(undefined, null, STONE)).toBe(null);
   });

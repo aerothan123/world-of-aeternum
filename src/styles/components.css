@@ -3979,6 +3979,88 @@
   body.reduce-motion #guild-board-window .gb-presence .gb-presence-dot {
     animation: none;
   }
+  /* The town quest board's notices tab (src/ui/hud/guild_board/town_board_panel.ts):
+     a tab strip over the body, then one pinned notice card per posting. */
+  #guild-board-window .tb-tabs {
+    display: flex;
+    gap: 6px;
+    margin: 0 0 6px;
+    padding: 0 4px 6px;
+    border-bottom: 1px solid var(--color-border-showcase);
+  }
+  #guild-board-window .tb-tab {
+    padding: 4px 12px;
+    border: 1px solid var(--color-border-showcase);
+    border-radius: 4px;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+  }
+  #guild-board-window .tb-tab.active {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+  #guild-board-window .tb-intro {
+    margin: 2px 4px 8px;
+    opacity: 0.85;
+  }
+  #guild-board-window .tb-notices {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 10px;
+    padding: 0 4px 8px;
+  }
+  #guild-board-window .tb-notice {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 12px;
+    border: 1px solid var(--color-border-showcase);
+    border-radius: 4px;
+    background: rgba(238, 222, 186, 0.06);
+  }
+  #guild-board-window .tb-title {
+    margin: 0;
+    font-size: 15px;
+    color: var(--gold);
+  }
+  #guild-board-window .tb-poster {
+    font-size: 12px;
+    opacity: 0.75;
+  }
+  #guild-board-window .tb-text {
+    margin: 2px 0;
+    font-size: 13px;
+    line-height: 1.35;
+  }
+  #guild-board-window .tb-objectives {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 12px;
+  }
+  #guild-board-window .tb-rewards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    font-size: 12px;
+    opacity: 0.9;
+  }
+  #guild-board-window .tb-action {
+    margin-top: auto;
+    padding-top: 4px;
+  }
+  #guild-board-window .tb-status {
+    font-size: 12px;
+    opacity: 0.8;
+  }
+  #guild-board-window .tb-status.tb-ready {
+    color: var(--gold);
+    opacity: 1;
+  }
+  #guild-board-window .tb-done,
+  #guild-board-window .tb-locked {
+    opacity: 0.65;
+  }
   /* The category chip on the recruiting sub-line: the same green family as
      the accepting status, read as a tag rather than a status. */
   #guild-board-window .gb-tag {
@@ -7562,23 +7644,6 @@
     justify-content: center;
     margin: 0 0 10px;
   }
-  #player-card-modal .pc-wallet-toggle {
-    min-width: 210px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
-  #player-card-modal .pc-wallet-toggle.off {
-    opacity: 0.78;
-  }
-  #player-card-modal .pc-toggle-state {
-    color: var(--gold);
-    font-weight: 700;
-  }
-  #player-card-modal .pc-wallet-toggle.off .pc-toggle-state {
-    color: #9b8b62;
-  }
   #player-card-modal .pc-actions {
     display: flex;
     flex-wrap: wrap;
@@ -7624,7 +7689,6 @@
   }
   @media (pointer: coarse) {
     #player-card-modal .pc-pose,
-    #player-card-modal .pc-wallet-toggle,
     #player-card-modal .pc-actions .btn {
       min-height: 40px;
       box-sizing: border-box;
@@ -8993,7 +9057,7 @@
     padding-top: var(--spacing-sm);
     margin-top: var(--spacing-xs);
   }
-  /* coins stay right-aligned whether or not the $WOC chip is present */
+  /* coins stay right-aligned beside the Claudium launcher */
   #bags .money .money-inline {
     margin-left: auto;
   }
@@ -9016,16 +9080,6 @@
     height: 20px;
     object-fit: contain;
     filter: drop-shadow(0 0 4px rgb(74 201 239 / 55%));
-  }
-  .woc-coin {
-    display: inline-block;
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    background:
-      url("/ui/currency/woc_token.webp") center / cover no-repeat,
-      radial-gradient(circle at 35% 30%, #c9a3ff, #6b3fa0);
-    box-shadow: 0 0 4px rgba(150, 90, 230, 0.5);
   }
   /* WoW-style slot grid: square cells, the item icon fills the cell, quality
      drives the cell border (the .q-* classes below), the stack count sits as a

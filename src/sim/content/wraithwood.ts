@@ -507,7 +507,8 @@ export const WRAITHWOOD_ITEMS: Record<string, ItemDef> = {
   // --- quest rewards ---
   gravebound_silk_wraps: {
     id: 'gravebound_silk_wraps',
-    name: 'Gravebound Silk Wraps',
+    // Display-only rename (Gravebound collides with a Pathfinder creature).
+    name: 'Gravestirred Silk Wraps',
     kind: 'armor',
     armorType: 'cloth',
     slot: 'gloves',

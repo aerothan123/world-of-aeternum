@@ -25,7 +25,9 @@ export type PaintedGroundRole =
   | 'beach'
   | 'cliff'
   | 'forest'
-  | 'wet';
+  | 'wet'
+  | 'mud'
+  | 'snow';
 
 /** The painted set (TerrainTextureSet key) each role draws. */
 export const PAINTED_GROUND_SETS: Readonly<Record<PaintedGroundRole, string>> = {
@@ -37,6 +39,8 @@ export const PAINTED_GROUND_SETS: Readonly<Record<PaintedGroundRole, string>> = 
   cliff: 'PaintedCliff',
   forest: 'PaintedForestFloor',
   wet: 'PaintedMoss',
+  mud: 'PaintedMud',
+  snow: 'PaintedSnow',
 };
 
 const colorFile = (role: PaintedGroundRole): string => `${PAINTED_GROUND_SETS[role]}_Color.jpg`;
@@ -45,13 +49,15 @@ const colorFile = (role: PaintedGroundRole): string => `${PAINTED_GROUND_SETS[ro
  *  index, so every WOC_L_* / WOC_N_* constant, the Classic shader text and
  *  the packed arrays' Classic layers stay exactly where they were. Colour
  *  keys (`*C`) take the painted Color map, normal keys (`*N`) its NormalGL
- *  map. Mud (the marsh path swap) and snow keep their photos: a marsh road
- *  is still a road. */
+ *  map. Mud (the marsh path swap) and snow have no detail-normal layer, so
+ *  only their colour is painted. */
 export const REFINED_BASE_LAYER_ROLES: Readonly<Record<string, PaintedGroundRole>> = {
   grassC: 'meadow',
   dirtC: 'path',
   rockC: 'cliff',
   sandC: 'beach',
+  mudC: 'mud',
+  snowC: 'snow',
   grassN: 'meadow',
   dirtN: 'path',
   rockN: 'cliff',
@@ -119,6 +125,13 @@ export const REFINED_GROUND = {
   pavingMax: 0.92,
   pavingScale: 0.8,
   pavingGain: 0.95,
+  /** Flat rock in this band above the waterline (yards) is not paving but
+   *  surf-worn shore stone: the cobbles fade out and the painted sand tone
+   *  takes up to shoreSandMax of it (the starter beach drew a dark cobble
+   *  patch where its rock weight met the sand). */
+  pavingShoreLo: 0.6,
+  pavingShoreHi: 3,
+  shoreSandMax: 0.85,
   /** Wet moss on turf: the marsh weight, and the band just above the
    *  waterline, broken by the low end of the variant noise. */
   mossMarsh: 0.72,
@@ -133,10 +146,60 @@ export const REFINED_GROUND = {
   sandScale: 0.5,
 } as const;
 
+/** Refined cliffs: the wall-projected rock the Classic splat composes,
+ *  retuned so the painted cliff set reads as painted stone. */
+export const REFINED_CLIFF = {
+  /** The XY / ZY wall-plane crossfade (Classic: linear over the whole
+   *  x/z normal share) narrowed to this window, so a diagonal face shows one
+   *  plane's strokes instead of two half-strength ghosted copies. */
+  axisLo: 0.3,
+  axisHi: 0.7,
+  /** The wall projection's onset by normal y: none at wallFlat, full at
+   *  wallFull (Classic ramps linearly from 0.69 to 0, so a 60 degree face
+   *  still drew a third of its rock from the flat projection, stretched
+   *  down the slope into vertical streaks). */
+  wallFlat: 0.85,
+  wallFull: 0.55,
+  /** Share the wall rock is pulled toward flat chalk (Classic 0.38, which
+   *  washes the painted plates and cracks out to a smooth grey sheet). */
+  chalk: 0.12,
+  /** Share of the turf tint a steep face's rock keeps (the rest of the face
+   *  is neutral stone, so a grassy hillside's cliff stops reading green). */
+  turfTint: 0.3,
+  /** Share of a wall's final albedo pulled to a warm neutral of its own
+   *  value (the hillside's green vertex tint still cast the stone green). */
+  neutral: 0.45,
+  /** The painted slate's crack highlights compressed toward this linear
+   *  value (keep: share of the uncompressed highlight that survives). */
+  highlightCap: 0.5,
+  highlightKeep: 0.35,
+} as const;
+
+/** Refined ground detail: a second, rotated sample of the mud and snow
+ *  layers at another scale, blended by the hill-scale macro noise (mud) or
+ *  evenly (snow), so marsh roads stop showing one tile of clumps and the
+ *  snow's directional strokes stop lining up into streaks. */
+export const REFINED_DETAIL = {
+  mudScale2: 0.37,
+  snowScale2: 0.31,
+  snowMix: 0.5,
+} as const;
+
 const clamp01 = (v: number): number => (v < 0 ? 0 : v > 1 ? 1 : v);
 function smoothstep(e0: number, e1: number, x: number): number {
   const t = clamp01((x - e0) / (e1 - e0));
   return t * t * (3 - 2 * t);
+}
+
+/** JS mirror of the Refined wall-plane weight: `axisRaw` is the Classic
+ *  an.x / (an.x + an.z) share of the ZY plane. */
+export function refinedCliffAxisWeight(axisRaw: number): number {
+  return smoothstep(REFINED_CLIFF.axisLo, REFINED_CLIFF.axisHi, axisRaw);
+}
+
+/** JS mirror of the Refined wall-projection weight at a normal y. */
+export function refinedCliffWallWeight(normalY: number): number {
+  return smoothstep(REFINED_CLIFF.wallFlat, REFINED_CLIFF.wallFull, Math.abs(normalY));
 }
 
 export interface RefinedGroundInput {
@@ -162,6 +225,8 @@ export interface RefinedGroundWeights {
   readonly forest: number;
   readonly paving: number;
   readonly moss: number;
+  /** Flat shore rock drawn as the painted sand tone. */
+  readonly shoreSand: number;
 }
 
 /** JS mirror of the shader's painted-term weights at one ground point. */
@@ -174,15 +239,17 @@ export function refinedGroundWeights(i: RefinedGroundInput): RefinedGroundWeight
     g.forestMax *
     (g.forestFloorNoise + (1 - g.forestFloorNoise) * i.variantNoise) *
     open;
-  const paving =
-    i.rock * smoothstep(g.pavingFlatLo, g.pavingFlatHi, i.normalY) * g.pavingMax * open;
+  const flat = smoothstep(g.pavingFlatLo, g.pavingFlatHi, i.normalY);
+  const shoreStone = 1 - smoothstep(g.pavingShoreLo, g.pavingShoreHi, i.heightAboveWater);
+  const paving = i.rock * flat * g.pavingMax * open * (1 - shoreStone);
+  const shoreSand = i.rock * flat * shoreStone * g.shoreSandMax * open;
   const shore = 1 - smoothstep(0.25, 2.6, i.heightAboveWater);
   const moss =
     i.grass *
     Math.max(clamp01(i.marsh) * g.mossMarsh, shore * g.mossShore) *
     smoothstep(g.mossNoiseHi, g.mossNoiseLo, i.variantNoise) *
     open;
-  return { forest, paving, moss };
+  return { forest, paving, moss, shoreSand };
 }
 
 /** JS mirror of the painted meadow's detail over the biome tone: the painted

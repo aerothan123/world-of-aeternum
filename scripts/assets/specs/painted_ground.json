@@ -93,6 +93,32 @@
         "tileSeam": true,
         "targetMean": [92, 112, 50]
       }
+    },
+    {
+      "src": "snow_a.png",
+      "key": "PaintedSnow",
+      "sha256": "e57ea4f4970f4b03e81cd7d006f8e7296a9d9c311539abf129d9031d4351337b",
+      "opts": {
+        "flattenRadius": 160,
+        "normalStrength": 4,
+        "tileSeam": true,
+        "tileBand": 0.2,
+        "saturation": 0.45,
+        "targetMean": [226, 231, 238],
+        "contrast": 0.55
+      }
+    },
+    {
+      "src": "mud_c.png",
+      "key": "PaintedMud",
+      "sha256": "5bdd375baf449058a09423075fa7c3f92816379b4f2220198b78b303954d2cac",
+      "opts": {
+        "normalStrength": 6,
+        "tileSeam": true,
+        "saturation": 0.85,
+        "targetMean": [108, 90, 68],
+        "contrast": 0.95
+      }
     }
   ]
 }

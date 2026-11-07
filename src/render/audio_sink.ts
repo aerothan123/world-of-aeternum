@@ -4,6 +4,7 @@
 // src/render/ free of any src/game/ import (see src/CLAUDE.md dependency rules).
 
 import type { BiomeId } from '../sim/types';
+import type { RegionAmbience } from './region_ambience_core';
 
 export type Surface = 'grass' | 'dirt' | 'stone' | 'wood' | 'snow' | 'water';
 
@@ -263,6 +264,12 @@ export interface SpatialAudioSink {
    *  array every frame; the engine starts the ones in range and stops the ones
    *  out of it. Optional: an engine without the layer stays silent. */
   pointSounds?(sources: readonly PointSoundSource[]): void;
+  /** Per-frame region beds around the player (src/render/region_ambience_core.ts): the
+   *  long zone and town soundscapes at their loop gains, the share of the older biome loops
+   *  to keep under them, and the reverb space a dense wood implies. Called BEFORE
+   *  ambience() each frame, which applies the share and the space. Optional: an engine
+   *  without the layer keeps the biome loops alone. */
+  regionBeds?(beds: RegionAmbience): void;
   /** One per-ability procedural audio moment at a world position (the 12
    *  palette identities live in src/game/sfx.ts). Optional: an engine without
    *  the synth layer simply stays silent for ability moments. */

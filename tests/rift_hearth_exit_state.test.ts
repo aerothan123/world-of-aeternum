@@ -22,7 +22,7 @@ import {
 
 function hearth(sim: Sim, pid: number): void {
   const meta = sim.ctx.players.get(pid)!;
-  meta.alliedHearthstoneAttunement = 'church_order';
+  meta.alliedHearthstoneAttunement = 'lanternwardens';
   completeAlliedHearthstoneCast(sim.ctx, sim.entities.get(pid)!, meta);
 }
 

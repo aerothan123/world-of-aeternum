@@ -508,7 +508,8 @@ const MONOLITHS: MonolithRow[] = [
     // src/ui/loot_text_i18n_core.ts, net of the feed's composition, its event
     // hook and its per-frame update. Merged with the tree Chop prompt (-2, the
     // farm press notice moved to interact_affordances_controller.ts): 17454.
-    ceiling: 17454,
+    // LOWERED to 17430 at integration (rebrand Meta Pixel removal, core-systems extractions, add-on platform emote wheel store). wc -l. Exact count.
+    ceiling: 17430,
     seam: 'pure view core + thin painter on PainterHost (src/ui/CLAUDE.md)',
   },
   {
@@ -1289,7 +1290,9 @@ const MONOLITHS: MonolithRow[] = [
     // LOWERED 11404 -> 11396 with the gathering tool belt: toolEffectSlotsFor moved into
     // professions/tool_effect_slot_views.ts, paying for the belt's load, save and grant
     // hooks. wc -l. Exact count.
-    ceiling: 11396,
+    // LOWERED 11396 -> 11395 with the save-position epoch: the save's pos and
+    // facing fields moved into saved_pos_exit.ts savedPlacement. wc -l. Exact.
+    ceiling: 11395,
     seam: 'a sim system module behind SimContext (src/sim/CLAUDE.md)',
   },
   {
@@ -1552,7 +1555,8 @@ const MONOLITHS: MonolithRow[] = [
     // Daily Rewards, holder flair) was removed outright.
     // LOWERED 9539 -> 9538 with the gathering tool belt (the gather-tool use hook now
     // passes the world and lost a comment line). wc -l. Exact count.
-    ceiling: 9538,
+    // LOWERED to 9427 at integration (rebrand Meta Pixel/Ko-fi removal, the Claudium store wiring extraction, the launch-blockers store gate). wc -l. Exact count.
+    ceiling: 9427,
     seam: 'a src/game/ or src/ui/ sibling module; main.ts is a firewall, not a home',
   },
   {
@@ -2119,7 +2123,7 @@ const MONOLITHS: MonolithRow[] = [
     // Merge of the four dungeon entrances (#4478): both parents' additions combine
     // (ours is the palm scatter's decoration exclusion check), exact merged count,
     // within the release/v0.45.0 ceiling the branch was held to.
-    ceiling: 5133,
+    ceiling: 5074,
     seam: 'zone/terrain data as content records; logic as sim sibling modules',
   },
   {
@@ -2249,7 +2253,10 @@ const MONOLITHS: MonolithRow[] = [
     // Daily Rewards, holder flair) was removed outright.
     // Down 4437 -> 4343 at the crypto removal: the wallet-link functions and the marketplace
     // guard busts left, and the legacy crypto DDL moved to server/legacy_crypto_schema_db.ts.
-    ceiling: 4343,
+    // LOWERED 4343 -> 4314 (Wyndlewood launch blockers): the wallet-link DDL and the
+    // Seeker export query left; the retired crypto tables are now dropped by
+    // server/legacy_crypto_drop_db.ts. Exact count. Merged tree: 4313.
+    ceiling: 4313,
     seam: 'a domain <domain>_db.ts module with its own *_SCHEMA (server/CLAUDE.md)',
   },
   {
@@ -2267,7 +2274,10 @@ const MONOLITHS: MonolithRow[] = [
     // v0.45 integration sync at 78c350c8d55 into cel-shading-rnd:
     // parent pins 3996 and 3864; combined existing wiring,
     // exact merged count with no new coordinator behavior or slack.
-    ceiling: 3867,
+    // Lowered after extracting the world rock material, its baked moss / snow
+    // colorways and the Refined sky-fill correction into
+    // src/render/rock_material.ts (+ rock_material_core.ts).
+    ceiling: 3826,
     seam: 'a new src/render/<thing>.ts module (src/render/CLAUDE.md)',
   },
   {

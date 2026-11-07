@@ -2,20 +2,34 @@
 // which painted set each surface role draws, which file every packed layer
 // loads per style (Classic untouched), the painted-term weights, and the
 // shader arm generated from them (world_style_glsl.ts).
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { terrainTexturePath, terrainTextureSet } from '../src/render/terrain_texture_sets';
 import { REFINED_ALBEDO_LAYER_FILES, refinedTerrainProfile } from '../src/render/world_style_core';
-import { refinedSplatGlsl } from '../src/render/world_style_glsl';
+import {
+  CLASSIC_CLIFF_AXIS,
+  CLASSIC_CLIFF_CHALK,
+  CLASSIC_CLIFF_WALL,
+  CLASSIC_MUD_TAP,
+  CLASSIC_SNOW_TAP,
+  patchRefinedCliffGlsl,
+  patchRefinedDetailGlsl,
+  refinedSplatGlsl,
+} from '../src/render/world_style_glsl';
 import {
   isPaintedGroundFile,
   PAINTED_GROUND_SETS,
   REFINED_BASE_LAYER_ROLES,
+  REFINED_CLIFF,
+  REFINED_DETAIL,
   REFINED_EXTRA_LAYER_FILES,
+  REFINED_GROUND,
   REFINED_LAYER_COBBLE,
   REFINED_LAYER_FOREST,
   REFINED_LAYER_MOSS,
+  refinedCliffAxisWeight,
+  refinedCliffWallWeight,
   refinedGroundWeights,
   refinedMeadowTexel,
   splatLayerFile,
@@ -37,7 +51,18 @@ const base = {
 describe('painted ground roster', () => {
   it('maps every surface role to a shipped painted set with all four maps', () => {
     expect(Object.keys(PAINTED_GROUND_SETS).sort()).toEqual(
-      ['beach', 'cliff', 'dryGrass', 'forest', 'meadow', 'path', 'paving', 'wet'].sort(),
+      [
+        'beach',
+        'cliff',
+        'dryGrass',
+        'forest',
+        'meadow',
+        'mud',
+        'path',
+        'paving',
+        'snow',
+        'wet',
+      ].sort(),
     );
     for (const key of Object.values(PAINTED_GROUND_SETS)) {
       expect(terrainTextureSet(key), key).not.toBeNull();
@@ -69,18 +94,23 @@ describe('painted ground roster', () => {
     expect(splatLayerFile('dirtC', 'Ground023_Color.jpg', 'refined')).toBe('PaintedDirt_Color.jpg');
     expect(splatLayerFile('rockC', 'Rock026_Color.jpg', 'refined')).toBe('PaintedCliff_Color.jpg');
     expect(splatLayerFile('sandC', 'Ground080_Color.jpg', 'refined')).toBe('PaintedSand_Color.jpg');
-    // the marsh mud and the snow keep their photos
-    expect(splatLayerFile('mudC', 'Ground071_Color.jpg', 'refined')).toBe('Ground071_Color.jpg');
-    expect(splatLayerFile('snowC', 'Snow010A_Color.jpg', 'refined')).toBe('Snow010A_Color.jpg');
+    // the marsh mud and the snow paint their colour (they have no detail
+    // normal layer), on the built-in snow and an authored map's snow alike
+    expect(splatLayerFile('mudC', 'Ground071_Color.jpg', 'refined')).toBe('PaintedMud_Color.jpg');
+    expect(splatLayerFile('snowC', 'Snow010A_Color.jpg', 'refined')).toBe('PaintedSnow_Color.jpg');
+    expect(splatLayerFile('snowC', 'Snow004_Color.jpg', 'refined')).toBe('PaintedSnow_Color.jpg');
+    expect(splatLayerFile('snowC', 'Snow004_Color.jpg', 'classic')).toBe('Snow004_Color.jpg');
     expect(Object.keys(REFINED_BASE_LAYER_ROLES).sort()).toEqual([
       'dirtC',
       'dirtN',
       'grassC',
       'grassN',
+      'mudC',
       'rockC',
       'rockN',
       'sandC',
       'sandN',
+      'snowC',
     ]);
     // the detail normals take the painted sets' own NormalGL maps, as plain JPGs
     expect(splatLayerFile('rockN', 'Rock026_NormalGL.jpg', 'refined')).toBe(
@@ -141,7 +171,7 @@ describe('painted ground weights', () => {
       variantNoise: 0,
       snow: 1,
     });
-    expect(w).toEqual({ forest: 0, paving: 0, moss: 0 });
+    expect(w).toEqual({ forest: 0, paving: 0, moss: 0, shoreSand: 0 });
   });
 
   it('keeps the painted meadow on the biome tone (its mean is the tone)', () => {
@@ -184,5 +214,96 @@ describe('painted ground shader arm', () => {
   it('keeps the beach on the palette hue (luminance-only ripples)', () => {
     const src = refinedSplatGlsl(p);
     expect(src).toMatch(/float wocWsSr = clamp\(dot\(WOC_ALB/);
+  });
+});
+
+describe('refined cliffs', () => {
+  it('narrows the wall-plane crossfade so a diagonal face shows one plane', () => {
+    expect(refinedCliffAxisWeight(0)).toBe(0);
+    expect(refinedCliffAxisWeight(REFINED_CLIFF.axisLo)).toBe(0);
+    expect(refinedCliffAxisWeight(0.5)).toBeCloseTo(0.5, 6);
+    expect(refinedCliffAxisWeight(REFINED_CLIFF.axisHi)).toBe(1);
+    // a near-axis face reads from one plane only (Classic would mix 25/75)
+    expect(refinedCliffAxisWeight(0.25)).toBe(0);
+    expect(refinedCliffAxisWeight(0.75)).toBe(1);
+    expect(REFINED_CLIFF.chalk).toBeLessThan(0.38);
+    expect(REFINED_CLIFF.turfTint).toBeGreaterThan(0);
+    expect(REFINED_CLIFF.turfTint).toBeLessThan(1);
+  });
+
+  it('starts the wall projection before a face is steep enough to stretch', () => {
+    expect(refinedCliffWallWeight(1)).toBe(0);
+    expect(refinedCliffWallWeight(REFINED_CLIFF.wallFlat)).toBe(0);
+    expect(refinedCliffWallWeight(REFINED_CLIFF.wallFull)).toBe(1);
+    expect(refinedCliffWallWeight(0)).toBe(1);
+    // a 60 degree face (normal y 0.5) is fully wall-projected; Classic gave it 0.275
+    expect(refinedCliffWallWeight(0.5)).toBe(1);
+    expect(Math.min(1, Math.max(0, 1 - 0.5 * 1.45))).toBeCloseTo(0.275, 6);
+  });
+
+  it('patches the three Classic cliff lines the shipped splat shader carries', () => {
+    const terrain = readFileSync(path.join(ROOT, 'src/render/terrain.ts'), 'utf8');
+    // both tiers' wall rock (rich and simple splat) carry the chalk soften
+    expect(terrain.split(CLASSIC_CLIFF_WALL).length - 1).toBe(1);
+    expect(terrain.split(CLASSIC_CLIFF_AXIS).length - 1).toBe(1);
+    expect(terrain.split(CLASSIC_CLIFF_CHALK).length - 1).toBe(2);
+    const frag = `w\n${CLASSIC_CLIFF_WALL}\nx\n${CLASSIC_CLIFF_AXIS}\ny\n${CLASSIC_CLIFF_CHALK}\nz`;
+    const out = patchRefinedCliffGlsl(frag);
+    expect(out).not.toContain(CLASSIC_CLIFF_WALL);
+    expect(out).not.toContain(CLASSIC_CLIFF_AXIS);
+    expect(out).not.toContain(CLASSIC_CLIFF_CHALK);
+    expect(out).toContain('float wallW = 1.0 - smoothstep(0.55000, 0.85000, an.y);');
+    expect(out).toContain(
+      'float axisW = smoothstep(0.30000, 0.70000, an.x / max(1e-4, an.x + an.z));',
+    );
+    expect(out).toContain('rockAlb = mix(rockAlb, vec3(0.68, 0.70, 0.67), 0.12000);');
+    expect(() => patchRefinedCliffGlsl('no cliff here')).toThrow(/cliff wall anchor missing/);
+  });
+
+  it('keeps only part of the turf tint on a steep face', () => {
+    const src = refinedSplatGlsl(refinedTerrainProfile('high'));
+    expect(src).toContain('rockAlb * mix(vec3(1.0), wocWsTint, 0.30000)');
+  });
+});
+
+describe('refined shore stone and ground detail', () => {
+  const flatRock = { ...base, grass: 0, rock: 1, normalY: 1 };
+  it('turns flat rock just above the waterline to sand, not cobbles', () => {
+    const shore = refinedGroundWeights({ ...flatRock, heightAboveWater: 0.3 });
+    expect(shore.paving).toBe(0);
+    expect(shore.shoreSand).toBeCloseTo(REFINED_GROUND.shoreSandMax, 6);
+    const town = refinedGroundWeights({ ...flatRock, heightAboveWater: 10 });
+    expect(town.shoreSand).toBe(0);
+    expect(town.paving).toBeCloseTo(REFINED_GROUND.pavingMax, 6);
+    // a cliff is never flat: no shore sand on a wall at the waterline
+    const wall = refinedGroundWeights({ ...flatRock, normalY: 0.3, heightAboveWater: 0.3 });
+    expect(wall.shoreSand).toBe(0);
+  });
+
+  it('carries the shore fade and the sand tone in the shader', () => {
+    const src = refinedSplatGlsl(refinedTerrainProfile('high'));
+    expect(src).toContain('float wocWsPvShore = 1.0 - smoothstep(');
+    expect(src).toContain('* (1.0 - wocWsPvShore)');
+    expect(src).toContain('uWsSandMean * mix(vec3(1.0), wocWsTint, 0.3)');
+    expect(src).toContain(`wallW * ${REFINED_CLIFF.neutral.toFixed(5)}`);
+  });
+
+  it('doubles the mud and snow taps once each, Classic anchors present', () => {
+    const terrain = readFileSync(path.join(ROOT, 'src/render/terrain.ts'), 'utf8');
+    expect(terrain.split(CLASSIC_MUD_TAP).length - 1).toBe(1);
+    expect(terrain.split(CLASSIC_SNOW_TAP).length - 1).toBe(1);
+    const out = patchRefinedDetailGlsl(`a\n${CLASSIC_MUD_TAP}\nb ${CLASSIC_SNOW_TAP} c`);
+    expect(out).not.toContain(CLASSIC_MUD_TAP);
+    expect(out.split('WOC_L_MUD').length - 1).toBe(2);
+    expect(out.split('WOC_L_SNOW').length - 1).toBe(2);
+    expect(out).toContain(`${REFINED_DETAIL.mudScale2.toFixed(5)}`);
+    expect(() => patchRefinedDetailGlsl('none')).toThrow(/mud tap anchor missing/);
+  });
+
+  it('compresses the cliff crack highlights', () => {
+    const out = patchRefinedCliffGlsl(
+      `${CLASSIC_CLIFF_WALL}\n${CLASSIC_CLIFF_AXIS}\n${CLASSIC_CLIFF_CHALK}`,
+    );
+    expect(out).toContain(`min(rockAlb, vec3(${REFINED_CLIFF.highlightCap.toFixed(5)}))`);
   });
 });

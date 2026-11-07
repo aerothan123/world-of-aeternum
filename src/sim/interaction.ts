@@ -51,6 +51,7 @@ import { interactIgnivarRaidLore } from './ignivar_raid_lore';
 import { isInRaidInstance } from './instances/dungeons';
 import { FERRY_BELL_OBJECT_ID, tryRingFerryBell } from './interactions/ferry_bell';
 import { HUT_OBJECT_ID, tryBurnHut } from './interactions/firebottle_hut';
+import { tryContributeAtTownProject } from './life_skills/town_projects';
 import { mobLootSource } from './loot/awarded_loot_hold';
 import { hasSharedLootRights as computeSharedLootRights, lootHasGoneFfa } from './loot/loot_ffa';
 import {
@@ -65,6 +66,7 @@ import { isMusterRack, useMusterRack } from './mirefen_muster';
 import { startCorpseHarvest } from './professions/corpse_harvest_session';
 import { storeLootedSkulls } from './pvp/skull_bag';
 import { isQuestGatedGroundObjectHidden } from './quest_gated_entity';
+import { questUseItemNeed } from './quests/quest_object_use';
 import { corpseHasDecayed } from './respawn_policy';
 import { isRiftForgeNpc } from './rift/forge_gate';
 import type { SimContext } from './sim_context';
@@ -478,7 +480,10 @@ export function pickUpObject(
     const objIdx = quest.objectives.findIndex(
       (o) => o.type === 'collect' && o.itemId === objectItemId,
     );
-    if (objIdx < 0) {
+    // A used item (quests/quest_object_use.ts) has no collect objective: the
+    // pickup allows exactly what the quest's pending uses still need.
+    const useNeed = objIdx < 0 ? questUseItemNeed(def.questId, qp, objectItemId) : 0;
+    if (objIdx < 0 && ctx.countItem(objectItemId, meta.entityId) >= useNeed) {
       ctx.error(meta.entityId, def.pickupEnough ?? `${def.name} offers nothing more.`);
       return false;
     }
@@ -632,6 +637,9 @@ export function interact(
   // Escort start: standing near an idle escortee whose quest this player has
   // active begins the walk (escort.ts picks the nearest eligible one).
   if (tryStartEscort(ctx, p, r.meta)) return;
+  // Town restoration (life_skills/town_projects.ts): standing at a project
+  // site, the press hands in one bundle of the current stage's materials.
+  if (tryContributeAtTownProject(ctx, r.meta, p)) return;
   let bestCorpse: Entity | null = null;
   let bestCorpseD2 = INTERACT_RANGE * INTERACT_RANGE;
   let bestObj: Entity | null = null;

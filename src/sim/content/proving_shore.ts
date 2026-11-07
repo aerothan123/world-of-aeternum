@@ -72,7 +72,7 @@ export const PROVING_SHORE_ZONE: ZoneDef = {
     { x: -306, z: -22, label: 'The Gauntlet', id: 'the_gauntlet' },
   ],
   welcome:
-    'The Proving Shore asks nothing of you but time. Learn the camp, strike the effigies, walk the wreck line and, when you are ready, Ferryman Odo will see you across to the vale. You can also ring the bell to go to the vale directly.',
+    'The Proving Shore asks nothing of you but time. Learn the camp, strike the effigies, walk the wreck line and, when you are ready, Captain Fenlow will see you across to the vale. You can also ring the bell to go to the vale directly.',
   welcomeQuestId: 'q_ps_the_gauntlet',
 };
 
@@ -336,8 +336,10 @@ export const PROVING_SHORE_NPCS: Record<string, NpcDef> = {
   },
   ferryman_odo: {
     id: 'ferryman_odo',
-    name: 'Ferryman Odo',
-    title: 'Keeper of the Crossing',
+    // Captain Fenlow Tippet (docs/narrative/wyndlewood_bible.md section 10);
+    // the template id stays ferryman_odo (ids frozen, display-only rename).
+    name: 'Captain Fenlow Tippet',
+    title: 'Ferry Captain',
     // Between his pier and the Gauntlet's mouth, facing south over the
     // arrival point so every newcomer lands in front of him.
     pos: { x: -284, z: -9 },
@@ -663,11 +665,16 @@ export const PROVING_SHORE_QUESTS: Record<string, QuestDef> = {
     name: 'Set Sail',
     giverNpcId: 'instructor_maren',
     turnInNpcId: 'ferryman_odo',
-    text: 'There is nothing left on this shore you have not already run, beaten, opened, or bought, $N. You are ready, and Eastbrook has real work waiting. Walk back down the shore road to the pier, press F on Ferryman Odo, and tell him I said you have earned your crossing. Press L any time you lose track of what you owe whom: that is your quest log.',
+    text: 'There is nothing left on this shore you have not already run, beaten, opened, or bought, $N. You are ready, and Eastbrook has real work waiting. Walk back down the shore road to the pier, press F on Captain Fenlow, and tell him I said you have earned your crossing. Press L any time you lose track of what you owe whom: that is your quest log.',
     completionText:
       'Maren said that, did she? High praise from a woman who once made me practice mooring knots for a week. Ring the bell standing beside my pier whenever you are ready, $N, and the crossing will set you down in the middle of Eastbrook town. Mind the wolves.',
     objectives: [
-      { type: 'interact', targetNpcId: 'ferryman_odo', count: 1, label: 'Report to Ferryman Odo' },
+      {
+        type: 'interact',
+        targetNpcId: 'ferryman_odo',
+        count: 1,
+        label: 'Report to Captain Fenlow',
+      },
     ],
     xpReward: 150,
     copperReward: 50,
@@ -830,7 +837,7 @@ export const PROVING_SHORE_OBJECTS: GroundObjectDef[] = [
     // twin (FERRY_BELL_TOWN_LANDING).
     //
     // The island bell stands on the dry ground between the pier head and the
-    // Gauntlet's mouth, a few steps from Ferryman Odo (his completion note
+    // Gauntlet's mouth, a few steps from Captain Fenlow (his completion note
     // says "the bell standing beside my pier"), clear of the dock planks and
     // of the arrival point at (-281, -18).
     positions: [

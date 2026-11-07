@@ -122,6 +122,9 @@ const KNOWN_CODES = [
   'steam.already_linked',
   'steam.account_taken',
   'steam.upstream',
+  'steam.unlink_last_login',
+  'steam.not_owned',
+  'steam.reauth_required',
   'epic.disabled',
   'epic.invalid_token',
   'epic.banned',
@@ -191,6 +194,8 @@ const KNOWN_CODES = [
   'woc_market.stepup_wallet_mismatch',
   'woc_market.stepup_binding_mismatch',
   'woc_market.stepup_signature_invalid',
+  'store.disabled',
+  'legal_acceptance.invalid_input',
 ];
 
 // The parametric contract pins: the matcher

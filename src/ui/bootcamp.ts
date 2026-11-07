@@ -288,7 +288,7 @@ export class BootcampOverlay {
     this.rerouteLiveCaption();
   }
 
-  // ---- Ferryman Odo's guiding voice --------------------------------------
+  // ---- Captain Fenlow's guiding voice --------------------------------------
   // One-shot reactions to the player's FIRST actions (first flag, the run
   // hand-in, each station handed back), a veer-off-the-trail nudge, and the
   // graduation send-off. The clip is optional garnish (voice.play on an
@@ -390,7 +390,7 @@ export class BootcampOverlay {
     this.showCaption(t(line.caption));
   }
 
-  // Odo's line reaches the player the way NPC speech does in the world: a chat
+  // Fenlow's line reaches the player the way NPC speech does in the world: a chat
   // bubble over him while he is on screen and near, the Talking Head panel
   // (portrait, name, line) above the action bar when he is not.
   private showCaption(text: string): void {
@@ -408,11 +408,11 @@ export class BootcampOverlay {
   }
 
   // The line currently riding a chat bubble, with the reading time it was
-  // given. Odo walks his own route, so a line routed while he was on screen can
+  // given. Fenlow walks his own route, so a line routed while he was on screen can
   // outlive the sight of him.
   private liveBubble: { text: string; until: number } | null = null;
 
-  // Odo leaving view mid-line would strand the bubble unread, so the rest of
+  // Fenlow leaving view mid-line would strand the bubble unread, so the rest of
   // the line moves to the panel. The panel starts its own reading clock: the
   // player is only now reading it there.
   private rerouteLiveCaption(): void {

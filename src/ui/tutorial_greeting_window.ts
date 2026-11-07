@@ -1,5 +1,5 @@
 // Thin DOM consumer for ferry welcomes and the Eastbrook guidance choice.
-// Hud paints the town-bell homecoming and Ferryman Odo's island welcome
+// Hud paints the town-bell homecoming and Captain Fenlow's island welcome
 // through this shared, focus-trapped window.
 
 import { bindDialogKeyActivation } from './dialog_key_activation';

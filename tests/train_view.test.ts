@@ -45,13 +45,13 @@ const SHAPES: Array<['sim' | 'client', Record<string, unknown>]> = [
 
 describe('isStationMasterNpc', () => {
   it('is true for every STATIONS master and false for anyone else', () => {
-    // ALL six masters, parametrized over the registry itself: dropping any
+    // ALL eight masters, parametrized over the registry itself: dropping any
     // master from recognition (a non-combo master included) must fail here,
     // not just the two combo-teaching ones.
     for (const station of STATIONS) {
       expect(isStationMasterNpc(station.masterNpcId, STATIONS), station.masterNpcId).toBe(true);
     }
-    expect(STATIONS).toHaveLength(6);
+    expect(STATIONS).toHaveLength(8);
     expect(isStationMasterNpc('marshal_redbrook', STATIONS)).toBe(false);
     expect(isStationMasterNpc('smith_haldren', STATIONS)).toBe(false); // the stall smith is NOT the forge master
     expect(isStationMasterNpc('', STATIONS)).toBe(false);

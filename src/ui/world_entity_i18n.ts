@@ -450,6 +450,16 @@ const MOB_IDS = [
   'buddy_sprites',
   'buddy_crystal_tide',
   'buddy_phantom',
+  // Wyndlewood Chapter One's creatures and escortees (content/chapter_one.ts).
+  'bristlejaw_shore_rat',
+  'gravestirred_fieldhand',
+  'briarbitten_fox',
+  'orchard_boar',
+  'veiled_rite_tender',
+  'culvert_rat',
+  'quarry_burrower',
+  'escort_neris',
+  'escort_della',
 ] as const;
 
 const NPC_IDS = [
@@ -597,6 +607,7 @@ const NPC_IDS = [
   'weaver_ottilie', // crafting-station master: loom (Eastbrook, zone 1)
   'tinker_gizzel', // crafting-station master: toolworks (Eastbrook, zone 1)
   'tanner_hesk', // crafting-station master: tannery (Fenbridge, zone 2)
+  'tanner_tamsin', // crafting-station master: tannery (the Eastbrook crafting yard, zone 1)
   'alchemist_verane', // crafting-station master: apothecary (Highwatch, zone 3)
   'guildmaster_hesper_dunmore', // the Highwatch guild's guildmaster (zone 3)
   'contract_clerk_tobias_wren', // the Highwatch guild's contract clerk (zone 3)
@@ -622,6 +633,14 @@ const NPC_IDS = [
   'drillmaster_hale',
   // the Drowned Temple's lore guide (content/drowned_temple_cantor.ts)
   'cantor_laverock',
+  // Wyndlewood Chapter One's new townsfolk (content/chapter_one.ts).
+  'scout_neris',
+  'gravekeeper_holven',
+  'innkeeper_jorren',
+  'herbalist_olvessa',
+  'gardener_della',
+  'carpenter_pella',
+  'fisherman_tobbin',
 ] as const;
 
 const QUEST_IDS = [
@@ -870,6 +889,60 @@ const QUEST_IDS = [
   'q_gourdlight_daily_towns',
   'q_gourdlight_daily_feathers',
   'q_gourdlight_daily_baskets',
+  // Wyndlewood Chapter One and the Eastbrook quest board (content/chapter_one.ts).
+  'c1_01_arrival',
+  'c1_02_beacon_lied',
+  'c1_06_admiral_crabs',
+  'c1_07_across',
+  'c1_08_vouch',
+  'c1_10_handle_doubt',
+  'c1_11_cold_garden',
+  'c1_12_tied_to_root',
+  'c1_13_flowers_down',
+  'c1_14_buried_tuesday',
+  'c1_15_warmth_missing',
+  'c1_16_pick_the_choir',
+  'c1_17_della_long_way',
+  'c1_18_three_knocks',
+  'c1_19_guest_shelves',
+  'c1_20_order_unsigned',
+  'c1_21_watch_cannot_see',
+  'c1_24_sandwich_emergency',
+  'c1_25_someone_teaching',
+  'c1_26_promise_paint',
+  'c1_28_door_left_shut',
+  'c1_03_fish_consulted',
+  'c1_04_every_board',
+  'c1_05_solid_underfoot',
+  'c1_09_buckles_glory',
+  'c1_22_place_you_keep',
+  'c1_23_working_life',
+  'c1_27_supper_despite',
+  'c1_d01_bounty_culvert',
+  'c1_d02_clear_quarry',
+  'c1_d03_teeth_verge',
+  'c1_d04_metal_copper',
+  'c1_d05_wood_oak',
+  'c1_d05_wood_alder',
+  'c1_d06_leaves_silvermint',
+  'c1_d07_receipt_rivets',
+  'c1_d07_receipt_hinges',
+  'c1_d08_lunch_stew',
+  'c1_d08_lunch_bread',
+  'c1_d09_parcels_herbs',
+  'c1_d09_parcels_mulch',
+  'c1_d10_road_checkposts',
+  'c1_d10_quay_posts',
+  'c1_d11_light_behind',
+  'c1_d12_road_not_rumor',
+  // Wyndlewood Chapter Two's core quests (content/chapter_two.ts). Its Southern
+  // Reaches quests join this list when their zones merge.
+  'c2_01_ship_sank_twice',
+  'c2_03_bells_from_steps',
+  'c2_12_door_we_left_shut',
+  'c2_28_remembered_roofs',
+  'c2_32_bridge_fenbridge_trusts',
+  'c2_33_paddy_work_fog',
 ] as const;
 
 const ZONE_IDS = [

@@ -391,23 +391,23 @@ describe('the guide twins of audited direction claims (the wiki cannot drift alo
   });
 
   it('craftProse.cooking.ladderBody puts the kitchens on the side they stand', () => {
-    // "the Eastbrook kitchens on the east side of the square": the station
+    // "the Eastbrook kitchens in the crafting yard south of the square" (town
+    // kit phase 2: the kitchens moved in from the inn lane): the station
     // record is the placement truth, the hub anchors "the square" exactly as
-    // every other Eastbrook row anchors "town". \beast\b cannot match inside
-    // "southeast" (the h is a word character), so the whole-word test is
-    // honest.
+    // every other Eastbrook row anchors "town". \bsouth\b cannot match inside
+    // "southeast" or "southwest" (the following letter is a word character), so
+    // the whole-word test is honest.
     const body = guideStrings.profPages.craftProse.cooking.ladderBody;
-    expect(/\beast side of the square\b/.test(body)).toBe(true);
+    expect(/\bcrafting yard south of the square\b/.test(body)).toBe(true);
     const kitchens = EASTBROOK_STATIONS_BY_ID.station_eastbrook_kitchens;
     expect(kitchens).toBeDefined();
     const from = hub(VALE);
     const dx = kitchens.position.x - from.x;
     const dz = kitchens.position.z - from.z;
-    expect(componentHolds('east', dx, dz), `kitchens at dx ${dx} dz ${dz} (east is -X)`).toBe(true);
-    // NO dominance arm: "the east side of the square" claims a side, not a
-    // bearing. The station stands a hair NORTH of the exact northeast
-    // diagonal (|dz| exceeds |dx| by 4 mm, deterministically: the position
-    // is localToWorld of fixed constants), so a dominance requirement would
-    // fail every run while adding no truth to the side claim.
+    expect(componentHolds('south', dx, dz), `kitchens at dx ${dx} dz ${dz} (south is -Z)`).toBe(
+      true,
+    );
+    // NO dominance arm: "south of the square" names the yard's side, not a
+    // bearing; the yard's kitchens stand on its square end.
   });
 });

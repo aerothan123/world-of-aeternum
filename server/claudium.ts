@@ -14,6 +14,7 @@
 // until the legacy ladder is removed.
 
 import type * as http from 'node:http';
+import type { EarlyAccessFlags } from '../src/early_access_flags';
 import { MEMBERSHIP_TOKEN_SKU } from '../src/membership_token_contract';
 import { isStoreMountSkinId } from '../src/sim/content/mount_skins';
 import { isKnownStorageSkuId } from '../src/sim/content/storage_charters';
@@ -38,6 +39,7 @@ import {
   grantAccountWeaponSkins,
   moderationStatusForAccount,
 } from './db';
+import { SERVER_EARLY_ACCESS } from './early_access_flags';
 import { ctxAccountId } from './http/context';
 import { type BearerActiveGuardDb, createActiveGuard } from './http/middleware/bearer_active_guard';
 import {
@@ -47,7 +49,7 @@ import {
   CLAUDIUM_SPEND_PRE_AUTH_POLICY,
   rateLimit,
 } from './http/middleware/rate_limit';
-import type { Ctx, RateLimitOutcome, RouteDef } from './http/types';
+import type { Ctx, Middleware, RateLimitOutcome, RouteDef } from './http/types';
 import { json, readBinaryBody, readBody } from './http_util';
 import { gameMembershipAnnualClaim, membershipAnnualRecipient } from './membership_annual_store';
 import {
@@ -520,7 +522,38 @@ function claudiumHandler(ctx: Ctx): Promise<void> {
   return handleClaudiumApi(ctx.req, ctx.res, ctxAccountId(ctx), { rateLimitApplied: true });
 }
 
-export const routes: RouteDef[] = [
+/** Whether an /api/claudium path is reachable on this realm: nothing is while the
+ *  Claudium switch is off (server/early_access_flags.ts, Early Access), and the
+ *  membership offers it fronts (the subscription and the membership token) stay
+ *  closed while membership is off even when the store is on. */
+export function claudiumPathEnabled(
+  path: string,
+  flags: EarlyAccessFlags = SERVER_EARLY_ACCESS,
+): boolean {
+  if (!flags.claudium) return false;
+  if (/^\/api\/claudium\/(subscription|membership)/.test(path)) return flags.membership;
+  return true;
+}
+
+/** The answer a switched-off store, membership or cosmetic-shop path gives:
+ *  a 404 carrying the stable `store.disabled` code (server/http/error_codes.ts),
+ *  so the client localizes it and nothing behind the gate (auth, rate limits,
+ *  the economy service) runs. Shared by the RouteDef gate below and the legacy
+ *  /api/claudium prefix arm in server/main.ts (the dual-edit pair). */
+export function sendStoreDisabled(res: http.ServerResponse): void {
+  json(res, 404, { error: 'store disabled', code: 'store.disabled' });
+}
+
+/** The Early Access gate every Claudium route runs first. */
+const earlyAccessGate: Middleware = async (ctx, next) => {
+  if (!claudiumPathEnabled(ctx.req.url?.split('?')[0] ?? '')) {
+    sendStoreDisabled(ctx.res);
+    return;
+  }
+  await next();
+};
+
+const claudiumRouteDefs: RouteDef[] = [
   {
     method: 'POST',
     path: '/api/claudium/subscription/annual/claim',
@@ -686,3 +719,8 @@ export const routes: RouteDef[] = [
     handler: claudiumHandler,
   },
 ];
+
+export const routes: RouteDef[] = claudiumRouteDefs.map((route) => ({
+  ...route,
+  middleware: [earlyAccessGate, ...(route.middleware ?? [])],
+}));

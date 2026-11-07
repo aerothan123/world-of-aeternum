@@ -134,6 +134,8 @@ const DISCORD_HEADERS = { 'x-woc-discord-secret': DISCORD_SECRET };
 // RouteDef-ONLY and have no legacy arm by design (a route born after the
 // migration never gets one).
 const EXPECTED_ROUTES: ReadonlyArray<readonly [Method, string]> = [
+  ['POST', '/internal/maintenance'],
+  ['GET', '/internal/maintenance'],
   ['POST', '/internal/restart-countdown'],
   ['GET', '/internal/discord/flex'],
   ['GET', '/internal/discord/roles'],
@@ -294,8 +296,8 @@ afterEach(() => {
 // ---------------------------------------------------------------------------
 
 describe('internal route registration', () => {
-  it('registers exactly 10 routes: the legacy ladder and the RouteDef-only pair', () => {
-    expect(routes).toHaveLength(10);
+  it('registers exactly 12 routes: the legacy ladder, the RouteDef-only pair, and maintenance', () => {
+    expect(routes).toHaveLength(12);
     const actual = routes.map((r) => `${r.method} ${r.path}`).sort();
     const expected = EXPECTED_ROUTES.map(([m, p]) => `${m} ${p}`).sort();
     expect(actual).toEqual(expected);
