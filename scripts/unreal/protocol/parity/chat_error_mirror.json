@@ -1,0 +1,104 @@
+{
+  "suite": "chat_error_mirror",
+  "source": "src/ui/error_toast_log.ts shouldMirrorErrorToast (as hud.ts showLocalizedError drives it)",
+  "note": "texts is a JSON array of consecutive error toasts; logged[i] says whether line i reached the log",
+  "cases": [
+    {
+      "in": {
+        "texts": "[]"
+      },
+      "out": {
+        "logged": []
+      }
+    },
+    {
+      "in": {
+        "texts": "[\"Invalid attack target.\"]"
+      },
+      "out": {
+        "logged": [
+          true
+        ]
+      }
+    },
+    {
+      "in": {
+        "texts": "[\"Invalid attack target.\",\"Invalid attack target.\",\"Invalid attack target.\"]"
+      },
+      "out": {
+        "logged": [
+          true,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "in": {
+        "texts": "[\"Out of range.\",\"Line of sight.\",\"Out of range.\"]"
+      },
+      "out": {
+        "logged": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "in": {
+        "texts": "[\"Out of range.\",\"Out of range.\",\"Not enough mana.\",\"Not enough mana.\",\"Out of range.\"]"
+      },
+      "out": {
+        "logged": [
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      }
+    },
+    {
+      "in": {
+        "texts": "[\"\",\"   \",\"Out of range.\",\"\",\"Out of range.\"]"
+      },
+      "out": {
+        "logged": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "in": {
+        "texts": "[\"\\n\\t\",\"A\",\"a\",\"A\",\"A \"]"
+      },
+      "out": {
+        "logged": [
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "in": {
+        "texts": "[\"Invalid attack target.\",\"Invalid attack target.\",\"You are dead.\",\"Invalid attack target.\"]"
+      },
+      "out": {
+        "logged": [
+          true,
+          false,
+          true,
+          true
+        ]
+      }
+    }
+  ]
+}

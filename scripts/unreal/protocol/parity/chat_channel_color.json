@@ -1,0 +1,135 @@
+{
+  "suite": "chat_channel_color",
+  "source": "src/ui/hud/chat/chat_channels.ts chatChannelColor",
+  "note": "unknown channels fall back to say",
+  "cases": [
+    {
+      "in": {
+        "channel": "say"
+      },
+      "out": {
+        "color": "#f0ead8"
+      }
+    },
+    {
+      "in": {
+        "channel": "yell"
+      },
+      "out": {
+        "color": "#ff5040"
+      }
+    },
+    {
+      "in": {
+        "channel": "party"
+      },
+      "out": {
+        "color": "#7fd4ff"
+      }
+    },
+    {
+      "in": {
+        "channel": "battleground"
+      },
+      "out": {
+        "color": "#ff8c1a"
+      }
+    },
+    {
+      "in": {
+        "channel": "raidWarning"
+      },
+      "out": {
+        "color": "#ff4800"
+      }
+    },
+    {
+      "in": {
+        "channel": "general"
+      },
+      "out": {
+        "color": "#ffc864"
+      }
+    },
+    {
+      "in": {
+        "channel": "world"
+      },
+      "out": {
+        "color": "#ff9d5c"
+      }
+    },
+    {
+      "in": {
+        "channel": "lfg"
+      },
+      "out": {
+        "color": "#5cd6a0"
+      }
+    },
+    {
+      "in": {
+        "channel": "guild"
+      },
+      "out": {
+        "color": "#40d264"
+      }
+    },
+    {
+      "in": {
+        "channel": "officer"
+      },
+      "out": {
+        "color": "#4ce0c0"
+      }
+    },
+    {
+      "in": {
+        "channel": "whisper"
+      },
+      "out": {
+        "color": "#ff80ff"
+      }
+    },
+    {
+      "in": {
+        "channel": "emote"
+      },
+      "out": {
+        "color": "#ff8040"
+      }
+    },
+    {
+      "in": {
+        "channel": "roll"
+      },
+      "out": {
+        "color": "#ffd100"
+      }
+    },
+    {
+      "in": {
+        "channel": "system"
+      },
+      "out": {
+        "color": "#f0ead8"
+      }
+    },
+    {
+      "in": {
+        "channel": "unknown"
+      },
+      "out": {
+        "color": "#f0ead8"
+      }
+    },
+    {
+      "in": {
+        "channel": ""
+      },
+      "out": {
+        "color": "#f0ead8"
+      }
+    }
+  ]
+}

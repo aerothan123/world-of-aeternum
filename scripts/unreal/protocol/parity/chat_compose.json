@@ -1,0 +1,3607 @@
+{
+  "suite": "chat_compose",
+  "source": "src/ui/hud/chat/chat_channels.ts composeChatLine, composeWhisperReply, sentLineTargetForHost",
+  "note": "kind compose: line sent from tab; kind sticky: target ('' is null) after sending text",
+  "cases": [
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": ""
+      },
+      "out": {
+        "line": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": ""
+      },
+      "out": {
+        "line": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": ""
+      },
+      "out": {
+        "line": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": ""
+      },
+      "out": {
+        "line": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": ""
+      },
+      "out": {
+        "line": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": ""
+      },
+      "out": {
+        "line": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": ""
+      },
+      "out": {
+        "line": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": ""
+      },
+      "out": {
+        "line": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": ""
+      },
+      "out": {
+        "line": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": ""
+      },
+      "out": {
+        "line": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": ""
+      },
+      "out": {
+        "target": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": ""
+      },
+      "out": {
+        "target": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "   "
+      },
+      "out": {
+        "line": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "   "
+      },
+      "out": {
+        "line": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "   "
+      },
+      "out": {
+        "line": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "   "
+      },
+      "out": {
+        "line": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "   "
+      },
+      "out": {
+        "line": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "   "
+      },
+      "out": {
+        "line": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "   "
+      },
+      "out": {
+        "line": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "   "
+      },
+      "out": {
+        "line": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "   "
+      },
+      "out": {
+        "line": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "   "
+      },
+      "out": {
+        "line": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "   "
+      },
+      "out": {
+        "target": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "   "
+      },
+      "out": {
+        "target": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "hello"
+      },
+      "out": {
+        "line": "/say hello"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "hello"
+      },
+      "out": {
+        "line": "/y hello"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "hello"
+      },
+      "out": {
+        "line": "/p hello"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "hello"
+      },
+      "out": {
+        "line": "/bg hello"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "hello"
+      },
+      "out": {
+        "line": "/general hello"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "hello"
+      },
+      "out": {
+        "line": "/world hello"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "hello"
+      },
+      "out": {
+        "line": "/lfg hello"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "hello"
+      },
+      "out": {
+        "line": "/gu hello"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "hello"
+      },
+      "out": {
+        "line": "/o hello"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "hello"
+      },
+      "out": {
+        "line": "/r hello"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "hello"
+      },
+      "out": {
+        "target": "say"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "hello"
+      },
+      "out": {
+        "target": "say"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "  padded  "
+      },
+      "out": {
+        "line": "/say padded"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "  padded  "
+      },
+      "out": {
+        "line": "/y padded"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "  padded  "
+      },
+      "out": {
+        "line": "/p padded"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "  padded  "
+      },
+      "out": {
+        "line": "/bg padded"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "  padded  "
+      },
+      "out": {
+        "line": "/general padded"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "  padded  "
+      },
+      "out": {
+        "line": "/world padded"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "  padded  "
+      },
+      "out": {
+        "line": "/lfg padded"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "  padded  "
+      },
+      "out": {
+        "line": "/gu padded"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "  padded  "
+      },
+      "out": {
+        "line": "/o padded"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "  padded  "
+      },
+      "out": {
+        "line": "/r padded"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "  padded  "
+      },
+      "out": {
+        "target": "say"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "  padded  "
+      },
+      "out": {
+        "target": "say"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/w Bob hi"
+      },
+      "out": {
+        "line": "/w Bob hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/w Bob hi"
+      },
+      "out": {
+        "line": "/w Bob hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/w Bob hi"
+      },
+      "out": {
+        "line": "/w Bob hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/w Bob hi"
+      },
+      "out": {
+        "line": "/w Bob hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/w Bob hi"
+      },
+      "out": {
+        "line": "/w Bob hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/w Bob hi"
+      },
+      "out": {
+        "line": "/w Bob hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/w Bob hi"
+      },
+      "out": {
+        "line": "/w Bob hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/w Bob hi"
+      },
+      "out": {
+        "line": "/w Bob hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/w Bob hi"
+      },
+      "out": {
+        "line": "/w Bob hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/w Bob hi"
+      },
+      "out": {
+        "line": "/w Bob hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/w Bob hi"
+      },
+      "out": {
+        "target": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/w Bob hi"
+      },
+      "out": {
+        "target": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/r thanks"
+      },
+      "out": {
+        "line": "/r thanks"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/r thanks"
+      },
+      "out": {
+        "line": "/r thanks"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/r thanks"
+      },
+      "out": {
+        "line": "/r thanks"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/r thanks"
+      },
+      "out": {
+        "line": "/r thanks"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/r thanks"
+      },
+      "out": {
+        "line": "/r thanks"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/r thanks"
+      },
+      "out": {
+        "line": "/r thanks"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/r thanks"
+      },
+      "out": {
+        "line": "/r thanks"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/r thanks"
+      },
+      "out": {
+        "line": "/r thanks"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/r thanks"
+      },
+      "out": {
+        "line": "/r thanks"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/r thanks"
+      },
+      "out": {
+        "line": "/r thanks"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/r thanks"
+      },
+      "out": {
+        "target": "whisper"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/r thanks"
+      },
+      "out": {
+        "target": "whisper"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/reply ok"
+      },
+      "out": {
+        "line": "/reply ok"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/reply ok"
+      },
+      "out": {
+        "line": "/reply ok"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/reply ok"
+      },
+      "out": {
+        "line": "/reply ok"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/reply ok"
+      },
+      "out": {
+        "line": "/reply ok"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/reply ok"
+      },
+      "out": {
+        "line": "/reply ok"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/reply ok"
+      },
+      "out": {
+        "line": "/reply ok"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/reply ok"
+      },
+      "out": {
+        "line": "/reply ok"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/reply ok"
+      },
+      "out": {
+        "line": "/reply ok"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/reply ok"
+      },
+      "out": {
+        "line": "/reply ok"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/reply ok"
+      },
+      "out": {
+        "line": "/reply ok"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/reply ok"
+      },
+      "out": {
+        "target": "whisper"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/reply ok"
+      },
+      "out": {
+        "target": "whisper"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "!lfg need tank"
+      },
+      "out": {
+        "line": "!lfg need tank"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "!lfg need tank"
+      },
+      "out": {
+        "line": "!lfg need tank"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "!lfg need tank"
+      },
+      "out": {
+        "line": "!lfg need tank"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "!lfg need tank"
+      },
+      "out": {
+        "line": "!lfg need tank"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "!lfg need tank"
+      },
+      "out": {
+        "line": "!lfg need tank"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "!lfg need tank"
+      },
+      "out": {
+        "line": "!lfg need tank"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "!lfg need tank"
+      },
+      "out": {
+        "line": "!lfg need tank"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "!lfg need tank"
+      },
+      "out": {
+        "line": "!lfg need tank"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "!lfg need tank"
+      },
+      "out": {
+        "line": "!lfg need tank"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "!lfg need tank"
+      },
+      "out": {
+        "line": "/r !lfg need tank"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "!lfg need tank"
+      },
+      "out": {
+        "target": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "!lfg need tank"
+      },
+      "out": {
+        "target": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/p pull now"
+      },
+      "out": {
+        "line": "/p pull now"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/p pull now"
+      },
+      "out": {
+        "line": "/p pull now"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/p pull now"
+      },
+      "out": {
+        "line": "/p pull now"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/p pull now"
+      },
+      "out": {
+        "line": "/p pull now"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/p pull now"
+      },
+      "out": {
+        "line": "/p pull now"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/p pull now"
+      },
+      "out": {
+        "line": "/p pull now"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/p pull now"
+      },
+      "out": {
+        "line": "/p pull now"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/p pull now"
+      },
+      "out": {
+        "line": "/p pull now"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/p pull now"
+      },
+      "out": {
+        "line": "/p pull now"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/p pull now"
+      },
+      "out": {
+        "line": "/p pull now"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/p pull now"
+      },
+      "out": {
+        "target": "party"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/p pull now"
+      },
+      "out": {
+        "target": "party"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/party ready"
+      },
+      "out": {
+        "line": "/party ready"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/party ready"
+      },
+      "out": {
+        "line": "/party ready"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/party ready"
+      },
+      "out": {
+        "line": "/party ready"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/party ready"
+      },
+      "out": {
+        "line": "/party ready"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/party ready"
+      },
+      "out": {
+        "line": "/party ready"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/party ready"
+      },
+      "out": {
+        "line": "/party ready"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/party ready"
+      },
+      "out": {
+        "line": "/party ready"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/party ready"
+      },
+      "out": {
+        "line": "/party ready"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/party ready"
+      },
+      "out": {
+        "line": "/party ready"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/party ready"
+      },
+      "out": {
+        "line": "/party ready"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/party ready"
+      },
+      "out": {
+        "target": "party"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/party ready"
+      },
+      "out": {
+        "target": "party"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/bg go"
+      },
+      "out": {
+        "line": "/bg go"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/bg go"
+      },
+      "out": {
+        "line": "/bg go"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/bg go"
+      },
+      "out": {
+        "line": "/bg go"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/bg go"
+      },
+      "out": {
+        "line": "/bg go"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/bg go"
+      },
+      "out": {
+        "line": "/bg go"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/bg go"
+      },
+      "out": {
+        "line": "/bg go"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/bg go"
+      },
+      "out": {
+        "line": "/bg go"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/bg go"
+      },
+      "out": {
+        "line": "/bg go"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/bg go"
+      },
+      "out": {
+        "line": "/bg go"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/bg go"
+      },
+      "out": {
+        "line": "/bg go"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/bg go"
+      },
+      "out": {
+        "target": "battleground"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/bg go"
+      },
+      "out": {
+        "target": "battleground"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/y HEY"
+      },
+      "out": {
+        "line": "/y HEY"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/y HEY"
+      },
+      "out": {
+        "line": "/y HEY"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/y HEY"
+      },
+      "out": {
+        "line": "/y HEY"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/y HEY"
+      },
+      "out": {
+        "line": "/y HEY"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/y HEY"
+      },
+      "out": {
+        "line": "/y HEY"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/y HEY"
+      },
+      "out": {
+        "line": "/y HEY"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/y HEY"
+      },
+      "out": {
+        "line": "/y HEY"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/y HEY"
+      },
+      "out": {
+        "line": "/y HEY"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/y HEY"
+      },
+      "out": {
+        "line": "/y HEY"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/y HEY"
+      },
+      "out": {
+        "line": "/y HEY"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/y HEY"
+      },
+      "out": {
+        "target": "yell"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/y HEY"
+      },
+      "out": {
+        "target": "yell"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/yell hey"
+      },
+      "out": {
+        "line": "/yell hey"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/yell hey"
+      },
+      "out": {
+        "line": "/yell hey"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/yell hey"
+      },
+      "out": {
+        "line": "/yell hey"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/yell hey"
+      },
+      "out": {
+        "line": "/yell hey"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/yell hey"
+      },
+      "out": {
+        "line": "/yell hey"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/yell hey"
+      },
+      "out": {
+        "line": "/yell hey"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/yell hey"
+      },
+      "out": {
+        "line": "/yell hey"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/yell hey"
+      },
+      "out": {
+        "line": "/yell hey"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/yell hey"
+      },
+      "out": {
+        "line": "/yell hey"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/yell hey"
+      },
+      "out": {
+        "line": "/yell hey"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/yell hey"
+      },
+      "out": {
+        "target": "yell"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/yell hey"
+      },
+      "out": {
+        "target": "yell"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/s hi"
+      },
+      "out": {
+        "line": "/s hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/s hi"
+      },
+      "out": {
+        "line": "/s hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/s hi"
+      },
+      "out": {
+        "line": "/s hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/s hi"
+      },
+      "out": {
+        "line": "/s hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/s hi"
+      },
+      "out": {
+        "line": "/s hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/s hi"
+      },
+      "out": {
+        "line": "/s hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/s hi"
+      },
+      "out": {
+        "line": "/s hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/s hi"
+      },
+      "out": {
+        "line": "/s hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/s hi"
+      },
+      "out": {
+        "line": "/s hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/s hi"
+      },
+      "out": {
+        "line": "/s hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/s hi"
+      },
+      "out": {
+        "target": "say"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/s hi"
+      },
+      "out": {
+        "target": "say"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/say hi"
+      },
+      "out": {
+        "line": "/say hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/say hi"
+      },
+      "out": {
+        "line": "/say hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/say hi"
+      },
+      "out": {
+        "line": "/say hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/say hi"
+      },
+      "out": {
+        "line": "/say hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/say hi"
+      },
+      "out": {
+        "line": "/say hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/say hi"
+      },
+      "out": {
+        "line": "/say hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/say hi"
+      },
+      "out": {
+        "line": "/say hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/say hi"
+      },
+      "out": {
+        "line": "/say hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/say hi"
+      },
+      "out": {
+        "line": "/say hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/say hi"
+      },
+      "out": {
+        "line": "/say hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/say hi"
+      },
+      "out": {
+        "target": "say"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/say hi"
+      },
+      "out": {
+        "target": "say"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/g guild line"
+      },
+      "out": {
+        "line": "/g guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/g guild line"
+      },
+      "out": {
+        "line": "/g guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/g guild line"
+      },
+      "out": {
+        "line": "/g guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/g guild line"
+      },
+      "out": {
+        "line": "/g guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/g guild line"
+      },
+      "out": {
+        "line": "/g guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/g guild line"
+      },
+      "out": {
+        "line": "/g guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/g guild line"
+      },
+      "out": {
+        "line": "/g guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/g guild line"
+      },
+      "out": {
+        "line": "/g guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/g guild line"
+      },
+      "out": {
+        "line": "/g guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/g guild line"
+      },
+      "out": {
+        "line": "/g guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/g guild line"
+      },
+      "out": {
+        "target": "guild"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/g guild line"
+      },
+      "out": {
+        "target": "general"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/gu guild line"
+      },
+      "out": {
+        "line": "/gu guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/gu guild line"
+      },
+      "out": {
+        "line": "/gu guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/gu guild line"
+      },
+      "out": {
+        "line": "/gu guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/gu guild line"
+      },
+      "out": {
+        "line": "/gu guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/gu guild line"
+      },
+      "out": {
+        "line": "/gu guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/gu guild line"
+      },
+      "out": {
+        "line": "/gu guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/gu guild line"
+      },
+      "out": {
+        "line": "/gu guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/gu guild line"
+      },
+      "out": {
+        "line": "/gu guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/gu guild line"
+      },
+      "out": {
+        "line": "/gu guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/gu guild line"
+      },
+      "out": {
+        "line": "/gu guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/gu guild line"
+      },
+      "out": {
+        "target": "guild"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/gu guild line"
+      },
+      "out": {
+        "target": "guild"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/guild line"
+      },
+      "out": {
+        "line": "/guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/guild line"
+      },
+      "out": {
+        "line": "/guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/guild line"
+      },
+      "out": {
+        "line": "/guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/guild line"
+      },
+      "out": {
+        "line": "/guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/guild line"
+      },
+      "out": {
+        "line": "/guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/guild line"
+      },
+      "out": {
+        "line": "/guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/guild line"
+      },
+      "out": {
+        "line": "/guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/guild line"
+      },
+      "out": {
+        "line": "/guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/guild line"
+      },
+      "out": {
+        "line": "/guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/guild line"
+      },
+      "out": {
+        "line": "/guild line"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/guild line"
+      },
+      "out": {
+        "target": "guild"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/guild line"
+      },
+      "out": {
+        "target": "guild"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/o officers"
+      },
+      "out": {
+        "line": "/o officers"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/o officers"
+      },
+      "out": {
+        "line": "/o officers"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/o officers"
+      },
+      "out": {
+        "line": "/o officers"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/o officers"
+      },
+      "out": {
+        "line": "/o officers"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/o officers"
+      },
+      "out": {
+        "line": "/o officers"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/o officers"
+      },
+      "out": {
+        "line": "/o officers"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/o officers"
+      },
+      "out": {
+        "line": "/o officers"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/o officers"
+      },
+      "out": {
+        "line": "/o officers"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/o officers"
+      },
+      "out": {
+        "line": "/o officers"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/o officers"
+      },
+      "out": {
+        "line": "/o officers"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/o officers"
+      },
+      "out": {
+        "target": "officer"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/o officers"
+      },
+      "out": {
+        "target": "officer"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/officer note"
+      },
+      "out": {
+        "line": "/officer note"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/officer note"
+      },
+      "out": {
+        "line": "/officer note"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/officer note"
+      },
+      "out": {
+        "line": "/officer note"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/officer note"
+      },
+      "out": {
+        "line": "/officer note"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/officer note"
+      },
+      "out": {
+        "line": "/officer note"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/officer note"
+      },
+      "out": {
+        "line": "/officer note"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/officer note"
+      },
+      "out": {
+        "line": "/officer note"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/officer note"
+      },
+      "out": {
+        "line": "/officer note"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/officer note"
+      },
+      "out": {
+        "line": "/officer note"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/officer note"
+      },
+      "out": {
+        "line": "/officer note"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/officer note"
+      },
+      "out": {
+        "target": "officer"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/officer note"
+      },
+      "out": {
+        "target": "officer"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/general hi"
+      },
+      "out": {
+        "line": "/general hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/general hi"
+      },
+      "out": {
+        "line": "/general hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/general hi"
+      },
+      "out": {
+        "line": "/general hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/general hi"
+      },
+      "out": {
+        "line": "/general hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/general hi"
+      },
+      "out": {
+        "line": "/general hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/general hi"
+      },
+      "out": {
+        "line": "/general hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/general hi"
+      },
+      "out": {
+        "line": "/general hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/general hi"
+      },
+      "out": {
+        "line": "/general hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/general hi"
+      },
+      "out": {
+        "line": "/general hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/general hi"
+      },
+      "out": {
+        "line": "/general hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/general hi"
+      },
+      "out": {
+        "target": "general"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/general hi"
+      },
+      "out": {
+        "target": "general"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/1 hi"
+      },
+      "out": {
+        "line": "/1 hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/1 hi"
+      },
+      "out": {
+        "line": "/1 hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/1 hi"
+      },
+      "out": {
+        "line": "/1 hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/1 hi"
+      },
+      "out": {
+        "line": "/1 hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/1 hi"
+      },
+      "out": {
+        "line": "/1 hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/1 hi"
+      },
+      "out": {
+        "line": "/1 hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/1 hi"
+      },
+      "out": {
+        "line": "/1 hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/1 hi"
+      },
+      "out": {
+        "line": "/1 hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/1 hi"
+      },
+      "out": {
+        "line": "/1 hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/1 hi"
+      },
+      "out": {
+        "line": "/1 hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/1 hi"
+      },
+      "out": {
+        "target": "general"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/1 hi"
+      },
+      "out": {
+        "target": "general"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/world hi"
+      },
+      "out": {
+        "line": "/world hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/world hi"
+      },
+      "out": {
+        "line": "/world hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/world hi"
+      },
+      "out": {
+        "line": "/world hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/world hi"
+      },
+      "out": {
+        "line": "/world hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/world hi"
+      },
+      "out": {
+        "line": "/world hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/world hi"
+      },
+      "out": {
+        "line": "/world hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/world hi"
+      },
+      "out": {
+        "line": "/world hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/world hi"
+      },
+      "out": {
+        "line": "/world hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/world hi"
+      },
+      "out": {
+        "line": "/world hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/world hi"
+      },
+      "out": {
+        "line": "/world hi"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/world hi"
+      },
+      "out": {
+        "target": "world"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/world hi"
+      },
+      "out": {
+        "target": "world"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/lfg anyone"
+      },
+      "out": {
+        "line": "/lfg anyone"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/lfg anyone"
+      },
+      "out": {
+        "line": "/lfg anyone"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/lfg anyone"
+      },
+      "out": {
+        "line": "/lfg anyone"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/lfg anyone"
+      },
+      "out": {
+        "line": "/lfg anyone"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/lfg anyone"
+      },
+      "out": {
+        "line": "/lfg anyone"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/lfg anyone"
+      },
+      "out": {
+        "line": "/lfg anyone"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/lfg anyone"
+      },
+      "out": {
+        "line": "/lfg anyone"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/lfg anyone"
+      },
+      "out": {
+        "line": "/lfg anyone"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/lfg anyone"
+      },
+      "out": {
+        "line": "/lfg anyone"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/lfg anyone"
+      },
+      "out": {
+        "line": "/lfg anyone"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/lfg anyone"
+      },
+      "out": {
+        "target": "lfg"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/lfg anyone"
+      },
+      "out": {
+        "target": "lfg"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/me waves"
+      },
+      "out": {
+        "line": "/me waves"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/me waves"
+      },
+      "out": {
+        "line": "/me waves"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/me waves"
+      },
+      "out": {
+        "line": "/me waves"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/me waves"
+      },
+      "out": {
+        "line": "/me waves"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/me waves"
+      },
+      "out": {
+        "line": "/me waves"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/me waves"
+      },
+      "out": {
+        "line": "/me waves"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/me waves"
+      },
+      "out": {
+        "line": "/me waves"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/me waves"
+      },
+      "out": {
+        "line": "/me waves"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/me waves"
+      },
+      "out": {
+        "line": "/me waves"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/me waves"
+      },
+      "out": {
+        "line": "/me waves"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/me waves"
+      },
+      "out": {
+        "target": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/me waves"
+      },
+      "out": {
+        "target": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/roll"
+      },
+      "out": {
+        "line": "/roll"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/roll"
+      },
+      "out": {
+        "line": "/roll"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/roll"
+      },
+      "out": {
+        "line": "/roll"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/roll"
+      },
+      "out": {
+        "line": "/roll"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/roll"
+      },
+      "out": {
+        "line": "/roll"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/roll"
+      },
+      "out": {
+        "line": "/roll"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/roll"
+      },
+      "out": {
+        "line": "/roll"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/roll"
+      },
+      "out": {
+        "line": "/roll"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/roll"
+      },
+      "out": {
+        "line": "/roll"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/roll"
+      },
+      "out": {
+        "line": "/roll"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/roll"
+      },
+      "out": {
+        "target": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/roll"
+      },
+      "out": {
+        "target": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/join world"
+      },
+      "out": {
+        "line": "/join world"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/join world"
+      },
+      "out": {
+        "line": "/join world"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/join world"
+      },
+      "out": {
+        "line": "/join world"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/join world"
+      },
+      "out": {
+        "line": "/join world"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/join world"
+      },
+      "out": {
+        "line": "/join world"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/join world"
+      },
+      "out": {
+        "line": "/join world"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/join world"
+      },
+      "out": {
+        "line": "/join world"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/join world"
+      },
+      "out": {
+        "line": "/join world"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/join world"
+      },
+      "out": {
+        "line": "/join world"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/join world"
+      },
+      "out": {
+        "line": "/join world"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/join world"
+      },
+      "out": {
+        "target": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/join world"
+      },
+      "out": {
+        "target": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/P caps party"
+      },
+      "out": {
+        "line": "/P caps party"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/P caps party"
+      },
+      "out": {
+        "line": "/P caps party"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/P caps party"
+      },
+      "out": {
+        "line": "/P caps party"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/P caps party"
+      },
+      "out": {
+        "line": "/P caps party"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/P caps party"
+      },
+      "out": {
+        "line": "/P caps party"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/P caps party"
+      },
+      "out": {
+        "line": "/P caps party"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/P caps party"
+      },
+      "out": {
+        "line": "/P caps party"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/P caps party"
+      },
+      "out": {
+        "line": "/P caps party"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/P caps party"
+      },
+      "out": {
+        "line": "/P caps party"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/P caps party"
+      },
+      "out": {
+        "line": "/P caps party"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/P caps party"
+      },
+      "out": {
+        "target": "party"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/P caps party"
+      },
+      "out": {
+        "target": "party"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/pvp"
+      },
+      "out": {
+        "line": "/pvp"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/pvp"
+      },
+      "out": {
+        "line": "/pvp"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/pvp"
+      },
+      "out": {
+        "line": "/pvp"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/pvp"
+      },
+      "out": {
+        "line": "/pvp"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/pvp"
+      },
+      "out": {
+        "line": "/pvp"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/pvp"
+      },
+      "out": {
+        "line": "/pvp"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/pvp"
+      },
+      "out": {
+        "line": "/pvp"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/pvp"
+      },
+      "out": {
+        "line": "/pvp"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/pvp"
+      },
+      "out": {
+        "line": "/pvp"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/pvp"
+      },
+      "out": {
+        "line": "/pvp"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/pvp"
+      },
+      "out": {
+        "target": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/pvp"
+      },
+      "out": {
+        "target": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "say",
+        "text": "/invite Bob"
+      },
+      "out": {
+        "line": "/invite Bob"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "yell",
+        "text": "/invite Bob"
+      },
+      "out": {
+        "line": "/invite Bob"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "party",
+        "text": "/invite Bob"
+      },
+      "out": {
+        "line": "/invite Bob"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "battleground",
+        "text": "/invite Bob"
+      },
+      "out": {
+        "line": "/invite Bob"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "general",
+        "text": "/invite Bob"
+      },
+      "out": {
+        "line": "/invite Bob"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "world",
+        "text": "/invite Bob"
+      },
+      "out": {
+        "line": "/invite Bob"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "lfg",
+        "text": "/invite Bob"
+      },
+      "out": {
+        "line": "/invite Bob"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "guild",
+        "text": "/invite Bob"
+      },
+      "out": {
+        "line": "/invite Bob"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "officer",
+        "text": "/invite Bob"
+      },
+      "out": {
+        "line": "/invite Bob"
+      }
+    },
+    {
+      "in": {
+        "kind": "compose",
+        "tab": "whisper",
+        "text": "/invite Bob"
+      },
+      "out": {
+        "line": "/invite Bob"
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": true,
+        "text": "/invite Bob"
+      },
+      "out": {
+        "target": ""
+      }
+    },
+    {
+      "in": {
+        "kind": "sticky",
+        "online": false,
+        "text": "/invite Bob"
+      },
+      "out": {
+        "target": ""
+      }
+    }
+  ]
+}
