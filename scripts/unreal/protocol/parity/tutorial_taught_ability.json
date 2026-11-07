@@ -1,0 +1,79 @@
+{
+  "suite": "tutorial_taught_ability",
+  "source": "src/sim/tutorial/starting_attack.ts startingAttackFor",
+  "note": "abilityId is empty for a class with no pressable attack at level 1",
+  "cases": [
+    {
+      "in": {
+        "playerClass": "warrior"
+      },
+      "out": {
+        "abilityId": "heroic_strike"
+      }
+    },
+    {
+      "in": {
+        "playerClass": "paladin"
+      },
+      "out": {
+        "abilityId": "hammer_of_grace"
+      }
+    },
+    {
+      "in": {
+        "playerClass": "hunter"
+      },
+      "out": {
+        "abilityId": "raptor_strike"
+      }
+    },
+    {
+      "in": {
+        "playerClass": "rogue"
+      },
+      "out": {
+        "abilityId": "sinister_strike"
+      }
+    },
+    {
+      "in": {
+        "playerClass": "priest"
+      },
+      "out": {
+        "abilityId": "smite"
+      }
+    },
+    {
+      "in": {
+        "playerClass": "shaman"
+      },
+      "out": {
+        "abilityId": "lightning_bolt"
+      }
+    },
+    {
+      "in": {
+        "playerClass": "mage"
+      },
+      "out": {
+        "abilityId": "fireball"
+      }
+    },
+    {
+      "in": {
+        "playerClass": "warlock"
+      },
+      "out": {
+        "abilityId": "shadow_bolt"
+      }
+    },
+    {
+      "in": {
+        "playerClass": "druid"
+      },
+      "out": {
+        "abilityId": "wrath"
+      }
+    }
+  ]
+}

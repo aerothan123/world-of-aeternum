@@ -16,6 +16,8 @@ import {
   BOOTCAMP_COURSE_CHECKPOINTS,
   PROVING_SHORE_QUEST_ORDER,
 } from '../../src/sim/content/proving_shore';
+import { startingAttackFor } from '../../src/sim/tutorial/starting_attack';
+import { ALL_CLASSES } from '../../src/sim/types';
 import {
   BOOTCAMP_STEP_ORDER,
   type BootcampParam,
@@ -402,9 +404,24 @@ function tutorialChain(): ParitySuite {
   };
 }
 
+/** The attack each class is taught on the island ({ability} in the drill and strand cards); the
+ *  client reads this suite at runtime to name it. */
+function taughtAbility(): ParitySuite {
+  return {
+    suite: 'tutorial_taught_ability',
+    source: 'src/sim/tutorial/starting_attack.ts startingAttackFor',
+    note: 'abilityId is empty for a class with no pressable attack at level 1',
+    cases: ALL_CLASSES.map((playerClass) => ({
+      in: { playerClass },
+      out: { abilityId: startingAttackFor(playerClass).abilityId ?? '' },
+    })),
+  };
+}
+
 export const TUTORIAL_PARITY_SUITES: Record<string, () => ParitySuite> = {
   tutorial_view: tutorialView,
   tutorial_chain: tutorialChain,
+  tutorial_taught_ability: taughtAbility,
 };
 
 export function buildTutorialSuite(name: string): ParitySuite {
