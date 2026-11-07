@@ -9,6 +9,13 @@
 // the Unreal repo's tools/sync_ts_exports.ps1, then write the C++ test against it.
 
 import { MAX_LEVEL, mobXpValue, zeroDiff } from '../../src/sim/types';
+import {
+  CHAT_TAB_CHANNELS,
+  composeChatLine,
+  composeWhisperReply,
+  sentLineTargetForHost,
+  WHISPER_TAB,
+} from '../../src/ui/hud/chat/chat_channels';
 import { maskProfanity } from '../../src/ui/profanity';
 
 export const PARITY_EXPORT_SUBDIR = 'parity';
@@ -87,9 +94,72 @@ function chatProfanityMask(): ParitySuite {
   };
 }
 
+/**
+ * The chat input rules (W5): the line a channel tab or the whisper tab sends for what was typed,
+ * and the sticky target the sent line leaves (online and offline host).
+ */
+function chatCompose(): ParitySuite {
+  const typed = [
+    '',
+    '   ',
+    'hello',
+    '  padded  ',
+    '/w Bob hi',
+    '/r thanks',
+    '/reply ok',
+    '!lfg need tank',
+    '/p pull now',
+    '/party ready',
+    '/bg go',
+    '/y HEY',
+    '/yell hey',
+    '/s hi',
+    '/say hi',
+    '/g guild line',
+    '/gu guild line',
+    '/guild line',
+    '/o officers',
+    '/officer note',
+    '/general hi',
+    '/1 hi',
+    '/world hi',
+    '/lfg anyone',
+    '/me waves',
+    '/roll',
+    '/join world',
+    '/P caps party',
+    '/pvp',
+    '/invite Bob',
+  ];
+  const cases: ParityCase[] = [];
+  for (const text of typed) {
+    for (const tab of CHAT_TAB_CHANNELS) {
+      cases.push({ in: { kind: 'compose', tab, text }, out: { line: composeChatLine(tab, text) } });
+    }
+    cases.push({
+      in: { kind: 'compose', tab: WHISPER_TAB, text },
+      out: { line: composeWhisperReply(text) },
+    });
+    for (const online of [true, false]) {
+      cases.push({
+        in: { kind: 'sticky', online, text },
+        out: { target: sentLineTargetForHost(text, { online }) ?? '' },
+      });
+    }
+  }
+  return {
+    suite: 'chat_compose',
+    source:
+      'src/ui/hud/chat/chat_channels.ts composeChatLine, composeWhisperReply, sentLineTargetForHost',
+    note: "kind compose: line sent from tab; kind sticky: target ('' is null) after sending text",
+    cases,
+  };
+}
+
 export const PARITY_SUITES: Record<string, () => ParitySuite> = {
   xp_mob_value: xpMobValue,
   chat_profanity_mask: chatProfanityMask,
+  chat_compose: chatCompose,
 };
 
 export function buildParitySuite(name: string): ParitySuite {
