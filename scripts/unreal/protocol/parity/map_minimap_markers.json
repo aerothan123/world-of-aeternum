@@ -1,0 +1,5953 @@
+{
+  "suite": "map_minimap_markers",
+  "source": "src/ui/minimap_markers.ts createMinimapMarkers",
+  "note": "fixed snapshots (scripts/unreal/map_export.ts fixedSnapshots); mx,my rounded to 0.001 px; party-arrow and an off-map corpse are rim-clamped (wx,wz is the source); acceptance is 0.5 yd per marker",
+  "cases": [
+    {
+      "in": {
+        "snapshot": "town_project",
+        "px": -7,
+        "pz": -120,
+        "zoom": 1,
+        "profile": "standard",
+        "canvas": 162,
+        "pxPerYard": 1.7
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -0.75,
+            "z": -116.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -11,
+            "z": -111
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -17.5,
+            "z": -115.75,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 23,
+            "z": -132,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -5,
+            "z": -127.75,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 393,
+            "z": -120,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -14,
+            "z": -125,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 4,
+            "z": -107,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -4,
+            "z": -117
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -7,
+            "z": -120
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -2,
+            "z": -128
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 23,
+            "z": 20
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -267,
+            "z": -210
+          }
+        ],
+        "corpse": null,
+        "markers": [
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_forge",
+            "wx": -4.1722222222222225,
+            "wz": -113.8,
+            "mx": 76.193,
+            "my": 70.46
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_kitchens",
+            "wx": -3.367368421052632,
+            "wz": -108.5,
+            "mx": 74.825,
+            "my": 61.45
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_loom",
+            "wx": -15.277777777777779,
+            "wz": -116.6,
+            "mx": 95.072,
+            "my": 75.22
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_toolworks",
+            "wx": -15.894166666666667,
+            "wz": -125.6,
+            "mx": 96.12,
+            "my": 90.52
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_apothecary",
+            "wx": -15.971153846153847,
+            "wz": -112,
+            "mx": 96.251,
+            "my": 67.4
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_tannery",
+            "wx": -15.443999999999999,
+            "wz": -121.2,
+            "mx": 95.355,
+            "my": 83.04
+          },
+          {
+            "kind": "town-project",
+            "ref": "project:eastbrook_yard_well",
+            "wx": -10,
+            "wz": -118,
+            "mx": 86.1,
+            "my": 77.6
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -17.5,
+            "wz": -115.75,
+            "mx": 98.85,
+            "my": 73.775
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:5",
+            "wx": 23,
+            "wz": -132,
+            "mx": 30,
+            "my": 101.4
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -5,
+            "wz": -127.75,
+            "mx": 77.6,
+            "my": 94.175
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -14,
+            "wz": -125,
+            "mx": 92.9,
+            "my": 89.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 4,
+            "wz": -107,
+            "mx": 62.3,
+            "my": 58.9,
+            "ally": "guild"
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -2,
+            "wz": -128,
+            "mx": 72.5,
+            "my": 94.6
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 23,
+            "wz": 20,
+            "mx": 66.087,
+            "my": 11.407
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -267,
+            "wz": -210,
+            "mx": 148.257,
+            "my": 104.281
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -0.75,
+            "wz": -116.5,
+            "mx": 70.375,
+            "my": 75.05
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -11,
+            "wz": -111,
+            "mx": 87.8,
+            "my": 65.7
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -7,
+            "wz": -120,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "town_project",
+        "px": -7,
+        "pz": -120,
+        "zoom": 1,
+        "profile": "compact",
+        "canvas": 162,
+        "pxPerYard": 1.7
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -0.75,
+            "z": -116.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -11,
+            "z": -111
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -17.5,
+            "z": -115.75,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 23,
+            "z": -132,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -5,
+            "z": -127.75,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 393,
+            "z": -120,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -14,
+            "z": -125,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 4,
+            "z": -107,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -4,
+            "z": -117
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -7,
+            "z": -120
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -2,
+            "z": -128
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 23,
+            "z": 20
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -267,
+            "z": -210
+          }
+        ],
+        "corpse": null,
+        "markers": [
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_forge",
+            "wx": -4.1722222222222225,
+            "wz": -113.8,
+            "mx": 76.193,
+            "my": 70.46
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_kitchens",
+            "wx": -3.367368421052632,
+            "wz": -108.5,
+            "mx": 74.825,
+            "my": 61.45
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_loom",
+            "wx": -15.277777777777779,
+            "wz": -116.6,
+            "mx": 95.072,
+            "my": 75.22
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_toolworks",
+            "wx": -15.894166666666667,
+            "wz": -125.6,
+            "mx": 96.12,
+            "my": 90.52
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_apothecary",
+            "wx": -15.971153846153847,
+            "wz": -112,
+            "mx": 96.251,
+            "my": 67.4
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_tannery",
+            "wx": -15.443999999999999,
+            "wz": -121.2,
+            "mx": 95.355,
+            "my": 83.04
+          },
+          {
+            "kind": "town-project",
+            "ref": "project:eastbrook_yard_well",
+            "wx": -10,
+            "wz": -118,
+            "mx": 86.1,
+            "my": 77.6
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -17.5,
+            "wz": -115.75,
+            "mx": 98.85,
+            "my": 73.775
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:5",
+            "wx": 23,
+            "wz": -132,
+            "mx": 30,
+            "my": 101.4
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -5,
+            "wz": -127.75,
+            "mx": 77.6,
+            "my": 94.175
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -14,
+            "wz": -125,
+            "mx": 92.9,
+            "my": 89.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 4,
+            "wz": -107,
+            "mx": 62.3,
+            "my": 58.9,
+            "ally": "guild"
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -2,
+            "wz": -128,
+            "mx": 72.5,
+            "my": 94.6
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 23,
+            "wz": 20,
+            "mx": 66.844,
+            "my": 14.937
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -267,
+            "wz": -210,
+            "mx": 144.846,
+            "my": 103.101
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -0.75,
+            "wz": -116.5,
+            "mx": 70.375,
+            "my": 75.05
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -11,
+            "wz": -111,
+            "mx": 87.8,
+            "my": 65.7
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -7,
+            "wz": -120,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "town_project",
+        "px": -7,
+        "pz": -120,
+        "zoom": 1.5,
+        "profile": "standard",
+        "canvas": 162,
+        "pxPerYard": 2.55
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -0.75,
+            "z": -116.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -11,
+            "z": -111
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -17.5,
+            "z": -115.75,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 23,
+            "z": -132,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -5,
+            "z": -127.75,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 393,
+            "z": -120,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -14,
+            "z": -125,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 4,
+            "z": -107,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -4,
+            "z": -117
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -7,
+            "z": -120
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -2,
+            "z": -128
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 23,
+            "z": 20
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -267,
+            "z": -210
+          }
+        ],
+        "corpse": null,
+        "markers": [
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_forge",
+            "wx": -4.1722222222222225,
+            "wz": -113.8,
+            "mx": 73.789,
+            "my": 65.19
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_kitchens",
+            "wx": -3.367368421052632,
+            "wz": -108.5,
+            "mx": 71.737,
+            "my": 51.675
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_loom",
+            "wx": -15.277777777777779,
+            "wz": -116.6,
+            "mx": 102.108,
+            "my": 72.33
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_toolworks",
+            "wx": -15.894166666666667,
+            "wz": -125.6,
+            "mx": 103.68,
+            "my": 95.28
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_apothecary",
+            "wx": -15.971153846153847,
+            "wz": -112,
+            "mx": 103.876,
+            "my": 60.6
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_tannery",
+            "wx": -15.443999999999999,
+            "wz": -121.2,
+            "mx": 102.532,
+            "my": 84.06
+          },
+          {
+            "kind": "town-project",
+            "ref": "project:eastbrook_yard_well",
+            "wx": -10,
+            "wz": -118,
+            "mx": 88.65,
+            "my": 75.9
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -17.5,
+            "wz": -115.75,
+            "mx": 107.775,
+            "my": 70.163
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -5,
+            "wz": -127.75,
+            "mx": 75.9,
+            "my": 100.763
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -14,
+            "wz": -125,
+            "mx": 98.85,
+            "my": 93.75,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 4,
+            "wz": -107,
+            "mx": 52.95,
+            "my": 47.85,
+            "ally": "guild"
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -2,
+            "wz": -128,
+            "mx": 68.25,
+            "my": 101.4
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 23,
+            "wz": 20,
+            "mx": 66.087,
+            "my": 11.407
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -267,
+            "wz": -210,
+            "mx": 148.257,
+            "my": 104.281
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -0.75,
+            "wz": -116.5,
+            "mx": 65.063,
+            "my": 72.075
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -11,
+            "wz": -111,
+            "mx": 91.2,
+            "my": 58.05
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -7,
+            "wz": -120,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "town_project",
+        "px": -7,
+        "pz": -120,
+        "zoom": 1.5,
+        "profile": "compact",
+        "canvas": 162,
+        "pxPerYard": 2.55
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -0.75,
+            "z": -116.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -11,
+            "z": -111
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -17.5,
+            "z": -115.75,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 23,
+            "z": -132,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -5,
+            "z": -127.75,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 393,
+            "z": -120,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -14,
+            "z": -125,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 4,
+            "z": -107,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -4,
+            "z": -117
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -7,
+            "z": -120
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -2,
+            "z": -128
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 23,
+            "z": 20
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -267,
+            "z": -210
+          }
+        ],
+        "corpse": null,
+        "markers": [
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_forge",
+            "wx": -4.1722222222222225,
+            "wz": -113.8,
+            "mx": 73.789,
+            "my": 65.19
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_kitchens",
+            "wx": -3.367368421052632,
+            "wz": -108.5,
+            "mx": 71.737,
+            "my": 51.675
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_loom",
+            "wx": -15.277777777777779,
+            "wz": -116.6,
+            "mx": 102.108,
+            "my": 72.33
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_toolworks",
+            "wx": -15.894166666666667,
+            "wz": -125.6,
+            "mx": 103.68,
+            "my": 95.28
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_apothecary",
+            "wx": -15.971153846153847,
+            "wz": -112,
+            "mx": 103.876,
+            "my": 60.6
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_tannery",
+            "wx": -15.443999999999999,
+            "wz": -121.2,
+            "mx": 102.532,
+            "my": 84.06
+          },
+          {
+            "kind": "town-project",
+            "ref": "project:eastbrook_yard_well",
+            "wx": -10,
+            "wz": -118,
+            "mx": 88.65,
+            "my": 75.9
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -17.5,
+            "wz": -115.75,
+            "mx": 107.775,
+            "my": 70.163
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -5,
+            "wz": -127.75,
+            "mx": 75.9,
+            "my": 100.763
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -14,
+            "wz": -125,
+            "mx": 98.85,
+            "my": 93.75,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 4,
+            "wz": -107,
+            "mx": 52.95,
+            "my": 47.85,
+            "ally": "guild"
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -2,
+            "wz": -128,
+            "mx": 68.25,
+            "my": 101.4
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 23,
+            "wz": 20,
+            "mx": 66.844,
+            "my": 14.937
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -267,
+            "wz": -210,
+            "mx": 144.846,
+            "my": 103.101
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -0.75,
+            "wz": -116.5,
+            "mx": 65.063,
+            "my": 72.075
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -11,
+            "wz": -111,
+            "mx": 91.2,
+            "my": 58.05
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -7,
+            "wz": -120,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "town_project",
+        "px": -7,
+        "pz": -120,
+        "zoom": 2,
+        "profile": "standard",
+        "canvas": 162,
+        "pxPerYard": 3.4
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -0.75,
+            "z": -116.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -11,
+            "z": -111
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -17.5,
+            "z": -115.75,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 23,
+            "z": -132,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -5,
+            "z": -127.75,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 393,
+            "z": -120,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -14,
+            "z": -125,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 4,
+            "z": -107,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -4,
+            "z": -117
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -7,
+            "z": -120
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -2,
+            "z": -128
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 23,
+            "z": 20
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -267,
+            "z": -210
+          }
+        ],
+        "corpse": null,
+        "markers": [
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_forge",
+            "wx": -4.1722222222222225,
+            "wz": -113.8,
+            "mx": 71.386,
+            "my": 59.92
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_kitchens",
+            "wx": -3.367368421052632,
+            "wz": -108.5,
+            "mx": 68.649,
+            "my": 41.9
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_loom",
+            "wx": -15.277777777777779,
+            "wz": -116.6,
+            "mx": 109.144,
+            "my": 69.44
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_toolworks",
+            "wx": -15.894166666666667,
+            "wz": -125.6,
+            "mx": 111.24,
+            "my": 100.04
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_apothecary",
+            "wx": -15.971153846153847,
+            "wz": -112,
+            "mx": 111.502,
+            "my": 53.8
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_tannery",
+            "wx": -15.443999999999999,
+            "wz": -121.2,
+            "mx": 109.71,
+            "my": 85.08
+          },
+          {
+            "kind": "town-project",
+            "ref": "project:eastbrook_yard_well",
+            "wx": -10,
+            "wz": -118,
+            "mx": 91.2,
+            "my": 74.2
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -17.5,
+            "wz": -115.75,
+            "mx": 116.7,
+            "my": 66.55
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -5,
+            "wz": -127.75,
+            "mx": 74.2,
+            "my": 107.35
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -14,
+            "wz": -125,
+            "mx": 104.8,
+            "my": 98,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 4,
+            "wz": -107,
+            "mx": 43.6,
+            "my": 36.8,
+            "ally": "guild"
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -2,
+            "wz": -128,
+            "mx": 64,
+            "my": 108.2
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 23,
+            "wz": 20,
+            "mx": 66.087,
+            "my": 11.407
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -267,
+            "wz": -210,
+            "mx": 148.257,
+            "my": 104.281
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -0.75,
+            "wz": -116.5,
+            "mx": 59.75,
+            "my": 69.1
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -11,
+            "wz": -111,
+            "mx": 94.6,
+            "my": 50.4
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -7,
+            "wz": -120,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "town_project",
+        "px": -7,
+        "pz": -120,
+        "zoom": 2,
+        "profile": "compact",
+        "canvas": 162,
+        "pxPerYard": 3.4
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -0.75,
+            "z": -116.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -11,
+            "z": -111
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -17.5,
+            "z": -115.75,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 23,
+            "z": -132,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -5,
+            "z": -127.75,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 393,
+            "z": -120,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -14,
+            "z": -125,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 4,
+            "z": -107,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -4,
+            "z": -117
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -7,
+            "z": -120
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -2,
+            "z": -128
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 23,
+            "z": 20
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -267,
+            "z": -210
+          }
+        ],
+        "corpse": null,
+        "markers": [
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_forge",
+            "wx": -4.1722222222222225,
+            "wz": -113.8,
+            "mx": 71.386,
+            "my": 59.92
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_kitchens",
+            "wx": -3.367368421052632,
+            "wz": -108.5,
+            "mx": 68.649,
+            "my": 41.9
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_loom",
+            "wx": -15.277777777777779,
+            "wz": -116.6,
+            "mx": 109.144,
+            "my": 69.44
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_toolworks",
+            "wx": -15.894166666666667,
+            "wz": -125.6,
+            "mx": 111.24,
+            "my": 100.04
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_apothecary",
+            "wx": -15.971153846153847,
+            "wz": -112,
+            "mx": 111.502,
+            "my": 53.8
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_tannery",
+            "wx": -15.443999999999999,
+            "wz": -121.2,
+            "mx": 109.71,
+            "my": 85.08
+          },
+          {
+            "kind": "town-project",
+            "ref": "project:eastbrook_yard_well",
+            "wx": -10,
+            "wz": -118,
+            "mx": 91.2,
+            "my": 74.2
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -17.5,
+            "wz": -115.75,
+            "mx": 116.7,
+            "my": 66.55
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -5,
+            "wz": -127.75,
+            "mx": 74.2,
+            "my": 107.35
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -14,
+            "wz": -125,
+            "mx": 104.8,
+            "my": 98,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 4,
+            "wz": -107,
+            "mx": 43.6,
+            "my": 36.8,
+            "ally": "guild"
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -2,
+            "wz": -128,
+            "mx": 64,
+            "my": 108.2
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 23,
+            "wz": 20,
+            "mx": 66.844,
+            "my": 14.937
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -267,
+            "wz": -210,
+            "mx": 144.846,
+            "my": 103.101
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -0.75,
+            "wz": -116.5,
+            "mx": 59.75,
+            "my": 69.1
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -11,
+            "wz": -111,
+            "mx": 94.6,
+            "my": 50.4
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -7,
+            "wz": -120,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "town_project",
+        "px": -7,
+        "pz": -120,
+        "zoom": 3,
+        "profile": "standard",
+        "canvas": 162,
+        "pxPerYard": 5.1
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -0.75,
+            "z": -116.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -11,
+            "z": -111
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -17.5,
+            "z": -115.75,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 23,
+            "z": -132,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -5,
+            "z": -127.75,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 393,
+            "z": -120,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -14,
+            "z": -125,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 4,
+            "z": -107,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -4,
+            "z": -117
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -7,
+            "z": -120
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -2,
+            "z": -128
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 23,
+            "z": 20
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -267,
+            "z": -210
+          }
+        ],
+        "corpse": null,
+        "markers": [
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_forge",
+            "wx": -4.1722222222222225,
+            "wz": -113.8,
+            "mx": 66.578,
+            "my": 49.38
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_kitchens",
+            "wx": -3.367368421052632,
+            "wz": -108.5,
+            "mx": 62.474,
+            "my": 22.35
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_loom",
+            "wx": -15.277777777777779,
+            "wz": -116.6,
+            "mx": 123.217,
+            "my": 63.66
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_toolworks",
+            "wx": -15.894166666666667,
+            "wz": -125.6,
+            "mx": 126.36,
+            "my": 109.56
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_apothecary",
+            "wx": -15.971153846153847,
+            "wz": -112,
+            "mx": 126.753,
+            "my": 40.2
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_tannery",
+            "wx": -15.443999999999999,
+            "wz": -121.2,
+            "mx": 124.064,
+            "my": 87.12
+          },
+          {
+            "kind": "town-project",
+            "ref": "project:eastbrook_yard_well",
+            "wx": -10,
+            "wz": -118,
+            "mx": 96.3,
+            "my": 70.8
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -17.5,
+            "wz": -115.75,
+            "mx": 134.55,
+            "my": 59.325
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -5,
+            "wz": -127.75,
+            "mx": 70.8,
+            "my": 120.525
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -14,
+            "wz": -125,
+            "mx": 116.7,
+            "my": 106.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -2,
+            "wz": -128,
+            "mx": 55.5,
+            "my": 121.8
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 23,
+            "wz": 20,
+            "mx": 66.087,
+            "my": 11.407
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -267,
+            "wz": -210,
+            "mx": 148.257,
+            "my": 104.281
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -0.75,
+            "wz": -116.5,
+            "mx": 49.125,
+            "my": 63.15
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -11,
+            "wz": -111,
+            "mx": 101.4,
+            "my": 35.1
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -7,
+            "wz": -120,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "town_project",
+        "px": -7,
+        "pz": -120,
+        "zoom": 3,
+        "profile": "compact",
+        "canvas": 162,
+        "pxPerYard": 5.1
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -0.75,
+            "z": -116.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -11,
+            "z": -111
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -17.5,
+            "z": -115.75,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 23,
+            "z": -132,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -5,
+            "z": -127.75,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 393,
+            "z": -120,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -14,
+            "z": -125,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 4,
+            "z": -107,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -4,
+            "z": -117
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -7,
+            "z": -120
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -2,
+            "z": -128
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 23,
+            "z": 20
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -267,
+            "z": -210
+          }
+        ],
+        "corpse": null,
+        "markers": [
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_forge",
+            "wx": -4.1722222222222225,
+            "wz": -113.8,
+            "mx": 66.578,
+            "my": 49.38
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_kitchens",
+            "wx": -3.367368421052632,
+            "wz": -108.5,
+            "mx": 62.474,
+            "my": 22.35
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_loom",
+            "wx": -15.277777777777779,
+            "wz": -116.6,
+            "mx": 123.217,
+            "my": 63.66
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_toolworks",
+            "wx": -15.894166666666667,
+            "wz": -125.6,
+            "mx": 126.36,
+            "my": 109.56
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_apothecary",
+            "wx": -15.971153846153847,
+            "wz": -112,
+            "mx": 126.753,
+            "my": 40.2
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_tannery",
+            "wx": -15.443999999999999,
+            "wz": -121.2,
+            "mx": 124.064,
+            "my": 87.12
+          },
+          {
+            "kind": "town-project",
+            "ref": "project:eastbrook_yard_well",
+            "wx": -10,
+            "wz": -118,
+            "mx": 96.3,
+            "my": 70.8
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -17.5,
+            "wz": -115.75,
+            "mx": 134.55,
+            "my": 59.325
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -5,
+            "wz": -127.75,
+            "mx": 70.8,
+            "my": 120.525
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -14,
+            "wz": -125,
+            "mx": 116.7,
+            "my": 106.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -2,
+            "wz": -128,
+            "mx": 55.5,
+            "my": 121.8
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 23,
+            "wz": 20,
+            "mx": 66.844,
+            "my": 14.937
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -267,
+            "wz": -210,
+            "mx": 144.846,
+            "my": 103.101
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -0.75,
+            "wz": -116.5,
+            "mx": 49.125,
+            "my": 63.15
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -11,
+            "wz": -111,
+            "mx": 101.4,
+            "my": 35.1
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -7,
+            "wz": -120,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "station",
+        "px": -10.172222222222222,
+        "pz": -109.8,
+        "zoom": 1,
+        "profile": "standard",
+        "canvas": 162,
+        "pxPerYard": 1.7
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -3.9222222222222225,
+            "z": -106.3,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -14.172222222222222,
+            "z": -100.8
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -20.672222222222224,
+            "z": -105.55,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 19.827777777777776,
+            "z": -121.8,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -8.172222222222222,
+            "z": -117.55,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 389.8277777777778,
+            "z": -109.8,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -17.172222222222224,
+            "z": -114.8,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 0.8277777777777775,
+            "z": -96.8,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -7.1722222222222225,
+            "z": -106.8
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -10.172222222222222,
+            "z": -109.8
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -5.1722222222222225,
+            "z": -117.8
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 19.827777777777776,
+            "z": 30.200000000000003
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -270.1722222222222,
+            "z": -199.8
+          }
+        ],
+        "corpse": {
+          "x": -22.172222222222224,
+          "z": -103.8
+        },
+        "markers": [
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_forge",
+            "wx": -4.1722222222222225,
+            "wz": -113.8,
+            "mx": 70.8,
+            "my": 87.8
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_kitchens",
+            "wx": -3.367368421052632,
+            "wz": -108.5,
+            "mx": 69.432,
+            "my": 78.79
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_loom",
+            "wx": -15.277777777777779,
+            "wz": -116.6,
+            "mx": 89.679,
+            "my": 92.56
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_toolworks",
+            "wx": -15.894166666666667,
+            "wz": -125.6,
+            "mx": 90.727,
+            "my": 107.86
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_apothecary",
+            "wx": -15.971153846153847,
+            "wz": -112,
+            "mx": 90.858,
+            "my": 84.74
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_tannery",
+            "wx": -15.443999999999999,
+            "wz": -121.2,
+            "mx": 89.962,
+            "my": 100.38
+          },
+          {
+            "kind": "farm-patch",
+            "ref": "farm:patch_eastbrook",
+            "wx": -21.5,
+            "wz": -81.5,
+            "mx": 100.257,
+            "my": 32.89
+          },
+          {
+            "kind": "town-project",
+            "ref": "project:eastbrook_yard_well",
+            "wx": -10,
+            "wz": -118,
+            "mx": 80.707,
+            "my": 94.94
+          },
+          {
+            "kind": "town-project",
+            "ref": "project:eastbrook_street_lamps",
+            "wx": -44,
+            "wz": -97,
+            "mx": 138.507,
+            "my": 59.24
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -20.672222222222224,
+            "wz": -105.55,
+            "mx": 98.85,
+            "my": 73.775
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:5",
+            "wx": 19.827777777777776,
+            "wz": -121.8,
+            "mx": 30,
+            "my": 101.4
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -8.172222222222222,
+            "wz": -117.55,
+            "mx": 77.6,
+            "my": 94.175
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -17.172222222222224,
+            "wz": -114.8,
+            "mx": 92.9,
+            "my": 89.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 0.8277777777777775,
+            "wz": -96.8,
+            "mx": 62.3,
+            "my": 58.9,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": -22.172222222222224,
+            "wz": -103.8,
+            "mx": 101.4,
+            "my": 70.8
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -5.1722222222222225,
+            "wz": -117.8,
+            "mx": 72.5,
+            "my": 94.6
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 19.827777777777776,
+            "wz": 30.200000000000003,
+            "mx": 66.087,
+            "my": 11.407
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -270.1722222222222,
+            "wz": -199.8,
+            "mx": 148.257,
+            "my": 104.281
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -3.9222222222222225,
+            "wz": -106.3,
+            "mx": 70.375,
+            "my": 75.05
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -14.172222222222222,
+            "wz": -100.8,
+            "mx": 87.8,
+            "my": 65.7
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -10.172222222222222,
+            "wz": -109.8,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "station",
+        "px": -10.172222222222222,
+        "pz": -109.8,
+        "zoom": 1,
+        "profile": "compact",
+        "canvas": 162,
+        "pxPerYard": 1.7
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -3.9222222222222225,
+            "z": -106.3,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -14.172222222222222,
+            "z": -100.8
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -20.672222222222224,
+            "z": -105.55,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 19.827777777777776,
+            "z": -121.8,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -8.172222222222222,
+            "z": -117.55,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 389.8277777777778,
+            "z": -109.8,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -17.172222222222224,
+            "z": -114.8,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 0.8277777777777775,
+            "z": -96.8,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -7.1722222222222225,
+            "z": -106.8
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -10.172222222222222,
+            "z": -109.8
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -5.1722222222222225,
+            "z": -117.8
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 19.827777777777776,
+            "z": 30.200000000000003
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -270.1722222222222,
+            "z": -199.8
+          }
+        ],
+        "corpse": {
+          "x": -22.172222222222224,
+          "z": -103.8
+        },
+        "markers": [
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_forge",
+            "wx": -4.1722222222222225,
+            "wz": -113.8,
+            "mx": 70.8,
+            "my": 87.8
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_kitchens",
+            "wx": -3.367368421052632,
+            "wz": -108.5,
+            "mx": 69.432,
+            "my": 78.79
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_loom",
+            "wx": -15.277777777777779,
+            "wz": -116.6,
+            "mx": 89.679,
+            "my": 92.56
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_toolworks",
+            "wx": -15.894166666666667,
+            "wz": -125.6,
+            "mx": 90.727,
+            "my": 107.86
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_apothecary",
+            "wx": -15.971153846153847,
+            "wz": -112,
+            "mx": 90.858,
+            "my": 84.74
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_tannery",
+            "wx": -15.443999999999999,
+            "wz": -121.2,
+            "mx": 89.962,
+            "my": 100.38
+          },
+          {
+            "kind": "farm-patch",
+            "ref": "farm:patch_eastbrook",
+            "wx": -21.5,
+            "wz": -81.5,
+            "mx": 100.257,
+            "my": 32.89
+          },
+          {
+            "kind": "town-project",
+            "ref": "project:eastbrook_yard_well",
+            "wx": -10,
+            "wz": -118,
+            "mx": 80.707,
+            "my": 94.94
+          },
+          {
+            "kind": "town-project",
+            "ref": "project:eastbrook_street_lamps",
+            "wx": -44,
+            "wz": -97,
+            "mx": 138.507,
+            "my": 59.24
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -20.672222222222224,
+            "wz": -105.55,
+            "mx": 98.85,
+            "my": 73.775
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:5",
+            "wx": 19.827777777777776,
+            "wz": -121.8,
+            "mx": 30,
+            "my": 101.4
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -8.172222222222222,
+            "wz": -117.55,
+            "mx": 77.6,
+            "my": 94.175
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -17.172222222222224,
+            "wz": -114.8,
+            "mx": 92.9,
+            "my": 89.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 0.8277777777777775,
+            "wz": -96.8,
+            "mx": 62.3,
+            "my": 58.9,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": -22.172222222222224,
+            "wz": -103.8,
+            "mx": 101.4,
+            "my": 70.8
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -5.1722222222222225,
+            "wz": -117.8,
+            "mx": 72.5,
+            "my": 94.6
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 19.827777777777776,
+            "wz": 30.200000000000003,
+            "mx": 66.844,
+            "my": 14.937
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -270.1722222222222,
+            "wz": -199.8,
+            "mx": 144.846,
+            "my": 103.101
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -3.9222222222222225,
+            "wz": -106.3,
+            "mx": 70.375,
+            "my": 75.05
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -14.172222222222222,
+            "wz": -100.8,
+            "mx": 87.8,
+            "my": 65.7
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -10.172222222222222,
+            "wz": -109.8,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "station",
+        "px": -10.172222222222222,
+        "pz": -109.8,
+        "zoom": 1.5,
+        "profile": "standard",
+        "canvas": 162,
+        "pxPerYard": 2.55
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -3.9222222222222225,
+            "z": -106.3,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -14.172222222222222,
+            "z": -100.8
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -20.672222222222224,
+            "z": -105.55,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 19.827777777777776,
+            "z": -121.8,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -8.172222222222222,
+            "z": -117.55,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 389.8277777777778,
+            "z": -109.8,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -17.172222222222224,
+            "z": -114.8,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 0.8277777777777775,
+            "z": -96.8,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -7.1722222222222225,
+            "z": -106.8
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -10.172222222222222,
+            "z": -109.8
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -5.1722222222222225,
+            "z": -117.8
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 19.827777777777776,
+            "z": 30.200000000000003
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -270.1722222222222,
+            "z": -199.8
+          }
+        ],
+        "corpse": {
+          "x": -22.172222222222224,
+          "z": -103.8
+        },
+        "markers": [
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_forge",
+            "wx": -4.1722222222222225,
+            "wz": -113.8,
+            "mx": 65.7,
+            "my": 91.2
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_kitchens",
+            "wx": -3.367368421052632,
+            "wz": -108.5,
+            "mx": 63.648,
+            "my": 77.685
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_loom",
+            "wx": -15.277777777777779,
+            "wz": -116.6,
+            "mx": 94.019,
+            "my": 98.34
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_toolworks",
+            "wx": -15.894166666666667,
+            "wz": -125.6,
+            "mx": 95.591,
+            "my": 121.29
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_apothecary",
+            "wx": -15.971153846153847,
+            "wz": -112,
+            "mx": 95.787,
+            "my": 86.61
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_tannery",
+            "wx": -15.443999999999999,
+            "wz": -121.2,
+            "mx": 94.443,
+            "my": 110.07
+          },
+          {
+            "kind": "town-project",
+            "ref": "project:eastbrook_yard_well",
+            "wx": -10,
+            "wz": -118,
+            "mx": 80.561,
+            "my": 101.91
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -20.672222222222224,
+            "wz": -105.55,
+            "mx": 107.775,
+            "my": 70.163
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -8.172222222222222,
+            "wz": -117.55,
+            "mx": 75.9,
+            "my": 100.763
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -17.172222222222224,
+            "wz": -114.8,
+            "mx": 98.85,
+            "my": 93.75,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 0.8277777777777775,
+            "wz": -96.8,
+            "mx": 52.95,
+            "my": 47.85,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": -22.172222222222224,
+            "wz": -103.8,
+            "mx": 111.6,
+            "my": 65.7
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -5.1722222222222225,
+            "wz": -117.8,
+            "mx": 68.25,
+            "my": 101.4
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 19.827777777777776,
+            "wz": 30.200000000000003,
+            "mx": 66.087,
+            "my": 11.407
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -270.1722222222222,
+            "wz": -199.8,
+            "mx": 148.257,
+            "my": 104.281
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -3.9222222222222225,
+            "wz": -106.3,
+            "mx": 65.063,
+            "my": 72.075
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -14.172222222222222,
+            "wz": -100.8,
+            "mx": 91.2,
+            "my": 58.05
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -10.172222222222222,
+            "wz": -109.8,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "station",
+        "px": -10.172222222222222,
+        "pz": -109.8,
+        "zoom": 1.5,
+        "profile": "compact",
+        "canvas": 162,
+        "pxPerYard": 2.55
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -3.9222222222222225,
+            "z": -106.3,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -14.172222222222222,
+            "z": -100.8
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -20.672222222222224,
+            "z": -105.55,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 19.827777777777776,
+            "z": -121.8,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -8.172222222222222,
+            "z": -117.55,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 389.8277777777778,
+            "z": -109.8,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -17.172222222222224,
+            "z": -114.8,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 0.8277777777777775,
+            "z": -96.8,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -7.1722222222222225,
+            "z": -106.8
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -10.172222222222222,
+            "z": -109.8
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -5.1722222222222225,
+            "z": -117.8
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 19.827777777777776,
+            "z": 30.200000000000003
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -270.1722222222222,
+            "z": -199.8
+          }
+        ],
+        "corpse": {
+          "x": -22.172222222222224,
+          "z": -103.8
+        },
+        "markers": [
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_forge",
+            "wx": -4.1722222222222225,
+            "wz": -113.8,
+            "mx": 65.7,
+            "my": 91.2
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_kitchens",
+            "wx": -3.367368421052632,
+            "wz": -108.5,
+            "mx": 63.648,
+            "my": 77.685
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_loom",
+            "wx": -15.277777777777779,
+            "wz": -116.6,
+            "mx": 94.019,
+            "my": 98.34
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_toolworks",
+            "wx": -15.894166666666667,
+            "wz": -125.6,
+            "mx": 95.591,
+            "my": 121.29
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_apothecary",
+            "wx": -15.971153846153847,
+            "wz": -112,
+            "mx": 95.787,
+            "my": 86.61
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_tannery",
+            "wx": -15.443999999999999,
+            "wz": -121.2,
+            "mx": 94.443,
+            "my": 110.07
+          },
+          {
+            "kind": "town-project",
+            "ref": "project:eastbrook_yard_well",
+            "wx": -10,
+            "wz": -118,
+            "mx": 80.561,
+            "my": 101.91
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -20.672222222222224,
+            "wz": -105.55,
+            "mx": 107.775,
+            "my": 70.163
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -8.172222222222222,
+            "wz": -117.55,
+            "mx": 75.9,
+            "my": 100.763
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -17.172222222222224,
+            "wz": -114.8,
+            "mx": 98.85,
+            "my": 93.75,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 0.8277777777777775,
+            "wz": -96.8,
+            "mx": 52.95,
+            "my": 47.85,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": -22.172222222222224,
+            "wz": -103.8,
+            "mx": 111.6,
+            "my": 65.7
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -5.1722222222222225,
+            "wz": -117.8,
+            "mx": 68.25,
+            "my": 101.4
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 19.827777777777776,
+            "wz": 30.200000000000003,
+            "mx": 66.844,
+            "my": 14.937
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -270.1722222222222,
+            "wz": -199.8,
+            "mx": 144.846,
+            "my": 103.101
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -3.9222222222222225,
+            "wz": -106.3,
+            "mx": 65.063,
+            "my": 72.075
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -14.172222222222222,
+            "wz": -100.8,
+            "mx": 91.2,
+            "my": 58.05
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -10.172222222222222,
+            "wz": -109.8,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "station",
+        "px": -10.172222222222222,
+        "pz": -109.8,
+        "zoom": 2,
+        "profile": "standard",
+        "canvas": 162,
+        "pxPerYard": 3.4
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -3.9222222222222225,
+            "z": -106.3,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -14.172222222222222,
+            "z": -100.8
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -20.672222222222224,
+            "z": -105.55,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 19.827777777777776,
+            "z": -121.8,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -8.172222222222222,
+            "z": -117.55,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 389.8277777777778,
+            "z": -109.8,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -17.172222222222224,
+            "z": -114.8,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 0.8277777777777775,
+            "z": -96.8,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -7.1722222222222225,
+            "z": -106.8
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -10.172222222222222,
+            "z": -109.8
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -5.1722222222222225,
+            "z": -117.8
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 19.827777777777776,
+            "z": 30.200000000000003
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -270.1722222222222,
+            "z": -199.8
+          }
+        ],
+        "corpse": {
+          "x": -22.172222222222224,
+          "z": -103.8
+        },
+        "markers": [
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_forge",
+            "wx": -4.1722222222222225,
+            "wz": -113.8,
+            "mx": 60.6,
+            "my": 94.6
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_kitchens",
+            "wx": -3.367368421052632,
+            "wz": -108.5,
+            "mx": 57.863,
+            "my": 76.58
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_loom",
+            "wx": -15.277777777777779,
+            "wz": -116.6,
+            "mx": 98.359,
+            "my": 104.12
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_toolworks",
+            "wx": -15.894166666666667,
+            "wz": -125.6,
+            "mx": 100.455,
+            "my": 134.72
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_apothecary",
+            "wx": -15.971153846153847,
+            "wz": -112,
+            "mx": 100.716,
+            "my": 88.48
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_tannery",
+            "wx": -15.443999999999999,
+            "wz": -121.2,
+            "mx": 98.924,
+            "my": 119.76
+          },
+          {
+            "kind": "town-project",
+            "ref": "project:eastbrook_yard_well",
+            "wx": -10,
+            "wz": -118,
+            "mx": 80.414,
+            "my": 108.88
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -20.672222222222224,
+            "wz": -105.55,
+            "mx": 116.7,
+            "my": 66.55
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -8.172222222222222,
+            "wz": -117.55,
+            "mx": 74.2,
+            "my": 107.35
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -17.172222222222224,
+            "wz": -114.8,
+            "mx": 104.8,
+            "my": 98,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 0.8277777777777775,
+            "wz": -96.8,
+            "mx": 43.6,
+            "my": 36.8,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": -22.172222222222224,
+            "wz": -103.8,
+            "mx": 121.8,
+            "my": 60.6
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -5.1722222222222225,
+            "wz": -117.8,
+            "mx": 64,
+            "my": 108.2
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 19.827777777777776,
+            "wz": 30.200000000000003,
+            "mx": 66.087,
+            "my": 11.407
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -270.1722222222222,
+            "wz": -199.8,
+            "mx": 148.257,
+            "my": 104.281
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -3.9222222222222225,
+            "wz": -106.3,
+            "mx": 59.75,
+            "my": 69.1
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -14.172222222222222,
+            "wz": -100.8,
+            "mx": 94.6,
+            "my": 50.4
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -10.172222222222222,
+            "wz": -109.8,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "station",
+        "px": -10.172222222222222,
+        "pz": -109.8,
+        "zoom": 2,
+        "profile": "compact",
+        "canvas": 162,
+        "pxPerYard": 3.4
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -3.9222222222222225,
+            "z": -106.3,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -14.172222222222222,
+            "z": -100.8
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -20.672222222222224,
+            "z": -105.55,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 19.827777777777776,
+            "z": -121.8,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -8.172222222222222,
+            "z": -117.55,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 389.8277777777778,
+            "z": -109.8,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -17.172222222222224,
+            "z": -114.8,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 0.8277777777777775,
+            "z": -96.8,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -7.1722222222222225,
+            "z": -106.8
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -10.172222222222222,
+            "z": -109.8
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -5.1722222222222225,
+            "z": -117.8
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 19.827777777777776,
+            "z": 30.200000000000003
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -270.1722222222222,
+            "z": -199.8
+          }
+        ],
+        "corpse": {
+          "x": -22.172222222222224,
+          "z": -103.8
+        },
+        "markers": [
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_forge",
+            "wx": -4.1722222222222225,
+            "wz": -113.8,
+            "mx": 60.6,
+            "my": 94.6
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_kitchens",
+            "wx": -3.367368421052632,
+            "wz": -108.5,
+            "mx": 57.863,
+            "my": 76.58
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_loom",
+            "wx": -15.277777777777779,
+            "wz": -116.6,
+            "mx": 98.359,
+            "my": 104.12
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_toolworks",
+            "wx": -15.894166666666667,
+            "wz": -125.6,
+            "mx": 100.455,
+            "my": 134.72
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_apothecary",
+            "wx": -15.971153846153847,
+            "wz": -112,
+            "mx": 100.716,
+            "my": 88.48
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_tannery",
+            "wx": -15.443999999999999,
+            "wz": -121.2,
+            "mx": 98.924,
+            "my": 119.76
+          },
+          {
+            "kind": "town-project",
+            "ref": "project:eastbrook_yard_well",
+            "wx": -10,
+            "wz": -118,
+            "mx": 80.414,
+            "my": 108.88
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -20.672222222222224,
+            "wz": -105.55,
+            "mx": 116.7,
+            "my": 66.55
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -8.172222222222222,
+            "wz": -117.55,
+            "mx": 74.2,
+            "my": 107.35
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -17.172222222222224,
+            "wz": -114.8,
+            "mx": 104.8,
+            "my": 98,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 0.8277777777777775,
+            "wz": -96.8,
+            "mx": 43.6,
+            "my": 36.8,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": -22.172222222222224,
+            "wz": -103.8,
+            "mx": 121.8,
+            "my": 60.6
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -5.1722222222222225,
+            "wz": -117.8,
+            "mx": 64,
+            "my": 108.2
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 19.827777777777776,
+            "wz": 30.200000000000003,
+            "mx": 66.844,
+            "my": 14.937
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -270.1722222222222,
+            "wz": -199.8,
+            "mx": 144.846,
+            "my": 103.101
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -3.9222222222222225,
+            "wz": -106.3,
+            "mx": 59.75,
+            "my": 69.1
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -14.172222222222222,
+            "wz": -100.8,
+            "mx": 94.6,
+            "my": 50.4
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -10.172222222222222,
+            "wz": -109.8,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "station",
+        "px": -10.172222222222222,
+        "pz": -109.8,
+        "zoom": 3,
+        "profile": "standard",
+        "canvas": 162,
+        "pxPerYard": 5.1
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -3.9222222222222225,
+            "z": -106.3,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -14.172222222222222,
+            "z": -100.8
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -20.672222222222224,
+            "z": -105.55,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 19.827777777777776,
+            "z": -121.8,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -8.172222222222222,
+            "z": -117.55,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 389.8277777777778,
+            "z": -109.8,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -17.172222222222224,
+            "z": -114.8,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 0.8277777777777775,
+            "z": -96.8,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -7.1722222222222225,
+            "z": -106.8
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -10.172222222222222,
+            "z": -109.8
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -5.1722222222222225,
+            "z": -117.8
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 19.827777777777776,
+            "z": 30.200000000000003
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -270.1722222222222,
+            "z": -199.8
+          }
+        ],
+        "corpse": {
+          "x": -22.172222222222224,
+          "z": -103.8
+        },
+        "markers": [
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_forge",
+            "wx": -4.1722222222222225,
+            "wz": -113.8,
+            "mx": 50.4,
+            "my": 101.4
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_kitchens",
+            "wx": -3.367368421052632,
+            "wz": -108.5,
+            "mx": 46.295,
+            "my": 74.37
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_loom",
+            "wx": -15.277777777777779,
+            "wz": -116.6,
+            "mx": 107.038,
+            "my": 115.68
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_apothecary",
+            "wx": -15.971153846153847,
+            "wz": -112,
+            "mx": 110.575,
+            "my": 92.22
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_tannery",
+            "wx": -15.443999999999999,
+            "wz": -121.2,
+            "mx": 107.886,
+            "my": 139.14
+          },
+          {
+            "kind": "town-project",
+            "ref": "project:eastbrook_yard_well",
+            "wx": -10,
+            "wz": -118,
+            "mx": 80.122,
+            "my": 122.82
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -20.672222222222224,
+            "wz": -105.55,
+            "mx": 134.55,
+            "my": 59.325
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -8.172222222222222,
+            "wz": -117.55,
+            "mx": 70.8,
+            "my": 120.525
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -17.172222222222224,
+            "wz": -114.8,
+            "mx": 116.7,
+            "my": 106.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": -22.172222222222224,
+            "wz": -103.8,
+            "mx": 142.2,
+            "my": 50.4
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -5.1722222222222225,
+            "wz": -117.8,
+            "mx": 55.5,
+            "my": 121.8
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 19.827777777777776,
+            "wz": 30.200000000000003,
+            "mx": 66.087,
+            "my": 11.407
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -270.1722222222222,
+            "wz": -199.8,
+            "mx": 148.257,
+            "my": 104.281
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -3.9222222222222225,
+            "wz": -106.3,
+            "mx": 49.125,
+            "my": 63.15
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -14.172222222222222,
+            "wz": -100.8,
+            "mx": 101.4,
+            "my": 35.1
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -10.172222222222222,
+            "wz": -109.8,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "station",
+        "px": -10.172222222222222,
+        "pz": -109.8,
+        "zoom": 3,
+        "profile": "compact",
+        "canvas": 162,
+        "pxPerYard": 5.1
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -3.9222222222222225,
+            "z": -106.3,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -14.172222222222222,
+            "z": -100.8
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -20.672222222222224,
+            "z": -105.55,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 19.827777777777776,
+            "z": -121.8,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -8.172222222222222,
+            "z": -117.55,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 389.8277777777778,
+            "z": -109.8,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -17.172222222222224,
+            "z": -114.8,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 0.8277777777777775,
+            "z": -96.8,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -7.1722222222222225,
+            "z": -106.8
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -10.172222222222222,
+            "z": -109.8
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -5.1722222222222225,
+            "z": -117.8
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 19.827777777777776,
+            "z": 30.200000000000003
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -270.1722222222222,
+            "z": -199.8
+          }
+        ],
+        "corpse": {
+          "x": -22.172222222222224,
+          "z": -103.8
+        },
+        "markers": [
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_forge",
+            "wx": -4.1722222222222225,
+            "wz": -113.8,
+            "mx": 50.4,
+            "my": 101.4
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_kitchens",
+            "wx": -3.367368421052632,
+            "wz": -108.5,
+            "mx": 46.295,
+            "my": 74.37
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_loom",
+            "wx": -15.277777777777779,
+            "wz": -116.6,
+            "mx": 107.038,
+            "my": 115.68
+          },
+          {
+            "kind": "station",
+            "ref": "station:station_eastbrook_apothecary",
+            "wx": -15.971153846153847,
+            "wz": -112,
+            "mx": 110.575,
+            "my": 92.22
+          },
+          {
+            "kind": "town-project",
+            "ref": "project:eastbrook_yard_well",
+            "wx": -10,
+            "wz": -118,
+            "mx": 80.122,
+            "my": 122.82
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -20.672222222222224,
+            "wz": -105.55,
+            "mx": 134.55,
+            "my": 59.325
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -8.172222222222222,
+            "wz": -117.55,
+            "mx": 70.8,
+            "my": 120.525
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -17.172222222222224,
+            "wz": -114.8,
+            "mx": 116.7,
+            "my": 106.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": -22.172222222222224,
+            "wz": -103.8,
+            "mx": 142.2,
+            "my": 50.4
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -5.1722222222222225,
+            "wz": -117.8,
+            "mx": 55.5,
+            "my": 121.8
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 19.827777777777776,
+            "wz": 30.200000000000003,
+            "mx": 66.844,
+            "my": 14.937
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -270.1722222222222,
+            "wz": -199.8,
+            "mx": 144.846,
+            "my": 103.101
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -3.9222222222222225,
+            "wz": -106.3,
+            "mx": 49.125,
+            "my": 63.15
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -14.172222222222222,
+            "wz": -100.8,
+            "mx": 101.4,
+            "my": 35.1
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -10.172222222222222,
+            "wz": -109.8,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "gather_node",
+        "px": -12,
+        "pz": 158,
+        "zoom": 1,
+        "profile": "standard",
+        "canvas": 162,
+        "pxPerYard": 1.7
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -5.75,
+            "z": 161.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -16,
+            "z": 167
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -22.5,
+            "z": 162.25,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 18,
+            "z": 146,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -10,
+            "z": 150.25,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 388,
+            "z": 158,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -19,
+            "z": 153,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": -1,
+            "z": 171,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -9,
+            "z": 161
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -12,
+            "z": 158
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -7,
+            "z": 150
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 18,
+            "z": 298
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -272,
+            "z": 68
+          }
+        ],
+        "corpse": {
+          "x": 288,
+          "z": 208
+        },
+        "markers": [
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_1",
+            "wx": -20,
+            "wz": 153,
+            "mx": 94.6,
+            "my": 89.5
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_2",
+            "wx": -23,
+            "wz": 157,
+            "mx": 99.7,
+            "my": 82.7
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_3",
+            "wx": -17,
+            "wz": 149,
+            "mx": 89.5,
+            "my": 96.3
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_4",
+            "wx": -42,
+            "wz": 158,
+            "mx": 132,
+            "my": 81
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_5",
+            "wx": -37,
+            "wz": 161,
+            "mx": 123.5,
+            "my": 75.9
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_6",
+            "wx": -15,
+            "wz": 137,
+            "mx": 86.1,
+            "my": 116.7
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -22.5,
+            "wz": 162.25,
+            "mx": 98.85,
+            "my": 73.775
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:5",
+            "wx": 18,
+            "wz": 146,
+            "mx": 30,
+            "my": 101.4
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -10,
+            "wz": 150.25,
+            "mx": 77.6,
+            "my": 94.175
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -19,
+            "wz": 153,
+            "mx": 92.9,
+            "my": 89.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": -1,
+            "wz": 171,
+            "mx": 62.3,
+            "my": 58.9,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": 288,
+            "wz": 208,
+            "mx": 8.993,
+            "my": 68.999
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -7,
+            "wz": 150,
+            "mx": 72.5,
+            "my": 94.6
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 18,
+            "wz": 298,
+            "mx": 66.087,
+            "my": 11.407
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -272,
+            "wz": 68,
+            "mx": 148.257,
+            "my": 104.281
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -5.75,
+            "wz": 161.5,
+            "mx": 70.375,
+            "my": 75.05
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -16,
+            "wz": 167,
+            "mx": 87.8,
+            "my": 65.7
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -12,
+            "wz": 158,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "gather_node",
+        "px": -12,
+        "pz": 158,
+        "zoom": 1,
+        "profile": "compact",
+        "canvas": 162,
+        "pxPerYard": 1.7
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -5.75,
+            "z": 161.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -16,
+            "z": 167
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -22.5,
+            "z": 162.25,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 18,
+            "z": 146,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -10,
+            "z": 150.25,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 388,
+            "z": 158,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -19,
+            "z": 153,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": -1,
+            "z": 171,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -9,
+            "z": 161
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -12,
+            "z": 158
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -7,
+            "z": 150
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 18,
+            "z": 298
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -272,
+            "z": 68
+          }
+        ],
+        "corpse": {
+          "x": 288,
+          "z": 208
+        },
+        "markers": [
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_1",
+            "wx": -20,
+            "wz": 153,
+            "mx": 94.6,
+            "my": 89.5
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_2",
+            "wx": -23,
+            "wz": 157,
+            "mx": 99.7,
+            "my": 82.7
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_3",
+            "wx": -17,
+            "wz": 149,
+            "mx": 89.5,
+            "my": 96.3
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_4",
+            "wx": -42,
+            "wz": 158,
+            "mx": 132,
+            "my": 81
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_5",
+            "wx": -37,
+            "wz": 161,
+            "mx": 123.5,
+            "my": 75.9
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_6",
+            "wx": -15,
+            "wz": 137,
+            "mx": 86.1,
+            "my": 116.7
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -22.5,
+            "wz": 162.25,
+            "mx": 98.85,
+            "my": 73.775
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:5",
+            "wx": 18,
+            "wz": 146,
+            "mx": 30,
+            "my": 101.4
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -10,
+            "wz": 150.25,
+            "mx": 77.6,
+            "my": 94.175
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -19,
+            "wz": 153,
+            "mx": 92.9,
+            "my": 89.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": -1,
+            "wz": 171,
+            "mx": 62.3,
+            "my": 58.9,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": 288,
+            "wz": 208,
+            "mx": 11.952,
+            "my": 69.492
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -7,
+            "wz": 150,
+            "mx": 72.5,
+            "my": 94.6
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 18,
+            "wz": 298,
+            "mx": 66.844,
+            "my": 14.937
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -272,
+            "wz": 68,
+            "mx": 144.846,
+            "my": 103.101
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -5.75,
+            "wz": 161.5,
+            "mx": 70.375,
+            "my": 75.05
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -16,
+            "wz": 167,
+            "mx": 87.8,
+            "my": 65.7
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -12,
+            "wz": 158,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "gather_node",
+        "px": -12,
+        "pz": 158,
+        "zoom": 1.5,
+        "profile": "standard",
+        "canvas": 162,
+        "pxPerYard": 2.55
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -5.75,
+            "z": 161.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -16,
+            "z": 167
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -22.5,
+            "z": 162.25,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 18,
+            "z": 146,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -10,
+            "z": 150.25,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 388,
+            "z": 158,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -19,
+            "z": 153,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": -1,
+            "z": 171,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -9,
+            "z": 161
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -12,
+            "z": 158
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -7,
+            "z": 150
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 18,
+            "z": 298
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -272,
+            "z": 68
+          }
+        ],
+        "corpse": {
+          "x": 288,
+          "z": 208
+        },
+        "markers": [
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_1",
+            "wx": -20,
+            "wz": 153,
+            "mx": 101.4,
+            "my": 93.75
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_2",
+            "wx": -23,
+            "wz": 157,
+            "mx": 109.05,
+            "my": 83.55
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_3",
+            "wx": -17,
+            "wz": 149,
+            "mx": 93.75,
+            "my": 103.95
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_5",
+            "wx": -37,
+            "wz": 161,
+            "mx": 144.75,
+            "my": 73.35
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_6",
+            "wx": -15,
+            "wz": 137,
+            "mx": 88.65,
+            "my": 134.55
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -22.5,
+            "wz": 162.25,
+            "mx": 107.775,
+            "my": 70.163
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -10,
+            "wz": 150.25,
+            "mx": 75.9,
+            "my": 100.763
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -19,
+            "wz": 153,
+            "mx": 98.85,
+            "my": 93.75,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": -1,
+            "wz": 171,
+            "mx": 52.95,
+            "my": 47.85,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": 288,
+            "wz": 208,
+            "mx": 8.993,
+            "my": 68.999
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -7,
+            "wz": 150,
+            "mx": 68.25,
+            "my": 101.4
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 18,
+            "wz": 298,
+            "mx": 66.087,
+            "my": 11.407
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -272,
+            "wz": 68,
+            "mx": 148.257,
+            "my": 104.281
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -5.75,
+            "wz": 161.5,
+            "mx": 65.063,
+            "my": 72.075
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -16,
+            "wz": 167,
+            "mx": 91.2,
+            "my": 58.05
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -12,
+            "wz": 158,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "gather_node",
+        "px": -12,
+        "pz": 158,
+        "zoom": 1.5,
+        "profile": "compact",
+        "canvas": 162,
+        "pxPerYard": 2.55
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -5.75,
+            "z": 161.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -16,
+            "z": 167
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -22.5,
+            "z": 162.25,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 18,
+            "z": 146,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -10,
+            "z": 150.25,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 388,
+            "z": 158,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -19,
+            "z": 153,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": -1,
+            "z": 171,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -9,
+            "z": 161
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -12,
+            "z": 158
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -7,
+            "z": 150
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 18,
+            "z": 298
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -272,
+            "z": 68
+          }
+        ],
+        "corpse": {
+          "x": 288,
+          "z": 208
+        },
+        "markers": [
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_1",
+            "wx": -20,
+            "wz": 153,
+            "mx": 101.4,
+            "my": 93.75
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_2",
+            "wx": -23,
+            "wz": 157,
+            "mx": 109.05,
+            "my": 83.55
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_3",
+            "wx": -17,
+            "wz": 149,
+            "mx": 93.75,
+            "my": 103.95
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_6",
+            "wx": -15,
+            "wz": 137,
+            "mx": 88.65,
+            "my": 134.55
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -22.5,
+            "wz": 162.25,
+            "mx": 107.775,
+            "my": 70.163
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -10,
+            "wz": 150.25,
+            "mx": 75.9,
+            "my": 100.763
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -19,
+            "wz": 153,
+            "mx": 98.85,
+            "my": 93.75,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": -1,
+            "wz": 171,
+            "mx": 52.95,
+            "my": 47.85,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": 288,
+            "wz": 208,
+            "mx": 11.952,
+            "my": 69.492
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -7,
+            "wz": 150,
+            "mx": 68.25,
+            "my": 101.4
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 18,
+            "wz": 298,
+            "mx": 66.844,
+            "my": 14.937
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -272,
+            "wz": 68,
+            "mx": 144.846,
+            "my": 103.101
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -5.75,
+            "wz": 161.5,
+            "mx": 65.063,
+            "my": 72.075
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -16,
+            "wz": 167,
+            "mx": 91.2,
+            "my": 58.05
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -12,
+            "wz": 158,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "gather_node",
+        "px": -12,
+        "pz": 158,
+        "zoom": 2,
+        "profile": "standard",
+        "canvas": 162,
+        "pxPerYard": 3.4
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -5.75,
+            "z": 161.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -16,
+            "z": 167
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -22.5,
+            "z": 162.25,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 18,
+            "z": 146,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -10,
+            "z": 150.25,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 388,
+            "z": 158,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -19,
+            "z": 153,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": -1,
+            "z": 171,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -9,
+            "z": 161
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -12,
+            "z": 158
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -7,
+            "z": 150
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 18,
+            "z": 298
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -272,
+            "z": 68
+          }
+        ],
+        "corpse": {
+          "x": 288,
+          "z": 208
+        },
+        "markers": [
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_1",
+            "wx": -20,
+            "wz": 153,
+            "mx": 108.2,
+            "my": 98
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_2",
+            "wx": -23,
+            "wz": 157,
+            "mx": 118.4,
+            "my": 84.4
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_3",
+            "wx": -17,
+            "wz": 149,
+            "mx": 98,
+            "my": 111.6
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -22.5,
+            "wz": 162.25,
+            "mx": 116.7,
+            "my": 66.55
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -10,
+            "wz": 150.25,
+            "mx": 74.2,
+            "my": 107.35
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -19,
+            "wz": 153,
+            "mx": 104.8,
+            "my": 98,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": -1,
+            "wz": 171,
+            "mx": 43.6,
+            "my": 36.8,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": 288,
+            "wz": 208,
+            "mx": 8.993,
+            "my": 68.999
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -7,
+            "wz": 150,
+            "mx": 64,
+            "my": 108.2
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 18,
+            "wz": 298,
+            "mx": 66.087,
+            "my": 11.407
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -272,
+            "wz": 68,
+            "mx": 148.257,
+            "my": 104.281
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -5.75,
+            "wz": 161.5,
+            "mx": 59.75,
+            "my": 69.1
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -16,
+            "wz": 167,
+            "mx": 94.6,
+            "my": 50.4
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -12,
+            "wz": 158,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "gather_node",
+        "px": -12,
+        "pz": 158,
+        "zoom": 2,
+        "profile": "compact",
+        "canvas": 162,
+        "pxPerYard": 3.4
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -5.75,
+            "z": 161.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -16,
+            "z": 167
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -22.5,
+            "z": 162.25,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 18,
+            "z": 146,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -10,
+            "z": 150.25,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 388,
+            "z": 158,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -19,
+            "z": 153,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": -1,
+            "z": 171,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -9,
+            "z": 161
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -12,
+            "z": 158
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -7,
+            "z": 150
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 18,
+            "z": 298
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -272,
+            "z": 68
+          }
+        ],
+        "corpse": {
+          "x": 288,
+          "z": 208
+        },
+        "markers": [
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_1",
+            "wx": -20,
+            "wz": 153,
+            "mx": 108.2,
+            "my": 98
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_2",
+            "wx": -23,
+            "wz": 157,
+            "mx": 118.4,
+            "my": 84.4
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_3",
+            "wx": -17,
+            "wz": 149,
+            "mx": 98,
+            "my": 111.6
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -22.5,
+            "wz": 162.25,
+            "mx": 116.7,
+            "my": 66.55
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -10,
+            "wz": 150.25,
+            "mx": 74.2,
+            "my": 107.35
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -19,
+            "wz": 153,
+            "mx": 104.8,
+            "my": 98,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": -1,
+            "wz": 171,
+            "mx": 43.6,
+            "my": 36.8,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": 288,
+            "wz": 208,
+            "mx": 11.952,
+            "my": 69.492
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -7,
+            "wz": 150,
+            "mx": 64,
+            "my": 108.2
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 18,
+            "wz": 298,
+            "mx": 66.844,
+            "my": 14.937
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -272,
+            "wz": 68,
+            "mx": 144.846,
+            "my": 103.101
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -5.75,
+            "wz": 161.5,
+            "mx": 59.75,
+            "my": 69.1
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -16,
+            "wz": 167,
+            "mx": 94.6,
+            "my": 50.4
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -12,
+            "wz": 158,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "gather_node",
+        "px": -12,
+        "pz": 158,
+        "zoom": 3,
+        "profile": "standard",
+        "canvas": 162,
+        "pxPerYard": 5.1
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -5.75,
+            "z": 161.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -16,
+            "z": 167
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -22.5,
+            "z": 162.25,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 18,
+            "z": 146,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -10,
+            "z": 150.25,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 388,
+            "z": 158,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -19,
+            "z": 153,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": -1,
+            "z": 171,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -9,
+            "z": 161
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -12,
+            "z": 158
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -7,
+            "z": 150
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 18,
+            "z": 298
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -272,
+            "z": 68
+          }
+        ],
+        "corpse": {
+          "x": 288,
+          "z": 208
+        },
+        "markers": [
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_1",
+            "wx": -20,
+            "wz": 153,
+            "mx": 121.8,
+            "my": 106.5
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_2",
+            "wx": -23,
+            "wz": 157,
+            "mx": 137.1,
+            "my": 86.1
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_3",
+            "wx": -17,
+            "wz": 149,
+            "mx": 106.5,
+            "my": 126.9
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -22.5,
+            "wz": 162.25,
+            "mx": 134.55,
+            "my": 59.325
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -10,
+            "wz": 150.25,
+            "mx": 70.8,
+            "my": 120.525
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -19,
+            "wz": 153,
+            "mx": 116.7,
+            "my": 106.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": 288,
+            "wz": 208,
+            "mx": 8.993,
+            "my": 68.999
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -7,
+            "wz": 150,
+            "mx": 55.5,
+            "my": 121.8
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 18,
+            "wz": 298,
+            "mx": 66.087,
+            "my": 11.407
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -272,
+            "wz": 68,
+            "mx": 148.257,
+            "my": 104.281
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -5.75,
+            "wz": 161.5,
+            "mx": 49.125,
+            "my": 63.15
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -16,
+            "wz": 167,
+            "mx": 101.4,
+            "my": 35.1
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -12,
+            "wz": 158,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "gather_node",
+        "px": -12,
+        "pz": 158,
+        "zoom": 3,
+        "profile": "compact",
+        "canvas": 162,
+        "pxPerYard": 5.1
+      },
+      "out": {
+        "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -5.75,
+            "z": 161.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -16,
+            "z": 167
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -22.5,
+            "z": 162.25,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 18,
+            "z": 146,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -10,
+            "z": 150.25,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 388,
+            "z": 158,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -19,
+            "z": 153,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": -1,
+            "z": 171,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -9,
+            "z": 161
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -12,
+            "z": 158
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -7,
+            "z": 150
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 18,
+            "z": 298
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -272,
+            "z": 68
+          }
+        ],
+        "corpse": {
+          "x": 288,
+          "z": 208
+        },
+        "markers": [
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_1",
+            "wx": -20,
+            "wz": 153,
+            "mx": 121.8,
+            "my": 106.5
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_2",
+            "wx": -23,
+            "wz": 157,
+            "mx": 137.1,
+            "my": 86.1
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_3",
+            "wx": -17,
+            "wz": 149,
+            "mx": 106.5,
+            "my": 126.9
+          },
+          {
+            "kind": "mob",
+            "ref": "entity:4",
+            "wx": -22.5,
+            "wz": 162.25,
+            "mx": 134.55,
+            "my": 59.325
+          },
+          {
+            "kind": "object-loot",
+            "ref": "entity:6",
+            "wx": -10,
+            "wz": 150.25,
+            "mx": 70.8,
+            "my": 120.525
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -19,
+            "wz": 153,
+            "mx": 116.7,
+            "my": 106.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": 288,
+            "wz": 208,
+            "mx": 11.952,
+            "my": 69.492
+          },
+          {
+            "kind": "party-disc",
+            "ref": "party:20",
+            "wx": -7,
+            "wz": 150,
+            "mx": 55.5,
+            "my": 121.8
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:21",
+            "wx": 18,
+            "wz": 298,
+            "mx": 66.844,
+            "my": 14.937
+          },
+          {
+            "kind": "party-arrow",
+            "ref": "party:22",
+            "wx": -272,
+            "wz": 68,
+            "mx": 144.846,
+            "my": 103.101
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:2",
+            "wx": -5.75,
+            "wz": 161.5,
+            "mx": 49.125,
+            "my": 63.15
+          },
+          {
+            "kind": "npc",
+            "ref": "entity:3",
+            "wx": -16,
+            "wz": 167,
+            "mx": 101.4,
+            "my": 35.1
+          },
+          {
+            "kind": "player",
+            "ref": "player",
+            "wx": -12,
+            "wz": 158,
+            "mx": 81,
+            "my": 81
+          }
+        ]
+      }
+    }
+  ]
+}

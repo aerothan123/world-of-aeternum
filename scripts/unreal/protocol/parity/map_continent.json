@@ -1,0 +1,2194 @@
+{
+  "suite": "map_continent",
+  "source": "src/ui/continent_map_view.ts buildContinentMapModel",
+  "note": "world bounds fill the contain-fit art rect (independent X and Z scale)",
+  "cases": [
+    {
+      "in": {
+        "snapshot": "town_project",
+        "px": -7,
+        "pz": -120,
+        "aspect": 0.49363636363636365,
+        "canvas": 512
+      },
+      "out": {
+        "image": {
+          "mx": 129.6290909090909,
+          "my": 0,
+          "w": 252.7418181818182,
+          "h": 512
+        },
+        "currentZoneId": "eastbrook_vale",
+        "regions": [
+          {
+            "zoneId": "eastbrook_vale",
+            "mx": 192.815,
+            "my": 345.446,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "mirefen_marsh",
+            "mx": 192.815,
+            "my": 289.928,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "thornpeak_heights",
+            "mx": 192.815,
+            "my": 234.41,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "veiled_hollow",
+            "mx": 192.815,
+            "my": 151.133,
+            "w": 63.185,
+            "h": 83.277
+          },
+          {
+            "zoneId": "drakelands",
+            "mx": 129.629,
+            "my": 0,
+            "w": 63.185,
+            "h": 92.53
+          },
+          {
+            "zoneId": "frostveil",
+            "mx": 192.815,
+            "my": 70.94,
+            "w": 63.185,
+            "h": 80.193
+          },
+          {
+            "zoneId": "amberfall",
+            "mx": 256,
+            "my": 6.169,
+            "w": 63.185,
+            "h": 86.361
+          },
+          {
+            "zoneId": "willowfen",
+            "mx": 256,
+            "my": 265.253,
+            "w": 63.185,
+            "h": 80.193
+          },
+          {
+            "zoneId": "nightbloom",
+            "mx": 256,
+            "my": 92.53,
+            "w": 63.185,
+            "h": 86.361
+          },
+          {
+            "zoneId": "wraithwood",
+            "mx": 129.629,
+            "my": 92.53,
+            "w": 63.185,
+            "h": 86.361
+          },
+          {
+            "zoneId": "palmreach",
+            "mx": 256,
+            "my": 178.892,
+            "w": 63.185,
+            "h": 86.361
+          },
+          {
+            "zoneId": "evergarden",
+            "mx": 129.629,
+            "my": 178.892,
+            "w": 63.185,
+            "h": 86.361
+          },
+          {
+            "zoneId": "galecrest",
+            "mx": 129.629,
+            "my": 265.253,
+            "w": 63.185,
+            "h": 80.193
+          },
+          {
+            "zoneId": "farshore_isle",
+            "mx": 129.629,
+            "my": 345.446,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "proving_shore",
+            "mx": 256,
+            "my": 345.446,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "applewold",
+            "mx": 129.629,
+            "my": 400.964,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "kindlemoor",
+            "mx": 192.815,
+            "my": 400.964,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "chalkbarrow_coast",
+            "mx": 256,
+            "my": 400.964,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "saltmeads",
+            "mx": 129.629,
+            "my": 456.482,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "wychwold",
+            "mx": 192.815,
+            "my": 456.482,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "tinmarch",
+            "mx": 256,
+            "my": 456.482,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "rookcliffs",
+            "mx": 319.185,
+            "my": 456.482,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "sedgemarch",
+            "mx": 319.185,
+            "my": 400.964,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "harrowfells",
+            "mx": 319.185,
+            "my": 345.446,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "wardmere",
+            "mx": 319.185,
+            "my": 289.928,
+            "w": 63.185,
+            "h": 55.518
+          }
+        ],
+        "player": {
+          "mx": 225.636,
+          "my": 391.711
+        },
+        "party": [
+          {
+            "mx": 224.758,
+            "my": 392.945
+          },
+          {
+            "mx": 220.37,
+            "my": 370.12
+          },
+          {
+            "mx": 271.27,
+            "my": 405.59
+          }
+        ],
+        "partyIn": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -7,
+            "z": -120
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -2,
+            "z": -128
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 23,
+            "z": 20
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -267,
+            "z": -210
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "town_project",
+        "px": -7,
+        "pz": -120,
+        "aspect": 1,
+        "canvas": 512
+      },
+      "out": {
+        "image": {
+          "mx": 0,
+          "my": 0,
+          "w": 512,
+          "h": 512
+        },
+        "currentZoneId": "eastbrook_vale",
+        "regions": [
+          {
+            "zoneId": "eastbrook_vale",
+            "mx": 128,
+            "my": 345.446,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "mirefen_marsh",
+            "mx": 128,
+            "my": 289.928,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "thornpeak_heights",
+            "mx": 128,
+            "my": 234.41,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "veiled_hollow",
+            "mx": 128,
+            "my": 151.133,
+            "w": 128,
+            "h": 83.277
+          },
+          {
+            "zoneId": "drakelands",
+            "mx": 0,
+            "my": 0,
+            "w": 128,
+            "h": 92.53
+          },
+          {
+            "zoneId": "frostveil",
+            "mx": 128,
+            "my": 70.94,
+            "w": 128,
+            "h": 80.193
+          },
+          {
+            "zoneId": "amberfall",
+            "mx": 256,
+            "my": 6.169,
+            "w": 128,
+            "h": 86.361
+          },
+          {
+            "zoneId": "willowfen",
+            "mx": 256,
+            "my": 265.253,
+            "w": 128,
+            "h": 80.193
+          },
+          {
+            "zoneId": "nightbloom",
+            "mx": 256,
+            "my": 92.53,
+            "w": 128,
+            "h": 86.361
+          },
+          {
+            "zoneId": "wraithwood",
+            "mx": 0,
+            "my": 92.53,
+            "w": 128,
+            "h": 86.361
+          },
+          {
+            "zoneId": "palmreach",
+            "mx": 256,
+            "my": 178.892,
+            "w": 128,
+            "h": 86.361
+          },
+          {
+            "zoneId": "evergarden",
+            "mx": 0,
+            "my": 178.892,
+            "w": 128,
+            "h": 86.361
+          },
+          {
+            "zoneId": "galecrest",
+            "mx": 0,
+            "my": 265.253,
+            "w": 128,
+            "h": 80.193
+          },
+          {
+            "zoneId": "farshore_isle",
+            "mx": 0,
+            "my": 345.446,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "proving_shore",
+            "mx": 256,
+            "my": 345.446,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "applewold",
+            "mx": 0,
+            "my": 400.964,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "kindlemoor",
+            "mx": 128,
+            "my": 400.964,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "chalkbarrow_coast",
+            "mx": 256,
+            "my": 400.964,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "saltmeads",
+            "mx": 0,
+            "my": 456.482,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "wychwold",
+            "mx": 128,
+            "my": 456.482,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "tinmarch",
+            "mx": 256,
+            "my": 456.482,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "rookcliffs",
+            "mx": 384,
+            "my": 456.482,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "sedgemarch",
+            "mx": 384,
+            "my": 400.964,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "harrowfells",
+            "mx": 384,
+            "my": 345.446,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "wardmere",
+            "mx": 384,
+            "my": 289.928,
+            "w": 128,
+            "h": 55.518
+          }
+        ],
+        "player": {
+          "mx": 194.489,
+          "my": 391.711
+        },
+        "party": [
+          {
+            "mx": 192.711,
+            "my": 392.945
+          },
+          {
+            "mx": 183.822,
+            "my": 370.12
+          },
+          {
+            "mx": 286.933,
+            "my": 405.59
+          }
+        ],
+        "partyIn": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -7,
+            "z": -120
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -2,
+            "z": -128
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 23,
+            "z": 20
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -267,
+            "z": -210
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "town_project",
+        "px": -7,
+        "pz": -120,
+        "aspect": 1.5,
+        "canvas": 512
+      },
+      "out": {
+        "image": {
+          "mx": 0,
+          "my": 85.33333333333334,
+          "w": 512,
+          "h": 341.3333333333333
+        },
+        "currentZoneId": "eastbrook_vale",
+        "regions": [
+          {
+            "zoneId": "eastbrook_vale",
+            "mx": 128,
+            "my": 315.631,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "mirefen_marsh",
+            "mx": 128,
+            "my": 278.618,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "thornpeak_heights",
+            "mx": 128,
+            "my": 241.606,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "veiled_hollow",
+            "mx": 128,
+            "my": 186.088,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "drakelands",
+            "mx": 0,
+            "my": 85.333,
+            "w": 128,
+            "h": 61.687
+          },
+          {
+            "zoneId": "frostveil",
+            "mx": 128,
+            "my": 132.627,
+            "w": 128,
+            "h": 53.462
+          },
+          {
+            "zoneId": "amberfall",
+            "mx": 256,
+            "my": 89.446,
+            "w": 128,
+            "h": 57.574
+          },
+          {
+            "zoneId": "willowfen",
+            "mx": 256,
+            "my": 262.169,
+            "w": 128,
+            "h": 53.462
+          },
+          {
+            "zoneId": "nightbloom",
+            "mx": 256,
+            "my": 147.02,
+            "w": 128,
+            "h": 57.574
+          },
+          {
+            "zoneId": "wraithwood",
+            "mx": 0,
+            "my": 147.02,
+            "w": 128,
+            "h": 57.574
+          },
+          {
+            "zoneId": "palmreach",
+            "mx": 256,
+            "my": 204.594,
+            "w": 128,
+            "h": 57.574
+          },
+          {
+            "zoneId": "evergarden",
+            "mx": 0,
+            "my": 204.594,
+            "w": 128,
+            "h": 57.574
+          },
+          {
+            "zoneId": "galecrest",
+            "mx": 0,
+            "my": 262.169,
+            "w": 128,
+            "h": 53.462
+          },
+          {
+            "zoneId": "farshore_isle",
+            "mx": 0,
+            "my": 315.631,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "proving_shore",
+            "mx": 256,
+            "my": 315.631,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "applewold",
+            "mx": 0,
+            "my": 352.643,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "kindlemoor",
+            "mx": 128,
+            "my": 352.643,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "chalkbarrow_coast",
+            "mx": 256,
+            "my": 352.643,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "saltmeads",
+            "mx": 0,
+            "my": 389.655,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "wychwold",
+            "mx": 128,
+            "my": 389.655,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "tinmarch",
+            "mx": 256,
+            "my": 389.655,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "rookcliffs",
+            "mx": 384,
+            "my": 389.655,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "sedgemarch",
+            "mx": 384,
+            "my": 352.643,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "harrowfells",
+            "mx": 384,
+            "my": 315.631,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "wardmere",
+            "mx": 384,
+            "my": 278.618,
+            "w": 128,
+            "h": 37.012
+          }
+        ],
+        "player": {
+          "mx": 194.489,
+          "my": 346.474
+        },
+        "party": [
+          {
+            "mx": 192.711,
+            "my": 347.296
+          },
+          {
+            "mx": 183.822,
+            "my": 332.08
+          },
+          {
+            "mx": 286.933,
+            "my": 355.727
+          }
+        ],
+        "partyIn": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -7,
+            "z": -120
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -2,
+            "z": -128
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 23,
+            "z": 20
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -267,
+            "z": -210
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "station",
+        "px": -10.172222222222222,
+        "pz": -109.8,
+        "aspect": 0.49363636363636365,
+        "canvas": 512
+      },
+      "out": {
+        "image": {
+          "mx": 129.6290909090909,
+          "my": 0,
+          "w": 252.7418181818182,
+          "h": 512
+        },
+        "currentZoneId": "eastbrook_vale",
+        "regions": [
+          {
+            "zoneId": "eastbrook_vale",
+            "mx": 192.815,
+            "my": 345.446,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "mirefen_marsh",
+            "mx": 192.815,
+            "my": 289.928,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "thornpeak_heights",
+            "mx": 192.815,
+            "my": 234.41,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "veiled_hollow",
+            "mx": 192.815,
+            "my": 151.133,
+            "w": 63.185,
+            "h": 83.277
+          },
+          {
+            "zoneId": "drakelands",
+            "mx": 129.629,
+            "my": 0,
+            "w": 63.185,
+            "h": 92.53
+          },
+          {
+            "zoneId": "frostveil",
+            "mx": 192.815,
+            "my": 70.94,
+            "w": 63.185,
+            "h": 80.193
+          },
+          {
+            "zoneId": "amberfall",
+            "mx": 256,
+            "my": 6.169,
+            "w": 63.185,
+            "h": 86.361
+          },
+          {
+            "zoneId": "willowfen",
+            "mx": 256,
+            "my": 265.253,
+            "w": 63.185,
+            "h": 80.193
+          },
+          {
+            "zoneId": "nightbloom",
+            "mx": 256,
+            "my": 92.53,
+            "w": 63.185,
+            "h": 86.361
+          },
+          {
+            "zoneId": "wraithwood",
+            "mx": 129.629,
+            "my": 92.53,
+            "w": 63.185,
+            "h": 86.361
+          },
+          {
+            "zoneId": "palmreach",
+            "mx": 256,
+            "my": 178.892,
+            "w": 63.185,
+            "h": 86.361
+          },
+          {
+            "zoneId": "evergarden",
+            "mx": 129.629,
+            "my": 178.892,
+            "w": 63.185,
+            "h": 86.361
+          },
+          {
+            "zoneId": "galecrest",
+            "mx": 129.629,
+            "my": 265.253,
+            "w": 63.185,
+            "h": 80.193
+          },
+          {
+            "zoneId": "farshore_isle",
+            "mx": 129.629,
+            "my": 345.446,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "proving_shore",
+            "mx": 256,
+            "my": 345.446,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "applewold",
+            "mx": 129.629,
+            "my": 400.964,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "kindlemoor",
+            "mx": 192.815,
+            "my": 400.964,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "chalkbarrow_coast",
+            "mx": 256,
+            "my": 400.964,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "saltmeads",
+            "mx": 129.629,
+            "my": 456.482,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "wychwold",
+            "mx": 192.815,
+            "my": 456.482,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "tinmarch",
+            "mx": 256,
+            "my": 456.482,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "rookcliffs",
+            "mx": 319.185,
+            "my": 456.482,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "sedgemarch",
+            "mx": 319.185,
+            "my": 400.964,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "harrowfells",
+            "mx": 319.185,
+            "my": 345.446,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "wardmere",
+            "mx": 319.185,
+            "my": 289.928,
+            "w": 63.185,
+            "h": 55.518
+          }
+        ],
+        "player": {
+          "mx": 226.193,
+          "my": 390.138
+        },
+        "party": [
+          {
+            "mx": 225.315,
+            "my": 391.372
+          },
+          {
+            "mx": 220.927,
+            "my": 368.547
+          },
+          {
+            "mx": 271.827,
+            "my": 404.017
+          }
+        ],
+        "partyIn": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -10.172222222222222,
+            "z": -109.8
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -5.1722222222222225,
+            "z": -117.8
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 19.827777777777776,
+            "z": 30.200000000000003
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -270.1722222222222,
+            "z": -199.8
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "station",
+        "px": -10.172222222222222,
+        "pz": -109.8,
+        "aspect": 1,
+        "canvas": 512
+      },
+      "out": {
+        "image": {
+          "mx": 0,
+          "my": 0,
+          "w": 512,
+          "h": 512
+        },
+        "currentZoneId": "eastbrook_vale",
+        "regions": [
+          {
+            "zoneId": "eastbrook_vale",
+            "mx": 128,
+            "my": 345.446,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "mirefen_marsh",
+            "mx": 128,
+            "my": 289.928,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "thornpeak_heights",
+            "mx": 128,
+            "my": 234.41,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "veiled_hollow",
+            "mx": 128,
+            "my": 151.133,
+            "w": 128,
+            "h": 83.277
+          },
+          {
+            "zoneId": "drakelands",
+            "mx": 0,
+            "my": 0,
+            "w": 128,
+            "h": 92.53
+          },
+          {
+            "zoneId": "frostveil",
+            "mx": 128,
+            "my": 70.94,
+            "w": 128,
+            "h": 80.193
+          },
+          {
+            "zoneId": "amberfall",
+            "mx": 256,
+            "my": 6.169,
+            "w": 128,
+            "h": 86.361
+          },
+          {
+            "zoneId": "willowfen",
+            "mx": 256,
+            "my": 265.253,
+            "w": 128,
+            "h": 80.193
+          },
+          {
+            "zoneId": "nightbloom",
+            "mx": 256,
+            "my": 92.53,
+            "w": 128,
+            "h": 86.361
+          },
+          {
+            "zoneId": "wraithwood",
+            "mx": 0,
+            "my": 92.53,
+            "w": 128,
+            "h": 86.361
+          },
+          {
+            "zoneId": "palmreach",
+            "mx": 256,
+            "my": 178.892,
+            "w": 128,
+            "h": 86.361
+          },
+          {
+            "zoneId": "evergarden",
+            "mx": 0,
+            "my": 178.892,
+            "w": 128,
+            "h": 86.361
+          },
+          {
+            "zoneId": "galecrest",
+            "mx": 0,
+            "my": 265.253,
+            "w": 128,
+            "h": 80.193
+          },
+          {
+            "zoneId": "farshore_isle",
+            "mx": 0,
+            "my": 345.446,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "proving_shore",
+            "mx": 256,
+            "my": 345.446,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "applewold",
+            "mx": 0,
+            "my": 400.964,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "kindlemoor",
+            "mx": 128,
+            "my": 400.964,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "chalkbarrow_coast",
+            "mx": 256,
+            "my": 400.964,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "saltmeads",
+            "mx": 0,
+            "my": 456.482,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "wychwold",
+            "mx": 128,
+            "my": 456.482,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "tinmarch",
+            "mx": 256,
+            "my": 456.482,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "rookcliffs",
+            "mx": 384,
+            "my": 456.482,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "sedgemarch",
+            "mx": 384,
+            "my": 400.964,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "harrowfells",
+            "mx": 384,
+            "my": 345.446,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "wardmere",
+            "mx": 384,
+            "my": 289.928,
+            "w": 128,
+            "h": 55.518
+          }
+        ],
+        "player": {
+          "mx": 195.617,
+          "my": 390.138
+        },
+        "party": [
+          {
+            "mx": 193.839,
+            "my": 391.372
+          },
+          {
+            "mx": 184.95,
+            "my": 368.547
+          },
+          {
+            "mx": 288.061,
+            "my": 404.017
+          }
+        ],
+        "partyIn": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -10.172222222222222,
+            "z": -109.8
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -5.1722222222222225,
+            "z": -117.8
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 19.827777777777776,
+            "z": 30.200000000000003
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -270.1722222222222,
+            "z": -199.8
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "station",
+        "px": -10.172222222222222,
+        "pz": -109.8,
+        "aspect": 1.5,
+        "canvas": 512
+      },
+      "out": {
+        "image": {
+          "mx": 0,
+          "my": 85.33333333333334,
+          "w": 512,
+          "h": 341.3333333333333
+        },
+        "currentZoneId": "eastbrook_vale",
+        "regions": [
+          {
+            "zoneId": "eastbrook_vale",
+            "mx": 128,
+            "my": 315.631,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "mirefen_marsh",
+            "mx": 128,
+            "my": 278.618,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "thornpeak_heights",
+            "mx": 128,
+            "my": 241.606,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "veiled_hollow",
+            "mx": 128,
+            "my": 186.088,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "drakelands",
+            "mx": 0,
+            "my": 85.333,
+            "w": 128,
+            "h": 61.687
+          },
+          {
+            "zoneId": "frostveil",
+            "mx": 128,
+            "my": 132.627,
+            "w": 128,
+            "h": 53.462
+          },
+          {
+            "zoneId": "amberfall",
+            "mx": 256,
+            "my": 89.446,
+            "w": 128,
+            "h": 57.574
+          },
+          {
+            "zoneId": "willowfen",
+            "mx": 256,
+            "my": 262.169,
+            "w": 128,
+            "h": 53.462
+          },
+          {
+            "zoneId": "nightbloom",
+            "mx": 256,
+            "my": 147.02,
+            "w": 128,
+            "h": 57.574
+          },
+          {
+            "zoneId": "wraithwood",
+            "mx": 0,
+            "my": 147.02,
+            "w": 128,
+            "h": 57.574
+          },
+          {
+            "zoneId": "palmreach",
+            "mx": 256,
+            "my": 204.594,
+            "w": 128,
+            "h": 57.574
+          },
+          {
+            "zoneId": "evergarden",
+            "mx": 0,
+            "my": 204.594,
+            "w": 128,
+            "h": 57.574
+          },
+          {
+            "zoneId": "galecrest",
+            "mx": 0,
+            "my": 262.169,
+            "w": 128,
+            "h": 53.462
+          },
+          {
+            "zoneId": "farshore_isle",
+            "mx": 0,
+            "my": 315.631,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "proving_shore",
+            "mx": 256,
+            "my": 315.631,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "applewold",
+            "mx": 0,
+            "my": 352.643,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "kindlemoor",
+            "mx": 128,
+            "my": 352.643,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "chalkbarrow_coast",
+            "mx": 256,
+            "my": 352.643,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "saltmeads",
+            "mx": 0,
+            "my": 389.655,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "wychwold",
+            "mx": 128,
+            "my": 389.655,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "tinmarch",
+            "mx": 256,
+            "my": 389.655,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "rookcliffs",
+            "mx": 384,
+            "my": 389.655,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "sedgemarch",
+            "mx": 384,
+            "my": 352.643,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "harrowfells",
+            "mx": 384,
+            "my": 315.631,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "wardmere",
+            "mx": 384,
+            "my": 278.618,
+            "w": 128,
+            "h": 37.012
+          }
+        ],
+        "player": {
+          "mx": 195.617,
+          "my": 345.425
+        },
+        "party": [
+          {
+            "mx": 193.839,
+            "my": 346.248
+          },
+          {
+            "mx": 184.95,
+            "my": 331.032
+          },
+          {
+            "mx": 288.061,
+            "my": 354.678
+          }
+        ],
+        "partyIn": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -10.172222222222222,
+            "z": -109.8
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -5.1722222222222225,
+            "z": -117.8
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 19.827777777777776,
+            "z": 30.200000000000003
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -270.1722222222222,
+            "z": -199.8
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "gather_node",
+        "px": -12,
+        "pz": 158,
+        "aspect": 0.49363636363636365,
+        "canvas": 512
+      },
+      "out": {
+        "image": {
+          "mx": 129.6290909090909,
+          "my": 0,
+          "w": 252.7418181818182,
+          "h": 512
+        },
+        "currentZoneId": "eastbrook_vale",
+        "regions": [
+          {
+            "zoneId": "eastbrook_vale",
+            "mx": 192.815,
+            "my": 345.446,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "mirefen_marsh",
+            "mx": 192.815,
+            "my": 289.928,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "thornpeak_heights",
+            "mx": 192.815,
+            "my": 234.41,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "veiled_hollow",
+            "mx": 192.815,
+            "my": 151.133,
+            "w": 63.185,
+            "h": 83.277
+          },
+          {
+            "zoneId": "drakelands",
+            "mx": 129.629,
+            "my": 0,
+            "w": 63.185,
+            "h": 92.53
+          },
+          {
+            "zoneId": "frostveil",
+            "mx": 192.815,
+            "my": 70.94,
+            "w": 63.185,
+            "h": 80.193
+          },
+          {
+            "zoneId": "amberfall",
+            "mx": 256,
+            "my": 6.169,
+            "w": 63.185,
+            "h": 86.361
+          },
+          {
+            "zoneId": "willowfen",
+            "mx": 256,
+            "my": 265.253,
+            "w": 63.185,
+            "h": 80.193
+          },
+          {
+            "zoneId": "nightbloom",
+            "mx": 256,
+            "my": 92.53,
+            "w": 63.185,
+            "h": 86.361
+          },
+          {
+            "zoneId": "wraithwood",
+            "mx": 129.629,
+            "my": 92.53,
+            "w": 63.185,
+            "h": 86.361
+          },
+          {
+            "zoneId": "palmreach",
+            "mx": 256,
+            "my": 178.892,
+            "w": 63.185,
+            "h": 86.361
+          },
+          {
+            "zoneId": "evergarden",
+            "mx": 129.629,
+            "my": 178.892,
+            "w": 63.185,
+            "h": 86.361
+          },
+          {
+            "zoneId": "galecrest",
+            "mx": 129.629,
+            "my": 265.253,
+            "w": 63.185,
+            "h": 80.193
+          },
+          {
+            "zoneId": "farshore_isle",
+            "mx": 129.629,
+            "my": 345.446,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "proving_shore",
+            "mx": 256,
+            "my": 345.446,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "applewold",
+            "mx": 129.629,
+            "my": 400.964,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "kindlemoor",
+            "mx": 192.815,
+            "my": 400.964,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "chalkbarrow_coast",
+            "mx": 256,
+            "my": 400.964,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "saltmeads",
+            "mx": 129.629,
+            "my": 456.482,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "wychwold",
+            "mx": 192.815,
+            "my": 456.482,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "tinmarch",
+            "mx": 256,
+            "my": 456.482,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "rookcliffs",
+            "mx": 319.185,
+            "my": 456.482,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "sedgemarch",
+            "mx": 319.185,
+            "my": 400.964,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "harrowfells",
+            "mx": 319.185,
+            "my": 345.446,
+            "w": 63.185,
+            "h": 55.518
+          },
+          {
+            "zoneId": "wardmere",
+            "mx": 319.185,
+            "my": 289.928,
+            "w": 63.185,
+            "h": 55.518
+          }
+        ],
+        "player": {
+          "mx": 226.513,
+          "my": 348.839
+        },
+        "party": [
+          {
+            "mx": 225.636,
+            "my": 350.072
+          },
+          {
+            "mx": 221.248,
+            "my": 327.248
+          },
+          {
+            "mx": 272.147,
+            "my": 362.718
+          }
+        ],
+        "partyIn": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -12,
+            "z": 158
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -7,
+            "z": 150
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 18,
+            "z": 298
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -272,
+            "z": 68
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "gather_node",
+        "px": -12,
+        "pz": 158,
+        "aspect": 1,
+        "canvas": 512
+      },
+      "out": {
+        "image": {
+          "mx": 0,
+          "my": 0,
+          "w": 512,
+          "h": 512
+        },
+        "currentZoneId": "eastbrook_vale",
+        "regions": [
+          {
+            "zoneId": "eastbrook_vale",
+            "mx": 128,
+            "my": 345.446,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "mirefen_marsh",
+            "mx": 128,
+            "my": 289.928,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "thornpeak_heights",
+            "mx": 128,
+            "my": 234.41,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "veiled_hollow",
+            "mx": 128,
+            "my": 151.133,
+            "w": 128,
+            "h": 83.277
+          },
+          {
+            "zoneId": "drakelands",
+            "mx": 0,
+            "my": 0,
+            "w": 128,
+            "h": 92.53
+          },
+          {
+            "zoneId": "frostveil",
+            "mx": 128,
+            "my": 70.94,
+            "w": 128,
+            "h": 80.193
+          },
+          {
+            "zoneId": "amberfall",
+            "mx": 256,
+            "my": 6.169,
+            "w": 128,
+            "h": 86.361
+          },
+          {
+            "zoneId": "willowfen",
+            "mx": 256,
+            "my": 265.253,
+            "w": 128,
+            "h": 80.193
+          },
+          {
+            "zoneId": "nightbloom",
+            "mx": 256,
+            "my": 92.53,
+            "w": 128,
+            "h": 86.361
+          },
+          {
+            "zoneId": "wraithwood",
+            "mx": 0,
+            "my": 92.53,
+            "w": 128,
+            "h": 86.361
+          },
+          {
+            "zoneId": "palmreach",
+            "mx": 256,
+            "my": 178.892,
+            "w": 128,
+            "h": 86.361
+          },
+          {
+            "zoneId": "evergarden",
+            "mx": 0,
+            "my": 178.892,
+            "w": 128,
+            "h": 86.361
+          },
+          {
+            "zoneId": "galecrest",
+            "mx": 0,
+            "my": 265.253,
+            "w": 128,
+            "h": 80.193
+          },
+          {
+            "zoneId": "farshore_isle",
+            "mx": 0,
+            "my": 345.446,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "proving_shore",
+            "mx": 256,
+            "my": 345.446,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "applewold",
+            "mx": 0,
+            "my": 400.964,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "kindlemoor",
+            "mx": 128,
+            "my": 400.964,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "chalkbarrow_coast",
+            "mx": 256,
+            "my": 400.964,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "saltmeads",
+            "mx": 0,
+            "my": 456.482,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "wychwold",
+            "mx": 128,
+            "my": 456.482,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "tinmarch",
+            "mx": 256,
+            "my": 456.482,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "rookcliffs",
+            "mx": 384,
+            "my": 456.482,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "sedgemarch",
+            "mx": 384,
+            "my": 400.964,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "harrowfells",
+            "mx": 384,
+            "my": 345.446,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "wardmere",
+            "mx": 384,
+            "my": 289.928,
+            "w": 128,
+            "h": 55.518
+          }
+        ],
+        "player": {
+          "mx": 196.267,
+          "my": 348.839
+        },
+        "party": [
+          {
+            "mx": 194.489,
+            "my": 350.072
+          },
+          {
+            "mx": 185.6,
+            "my": 327.248
+          },
+          {
+            "mx": 288.711,
+            "my": 362.718
+          }
+        ],
+        "partyIn": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -12,
+            "z": 158
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -7,
+            "z": 150
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 18,
+            "z": 298
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -272,
+            "z": 68
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "gather_node",
+        "px": -12,
+        "pz": 158,
+        "aspect": 1.5,
+        "canvas": 512
+      },
+      "out": {
+        "image": {
+          "mx": 0,
+          "my": 85.33333333333334,
+          "w": 512,
+          "h": 341.3333333333333
+        },
+        "currentZoneId": "eastbrook_vale",
+        "regions": [
+          {
+            "zoneId": "eastbrook_vale",
+            "mx": 128,
+            "my": 315.631,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "mirefen_marsh",
+            "mx": 128,
+            "my": 278.618,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "thornpeak_heights",
+            "mx": 128,
+            "my": 241.606,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "veiled_hollow",
+            "mx": 128,
+            "my": 186.088,
+            "w": 128,
+            "h": 55.518
+          },
+          {
+            "zoneId": "drakelands",
+            "mx": 0,
+            "my": 85.333,
+            "w": 128,
+            "h": 61.687
+          },
+          {
+            "zoneId": "frostveil",
+            "mx": 128,
+            "my": 132.627,
+            "w": 128,
+            "h": 53.462
+          },
+          {
+            "zoneId": "amberfall",
+            "mx": 256,
+            "my": 89.446,
+            "w": 128,
+            "h": 57.574
+          },
+          {
+            "zoneId": "willowfen",
+            "mx": 256,
+            "my": 262.169,
+            "w": 128,
+            "h": 53.462
+          },
+          {
+            "zoneId": "nightbloom",
+            "mx": 256,
+            "my": 147.02,
+            "w": 128,
+            "h": 57.574
+          },
+          {
+            "zoneId": "wraithwood",
+            "mx": 0,
+            "my": 147.02,
+            "w": 128,
+            "h": 57.574
+          },
+          {
+            "zoneId": "palmreach",
+            "mx": 256,
+            "my": 204.594,
+            "w": 128,
+            "h": 57.574
+          },
+          {
+            "zoneId": "evergarden",
+            "mx": 0,
+            "my": 204.594,
+            "w": 128,
+            "h": 57.574
+          },
+          {
+            "zoneId": "galecrest",
+            "mx": 0,
+            "my": 262.169,
+            "w": 128,
+            "h": 53.462
+          },
+          {
+            "zoneId": "farshore_isle",
+            "mx": 0,
+            "my": 315.631,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "proving_shore",
+            "mx": 256,
+            "my": 315.631,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "applewold",
+            "mx": 0,
+            "my": 352.643,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "kindlemoor",
+            "mx": 128,
+            "my": 352.643,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "chalkbarrow_coast",
+            "mx": 256,
+            "my": 352.643,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "saltmeads",
+            "mx": 0,
+            "my": 389.655,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "wychwold",
+            "mx": 128,
+            "my": 389.655,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "tinmarch",
+            "mx": 256,
+            "my": 389.655,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "rookcliffs",
+            "mx": 384,
+            "my": 389.655,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "sedgemarch",
+            "mx": 384,
+            "my": 352.643,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "harrowfells",
+            "mx": 384,
+            "my": 315.631,
+            "w": 128,
+            "h": 37.012
+          },
+          {
+            "zoneId": "wardmere",
+            "mx": 384,
+            "my": 278.618,
+            "w": 128,
+            "h": 37.012
+          }
+        ],
+        "player": {
+          "mx": 196.267,
+          "my": 317.892
+        },
+        "party": [
+          {
+            "mx": 194.489,
+            "my": 318.715
+          },
+          {
+            "mx": 185.6,
+            "my": 303.499
+          },
+          {
+            "mx": 288.711,
+            "my": 327.145
+          }
+        ],
+        "partyIn": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -12,
+            "z": 158
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -7,
+            "z": 150
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 18,
+            "z": 298
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -272,
+            "z": 68
+          }
+        ]
+      }
+    }
+  ]
+}
