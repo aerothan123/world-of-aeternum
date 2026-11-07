@@ -16682,6 +16682,8 @@ hudChrome.housing.purchased,You bought {house}. Walk through its front door to s
 hudChrome.housing.room.bedroom,Bedroom
 hudChrome.housing.room.hearthRoom,Hearth room
 hudChrome.housing.room.workshop,Workshop
+hudChrome.housing.sitHint,"Stand next to a chair, stool or bench to sit on it."
+hudChrome.housing.sitOn,Sit on {item}
 hudChrome.housing.storage.away,Stand next to a storage chest in your house to use its storage.
 hudChrome.housing.storage.carriedEmpty,Your bags are empty.
 hudChrome.housing.storage.carriedTitle,Your bags

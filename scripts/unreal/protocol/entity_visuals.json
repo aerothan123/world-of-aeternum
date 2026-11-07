@@ -115,6 +115,16 @@
       "model": "creatures/goblin",
       "height": 2.1
     },
+    "briarbitten_fox": {
+      "key": "mob_wolf",
+      "model": "creatures/wolf_basic",
+      "height": 1.47
+    },
+    "bristlejaw_shore_rat": {
+      "key": "mob_kobold",
+      "model": "creatures/goblin",
+      "height": 2.1
+    },
     "broodsworn_goadsmith": {
       "key": "sanctum_goadsmith",
       "model": "creatures/sanctum_goadsmith",
@@ -179,6 +189,11 @@
       "key": "player_rogue",
       "model": "chars/players/woc/base_male",
       "height": 2.8600000000000003
+    },
+    "chalk_cliff_gull": {
+      "key": "mob_wolf",
+      "model": "creatures/wolf_basic",
+      "height": 1.47
     },
     "choir_thrall": {
       "key": "mob_choir_thrall",
@@ -275,6 +290,11 @@
       "model": "chars/enemies/skeleton_rogue",
       "height": 2.5
     },
+    "culvert_rat": {
+      "key": "mob_kobold",
+      "model": "creatures/goblin",
+      "height": 2.1
+    },
     "deacon_varric": {
       "key": "delve_skel_varric",
       "model": "chars/enemies/skeleton_mage",
@@ -309,6 +329,11 @@
       "key": "mob_mech",
       "model": "creatures/mech",
       "height": 2
+    },
+    "dig_crawler": {
+      "key": "mob_spider",
+      "model": "creatures/spider",
+      "height": 1.4
     },
     "downs_bandit": {
       "key": "mob_kobold",
@@ -419,6 +444,21 @@
       "key": "mob_dragonkin",
       "model": "creatures/dragonevolved",
       "height": 2.4
+    },
+    "escort_c2_keeper_agnes": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "escort_della": {
+      "key": "player_shaman_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "escort_neris": {
+      "key": "player_hunter_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
     },
     "fallen_captain_aldren": {
       "key": "skel_warrior",
@@ -599,6 +639,11 @@
       "key": "mob_treant",
       "model": "creatures/yeti",
       "height": 2.6
+    },
+    "gravestirred_fieldhand": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
     },
     "great_saurian": {
       "key": "wildheart_great_saurian",
@@ -935,6 +980,16 @@
       "model": "creatures/temple_moonspawn",
       "height": 3.89
     },
+    "moor_bandit": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "moor_hound": {
+      "key": "mob_wolf",
+      "model": "creatures/wolf_basic",
+      "height": 1.47
+    },
     "moor_ram": {
       "key": "mob_alpaca",
       "model": "creatures/alpaca",
@@ -1065,6 +1120,11 @@
       "model": "creatures/crabenemy",
       "height": 1.7
     },
+    "orchard_boar": {
+      "key": "mob_wolf",
+      "model": "creatures/wolf_basic",
+      "height": 1.47
+    },
     "orchard_treant": {
       "key": "mob_treant",
       "model": "creatures/yeti",
@@ -1090,10 +1150,20 @@
       "model": "creatures/temple_sentinel",
       "height": 1.3236
     },
+    "peatfire_wisp": {
+      "key": "mob_elemental",
+      "model": "creatures/golelingevolved",
+      "height": 2.2
+    },
     "pyre_colossus": {
       "key": "mob_pyre_colossus",
       "model": "creatures/pyre_colossus",
       "height": 2.5
+    },
+    "quarry_burrower": {
+      "key": "mob_kobold",
+      "model": "creatures/goblin",
+      "height": 2.1
     },
     "raised_bonewalker": {
       "key": "sanctum_raised_bonewalker",
@@ -1660,10 +1730,20 @@
       "model": "creatures/varkhul_forgefather",
       "height": 3
     },
+    "veiled_digger": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
     "veiled_doe": {
       "key": "mob_veiled_doe",
       "model": "creatures/veiled_doe",
       "height": 1.6
+    },
+    "veiled_rite_tender": {
+      "key": "player_priest",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
     },
     "veiled_stag": {
       "key": "mob_veiled_stag",
@@ -1725,6 +1805,11 @@
       "model": "creatures/water_elemental",
       "height": 2.65
     },
+    "waybill_cutpurse": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
     "webwood_spider": {
       "key": "mob_spider",
       "model": "creatures/spider",
@@ -1785,6 +1870,11 @@
       "model": "chars/players/woc/base_male",
       "height": 2.8600000000000003
     },
+    "windfall_boar": {
+      "key": "mob_wolf",
+      "model": "creatures/wolf_basic",
+      "height": 1.47
+    },
     "wood_wraith": {
       "key": "mob_ghost",
       "model": "creatures/ghost",
@@ -1831,6 +1921,11 @@
       "key": "player_druid_female",
       "model": "chars/players/woc/base_female",
       "height": 2.8600000000000003
+    },
+    "apothecary_lin_ring": {
+      "key": "npc_villager",
+      "model": "chars/players/rogue",
+      "height": 2.6
     },
     "archivist_maelin_ember_projection": {
       "key": "player_mage_female",
@@ -1957,6 +2052,21 @@
       "model": "chars/players/woc/base_male",
       "height": 2.8600000000000003
     },
+    "carpenter_bryony_coinwell": {
+      "key": "npc_villager",
+      "model": "chars/players/rogue",
+      "height": 2.6
+    },
+    "carpenter_bryony_pressford": {
+      "key": "npc_villager",
+      "model": "chars/players/rogue",
+      "height": 2.6
+    },
+    "carpenter_pella": {
+      "key": "player_warrior_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
     "chronicler_edda_hartwell": {
       "key": "player_mage_female",
       "model": "chars/players/woc/base_female",
@@ -1972,6 +2082,16 @@
       "model": "chars/players/woc/base_male",
       "height": 2.8600000000000003
     },
+    "cider_master_mabel": {
+      "key": "npc_villager",
+      "model": "chars/players/rogue",
+      "height": 2.6
+    },
+    "claim_master_ambrose": {
+      "key": "npc_villager",
+      "model": "chars/players/rogue",
+      "height": 2.6
+    },
     "contract_clerk_tobias_wren": {
       "key": "player_mage",
       "model": "chars/players/woc/base_male",
@@ -1981,6 +2101,11 @@
       "key": "player_druid",
       "model": "chars/players/woc/base_male",
       "height": 2.8600000000000003
+    },
+    "cook_nettie_saltmarsh": {
+      "key": "npc_villager",
+      "model": "chars/players/rogue",
+      "height": 2.6
     },
     "crucible_quartermaster": {
       "key": "player_warrior",
@@ -2027,6 +2152,11 @@
       "model": "chars/players/woc/base_male",
       "height": 2.8600000000000003
     },
+    "ferryman_odo_coinwell": {
+      "key": "npc_villager",
+      "model": "chars/players/rogue",
+      "height": 2.6
+    },
     "ferrymaster_caddow": {
       "key": "player_rogue",
       "model": "chars/players/woc/base_male",
@@ -2038,6 +2168,11 @@
       "height": 2.8600000000000003
     },
     "fisherman_brandt": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "fisherman_tobbin": {
       "key": "player_rogue",
       "model": "chars/players/woc/base_male",
       "height": 2.8600000000000003
@@ -2057,10 +2192,25 @@
       "model": "chars/players/woc/base_female",
       "height": 2.8600000000000003
     },
+    "forgemistress_darva_coinwell": {
+      "key": "npc_villager",
+      "model": "chars/players/rogue",
+      "height": 2.6
+    },
     "fury": {
       "key": "player_warrior",
       "model": "chars/players/woc/base_male",
       "height": 2.8600000000000003
+    },
+    "gardener_della": {
+      "key": "player_shaman_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "gardener_hester_pressford": {
+      "key": "npc_villager",
+      "model": "chars/players/rogue",
+      "height": 2.6
     },
     "gardener_yew": {
       "key": "player_druid",
@@ -2090,6 +2240,11 @@
     "gourdlight_keeper": {
       "key": "player_druid_female",
       "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "gravekeeper_holven": {
+      "key": "player_priest",
+      "model": "chars/players/woc/base_male",
       "height": 2.8600000000000003
     },
     "guild_quartermaster_garrick_holt": {
@@ -2127,6 +2282,11 @@
       "model": "chars/players/woc/base_female",
       "height": 2.8600000000000003
     },
+    "herbalist_olvessa": {
+      "key": "player_druid_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
     "herbalist_yara": {
       "key": "player_druid_female",
       "model": "chars/players/woc/base_female",
@@ -2141,6 +2301,11 @@
       "key": "player_warrior",
       "model": "chars/players/woc/base_male",
       "height": 2.8600000000000003
+    },
+    "historian_orwin": {
+      "key": "npc_villager",
+      "model": "chars/players/rogue",
+      "height": 2.6
     },
     "huntsman_deral": {
       "key": "player_hunter",
@@ -2170,6 +2335,11 @@
     "infiltrator_tessa": {
       "key": "player_warrior_female",
       "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "innkeeper_jorren": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
       "height": 2.8600000000000003
     },
     "innkeeper_maudie": {
@@ -2221,6 +2391,11 @@
       "key": "player_warrior",
       "model": "chars/players/woc/base_male",
       "height": 2.8600000000000003
+    },
+    "marshal_redbrook_coinwell": {
+      "key": "npc_villager",
+      "model": "chars/players/rogue",
+      "height": 2.6
     },
     "mender_saul": {
       "key": "player_mage",
@@ -2367,10 +2542,20 @@
       "model": "chars/players/woc/base_female",
       "height": 2.8600000000000003
     },
+    "scout_neris": {
+      "key": "player_hunter_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
     "scout_yerrin": {
       "key": "player_hunter_female",
       "model": "chars/players/woc/base_female",
       "height": 2.8600000000000003
+    },
+    "sergeant_ivo_bramwell": {
+      "key": "npc_villager",
+      "model": "chars/players/rogue",
+      "height": 2.6
     },
     "sexton_marrow": {
       "key": "player_mage",
@@ -2452,6 +2637,11 @@
       "model": "chars/players/woc/base_male",
       "height": 2.8600000000000003
     },
+    "tanner_tamsin": {
+      "key": "player_warrior_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
     "the_merchant": {
       "key": "player_rogue",
       "model": "chars/players/woc/base_male",
@@ -2506,6 +2696,11 @@
       "key": "player_hunter",
       "model": "chars/players/woc/base_male",
       "height": 2.8600000000000003
+    },
+    "warden_tamsin_bracewell": {
+      "key": "npc_villager",
+      "model": "chars/players/rogue",
+      "height": 2.6
     },
     "wardsmith_orun": {
       "key": "player_warrior",
