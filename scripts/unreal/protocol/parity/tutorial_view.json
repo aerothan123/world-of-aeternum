@@ -1,0 +1,4414 @@
+{
+  "suite": "tutorial_view",
+  "source": "src/ui/bootcamp.ts BootcampOverlay.update over src/ui/bootcamp_view.ts and src/ui/coach_prompt_view.ts (keyboard arm)",
+  "note": "binds are keybind ids the client resolves through the live bindings",
+  "cases": [
+    {
+      "in": {
+        "onIsland": false,
+        "quests": {
+          "q_ps_the_gauntlet": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "hidden",
+        "id": "hidden",
+        "step": "",
+        "stepIndex": -1,
+        "stepTotal": 0,
+        "questId": "",
+        "state": "",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "",
+        "params": [],
+        "keycaps": [],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "",
+        "arrow": null,
+        "glowQuest": "",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {},
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "hidden",
+        "id": "hidden",
+        "step": "",
+        "stepIndex": -1,
+        "stepTotal": 0,
+        "questId": "",
+        "state": "",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "",
+        "params": [],
+        "keycaps": [],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "",
+        "arrow": null,
+        "glowQuest": "",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_gauntlet": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "bootcamp",
+        "id": "bootcamp:talk",
+        "step": "talk",
+        "stepIndex": 0,
+        "stepTotal": 10,
+        "questId": "q_ps_the_gauntlet",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.talkTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.talkBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "warden_tam",
+        "arrow": {
+          "x": -283,
+          "z": -21
+        },
+        "glowQuest": "q_ps_the_gauntlet",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_gauntlet": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "bootcamp",
+        "id": "bootcamp:forward",
+        "step": "forward",
+        "stepIndex": 0,
+        "stepTotal": 10,
+        "questId": "q_ps_the_gauntlet",
+        "state": "active",
+        "titleKey": "hudChrome.bootcamp.forwardTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.forwardBody",
+        "params": [
+          {
+            "name": "forwardKey",
+            "bind": "forward"
+          }
+        ],
+        "keycaps": [
+          "forward"
+        ],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "",
+        "arrow": {
+          "x": -308,
+          "z": -16
+        },
+        "glowQuest": "q_ps_the_gauntlet",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_gauntlet": "active"
+        },
+        "counts": 1,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "bootcamp",
+        "id": "bootcamp:turnwalk",
+        "step": "turnwalk",
+        "stepIndex": 0,
+        "stepTotal": 10,
+        "questId": "q_ps_the_gauntlet",
+        "state": "active",
+        "titleKey": "hudChrome.bootcamp.turnwalkTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.turnwalkBody",
+        "params": [
+          {
+            "name": "turnKey",
+            "bind": "turnRight"
+          },
+          {
+            "name": "forwardKey",
+            "bind": "forward"
+          }
+        ],
+        "keycaps": [
+          "turnRight",
+          "forward"
+        ],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "",
+        "arrow": {
+          "x": -308,
+          "z": -32
+        },
+        "glowQuest": "q_ps_the_gauntlet",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_gauntlet": "active"
+        },
+        "counts": 2,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "bootcamp",
+        "id": "bootcamp:strafe",
+        "step": "strafe",
+        "stepIndex": 0,
+        "stepTotal": 10,
+        "questId": "q_ps_the_gauntlet",
+        "state": "active",
+        "titleKey": "hudChrome.bootcamp.strafeTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.strafeBody",
+        "params": [
+          {
+            "name": "turnLeftKey",
+            "bind": "turnLeft"
+          },
+          {
+            "name": "forwardKey",
+            "bind": "forward"
+          }
+        ],
+        "keycaps": [
+          "turnLeft",
+          "forward"
+        ],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "",
+        "arrow": {
+          "x": -334,
+          "z": -32.5
+        },
+        "glowQuest": "q_ps_the_gauntlet",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_gauntlet": "active"
+        },
+        "counts": 3,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "bootcamp",
+        "id": "bootcamp:camera",
+        "step": "camera",
+        "stepIndex": 0,
+        "stepTotal": 10,
+        "questId": "q_ps_the_gauntlet",
+        "state": "active",
+        "titleKey": "hudChrome.bootcamp.cameraTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.cameraBody",
+        "params": [],
+        "keycaps": [],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "",
+        "arrow": null,
+        "glowQuest": "q_ps_the_gauntlet",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_gauntlet": "ready"
+        },
+        "counts": 3,
+        "cameraTurned": true,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "bootcamp",
+        "id": "bootcamp:done",
+        "step": "done",
+        "stepIndex": 0,
+        "stepTotal": 10,
+        "questId": "q_ps_the_gauntlet",
+        "state": "ready",
+        "titleKey": "hudChrome.bootcamp.doneTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.doneBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "overseer_pell",
+        "arrow": {
+          "x": -337,
+          "z": -33
+        },
+        "glowQuest": "q_ps_the_gauntlet",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_strike_true": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_strike_true:available",
+        "step": "available",
+        "stepIndex": 1,
+        "stepTotal": 10,
+        "questId": "q_ps_strike_true",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.coachNextTitle",
+        "titleHasNpc": true,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachNextBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "overseer_pell",
+        "arrow": {
+          "x": -337,
+          "z": -33
+        },
+        "glowQuest": "q_ps_strike_true",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_strike_true": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_strike_true:active",
+        "step": "active",
+        "stepIndex": 1,
+        "stepTotal": 10,
+        "questId": "q_ps_strike_true",
+        "state": "active",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": true,
+        "bodyKey": "hudChrome.bootcamp.taskStrikeTrueBody",
+        "params": [
+          {
+            "name": "attackKey",
+            "bind": "slot0"
+          }
+        ],
+        "keycaps": [
+          "slot0"
+        ],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "drillmaster_rook",
+        "arrow": {
+          "x": -336,
+          "z": -14
+        },
+        "glowQuest": "q_ps_strike_true",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_strike_true": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_strike_true:ready",
+        "step": "ready",
+        "stepIndex": 1,
+        "stepTotal": 10,
+        "questId": "q_ps_strike_true",
+        "state": "ready",
+        "titleKey": "hudChrome.bootcamp.coachReadyTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachReadyBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "drillmaster_rook",
+        "arrow": {
+          "x": -345,
+          "z": -11
+        },
+        "glowQuest": "q_ps_strike_true",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_hone_the_edge": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_hone_the_edge:available",
+        "step": "available",
+        "stepIndex": 2,
+        "stepTotal": 10,
+        "questId": "q_ps_hone_the_edge",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.coachNextTitle",
+        "titleHasNpc": true,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachNextBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "drillmaster_rook",
+        "arrow": {
+          "x": -345,
+          "z": -11
+        },
+        "glowQuest": "q_ps_hone_the_edge",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_hone_the_edge": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_hone_the_edge:active",
+        "step": "active",
+        "stepIndex": 2,
+        "stepTotal": 10,
+        "questId": "q_ps_hone_the_edge",
+        "state": "active",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": true,
+        "bodyKey": "hudChrome.bootcamp.taskHoneBody",
+        "params": [
+          {
+            "name": "abilityKey",
+            "bind": "slot1"
+          }
+        ],
+        "keycaps": [
+          "slot1"
+        ],
+        "bodyHasNpc": false,
+        "bodyHasAbility": true,
+        "npcId": "drillmaster_rook",
+        "arrow": {
+          "x": -336,
+          "z": -14
+        },
+        "glowQuest": "q_ps_hone_the_edge",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_hone_the_edge": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_hone_the_edge:ready",
+        "step": "ready",
+        "stepIndex": 2,
+        "stepTotal": 10,
+        "questId": "q_ps_hone_the_edge",
+        "state": "ready",
+        "titleKey": "hudChrome.bootcamp.coachReadyTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachReadyBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "drillmaster_rook",
+        "arrow": {
+          "x": -345,
+          "z": -11
+        },
+        "glowQuest": "q_ps_hone_the_edge",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_shell_and_claw": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_shell_and_claw:available",
+        "step": "available",
+        "stepIndex": 3,
+        "stepTotal": 10,
+        "questId": "q_ps_shell_and_claw",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.coachNextTitle",
+        "titleHasNpc": true,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachNextBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "drillmaster_rook",
+        "arrow": {
+          "x": -345,
+          "z": -11
+        },
+        "glowQuest": "q_ps_shell_and_claw",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_shell_and_claw": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_shell_and_claw:active",
+        "step": "active",
+        "stepIndex": 3,
+        "stepTotal": 10,
+        "questId": "q_ps_shell_and_claw",
+        "state": "active",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": true,
+        "bodyKey": "hudChrome.bootcamp.taskShellBody",
+        "params": [
+          {
+            "name": "abilityKey",
+            "bind": "slot1"
+          }
+        ],
+        "keycaps": [
+          "slot1"
+        ],
+        "bodyHasNpc": false,
+        "bodyHasAbility": true,
+        "npcId": "tidewarden_nel",
+        "arrow": {
+          "x": -380,
+          "z": -42
+        },
+        "glowQuest": "q_ps_shell_and_claw",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_shell_and_claw": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_shell_and_claw:ready",
+        "step": "ready",
+        "stepIndex": 3,
+        "stepTotal": 10,
+        "questId": "q_ps_shell_and_claw",
+        "state": "ready",
+        "titleKey": "hudChrome.bootcamp.coachReadyTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachReadyBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "tidewarden_nel",
+        "arrow": {
+          "x": -371,
+          "z": -13
+        },
+        "glowQuest": "q_ps_shell_and_claw",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_mother_of_pearl": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_mother_of_pearl:available",
+        "step": "available",
+        "stepIndex": 4,
+        "stepTotal": 10,
+        "questId": "q_ps_mother_of_pearl",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.coachNextTitle",
+        "titleHasNpc": true,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachNextBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "tidewarden_nel",
+        "arrow": {
+          "x": -371,
+          "z": -13
+        },
+        "glowQuest": "q_ps_mother_of_pearl",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_mother_of_pearl": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_mother_of_pearl:active",
+        "step": "active",
+        "stepIndex": 4,
+        "stepTotal": 10,
+        "questId": "q_ps_mother_of_pearl",
+        "state": "active",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": true,
+        "bodyKey": "hudChrome.bootcamp.taskPearlBody",
+        "params": [
+          {
+            "name": "bagsKey",
+            "bind": "bags"
+          },
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "bags",
+          "interact"
+        ],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "tidewarden_nel",
+        "arrow": {
+          "x": -398,
+          "z": -17
+        },
+        "glowQuest": "q_ps_mother_of_pearl",
+        "glowVendorItem": "",
+        "glowBagItem": "ps_briny_lure",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_mother_of_pearl": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_mother_of_pearl:ready",
+        "step": "ready",
+        "stepIndex": 4,
+        "stepTotal": 10,
+        "questId": "q_ps_mother_of_pearl",
+        "state": "ready",
+        "titleKey": "hudChrome.bootcamp.coachReadyTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachReadyBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "tidewarden_nel",
+        "arrow": {
+          "x": -371,
+          "z": -13
+        },
+        "glowQuest": "q_ps_mother_of_pearl",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_wreck_line": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_wreck_line:available",
+        "step": "available",
+        "stepIndex": 5,
+        "stepTotal": 10,
+        "questId": "q_ps_the_wreck_line",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.coachNextTitle",
+        "titleHasNpc": true,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachNextBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "tidewarden_nel",
+        "arrow": {
+          "x": -371,
+          "z": -13
+        },
+        "glowQuest": "q_ps_the_wreck_line",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_wreck_line": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_wreck_line:active",
+        "step": "active",
+        "stepIndex": 5,
+        "stepTotal": 10,
+        "questId": "q_ps_the_wreck_line",
+        "state": "active",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": true,
+        "bodyKey": "hudChrome.bootcamp.taskWreckLineBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "quartermaster_finch",
+        "arrow": null,
+        "glowQuest": "q_ps_the_wreck_line",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_wreck_line": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_wreck_line:ready",
+        "step": "ready",
+        "stepIndex": 5,
+        "stepTotal": 10,
+        "questId": "q_ps_the_wreck_line",
+        "state": "ready",
+        "titleKey": "hudChrome.bootcamp.coachReadyTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachReadyBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "quartermaster_finch",
+        "arrow": {
+          "x": -312,
+          "z": 57.2
+        },
+        "glowQuest": "q_ps_the_wreck_line",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_pouch_and_purse": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_pouch_and_purse:available",
+        "step": "available",
+        "stepIndex": 6,
+        "stepTotal": 10,
+        "questId": "q_ps_pouch_and_purse",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.coachNextTitle",
+        "titleHasNpc": true,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachNextBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "quartermaster_finch",
+        "arrow": {
+          "x": -312,
+          "z": 57.2
+        },
+        "glowQuest": "q_ps_pouch_and_purse",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_pouch_and_purse": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_pouch_and_purse:active",
+        "step": "active",
+        "stepIndex": 6,
+        "stepTotal": 10,
+        "questId": "q_ps_pouch_and_purse",
+        "state": "active",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": true,
+        "bodyKey": "hudChrome.bootcamp.taskPouchBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "quartermaster_finch",
+        "arrow": {
+          "x": -312,
+          "z": 57.2
+        },
+        "glowQuest": "q_ps_pouch_and_purse",
+        "glowVendorItem": "linen_pouch",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_pouch_and_purse": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_pouch_and_purse:ready",
+        "step": "ready",
+        "stepIndex": 6,
+        "stepTotal": 10,
+        "questId": "q_ps_pouch_and_purse",
+        "state": "ready",
+        "titleKey": "hudChrome.bootcamp.coachReadyTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.readyPouchBody",
+        "params": [
+          {
+            "name": "bagsKey",
+            "bind": "bags"
+          },
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "bags",
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "instructor_maren",
+        "arrow": {
+          "x": -299,
+          "z": 49
+        },
+        "glowQuest": "q_ps_pouch_and_purse",
+        "glowVendorItem": "",
+        "glowBagItem": "linen_pouch",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_signpost": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_signpost:available",
+        "step": "available",
+        "stepIndex": 7,
+        "stepTotal": 10,
+        "questId": "q_ps_the_signpost",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.coachNextTitle",
+        "titleHasNpc": true,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachNextBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "instructor_maren",
+        "arrow": {
+          "x": -299,
+          "z": 49
+        },
+        "glowQuest": "q_ps_the_signpost",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_signpost": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_signpost:active",
+        "step": "active",
+        "stepIndex": 7,
+        "stepTotal": 10,
+        "questId": "q_ps_the_signpost",
+        "state": "active",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": true,
+        "bodyKey": "hudChrome.bootcamp.coachTaskBody",
+        "params": [
+          {
+            "name": "mapKey",
+            "bind": "map"
+          }
+        ],
+        "keycaps": [],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "instructor_maren",
+        "arrow": {
+          "x": -312,
+          "z": 42.5
+        },
+        "glowQuest": "q_ps_the_signpost",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_signpost": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_signpost:ready",
+        "step": "ready",
+        "stepIndex": 7,
+        "stepTotal": 10,
+        "questId": "q_ps_the_signpost",
+        "state": "ready",
+        "titleKey": "hudChrome.bootcamp.coachReadyTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachReadyBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "instructor_maren",
+        "arrow": {
+          "x": -299,
+          "z": 49
+        },
+        "glowQuest": "q_ps_the_signpost",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_long_walk": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_long_walk:available",
+        "step": "available",
+        "stepIndex": 8,
+        "stepTotal": 10,
+        "questId": "q_ps_the_long_walk",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.coachNextTitle",
+        "titleHasNpc": true,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachNextBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "instructor_maren",
+        "arrow": {
+          "x": -299,
+          "z": 49
+        },
+        "glowQuest": "q_ps_the_long_walk",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_long_walk": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_long_walk:active",
+        "step": "active",
+        "stepIndex": 8,
+        "stepTotal": 10,
+        "questId": "q_ps_the_long_walk",
+        "state": "active",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": true,
+        "bodyKey": "hudChrome.bootcamp.taskLongWalkBody",
+        "params": [
+          {
+            "name": "bagsKey",
+            "bind": "bags"
+          }
+        ],
+        "keycaps": [
+          "bags"
+        ],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "instructor_maren",
+        "arrow": {
+          "x": -312,
+          "z": -6
+        },
+        "glowQuest": "q_ps_the_long_walk",
+        "glowVendorItem": "",
+        "glowBagItem": "ps_passing_stone",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_long_walk": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_long_walk:ready",
+        "step": "ready",
+        "stepIndex": 8,
+        "stepTotal": 10,
+        "questId": "q_ps_the_long_walk",
+        "state": "ready",
+        "titleKey": "hudChrome.bootcamp.coachReadyTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachReadyBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "instructor_maren",
+        "arrow": {
+          "x": -299,
+          "z": 49
+        },
+        "glowQuest": "q_ps_the_long_walk",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_set_sail": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_set_sail:available",
+        "step": "available",
+        "stepIndex": 9,
+        "stepTotal": 10,
+        "questId": "q_ps_set_sail",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.coachNextTitle",
+        "titleHasNpc": true,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachNextBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "instructor_maren",
+        "arrow": {
+          "x": -299,
+          "z": 49
+        },
+        "glowQuest": "q_ps_set_sail",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_set_sail": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_set_sail:active",
+        "step": "active",
+        "stepIndex": 9,
+        "stepTotal": 10,
+        "questId": "q_ps_set_sail",
+        "state": "active",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": true,
+        "bodyKey": "hudChrome.bootcamp.coachTaskBody",
+        "params": [
+          {
+            "name": "mapKey",
+            "bind": "map"
+          }
+        ],
+        "keycaps": [],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "ferryman_odo",
+        "arrow": {
+          "x": -284,
+          "z": -9
+        },
+        "glowQuest": "q_ps_set_sail",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_set_sail": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_set_sail:ready",
+        "step": "ready",
+        "stepIndex": 9,
+        "stepTotal": 10,
+        "questId": "q_ps_set_sail",
+        "state": "ready",
+        "titleKey": "hudChrome.bootcamp.coachReadyTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachReadyBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "ferryman_odo",
+        "arrow": {
+          "x": -284,
+          "z": -9
+        },
+        "glowQuest": "q_ps_set_sail",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_strike_true": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_strike_true:available",
+        "step": "available",
+        "stepIndex": 1,
+        "stepTotal": 10,
+        "questId": "q_ps_strike_true",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.coachNextTitle",
+        "titleHasNpc": true,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachNextBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "overseer_pell",
+        "arrow": {
+          "x": -337,
+          "z": -33
+        },
+        "glowQuest": "q_ps_strike_true",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_strike_true": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_strike_true:active",
+        "step": "active",
+        "stepIndex": 1,
+        "stepTotal": 10,
+        "questId": "q_ps_strike_true",
+        "state": "active",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": true,
+        "bodyKey": "hudChrome.bootcamp.taskStrikeTrueBodyCaster",
+        "params": [
+          {
+            "name": "attackKey",
+            "bind": "slot1"
+          }
+        ],
+        "keycaps": [
+          "slot1"
+        ],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "drillmaster_rook",
+        "arrow": {
+          "x": -336,
+          "z": -14
+        },
+        "glowQuest": "q_ps_strike_true",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_strike_true": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_strike_true:ready",
+        "step": "ready",
+        "stepIndex": 1,
+        "stepTotal": 10,
+        "questId": "q_ps_strike_true",
+        "state": "ready",
+        "titleKey": "hudChrome.bootcamp.coachReadyTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachReadyBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "drillmaster_rook",
+        "arrow": {
+          "x": -345,
+          "z": -11
+        },
+        "glowQuest": "q_ps_strike_true",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_hone_the_edge": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_hone_the_edge:available",
+        "step": "available",
+        "stepIndex": 2,
+        "stepTotal": 10,
+        "questId": "q_ps_hone_the_edge",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.coachNextTitle",
+        "titleHasNpc": true,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachNextBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "drillmaster_rook",
+        "arrow": {
+          "x": -345,
+          "z": -11
+        },
+        "glowQuest": "q_ps_hone_the_edge",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_hone_the_edge": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_hone_the_edge:active",
+        "step": "active",
+        "stepIndex": 2,
+        "stepTotal": 10,
+        "questId": "q_ps_hone_the_edge",
+        "state": "active",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": true,
+        "bodyKey": "hudChrome.bootcamp.taskHoneBody",
+        "params": [
+          {
+            "name": "abilityKey",
+            "bind": "slot1"
+          }
+        ],
+        "keycaps": [
+          "slot1"
+        ],
+        "bodyHasNpc": false,
+        "bodyHasAbility": true,
+        "npcId": "drillmaster_rook",
+        "arrow": {
+          "x": -336,
+          "z": -14
+        },
+        "glowQuest": "q_ps_hone_the_edge",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_hone_the_edge": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_hone_the_edge:ready",
+        "step": "ready",
+        "stepIndex": 2,
+        "stepTotal": 10,
+        "questId": "q_ps_hone_the_edge",
+        "state": "ready",
+        "titleKey": "hudChrome.bootcamp.coachReadyTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachReadyBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "drillmaster_rook",
+        "arrow": {
+          "x": -345,
+          "z": -11
+        },
+        "glowQuest": "q_ps_hone_the_edge",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_shell_and_claw": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_shell_and_claw:available",
+        "step": "available",
+        "stepIndex": 3,
+        "stepTotal": 10,
+        "questId": "q_ps_shell_and_claw",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.coachNextTitle",
+        "titleHasNpc": true,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachNextBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "drillmaster_rook",
+        "arrow": {
+          "x": -345,
+          "z": -11
+        },
+        "glowQuest": "q_ps_shell_and_claw",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_shell_and_claw": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_shell_and_claw:active",
+        "step": "active",
+        "stepIndex": 3,
+        "stepTotal": 10,
+        "questId": "q_ps_shell_and_claw",
+        "state": "active",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": true,
+        "bodyKey": "hudChrome.bootcamp.taskShellBodyCaster",
+        "params": [
+          {
+            "name": "abilityKey",
+            "bind": "slot1"
+          }
+        ],
+        "keycaps": [
+          "slot1"
+        ],
+        "bodyHasNpc": false,
+        "bodyHasAbility": true,
+        "npcId": "tidewarden_nel",
+        "arrow": {
+          "x": -380,
+          "z": -42
+        },
+        "glowQuest": "q_ps_shell_and_claw",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_shell_and_claw": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_shell_and_claw:ready",
+        "step": "ready",
+        "stepIndex": 3,
+        "stepTotal": 10,
+        "questId": "q_ps_shell_and_claw",
+        "state": "ready",
+        "titleKey": "hudChrome.bootcamp.coachReadyTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachReadyBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "tidewarden_nel",
+        "arrow": {
+          "x": -371,
+          "z": -13
+        },
+        "glowQuest": "q_ps_shell_and_claw",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_mother_of_pearl": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_mother_of_pearl:available",
+        "step": "available",
+        "stepIndex": 4,
+        "stepTotal": 10,
+        "questId": "q_ps_mother_of_pearl",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.coachNextTitle",
+        "titleHasNpc": true,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachNextBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "tidewarden_nel",
+        "arrow": {
+          "x": -371,
+          "z": -13
+        },
+        "glowQuest": "q_ps_mother_of_pearl",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_mother_of_pearl": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_mother_of_pearl:active",
+        "step": "active",
+        "stepIndex": 4,
+        "stepTotal": 10,
+        "questId": "q_ps_mother_of_pearl",
+        "state": "active",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": true,
+        "bodyKey": "hudChrome.bootcamp.taskPearlBody",
+        "params": [
+          {
+            "name": "bagsKey",
+            "bind": "bags"
+          },
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "bags",
+          "interact"
+        ],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "tidewarden_nel",
+        "arrow": {
+          "x": -398,
+          "z": -17
+        },
+        "glowQuest": "q_ps_mother_of_pearl",
+        "glowVendorItem": "",
+        "glowBagItem": "ps_briny_lure",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_mother_of_pearl": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_mother_of_pearl:ready",
+        "step": "ready",
+        "stepIndex": 4,
+        "stepTotal": 10,
+        "questId": "q_ps_mother_of_pearl",
+        "state": "ready",
+        "titleKey": "hudChrome.bootcamp.coachReadyTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachReadyBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "tidewarden_nel",
+        "arrow": {
+          "x": -371,
+          "z": -13
+        },
+        "glowQuest": "q_ps_mother_of_pearl",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_wreck_line": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_wreck_line:available",
+        "step": "available",
+        "stepIndex": 5,
+        "stepTotal": 10,
+        "questId": "q_ps_the_wreck_line",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.coachNextTitle",
+        "titleHasNpc": true,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachNextBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "tidewarden_nel",
+        "arrow": {
+          "x": -371,
+          "z": -13
+        },
+        "glowQuest": "q_ps_the_wreck_line",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_wreck_line": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_wreck_line:active",
+        "step": "active",
+        "stepIndex": 5,
+        "stepTotal": 10,
+        "questId": "q_ps_the_wreck_line",
+        "state": "active",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": true,
+        "bodyKey": "hudChrome.bootcamp.taskWreckLineBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "quartermaster_finch",
+        "arrow": null,
+        "glowQuest": "q_ps_the_wreck_line",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_wreck_line": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_wreck_line:ready",
+        "step": "ready",
+        "stepIndex": 5,
+        "stepTotal": 10,
+        "questId": "q_ps_the_wreck_line",
+        "state": "ready",
+        "titleKey": "hudChrome.bootcamp.coachReadyTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachReadyBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "quartermaster_finch",
+        "arrow": {
+          "x": -312,
+          "z": 57.2
+        },
+        "glowQuest": "q_ps_the_wreck_line",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_pouch_and_purse": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_pouch_and_purse:available",
+        "step": "available",
+        "stepIndex": 6,
+        "stepTotal": 10,
+        "questId": "q_ps_pouch_and_purse",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.coachNextTitle",
+        "titleHasNpc": true,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachNextBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "quartermaster_finch",
+        "arrow": {
+          "x": -312,
+          "z": 57.2
+        },
+        "glowQuest": "q_ps_pouch_and_purse",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_pouch_and_purse": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_pouch_and_purse:active",
+        "step": "active",
+        "stepIndex": 6,
+        "stepTotal": 10,
+        "questId": "q_ps_pouch_and_purse",
+        "state": "active",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": true,
+        "bodyKey": "hudChrome.bootcamp.taskPouchBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "quartermaster_finch",
+        "arrow": {
+          "x": -312,
+          "z": 57.2
+        },
+        "glowQuest": "q_ps_pouch_and_purse",
+        "glowVendorItem": "linen_pouch",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_pouch_and_purse": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_pouch_and_purse:ready",
+        "step": "ready",
+        "stepIndex": 6,
+        "stepTotal": 10,
+        "questId": "q_ps_pouch_and_purse",
+        "state": "ready",
+        "titleKey": "hudChrome.bootcamp.coachReadyTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.readyPouchBody",
+        "params": [
+          {
+            "name": "bagsKey",
+            "bind": "bags"
+          },
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "bags",
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "instructor_maren",
+        "arrow": {
+          "x": -299,
+          "z": 49
+        },
+        "glowQuest": "q_ps_pouch_and_purse",
+        "glowVendorItem": "",
+        "glowBagItem": "linen_pouch",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_signpost": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_signpost:available",
+        "step": "available",
+        "stepIndex": 7,
+        "stepTotal": 10,
+        "questId": "q_ps_the_signpost",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.coachNextTitle",
+        "titleHasNpc": true,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachNextBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "instructor_maren",
+        "arrow": {
+          "x": -299,
+          "z": 49
+        },
+        "glowQuest": "q_ps_the_signpost",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_signpost": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_signpost:active",
+        "step": "active",
+        "stepIndex": 7,
+        "stepTotal": 10,
+        "questId": "q_ps_the_signpost",
+        "state": "active",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": true,
+        "bodyKey": "hudChrome.bootcamp.coachTaskBody",
+        "params": [
+          {
+            "name": "mapKey",
+            "bind": "map"
+          }
+        ],
+        "keycaps": [],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "instructor_maren",
+        "arrow": {
+          "x": -312,
+          "z": 42.5
+        },
+        "glowQuest": "q_ps_the_signpost",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_signpost": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_signpost:ready",
+        "step": "ready",
+        "stepIndex": 7,
+        "stepTotal": 10,
+        "questId": "q_ps_the_signpost",
+        "state": "ready",
+        "titleKey": "hudChrome.bootcamp.coachReadyTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachReadyBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "instructor_maren",
+        "arrow": {
+          "x": -299,
+          "z": 49
+        },
+        "glowQuest": "q_ps_the_signpost",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_long_walk": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_long_walk:available",
+        "step": "available",
+        "stepIndex": 8,
+        "stepTotal": 10,
+        "questId": "q_ps_the_long_walk",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.coachNextTitle",
+        "titleHasNpc": true,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachNextBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "instructor_maren",
+        "arrow": {
+          "x": -299,
+          "z": 49
+        },
+        "glowQuest": "q_ps_the_long_walk",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_long_walk": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_long_walk:active",
+        "step": "active",
+        "stepIndex": 8,
+        "stepTotal": 10,
+        "questId": "q_ps_the_long_walk",
+        "state": "active",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": true,
+        "bodyKey": "hudChrome.bootcamp.taskLongWalkBody",
+        "params": [
+          {
+            "name": "bagsKey",
+            "bind": "bags"
+          }
+        ],
+        "keycaps": [
+          "bags"
+        ],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "instructor_maren",
+        "arrow": {
+          "x": -312,
+          "z": -6
+        },
+        "glowQuest": "q_ps_the_long_walk",
+        "glowVendorItem": "",
+        "glowBagItem": "ps_passing_stone",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_long_walk": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_long_walk:ready",
+        "step": "ready",
+        "stepIndex": 8,
+        "stepTotal": 10,
+        "questId": "q_ps_the_long_walk",
+        "state": "ready",
+        "titleKey": "hudChrome.bootcamp.coachReadyTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachReadyBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "instructor_maren",
+        "arrow": {
+          "x": -299,
+          "z": 49
+        },
+        "glowQuest": "q_ps_the_long_walk",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_set_sail": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_set_sail:available",
+        "step": "available",
+        "stepIndex": 9,
+        "stepTotal": 10,
+        "questId": "q_ps_set_sail",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.coachNextTitle",
+        "titleHasNpc": true,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachNextBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "instructor_maren",
+        "arrow": {
+          "x": -299,
+          "z": 49
+        },
+        "glowQuest": "q_ps_set_sail",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_set_sail": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_set_sail:active",
+        "step": "active",
+        "stepIndex": 9,
+        "stepTotal": 10,
+        "questId": "q_ps_set_sail",
+        "state": "active",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": true,
+        "bodyKey": "hudChrome.bootcamp.coachTaskBody",
+        "params": [
+          {
+            "name": "mapKey",
+            "bind": "map"
+          }
+        ],
+        "keycaps": [],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "ferryman_odo",
+        "arrow": {
+          "x": -284,
+          "z": -9
+        },
+        "glowQuest": "q_ps_set_sail",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_set_sail": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_set_sail:ready",
+        "step": "ready",
+        "stepIndex": 9,
+        "stepTotal": 10,
+        "questId": "q_ps_set_sail",
+        "state": "ready",
+        "titleKey": "hudChrome.bootcamp.coachReadyTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachReadyBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "ferryman_odo",
+        "arrow": {
+          "x": -284,
+          "z": -9
+        },
+        "glowQuest": "q_ps_set_sail",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_long_walk": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_long_walk:active",
+        "step": "active",
+        "stepIndex": 8,
+        "stepTotal": 10,
+        "questId": "q_ps_the_long_walk",
+        "state": "active",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": true,
+        "bodyKey": "hudChrome.bootcamp.taskLongWalkBody",
+        "params": [
+          {
+            "name": "bagsKey",
+            "bind": "bags"
+          }
+        ],
+        "keycaps": [
+          "bags"
+        ],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "instructor_maren",
+        "arrow": {
+          "x": -312,
+          "z": -6
+        },
+        "glowQuest": "q_ps_the_long_walk",
+        "glowVendorItem": "",
+        "glowBagItem": "ps_passing_stone",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_long_walk": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "dead",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_long_walk:active",
+        "step": "active",
+        "stepIndex": 8,
+        "stepTotal": 10,
+        "questId": "q_ps_the_long_walk",
+        "state": "active",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": true,
+        "bodyKey": "hudChrome.bootcamp.taskLongWalkDeadBody",
+        "params": [],
+        "keycaps": [],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "instructor_maren",
+        "arrow": null,
+        "glowQuest": "q_ps_the_long_walk",
+        "glowVendorItem": "",
+        "glowBagItem": "ps_passing_stone",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_long_walk": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "ghost",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_long_walk:active",
+        "step": "active",
+        "stepIndex": 8,
+        "stepTotal": 10,
+        "questId": "q_ps_the_long_walk",
+        "state": "active",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": true,
+        "bodyKey": "hudChrome.bootcamp.taskLongWalkGhostBody",
+        "params": [],
+        "keycaps": [],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "instructor_maren",
+        "arrow": null,
+        "glowQuest": "q_ps_the_long_walk",
+        "glowVendorItem": "",
+        "glowBagItem": "ps_passing_stone",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_pouch_and_purse": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_pouch_and_purse:ready",
+        "step": "ready",
+        "stepIndex": 6,
+        "stepTotal": 10,
+        "questId": "q_ps_pouch_and_purse",
+        "state": "ready",
+        "titleKey": "hudChrome.bootcamp.coachReadyTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.readyPouchBody",
+        "params": [
+          {
+            "name": "bagsKey",
+            "bind": "bags"
+          },
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "bags",
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "instructor_maren",
+        "arrow": {
+          "x": -299,
+          "z": 49
+        },
+        "glowQuest": "q_ps_pouch_and_purse",
+        "glowVendorItem": "",
+        "glowBagItem": "linen_pouch",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_pouch_and_purse": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          "linen_pouch",
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_pouch_and_purse:ready",
+        "step": "ready",
+        "stepIndex": 6,
+        "stepTotal": 10,
+        "questId": "q_ps_pouch_and_purse",
+        "state": "ready",
+        "titleKey": "hudChrome.bootcamp.coachReadyTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.readyPouchBody",
+        "params": [
+          {
+            "name": "bagsKey",
+            "bind": "bags"
+          },
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "bags",
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "instructor_maren",
+        "arrow": {
+          "x": -299,
+          "z": 49
+        },
+        "glowQuest": "q_ps_pouch_and_purse",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_wreck_line": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": true,
+        "ringDone": false,
+        "ring": {
+          "questDone": true,
+          "inBags": true,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "ring",
+        "id": "ring:equip",
+        "step": "equip",
+        "stepIndex": 5,
+        "stepTotal": 10,
+        "questId": "q_ps_the_wreck_line",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.ringEquipTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.ringEquipBody",
+        "params": [
+          {
+            "name": "bagsKey",
+            "bind": "bags"
+          }
+        ],
+        "keycaps": [
+          "bags"
+        ],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "",
+        "arrow": null,
+        "glowQuest": "q_ps_the_wreck_line",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": true,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_wreck_line": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": true,
+        "ringDone": false,
+        "ring": {
+          "questDone": true,
+          "inBags": false,
+          "equipped": true,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "ring",
+        "id": "ring:admire",
+        "step": "admire",
+        "stepIndex": 5,
+        "stepTotal": 10,
+        "questId": "q_ps_the_wreck_line",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.ringAdmireTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.ringAdmireBody",
+        "params": [
+          {
+            "name": "charKey",
+            "bind": "char"
+          }
+        ],
+        "keycaps": [
+          "char"
+        ],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "",
+        "arrow": null,
+        "glowQuest": "q_ps_the_wreck_line",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": true
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_wreck_line": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": true,
+        "ringDone": false,
+        "ring": {
+          "questDone": true,
+          "inBags": false,
+          "equipped": true,
+          "charSeen": true
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_wreck_line:available",
+        "step": "available",
+        "stepIndex": 5,
+        "stepTotal": 10,
+        "questId": "q_ps_the_wreck_line",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.coachNextTitle",
+        "titleHasNpc": true,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachNextBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "tidewarden_nel",
+        "arrow": {
+          "x": -371,
+          "z": -13
+        },
+        "glowQuest": "q_ps_the_wreck_line",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_wreck_line": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": true,
+        "ringDone": true,
+        "ring": {
+          "questDone": true,
+          "inBags": true,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "coach",
+        "id": "coach:q_ps_the_wreck_line:available",
+        "step": "available",
+        "stepIndex": 5,
+        "stepTotal": 10,
+        "questId": "q_ps_the_wreck_line",
+        "state": "available",
+        "titleKey": "hudChrome.bootcamp.coachNextTitle",
+        "titleHasNpc": true,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.coachNextBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": true,
+        "bodyHasAbility": false,
+        "npcId": "tidewarden_nel",
+        "arrow": {
+          "x": -371,
+          "z": -13
+        },
+        "glowQuest": "q_ps_the_wreck_line",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {},
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": true,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "bell",
+        "id": "bell",
+        "step": "",
+        "stepIndex": 10,
+        "stepTotal": 10,
+        "questId": "",
+        "state": "",
+        "titleKey": "hudChrome.bootcamp.bellTitle",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "hudChrome.bootcamp.bellBody",
+        "params": [
+          {
+            "name": "interactKey",
+            "bind": "interact"
+          }
+        ],
+        "keycaps": [
+          "interact"
+        ],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "",
+        "arrow": {
+          "x": -279,
+          "z": -10
+        },
+        "glowQuest": "",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    },
+    {
+      "in": {
+        "onIsland": false,
+        "quests": {},
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": true,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "out": {
+        "kind": "hidden",
+        "id": "hidden",
+        "step": "",
+        "stepIndex": -1,
+        "stepTotal": 0,
+        "questId": "",
+        "state": "",
+        "titleKey": "",
+        "titleHasNpc": false,
+        "titleIsQuest": false,
+        "bodyKey": "",
+        "params": [],
+        "keycaps": [],
+        "bodyHasNpc": false,
+        "bodyHasAbility": false,
+        "npcId": "",
+        "arrow": null,
+        "glowQuest": "",
+        "glowVendorItem": "",
+        "glowBagItem": "",
+        "glowBagsButton": false,
+        "glowCharButton": false
+      }
+    }
+  ]
+}

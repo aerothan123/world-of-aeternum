@@ -1,0 +1,295 @@
+{
+  "suite": "tutorial_chain",
+  "source": "scripts/unreal/tutorial_export.ts tutorialChainIds over the Proving Shore rail order",
+  "note": "the step ladder talk, forward, turnwalk, strafe, camera, then 9 rail stations, the ring coda and the bell",
+  "cases": [
+    {
+      "in": {
+        "index": 0
+      },
+      "out": {
+        "id": "bootcamp:talk"
+      }
+    },
+    {
+      "in": {
+        "index": 1
+      },
+      "out": {
+        "id": "bootcamp:forward"
+      }
+    },
+    {
+      "in": {
+        "index": 2
+      },
+      "out": {
+        "id": "bootcamp:turnwalk"
+      }
+    },
+    {
+      "in": {
+        "index": 3
+      },
+      "out": {
+        "id": "bootcamp:strafe"
+      }
+    },
+    {
+      "in": {
+        "index": 4
+      },
+      "out": {
+        "id": "bootcamp:camera"
+      }
+    },
+    {
+      "in": {
+        "index": 5
+      },
+      "out": {
+        "id": "bootcamp:done"
+      }
+    },
+    {
+      "in": {
+        "index": 6
+      },
+      "out": {
+        "id": "coach:q_ps_strike_true:available"
+      }
+    },
+    {
+      "in": {
+        "index": 7
+      },
+      "out": {
+        "id": "coach:q_ps_strike_true:active"
+      }
+    },
+    {
+      "in": {
+        "index": 8
+      },
+      "out": {
+        "id": "coach:q_ps_strike_true:ready"
+      }
+    },
+    {
+      "in": {
+        "index": 9
+      },
+      "out": {
+        "id": "coach:q_ps_hone_the_edge:available"
+      }
+    },
+    {
+      "in": {
+        "index": 10
+      },
+      "out": {
+        "id": "coach:q_ps_hone_the_edge:active"
+      }
+    },
+    {
+      "in": {
+        "index": 11
+      },
+      "out": {
+        "id": "coach:q_ps_hone_the_edge:ready"
+      }
+    },
+    {
+      "in": {
+        "index": 12
+      },
+      "out": {
+        "id": "coach:q_ps_shell_and_claw:available"
+      }
+    },
+    {
+      "in": {
+        "index": 13
+      },
+      "out": {
+        "id": "coach:q_ps_shell_and_claw:active"
+      }
+    },
+    {
+      "in": {
+        "index": 14
+      },
+      "out": {
+        "id": "coach:q_ps_shell_and_claw:ready"
+      }
+    },
+    {
+      "in": {
+        "index": 15
+      },
+      "out": {
+        "id": "coach:q_ps_mother_of_pearl:available"
+      }
+    },
+    {
+      "in": {
+        "index": 16
+      },
+      "out": {
+        "id": "coach:q_ps_mother_of_pearl:active"
+      }
+    },
+    {
+      "in": {
+        "index": 17
+      },
+      "out": {
+        "id": "coach:q_ps_mother_of_pearl:ready"
+      }
+    },
+    {
+      "in": {
+        "index": 18
+      },
+      "out": {
+        "id": "ring:equip"
+      }
+    },
+    {
+      "in": {
+        "index": 19
+      },
+      "out": {
+        "id": "ring:admire"
+      }
+    },
+    {
+      "in": {
+        "index": 20
+      },
+      "out": {
+        "id": "coach:q_ps_the_wreck_line:available"
+      }
+    },
+    {
+      "in": {
+        "index": 21
+      },
+      "out": {
+        "id": "coach:q_ps_the_wreck_line:active"
+      }
+    },
+    {
+      "in": {
+        "index": 22
+      },
+      "out": {
+        "id": "coach:q_ps_the_wreck_line:ready"
+      }
+    },
+    {
+      "in": {
+        "index": 23
+      },
+      "out": {
+        "id": "coach:q_ps_pouch_and_purse:available"
+      }
+    },
+    {
+      "in": {
+        "index": 24
+      },
+      "out": {
+        "id": "coach:q_ps_pouch_and_purse:active"
+      }
+    },
+    {
+      "in": {
+        "index": 25
+      },
+      "out": {
+        "id": "coach:q_ps_pouch_and_purse:ready"
+      }
+    },
+    {
+      "in": {
+        "index": 26
+      },
+      "out": {
+        "id": "coach:q_ps_the_signpost:available"
+      }
+    },
+    {
+      "in": {
+        "index": 27
+      },
+      "out": {
+        "id": "coach:q_ps_the_signpost:active"
+      }
+    },
+    {
+      "in": {
+        "index": 28
+      },
+      "out": {
+        "id": "coach:q_ps_the_signpost:ready"
+      }
+    },
+    {
+      "in": {
+        "index": 29
+      },
+      "out": {
+        "id": "coach:q_ps_the_long_walk:available"
+      }
+    },
+    {
+      "in": {
+        "index": 30
+      },
+      "out": {
+        "id": "coach:q_ps_the_long_walk:active"
+      }
+    },
+    {
+      "in": {
+        "index": 31
+      },
+      "out": {
+        "id": "coach:q_ps_the_long_walk:ready"
+      }
+    },
+    {
+      "in": {
+        "index": 32
+      },
+      "out": {
+        "id": "coach:q_ps_set_sail:available"
+      }
+    },
+    {
+      "in": {
+        "index": 33
+      },
+      "out": {
+        "id": "coach:q_ps_set_sail:active"
+      }
+    },
+    {
+      "in": {
+        "index": 34
+      },
+      "out": {
+        "id": "coach:q_ps_set_sail:ready"
+      }
+    },
+    {
+      "in": {
+        "index": 35
+      },
+      "out": {
+        "id": "bell"
+      }
+    }
+  ]
+}
