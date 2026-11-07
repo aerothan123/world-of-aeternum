@@ -271,3 +271,38 @@ describe('Balgath eye-crystal rename (Loomshard is a coined word from another ga
     expect(scanned).toBeGreaterThan(50);
   });
 });
+
+describe('Amberfall town rename (Lanternmere is the title of an existing itch.io game)', () => {
+  it('pins the Lanternfold literals on the content defs', () => {
+    // The ids are frozen ('lanternmere' POI, painted town layout); only the
+    // display text moved.
+    const zone = ZONES.find((z) => z.id === 'amberfall');
+    expect(zone?.hub?.name).toBe('Lanternfold');
+    expect(zone?.pois?.find((p) => p.id === 'lanternmere')?.label).toBe('Lanternfold');
+    expect(NPCS.reeve_ottoline.title).toBe('Reeve of Lanternfold');
+    expect(NPCS.reeve_ottoline.greeting).toContain('Welcome to Lanternfold');
+    expect(QUESTS.q_af_goldmelt_road.text).toContain('so Lanternfold knows');
+  });
+
+  it('leaves no Lanternmere in any shipped player-facing English source', () => {
+    const roots = ['../src/sim/content', '../src/ui/i18n.catalog'].map((rel) =>
+      fileURLToPath(new URL(rel, import.meta.url)),
+    );
+    let scanned = 0;
+    for (const root of roots) {
+      for (const { file, full } of tsFilesUnder(root)) {
+        scanned++;
+        const source = readFileSync(full, 'utf8');
+        // Comments may name the old word; the frozen lowercase id is not display text.
+        const code = source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+        expect(code, file).not.toMatch(/Lanternmere/);
+      }
+    }
+    expect(scanned).toBeGreaterThan(50);
+    const touchup = readFileSync(
+      fileURLToPath(new URL('../data/world_touchup/current.map.json', import.meta.url)),
+      'utf8',
+    );
+    expect(touchup).not.toMatch(/Lanternmere/);
+  });
+});

@@ -2356,9 +2356,9 @@ export const GUIDE_ZONES: GuideZoneInfo[] = [
     "min": 18,
     "max": 20,
     "biome": "amber",
-    "hub": "Lanternmere",
+    "hub": "Lanternfold",
     "pois": [
-      "Lanternmere",
+      "Lanternfold",
       "The Goldmelt",
       "The Gilded Orchard",
       "Harvest Hollow",
@@ -2366,7 +2366,7 @@ export const GUIDE_ZONES: GuideZoneInfo[] = [
       "Cindermaple Rise",
       "The Leaning Monolith"
     ],
-    "welcome": "Every leaf here burns gold and red, yet none ever fall. The lanterns of Lanternmere are lit for you.",
+    "welcome": "Every leaf here burns gold and red, yet none ever fall. The lanterns of Lanternfold are lit for you.",
     "families": [
       "beast",
       "mudfin",

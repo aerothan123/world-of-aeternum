@@ -1591,7 +1591,7 @@ frozen).
 | Keeper of the Hedgewick Inn | CLEAR |  | npcTitle:wickmother_sorrel |
 | Keeper Saelwyn | CLEAR |  | npc:keeper_saelwyn |
 | Korzul the Gravewyrm | CLEAR |  | mob:korzul_the_gravewyrm quest:q_gravewyrm |
-| Lanternmere | CLEAR |  | poi:6.0 |
+| Lanternfold | CLEAR | renamed 2026-11-06 from Lanternmere, which an outside audit found is the title of an existing itch.io game (COLLISION missed by the original sweep). Replacement verified 2026-11-06: quoted "Lanternfold" (web, game wikis, itch.io, Steam) returned no game, place, or product of that name; nearest neighbors are distinct tokens (Lanternfall and Lanterner on itch.io, Lanternfell on ModDB). Tokens are plain English (lantern, fold). Rejected candidates: Wickmere (too close to the Hedgewick/Wickmother names already shipped), Tallowmere (an existing itch.io/Steam game). Id stays `lanternmere`. | poi:6.0 |
 | Lifesap | CLEAR |  | ability:innervate choiceRow:dru_r11_innervate |
 | Lightmend | CLEAR |  | ability:flash_of_light |
 | Linebreaker | CLEAR | release-minted (PR #3133 ip-safe re-cut, maintainer ruling); replaced the Sergeant GENERIC keep at the v0.36.0 merge | deed:pvp_honor_sergeant deedTitle:pvp_honor_sergeant |
@@ -1634,7 +1634,7 @@ frozen).
 | Pyrebrand Weapon | CLEAR |  | ability:flametongue_weapon |
 | Pyrelance | CLEAR |  | ability:pyroblast |
 | Raw Frostgill Trout | CLEAR |  | item:raw_frostgill_trout |
-| Reeve of Lanternmere | CLEAR |  | npcTitle:reeve_ottoline |
+| Reeve of Lanternfold | CLEAR | renamed 2026-11-06 with the town (was Reeve of Lanternmere); see the Lanternfold row | npcTitle:reeve_ottoline |
 | Reins of Kama-Kage the Shadow-Jump Toad | CLEAR |  | item:reins_shadowjump_toad |
 | Reins of the Goliath Grag-Bear | CLEAR |  | item:reins_grag_bear |
 | Reins of the Valorsteed | CLEAR |  | item:reins_valorsteed |

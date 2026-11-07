@@ -1804,7 +1804,7 @@ export const guideStrings = {
     frostBlurb:
       'A hush of snow and dark pines under the aurora, where the cold itself feels awake and Icemantle keeps its fires burning.',
     amberBlurb:
-      'An eternal autumn of gold and red leaves that never fall, gathered around the lantern-lit town of Lanternmere.',
+      'An eternal autumn of gold and red leaves that never fall, gathered around the lantern-lit town of Lanternfold.',
     fenBlurb:
       'A bright, humming wetland of lilies and slow water, crossed on old boardwalks from the bridge-town of Bridgemere.',
     nightBlurb:
@@ -1837,7 +1837,7 @@ export const guideStrings = {
     frostGreeter: 'The hearthkeeper, Icemantle',
     amberGreeting:
       'Every leaf here burns gold and red, yet none ever fall. The lanterns are lit for you; mind the Goldmelt on your way up.',
-    amberGreeter: 'The lanternwright, Lanternmere',
+    amberGreeter: 'The lanternwright, Lanternfold',
     fenGreeting:
       'The fen hums with dragonflies and bees. Cross the bridge, rest your feet awhile, and stay on the boards past the pools.',
     fenGreeter: 'The bridgekeeper, Bridgemere',
@@ -1872,7 +1872,7 @@ export const guideStrings = {
     frostPlaceNotes:
       'Icemantle keeps the last warm hearth. The Snowline marks where the drifts take over; Glacier Tarn is black, still water under the ice; the Aurora Steps climb beneath the dancing lights; the Shiverfen is a frozen mire that never quite sleeps; and the Howling Terraces earn their name every night.',
     amberPlaceNotes:
-      'Lanternmere glows at the heart of the harvest. The Goldmelt is the amber-slick pass in; the Gilded Orchard and Harvest Hollow keep the sweetest pickings and the boldest thieves; the Great Mere mirrors the burning leaves; Cindermaple Rise stands tallest and reddest; and the Leaning Monolith remembers something older than autumn.',
+      'Lanternfold glows at the heart of the harvest. The Goldmelt is the amber-slick pass in; the Gilded Orchard and Harvest Hollow keep the sweetest pickings and the boldest thieves; the Great Mere mirrors the burning leaves; Cindermaple Rise stands tallest and reddest; and the Leaning Monolith remembers something older than autumn.',
     fenPlaceNotes:
       'Bridgemere sits astride the slow water. The Amberfen Steps come down from the harvest country; the Lilymoors and Bogshine Pools glitter with wisps and dragonflies; Willowweep trails its branches into the mere; and the Drowsy Flats are as gentle as this land gets.',
     nightPlaceNotes:
