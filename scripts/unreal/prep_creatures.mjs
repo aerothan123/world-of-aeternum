@@ -184,7 +184,7 @@ function footfalls(doc, anim, feet) {
       feet.map((f) => f.joint),
       t,
     );
-    ps.forEach((p, i) => track[i].push(p[1]));
+    for (let i = 0; i < ps.length; i++) track[i].push(ps[i][1]);
   }
   const out = [];
   track.forEach((h, i) => {
