@@ -25,18 +25,24 @@ const UPDATE = process.env.UNREAL_PARITY_UPDATE === '1';
 
 describe('unreal audio parity export', () => {
   for (const name of Object.keys(AUDIO_PARITY_SUITES)) {
-    it(`committed suite ${name} is fresh`, () => {
-      const fresh = buildAudioSuite(name);
-      expect(fresh.suite).toBe(name);
-      expect(fresh.cases.length).toBeGreaterThan(0);
-      const dir = join(DIR, PARITY_EXPORT_SUBDIR);
-      const path = join(dir, `${name}.json`);
-      if (UPDATE) {
-        mkdirSync(dir, { recursive: true });
-        writeFileSync(path, `${JSON.stringify(fresh)}\n`);
-      }
-      expect(JSON.parse(readFileSync(path, 'utf8'))).toEqual(JSON.parse(JSON.stringify(fresh)));
-    });
+    it(
+      `committed suite ${name} is fresh`,
+      () => {
+        const fresh = buildAudioSuite(name);
+        expect(fresh.suite).toBe(name);
+        expect(fresh.cases.length).toBeGreaterThan(0);
+        const dir = join(DIR, PARITY_EXPORT_SUBDIR);
+        const path = join(dir, `${name}.json`);
+        if (UPDATE) {
+          mkdirSync(dir, { recursive: true });
+          writeFileSync(path, `${JSON.stringify(fresh)}\n`);
+        }
+        expect(JSON.parse(readFileSync(path, 'utf8'))).toEqual(JSON.parse(JSON.stringify(fresh)));
+        // audio_near_water samples the water field across every zone: about 20 s alone,
+        // so it alone takes a raised budget for a loaded run.
+      },
+      name === 'audio_near_water' ? 60_000 : undefined,
+    );
   }
 
   it('the combat suite agrees with the live instanceMusicDecision on the overworld', () => {

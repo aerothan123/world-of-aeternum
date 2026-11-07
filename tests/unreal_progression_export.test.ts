@@ -21,18 +21,24 @@ const UPDATE = process.env.UNREAL_PARITY_UPDATE === '1';
 
 describe('unreal progression parity export', () => {
   for (const name of Object.keys(PROGRESSION_PARITY_SUITES)) {
-    it(`committed suite ${name} is fresh`, () => {
-      const fresh = buildProgressionSuite(name);
-      expect(fresh.suite).toBe(name);
-      expect(fresh.cases.length).toBeGreaterThan(0);
-      const dir = join(DIR, PARITY_EXPORT_SUBDIR);
-      const path = join(dir, `${name}.json`);
-      if (UPDATE) {
-        mkdirSync(dir, { recursive: true });
-        writeFileSync(path, `${JSON.stringify(fresh, null, 2)}\n`);
-      }
-      expect(JSON.parse(readFileSync(path, 'utf8'))).toEqual(JSON.parse(JSON.stringify(fresh)));
-    });
+    it(
+      `committed suite ${name} is fresh`,
+      () => {
+        const fresh = buildProgressionSuite(name);
+        expect(fresh.suite).toBe(name);
+        expect(fresh.cases.length).toBeGreaterThan(0);
+        const dir = join(DIR, PARITY_EXPORT_SUBDIR);
+        const path = join(dir, `${name}.json`);
+        if (UPDATE) {
+          mkdirSync(dir, { recursive: true });
+          writeFileSync(path, `${JSON.stringify(fresh, null, 2)}\n`);
+        }
+        expect(JSON.parse(readFileSync(path, 'utf8'))).toEqual(JSON.parse(JSON.stringify(fresh)));
+        // progression_xp_rested runs whole rested-XP sessions; it alone takes a raised
+        // budget so a loaded run does not trip the 20 s default.
+      },
+      name === 'progression_xp_rested' ? 60_000 : undefined,
+    );
   }
 
   it('the rested suite covers a bonus, a level-up and the accrual', () => {

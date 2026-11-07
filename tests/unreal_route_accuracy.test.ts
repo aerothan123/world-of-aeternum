@@ -162,5 +162,6 @@ describe('unreal route accuracy (M3)', () => {
     // A replay that never moved cannot pass: the compared poses must cover a real walk.
     expect(travel).toBeGreaterThan(20);
     expect(worst).toBeLessThanOrEqual(TOLERANCE_YD);
-  });
+    // A whole recorded route replayed through the sim: near the 20 s default under load.
+  }, 60_000);
 });
