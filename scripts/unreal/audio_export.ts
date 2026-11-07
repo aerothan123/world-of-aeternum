@@ -53,8 +53,30 @@ import {
 import { sfxMixBus } from '../../src/game/sfx_mix_bus';
 import { parseRuntimeSfxPack } from '../../src/game/sfx_runtime_pack';
 import { VOICE_LINES } from '../../src/game/voice_manifest.generated';
+import {
+  createRegionAmbience,
+  dayWeightForPhase,
+  REGION_BED_GAINS,
+  sampleRegionAmbienceInto,
+} from '../../src/render/region_ambience_core';
 import { GOURDLIGHT_EVE_ID } from '../../src/sim/content/gourdlight_eve';
-import { DUNGEONS, ZONES } from '../../src/sim/data';
+import {
+  ARENA_X_MAX,
+  ARENA_X_MIN,
+  DELVE_BAND_X_MIN,
+  DUNGEON_OVERFLOW_INDEX,
+  DUNGEON_OVERFLOW_X_BASE,
+  DUNGEON_X_THRESHOLD,
+  DUNGEONS,
+  dungeonAt,
+  INSTANCE_X_BASE,
+  instanceOrigin,
+  RIFT_BAND_X_MIN,
+  STRIP_MAX_X,
+  STRIP_MIN_X,
+  ZONES,
+  zoneAt,
+} from '../../src/sim/data';
 import type { BiomeId } from '../../src/sim/types';
 import type { ParityCase, ParitySuite } from './parity_export';
 
@@ -243,6 +265,7 @@ export async function buildAudioCatalog() {
     crucible,
     defaultBoss,
     tables: musicTables(),
+    world: worldTables(),
     gaps: { missing, unscoredZones: unscored },
   };
 }
@@ -541,7 +564,137 @@ function scoreNightSuite(): ParitySuite {
   };
 }
 
+/** Where the listener is, as the audio reads it: zoneAt and dungeonAt over the shipped world. */
+function locationSuite(): ParitySuite {
+  const cases: ParityCase[] = [];
+  for (const z of ZONES) {
+    const x0 = z.xMin ?? STRIP_MIN_X;
+    const x1 = z.xMax ?? STRIP_MAX_X;
+    for (const fx of [0.02, 0.5, 0.98])
+      for (const fz of [0.02, 0.5, 0.98]) {
+        const x = Math.round((x0 + (x1 - x0) * fx) * 100) / 100;
+        const zz = Math.round((z.zMin + (z.zMax - z.zMin) * fz) * 100) / 100;
+        cases.push({
+          in: { x, z: zz },
+          out: { zoneId: zoneAt(x, zz).id, dungeonId: dungeonAt(x)?.id ?? null },
+        });
+      }
+  }
+  for (const d of Object.values(DUNGEONS)) {
+    for (const dx of [-310, -250, 0, 250, 310]) {
+      const o = instanceOrigin(d.index, 0);
+      const x = o.x + dx;
+      cases.push({
+        in: { x, z: o.z },
+        out: { zoneId: zoneAt(x, o.z).id, dungeonId: dungeonAt(x)?.id ?? null },
+      });
+    }
+  }
+  return { suite: 'audio_location', source: 'src/sim/data.ts zoneAt, dungeonAt', note: '', cases };
+}
+
+function regionAmbienceSuite(): ParitySuite {
+  const cases: ParityCase[] = [];
+  const out = createRegionAmbience();
+  const byId = (id: string) => ZONES.find((z) => z.id === id);
+  const sample = (
+    x: number,
+    z: number,
+    inDungeon: boolean,
+    interior: string,
+    day: number,
+    forest: number,
+  ) => {
+    sampleRegionAmbienceInto(
+      out,
+      { x, z, inDungeon, dungeonInterior: interior || null, dayWeight: day, forestDensity: forest },
+      zoneAt,
+      byId,
+    );
+    const beds: Record<string, number> = {};
+    out.keys.forEach((k, i) => {
+      if (out.gains[i] > 0) beds[k] = out.gains[i];
+    });
+    cases.push({
+      in: { x, z, inDungeon, interior, dayWeight: day, forest },
+      out: { gains: beds, legacyScale: out.legacyScale, reverbForest: out.reverbEnv === 'forest' },
+    });
+  };
+  for (const zn of ZONES) {
+    const x0 = zn.xMin ?? STRIP_MIN_X;
+    const x1 = zn.xMax ?? STRIP_MAX_X;
+    const pts: Array<[number, number]> = [
+      [(x0 + x1) / 2, (zn.zMin + zn.zMax) / 2],
+      [(x0 + x1) / 2, zn.zMax - 5],
+      [x0 + 10, zn.zMin + 10],
+    ];
+    if (zn.hub) pts.push([zn.hub.x, zn.hub.z], [zn.hub.x + zn.hub.radius + 20, zn.hub.z]);
+    for (const [x, z] of pts)
+      for (const day of [1, 0.4, 0])
+        for (const forest of [0, 0.7])
+          sample(Math.round(x * 100) / 100, Math.round(z * 100) / 100, false, '', day, forest);
+  }
+  const interiors = [
+    ...new Set(Object.values(DUNGEONS).map((d) => (d as { interior?: string }).interior ?? '')),
+  ];
+  for (const i of [...interiors, 'house', 'unknown']) sample(0, 0, true, i, 1, 0);
+  return {
+    suite: 'audio_region_ambience',
+    source: 'src/render/region_ambience_core.ts sampleRegionAmbienceInto over zoneAt',
+    note: 'gains are Float32 in TS: compare within 1e-5; beds absent from out are silent',
+    cases,
+  };
+}
+
+function dayWeightSuite(): ParitySuite {
+  const cases: ParityCase[] = [];
+  for (let i = 0; i <= 48; i++)
+    cases.push({ in: { phase: i / 48 }, out: dayWeightForPhase(i / 48) });
+  return {
+    suite: 'audio_day_weight',
+    source: 'src/render/region_ambience_core.ts dayWeightForPhase',
+    note: '',
+    cases,
+  };
+}
+
+/** The zone rectangles, hubs and instance bands the location port reads. */
+export function worldTables() {
+  return {
+    stripMinX: STRIP_MIN_X,
+    stripMaxX: STRIP_MAX_X,
+    zones: ZONES.map((z) => ({
+      id: z.id,
+      biome: z.biome,
+      xMin: z.xMin ?? null,
+      xMax: z.xMax ?? null,
+      zMin: z.zMin,
+      zMax: z.zMax,
+      hub: z.hub ? { x: z.hub.x, z: z.hub.z, radius: z.hub.radius } : null,
+    })),
+    dungeons: Object.values(DUNGEONS)
+      .map((d) => ({
+        id: d.id,
+        index: d.index,
+        interior: (d as { interior?: string }).interior ?? null,
+      }))
+      .sort((a, b) => a.index - b.index),
+    instanceXBase: INSTANCE_X_BASE,
+    dungeonXThreshold: DUNGEON_X_THRESHOLD,
+    delveBandXMin: DELVE_BAND_X_MIN,
+    riftBandXMin: RIFT_BAND_X_MIN,
+    arenaXMin: ARENA_X_MIN,
+    arenaXMax: ARENA_X_MAX,
+    overflowIndex: DUNGEON_OVERFLOW_INDEX,
+    overflowXBase: DUNGEON_OVERFLOW_X_BASE,
+    regionBedGains: REGION_BED_GAINS,
+  };
+}
+
 export const AUDIO_PARITY_SUITES: Record<string, () => ParitySuite> = {
+  audio_location: locationSuite,
+  audio_region_ambience: regionAmbienceSuite,
+  audio_day_weight: dayWeightSuite,
   audio_music_zone: musicZoneSuite,
   audio_score_slot: scoreSlotSuite,
   audio_music_combat: musicCombatSuite,
