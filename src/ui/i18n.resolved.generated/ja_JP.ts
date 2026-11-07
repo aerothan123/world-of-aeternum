@@ -8164,6 +8164,8 @@ export const ja_JP: EnTranslations = {
       "placeAt": "{anchor}に置く",
       "takeBack": "{anchor}から{item}を回収",
       "noSpots": "この家具に合う空きの場所がない。",
+      "sitOn": "Sit on {item}",
+      "sitHint": "Stand next to a chair, stool or bench to sit on it.",
       "furniturePlaced": "{item}を{anchor}に置いた。",
       "furnitureRemoved": "{anchor}から{item}を回収した。",
       "anchorLabel": "{room}、{kind}{index}",

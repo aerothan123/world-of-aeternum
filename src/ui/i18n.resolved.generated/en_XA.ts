@@ -8164,6 +8164,8 @@ export const en_XA: EnTranslations = {
       "placeAt": "[Þļáçé áţ {anchor}]",
       "takeBack": "[Ţáķé ƀáçķ {item} ƒŕóɱ {anchor}]",
       "noSpots": "[Ñó ƒŕéé šþóţ ƒíţš ţĥíš þíéçé.]",
+      "sitOn": "[Šíţ óñ {item}]",
+      "sitHint": "[Šţáñð ñéẋţ ţó á çĥáíŕ, šţóóļ óŕ ƀéñçĥ ţó šíţ óñ íţ.]",
       "furniturePlaced": "[Ýóú þļáçéð {item} áţ {anchor}.]",
       "furnitureRemoved": "[Ýóú ţóóķ ƀáçķ {item} ƒŕóɱ {anchor}.]",
       "anchorLabel": "[{room}, {kind} {index}]",

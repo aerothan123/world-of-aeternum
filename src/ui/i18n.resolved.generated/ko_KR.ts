@@ -8164,6 +8164,8 @@ export const ko_KR: EnTranslations = {
       "placeAt": "{anchor}에 배치",
       "takeBack": "{anchor}에서 {item} 회수",
       "noSpots": "이 가구에 맞는 빈 자리가 없습니다.",
+      "sitOn": "Sit on {item}",
+      "sitHint": "Stand next to a chair, stool or bench to sit on it.",
       "furniturePlaced": "{item}을(를) {anchor}에 배치했습니다.",
       "furnitureRemoved": "{anchor}에서 {item}을(를) 회수했습니다.",
       "anchorLabel": "{room}, {kind} {index}",

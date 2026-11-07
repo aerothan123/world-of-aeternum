@@ -8164,6 +8164,8 @@ export const zh_TW: EnTranslations = {
       "placeAt": "擺放到{anchor}",
       "takeBack": "從{anchor}收回{item}",
       "noSpots": "沒有適合這件家具的空位。",
+      "sitOn": "Sit on {item}",
+      "sitHint": "Stand next to a chair, stool or bench to sit on it.",
       "furniturePlaced": "你把{item}擺放到了{anchor}。",
       "furnitureRemoved": "你從{anchor}收回了{item}。",
       "anchorLabel": "{room}，{kind}{index}",
