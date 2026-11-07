@@ -9,6 +9,7 @@
 // the Unreal repo's tools/sync_ts_exports.ps1, then write the C++ test against it.
 
 import { MAX_LEVEL, mobXpValue, zeroDiff } from '../../src/sim/types';
+import { keybindConflicts, keybindRegistry } from './settings_parity';
 
 export const PARITY_EXPORT_SUBDIR = 'parity';
 
@@ -45,6 +46,8 @@ function xpMobValue(): ParitySuite {
 
 export const PARITY_SUITES: Record<string, () => ParitySuite> = {
   xp_mob_value: xpMobValue,
+  keybind_registry: keybindRegistry,
+  keybind_conflicts: keybindConflicts,
 };
 
 export function buildParitySuite(name: string): ParitySuite {

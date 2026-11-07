@@ -1,0 +1,1449 @@
+{
+  "suite": "keybind_registry",
+  "source": "src/game/keybinds.ts BIND_ACTIONS",
+  "note": "order is the registry order; '' is no default; category is the English category name",
+  "cases": [
+    {
+      "in": {
+        "id": "forward"
+      },
+      "out": {
+        "category": "Movement",
+        "kind": "held",
+        "d0": "KeyW",
+        "d1": "ArrowUp",
+        "shared": false,
+        "labelKey": "hud.keybinds.actions.forward",
+        "categoryKey": "hud.keybinds.categories.movement"
+      }
+    },
+    {
+      "in": {
+        "id": "back"
+      },
+      "out": {
+        "category": "Movement",
+        "kind": "held",
+        "d0": "KeyS",
+        "d1": "ArrowDown",
+        "shared": false,
+        "labelKey": "hud.keybinds.actions.back",
+        "categoryKey": "hud.keybinds.categories.movement"
+      }
+    },
+    {
+      "in": {
+        "id": "turnLeft"
+      },
+      "out": {
+        "category": "Movement",
+        "kind": "held",
+        "d0": "KeyA",
+        "d1": "ArrowLeft",
+        "shared": false,
+        "labelKey": "hud.keybinds.actions.turnLeft",
+        "categoryKey": "hud.keybinds.categories.movement"
+      }
+    },
+    {
+      "in": {
+        "id": "turnRight"
+      },
+      "out": {
+        "category": "Movement",
+        "kind": "held",
+        "d0": "KeyD",
+        "d1": "ArrowRight",
+        "shared": false,
+        "labelKey": "hud.keybinds.actions.turnRight",
+        "categoryKey": "hud.keybinds.categories.movement"
+      }
+    },
+    {
+      "in": {
+        "id": "strafeLeft"
+      },
+      "out": {
+        "category": "Movement",
+        "kind": "held",
+        "d0": "KeyQ",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hud.keybinds.actions.strafeLeft",
+        "categoryKey": "hud.keybinds.categories.movement"
+      }
+    },
+    {
+      "in": {
+        "id": "strafeRight"
+      },
+      "out": {
+        "category": "Movement",
+        "kind": "held",
+        "d0": "KeyE",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hud.keybinds.actions.strafeRight",
+        "categoryKey": "hud.keybinds.categories.movement"
+      }
+    },
+    {
+      "in": {
+        "id": "jump"
+      },
+      "out": {
+        "category": "Movement",
+        "kind": "held",
+        "d0": "Space",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hud.keybinds.actions.jump",
+        "categoryKey": "hud.keybinds.categories.movement"
+      }
+    },
+    {
+      "in": {
+        "id": "dive"
+      },
+      "out": {
+        "category": "Movement",
+        "kind": "held",
+        "d0": "ControlLeft",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.dive",
+        "categoryKey": "hud.keybinds.categories.movement"
+      }
+    },
+    {
+      "in": {
+        "id": "zoomIn"
+      },
+      "out": {
+        "category": "Movement",
+        "kind": "edge",
+        "d0": "WheelUp",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.zoomIn",
+        "categoryKey": "hud.keybinds.categories.movement"
+      }
+    },
+    {
+      "in": {
+        "id": "zoomOut"
+      },
+      "out": {
+        "category": "Movement",
+        "kind": "edge",
+        "d0": "WheelDown",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.zoomOut",
+        "categoryKey": "hud.keybinds.categories.movement"
+      }
+    },
+    {
+      "in": {
+        "id": "autorun"
+      },
+      "out": {
+        "category": "Movement",
+        "kind": "edge",
+        "d0": "KeyR",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hud.keybinds.actions.autorun",
+        "categoryKey": "hud.keybinds.categories.movement"
+      }
+    },
+    {
+      "in": {
+        "id": "target"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "Tab",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hud.keybinds.actions.target",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "targetPrev"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "Shift+Tab",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.targetPrev",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "targetFriendly"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "KeyH",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.targetFriendly",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "targetFriendlyNext"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "KeyJ",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.targetFriendlyNext",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "targetSelf"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "F1",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.targetSelf",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "targetFocus1"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "Ctrl+F1",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.focusTargets.target",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "setFocus1"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "Shift+F1",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.focusTargets.assign",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "targetFocus2"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "Ctrl+F2",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.focusTargets.target",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "setFocus2"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "Shift+F2",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.focusTargets.assign",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "targetFocus3"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "Ctrl+F3",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.focusTargets.target",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "setFocus3"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "Shift+F3",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.focusTargets.assign",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "targetParty1"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "F2",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.targetParty1",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "targetParty2"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "F3",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.targetParty2",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "targetParty3"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "F4",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.targetParty3",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "targetParty4"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "F5",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.targetParty4",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "targetParty5"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "F6",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.targetParty5",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "targetParty6"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "F7",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.targetParty6",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "targetParty7"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "F8",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.targetParty7",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "targetParty8"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "F9",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.targetParty8",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "targetParty9"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "F10",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.targetParty9",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "interact"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "KeyF",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hud.keybinds.actions.interact",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "bgFlag"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "Shift+KeyF",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.bgFlag",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "attackMove"
+      },
+      "out": {
+        "category": "Targeting",
+        "kind": "edge",
+        "d0": "KeyA",
+        "d1": "",
+        "shared": true,
+        "labelKey": "hud.keybinds.actions.attackMove",
+        "categoryKey": "hud.keybinds.categories.targeting"
+      }
+    },
+    {
+      "in": {
+        "id": "char"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "KeyC",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hud.keybinds.actions.char",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "spellbook"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "KeyP",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hud.keybinds.actions.spellbook",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "questlog"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "KeyL",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hud.keybinds.actions.questlog",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "map"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "KeyM",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hud.keybinds.actions.map",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "bags"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "KeyB",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hud.keybinds.actions.bags",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "crafting"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "KeyT",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.crafting.title",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "nameplates"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "KeyV",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hud.keybinds.actions.nameplates",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "friendlyNameplates"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "Ctrl+KeyV",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.friendlyNameplates",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "talents"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "KeyN",
+        "d1": "",
+        "shared": false,
+        "labelKey": "game.talents.title",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "meters"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "Shift+KeyH",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hud.keybinds.actions.meters",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "targetAuras"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "Shift+KeyJ",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.targetAuras.keybindLabel",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "social"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "KeyO",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hud.keybinds.actions.social",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "arena"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "KeyG",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hud.keybinds.actions.arena",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "dungeonFinder"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "Shift+KeyI",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.finder.title",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "mount"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "Backquote",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.mount",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "leaderboard"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "KeyK",
+        "d1": "",
+        "shared": false,
+        "labelKey": "game.leaderboard.title",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "calendar"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "KeyI",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.calendar.keybindLabel",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "discord"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "KeyU",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.discord",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "deeds"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "Shift+KeyZ",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.deeds.title",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "professions"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "Shift+KeyP",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.professions.title",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "reliquary"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "Shift+KeyX",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.reliquary.title",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "harvestJournal"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "Shift+KeyK",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.harvestJournal.title",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "perfecting"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "Shift+KeyT",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.perfecting.title",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "lootExplorer"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "Shift+KeyO",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.lootExplorer.title",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "cosmetics"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "Shift+KeyY",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.cosmetics.title",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "chat"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "Enter",
+        "d1": "NumpadEnter",
+        "shared": false,
+        "labelKey": "hud.keybinds.actions.chat",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "emoteWheel"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "held",
+        "d0": "KeyX",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.emoteWheel",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "sheathe"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "KeyZ",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.sheathe",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "hideInterface"
+      },
+      "out": {
+        "category": "Interface",
+        "kind": "edge",
+        "d0": "Alt+KeyZ",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.hideInterface",
+        "categoryKey": "hud.keybinds.categories.interface"
+      }
+    },
+    {
+      "in": {
+        "id": "petAttack"
+      },
+      "out": {
+        "category": "Pet",
+        "kind": "edge",
+        "d0": "Ctrl+Digit1",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.petAttack",
+        "categoryKey": "hudChrome.keybinds.categoryPet"
+      }
+    },
+    {
+      "in": {
+        "id": "petStop"
+      },
+      "out": {
+        "category": "Pet",
+        "kind": "edge",
+        "d0": "Ctrl+Digit2",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.petStop",
+        "categoryKey": "hudChrome.keybinds.categoryPet"
+      }
+    },
+    {
+      "in": {
+        "id": "petTaunt"
+      },
+      "out": {
+        "category": "Pet",
+        "kind": "edge",
+        "d0": "Ctrl+Digit3",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.petTaunt",
+        "categoryKey": "hudChrome.keybinds.categoryPet"
+      }
+    },
+    {
+      "in": {
+        "id": "petDefensive"
+      },
+      "out": {
+        "category": "Pet",
+        "kind": "edge",
+        "d0": "Ctrl+Digit4",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.petDefensive",
+        "categoryKey": "hudChrome.keybinds.categoryPet"
+      }
+    },
+    {
+      "in": {
+        "id": "petAggressive"
+      },
+      "out": {
+        "category": "Pet",
+        "kind": "edge",
+        "d0": "Ctrl+Digit5",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.petAggressive",
+        "categoryKey": "hudChrome.keybinds.categoryPet"
+      }
+    },
+    {
+      "in": {
+        "id": "targetPet"
+      },
+      "out": {
+        "category": "Pet",
+        "kind": "edge",
+        "d0": "Ctrl+Digit6",
+        "d1": "",
+        "shared": false,
+        "labelKey": "hudChrome.keybinds.targetPet",
+        "categoryKey": "hudChrome.keybinds.categoryPet"
+      }
+    },
+    {
+      "in": {
+        "id": "slot0"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Digit1",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot1"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Digit2",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot2"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Digit3",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot3"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Digit4",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot4"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Digit5",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot5"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Digit6",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot6"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Digit7",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot7"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Digit8",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot8"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Digit9",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot9"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Digit0",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot10"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Minus",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot11"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Equal",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot12"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Numpad1",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot13"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Numpad2",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot14"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Numpad3",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot15"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Numpad4",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot16"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Numpad5",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot17"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Numpad6",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot18"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Numpad7",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot19"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Numpad8",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot20"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Numpad9",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot21"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Numpad0",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot22"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "NumpadDecimal",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot23"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Shift+Numpad1",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot24"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Shift+Numpad2",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot25"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Shift+Numpad3",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot26"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Shift+Numpad4",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot27"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Shift+Numpad5",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot28"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Shift+Numpad6",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot29"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Shift+Numpad7",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot30"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Shift+Numpad8",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot31"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Shift+Numpad9",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot32"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Shift+Numpad0",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    },
+    {
+      "in": {
+        "id": "slot33"
+      },
+      "out": {
+        "category": "Action Bar",
+        "kind": "edge",
+        "d0": "Shift+NumpadDecimal",
+        "d1": "",
+        "shared": false,
+        "labelKey": "",
+        "categoryKey": "hud.keybinds.categories.actionBar"
+      }
+    }
+  ]
+}
