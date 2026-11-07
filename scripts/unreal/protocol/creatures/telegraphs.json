@@ -1,0 +1,1217 @@
+{
+  "version": 1,
+  "casts": {
+    "bastion_boathook": {
+      "dungeon": "sunken_bastion",
+      "shape": "lane",
+      "range": 22,
+      "arcDeg": 0,
+      "halfWidth": 1.2,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": 9306080
+    },
+    "bastion_brine_column": {
+      "dungeon": "sunken_bastion",
+      "shape": "sigil",
+      "range": 2,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16762938,
+      "accent": 9306080
+    },
+    "bastion_brine_mend": {
+      "dungeon": "sunken_bastion",
+      "shape": "sigil",
+      "range": 1.8,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16762938,
+      "accent": 9306080
+    },
+    "bastion_claw_sweep": {
+      "dungeon": "sunken_bastion",
+      "shape": "cone",
+      "range": 0,
+      "arcDeg": 0,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": null
+    },
+    "bastion_fog_bank": {
+      "dungeon": "sunken_bastion",
+      "shape": "sigil",
+      "range": 2,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16762938,
+      "accent": 12579071
+    },
+    "bastion_fog_ward": {
+      "dungeon": "sunken_bastion",
+      "shape": "sigil",
+      "range": 1.8,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16762938,
+      "accent": 12579071
+    },
+    "bastion_halberd_sweep": {
+      "dungeon": "sunken_bastion",
+      "shape": "cone",
+      "range": 6,
+      "arcDeg": 100,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": null
+    },
+    "bastion_piercing_bolt": {
+      "dungeon": "sunken_bastion",
+      "shape": "lane",
+      "range": 25,
+      "arcDeg": 0,
+      "halfWidth": 1.1,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": null
+    },
+    "bastion_shell_slam": {
+      "dungeon": "sunken_bastion",
+      "shape": "ring",
+      "range": 0,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16723268,
+      "accent": 16769200
+    },
+    "crypt_barrowflame_breath": {
+      "dungeon": "hollow_crypt",
+      "shape": "cone",
+      "range": 14,
+      "arcDeg": 70,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": 11075434
+    },
+    "crypt_carrion_eye": {
+      "dungeon": "hollow_crypt",
+      "shape": "sigil",
+      "range": 2.6,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16762938,
+      "accent": 13802495
+    },
+    "crypt_grave_cleave": {
+      "dungeon": "hollow_crypt",
+      "shape": "cone",
+      "range": 8,
+      "arcDeg": 110,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": null
+    },
+    "crypt_grave_rupture": {
+      "dungeon": "hollow_crypt",
+      "shape": "sigil",
+      "range": 2.8,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16762938,
+      "accent": 10944463
+    },
+    "crypt_marrow_crush": {
+      "dungeon": "hollow_crypt",
+      "shape": "cone",
+      "range": 7,
+      "arcDeg": 50,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": 16773846
+    },
+    "crypt_murder_call": {
+      "dungeon": "hollow_crypt",
+      "shape": "sigil",
+      "range": 2.6,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16762938,
+      "accent": 10944463
+    },
+    "crypt_raise_bones": {
+      "dungeon": "hollow_crypt",
+      "shape": "sigil",
+      "range": 1.6,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 2.5,
+      "color": 16762938,
+      "accent": 10944463
+    },
+    "crypt_rimesilk_spit": {
+      "dungeon": "hollow_crypt",
+      "shape": "lane",
+      "range": 22,
+      "arcDeg": 0,
+      "halfWidth": 1.4,
+      "ahead": 0,
+      "color": 11959295,
+      "accent": 12579071
+    },
+    "crypt_stone_shriek": {
+      "dungeon": "hollow_crypt",
+      "shape": "ring",
+      "range": 10,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 11959295,
+      "accent": null
+    },
+    "crypt_tail_lash": {
+      "dungeon": "hollow_crypt",
+      "shape": "rearCone",
+      "range": 10,
+      "arcDeg": 120,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": null
+    },
+    "crypt_wing_gust": {
+      "dungeon": "hollow_crypt",
+      "shape": "ring",
+      "range": 10,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": null
+    },
+    "sanctum_branding_iron": {
+      "dungeon": "gravewyrm_sanctum",
+      "shape": "sigil",
+      "range": 2.2,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16762938,
+      "accent": 16756848
+    },
+    "sanctum_cinder_breath": {
+      "dungeon": "gravewyrm_sanctum",
+      "shape": "cone",
+      "range": 8,
+      "arcDeg": 90,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": 16756848
+    },
+    "sanctum_counterweight_lash": {
+      "dungeon": "gravewyrm_sanctum",
+      "shape": "cone",
+      "range": 7,
+      "arcDeg": 100,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": 14087167
+    },
+    "sanctum_goad": {
+      "dungeon": "gravewyrm_sanctum",
+      "shape": "sigil",
+      "range": 2.2,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16762938,
+      "accent": 16756848
+    },
+    "sanctum_rime_breath": {
+      "dungeon": "gravewyrm_sanctum",
+      "shape": "cone",
+      "range": 6,
+      "arcDeg": 60,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": 14087167
+    },
+    "sanctum_thaw_the_held": {
+      "dungeon": "gravewyrm_sanctum",
+      "shape": "sigil",
+      "range": 2.2,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16762938,
+      "accent": 10944463
+    },
+    "sanctum_tusker_trample": {
+      "dungeon": "gravewyrm_sanctum",
+      "shape": "lane",
+      "range": 33.5,
+      "arcDeg": 0,
+      "halfWidth": 2.5,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": 14087167
+    },
+    "sanctum_tusker_tusk_sweep": {
+      "dungeon": "gravewyrm_sanctum",
+      "shape": "cone",
+      "range": 13.5,
+      "arcDeg": 120,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": 14087167
+    },
+    "sanctum_warming_rite": {
+      "dungeon": "gravewyrm_sanctum",
+      "shape": "sigil",
+      "range": 2.2,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16762938,
+      "accent": 10944463
+    },
+    "temple_arcing_spark": {
+      "dungeon": "drowned_temple",
+      "shape": "sigil",
+      "range": 3.4,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16762938,
+      "accent": 10476799
+    },
+    "temple_beckoning_moon": {
+      "dungeon": "drowned_temple",
+      "shape": "sigil",
+      "range": 4,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": 14543093
+    },
+    "temple_call_the_tide": {
+      "dungeon": "drowned_temple",
+      "shape": "sigil",
+      "range": 2.2,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16762938,
+      "accent": 7332832
+    },
+    "temple_crushing_torrent": {
+      "dungeon": "drowned_temple",
+      "shape": "lane",
+      "range": 26,
+      "arcDeg": 0,
+      "halfWidth": 2.5,
+      "ahead": 0,
+      "color": 16723268,
+      "accent": 7332832
+    },
+    "temple_drowning_aria": {
+      "dungeon": "drowned_temple",
+      "shape": "sigil",
+      "range": 3,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16762938,
+      "accent": 14543093
+    },
+    "temple_falling_moon": {
+      "dungeon": "drowned_temple",
+      "shape": "sigil",
+      "range": 5,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16723268,
+      "accent": 14543093
+    },
+    "temple_glimmer_venom": {
+      "dungeon": "drowned_temple",
+      "shape": "sigil",
+      "range": 1.6,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16762938,
+      "accent": 10285162
+    },
+    "temple_lightning_spit": {
+      "dungeon": "drowned_temple",
+      "shape": "lane",
+      "range": 24,
+      "arcDeg": 0,
+      "halfWidth": 1.6,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": 10476799
+    },
+    "temple_lullaby": {
+      "dungeon": "drowned_temple",
+      "shape": "sigil",
+      "range": 1.8,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16762938,
+      "accent": 14543093
+    },
+    "temple_lunar_tide": {
+      "dungeon": "drowned_temple",
+      "shape": "ring",
+      "range": 15,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": 14543093
+    },
+    "temple_mere_surge": {
+      "dungeon": "drowned_temple",
+      "shape": "cone",
+      "range": 30,
+      "arcDeg": 60,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": 7332832
+    },
+    "temple_moonlight_lance": {
+      "dungeon": "drowned_temple",
+      "shape": "lane",
+      "range": 30,
+      "arcDeg": 0,
+      "halfWidth": 2,
+      "ahead": 0,
+      "color": 16723268,
+      "accent": 12166911
+    },
+    "temple_pale_mending": {
+      "dungeon": "drowned_temple",
+      "shape": "sigil",
+      "range": 1.8,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16762938,
+      "accent": 14543093
+    },
+    "temple_pearl_slam": {
+      "dungeon": "drowned_temple",
+      "shape": "ring",
+      "range": 7,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": 14543093
+    },
+    "temple_prism_glare": {
+      "dungeon": "drowned_temple",
+      "shape": "sigil",
+      "range": 3,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 11959295,
+      "accent": 12166911
+    },
+    "temple_resonant_slam": {
+      "dungeon": "drowned_temple",
+      "shape": "ring",
+      "range": 12,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16723268,
+      "accent": 12166911
+    },
+    "temple_skewering_trident": {
+      "dungeon": "drowned_temple",
+      "shape": "lane",
+      "range": 22,
+      "arcDeg": 0,
+      "halfWidth": 1.3,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": 16769200
+    },
+    "temple_snapper_snap": {
+      "dungeon": "drowned_temple",
+      "shape": "cone",
+      "range": 6,
+      "arcDeg": 90,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": null
+    },
+    "temple_static_coil": {
+      "dungeon": "drowned_temple",
+      "shape": "ring",
+      "range": 8,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 11959295,
+      "accent": 10476799
+    },
+    "temple_tide_breath": {
+      "dungeon": "drowned_temple",
+      "shape": "cone",
+      "range": 18,
+      "arcDeg": 60,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16723268,
+      "accent": 12579071
+    },
+    "temple_trident_sweep": {
+      "dungeon": "drowned_temple",
+      "shape": "cone",
+      "range": 7,
+      "arcDeg": 100,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": null
+    },
+    "temple_undertow": {
+      "dungeon": "drowned_temple",
+      "shape": "ring",
+      "range": 14,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16723268,
+      "accent": 7332832
+    },
+    "wildheart_ancestral_sap": {
+      "dungeon": "wildheart_basin",
+      "shape": "sigil",
+      "range": 1.8,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16762938,
+      "accent": 6283424
+    },
+    "wildheart_entangling_lash": {
+      "dungeon": "wildheart_basin",
+      "shape": "lane",
+      "range": 20,
+      "arcDeg": 0,
+      "halfWidth": 2,
+      "ahead": 0,
+      "color": 11959295,
+      "accent": 12124042
+    },
+    "wildheart_saurian_stomp": {
+      "dungeon": "wildheart_basin",
+      "shape": "ring",
+      "range": 12,
+      "arcDeg": 360,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 11959295,
+      "accent": 16769200
+    },
+    "wildheart_saurian_tail_swipe": {
+      "dungeon": "wildheart_basin",
+      "shape": "cone",
+      "range": 12,
+      "arcDeg": 120,
+      "halfWidth": 0,
+      "ahead": 0,
+      "color": 16738858,
+      "accent": 16769200
+    }
+  },
+  "objects": {
+    "crypt_barrow_embers": {
+      "shape": "cone",
+      "arcDeg": 70,
+      "color": 16738858,
+      "accent": 11075434,
+      "drive": "hazard",
+      "castId": null
+    },
+    "crypt_grave_rupture_pool": {
+      "shape": "ring",
+      "arcDeg": 360,
+      "color": 16738858,
+      "accent": 10944463,
+      "drive": "hazard",
+      "castId": null
+    },
+    "crypt_grave_rupture_ring": {
+      "shape": "ring",
+      "arcDeg": 360,
+      "color": 16738858,
+      "accent": 10944463,
+      "drive": "cast",
+      "castId": "crypt_grave_rupture"
+    }
+  },
+  "fans": {
+    "bastion_claw_sweep": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "bastion_halberd_sweep": [
+      [
+        0,
+        0
+      ],
+      [
+        -4.596266658713868,
+        3.8567256581192364
+      ],
+      [
+        -3.652568574052324,
+        4.760120041747411
+      ],
+      [
+        -2.5357095704441965,
+        5.437846722219899
+      ],
+      [
+        -1.298637683628617,
+        5.8577760427196
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        1.2986376836286178,
+        5.8577760427196
+      ],
+      [
+        2.535709570444197,
+        5.437846722219899
+      ],
+      [
+        3.652568574052324,
+        4.760120041747411
+      ],
+      [
+        4.596266658713868,
+        3.8567256581192364
+      ]
+    ],
+    "crypt_barrowflame_breath": [
+      [
+        0,
+        0
+      ],
+      [
+        -8.030070108914645,
+        11.468128620045885
+      ],
+      [
+        -6.192041663066018,
+        12.556218381457636
+      ],
+      [
+        -4.2098811930598234,
+        13.352037310475177
+      ],
+      [
+        -2.1297274066588336,
+        13.837061146548649
+      ],
+      [
+        0,
+        14
+      ],
+      [
+        2.1297274066588345,
+        13.837061146548649
+      ],
+      [
+        4.2098811930598234,
+        13.352037310475177
+      ],
+      [
+        6.192041663066017,
+        12.556218381457636
+      ],
+      [
+        8.030070108914645,
+        11.468128620045885
+      ]
+    ],
+    "crypt_grave_cleave": [
+      [
+        0,
+        0
+      ],
+      [
+        -6.553216354311934,
+        4.588611490808368
+      ],
+      [
+        -5.274766520800551,
+        6.014718459831819
+      ],
+      [
+        -3.6939889058802713,
+        7.096086665425774
+      ],
+      [
+        -1.9014871386093843,
+        7.7707365585060915
+      ],
+      [
+        0,
+        8
+      ],
+      [
+        1.9014871386093843,
+        7.7707365585060915
+      ],
+      [
+        3.693988905880272,
+        7.096086665425773
+      ],
+      [
+        5.274766520800551,
+        6.014718459831819
+      ],
+      [
+        6.553216354311934,
+        4.588611490808368
+      ]
+    ],
+    "crypt_marrow_crush": [
+      [
+        0,
+        0
+      ],
+      [
+        -2.9583278321848963,
+        6.3441545092565494
+      ],
+      [
+        -2.250076257122131,
+        6.62851090646574
+      ],
+      [
+        -1.5150772975667202,
+        6.834072049839533
+      ],
+      [
+        -0.7620681239637519,
+        6.958394367556237
+      ],
+      [
+        0,
+        7
+      ],
+      [
+        0.7620681239637523,
+        6.958394367556237
+      ],
+      [
+        1.5150772975667204,
+        6.834072049839533
+      ],
+      [
+        2.250076257122131,
+        6.62851090646574
+      ],
+      [
+        2.9583278321848963,
+        6.3441545092565494
+      ]
+    ],
+    "crypt_tail_lash": [
+      [
+        0,
+        0
+      ],
+      [
+        -8.660254037844386,
+        5.000000000000001
+      ],
+      [
+        -7.071067811865475,
+        7.0710678118654755
+      ],
+      [
+        -4.999999999999999,
+        8.660254037844387
+      ],
+      [
+        -2.588190451025207,
+        9.659258262890683
+      ],
+      [
+        0,
+        10
+      ],
+      [
+        2.588190451025207,
+        9.659258262890683
+      ],
+      [
+        5,
+        8.660254037844386
+      ],
+      [
+        7.071067811865475,
+        7.0710678118654755
+      ],
+      [
+        8.660254037844386,
+        5.000000000000001
+      ]
+    ],
+    "sanctum_cinder_breath": [
+      [
+        0,
+        0
+      ],
+      [
+        -5.65685424949238,
+        5.656854249492381
+      ],
+      [
+        -4.444561864156817,
+        6.651756898420362
+      ],
+      [
+        -3.0614674589207183,
+        7.391036260090294
+      ],
+      [
+        -1.560722576129026,
+        7.8462822432258434
+      ],
+      [
+        0,
+        8
+      ],
+      [
+        1.560722576129026,
+        7.8462822432258434
+      ],
+      [
+        3.0614674589207183,
+        7.391036260090294
+      ],
+      [
+        4.444561864156817,
+        6.651756898420362
+      ],
+      [
+        5.65685424949238,
+        5.656854249492381
+      ]
+    ],
+    "sanctum_counterweight_lash": [
+      [
+        0,
+        0
+      ],
+      [
+        -5.362311101832846,
+        4.499513267805775
+      ],
+      [
+        -4.261330003061045,
+        5.553473382038646
+      ],
+      [
+        -2.9583278321848963,
+        6.3441545092565494
+      ],
+      [
+        -1.51507729756672,
+        6.834072049839533
+      ],
+      [
+        0,
+        7
+      ],
+      [
+        1.5150772975667208,
+        6.834072049839533
+      ],
+      [
+        2.9583278321848967,
+        6.3441545092565494
+      ],
+      [
+        4.261330003061045,
+        5.553473382038646
+      ],
+      [
+        5.362311101832846,
+        4.499513267805775
+      ]
+    ],
+    "sanctum_rime_breath": [
+      [
+        0,
+        0
+      ],
+      [
+        -2.9999999999999996,
+        5.196152422706632
+      ],
+      [
+        -2.2961005941905386,
+        5.54327719506772
+      ],
+      [
+        -1.5529142706151244,
+        5.79555495773441
+      ],
+      [
+        -0.7831571533203092,
+        5.948669168242862
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        0.7831571533203092,
+        5.948669168242862
+      ],
+      [
+        1.5529142706151249,
+        5.79555495773441
+      ],
+      [
+        2.2961005941905386,
+        5.54327719506772
+      ],
+      [
+        2.9999999999999996,
+        5.196152422706632
+      ]
+    ],
+    "sanctum_tusker_tusk_sweep": [
+      [
+        0,
+        0
+      ],
+      [
+        -11.69134295108992,
+        6.750000000000002
+      ],
+      [
+        -9.54594154601839,
+        9.545941546018392
+      ],
+      [
+        -6.749999999999999,
+        11.691342951089922
+      ],
+      [
+        -3.494057108884029,
+        13.039998654902423
+      ],
+      [
+        0,
+        13.5
+      ],
+      [
+        3.494057108884029,
+        13.039998654902423
+      ],
+      [
+        6.75,
+        11.69134295108992
+      ],
+      [
+        9.54594154601839,
+        9.545941546018392
+      ],
+      [
+        11.69134295108992,
+        6.750000000000002
+      ]
+    ],
+    "temple_mere_surge": [
+      [
+        0,
+        0
+      ],
+      [
+        -14.999999999999998,
+        25.98076211353316
+      ],
+      [
+        -11.480502970952694,
+        27.716385975338603
+      ],
+      [
+        -7.764571353075622,
+        28.97777478867205
+      ],
+      [
+        -3.9157857666015463,
+        29.74334584121431
+      ],
+      [
+        0,
+        30
+      ],
+      [
+        3.9157857666015463,
+        29.74334584121431
+      ],
+      [
+        7.764571353075624,
+        28.97777478867205
+      ],
+      [
+        11.480502970952694,
+        27.716385975338603
+      ],
+      [
+        14.999999999999998,
+        25.98076211353316
+      ]
+    ],
+    "temple_snapper_snap": [
+      [
+        0,
+        0
+      ],
+      [
+        -4.242640687119285,
+        4.242640687119286
+      ],
+      [
+        -3.333421398117613,
+        4.988817673815271
+      ],
+      [
+        -2.2961005941905386,
+        5.54327719506772
+      ],
+      [
+        -1.1705419320967696,
+        5.884711682419383
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        1.1705419320967696,
+        5.884711682419383
+      ],
+      [
+        2.2961005941905386,
+        5.54327719506772
+      ],
+      [
+        3.333421398117613,
+        4.988817673815271
+      ],
+      [
+        4.242640687119285,
+        4.242640687119286
+      ]
+    ],
+    "temple_tide_breath": [
+      [
+        0,
+        0
+      ],
+      [
+        -8.999999999999998,
+        15.588457268119896
+      ],
+      [
+        -6.888301782571616,
+        16.62983158520316
+      ],
+      [
+        -4.658742811845373,
+        17.38666487320323
+      ],
+      [
+        -2.349471459960928,
+        17.846007504728586
+      ],
+      [
+        0,
+        18
+      ],
+      [
+        2.349471459960928,
+        17.846007504728586
+      ],
+      [
+        4.658742811845374,
+        17.38666487320323
+      ],
+      [
+        6.888301782571616,
+        16.62983158520316
+      ],
+      [
+        8.999999999999998,
+        15.588457268119896
+      ]
+    ],
+    "temple_trident_sweep": [
+      [
+        0,
+        0
+      ],
+      [
+        -5.362311101832846,
+        4.499513267805775
+      ],
+      [
+        -4.261330003061045,
+        5.553473382038646
+      ],
+      [
+        -2.9583278321848963,
+        6.3441545092565494
+      ],
+      [
+        -1.51507729756672,
+        6.834072049839533
+      ],
+      [
+        0,
+        7
+      ],
+      [
+        1.5150772975667208,
+        6.834072049839533
+      ],
+      [
+        2.9583278321848967,
+        6.3441545092565494
+      ],
+      [
+        4.261330003061045,
+        5.553473382038646
+      ],
+      [
+        5.362311101832846,
+        4.499513267805775
+      ]
+    ],
+    "wildheart_saurian_tail_swipe": [
+      [
+        0,
+        0
+      ],
+      [
+        -10.392304845413264,
+        6.000000000000002
+      ],
+      [
+        -8.48528137423857,
+        8.485281374238571
+      ],
+      [
+        -5.999999999999999,
+        10.392304845413264
+      ],
+      [
+        -3.105828541230248,
+        11.59110991546882
+      ],
+      [
+        0,
+        12
+      ],
+      [
+        3.105828541230248,
+        11.59110991546882
+      ],
+      [
+        6,
+        10.392304845413264
+      ],
+      [
+        8.48528137423857,
+        8.485281374238571
+      ],
+      [
+        10.392304845413264,
+        6.000000000000002
+      ]
+    ]
+  },
+  "zeroSized": [
+    "bastion_claw_sweep",
+    "bastion_shell_slam"
+  ]
+}
