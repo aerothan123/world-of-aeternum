@@ -15,6 +15,7 @@
 //
 // Draws no rng; reads no clock.
 
+import { houseSeatFor } from './housing/house_seats';
 import { forceDismount } from './mounts';
 import { bodyHoldsSeat, SEAT_HOLD_RADIUS, SEAT_REACH, type SeatAnchor } from './seat_anchor';
 import { seatById } from './seat_registry';
@@ -61,7 +62,8 @@ export function seatRefusal(ctx: SimContext, p: Entity, seat: SeatAnchor): strin
 export function sitOnSeat(ctx: SimContext, seatId: string, pid?: number): boolean {
   const r = ctx.resolve(pid);
   if (!r) return false;
-  const seat = seatById(seatId);
+  // A placed house chair, stool or bench is a seat too (housing/house_seats.ts).
+  const seat = seatById(seatId) ?? houseSeatFor(ctx, seatId);
   if (!seat) return false;
   const p = r.e;
   const refusal = seatRefusal(ctx, p, seat);
