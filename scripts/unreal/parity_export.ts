@@ -9,6 +9,7 @@
 // the Unreal repo's tools/sync_ts_exports.ps1, then write the C++ test against it.
 
 import { MAX_LEVEL, mobXpValue, zeroDiff } from '../../src/sim/types';
+import { maskProfanity } from '../../src/ui/profanity';
 
 export const PARITY_EXPORT_SUBDIR = 'parity';
 
@@ -43,8 +44,52 @@ function xpMobValue(): ParitySuite {
   };
 }
 
+/**
+ * The chat log's soft-word mask (W5). Terms ride the case as one comma-joined string (the server
+ * ships them normalized: lower-case a to z only, so a comma never occurs inside one).
+ */
+function chatProfanityMask(): ParitySuite {
+  const termSets = ['', 'darn', 'darn,heck', 'heck,crud,dang', 'ab'];
+  const texts = [
+    '',
+    'hello there',
+    'darn it',
+    'DARN it all',
+    'd4rn and h3ck',
+    'd@rn d$rn',
+    'what the heck!',
+    'heck!heck',
+    'Heckler and darnedest',
+    'c|ud cr+d cr_ud',
+    'well...darn,heck;crud',
+    '1337 h4x0r 5p34k',
+    'dang_it @dang $dang$',
+    'no bad words here, friend',
+    'tabs\tand\nnewlines darn',
+    'unicode café darn über heck',
+    'emoji free zone d a r n',
+    'ab abc cab a_b a-b',
+    '!!! ||| +++ @@@ $$$',
+    '___ 000 dArN___',
+  ];
+  const cases: ParityCase[] = [];
+  for (const terms of termSets) {
+    const list = terms === '' ? [] : terms.split(',');
+    for (const text of texts) {
+      cases.push({ in: { text, terms }, out: { masked: maskProfanity(text, list) } });
+    }
+  }
+  return {
+    suite: 'chat_profanity_mask',
+    source: 'src/ui/profanity.ts maskProfanity',
+    note: 'terms is comma-joined; the mask keeps UTF-16 token length (tokens are ASCII only)',
+    cases,
+  };
+}
+
 export const PARITY_SUITES: Record<string, () => ParitySuite> = {
   xp_mob_value: xpMobValue,
+  chat_profanity_mask: chatProfanityMask,
 };
 
 export function buildParitySuite(name: string): ParitySuite {

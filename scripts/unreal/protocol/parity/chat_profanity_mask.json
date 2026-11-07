@@ -1,0 +1,907 @@
+{
+  "suite": "chat_profanity_mask",
+  "source": "src/ui/profanity.ts maskProfanity",
+  "note": "terms is comma-joined; the mask keeps UTF-16 token length (tokens are ASCII only)",
+  "cases": [
+    {
+      "in": {
+        "text": "",
+        "terms": ""
+      },
+      "out": {
+        "masked": ""
+      }
+    },
+    {
+      "in": {
+        "text": "hello there",
+        "terms": ""
+      },
+      "out": {
+        "masked": "hello there"
+      }
+    },
+    {
+      "in": {
+        "text": "darn it",
+        "terms": ""
+      },
+      "out": {
+        "masked": "darn it"
+      }
+    },
+    {
+      "in": {
+        "text": "DARN it all",
+        "terms": ""
+      },
+      "out": {
+        "masked": "DARN it all"
+      }
+    },
+    {
+      "in": {
+        "text": "d4rn and h3ck",
+        "terms": ""
+      },
+      "out": {
+        "masked": "d4rn and h3ck"
+      }
+    },
+    {
+      "in": {
+        "text": "d@rn d$rn",
+        "terms": ""
+      },
+      "out": {
+        "masked": "d@rn d$rn"
+      }
+    },
+    {
+      "in": {
+        "text": "what the heck!",
+        "terms": ""
+      },
+      "out": {
+        "masked": "what the heck!"
+      }
+    },
+    {
+      "in": {
+        "text": "heck!heck",
+        "terms": ""
+      },
+      "out": {
+        "masked": "heck!heck"
+      }
+    },
+    {
+      "in": {
+        "text": "Heckler and darnedest",
+        "terms": ""
+      },
+      "out": {
+        "masked": "Heckler and darnedest"
+      }
+    },
+    {
+      "in": {
+        "text": "c|ud cr+d cr_ud",
+        "terms": ""
+      },
+      "out": {
+        "masked": "c|ud cr+d cr_ud"
+      }
+    },
+    {
+      "in": {
+        "text": "well...darn,heck;crud",
+        "terms": ""
+      },
+      "out": {
+        "masked": "well...darn,heck;crud"
+      }
+    },
+    {
+      "in": {
+        "text": "1337 h4x0r 5p34k",
+        "terms": ""
+      },
+      "out": {
+        "masked": "1337 h4x0r 5p34k"
+      }
+    },
+    {
+      "in": {
+        "text": "dang_it @dang $dang$",
+        "terms": ""
+      },
+      "out": {
+        "masked": "dang_it @dang $dang$"
+      }
+    },
+    {
+      "in": {
+        "text": "no bad words here, friend",
+        "terms": ""
+      },
+      "out": {
+        "masked": "no bad words here, friend"
+      }
+    },
+    {
+      "in": {
+        "text": "tabs\tand\nnewlines darn",
+        "terms": ""
+      },
+      "out": {
+        "masked": "tabs\tand\nnewlines darn"
+      }
+    },
+    {
+      "in": {
+        "text": "unicode café darn über heck",
+        "terms": ""
+      },
+      "out": {
+        "masked": "unicode café darn über heck"
+      }
+    },
+    {
+      "in": {
+        "text": "emoji free zone d a r n",
+        "terms": ""
+      },
+      "out": {
+        "masked": "emoji free zone d a r n"
+      }
+    },
+    {
+      "in": {
+        "text": "ab abc cab a_b a-b",
+        "terms": ""
+      },
+      "out": {
+        "masked": "ab abc cab a_b a-b"
+      }
+    },
+    {
+      "in": {
+        "text": "!!! ||| +++ @@@ $$$",
+        "terms": ""
+      },
+      "out": {
+        "masked": "!!! ||| +++ @@@ $$$"
+      }
+    },
+    {
+      "in": {
+        "text": "___ 000 dArN___",
+        "terms": ""
+      },
+      "out": {
+        "masked": "___ 000 dArN___"
+      }
+    },
+    {
+      "in": {
+        "text": "",
+        "terms": "darn"
+      },
+      "out": {
+        "masked": ""
+      }
+    },
+    {
+      "in": {
+        "text": "hello there",
+        "terms": "darn"
+      },
+      "out": {
+        "masked": "hello there"
+      }
+    },
+    {
+      "in": {
+        "text": "darn it",
+        "terms": "darn"
+      },
+      "out": {
+        "masked": "**** it"
+      }
+    },
+    {
+      "in": {
+        "text": "DARN it all",
+        "terms": "darn"
+      },
+      "out": {
+        "masked": "**** it all"
+      }
+    },
+    {
+      "in": {
+        "text": "d4rn and h3ck",
+        "terms": "darn"
+      },
+      "out": {
+        "masked": "**** and h3ck"
+      }
+    },
+    {
+      "in": {
+        "text": "d@rn d$rn",
+        "terms": "darn"
+      },
+      "out": {
+        "masked": "**** d$rn"
+      }
+    },
+    {
+      "in": {
+        "text": "what the heck!",
+        "terms": "darn"
+      },
+      "out": {
+        "masked": "what the heck!"
+      }
+    },
+    {
+      "in": {
+        "text": "heck!heck",
+        "terms": "darn"
+      },
+      "out": {
+        "masked": "heck!heck"
+      }
+    },
+    {
+      "in": {
+        "text": "Heckler and darnedest",
+        "terms": "darn"
+      },
+      "out": {
+        "masked": "Heckler and *********"
+      }
+    },
+    {
+      "in": {
+        "text": "c|ud cr+d cr_ud",
+        "terms": "darn"
+      },
+      "out": {
+        "masked": "c|ud cr+d cr_ud"
+      }
+    },
+    {
+      "in": {
+        "text": "well...darn,heck;crud",
+        "terms": "darn"
+      },
+      "out": {
+        "masked": "well...****,heck;crud"
+      }
+    },
+    {
+      "in": {
+        "text": "1337 h4x0r 5p34k",
+        "terms": "darn"
+      },
+      "out": {
+        "masked": "1337 h4x0r 5p34k"
+      }
+    },
+    {
+      "in": {
+        "text": "dang_it @dang $dang$",
+        "terms": "darn"
+      },
+      "out": {
+        "masked": "dang_it @dang $dang$"
+      }
+    },
+    {
+      "in": {
+        "text": "no bad words here, friend",
+        "terms": "darn"
+      },
+      "out": {
+        "masked": "no bad words here, friend"
+      }
+    },
+    {
+      "in": {
+        "text": "tabs\tand\nnewlines darn",
+        "terms": "darn"
+      },
+      "out": {
+        "masked": "tabs\tand\nnewlines ****"
+      }
+    },
+    {
+      "in": {
+        "text": "unicode café darn über heck",
+        "terms": "darn"
+      },
+      "out": {
+        "masked": "unicode café **** über heck"
+      }
+    },
+    {
+      "in": {
+        "text": "emoji free zone d a r n",
+        "terms": "darn"
+      },
+      "out": {
+        "masked": "emoji free zone d a r n"
+      }
+    },
+    {
+      "in": {
+        "text": "ab abc cab a_b a-b",
+        "terms": "darn"
+      },
+      "out": {
+        "masked": "ab abc cab a_b a-b"
+      }
+    },
+    {
+      "in": {
+        "text": "!!! ||| +++ @@@ $$$",
+        "terms": "darn"
+      },
+      "out": {
+        "masked": "!!! ||| +++ @@@ $$$"
+      }
+    },
+    {
+      "in": {
+        "text": "___ 000 dArN___",
+        "terms": "darn"
+      },
+      "out": {
+        "masked": "___ 000 *******"
+      }
+    },
+    {
+      "in": {
+        "text": "",
+        "terms": "darn,heck"
+      },
+      "out": {
+        "masked": ""
+      }
+    },
+    {
+      "in": {
+        "text": "hello there",
+        "terms": "darn,heck"
+      },
+      "out": {
+        "masked": "hello there"
+      }
+    },
+    {
+      "in": {
+        "text": "darn it",
+        "terms": "darn,heck"
+      },
+      "out": {
+        "masked": "**** it"
+      }
+    },
+    {
+      "in": {
+        "text": "DARN it all",
+        "terms": "darn,heck"
+      },
+      "out": {
+        "masked": "**** it all"
+      }
+    },
+    {
+      "in": {
+        "text": "d4rn and h3ck",
+        "terms": "darn,heck"
+      },
+      "out": {
+        "masked": "**** and ****"
+      }
+    },
+    {
+      "in": {
+        "text": "d@rn d$rn",
+        "terms": "darn,heck"
+      },
+      "out": {
+        "masked": "**** d$rn"
+      }
+    },
+    {
+      "in": {
+        "text": "what the heck!",
+        "terms": "darn,heck"
+      },
+      "out": {
+        "masked": "what the *****"
+      }
+    },
+    {
+      "in": {
+        "text": "heck!heck",
+        "terms": "darn,heck"
+      },
+      "out": {
+        "masked": "*********"
+      }
+    },
+    {
+      "in": {
+        "text": "Heckler and darnedest",
+        "terms": "darn,heck"
+      },
+      "out": {
+        "masked": "******* and *********"
+      }
+    },
+    {
+      "in": {
+        "text": "c|ud cr+d cr_ud",
+        "terms": "darn,heck"
+      },
+      "out": {
+        "masked": "c|ud cr+d cr_ud"
+      }
+    },
+    {
+      "in": {
+        "text": "well...darn,heck;crud",
+        "terms": "darn,heck"
+      },
+      "out": {
+        "masked": "well...****,****;crud"
+      }
+    },
+    {
+      "in": {
+        "text": "1337 h4x0r 5p34k",
+        "terms": "darn,heck"
+      },
+      "out": {
+        "masked": "1337 h4x0r 5p34k"
+      }
+    },
+    {
+      "in": {
+        "text": "dang_it @dang $dang$",
+        "terms": "darn,heck"
+      },
+      "out": {
+        "masked": "dang_it @dang $dang$"
+      }
+    },
+    {
+      "in": {
+        "text": "no bad words here, friend",
+        "terms": "darn,heck"
+      },
+      "out": {
+        "masked": "no bad words here, friend"
+      }
+    },
+    {
+      "in": {
+        "text": "tabs\tand\nnewlines darn",
+        "terms": "darn,heck"
+      },
+      "out": {
+        "masked": "tabs\tand\nnewlines ****"
+      }
+    },
+    {
+      "in": {
+        "text": "unicode café darn über heck",
+        "terms": "darn,heck"
+      },
+      "out": {
+        "masked": "unicode café **** über ****"
+      }
+    },
+    {
+      "in": {
+        "text": "emoji free zone d a r n",
+        "terms": "darn,heck"
+      },
+      "out": {
+        "masked": "emoji free zone d a r n"
+      }
+    },
+    {
+      "in": {
+        "text": "ab abc cab a_b a-b",
+        "terms": "darn,heck"
+      },
+      "out": {
+        "masked": "ab abc cab a_b a-b"
+      }
+    },
+    {
+      "in": {
+        "text": "!!! ||| +++ @@@ $$$",
+        "terms": "darn,heck"
+      },
+      "out": {
+        "masked": "!!! ||| +++ @@@ $$$"
+      }
+    },
+    {
+      "in": {
+        "text": "___ 000 dArN___",
+        "terms": "darn,heck"
+      },
+      "out": {
+        "masked": "___ 000 *******"
+      }
+    },
+    {
+      "in": {
+        "text": "",
+        "terms": "heck,crud,dang"
+      },
+      "out": {
+        "masked": ""
+      }
+    },
+    {
+      "in": {
+        "text": "hello there",
+        "terms": "heck,crud,dang"
+      },
+      "out": {
+        "masked": "hello there"
+      }
+    },
+    {
+      "in": {
+        "text": "darn it",
+        "terms": "heck,crud,dang"
+      },
+      "out": {
+        "masked": "darn it"
+      }
+    },
+    {
+      "in": {
+        "text": "DARN it all",
+        "terms": "heck,crud,dang"
+      },
+      "out": {
+        "masked": "DARN it all"
+      }
+    },
+    {
+      "in": {
+        "text": "d4rn and h3ck",
+        "terms": "heck,crud,dang"
+      },
+      "out": {
+        "masked": "d4rn and ****"
+      }
+    },
+    {
+      "in": {
+        "text": "d@rn d$rn",
+        "terms": "heck,crud,dang"
+      },
+      "out": {
+        "masked": "d@rn d$rn"
+      }
+    },
+    {
+      "in": {
+        "text": "what the heck!",
+        "terms": "heck,crud,dang"
+      },
+      "out": {
+        "masked": "what the *****"
+      }
+    },
+    {
+      "in": {
+        "text": "heck!heck",
+        "terms": "heck,crud,dang"
+      },
+      "out": {
+        "masked": "*********"
+      }
+    },
+    {
+      "in": {
+        "text": "Heckler and darnedest",
+        "terms": "heck,crud,dang"
+      },
+      "out": {
+        "masked": "******* and darnedest"
+      }
+    },
+    {
+      "in": {
+        "text": "c|ud cr+d cr_ud",
+        "terms": "heck,crud,dang"
+      },
+      "out": {
+        "masked": "c|ud cr+d *****"
+      }
+    },
+    {
+      "in": {
+        "text": "well...darn,heck;crud",
+        "terms": "heck,crud,dang"
+      },
+      "out": {
+        "masked": "well...darn,****;****"
+      }
+    },
+    {
+      "in": {
+        "text": "1337 h4x0r 5p34k",
+        "terms": "heck,crud,dang"
+      },
+      "out": {
+        "masked": "1337 h4x0r 5p34k"
+      }
+    },
+    {
+      "in": {
+        "text": "dang_it @dang $dang$",
+        "terms": "heck,crud,dang"
+      },
+      "out": {
+        "masked": "******* ***** ******"
+      }
+    },
+    {
+      "in": {
+        "text": "no bad words here, friend",
+        "terms": "heck,crud,dang"
+      },
+      "out": {
+        "masked": "no bad words here, friend"
+      }
+    },
+    {
+      "in": {
+        "text": "tabs\tand\nnewlines darn",
+        "terms": "heck,crud,dang"
+      },
+      "out": {
+        "masked": "tabs\tand\nnewlines darn"
+      }
+    },
+    {
+      "in": {
+        "text": "unicode café darn über heck",
+        "terms": "heck,crud,dang"
+      },
+      "out": {
+        "masked": "unicode café darn über ****"
+      }
+    },
+    {
+      "in": {
+        "text": "emoji free zone d a r n",
+        "terms": "heck,crud,dang"
+      },
+      "out": {
+        "masked": "emoji free zone d a r n"
+      }
+    },
+    {
+      "in": {
+        "text": "ab abc cab a_b a-b",
+        "terms": "heck,crud,dang"
+      },
+      "out": {
+        "masked": "ab abc cab a_b a-b"
+      }
+    },
+    {
+      "in": {
+        "text": "!!! ||| +++ @@@ $$$",
+        "terms": "heck,crud,dang"
+      },
+      "out": {
+        "masked": "!!! ||| +++ @@@ $$$"
+      }
+    },
+    {
+      "in": {
+        "text": "___ 000 dArN___",
+        "terms": "heck,crud,dang"
+      },
+      "out": {
+        "masked": "___ 000 dArN___"
+      }
+    },
+    {
+      "in": {
+        "text": "",
+        "terms": "ab"
+      },
+      "out": {
+        "masked": ""
+      }
+    },
+    {
+      "in": {
+        "text": "hello there",
+        "terms": "ab"
+      },
+      "out": {
+        "masked": "hello there"
+      }
+    },
+    {
+      "in": {
+        "text": "darn it",
+        "terms": "ab"
+      },
+      "out": {
+        "masked": "darn it"
+      }
+    },
+    {
+      "in": {
+        "text": "DARN it all",
+        "terms": "ab"
+      },
+      "out": {
+        "masked": "DARN it all"
+      }
+    },
+    {
+      "in": {
+        "text": "d4rn and h3ck",
+        "terms": "ab"
+      },
+      "out": {
+        "masked": "d4rn and h3ck"
+      }
+    },
+    {
+      "in": {
+        "text": "d@rn d$rn",
+        "terms": "ab"
+      },
+      "out": {
+        "masked": "d@rn d$rn"
+      }
+    },
+    {
+      "in": {
+        "text": "what the heck!",
+        "terms": "ab"
+      },
+      "out": {
+        "masked": "what the heck!"
+      }
+    },
+    {
+      "in": {
+        "text": "heck!heck",
+        "terms": "ab"
+      },
+      "out": {
+        "masked": "heck!heck"
+      }
+    },
+    {
+      "in": {
+        "text": "Heckler and darnedest",
+        "terms": "ab"
+      },
+      "out": {
+        "masked": "Heckler and darnedest"
+      }
+    },
+    {
+      "in": {
+        "text": "c|ud cr+d cr_ud",
+        "terms": "ab"
+      },
+      "out": {
+        "masked": "c|ud cr+d cr_ud"
+      }
+    },
+    {
+      "in": {
+        "text": "well...darn,heck;crud",
+        "terms": "ab"
+      },
+      "out": {
+        "masked": "well...darn,heck;crud"
+      }
+    },
+    {
+      "in": {
+        "text": "1337 h4x0r 5p34k",
+        "terms": "ab"
+      },
+      "out": {
+        "masked": "1337 h4x0r 5p34k"
+      }
+    },
+    {
+      "in": {
+        "text": "dang_it @dang $dang$",
+        "terms": "ab"
+      },
+      "out": {
+        "masked": "dang_it @dang $dang$"
+      }
+    },
+    {
+      "in": {
+        "text": "no bad words here, friend",
+        "terms": "ab"
+      },
+      "out": {
+        "masked": "no bad words here, friend"
+      }
+    },
+    {
+      "in": {
+        "text": "tabs\tand\nnewlines darn",
+        "terms": "ab"
+      },
+      "out": {
+        "masked": "****\tand\nnewlines darn"
+      }
+    },
+    {
+      "in": {
+        "text": "unicode café darn über heck",
+        "terms": "ab"
+      },
+      "out": {
+        "masked": "unicode café darn über heck"
+      }
+    },
+    {
+      "in": {
+        "text": "emoji free zone d a r n",
+        "terms": "ab"
+      },
+      "out": {
+        "masked": "emoji free zone d a r n"
+      }
+    },
+    {
+      "in": {
+        "text": "ab abc cab a_b a-b",
+        "terms": "ab"
+      },
+      "out": {
+        "masked": "** *** *** *** a-b"
+      }
+    },
+    {
+      "in": {
+        "text": "!!! ||| +++ @@@ $$$",
+        "terms": "ab"
+      },
+      "out": {
+        "masked": "!!! ||| +++ @@@ $$$"
+      }
+    },
+    {
+      "in": {
+        "text": "___ 000 dArN___",
+        "terms": "ab"
+      },
+      "out": {
+        "masked": "___ 000 dArN___"
+      }
+    }
+  ]
+}

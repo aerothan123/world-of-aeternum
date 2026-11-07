@@ -47,6 +47,17 @@ describe('unreal parity export', () => {
     expect(mobXpValue(5, 5)).toBe(70);
     expect(new Set(outs).size).toBeGreaterThan(20);
   });
+
+  it('the profanity suite masks confusables and leaves clean text alone', () => {
+    const cases = buildParitySuite('chat_profanity_mask').cases;
+    const out = (text: string, terms: string) => {
+      const hit = cases.find((c) => c.in.text === text && c.in.terms === terms);
+      return (hit?.out as { masked: string } | undefined)?.masked;
+    };
+    expect(out('d4rn and h3ck', 'darn,heck')).toBe('**** and ****');
+    expect(out('hello there', 'darn,heck')).toBe('hello there');
+    expect(out('darn it', '')).toBe('darn it');
+  });
 });
 
 describe('unreal string table export', () => {
