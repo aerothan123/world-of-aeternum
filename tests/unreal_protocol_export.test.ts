@@ -71,7 +71,10 @@ describe('unreal protocol export', () => {
     expect(auth.petSpecialWire).toBe(p.capabilities.petSpecialWire);
     expect(auth.dungeonEntryFacingWire).toBe(p.capabilities.dungeonEntryFacingWire);
     expect(auth.movementWire).toBe(p.capabilities.movementWire);
-    // The C++ builder emits exactly these keys in this order (WyndWire::BuildAuthMessage).
+    // The real web auth frame, key for key and in order. clientVersion is not a
+    // capability: it feeds the realm's minimum-client gate (server/client_version_gate.ts),
+    // which fails open while MIN_CLIENT_VERSION is unset. WyndWire::BuildAuthMessage
+    // emits the capability keys before it in the same order.
     expect(Object.keys(auth)).toEqual([
       't',
       'token',
@@ -81,6 +84,7 @@ describe('unreal protocol export', () => {
       'timerWire',
       'petSpecialWire',
       'movementWire',
+      'clientVersion',
     ]);
   });
 
