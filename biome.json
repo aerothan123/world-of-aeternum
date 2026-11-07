@@ -20,6 +20,7 @@
       "!src/ui/i18n.resolved.generated",
       "!src/admin/i18n.resolved.generated",
       "!tests/parity/golden",
+      "!scripts/unreal/protocol",
       "!tests/server/fixtures",
       "!docs/screenshots",
       "!**/*.svelte",
