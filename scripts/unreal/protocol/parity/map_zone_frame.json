@@ -1,0 +1,661 @@
+{
+  "suite": "map_zone_frame",
+  "source": "src/ui/map_window_view.ts buildOverworldMapModel (region, player, party)",
+  "note": "the zoom window clamps inside the zone square; party order follows partyInfo.members",
+  "cases": [
+    {
+      "in": {
+        "snapshot": "town_project",
+        "zone": "eastbrook_vale",
+        "px": -7,
+        "pz": -120,
+        "zoom": 1,
+        "panned": false,
+        "cx": 0,
+        "cz": 0,
+        "canvas": 512
+      },
+      "out": {
+        "region": {
+          "minX": -180,
+          "maxX": 180,
+          "minZ": -180,
+          "maxZ": 180
+        },
+        "player": {
+          "mx": 265.956,
+          "my": 426.667
+        },
+        "party": [
+          {
+            "pid": 20,
+            "wx": -2,
+            "wz": -128,
+            "mx": 258.844,
+            "my": 438.044
+          },
+          {
+            "pid": 21,
+            "wx": 23,
+            "wz": 20,
+            "mx": 223.289,
+            "my": 227.556
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "town_project",
+        "zone": "eastbrook_vale",
+        "px": -7,
+        "pz": -120,
+        "zoom": 1,
+        "panned": true,
+        "cx": 33,
+        "cz": -145,
+        "canvas": 512
+      },
+      "out": {
+        "region": {
+          "minX": -180,
+          "maxX": 180,
+          "minZ": -180,
+          "maxZ": 180
+        },
+        "player": {
+          "mx": 265.956,
+          "my": 426.667
+        },
+        "party": [
+          {
+            "pid": 20,
+            "wx": -2,
+            "wz": -128,
+            "mx": 258.844,
+            "my": 438.044
+          },
+          {
+            "pid": 21,
+            "wx": 23,
+            "wz": 20,
+            "mx": 223.289,
+            "my": 227.556
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "town_project",
+        "zone": "eastbrook_vale",
+        "px": -7,
+        "pz": -120,
+        "zoom": 2,
+        "panned": false,
+        "cx": 0,
+        "cz": 0,
+        "canvas": 512
+      },
+      "out": {
+        "region": {
+          "minX": -97,
+          "maxX": 83,
+          "minZ": -180,
+          "maxZ": 0
+        },
+        "player": {
+          "mx": 256,
+          "my": 341.333
+        },
+        "party": [
+          {
+            "pid": 20,
+            "wx": -2,
+            "wz": -128,
+            "mx": 241.778,
+            "my": 364.089
+          },
+          {
+            "pid": 21,
+            "wx": 23,
+            "wz": 20,
+            "mx": 170.667,
+            "my": -56.889
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "town_project",
+        "zone": "eastbrook_vale",
+        "px": -7,
+        "pz": -120,
+        "zoom": 2,
+        "panned": true,
+        "cx": 33,
+        "cz": -145,
+        "canvas": 512
+      },
+      "out": {
+        "region": {
+          "minX": -57,
+          "maxX": 123,
+          "minZ": -180,
+          "maxZ": 0
+        },
+        "player": {
+          "mx": 369.778,
+          "my": 341.333
+        },
+        "party": [
+          {
+            "pid": 20,
+            "wx": -2,
+            "wz": -128,
+            "mx": 355.556,
+            "my": 364.089
+          },
+          {
+            "pid": 21,
+            "wx": 23,
+            "wz": 20,
+            "mx": 284.444,
+            "my": -56.889
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "town_project",
+        "zone": "eastbrook_vale",
+        "px": -7,
+        "pz": -120,
+        "zoom": 4,
+        "panned": false,
+        "cx": 0,
+        "cz": 0,
+        "canvas": 512
+      },
+      "out": {
+        "region": {
+          "minX": -52,
+          "maxX": 38,
+          "minZ": -165,
+          "maxZ": -75
+        },
+        "player": {
+          "mx": 256,
+          "my": 256
+        },
+        "party": [
+          {
+            "pid": 20,
+            "wx": -2,
+            "wz": -128,
+            "mx": 227.556,
+            "my": 301.511
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "town_project",
+        "zone": "eastbrook_vale",
+        "px": -7,
+        "pz": -120,
+        "zoom": 4,
+        "panned": true,
+        "cx": 33,
+        "cz": -145,
+        "canvas": 512
+      },
+      "out": {
+        "region": {
+          "minX": -12,
+          "maxX": 78,
+          "minZ": -180,
+          "maxZ": -90
+        },
+        "player": {
+          "mx": 483.556,
+          "my": 170.667
+        },
+        "party": [
+          {
+            "pid": 20,
+            "wx": -2,
+            "wz": -128,
+            "mx": 455.111,
+            "my": 216.178
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "station",
+        "zone": "eastbrook_vale",
+        "px": -10.172222222222222,
+        "pz": -109.8,
+        "zoom": 1,
+        "panned": false,
+        "cx": 0,
+        "cz": 0,
+        "canvas": 512
+      },
+      "out": {
+        "region": {
+          "minX": -180,
+          "maxX": 180,
+          "minZ": -180,
+          "maxZ": 180
+        },
+        "player": {
+          "mx": 270.467,
+          "my": 412.16
+        },
+        "party": [
+          {
+            "pid": 20,
+            "wx": -5.1722222222222225,
+            "wz": -117.8,
+            "mx": 263.356,
+            "my": 423.538
+          },
+          {
+            "pid": 21,
+            "wx": 19.827777777777776,
+            "wz": 30.200000000000003,
+            "mx": 227.8,
+            "my": 213.049
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "station",
+        "zone": "eastbrook_vale",
+        "px": -10.172222222222222,
+        "pz": -109.8,
+        "zoom": 1,
+        "panned": true,
+        "cx": 29.827777777777776,
+        "cz": -134.8,
+        "canvas": 512
+      },
+      "out": {
+        "region": {
+          "minX": -180,
+          "maxX": 180,
+          "minZ": -180,
+          "maxZ": 180
+        },
+        "player": {
+          "mx": 270.467,
+          "my": 412.16
+        },
+        "party": [
+          {
+            "pid": 20,
+            "wx": -5.1722222222222225,
+            "wz": -117.8,
+            "mx": 263.356,
+            "my": 423.538
+          },
+          {
+            "pid": 21,
+            "wx": 19.827777777777776,
+            "wz": 30.200000000000003,
+            "mx": 227.8,
+            "my": 213.049
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "station",
+        "zone": "eastbrook_vale",
+        "px": -10.172222222222222,
+        "pz": -109.8,
+        "zoom": 2,
+        "panned": false,
+        "cx": 0,
+        "cz": 0,
+        "canvas": 512
+      },
+      "out": {
+        "region": {
+          "minX": -100.17222222222222,
+          "maxX": 79.82777777777778,
+          "minZ": -180,
+          "maxZ": 0
+        },
+        "player": {
+          "mx": 256,
+          "my": 312.32
+        },
+        "party": [
+          {
+            "pid": 20,
+            "wx": -5.1722222222222225,
+            "wz": -117.8,
+            "mx": 241.778,
+            "my": 335.076
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "station",
+        "zone": "eastbrook_vale",
+        "px": -10.172222222222222,
+        "pz": -109.8,
+        "zoom": 2,
+        "panned": true,
+        "cx": 29.827777777777776,
+        "cz": -134.8,
+        "canvas": 512
+      },
+      "out": {
+        "region": {
+          "minX": -60.172222222222224,
+          "maxX": 119.82777777777778,
+          "minZ": -180,
+          "maxZ": 0
+        },
+        "player": {
+          "mx": 369.778,
+          "my": 312.32
+        },
+        "party": [
+          {
+            "pid": 20,
+            "wx": -5.1722222222222225,
+            "wz": -117.8,
+            "mx": 355.556,
+            "my": 335.076
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "station",
+        "zone": "eastbrook_vale",
+        "px": -10.172222222222222,
+        "pz": -109.8,
+        "zoom": 4,
+        "panned": false,
+        "cx": 0,
+        "cz": 0,
+        "canvas": 512
+      },
+      "out": {
+        "region": {
+          "minX": -55.172222222222224,
+          "maxX": 34.827777777777776,
+          "minZ": -154.8,
+          "maxZ": -64.8
+        },
+        "player": {
+          "mx": 256,
+          "my": 256
+        },
+        "party": [
+          {
+            "pid": 20,
+            "wx": -5.1722222222222225,
+            "wz": -117.8,
+            "mx": 227.556,
+            "my": 301.511
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "station",
+        "zone": "eastbrook_vale",
+        "px": -10.172222222222222,
+        "pz": -109.8,
+        "zoom": 4,
+        "panned": true,
+        "cx": 29.827777777777776,
+        "cz": -134.8,
+        "canvas": 512
+      },
+      "out": {
+        "region": {
+          "minX": -15.172222222222224,
+          "maxX": 74.82777777777778,
+          "minZ": -179.8,
+          "maxZ": -89.80000000000001
+        },
+        "player": {
+          "mx": 483.556,
+          "my": 113.778
+        },
+        "party": [
+          {
+            "pid": 20,
+            "wx": -5.1722222222222225,
+            "wz": -117.8,
+            "mx": 455.111,
+            "my": 159.289
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "gather_node",
+        "zone": "eastbrook_vale",
+        "px": -12,
+        "pz": 158,
+        "zoom": 1,
+        "panned": false,
+        "cx": 0,
+        "cz": 0,
+        "canvas": 512
+      },
+      "out": {
+        "region": {
+          "minX": -180,
+          "maxX": 180,
+          "minZ": -180,
+          "maxZ": 180
+        },
+        "player": {
+          "mx": 273.067,
+          "my": 31.289
+        },
+        "party": [
+          {
+            "pid": 20,
+            "wx": -7,
+            "wz": 150,
+            "mx": 265.956,
+            "my": 42.667
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "gather_node",
+        "zone": "eastbrook_vale",
+        "px": -12,
+        "pz": 158,
+        "zoom": 1,
+        "panned": true,
+        "cx": 28,
+        "cz": 133,
+        "canvas": 512
+      },
+      "out": {
+        "region": {
+          "minX": -180,
+          "maxX": 180,
+          "minZ": -180,
+          "maxZ": 180
+        },
+        "player": {
+          "mx": 273.067,
+          "my": 31.289
+        },
+        "party": [
+          {
+            "pid": 20,
+            "wx": -7,
+            "wz": 150,
+            "mx": 265.956,
+            "my": 42.667
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "gather_node",
+        "zone": "eastbrook_vale",
+        "px": -12,
+        "pz": 158,
+        "zoom": 2,
+        "panned": false,
+        "cx": 0,
+        "cz": 0,
+        "canvas": 512
+      },
+      "out": {
+        "region": {
+          "minX": -102,
+          "maxX": 78,
+          "minZ": 0,
+          "maxZ": 180
+        },
+        "player": {
+          "mx": 256,
+          "my": 62.578
+        },
+        "party": [
+          {
+            "pid": 20,
+            "wx": -7,
+            "wz": 150,
+            "mx": 241.778,
+            "my": 85.333
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "gather_node",
+        "zone": "eastbrook_vale",
+        "px": -12,
+        "pz": 158,
+        "zoom": 2,
+        "panned": true,
+        "cx": 28,
+        "cz": 133,
+        "canvas": 512
+      },
+      "out": {
+        "region": {
+          "minX": -62,
+          "maxX": 118,
+          "minZ": 0,
+          "maxZ": 180
+        },
+        "player": {
+          "mx": 369.778,
+          "my": 62.578
+        },
+        "party": [
+          {
+            "pid": 20,
+            "wx": -7,
+            "wz": 150,
+            "mx": 355.556,
+            "my": 85.333
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "gather_node",
+        "zone": "eastbrook_vale",
+        "px": -12,
+        "pz": 158,
+        "zoom": 4,
+        "panned": false,
+        "cx": 0,
+        "cz": 0,
+        "canvas": 512
+      },
+      "out": {
+        "region": {
+          "minX": -57,
+          "maxX": 33,
+          "minZ": 90,
+          "maxZ": 180
+        },
+        "player": {
+          "mx": 256,
+          "my": 125.156
+        },
+        "party": [
+          {
+            "pid": 20,
+            "wx": -7,
+            "wz": 150,
+            "mx": 227.556,
+            "my": 170.667
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "gather_node",
+        "zone": "eastbrook_vale",
+        "px": -12,
+        "pz": 158,
+        "zoom": 4,
+        "panned": true,
+        "cx": 28,
+        "cz": 133,
+        "canvas": 512
+      },
+      "out": {
+        "region": {
+          "minX": -17,
+          "maxX": 73,
+          "minZ": 88,
+          "maxZ": 178
+        },
+        "player": {
+          "mx": 483.556,
+          "my": 113.778
+        },
+        "party": [
+          {
+            "pid": 20,
+            "wx": -7,
+            "wz": 150,
+            "mx": 455.111,
+            "my": 159.289
+          }
+        ]
+      }
+    }
+  ]
+}
