@@ -1,0 +1,9199 @@
+{
+  "suite": "progression_quest_xp",
+  "source": "src/sim/quests/quest_xp.ts questRewardXp, outLevelXpFactor",
+  "note": "inputs carry the content base and level so the port is checked on the arithmetic alone",
+  "cases": [
+    {
+      "in": {
+        "kind": "factor",
+        "levelsAbove": -3
+      },
+      "out": {
+        "factor": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "factor",
+        "levelsAbove": -2
+      },
+      "out": {
+        "factor": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "factor",
+        "levelsAbove": -1
+      },
+      "out": {
+        "factor": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "factor",
+        "levelsAbove": 0
+      },
+      "out": {
+        "factor": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "factor",
+        "levelsAbove": 1
+      },
+      "out": {
+        "factor": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "factor",
+        "levelsAbove": 2
+      },
+      "out": {
+        "factor": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "factor",
+        "levelsAbove": 3
+      },
+      "out": {
+        "factor": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "factor",
+        "levelsAbove": 4
+      },
+      "out": {
+        "factor": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "factor",
+        "levelsAbove": 5
+      },
+      "out": {
+        "factor": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "factor",
+        "levelsAbove": 6
+      },
+      "out": {
+        "factor": 0.8
+      }
+    },
+    {
+      "in": {
+        "kind": "factor",
+        "levelsAbove": 7
+      },
+      "out": {
+        "factor": 0.6
+      }
+    },
+    {
+      "in": {
+        "kind": "factor",
+        "levelsAbove": 8
+      },
+      "out": {
+        "factor": 0.4
+      }
+    },
+    {
+      "in": {
+        "kind": "factor",
+        "levelsAbove": 9
+      },
+      "out": {
+        "factor": 0.2
+      }
+    },
+    {
+      "in": {
+        "kind": "factor",
+        "levelsAbove": 10
+      },
+      "out": {
+        "factor": 0.1
+      }
+    },
+    {
+      "in": {
+        "kind": "factor",
+        "levelsAbove": 11
+      },
+      "out": {
+        "factor": 0.1
+      }
+    },
+    {
+      "in": {
+        "kind": "factor",
+        "levelsAbove": 12
+      },
+      "out": {
+        "factor": 0.1
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_gauntlet",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_gauntlet",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_gauntlet",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_gauntlet",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_gauntlet",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_gauntlet",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_gauntlet",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_gauntlet",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_strike_true",
+        "playerLevel": 1,
+        "questLevel": 1,
+        "baseXp": 40,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 40
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_strike_true",
+        "playerLevel": 3,
+        "questLevel": 1,
+        "baseXp": 40,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 40
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_strike_true",
+        "playerLevel": 5,
+        "questLevel": 1,
+        "baseXp": 40,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 40
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_strike_true",
+        "playerLevel": 8,
+        "questLevel": 1,
+        "baseXp": 40,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 25
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_strike_true",
+        "playerLevel": 10,
+        "questLevel": 1,
+        "baseXp": 40,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_strike_true",
+        "playerLevel": 12,
+        "questLevel": 1,
+        "baseXp": 40,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_strike_true",
+        "playerLevel": 15,
+        "questLevel": 1,
+        "baseXp": 40,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_strike_true",
+        "playerLevel": 20,
+        "questLevel": 1,
+        "baseXp": 40,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_hone_the_edge",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_hone_the_edge",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_hone_the_edge",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_hone_the_edge",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_hone_the_edge",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_hone_the_edge",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_hone_the_edge",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_hone_the_edge",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_shell_and_claw",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_shell_and_claw",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_shell_and_claw",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_shell_and_claw",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_shell_and_claw",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_shell_and_claw",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_shell_and_claw",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_shell_and_claw",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_mother_of_pearl",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_mother_of_pearl",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_mother_of_pearl",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_mother_of_pearl",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_mother_of_pearl",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_mother_of_pearl",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_mother_of_pearl",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_mother_of_pearl",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_wreck_line",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_wreck_line",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_wreck_line",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_wreck_line",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_wreck_line",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_wreck_line",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_wreck_line",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_wreck_line",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_pouch_and_purse",
+        "playerLevel": 1,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_pouch_and_purse",
+        "playerLevel": 3,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_pouch_and_purse",
+        "playerLevel": 5,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_pouch_and_purse",
+        "playerLevel": 8,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_pouch_and_purse",
+        "playerLevel": 10,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_pouch_and_purse",
+        "playerLevel": 12,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_pouch_and_purse",
+        "playerLevel": 15,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_pouch_and_purse",
+        "playerLevel": 20,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 75
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_signpost",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_signpost",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_signpost",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_signpost",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_signpost",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_signpost",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_signpost",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_signpost",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_long_walk",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_long_walk",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_long_walk",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_long_walk",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_long_walk",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_long_walk",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_long_walk",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_the_long_walk",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_set_sail",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_set_sail",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_set_sail",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_set_sail",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_set_sail",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_set_sail",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_set_sail",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "q_ps_set_sail",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_01_arrival",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_01_arrival",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_01_arrival",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_01_arrival",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_01_arrival",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_01_arrival",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_01_arrival",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_01_arrival",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_02_beacon_lied",
+        "playerLevel": 1,
+        "questLevel": 1,
+        "baseXp": 40,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 40
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_02_beacon_lied",
+        "playerLevel": 3,
+        "questLevel": 1,
+        "baseXp": 40,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 40
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_02_beacon_lied",
+        "playerLevel": 5,
+        "questLevel": 1,
+        "baseXp": 40,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 40
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_02_beacon_lied",
+        "playerLevel": 8,
+        "questLevel": 1,
+        "baseXp": 40,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 25
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_02_beacon_lied",
+        "playerLevel": 10,
+        "questLevel": 1,
+        "baseXp": 40,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_02_beacon_lied",
+        "playerLevel": 12,
+        "questLevel": 1,
+        "baseXp": 40,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_02_beacon_lied",
+        "playerLevel": 15,
+        "questLevel": 1,
+        "baseXp": 40,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_02_beacon_lied",
+        "playerLevel": 20,
+        "questLevel": 1,
+        "baseXp": 40,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_06_admiral_crabs",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_06_admiral_crabs",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_06_admiral_crabs",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_06_admiral_crabs",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_06_admiral_crabs",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_06_admiral_crabs",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_06_admiral_crabs",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_06_admiral_crabs",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_07_across",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_07_across",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_07_across",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_07_across",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_07_across",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_07_across",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_07_across",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_07_across",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_08_vouch",
+        "playerLevel": 1,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_08_vouch",
+        "playerLevel": 3,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_08_vouch",
+        "playerLevel": 5,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_08_vouch",
+        "playerLevel": 8,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_08_vouch",
+        "playerLevel": 10,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 170
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_08_vouch",
+        "playerLevel": 12,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 85
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_08_vouch",
+        "playerLevel": 15,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 20
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_08_vouch",
+        "playerLevel": 20,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 20
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_10_handle_doubt",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_10_handle_doubt",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_10_handle_doubt",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_10_handle_doubt",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_10_handle_doubt",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_10_handle_doubt",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_10_handle_doubt",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_10_handle_doubt",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_11_cold_garden",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_11_cold_garden",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_11_cold_garden",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_11_cold_garden",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_11_cold_garden",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_11_cold_garden",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_11_cold_garden",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_11_cold_garden",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_12_tied_to_root",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_12_tied_to_root",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_12_tied_to_root",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_12_tied_to_root",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_12_tied_to_root",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_12_tied_to_root",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_12_tied_to_root",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_12_tied_to_root",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_13_flowers_down",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_13_flowers_down",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_13_flowers_down",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_13_flowers_down",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_13_flowers_down",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_13_flowers_down",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_13_flowers_down",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_13_flowers_down",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_14_buried_tuesday",
+        "playerLevel": 1,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_14_buried_tuesday",
+        "playerLevel": 3,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_14_buried_tuesday",
+        "playerLevel": 5,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_14_buried_tuesday",
+        "playerLevel": 8,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_14_buried_tuesday",
+        "playerLevel": 10,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 85
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_14_buried_tuesday",
+        "playerLevel": 12,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_14_buried_tuesday",
+        "playerLevel": 15,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_14_buried_tuesday",
+        "playerLevel": 20,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_15_warmth_missing",
+        "playerLevel": 1,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_15_warmth_missing",
+        "playerLevel": 3,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_15_warmth_missing",
+        "playerLevel": 5,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_15_warmth_missing",
+        "playerLevel": 8,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_15_warmth_missing",
+        "playerLevel": 10,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 170
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_15_warmth_missing",
+        "playerLevel": 12,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 85
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_15_warmth_missing",
+        "playerLevel": 15,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 20
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_15_warmth_missing",
+        "playerLevel": 20,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 20
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_16_pick_the_choir",
+        "playerLevel": 1,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_16_pick_the_choir",
+        "playerLevel": 3,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_16_pick_the_choir",
+        "playerLevel": 5,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_16_pick_the_choir",
+        "playerLevel": 8,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_16_pick_the_choir",
+        "playerLevel": 10,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 85
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_16_pick_the_choir",
+        "playerLevel": 12,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_16_pick_the_choir",
+        "playerLevel": 15,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_16_pick_the_choir",
+        "playerLevel": 20,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_17_della_long_way",
+        "playerLevel": 1,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_17_della_long_way",
+        "playerLevel": 3,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_17_della_long_way",
+        "playerLevel": 5,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_17_della_long_way",
+        "playerLevel": 8,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_17_della_long_way",
+        "playerLevel": 10,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 85
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_17_della_long_way",
+        "playerLevel": 12,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_17_della_long_way",
+        "playerLevel": 15,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_17_della_long_way",
+        "playerLevel": 20,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_18_three_knocks",
+        "playerLevel": 1,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_18_three_knocks",
+        "playerLevel": 3,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_18_three_knocks",
+        "playerLevel": 5,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_18_three_knocks",
+        "playerLevel": 8,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_18_three_knocks",
+        "playerLevel": 10,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 85
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_18_three_knocks",
+        "playerLevel": 12,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_18_three_knocks",
+        "playerLevel": 15,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_18_three_knocks",
+        "playerLevel": 20,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_19_guest_shelves",
+        "playerLevel": 1,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_19_guest_shelves",
+        "playerLevel": 3,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_19_guest_shelves",
+        "playerLevel": 5,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_19_guest_shelves",
+        "playerLevel": 8,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_19_guest_shelves",
+        "playerLevel": 10,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 85
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_19_guest_shelves",
+        "playerLevel": 12,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_19_guest_shelves",
+        "playerLevel": 15,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_19_guest_shelves",
+        "playerLevel": 20,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_20_order_unsigned",
+        "playerLevel": 1,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_20_order_unsigned",
+        "playerLevel": 3,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_20_order_unsigned",
+        "playerLevel": 5,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_20_order_unsigned",
+        "playerLevel": 8,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 140
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_20_order_unsigned",
+        "playerLevel": 10,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 85
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_20_order_unsigned",
+        "playerLevel": 12,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_20_order_unsigned",
+        "playerLevel": 15,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_20_order_unsigned",
+        "playerLevel": 20,
+        "questLevel": 3,
+        "baseXp": 140,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_21_watch_cannot_see",
+        "playerLevel": 1,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_21_watch_cannot_see",
+        "playerLevel": 3,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_21_watch_cannot_see",
+        "playerLevel": 5,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_21_watch_cannot_see",
+        "playerLevel": 8,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_21_watch_cannot_see",
+        "playerLevel": 10,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 170
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_21_watch_cannot_see",
+        "playerLevel": 12,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 85
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_21_watch_cannot_see",
+        "playerLevel": 15,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 20
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_21_watch_cannot_see",
+        "playerLevel": 20,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 20
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_24_sandwich_emergency",
+        "playerLevel": 1,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_24_sandwich_emergency",
+        "playerLevel": 3,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_24_sandwich_emergency",
+        "playerLevel": 5,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_24_sandwich_emergency",
+        "playerLevel": 8,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_24_sandwich_emergency",
+        "playerLevel": 10,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 170
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_24_sandwich_emergency",
+        "playerLevel": 12,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 85
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_24_sandwich_emergency",
+        "playerLevel": 15,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 20
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_24_sandwich_emergency",
+        "playerLevel": 20,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 20
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_25_someone_teaching",
+        "playerLevel": 1,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_25_someone_teaching",
+        "playerLevel": 3,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_25_someone_teaching",
+        "playerLevel": 5,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_25_someone_teaching",
+        "playerLevel": 8,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_25_someone_teaching",
+        "playerLevel": 10,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 170
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_25_someone_teaching",
+        "playerLevel": 12,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 85
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_25_someone_teaching",
+        "playerLevel": 15,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 20
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_25_someone_teaching",
+        "playerLevel": 20,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 20
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_26_promise_paint",
+        "playerLevel": 1,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_26_promise_paint",
+        "playerLevel": 3,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_26_promise_paint",
+        "playerLevel": 5,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_26_promise_paint",
+        "playerLevel": 8,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_26_promise_paint",
+        "playerLevel": 10,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 170
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_26_promise_paint",
+        "playerLevel": 12,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 85
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_26_promise_paint",
+        "playerLevel": 15,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 20
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_26_promise_paint",
+        "playerLevel": 20,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 20
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_28_door_left_shut",
+        "playerLevel": 1,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_28_door_left_shut",
+        "playerLevel": 3,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_28_door_left_shut",
+        "playerLevel": 5,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_28_door_left_shut",
+        "playerLevel": 8,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_28_door_left_shut",
+        "playerLevel": 10,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 170
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_28_door_left_shut",
+        "playerLevel": 12,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 85
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_28_door_left_shut",
+        "playerLevel": 15,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 20
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_28_door_left_shut",
+        "playerLevel": 20,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 20
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_03_fish_consulted",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_03_fish_consulted",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_03_fish_consulted",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_03_fish_consulted",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_03_fish_consulted",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_03_fish_consulted",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_03_fish_consulted",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_03_fish_consulted",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_04_every_board",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_04_every_board",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_04_every_board",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_04_every_board",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_04_every_board",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_04_every_board",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_04_every_board",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_04_every_board",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_05_solid_underfoot",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_05_solid_underfoot",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_05_solid_underfoot",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_05_solid_underfoot",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_05_solid_underfoot",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_05_solid_underfoot",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_05_solid_underfoot",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_05_solid_underfoot",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_09_buckles_glory",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_09_buckles_glory",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_09_buckles_glory",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 90
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_09_buckles_glory",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_09_buckles_glory",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_09_buckles_glory",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_09_buckles_glory",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_09_buckles_glory",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 90,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_22_place_you_keep",
+        "playerLevel": 1,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_22_place_you_keep",
+        "playerLevel": 3,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_22_place_you_keep",
+        "playerLevel": 5,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_22_place_you_keep",
+        "playerLevel": 8,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_22_place_you_keep",
+        "playerLevel": 10,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 170
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_22_place_you_keep",
+        "playerLevel": 12,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 85
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_22_place_you_keep",
+        "playerLevel": 15,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 20
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_22_place_you_keep",
+        "playerLevel": 20,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 20
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_23_working_life",
+        "playerLevel": 1,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_23_working_life",
+        "playerLevel": 3,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_23_working_life",
+        "playerLevel": 5,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_23_working_life",
+        "playerLevel": 8,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_23_working_life",
+        "playerLevel": 10,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 170
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_23_working_life",
+        "playerLevel": 12,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 85
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_23_working_life",
+        "playerLevel": 15,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 20
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_23_working_life",
+        "playerLevel": 20,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 20
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_27_supper_despite",
+        "playerLevel": 1,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_27_supper_despite",
+        "playerLevel": 3,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_27_supper_despite",
+        "playerLevel": 5,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_27_supper_despite",
+        "playerLevel": 8,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 210
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_27_supper_despite",
+        "playerLevel": 10,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 170
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_27_supper_despite",
+        "playerLevel": 12,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 85
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_27_supper_despite",
+        "playerLevel": 15,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 20
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_27_supper_despite",
+        "playerLevel": 20,
+        "questLevel": 4,
+        "baseXp": 210,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 20
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d01_bounty_culvert",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d01_bounty_culvert",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d01_bounty_culvert",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d01_bounty_culvert",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d01_bounty_culvert",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d01_bounty_culvert",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d01_bounty_culvert",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d01_bounty_culvert",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d02_clear_quarry",
+        "playerLevel": 1,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 55
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d02_clear_quarry",
+        "playerLevel": 3,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 55
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d02_clear_quarry",
+        "playerLevel": 5,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 55
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d02_clear_quarry",
+        "playerLevel": 8,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 55
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d02_clear_quarry",
+        "playerLevel": 10,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d02_clear_quarry",
+        "playerLevel": 12,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d02_clear_quarry",
+        "playerLevel": 15,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d02_clear_quarry",
+        "playerLevel": 20,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d03_teeth_verge",
+        "playerLevel": 1,
+        "questLevel": 4,
+        "baseXp": 85,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 85
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d03_teeth_verge",
+        "playerLevel": 3,
+        "questLevel": 4,
+        "baseXp": 85,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 85
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d03_teeth_verge",
+        "playerLevel": 5,
+        "questLevel": 4,
+        "baseXp": 85,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 85
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d03_teeth_verge",
+        "playerLevel": 8,
+        "questLevel": 4,
+        "baseXp": 85,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 85
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d03_teeth_verge",
+        "playerLevel": 10,
+        "questLevel": 4,
+        "baseXp": 85,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d03_teeth_verge",
+        "playerLevel": 12,
+        "questLevel": 4,
+        "baseXp": 85,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d03_teeth_verge",
+        "playerLevel": 15,
+        "questLevel": 4,
+        "baseXp": 85,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d03_teeth_verge",
+        "playerLevel": 20,
+        "questLevel": 4,
+        "baseXp": 85,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d04_metal_copper",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d04_metal_copper",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d04_metal_copper",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d04_metal_copper",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d04_metal_copper",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d04_metal_copper",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d04_metal_copper",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d04_metal_copper",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d05_wood_oak",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d05_wood_oak",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d05_wood_oak",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d05_wood_oak",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d05_wood_oak",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d05_wood_oak",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d05_wood_oak",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d05_wood_oak",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d05_wood_alder",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d05_wood_alder",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d05_wood_alder",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d05_wood_alder",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d05_wood_alder",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d05_wood_alder",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d05_wood_alder",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d05_wood_alder",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d06_leaves_silvermint",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d06_leaves_silvermint",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d06_leaves_silvermint",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d06_leaves_silvermint",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d06_leaves_silvermint",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d06_leaves_silvermint",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d06_leaves_silvermint",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d06_leaves_silvermint",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d07_receipt_rivets",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d07_receipt_rivets",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d07_receipt_rivets",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d07_receipt_rivets",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d07_receipt_rivets",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d07_receipt_rivets",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d07_receipt_rivets",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d07_receipt_rivets",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d07_receipt_hinges",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d07_receipt_hinges",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d07_receipt_hinges",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d07_receipt_hinges",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d07_receipt_hinges",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d07_receipt_hinges",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d07_receipt_hinges",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d07_receipt_hinges",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d08_lunch_stew",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d08_lunch_stew",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d08_lunch_stew",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d08_lunch_stew",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d08_lunch_stew",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d08_lunch_stew",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d08_lunch_stew",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d08_lunch_stew",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d08_lunch_bread",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d08_lunch_bread",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d08_lunch_bread",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d08_lunch_bread",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d08_lunch_bread",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d08_lunch_bread",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d08_lunch_bread",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d08_lunch_bread",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d09_parcels_herbs",
+        "playerLevel": 1,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 55
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d09_parcels_herbs",
+        "playerLevel": 3,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 55
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d09_parcels_herbs",
+        "playerLevel": 5,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 55
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d09_parcels_herbs",
+        "playerLevel": 8,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 55
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d09_parcels_herbs",
+        "playerLevel": 10,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d09_parcels_herbs",
+        "playerLevel": 12,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d09_parcels_herbs",
+        "playerLevel": 15,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d09_parcels_herbs",
+        "playerLevel": 20,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d09_parcels_mulch",
+        "playerLevel": 1,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 55
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d09_parcels_mulch",
+        "playerLevel": 3,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 55
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d09_parcels_mulch",
+        "playerLevel": 5,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 55
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d09_parcels_mulch",
+        "playerLevel": 8,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 55
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d09_parcels_mulch",
+        "playerLevel": 10,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d09_parcels_mulch",
+        "playerLevel": 12,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d09_parcels_mulch",
+        "playerLevel": 15,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d09_parcels_mulch",
+        "playerLevel": 20,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d10_road_checkposts",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d10_road_checkposts",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d10_road_checkposts",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d10_road_checkposts",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d10_road_checkposts",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d10_road_checkposts",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d10_road_checkposts",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d10_road_checkposts",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d10_quay_posts",
+        "playerLevel": 1,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d10_quay_posts",
+        "playerLevel": 3,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d10_quay_posts",
+        "playerLevel": 5,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d10_quay_posts",
+        "playerLevel": 8,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d10_quay_posts",
+        "playerLevel": 10,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d10_quay_posts",
+        "playerLevel": 12,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d10_quay_posts",
+        "playerLevel": 15,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d10_quay_posts",
+        "playerLevel": 20,
+        "questLevel": 2,
+        "baseXp": 35,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d11_light_behind",
+        "playerLevel": 1,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 55
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d11_light_behind",
+        "playerLevel": 3,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 55
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d11_light_behind",
+        "playerLevel": 5,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 55
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d11_light_behind",
+        "playerLevel": 8,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 55
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d11_light_behind",
+        "playerLevel": 10,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d11_light_behind",
+        "playerLevel": 12,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d11_light_behind",
+        "playerLevel": 15,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d11_light_behind",
+        "playerLevel": 20,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d12_road_not_rumor",
+        "playerLevel": 1,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 55
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d12_road_not_rumor",
+        "playerLevel": 3,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 55
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d12_road_not_rumor",
+        "playerLevel": 5,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 55
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d12_road_not_rumor",
+        "playerLevel": 8,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 55
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d12_road_not_rumor",
+        "playerLevel": 10,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d12_road_not_rumor",
+        "playerLevel": 12,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d12_road_not_rumor",
+        "playerLevel": 15,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c1_d12_road_not_rumor",
+        "playerLevel": 20,
+        "questLevel": 3,
+        "baseXp": 55,
+        "repeatable": true
+      },
+      "out": {
+        "xp": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_01_ship_sank_twice",
+        "playerLevel": 1,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 280
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_01_ship_sank_twice",
+        "playerLevel": 3,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 280
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_01_ship_sank_twice",
+        "playerLevel": 5,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 280
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_01_ship_sank_twice",
+        "playerLevel": 8,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 280
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_01_ship_sank_twice",
+        "playerLevel": 10,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 280
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_01_ship_sank_twice",
+        "playerLevel": 12,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 170
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_01_ship_sank_twice",
+        "playerLevel": 15,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_01_ship_sank_twice",
+        "playerLevel": 20,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_03_bells_from_steps",
+        "playerLevel": 1,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 280
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_03_bells_from_steps",
+        "playerLevel": 3,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 280
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_03_bells_from_steps",
+        "playerLevel": 5,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 280
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_03_bells_from_steps",
+        "playerLevel": 8,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 280
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_03_bells_from_steps",
+        "playerLevel": 10,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 280
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_03_bells_from_steps",
+        "playerLevel": 12,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 170
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_03_bells_from_steps",
+        "playerLevel": 15,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_03_bells_from_steps",
+        "playerLevel": 20,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_12_door_we_left_shut",
+        "playerLevel": 1,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_12_door_we_left_shut",
+        "playerLevel": 3,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_12_door_we_left_shut",
+        "playerLevel": 5,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_12_door_we_left_shut",
+        "playerLevel": 8,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_12_door_we_left_shut",
+        "playerLevel": 10,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_12_door_we_left_shut",
+        "playerLevel": 12,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_12_door_we_left_shut",
+        "playerLevel": 15,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 180
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_12_door_we_left_shut",
+        "playerLevel": 20,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 45
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_28_remembered_roofs",
+        "playerLevel": 1,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 650
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_28_remembered_roofs",
+        "playerLevel": 3,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 650
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_28_remembered_roofs",
+        "playerLevel": 5,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 650
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_28_remembered_roofs",
+        "playerLevel": 8,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 650
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_28_remembered_roofs",
+        "playerLevel": 10,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 650
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_28_remembered_roofs",
+        "playerLevel": 12,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 650
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_28_remembered_roofs",
+        "playerLevel": 15,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 520
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_28_remembered_roofs",
+        "playerLevel": 20,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 65
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_32_bridge_fenbridge_trusts",
+        "playerLevel": 1,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_32_bridge_fenbridge_trusts",
+        "playerLevel": 3,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_32_bridge_fenbridge_trusts",
+        "playerLevel": 5,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_32_bridge_fenbridge_trusts",
+        "playerLevel": 8,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_32_bridge_fenbridge_trusts",
+        "playerLevel": 10,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_32_bridge_fenbridge_trusts",
+        "playerLevel": 12,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_32_bridge_fenbridge_trusts",
+        "playerLevel": 15,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_32_bridge_fenbridge_trusts",
+        "playerLevel": 20,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 75
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_33_paddy_work_fog",
+        "playerLevel": 1,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_33_paddy_work_fog",
+        "playerLevel": 3,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_33_paddy_work_fog",
+        "playerLevel": 5,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_33_paddy_work_fog",
+        "playerLevel": 8,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_33_paddy_work_fog",
+        "playerLevel": 10,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_33_paddy_work_fog",
+        "playerLevel": 12,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_33_paddy_work_fog",
+        "playerLevel": 15,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_33_paddy_work_fog",
+        "playerLevel": 20,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 75
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_02_whose_seal",
+        "playerLevel": 1,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 280
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_02_whose_seal",
+        "playerLevel": 3,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 280
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_02_whose_seal",
+        "playerLevel": 5,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 280
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_02_whose_seal",
+        "playerLevel": 8,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 280
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_02_whose_seal",
+        "playerLevel": 10,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 280
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_02_whose_seal",
+        "playerLevel": 12,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 170
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_02_whose_seal",
+        "playerLevel": 15,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_02_whose_seal",
+        "playerLevel": 20,
+        "questLevel": 5,
+        "baseXp": 280,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 30
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_04_lantern_causeway",
+        "playerLevel": 1,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 360
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_04_lantern_causeway",
+        "playerLevel": 3,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 360
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_04_lantern_causeway",
+        "playerLevel": 5,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 360
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_04_lantern_causeway",
+        "playerLevel": 8,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 360
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_04_lantern_causeway",
+        "playerLevel": 10,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 360
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_04_lantern_causeway",
+        "playerLevel": 12,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 290
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_04_lantern_causeway",
+        "playerLevel": 15,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_04_lantern_causeway",
+        "playerLevel": 20,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_05_causeway_watch",
+        "playerLevel": 1,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 360
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_05_causeway_watch",
+        "playerLevel": 3,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 360
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_05_causeway_watch",
+        "playerLevel": 5,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 360
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_05_causeway_watch",
+        "playerLevel": 8,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 360
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_05_causeway_watch",
+        "playerLevel": 10,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 360
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_05_causeway_watch",
+        "playerLevel": 12,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 290
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_05_causeway_watch",
+        "playerLevel": 15,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_05_causeway_watch",
+        "playerLevel": 20,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_06_watch_holds_road",
+        "playerLevel": 1,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_06_watch_holds_road",
+        "playerLevel": 3,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_06_watch_holds_road",
+        "playerLevel": 5,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_06_watch_holds_road",
+        "playerLevel": 8,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_06_watch_holds_road",
+        "playerLevel": 10,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_06_watch_holds_road",
+        "playerLevel": 12,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_06_watch_holds_road",
+        "playerLevel": 15,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 180
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_06_watch_holds_road",
+        "playerLevel": 20,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 45
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_07_pressford_remembers",
+        "playerLevel": 1,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 360
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_07_pressford_remembers",
+        "playerLevel": 3,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 360
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_07_pressford_remembers",
+        "playerLevel": 5,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 360
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_07_pressford_remembers",
+        "playerLevel": 8,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 360
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_07_pressford_remembers",
+        "playerLevel": 10,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 360
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_07_pressford_remembers",
+        "playerLevel": 12,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 290
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_07_pressford_remembers",
+        "playerLevel": 15,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 70
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_07_pressford_remembers",
+        "playerLevel": 20,
+        "questLevel": 6,
+        "baseXp": 360,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 35
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_08_pests_windfalls",
+        "playerLevel": 1,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_08_pests_windfalls",
+        "playerLevel": 3,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_08_pests_windfalls",
+        "playerLevel": 5,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_08_pests_windfalls",
+        "playerLevel": 8,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_08_pests_windfalls",
+        "playerLevel": 10,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_08_pests_windfalls",
+        "playerLevel": 12,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_08_pests_windfalls",
+        "playerLevel": 15,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 180
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_08_pests_windfalls",
+        "playerLevel": 20,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 45
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_09_press_will_not_turn",
+        "playerLevel": 1,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_09_press_will_not_turn",
+        "playerLevel": 3,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_09_press_will_not_turn",
+        "playerLevel": 5,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_09_press_will_not_turn",
+        "playerLevel": 8,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_09_press_will_not_turn",
+        "playerLevel": 10,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_09_press_will_not_turn",
+        "playerLevel": 12,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_09_press_will_not_turn",
+        "playerLevel": 15,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 180
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_09_press_will_not_turn",
+        "playerLevel": 20,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 45
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_10_cord_in_cider_vat",
+        "playerLevel": 1,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_10_cord_in_cider_vat",
+        "playerLevel": 3,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_10_cord_in_cider_vat",
+        "playerLevel": 5,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_10_cord_in_cider_vat",
+        "playerLevel": 8,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_10_cord_in_cider_vat",
+        "playerLevel": 10,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_10_cord_in_cider_vat",
+        "playerLevel": 12,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_10_cord_in_cider_vat",
+        "playerLevel": 15,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 180
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_10_cord_in_cider_vat",
+        "playerLevel": 20,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 45
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_11_second_planting",
+        "playerLevel": 1,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_11_second_planting",
+        "playerLevel": 3,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_11_second_planting",
+        "playerLevel": 5,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_11_second_planting",
+        "playerLevel": 8,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_11_second_planting",
+        "playerLevel": 10,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_11_second_planting",
+        "playerLevel": 12,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 450
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_11_second_planting",
+        "playerLevel": 15,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 180
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_11_second_planting",
+        "playerLevel": 20,
+        "questLevel": 7,
+        "baseXp": 450,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 45
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_14_kitchen_for_pickers",
+        "playerLevel": 1,
+        "questLevel": 8,
+        "baseXp": 540,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 540
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_14_kitchen_for_pickers",
+        "playerLevel": 3,
+        "questLevel": 8,
+        "baseXp": 540,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 540
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_14_kitchen_for_pickers",
+        "playerLevel": 5,
+        "questLevel": 8,
+        "baseXp": 540,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 540
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_14_kitchen_for_pickers",
+        "playerLevel": 8,
+        "questLevel": 8,
+        "baseXp": 540,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 540
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_14_kitchen_for_pickers",
+        "playerLevel": 10,
+        "questLevel": 8,
+        "baseXp": 540,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 540
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_14_kitchen_for_pickers",
+        "playerLevel": 12,
+        "questLevel": 8,
+        "baseXp": 540,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 540
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_14_kitchen_for_pickers",
+        "playerLevel": 15,
+        "questLevel": 8,
+        "baseXp": 540,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 325
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_14_kitchen_for_pickers",
+        "playerLevel": 20,
+        "questLevel": 8,
+        "baseXp": 540,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 55
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_15_moor_hounds",
+        "playerLevel": 1,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 650
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_15_moor_hounds",
+        "playerLevel": 3,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 650
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_15_moor_hounds",
+        "playerLevel": 5,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 650
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_15_moor_hounds",
+        "playerLevel": 8,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 650
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_15_moor_hounds",
+        "playerLevel": 10,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 650
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_15_moor_hounds",
+        "playerLevel": 12,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 650
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_15_moor_hounds",
+        "playerLevel": 15,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 520
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_15_moor_hounds",
+        "playerLevel": 20,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 65
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_16_fires_should_not_burn",
+        "playerLevel": 1,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_16_fires_should_not_burn",
+        "playerLevel": 3,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_16_fires_should_not_burn",
+        "playerLevel": 5,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_16_fires_should_not_burn",
+        "playerLevel": 8,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_16_fires_should_not_burn",
+        "playerLevel": 10,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_16_fires_should_not_burn",
+        "playerLevel": 12,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_16_fires_should_not_burn",
+        "playerLevel": 15,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_16_fires_should_not_burn",
+        "playerLevel": 20,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 75
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_17_bandit_pay",
+        "playerLevel": 1,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_17_bandit_pay",
+        "playerLevel": 3,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_17_bandit_pay",
+        "playerLevel": 5,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_17_bandit_pay",
+        "playerLevel": 8,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_17_bandit_pay",
+        "playerLevel": 10,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_17_bandit_pay",
+        "playerLevel": 12,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_17_bandit_pay",
+        "playerLevel": 15,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_17_bandit_pay",
+        "playerLevel": 20,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 75
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_18_keepers_escort",
+        "playerLevel": 1,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 650
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_18_keepers_escort",
+        "playerLevel": 3,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 650
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_18_keepers_escort",
+        "playerLevel": 5,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 650
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_18_keepers_escort",
+        "playerLevel": 8,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 650
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_18_keepers_escort",
+        "playerLevel": 10,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 650
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_18_keepers_escort",
+        "playerLevel": 12,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 650
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_18_keepers_escort",
+        "playerLevel": 15,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 520
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_18_keepers_escort",
+        "playerLevel": 20,
+        "questLevel": 9,
+        "baseXp": 650,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 65
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_19_first_hearth_ring",
+        "playerLevel": 1,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_19_first_hearth_ring",
+        "playerLevel": 3,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_19_first_hearth_ring",
+        "playerLevel": 5,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_19_first_hearth_ring",
+        "playerLevel": 8,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_19_first_hearth_ring",
+        "playerLevel": 10,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_19_first_hearth_ring",
+        "playerLevel": 12,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_19_first_hearth_ring",
+        "playerLevel": 15,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_19_first_hearth_ring",
+        "playerLevel": 20,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 75
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_20_ash_before_kingdom",
+        "playerLevel": 1,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_20_ash_before_kingdom",
+        "playerLevel": 3,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_20_ash_before_kingdom",
+        "playerLevel": 5,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_20_ash_before_kingdom",
+        "playerLevel": 8,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_20_ash_before_kingdom",
+        "playerLevel": 10,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_20_ash_before_kingdom",
+        "playerLevel": 12,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_20_ash_before_kingdom",
+        "playerLevel": 15,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_20_ash_before_kingdom",
+        "playerLevel": 20,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 75
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_21_heath_herbs_fen",
+        "playerLevel": 1,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_21_heath_herbs_fen",
+        "playerLevel": 3,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_21_heath_herbs_fen",
+        "playerLevel": 5,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_21_heath_herbs_fen",
+        "playerLevel": 8,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_21_heath_herbs_fen",
+        "playerLevel": 10,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_21_heath_herbs_fen",
+        "playerLevel": 12,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_21_heath_herbs_fen",
+        "playerLevel": 15,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_21_heath_herbs_fen",
+        "playerLevel": 20,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 75
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_34_coin_quiet_road",
+        "playerLevel": 1,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_34_coin_quiet_road",
+        "playerLevel": 3,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_34_coin_quiet_road",
+        "playerLevel": 5,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_34_coin_quiet_road",
+        "playerLevel": 8,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_34_coin_quiet_road",
+        "playerLevel": 10,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_34_coin_quiet_road",
+        "playerLevel": 12,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_34_coin_quiet_road",
+        "playerLevel": 15,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_34_coin_quiet_road",
+        "playerLevel": 20,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 75
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_35_claim_nobody_filed",
+        "playerLevel": 1,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_35_claim_nobody_filed",
+        "playerLevel": 3,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_35_claim_nobody_filed",
+        "playerLevel": 5,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_35_claim_nobody_filed",
+        "playerLevel": 8,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_35_claim_nobody_filed",
+        "playerLevel": 10,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_35_claim_nobody_filed",
+        "playerLevel": 12,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_35_claim_nobody_filed",
+        "playerLevel": 15,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_35_claim_nobody_filed",
+        "playerLevel": 20,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 75
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_36_ore_with_a_will",
+        "playerLevel": 1,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_36_ore_with_a_will",
+        "playerLevel": 3,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_36_ore_with_a_will",
+        "playerLevel": 5,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_36_ore_with_a_will",
+        "playerLevel": 8,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_36_ore_with_a_will",
+        "playerLevel": 10,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_36_ore_with_a_will",
+        "playerLevel": 12,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_36_ore_with_a_will",
+        "playerLevel": 15,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 760
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_36_ore_with_a_will",
+        "playerLevel": 20,
+        "questLevel": 10,
+        "baseXp": 760,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 75
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_37_lanterns_will_not_light",
+        "playerLevel": 1,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_37_lanterns_will_not_light",
+        "playerLevel": 3,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_37_lanterns_will_not_light",
+        "playerLevel": 5,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_37_lanterns_will_not_light",
+        "playerLevel": 8,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_37_lanterns_will_not_light",
+        "playerLevel": 10,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_37_lanterns_will_not_light",
+        "playerLevel": 12,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_37_lanterns_will_not_light",
+        "playerLevel": 15,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_37_lanterns_will_not_light",
+        "playerLevel": 20,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 405
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_38_what_dig_was_for",
+        "playerLevel": 1,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_38_what_dig_was_for",
+        "playerLevel": 3,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_38_what_dig_was_for",
+        "playerLevel": 5,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_38_what_dig_was_for",
+        "playerLevel": 8,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_38_what_dig_was_for",
+        "playerLevel": 10,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_38_what_dig_was_for",
+        "playerLevel": 12,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_38_what_dig_was_for",
+        "playerLevel": 15,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_38_what_dig_was_for",
+        "playerLevel": 20,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 405
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_39_chalk_cliff_nests",
+        "playerLevel": 1,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_39_chalk_cliff_nests",
+        "playerLevel": 3,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_39_chalk_cliff_nests",
+        "playerLevel": 5,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_39_chalk_cliff_nests",
+        "playerLevel": 8,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_39_chalk_cliff_nests",
+        "playerLevel": 10,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_39_chalk_cliff_nests",
+        "playerLevel": 12,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_39_chalk_cliff_nests",
+        "playerLevel": 15,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_39_chalk_cliff_nests",
+        "playerLevel": 20,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 405
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_40_bells_low_tide",
+        "playerLevel": 1,
+        "questLevel": 11,
+        "baseXp": 880,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 880
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_40_bells_low_tide",
+        "playerLevel": 3,
+        "questLevel": 11,
+        "baseXp": 880,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 880
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_40_bells_low_tide",
+        "playerLevel": 5,
+        "questLevel": 11,
+        "baseXp": 880,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 880
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_40_bells_low_tide",
+        "playerLevel": 8,
+        "questLevel": 11,
+        "baseXp": 880,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 880
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_40_bells_low_tide",
+        "playerLevel": 10,
+        "questLevel": 11,
+        "baseXp": 880,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 880
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_40_bells_low_tide",
+        "playerLevel": 12,
+        "questLevel": 11,
+        "baseXp": 880,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 880
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_40_bells_low_tide",
+        "playerLevel": 15,
+        "questLevel": 11,
+        "baseXp": 880,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 880
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_40_bells_low_tide",
+        "playerLevel": 20,
+        "questLevel": 11,
+        "baseXp": 880,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 175
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_41_tide_road_fortress",
+        "playerLevel": 1,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_41_tide_road_fortress",
+        "playerLevel": 3,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_41_tide_road_fortress",
+        "playerLevel": 5,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_41_tide_road_fortress",
+        "playerLevel": 8,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_41_tide_road_fortress",
+        "playerLevel": 10,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_41_tide_road_fortress",
+        "playerLevel": 12,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_41_tide_road_fortress",
+        "playerLevel": 15,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_41_tide_road_fortress",
+        "playerLevel": 20,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 405
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_42_strongboxes_shoals",
+        "playerLevel": 1,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_42_strongboxes_shoals",
+        "playerLevel": 3,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_42_strongboxes_shoals",
+        "playerLevel": 5,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_42_strongboxes_shoals",
+        "playerLevel": 8,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_42_strongboxes_shoals",
+        "playerLevel": 10,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_42_strongboxes_shoals",
+        "playerLevel": 12,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_42_strongboxes_shoals",
+        "playerLevel": 15,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 1010
+      }
+    },
+    {
+      "in": {
+        "kind": "quest",
+        "questId": "c2_42_strongboxes_shoals",
+        "playerLevel": 20,
+        "questLevel": 12,
+        "baseXp": 1010,
+        "repeatable": false
+      },
+      "out": {
+        "xp": 405
+      }
+    }
+  ]
+}

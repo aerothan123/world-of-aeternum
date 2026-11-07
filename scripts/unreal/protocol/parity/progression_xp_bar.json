@@ -1,0 +1,2887 @@
+{
+  "suite": "progression_xp_bar",
+  "source": "src/ui/xp_bar.ts xpBarView (showOverflow false)",
+  "note": "percent is the floored whole percent the bar prints",
+  "cases": [
+    {
+      "in": {
+        "level": 1,
+        "xp": 0,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 1,
+        "xp": 0,
+        "restedXp": 120
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0.3,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 1,
+        "xp": 0,
+        "restedXp": 640
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 1,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 1,
+        "xp": 100,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 1,
+        "xp": 100,
+        "restedXp": 120
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.30000000000000004,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 1,
+        "xp": 100,
+        "restedXp": 640
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.75,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 1,
+        "xp": 200,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 1,
+        "xp": 200,
+        "restedXp": 120
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.30000000000000004,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 1,
+        "xp": 200,
+        "restedXp": 640
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.5,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 1,
+        "xp": 399,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.9975,
+        "restedFrac": 0,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 1,
+        "xp": 399,
+        "restedXp": 120
+      },
+      "out": {
+        "fillFrac": 0.9975,
+        "restedFrac": 0.0024999999999999467,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 1,
+        "xp": 399,
+        "restedXp": 640
+      },
+      "out": {
+        "fillFrac": 0.9975,
+        "restedFrac": 0.0024999999999999467,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 2,
+        "xp": 0,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 2,
+        "xp": 0,
+        "restedXp": 270
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0.3,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 2,
+        "xp": 0,
+        "restedXp": 1440
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 1,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 2,
+        "xp": 225,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 2,
+        "xp": 225,
+        "restedXp": 270
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.30000000000000004,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 2,
+        "xp": 225,
+        "restedXp": 1440
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.75,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 2,
+        "xp": 450,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 2,
+        "xp": 450,
+        "restedXp": 270
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.30000000000000004,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 2,
+        "xp": 450,
+        "restedXp": 1440
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.5,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 2,
+        "xp": 899,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.9988888888888889,
+        "restedFrac": 0,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 2,
+        "xp": 899,
+        "restedXp": 270
+      },
+      "out": {
+        "fillFrac": 0.9988888888888889,
+        "restedFrac": 0.0011111111111110628,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 2,
+        "xp": 899,
+        "restedXp": 1440
+      },
+      "out": {
+        "fillFrac": 0.9988888888888889,
+        "restedFrac": 0.0011111111111110628,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 3,
+        "xp": 0,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 3,
+        "xp": 0,
+        "restedXp": 420
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0.3,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 3,
+        "xp": 0,
+        "restedXp": 2240
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 1,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 3,
+        "xp": 350,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 3,
+        "xp": 350,
+        "restedXp": 420
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.30000000000000004,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 3,
+        "xp": 350,
+        "restedXp": 2240
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.75,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 3,
+        "xp": 700,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 3,
+        "xp": 700,
+        "restedXp": 420
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.30000000000000004,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 3,
+        "xp": 700,
+        "restedXp": 2240
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.5,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 3,
+        "xp": 1398,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.9985714285714286,
+        "restedFrac": 0,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 3,
+        "xp": 1398,
+        "restedXp": 420
+      },
+      "out": {
+        "fillFrac": 0.9985714285714286,
+        "restedFrac": 0.0014285714285714457,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 3,
+        "xp": 1398,
+        "restedXp": 2240
+      },
+      "out": {
+        "fillFrac": 0.9985714285714286,
+        "restedFrac": 0.0014285714285714457,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 4,
+        "xp": 0,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 4,
+        "xp": 0,
+        "restedXp": 630
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0.3,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 4,
+        "xp": 0,
+        "restedXp": 3360
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 1,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 4,
+        "xp": 525,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 4,
+        "xp": 525,
+        "restedXp": 630
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.30000000000000004,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 4,
+        "xp": 525,
+        "restedXp": 3360
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.75,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 4,
+        "xp": 1050,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 4,
+        "xp": 1050,
+        "restedXp": 630
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.30000000000000004,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 4,
+        "xp": 1050,
+        "restedXp": 3360
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.5,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 4,
+        "xp": 2097,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.9985714285714286,
+        "restedFrac": 0,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 4,
+        "xp": 2097,
+        "restedXp": 630
+      },
+      "out": {
+        "fillFrac": 0.9985714285714286,
+        "restedFrac": 0.0014285714285714457,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 4,
+        "xp": 2097,
+        "restedXp": 3360
+      },
+      "out": {
+        "fillFrac": 0.9985714285714286,
+        "restedFrac": 0.0014285714285714457,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 5,
+        "xp": 0,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 5,
+        "xp": 0,
+        "restedXp": 840
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0.3,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 5,
+        "xp": 0,
+        "restedXp": 4480
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 1,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 5,
+        "xp": 700,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 5,
+        "xp": 700,
+        "restedXp": 840
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.30000000000000004,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 5,
+        "xp": 700,
+        "restedXp": 4480
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.75,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 5,
+        "xp": 1400,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 5,
+        "xp": 1400,
+        "restedXp": 840
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.30000000000000004,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 5,
+        "xp": 1400,
+        "restedXp": 4480
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.5,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 5,
+        "xp": 2797,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.9989285714285714,
+        "restedFrac": 0,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 5,
+        "xp": 2797,
+        "restedXp": 840
+      },
+      "out": {
+        "fillFrac": 0.9989285714285714,
+        "restedFrac": 0.001071428571428612,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 5,
+        "xp": 2797,
+        "restedXp": 4480
+      },
+      "out": {
+        "fillFrac": 0.9989285714285714,
+        "restedFrac": 0.001071428571428612,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 6,
+        "xp": 0,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 6,
+        "xp": 0,
+        "restedXp": 1080
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0.3,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 6,
+        "xp": 0,
+        "restedXp": 5760
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 1,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 6,
+        "xp": 900,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 6,
+        "xp": 900,
+        "restedXp": 1080
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.30000000000000004,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 6,
+        "xp": 900,
+        "restedXp": 5760
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.75,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 6,
+        "xp": 1800,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 6,
+        "xp": 1800,
+        "restedXp": 1080
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.30000000000000004,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 6,
+        "xp": 1800,
+        "restedXp": 5760
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.5,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 6,
+        "xp": 3596,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.9988888888888889,
+        "restedFrac": 0,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 6,
+        "xp": 3596,
+        "restedXp": 1080
+      },
+      "out": {
+        "fillFrac": 0.9988888888888889,
+        "restedFrac": 0.0011111111111110628,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 6,
+        "xp": 3596,
+        "restedXp": 5760
+      },
+      "out": {
+        "fillFrac": 0.9988888888888889,
+        "restedFrac": 0.0011111111111110628,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 7,
+        "xp": 0,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 7,
+        "xp": 0,
+        "restedXp": 1350
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0.3,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 7,
+        "xp": 0,
+        "restedXp": 7200
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 1,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 7,
+        "xp": 1125,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 7,
+        "xp": 1125,
+        "restedXp": 1350
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.30000000000000004,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 7,
+        "xp": 1125,
+        "restedXp": 7200
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.75,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 7,
+        "xp": 2250,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 7,
+        "xp": 2250,
+        "restedXp": 1350
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.30000000000000004,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 7,
+        "xp": 2250,
+        "restedXp": 7200
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.5,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 7,
+        "xp": 4495,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.9988888888888889,
+        "restedFrac": 0,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 7,
+        "xp": 4495,
+        "restedXp": 1350
+      },
+      "out": {
+        "fillFrac": 0.9988888888888889,
+        "restedFrac": 0.0011111111111110628,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 7,
+        "xp": 4495,
+        "restedXp": 7200
+      },
+      "out": {
+        "fillFrac": 0.9988888888888889,
+        "restedFrac": 0.0011111111111110628,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 8,
+        "xp": 0,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 8,
+        "xp": 0,
+        "restedXp": 1620
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0.3,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 8,
+        "xp": 0,
+        "restedXp": 8640
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 1,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 8,
+        "xp": 1350,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 8,
+        "xp": 1350,
+        "restedXp": 1620
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.30000000000000004,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 8,
+        "xp": 1350,
+        "restedXp": 8640
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.75,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 8,
+        "xp": 2700,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 8,
+        "xp": 2700,
+        "restedXp": 1620
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.30000000000000004,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 8,
+        "xp": 2700,
+        "restedXp": 8640
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.5,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 8,
+        "xp": 5394,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.9988888888888889,
+        "restedFrac": 0,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 8,
+        "xp": 5394,
+        "restedXp": 1620
+      },
+      "out": {
+        "fillFrac": 0.9988888888888889,
+        "restedFrac": 0.0011111111111110628,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 8,
+        "xp": 5394,
+        "restedXp": 8640
+      },
+      "out": {
+        "fillFrac": 0.9988888888888889,
+        "restedFrac": 0.0011111111111110628,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 9,
+        "xp": 0,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 9,
+        "xp": 0,
+        "restedXp": 1950
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0.3,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 9,
+        "xp": 0,
+        "restedXp": 10400
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 1,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 9,
+        "xp": 1625,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 9,
+        "xp": 1625,
+        "restedXp": 1950
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.30000000000000004,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 9,
+        "xp": 1625,
+        "restedXp": 10400
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.75,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 9,
+        "xp": 3250,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 9,
+        "xp": 3250,
+        "restedXp": 1950
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.30000000000000004,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 9,
+        "xp": 3250,
+        "restedXp": 10400
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.5,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 9,
+        "xp": 6493,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.9989230769230769,
+        "restedFrac": 0,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 9,
+        "xp": 6493,
+        "restedXp": 1950
+      },
+      "out": {
+        "fillFrac": 0.9989230769230769,
+        "restedFrac": 0.0010769230769230864,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 9,
+        "xp": 6493,
+        "restedXp": 10400
+      },
+      "out": {
+        "fillFrac": 0.9989230769230769,
+        "restedFrac": 0.0010769230769230864,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 10,
+        "xp": 0,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 10,
+        "xp": 0,
+        "restedXp": 2280
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0.3,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 10,
+        "xp": 0,
+        "restedXp": 12160
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 1,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 10,
+        "xp": 1900,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 10,
+        "xp": 1900,
+        "restedXp": 2280
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.30000000000000004,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 10,
+        "xp": 1900,
+        "restedXp": 12160
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.75,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 10,
+        "xp": 3800,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 10,
+        "xp": 3800,
+        "restedXp": 2280
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.30000000000000004,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 10,
+        "xp": 3800,
+        "restedXp": 12160
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.5,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 10,
+        "xp": 7592,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.9989473684210526,
+        "restedFrac": 0,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 10,
+        "xp": 7592,
+        "restedXp": 2280
+      },
+      "out": {
+        "fillFrac": 0.9989473684210526,
+        "restedFrac": 0.001052631578947416,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 10,
+        "xp": 7592,
+        "restedXp": 12160
+      },
+      "out": {
+        "fillFrac": 0.9989473684210526,
+        "restedFrac": 0.001052631578947416,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 11,
+        "xp": 0,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 11,
+        "xp": 0,
+        "restedXp": 2640
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0.3,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 11,
+        "xp": 0,
+        "restedXp": 14080
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 1,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 11,
+        "xp": 2200,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 11,
+        "xp": 2200,
+        "restedXp": 2640
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.30000000000000004,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 11,
+        "xp": 2200,
+        "restedXp": 14080
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.75,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 11,
+        "xp": 4400,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 11,
+        "xp": 4400,
+        "restedXp": 2640
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.30000000000000004,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 11,
+        "xp": 4400,
+        "restedXp": 14080
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.5,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 11,
+        "xp": 8791,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.9989772727272728,
+        "restedFrac": 0,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 11,
+        "xp": 8791,
+        "restedXp": 2640
+      },
+      "out": {
+        "fillFrac": 0.9989772727272728,
+        "restedFrac": 0.0010227272727272307,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 11,
+        "xp": 8791,
+        "restedXp": 14080
+      },
+      "out": {
+        "fillFrac": 0.9989772727272728,
+        "restedFrac": 0.0010227272727272307,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 12,
+        "xp": 0,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 12,
+        "xp": 0,
+        "restedXp": 3030
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0.3,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 12,
+        "xp": 0,
+        "restedXp": 16160
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 1,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 12,
+        "xp": 2525,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 12,
+        "xp": 2525,
+        "restedXp": 3030
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.30000000000000004,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 12,
+        "xp": 2525,
+        "restedXp": 16160
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.75,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 12,
+        "xp": 5050,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 12,
+        "xp": 5050,
+        "restedXp": 3030
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.30000000000000004,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 12,
+        "xp": 5050,
+        "restedXp": 16160
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.5,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 12,
+        "xp": 10089,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.9989108910891089,
+        "restedFrac": 0,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 12,
+        "xp": 10089,
+        "restedXp": 3030
+      },
+      "out": {
+        "fillFrac": 0.9989108910891089,
+        "restedFrac": 0.00108910891089109,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 12,
+        "xp": 10089,
+        "restedXp": 16160
+      },
+      "out": {
+        "fillFrac": 0.9989108910891089,
+        "restedFrac": 0.00108910891089109,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 13,
+        "xp": 0,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 13,
+        "xp": 0,
+        "restedXp": 3420
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0.3,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 13,
+        "xp": 0,
+        "restedXp": 18240
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 1,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 13,
+        "xp": 2850,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 13,
+        "xp": 2850,
+        "restedXp": 3420
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.30000000000000004,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 13,
+        "xp": 2850,
+        "restedXp": 18240
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.75,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 13,
+        "xp": 5700,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 13,
+        "xp": 5700,
+        "restedXp": 3420
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.30000000000000004,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 13,
+        "xp": 5700,
+        "restedXp": 18240
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.5,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 13,
+        "xp": 11388,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.9989473684210526,
+        "restedFrac": 0,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 13,
+        "xp": 11388,
+        "restedXp": 3420
+      },
+      "out": {
+        "fillFrac": 0.9989473684210526,
+        "restedFrac": 0.001052631578947416,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 13,
+        "xp": 11388,
+        "restedXp": 18240
+      },
+      "out": {
+        "fillFrac": 0.9989473684210526,
+        "restedFrac": 0.001052631578947416,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 14,
+        "xp": 0,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 14,
+        "xp": 0,
+        "restedXp": 3870
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0.3,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 14,
+        "xp": 0,
+        "restedXp": 20640
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 1,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 14,
+        "xp": 3225,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 14,
+        "xp": 3225,
+        "restedXp": 3870
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.30000000000000004,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 14,
+        "xp": 3225,
+        "restedXp": 20640
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.75,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 14,
+        "xp": 6450,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 14,
+        "xp": 6450,
+        "restedXp": 3870
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.30000000000000004,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 14,
+        "xp": 6450,
+        "restedXp": 20640
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.5,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 14,
+        "xp": 12887,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.9989922480620155,
+        "restedFrac": 0,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 14,
+        "xp": 12887,
+        "restedXp": 3870
+      },
+      "out": {
+        "fillFrac": 0.9989922480620155,
+        "restedFrac": 0.0010077519379845246,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 14,
+        "xp": 12887,
+        "restedXp": 20640
+      },
+      "out": {
+        "fillFrac": 0.9989922480620155,
+        "restedFrac": 0.0010077519379845246,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 15,
+        "xp": 0,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 15,
+        "xp": 0,
+        "restedXp": 4320
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0.3,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 15,
+        "xp": 0,
+        "restedXp": 23040
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 1,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 15,
+        "xp": 3600,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 15,
+        "xp": 3600,
+        "restedXp": 4320
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.30000000000000004,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 15,
+        "xp": 3600,
+        "restedXp": 23040
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.75,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 15,
+        "xp": 7200,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 15,
+        "xp": 7200,
+        "restedXp": 4320
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.30000000000000004,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 15,
+        "xp": 7200,
+        "restedXp": 23040
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.5,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 15,
+        "xp": 14385,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.9989583333333333,
+        "restedFrac": 0,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 15,
+        "xp": 14385,
+        "restedXp": 4320
+      },
+      "out": {
+        "fillFrac": 0.9989583333333333,
+        "restedFrac": 0.0010416666666667185,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 15,
+        "xp": 14385,
+        "restedXp": 23040
+      },
+      "out": {
+        "fillFrac": 0.9989583333333333,
+        "restedFrac": 0.0010416666666667185,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 16,
+        "xp": 0,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 16,
+        "xp": 0,
+        "restedXp": 4800
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0.3,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 16,
+        "xp": 0,
+        "restedXp": 25600
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 1,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 16,
+        "xp": 4000,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 16,
+        "xp": 4000,
+        "restedXp": 4800
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.30000000000000004,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 16,
+        "xp": 4000,
+        "restedXp": 25600
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.75,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 16,
+        "xp": 8000,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 16,
+        "xp": 8000,
+        "restedXp": 4800
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.30000000000000004,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 16,
+        "xp": 8000,
+        "restedXp": 25600
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.5,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 16,
+        "xp": 15984,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.999,
+        "restedFrac": 0,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 16,
+        "xp": 15984,
+        "restedXp": 4800
+      },
+      "out": {
+        "fillFrac": 0.999,
+        "restedFrac": 0.0010000000000000009,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 16,
+        "xp": 15984,
+        "restedXp": 25600
+      },
+      "out": {
+        "fillFrac": 0.999,
+        "restedFrac": 0.0010000000000000009,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 17,
+        "xp": 0,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 17,
+        "xp": 0,
+        "restedXp": 5310
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0.3,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 17,
+        "xp": 0,
+        "restedXp": 28320
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 1,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 17,
+        "xp": 4425,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 17,
+        "xp": 4425,
+        "restedXp": 5310
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.30000000000000004,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 17,
+        "xp": 4425,
+        "restedXp": 28320
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.75,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 17,
+        "xp": 8850,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 17,
+        "xp": 8850,
+        "restedXp": 5310
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.30000000000000004,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 17,
+        "xp": 8850,
+        "restedXp": 28320
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.5,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 17,
+        "xp": 17682,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.9989830508474576,
+        "restedFrac": 0,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 17,
+        "xp": 17682,
+        "restedXp": 5310
+      },
+      "out": {
+        "fillFrac": 0.9989830508474576,
+        "restedFrac": 0.0010169491525423568,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 17,
+        "xp": 17682,
+        "restedXp": 28320
+      },
+      "out": {
+        "fillFrac": 0.9989830508474576,
+        "restedFrac": 0.0010169491525423568,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 18,
+        "xp": 0,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 18,
+        "xp": 0,
+        "restedXp": 5820
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0.3,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 18,
+        "xp": 0,
+        "restedXp": 31040
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 1,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 18,
+        "xp": 4850,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 18,
+        "xp": 4850,
+        "restedXp": 5820
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.30000000000000004,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 18,
+        "xp": 4850,
+        "restedXp": 31040
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.75,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 18,
+        "xp": 9700,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 18,
+        "xp": 9700,
+        "restedXp": 5820
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.30000000000000004,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 18,
+        "xp": 9700,
+        "restedXp": 31040
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.5,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 18,
+        "xp": 19380,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.9989690721649485,
+        "restedFrac": 0,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 18,
+        "xp": 19380,
+        "restedXp": 5820
+      },
+      "out": {
+        "fillFrac": 0.9989690721649485,
+        "restedFrac": 0.0010309278350515427,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 18,
+        "xp": 19380,
+        "restedXp": 31040
+      },
+      "out": {
+        "fillFrac": 0.9989690721649485,
+        "restedFrac": 0.0010309278350515427,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 19,
+        "xp": 0,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 19,
+        "xp": 0,
+        "restedXp": 6390
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 0.3,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 19,
+        "xp": 0,
+        "restedXp": 34080
+      },
+      "out": {
+        "fillFrac": 0,
+        "restedFrac": 1,
+        "percent": 0
+      }
+    },
+    {
+      "in": {
+        "level": 19,
+        "xp": 5325,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 19,
+        "xp": 5325,
+        "restedXp": 6390
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.30000000000000004,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 19,
+        "xp": 5325,
+        "restedXp": 34080
+      },
+      "out": {
+        "fillFrac": 0.25,
+        "restedFrac": 0.75,
+        "percent": 25
+      }
+    },
+    {
+      "in": {
+        "level": 19,
+        "xp": 10650,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 19,
+        "xp": 10650,
+        "restedXp": 6390
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.30000000000000004,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 19,
+        "xp": 10650,
+        "restedXp": 34080
+      },
+      "out": {
+        "fillFrac": 0.5,
+        "restedFrac": 0.5,
+        "percent": 50
+      }
+    },
+    {
+      "in": {
+        "level": 19,
+        "xp": 21278,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 0.9989671361502347,
+        "restedFrac": 0,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 19,
+        "xp": 21278,
+        "restedXp": 6390
+      },
+      "out": {
+        "fillFrac": 0.9989671361502347,
+        "restedFrac": 0.0010328638497653087,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 19,
+        "xp": 21278,
+        "restedXp": 34080
+      },
+      "out": {
+        "fillFrac": 0.9989671361502347,
+        "restedFrac": 0.0010328638497653087,
+        "percent": 99
+      }
+    },
+    {
+      "in": {
+        "level": 20,
+        "xp": 0,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 1,
+        "restedFrac": 0,
+        "percent": 100
+      }
+    },
+    {
+      "in": {
+        "level": 20,
+        "xp": 0,
+        "restedXp": 6960
+      },
+      "out": {
+        "fillFrac": 1,
+        "restedFrac": 0,
+        "percent": 100
+      }
+    },
+    {
+      "in": {
+        "level": 20,
+        "xp": 0,
+        "restedXp": 37120
+      },
+      "out": {
+        "fillFrac": 1,
+        "restedFrac": 0,
+        "percent": 100
+      }
+    },
+    {
+      "in": {
+        "level": 20,
+        "xp": 5800,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 1,
+        "restedFrac": 0,
+        "percent": 100
+      }
+    },
+    {
+      "in": {
+        "level": 20,
+        "xp": 5800,
+        "restedXp": 6960
+      },
+      "out": {
+        "fillFrac": 1,
+        "restedFrac": 0,
+        "percent": 100
+      }
+    },
+    {
+      "in": {
+        "level": 20,
+        "xp": 5800,
+        "restedXp": 37120
+      },
+      "out": {
+        "fillFrac": 1,
+        "restedFrac": 0,
+        "percent": 100
+      }
+    },
+    {
+      "in": {
+        "level": 20,
+        "xp": 11600,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 1,
+        "restedFrac": 0,
+        "percent": 100
+      }
+    },
+    {
+      "in": {
+        "level": 20,
+        "xp": 11600,
+        "restedXp": 6960
+      },
+      "out": {
+        "fillFrac": 1,
+        "restedFrac": 0,
+        "percent": 100
+      }
+    },
+    {
+      "in": {
+        "level": 20,
+        "xp": 11600,
+        "restedXp": 37120
+      },
+      "out": {
+        "fillFrac": 1,
+        "restedFrac": 0,
+        "percent": 100
+      }
+    },
+    {
+      "in": {
+        "level": 20,
+        "xp": 23176,
+        "restedXp": 0
+      },
+      "out": {
+        "fillFrac": 1,
+        "restedFrac": 0,
+        "percent": 100
+      }
+    },
+    {
+      "in": {
+        "level": 20,
+        "xp": 23176,
+        "restedXp": 6960
+      },
+      "out": {
+        "fillFrac": 1,
+        "restedFrac": 0,
+        "percent": 100
+      }
+    },
+    {
+      "in": {
+        "level": 20,
+        "xp": 23176,
+        "restedXp": 37120
+      },
+      "out": {
+        "fillFrac": 1,
+        "restedFrac": 0,
+        "percent": 100
+      }
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+{
+  "suite": "progression_xp_curve",
+  "source": "src/sim/types.ts XP_TABLE, xpForLevel, MAX_LEVEL",
+  "note": "levels past the cap read the last bar",
+  "cases": [
+    {
+      "in": {
+        "level": 1
+      },
+      "out": {
+        "xpForLevel": 400,
+        "maxLevel": 20
+      }
+    },
+    {
+      "in": {
+        "level": 2
+      },
+      "out": {
+        "xpForLevel": 900,
+        "maxLevel": 20
+      }
+    },
+    {
+      "in": {
+        "level": 3
+      },
+      "out": {
+        "xpForLevel": 1400,
+        "maxLevel": 20
+      }
+    },
+    {
+      "in": {
+        "level": 4
+      },
+      "out": {
+        "xpForLevel": 2100,
+        "maxLevel": 20
+      }
+    },
+    {
+      "in": {
+        "level": 5
+      },
+      "out": {
+        "xpForLevel": 2800,
+        "maxLevel": 20
+      }
+    },
+    {
+      "in": {
+        "level": 6
+      },
+      "out": {
+        "xpForLevel": 3600,
+        "maxLevel": 20
+      }
+    },
+    {
+      "in": {
+        "level": 7
+      },
+      "out": {
+        "xpForLevel": 4500,
+        "maxLevel": 20
+      }
+    },
+    {
+      "in": {
+        "level": 8
+      },
+      "out": {
+        "xpForLevel": 5400,
+        "maxLevel": 20
+      }
+    },
+    {
+      "in": {
+        "level": 9
+      },
+      "out": {
+        "xpForLevel": 6500,
+        "maxLevel": 20
+      }
+    },
+    {
+      "in": {
+        "level": 10
+      },
+      "out": {
+        "xpForLevel": 7600,
+        "maxLevel": 20
+      }
+    },
+    {
+      "in": {
+        "level": 11
+      },
+      "out": {
+        "xpForLevel": 8800,
+        "maxLevel": 20
+      }
+    },
+    {
+      "in": {
+        "level": 12
+      },
+      "out": {
+        "xpForLevel": 10100,
+        "maxLevel": 20
+      }
+    },
+    {
+      "in": {
+        "level": 13
+      },
+      "out": {
+        "xpForLevel": 11400,
+        "maxLevel": 20
+      }
+    },
+    {
+      "in": {
+        "level": 14
+      },
+      "out": {
+        "xpForLevel": 12900,
+        "maxLevel": 20
+      }
+    },
+    {
+      "in": {
+        "level": 15
+      },
+      "out": {
+        "xpForLevel": 14400,
+        "maxLevel": 20
+      }
+    },
+    {
+      "in": {
+        "level": 16
+      },
+      "out": {
+        "xpForLevel": 16000,
+        "maxLevel": 20
+      }
+    },
+    {
+      "in": {
+        "level": 17
+      },
+      "out": {
+        "xpForLevel": 17700,
+        "maxLevel": 20
+      }
+    },
+    {
+      "in": {
+        "level": 18
+      },
+      "out": {
+        "xpForLevel": 19400,
+        "maxLevel": 20
+      }
+    },
+    {
+      "in": {
+        "level": 19
+      },
+      "out": {
+        "xpForLevel": 21300,
+        "maxLevel": 20
+      }
+    },
+    {
+      "in": {
+        "level": 20
+      },
+      "out": {
+        "xpForLevel": 23200,
+        "maxLevel": 20
+      }
+    },
+    {
+      "in": {
+        "level": 21
+      },
+      "out": {
+        "xpForLevel": 23200,
+        "maxLevel": 20
+      }
+    },
+    {
+      "in": {
+        "level": 22
+      },
+      "out": {
+        "xpForLevel": 23200,
+        "maxLevel": 20
+      }
+    }
+  ]
+}
