@@ -68,6 +68,7 @@ import {
   xpForLevel,
   zeroDiff,
 } from '../../src/sim/types';
+import { terrainHeight } from '../../src/sim/world';
 import { WORLD_SEED } from '../../src/sim/world_seed';
 
 export interface ParityCase {
@@ -325,6 +326,10 @@ export const PROF_PARITY_SUITES: Record<string, () => ParitySuite> = {
   prof_tree_fall: treeFall,
 };
 
+/** The sim terrain height (the ground the export's terrain mesh is built from), 3 decimals. */
+const groundY = (x: number, z: number): number =>
+  Math.round(terrainHeight(x, z, WORLD_SEED) * 1000) / 1000;
+
 let treeCache: ChoppableTree[] | null = null;
 
 /** Every choppable tree of TREE_EXPORT_ZONES, ascending id. */
@@ -378,6 +383,7 @@ export function professionTables(): Record<string, unknown> {
     zoneId: n.zoneId,
     type: n.type,
     x: n.pos.x,
+    y: groundY(n.pos.x, n.pos.z),
     z: n.pos.z,
     level: n.level,
     tier: n.tier,
@@ -387,6 +393,7 @@ export function professionTables(): Record<string, unknown> {
   const trees = exportTrees().map((t) => ({
     id: t.id,
     x: t.x,
+    y: groundY(t.x, t.z),
     z: t.z,
     kind: t.kind,
     scale: t.scale,
