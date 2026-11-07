@@ -22,6 +22,14 @@ import { basinTelegraphSpecs } from '../../src/render/wildheart_basin/basin_fx_c
 import { MOUNTS } from '../../src/sim/content/mounts';
 import { TRANSPORT_ROUTES } from '../../src/sim/content/transport_ships';
 import { ABILITIES, DUNGEONS, MOBS } from '../../src/sim/data';
+import {
+  newTransportPhaseState,
+  type TransportRouteDef,
+  transportCycleSeconds,
+  transportShipPoseAt,
+  transportShipSpeedAt,
+} from '../../src/sim/transport_schedule';
+import { WATER_LEVEL } from '../../src/sim/world';
 
 /** The EA Must dungeons (ea-plan.md section 2.2). */
 export const EA_DUNGEONS = [
@@ -105,6 +113,22 @@ export interface CreatureFerry {
   ship: string;
   model: string;
   berths: { x: number; z: number; rot: number }[];
+  /** The two sea lanes (A -> B, B -> A): waypoints, rot null where unauthored. */
+  lanes: { x: number; z: number; rot: number | null }[][];
+  timings: { docked: number; cruise: number; accel: number; turnRate: number };
+  /** World Y of the waterline the hull floats on. */
+  waterY: number;
+  /** transportShipPoseAt / transportPhaseAt at sample clocks: the parity vectors. */
+  cases: {
+    clock: number;
+    x: number;
+    z: number;
+    rot: number;
+    phase: string;
+    berth: number;
+    remaining: number;
+    speed: number;
+  }[];
 }
 
 export interface CreatureExport {
@@ -178,6 +202,29 @@ function sorted<T>(ids: string[], f: (id: string) => T): Record<string, T> {
   return out;
 }
 
+/** Sample clocks over one and a half cycles (and a negative one): pose, phase, speed. */
+function ferryCases(r: TransportRouteDef): CreatureFerry['cases'] {
+  const cycle = transportCycleSeconds(r);
+  const out: CreatureFerry['cases'] = [];
+  const pose = { x: 0, z: 0, rot: 0 };
+  const phase = newTransportPhaseState();
+  for (let k = -2; k <= 60; k++) {
+    const clock = (cycle * 1.5 * k) / 60 + 0.37;
+    transportShipPoseAt(r, clock, pose, phase);
+    out.push({
+      clock,
+      x: pose.x,
+      z: pose.z,
+      rot: pose.rot,
+      phase: phase.phase,
+      berth: phase.berth,
+      remaining: phase.remaining,
+      speed: transportShipSpeedAt(r, clock),
+    });
+  }
+  return out;
+}
+
 export function buildCreatureExport(): CreatureExport {
   const inDungeon = eaDungeonMobs();
   const mobs = sorted(Object.keys(MOBS), (id) => {
@@ -217,6 +264,10 @@ export function buildCreatureExport(): CreatureExport {
     // transport_ship.ts TRANSPORT_SHIP_MODELS (module-private): every route sails the ferry.
     model: r.ship === 'eastbrookFerry' ? 'props/eastbrook_ferry' : r.ship,
     berths: r.berths.map((b) => ({ x: b.x, z: b.z, rot: b.rot })),
+    lanes: r.lanes.map((l) => l.map((w) => ({ x: w.x, z: w.z, rot: w.rot ?? null }))),
+    timings: { ...r.timings },
+    waterY: WATER_LEVEL,
+    cases: ferryCases(r),
   }));
   return {
     version: 1,
