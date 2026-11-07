@@ -42,11 +42,20 @@ describe('currencies view', () => {
       honor: 0,
       lifetimeHonor: 0,
       delveMarks: 0,
-      factionCurrencies: { rift_watch: 25, church_order: 10, automatons: 0 },
+      factionCurrencies: {
+        gilt_measure: 25,
+        lanternwardens: 10,
+        hearthwright_compact: 0,
+        bracken_circle: 0,
+      },
     });
     expect(view.factions.map((row) => row.factionId)).toEqual([...FACTION_IDS]);
-    expect(view.factions[0]).toEqual({ factionId: 'rift_watch', amount: 25, pending: false });
-    expect(view.factions[1]).toEqual({ factionId: 'church_order', amount: 10, pending: false });
-    expect(view.factions[2]).toEqual({ factionId: 'automatons', amount: 0, pending: false });
+    expect(view.factions[0]).toEqual({ factionId: 'gilt_measure', amount: 25, pending: false });
+    expect(view.factions[1]).toEqual({ factionId: 'lanternwardens', amount: 10, pending: false });
+    expect(view.factions[2]).toEqual({
+      factionId: 'hearthwright_compact',
+      amount: 0,
+      pending: false,
+    });
   });
 });

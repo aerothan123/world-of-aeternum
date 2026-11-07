@@ -1851,6 +1851,9 @@ export interface ItemInstancePayload {
   signer?: string;
   /** Remaining charges for a per-effect-limited item, keyed by effect id. */
   charges?: Record<string, number>;
+  /** Durability points this copy has lost (src/sim/durability/). Absent on an
+   *  undamaged copy; repairing removes it. */
+  wear?: number;
   /** Quality/stat values baked into this specific copy at creation time.
    *  `quality` is legacy-only under the masterwork model: crafted
    *  outputs are deterministic and new crafts never write it (persisted
@@ -6520,6 +6523,10 @@ export interface ZoneDef {
   // The zone's southern border ridge has NO road pass and is raised past the
   // climbable slope: the zone is reachable only by portal (see world.ts).
   sealedSouthBorder?: boolean;
+  /** Expansion frontier zones (src/sim/frontier/) shape their own coasts and
+   *  land bridges, so no generated border ridge runs along any of their edges:
+   *  a ridge on a shared edge would reach into the frozen core world's ground. */
+  openBorders?: boolean;
   // Where the road pass through the zone's SOUTHERN border ridge sits (x).
   // Defaults to 0 (the original zones' central road); the Drakelands set it
   // to the Pale Causeway's head so the Wyrmgate opens where the road arrives.
@@ -6776,16 +6783,35 @@ export type QuestObjective =
       type: 'interact';
       targetObjectItemId?: string;
       targetNpcId?: string;
+      // Use-item-on-object (quests/quest_object_use.ts): the object credits
+      // only while the player carries this item, and spends one per credit.
+      usesItemId?: string;
+      // How many of usesItemId one credit needs (default 1).
+      usesCount?: number;
+      // The used item is shown, not spent (one cloth laid on each patch in turn).
+      keepsUsedItem?: boolean;
+      // What the object gives back on that credit (force-added).
+      yieldsItemId?: string;
+      // How many of yieldsItemId one credit gives (default 1).
+      yieldsCount?: number;
+      // Further inputs one credit spends beside usesItemId (a station recipe).
+      alsoUses?: readonly { itemId: string; count: number }[];
+      // A crafting station (quests/quest_station_craft.ts): every use of the
+      // same object credits once, instead of once per distinct object.
+      station?: boolean;
     })
   // A named world event this player caused, credited by the owning system module (the
   // exemplar: 'balgath_blinded' from src/sim/lance_trial.ts). Label-only in every
   // presentation surface, so a new event costs its emitter one credit call and nothing else.
   | (QuestObjectiveBase & { type: 'event'; eventId: string })
   | (QuestObjectiveBase & { type: 'craft'; recipeId: string })
-  | (QuestObjectiveBase & { type: 'gather' } & (
-        | { nodeType: GatherNodeType; itemId?: string }
-        | { nodeType?: undefined; itemId: string }
-      ))
+  | (QuestObjectiveBase & {
+      type: 'gather';
+      // Only nodes (or choppable trees, src/sim/trees/) standing inside this
+      // ring credit: the marked trees of a named copse, the veins of one
+      // quarry (quests/quest_credit.ts onNodeGatheredForQuests).
+      area?: { x: number; z: number; radius: number };
+    } & ({ nodeType: GatherNodeType; itemId?: string } | { nodeType?: undefined; itemId: string }))
   // Escort: completed by the escort run in src/sim/escort.ts when the walked
   // NPC reaches its final waypoint with this player in credit range. count is
   // always 1; the run starts by interacting with the idle escortee while this
@@ -6983,6 +7009,17 @@ export interface QuestDef {
   // Resolve the first objective's count from the character's return history at
   // acceptance time. The snapshotted value stays stable while the quest is active.
   resolvedObjectiveCounts?: 'archetypeAmends';
+  // A town-board posting (src/sim/town_board/): the noticeboard with this id
+  // offers it, only on the realm days the board's rotation posts it, and the
+  // giver NPC (the poster) takes the turn-in. Accepting needs the player at the
+  // board, never at the NPC (town_board_access.ts, quest_commands.ts).
+  townBoard?: string;
+  // Allied faction standing paid on turn-in (quests/quest_standing_reward.ts),
+  // through awardFactionReputation so the level cap and the tier deeds apply.
+  standingReward?: {
+    factionId: 'lanternwardens' | 'hearthwright_compact' | 'bracken_circle' | 'gilt_measure';
+    amount: number;
+  };
   // Objective-list revision. Bump when a rework changes what an objective INDEX
   // means (a new target, type, or count under the same quest id), so an
   // in-flight save's index-keyed counts stop applying: on restore, a
@@ -7206,7 +7243,7 @@ export type WorldQuestObjective =
 export interface WorldQuestDef {
   id: string;
   zoneId: string;
-  faction?: 'rift_watch' | 'church_order' | 'automatons';
+  faction?: 'lanternwardens' | 'hearthwright_compact' | 'bracken_circle' | 'gilt_measure';
   minLevel: number;
   area: { x: number; z: number; radius: number };
   /** Where the completion champion rises (world_quest_champion.ts), for a
@@ -8704,8 +8741,14 @@ export interface Entity extends ClientMirroredEntityFields {
   // online self-extrapolator predicts mounted speed in lockstep. The persisted
   // selection lives on PlayerMeta.selectedMount (src/sim/content/mounts.ts).
   mountKey: string;
-  // Character training controls movement for every cosmetic mount model.
-  ridingTier: 0 | 1 | 2;
+  // Character training controls movement for every cosmetic mount model
+  // (riding_training.ts: 3 is the level 10 apprentice rank).
+  ridingTier: 0 | 1 | 2 | 3;
+  // Runtime-only combat wear counters (src/sim/durability/durability.ts): hits
+  // taken and physical hits landed since the last point of wear, and the
+  // round-robin armor turn. Absent until the first counted hit; never saved
+  // and never on the wire.
+  durabilityWear?: { taken: number; dealt: number; turn: number };
   // Mount summon/dismount transition (players only; 0 = idle). Seconds left in the
   // call-the-mount summon or the dismount, driven per tick by updateMountTransition
   // (src/sim/mounts.ts). The sim READS it: player_motion.stepPlayerMotion roots the
@@ -11573,6 +11616,7 @@ export type SimEvent = { pid?: number } & (
       reason:
         | 'bad_lot'
         | 'owned'
+        | 'account_owned'
         | 'range'
         | 'money'
         | 'dead'
@@ -11605,6 +11649,19 @@ export type SimEvent = { pid?: number } & (
       action: 'placed' | 'removed';
       anchorId: string;
       itemId: string;
+    }
+  // Town restoration (src/sim/life_skills/town_projects.ts): the project's
+  // progress after an interact press at its site (text-free; the client
+  // names the project, the stage and the bundle). `stage` is the stage index
+  // (the stage count when complete); `contributed` is whether this press
+  // handed a bundle in.
+  | {
+      type: 'townProject';
+      pid: number;
+      projectId: string;
+      stage: number;
+      bundles: number;
+      contributed: boolean;
     }
 );
 
@@ -12365,6 +12422,10 @@ export interface StationDef {
   zoneId: string;
   pos: { x: number; z: number };
   masterNpcId: string;
+  /** The station's look is authored town dressing (a town kit bench placed as
+   *  zone decor, sim/eastbrook_layout.ts TOWN_KIT), so the generic per-type
+   *  prop cluster (sim/town_props.ts) is neither drawn nor collided there. */
+  dressed?: boolean;
 }
 
 export interface MailboxDef {
@@ -13261,6 +13322,7 @@ export type DeedMeterId =
   | 'standingRiftWatch'
   | 'standingChurchOrder'
   | 'standingAutomatons'
+  | 'standingBrackenCircle'
   // Clue Scrolls: lifetime Treasure Caskets opened (PlayerMeta.clueCasketsOpened,
   // src/sim/clue_casket.ts). Only ever climbs.
   | 'clueCasketsOpened';

@@ -136,6 +136,9 @@ export const API_ERROR_KEYS = {
   'steam.already_linked': 'apiError.steam.already_linked',
   'steam.account_taken': 'apiError.steam.account_taken',
   'steam.upstream': 'apiError.steam.upstream',
+  'steam.unlink_last_login': 'apiError.steam.unlink_last_login',
+  'steam.not_owned': 'apiError.steam.not_owned',
+  'steam.reauth_required': 'apiError.steam.reauth_required',
   // epic: the env-gated Epic link family (server/epic/).
   'epic.disabled': 'apiError.epic.disabled',
   'epic.invalid_token': 'apiError.epic.invalid_token',
@@ -224,6 +227,8 @@ export const API_ERROR_KEYS = {
   'woc_market.stepup_wallet_mismatch': 'apiError.woc_market.stepup_wallet_mismatch',
   'woc_market.stepup_binding_mismatch': 'apiError.woc_market.stepup_binding_mismatch',
   'woc_market.stepup_signature_invalid': 'apiError.woc_market.stepup_signature_invalid',
+  'store.disabled': 'apiError.store.disabled',
+  'legal_acceptance.invalid_input': 'apiError.legal_acceptance.invalid_input',
 } satisfies Record<string, TranslationKey>;
 
 /** The message of an Error, or the string form of any other thrown value. */
@@ -458,6 +463,12 @@ export function userFacingApiError(err: unknown): string {
   // The realm admission cap refused a fresh join. 'realm is full' is a byte-exact
   // wire contract with server/ws_auth.ts (WS_AUTH_ERROR).
   if (normalized === 'realm is full') return t('loading.realmFull');
+  // Realm maintenance closed the gate. 'realm is under maintenance' is a byte-exact
+  // wire contract with server/maintenance.ts (MAINTENANCE_REJECTION).
+  if (normalized === 'realm is under maintenance') return t('loading.maintenance');
+  // The realm's minimum client version refused this build. 'client update required'
+  // is a byte-exact wire contract with server/client_version_gate.ts.
+  if (normalized === 'client update required') return t('loading.updateRequired');
   // The per-IP connection cap refused the handshake. 'too many connections from your
   // network' is a byte-exact wire contract with server/ws_auth.ts (WS_AUTH_ERROR).
   if (normalized === 'too many connections from your network')

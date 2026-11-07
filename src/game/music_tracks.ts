@@ -1,102 +1,95 @@
-// Remastered soundtrack catalog: the streamed mp3 renders of the procedural
-// themes, served from public/audio/music/. The composition machinery in
-// music.ts remains the authoring source (music editor + offline render
-// pipeline); these files are its remastered renders and own runtime playback.
-// Pure data + math, DOM-free, so it unit-tests in plain Node.
+// The streamed soundtrack catalog: which Wyndlewood score cue (music_score.ts, the
+// generated table music_score_tracks.generated.ts) each music zone streams when the
+// score layer holds no slot of its own for it, the battle themes, and the pooled
+// zones. Every URL comes from the generated table, so it always carries the
+// committed file's `?v=<hash12>` content hash (first 12 hex chars of its sha256),
+// which server/static_cache.ts trusts to serve these multi-MB cues with a year-long
+// immutable Cache-Control. Regenerate the table with
+// `node scripts/music/eleven_music.mjs build`; tests/music_tracks.test.ts pins every
+// URL to a committed file.
 //
-// Each URL carries a `?v=<hash12>` content hash (first 12 hex chars of the
-// file's sha256), same convention as the sampled SFX manifest
-// (scripts/sfx/manifest.mjs), so server/static_cache.ts can serve these large
-// (multi-MB) tracks with a year-long immutable Cache-Control instead of
-// falling through to no-cache. When you replace a public/audio/music/<file>
-// with a new remaster, recompute its hash (`sha256sum <file> | cut -c1-12`,
-// same truncation `scripts/render_music.mjs --hash` prints) and update every
-// URL that references it here; tests/music_tracks.test.ts pins the hash
-// against the committed file so a forgotten update fails the gate rather than
-// serving stale audio to a returning player forever.
+// The upstream remasters that used to live in public/audio/music/ were project-only
+// art and are gone (docs/launch/asset-rights-inventory.md, music crew). The procedural
+// compositions in music.ts remain the authoring source for the music editor and
+// scripts/render_music.mjs only. Pure data + math, DOM-free.
 
 import type { MusicZone } from './music';
+import { SCORE_TRACK_FILES } from './music_score_tracks.generated';
 
-/** Streamed remaster for each zone cue. */
-export const ZONE_STREAM_URLS: Record<MusicZone, string | null> = {
-  town_eastbrook: '/audio/music/town_eastbrook.mp3?v=251c46caf6ce',
-  town_fenbridge: '/audio/music/town_fenbridge.mp3?v=1a94215a28f8',
-  town_highwatch: '/audio/music/town_highwatch.mp3?v=8daa06e91073',
-  town_goldcrest: '/audio/music/town_goldcrest_1.mp3?v=0cf44456d0f5',
-  // Gourdlight Eve's town theme, "Lanterns on the Hollow Road" (music_theme_gourdlight.ts):
-  // rendered by scripts/render_music.mjs, one loop with its reverb tail wrapped onto
-  // its head, loudness-matched to the town cues (seasonal_music.ts plays it).
-  town_gourdlight: '/audio/music/town_gourdlight.mp3?v=6bb7b1562dd6',
-  vale: '/audio/music/vale.mp3?v=d40a82892e1e',
-  // The legacy vale cue has no dedicated remaster and is not routed by
-  // musicZoneForLocation; the vale remaster stands in for completeness.
-  vale_legacy: '/audio/music/vale.mp3?v=d40a82892e1e',
-  marsh: '/audio/music/marsh.mp3?v=ad5dcf5613b9',
-  peaks: '/audio/music/peaks.mp3?v=b41ca1a8edcc',
-  // STAND-INS (same precedent as vale_legacy): Veiled Hollow, Drakelands, and
-  // Wraithwood do not have supplied remasters yet, so they stream the nearest
-  // existing render instead of falling silent. Replace these three URLs when
-  // their dedicated public/audio/music/<zone>.mp3 files land.
-  dusk: '/audio/music/marsh.mp3?v=ad5dcf5613b9',
-  ember: '/audio/music/peaks.mp3?v=b41ca1a8edcc',
-  frost: '/audio/music/frost.mp3?v=88500e3eb213',
-  amber: '/audio/music/amber.mp3?v=338cb1c002c2',
-  fen: '/audio/music/fen.mp3?v=1ff84a71dd31',
-  night: '/audio/music/night.mp3?v=44f582c43720',
-  haunt: '/audio/music/marsh.mp3?v=ad5dcf5613b9',
-  jungle: '/audio/music/jungle.mp3?v=9b86b3bbeb7b',
-  garden: '/audio/music/garden.mp3?v=9ec0e18f6d81',
-  gale: '/audio/music/gale.mp3?v=a940defc3275',
-  farshore: '/audio/music/farshore.mp3?v=69d713cd3f3c',
-  // The tutorial island's own cue ("Welcome to Adventure", the owner-supplied
-  // 2026-08 replacement for "A First Light at Dawnrest"). The one supplied
-  // track with NO composed counterpart in buildMusicThemes(): it was written
-  // for the island rather than remastered from the procedural score, so the
-  // music editor and scripts/render_music.mjs do not know about it. That is
-  // deliberate, not a missing theme; the runtime only ever streams.
-  proving_shore: '/audio/music/proving_shore.mp3?v=51e9b5a6c01f',
-  dungeon_hollow_crypt: '/audio/music/dungeon_hollow_crypt.mp3?v=4bb48c2d90fc',
-  dungeon_sunken_bastion: '/audio/music/dungeon_sunken_bastion.mp3?v=db67d7df0f4b',
-  dungeon_gravewyrm_sanctum: '/audio/music/dungeon_gravewyrm_sanctum.mp3?v=19f49e28f3af',
-  ignivar_forge_approach: '/audio/music/ignivar_forge_approach.mp3?v=b0699abaf914',
-  ignivar_raid_arena: '/audio/music/ignivar_raid_arena.mp3?v=797023a0d280',
-  ignivar_inner_crucible: '/audio/music/ignivar_inner_crucible.mp3?v=f20a68a10819',
-  // Rift crawl stand-ins borrow the nearest-mood dungeon crawl render.
-  rift_frost: '/audio/music/dungeon_gravewyrm_sanctum.mp3?v=19f49e28f3af',
-  rift_ember: '/audio/music/dungeon_hollow_crypt.mp3?v=4bb48c2d90fc',
-  rift_venom: '/audio/music/dungeon_sunken_bastion.mp3?v=db67d7df0f4b',
-  rift_bone: '/audio/music/dungeon_gravewyrm_sanctum.mp3?v=19f49e28f3af',
-  rift_brute: '/audio/music/dungeon_hollow_crypt.mp3?v=4bb48c2d90fc',
-  rift_void: '/audio/music/dungeon_gravewyrm_sanctum.mp3?v=19f49e28f3af',
-  rift_storm: '/audio/music/dungeon_hollow_crypt.mp3?v=4bb48c2d90fc',
-  rift_tide: '/audio/music/dungeon_sunken_bastion.mp3?v=db67d7df0f4b',
-};
+/** The streamed URL of a score cue, or null while it is not generated. */
+export function scoreCueUrl(key: string): string | null {
+  return Object.hasOwn(SCORE_TRACK_FILES, key) ? SCORE_TRACK_FILES[key].url : null;
+}
 
-/** Zones that ship MORE than one remaster. Goldcrest Harbor has two harbor
- *  cues, so the capital picks one each time you walk in rather than wearing a
- *  single loop out over a long session. A zone absent here plays its single
- *  ZONE_STREAM_URLS entry, which stays the common case. */
+/** The cue each zone streams (by day: the score layer swaps in night variants). */
+export const ZONE_STREAM_CUES: Readonly<Record<MusicZone, string>> = Object.freeze({
+  town_eastbrook: 'wyn_town_eastbrook_day',
+  town_fenbridge: 'wyn_town_fenbridge_day',
+  town_highwatch: 'wyn_town_highwatch_day',
+  town_goldcrest: 'wyn_town_goldcrest_day',
+  // Gourdlight Eve's lantern-festival theme (seasonal_music.ts swaps it in).
+  town_gourdlight: 'wyn_town_gourdlight',
+  vale: 'wyn_region_eastbrook_vale_day',
+  vale_legacy: 'wyn_region_eastbrook_vale_day',
+  marsh: 'wyn_region_mirefen_marsh_day',
+  peaks: 'wyn_region_thornpeak_heights_day',
+  dusk: 'wyn_region_veiled_hollow_day',
+  ember: 'wyn_region_drakelands_day',
+  frost: 'wyn_region_frostveil_day',
+  amber: 'wyn_region_amberfall_day',
+  fen: 'wyn_region_willowfen_day',
+  night: 'wyn_region_nightbloom_day',
+  haunt: 'wyn_region_wraithwood_day',
+  jungle: 'wyn_region_palmreach_day',
+  garden: 'wyn_region_evergarden_day',
+  gale: 'wyn_region_galecrest_day',
+  farshore: 'wyn_region_farshore_isle_day',
+  proving_shore: 'wyn_region_proving_shore_day',
+  dungeon_hollow_crypt: 'wyn_dungeon_hollow_crypt',
+  dungeon_sunken_bastion: 'wyn_dungeon_sunken_bastion',
+  dungeon_gravewyrm_sanctum: 'wyn_dungeon_gravewyrm_sanctum',
+  ignivar_forge_approach: 'wyn_dungeon_ancient_forge',
+  ignivar_raid_arena: 'wyn_crucible_heart',
+  ignivar_inner_crucible: 'wyn_boss_raid_dragon',
+  // Rift crawls play the dungeon cue nearest their archetype.
+  rift_frost: 'wyn_dungeon_gravewyrm_sanctum',
+  rift_ember: 'wyn_dungeon_ancient_forge',
+  rift_venom: 'wyn_dungeon_drowned_temple',
+  rift_bone: 'wyn_dungeon_hollow_crypt',
+  rift_brute: 'wyn_dungeon_last_keep',
+  rift_void: 'wyn_dungeon_dawnhold_castle',
+  rift_storm: 'wyn_dungeon_wildheart_basin',
+  rift_tide: 'wyn_dungeon_sunken_bastion',
+});
+
+/** Streamed URL for each zone cue (null while its cue is not generated). */
+export const ZONE_STREAM_URLS: Record<MusicZone, string | null> = Object.fromEntries(
+  Object.entries(ZONE_STREAM_CUES).map(([zone, cue]) => [zone, scoreCueUrl(cue)]),
+) as Record<MusicZone, string | null>;
+
+/** Zones that ship MORE than one cue: Goldcrest Harbor greets you with its day theme
+ *  or its evening one, so the capital varies between visits. A zone absent here plays
+ *  its single ZONE_STREAM_URLS entry, which stays the common case. */
 export const ZONE_STREAM_POOLS: Partial<Record<MusicZone, readonly string[]>> = {
-  town_goldcrest: [
-    '/audio/music/town_goldcrest_1.mp3?v=0cf44456d0f5',
-    '/audio/music/town_goldcrest_2.mp3?v=c616612609d6',
-  ],
+  town_goldcrest: ['wyn_town_goldcrest_day', 'wyn_town_goldcrest_night']
+    .map(scoreCueUrl)
+    .filter((u): u is string => u !== null),
 };
 
-/** Every remaster a zone can play, in pick order: its pool when it has one,
- *  else its single stream, else empty (a streamless zone like vale_cup). */
+/** Every cue a zone can play, in pick order: its pool when it has one, else its
+ *  single stream, else empty (a streamless zone). */
 export function zoneStreamUrls(zone: MusicZone): readonly string[] {
   const pool = ZONE_STREAM_POOLS[zone];
-  if (pool) return pool;
+  if (pool && pool.length > 0) return pool;
   const url = ZONE_STREAM_URLS[zone];
   return url ? [url] : [];
 }
 
-/** The remastered battle themes; each fight opens on one chosen at random. */
-export const COMBAT_STREAM_URLS: string[] = [
-  '/audio/music/combat_1.mp3?v=c2587cdfa73a',
-  '/audio/music/combat_2.mp3?v=36f7fc946e3a',
-];
+/** The battle themes the director falls back to where the score has no battle layer
+ *  for a place; each fight opens on one chosen at random. */
+export const COMBAT_STREAM_URLS: string[] = ['wyn_combat_pastoral', 'wyn_combat_eerie']
+  .map(scoreCueUrl)
+  .filter((u): u is string => u !== null);
 
 /** Pick which track opens the next fight, or which cue a multi-track zone
  *  greets you with: uniform over the pool. The two uses want identical

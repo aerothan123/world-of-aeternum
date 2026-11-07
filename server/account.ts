@@ -74,6 +74,7 @@ import { ctxAccountId } from './http/context';
 import type { Ctx, Middleware, RouteDef } from './http/types';
 import { json, moderationErrorBody, readBody } from './http_util';
 import { clearAuthFailures, rateLimited, recordAuthFailure } from './ratelimit';
+import { onLinkChanged as onSteamLinkChanged } from './steam/mirror';
 import {
   generateRecoveryCodes,
   generateSecret,
@@ -253,6 +254,8 @@ export async function handleAccountPasswordReset(
   const applied = await consumePasswordResetRequest(hashEmailToken(raw), await hashPassword(next));
   if (!applied) return json(res, 400, { error: 'invalid or expired link' });
   hooks.disconnectAccount(applied.accountId, CREDENTIAL_CHANGE_KICK_MESSAGE);
+  // The reset revoked the Steam link in its transaction: drop the mirror's view.
+  onSteamLinkChanged(applied.accountId, null);
   // Best-effort "your password changed" notice; never blocks the reset on mail state.
   const target = await accountMailTarget(applied.accountId);
   if (target) emailPasswordChanged(target);

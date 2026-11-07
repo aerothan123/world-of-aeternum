@@ -27,14 +27,16 @@ const NOTE_KEY: Record<ActivityCurrencyId, TranslationKey> = {
 };
 
 const FACTION_CURRENCY_NAME_KEY: Record<FactionId, TranslationKey> = {
-  rift_watch: 'hudChrome.currencies.riftWatchMark',
-  church_order: 'hudChrome.currencies.churchOrderCrest',
-  automatons: 'hudChrome.currencies.automatonCog',
+  lanternwardens: 'hudChrome.currencies.lanternCrest',
+  hearthwright_compact: 'hudChrome.currencies.hearthwrightCog',
+  bracken_circle: 'hudChrome.currencies.brackenAcorn',
+  gilt_measure: 'hudChrome.currencies.giltMark',
 };
 const FACTION_CURRENCY_NOTE_KEY: Record<FactionId, TranslationKey> = {
-  rift_watch: 'hudChrome.currencies.riftWatchMarkNote',
-  church_order: 'hudChrome.currencies.churchOrderCrestNote',
-  automatons: 'hudChrome.currencies.automatonCogNote',
+  lanternwardens: 'hudChrome.currencies.lanternCrestNote',
+  hearthwright_compact: 'hudChrome.currencies.hearthwrightCogNote',
+  bracken_circle: 'hudChrome.currencies.brackenAcornNote',
+  gilt_measure: 'hudChrome.currencies.giltMarkNote',
 };
 
 function icon(id: ActivityCurrencyId): string {

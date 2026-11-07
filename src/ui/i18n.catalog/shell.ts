@@ -12,21 +12,21 @@ export const shellStrings = {
       headline: 'Adventure with friends.',
       contribute: 'Contribute to the game',
       tools: 'Tools',
-      records: 'WoC Records',
-      scout: 'WoC Scout',
-      parseService: 'WoC Parse Service',
+      records: 'Records',
+      scout: 'Scout',
+      parseService: 'Parse Service',
     },
     seo: {
-      title: 'Project H: Sandbox MMO (World of ClaudeCraft fork)',
+      title: 'Wyndlewood',
       description:
-        'Play Project H, a free browser MMO. Explore, complete quests, and run dungeons with friends. No download required.',
+        'Play Wyndlewood, a free browser MMO. Explore, complete quests, and run dungeons with friends. No download required.',
       genre: 'MMORPG',
       playMode: 'Multiplayer',
       applicationCategory: 'Game',
       operatingSystem: 'Web browser',
-      officialLabel: 'Official Project H website',
+      officialLabel: 'Official Wyndlewood website',
       officialBody:
-        'The official home of Project H. Play online, read the wiki, and find community links here.',
+        'The official home of Wyndlewood. Play online, read the wiki, and find community links here.',
     },
     a11y: {
       goHome: 'Go to homepage',
@@ -34,9 +34,10 @@ export const shellStrings = {
       mainNavigation: 'Main navigation',
       languageSelection: 'Language selection',
       characterActions: 'Character actions',
-      githubProject: 'Open the Project H GitHub project',
-      discordCommunity: 'Join the Project H Discord community',
-      donateProject: 'Donate to support Project H',
+      githubProject:
+        'View the open-source World of ClaudeCraft engine Wyndlewood is built on, on GitHub',
+      discordCommunity: 'Join the Wyndlewood Discord community',
+      donateProject: 'Donate to support Wyndlewood',
     },
     entryGuard: {
       title: 'Graphics lowered',
@@ -62,6 +63,9 @@ export const shellStrings = {
       incompatibleWorldVersion:
         'Game and server versions are incompatible. Reload or update, then try again.',
       realmFull: 'This world is full right now. Please try again in a few minutes.',
+      maintenance: 'The realm is closed for maintenance. Please try again soon.',
+      updateRequired:
+        'Update required: this version of the game is out of date. Restart Steam to update, then try again.',
       tooManyConnections:
         'Too many connections to this world are coming from your network. Please close extra game windows or try again in a few minutes.',
       messageRateExceeded:
@@ -166,16 +170,16 @@ export const shellStrings = {
         // the update core deliberately supports): rendering '' through the
         // {version} slot above would read "Update  is ready".
         updateReadyTitleNoVersion: 'Update is ready',
-        updateReadyBody: 'Restart Project H to apply the update.',
+        updateReadyBody: 'Restart Wyndlewood to apply the update.',
         partyInviteTitle: 'Party invite',
         partyInviteBody: '{name} invited you to a party.',
       },
       crash: {
-        title: 'Project H',
+        title: 'Wyndlewood',
         body: 'The game view stopped working. Reload it?',
         reload: 'Reload',
         quit: 'Quit',
-        fatalBody: 'Project H hit an unexpected error and needs to close.',
+        fatalBody: 'Wyndlewood hit an unexpected error and needs to close.',
       },
       // The host diagnostic's native save dialog (electron/host_diag.cjs): the
       // shell opens an OS file dialog, which has no i18n runtime of its own, so
@@ -401,12 +405,12 @@ export const shellStrings = {
       iosInstallDetail:
         'For true fullscreen on iPhone or iPad, install this page to your Home Screen first.',
       iosShareStep: 'In Safari, tap Share, then Add to Home Screen.',
-      iosOpenStep: 'Open Project H from the new Home Screen icon.',
+      iosOpenStep: 'Open Wyndlewood from the new Home Screen icon.',
       androidStandaloneDetail: 'You are in fullscreen app mode. Keep the device in landscape.',
       androidInstallDetail:
         'For fullscreen on Android, install this page or add it to your Home screen first.',
       androidInstallStep: 'In Chrome, tap the menu, then Install app or Add to Home screen.',
-      androidOpenStep: 'Open Project H from the new icon.',
+      androidOpenStep: 'Open Wyndlewood from the new icon.',
       otherStandaloneDetail: 'Keep your device in landscape fullscreen.',
       otherInstallDetail:
         'Install or add this page to your Home screen for the best fullscreen mobile experience.',
@@ -423,12 +427,63 @@ export const shellStrings = {
       changeLater: 'You can change this any time in Options, under Graphics Quality.',
       confirm: 'Continue',
     },
+    // The first-launch legal prompts (src/ui/legal_acceptance_core.ts and its
+    // controller, src/ui/analytics_consent_prompt.ts). Plain-language summaries
+    // of the docs/legal drafts, pending lawyer review.
+    legalPrompt: {
+      title: 'Player Agreements',
+      body: 'Before you play, please read and accept the Terms of Service, the Privacy Policy, and the End User License Agreement. Each summary below links to the full document.',
+      earlyAccess:
+        'Wyndlewood is in Early Access: features, balance, and content will change, and progress may be reset once at full launch as announced on the store page.',
+      eulaLink: 'End User License Agreement',
+      termsLink: 'Terms of Service',
+      privacyLink: 'Privacy Policy',
+      version: 'Version {version}',
+      updated: 'Updated since you last accepted',
+      readFull: 'Read the full document',
+      publisher:
+        'Published by [PUBLISHER LEGAL NAME] (a placeholder until the publisher is named). These documents are drafts awaiting legal review.',
+      terms: {
+        age: 'You must be at least 13 years old, or have a parent or guardian agree for you.',
+        fairPlay:
+          'Play fairly: no cheating, bots, automation, bug exploits, harassment, or trading items or gold for real money.',
+        virtualItems:
+          'Virtual items, currency, and progress have no money value. Any purchase in the Steam build goes through Steam.',
+        enforcement:
+          'Accounts that break the rules may be warned, muted, suspended, or banned. You can appeal to support.',
+      },
+      privacy: {
+        account:
+          'We store your account, characters, and progress, and use technical data such as your IP address to run the servers and stop cheating and abuse.',
+        public: 'Chat, character names, guilds, and leaderboards are visible to other players.',
+        analytics:
+          'Analytics are off unless you turn them on, and nothing is sent to advertising or analytics companies.',
+        rights: 'You can export your data and delete your account at any time.',
+      },
+      eula: {
+        license: 'The game is licensed to you, not sold, for your own non-commercial play.',
+        restrictions:
+          'Do not copy, resell, or reverse engineer the game, or use cheats, bots, or exploits against it.',
+      },
+      accept: 'I Accept',
+      decline: 'Decline',
+    },
+    analyticsPrompt: {
+      title: 'Help Improve Wyndlewood',
+      body: 'May Wyndlewood collect usage and performance data? If you agree, the game sends coarse counters (sessions, play time in five-minute steps, a rough frame rate) and periodic performance reports about your device and frame times to our own servers.',
+      noThirdParty:
+        'Nothing is sent to advertising or analytics companies, and nothing is sent at all unless you choose Share.',
+      privacyLink: 'Read the Privacy Policy',
+      changeLater: 'You can change this any time in Options.',
+      share: 'Share',
+      decline: 'Do Not Share',
+    },
     serverUnavailable: {
-      title: 'Project H - World Unavailable',
-      logoAlt: 'Project H',
+      title: 'Wyndlewood - World Unavailable',
+      logoAlt: 'Wyndlewood',
       eyebrow: 'World maintenance',
       heading: 'The world is temporarily unavailable.',
-      body: 'We are restarting the game service and expect Claudemoon to return shortly. This page will keep checking automatically.',
+      body: 'We are restarting the game service and expect the world to return shortly. This page will keep checking automatically.',
       status: 'Back soon',
     },
   },
@@ -1460,7 +1515,7 @@ export const shellStrings = {
       logoAlt: 'World of ClaudeCraft',
       eyebrow: 'Realm maintenance',
       heading: 'The realm is temporarily unavailable.',
-      body: 'We are restarting the game service and expect Claudemoon to return shortly. This page will keep checking automatically.',
+      body: 'We are restarting the game service and expect the world to return shortly. This page will keep checking automatically.',
       status: 'Back soon',
     },
   },

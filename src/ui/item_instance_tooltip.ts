@@ -10,6 +10,7 @@
 // lines it actually caused (instanceBonusStatLines), which is the fact a player
 // is reading the tooltip for.
 import { ENCHANTS } from '../sim/content/enchants';
+import { currentDurability, maxDurabilityFor } from '../sim/durability/durability_rules';
 import { effectiveQuality } from '../sim/equipment_rules';
 import { activeItemInstanceStats, isItemEnchantActive } from '../sim/item_instance_stats';
 import { requiredLevelFor } from '../sim/item_level_req';
@@ -472,6 +473,30 @@ export function itemRequiredLevelLine(item: ItemDef, playerLevel: number): strin
   return `<div class="${playerLevel >= req ? 'tt-sub' : 'tt-red'}">${esc(
     t('hudChrome.itemTooltip.requiresLevel', { level: itemNumber(req) }),
   )}</div>`;
+}
+
+/** The classic durability line ("Durability 45 / 100") for gear that has
+ *  durability (src/sim/durability/): red once broken. An undamaged bag copy
+ *  (no payload) reads full. */
+export function itemDurabilityLine(item: ItemDef, instance?: ItemInstancePayload): string {
+  const max = maxDurabilityFor(item);
+  if (max === 0) return '';
+  const current = currentDurability(item, instance?.wear);
+  return `<div class="${current > 0 ? 'tt-sub' : 'tt-red'}">${esc(
+    t('hudChrome.itemTooltip.durability', {
+      current: itemNumber(current),
+      max: itemNumber(max),
+    }),
+  )}</div>`;
+}
+
+/** The item card's gate lines: the level requirement, then durability. */
+export function itemGateLines(
+  item: ItemDef,
+  playerLevel: number,
+  instance?: ItemInstancePayload,
+): string {
+  return itemRequiredLevelLine(item, playerLevel) + itemDurabilityLine(item, instance);
 }
 
 /** The classic "Crafted by X" flavor line for a signed copy, or "Gathered by

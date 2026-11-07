@@ -1,7 +1,7 @@
 // The world box the terrain chunk grid (and the far-vista tiles over it) is
 // laid out on.
 //
-// The shipped world streams over its own fixed box: x +-WORLD_MAX_X by
+// The shipped world streams over its own fixed box: x WORLD_MIN_X..WORLD_MAX_X by
 // z WORLD_MIN_Z..WORLD_MAX_Z. An authored map is its own rect (worldHalfX by
 // the zone band) and is sculpted past it freely, so a grid pinned to the
 // shipped box clipped the maker's ground wherever the two disagree: one of
@@ -20,10 +20,12 @@ import {
   getActiveWorldContent,
   WORLD_MAX_X,
   WORLD_MAX_Z,
+  WORLD_MIN_X,
   WORLD_MIN_Z,
   zoneXBounds,
 } from '../sim/data';
 import { isAuthoredMapPresentation } from '../sim/map_presentation';
+import { CORE_WORLD } from '../sim/world_core_bounds';
 
 export interface GridBox {
   minX: number;
@@ -38,8 +40,15 @@ export const AUTHORED_OUTSKIRTS_YARDS = 240;
 /** The farthest a sculpt stamp may widen the grid past the map's rect. */
 export const AUTHORED_STAMP_REACH_YARDS = 600;
 
+/** The frozen shipped box the terrain world-planar detail map tiles over,
+ *  so the shipped ground keeps its texture scale however far the frontier
+ *  grows the world. Exported here because terrain.ts already imports this
+ *  module: a new import statement there renumbers every later binding in
+ *  its shader hooks, whose source text the program cache keys hash. */
+export const DETAIL_MAP_BOX = CORE_WORLD;
+
 export const SHIPPED_GRID_BOX: GridBox = {
-  minX: -WORLD_MAX_X,
+  minX: WORLD_MIN_X,
   maxX: WORLD_MAX_X,
   minZ: WORLD_MIN_Z,
   maxZ: WORLD_MAX_Z,

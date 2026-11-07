@@ -189,6 +189,18 @@ export function emailTwoFactorDisabled(t: Target): void {
   );
 }
 
+export function emailSteamLinkMoved(t: Target): void {
+  fire(
+    getEmailService().send({
+      event: 'steam_link_moved',
+      to: t.email,
+      locale: t.locale,
+      accountId: t.id,
+      data: { username: t.username },
+    }),
+  );
+}
+
 export function emailSecurityIncident(
   t: Target,
   action: string,

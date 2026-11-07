@@ -115,13 +115,20 @@ function plansFrom(
   };
 }
 
-/** Marshal at his layout spot: the authored plans, built once. */
-const LAYOUT_PLANS = plansFrom(
-  MARSHAL_POS,
-  [FERRY_BELL_TOWN_LANDING, MARSHAL_POS],
-  WOLVES_ROUTE,
-  '',
-);
+/** Marshal at his layout spot: the authored hunt route, built once on first
+ *  use. The offer trail is the straight walk up from the ferry landing while
+ *  nothing stands in it, else the pathfinder's walk round what does (the town
+ *  kit's row terrace stands across the straight line north of the square). */
+let layoutPlans: WolvesPlans | null = null;
+function layoutPlansOnce(): WolvesPlans {
+  layoutPlans ??= plansFrom(
+    MARSHAL_POS,
+    routeBetween(FERRY_BELL_TOWN_LANDING, MARSHAL_POS),
+    WOLVES_ROUTE,
+    '',
+  );
+  return layoutPlans;
+}
 
 /** Within this of the layout spot, Marshal counts as standing on it. */
 const LAYOUT_TOLERANCE_YD = 1;
@@ -159,7 +166,7 @@ function plansFor(marshal: Point): WolvesPlans {
     isBuiltinWorldActive() &&
     Math.hypot(marshal.x - MARSHAL_POS.x, marshal.z - MARSHAL_POS.z) <= LAYOUT_TOLERANCE_YD
   ) {
-    return LAYOUT_PLANS;
+    return layoutPlansOnce();
   }
   const generation = getContentGeneration();
   const hit = planCache.findIndex(

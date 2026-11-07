@@ -39,6 +39,12 @@ export function isSoftwareRenderer(
 export const ALLOWED_PERMISSIONS: Set<string>;
 export const EMBEDDED_SUBFRAME_ORIGINS: Set<string>;
 export const EMBEDDED_SUBFRAME_HOST_SUFFIXES: readonly string[];
+export const CARD_CHECKOUT_SUBFRAME_ORIGINS: Set<string>;
+export const CARD_CHECKOUT_SUBFRAME_HOST_SUFFIXES: readonly string[];
+export function embeddedSubframePolicy(cardCheckout?: boolean): {
+  origins: Set<string>;
+  hostSuffixes: readonly string[];
+};
 export const CSP_ORIGINS: {
   script: string[];
   connect: string[];
@@ -57,6 +63,7 @@ export function extractInlineScriptHashes(html: string): string[];
 export function buildContentSecurityPolicy(options?: {
   apiOrigin?: string;
   scriptHashes?: string[];
+  cardCheckout?: boolean;
 }): string;
 export function withCspHeader(response: Response, csp: string): Response;
 export const EXTERNAL_DOCUMENT_PATHS: Set<string>;

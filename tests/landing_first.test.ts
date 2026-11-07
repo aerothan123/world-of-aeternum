@@ -112,9 +112,10 @@ describe('landing-first boot', () => {
     await vi.waitFor(() =>
       expect(document.body.classList.contains('steam-wishlist-pending')).toBe(false),
     );
-    // The community links report clicks.
+    // No third-party click tracking: the upstream Meta Pixel link tracker was removed
+    // (Wyndlewood analytics are opt-in and first party).
     expect(document.getElementById('discord-link')?.hasAttribute('data-woc-click-tracked')).toBe(
-      true,
+      false,
     );
   });
 

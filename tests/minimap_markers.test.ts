@@ -1270,8 +1270,9 @@ describe('station markers (Professions 2.0)', () => {
   it('projects one marker per in-range station at the exact canvas px (both shapes)', () => {
     for (const shape of ['sim', 'client'] as const) {
       const markers = stationMarkers(makeStationWorld(shape));
-      // The four Eastbrook stations; the two other-zone stations are culled.
-      expect(markers, shape).toHaveLength(4);
+      // The six Eastbrook crafting-yard stations (town kit phase 2); the two
+      // other-zone stations are culled.
+      expect(markers, shape).toHaveLength(6);
       // The forge (STATIONS[0]; coordinates read live from STATIONS[0].pos)
       // lands at the projected px:
       // mx = half - dx * pxPerYard, my = half - dz * pxPerYard.

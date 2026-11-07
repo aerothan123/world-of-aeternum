@@ -166,10 +166,10 @@ describe('the emissary', () => {
     const mailBeforeClaim = structuredClone(sim.postOffice.mail);
     sim.resetDay = '2026-09-16';
     expect(sim.weeklyQuest?.carried).toBe(true);
-    sim.commendWeeklyQuest('church_order');
-    sim.commendWeeklyQuest('automatons');
-    expect(meta.factions.church_order).toBe(1000);
-    expect(meta.factions.automatons ?? 0).toBe(0);
+    sim.commendWeeklyQuest('lanternwardens');
+    sim.commendWeeklyQuest('hearthwright_compact');
+    expect(meta.factions.lanternwardens).toBe(1000);
+    expect(meta.factions.hearthwright_compact ?? 0).toBe(0);
     expect(meta.weeklyQuest).toBeNull();
     expect(meta.copper).toBe(copperAfterCompletion);
     expect(meta.inventory.length).toBe(inventoryBefore);
@@ -250,8 +250,8 @@ describe('the emissary', () => {
       carried: true,
     });
     expect(
-      sanitizeWeeklyQuestProgress({ ...finishedRow, commended: 'rift_watch', carried: true }),
-    ).toEqual({ ...finishedRow, commended: 'rift_watch' });
+      sanitizeWeeklyQuestProgress({ ...finishedRow, commended: 'gilt_measure', carried: true }),
+    ).toEqual({ ...finishedRow, commended: 'gilt_measure' });
     expect(sanitizeWeeklyQuestProgress({ ...finishedRow, state: 'active', carried: true })).toEqual(
       { ...finishedRow, count: 1, state: 'active' },
     );
@@ -272,39 +272,44 @@ describe('the commendation', () => {
 
   it('gives one faction the standing once the charge is finished, once a week', () => {
     const sim = finished();
-    sim.commendWeeklyQuest('rift_watch');
+    sim.commendWeeklyQuest('gilt_measure');
     const loot = eventsOf(sim, 'loot');
     expect(loot.map((event) => (event as { text: string }).text)).toContain(
-      '+1000 Rift Watch Standing.',
+      '+1000 Gilt Measure Standing.',
     );
     const meta = sim.meta(sim.playerId);
-    expect(meta?.factions.rift_watch).toBe(1000);
-    expect(meta?.weeklyQuest?.commended).toBe('rift_watch');
+    expect(meta?.factions.gilt_measure).toBe(1000);
+    expect(meta?.weeklyQuest?.commended).toBe('gilt_measure');
     // The choice is spent: a second faction gets nothing, and so does the same one.
-    sim.commendWeeklyQuest('church_order');
-    sim.commendWeeklyQuest('rift_watch');
-    expect(meta?.factions).toEqual({ rift_watch: 1000, church_order: 0, automatons: 0 });
-    expect(sim.weeklyQuest?.commended).toBe('rift_watch');
+    sim.commendWeeklyQuest('lanternwardens');
+    sim.commendWeeklyQuest('gilt_measure');
+    expect(meta?.factions).toEqual({
+      gilt_measure: 1000,
+      lanternwardens: 0,
+      hearthwright_compact: 0,
+      bracken_circle: 0,
+    });
+    expect(sim.weeklyQuest?.commended).toBe('gilt_measure');
   });
 
   it('refuses before the charge is finished, an unknown faction, and a faction with no headroom', () => {
     const sim = armed();
     sim.chooseWeeklyQuest('wk_dungeons');
-    sim.commendWeeklyQuest('rift_watch');
-    expect(sim.meta(sim.playerId)?.factions.rift_watch).toBe(0);
+    sim.commendWeeklyQuest('gilt_measure');
+    expect(sim.meta(sim.playerId)?.factions.gilt_measure).toBe(0);
     for (let i = 0; i < 3; i++) sim.chat('/dev weekly credit');
     sim.tick();
     sim.commendWeeklyQuest('nobody');
     expect(sim.meta(sim.playerId)?.weeklyQuest?.commended).toBeUndefined();
     // Level 1 sits under the low-level cap; a faction already at it is refused
     // and the choice stays open for another.
-    sim.chat('/dev rep automatons 3000');
-    sim.commendWeeklyQuest('automatons');
+    sim.chat('/dev rep hearthwright_compact 3000');
+    sim.commendWeeklyQuest('hearthwright_compact');
     expect(sim.meta(sim.playerId)?.weeklyQuest?.commended).toBeUndefined();
-    expect(sim.meta(sim.playerId)?.factions.automatons).toBe(3000);
-    sim.commendWeeklyQuest('church_order');
-    expect(sim.meta(sim.playerId)?.factions.church_order).toBe(1000);
-    expect(sim.meta(sim.playerId)?.weeklyQuest?.commended).toBe('church_order');
+    expect(sim.meta(sim.playerId)?.factions.hearthwright_compact).toBe(3000);
+    sim.commendWeeklyQuest('lanternwardens');
+    expect(sim.meta(sim.playerId)?.factions.lanternwardens).toBe(1000);
+    expect(sim.meta(sim.playerId)?.weeklyQuest?.commended).toBe('lanternwardens');
   });
 
   it('holds an unclaimed commendation past the weekly reset until it is redeemed', () => {
@@ -339,11 +344,11 @@ describe('the commendation', () => {
     resetWeeklyQuestIfNeeded(restored.ctx, restoredMeta);
     expect(restoredMeta.weeklyQuest).toEqual(held);
     // The claim pays, then last week's charge is over and this week's pick opens.
-    sim.commendWeeklyQuest('church_order');
+    sim.commendWeeklyQuest('lanternwardens');
     expect(eventsOf(sim, 'loot').map((event) => (event as { text: string }).text)).toContain(
-      '+1000 Church Order Standing.',
+      '+1000 Lanternwardens Standing.',
     );
-    expect(meta.factions.church_order).toBe(1000);
+    expect(meta.factions.lanternwardens).toBe(1000);
     expect(meta.weeklyQuest).toBeNull();
     sim.chooseWeeklyQuest('wk_raid');
     expect(sim.weeklyQuest).toEqual({
@@ -356,13 +361,14 @@ describe('the commendation', () => {
 
   it('still rolls a claimed charge, and lets an unclaimable one lapse at the reset', () => {
     const claimed = finished();
-    claimed.commendWeeklyQuest('rift_watch');
+    claimed.commendWeeklyQuest('gilt_measure');
     claimed.resetDay = '2026-09-16';
     expect(claimed.weeklyQuest).toBeNull();
     // Every faction at the cap: nothing could ever redeem it, so it never
     // blocks the next week's pick.
     const capped = finished();
-    for (const factionId of FACTION_IDS) capped.chat(`/dev rep ${factionId} ${MAX_STANDING}`);
+    // One `all` award (four per-faction chats in a tick trip the chat throttle).
+    capped.chat(`/dev rep all ${MAX_STANDING}`);
     capped.tick();
     capped.resetDay = '2026-09-16';
     expect(capped.weeklyQuest).toBeNull();
@@ -378,8 +384,8 @@ describe('the commendation', () => {
     expect(partial.weeklyQuest?.week).toBe('wk_1');
     // ...whichever faction it is.
     const middle = finished();
-    middle.chat(`/dev rep rift_watch ${MAX_STANDING}`);
-    middle.chat(`/dev rep automatons ${MAX_STANDING}`);
+    middle.chat(`/dev rep gilt_measure ${MAX_STANDING}`);
+    middle.chat(`/dev rep hearthwright_compact ${MAX_STANDING}`);
     middle.tick();
     middle.resetDay = '2026-09-16';
     expect(middle.weeklyQuest?.week).toBe('wk_1');
@@ -411,25 +417,25 @@ describe('the commendation', () => {
     const sim = armed('');
     const meta = sim.meta(sim.playerId)!;
     meta.weeklyQuest = { questId: 'wk_dungeons', week: 'wk_1', count: 3, state: 'completed' };
-    sim.commendWeeklyQuest('rift_watch');
-    expect(meta.factions.rift_watch).toBe(1000);
+    sim.commendWeeklyQuest('gilt_measure');
+    expect(meta.factions.gilt_measure).toBe(1000);
     // The week is unknown, so the spent pick stays rather than reopening one.
-    expect(meta.weeklyQuest?.commended).toBe('rift_watch');
+    expect(meta.weeklyQuest?.commended).toBe('gilt_measure');
   });
 
   it('keeps a held commendation open when the claim names a capped faction', () => {
     const sim = finished();
     const meta = sim.meta(sim.playerId)!;
-    sim.chat(`/dev rep rift_watch ${MAX_STANDING}`);
+    sim.chat(`/dev rep gilt_measure ${MAX_STANDING}`);
     sim.tick();
     sim.resetDay = '2026-09-16';
-    sim.commendWeeklyQuest('rift_watch');
+    sim.commendWeeklyQuest('gilt_measure');
     expect(meta.weeklyQuest?.week).toBe('wk_1');
     expect(meta.weeklyQuest?.commended).toBeUndefined();
     sim.chooseWeeklyQuest('wk_raid');
     expect(meta.weeklyQuest?.questId).toBe('wk_dungeons');
-    sim.commendWeeklyQuest('automatons');
-    expect(meta.factions.automatons).toBe(1000);
+    sim.commendWeeklyQuest('hearthwright_compact');
+    expect(meta.factions.hearthwright_compact).toBe(1000);
     expect(meta.weeklyQuest).toBeNull();
   });
 
@@ -439,14 +445,15 @@ describe('the commendation', () => {
     const meta = sim.meta(sim.playerId)!;
     sim.chooseWeeklyQuest('wk_dungeons');
     for (let i = 0; i < 3; i++) sim.chat('/dev weekly credit');
-    sim.chat(`/dev rep rift_watch ${LOW_LEVEL_MAX_STANDING}`);
-    sim.chat(`/dev rep church_order ${LOW_LEVEL_MAX_STANDING}`);
+    sim.chat(`/dev rep gilt_measure ${LOW_LEVEL_MAX_STANDING}`);
+    sim.chat(`/dev rep lanternwardens ${LOW_LEVEL_MAX_STANDING}`);
+    sim.chat(`/dev rep bracken_circle ${LOW_LEVEL_MAX_STANDING}`);
     sim.tick();
     sim.resetDay = '2026-09-16';
     expect(sim.weeklyQuest?.week).toBe('wk_1');
     // Held at one check, then the last faction reaches the cap: nothing could
     // redeem it any more, so the next check lets it go.
-    sim.chat(`/dev rep automatons ${LOW_LEVEL_MAX_STANDING}`);
+    sim.chat(`/dev rep hearthwright_compact ${LOW_LEVEL_MAX_STANDING}`);
     sim.tick();
     expect(meta.weeklyQuest?.week).toBe('wk_1');
     expect(sim.weeklyQuest).toBeNull();
@@ -454,14 +461,14 @@ describe('the commendation', () => {
 
   it('rides the character save and drops a malformed claim on restore', () => {
     const sim = finished();
-    sim.commendWeeklyQuest('automatons');
+    sim.commendWeeklyQuest('hearthwright_compact');
     const state = sim.serializeCharacter(sim.playerId);
     if (!state) throw new Error('Missing serialized character');
-    expect(state.weeklyQuest?.commended).toBe('automatons');
+    expect(state.weeklyQuest?.commended).toBe('hearthwright_compact');
     const restored = new Sim({ seed: 4711, playerClass: 'warrior', noPlayer: true });
     restored.resetDay = sim.resetDay;
     const pid = restored.addPlayer('warrior', 'Commended', { state });
-    expect(restored.meta(pid)?.weeklyQuest?.commended).toBe('automatons');
+    expect(restored.meta(pid)?.weeklyQuest?.commended).toBe('hearthwright_compact');
     // A junk claim restores as none, so the choice is open again rather than lost.
     const junk = new Sim({ seed: 4711, playerClass: 'warrior', noPlayer: true });
     junk.resetDay = sim.resetDay;

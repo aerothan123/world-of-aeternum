@@ -50,6 +50,7 @@ import {
 } from './http/middleware/require_internal_secret';
 import type { RouteDef, RouteHandler, RouteMeta } from './http/types';
 import { json, readBody } from './http_util';
+import { maintenance, parseMaintenanceMinutes } from './maintenance';
 
 function ok(res: http.ServerResponse, data: unknown): void {
   json(res, 200, { success: true, data, error: null });
@@ -668,7 +669,51 @@ const discordGate = requireInternalSecret({
   envVar: DISCORD_SECRET_ENV,
 });
 
+// POST /internal/maintenance { action: 'start', minutes? } | { action: 'cancel' }
+// | { action: 'end' }: the realm maintenance countdown and login gate
+// (server/maintenance.ts). Registry-only (no legacy arm, the new-route rule),
+// behind the same deploy secret as the restart countdown.
+async function maintenanceHandler(ctx: Parameters<RouteHandler>[0]): Promise<void> {
+  const body = await readBody(ctx.req).catch(() => ({}) as Record<string, unknown>);
+  const action = body.action;
+  const m = maintenance();
+  if (action === 'start') {
+    const minutes = parseMaintenanceMinutes(body.minutes);
+    if (minutes === null) return fail(ctx.res, 400, 'minutes must be an integer from 1 to 120');
+    const r = m.start(minutes);
+    if (!r.started) return fail(ctx.res, 409, 'maintenance already active', r.status);
+    return ok(ctx.res, r.status);
+  }
+  if (action === 'cancel') {
+    const r = m.cancel();
+    if (!r.cancelled) return fail(ctx.res, 409, 'no maintenance countdown to cancel', r.status);
+    return ok(ctx.res, r.status);
+  }
+  if (action === 'end') {
+    const r = m.end();
+    if (!r.ended) return fail(ctx.res, 409, 'maintenance is not active', r.status);
+    return ok(ctx.res, r.status);
+  }
+  return fail(ctx.res, 400, "action must be 'start', 'cancel' or 'end'");
+}
+
 export const routes: RouteDef[] = [
+  {
+    method: 'POST',
+    path: '/internal/maintenance',
+    surface: 'internal',
+    meta: INTERNAL_META,
+    middleware: [deployGate],
+    handler: maintenanceHandler,
+  },
+  {
+    method: 'GET',
+    path: '/internal/maintenance',
+    surface: 'internal',
+    meta: INTERNAL_META,
+    middleware: [deployGate],
+    handler: async (ctx) => ok(ctx.res, maintenance().status()),
+  },
   {
     method: 'POST',
     path: '/internal/restart-countdown',

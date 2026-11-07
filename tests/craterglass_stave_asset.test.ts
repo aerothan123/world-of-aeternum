@@ -22,9 +22,9 @@ import { VARIANT_GRIPS } from '../src/render/characters/assets';
 // summary the exporter prints (sizes stay put on a fingerprint-only re-export).
 
 const REPO_ROOT = path.join(__dirname, '..');
-const SOURCE_FINGERPRINT = '0b80d0a3ca925b1e0f7b445fe5a322c650eaa80eda665b66d2a500fb5842f8bc';
+const SOURCE_FINGERPRINT = 'b65366e9e77902f1d6f24f1fe6375940b82ed7845221b974ac549812b1cfd92a';
 const BYTES = 38_780;
-const SHA256 = 'c65daec549ff6042ac21ee746ce87d76ab076a51a26e152acd5326ef73fdb8db';
+const SHA256 = 'c784ebc9aeb4dc214d0492ed41995577021c679ded4ba229b7c26f86d288d5e9';
 
 interface NodePin {
   triangles: number;

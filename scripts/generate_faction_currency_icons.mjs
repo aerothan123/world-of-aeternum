@@ -18,6 +18,12 @@ const ICONS = [
     src: path.join(ROOT, 'public', 'ui', 'items', 'automaton_cog_ring.webp'),
     dest: path.join(CURRENCY_DIR, 'automaton_cog.webp'),
   },
+  // The Bracken Circle's acorn: no faction ladder item of its own yet, so its
+  // mark is cut from the fine silverleaf herb art.
+  {
+    src: path.join(ROOT, 'public', 'ui', 'items', 'fine_silverleaf_herb.webp'),
+    dest: path.join(CURRENCY_DIR, 'bracken_circle_acorn.webp'),
+  },
 ];
 
 async function main() {

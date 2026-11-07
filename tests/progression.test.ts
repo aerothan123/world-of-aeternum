@@ -3,6 +3,8 @@
 // forced grinding. These tests are content-shape tests: they run against
 // whatever the content modules currently export, so they hold as zones grow.
 import { describe, expect, it } from 'vitest';
+import { QUEST_CATCH_SPOTS } from '../src/sim/content/chapter_one';
+import { CHAPTER_TWO_CATCH_SPOTS } from '../src/sim/content/chapter_two';
 import { CHOICE_ROW_LEVELS, CHOICE_ROWS } from '../src/sim/content/choice_rows';
 import { FACTION_VENDOR_GATES } from '../src/sim/content/faction_vendors';
 import { FARM_CROPS } from '../src/sim/content/farm_crops';
@@ -30,6 +32,7 @@ import {
 } from '../src/sim/data';
 import { canEquipItem } from '../src/sim/equipment_rules';
 import { HARVEST_COMPONENT_ITEMS, NODE_MATERIAL_TABLE } from '../src/sim/professions/gathering';
+import { questBaseXp } from '../src/sim/quests/quest_xp';
 import { Sim } from '../src/sim/sim';
 import { ALL_CLASSES, MAX_LEVEL, XP_TABLE, type ZoneDef } from '../src/sim/types';
 import { terrainHeight, WATER_LEVEL } from '../src/sim/world';
@@ -66,7 +69,21 @@ function collectItemAcquirable(itemId: string, recipes = ALL_RECIPES): boolean {
   // collect objective only the vendor arm satisfies on the merged tree.)
   const fromVendor = Object.values(NPCS).some((n) => n.vendorItems?.includes(itemId) === true);
   const fromCraft = recipes.some((r) => r.resultItemId === itemId && r.resultCount > 0);
+  // Quest-handed items: what a use-item or station objective yields
+  // (quests/quest_object_use.ts yieldsItemId), what a quest supplies on accept
+  // (requiredItems), and a quest's own catch at its fishing spot
+  // (quests/quest_fishing_catch.ts QUEST_CATCH_SPOTS).
+  const fromQuest = Object.values(QUESTS).some(
+    (q) =>
+      (q.requiredItems ?? []).includes(itemId) ||
+      q.objectives.some((o) => o.type === 'interact' && o.yieldsItemId === itemId),
+  );
+  const fromQuestCatch = [...QUEST_CATCH_SPOTS, ...CHAPTER_TWO_CATCH_SPOTS].some(
+    (spot) => spot.itemId === itemId,
+  );
   return (
+    fromQuest ||
+    fromQuestCatch ||
     fromLoot ||
     fromGround ||
     fromScript ||
@@ -101,7 +118,13 @@ describe('content referential integrity', () => {
         }
         if (obj.type === 'gather') {
           if (!obj.nodeType && !obj.itemId) problems.push(`${q.id}: gather target missing`);
-          if (obj.nodeType && !GATHER_NODES.some((node) => node.type === obj.nodeType)) {
+          // 'wood' is answered by the choppable world trees (src/sim/trees/),
+          // which credit gather objectives without a GATHER_NODES row.
+          if (
+            obj.nodeType &&
+            obj.nodeType !== 'wood' &&
+            !GATHER_NODES.some((node) => node.type === obj.nodeType)
+          ) {
             problems.push(`${q.id}: gather node type ${obj.nodeType} missing`);
           }
           if (obj.itemId) {
@@ -312,8 +335,14 @@ describe('content referential integrity', () => {
   });
 
   it('zones tile the grid and content sits inside its zone band', () => {
-    // the strip column tiles south to north exactly as it always did
-    const strip = ZONES.filter((zn) => (zn.xMin ?? -180) <= -180 && (zn.xMax ?? 180) >= 180);
+    // the strip column tiles south to north exactly as it always did. The
+    // expansion frontier (openBorders, src/sim/frontier/) sits outside the
+    // shipped grid on its own slot lattice: its tiling is pinned by
+    // tests/world_slots.test.ts and its reachability by the road walks in
+    // tests/frontier_terrain.test.ts, so the two strip rules below skip it.
+    const strip = ZONES.filter(
+      (zn) => !zn.openBorders && (zn.xMin ?? -180) <= -180 && (zn.xMax ?? 180) >= 180,
+    );
     for (let i = 0; i + 1 < strip.length; i++) {
       expect(strip[i].zMax).toBe(strip[i + 1].zMin);
     }
@@ -333,7 +362,7 @@ describe('content referential integrity', () => {
     const stripMin = strip[0].zMin;
     const stripMax = strip[strip.length - 1].zMax;
     for (const zn of ZONES) {
-      if (x0(zn) <= -180 && x1(zn) >= 180) continue;
+      if (zn.openBorders || (x0(zn) <= -180 && x1(zn) >= 180)) continue;
       expect(
         zn.zMin < stripMax && zn.zMax > stripMin,
         `${zn.id} band overlaps the strip somewhere`,
@@ -458,7 +487,7 @@ describe('xp pacing budget (no forced grinding)', () => {
       const giver = NPCS[q.giverNpcId];
       if (!giver || giver.pos.z < zone.zMin || giver.pos.z >= zone.zMax) continue;
       count++;
-      xp += q.xpReward;
+      xp += questBaseXp(q);
       for (const obj of q.objectives) {
         let mobId: string | undefined;
         let kills = 0;
@@ -499,7 +528,11 @@ describe('xp pacing budget (no forced grinding)', () => {
       if (budget.count === 0) return; // zone content not built yet
       const [lo, hi] = zone.levelRange;
       const needed = xpNeeded(lo, hi);
-      const available = budget.xp + budget.killXp;
+      // The level 16 to 20 zones overlap on purpose (wyndlewood-game-plan-progression.md,
+      // section 3): a player finishes that band across several of them, so the band is
+      // budgeted as one pool at the 10%-of-bar quest pacing.
+      const pool = lo >= 16 ? ZONES.filter((z) => z.levelRange[0] >= 16) : [zone];
+      const available = pool.map(questsForZone).reduce((sum, b) => sum + b.xp + b.killXp, 0);
       const headroom = available / needed;
       expect(
         headroom,

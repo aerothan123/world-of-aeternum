@@ -19,6 +19,8 @@ vi.mock('../../server/steam/steam_db', () => ({
   insertSteamLink: vi.fn(async () => 'ok'),
   displaceSteamLink: vi.fn(async () => ({ result: 'ok', displacedAccountId: null })),
   deleteSteamLink: vi.fn(async () => {}),
+  deleteSteamLinkIfReachable: vi.fn(async () => 'deleted'),
+  steamLinkOwnerStanding: vi.fn(async () => ({ hasOtherLogin: true, hasCharacters: false })),
 }));
 vi.mock('../../server/steam/web_api', () => ({
   verifyLinkTicket: vi.fn(async () => ({ kind: 'ok', steamId: '76561198000000001' })),
@@ -53,10 +55,10 @@ import { rateLimit, STEAM_LINK_POLICY } from '../../server/http/middleware/rate_
 import type { Ctx, RouteDef } from '../../server/http/types';
 import { resetSteamLinkRateLimits, STEAM_LINK_MAX_PER_MINUTE } from '../../server/ratelimit';
 import { onLinkChanged, reconcileLink } from '../../server/steam/mirror';
-import { routes } from '../../server/steam/routes';
+import { routes, setSteamLinkRouteDepsForTests } from '../../server/steam/routes';
 import {
   accountForSteamId,
-  deleteSteamLink,
+  deleteSteamLinkIfReachable,
   displaceSteamLink,
   insertSteamLink,
   steamLinkForAccount,
@@ -75,7 +77,7 @@ const linkForAccountMock = vi.mocked(steamLinkForAccount);
 const accountForSteamIdMock = vi.mocked(accountForSteamId);
 const insertMock = vi.mocked(insertSteamLink);
 const displaceMock = vi.mocked(displaceSteamLink);
-const deleteMock = vi.mocked(deleteSteamLink);
+const deleteMock = vi.mocked(deleteSteamLinkIfReachable);
 const verifyMock = vi.mocked(verifyLinkTicket);
 const reconcileMock = vi.mocked(reconcileLink);
 const onLinkChangedMock = vi.mocked(onLinkChanged);
@@ -137,7 +139,24 @@ afterEach(() => {
   insertMock.mockResolvedValue('ok');
   displaceMock.mockResolvedValue({ result: 'ok', displacedAccountId: null });
   verifyMock.mockResolvedValue({ kind: 'ok', steamId: STEAM_ID });
+  deleteMock.mockResolvedValue('deleted');
+  // No step-up owed by default (an account with neither password nor 2FA), so
+  // the cases below exercise the link flow; the step-up block raises it.
+  notifyMock.mockReset();
+  notifyMock.mockResolvedValue(undefined);
+  setSteamLinkRouteDepsForTests({
+    stepUpNeeds: async () => ({ username: 'linker', password: false, code: false }),
+    verifyPassword: async (_id, password) => password === 'hunter2',
+    verifyTwoFactor: async (_id, code) => code === '123456',
+    throttled: () => false,
+    recordFailure: () => {},
+    clearFailures: () => {},
+    notifyDisplaced: notifyMock,
+    now: () => 5_000_000,
+  });
 });
+
+const notifyMock = vi.fn(async (_accountId: number) => {});
 
 // ---------------------------------------------------------------------------
 // DDL pins (the steam_links literals in db.ts SCHEMA).
@@ -376,10 +395,11 @@ describe('POST /api/steam/link', () => {
 // ---------------------------------------------------------------------------
 
 describe('DELETE /api/steam/link', () => {
-  it('deletes the link, invalidates the mirror cache, and is idempotent', async () => {
+  it('deletes the link in one check-and-delete, invalidates the mirror cache, and is idempotent', async () => {
     enableSteam();
     const handler = routeFor('DELETE', '/api/steam/link').handler;
-    for (let round = 0; round < 2; round++) {
+    for (const result of ['deleted', 'none'] as const) {
+      deleteMock.mockResolvedValueOnce(result);
       const ctx = fakeCtx({ method: 'DELETE', url: '/api/steam/link', account: ACCOUNT });
       await handler(ctx);
       expect(captured(ctx.res)).toEqual({ status: 200, body: { unlinked: true } });
@@ -387,6 +407,130 @@ describe('DELETE /api/steam/link', () => {
     expect(deleteMock).toHaveBeenCalledTimes(2);
     expect(deleteMock).toHaveBeenCalledWith(ACCOUNT.accountId);
     expect(onLinkChangedMock).toHaveBeenCalledWith(ACCOUNT.accountId, null);
+  });
+
+  it('refuses 409 steam.unlink_last_login when the statement finds no other way in', async () => {
+    enableSteam();
+    deleteMock.mockResolvedValue('last_login');
+    const ctx = fakeCtx({ method: 'DELETE', url: '/api/steam/link', account: ACCOUNT });
+    await expect(routeFor('DELETE', '/api/steam/link').handler(ctx)).rejects.toMatchObject({
+      status: 409,
+      code: 'steam.unlink_last_login',
+    });
+    expect(onLinkChangedMock).not.toHaveBeenCalled();
+  });
+});
+
+describe('reclaim-by-proof never takes a link from an account with progress', () => {
+  const linkCtx = (body: Record<string, unknown> = { ticket: GOOD_TICKET }) =>
+    fakeCtx({ method: 'POST', url: '/api/steam/link', account: ACCOUNT, body });
+
+  it('a holder with characters is protected (decided in the displace transaction), whatever its logins', async () => {
+    enableSteam();
+    accountForSteamIdMock.mockResolvedValue(99);
+    displaceMock.mockResolvedValue({ result: 'holder_protected', displacedAccountId: null });
+    await expect(routeFor('POST', '/api/steam/link').handler(linkCtx())).rejects.toMatchObject({
+      status: 409,
+      code: 'steam.account_taken',
+    });
+    expect(displaceMock).toHaveBeenCalledWith(ACCOUNT.accountId, STEAM_ID);
+    expect(notifyMock).not.toHaveBeenCalled();
+    expect(reconcileMock).not.toHaveBeenCalled();
+  });
+
+  it('an EMPTY holder may be displaced, and is notified', async () => {
+    enableSteam();
+    accountForSteamIdMock.mockResolvedValue(99);
+    displaceMock.mockResolvedValue({ result: 'ok', displacedAccountId: 99 });
+    const ctx = linkCtx();
+    await routeFor('POST', '/api/steam/link').handler(ctx);
+    expect(captured(ctx.res).status).toBe(200);
+    expect(onLinkChangedMock).toHaveBeenCalledWith(99, null);
+    expect(notifyMock).toHaveBeenCalledWith(99);
+  });
+});
+
+describe('link step-up: a bearer token alone cannot plant a Steam login', () => {
+  const linkCtx = (body: Record<string, unknown>) =>
+    fakeCtx({ method: 'POST', url: '/api/steam/link', account: ACCOUNT, body });
+  const owe = (password: boolean, code: boolean) =>
+    setSteamLinkRouteDepsForTests({
+      stepUpNeeds: async () => ({ username: 'linker', password, code }),
+      verifyPassword: async (_id, pw) => pw === 'hunter2',
+      verifyTwoFactor: async (_id, c) => c === '123456',
+      throttled: () => false,
+      recordFailure: () => {},
+      clearFailures: () => {},
+      notifyDisplaced: notifyMock,
+      now: () => 5_000_000,
+    });
+
+  it('answers steam.reauth_required naming the owed proofs, before Steam is asked', async () => {
+    enableSteam();
+    owe(true, true);
+    await expect(
+      routeFor('POST', '/api/steam/link').handler(linkCtx({ ticket: GOOD_TICKET })),
+    ).rejects.toMatchObject({
+      status: 401,
+      code: 'steam.reauth_required',
+      params: { needPassword: 1, needCode: 1 },
+    });
+    expect(verifyMock).not.toHaveBeenCalled();
+  });
+
+  it('a wrong password or code is refused; the right pair links', async () => {
+    enableSteam();
+    owe(true, true);
+    const route = routeFor('POST', '/api/steam/link');
+    await expect(
+      route.handler(linkCtx({ ticket: GOOD_TICKET, password: 'nope', code: '123456' })),
+    ).rejects.toMatchObject({ status: 401, code: 'auth.password_incorrect' });
+    await expect(
+      route.handler(linkCtx({ ticket: GOOD_TICKET, password: 'hunter2', code: '000000' })),
+    ).rejects.toMatchObject({ status: 401, code: 'two_factor.code_invalid' });
+    expect(verifyMock).not.toHaveBeenCalled();
+    const ok = linkCtx({ ticket: GOOD_TICKET, password: 'hunter2', code: '123456' });
+    await route.handler(ok);
+    expect(captured(ok.res).status).toBe(200);
+  });
+
+  it('a throttled account is refused before any proof is checked', async () => {
+    enableSteam();
+    setSteamLinkRouteDepsForTests({
+      stepUpNeeds: async () => ({ username: 'linker', password: true, code: false }),
+      throttled: () => true,
+      notifyDisplaced: notifyMock,
+      now: () => 5_000_000,
+    });
+    await expect(
+      routeFor('POST', '/api/steam/link').handler(
+        linkCtx({ ticket: GOOD_TICKET, password: 'hunter2' }),
+      ),
+    ).rejects.toMatchObject({ status: 429, code: 'auth.too_many_failed_attempts' });
+  });
+});
+
+describe('link tickets are single-use', () => {
+  it('refuses a replayed link ticket, but an upstream outage leaves it unspent', async () => {
+    enableSteam();
+    const route = routeFor('POST', '/api/steam/link');
+    const ctx = () =>
+      fakeCtx({
+        method: 'POST',
+        url: '/api/steam/link',
+        account: ACCOUNT,
+        body: { ticket: GOOD_TICKET },
+      });
+    verifyMock.mockResolvedValueOnce({ kind: 'upstream' });
+    await expect(route.handler(ctx())).rejects.toMatchObject({ code: 'steam.upstream' });
+    insertMock.mockResolvedValueOnce('ok');
+    await route.handler(ctx());
+    // The same ticket again (another account would be the attack): refused.
+    await expect(route.handler(ctx())).rejects.toMatchObject({
+      status: 400,
+      code: 'steam.invalid_ticket',
+    });
+    expect(verifyMock).toHaveBeenCalledTimes(2);
   });
 });
 
@@ -448,11 +592,12 @@ describe('STEAM_LINK_POLICY', () => {
     const bearer = { authorization: `Bearer ${'a'.repeat(64)}` };
     const route = routeFor('POST', '/api/steam/link');
     for (let i = 0; i < STEAM_LINK_MAX_PER_MINUTE; i++) {
+      // A distinct ticket per request: link tickets are single-use.
       const ctx = fakeCtx({
         method: 'POST',
         url: '/api/steam/link',
         headers: bearer,
-        body: { ticket: GOOD_TICKET },
+        body: { ticket: i.toString(16).padStart(2, '0').repeat(64) },
       });
       await runRoute(route, ctx);
       expect(captured(ctx.res).status).toBe(200);
@@ -552,7 +697,7 @@ describe('ticket helpers (pure)', () => {
 // The forbidden-login rule: the steam domain can never mint credentials.
 // ---------------------------------------------------------------------------
 
-describe('login with Steam does not exist', () => {
+describe('the steam link domain never mints a credential (login lives in server/steam_login.ts)', () => {
   const STEAM_DIR = path.resolve(process.cwd(), 'server/steam');
 
   // The source files the rule covers, exactly. The `>= 7` floor this replaces

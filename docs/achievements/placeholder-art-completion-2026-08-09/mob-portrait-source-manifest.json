@@ -7529,7 +7529,7 @@
           "url": "models/creatures/muster_effigy.glb",
           "path": "public/models/creatures/muster_effigy.glb",
           "bytes": 182308,
-          "sha256": "be06dfba785186d35e7478a150e4e91c79e125053a324ef944265616e9c1d00e"
+          "sha256": "4cd18a0554c2182d2f67ca524998afad097cea040b057dc493f48bd588810425"
         },
         "idle": "Idle",
         "height": 6.7,

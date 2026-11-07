@@ -37,6 +37,10 @@ describe('profession trainer service labels', () => {
     ['tinker_gizzel', 'Engineering Trainer'],
     ['tanner_hesk', 'Leatherworking Trainer'],
     ['alchemist_verane', 'Alchemy Trainer'],
+    // Town kit (phase 2): the Eastbrook crafting yard's tannery and alchemy
+    // masters.
+    ['tanner_tamsin', 'Leatherworking Trainer'],
+    ['apothecary_lin', 'Alchemy Trainer'],
     ['farmer_jessica', 'Farming Trainer'],
     ['foreman_odell', 'Mining Trainer'],
     ['smith_haldren', 'Hobby Trainer'],
@@ -47,13 +51,7 @@ describe('profession trainer service labels', () => {
   });
 
   it('does not turn combat/story vendors or unknown IDs into profession trainers', () => {
-    for (const id of [
-      'marshal_redbrook',
-      'apothecary_lin',
-      'fisherman_brandt',
-      'constructor',
-      'missing',
-    ]) {
+    for (const id of ['marshal_redbrook', 'fisherman_brandt', 'constructor', 'missing']) {
       expect(professionTrainerLabel(id)).toBe('');
       expect(professionTrainerNameplateLabel(id)).toBe('');
     }

@@ -10,12 +10,16 @@ import { STATION_PROP_CLUSTERS, stationPropPlacements } from '../src/render/stat
 import { STATIONS } from '../src/sim/data';
 
 describe('stationPropPlacements (the pure placement core)', () => {
-  it('covers every STATIONS record', () => {
+  it('covers every STATIONS record that is not dressed', () => {
+    // A dressed station (the Eastbrook crafting yard's, town kit phase 2) has a
+    // placed kit bench for its face, so it draws no procedural cluster.
     const placedIds = new Set(stationPropPlacements(STATIONS).map((p) => p.stationId));
     for (const station of STATIONS) {
-      expect(placedIds.has(station.id), station.id).toBe(true);
+      expect(placedIds.has(station.id), station.id).toBe(!station.dressed);
     }
-    expect(placedIds.size).toBe(STATIONS.length);
+    expect(STATIONS.filter((station) => station.dressed)).toHaveLength(6);
+    expect(placedIds.size).toBe(STATIONS.filter((station) => !station.dressed).length);
+    expect(placedIds.size).toBeGreaterThan(0);
   });
 
   it('each cluster keeps its thematic anchor prop BESIDE the station pos', () => {
@@ -23,7 +27,7 @@ describe('stationPropPlacements (the pure placement core)', () => {
     // gameplay interaction target (routes end on it at body radius up to
     // 0.8), so the anchor stands clear of the point but stays close enough
     // to read as the station itself.
-    for (const station of STATIONS) {
+    for (const station of STATIONS.filter((candidate) => !candidate.dressed)) {
       const cluster = STATION_PROP_CLUSTERS[station.type];
       const anchorSpec = cluster[0];
       const placements = stationPropPlacements(STATIONS).filter((p) => p.stationId === station.id);

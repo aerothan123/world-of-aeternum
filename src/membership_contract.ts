@@ -24,11 +24,15 @@ export function membershipCharacterLimit(snapshot: MembershipSnapshot, nowMs: nu
   );
 }
 
-/** Slot identity survives deletions: a premium character never becomes a base character. */
+/** Slot identity survives deletions: a premium character never becomes a base character.
+ *  With membership switched off for the realm (`membershipEnabled` false, Early
+ *  Access) no slot is locked: a character made under a past membership stays
+ *  playable rather than stranded, and its slot flag is kept untouched. */
 export function membershipCharacterLocked(
   membershipSlot: boolean | undefined,
   snapshot: MembershipSnapshot,
   nowMs: number,
+  membershipEnabled = true,
 ): boolean {
-  return membershipSlot === true && !membershipActive(snapshot, nowMs);
+  return membershipEnabled && membershipSlot === true && !membershipActive(snapshot, nowMs);
 }

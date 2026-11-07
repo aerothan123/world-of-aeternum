@@ -40,9 +40,9 @@ import {
 // summary the exporter prints (sizes stay put on a fingerprint-only re-export).
 
 const REPO_ROOT = path.join(__dirname, '..');
-const SOURCE_FINGERPRINT = '74b61ceb516633745b58a081ebdea628121c49f09b9311e922ba0abe208a9ad7';
+const SOURCE_FINGERPRINT = '517b3297249975ba11e0fa65a5b6033808623bab0edd7b11eb8d4514cdc487af';
 const BYTES = 109_920;
-const SHA256 = '501f14dd9bbd0f7da76443481c0d349b47ef372d87c4cdfa002ae9f70e1c4554';
+const SHA256 = 'f57ee398c3a111ca3e1cd3011653bb6a6a831a54e5a40b83d22c8edbc2c4e619';
 
 interface NodePin {
   triangles: number;

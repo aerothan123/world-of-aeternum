@@ -20,6 +20,9 @@ import {
   TOOL_EFFECTS,
 } from '../content/professions';
 import { ITEMS } from '../data';
+import { gatherActivity, recordFactionActivity } from '../faction_activity';
+import { lifeSkillGatherXp } from '../life_skills/life_skill_xp';
+import { grantLifeSkillStanding } from '../life_skills/standing_seam';
 import { gatheredMaterialSources } from '../material_gatherer';
 import { forceDismount } from '../mounts';
 import { gatherNodesFor, type ObjectMoves } from '../moved_objects';
@@ -53,7 +56,6 @@ import {
 import { type GatherToolBeltHolder, ownedGatherTools, toolBelt } from './gather_tool_slots';
 import { type MaterialRarity, nodeMaterialFor } from './gathering_materials';
 import { fineGradeReachable, harvestGradeItemId } from './material_grades';
-import { gatherActionXp } from './profession_xp';
 import { proficiencyBandFor } from './proficiency_bands';
 import {
   applyToolEffectUse,
@@ -990,12 +992,17 @@ export function completeGatherCast(ctx: SimContext, p: Entity, meta: PlayerMeta)
     }
   }
   ctx.onNodeGatheredForQuests(node, itemId, meta);
+  // Bracken Circle standing for herbs and wood (faction_activity.ts; draw-free).
+  const gatherAct = gatherActivity(node.type);
+  if (gatherAct) recordFactionActivity(ctx, meta, gatherAct, node.level);
   // Zone gather mark: one entry per zone and node type ever harvested.
   ctx.markVisited(meta, `gather:${node.zoneId}:${node.type}`);
   // Character XP for the harvest (profession_xp.ts), tier-scaled and
   // level-gated the same way kill XP is: a max-level player farming a
-  // trivial (gray) node gets zero.
-  ctx.grantXp(gatherActionXp(node.level, p.level), meta);
+  // trivial (gray) node gets zero, and a long trivial loop tires
+  // (life_skills/life_skill_xp.ts). Bracken Circle standing rides the seam.
+  ctx.grantXp(lifeSkillGatherXp(meta, ctx.time, node.level, node.tier, p.level), meta);
+  grantLifeSkillStanding(ctx, meta, 'gather', node.level);
   // World-quest XP can level the player. Credit it only after this harvest's
   // own XP has been calculated from the level at which the cast completed.
   ctx.onNodeGatheredForWorldQuests(node, meta);

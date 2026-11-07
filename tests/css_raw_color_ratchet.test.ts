@@ -150,11 +150,14 @@ const CEILINGS: Record<string, number> = {
   // (the harvest journal, the plant sheet, the perfecting window and the apex
   // treatment) arrive carrying literals the redesign has not migrated yet.
   // Re-counted on the merged sheet, never reconciled by arithmetic.
-  'components.css': 471,
+  // 471 -> 467: the crypto removal dropped the token coin chip and the
+  // player-card wallet toggle.
+  'components.css': 467,
   // 447 -> 663 on the v0.44.0 release line: the merged HUD surface adds
   // detailed meter settings, death-recap styling and cooldown-manager chrome.
   // Re-counted on the merged sheet; token migration is tracked separately.
-  'hud.css': 663,
+  // 663 -> 661: the crypto removal dropped the holder-tier nameplate badge.
+  'hud.css': 661,
   // New sheet from the release arm (the gathering goal tracker), tokenized as
   // authored: it joins the ratchet pinned at zero.
   'hud.gathering-goal.css': 0,
@@ -166,7 +169,9 @@ const CEILINGS: Record<string, number> = {
   'library.css': 0,
   'play.extra.css': 1,
   'referral_cards.css': 0,
-  'shell.css': 719,
+  // 719 -> 695: the crypto removal dropped the wallet-only CTA states and the
+  // holder-badge halo. Re-counted on the live sheet.
+  'shell.css': 695,
   'shell.website.css': 0,
   'shell.website-pages.css': 0,
 };

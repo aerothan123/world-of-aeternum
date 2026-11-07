@@ -638,7 +638,7 @@ export const CASTER_HUB_RECIPES: ProfessionRecipeRecord[] = [
     resultItemId: 'sootscale_mantle',
     resultCount: 1,
     // Ore stays (mail theme) plus smithing_flux volume. Only the flux is
-    // Darva's counter staple; the thorium is harvest-only since the delist.
+    // Brunna's counter staple; the thorium is harvest-only since the delist.
     // Listed input 520 vs output 280 (buyValue basis):
     // the output sits below even the cheapest specialized-plus-self-signed
     // consumption (300, the discount-aware economy arm) so the all-vendor
@@ -1812,7 +1812,7 @@ export const BAG_RECIPES: ProfessionRecipeRecord[] = [
 // - Every record binds `stationType: 'forge'` explicitly: jewelcrafting has no
 //   station of its own and deliberately stays OUT of STATION_TYPE_BY_CRAFT (no
 //   new station type, no new trainer NPC). The binding is the recipe's
-//   teaching home (training.ts trainingStationTypeFor), so Forgemistress Darva
+//   teaching home (training.ts trainingStationTypeFor), so Brunna
 //   teaches the catalog, the enchanting charm precedent
 //   (TOOL_EFFECT_RECIPES). The foreign-bound literal pin in
 //   tests/professions_crafting_hub.test.ts names all nine ids.

@@ -163,7 +163,7 @@ import {
   styleStreetlampSites,
 } from './streetlamp_layout';
 import { STREETLAMP_COLLIDER_RADIUS, STREETLAMP_FIXTURE_HEIGHT } from './streetlamp_style';
-import { townPropPlacements } from './town_props';
+import { stationAnchor, townPropPlacements } from './town_props';
 import { transportBerthColliders, transportGatesClosedAtBuild } from './transport_gates';
 import { syncFelledTreeCells, withoutFelledTrees } from './trees/tree_fell_collision';
 import type { WorldContent } from './types';
@@ -981,7 +981,7 @@ function staticWorldColliders(seed: number): Collider[] {
   // stations, matching the gate and visuals: a custom map without services
   // gets no invisible builtin furniture, and its own stations do collide.
   for (const tp of townPropPlacements(
-    (content.services?.stations ?? []).map((st) => ({ type: st.type, x: st.pos.x, z: st.pos.z })),
+    (content.services?.stations ?? []).map(stationAnchor),
     townNpcPositions(),
   )) {
     const top = topY(seed, tp.x, tp.z, tp.size.height);

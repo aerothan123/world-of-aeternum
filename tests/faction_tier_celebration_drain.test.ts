@@ -46,7 +46,7 @@ function drainHud(synced: boolean): DrainHarness {
     craftingIdentity: { synced },
     craftSkills: {},
     gatheringProficiency: {},
-    factions: { rift_watch: 0, church_order: 0, automatons: 0 },
+    factions: { gilt_measure: 0, lanternwardens: 0, hearthwright_compact: 0 },
   };
   hud.bannerEl = document.createElement('div');
   hud.bannerTimer = undefined;
@@ -70,7 +70,11 @@ describe('faction tier celebration: the handleEvents drain wiring', () => {
     vi.useFakeTimers();
     const achievement = vi.spyOn(audio, 'achievement').mockImplementation(() => {});
     const hud = drainHud(true);
-    hud.sim.factions = { rift_watch: STANDING_THRESHOLDS.trusted, church_order: 0, automatons: 0 };
+    hud.sim.factions = {
+      gilt_measure: STANDING_THRESHOLDS.trusted,
+      lanternwardens: 0,
+      hearthwright_compact: 0,
+    };
 
     // Drain 1: the first synced observation is history, never a toast.
     hud.handleEvents([]);
@@ -78,24 +82,28 @@ describe('faction tier celebration: the handleEvents drain wiring', () => {
     expect(achievement).not.toHaveBeenCalled();
 
     // The mirror updates (the online path replaces the object wholesale).
-    hud.sim.factions = { rift_watch: STANDING_THRESHOLDS.proven, church_order: 0, automatons: 0 };
+    hud.sim.factions = {
+      gilt_measure: STANDING_THRESHOLDS.proven,
+      lanternwardens: 0,
+      hearthwright_compact: 0,
+    };
     hud.handleEvents([]);
     expect(hud.log).toHaveBeenCalledTimes(1);
     expect(hud.log).toHaveBeenCalledWith(
-      'You are now Proven with the Rift Watch. Your faction title is now Warden.',
+      'You are now Proven with the Gilt Measure. Your faction title is now Factor.',
       '#ffd100',
     );
     expect(hud.bannerEl.classList.contains('banner-deed')).toBe(true);
-    expect(hud.bannerEl.textContent).toContain('Now Proven with the Rift Watch');
-    expect(hud.bannerEl.textContent).toContain('Faction title: Warden');
+    expect(hud.bannerEl.textContent).toContain('Now Proven with the Gilt Measure');
+    expect(hud.bannerEl.textContent).toContain('Faction title: Factor');
     expect(hud.combatAnnouncer.push).toHaveBeenCalledTimes(1);
     expect(achievement).toHaveBeenCalledTimes(1);
 
     // Drain 3: a gain inside the tier is silent.
     hud.sim.factions = {
-      rift_watch: STANDING_THRESHOLDS.proven + 80,
-      church_order: 0,
-      automatons: 0,
+      gilt_measure: STANDING_THRESHOLDS.proven + 80,
+      lanternwardens: 0,
+      hearthwright_compact: 0,
     };
     hud.handleEvents([]);
     expect(hud.log).toHaveBeenCalledTimes(1);
@@ -108,10 +116,14 @@ describe('faction tier celebration: the handleEvents drain wiring', () => {
     hud.handleEvents([]);
     expect(hud.prevFactionStanding).toBeNull();
     hud.sim.craftingIdentity = { synced: true };
-    hud.sim.factions = { rift_watch: STANDING_THRESHOLDS.champion, church_order: 0, automatons: 0 };
+    hud.sim.factions = {
+      gilt_measure: STANDING_THRESHOLDS.champion,
+      lanternwardens: 0,
+      hearthwright_compact: 0,
+    };
     hud.handleEvents([]);
     expect(hud.log).not.toHaveBeenCalled();
     expect(achievement).not.toHaveBeenCalled();
-    expect(hud.prevFactionStanding?.rift_watch).toBe(STANDING_THRESHOLDS.champion);
+    expect(hud.prevFactionStanding?.gilt_measure).toBe(STANDING_THRESHOLDS.champion);
   });
 });

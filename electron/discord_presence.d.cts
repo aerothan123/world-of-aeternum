@@ -74,9 +74,10 @@ export function candidatePipePaths(
   env: Record<string, string | undefined> | undefined,
 ): string[];
 export function createDiscordPresence(deps: DiscordPresenceDeps): DiscordPresence;
-export const DEFAULT_DISCORD_APP_ID: string;
+export const DEFAULT_DISCORD_APP_ID: string | null;
 export function resolveDiscordClientId(
   env: Record<string, string | undefined> | undefined,
+  stampedId?: unknown,
 ): string | null;
 export function sanitizeDiscordActivity(
   payload: unknown,

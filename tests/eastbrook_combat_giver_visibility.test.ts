@@ -43,6 +43,11 @@ describe('Eastbrook starter combat quest group', () => {
         `${id} keeps the road clear`,
       ).toBeGreaterThanOrEqual(2.5);
       for (const station of EASTBROOK_LAYOUT.services.stations) {
+        // A giver who also masters a yard bench (the apothecary, town kit
+        // phase 2) stands beside that bench by design; every OTHER station
+        // keeps its distance (tests/professions_station_placement.test.ts
+        // bounds the master's own stand).
+        if (station.masterNpcId === id) continue;
         expect(
           Math.hypot(position.x - station.position.x, position.z - station.position.z),
           `${id} / ${station.id}`,

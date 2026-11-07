@@ -96,6 +96,12 @@ import {
 /** Live characters online (joined sessions). */
 export const WOC_PLAYERS_ONLINE = 'woc_players_online';
 export const WOC_USERNAME_BANLIST_FILE_LOADED = 'woc_username_banlist_file_loaded';
+
+/** 1 when this process has the /dev cheat set armed (ALLOW_DEV_COMMANDS=1,
+ *  the same read /api/status advertises as dev_commands). The boot guard
+ *  refuses it outside an explicit dev WOC_ENV; this gauge is the alert's
+ *  belt to that suspender (deploy/alerts DevCommandsOnPublicRealm). */
+export const WOC_DEV_COMMANDS_ENABLED = 'woc_dev_commands_enabled';
 export const WOC_CHARACTER_STATE_BYTES_MAX = 'woc_character_state_bytes_max';
 /** The p99 serialized character blob over the most recent saves: the fleet-creep
  *  read the monotonic max cannot give (server/character_blob_size.ts). */
@@ -517,6 +523,15 @@ export function registerGameStateMetrics(
     registers: [registry],
     collect() {
       this.set(source.playersOnline());
+    },
+  });
+
+  new Gauge({
+    name: WOC_DEV_COMMANDS_ENABLED,
+    help: '1 when ALLOW_DEV_COMMANDS=1 arms the /dev cheat set in this process (never on a public realm).',
+    registers: [registry],
+    collect() {
+      this.set(process.env.ALLOW_DEV_COMMANDS === '1' ? 1 : 0);
     },
   });
 

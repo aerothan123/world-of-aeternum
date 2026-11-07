@@ -48,14 +48,14 @@ const cssTargets = browserslistToTargets(
   loadBrowserslistFloors(fileURLToPath(new URL('.browserslistrc', import.meta.url))),
 );
 
-// `#bot-detector` → the private detector if its clone is present, else the no-op
-// stub. Mirrors scripts/build_server.mjs (bundle) and tsconfig.json `paths` (tsc).
+// `#bot-detector` → the private detector if its clone is present, else the open
+// flag-only detector (server/bot_detector/flag_only.ts). Mirrors scripts/build_server.mjs (bundle) and tsconfig.json `paths` (tsc).
 const privateBotDetector = fileURLToPath(
   new URL('private/bot_detector/src/index.ts', import.meta.url),
 );
 const botDetectorImpl = existsSync(privateBotDetector)
   ? privateBotDetector
-  : fileURLToPath(new URL('server/bot_detector/stub.ts', import.meta.url));
+  : fileURLToPath(new URL('server/bot_detector/flag_only.ts', import.meta.url));
 const pkg = JSON.parse(readFileSync(new URL('package.json', import.meta.url), 'utf8')) as {
   version?: string;
 };
@@ -117,6 +117,8 @@ const STATIC_PAGE_ALIASES = new Map([
   ['/privacy/', '/privacy.html'],
   ['/terms', '/terms.html'],
   ['/terms/', '/terms.html'],
+  ['/eula', '/eula.html'],
+  ['/eula/', '/eula.html'],
   ['/merch', '/merch.html'],
   ['/merch/', '/merch.html'],
   ['/press', '/press.html'],
@@ -1543,6 +1545,14 @@ export default defineConfig({
     env: {
       DATABASE_URL:
         process.env.DATABASE_URL ?? 'postgres://vitest:vitest@127.0.0.1:5433/wocc_vitest_dummy',
+      // The inherited membership and Claudium suites test those systems as they
+      // ship when switched on; the Early Access OFF state (the realm and build
+      // default, src/early_access_flags.ts) is pinned through explicit flags in
+      // tests/early_access_flags.test.ts.
+      MEMBERSHIP_ENABLED: '1',
+      CLAUDIUM_ENABLED: '1',
+      VITE_MEMBERSHIP_ENABLED: '1',
+      VITE_CLAUDIUM_ENABLED: '1',
     },
     // happy-dom resolves a relative resource URL against its window origin,
     // which vitest defaults to http://localhost:3000, and then opens a REAL

@@ -90,7 +90,7 @@ describe('World PvP XP bonus', () => {
   it('preserves faction reputation without an extra PvP multiplier', () => {
     const { sim, pid, meta } = fixture(MAX_LEVEL);
     sim.setWorldPvpFlag(true, pid);
-    expect(awardFactionReputation(meta, 'rift_watch', 100, MAX_LEVEL).gained).toBe(100);
+    expect(awardFactionReputation(meta, 'gilt_measure', 100, MAX_LEVEL).gained).toBe(100);
   });
   it('does not boost a stored flag-down record', () => {
     const { sim, meta } = fixture();

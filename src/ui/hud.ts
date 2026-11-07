@@ -7,7 +7,6 @@ import type { GamepadKind } from '../game/gamepad_map';
 import type { GraphicsSettingsSnapshot } from '../game/graphics_rebuild_core';
 import { InstanceMusicController, type InstanceMusicDecision } from '../game/instance_music';
 import { bindActionLabel, type Keybinds, keyCapLabel } from '../game/keybinds';
-import { trackMetaPixel } from '../game/meta_pixel';
 import { syncMinigameMusic } from '../game/minigame_music_sync';
 import { music } from '../game/music';
 import { runPetCommand } from '../game/pet_commands';
@@ -221,6 +220,7 @@ import {
 } from './chat_ignore_core';
 import { CHAT_TEMPLATE_KEYS, localizeChatBody } from './chat_templates';
 import { wireChromeFocus } from './chrome_focus_wiring';
+import { classCss } from './class_css';
 import { ClaudiumLauncherBalance } from './claudium_launcher_balance_core';
 import { createClaudiumPurchaseFacet } from './claudium_purchase_bridge';
 import { type ClaudiumRail, type ClaudiumSnapshot, ClaudiumWindow } from './claudium_window';
@@ -291,11 +291,8 @@ import { dropdownKeyNav } from './dropdown_nav';
 import { duelEndFeedback } from './duel_end_feedback';
 import { dungeonMapLocal } from './dungeon_map_view';
 import { emoteIconUrl } from './emote_icons';
-import { DEFAULT_EMOTE_WHEEL, EMOTE_WHEEL_LIMIT } from './emote_wheel_defaults';
-import {
-  emoteWheelSlotsKey,
-  emoteWheelVersionKey as emoteWheelVersionKeyFor,
-} from './emote_wheel_keys';
+import { EMOTE_WHEEL_LIMIT } from './emote_wheel_defaults';
+import { loadEmoteWheelSlots, saveEmoteWheelSlots } from './emote_wheel_store';
 import { crossHotbarActionSlot, EmpowerHold } from './empower_hold_core';
 import {
   combatAbilityName,
@@ -449,6 +446,7 @@ import { petSlotText } from './hud/action_bar/pet_slot_core';
 import { playerStealthed } from './hud/action_bar/player_stealthed';
 import { RADIAL_DIRECTIONS, type RadialDirection } from './hud/action_bar/radial_action_core';
 import { slotEditHintLines } from './hud/action_bar/slot_edit_hints_core';
+import { type MountedAddons, mountAddons } from './hud/addons';
 import { AuraTrackFamily } from './hud/aura_tracks';
 import {
   BattlegroundKillFeed,
@@ -499,6 +497,7 @@ import { RiteController } from './hud/delve/rite_controller';
 import { DungeonPrompts, fctAvoidanceText, wardHitText } from './hud/dungeon';
 import { applyDungeonGuideSpeech } from './hud/dungeon/dungeon_guide_speech';
 import { DungeonTrackerPainter } from './hud/dungeon/dungeon_tracker_painter';
+import { DurabilityPainter, durabilityView } from './hud/durability';
 import { createFinderSurfaces } from './hud/expeditions';
 import { factionRewardTooltipLines } from './hud/faction_reward_tooltip_view';
 import { FiestaController } from './hud/fiesta/fiesta_controller';
@@ -710,8 +709,8 @@ import {
   instanceLockLine,
   instancePartyTradeLine,
   instanceTitleHtml,
+  itemGateLines,
   itemNumber,
-  itemRequiredLevelLine,
   materialMakersMarkLines,
   tooltipEffectiveQuality,
   vendorSellTooltipLine,
@@ -915,7 +914,7 @@ import {
   reliquaryRelicPageId,
   reliquaryRelicPageIndex,
 } from './reliquary_view';
-import { curatorRankNameKey, ReliquaryWindow } from './reliquary_window';
+import { curatorRankDisplayName, ReliquaryWindow } from './reliquary_window';
 import { closeReportWindow, openReportWindow } from './report_window';
 import { type RestLabelKey, restStateOf, restView } from './rest_indicator';
 import { paintRestIndicator } from './rest_indicator_painter';
@@ -949,6 +948,7 @@ import {
   storePromoSlides,
 } from './store_promo_card';
 import { dailyRewardsStoreSnapshot } from './store_snapshot_adapter';
+import { storeLauncherLive, storeTabAllowed } from './store_surfaces_core';
 import { SwingTimerBars } from './swing_timer_bars';
 import { localizeSystemText } from './system_text_i18n';
 import { TalentsWindow } from './talents_window';
@@ -1205,10 +1205,6 @@ const PET_MODE_DESC_KEYS: Record<PetMode, TranslationKey> = {
   aggressive: 'hud.pet.aggressiveDesc',
   assist: 'hud.pet.assistDesc',
 };
-// Classic class colors (CLASSES[cls].color is a 0xRRGGBB number) as a CSS
-// string, used to color-code party members on the minimap and in the frames.
-const classCss = (cls: string): string =>
-  `#${((CLASSES as Record<string, { color: number }>)[cls]?.color ?? 0x5fa8ff).toString(16).padStart(6, '0')}`;
 
 // The OFFLINE ignore store. Online, the ignore list is server-persisted and
 // arrives on the `social` frame, so this set is not consulted at all (see the
@@ -1244,11 +1240,6 @@ function appendChildSpan(parent: HTMLElement, className: string): HTMLElement {
   if (className) span.className = className;
   parent.appendChild(span);
   return span;
-}
-
-/** Named Curator rank for rank-up toast/banner (cosmetic chrome only). */
-function curatorRankDisplayName(rank: number): string {
-  return t(curatorRankNameKey(rank), { rank: formatNumber(rank) });
 }
 
 // Module-scope (created once, not per frame): freedAttackSlotAbility's abilityDef
@@ -2107,6 +2098,8 @@ export class Hud {
   private windowObserver: MutationObserver | null = null;
   private windowZ = 50;
   private localIgnoredNames = new Set<string>();
+  // The add-on platform (src/ui/hud/addons/): runtime + Addons window.
+  private readonly addons: MountedAddons;
   private lastHudFastAt = 0;
   private lastHudMediumAt = 0;
   private lastHudSlowAt = 0;
@@ -2620,9 +2613,20 @@ export class Hud {
     });
     this.chatWindow.init();
     this.chatGeometry.init();
+    this.addons = mountAddons({
+      world: sim,
+      writers: this.writerFacet,
+      uiRoot: $('#ui'),
+      uiScale: getUiScale,
+      focus: this.focusManager,
+      isIgnored: (n) => this.sim.socialInfo === null && this.localIgnoredNames.has(ignoreKey(n)),
+      print: (text, color) => this.log(text, color ?? undefined, undefined, undefined, false, true),
+      castSlot: (slot) => this.castSlot(slot),
+      toggleWindow: (w) => this.toggleWindowByAddonName(w),
+    });
     this.initFrameMovers();
     this.initWindowManagement();
-    this.emoteWheelSlots = this.loadEmoteWheelSlots();
+    this.emoteWheelSlots = loadEmoteWheelSlots(localStorage, sim.cfg.playerClass, sim.player.name);
     this.actionBarController.init();
     this.buildActionBar();
     this.initMailIndicator();
@@ -4233,51 +4237,6 @@ export class Hud {
   // Emote wheel
   // -------------------------------------------------------------------------
 
-  private emoteWheelKey(): string {
-    return emoteWheelSlotsKey(this.sim.cfg.playerClass, this.sim.player.name);
-  }
-
-  private emoteWheelVersionKey(): string {
-    return emoteWheelVersionKeyFor(this.sim.cfg.playerClass, this.sim.player.name);
-  }
-
-  private loadEmoteWheelSlots(): OverheadEmoteId[] {
-    let raw: unknown = null;
-    try {
-      raw = JSON.parse(localStorage.getItem(this.emoteWheelKey()) ?? 'null');
-    } catch {
-      /* corrupt */
-    }
-    const ids = Array.isArray(raw) ? raw.filter(isOverheadEmoteId) : [];
-    const deduped = ids.filter((id, i) => ids.indexOf(id) === i).slice(0, EMOTE_WHEEL_LIMIT);
-    let migrated = false;
-    try {
-      migrated = localStorage.getItem(this.emoteWheelVersionKey()) === '1';
-    } catch {
-      /* storage unavailable */
-    }
-    if (deduped.length > 0 && !migrated && !deduped.includes('question')) {
-      deduped.splice(2, 0, 'question');
-      deduped.length = Math.min(deduped.length, EMOTE_WHEEL_LIMIT);
-      try {
-        localStorage.setItem(this.emoteWheelKey(), JSON.stringify(deduped));
-        localStorage.setItem(this.emoteWheelVersionKey(), '1');
-      } catch {
-        /* storage unavailable */
-      }
-    }
-    return deduped.length > 0 ? deduped : [...DEFAULT_EMOTE_WHEEL];
-  }
-
-  private saveEmoteWheelSlots(): void {
-    try {
-      localStorage.setItem(this.emoteWheelKey(), JSON.stringify(this.emoteWheelSlots));
-      localStorage.setItem(this.emoteWheelVersionKey(), '1');
-    } catch {
-      /* storage unavailable */
-    }
-  }
-
   private emoteLabel(id: OverheadEmoteId): string {
     return t(`hudChrome.emotes.${id}` as TranslationKey);
   }
@@ -4454,7 +4413,12 @@ export class Hud {
         this.emoteWheelSlots = OVERHEAD_EMOTES.map((e) => e.id).filter(
           (id): id is OverheadEmoteId => selected.has(id),
         );
-        this.saveEmoteWheelSlots();
+        saveEmoteWheelSlots(
+          localStorage,
+          this.sim.cfg.playerClass,
+          this.sim.player.name,
+          this.emoteWheelSlots,
+        );
         syncCount();
         syncButtons();
       });
@@ -4676,6 +4640,7 @@ export class Hud {
   });
   // Player frame: the vitals bar painter (hud/vitals/) over the family element
   // set: static name/portrait, cached heraldry and self PvP risk hosts.
+  private readonly durability = new DurabilityPainter(this.writerFacet, $('#dura-figure'));
   private readonly playerFramePainter = new VitalsPainter(this.writerFacet, {
     frame: this.playerFrameEl,
     pvpRisk: { badge: $('#pf-pvp'), minimap: $('#minimap-disc') },
@@ -6529,7 +6494,7 @@ export class Hud {
     if (requiredClasses) {
       html += `<div class="tt-sub">${esc(t('itemUi.tooltip.classes', { classes: requiredClasses.map(classDisplayName).join(', ') }))}</div>`;
     }
-    html += itemRequiredLevelLine(item, wearer.level) + treasureMapTooltipLine(item);
+    html += itemGateLines(item, wearer.level, instance) + treasureMapTooltipLine(item);
     html += this.itemProcBlock(item) + trinketTooltipLines(item, this.sim.player);
     if (compare !== 'noset') html += this.itemSetBlock(item);
     html += materialMakersMarkLines(item, instance, materialSources);
@@ -8309,9 +8274,8 @@ export class Hud {
     return this.features.dailyRewardsEnabled;
   }
 
-  /** The Store opens only once the online economy hooks are attached. */
   private storeLauncherLive(): boolean {
-    return this.dailyRewardsEnabled() && this.claudiumHooks !== null;
+    return this.dailyRewardsEnabled() && storeLauncherLive(this.claudiumHooks !== null);
   }
 
   private syncDailyRewardsSurfaceLabels(): void {
@@ -8380,6 +8344,8 @@ export class Hud {
     // Same for the tab-independent chat live region: drain the trailing
     // chat burst on the fast tier once chat goes quiet.
     if (fastHud) this.chatAnnouncer.flush(now);
+    // Add-on snapshots, watchdog and op drains ride the same 100 ms band.
+    if (fastHud) this.addons.runtime.tick();
 
     this.questDialog.updateVoice();
     // Self-contained timer controller: a roll must keep expiring on schedule
@@ -8451,6 +8417,7 @@ export class Hud {
     // gate) only ever shows/works while standing in a town hub. Cheap zone
     // check, gated to the slow tier since it changes only on foot travel.
     if (slowHud) {
+      this.durability.paint(durabilityView(sim.equipment, sim.equipmentInstances, ITEMS));
       const inTown = this.isInTown();
       const townFocusBtn = document.getElementById('mm-town-focus');
       if (townFocusBtn) townFocusBtn.style.display = inTown ? '' : 'none';
@@ -10799,6 +10766,7 @@ export class Hud {
     // One spawn clock for the whole batch: FCT floaters spawned from this event burst
     // share a bornAt, and the pooled painter's step() evicts each once now - bornAt >= ttl.
     const now = performance.now();
+    this.addons.runtime.onEvents(events);
     for (const ev of events) {
       // Personal events for OTHER players exist only offline: the offline
       // main.ts loop hands the WHOLE sim.tick() batch to this method, so a bot
@@ -11139,14 +11107,6 @@ export class Hud {
             // clipping (+3.4dBTP effective).
             sfx.playUi('quest_ready');
           }
-          if (ev.level === 5) {
-            const characterId = (this.sim as unknown as { characterId?: number }).characterId;
-            trackMetaPixel(
-              'ReachedLevel5',
-              { level: ev.level },
-              characterId ? { eventID: `lvl5_${characterId}` } : undefined,
-            );
-          }
           // First talent point (and spec) unlock — nudge the player to the panel.
           if (ev.level === FIRST_TALENT_LEVEL && talentsFor(this.sim.cfg.playerClass)) {
             this.showCelebrationBanner(t('game.talents.unlockBanner'), 'levelup');
@@ -11462,7 +11422,7 @@ export class Hud {
         }
         case 'ferryIslandArrival':
           // Landing on the Proving Shore with the rail not yet started:
-          // Ferryman Odo's welcome note teaches walking and talking and points
+          // Captain Fenlow's welcome note teaches walking and talking and points
           // up the road to Maren. Gated by the SIM's per-character firstVisit
           // (interactions/ferry_bell.ts), not a per-device flag, so every new
           // character is taught even on a browser that has seen it before.
@@ -11731,6 +11691,7 @@ export class Hud {
         case 'housePurchased':
         case 'houseDenied':
         case 'houseFurniture': // Project H housing (src/ui/hud/housing/)
+        case 'townProject': // town restoration (life_skills/town_projects.ts)
           handleHouseEvent(ev, this, (x, l, ok) => this.showPrompt(x, l, ok, () => {}), sim);
           break;
         case 'gatherRareEvent': {
@@ -13240,7 +13201,7 @@ export class Hud {
   }
 
   // The #tutorial-greeting note dialog (the town bell homecoming, Ferryman
-  // Odo's island welcome): one speaker, with a guidance choice on homecoming.
+  // Fenlow's island welcome): one speaker, with a guidance choice on homecoming.
   // Keep focus trapped and the shell above the mobile sheet; both choice
   // buttons and the managed-close registry use the same cleanup path.
   private openTutorialGreetingNote(note: TutorialGreetingNote): void {
@@ -14208,7 +14169,7 @@ export class Hud {
     // unknown-id arm (R34) keeps the button live for grays only the server's
     // newer table can classify; that helper's doc owns the
     // enabled-quoting-zero trade the two rules compose into.
-    const sellJunkState = sellJunkButtonState(this.sim.inventory, ITEMS);
+    const sellJunkState = sellJunkButtonState(this.sim.inventory, ITEMS, this.sim, npc);
     const buyAndRefresh = (buy: () => void) => {
       buy();
       if ($('#bags').style.display !== 'none') this.renderBags();
@@ -15404,6 +15365,20 @@ export class Hud {
     this.lastPetBarSig = '';
   }
 
+  /** A secure add-on button's toggleWindow action (the allowlist is in
+   *  src/ui/hud/addons/addon_widget_core.ts): the same toggles the keybinds call. */
+  private toggleWindowByAddonName(w: string): void {
+    const toggles: Record<string, () => void> = {
+      bags: () => this.toggleBags(),
+      map: () => this.toggleMap(),
+      character: () => this.toggleChar(),
+      spellbook: () => this.toggleSpellbook(),
+      talents: () => this.toggleTalents(),
+      questlog: () => this.toggleQuestLog(),
+    };
+    toggles[w]?.();
+  }
+
   toggleBags(): void {
     const el = $('#bags');
     if (bagsWindowShown(el.style.display)) {
@@ -16240,7 +16215,7 @@ export class Hud {
   }
 
   openWocStore(tab: 'store' | 'memberships' = 'store'): void {
-    if (!this.storeLauncherLive()) return;
+    if (!this.storeLauncherLive() || !storeTabAllowed(tab)) return;
     this.dailyRewardsWindow.openStore(tab);
   }
 
@@ -17415,6 +17390,7 @@ export class Hud {
       this.closeRitePanel();
       return true;
     }
+    if (this.addons.window.close()) return true;
     const top = this.topmostOpenWindow();
     if (top) {
       this.closeManagedWindow(top);

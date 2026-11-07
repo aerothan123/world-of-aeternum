@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-42722-5ac5a288-c5a98e78-14b3-b4ad9a78-f493dfc8",
+    "id": "live-49d2d-d3c69295-dc90bf05-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "42722-5ac5a288-c5a98e78",
+    "overworldBase": "49d2d-d3c69295-dc90bf05",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -118,9 +118,9 @@
             "id": "eastbrook_docks"
           }
         ],
-        "welcome": "Find Marshal Redbrook in town - he has work for you.",
+        "welcome": "Find Warden Corren in town - he has work for you.",
         "welcomeQuestId": "q_wolves",
-        "welcomeDone": "Marshal Redbrook has no more work for you - the quaint seaside town where your journey began rests easier for it."
+        "welcomeDone": "Warden Corren has no more work for you - the quaint seaside town where your journey began rests easier for it."
       },
       {
         "id": "mirefen_marsh",
@@ -1443,7 +1443,7 @@
             "id": "the_gauntlet"
           }
         ],
-        "welcome": "The Proving Shore asks nothing of you but time. Learn the camp, strike the effigies, walk the wreck line and, when you are ready, Ferryman Odo will see you across to the vale. You can also ring the bell to go to the vale directly.",
+        "welcome": "The Proving Shore asks nothing of you but time. Learn the camp, strike the effigies, walk the wreck line and, when you are ready, Captain Fenlow will see you across to the vale. You can also ring the bell to go to the vale directly.",
         "welcomeQuestId": "q_ps_the_gauntlet"
       }
     ],
@@ -3409,6 +3409,69 @@
         },
         "radius": 4,
         "count": 2
+      },
+      {
+        "mobId": "bristlejaw_shore_rat",
+        "center": {
+          "x": -312.4,
+          "z": 64.6
+        },
+        "radius": 5,
+        "count": 3
+      },
+      {
+        "mobId": "gravestirred_fieldhand",
+        "center": {
+          "x": 45,
+          "z": -118
+        },
+        "radius": 7,
+        "count": 4
+      },
+      {
+        "mobId": "briarbitten_fox",
+        "center": {
+          "x": 5,
+          "z": -55
+        },
+        "radius": 7,
+        "count": 4
+      },
+      {
+        "mobId": "orchard_boar",
+        "center": {
+          "x": -15.7,
+          "z": -138.1
+        },
+        "radius": 8,
+        "count": 4
+      },
+      {
+        "mobId": "veiled_rite_tender",
+        "center": {
+          "x": 92,
+          "z": -46
+        },
+        "radius": 5,
+        "count": 3
+      },
+      {
+        "mobId": "culvert_rat",
+        "center": {
+          "x": -60,
+          "z": -135
+        },
+        "radius": 7,
+        "count": 5
+      },
+      {
+        "mobId": "quarry_burrower",
+        "center": {
+          "x": 5,
+          "z": 175
+        },
+        "radius": 7,
+        "count": 4
       }
     ],
     "npcs": {
@@ -3417,10 +3480,10 @@
         "name": "The Merchant",
         "title": "Keeper of the World Market",
         "pos": {
-          "x": -19.333512834321652,
-          "z": -95.49976921301501
+          "x": -29,
+          "z": -103.79285714285714
         },
-        "facing": 2.4805494847391065,
+        "facing": 0,
         "color": 13938487,
         "questIds": [],
         "greeting": "Welcome to the World Market, $C. Buy from every adventurer in the realm, or set out your own wares and let coin find you.",
@@ -3428,20 +3491,34 @@
       },
       "marshal_redbrook": {
         "id": "marshal_redbrook",
-        "name": "Marshal Redbrook",
-        "title": "Town Marshal",
+        "name": "Warden Corren Stoutvale",
+        "title": "Lanternwarden Commander",
         "pos": {
           "x": 1.5,
           "z": -95.3
         },
         "facing": -1.9787985229559204,
         "color": 12031243,
-        "questIds": ["q_wolves", "q_greyjaw", "q_bandits", "q_ringleader", "q_mogger"],
+        "questIds": [
+          "q_wolves",
+          "q_greyjaw",
+          "q_bandits",
+          "q_ringleader",
+          "q_mogger",
+          "c1_08_vouch",
+          "c1_24_sandwich_emergency",
+          "c1_27_supper_despite",
+          "c1_d01_bounty_culvert",
+          "c1_d08_lunch_stew",
+          "c1_d10_road_checkposts",
+          "c1_d10_quay_posts",
+          "c2_05_causeway_watch"
+        ],
         "greeting": "Keep your blade close, $C. The Vale is not what it was."
       },
       "trader_wilkes": {
         "id": "trader_wilkes",
-        "name": "Trader Wilkes",
+        "name": "Silven Brackett",
         "title": "Provisioner",
         "pos": {
           "x": -25,
@@ -3449,7 +3526,21 @@
         },
         "facing": 2.1995926132103296,
         "color": 1999945,
-        "questIds": ["q_boars", "q_supplies"],
+        "questIds": [
+          "q_boars",
+          "q_supplies",
+          "c1_08_vouch",
+          "c1_10_handle_doubt",
+          "c1_20_order_unsigned",
+          "c1_d07_receipt_rivets",
+          "c1_d07_receipt_hinges",
+          "c1_d12_road_not_rumor",
+          "c2_01_ship_sank_twice",
+          "c2_02_whose_seal",
+          "c2_17_bandit_pay",
+          "c2_34_coin_quiet_road",
+          "c2_42_strongboxes_shoals"
+        ],
         "greeting": "Fresh bread, clean water, fair prices. What can I get you?",
         "vendorItems": [
           "baked_bread",
@@ -3471,15 +3562,23 @@
       },
       "apothecary_lin": {
         "id": "apothecary_lin",
-        "name": "Apothecary Lin",
+        "name": "Ivara Fenmoss",
         "title": "Herbalist",
         "pos": {
-          "x": -24.5,
-          "z": -112.5
+          "x": -16.471153846153847,
+          "z": -109.2
         },
-        "facing": 0.7853981633974483,
+        "facing": 0.33061826155045143,
         "color": 8207512,
-        "questIds": ["q_spiders"],
+        "questIds": [
+          "q_spiders",
+          "c1_08_vouch",
+          "c1_10_handle_doubt",
+          "c1_12_tied_to_root",
+          "c1_15_warmth_missing",
+          "c1_d06_leaves_silvermint",
+          "c1_d09_parcels_herbs"
+        ],
         "greeting": "Careful where you step in the northeastern woods, friend."
       },
       "brother_aldric": {
@@ -3502,7 +3601,19 @@
           "q_hollow",
           "q_gravecallers_trail",
           "q_divine_tome",
-          "q_fenbridge_muster"
+          "q_fenbridge_muster",
+          "c1_07_across",
+          "c1_08_vouch",
+          "c1_13_flowers_down",
+          "c1_14_buried_tuesday",
+          "c1_15_warmth_missing",
+          "c1_20_order_unsigned",
+          "c1_21_watch_cannot_see",
+          "c1_25_someone_teaching",
+          "c1_26_promise_paint",
+          "c1_28_door_left_shut",
+          "c2_12_door_we_left_shut",
+          "c2_10_cord_in_cider_vat"
         ],
         "greeting": "The Light keep you. Even the dead find no rest here of late."
       },
@@ -3547,10 +3658,10 @@
         "name": "Foreman Odell",
         "title": "Mine Foreman",
         "pos": {
-          "x": -3.5,
-          "z": -104.5
+          "x": 1.8,
+          "z": -102.6
         },
-        "facing": -1.3370531459259951,
+        "facing": -1.5328398816065827,
         "color": 10502144,
         "questIds": ["q_prof_intro", "q_mine"],
         "greeting": "Whole dig's crawling with those dirt-caked vermin!"
@@ -3574,10 +3685,10 @@
         "name": "Bursar Fernando",
         "title": "The Gilded Strongbox",
         "pos": {
-          "x": -55.21592057176678,
-          "z": -105.19195954108784
+          "x": -41.6,
+          "z": -102.88933333333333
         },
-        "facing": 0.7853981633974481,
+        "facing": 0,
         "color": 13214247,
         "questIds": [],
         "greeting": "Welcome to the Gilded Strongbox. Your goods rest safe behind our locks.",
@@ -3611,15 +3722,26 @@
       },
       "forgemistress_darva": {
         "id": "forgemistress_darva",
-        "name": "Forgemistress Darva",
+        "name": "Brunna Flintmorrow",
         "title": "Master of the Forge",
         "pos": {
-          "x": -8.171547617899419,
-          "z": -120.39003105620014
+          "x": -5.772222222222222,
+          "z": -113.8
         },
-        "facing": -2.0344439357957027,
+        "facing": -1.5707963267948966,
         "color": 11883548,
-        "questIds": ["q_prof_attune_smith", "q_prof_amends_smith", "q_prof_workorder_forge"],
+        "questIds": [
+          "q_prof_attune_smith",
+          "q_prof_amends_smith",
+          "q_prof_workorder_forge",
+          "c1_10_handle_doubt",
+          "c1_09_buckles_glory",
+          "c1_22_place_you_keep",
+          "c1_27_supper_despite",
+          "c1_d02_clear_quarry",
+          "c1_d04_metal_copper",
+          "c1_d07_receipt_rivets"
+        ],
         "greeting": "The forge answers to me, $C. Bring good ore and it will answer to you too.",
         "vendorItems": ["copper_mining_pick", "field_kit", "smithing_flux"]
       },
@@ -3628,10 +3750,10 @@
         "name": "Cook Marlow",
         "title": "Master of the Kitchens",
         "pos": {
-          "x": -42.62589170715949,
-          "z": -92.23189846640925
+          "x": -4.967368421052631,
+          "z": -108.5
         },
-        "facing": -0.669638945676638,
+        "facing": -1.5707963267948966,
         "color": 13208139,
         "questIds": [
           "q_prof_attune_apothecary",
@@ -3655,10 +3777,10 @@
         "name": "Weaver Ottilie",
         "title": "Master of the Loom",
         "pos": {
-          "x": -20.5,
-          "z": -117.5
+          "x": -13.677777777777779,
+          "z": -116.6
         },
-        "facing": 1.1071487177940904,
+        "facing": 1.5707963267948966,
         "color": 7430568,
         "questIds": ["q_prof_attune_outfitter", "q_prof_amends_outfitter", "q_prof_workorder_loom"],
         "greeting": "Mind the threads, $C. A steady hand at the loom beats a strong one.",
@@ -3676,10 +3798,10 @@
         "name": "Tinker Gizzel",
         "title": "Master of the Toolworks",
         "pos": {
-          "x": -16.277350098112613,
-          "z": -122.64714310642654
+          "x": -14.294166666666667,
+          "z": -125.6
         },
-        "facing": 0.5880026035475675,
+        "facing": 1.5707963267948966,
         "color": 11570519,
         "questIds": [
           "q_prof_attune_bombardier",
@@ -3778,7 +3900,13 @@
         },
         "facing": -1.5707963267948966,
         "color": 1999945,
-        "questIds": ["q_prowler_pelts", "q_fen_supplies", "q_the_codfather", "q_grubjaw"],
+        "questIds": [
+          "q_prowler_pelts",
+          "q_fen_supplies",
+          "q_the_codfather",
+          "q_grubjaw",
+          "c2_32_bridge_fenbridge_trusts"
+        ],
         "greeting": "Dry boots, dry bread, dry powder: at Fenbridge you get two of the three on a good day.",
         "vendorItems": [
           "fenbridge_rye",
@@ -3809,15 +3937,16 @@
       "herbalist_yara": {
         "id": "herbalist_yara",
         "name": "Herbalist Yara",
-        "title": "Herbalist",
+        "title": "Bracken Circle Quartermaster",
         "pos": {
           "x": 3.3000000000000007,
           "z": 327.45
         },
         "facing": -1.5707963267948966,
         "color": 8207512,
-        "questIds": ["q_widows", "q_broodmother"],
-        "greeting": "Mind the thicket west of the road. The webs are thick as sailcloth this season."
+        "questIds": ["q_widows", "q_broodmother", "c2_21_heath_herbs_fen"],
+        "greeting": "Mind the thicket west of the road. The webs are thick as sailcloth this season.",
+        "vendorItems": ["cartographers_ink", "allied_hearthstone", "allied_vanguard_duffel"]
       },
       "scout_maren": {
         "id": "scout_maren",
@@ -3856,7 +3985,7 @@
         },
         "facing": 1.5707963267948966,
         "color": 4171371,
-        "questIds": [],
+        "questIds": ["c2_28_remembered_roofs"],
         "greeting": "Mind the damp on the pages, $N. The fen eats more books than readers ever will."
       },
       "tanner_hesk": {
@@ -3883,7 +4012,7 @@
         },
         "facing": 0,
         "color": 7044922,
-        "questIds": [],
+        "questIds": ["c2_33_paddy_work_fog"],
         "greeting": "Marsh rice and bog beet seed, $C, and compost to feed them. The paddies drain slow, so mind where you tread.",
         "vendorItems": ["marsh_rice_seed", "bog_beet_seed", "compost", "field_kit"]
       },
@@ -5189,15 +5318,22 @@
       },
       "ferryman_odo": {
         "id": "ferryman_odo",
-        "name": "Ferryman Odo",
-        "title": "Keeper of the Crossing",
+        "name": "Captain Fenlow Tippet",
+        "title": "Ferry Captain",
         "pos": {
           "x": -284,
           "z": -9
         },
         "facing": 3.141592653589793,
         "color": 4876938,
-        "questIds": ["q_ps_set_sail"],
+        "questIds": [
+          "q_ps_set_sail",
+          "c1_01_arrival",
+          "c1_02_beacon_lied",
+          "c1_07_across",
+          "c1_04_every_board",
+          "c1_05_solid_underfoot"
+        ],
         "greeting": "Fresh off the crossing, $N? Warden Tam keeps the Gauntlet on the strand just south of my pier: run his lanes first and your legs will thank you. Every keeper on this shore hands you to the next when your work is done, and the card at the top of your screen always knows the way. When the vale calls you back, ring the bell standing beside my pier and the crossing will set you down in Eastbrook town."
       },
       "warden_tam": {
@@ -5639,7 +5775,7 @@
       "npc_rift_watch_quartermaster": {
         "id": "npc_rift_watch_quartermaster",
         "name": "Quartermaster Vaelen",
-        "title": "Rift Watch Provisioner",
+        "title": "Gilt Measure Factor",
         "pos": {
           "x": -328.235,
           "z": 824.9625
@@ -5647,7 +5783,7 @@
         "facing": 1.5707963267948966,
         "color": 4881050,
         "questIds": [],
-        "greeting": "The Rift Watch protects the shore and watches the deep tears. Our stores are open to those of recognized standing.",
+        "greeting": "The Gilt Measure trades on what the coast gives up, and pays for what it learns. Our stores are open to those of recognized standing.",
         "vendorItems": [
           "tidewatchers_locket",
           "cartographers_ink",
@@ -5671,8 +5807,8 @@
       },
       "npc_church_order_quartermaster": {
         "id": "npc_church_order_quartermaster",
-        "name": "Templar Althea",
-        "title": "Church Order Quartermaster",
+        "name": "Captain Althea",
+        "title": "Lanternwarden Quartermaster",
         "pos": {
           "x": 13.29,
           "z": -112.84
@@ -5680,7 +5816,7 @@
         "facing": -0.96,
         "color": 15521146,
         "questIds": [],
-        "greeting": "Walk in the Light of the Dawn. The Church Order supplies those who stand with us in service.",
+        "greeting": "Keep a lamp lit and a road open. The Lanternwardens supply those who stand the watch with us.",
         "vendorItems": [
           "order_prayer_beads",
           "cartographers_ink",
@@ -5705,7 +5841,7 @@
       "npc_automaton_quartermaster": {
         "id": "npc_automaton_quartermaster",
         "name": "Artificer Tobrin",
-        "title": "Automaton Requisitioner",
+        "title": "Hearthwright Requisitioner",
         "pos": {
           "x": 402,
           "z": 1912
@@ -5713,7 +5849,7 @@
         "facing": -0.4,
         "color": 12088115,
         "questIds": [],
-        "greeting": "Precision gears, forged steel, and calibrated power. Authorized operators may draw from our inventory.",
+        "greeting": "Sound timber, true steel, and honest work. Members of the Compact may draw from our stores.",
         "vendorItems": [
           "cogwork_choker",
           "cartographers_ink",
@@ -5745,7 +5881,7 @@
         "facing": -2.1,
         "color": 9071184,
         "questIds": [],
-        "greeting": "The allied factions post assignments across the realm every day. If an assignment does not suit your skills, you may request one daily reassignment."
+        "greeting": "The four allied factions post assignments across the realm every day. If an assignment does not suit your skills, you may request one daily reassignment."
       },
       "harbormaster_tamsin": {
         "id": "harbormaster_tamsin",
@@ -5950,6 +6086,323 @@
           "reins_emberbristle_broom"
         ],
         "dynamic": true
+      },
+      "scout_neris": {
+        "id": "scout_neris",
+        "name": "Neris Snowmantle",
+        "title": "Lanternwarden Scout",
+        "pos": {
+          "x": 75,
+          "z": -40
+        },
+        "facing": 3.141592653589793,
+        "color": 7311272,
+        "questIds": [
+          "c1_17_della_long_way",
+          "c1_21_watch_cannot_see",
+          "c1_28_door_left_shut",
+          "c1_d03_teeth_verge",
+          "c1_d08_lunch_bread",
+          "c1_d11_light_behind",
+          "c2_04_lantern_causeway"
+        ],
+        "greeting": "If the snow speaks, do not answer. Down here it is mostly the hedges, and they talk a great deal."
+      },
+      "gravekeeper_holven": {
+        "id": "gravekeeper_holven",
+        "name": "Bertram Ashcombe",
+        "title": "Gravekeeper",
+        "pos": {
+          "x": 25,
+          "z": -106
+        },
+        "facing": -1.5707963267948966,
+        "color": 6116168,
+        "questIds": ["c1_13_flowers_down", "c2_12_door_we_left_shut"],
+        "greeting": "Mind the paths between the stones. The ones beneath them have earned their quiet."
+      },
+      "innkeeper_jorren": {
+        "id": "innkeeper_jorren",
+        "name": "Jorren",
+        "title": "Innkeeper",
+        "pos": {
+          "x": 12,
+          "z": -84
+        },
+        "facing": 3.141592653589793,
+        "color": 10506797,
+        "questIds": [
+          "c1_18_three_knocks",
+          "c1_19_guest_shelves",
+          "c1_27_supper_despite",
+          "c1_d08_lunch_stew",
+          "c1_d08_lunch_bread",
+          "c2_03_bells_from_steps",
+          "c2_14_kitchen_for_pickers"
+        ],
+        "greeting": "It could be worse. Usually is. Sit, eat, and tell me which way the trouble is walking today."
+      },
+      "herbalist_olvessa": {
+        "id": "herbalist_olvessa",
+        "name": "Olvessa",
+        "title": "Herb Terrace Keeper",
+        "pos": {
+          "x": -38,
+          "z": -77
+        },
+        "facing": 0,
+        "color": 7048739,
+        "questIds": [
+          "c1_16_pick_the_choir",
+          "c1_19_guest_shelves",
+          "c1_27_supper_despite",
+          "c1_d09_parcels_herbs",
+          "c1_d09_parcels_mulch"
+        ],
+        "greeting": "Mud remembers every footprint, and so do the herbs. Tread kindly here."
+      },
+      "gardener_della": {
+        "id": "gardener_della",
+        "name": "Della Brindlepot",
+        "title": "Gardener",
+        "pos": {
+          "x": -13.2,
+          "z": -72.8
+        },
+        "facing": 1.5707963267948966,
+        "color": 12884588,
+        "questIds": ["c1_11_cold_garden", "c1_12_tied_to_root", "c1_d09_parcels_mulch"],
+        "greeting": "If it grows, I have argued with it. If it grows well, I won."
+      },
+      "carpenter_pella": {
+        "id": "carpenter_pella",
+        "name": "Wenna Nookwright",
+        "title": "Carpenter",
+        "pos": {
+          "x": -45,
+          "z": -87
+        },
+        "facing": 1.5707963267948966,
+        "color": 9136970,
+        "questIds": [
+          "c1_22_place_you_keep",
+          "c1_23_working_life",
+          "c1_d05_wood_oak",
+          "c1_d05_wood_alder",
+          "c1_d07_receipt_hinges"
+        ],
+        "greeting": "Measure twice, panic once. Then measure again, just to be safe."
+      },
+      "fisherman_tobbin": {
+        "id": "fisherman_tobbin",
+        "name": "Tobbin Wickerby",
+        "title": "Fisherman",
+        "pos": {
+          "x": -278,
+          "z": -4
+        },
+        "facing": 3.141592653589793,
+        "color": 5209999,
+        "questIds": ["c1_06_admiral_crabs", "c1_03_fish_consulted"],
+        "greeting": "Never trust a fish with good manners. The polite ones are planning something."
+      },
+      "tanner_tamsin": {
+        "id": "tanner_tamsin",
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "pos": {
+          "x": -13.844,
+          "z": -121.2
+        },
+        "facing": 1.5707963267948966,
+        "color": 9398844,
+        "questIds": [],
+        "greeting": "Fresh hides on the racks today, $C. Scrape with the grain, never against it.",
+        "vendorItems": ["travelers_knapsack", "tough_jerky", "tanning_agent"]
+      },
+      "cider_master_mabel": {
+        "id": "cider_master_mabel",
+        "name": "Mabel Cotterill",
+        "title": "Pressford Cider-Master",
+        "pos": {
+          "x": 336,
+          "z": -314
+        },
+        "facing": 3.141592653589793,
+        "color": 11038522,
+        "questIds": [
+          "c2_02_whose_seal",
+          "c2_07_pressford_remembers",
+          "c2_08_pests_windfalls",
+          "c2_10_cord_in_cider_vat",
+          "c2_14_kitchen_for_pickers"
+        ],
+        "greeting": "Pressford makes the best cider in the Reaches, and the second best, and most of the third."
+      },
+      "sergeant_ivo_bramwell": {
+        "id": "sergeant_ivo_bramwell",
+        "name": "Ivo Bramwell",
+        "title": "Causeway Watch Sergeant",
+        "pos": {
+          "x": 370,
+          "z": -258
+        },
+        "facing": 1.5707963267948966,
+        "color": 6254470,
+        "questIds": ["c2_04_lantern_causeway", "c2_05_causeway_watch", "c2_06_watch_holds_road"],
+        "greeting": "The causeway is one road with the sea on both sides. I like it that way. Fewer directions to be ambushed from."
+      },
+      "gardener_hester_pressford": {
+        "id": "gardener_hester_pressford",
+        "name": "Hester Applegarth",
+        "title": "Gardener",
+        "pos": {
+          "x": 352,
+          "z": -320
+        },
+        "facing": -1.5707963267948966,
+        "color": 12884588,
+        "questIds": ["c2_11_second_planting"],
+        "greeting": "Pressford grows apples the way Eastbrook grows opinions: everywhere, and mostly on purpose."
+      },
+      "carpenter_bryony_pressford": {
+        "id": "carpenter_bryony_pressford",
+        "name": "Bryony Cooperwick",
+        "title": "Carpenter",
+        "pos": {
+          "x": 326,
+          "z": -309
+        },
+        "facing": 0,
+        "color": 9333574,
+        "questIds": ["c2_09_press_will_not_turn"],
+        "greeting": "I came to look at one press. They have shown me four, and a cart, and a fence with feelings."
+      },
+      "warden_tamsin_bracewell": {
+        "id": "warden_tamsin_bracewell",
+        "name": "Tamsin Bracewell",
+        "title": "Ferncross Camp Warden",
+        "pos": {
+          "x": 35,
+          "z": -313
+        },
+        "facing": 3.141592653589793,
+        "color": 6126138,
+        "questIds": [
+          "c2_15_moor_hounds",
+          "c2_16_fires_should_not_burn",
+          "c2_17_bandit_pay",
+          "c2_18_keepers_escort"
+        ],
+        "greeting": "The moor is quiet today. I have learned not to trust that, and I advise you to learn it faster than I did."
+      },
+      "apothecary_lin_ring": {
+        "id": "apothecary_lin_ring",
+        "name": "Ivara Fenmoss",
+        "title": "Herbalist",
+        "pos": {
+          "x": -36,
+          "z": -395
+        },
+        "facing": -2.356194490192345,
+        "color": 7048782,
+        "questIds": ["c2_19_first_hearth_ring", "c2_20_ash_before_kingdom"],
+        "greeting": "The stones are listening. Be polite."
+      },
+      "historian_orwin": {
+        "id": "historian_orwin",
+        "name": "Orwin Pellock",
+        "title": "Historian",
+        "pos": {
+          "x": 5,
+          "z": -101.5
+        },
+        "facing": 1.5707963267948966,
+        "color": 8019086,
+        "questIds": ["c2_20_ash_before_kingdom"],
+        "greeting": "That is either impossible or extremely inconvenient. Possibly both. Have I eaten today?"
+      },
+      "claim_master_ambrose": {
+        "id": "claim_master_ambrose",
+        "name": "Ambrose Pennick",
+        "title": "Coinwell Claim-Master",
+        "pos": {
+          "x": -314,
+          "z": -333
+        },
+        "facing": 3.141592653589793,
+        "color": 11570492,
+        "questIds": [
+          "c2_34_coin_quiet_road",
+          "c2_35_claim_nobody_filed",
+          "c2_37_lanterns_will_not_light"
+        ],
+        "greeting": "Every stone on this coast belongs to somebody. My job is knowing who, and my headache is everyone else knowing better."
+      },
+      "cook_nettie_saltmarsh": {
+        "id": "cook_nettie_saltmarsh",
+        "name": "Nettie Saltmarsh",
+        "title": "Coinwell Camp Cook",
+        "pos": {
+          "x": -323,
+          "z": -330
+        },
+        "facing": 0,
+        "color": 10706239,
+        "questIds": ["c2_39_chalk_cliff_nests"],
+        "greeting": "Stew is ready when it is ready, and it is never ready when the gulls are watching."
+      },
+      "forgemistress_darva_coinwell": {
+        "id": "forgemistress_darva_coinwell",
+        "name": "Brunna Flintmorrow",
+        "title": "Master of the Forge",
+        "pos": {
+          "x": -340,
+          "z": -316
+        },
+        "facing": 1.5707963267948966,
+        "color": 9128491,
+        "questIds": ["c2_36_ore_with_a_will"],
+        "greeting": "Metal tells the truth. People rarely bother. This ore is telling me something, and I do not like its tone."
+      },
+      "marshal_redbrook_coinwell": {
+        "id": "marshal_redbrook_coinwell",
+        "name": "Warden Corren Stoutvale",
+        "title": "Lanternwarden Commander",
+        "pos": {
+          "x": -310,
+          "z": -342
+        },
+        "facing": -1.5707963267948966,
+        "color": 12031243,
+        "questIds": ["c2_38_what_dig_was_for"],
+        "greeting": "Eastbrook can spare me for a week. The Dig cannot be spared another day."
+      },
+      "ferryman_odo_coinwell": {
+        "id": "ferryman_odo_coinwell",
+        "name": "Captain Fenlow Tippet",
+        "title": "Ferry Captain",
+        "pos": {
+          "x": -306,
+          "z": -326
+        },
+        "facing": 2.356194490192345,
+        "color": 4153215,
+        "questIds": ["c2_40_bells_low_tide"],
+        "greeting": "I came round the coast by boat. The sea kept changing its mind about where the shore was."
+      },
+      "carpenter_bryony_coinwell": {
+        "id": "carpenter_bryony_coinwell",
+        "name": "Bryony Cooperwick",
+        "title": "Carpenter",
+        "pos": {
+          "x": -336,
+          "z": -312
+        },
+        "facing": 3.141592653589793,
+        "color": 9333574,
+        "questIds": ["c2_41_tide_road_fortress"],
+        "greeting": "Chalk is only stone that has not made up its mind. I can work with that."
       }
     },
     "objects": [
@@ -6929,6 +7382,1572 @@
             "scale": 2
           }
         ]
+      },
+      {
+        "itemId": "c1_dry_supply_bundle",
+        "name": "Dry Supply Bundle",
+        "positions": [
+          {
+            "x": -288,
+            "z": -34
+          },
+          {
+            "x": -300,
+            "z": -36
+          },
+          {
+            "x": -307.4,
+            "z": -28.6
+          },
+          {
+            "x": -281.1,
+            "z": -36.9
+          },
+          {
+            "x": -294,
+            "z": -42
+          }
+        ]
+      },
+      {
+        "itemId": "c1_broken_lifeboat",
+        "name": "Broken Lifeboat",
+        "positions": [
+          {
+            "x": -296,
+            "z": -30
+          }
+        ]
+      },
+      {
+        "itemId": "c1_northern_beacon",
+        "name": "Northern Beacon",
+        "positions": [
+          {
+            "x": -320.7,
+            "z": 68.3
+          }
+        ]
+      },
+      {
+        "itemId": "c1_black_wick_knot",
+        "name": "Black Wick Knot",
+        "positions": [
+          {
+            "x": -319.5,
+            "z": 67.2
+          },
+          {
+            "x": -321.9,
+            "z": 69.6
+          }
+        ]
+      },
+      {
+        "itemId": "c1_bait_herring",
+        "name": "Bait Herring",
+        "positions": [
+          {
+            "x": -281,
+            "z": -6
+          }
+        ]
+      },
+      {
+        "itemId": "c1_empty_crab_pot",
+        "name": "Empty Crab Pot",
+        "positions": [
+          {
+            "x": -272.6,
+            "z": -12.6
+          }
+        ]
+      },
+      {
+        "itemId": "c1_heavy_parcel",
+        "name": "Heavy Parcel",
+        "positions": [
+          {
+            "x": -29.5,
+            "z": -95.5
+          }
+        ]
+      },
+      {
+        "itemId": "c1_soft_parcel",
+        "name": "Soft Parcel",
+        "positions": [
+          {
+            "x": -27.5,
+            "z": -96.5
+          }
+        ]
+      },
+      {
+        "itemId": "c1_healthy_turnip",
+        "name": "Healthy Turnip",
+        "positions": [
+          {
+            "x": -13.2,
+            "z": -70.8
+          },
+          {
+            "x": -12,
+            "z": -69.2
+          },
+          {
+            "x": -15.5,
+            "z": -70
+          },
+          {
+            "x": -13,
+            "z": -73
+          }
+        ]
+      },
+      {
+        "itemId": "c1_blackened_root_sample",
+        "name": "Blackened Root Sample",
+        "positions": [
+          {
+            "x": -12,
+            "z": -68
+          },
+          {
+            "x": -10.5,
+            "z": -66.8
+          },
+          {
+            "x": -13.8,
+            "z": -66.5
+          }
+        ]
+      },
+      {
+        "itemId": "c1_frosted_fence_stake",
+        "name": "Frosted Fence Stake",
+        "positions": [
+          {
+            "x": -11.5,
+            "z": -65.5
+          }
+        ]
+      },
+      {
+        "itemId": "c1_waxed_root_tie",
+        "name": "Waxed Root Tie",
+        "positions": [
+          {
+            "x": -12.8,
+            "z": -65
+          },
+          {
+            "x": -10,
+            "z": -65.2
+          }
+        ]
+      },
+      {
+        "itemId": "c1_meadow_balm_leaf",
+        "name": "Meadow Balm Leaf",
+        "positions": [
+          {
+            "x": -35.5,
+            "z": -72.5
+          },
+          {
+            "x": -33.5,
+            "z": -74
+          },
+          {
+            "x": -37,
+            "z": -74.5
+          }
+        ]
+      },
+      {
+        "itemId": "c1_disturbed_grave",
+        "name": "Freshly Disturbed Grave",
+        "positions": [
+          {
+            "x": 24,
+            "z": -116
+          },
+          {
+            "x": 25.9,
+            "z": -113.1
+          },
+          {
+            "x": 21,
+            "z": -120
+          }
+        ]
+      },
+      {
+        "itemId": "c1_black_cloth_snag",
+        "name": "Black Cloth Snag",
+        "positions": [
+          {
+            "x": 26,
+            "z": -104.5
+          }
+        ]
+      },
+      {
+        "itemId": "c1_name_stone",
+        "name": "Overturned Name Stone",
+        "positions": [
+          {
+            "x": 43,
+            "z": -119
+          },
+          {
+            "x": 48,
+            "z": -115
+          }
+        ]
+      },
+      {
+        "itemId": "c1_unlit_grave_lamp",
+        "name": "Unlit Grave Lamp",
+        "positions": [
+          {
+            "x": 46,
+            "z": -119
+          }
+        ]
+      },
+      {
+        "itemId": "c1_cold_silvermint_sprig",
+        "name": "Cold Silvermint Sprig",
+        "positions": [
+          {
+            "x": 10,
+            "z": -60
+          },
+          {
+            "x": 0,
+            "z": -52
+          },
+          {
+            "x": 6,
+            "z": -61
+          }
+        ]
+      },
+      {
+        "itemId": "c1_waxed_binding",
+        "name": "Waxed Binding",
+        "positions": [
+          {
+            "x": 8,
+            "z": -52
+          },
+          {
+            "x": -2,
+            "z": -60
+          }
+        ]
+      },
+      {
+        "itemId": "c1_dew_damp_cloth",
+        "name": "Dew-Damp Cloth",
+        "positions": [
+          {
+            "x": -33.5,
+            "z": -78.5
+          }
+        ]
+      },
+      {
+        "itemId": "c1_windwhistle_patch",
+        "name": "Windwhistle Flower Patch",
+        "positions": [
+          {
+            "x": -35.5,
+            "z": -70
+          },
+          {
+            "x": -38.2,
+            "z": -69.2
+          },
+          {
+            "x": -34.3,
+            "z": -70.3
+          }
+        ]
+      },
+      {
+        "itemId": "c1_tapping_wall_panel",
+        "name": "Tapping Wall Panel",
+        "positions": [
+          {
+            "x": 14,
+            "z": -82
+          },
+          {
+            "x": 15.5,
+            "z": -83.5
+          },
+          {
+            "x": 14,
+            "z": -86
+          }
+        ]
+      },
+      {
+        "itemId": "c1_nibbled_rent_notice",
+        "name": "Nibbled Rent Notice",
+        "positions": [
+          {
+            "x": 13.5,
+            "z": -87.5
+          }
+        ]
+      },
+      {
+        "itemId": "c1_speaking_pipe",
+        "name": "Disused Speaking Pipe",
+        "positions": [
+          {
+            "x": 16,
+            "z": -86
+          }
+        ]
+      },
+      {
+        "itemId": "c1_bread_heel",
+        "name": "Bread Heel",
+        "positions": [
+          {
+            "x": 12,
+            "z": -85.5
+          }
+        ]
+      },
+      {
+        "itemId": "c1_pantry_saucer",
+        "name": "Empty Pantry Saucer",
+        "positions": [
+          {
+            "x": 15.5,
+            "z": -87.5
+          }
+        ]
+      },
+      {
+        "itemId": "c1_delivery_slip",
+        "name": "Lamp-Supply Delivery Slip",
+        "positions": [
+          {
+            "x": -26.5,
+            "z": -95.5
+          },
+          {
+            "x": -24.5,
+            "z": -96
+          },
+          {
+            "x": -23,
+            "z": -97
+          }
+        ]
+      },
+      {
+        "itemId": "c1_amended_cart_tag",
+        "name": "Amended Cart Tag",
+        "positions": [
+          {
+            "x": -27,
+            "z": -97
+          }
+        ]
+      },
+      {
+        "itemId": "c1_discarded_face_veil",
+        "name": "Discarded Face Veil",
+        "positions": [
+          {
+            "x": 70.4,
+            "z": -49.6
+          },
+          {
+            "x": 74.5,
+            "z": -47
+          }
+        ]
+      },
+      {
+        "itemId": "c1_bound_grave_lamp",
+        "name": "Bound Grave Lamp",
+        "positions": [
+          {
+            "x": 96,
+            "z": -43
+          },
+          {
+            "x": 88,
+            "z": -50
+          },
+          {
+            "x": 96,
+            "z": -50
+          }
+        ]
+      },
+      {
+        "itemId": "c1_founders_prayer_board",
+        "name": "Founders' Prayer Board",
+        "positions": [
+          {
+            "x": 17.6,
+            "z": -113.6
+          },
+          {
+            "x": 13.5,
+            "z": -112.5
+          }
+        ]
+      },
+      {
+        "itemId": "c1_founding_map",
+        "name": "Faded Founding Map",
+        "positions": [
+          {
+            "x": 17,
+            "z": -109
+          }
+        ]
+      },
+      {
+        "itemId": "c1_reading_desk",
+        "name": "Reading Desk",
+        "positions": [
+          {
+            "x": 13,
+            "z": -108.5
+          }
+        ]
+      },
+      {
+        "itemId": "c1_boundary_warning",
+        "name": "Boundary Warning",
+        "positions": [
+          {
+            "x": 40,
+            "z": 25
+          },
+          {
+            "x": 48,
+            "z": 40
+          }
+        ]
+      },
+      {
+        "itemId": "c1_outer_wicket",
+        "name": "Outer Wicket",
+        "positions": [
+          {
+            "x": 55,
+            "z": 55
+          }
+        ]
+      },
+      {
+        "itemId": "c1_rivet_packet",
+        "name": "Rivet Packet",
+        "positions": [
+          {
+            "x": -31.5,
+            "z": -94.7
+          },
+          {
+            "x": -31.5,
+            "z": -95.9
+          },
+          {
+            "x": -31.5,
+            "z": -93.5
+          }
+        ]
+      },
+      {
+        "itemId": "c1_hinge_bundle",
+        "name": "Hinge Bundle",
+        "positions": [
+          {
+            "x": -33.5,
+            "z": -94.7
+          },
+          {
+            "x": -33.5,
+            "z": -95.9
+          },
+          {
+            "x": -33.5,
+            "z": -93.5
+          }
+        ]
+      },
+      {
+        "itemId": "c1_covered_stew_bowl",
+        "name": "Covered Stew Bowl",
+        "positions": [
+          {
+            "x": 10.5,
+            "z": -82.5
+          },
+          {
+            "x": 11,
+            "z": -83.7
+          },
+          {
+            "x": 9.4,
+            "z": -80.2
+          }
+        ]
+      },
+      {
+        "itemId": "c1_bread_bundle",
+        "name": "Bread Bundle",
+        "positions": [
+          {
+            "x": 9,
+            "z": -82
+          },
+          {
+            "x": 10.8,
+            "z": -85.5
+          },
+          {
+            "x": 8.4,
+            "z": -80.9
+          }
+        ]
+      },
+      {
+        "itemId": "c1_dried_herb_packet",
+        "name": "Dried Herb Packet",
+        "positions": [
+          {
+            "x": -40.5,
+            "z": -77.5
+          },
+          {
+            "x": -40.5,
+            "z": -78.7
+          },
+          {
+            "x": -40.5,
+            "z": -76.3
+          }
+        ]
+      },
+      {
+        "itemId": "c1_reed_mulch_bundle",
+        "name": "Reed Mulch Bundle",
+        "positions": [
+          {
+            "x": -40.5,
+            "z": -74.5
+          },
+          {
+            "x": -40.5,
+            "z": -75.7
+          },
+          {
+            "x": -40.5,
+            "z": -73.3
+          }
+        ]
+      },
+      {
+        "itemId": "c1_lantern_oil_cup",
+        "name": "Lantern Oil Cup",
+        "positions": [
+          {
+            "x": 73.5,
+            "z": -39
+          },
+          {
+            "x": 73.1,
+            "z": -40.6
+          },
+          {
+            "x": 72.8,
+            "z": -42.1
+          }
+        ]
+      },
+      {
+        "itemId": "c1_road_checkpost",
+        "name": "Road Checkpost",
+        "positions": [
+          {
+            "x": -14,
+            "z": -135
+          },
+          {
+            "x": -25,
+            "z": -141
+          },
+          {
+            "x": -20,
+            "z": -125
+          }
+        ]
+      },
+      {
+        "itemId": "c1_quay_inspection_post",
+        "name": "Quay Inspection Post",
+        "positions": [
+          {
+            "x": -80,
+            "z": -60
+          },
+          {
+            "x": -86,
+            "z": -54
+          },
+          {
+            "x": -74,
+            "z": -66
+          }
+        ]
+      },
+      {
+        "itemId": "c1_watch_lantern",
+        "name": "Watch Lantern",
+        "positions": [
+          {
+            "x": -10,
+            "z": -67
+          },
+          {
+            "x": 5,
+            "z": -66
+          },
+          {
+            "x": 14,
+            "z": -63.5
+          }
+        ]
+      },
+      {
+        "itemId": "c1_water_level_gauge",
+        "name": "Water-Level Gauge",
+        "positions": [
+          {
+            "x": -40,
+            "z": -70
+          },
+          {
+            "x": -46,
+            "z": -66
+          },
+          {
+            "x": -45.5,
+            "z": -58.5
+          }
+        ]
+      },
+      {
+        "itemId": "c1_keep_net",
+        "name": "Floating Keep-Net",
+        "positions": [
+          {
+            "x": -271.5,
+            "z": 4
+          }
+        ]
+      },
+      {
+        "itemId": "c1_loan_woodcutting_axe",
+        "name": "Loan Woodcutting Axe",
+        "positions": [
+          {
+            "x": -286,
+            "z": -11
+          }
+        ]
+      },
+      {
+        "itemId": "c1_marked_shore_pine",
+        "name": "Marked Shore Pine",
+        "positions": [
+          {
+            "x": -302,
+            "z": -8
+          },
+          {
+            "x": -305,
+            "z": -3
+          },
+          {
+            "x": -305.4,
+            "z": -10.6
+          },
+          {
+            "x": -301,
+            "z": 1
+          }
+        ]
+      },
+      {
+        "itemId": "c1_timber_rack",
+        "name": "Ferry Timber Rack",
+        "positions": [
+          {
+            "x": -288,
+            "z": -7
+          }
+        ]
+      },
+      {
+        "itemId": "c1_deck_nails",
+        "name": "Packet of Deck Nails",
+        "positions": [
+          {
+            "x": -285.2,
+            "z": -12.2
+          }
+        ]
+      },
+      {
+        "itemId": "c1_ferry_workbench",
+        "name": "Ferry Workbench",
+        "positions": [
+          {
+            "x": -282,
+            "z": -12.5
+          }
+        ]
+      },
+      {
+        "itemId": "c1_walkway_gap",
+        "name": "Walkway Gap",
+        "positions": [
+          {
+            "x": -276,
+            "z": 0
+          },
+          {
+            "x": -274.5,
+            "z": 2.5
+          }
+        ]
+      },
+      {
+        "itemId": "c1_public_furnace",
+        "name": "Brunna's Public Furnace",
+        "positions": [
+          {
+            "x": -4.6,
+            "z": -116.8
+          }
+        ]
+      },
+      {
+        "itemId": "c1_pella_workbench",
+        "name": "Wenna's Public Workbench",
+        "positions": [
+          {
+            "x": -46.5,
+            "z": -84
+          }
+        ]
+      },
+      {
+        "itemId": "c1_housing_noticeboard",
+        "name": "Housing Noticeboard",
+        "positions": [
+          {
+            "x": -43,
+            "z": -83
+          }
+        ]
+      },
+      {
+        "itemId": "c1_practice_marker",
+        "name": "Furnishing Practice Marker",
+        "positions": [
+          {
+            "x": -44,
+            "z": -80.5
+          }
+        ]
+      },
+      {
+        "itemId": "c1_garden_carrot",
+        "name": "Garden Carrot",
+        "positions": [
+          {
+            "x": -16.5,
+            "z": -72
+          },
+          {
+            "x": -17.5,
+            "z": -70.5
+          },
+          {
+            "x": -15.8,
+            "z": -74
+          }
+        ]
+      },
+      {
+        "itemId": "c1_inn_hearth",
+        "name": "The Inn's Public Hearth",
+        "positions": [
+          {
+            "x": 10.3,
+            "z": -86.5
+          }
+        ]
+      },
+      {
+        "itemId": "c2_dry_cargo_crate",
+        "name": "Suspiciously Dry Cargo Crate",
+        "positions": [
+          {
+            "x": -90,
+            "z": -53
+          },
+          {
+            "x": -96.5,
+            "z": -54.5
+          },
+          {
+            "x": -88.5,
+            "z": -62
+          },
+          {
+            "x": -99,
+            "z": -61
+          }
+        ]
+      },
+      {
+        "itemId": "c2_cargo_mark",
+        "name": "Stenciled Cargo Mark",
+        "positions": [
+          {
+            "x": -91.5,
+            "z": -50
+          }
+        ]
+      },
+      {
+        "itemId": "c2_jetty_post",
+        "name": "Old Jetty Post",
+        "positions": [
+          {
+            "x": -92,
+            "z": -63
+          }
+        ]
+      },
+      {
+        "itemId": "c2_crypt_key",
+        "name": "Sexton's Crypt Key",
+        "positions": [
+          {
+            "x": 51,
+            "z": 47
+          }
+        ]
+      },
+      {
+        "itemId": "c2_overnight_house",
+        "name": "House That Was Not Here Yesterday",
+        "positions": [
+          {
+            "x": 9,
+            "z": 247
+          },
+          {
+            "x": -11,
+            "z": 259
+          },
+          {
+            "x": 1,
+            "z": 265
+          }
+        ]
+      },
+      {
+        "itemId": "c2_memory_wet_keepsake",
+        "name": "Memory-Wet Keepsake",
+        "positions": [
+          {
+            "x": 10.5,
+            "z": 249
+          },
+          {
+            "x": -9.5,
+            "z": 261
+          },
+          {
+            "x": 2.5,
+            "z": 263
+          }
+        ]
+      },
+      {
+        "itemId": "c2_marked_bog_alder",
+        "name": "Marked Bog Alder",
+        "positions": [
+          {
+            "x": -19,
+            "z": 278
+          },
+          {
+            "x": -23,
+            "z": 284
+          },
+          {
+            "x": -21,
+            "z": 279.5
+          },
+          {
+            "x": -25,
+            "z": 274
+          }
+        ]
+      },
+      {
+        "itemId": "c2_fen_workbench",
+        "name": "Fenbridge Boardwright's Bench",
+        "positions": [
+          {
+            "x": -7,
+            "z": 312
+          }
+        ]
+      },
+      {
+        "itemId": "c2_rotten_span",
+        "name": "Rotten Boardwalk Span",
+        "positions": [
+          {
+            "x": 4,
+            "z": 286
+          },
+          {
+            "x": -3,
+            "z": 290
+          }
+        ]
+      },
+      {
+        "itemId": "c2_paddy_crop_bundle",
+        "name": "Paddy Crop Bundle",
+        "positions": [
+          {
+            "x": -9,
+            "z": 224
+          },
+          {
+            "x": -10,
+            "z": 233
+          },
+          {
+            "x": -11,
+            "z": 240
+          },
+          {
+            "x": -10,
+            "z": 255
+          }
+        ]
+      },
+      {
+        "itemId": "c2_paddy_eel",
+        "name": "Full Eel Trap",
+        "positions": [
+          {
+            "x": -8,
+            "z": 229
+          },
+          {
+            "x": -9,
+            "z": 247
+          }
+        ]
+      },
+      {
+        "itemId": "c2_shipping_roll",
+        "name": "Pressford Shipping Roll",
+        "positions": [
+          {
+            "x": 339,
+            "z": -317
+          }
+        ]
+      },
+      {
+        "itemId": "c2_causeway_lantern",
+        "name": "Causeway Lantern",
+        "positions": [
+          {
+            "x": 394,
+            "z": -216
+          },
+          {
+            "x": 385,
+            "z": -234
+          },
+          {
+            "x": 377,
+            "z": -250
+          }
+        ]
+      },
+      {
+        "itemId": "c2_pressford_door",
+        "name": "Pressford Cottage Door",
+        "positions": [
+          {
+            "x": 323,
+            "z": -312
+          },
+          {
+            "x": 343,
+            "z": -325
+          },
+          {
+            "x": 328,
+            "z": -330
+          }
+        ]
+      },
+      {
+        "itemId": "c2_tally_stick",
+        "name": "Misremembered Tally Stick",
+        "positions": [
+          {
+            "x": 326,
+            "z": -322
+          },
+          {
+            "x": 341,
+            "z": -311.5
+          },
+          {
+            "x": 330,
+            "z": -326
+          },
+          {
+            "x": 340,
+            "z": -322
+          }
+        ]
+      },
+      {
+        "itemId": "c2_windfall_apple",
+        "name": "Windfall Apple",
+        "positions": [
+          {
+            "x": 448,
+            "z": -300
+          },
+          {
+            "x": 452,
+            "z": -306
+          },
+          {
+            "x": 458,
+            "z": -298
+          },
+          {
+            "x": 444,
+            "z": -308
+          },
+          {
+            "x": 462,
+            "z": -304
+          },
+          {
+            "x": 455,
+            "z": -312
+          }
+        ]
+      },
+      {
+        "itemId": "c2_marked_orchard_oak",
+        "name": "Marked Orchard Oak",
+        "positions": [
+          {
+            "x": 296,
+            "z": -292
+          },
+          {
+            "x": 292,
+            "z": -298
+          },
+          {
+            "x": 298,
+            "z": -286
+          },
+          {
+            "x": 290,
+            "z": -290
+          }
+        ]
+      },
+      {
+        "itemId": "c2_pressford_workbench",
+        "name": "Pressford Town Workbench",
+        "positions": [
+          {
+            "x": 309,
+            "z": -298
+          }
+        ]
+      },
+      {
+        "itemId": "c2_great_press",
+        "name": "Great Cider Press",
+        "positions": [
+          {
+            "x": 345,
+            "z": -320
+          }
+        ]
+      },
+      {
+        "itemId": "c2_cider_vat",
+        "name": "Seized Cider Vat",
+        "positions": [
+          {
+            "x": 344,
+            "z": -309
+          }
+        ]
+      },
+      {
+        "itemId": "c2_cold_black_cord",
+        "name": "Cold Black Cord",
+        "positions": [
+          {
+            "x": 345.5,
+            "z": -307.5
+          },
+          {
+            "x": 343,
+            "z": -307
+          }
+        ]
+      },
+      {
+        "itemId": "c2_sorrel_patch",
+        "name": "Hedge Sorrel Patch",
+        "positions": [
+          {
+            "x": 438,
+            "z": -286
+          },
+          {
+            "x": 434,
+            "z": -292
+          },
+          {
+            "x": 440,
+            "z": -294
+          },
+          {
+            "x": 432,
+            "z": -284
+          },
+          {
+            "x": 436,
+            "z": -280
+          }
+        ]
+      },
+      {
+        "itemId": "c2_field_bench",
+        "name": "Hester's Field Bench",
+        "positions": [
+          {
+            "x": 356,
+            "z": -316
+          }
+        ]
+      },
+      {
+        "itemId": "c2_blighted_row",
+        "name": "Blighted Orchard Row",
+        "positions": [
+          {
+            "x": 360,
+            "z": -324
+          },
+          {
+            "x": 362,
+            "z": -314
+          },
+          {
+            "x": 358,
+            "z": -308
+          }
+        ]
+      },
+      {
+        "itemId": "c2_laden_apple_tree",
+        "name": "Laden Apple Tree",
+        "positions": [
+          {
+            "x": 428,
+            "z": -296
+          },
+          {
+            "x": 426,
+            "z": -288
+          },
+          {
+            "x": 430,
+            "z": -282
+          }
+        ]
+      },
+      {
+        "itemId": "c2_pressford_hearth",
+        "name": "Pressford Cookhouse Hearth",
+        "positions": [
+          {
+            "x": 322,
+            "z": -320
+          }
+        ]
+      },
+      {
+        "itemId": "c2_pickers_rest",
+        "name": "Orchard Pickers' Rest",
+        "positions": [
+          {
+            "x": 422,
+            "z": -302
+          },
+          {
+            "x": 418,
+            "z": -294
+          },
+          {
+            "x": 424,
+            "z": -286
+          },
+          {
+            "x": 416,
+            "z": -282
+          }
+        ]
+      },
+      {
+        "itemId": "c2_fuelless_fire",
+        "name": "Fire With Nothing to Burn",
+        "positions": [
+          {
+            "x": -36,
+            "z": -310
+          },
+          {
+            "x": -44,
+            "z": -302
+          },
+          {
+            "x": -38,
+            "z": -298
+          }
+        ]
+      },
+      {
+        "itemId": "c2_standing_stone",
+        "name": "Ring Standing Stone",
+        "positions": [
+          {
+            "x": -39,
+            "z": -405
+          },
+          {
+            "x": -45,
+            "z": -396.5
+          },
+          {
+            "x": -55.5,
+            "z": -399.5
+          },
+          {
+            "x": -55.5,
+            "z": -410.5
+          },
+          {
+            "x": -45.5,
+            "z": -412.5
+          }
+        ]
+      },
+      {
+        "itemId": "c2_hearth_stone",
+        "name": "The Hearth Stone",
+        "positions": [
+          {
+            "x": -47,
+            "z": -404
+          }
+        ]
+      },
+      {
+        "itemId": "c2_hearth_ash",
+        "name": "Hearth Ash Sample",
+        "positions": [
+          {
+            "x": -44,
+            "z": -401
+          },
+          {
+            "x": -50,
+            "z": -401
+          },
+          {
+            "x": -44,
+            "z": -409
+          },
+          {
+            "x": -51.5,
+            "z": -408.5
+          }
+        ]
+      },
+      {
+        "itemId": "c2_heath_mallow_patch",
+        "name": "Heath Mallow Patch",
+        "positions": [
+          {
+            "x": 112,
+            "z": -396
+          },
+          {
+            "x": 118,
+            "z": -404
+          },
+          {
+            "x": 126,
+            "z": -398
+          },
+          {
+            "x": 122,
+            "z": -410
+          },
+          {
+            "x": 130,
+            "z": -406
+          },
+          {
+            "x": 114,
+            "z": -410
+          }
+        ]
+      },
+      {
+        "itemId": "c2_fen_mixing_table",
+        "name": "Yara's Mixing Table",
+        "positions": [
+          {
+            "x": 0.5,
+            "z": 324
+          }
+        ]
+      },
+      {
+        "itemId": "c2_claim_post",
+        "name": "Coinwell Claim Post",
+        "positions": [
+          {
+            "x": -300,
+            "z": -350
+          },
+          {
+            "x": -332,
+            "z": -356
+          }
+        ]
+      },
+      {
+        "itemId": "c2_forged_claim_paper",
+        "name": "Forged Claim Paper",
+        "positions": [
+          {
+            "x": -290,
+            "z": -372
+          },
+          {
+            "x": -296,
+            "z": -380
+          },
+          {
+            "x": -286,
+            "z": -386
+          }
+        ]
+      },
+      {
+        "itemId": "c2_marked_kindle_vein",
+        "name": "Marked Kindle Ore Vein",
+        "positions": [
+          {
+            "x": -380,
+            "z": -410
+          },
+          {
+            "x": -386,
+            "z": -404
+          },
+          {
+            "x": -374,
+            "z": -416
+          },
+          {
+            "x": -392,
+            "z": -414
+          },
+          {
+            "x": -382,
+            "z": -420
+          },
+          {
+            "x": -370,
+            "z": -408
+          }
+        ]
+      },
+      {
+        "itemId": "c2_coinwell_forge",
+        "name": "Coinwell Camp Forge",
+        "positions": [
+          {
+            "x": -347,
+            "z": -314
+          }
+        ]
+      },
+      {
+        "itemId": "c2_dig_lamp",
+        "name": "Unlit Dig Lamp",
+        "positions": [
+          {
+            "x": -402,
+            "z": -430
+          },
+          {
+            "x": -400,
+            "z": -438
+          },
+          {
+            "x": -406,
+            "z": -424
+          },
+          {
+            "x": -398,
+            "z": -426
+          }
+        ]
+      },
+      {
+        "itemId": "c2_bell_casting_pattern",
+        "name": "Bell-Casting Pattern",
+        "positions": [
+          {
+            "x": -420,
+            "z": -434
+          }
+        ]
+      },
+      {
+        "itemId": "c2_tide_gauge",
+        "name": "Tide Gauge",
+        "positions": [
+          {
+            "x": -478,
+            "z": -310
+          },
+          {
+            "x": -482,
+            "z": -298
+          },
+          {
+            "x": -474,
+            "z": -290
+          }
+        ]
+      },
+      {
+        "itemId": "c2_chalk_face",
+        "name": "Cut Chalk Face",
+        "positions": [
+          {
+            "x": -456,
+            "z": -316
+          },
+          {
+            "x": -462,
+            "z": -320
+          },
+          {
+            "x": -450,
+            "z": -322
+          },
+          {
+            "x": -458,
+            "z": -326
+          }
+        ]
+      },
+      {
+        "itemId": "c2_coinwell_workbench",
+        "name": "Coinwell Camp Workbench",
+        "positions": [
+          {
+            "x": -338,
+            "z": -320
+          }
+        ]
+      },
+      {
+        "itemId": "c2_tide_road_footing",
+        "name": "Tide-Road Footing",
+        "positions": [
+          {
+            "x": -272,
+            "z": -446
+          },
+          {
+            "x": -266,
+            "z": -442
+          }
+        ]
+      },
+      {
+        "itemId": "c2_wreck_strongbox",
+        "name": "Sealed Wreck Strongbox",
+        "positions": [
+          {
+            "x": -282,
+            "z": -446
+          },
+          {
+            "x": -270,
+            "z": -446
+          },
+          {
+            "x": -280,
+            "z": -450
+          },
+          {
+            "x": -286,
+            "z": -438
+          }
+        ]
       }
     ],
     "roads": [
@@ -7044,10 +9063,6 @@
         {
           "x": -12,
           "z": -123
-        },
-        {
-          "x": -18.5,
-          "z": -121.5
         },
         {
           "x": -18,
@@ -7184,6 +9199,28 @@
         {
           "x": -44,
           "z": -98
+        }
+      ],
+      [
+        {
+          "x": 18,
+          "z": -24
+        },
+        {
+          "x": 27,
+          "z": -24
+        },
+        {
+          "x": 30,
+          "z": -30
+        },
+        {
+          "x": 33,
+          "z": -24
+        },
+        {
+          "x": 64,
+          "z": -24
         }
       ],
       [

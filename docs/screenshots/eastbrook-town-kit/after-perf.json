@@ -1,0 +1,12 @@
+{
+  "quay-overview": {
+    "fps": 15,
+    "calls": 13334,
+    "tris": 57969868
+  },
+  "market-row": {
+    "fps": 37,
+    "calls": 491,
+    "tris": 1877372
+  }
+}

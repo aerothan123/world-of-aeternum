@@ -90,6 +90,13 @@ const en: Record<EmailTemplateKey, EmailTemplate> = {
       'Two-factor authentication was just turned off for your account, and any unused recovery codes were discarded.\n\n' +
       'If you did not do this, change your password now and turn two-factor authentication back on.',
   },
+  steam_link_moved: {
+    subject: `Steam was unlinked from your ${BRAND} account`,
+    text:
+      'Hi {{username}},\n\n' +
+      'The Steam account that was linked to your account was just linked to a different account by someone who signed in to that Steam account.\n\n' +
+      'If that was you, there is nothing to do. If it was not, secure your Steam account, then sign in here and link it again.',
+  },
   security_incident: {
     subject: `Security notice for your ${BRAND} account`,
     text:

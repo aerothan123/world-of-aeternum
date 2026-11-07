@@ -2211,7 +2211,7 @@ export const GUIDE_ZONES: GuideZoneInfo[] = [
       "The Farshore Causeway",
       "Eastbrook Docks"
     ],
-    "welcome": "Find Marshal Redbrook in town - he has work for you.",
+    "welcome": "Find Warden Corren in town - he has work for you.",
     "families": [
       "beast",
       "spider",
@@ -2548,9 +2548,229 @@ export const GUIDE_ZONES: GuideZoneInfo[] = [
       "The Wreck Line",
       "The Gauntlet"
     ],
-    "welcome": "The Proving Shore asks nothing of you but time. Learn the camp, strike the effigies, walk the wreck line and, when you are ready, Ferryman Odo will see you across to the vale. You can also ring the bell to go to the vale directly.",
+    "welcome": "The Proving Shore asks nothing of you but time. Learn the camp, strike the effigies, walk the wreck line and, when you are ready, Captain Fenlow will see you across to the vale. You can also ring the bell to go to the vale directly.",
     "families": [
-      "beast"
+      "beast",
+      "burrower"
+    ]
+  },
+  {
+    "id": "applewold",
+    "name": "The Applewold",
+    "min": 6,
+    "max": 9,
+    "biome": "vale",
+    "hub": "Pressford",
+    "pois": [
+      "Pressford",
+      "Causeway Watch",
+      "The Cider Mere",
+      "Blossom Rise",
+      "The Old Press",
+      "The South Downs"
+    ],
+    "welcome": "The causeway ends in apple country. Pressford keeps the presses turning and the Lanternwardens keep the road, but the orchards have gone strange, and the boars have stopped fearing the dogs.",
+    "families": [
+      "beast",
+      "mudfin",
+      "humanoid"
+    ]
+  },
+  {
+    "id": "kindlemoor",
+    "name": "The Kindlemoor",
+    "min": 8,
+    "max": 11,
+    "biome": "gale",
+    "hub": "Ferncross",
+    "pois": [
+      "Ferncross",
+      "The First Hearth Ring",
+      "The Moor Tarn",
+      "The Grey Tor",
+      "The Heath Way"
+    ],
+    "welcome": "Nothing grows tall on the Kindlemoor, and nothing here is new. The Bracken Circle keeps watch over stones that were old when the first kingdom was young, and lately the stones have been warm to the touch.",
+    "families": [
+      "beast",
+      "spider",
+      "humanoid",
+      "undead",
+      "elemental"
+    ]
+  },
+  {
+    "id": "chalkbarrow_coast",
+    "name": "The Chalkbarrow Coast",
+    "min": 10,
+    "max": 13,
+    "biome": "gale",
+    "hub": "Coinwell Camp",
+    "pois": [
+      "Coinwell Camp",
+      "The Unlit Dig",
+      "Chalk Mere",
+      "The White Head",
+      "Wreckers' Cove"
+    ],
+    "welcome": "The Gilt Measure came to the white cliffs for chalk and stayed for what was under it. Someone else is digging further down, by lantern-less dark, and the prospectors at Coinwell would very much like to know who.",
+    "families": [
+      "beast",
+      "spider",
+      "burrower",
+      "humanoid",
+      "troll",
+      "undead"
+    ]
+  },
+  {
+    "id": "saltmeads",
+    "name": "The Saltmeads",
+    "min": 11,
+    "max": 13,
+    "biome": "gale",
+    "hub": "Panwick",
+    "pois": [
+      "Panwick",
+      "The Brine Pans",
+      "Gannet Stack",
+      "The Wrack Shallows",
+      "The Saltmeads Gate"
+    ],
+    "welcome": "Grey water, white pans and the smell of brine. Panwick boils salt for half the south, but lately the tide brings in more than weed, and the gannets will not land on the stack.",
+    "families": [
+      "beast",
+      "burrower",
+      "undead"
+    ]
+  },
+  {
+    "id": "wychwold",
+    "name": "The Wychwold",
+    "min": 12,
+    "max": 14,
+    "biome": "vale",
+    "hub": "Elmhallow",
+    "pois": [
+      "Elmhallow",
+      "The Knotted Elm",
+      "Charcoal Hollow",
+      "The Sunk Lane",
+      "The Salt Way"
+    ],
+    "welcome": "The Wychwold was old before the Hearthbinding. The charcoal burners still work its hollows, the Bracken Circle still keeps its oldest elm, and something under the roots has begun to stir.",
+    "families": [
+      "beast",
+      "spider",
+      "undead"
+    ]
+  },
+  {
+    "id": "tinmarch",
+    "name": "The Tinmarch",
+    "min": 13,
+    "max": 15,
+    "biome": "peaks",
+    "hub": "Wheal Patience",
+    "pois": [
+      "Wheal Patience",
+      "The Stannary Stones",
+      "Blackadit",
+      "Tinners' Ford",
+      "The Chalk Pass"
+    ],
+    "welcome": "Tin, spoil and wind. The Gilt Measure keeps Wheal Patience working by lamplight, and the miners swear the old Blackadit was sealed before any of them were born. Someone has opened it.",
+    "families": [
+      "beast",
+      "burrower",
+      "humanoid",
+      "elemental"
+    ]
+  },
+  {
+    "id": "rookcliffs",
+    "name": "The Rookcliffs",
+    "min": 14,
+    "max": 16,
+    "biome": "gale",
+    "hub": "Kestrel Point",
+    "pois": [
+      "Kestrel Point",
+      "The Sea Stacks",
+      "Rook Hollow",
+      "The Hushmist Light",
+      "The Rook Ford"
+    ],
+    "welcome": "The world ends here, or seems to. West of the cliffs the grey mist sits on the sea and swallows every sound, and the Lanternwardens at Kestrel Point keep a light burning at its edge.",
+    "families": [
+      "beast",
+      "burrower",
+      "undead",
+      "elemental"
+    ]
+  },
+  {
+    "id": "sedgemarch",
+    "name": "The Sedgemarch",
+    "min": 16,
+    "max": 18,
+    "biome": "marsh",
+    "hub": "Withyholt",
+    "pois": [
+      "Withyholt",
+      "The Withy Beds",
+      "Heron Mere",
+      "The Drowned Causey",
+      "The Sedge Neck"
+    ],
+    "welcome": "Reed and sedge as far as the mist. Withyholt weaves the baskets half the west carries, and its people know which paths the fen keeps and which it gives back.",
+    "families": [
+      "beast",
+      "mudfin",
+      "troll",
+      "undead"
+    ]
+  },
+  {
+    "id": "harrowfells",
+    "name": "The Harrowfells",
+    "min": 17,
+    "max": 19,
+    "biome": "peaks",
+    "hub": "Fellgate",
+    "pois": [
+      "Fellgate",
+      "The Cairn Field",
+      "Harrow Tarn",
+      "The Iron Ring",
+      "The Fell Neck"
+    ],
+    "welcome": "A war was ended on these fells long ago, and the cairns were raised to keep it ended. Fellgate stands watch over the field, and every night the watch counts the cairns again.",
+    "families": [
+      "beast",
+      "humanoid",
+      "ogre",
+      "undead"
+    ]
+  },
+  {
+    "id": "wardmere",
+    "name": "The Wardmere",
+    "min": 18,
+    "max": 20,
+    "biome": "fen",
+    "hub": "Lanternfold",
+    "pois": [
+      "Lanternfold",
+      "The Ward Mere",
+      "The Last Beacon",
+      "The Westering Pier",
+      "The Ward Neck"
+    ],
+    "welcome": "The last shore the Lanternwardens hold. Past the Ward Mere the mist comes in like a tide, and Lanternfold keeps its lamps lit all day so that no one walks into it by mistake.",
+    "families": [
+      "elemental",
+      "reptile"
     ]
   }
 ];
@@ -2687,6 +2907,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "still": "/guide-stills/mob_boar__935116.webp"
       },
       {
+        "name": "Briarbitten Fox",
+        "min": 3,
+        "max": 4,
+        "rare": false,
+        "templateId": "briarbitten_fox",
+        "model": "mob_wolf",
+        "tint": "#8c8270",
+        "tintStrength": 0.35,
+        "still": "/guide-stills/mob_wolf__8c8270__s35.webp"
+      },
+      {
         "name": "Old Greyjaw",
         "min": 4,
         "max": 4,
@@ -2694,6 +2925,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "templateId": "old_greyjaw",
         "model": "greyjaw",
         "still": "/guide-stills/greyjaw.webp"
+      },
+      {
+        "name": "Orchard Boar",
+        "min": 4,
+        "max": 4,
+        "rare": false,
+        "templateId": "orchard_boar",
+        "model": "mob_wolf",
+        "tint": "#935116",
+        "tintStrength": 0.35,
+        "still": "/guide-stills/mob_wolf__935116__s35.webp"
       },
       {
         "name": "Void Stalker",
@@ -2707,6 +2949,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "still": "/guide-stills/mob_wolf__2f2a44__s35.webp"
       },
       {
+        "name": "Windfall Boar",
+        "min": 6,
+        "max": 7,
+        "rare": false,
+        "templateId": "windfall_boar",
+        "model": "mob_wolf",
+        "tint": "#935116",
+        "tintStrength": 0.35,
+        "still": "/guide-stills/mob_wolf__935116__s35.webp"
+      },
+      {
         "name": "Mire Prowler",
         "min": 7,
         "max": 8,
@@ -2718,6 +2971,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "still": "/guide-stills/mob_wolf__4d5656__s35.webp"
       },
       {
+        "name": "Moor Hound",
+        "min": 8,
+        "max": 9,
+        "rare": false,
+        "templateId": "moor_hound",
+        "model": "mob_wolf",
+        "tint": "#6e5a44",
+        "tintStrength": 0.35,
+        "still": "/guide-stills/mob_wolf__6e5a44__s35.webp"
+      },
+      {
         "name": "Bog Bloat",
         "min": 9,
         "max": 11,
@@ -2727,6 +2991,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "tint": "#6b8e23",
         "tintStrength": 0.45,
         "still": "/guide-stills/mob_murloc__6b8e23__s45.webp"
+      },
+      {
+        "name": "Chalk Cliff Gull",
+        "min": 11,
+        "max": 12,
+        "rare": false,
+        "templateId": "chalk_cliff_gull",
+        "model": "mob_wolf",
+        "tint": "#e8e4da",
+        "tintStrength": 0.35,
+        "still": "/guide-stills/mob_wolf__e8e4da__s35.webp"
       },
       {
         "name": "Ridge Stalker",
@@ -2915,6 +3190,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "still": "/guide-stills/mob_spider_egg_sac.webp"
       },
       {
+        "name": "Dig Crawler",
+        "min": 11,
+        "max": 12,
+        "rare": false,
+        "templateId": "dig_crawler",
+        "model": "mob_spider",
+        "tint": "#5b5048",
+        "tintStrength": 0.35,
+        "still": "/guide-stills/mob_spider__5b5048__s35.webp"
+      },
+      {
         "name": "Canopy Weaver",
         "min": 20,
         "max": 20,
@@ -3002,6 +3288,28 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
     "family": "burrower",
     "creatures": [
       {
+        "name": "Bristlejaw Shore Rat",
+        "min": 1,
+        "max": 1,
+        "rare": false,
+        "templateId": "bristlejaw_shore_rat",
+        "model": "mob_kobold",
+        "tint": "#9c640c",
+        "tintStrength": 0.2,
+        "still": "/guide-stills/mob_kobold__9c640c__s20.webp"
+      },
+      {
+        "name": "Culvert Rat",
+        "min": 2,
+        "max": 2,
+        "rare": false,
+        "templateId": "culvert_rat",
+        "model": "mob_kobold",
+        "tint": "#9c640c",
+        "tintStrength": 0.2,
+        "still": "/guide-stills/mob_kobold__9c640c__s20.webp"
+      },
+      {
         "name": "Breach Wretch",
         "min": 3,
         "max": 5,
@@ -3011,6 +3319,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "tint": "#5a4a78",
         "tintStrength": 0.2,
         "still": "/guide-stills/mob_kobold__5a4a78__s20.webp"
+      },
+      {
+        "name": "Quarry Burrower",
+        "min": 3,
+        "max": 3,
+        "rare": false,
+        "templateId": "quarry_burrower",
+        "model": "mob_kobold",
+        "tint": "#9c640c",
+        "tintStrength": 0.2,
+        "still": "/guide-stills/mob_kobold__9c640c__s20.webp"
       },
       {
         "name": "Deeprock Digger",
@@ -3148,6 +3467,33 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "still": "/guide-stills/player_rogue.webp"
       },
       {
+        "name": "Veiled Rite Tender",
+        "min": 4,
+        "max": 4,
+        "rare": false,
+        "templateId": "veiled_rite_tender",
+        "model": "player_priest",
+        "still": "/guide-stills/player_priest.webp"
+      },
+      {
+        "name": "Waybill Cutpurse",
+        "min": 6,
+        "max": 7,
+        "rare": false,
+        "templateId": "waybill_cutpurse",
+        "model": "player_rogue",
+        "still": "/guide-stills/player_rogue.webp"
+      },
+      {
+        "name": "Moor Bandit",
+        "min": 9,
+        "max": 10,
+        "rare": false,
+        "templateId": "moor_bandit",
+        "model": "player_rogue",
+        "still": "/guide-stills/player_rogue.webp"
+      },
+      {
         "name": "Gravecaller Cultist",
         "min": 10,
         "max": 12,
@@ -3173,6 +3519,15 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "templateId": "gravecaller_summoner",
         "model": "player_warlock_female",
         "still": "/guide-stills/player_warlock_female.webp"
+      },
+      {
+        "name": "Veiled Digger",
+        "min": 11,
+        "max": 12,
+        "rare": false,
+        "templateId": "veiled_digger",
+        "model": "player_rogue",
+        "still": "/guide-stills/player_rogue.webp"
       },
       {
         "name": "Broodsworn Zealot",
@@ -3260,6 +3615,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
   {
     "family": "undead",
     "creatures": [
+      {
+        "name": "Gravestirred Fieldhand",
+        "min": 3,
+        "max": 3,
+        "rare": false,
+        "templateId": "gravestirred_fieldhand",
+        "model": "skel_minion",
+        "tint": "#d5dbdb",
+        "tintStrength": 0.25,
+        "still": "/guide-stills/skel_minion__d5dbdb__s25.webp"
+      },
       {
         "name": "Restless Bones",
         "min": 5,
@@ -3353,6 +3719,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
   {
     "family": "elemental",
     "creatures": [
+      {
+        "name": "Peatfire Wisp",
+        "min": 9,
+        "max": 10,
+        "rare": false,
+        "templateId": "peatfire_wisp",
+        "model": "mob_elemental",
+        "tint": "#e0782e",
+        "tintStrength": 0.4,
+        "still": "/guide-stills/mob_elemental__e0782e.webp"
+      },
       {
         "name": "Duskwisp",
         "min": 15,
@@ -5994,7 +6371,7 @@ export const GUIDE_DEEDS: GuideDeed[] = [
   },
   {
     "id": "prog_rift_watch_trusted",
-    "name": "Trusted by the Rift Watch",
+    "name": "Trusted by the Gilt Measure",
     "category": "progression",
     "renown": 5,
     "feat": false,
@@ -6002,7 +6379,7 @@ export const GUIDE_DEEDS: GuideDeed[] = [
   },
   {
     "id": "prog_church_order_trusted",
-    "name": "Trusted by the Church Order",
+    "name": "Trusted by the Lanternwardens",
     "category": "progression",
     "renown": 5,
     "feat": false,
@@ -6010,7 +6387,7 @@ export const GUIDE_DEEDS: GuideDeed[] = [
   },
   {
     "id": "prog_automatons_trusted",
-    "name": "Trusted by the Automatons",
+    "name": "Trusted by the Hearthwright Compact",
     "category": "progression",
     "renown": 5,
     "feat": false,
@@ -6018,29 +6395,29 @@ export const GUIDE_DEEDS: GuideDeed[] = [
   },
   {
     "id": "prog_rift_watch_champion",
-    "name": "Champion of the Rift Watch",
+    "name": "Champion of the Gilt Measure",
     "category": "progression",
     "renown": 25,
     "feat": false,
-    "rewardTitle": "Riftwarden",
+    "rewardTitle": "Magnate",
     "crest": "/ui/deeds/prog_rift_watch_champion.webp"
   },
   {
     "id": "prog_church_order_champion",
-    "name": "Champion of the Church Order",
+    "name": "Champion of the Lanternwardens",
     "category": "progression",
     "renown": 25,
     "feat": false,
-    "rewardTitle": "Dawnkeeper",
+    "rewardTitle": "Lanternwarden",
     "crest": "/ui/deeds/prog_church_order_champion.webp"
   },
   {
     "id": "prog_automatons_champion",
-    "name": "Champion of the Automatons",
+    "name": "Champion of the Hearthwright Compact",
     "category": "progression",
     "renown": 25,
     "feat": false,
-    "rewardTitle": "Forgemaster",
+    "rewardTitle": "Master Hearthwright",
     "crest": "/ui/deeds/prog_automatons_champion.webp"
   },
   {
@@ -6491,6 +6868,28 @@ export const GUIDE_DEEDS: GuideDeed[] = [
     "name": "The First Fell",
     "category": "progression",
     "renown": 5,
+    "feat": false
+  },
+  {
+    "id": "prog_bracken_circle_trusted",
+    "name": "Trusted by the Bracken Circle",
+    "category": "progression",
+    "renown": 5,
+    "feat": false
+  },
+  {
+    "id": "prog_bracken_circle_champion",
+    "name": "Champion of the Bracken Circle",
+    "category": "progression",
+    "renown": 25,
+    "feat": false,
+    "rewardTitle": "Circle Elder"
+  },
+  {
+    "id": "chr_shore_that_remembers",
+    "name": "The Shore That Remembers",
+    "category": "chronicle",
+    "renown": 10,
     "feat": false
   }
 ];
@@ -8123,15 +8522,15 @@ export const GUIDE_RELIQUARY: GuideReliquaryPage[] = [
       },
       {
         "kind": "title",
-        "name": "Riftwarden"
+        "name": "Magnate"
       },
       {
         "kind": "title",
-        "name": "Dawnkeeper"
+        "name": "Lanternwarden"
       },
       {
         "kind": "title",
-        "name": "Forgemaster"
+        "name": "Master Hearthwright"
       },
       {
         "kind": "title",
@@ -8196,6 +8595,10 @@ export const GUIDE_RELIQUARY: GuideReliquaryPage[] = [
       {
         "kind": "title",
         "name": "the Gourdsworn"
+      },
+      {
+        "kind": "title",
+        "name": "Circle Elder"
       }
     ]
   },
@@ -10583,6 +10986,11 @@ export const GUIDE_PROF_CRAFTS: GuideProfCraft[] = [
         "name": "Alchemist Verane",
         "title": "Master of the Apothecary",
         "hub": "Highwatch"
+      },
+      {
+        "name": "Ivara Fenmoss",
+        "title": "Herbalist",
+        "hub": "Eastbrook"
       }
     ],
     "specialization": {
@@ -13191,6 +13599,11 @@ export const GUIDE_PROF_CRAFTS: GuideProfCraft[] = [
         "name": "Tanner Hesk",
         "title": "Master of the Tannery",
         "hub": "Fenbridge"
+      },
+      {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard",
+        "hub": "Eastbrook"
       }
     ],
     "specialization": {
@@ -15773,6 +16186,11 @@ export const GUIDE_PROF_CRAFTS: GuideProfCraft[] = [
         "name": "Alchemist Verane",
         "title": "Master of the Apothecary",
         "hub": "Highwatch"
+      },
+      {
+        "name": "Ivara Fenmoss",
+        "title": "Herbalist",
+        "hub": "Eastbrook"
       }
     ],
     "specialization": {
@@ -16300,7 +16718,7 @@ export const GUIDE_PROF_CRAFTS: GuideProfCraft[] = [
     "station": "forge",
     "masters": [
       {
-        "name": "Forgemistress Darva",
+        "name": "Brunna Flintmorrow",
         "title": "Master of the Forge",
         "hub": "Eastbrook"
       }
@@ -16844,7 +17262,7 @@ export const GUIDE_PROF_CRAFTS: GuideProfCraft[] = [
     "station": "forge",
     "masters": [
       {
-        "name": "Forgemistress Darva",
+        "name": "Brunna Flintmorrow",
         "title": "Master of the Forge",
         "hub": "Eastbrook"
       }
@@ -17579,7 +17997,7 @@ export const GUIDE_PROF_CRAFTS: GuideProfCraft[] = [
     "station": "forge",
     "masters": [
       {
-        "name": "Forgemistress Darva",
+        "name": "Brunna Flintmorrow",
         "title": "Master of the Forge",
         "hub": "Eastbrook"
       }
@@ -18749,11 +19167,11 @@ export const GUIDE_PROF_GATHERING: GuideProfGathering[] = [
         "priceCopper": 20,
         "vendors": [
           {
-            "name": "Trader Wilkes",
+            "name": "Silven Brackett",
             "hub": "Eastbrook"
           },
           {
-            "name": "Forgemistress Darva",
+            "name": "Brunna Flintmorrow",
             "hub": "Eastbrook"
           },
           {
@@ -18959,7 +19377,7 @@ export const GUIDE_PROF_GATHERING: GuideProfGathering[] = [
         "priceCopper": 20,
         "vendors": [
           {
-            "name": "Trader Wilkes",
+            "name": "Silven Brackett",
             "hub": "Eastbrook"
           },
           {
@@ -19159,7 +19577,7 @@ export const GUIDE_PROF_GATHERING: GuideProfGathering[] = [
         "priceCopper": 20,
         "vendors": [
           {
-            "name": "Trader Wilkes",
+            "name": "Silven Brackett",
             "hub": "Eastbrook"
           },
           {
@@ -19396,7 +19814,7 @@ export const GUIDE_PROF_GATHERING: GuideProfGathering[] = [
         "priceCopper": 60,
         "vendors": [
           {
-            "name": "Trader Wilkes",
+            "name": "Silven Brackett",
             "hub": "Eastbrook"
           },
           {
@@ -19412,7 +19830,7 @@ export const GUIDE_PROF_GATHERING: GuideProfGathering[] = [
         "priceCopper": 150,
         "vendors": [
           {
-            "name": "Trader Wilkes",
+            "name": "Silven Brackett",
             "hub": "Eastbrook"
           },
           {
@@ -21824,7 +22242,7 @@ export const GUIDE_PROF_ECONOMY: GuideProfEconomy = {
       {
         "id": "q_prof_workorder_forge",
         "name": "Forge Work Order",
-        "master": "Forgemistress Darva",
+        "master": "Brunna Flintmorrow",
         "hub": "Eastbrook",
         "material": "Copper Ore",
         "count": 8,
@@ -21906,7 +22324,7 @@ export const GUIDE_PROF_STATIONS: GuideProfStations = {
       "hub": "Eastbrook",
       "zone": "Eastbrook Vale",
       "master": {
-        "name": "Forgemistress Darva",
+        "name": "Brunna Flintmorrow",
         "title": "Master of the Forge"
       }
     },
@@ -21958,6 +22376,26 @@ export const GUIDE_PROF_STATIONS: GuideProfStations = {
       "master": {
         "name": "Alchemist Verane",
         "title": "Master of the Apothecary"
+      }
+    },
+    {
+      "id": "station_eastbrook_apothecary",
+      "type": "apothecary",
+      "hub": "Eastbrook",
+      "zone": "Eastbrook Vale",
+      "master": {
+        "name": "Ivara Fenmoss",
+        "title": "Herbalist"
+      }
+    },
+    {
+      "id": "station_eastbrook_tannery",
+      "type": "tannery",
+      "hub": "Eastbrook",
+      "zone": "Eastbrook Vale",
+      "master": {
+        "name": "Tamsin Tanwick",
+        "title": "Tanner of the Yard"
       }
     }
   ]

@@ -135,7 +135,7 @@ describe('realm message of the day in the live server', () => {
     joined(server.join(lateWs, 3, 103, 'Tor', 'rogue', null));
 
     const texts = logTexts(lateWs);
-    const entered = texts.indexOf('Tor has entered Project H.');
+    const entered = texts.indexOf('Tor has entered Wyndlewood.');
     expect(entered).toBeGreaterThanOrEqual(0);
     expect(texts[entered + 1]).toBe('Message of the day: Welcome to the realm');
   });

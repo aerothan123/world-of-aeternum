@@ -124,13 +124,6 @@ const hudTs = readFileSync(new URL('../src/ui/hud.ts', import.meta.url), 'utf8')
   /\r\n/g,
   '\n',
 );
-// The Meta pixel SENDER, extracted whole out of hud.ts at the Masterwrought
-// phase 18 sweep (analytics glue belongs in src/game/, not in a coordinator).
-// The level-5 trigger stayed in the HUD, so the pin below reads both halves.
-const metaPixelTs = readFileSync(
-  new URL('../src/game/meta_pixel.ts', import.meta.url),
-  'utf8',
-).replace(/\r\n/g, '\n');
 const mobileActionRingTs = readFileSync(
   new URL('../src/ui/hud/action_bar/mobile_action_ring_controller.ts', import.meta.url),
   'utf8',
@@ -255,12 +248,11 @@ describe('client HTML shell', () => {
     expect(mainTsCode).toContain('openHeaderWiki(NATIVE_APP || DESKTOP_APP)');
     expect(mainTsCode).not.toContain("window.location.href = '/wiki'");
   });
-  it('links to the three companion websites in separate tabs', () => {
+  it('no longer links to the upstream companion websites (records, scout, parses)', () => {
+    // Those are World of ClaudeCraft services, not Wyndlewood ones.
     for (const site of ['records', 'scout', 'parses']) {
-      const href = `https://${site}.worldofclaudecraft.com/`;
-      const link = html.match(/<a\b[^>]*>/g)?.find((tag) => tag.includes(`href="${href}"`));
-      expect(link).toContain('target="_blank"');
-      expect(link).toContain('rel="noopener noreferrer"');
+      expect(html).not.toContain(`https://${site}.worldofclaudecraft.com/`);
+      expect(playHtml).not.toContain(`https://${site}.worldofclaudecraft.com/`);
     }
   });
   it('uses the painted combat-status crest in both game entries', () => {
@@ -1004,11 +996,12 @@ describe('client HTML shell', () => {
       '<meta name="robots" content="index, follow, max-image-preview:large" />',
     );
     expect(html).toContain('<link rel="canonical" href="https://worldofclaudecraft.com/" />');
-    expect(html).toContain('<meta property="og:site_name" content="Project H" />');
-    expect(html).toContain('"alternateName": "World of Claudecraft"');
-    expect(html).toContain('"https://github.com/levy-street/world-of-claudecraft"');
-    expect(mainTs).toContain("alternateName: 'World of Claudecraft'");
-    expect(mainTs).toContain("'https://github.com/levy-street/world-of-claudecraft'");
+    expect(html).toContain('<meta property="og:site_name" content="Wyndlewood" />');
+    // The JSON-LD names Wyndlewood only: no upstream alternateName or social sameAs.
+    expect(html).not.toContain('"alternateName": "World of Claudecraft"');
+    expect(html).not.toContain('"sameAs"');
+    expect(mainTs).not.toContain("alternateName: 'World of Claudecraft'");
+    expect(mainTs).not.toContain("'https://github.com/levy-street/world-of-claudecraft',\n");
     expect(robotsTxt.trim()).toBe(
       'User-agent: *\nAllow: /\n\nSitemap: https://worldofclaudecraft.com/sitemap.xml\nSitemap: https://worldofclaudecraft.com/sitemap-characters.xml\nSitemap: https://worldofclaudecraft.com/sitemap-marketing.xml',
     );
@@ -1032,31 +1025,33 @@ describe('client HTML shell', () => {
     expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/terms</loc>');
     expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/data-deletion</loc>');
     expect(sitemapXml).toContain('<loc>https://worldofclaudecraft.com/support</loc>');
-    expect(privacyHtml).toContain(
-      '<link rel="canonical" href="https://worldofclaudecraft.com/privacy" />',
-    );
+    expect(privacyHtml).toContain('<link rel="canonical" href="/privacy" />');
     expect(privacyHtml).toContain('<h1>Privacy Policy</h1>');
     expect(privacyHtml).toContain('href="/support">Support</a>');
     expect(privacyHtml).toContain('href="/data-deletion">Data Deletion</a>');
-    expect(termsHtml).toContain(
-      '<link rel="canonical" href="https://worldofclaudecraft.com/terms" />',
-    );
-    expect(termsHtml).toContain('<h1>Terms and Conditions</h1>');
+    expect(termsHtml).toContain('<link rel="canonical" href="/terms" />');
+    expect(termsHtml).toContain('<h1>Terms of Service</h1>');
+    // The legal pages are Wyndlewood drafts: no upstream operator, Ko-fi, Solana or $WOC.
+    for (const page of [privacyHtml, termsHtml]) {
+      for (const banned of ['Levy Street', 'Dream Home AI', 'Ko-fi', 'Solana', '$WOC']) {
+        expect(page).not.toContain(banned);
+      }
+      expect(page).toContain('[PUBLISHER LEGAL NAME]');
+      expect(page).toContain('DRAFT TEMPLATE');
+    }
     expect(termsHtml).toContain('href="/support">Support</a>');
     expect(termsHtml).toContain('href="/data-deletion">Data Deletion</a>');
-    expect(dataDeletionHtml).toContain(
-      '<link rel="canonical" href="https://worldofclaudecraft.com/data-deletion" />',
-    );
+    expect(dataDeletionHtml).toContain('<link rel="canonical" href="/data-deletion" />');
     expect(dataDeletionHtml).toContain('<h1>Data Deletion</h1>');
-    expect(dataDeletionHtml).toContain('href="mailto:woc@levystreet.com"');
-    expect(dataDeletionHtml).toContain('href="https://discord.com/invite/worldofclaudecraft"');
+    // The upstream contact is gone; the support address is an owner placeholder.
+    expect(dataDeletionHtml).not.toContain('levystreet.com');
+    expect(dataDeletionHtml).toContain('href="mailto:support@wyndlewood.invalid"');
     expect(dataDeletionHtml).toContain('href="/support">Support</a>');
-    expect(supportHtml).toContain(
-      '<link rel="canonical" href="https://worldofclaudecraft.com/support" />',
-    );
+    expect(supportHtml).toContain('<link rel="canonical" href="/support" />');
     expect(supportHtml).toContain('<h1>Support</h1>');
-    expect(supportHtml).toContain('href="mailto:woc@levystreet.com"');
-    expect(supportHtml).toContain('href="https://discord.com/invite/worldofclaudecraft"');
+    expect(supportHtml).not.toContain('levystreet.com');
+    expect(supportHtml).toContain('href="mailto:support@wyndlewood.invalid"');
+    expect(supportHtml).not.toContain('discord.com/invite/worldofclaudecraft');
     expect(supportHtml).toContain('href="/data-deletion">Data Deletion page</a>');
     expect(supportHtml).toContain('"@type": "ContactPage"');
     // The crypto token whitepaper is retired: no footer link, no shipped PDF.
@@ -1079,51 +1074,23 @@ describe('client HTML shell', () => {
     expect(serverAliases).toContain("['/support', '/support.html']");
   });
 
-  it('loads Meta Pixel outside local development and tracks level 5', () => {
-    expect(html).toContain('https://connect.facebook.net/en_US/fbevents.js');
-    expect(html).toContain("fbq('init', '1692101265042180');");
-    expect(html).toContain("fbq('track', 'PageView');");
-    expect(html).toContain(
-      'https://www.facebook.com/tr?id=1692101265042180&ev=PageView&noscript=1',
-    );
-    expect(html).toContain(
-      "if (!['localhost', '127.0.0.1', '[::1]'].includes(location.hostname)) {",
-    );
-    // The sender moved to src/game/meta_pixel.ts, so the two arities are pinned
-    // in their new home. Both halves of the chain are read, not just the one
-    // that moved: the sender alone is inert without a caller, and the HUD's
-    // trigger alone proves nothing about what reaches the pixel.
-    expect(metaPixelTs).toContain(
-      "if (options) fbq('trackCustom', eventName, data ?? {}, options);",
-    );
-    expect(metaPixelTs).toContain("else fbq('trackCustom', eventName, data ?? {});");
-    expect(hudTs).toContain("import { trackMetaPixel } from '../game/meta_pixel';");
-    expect(hudTs).toContain('if (ev.level === 5) {');
-    // Whitespace-collapsed: this call sits deep enough that biome re-wraps it
-    // with any nearby edit, and the pin is about the CALL, not the indentation.
-    expect(hudTs.replace(/\s+/g, ' ')).toContain(
-      "trackMetaPixel( 'ReachedLevel5', { level: ev.level },",
-    );
-    expect(hudTs).toContain('characterId ? { eventID: `lvl5_$' + '{characterId}` } : undefined');
-    // main.ts used to carry a BYTE-IDENTICAL private copy of the sender, and
-    // these two lines pinned that copy's arities. The Phase 18 QA collapsed it
-    // onto src/game/meta_pixel.ts (src/main.ts is a firewall, not a home), so the
-    // arities are pinned ONCE, in metaPixelTs above, and behaviorally in
-    // tests/meta_pixel.test.ts. What main.ts owes now is only that it reaches the
-    // shared sender rather than re-implementing it: while the duplicate stood, its
-    // three events were guarded by nothing behavioral at all.
-    expect(mainTs).toContain(
-      "import { trackCommunityLinkClicks, trackMetaPixel } from './game/meta_pixel';",
-    );
-    expect(mainTs).not.toContain("fbq('trackCustom'");
-    expect(mainTs).toContain(
-      'registered.accountId ? { eventID: `acct_$' + '{registered.accountId}` } : undefined',
-    );
-    // The GitHub/Discord click events moved with trackCommunityLinkClicks to the shared
-    // sender's module, which the landing-first boot also binds before the client loads.
-    expect(mainTs).toContain('trackCommunityLinkClicks();');
-    expect(metaPixelTs).toContain("'GitHubClick'");
-    expect(metaPixelTs).toContain("'DiscordClick'");
+  it('ships no upstream third-party tracker (Google tag, Meta Pixel) in either entry', () => {
+    // Wyndlewood removed the upstream Google Analytics property and Meta Pixel: the only
+    // analytics is the opt-in first-party module (src/game/first_party_analytics.ts).
+    for (const [name, entry] of [
+      ['index.html', html],
+      ['play.html', playHtml],
+    ] as const) {
+      expect(entry, name).not.toContain('googletagmanager.com');
+      expect(entry, name).not.toContain('G-BR5Z7GT7C2');
+      expect(entry, name).not.toContain('connect.facebook.net');
+      expect(entry, name).not.toContain('facebook.com/tr');
+      expect(entry, name).not.toContain('fbq(');
+    }
+    expect(existsSync(new URL('../src/game/meta_pixel.ts', import.meta.url))).toBe(false);
+    expect(hudTs).not.toContain('trackMetaPixel');
+    expect(mainTs).not.toContain('trackMetaPixel');
+    expect(mainTs).not.toContain('trackCommunityLinkClicks');
   });
 
   it('keeps the $WOC contract address box off the landing page', () => {
@@ -1271,49 +1238,28 @@ describe('client HTML shell', () => {
     expect(html).toContain('aria-label="Quest Log"');
   });
 
-  it('offers Discord and Donate entries in the mobile drawer of BOTH entries', () => {
+  it('offers the Discord entry and NO donation link in the mobile drawer of BOTH entries', () => {
     // Mobile has no keyboard, so the U-key Discord panel toggle is unreachable;
     // this drawer button is the touch path to Discord (the account panel when
-    // available, else the community invite). Donate mirrors the desktop shell's
-    // Ko-fi community link.
+    // available, else the community invite).
     for (const [name, entry] of [
       ['index.html', html],
       ['play.html', playHtml],
     ] as const) {
       expect(entry, name).toContain('id="mobile-discord"');
-      // Carries the icon hook (hydrateIcons swaps [data-icon] for the inline SVG).
       expect(entry, name).toMatch(/id="mobile-discord"[^>]*data-icon="discord"/);
-      // Starts hidden; main.ts reveals it at boot on any build with Discord UI
-      // enabled (it stays hidden in the native-app build).
       expect(entry, name).toMatch(/id="mobile-discord"\s+hidden/);
-      expect(entry, name).toContain('id="mobile-donate"');
-      expect(entry, name).toMatch(/id="mobile-donate"[^>]*data-icon="donate"/);
-      // Donate is never gated on the web: no hidden attribute on it.
-      expect(entry, name).not.toMatch(/id="mobile-donate"\s+hidden/);
-    }
-    // The native-app build strips every donation link (store payment-steering
-    // policy); the tray entry joins the same suppression block as the desktop
-    // .donate links in hud.css.
-    expect(hudCss).toContain('body.native-app #mobile-donate,');
-    // The tap targets: the account panel with the invite as the logged-out /
-    // offline fallback (discordInviteUrl() itself falls back to
-    // DEFAULT_DISCORD_INVITE_URL in discord_status.ts), and the Ko-fi page,
-    // pinned to the shells' URLs.
-    expect(mainTs).toContain("const DONATE_URL = 'https://ko-fi.com/worldofclaudecraft';");
-    expect(mainTs).toContain("window.open(discordInviteUrl(), '_blank', 'noopener,noreferrer');");
-    expect(mainTs).toContain(
-      "onDonate: () => window.open(DONATE_URL, '_blank', 'noopener,noreferrer'),",
-    );
-    // Two Ko-fi taps per entry (the marketing donate-cta and the mobile
-    // drawer): the in-game community tray's third one left with the tray's
-    // GitHub/Donate links (owner request, the tray is wishlist-only now).
-    for (const [name, entry] of [
-      ['index.html', html],
-      ['play.html', playHtml],
-    ] as const) {
-      expect(entry.match(/href="https:\/\/ko-fi\.com\/worldofclaudecraft"/g), name).toHaveLength(2);
+      // Wyndlewood removed the upstream Ko-fi donation links (a non-Steam payment
+      // link fails Steam build review, and the page was upstream's): no header CTA,
+      // no footer link, no mobile tray button.
+      expect(entry, name).not.toContain('ko-fi.com');
+      expect(entry, name).not.toContain('id="mobile-donate"');
+      expect(entry, name).not.toContain('class="donate-cta"');
       expect(entry, name).not.toContain('https://github.com/sponsors/levy-street');
     }
+    expect(mainTs).toContain("window.open(discordInviteUrl(), '_blank', 'noopener,noreferrer');");
+    expect(mainTs).not.toContain('DONATE_URL');
+    expect(mainTs).not.toContain('onDonate');
   });
 
   it('offers a desktop micro-menu Discord entry in BOTH entries (not keybind-only)', () => {
@@ -1876,12 +1822,12 @@ describe('client HTML shell', () => {
     // homepage still use it); only the in-game touch HUD hides it, because
     // its two-person toggle icon under the minimap masqueraded as a Friends
     // button next to the real Social button in the top-left trio.
-    expect(html).toContain('<a class="donate-cta"');
+    expect(html).not.toContain('<a class="donate-cta"');
     expect(html).toContain('<details id="community-menu">');
     expect(html).toContain('<summary class="community-toggle ui-disc"');
     expect(html).toContain('<div class="community-tray">');
     // The tray is wishlist-only now (its GitHub/Donate links were removed,
-    // owner request); the marketing donate-cta above stays.
+    // owner request); the marketing donate-cta left with the Ko-fi removal.
     expect(html).toContain('<a class="community-link steam-wishlist steam-wishlist-chip"');
     expect(html).not.toContain('<a class="community-link github"');
     expect(html).not.toContain('<a class="community-link donate"');

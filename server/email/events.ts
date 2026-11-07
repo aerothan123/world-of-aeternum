@@ -19,6 +19,7 @@ export type EmailEvent =
   | 'data_export'
   | 'two_factor_enabled'
   | 'two_factor_disabled'
+  | 'steam_link_moved'
   | 'security_incident'
   | 'generic';
 
@@ -39,6 +40,7 @@ export interface EmailData {
   data_export: { username: string };
   two_factor_enabled: { username: string; recoveryCodeCount: string };
   two_factor_disabled: { username: string };
+  steam_link_moved: { username: string };
   security_incident: { username: string; action: string; reason: string; until: string };
   generic: { username: string; heading: string; body: string };
 }
@@ -64,6 +66,7 @@ export const EVENT_CATEGORY: Record<EmailEvent, EmailCategory> = {
   data_export: 'transactional',
   two_factor_enabled: 'transactional',
   two_factor_disabled: 'transactional',
+  steam_link_moved: 'transactional',
   security_incident: 'transactional',
   generic: 'marketing',
 };

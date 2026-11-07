@@ -130,6 +130,21 @@ contextBridge.exposeInMainWorld('wocDesktop', {
   // rejected) so the shell can cancel the Steam auth ticket (Valve's
   // CancelAuthTicket contract). Fire-and-forget; the main handler is idempotent.
   steamLinkSettled: () => ipcRenderer.invoke('desktop-steam-link-settled'),
+  // Add-ons (electron/addons.cjs): list the local folder + installed Workshop
+  // items, open the folder, publish a LOCAL add-on. Main re-validates everything.
+  listAddons: () => ipcRenderer.invoke('desktop-addons-list'),
+  openAddonsFolder: () => ipcRenderer.invoke('desktop-addons-open-folder'),
+  publishAddon: (request) =>
+    ipcRenderer.invoke('desktop-addons-publish', {
+      folder: clampString(request?.folder, 64),
+      visibility: clampString(request?.visibility, 16),
+      changeNote: clampString(request?.changeNote, 400),
+    }),
+  // A Steam LOGIN ticket ({ ticket, personaName }) for POST /api/auth/steam, or
+  // null when Steam is unavailable. Never rejects (steam.cjs owns the failures).
+  steamLoginTicket: () => ipcRenderer.invoke('desktop-steam-login-ticket'),
+  // Signal that the login POST settled so the shell cancels that ticket.
+  steamLoginSettled: () => ipcRenderer.invoke('desktop-steam-login-settled'),
   // An Epic link proof (string) for POST /api/epic/link, or null when Epic is
   // unavailable (website/steam build, no launcher exchange code, adapter
   // missing). The main-process handler never rejects; epic.cjs owns every

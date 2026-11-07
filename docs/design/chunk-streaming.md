@@ -150,6 +150,21 @@ implementation should fold eviction into the same chunk-level residency source o
 truth rather than leaving it as a second, zone-level bookkeeping system running
 alongside the chunk-level one.
 
+### Desktop far-zone eviction (the world expansion)
+
+The expansion frontier (`docs/design/world-expansion-framework.md`) took the
+built-in world from 15 to 25 zones, so full desktop retention would hold the
+whole continent. `pickZoneToEvict` (`src/render/zone_eviction_core.ts`) now
+also sheds on full-memory hosts, but only while more than
+`DESKTOP_RESIDENT_ZONE_BUDGET` (12) zones are resident, and only a zone past
+the same `ZONE_EVICTION_RADIUS`, farthest first, one per pass. Ordinary play in
+a region never reaches the budget. The long-session check in
+`tests/zone_eviction_desktop.test.ts` tours every hub for four laps under a
+model of the streaming lane: 84 evictions, residency never more than one zone
+over its bound, and no zone ever re-prepared within three steps of its
+eviction (no thrash). Stage 4 should fold this budget into the chunk-level
+residency source of truth with the constrained-memory rule.
+
 **What this does NOT fix.** Terrain and water are the only zone-scoped GPU costs
 that were ever unbounded here; `ensureZoneFeatures` builds are already bounded
 per-BIOME (a fixed ~10-entry ladder, not per-zone), and the sky HDRI-source cache

@@ -12,8 +12,8 @@
 import type { AdminTranslations } from '../i18n.en';
 
 export const en_XA: AdminTranslations = {
-  "app.title": "[Þŕóĵéçţ Ĥ - Áðɱíñ]",
-  "app.shortTitle": "[Þŕóĵéçţ Ĥ Áðɱíñ]",
+  "app.title": "[Ŵýñðļéŵóóð - Áðɱíñ]",
+  "app.shortTitle": "[Ŵýñðļéŵóóð Áðɱíñ]",
   "auth.username": "[Úšéŕñáɱé]",
   "auth.password": "[Þáššŵóŕð]",
   "auth.signIn": "[Šíĝñ íñ]",

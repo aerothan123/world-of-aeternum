@@ -6264,9 +6264,14 @@ function dirtyEveryDeltaField(): {
   // `cluh`: an active clue hunt on a shipped hunt id (the client decoder
   // drops an id the pool does not know, so a made-up one would mirror null).
   meta.clueHunt = { huntId: CLUE_HUNTS[0].id, step: 1 };
-  meta.factionCurrencies = { rift_watch: 17, church_order: 29, automatons: 41 };
+  meta.factionCurrencies = {
+    gilt_measure: 17,
+    lanternwardens: 29,
+    hearthwright_compact: 41,
+    bracken_circle: 0,
+  };
   meta.treasureMap = { rarity: 'epic', siteId: TREASURE_SITES[0].id, seed: 78123 };
-  meta.alliedHearthstoneAttunement = 'automatons';
+  meta.alliedHearthstoneAttunement = 'hearthwright_compact';
   server.sim.worldQuestExpiresAtMs = FAR_FUTURE_MS;
   meta.worldQuestLog.set('wq_eastbrook_bandits', {
     questId: 'wq_eastbrook_bandits',
@@ -6765,9 +6770,14 @@ describe('full self-state snapshot delta fixture', () => {
     const client = bareClient(leader.pid);
     (client as any).applySnapshot(lastSnap(fc.sent));
 
-    expect(client.factionCurrencies).toEqual({ rift_watch: 17, church_order: 29, automatons: 41 });
+    expect(client.factionCurrencies).toEqual({
+      gilt_measure: 17,
+      lanternwardens: 29,
+      hearthwright_compact: 41,
+      bracken_circle: 0,
+    });
     expect(client.treasureMap).toEqual({ rarity: 'epic', siteId: TREASURE_SITES[0].id });
-    expect(client.alliedHearthstoneAttunement).toBe('automatons');
+    expect(client.alliedHearthstoneAttunement).toBe('hearthwright_compact');
     expect(client.myHouse).toEqual({
       lotId: 'eastbrook_quay_cottage',
       furniture: { hearth_floor_1: 'furn_wooden_chair' },
@@ -7239,7 +7249,8 @@ describe('full self-state snapshot delta fixture', () => {
       const meta = sim.meta(session.pid)!;
       const marla = [...sim.entities.values()].find((e) => e.templateId === 'stablemaster_marla')!;
       player.pos = { ...marla.pos };
-      meta.copper = 10_800_000;
+      // The full ladder: Apprentice (20_000) then Riding then Advanced.
+      meta.copper = 10_820_000;
       const send = (ridingTier: number) =>
         server.handleMessage(
           session,
@@ -7253,6 +7264,10 @@ describe('full self-state snapshot delta fixture', () => {
         );
       send(0);
       send(0);
+      expect(meta.copper).toBe(10_800_000);
+      expect(player.ridingTier).toBe(3);
+      send(3);
+      send(3);
       expect(meta.copper).toBe(10_000_000);
       expect(player.ridingTier).toBe(1);
       send(1);

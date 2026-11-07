@@ -75,6 +75,13 @@ const bundled = await esbuild.build({
     'import.meta.env.VITE_DISCORD_DISABLED': '""',
     'import.meta.env.VITE_NATIVE_APP': '""',
     'import.meta.env.VITE_TURNSTILE_SITEKEY': '""',
+    // Read at module scope by client_origin.ts, early_access_flags.ts, payments_policy.ts
+    // and game/studio_boot.ts; all off / unset for this static headless render.
+    'import.meta.env.VITE_PUBLIC_SITE_ORIGIN': '""',
+    'import.meta.env.VITE_MEMBERSHIP_ENABLED': '""',
+    'import.meta.env.VITE_CLAUDIUM_ENABLED': '""',
+    'import.meta.env.VITE_EXTERNAL_PAYMENTS': '""',
+    'import.meta.env.VITE_OFFLINE_WORLD': '""',
   },
   write: false,
   logLevel: 'silent',

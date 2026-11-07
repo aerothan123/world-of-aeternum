@@ -339,8 +339,10 @@ describe('isHarvestableCorpse', () => {
     // Wildheart Basin templates (basin_raptor, fanglord_jaguar, great_saurian,
     // howdah_hexcaller, spore_toad and sunbone_totem_binder), every one on a
     // mapped family; its two plant templates (vine_lasher, thorn_sprout) ship
-    // untagged like the shipped treants.
-    expect(included).toHaveLength(60);
+    // untagged like the shipped treants. Then 63 with Wyndlewood Chapter One's
+    // beast templates built on shipped tagged bodies (content/chapter_one.ts
+    // spreads its base template, family tags included).
+    expect(included).toHaveLength(63);
     // ...and the untagged templates are counted rather than assumed: 189 of
     // them ship, every one excluded, and none of them ever passed through
     // `excluded` (fen_troll was already tagged with claw and tusk when #2905
@@ -357,7 +359,7 @@ describe('isHarvestableCorpse', () => {
     // nothing either: 187. Minus the six templates the Phase 11m spread
     // tagged for the first time, the same six the `included` count above
     // picked up: 181. Plus the seven Ignivar raid templates (the derelict
-    // mech, Varkhul, the three crucible automatons, the herald and the Heart
+    // mech, Varkhul, the three crucible hearthwright_compact, the herald and the Heart
     // of the End): all elemental-family forge constructs, and a construct
     // corpse carries no skinnable or butcherable components (the release's
     // own chain read 194 = 187 + 7, since it predates the Phase 11m spread
@@ -403,7 +405,9 @@ describe('isHarvestableCorpse', () => {
       'gourdlight_swelling_gourd',
     ])
       expect(untagged).toContain(MOBS[id]);
-    expect(untagged).toHaveLength(304);
+    // Wyndlewood Chapter One's other six templates (content/chapter_one.ts:
+    // its two escortees and the four built on untagged shipped bodies): 310.
+    expect(untagged).toHaveLength(310);
     for (const m of untagged) expect(isHarvestableCorpse(m.componentTags)).toBe(false);
     // The three literals above are the load-bearing ones; this sum states that
     // they partition MOBS, so a template that fell out of all three would read

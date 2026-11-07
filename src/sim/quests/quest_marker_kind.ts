@@ -126,7 +126,9 @@ export function npcQuestMarkerKind(
   cadenceBlocked?: ReadonlySet<string>,
 ): QuestMarkerKind {
   let kind: QuestMarkerKind = 'none';
-  if (quest.giverNpcId === npcTemplateId) {
+  // A town-board posting (QuestDef.townBoard) is offered by the board, never
+  // by the NPC who posted it: that NPC holds only the turn-in role.
+  if (quest.giverNpcId === npcTemplateId && quest.townBoard === undefined) {
     kind = questMarkerKind(quest, state, questsDone, 'giver', cadenceBlocked);
   }
   if (isQuestTurnInNpc(quest, npcTemplateId)) {

@@ -1,4 +1,7 @@
-const DEFAULT_DESKTOP_API_ORIGIN = 'https://worldofclaudecraft.com';
+// No hardcoded game domain: a desktop bundle is always built with
+// VITE_DESKTOP_API_ORIGIN (scripts/electron-build.mjs refuses without one); an
+// unconfigured dev bundle talks to the local server.
+const DEFAULT_DESKTOP_API_ORIGIN = 'http://localhost:8787';
 
 export function normalizeOrigin(raw: string): string {
   const trimmed = raw.trim().replace(/\/+$/, '');
@@ -221,6 +224,30 @@ export interface DesktopHostEssentials {
   hostGameMode: boolean | null;
 }
 
+/** One add-on folder as the desktop shell read it (electron/addons.cjs). */
+export interface DesktopAddonPackage {
+  origin: 'local' | 'workshop';
+  folder: string;
+  manifestText: string;
+  files: Record<string, string>;
+  workshopId?: string;
+  pending?: boolean;
+}
+
+export interface DesktopAddonList {
+  packages: DesktopAddonPackage[];
+  safeMode: boolean;
+  workshopAvailable: boolean;
+  localFolder: string | null;
+}
+
+/** The shell's answer to a Workshop publish (electron/steam_workshop.cjs). */
+export interface DesktopAddonPublishResult {
+  ok: boolean;
+  code: 'published' | 'agreement' | 'noSteam' | 'invalid' | 'notFound' | 'failed';
+  itemId?: string;
+}
+
 export interface DesktopBridge {
   openBrowserLogin(): Promise<void>;
   takeLoginCode(): Promise<string | null>;
@@ -247,6 +274,12 @@ export interface DesktopBridge {
   // cancel the outstanding Steam auth ticket promptly (Valve's CancelAuthTicket
   // contract). Absent on older shells: feature-check before use.
   steamLinkSettled?(): Promise<unknown>;
+  // A Steam LOGIN ticket plus the persona-name hint for POST /api/auth/steam
+  // (Steam sign-in, no separate account), or null when Steam is unavailable.
+  // Absent on shells older than Steam login: feature-check before use.
+  steamLoginTicket?(): Promise<{ ticket: string; personaName: string } | null>;
+  // Signals that the login POST settled so the shell cancels that ticket.
+  steamLoginSettled?(): Promise<unknown>;
   // An Epic link proof (string) for POST /api/epic/link, or null when Epic is
   // unavailable (website/steam build, no launcher session, adapter missing).
   // Feature-check before use like the other post-trio methods.
@@ -332,6 +365,16 @@ export interface DesktopBridge {
   // feature-check before use.
   setDiscordActivity?(activity: DesktopDiscordActivity | null): void;
   setDiscordPresenceEnabled?(enabled: boolean): void;
+  // Add-ons (electron/addons.cjs): the local AddOns folder plus installed
+  // Steam Workshop items, the folder opener, and the Workshop publish path for
+  // a LOCAL add-on. Absent on older shells and the website: feature-check.
+  listAddons?(): Promise<DesktopAddonList>;
+  openAddonsFolder?(): Promise<boolean>;
+  publishAddon?(request: {
+    folder: string;
+    visibility: 'public' | 'friends' | 'private' | 'unlisted';
+    changeNote: string;
+  }): Promise<DesktopAddonPublishResult>;
 }
 
 export function desktopBridge(): DesktopBridge | null {

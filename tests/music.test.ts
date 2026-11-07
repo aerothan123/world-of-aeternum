@@ -9,7 +9,15 @@ import {
   shouldResetMusicForDungeonEntry,
   THEME_TRIM,
 } from '../src/game/music';
-import { COMBAT_STREAM_URLS, ZONE_STREAM_URLS } from '../src/game/music_tracks';
+import {
+  COMBAT_STREAM_URLS,
+  scoreCueUrl,
+  ZONE_STREAM_POOLS,
+  ZONE_STREAM_URLS,
+} from '../src/game/music_tracks';
+
+const HARBOR = ZONE_STREAM_POOLS.town_goldcrest ?? [];
+
 import { CAVE_THEMES } from '../src/sim/content/rift/cave_themes';
 import { RIFT_THEMES } from '../src/sim/content/rift/themes';
 
@@ -152,7 +160,7 @@ describe('MusicDirector streamed combat / background mix', () => {
     vi.spyOn(Math, 'random').mockReturnValue(0.9); // second of the two
     director.update('town_goldcrest', false);
     const stream = internals(director).zoneStreams.town_goldcrest;
-    expect(stream?.el?.src).toBe('/audio/music/town_goldcrest_2.mp3?v=c616612609d6');
+    expect(stream?.el?.src).toBe(HARBOR[1]);
     expect(stream?.target).toBe(1);
   });
 
@@ -162,7 +170,7 @@ describe('MusicDirector streamed combat / background mix', () => {
     const first = internals(director).zoneStreams.town_goldcrest;
     // Held separately: releasing the stream nulls its own `el` reference.
     const firstEl = first?.el;
-    expect(firstEl?.src).toBe('/audio/music/town_goldcrest_1.mp3?v=0cf44456d0f5');
+    expect(firstEl?.src).toBe(HARBOR[0]);
 
     director.update('vale', false);
     rand.mockReturnValue(0.9);
@@ -170,7 +178,7 @@ describe('MusicDirector streamed combat / background mix', () => {
 
     const second = internals(director).zoneStreams.town_goldcrest;
     expect(second).not.toBe(first);
-    expect(second?.el?.src).toBe('/audio/music/town_goldcrest_2.mp3?v=c616612609d6');
+    expect(second?.el?.src).toBe(HARBOR[1]);
     // The swapped-out cue must stop buffering behind the one now playing.
     expect(firstEl?.pause).toHaveBeenCalled();
     expect(first?.el).toBeNull();
@@ -707,7 +715,7 @@ describe('world music zone selection', () => {
     // The one supplied track with no composed counterpart: it was written for
     // the island, not remastered from the procedural score. Pinned so the
     // absence reads as deliberate and nobody "fixes" it by inventing a theme.
-    expect(ZONE_STREAM_URLS.proving_shore).toBe('/audio/music/proving_shore.mp3?v=51e9b5a6c01f');
+    expect(ZONE_STREAM_URLS.proving_shore).toBe(scoreCueUrl('wyn_region_proving_shore_day'));
     expect(buildMusicThemes().proving_shore).toBeUndefined();
   });
 

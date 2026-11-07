@@ -34,6 +34,7 @@
 // to a color, never the resolved color.
 
 import type { GatheringProfessionId } from '../sim/content/professions';
+import { TOWN_PROJECTS } from '../sim/content/town_projects';
 import { GLIDER_NPC_DEF } from '../sim/content/world_quest_glider';
 import { corpseIndicatorFor } from '../sim/corpse_loot_state';
 import {
@@ -323,7 +324,10 @@ export type MinimapMarker =
   // per-viewer state, so both IWorld hosts produce the same marker. The plot
   // state a player owns on those beds is a separate per-player read and does
   // not reach this pin. Tier-identical by the fairness invariant.
-  | { kind: 'farm-patch'; mx: number; my: number; patchId: string };
+  | { kind: 'farm-patch'; mx: number; my: number; patchId: string }
+  // A town restoration project site (src/sim/content/town_projects.ts): STATIC
+  // content positions on the station doctrine above, the same for every viewer.
+  | { kind: 'town-project'; mx: number; my: number; projectId: string };
 
 /** Everything the painter draws for one overworld minimap frame: the marker list (in
  *  draw order) plus the committed zone id (the painter localizes the #zone-label). */
@@ -727,6 +731,18 @@ export function createMinimapMarkers(): MinimapMarkers {
           my: half + dz,
           patchId: patch.id,
         });
+      }
+
+      // Town restoration project sites: static content, shown in its own zone's
+      // built-in world only (a custom map's zone ids never match).
+      const projectZoneId = TOWN_PROJECTS.length ? activeZoneAt(p.pos.x, p.pos.z).id : '';
+      for (const site of TOWN_PROJECTS) {
+        if (projectZoneId !== site.zoneId) continue;
+        const dx = -(site.site.x - p.pos.x) * pxPerYard;
+        const dz = -(site.site.z - p.pos.z) * pxPerYard;
+        const size = compact ? FARM_PATCH_MARKER_SIZE_COMPACT : FARM_PATCH_MARKER_SIZE;
+        if (!centerFits(dx * dx + dz * dz, S, minimapPaintedMarkerClearance(size))) continue;
+        markers.push({ kind: 'town-project', mx: half + dx, my: half + dz, projectId: site.id });
       }
 
       // Entity-free shipped routes use the same radial cull as every nearby

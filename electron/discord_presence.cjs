@@ -74,30 +74,26 @@ const DISCORD_PIPE_SLOTS = 10;
 const DISCORD_CLIENT_ID_PATTERN = /^\d{15,22}$/;
 
 /**
- * The official World of ClaudeCraft Discord application id, baked in by the
- * owner's provisioning decision (2026-08-15) once the registration landed
- * under exactly that name (the registration name is what Discord renders as
- * "Playing X"). An application id is public, every shipped build exposes it
- * on the wire, so baking it in leaks nothing, and it is what makes presence
- * work out of the box for players, who never set environment variables. This
- * supersedes the earlier no-hardcoded-fallback stance, which was the correct
- * reading only while no registration existed.
+ * No baked application id. The upstream project's id (which Discord renders as
+ * "Playing World of ClaudeCraft") was removed in the Wyndlewood rebrand: the id
+ * is CONFIG-DRIVEN, from the build stamp (scripts/electron-build.mjs writes
+ * WOC_DISCORD_APP_ID into wocDesktop.discordAppId) or the operator env.
+ * OWNER ACTION: create the Wyndlewood Discord application and build with its id.
  */
-const DEFAULT_DISCORD_APP_ID = '1537920691200983141';
+const DEFAULT_DISCORD_APP_ID = null;
 
 /**
- * The app id for this build. Precedence: an unset WOC_DISCORD_APP_ID means
- * the baked official id; a set and valid value overrides it (the operator
- * slot); a set but INVALID value, the empty string included, resolves to
- * null and keeps the whole feature inert. That last arm is deliberate twice
- * over: it is the typo failure mode (never dial with junk), and it is the
- * documented opt-out for forks that do not want their sessions reported as
- * the official app (WOC_DISCORD_APP_ID=off).
+ * The app id for this build. Precedence: a set WOC_DISCORD_APP_ID env (the
+ * operator slot) wins, and a set but INVALID value, the empty string included,
+ * resolves to null and keeps the whole feature inert (the typo failure mode and
+ * the documented opt-out, WOC_DISCORD_APP_ID=off). Unset env falls back to the
+ * build stamp, validated the same way; no stamp means null (inert).
  */
-function resolveDiscordClientId(env) {
+function resolveDiscordClientId(env, stampedId) {
   const raw = env?.WOC_DISCORD_APP_ID;
-  if (typeof raw !== 'string') return DEFAULT_DISCORD_APP_ID;
-  return DISCORD_CLIENT_ID_PATTERN.test(raw) ? raw : null;
+  if (typeof raw === 'string') return DISCORD_CLIENT_ID_PATTERN.test(raw) ? raw : null;
+  if (typeof stampedId === 'string' && DISCORD_CLIENT_ID_PATTERN.test(stampedId)) return stampedId;
+  return DEFAULT_DISCORD_APP_ID;
 }
 
 /**

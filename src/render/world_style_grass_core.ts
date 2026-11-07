@@ -40,6 +40,8 @@ export interface BladeClusterShape {
   readonly bandMidTaper: number;
   /** Half-width of a blunt tip as a share of the root width (0 a point). */
   readonly tipWidth: number;
+  /** Multiplier on every ribbon's outward bow (how far the tip droops over). */
+  readonly bowMul: number;
 }
 
 /** The shipped cluster, byte for byte (clusterGeometry's literals). */
@@ -51,20 +53,25 @@ export const CLASSIC_BLADE_SHAPE: BladeClusterShape = {
   lenMul: 1,
   bandMidTaper: 0.62,
   tipWidth: 0,
+  bowMul: 1,
 };
 
-/** The painted cluster: seven narrow pointed blades of varied length that
- *  taper from a soft root into a fine point, so a clump reads as natural
- *  painted grass (leaf-card detail, not broad blunt ribbons) while the
- *  painted arm keeps its base-to-tip value ramp. */
+/** The painted cluster: seven soft leaf blades of varied length. The width
+ *  holds through the middle (a fuller taper profile) up to a broad last
+ *  ring, so the tip is a short wide point instead of a needle, and every
+ *  blade bows a little further over, so a clump up close reads as soft
+ *  painted leaves rather than spiky low-poly shards. No blunt tip vertex
+ *  (tipWidth 0): 7 x 7 = 49 vertices a cluster on the carpet, the same
+ *  triangle cost as the narrow painted blade, under Classic's 9 x 7 = 63. */
 export const PAINTED_BLADE_SHAPE: BladeClusterShape = {
   blades: 7,
-  widthMul: 1.3,
-  midTaper: 0.8,
-  tipTaper: 0.42,
-  lenMul: 0.9,
-  bandMidTaper: 0.62,
+  widthMul: 1.2,
+  midTaper: 0.92,
+  tipTaper: 0.66,
+  lenMul: 0.88,
+  bandMidTaper: 0.76,
   tipWidth: 0,
+  bowMul: 1.35,
 };
 
 export function bladeClusterShape(style: WorldStyle): BladeClusterShape {

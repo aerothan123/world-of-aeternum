@@ -160,6 +160,10 @@ export function localizeErrorText(text: string, deps: ErrorTextLockoutDeps): str
     'That quest is not in your log.': 'questUi.errors.notInLog',
     'That quest is not complete.': 'questUi.errors.incomplete',
     'That quest giver is not nearby.': 'questUi.errors.giverMissing',
+    // The town quest board's accept refusal (src/sim/quests/quest_commands.ts).
+    'You must be at the notice board to take that posting.': 'hudChrome.townBoard.notAtBoard',
+    // The use-item-on-object refusal (src/sim/quests/quest_object_use.ts).
+    'You need the right item to use on that.': 'hudChrome.townBoard.needItem',
     'That quest turn-in is not nearby.': 'questUi.errors.turnInMissing',
     'That reward is not offered.': 'questUi.errors.rewardNotOffered',
     'Too far away.': 'questUi.errors.tooFar',

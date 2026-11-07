@@ -1873,3 +1873,59 @@ describe('mid-handshake socket death cannot mint a permanent zombie session', ()
     expect(gameSrc).not.toContain('this.saveCharacter(session, { withMarket: true }).catch');
   });
 });
+
+describe('createWsAuth: realm maintenance gate (server/maintenance.ts)', () => {
+  it('refuses a non-staff entry with the maintenance literal while the gate is active', async () => {
+    const { ws, game, deps, req } = setup();
+    deps.maintenanceGateActive = () => true;
+    await createWsAuth(deps).authenticateWebSocket(asWs(ws), authRaw(), req);
+    expectSendThenClose(ws, errorFrame('realm is under maintenance'));
+    expect(game.join).not.toHaveBeenCalled();
+    expect(deps.acquireCharacterLease).not.toHaveBeenCalled();
+  });
+
+  it('admits staff through the gate, and everyone when it is open', async () => {
+    const staff = setup();
+    staff.deps.maintenanceGateActive = () => true;
+    staff.deps.adminRolesForAccount = vi.fn(async () => ({ username: 'Op', roles: ['admin'] }));
+    await createWsAuth(staff.deps).authenticateWebSocket(asWs(staff.ws), authRaw(), staff.req);
+    expect(staff.game.join).toHaveBeenCalledTimes(1);
+    const open = setup();
+    open.deps.maintenanceGateActive = () => false;
+    await createWsAuth(open.deps).authenticateWebSocket(asWs(open.ws), authRaw(), open.req);
+    expect(open.game.join).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('createWsAuth: minimum client version (server/client_version_gate.ts)', () => {
+  const saved = process.env.MIN_CLIENT_VERSION;
+  afterEach(() => {
+    if (saved === undefined) delete process.env.MIN_CLIENT_VERSION;
+    else process.env.MIN_CLIENT_VERSION = saved;
+  });
+
+  it('refuses an older or version-less client before any credential work', async () => {
+    process.env.MIN_CLIENT_VERSION = '0.46.0';
+    for (const over of [{ clientVersion: '0.45.9' }, {}]) {
+      const ctx = setup();
+      await createWsAuth(ctx.deps).authenticateWebSocket(asWs(ctx.ws), authRaw(over), ctx.req);
+      expectSendThenClose(ctx.ws, errorFrame('client update required'));
+      expectNoAdmissionWork(ctx);
+    }
+  });
+
+  it('admits a current client, and everyone when no minimum is set', async () => {
+    process.env.MIN_CLIENT_VERSION = '0.46.0';
+    const current = setup();
+    await createWsAuth(current.deps).authenticateWebSocket(
+      asWs(current.ws),
+      authRaw({ clientVersion: '0.46.0' }),
+      current.req,
+    );
+    expect(current.game.join).toHaveBeenCalledTimes(1);
+    delete process.env.MIN_CLIENT_VERSION;
+    const any = setup();
+    await createWsAuth(any.deps).authenticateWebSocket(asWs(any.ws), authRaw(), any.req);
+    expect(any.game.join).toHaveBeenCalledTimes(1);
+  });
+});

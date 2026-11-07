@@ -8,12 +8,13 @@ import type { z as Zod, ZodTypeAny } from 'zod';
 
 const require = createRequire(import.meta.url);
 
-for (const consumer of ['@reown/appkit-wallet', 'chromium-bidi']) {
+// chromium-bidi is the one remaining Zod 3 consumer: the Reown AppKit copy
+// (zod@3.22.4 and its patch) left with the wallet stack.
+for (const consumer of ['chromium-bidi']) {
   const consumerRequire = createRequire(require.resolve(consumer));
   const packagePath = consumerRequire.resolve('zod/package.json');
   const pkg = require(packagePath) as { main: string; module: string; version: string };
   const formats = [pkg.main, pkg.module];
-  if (pkg.version === '3.22.4') formats.push('./lib/index.umd.js');
 
   for (const format of formats) {
     describe(`${consumer}: Zod ${pkg.version} ${format}`, () => {

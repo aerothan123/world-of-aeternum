@@ -215,6 +215,11 @@ export function eastbrookGrassExclusions(
     for (const wall of EASTBROOK_LAYOUT.wall.segments) {
       exclusions.push(layoutObb(wall.id, wall.footprint));
     }
+    // The town kit (houses, yard benches, Market Row): grass never grows
+    // through a floor, a bench or a stall counter.
+    for (const kit of EASTBROOK_LAYOUT.townKit) {
+      exclusions.push(layoutObb(kit.id, kit.reach));
+    }
 
     const fenbridge = activeFenbridgeLayout();
     for (const building of [...fenbridge.buildings, ...(fenbridge.addedCottageBuildings ?? [])]) {
