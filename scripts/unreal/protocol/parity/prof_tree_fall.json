@@ -1,0 +1,1762 @@
+{
+ "suite": "prof_tree_fall",
+ "source": "src/render/tree_felling_core.ts fallPoseAt, regrowScaleAt, chopHitsBy",
+ "note": "presentation curves (6 decimals); the client never decides a fall, it plays the server treeFelled",
+ "cases": [
+  {
+   "in": {
+    "kind": "fall",
+    "t": -0.5
+   },
+   "out": {
+    "angle": 0,
+    "scale": 1,
+    "sink": 0,
+    "landed": false,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": -0.5
+   },
+   "out": 0.12
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": -0.5
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": -0.375
+   },
+   "out": {
+    "angle": 0,
+    "scale": 1,
+    "sink": 0,
+    "landed": false,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": -0.375
+   },
+   "out": 0.12
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": -0.375
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": -0.25
+   },
+   "out": {
+    "angle": 0,
+    "scale": 1,
+    "sink": 0,
+    "landed": false,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": -0.25
+   },
+   "out": 0.12
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": -0.25
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": -0.125
+   },
+   "out": {
+    "angle": 0,
+    "scale": 1,
+    "sink": 0,
+    "landed": false,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": -0.125
+   },
+   "out": 0.12
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": -0.125
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 0
+   },
+   "out": {
+    "angle": 0,
+    "scale": 1,
+    "sink": 0,
+    "landed": false,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 0
+   },
+   "out": 0.12
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 0
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 0.125
+   },
+   "out": {
+    "angle": 0.010492,
+    "scale": 1,
+    "sink": 0,
+    "landed": false,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 0.125
+   },
+   "out": 0.226563
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 0.125
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 0.25
+   },
+   "out": {
+    "angle": 0.041967,
+    "scale": 1,
+    "sink": 0,
+    "landed": false,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 0.25
+   },
+   "out": 0.32625
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 0.25
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 0.375
+   },
+   "out": {
+    "angle": 0.094425,
+    "scale": 1,
+    "sink": 0,
+    "landed": false,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 0.375
+   },
+   "out": 0.419063
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 0.375
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 0.5
+   },
+   "out": {
+    "angle": 0.167866,
+    "scale": 1,
+    "sink": 0,
+    "landed": false,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 0.5
+   },
+   "out": 0.505
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 0.5
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 0.625
+   },
+   "out": {
+    "angle": 0.262291,
+    "scale": 1,
+    "sink": 0,
+    "landed": false,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 0.625
+   },
+   "out": 0.584062
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 0.625
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 0.75
+   },
+   "out": {
+    "angle": 0.377699,
+    "scale": 1,
+    "sink": 0,
+    "landed": false,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 0.75
+   },
+   "out": 0.65625
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 0.75
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 0.875
+   },
+   "out": {
+    "angle": 0.51409,
+    "scale": 1,
+    "sink": 0,
+    "landed": false,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 0.875
+   },
+   "out": 0.721563
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 0.875
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 1
+   },
+   "out": {
+    "angle": 0.671465,
+    "scale": 1,
+    "sink": 0,
+    "landed": false,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 1
+   },
+   "out": 0.78
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 1
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 1.125
+   },
+   "out": {
+    "angle": 0.849823,
+    "scale": 1,
+    "sink": 0,
+    "landed": false,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 1.125
+   },
+   "out": 0.831563
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 1.125
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 1.25
+   },
+   "out": {
+    "angle": 1.049164,
+    "scale": 1,
+    "sink": 0,
+    "landed": false,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 1.25
+   },
+   "out": 0.87625
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 1.25
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 1.375
+   },
+   "out": {
+    "angle": 1.269489,
+    "scale": 1,
+    "sink": 0,
+    "landed": false,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 1.375
+   },
+   "out": 0.914063
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 1.375
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 1.5
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 1,
+    "sink": 0,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 1.5
+   },
+   "out": 0.945
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 1.5
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 1.625
+   },
+   "out": {
+    "angle": 1.451428,
+    "scale": 1,
+    "sink": 0,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 1.625
+   },
+   "out": 0.969063
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 1.625
+   },
+   "out": 2
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 1.75
+   },
+   "out": {
+    "angle": 1.446784,
+    "scale": 1,
+    "sink": 0,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 1.75
+   },
+   "out": 0.98625
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 1.75
+   },
+   "out": 2
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 1.875
+   },
+   "out": {
+    "angle": 1.484546,
+    "scale": 1,
+    "sink": 0,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 1.875
+   },
+   "out": 0.996563
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 1.875
+   },
+   "out": 2
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 2
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 1,
+    "sink": 0,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 2
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 2
+   },
+   "out": 2
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 2.125
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 1,
+    "sink": 0,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 2.125
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 2.125
+   },
+   "out": 2
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 2.25
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 1,
+    "sink": 0,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 2.25
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 2.25
+   },
+   "out": 2
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 2.375
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 1,
+    "sink": 0,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 2.375
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 2.375
+   },
+   "out": 2
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 2.5
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 1,
+    "sink": 0,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 2.5
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 2.5
+   },
+   "out": 2
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 2.625
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 1,
+    "sink": 0,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 2.625
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 2.625
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 2.75
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 1,
+    "sink": 0,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 2.75
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 2.75
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 2.875
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 1,
+    "sink": 0,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 2.875
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 2.875
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 3
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 1,
+    "sink": 0,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 3
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 3
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 3.125
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 1,
+    "sink": 0,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 3.125
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 3.125
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 3.25
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0.99275,
+    "sink": 0.0058,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 3.25
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 3.25
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 3.375
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0.964879,
+    "sink": 0.028097,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 3.375
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 3.375
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 3.5
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0.918844,
+    "sink": 0.064925,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 3.5
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 3.5
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 3.625
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0.857574,
+    "sink": 0.113941,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 3.625
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 3.625
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 3.75
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0.784,
+    "sink": 0.1728,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 3.75
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 3.75
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 3.875
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0.701051,
+    "sink": 0.239159,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 3.875
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 3.875
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 4
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0.611656,
+    "sink": 0.310675,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 4
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 4
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 4.125
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0.518746,
+    "sink": 0.385003,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 4.125
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 4.125
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 4.25
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0.42525,
+    "sink": 0.4598,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 4.25
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 4.25
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 4.375
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0.334098,
+    "sink": 0.532722,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 4.375
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 4.375
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 4.5
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0.248219,
+    "sink": 0.601425,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 4.5
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 4.5
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 4.625
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0.170543,
+    "sink": 0.663566,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 4.625
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 4.625
+   },
+   "out": 5
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 4.75
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0.104,
+    "sink": 0.7168,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 4.75
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 4.75
+   },
+   "out": 5
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 4.875
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0.05152,
+    "sink": 0.758784,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 4.875
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 4.875
+   },
+   "out": 5
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 5
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0.016031,
+    "sink": 0.787175,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 5
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 5
+   },
+   "out": 5
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 5.125
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0.000465,
+    "sink": 0.799628,
+    "landed": true,
+    "done": false
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 5.125
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 5.125
+   },
+   "out": 5
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 5.25
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0,
+    "sink": 0.8,
+    "landed": true,
+    "done": true
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 5.25
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 5.25
+   },
+   "out": 5
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 5.375
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0,
+    "sink": 0.8,
+    "landed": true,
+    "done": true
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 5.375
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 5.375
+   },
+   "out": 5
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 5.5
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0,
+    "sink": 0.8,
+    "landed": true,
+    "done": true
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 5.5
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 5.5
+   },
+   "out": 5
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 5.625
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0,
+    "sink": 0.8,
+    "landed": true,
+    "done": true
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 5.625
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 5.625
+   },
+   "out": 6
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 5.75
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0,
+    "sink": 0.8,
+    "landed": true,
+    "done": true
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 5.75
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 5.75
+   },
+   "out": 6
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 5.875
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0,
+    "sink": 0.8,
+    "landed": true,
+    "done": true
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 5.875
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 5.875
+   },
+   "out": 6
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 6
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0,
+    "sink": 0.8,
+    "landed": true,
+    "done": true
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 6
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 6
+   },
+   "out": 6
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 6.125
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0,
+    "sink": 0.8,
+    "landed": true,
+    "done": true
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 6.125
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 6.125
+   },
+   "out": 6
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 6.25
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0,
+    "sink": 0.8,
+    "landed": true,
+    "done": true
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 6.25
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 6.25
+   },
+   "out": 6
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 6.375
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0,
+    "sink": 0.8,
+    "landed": true,
+    "done": true
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 6.375
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 6.375
+   },
+   "out": 6
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 6.5
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0,
+    "sink": 0.8,
+    "landed": true,
+    "done": true
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 6.5
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 6.5
+   },
+   "out": 6
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 6.625
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0,
+    "sink": 0.8,
+    "landed": true,
+    "done": true
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 6.625
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 6.625
+   },
+   "out": 7
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 6.75
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0,
+    "sink": 0.8,
+    "landed": true,
+    "done": true
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 6.75
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 6.75
+   },
+   "out": 7
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 6.875
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0,
+    "sink": 0.8,
+    "landed": true,
+    "done": true
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 6.875
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 6.875
+   },
+   "out": 7
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 7
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0,
+    "sink": 0.8,
+    "landed": true,
+    "done": true
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 7
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 7
+   },
+   "out": 7
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 7.125
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0,
+    "sink": 0.8,
+    "landed": true,
+    "done": true
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 7.125
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 7.125
+   },
+   "out": 7
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 7.25
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0,
+    "sink": 0.8,
+    "landed": true,
+    "done": true
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 7.25
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 7.25
+   },
+   "out": 7
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 7.375
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0,
+    "sink": 0.8,
+    "landed": true,
+    "done": true
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 7.375
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 7.375
+   },
+   "out": 7
+  },
+  {
+   "in": {
+    "kind": "fall",
+    "t": 7.5
+   },
+   "out": {
+    "angle": 1.510796,
+    "scale": 0,
+    "sink": 0.8,
+    "landed": true,
+    "done": true
+   }
+  },
+  {
+   "in": {
+    "kind": "regrow",
+    "t": 7.5
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "hits",
+    "t": 7.5
+   },
+   "out": 7
+  }
+ ]
+}

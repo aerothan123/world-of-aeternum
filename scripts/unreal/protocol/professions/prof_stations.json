@@ -1,0 +1,58 @@
+[
+ {
+  "id": "station_eastbrook_forge",
+  "type": "forge",
+  "zoneId": "eastbrook_vale",
+  "x": -4.1722222222222225,
+  "z": -113.8
+ },
+ {
+  "id": "station_eastbrook_kitchens",
+  "type": "kitchens",
+  "zoneId": "eastbrook_vale",
+  "x": -3.367368421052632,
+  "z": -108.5
+ },
+ {
+  "id": "station_eastbrook_loom",
+  "type": "loom",
+  "zoneId": "eastbrook_vale",
+  "x": -15.277777777777779,
+  "z": -116.6
+ },
+ {
+  "id": "station_eastbrook_toolworks",
+  "type": "toolworks",
+  "zoneId": "eastbrook_vale",
+  "x": -15.894166666666667,
+  "z": -125.6
+ },
+ {
+  "id": "station_fenbridge_tannery",
+  "type": "tannery",
+  "zoneId": "mirefen_marsh",
+  "x": -26,
+  "z": 327
+ },
+ {
+  "id": "station_highwatch_apothecary",
+  "type": "apothecary",
+  "zoneId": "thornpeak_heights",
+  "x": 7,
+  "z": 660
+ },
+ {
+  "id": "station_eastbrook_apothecary",
+  "type": "apothecary",
+  "zoneId": "eastbrook_vale",
+  "x": -15.971153846153847,
+  "z": -112
+ },
+ {
+  "id": "station_eastbrook_tannery",
+  "type": "tannery",
+  "zoneId": "eastbrook_vale",
+  "x": -15.443999999999999,
+  "z": -121.2
+ }
+]

@@ -1,0 +1,87 @@
+{
+ "worldSeed": 20061,
+ "lattice": {
+  "step": 10,
+  "xStart": -526,
+  "zStart": -886,
+  "zCount": 330
+ },
+ "interactRange": 5,
+ "stationRadius": 20,
+ "craftBatchMax": 50,
+ "treeRegrowSeconds": 300,
+ "treeChopSwingSeconds": 1,
+ "felledTreeWireRadius": 200,
+ "gatherCastBaseSeconds": 2.5,
+ "proficiencyBands": [
+  0,
+  100,
+  200
+ ],
+ "castIds": {
+  "gather": "gathering",
+  "chop": "chopping",
+  "craft": "crafting"
+ },
+ "nodeRespawnSeconds": {
+  "ore": 240,
+  "wood": 240,
+  "herb": 240
+ },
+ "maxLevel": 20,
+ "xpForLevel": [
+  400,
+  900,
+  1400,
+  2100,
+  2800,
+  3600,
+  4500,
+  5400,
+  6500,
+  7600,
+  8800,
+  10100,
+  11400,
+  12900,
+  14400,
+  16000,
+  17700,
+  19400,
+  21300,
+  23200
+ ],
+ "zeroDiff": [
+  5,
+  5,
+  5,
+  5,
+  5,
+  5,
+  5,
+  6,
+  6,
+  7,
+  7,
+  7,
+  7,
+  7,
+  7,
+  8,
+  8,
+  8,
+  8,
+  8
+ ],
+ "materialGrades": {
+  "copper_ore": "fine_copper_ore",
+  "ironbark_log": "fine_ironbark_log",
+  "silverleaf_herb": "fine_silverleaf_herb",
+  "iron_ore": "fine_iron_ore",
+  "ashwood_log": "fine_ashwood_log",
+  "goldleaf_herb": "fine_goldleaf_herb",
+  "thorium_ore": "fine_thorium_ore",
+  "elderwood_log": "fine_elderwood_log",
+  "sunpetal_herb": "fine_sunpetal_herb"
+ }
+}

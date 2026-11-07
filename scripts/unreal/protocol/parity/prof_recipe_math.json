@@ -1,0 +1,7908 @@
+{
+ "suite": "prof_recipe_math",
+ "source": "professions/crafting.ts requiredReagentCountFor, clampCraftBatchCount, maxCraftCountForRecipe (bags arm), craft_cast_duration.ts",
+ "note": "required: weaponcrafting skill drives the specialization multiplier; craftable: no self-signed copies, no vault",
+ "cases": [
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 1,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 2,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 1,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 3,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 4,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 3,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 2,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 5,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 6,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 6,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 6,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 6,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 5,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 4,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 7,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 10,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 10,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 9,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 10,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 10,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 10,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 9,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 10,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 8,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 10,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 10,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 8,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 10,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 10,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 9,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 10,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 8,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 10,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 9,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 10,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 8,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 10,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 10,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 6,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 10,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 10,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 6,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 10,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 10,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 12,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 12,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 10,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 12,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 12,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 12,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 10,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 12,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 9,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 12,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 8,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 12,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 9,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 12,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 8,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 12,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 11,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 12,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 9,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 12,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 11,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 12,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 9,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 12,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 8,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 12,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 12,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 8,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 12,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 7,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 12,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 12,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 20,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 20,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 18,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": false,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 20,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 20,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 20,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 18,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": false,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 20,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 16,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 20,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 14,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": false,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 20,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 16,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 20,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 14,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": false,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 20,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 19,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 20,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 17,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": true,
+    "skill": 0,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 20,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 19,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 20,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 17,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": true,
+    "skill": 74,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 20,
+    "multiplier": 1
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 15,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 20,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 13,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": true,
+    "skill": 75,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 20,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 15,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": false,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 20,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": false
+   },
+   "out": {
+    "count": 13,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "required",
+    "count": 20,
+    "selfSigned": true,
+    "skill": 125,
+    "jack": true,
+    "noDiscount": true
+   },
+   "out": {
+    "count": 20,
+    "multiplier": 0.8
+   }
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": -3,
+    "maxByMats": -1
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": -3,
+    "maxByMats": 0
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": -3,
+    "maxByMats": 1
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": -3,
+    "maxByMats": 3
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": -3,
+    "maxByMats": 50
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": -3,
+    "maxByMats": 80
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 0,
+    "maxByMats": -1
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 0,
+    "maxByMats": 0
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 0,
+    "maxByMats": 1
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 0,
+    "maxByMats": 3
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 0,
+    "maxByMats": 50
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 0,
+    "maxByMats": 80
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 0.5,
+    "maxByMats": -1
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 0.5,
+    "maxByMats": 0
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 0.5,
+    "maxByMats": 1
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 0.5,
+    "maxByMats": 3
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 0.5,
+    "maxByMats": 50
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 0.5,
+    "maxByMats": 80
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 1,
+    "maxByMats": -1
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 1,
+    "maxByMats": 0
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 1,
+    "maxByMats": 1
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 1,
+    "maxByMats": 3
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 1,
+    "maxByMats": 50
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 1,
+    "maxByMats": 80
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 2,
+    "maxByMats": -1
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 2,
+    "maxByMats": 0
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 2,
+    "maxByMats": 1
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 2,
+    "maxByMats": 3
+   },
+   "out": 2
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 2,
+    "maxByMats": 50
+   },
+   "out": 2
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 2,
+    "maxByMats": 80
+   },
+   "out": 2
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 7.9,
+    "maxByMats": -1
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 7.9,
+    "maxByMats": 0
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 7.9,
+    "maxByMats": 1
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 7.9,
+    "maxByMats": 3
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 7.9,
+    "maxByMats": 50
+   },
+   "out": 7
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 7.9,
+    "maxByMats": 80
+   },
+   "out": 7
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 49,
+    "maxByMats": -1
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 49,
+    "maxByMats": 0
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 49,
+    "maxByMats": 1
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 49,
+    "maxByMats": 3
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 49,
+    "maxByMats": 50
+   },
+   "out": 49
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 49,
+    "maxByMats": 80
+   },
+   "out": 49
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 50,
+    "maxByMats": -1
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 50,
+    "maxByMats": 0
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 50,
+    "maxByMats": 1
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 50,
+    "maxByMats": 3
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 50,
+    "maxByMats": 50
+   },
+   "out": 50
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 50,
+    "maxByMats": 80
+   },
+   "out": 50
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 51,
+    "maxByMats": -1
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 51,
+    "maxByMats": 0
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 51,
+    "maxByMats": 1
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 51,
+    "maxByMats": 3
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 51,
+    "maxByMats": 50
+   },
+   "out": 50
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 51,
+    "maxByMats": 80
+   },
+   "out": 50
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 400,
+    "maxByMats": -1
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 400,
+    "maxByMats": 0
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 400,
+    "maxByMats": 1
+   },
+   "out": 1
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 400,
+    "maxByMats": 3
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 400,
+    "maxByMats": 50
+   },
+   "out": 50
+  },
+  {
+   "in": {
+    "kind": "clamp",
+    "requested": 400,
+    "maxByMats": 80
+   },
+   "out": 50
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_arming_sword",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_arming_sword",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_arming_sword",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_arming_sword",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_arming_sword",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_chain_vest",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_chain_vest",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_chain_vest",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_chain_vest",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_chain_vest",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_wool_trousers",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_wool_trousers",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_wool_trousers",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_wool_trousers",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_wool_trousers",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_tanned_leather_jerkin",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_tanned_leather_jerkin",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_tanned_leather_jerkin",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_tanned_leather_jerkin",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_tanned_leather_jerkin",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_tough_jerky",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_tough_jerky",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_tough_jerky",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_tough_jerky",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_tough_jerky",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_minor_healing_potion",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_minor_healing_potion",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_minor_healing_potion",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_minor_healing_potion",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_minor_healing_potion",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_ritual_vestments",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_ritual_vestments",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_ritual_vestments",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_ritual_vestments",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_ritual_vestments",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_druids_hide",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_druids_hide",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_druids_hide",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_druids_hide",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_druids_hide",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_warded_leggings",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_warded_leggings",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_warded_leggings",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_warded_leggings",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_eastbrook_warded_leggings",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_thorium_mining_pick",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_thorium_mining_pick",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_thorium_mining_pick",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_thorium_mining_pick",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_thorium_mining_pick",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_arcanite_mining_pick",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_arcanite_mining_pick",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_arcanite_mining_pick",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_arcanite_mining_pick",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_arcanite_mining_pick",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ashwood_axe",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ashwood_axe",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ashwood_axe",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ashwood_axe",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ashwood_axe",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_elderwood_axe",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_elderwood_axe",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_elderwood_axe",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_elderwood_axe",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_elderwood_axe",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_goldleaf_sickle",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_goldleaf_sickle",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_goldleaf_sickle",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_goldleaf_sickle",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_goldleaf_sickle",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_sunpetal_sickle",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_sunpetal_sickle",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_sunpetal_sickle",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_sunpetal_sickle",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_sunpetal_sickle",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_stormreel_fishing_rod",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_stormreel_fishing_rod",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_stormreel_fishing_rod",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_stormreel_fishing_rod",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_stormreel_fishing_rod",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_tidewrought_fishing_rod",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_tidewrought_fishing_rod",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_tidewrought_fishing_rod",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_tidewrought_fishing_rod",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_tidewrought_fishing_rod",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_clockreel_fishing_rod",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_clockreel_fishing_rod",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_clockreel_fishing_rod",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_clockreel_fishing_rod",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_clockreel_fishing_rod",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_gatherers_cache",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_gatherers_cache",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_gatherers_cache",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_gatherers_cache",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_gatherers_cache",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_artisans_eye",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_artisans_eye",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_artisans_eye",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_artisans_eye",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_artisans_eye",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_wardweave_cowl",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_wardweave_cowl",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_wardweave_cowl",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_wardweave_cowl",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_wardweave_cowl",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_duskhide_wraps",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_duskhide_wraps",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_duskhide_wraps",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_duskhide_wraps",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_duskhide_wraps",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_sootscale_mantle",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_sootscale_mantle",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_sootscale_mantle",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_sootscale_mantle",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_sootscale_mantle",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironbound_warplate_helm",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironbound_warplate_helm",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironbound_warplate_helm",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironbound_warplate_helm",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironbound_warplate_helm",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_forgeguard_bulwark_gauntlets",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_forgeguard_bulwark_gauntlets",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_forgeguard_bulwark_gauntlets",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_forgeguard_bulwark_gauntlets",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_forgeguard_bulwark_gauntlets",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_volatile_flux_elixir",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_volatile_flux_elixir",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_volatile_flux_elixir",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_volatile_flux_elixir",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_volatile_flux_elixir",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_copper_bearded_axe",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_copper_bearded_axe",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_copper_bearded_axe",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_copper_bearded_axe",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_copper_bearded_axe",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_copper_flanged_mace",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_copper_flanged_mace",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_copper_flanged_mace",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_copper_flanged_mace",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_copper_flanged_mace",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironbark_boar_spear",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironbark_boar_spear",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironbark_boar_spear",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironbark_boar_spear",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironbark_boar_spear",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironedge_longsword",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironedge_longsword",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironedge_longsword",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironedge_longsword",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironedge_longsword",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironshod_maul",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironshod_maul",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironshod_maul",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironshod_maul",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironshod_maul",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_whetted_iron_dirk",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_whetted_iron_dirk",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_whetted_iron_dirk",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_whetted_iron_dirk",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_whetted_iron_dirk",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_thorium_warblade",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_thorium_warblade",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_thorium_warblade",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_thorium_warblade",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_thorium_warblade",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_arcanite_war_axe",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_arcanite_war_axe",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_arcanite_war_axe",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_arcanite_war_axe",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_arcanite_war_axe",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_elderwood_battle_staff",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_elderwood_battle_staff",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_elderwood_battle_staff",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_elderwood_battle_staff",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_elderwood_battle_staff",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_riveted_copper_girdle",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_riveted_copper_girdle",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_riveted_copper_girdle",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_riveted_copper_girdle",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_riveted_copper_girdle",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_coppermail_sabatons",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_coppermail_sabatons",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_coppermail_sabatons",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_coppermail_sabatons",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_coppermail_sabatons",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_coppermail_gauntlets",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_coppermail_gauntlets",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_coppermail_gauntlets",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_coppermail_gauntlets",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_coppermail_gauntlets",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironlink_hauberk",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironlink_hauberk",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironlink_hauberk",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironlink_hauberk",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironlink_hauberk",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironlink_legguards",
+    "bag": 0,
+    "bagJson": "{}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironlink_legguards",
+    "bag": 1,
+    "bagJson": "{\"copper_ore\":4}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironlink_legguards",
+    "bag": 2,
+    "bagJson": "{\"copper_ore\":3,\"fine_copper_ore\":2}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironlink_legguards",
+    "bag": 3,
+    "bagJson": "{\"copper_ore\":200,\"ironbark_log\":9}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "craftable",
+    "recipe": "recipe_ironlink_legguards",
+    "bag": 4,
+    "bagJson": "{\"copper_ore\":11,\"ironbark_log\":2,\"linen_scrap\":40}"
+   },
+   "out": 0
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_eastbrook_arming_sword"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_eastbrook_chain_vest"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_eastbrook_wool_trousers"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_tanned_leather_jerkin"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_tough_jerky"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_minor_healing_potion"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_eastbrook_ritual_vestments"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_eastbrook_druids_hide"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_eastbrook_warded_leggings"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_thorium_mining_pick"
+   },
+   "out": 3.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_arcanite_mining_pick"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_ashwood_axe"
+   },
+   "out": 3.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_elderwood_axe"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_goldleaf_sickle"
+   },
+   "out": 3.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_sunpetal_sickle"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_stormreel_fishing_rod"
+   },
+   "out": 3.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_tidewrought_fishing_rod"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_clockreel_fishing_rod"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_gatherers_cache"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_artisans_eye"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_wardweave_cowl"
+   },
+   "out": 3.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_duskhide_wraps"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_sootscale_mantle"
+   },
+   "out": 3.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_ironbound_warplate_helm"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_forgeguard_bulwark_gauntlets"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_volatile_flux_elixir"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_copper_bearded_axe"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_copper_flanged_mace"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_ironbark_boar_spear"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_ironedge_longsword"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_ironshod_maul"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_whetted_iron_dirk"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_thorium_warblade"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_arcanite_war_axe"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_elderwood_battle_staff"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_riveted_copper_girdle"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_coppermail_sabatons"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_coppermail_gauntlets"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_ironlink_hauberk"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_ironlink_legguards"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_ironlink_spaulders"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_thoriumscale_greathelm"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_thoriumscale_cuirass"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_thoriumscale_leggings"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_homespun_hood"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_homespun_mitts"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_silverthread_slippers"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_goldweave_robe"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_goldweave_leggings"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_silkspun_satchel"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_silkbinders_raiment"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_sunweave_mantle"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_sunweave_treads"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_fenbridge_hide_leggings"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_fenbridge_hide_boots"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_fenbridge_hide_belt"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_marshstalker_jerkin"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_marshstalker_hood"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_marshstalker_spaulders"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_mirewarden_jerkin"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_mirewarden_leggings"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_mirewarden_treads"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_pan_seared_perch"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_hunters_game_skewer"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_herbed_marsh_pike"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_ashwood_smoked_eel"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_goldleaf_game_stew"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_frostgill_chowder"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_silvered_carp_supper"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_anglers_feast_platter"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_marlows_grand_roast"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_silverleaf_healing_draught"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_silverleaf_mana_draught"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_elixir_of_the_boar"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_goldleaf_healing_draught"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_goldleaf_mana_draught"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_venomfire_elixir"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_sunpetal_healing_draught"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_sunpetal_mana_draught"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_elixir_of_the_serpent"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_foragers_haversack"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_duskweave_bag"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_resonant_weave_bag"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_loombound_reagent_satchel"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_hammered_copper_band"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_polished_copper_loop"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_coiled_copper_torc"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_riveted_iron_signet"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_etched_iron_loop"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_iron_link_choker"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_weighted_thorium_band"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_gleaming_thorium_loop"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_burnished_thorium_amulet"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_silverleaf_primer"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_silverleaf_scroll"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_goldleaf_folio"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_goldleaf_scroll"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_sunpetal_grimoire"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_sunpetal_scroll"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_deed_of_making"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_quickening_catalyst"
+   },
+   "out": 3.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_duskforged_billet"
+   },
+   "out": 3.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_forgefold_plating"
+   },
+   "out": 3.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_wyrmhide_cording"
+   },
+   "out": 3.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_sunspun_bolt"
+   },
+   "out": 3.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_prismglass_setting"
+   },
+   "out": 3.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_precision_chassis"
+   },
+   "out": 3.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_seasoned_stock"
+   },
+   "out": 3.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_lucent_reagent"
+   },
+   "out": 3.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_sablewax_vellum"
+   },
+   "out": 3.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_spiritweld_girdle"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_forgefold_legguards"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_wardspeaker_sabatons"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_briarstep_jerkin"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_fenbloom_breeches"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_barksong_handguards"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_sunspun_vestments"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_sunspun_leggings"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_sunspun_handwraps"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_sunspun_haversack"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_duskforged_warblade"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_ridgebreaker"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_duskforged_bulwark"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_wyrmfall_pendant"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_warhewn_signet"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_prismglass_loop"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_gyrelens_array"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_masters_field_forge"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_makers_charm"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_voidbound_grimoire"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_ironhusk_flask"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_warboar_flask"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_runewater_flask"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_stonepot_stew"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_warspice_skewers"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_sageleaf_chowder"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_grand_cauldron"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_laden_hearth"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_peppered_deepbarb_catfish"
+   },
+   "out": 3.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_roast_hollowgill_sturgeon"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_stonepot_feast"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_warspice_feast"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_sageleaf_feast"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_bronze_hoe"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_skysilver_hoe"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_osmium_hoe"
+   },
+   "out": 3.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_evergarden_hoe"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_vale_hearth_loaf"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_eastbrook_root_pottage"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_fenbridge_rice_bowl"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_fenbridge_beet_braise"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_highwatch_barley_bannock"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_highwatch_gourd_soup"
+   },
+   "out": 3.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_evergarden_sunmelon_tart"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_evergarden_harvest_platter"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_eastbrook_glazed_carrots"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_fenbridge_rice_pudding"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_highwatch_barley_porridge"
+   },
+   "out": 3.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_evergarden_braised_greens"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_harvest_feast"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_growth_tonic"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_oiled_boots"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_gravewyrm_bone_quiver"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_fenshadow_maul"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_lesser_healing_potion"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_linen_pouch"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_wildgrove_cinch"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_cragprowl_belt"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_cogwheel_blank"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_copperlens_ocular"
+   },
+   "out": 2.5
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_str_mail_chest"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_str_mail_waist"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_str_mail_feet"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_tank_mail_chest"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_tank_mail_waist"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_tank_mail_feet"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_caster_mail_chest"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_caster_mail_waist"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_caster_mail_feet"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_healer_mail_chest"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_healer_mail_waist"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_healer_mail_feet"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_agi_leather_chest"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_agi_leather_waist"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_agi_leather_feet"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_str_leather_chest"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_str_leather_waist"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_str_leather_feet"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_tank_leather_chest"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_tank_leather_waist"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_tank_leather_feet"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_caster_leather_chest"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_caster_leather_waist"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_caster_leather_feet"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_healer_leather_chest"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_healer_leather_waist"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_healer_leather_feet"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_caster_cloth_chest"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_caster_cloth_waist"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_caster_cloth_feet"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_healer_cloth_chest"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_healer_cloth_waist"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_crucible_healer_cloth_feet"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_varkhul_forgebreaker"
+   },
+   "out": 4
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_elixir_of_mana_regeneration"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_potion_of_invisibility"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "pattern_reinforced_armor_kit"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "schematic_clockwork_shock_bomb"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "plans_dense_sharpening_stone"
+   },
+   "out": 3
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_furn_wooden_stool"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_furn_wooden_chair"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_furn_oak_bench"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_furn_round_table"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_furn_long_table"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_furn_bookcase"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_furn_keg"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_furn_barrel"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_furn_woven_rug"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_furn_candlestick"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_furn_storage_chest"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_furn_trophy_plaque"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_furn_station_forge"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_furn_station_kitchens"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_furn_station_apothecary"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_furn_station_tannery"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_furn_station_loom"
+   },
+   "out": 1.75
+  },
+  {
+   "in": {
+    "kind": "castSeconds",
+    "recipe": "recipe_furn_station_toolworks"
+   },
+   "out": 1.75
+  }
+ ]
+}
