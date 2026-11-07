@@ -169,7 +169,7 @@ function clipsOf(def: AnyDef | undefined): CreatureClips {
 }
 
 function visualOf(key: string): CreatureVisual {
-  const def = VISUALS[key] as AnyDef | undefined;
+  const def = VISUALS[key] as unknown as AnyDef | undefined;
   const model = modelKey(def?.url as string | undefined);
   const anim = Array.isArray(def?.animUrls) ? (def?.animUrls as string[]) : [];
   return {
@@ -244,7 +244,7 @@ export function buildCreatureExport(): CreatureExport {
     };
   });
   const mounts = sorted(Object.keys(MOUNTS), (id) => {
-    const s = (MOUNT_VISUAL_SPECS as Record<string, AnyDef>)[id];
+    const s = (MOUNT_VISUAL_SPECS as unknown as Record<string, AnyDef>)[id];
     return {
       mount: id,
       rigged: !!s?.rigged,
@@ -388,7 +388,7 @@ export function buildTelegraphExport(): TelegraphExport {
     for (const [id, s] of Object.entries(t)) all[id] = telegraphRow(dungeon, s as AnyDef);
   }
   const casts = sorted(Object.keys(all), (id) => all[id]);
-  const objRaw = cryptObjectTelegraphs() as Record<string, AnyDef>;
+  const objRaw = cryptObjectTelegraphs() as unknown as Record<string, AnyDef>;
   const objects = sorted(Object.keys(objRaw), (id) => {
     const o = objRaw[id];
     return {
