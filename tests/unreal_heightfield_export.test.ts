@@ -90,5 +90,5 @@ describe('unreal heightfield export', () => {
     }
     writeFileSync(join(out, 'heightfields.json'), `${JSON.stringify(manifest, null, 1)}\n`);
     expect(manifest.zones.length).toBeGreaterThan(0);
-  }, 600_000);
+  }, 300_000);
 });

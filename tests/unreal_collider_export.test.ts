@@ -91,5 +91,5 @@ describe('unreal collider export', () => {
     }
     for (const m of manifest.zones) console.log(`colliders ${m.id} ${m.count}`);
     expect(manifest.zones.length).toBeGreaterThan(0);
-  }, 600_000);
+  }, 300_000);
 });
