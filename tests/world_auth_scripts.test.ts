@@ -139,6 +139,16 @@ const NON_AUTHENTICATING_NODE_WS_SCRIPTS = [
   'scripts/ota/check_server_layout.mjs',
   'scripts/ws_security_e2e.mjs',
 ] as const;
+// The native (Unreal) client tooling under scripts/unreal. The golden session
+// replays the Unreal client's own auth frame, built from the generated protocol
+// export (authType plus every capability), so it cannot route through the
+// shared helper; the two live-check setup scripts load the shared helper with a
+// dynamic import. Each still has to carry the authoritative discriminator.
+const NATIVE_CLIENT_WS_SCRIPTS = [
+  { path: 'scripts/unreal/golden_session.mjs', authSend: 't: authType,' },
+  { path: 'scripts/unreal/prof_live_setup.mjs', authSend: 'send(worldAuthMessage(tok, ch.id))' },
+  { path: 'scripts/unreal/social_live_setup.mjs', authSend: 'send(worldAuthMessage(tok, ch.id))' },
+] as const;
 const LEGACY_AUTH_LITERAL = /\bt\s*:\s*['"]auth['"]/;
 // A frame BUILT as { t: 'chat' }, never a received-message test (=== 'chat').
 const TOP_LEVEL_CHAT_FRAME = /\bt\s*:\s*['"]chat['"]/;
@@ -196,9 +206,26 @@ describe('standalone world WebSocket auth', () => {
       [
         ...AUTHENTICATED_NODE_CLIENTS.map(({ path }) => path),
         ...NON_AUTHENTICATING_NODE_WS_SCRIPTS,
+        ...NATIVE_CLIENT_WS_SCRIPTS.map(({ path }) => path),
       ].sort(),
     );
   });
+
+  it.each(NATIVE_CLIENT_WS_SCRIPTS)(
+    '$path authenticates with the current discriminator',
+    ({ path, authSend }) => {
+      const source = readFileSync(join(ROOT, path), 'utf8');
+      expect(source.replace(/\s+/g, ' ')).toContain(authSend);
+      if (authSend.startsWith('t: authType')) {
+        // authType comes from the generated protocol export, which is pinned
+        // to ONLINE_WORLD_AUTH_TYPE by tests/unreal_protocol_export.test.ts.
+        expect(source).toContain('protocol.authType');
+      } else {
+        expect(source).toContain("import('../lib/world_auth.mjs')");
+      }
+      expect(source).not.toMatch(LEGACY_AUTH_LITERAL);
+    },
+  );
 
   it.each(AUTHENTICATED_NODE_CLIENTS)(
     '$path sends its exact token and character through the shared helper',
