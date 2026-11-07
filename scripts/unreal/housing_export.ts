@@ -10,7 +10,7 @@
 
 import { FURNITURE_DEFS, HOUSE_STORAGE_CHEST_ITEM_ID } from '../../src/sim/content/furniture';
 import { HOUSE_LOTS } from '../../src/sim/content/house_lots';
-import { DUNGEONS, ITEMS } from '../../src/sim/data';
+import { DUNGEONS, ITEMS, instanceOrigin } from '../../src/sim/data';
 import {
   HOUSE_COTTAGE_ANCHORS,
   HOUSE_COTTAGE_ROOMS,
@@ -49,6 +49,11 @@ export function buildHousingContent() {
       door: { ...lot.doorPos },
       leave: { ...lot.leaveOffset },
       price: lot.priceCopper,
+      // The lot's instance band (data.ts instanceOrigin): slot k's origin is
+      // (originX, originZ0 + k * slotStrideZ); a body within 300 yd of originX is inside it.
+      originX: instanceOrigin(lot.index, 0).x,
+      originZ0: instanceOrigin(lot.index, 0).z,
+      slotStrideZ: instanceOrigin(lot.index, 1).z - instanceOrigin(lot.index, 0).z,
     })),
     rooms: HOUSE_COTTAGE_ROOMS.map((r) => ({ id: r.id, x0: r.x0, x1: r.x1, z0: r.z0, z1: r.z1 })),
     anchors: HOUSE_COTTAGE_ANCHORS.map((a) => ({
