@@ -17,13 +17,16 @@ import {
   HOUSE_ENTRY,
   HOUSE_EXIT,
 } from '../../src/sim/housing/cottage_layout';
+import { HOUSE_SEAT_PIECES, HOUSE_SEAT_STAND } from '../../src/sim/housing/house_seats';
 import { HOUSE_CHEST_SLOTS, HOUSE_STORAGE_RANGE } from '../../src/sim/housing/house_storage';
 import { HOUSE_PURCHASE_RANGE } from '../../src/sim/housing/ownership';
+import { SEAT_REACH } from '../../src/sim/seat_anchor';
 import { Sim } from '../../src/sim/sim';
 import type { SimEvent } from '../../src/sim/types';
 import { terrainHeight } from '../../src/sim/world';
 import { furnishOptions, houseAnchorOrdinal } from '../../src/ui/hud/housing/house_furnish_view';
 import { houseStorageDepositAllowed } from '../../src/ui/hud/housing/house_storage_view';
+import { hudChromeStrings } from '../../src/ui/i18n.catalog/hud_chrome';
 import type { ParityCase, ParitySuite } from './parity_export';
 
 export const HOUSING_EXPORT_SUBDIR = 'housing';
@@ -65,6 +68,11 @@ export function buildHousingContent() {
       yaw: a.yaw,
       ordinal: houseAnchorOrdinal(a),
     })),
+    // House seats (housing/house_seats.ts): the pieces a body sits on and how far in front of
+    // a piece its stand spot lies; the seat id is `house:<entityId>`.
+    seatStand: HOUSE_SEAT_STAND,
+    seatReach: SEAT_REACH,
+    seatPieces: Object.keys(HOUSE_SEAT_PIECES).sort(),
     // Borrowed gear (ItemDef.lentGear): the house storage refuses it like a quest item.
     lentGear: Object.keys(ITEMS)
       .filter((id) => (ITEMS[id] as { lentGear?: unknown }).lentGear)
@@ -245,6 +253,35 @@ export const HOUSING_PARITY_SUITES: Record<string, () => ParitySuite> = {
   housing_furnish_picker: furnishPicker,
   housing_storage_admission: storageAdmission,
 };
+
+// ---------------------------------------------------------------------------
+// Supplement string table
+
+/** The housing catalog subtree as a supplement table (Data/Strings/housing_strings_en.csv): the
+ *  netclient string table predates the keys housing added since; WyndText merges only the rows
+ *  the main table lacks. */
+export const HOUSING_STRINGS_FILE = 'housing_strings_en.csv';
+
+function flattenStrings(prefix: string, node: unknown, out: Array<[string, string]>): void {
+  if (typeof node === 'string') {
+    out.push([prefix, node]);
+    return;
+  }
+  if (node && typeof node === 'object') {
+    for (const [k, v] of Object.entries(node)) flattenStrings(`${prefix}.${k}`, v, out);
+  }
+}
+
+const csvCell = (s: string): string =>
+  /[",\n]|^\s|\s$/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+
+/** WyndText's CSV shape (Key,SourceString), sorted by key. */
+export function housingStringsCsv(): string {
+  const rows: Array<[string, string]> = [];
+  flattenStrings('hudChrome.housing', hudChromeStrings.housing, rows);
+  rows.sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0));
+  return `Key,SourceString\n${rows.map(([k, v]) => `${k},${csvCell(v)}`).join('\n')}\n`;
+}
 
 export function buildHousingSuite(name: string): ParitySuite {
   const f = HOUSING_PARITY_SUITES[name];

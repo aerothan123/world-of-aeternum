@@ -13,6 +13,8 @@ import {
   HOUSING_EXPORT_SUBDIR,
   HOUSING_PARITY_SUITES,
   HOUSING_PLACEMENT_STEPS,
+  HOUSING_STRINGS_FILE,
+  housingStringsCsv,
 } from '../scripts/unreal/housing_export';
 import { PARITY_EXPORT_SUBDIR } from '../scripts/unreal/parity_export';
 import { PROTOCOL_EXPORT_DIR } from '../scripts/unreal/protocol_export';
@@ -47,6 +49,19 @@ describe('unreal housing parity export', () => {
     expect([...reasons].sort()).toEqual(['anchor_kind', 'anchor_taken', 'bad_anchor', 'no_item']);
     // the chest went in first, so storage is reachable from the arrival point
     expect((cases[0].out as { ok: boolean }).ok).toBe(true);
+  });
+});
+
+describe('unreal housing string supplement', () => {
+  it('committed supplement is fresh and carries the seat lines', () => {
+    const fresh = housingStringsCsv();
+    const path = join(DIR, HOUSING_EXPORT_SUBDIR, HOUSING_STRINGS_FILE);
+    if (UPDATE) {
+      mkdirSync(join(DIR, HOUSING_EXPORT_SUBDIR), { recursive: true });
+      writeFileSync(path, fresh);
+    }
+    expect(readFileSync(path, 'utf8').replace(/\r\n/g, '\n')).toBe(fresh);
+    expect(fresh).toContain('hudChrome.housing.sitOn,Sit on {item}');
   });
 });
 

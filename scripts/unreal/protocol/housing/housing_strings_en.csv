@@ -1,0 +1,55 @@
+Key,SourceString
+hudChrome.housing.alreadyOwn,You already own {house}. A character can own one house.
+hudChrome.housing.anchorKind.floor,floor
+hudChrome.housing.anchorKind.rug,rug
+hudChrome.housing.anchorKind.table,table
+hudChrome.housing.anchorKind.wall,wall
+hudChrome.housing.anchorLabel,"{room}, {kind} {index}"
+hudChrome.housing.buy,Buy House
+hudChrome.housing.denied.accountOwned,Your account already has a house. An account can own one house.
+hudChrome.housing.denied.anchorEmpty,Nothing stands on that spot.
+hudChrome.housing.denied.anchorKind,That piece of furniture does not fit that spot.
+hudChrome.housing.denied.anchorTaken,Something already stands on that spot.
+hudChrome.housing.denied.badAnchor,There is no such spot in your house.
+hudChrome.housing.denied.badLot,That house is not for sale.
+hudChrome.housing.denied.bagsFull,Your bags are full.
+hudChrome.housing.denied.dead,You cannot buy a house while dead.
+hudChrome.housing.denied.money,You cannot afford {house}.
+hudChrome.housing.denied.noHouse,You do not own a house.
+hudChrome.housing.denied.noItem,You are not holding that piece of furniture.
+hudChrome.housing.denied.notInside,You must be inside your own house to do that.
+hudChrome.housing.denied.owned,You already own a house.
+hudChrome.housing.denied.range,You are too far from the front door of {house}.
+hudChrome.housing.denied.storageFar,You must stand next to a storage chest in your house.
+hudChrome.housing.denied.storageFull,Your house storage is full.
+hudChrome.housing.denied.storageInUse,Empty that chest first: your house storage still holds items it provides room for.
+hudChrome.housing.denied.storageItem,That item cannot be stored in your house.
+hudChrome.housing.furnish,Place in house...
+hudChrome.housing.furniturePlaced,You placed {item} at {anchor}.
+hudChrome.housing.furnitureRemoved,You took back {item} from {anchor}.
+hudChrome.housing.furnitureTooltip.chest,"Once placed, adds {slots} slots to your house storage."
+hudChrome.housing.furnitureTooltip.how,Right-click it in your bags while standing in your house.
+hudChrome.housing.furnitureTooltip.kind,Furniture
+hudChrome.housing.furnitureTooltip.station,"Once placed, lets you craft recipes that need the {station} at home."
+hudChrome.housing.furnitureTooltip.use,Place it on a {kind} spot inside your house.
+hudChrome.housing.noSpots,No free spot fits this piece.
+hudChrome.housing.offerText,{house} is for sale for {price}. Buy it?
+hudChrome.housing.placeAt,Place at {anchor}
+hudChrome.housing.purchased,You bought {house}. Walk through its front door to step inside.
+hudChrome.housing.room.bedroom,Bedroom
+hudChrome.housing.room.hearthRoom,Hearth room
+hudChrome.housing.room.workshop,Workshop
+hudChrome.housing.sitHint,"Stand next to a chair, stool or bench to sit on it."
+hudChrome.housing.sitOn,Sit on {item}
+hudChrome.housing.storage.away,Stand next to a storage chest in your house to use its storage.
+hudChrome.housing.storage.carriedEmpty,Your bags are empty.
+hudChrome.housing.storage.carriedTitle,Your bags
+hudChrome.housing.storage.close,Close house storage
+hudChrome.housing.storage.depositHint,Click to store it in your house.
+hudChrome.housing.storage.full,Full: place another storage chest for more room.
+hudChrome.housing.storage.meter,{used} / {total} slots ({chests} chests)
+hudChrome.housing.storage.storedEmpty,Nothing is stored here yet.
+hudChrome.housing.storage.storedTitle,Stored
+hudChrome.housing.storage.title,House Storage
+hudChrome.housing.storage.withdrawHint,Click to take it back into your bags.
+hudChrome.housing.takeBack,Take back {item} from {anchor}
