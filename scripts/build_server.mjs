@@ -5,6 +5,7 @@
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import * as esbuild from 'esbuild';
+import { SERVER_BUILD_DEFINE } from './server_build_define.mjs';
 
 const privateImpl = fileURLToPath(new URL('../private/bot_detector/src/index.ts', import.meta.url));
 const stubImpl = fileURLToPath(new URL('../server/bot_detector/flag_only.ts', import.meta.url));
@@ -15,6 +16,7 @@ await esbuild.build({
   bundle: true,
   platform: 'node',
   format: 'cjs',
+  define: SERVER_BUILD_DEFINE,
   external: ['pg-native', 'bufferutil', 'utf-8-validate'],
   outfile: 'dist-server/server.cjs',
   alias: { '#bot-detector': usePrivate ? privateImpl : stubImpl },
@@ -25,6 +27,7 @@ await esbuild.build({
   bundle: true,
   platform: 'node',
   format: 'cjs',
+  define: SERVER_BUILD_DEFINE,
   external: ['pg-native'],
   outfile: 'dist-server/migrate_old_cragmaw_pelt.cjs',
   alias: { '#bot-detector': usePrivate ? privateImpl : stubImpl },
@@ -35,6 +38,7 @@ await esbuild.build({
   bundle: true,
   platform: 'node',
   format: 'cjs',
+  define: SERVER_BUILD_DEFINE,
   external: ['pg-native'],
   outfile: 'dist-server/migrate_rift_forge_rollback.cjs',
   alias: { '#bot-detector': usePrivate ? privateImpl : stubImpl },
@@ -45,6 +49,7 @@ await esbuild.build({
   bundle: true,
   platform: 'node',
   format: 'cjs',
+  define: SERVER_BUILD_DEFINE,
   external: ['pg-native'],
   outfile: 'dist-server/migrate_mail_bot_welcome_purge.cjs',
   alias: { '#bot-detector': usePrivate ? privateImpl : stubImpl },
@@ -55,6 +60,7 @@ await esbuild.build({
   bundle: true,
   platform: 'node',
   format: 'cjs',
+  define: SERVER_BUILD_DEFINE,
   external: ['pg-native'],
   outfile: 'dist-server/migrate_mail_bot_welcome_purge.cjs',
   alias: { '#bot-detector': usePrivate ? privateImpl : stubImpl },
@@ -65,6 +71,7 @@ await esbuild.build({
   bundle: true,
   platform: 'node',
   format: 'cjs',
+  define: SERVER_BUILD_DEFINE,
   external: ['pg-native'],
   outfile: 'dist-server/migrate_release_gifts.cjs',
 });
