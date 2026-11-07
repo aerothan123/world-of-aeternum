@@ -603,7 +603,7 @@ const GATHER_NODE_ROWS: GatherNodeDef[] = [
     tier: 1,
   },
 
-  // The Amberfall, around Lanternmere: hub-outskirt veins, stands, and patches so every
+  // The Amberfall, around Lanternfold: hub-outskirt veins, stands, and patches so every
   // profession can gather without backtracking to an older zone.
   {
     id: 'ore_amberfall_1',

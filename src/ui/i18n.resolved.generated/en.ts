@@ -8530,7 +8530,7 @@ export const en: EnTranslations = {
       }
     },
     "hunt_amberfall_lantern_ferry": {
-      "0": "At the water's edge north of Lanternmere, the keeper of the lantern ferries knows which light went out. Speak with Ferrymaster Caddow.",
+      "0": "At the water's edge north of Lanternfold, the keeper of the lantern ferries knows which light went out. Speak with Ferrymaster Caddow.",
       "1": "A single stone leans against the sky northeast of the great mere, older than the town. Stand at the Leaning Monolith.",
       "2": "The keeper of the gilded rows waters her orchard by hand and thirsts for it. Bring Orchardist Pomeline 3 x Cold Well Water.",
       "3": "Northeast of the rise where the cindermaples burn red, the leaves lie in a circle that no wind made. Use the scroll there and dig.",
@@ -10622,7 +10622,7 @@ export const en: EnTranslations = {
       "duskBlurb": "A valley of permanent dusk beneath the great tree of Eldershine, where crystal ruins glow and the air hums with old magic.",
       "emberBlurb": "Storm-lit wastes of ash and bloodglass where drakes wheel over the caldera and troll fires burn among the dunes, watched from the gate-town of Wyrmwatch.",
       "frostBlurb": "A hush of snow and dark pines under the aurora, where the cold itself feels awake and Icemantle keeps its fires burning.",
-      "amberBlurb": "An eternal autumn of gold and red leaves that never fall, gathered around the lantern-lit town of Lanternmere.",
+      "amberBlurb": "An eternal autumn of gold and red leaves that never fall, gathered around the lantern-lit town of Lanternfold.",
       "fenBlurb": "A bright, humming wetland of lilies and slow water, crossed on old boardwalks from the bridge-town of Bridgemere.",
       "nightBlurb": "A realm of starry midnight where flowers light the paths and Moonrest keeps a quiet vigil under a dreaming sky.",
       "hauntBlurb": "A haunted forest under giant canopies, where the lanterns of Gibbetmere are the only honest light on the road.",
@@ -10642,7 +10642,7 @@ export const en: EnTranslations = {
       "frostGreeting": "Snow swallows every sound out past the wall. If the lights start dancing, keep your voice down and your fire lit.",
       "frostGreeter": "The hearthkeeper, Icemantle",
       "amberGreeting": "Every leaf here burns gold and red, yet none ever fall. The lanterns are lit for you; mind the Goldmelt on your way up.",
-      "amberGreeter": "The lanternwright, Lanternmere",
+      "amberGreeter": "The lanternwright, Lanternfold",
       "fenGreeting": "The fen hums with dragonflies and bees. Cross the bridge, rest your feet awhile, and stay on the boards past the pools.",
       "fenGreeter": "The bridgekeeper, Bridgemere",
       "nightGreeting": "Past the Nightgate the air itself dreams. Follow the flower-light, and mind the sleeping world that hangs in the sky.",
@@ -10661,7 +10661,7 @@ export const en: EnTranslations = {
       "duskPlaceNotes": "Eldershine gathers beneath the great tree. The Duskfall Cave and its overlook are the way in and the first sight of the valley; Elder Grove and Starfall Basin keep the quiet south; the Sunken Court holds overgrown ruins in the east; and the Gleaming Deep and Crystalline Shallows glow across the north.",
       "emberPlaceNotes": "Wyrmwatch holds the gate. The Gatewood is the last green before the waste; the Cinder Dunes drift with ash and worse; the Trollmoot is where the dune trolls gather their fires; the Bloodglass Fields glitter with razor shards; and the Drakemaw Caldera is the smoking crown the drakes circle.",
       "frostPlaceNotes": "Icemantle keeps the last warm hearth. The Snowline marks where the drifts take over; Glacier Tarn is black, still water under the ice; the Aurora Steps climb beneath the dancing lights; the Shiverfen is a frozen mire that never quite sleeps; and the Howling Terraces earn their name every night.",
-      "amberPlaceNotes": "Lanternmere glows at the heart of the harvest. The Goldmelt is the amber-slick pass in; the Gilded Orchard and Harvest Hollow keep the sweetest pickings and the boldest thieves; the Great Mere mirrors the burning leaves; Cindermaple Rise stands tallest and reddest; and the Leaning Monolith remembers something older than autumn.",
+      "amberPlaceNotes": "Lanternfold glows at the heart of the harvest. The Goldmelt is the amber-slick pass in; the Gilded Orchard and Harvest Hollow keep the sweetest pickings and the boldest thieves; the Great Mere mirrors the burning leaves; Cindermaple Rise stands tallest and reddest; and the Leaning Monolith remembers something older than autumn.",
       "fenPlaceNotes": "Bridgemere sits astride the slow water. The Amberfen Steps come down from the harvest country; the Lilymoors and Bogshine Pools glitter with wisps and dragonflies; Willowweep trails its branches into the mere; and the Drowsy Flats are as gentle as this land gets.",
       "nightPlaceNotes": "Moonrest keeps the vigil. The Nightgate is the way into the midnight country; the Moonspring holds starlight you can stand beside; Gloamfield blooms in the dark; the Standing Vigil watches without ever moving; and the Sleepless Barrow is the one place here that never dreams.",
       "hauntPlaceNotes": "Gibbetmere huddles inside its lanterns. The Crowgate is the wood's grim front door; Widow's Thicket is spun thick with web; the Hanging Glade and the Mournstone Chapel keep the forest's oldest griefs; and the Huntsman's Clearing belongs to whatever still hunts there.",
@@ -28118,8 +28118,8 @@ export const en: EnTranslations = {
       },
       "reeve_ottoline": {
         "name": "Reeve Ottoline",
-        "title": "Reeve of Lanternmere",
-        "greeting": "Welcome to Lanternmere, where the harvest never ends and neither does the work."
+        "title": "Reeve of Lanternfold",
+        "greeting": "Welcome to Lanternfold, where the harvest never ends and neither does the work."
       },
       "waywatcher_sorrel": {
         "name": "Waywatcher Sorrel",
@@ -29965,8 +29965,8 @@ export const en: EnTranslations = {
       },
       "q_af_goldmelt_road": {
         "title": "The Gold Road Down",
-        "text": "You came over the Goldmelt, {playerName}, snow still on your boots. I keep this shrine so Lanternmere knows who walks in from the cold, and lately I have had little to report. Take the gold road down to the town, find Reeve Ottoline by the well, and tell her the pass is quiet.",
-        "completion": "Quiet on the Goldmelt, and a traveler with snow in their hair to prove it. Sorrel keeps her watch too well to send idle word. Be welcome in Lanternmere, {playerName}. The lanterns burn for you.",
+        "text": "You came over the Goldmelt, {playerName}, snow still on your boots. I keep this shrine so Lanternfold knows who walks in from the cold, and lately I have had little to report. Take the gold road down to the town, find Reeve Ottoline by the well, and tell her the pass is quiet.",
+        "completion": "Quiet on the Goldmelt, and a traveler with snow in their hair to prove it. Sorrel keeps her watch too well to send idle word. Be welcome in Lanternfold, {playerName}. The lanterns burn for you.",
         "objectives": {
           "0": {
             "label": "Report to Reeve Ottoline"
@@ -31818,10 +31818,10 @@ export const en: EnTranslations = {
       },
       "amberfall": {
         "name": "The Amberfall",
-        "welcome": "Every leaf here burns gold and red, yet none ever fall. The lanterns of Lanternmere are lit for you.",
+        "welcome": "Every leaf here burns gold and red, yet none ever fall. The lanterns of Lanternfold are lit for you.",
         "pois": {
           "0": {
-            "label": "Lanternmere"
+            "label": "Lanternfold"
           },
           "1": {
             "label": "The Goldmelt"

@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-49d2d-d3c69295-dc90bf05-14b3-b4ad9a78-f493dfc8",
+    "id": "live-49d2d-b09e4ed-9b8bfd-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "49d2d-d3c69295-dc90bf05",
+    "overworldBase": "49d2d-b09e4ed-9b8bfd",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -620,7 +620,7 @@
           "x": -360,
           "z": 2072,
           "radius": 24,
-          "name": "Lanternmere"
+          "name": "Lanternfold"
         },
         "graveyard": {
           "x": -336,
@@ -657,7 +657,7 @@
           {
             "x": -360,
             "z": 2072,
-            "label": "Lanternmere",
+            "label": "Lanternfold",
             "id": "lanternmere"
           },
           {
@@ -697,7 +697,7 @@
             "id": "the_leaning_monolith"
           }
         ],
-        "welcome": "Every leaf here burns gold and red, yet none ever fall. The lanterns of Lanternmere are lit for you.",
+        "welcome": "Every leaf here burns gold and red, yet none ever fall. The lanterns of Lanternfold are lit for you.",
         "welcomeQuestId": "q_af_goldmelt_road"
       },
       {
@@ -4721,7 +4721,7 @@
       "reeve_ottoline": {
         "id": "reeve_ottoline",
         "name": "Reeve Ottoline",
-        "title": "Reeve of Lanternmere",
+        "title": "Reeve of Lanternfold",
         "pos": {
           "x": -358,
           "z": 2070
@@ -4729,7 +4729,7 @@
         "facing": -0.6,
         "color": 12617800,
         "questIds": ["q_af_goldmelt_road", "q_af_foxes_in_the_lamplight", "q_af_orchard_call"],
-        "greeting": "Welcome to Lanternmere, where the harvest never ends and neither does the work."
+        "greeting": "Welcome to Lanternfold, where the harvest never ends and neither does the work."
       },
       "waywatcher_sorrel": {
         "id": "waywatcher_sorrel",

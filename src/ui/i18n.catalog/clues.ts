@@ -50,7 +50,7 @@ export const clueStrings = {
   },
   hunt_amberfall_lantern_ferry: {
     title: 'Lanterns on the Mere',
-    0: "At the water's edge north of Lanternmere, the keeper of the lantern ferries knows which light went out. Speak with Ferrymaster Caddow.",
+    0: "At the water's edge north of Lanternfold, the keeper of the lantern ferries knows which light went out. Speak with Ferrymaster Caddow.",
     1: 'A single stone leans against the sky northeast of the great mere, older than the town. Stand at the Leaning Monolith.',
     2: 'The keeper of the gilded rows waters her orchard by hand and thirsts for it. Bring Orchardist Pomeline 3 x Cold Well Water.',
     3: 'Northeast of the rise where the cindermaples burn red, the leaves lie in a circle that no wind made. Use the scroll there and dig.',

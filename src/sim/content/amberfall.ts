@@ -1,7 +1,7 @@
 // The Amberfall (levels 18-20). An eternal-autumn weald behind the Veiled
 // Hollow's western cliffs: fire-colored forests under a honey-gold sky,
 // harvest meadows, and the Great Mere at its heart, ringed by the lantern
-// town of Lanternmere. Walked into through the Rootway, a tunnel behind the
+// town of Lanternfold. Walked into through the Rootway, a tunnel behind the
 // Frostveil's north benches over the Goldmelt pass, snow melting into
 // gold underfoot (southPassX). Terrain shape: AMBER_* tables in world.ts.
 
@@ -32,7 +32,7 @@ export const AMBERFALL_ZONE: ZoneDef = {
   biome: 'amber',
   southPassX: -350, // the old gold road, now rising out of the night downs
   eastPassZ: 1890, // the Goldmelt: autumn meets the snow across the column border
-  hub: { x: -360, z: 2072, radius: 24, name: 'Lanternmere' },
+  hub: { x: -360, z: 2072, radius: 24, name: 'Lanternfold' },
   graveyard: { x: -336, z: 2050 },
   lakes: [
     { x: -360, z: 2132, radius: 26 }, // the Great Mere
@@ -42,7 +42,7 @@ export const AMBERFALL_ZONE: ZoneDef = {
     { x: -264, z: 2246, radius: 9 }, // the Monolith tarn
   ],
   pois: [
-    { x: -360, z: 2072, label: 'Lanternmere', id: 'lanternmere' },
+    { x: -360, z: 2072, label: 'Lanternfold', id: 'lanternmere' },
     { x: -350, z: 1848, label: 'The Goldmelt', id: 'the_goldmelt' },
     { x: -432, z: 1992, label: 'The Gilded Orchard', id: 'the_gilded_orchard' },
     { x: -290, z: 1960, label: 'Harvest Hollow', id: 'harvest_hollow' },
@@ -51,7 +51,7 @@ export const AMBERFALL_ZONE: ZoneDef = {
     { x: -276, z: 2230, label: 'The Leaning Monolith', id: 'the_leaning_monolith' },
   ],
   welcome:
-    'Every leaf here burns gold and red, yet none ever fall. The lanterns of Lanternmere are lit for you.',
+    'Every leaf here burns gold and red, yet none ever fall. The lanterns of Lanternfold are lit for you.',
   welcomeQuestId: 'q_af_goldmelt_road',
 };
 
@@ -61,34 +61,34 @@ export const AMBERFALL_ROADS: { x: number; z: number }[][] = [
     { x: -366, z: 1880 },
     { x: -374, z: 2030 },
     { x: -360, z: 2072 },
-  ], // the Goldmelt pass -> Lanternmere
+  ], // the Goldmelt pass -> Lanternfold
   [
     { x: -372, z: 2050 },
     { x: -410, z: 2020 },
     { x: -432, z: 1994 },
-  ], // Lanternmere -> the Gilded Orchard's edge
+  ], // Lanternfold -> the Gilded Orchard's edge
   [
     { x: -348, z: 2050 },
     { x: -315, z: 2000 },
     { x: -290, z: 1960 },
-  ], // Lanternmere -> Harvest Hollow
+  ], // Lanternfold -> Harvest Hollow
   [
     { x: -374, z: 2090 },
     { x: -418, z: 2146 },
     { x: -430, z: 2210 },
-  ], // Lanternmere -> Cindermaple Rise, west of the Mere
+  ], // Lanternfold -> Cindermaple Rise, west of the Mere
   [
     { x: -344, z: 2092 },
     { x: -292, z: 2156 },
     { x: -272, z: 2226 },
-  ], // Lanternmere -> the Leaning Monolith, east of the Mere
+  ], // Lanternfold -> the Leaning Monolith, east of the Mere
   [
     { x: -374, z: 2090 },
     { x: -404, z: 2108 },
     { x: -412, z: 2180 },
     { x: -384, z: 2250 },
     { x: -380, z: 2300 },
-  ], // Lanternmere -> west around the Mere -> the north shore
+  ], // Lanternfold -> west around the Mere -> the north shore
 ];
 
 // The Westway: an open meadow crossing at the world's western edge; walking
@@ -237,7 +237,7 @@ export const AMBERFALL_MOBS: Record<string, MobTemplate> = {
     color: 0x5a7038,
   },
 };
-// The folk of the Amberfall: the Reeve holds Lanternmere, a waywatcher keeps
+// The folk of the Amberfall: the Reeve holds Lanternfold, a waywatcher keeps
 // the Goldmelt shrine at the zone door, the Ferrymaster works the Mere jetty
 // below the town, and the Orchardist tends the Gilded Orchard alone on the
 // west road. Two of them stand far from the hub on purpose: the chains send
@@ -246,12 +246,12 @@ export const AMBERFALL_NPCS: Record<string, NpcDef> = {
   reeve_ottoline: {
     id: 'reeve_ottoline',
     name: 'Reeve Ottoline',
-    title: 'Reeve of Lanternmere',
+    title: 'Reeve of Lanternfold',
     pos: { x: -358, z: 2070 },
     facing: -0.6,
     color: 0xc08848,
     questIds: ['q_af_goldmelt_road', 'q_af_foxes_in_the_lamplight', 'q_af_orchard_call'],
-    greeting: 'Welcome to Lanternmere, where the harvest never ends and neither does the work.',
+    greeting: 'Welcome to Lanternfold, where the harvest never ends and neither does the work.',
   },
   waywatcher_sorrel: {
     id: 'waywatcher_sorrel',
@@ -294,9 +294,9 @@ export const AMBERFALL_QUESTS: Record<string, QuestDef> = {
     name: 'The Gold Road Down',
     giverNpcId: 'waywatcher_sorrel',
     turnInNpcId: 'reeve_ottoline',
-    text: 'You came over the Goldmelt, $N, snow still on your boots. I keep this shrine so Lanternmere knows who walks in from the cold, and lately I have had little to report. Take the gold road down to the town, find Reeve Ottoline by the well, and tell her the pass is quiet.',
+    text: 'You came over the Goldmelt, $N, snow still on your boots. I keep this shrine so Lanternfold knows who walks in from the cold, and lately I have had little to report. Take the gold road down to the town, find Reeve Ottoline by the well, and tell her the pass is quiet.',
     completionText:
-      'Quiet on the Goldmelt, and a traveler with snow in their hair to prove it. Sorrel keeps her watch too well to send idle word. Be welcome in Lanternmere, $N. The lanterns burn for you.',
+      'Quiet on the Goldmelt, and a traveler with snow in their hair to prove it. Sorrel keeps her watch too well to send idle word. Be welcome in Lanternfold, $N. The lanterns burn for you.',
     objectives: [
       {
         type: 'interact',
@@ -560,7 +560,7 @@ export const AMBERFALL_QUEST_CAMPS: CampDef[] = [
 
 export const AMBERFALL_PROPS: ZonePropsDef = {
   ...emptyZoneProps(),
-  // Lanternmere: an autumn market town on the Mere's north shore, its painted
+  // Lanternfold: an autumn market town on the Mere's north shore, its painted
   // inn west of the square and its chapel and a house east, every door on the
   // square or its roads (sim/painted_towns/lanternmere.ts)
   buildings: [...paintedTownBuildingDefs(LANTERNMERE_LAYOUT)],
