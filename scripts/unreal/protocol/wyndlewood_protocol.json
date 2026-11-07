@@ -30,7 +30,9 @@
     "forceRename": "This character must be renamed before entering the world.",
     "membershipRequired": "membership required for this character",
     "authTimedOut": "authentication timed out",
-    "incompatibleWorldLayout": "Game and server versions are incompatible. Reload or update, then try again."
+    "incompatibleWorldLayout": "Game and server versions are incompatible. Reload or update, then try again.",
+    "maintenance": "realm is under maintenance",
+    "clientUpdateRequired": "client update required"
   },
   "reconnect": {
     "baseDelayMs": 1000,

@@ -8,7 +8,7 @@
 
 namespace WyndProtocol
 {
-inline constexpr const TCHAR* ExportHash = TEXT("544c32e8d7af51d1");
+inline constexpr const TCHAR* ExportHash = TEXT("625024ee71eaf33d");
 inline constexpr int32 OnlineWorldLayoutVersion = 48;
 inline constexpr const TCHAR* AuthType = TEXT("auth-world-48");
 inline constexpr int32 StableTimerWireVersion = 3;
@@ -46,6 +46,8 @@ namespace AuthError
 	inline constexpr const TCHAR* MembershipRequired = TEXT("membership required for this character");
 	inline constexpr const TCHAR* AuthTimedOut = TEXT("authentication timed out");
 	inline constexpr const TCHAR* IncompatibleWorldLayout = TEXT("Game and server versions are incompatible. Reload or update, then try again.");
+	inline constexpr const TCHAR* Maintenance = TEXT("realm is under maintenance");
+	inline constexpr const TCHAR* ClientUpdateRequired = TEXT("client update required");
 }
 
 inline constexpr const TCHAR* DesktopAppOrigins[] = {
