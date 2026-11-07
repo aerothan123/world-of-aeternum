@@ -42,6 +42,8 @@ import {
   coachGlowBagItemId,
   coachGlowQuestId,
   coachGlowVendorItemId,
+  coachPromptInRange,
+  coachPromptPlan,
 } from '../../src/ui/coach_prompt_view';
 import type { ParityCase, ParitySuite } from './parity_export';
 
@@ -404,6 +406,230 @@ function tutorialChain(): ParitySuite {
   };
 }
 
+export interface PromptEntity {
+  id: number;
+  kind: string;
+  templateId: string;
+  dead: boolean;
+  x: number;
+  z: number;
+}
+
+export interface TutorialPromptInput extends TutorialInput {
+  entities: PromptEntity[];
+  playerX: number;
+  playerZ: number;
+  targetId: number | null;
+}
+
+/** The world-anchored prompt bubble (BootcampOverlay.updatePrompt's world arm over
+ *  coachPromptPlan, coachPromptInRange and coachPromptChips, keyboard): null when the station
+ *  has no world ask. The ring lesson's asks are interface presses (the centered arm), so none. */
+export function tutorialPrompt(input: TutorialPromptInput): {
+  plan: {
+    x: number;
+    z: number;
+    lift: number;
+    range: number;
+    verbKey: string;
+    kind: string;
+    inRange: boolean;
+    chipBind: string;
+  } | null;
+} {
+  const card = tutorialCard(input);
+  if (card.kind === 'hidden' || card.kind === 'ring') return { plan: null };
+  const entities = input.entities.map((e) => ({
+    id: e.id,
+    kind: e.kind,
+    templateId: e.templateId,
+    objectItemId: e.templateId.startsWith('ground_') ? e.templateId.slice('ground_'.length) : null,
+    dead: e.dead,
+    pos: { x: e.x, z: e.z },
+  }));
+  const playerPos = { x: input.playerX, z: input.playerZ };
+  const plan = coachPromptPlan({
+    bellPhase: card.kind === 'bell',
+    step: card.kind === 'bootcamp' ? (card.step as BootcampStep) : null,
+    focus: card.questId ? { questId: card.questId, state: card.state as CoachState } : null,
+    entities,
+    playerPos,
+    deathPhase: input.deathPhase,
+    targetId: input.targetId,
+  });
+  if (!plan) return { plan: null };
+  const abilityAsk = plan.verbKey === 'hudChrome.bootcamp.promptUseAbility';
+  const caster = CASTERS.has(input.playerClass);
+  const chipBind =
+    plan.kind === 'select'
+      ? ''
+      : plan.kind === 'kill'
+        ? abilityAsk || caster
+          ? 'slot1'
+          : 'slot0'
+        : plan.kind === 'jump'
+          ? 'jump'
+          : plan.kind === 'use'
+            ? 'bags'
+            : 'interact';
+  return {
+    plan: {
+      x: plan.x,
+      z: plan.z,
+      lift: plan.lift,
+      range: plan.range,
+      verbKey: plan.verbKey,
+      kind: plan.kind,
+      inRange: coachPromptInRange(plan, playerPos),
+      chipBind,
+    },
+  };
+}
+
+function tutorialPromptSuite(): ParitySuite {
+  const cases: ParityCase[] = [];
+  const at = (x: number, z: number) => ({ playerX: x, playerZ: z });
+  const none = { entities: [] as PromptEntity[], targetId: null };
+  const add = (i: TutorialPromptInput) =>
+    cases.push({ in: i as unknown as ParityCase['in'], out: tutorialPrompt(i) });
+  const effigy: PromptEntity = {
+    id: 50,
+    kind: 'mob',
+    templateId: 'training_effigy',
+    dead: false,
+    x: -336,
+    z: -14,
+  };
+  const scuttler: PromptEntity = {
+    id: 51,
+    kind: 'mob',
+    templateId: 'shore_scuttler',
+    dead: false,
+    x: -380,
+    z: -42,
+  };
+  const crab: PromptEntity = {
+    id: 52,
+    kind: 'mob',
+    templateId: 'mister_crabs',
+    dead: false,
+    x: -398,
+    z: -17,
+  };
+  const crate: PromptEntity = {
+    id: 53,
+    kind: 'object',
+    templateId: 'ground_ps_castaway_crate',
+    dead: false,
+    x: -362,
+    z: -8,
+  };
+  // The ladder: talk at Tam, the lane 2 jump asks, the hand-in at Pell, nothing on the lanes.
+  add({ ...baseInput(), ...none, ...at(-284, -20), quests: railAt(0, 'available') });
+  add({ ...baseInput(), ...none, ...at(-308, -18), quests: railAt(0, 'active'), counts: 1 });
+  add({ ...baseInput(), ...none, ...at(-308, -26), quests: railAt(0, 'active'), counts: 1 });
+  add({ ...baseInput(), ...none, ...at(-300, -16), quests: railAt(0, 'active'), counts: 0 });
+  add({
+    ...baseInput(),
+    ...none,
+    ...at(-330, -33),
+    quests: railAt(0, 'ready'),
+    counts: 3,
+    cameraTurned: true,
+  });
+  // Every station's available and ready asks, near and far.
+  for (let i = 1; i < PROVING_SHORE_QUEST_ORDER.length; i++) {
+    for (const state of ['available', 'ready'] as CoachState[]) {
+      add({ ...baseInput(), ...none, ...at(-300, 0), quests: railAt(i, state) });
+    }
+  }
+  // Kill lessons: select, then attack (melee) or the ability (drill, strand); a caster.
+  for (const [quest, mob] of [
+    ['q_ps_strike_true', effigy],
+    ['q_ps_hone_the_edge', effigy],
+    ['q_ps_shell_and_claw', scuttler],
+  ] as [string, PromptEntity][]) {
+    const i = PROVING_SHORE_QUEST_ORDER.indexOf(quest);
+    for (const targetId of [null, mob.id]) {
+      add({
+        ...baseInput(),
+        entities: [mob],
+        targetId,
+        ...at(mob.x + 3, mob.z),
+        quests: railAt(i, 'active'),
+      });
+    }
+    add({
+      ...baseInput(),
+      playerClass: 'mage',
+      entities: [mob],
+      targetId: mob.id,
+      ...at(mob.x + 3, mob.z),
+      quests: railAt(i, 'active'),
+    });
+  }
+  // The pearl detour: the lure at the pool, the live king, his corpse.
+  const pearl = PROVING_SHORE_QUEST_ORDER.indexOf('q_ps_mother_of_pearl');
+  add({ ...baseInput(), ...none, ...at(-396, -17), quests: railAt(pearl, 'active') });
+  add({
+    ...baseInput(),
+    entities: [crab],
+    targetId: null,
+    ...at(-396, -17),
+    quests: railAt(pearl, 'active'),
+  });
+  add({
+    ...baseInput(),
+    entities: [{ ...crab, dead: true }],
+    targetId: null,
+    ...at(-396, -17),
+    quests: railAt(pearl, 'active'),
+  });
+  // The crate line, the signpost, the pouch, the sail, the death lesson alive and dead.
+  for (const quest of [
+    'q_ps_the_wreck_line',
+    'q_ps_the_signpost',
+    'q_ps_pouch_and_purse',
+    'q_ps_set_sail',
+    'q_ps_the_long_walk',
+  ]) {
+    const i = PROVING_SHORE_QUEST_ORDER.indexOf(quest);
+    add({
+      ...baseInput(),
+      entities: [crate],
+      targetId: null,
+      ...at(-360, -6),
+      quests: railAt(i, 'active'),
+    });
+  }
+  const walk = PROVING_SHORE_QUEST_ORDER.indexOf('q_ps_the_long_walk');
+  add({
+    ...baseInput(),
+    ...none,
+    ...at(-312, -6),
+    quests: railAt(walk, 'active'),
+    deathPhase: 'ghost',
+  });
+  // The bell, in reach and far away; the ring lesson shows no world ask.
+  add({ ...baseInput(), ...none, ...at(-280, -10), sawSail: true });
+  add({ ...baseInput(), ...none, ...at(-330, 40), sawSail: true });
+  add({
+    ...baseInput(),
+    ...none,
+    ...at(-371, -13),
+    quests: railAt(pearl + 1, 'available'),
+    sawPearl: true,
+    ring: { questDone: true, inBags: true, equipped: false, charSeen: false },
+  });
+  return {
+    suite: 'tutorial_prompt',
+    source:
+      'src/ui/coach_prompt_view.ts coachPromptPlan, coachPromptInRange, coachPromptChips (keyboard)',
+    note: 'entities carry templateId; a ground object is ground_<itemId>; chipBind is a keybind id or empty',
+    cases,
+  };
+}
+
 /** The attack each class is taught on the island ({ability} in the drill and strand cards); the
  *  client reads this suite at runtime to name it. */
 function taughtAbility(): ParitySuite {
@@ -422,6 +648,7 @@ export const TUTORIAL_PARITY_SUITES: Record<string, () => ParitySuite> = {
   tutorial_view: tutorialView,
   tutorial_chain: tutorialChain,
   tutorial_taught_ability: taughtAbility,
+  tutorial_prompt: tutorialPromptSuite,
 };
 
 export function buildTutorialSuite(name: string): ParitySuite {

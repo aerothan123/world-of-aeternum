@@ -1,0 +1,2003 @@
+{
+  "suite": "tutorial_prompt",
+  "source": "src/ui/coach_prompt_view.ts coachPromptPlan, coachPromptInRange, coachPromptChips (keyboard)",
+  "note": "entities carry templateId; a ground object is ground_<itemId>; chipBind is a keybind id or empty",
+  "cases": [
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_gauntlet": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -284,
+        "playerZ": -20
+      },
+      "out": {
+        "plan": {
+          "x": -283,
+          "z": -21,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTalk",
+          "kind": "interact",
+          "inRange": true,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_gauntlet": "active"
+        },
+        "counts": 1,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -308,
+        "playerZ": -18
+      },
+      "out": {
+        "plan": {
+          "x": -308,
+          "z": -23,
+          "lift": 1.2,
+          "range": 9,
+          "verbKey": "hudChrome.bootcamp.promptJump",
+          "kind": "jump",
+          "inRange": true,
+          "chipBind": "jump"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_gauntlet": "active"
+        },
+        "counts": 1,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -308,
+        "playerZ": -26
+      },
+      "out": {
+        "plan": {
+          "x": -308,
+          "z": -27,
+          "lift": 1.2,
+          "range": 9,
+          "verbKey": "hudChrome.bootcamp.promptJump",
+          "kind": "jump",
+          "inRange": true,
+          "chipBind": "jump"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_gauntlet": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -300,
+        "playerZ": -16
+      },
+      "out": {
+        "plan": null
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_gauntlet": "ready"
+        },
+        "counts": 3,
+        "cameraTurned": true,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -330,
+        "playerZ": -33
+      },
+      "out": {
+        "plan": {
+          "x": -337,
+          "z": -33,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTurnIn",
+          "kind": "interact",
+          "inRange": true,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_strike_true": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -300,
+        "playerZ": 0
+      },
+      "out": {
+        "plan": {
+          "x": -337,
+          "z": -33,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTalk",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_strike_true": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -300,
+        "playerZ": 0
+      },
+      "out": {
+        "plan": {
+          "x": -345,
+          "z": -11,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTurnIn",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_hone_the_edge": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -300,
+        "playerZ": 0
+      },
+      "out": {
+        "plan": {
+          "x": -345,
+          "z": -11,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTalk",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_hone_the_edge": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -300,
+        "playerZ": 0
+      },
+      "out": {
+        "plan": {
+          "x": -345,
+          "z": -11,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTurnIn",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_shell_and_claw": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -300,
+        "playerZ": 0
+      },
+      "out": {
+        "plan": {
+          "x": -345,
+          "z": -11,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTalk",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_shell_and_claw": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -300,
+        "playerZ": 0
+      },
+      "out": {
+        "plan": {
+          "x": -371,
+          "z": -13,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTurnIn",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_mother_of_pearl": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -300,
+        "playerZ": 0
+      },
+      "out": {
+        "plan": {
+          "x": -371,
+          "z": -13,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTalk",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_mother_of_pearl": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -300,
+        "playerZ": 0
+      },
+      "out": {
+        "plan": {
+          "x": -371,
+          "z": -13,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTurnIn",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_wreck_line": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -300,
+        "playerZ": 0
+      },
+      "out": {
+        "plan": {
+          "x": -371,
+          "z": -13,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTalk",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_wreck_line": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -300,
+        "playerZ": 0
+      },
+      "out": {
+        "plan": {
+          "x": -312,
+          "z": 57.2,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTurnIn",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_pouch_and_purse": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -300,
+        "playerZ": 0
+      },
+      "out": {
+        "plan": {
+          "x": -312,
+          "z": 57.2,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTalk",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_pouch_and_purse": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -300,
+        "playerZ": 0
+      },
+      "out": {
+        "plan": {
+          "x": -299,
+          "z": 49,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTurnIn",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_signpost": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -300,
+        "playerZ": 0
+      },
+      "out": {
+        "plan": {
+          "x": -299,
+          "z": 49,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTalk",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_signpost": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -300,
+        "playerZ": 0
+      },
+      "out": {
+        "plan": {
+          "x": -299,
+          "z": 49,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTurnIn",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_long_walk": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -300,
+        "playerZ": 0
+      },
+      "out": {
+        "plan": {
+          "x": -299,
+          "z": 49,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTalk",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_long_walk": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -300,
+        "playerZ": 0
+      },
+      "out": {
+        "plan": {
+          "x": -299,
+          "z": 49,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTurnIn",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_set_sail": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -300,
+        "playerZ": 0
+      },
+      "out": {
+        "plan": {
+          "x": -299,
+          "z": 49,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTalk",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_set_sail": "ready"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -300,
+        "playerZ": 0
+      },
+      "out": {
+        "plan": {
+          "x": -284,
+          "z": -9,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTurnIn",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_strike_true": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [
+          {
+            "id": 50,
+            "kind": "mob",
+            "templateId": "training_effigy",
+            "dead": false,
+            "x": -336,
+            "z": -14
+          }
+        ],
+        "targetId": null,
+        "playerX": -333,
+        "playerZ": -14
+      },
+      "out": {
+        "plan": {
+          "x": -336,
+          "z": -14,
+          "lift": 0.55,
+          "range": 12,
+          "verbKey": "hudChrome.bootcamp.promptSelect",
+          "kind": "select",
+          "inRange": true,
+          "chipBind": ""
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_strike_true": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [
+          {
+            "id": 50,
+            "kind": "mob",
+            "templateId": "training_effigy",
+            "dead": false,
+            "x": -336,
+            "z": -14
+          }
+        ],
+        "targetId": 50,
+        "playerX": -333,
+        "playerZ": -14
+      },
+      "out": {
+        "plan": {
+          "x": -336,
+          "z": -14,
+          "lift": 0.55,
+          "range": 12,
+          "verbKey": "hudChrome.bootcamp.promptAttack",
+          "kind": "kill",
+          "inRange": true,
+          "chipBind": "slot0"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_strike_true": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [
+          {
+            "id": 50,
+            "kind": "mob",
+            "templateId": "training_effigy",
+            "dead": false,
+            "x": -336,
+            "z": -14
+          }
+        ],
+        "targetId": 50,
+        "playerX": -333,
+        "playerZ": -14
+      },
+      "out": {
+        "plan": {
+          "x": -336,
+          "z": -14,
+          "lift": 0.55,
+          "range": 12,
+          "verbKey": "hudChrome.bootcamp.promptAttack",
+          "kind": "kill",
+          "inRange": true,
+          "chipBind": "slot1"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_hone_the_edge": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [
+          {
+            "id": 50,
+            "kind": "mob",
+            "templateId": "training_effigy",
+            "dead": false,
+            "x": -336,
+            "z": -14
+          }
+        ],
+        "targetId": null,
+        "playerX": -333,
+        "playerZ": -14
+      },
+      "out": {
+        "plan": {
+          "x": -336,
+          "z": -14,
+          "lift": 0.55,
+          "range": 12,
+          "verbKey": "hudChrome.bootcamp.promptSelect",
+          "kind": "select",
+          "inRange": true,
+          "chipBind": ""
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_hone_the_edge": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [
+          {
+            "id": 50,
+            "kind": "mob",
+            "templateId": "training_effigy",
+            "dead": false,
+            "x": -336,
+            "z": -14
+          }
+        ],
+        "targetId": 50,
+        "playerX": -333,
+        "playerZ": -14
+      },
+      "out": {
+        "plan": {
+          "x": -336,
+          "z": -14,
+          "lift": 0.55,
+          "range": 12,
+          "verbKey": "hudChrome.bootcamp.promptUseAbility",
+          "kind": "kill",
+          "inRange": true,
+          "chipBind": "slot1"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_hone_the_edge": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [
+          {
+            "id": 50,
+            "kind": "mob",
+            "templateId": "training_effigy",
+            "dead": false,
+            "x": -336,
+            "z": -14
+          }
+        ],
+        "targetId": 50,
+        "playerX": -333,
+        "playerZ": -14
+      },
+      "out": {
+        "plan": {
+          "x": -336,
+          "z": -14,
+          "lift": 0.55,
+          "range": 12,
+          "verbKey": "hudChrome.bootcamp.promptUseAbility",
+          "kind": "kill",
+          "inRange": true,
+          "chipBind": "slot1"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_shell_and_claw": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [
+          {
+            "id": 51,
+            "kind": "mob",
+            "templateId": "shore_scuttler",
+            "dead": false,
+            "x": -380,
+            "z": -42
+          }
+        ],
+        "targetId": null,
+        "playerX": -377,
+        "playerZ": -42
+      },
+      "out": {
+        "plan": {
+          "x": -380,
+          "z": -42,
+          "lift": 0.55,
+          "range": 12,
+          "verbKey": "hudChrome.bootcamp.promptSelect",
+          "kind": "select",
+          "inRange": true,
+          "chipBind": ""
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_shell_and_claw": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [
+          {
+            "id": 51,
+            "kind": "mob",
+            "templateId": "shore_scuttler",
+            "dead": false,
+            "x": -380,
+            "z": -42
+          }
+        ],
+        "targetId": 51,
+        "playerX": -377,
+        "playerZ": -42
+      },
+      "out": {
+        "plan": {
+          "x": -380,
+          "z": -42,
+          "lift": 0.55,
+          "range": 12,
+          "verbKey": "hudChrome.bootcamp.promptUseAbility",
+          "kind": "kill",
+          "inRange": true,
+          "chipBind": "slot1"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_shell_and_claw": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "mage",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [
+          {
+            "id": 51,
+            "kind": "mob",
+            "templateId": "shore_scuttler",
+            "dead": false,
+            "x": -380,
+            "z": -42
+          }
+        ],
+        "targetId": 51,
+        "playerX": -377,
+        "playerZ": -42
+      },
+      "out": {
+        "plan": {
+          "x": -380,
+          "z": -42,
+          "lift": 0.55,
+          "range": 12,
+          "verbKey": "hudChrome.bootcamp.promptUseAbility",
+          "kind": "kill",
+          "inRange": true,
+          "chipBind": "slot1"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_mother_of_pearl": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -396,
+        "playerZ": -17
+      },
+      "out": {
+        "plan": {
+          "x": -398,
+          "z": -17,
+          "lift": 1.6,
+          "range": 10,
+          "verbKey": "hudChrome.bootcamp.promptSummon",
+          "kind": "use",
+          "inRange": true,
+          "chipBind": "bags"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_mother_of_pearl": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [
+          {
+            "id": 52,
+            "kind": "mob",
+            "templateId": "mister_crabs",
+            "dead": false,
+            "x": -398,
+            "z": -17
+          }
+        ],
+        "targetId": null,
+        "playerX": -396,
+        "playerZ": -17
+      },
+      "out": {
+        "plan": {
+          "x": -398,
+          "z": -17,
+          "lift": 0.55,
+          "range": 12,
+          "verbKey": "hudChrome.bootcamp.promptSelect",
+          "kind": "select",
+          "inRange": true,
+          "chipBind": ""
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_mother_of_pearl": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [
+          {
+            "id": 52,
+            "kind": "mob",
+            "templateId": "mister_crabs",
+            "dead": true,
+            "x": -398,
+            "z": -17
+          }
+        ],
+        "targetId": null,
+        "playerX": -396,
+        "playerZ": -17
+      },
+      "out": {
+        "plan": {
+          "x": -398,
+          "z": -17,
+          "lift": 0.55,
+          "range": 5,
+          "verbKey": "hudChrome.bootcamp.promptLootPearl",
+          "kind": "interact",
+          "inRange": true,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_wreck_line": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [
+          {
+            "id": 53,
+            "kind": "object",
+            "templateId": "ground_ps_castaway_crate",
+            "dead": false,
+            "x": -362,
+            "z": -8
+          }
+        ],
+        "targetId": null,
+        "playerX": -360,
+        "playerZ": -6
+      },
+      "out": {
+        "plan": {
+          "x": -362,
+          "z": -8,
+          "lift": 1.6,
+          "range": 5,
+          "verbKey": "hudChrome.bootcamp.promptPickUp",
+          "kind": "interact",
+          "inRange": true,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_signpost": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [
+          {
+            "id": 53,
+            "kind": "object",
+            "templateId": "ground_ps_castaway_crate",
+            "dead": false,
+            "x": -362,
+            "z": -8
+          }
+        ],
+        "targetId": null,
+        "playerX": -360,
+        "playerZ": -6
+      },
+      "out": {
+        "plan": {
+          "x": -312,
+          "z": 42.5,
+          "lift": 1.6,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptRead",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_pouch_and_purse": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [
+          {
+            "id": 53,
+            "kind": "object",
+            "templateId": "ground_ps_castaway_crate",
+            "dead": false,
+            "x": -362,
+            "z": -8
+          }
+        ],
+        "targetId": null,
+        "playerX": -360,
+        "playerZ": -6
+      },
+      "out": {
+        "plan": {
+          "x": -312,
+          "z": 57.2,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTalk",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_set_sail": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [
+          {
+            "id": 53,
+            "kind": "object",
+            "templateId": "ground_ps_castaway_crate",
+            "dead": false,
+            "x": -362,
+            "z": -8
+          }
+        ],
+        "targetId": null,
+        "playerX": -360,
+        "playerZ": -6
+      },
+      "out": {
+        "plan": {
+          "x": -284,
+          "z": -9,
+          "lift": 2.5,
+          "range": 7,
+          "verbKey": "hudChrome.bootcamp.promptTalk",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_long_walk": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [
+          {
+            "id": 53,
+            "kind": "object",
+            "templateId": "ground_ps_castaway_crate",
+            "dead": false,
+            "x": -362,
+            "z": -8
+          }
+        ],
+        "targetId": null,
+        "playerX": -360,
+        "playerZ": -6
+      },
+      "out": {
+        "plan": null
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_long_walk": "active"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "ghost",
+        "sawSail": false,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -312,
+        "playerZ": -6
+      },
+      "out": {
+        "plan": null
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {},
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": true,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -280,
+        "playerZ": -10
+      },
+      "out": {
+        "plan": {
+          "x": -279,
+          "z": -10,
+          "lift": 1.6,
+          "range": 5,
+          "verbKey": "hudChrome.bootcamp.promptRing",
+          "kind": "interact",
+          "inRange": true,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {},
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": true,
+        "sawPearl": false,
+        "ringDone": false,
+        "ring": {
+          "questDone": false,
+          "inBags": false,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -330,
+        "playerZ": 40
+      },
+      "out": {
+        "plan": {
+          "x": -279,
+          "z": -10,
+          "lift": 1.6,
+          "range": 5,
+          "verbKey": "hudChrome.bootcamp.promptRing",
+          "kind": "interact",
+          "inRange": false,
+          "chipBind": "interact"
+        }
+      }
+    },
+    {
+      "in": {
+        "onIsland": true,
+        "quests": {
+          "q_ps_the_wreck_line": "available"
+        },
+        "counts": 0,
+        "cameraTurned": false,
+        "playerClass": "warrior",
+        "deathPhase": "alive",
+        "sawSail": false,
+        "sawPearl": true,
+        "ringDone": false,
+        "ring": {
+          "questDone": true,
+          "inBags": true,
+          "equipped": false,
+          "charSeen": false
+        },
+        "bags": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "entities": [],
+        "targetId": null,
+        "playerX": -371,
+        "playerZ": -13
+      },
+      "out": {
+        "plan": null
+      }
+    }
+  ]
+}
