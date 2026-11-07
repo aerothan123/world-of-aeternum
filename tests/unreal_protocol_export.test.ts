@@ -35,7 +35,7 @@ import {
 const ROOT = resolve(import.meta.dirname, '..');
 
 describe('unreal protocol export', () => {
-  it('committed export is fresh (run npm run unreal:protocol)', () => {
+  it('committed export is fresh (run npx tsx scripts/unreal/export_protocol.ts)', () => {
     const fresh = buildProtocolExport(ROOT);
     const dir = join(ROOT, PROTOCOL_EXPORT_DIR);
     // The JSON is compared structurally: the committed copy is biome-formatted.

@@ -1,5 +1,5 @@
 // Writes the native-client protocol export (JSON plus the generated C++ header)
-// from the TypeScript sources. Run with `npm run unreal:protocol`; pass a
+// from the TypeScript sources. Run with `npx tsx scripts/unreal/export_protocol.ts`; pass a
 // directory as the first argument to also copy the header there (for example
 // the Unreal project's Source/WyndlewoodCore/Public/Generated).
 

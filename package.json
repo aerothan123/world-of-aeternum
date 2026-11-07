@@ -107,8 +107,7 @@
     "wiki:seed": "node scripts/mediawiki/build_seed.mjs",
     "sim:nythraxis-matrix": "tsx scripts/nythraxis_matrix.ts",
     "sim:healing": "tsx scripts/healing_montecarlo.ts",
-    "sim:rift": "tsx scripts/rift_montecarlo.ts",
-    "unreal:protocol": "tsx scripts/unreal/export_protocol.ts"
+    "sim:rift": "tsx scripts/rift_montecarlo.ts"
   },
   "dependencies": {
     "@aws-sdk/client-sesv2": "^3.1084.0",
