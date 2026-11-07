@@ -2821,6 +2821,7 @@ export const en_XA: EnTranslations = {
       "interfaceModeDesktop": "[Ðéšķţóþ]",
       "interfaceModeTouch": "[Ţóúçĥ]",
       "interfaceModeNote": "[Áúţó þíçķš ðéšķţóþ óŕ ţóúçĥ çóñţŕóļš ƒŕóɱ ýóúŕ ðéʋíçé. Çĥóóšé Ðéšķţóþ ţó ƒóŕçé ķéýƀóáŕð áñð ɱóúšé (úšéƒúļ óñ á ţáƀļéţ ŵíţĥ á ķéýƀóáŕð), óŕ Ţóúçĥ ƒóŕ ţĥé óñ-šçŕééñ çóñţŕóļš.]",
+      "windowTitle": "[Óþţíóñš]",
       "ambienceVolume": "[Áɱƀíéñçé Ʋóļúɱé]",
       "footstepSounds": "[Ƒóóţšţéþ Šóúñðš]",
       "interfaceSounds": "[Íñţéŕƒáçé áñð Ƒééðƀáçķ Šóúñðš]",

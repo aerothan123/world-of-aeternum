@@ -2821,6 +2821,7 @@ export const cs_CZ: EnTranslations = {
       "interfaceModeDesktop": "Desktop",
       "interfaceModeTouch": "Dotyk",
       "interfaceModeNote": "Automatika vybere desktopové nebo dotykové ovládání podle zařízení. Zvol Desktop pro vynucení klávesnice a myši (užitečné na tabletu s klávesnicí), nebo Dotyk pro ovládání na obrazovce.",
+      "windowTitle": "Options",
       "ambienceVolume": "Hlasitost prostředí",
       "footstepSounds": "Zvuky kroků",
       "interfaceSounds": "Zvuky rozhraní a odezvy",

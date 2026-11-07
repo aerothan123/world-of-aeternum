@@ -17330,6 +17330,7 @@ export type TranslationKeyFlat =
   | 'hudChrome.options.version'
   | 'hudChrome.options.walkByAutoloot'
   | 'hudChrome.options.waterRipples'
+  | 'hudChrome.options.windowTitle'
   | 'hudChrome.otaUpdate.applying'
   | 'hudChrome.otaUpdate.continueAnyway'
   | 'hudChrome.otaUpdate.downloading'

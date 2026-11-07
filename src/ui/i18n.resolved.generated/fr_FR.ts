@@ -2821,6 +2821,7 @@ export const fr_FR: EnTranslations = {
       "interfaceModeDesktop": "Desktop",
       "interfaceModeTouch": "Touch",
       "interfaceModeNote": "Auto choisit les commandes Desktop ou Touch selon votre appareil. Choisissez Desktop pour forcer le clavier et la souris (utile sur une tablette avec clavier), ou Touch pour les commandes à l'écran.",
+      "windowTitle": "Options",
       "ambienceVolume": "Volume de l'ambiance",
       "footstepSounds": "Sons de pas",
       "interfaceSounds": "Sons d’interface et retours sonores",
