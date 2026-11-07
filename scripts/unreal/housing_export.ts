@@ -65,6 +65,10 @@ export function buildHousingContent() {
       yaw: a.yaw,
       ordinal: houseAnchorOrdinal(a),
     })),
+    // Borrowed gear (ItemDef.lentGear): the house storage refuses it like a quest item.
+    lentGear: Object.keys(ITEMS)
+      .filter((id) => (ITEMS[id] as { lentGear?: unknown }).lentGear)
+      .sort(),
     furniture: FURNITURE_DEFS.map((d) => ({
       item: d.itemId,
       kind: d.kind,
