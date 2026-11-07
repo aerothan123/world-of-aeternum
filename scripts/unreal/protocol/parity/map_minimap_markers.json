@@ -1,7 +1,7 @@
 {
   "suite": "map_minimap_markers",
   "source": "src/ui/minimap_markers.ts createMinimapMarkers",
-  "note": "fixed snapshots (scripts/unreal/map_export.ts fixedSnapshots); mx,my rounded to 0.001 px; party-arrow is rim-clamped (wx,wz is the member); acceptance is 0.5 yd per marker",
+  "note": "fixed snapshots (scripts/unreal/map_export.ts fixedSnapshots); mx,my rounded to 0.001 px; party-arrow and an off-map corpse are rim-clamped (wx,wz is the source); acceptance is 0.5 yd per marker",
   "cases": [
     {
       "in": {
@@ -15,6 +15,100 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -0.75,
+            "z": -116.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -11,
+            "z": -111
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -17.5,
+            "z": -115.75,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 23,
+            "z": -132,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -5,
+            "z": -127.75,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 393,
+            "z": -120,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -14,
+            "z": -125,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 4,
+            "z": -107,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -4,
+            "z": -117
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -7,
+            "z": -120
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -2,
+            "z": -128
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 23,
+            "z": 20
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -267,
+            "z": -210
+          }
+        ],
+        "corpse": null,
         "markers": [
           {
             "kind": "station",
@@ -95,6 +189,24 @@
             "wz": -127.75,
             "mx": 77.6,
             "my": 94.175
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -14,
+            "wz": -125,
+            "mx": 92.9,
+            "my": 89.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 4,
+            "wz": -107,
+            "mx": 62.3,
+            "my": 58.9,
+            "ally": "guild"
           },
           {
             "kind": "party-disc",
@@ -159,6 +271,100 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -0.75,
+            "z": -116.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -11,
+            "z": -111
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -17.5,
+            "z": -115.75,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 23,
+            "z": -132,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -5,
+            "z": -127.75,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 393,
+            "z": -120,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -14,
+            "z": -125,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 4,
+            "z": -107,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -4,
+            "z": -117
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -7,
+            "z": -120
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -2,
+            "z": -128
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 23,
+            "z": 20
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -267,
+            "z": -210
+          }
+        ],
+        "corpse": null,
         "markers": [
           {
             "kind": "station",
@@ -241,6 +447,24 @@
             "my": 94.175
           },
           {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -14,
+            "wz": -125,
+            "mx": 92.9,
+            "my": 89.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 4,
+            "wz": -107,
+            "mx": 62.3,
+            "my": 58.9,
+            "ally": "guild"
+          },
+          {
             "kind": "party-disc",
             "ref": "party:20",
             "wx": -2,
@@ -303,6 +527,100 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -0.75,
+            "z": -116.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -11,
+            "z": -111
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -17.5,
+            "z": -115.75,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 23,
+            "z": -132,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -5,
+            "z": -127.75,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 393,
+            "z": -120,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -14,
+            "z": -125,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 4,
+            "z": -107,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -4,
+            "z": -117
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -7,
+            "z": -120
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -2,
+            "z": -128
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 23,
+            "z": 20
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -267,
+            "z": -210
+          }
+        ],
+        "corpse": null,
         "markers": [
           {
             "kind": "station",
@@ -375,6 +693,24 @@
             "wz": -127.75,
             "mx": 75.9,
             "my": 100.763
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -14,
+            "wz": -125,
+            "mx": 98.85,
+            "my": 93.75,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 4,
+            "wz": -107,
+            "mx": 52.95,
+            "my": 47.85,
+            "ally": "guild"
           },
           {
             "kind": "party-disc",
@@ -439,6 +775,100 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -0.75,
+            "z": -116.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -11,
+            "z": -111
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -17.5,
+            "z": -115.75,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 23,
+            "z": -132,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -5,
+            "z": -127.75,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 393,
+            "z": -120,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -14,
+            "z": -125,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 4,
+            "z": -107,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -4,
+            "z": -117
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -7,
+            "z": -120
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -2,
+            "z": -128
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 23,
+            "z": 20
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -267,
+            "z": -210
+          }
+        ],
+        "corpse": null,
         "markers": [
           {
             "kind": "station",
@@ -513,6 +943,24 @@
             "my": 100.763
           },
           {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -14,
+            "wz": -125,
+            "mx": 98.85,
+            "my": 93.75,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 4,
+            "wz": -107,
+            "mx": 52.95,
+            "my": 47.85,
+            "ally": "guild"
+          },
+          {
             "kind": "party-disc",
             "ref": "party:20",
             "wx": -2,
@@ -575,6 +1023,100 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -0.75,
+            "z": -116.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -11,
+            "z": -111
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -17.5,
+            "z": -115.75,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 23,
+            "z": -132,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -5,
+            "z": -127.75,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 393,
+            "z": -120,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -14,
+            "z": -125,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 4,
+            "z": -107,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -4,
+            "z": -117
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -7,
+            "z": -120
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -2,
+            "z": -128
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 23,
+            "z": 20
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -267,
+            "z": -210
+          }
+        ],
+        "corpse": null,
         "markers": [
           {
             "kind": "station",
@@ -647,6 +1189,24 @@
             "wz": -127.75,
             "mx": 74.2,
             "my": 107.35
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -14,
+            "wz": -125,
+            "mx": 104.8,
+            "my": 98,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 4,
+            "wz": -107,
+            "mx": 43.6,
+            "my": 36.8,
+            "ally": "guild"
           },
           {
             "kind": "party-disc",
@@ -711,6 +1271,100 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -0.75,
+            "z": -116.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -11,
+            "z": -111
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -17.5,
+            "z": -115.75,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 23,
+            "z": -132,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -5,
+            "z": -127.75,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 393,
+            "z": -120,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -14,
+            "z": -125,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 4,
+            "z": -107,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -4,
+            "z": -117
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -7,
+            "z": -120
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -2,
+            "z": -128
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 23,
+            "z": 20
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -267,
+            "z": -210
+          }
+        ],
+        "corpse": null,
         "markers": [
           {
             "kind": "station",
@@ -783,6 +1437,24 @@
             "wz": -127.75,
             "mx": 74.2,
             "my": 107.35
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -14,
+            "wz": -125,
+            "mx": 104.8,
+            "my": 98,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 4,
+            "wz": -107,
+            "mx": 43.6,
+            "my": 36.8,
+            "ally": "guild"
           },
           {
             "kind": "party-disc",
@@ -847,6 +1519,100 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -0.75,
+            "z": -116.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -11,
+            "z": -111
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -17.5,
+            "z": -115.75,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 23,
+            "z": -132,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -5,
+            "z": -127.75,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 393,
+            "z": -120,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -14,
+            "z": -125,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 4,
+            "z": -107,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -4,
+            "z": -117
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -7,
+            "z": -120
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -2,
+            "z": -128
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 23,
+            "z": 20
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -267,
+            "z": -210
+          }
+        ],
+        "corpse": null,
         "markers": [
           {
             "kind": "station",
@@ -919,6 +1685,15 @@
             "wz": -127.75,
             "mx": 70.8,
             "my": 120.525
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -14,
+            "wz": -125,
+            "mx": 116.7,
+            "my": 106.5,
+            "ally": "friend"
           },
           {
             "kind": "party-disc",
@@ -983,6 +1758,100 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -0.75,
+            "z": -116.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -11,
+            "z": -111
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -17.5,
+            "z": -115.75,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 23,
+            "z": -132,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -5,
+            "z": -127.75,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 393,
+            "z": -120,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -14,
+            "z": -125,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 4,
+            "z": -107,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -4,
+            "z": -117
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -7,
+            "z": -120
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -2,
+            "z": -128
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 23,
+            "z": 20
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -267,
+            "z": -210
+          }
+        ],
+        "corpse": null,
         "markers": [
           {
             "kind": "station",
@@ -1055,6 +1924,15 @@
             "wz": -127.75,
             "mx": 70.8,
             "my": 120.525
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -14,
+            "wz": -125,
+            "mx": 116.7,
+            "my": 106.5,
+            "ally": "friend"
           },
           {
             "kind": "party-disc",
@@ -1119,6 +1997,103 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -3.9222222222222225,
+            "z": -106.3,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -14.172222222222222,
+            "z": -100.8
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -20.672222222222224,
+            "z": -105.55,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 19.827777777777776,
+            "z": -121.8,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -8.172222222222222,
+            "z": -117.55,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 389.8277777777778,
+            "z": -109.8,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -17.172222222222224,
+            "z": -114.8,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 0.8277777777777775,
+            "z": -96.8,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -7.1722222222222225,
+            "z": -106.8
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -10.172222222222222,
+            "z": -109.8
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -5.1722222222222225,
+            "z": -117.8
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 19.827777777777776,
+            "z": 30.200000000000003
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -270.1722222222222,
+            "z": -199.8
+          }
+        ],
+        "corpse": {
+          "x": -22.172222222222224,
+          "z": -103.8
+        },
         "markers": [
           {
             "kind": "station",
@@ -1217,6 +2192,32 @@
             "my": 94.175
           },
           {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -17.172222222222224,
+            "wz": -114.8,
+            "mx": 92.9,
+            "my": 89.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 0.8277777777777775,
+            "wz": -96.8,
+            "mx": 62.3,
+            "my": 58.9,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": -22.172222222222224,
+            "wz": -103.8,
+            "mx": 101.4,
+            "my": 70.8
+          },
+          {
             "kind": "party-disc",
             "ref": "party:20",
             "wx": -5.1722222222222225,
@@ -1279,6 +2280,103 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -3.9222222222222225,
+            "z": -106.3,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -14.172222222222222,
+            "z": -100.8
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -20.672222222222224,
+            "z": -105.55,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 19.827777777777776,
+            "z": -121.8,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -8.172222222222222,
+            "z": -117.55,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 389.8277777777778,
+            "z": -109.8,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -17.172222222222224,
+            "z": -114.8,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 0.8277777777777775,
+            "z": -96.8,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -7.1722222222222225,
+            "z": -106.8
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -10.172222222222222,
+            "z": -109.8
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -5.1722222222222225,
+            "z": -117.8
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 19.827777777777776,
+            "z": 30.200000000000003
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -270.1722222222222,
+            "z": -199.8
+          }
+        ],
+        "corpse": {
+          "x": -22.172222222222224,
+          "z": -103.8
+        },
         "markers": [
           {
             "kind": "station",
@@ -1377,6 +2475,32 @@
             "my": 94.175
           },
           {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -17.172222222222224,
+            "wz": -114.8,
+            "mx": 92.9,
+            "my": 89.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 0.8277777777777775,
+            "wz": -96.8,
+            "mx": 62.3,
+            "my": 58.9,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": -22.172222222222224,
+            "wz": -103.8,
+            "mx": 101.4,
+            "my": 70.8
+          },
+          {
             "kind": "party-disc",
             "ref": "party:20",
             "wx": -5.1722222222222225,
@@ -1439,6 +2563,103 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -3.9222222222222225,
+            "z": -106.3,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -14.172222222222222,
+            "z": -100.8
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -20.672222222222224,
+            "z": -105.55,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 19.827777777777776,
+            "z": -121.8,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -8.172222222222222,
+            "z": -117.55,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 389.8277777777778,
+            "z": -109.8,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -17.172222222222224,
+            "z": -114.8,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 0.8277777777777775,
+            "z": -96.8,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -7.1722222222222225,
+            "z": -106.8
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -10.172222222222222,
+            "z": -109.8
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -5.1722222222222225,
+            "z": -117.8
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 19.827777777777776,
+            "z": 30.200000000000003
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -270.1722222222222,
+            "z": -199.8
+          }
+        ],
+        "corpse": {
+          "x": -22.172222222222224,
+          "z": -103.8
+        },
         "markers": [
           {
             "kind": "station",
@@ -1511,6 +2732,32 @@
             "wz": -117.55,
             "mx": 75.9,
             "my": 100.763
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -17.172222222222224,
+            "wz": -114.8,
+            "mx": 98.85,
+            "my": 93.75,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 0.8277777777777775,
+            "wz": -96.8,
+            "mx": 52.95,
+            "my": 47.85,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": -22.172222222222224,
+            "wz": -103.8,
+            "mx": 111.6,
+            "my": 65.7
           },
           {
             "kind": "party-disc",
@@ -1575,6 +2822,103 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -3.9222222222222225,
+            "z": -106.3,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -14.172222222222222,
+            "z": -100.8
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -20.672222222222224,
+            "z": -105.55,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 19.827777777777776,
+            "z": -121.8,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -8.172222222222222,
+            "z": -117.55,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 389.8277777777778,
+            "z": -109.8,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -17.172222222222224,
+            "z": -114.8,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 0.8277777777777775,
+            "z": -96.8,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -7.1722222222222225,
+            "z": -106.8
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -10.172222222222222,
+            "z": -109.8
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -5.1722222222222225,
+            "z": -117.8
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 19.827777777777776,
+            "z": 30.200000000000003
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -270.1722222222222,
+            "z": -199.8
+          }
+        ],
+        "corpse": {
+          "x": -22.172222222222224,
+          "z": -103.8
+        },
         "markers": [
           {
             "kind": "station",
@@ -1649,6 +2993,32 @@
             "my": 100.763
           },
           {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -17.172222222222224,
+            "wz": -114.8,
+            "mx": 98.85,
+            "my": 93.75,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 0.8277777777777775,
+            "wz": -96.8,
+            "mx": 52.95,
+            "my": 47.85,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": -22.172222222222224,
+            "wz": -103.8,
+            "mx": 111.6,
+            "my": 65.7
+          },
+          {
             "kind": "party-disc",
             "ref": "party:20",
             "wx": -5.1722222222222225,
@@ -1711,6 +3081,103 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -3.9222222222222225,
+            "z": -106.3,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -14.172222222222222,
+            "z": -100.8
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -20.672222222222224,
+            "z": -105.55,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 19.827777777777776,
+            "z": -121.8,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -8.172222222222222,
+            "z": -117.55,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 389.8277777777778,
+            "z": -109.8,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -17.172222222222224,
+            "z": -114.8,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 0.8277777777777775,
+            "z": -96.8,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -7.1722222222222225,
+            "z": -106.8
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -10.172222222222222,
+            "z": -109.8
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -5.1722222222222225,
+            "z": -117.8
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 19.827777777777776,
+            "z": 30.200000000000003
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -270.1722222222222,
+            "z": -199.8
+          }
+        ],
+        "corpse": {
+          "x": -22.172222222222224,
+          "z": -103.8
+        },
         "markers": [
           {
             "kind": "station",
@@ -1783,6 +3250,32 @@
             "wz": -117.55,
             "mx": 74.2,
             "my": 107.35
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -17.172222222222224,
+            "wz": -114.8,
+            "mx": 104.8,
+            "my": 98,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 0.8277777777777775,
+            "wz": -96.8,
+            "mx": 43.6,
+            "my": 36.8,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": -22.172222222222224,
+            "wz": -103.8,
+            "mx": 121.8,
+            "my": 60.6
           },
           {
             "kind": "party-disc",
@@ -1847,6 +3340,103 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -3.9222222222222225,
+            "z": -106.3,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -14.172222222222222,
+            "z": -100.8
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -20.672222222222224,
+            "z": -105.55,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 19.827777777777776,
+            "z": -121.8,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -8.172222222222222,
+            "z": -117.55,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 389.8277777777778,
+            "z": -109.8,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -17.172222222222224,
+            "z": -114.8,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 0.8277777777777775,
+            "z": -96.8,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -7.1722222222222225,
+            "z": -106.8
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -10.172222222222222,
+            "z": -109.8
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -5.1722222222222225,
+            "z": -117.8
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 19.827777777777776,
+            "z": 30.200000000000003
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -270.1722222222222,
+            "z": -199.8
+          }
+        ],
+        "corpse": {
+          "x": -22.172222222222224,
+          "z": -103.8
+        },
         "markers": [
           {
             "kind": "station",
@@ -1919,6 +3509,32 @@
             "wz": -117.55,
             "mx": 74.2,
             "my": 107.35
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -17.172222222222224,
+            "wz": -114.8,
+            "mx": 104.8,
+            "my": 98,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": 0.8277777777777775,
+            "wz": -96.8,
+            "mx": 43.6,
+            "my": 36.8,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": -22.172222222222224,
+            "wz": -103.8,
+            "mx": 121.8,
+            "my": 60.6
           },
           {
             "kind": "party-disc",
@@ -1983,6 +3599,103 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -3.9222222222222225,
+            "z": -106.3,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -14.172222222222222,
+            "z": -100.8
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -20.672222222222224,
+            "z": -105.55,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 19.827777777777776,
+            "z": -121.8,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -8.172222222222222,
+            "z": -117.55,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 389.8277777777778,
+            "z": -109.8,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -17.172222222222224,
+            "z": -114.8,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 0.8277777777777775,
+            "z": -96.8,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -7.1722222222222225,
+            "z": -106.8
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -10.172222222222222,
+            "z": -109.8
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -5.1722222222222225,
+            "z": -117.8
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 19.827777777777776,
+            "z": 30.200000000000003
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -270.1722222222222,
+            "z": -199.8
+          }
+        ],
+        "corpse": {
+          "x": -22.172222222222224,
+          "z": -103.8
+        },
         "markers": [
           {
             "kind": "station",
@@ -2049,6 +3762,23 @@
             "my": 120.525
           },
           {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -17.172222222222224,
+            "wz": -114.8,
+            "mx": 116.7,
+            "my": 106.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": -22.172222222222224,
+            "wz": -103.8,
+            "mx": 142.2,
+            "my": 50.4
+          },
+          {
             "kind": "party-disc",
             "ref": "party:20",
             "wx": -5.1722222222222225,
@@ -2111,6 +3841,103 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -3.9222222222222225,
+            "z": -106.3,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -14.172222222222222,
+            "z": -100.8
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -20.672222222222224,
+            "z": -105.55,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 19.827777777777776,
+            "z": -121.8,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -8.172222222222222,
+            "z": -117.55,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 389.8277777777778,
+            "z": -109.8,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -17.172222222222224,
+            "z": -114.8,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": 0.8277777777777775,
+            "z": -96.8,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -7.1722222222222225,
+            "z": -106.8
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -10.172222222222222,
+            "z": -109.8
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -5.1722222222222225,
+            "z": -117.8
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 19.827777777777776,
+            "z": 30.200000000000003
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -270.1722222222222,
+            "z": -199.8
+          }
+        ],
+        "corpse": {
+          "x": -22.172222222222224,
+          "z": -103.8
+        },
         "markers": [
           {
             "kind": "station",
@@ -2167,6 +3994,23 @@
             "wz": -117.55,
             "mx": 70.8,
             "my": 120.525
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -17.172222222222224,
+            "wz": -114.8,
+            "mx": 116.7,
+            "my": 106.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": -22.172222222222224,
+            "wz": -103.8,
+            "mx": 142.2,
+            "my": 50.4
           },
           {
             "kind": "party-disc",
@@ -2231,6 +4075,103 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -5.75,
+            "z": 161.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -16,
+            "z": 167
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -22.5,
+            "z": 162.25,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 18,
+            "z": 146,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -10,
+            "z": 150.25,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 388,
+            "z": 158,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -19,
+            "z": 153,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": -1,
+            "z": 171,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -9,
+            "z": 161
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -12,
+            "z": 158
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -7,
+            "z": 150
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 18,
+            "z": 298
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -272,
+            "z": 68
+          }
+        ],
+        "corpse": {
+          "x": 288,
+          "z": 208
+        },
         "markers": [
           {
             "kind": "gather-node",
@@ -2303,6 +4244,32 @@
             "wz": 150.25,
             "mx": 77.6,
             "my": 94.175
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -19,
+            "wz": 153,
+            "mx": 92.9,
+            "my": 89.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": -1,
+            "wz": 171,
+            "mx": 62.3,
+            "my": 58.9,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": 288,
+            "wz": 208,
+            "mx": 8.993,
+            "my": 68.999
           },
           {
             "kind": "party-disc",
@@ -2367,6 +4334,103 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -5.75,
+            "z": 161.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -16,
+            "z": 167
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -22.5,
+            "z": 162.25,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 18,
+            "z": 146,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -10,
+            "z": 150.25,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 388,
+            "z": 158,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -19,
+            "z": 153,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": -1,
+            "z": 171,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -9,
+            "z": 161
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -12,
+            "z": 158
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -7,
+            "z": 150
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 18,
+            "z": 298
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -272,
+            "z": 68
+          }
+        ],
+        "corpse": {
+          "x": 288,
+          "z": 208
+        },
         "markers": [
           {
             "kind": "gather-node",
@@ -2441,6 +4505,32 @@
             "my": 94.175
           },
           {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -19,
+            "wz": 153,
+            "mx": 92.9,
+            "my": 89.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": -1,
+            "wz": 171,
+            "mx": 62.3,
+            "my": 58.9,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": 288,
+            "wz": 208,
+            "mx": 11.952,
+            "my": 69.492
+          },
+          {
             "kind": "party-disc",
             "ref": "party:20",
             "wx": -7,
@@ -2503,6 +4593,103 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -5.75,
+            "z": 161.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -16,
+            "z": 167
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -22.5,
+            "z": 162.25,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 18,
+            "z": 146,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -10,
+            "z": 150.25,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 388,
+            "z": 158,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -19,
+            "z": 153,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": -1,
+            "z": 171,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -9,
+            "z": 161
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -12,
+            "z": 158
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -7,
+            "z": 150
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 18,
+            "z": 298
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -272,
+            "z": 68
+          }
+        ],
+        "corpse": {
+          "x": 288,
+          "z": 208
+        },
         "markers": [
           {
             "kind": "gather-node",
@@ -2559,6 +4746,32 @@
             "wz": 150.25,
             "mx": 75.9,
             "my": 100.763
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -19,
+            "wz": 153,
+            "mx": 98.85,
+            "my": 93.75,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": -1,
+            "wz": 171,
+            "mx": 52.95,
+            "my": 47.85,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": 288,
+            "wz": 208,
+            "mx": 8.993,
+            "my": 68.999
           },
           {
             "kind": "party-disc",
@@ -2623,6 +4836,103 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -5.75,
+            "z": 161.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -16,
+            "z": 167
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -22.5,
+            "z": 162.25,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 18,
+            "z": 146,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -10,
+            "z": 150.25,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 388,
+            "z": 158,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -19,
+            "z": 153,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": -1,
+            "z": 171,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -9,
+            "z": 161
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -12,
+            "z": 158
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -7,
+            "z": 150
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 18,
+            "z": 298
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -272,
+            "z": 68
+          }
+        ],
+        "corpse": {
+          "x": 288,
+          "z": 208
+        },
         "markers": [
           {
             "kind": "gather-node",
@@ -2671,6 +4981,32 @@
             "wz": 150.25,
             "mx": 75.9,
             "my": 100.763
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -19,
+            "wz": 153,
+            "mx": 98.85,
+            "my": 93.75,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": -1,
+            "wz": 171,
+            "mx": 52.95,
+            "my": 47.85,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": 288,
+            "wz": 208,
+            "mx": 11.952,
+            "my": 69.492
           },
           {
             "kind": "party-disc",
@@ -2735,6 +5071,103 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -5.75,
+            "z": 161.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -16,
+            "z": 167
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -22.5,
+            "z": 162.25,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 18,
+            "z": 146,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -10,
+            "z": 150.25,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 388,
+            "z": 158,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -19,
+            "z": 153,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": -1,
+            "z": 171,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -9,
+            "z": 161
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -12,
+            "z": 158
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -7,
+            "z": 150
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 18,
+            "z": 298
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -272,
+            "z": 68
+          }
+        ],
+        "corpse": {
+          "x": 288,
+          "z": 208
+        },
         "markers": [
           {
             "kind": "gather-node",
@@ -2775,6 +5208,32 @@
             "wz": 150.25,
             "mx": 74.2,
             "my": 107.35
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -19,
+            "wz": 153,
+            "mx": 104.8,
+            "my": 98,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": -1,
+            "wz": 171,
+            "mx": 43.6,
+            "my": 36.8,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": 288,
+            "wz": 208,
+            "mx": 8.993,
+            "my": 68.999
           },
           {
             "kind": "party-disc",
@@ -2839,6 +5298,103 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -5.75,
+            "z": 161.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -16,
+            "z": 167
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -22.5,
+            "z": 162.25,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 18,
+            "z": 146,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -10,
+            "z": 150.25,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 388,
+            "z": 158,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -19,
+            "z": 153,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": -1,
+            "z": 171,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -9,
+            "z": 161
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -12,
+            "z": 158
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -7,
+            "z": 150
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 18,
+            "z": 298
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -272,
+            "z": 68
+          }
+        ],
+        "corpse": {
+          "x": 288,
+          "z": 208
+        },
         "markers": [
           {
             "kind": "gather-node",
@@ -2879,6 +5435,32 @@
             "wz": 150.25,
             "mx": 74.2,
             "my": 107.35
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -19,
+            "wz": 153,
+            "mx": 104.8,
+            "my": 98,
+            "ally": "friend"
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:9",
+            "wx": -1,
+            "wz": 171,
+            "mx": 43.6,
+            "my": 36.8,
+            "ally": "guild"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": 288,
+            "wz": 208,
+            "mx": 11.952,
+            "my": 69.492
           },
           {
             "kind": "party-disc",
@@ -2943,6 +5525,103 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -5.75,
+            "z": 161.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -16,
+            "z": 167
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -22.5,
+            "z": 162.25,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 18,
+            "z": 146,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -10,
+            "z": 150.25,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 388,
+            "z": 158,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -19,
+            "z": 153,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": -1,
+            "z": 171,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -9,
+            "z": 161
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -12,
+            "z": 158
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -7,
+            "z": 150
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 18,
+            "z": 298
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -272,
+            "z": 68
+          }
+        ],
+        "corpse": {
+          "x": 288,
+          "z": 208
+        },
         "markers": [
           {
             "kind": "gather-node",
@@ -2983,6 +5662,23 @@
             "wz": 150.25,
             "mx": 70.8,
             "my": 120.525
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -19,
+            "wz": 153,
+            "mx": 116.7,
+            "my": 106.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": 288,
+            "wz": 208,
+            "mx": 8.993,
+            "my": 68.999
           },
           {
             "kind": "party-disc",
@@ -3047,6 +5743,103 @@
       },
       "out": {
         "zoneId": "eastbrook_vale",
+        "entities": [
+          {
+            "id": 2,
+            "kind": "npc",
+            "x": -5.75,
+            "z": 161.5,
+            "quest": true
+          },
+          {
+            "id": 3,
+            "kind": "npc",
+            "x": -16,
+            "z": 167
+          },
+          {
+            "id": 4,
+            "kind": "mob",
+            "x": -22.5,
+            "z": 162.25,
+            "hostile": true
+          },
+          {
+            "id": 5,
+            "kind": "mob",
+            "x": 18,
+            "z": 146,
+            "hostile": true
+          },
+          {
+            "id": 6,
+            "kind": "object",
+            "x": -10,
+            "z": 150.25,
+            "lootable": true
+          },
+          {
+            "id": 7,
+            "kind": "mob",
+            "x": 388,
+            "z": 158,
+            "hostile": true
+          },
+          {
+            "id": 8,
+            "kind": "player",
+            "x": -19,
+            "z": 153,
+            "ally": "friend"
+          },
+          {
+            "id": 9,
+            "kind": "player",
+            "x": -1,
+            "z": 171,
+            "ally": "guild"
+          },
+          {
+            "id": 10,
+            "kind": "player",
+            "x": -9,
+            "z": 161
+          }
+        ],
+        "party": [
+          {
+            "pid": 1,
+            "cls": "warrior",
+            "dead": 0,
+            "x": -12,
+            "z": 158
+          },
+          {
+            "pid": 20,
+            "cls": "mage",
+            "dead": 0,
+            "x": -7,
+            "z": 150
+          },
+          {
+            "pid": 21,
+            "cls": "priest",
+            "dead": 1,
+            "x": 18,
+            "z": 298
+          },
+          {
+            "pid": 22,
+            "cls": "rogue",
+            "dead": 0,
+            "x": -272,
+            "z": 68
+          }
+        ],
+        "corpse": {
+          "x": 288,
+          "z": 208
+        },
         "markers": [
           {
             "kind": "gather-node",
@@ -3087,6 +5880,23 @@
             "wz": 150.25,
             "mx": 70.8,
             "my": 120.525
+          },
+          {
+            "kind": "ally",
+            "ref": "entity:8",
+            "wx": -19,
+            "wz": 153,
+            "mx": 116.7,
+            "my": 106.5,
+            "ally": "friend"
+          },
+          {
+            "kind": "corpse",
+            "ref": "corpse",
+            "wx": 288,
+            "wz": 208,
+            "mx": 11.952,
+            "my": 69.492
           },
           {
             "kind": "party-disc",

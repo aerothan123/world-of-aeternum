@@ -42,9 +42,27 @@ describe('unreal map parity export', () => {
     for (const c of buildMapSuite('map_minimap_markers').cases) {
       for (const m of (c.out as { markers: Marker[] }).markers) kinds.add(m.kind);
     }
-    for (const k of ['npc', 'gather-node', 'town-project', 'party-disc', 'party-arrow', 'player']) {
+    for (const k of [
+      'npc',
+      'gather-node',
+      'town-project',
+      'party-disc',
+      'party-arrow',
+      'player',
+      'ally',
+      'corpse',
+    ]) {
       expect(kinds.has(k), k).toBe(true);
     }
+  });
+
+  it('the zone suite covers quest areas, quest givers, landmarks and a ping', () => {
+    const outs = buildMapSuite('map_zone_frame').cases.map(
+      (c) => c.out as Record<string, unknown[] | unknown>,
+    );
+    const any = (k: string) => outs.some((o) => Array.isArray(o[k]) && (o[k] as []).length > 0);
+    for (const k of ['questAreas', 'npcs', 'stations', 'party']) expect(any(k), k).toBe(true);
+    expect(outs.some((o) => o.ping !== null)).toBe(true);
   });
 });
 
