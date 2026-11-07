@@ -1,0 +1,4823 @@
+{
+  "suite": "items_durability",
+  "source": "src/sim/durability/durability_rules.ts",
+  "note": "one item per slot, quality and hand; wear past max and negative wear clamp",
+  "cases": [
+    {
+      "in": {
+        "item": "acolyte_chain_grips",
+        "wear": 0
+      },
+      "out": {
+        "max": 35,
+        "lost": 0,
+        "current": 35,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "acolyte_chain_grips",
+        "wear": 1
+      },
+      "out": {
+        "max": 35,
+        "lost": 1,
+        "current": 34,
+        "broken": false,
+        "state": "ok",
+        "cost": 5
+      }
+    },
+    {
+      "in": {
+        "item": "acolyte_chain_grips",
+        "wear": 17
+      },
+      "out": {
+        "max": 35,
+        "lost": 17,
+        "current": 18,
+        "broken": false,
+        "state": "ok",
+        "cost": 85
+      }
+    },
+    {
+      "in": {
+        "item": "acolyte_chain_grips",
+        "wear": 27
+      },
+      "out": {
+        "max": 35,
+        "lost": 27,
+        "current": 8,
+        "broken": false,
+        "state": "low",
+        "cost": 135
+      }
+    },
+    {
+      "in": {
+        "item": "acolyte_chain_grips",
+        "wear": 34
+      },
+      "out": {
+        "max": 35,
+        "lost": 34,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 170
+      }
+    },
+    {
+      "in": {
+        "item": "acolyte_chain_grips",
+        "wear": 35
+      },
+      "out": {
+        "max": 35,
+        "lost": 35,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 175
+      }
+    },
+    {
+      "in": {
+        "item": "acolyte_chain_grips",
+        "wear": 40
+      },
+      "out": {
+        "max": 35,
+        "lost": 35,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 175
+      }
+    },
+    {
+      "in": {
+        "item": "acolyte_chain_grips",
+        "wear": -3
+      },
+      "out": {
+        "max": 35,
+        "lost": 0,
+        "current": 35,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "acolytes_circlet",
+        "wear": 0
+      },
+      "out": {
+        "max": 60,
+        "lost": 0,
+        "current": 60,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "acolytes_circlet",
+        "wear": 1
+      },
+      "out": {
+        "max": 60,
+        "lost": 1,
+        "current": 59,
+        "broken": false,
+        "state": "ok",
+        "cost": 1
+      }
+    },
+    {
+      "in": {
+        "item": "acolytes_circlet",
+        "wear": 30
+      },
+      "out": {
+        "max": 60,
+        "lost": 30,
+        "current": 30,
+        "broken": false,
+        "state": "ok",
+        "cost": 30
+      }
+    },
+    {
+      "in": {
+        "item": "acolytes_circlet",
+        "wear": 46
+      },
+      "out": {
+        "max": 60,
+        "lost": 46,
+        "current": 14,
+        "broken": false,
+        "state": "low",
+        "cost": 46
+      }
+    },
+    {
+      "in": {
+        "item": "acolytes_circlet",
+        "wear": 59
+      },
+      "out": {
+        "max": 60,
+        "lost": 59,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 59
+      }
+    },
+    {
+      "in": {
+        "item": "acolytes_circlet",
+        "wear": 60
+      },
+      "out": {
+        "max": 60,
+        "lost": 60,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 60
+      }
+    },
+    {
+      "in": {
+        "item": "acolytes_circlet",
+        "wear": 65
+      },
+      "out": {
+        "max": 60,
+        "lost": 60,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 60
+      }
+    },
+    {
+      "in": {
+        "item": "acolytes_circlet",
+        "wear": -3
+      },
+      "out": {
+        "max": 60,
+        "lost": 0,
+        "current": 60,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "anvilguard_blade",
+        "wear": 0
+      },
+      "out": {
+        "max": 105,
+        "lost": 0,
+        "current": 105,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "anvilguard_blade",
+        "wear": 1
+      },
+      "out": {
+        "max": 105,
+        "lost": 1,
+        "current": 104,
+        "broken": false,
+        "state": "ok",
+        "cost": 70
+      }
+    },
+    {
+      "in": {
+        "item": "anvilguard_blade",
+        "wear": 52
+      },
+      "out": {
+        "max": 105,
+        "lost": 52,
+        "current": 53,
+        "broken": false,
+        "state": "ok",
+        "cost": 3640
+      }
+    },
+    {
+      "in": {
+        "item": "anvilguard_blade",
+        "wear": 80
+      },
+      "out": {
+        "max": 105,
+        "lost": 80,
+        "current": 25,
+        "broken": false,
+        "state": "low",
+        "cost": 5600
+      }
+    },
+    {
+      "in": {
+        "item": "anvilguard_blade",
+        "wear": 104
+      },
+      "out": {
+        "max": 105,
+        "lost": 104,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 7280
+      }
+    },
+    {
+      "in": {
+        "item": "anvilguard_blade",
+        "wear": 105
+      },
+      "out": {
+        "max": 105,
+        "lost": 105,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 7350
+      }
+    },
+    {
+      "in": {
+        "item": "anvilguard_blade",
+        "wear": 110
+      },
+      "out": {
+        "max": 105,
+        "lost": 105,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 7350
+      }
+    },
+    {
+      "in": {
+        "item": "anvilguard_blade",
+        "wear": -3
+      },
+      "out": {
+        "max": 105,
+        "lost": 0,
+        "current": 105,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "anvilstance_sabatons",
+        "wear": 0
+      },
+      "out": {
+        "max": 70,
+        "lost": 0,
+        "current": 70,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "anvilstance_sabatons",
+        "wear": 1
+      },
+      "out": {
+        "max": 70,
+        "lost": 1,
+        "current": 69,
+        "broken": false,
+        "state": "ok",
+        "cost": 70
+      }
+    },
+    {
+      "in": {
+        "item": "anvilstance_sabatons",
+        "wear": 35
+      },
+      "out": {
+        "max": 70,
+        "lost": 35,
+        "current": 35,
+        "broken": false,
+        "state": "ok",
+        "cost": 2450
+      }
+    },
+    {
+      "in": {
+        "item": "anvilstance_sabatons",
+        "wear": 54
+      },
+      "out": {
+        "max": 70,
+        "lost": 54,
+        "current": 16,
+        "broken": false,
+        "state": "low",
+        "cost": 3780
+      }
+    },
+    {
+      "in": {
+        "item": "anvilstance_sabatons",
+        "wear": 69
+      },
+      "out": {
+        "max": 70,
+        "lost": 69,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 4830
+      }
+    },
+    {
+      "in": {
+        "item": "anvilstance_sabatons",
+        "wear": 70
+      },
+      "out": {
+        "max": 70,
+        "lost": 70,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 4900
+      }
+    },
+    {
+      "in": {
+        "item": "anvilstance_sabatons",
+        "wear": 75
+      },
+      "out": {
+        "max": 70,
+        "lost": 70,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 4900
+      }
+    },
+    {
+      "in": {
+        "item": "anvilstance_sabatons",
+        "wear": -3
+      },
+      "out": {
+        "max": 70,
+        "lost": 0,
+        "current": 70,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "apprentice_robe",
+        "wear": 0
+      },
+      "out": {
+        "max": 80,
+        "lost": 0,
+        "current": 80,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "apprentice_robe",
+        "wear": 1
+      },
+      "out": {
+        "max": 80,
+        "lost": 1,
+        "current": 79,
+        "broken": false,
+        "state": "ok",
+        "cost": 1
+      }
+    },
+    {
+      "in": {
+        "item": "apprentice_robe",
+        "wear": 40
+      },
+      "out": {
+        "max": 80,
+        "lost": 40,
+        "current": 40,
+        "broken": false,
+        "state": "ok",
+        "cost": 40
+      }
+    },
+    {
+      "in": {
+        "item": "apprentice_robe",
+        "wear": 61
+      },
+      "out": {
+        "max": 80,
+        "lost": 61,
+        "current": 19,
+        "broken": false,
+        "state": "low",
+        "cost": 61
+      }
+    },
+    {
+      "in": {
+        "item": "apprentice_robe",
+        "wear": 79
+      },
+      "out": {
+        "max": 80,
+        "lost": 79,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 79
+      }
+    },
+    {
+      "in": {
+        "item": "apprentice_robe",
+        "wear": 80
+      },
+      "out": {
+        "max": 80,
+        "lost": 80,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 80
+      }
+    },
+    {
+      "in": {
+        "item": "apprentice_robe",
+        "wear": 85
+      },
+      "out": {
+        "max": 80,
+        "lost": 80,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 80
+      }
+    },
+    {
+      "in": {
+        "item": "apprentice_robe",
+        "wear": -3
+      },
+      "out": {
+        "max": 80,
+        "lost": 0,
+        "current": 80,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "apprentice_staff",
+        "wear": 0
+      },
+      "out": {
+        "max": 75,
+        "lost": 0,
+        "current": 75,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "apprentice_staff",
+        "wear": 1
+      },
+      "out": {
+        "max": 75,
+        "lost": 1,
+        "current": 74,
+        "broken": false,
+        "state": "ok",
+        "cost": 6
+      }
+    },
+    {
+      "in": {
+        "item": "apprentice_staff",
+        "wear": 37
+      },
+      "out": {
+        "max": 75,
+        "lost": 37,
+        "current": 38,
+        "broken": false,
+        "state": "ok",
+        "cost": 222
+      }
+    },
+    {
+      "in": {
+        "item": "apprentice_staff",
+        "wear": 57
+      },
+      "out": {
+        "max": 75,
+        "lost": 57,
+        "current": 18,
+        "broken": false,
+        "state": "low",
+        "cost": 342
+      }
+    },
+    {
+      "in": {
+        "item": "apprentice_staff",
+        "wear": 74
+      },
+      "out": {
+        "max": 75,
+        "lost": 74,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 444
+      }
+    },
+    {
+      "in": {
+        "item": "apprentice_staff",
+        "wear": 75
+      },
+      "out": {
+        "max": 75,
+        "lost": 75,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 450
+      }
+    },
+    {
+      "in": {
+        "item": "apprentice_staff",
+        "wear": 80
+      },
+      "out": {
+        "max": 75,
+        "lost": 75,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 450
+      }
+    },
+    {
+      "in": {
+        "item": "apprentice_staff",
+        "wear": -3
+      },
+      "out": {
+        "max": 75,
+        "lost": 0,
+        "current": 75,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "arcanite_war_axe",
+        "wear": 0
+      },
+      "out": {
+        "max": 90,
+        "lost": 0,
+        "current": 90,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "arcanite_war_axe",
+        "wear": 1
+      },
+      "out": {
+        "max": 90,
+        "lost": 1,
+        "current": 89,
+        "broken": false,
+        "state": "ok",
+        "cost": 27
+      }
+    },
+    {
+      "in": {
+        "item": "arcanite_war_axe",
+        "wear": 45
+      },
+      "out": {
+        "max": 90,
+        "lost": 45,
+        "current": 45,
+        "broken": false,
+        "state": "ok",
+        "cost": 1215
+      }
+    },
+    {
+      "in": {
+        "item": "arcanite_war_axe",
+        "wear": 69
+      },
+      "out": {
+        "max": 90,
+        "lost": 69,
+        "current": 21,
+        "broken": false,
+        "state": "low",
+        "cost": 1863
+      }
+    },
+    {
+      "in": {
+        "item": "arcanite_war_axe",
+        "wear": 89
+      },
+      "out": {
+        "max": 90,
+        "lost": 89,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 2403
+      }
+    },
+    {
+      "in": {
+        "item": "arcanite_war_axe",
+        "wear": 90
+      },
+      "out": {
+        "max": 90,
+        "lost": 90,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 2430
+      }
+    },
+    {
+      "in": {
+        "item": "arcanite_war_axe",
+        "wear": 95
+      },
+      "out": {
+        "max": 90,
+        "lost": 90,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 2430
+      }
+    },
+    {
+      "in": {
+        "item": "arcanite_war_axe",
+        "wear": -3
+      },
+      "out": {
+        "max": 90,
+        "lost": 0,
+        "current": 90,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "artificers_welding_cowl",
+        "wear": 0
+      },
+      "out": {
+        "max": 72,
+        "lost": 0,
+        "current": 72,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "artificers_welding_cowl",
+        "wear": 1
+      },
+      "out": {
+        "max": 72,
+        "lost": 1,
+        "current": 71,
+        "broken": false,
+        "state": "ok",
+        "cost": 30
+      }
+    },
+    {
+      "in": {
+        "item": "artificers_welding_cowl",
+        "wear": 36
+      },
+      "out": {
+        "max": 72,
+        "lost": 36,
+        "current": 36,
+        "broken": false,
+        "state": "ok",
+        "cost": 1080
+      }
+    },
+    {
+      "in": {
+        "item": "artificers_welding_cowl",
+        "wear": 55
+      },
+      "out": {
+        "max": 72,
+        "lost": 55,
+        "current": 17,
+        "broken": false,
+        "state": "low",
+        "cost": 1650
+      }
+    },
+    {
+      "in": {
+        "item": "artificers_welding_cowl",
+        "wear": 71
+      },
+      "out": {
+        "max": 72,
+        "lost": 71,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 2130
+      }
+    },
+    {
+      "in": {
+        "item": "artificers_welding_cowl",
+        "wear": 72
+      },
+      "out": {
+        "max": 72,
+        "lost": 72,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 2160
+      }
+    },
+    {
+      "in": {
+        "item": "artificers_welding_cowl",
+        "wear": 77
+      },
+      "out": {
+        "max": 72,
+        "lost": 72,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 2160
+      }
+    },
+    {
+      "in": {
+        "item": "artificers_welding_cowl",
+        "wear": -3
+      },
+      "out": {
+        "max": 72,
+        "lost": 0,
+        "current": 72,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_cowl",
+        "wear": 0
+      },
+      "out": {
+        "max": 84,
+        "lost": 0,
+        "current": 84,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_cowl",
+        "wear": 1
+      },
+      "out": {
+        "max": 84,
+        "lost": 1,
+        "current": 83,
+        "broken": false,
+        "state": "ok",
+        "cost": 62
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_cowl",
+        "wear": 42
+      },
+      "out": {
+        "max": 84,
+        "lost": 42,
+        "current": 42,
+        "broken": false,
+        "state": "ok",
+        "cost": 2604
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_cowl",
+        "wear": 64
+      },
+      "out": {
+        "max": 84,
+        "lost": 64,
+        "current": 20,
+        "broken": false,
+        "state": "low",
+        "cost": 3968
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_cowl",
+        "wear": 83
+      },
+      "out": {
+        "max": 84,
+        "lost": 83,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 5146
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_cowl",
+        "wear": 84
+      },
+      "out": {
+        "max": 84,
+        "lost": 84,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 5208
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_cowl",
+        "wear": 89
+      },
+      "out": {
+        "max": 84,
+        "lost": 84,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 5208
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_cowl",
+        "wear": -3
+      },
+      "out": {
+        "max": 84,
+        "lost": 0,
+        "current": 84,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_grips",
+        "wear": 0
+      },
+      "out": {
+        "max": 49,
+        "lost": 0,
+        "current": 49,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_grips",
+        "wear": 1
+      },
+      "out": {
+        "max": 49,
+        "lost": 1,
+        "current": 48,
+        "broken": false,
+        "state": "ok",
+        "cost": 62
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_grips",
+        "wear": 24
+      },
+      "out": {
+        "max": 49,
+        "lost": 24,
+        "current": 25,
+        "broken": false,
+        "state": "ok",
+        "cost": 1488
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_grips",
+        "wear": 38
+      },
+      "out": {
+        "max": 49,
+        "lost": 38,
+        "current": 11,
+        "broken": false,
+        "state": "low",
+        "cost": 2356
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_grips",
+        "wear": 48
+      },
+      "out": {
+        "max": 49,
+        "lost": 48,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 2976
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_grips",
+        "wear": 49
+      },
+      "out": {
+        "max": 49,
+        "lost": 49,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 3038
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_grips",
+        "wear": 54
+      },
+      "out": {
+        "max": 49,
+        "lost": 49,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 3038
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_grips",
+        "wear": -3
+      },
+      "out": {
+        "max": 49,
+        "lost": 0,
+        "current": 49,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_harness",
+        "wear": 0
+      },
+      "out": {
+        "max": 140,
+        "lost": 0,
+        "current": 140,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_harness",
+        "wear": 1
+      },
+      "out": {
+        "max": 140,
+        "lost": 1,
+        "current": 139,
+        "broken": false,
+        "state": "ok",
+        "cost": 62
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_harness",
+        "wear": 70
+      },
+      "out": {
+        "max": 140,
+        "lost": 70,
+        "current": 70,
+        "broken": false,
+        "state": "ok",
+        "cost": 4340
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_harness",
+        "wear": 107
+      },
+      "out": {
+        "max": 140,
+        "lost": 107,
+        "current": 33,
+        "broken": false,
+        "state": "low",
+        "cost": 6634
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_harness",
+        "wear": 139
+      },
+      "out": {
+        "max": 140,
+        "lost": 139,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 8618
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_harness",
+        "wear": 140
+      },
+      "out": {
+        "max": 140,
+        "lost": 140,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 8680
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_harness",
+        "wear": 145
+      },
+      "out": {
+        "max": 140,
+        "lost": 140,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 8680
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_harness",
+        "wear": -3
+      },
+      "out": {
+        "max": 140,
+        "lost": 0,
+        "current": 140,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_legguards",
+        "wear": 0
+      },
+      "out": {
+        "max": 105,
+        "lost": 0,
+        "current": 105,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_legguards",
+        "wear": 1
+      },
+      "out": {
+        "max": 105,
+        "lost": 1,
+        "current": 104,
+        "broken": false,
+        "state": "ok",
+        "cost": 62
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_legguards",
+        "wear": 52
+      },
+      "out": {
+        "max": 105,
+        "lost": 52,
+        "current": 53,
+        "broken": false,
+        "state": "ok",
+        "cost": 3224
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_legguards",
+        "wear": 80
+      },
+      "out": {
+        "max": 105,
+        "lost": 80,
+        "current": 25,
+        "broken": false,
+        "state": "low",
+        "cost": 4960
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_legguards",
+        "wear": 104
+      },
+      "out": {
+        "max": 105,
+        "lost": 104,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 6448
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_legguards",
+        "wear": 105
+      },
+      "out": {
+        "max": 105,
+        "lost": 105,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 6510
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_legguards",
+        "wear": 110
+      },
+      "out": {
+        "max": 105,
+        "lost": 105,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 6510
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_legguards",
+        "wear": -3
+      },
+      "out": {
+        "max": 105,
+        "lost": 0,
+        "current": 105,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_shoulderguards",
+        "wear": 0
+      },
+      "out": {
+        "max": 84,
+        "lost": 0,
+        "current": 84,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_shoulderguards",
+        "wear": 1
+      },
+      "out": {
+        "max": 84,
+        "lost": 1,
+        "current": 83,
+        "broken": false,
+        "state": "ok",
+        "cost": 62
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_shoulderguards",
+        "wear": 42
+      },
+      "out": {
+        "max": 84,
+        "lost": 42,
+        "current": 42,
+        "broken": false,
+        "state": "ok",
+        "cost": 2604
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_shoulderguards",
+        "wear": 64
+      },
+      "out": {
+        "max": 84,
+        "lost": 64,
+        "current": 20,
+        "broken": false,
+        "state": "low",
+        "cost": 3968
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_shoulderguards",
+        "wear": 83
+      },
+      "out": {
+        "max": 84,
+        "lost": 83,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 5146
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_shoulderguards",
+        "wear": 84
+      },
+      "out": {
+        "max": 84,
+        "lost": 84,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 5208
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_shoulderguards",
+        "wear": 89
+      },
+      "out": {
+        "max": 84,
+        "lost": 84,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 5208
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_shoulderguards",
+        "wear": -3
+      },
+      "out": {
+        "max": 84,
+        "lost": 0,
+        "current": 84,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_waistband",
+        "wear": 0
+      },
+      "out": {
+        "max": 49,
+        "lost": 0,
+        "current": 49,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_waistband",
+        "wear": 1
+      },
+      "out": {
+        "max": 49,
+        "lost": 1,
+        "current": 48,
+        "broken": false,
+        "state": "ok",
+        "cost": 62
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_waistband",
+        "wear": 24
+      },
+      "out": {
+        "max": 49,
+        "lost": 24,
+        "current": 25,
+        "broken": false,
+        "state": "ok",
+        "cost": 1488
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_waistband",
+        "wear": 38
+      },
+      "out": {
+        "max": 49,
+        "lost": 38,
+        "current": 11,
+        "broken": false,
+        "state": "low",
+        "cost": 2356
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_waistband",
+        "wear": 48
+      },
+      "out": {
+        "max": 49,
+        "lost": 48,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 2976
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_waistband",
+        "wear": 49
+      },
+      "out": {
+        "max": 49,
+        "lost": 49,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 3038
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_waistband",
+        "wear": 54
+      },
+      "out": {
+        "max": 49,
+        "lost": 49,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 3038
+      }
+    },
+    {
+      "in": {
+        "item": "ashstalker_waistband",
+        "wear": -3
+      },
+      "out": {
+        "max": 49,
+        "lost": 0,
+        "current": 49,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "barrowfield_tower_shield",
+        "wear": 0
+      },
+      "out": {
+        "max": 120,
+        "lost": 0,
+        "current": 120,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "barrowfield_tower_shield",
+        "wear": 1
+      },
+      "out": {
+        "max": 120,
+        "lost": 1,
+        "current": 119,
+        "broken": false,
+        "state": "ok",
+        "cost": 33
+      }
+    },
+    {
+      "in": {
+        "item": "barrowfield_tower_shield",
+        "wear": 60
+      },
+      "out": {
+        "max": 120,
+        "lost": 60,
+        "current": 60,
+        "broken": false,
+        "state": "ok",
+        "cost": 1980
+      }
+    },
+    {
+      "in": {
+        "item": "barrowfield_tower_shield",
+        "wear": 92
+      },
+      "out": {
+        "max": 120,
+        "lost": 92,
+        "current": 28,
+        "broken": false,
+        "state": "low",
+        "cost": 3036
+      }
+    },
+    {
+      "in": {
+        "item": "barrowfield_tower_shield",
+        "wear": 119
+      },
+      "out": {
+        "max": 120,
+        "lost": 119,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 3927
+      }
+    },
+    {
+      "in": {
+        "item": "barrowfield_tower_shield",
+        "wear": 120
+      },
+      "out": {
+        "max": 120,
+        "lost": 120,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 3960
+      }
+    },
+    {
+      "in": {
+        "item": "barrowfield_tower_shield",
+        "wear": 125
+      },
+      "out": {
+        "max": 120,
+        "lost": 120,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 3960
+      }
+    },
+    {
+      "in": {
+        "item": "barrowfield_tower_shield",
+        "wear": -3
+      },
+      "out": {
+        "max": 120,
+        "lost": 0,
+        "current": 120,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "barrowshade_mantle",
+        "wear": 0
+      },
+      "out": {
+        "max": 72,
+        "lost": 0,
+        "current": 72,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "barrowshade_mantle",
+        "wear": 1
+      },
+      "out": {
+        "max": 72,
+        "lost": 1,
+        "current": 71,
+        "broken": false,
+        "state": "ok",
+        "cost": 35
+      }
+    },
+    {
+      "in": {
+        "item": "barrowshade_mantle",
+        "wear": 36
+      },
+      "out": {
+        "max": 72,
+        "lost": 36,
+        "current": 36,
+        "broken": false,
+        "state": "ok",
+        "cost": 1260
+      }
+    },
+    {
+      "in": {
+        "item": "barrowshade_mantle",
+        "wear": 55
+      },
+      "out": {
+        "max": 72,
+        "lost": 55,
+        "current": 17,
+        "broken": false,
+        "state": "low",
+        "cost": 1925
+      }
+    },
+    {
+      "in": {
+        "item": "barrowshade_mantle",
+        "wear": 71
+      },
+      "out": {
+        "max": 72,
+        "lost": 71,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 2485
+      }
+    },
+    {
+      "in": {
+        "item": "barrowshade_mantle",
+        "wear": 72
+      },
+      "out": {
+        "max": 72,
+        "lost": 72,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 2520
+      }
+    },
+    {
+      "in": {
+        "item": "barrowshade_mantle",
+        "wear": 77
+      },
+      "out": {
+        "max": 72,
+        "lost": 72,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 2520
+      }
+    },
+    {
+      "in": {
+        "item": "barrowshade_mantle",
+        "wear": -3
+      },
+      "out": {
+        "max": 72,
+        "lost": 0,
+        "current": 72,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "bastion_kite_shield",
+        "wear": 0
+      },
+      "out": {
+        "max": 100,
+        "lost": 0,
+        "current": 100,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "bastion_kite_shield",
+        "wear": 1
+      },
+      "out": {
+        "max": 100,
+        "lost": 1,
+        "current": 99,
+        "broken": false,
+        "state": "ok",
+        "cost": 13
+      }
+    },
+    {
+      "in": {
+        "item": "bastion_kite_shield",
+        "wear": 50
+      },
+      "out": {
+        "max": 100,
+        "lost": 50,
+        "current": 50,
+        "broken": false,
+        "state": "ok",
+        "cost": 650
+      }
+    },
+    {
+      "in": {
+        "item": "bastion_kite_shield",
+        "wear": 76
+      },
+      "out": {
+        "max": 100,
+        "lost": 76,
+        "current": 24,
+        "broken": false,
+        "state": "low",
+        "cost": 988
+      }
+    },
+    {
+      "in": {
+        "item": "bastion_kite_shield",
+        "wear": 99
+      },
+      "out": {
+        "max": 100,
+        "lost": 99,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 1287
+      }
+    },
+    {
+      "in": {
+        "item": "bastion_kite_shield",
+        "wear": 100
+      },
+      "out": {
+        "max": 100,
+        "lost": 100,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 1300
+      }
+    },
+    {
+      "in": {
+        "item": "bastion_kite_shield",
+        "wear": 105
+      },
+      "out": {
+        "max": 100,
+        "lost": 100,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 1300
+      }
+    },
+    {
+      "in": {
+        "item": "bastion_kite_shield",
+        "wear": -3
+      },
+      "out": {
+        "max": 100,
+        "lost": 0,
+        "current": 100,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "beastpit_warbelt",
+        "wear": 0
+      },
+      "out": {
+        "max": 35,
+        "lost": 0,
+        "current": 35,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "beastpit_warbelt",
+        "wear": 1
+      },
+      "out": {
+        "max": 35,
+        "lost": 1,
+        "current": 34,
+        "broken": false,
+        "state": "ok",
+        "cost": 21
+      }
+    },
+    {
+      "in": {
+        "item": "beastpit_warbelt",
+        "wear": 17
+      },
+      "out": {
+        "max": 35,
+        "lost": 17,
+        "current": 18,
+        "broken": false,
+        "state": "ok",
+        "cost": 357
+      }
+    },
+    {
+      "in": {
+        "item": "beastpit_warbelt",
+        "wear": 27
+      },
+      "out": {
+        "max": 35,
+        "lost": 27,
+        "current": 8,
+        "broken": false,
+        "state": "low",
+        "cost": 567
+      }
+    },
+    {
+      "in": {
+        "item": "beastpit_warbelt",
+        "wear": 34
+      },
+      "out": {
+        "max": 35,
+        "lost": 34,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 714
+      }
+    },
+    {
+      "in": {
+        "item": "beastpit_warbelt",
+        "wear": 35
+      },
+      "out": {
+        "max": 35,
+        "lost": 35,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 735
+      }
+    },
+    {
+      "in": {
+        "item": "beastpit_warbelt",
+        "wear": 40
+      },
+      "out": {
+        "max": 35,
+        "lost": 35,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 735
+      }
+    },
+    {
+      "in": {
+        "item": "beastpit_warbelt",
+        "wear": -3
+      },
+      "out": {
+        "max": 35,
+        "lost": 0,
+        "current": 35,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "bellrope_mitts",
+        "wear": 0
+      },
+      "out": {
+        "max": 42,
+        "lost": 0,
+        "current": 42,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "bellrope_mitts",
+        "wear": 1
+      },
+      "out": {
+        "max": 42,
+        "lost": 1,
+        "current": 41,
+        "broken": false,
+        "state": "ok",
+        "cost": 17
+      }
+    },
+    {
+      "in": {
+        "item": "bellrope_mitts",
+        "wear": 21
+      },
+      "out": {
+        "max": 42,
+        "lost": 21,
+        "current": 21,
+        "broken": false,
+        "state": "ok",
+        "cost": 357
+      }
+    },
+    {
+      "in": {
+        "item": "bellrope_mitts",
+        "wear": 32
+      },
+      "out": {
+        "max": 42,
+        "lost": 32,
+        "current": 10,
+        "broken": false,
+        "state": "low",
+        "cost": 544
+      }
+    },
+    {
+      "in": {
+        "item": "bellrope_mitts",
+        "wear": 41
+      },
+      "out": {
+        "max": 42,
+        "lost": 41,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 697
+      }
+    },
+    {
+      "in": {
+        "item": "bellrope_mitts",
+        "wear": 42
+      },
+      "out": {
+        "max": 42,
+        "lost": 42,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 714
+      }
+    },
+    {
+      "in": {
+        "item": "bellrope_mitts",
+        "wear": 47
+      },
+      "out": {
+        "max": 42,
+        "lost": 42,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 714
+      }
+    },
+    {
+      "in": {
+        "item": "bellrope_mitts",
+        "wear": -3
+      },
+      "out": {
+        "max": 42,
+        "lost": 0,
+        "current": 42,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "bloodmane_warleggings",
+        "wear": 0
+      },
+      "out": {
+        "max": 75,
+        "lost": 0,
+        "current": 75,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "bloodmane_warleggings",
+        "wear": 1
+      },
+      "out": {
+        "max": 75,
+        "lost": 1,
+        "current": 74,
+        "broken": false,
+        "state": "ok",
+        "cost": 21
+      }
+    },
+    {
+      "in": {
+        "item": "bloodmane_warleggings",
+        "wear": 37
+      },
+      "out": {
+        "max": 75,
+        "lost": 37,
+        "current": 38,
+        "broken": false,
+        "state": "ok",
+        "cost": 777
+      }
+    },
+    {
+      "in": {
+        "item": "bloodmane_warleggings",
+        "wear": 57
+      },
+      "out": {
+        "max": 75,
+        "lost": 57,
+        "current": 18,
+        "broken": false,
+        "state": "low",
+        "cost": 1197
+      }
+    },
+    {
+      "in": {
+        "item": "bloodmane_warleggings",
+        "wear": 74
+      },
+      "out": {
+        "max": 75,
+        "lost": 74,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 1554
+      }
+    },
+    {
+      "in": {
+        "item": "bloodmane_warleggings",
+        "wear": 75
+      },
+      "out": {
+        "max": 75,
+        "lost": 75,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 1575
+      }
+    },
+    {
+      "in": {
+        "item": "bloodmane_warleggings",
+        "wear": 80
+      },
+      "out": {
+        "max": 75,
+        "lost": 75,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 1575
+      }
+    },
+    {
+      "in": {
+        "item": "bloodmane_warleggings",
+        "wear": -3
+      },
+      "out": {
+        "max": 75,
+        "lost": 0,
+        "current": 75,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "bogiron_mace",
+        "wear": 0
+      },
+      "out": {
+        "max": 60,
+        "lost": 0,
+        "current": 60,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "bogiron_mace",
+        "wear": 1
+      },
+      "out": {
+        "max": 60,
+        "lost": 1,
+        "current": 59,
+        "broken": false,
+        "state": "ok",
+        "cost": 1
+      }
+    },
+    {
+      "in": {
+        "item": "bogiron_mace",
+        "wear": 30
+      },
+      "out": {
+        "max": 60,
+        "lost": 30,
+        "current": 30,
+        "broken": false,
+        "state": "ok",
+        "cost": 30
+      }
+    },
+    {
+      "in": {
+        "item": "bogiron_mace",
+        "wear": 46
+      },
+      "out": {
+        "max": 60,
+        "lost": 46,
+        "current": 14,
+        "broken": false,
+        "state": "low",
+        "cost": 46
+      }
+    },
+    {
+      "in": {
+        "item": "bogiron_mace",
+        "wear": 59
+      },
+      "out": {
+        "max": 60,
+        "lost": 59,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 59
+      }
+    },
+    {
+      "in": {
+        "item": "bogiron_mace",
+        "wear": 60
+      },
+      "out": {
+        "max": 60,
+        "lost": 60,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 60
+      }
+    },
+    {
+      "in": {
+        "item": "bogiron_mace",
+        "wear": 65
+      },
+      "out": {
+        "max": 60,
+        "lost": 60,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 60
+      }
+    },
+    {
+      "in": {
+        "item": "bogiron_mace",
+        "wear": -3
+      },
+      "out": {
+        "max": 60,
+        "lost": 0,
+        "current": 60,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_boots",
+        "wear": 0
+      },
+      "out": {
+        "max": 50,
+        "lost": 0,
+        "current": 50,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_boots",
+        "wear": 1
+      },
+      "out": {
+        "max": 50,
+        "lost": 1,
+        "current": 49,
+        "broken": false,
+        "state": "ok",
+        "cost": 13
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_boots",
+        "wear": 25
+      },
+      "out": {
+        "max": 50,
+        "lost": 25,
+        "current": 25,
+        "broken": false,
+        "state": "ok",
+        "cost": 325
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_boots",
+        "wear": 38
+      },
+      "out": {
+        "max": 50,
+        "lost": 38,
+        "current": 12,
+        "broken": false,
+        "state": "low",
+        "cost": 494
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_boots",
+        "wear": 49
+      },
+      "out": {
+        "max": 50,
+        "lost": 49,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 637
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_boots",
+        "wear": 50
+      },
+      "out": {
+        "max": 50,
+        "lost": 50,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 650
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_boots",
+        "wear": 55
+      },
+      "out": {
+        "max": 50,
+        "lost": 50,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 650
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_boots",
+        "wear": -3
+      },
+      "out": {
+        "max": 50,
+        "lost": 0,
+        "current": 50,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_chainmail",
+        "wear": 0
+      },
+      "out": {
+        "max": 100,
+        "lost": 0,
+        "current": 100,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_chainmail",
+        "wear": 1
+      },
+      "out": {
+        "max": 100,
+        "lost": 1,
+        "current": 99,
+        "broken": false,
+        "state": "ok",
+        "cost": 13
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_chainmail",
+        "wear": 50
+      },
+      "out": {
+        "max": 100,
+        "lost": 50,
+        "current": 50,
+        "broken": false,
+        "state": "ok",
+        "cost": 650
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_chainmail",
+        "wear": 76
+      },
+      "out": {
+        "max": 100,
+        "lost": 76,
+        "current": 24,
+        "broken": false,
+        "state": "low",
+        "cost": 988
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_chainmail",
+        "wear": 99
+      },
+      "out": {
+        "max": 100,
+        "lost": 99,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 1287
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_chainmail",
+        "wear": 100
+      },
+      "out": {
+        "max": 100,
+        "lost": 100,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 1300
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_chainmail",
+        "wear": 105
+      },
+      "out": {
+        "max": 100,
+        "lost": 100,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 1300
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_chainmail",
+        "wear": -3
+      },
+      "out": {
+        "max": 100,
+        "lost": 0,
+        "current": 100,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_epaulets",
+        "wear": 0
+      },
+      "out": {
+        "max": 60,
+        "lost": 0,
+        "current": 60,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_epaulets",
+        "wear": 1
+      },
+      "out": {
+        "max": 60,
+        "lost": 1,
+        "current": 59,
+        "broken": false,
+        "state": "ok",
+        "cost": 13
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_epaulets",
+        "wear": 30
+      },
+      "out": {
+        "max": 60,
+        "lost": 30,
+        "current": 30,
+        "broken": false,
+        "state": "ok",
+        "cost": 390
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_epaulets",
+        "wear": 46
+      },
+      "out": {
+        "max": 60,
+        "lost": 46,
+        "current": 14,
+        "broken": false,
+        "state": "low",
+        "cost": 598
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_epaulets",
+        "wear": 59
+      },
+      "out": {
+        "max": 60,
+        "lost": 59,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 767
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_epaulets",
+        "wear": 60
+      },
+      "out": {
+        "max": 60,
+        "lost": 60,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 780
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_epaulets",
+        "wear": 65
+      },
+      "out": {
+        "max": 60,
+        "lost": 60,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 780
+      }
+    },
+    {
+      "in": {
+        "item": "bogwalker_epaulets",
+        "wear": -3
+      },
+      "out": {
+        "max": 60,
+        "lost": 0,
+        "current": 60,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "boneguard_breastplate",
+        "wear": 0
+      },
+      "out": {
+        "max": 120,
+        "lost": 0,
+        "current": 120,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "boneguard_breastplate",
+        "wear": 1
+      },
+      "out": {
+        "max": 120,
+        "lost": 1,
+        "current": 119,
+        "broken": false,
+        "state": "ok",
+        "cost": 35
+      }
+    },
+    {
+      "in": {
+        "item": "boneguard_breastplate",
+        "wear": 60
+      },
+      "out": {
+        "max": 120,
+        "lost": 60,
+        "current": 60,
+        "broken": false,
+        "state": "ok",
+        "cost": 2100
+      }
+    },
+    {
+      "in": {
+        "item": "boneguard_breastplate",
+        "wear": 92
+      },
+      "out": {
+        "max": 120,
+        "lost": 92,
+        "current": 28,
+        "broken": false,
+        "state": "low",
+        "cost": 3220
+      }
+    },
+    {
+      "in": {
+        "item": "boneguard_breastplate",
+        "wear": 119
+      },
+      "out": {
+        "max": 120,
+        "lost": 119,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 4165
+      }
+    },
+    {
+      "in": {
+        "item": "boneguard_breastplate",
+        "wear": 120
+      },
+      "out": {
+        "max": 120,
+        "lost": 120,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 4200
+      }
+    },
+    {
+      "in": {
+        "item": "boneguard_breastplate",
+        "wear": 125
+      },
+      "out": {
+        "max": 120,
+        "lost": 120,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 4200
+      }
+    },
+    {
+      "in": {
+        "item": "boneguard_breastplate",
+        "wear": -3
+      },
+      "out": {
+        "max": 120,
+        "lost": 0,
+        "current": 120,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "bonewrought_bulwark",
+        "wear": 0
+      },
+      "out": {
+        "max": 140,
+        "lost": 0,
+        "current": 140,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "bonewrought_bulwark",
+        "wear": 1
+      },
+      "out": {
+        "max": 140,
+        "lost": 1,
+        "current": 139,
+        "broken": false,
+        "state": "ok",
+        "cost": 58
+      }
+    },
+    {
+      "in": {
+        "item": "bonewrought_bulwark",
+        "wear": 70
+      },
+      "out": {
+        "max": 140,
+        "lost": 70,
+        "current": 70,
+        "broken": false,
+        "state": "ok",
+        "cost": 4060
+      }
+    },
+    {
+      "in": {
+        "item": "bonewrought_bulwark",
+        "wear": 107
+      },
+      "out": {
+        "max": 140,
+        "lost": 107,
+        "current": 33,
+        "broken": false,
+        "state": "low",
+        "cost": 6206
+      }
+    },
+    {
+      "in": {
+        "item": "bonewrought_bulwark",
+        "wear": 139
+      },
+      "out": {
+        "max": 140,
+        "lost": 139,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 8062
+      }
+    },
+    {
+      "in": {
+        "item": "bonewrought_bulwark",
+        "wear": 140
+      },
+      "out": {
+        "max": 140,
+        "lost": 140,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 8120
+      }
+    },
+    {
+      "in": {
+        "item": "bonewrought_bulwark",
+        "wear": 145
+      },
+      "out": {
+        "max": 140,
+        "lost": 140,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 8120
+      }
+    },
+    {
+      "in": {
+        "item": "bonewrought_bulwark",
+        "wear": -3
+      },
+      "out": {
+        "max": 140,
+        "lost": 0,
+        "current": 140,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "bonewrought_greatsword",
+        "wear": 0
+      },
+      "out": {
+        "max": 140,
+        "lost": 0,
+        "current": 140,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "bonewrought_greatsword",
+        "wear": 1
+      },
+      "out": {
+        "max": 140,
+        "lost": 1,
+        "current": 139,
+        "broken": false,
+        "state": "ok",
+        "cost": 58
+      }
+    },
+    {
+      "in": {
+        "item": "bonewrought_greatsword",
+        "wear": 70
+      },
+      "out": {
+        "max": 140,
+        "lost": 70,
+        "current": 70,
+        "broken": false,
+        "state": "ok",
+        "cost": 4060
+      }
+    },
+    {
+      "in": {
+        "item": "bonewrought_greatsword",
+        "wear": 107
+      },
+      "out": {
+        "max": 140,
+        "lost": 107,
+        "current": 33,
+        "broken": false,
+        "state": "low",
+        "cost": 6206
+      }
+    },
+    {
+      "in": {
+        "item": "bonewrought_greatsword",
+        "wear": 139
+      },
+      "out": {
+        "max": 140,
+        "lost": 139,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 8062
+      }
+    },
+    {
+      "in": {
+        "item": "bonewrought_greatsword",
+        "wear": 140
+      },
+      "out": {
+        "max": 140,
+        "lost": 140,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 8120
+      }
+    },
+    {
+      "in": {
+        "item": "bonewrought_greatsword",
+        "wear": 145
+      },
+      "out": {
+        "max": 140,
+        "lost": 140,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 8120
+      }
+    },
+    {
+      "in": {
+        "item": "bonewrought_greatsword",
+        "wear": -3
+      },
+      "out": {
+        "max": 140,
+        "lost": 0,
+        "current": 140,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "boundstone_girdle",
+        "wear": 0
+      },
+      "out": {
+        "max": 42,
+        "lost": 0,
+        "current": 42,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "boundstone_girdle",
+        "wear": 1
+      },
+      "out": {
+        "max": 42,
+        "lost": 1,
+        "current": 41,
+        "broken": false,
+        "state": "ok",
+        "cost": 35
+      }
+    },
+    {
+      "in": {
+        "item": "boundstone_girdle",
+        "wear": 21
+      },
+      "out": {
+        "max": 42,
+        "lost": 21,
+        "current": 21,
+        "broken": false,
+        "state": "ok",
+        "cost": 735
+      }
+    },
+    {
+      "in": {
+        "item": "boundstone_girdle",
+        "wear": 32
+      },
+      "out": {
+        "max": 42,
+        "lost": 32,
+        "current": 10,
+        "broken": false,
+        "state": "low",
+        "cost": 1120
+      }
+    },
+    {
+      "in": {
+        "item": "boundstone_girdle",
+        "wear": 41
+      },
+      "out": {
+        "max": 42,
+        "lost": 41,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 1435
+      }
+    },
+    {
+      "in": {
+        "item": "boundstone_girdle",
+        "wear": 42
+      },
+      "out": {
+        "max": 42,
+        "lost": 42,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 1470
+      }
+    },
+    {
+      "in": {
+        "item": "boundstone_girdle",
+        "wear": 47
+      },
+      "out": {
+        "max": 42,
+        "lost": 42,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 1470
+      }
+    },
+    {
+      "in": {
+        "item": "boundstone_girdle",
+        "wear": -3
+      },
+      "out": {
+        "max": 42,
+        "lost": 0,
+        "current": 42,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "briarroot_staff",
+        "wear": 0
+      },
+      "out": {
+        "max": 100,
+        "lost": 0,
+        "current": 100,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "briarroot_staff",
+        "wear": 1
+      },
+      "out": {
+        "max": 100,
+        "lost": 1,
+        "current": 99,
+        "broken": false,
+        "state": "ok",
+        "cost": 8
+      }
+    },
+    {
+      "in": {
+        "item": "briarroot_staff",
+        "wear": 50
+      },
+      "out": {
+        "max": 100,
+        "lost": 50,
+        "current": 50,
+        "broken": false,
+        "state": "ok",
+        "cost": 400
+      }
+    },
+    {
+      "in": {
+        "item": "briarroot_staff",
+        "wear": 76
+      },
+      "out": {
+        "max": 100,
+        "lost": 76,
+        "current": 24,
+        "broken": false,
+        "state": "low",
+        "cost": 608
+      }
+    },
+    {
+      "in": {
+        "item": "briarroot_staff",
+        "wear": 99
+      },
+      "out": {
+        "max": 100,
+        "lost": 99,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 792
+      }
+    },
+    {
+      "in": {
+        "item": "briarroot_staff",
+        "wear": 100
+      },
+      "out": {
+        "max": 100,
+        "lost": 100,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 800
+      }
+    },
+    {
+      "in": {
+        "item": "briarroot_staff",
+        "wear": 105
+      },
+      "out": {
+        "max": 100,
+        "lost": 100,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 800
+      }
+    },
+    {
+      "in": {
+        "item": "briarroot_staff",
+        "wear": -3
+      },
+      "out": {
+        "max": 100,
+        "lost": 0,
+        "current": 100,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "conchplate_sabatons",
+        "wear": 0
+      },
+      "out": {
+        "max": 60,
+        "lost": 0,
+        "current": 60,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "conchplate_sabatons",
+        "wear": 1
+      },
+      "out": {
+        "max": 60,
+        "lost": 1,
+        "current": 59,
+        "broken": false,
+        "state": "ok",
+        "cost": 29
+      }
+    },
+    {
+      "in": {
+        "item": "conchplate_sabatons",
+        "wear": 30
+      },
+      "out": {
+        "max": 60,
+        "lost": 30,
+        "current": 30,
+        "broken": false,
+        "state": "ok",
+        "cost": 870
+      }
+    },
+    {
+      "in": {
+        "item": "conchplate_sabatons",
+        "wear": 46
+      },
+      "out": {
+        "max": 60,
+        "lost": 46,
+        "current": 14,
+        "broken": false,
+        "state": "low",
+        "cost": 1334
+      }
+    },
+    {
+      "in": {
+        "item": "conchplate_sabatons",
+        "wear": 59
+      },
+      "out": {
+        "max": 60,
+        "lost": 59,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 1711
+      }
+    },
+    {
+      "in": {
+        "item": "conchplate_sabatons",
+        "wear": 60
+      },
+      "out": {
+        "max": 60,
+        "lost": 60,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 1740
+      }
+    },
+    {
+      "in": {
+        "item": "conchplate_sabatons",
+        "wear": 65
+      },
+      "out": {
+        "max": 60,
+        "lost": 60,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 1740
+      }
+    },
+    {
+      "in": {
+        "item": "conchplate_sabatons",
+        "wear": -3
+      },
+      "out": {
+        "max": 60,
+        "lost": 0,
+        "current": 60,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "coppermail_gauntlets",
+        "wear": 0
+      },
+      "out": {
+        "max": 28,
+        "lost": 0,
+        "current": 28,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "coppermail_gauntlets",
+        "wear": 1
+      },
+      "out": {
+        "max": 28,
+        "lost": 1,
+        "current": 27,
+        "broken": false,
+        "state": "ok",
+        "cost": 8
+      }
+    },
+    {
+      "in": {
+        "item": "coppermail_gauntlets",
+        "wear": 14
+      },
+      "out": {
+        "max": 28,
+        "lost": 14,
+        "current": 14,
+        "broken": false,
+        "state": "ok",
+        "cost": 112
+      }
+    },
+    {
+      "in": {
+        "item": "coppermail_gauntlets",
+        "wear": 22
+      },
+      "out": {
+        "max": 28,
+        "lost": 22,
+        "current": 6,
+        "broken": false,
+        "state": "low",
+        "cost": 176
+      }
+    },
+    {
+      "in": {
+        "item": "coppermail_gauntlets",
+        "wear": 27
+      },
+      "out": {
+        "max": 28,
+        "lost": 27,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 216
+      }
+    },
+    {
+      "in": {
+        "item": "coppermail_gauntlets",
+        "wear": 28
+      },
+      "out": {
+        "max": 28,
+        "lost": 28,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 224
+      }
+    },
+    {
+      "in": {
+        "item": "coppermail_gauntlets",
+        "wear": 33
+      },
+      "out": {
+        "max": 28,
+        "lost": 28,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 224
+      }
+    },
+    {
+      "in": {
+        "item": "coppermail_gauntlets",
+        "wear": -3
+      },
+      "out": {
+        "max": 28,
+        "lost": 0,
+        "current": 28,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "coppermail_sabatons",
+        "wear": 0
+      },
+      "out": {
+        "max": 40,
+        "lost": 0,
+        "current": 40,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "coppermail_sabatons",
+        "wear": 1
+      },
+      "out": {
+        "max": 40,
+        "lost": 1,
+        "current": 39,
+        "broken": false,
+        "state": "ok",
+        "cost": 8
+      }
+    },
+    {
+      "in": {
+        "item": "coppermail_sabatons",
+        "wear": 20
+      },
+      "out": {
+        "max": 40,
+        "lost": 20,
+        "current": 20,
+        "broken": false,
+        "state": "ok",
+        "cost": 160
+      }
+    },
+    {
+      "in": {
+        "item": "coppermail_sabatons",
+        "wear": 31
+      },
+      "out": {
+        "max": 40,
+        "lost": 31,
+        "current": 9,
+        "broken": false,
+        "state": "low",
+        "cost": 248
+      }
+    },
+    {
+      "in": {
+        "item": "coppermail_sabatons",
+        "wear": 39
+      },
+      "out": {
+        "max": 40,
+        "lost": 39,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 312
+      }
+    },
+    {
+      "in": {
+        "item": "coppermail_sabatons",
+        "wear": 40
+      },
+      "out": {
+        "max": 40,
+        "lost": 40,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 320
+      }
+    },
+    {
+      "in": {
+        "item": "coppermail_sabatons",
+        "wear": 45
+      },
+      "out": {
+        "max": 40,
+        "lost": 40,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 320
+      }
+    },
+    {
+      "in": {
+        "item": "coppermail_sabatons",
+        "wear": -3
+      },
+      "out": {
+        "max": 40,
+        "lost": 0,
+        "current": 40,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "courtiers_bonefang",
+        "wear": 0
+      },
+      "out": {
+        "max": 105,
+        "lost": 0,
+        "current": 105,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "courtiers_bonefang",
+        "wear": 1
+      },
+      "out": {
+        "max": 105,
+        "lost": 1,
+        "current": 104,
+        "broken": false,
+        "state": "ok",
+        "cost": 58
+      }
+    },
+    {
+      "in": {
+        "item": "courtiers_bonefang",
+        "wear": 52
+      },
+      "out": {
+        "max": 105,
+        "lost": 52,
+        "current": 53,
+        "broken": false,
+        "state": "ok",
+        "cost": 3016
+      }
+    },
+    {
+      "in": {
+        "item": "courtiers_bonefang",
+        "wear": 80
+      },
+      "out": {
+        "max": 105,
+        "lost": 80,
+        "current": 25,
+        "broken": false,
+        "state": "low",
+        "cost": 4640
+      }
+    },
+    {
+      "in": {
+        "item": "courtiers_bonefang",
+        "wear": 104
+      },
+      "out": {
+        "max": 105,
+        "lost": 104,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 6032
+      }
+    },
+    {
+      "in": {
+        "item": "courtiers_bonefang",
+        "wear": 105
+      },
+      "out": {
+        "max": 105,
+        "lost": 105,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 6090
+      }
+    },
+    {
+      "in": {
+        "item": "courtiers_bonefang",
+        "wear": 110
+      },
+      "out": {
+        "max": 105,
+        "lost": 105,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 6090
+      }
+    },
+    {
+      "in": {
+        "item": "courtiers_bonefang",
+        "wear": -3
+      },
+      "out": {
+        "max": 105,
+        "lost": 0,
+        "current": 105,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "cragthorn_greatstaff",
+        "wear": 0
+      },
+      "out": {
+        "max": 120,
+        "lost": 0,
+        "current": 120,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "cragthorn_greatstaff",
+        "wear": 1
+      },
+      "out": {
+        "max": 120,
+        "lost": 1,
+        "current": 119,
+        "broken": false,
+        "state": "ok",
+        "cost": 26
+      }
+    },
+    {
+      "in": {
+        "item": "cragthorn_greatstaff",
+        "wear": 60
+      },
+      "out": {
+        "max": 120,
+        "lost": 60,
+        "current": 60,
+        "broken": false,
+        "state": "ok",
+        "cost": 1560
+      }
+    },
+    {
+      "in": {
+        "item": "cragthorn_greatstaff",
+        "wear": 92
+      },
+      "out": {
+        "max": 120,
+        "lost": 92,
+        "current": 28,
+        "broken": false,
+        "state": "low",
+        "cost": 2392
+      }
+    },
+    {
+      "in": {
+        "item": "cragthorn_greatstaff",
+        "wear": 119
+      },
+      "out": {
+        "max": 120,
+        "lost": 119,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 3094
+      }
+    },
+    {
+      "in": {
+        "item": "cragthorn_greatstaff",
+        "wear": 120
+      },
+      "out": {
+        "max": 120,
+        "lost": 120,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 3120
+      }
+    },
+    {
+      "in": {
+        "item": "cragthorn_greatstaff",
+        "wear": 125
+      },
+      "out": {
+        "max": 120,
+        "lost": 120,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 3120
+      }
+    },
+    {
+      "in": {
+        "item": "cragthorn_greatstaff",
+        "wear": -3
+      },
+      "out": {
+        "max": 120,
+        "lost": 0,
+        "current": 120,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "deathless_heartwood",
+        "wear": 0
+      },
+      "out": {
+        "max": 120,
+        "lost": 0,
+        "current": 120,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "deathless_heartwood",
+        "wear": 1
+      },
+      "out": {
+        "max": 120,
+        "lost": 1,
+        "current": 119,
+        "broken": false,
+        "state": "ok",
+        "cost": 147
+      }
+    },
+    {
+      "in": {
+        "item": "deathless_heartwood",
+        "wear": 60
+      },
+      "out": {
+        "max": 120,
+        "lost": 60,
+        "current": 60,
+        "broken": false,
+        "state": "ok",
+        "cost": 8820
+      }
+    },
+    {
+      "in": {
+        "item": "deathless_heartwood",
+        "wear": 92
+      },
+      "out": {
+        "max": 120,
+        "lost": 92,
+        "current": 28,
+        "broken": false,
+        "state": "low",
+        "cost": 13524
+      }
+    },
+    {
+      "in": {
+        "item": "deathless_heartwood",
+        "wear": 119
+      },
+      "out": {
+        "max": 120,
+        "lost": 119,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 17493
+      }
+    },
+    {
+      "in": {
+        "item": "deathless_heartwood",
+        "wear": 120
+      },
+      "out": {
+        "max": 120,
+        "lost": 120,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 17640
+      }
+    },
+    {
+      "in": {
+        "item": "deathless_heartwood",
+        "wear": 125
+      },
+      "out": {
+        "max": 120,
+        "lost": 120,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 17640
+      }
+    },
+    {
+      "in": {
+        "item": "deathless_heartwood",
+        "wear": -3
+      },
+      "out": {
+        "max": 120,
+        "lost": 0,
+        "current": 120,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "drowned_prayer_leggings",
+        "wear": 0
+      },
+      "out": {
+        "max": 90,
+        "lost": 0,
+        "current": 90,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "drowned_prayer_leggings",
+        "wear": 1
+      },
+      "out": {
+        "max": 90,
+        "lost": 1,
+        "current": 89,
+        "broken": false,
+        "state": "ok",
+        "cost": 24
+      }
+    },
+    {
+      "in": {
+        "item": "drowned_prayer_leggings",
+        "wear": 45
+      },
+      "out": {
+        "max": 90,
+        "lost": 45,
+        "current": 45,
+        "broken": false,
+        "state": "ok",
+        "cost": 1080
+      }
+    },
+    {
+      "in": {
+        "item": "drowned_prayer_leggings",
+        "wear": 69
+      },
+      "out": {
+        "max": 90,
+        "lost": 69,
+        "current": 21,
+        "broken": false,
+        "state": "low",
+        "cost": 1656
+      }
+    },
+    {
+      "in": {
+        "item": "drowned_prayer_leggings",
+        "wear": 89
+      },
+      "out": {
+        "max": 90,
+        "lost": 89,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 2136
+      }
+    },
+    {
+      "in": {
+        "item": "drowned_prayer_leggings",
+        "wear": 90
+      },
+      "out": {
+        "max": 90,
+        "lost": 90,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 2160
+      }
+    },
+    {
+      "in": {
+        "item": "drowned_prayer_leggings",
+        "wear": 95
+      },
+      "out": {
+        "max": 90,
+        "lost": 90,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 2160
+      }
+    },
+    {
+      "in": {
+        "item": "drowned_prayer_leggings",
+        "wear": -3
+      },
+      "out": {
+        "max": 90,
+        "lost": 0,
+        "current": 90,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_buckler",
+        "wear": 0
+      },
+      "out": {
+        "max": 80,
+        "lost": 0,
+        "current": 80,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_buckler",
+        "wear": 1
+      },
+      "out": {
+        "max": 80,
+        "lost": 1,
+        "current": 79,
+        "broken": false,
+        "state": "ok",
+        "cost": 1
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_buckler",
+        "wear": 40
+      },
+      "out": {
+        "max": 80,
+        "lost": 40,
+        "current": 40,
+        "broken": false,
+        "state": "ok",
+        "cost": 40
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_buckler",
+        "wear": 61
+      },
+      "out": {
+        "max": 80,
+        "lost": 61,
+        "current": 19,
+        "broken": false,
+        "state": "low",
+        "cost": 61
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_buckler",
+        "wear": 79
+      },
+      "out": {
+        "max": 80,
+        "lost": 79,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 79
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_buckler",
+        "wear": 80
+      },
+      "out": {
+        "max": 80,
+        "lost": 80,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 80
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_buckler",
+        "wear": 85
+      },
+      "out": {
+        "max": 80,
+        "lost": 80,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 80
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_buckler",
+        "wear": -3
+      },
+      "out": {
+        "max": 80,
+        "lost": 0,
+        "current": 80,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_greatsword",
+        "wear": 0
+      },
+      "out": {
+        "max": 80,
+        "lost": 0,
+        "current": 80,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_greatsword",
+        "wear": 1
+      },
+      "out": {
+        "max": 80,
+        "lost": 1,
+        "current": 79,
+        "broken": false,
+        "state": "ok",
+        "cost": 1
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_greatsword",
+        "wear": 40
+      },
+      "out": {
+        "max": 80,
+        "lost": 40,
+        "current": 40,
+        "broken": false,
+        "state": "ok",
+        "cost": 40
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_greatsword",
+        "wear": 61
+      },
+      "out": {
+        "max": 80,
+        "lost": 61,
+        "current": 19,
+        "broken": false,
+        "state": "low",
+        "cost": 61
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_greatsword",
+        "wear": 79
+      },
+      "out": {
+        "max": 80,
+        "lost": 79,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 79
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_greatsword",
+        "wear": 80
+      },
+      "out": {
+        "max": 80,
+        "lost": 80,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 80
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_greatsword",
+        "wear": 85
+      },
+      "out": {
+        "max": 80,
+        "lost": 80,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 80
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_greatsword",
+        "wear": -3
+      },
+      "out": {
+        "max": 80,
+        "lost": 0,
+        "current": 80,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_wool_trousers",
+        "wear": 0
+      },
+      "out": {
+        "max": 60,
+        "lost": 0,
+        "current": 60,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_wool_trousers",
+        "wear": 1
+      },
+      "out": {
+        "max": 60,
+        "lost": 1,
+        "current": 59,
+        "broken": false,
+        "state": "ok",
+        "cost": 6
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_wool_trousers",
+        "wear": 30
+      },
+      "out": {
+        "max": 60,
+        "lost": 30,
+        "current": 30,
+        "broken": false,
+        "state": "ok",
+        "cost": 180
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_wool_trousers",
+        "wear": 46
+      },
+      "out": {
+        "max": 60,
+        "lost": 46,
+        "current": 14,
+        "broken": false,
+        "state": "low",
+        "cost": 276
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_wool_trousers",
+        "wear": 59
+      },
+      "out": {
+        "max": 60,
+        "lost": 59,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 354
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_wool_trousers",
+        "wear": 60
+      },
+      "out": {
+        "max": 60,
+        "lost": 60,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 360
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_wool_trousers",
+        "wear": 65
+      },
+      "out": {
+        "max": 60,
+        "lost": 60,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 360
+      }
+    },
+    {
+      "in": {
+        "item": "eastbrook_wool_trousers",
+        "wear": -3
+      },
+      "out": {
+        "max": 60,
+        "lost": 0,
+        "current": 60,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "fenbridge_hide_belt",
+        "wear": 0
+      },
+      "out": {
+        "max": 28,
+        "lost": 0,
+        "current": 28,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "fenbridge_hide_belt",
+        "wear": 1
+      },
+      "out": {
+        "max": 28,
+        "lost": 1,
+        "current": 27,
+        "broken": false,
+        "state": "ok",
+        "cost": 8
+      }
+    },
+    {
+      "in": {
+        "item": "fenbridge_hide_belt",
+        "wear": 14
+      },
+      "out": {
+        "max": 28,
+        "lost": 14,
+        "current": 14,
+        "broken": false,
+        "state": "ok",
+        "cost": 112
+      }
+    },
+    {
+      "in": {
+        "item": "fenbridge_hide_belt",
+        "wear": 22
+      },
+      "out": {
+        "max": 28,
+        "lost": 22,
+        "current": 6,
+        "broken": false,
+        "state": "low",
+        "cost": 176
+      }
+    },
+    {
+      "in": {
+        "item": "fenbridge_hide_belt",
+        "wear": 27
+      },
+      "out": {
+        "max": 28,
+        "lost": 27,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 216
+      }
+    },
+    {
+      "in": {
+        "item": "fenbridge_hide_belt",
+        "wear": 28
+      },
+      "out": {
+        "max": 28,
+        "lost": 28,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 224
+      }
+    },
+    {
+      "in": {
+        "item": "fenbridge_hide_belt",
+        "wear": 33
+      },
+      "out": {
+        "max": 28,
+        "lost": 28,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 224
+      }
+    },
+    {
+      "in": {
+        "item": "fenbridge_hide_belt",
+        "wear": -3
+      },
+      "out": {
+        "max": 28,
+        "lost": 0,
+        "current": 28,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "homespun_hood",
+        "wear": 0
+      },
+      "out": {
+        "max": 48,
+        "lost": 0,
+        "current": 48,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "homespun_hood",
+        "wear": 1
+      },
+      "out": {
+        "max": 48,
+        "lost": 1,
+        "current": 47,
+        "broken": false,
+        "state": "ok",
+        "cost": 8
+      }
+    },
+    {
+      "in": {
+        "item": "homespun_hood",
+        "wear": 24
+      },
+      "out": {
+        "max": 48,
+        "lost": 24,
+        "current": 24,
+        "broken": false,
+        "state": "ok",
+        "cost": 192
+      }
+    },
+    {
+      "in": {
+        "item": "homespun_hood",
+        "wear": 37
+      },
+      "out": {
+        "max": 48,
+        "lost": 37,
+        "current": 11,
+        "broken": false,
+        "state": "low",
+        "cost": 296
+      }
+    },
+    {
+      "in": {
+        "item": "homespun_hood",
+        "wear": 47
+      },
+      "out": {
+        "max": 48,
+        "lost": 47,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 376
+      }
+    },
+    {
+      "in": {
+        "item": "homespun_hood",
+        "wear": 48
+      },
+      "out": {
+        "max": 48,
+        "lost": 48,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 384
+      }
+    },
+    {
+      "in": {
+        "item": "homespun_hood",
+        "wear": 53
+      },
+      "out": {
+        "max": 48,
+        "lost": 48,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 384
+      }
+    },
+    {
+      "in": {
+        "item": "homespun_hood",
+        "wear": -3
+      },
+      "out": {
+        "max": 48,
+        "lost": 0,
+        "current": 48,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "varkhul_emberward",
+        "wear": 0
+      },
+      "out": {
+        "max": 160,
+        "lost": 0,
+        "current": 160,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "varkhul_emberward",
+        "wear": 1
+      },
+      "out": {
+        "max": 160,
+        "lost": 1,
+        "current": 159,
+        "broken": false,
+        "state": "ok",
+        "cost": 165
+      }
+    },
+    {
+      "in": {
+        "item": "varkhul_emberward",
+        "wear": 80
+      },
+      "out": {
+        "max": 160,
+        "lost": 80,
+        "current": 80,
+        "broken": false,
+        "state": "ok",
+        "cost": 13200
+      }
+    },
+    {
+      "in": {
+        "item": "varkhul_emberward",
+        "wear": 122
+      },
+      "out": {
+        "max": 160,
+        "lost": 122,
+        "current": 38,
+        "broken": false,
+        "state": "low",
+        "cost": 20130
+      }
+    },
+    {
+      "in": {
+        "item": "varkhul_emberward",
+        "wear": 159
+      },
+      "out": {
+        "max": 160,
+        "lost": 159,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 26235
+      }
+    },
+    {
+      "in": {
+        "item": "varkhul_emberward",
+        "wear": 160
+      },
+      "out": {
+        "max": 160,
+        "lost": 160,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 26400
+      }
+    },
+    {
+      "in": {
+        "item": "varkhul_emberward",
+        "wear": 165
+      },
+      "out": {
+        "max": 160,
+        "lost": 160,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 26400
+      }
+    },
+    {
+      "in": {
+        "item": "varkhul_emberward",
+        "wear": -3
+      },
+      "out": {
+        "max": 160,
+        "lost": 0,
+        "current": 160,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "varkhul_forgebreaker",
+        "wear": 0
+      },
+      "out": {
+        "max": 160,
+        "lost": 0,
+        "current": 160,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    },
+    {
+      "in": {
+        "item": "varkhul_forgebreaker",
+        "wear": 1
+      },
+      "out": {
+        "max": 160,
+        "lost": 1,
+        "current": 159,
+        "broken": false,
+        "state": "ok",
+        "cost": 165
+      }
+    },
+    {
+      "in": {
+        "item": "varkhul_forgebreaker",
+        "wear": 80
+      },
+      "out": {
+        "max": 160,
+        "lost": 80,
+        "current": 80,
+        "broken": false,
+        "state": "ok",
+        "cost": 13200
+      }
+    },
+    {
+      "in": {
+        "item": "varkhul_forgebreaker",
+        "wear": 122
+      },
+      "out": {
+        "max": 160,
+        "lost": 122,
+        "current": 38,
+        "broken": false,
+        "state": "low",
+        "cost": 20130
+      }
+    },
+    {
+      "in": {
+        "item": "varkhul_forgebreaker",
+        "wear": 159
+      },
+      "out": {
+        "max": 160,
+        "lost": 159,
+        "current": 1,
+        "broken": false,
+        "state": "low",
+        "cost": 26235
+      }
+    },
+    {
+      "in": {
+        "item": "varkhul_forgebreaker",
+        "wear": 160
+      },
+      "out": {
+        "max": 160,
+        "lost": 160,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 26400
+      }
+    },
+    {
+      "in": {
+        "item": "varkhul_forgebreaker",
+        "wear": 165
+      },
+      "out": {
+        "max": 160,
+        "lost": 160,
+        "current": 0,
+        "broken": true,
+        "state": "broken",
+        "cost": 26400
+      }
+    },
+    {
+      "in": {
+        "item": "varkhul_forgebreaker",
+        "wear": -3
+      },
+      "out": {
+        "max": 160,
+        "lost": 0,
+        "current": 160,
+        "broken": false,
+        "state": "ok",
+        "cost": 0
+      }
+    }
+  ]
+}

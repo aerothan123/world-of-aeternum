@@ -1,0 +1,1607 @@
+{
+  "suite": "market_sweep_view",
+  "source": "src/ui/market_sweep_core.ts sweepQuoteView, sweepCountFromInput",
+  "note": "kind quote: the staged quote line (each = ceil(total / units)); kind count: parseInt clamp to 1..200",
+  "cases": [
+    {
+      "in": {
+        "kind": "quote",
+        "units": 0,
+        "total": 0,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "none",
+        "each": -1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 0,
+        "total": 0,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "none",
+        "each": -1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 0,
+        "total": 1,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "none",
+        "each": -1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 0,
+        "total": 1,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "none",
+        "each": -1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 0,
+        "total": 5,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "none",
+        "each": -1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 0,
+        "total": 5,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "none",
+        "each": -1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 0,
+        "total": 10,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "none",
+        "each": -1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 0,
+        "total": 10,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "none",
+        "each": -1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 0,
+        "total": 11,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "none",
+        "each": -1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 0,
+        "total": 11,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "none",
+        "each": -1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 0,
+        "total": 99,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "none",
+        "each": -1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 0,
+        "total": 99,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "none",
+        "each": -1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 0,
+        "total": 100,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "none",
+        "each": -1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 0,
+        "total": 100,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "none",
+        "each": -1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 0,
+        "total": 12345,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "none",
+        "each": -1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 0,
+        "total": 12345,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "none",
+        "each": -1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 1,
+        "total": 0,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 0
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 1,
+        "total": 0,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 0
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 1,
+        "total": 1,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 1,
+        "total": 1,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 1,
+        "total": 5,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 1,
+        "total": 5,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 1,
+        "total": 10,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 1,
+        "total": 10,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 1,
+        "total": 11,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 11
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 1,
+        "total": 11,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 11
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 1,
+        "total": 99,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 99
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 1,
+        "total": 99,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 99
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 1,
+        "total": 100,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 100
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 1,
+        "total": 100,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 100
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 1,
+        "total": 12345,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 12345
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 1,
+        "total": 12345,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 12345
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 2,
+        "total": 0,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 0
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 2,
+        "total": 0,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 0
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 2,
+        "total": 1,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 2,
+        "total": 1,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 2,
+        "total": 5,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 3
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 2,
+        "total": 5,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 3
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 2,
+        "total": 10,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 2,
+        "total": 10,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 2,
+        "total": 11,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 6
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 2,
+        "total": 11,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 6
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 2,
+        "total": 99,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 50
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 2,
+        "total": 99,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 50
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 2,
+        "total": 100,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 50
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 2,
+        "total": 100,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 50
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 2,
+        "total": 12345,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 6173
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 2,
+        "total": 12345,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 6173
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 3,
+        "total": 0,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 0
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 3,
+        "total": 0,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 0
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 3,
+        "total": 1,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 3,
+        "total": 1,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 3,
+        "total": 5,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 2
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 3,
+        "total": 5,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 2
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 3,
+        "total": 10,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 4
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 3,
+        "total": 10,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 4
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 3,
+        "total": 11,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 4
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 3,
+        "total": 11,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 4
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 3,
+        "total": 99,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 33
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 3,
+        "total": 99,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 33
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 3,
+        "total": 100,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 34
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 3,
+        "total": 100,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 34
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 3,
+        "total": 12345,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 4115
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 3,
+        "total": 12345,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 4115
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 7,
+        "total": 0,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 0
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 7,
+        "total": 0,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 0
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 7,
+        "total": 1,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 7,
+        "total": 1,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 7,
+        "total": 5,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 7,
+        "total": 5,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 7,
+        "total": 10,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 2
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 7,
+        "total": 10,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 2
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 7,
+        "total": 11,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 2
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 7,
+        "total": 11,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 2
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 7,
+        "total": 99,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 7,
+        "total": 99,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 7,
+        "total": 100,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 7,
+        "total": 100,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 15
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 7,
+        "total": 12345,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 1764
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 7,
+        "total": 12345,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 1764
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 10,
+        "total": 0,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 0
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 10,
+        "total": 0,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 0
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 10,
+        "total": 1,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 10,
+        "total": 1,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 10,
+        "total": 5,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 10,
+        "total": 5,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 10,
+        "total": 10,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 10,
+        "total": 10,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 10,
+        "total": 11,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 2
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 10,
+        "total": 11,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 2
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 10,
+        "total": 99,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 10,
+        "total": 99,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 10,
+        "total": 100,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 10,
+        "total": 100,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 10
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 10,
+        "total": 12345,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 1235
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 10,
+        "total": 12345,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 1235
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 200,
+        "total": 0,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 0
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 200,
+        "total": 0,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 0
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 200,
+        "total": 1,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 200,
+        "total": 1,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 200,
+        "total": 5,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 200,
+        "total": 5,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 200,
+        "total": 10,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 200,
+        "total": 10,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 200,
+        "total": 11,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 200,
+        "total": 11,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 200,
+        "total": 99,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 200,
+        "total": 99,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 200,
+        "total": 100,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 200,
+        "total": 100,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 200,
+        "total": 12345,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "state": "ok",
+        "each": 62
+      }
+    },
+    {
+      "in": {
+        "kind": "quote",
+        "units": 200,
+        "total": 12345,
+        "short": true,
+        "raw": ""
+      },
+      "out": {
+        "state": "short",
+        "each": 62
+      }
+    },
+    {
+      "in": {
+        "kind": "count",
+        "units": 0,
+        "total": 0,
+        "short": false,
+        "raw": ""
+      },
+      "out": {
+        "count": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "count",
+        "units": 0,
+        "total": 0,
+        "short": false,
+        "raw": "0"
+      },
+      "out": {
+        "count": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "count",
+        "units": 0,
+        "total": 0,
+        "short": false,
+        "raw": "1"
+      },
+      "out": {
+        "count": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "count",
+        "units": 0,
+        "total": 0,
+        "short": false,
+        "raw": "5"
+      },
+      "out": {
+        "count": 5
+      }
+    },
+    {
+      "in": {
+        "kind": "count",
+        "units": 0,
+        "total": 0,
+        "short": false,
+        "raw": "-3"
+      },
+      "out": {
+        "count": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "count",
+        "units": 0,
+        "total": 0,
+        "short": false,
+        "raw": "12abc"
+      },
+      "out": {
+        "count": 12
+      }
+    },
+    {
+      "in": {
+        "kind": "count",
+        "units": 0,
+        "total": 0,
+        "short": false,
+        "raw": "x"
+      },
+      "out": {
+        "count": 1
+      }
+    },
+    {
+      "in": {
+        "kind": "count",
+        "units": 0,
+        "total": 0,
+        "short": false,
+        "raw": "199"
+      },
+      "out": {
+        "count": 199
+      }
+    },
+    {
+      "in": {
+        "kind": "count",
+        "units": 0,
+        "total": 0,
+        "short": false,
+        "raw": "200"
+      },
+      "out": {
+        "count": 200
+      }
+    },
+    {
+      "in": {
+        "kind": "count",
+        "units": 0,
+        "total": 0,
+        "short": false,
+        "raw": "201"
+      },
+      "out": {
+        "count": 200
+      }
+    },
+    {
+      "in": {
+        "kind": "count",
+        "units": 0,
+        "total": 0,
+        "short": false,
+        "raw": "100000"
+      },
+      "out": {
+        "count": 200
+      }
+    },
+    {
+      "in": {
+        "kind": "count",
+        "units": 0,
+        "total": 0,
+        "short": false,
+        "raw": "7.9"
+      },
+      "out": {
+        "count": 7
+      }
+    }
+  ]
+}
