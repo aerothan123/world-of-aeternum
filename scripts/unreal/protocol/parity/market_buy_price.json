@@ -1,0 +1,10759 @@
+{
+  "suite": "market_buy_price",
+  "source": "src/ui/market_buy_confirm_core.ts marketBuyConfirm",
+  "note": "requested -1 means omitted (whole stack); unitPrice -1 means null (a single)",
+  "cases": [
+    {
+      "in": {
+        "count": 1,
+        "price": 1,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 1,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 1,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 1,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 1,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 1,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 1,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 1,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 2,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 2,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 2,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 2,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 2,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 2,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 2,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 2,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 3,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 3,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 3,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 3,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 3,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 3,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 3,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 3,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 3,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 3,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 3,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 3,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 3,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 3,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 3,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 3,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 5,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 5,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 5,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 5,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 5,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 5,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 5,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 5,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 5,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 5,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 5,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 5,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 5,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 5,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 5,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 5,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 7,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 7,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 7,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 7,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 7,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 7,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 7,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 7,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 7,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 7,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 7,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 7,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 7,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 7,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 7,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 7,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 10,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 10,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 10,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 10,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 10,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 10,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 10,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 10,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 10,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 10,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 10,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 10,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 10,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 10,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 10,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 10,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 19,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 19,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 19,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 19,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 19,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 19,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 19,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 19,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 19,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 19,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 19,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 19,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 19,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 19,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 19,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 19,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 20,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 20,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 20,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 20,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 20,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 20,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 20,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 20,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 20,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 20,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 20,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 20,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 20,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 20,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 20,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 20,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 33,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 33,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 33,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 33,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 33,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 33,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 33,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 33,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 33,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 33,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 33,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 33,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 33,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 33,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 33,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 33,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 100,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 100,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 100,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 100,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 100,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 100,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 100,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 100,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 100,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 100,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 100,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 100,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 100,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 100,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 100,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 100,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 101,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 101,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 101,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 101,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 101,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 101,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 101,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 101,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 101,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 101,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 101,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 101,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 101,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 101,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 101,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 101,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 999,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 999,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 999,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 999,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 999,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 999,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 999,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 999,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 999,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 999,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 999,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 999,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 999,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 999,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 999,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 999,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 1234,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1234,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 1234,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1234,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 1234,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1234,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 1234,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1234,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 1234,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1234,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 1234,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1234,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 1234,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1234,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 1234,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1234,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 50000,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 50000,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 50000,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 50000,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 50000,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 50000,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 50000,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 50000,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 50000,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 50000,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 50000,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 50000,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 50000,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 50000,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 1,
+        "price": 50000,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 50000,
+        "unitPrice": -1
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 1,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 1,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 1,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 1,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 1,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 1,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 1,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 1,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 2,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 2,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 2,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 2,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 2,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 2,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 2,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 2,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 3,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 3,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 3,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 3,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 3,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 3,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 3,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 3,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 3,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 3,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 3,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 3,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 3,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 5,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 3,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 5,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 3,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 5,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 5,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 5,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 5,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 5,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 3,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 5,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 5,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 5,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 5,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 5,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 5,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 7,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 4,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 7,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 4,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 7,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 7,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 7,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 7,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 7,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 4,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 7,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 7,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 7,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 7,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 7,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 7,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 10,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 5,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 10,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 5,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 10,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 10,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 10,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 10,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 10,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 5,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 10,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 10,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 10,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 10,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 10,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 10,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 19,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 10,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 19,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 10,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 19,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 19,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 19,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 19,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 19,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 10,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 19,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 19,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 19,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 19,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 19,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 19,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 20,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 10,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 20,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 10,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 20,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 20,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 20,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 20,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 20,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 10,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 20,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 20,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 20,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 20,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 20,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 20,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 33,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 17,
+        "unitPrice": 17
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 33,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 17,
+        "unitPrice": 17
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 33,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 33,
+        "unitPrice": 17
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 33,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 33,
+        "unitPrice": 17
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 33,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 17,
+        "unitPrice": 17
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 33,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 33,
+        "unitPrice": 17
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 33,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 33,
+        "unitPrice": 17
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 33,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 33,
+        "unitPrice": 17
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 100,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 50,
+        "unitPrice": 50
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 100,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 50,
+        "unitPrice": 50
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 100,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 100,
+        "unitPrice": 50
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 100,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 100,
+        "unitPrice": 50
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 100,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 50,
+        "unitPrice": 50
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 100,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 100,
+        "unitPrice": 50
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 100,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 100,
+        "unitPrice": 50
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 100,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 100,
+        "unitPrice": 50
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 101,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 51,
+        "unitPrice": 51
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 101,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 51,
+        "unitPrice": 51
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 101,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 101,
+        "unitPrice": 51
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 101,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 101,
+        "unitPrice": 51
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 101,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 51,
+        "unitPrice": 51
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 101,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 101,
+        "unitPrice": 51
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 101,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 101,
+        "unitPrice": 51
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 101,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 101,
+        "unitPrice": 51
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 999,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 500,
+        "unitPrice": 500
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 999,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 500,
+        "unitPrice": 500
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 999,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 999,
+        "unitPrice": 500
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 999,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 999,
+        "unitPrice": 500
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 999,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 500,
+        "unitPrice": 500
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 999,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 999,
+        "unitPrice": 500
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 999,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 999,
+        "unitPrice": 500
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 999,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 999,
+        "unitPrice": 500
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 1234,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 617,
+        "unitPrice": 617
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 1234,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 617,
+        "unitPrice": 617
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 1234,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1234,
+        "unitPrice": 617
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 1234,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1234,
+        "unitPrice": 617
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 1234,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 617,
+        "unitPrice": 617
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 1234,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1234,
+        "unitPrice": 617
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 1234,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1234,
+        "unitPrice": 617
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 1234,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1234,
+        "unitPrice": 617
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 50000,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 25000,
+        "unitPrice": 25000
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 50000,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 25000,
+        "unitPrice": 25000
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 50000,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 50000,
+        "unitPrice": 25000
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 50000,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 50000,
+        "unitPrice": 25000
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 50000,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 25000,
+        "unitPrice": 25000
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 50000,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 50000,
+        "unitPrice": 25000
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 50000,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 50000,
+        "unitPrice": 25000
+      }
+    },
+    {
+      "in": {
+        "count": 2,
+        "price": 50000,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 50000,
+        "unitPrice": 25000
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 1,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 1,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 1,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 1,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 1,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 1,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 1,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 1,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 2,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 2,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 2,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 2,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 2,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 2,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 2,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 2,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 3,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 3,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 3,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 3,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 3,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 3,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 3,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 3,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 5,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 5,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 5,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 4,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 5,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 5,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 5,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 4,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 5,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 5,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 5,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 5,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 5,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 5,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 7,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 3,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 7,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 3,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 7,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 5,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 7,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 7,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 7,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 5,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 7,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 7,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 7,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 7,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 7,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 7,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 10,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 4,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 10,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 4,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 10,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 7,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 10,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 10,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 10,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 7,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 10,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 10,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 10,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 10,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 10,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 10,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 19,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 7,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 19,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 7,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 19,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 13,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 19,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 19,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 19,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 13,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 19,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 19,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 19,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 19,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 19,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 19,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 20,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 7,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 20,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 7,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 20,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 14,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 20,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 20,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 20,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 14,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 20,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 20,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 20,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 20,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 20,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 20,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 33,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 11,
+        "unitPrice": 11
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 33,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 11,
+        "unitPrice": 11
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 33,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 22,
+        "unitPrice": 11
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 33,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 33,
+        "unitPrice": 11
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 33,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 22,
+        "unitPrice": 11
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 33,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 33,
+        "unitPrice": 11
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 33,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 33,
+        "unitPrice": 11
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 33,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 33,
+        "unitPrice": 11
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 100,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 34,
+        "unitPrice": 34
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 100,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 34,
+        "unitPrice": 34
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 100,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 67,
+        "unitPrice": 34
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 100,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 100,
+        "unitPrice": 34
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 100,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 67,
+        "unitPrice": 34
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 100,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 100,
+        "unitPrice": 34
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 100,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 100,
+        "unitPrice": 34
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 100,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 100,
+        "unitPrice": 34
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 101,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 34,
+        "unitPrice": 34
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 101,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 34,
+        "unitPrice": 34
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 101,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 68,
+        "unitPrice": 34
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 101,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 101,
+        "unitPrice": 34
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 101,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 68,
+        "unitPrice": 34
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 101,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 101,
+        "unitPrice": 34
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 101,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 101,
+        "unitPrice": 34
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 101,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 101,
+        "unitPrice": 34
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 999,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 333,
+        "unitPrice": 333
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 999,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 333,
+        "unitPrice": 333
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 999,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 666,
+        "unitPrice": 333
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 999,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 999,
+        "unitPrice": 333
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 999,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 666,
+        "unitPrice": 333
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 999,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 999,
+        "unitPrice": 333
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 999,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 999,
+        "unitPrice": 333
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 999,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 999,
+        "unitPrice": 333
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 1234,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 412,
+        "unitPrice": 412
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 1234,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 412,
+        "unitPrice": 412
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 1234,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 823,
+        "unitPrice": 412
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 1234,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1234,
+        "unitPrice": 412
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 1234,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 823,
+        "unitPrice": 412
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 1234,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1234,
+        "unitPrice": 412
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 1234,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1234,
+        "unitPrice": 412
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 1234,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1234,
+        "unitPrice": 412
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 50000,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 16667,
+        "unitPrice": 16667
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 50000,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 16667,
+        "unitPrice": 16667
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 50000,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 33334,
+        "unitPrice": 16667
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 50000,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 50000,
+        "unitPrice": 16667
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 50000,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 33334,
+        "unitPrice": 16667
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 50000,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 50000,
+        "unitPrice": 16667
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 50000,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 50000,
+        "unitPrice": 16667
+      }
+    },
+    {
+      "in": {
+        "count": 3,
+        "price": 50000,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 50000,
+        "unitPrice": 16667
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 1,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 1,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 1,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 1,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 1,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 1,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 1,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 1,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 2,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 2,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 2,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 2,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 2,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 2,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 2,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 2,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 3,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 3,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 3,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 3,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 3,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 3,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 3,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 3,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 5,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 5,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 5,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 3,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 5,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 4,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 5,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 4,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 5,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 5,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 5,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 5,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 5,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 5,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 7,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 7,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 7,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 4,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 7,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 6,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 7,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 6,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 7,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 7,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 7,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 7,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 7,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 7,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 10,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 3,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 10,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 3,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 10,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 5,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 10,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 8,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 10,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 8,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 10,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 10,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 10,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 10,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 10,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 10,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 19,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 5,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 19,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 5,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 19,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 10,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 19,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 15,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 19,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 15,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 19,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 19,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 19,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 19,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 19,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 19,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 20,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 5,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 20,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 5,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 20,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 10,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 20,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 15,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 20,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 15,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 20,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 20,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 20,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 20,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 20,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 20,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 33,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 9,
+        "unitPrice": 9
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 33,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 9,
+        "unitPrice": 9
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 33,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 17,
+        "unitPrice": 9
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 33,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 25,
+        "unitPrice": 9
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 33,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 25,
+        "unitPrice": 9
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 33,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 33,
+        "unitPrice": 9
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 33,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 33,
+        "unitPrice": 9
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 33,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 33,
+        "unitPrice": 9
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 100,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 25,
+        "unitPrice": 25
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 100,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 25,
+        "unitPrice": 25
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 100,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 50,
+        "unitPrice": 25
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 100,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 75,
+        "unitPrice": 25
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 100,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 75,
+        "unitPrice": 25
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 100,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 100,
+        "unitPrice": 25
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 100,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 100,
+        "unitPrice": 25
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 100,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 100,
+        "unitPrice": 25
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 101,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 26,
+        "unitPrice": 26
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 101,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 26,
+        "unitPrice": 26
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 101,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 51,
+        "unitPrice": 26
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 101,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 76,
+        "unitPrice": 26
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 101,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 76,
+        "unitPrice": 26
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 101,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 101,
+        "unitPrice": 26
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 101,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 101,
+        "unitPrice": 26
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 101,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 101,
+        "unitPrice": 26
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 999,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 250,
+        "unitPrice": 250
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 999,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 250,
+        "unitPrice": 250
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 999,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 500,
+        "unitPrice": 250
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 999,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 750,
+        "unitPrice": 250
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 999,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 750,
+        "unitPrice": 250
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 999,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 999,
+        "unitPrice": 250
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 999,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 999,
+        "unitPrice": 250
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 999,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 999,
+        "unitPrice": 250
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 1234,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 309,
+        "unitPrice": 309
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 1234,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 309,
+        "unitPrice": 309
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 1234,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 617,
+        "unitPrice": 309
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 1234,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 926,
+        "unitPrice": 309
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 1234,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 926,
+        "unitPrice": 309
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 1234,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 1234,
+        "unitPrice": 309
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 1234,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 1234,
+        "unitPrice": 309
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 1234,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 1234,
+        "unitPrice": 309
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 50000,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 12500,
+        "unitPrice": 12500
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 50000,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 12500,
+        "unitPrice": 12500
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 50000,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 25000,
+        "unitPrice": 12500
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 50000,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 37500,
+        "unitPrice": 12500
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 50000,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 37500,
+        "unitPrice": 12500
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 50000,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 50000,
+        "unitPrice": 12500
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 50000,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 50000,
+        "unitPrice": 12500
+      }
+    },
+    {
+      "in": {
+        "count": 4,
+        "price": 50000,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 50000,
+        "unitPrice": 12500
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 1,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 1,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 1,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 1,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 1,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 1,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 1,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 1,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 2,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 2,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 2,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 2,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 2,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 2,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 2,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 2,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 3,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 3,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 3,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 3,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 3,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 3,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 3,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 3,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 5,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 5,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 5,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 5,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 5,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 4,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 5,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 5,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 5,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 5,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 5,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 5,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 7,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 7,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 7,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 3,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 7,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 5,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 7,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 6,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 7,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 7,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 7,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 7,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 7,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 7,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 10,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 10,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 10,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 4,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 10,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 6,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 10,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 8,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 10,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 10,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 10,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 10,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 10,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 10,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 19,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 4,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 19,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 4,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 19,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 8,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 19,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 12,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 19,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 16,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 19,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 19,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 19,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 19,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 19,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 19,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 20,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 4,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 20,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 4,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 20,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 8,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 20,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 12,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 20,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 16,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 20,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 20,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 20,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 20,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 20,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 20,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 33,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 7,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 33,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 7,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 33,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 14,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 33,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 20,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 33,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 27,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 33,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 33,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 33,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 33,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 33,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 33,
+        "unitPrice": 7
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 100,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 20,
+        "unitPrice": 20
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 100,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 20,
+        "unitPrice": 20
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 100,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 40,
+        "unitPrice": 20
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 100,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 60,
+        "unitPrice": 20
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 100,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 80,
+        "unitPrice": 20
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 100,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 100,
+        "unitPrice": 20
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 100,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 100,
+        "unitPrice": 20
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 100,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 100,
+        "unitPrice": 20
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 101,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 21,
+        "unitPrice": 21
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 101,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 21,
+        "unitPrice": 21
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 101,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 41,
+        "unitPrice": 21
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 101,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 61,
+        "unitPrice": 21
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 101,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 81,
+        "unitPrice": 21
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 101,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 101,
+        "unitPrice": 21
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 101,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 101,
+        "unitPrice": 21
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 101,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 101,
+        "unitPrice": 21
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 999,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 200,
+        "unitPrice": 200
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 999,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 200,
+        "unitPrice": 200
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 999,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 400,
+        "unitPrice": 200
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 999,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 600,
+        "unitPrice": 200
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 999,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 800,
+        "unitPrice": 200
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 999,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 999,
+        "unitPrice": 200
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 999,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 999,
+        "unitPrice": 200
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 999,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 999,
+        "unitPrice": 200
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 1234,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 247,
+        "unitPrice": 247
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 1234,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 247,
+        "unitPrice": 247
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 1234,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 494,
+        "unitPrice": 247
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 1234,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 741,
+        "unitPrice": 247
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 1234,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 988,
+        "unitPrice": 247
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 1234,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 1234,
+        "unitPrice": 247
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 1234,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 1234,
+        "unitPrice": 247
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 1234,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 1234,
+        "unitPrice": 247
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 50000,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 10000,
+        "unitPrice": 10000
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 50000,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 10000,
+        "unitPrice": 10000
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 50000,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 20000,
+        "unitPrice": 10000
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 50000,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 30000,
+        "unitPrice": 10000
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 50000,
+        "requested": 4
+      },
+      "out": {
+        "buyCount": 4,
+        "buyPrice": 40000,
+        "unitPrice": 10000
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 50000,
+        "requested": 5
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 50000,
+        "unitPrice": 10000
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 50000,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 50000,
+        "unitPrice": 10000
+      }
+    },
+    {
+      "in": {
+        "count": 5,
+        "price": 50000,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 5,
+        "buyPrice": 50000,
+        "unitPrice": 10000
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 1,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 1,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 1,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 1,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 1,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 6,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 1,
+        "requested": 7
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 1,
+        "requested": 8
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 1,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 2,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 2,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 2,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 2,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 2,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 6,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 2,
+        "requested": 7
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 2,
+        "requested": 8
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 2,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 3,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 3,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 3,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 3,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 3,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 6,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 3,
+        "requested": 7
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 3,
+        "requested": 8
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 3,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 5,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 5,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 5,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 5,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 5,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 6,
+        "buyPrice": 4,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 5,
+        "requested": 7
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 5,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 5,
+        "requested": 8
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 5,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 5,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 5,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 7,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 7,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 7,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 7,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 7,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 6,
+        "buyPrice": 6,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 7,
+        "requested": 7
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 7,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 7,
+        "requested": 8
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 7,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 7,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 7,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 10,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 10,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 10,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 3,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 10,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 5,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 10,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 6,
+        "buyPrice": 9,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 10,
+        "requested": 7
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 10,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 10,
+        "requested": 8
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 10,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 10,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 10,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 19,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 3,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 19,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 3,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 19,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 6,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 19,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 9,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 19,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 6,
+        "buyPrice": 17,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 19,
+        "requested": 7
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 19,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 19,
+        "requested": 8
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 19,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 19,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 19,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 20,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 3,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 20,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 3,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 20,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 6,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 20,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 9,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 20,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 6,
+        "buyPrice": 18,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 20,
+        "requested": 7
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 20,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 20,
+        "requested": 8
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 20,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 20,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 20,
+        "unitPrice": 3
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 33,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 5,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 33,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 5,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 33,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 10,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 33,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 15,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 33,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 6,
+        "buyPrice": 29,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 33,
+        "requested": 7
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 33,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 33,
+        "requested": 8
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 33,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 33,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 33,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 100,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 15,
+        "unitPrice": 15
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 100,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 15,
+        "unitPrice": 15
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 100,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 29,
+        "unitPrice": 15
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 100,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 43,
+        "unitPrice": 15
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 100,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 6,
+        "buyPrice": 86,
+        "unitPrice": 15
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 100,
+        "requested": 7
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 100,
+        "unitPrice": 15
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 100,
+        "requested": 8
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 100,
+        "unitPrice": 15
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 100,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 100,
+        "unitPrice": 15
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 101,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 15,
+        "unitPrice": 15
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 101,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 15,
+        "unitPrice": 15
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 101,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 29,
+        "unitPrice": 15
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 101,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 44,
+        "unitPrice": 15
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 101,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 6,
+        "buyPrice": 87,
+        "unitPrice": 15
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 101,
+        "requested": 7
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 101,
+        "unitPrice": 15
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 101,
+        "requested": 8
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 101,
+        "unitPrice": 15
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 101,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 101,
+        "unitPrice": 15
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 999,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 143,
+        "unitPrice": 143
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 999,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 143,
+        "unitPrice": 143
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 999,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 286,
+        "unitPrice": 143
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 999,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 429,
+        "unitPrice": 143
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 999,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 6,
+        "buyPrice": 857,
+        "unitPrice": 143
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 999,
+        "requested": 7
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 999,
+        "unitPrice": 143
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 999,
+        "requested": 8
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 999,
+        "unitPrice": 143
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 999,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 999,
+        "unitPrice": 143
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 1234,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 177,
+        "unitPrice": 177
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 1234,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 177,
+        "unitPrice": 177
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 1234,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 353,
+        "unitPrice": 177
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 1234,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 529,
+        "unitPrice": 177
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 1234,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 6,
+        "buyPrice": 1058,
+        "unitPrice": 177
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 1234,
+        "requested": 7
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 1234,
+        "unitPrice": 177
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 1234,
+        "requested": 8
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 1234,
+        "unitPrice": 177
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 1234,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 1234,
+        "unitPrice": 177
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 50000,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 7143,
+        "unitPrice": 7143
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 50000,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 7143,
+        "unitPrice": 7143
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 50000,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 14286,
+        "unitPrice": 7143
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 50000,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 21429,
+        "unitPrice": 7143
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 50000,
+        "requested": 6
+      },
+      "out": {
+        "buyCount": 6,
+        "buyPrice": 42858,
+        "unitPrice": 7143
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 50000,
+        "requested": 7
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 50000,
+        "unitPrice": 7143
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 50000,
+        "requested": 8
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 50000,
+        "unitPrice": 7143
+      }
+    },
+    {
+      "in": {
+        "count": 7,
+        "price": 50000,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 7,
+        "buyPrice": 50000,
+        "unitPrice": 7143
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 1,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 1,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 1,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 1,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 1,
+        "requested": 9
+      },
+      "out": {
+        "buyCount": 9,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 1,
+        "requested": 10
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 1,
+        "requested": 11
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 1,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 2,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 2,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 2,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 2,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 2,
+        "requested": 9
+      },
+      "out": {
+        "buyCount": 9,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 2,
+        "requested": 10
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 2,
+        "requested": 11
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 2,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 3,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 3,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 3,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 3,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 3,
+        "requested": 9
+      },
+      "out": {
+        "buyCount": 9,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 3,
+        "requested": 10
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 3,
+        "requested": 11
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 3,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 5,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 5,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 5,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 5,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 5,
+        "requested": 9
+      },
+      "out": {
+        "buyCount": 9,
+        "buyPrice": 4,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 5,
+        "requested": 10
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 5,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 5,
+        "requested": 11
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 5,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 5,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 5,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 7,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 7,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 7,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 7,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 7,
+        "requested": 9
+      },
+      "out": {
+        "buyCount": 9,
+        "buyPrice": 6,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 7,
+        "requested": 10
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 7,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 7,
+        "requested": 11
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 7,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 7,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 7,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 10,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 10,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 10,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 10,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 10,
+        "requested": 9
+      },
+      "out": {
+        "buyCount": 9,
+        "buyPrice": 9,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 10,
+        "requested": 10
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 10,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 10,
+        "requested": 11
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 10,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 10,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 10,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 19,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 19,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 19,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 4,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 19,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 6,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 19,
+        "requested": 9
+      },
+      "out": {
+        "buyCount": 9,
+        "buyPrice": 18,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 19,
+        "requested": 10
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 19,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 19,
+        "requested": 11
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 19,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 19,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 19,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 20,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 20,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 20,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 4,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 20,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 6,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 20,
+        "requested": 9
+      },
+      "out": {
+        "buyCount": 9,
+        "buyPrice": 18,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 20,
+        "requested": 10
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 20,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 20,
+        "requested": 11
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 20,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 20,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 20,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 33,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 4,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 33,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 4,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 33,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 7,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 33,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 10,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 33,
+        "requested": 9
+      },
+      "out": {
+        "buyCount": 9,
+        "buyPrice": 30,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 33,
+        "requested": 10
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 33,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 33,
+        "requested": 11
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 33,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 33,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 33,
+        "unitPrice": 4
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 100,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 10,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 100,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 10,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 100,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 20,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 100,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 30,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 100,
+        "requested": 9
+      },
+      "out": {
+        "buyCount": 9,
+        "buyPrice": 90,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 100,
+        "requested": 10
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 100,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 100,
+        "requested": 11
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 100,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 100,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 100,
+        "unitPrice": 10
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 101,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 11,
+        "unitPrice": 11
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 101,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 11,
+        "unitPrice": 11
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 101,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 21,
+        "unitPrice": 11
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 101,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 31,
+        "unitPrice": 11
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 101,
+        "requested": 9
+      },
+      "out": {
+        "buyCount": 9,
+        "buyPrice": 91,
+        "unitPrice": 11
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 101,
+        "requested": 10
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 101,
+        "unitPrice": 11
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 101,
+        "requested": 11
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 101,
+        "unitPrice": 11
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 101,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 101,
+        "unitPrice": 11
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 999,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 100,
+        "unitPrice": 100
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 999,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 100,
+        "unitPrice": 100
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 999,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 200,
+        "unitPrice": 100
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 999,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 300,
+        "unitPrice": 100
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 999,
+        "requested": 9
+      },
+      "out": {
+        "buyCount": 9,
+        "buyPrice": 900,
+        "unitPrice": 100
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 999,
+        "requested": 10
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 999,
+        "unitPrice": 100
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 999,
+        "requested": 11
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 999,
+        "unitPrice": 100
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 999,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 999,
+        "unitPrice": 100
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 1234,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 124,
+        "unitPrice": 124
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 1234,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 124,
+        "unitPrice": 124
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 1234,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 247,
+        "unitPrice": 124
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 1234,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 371,
+        "unitPrice": 124
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 1234,
+        "requested": 9
+      },
+      "out": {
+        "buyCount": 9,
+        "buyPrice": 1111,
+        "unitPrice": 124
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 1234,
+        "requested": 10
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 1234,
+        "unitPrice": 124
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 1234,
+        "requested": 11
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 1234,
+        "unitPrice": 124
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 1234,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 1234,
+        "unitPrice": 124
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 50000,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 5000,
+        "unitPrice": 5000
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 50000,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 5000,
+        "unitPrice": 5000
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 50000,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 10000,
+        "unitPrice": 5000
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 50000,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 15000,
+        "unitPrice": 5000
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 50000,
+        "requested": 9
+      },
+      "out": {
+        "buyCount": 9,
+        "buyPrice": 45000,
+        "unitPrice": 5000
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 50000,
+        "requested": 10
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 50000,
+        "unitPrice": 5000
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 50000,
+        "requested": 11
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 50000,
+        "unitPrice": 5000
+      }
+    },
+    {
+      "in": {
+        "count": 10,
+        "price": 50000,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 10,
+        "buyPrice": 50000,
+        "unitPrice": 5000
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 1,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 1,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 1,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 1,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 1,
+        "requested": 19
+      },
+      "out": {
+        "buyCount": 19,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 1,
+        "requested": 20
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 1,
+        "requested": 21
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 1,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 2,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 2,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 2,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 2,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 2,
+        "requested": 19
+      },
+      "out": {
+        "buyCount": 19,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 2,
+        "requested": 20
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 2,
+        "requested": 21
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 2,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 3,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 3,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 3,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 3,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 3,
+        "requested": 19
+      },
+      "out": {
+        "buyCount": 19,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 3,
+        "requested": 20
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 3,
+        "requested": 21
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 3,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 5,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 5,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 5,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 5,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 5,
+        "requested": 19
+      },
+      "out": {
+        "buyCount": 19,
+        "buyPrice": 4,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 5,
+        "requested": 20
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 5,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 5,
+        "requested": 21
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 5,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 5,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 5,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 7,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 7,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 7,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 7,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 7,
+        "requested": 19
+      },
+      "out": {
+        "buyCount": 19,
+        "buyPrice": 6,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 7,
+        "requested": 20
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 7,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 7,
+        "requested": 21
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 7,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 7,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 7,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 10,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 10,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 10,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 10,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 10,
+        "requested": 19
+      },
+      "out": {
+        "buyCount": 19,
+        "buyPrice": 9,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 10,
+        "requested": 20
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 10,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 10,
+        "requested": 21
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 10,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 10,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 10,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 19,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 19,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 19,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 19,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 19,
+        "requested": 19
+      },
+      "out": {
+        "buyCount": 19,
+        "buyPrice": 18,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 19,
+        "requested": 20
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 19,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 19,
+        "requested": 21
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 19,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 19,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 19,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 20,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 20,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 1,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 20,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 2,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 20,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 3,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 20,
+        "requested": 19
+      },
+      "out": {
+        "buyCount": 19,
+        "buyPrice": 19,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 20,
+        "requested": 20
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 20,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 20,
+        "requested": 21
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 20,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 20,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 20,
+        "unitPrice": 1
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 33,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 33,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 33,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 4,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 33,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 5,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 33,
+        "requested": 19
+      },
+      "out": {
+        "buyCount": 19,
+        "buyPrice": 32,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 33,
+        "requested": 20
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 33,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 33,
+        "requested": 21
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 33,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 33,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 33,
+        "unitPrice": 2
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 100,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 5,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 100,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 5,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 100,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 10,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 100,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 15,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 100,
+        "requested": 19
+      },
+      "out": {
+        "buyCount": 19,
+        "buyPrice": 95,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 100,
+        "requested": 20
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 100,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 100,
+        "requested": 21
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 100,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 100,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 100,
+        "unitPrice": 5
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 101,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 6,
+        "unitPrice": 6
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 101,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 6,
+        "unitPrice": 6
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 101,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 11,
+        "unitPrice": 6
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 101,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 16,
+        "unitPrice": 6
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 101,
+        "requested": 19
+      },
+      "out": {
+        "buyCount": 19,
+        "buyPrice": 96,
+        "unitPrice": 6
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 101,
+        "requested": 20
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 101,
+        "unitPrice": 6
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 101,
+        "requested": 21
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 101,
+        "unitPrice": 6
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 101,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 101,
+        "unitPrice": 6
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 999,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 50,
+        "unitPrice": 50
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 999,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 50,
+        "unitPrice": 50
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 999,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 100,
+        "unitPrice": 50
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 999,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 150,
+        "unitPrice": 50
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 999,
+        "requested": 19
+      },
+      "out": {
+        "buyCount": 19,
+        "buyPrice": 950,
+        "unitPrice": 50
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 999,
+        "requested": 20
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 999,
+        "unitPrice": 50
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 999,
+        "requested": 21
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 999,
+        "unitPrice": 50
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 999,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 999,
+        "unitPrice": 50
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 1234,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 62,
+        "unitPrice": 62
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 1234,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 62,
+        "unitPrice": 62
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 1234,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 124,
+        "unitPrice": 62
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 1234,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 186,
+        "unitPrice": 62
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 1234,
+        "requested": 19
+      },
+      "out": {
+        "buyCount": 19,
+        "buyPrice": 1173,
+        "unitPrice": 62
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 1234,
+        "requested": 20
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 1234,
+        "unitPrice": 62
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 1234,
+        "requested": 21
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 1234,
+        "unitPrice": 62
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 1234,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 1234,
+        "unitPrice": 62
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 50000,
+        "requested": 0
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2500,
+        "unitPrice": 2500
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 50000,
+        "requested": 1
+      },
+      "out": {
+        "buyCount": 1,
+        "buyPrice": 2500,
+        "unitPrice": 2500
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 50000,
+        "requested": 2
+      },
+      "out": {
+        "buyCount": 2,
+        "buyPrice": 5000,
+        "unitPrice": 2500
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 50000,
+        "requested": 3
+      },
+      "out": {
+        "buyCount": 3,
+        "buyPrice": 7500,
+        "unitPrice": 2500
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 50000,
+        "requested": 19
+      },
+      "out": {
+        "buyCount": 19,
+        "buyPrice": 47500,
+        "unitPrice": 2500
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 50000,
+        "requested": 20
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 50000,
+        "unitPrice": 2500
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 50000,
+        "requested": 21
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 50000,
+        "unitPrice": 2500
+      }
+    },
+    {
+      "in": {
+        "count": 20,
+        "price": 50000,
+        "requested": -1
+      },
+      "out": {
+        "buyCount": 20,
+        "buyPrice": 50000,
+        "unitPrice": 2500
+      }
+    }
+  ]
+}
