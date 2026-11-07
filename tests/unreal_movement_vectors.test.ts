@@ -25,6 +25,8 @@ vi.mock('../server/db', () => ({
   releaseAllCharacterLeases: vi.fn(async () => {}),
 }));
 
+import { type Collider, queryOpenWorldColliders } from '../src/sim/colliders';
+import { ZONES } from '../src/sim/data';
 import {
   AIR_CONTROL_ACCEL,
   BACKPEDAL_MULT,
@@ -232,7 +234,54 @@ function scenarios(): VectorScenario[] {
       { ms: 1500, mi: { back: false } },
     ]),
   });
+  list.push(...wallScenarios());
   return list;
+}
+
+/**
+ * Wall slides and stops for the collision port: the first Proving Shore
+ * colliders that block outright (full height or taller than a stride), each
+ * approached from 3 yd outside its reach, once head-on (a stop) and once 25
+ * degrees off (a slide), running for 2 s.
+ */
+function wallScenarios(): VectorScenario[] {
+  const shore = ZONES.find((z) => z.id === 'proving_shore');
+  if (!shore) return [];
+  const found: Collider[] = [];
+  queryOpenWorldColliders(
+    WORLD_SEED,
+    shore.xMin ?? -540,
+    shore.zMin,
+    shore.xMax ?? -180,
+    shore.zMax,
+    found,
+  );
+  const walls = found
+    .filter((c) => !c.gate && (c.moveTopY === undefined || !c.standable))
+    .filter((c) => {
+      const ground = groundHeight(c.x, c.z, WORLD_SEED);
+      return Number.isFinite(ground) && !Number.isFinite(waterLevelAt(c.x, c.z, WORLD_SEED));
+    })
+    .slice(0, 6);
+  const out: VectorScenario[] = [];
+  walls.forEach((c, i) => {
+    const reach = c.type === 'circle' ? c.r : c.type === 'prism' ? c.br : Math.hypot(c.hw, c.hd);
+    const sx = c.x + reach + 3.5;
+    // Forward is (sin f, cos f): facing -pi/2 runs toward -x, at the collider.
+    for (const [tag, off] of [
+      ['stop', 0],
+      ['slide', 25],
+    ] as const) {
+      out.push({
+        key: `wall-${i}-${tag}`,
+        ticks: at(2000),
+        start: { x: sx, z: c.z },
+        facing: -Math.PI / 2 + (off * Math.PI) / 180,
+        script: entries([{ ms: 0, mi: { forward: true } }]),
+      });
+    }
+  });
+  return out;
 }
 
 interface VectorTick {
