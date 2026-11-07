@@ -9,13 +9,16 @@
 // the Unreal repo's tools/sync_ts_exports.ps1, then write the C++ test against it.
 
 import { MAX_LEVEL, mobXpValue, zeroDiff } from '../../src/sim/types';
+import { shouldMirrorErrorToast } from '../../src/ui/error_toast_log';
 import {
   CHAT_TAB_CHANNELS,
+  chatChannelColor,
   composeChatLine,
   composeWhisperReply,
   sentLineTargetForHost,
   WHISPER_TAB,
 } from '../../src/ui/hud/chat/chat_channels';
+import { CHAT_BOX_LIMITS, placeChatBox } from '../../src/ui/hud/chat/chat_window';
 import { maskProfanity } from '../../src/ui/profanity';
 
 export const PARITY_EXPORT_SUBDIR = 'parity';
@@ -156,10 +159,116 @@ function chatCompose(): ParitySuite {
   };
 }
 
+/**
+ * The chat log's error mirror (W5): hud.ts showLocalizedError logs an error toast into the
+ * system channel only when shouldMirrorErrorToast says so, then remembers it as the last
+ * mirrored text. Each case replays one stream of error toasts and records which were logged.
+ */
+function chatErrorMirror(): ParitySuite {
+  const streams: string[][] = [
+    [],
+    ['Invalid attack target.'],
+    ['Invalid attack target.', 'Invalid attack target.', 'Invalid attack target.'],
+    ['Out of range.', 'Line of sight.', 'Out of range.'],
+    ['Out of range.', 'Out of range.', 'Not enough mana.', 'Not enough mana.', 'Out of range.'],
+    ['', '   ', 'Out of range.', '', 'Out of range.'],
+    ['\n\t', 'A', 'a', 'A', 'A '],
+    ['Invalid attack target.', 'Invalid attack target.', 'You are dead.', 'Invalid attack target.'],
+  ];
+  const cases: ParityCase[] = [];
+  for (const stream of streams) {
+    let last: string | undefined;
+    const logged: boolean[] = [];
+    for (const text of stream) {
+      const ok = shouldMirrorErrorToast(text, last);
+      if (ok) last = text;
+      logged.push(ok);
+    }
+    cases.push({ in: { texts: JSON.stringify(stream) }, out: { logged } });
+  }
+  return {
+    suite: 'chat_error_mirror',
+    source:
+      'src/ui/error_toast_log.ts shouldMirrorErrorToast (as hud.ts showLocalizedError drives it)',
+    note: 'texts is a JSON array of consecutive error toasts; logged[i] says whether line i reached the log',
+    cases,
+  };
+}
+
+/** The per-channel chat line colour (lowercase #rrggbb), including the say fallback. */
+function chatChannelColors(): ParitySuite {
+  const channels = [
+    'say',
+    'yell',
+    'party',
+    'battleground',
+    'raidWarning',
+    'general',
+    'world',
+    'lfg',
+    'guild',
+    'officer',
+    'whisper',
+    'emote',
+    'roll',
+    'system',
+    'unknown',
+    '',
+  ];
+  return {
+    suite: 'chat_channel_color',
+    source: 'src/ui/hud/chat/chat_channels.ts chatChannelColor',
+    note: 'unknown channels fall back to say',
+    cases: channels.map((channel) => ({
+      in: { channel },
+      out: { color: chatChannelColor(channel) },
+    })),
+  };
+}
+
+/** The movable, resizable chat box clamp (placeChatBox at scale 1, the default limits). */
+function chatBoxPlace(): ParitySuite {
+  const geos = [
+    { left: 12, top: 600, width: 370, height: 184 },
+    { left: -50, top: -50, width: 100, height: 20 },
+    { left: 5000, top: 5000, width: 2000, height: 2000 },
+    { left: 300, top: 200, width: 760, height: 600 },
+    { left: 8, top: 8, width: 240, height: 96 },
+    { left: 900, top: 100, width: 500, height: 300 },
+  ];
+  const viewports = [
+    { w: 1920, h: 1080 },
+    { w: 1280, h: 720 },
+    { w: 400, h: 300 },
+  ];
+  const chromes = [0, 24, 52];
+  const cases: ParityCase[] = [];
+  for (const g of geos) {
+    for (const v of viewports) {
+      for (const chromeH of chromes) {
+        const { geo } = placeChatBox(g, v, chromeH, 1, CHAT_BOX_LIMITS, 0);
+        cases.push({
+          in: { ...g, vw: v.w, vh: v.h, chromeH },
+          out: { left: geo.left, top: geo.top, width: geo.width, height: geo.height },
+        });
+      }
+    }
+  }
+  return {
+    suite: 'chat_box_place',
+    source: 'src/ui/hud/chat/chat_window.ts placeChatBox, CHAT_BOX_LIMITS',
+    note: 'visual space (scale 1), no reserved area above',
+    cases,
+  };
+}
+
 export const PARITY_SUITES: Record<string, () => ParitySuite> = {
   xp_mob_value: xpMobValue,
   chat_profanity_mask: chatProfanityMask,
   chat_compose: chatCompose,
+  chat_error_mirror: chatErrorMirror,
+  chat_channel_color: chatChannelColors,
+  chat_box_place: chatBoxPlace,
 };
 
 export function buildParitySuite(name: string): ParitySuite {
