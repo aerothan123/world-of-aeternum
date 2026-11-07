@@ -17,6 +17,15 @@ import { join, resolve } from 'node:path';
 import { BOSS_TRACK_URLS, DEFAULT_BOSS_TRACK_URL } from '../../src/game/boss_music_loop';
 import { CRUCIBLE_STREAM_URLS, crucibleFloorForDungeon } from '../../src/game/crucible_music';
 import { dungeonMusicZoneForDungeon } from '../../src/game/dungeon_music_zones';
+import { mountAudioKey } from '../../src/game/mount_audio_key';
+import {
+  advanceInterruptibleMountEngine,
+  advanceMountEngine,
+  type MountEngineEntry,
+  mountEngineBendRate,
+  mountEngineIdleAudible,
+  mountEngineLoopActive,
+} from '../../src/game/mount_engine_state';
 import {
   combatFamilyFor,
   regionOfSlot,
@@ -72,6 +81,7 @@ import {
 } from '../../src/render/region_ambience_core';
 import { DEBUFF_AURA_KINDS } from '../../src/sim/aura_classify';
 import { GOURDLIGHT_EVE_ID } from '../../src/sim/content/gourdlight_eve';
+import { MOUNTS } from '../../src/sim/content/mounts';
 import {
   ABILITIES,
   ALL_RECIPES,
@@ -110,16 +120,6 @@ import { WORLD_SEED } from '../../src/sim/world_seed';
 import { castCueForAbility, mobVoiceFamily } from '../../src/ui/combat_sfx';
 import { isTalentRowUnlockLevel } from '../../src/ui/row_unlock_toast';
 import { type RefEntity, refRoute } from './audio_sfx_router_ref';
-import { mountAudioKey } from '../../src/game/mount_audio_key';
-import {
-  advanceInterruptibleMountEngine,
-  advanceMountEngine,
-  type MountEngineEntry,
-  mountEngineBendRate,
-  mountEngineIdleAudible,
-  mountEngineLoopActive,
-} from '../../src/game/mount_engine_state';
-import { MOUNTS } from '../../src/sim/content/mounts';
 import type { ParityCase, ParitySuite } from './parity_export';
 
 export const AUDIO_EXPORT_SUBDIR = 'audio';
@@ -819,7 +819,9 @@ function refEntities(): RefEntity[] {
     { id: 4, kind: 'player', templateId: 'hunter' },
     { id: 5, kind: 'player', templateId: 'rogue', dead: true, hp: 0 },
   ];
-  refMobTemplates().forEach((t, i) => ents.push({ id: 100 + i, kind: 'mob', templateId: t }));
+  refMobTemplates().forEach((t, i) => {
+    ents.push({ id: 100 + i, kind: 'mob', templateId: t });
+  });
   ents.push({ id: 99, kind: 'mob', templateId: 'forest_wolf', dead: true, hp: 0 });
   return ents;
 }
@@ -1198,10 +1200,16 @@ function mountEngineSuite(): ParitySuite {
     for (const startDuration of [0.25, 0.9])
       for (const s of scripts) {
         let entry: MountEngineEntry | undefined;
-        const steps: Array<{ state: string; action: string | null; loop: boolean; idle: boolean }> = [];
+        const steps: Array<{ state: string; action: string | null; loop: boolean; idle: boolean }> =
+          [];
         [...s.moving].forEach((c, i) => {
           const now = 1 + i * s.dt;
-          const d = (policy === 'tank' ? advanceMountEngine : advanceInterruptibleMountEngine)(entry, c === '1', now, startDuration);
+          const d = (policy === 'tank' ? advanceMountEngine : advanceInterruptibleMountEngine)(
+            entry,
+            c === '1',
+            now,
+            startDuration,
+          );
           entry = d.next;
           steps.push({
             state: d.next.state,
@@ -1232,7 +1240,13 @@ function mountEngineSuite(): ParitySuite {
 function mountTakesSuite(): ParitySuite {
   const has = (k: string) => Object.hasOwn(SFX_CLIPS, k);
   const cases: ParityCase[] = [];
-  for (const id of [...Object.keys(MOUNTS), 'referral_raptor', 'referral_tank', 'lantern_hall_destrier', 'no_such_mount']) {
+  for (const id of [
+    ...Object.keys(MOUNTS),
+    'referral_raptor',
+    'referral_tank',
+    'lantern_hall_destrier',
+    'no_such_mount',
+  ]) {
     const a = mountAudioKey(id);
     const opt = (k: string) => (has(k) ? k : null);
     cases.push({
@@ -1252,7 +1266,12 @@ function mountTakesSuite(): ParitySuite {
       },
     });
   }
-  return { suite: 'audio_mount_takes', source: 'src/game/sfx.ts mount key resolution over mount_audio_key.ts', note: '', cases };
+  return {
+    suite: 'audio_mount_takes',
+    source: 'src/game/sfx.ts mount key resolution over mount_audio_key.ts',
+    note: '',
+    cases,
+  };
 }
 
 export const AUDIO_PARITY_SUITES: Record<string, () => ParitySuite> = {
