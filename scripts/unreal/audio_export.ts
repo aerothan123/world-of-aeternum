@@ -19,6 +19,7 @@ import { CRUCIBLE_STREAM_URLS, crucibleFloorForDungeon } from '../../src/game/cr
 import { dungeonMusicZoneForDungeon } from '../../src/game/dungeon_music_zones';
 import {
   combatFamilyFor,
+  regionOfSlot,
   SCORE_BOSS_TEMPLATES,
   SCORE_DEFAULT_BOSS,
   SCORE_INSTANCE_DUNGEONS,
@@ -34,6 +35,7 @@ import {
   scoreBossUrl,
   scoreNight,
   scoreSlotFor,
+  stingersFor,
 } from '../../src/game/music_score';
 import { SCORE_TRACK_FILES } from '../../src/game/music_score_tracks.generated';
 import { COMBAT_STREAM_URLS, ZONE_STREAM_CUES, zoneStreamUrls } from '../../src/game/music_tracks';
@@ -53,14 +55,26 @@ import {
 import { sfxMixBus } from '../../src/game/sfx_mix_bus';
 import { parseRuntimeSfxPack } from '../../src/game/sfx_runtime_pack';
 import { VOICE_LINES } from '../../src/game/voice_manifest.generated';
+import { NEAR_WATER_MARGIN } from '../../src/render/ambience_state_core';
+import { DAY_ONLY } from '../../src/render/day_night_core';
+import {
+  FOREST_CELL_YARDS,
+  FOREST_REACH_YARDS,
+  FOREST_TREES_CLOSED,
+  FOREST_TREES_OPEN,
+  ForestDensitySampler,
+} from '../../src/render/forest_density_core';
 import {
   createRegionAmbience,
   dayWeightForPhase,
   REGION_BED_GAINS,
   sampleRegionAmbienceInto,
 } from '../../src/render/region_ambience_core';
+import { DEBUFF_AURA_KINDS } from '../../src/sim/aura_classify';
 import { GOURDLIGHT_EVE_ID } from '../../src/sim/content/gourdlight_eve';
 import {
+  ABILITIES,
+  ALL_RECIPES,
   ARENA_X_MAX,
   ARENA_X_MIN,
   DELVE_BAND_X_MIN,
@@ -71,13 +85,31 @@ import {
   dungeonAt,
   INSTANCE_X_BASE,
   instanceOrigin,
+  MOBS,
   RIFT_BAND_X_MIN,
   STRIP_MAX_X,
   STRIP_MIN_X,
   ZONES,
   zoneAt,
 } from '../../src/sim/data';
-import type { BiomeId } from '../../src/sim/types';
+import { DAY_NIGHT_CYCLE_MS, NOON_PHASE } from '../../src/sim/day_night';
+import type { BiomeId, SimEvent } from '../../src/sim/types';
+import {
+  CORPSE_HARVEST_CAST_ID,
+  CRAFT_CAST_ID,
+  DISENCHANT_CAST_ID,
+  ENCHANT_CAST_ID,
+  FISHING_CAST_ID,
+  GATHER_CAST_ID,
+  SALVAGE_CAST_ID,
+  SUNDER_CAST_ID,
+  TOOL_RECHARGE_CAST_ID,
+} from '../../src/sim/types';
+import { generateDecorationsInBounds, groundHeight, waterLevelAt } from '../../src/sim/world';
+import { WORLD_SEED } from '../../src/sim/world_seed';
+import { castCueForAbility, mobVoiceFamily } from '../../src/ui/combat_sfx';
+import { isTalentRowUnlockLevel } from '../../src/ui/row_unlock_toast';
+import { type RefEntity, refRoute } from './audio_sfx_router_ref';
 import type { ParityCase, ParitySuite } from './parity_export';
 
 export const AUDIO_EXPORT_SUBDIR = 'audio';
@@ -266,6 +298,8 @@ export async function buildAudioCatalog() {
     defaultBoss,
     tables: musicTables(),
     world: worldTables(),
+    environment: environmentTables(),
+    sfxRouter: sfxRouterTables(),
     gaps: { missing, unscoredZones: unscored },
   };
 }
@@ -691,7 +725,458 @@ export function worldTables() {
   };
 }
 
+// ---- the SimEvent to SFX router, stingers and the environment inputs (W15 round 2) ----
+
+const REF_PLAYER = 1;
+const NYTHRAXIS_CALLS = [
+  'impaled',
+  'youAreImpaled',
+  'spikeBroken',
+  'dreadCurseSwap',
+  'sigilAppears',
+  'sigilBound',
+  'sigilUnbound',
+  'gravefireTarget',
+  'kingsWrath',
+  'boneStormBegins',
+  'boneStormCharge',
+  'boneStormEnds',
+  'crownEndures60',
+  'crownEndures30',
+  'crownEndures10',
+  'crownEndures',
+];
+const VARKHUL_CALLS = [
+  'leftPillarCharging',
+  'rightPillarCharging',
+  'bothPillarsCharging',
+  'leftPillar',
+  'rightPillar',
+  'bothPillars',
+  'portalsOpening',
+  'artificerApproaches',
+  'heat75',
+  'heat90',
+  'addsDefeated',
+  'worldfireBegins',
+  'worldfireClosing',
+  'worldfireConsumed',
+];
+
+/** One mob template per voice family, plus the special cases the cores name. */
+function refMobTemplates(): string[] {
+  const out = new Set<string>([
+    'forest_wolf',
+    'wild_boar',
+    'water_elemental',
+    'nythraxis_scourge_of_thornpeak',
+    'nythraxis_skeleton_warrior',
+    'ignivar_herald_of_the_last_flame',
+  ]);
+  const seen = new Set<string>();
+  for (const [id, m] of Object.entries(MOBS)) {
+    const fam = (m as { family?: string }).family ?? '';
+    if (!seen.has(fam)) {
+      seen.add(fam);
+      out.add(id);
+    }
+    if ((m as { boss?: boolean }).boss && out.size < 40) out.add(id);
+    if ((m as { dummy?: boolean }).dummy) out.add(id);
+  }
+  return [...out].filter((id) => Object.hasOwn(MOBS, id) || id === 'water_elemental');
+}
+
+function refEntities(): RefEntity[] {
+  const ents: RefEntity[] = [
+    {
+      id: 1,
+      kind: 'player',
+      templateId: 'warrior',
+      auras: [
+        { id: 'ice_block', kind: 'buff_dr', name: 'Cold Coffin' },
+        { id: 'corruption', kind: 'dot', name: 'Corruption' },
+        { id: 'withering_wail', kind: 'buff_ap', name: 'Withering Wail', value: -20 },
+        { id: 'divine_ascension', kind: 'buff_dr', name: 'Ascension' },
+        { id: 'furious_mending', kind: 'buff_dr', name: 'Mending' },
+        { id: 'battle_shout', kind: 'buff_ap', name: 'Battle Shout', value: 20 },
+        { id: 'shaman_stormsurge_ready', kind: 'internal_cd', name: 'Stormsurge' },
+        { id: 'polymorph', kind: 'polymorph', name: 'Polymorph' },
+        { id: 'vanish', kind: 'stealth', name: 'Smokefade' },
+      ],
+    },
+    { id: 2, kind: 'player', templateId: 'mage', female: true },
+    { id: 3, kind: 'player', templateId: 'druid', form: 'form_bear' },
+    { id: 4, kind: 'player', templateId: 'hunter' },
+    { id: 5, kind: 'player', templateId: 'rogue', dead: true, hp: 0 },
+  ];
+  refMobTemplates().forEach((t, i) => ents.push({ id: 100 + i, kind: 'mob', templateId: t }));
+  ents.push({ id: 99, kind: 'mob', templateId: 'forest_wolf', dead: true, hp: 0 });
+  return ents;
+}
+
+function sfxRouterSuite(): ParitySuite {
+  const ents = refEntities();
+  const cases: ParityCase[] = [];
+  const add = (ev: Record<string, unknown>, engaged: number[] = []) => {
+    const plays = refRoute(ev as unknown as SimEvent, ents, { playerId: REF_PLAYER, engaged });
+    cases.push({ in: { event: JSON.stringify(ev), engaged: engaged.join(',') }, out: plays });
+  };
+  const mobIds = ents.filter((e) => e.kind === 'mob').map((e) => e.id);
+  // The damage grid crosses every player with a spread of mobs (the voice families, the
+  // muted Nythraxis pair, a boss, the dummy, a corpse); every mob still dies below.
+  const gridMobs = [99, 100, 101, 102, 103, 104, 105, ...mobIds.filter((id) => id % 5 === 1)];
+  const sources = [1, 2, 3, 4, ...gridMobs];
+  const targets = [1, 2, 5, ...gridMobs];
+  const kinds = [undefined, 'hit', 'miss', 'dodge', 'parry', 'block', 'resist', 'evade'];
+  const schools = ['physical', 'fire', 'frost', 'holy', 'shadow', undefined];
+  const abilityIds = [undefined, 'mortal_strike', 'scorch', 'rift_hazard_molten', 'backstab'];
+  let n = 0;
+  for (const s of sources)
+    for (const t of targets) {
+      if (s === t) continue;
+      for (const kind of kinds)
+        for (const crit of [false, true]) {
+          n++;
+          add(
+            {
+              type: 'damage',
+              sourceId: s,
+              targetId: t,
+              amount: 10,
+              kind,
+              crit,
+              school: schools[n % schools.length],
+              abilityId: abilityIds[n % abilityIds.length],
+              ability: n % 7 === 0 ? 'Auto Shot' : 'Strike',
+              absorbed: n % 5 === 0 ? 4 : 0,
+            },
+            n % 2 === 0 ? gridMobs : [],
+          );
+        }
+    }
+  for (const ability of ['chain_heal', ...Object.keys(ABILITIES)])
+    add({ type: 'castStart', entityId: 1, ability, time: 1 });
+  add({ type: 'castStart', entityId: 4242, ability: 'fireball', time: 1 });
+  for (const ability of [
+    GATHER_CAST_ID,
+    CORPSE_HARVEST_CAST_ID,
+    FISHING_CAST_ID,
+    CRAFT_CAST_ID,
+    SUNDER_CAST_ID,
+  ])
+    for (const entityId of [1, 2])
+      for (const gatherNodeType of [undefined, 'ore'])
+        add({ type: 'castStart', entityId, ability, time: 1, gatherNodeType });
+  add({ type: 'castStop', entityId: 1, success: true });
+  const fxAbilities = [
+    undefined,
+    'psychic_scream',
+    'intimidating_shout',
+    'piercing_howl',
+    'frost_nova',
+    'flamestrike',
+    'hammer_of_justice',
+    'kidney_shot',
+    'blink',
+    'shadowstep',
+    'rupture',
+    'battle_shout',
+    'rallying_cry',
+    'fireball',
+  ];
+  const fxs = [
+    'projectile',
+    'nova',
+    'fearImpact',
+    'ccImpact',
+    'blinkStep',
+    'dotApply',
+    'shout',
+    'temporalClock',
+    'burst',
+  ];
+  for (const fx of fxs)
+    for (const ability of fxAbilities)
+      for (const school of ['physical', 'arcane', 'holy', 'shadow', 'fire'])
+        for (const wand of [false, true])
+          add({ type: 'spellfx', fx, ability, school, wand, sourceId: 2, targetId: 101 });
+  for (const impact of ['area', 'defensive', 'healing', 'strike'])
+    add({
+      type: 'spellfx',
+      fx: 'paladinAscensionImpact',
+      impact,
+      sourceId: 1,
+      targetId: 2,
+      school: 'holy',
+    });
+  for (const fx of ['tick', 'nova', 'meteorFall', 'burst'])
+    for (const ability of [undefined, 'meteor', 'frost_nova', 'blizzard'])
+      for (const sfxKey of [undefined, 'rift_lava_tick'])
+        add({ type: 'spellfxAt', fx, ability, sfxKey, school: 'frost', x: 10, z: 20 });
+  for (const source of [undefined, 'potion', 'food', 'drink'])
+    for (const sfxTick of [false, true])
+      add({ type: 'heal', targetId: 1, amount: 20, source, sfxTick });
+  for (const hot of [false, true])
+    for (const abilityId of [undefined, 'frenzied_regeneration', 'bloodthirst', 'renew'])
+      for (const amount of [0, 50])
+        for (const sourceId of [1, 2])
+          for (const absorbed of [0, 5])
+            add({
+              type: 'heal2',
+              targetId: 1,
+              sourceId,
+              amount,
+              hot,
+              abilityId,
+              absorbed,
+              ability: 'Heal',
+            });
+  add({ type: 'heal', targetId: 4242, amount: 5 });
+  const names = [
+    'Cold Coffin',
+    'Corruption',
+    'Withering Wail',
+    'Ascension',
+    'Mending',
+    'Battle Shout',
+    'Stormsurge',
+    'Polymorph',
+    'Smokefade',
+    'Unknown',
+  ];
+  for (const name of names)
+    for (const gained of [true, false])
+      for (const targetId of [1, 2]) add({ type: 'aura', targetId, sourceId: 2, name, gained });
+  for (const e of ents) add({ type: 'death', entityId: e.id });
+  for (const call of NYTHRAXIS_CALLS) add({ type: 'nythraxisCallout', call, sourceId: 101 });
+  for (const call of VARKHUL_CALLS) add({ type: 'varkhulCallout', call, sourceId: 101 });
+  // The wire always carries rareEvent (null when none): gatherRareTierFor tests !== null.
+  for (const nodeType of ['ore', 'wood', 'herb'])
+    for (const rarity of ['common', 'uncommon', 'rare', 'epic', 'legendary'])
+      for (const rareEvent of [null, 'glint'])
+        add({ type: 'gatherResult', nodeType, rarity, rareEvent, itemId: 'x', qty: 1 });
+  return {
+    suite: 'audio_sfx_router',
+    source:
+      'scripts/unreal/audio_sfx_router_ref.ts over src/ui/combat_sfx.ts (hud.ts playEventSfx)',
+    note: 'in.event is the SimEvent JSON; entities come from audio_catalog.json sfxRouter.refEntities; engaged lists engaged mob ids',
+    cases,
+  };
+}
+
+function stingerSuite(): ParitySuite {
+  const cases: ParityCase[] = [];
+  const base = { level: 5, dead: false, questsDone: 10, deeds: 3, hasHouse: false };
+  const nexts: Array<Partial<typeof base>> = [
+    {},
+    { level: 6 },
+    { level: 9 },
+    { level: 8 },
+    { dead: true },
+    { hasHouse: true },
+    { questsDone: 11 },
+    { questsDone: 14 },
+    { deeds: 4 },
+    { level: 6, questsDone: 11, deeds: 4 },
+    { dead: true, level: 6 },
+    { level: 4 },
+    { hasHouse: true, questsDone: 12 },
+  ];
+  cases.push({ in: { prev: 'null', next: JSON.stringify(base) }, out: stingersFor(null, base) });
+  for (const d of nexts) {
+    const next = { ...base, ...d };
+    cases.push({
+      in: { prev: JSON.stringify(base), next: JSON.stringify(next) },
+      out: stingersFor(base, next),
+    });
+  }
+  for (const key of [
+    'score:wyn_region_eastbrook_vale_day',
+    'score:wyn_region_proving_shore_night',
+    'score:wyn_town_eastbrook_day',
+    'score:combat:marsh',
+    'vale',
+  ])
+    cases.push({ in: { slotKey: key }, out: regionOfSlot(key) });
+  return {
+    suite: 'audio_stingers',
+    source: 'src/game/music_score.ts stingersFor, regionOfSlot',
+    note: '',
+    cases,
+  };
+}
+
+function forestSuite(): ParitySuite {
+  const cases: ParityCase[] = [];
+  for (const z of ZONES) {
+    const x0 = z.xMin ?? STRIP_MIN_X;
+    const x1 = z.xMax ?? STRIP_MAX_X;
+    for (const fx of [0.13, 0.5, 0.81])
+      for (const fz of [0.27, 0.66]) {
+        const x = Math.round((x0 + (x1 - x0) * fx) * 10) / 10;
+        const zz = Math.round((z.zMin + (z.zMax - z.zMin) * fz) * 10) / 10;
+        const s = new ForestDensitySampler(treeCounter);
+        s.sample(x, zz);
+        s.sample(x, zz);
+        cases.push({ in: { x, z: zz }, out: s.sample(x, zz) });
+      }
+  }
+  return {
+    suite: 'audio_forest_density',
+    source: 'src/render/forest_density_core.ts over the world tree scatter',
+    note: 'compare within 1e-6',
+    cases,
+  };
+}
+
+const treeCounter = (minX: number, maxX: number, minZ: number, maxZ: number) => {
+  let n = 0;
+  for (const d of generateDecorationsInBounds(WORLD_SEED, { minX, maxX, minZ, maxZ }))
+    if (d.kind !== 'rock') n++;
+  return n;
+};
+
+/** The environment grids the native client cannot compute (it has no terrain function or
+ *  tree scatter): the forest cell densities and the near-water mask, over the zone extent. */
+let envMemo: ReturnType<typeof buildEnvironmentTables> | null = null;
+export function environmentTables() {
+  envMemo ??= buildEnvironmentTables();
+  return envMemo;
+}
+
+/** Near-water mask cell (yards): fine enough for a shore, coarse enough to stay small. */
+const NEAR_WATER_CELL = 4;
+
+function buildEnvironmentTables() {
+  let minX = Infinity,
+    maxX = -Infinity,
+    minZ = Infinity,
+    maxZ = -Infinity;
+  for (const z of ZONES) {
+    minX = Math.min(minX, z.xMin ?? STRIP_MIN_X);
+    maxX = Math.max(maxX, z.xMax ?? STRIP_MAX_X);
+    minZ = Math.min(minZ, z.zMin);
+    maxZ = Math.max(maxZ, z.zMax);
+  }
+  const C = FOREST_CELL_YARDS;
+  const cx0 = Math.floor(minX / C) - 1,
+    cx1 = Math.ceil(maxX / C) + 1;
+  const cz0 = Math.floor(minZ / C) - 1,
+    cz1 = Math.ceil(maxZ / C) + 1;
+  const cells: number[] = [];
+  const h = FOREST_REACH_YARDS / 2;
+  const smooth = (v: number) => {
+    const t = Math.min(
+      1,
+      Math.max(0, (v - FOREST_TREES_OPEN) / (FOREST_TREES_CLOSED - FOREST_TREES_OPEN)),
+    );
+    return t * t * (3 - 2 * t);
+  };
+  for (let cz = cz0; cz <= cz1; cz++)
+    for (let cx = cx0; cx <= cx1; cx++) {
+      const mx = (cx + 0.5) * C,
+        mz = (cz + 0.5) * C;
+      cells.push(Math.round(smooth(treeCounter(mx - h, mx + h, mz - h, mz + h)) * 1e6) / 1e6);
+    }
+  const W = NEAR_WATER_CELL;
+  const wx0 = Math.floor(minX / W),
+    wz0 = Math.floor(minZ / W);
+  const wnx = Math.ceil(maxX / W) - wx0,
+    wnz = Math.ceil(maxZ / W) - wz0;
+  const bits = new Uint8Array(Math.ceil((wnx * wnz) / 8));
+  for (let j = 0; j < wnz; j++)
+    for (let i = 0; i < wnx; i++) {
+      const x = (wx0 + i + 0.5) * W,
+        z = (wz0 + j + 0.5) * W;
+      if (groundHeight(x, z, WORLD_SEED) < waterLevelAt(x, z, WORLD_SEED) + NEAR_WATER_MARGIN) {
+        const k = j * wnx + i;
+        bits[k >> 3] |= 1 << (k & 7);
+      }
+    }
+  return {
+    forest: { cellYards: C, cx0, cz0, nx: cx1 - cx0 + 1, nz: cz1 - cz0 + 1, cells },
+    nearWater: {
+      cellYards: W,
+      x0: wx0,
+      z0: wz0,
+      nx: wnx,
+      nz: wnz,
+      bits: Buffer.from(bits).toString('base64'),
+    },
+    dayNight: { dayOnly: DAY_ONLY, noonPhase: NOON_PHASE, cycleMs: DAY_NIGHT_CYCLE_MS },
+    debuffKinds: [...DEBUFF_AURA_KINDS].sort(),
+    debuffDisplayIds: ['shaman_stormsurge_ready'],
+    talentRowLevels: Array.from({ length: 60 }, (_, i) => i + 1).filter((l) =>
+      isTalentRowUnlockLevel(l),
+    ),
+    castIds: {
+      gather: GATHER_CAST_ID,
+      corpseHarvest: CORPSE_HARVEST_CAST_ID,
+      fishing: FISHING_CAST_ID,
+      craftFamily: [
+        CRAFT_CAST_ID,
+        DISENCHANT_CAST_ID,
+        ENCHANT_CAST_ID,
+        SALVAGE_CAST_ID,
+        SUNDER_CAST_ID,
+        TOOL_RECHARGE_CAST_ID,
+      ],
+    },
+  };
+}
+
+/** A sample of the near-water mask, to pin the C++ bit lookup to the TS terrain. */
+function nearWaterSuite(): ParitySuite {
+  const cases: ParityCase[] = [];
+  const env = environmentTables().nearWater;
+  for (let k = 0; k < 400; k++) {
+    const i = (k * 7919) % env.nx,
+      j = (k * 104729) % env.nz;
+    const x = (env.x0 + i + 0.5) * env.cellYards,
+      z = (env.z0 + j + 0.5) * env.cellYards;
+    cases.push({
+      in: { x, z },
+      out: groundHeight(x, z, WORLD_SEED) < waterLevelAt(x, z, WORLD_SEED) + NEAR_WATER_MARGIN,
+    });
+  }
+  return {
+    suite: 'audio_near_water',
+    source: 'src/render/ambience_state_core.ts nearWater at cell centres',
+    note: '',
+    cases,
+  };
+}
+
+export function sfxRouterTables() {
+  const mobs: Record<
+    string,
+    { voice: string | null; boss: boolean; dummy: boolean; undead: boolean }
+  > = {};
+  for (const id of [...Object.keys(MOBS), 'water_elemental']) {
+    const m = MOBS[id] as { family?: string; boss?: boolean; dummy?: boolean } | undefined;
+    mobs[id] = {
+      voice: mobVoiceFamily(id),
+      boss: !!m?.boss,
+      dummy: !!m?.dummy,
+      undead: m?.family === 'undead',
+    };
+  }
+  const castCues: Record<string, string> = {};
+  for (const id of Object.keys(ABILITIES)) {
+    const k = castCueForAbility(id);
+    if (k) castCues[id] = k;
+  }
+  // craftResult plays its recipe's profession cue (audio.ts craftByFamily).
+  const recipeProfession: Record<string, string> = {};
+  for (const r of ALL_RECIPES) recipeProfession[r.id] = r.professionId;
+  return { mobs, castCues, recipeProfession, refEntities: refEntities() };
+}
+
 export const AUDIO_PARITY_SUITES: Record<string, () => ParitySuite> = {
+  audio_sfx_router: sfxRouterSuite,
+  audio_stingers: stingerSuite,
+  audio_forest_density: forestSuite,
+  audio_near_water: nearWaterSuite,
   audio_location: locationSuite,
   audio_region_ambience: regionAmbienceSuite,
   audio_day_weight: dayWeightSuite,
