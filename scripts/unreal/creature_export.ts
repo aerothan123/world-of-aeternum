@@ -106,6 +106,7 @@ export interface CreatureMount extends CreatureVisual {
   bobIdle: boolean;
   bobShape: string;
   jumpTips: boolean;
+  ride: Record<string, unknown> | null;
 }
 
 export interface CreatureFerry {
@@ -255,6 +256,8 @@ export function buildCreatureExport(): CreatureExport {
       bobIdle: !!s?.bobIdle,
       bobShape: String(s?.bobShape ?? 'hover'),
       jumpTips: !!s?.jumpTips,
+      // the straddle (characters/ride_pose.ts angles, radians); null keeps the plain seat
+      ride: (s?.ride as Record<string, unknown> | null | undefined) ?? null,
       ...visualOf(String(s?.visualKey ?? '')),
     };
   });
