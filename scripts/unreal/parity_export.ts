@@ -20,6 +20,7 @@ import {
 } from '../../src/ui/hud/chat/chat_channels';
 import { CHAT_BOX_LIMITS, placeChatBox } from '../../src/ui/hud/chat/chat_window';
 import { maskProfanity } from '../../src/ui/profanity';
+import { keybindConflicts, keybindRegistry } from './settings_parity';
 
 export const PARITY_EXPORT_SUBDIR = 'parity';
 
@@ -269,6 +270,8 @@ export const PARITY_SUITES: Record<string, () => ParitySuite> = {
   chat_error_mirror: chatErrorMirror,
   chat_channel_color: chatChannelColors,
   chat_box_place: chatBoxPlace,
+  keybind_registry: keybindRegistry,
+  keybind_conflicts: keybindConflicts,
 };
 
 export function buildParitySuite(name: string): ParitySuite {

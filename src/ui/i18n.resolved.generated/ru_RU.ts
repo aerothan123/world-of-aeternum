@@ -2821,6 +2821,7 @@ export const ru_RU: EnTranslations = {
       "interfaceModeDesktop": "Компьютер",
       "interfaceModeTouch": "Сенсорный",
       "interfaceModeNote": "В режиме «Авто» управление для компьютера или сенсорное выбирается по вашему устройству. Выберите «Компьютер», чтобы включить клавиатуру и мышь (удобно на планшете с клавиатурой), или «Сенсорный» для экранного управления.",
+      "windowTitle": "Options",
       "ambienceVolume": "Громкость окружения",
       "footstepSounds": "Звуки шагов",
       "interfaceSounds": "Звуки интерфейса и откликов",

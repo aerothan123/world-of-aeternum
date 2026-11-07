@@ -2968,6 +2968,8 @@ export const hudChromeStrings = {
     interfaceModeTouch: 'Touch',
     interfaceModeNote:
       'Auto picks desktop or touch controls from your device. Choose Desktop to force keyboard and mouse (useful on a tablet with a keyboard), or Touch for the on-screen controls.',
+    // The options window's title and the game menu button that opens it (native client).
+    windowTitle: 'Options',
     // Audio panel slider for the environment bus (wind, birds, rain, water,
     // dungeon air, campfires, forges), separate from the Sound Effects slider.
     ambienceVolume: 'Ambience Volume',

@@ -58,6 +58,25 @@ describe('unreal parity export', () => {
     expect(out('hello there', 'darn,heck')).toBe('hello there');
     expect(out('darn it', '')).toBe('darn it');
   });
+
+  it('the keybind conflict suite covers eviction, refusal and shared actions', () => {
+    const cases = buildParitySuite('keybind_conflicts').cases;
+    const bind = (id: string, combo: string) =>
+      cases.find(
+        (c) =>
+          c.in.kind === 'bind' &&
+          c.in.steps === '' &&
+          c.in.id === id &&
+          c.in.combo === combo &&
+          c.in.index === 0,
+      )?.out as { conflict: { id: string } | null; ok: boolean } | undefined;
+    expect(bind('slot1', 'KeyW')?.conflict?.id).toBe('forward');
+    expect(bind('slot1', 'Escape')?.ok).toBe(false);
+    expect(bind('forward', 'WheelUp')?.ok).toBe(false);
+    expect(bind('slot1', 'Shift+Digit1')?.conflict).toBeNull();
+    const registry = buildParitySuite('keybind_registry').cases;
+    expect(registry.some((c) => (c.out as { shared: boolean }).shared)).toBe(true);
+  });
 });
 
 describe('unreal string table export', () => {

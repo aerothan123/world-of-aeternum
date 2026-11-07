@@ -17787,6 +17787,7 @@ hudChrome.options.uiScale,UI Scale
 hudChrome.options.version,v{version} ({build})
 hudChrome.options.walkByAutoloot,Walk-by Autoloot
 hudChrome.options.waterRipples,Water Ripples (Wakes)
+hudChrome.options.windowTitle,Options
 hudChrome.otaUpdate.applying,Update downloaded. Restarting the game to apply it.
 hudChrome.otaUpdate.continueAnyway,Continue without updating
 hudChrome.otaUpdate.downloading,Downloading update: {percent}
