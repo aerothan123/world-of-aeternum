@@ -1,0 +1,5007 @@
+{
+  "suite": "xp_mob_value",
+  "source": "src/sim/types.ts mobXpValue, zeroDiff",
+  "note": "JS Math.round semantics: halves round toward +infinity",
+  "cases": [
+    {
+      "in": {
+        "mobLevel": 1,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 50,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 2,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 58,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 3,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 66,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 4,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 75,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 5,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 84,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 6,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 90,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 7,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 96,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 8,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 102,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 9,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 108,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 10,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 114,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 11,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 120,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 12,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 126,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 13,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 132,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 14,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 138,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 15,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 144,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 16,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 150,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 17,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 156,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 18,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 162,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 19,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 168,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 20,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 174,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 21,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 180,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 22,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 186,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 23,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 192,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 24,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 198,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 25,
+        "playerLevel": 1
+      },
+      "out": {
+        "xp": 204,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 1,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 40,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 2,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 55,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 3,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 63,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 4,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 72,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 5,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 81,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 6,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 90,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 7,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 96,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 8,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 102,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 9,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 108,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 10,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 114,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 11,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 120,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 12,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 126,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 13,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 132,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 14,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 138,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 15,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 144,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 16,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 150,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 17,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 156,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 18,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 162,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 19,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 168,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 20,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 174,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 21,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 180,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 22,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 186,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 23,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 192,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 24,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 198,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 25,
+        "playerLevel": 2
+      },
+      "out": {
+        "xp": 204,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 1,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 30,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 2,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 44,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 3,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 60,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 4,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 68,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 5,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 77,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 6,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 86,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 7,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 96,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 8,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 102,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 9,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 108,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 10,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 114,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 11,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 120,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 12,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 126,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 13,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 132,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 14,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 138,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 15,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 144,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 16,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 150,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 17,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 156,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 18,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 162,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 19,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 168,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 20,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 174,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 21,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 180,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 22,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 186,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 23,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 192,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 24,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 198,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 25,
+        "playerLevel": 3
+      },
+      "out": {
+        "xp": 204,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 1,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 20,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 2,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 33,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 3,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 48,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 4,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 65,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 5,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 74,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 6,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 83,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 7,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 92,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 8,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 102,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 9,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 108,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 10,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 114,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 11,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 120,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 12,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 126,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 13,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 132,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 14,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 138,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 15,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 144,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 16,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 150,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 17,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 156,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 18,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 162,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 19,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 168,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 20,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 174,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 21,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 180,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 22,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 186,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 23,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 192,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 24,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 198,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 25,
+        "playerLevel": 4
+      },
+      "out": {
+        "xp": 204,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 1,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 10,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 2,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 22,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 3,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 36,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 4,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 52,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 5,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 70,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 6,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 79,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 7,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 88,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 8,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 98,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 9,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 108,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 10,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 114,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 11,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 120,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 12,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 126,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 13,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 132,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 14,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 138,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 15,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 144,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 16,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 150,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 17,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 156,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 18,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 162,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 19,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 168,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 20,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 174,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 21,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 180,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 22,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 186,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 23,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 192,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 24,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 198,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 25,
+        "playerLevel": 5
+      },
+      "out": {
+        "xp": 204,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 1,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 2,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 11,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 3,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 24,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 4,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 39,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 5,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 56,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 6,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 75,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 7,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 84,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 8,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 94,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 9,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 103,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 10,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 114,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 11,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 120,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 12,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 126,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 13,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 132,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 14,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 138,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 15,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 144,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 16,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 150,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 17,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 156,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 18,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 162,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 19,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 168,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 20,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 174,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 21,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 180,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 22,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 186,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 23,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 192,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 24,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 198,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 25,
+        "playerLevel": 6
+      },
+      "out": {
+        "xp": 204,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 1,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 2,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 3,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 12,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 4,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 26,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 5,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 42,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 6,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 60,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 7,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 80,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 8,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 89,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 9,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 99,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 10,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 109,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 11,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 120,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 12,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 126,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 13,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 132,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 14,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 138,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 15,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 144,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 16,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 150,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 17,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 156,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 18,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 162,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 19,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 168,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 20,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 174,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 21,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 180,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 22,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 186,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 23,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 192,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 24,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 198,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 25,
+        "playerLevel": 7
+      },
+      "out": {
+        "xp": 204,
+        "zeroDiff": 5
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 1,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 2,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 3,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 10,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 4,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 22,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 5,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 35,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 6,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 50,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 7,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 67,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 8,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 85,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 9,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 95,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 10,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 105,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 11,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 115,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 12,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 126,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 13,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 132,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 14,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 138,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 15,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 144,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 16,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 150,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 17,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 156,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 18,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 162,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 19,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 168,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 20,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 174,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 21,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 180,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 22,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 186,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 23,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 192,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 24,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 198,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 25,
+        "playerLevel": 8
+      },
+      "out": {
+        "xp": 204,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 1,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 2,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 3,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 4,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 11,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 5,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 23,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 6,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 38,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 7,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 53,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 8,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 71,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 9,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 90,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 10,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 100,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 11,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 110,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 12,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 121,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 13,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 132,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 14,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 138,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 15,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 144,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 16,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 150,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 17,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 156,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 18,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 162,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 19,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 168,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 20,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 174,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 21,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 180,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 22,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 186,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 23,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 192,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 24,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 198,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 25,
+        "playerLevel": 9
+      },
+      "out": {
+        "xp": 204,
+        "zeroDiff": 6
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 1,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 2,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 3,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 4,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 9,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 5,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 20,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 6,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 32,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 7,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 46,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 8,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 61,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 9,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 77,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 10,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 95,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 11,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 105,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 12,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 116,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 13,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 126,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 14,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 138,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 15,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 144,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 16,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 150,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 17,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 156,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 18,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 162,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 19,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 168,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 20,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 174,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 21,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 180,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 22,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 186,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 23,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 192,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 24,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 198,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 25,
+        "playerLevel": 10
+      },
+      "out": {
+        "xp": 204,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 1,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 2,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 3,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 4,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 5,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 10,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 6,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 21,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 7,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 34,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 8,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 49,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 9,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 64,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 10,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 81,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 11,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 100,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 12,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 110,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 13,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 121,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 14,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 132,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 15,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 144,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 16,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 150,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 17,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 156,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 18,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 162,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 19,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 168,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 20,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 174,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 21,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 180,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 22,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 186,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 23,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 192,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 24,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 198,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 25,
+        "playerLevel": 11
+      },
+      "out": {
+        "xp": 204,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 1,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 2,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 3,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 4,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 5,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 6,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 11,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 7,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 23,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 8,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 36,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 9,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 51,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 10,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 68,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 11,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 86,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 12,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 105,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 13,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 116,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 14,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 127,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 15,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 138,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 16,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 150,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 17,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 156,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 18,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 162,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 19,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 168,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 20,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 174,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 21,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 180,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 22,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 186,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 23,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 192,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 24,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 198,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 25,
+        "playerLevel": 12
+      },
+      "out": {
+        "xp": 204,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 1,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 2,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 3,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 4,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 5,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 6,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 7,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 11,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 8,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 24,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 9,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 39,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 10,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 54,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 11,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 71,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 12,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 90,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 13,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 110,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 14,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 121,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 15,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 132,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 16,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 144,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 17,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 156,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 18,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 162,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 19,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 168,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 20,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 174,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 21,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 180,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 22,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 186,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 23,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 192,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 24,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 198,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 25,
+        "playerLevel": 13
+      },
+      "out": {
+        "xp": 204,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 1,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 2,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 3,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 4,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 5,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 6,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 7,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 8,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 12,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 9,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 26,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 10,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 41,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 11,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 57,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 12,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 75,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 13,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 94,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 14,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 115,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 15,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 126,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 16,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 138,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 17,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 150,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 18,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 162,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 19,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 168,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 20,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 174,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 21,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 180,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 22,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 186,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 23,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 192,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 24,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 198,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 25,
+        "playerLevel": 14
+      },
+      "out": {
+        "xp": 204,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 1,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 2,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 3,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 4,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 5,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 6,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 7,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 8,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 9,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 13,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 10,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 27,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 11,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 43,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 12,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 60,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 13,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 79,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 14,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 99,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 15,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 120,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 16,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 131,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 17,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 143,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 18,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 155,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 19,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 168,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 20,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 174,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 21,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 180,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 22,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 186,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 23,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 192,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 24,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 198,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 25,
+        "playerLevel": 15
+      },
+      "out": {
+        "xp": 204,
+        "zeroDiff": 7
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 1,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 2,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 3,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 4,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 5,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 6,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 7,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 8,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 9,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 11,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 10,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 24,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 11,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 38,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 12,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 53,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 13,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 69,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 14,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 86,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 15,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 105,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 16,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 125,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 17,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 137,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 18,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 149,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 19,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 161,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 20,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 174,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 21,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 180,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 22,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 186,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 23,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 192,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 24,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 198,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 25,
+        "playerLevel": 16
+      },
+      "out": {
+        "xp": 204,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 1,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 2,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 3,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 4,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 5,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 6,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 7,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 8,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 9,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 10,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 12,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 11,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 25,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 12,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 39,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 13,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 55,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 14,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 72,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 15,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 90,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 16,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 109,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 17,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 130,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 18,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 142,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 19,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 154,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 20,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 167,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 21,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 180,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 22,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 186,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 23,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 192,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 24,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 198,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 25,
+        "playerLevel": 17
+      },
+      "out": {
+        "xp": 204,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 1,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 2,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 3,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 4,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 5,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 6,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 7,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 8,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 9,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 10,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 11,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 13,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 12,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 26,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 13,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 41,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 14,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 58,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 15,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 75,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 16,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 94,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 17,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 114,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 18,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 135,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 19,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 147,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 20,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 160,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 21,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 173,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 22,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 186,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 23,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 192,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 24,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 198,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 25,
+        "playerLevel": 18
+      },
+      "out": {
+        "xp": 204,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 1,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 2,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 3,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 4,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 5,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 6,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 7,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 8,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 9,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 10,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 11,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 12,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 13,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 13,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 28,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 14,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 43,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 15,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 60,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 16,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 78,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 17,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 98,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 18,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 118,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 19,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 140,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 20,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 152,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 21,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 165,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 22,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 178,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 23,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 192,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 24,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 198,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 25,
+        "playerLevel": 19
+      },
+      "out": {
+        "xp": 204,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 1,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 2,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 3,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 4,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 5,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 6,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 7,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 8,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 9,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 10,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 11,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 12,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 0,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 13,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 14,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 14,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 29,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 15,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 45,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 16,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 63,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 17,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 81,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 18,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 101,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 19,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 123,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 20,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 145,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 21,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 158,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 22,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 171,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 23,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 184,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 24,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 198,
+        "zeroDiff": 8
+      }
+    },
+    {
+      "in": {
+        "mobLevel": 25,
+        "playerLevel": 20
+      },
+      "out": {
+        "xp": 204,
+        "zeroDiff": 8
+      }
+    }
+  ]
+}

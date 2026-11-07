@@ -419,7 +419,8 @@ export const VARIANT_GRIPS: Record<string, VariantGrip> = {
   VAR_BOW: { lift: 0.04, maxHeight: 2.0 },
 };
 
-const KAYKIT_HAND_GRIPS: Record<string, { r: HandGrip; l?: HandGrip }> = {
+// Exported for the native client's grip export (scripts/unreal/character_export.ts).
+export const KAYKIT_HAND_GRIPS: Record<string, { r: HandGrip; l?: HandGrip }> = {
   '1H_Axe': {
     r: { position: [0.231697, 0.382471, 0], quaternion: [0, 1, 0, 0], scale: 0.622211 },
     l: { position: [-0.231697, 0.382471, 0], quaternion: [0, 0, 0, 1], scale: 0.622211 },
