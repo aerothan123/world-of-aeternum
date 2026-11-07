@@ -62,6 +62,7 @@ if [ -n "$base" ] && command -v perl >/dev/null 2>&1; then
     ':(exclude)tests/fixtures/guide_wiki_audit_fills.ts' \
     ':(exclude)src/ui/i18n.resolved.generated' \
     ':(exclude)src/admin/i18n.resolved.generated' \
+    ':(exclude)scripts/unreal/protocol/wynd_strings_en.csv' \
     ':(exclude)docs/i18n/*.ru_RU.md' \
     ':(exclude)*.lock' ':(exclude)package-lock.json' 2>/dev/null \
     | perl -CSD -ne '
