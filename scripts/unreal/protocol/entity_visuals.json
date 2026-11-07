@@ -1,0 +1,2618 @@
+{
+  "mobs": {
+    "acolyte_tessa": {
+      "key": "player_priest_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "ancient_guardian": {
+      "key": "skel_golem",
+      "model": "chars/enemies/skeleton_golem",
+      "height": 3.4
+    },
+    "apprentice_wren": {
+      "key": "player_mage_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "ashbone_raider": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "ashbone_warcaller": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "aurelhorn": {
+      "key": "mob_aurelhorn",
+      "model": "creatures/aurelhorn",
+      "height": 2.1
+    },
+    "balgath_cyclops": {
+      "key": "mob_balgath_cyclops",
+      "model": "creatures/balgath_cyclops",
+      "height": 3.2
+    },
+    "barnacle_crawler": {
+      "key": "bastion_crawler",
+      "model": "creatures/bastion_ghost_sailor",
+      "height": 2.8
+    },
+    "barrow_king": {
+      "key": "skel_warrior",
+      "model": "chars/enemies/skeleton_warrior",
+      "height": 2.5
+    },
+    "barrow_wight": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "basin_raptor": {
+      "key": "wildheart_basin_raptor",
+      "model": "creatures/wildheart_basin_raptor",
+      "height": 3.0405882352941176
+    },
+    "bastion_drowned_anchor": {
+      "key": "bastion_drowned_anchor",
+      "model": "creatures/drowned_anchor",
+      "height": 6.64
+    },
+    "bastion_gaol_cage": {
+      "key": "bastion_gaol_cage",
+      "model": "creatures/gaol_cage",
+      "height": 8.27
+    },
+    "bastion_revenant": {
+      "key": "bastion_drowned_revenant",
+      "model": "creatures/drowned_revenant",
+      "height": 5.445
+    },
+    "bastion_warhound": {
+      "key": "bastion_warhound",
+      "model": "creatures/bastion_warhound",
+      "height": 3.55
+    },
+    "bog_bloat": {
+      "key": "mob_murloc",
+      "model": "creatures/frog",
+      "height": 1.7
+    },
+    "bogtoad": {
+      "key": "mob_murloc",
+      "model": "creatures/frog",
+      "height": 1.7
+    },
+    "bonechill_widow": {
+      "key": "mob_spider",
+      "model": "creatures/spider",
+      "height": 1.4
+    },
+    "boneclad_revenant": {
+      "key": "skel_warrior",
+      "model": "chars/enemies/skeleton_warrior",
+      "height": 2.5
+    },
+    "bound_guardian": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "bound_soul": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "brakka_wallbreaker": {
+      "key": "mob_ogre",
+      "model": "creatures/ogre",
+      "height": 2.8
+    },
+    "breach_wretch": {
+      "key": "mob_kobold",
+      "model": "creatures/goblin",
+      "height": 2.1
+    },
+    "broodsworn_goadsmith": {
+      "key": "sanctum_goadsmith",
+      "model": "creatures/sanctum_goadsmith",
+      "height": 2.6285714285714286
+    },
+    "broodsworn_pyre_tender": {
+      "key": "sanctum_pyre_tender",
+      "model": "creatures/sanctum_pyre_tender",
+      "height": 2.666666666666667
+    },
+    "broodsworn_thawcaller": {
+      "key": "sanctum_thawcaller",
+      "model": "creatures/sanctum_thawcaller",
+      "height": 2.75
+    },
+    "brutok_skullsmasher": {
+      "key": "mob_ogre",
+      "model": "creatures/ogre",
+      "height": 2.8
+    },
+    "buddy_crystal_lich": {
+      "key": "buddy_crystal_lich",
+      "model": "buddies/crystal_lich",
+      "height": 0.9
+    },
+    "buddy_forgemaw": {
+      "key": "buddy_forgemaw",
+      "model": "buddies/forgemaw",
+      "height": 0.85
+    },
+    "buddy_horse": {
+      "key": "buddy_horse",
+      "model": "buddies/horse",
+      "height": 0.75
+    },
+    "buddy_sprites": {
+      "key": "buddy_sprites",
+      "model": "buddies/sprites",
+      "height": 0.4
+    },
+    "candlewright_acolyte": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "canopy_weaver": {
+      "key": "mob_spider",
+      "model": "creatures/spider",
+      "height": 1.4
+    },
+    "cantor_ilvane": {
+      "key": "crypt_skel_cantor",
+      "model": "creatures/woc_crypt_cantor_ilvane",
+      "height": 5.964
+    },
+    "captain_verlan": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "castaway_navigator": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "choir_thrall": {
+      "key": "mob_choir_thrall",
+      "model": "creatures/ghost",
+      "height": 1.6
+    },
+    "choirmother_selthe": {
+      "key": "temple_selthe",
+      "model": "creatures/woc_temple_selthe",
+      "height": 7.83
+    },
+    "cindraleth_maw_matriarch": {
+      "key": "mob_dragonkin_matriarch",
+      "model": "creatures/dragonkin_elite",
+      "height": 2.6
+    },
+    "corrupted_priest_malric": {
+      "key": "skel_necromancer",
+      "model": "chars/enemies/necromancer",
+      "height": 2.5
+    },
+    "corrupted_sporeling": {
+      "key": "mob_glub",
+      "model": "creatures/glubevolved",
+      "height": 1.4
+    },
+    "crypt_bone_brute": {
+      "key": "crypt_skel_brute",
+      "model": "creatures/woc_crypt_bone_brute",
+      "height": 4.6
+    },
+    "crypt_bone_minion": {
+      "key": "crypt_skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 3.5
+    },
+    "crypt_bone_pile": {
+      "key": "crypt_skel_bone_pile",
+      "model": "chars/enemies/skeleton_warrior",
+      "height": 1.4
+    },
+    "crypt_carrion_crow": {
+      "key": "mob_crypt_crow",
+      "model": "creatures/crypt_crow",
+      "height": 1.7
+    },
+    "crypt_chapel_gargoyle": {
+      "key": "mob_crypt_gargoyle",
+      "model": "creatures/woc_crypt_gargoyle",
+      "height": 5.81
+    },
+    "crypt_crow_caller": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "crypt_gravecaller_adept": {
+      "key": "crypt_skel_adept",
+      "model": "creatures/woc_crypt_gravecaller_adept",
+      "height": 3.2
+    },
+    "crypt_gravecaller_necromancer": {
+      "key": "crypt_skel_necromancer",
+      "model": "creatures/woc_crypt_gravecaller_necromancer",
+      "height": 3.3
+    },
+    "crypt_knellwyrm": {
+      "key": "mob_crypt_knellwyrm",
+      "model": "creatures/woc_crypt_knellwyrm",
+      "height": 15.07
+    },
+    "crypt_ossuary_cutthroat": {
+      "key": "crypt_skel_cutthroat",
+      "model": "creatures/woc_crypt_ossuary_cutthroat",
+      "height": 3.2
+    },
+    "crypt_ossuary_drake": {
+      "key": "mob_crypt_drake",
+      "model": "creatures/woc_crypt_ossuary_drake",
+      "height": 13.63
+    },
+    "crypt_ossuary_warrior": {
+      "key": "crypt_skel_warrior",
+      "model": "creatures/woc_crypt_ossuary_warrior",
+      "height": 3.3
+    },
+    "crypt_remembrance_candle": {
+      "key": "crypt_rite_candle_body",
+      "model": "chars/enemies/skeleton_warrior",
+      "height": 3.6
+    },
+    "crypt_shambler": {
+      "key": "skel_rogue",
+      "model": "chars/enemies/skeleton_rogue",
+      "height": 2.5
+    },
+    "deacon_varric": {
+      "key": "delve_skel_varric",
+      "model": "chars/enemies/skeleton_mage",
+      "height": 2.5
+    },
+    "deacon_voss": {
+      "key": "player_priest",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "deathstalker_voss": {
+      "key": "skel_rogue",
+      "model": "chars/enemies/skeleton_rogue",
+      "height": 2.5
+    },
+    "deepfen_murloc": {
+      "key": "mob_murloc",
+      "model": "creatures/frog",
+      "height": 1.7
+    },
+    "deepfen_spearjaw": {
+      "key": "mob_spearjaw",
+      "model": "creatures/velociraptor",
+      "height": 1.8
+    },
+    "deeprock_kobold": {
+      "key": "mob_kobold",
+      "model": "creatures/goblin",
+      "height": 2.1
+    },
+    "derelict_mech": {
+      "key": "mob_mech",
+      "model": "creatures/mech",
+      "height": 2
+    },
+    "downs_bandit": {
+      "key": "mob_kobold",
+      "model": "creatures/goblin",
+      "height": 2.1
+    },
+    "dragonkin_broodguard": {
+      "key": "mob_dragonkin_broodguard",
+      "model": "creatures/dragonkin_mob",
+      "height": 2.2
+    },
+    "dragonkin_egg": {
+      "key": "mob_dragon_egg",
+      "model": "creatures/dragon_egg",
+      "height": 0.95
+    },
+    "dragonkin_whelp": {
+      "key": "mob_dragonkin_whelp",
+      "model": "creatures/dragonkin_baby",
+      "height": 1.05
+    },
+    "drakemaw_broodlord": {
+      "key": "mob_dragonkin_broodlord",
+      "model": "creatures/dragonkin_elite",
+      "height": 2.6
+    },
+    "drowned_cantor": {
+      "key": "player_priest",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "drowned_dead": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "drowned_deckhand": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "drowned_pilgrim": {
+      "key": "temple_pilgrim",
+      "model": "creatures/temple_pilgrim",
+      "height": 4.9
+    },
+    "drowned_sergeant": {
+      "key": "bastion_skel_sergeant",
+      "model": "creatures/drowned_sergeant",
+      "height": 5.15
+    },
+    "drowned_templeguard": {
+      "key": "temple_templeguard",
+      "model": "creatures/temple_templeguard",
+      "height": 5
+    },
+    "drowned_thrall": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "drowned_votary": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "drowned_warlord": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "drowned_watchman": {
+      "key": "bastion_skel_watchman",
+      "model": "creatures/drowned_watchman",
+      "height": 5.390000000000001
+    },
+    "drowsy_croaker": {
+      "key": "mob_murloc",
+      "model": "creatures/frog",
+      "height": 1.7
+    },
+    "dune_troll": {
+      "key": "mob_troll",
+      "model": "creatures/orc",
+      "height": 2.4
+    },
+    "duskwisp": {
+      "key": "mob_duskwisp",
+      "model": "creatures/duskwisp",
+      "height": 1.6
+    },
+    "eastbrook_freight_caravan": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "edda_reedhand": {
+      "key": "player_druid_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "emberkin": {
+      "key": "mob_emberkin",
+      "model": "creatures/emberkin",
+      "height": 2.1
+    },
+    "emberwing_drake": {
+      "key": "mob_dragonkin",
+      "model": "creatures/dragonevolved",
+      "height": 2.4
+    },
+    "fallen_captain_aldren": {
+      "key": "skel_warrior",
+      "model": "chars/enemies/skeleton_warrior",
+      "height": 2.5
+    },
+    "fanglord_jaguar": {
+      "key": "wildheart_fanglord_jaguar",
+      "model": "creatures/woc_basin_jaguar",
+      "height": 2.580416666666667
+    },
+    "fen_sprite": {
+      "key": "mob_kobold",
+      "model": "creatures/goblin",
+      "height": 2.1
+    },
+    "fen_troll": {
+      "key": "mob_troll",
+      "model": "creatures/orc",
+      "height": 2.4
+    },
+    "fenbridge_infiltrator": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "fisher_bram": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "fogbound_arbalest": {
+      "key": "bastion_skel_arbalest",
+      "model": "creatures/drowned_arbalest",
+      "height": 5.61
+    },
+    "forest_wolf": {
+      "key": "mob_wolf",
+      "model": "creatures/wolf_basic",
+      "height": 1.47
+    },
+    "friendly_player_dummy": {
+      "key": "mob_training_dummy",
+      "model": "creatures/training_dummy",
+      "height": 2.3
+    },
+    "frostmane_yeti": {
+      "key": "mob_yeti",
+      "model": "creatures/yetialt",
+      "height": 2.5
+    },
+    "frostveil_supply_caravan": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "gale_wisp": {
+      "key": "mob_elemental",
+      "model": "creatures/golelingevolved",
+      "height": 2.2
+    },
+    "gaol_turnkey": {
+      "key": "bastion_turnkey",
+      "model": "creatures/woc_bastion_turnkey",
+      "height": 6.4
+    },
+    "gaoler_ossick": {
+      "key": "bastion_ossick",
+      "model": "creatures/woc_bastion_ossick",
+      "height": 7
+    },
+    "gilded_stag": {
+      "key": "mob_stag",
+      "model": "creatures/stag",
+      "height": 1.9
+    },
+    "glacier_splinter": {
+      "key": "sanctum_glacier_splinter",
+      "model": "creatures/sanctum_glacier_splinter",
+      "height": 2.842105263157895
+    },
+    "gleamstag": {
+      "key": "mob_gleamstag",
+      "model": "creatures/gleamstag",
+      "height": 1.9
+    },
+    "glimmermere_wader": {
+      "key": "mob_murloc",
+      "model": "creatures/frog",
+      "height": 1.7
+    },
+    "glimmerscale_lurker": {
+      "key": "temple_lurker",
+      "model": "creatures/temple_lurker",
+      "height": 3.65
+    },
+    "glimmerwisp": {
+      "key": "mob_glimmerwisp",
+      "model": "creatures/glimmerwisp",
+      "height": 1.6
+    },
+    "gloam_fox": {
+      "key": "mob_fox",
+      "model": "creatures/fox",
+      "height": 1
+    },
+    "gloam_strider": {
+      "key": "mob_raptor",
+      "model": "creatures/velociraptor",
+      "height": 1.6
+    },
+    "gloomshade": {
+      "key": "mob_gloomshade",
+      "model": "creatures/gloomshade_abyssal_guardian",
+      "height": 2.6
+    },
+    "gorrak": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "gourdlight_crow": {
+      "key": "mob_crypt_crow",
+      "model": "creatures/crypt_crow",
+      "height": 1.7
+    },
+    "gourdlight_strawling": {
+      "key": "mob_gourdlight_strawling",
+      "model": "creatures/gourdlight_strawling",
+      "height": 3
+    },
+    "gourdlight_swelling_gourd": {
+      "key": "mob_gourdlight_swelling_gourd",
+      "model": "creatures/gourdlight_swelling_gourd",
+      "height": 3.9
+    },
+    "gourdlight_thatchgrin": {
+      "key": "mob_gourdlight_thatchgrin",
+      "model": "creatures/gourdlight_thatchgrin",
+      "height": 7.4
+    },
+    "grand_necromancer_velkhar": {
+      "key": "sanctum_velkhar",
+      "model": "creatures/woc_sanctum_velkhar",
+      "height": 4.048
+    },
+    "grave_silt_bulwark": {
+      "key": "mob_ogre",
+      "model": "creatures/ogre",
+      "height": 2.8
+    },
+    "gravecaller_cultist": {
+      "key": "player_warlock",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "gravecaller_mender": {
+      "key": "player_priest",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "gravecaller_summoner": {
+      "key": "player_warlock_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "gravedigger_mosley": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "graveguard": {
+      "key": "skel_warrior",
+      "model": "chars/enemies/skeleton_warrior",
+      "height": 2.5
+    },
+    "gravenbark_shambler": {
+      "key": "mob_treant",
+      "model": "creatures/yeti",
+      "height": 2.6
+    },
+    "great_saurian": {
+      "key": "wildheart_great_saurian",
+      "model": "creatures/woc_basin_saurian",
+      "height": 4.925
+    },
+    "grix_the_tunnelking": {
+      "key": "mob_grix",
+      "model": "creatures/grix",
+      "height": 2.1
+    },
+    "grubjaw": {
+      "key": "mob_grubjaw",
+      "model": "creatures/grubjaw",
+      "height": 2.9
+    },
+    "harvest_sprite": {
+      "key": "mob_kobold",
+      "model": "creatures/goblin",
+      "height": 2.1
+    },
+    "healing_dummy_caster": {
+      "key": "mob_training_dummy",
+      "model": "creatures/training_dummy",
+      "height": 2.3
+    },
+    "healing_dummy_ranger": {
+      "key": "mob_training_dummy",
+      "model": "creatures/training_dummy",
+      "height": 2.3
+    },
+    "healing_dummy_scout": {
+      "key": "mob_training_dummy",
+      "model": "creatures/training_dummy",
+      "height": 2.3
+    },
+    "healing_dummy_soldier": {
+      "key": "mob_training_dummy",
+      "model": "creatures/training_dummy",
+      "height": 2.3
+    },
+    "healing_dummy_tank": {
+      "key": "mob_training_dummy",
+      "model": "creatures/training_dummy",
+      "height": 2.3
+    },
+    "hedge_gnome": {
+      "key": "mob_kobold",
+      "model": "creatures/goblin",
+      "height": 2.1
+    },
+    "hedge_knight": {
+      "key": "player_paladin",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "heroic_boss_dummy": {
+      "key": "mob_training_dummy",
+      "model": "creatures/training_dummy",
+      "height": 2.3
+    },
+    "hoard_abyssal_tentacle": {
+      "key": "mob_abyssal_tentacle",
+      "model": "creatures/hoard_tentacle_trunk",
+      "height": 1.5
+    },
+    "hoard_bat_swarmling": {
+      "key": "mob_hoard_bat_swarmling",
+      "model": "creatures/hoard_boss_bat",
+      "height": 1.5
+    },
+    "hoard_bloat_cap": {
+      "key": "mob_hoard_bloat_cap",
+      "model": "creatures/hoard_bloat_cap",
+      "height": 2
+    },
+    "hoard_boss_bat": {
+      "key": "mob_hoard_boss_bat",
+      "model": "creatures/hoard_boss_bat",
+      "height": 1.5
+    },
+    "hoard_boss_mimic": {
+      "key": "mob_hoard_boss_mimic",
+      "model": "creatures/hoard_boss_mimic",
+      "height": 1.6
+    },
+    "hoard_boss_mole": {
+      "key": "mob_hoard_boss_mole",
+      "model": "creatures/hoard_boss_mole",
+      "height": 1.4
+    },
+    "hoard_boss_mushroom": {
+      "key": "mob_hoard_boss_mushroom",
+      "model": "creatures/hoard_boss_mushroom",
+      "height": 2.2
+    },
+    "hoard_bound_pulsar": {
+      "key": "mob_bound_pulsar",
+      "model": "creatures/hoard_pulsar_core",
+      "height": 1.5
+    },
+    "hoard_brood_cocoon": {
+      "key": "mob_brood_cocoon",
+      "model": "creatures/hoard_brood_cocoon",
+      "height": 2.5
+    },
+    "hoard_brood_egg": {
+      "key": "mob_spider_egg_sac",
+      "model": "creatures/spider_egg_sac",
+      "height": 1.8
+    },
+    "hoard_brood_hatchling": {
+      "key": "mob_spider",
+      "model": "creatures/spider",
+      "height": 1.4
+    },
+    "hoard_coinsack_scurrier": {
+      "key": "mob_hoard_coinsack_scurrier",
+      "model": "creatures/hoard_coinsack_scurrier",
+      "height": 2
+    },
+    "hoard_healing_tide_totem": {
+      "key": "mob_healing_tide_totem",
+      "model": "quest/ogre_war_totem",
+      "height": 2.5
+    },
+    "hoard_silk_cocoon": {
+      "key": "mob_silk_cocoon",
+      "model": "creatures/hoard_silk_cocoon",
+      "height": 3.5
+    },
+    "hoard_sporeling": {
+      "key": "mob_hoard_sporeling",
+      "model": "creatures/hoard_boss_mushroom",
+      "height": 2.2
+    },
+    "hollow_acolyte": {
+      "key": "skel_mage",
+      "model": "chars/enemies/skeleton_mage",
+      "height": 2.5
+    },
+    "hollow_chorister": {
+      "key": "crypt_skel_chorister",
+      "model": "creatures/woc_crypt_hollow_chorister",
+      "height": 3.3
+    },
+    "hollow_gravedigger": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "howdah_hexcaller": {
+      "key": "wildheart_howdah_hexcaller",
+      "model": "creatures/wildheart_hexcaller",
+      "height": 2.5
+    },
+    "hub_healing_dummy": {
+      "key": "mob_training_dummy",
+      "model": "creatures/training_dummy",
+      "height": 2.3
+    },
+    "hub_training_dummy": {
+      "key": "mob_training_dummy",
+      "model": "creatures/training_dummy",
+      "height": 2.3
+    },
+    "ice_wisp": {
+      "key": "mob_ghost",
+      "model": "creatures/ghost",
+      "height": 1.6
+    },
+    "ice_wraith": {
+      "key": "temple_ice_wraith",
+      "model": "creatures/temple_ice_wraith",
+      "height": 4
+    },
+    "idol_guardian": {
+      "key": "skel_golem",
+      "model": "chars/enemies/skeleton_golem",
+      "height": 3.4
+    },
+    "ignivar_cinder_artificer": {
+      "key": "mob_ignivar_cinder_artificer",
+      "model": "creatures/cinder_artificer",
+      "height": 2.1
+    },
+    "ignivar_crucible_warden": {
+      "key": "mob_ignivar_crucible_warden",
+      "model": "creatures/crucible_warden",
+      "height": 2.2
+    },
+    "ignivar_ember_sentinel": {
+      "key": "mob_ignivar_ember_sentinel",
+      "model": "creatures/ember_sentinel",
+      "height": 2.3
+    },
+    "ignivar_heart_of_the_end": {
+      "key": "mob_ignivar_heart_of_the_end",
+      "model": "creatures/ignivar_ashcaller",
+      "height": 1.8
+    },
+    "ignivar_herald_of_the_last_flame": {
+      "key": "mob_ignivar",
+      "model": "creatures/ignivar_herald",
+      "height": 2.65
+    },
+    "ironvein_foreman": {
+      "key": "mob_kobold",
+      "model": "creatures/goblin",
+      "height": 2.1
+    },
+    "ironvein_sapper": {
+      "key": "mob_kobold",
+      "model": "creatures/goblin",
+      "height": 2.1
+    },
+    "knight_commander_olen": {
+      "key": "bastion_olen",
+      "model": "creatures/woc_bastion_olen",
+      "height": 7.4
+    },
+    "korgath_the_bound": {
+      "key": "sanctum_korgath",
+      "model": "creatures/woc_sanctum_korgath",
+      "height": 6.846666666666667
+    },
+    "korzul_the_gravewyrm": {
+      "key": "sanctum_korzul",
+      "model": "creatures/woc_sanctum_korzul",
+      "height": 11.911111111111111
+    },
+    "lagoon_snapper": {
+      "key": "temple_snapper",
+      "model": "creatures/temple_snapper",
+      "height": 3.83
+    },
+    "lily_wisp": {
+      "key": "mob_ghost",
+      "model": "creatures/ghost",
+      "height": 1.6
+    },
+    "marrow_restless_bones": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "marrowlord_varkas": {
+      "key": "skel_warrior",
+      "model": "chars/enemies/skeleton_warrior",
+      "height": 2.5
+    },
+    "mere_hydra_head_center": {
+      "key": "temple_hydra_head",
+      "model": "creatures/woc_temple_hydra",
+      "height": 14
+    },
+    "mere_hydra_head_left": {
+      "key": "temple_hydra_head",
+      "model": "creatures/woc_temple_hydra",
+      "height": 14
+    },
+    "mere_hydra_head_right": {
+      "key": "temple_hydra_head",
+      "model": "creatures/woc_temple_hydra",
+      "height": 14
+    },
+    "mere_lurker": {
+      "key": "mob_murloc",
+      "model": "creatures/frog",
+      "height": 1.7
+    },
+    "mire_prowler": {
+      "key": "mob_wolf",
+      "model": "creatures/wolf_basic",
+      "height": 1.47
+    },
+    "mire_widow": {
+      "key": "mob_spider",
+      "model": "creatures/spider",
+      "height": 1.4
+    },
+    "mirefen_broodmother": {
+      "key": "mob_spider",
+      "model": "creatures/spider",
+      "height": 1.4
+    },
+    "mirefen_widowling": {
+      "key": "mob_spider",
+      "model": "creatures/spider",
+      "height": 1.4
+    },
+    "mirejaw_frenzy": {
+      "key": "mob_murloc",
+      "model": "creatures/frog",
+      "height": 1.7
+    },
+    "mirejaw_the_ravenous": {
+      "key": "mob_murloc",
+      "model": "creatures/frog",
+      "height": 1.7
+    },
+    "mister_crabs": {
+      "key": "mob_crab",
+      "model": "creatures/crabenemy",
+      "height": 1.7
+    },
+    "mistweaver": {
+      "key": "bastion_mistweaver",
+      "model": "creatures/mist_chanter",
+      "height": 4.4
+    },
+    "mogger": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "mogger_lackey": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "moonfleece_grazer": {
+      "key": "mob_alpaca",
+      "model": "creatures/alpaca",
+      "height": 1.7
+    },
+    "moonlit_siren": {
+      "key": "temple_siren",
+      "model": "creatures/temple_siren",
+      "height": 6
+    },
+    "moonspawn": {
+      "key": "temple_moonspawn",
+      "model": "creatures/temple_moonspawn",
+      "height": 3.89
+    },
+    "moor_ram": {
+      "key": "mob_alpaca",
+      "model": "creatures/alpaca",
+      "height": 1.7
+    },
+    "morthen": {
+      "key": "crypt_morthen_lich",
+      "model": "creatures/woc_crypt_morthen",
+      "height": 6.668999999999999
+    },
+    "mudfin_murloc": {
+      "key": "mob_murloc",
+      "model": "creatures/frog",
+      "height": 1.7
+    },
+    "mushroom_pixie": {
+      "key": "mob_mushroom_pixie",
+      "model": "creatures/mushroom_pixie",
+      "height": 2.6
+    },
+    "muster_chaplain": {
+      "key": "player_paladin_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "muster_drillmaster": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "muster_effigy": {
+      "key": "mob_muster_effigy",
+      "model": "creatures/muster_effigy",
+      "height": 6.7
+    },
+    "muster_footman": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "muster_sergeant": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "necromancy_bone_mage": {
+      "key": "skel_mage",
+      "model": "chars/enemies/skeleton_mage",
+      "height": 2.5
+    },
+    "necromancy_gravewing": {
+      "key": "mob_gravewing",
+      "model": "creatures/gravewing",
+      "height": 2.4
+    },
+    "necromancy_skeletal_warrior": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "nhalia_mourner": {
+      "key": "player_priest_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "nightkin_stargazer": {
+      "key": "mob_nightkin",
+      "model": "creatures/tribal",
+      "height": 1.9
+    },
+    "normal_boss_dummy": {
+      "key": "mob_training_dummy",
+      "model": "creatures/training_dummy",
+      "height": 2.3
+    },
+    "nythraxis_bone_spike": {
+      "key": "mob_nythraxis_bone_spike",
+      "model": "props/nythraxis_bone_spike",
+      "height": 2.6
+    },
+    "nythraxis_heroic_priest_add": {
+      "key": "skel_necromancer",
+      "model": "chars/enemies/necromancer",
+      "height": 2.5
+    },
+    "nythraxis_heroic_rogue_add": {
+      "key": "skel_rogue",
+      "model": "chars/enemies/skeleton_rogue",
+      "height": 2.5
+    },
+    "nythraxis_heroic_warrior_add": {
+      "key": "skel_warrior",
+      "model": "chars/enemies/skeleton_warrior",
+      "height": 2.5
+    },
+    "nythraxis_scourge_of_thornpeak": {
+      "key": "skel_golem",
+      "model": "chars/enemies/skeleton_golem",
+      "height": 3.4
+    },
+    "nythraxis_skeleton_warrior": {
+      "key": "skel_warrior",
+      "model": "chars/enemies/skeleton_warrior",
+      "height": 2.5
+    },
+    "ogre_crusher": {
+      "key": "mob_ogre",
+      "model": "creatures/ogre",
+      "height": 2.8
+    },
+    "ogre_sledge_hauler": {
+      "key": "sanctum_sledge_hauler",
+      "model": "creatures/sanctum_sledge_hauler",
+      "height": 2.761904761904762
+    },
+    "old_cragmaw": {
+      "key": "mob_bear",
+      "model": "creatures/yetialt",
+      "height": 2.2
+    },
+    "old_greyjaw": {
+      "key": "greyjaw",
+      "model": "creatures/greyjaw",
+      "height": 2.05
+    },
+    "old_marrowshell": {
+      "key": "mob_crab",
+      "model": "creatures/crabenemy",
+      "height": 1.7
+    },
+    "orchard_treant": {
+      "key": "mob_treant",
+      "model": "creatures/yeti",
+      "height": 2.6
+    },
+    "ossuary_sentinel": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "pale_choir_acolyte": {
+      "key": "temple_acolyte",
+      "model": "creatures/temple_acolyte",
+      "height": 5.2
+    },
+    "pale_huntsman": {
+      "key": "skel_rogue",
+      "model": "chars/enemies/skeleton_rogue",
+      "height": 2.5
+    },
+    "pearlguard_sentinel": {
+      "key": "temple_sentinel",
+      "model": "creatures/temple_sentinel",
+      "height": 1.3236
+    },
+    "pyre_colossus": {
+      "key": "mob_pyre_colossus",
+      "model": "creatures/pyre_colossus",
+      "height": 2.5
+    },
+    "raised_bonewalker": {
+      "key": "sanctum_raised_bonewalker",
+      "model": "creatures/sanctum_raised_bonewalker",
+      "height": 3.7
+    },
+    "reedbound_acolyte": {
+      "key": "mob_reedbound_acolyte",
+      "model": "creatures/stone_cantor",
+      "height": 2.6
+    },
+    "reliquary_bonewalker": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "reliquary_funeral_ringer": {
+      "key": "delve_skel_ringer",
+      "model": "chars/enemies/skeleton_rogue",
+      "height": 2.5
+    },
+    "reliquary_gravecall_acolyte": {
+      "key": "player_warlock",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "reliquary_ledger_wraith": {
+      "key": "delve_skel_wraith",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "reliquary_saintless_effigy": {
+      "key": "delve_skel_effigy",
+      "model": "chars/enemies/skeleton_warrior",
+      "height": 2.5
+    },
+    "restless_bones": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "ridge_stalker": {
+      "key": "mob_wolf",
+      "model": "creatures/wolf_basic",
+      "height": 1.47
+    },
+    "rift_boneclad": {
+      "key": "mob_hoard_boneclad_warrior",
+      "model": "creatures/hoard_boneclad_warrior",
+      "height": 3.5
+    },
+    "rift_bonewalker": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "rift_boss_arcane": {
+      "key": "mob_hoard_archon_nyxaris",
+      "model": "creatures/hoard_archon_nyxaris",
+      "height": 2.4
+    },
+    "rift_boss_brute": {
+      "key": "mob_ogre",
+      "model": "creatures/ogre",
+      "height": 2.8
+    },
+    "rift_boss_ember": {
+      "key": "mob_hoard_emberforge_tyrant",
+      "model": "creatures/hoard_emberforge_tyrant",
+      "height": 2.6
+    },
+    "rift_boss_frost": {
+      "key": "mob_hoard_hoarfrost_warden",
+      "model": "creatures/hoard_hoarfrost_warden",
+      "height": 2.6
+    },
+    "rift_boss_necro": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "rift_boss_pitlord": {
+      "key": "mob_demonalt",
+      "model": "creatures/demonalt",
+      "height": 2.1
+    },
+    "rift_boss_ritualist": {
+      "key": "rift_ritualist",
+      "model": "chars/enemies/necromancer",
+      "height": 2.5
+    },
+    "rift_boss_storm": {
+      "key": "mob_hoard_tempest_vharok",
+      "model": "creatures/hoard_tempest_vharok",
+      "height": 2.5
+    },
+    "rift_boss_tide": {
+      "key": "mob_hoard_abyssal_maw",
+      "model": "creatures/hoard_abyssal_maw",
+      "height": 2.3
+    },
+    "rift_boss_venom": {
+      "key": "mob_spider",
+      "model": "creatures/spider",
+      "height": 1.4
+    },
+    "rift_deep_lurker": {
+      "key": "mob_hoard_deep_lurker",
+      "model": "creatures/hoard_deep_lurker",
+      "height": 2
+    },
+    "rift_dread_stalker": {
+      "key": "mob_hoard_dread_stalker",
+      "model": "creatures/hoard_dread_stalker",
+      "height": 2.5
+    },
+    "rift_ember_fiend": {
+      "key": "mob_hoard_ember_fiend",
+      "model": "creatures/hoard_ember_fiend",
+      "height": 2.9
+    },
+    "rift_frost_revenant": {
+      "key": "mob_hoard_frost_revenant",
+      "model": "creatures/hoard_frost_revenant",
+      "height": 3.6
+    },
+    "rift_hellguard": {
+      "key": "mob_demonalt",
+      "model": "creatures/demonalt",
+      "height": 2.1
+    },
+    "rift_magma_brute": {
+      "key": "mob_hoard_magma_brute",
+      "model": "creatures/hoard_magma_brute",
+      "height": 4.1
+    },
+    "rift_marrow_golem": {
+      "key": "skel_golem",
+      "model": "chars/enemies/skeleton_golem",
+      "height": 3.4
+    },
+    "rift_marrow_troll": {
+      "key": "mob_troll",
+      "model": "creatures/orc",
+      "height": 2.4
+    },
+    "rift_pact_acolyte": {
+      "key": "player_warlock_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "rift_rime_elemental": {
+      "key": "mob_hoard_rime_elemental",
+      "model": "creatures/hoard_rime_elemental",
+      "height": 3.9
+    },
+    "rift_spawnling": {
+      "key": "mob_demonalt",
+      "model": "creatures/demonalt",
+      "height": 2.1
+    },
+    "rift_stone_ogre": {
+      "key": "mob_ogre",
+      "model": "creatures/ogre",
+      "height": 2.8
+    },
+    "rift_storm_caller": {
+      "key": "mob_hoard_storm_caller",
+      "model": "creatures/hoard_storm_caller",
+      "height": 4.4
+    },
+    "rift_stormscale": {
+      "key": "mob_hoard_stormscale_drake",
+      "model": "creatures/hoard_stormscale_drake",
+      "height": 3
+    },
+    "rift_thornback": {
+      "key": "mob_hoard_thornback_stalker",
+      "model": "creatures/hoard_thornback_stalker",
+      "height": 3.4
+    },
+    "rift_tide_thrall": {
+      "key": "mob_hoard_tide_thrall",
+      "model": "creatures/hoard_tide_thrall",
+      "height": 4.6
+    },
+    "rift_venom_weaver": {
+      "key": "mob_hoard_venom_weaver",
+      "model": "creatures/hoard_venom_weaver",
+      "height": 1.8
+    },
+    "rift_void_acolyte": {
+      "key": "mob_hoard_void_acolyte",
+      "model": "creatures/hoard_void_acolyte",
+      "height": 4.2
+    },
+    "riftspawn": {
+      "key": "mob_demonalt",
+      "model": "creatures/demonalt",
+      "height": 2.1
+    },
+    "rime_egg_sac": {
+      "key": "crypt_rime_egg_sac",
+      "model": "creatures/woc_crypt_rime_egg_sac",
+      "height": 2.2
+    },
+    "rime_elemental": {
+      "key": "mob_elemental",
+      "model": "creatures/golelingevolved",
+      "height": 2.2
+    },
+    "rime_whelp": {
+      "key": "sanctum_rime_whelp",
+      "model": "creatures/sanctum_rime_whelp",
+      "height": 2.25
+    },
+    "rimeweb": {
+      "key": "crypt_lady_bonechill",
+      "model": "creatures/woc_crypt_lady_bonechill",
+      "height": 6.749
+    },
+    "rimeweb_hatchling": {
+      "key": "mob_spider",
+      "model": "creatures/spider",
+      "height": 1.4
+    },
+    "rimeweb_spinner": {
+      "key": "mob_spider",
+      "model": "creatures/spider",
+      "height": 1.4
+    },
+    "sanctum_boneguard": {
+      "key": "sanctum_boneguard",
+      "model": "creatures/sanctum_boneguard",
+      "height": 4
+    },
+    "sanctum_drakonid": {
+      "key": "sanctum_scaleguard",
+      "model": "creatures/sanctum_scaleguard",
+      "height": 3.241379310344828
+    },
+    "sanctum_shackle_anvil": {
+      "key": "sanctum_seal_shackle",
+      "model": "creatures/woc_sanctum_korgath",
+      "height": 2
+    },
+    "sanctum_shackle_bellows": {
+      "key": "sanctum_seal_shackle",
+      "model": "creatures/woc_sanctum_korgath",
+      "height": 2
+    },
+    "sanctum_shackle_hammer": {
+      "key": "sanctum_seal_shackle",
+      "model": "creatures/woc_sanctum_korgath",
+      "height": 2
+    },
+    "sanctum_shackle_tongs": {
+      "key": "sanctum_seal_shackle",
+      "model": "creatures/woc_sanctum_korgath",
+      "height": 2
+    },
+    "sethrael_palecoil": {
+      "key": "mob_dragonkin",
+      "model": "creatures/dragonevolved",
+      "height": 2.4
+    },
+    "sexton_marrow": {
+      "key": "crypt_skel_sexton",
+      "model": "creatures/woc_crypt_sexton_marrow",
+      "height": 5.975
+    },
+    "shackled_prisoner": {
+      "key": "bastion_prisoner",
+      "model": "creatures/drowned_prisoner",
+      "height": 5.06
+    },
+    "shardlord_kazzix": {
+      "key": "mob_elemental",
+      "model": "creatures/golelingevolved",
+      "height": 2.2
+    },
+    "shoal_scuttler": {
+      "key": "mob_crab",
+      "model": "creatures/crabenemy",
+      "height": 1.7
+    },
+    "shore_scuttler": {
+      "key": "mob_crab",
+      "model": "creatures/crabenemy",
+      "height": 1.7
+    },
+    "sister_nhalia": {
+      "key": "player_priest_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "sister_nhalia_drowned_canticle": {
+      "key": "player_priest_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "sledge_tusker": {
+      "key": "sanctum_sledge_tusker",
+      "model": "creatures/woc_sanctum_tusker",
+      "height": 3.719450844854071
+    },
+    "sloomtooth_the_drowned": {
+      "key": "mob_murloc",
+      "model": "creatures/frog",
+      "height": 1.7
+    },
+    "snowdrift_wolf": {
+      "key": "mob_wolf",
+      "model": "creatures/wolf_basic",
+      "height": 1.47
+    },
+    "soul_brazier": {
+      "key": "sanctum_soul_brazier",
+      "model": "props/infernal_brazier",
+      "height": 1.4999999999999998
+    },
+    "spider_egg": {
+      "key": "mob_spider_egg_sac",
+      "model": "creatures/spider_egg_sac",
+      "height": 1.8
+    },
+    "spider_egg_sac": {
+      "key": "mob_spider_egg_sac",
+      "model": "creatures/spider_egg_sac",
+      "height": 1.8
+    },
+    "spore_toad": {
+      "key": "wildheart_spore_toad",
+      "model": "creatures/wildheart_spore_toad",
+      "height": 1.6208333333333333
+    },
+    "sporeling_gatherer": {
+      "key": "mob_glub",
+      "model": "creatures/glubevolved",
+      "height": 1.4
+    },
+    "stable_horse": {
+      "key": "mob_stable_horse",
+      "model": "mounts/valorsteed",
+      "height": 2.9
+    },
+    "stormcrag_elemental": {
+      "key": "mob_elemental",
+      "model": "creatures/golelingevolved",
+      "height": 2.2
+    },
+    "sump_troll_devourer": {
+      "key": "mob_troll",
+      "model": "creatures/orc",
+      "height": 2.4
+    },
+    "sunbone_dread_totem": {
+      "key": "wildheart_sunbone_dread_totem",
+      "model": "creatures/wildheart_sunbone_dread_totem",
+      "height": 3.9856249999999998
+    },
+    "sunbone_totem": {
+      "key": "wildheart_sunbone_totem",
+      "model": "creatures/wildheart_sunbone_totem",
+      "height": 4.138125
+    },
+    "sunbone_totem_binder": {
+      "key": "wildheart_totem_binder",
+      "model": "creatures/wildheart_totem_binder",
+      "height": 3.101538461538462
+    },
+    "sundered_horror": {
+      "key": "mob_ogre",
+      "model": "creatures/ogre",
+      "height": 2.8
+    },
+    "terrace_howler": {
+      "key": "mob_wolf",
+      "model": "creatures/wolf_basic",
+      "height": 1.47
+    },
+    "the_gorgebloom": {
+      "key": "wildheart_gorgebloom",
+      "model": "creatures/woc_basin_gorgebloom",
+      "height": 4.911785714285714
+    },
+    "the_meredark": {
+      "key": "mob_murloc",
+      "model": "creatures/frog",
+      "height": 1.7
+    },
+    "the_topiary_bull": {
+      "key": "mob_bull",
+      "model": "creatures/bull",
+      "height": 2.1
+    },
+    "the_wreck_warden": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "thicket_boar": {
+      "key": "mob_boar",
+      "model": "creatures/wild_boar",
+      "height": 1.45
+    },
+    "thorn_sprout": {
+      "key": "wildheart_thorn_sprout",
+      "model": "creatures/wildheart_thorn_sprout",
+      "height": 2.0206666666666666
+    },
+    "thornpeak_ogre": {
+      "key": "mob_ogre",
+      "model": "creatures/ogre",
+      "height": 2.8
+    },
+    "threnos_first_voice": {
+      "key": "player_warlock",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "thunzharr_stormling": {
+      "key": "mob_elemental",
+      "model": "creatures/golelingevolved",
+      "height": 2.2
+    },
+    "thunzharr_waking_peak": {
+      "key": "mob_elemental",
+      "model": "creatures/golelingevolved",
+      "height": 2.2
+    },
+    "tide_scuttler": {
+      "key": "mob_crab",
+      "model": "creatures/crabenemy",
+      "height": 1.7
+    },
+    "tidebound_acolyte": {
+      "key": "bastion_acolyte",
+      "model": "creatures/tidebound_acolyte",
+      "height": 5
+    },
+    "tideglass_colossus": {
+      "key": "temple_colossus",
+      "model": "creatures/woc_temple_colossus",
+      "height": 7.59090909090909
+    },
+    "tideglass_reflection": {
+      "key": "temple_reflection_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 3.289
+    },
+    "tideglass_reflection_druid": {
+      "key": "temple_reflection_druid",
+      "model": "chars/players/woc/base_male",
+      "height": 3.289
+    },
+    "tideglass_reflection_hunter": {
+      "key": "temple_reflection_hunter",
+      "model": "chars/players/woc/base_male",
+      "height": 3.289
+    },
+    "tideglass_reflection_mage": {
+      "key": "temple_reflection_mage",
+      "model": "chars/players/woc/base_male",
+      "height": 3.289
+    },
+    "tideglass_reflection_paladin": {
+      "key": "temple_reflection_paladin",
+      "model": "chars/players/woc/base_male",
+      "height": 3.289
+    },
+    "tideglass_reflection_priest": {
+      "key": "temple_reflection_priest",
+      "model": "chars/players/woc/base_male",
+      "height": 3.289
+    },
+    "tideglass_reflection_rogue": {
+      "key": "temple_reflection_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 3.289
+    },
+    "tideglass_reflection_shaman": {
+      "key": "temple_reflection_shaman",
+      "model": "chars/players/woc/base_male",
+      "height": 3.289
+    },
+    "tideglass_reflection_warlock": {
+      "key": "temple_reflection_warlock",
+      "model": "chars/players/woc/base_male",
+      "height": 3.289
+    },
+    "tideglass_reflection_warrior": {
+      "key": "temple_reflection_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 3.289
+    },
+    "tidewisp": {
+      "key": "temple_tidewisp",
+      "model": "creatures/temple_tidewisp",
+      "height": 2.75
+    },
+    "tolling_bell": {
+      "key": "mob_tolling_bell",
+      "model": "creatures/tolling_bell",
+      "height": 3.4
+    },
+    "topiary_stag": {
+      "key": "mob_stag",
+      "model": "creatures/stag",
+      "height": 1.9
+    },
+    "topiary_wolf": {
+      "key": "mob_wolf",
+      "model": "creatures/wolf_basic",
+      "height": 1.47
+    },
+    "training_dummy": {
+      "key": "mob_training_dummy",
+      "model": "creatures/training_dummy",
+      "height": 2.3
+    },
+    "training_effigy": {
+      "key": "mob_training_dummy",
+      "model": "creatures/training_dummy",
+      "height": 2.3
+    },
+    "treant_elder": {
+      "key": "mob_treant",
+      "model": "creatures/yeti",
+      "height": 2.6
+    },
+    "tunnel_rat": {
+      "key": "mob_kobold_digger",
+      "model": "creatures/kobold",
+      "height": 2.1
+    },
+    "turretback_hermit": {
+      "key": "mob_turretback",
+      "model": "creatures/woc_bastion_captain",
+      "height": 7.5
+    },
+    "vael_fog_shade": {
+      "key": "bastion_vael",
+      "model": "creatures/woc_bastion_vael",
+      "height": 7.357
+    },
+    "vael_the_mistcaller": {
+      "key": "bastion_vael",
+      "model": "creatures/woc_bastion_vael",
+      "height": 7.357
+    },
+    "vale_bandit": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "varkas_boneguard": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "varkhul_forgefather_of_the_last_flame": {
+      "key": "mob_varkhul_forgefather",
+      "model": "creatures/varkhul_forgefather",
+      "height": 3
+    },
+    "veiled_doe": {
+      "key": "mob_veiled_doe",
+      "model": "creatures/veiled_doe",
+      "height": 1.6
+    },
+    "veiled_stag": {
+      "key": "mob_veiled_stag",
+      "model": "creatures/veiled_stag",
+      "height": 1.9
+    },
+    "vine_lasher": {
+      "key": "wildheart_vine_lasher",
+      "model": "creatures/wildheart_vine_lasher",
+      "height": 2.9886363636363633
+    },
+    "vision_aldren_warrior": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "vision_deathstalker_voss": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "vision_malric_mage": {
+      "key": "player_mage",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "void_stalker": {
+      "key": "mob_wolf",
+      "model": "creatures/wolf_basic",
+      "height": 1.47
+    },
+    "voskar_emberwing": {
+      "key": "mob_dragonkin",
+      "model": "creatures/dragonevolved",
+      "height": 2.4
+    },
+    "waking_warden": {
+      "key": "skel_golem",
+      "model": "chars/enemies/skeleton_golem",
+      "height": 3.4
+    },
+    "warlock_imp": {
+      "key": "mob_demon_flying",
+      "model": "creatures/demon",
+      "height": 1.7
+    },
+    "warlock_voidwalker": {
+      "key": "mob_demonalt",
+      "model": "creatures/demonalt",
+      "height": 2.1
+    },
+    "warlord_drogmar": {
+      "key": "mob_drogmar",
+      "model": "creatures/drogmar",
+      "height": 2.8
+    },
+    "water_elemental": {
+      "key": "mob_water_elemental",
+      "model": "creatures/water_elemental",
+      "height": 2.65
+    },
+    "webwood_spider": {
+      "key": "mob_spider",
+      "model": "creatures/spider",
+      "height": 1.4
+    },
+    "widow_hatchling": {
+      "key": "mob_spider",
+      "model": "creatures/spider",
+      "height": 1.4
+    },
+    "widowsilk_spinner": {
+      "key": "mob_spider",
+      "model": "creatures/spider",
+      "height": 1.4
+    },
+    "wild_boar": {
+      "key": "mob_boar",
+      "model": "creatures/wild_boar",
+      "height": 1.45
+    },
+    "wildheart_beastmaster": {
+      "key": "mob_wildheart_beastmaster",
+      "model": "creatures/woc_basin_beastmaster",
+      "height": 2.8570212765957446
+    },
+    "wildheart_hexcaller": {
+      "key": "mob_wildheart_hexcaller",
+      "model": "creatures/wildheart_hexcaller",
+      "height": 2.5
+    },
+    "wildheart_high_priest": {
+      "key": "mob_wildheart_high_priest",
+      "model": "creatures/woc_basin_zulgar",
+      "height": 3.198928571428571
+    },
+    "wildheart_hunting_spear": {
+      "key": "wildheart_hunting_spear",
+      "model": "creatures/wildheart_sunbone_totem",
+      "height": 3.4
+    },
+    "wildheart_ravager": {
+      "key": "mob_wildheart_ravager",
+      "model": "creatures/wildheart_ravager",
+      "height": 2.7
+    },
+    "wildheart_stalker": {
+      "key": "mob_wildheart_stalker",
+      "model": "creatures/wildheart_stalker",
+      "height": 2.5
+    },
+    "willow_sprite": {
+      "key": "mob_kobold",
+      "model": "creatures/goblin",
+      "height": 2.1
+    },
+    "willowfen_remedy_caravan": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "wood_wraith": {
+      "key": "mob_ghost",
+      "model": "creatures/ghost",
+      "height": 1.6
+    },
+    "wraithbinder_maldrec": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "wreck_thief": {
+      "key": "mob_kobold",
+      "model": "creatures/goblin",
+      "height": 2.1
+    },
+    "wyrmcult_necromancer": {
+      "key": "player_warlock",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "wyrmcult_zealot": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "ysolei": {
+      "key": "temple_ysolei",
+      "model": "creatures/woc_temple_ysolei",
+      "height": 9.588
+    },
+    "yumi_cat": {
+      "key": "mob_yumi_cat",
+      "model": "creatures/yumi_cat",
+      "height": 3.12
+    }
+  },
+  "npcs": {
+    "alchemist_verane": {
+      "key": "player_mage_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "apothecary_lin": {
+      "key": "player_druid_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "archivist_maelin_ember_projection": {
+      "key": "player_mage_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "archivist_maelin_emberward": {
+      "key": "player_mage_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "archivist_tullo": {
+      "key": "player_mage",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "armorer_hode": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "astronomer_cassian": {
+      "key": "player_mage",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "auctioneer_voss": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "aurorist_veyla": {
+      "key": "player_mage_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "bellkeeper_tam": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "bridgewright_alden": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "brother_aldric": {
+      "key": "player_priest",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "brother_aldric_fen": {
+      "key": "player_priest",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "brother_aldric_highwatch": {
+      "key": "player_priest",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "brother_aldric_raid": {
+      "key": "player_priest",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "brother_halven": {
+      "key": "player_paladin",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "brother_halven_marsh": {
+      "key": "player_paladin",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "bursar_aldous_crane": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "bursar_fernando": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "bursar_petra_vell": {
+      "key": "player_rogue_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "bursar_wick": {
+      "key": "player_mage",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "calligraphy_apprentice_1": {
+      "key": "player_mage_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "calligraphy_apprentice_2": {
+      "key": "player_mage",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "calligraphy_instructor": {
+      "key": "player_mage",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "cantor_laverock": {
+      "key": "npc_laverock",
+      "model": "creatures/temple_laverock",
+      "height": 3.75
+    },
+    "captain_thessaly": {
+      "key": "player_warrior_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "card_master": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "chronicler_edda_hartwell": {
+      "key": "player_mage_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "chronicler_osric_fenn": {
+      "key": "player_mage",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "chronicler_saul": {
+      "key": "player_mage",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "contract_clerk_tobias_wren": {
+      "key": "player_mage",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "cook_marlow": {
+      "key": "player_druid",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "crucible_quartermaster": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "drillmaster_hale": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "drillmaster_rook": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "eastbrook_vault_keeper": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "farmer_hollis": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "farmer_jessica": {
+      "key": "player_druid_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "farmer_teasel": {
+      "key": "player_hunter",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "farmer_verbena": {
+      "key": "player_mage_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "ferryman_odo": {
+      "key": "player_druid",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "ferrymaster_caddow": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "fisher_nell": {
+      "key": "player_rogue_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "fisherman_brandt": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "foreman_odell": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "forge_instructor": {
+      "key": "player_warrior_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "forgemistress_darva": {
+      "key": "player_warrior_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "fury": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "gardener_yew": {
+      "key": "player_druid",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "gatecaptain_brannoc": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "gatewarden_pell": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "glider_apprentice": {
+      "key": "player_hunter_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "glider_instructor": {
+      "key": "player_hunter",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "gourdlight_keeper": {
+      "key": "player_druid_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "guild_quartermaster_garrick_holt": {
+      "key": "player_paladin",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "guild_recruiter_mira_fairweather": {
+      "key": "player_hunter_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "guildmaster_hesper_dunmore": {
+      "key": "player_warrior_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "harbormaster_odile": {
+      "key": "player_rogue_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "harbormaster_tamsin": {
+      "key": "player_mage_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "head_gardener_amaranth": {
+      "key": "player_mage_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "hearthkeeper_maeve": {
+      "key": "player_druid_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "herbalist_yara": {
+      "key": "player_druid_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "hermit_okku": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "heroic_quartermaster": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "huntsman_deral": {
+      "key": "player_hunter",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "infiltrator_bram": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "infiltrator_captain": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "infiltrator_nella": {
+      "key": "player_warrior_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "infiltrator_orin": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "infiltrator_tessa": {
+      "key": "player_warrior_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "innkeeper_maudie": {
+      "key": "player_mage_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "instructor_maren": {
+      "key": "player_warrior_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "keeper_bram": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "keeper_saelwyn": {
+      "key": "player_mage_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "lamplighter_sorrel": {
+      "key": "player_mage",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "lampman_cobb": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "lira_dewsong": {
+      "key": "player_druid_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "loremaster_caddis": {
+      "key": "player_mage",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "loremother_bryn": {
+      "key": "player_mage_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "marshal_redbrook": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "mender_saul": {
+      "key": "player_mage",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "mother_sedge": {
+      "key": "player_mage_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "muster_commander": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "netter_maris": {
+      "key": "player_rogue_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "npc_automaton_quartermaster": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "npc_church_order_quartermaster": {
+      "key": "player_paladin_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "npc_rift_watch_quartermaster": {
+      "key": "player_hunter",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "npc_wq_taskmaster": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "orchardist_pomeline": {
+      "key": "player_druid_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "overseer_pell": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "patron_amos_eelby": {
+      "key": "player_hunter",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "patron_grissel_sedgeworth": {
+      "key": "player_rogue_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "patron_hester_quillby": {
+      "key": "player_mage_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "patron_ned_oxley": {
+      "key": "player_hunter",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "pearlmother_isha": {
+      "key": "player_druid_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "provisioner_fenna": {
+      "key": "player_druid_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "provisioner_hale": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "quartermaster_bree": {
+      "key": "player_rogue_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "quartermaster_edda": {
+      "key": "player_warrior_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "quartermaster_finch": {
+      "key": "player_rogue_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "quartermaster_sela": {
+      "key": "player_warrior_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "reeve_ottoline": {
+      "key": "player_druid_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "riftwatch_ollun": {
+      "key": "player_mage",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "riftwright_maelis": {
+      "key": "player_warrior_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "salvage_boss_ryna": {
+      "key": "player_warrior_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "salvager_edda": {
+      "key": "player_rogue_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "scout_einna": {
+      "key": "player_hunter_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "scout_maren": {
+      "key": "player_hunter_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "scout_maren_highwatch": {
+      "key": "player_hunter_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "scout_yerrin": {
+      "key": "player_hunter_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "sexton_marrow": {
+      "key": "player_mage",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "shadow_cloak_scout": {
+      "key": "player_rogue_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "shadow_guard_east": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "shadow_guard_north": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "shadow_guard_south": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "shadow_guard_west": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "shadow_sentry_north": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "shadow_sentry_south": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "shadow_watch_east": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "shadow_watch_west": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "smith_haldren": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "socketwright_skerrit": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "spirit_healer": {
+      "key": "player_priest_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "stablemaster_marla": {
+      "key": "player_hunter_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "strandwatcher_pell": {
+      "key": "player_hunter",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "tanner_hesk": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "the_merchant": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "tidewarden_nel": {
+      "key": "player_druid_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "tidewatcher_ondrel": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "tinker_gizzel": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "trader_wilkes": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "trapper_brosk": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "vicar_creel": {
+      "key": "player_priest",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "warden_coalfast": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "warden_fenwick": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "warden_kaldra": {
+      "key": "player_warrior_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "warden_tam": {
+      "key": "player_hunter",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "wardsmith_orun": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "warmarshal_draven_kole": {
+      "key": "player_paladin",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "watcher_maren": {
+      "key": "player_hunter_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "wayfarer_bryn": {
+      "key": "player_hunter_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "waykeeper_pell": {
+      "key": "player_druid_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "waywatcher_sorrel": {
+      "key": "player_hunter_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "weaver_amelle": {
+      "key": "player_mage_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "weaver_ottilie": {
+      "key": "player_druid_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "weekly_emissary": {
+      "key": "player_mage",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "wickmother_sorrel": {
+      "key": "player_druid_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "widow_tansy": {
+      "key": "player_mage_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "wisp_maze_keeper": {
+      "key": "player_hunter_female",
+      "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    }
+  },
+  "players": {
+    "druid": {
+      "key": "player_druid",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "hunter": {
+      "key": "player_hunter",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "mage": {
+      "key": "player_mage",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "paladin": {
+      "key": "player_paladin",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "priest": {
+      "key": "player_priest",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "rogue": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "shaman": {
+      "key": "player_shaman",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "warlock": {
+      "key": "player_warlock",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
+    "warrior": {
+      "key": "player_warrior",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    }
+  }
+}
