@@ -6358,6 +6358,28 @@ entities.items.loombound_reagent_satchel.name,Loombound Reagent Satchel
 entities.items.loomshard_eye.name,The Barrowglass Eye
 entities.items.loop_of_quiet_springs.name,Loop of Quiet Springs
 entities.items.lost_caravan_goods.name,Lost Caravan Goods
+entities.items.lr_barrow_grave_good.name,Barrow Grave-Good
+entities.items.lr_blackadit_mouth.name,Blackadit Working
+entities.items.lr_brine_pan_edge.name,Brine Pan
+entities.items.lr_brine_skim.name,Skim of Clean Brine
+entities.items.lr_burners_firebrand.name,Burner's Firebrand
+entities.items.lr_charwood_boar_tusk.name,Charwood Boar Tusk
+entities.items.lr_cold_clamp.name,Cold Charcoal Clamp
+entities.items.lr_elmshade_silk.name,Elmshade Silk
+entities.items.lr_heath_widow_silk.name,Heath Widow Silk
+entities.items.lr_humming_tinstone.name,Humming Tinstone
+entities.items.lr_knotted_elm.name,The Knotted Elm
+entities.items.lr_ore_sample.name,Spoil Heap Ore Sample
+entities.items.lr_pale_ink_orders.name,Orders in Pale Ink
+entities.items.lr_peat_brick.name,Stacked Peat Brick
+entities.items.lr_pit_prop.name,Bundle of Pit Props
+entities.items.lr_root_knot_charm.name,Root-Knot Charm
+entities.items.lr_saltdown_fleece.name,Saltdown Fleece
+entities.items.lr_salters_ledger.name,A Drowned Salter's Ledger
+entities.items.lr_spoil_heap.name,Tin Spoil Heap
+entities.items.lr_stacked_peat.name,Stack of Cut Peat
+entities.items.lr_stolen_mine_lamp.name,Stolen Mine Lamp
+entities.items.lr_stolen_salt_sack.name,Sack of Panwick Salt
 entities.items.lucent_reagent.name,Lucent Reagent
 entities.items.lunar_choir_leggings.name,Lunar Choir Leggings
 entities.items.lunar_tide_greatstaff.name,Lunar Tide Greatstaff
@@ -7681,12 +7703,14 @@ entities.mobs.aurelhorn.name,"Aurelhorn, First of the Herd"
 entities.mobs.balgath_cyclops.name,"Balgath, the One-Eyed Foreman"
 entities.mobs.barnacle_crawler.name,Wreckbound Sailor
 entities.mobs.barrow_king.name,The Barrow King
+entities.mobs.barrow_walker.name,Barrow Walker
 entities.mobs.barrow_wight.name,Barrow Wight
 entities.mobs.basin_raptor.name,Basin Raptor
 entities.mobs.bastion_drowned_anchor.name,Drowned Anchor
 entities.mobs.bastion_gaol_cage.name,Iron Cage
 entities.mobs.bastion_revenant.name,Bastion Revenant
 entities.mobs.bastion_warhound.name,Bastion Warhound
+entities.mobs.blackadit_tunneler.name,Blackadit Tunneler
 entities.mobs.bog_bloat.name,Bog Bloat
 entities.mobs.bogtoad.name,Bogtoad
 entities.mobs.bonechill_widow.name,Bonechill Widow
@@ -7696,6 +7720,8 @@ entities.mobs.bound_soul.name,Bound Soul
 entities.mobs.brakka_wallbreaker.name,Brakka the Wallbreaker
 entities.mobs.breach_wretch.name,Breach Wretch
 entities.mobs.briarbitten_fox.name,Briarbitten Fox
+entities.mobs.brine_bloat.name,Brine Bloat
+entities.mobs.brine_scuttler.name,Brine Scuttler
 entities.mobs.bristlejaw_shore_rat.name,Bristlejaw Shore Rat
 entities.mobs.broodsworn_goadsmith.name,Broodsworn Goadsmith
 entities.mobs.broodsworn_pyre_tender.name,Broodsworn Pyre-Tender
@@ -7740,6 +7766,7 @@ entities.mobs.canopy_weaver.name,Canopy Weaver
 entities.mobs.cantor_ilvane.name,Cantor Ilvane
 entities.mobs.captain_verlan.name,Captain Verlan
 entities.mobs.castaway_navigator.name,Navigator Suli
+entities.mobs.charwood_boar.name,Charwood Boar
 entities.mobs.choir_thrall.name,Bog Thrall
 entities.mobs.choirmother_selthe.name,Choirmother Selthe
 entities.mobs.cindraleth_maw_matriarch.name,Cindraleth the Maw Matriarch
@@ -7776,6 +7803,7 @@ entities.mobs.drowned_cantor.name,Drowned Cantor
 entities.mobs.drowned_dead.name,Drowned Dead
 entities.mobs.drowned_deckhand.name,Drowned Deckhand
 entities.mobs.drowned_pilgrim.name,Drowned Pilgrim
+entities.mobs.drowned_salt_hand.name,Drowned Salt-Hand
 entities.mobs.drowned_sergeant.name,Drowned Sergeant
 entities.mobs.drowned_templeguard.name,Drowned Templeguard
 entities.mobs.drowned_thrall.name,Drowned Thrall
@@ -7787,9 +7815,12 @@ entities.mobs.dune_troll.name,Dune Troll
 entities.mobs.duskwisp.name,Duskwisp
 entities.mobs.eastbrook_freight_caravan.name,Eastbrook Freight Caravan
 entities.mobs.edda_reedhand.name,Edda Reedhand
+entities.mobs.elmroot_dead.name,Elmroot Dead
+entities.mobs.elmshade_weaver.name,Elmshade Weaver
 entities.mobs.emberkin.name,Emberkin
 entities.mobs.emberwing_drake.name,Emberwing Drake
 entities.mobs.escort_della.name,Della Brindlepot
+entities.mobs.escort_lr_wagoner_nan.name,Nan Saltash
 entities.mobs.escort_neris.name,Neris Snowmantle
 entities.mobs.fallen_captain_aldren.name,Fallen Captain Aldren
 entities.mobs.fanglord_jaguar.name,Fanglord's Great Jaguar
@@ -7837,6 +7868,8 @@ entities.mobs.healing_dummy_ranger.name,Battered Ranger Dummy
 entities.mobs.healing_dummy_scout.name,Critical Scout Dummy
 entities.mobs.healing_dummy_soldier.name,Injured Soldier Dummy
 entities.mobs.healing_dummy_tank.name,Injured Vanguard Dummy
+entities.mobs.heath_prowler.name,Heath Prowler
+entities.mobs.heath_widow.name,Heath Widow
 entities.mobs.hedge_gnome.name,Hedge Gnome
 entities.mobs.hedge_knight.name,Dawnhold Knight
 entities.mobs.heroic_boss_dummy.name,Heroic Boss Dummy
@@ -7924,8 +7957,10 @@ entities.mobs.old_marrowshell.name,Old Marrowshell
 entities.mobs.orchard_boar.name,Orchard Boar
 entities.mobs.orchard_treant.name,Orchard Treant
 entities.mobs.ossuary_sentinel.name,Ossuary Sentinel
+entities.mobs.pale_accord_delver.name,Pale Accord Delver
 entities.mobs.pale_choir_acolyte.name,Pale Choir Acolyte
 entities.mobs.pale_huntsman.name,The Pale Huntsman
+entities.mobs.pan_looter.name,Pan Looter
 entities.mobs.pearlguard_sentinel.name,Moonmantle Ray
 entities.mobs.pyre_colossus.name,Pyre Colossus
 entities.mobs.quarry_burrower.name,Quarry Burrower
@@ -7975,6 +8010,7 @@ entities.mobs.rime_whelp.name,Rime Whelp
 entities.mobs.rimeweb.name,Lady of the Bonechill
 entities.mobs.rimeweb_hatchling.name,Rimeweb Hatchling
 entities.mobs.rimeweb_spinner.name,Rimeweb Spinner
+entities.mobs.saltdown_ram.name,Saltdown Ram
 entities.mobs.sanctum_boneguard.name,Sanctum Boneguard
 entities.mobs.sanctum_drakonid.name,Sanctum Scaleguard
 entities.mobs.sanctum_shackle_anvil.name,Anvil Shackle
@@ -7995,6 +8031,7 @@ entities.mobs.snowdrift_wolf.name,Snowdrift Wolf
 entities.mobs.soul_brazier.name,Soul Brazier
 entities.mobs.spider_egg.name,Broodmother Egg
 entities.mobs.spider_egg_sac.name,Spider Egg-Sac
+entities.mobs.spoilheap_digger.name,Spoilheap Digger
 entities.mobs.spore_toad.name,Spore Toad
 entities.mobs.sporeling_gatherer.name,Sporeling Gatherer
 entities.mobs.stable_horse.name,Stable Horse
@@ -8029,6 +8066,8 @@ entities.mobs.tideglass_reflection_shaman.name,Tideglass Reflection
 entities.mobs.tideglass_reflection_warlock.name,Tideglass Reflection
 entities.mobs.tideglass_reflection_warrior.name,Tideglass Reflection
 entities.mobs.tidewisp.name,Tidewisp
+entities.mobs.tinmoor_stalker.name,Tinmoor Stalker
+entities.mobs.tinstone_elemental.name,Tinstone Elemental
 entities.mobs.tolling_bell.name,Tolling Bell
 entities.mobs.topiary_stag.name,Topiary Stag
 entities.mobs.topiary_wolf.name,Topiary Wolf
@@ -8068,6 +8107,7 @@ entities.mobs.wildheart_ravager.name,Bloodmane Ravager
 entities.mobs.wildheart_stalker.name,Vineclaw Stalker
 entities.mobs.willow_sprite.name,Willow Sprite
 entities.mobs.willowfen_remedy_caravan.name,Willowfen Remedy Caravan
+entities.mobs.wold_wolf.name,Wold Wolf
 entities.mobs.wood_wraith.name,Wood Wraith
 entities.mobs.wraithbinder_maldrec.name,Wraithbinder Maldrec
 entities.mobs.wreck_thief.name,Wreckfield Thief
@@ -8093,6 +8133,9 @@ entities.npcs.archivist_tullo.title,Reader of Stones
 entities.npcs.armorer_hode.greeting,"Forge is hot and the grindstone is turning. If it cuts, I sell it."
 entities.npcs.armorer_hode.name,Armorer Hode
 entities.npcs.armorer_hode.title,Master Armorer
+entities.npcs.assayer_merrin.greeting,"Every stone tells you what it is, if you ask it the right way. Most people only ask with a hammer."
+entities.npcs.assayer_merrin.name,Merrin Coyle
+entities.npcs.assayer_merrin.title,Assayer
 entities.npcs.astronomer_cassian.greeting,"Hush now. The sky never dawns here, so it never stops talking either."
 entities.npcs.astronomer_cassian.name,Astronomer Cassian
 entities.npcs.astronomer_cassian.title,Watcher at the Vigil
@@ -8159,6 +8202,9 @@ entities.npcs.card_master.title,Dealer of Chance
 entities.npcs.carpenter_pella.greeting,"Measure twice, panic once. Then measure again, just to be safe."
 entities.npcs.carpenter_pella.name,Wenna Nookwright
 entities.npcs.carpenter_pella.title,Carpenter
+entities.npcs.charcoal_burner_gyles.greeting,Soot washes off. Wolves do not. I will take the soot.
+entities.npcs.charcoal_burner_gyles.name,Gyles Charwood
+entities.npcs.charcoal_burner_gyles.title,Charcoal Burner
 entities.npcs.chronicler_edda_hartwell.greeting,"The mountain forgets nothing, {playerName}, and neither do I. Let us see what you have done."
 entities.npcs.chronicler_edda_hartwell.name,Chronicler Zenzie
 entities.npcs.chronicler_edda_hartwell.title,The Peaks Chronicle
@@ -8324,6 +8370,9 @@ entities.npcs.lampman_cobb.title,Keeper of the Crowgate Lanterns
 entities.npcs.lira_dewsong.greeting,"Welcome to Moonrest, where the flowers do our dawning for us."
 entities.npcs.lira_dewsong.name,Lira Dewsong
 entities.npcs.lira_dewsong.title,Night-Gardener of Moonrest
+entities.npcs.lodge_keeper_hesper.greeting,The wold was old before the first hearth was lit. Walk softly. It remembers.
+entities.npcs.lodge_keeper_hesper.name,Hesper Elmsley
+entities.npcs.lodge_keeper_hesper.title,Keeper of the Elmhallow Lodge
 entities.npcs.loremaster_caddis.greeting,"Mind the loose shale, {className}. The mountain has been... restless of late. I intend to learn why."
 entities.npcs.loremaster_caddis.name,Loremaster Caddis
 entities.npcs.loremaster_caddis.title,Loremaster
@@ -8336,6 +8385,9 @@ entities.npcs.marshal_redbrook.title,Lanternwarden Commander
 entities.npcs.mender_saul.greeting,"I have set more bones this one month than in ten years of mending fishing falls. The breaks do not leave much of what they take. Come back to me whole, if you can manage it."
 entities.npcs.mender_saul.name,Mender Saul
 entities.npcs.mender_saul.title,Field Surgeon
+entities.npcs.mine_captain_penhallow.greeting,Wheal Patience. The name was a joke when we sank the shaft. Nobody is laughing now.
+entities.npcs.mine_captain_penhallow.name,Tobias Penhallow
+entities.npcs.mine_captain_penhallow.title,Mine Captain of Wheal Patience
 entities.npcs.mother_sedge.greeting,The willows told me you were coming before your boots left the bridge.
 entities.npcs.mother_sedge.name,Mother Sedge
 entities.npcs.mother_sedge.title,Fen-Witch of Willowweep
@@ -8363,6 +8415,9 @@ entities.npcs.orchardist_pomeline.title,Keeper of the Gilded Rows
 entities.npcs.overseer_pell.greeting,"I clock every run that comes down these lanes, {playerName}, and I have seen far worse footwork. The path behind me climbs to the practice yard: that is where footwork turns into swordwork."
 entities.npcs.overseer_pell.name,Overseer Pell
 entities.npcs.overseer_pell.title,Gauntlet Overseer
+entities.npcs.pan_reeve_odda.greeting,"Panwick salts the fish of half the south. When the pans stop, people go hungry. So the pans do not stop."
+entities.npcs.pan_reeve_odda.name,Odda Brinewell
+entities.npcs.pan_reeve_odda.title,Pan-Reeve of Panwick
 entities.npcs.patron_amos_eelby.greeting,"Pull up a bench, {className}. Grissel here swears the big eel under Fenbridge is a myth. I've had my hand on him twice. Twice! Slippery as a tax collector, and near as long as this bench."
 entities.npcs.patron_amos_eelby.name,Amos Eelby
 entities.npcs.patron_amos_eelby.title,Eel Fisher
@@ -8378,6 +8433,9 @@ entities.npcs.patron_ned_oxley.title,Drover
 entities.npcs.pearlmother_isha.greeting,"The sea gives, the sand keeps, and the jungle takes. Stay on the strand, stranger."
 entities.npcs.pearlmother_isha.name,Pearl-Mother Isha
 entities.npcs.pearlmother_isha.title,Elder of the Divers
+entities.npcs.peat_foreman_wat.greeting,Mind where you put your feet. Half this moor is peat and the other half is pretending.
+entities.npcs.peat_foreman_wat.name,Wat Heathersby
+entities.npcs.peat_foreman_wat.title,Peat-Cutters Foreman
 entities.npcs.provisioner_fenna.greeting,"Bread still warm, water still sweet. The Hollow provides, and so do I."
 entities.npcs.provisioner_fenna.name,Provisioner Fenna
 entities.npcs.provisioner_fenna.title,Eldershine Provisioner
@@ -8405,6 +8463,9 @@ entities.npcs.riftwatch_ollun.title,Breach Scholar
 entities.npcs.riftwright_maelis.greeting,"A Riftbound band remembers the break that made it, {className}. Bring me the band, and the essence the breaks shed, and I will teach it to remember more."
 entities.npcs.riftwright_maelis.name,Riftwright Maelis
 entities.npcs.riftwright_maelis.title,Rift Forgemaster
+entities.npcs.salt_boiler_jory.greeting,Breathe through your nose. You get used to the brine. Mostly.
+entities.npcs.salt_boiler_jory.name,Jory Pannell
+entities.npcs.salt_boiler_jory.title,Salt Boiler
 entities.npcs.salvage_boss_ryna.greeting,"A {className} with working arms, good. The wreck line pays well, if the crabs leave you enough fingers to count it."
 entities.npcs.salvage_boss_ryna.name,Salvage-Boss Ryna
 entities.npcs.salvage_boss_ryna.title,Mistress of the Wreck Line
@@ -8806,6 +8867,130 @@ entities.quests.c2_33_paddy_work_fog.objectives.0.label,Paddy Crop Bundle
 entities.quests.c2_33_paddy_work_fog.objectives.1.label,Paddy Eel taken from the traps
 entities.quests.c2_33_paddy_work_fog.text,"There is a harvest standing in my west paddy, and I do not remember sowing it. My hands do, apparently. Bundle what is ripe along the causeway bank, and empty my two eel traps before the eels eat the rest."
 entities.quests.c2_33_paddy_work_fog.title,Paddy Work in the Fog
+entities.quests.lr_01_silk_in_the_heather.completion,"Five good hanks and a heath you can walk across without dancing. The cutters will sing about you, {playerName}. Badly, but they will sing."
+entities.quests.lr_01_silk_in_the_heather.objectives.0.label,Heath Widow slain
+entities.quests.lr_01_silk_in_the_heather.objectives.1.label,Heath Widow Silk
+entities.quests.lr_01_silk_in_the_heather.text,"Widows have spun over the heather east of the cuts, and my cutters walk into the webs every morning with a spade in one hand and a scream in the other. Clear them out for me. And bring back some of that silk: wound tight, it makes the best drying lines on the moor."
+entities.quests.lr_01_silk_in_the_heather.title,Silk in the Heather
+entities.quests.lr_02_barrow_walkers.completion,"Quiet again, and the barrows only barrows. Tamsin says the moor is listening to something. I say it is listening to you now."
+entities.quests.lr_02_barrow_walkers.objectives.0.label,Barrow Walker laid to rest
+entities.quests.lr_02_barrow_walkers.text,"South of the Hearth Ring the old barrows have started to empty, and what climbs out walks the moor at dusk. They do not want our peat and they do not want our coin. They just walk, and anything in their way gets walked over. Lay them back down, {playerName}, gently if you can and firmly if you cannot."
+entities.quests.lr_02_barrow_walkers.title,The Barrow Walkers
+entities.quests.lr_03_peat_for_the_cutters.completion,"Dry as a sermon, every brick. Ferncross will be warm tonight, and that is your doing."
+entities.quests.lr_03_peat_for_the_cutters.objectives.0.label,Peat brick taken from a stack
+entities.quests.lr_03_peat_for_the_cutters.text,"The hounds have kept my cutters off the drying stacks for a week, and wet peat does not burn. Go down to the cuts and bring me a brick from each stack while the weather holds. The hounds will not thank you. Neither will your back."
+entities.quests.lr_03_peat_for_the_cutters.title,Peat for the Cutters
+entities.quests.lr_04_prowlers_on_the_heath.completion,"No more tracks by the pony line this morning. The carts roll again. Thank you, {playerName}."
+entities.quests.lr_04_prowlers_on_the_heath.objectives.0.label,Heath Prowler slain
+entities.quests.lr_04_prowlers_on_the_heath.text,"Prowlers have come up from the south heath and taken two of our ponies. A pony is a cart, and a cart is how the peat gets to market. Thin them out before they get bold enough to try the camp."
+entities.quests.lr_04_prowlers_on_the_heath.title,Prowlers on the Heath
+entities.quests.lr_05_word_to_panwick.completion,"Wat sent you? Then he has worked out something is wrong before I have had time to write it down. Sit. There is more trouble in Panwick than there are pans, and I have a great many pans."
+entities.quests.lr_05_word_to_panwick.objectives.0.label,Speak with Odda Brinewell in Panwick
+entities.quests.lr_05_word_to_panwick.text,"Panwick buys half my peat to boil their brine, and the Pan-Reeve has not sent a cart in a fortnight. Odda Brinewell does not miss a fortnight. Take the Applewold road south over the Saltmeads gate and find out what is keeping her. If it is trouble, she will be glad of you. If it is not, buy me some salt."
+entities.quests.lr_05_word_to_panwick.title,Word to Panwick
+entities.quests.lr_06_claws_in_the_pans.completion,"Ten fewer claws and I can finally rake a pan without counting my fingers after. You have the makings of a salter, {playerName}."
+entities.quests.lr_06_claws_in_the_pans.objectives.0.label,Brine Scuttler slain
+entities.quests.lr_06_claws_in_the_pans.text,"Scuttlers. Up out of the shallows and into the settling pans, snipping at anyone who bends over the brine. A boiler with no fingers is a boiler with no job. Go and teach them the pans are ours."
+entities.quests.lr_06_claws_in_the_pans.title,Claws in the Pans
+entities.quests.lr_07_stolen_salt.completion,"Six sacks, still dry. You would not believe how hard it is to find someone who can carry salt through a fight without spilling it."
+entities.quests.lr_07_stolen_salt.objectives.0.label,Sack of Panwick Salt
+entities.quests.lr_07_stolen_salt.text,"Looters have been carrying off whole sacks from the drying sheds by night and camping west of the pans as if they owned the place. Salt is the only coin this town has. Get my sacks back, and if the looters object, let them object to you."
+entities.quests.lr_07_stolen_salt.title,Stolen Salt
+entities.quests.lr_08_skimming_the_pans.completion,"Clean, clear and sharp as a winter morning. Those will boil down into the best salt Panwick has made all season."
+entities.quests.lr_08_skimming_the_pans.objectives.0.label,Brine skimmed from a pan
+entities.quests.lr_08_skimming_the_pans.text,"Now the scuttlers are gone, the pans need skimming before the brine sours. Go out to the Brine Pans and take a skim from each pan rim. Keep the scum out of it. If it is grey, it is wrong. If it is pink, run."
+entities.quests.lr_08_skimming_the_pans.title,Skimming the Pans
+entities.quests.lr_09_fleece_for_the_salters.completion,"Greasy, thick and smelling of the downs. The crew will grumble about the smell for a week and then never take the gloves off."
+entities.quests.lr_09_fleece_for_the_salters.objectives.0.label,Saltdown Fleece
+entities.quests.lr_09_fleece_for_the_salters.text,"Salters work with their hands in brine all day, and brine eats skin. The rams on the salt downs grow a fleece so greasy the brine slides right off it. Bring me some and the whole crew will have gloves by winter."
+entities.quests.lr_09_fleece_for_the_salters.title,Fleece for the Salters
+entities.quests.lr_10_what_the_tide_brought.completion,"Thank you. I will have their names read in the square tonight, the ones I can still remember. Something sent them back to us. I want to know what."
+entities.quests.lr_10_what_the_tide_brought.objectives.0.label,Drowned Salt-Hand laid to rest
+entities.quests.lr_10_what_the_tide_brought.text,"The tide has started bringing in more than salt. Drowned men walk up out of the shallows east of the pans, still in salter aprons, still carrying rakes. Some of them I knew. Put them to rest, {playerName}. I cannot ask the town to do it."
+entities.quests.lr_10_what_the_tide_brought.title,What the Tide Brought
+entities.quests.lr_11_ledger_in_the_brine.completion,"Waterlogged, but legible. The last page is a tally of salt sold to a buyer with no name, paid in new coin, delivered to the Wychwold road. Salt does not go west, {playerName}. Nobody in the wold needs that much."
+entities.quests.lr_11_ledger_in_the_brine.objectives.0.label,A Drowned Salter's Ledger
+entities.quests.lr_11_ledger_in_the_brine.text,"Every salter carries a tally book in a waxed pouch, and the drowned still wear theirs. One of them will say where they were working when the water took them. Find me a ledger that can still be read."
+entities.quests.lr_11_ledger_in_the_brine.title,A Ledger in the Brine
+entities.quests.lr_12_bloats_on_the_saltings.completion,I could smell that from here. The pans will forgive you. Your boots may not.
+entities.quests.lr_12_bloats_on_the_saltings.objectives.0.label,Brine Bloat popped
+entities.quests.lr_12_bloats_on_the_saltings.text,"Bloats have drifted onto the saltings east of town and they sour every pan they float near. Pop them, from a distance if you have any sense. I will not be helping with the washing afterwards."
+entities.quests.lr_12_bloats_on_the_saltings.title,Bloats on the Saltings
+entities.quests.lr_13_salt_cart.completion,"Nan says you kept the scuttlers off the cart and only lost your temper once. From Nan, that is high praise."
+entities.quests.lr_13_salt_cart.objectives.0.label,Nan Saltash escorted to the Brine Pans
+entities.quests.lr_13_salt_cart.text,"Nan Saltash takes the cart out to the Brine Pans for the morning skim, and twice this week the scuttlers have come up out of the water for her. Walk with her to the pans. If that ledger is right, I will need every sack we can make before somebody else comes asking for it."
+entities.quests.lr_13_salt_cart.title,The Salt Cart
+entities.quests.lr_14_the_salt_way_west.completion,"Salt by the cartload? Out here? Nobody in the wold salts anything but the odd ham. Then somebody is buying it for something else, and I do not like the list of things that need that much salt."
+entities.quests.lr_14_the_salt_way_west.objectives.0.label,Speak with Hesper Elmsley at Elmhallow
+entities.quests.lr_14_the_salt_way_west.text,"The ledger says the salt went west along the salt way, into the Wychwold. The Bracken Circle keeps a lodge at Elmhallow and Hesper Elmsley knows every cart that has rolled through the wold in thirty years. Take her the news, and ask her who in the wold is buying salt by the cartload."
+entities.quests.lr_14_the_salt_way_west.title,The Salt Way West
+entities.quests.lr_15_wolves_at_the_clamps.completion,"The pack has gone quiet. My lads slept last night for the first time in a week, and only two clamps burned through. That is a good week, {playerName}."
+entities.quests.lr_15_wolves_at_the_clamps.objectives.0.label,Wold Wolf slain
+entities.quests.lr_15_wolves_at_the_clamps.text,"A clamp has to be watched day and night or it burns through and you are left with ash. The wolves know it. They wait until a burner dozes and then they come for the lunch basket, and sometimes for the burner. Drive them off east of the lodge."
+entities.quests.lr_15_wolves_at_the_clamps.title,Wolves at the Clamps
+entities.quests.lr_16_tusks_and_tempers.completion,"Good, sharp tusks. There is a kind of justice in pegging their own turf down with them."
+entities.quests.lr_16_tusks_and_tempers.objectives.0.label,Charwood Boar Tusk
+entities.quests.lr_16_tusks_and_tempers.text,"The boars north of the lodge root up the turf we stack over the clamps, and a clamp with no turf is just a bonfire. Bring me some tusks. The Circle carves them into pegs for the turf, which the boars find very insulting."
+entities.quests.lr_16_tusks_and_tempers.title,Tusks and Tempers
+entities.quests.lr_17_cold_clamps.completion,"They took, all four, though you say the smoke came out the wrong way at first. Into the ground instead of up. I will be asking Hesper about that."
+entities.quests.lr_17_cold_clamps.objectives.0.label,Cold charcoal clamp relit
+entities.quests.lr_17_cold_clamps.text,"Four of my clamps in the hollow went cold overnight. Not burned out: cold, with the wood still inside, like something drank the fire out of them. Take this firebrand down to the hollow and light them again. If they will not take, come back and tell me, and we will both pretend we are not worried."
+entities.quests.lr_17_cold_clamps.title,Cold Clamps
+entities.quests.lr_18_silk_in_the_elms.completion,"Light on the wold floor again, and enough silk to bind the elm for a year. Thank you. Now I can show you what I have been afraid to look at alone."
+entities.quests.lr_18_silk_in_the_elms.objectives.0.label,Elmshade Weaver slain
+entities.quests.lr_18_silk_in_the_elms.objectives.1.label,Elmshade Silk
+entities.quests.lr_18_silk_in_the_elms.text,"Weavers have strung the elms south of here so thick that the light does not reach the floor. The Circle does not hurt the wold lightly, but a wood with no light is a dying wood. Cut them back, and bring me their silk. We weave it into the binding cords for the Knotted Elm."
+entities.quests.lr_18_silk_in_the_elms.title,Silk in the Elms
+entities.quests.lr_19_under_the_roots.completion,"Still now, all of them. They were facing the same way, east, toward the salt way. Whatever the salt is for, the dead under the elm know about it."
+entities.quests.lr_19_under_the_roots.objectives.0.label,Elmroot Dead laid to rest
+entities.quests.lr_19_under_the_roots.text,"The old wold folk buried their dead among the roots of the Knotted Elm, so the tree would keep them. Now the tree is letting them go. They climb out of the roots and stand around the trunk as if they are waiting for someone. Lay them down again, {playerName}, before they decide who."
+entities.quests.lr_19_under_the_roots.title,Under the Roots
+entities.quests.lr_20_the_knotted_elm.completion,"Cold, you say, and pulling toward the south-west. Toward the Tinmarch. Someone is taking salt and fire out of this country and sending it somewhere under the ground. The miners at Wheal Patience will know where the ground has been opened."
+entities.quests.lr_20_the_knotted_elm.objectives.0.label,Root-Knot Charm
+entities.quests.lr_20_the_knotted_elm.objectives.1.label,The Knotted Elm touched
+entities.quests.lr_20_the_knotted_elm.text,"The elmroot dead wear knotted charms, the old binding the wold folk tied before the first hearth. Gather some from them, then go to the Knotted Elm and lay your hand on the trunk. If the binding still holds, you will feel it. If it does not, tell me what you felt instead."
+entities.quests.lr_20_the_knotted_elm.title,The Knotted Elm
+entities.quests.lr_21_tinners_ford.completion,"The elm, pulling toward my moor. That is the second strange thing I have heard this week, and the first was a crew of strangers opening the old Blackadit without a licence. Sit down. I think we have the same problem."
+entities.quests.lr_21_tinners_ford.objectives.0.label,Speak with Tobias Penhallow at Wheal Patience
+entities.quests.lr_21_tinners_ford.text,"Cross Tinners' Ford into the Tinmarch and find Captain Tobias Penhallow at Wheal Patience. He is a Gilt Measure man and he will want to argue about who pays for what. Let him. Then tell him the elm is pulling toward his moor, and watch his face."
+entities.quests.lr_21_tinners_ford.title,Tinners' Ford
+entities.quests.lr_22_rats_in_the_spoil.completion,The heaps have stopped twitching. My insurers will never know how close they came to paying out. Neither will my wife.
+entities.quests.lr_22_rats_in_the_spoil.objectives.0.label,Spoilheap Digger slain
+entities.quests.lr_22_rats_in_the_spoil.text,"Diggers have burrowed into the spoil heaps east of camp, and a spoil heap full of tunnels is a spoil heap waiting to fall on somebody. Clear them out before my insurers hear about it."
+entities.quests.lr_22_rats_in_the_spoil.title,Rats in the Spoil
+entities.quests.lr_23_stalkers_on_the_moor.completion,"I walked the north moor this morning and nothing followed me but my own shadow. You cannot assay peace of mind, but I would put a high value on it."
+entities.quests.lr_23_stalkers_on_the_moor.objectives.0.label,Tinmoor Stalker slain
+entities.quests.lr_23_stalkers_on_the_moor.text,"I walk the moor north of camp for samples, and lately something walks behind me. Stalkers, a whole family of them, and they have learned that an assayer with her nose in a rock does not look up. Make them reconsider."
+entities.quests.lr_23_stalkers_on_the_moor.title,Stalkers on the Moor
+entities.quests.lr_24_stolen_lamps.completion,"Six lamps, and every one of them with the Wheal Patience mark scratched off and a pale sigil scratched on. Somebody is supplying those tunnelers, {playerName}. Tunnelers do not draw sigils."
+entities.quests.lr_24_stolen_lamps.objectives.0.label,Stolen Mine Lamp
+entities.quests.lr_24_stolen_lamps.text,"Tunnelers came up from the Blackadit and stripped our lamp store bare. A miner with no lamp is a miner with no work, and the shift is waiting. They are camped by the old working south-east of here. Bring the lamps home."
+entities.quests.lr_24_stolen_lamps.title,Stolen Lamps
+entities.quests.lr_25_assay_samples.completion,"Tin, mostly. And something else, bright as a struck spark and humming like a kettle. It is not ore. I do not know what it is, and that is not a sentence an assayer likes to say."
+entities.quests.lr_25_assay_samples.objectives.0.label,Ore sample taken from a spoil heap
+entities.quests.lr_25_assay_samples.text,The spoil heaps east of camp should be worthless: that is what spoil means. But my lamp flickers when I walk past them. Bring me a sample from each heap. Do not lick them. I am told people need telling.
+entities.quests.lr_25_assay_samples.title,Assay Samples
+entities.quests.lr_26_the_humming_stones.completion,"Hold one to your ear. That hum is a hearth, {playerName}. A hearth with no fire, pulled up out of the ground and left to walk. Someone is drawing the old fires out of this country, and the stones are what is left over."
+entities.quests.lr_26_the_humming_stones.objectives.0.label,Tinstone Elemental broken
+entities.quests.lr_26_the_humming_stones.objectives.1.label,Humming Tinstone
+entities.quests.lr_26_the_humming_stones.text,"The hum in those samples leads to the Stannary Stones, west of camp. Living stone walks there now, tin and quartz grown legs, and it hums the same note. Break a few apart and bring me the cores. Carefully. I want to know what is singing."
+entities.quests.lr_26_the_humming_stones.title,The Humming Stones
+entities.quests.lr_27_who_opened_the_blackadit.completion,"They fought like people with somewhere to be. Whatever they are digging for, they think it is worth more than tin. That frightens me more than they did."
+entities.quests.lr_27_who_opened_the_blackadit.objectives.0.label,Pale Accord Delver defeated
+entities.quests.lr_27_who_opened_the_blackadit.text,"The Blackadit was sealed before my grandfather was born. It floods, it falls in and it eats lamps. Now a crew in pale coats has opened it and set the tunnelers to work for them. They are the Pale Accord, the same crew Coinwell chased off the chalk. Drive them out of my moor."
+entities.quests.lr_27_who_opened_the_blackadit.title,Who Opened the Blackadit
+entities.quests.lr_28_orders_in_pale_ink.completion,"Salt to keep the deep workings dry, charcoal to keep them lit, and the hearths under the moor drawn up and sent on in sealed carts. No name at the bottom, only that pale sigil. This is bigger than one mine, {playerName}. I will send copies to Panwick, Elmhallow and the Gilt Measure's own house before the week is out."
+entities.quests.lr_28_orders_in_pale_ink.objectives.0.label,Orders in Pale Ink
+entities.quests.lr_28_orders_in_pale_ink.text,"A crew that organized carries orders. Find them. I want to know who signs for salt from Panwick, firebrands from the wold and the old fires from under my moor, and I want it in their own hand."
+entities.quests.lr_28_orders_in_pale_ink.title,Orders in Pale Ink
+entities.quests.lr_29_shore_up_the_blackadit.completion,"Three workings braced and my lads posted on the spoil heaps. The Accord will be back, but they will have to knock first. Wheal Patience will not forget it, {playerName}. Neither will I."
+entities.quests.lr_29_shore_up_the_blackadit.objectives.0.label,Blackadit working braced shut
+entities.quests.lr_29_shore_up_the_blackadit.text,"I cannot seal a mine my grandfather could not, but I can make it too much trouble to use. Take these pit props down to the three workings the Accord opened round the Blackadit and brace them shut. Nobody gets through a braced working without a week of work and a great deal of noise, and my lads will be listening."
+entities.quests.lr_29_shore_up_the_blackadit.title,Shore Up the Blackadit
+entities.quests.lr_30_barrow_grave_goods.completion,"Clay hearths, every one of them. The old moor folk buried their dead with a fire to carry. I will have Agnes take them back to the barrows at first light."
+entities.quests.lr_30_barrow_grave_goods.objectives.0.label,Barrow Grave-Good
+entities.quests.lr_30_barrow_grave_goods.text,"The walkers carry things out of the barrows with them: brooches, combs, little clay hearths no bigger than your thumb. Those belong in the ground with their owners. Bring me what they carry and I will see the keepers put it all back where it was."
+entities.quests.lr_30_barrow_grave_goods.title,Barrow Grave-Goods
 entities.quests.q_af_amber_from_the_herd.completion,"Six clots, clean as poured honey. These gloves are stitched with the last batch, {playerName}: sap-stiffened, and warmer than they look."
 entities.quests.q_af_amber_from_the_herd.objectives.0.label,Gilded Sap Clot
 entities.quests.q_af_amber_from_the_herd.text,"The gilded stags bed down beneath my oldest trees, and the sap drips gold into their coats all night. Combed clots of it are the purest amber in the weald. Bring me six, {playerName}. The stags will not thank you, but they will not miss it either."

@@ -25442,6 +25442,72 @@ export const zh_CN: EnTranslations = {
       "c2_rotten_span": {
         "name": "Rotten Boardwalk Span"
       },
+      "lr_heath_widow_silk": {
+        "name": "Heath Widow Silk"
+      },
+      "lr_barrow_grave_good": {
+        "name": "Barrow Grave-Good"
+      },
+      "lr_peat_brick": {
+        "name": "Stacked Peat Brick"
+      },
+      "lr_stolen_salt_sack": {
+        "name": "Sack of Panwick Salt"
+      },
+      "lr_brine_skim": {
+        "name": "Skim of Clean Brine"
+      },
+      "lr_saltdown_fleece": {
+        "name": "Saltdown Fleece"
+      },
+      "lr_salters_ledger": {
+        "name": "A Drowned Salter's Ledger"
+      },
+      "lr_charwood_boar_tusk": {
+        "name": "Charwood Boar Tusk"
+      },
+      "lr_burners_firebrand": {
+        "name": "Burner's Firebrand"
+      },
+      "lr_elmshade_silk": {
+        "name": "Elmshade Silk"
+      },
+      "lr_root_knot_charm": {
+        "name": "Root-Knot Charm"
+      },
+      "lr_ore_sample": {
+        "name": "Spoil Heap Ore Sample"
+      },
+      "lr_stolen_mine_lamp": {
+        "name": "Stolen Mine Lamp"
+      },
+      "lr_humming_tinstone": {
+        "name": "Humming Tinstone"
+      },
+      "lr_pale_ink_orders": {
+        "name": "Orders in Pale Ink"
+      },
+      "lr_pit_prop": {
+        "name": "Bundle of Pit Props"
+      },
+      "lr_stacked_peat": {
+        "name": "Stack of Cut Peat"
+      },
+      "lr_brine_pan_edge": {
+        "name": "Brine Pan"
+      },
+      "lr_cold_clamp": {
+        "name": "Cold Charcoal Clamp"
+      },
+      "lr_knotted_elm": {
+        "name": "The Knotted Elm"
+      },
+      "lr_spoil_heap": {
+        "name": "Tin Spoil Heap"
+      },
+      "lr_blackadit_mouth": {
+        "name": "Blackadit Working"
+      },
       "membership_staff": {
         "name": "万变法杖"
       },
@@ -27586,6 +27652,60 @@ export const zh_CN: EnTranslations = {
       "escort_della": {
         "name": "Della Brindlepot"
       },
+      "heath_widow": {
+        "name": "Heath Widow"
+      },
+      "barrow_walker": {
+        "name": "Barrow Walker"
+      },
+      "heath_prowler": {
+        "name": "Heath Prowler"
+      },
+      "brine_scuttler": {
+        "name": "Brine Scuttler"
+      },
+      "pan_looter": {
+        "name": "Pan Looter"
+      },
+      "saltdown_ram": {
+        "name": "Saltdown Ram"
+      },
+      "drowned_salt_hand": {
+        "name": "Drowned Salt-Hand"
+      },
+      "brine_bloat": {
+        "name": "Brine Bloat"
+      },
+      "wold_wolf": {
+        "name": "Wold Wolf"
+      },
+      "charwood_boar": {
+        "name": "Charwood Boar"
+      },
+      "elmshade_weaver": {
+        "name": "Elmshade Weaver"
+      },
+      "elmroot_dead": {
+        "name": "Elmroot Dead"
+      },
+      "spoilheap_digger": {
+        "name": "Spoilheap Digger"
+      },
+      "blackadit_tunneler": {
+        "name": "Blackadit Tunneler"
+      },
+      "tinmoor_stalker": {
+        "name": "Tinmoor Stalker"
+      },
+      "tinstone_elemental": {
+        "name": "Tinstone Elemental"
+      },
+      "pale_accord_delver": {
+        "name": "Pale Accord Delver"
+      },
+      "escort_lr_wagoner_nan": {
+        "name": "Nan Saltash"
+      },
       "ironvein_foreman": {
         "name": "铁脉工头"
       },
@@ -28478,6 +28598,41 @@ export const zh_CN: EnTranslations = {
         "name": "Tobbin Wickerby",
         "title": "Fisherman",
         "greeting": "Never trust a fish with good manners. The polite ones are planning something."
+      },
+      "peat_foreman_wat": {
+        "name": "Wat Heathersby",
+        "title": "Peat-Cutters Foreman",
+        "greeting": "Mind where you put your feet. Half this moor is peat and the other half is pretending."
+      },
+      "pan_reeve_odda": {
+        "name": "Odda Brinewell",
+        "title": "Pan-Reeve of Panwick",
+        "greeting": "Panwick salts the fish of half the south. When the pans stop, people go hungry. So the pans do not stop."
+      },
+      "salt_boiler_jory": {
+        "name": "Jory Pannell",
+        "title": "Salt Boiler",
+        "greeting": "Breathe through your nose. You get used to the brine. Mostly."
+      },
+      "lodge_keeper_hesper": {
+        "name": "Hesper Elmsley",
+        "title": "Keeper of the Elmhallow Lodge",
+        "greeting": "The wold was old before the first hearth was lit. Walk softly. It remembers."
+      },
+      "charcoal_burner_gyles": {
+        "name": "Gyles Charwood",
+        "title": "Charcoal Burner",
+        "greeting": "Soot washes off. Wolves do not. I will take the soot."
+      },
+      "mine_captain_penhallow": {
+        "name": "Tobias Penhallow",
+        "title": "Mine Captain of Wheal Patience",
+        "greeting": "Wheal Patience. The name was a joke when we sank the shaft. Nobody is laughing now."
+      },
+      "assayer_merrin": {
+        "name": "Merrin Coyle",
+        "title": "Assayer",
+        "greeting": "Every stone tells you what it is, if you ask it the right way. Most people only ask with a hammer."
       },
       "tidewatcher_ondrel": {
         "name": "翁德雷尔·凡恩",
@@ -31550,6 +31705,318 @@ export const zh_CN: EnTranslations = {
           },
           "1": {
             "label": "Paddy Eel taken from the traps"
+          }
+        }
+      },
+      "lr_01_silk_in_the_heather": {
+        "title": "Silk in the Heather",
+        "text": "Widows have spun over the heather east of the cuts, and my cutters walk into the webs every morning with a spade in one hand and a scream in the other. Clear them out for me. And bring back some of that silk: wound tight, it makes the best drying lines on the moor.",
+        "completion": "Five good hanks and a heath you can walk across without dancing. The cutters will sing about you, {playerName}. Badly, but they will sing.",
+        "objectives": {
+          "0": {
+            "label": "Heath Widow slain"
+          },
+          "1": {
+            "label": "Heath Widow Silk"
+          }
+        }
+      },
+      "lr_02_barrow_walkers": {
+        "title": "The Barrow Walkers",
+        "text": "South of the Hearth Ring the old barrows have started to empty, and what climbs out walks the moor at dusk. They do not want our peat and they do not want our coin. They just walk, and anything in their way gets walked over. Lay them back down, {playerName}, gently if you can and firmly if you cannot.",
+        "completion": "Quiet again, and the barrows only barrows. Tamsin says the moor is listening to something. I say it is listening to you now.",
+        "objectives": {
+          "0": {
+            "label": "Barrow Walker laid to rest"
+          }
+        }
+      },
+      "lr_30_barrow_grave_goods": {
+        "title": "Barrow Grave-Goods",
+        "text": "The walkers carry things out of the barrows with them: brooches, combs, little clay hearths no bigger than your thumb. Those belong in the ground with their owners. Bring me what they carry and I will see the keepers put it all back where it was.",
+        "completion": "Clay hearths, every one of them. The old moor folk buried their dead with a fire to carry. I will have Agnes take them back to the barrows at first light.",
+        "objectives": {
+          "0": {
+            "label": "Barrow Grave-Good"
+          }
+        }
+      },
+      "lr_03_peat_for_the_cutters": {
+        "title": "Peat for the Cutters",
+        "text": "The hounds have kept my cutters off the drying stacks for a week, and wet peat does not burn. Go down to the cuts and bring me a brick from each stack while the weather holds. The hounds will not thank you. Neither will your back.",
+        "completion": "Dry as a sermon, every brick. Ferncross will be warm tonight, and that is your doing.",
+        "objectives": {
+          "0": {
+            "label": "Peat brick taken from a stack"
+          }
+        }
+      },
+      "lr_04_prowlers_on_the_heath": {
+        "title": "Prowlers on the Heath",
+        "text": "Prowlers have come up from the south heath and taken two of our ponies. A pony is a cart, and a cart is how the peat gets to market. Thin them out before they get bold enough to try the camp.",
+        "completion": "No more tracks by the pony line this morning. The carts roll again. Thank you, {playerName}.",
+        "objectives": {
+          "0": {
+            "label": "Heath Prowler slain"
+          }
+        }
+      },
+      "lr_05_word_to_panwick": {
+        "title": "Word to Panwick",
+        "text": "Panwick buys half my peat to boil their brine, and the Pan-Reeve has not sent a cart in a fortnight. Odda Brinewell does not miss a fortnight. Take the Applewold road south over the Saltmeads gate and find out what is keeping her. If it is trouble, she will be glad of you. If it is not, buy me some salt.",
+        "completion": "Wat sent you? Then he has worked out something is wrong before I have had time to write it down. Sit. There is more trouble in Panwick than there are pans, and I have a great many pans.",
+        "objectives": {
+          "0": {
+            "label": "Speak with Odda Brinewell in Panwick"
+          }
+        }
+      },
+      "lr_06_claws_in_the_pans": {
+        "title": "Claws in the Pans",
+        "text": "Scuttlers. Up out of the shallows and into the settling pans, snipping at anyone who bends over the brine. A boiler with no fingers is a boiler with no job. Go and teach them the pans are ours.",
+        "completion": "Ten fewer claws and I can finally rake a pan without counting my fingers after. You have the makings of a salter, {playerName}.",
+        "objectives": {
+          "0": {
+            "label": "Brine Scuttler slain"
+          }
+        }
+      },
+      "lr_07_stolen_salt": {
+        "title": "Stolen Salt",
+        "text": "Looters have been carrying off whole sacks from the drying sheds by night and camping west of the pans as if they owned the place. Salt is the only coin this town has. Get my sacks back, and if the looters object, let them object to you.",
+        "completion": "Six sacks, still dry. You would not believe how hard it is to find someone who can carry salt through a fight without spilling it.",
+        "objectives": {
+          "0": {
+            "label": "Sack of Panwick Salt"
+          }
+        }
+      },
+      "lr_08_skimming_the_pans": {
+        "title": "Skimming the Pans",
+        "text": "Now the scuttlers are gone, the pans need skimming before the brine sours. Go out to the Brine Pans and take a skim from each pan rim. Keep the scum out of it. If it is grey, it is wrong. If it is pink, run.",
+        "completion": "Clean, clear and sharp as a winter morning. Those will boil down into the best salt Panwick has made all season.",
+        "objectives": {
+          "0": {
+            "label": "Brine skimmed from a pan"
+          }
+        }
+      },
+      "lr_09_fleece_for_the_salters": {
+        "title": "Fleece for the Salters",
+        "text": "Salters work with their hands in brine all day, and brine eats skin. The rams on the salt downs grow a fleece so greasy the brine slides right off it. Bring me some and the whole crew will have gloves by winter.",
+        "completion": "Greasy, thick and smelling of the downs. The crew will grumble about the smell for a week and then never take the gloves off.",
+        "objectives": {
+          "0": {
+            "label": "Saltdown Fleece"
+          }
+        }
+      },
+      "lr_10_what_the_tide_brought": {
+        "title": "What the Tide Brought",
+        "text": "The tide has started bringing in more than salt. Drowned men walk up out of the shallows east of the pans, still in salter aprons, still carrying rakes. Some of them I knew. Put them to rest, {playerName}. I cannot ask the town to do it.",
+        "completion": "Thank you. I will have their names read in the square tonight, the ones I can still remember. Something sent them back to us. I want to know what.",
+        "objectives": {
+          "0": {
+            "label": "Drowned Salt-Hand laid to rest"
+          }
+        }
+      },
+      "lr_11_ledger_in_the_brine": {
+        "title": "A Ledger in the Brine",
+        "text": "Every salter carries a tally book in a waxed pouch, and the drowned still wear theirs. One of them will say where they were working when the water took them. Find me a ledger that can still be read.",
+        "completion": "Waterlogged, but legible. The last page is a tally of salt sold to a buyer with no name, paid in new coin, delivered to the Wychwold road. Salt does not go west, {playerName}. Nobody in the wold needs that much.",
+        "objectives": {
+          "0": {
+            "label": "A Drowned Salter's Ledger"
+          }
+        }
+      },
+      "lr_12_bloats_on_the_saltings": {
+        "title": "Bloats on the Saltings",
+        "text": "Bloats have drifted onto the saltings east of town and they sour every pan they float near. Pop them, from a distance if you have any sense. I will not be helping with the washing afterwards.",
+        "completion": "I could smell that from here. The pans will forgive you. Your boots may not.",
+        "objectives": {
+          "0": {
+            "label": "Brine Bloat popped"
+          }
+        }
+      },
+      "lr_13_salt_cart": {
+        "title": "The Salt Cart",
+        "text": "Nan Saltash takes the cart out to the Brine Pans for the morning skim, and twice this week the scuttlers have come up out of the water for her. Walk with her to the pans. If that ledger is right, I will need every sack we can make before somebody else comes asking for it.",
+        "completion": "Nan says you kept the scuttlers off the cart and only lost your temper once. From Nan, that is high praise.",
+        "objectives": {
+          "0": {
+            "label": "Nan Saltash escorted to the Brine Pans"
+          }
+        }
+      },
+      "lr_14_the_salt_way_west": {
+        "title": "The Salt Way West",
+        "text": "The ledger says the salt went west along the salt way, into the Wychwold. The Bracken Circle keeps a lodge at Elmhallow and Hesper Elmsley knows every cart that has rolled through the wold in thirty years. Take her the news, and ask her who in the wold is buying salt by the cartload.",
+        "completion": "Salt by the cartload? Out here? Nobody in the wold salts anything but the odd ham. Then somebody is buying it for something else, and I do not like the list of things that need that much salt.",
+        "objectives": {
+          "0": {
+            "label": "Speak with Hesper Elmsley at Elmhallow"
+          }
+        }
+      },
+      "lr_15_wolves_at_the_clamps": {
+        "title": "Wolves at the Clamps",
+        "text": "A clamp has to be watched day and night or it burns through and you are left with ash. The wolves know it. They wait until a burner dozes and then they come for the lunch basket, and sometimes for the burner. Drive them off east of the lodge.",
+        "completion": "The pack has gone quiet. My lads slept last night for the first time in a week, and only two clamps burned through. That is a good week, {playerName}.",
+        "objectives": {
+          "0": {
+            "label": "Wold Wolf slain"
+          }
+        }
+      },
+      "lr_16_tusks_and_tempers": {
+        "title": "Tusks and Tempers",
+        "text": "The boars north of the lodge root up the turf we stack over the clamps, and a clamp with no turf is just a bonfire. Bring me some tusks. The Circle carves them into pegs for the turf, which the boars find very insulting.",
+        "completion": "Good, sharp tusks. There is a kind of justice in pegging their own turf down with them.",
+        "objectives": {
+          "0": {
+            "label": "Charwood Boar Tusk"
+          }
+        }
+      },
+      "lr_17_cold_clamps": {
+        "title": "Cold Clamps",
+        "text": "Four of my clamps in the hollow went cold overnight. Not burned out: cold, with the wood still inside, like something drank the fire out of them. Take this firebrand down to the hollow and light them again. If they will not take, come back and tell me, and we will both pretend we are not worried.",
+        "completion": "They took, all four, though you say the smoke came out the wrong way at first. Into the ground instead of up. I will be asking Hesper about that.",
+        "objectives": {
+          "0": {
+            "label": "Cold charcoal clamp relit"
+          }
+        }
+      },
+      "lr_18_silk_in_the_elms": {
+        "title": "Silk in the Elms",
+        "text": "Weavers have strung the elms south of here so thick that the light does not reach the floor. The Circle does not hurt the wold lightly, but a wood with no light is a dying wood. Cut them back, and bring me their silk. We weave it into the binding cords for the Knotted Elm.",
+        "completion": "Light on the wold floor again, and enough silk to bind the elm for a year. Thank you. Now I can show you what I have been afraid to look at alone.",
+        "objectives": {
+          "0": {
+            "label": "Elmshade Weaver slain"
+          },
+          "1": {
+            "label": "Elmshade Silk"
+          }
+        }
+      },
+      "lr_19_under_the_roots": {
+        "title": "Under the Roots",
+        "text": "The old wold folk buried their dead among the roots of the Knotted Elm, so the tree would keep them. Now the tree is letting them go. They climb out of the roots and stand around the trunk as if they are waiting for someone. Lay them down again, {playerName}, before they decide who.",
+        "completion": "Still now, all of them. They were facing the same way, east, toward the salt way. Whatever the salt is for, the dead under the elm know about it.",
+        "objectives": {
+          "0": {
+            "label": "Elmroot Dead laid to rest"
+          }
+        }
+      },
+      "lr_20_the_knotted_elm": {
+        "title": "The Knotted Elm",
+        "text": "The elmroot dead wear knotted charms, the old binding the wold folk tied before the first hearth. Gather some from them, then go to the Knotted Elm and lay your hand on the trunk. If the binding still holds, you will feel it. If it does not, tell me what you felt instead.",
+        "completion": "Cold, you say, and pulling toward the south-west. Toward the Tinmarch. Someone is taking salt and fire out of this country and sending it somewhere under the ground. The miners at Wheal Patience will know where the ground has been opened.",
+        "objectives": {
+          "0": {
+            "label": "Root-Knot Charm"
+          },
+          "1": {
+            "label": "The Knotted Elm touched"
+          }
+        }
+      },
+      "lr_21_tinners_ford": {
+        "title": "Tinners' Ford",
+        "text": "Cross Tinners' Ford into the Tinmarch and find Captain Tobias Penhallow at Wheal Patience. He is a Gilt Measure man and he will want to argue about who pays for what. Let him. Then tell him the elm is pulling toward his moor, and watch his face.",
+        "completion": "The elm, pulling toward my moor. That is the second strange thing I have heard this week, and the first was a crew of strangers opening the old Blackadit without a licence. Sit down. I think we have the same problem.",
+        "objectives": {
+          "0": {
+            "label": "Speak with Tobias Penhallow at Wheal Patience"
+          }
+        }
+      },
+      "lr_22_rats_in_the_spoil": {
+        "title": "Rats in the Spoil",
+        "text": "Diggers have burrowed into the spoil heaps east of camp, and a spoil heap full of tunnels is a spoil heap waiting to fall on somebody. Clear them out before my insurers hear about it.",
+        "completion": "The heaps have stopped twitching. My insurers will never know how close they came to paying out. Neither will my wife.",
+        "objectives": {
+          "0": {
+            "label": "Spoilheap Digger slain"
+          }
+        }
+      },
+      "lr_23_stalkers_on_the_moor": {
+        "title": "Stalkers on the Moor",
+        "text": "I walk the moor north of camp for samples, and lately something walks behind me. Stalkers, a whole family of them, and they have learned that an assayer with her nose in a rock does not look up. Make them reconsider.",
+        "completion": "I walked the north moor this morning and nothing followed me but my own shadow. You cannot assay peace of mind, but I would put a high value on it.",
+        "objectives": {
+          "0": {
+            "label": "Tinmoor Stalker slain"
+          }
+        }
+      },
+      "lr_24_stolen_lamps": {
+        "title": "Stolen Lamps",
+        "text": "Tunnelers came up from the Blackadit and stripped our lamp store bare. A miner with no lamp is a miner with no work, and the shift is waiting. They are camped by the old working south-east of here. Bring the lamps home.",
+        "completion": "Six lamps, and every one of them with the Wheal Patience mark scratched off and a pale sigil scratched on. Somebody is supplying those tunnelers, {playerName}. Tunnelers do not draw sigils.",
+        "objectives": {
+          "0": {
+            "label": "Stolen Mine Lamp"
+          }
+        }
+      },
+      "lr_25_assay_samples": {
+        "title": "Assay Samples",
+        "text": "The spoil heaps east of camp should be worthless: that is what spoil means. But my lamp flickers when I walk past them. Bring me a sample from each heap. Do not lick them. I am told people need telling.",
+        "completion": "Tin, mostly. And something else, bright as a struck spark and humming like a kettle. It is not ore. I do not know what it is, and that is not a sentence an assayer likes to say.",
+        "objectives": {
+          "0": {
+            "label": "Ore sample taken from a spoil heap"
+          }
+        }
+      },
+      "lr_26_the_humming_stones": {
+        "title": "The Humming Stones",
+        "text": "The hum in those samples leads to the Stannary Stones, west of camp. Living stone walks there now, tin and quartz grown legs, and it hums the same note. Break a few apart and bring me the cores. Carefully. I want to know what is singing.",
+        "completion": "Hold one to your ear. That hum is a hearth, {playerName}. A hearth with no fire, pulled up out of the ground and left to walk. Someone is drawing the old fires out of this country, and the stones are what is left over.",
+        "objectives": {
+          "0": {
+            "label": "Tinstone Elemental broken"
+          },
+          "1": {
+            "label": "Humming Tinstone"
+          }
+        }
+      },
+      "lr_27_who_opened_the_blackadit": {
+        "title": "Who Opened the Blackadit",
+        "text": "The Blackadit was sealed before my grandfather was born. It floods, it falls in and it eats lamps. Now a crew in pale coats has opened it and set the tunnelers to work for them. They are the Pale Accord, the same crew Coinwell chased off the chalk. Drive them out of my moor.",
+        "completion": "They fought like people with somewhere to be. Whatever they are digging for, they think it is worth more than tin. That frightens me more than they did.",
+        "objectives": {
+          "0": {
+            "label": "Pale Accord Delver defeated"
+          }
+        }
+      },
+      "lr_28_orders_in_pale_ink": {
+        "title": "Orders in Pale Ink",
+        "text": "A crew that organized carries orders. Find them. I want to know who signs for salt from Panwick, firebrands from the wold and the old fires from under my moor, and I want it in their own hand.",
+        "completion": "Salt to keep the deep workings dry, charcoal to keep them lit, and the hearths under the moor drawn up and sent on in sealed carts. No name at the bottom, only that pale sigil. This is bigger than one mine, {playerName}. I will send copies to Panwick, Elmhallow and the Gilt Measure's own house before the week is out.",
+        "objectives": {
+          "0": {
+            "label": "Orders in Pale Ink"
+          }
+        }
+      },
+      "lr_29_shore_up_the_blackadit": {
+        "title": "Shore Up the Blackadit",
+        "text": "I cannot seal a mine my grandfather could not, but I can make it too much trouble to use. Take these pit props down to the three workings the Accord opened round the Blackadit and brace them shut. Nobody gets through a braced working without a week of work and a great deal of noise, and my lads will be listening.",
+        "completion": "Three workings braced and my lads posted on the spoil heaps. The Accord will be back, but they will have to knock first. Wheal Patience will not forget it, {playerName}. Neither will I.",
+        "objectives": {
+          "0": {
+            "label": "Blackadit working braced shut"
           }
         }
       },

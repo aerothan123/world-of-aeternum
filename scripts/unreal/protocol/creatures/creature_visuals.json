@@ -350,6 +350,40 @@
       },
       "humanoid": false
     },
+    "barrow_walker": {
+      "name": "Barrow Walker",
+      "family": "undead",
+      "minLevel": 8,
+      "maxLevel": 9,
+      "scale": 1,
+      "color": 14015451,
+      "boss": false,
+      "ea": true,
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "animModels": [],
+      "height": 2.5,
+      "tint": null,
+      "tintStrength": 0.25,
+      "walkRef": 2,
+      "runRef": 6,
+      "attackTimeScale": null,
+      "deathTimeScale": null,
+      "clips": {
+        "idle": "Idle",
+        "walk": "Walk",
+        "run": "Run",
+        "death": "Death",
+        "cast": "Cast",
+        "attack": [
+          "Attack"
+        ],
+        "hit": [
+          "React"
+        ]
+      },
+      "humanoid": false
+    },
     "barrow_wight": {
       "name": "Barrow Wight",
       "family": "undead",
@@ -552,6 +586,43 @@
         ],
         "hit": [
           "Hit"
+        ]
+      },
+      "humanoid": false
+    },
+    "blackadit_tunneler": {
+      "name": "Blackadit Tunneler",
+      "family": "burrower",
+      "minLevel": 14,
+      "maxLevel": 15,
+      "scale": 0.85,
+      "color": 10254908,
+      "boss": false,
+      "ea": true,
+      "key": "mob_kobold",
+      "model": "creatures/goblin",
+      "animModels": [
+        "creatures/goblin_hit_variety_anims",
+        "creatures/kobold_ability_anims"
+      ],
+      "height": 2.1,
+      "tint": null,
+      "tintStrength": 0.2,
+      "walkRef": null,
+      "runRef": null,
+      "attackTimeScale": null,
+      "deathTimeScale": null,
+      "clips": {
+        "idle": "Idle",
+        "walk": "Walk",
+        "run": "Run",
+        "death": "Death",
+        "attack": [
+          "Kobold_Pounce"
+        ],
+        "hit": [
+          "HitRecieve",
+          "HitRecieve_Heavy"
         ]
       },
       "humanoid": false
@@ -873,6 +944,80 @@
         "hit": [
           "Idle_HitReact_Left",
           "Idle_HitReact_Right"
+        ]
+      },
+      "humanoid": false
+    },
+    "brine_bloat": {
+      "name": "Brine Bloat",
+      "family": "beast",
+      "minLevel": 12,
+      "maxLevel": 13,
+      "scale": 1.1,
+      "color": 7048739,
+      "boss": false,
+      "ea": true,
+      "key": "mob_murloc",
+      "model": "creatures/frog",
+      "animModels": [
+        "creatures/frog_hit_variety_anims",
+        "creatures/murloc_ability_anims"
+      ],
+      "height": 1.7,
+      "tint": null,
+      "tintStrength": 0.45,
+      "walkRef": null,
+      "runRef": null,
+      "attackTimeScale": null,
+      "deathTimeScale": null,
+      "clips": {
+        "idle": "Idle",
+        "walk": "Walk",
+        "run": "Run",
+        "death": "Death",
+        "attack": [
+          "Murloc_Attack"
+        ],
+        "hit": [
+          "HitReact",
+          "HitReact_Heavy"
+        ]
+      },
+      "humanoid": false
+    },
+    "brine_scuttler": {
+      "name": "Brine Scuttler",
+      "family": "beast",
+      "minLevel": 11,
+      "maxLevel": 12,
+      "scale": 1.15,
+      "color": 15231048,
+      "boss": false,
+      "ea": true,
+      "key": "mob_crab",
+      "model": "creatures/crabenemy",
+      "animModels": [
+        "creatures/crabenemy_hit_variety_anims",
+        "creatures/crab_ability_anims"
+      ],
+      "height": 1.7,
+      "tint": null,
+      "tintStrength": 0.35,
+      "walkRef": null,
+      "runRef": null,
+      "attackTimeScale": null,
+      "deathTimeScale": null,
+      "clips": {
+        "idle": "Idle",
+        "walk": "Walk",
+        "run": "Walk",
+        "death": "Death",
+        "attack": [
+          "Crab_Attack"
+        ],
+        "hit": [
+          "HitRecieve",
+          "HitRecieve_Dazed"
         ]
       },
       "humanoid": false
@@ -1374,6 +1519,40 @@
         "hit": [
           "Idle_HitReact_Left",
           "Idle_HitReact_Right"
+        ]
+      },
+      "humanoid": false
+    },
+    "charwood_boar": {
+      "name": "Charwood Boar",
+      "family": "beast",
+      "minLevel": 12,
+      "maxLevel": 13,
+      "scale": 1.2,
+      "color": 6966840,
+      "boss": false,
+      "ea": true,
+      "key": "mob_boar",
+      "model": "creatures/wild_boar",
+      "animModels": [],
+      "height": 1.45,
+      "tint": null,
+      "tintStrength": 0.4,
+      "walkRef": null,
+      "runRef": null,
+      "attackTimeScale": null,
+      "deathTimeScale": null,
+      "clips": {
+        "idle": "Idle1",
+        "walk": "Move2 (shuffle)",
+        "run": "Move1 (jump)",
+        "death": "Dying",
+        "attack": [
+          "Attack1 (marracca)",
+          "Attack2 (tusks)"
+        ],
+        "hit": [
+          "Hurt"
         ]
       },
       "humanoid": false
@@ -2690,6 +2869,40 @@
       },
       "humanoid": false
     },
+    "drowned_salt_hand": {
+      "name": "Drowned Salt-Hand",
+      "family": "undead",
+      "minLevel": 12,
+      "maxLevel": 13,
+      "scale": 1.05,
+      "color": 8820878,
+      "boss": false,
+      "ea": true,
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "animModels": [],
+      "height": 2.5,
+      "tint": null,
+      "tintStrength": 0.25,
+      "walkRef": 2,
+      "runRef": 6,
+      "attackTimeScale": null,
+      "deathTimeScale": null,
+      "clips": {
+        "idle": "Idle",
+        "walk": "Walk",
+        "run": "Run",
+        "death": "Death",
+        "cast": "Cast",
+        "attack": [
+          "Attack"
+        ],
+        "hit": [
+          "React"
+        ]
+      },
+      "humanoid": false
+    },
     "drowned_sergeant": {
       "name": "Drowned Sergeant",
       "family": "undead",
@@ -3096,6 +3309,70 @@
       },
       "humanoid": true
     },
+    "elmroot_dead": {
+      "name": "Elmroot Dead",
+      "family": "undead",
+      "minLevel": 13,
+      "maxLevel": 14,
+      "scale": 1,
+      "color": 14015451,
+      "boss": false,
+      "ea": true,
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "animModels": [],
+      "height": 2.5,
+      "tint": null,
+      "tintStrength": 0.25,
+      "walkRef": 2,
+      "runRef": 6,
+      "attackTimeScale": null,
+      "deathTimeScale": null,
+      "clips": {
+        "idle": "Idle",
+        "walk": "Walk",
+        "run": "Run",
+        "death": "Death",
+        "cast": "Cast",
+        "attack": [
+          "Attack"
+        ],
+        "hit": [
+          "React"
+        ]
+      },
+      "humanoid": false
+    },
+    "elmshade_weaver": {
+      "name": "Elmshade Weaver",
+      "family": "spider",
+      "minLevel": 13,
+      "maxLevel": 14,
+      "scale": 1.25,
+      "color": 5147196,
+      "boss": false,
+      "ea": true,
+      "key": "mob_spider",
+      "model": "creatures/spider",
+      "animModels": [],
+      "height": 1.4,
+      "tint": null,
+      "tintStrength": 0.35,
+      "walkRef": null,
+      "runRef": null,
+      "attackTimeScale": null,
+      "deathTimeScale": null,
+      "clips": {
+        "idle": "Spider_Idle",
+        "walk": "Spider_Walk",
+        "run": "Spider_Walk",
+        "death": "Spider_Death",
+        "attack": [
+          "Spider_Attack"
+        ]
+      },
+      "humanoid": false
+    },
     "emberkin": {
       "name": "Emberkin",
       "family": "demon",
@@ -3225,6 +3502,51 @@
       "animModels": [
         "chars/players/woc/anims_female",
         "chars/players/woc_keyed/woc_female"
+      ],
+      "height": 2.8600000000000003,
+      "tint": null,
+      "tintStrength": null,
+      "walkRef": null,
+      "runRef": null,
+      "attackTimeScale": 1,
+      "deathTimeScale": null,
+      "clips": {
+        "idle": "Woc_Idle",
+        "combatIdle": "Woc_Combat_Idle_1H",
+        "walk": "Woc_Walk",
+        "run": "Woc_Run",
+        "walkBack": "Woc_Walk_Back",
+        "jump": "Woc_Jump",
+        "fall": "Fall",
+        "land": "Land",
+        "death": "Woc_Death",
+        "cast": "Woc_Cast_Directed",
+        "sitIdle": "Sit_Idle",
+        "swim": "Woc_Swim",
+        "attack": [
+          "Woc_Attack_1H_0",
+          "Woc_Attack_1H_1"
+        ],
+        "hit": [
+          "Woc_Hit"
+        ]
+      },
+      "humanoid": true
+    },
+    "escort_lr_wagoner_nan": {
+      "name": "Nan Saltash",
+      "family": "humanoid",
+      "minLevel": 12,
+      "maxLevel": 12,
+      "scale": 1,
+      "color": 10123866,
+      "boss": false,
+      "ea": true,
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "animModels": [
+        "chars/players/woc/anims_male",
+        "chars/players/woc_keyed/woc_male"
       ],
       "height": 2.8600000000000003,
       "tint": null,
@@ -4961,6 +5283,73 @@
         ],
         "hit": [
           "Hit"
+        ]
+      },
+      "humanoid": false
+    },
+    "heath_prowler": {
+      "name": "Heath Prowler",
+      "family": "beast",
+      "minLevel": 10,
+      "maxLevel": 10,
+      "scale": 0.95,
+      "color": 5068374,
+      "boss": false,
+      "ea": true,
+      "key": "mob_wolf",
+      "model": "creatures/wolf_basic",
+      "animModels": [],
+      "height": 1.47,
+      "tint": null,
+      "tintStrength": 0.35,
+      "walkRef": null,
+      "runRef": null,
+      "attackTimeScale": null,
+      "deathTimeScale": null,
+      "clips": {
+        "idle": "Idle",
+        "walk": "Walk",
+        "run": "Gallop",
+        "jump": "Fall",
+        "death": "Death",
+        "sitIdle": "Sit",
+        "swim": "Walk",
+        "attack": [
+          "Attack"
+        ],
+        "hit": [
+          "Idle_HitReact_Left",
+          "Idle_HitReact_Right"
+        ]
+      },
+      "humanoid": false
+    },
+    "heath_widow": {
+      "name": "Heath Widow",
+      "family": "spider",
+      "minLevel": 8,
+      "maxLevel": 9,
+      "scale": 1,
+      "color": 2635591,
+      "boss": false,
+      "ea": true,
+      "key": "mob_spider",
+      "model": "creatures/spider",
+      "animModels": [],
+      "height": 1.4,
+      "tint": null,
+      "tintStrength": 0.35,
+      "walkRef": null,
+      "runRef": null,
+      "attackTimeScale": null,
+      "deathTimeScale": null,
+      "clips": {
+        "idle": "Spider_Idle",
+        "walk": "Spider_Walk",
+        "run": "Spider_Walk",
+        "death": "Spider_Death",
+        "attack": [
+          "Spider_Attack"
         ]
       },
       "humanoid": false
@@ -8159,6 +8548,50 @@
       },
       "humanoid": false
     },
+    "pale_accord_delver": {
+      "name": "Pale Accord Delver",
+      "family": "humanoid",
+      "minLevel": 14,
+      "maxLevel": 15,
+      "scale": 1,
+      "color": 7091331,
+      "boss": false,
+      "ea": true,
+      "key": "player_warlock",
+      "model": "chars/players/woc/base_male",
+      "animModels": [
+        "chars/players/woc/anims_male",
+        "chars/players/woc_keyed/woc_male"
+      ],
+      "height": 2.8600000000000003,
+      "tint": null,
+      "tintStrength": null,
+      "walkRef": null,
+      "runRef": null,
+      "attackTimeScale": 1,
+      "deathTimeScale": null,
+      "clips": {
+        "idle": "Woc_Idle",
+        "combatIdle": "Woc_Combat_Idle_1H",
+        "walk": "Woc_Walk",
+        "run": "Woc_Run",
+        "walkBack": "Woc_Walk_Back",
+        "jump": "Woc_Jump",
+        "fall": "Fall",
+        "land": "Land",
+        "death": "Woc_Death",
+        "cast": "Woc_Cast_Directed",
+        "sitIdle": "Sit_Idle",
+        "swim": "Woc_Swim",
+        "attack": [
+          "Woc_Cast_Shoot"
+        ],
+        "hit": [
+          "Woc_Hit"
+        ]
+      },
+      "humanoid": true
+    },
     "pale_choir_acolyte": {
       "name": "Pale Choir Acolyte",
       "family": "humanoid",
@@ -8235,6 +8668,51 @@
         ]
       },
       "humanoid": false
+    },
+    "pan_looter": {
+      "name": "Pan Looter",
+      "family": "humanoid",
+      "minLevel": 11,
+      "maxLevel": 12,
+      "scale": 1,
+      "color": 9711910,
+      "boss": false,
+      "ea": true,
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "animModels": [
+        "chars/players/woc/anims_male",
+        "chars/players/woc_keyed/woc_male"
+      ],
+      "height": 2.8600000000000003,
+      "tint": null,
+      "tintStrength": null,
+      "walkRef": null,
+      "runRef": null,
+      "attackTimeScale": 1,
+      "deathTimeScale": null,
+      "clips": {
+        "idle": "Woc_Idle",
+        "combatIdle": "Woc_Combat_Idle_1H",
+        "walk": "Woc_Walk",
+        "run": "Woc_Run",
+        "walkBack": "Woc_Walk_Back",
+        "jump": "Woc_Jump",
+        "fall": "Fall",
+        "land": "Land",
+        "death": "Woc_Death",
+        "cast": "Woc_Cast_Directed",
+        "sitIdle": "Sit_Idle",
+        "swim": "Woc_Swim",
+        "attack": [
+          "Woc_Attack_1H_0",
+          "Woc_Attack_1H_1"
+        ],
+        "hit": [
+          "Woc_Hit"
+        ]
+      },
+      "humanoid": true
     },
     "pearlguard_sentinel": {
       "name": "Moonmantle Ray",
@@ -10037,6 +10515,41 @@
       },
       "humanoid": false
     },
+    "saltdown_ram": {
+      "name": "Saltdown Ram",
+      "family": "beast",
+      "minLevel": 12,
+      "maxLevel": 13,
+      "scale": 1.1,
+      "color": 14209216,
+      "boss": false,
+      "ea": true,
+      "key": "mob_alpaca",
+      "model": "creatures/alpaca",
+      "animModels": [],
+      "height": 1.7,
+      "tint": null,
+      "tintStrength": 0.3,
+      "walkRef": null,
+      "runRef": null,
+      "attackTimeScale": null,
+      "deathTimeScale": null,
+      "clips": {
+        "idle": "Idle",
+        "walk": "Walk",
+        "run": "Gallop",
+        "death": "Death",
+        "attack": [
+          "Attack_Headbutt",
+          "Attack_Kick"
+        ],
+        "hit": [
+          "Idle_HitReact_Left",
+          "Idle_HitReact_Right"
+        ]
+      },
+      "humanoid": false
+    },
     "sanctum_boneguard": {
       "name": "Sanctum Boneguard",
       "family": "undead",
@@ -10735,6 +11248,39 @@
         "death": "Idle",
         "attack": [
           "Idle"
+        ]
+      },
+      "humanoid": false
+    },
+    "spoilheap_digger": {
+      "name": "Spoilheap Digger",
+      "family": "burrower",
+      "minLevel": 13,
+      "maxLevel": 14,
+      "scale": 0.85,
+      "color": 10249228,
+      "boss": false,
+      "ea": true,
+      "key": "mob_kobold_digger",
+      "model": "creatures/kobold",
+      "animModels": [],
+      "height": 2.1,
+      "tint": null,
+      "tintStrength": 0.12,
+      "walkRef": 1.23,
+      "runRef": 2.51,
+      "attackTimeScale": null,
+      "deathTimeScale": null,
+      "clips": {
+        "idle": "Idle",
+        "walk": "Walk",
+        "run": "Run",
+        "death": "Death",
+        "attack": [
+          "Attack"
+        ],
+        "hit": [
+          "HitRecieve"
         ]
       },
       "humanoid": false
@@ -12030,6 +12576,78 @@
         ],
         "hit": [
           "Hit"
+        ]
+      },
+      "humanoid": false
+    },
+    "tinmoor_stalker": {
+      "name": "Tinmoor Stalker",
+      "family": "beast",
+      "minLevel": 14,
+      "maxLevel": 15,
+      "scale": 0.95,
+      "color": 9208432,
+      "boss": false,
+      "ea": true,
+      "key": "mob_wolf",
+      "model": "creatures/wolf_basic",
+      "animModels": [],
+      "height": 1.47,
+      "tint": null,
+      "tintStrength": 0.35,
+      "walkRef": null,
+      "runRef": null,
+      "attackTimeScale": null,
+      "deathTimeScale": null,
+      "clips": {
+        "idle": "Idle",
+        "walk": "Walk",
+        "run": "Gallop",
+        "jump": "Fall",
+        "death": "Death",
+        "sitIdle": "Sit",
+        "swim": "Walk",
+        "attack": [
+          "Attack"
+        ],
+        "hit": [
+          "Idle_HitReact_Left",
+          "Idle_HitReact_Right"
+        ]
+      },
+      "humanoid": false
+    },
+    "tinstone_elemental": {
+      "name": "Tinstone Elemental",
+      "family": "elemental",
+      "minLevel": 14,
+      "maxLevel": 15,
+      "scale": 1.1,
+      "color": 6139362,
+      "boss": false,
+      "ea": true,
+      "key": "mob_elemental",
+      "model": "creatures/golelingevolved",
+      "animModels": [
+        "creatures/elemental_ability_anims"
+      ],
+      "height": 2.2,
+      "tint": null,
+      "tintStrength": 0.4,
+      "walkRef": null,
+      "runRef": null,
+      "attackTimeScale": null,
+      "deathTimeScale": null,
+      "clips": {
+        "idle": "Flying_Idle",
+        "walk": "Fast_Flying",
+        "run": "Fast_Flying",
+        "death": "Death",
+        "attack": [
+          "Elemental_Attack"
+        ],
+        "hit": [
+          "HitReact"
         ]
       },
       "humanoid": false
@@ -13540,6 +14158,43 @@
       "maxLevel": 7,
       "scale": 0.85,
       "color": 9654550,
+      "boss": false,
+      "ea": true,
+      "key": "mob_wolf",
+      "model": "creatures/wolf_basic",
+      "animModels": [],
+      "height": 1.47,
+      "tint": null,
+      "tintStrength": 0.35,
+      "walkRef": null,
+      "runRef": null,
+      "attackTimeScale": null,
+      "deathTimeScale": null,
+      "clips": {
+        "idle": "Idle",
+        "walk": "Walk",
+        "run": "Gallop",
+        "jump": "Fall",
+        "death": "Death",
+        "sitIdle": "Sit",
+        "swim": "Walk",
+        "attack": [
+          "Attack"
+        ],
+        "hit": [
+          "Idle_HitReact_Left",
+          "Idle_HitReact_Right"
+        ]
+      },
+      "humanoid": false
+    },
+    "wold_wolf": {
+      "name": "Wold Wolf",
+      "family": "beast",
+      "minLevel": 12,
+      "maxLevel": 13,
+      "scale": 0.9,
+      "color": 8359053,
       "boss": false,
       "ea": true,
       "key": "mob_wolf",

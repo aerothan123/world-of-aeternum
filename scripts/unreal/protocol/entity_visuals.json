@@ -45,6 +45,11 @@
       "model": "chars/enemies/skeleton_warrior",
       "height": 2.5
     },
+    "barrow_walker": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
     "barrow_wight": {
       "key": "skel_minion",
       "model": "creatures/woc_skeleton_minion",
@@ -74,6 +79,11 @@
       "key": "bastion_warhound",
       "model": "creatures/bastion_warhound",
       "height": 3.55
+    },
+    "blackadit_tunneler": {
+      "key": "mob_kobold",
+      "model": "creatures/goblin",
+      "height": 2.1
     },
     "bog_bloat": {
       "key": "mob_murloc",
@@ -119,6 +129,16 @@
       "key": "mob_wolf",
       "model": "creatures/wolf_basic",
       "height": 1.47
+    },
+    "brine_bloat": {
+      "key": "mob_murloc",
+      "model": "creatures/frog",
+      "height": 1.7
+    },
+    "brine_scuttler": {
+      "key": "mob_crab",
+      "model": "creatures/crabenemy",
+      "height": 1.7
     },
     "bristlejaw_shore_rat": {
       "key": "mob_kobold",
@@ -194,6 +214,11 @@
       "key": "mob_wolf",
       "model": "creatures/wolf_basic",
       "height": 1.47
+    },
+    "charwood_boar": {
+      "key": "mob_boar",
+      "model": "creatures/wild_boar",
+      "height": 1.45
     },
     "choir_thrall": {
       "key": "mob_choir_thrall",
@@ -380,6 +405,11 @@
       "model": "creatures/temple_pilgrim",
       "height": 4.9
     },
+    "drowned_salt_hand": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
     "drowned_sergeant": {
       "key": "bastion_skel_sergeant",
       "model": "creatures/drowned_sergeant",
@@ -435,6 +465,16 @@
       "model": "chars/players/woc/base_female",
       "height": 2.8600000000000003
     },
+    "elmroot_dead": {
+      "key": "skel_minion",
+      "model": "creatures/woc_skeleton_minion",
+      "height": 2.5
+    },
+    "elmshade_weaver": {
+      "key": "mob_spider",
+      "model": "creatures/spider",
+      "height": 1.4
+    },
     "emberkin": {
       "key": "mob_emberkin",
       "model": "creatures/emberkin",
@@ -453,6 +493,11 @@
     "escort_della": {
       "key": "player_shaman_female",
       "model": "chars/players/woc/base_female",
+      "height": 2.8600000000000003
+    },
+    "escort_lr_wagoner_nan": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
       "height": 2.8600000000000003
     },
     "escort_neris": {
@@ -689,6 +734,16 @@
       "key": "mob_training_dummy",
       "model": "creatures/training_dummy",
       "height": 2.3
+    },
+    "heath_prowler": {
+      "key": "mob_wolf",
+      "model": "creatures/wolf_basic",
+      "height": 1.47
+    },
+    "heath_widow": {
+      "key": "mob_spider",
+      "model": "creatures/spider",
+      "height": 1.4
     },
     "hedge_gnome": {
       "key": "mob_kobold",
@@ -1135,6 +1190,11 @@
       "model": "creatures/woc_skeleton_minion",
       "height": 2.5
     },
+    "pale_accord_delver": {
+      "key": "player_warlock",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
+    },
     "pale_choir_acolyte": {
       "key": "temple_acolyte",
       "model": "creatures/temple_acolyte",
@@ -1144,6 +1204,11 @@
       "key": "skel_rogue",
       "model": "chars/enemies/skeleton_rogue",
       "height": 2.5
+    },
+    "pan_looter": {
+      "key": "player_rogue",
+      "model": "chars/players/woc/base_male",
+      "height": 2.8600000000000003
     },
     "pearlguard_sentinel": {
       "key": "temple_sentinel",
@@ -1395,6 +1460,11 @@
       "model": "creatures/spider",
       "height": 1.4
     },
+    "saltdown_ram": {
+      "key": "mob_alpaca",
+      "model": "creatures/alpaca",
+      "height": 1.7
+    },
     "sanctum_boneguard": {
       "key": "sanctum_boneguard",
       "model": "creatures/sanctum_boneguard",
@@ -1494,6 +1564,11 @@
       "key": "mob_spider_egg_sac",
       "model": "creatures/spider_egg_sac",
       "height": 1.8
+    },
+    "spoilheap_digger": {
+      "key": "mob_kobold_digger",
+      "model": "creatures/kobold",
+      "height": 2.1
     },
     "spore_toad": {
       "key": "wildheart_spore_toad",
@@ -1664,6 +1739,16 @@
       "key": "temple_tidewisp",
       "model": "creatures/temple_tidewisp",
       "height": 2.75
+    },
+    "tinmoor_stalker": {
+      "key": "mob_wolf",
+      "model": "creatures/wolf_basic",
+      "height": 1.47
+    },
+    "tinstone_elemental": {
+      "key": "mob_elemental",
+      "model": "creatures/golelingevolved",
+      "height": 2.2
     },
     "tolling_bell": {
       "key": "mob_tolling_bell",
@@ -1875,6 +1960,11 @@
       "model": "creatures/wolf_basic",
       "height": 1.47
     },
+    "wold_wolf": {
+      "key": "mob_wolf",
+      "model": "creatures/wolf_basic",
+      "height": 1.47
+    },
     "wood_wraith": {
       "key": "mob_ghost",
       "model": "creatures/ghost",
@@ -1946,6 +2036,11 @@
       "key": "player_warrior",
       "model": "chars/players/woc/base_male",
       "height": 2.8600000000000003
+    },
+    "assayer_merrin": {
+      "key": "npc_villager",
+      "model": "chars/players/rogue",
+      "height": 2.6
     },
     "astronomer_cassian": {
       "key": "player_mage",
@@ -2066,6 +2161,11 @@
       "key": "player_warrior_female",
       "model": "chars/players/woc/base_female",
       "height": 2.8600000000000003
+    },
+    "charcoal_burner_gyles": {
+      "key": "npc_villager",
+      "model": "chars/players/rogue",
+      "height": 2.6
     },
     "chronicler_edda_hartwell": {
       "key": "player_mage_female",
@@ -2377,6 +2477,11 @@
       "model": "chars/players/woc/base_female",
       "height": 2.8600000000000003
     },
+    "lodge_keeper_hesper": {
+      "key": "npc_villager",
+      "model": "chars/players/rogue",
+      "height": 2.6
+    },
     "loremaster_caddis": {
       "key": "player_mage",
       "model": "chars/players/woc/base_male",
@@ -2401,6 +2506,11 @@
       "key": "player_mage",
       "model": "chars/players/woc/base_male",
       "height": 2.8600000000000003
+    },
+    "mine_captain_penhallow": {
+      "key": "npc_villager",
+      "model": "chars/players/rogue",
+      "height": 2.6
     },
     "mother_sedge": {
       "key": "player_mage_female",
@@ -2447,6 +2557,11 @@
       "model": "chars/players/woc/base_male",
       "height": 2.8600000000000003
     },
+    "pan_reeve_odda": {
+      "key": "npc_villager",
+      "model": "chars/players/rogue",
+      "height": 2.6
+    },
     "patron_amos_eelby": {
       "key": "player_hunter",
       "model": "chars/players/woc/base_male",
@@ -2471,6 +2586,11 @@
       "key": "player_druid_female",
       "model": "chars/players/woc/base_female",
       "height": 2.8600000000000003
+    },
+    "peat_foreman_wat": {
+      "key": "npc_villager",
+      "model": "chars/players/rogue",
+      "height": 2.6
     },
     "provisioner_fenna": {
       "key": "player_druid_female",
@@ -2516,6 +2636,11 @@
       "key": "player_warrior_female",
       "model": "chars/players/woc/base_female",
       "height": 2.8600000000000003
+    },
+    "salt_boiler_jory": {
+      "key": "npc_villager",
+      "model": "chars/players/rogue",
+      "height": 2.6
     },
     "salvage_boss_ryna": {
       "key": "player_warrior_female",

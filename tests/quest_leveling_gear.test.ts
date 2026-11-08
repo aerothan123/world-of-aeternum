@@ -38,11 +38,12 @@ const WORLD_BOSS_ENCOUNTER_QUESTS = new Set([
   'q_socketwrights_due',
 ]);
 
-// Wyndlewood's chapter quests (content/chapter_one.ts, content/chapter_two.ts)
-// wait for their own reward pass: re-running the generator for them re-bakes
-// the shipped band items' levels and stats (the quests that offer a piece set
-// its item level), so their rows land with that reviewed diff, not silently.
-const WYNDLEWOOD_CHAPTER_QUEST = /^c[12]_/;
+// Wyndlewood's chapter quests (content/chapter_one.ts, content/chapter_two.ts
+// and its Act F, content/chapter_two_low_reaches.ts) wait for their own reward
+// pass: re-running the generator for them re-bakes the shipped band items'
+// levels and stats (the quests that offer a piece set its item level), so their
+// rows land with that reviewed diff, not silently.
+const WYNDLEWOOD_CHAPTER_QUEST = /^(c[12]|lr)_/;
 
 function levelingQuest(q: QuestDef): boolean {
   if (q.retired || q.repeatable) return false;

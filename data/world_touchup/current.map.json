@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-49d2d-d3c69295-dc90bf05-14b3-b4ad9a78-f493dfc8",
+    "id": "live-4ad62-2613c71d-1b5166d-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "49d2d-d3c69295-dc90bf05",
+    "overworldBase": "4ad62-2613c71d-1b5166d",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -6403,6 +6403,133 @@
         "color": 9333574,
         "questIds": ["c2_41_tide_road_fortress"],
         "greeting": "Chalk is only stone that has not made up its mind. I can work with that."
+      },
+      "peat_foreman_wat": {
+        "id": "peat_foreman_wat",
+        "name": "Wat Heathersby",
+        "title": "Peat-Cutters Foreman",
+        "pos": {
+          "x": 23.8,
+          "z": -321.7
+        },
+        "facing": 1.5707963267948966,
+        "color": 6969914,
+        "questIds": [
+          "lr_01_silk_in_the_heather",
+          "lr_02_barrow_walkers",
+          "lr_30_barrow_grave_goods",
+          "lr_03_peat_for_the_cutters",
+          "lr_04_prowlers_on_the_heath",
+          "lr_05_word_to_panwick"
+        ],
+        "greeting": "Mind where you put your feet. Half this moor is peat and the other half is pretending."
+      },
+      "pan_reeve_odda": {
+        "id": "pan_reeve_odda",
+        "name": "Odda Brinewell",
+        "title": "Pan-Reeve of Panwick",
+        "pos": {
+          "x": 368,
+          "z": -645.3
+        },
+        "facing": 3.141592653589793,
+        "color": 9080726,
+        "questIds": [
+          "lr_05_word_to_panwick",
+          "lr_07_stolen_salt",
+          "lr_10_what_the_tide_brought",
+          "lr_11_ledger_in_the_brine",
+          "lr_13_salt_cart",
+          "lr_14_the_salt_way_west"
+        ],
+        "greeting": "Panwick salts the fish of half the south. When the pans stop, people go hungry. So the pans do not stop."
+      },
+      "salt_boiler_jory": {
+        "id": "salt_boiler_jory",
+        "name": "Jory Pannell",
+        "title": "Salt Boiler",
+        "pos": {
+          "x": 357.5,
+          "z": -644.2
+        },
+        "facing": 2.827433388230814,
+        "color": 12101768,
+        "questIds": [
+          "lr_06_claws_in_the_pans",
+          "lr_08_skimming_the_pans",
+          "lr_09_fleece_for_the_salters",
+          "lr_12_bloats_on_the_saltings"
+        ],
+        "greeting": "Breathe through your nose. You get used to the brine. Mostly."
+      },
+      "lodge_keeper_hesper": {
+        "id": "lodge_keeper_hesper",
+        "name": "Hesper Elmsley",
+        "title": "Keeper of the Elmhallow Lodge",
+        "pos": {
+          "x": 40,
+          "z": -683.3
+        },
+        "facing": 3.141592653589793,
+        "color": 5208646,
+        "questIds": [
+          "lr_14_the_salt_way_west",
+          "lr_18_silk_in_the_elms",
+          "lr_19_under_the_roots",
+          "lr_20_the_knotted_elm",
+          "lr_21_tinners_ford"
+        ],
+        "greeting": "The wold was old before the first hearth was lit. Walk softly. It remembers."
+      },
+      "charcoal_burner_gyles": {
+        "id": "charcoal_burner_gyles",
+        "name": "Gyles Charwood",
+        "title": "Charcoal Burner",
+        "pos": {
+          "x": 29.5,
+          "z": -682.2
+        },
+        "facing": 3.455751918948773,
+        "color": 4012598,
+        "questIds": ["lr_15_wolves_at_the_clamps", "lr_16_tusks_and_tempers", "lr_17_cold_clamps"],
+        "greeting": "Soot washes off. Wolves do not. I will take the soot."
+      },
+      "mine_captain_penhallow": {
+        "id": "mine_captain_penhallow",
+        "name": "Tobias Penhallow",
+        "title": "Mine Captain of Wheal Patience",
+        "pos": {
+          "x": -324,
+          "z": -661.3
+        },
+        "facing": 3.141592653589793,
+        "color": 8022606,
+        "questIds": [
+          "lr_21_tinners_ford",
+          "lr_22_rats_in_the_spoil",
+          "lr_24_stolen_lamps",
+          "lr_27_who_opened_the_blackadit",
+          "lr_28_orders_in_pale_ink",
+          "lr_29_shore_up_the_blackadit"
+        ],
+        "greeting": "Wheal Patience. The name was a joke when we sank the shaft. Nobody is laughing now."
+      },
+      "assayer_merrin": {
+        "id": "assayer_merrin",
+        "name": "Merrin Coyle",
+        "title": "Assayer",
+        "pos": {
+          "x": -334.5,
+          "z": -660.2
+        },
+        "facing": 2.827433388230814,
+        "color": 10127962,
+        "questIds": [
+          "lr_23_stalkers_on_the_moor",
+          "lr_25_assay_samples",
+          "lr_26_the_humming_stones"
+        ],
+        "greeting": "Every stone tells you what it is, if you ask it the right way. Most people only ask with a hammer."
       }
     },
     "objects": [
@@ -8946,6 +9073,138 @@
           {
             "x": -286,
             "z": -438
+          }
+        ]
+      },
+      {
+        "itemId": "lr_stacked_peat",
+        "name": "Stack of Cut Peat",
+        "positions": [
+          {
+            "x": -18,
+            "z": -336
+          },
+          {
+            "x": -10,
+            "z": -338
+          },
+          {
+            "x": -24,
+            "z": -330
+          },
+          {
+            "x": -4,
+            "z": -344
+          },
+          {
+            "x": -14,
+            "z": -326
+          },
+          {
+            "x": -6,
+            "z": -330
+          }
+        ]
+      },
+      {
+        "itemId": "lr_brine_pan_edge",
+        "name": "Brine Pan",
+        "positions": [
+          {
+            "x": 425.5,
+            "z": -703
+          },
+          {
+            "x": 429,
+            "z": -713.5
+          },
+          {
+            "x": 439,
+            "z": -718.5
+          },
+          {
+            "x": 451,
+            "z": -714
+          },
+          {
+            "x": 430.5,
+            "z": -693
+          }
+        ]
+      },
+      {
+        "itemId": "lr_cold_clamp",
+        "name": "Cold Charcoal Clamp",
+        "positions": [
+          {
+            "x": 14,
+            "z": -720
+          },
+          {
+            "x": 4,
+            "z": -728
+          },
+          {
+            "x": 22,
+            "z": -732
+          },
+          {
+            "x": 10,
+            "z": -740
+          }
+        ]
+      },
+      {
+        "itemId": "lr_knotted_elm",
+        "name": "The Knotted Elm",
+        "positions": [
+          {
+            "x": -51,
+            "z": -761
+          }
+        ]
+      },
+      {
+        "itemId": "lr_spoil_heap",
+        "name": "Tin Spoil Heap",
+        "positions": [
+          {
+            "x": -306,
+            "z": -688
+          },
+          {
+            "x": -298,
+            "z": -696
+          },
+          {
+            "x": -310,
+            "z": -702
+          },
+          {
+            "x": -294,
+            "z": -708
+          },
+          {
+            "x": -304,
+            "z": -714
+          }
+        ]
+      },
+      {
+        "itemId": "lr_blackadit_mouth",
+        "name": "Blackadit Working",
+        "positions": [
+          {
+            "x": -252,
+            "z": -802
+          },
+          {
+            "x": -272,
+            "z": -800
+          },
+          {
+            "x": -257,
+            "z": -816
           }
         ]
       }
