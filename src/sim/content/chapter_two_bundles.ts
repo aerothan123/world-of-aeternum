@@ -1,7 +1,7 @@
 // Wyndlewood Chapter Two's GATED bundles in one place: the Applewold
-// (chapter_two.ts CHAPTER_TWO_REACHES), the Kindlemoor and the Chalkbarrow
-// Coast. Each stands in a world crew zone still on feature/world-expansion and
-// merges into the live tables only when its zones are in the zone table
+// (chapter_two.ts CHAPTER_TWO_REACHES), the Kindlemoor, the Chalkbarrow
+// Coast and the Low Reaches road (chapter_two_low_reaches.ts). Each stands
+// in a world crew zone and merges into the live tables only when its zones are in the zone table
 // (chapter_two.ts applyChapterTwoBundle). data.ts calls
 // applyChapterTwoGatedBundles once, after ZONES is final.
 
@@ -14,12 +14,14 @@ import {
 } from './chapter_two';
 import { CHAPTER_TWO_CHALKBARROW } from './chapter_two_chalkbarrow';
 import { CHAPTER_TWO_KINDLEMOOR } from './chapter_two_kindlemoor';
+import { CHAPTER_TWO_LOW_REACHES } from './chapter_two_low_reaches';
 
 /** Every gated bundle, in merge order (appended last, so no shipped id moves). */
 export const CHAPTER_TWO_GATED_BUNDLES: readonly ChapterTwoBundle[] = Object.freeze([
   CHAPTER_TWO_REACHES,
   CHAPTER_TWO_KINDLEMOOR,
   CHAPTER_TWO_CHALKBARROW,
+  CHAPTER_TWO_LOW_REACHES,
 ]);
 
 /** Merge every bundle whose zones are live. Returns the merged bundles. */

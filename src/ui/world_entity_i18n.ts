@@ -460,6 +460,25 @@ const MOB_IDS = [
   'quarry_burrower',
   'escort_neris',
   'escort_della',
+  // Wyndlewood Chapter Two Act F, the Low Reaches road (content/chapter_two_low_reaches.ts).
+  'heath_widow',
+  'barrow_walker',
+  'heath_prowler',
+  'brine_scuttler',
+  'pan_looter',
+  'saltdown_ram',
+  'drowned_salt_hand',
+  'brine_bloat',
+  'wold_wolf',
+  'charwood_boar',
+  'elmshade_weaver',
+  'elmroot_dead',
+  'spoilheap_digger',
+  'blackadit_tunneler',
+  'tinmoor_stalker',
+  'tinstone_elemental',
+  'pale_accord_delver',
+  'escort_lr_wagoner_nan',
 ] as const;
 
 const NPC_IDS = [
@@ -641,6 +660,14 @@ const NPC_IDS = [
   'gardener_della',
   'carpenter_pella',
   'fisherman_tobbin',
+  // Wyndlewood Chapter Two Act F, the Low Reaches road (content/chapter_two_low_reaches.ts).
+  'peat_foreman_wat',
+  'pan_reeve_odda',
+  'salt_boiler_jory',
+  'lodge_keeper_hesper',
+  'charcoal_burner_gyles',
+  'mine_captain_penhallow',
+  'assayer_merrin',
 ] as const;
 
 const QUEST_IDS = [
@@ -943,6 +970,37 @@ const QUEST_IDS = [
   'c2_28_remembered_roofs',
   'c2_32_bridge_fenbridge_trusts',
   'c2_33_paddy_work_fog',
+  // Wyndlewood Chapter Two Act F, the Low Reaches road (content/chapter_two_low_reaches.ts).
+  'lr_01_silk_in_the_heather',
+  'lr_02_barrow_walkers',
+  'lr_30_barrow_grave_goods',
+  'lr_03_peat_for_the_cutters',
+  'lr_04_prowlers_on_the_heath',
+  'lr_05_word_to_panwick',
+  'lr_06_claws_in_the_pans',
+  'lr_07_stolen_salt',
+  'lr_08_skimming_the_pans',
+  'lr_09_fleece_for_the_salters',
+  'lr_10_what_the_tide_brought',
+  'lr_11_ledger_in_the_brine',
+  'lr_12_bloats_on_the_saltings',
+  'lr_13_salt_cart',
+  'lr_14_the_salt_way_west',
+  'lr_15_wolves_at_the_clamps',
+  'lr_16_tusks_and_tempers',
+  'lr_17_cold_clamps',
+  'lr_18_silk_in_the_elms',
+  'lr_19_under_the_roots',
+  'lr_20_the_knotted_elm',
+  'lr_21_tinners_ford',
+  'lr_22_rats_in_the_spoil',
+  'lr_23_stalkers_on_the_moor',
+  'lr_24_stolen_lamps',
+  'lr_25_assay_samples',
+  'lr_26_the_humming_stones',
+  'lr_27_who_opened_the_blackadit',
+  'lr_28_orders_in_pale_ink',
+  'lr_29_shore_up_the_blackadit',
 ] as const;
 
 const ZONE_IDS = [
