@@ -2643,6 +2643,7 @@ export const GUIDE_ZONES: GuideZoneInfo[] = [
     "families": [
       "beast",
       "burrower",
+      "humanoid",
       "undead"
     ]
   },
@@ -2997,6 +2998,28 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "still": "/guide-stills/mob_murloc__6b8e23__s45.webp"
       },
       {
+        "name": "Heath Prowler",
+        "min": 10,
+        "max": 10,
+        "rare": false,
+        "templateId": "heath_prowler",
+        "model": "mob_wolf",
+        "tint": "#4d5656",
+        "tintStrength": 0.35,
+        "still": "/guide-stills/mob_wolf__4d5656__s35.webp"
+      },
+      {
+        "name": "Brine Scuttler",
+        "min": 11,
+        "max": 12,
+        "rare": false,
+        "templateId": "brine_scuttler",
+        "model": "mob_crab",
+        "tint": "#e86848",
+        "tintStrength": 0.35,
+        "still": "/guide-stills/mob_crab__e86848__s35.webp"
+      },
+      {
         "name": "Chalk Cliff Gull",
         "min": 11,
         "max": 12,
@@ -3008,11 +3031,66 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "still": "/guide-stills/mob_wolf__e8e4da__s35.webp"
       },
       {
+        "name": "Brine Bloat",
+        "min": 12,
+        "max": 13,
+        "rare": false,
+        "templateId": "brine_bloat",
+        "model": "mob_murloc",
+        "tint": "#6b8e23",
+        "tintStrength": 0.45,
+        "still": "/guide-stills/mob_murloc__6b8e23__s45.webp"
+      },
+      {
+        "name": "Charwood Boar",
+        "min": 12,
+        "max": 13,
+        "rare": false,
+        "templateId": "charwood_boar",
+        "model": "mob_boar",
+        "tint": "#6a4e38",
+        "tintStrength": 0.4,
+        "still": "/guide-stills/mob_boar__6a4e38.webp"
+      },
+      {
+        "name": "Saltdown Ram",
+        "min": 12,
+        "max": 13,
+        "rare": false,
+        "templateId": "saltdown_ram",
+        "model": "mob_alpaca",
+        "tint": "#d8d0c0",
+        "tintStrength": 0.3,
+        "still": "/guide-stills/mob_alpaca__d8d0c0__s30.webp"
+      },
+      {
+        "name": "Wold Wolf",
+        "min": 12,
+        "max": 13,
+        "rare": false,
+        "templateId": "wold_wolf",
+        "model": "mob_wolf",
+        "tint": "#7f8c8d",
+        "tintStrength": 0.35,
+        "still": "/guide-stills/mob_wolf__7f8c8d__s35.webp"
+      },
+      {
         "name": "Ridge Stalker",
         "min": 13,
         "max": 14,
         "rare": false,
         "templateId": "ridge_stalker",
+        "model": "mob_wolf",
+        "tint": "#8c8270",
+        "tintStrength": 0.35,
+        "still": "/guide-stills/mob_wolf__8c8270__s35.webp"
+      },
+      {
+        "name": "Tinmoor Stalker",
+        "min": 14,
+        "max": 15,
+        "rare": false,
+        "templateId": "tinmoor_stalker",
         "model": "mob_wolf",
         "tint": "#8c8270",
         "tintStrength": 0.35,
@@ -3174,6 +3252,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "still": "/guide-stills/mob_spider__4a235a__s35.webp"
       },
       {
+        "name": "Heath Widow",
+        "min": 8,
+        "max": 9,
+        "rare": false,
+        "templateId": "heath_widow",
+        "model": "mob_spider",
+        "tint": "#283747",
+        "tintStrength": 0.35,
+        "still": "/guide-stills/mob_spider__283747__s35.webp"
+      },
+      {
         "name": "Mirefen Widow",
         "min": 8,
         "max": 10,
@@ -3203,6 +3292,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "tint": "#5b5048",
         "tintStrength": 0.35,
         "still": "/guide-stills/mob_spider__5b5048__s35.webp"
+      },
+      {
+        "name": "Elmshade Weaver",
+        "min": 13,
+        "max": 14,
+        "rare": false,
+        "templateId": "elmshade_weaver",
+        "model": "mob_spider",
+        "tint": "#4e8a3c",
+        "tintStrength": 0.35,
+        "still": "/guide-stills/mob_spider__4e8a3c__s35.webp"
       },
       {
         "name": "Canopy Weaver",
@@ -3345,6 +3445,28 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "tint": "#9c640c",
         "tintStrength": 0.12,
         "still": "/guide-stills/mob_kobold_digger__9c640c__s12.webp"
+      },
+      {
+        "name": "Spoilheap Digger",
+        "min": 13,
+        "max": 14,
+        "rare": false,
+        "templateId": "spoilheap_digger",
+        "model": "mob_kobold_digger",
+        "tint": "#9c640c",
+        "tintStrength": 0.12,
+        "still": "/guide-stills/mob_kobold_digger__9c640c__s12.webp"
+      },
+      {
+        "name": "Blackadit Tunneler",
+        "min": 14,
+        "max": 15,
+        "rare": false,
+        "templateId": "blackadit_tunneler",
+        "model": "mob_kobold",
+        "tint": "#9c7a3c",
+        "tintStrength": 0.2,
+        "still": "/guide-stills/mob_kobold__9c7a3c__s20.webp"
       },
       {
         "name": "Deeprock Tunneler",
@@ -3525,6 +3647,15 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "still": "/guide-stills/player_warlock_female.webp"
       },
       {
+        "name": "Pan Looter",
+        "min": 11,
+        "max": 12,
+        "rare": false,
+        "templateId": "pan_looter",
+        "model": "player_rogue",
+        "still": "/guide-stills/player_rogue.webp"
+      },
+      {
         "name": "Veiled Digger",
         "min": 11,
         "max": 12,
@@ -3532,6 +3663,15 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "templateId": "veiled_digger",
         "model": "player_rogue",
         "still": "/guide-stills/player_rogue.webp"
+      },
+      {
+        "name": "Pale Accord Delver",
+        "min": 14,
+        "max": 15,
+        "rare": false,
+        "templateId": "pale_accord_delver",
+        "model": "player_warlock",
+        "still": "/guide-stills/player_warlock.webp"
       },
       {
         "name": "Broodsworn Zealot",
@@ -3642,6 +3782,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "still": "/guide-stills/skel_minion__d5dbdb__s25.webp"
       },
       {
+        "name": "Barrow Walker",
+        "min": 8,
+        "max": 9,
+        "rare": false,
+        "templateId": "barrow_walker",
+        "model": "skel_minion",
+        "tint": "#d5dbdb",
+        "tintStrength": 0.25,
+        "still": "/guide-stills/skel_minion__d5dbdb__s25.webp"
+      },
+      {
         "name": "Drowned Dead",
         "min": 9,
         "max": 11,
@@ -3651,6 +3802,28 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "tint": "#7fb3d5",
         "tintStrength": 0.25,
         "still": "/guide-stills/skel_minion__7fb3d5__s25.webp"
+      },
+      {
+        "name": "Drowned Salt-Hand",
+        "min": 12,
+        "max": 13,
+        "rare": false,
+        "templateId": "drowned_salt_hand",
+        "model": "skel_minion",
+        "tint": "#86988e",
+        "tintStrength": 0.25,
+        "still": "/guide-stills/skel_minion__86988e__s25.webp"
+      },
+      {
+        "name": "Elmroot Dead",
+        "min": 13,
+        "max": 14,
+        "rare": false,
+        "templateId": "elmroot_dead",
+        "model": "skel_minion",
+        "tint": "#d5dbdb",
+        "tintStrength": 0.25,
+        "still": "/guide-stills/skel_minion__d5dbdb__s25.webp"
       },
       {
         "name": "Drowned Votary",
@@ -3733,6 +3906,17 @@ export const GUIDE_FAMILIES: GuideFamily[] = [
         "tint": "#e0782e",
         "tintStrength": 0.4,
         "still": "/guide-stills/mob_elemental__e0782e.webp"
+      },
+      {
+        "name": "Tinstone Elemental",
+        "min": 14,
+        "max": 15,
+        "rare": false,
+        "templateId": "tinstone_elemental",
+        "model": "mob_elemental",
+        "tint": "#5dade2",
+        "tintStrength": 0.4,
+        "still": "/guide-stills/mob_elemental__5dade2.webp"
       },
       {
         "name": "Duskwisp",

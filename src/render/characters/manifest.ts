@@ -8611,6 +8611,14 @@ const MOB_KEYS: Record<string, string> = {
   rift_stormscale: 'mob_hoard_stormscale_drake',
   rift_boneclad: 'mob_hoard_boneclad_warrior',
   rift_marrow_golem: 'skel_golem',
+  // Chapter Two Act F's zone variants (content/chapter_two_low_reaches.ts) wear
+  // their source template's rig; the rest already share it through family.
+  brine_scuttler: 'mob_crab',
+  saltdown_ram: 'mob_alpaca',
+  brine_bloat: 'mob_murloc',
+  charwood_boar: 'mob_boar',
+  spoilheap_digger: 'mob_kobold_digger',
+  pale_accord_delver: 'player_warlock',
 };
 
 const FAMILY_KEYS: Record<string, string> = {

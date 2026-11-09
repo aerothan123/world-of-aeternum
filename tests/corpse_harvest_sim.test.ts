@@ -960,15 +960,16 @@ describe('corpse signed-guard capacity vs merge room (#2139)', () => {
     // Hexcaller, and the rework's Sunbone Totem-Binder and Howdah Hexcaller),
     // reached through an instance, which structurally cannot carry a camp row
     // at all. The six open-world carriers are the farm route the ratification
-    // leans on.
+    // leans on. The Saltmeads' saltdown_ram (content/chapter_two_low_reaches.ts),
+    // a zone variant of moor_ram, carries its horn tag and makes it seven.
     const openWorldHorn = hornCarriers.filter((id) => campedMobIds.has(id)).sort();
     expect(openWorldHorn.length, `horn carriers with a camp row: ${openWorldHorn.join(', ')}`).toBe(
-      6,
+      7,
     );
     // Non-vacuity, on the honest ground: the tag set is strictly larger than
     // the camped set, so the filter is doing real work. The reason is that
     // three tagged templates are instanced content, not a spread decision.
-    expect(hornCarriers.length, 'horn-tagged templates, camped or not').toBe(9);
+    expect(hornCarriers.length, 'horn-tagged templates, camped or not').toBe(10);
   });
 
   it('the filed crossing case: zero free slots + a partial plain stack tops up, never overflows', () => {

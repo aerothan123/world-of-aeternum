@@ -183,8 +183,11 @@ describe('open-world population never exceeds what the content authored', () => 
     expect(waveTemplates).toEqual([
       'bogtoad',
       'breach_wretch',
+      'briarbitten_fox',
+      'brine_scuttler',
       'canopy_weaver',
       'fen_sprite',
+      'moor_hound',
       'rime_elemental',
       'snowdrift_wolf',
       'terrace_howler',
