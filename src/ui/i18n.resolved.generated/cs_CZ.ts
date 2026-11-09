@@ -32098,6 +32098,9 @@ export const cs_CZ: EnTranslations = {
           },
           "4": {
             "label": "The Heath Way"
+          },
+          "5": {
+            "label": "Heathward Tower"
           }
         }
       },
@@ -32119,6 +32122,9 @@ export const cs_CZ: EnTranslations = {
           },
           "4": {
             "label": "Wreckers' Cove"
+          },
+          "5": {
+            "label": "The Old Toll House"
           }
         }
       },
@@ -32161,6 +32167,9 @@ export const cs_CZ: EnTranslations = {
           },
           "4": {
             "label": "The Salt Way"
+          },
+          "5": {
+            "label": "The Hazel Pool"
           }
         }
       },
@@ -32224,6 +32233,9 @@ export const cs_CZ: EnTranslations = {
           },
           "4": {
             "label": "The Sedge Neck"
+          },
+          "5": {
+            "label": "Drovers' Rest"
           }
         }
       },

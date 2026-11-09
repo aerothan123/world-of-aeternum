@@ -10,6 +10,7 @@ import {
   DUNGEON_X_THRESHOLD,
   delveAt,
   dungeonAt,
+  FRONTIER_SPREAD_POS_EPOCH,
   getActiveWorldContent,
   INSTANCE_X_BASE,
   isBgPos,
@@ -18,6 +19,7 @@ import {
   SAVE_POS_EPOCH,
   zoneAt,
 } from './data';
+import { spreadPoint } from './frontier/spread';
 import { dungeonDoorPos } from './moved_objects';
 
 export interface SavedPos {
@@ -66,6 +68,9 @@ export function resolveSavedPosExit(
     if (migrated) {
       pos = migrated;
       instanceExit = true;
+    } else if (!(typeof posEpoch === 'number' && posEpoch >= FRONTIER_SPREAD_POS_EPOCH)) {
+      // a save from before the frontier spread: same ground, new coordinates
+      pos = spreadPoint(pos.x, pos.z);
     }
   }
   if (pos && isBgPos(pos.x)) {

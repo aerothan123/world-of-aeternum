@@ -88,7 +88,7 @@ export const WYCHWOLD_ZONE: ZoneDef = {
   biome: 'vale',
   hub: { x: A.elmhallow.x, z: A.elmhallow.z, radius: 15, name: 'Elmhallow' },
   graveyard: { x: A.elmhallowYard.x, z: A.elmhallowYard.z },
-  lakes: [],
+  lakes: [lake(7)],
   pois: [
     { x: A.elmhallow.x, z: A.elmhallow.z, label: 'Elmhallow', id: 'elmhallow' },
     { x: A.knottedElm.x, z: A.knottedElm.z, label: 'The Knotted Elm', id: 'the_knotted_elm' },
@@ -100,6 +100,7 @@ export const WYCHWOLD_ZONE: ZoneDef = {
     },
     { x: A.sunkLane.x, z: A.sunkLane.z, label: 'The Sunk Lane', id: 'the_sunk_lane' },
     { x: A.saltWay.x, z: A.saltWay.z, label: 'The Salt Way', id: 'the_salt_way' },
+    { x: A.hazelPool.x, z: A.hazelPool.z, label: 'The Hazel Pool', id: 'the_hazel_pool' },
   ],
   welcome:
     'The Wychwold was old before the Hearthbinding. The charcoal burners still work its hollows, the Bracken Circle still keeps its oldest elm, and something under the roots has begun to stir.',
@@ -216,6 +217,11 @@ export const LOW_REACHES_ROADS: { x: number; z: number }[][] = [
     { x: -510, z: -736 },
     { x: A.rookFord.x, z: A.rookFord.z },
   ], // the Rook Way: Wheal Patience -> west to the Rook Ford (the West March)
+  [
+    { x: A.elmhallow.x - 12, z: A.elmhallow.z + 6 },
+    { x: -20, z: -660 },
+    { x: A.hazelPool.x + 12, z: A.hazelPool.z + 2 },
+  ], // Elmhallow -> the Hazel Pool
 ];
 
 // Shore scuttlers, deckhands of the drowned and wreck thieves along the salt

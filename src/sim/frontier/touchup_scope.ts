@@ -12,18 +12,30 @@
 // camp, road end or prop that stands past the core rect inside the frontier's
 // extent. The instance bands far east sit outside that extent and are kept.
 
+//
+// The frontier spread (./spread.ts): the token is taken over the AUTHORED frame.
+// withoutFrontierContent first maps the world back through the spread
+// (unspreadFrontierContent, exact by construction), then filters against the
+// authored extent, so spreading the frontier never moves the core token.
+
 import type { WorldContent, ZoneDef } from '../types';
 import { CORE_WORLD } from '../world_core_bounds';
-import { FRONTIER_EXTENT, outsideCoreDistance } from './terrain';
+import { FRONTIER_BLOBS, FRONTIER_NECKS, FRONTIER_TIE_INS } from './layout';
+import { unspreadFrontierContent } from './spread';
+import { frontierExtentOf, outsideCoreDistance } from './terrain';
 
-/** A point on frontier ground: past the core rect, inside the frontier extent. */
+/** The frontier extent in the authored (unspread) frame. */
+const AUTHORED_EXTENT = frontierExtentOf(FRONTIER_BLOBS, FRONTIER_NECKS, FRONTIER_TIE_INS);
+
+/** A point on frontier ground in the authored frame: past the core rect, inside
+ *  the authored frontier extent. */
 export function isFrontierPoint(x: number, z: number): boolean {
   return (
     outsideCoreDistance(x, z) > 0 &&
-    x >= FRONTIER_EXTENT.minX &&
-    x <= FRONTIER_EXTENT.maxX &&
-    z >= FRONTIER_EXTENT.minZ &&
-    z <= FRONTIER_EXTENT.maxZ
+    x >= AUTHORED_EXTENT.minX &&
+    x <= AUTHORED_EXTENT.maxX &&
+    z >= AUTHORED_EXTENT.minZ &&
+    z <= AUTHORED_EXTENT.maxZ
   );
 }
 
@@ -59,7 +71,8 @@ function keepEntry(entry: unknown): boolean {
 }
 
 /** The world with every frontier record removed (the shipped world's view). */
-export function withoutFrontierContent(world: WorldContent): WorldContent {
+export function withoutFrontierContent(spreadWorld: WorldContent): WorldContent {
+  const world = unspreadFrontierContent(spreadWorld);
   const props = Object.fromEntries(
     Object.entries(world.props).map(([key, value]) => [
       key,

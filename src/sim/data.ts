@@ -412,6 +412,7 @@ import {
 import { DUNGEON_WALL_HW, DUNGEON_WALL_X } from './dungeon_layout';
 import { EASTBROOK_LAYOUT } from './eastbrook_layout';
 import { FENBRIDGE_LAYOUT } from './fenbridge_layout';
+import { spreadFrontierContent } from './frontier/spread';
 import { HIGHWATCH_LAYOUT } from './highwatch_layout';
 import { JAIL_BLOCKERS, JAIL_TERRAIN_EDITS } from './jail';
 import { PAINTED_TOWNS } from './painted_towns';
@@ -1195,6 +1196,27 @@ applyChapterTwoGatedBundles({
   escorts: ESCORTS,
 });
 
+// The frontier spread (src/sim/frontier/spread.ts): the expansion is authored
+// in a compact frame and pushed out here, once, before the bounds below are
+// derived from the zone rects. Core records are outside the frontier region
+// and never move. The walk also spreads every frontier zone rect.
+spreadFrontierContent([
+  ZONES,
+  CAMPS,
+  NPCS,
+  MOBS,
+  QUESTS,
+  ESCORTS,
+  GROUND_OBJECTS,
+  ROADS,
+  PROPS,
+  FRONTIER_MAILBOXES,
+  OVERWORLD_GRAVEYARDS,
+  STATIONS,
+  NOTICEBOARDS,
+  MUSTER_BOARDS,
+]);
+
 export const WORLD_SIZE = 360; // the original strip's width (one grid column)
 // A zone without an explicit x-range spans the original strip column.
 export const STRIP_MIN_X = -WORLD_SIZE / 2;
@@ -1783,7 +1805,12 @@ export function arenaOriginAt(z: number): { x: number; z: number; slot: number }
 // read literally, so an overworld save east of x 600 (the expansion's east
 // march) stays where it is. An UNSTAMPED save predates the stamp and may
 // still carry a pre-move instance position, so only it takes the legacy rule.
-export const SAVE_POS_EPOCH = 2;
+// Epoch 3 means "the frontier is spread" (frontier/spread.ts): a save below it
+// standing in the authored frontier region is mapped through the spread on
+// load (saved_pos_exit.ts), so a character resumes on the same ground.
+export const INSTANCE_POS_EPOCH = 2;
+export const FRONTIER_SPREAD_POS_EPOCH = 3;
+export const SAVE_POS_EPOCH = FRONTIER_SPREAD_POS_EPOCH;
 
 // Saved positions from before the instance plane moved east (stage 2 of the
 // world grid) sit in the old bands at x 600..5400+. Map them to the same
@@ -1800,7 +1827,7 @@ export function migrateLegacyInstancePos(
   x: number;
   z: number;
 } | null {
-  if (typeof posEpoch === 'number' && posEpoch >= SAVE_POS_EPOCH) return null; // stamped: literal
+  if (typeof posEpoch === 'number' && posEpoch >= INSTANCE_POS_EPOCH) return null; // stamped: literal
   if (pos.x <= 600 || pos.x >= INSTANCE_X_BASE) return null; // not a legacy instance pos
   if (pos.x >= 4773) {
     const delve = DELVE_LIST.find((d) => d.index === Math.round((pos.x - 4800) / 600));

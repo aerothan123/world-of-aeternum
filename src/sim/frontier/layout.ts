@@ -147,6 +147,12 @@ export const FRONTIER_ANCHORS = Object.freeze({
   lastBeacon: { x: -768, z: 456 },
   westeringPier: { x: -676, z: 300 },
   wardNeck: { x: -748, z: 178 },
+  // the spread's new waypoints (frontier/spread.ts), one per long gap the
+  // spread opened on the main road: a watchtower, a ruin, a pool and a camp
+  heathwardTower: { x: -130, z: -380 },
+  oldTollHouse: { x: -236, z: -490 },
+  hazelPool: { x: -52, z: -640 },
+  droversRest: { x: -736, z: -228 },
 });
 
 const A = FRONTIER_ANCHORS;
@@ -265,6 +271,7 @@ export const FRONTIER_LAKES: readonly FrontierLake[] = [
   { x: A.heronMere.x, z: A.heronMere.z, radius: 12 },
   { x: A.harrowTarn.x, z: A.harrowTarn.z, radius: 10 },
   { x: A.wardMere.x, z: A.wardMere.z, radius: 13 },
+  { x: A.hazelPool.x, z: A.hazelPool.z, radius: 9 },
 ];
 
 export const FRONTIER_FLATS: readonly FrontierFlat[] = [
@@ -292,4 +299,7 @@ export const FRONTIER_FLATS: readonly FrontierFlat[] = [
   { x: A.lanternfold.x, z: A.lanternfold.z, r: 16 },
   { x: A.lanternfoldYard.x, z: A.lanternfoldYard.z, r: 7 },
   { x: A.stannaryStones.x, z: A.stannaryStones.z, r: 11 },
+  { x: A.heathwardTower.x, z: A.heathwardTower.z, r: 8 },
+  { x: A.oldTollHouse.x, z: A.oldTollHouse.z, r: 8 },
+  { x: A.droversRest.x, z: A.droversRest.z, r: 10 },
 ];
