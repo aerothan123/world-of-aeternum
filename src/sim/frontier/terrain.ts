@@ -27,15 +27,15 @@
 
 import { fbm2, noise2 } from '../rng';
 import { CORE_WORLD } from '../world_core_bounds';
+import type { FrontierNeck } from './layout';
 import {
-  FRONTIER_BLOBS,
-  FRONTIER_FLATS,
-  FRONTIER_LAKES,
-  FRONTIER_NECKS,
-  FRONTIER_RIDGES,
-  FRONTIER_TIE_INS,
-  type FrontierNeck,
-} from './layout';
+  SPREAD_BLOBS as FRONTIER_BLOBS,
+  SPREAD_FLATS as FRONTIER_FLATS,
+  SPREAD_LAKES as FRONTIER_LAKES,
+  SPREAD_NECKS as FRONTIER_NECKS,
+  SPREAD_RIDGES as FRONTIER_RIDGES,
+  SPREAD_TIE_INS as FRONTIER_TIE_INS,
+} from './spread_layout';
 
 /** Sea level, mirrored from world.ts WATER_LEVEL (a leaf cannot import world.ts:
  *  world.ts imports this module). Pinned equal by tests/frontier_terrain.test.ts. */
@@ -110,14 +110,23 @@ const RIDGE_BOXES = FRONTIER_RIDGES.map((r) => segReach(r, r.halfWidth));
 const FLAT_BOXES = FRONTIER_FLATS.map((f) => discReach(f, f.r * 1.7));
 const LAKE_BOXES = FRONTIER_LAKES.map((l) => discReach(l, l.radius * 1.6));
 
-/** The rect the frontier may reshape: every shape plus the margin. Inverted
- *  (empty) when the layout has no land, so the hook is the identity. */
-export const FRONTIER_EXTENT: Readonly<Box> = (() => {
+/** The rect a set of frontier shapes may reshape: every land shape plus the
+ *  margin. Inverted (empty) when there is no land. */
+export function frontierExtentOf(
+  blobs: readonly (typeof FRONTIER_BLOBS)[number][],
+  necks: readonly FrontierNeck[],
+  ties: readonly FrontierNeck[],
+): Readonly<Box> {
   let minX = Infinity;
   let maxX = -Infinity;
   let minZ = Infinity;
   let maxZ = -Infinity;
-  for (const b of [...BLOB_BOXES, ...NECK_BOXES, ...TIE_BOXES]) {
+  const boxes = [
+    ...blobs.map(blobReach),
+    ...necks.map((n) => segReach(n, n.halfWidth * 1.6)),
+    ...ties.map((n) => segReach(n, n.halfWidth * 1.6)),
+  ];
+  for (const b of boxes) {
     minX = Math.min(minX, b.minX);
     maxX = Math.max(maxX, b.maxX);
     minZ = Math.min(minZ, b.minZ);
@@ -125,7 +134,15 @@ export const FRONTIER_EXTENT: Readonly<Box> = (() => {
   }
   const m = FRONTIER_EXTENT_MARGIN;
   return Object.freeze({ minX: minX - m, maxX: maxX + m, minZ: minZ - m, maxZ: maxZ + m });
-})();
+}
+
+/** The rect the frontier may reshape in world space (the spread layout). Inverted
+ *  (empty) when the layout has no land, so the hook is the identity. */
+export const FRONTIER_EXTENT: Readonly<Box> = frontierExtentOf(
+  FRONTIER_BLOBS,
+  FRONTIER_NECKS,
+  FRONTIER_TIE_INS,
+);
 
 interface Bucket {
   blobs: number[];

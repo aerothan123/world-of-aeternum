@@ -77,6 +77,12 @@ export const KINDLEMOOR_ZONE: ZoneDef = {
     { x: A.moorTarn.x, z: A.moorTarn.z, label: 'The Moor Tarn', id: 'the_moor_tarn' },
     { x: A.greyTor.x, z: A.greyTor.z, label: 'The Grey Tor', id: 'the_grey_tor' },
     { x: A.heathWay.x, z: A.heathWay.z, label: 'The Heath Way', id: 'the_heath_way' },
+    {
+      x: A.heathwardTower.x,
+      z: A.heathwardTower.z,
+      label: 'Heathward Tower',
+      id: 'heathward_tower',
+    },
   ],
   welcome:
     'Nothing grows tall on the Kindlemoor, and nothing here is new. The Bracken Circle keeps watch over stones that were old when the first kingdom was young, and lately the stones have been warm to the touch.',
@@ -101,6 +107,12 @@ export const CHALKBARROW_ZONE: ZoneDef = {
     { x: A.chalkMere.x, z: A.chalkMere.z, label: 'Chalk Mere', id: 'chalk_mere' },
     { x: A.whiteHead.x, z: A.whiteHead.z, label: 'The White Head', id: 'the_white_head' },
     { x: A.wreckersCove.x, z: A.wreckersCove.z, label: "Wreckers' Cove", id: 'wreckers_cove' },
+    {
+      x: A.oldTollHouse.x,
+      z: A.oldTollHouse.z,
+      label: 'The Old Toll House',
+      id: 'the_old_toll_house',
+    },
   ],
   welcome:
     'The Gilt Measure came to the white cliffs for chalk and stayed for what was under it. Someone else is digging further down, by lantern-less dark, and the prospectors at Coinwell would very much like to know who.',
@@ -116,7 +128,9 @@ export const SOUTHERN_REACHES_ROADS: { x: number; z: number }[][] = [
   [
     { x: 382, z: -118 },
     { x: 380, z: -160 },
-    { x: 378, z: -200 },
+    { x: 378, z: -180 },
+    { x: 257, z: -190 },
+    { x: 378, z: -196 },
     { x: A.causewayFoot.x, z: A.causewayFoot.z },
     { x: A.wardenPost.x, z: A.wardenPost.z },
     { x: 352, z: -292 },
@@ -193,6 +207,19 @@ export const SOUTHERN_REACHES_ROADS: { x: number; z: number }[][] = [
     { x: 56, z: -296 },
     { x: A.ferncross.x + 10, z: A.ferncross.z + 8 },
   ], // the Southway: Eastbrook's south shore (east of the town) -> the causeway -> Ferncross
+  [
+    { x: A.ferncross.x - 14, z: A.ferncross.z - 6 },
+    { x: -40, z: -350 },
+    { x: A.heathwardTower.x, z: A.heathwardTower.z },
+    { x: -176, z: -396 },
+    { x: -230, z: -420 },
+    { x: A.coinwell.x + 14, z: A.coinwell.z - 4 },
+  ], // the Moor Road: Ferncross -> Heathward Tower -> Coinwell Camp
+  [
+    { x: -232, z: -462 },
+    { x: A.oldTollHouse.x, z: A.oldTollHouse.z },
+    { x: -243, z: -540 },
+  ], // the pass head above Wreckers' Cove -> the Old Toll House -> the Chalkbarrow pass
 ];
 
 // Camps reuse shipped templates at camp-level ranges. Orchard boars and down

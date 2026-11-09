@@ -17,6 +17,9 @@
 // new slot's road network attaches to (a road end, a causeway foot, a pass);
 // a later slot links to an earlier one only through a declared connector.
 
+// Slots, like frontier/layout.ts, are in the AUTHORED frame: the frontier
+// spread (./spread.ts) maps every frontier slot outward with its zone, so the
+// lattice still tiles cleanly in the authored frame.
 export const SLOT_SIZE = 360;
 
 /** The edge phenomenon past the open slots (owner decision). Dev reference

@@ -4,6 +4,7 @@
 import { describe, expect, it } from 'vitest';
 import { ROADS, ZONES, zoneContaining } from '../src/sim/data';
 import { FRONTIER_ANCHORS, FRONTIER_TIE_INS } from '../src/sim/frontier/layout';
+import { spreadPoint } from '../src/sim/frontier/spread';
 import {
   applyFrontierTerrain,
   FRONTIER_EXTENT,
@@ -48,6 +49,12 @@ function walkable(points: readonly { x: number; z: number }[]): { dry: boolean; 
     }
   }
   return { dry, maxSlope };
+}
+
+/** walkable over a path written in the AUTHORED frame (layout anchors and
+ *  literals): each point is put through the frontier spread first. */
+function walkableAuthored(points: readonly { x: number; z: number }[]) {
+  return walkable(points.map((p) => spreadPoint(p.x, p.z)));
 }
 
 describe('frontier terrain', () => {
@@ -105,20 +112,22 @@ describe('frontier terrain', () => {
     const path = [
       { x: 382, z: -118 },
       { x: 380, z: -160 },
-      { x: 378, z: -200 },
+      { x: 378, z: -180 },
+      { x: 257, z: -190 },
+      { x: 378, z: -196 },
       A.causewayFoot,
       A.wardenPost,
       { x: 352, z: -292 },
       A.pressford,
     ];
-    const walk = walkable(path);
+    const walk = walkableAuthored(path);
     expect(walk.dry).toBe(true);
     expect(walk.maxSlope).toBeLessThan(1.1);
   });
 
   it('joins the Southern Reaches by land: Pressford to Ferncross to Coinwell', () => {
     const A = FRONTIER_ANCHORS;
-    const walk = walkable([
+    const walk = walkableAuthored([
       A.pressford,
       { x: 262, z: -340 },
       { x: 214, z: -368 },
@@ -127,7 +136,7 @@ describe('frontier terrain', () => {
       A.ferncross,
     ]);
     expect(walk.dry).toBe(true);
-    const west = walkable([
+    const west = walkableAuthored([
       A.ferncross,
       { x: -40, z: -322 },
       { x: -140, z: -372 },
@@ -155,7 +164,12 @@ describe('frontier terrain', () => {
 
   it('joins the Kindlemoor to Eastbrook by the Southway, dry all the way', () => {
     const A = FRONTIER_ANCHORS;
-    const walk = walkable([A.southwayLanding, { x: 72, z: -190 }, A.southwayFoot, A.ferncross]);
+    const walk = walkableAuthored([
+      A.southwayLanding,
+      { x: 72, z: -190 },
+      A.southwayFoot,
+      A.ferncross,
+    ]);
     expect(walk.dry).toBe(true);
     expect(walk.maxSlope).toBeLessThan(1.1);
   });
@@ -180,8 +194,10 @@ describe('frontier terrain', () => {
       A.lanternfold,
     ];
     // anchor to anchor along the authored roads (each leg is a road in data)
-    for (const p of chain)
+    for (const a of chain) {
+      const p = spreadPoint(a.x, a.z);
       expect(terrainHeight(p.x, p.z, seed), `${p.x},${p.z}`).toBeGreaterThan(WATER_LEVEL);
+    }
   });
 
   it('keeps the West March clear of the Willowfen ferry lane', () => {

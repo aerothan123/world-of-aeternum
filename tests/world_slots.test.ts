@@ -4,6 +4,7 @@
 import { describe, expect, it } from 'vitest';
 import { ZONES } from '../src/sim/data';
 import { SLOT_CONNECTORS, slotAt, WORLD_SLOTS } from '../src/sim/frontier/slots';
+import { unspreadFrontierContent } from '../src/sim/frontier/spread';
 import { isFrontierZone } from '../src/sim/frontier/touchup_scope';
 
 const overlap = (a: (typeof WORLD_SLOTS)[number], b: (typeof WORLD_SLOTS)[number]) =>
@@ -22,7 +23,9 @@ describe('world slot grid', () => {
   });
 
   it('places every live zone in a slot of its own id and exact rect', () => {
-    for (const zone of ZONES) {
+    // slots are laid out in the AUTHORED frame; the live frontier is spread
+    // (src/sim/frontier/spread.ts), so compare the zone mapped back
+    for (const zone of unspreadFrontierContent(ZONES)) {
       const slot = WORLD_SLOTS.find((s) => s.zoneId === zone.id);
       expect(slot, zone.id).toBeDefined();
       if (!slot) continue;

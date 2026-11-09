@@ -2588,7 +2588,8 @@ export const GUIDE_ZONES: GuideZoneInfo[] = [
       "The First Hearth Ring",
       "The Moor Tarn",
       "The Grey Tor",
-      "The Heath Way"
+      "The Heath Way",
+      "Heathward Tower"
     ],
     "welcome": "Nothing grows tall on the Kindlemoor, and nothing here is new. The Bracken Circle keeps watch over stones that were old when the first kingdom was young, and lately the stones have been warm to the touch.",
     "families": [
@@ -2611,7 +2612,8 @@ export const GUIDE_ZONES: GuideZoneInfo[] = [
       "The Unlit Dig",
       "Chalk Mere",
       "The White Head",
-      "Wreckers' Cove"
+      "Wreckers' Cove",
+      "The Old Toll House"
     ],
     "welcome": "The Gilt Measure came to the white cliffs for chalk and stayed for what was under it. Someone else is digging further down, by lantern-less dark, and the prospectors at Coinwell would very much like to know who.",
     "families": [
@@ -2657,7 +2659,8 @@ export const GUIDE_ZONES: GuideZoneInfo[] = [
       "The Knotted Elm",
       "Charcoal Hollow",
       "The Sunk Lane",
-      "The Salt Way"
+      "The Salt Way",
+      "The Hazel Pool"
     ],
     "welcome": "The Wychwold was old before the Hearthbinding. The charcoal burners still work its hollows, the Bracken Circle still keeps its oldest elm, and something under the roots has begun to stir.",
     "families": [
@@ -2722,7 +2725,8 @@ export const GUIDE_ZONES: GuideZoneInfo[] = [
       "The Withy Beds",
       "Heron Mere",
       "The Drowned Causey",
-      "The Sedge Neck"
+      "The Sedge Neck",
+      "Drovers' Rest"
     ],
     "welcome": "Reed and sedge as far as the mist. Withyholt weaves the baskets half the west carries, and its people know which paths the fen keeps and which it gives back.",
     "families": [

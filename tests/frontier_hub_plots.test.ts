@@ -7,6 +7,7 @@ import { PROPS, ZONES } from '../src/sim/data';
 import { FRONTIER_HUB_PLOTS } from '../src/sim/frontier/hub_plots';
 import { FRONTIER_ANCHORS } from '../src/sim/frontier/layout';
 import { WORLD_SLOTS } from '../src/sim/frontier/slots';
+import { spreadPoint } from '../src/sim/frontier/spread';
 import { terrainHeight, WATER_LEVEL } from '../src/sim/world';
 import { WORLD_SEED } from '../src/sim/world_seed';
 
@@ -54,10 +55,12 @@ describe('frontier hub plots', () => {
 
   it('stands every spot dry and level on its pad, clear of props and of each other', () => {
     for (const hub of FRONTIER_HUB_PLOTS) {
-      const anchor = FRONTIER_ANCHORS[hub.anchor as keyof typeof FRONTIER_ANCHORS];
-      expect(anchor, hub.id).toBeDefined();
+      const authored = FRONTIER_ANCHORS[hub.anchor as keyof typeof FRONTIER_ANCHORS];
+      expect(authored, hub.id).toBeDefined();
+      // plots are authored; the live hub stands where the frontier spread put it
+      const anchor = spreadPoint(authored.x, authored.z);
       const h0 = H(anchor.x, anchor.z);
-      const spots = [hub.board, ...hub.givers];
+      const spots = [hub.board, ...hub.givers].map((p) => spreadPoint(p.x, p.z));
       spots.forEach((s, i) => {
         const tag = `${hub.id} #${i} ${s.x},${s.z}`;
         const h = H(s.x, s.z);

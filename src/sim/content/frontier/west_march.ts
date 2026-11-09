@@ -83,6 +83,7 @@ export const SEDGEMARCH_ZONE: ZoneDef = {
       id: 'the_drowned_causey',
     },
     { x: A.sedgeNeck.x, z: A.sedgeNeck.z, label: 'The Sedge Neck', id: 'the_sedge_neck' },
+    { x: A.droversRest.x, z: A.droversRest.z, label: "Drovers' Rest", id: 'drovers_rest' },
   ],
   welcome:
     'Reed and sedge as far as the mist. Withyholt weaves the baskets half the west carries, and its people know which paths the fen keeps and which it gives back.',
@@ -240,6 +241,12 @@ export const WEST_MARCH_ROADS: { x: number; z: number }[][] = [
     { x: -762, z: 400 },
     { x: -766, z: 444 },
   ], // Lanternfold -> the Last Beacon
+  [
+    { x: A.withyholt.x - 6, z: A.withyholt.z + 14 },
+    { x: -716, z: -280 },
+    { x: A.droversRest.x, z: A.droversRest.z },
+    { x: A.fellNeck.x, z: A.fellNeck.z },
+  ], // the Drove Road: Withyholt -> Drovers' Rest -> the Fell Neck
 ];
 
 // Shoal scuttlers, wreck thieves, gale wisps and the drowned along the

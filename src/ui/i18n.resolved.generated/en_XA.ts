@@ -32565,6 +32565,9 @@ export const en_XA: EnTranslations = {
           },
           "4": {
             "label": "[Ţĥé Ĥéáţĥ Ŵáý]"
+          },
+          "5": {
+            "label": "[Ĥéáţĥŵáŕð Ţóŵéŕ]"
           }
         }
       },
@@ -32586,6 +32589,9 @@ export const en_XA: EnTranslations = {
           },
           "4": {
             "label": "[Ŵŕéçķéŕš' Çóʋé]"
+          },
+          "5": {
+            "label": "[Ţĥé Óļð Ţóļļ Ĥóúšé]"
           }
         }
       },
@@ -32628,6 +32634,9 @@ export const en_XA: EnTranslations = {
           },
           "4": {
             "label": "[Ţĥé Šáļţ Ŵáý]"
+          },
+          "5": {
+            "label": "[Ţĥé Ĥážéļ Þóóļ]"
           }
         }
       },
@@ -32691,6 +32700,9 @@ export const en_XA: EnTranslations = {
           },
           "4": {
             "label": "[Ţĥé Šéðĝé Ñéçķ]"
+          },
+          "5": {
+            "label": "[Ðŕóʋéŕš' Ŕéšţ]"
           }
         }
       },
