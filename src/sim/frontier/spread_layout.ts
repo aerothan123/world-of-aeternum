@@ -1,9 +1,9 @@
 // The frontier layout in WORLD space: every authored shape of ./layout.ts put
 // through the frontier spread (./spread.ts) once at module load. terrain.ts
 // shapes the ground from these; content anchors are spread by data.ts.
-// Centers and segment ends move with the spread; land radii and ridge widths
-// grow by the same factor so a coast keeps its outline, while pads, lakes and
-// causeway widths keep their authored size (a hub pad is not a bigger town).
+// Centers and segment ends move with the spread; land radii, ridge and neck
+// widths grow by the same factor so a coast keeps its outline, while pads,
+// lakes and the tie-in causeways keep their authored size.
 
 import {
   FRONTIER_BLOBS,
@@ -33,7 +33,12 @@ export const SPREAD_BLOBS: readonly FrontierBlob[] = FRONTIER_BLOBS.map((b) => (
   rz: b.rz * FRONTIER_SPREAD,
 }));
 
-export const SPREAD_NECKS: readonly FrontierNeck[] = FRONTIER_NECKS.map(seg);
+// a frontier neck widens with the land it joins, so whatever stood on its
+// authored crown (a road, a lantern) still stands on it after the spread
+export const SPREAD_NECKS: readonly FrontierNeck[] = FRONTIER_NECKS.map((n) => ({
+  ...seg(n),
+  halfWidth: n.halfWidth * FRONTIER_SPREAD,
+}));
 // A tie-in keeps its authored line (its core half cannot move) and gains a
 // two-leg bridge out to where the spread put its frontier end: a short knee
 // from where it crosses the core edge (z -180) down to one lift-reach south

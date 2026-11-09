@@ -23,7 +23,7 @@
 // boards, givers and mailbox keep their authored spacing on their pad. The
 // map never shrinks a distance, so the inverse can tell the two cases apart.
 
-import { FRONTIER_FLATS } from './layout';
+import { FRONTIER_ANCHORS, FRONTIER_FLATS } from './layout';
 
 /** The frontier's linear spread factor. 1 is the compact authored frame.
  *  A dyadic rational (7/4) on purpose: spreading an authored integer and
@@ -83,7 +83,11 @@ export function unspreadZ(z: number): number {
 /** How near an authored pad a point must be to move with it (yd). */
 export const LOCAL_PAD_REACH = 30;
 
-const PADS = FRONTIER_FLATS.filter((f) => inFrontierRegion(f.x, f.z));
+// The pads, plus the Applewold causeway's foot: the causeway's lanterns and
+// road bend stand round it and must keep their footing on the narrow neck.
+const PADS = [...FRONTIER_FLATS, FRONTIER_ANCHORS.causewayFoot].filter((f) =>
+  inFrontierRegion(f.x, f.z),
+);
 
 /** The authored pad nearest an authored point within reach, if any. */
 function padFor(x: number, z: number): { x: number; z: number } | undefined {

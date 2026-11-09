@@ -29,7 +29,10 @@ import {
   CHAPTER_TWO_QUESTS,
   chapterTwoNpcQuestIds,
 } from './content/chapter_two';
-import { applyChapterTwoGatedBundles } from './content/chapter_two_bundles';
+import {
+  applyChapterTwoGatedBundles,
+  CHAPTER_TWO_GATED_CATCH_SPOTS,
+} from './content/chapter_two_bundles';
 import { BASE_ITEMS } from './content/items';
 import {
   isAuthoredMapPresentation,
@@ -1215,6 +1218,7 @@ spreadFrontierContent([
   STATIONS,
   NOTICEBOARDS,
   MUSTER_BOARDS,
+  CHAPTER_TWO_GATED_CATCH_SPOTS,
 ]);
 
 export const WORLD_SIZE = 360; // the original strip's width (one grid column)
