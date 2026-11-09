@@ -11,15 +11,11 @@
 // The core rect (x >= -540 and z >= -180) is never touched, so the core
 // terrain parity and every core record stay byte-identical.
 //
-// The map, inside the frontier region:
-//   z' = -180 + S * (z + 180)          (south of the core edge, stretched)
-//   x' = x                             for 72 <= x <= 380
-//   x' = 380 + S * (x - 380)           east of 380
-//   x' = 72 + S * (x - 72)             west of 72
-// The x band 72..380 holds still because the two tie-in causeways (the
-// Southway near x 72 and the Applewold causeway near x 380) cross from the
-// fixed core into the frontier there: their core halves cannot move, so their
-// frontier halves must not slide sideways. Everything else spreads by S.
+// The map, inside the frontier region, is one scale by S about the point
+// (72, -180): x' = 72 + S * (x - 72), z' = -180 + S * (z + 180). Every lattice
+// cell stays square (360yd becomes 630yd). x 72 is the Southway's line, so
+// that tie-in barely moves; the Applewold causeway's frontier half moves east
+// and spread_layout.ts adds a bridge neck from its core half out to it.
 //
 // Settlements and pads move as a whole: a point within LOCAL_PAD_REACH of an
 // authored level pad (frontier/layout.ts FRONTIER_FLATS: hubs, yards, camps)
@@ -38,9 +34,8 @@ export const FRONTIER_SPREAD = 1.75;
 /** The core strip's south edge and west edge in yards (the spread's pivot). */
 export const FRONTIER_PIVOT_Z = -180;
 export const CORE_WEST_X = -540;
-/** The fixed x band the tie-in causeways cross (see the header). */
-export const FIXED_BAND_WEST_X = 72;
-export const FIXED_BAND_EAST_X = 380;
+/** The x the spread scales about (the Southway tie-in's line). */
+export const FRONTIER_PIVOT_X = 72;
 
 /** The authored frontier never reaches past this many yards from the origin
  *  (west, east or south). Far parking spots (the -12000 sentinels) stay put. */
@@ -54,7 +49,7 @@ export function inFrontierRegion(x: number, z: number): boolean {
 }
 
 /** The same region in world space (the spread's image of the authored region).
- *  The map keeps "south of -180" and "west of -540" (x' <= x west of 72). */
+ *  The map keeps "south of -180" and sends "west of -540" west of spreadX(-540). */
 export function inSpreadFrontierRegion(x: number, z: number): boolean {
   const L = AUTHORED_FRONTIER_LIMIT;
   return (
@@ -67,9 +62,7 @@ export function inSpreadFrontierRegion(x: number, z: number): boolean {
 
 /** Map one authored frontier x (no region check). */
 export function spreadX(x: number): number {
-  if (x > FIXED_BAND_EAST_X) return FIXED_BAND_EAST_X + FRONTIER_SPREAD * (x - FIXED_BAND_EAST_X);
-  if (x < FIXED_BAND_WEST_X) return FIXED_BAND_WEST_X + FRONTIER_SPREAD * (x - FIXED_BAND_WEST_X);
-  return x;
+  return FRONTIER_PIVOT_X + FRONTIER_SPREAD * (x - FRONTIER_PIVOT_X);
 }
 
 /** Map one authored frontier z (no region check). */
@@ -79,9 +72,7 @@ export function spreadZ(z: number): number {
 
 /** The inverse of spreadX. */
 export function unspreadX(x: number): number {
-  if (x > FIXED_BAND_EAST_X) return (x - FIXED_BAND_EAST_X) / FRONTIER_SPREAD + FIXED_BAND_EAST_X;
-  if (x < FIXED_BAND_WEST_X) return (x - FIXED_BAND_WEST_X) / FRONTIER_SPREAD + FIXED_BAND_WEST_X;
-  return x;
+  return (x - FRONTIER_PIVOT_X) / FRONTIER_SPREAD + FRONTIER_PIVOT_X;
 }
 
 /** The inverse of spreadZ. */

@@ -128,7 +128,9 @@ export const SOUTHERN_REACHES_ROADS: { x: number; z: number }[][] = [
   [
     { x: 382, z: -118 },
     { x: 380, z: -160 },
-    { x: 378, z: -200 },
+    { x: 378, z: -180 },
+    { x: 257, z: -190 },
+    { x: 378, z: -196 },
     { x: A.causewayFoot.x, z: A.causewayFoot.z },
     { x: A.wardenPost.x, z: A.wardenPost.z },
     { x: 352, z: -292 },

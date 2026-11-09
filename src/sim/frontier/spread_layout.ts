@@ -18,7 +18,7 @@ import {
   type FrontierNeck,
   type FrontierRidge,
 } from './layout';
-import { FRONTIER_SPREAD, spreadPoint } from './spread';
+import { FRONTIER_PIVOT_Z, FRONTIER_SPREAD, spreadPoint } from './spread';
 
 function seg<T extends { ax: number; az: number; bx: number; bz: number }>(s: T): T {
   const a = spreadPoint(s.ax, s.az);
@@ -34,7 +34,29 @@ export const SPREAD_BLOBS: readonly FrontierBlob[] = FRONTIER_BLOBS.map((b) => (
 }));
 
 export const SPREAD_NECKS: readonly FrontierNeck[] = FRONTIER_NECKS.map(seg);
-export const SPREAD_TIE_INS: readonly FrontierNeck[] = FRONTIER_TIE_INS.map(seg);
+// A tie-in keeps its authored line (its core half cannot move) and gains a
+// two-leg bridge out to where the spread put its frontier end: a short knee
+// from where it crosses the core edge (z -180) down to one lift-reach south
+// of the edge, inside the tie-in's core exemption, then a straight leg to the
+// spread end that never lifts core ground (tests/world_core_terrain_parity).
+function bridge(t: FrontierNeck): FrontierNeck[] {
+  const end = spreadPoint(t.bx, t.bz);
+  const reach = t.halfWidth * 1.25;
+  const knee = {
+    x: t.bx + Math.max(-reach, Math.min(reach, end.x - t.bx)),
+    z: FRONTIER_PIVOT_Z - reach,
+  };
+  const leg = { ...t, ha: t.hb, hb: t.hb };
+  return [
+    { ...leg, ax: t.bx, az: FRONTIER_PIVOT_Z, bx: knee.x, bz: knee.z },
+    { ...leg, ax: knee.x, az: knee.z, bx: end.x, bz: end.z },
+  ];
+}
+
+export const SPREAD_TIE_INS: readonly FrontierNeck[] = [
+  ...FRONTIER_TIE_INS,
+  ...FRONTIER_TIE_INS.flatMap(bridge),
+];
 
 export const SPREAD_RIDGES: readonly FrontierRidge[] = FRONTIER_RIDGES.map((r) => ({
   ...seg(r),

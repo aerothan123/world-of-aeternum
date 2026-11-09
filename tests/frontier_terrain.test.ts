@@ -112,7 +112,9 @@ describe('frontier terrain', () => {
     const path = [
       { x: 382, z: -118 },
       { x: 380, z: -160 },
-      { x: 378, z: -200 },
+      { x: 378, z: -180 },
+      { x: 257, z: -190 },
+      { x: 378, z: -196 },
       A.causewayFoot,
       A.wardenPost,
       { x: 352, z: -292 },
