@@ -83,8 +83,8 @@ export function unspreadZ(z: number): number {
 /** How near an authored pad a point must be to move with it (yd). */
 export const LOCAL_PAD_REACH = 30;
 
-// The pads, plus the Applewold causeway's foot: the causeway's lanterns and
-// road bend stand round it and must keep their footing on the narrow neck.
+// The pads, plus the Applewold causeway's foot: the causeway lanterns stand
+// round it on the narrow neck and must keep their footing.
 const PADS = [...FRONTIER_FLATS, FRONTIER_ANCHORS.causewayFoot].filter((f) =>
   inFrontierRegion(f.x, f.z),
 );

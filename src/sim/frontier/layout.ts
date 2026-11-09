@@ -302,4 +302,7 @@ export const FRONTIER_FLATS: readonly FrontierFlat[] = [
   { x: A.heathwardTower.x, z: A.heathwardTower.z, r: 8 },
   { x: A.oldTollHouse.x, z: A.oldTollHouse.z, r: 8 },
   { x: A.droversRest.x, z: A.droversRest.z, r: 10 },
+  // the Blackadit's mouth on the Tinmarch coast: a dry working floor that the
+  // spread's coast cannot drown (the Low Reaches road works there)
+  { x: A.blackadit.x, z: A.blackadit.z, r: 16 },
 ];

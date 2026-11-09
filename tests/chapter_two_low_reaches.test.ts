@@ -14,6 +14,7 @@ import {
 } from '../src/sim/content/chapter_two_low_reaches';
 import { CAMPS, MOBS, NPCS, QUESTS, zoneAt } from '../src/sim/data';
 import { FRONTIER_HUB_PLOTS } from '../src/sim/frontier/hub_plots';
+import { spreadPoint } from '../src/sim/frontier/spread';
 
 const quests = Object.values(ACT.quests);
 const zoneOfNpc = (id: string) => zoneAt(NPCS[id].pos.x, NPCS[id].pos.z).id;
@@ -60,7 +61,8 @@ describe('Chapter Two Act F: the Low Reaches road', () => {
 
   it('stands every giver on a frontier hub plot of its zone', () => {
     const plots = FRONTIER_HUB_PLOTS.flatMap((h) =>
-      h.givers.map((p) => ({ ...p, zone: h.zoneId })),
+      // plots are authored; the live NPCs stand where the frontier spread put them
+      h.givers.map((p) => ({ ...spreadPoint(p.x, p.z), zone: h.zoneId })),
     );
     for (const npc of Object.values(ACT.npcs)) {
       const plot = plots.find((p) => p.x === npc.pos.x && p.z === npc.pos.z);
