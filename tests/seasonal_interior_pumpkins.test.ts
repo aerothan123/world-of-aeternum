@@ -1,5 +1,6 @@
 // Gourdlight Eve's indoor pumpkins (src/sim/seasonal_interior_pumpkins.ts) against the LIVE
-// shipped world: six to ten across the three event cities, each inside a walk-in house
+// shipped world: four to ten across the event cities that stand walk-in houses (Eastbrook's
+// are sealed since the Wyndlewood town rebuild, so it keeps none), each inside a walk-in house
 // (walls on all four sides), on a furniture top it fits on or snug on the floor, never in
 // furniture, a wall, the doorway or a townsfolk's spot. Purely decorative: no collider, no
 // interaction, never part of the Haunted Pumpkin hunt. The pin that turns red when a house
@@ -41,18 +42,21 @@ function inBox(
 }
 
 describe('the indoor pumpkins', () => {
-  it('number six to ten, at least two in every event city, one per house at most', () => {
+  it('number four to ten, at least two in every event city with walk-in houses, one per house at most', () => {
     expect(SEASONAL_EVENT_TOWNS.map((town) => town.id)).toEqual([
       'eastbrook',
       'fenbridge',
       'highwatch',
     ]);
-    expect(list.length).toBeGreaterThanOrEqual(6);
+    expect(list.length).toBeGreaterThanOrEqual(4);
     expect(list.length).toBeLessThanOrEqual(10);
     for (const town of SEASONAL_EVENT_TOWNS) {
       const ids = new Set(town.buildings.map((b) => b.id));
       const mine = list.filter((p) => ids.has(p.buildingId));
-      expect(mine.length, town.id).toBeGreaterThanOrEqual(2);
+      // a city of sealed houses (Eastbrook) has no room to stand one in
+      const open = town.buildings.some((b) => b.walkIn);
+      expect(mine.length, town.id).toBeGreaterThanOrEqual(open ? 2 : 0);
+      if (town.id === 'eastbrook') expect(open, town.id).toBe(false);
       expect(mine.length, town.id).toBeLessThanOrEqual(INTERIOR_PUMPKINS_PER_CITY);
     }
     expect(new Set(list.map((p) => p.buildingId)).size).toBe(list.length);

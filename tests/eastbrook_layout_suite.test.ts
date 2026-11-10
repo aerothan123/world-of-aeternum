@@ -500,7 +500,7 @@ describe('authoritative Eastbrook replacement plan', () => {
           halfDepth: 12.895155,
           rotation: 3.9269908169872414,
         },
-        walkIn: true,
+        walkIn: false,
       },
       {
         id: 'eastbrook_smithy',
@@ -552,7 +552,7 @@ describe('authoritative Eastbrook replacement plan', () => {
           halfDepth: 7.598565,
           rotation: 0.3490658503988659,
         },
-        walkIn: true,
+        walkIn: false,
       },
       {
         id: 'eastbrook_inn',
@@ -614,7 +614,7 @@ describe('authoritative Eastbrook replacement plan', () => {
           halfDepth: 10.919805000000002,
           rotation: 0.4188790204786391,
         },
-        walkIn: true,
+        walkIn: false,
       },
       {
         id: 'eastbrook_chapel',
@@ -676,7 +676,7 @@ describe('authoritative Eastbrook replacement plan', () => {
           halfDepth: 15.7378,
           rotation: 2.181661564992912,
         },
-        walkIn: true,
+        walkIn: false,
       },
       {
         id: 'eastbrook_apothecary',
@@ -738,7 +738,7 @@ describe('authoritative Eastbrook replacement plan', () => {
           halfDepth: 9.150075000000001,
           rotation: 3.0543261909900767,
         },
-        walkIn: true,
+        walkIn: false,
       },
       {
         id: 'eastbrook_quay_cottage',

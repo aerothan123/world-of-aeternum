@@ -60,15 +60,12 @@ function recordOf(id: string): BuildingDef {
 
 describe('the walk-in town placement', () => {
   it('walks into every town building whose model bakes an open doorway', () => {
-    // the shut-door models (Eastbrook's quay cottage, Fenbridge's warden
-    // house, Highwatch's watch house) stay sealed; every other placed building
-    // in the three towns is open
+    // Eastbrook's six are sealed (the Early Access client draws each as an
+    // assembled cottage-style building with a shut door, and the record
+    // collides on that building's own boxes: eastbrook_town_footprints.ts), and
+    // so are the shut-door models (Fenbridge's warden house, Highwatch's watch
+    // house); every other placed building in the three towns is open
     expect(WALK_IN.map((building) => building.id)).toEqual([
-      'eastbrook_bank',
-      'eastbrook_smithy',
-      'eastbrook_inn',
-      'eastbrook_chapel',
-      'eastbrook_apothecary',
       'fenbridge_crooked_reed_inn',
       'fenbridge_lantern_chapel',
       'fenbridge_moonwort_apothecary',
@@ -111,6 +108,11 @@ describe('the walk-in town placement', () => {
   it('gives a sealed record, and one a custom world moved, turned or resized, nothing', () => {
     const sealed = TOWN_BUILDINGS.filter((building) => !building.walkIn);
     expect(sealed.map((building) => building.id)).toEqual([
+      'eastbrook_bank',
+      'eastbrook_smithy',
+      'eastbrook_inn',
+      'eastbrook_chapel',
+      'eastbrook_apothecary',
       'eastbrook_quay_cottage',
       'fenbridge_warden_gatehouse',
       'highwatch_watch_house',

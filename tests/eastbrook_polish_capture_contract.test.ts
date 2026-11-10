@@ -742,7 +742,9 @@ const PINNED_POLISH_COMPOSITE_FINGERPRINT =
   // No capture was retaken.
   // Re-minted for the Wyndlewood wallet-package removal: pnpm-lock.yaml (a
   // fingerprinted input) lost the Reown and Solana stack. No capture was retaken.
-  '6015ea307780df1d7f0aefa007a7348202be27781de896a2dfbd5eae848079b8';
+  // Re-minted for the Wyndlewood Eastbrook town rebuild: eastbrook_layout.ts (a
+  // fingerprinted input) seals the town's buildings. No capture was retaken.
+  '6f24c55492c2bb6e4a7a81212ac99e6956d97c14514e1b1a9a2387a36d378c4e';
 
 function validPolishAttributionTargets(): AttributionTargetFixture[] {
   return [

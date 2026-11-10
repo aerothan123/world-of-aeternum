@@ -380,7 +380,10 @@ const ON_A_DOCK_PLANK = { x: PROPS.docks[0].x, z: PROPS.docks[0].z };
 // Nudged two yards south 2026-11 (the hub safe zone pass moved the orchard
 // boar camp, whose terrain flatten disc reached this ground, out of town):
 // the smithy wall foot now meets the regraded ground further in.
-const INSIDE_A_TOWN_COLLIDER = { x: -7, z: -125 };
+// Re-staged 2026-11 a step inside the chapel's forecourt wall (eastbrook_town_footprints.ts
+// chapel:0) when the Wyndlewood town rebuild cleared the crafts district's walls: standable
+// ground is under a yard out.
+const INSIDE_A_TOWN_COLLIDER = { x: 34.76, z: -120.72 };
 // Genuinely enclosed, not merely overlapping: the nearest ground a player
 // can hold is 4yd away, nearly three times the widest clearance a node's own
 // body can account for, and still inside the harvest reach the sweep
@@ -390,7 +393,9 @@ const INSIDE_A_TOWN_COLLIDER = { x: -7, z: -125 };
 // (EASTBROOK_BUILDINGS_BY_ID.eastbrook_quay_cottage) when the genshin artstyle
 // merge (8bff2cec638) cleared the Wolf Run barracks the old (17, -6) fixture
 // sat inside.
-const DEEP_INSIDE_A_BUILDING = { x: -59, z: -55 };
+// Re-staged 2026-11 at the middle of the chapel's town footprint (chapel:0) when the
+// Wyndlewood town rebuild moved the cottage's walls: 3.7yd to standable ground.
+const DEEP_INSIDE_A_BUILDING = { x: 33.1, z: -123.1 };
 
 // The node-borne gather types. Wood left the node table when tree chopping
 // replaced the wood stands (docs/design/tree-chopping.md): every overworld tree
