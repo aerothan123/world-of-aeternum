@@ -828,16 +828,19 @@ describe('farm patch placement: every bed sits on ground a player can work', () 
   });
 
   it('the camp arm rejects the old west site, and nothing else would have', () => {
-    // The skeleton's original Eastbrook anchor. It is 8.1yd inside the
-    // Sableweb webwood spider disc, and it passes every other arm in this
+    // Originally the skeleton's Eastbrook anchor (-48,-2), 8.1yd inside the
+    // Sableweb webwood spider disc. The 2026-11 hub safe zone pass moved the
+    // spiders east and the west wolf run north-east, which left that ground
+    // clear, so the counter-example moved with the camp: this west-meadow
+    // site sits inside the relocated wolf run. It passes every other arm in this
     // file: dry, above the sea plane, level, unblocked, standable, in its
     // zone, off the road and clear of every gather node.
     // That is the point of asserting all of them here rather than just the
     // camp margin: this arm is the ONLY thing that rejects the site, so
     // deleting it silently reopens the placement it forced.
-    const OLD_WEST_SITE = { x: -48, z: -2 };
+    const OLD_WEST_SITE = { x: -42, z: 6 };
     const { margin, mobId } = campFootprintMargin(OLD_WEST_SITE.x, OLD_WEST_SITE.z);
-    expect(mobId).toBe('webwood_spider');
+    expect(mobId).toBe('forest_wolf');
     expect(margin).toBeLessThan(0);
 
     expect(isDryLand(OLD_WEST_SITE.x, OLD_WEST_SITE.z)).toBe(true);

@@ -577,10 +577,15 @@ describe('Eastbrook Grand Armoury render seam (custom-world adapter)', () => {
     // same tree restores 5.559724942256701 and 0.977169449218473), so the
     // envelope minimum fell and the skirt deepened. The entrance sample and the
     // placement height did not move.
-    expect(alternatePlacement.entranceGroundY).toBeCloseTo(7.886894391475175, 8);
-    expect(alternatePlacement.minGroundY).toBeCloseTo(5.363468776143649, 8);
-    expect(alternatePlacement.y).toBeCloseTo(6.536894391475174, 8);
-    expect(alternatePlacement.foundationSkirtDepth).toBeCloseTo(1.1734256153315252, 8);
+    // Re-pinned 2026-11 for the hub safe zone pass: the west wolf run left
+    // (-10,6) for (-22,16), and its radius * 1.8 terrain flatten disc no
+    // longer levels the seed-162 ground under this lot, so the natural slope
+    // returns. This time the entrance sample and placement height move too
+    // (the lot sat inside the old flatten), and the skirt deepens to cover it.
+    expect(alternatePlacement.entranceGroundY).toBeCloseTo(7.107865366711267, 8);
+    expect(alternatePlacement.minGroundY).toBeCloseTo(1.248187522201487, 8);
+    expect(alternatePlacement.y).toBeCloseTo(5.7578653667112665, 8);
+    expect(alternatePlacement.foundationSkirtDepth).toBeCloseTo(4.509677844509779, 8);
 
     const group = new THREE.Group();
     const stone = new THREE.MeshStandardMaterial({ vertexColors: true });
@@ -601,8 +606,10 @@ describe('Eastbrook Grand Armoury render seam (custom-world adapter)', () => {
     const skirtBounds = new THREE.Box3().setFromObject(skirt as THREE.Mesh);
     expect(skirtBounds.max.x - skirtBounds.min.x).toBeCloseTo(13, 8);
     expect(skirtBounds.max.z - skirtBounds.min.z).toBeCloseTo(9, 8);
-    expect(alternatePlacement.y + skirtBounds.min.y).toBeCloseTo(alternatePlacement.minGroundY, 7);
-    expect(skirtBounds.max.y).toBeCloseTo(0.03, 7);
+    // Six places: the skirt is float32 geometry, and since the 2026-11 re-pin
+    // it hangs 4.5 yd deep, where float32 resolution is about 5e-7.
+    expect(alternatePlacement.y + skirtBounds.min.y).toBeCloseTo(alternatePlacement.minGroundY, 6);
+    expect(skirtBounds.max.y).toBeCloseTo(0.03, 6);
     const skirtColor = skirt?.geometry.getAttribute('color') as THREE.BufferAttribute;
     const expectedSkirtColor = new THREE.Color(0x46505e);
     expect(skirtColor.getX(0)).toBeCloseTo(expectedSkirtColor.r, 8);

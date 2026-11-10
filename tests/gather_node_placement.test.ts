@@ -377,7 +377,10 @@ const ON_A_DOCK_PLANK = { x: PROPS.docks[0].x, z: PROPS.docks[0].z };
 // emptied that ground. This point sits just inside the relocated smithy's
 // west wall at the crafts district (smithy lot (-2,-122)), with standable
 // ground a yard away, the same shallow shape the old fixture had.
-const INSIDE_A_TOWN_COLLIDER = { x: -7, z: -123 };
+// Nudged two yards south 2026-11 (the hub safe zone pass moved the orchard
+// boar camp, whose terrain flatten disc reached this ground, out of town):
+// the smithy wall foot now meets the regraded ground further in.
+const INSIDE_A_TOWN_COLLIDER = { x: -7, z: -125 };
 // Genuinely enclosed, not merely overlapping: the nearest ground a player
 // can hold is 4yd away, nearly three times the widest clearance a node's own
 // body can account for, and still inside the harvest reach the sweep
@@ -1146,12 +1149,8 @@ describe('gather node placement: every node sits on ground a player can work', (
   // kept as the same risk-beside-a-named-mob flavour, recorded in the packet
   // review doc as build-judged.
   const DELIBERATE_DANGERS = [
-    // Mogger's meadow: the herb patch sits beside the group-quest boss.
-    // Mogger himself IS a quest target (q_mogger, suggested for three), and
-    // that is the point: the patch shares the danger of a fight the zone
-    // already tells players to bring friends to; level-first is the path
-    // (R32 family), and no tutorial quest sends anyone to this patch.
-    'herb_eastbrook_5:mogger',
+    // (herb_eastbrook_5:mogger cooled off 2026-11: the hub safe zone pass moved
+    // Mogger with his boars to the far west downs, out of the patch's reach.)
     // New in owner round 6b: Gorrak's camp left (92,-92) and rejoined the main
     // vale bandit band at (118,45), which walks the ringleader's aggro out to
     // this patch at (99,57). Allowlisted on the same reading as Mogger two
@@ -1210,7 +1209,6 @@ describe('gather node placement: every node sits on ground a player can work', (
     // yard of tolerance absorbs spawn-scatter-free re-measurement noise
     // while any real relocation reds and forces a fresh decision here.
     const EXPECTED_CLEARANCE: Record<string, number> = {
-      'herb_eastbrook_5:mogger': -0.98,
       'herb_eastbrook_6:gorrak': -4.53,
       'ore_mirefen_4:sloomtooth_the_drowned': -5.0,
       'ore_mirefen_t2b:sister_nhalia': -8.98,

@@ -256,17 +256,22 @@ export const CHAPTER_ONE_CAMPS: CampDef[] = [
     count: 3,
     offStream: true,
   },
+  // Hub safe zone pass (owner, 2026-11): the five camps below spawned inside
+  // or against Eastbrook itself. Each now keeps its disc 60 yd beyond the town
+  // edge and 25 yd clear of every house-lot door and quest or service NPC
+  // (tests/hub_safe_zone.test.ts); the quest props they guard stay in town,
+  // so every objective is still reachable, and only the hostiles moved out.
   {
     mobId: 'gravestirred_fieldhand',
-    center: { x: 45, z: -118 },
+    center: { x: 77, z: -125 },
     radius: 7,
     count: 4,
     offStream: true,
   },
-  { mobId: 'briarbitten_fox', center: { x: 5, z: -55 }, radius: 7, count: 4, offStream: true },
-  { mobId: 'orchard_boar', center: { x: -15.7, z: -138.1 }, radius: 8, count: 4, offStream: true },
-  { mobId: 'veiled_rite_tender', center: { x: 92, z: -46 }, radius: 5, count: 3, offStream: true },
-  { mobId: 'culvert_rat', center: { x: -60, z: -135 }, radius: 7, count: 5, offStream: true },
+  { mobId: 'briarbitten_fox', center: { x: -30, z: 82 }, radius: 7, count: 4, offStream: true },
+  { mobId: 'orchard_boar', center: { x: 71, z: -143 }, radius: 8, count: 4, offStream: true },
+  { mobId: 'veiled_rite_tender', center: { x: 107, z: -41 }, radius: 5, count: 3, offStream: true },
+  { mobId: 'culvert_rat', center: { x: -109, z: -98 }, radius: 7, count: 5, offStream: true },
   { mobId: 'quarry_burrower', center: { x: 5, z: 175 }, radius: 7, count: 4, offStream: true },
 ];
 

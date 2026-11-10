@@ -1521,12 +1521,23 @@ describe('the first sixty seconds: starter pull lanes from spawn', () => {
     // (-70, -68), and the boar walk carries on along the street to the square
     // at (-26, -101) before heading east. One waypoint each, both on the
     // street itself (pinned below); the pull spot and its checks are unchanged.
+    // The hub safe zone pass (2026-11) moved the west wolf run north-east off
+    // the Corner House plot, so its walk now leaves town by the docks lane
+    // north (road 5) instead of the quay street; every waypoint still sits on
+    // an authored road (pinned below).
     const viaMainStreet: Record<string, readonly { x: number; z: number }[]> = {
-      forest_wolf: [{ x: -70, z: -68 }],
+      forest_wolf: [
+        { x: -92, z: -56 },
+        { x: -92, z: -32 },
+      ],
       wild_boar: [{ x: -26, z: -101 }],
     };
     for (const via of Object.values(viaMainStreet)) {
-      for (const waypoint of via) expect(ZONE1_ROADS[1]).toContainEqual(waypoint);
+      for (const waypoint of via) {
+        expect(
+          ZONE1_ROADS.some((road) => road.some((p) => p.x === waypoint.x && p.z === waypoint.z)),
+        ).toBe(true);
+      }
     }
     for (const { camp } of nearest) {
       // The pull spot as a player finds it: walk the pathfinder's own route
