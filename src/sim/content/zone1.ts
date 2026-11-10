@@ -186,7 +186,8 @@ export const ZONE1_ZONE: ZoneDef = {
     // follows the boars to their new downs (round 6 swap, then the westward push)
     // pulled off the causeway's latitude: both labels sat at z -46 and the
     // world map drew them on the same line, overlapping
-    { x: 60, z: -64, label: 'Boar Meadow', id: 'boar_meadow' },
+    // and again with the hub safe zone pass (2026-11) to the far west downs
+    { x: 114, z: -66, label: 'Boar Meadow', id: 'boar_meadow' },
     { x: -88, z: 82, label: 'Mirror Lake', id: 'mirror_lake' },
     { x: -60, z: 4, label: 'Sableweb', id: 'sableweb' },
     { x: -34, z: 142, label: 'Copper Dig', id: 'copper_dig' },
@@ -1872,7 +1873,12 @@ export const ZONE1_CAMPS: CampDef[] = [
   // produced a run of mirrored quest directions; verify any direction claim
   // against that note, never against raw signs.
   // Wolves: north woods
-  { mobId: 'forest_wolf', center: { x: -10, z: 6 }, radius: 28.5, count: 6 },
+  // Hub safe zone pass (owner, 2026-11): every hostile camp in the vale now
+  // keeps its whole disc 60 yd beyond the town edge (hub radius) and 25 yd
+  // clear of every house-lot door and every quest or service NPC, guarded by
+  // tests/hub_safe_zone.test.ts. This west run had parked on the Corner House
+  // plot's doorstep, so it steps north-east off the west lane.
+  { mobId: 'forest_wolf', center: { x: -22, z: 16 }, radius: 28.5, count: 6 },
   { mobId: 'forest_wolf', center: { x: 12, z: 52 }, radius: 26, count: 5 },
   // Nudged north to stay ahead of the widened wolf runs (q_greyjaw sends the
   // player to "the deep woods north of the wolf runs").
@@ -1902,11 +1908,16 @@ export const ZONE1_CAMPS: CampDef[] = [
   // its disc so the rare still patrols his boars. The A centre keeps the
   // vale-road probe at (30,-30) outside its flatten reach (50.5 vs 47.8),
   // the trap this corridor sprang once already this round.
-  { mobId: 'wild_boar', center: { x: 58, z: -72 }, radius: 26, count: 5 },
-  { mobId: 'wild_boar', center: { x: 97, z: -43 }, radius: 23.5, count: 4 },
-  { mobId: 'mogger', center: { x: 118, z: -26 }, radius: 5, count: 1 },
-  // Spiders: eastern woods
-  { mobId: 'webwood_spider', center: { x: -70, z: 2 }, radius: 28.5, count: 6 },
+  // Hub safe zone pass (owner, 2026-11): both boar rows sat on Scout Neris
+  // and the west lane houses. Camp A takes the far west downs past the
+  // scout's post with Mogger beside it; the west lobe has room for only one
+  // boar disc, so camp B moves to the north-west downs above the chapel.
+  { mobId: 'wild_boar', center: { x: 116, z: -74 }, radius: 26, count: 5 },
+  { mobId: 'wild_boar', center: { x: 107, z: 142 }, radius: 23.5, count: 4 },
+  { mobId: 'mogger', center: { x: 140, z: -48 }, radius: 5, count: 1 },
+  // Spiders: eastern woods (hub safe zone pass: stepped further east, off
+  // the docks road)
+  { mobId: 'webwood_spider', center: { x: -82, z: 10 }, radius: 28.5, count: 6 },
   // Murlocs: lake shore northeast, camp still straddles the waterline. This camp is
   // radius-capped by Mirror Lake, not by its neighbours: the terrain flatten disc is
   // radius * 1.8, so a radius wide enough for 11.5 yd spacing drags a 59 yd flatten
@@ -1933,15 +1944,19 @@ export const ZONE1_CAMPS: CampDef[] = [
   // The main bandit band takes the old boar meadow, a step north of where the
   // boars stood. Gorrak's own camp below stays put with the boss, so the
   // Bandit Camp landmark and the ringleader fight keep their ground.
-  { mobId: 'vale_bandit', center: { x: 80, z: 15 }, radius: 28.5, count: 6 },
+  // Hub safe zone pass (owner, 2026-11): the band stepped north off the
+  // west lane houses (its disc reached within 20 yd of the Slate Townhouse);
+  // the second camp, Gorrak and the restless bones each nudged to keep the
+  // populations apart.
+  { mobId: 'vale_bandit', center: { x: 79, z: 25 }, radius: 28.5, count: 6 },
   // Round 6b (owner): Gorrak's camp joins the main band. The two bandit
   // camps were 105 yd apart with the boar meadow sitting between them, so
   // half the vale bandits read as a separate population with no camp.
-  { mobId: 'vale_bandit', center: { x: 115, z: 42 }, radius: 16, count: 5 },
-  { mobId: 'gorrak', center: { x: 118, z: 45 }, radius: 2, count: 1 },
+  { mobId: 'vale_bandit', center: { x: 117, z: 44 }, radius: 16, count: 5 },
+  { mobId: 'gorrak', center: { x: 120, z: 47 }, radius: 2, count: 1 },
   // Undead: ruins northwest. The chapel guardians below are the same population, so
   // they may still flank the altar inside this disc.
-  { mobId: 'restless_bones', center: { x: 82, z: 78 }, radius: 28.5, count: 6 },
+  { mobId: 'restless_bones', center: { x: 84, z: 89 }, radius: 28.5, count: 6 },
   { mobId: 'captain_verlan', center: { x: 92, z: 90 }, radius: 4, count: 1 },
 ];
 
@@ -1961,12 +1976,13 @@ export const ZONE1_OBJECTS: GroundObjectDef[] = [
     itemId: 'supply_crate',
     name: 'Stolen Supply Crate',
     positions: [
-      { x: 65, z: 23 },
-      { x: 72, z: 15 },
-      { x: 82, z: 22 },
-      { x: 106, z: 40 },
-      { x: 110, z: 48 },
-      { x: 116, z: 37 },
+      // follow the two bandit camps (hub safe zone pass, 2026-11)
+      { x: 64, z: 33 },
+      { x: 71, z: 25 },
+      { x: 81, z: 32 },
+      { x: 108, z: 42 },
+      { x: 112, z: 50 },
+      { x: 118, z: 39 },
     ],
   },
   {

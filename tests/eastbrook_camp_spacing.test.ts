@@ -98,7 +98,10 @@ const PINNED_ROSTER: { mobId: string; count: number }[] = [
 // to the dig headland for the New Eastbrook program (a 5.9 degree, 63 yd
 // outward move along its shipped bearing; docs/design/eastbrook-revamp/
 // master-plan.md), which carries its disc out of the starter band entirely.
-const GOVERNED_INDICES = [0, 1, 3, 4, 6, 7, 9, 12];
+// Camps 3 and 4 (wild_boar) left this set 2026-11: the owner's hub safe zone pass
+// (tests/hub_safe_zone.test.ts) moved both boar rows off Scout Neris and the west
+// lane houses to the far west downs and the north-west downs, beyond the band.
+const GOVERNED_INDICES = [0, 1, 6, 7, 9, 12];
 
 // Where each governed camp sat BEFORE this retune, so the fix is provably an
 // outward push along the same bearing rather than a relocation. Index-aligned with
@@ -109,7 +112,10 @@ const SHIPPED_PLACEMENT: { x: number; z: number }[] = [
   // (d19aa33f76, docs/design/eastbrook-revamp/site-plan.md), a
   // maintainer-approved relocation rather than a spacing push, so the baseline
   // follows it (was { x: -15, z: 55 }, the pre-move north-woods spot).
-  { x: -10, z: 6 },
+  // Re-pinned again 2026-11 with the owner's hub safe zone pass (the run sat on
+  // the Corner House plot's doorstep), with camps 6, 9 and 12 below (were
+  // { x: -10, z: 6 }, { x: -70, z: 2 }, { x: 80, z: 15 } and { x: 82, z: 78 }).
+  { x: -22, z: 16 },
   { x: 20, z: 70 },
   // Camps 3, 4 (wild_boar) and 9 (vale_bandit) re-pinned 2026-08 for the
   // owner-approved population swap: the bandit camp sat closer to the town gate
@@ -125,12 +131,12 @@ const SHIPPED_PLACEMENT: { x: number; z: number }[] = [
   // the west road's END so the path leads somewhere, another deliberate
   // relocation on the camp-0 precedent. The guard keeps its teeth from
   // THESE spots: any later drift still has to stay inside 15 degrees.
-  { x: 58, z: -72 },
-  { x: 97, z: -43 },
-  { x: -60, z: 5 },
+  // Camps 3 and 4 have since left the governed set (hub safe zone pass,
+  // 2026-11), so their rows are gone; camp 9 was re-pinned with camp 0 above.
+  { x: -82, z: 10 },
   { x: -75, z: 57 },
-  { x: 80, z: 15 },
-  { x: 80, z: 78 },
+  { x: 79, z: 25 },
+  { x: 84, z: 89 },
 ];
 
 const governed = () => GOVERNED_INDICES.map((i) => ZONE1_CAMPS[i]);
@@ -301,10 +307,10 @@ describe('eastbrook starter camp spacing', () => {
         ).toBeGreaterThanOrEqual(CROSS_POPULATION_GAP);
       }
     }
-    // 8 governed camps (the Copper Dig camp left for the dig headland), 2
-    // same-mobId pairs, so 26 cross pairs. If this drops the loop above went
-    // partly vacuous.
-    expect(crossPairs).toBe(26);
+    // 6 governed camps (the Copper Dig camp left for the dig headland, the two
+    // boar camps for the hub safe zone pass), 1 same-mobId pair, so 14 cross
+    // pairs. If this drops the loop above went partly vacuous.
+    expect(crossPairs).toBe(14);
   });
 
   it('keeps two camps of the same population from interleaving', () => {
@@ -321,8 +327,9 @@ describe('eastbrook starter camp spacing', () => {
         ).toBeGreaterThanOrEqual(requiredSeparation(a, b));
       }
     }
-    // The wolves and the boars: if this drops to 0 the assertion above went vacuous.
-    expect(samePairs).toBe(2);
+    // The two wolf runs (the boars left the governed set in the 2026-11 hub safe
+    // zone pass): if this drops to 0 the assertion above went vacuous.
+    expect(samePairs).toBe(1);
   });
 
   it('leaves the road ring out of town calm', () => {

@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-4ad62-2613c71d-1b5166d-14b3-b4ad9a78-f493dfc8",
+    "id": "live-4ad64-36bbe06f-56a71dbf-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "4ad62-2613c71d-1b5166d",
+    "overworldBase": "4ad64-36bbe06f-56a71dbf",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -51,8 +51,8 @@
             "id": "wolf_run"
           },
           {
-            "x": 60,
-            "z": -64,
+            "x": 114,
+            "z": -66,
             "label": "Boar Meadow",
             "id": "boar_meadow"
           },
@@ -1451,8 +1451,8 @@
       {
         "mobId": "forest_wolf",
         "center": {
-          "x": -10,
-          "z": 6
+          "x": -22,
+          "z": 16
         },
         "radius": 28.5,
         "count": 6
@@ -1478,8 +1478,8 @@
       {
         "mobId": "wild_boar",
         "center": {
-          "x": 58,
-          "z": -72
+          "x": 116,
+          "z": -74
         },
         "radius": 26,
         "count": 5
@@ -1487,8 +1487,8 @@
       {
         "mobId": "wild_boar",
         "center": {
-          "x": 97,
-          "z": -43
+          "x": 107,
+          "z": 142
         },
         "radius": 23.5,
         "count": 4
@@ -1496,8 +1496,8 @@
       {
         "mobId": "mogger",
         "center": {
-          "x": 118,
-          "z": -26
+          "x": 140,
+          "z": -48
         },
         "radius": 5,
         "count": 1
@@ -1505,8 +1505,8 @@
       {
         "mobId": "webwood_spider",
         "center": {
-          "x": -70,
-          "z": 2
+          "x": -82,
+          "z": 10
         },
         "radius": 28.5,
         "count": 6
@@ -1532,8 +1532,8 @@
       {
         "mobId": "vale_bandit",
         "center": {
-          "x": 80,
-          "z": 15
+          "x": 79,
+          "z": 25
         },
         "radius": 28.5,
         "count": 6
@@ -1541,8 +1541,8 @@
       {
         "mobId": "vale_bandit",
         "center": {
-          "x": 115,
-          "z": 42
+          "x": 117,
+          "z": 44
         },
         "radius": 16,
         "count": 5
@@ -1550,8 +1550,8 @@
       {
         "mobId": "gorrak",
         "center": {
-          "x": 118,
-          "z": 45
+          "x": 120,
+          "z": 47
         },
         "radius": 2,
         "count": 1
@@ -1559,8 +1559,8 @@
       {
         "mobId": "restless_bones",
         "center": {
-          "x": 82,
-          "z": 78
+          "x": 84,
+          "z": 89
         },
         "radius": 28.5,
         "count": 6
@@ -3422,8 +3422,8 @@
       {
         "mobId": "gravestirred_fieldhand",
         "center": {
-          "x": 45,
-          "z": -118
+          "x": 77,
+          "z": -125
         },
         "radius": 7,
         "count": 4
@@ -3431,8 +3431,8 @@
       {
         "mobId": "briarbitten_fox",
         "center": {
-          "x": 5,
-          "z": -55
+          "x": -30,
+          "z": 82
         },
         "radius": 7,
         "count": 4
@@ -3440,8 +3440,8 @@
       {
         "mobId": "orchard_boar",
         "center": {
-          "x": -15.7,
-          "z": -138.1
+          "x": 71,
+          "z": -143
         },
         "radius": 8,
         "count": 4
@@ -3449,8 +3449,8 @@
       {
         "mobId": "veiled_rite_tender",
         "center": {
-          "x": 92,
-          "z": -46
+          "x": 107,
+          "z": -41
         },
         "radius": 5,
         "count": 3
@@ -3458,8 +3458,8 @@
       {
         "mobId": "culvert_rat",
         "center": {
-          "x": -60,
-          "z": -135
+          "x": -109,
+          "z": -98
         },
         "radius": 7,
         "count": 5
@@ -6538,28 +6538,28 @@
         "name": "Stolen Supply Crate",
         "positions": [
           {
-            "x": 65,
-            "z": 23
+            "x": 64,
+            "z": 33
           },
           {
-            "x": 72,
-            "z": 15
+            "x": 71,
+            "z": 25
           },
           {
-            "x": 82,
-            "z": 22
+            "x": 81,
+            "z": 32
           },
           {
-            "x": 106,
-            "z": 40
+            "x": 108,
+            "z": 42
           },
           {
-            "x": 110,
-            "z": 48
+            "x": 112,
+            "z": 50
           },
           {
-            "x": 116,
-            "z": 37
+            "x": 118,
+            "z": 39
           }
         ]
       },

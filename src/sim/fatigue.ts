@@ -7,9 +7,10 @@
 // Runs per live player in the tick beside the door/portal triggers; draws no
 // rng, so all three hosts stay identical.
 
+import { inOpenOcean } from './open_ocean';
 import type { SimContext } from './sim_context';
 import type { Entity } from './types';
-import { inHollowOpenSea, waterLevel } from './world';
+import { waterLevel } from './world';
 
 // The sea is a soft boundary, not a trap: now that the open water is genuinely
 // swimmable it is somewhere players go on purpose, so the whole clock runs five
@@ -34,7 +35,11 @@ export function updateSwimFatigue(ctx: SimContext, p: Entity): void {
   if (p.kind !== 'player') return;
   // The ACTIVE waterline (custom maps override it); the built-in constant
   // here silently killed or disabled fatigue on any map with a moved sea.
-  const swimmingOut = p.pos.y <= waterLevel() + 0.4 && inHollowOpenSea(p.pos.x, p.pos.z) && !p.dead;
+  // Real open ocean only (open_ocean.ts): never an inland pond, lake or lagoon.
+  // The cheap height and death gates run first so the ray test only ever
+  // costs anything for a live swimmer at the waterline.
+  const swimmingOut =
+    p.pos.y <= waterLevel() + 0.4 && !p.dead && inOpenOcean(p.pos.x, p.pos.z, ctx.cfg.seed);
   if (!swimmingOut) {
     p.fatigueTicks = 0;
     return;
