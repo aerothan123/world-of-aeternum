@@ -1,5 +1,6 @@
 import type { Collider } from './colliders';
 import { TRANSPORT_SHIP_HULLS } from './content/transport_ships';
+import { eastbrookTownRetiresDecorRow } from './eastbrook_town_footprints';
 import { shipHullColliders } from './transport_ship';
 import type { WorldContent } from './types';
 import { groundHeight, WATER_LEVEL } from './world';
@@ -34,6 +35,9 @@ function topY(seed: number, x: number, z: number, height: number): number {
 export function buildDecorPropColliders(seed: number, decorProps: DecorProp[]): Collider[] {
   const out: Collider[] = [];
   for (const d of decorProps) {
+    // An Eastbrook town kit piece the Early Access client redraws or retires stands down here;
+    // its replacement boxes ride built_structure_colliders.ts (eastbrook_town_footprints.ts).
+    if (eastbrookTownRetiresDecorRow(d.key, d.x, d.z)) continue;
     const cameraTopY = topY(seed, d.x, d.z, d.h ?? 4);
     const supportBaseY =
       d.float === undefined

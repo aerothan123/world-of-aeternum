@@ -21,6 +21,7 @@ import { EASTBROOK_BUILDING_PAD_TERRAIN_EDITS, ZONE1_PROPS } from '../src/sim/co
 import { BUILTIN_WORLD, PLAYER_START, setActiveWorldContent } from '../src/sim/data';
 import { isExcludedDecoration, isExcludedStreetlamp } from '../src/sim/decoration_exclusions';
 import { EASTBROOK_LAYOUT, localToWorld, type Obb2 } from '../src/sim/eastbrook_layout';
+import { eastbrookTownRecordBoxes } from '../src/sim/eastbrook_town_footprints';
 import { HIGHWATCH_LAYOUT } from '../src/sim/highwatch_layout';
 import { PAINTED_TOWNS } from '../src/sim/painted_towns';
 import { PLAYER_MAX_CLIMB_SLOPE } from '../src/sim/pathfind';
@@ -506,39 +507,45 @@ describe('placed building collision in the built-in world', () => {
     return record;
   };
 
-  it('gives each sealed record its wall box plus one box per annex', () => {
+  it('collides each record on the town building the client draws, and on its own wall box once moved', () => {
     for (const building of BUILDINGS) {
       const record = recordOf(building);
       expect(record.x).toBe(building.position.x);
       expect(record.z).toBe(building.position.z);
       expect(record.w).toBe(building.nativeDimensions.width);
       expect(record.d).toBe(building.nativeDimensions.depth);
-      // with no seed every record is sealed; with one, only the shut-door model is
-      if (!building.walkIn) {
-        expect(
-          buildingRecordColliders(record, 30, () => 0, WORLD_SEED),
-          building.id,
-        ).toEqual(buildingRecordColliders(record, 30, () => 0));
-      }
+      // at its layout anchor the record stands on the Early Access town's boxes
+      // (eastbrook_town_footprints.ts), with a seed or without one
+      const boxes = eastbrookTownRecordBoxes(record);
+      if (!boxes) throw new Error(`${building.id} has no town boxes`);
+      expect(boxes.length, building.id).toBeGreaterThan(0);
       const colliders = buildingRecordColliders(record, 30, () => 0);
-      expect(colliders, building.id).toHaveLength(1 + building.annexes.length);
-      expect(colliders[0]).toMatchObject({
+      expect(
+        buildingRecordColliders(record, 30, () => 0, WORLD_SEED),
+        building.id,
+      ).toEqual(colliders);
+      expect(colliders, building.id).toHaveLength(boxes.length);
+      boxes.forEach((box, index) => {
+        expect(colliders[index], box.id).toMatchObject({
+          type: 'obb',
+          x: box.x,
+          z: box.z,
+          hw: box.hw,
+          hd: box.hd,
+          rot: box.rot,
+          cameraTopY: box.h,
+        });
+      });
+      // a record a custom world moved is one sealed wall box again, annexes left behind
+      const moved = buildingRecordColliders({ ...record, x: record.x + 4 }, 30, () => 0);
+      expect(moved, building.id).toHaveLength(1);
+      expect(moved[0]).toMatchObject({
         type: 'obb',
-        x: building.position.x,
+        x: building.position.x + 4,
         z: building.position.z,
         hw: building.nativeDimensions.width / 2,
         hd: building.nativeDimensions.depth / 2,
         rot: building.rotation,
-      });
-      building.annexes.forEach((annex, index) => {
-        expect(colliders[index + 1], annex.id).toMatchObject({
-          type: 'obb',
-          x: annex.center.x,
-          z: annex.center.z,
-          hw: annex.halfWidth,
-          hd: annex.halfDepth,
-          rot: annex.rotation,
-        });
       });
     }
   });
@@ -557,14 +564,10 @@ describe('placed building collision in the built-in world', () => {
     expect(placedBuildingAnnexes({ ...EASTBROOK_LAYOUT.weeklyVault })).toHaveLength(0);
   });
 
-  it('makes every building with an open doorway walk-in, and keeps the quay cottage shut', () => {
-    expect(BUILDINGS.filter((building) => building.walkIn).map((building) => building.id)).toEqual([
-      'eastbrook_bank',
-      'eastbrook_smithy',
-      'eastbrook_inn',
-      'eastbrook_chapel',
-      'eastbrook_apothecary',
-    ]);
+  it('seals every Eastbrook building (the client draws each with a shut door)', () => {
+    expect(BUILDINGS.filter((building) => building.walkIn).map((building) => building.id)).toEqual(
+      [],
+    );
   });
 
   it('collides a walk-in record on its own model baked boxes, seated on the terrain', () => {
@@ -592,28 +595,36 @@ describe('placed building collision in the built-in world', () => {
     }
   });
 
-  it('opens the doorway of each walk-in building, keeps its walls, and seals the rest', () => {
+  it('blocks inside every town box, leaves each door step free, and nothing blocks where no wall is drawn', () => {
     for (const building of BUILDINGS) {
-      const anchor = { x: building.placement.x, z: building.placement.z };
-      const walls = rectOf(building, building.footprint);
-      const door = toModelAxes(building, building.frontStandingPoint);
-      // one stride inside the front wall, on the door's own line, asked for a
-      // body standing on the ground there (the lintel and the storey above a
-      // doorway are overhead, not in its way)
-      const inside = localToWorld(anchor, building.placement.rotation, door.x, walls.z0 + 1);
-      const standing = { y: groundHeight(inside.x, inside.z, WORLD_SEED), lift: 0 };
-      expect(
-        isBlocked(WORLD_SEED, inside.x, inside.z, 0.5, false, undefined, 0, standing),
-        `${building.id} doorway`,
-      ).toBe(!building.walkIn);
+      const boxes = eastbrookTownRecordBoxes(recordOf(building));
+      if (!boxes) throw new Error(`${building.id} has no town boxes`);
+      for (const box of boxes) {
+        expect(isBlocked(WORLD_SEED, box.x, box.z), box.id).toBe(true);
+      }
       const front = building.frontStandingPoint;
       expect(isBlocked(WORLD_SEED, front.x, front.z), `${building.id} front`).toBe(false);
+      // the painted model's own parts (its wall box corners, its annexes) no
+      // longer block where the drawn building does not reach
+      const inAnyBox = (x: number, z: number) =>
+        boxes.some((box) => {
+          const cos = Math.cos(box.rot);
+          const sin = Math.sin(box.rot);
+          const lx = (x - box.x) * cos - (z - box.z) * sin;
+          const lz = (x - box.x) * sin + (z - box.z) * cos;
+          return Math.abs(lx) < box.hw + 1 && Math.abs(lz) < box.hd + 1;
+        });
       for (const annex of building.annexes) {
-        expect(isBlocked(WORLD_SEED, annex.center.x, annex.center.z), annex.id).toBe(true);
+        if (inAnyBox(annex.center.x, annex.center.z)) continue;
+        const ground = groundHeight(annex.center.x, annex.center.z, WORLD_SEED);
+        expect(
+          isBlocked(WORLD_SEED, annex.center.x, annex.center.z, 0.3, false, undefined, 0, {
+            y: ground,
+            lift: 0,
+          }),
+          annex.id,
+        ).toBe(false);
       }
-      // the back wall still stands, straight across from the door
-      const back = localToWorld(anchor, building.placement.rotation, door.x, walls.z1 - 0.1);
-      expect(isBlocked(WORLD_SEED, back.x, back.z), `${building.id} back wall`).toBe(true);
     }
   });
 

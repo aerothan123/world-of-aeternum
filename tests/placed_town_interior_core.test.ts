@@ -276,8 +276,13 @@ describe('the placed-town view registers the air', () => {
     // out on the step behind a player who has just walked in, its sight line in through the
     // door, the bank stays solid; a lens off along the front, looking through the wall beside
     // the door, fades it
-    const bank = EASTBROOK_LAYOUT.buildings.find((building) => building.id === 'eastbrook_bank');
-    if (!bank) throw new Error('no Eastbrook bank');
+    // (the record is sealed in the shipped town since the Wyndlewood rebuild, so the probe
+    // opens its own copy: the frame maths under test is the turned record's, not the flag's)
+    const sealedBank = EASTBROOK_LAYOUT.buildings.find(
+      (building) => building.id === 'eastbrook_bank',
+    );
+    if (!sealedBank) throw new Error('no Eastbrook bank');
+    const bank = { ...sealedBank, walkIn: true };
     setDitherFadeEnabledForTest(false);
     try {
       const kit = createPlacedTownKit({
@@ -625,9 +630,12 @@ describe('every walk-in painted building of the built-in towns', () => {
   }
 
   it('gives every walk-in building its rooms, and no sealed one any', () => {
-    // every town stands walk-in painted buildings, so the list is never vacuous
+    // every town but Eastbrook stands walk-in painted buildings, so the list is never
+    // vacuous (Eastbrook's are sealed since the Wyndlewood town rebuild)
     for (const [town, buildings] of TOWN_BUILDINGS) {
-      expect(buildings.filter((building) => building.walkIn).length, town).toBeGreaterThan(1);
+      const walkIns = buildings.filter((building) => building.walkIn).length;
+      if (buildings === EASTBROOK_LAYOUT.buildings) expect(walkIns, town).toBe(0);
+      else expect(walkIns, town).toBeGreaterThan(1);
       for (const building of buildings) {
         const air = placedTownCameraInterior(
           building,

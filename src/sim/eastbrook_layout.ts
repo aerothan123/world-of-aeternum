@@ -752,8 +752,11 @@ const APOTHECARY_SCALE = 1.5;
 // moved with the mesh. Reach boxes are the shipped models' bounds, and the
 // wall and annex boxes are their baked collision lines
 // (tests/eastbrook_placed_buildings.test.ts measures all of them off the
-// shipped files). Every one whose model bakes an open doorway (all but the
-// quay cottage) is walk-in.
+// shipped files). Every one is SEALED: the Early Access client draws each as
+// an assembled cottage-style building with a shut door, smaller than the
+// painted model, so a record collides on that building's own boxes
+// (eastbrook_town_footprints.ts) and nobody walks into a wall they can see.
+// The walk-in rule (town_walk_in.ts) stays for Fenbridge and Highwatch.
 const BUILDINGS = [
   makePlacedBuilding({
     id: 'eastbrook_bank',
@@ -770,7 +773,6 @@ const BUILDINGS = [
     ],
     doorX: 0,
     modelSize: 22.6067,
-    walkIn: true,
   }),
   makePlacedBuilding({
     id: 'eastbrook_smithy',
@@ -786,7 +788,6 @@ const BUILDINGS = [
     annexes: [{ name: 'forge_shelter', x: 9.1231, z: -0.1, width: 7.2308, depth: 9.6 }],
     doorX: -1.2,
     modelSize: 19.797,
-    walkIn: true,
   }),
   makePlacedBuilding({
     id: 'eastbrook_inn',
@@ -803,7 +804,6 @@ const BUILDINGS = [
     ],
     doorX: 0,
     modelSize: 22.6483,
-    walkIn: true,
   }),
   makePlacedBuilding({
     id: 'eastbrook_chapel',
@@ -820,7 +820,6 @@ const BUILDINGS = [
     ],
     doorX: 0,
     modelSize: 30.4998,
-    walkIn: true,
   }),
   makePlacedBuilding({
     id: 'eastbrook_apothecary',
@@ -838,7 +837,6 @@ const BUILDINGS = [
     ],
     doorX: -1.6,
     modelSize: 16.2797,
-    walkIn: true,
   }),
   makePlacedBuilding({
     id: 'eastbrook_quay_cottage',
@@ -852,7 +850,6 @@ const BUILDINGS = [
     annexes: [{ name: 'crates', x: -7.0308, z: -1.8231, width: 1.1538, depth: 2.2462 }],
     doorX: 0,
     modelSize: 15.9799,
-    // no walkIn: the cottage's model bakes a shut door, so it stays one sealed box
   }),
 ] as const;
 

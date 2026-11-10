@@ -30,6 +30,7 @@ import { promotedTownBuildingStandsDown } from '../src/sim/authored_town_buildin
 import { colliderInternalsForTest } from '../src/sim/colliders';
 import { BUILTIN_WORLD, setActiveWorldContent } from '../src/sim/data';
 import { EASTBROOK_LAYOUT, localToWorld } from '../src/sim/eastbrook_layout';
+import { EASTBROOK_TOWN_FOOTPRINTS } from '../src/sim/eastbrook_town_footprints';
 import { terrainHeight } from '../src/sim/world';
 import { WORLD_SEED } from '../src/sim/world_seed';
 
@@ -147,16 +148,20 @@ describe('the Weekly Vault record collider', () => {
       b.x === EASTBROOK_LAYOUT.buildings[0].position.x &&
       b.z === EASTBROOK_LAYOUT.buildings[0].position.z,
   );
+  // The record collides on its town footprint boxes since the Wyndlewood town rebuild
+  // (eastbrook_town_footprints.ts), not on the hall's own rectangle.
+  const VAULT_BOXES = EASTBROOK_TOWN_FOOTPRINTS.filter(
+    (box) => box.replaces === `building:${VAULT.id}`,
+  );
   const vaultObb = (seed: number) =>
     colliderInternalsForTest
       .staticWorldColliders(seed)
       .filter(
         (c) =>
           c.type === 'obb' &&
-          c.x === VAULT.x &&
-          c.z === VAULT.z &&
-          c.hw === VAULT.w / 2 &&
-          c.hd === VAULT.d / 2,
+          VAULT_BOXES.some(
+            (box) => c.x === box.x && c.z === box.z && c.hw === box.hw && c.hd === box.hd,
+          ),
       );
 
   it('stands down under its own flag and no other', () => {
@@ -171,9 +176,10 @@ describe('the Weekly Vault record collider', () => {
   });
 
   it('leaves the shipped world its collider and takes it out of a document that owns the vault', () => {
-    expect(vaultObb(WORLD_SEED)).toHaveLength(1);
+    expect(VAULT_BOXES.length).toBeGreaterThan(0);
+    expect(vaultObb(WORLD_SEED)).toHaveLength(VAULT_BOXES.length);
     setActiveWorldContent({ ...BUILTIN_WORLD, promotedScenery: { authoredTowns: true } });
-    expect(vaultObb(WORLD_SEED)).toHaveLength(1);
+    expect(vaultObb(WORLD_SEED)).toHaveLength(VAULT_BOXES.length);
     setActiveWorldContent({ ...BUILTIN_WORLD, promotedScenery: { eastbrookVault: true } });
     expect(vaultObb(WORLD_SEED)).toHaveLength(0);
   });

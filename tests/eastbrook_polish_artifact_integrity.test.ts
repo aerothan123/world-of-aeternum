@@ -1440,7 +1440,9 @@ const ACCEPTED_POLISH_V2_METADATA_SHA256 =
   // No capture was retaken.
   // Re-minted for the Wyndlewood wallet-package removal: pnpm-lock.yaml (a
   // fingerprinted input) lost the Reown and Solana stack. No capture was retaken.
-  '211c476e29d61555ad234220db87b13db3738ca68f052850e8034b4fa19961c0';
+  // Re-minted for the Wyndlewood Eastbrook town rebuild: eastbrook_layout.ts (a
+  // fingerprinted input) seals the town's buildings. No capture was retaken.
+  '8e26ee6d04728c390216f7d6e6a34bf7b76e6362310bc2bef5b96bad20bd4d24';
 const ACCEPTED_POLISH_V2_COMPOSITE_PROVENANCE =
   // Re-minted for the Studio town-dressing promotion: eastbrook_town.ts stands its micro batch
   // down under promotedScenery.authoredTownDressing. No capture was retaken.
@@ -1500,7 +1502,9 @@ const ACCEPTED_POLISH_V2_COMPOSITE_PROVENANCE =
   // No capture was retaken.
   // Re-minted for the Wyndlewood wallet-package removal: pnpm-lock.yaml (a
   // fingerprinted input) lost the Reown and Solana stack. No capture was retaken.
-  '6015ea307780df1d7f0aefa007a7348202be27781de896a2dfbd5eae848079b8';
+  // Re-minted for the Wyndlewood Eastbrook town rebuild: eastbrook_layout.ts (a
+  // fingerprinted input) seals the town's buildings. No capture was retaken.
+  '6f24c55492c2bb6e4a7a81212ac99e6956d97c14514e1b1a9a2387a36d378c4e';
 const ACCEPTED_POLISH_V2_METADATA = readJsonFile<CaptureMetadata>(ACCEPTED_POLISH_V2_METADATA_PATH);
 const ACCEPTED_POLISH_V2_PROVENANCE = ACCEPTED_POLISH_V2_METADATA.polishProvenance;
 const ACCEPTED_POLISH_V2_TOWN_CONTRACT = ACCEPTED_POLISH_V2_METADATA.records[0]?.townContract;
@@ -2912,7 +2916,9 @@ describe('Eastbrook polish performance and contact evidence', () => {
       // Re-minted for the Wyndlewood wallet-package removal (pnpm-lock.yaml moved);
       // this second-order performance seal follows the swept evidence bytes. No
       // capture was retaken.
-    ).toBe('28c9dd94ed0492a517b00746ce73ee6da3fc67c0b9faaaec1f7ec58c32264e63');
+      // Re-minted for the Wyndlewood Eastbrook town rebuild: eastbrook_layout.ts (a
+      // fingerprinted input) seals the town's buildings. No capture was retaken.
+    ).toBe('f578ed609af71f1624de14b910f303f6e60e01f96b7b7fb30ca4b1a7f2b4a198');
   });
 
   it('binds every historical after record to its accepted source and asset provenance', () => {

@@ -125,8 +125,9 @@ export const CHAPTER_ONE_NPCS: Record<string, NpcDef> = {
     C1_JORREN,
     'Jorren',
     'Innkeeper',
-    { x: 12, z: -84 },
-    Math.PI,
+    // the inn's own yard, east of its door (he stood by the square, a street away from the inn)
+    { x: -23.6, z: -72.4 },
+    -2.72,
     0xa0522d,
     'It could be worse. Usually is. Sit, eat, and tell me which way the trouble is walking today.',
   ),
@@ -506,15 +507,17 @@ export const CHAPTER_ONE_OBJECTS: GroundObjectDef[] = [
     { x: -38.2, z: -69.2 },
     { x: -34.3, z: -70.3 },
   ]),
+  // The inn's own things stand at the inn (they travelled with Jorren from the square's north
+  // corner): the panels and the pipe along its front wall, the rest in its yard.
   obj('c1_tapping_wall_panel', [
-    { x: 14, z: -82 },
-    { x: 15.5, z: -83.5 },
-    { x: 14, z: -86 },
+    { x: -28.3, z: -69.1 },
+    { x: -26.7, z: -69.8 },
+    { x: -24.2, z: -67.6 },
   ]),
-  obj('c1_nibbled_rent_notice', [{ x: 13.5, z: -87.5 }]),
-  obj('c1_speaking_pipe', [{ x: 16, z: -86 }]),
-  obj('c1_bread_heel', [{ x: 12, z: -85.5 }]),
-  obj('c1_pantry_saucer', [{ x: 15.5, z: -87.5 }]),
+  obj('c1_nibbled_rent_notice', [{ x: -25.4, z: -70.9 }]),
+  obj('c1_speaking_pipe', [{ x: -22.9, z: -68.2 }]),
+  obj('c1_bread_heel', [{ x: -23.9, z: -73.9 }]),
+  obj('c1_pantry_saucer', [{ x: -21.6, z: -70.6 }]),
   obj('c1_delivery_slip', [
     { x: -26.5, z: -95.5 },
     { x: -24.5, z: -96 },
@@ -553,14 +556,14 @@ export const CHAPTER_ONE_OBJECTS: GroundObjectDef[] = [
     { x: -33.5, z: -93.5 },
   ]),
   obj('c1_covered_stew_bowl', [
-    { x: 10.5, z: -82.5 },
-    { x: 11, z: -83.7 },
-    { x: 9.4, z: -80.2 },
+    { x: -21.9, z: -74.9 },
+    { x: -21.2, z: -73.7 },
+    { x: -22.6, z: -75.4 },
   ]),
   obj('c1_bread_bundle', [
-    { x: 9, z: -82 },
-    { x: 10.8, z: -85.5 },
-    { x: 8.4, z: -80.9 },
+    { x: -27.3, z: -74.2 },
+    { x: -28.6, z: -74 },
+    { x: -27.9, z: -73 },
   ]),
   obj('c1_dried_herb_packet', [
     { x: -40.5, z: -77.5 },
@@ -627,7 +630,7 @@ export const CHAPTER_ONE_OBJECTS: GroundObjectDef[] = [
     { x: -17.5, z: -70.5 },
     { x: -15.8, z: -74 },
   ]),
-  obj('c1_inn_hearth', [{ x: 10.3, z: -86.5 }]),
+  obj('c1_inn_hearth', [{ x: -25.4, z: -74.4 }]),
 ];
 
 // ---------------------------------------------------------------------------
