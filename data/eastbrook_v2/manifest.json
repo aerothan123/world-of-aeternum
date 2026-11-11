@@ -1,0 +1,44 @@
+{
+  "note": "Written by scripts/eastbrook_v2/import_eastbrook_v2.ts. Do not edit by hand.",
+  "source": {
+    "commit": "d0e6d347c1413fba39b5f6b19ca11a6ab5106863",
+    "files": {
+      "heightfield.json": "5ab2fffaa44078b786dfe95af9c6cb365ddb2fd6776390bf9239fdb34efa7bd2",
+      "colliders.json": "09821697e4c4ae42691833f47509383bda8c18a8c0aa90a24ad096bea692d85c",
+      "points.json": "3f18d9084872824b104a88120397c041709a73634d14f0494a85aa43c914f3ed",
+      "nodes.json": "badeb8973275474d8d886eb9bcd36aeb0e093067d674f998970c91bd5986a3e0",
+      "roads.json": "afd17dfeed29aed53d98af83bc08278037a730737121448b79bca9f7c5c44edc"
+    }
+  },
+  "counts": {
+    "fieldCells": 130321,
+    "waterCells": 5338,
+    "meanWaterSurface": 5.05,
+    "colliders": 970,
+    "collidersSkipped": {
+      "outside": 862,
+      "overhead": 19,
+      "flat": 67,
+      "treeTrunk": 59,
+      "nodeBody": 6,
+      "serviceProp": 1,
+      "openFrame": 2
+    },
+    "points": 44,
+    "nodes": {
+      "ore": 6,
+      "herb": 5,
+      "berry": 2,
+      "fishing": 3
+    },
+    "trees": 223,
+    "nodesOutsideSlot": {
+      "tree": 871,
+      "ore": 8,
+      "herb": 55,
+      "berry": 22,
+      "fishing": 3
+    },
+    "roads": 10
+  }
+}
