@@ -4,8 +4,8 @@
 // design tree that no decoration anchor owns (decorations.ts). Ownership is one rule
 // both ways (ground.ts ebv2Owns): where the design owns the ground its solids stand
 // and the shipped world's own Eastbrook props stand down (ebv2StandDown); where it
-// does not (the edge band's outer half, the corridors that keep the harbor, the
-// passes and Mirror Lake) the shipped props stand and the design's do not. So the
+// does not (the edge band's outer half, and any corridor the import config keeps)
+// the shipped props stand and the design's do not. So the
 // server blocks where the Unreal client draws a wall and nowhere else. Built-in
 // world only (built_structure_colliders.ts gates it).
 //
@@ -14,6 +14,7 @@
 import type { Collider } from '../collider_shapes';
 import { GATHER_NODES } from '../content/gather_nodes';
 import { isBuiltinWorldContent } from '../data';
+import { HARBOR_ROUTE_MARKER_SRC } from '../harbor_route_markers';
 import type { WorldContent } from '../types';
 import { ebv2UnanchoredTreeIndexes } from './decorations';
 import { ebv2Owns } from './ground';
@@ -83,9 +84,19 @@ function isNodeBody(c: Collider): boolean {
   return nodeSpots.has(`${c.x},${c.z}`);
 }
 
+/** True when a collider belongs to a sea crossing, not to the shipped Eastbrook:
+ *  a ferry's moored hull (gated by its berth, transport_gates.ts) or a harbor
+ *  route marker's post. The ferry berths in the v2 design's west cove, so these
+ *  stand on design ground and must stay. */
+function isCrossingBody(c: Collider): boolean {
+  return c.gate !== undefined || c.src === HARBOR_ROUTE_MARKER_SRC;
+}
+
 /** True when a shipped (non-design) collider stands on ground the design owns. */
 export function ebv2RetiresShippedCollider(c: Collider): boolean {
-  if (c.src?.startsWith(EBV2_COLLIDER_SRC_PREFIX) || isNodeBody(c)) return false;
+  if (c.src?.startsWith(EBV2_COLLIDER_SRC_PREFIX) || isNodeBody(c) || isCrossingBody(c)) {
+    return false;
+  }
   return ebv2Owns(c.x, c.z);
 }
 

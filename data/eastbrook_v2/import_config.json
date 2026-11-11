@@ -1,36 +1,14 @@
 {
-  "note": "Settings for scripts/eastbrook_v2/import_eastbrook_v2.ts. openFrames are boxes the design exports as one block across a walkable opening (the town gate frames): each becomes its two end posts, openFramePost yards thick. serviceProps are boxes of a prop the server stands as its own entity with its own footprint (the notice board), dropped so the design box does not wall the server's board in. The Unreal design (wt-aura WorldDesign/EastbrookVale) is authored in the server's x/z frame at 1 yard = 1 metre, with its sea at y 4.0; the server's sea is WATER_LEVEL -4.3, so every height lands yOffset lower. The field is clipped to the eastbrook_vale slot; the outer edgeBand yards and every corridor ease back into the shipped terrain (corridors keep a server connector the design does not carry: the Mirefen pass, the Farshore causeway, the Southway and the harbor cove with its ferry lane). A corridor whose two ends coincide is a disc: mirror_lake keeps the shipped Mirror Lake basin (LAKE in src/sim/content/zone1.ts, radius 30, shore blend 1.6x), with its murloc camp and swimmable water, because the design carries no open-water pond inside the slot. copper_dig keeps the shipped Copper Dig floor (the six veins q_prof_intro sends a miner to, and the Deeprock Diggers that work them): the design's ground there is the foot of its north cliff, a 7 m rise across the vein field. Design solids and trees stand only where the design owns the ground (blend weight 0.5 and up).",
+  "note": "Settings for scripts/eastbrook_v2/import_eastbrook_v2.ts. openFrames are boxes the design exports as one block across a walkable opening (the town gate frames): each becomes its two end posts, openFramePost yards thick. serviceProps are boxes of a prop the server stands as its own entity with its own footprint (the notice board), dropped so the design box does not wall the server's board in. restBuildings are the boxes of the buildings a body rests in (the inn): their footprints become the rest areas (rested XP, src/sim/eastbrook_v2/rest.ts). The Unreal design (wt-aura WorldDesign/EastbrookVale) is authored in the server's x/z frame at 1 yard = 1 metre, with its sea at y 4.0; the server's sea is WATER_LEVEL -4.3, so every height lands yOffset lower. The field is clipped to the eastbrook_vale slot (x -270..180, z -180..180: the slot grew west over open sea to take the design's whole west coast). The design itself now ends on the slot: its pass 4 eases every edge into the server's own neighbour ground and cuts the road passes to Mirefen, the Farshore causeway and the Southway, so the edge band here is only a short seam and no corridor keeps shipped ground inside the slot. Design solids and trees stand only where the design owns the ground (blend weight 0.5 and up).",
   "yOffset": -8.3,
-  "clip": { "xMin": -180, "xMax": 180, "zMin": -180, "zMax": 180 },
-  "edgeBand": 24,
+  "clip": { "xMin": -270, "xMax": 180, "zMin": -180, "zMax": 180 },
+  "edgeBand": 4,
   "waterEdgeBlend": 6,
   "overheadClearance": 2.2,
   "flatTop": 0.35,
   "openFrames": ["EBV_GateNorth_Frame", "EBV_GateSouth_Frame"],
   "openFramePost": 0.35,
   "serviceProps": ["EBV_NoticeBoard"],
-  "corridors": [
-    { "id": "mirefen_pass", "ax": 4, "az": 186, "bx": 2, "bz": 128, "halfWidth": 9, "blend": 16 },
-    {
-      "id": "farshore_causeway",
-      "ax": 128,
-      "az": -58,
-      "bx": 196,
-      "bz": -14,
-      "halfWidth": 8,
-      "blend": 16
-    },
-    { "id": "southway", "ax": 73, "az": -158, "bx": 72, "bz": -186, "halfWidth": 7, "blend": 12 },
-    {
-      "id": "harbor_cove",
-      "ax": -100,
-      "az": -54,
-      "bx": -186,
-      "bz": -54,
-      "halfWidth": 22,
-      "blend": 12
-    },
-    { "id": "mirror_lake", "ax": -92, "az": 88, "bx": -92, "bz": 88, "halfWidth": 48, "blend": 12 },
-    { "id": "copper_dig", "ax": -28, "az": 150, "bx": -28, "bz": 150, "halfWidth": 22, "blend": 10 }
-  ]
+  "restBuildings": ["EBV_Inn_KettleAndCradle"],
+  "corridors": []
 }

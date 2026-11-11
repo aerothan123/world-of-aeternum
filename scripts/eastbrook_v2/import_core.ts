@@ -24,7 +24,24 @@ export interface ImportConfig {
   openFramePost?: number;
   /** Boxes of a service prop the server stands as its own entity (dropped). */
   serviceProps?: readonly string[];
+  /** Boxes of the buildings a body rests in (the inn): their footprints become the
+   *  rest areas (rested XP), whatever happens to the box as a collider. */
+  restBuildings?: readonly string[];
   corridors: readonly ImportCorridor[];
+}
+
+/** A rest area: [x, z, halfWidth, halfDepth, rot], the collider rows' convention. */
+export type ServerRestArea = readonly [number, number, number, number, number];
+
+/** The footprint of every rest building (cfg.restBuildings) from the design's own
+ *  box, in the collider rows' convention. A named building missing from the export
+ *  is an error: the inn would silently stop resting anyone. */
+export function convertRestAreas(boxes: readonly DesignBox[], cfg: ImportConfig): ServerRestArea[] {
+  return (cfg.restBuildings ?? []).map((name) => {
+    const b = boxes.find((c) => c.name === name);
+    if (!b) throw new Error(`rest building ${name} is not in colliders.json`);
+    return [round2(b.x), round2(b.z), round2(b.hx), round2(b.hz), round4((-b.yaw * Math.PI) / 180)];
+  });
 }
 
 export interface ImportCorridor {

@@ -7,9 +7,10 @@ slot of the built-in world so the server agrees with what the Unreal client draw
 ## Files
 | File | What it is |
 |---|---|
-| `field.generated.ts` | the design heightfield, server frame, int16 cm, clipped to the slot, plus the blend settings and corridors |
-| `layout.generated.ts` | the design's solids (OBB rows), points by id, gather/fishing nodes, wild trees, roads |
-| `ground.ts` | decode + bilinear sample + blend weight; `ebv2Ground` is applied LAST in `world.ts` terrain pads |
+| `field.generated.ts` | the design heightfield, server frame, int16 cm, clipped to the slot (x -270..180, z -180..180), plus the blend settings and corridors (none since the design ends on the slot) |
+| `layout.generated.ts` | the design's solids (OBB rows), points by id, gather/fishing nodes, wild trees, roads, rest areas |
+| `ground.ts` | decode + bilinear sample + blend weight; `ebv2Ground` is applied LAST in `world.ts` terrain pads; `ebv2OwnsBuiltin` stands down shipped walkable decks on design ground (`deck_surfaces.ts`) |
+| `rest.ts` | `ebv2RestsAt`: the design inn's footprint, where a body rests (rested XP, `progression/xp.ts`) |
 | `decorations.ts` | one design tree per 10 yd decoration anchor (choppable, stable tree ids); procedural scatter off in the field |
 | `colliders.ts` | the design boxes plus trunks for unanchored trees; `ebv2StandDown` retires shipped props on design ground |
 | `points.ts` | `ebv2Point(id)` / `ebv2Xz(id)` / `ebv2Nodes(kind)` for content tables |

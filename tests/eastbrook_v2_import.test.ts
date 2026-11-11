@@ -224,11 +224,11 @@ describe('eastbrook v2 import: the committed generated tables', () => {
   });
 
   it('keep the field clipped to the eastbrook_vale slot', () => {
-    expect(EBV2_FIELD_GRID).toMatchObject({ x0: -180, z0: -180, nx: 361, nz: 361, yOffset: -8.3 });
-    for (const [x, z] of EBV2_TREES)
-      expect(Math.max(Math.abs(x), Math.abs(z))).toBeLessThanOrEqual(180);
-    for (const [x, z] of EBV2_COLLIDERS)
-      expect(Math.max(Math.abs(x), Math.abs(z))).toBeLessThanOrEqual(180);
+    // the slot: x -270..180 (the vale grew west over the old strait), z -180..180
+    expect(EBV2_FIELD_GRID).toMatchObject({ x0: -270, z0: -180, nx: 451, nz: 361, yOffset: -8.3 });
+    const inSlot = (x: number, z: number) => x >= -270 && x <= 180 && Math.abs(z) <= 180;
+    for (const [x, z] of EBV2_TREES) expect(inSlot(x, z), `tree ${x},${z}`).toBe(true);
+    for (const [x, z] of EBV2_COLLIDERS) expect(inSlot(x, z), `box ${x},${z}`).toBe(true);
   });
 
   // The re-run arm: with the Unreal exports on disk (EASTBROOK_V2_SRC), the import

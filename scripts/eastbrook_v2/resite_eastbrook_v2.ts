@@ -26,6 +26,7 @@ import {
   ebv2RoadClearance,
   ebv2Weight,
 } from '../../src/sim/eastbrook_v2';
+import { EBV2_FIELD_GRID } from '../../src/sim/eastbrook_v2/field.generated';
 import { EBV2_COLLIDERS } from '../../src/sim/eastbrook_v2/layout.generated';
 import { EBV2_SITE_LOG, ebv2Site } from '../../src/sim/eastbrook_v2/sites';
 import { MAX_AGGRO_RADIUS } from '../../src/sim/mob/aggro_ranges';
@@ -49,7 +50,10 @@ const cfg = JSON.parse(
   anchors: Record<string, string>;
   lots: Record<string, string>;
   nodes: Record<string, 'ore' | 'herb' | 'berry'>;
-  objectGroups: { building: string; point: string; items: string[] }[];
+  objectGroups: (
+    | { building: string; point: string; items: string[] }
+    | { from: P; to: P; items: string[]; building?: undefined }
+  )[];
   campFollowers: Record<string, string>;
   searchRadius: Record<'npc' | 'object' | 'camp' | 'station' | 'service' | 'node', number>;
   npcSpacing: number;
@@ -379,6 +383,12 @@ for (const node of GATHER_NODES) {
 // with it: offset from the authored building onto the design point, then cleared.
 const groupFor = new Map<string, P>();
 for (const g of cfg.objectGroups) {
+  // a group with no building moves by an explicit offset: the shipped spot it
+  // gathered round to where it gathers now (the old quay's cargo to the cove dock)
+  if (g.building === undefined) {
+    for (const item of g.items) groupFor.set(item, { x: g.to.x - g.from.x, z: g.to.z - g.from.z });
+    continue;
+  }
   const b = EASTBROOK_LAYOUT.buildings.find((x) => x.id === g.building);
   if (!b) {
     problems.push(`object group names unknown building ${g.building}`);
@@ -408,7 +418,11 @@ function siteObjects(campMoves: { mobId: string; from: P; to: P; radius: number 
         : groupFor.get(o.itemId);
       if (shift) {
         const target = { x: r2(from.x + shift.x), z: r2(from.z + shift.z) };
-        sites[key] = need(key, spiral(target, cfg.searchRadius.object, 0.4, objectClear));
+        const at = spiral(target, cfg.searchRadius.object, 0.4, objectClear);
+        // say where it was aiming, so a re-import that strands a moved object is
+        // diagnosable from the log alone
+        if (!at) problems.push(`${key} aimed at ${target.x},${target.z}`);
+        sites[key] = need(key, at);
         continue;
       }
       if (standable(from.x, from.z, 0.4) && objectClear(from)) continue;
@@ -426,7 +440,10 @@ const anchorsForCamps = [...placed, ...lotDoors];
 // disc reaching past the slot edge would move a neighbour's ground: such a camp
 // keeps its authored spot, and a moved camp keeps its whole disc inside the slot.
 const FLATTEN = 1.8;
-const slotInset = (p: P) => Math.min(p.x + 180, 180 - p.x, p.z + 180, 180 - p.z);
+// the slot is the imported field's rect (data/eastbrook_v2/import_config.json clip)
+const G = EBV2_FIELD_GRID;
+const slotInset = (p: P) =>
+  Math.min(p.x - G.x0, G.x0 + G.nx - 1 - p.x, p.z - G.z0, G.z0 + G.nz - 1 - p.z);
 // Every vale camp as authored, and where this run has placed it so far (camps are
 // placed in table order, each against the ones before it, so a re-run on the same
 // inputs places them the same way): a moved camp keeps the separation

@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-4ad59-3145d6e7-c1f63877-14b3-b4ad9a78-f493dfc8",
+    "id": "live-4ad76-a8426e3e-b775544e-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "4ad59-3145d6e7-c1f63877",
+    "overworldBase": "4ad76-a8426e3e-b775544e",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -18,6 +18,8 @@
         "name": "Eastbrook Vale",
         "zMin": -180,
         "zMax": 180,
+        "xMin": -270,
+        "xMax": 180,
         "levelRange": [1, 7],
         "biome": "vale",
         "hub": {
@@ -112,8 +114,8 @@
             "id": "the_farshore_causeway"
           },
           {
-            "x": -101,
-            "z": -54,
+            "x": -228,
+            "z": 97,
             "label": "Eastbrook Docks",
             "id": "eastbrook_docks"
           }
@@ -1395,7 +1397,7 @@
         "worldPvp": "sanctuary",
         "name": "The Proving Shore",
         "xMin": -540,
-        "xMax": -180,
+        "xMax": -270,
         "zMin": -180,
         "zMax": 180,
         "levelRange": [1, 2],
@@ -1478,8 +1480,8 @@
       {
         "mobId": "wild_boar",
         "center": {
-          "x": 110,
-          "z": -79
+          "x": 116,
+          "z": -74
         },
         "radius": 26,
         "count": 5
@@ -1514,8 +1516,8 @@
       {
         "mobId": "mudfin_murloc",
         "center": {
-          "x": -75,
-          "z": 57
+          "x": -68,
+          "z": 54
         },
         "radius": 15,
         "count": 5
@@ -1532,8 +1534,8 @@
       {
         "mobId": "vale_bandit",
         "center": {
-          "x": 74,
-          "z": 28
+          "x": 66,
+          "z": 26
         },
         "radius": 28.5,
         "count": 6
@@ -2117,8 +2119,8 @@
       {
         "mobId": "grix_the_tunnelking",
         "center": {
-          "x": -44,
-          "z": 122
+          "x": -45,
+          "z": 128
         },
         "radius": 4,
         "count": 1
@@ -3440,8 +3442,8 @@
       {
         "mobId": "orchard_boar",
         "center": {
-          "x": 83,
-          "z": -142
+          "x": 71,
+          "z": -143
         },
         "radius": 8,
         "count": 4
@@ -3458,8 +3460,8 @@
       {
         "mobId": "culvert_rat",
         "center": {
-          "x": -106,
-          "z": -132
+          "x": -109,
+          "z": -66
         },
         "radius": 7,
         "count": 5
@@ -3565,10 +3567,10 @@
         "name": "Ivara Fenmoss",
         "title": "Herbalist",
         "pos": {
-          "x": 1.41,
-          "z": -75.63
+          "x": 1.89,
+          "z": -76.47
         },
-        "facing": -2.6312333237070438,
+        "facing": -2.6391425759138585,
         "color": 8207512,
         "questIds": [
           "q_spiders",
@@ -3777,8 +3779,8 @@
         "name": "Weaver Ottilie",
         "title": "Master of the Loom",
         "pos": {
-          "x": 5.82,
-          "z": -80.63
+          "x": -0.69,
+          "z": -77.26
         },
         "facing": 1.5707963267948966,
         "color": 7430568,
@@ -5262,8 +5264,8 @@
         "name": "Wayfarer Bryn",
         "title": "Harbor Guide",
         "pos": {
-          "x": -79.2,
-          "z": -52.1
+          "x": -77.83,
+          "z": -52.7
         },
         "facing": 0.7,
         "color": 9071258,
@@ -6179,8 +6181,8 @@
         "name": "Wenna Nookwright",
         "title": "Carpenter",
         "pos": {
-          "x": -0.08,
-          "z": -79.38
+          "x": 1.01,
+          "z": -78.9
         },
         "facing": 1.5707963267948966,
         "color": 9136970,
@@ -6211,8 +6213,8 @@
         "name": "Tamsin Tanwick",
         "title": "Tanner of the Yard",
         "pos": {
-          "x": -1.91,
-          "z": -74.97
+          "x": -0.16,
+          "z": -74.6
         },
         "facing": 1.5707963267948966,
         "color": 9398844,
@@ -6538,16 +6540,16 @@
         "name": "Stolen Supply Crate",
         "positions": [
           {
-            "x": 59,
-            "z": 36
+            "x": 50.06,
+            "z": 33.65
           },
           {
-            "x": 66,
-            "z": 28
+            "x": 58.5,
+            "z": 26
           },
           {
-            "x": 76,
-            "z": 35
+            "x": 67.65,
+            "z": 32.65
           },
           {
             "x": 106,
@@ -7362,8 +7364,8 @@
             "z": -10
           },
           {
-            "x": -95,
-            "z": -45
+            "x": -150,
+            "z": -98
           }
         ]
       },
@@ -7403,7 +7405,7 @@
         "positions": [
           {
             "x": -78,
-            "z": -57
+            "z": -55
           }
         ]
       },
@@ -7725,12 +7727,12 @@
         "name": "Overturned Name Stone",
         "positions": [
           {
-            "x": 157.81,
-            "z": -117.63
+            "x": 147.3,
+            "z": -115.3
           },
           {
-            "x": 157.92,
-            "z": -114.74
+            "x": 147.8,
+            "z": -111.18
           }
         ]
       },
@@ -7739,8 +7741,8 @@
         "name": "Unlit Grave Lamp",
         "positions": [
           {
-            "x": 157.83,
-            "z": -118.01
+            "x": 147.8,
+            "z": -115.43
           }
         ]
       },
@@ -7872,7 +7874,7 @@
           },
           {
             "x": -24.5,
-            "z": -95.5
+            "z": -96
           },
           {
             "x": -23,
@@ -8129,16 +8131,16 @@
         "name": "Quay Inspection Post",
         "positions": [
           {
-            "x": -80,
-            "z": -60
+            "x": -201,
+            "z": 91
           },
           {
-            "x": -86,
-            "z": -54
+            "x": -207,
+            "z": 97
           },
           {
-            "x": -74,
-            "z": -66
+            "x": -195,
+            "z": 85
           }
         ]
       },
@@ -8337,20 +8339,20 @@
         "name": "Suspiciously Dry Cargo Crate",
         "positions": [
           {
-            "x": -90,
-            "z": -53
+            "x": -211,
+            "z": 98
           },
           {
-            "x": -96.5,
-            "z": -54.5
+            "x": -217.5,
+            "z": 96.5
           },
           {
-            "x": -88.5,
-            "z": -62
+            "x": -209.5,
+            "z": 89
           },
           {
-            "x": -99,
-            "z": -61
+            "x": -220,
+            "z": 90
           }
         ]
       },
@@ -8359,8 +8361,8 @@
         "name": "Stenciled Cargo Mark",
         "positions": [
           {
-            "x": -91.5,
-            "z": -50
+            "x": -212.5,
+            "z": 101
           }
         ]
       },
@@ -8369,8 +8371,8 @@
         "name": "Old Jetty Post",
         "positions": [
           {
-            "x": -92,
-            "z": -63
+            "x": -213,
+            "z": 88
           }
         ]
       },

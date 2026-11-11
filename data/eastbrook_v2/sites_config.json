@@ -1,5 +1,5 @@
 {
-  "note": "Where each piece of Eastbrook content stands on the v2 design. scripts/eastbrook_v2/resite_eastbrook_v2.ts reads this and writes src/sim/eastbrook_v2/sites.generated.ts. `anchors` ties a content key to a design point (the content stands at the nearest clear, dry, walkable spot to it; `exact` keys stand on the point itself). Every other Eastbrook NPC, quest object and camp keeps its own position when that is still valid on the design ground, and otherwise moves to the nearest valid spot (searchRadius yards). `nodes` maps vale gather nodes onto the design's own nodes; the six Copper Dig veins are left out on purpose, so they keep their field round the Copper Dig landmark that q_prof_intro sends a miner to (the design's two in-slot veins lie 90 yd apart, far from it), stepping only as far as they must to clear the design's solids. Content standing on shipped ground (the edge band and the corridors) never moves, and neither does a camp whose levelling disc already reaches past the slot edge, so no neighbour's ground changes.",
+  "note": "Where each piece of Eastbrook content stands on the v2 design. scripts/eastbrook_v2/resite_eastbrook_v2.ts reads this and writes src/sim/eastbrook_v2/sites.generated.ts. `anchors` ties a content key to a design point (the content stands at the nearest clear, dry, walkable spot to it; `exact` keys stand on the point itself). Every other Eastbrook NPC, quest object and camp keeps its own position when that is still valid on the design ground, and otherwise moves to the nearest valid spot (searchRadius yards). `nodes` maps vale gather nodes onto the design's own nodes; the six Copper Dig veins are left out on purpose, so they keep their field round the Copper Dig landmark that q_prof_intro sends a miner to (the design's two in-slot veins lie 90 yd apart, far from it), stepping only as far as they must to clear the design's solids. Content standing on shipped ground (the edge band) never moves, and neither does a camp whose levelling disc already reaches past the slot edge, so no neighbour's ground changes. The first Vale Bandit camp anchors to the design's bandit camp muster ground (camp_banditcamp_muster: the compound moved inside the slot by pass 4, and the spot in it where the camp's whole spawn ring stands clear and every camp rule holds). An object group either follows a building onto a design point, or moves by an explicit from/to offset: the old quay's cargo and posts (the harbor cove is the design's mill ground now) gather on the bank behind the west cove's ferry dock.",
   "exact": ["svc:noticeboard", "svc:playerStart"],
   "anchors": {
     "svc:playerStart": "player_spawn",
@@ -35,7 +35,8 @@
     "npc:tinker_gizzel": "station_workbench",
     "npc:tanner_tamsin": "station_tannery",
     "npc:fury": "svc_guardpost",
-    "npc:gravekeeper_holven": "lm_graveyardknoll"
+    "npc:gravekeeper_holven": "lm_graveyardknoll",
+    "camp:vale_bandit@79,25": "camp_banditcamp_muster"
   },
   "lots": {
     "eastbrook_terrace_west": "lot_larkspur",
@@ -85,7 +86,17 @@
     {
       "building": "eastbrook_chapel",
       "point": "lm_graveyardknoll",
-      "items": ["c1_disturbed_grave", "c1_name_stone", "c1_unlit_grave_lamp"]
+      "items": ["c1_disturbed_grave"]
+    },
+    {
+      "from": { "x": 45.7, "z": -117.7 },
+      "to": { "x": 150, "z": -114 },
+      "items": ["c1_name_stone", "c1_unlit_grave_lamp"]
+    },
+    {
+      "from": { "x": -90, "z": -54 },
+      "to": { "x": -211, "z": 97 },
+      "items": ["c1_quay_inspection_post", "c2_dry_cargo_crate", "c2_cargo_mark", "c2_jetty_post"]
     }
   ],
   "campFollowers": { "supply_crate": "vale_bandit" },

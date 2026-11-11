@@ -24,6 +24,7 @@ import {
   convertField,
   convertNodes,
   convertPoints,
+  convertRestAreas,
   convertRoads,
   type ImportConfig,
   int16ToBase64,
@@ -81,6 +82,7 @@ const colliders = convertColliders(
   cfg,
   nodeIds,
 );
+const restAreas = convertRestAreas(JSON.parse(raw['colliders.json']).colliders, cfg);
 const points = convertPoints(JSON.parse(raw['points.json']).points, cfg);
 const nodes = convertNodes(designNodes, cfg);
 const roads = convertRoads(JSON.parse(raw['roads.json']).roads, cfg);
@@ -179,6 +181,12 @@ const layoutTs = [
   '',
   'export const EBV2_ROADS: readonly Ebv2Road[] = [',
   ...roads.map((r) => `  ${json(r)},`),
+  '];',
+  '',
+  "/** Where a body rests (rested XP): each rest building's footprint, as",
+  " *  [x, z, halfWidth, halfDepth, rot] in the collider rows' convention. */",
+  'export const EBV2_REST_AREAS: readonly (readonly [number, number, number, number, number])[] = [',
+  ...restAreas.map((r) => `  ${json(r)},`),
   '];',
   '',
 ].join('\n');

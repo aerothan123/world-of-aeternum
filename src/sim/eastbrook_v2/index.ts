@@ -21,7 +21,9 @@ export {
   ebv2FieldHeight,
   ebv2Ground,
   ebv2Owns,
+  ebv2OwnsBuiltin,
   ebv2Weight,
   inEbv2Field,
 } from './ground';
 export { ebv2Nodes, ebv2Point, ebv2RoadClearance, ebv2Xz } from './points';
+export { EBV2_REST_PADDING, ebv2RestsAt } from './rest';

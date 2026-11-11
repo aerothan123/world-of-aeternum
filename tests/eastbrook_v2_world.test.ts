@@ -28,6 +28,7 @@ import {
 } from '../src/sim/eastbrook_v2';
 import { EBV2_COLLIDERS, EBV2_POINTS, EBV2_TREES } from '../src/sim/eastbrook_v2/layout.generated';
 import { EBV2_SITES } from '../src/sim/eastbrook_v2/sites.generated';
+import { HARBOR_ROUTE_MARKER_SRC } from '../src/sim/harbor_route_markers';
 import { PLAYER_BODY_RADIUS, PLAYER_MAX_CLIMB_SLOPE } from '../src/sim/pathfind';
 import {
   generateDecorationsInBounds,
@@ -60,10 +61,10 @@ function dry(x: number, z: number): boolean {
 
 describe('eastbrook v2: the import is the whole of the vale', () => {
   it('pins the golden counts of the current design export', () => {
-    expect(EBV2_COLLIDERS.length).toBe(970);
-    expect(EBV2_POINTS.length).toBe(44);
-    expect(EBV2_TREES.length).toBe(223);
-    expect(Object.keys(EBV2_SITES).length).toBe(114);
+    expect(EBV2_COLLIDERS.length).toBe(1071);
+    expect(EBV2_POINTS.length).toBe(46);
+    expect(EBV2_TREES.length).toBe(259);
+    expect(Object.keys(EBV2_SITES).length).toBe(125);
   });
 
   it('resolves every design point the content is tied to', () => {
@@ -83,32 +84,66 @@ describe('eastbrook v2: the import is the whole of the vale', () => {
       [0, 0],
       [100, 100],
       [-120, -10],
+      // the west strip the vale grew over the old strait (x -270 to -180)
+      [-200, 0],
+      [-180, 50],
     ]) {
       expect(ebv2Weight(x, z)).toBe(1);
       expect(terrainHeight(x, z, S)).toBeCloseTo(ebv2FieldHeight(x, z), 9);
     }
     expect(inEbv2Field(181, 0)).toBe(false);
     expect(ebv2Weight(180, 0)).toBe(0);
-    expect(ebv2Weight(-180, 50)).toBe(0);
+    expect(ebv2Weight(-270, 50)).toBe(0);
+    expect(inEbv2Field(-271, 50)).toBe(false);
     // the town terrace: design 9.8 m less the 8.3 m sea offset
     expect(terrainHeight(-22, -96, S)).toBeCloseTo(1.5, 1);
   });
 
-  it('keeps the four server connectors, Mirror Lake and the Copper Dig on shipped ground', () => {
+  it('lays the server connectors, Mirror Lake and the Copper Dig onto the design', () => {
+    // Pass 4 of the design (WorldDesign/EastbrookVale/layout.md) cut the three
+    // connector passes the server's neighbours meet (Mirefen north, the Farshore
+    // causeway east, the Kindlemoor Southway south), dug Mirror Lake with water and
+    // levelled the Copper Dig, so the design owns all of them: no corridor keeps
+    // shipped ground inside the slot any more.
     for (const [x, z] of [
       [-28, 150],
       [-34, 142],
       [3, 170],
       [160, -36],
       [72, -175],
-      [-140, -54],
       [LAKE.x, LAKE.z],
-      [LAKE.x + LAKE.radius, LAKE.z],
     ]) {
-      expect(ebv2Weight(x, z), `${x},${z}`).toBe(0);
+      expect(ebv2Weight(x, z), `${x},${z}`).toBe(1);
     }
-    // the lake basin is the shipped one: open water at its centre
-    expect(groundHeight(LAKE.x, LAKE.z, S)).toBeLessThan(waterLevelAt(LAKE.x, LAKE.z, S) - 1);
+    // each pass is walkable ground out to the slot edge, where the neighbour's
+    // own ground takes over
+    for (const [x, z] of [
+      [3, 170],
+      [4, 178],
+      [160, -36],
+      [178, -28],
+      [72, -175],
+      [72, -178],
+    ]) {
+      expect(dry(x, z), `${x},${z} dry`).toBe(true);
+      expect(terrainSteepnessAt(x, z, S), `${x},${z} slope`).toBeLessThanOrEqual(
+        PLAYER_MAX_CLIMB_SLOPE,
+      );
+    }
+    // Mirror Lake is the design's basin on the content's lake ring: open water a
+    // swimmer floats in (120 cm or more) at its centre, its rim at the waterline
+    const lakeWater = waterLevelAt(LAKE.x, LAKE.z, S);
+    expect(lakeWater).toBe(WATER_LEVEL);
+    expect(lakeWater - groundHeight(LAKE.x, LAKE.z, S)).toBeGreaterThanOrEqual(1.2);
+    expect(Math.abs(groundHeight(LAKE.x + LAKE.radius, LAKE.z, S) - lakeWater)).toBeLessThan(0.5);
+    // the Copper Dig's floor is one level pad under all six veins
+    const veins = GATHER_NODES.filter((n) => n.zoneId === 'eastbrook_vale' && n.type === 'ore');
+    expect(veins.length).toBe(6);
+    const floor = terrainHeight(veins[0].pos.x, veins[0].pos.z, S);
+    for (const v of veins) {
+      expect(terrainHeight(v.pos.x, v.pos.z, S), v.id).toBeCloseTo(floor, 2);
+      expect(terrainSteepnessAt(v.pos.x, v.pos.z, S), v.id).toBeLessThan(0.05);
+    }
   });
 });
 
@@ -118,8 +153,19 @@ describe('eastbrook v2: solids and trees', () => {
     const onDesign = colliderInternalsForTest
       .staticWorldColliders(S)
       .filter((c) => !c.src?.startsWith('ebv2:') && ebv2Weight(c.x, c.z) >= 0.5);
-    // only the gather nodes' own bodies stand there (content, not shipped props)
-    expect(onDesign.filter((c) => !nodeSpots.has(`${c.x},${c.z}`))).toEqual([]);
+    // only the gather nodes' own bodies stand there (content, not shipped props),
+    // and the sea crossing's: the moored ferry's hull (gated by its berth) and the
+    // route marker post on the west cove's ferry pier
+    const crossing = onDesign.filter(
+      (c) => c.gate !== undefined || c.src === HARBOR_ROUTE_MARKER_SRC,
+    );
+    expect(crossing.filter((c) => c.gate === undefined)).toHaveLength(1);
+    expect(new Set(crossing.map((c) => c.gate).filter(Boolean))).toEqual(
+      new Set(['eastbrookNightbloom:0']),
+    );
+    expect(
+      onDesign.filter((c) => !nodeSpots.has(`${c.x},${c.z}`) && !crossing.includes(c)),
+    ).toEqual([]);
     // every vale vein keeps its solid body (the stand-down never takes one)
     const veins = GATHER_NODES.filter((n) => n.zoneId === 'eastbrook_vale' && n.type === 'ore');
     expect(veins.length).toBe(6);
@@ -277,8 +323,9 @@ describe('eastbrook v2: content stands where a player can use it', () => {
         for (let dx = -1; dx <= 1; dx++) {
           const nx = c.x + dx;
           const nz = c.z + dz;
-          if (Math.abs(nx * CELL) > 178 || Math.abs(nz * CELL) > 178 || reached.has(key(nx, nz)))
-            continue;
+          // the vale's slot: x -270..180, z -180..180 (less a 2 yd margin)
+          const outside = nx * CELL < -268 || nx * CELL > 178 || Math.abs(nz * CELL) > 178;
+          if (outside || reached.has(key(nx, nz))) continue;
           if (!open(nx * CELL, nz * CELL)) continue;
           const rise = ride(nx * CELL, nz * CELL) - ride(c.x * CELL, c.z * CELL);
           if (rise / (CELL * Math.hypot(dx, dz)) > PLAYER_MAX_CLIMB_SLOPE) continue;

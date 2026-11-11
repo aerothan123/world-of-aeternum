@@ -4,8 +4,9 @@
 // terrain pad chain, so inside the field it is the ground, and the shipped shaping
 // (the old island coast, the lake basin, the town plat stamps) only survives where
 // the field eases back out: across the outer edge band (the slot's neighbours stay
-// byte-identical) and along the corridors that keep a server connector the design
-// does not carry (see data/eastbrook_v2/import_config.json).
+// byte-identical) and along any corridor the import config keeps (none since the
+// design's pass 4: the design itself eases into the neighbour ground at every edge and
+// carries the road passes; see data/eastbrook_v2/import_config.json).
 //
 // Built-in world only: an authored map, a linked map or a custom world never sees it.
 // Pure leaf: the grid decodes once at module load, no rng, no clock.
@@ -70,6 +71,18 @@ function segmentDistance(
   return Math.hypot(x - (c.ax + dx * t), z - (c.az + dz * t));
 }
 
+/** A corridor the import config keeps on shipped ground. Typed here because the
+ *  generated table is an empty literal while the design owns every connector. */
+interface Ebv2Corridor {
+  ax: number;
+  az: number;
+  bx: number;
+  bz: number;
+  halfWidth: number;
+  blend: number;
+}
+const CORRIDORS: readonly Ebv2Corridor[] = EBV2_CORRIDORS;
+
 /** How much of the design's ground stands at (x, z): 1 deep inside the field, 0 at
  *  its rect edge and inside every corridor's core, smooth in between. */
 export function ebv2Weight(x: number, z: number): number {
@@ -77,7 +90,7 @@ export function ebv2Weight(x: number, z: number): number {
   const inset = Math.min(x - G.x0, X1 - x, z - G.z0, Z1 - z);
   let w = smoothstep(0, G.edgeBand, inset);
   if (w === 0) return 0;
-  for (const c of EBV2_CORRIDORS) {
+  for (const c of CORRIDORS) {
     const d = segmentDistance(x, z, c);
     if (d >= c.halfWidth + c.blend) continue;
     w *= smoothstep(c.halfWidth, c.halfWidth + c.blend, d);
@@ -95,6 +108,13 @@ export const EBV2_OWNED = 0.5;
  *  callers gate on the built-in world themselves. */
 export function ebv2Owns(x: number, z: number): boolean {
   return ebv2Weight(x, z) >= EBV2_OWNED;
+}
+
+/** True on the built-in world where the design owns the ground (see EBV2_OWNED): a
+ *  shipped walkable structure standing there (the old harbor cove's quay and piers,
+ *  deck_surfaces.ts) gives up its planks, as shipped props give up their walls. */
+export function ebv2OwnsBuiltin(x: number, z: number): boolean {
+  return inEbv2Field(x, z) && isBuiltinWorldActive() && ebv2Owns(x, z);
 }
 
 /** The finished ground: the shipped height `h` with the design's field blended in
