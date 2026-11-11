@@ -47,6 +47,11 @@ export function harborRouteMarkerArrow(yaw: number): { x: number; z: number } {
   return { x: Math.cos(yaw), z: -Math.sin(yaw) };
 }
 
+/** The `src` tag on every marker post: the Eastbrook Vale v2 stand-down
+ *  (eastbrook_v2/colliders.ts) keeps it, since a crossing's sign is not a
+ *  shipped Eastbrook prop. */
+export const HARBOR_ROUTE_MARKER_SRC = 'harbor-route-marker';
+
 /** The post colliders of every marker in the built-in world, seated on the
  *  planks they stand on. */
 export function harborRouteMarkerColliders(
@@ -59,5 +64,6 @@ export function harborRouteMarkerColliders(
     z: m.z,
     r: HARBOR_ROUTE_MARKER_POST_RADIUS,
     cameraTopY: groundHeight(m.x, m.z, seed) + HARBOR_ROUTE_MARKER_POST_TOP,
+    src: HARBOR_ROUTE_MARKER_SRC,
   }));
 }

@@ -46,19 +46,21 @@ describe('proving shore placement', () => {
   it('pins the town landing literally beside the return ferry bell', () => {
     // The home ride's destination as a bare literal (the ferry_prewarm suite
     // compares constant to constant, which a bad edit moves in lockstep).
-    // Re-pinned 2026-10 when the town bell moved down to the quay at
-    // (-95, -45): the graduate lands a stride from it, facing the chapel.
-    expect(FERRY_BELL_TOWN_LANDING).toEqual({ x: -92.5, z: -46.5, facing: 2.12 });
-    expect(Math.hypot(FERRY_BELL_TOWN_LANDING.x + 95, FERRY_BELL_TOWN_LANDING.z + 45)).toBeLessThan(
-      4,
-    );
+    // Re-pinned 2026-11 for Eastbrook Vale v2: the old quay is the design's
+    // mill ground, so the town bell stands on the millpond's south strand by
+    // the Mill Lane at (-150, -98) and the graduate lands a stride from it,
+    // facing east along the lane to the town's west gate.
+    expect(FERRY_BELL_TOWN_LANDING).toEqual({ x: -147, z: -100, facing: 1.6 });
+    expect(
+      Math.hypot(FERRY_BELL_TOWN_LANDING.x + 150, FERRY_BELL_TOWN_LANDING.z + 98),
+    ).toBeLessThan(4);
     const bells = PROVING_SHORE_OBJECTS.find((o) => o.itemId === 'ps_ferry_bell')?.positions;
-    expect(bells).toContainEqual({ x: -95, z: -45 });
-    // Facing the Eastbrook chapel (eastbrook_layout.ts anchor), within a degree.
-    const chapel = { x: 28.2, z: -119.62 };
+    expect(bells).toContainEqual({ x: -150, z: -98 });
+    // Facing the town's west gate (the v2 design's Mill Lane gate), within a degree.
+    const westGate = { x: -110, z: -101 };
     const toward = Math.atan2(
-      chapel.x - FERRY_BELL_TOWN_LANDING.x,
-      chapel.z - FERRY_BELL_TOWN_LANDING.z,
+      westGate.x - FERRY_BELL_TOWN_LANDING.x,
+      westGate.z - FERRY_BELL_TOWN_LANDING.z,
     );
     expect(Math.abs(toward - FERRY_BELL_TOWN_LANDING.facing)).toBeLessThan(Math.PI / 180);
   });
@@ -210,9 +212,20 @@ describe('proving shore placement', () => {
   });
 
   it('the strait to the vale is open water (the island is isolated)', () => {
+    // The strait runs between the island's east strand (nothing of it east of
+    // x -278) and Eastbrook Vale's v2 west coast (its cove and ferry dock reach
+    // x -241; the vale's slot starts at x -270). No land bridge: the whole
+    // line x -262 down the strait is under water, and at every latitude a
+    // channel at least a yard deep cuts it.
+    for (let z = -170; z <= 170; z += 5) {
+      expect(groundHeight(-262, z, WORLD_SEED), `strait line at z=${z}`).toBeLessThan(WATER_LEVEL);
+    }
     for (const z of [-120, -60, 0, 60, 120]) {
-      const h = groundHeight(-180, z, WORLD_SEED);
-      expect(h, `strait at z=${z}`).toBeLessThan(WATER_LEVEL - 1);
+      let deepest = Number.POSITIVE_INFINITY;
+      for (let x = -276; x <= -244; x += 1) {
+        deepest = Math.min(deepest, groundHeight(x, z, WORLD_SEED));
+      }
+      expect(deepest, `strait channel at z=${z}`).toBeLessThan(WATER_LEVEL - 1);
     }
     expect(provingLandness(PROVING_SHORE_ZONE.hub.x, PROVING_SHORE_ZONE.hub.z)).toBeGreaterThan(
       0.3,

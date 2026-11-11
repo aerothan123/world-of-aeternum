@@ -25,16 +25,16 @@ import type { Entity } from '../types';
 
 export const FERRY_BELL_OBJECT_ID = 'ps_ferry_bell';
 
-/** Where the island bell sets a graduate down: on Eastbrook's quay, a
- *  stride from the return bell at (-95, -45), facing up into town toward the
- *  Eastbrook chapel (anchor (28.2, -119.6), eastbrook_layout.ts), so the first
- *  thing a graduate sees is the town, not the sea. Clear of the bell's own
- *  footprint and of the quay's crates. The optional golden guidance leads
- *  from here to Marshal Redbrook wherever he stands
- *  (render/eastbrook_wolves_guidance_core.ts). Facing follows the player
- *  convention: f points along (sin f, cos f), as eastbrook_layout.ts
- *  facingToward computes it. */
-export const FERRY_BELL_TOWN_LANDING = { x: -92.5, z: -46.5, facing: 2.12 } as const;
+/** Where the island bell sets a graduate down: on the millpond's south strand
+ *  by the Mill Lane, a stride from the return bell at (-150, -98), facing east
+ *  along the lane to the town's west gate (-110, -101), so the first thing a
+ *  graduate sees is the town, not the water. Clear of the bell's own footprint
+ *  and off the lane. (Eastbrook Vale v2: the old quay landing is the design's
+ *  mill ground now.) The optional golden guidance leads from here to Marshal
+ *  Redbrook wherever he stands (render/eastbrook_wolves_guidance_core.ts).
+ *  Facing follows the player convention: f points along (sin f, cos f), as
+ *  eastbrook_layout.ts facingToward computes it. */
+export const FERRY_BELL_TOWN_LANDING = { x: -147, z: -100, facing: 1.6 } as const;
 
 /** Whether this character has never worked the shore: no Proving Shore quest
  *  in the log and none turned in. The arrival note is a TEACHING moment (it

@@ -37,11 +37,14 @@ import { emptyZoneProps } from '../types';
 
 /** The island's zone rectangle, the one source for the ZoneDef below and the
  *  isOnProvingShore predicate. */
-const PROVING_SHORE_RECT = { xMin: -540, xMax: -180, zMin: -180, zMax: 180 } as const;
+// xMax -270: the empty sea strip x -270..-180 belongs to Eastbrook Vale (its v2 west
+// coast, content/zone1.ts); none of the island stands east of x -278.
+const PROVING_SHORE_RECT = { xMin: -540, xMax: -270, zMin: -180, zMax: 180 } as const;
 
 /** Whether a world position lies inside the Proving Shore's zone rectangle.
- *  The island shares its x column (xMin -540 / xMax -180) with four mainland
- *  zones (Willowfen, Palmreach, Nightbloom, Amberfall) that differ only by z,
+ *  The island shares its x column (xMin -540; the mainland zones run to xMax
+ *  -180, the island to -270) with four mainland zones (Willowfen, Palmreach,
+ *  Nightbloom, Amberfall) that differ only by z,
  *  so EVERY island gate, sim-side or client-side, must test BOTH axes through
  *  this one predicate; a bare `x < -180` check puts level 18 to 20 zones on
  *  the tutorial rail. */
@@ -831,10 +834,11 @@ export const PROVING_SHORE_OBJECTS: GroundObjectDef[] = [
     itemId: 'ps_ferry_bell',
     name: 'Ferry Bell',
     // The clicked crossing (interactions/ferry_bell.ts): the Old Pier's bell
-    // rings a player to Eastbrook town, and its twin down on Eastbrook's quay
-    // (by the harbour, near the docks spawn) rings a returning player back to
-    // the island arrival. The island bell sets a graduate down beside this
-    // twin (FERRY_BELL_TOWN_LANDING).
+    // rings a player to Eastbrook town, and its twin on the millpond's south
+    // strand by the Mill Lane, a short walk from the town's west gate (Eastbrook
+    // Vale v2: the old quay is the design's mill ground now), rings a returning
+    // player back to the island arrival. The island bell sets a graduate down
+    // beside this twin (FERRY_BELL_TOWN_LANDING).
     //
     // The island bell stands on the dry ground between the pier head and the
     // Gauntlet's mouth, a few steps from Captain Fenlow (his completion note
@@ -842,7 +846,7 @@ export const PROVING_SHORE_OBJECTS: GroundObjectDef[] = [
     // of the arrival point at (-281, -18).
     positions: [
       { x: -279, z: -10 },
-      { x: -95, z: -45 },
+      { x: -150, z: -98 },
     ],
   },
 ];

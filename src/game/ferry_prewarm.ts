@@ -17,7 +17,11 @@
 // Pure and host-agnostic: no DOM, no renderer, no clock. The caller owns the
 // once-per-destination latch and the actual prewarm call.
 
-import { PROVING_SHORE_ARRIVAL, PROVING_SHORE_OBJECTS } from '../sim/content/proving_shore';
+import {
+  isOnProvingShore,
+  PROVING_SHORE_ARRIVAL,
+  PROVING_SHORE_OBJECTS,
+} from '../sim/content/proving_shore';
 import { FERRY_BELL_OBJECT_ID, FERRY_BELL_TOWN_LANDING } from '../sim/interactions/ferry_bell';
 
 /** How close the player must be to a bell before its far shore is warmed.
@@ -37,19 +41,18 @@ const BELLS: readonly { bellX: number; bellZ: number; target: FerryPrewarmTarget
     o.positions.map((p) => ({
       bellX: p.x,
       bellZ: p.z,
-      // The sim's own side test: a bell west of the strait sails to town.
-      target:
-        p.x < -180
-          ? ({
-              id: 'eastbrook_town',
-              x: FERRY_BELL_TOWN_LANDING.x,
-              z: FERRY_BELL_TOWN_LANDING.z,
-            } as const)
-          : ({
-              id: 'proving_shore',
-              x: PROVING_SHORE_ARRIVAL.x,
-              z: PROVING_SHORE_ARRIVAL.z,
-            } as const),
+      // The sim's own side test (tryRingFerryBell): a bell on the island sails to town.
+      target: isOnProvingShore(p.x, p.z)
+        ? ({
+            id: 'eastbrook_town',
+            x: FERRY_BELL_TOWN_LANDING.x,
+            z: FERRY_BELL_TOWN_LANDING.z,
+          } as const)
+        : ({
+            id: 'proving_shore',
+            x: PROVING_SHORE_ARRIVAL.x,
+            z: PROVING_SHORE_ARRIVAL.z,
+          } as const),
     })),
   );
 

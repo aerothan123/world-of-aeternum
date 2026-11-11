@@ -12,8 +12,7 @@ import {
 } from '../src/sim/content/wickharbor_wharf';
 import { WYRMWATCH_HARBOR_DECKS } from '../src/sim/content/wyrmwatch_harbor';
 import { PROPS } from '../src/sim/data';
-import { EASTBROOK_HARBOR_DECKS } from '../src/sim/eastbrook_harbor';
-import { FERRY_PIER_DECK_ABOVE_WATER, FERRY_PIER_DECKS } from '../src/sim/ferry_piers';
+import { FERRY_PIER_DECK_ABOVE_WATER, FERRY_PIER_DECKS, FERRY_PIERS } from '../src/sim/ferry_piers';
 import { entityLineOfSightClear } from '../src/sim/line_of_sight_elevation';
 import { MAX_STEP_HEIGHT } from '../src/sim/physics/character';
 import { Sim } from '../src/sim/sim';
@@ -55,10 +54,17 @@ describe('Eastbrook ferry berth', () => {
   it('moors one ferry broadside across the ferry pier T-head, on the waterline', () => {
     // the scheduled route owns the ship: no static decorProps row moors it
     expect(PROPS.decorProps?.filter((prop) => prop.key === 'eastbrookFerry')).toHaveLength(0);
-    expect(ferry).toMatchObject({ id: 'eastbrook', x: -125, z: -54.8, rot: 0 });
-    // the ferry pier keeps its authored width (no widening for the ship)
-    const pier = EASTBROOK_HARBOR_DECKS[1];
-    expect(pier).toMatchObject({ x: -107, z: -54, hl: 10, hw: 2.2 });
+    // Eastbrook Vale v2: the berth is the west cove's ferry pier (the design's
+    // FerryDock; the old harbor cove is the design's mill ground and its piers
+    // stand down, deck_surfaces.ts)
+    expect(ferry).toMatchObject({ id: 'eastbrook', x: -252, z: 96.2, rot: 0 });
+    // the ferry pier keeps the shared ferry-pier width (no widening for the ship):
+    // a ramp up from the cove bank, then a level head where the gangplank lands
+    const [ramp, pier] = FERRY_PIERS[2];
+    expect(ramp).toMatchObject({ x: -231.5, z: 97, rot: -Math.PI / 2, hl: 9.5, hw: 2.2 });
+    expect(pier).toMatchObject({ x: -242.5, z: 97, rot: -Math.PI / 2, hl: 1.5, hw: 2.2 });
+    expect(pier.nearAboveWater).toBe(FERRY_PIER_DECK_ABOVE_WATER);
+    expect(ramp.x - ramp.hl).toBeCloseTo(pier.x + pier.hl, 9);
     // the port gangway looks square down the pier's axis
     const gangway = HULL.boarding.find((b) => b.side === 'port');
     if (!gangway) throw new Error('no port gangway');
@@ -206,13 +212,15 @@ describe('walking aboard (the real movement kernel)', () => {
   });
 
   it('boards from the pier over the gangplank onto the main deck', () => {
-    place(-110, -54);
+    // on the west cove pier's level head (its planks ramp up from the cove bank
+    // to the ferry-pier height, ferry_piers.ts)
+    place(-242, 97);
     const pierDeck = sim.player.pos.y - WATER_LEVEL;
-    expect(pierDeck).toBeCloseTo(2.64, 2);
+    expect(pierDeck).toBeCloseTo(FERRY_PIER_DECK_ABOVE_WATER, 2);
     const gangway = HULL.boarding.find((b) => b.side === 'port');
     if (!gangway) throw new Error('no port gangway');
-    // every rise on the way is a stride, never a jump
-    expect(HULL.mainDeckY - pierDeck).toBeLessThan(MAX_STEP_HEIGHT);
+    // every rise on the way is a stride, never a jump (from the pier head)
+    expect(HULL.mainDeckY - FERRY_PIER_DECK_ABOVE_WATER).toBeLessThan(MAX_STEP_HEIGHT);
     const onGangway = walkToLocal(gangway.x - 0.3, gangway.z);
     expect(onGangway.y).toBeCloseTo(HULL.mainDeckY, 3);
     const onDeck = walkToLocal(1.5, gangway.z);

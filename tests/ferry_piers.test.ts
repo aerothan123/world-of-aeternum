@@ -21,11 +21,19 @@ import { WORLD_SEED } from '../src/sim/world_seed';
 const terrain = (x: number, z: number) => terrainHeight(x, z, WORLD_SEED);
 
 describe('ferry piers', () => {
-  it('stand level at the ferry pier height, and are walkable ground', () => {
+  it('meet the gangplank at the ferry pier height, and are walkable ground', () => {
     for (const pier of FERRY_PIERS) {
       const deck = pier[0];
+      // every pier's head (where the gangplank lands) is at the ferry pier height;
+      // the Moonrest and Wyrmwatch piers are level, while Eastbrook's west cove pier
+      // rises from its low bank (1.3 above the water) at a gentle walking grade
+      const far = deck.farAboveWater ?? Number.NaN;
+      const near = deck.nearAboveWater ?? Number.NaN;
+      expect(far).toBe(FERRY_PIER_DECK_ABOVE_WATER);
+      expect(near).toBeGreaterThanOrEqual(1.3);
+      expect((far - near) / (2 * deck.hl), 'pier grade').toBeLessThan(0.1);
       const top = ferryPierSurface(deck.x, deck.z, terrain, WATER_LEVEL);
-      expect(top - WATER_LEVEL).toBeCloseTo(FERRY_PIER_DECK_ABOVE_WATER, 6);
+      expect(top - WATER_LEVEL).toBeCloseTo((near + far) / 2, 6);
       expect(groundHeight(deck.x, deck.z, WORLD_SEED)).toBeCloseTo(top, 6);
       // its outer half stands in the water, over the sea bed
       const out = {

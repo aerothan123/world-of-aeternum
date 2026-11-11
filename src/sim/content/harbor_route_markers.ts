@@ -13,8 +13,9 @@
 // sign carries that name and nothing else, no timetable.
 //
 // Positions (yards), per pier deck (x, z, rot, hl, hw):
-//  - Eastbrook: the ferry pier (-107, -54, -PI/2, 10, 2.2) off the quay; the
-//    marker stands 3 yd out from the quay on the south stilt line.
+//  - Eastbrook: the west cove pier (-233, 97, -PI/2, 11, 2.2) off the cove
+//    shore (sim/ferry_piers.ts); the marker stands 3 yd out from the shore root
+//    on the south stilt line.
 //  - Moonrest (the Nightbloom): the pier (-501, 1506, -PI/2, 11, 2.2) off the
 //    sunset shore; 1 yd out from the shore root on the south stilt line.
 //  - Wickharbor (the Galecrest): the ferry wharf's pier (content/wickharbor_wharf.ts:
@@ -44,8 +45,8 @@ export const HARBOR_ROUTE_MARKERS: readonly HarborRouteMarkerDef[] = [
   {
     route: 'eastbrookNightbloom',
     berth: 'eastbrook',
-    x: -100.2,
-    z: -55.75,
+    x: -225.2,
+    z: 95.25,
     destination: { kind: 'zone', zone: 'nightbloom' },
   },
   {
