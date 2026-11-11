@@ -17,15 +17,15 @@
   "id": "station_eastbrook_loom",
   "type": "loom",
   "zoneId": "eastbrook_vale",
-  "x": 2.14,
-  "z": -79.25
+  "x": 2.45,
+  "z": -78.85
  },
  {
   "id": "station_eastbrook_toolworks",
   "type": "toolworks",
   "zoneId": "eastbrook_vale",
-  "x": 2.8,
-  "z": -80.5
+  "x": 1.43,
+  "z": -82.6
  },
  {
   "id": "station_fenbridge_tannery",
@@ -45,8 +45,8 @@
   "id": "station_eastbrook_apothecary",
   "type": "apothecary",
   "zoneId": "eastbrook_vale",
-  "x": 2.36,
-  "z": -76.47
+  "x": 2.6,
+  "z": -75.5
  },
  {
   "id": "station_eastbrook_tannery",

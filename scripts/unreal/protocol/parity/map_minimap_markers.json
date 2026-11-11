@@ -119,6 +119,14 @@
             "my": 21.5
           },
           {
+            "kind": "station",
+            "ref": "station:station_eastbrook_toolworks",
+            "wx": 1.43,
+            "wz": -82.6,
+            "mx": 66.669,
+            "my": 17.42
+          },
+          {
             "kind": "town-project",
             "ref": "project:eastbrook_yard_well",
             "wx": -10,
@@ -1728,14 +1736,6 @@
         },
         "markers": [
           {
-            "kind": "gather-node",
-            "ref": "node:herb_eastbrook_4",
-            "wx": 12,
-            "wz": -53.5,
-            "mx": 48.7,
-            "my": 34.25
-          },
-          {
             "kind": "station",
             "ref": "station:station_eastbrook_forge",
             "wx": -1,
@@ -1754,26 +1754,26 @@
           {
             "kind": "station",
             "ref": "station:station_eastbrook_loom",
-            "wx": 2.14,
-            "wz": -79.25,
-            "mx": 65.462,
-            "my": 78.025
+            "wx": 2.45,
+            "wz": -78.85,
+            "mx": 64.935,
+            "my": 77.345
           },
           {
             "kind": "station",
             "ref": "station:station_eastbrook_toolworks",
-            "wx": 2.8,
-            "wz": -80.5,
-            "mx": 64.34,
-            "my": 80.15
+            "wx": 1.43,
+            "wz": -82.6,
+            "mx": 66.669,
+            "my": 83.72
           },
           {
             "kind": "station",
             "ref": "station:station_eastbrook_apothecary",
-            "wx": 2.36,
-            "wz": -76.47,
-            "mx": 65.088,
-            "my": 73.299
+            "wx": 2.6,
+            "wz": -75.5,
+            "mx": 64.68,
+            "my": 71.65
           },
           {
             "kind": "station",
@@ -2011,14 +2011,6 @@
         },
         "markers": [
           {
-            "kind": "gather-node",
-            "ref": "node:herb_eastbrook_4",
-            "wx": 12,
-            "wz": -53.5,
-            "mx": 48.7,
-            "my": 34.25
-          },
-          {
             "kind": "station",
             "ref": "station:station_eastbrook_forge",
             "wx": -1,
@@ -2037,26 +2029,26 @@
           {
             "kind": "station",
             "ref": "station:station_eastbrook_loom",
-            "wx": 2.14,
-            "wz": -79.25,
-            "mx": 65.462,
-            "my": 78.025
+            "wx": 2.45,
+            "wz": -78.85,
+            "mx": 64.935,
+            "my": 77.345
           },
           {
             "kind": "station",
             "ref": "station:station_eastbrook_toolworks",
-            "wx": 2.8,
-            "wz": -80.5,
-            "mx": 64.34,
-            "my": 80.15
+            "wx": 1.43,
+            "wz": -82.6,
+            "mx": 66.669,
+            "my": 83.72
           },
           {
             "kind": "station",
             "ref": "station:station_eastbrook_apothecary",
-            "wx": 2.36,
-            "wz": -76.47,
-            "mx": 65.088,
-            "my": 73.299
+            "wx": 2.6,
+            "wz": -75.5,
+            "mx": 64.68,
+            "my": 71.65
           },
           {
             "kind": "station",
@@ -2304,26 +2296,26 @@
           {
             "kind": "station",
             "ref": "station:station_eastbrook_loom",
-            "wx": 2.14,
-            "wz": -79.25,
-            "mx": 57.693,
-            "my": 76.538
+            "wx": 2.45,
+            "wz": -78.85,
+            "mx": 56.903,
+            "my": 75.517
           },
           {
             "kind": "station",
             "ref": "station:station_eastbrook_toolworks",
-            "wx": 2.8,
-            "wz": -80.5,
-            "mx": 56.01,
-            "my": 79.725
+            "wx": 1.43,
+            "wz": -82.6,
+            "mx": 59.504,
+            "my": 85.08
           },
           {
             "kind": "station",
             "ref": "station:station_eastbrook_apothecary",
-            "wx": 2.36,
-            "wz": -76.47,
-            "mx": 57.132,
-            "my": 69.449
+            "wx": 2.6,
+            "wz": -75.5,
+            "mx": 56.52,
+            "my": 66.975
           },
           {
             "kind": "station",
@@ -2555,26 +2547,26 @@
           {
             "kind": "station",
             "ref": "station:station_eastbrook_loom",
-            "wx": 2.14,
-            "wz": -79.25,
-            "mx": 57.693,
-            "my": 76.538
+            "wx": 2.45,
+            "wz": -78.85,
+            "mx": 56.903,
+            "my": 75.517
           },
           {
             "kind": "station",
             "ref": "station:station_eastbrook_toolworks",
-            "wx": 2.8,
-            "wz": -80.5,
-            "mx": 56.01,
-            "my": 79.725
+            "wx": 1.43,
+            "wz": -82.6,
+            "mx": 59.504,
+            "my": 85.08
           },
           {
             "kind": "station",
             "ref": "station:station_eastbrook_apothecary",
-            "wx": 2.36,
-            "wz": -76.47,
-            "mx": 57.132,
-            "my": 69.449
+            "wx": 2.6,
+            "wz": -75.5,
+            "mx": 56.52,
+            "my": 66.975
           },
           {
             "kind": "station",
@@ -2806,26 +2798,26 @@
           {
             "kind": "station",
             "ref": "station:station_eastbrook_loom",
-            "wx": 2.14,
-            "wz": -79.25,
-            "mx": 49.924,
-            "my": 75.05
+            "wx": 2.45,
+            "wz": -78.85,
+            "mx": 48.87,
+            "my": 73.69
           },
           {
             "kind": "station",
             "ref": "station:station_eastbrook_toolworks",
-            "wx": 2.8,
-            "wz": -80.5,
-            "mx": 47.68,
-            "my": 79.3
+            "wx": 1.43,
+            "wz": -82.6,
+            "mx": 52.338,
+            "my": 86.44
           },
           {
             "kind": "station",
             "ref": "station:station_eastbrook_apothecary",
-            "wx": 2.36,
-            "wz": -76.47,
-            "mx": 49.176,
-            "my": 65.598
+            "wx": 2.6,
+            "wz": -75.5,
+            "mx": 48.36,
+            "my": 62.3
           },
           {
             "kind": "station",
@@ -3057,26 +3049,26 @@
           {
             "kind": "station",
             "ref": "station:station_eastbrook_loom",
-            "wx": 2.14,
-            "wz": -79.25,
-            "mx": 49.924,
-            "my": 75.05
+            "wx": 2.45,
+            "wz": -78.85,
+            "mx": 48.87,
+            "my": 73.69
           },
           {
             "kind": "station",
             "ref": "station:station_eastbrook_toolworks",
-            "wx": 2.8,
-            "wz": -80.5,
-            "mx": 47.68,
-            "my": 79.3
+            "wx": 1.43,
+            "wz": -82.6,
+            "mx": 52.338,
+            "my": 86.44
           },
           {
             "kind": "station",
             "ref": "station:station_eastbrook_apothecary",
-            "wx": 2.36,
-            "wz": -76.47,
-            "mx": 49.176,
-            "my": 65.598
+            "wx": 2.6,
+            "wz": -75.5,
+            "mx": 48.36,
+            "my": 62.3
           },
           {
             "kind": "station",
@@ -3308,26 +3300,26 @@
           {
             "kind": "station",
             "ref": "station:station_eastbrook_loom",
-            "wx": 2.14,
-            "wz": -79.25,
-            "mx": 34.386,
-            "my": 72.075
+            "wx": 2.45,
+            "wz": -78.85,
+            "mx": 32.805,
+            "my": 70.035
           },
           {
             "kind": "station",
             "ref": "station:station_eastbrook_toolworks",
-            "wx": 2.8,
-            "wz": -80.5,
-            "mx": 31.02,
-            "my": 78.45
+            "wx": 1.43,
+            "wz": -82.6,
+            "mx": 38.007,
+            "my": 89.16
           },
           {
             "kind": "station",
             "ref": "station:station_eastbrook_apothecary",
-            "wx": 2.36,
-            "wz": -76.47,
-            "mx": 33.264,
-            "my": 57.897
+            "wx": 2.6,
+            "wz": -75.5,
+            "mx": 32.04,
+            "my": 52.95
           },
           {
             "kind": "station",
@@ -3542,26 +3534,26 @@
           {
             "kind": "station",
             "ref": "station:station_eastbrook_loom",
-            "wx": 2.14,
-            "wz": -79.25,
-            "mx": 34.386,
-            "my": 72.075
+            "wx": 2.45,
+            "wz": -78.85,
+            "mx": 32.805,
+            "my": 70.035
           },
           {
             "kind": "station",
             "ref": "station:station_eastbrook_toolworks",
-            "wx": 2.8,
-            "wz": -80.5,
-            "mx": 31.02,
-            "my": 78.45
+            "wx": 1.43,
+            "wz": -82.6,
+            "mx": 38.007,
+            "my": 89.16
           },
           {
             "kind": "station",
             "ref": "station:station_eastbrook_apothecary",
-            "wx": 2.36,
-            "wz": -76.47,
-            "mx": 33.264,
-            "my": 57.897
+            "wx": 2.6,
+            "wz": -75.5,
+            "mx": 32.04,
+            "my": 52.95
           },
           {
             "kind": "station",
@@ -3658,8 +3650,8 @@
     {
       "in": {
         "snapshot": "gather_node",
-        "px": -12,
-        "pz": 158,
+        "px": -13.89,
+        "pz": 155.06,
         "zoom": 1,
         "profile": "standard",
         "canvas": 162,
@@ -3671,63 +3663,63 @@
           {
             "id": 2,
             "kind": "npc",
-            "x": -5.75,
-            "z": 161.5,
+            "x": -7.640000000000001,
+            "z": 158.56,
             "quest": true
           },
           {
             "id": 3,
             "kind": "npc",
-            "x": -16,
-            "z": 167
+            "x": -17.89,
+            "z": 164.06
           },
           {
             "id": 4,
             "kind": "mob",
-            "x": -22.5,
-            "z": 162.25,
+            "x": -24.39,
+            "z": 159.31,
             "hostile": true
           },
           {
             "id": 5,
             "kind": "mob",
-            "x": 18,
-            "z": 146,
+            "x": 16.11,
+            "z": 143.06,
             "hostile": true
           },
           {
             "id": 6,
             "kind": "object",
-            "x": -10,
-            "z": 150.25,
+            "x": -11.89,
+            "z": 147.31,
             "lootable": true
           },
           {
             "id": 7,
             "kind": "mob",
-            "x": 388,
-            "z": 158,
+            "x": 386.11,
+            "z": 155.06,
             "hostile": true
           },
           {
             "id": 8,
             "kind": "player",
-            "x": -19,
-            "z": 153,
+            "x": -20.89,
+            "z": 150.06,
             "ally": "friend"
           },
           {
             "id": 9,
             "kind": "player",
-            "x": -1,
-            "z": 171,
+            "x": -2.8900000000000006,
+            "z": 168.06,
             "ally": "guild"
           },
           {
             "id": 10,
             "kind": "player",
-            "x": -9,
-            "z": 161
+            "x": -10.89,
+            "z": 158.06
           }
         ],
         "party": [
@@ -3735,41 +3727,41 @@
             "pid": 1,
             "cls": "warrior",
             "dead": 0,
-            "x": -12,
-            "z": 158
+            "x": -13.89,
+            "z": 155.06
           },
           {
             "pid": 20,
             "cls": "mage",
             "dead": 0,
-            "x": -7,
-            "z": 150
+            "x": -8.89,
+            "z": 147.06
           },
           {
             "pid": 21,
             "cls": "priest",
             "dead": 1,
-            "x": 18,
-            "z": 298
+            "x": 16.11,
+            "z": 295.06
           },
           {
             "pid": 22,
             "cls": "rogue",
             "dead": 0,
-            "x": -272,
-            "z": 68
+            "x": -273.89,
+            "z": 65.06
           }
         ],
         "corpse": {
-          "x": 288,
-          "z": 208
+          "x": 286.11,
+          "z": 205.06
         },
         "markers": [
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_1",
-            "wx": -20,
-            "wz": 153,
+            "wx": -21.89,
+            "wz": 150.06,
             "mx": 94.6,
             "my": 89.5
           },
@@ -3778,70 +3770,70 @@
             "ref": "node:ore_eastbrook_2",
             "wx": -23,
             "wz": 157,
-            "mx": 99.7,
-            "my": 82.7
+            "mx": 96.487,
+            "my": 77.702
           },
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_3",
             "wx": -17,
             "wz": 149,
-            "mx": 89.5,
-            "my": 96.3
+            "mx": 86.287,
+            "my": 91.302
           },
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_4",
             "wx": -42,
             "wz": 158,
-            "mx": 132,
-            "my": 81
+            "mx": 128.787,
+            "my": 76.002
           },
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_5",
             "wx": -37,
             "wz": 161,
-            "mx": 123.5,
-            "my": 75.9
+            "mx": 120.287,
+            "my": 70.902
           },
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_6",
             "wx": -15,
             "wz": 137,
-            "mx": 86.1,
-            "my": 116.7
+            "mx": 82.887,
+            "my": 111.702
           },
           {
             "kind": "mob",
             "ref": "entity:4",
-            "wx": -22.5,
-            "wz": 162.25,
+            "wx": -24.39,
+            "wz": 159.31,
             "mx": 98.85,
             "my": 73.775
           },
           {
             "kind": "mob",
             "ref": "entity:5",
-            "wx": 18,
-            "wz": 146,
+            "wx": 16.11,
+            "wz": 143.06,
             "mx": 30,
             "my": 101.4
           },
           {
             "kind": "object-loot",
             "ref": "entity:6",
-            "wx": -10,
-            "wz": 150.25,
+            "wx": -11.89,
+            "wz": 147.31,
             "mx": 77.6,
             "my": 94.175
           },
           {
             "kind": "ally",
             "ref": "entity:8",
-            "wx": -19,
-            "wz": 153,
+            "wx": -20.89,
+            "wz": 150.06,
             "mx": 92.9,
             "my": 89.5,
             "ally": "friend"
@@ -3849,8 +3841,8 @@
           {
             "kind": "ally",
             "ref": "entity:9",
-            "wx": -1,
-            "wz": 171,
+            "wx": -2.8900000000000006,
+            "wz": 168.06,
             "mx": 62.3,
             "my": 58.9,
             "ally": "guild"
@@ -3858,56 +3850,56 @@
           {
             "kind": "corpse",
             "ref": "corpse",
-            "wx": 288,
-            "wz": 208,
+            "wx": 286.11,
+            "wz": 205.06,
             "mx": 8.993,
             "my": 68.999
           },
           {
             "kind": "party-disc",
             "ref": "party:20",
-            "wx": -7,
-            "wz": 150,
+            "wx": -8.89,
+            "wz": 147.06,
             "mx": 72.5,
             "my": 94.6
           },
           {
             "kind": "party-arrow",
             "ref": "party:21",
-            "wx": 18,
-            "wz": 298,
+            "wx": 16.11,
+            "wz": 295.06,
             "mx": 66.087,
             "my": 11.407
           },
           {
             "kind": "party-arrow",
             "ref": "party:22",
-            "wx": -272,
-            "wz": 68,
+            "wx": -273.89,
+            "wz": 65.06,
             "mx": 148.257,
             "my": 104.281
           },
           {
             "kind": "npc",
             "ref": "entity:2",
-            "wx": -5.75,
-            "wz": 161.5,
+            "wx": -7.640000000000001,
+            "wz": 158.56,
             "mx": 70.375,
             "my": 75.05
           },
           {
             "kind": "npc",
             "ref": "entity:3",
-            "wx": -16,
-            "wz": 167,
+            "wx": -17.89,
+            "wz": 164.06,
             "mx": 87.8,
             "my": 65.7
           },
           {
             "kind": "player",
             "ref": "player",
-            "wx": -12,
-            "wz": 158,
+            "wx": -13.89,
+            "wz": 155.06,
             "mx": 81,
             "my": 81
           }
@@ -3917,8 +3909,8 @@
     {
       "in": {
         "snapshot": "gather_node",
-        "px": -12,
-        "pz": 158,
+        "px": -13.89,
+        "pz": 155.06,
         "zoom": 1,
         "profile": "compact",
         "canvas": 162,
@@ -3930,63 +3922,63 @@
           {
             "id": 2,
             "kind": "npc",
-            "x": -5.75,
-            "z": 161.5,
+            "x": -7.640000000000001,
+            "z": 158.56,
             "quest": true
           },
           {
             "id": 3,
             "kind": "npc",
-            "x": -16,
-            "z": 167
+            "x": -17.89,
+            "z": 164.06
           },
           {
             "id": 4,
             "kind": "mob",
-            "x": -22.5,
-            "z": 162.25,
+            "x": -24.39,
+            "z": 159.31,
             "hostile": true
           },
           {
             "id": 5,
             "kind": "mob",
-            "x": 18,
-            "z": 146,
+            "x": 16.11,
+            "z": 143.06,
             "hostile": true
           },
           {
             "id": 6,
             "kind": "object",
-            "x": -10,
-            "z": 150.25,
+            "x": -11.89,
+            "z": 147.31,
             "lootable": true
           },
           {
             "id": 7,
             "kind": "mob",
-            "x": 388,
-            "z": 158,
+            "x": 386.11,
+            "z": 155.06,
             "hostile": true
           },
           {
             "id": 8,
             "kind": "player",
-            "x": -19,
-            "z": 153,
+            "x": -20.89,
+            "z": 150.06,
             "ally": "friend"
           },
           {
             "id": 9,
             "kind": "player",
-            "x": -1,
-            "z": 171,
+            "x": -2.8900000000000006,
+            "z": 168.06,
             "ally": "guild"
           },
           {
             "id": 10,
             "kind": "player",
-            "x": -9,
-            "z": 161
+            "x": -10.89,
+            "z": 158.06
           }
         ],
         "party": [
@@ -3994,41 +3986,41 @@
             "pid": 1,
             "cls": "warrior",
             "dead": 0,
-            "x": -12,
-            "z": 158
+            "x": -13.89,
+            "z": 155.06
           },
           {
             "pid": 20,
             "cls": "mage",
             "dead": 0,
-            "x": -7,
-            "z": 150
+            "x": -8.89,
+            "z": 147.06
           },
           {
             "pid": 21,
             "cls": "priest",
             "dead": 1,
-            "x": 18,
-            "z": 298
+            "x": 16.11,
+            "z": 295.06
           },
           {
             "pid": 22,
             "cls": "rogue",
             "dead": 0,
-            "x": -272,
-            "z": 68
+            "x": -273.89,
+            "z": 65.06
           }
         ],
         "corpse": {
-          "x": 288,
-          "z": 208
+          "x": 286.11,
+          "z": 205.06
         },
         "markers": [
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_1",
-            "wx": -20,
-            "wz": 153,
+            "wx": -21.89,
+            "wz": 150.06,
             "mx": 94.6,
             "my": 89.5
           },
@@ -4037,70 +4029,70 @@
             "ref": "node:ore_eastbrook_2",
             "wx": -23,
             "wz": 157,
-            "mx": 99.7,
-            "my": 82.7
+            "mx": 96.487,
+            "my": 77.702
           },
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_3",
             "wx": -17,
             "wz": 149,
-            "mx": 89.5,
-            "my": 96.3
+            "mx": 86.287,
+            "my": 91.302
           },
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_4",
             "wx": -42,
             "wz": 158,
-            "mx": 132,
-            "my": 81
+            "mx": 128.787,
+            "my": 76.002
           },
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_5",
             "wx": -37,
             "wz": 161,
-            "mx": 123.5,
-            "my": 75.9
+            "mx": 120.287,
+            "my": 70.902
           },
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_6",
             "wx": -15,
             "wz": 137,
-            "mx": 86.1,
-            "my": 116.7
+            "mx": 82.887,
+            "my": 111.702
           },
           {
             "kind": "mob",
             "ref": "entity:4",
-            "wx": -22.5,
-            "wz": 162.25,
+            "wx": -24.39,
+            "wz": 159.31,
             "mx": 98.85,
             "my": 73.775
           },
           {
             "kind": "mob",
             "ref": "entity:5",
-            "wx": 18,
-            "wz": 146,
+            "wx": 16.11,
+            "wz": 143.06,
             "mx": 30,
             "my": 101.4
           },
           {
             "kind": "object-loot",
             "ref": "entity:6",
-            "wx": -10,
-            "wz": 150.25,
+            "wx": -11.89,
+            "wz": 147.31,
             "mx": 77.6,
             "my": 94.175
           },
           {
             "kind": "ally",
             "ref": "entity:8",
-            "wx": -19,
-            "wz": 153,
+            "wx": -20.89,
+            "wz": 150.06,
             "mx": 92.9,
             "my": 89.5,
             "ally": "friend"
@@ -4108,8 +4100,8 @@
           {
             "kind": "ally",
             "ref": "entity:9",
-            "wx": -1,
-            "wz": 171,
+            "wx": -2.8900000000000006,
+            "wz": 168.06,
             "mx": 62.3,
             "my": 58.9,
             "ally": "guild"
@@ -4117,56 +4109,56 @@
           {
             "kind": "corpse",
             "ref": "corpse",
-            "wx": 288,
-            "wz": 208,
+            "wx": 286.11,
+            "wz": 205.06,
             "mx": 11.952,
             "my": 69.492
           },
           {
             "kind": "party-disc",
             "ref": "party:20",
-            "wx": -7,
-            "wz": 150,
+            "wx": -8.89,
+            "wz": 147.06,
             "mx": 72.5,
             "my": 94.6
           },
           {
             "kind": "party-arrow",
             "ref": "party:21",
-            "wx": 18,
-            "wz": 298,
+            "wx": 16.11,
+            "wz": 295.06,
             "mx": 66.844,
             "my": 14.937
           },
           {
             "kind": "party-arrow",
             "ref": "party:22",
-            "wx": -272,
-            "wz": 68,
+            "wx": -273.89,
+            "wz": 65.06,
             "mx": 144.846,
             "my": 103.101
           },
           {
             "kind": "npc",
             "ref": "entity:2",
-            "wx": -5.75,
-            "wz": 161.5,
+            "wx": -7.640000000000001,
+            "wz": 158.56,
             "mx": 70.375,
             "my": 75.05
           },
           {
             "kind": "npc",
             "ref": "entity:3",
-            "wx": -16,
-            "wz": 167,
+            "wx": -17.89,
+            "wz": 164.06,
             "mx": 87.8,
             "my": 65.7
           },
           {
             "kind": "player",
             "ref": "player",
-            "wx": -12,
-            "wz": 158,
+            "wx": -13.89,
+            "wz": 155.06,
             "mx": 81,
             "my": 81
           }
@@ -4176,8 +4168,8 @@
     {
       "in": {
         "snapshot": "gather_node",
-        "px": -12,
-        "pz": 158,
+        "px": -13.89,
+        "pz": 155.06,
         "zoom": 1.5,
         "profile": "standard",
         "canvas": 162,
@@ -4189,63 +4181,63 @@
           {
             "id": 2,
             "kind": "npc",
-            "x": -5.75,
-            "z": 161.5,
+            "x": -7.640000000000001,
+            "z": 158.56,
             "quest": true
           },
           {
             "id": 3,
             "kind": "npc",
-            "x": -16,
-            "z": 167
+            "x": -17.89,
+            "z": 164.06
           },
           {
             "id": 4,
             "kind": "mob",
-            "x": -22.5,
-            "z": 162.25,
+            "x": -24.39,
+            "z": 159.31,
             "hostile": true
           },
           {
             "id": 5,
             "kind": "mob",
-            "x": 18,
-            "z": 146,
+            "x": 16.11,
+            "z": 143.06,
             "hostile": true
           },
           {
             "id": 6,
             "kind": "object",
-            "x": -10,
-            "z": 150.25,
+            "x": -11.89,
+            "z": 147.31,
             "lootable": true
           },
           {
             "id": 7,
             "kind": "mob",
-            "x": 388,
-            "z": 158,
+            "x": 386.11,
+            "z": 155.06,
             "hostile": true
           },
           {
             "id": 8,
             "kind": "player",
-            "x": -19,
-            "z": 153,
+            "x": -20.89,
+            "z": 150.06,
             "ally": "friend"
           },
           {
             "id": 9,
             "kind": "player",
-            "x": -1,
-            "z": 171,
+            "x": -2.8900000000000006,
+            "z": 168.06,
             "ally": "guild"
           },
           {
             "id": 10,
             "kind": "player",
-            "x": -9,
-            "z": 161
+            "x": -10.89,
+            "z": 158.06
           }
         ],
         "party": [
@@ -4253,41 +4245,41 @@
             "pid": 1,
             "cls": "warrior",
             "dead": 0,
-            "x": -12,
-            "z": 158
+            "x": -13.89,
+            "z": 155.06
           },
           {
             "pid": 20,
             "cls": "mage",
             "dead": 0,
-            "x": -7,
-            "z": 150
+            "x": -8.89,
+            "z": 147.06
           },
           {
             "pid": 21,
             "cls": "priest",
             "dead": 1,
-            "x": 18,
-            "z": 298
+            "x": 16.11,
+            "z": 295.06
           },
           {
             "pid": 22,
             "cls": "rogue",
             "dead": 0,
-            "x": -272,
-            "z": 68
+            "x": -273.89,
+            "z": 65.06
           }
         ],
         "corpse": {
-          "x": 288,
-          "z": 208
+          "x": 286.11,
+          "z": 205.06
         },
         "markers": [
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_1",
-            "wx": -20,
-            "wz": 153,
+            "wx": -21.89,
+            "wz": 150.06,
             "mx": 101.4,
             "my": 93.75
           },
@@ -4296,54 +4288,54 @@
             "ref": "node:ore_eastbrook_2",
             "wx": -23,
             "wz": 157,
-            "mx": 109.05,
-            "my": 83.55
+            "mx": 104.23,
+            "my": 76.053
           },
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_3",
             "wx": -17,
             "wz": 149,
-            "mx": 93.75,
-            "my": 103.95
+            "mx": 88.931,
+            "my": 96.453
           },
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_5",
             "wx": -37,
             "wz": 161,
-            "mx": 144.75,
-            "my": 73.35
+            "mx": 139.931,
+            "my": 65.853
           },
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_6",
             "wx": -15,
             "wz": 137,
-            "mx": 88.65,
-            "my": 134.55
+            "mx": 83.831,
+            "my": 127.053
           },
           {
             "kind": "mob",
             "ref": "entity:4",
-            "wx": -22.5,
-            "wz": 162.25,
+            "wx": -24.39,
+            "wz": 159.31,
             "mx": 107.775,
             "my": 70.163
           },
           {
             "kind": "object-loot",
             "ref": "entity:6",
-            "wx": -10,
-            "wz": 150.25,
+            "wx": -11.89,
+            "wz": 147.31,
             "mx": 75.9,
             "my": 100.763
           },
           {
             "kind": "ally",
             "ref": "entity:8",
-            "wx": -19,
-            "wz": 153,
+            "wx": -20.89,
+            "wz": 150.06,
             "mx": 98.85,
             "my": 93.75,
             "ally": "friend"
@@ -4351,8 +4343,8 @@
           {
             "kind": "ally",
             "ref": "entity:9",
-            "wx": -1,
-            "wz": 171,
+            "wx": -2.8900000000000006,
+            "wz": 168.06,
             "mx": 52.95,
             "my": 47.85,
             "ally": "guild"
@@ -4360,56 +4352,56 @@
           {
             "kind": "corpse",
             "ref": "corpse",
-            "wx": 288,
-            "wz": 208,
+            "wx": 286.11,
+            "wz": 205.06,
             "mx": 8.993,
             "my": 68.999
           },
           {
             "kind": "party-disc",
             "ref": "party:20",
-            "wx": -7,
-            "wz": 150,
+            "wx": -8.89,
+            "wz": 147.06,
             "mx": 68.25,
             "my": 101.4
           },
           {
             "kind": "party-arrow",
             "ref": "party:21",
-            "wx": 18,
-            "wz": 298,
+            "wx": 16.11,
+            "wz": 295.06,
             "mx": 66.087,
             "my": 11.407
           },
           {
             "kind": "party-arrow",
             "ref": "party:22",
-            "wx": -272,
-            "wz": 68,
+            "wx": -273.89,
+            "wz": 65.06,
             "mx": 148.257,
             "my": 104.281
           },
           {
             "kind": "npc",
             "ref": "entity:2",
-            "wx": -5.75,
-            "wz": 161.5,
+            "wx": -7.640000000000001,
+            "wz": 158.56,
             "mx": 65.063,
             "my": 72.075
           },
           {
             "kind": "npc",
             "ref": "entity:3",
-            "wx": -16,
-            "wz": 167,
+            "wx": -17.89,
+            "wz": 164.06,
             "mx": 91.2,
             "my": 58.05
           },
           {
             "kind": "player",
             "ref": "player",
-            "wx": -12,
-            "wz": 158,
+            "wx": -13.89,
+            "wz": 155.06,
             "mx": 81,
             "my": 81
           }
@@ -4419,8 +4411,8 @@
     {
       "in": {
         "snapshot": "gather_node",
-        "px": -12,
-        "pz": 158,
+        "px": -13.89,
+        "pz": 155.06,
         "zoom": 1.5,
         "profile": "compact",
         "canvas": 162,
@@ -4432,63 +4424,63 @@
           {
             "id": 2,
             "kind": "npc",
-            "x": -5.75,
-            "z": 161.5,
+            "x": -7.640000000000001,
+            "z": 158.56,
             "quest": true
           },
           {
             "id": 3,
             "kind": "npc",
-            "x": -16,
-            "z": 167
+            "x": -17.89,
+            "z": 164.06
           },
           {
             "id": 4,
             "kind": "mob",
-            "x": -22.5,
-            "z": 162.25,
+            "x": -24.39,
+            "z": 159.31,
             "hostile": true
           },
           {
             "id": 5,
             "kind": "mob",
-            "x": 18,
-            "z": 146,
+            "x": 16.11,
+            "z": 143.06,
             "hostile": true
           },
           {
             "id": 6,
             "kind": "object",
-            "x": -10,
-            "z": 150.25,
+            "x": -11.89,
+            "z": 147.31,
             "lootable": true
           },
           {
             "id": 7,
             "kind": "mob",
-            "x": 388,
-            "z": 158,
+            "x": 386.11,
+            "z": 155.06,
             "hostile": true
           },
           {
             "id": 8,
             "kind": "player",
-            "x": -19,
-            "z": 153,
+            "x": -20.89,
+            "z": 150.06,
             "ally": "friend"
           },
           {
             "id": 9,
             "kind": "player",
-            "x": -1,
-            "z": 171,
+            "x": -2.8900000000000006,
+            "z": 168.06,
             "ally": "guild"
           },
           {
             "id": 10,
             "kind": "player",
-            "x": -9,
-            "z": 161
+            "x": -10.89,
+            "z": 158.06
           }
         ],
         "party": [
@@ -4496,41 +4488,41 @@
             "pid": 1,
             "cls": "warrior",
             "dead": 0,
-            "x": -12,
-            "z": 158
+            "x": -13.89,
+            "z": 155.06
           },
           {
             "pid": 20,
             "cls": "mage",
             "dead": 0,
-            "x": -7,
-            "z": 150
+            "x": -8.89,
+            "z": 147.06
           },
           {
             "pid": 21,
             "cls": "priest",
             "dead": 1,
-            "x": 18,
-            "z": 298
+            "x": 16.11,
+            "z": 295.06
           },
           {
             "pid": 22,
             "cls": "rogue",
             "dead": 0,
-            "x": -272,
-            "z": 68
+            "x": -273.89,
+            "z": 65.06
           }
         ],
         "corpse": {
-          "x": 288,
-          "z": 208
+          "x": 286.11,
+          "z": 205.06
         },
         "markers": [
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_1",
-            "wx": -20,
-            "wz": 153,
+            "wx": -21.89,
+            "wz": 150.06,
             "mx": 101.4,
             "my": 93.75
           },
@@ -4539,46 +4531,54 @@
             "ref": "node:ore_eastbrook_2",
             "wx": -23,
             "wz": 157,
-            "mx": 109.05,
-            "my": 83.55
+            "mx": 104.23,
+            "my": 76.053
           },
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_3",
             "wx": -17,
             "wz": 149,
-            "mx": 93.75,
-            "my": 103.95
+            "mx": 88.931,
+            "my": 96.453
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_5",
+            "wx": -37,
+            "wz": 161,
+            "mx": 139.931,
+            "my": 65.853
           },
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_6",
             "wx": -15,
             "wz": 137,
-            "mx": 88.65,
-            "my": 134.55
+            "mx": 83.831,
+            "my": 127.053
           },
           {
             "kind": "mob",
             "ref": "entity:4",
-            "wx": -22.5,
-            "wz": 162.25,
+            "wx": -24.39,
+            "wz": 159.31,
             "mx": 107.775,
             "my": 70.163
           },
           {
             "kind": "object-loot",
             "ref": "entity:6",
-            "wx": -10,
-            "wz": 150.25,
+            "wx": -11.89,
+            "wz": 147.31,
             "mx": 75.9,
             "my": 100.763
           },
           {
             "kind": "ally",
             "ref": "entity:8",
-            "wx": -19,
-            "wz": 153,
+            "wx": -20.89,
+            "wz": 150.06,
             "mx": 98.85,
             "my": 93.75,
             "ally": "friend"
@@ -4586,8 +4586,8 @@
           {
             "kind": "ally",
             "ref": "entity:9",
-            "wx": -1,
-            "wz": 171,
+            "wx": -2.8900000000000006,
+            "wz": 168.06,
             "mx": 52.95,
             "my": 47.85,
             "ally": "guild"
@@ -4595,56 +4595,56 @@
           {
             "kind": "corpse",
             "ref": "corpse",
-            "wx": 288,
-            "wz": 208,
+            "wx": 286.11,
+            "wz": 205.06,
             "mx": 11.952,
             "my": 69.492
           },
           {
             "kind": "party-disc",
             "ref": "party:20",
-            "wx": -7,
-            "wz": 150,
+            "wx": -8.89,
+            "wz": 147.06,
             "mx": 68.25,
             "my": 101.4
           },
           {
             "kind": "party-arrow",
             "ref": "party:21",
-            "wx": 18,
-            "wz": 298,
+            "wx": 16.11,
+            "wz": 295.06,
             "mx": 66.844,
             "my": 14.937
           },
           {
             "kind": "party-arrow",
             "ref": "party:22",
-            "wx": -272,
-            "wz": 68,
+            "wx": -273.89,
+            "wz": 65.06,
             "mx": 144.846,
             "my": 103.101
           },
           {
             "kind": "npc",
             "ref": "entity:2",
-            "wx": -5.75,
-            "wz": 161.5,
+            "wx": -7.640000000000001,
+            "wz": 158.56,
             "mx": 65.063,
             "my": 72.075
           },
           {
             "kind": "npc",
             "ref": "entity:3",
-            "wx": -16,
-            "wz": 167,
+            "wx": -17.89,
+            "wz": 164.06,
             "mx": 91.2,
             "my": 58.05
           },
           {
             "kind": "player",
             "ref": "player",
-            "wx": -12,
-            "wz": 158,
+            "wx": -13.89,
+            "wz": 155.06,
             "mx": 81,
             "my": 81
           }
@@ -4654,8 +4654,8 @@
     {
       "in": {
         "snapshot": "gather_node",
-        "px": -12,
-        "pz": 158,
+        "px": -13.89,
+        "pz": 155.06,
         "zoom": 2,
         "profile": "standard",
         "canvas": 162,
@@ -4667,63 +4667,63 @@
           {
             "id": 2,
             "kind": "npc",
-            "x": -5.75,
-            "z": 161.5,
+            "x": -7.640000000000001,
+            "z": 158.56,
             "quest": true
           },
           {
             "id": 3,
             "kind": "npc",
-            "x": -16,
-            "z": 167
+            "x": -17.89,
+            "z": 164.06
           },
           {
             "id": 4,
             "kind": "mob",
-            "x": -22.5,
-            "z": 162.25,
+            "x": -24.39,
+            "z": 159.31,
             "hostile": true
           },
           {
             "id": 5,
             "kind": "mob",
-            "x": 18,
-            "z": 146,
+            "x": 16.11,
+            "z": 143.06,
             "hostile": true
           },
           {
             "id": 6,
             "kind": "object",
-            "x": -10,
-            "z": 150.25,
+            "x": -11.89,
+            "z": 147.31,
             "lootable": true
           },
           {
             "id": 7,
             "kind": "mob",
-            "x": 388,
-            "z": 158,
+            "x": 386.11,
+            "z": 155.06,
             "hostile": true
           },
           {
             "id": 8,
             "kind": "player",
-            "x": -19,
-            "z": 153,
+            "x": -20.89,
+            "z": 150.06,
             "ally": "friend"
           },
           {
             "id": 9,
             "kind": "player",
-            "x": -1,
-            "z": 171,
+            "x": -2.8900000000000006,
+            "z": 168.06,
             "ally": "guild"
           },
           {
             "id": 10,
             "kind": "player",
-            "x": -9,
-            "z": 161
+            "x": -10.89,
+            "z": 158.06
           }
         ],
         "party": [
@@ -4731,41 +4731,41 @@
             "pid": 1,
             "cls": "warrior",
             "dead": 0,
-            "x": -12,
-            "z": 158
+            "x": -13.89,
+            "z": 155.06
           },
           {
             "pid": 20,
             "cls": "mage",
             "dead": 0,
-            "x": -7,
-            "z": 150
+            "x": -8.89,
+            "z": 147.06
           },
           {
             "pid": 21,
             "cls": "priest",
             "dead": 1,
-            "x": 18,
-            "z": 298
+            "x": 16.11,
+            "z": 295.06
           },
           {
             "pid": 22,
             "cls": "rogue",
             "dead": 0,
-            "x": -272,
-            "z": 68
+            "x": -273.89,
+            "z": 65.06
           }
         ],
         "corpse": {
-          "x": 288,
-          "z": 208
+          "x": 286.11,
+          "z": 205.06
         },
         "markers": [
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_1",
-            "wx": -20,
-            "wz": 153,
+            "wx": -21.89,
+            "wz": 150.06,
             "mx": 108.2,
             "my": 98
           },
@@ -4774,38 +4774,46 @@
             "ref": "node:ore_eastbrook_2",
             "wx": -23,
             "wz": 157,
-            "mx": 118.4,
-            "my": 84.4
+            "mx": 111.974,
+            "my": 74.404
           },
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_3",
             "wx": -17,
             "wz": 149,
-            "mx": 98,
-            "my": 111.6
+            "mx": 91.574,
+            "my": 101.604
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_6",
+            "wx": -15,
+            "wz": 137,
+            "mx": 84.774,
+            "my": 142.404
           },
           {
             "kind": "mob",
             "ref": "entity:4",
-            "wx": -22.5,
-            "wz": 162.25,
+            "wx": -24.39,
+            "wz": 159.31,
             "mx": 116.7,
             "my": 66.55
           },
           {
             "kind": "object-loot",
             "ref": "entity:6",
-            "wx": -10,
-            "wz": 150.25,
+            "wx": -11.89,
+            "wz": 147.31,
             "mx": 74.2,
             "my": 107.35
           },
           {
             "kind": "ally",
             "ref": "entity:8",
-            "wx": -19,
-            "wz": 153,
+            "wx": -20.89,
+            "wz": 150.06,
             "mx": 104.8,
             "my": 98,
             "ally": "friend"
@@ -4813,8 +4821,8 @@
           {
             "kind": "ally",
             "ref": "entity:9",
-            "wx": -1,
-            "wz": 171,
+            "wx": -2.8900000000000006,
+            "wz": 168.06,
             "mx": 43.6,
             "my": 36.8,
             "ally": "guild"
@@ -4822,56 +4830,56 @@
           {
             "kind": "corpse",
             "ref": "corpse",
-            "wx": 288,
-            "wz": 208,
+            "wx": 286.11,
+            "wz": 205.06,
             "mx": 8.993,
             "my": 68.999
           },
           {
             "kind": "party-disc",
             "ref": "party:20",
-            "wx": -7,
-            "wz": 150,
+            "wx": -8.89,
+            "wz": 147.06,
             "mx": 64,
             "my": 108.2
           },
           {
             "kind": "party-arrow",
             "ref": "party:21",
-            "wx": 18,
-            "wz": 298,
+            "wx": 16.11,
+            "wz": 295.06,
             "mx": 66.087,
             "my": 11.407
           },
           {
             "kind": "party-arrow",
             "ref": "party:22",
-            "wx": -272,
-            "wz": 68,
+            "wx": -273.89,
+            "wz": 65.06,
             "mx": 148.257,
             "my": 104.281
           },
           {
             "kind": "npc",
             "ref": "entity:2",
-            "wx": -5.75,
-            "wz": 161.5,
+            "wx": -7.640000000000001,
+            "wz": 158.56,
             "mx": 59.75,
             "my": 69.1
           },
           {
             "kind": "npc",
             "ref": "entity:3",
-            "wx": -16,
-            "wz": 167,
+            "wx": -17.89,
+            "wz": 164.06,
             "mx": 94.6,
             "my": 50.4
           },
           {
             "kind": "player",
             "ref": "player",
-            "wx": -12,
-            "wz": 158,
+            "wx": -13.89,
+            "wz": 155.06,
             "mx": 81,
             "my": 81
           }
@@ -4881,8 +4889,8 @@
     {
       "in": {
         "snapshot": "gather_node",
-        "px": -12,
-        "pz": 158,
+        "px": -13.89,
+        "pz": 155.06,
         "zoom": 2,
         "profile": "compact",
         "canvas": 162,
@@ -4894,63 +4902,63 @@
           {
             "id": 2,
             "kind": "npc",
-            "x": -5.75,
-            "z": 161.5,
+            "x": -7.640000000000001,
+            "z": 158.56,
             "quest": true
           },
           {
             "id": 3,
             "kind": "npc",
-            "x": -16,
-            "z": 167
+            "x": -17.89,
+            "z": 164.06
           },
           {
             "id": 4,
             "kind": "mob",
-            "x": -22.5,
-            "z": 162.25,
+            "x": -24.39,
+            "z": 159.31,
             "hostile": true
           },
           {
             "id": 5,
             "kind": "mob",
-            "x": 18,
-            "z": 146,
+            "x": 16.11,
+            "z": 143.06,
             "hostile": true
           },
           {
             "id": 6,
             "kind": "object",
-            "x": -10,
-            "z": 150.25,
+            "x": -11.89,
+            "z": 147.31,
             "lootable": true
           },
           {
             "id": 7,
             "kind": "mob",
-            "x": 388,
-            "z": 158,
+            "x": 386.11,
+            "z": 155.06,
             "hostile": true
           },
           {
             "id": 8,
             "kind": "player",
-            "x": -19,
-            "z": 153,
+            "x": -20.89,
+            "z": 150.06,
             "ally": "friend"
           },
           {
             "id": 9,
             "kind": "player",
-            "x": -1,
-            "z": 171,
+            "x": -2.8900000000000006,
+            "z": 168.06,
             "ally": "guild"
           },
           {
             "id": 10,
             "kind": "player",
-            "x": -9,
-            "z": 161
+            "x": -10.89,
+            "z": 158.06
           }
         ],
         "party": [
@@ -4958,41 +4966,41 @@
             "pid": 1,
             "cls": "warrior",
             "dead": 0,
-            "x": -12,
-            "z": 158
+            "x": -13.89,
+            "z": 155.06
           },
           {
             "pid": 20,
             "cls": "mage",
             "dead": 0,
-            "x": -7,
-            "z": 150
+            "x": -8.89,
+            "z": 147.06
           },
           {
             "pid": 21,
             "cls": "priest",
             "dead": 1,
-            "x": 18,
-            "z": 298
+            "x": 16.11,
+            "z": 295.06
           },
           {
             "pid": 22,
             "cls": "rogue",
             "dead": 0,
-            "x": -272,
-            "z": 68
+            "x": -273.89,
+            "z": 65.06
           }
         ],
         "corpse": {
-          "x": 288,
-          "z": 208
+          "x": 286.11,
+          "z": 205.06
         },
         "markers": [
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_1",
-            "wx": -20,
-            "wz": 153,
+            "wx": -21.89,
+            "wz": 150.06,
             "mx": 108.2,
             "my": 98
           },
@@ -5001,38 +5009,46 @@
             "ref": "node:ore_eastbrook_2",
             "wx": -23,
             "wz": 157,
-            "mx": 118.4,
-            "my": 84.4
+            "mx": 111.974,
+            "my": 74.404
           },
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_3",
             "wx": -17,
             "wz": 149,
-            "mx": 98,
-            "my": 111.6
+            "mx": 91.574,
+            "my": 101.604
+          },
+          {
+            "kind": "gather-node",
+            "ref": "node:ore_eastbrook_6",
+            "wx": -15,
+            "wz": 137,
+            "mx": 84.774,
+            "my": 142.404
           },
           {
             "kind": "mob",
             "ref": "entity:4",
-            "wx": -22.5,
-            "wz": 162.25,
+            "wx": -24.39,
+            "wz": 159.31,
             "mx": 116.7,
             "my": 66.55
           },
           {
             "kind": "object-loot",
             "ref": "entity:6",
-            "wx": -10,
-            "wz": 150.25,
+            "wx": -11.89,
+            "wz": 147.31,
             "mx": 74.2,
             "my": 107.35
           },
           {
             "kind": "ally",
             "ref": "entity:8",
-            "wx": -19,
-            "wz": 153,
+            "wx": -20.89,
+            "wz": 150.06,
             "mx": 104.8,
             "my": 98,
             "ally": "friend"
@@ -5040,8 +5056,8 @@
           {
             "kind": "ally",
             "ref": "entity:9",
-            "wx": -1,
-            "wz": 171,
+            "wx": -2.8900000000000006,
+            "wz": 168.06,
             "mx": 43.6,
             "my": 36.8,
             "ally": "guild"
@@ -5049,56 +5065,56 @@
           {
             "kind": "corpse",
             "ref": "corpse",
-            "wx": 288,
-            "wz": 208,
+            "wx": 286.11,
+            "wz": 205.06,
             "mx": 11.952,
             "my": 69.492
           },
           {
             "kind": "party-disc",
             "ref": "party:20",
-            "wx": -7,
-            "wz": 150,
+            "wx": -8.89,
+            "wz": 147.06,
             "mx": 64,
             "my": 108.2
           },
           {
             "kind": "party-arrow",
             "ref": "party:21",
-            "wx": 18,
-            "wz": 298,
+            "wx": 16.11,
+            "wz": 295.06,
             "mx": 66.844,
             "my": 14.937
           },
           {
             "kind": "party-arrow",
             "ref": "party:22",
-            "wx": -272,
-            "wz": 68,
+            "wx": -273.89,
+            "wz": 65.06,
             "mx": 144.846,
             "my": 103.101
           },
           {
             "kind": "npc",
             "ref": "entity:2",
-            "wx": -5.75,
-            "wz": 161.5,
+            "wx": -7.640000000000001,
+            "wz": 158.56,
             "mx": 59.75,
             "my": 69.1
           },
           {
             "kind": "npc",
             "ref": "entity:3",
-            "wx": -16,
-            "wz": 167,
+            "wx": -17.89,
+            "wz": 164.06,
             "mx": 94.6,
             "my": 50.4
           },
           {
             "kind": "player",
             "ref": "player",
-            "wx": -12,
-            "wz": 158,
+            "wx": -13.89,
+            "wz": 155.06,
             "mx": 81,
             "my": 81
           }
@@ -5108,8 +5124,8 @@
     {
       "in": {
         "snapshot": "gather_node",
-        "px": -12,
-        "pz": 158,
+        "px": -13.89,
+        "pz": 155.06,
         "zoom": 3,
         "profile": "standard",
         "canvas": 162,
@@ -5121,63 +5137,63 @@
           {
             "id": 2,
             "kind": "npc",
-            "x": -5.75,
-            "z": 161.5,
+            "x": -7.640000000000001,
+            "z": 158.56,
             "quest": true
           },
           {
             "id": 3,
             "kind": "npc",
-            "x": -16,
-            "z": 167
+            "x": -17.89,
+            "z": 164.06
           },
           {
             "id": 4,
             "kind": "mob",
-            "x": -22.5,
-            "z": 162.25,
+            "x": -24.39,
+            "z": 159.31,
             "hostile": true
           },
           {
             "id": 5,
             "kind": "mob",
-            "x": 18,
-            "z": 146,
+            "x": 16.11,
+            "z": 143.06,
             "hostile": true
           },
           {
             "id": 6,
             "kind": "object",
-            "x": -10,
-            "z": 150.25,
+            "x": -11.89,
+            "z": 147.31,
             "lootable": true
           },
           {
             "id": 7,
             "kind": "mob",
-            "x": 388,
-            "z": 158,
+            "x": 386.11,
+            "z": 155.06,
             "hostile": true
           },
           {
             "id": 8,
             "kind": "player",
-            "x": -19,
-            "z": 153,
+            "x": -20.89,
+            "z": 150.06,
             "ally": "friend"
           },
           {
             "id": 9,
             "kind": "player",
-            "x": -1,
-            "z": 171,
+            "x": -2.8900000000000006,
+            "z": 168.06,
             "ally": "guild"
           },
           {
             "id": 10,
             "kind": "player",
-            "x": -9,
-            "z": 161
+            "x": -10.89,
+            "z": 158.06
           }
         ],
         "party": [
@@ -5185,41 +5201,41 @@
             "pid": 1,
             "cls": "warrior",
             "dead": 0,
-            "x": -12,
-            "z": 158
+            "x": -13.89,
+            "z": 155.06
           },
           {
             "pid": 20,
             "cls": "mage",
             "dead": 0,
-            "x": -7,
-            "z": 150
+            "x": -8.89,
+            "z": 147.06
           },
           {
             "pid": 21,
             "cls": "priest",
             "dead": 1,
-            "x": 18,
-            "z": 298
+            "x": 16.11,
+            "z": 295.06
           },
           {
             "pid": 22,
             "cls": "rogue",
             "dead": 0,
-            "x": -272,
-            "z": 68
+            "x": -273.89,
+            "z": 65.06
           }
         ],
         "corpse": {
-          "x": 288,
-          "z": 208
+          "x": 286.11,
+          "z": 205.06
         },
         "markers": [
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_1",
-            "wx": -20,
-            "wz": 153,
+            "wx": -21.89,
+            "wz": 150.06,
             "mx": 121.8,
             "my": 106.5
           },
@@ -5228,38 +5244,38 @@
             "ref": "node:ore_eastbrook_2",
             "wx": -23,
             "wz": 157,
-            "mx": 137.1,
-            "my": 86.1
+            "mx": 127.461,
+            "my": 71.106
           },
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_3",
             "wx": -17,
             "wz": 149,
-            "mx": 106.5,
-            "my": 126.9
+            "mx": 96.861,
+            "my": 111.906
           },
           {
             "kind": "mob",
             "ref": "entity:4",
-            "wx": -22.5,
-            "wz": 162.25,
+            "wx": -24.39,
+            "wz": 159.31,
             "mx": 134.55,
             "my": 59.325
           },
           {
             "kind": "object-loot",
             "ref": "entity:6",
-            "wx": -10,
-            "wz": 150.25,
+            "wx": -11.89,
+            "wz": 147.31,
             "mx": 70.8,
             "my": 120.525
           },
           {
             "kind": "ally",
             "ref": "entity:8",
-            "wx": -19,
-            "wz": 153,
+            "wx": -20.89,
+            "wz": 150.06,
             "mx": 116.7,
             "my": 106.5,
             "ally": "friend"
@@ -5267,56 +5283,56 @@
           {
             "kind": "corpse",
             "ref": "corpse",
-            "wx": 288,
-            "wz": 208,
+            "wx": 286.11,
+            "wz": 205.06,
             "mx": 8.993,
             "my": 68.999
           },
           {
             "kind": "party-disc",
             "ref": "party:20",
-            "wx": -7,
-            "wz": 150,
+            "wx": -8.89,
+            "wz": 147.06,
             "mx": 55.5,
             "my": 121.8
           },
           {
             "kind": "party-arrow",
             "ref": "party:21",
-            "wx": 18,
-            "wz": 298,
+            "wx": 16.11,
+            "wz": 295.06,
             "mx": 66.087,
             "my": 11.407
           },
           {
             "kind": "party-arrow",
             "ref": "party:22",
-            "wx": -272,
-            "wz": 68,
+            "wx": -273.89,
+            "wz": 65.06,
             "mx": 148.257,
             "my": 104.281
           },
           {
             "kind": "npc",
             "ref": "entity:2",
-            "wx": -5.75,
-            "wz": 161.5,
+            "wx": -7.640000000000001,
+            "wz": 158.56,
             "mx": 49.125,
             "my": 63.15
           },
           {
             "kind": "npc",
             "ref": "entity:3",
-            "wx": -16,
-            "wz": 167,
+            "wx": -17.89,
+            "wz": 164.06,
             "mx": 101.4,
             "my": 35.1
           },
           {
             "kind": "player",
             "ref": "player",
-            "wx": -12,
-            "wz": 158,
+            "wx": -13.89,
+            "wz": 155.06,
             "mx": 81,
             "my": 81
           }
@@ -5326,8 +5342,8 @@
     {
       "in": {
         "snapshot": "gather_node",
-        "px": -12,
-        "pz": 158,
+        "px": -13.89,
+        "pz": 155.06,
         "zoom": 3,
         "profile": "compact",
         "canvas": 162,
@@ -5339,63 +5355,63 @@
           {
             "id": 2,
             "kind": "npc",
-            "x": -5.75,
-            "z": 161.5,
+            "x": -7.640000000000001,
+            "z": 158.56,
             "quest": true
           },
           {
             "id": 3,
             "kind": "npc",
-            "x": -16,
-            "z": 167
+            "x": -17.89,
+            "z": 164.06
           },
           {
             "id": 4,
             "kind": "mob",
-            "x": -22.5,
-            "z": 162.25,
+            "x": -24.39,
+            "z": 159.31,
             "hostile": true
           },
           {
             "id": 5,
             "kind": "mob",
-            "x": 18,
-            "z": 146,
+            "x": 16.11,
+            "z": 143.06,
             "hostile": true
           },
           {
             "id": 6,
             "kind": "object",
-            "x": -10,
-            "z": 150.25,
+            "x": -11.89,
+            "z": 147.31,
             "lootable": true
           },
           {
             "id": 7,
             "kind": "mob",
-            "x": 388,
-            "z": 158,
+            "x": 386.11,
+            "z": 155.06,
             "hostile": true
           },
           {
             "id": 8,
             "kind": "player",
-            "x": -19,
-            "z": 153,
+            "x": -20.89,
+            "z": 150.06,
             "ally": "friend"
           },
           {
             "id": 9,
             "kind": "player",
-            "x": -1,
-            "z": 171,
+            "x": -2.8900000000000006,
+            "z": 168.06,
             "ally": "guild"
           },
           {
             "id": 10,
             "kind": "player",
-            "x": -9,
-            "z": 161
+            "x": -10.89,
+            "z": 158.06
           }
         ],
         "party": [
@@ -5403,41 +5419,41 @@
             "pid": 1,
             "cls": "warrior",
             "dead": 0,
-            "x": -12,
-            "z": 158
+            "x": -13.89,
+            "z": 155.06
           },
           {
             "pid": 20,
             "cls": "mage",
             "dead": 0,
-            "x": -7,
-            "z": 150
+            "x": -8.89,
+            "z": 147.06
           },
           {
             "pid": 21,
             "cls": "priest",
             "dead": 1,
-            "x": 18,
-            "z": 298
+            "x": 16.11,
+            "z": 295.06
           },
           {
             "pid": 22,
             "cls": "rogue",
             "dead": 0,
-            "x": -272,
-            "z": 68
+            "x": -273.89,
+            "z": 65.06
           }
         ],
         "corpse": {
-          "x": 288,
-          "z": 208
+          "x": 286.11,
+          "z": 205.06
         },
         "markers": [
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_1",
-            "wx": -20,
-            "wz": 153,
+            "wx": -21.89,
+            "wz": 150.06,
             "mx": 121.8,
             "my": 106.5
           },
@@ -5446,38 +5462,38 @@
             "ref": "node:ore_eastbrook_2",
             "wx": -23,
             "wz": 157,
-            "mx": 137.1,
-            "my": 86.1
+            "mx": 127.461,
+            "my": 71.106
           },
           {
             "kind": "gather-node",
             "ref": "node:ore_eastbrook_3",
             "wx": -17,
             "wz": 149,
-            "mx": 106.5,
-            "my": 126.9
+            "mx": 96.861,
+            "my": 111.906
           },
           {
             "kind": "mob",
             "ref": "entity:4",
-            "wx": -22.5,
-            "wz": 162.25,
+            "wx": -24.39,
+            "wz": 159.31,
             "mx": 134.55,
             "my": 59.325
           },
           {
             "kind": "object-loot",
             "ref": "entity:6",
-            "wx": -10,
-            "wz": 150.25,
+            "wx": -11.89,
+            "wz": 147.31,
             "mx": 70.8,
             "my": 120.525
           },
           {
             "kind": "ally",
             "ref": "entity:8",
-            "wx": -19,
-            "wz": 153,
+            "wx": -20.89,
+            "wz": 150.06,
             "mx": 116.7,
             "my": 106.5,
             "ally": "friend"
@@ -5485,56 +5501,56 @@
           {
             "kind": "corpse",
             "ref": "corpse",
-            "wx": 288,
-            "wz": 208,
+            "wx": 286.11,
+            "wz": 205.06,
             "mx": 11.952,
             "my": 69.492
           },
           {
             "kind": "party-disc",
             "ref": "party:20",
-            "wx": -7,
-            "wz": 150,
+            "wx": -8.89,
+            "wz": 147.06,
             "mx": 55.5,
             "my": 121.8
           },
           {
             "kind": "party-arrow",
             "ref": "party:21",
-            "wx": 18,
-            "wz": 298,
+            "wx": 16.11,
+            "wz": 295.06,
             "mx": 66.844,
             "my": 14.937
           },
           {
             "kind": "party-arrow",
             "ref": "party:22",
-            "wx": -272,
-            "wz": 68,
+            "wx": -273.89,
+            "wz": 65.06,
             "mx": 144.846,
             "my": 103.101
           },
           {
             "kind": "npc",
             "ref": "entity:2",
-            "wx": -5.75,
-            "wz": 161.5,
+            "wx": -7.640000000000001,
+            "wz": 158.56,
             "mx": 49.125,
             "my": 63.15
           },
           {
             "kind": "npc",
             "ref": "entity:3",
-            "wx": -16,
-            "wz": 167,
+            "wx": -17.89,
+            "wz": 164.06,
             "mx": 101.4,
             "my": 35.1
           },
           {
             "kind": "player",
             "ref": "player",
-            "wx": -12,
-            "wz": 158,
+            "wx": -13.89,
+            "wz": 155.06,
             "mx": 81,
             "my": 81
           }
