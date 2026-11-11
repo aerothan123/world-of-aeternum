@@ -2123,7 +2123,11 @@ const MONOLITHS: MonolithRow[] = [
     // Merge of the four dungeon entrances (#4478): both parents' additions combine
     // (ours is the palm scatter's decoration exclusion check), exact merged count,
     // within the release/v0.45.0 ceiling the branch was held to.
-    ceiling: 5074,
+    // LOWERED 5074 -> 5061 by the Eastbrook Vale v2 port: the lake footprint
+    // constant and list moved out to water_bodies.ts, paying for the two one-line
+    // hooks into src/sim/eastbrook_v2/ (the design ground at the end of the pad
+    // chain, the design trees at the decoration anchor). Exact count, zero slack.
+    ceiling: 5061,
     seam: 'zone/terrain data as content records; logic as sim sibling modules',
   },
   {

@@ -37,6 +37,7 @@ import { decorationScale } from './decoration_dims';
 import { isCuratedGardenScatter, isExcludedDecoration } from './decoration_exclusions';
 import { dungeonFloorLift } from './dungeon_floor';
 import { dawnholdKeepLiftAt, lastKeepLiftAt } from './dungeon_layout';
+import { ebv2Decoration, ebv2Ground, ebv2OwnsAnchor } from './eastbrook_v2';
 import { applyEastbrookVaultPad } from './eastbrook_vault_terrain';
 import {
   EMBER_FLAT_POOLS,
@@ -77,6 +78,7 @@ import { cragLayer, highlandMask, reliefBase, ridged2, warpedCoords } from './te
 import { applyGardenwalkWestPass, applyThornpeakPocketGrade } from './thornpeak_walk_grades';
 import type { BiomeId, ZoneDef } from './types';
 import { overworldWalkSurface } from './walk_lifts';
+import { LAKE_BLEND_RADIUS_MULT } from './water_bodies';
 import { applyWispMazePad } from './wisp_maze_ground';
 import { CORE_WORLD } from './world_core_bounds';
 
@@ -101,11 +103,8 @@ export function waterLevel(): number {
   return getActiveWorldContent().waterLevel ?? WATER_LEVEL;
 }
 
-// A declared lake's footprint reaches this multiple past its authored radius
-// (the same soft-edge basin blend baseHeight uses below), so the render plane,
-// the walkable-depth floor, and the terrain basin itself all agree on where a
-// lake actually ends.
-export const LAKE_BLEND_RADIUS_MULT = 1.6;
+// The lake footprint reach and list live in the water_bodies leaf.
+export { LAKE_BLEND_RADIUS_MULT, waterBodies } from './water_bodies';
 
 // True when (x,z) falls inside a declared lake's footprint (any active zone's
 // `lakes` list) or one of the programmatic border waters (the moats, column
@@ -197,19 +196,6 @@ export function waterLevelAt(x: number, z: number, seed: number): number {
 // (isOpenSeaAt, with a per-cell memo and the authored-stamp exclusion this
 // seam existed to provide), so the narrow/wide split it created no longer
 // exists and every caller reads `waterLevelAt(x, z, seed)`.
-
-// Every declared lake across the active content's zones, in render/authoring
-// footprint (radius already includes the basin blend margin). Used to draw
-// water only where it is actually declared.
-export function waterBodies(): { x: number; z: number; radius: number }[] {
-  const out: { x: number; z: number; radius: number }[] = [];
-  for (const zone of getActiveWorldContent().zones) {
-    for (const lake of zone.lakes) {
-      out.push({ x: lake.x, z: lake.z, radius: lake.radius * LAKE_BLEND_RADIUS_MULT });
-    }
-  }
-  return out;
-}
 
 // Hill amplitude / base elevation / hub plateau height / crag amplitude per
 // biome. `crag` is the ridged-multifractal layer's full-mask height
@@ -3913,7 +3899,7 @@ function applyTerrainPads(x: number, z: number, seed: number, h0: number): numbe
     }
   }
   // The Galecrest's shaping, over the finished height (galecrest_terrain_pads.ts).
-  return applyGalecrestShaping(x, z, seed, h, terrainHeightUnpadded);
+  return ebv2Ground(x, z, applyGalecrestShaping(x, z, seed, h, terrainHeightUnpadded));
 }
 
 function borderSeaGate(x: number, z: number): number {
@@ -4841,6 +4827,7 @@ const DECORATION_JITTER = DECORATION_STEP / 2;
 // entire field in every isolated test worker made the first Sim in each file
 // pay for thousands of terrain samples it never touched.
 function decorationAt(seed: number, gx: number, gz: number): Decoration | null {
+  if (ebv2OwnsAnchor(gx, gz)) return ebv2Decoration(seed, gx, gz); // the Eastbrook v2 trees
   const r = hash2(Math.round(gx), Math.round(gz), seed + 31);
   const biome = zoneBiomeAt(gx, gz);
   // density gate + kind mix per biome

@@ -22,6 +22,12 @@ const TIE_IN_EXEMPTIONS: readonly { x0: number; x1: number; z0: number; z1: numb
   { x0: 330, x1: 440, z0: -180, z1: -90 },
   // the Southway off Eastbrook's south shore, east of the town
   { x0: 50, x1: 96, z0: -180, z1: -98 },
+  // Eastbrook Vale v2 (src/sim/eastbrook_v2/): the Unreal design's own ground owns
+  // the whole eastbrook_vale slot (it subsumes the Southway rect above), and its
+  // edge band eases back to the shipped ground exactly at the slot edge, so every
+  // sample outside it must still hash as before. tests/eastbrook_v2_world.test.ts
+  // pins the ground inside.
+  { x0: -180, x1: 180, z0: -180, z1: 180 },
 ];
 
 function exempt(x: number, z: number): boolean {
@@ -57,5 +63,8 @@ describe('core world terrain parity', () => {
 
 // Measured on feature/player-housing 64d84727's world.ts, before any expansion code
 // (re-measured there when the Southway's exemption was added; the new code
-// gives the same hash).
-const PINNED_CORE_HASH = '9c722d62:c3665b52';
+// gives the same hash). Re-measured with the Eastbrook Vale v2 exemption on
+// feature/player-housing a968885f, the tree the v2 port branched from (before the
+// design ground existed); the port's code gives the same hash, which is the proof
+// that nothing outside the eastbrook_vale slot moved.
+const PINNED_CORE_HASH = '8927832c:e6ba61dc';

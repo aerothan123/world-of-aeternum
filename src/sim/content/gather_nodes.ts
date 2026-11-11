@@ -51,6 +51,7 @@
 // three of them (willowfen, galecrest, farshore_isle) to the strip's own six
 // per type; the remaining eight keep the starter kit until their zone-4 pass.
 
+import { ebv2SiteOr } from '../eastbrook_v2/sites';
 import type { GatherNodeDef, GatherNodeType } from '../types';
 
 export const GATHER_NODE_TYPES: readonly GatherNodeType[] = ['ore', 'wood', 'herb'];
@@ -1253,8 +1254,12 @@ export const RETIRED_WOOD_NODE_SITES: readonly {
 // (sim/moved_objects.ts gatherNodesFor), which is only sound while the rows
 // behind the key cannot change (the src/sim/CLAUDE.md content-memo rule). A
 // moved node is a fresh row, never a write into one of these.
+// Eastbrook Vale v2: the vale's veins and patches stand on the design's own nodes
+// (eastbrook_v2/sites.ts `node:<id>`); the ids, and so the respawn timers, stay.
 export const GATHER_NODES: GatherNodeDef[] = Object.freeze(
-  GATHER_NODE_ROWS.map((node) => Object.freeze({ ...node, pos: Object.freeze({ ...node.pos }) })),
+  GATHER_NODE_ROWS.map((node) =>
+    Object.freeze({ ...node, pos: Object.freeze(ebv2SiteOr(`node:${node.id}`, node.pos)) }),
+  ),
 ) as GatherNodeDef[];
 
 /** Every gather-node coordinate in the ORIGINAL shipped table order, the live
@@ -1265,7 +1270,8 @@ export const GATHER_NODE_SITES_AS_SHIPPED: readonly { readonly x: number; readon
   Object.freeze(
     (() => {
       const out: { x: number; z: number }[] = [];
-      for (const node of GATHER_NODES) {
+      // the authored rows, not the v2 sites: the pads were minted from these
+      for (const node of GATHER_NODE_ROWS) {
         for (const site of RETIRED_WOOD_NODE_SITES) {
           if (site.before === node.id) out.push({ x: site.x, z: site.z });
         }

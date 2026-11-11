@@ -414,6 +414,7 @@ import {
 } from './content/zone3';
 import { DUNGEON_WALL_HW, DUNGEON_WALL_X } from './dungeon_layout';
 import { EASTBROOK_LAYOUT } from './eastbrook_layout';
+import { applyEbv2Sites } from './eastbrook_v2/sites';
 import { FENBRIDGE_LAYOUT } from './fenbridge_layout';
 import { spreadFrontierContent } from './frontier/spread';
 import { HIGHWATCH_LAYOUT } from './highwatch_layout';
@@ -1220,6 +1221,9 @@ spreadFrontierContent([
   MUSTER_BOARDS,
   CHAPTER_TWO_GATED_CATCH_SPOTS,
 ]);
+// Eastbrook Vale v2 (src/sim/eastbrook_v2/sites.ts): the vale's NPCs, camps and
+// quest objects stand on their sites in the imported design, by stable key.
+applyEbv2Sites({ npcs: NPCS, camps: CAMPS, objects: GROUND_OBJECTS });
 
 export const WORLD_SIZE = 360; // the original strip's width (one grid column)
 // A zone without an explicit x-range spans the original strip column.

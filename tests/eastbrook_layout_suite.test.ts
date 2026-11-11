@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import { isBlocked } from '../src/sim/colliders';
 import {
   circleIntersectsObb,
   distancePointToObb,
@@ -13,6 +14,11 @@ import {
   REMOVED_EASTBROOK_PLACEMENTS,
   samplePolyline,
 } from '../src/sim/eastbrook_layout';
+import { ebv2Owns, ebv2RoadClearance } from '../src/sim/eastbrook_v2';
+import { ebv2Site } from '../src/sim/eastbrook_v2/sites';
+import { WORLD_SEED } from '../src/sim/world_seed';
+
+const V2_SITED = (key: string) => ebv2Site(key) !== undefined;
 
 const PLAYER_RADIUS = 0.5;
 const MAX_MOVER_RADIUS = 0.8;
@@ -49,7 +55,9 @@ function nonWallSolidObbs(): Obb2[] {
     ...EASTBROOK_LAYOUT.market.stalls.map((stall) => stall.footprint),
     ...EASTBROOK_LAYOUT.civic.benches.map((bench) => bench.footprint),
     ...EASTBROOK_LAYOUT.fences.map((fence) => fence.footprint),
-    EASTBROOK_LAYOUT.services.noticeboard.footprint,
+    // Eastbrook Vale v2: a board standing on its design site is judged against the
+    // design's own solids (tests/eastbrook_v2_world.test.ts), not this town's lanes.
+    ...(V2_SITED('svc:noticeboard') ? [] : [EASTBROOK_LAYOUT.services.noticeboard.footprint]),
   ];
 }
 
@@ -1530,22 +1538,27 @@ describe('layout clearance and service anchors', () => {
     // point and the yard adds the apothecary and the tannery; each yard master
     // stands at their bench; the_merchant keeps the trading post and
     // bursar_fernando the storage shed on Market Row; tanner_tamsin is new.
+    // Re-pinned for Eastbrook Vale v2 (src/sim/eastbrook_v2/,
+    // data/eastbrook_v2/sites_config.json): every service, station and NPC
+    // anchor below stands on its site on the Unreal design's town, written by
+    // scripts/eastbrook_v2/resite_eastbrook_v2.ts. The spawn and the board
+    // stand on their design points exactly; the rest at the nearest clear,
+    // dry, walkable spot, clear of the design's road lanes and of each other.
+    // The graveyard is the design's knoll east of town. Facings and anchor ids
+    // are the authored ones.
     expect(EASTBROOK_LAYOUT.services.playerStart).toEqual({
       id: 'eastbrook_player_start',
-      position: { x: -94, z: -58 },
+      position: { x: -16, z: -158 },
       bodyRadius: 0.5,
     });
     expect(EASTBROOK_LAYOUT.services.mailbox).toEqual({
       id: 'mailbox_eastbrook',
       templateId: 'mailbox',
       assetId: '/models/props/mailbox_pillar.glb',
-      position: { x: -10, z: -98 },
+      position: { x: -10, z: -100 },
       bodyRadius: 0.8,
       interactionRadius: 7,
-      // The source still authors the pre-move posting-spot literal here (the
-      // pillar itself moved to the market square); mirrored as-is, source
-      // owners flagged to re-derive it from the new pillar.
-      frontStandingPoint: { x: -10, z: -96.9 },
+      frontStandingPoint: { x: -10, z: -98.9 },
     });
     expect(EASTBROOK_LAYOUT.services.noticeboard).toEqual({
       id: 'eastbrook_noticeboard',
@@ -1553,74 +1566,32 @@ describe('layout clearance and service anchors', () => {
       templateId: 'noticeboard_eastbrook',
       assetId: '/models/props/eastbrook_noticeboard.glb',
       name: 'Notice Board',
-      position: { x: 5, z: -89 },
-      rotation: -2.17084654019665,
+      position: { x: -9, z: -108.2 },
+      rotation: 0,
       nativeDimensions: { width: 2.4, height: 2.6, depth: 0.6 },
       footprint: {
         id: 'eastbrook_noticeboard',
-        center: { x: 5, z: -89 },
+        center: { x: -9, z: -108.2 },
         halfWidth: 1.2,
         halfDepth: 0.3,
-        rotation: -2.17084654019665,
+        rotation: 0,
       },
-      frontStandingPoint: { x: 3.844569834250236, z: -89.79055748182878 },
+      frontStandingPoint: { x: -9, z: -106.7 },
       interactionRadius: 4,
     });
     expect(EASTBROOK_LAYOUT.services.graveyard).toEqual({
       id: 'gy_eastbrook',
-      position: {
-        x: 37.5,
-        z: -99.3,
-      },
-      legacyReleasePoint: {
-        x: 39.5,
-        z: -99.3,
-      },
+      position: { x: 146, z: -118 },
+      legacyReleasePoint: { x: 148, z: -118 },
       healerTemplateId: 'spirit_healer',
       healerFacing: Math.PI,
       headstones: [
-        {
-          id: 'gy_eastbrook_headstone_0',
-          position: {
-            x: 37.5,
-            z: -99.3,
-          },
-        },
-        {
-          id: 'gy_eastbrook_headstone_1',
-          position: {
-            x: 39.7,
-            z: -99.3,
-          },
-        },
-        {
-          id: 'gy_eastbrook_headstone_2',
-          position: {
-            x: 41.9,
-            z: -99.3,
-          },
-        },
-        {
-          id: 'gy_eastbrook_headstone_3',
-          position: {
-            x: 37.5,
-            z: -96.7,
-          },
-        },
-        {
-          id: 'gy_eastbrook_headstone_4',
-          position: {
-            x: 39.7,
-            z: -96.7,
-          },
-        },
-        {
-          id: 'gy_eastbrook_headstone_5',
-          position: {
-            x: 41.9,
-            z: -96.7,
-          },
-        },
+        { id: 'gy_eastbrook_headstone_0', position: { x: 146, z: -118 } },
+        { id: 'gy_eastbrook_headstone_1', position: { x: 148.2, z: -118 } },
+        { id: 'gy_eastbrook_headstone_2', position: { x: 150.4, z: -118 } },
+        { id: 'gy_eastbrook_headstone_3', position: { x: 146, z: -115.4 } },
+        { id: 'gy_eastbrook_headstone_4', position: { x: 148.2, z: -115.4 } },
+        { id: 'gy_eastbrook_headstone_5', position: { x: 150.4, z: -115.4 } },
       ],
     });
     expect(EASTBROOK_LAYOUT.services.rest).toEqual({
@@ -1641,60 +1612,42 @@ describe('layout clearance and service anchors', () => {
         id: 'station_eastbrook_forge',
         type: 'forge',
         masterNpcId: 'forgemistress_darva',
-        position: {
-          x: -4.1722222222222225,
-          z: -113.8,
-        },
+        position: { x: -1, z: -85 },
         interactionRadius: 20,
       },
       {
         id: 'station_eastbrook_kitchens',
         type: 'kitchens',
         masterNpcId: 'cook_marlow',
-        position: {
-          x: -3.367368421052632,
-          z: -108.5,
-        },
+        position: { x: -33.27, z: -89.8 },
         interactionRadius: 20,
       },
       {
         id: 'station_eastbrook_loom',
         type: 'loom',
         masterNpcId: 'weaver_ottilie',
-        position: {
-          x: -15.277777777777779,
-          z: -116.6,
-        },
+        position: { x: 2.14, z: -79.25 },
         interactionRadius: 20,
       },
       {
         id: 'station_eastbrook_toolworks',
         type: 'toolworks',
         masterNpcId: 'tinker_gizzel',
-        position: {
-          x: -15.894166666666667,
-          z: -125.6,
-        },
+        position: { x: 2.8, z: -80.5 },
         interactionRadius: 20,
       },
       {
         id: 'station_eastbrook_apothecary',
         type: 'apothecary',
         masterNpcId: 'apothecary_lin',
-        position: {
-          x: -15.971153846153847,
-          z: -112,
-        },
+        position: { x: 2.36, z: -76.47 },
         interactionRadius: 20,
       },
       {
         id: 'station_eastbrook_tannery',
         type: 'tannery',
         masterNpcId: 'tanner_tamsin',
-        position: {
-          x: -15.443999999999999,
-          z: -121.2,
-        },
+        position: { x: -1.2, z: -74 },
         interactionRadius: 20,
       },
     ]);
@@ -1708,76 +1661,37 @@ describe('layout clearance and service anchors', () => {
         npc.anchorId,
       ]),
     ).toEqual([
-      ['the_merchant', -29, -103.79285714285714, 0, 'kit_trading_post'],
-      ['marshal_redbrook', 1.5, -95.3, -1.9787985229559204, 'eastbrook_noticeboard'],
-      ['trader_wilkes', -25, -94, 2.1995926132103296, 'eastbrook_civic_square'],
-      [
-        'apothecary_lin',
-        -16.471153846153847,
-        -109.2,
-        0.33061826155045143,
-        'station_eastbrook_apothecary',
-      ],
-      [
-        'brother_aldric',
-        15.011652086947231,
-        -110.38541937474815,
-        -0.9599310885968813,
-        'eastbrook_chapel',
-      ],
-      [
-        'smith_haldren',
-        -8.282374584867384,
-        -81.85509712542417,
-        -2.7925268031909276,
-        'eastbrook_smithy',
-      ],
-      ['fisherman_brandt', -22.3, -104.6, 1.2672255874712333, 'eastbrook_civic_square'],
-      ['foreman_odell', 1.8, -102.6, -1.5328398816065827, 'eastbrook_civic_square'],
-      ['bursar_fernando', -41.6, -102.88933333333333, 0, 'kit_storage_shed'],
-      [
-        'card_master',
-        -48.85195954108786,
-        -111.55592057176676,
-        0.7853981633974481,
-        'eastbrook_bank',
-      ],
-      ['chronicler_saul', 10.2, -87.5, 0.5880026035475675, 'mailbox_eastbrook'],
-      [
-        'forgemistress_darva',
-        -5.772222222222222,
-        -113.8,
-        -1.5707963267948966,
-        'station_eastbrook_forge',
-      ],
-      [
-        'cook_marlow',
-        -4.967368421052631,
-        -108.5,
-        -1.5707963267948966,
-        'station_eastbrook_kitchens',
-      ],
-      ['weaver_ottilie', -13.677777777777779, -116.6, 1.5707963267948966, 'station_eastbrook_loom'],
-      [
-        'tinker_gizzel',
-        -14.294166666666667,
-        -125.6,
-        1.5707963267948966,
-        'station_eastbrook_toolworks',
-      ],
-      ['fury', 21, -83.5, -2.0570389598824015, 'eastbrook_chapel'],
-      ['tanner_tamsin', -13.844, -121.2, 1.5707963267948966, 'station_eastbrook_tannery'],
+      ['the_merchant', -4.4, -99.26, 0, 'kit_trading_post'],
+      ['marshal_redbrook', -3.49, -106.72, -1.9787985229559204, 'eastbrook_noticeboard'],
+      ['trader_wilkes', -4.26, -96.82, 2.1995926132103296, 'eastbrook_civic_square'],
+      ['apothecary_lin', 1.41, -75.63, -2.6312333237070438, 'station_eastbrook_apothecary'],
+      ['brother_aldric', -3.15, -57.45, -0.9599310885968813, 'eastbrook_chapel'],
+      ['smith_haldren', 1.8, -108.15, -2.7925268031909276, 'eastbrook_smithy'],
+      ['fisherman_brandt', -111.42, -98.7, 1.2672255874712333, 'eastbrook_civic_square'],
+      ['foreman_odell', 1.25, -81.17, -1.5328398816065827, 'eastbrook_civic_square'],
+      ['bursar_fernando', -42.4, -98.81, 0, 'kit_storage_shed'],
+      ['card_master', -32.23, -90.4, 0.7853981633974481, 'eastbrook_bank'],
+      ['chronicler_saul', -14.03, -104.03, 0.5880026035475675, 'mailbox_eastbrook'],
+      ['forgemistress_darva', -1, -83.8, -1.5707963267948966, 'station_eastbrook_forge'],
+      ['cook_marlow', -30.11, -89.3, -1.5707963267948966, 'station_eastbrook_kitchens'],
+      ['weaver_ottilie', 5.82, -80.63, 1.5707963267948966, 'station_eastbrook_loom'],
+      ['tinker_gizzel', 1.82, -84.52, 1.5707963267948966, 'station_eastbrook_toolworks'],
+      ['fury', -14.2, -119.43, -2.0570389598824015, 'eastbrook_chapel'],
+      ['tanner_tamsin', -1.91, -74.97, 1.5707963267948966, 'station_eastbrook_tannery'],
     ]);
 
+    // Every anchor stands on the v2 design's ground now, so it answers to the live
+    // collision there (the design's own solids), at the body radius the resite
+    // cleared it for; the old town footprints this suite pins stood down.
     const pointAnchors = [
       EASTBROOK_LAYOUT.services.playerStart,
       EASTBROOK_LAYOUT.services.mailbox,
       {
         id: `${EASTBROOK_LAYOUT.services.noticeboard.id}:standing`,
         position: EASTBROOK_LAYOUT.services.noticeboard.frontStandingPoint,
-        bodyRadius: 0.6,
+        bodyRadius: 0.5,
       },
-      ...EASTBROOK_LAYOUT.services.stations.map((station) => ({ ...station, bodyRadius: 0.8 })),
+      ...EASTBROOK_LAYOUT.services.stations.map((station) => ({ ...station, bodyRadius: 0.5 })),
       ...EASTBROOK_LAYOUT.services.npcs,
       {
         id: EASTBROOK_LAYOUT.services.graveyard.id,
@@ -1791,13 +1705,19 @@ describe('layout clearance and service anchors', () => {
       },
     ];
     for (const anchor of pointAnchors) {
+      expect(ebv2Owns(anchor.position.x, anchor.position.z), `${anchor.id} on the design`).toBe(
+        true,
+      );
       expect(
-        pointClearance(anchor.position),
+        isBlocked(WORLD_SEED, anchor.position.x, anchor.position.z, anchor.bodyRadius),
         `${anchor.id} overlaps a solid`,
-      ).toBeGreaterThanOrEqual(anchor.bodyRadius - 1e-8);
+      ).toBe(false);
     }
     for (const headstone of EASTBROOK_LAYOUT.services.graveyard.headstones) {
-      expect(pointClearance(headstone.position), headstone.id).toBeGreaterThanOrEqual(0.3);
+      expect(
+        isBlocked(WORLD_SEED, headstone.position.x, headstone.position.z, 0.3),
+        headstone.id,
+      ).toBe(false);
     }
 
     const npcs = new Map(EASTBROOK_LAYOUT.services.npcs.map((npc) => [npc.id, npc]));
@@ -1845,6 +1765,15 @@ describe('layout clearance and service anchors', () => {
     for (const id of givers) {
       const npc = npcs.get(id);
       if (!npc) throw new Error(`missing ${id}`);
+      // Eastbrook Vale v2: a giver on its design site keeps out of the design's own
+      // road lanes (the old town's lanes below stood down with its buildings)
+      if (V2_SITED(`npc:${id}`)) {
+        expect(
+          ebv2RoadClearance(npc.position.x, npc.position.z),
+          `${id} stands in a design road lane`,
+        ).toBeGreaterThanOrEqual(npc.bodyRadius - 1e-6);
+        continue;
+      }
       for (const road of EASTBROOK_LAYOUT.roads) {
         const nearest = Math.min(
           ...samplePolyline(road.points, 0.1).map((point) => distance(point, npc.position)),
@@ -1902,7 +1831,22 @@ describe('layout clearance and service anchors', () => {
 describe('pure deterministic module boundary', () => {
   it('contains no runtime dependency, DOM, Three, random, or wall-clock access', () => {
     const source = readFileSync(new URL('../src/sim/eastbrook_layout.ts', import.meta.url), 'utf8');
-    expect(source).not.toMatch(/^\s*import\s/m);
+    // The one import allowed is the Eastbrook v2 site table: generated,
+    // pure data (scripts/eastbrook_v2/resite_eastbrook_v2.ts) that moves the
+    // authored anchors onto the v2 design ground.
+    const imports = source.match(/^\s*import\s.*$/gm) ?? [];
+    expect(imports.map((line) => line.trim())).toEqual([
+      "import { ebv2Site, ebv2SiteOr } from './eastbrook_v2/sites';",
+    ]);
+    const sites = readFileSync(
+      new URL('../src/sim/eastbrook_v2/sites.ts', import.meta.url),
+      'utf8',
+    );
+    for (const line of sites.match(/^\s*import\s.*$/gm) ?? []) {
+      expect(line, 'eastbrook_v2/sites stays a leaf over generated data').toMatch(
+        /from '\.\/sites\.generated'|from '\.\.\/types'|^\s*import type /,
+      );
+    }
     expect(source).not.toContain('three');
     expect(source).not.toContain('THREE');
     expect(source).not.toContain('window');

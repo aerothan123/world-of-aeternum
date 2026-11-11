@@ -10,6 +10,8 @@ import {
   eastbrookTownRetiresDecorRow,
   type TownFootprint,
 } from '../src/sim/eastbrook_town_footprints';
+import { ebv2Owns, ebv2Point, ebv2StandingColliderIndexes } from '../src/sim/eastbrook_v2';
+import { EBV2_COLLIDER_IDS, EBV2_COLLIDERS } from '../src/sim/eastbrook_v2/layout.generated';
 import { isResting } from '../src/sim/progression/xp';
 import { Sim } from '../src/sim/sim';
 import { WORLD_SEED } from '../src/sim/world_seed';
@@ -70,14 +72,31 @@ describe('the Eastbrook town footprints', () => {
     }
   });
 
-  it('stands every box in the built-in world, exactly once', () => {
+  // Eastbrook Vale v2 (src/sim/eastbrook_v2/): the Unreal design's own solids stand on
+  // the design's ground, so every pilot box there stands down, and so does every box
+  // of a building record that stands there (the record is replaced whole); one the
+  // design does not own would still stand, exactly once.
+  it('stands every pilot box down on the v2 design ground, and any other exactly once', () => {
     const colliders = townColliders();
+    const recordOwned = (box: TownFootprint) => {
+      const id = box.replaces?.startsWith('building:') ? box.replaces.slice(9) : null;
+      const record = ZONE1_PROPS.buildings.find((b) => b.id === id);
+      return record !== undefined && ebv2Owns(record.x, record.z);
+    };
+    let down = 0;
     for (const box of EASTBROOK_TOWN_FOOTPRINTS) {
       const hits = colliders.filter((collider) => sameBox(collider, box));
+      if (ebv2Owns(box.x, box.z) || recordOwned(box)) {
+        expect(hits, box.id).toHaveLength(0);
+        down++;
+        continue;
+      }
       expect(hits, box.id).toHaveLength(1);
       expect(hits[0]).toMatchObject({ type: 'obb', rot: box.rot });
       expect(isBlocked(WORLD_SEED, box.x, box.z), box.id).toBe(true);
     }
+    // the town stands on the design's terrace: nearly every pilot box stood down
+    expect(down).toBeGreaterThan(EASTBROOK_TOWN_FOOTPRINTS.length * 0.8);
   });
 
   it('stands the replaced and retired boxes down, so nothing unseen blocks', () => {
@@ -125,7 +144,9 @@ describe('the Eastbrook town footprints', () => {
           hd: piece.collider.halfDepth,
         }),
       );
-      expect(stands, piece.id).toBe(!retired);
+      // a kept piece on the v2 design ground stands down with the rest of the old town
+      const owned = ebv2Owns(piece.collider.center.x, piece.collider.center.z);
+      expect(stands, piece.id).toBe(!retired && !owned);
       if (!retired) kept++;
     }
     // the crafting stations, the stalls, the cart, the clutter and the well keep their boxes
@@ -151,13 +172,19 @@ describe('the Eastbrook town footprints', () => {
 
   it('keeps every town NPC, service and quest object out of the walls', () => {
     const sim = new Sim({ seed: WORLD_SEED, playerClass: 'warrior' });
+    // the walls that stand: the v2 design's boxes on its own ground (the pilot boxes
+    // stood down above)
+    const walls = ebv2StandingColliderIndexes().map((i) => {
+      const [x, z, hw, hd, rot] = EBV2_COLLIDERS[i];
+      return { id: `ebv2 ${EBV2_COLLIDER_IDS[i]}`, replaces: null, x, z, hw, hd, rot, h: 3 };
+    });
     let checked = 0;
     for (const entity of sim.entities.values()) {
       if (entity.kind !== 'npc' && entity.kind !== 'object') continue;
       const { x, z } = entity.pos;
       if (x < TOWN.minX || x > TOWN.maxX || z < TOWN.minZ || z > TOWN.maxZ) continue;
       checked++;
-      for (const box of EASTBROOK_TOWN_FOOTPRINTS) {
+      for (const box of walls) {
         expect(
           inside(box, x, z, 0.3),
           `${entity.templateId} at ${x.toFixed(1)}, ${z.toFixed(1)} in ${box.id}`,
@@ -171,6 +198,7 @@ describe('the Eastbrook town footprints', () => {
     const sim = new Sim({ seed: WORLD_SEED, playerClass: 'warrior' });
     const inn = EASTBROOK_LAYOUT.buildings.find((building) => building.id === 'eastbrook_inn');
     if (!inn) throw new Error('missing the inn');
+    const innV2 = ebv2Point('svc_inn');
     const INN_THINGS = [
       'innkeeper_jorren',
       'ground_c1_tapping_wall_panel',
@@ -187,9 +215,10 @@ describe('the Eastbrook town footprints', () => {
       if (!entity.templateId || !INN_THINGS.includes(entity.templateId)) continue;
       seen.add(entity.templateId);
       const { x, z } = entity.pos;
-      // within the inn's own ground: its wall box and the yard before it
+      // within the v2 design inn's own ground (the inn's things moved with it,
+      // data/eastbrook_v2/sites_config.json objectGroups)
       expect(
-        Math.hypot(x - inn.position.x, z - inn.position.z),
+        Math.hypot(x - innV2.x, z - innV2.z),
         `${entity.templateId} at ${x.toFixed(1)}, ${z.toFixed(1)}`,
       ).toBeLessThan(inn.maxCornerRadius + 6);
       expect(isBlocked(WORLD_SEED, x, z, 0.3), entity.templateId).toBe(false);

@@ -1,7 +1,9 @@
 // Player housing (Project H), phase 1: house lots, buying a house, the
 // owner-only front door into a private interior, and persistence.
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { AUTHORED_TOWN_BUILDINGS } from '../src/sim/authored_town_registry';
+import { isBlocked } from '../src/sim/colliders';
 import {
   HOUSE_LOT_DUNGEON_DEFS,
   HOUSE_LOT_IDS,
@@ -16,6 +18,8 @@ import {
   EASTBROOK_TOWN_KIT_BY_ID,
   townKitDoorPoint,
 } from '../src/sim/eastbrook_layout';
+import { ebv2Point } from '../src/sim/eastbrook_v2';
+import { ebv2Site } from '../src/sim/eastbrook_v2/sites';
 import { HOUSE_COTTAGE_LAYOUT, HOUSE_ENTRY, HOUSE_EXIT } from '../src/sim/housing/cottage_layout';
 import {
   type HousingPlayerState,
@@ -32,6 +36,7 @@ import { enterDungeon, leaveDungeon } from '../src/sim/instances/dungeons';
 import { Sim } from '../src/sim/sim';
 import type { SimEvent } from '../src/sim/types';
 import { terrainHeight } from '../src/sim/world';
+import { WORLD_SEED } from '../src/sim/world_seed';
 
 const LOT = HOUSE_LOTS[0];
 
@@ -64,9 +69,36 @@ function standBeside(sim: Sim, pid: number, lot = LOT): void {
   place(sim, pid, lot.doorPos.x + lot.leaveOffset.x, lot.doorPos.z + lot.leaveOffset.z);
 }
 
+// Eastbrook Vale v2: a lot whose house the design rebuilt takes the design's front
+// door (eastbrook_v2/sites.ts `lot:<id>`, a clear spot within 3 yd of the design's
+// lot point) and a 3 yd step out of it; the rest keep their authored doors.
+const V2_LOTS: Record<string, string> = JSON.parse(
+  readFileSync(new URL('../data/eastbrook_v2/sites_config.json', import.meta.url), 'utf8'),
+).lots;
+const onV2 = (lot: { id: string }) => ebv2Site(`lot:${lot.id}`) !== undefined;
+
 describe('house lots (content)', () => {
+  it('stands every v2-rebuilt lot door at the design front door, stepping 3yd out onto clear ground', () => {
+    const rebuilt = HOUSE_LOTS.filter(onV2);
+    expect(rebuilt.map((lot) => lot.id).sort()).toEqual(Object.keys(V2_LOTS).sort());
+    for (const lot of rebuilt) {
+      const design = ebv2Point(V2_LOTS[lot.id]);
+      expect(Math.hypot(lot.doorPos.x - design.x, lot.doorPos.z - design.z), lot.id).toBeLessThan(
+        3.01,
+      );
+      const step = Math.hypot(lot.leaveOffset.x, lot.leaveOffset.z);
+      expect(step, lot.id).toBeGreaterThan(2.9);
+      expect(step, lot.id).toBeLessThan(3.1);
+      expect(isBlocked(WORLD_SEED, lot.doorPos.x, lot.doorPos.z, 0.35), `${lot.id} door`).toBe(
+        false,
+      );
+      const out = { x: lot.doorPos.x + lot.leaveOffset.x, z: lot.doorPos.z + lot.leaveOffset.z };
+      expect(isBlocked(WORLD_SEED, out.x, out.z, 0.45), `${lot.id} step`).toBe(false);
+    }
+  });
+
   it('every lot door is its building front point, and leaving steps 3yd outward', () => {
-    for (const lot of HOUSE_LOTS.filter((x) => x.kitDoor === undefined)) {
+    for (const lot of HOUSE_LOTS.filter((x) => x.kitDoor === undefined && !onV2(x))) {
       const b = AUTHORED_TOWN_BUILDINGS.find((x) => x.id === lot.buildingId);
       expect(b, lot.buildingId).toBeDefined();
       if (!b) continue;
@@ -102,7 +134,7 @@ describe('house lots (content)', () => {
       'eastbrook_green_townhouse',
     ]);
     expect(HOUSE_LOTS.filter((x) => x.zoneId === 'eastbrook_vale')).toHaveLength(10);
-    for (const lot of kitLots) {
+    for (const lot of kitLots.filter((x) => !onV2(x))) {
       const house = EASTBROOK_TOWN_KIT_BY_ID[lot.buildingId];
       expect(house, lot.buildingId).toBeDefined();
       if (!house) continue;

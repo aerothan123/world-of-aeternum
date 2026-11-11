@@ -14,6 +14,7 @@ import {
   type AuthoredTownBuildingRecord,
   authoredTownPromoted,
 } from './authored_town_registry';
+import { ebv2OwnsGround } from './eastbrook_v2/colliders';
 import { FENBRIDGE_LAYOUT } from './fenbridge_layout';
 import { activeFenbridgeBuildingById, activeFenbridgeLayout } from './fenbridge_touchup';
 import type { BuildingDef, PlacedAsset, WorldContent } from './types';
@@ -171,6 +172,9 @@ export function townWalkInPlacements(content: WorldContent): PlacedAsset[] {
   for (const building of content.props?.buildings ?? []) {
     const found = walkInRecordFor(building, content);
     if (!found || authoredTownPromoted(content.promotedScenery, found.town)) continue;
+    // Eastbrook Vale v2: a record on the design's ground has no floor (the design's
+    // own solids stand there), or its floor would lift a street the client draws.
+    if (ebv2OwnsGround(building.x, building.z, content)) continue;
     const placement = walkInPlacementFor(building, content);
     if (placement) out.push(placement);
   }

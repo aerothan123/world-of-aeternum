@@ -383,7 +383,10 @@ const ON_A_DOCK_PLANK = { x: PROPS.docks[0].x, z: PROPS.docks[0].z };
 // Re-staged 2026-11 a step inside the chapel's forecourt wall (eastbrook_town_footprints.ts
 // chapel:0) when the Wyndlewood town rebuild cleared the crafts district's walls: standable
 // ground is under a yard out.
-const INSIDE_A_TOWN_COLLIDER = { x: 34.76, z: -120.72 };
+// Re-staged for Eastbrook Vale v2 (src/sim/eastbrook_v2/) a step inside the east wall of
+// the design's south-street house (layout.generated.ts col_22836, a 8.1 by 7.1 yd box at
+// (-8.96, -142.8), unturned), whose open lane lies a yard out.
+const INSIDE_A_TOWN_COLLIDER = { x: -5.22, z: -142.8 };
 // Genuinely enclosed, not merely overlapping: the nearest ground a player
 // can hold is 4yd away, nearly three times the widest clearance a node's own
 // body can account for, and still inside the harvest reach the sweep
@@ -395,7 +398,9 @@ const INSIDE_A_TOWN_COLLIDER = { x: 34.76, z: -120.72 };
 // sat inside.
 // Re-staged 2026-11 at the middle of the chapel's town footprint (chapel:0) when the
 // Wyndlewood town rebuild moved the cottage's walls: 3.7yd to standable ground.
-const DEEP_INSIDE_A_BUILDING = { x: 33.1, z: -123.1 };
+// Re-staged for Eastbrook Vale v2 at the middle of that same design house (col_22836):
+// about 4yd to standable ground, inside the harvest reach.
+const DEEP_INSIDE_A_BUILDING = { x: -8.96, z: -142.8 };
 
 // The node-borne gather types. Wood left the node table when tree chopping
 // replaced the wood stands (docs/design/tree-chopping.md): every overworld tree
@@ -1164,7 +1169,10 @@ describe('gather node placement: every node sits on ground a player can work', (
     // already sends players to, and no tutorial quest routes anyone here. The
     // overlap is 4.53 yd, in the same band as the wood_eastbrook_4 stand in
     // Old Greyjaw's woods (4.48), not a deep-inside-the-camp placement.
-    'herb_eastbrook_6:gorrak',
+    // (herb_eastbrook_6:gorrak cooled off with Eastbrook Vale v2: the patch
+    // moved onto a design herb spot in the west vale, data/eastbrook_v2/
+    // sites_config.json, and the resite keeps every vale node out of a named
+    // mob's scaled reach.)
     // The drowned bank: t2 ore beside the marsh's named lurker.
     'ore_mirefen_4:sloomtooth_the_drowned',
     // The cult side of the marsh: t2 ore inside Sister Nhalia's vigil.
@@ -1214,7 +1222,6 @@ describe('gather node placement: every node sits on ground a player can work', (
     // yard of tolerance absorbs spawn-scatter-free re-measurement noise
     // while any real relocation reds and forces a fresh decision here.
     const EXPECTED_CLEARANCE: Record<string, number> = {
-      'herb_eastbrook_6:gorrak': -4.53,
       'ore_mirefen_4:sloomtooth_the_drowned': -5.0,
       'ore_mirefen_t2b:sister_nhalia': -8.98,
       'ore_thornpeak_1:ironvein_foreman': -13.05,

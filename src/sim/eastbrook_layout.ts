@@ -1,3 +1,7 @@
+// Eastbrook Vale v2: services, stations and NPCs stand on their sites in the imported
+// design (eastbrook_v2/sites.ts), falling back to the authored spot below.
+import { ebv2Site, ebv2SiteOr } from './eastbrook_v2/sites';
+
 export interface Point2 {
   x: number;
   z: number;
@@ -1751,56 +1755,61 @@ const YARD_ENGINEERING = kitById('kit_yard_engineering');
 const YARD_ALCHEMY = kitById('kit_yard_alchemy');
 const YARD_TANNERY = kitById('kit_yard_tannery');
 
-const STATIONS = [
-  {
-    id: 'station_eastbrook_forge',
-    type: 'forge',
-    masterNpcId: 'forgemistress_darva',
-    position: YARD_FORGE.frontStandingPoint,
-    interactionRadius: 20,
-    kitId: YARD_FORGE.id,
-  },
-  {
-    id: 'station_eastbrook_kitchens',
-    type: 'kitchens',
-    masterNpcId: 'cook_marlow',
-    position: YARD_COOKING.frontStandingPoint,
-    interactionRadius: 20,
-    kitId: YARD_COOKING.id,
-  },
-  {
-    id: 'station_eastbrook_loom',
-    type: 'loom',
-    masterNpcId: 'weaver_ottilie',
-    position: YARD_LOOM.frontStandingPoint,
-    interactionRadius: 20,
-    kitId: YARD_LOOM.id,
-  },
-  {
-    id: 'station_eastbrook_toolworks',
-    type: 'toolworks',
-    masterNpcId: 'tinker_gizzel',
-    position: YARD_ENGINEERING.frontStandingPoint,
-    interactionRadius: 20,
-    kitId: YARD_ENGINEERING.id,
-  },
-  {
-    id: 'station_eastbrook_apothecary',
-    type: 'apothecary',
-    masterNpcId: 'apothecary_lin',
-    position: YARD_ALCHEMY.frontStandingPoint,
-    interactionRadius: 20,
-    kitId: YARD_ALCHEMY.id,
-  },
-  {
-    id: 'station_eastbrook_tannery',
-    type: 'tannery',
-    masterNpcId: 'tanner_tamsin',
-    position: YARD_TANNERY.frontStandingPoint,
-    interactionRadius: 20,
-    kitId: YARD_TANNERY.id,
-  },
-] as const;
+const STATIONS = (
+  [
+    {
+      id: 'station_eastbrook_forge',
+      type: 'forge',
+      masterNpcId: 'forgemistress_darva',
+      position: YARD_FORGE.frontStandingPoint,
+      interactionRadius: 20,
+      kitId: YARD_FORGE.id,
+    },
+    {
+      id: 'station_eastbrook_kitchens',
+      type: 'kitchens',
+      masterNpcId: 'cook_marlow',
+      position: YARD_COOKING.frontStandingPoint,
+      interactionRadius: 20,
+      kitId: YARD_COOKING.id,
+    },
+    {
+      id: 'station_eastbrook_loom',
+      type: 'loom',
+      masterNpcId: 'weaver_ottilie',
+      position: YARD_LOOM.frontStandingPoint,
+      interactionRadius: 20,
+      kitId: YARD_LOOM.id,
+    },
+    {
+      id: 'station_eastbrook_toolworks',
+      type: 'toolworks',
+      masterNpcId: 'tinker_gizzel',
+      position: YARD_ENGINEERING.frontStandingPoint,
+      interactionRadius: 20,
+      kitId: YARD_ENGINEERING.id,
+    },
+    {
+      id: 'station_eastbrook_apothecary',
+      type: 'apothecary',
+      masterNpcId: 'apothecary_lin',
+      position: YARD_ALCHEMY.frontStandingPoint,
+      interactionRadius: 20,
+      kitId: YARD_ALCHEMY.id,
+    },
+    {
+      id: 'station_eastbrook_tannery',
+      type: 'tannery',
+      masterNpcId: 'tanner_tamsin',
+      position: YARD_TANNERY.frontStandingPoint,
+      interactionRadius: 20,
+      kitId: YARD_TANNERY.id,
+    },
+  ] as const
+).map((station) => ({
+  ...station,
+  position: ebv2SiteOr(`station:${station.id}`, station.position),
+}));
 
 const FORGE_STATION = STATIONS[0];
 const KITCHENS_STATION = STATIONS[1];
@@ -1818,7 +1827,7 @@ function masterBeside(station: { position: Point2 }, bench: { rotation: number }
 }
 
 function makeNpc(id: string, position: Point2, facing: number, anchorId: string) {
-  return { id, position, facing, anchorId, bodyRadius: 0.6 };
+  return { id, position: ebv2SiteOr(`npc:${id}`, position), facing, anchorId, bodyRadius: 0.6 };
 }
 
 // The Merchant keeps the World Market from the trading post's counter on
@@ -1970,20 +1979,22 @@ for (let column = 0; column < 9; column++) {
 // Keep both its body and standing point outside F-range of every service NPC:
 // proximity interaction prioritizes lootable objects before NPCs, so a closer
 // placement could otherwise steal the player's service interaction.
-const NOTICEBOARD_POSITION = { x: 5, z: -89 } as const;
-const NOTICEBOARD_ROTATION = facingToward(NOTICEBOARD_POSITION, CIVIC_CENTER);
+const NOTICEBOARD_POSITION = ebv2SiteOr('svc:noticeboard', { x: 5, z: -89 });
+const NOTICEBOARD_FRONT_SITE = ebv2Site('svc:noticeboardFront');
+// v2: the board faces the spot its posting point stands on in the design town.
+const NOTICEBOARD_ROTATION = facingToward(
+  NOTICEBOARD_POSITION,
+  NOTICEBOARD_FRONT_SITE ?? CIVIC_CENTER,
+);
 const NOTICEBOARD_WIDTH = 2.4;
 const NOTICEBOARD_DEPTH = 0.6;
-const NOTICEBOARD_FRONT_STANDING_POINT = localToWorld(
-  NOTICEBOARD_POSITION,
-  NOTICEBOARD_ROTATION,
-  0,
-  1.4,
-);
+const NOTICEBOARD_FRONT_STANDING_POINT = NOTICEBOARD_FRONT_SITE
+  ? { x: NOTICEBOARD_FRONT_SITE.x, z: NOTICEBOARD_FRONT_SITE.z }
+  : localToWorld(NOTICEBOARD_POSITION, NOTICEBOARD_ROTATION, 0, 1.4);
 
 // The churchyard's first plot: the props graveyard anchor, the Pale Keeper's
 // stone. The second plot (zone1 graveyards) fills the yard's south end.
-const GRAVEYARD_ANCHOR = { x: 37.5, z: -99.3 } as const;
+const GRAVEYARD_ANCHOR = ebv2SiteOr('svc:graveyard', { x: 37.5, z: -99.3 });
 
 // The Weekly Vault: a stone hall flush against the bank's harbour-side
 // flank, its door looking the way the bank's does, toward the square. At the
@@ -1992,22 +2003,33 @@ const GRAVEYARD_ANCHOR = { x: 37.5, z: -99.3 } as const;
 // bank's shelf (EASTBROOK_LAYOUT.pads).
 const WEEKLY_VAULT = { x: -73.73, z: -103.4, rot: Math.PI / 4 } as const;
 
+// v2: a new character starts where the design's player start stands, and the
+// first steps of the arrival route walk from it toward the town gate.
+const PLAYER_START_POSITION = ebv2SiteOr('svc:playerStart', { x: -94, z: -58 });
+const PLAYER_START_ROUTE = ebv2Site('svc:playerStart')
+  ? [0, 1.5, 3].map((step) => ({ x: PLAYER_START_POSITION.x, z: PLAYER_START_POSITION.z + step }))
+  : [
+      { x: -94, z: -58 },
+      { x: -92, z: -56 },
+      { x: -90, z: -57 },
+    ];
+
 const SERVICES = {
   playerStart: {
     id: 'eastbrook_player_start',
-    position: { x: -94, z: -58 },
+    position: PLAYER_START_POSITION,
     bodyRadius: 0.5,
   },
   mailbox: {
     id: 'mailbox_eastbrook',
     templateId: 'mailbox',
     assetId: '/models/props/mailbox_pillar.glb',
-    position: { x: -10, z: -98 },
+    position: ebv2SiteOr('svc:mailbox', { x: -10, z: -98 }),
     bodyRadius: 0.8,
     interactionRadius: 7,
     // The pillar is a solid collider (the noticeboard pattern), so walkers
     // aim for the posting spot in front of it, not the pillar's own point.
-    frontStandingPoint: { x: -10, z: -96.9 },
+    frontStandingPoint: ebv2SiteOr('svc:mailboxFront', { x: -10, z: -96.9 }),
   },
   noticeboard: {
     id: 'eastbrook_noticeboard',
@@ -2055,11 +2077,7 @@ const SERVICES = {
     {
       id: 'eastbrook_player_start_to_square',
       bodyRadius: 0.8,
-      points: [
-        { x: -94, z: -58 },
-        { x: -92, z: -56 },
-        { x: -90, z: -57 },
-      ],
+      points: PLAYER_START_ROUTE,
     },
     {
       id: 'eastbrook_mailbox_route',

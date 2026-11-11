@@ -130,6 +130,9 @@ describe('active-world noticeboard service', () => {
     // Re-pinned 2026-08 for the harbor move (d19aa33f76,
     // docs/design/eastbrook-revamp/site-plan.md): the board moved to the civic
     // square at (5, -89), facing the well (facingToward the civic center).
+    // Re-pinned for Eastbrook Vale v2: the board stands on the design's notice
+    // board point (svc_noticeboard) at (-9, -108.2), facing its posting spot
+    // straight to the north (data/eastbrook_v2/sites_config.json).
     expect(board).toMatchObject({
       id: EASTBROOK_LAYOUT.services.noticeboard.entityId,
       kind: 'object',
@@ -137,10 +140,10 @@ describe('active-world noticeboard service', () => {
       name: 'Notice Board',
       objectItemId: null,
       lootable: true,
-      facing: -2.17084654019665,
-      prevFacing: -2.17084654019665,
+      facing: 0,
+      prevFacing: 0,
     });
-    expect({ x: board.pos.x, z: board.pos.z }).toEqual({ x: 5, z: -89 });
+    expect({ x: board.pos.x, z: board.pos.z }).toEqual({ x: -9, z: -108.2 });
     expect(withBoard.nextId).toBe(withoutBoard.nextId);
 
     const stableProjection = (sim: Sim) =>
@@ -219,10 +222,13 @@ describe('active-world noticeboard service', () => {
           Math.hypot(right.pos.x - board.pos.x, right.pos.z - board.pos.z),
       )[0];
     if (!nearestService) throw new Error('missing service NPC near noticeboard');
-    expect(nearestService.templateId).toBe('chronicler_saul');
-    expect(Math.hypot(nearestService.pos.x - board.pos.x, nearestService.pos.z - board.pos.z)).toBe(
-      5.412023651093922,
-    );
+    // Eastbrook Vale v2: the marshal stands beside the design's board, just out
+    // of its F-range (the resite keeps every NPC 5.5 yd off the board and its
+    // posting spot).
+    expect(nearestService.templateId).toBe('marshal_redbrook');
+    expect(
+      Math.hypot(nearestService.pos.x - board.pos.x, nearestService.pos.z - board.pos.z),
+    ).toBeCloseTo(Math.hypot(5.51, 1.48), 9);
 
     const talkToNpc = vi.spyOn(sim, 'talkToNpc');
     const player = standAt(sim, pid, nearestService.pos);
