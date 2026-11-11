@@ -63,7 +63,7 @@ describe('eastbrook v2: the import is the whole of the vale', () => {
     expect(EBV2_COLLIDERS.length).toBe(970);
     expect(EBV2_POINTS.length).toBe(44);
     expect(EBV2_TREES.length).toBe(223);
-    expect(Object.keys(EBV2_SITES).length).toBe(109);
+    expect(Object.keys(EBV2_SITES).length).toBe(114);
   });
 
   it('resolves every design point the content is tied to', () => {

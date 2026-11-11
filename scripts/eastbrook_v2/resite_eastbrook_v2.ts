@@ -50,6 +50,7 @@ const cfg = JSON.parse(
   lots: Record<string, string>;
   nodes: Record<string, 'ore' | 'herb' | 'berry'>;
   objectGroups: { building: string; point: string; items: string[] }[];
+  campFollowers: Record<string, string>;
   searchRadius: Record<'npc' | 'object' | 'camp' | 'station' | 'service' | 'node', number>;
   npcSpacing: number;
   boardClearance: number;
@@ -387,19 +388,32 @@ for (const g of cfg.objectGroups) {
   for (const item of g.items)
     groupFor.set(item, { x: to.x - b.position.x, z: to.z - b.position.z });
 }
-for (const o of GROUND_OBJECTS) {
-  for (const p of o.positions) {
-    const from = fromLog(`obj:${o.itemId}@`, { x: p.x, z: p.z });
-    if (!inVale(from.x, from.z) || ebv2Weight(from.x, from.z) < 0.5) continue;
-    const key = `obj:${o.itemId}@${from.x},${from.z}`;
-    const shift = groupFor.get(o.itemId);
-    if (shift) {
-      const target = { x: r2(from.x + shift.x), z: r2(from.z + shift.z) };
-      sites[key] = need(key, spiral(target, cfg.searchRadius.object, 0.4));
-      continue;
+// An object never rests on (or in) one of the design's solids, low crates included: a
+// pickup must lie on natural ground (tests/ground_object_placement.test.ts).
+const objectClear = (p: P) => designClearance(p) >= 0.4;
+// Run after the camps (step 7): an object that belongs to a camp (the stolen supply
+// crates in the bandit camps, sites_config.json campFollowers) moves with it.
+function siteObjects(campMoves: { mobId: string; from: P; to: P; radius: number }[]) {
+  for (const o of GROUND_OBJECTS) {
+    for (const p of o.positions) {
+      const from = fromLog(`obj:${o.itemId}@`, { x: p.x, z: p.z });
+      if (!inVale(from.x, from.z) || ebv2Weight(from.x, from.z) < 0.5) continue;
+      const key = `obj:${o.itemId}@${from.x},${from.z}`;
+      const followMob = cfg.campFollowers[o.itemId];
+      const camp = followMob
+        ? campMoves.find((m) => m.mobId === followMob && dist(m.from, from) <= m.radius + 2)
+        : undefined;
+      const shift = camp
+        ? { x: camp.to.x - camp.from.x, z: camp.to.z - camp.from.z }
+        : groupFor.get(o.itemId);
+      if (shift) {
+        const target = { x: r2(from.x + shift.x), z: r2(from.z + shift.z) };
+        sites[key] = need(key, spiral(target, cfg.searchRadius.object, 0.4, objectClear));
+        continue;
+      }
+      if (standable(from.x, from.z, 0.4) && objectClear(from)) continue;
+      sites[key] = need(key, spiral(from, cfg.searchRadius.object, 0.4, objectClear));
     }
-    if (standable(from.x, from.z, 0.4)) continue;
-    sites[key] = need(key, spiral(from, cfg.searchRadius.object, 0.4));
   }
 }
 
@@ -491,6 +505,13 @@ for (const c of CAMPS) {
   );
   if (self && at) self.at = { x: at.x, z: at.z };
 }
+
+// 6, run now that the camps stand: quest and ground objects.
+siteObjects(
+  campsNow
+    .filter((o) => o.at.x !== o.from.x || o.at.z !== o.from.z)
+    .map((o) => ({ mobId: o.c.mobId, from: o.from, to: o.at, radius: o.c.radius })),
+);
 
 // Write.
 const keys = Object.keys(sites).sort();

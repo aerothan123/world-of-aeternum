@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-4ad58-51418a6a-6d0fed7a-14b3-b4ad9a78-f493dfc8",
+    "id": "live-4ad59-3145d6e7-c1f63877-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "4ad58-51418a6a-6d0fed7a",
+    "overworldBase": "4ad59-3145d6e7-c1f63877",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -6538,28 +6538,28 @@
         "name": "Stolen Supply Crate",
         "positions": [
           {
-            "x": 64,
-            "z": 33
+            "x": 59,
+            "z": 36
           },
           {
-            "x": 71,
-            "z": 25
+            "x": 66,
+            "z": 28
           },
           {
-            "x": 81,
-            "z": 32
+            "x": 76,
+            "z": 35
           },
           {
-            "x": 108,
-            "z": 42
+            "x": 106,
+            "z": 46
           },
           {
-            "x": 112,
-            "z": 50
+            "x": 110,
+            "z": 54
           },
           {
-            "x": 111.68,
-            "z": 43.04
+            "x": 112.82,
+            "z": 44.45
           }
         ]
       },
@@ -7800,7 +7800,7 @@
           },
           {
             "x": -34.3,
-            "z": -69.8
+            "z": -70.8
           }
         ]
       },
@@ -8115,8 +8115,8 @@
             "z": -135
           },
           {
-            "x": -27.24,
-            "z": -142.1
+            "x": -27.42,
+            "z": -141.63
           },
           {
             "x": -18.55,

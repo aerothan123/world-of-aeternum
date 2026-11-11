@@ -88,6 +88,7 @@
       "items": ["c1_disturbed_grave", "c1_name_stone", "c1_unlit_grave_lamp"]
     }
   ],
+  "campFollowers": { "supply_crate": "vale_bandit" },
   "searchRadius": { "npc": 16, "object": 8, "camp": 110, "station": 8, "service": 8, "node": 12 },
   "npcSpacing": 2.2,
   "boardClearance": 5.5,
