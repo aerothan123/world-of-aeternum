@@ -50,38 +50,38 @@
         ],
         "givers": [
           {
-            "x": 1.5,
-            "z": -95.3,
+            "x": -3.49,
+            "z": -106.72,
             "kind": "available"
           }
         ],
         "npcs": [
           {
             "kind": "available",
-            "mx": 253.867,
-            "my": 391.538
+            "mx": 260.964,
+            "my": 407.78
           }
         ],
         "questAreas": [
           {
-            "mx": 279.426,
-            "my": 411.307,
+            "mx": 253.995,
+            "my": 363.563,
             "radius": 8.533,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 253.867,
-            "my": 391.538,
+            "mx": 260.964,
+            "my": 407.78,
             "radius": 8.533,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 291.556,
-            "my": 389.689,
+            "mx": 262.059,
+            "my": 393.7,
             "radius": 8.533,
             "numbers": [
               1
@@ -104,8 +104,8 @@
             ]
           },
           {
-            "mx": 264.209,
-            "my": 417.849,
+            "mx": 257.422,
+            "my": 375.182,
             "radius": 8.533,
             "numbers": [
               2
@@ -123,51 +123,51 @@
           {
             "kind": "mailbox",
             "mx": 270.222,
-            "my": 395.378
+            "my": 398.222
           },
           {
             "kind": "noticeboard",
-            "mx": 248.889,
-            "my": 382.578
+            "mx": 268.8,
+            "my": 409.884
           }
         ],
         "stations": [
           {
             "id": "station_eastbrook_forge",
-            "mx": 262.641,
-            "my": 418.556
+            "mx": 257.422,
+            "my": 376.889
           },
           {
             "id": "station_eastbrook_kitchens",
-            "mx": 260.789,
-            "my": 410.311
+            "mx": 303.317,
+            "my": 383.716
           },
           {
             "id": "station_eastbrook_loom",
-            "mx": 277.728,
-            "my": 421.831
+            "mx": 252.956,
+            "my": 368.711
           },
           {
             "id": "station_eastbrook_toolworks",
-            "mx": 278.605,
-            "my": 434.631
+            "mx": 252.018,
+            "my": 370.489
           },
           {
             "id": "station_eastbrook_apothecary",
-            "mx": 278.715,
-            "my": 415.289
+            "mx": 252.644,
+            "my": 364.757
           },
           {
             "id": "station_eastbrook_tannery",
-            "mx": 277.965,
-            "my": 428.373
+            "mx": 257.707,
+            "my": 361.244
           }
         ],
         "farmPatches": [
           {
             "id": "patch_eastbrook",
-            "mx": 286.578,
-            "my": 371.911
+            "mx": 283.749,
+            "my": 369.083
           }
         ]
       }
@@ -219,38 +219,38 @@
         ],
         "givers": [
           {
-            "x": 1.5,
-            "z": -95.3,
+            "x": -3.49,
+            "z": -106.72,
             "kind": "available"
           }
         ],
         "npcs": [
           {
             "kind": "available",
-            "mx": 253.867,
-            "my": 391.538
+            "mx": 260.964,
+            "my": 407.78
           }
         ],
         "questAreas": [
           {
-            "mx": 279.426,
-            "my": 411.307,
+            "mx": 253.995,
+            "my": 363.563,
             "radius": 8.533,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 253.867,
-            "my": 391.538,
+            "mx": 260.964,
+            "my": 407.78,
             "radius": 8.533,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 291.556,
-            "my": 389.689,
+            "mx": 262.059,
+            "my": 393.7,
             "radius": 8.533,
             "numbers": [
               1
@@ -273,8 +273,8 @@
             ]
           },
           {
-            "mx": 264.209,
-            "my": 417.849,
+            "mx": 257.422,
+            "my": 375.182,
             "radius": 8.533,
             "numbers": [
               2
@@ -292,51 +292,51 @@
           {
             "kind": "mailbox",
             "mx": 270.222,
-            "my": 395.378
+            "my": 398.222
           },
           {
             "kind": "noticeboard",
-            "mx": 248.889,
-            "my": 382.578
+            "mx": 268.8,
+            "my": 409.884
           }
         ],
         "stations": [
           {
             "id": "station_eastbrook_forge",
-            "mx": 262.641,
-            "my": 418.556
+            "mx": 257.422,
+            "my": 376.889
           },
           {
             "id": "station_eastbrook_kitchens",
-            "mx": 260.789,
-            "my": 410.311
+            "mx": 303.317,
+            "my": 383.716
           },
           {
             "id": "station_eastbrook_loom",
-            "mx": 277.728,
-            "my": 421.831
+            "mx": 252.956,
+            "my": 368.711
           },
           {
             "id": "station_eastbrook_toolworks",
-            "mx": 278.605,
-            "my": 434.631
+            "mx": 252.018,
+            "my": 370.489
           },
           {
             "id": "station_eastbrook_apothecary",
-            "mx": 278.715,
-            "my": 415.289
+            "mx": 252.644,
+            "my": 364.757
           },
           {
             "id": "station_eastbrook_tannery",
-            "mx": 277.965,
-            "my": 428.373
+            "mx": 257.707,
+            "my": 361.244
           }
         ],
         "farmPatches": [
           {
             "id": "patch_eastbrook",
-            "mx": 286.578,
-            "my": 371.911
+            "mx": 283.749,
+            "my": 369.083
           }
         ]
       }
@@ -388,38 +388,38 @@
         ],
         "givers": [
           {
-            "x": 1.5,
-            "z": -95.3,
+            "x": -3.49,
+            "z": -106.72,
             "kind": "available"
           }
         ],
         "npcs": [
           {
             "kind": "available",
-            "mx": 231.822,
-            "my": 271.076
+            "mx": 246.016,
+            "my": 303.559
           }
         ],
         "questAreas": [
           {
-            "mx": 282.94,
-            "my": 310.613,
+            "mx": 232.078,
+            "my": 215.125,
             "radius": 17.067,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 231.822,
-            "my": 271.076,
+            "mx": 246.016,
+            "my": 303.559,
             "radius": 17.067,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 307.2,
-            "my": 267.378,
+            "mx": 248.206,
+            "my": 275.399,
             "radius": 17.067,
             "numbers": [
               1
@@ -434,8 +434,8 @@
             ]
           },
           {
-            "mx": 252.508,
-            "my": 323.698,
+            "mx": 238.933,
+            "my": 238.364,
             "radius": 17.067,
             "numbers": [
               2
@@ -447,44 +447,44 @@
           {
             "kind": "mailbox",
             "mx": 264.533,
-            "my": 278.756
+            "my": 284.444
           },
           {
             "kind": "noticeboard",
-            "mx": 219.038,
-            "my": 250.327
+            "mx": 270.689,
+            "my": 307.769
           }
         ],
         "stations": [
           {
             "id": "station_eastbrook_forge",
-            "mx": 247.957,
-            "my": 323.698
+            "mx": 238.933,
+            "my": 241.778
           },
           {
             "id": "station_eastbrook_kitchens",
-            "mx": 245.667,
-            "my": 299.622
+            "mx": 330.724,
+            "my": 255.431
           },
           {
             "id": "station_eastbrook_loom",
-            "mx": 279.546,
-            "my": 331.662
+            "mx": 225.759,
+            "my": 221.18
           },
           {
             "id": "station_eastbrook_toolworks",
-            "mx": 281.299,
-            "my": 357.262
+            "mx": 228.124,
+            "my": 228.978
           },
           {
             "id": "station_eastbrook_apothecary",
-            "mx": 281.518,
-            "my": 307.578
+            "mx": 229.376,
+            "my": 217.515
           },
           {
             "id": "station_eastbrook_tannery",
-            "mx": 280.018,
-            "my": 344.747
+            "mx": 239.502,
+            "my": 210.489
           }
         ],
         "farmPatches": [
@@ -546,38 +546,38 @@
         ],
         "givers": [
           {
-            "x": 1.5,
-            "z": -95.3,
+            "x": -3.49,
+            "z": -106.72,
             "kind": "available"
           }
         ],
         "npcs": [
           {
             "kind": "available",
-            "mx": 231.822,
-            "my": 271.076
+            "mx": 246.016,
+            "my": 303.559
           }
         ],
         "questAreas": [
           {
-            "mx": 282.94,
-            "my": 310.613,
+            "mx": 232.078,
+            "my": 215.125,
             "radius": 17.067,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 231.822,
-            "my": 271.076,
+            "mx": 246.016,
+            "my": 303.559,
             "radius": 17.067,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 307.2,
-            "my": 267.378,
+            "mx": 248.206,
+            "my": 275.399,
             "radius": 17.067,
             "numbers": [
               1
@@ -592,8 +592,8 @@
             ]
           },
           {
-            "mx": 252.508,
-            "my": 323.698,
+            "mx": 238.933,
+            "my": 238.364,
             "radius": 17.067,
             "numbers": [
               2
@@ -605,44 +605,44 @@
           {
             "kind": "mailbox",
             "mx": 264.533,
-            "my": 278.756
+            "my": 284.444
           },
           {
             "kind": "noticeboard",
-            "mx": 219.038,
-            "my": 250.327
+            "mx": 270.689,
+            "my": 307.769
           }
         ],
         "stations": [
           {
             "id": "station_eastbrook_forge",
-            "mx": 247.957,
-            "my": 323.698
+            "mx": 238.933,
+            "my": 241.778
           },
           {
             "id": "station_eastbrook_kitchens",
-            "mx": 245.667,
-            "my": 299.622
+            "mx": 330.724,
+            "my": 255.431
           },
           {
             "id": "station_eastbrook_loom",
-            "mx": 279.546,
-            "my": 331.662
+            "mx": 225.759,
+            "my": 221.18
           },
           {
             "id": "station_eastbrook_toolworks",
-            "mx": 281.299,
-            "my": 357.262
+            "mx": 228.124,
+            "my": 228.978
           },
           {
             "id": "station_eastbrook_apothecary",
-            "mx": 281.518,
-            "my": 307.578
+            "mx": 229.376,
+            "my": 217.515
           },
           {
             "id": "station_eastbrook_tannery",
-            "mx": 280.018,
-            "my": 344.747
+            "mx": 239.502,
+            "my": 210.489
           }
         ],
         "farmPatches": [
@@ -701,38 +701,38 @@
         ],
         "givers": [
           {
-            "x": 1.5,
-            "z": -95.3,
+            "x": -3.49,
+            "z": -106.72,
             "kind": "available"
           }
         ],
         "npcs": [
           {
             "kind": "available",
-            "mx": 345.6,
-            "my": 271.076
+            "mx": 359.794,
+            "my": 303.559
           }
         ],
         "questAreas": [
           {
-            "mx": 396.718,
-            "my": 310.613,
+            "mx": 345.856,
+            "my": 215.125,
             "radius": 17.067,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 345.6,
-            "my": 271.076,
+            "mx": 359.794,
+            "my": 303.559,
             "radius": 17.067,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 420.978,
-            "my": 267.378,
+            "mx": 361.984,
+            "my": 275.399,
             "radius": 17.067,
             "numbers": [
               1
@@ -747,8 +747,8 @@
             ]
           },
           {
-            "mx": 366.285,
-            "my": 323.698,
+            "mx": 352.711,
+            "my": 238.364,
             "radius": 17.067,
             "numbers": [
               2
@@ -760,44 +760,44 @@
           {
             "kind": "mailbox",
             "mx": 378.311,
-            "my": 278.756
+            "my": 284.444
           },
           {
             "kind": "noticeboard",
-            "mx": 332.816,
-            "my": 250.327
+            "mx": 384.467,
+            "my": 307.769
           }
         ],
         "stations": [
           {
             "id": "station_eastbrook_forge",
-            "mx": 361.734,
-            "my": 323.698
+            "mx": 352.711,
+            "my": 241.778
           },
           {
             "id": "station_eastbrook_kitchens",
-            "mx": 359.445,
-            "my": 299.622
+            "mx": 444.501,
+            "my": 255.431
           },
           {
             "id": "station_eastbrook_loom",
-            "mx": 393.323,
-            "my": 331.662
+            "mx": 339.537,
+            "my": 221.18
           },
           {
             "id": "station_eastbrook_toolworks",
-            "mx": 395.077,
-            "my": 357.262
+            "mx": 341.902,
+            "my": 228.978
           },
           {
             "id": "station_eastbrook_apothecary",
-            "mx": 395.296,
-            "my": 307.578
+            "mx": 343.154,
+            "my": 217.515
           },
           {
             "id": "station_eastbrook_tannery",
-            "mx": 393.796,
-            "my": 344.747
+            "mx": 353.28,
+            "my": 210.489
           }
         ],
         "farmPatches": [
@@ -849,38 +849,38 @@
         ],
         "givers": [
           {
-            "x": 1.5,
-            "z": -95.3,
+            "x": -3.49,
+            "z": -106.72,
             "kind": "available"
           }
         ],
         "npcs": [
           {
             "kind": "available",
-            "mx": 207.644,
-            "my": 115.484
+            "mx": 236.032,
+            "my": 180.452
           }
         ],
         "questAreas": [
           {
-            "mx": 309.88,
-            "my": 194.56,
+            "mx": 208.156,
+            "my": 3.584,
             "radius": 34.133,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 207.644,
-            "my": 115.484,
+            "mx": 236.032,
+            "my": 180.452,
             "radius": 34.133,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 358.4,
-            "my": 108.089,
+            "mx": 240.412,
+            "my": 124.132,
             "radius": 34.133,
             "numbers": [
               1
@@ -895,8 +895,8 @@
             ]
           },
           {
-            "mx": 249.015,
-            "my": 220.729,
+            "mx": 221.867,
+            "my": 50.062,
             "radius": 34.133,
             "numbers": [
               2
@@ -908,44 +908,39 @@
           {
             "kind": "mailbox",
             "mx": 273.067,
-            "my": 130.844
+            "my": 142.222
           },
           {
             "kind": "noticeboard",
-            "mx": 187.733,
-            "my": 79.644
+            "mx": 267.378,
+            "my": 188.871
           }
         ],
         "stations": [
           {
             "id": "station_eastbrook_forge",
-            "mx": 239.913,
-            "my": 220.729
+            "mx": 221.867,
+            "my": 56.889
           },
           {
             "id": "station_eastbrook_kitchens",
-            "mx": 235.334,
-            "my": 190.578
+            "mx": 405.447,
+            "my": 84.196
           },
           {
             "id": "station_eastbrook_loom",
-            "mx": 303.091,
-            "my": 236.658
+            "mx": 204.004,
+            "my": 24.178
           },
           {
             "id": "station_eastbrook_toolworks",
-            "mx": 306.598,
-            "my": 287.858
+            "mx": 188.228,
+            "my": 43.31
           },
           {
             "id": "station_eastbrook_apothecary",
-            "mx": 307.036,
-            "my": 210.489
-          },
-          {
-            "id": "station_eastbrook_tannery",
-            "mx": 304.037,
-            "my": 262.827
+            "mx": 202.752,
+            "my": 12
           }
         ],
         "farmPatches": [
@@ -997,38 +992,38 @@
         ],
         "givers": [
           {
-            "x": 1.5,
-            "z": -95.3,
+            "x": -3.49,
+            "z": -106.72,
             "kind": "available"
           }
         ],
         "npcs": [
           {
             "kind": "available",
-            "mx": 435.2,
-            "my": 30.151
+            "mx": 463.588,
+            "my": 95.118
           }
         ],
         "questAreas": [
           {
-            "mx": 537.436,
-            "my": 109.227,
+            "mx": 435.712,
+            "my": -81.749,
             "radius": 34.133,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 435.2,
-            "my": 30.151,
+            "mx": 463.588,
+            "my": 95.118,
             "radius": 34.133,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 585.956,
-            "my": 22.756,
+            "mx": 467.968,
+            "my": 38.798,
             "radius": 34.133,
             "numbers": [
               1
@@ -1043,8 +1038,8 @@
             ]
           },
           {
-            "mx": 476.571,
-            "my": 135.396,
+            "mx": 449.422,
+            "my": -35.271,
             "radius": 34.133,
             "numbers": [
               2
@@ -1056,21 +1051,15 @@
           {
             "kind": "mailbox",
             "mx": 499.915,
-            "my": 46.218
-          }
-        ],
-        "stations": [
-          {
-            "id": "station_eastbrook_forge",
-            "mx": 467.469,
-            "my": 135.396
+            "my": 57.596
           },
           {
-            "id": "station_eastbrook_kitchens",
-            "mx": 462.89,
-            "my": 105.244
+            "kind": "noticeboard",
+            "mx": 494.933,
+            "my": 103.538
           }
         ],
+        "stations": [],
         "farmPatches": []
       }
     },
@@ -1078,8 +1067,8 @@
       "in": {
         "snapshot": "station",
         "zone": "eastbrook_vale",
-        "px": -10.172222222222222,
-        "pz": -109.8,
+        "px": -7,
+        "pz": -81,
         "zoom": 1,
         "panned": false,
         "cx": 0,
@@ -1099,60 +1088,60 @@
         },
         "labels": true,
         "player": {
-          "mx": 270.467,
-          "my": 412.16
+          "mx": 265.956,
+          "my": 371.2
         },
         "ping": null,
         "party": [
           {
             "pid": 20,
-            "wx": -5.1722222222222225,
-            "wz": -117.8,
-            "mx": 263.356,
-            "my": 423.538
+            "wx": -2,
+            "wz": -89,
+            "mx": 258.844,
+            "my": 382.578
           },
           {
             "pid": 21,
-            "wx": 19.827777777777776,
-            "wz": 30.200000000000003,
-            "mx": 227.8,
-            "my": 213.049
+            "wx": 23,
+            "wz": 59,
+            "mx": 223.289,
+            "my": 172.089
           }
         ],
         "givers": [
           {
-            "x": 1.5,
-            "z": -95.3,
+            "x": -3.49,
+            "z": -106.72,
             "kind": "available"
           }
         ],
         "npcs": [
           {
             "kind": "available",
-            "mx": 253.867,
-            "my": 391.538
+            "mx": 260.964,
+            "my": 407.78
           }
         ],
         "questAreas": [
           {
-            "mx": 279.426,
-            "my": 411.307,
+            "mx": 253.995,
+            "my": 363.563,
             "radius": 8.533,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 253.867,
-            "my": 391.538,
+            "mx": 260.964,
+            "my": 407.78,
             "radius": 8.533,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 291.556,
-            "my": 389.689,
+            "mx": 262.059,
+            "my": 393.7,
             "radius": 8.533,
             "numbers": [
               1
@@ -1175,8 +1164,8 @@
             ]
           },
           {
-            "mx": 264.209,
-            "my": 417.849,
+            "mx": 257.422,
+            "my": 375.182,
             "radius": 8.533,
             "numbers": [
               2
@@ -1194,51 +1183,51 @@
           {
             "kind": "mailbox",
             "mx": 270.222,
-            "my": 395.378
+            "my": 398.222
           },
           {
             "kind": "noticeboard",
-            "mx": 248.889,
-            "my": 382.578
+            "mx": 268.8,
+            "my": 409.884
           }
         ],
         "stations": [
           {
             "id": "station_eastbrook_forge",
-            "mx": 262.641,
-            "my": 418.556
+            "mx": 257.422,
+            "my": 376.889
           },
           {
             "id": "station_eastbrook_kitchens",
-            "mx": 260.789,
-            "my": 410.311
+            "mx": 303.317,
+            "my": 383.716
           },
           {
             "id": "station_eastbrook_loom",
-            "mx": 277.728,
-            "my": 421.831
+            "mx": 252.956,
+            "my": 368.711
           },
           {
             "id": "station_eastbrook_toolworks",
-            "mx": 278.605,
-            "my": 434.631
+            "mx": 252.018,
+            "my": 370.489
           },
           {
             "id": "station_eastbrook_apothecary",
-            "mx": 278.715,
-            "my": 415.289
+            "mx": 252.644,
+            "my": 364.757
           },
           {
             "id": "station_eastbrook_tannery",
-            "mx": 277.965,
-            "my": 428.373
+            "mx": 257.707,
+            "my": 361.244
           }
         ],
         "farmPatches": [
           {
             "id": "patch_eastbrook",
-            "mx": 286.578,
-            "my": 371.911
+            "mx": 283.749,
+            "my": 369.083
           }
         ]
       }
@@ -1247,12 +1236,12 @@
       "in": {
         "snapshot": "station",
         "zone": "eastbrook_vale",
-        "px": -10.172222222222222,
-        "pz": -109.8,
+        "px": -7,
+        "pz": -81,
         "zoom": 1,
         "panned": true,
-        "cx": 29.827777777777776,
-        "cz": -134.8,
+        "cx": 33,
+        "cz": -106,
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
@@ -1268,60 +1257,60 @@
         },
         "labels": true,
         "player": {
-          "mx": 270.467,
-          "my": 412.16
+          "mx": 265.956,
+          "my": 371.2
         },
         "ping": null,
         "party": [
           {
             "pid": 20,
-            "wx": -5.1722222222222225,
-            "wz": -117.8,
-            "mx": 263.356,
-            "my": 423.538
+            "wx": -2,
+            "wz": -89,
+            "mx": 258.844,
+            "my": 382.578
           },
           {
             "pid": 21,
-            "wx": 19.827777777777776,
-            "wz": 30.200000000000003,
-            "mx": 227.8,
-            "my": 213.049
+            "wx": 23,
+            "wz": 59,
+            "mx": 223.289,
+            "my": 172.089
           }
         ],
         "givers": [
           {
-            "x": 1.5,
-            "z": -95.3,
+            "x": -3.49,
+            "z": -106.72,
             "kind": "available"
           }
         ],
         "npcs": [
           {
             "kind": "available",
-            "mx": 253.867,
-            "my": 391.538
+            "mx": 260.964,
+            "my": 407.78
           }
         ],
         "questAreas": [
           {
-            "mx": 279.426,
-            "my": 411.307,
+            "mx": 253.995,
+            "my": 363.563,
             "radius": 8.533,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 253.867,
-            "my": 391.538,
+            "mx": 260.964,
+            "my": 407.78,
             "radius": 8.533,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 291.556,
-            "my": 389.689,
+            "mx": 262.059,
+            "my": 393.7,
             "radius": 8.533,
             "numbers": [
               1
@@ -1344,8 +1333,8 @@
             ]
           },
           {
-            "mx": 264.209,
-            "my": 417.849,
+            "mx": 257.422,
+            "my": 375.182,
             "radius": 8.533,
             "numbers": [
               2
@@ -1363,51 +1352,51 @@
           {
             "kind": "mailbox",
             "mx": 270.222,
-            "my": 395.378
+            "my": 398.222
           },
           {
             "kind": "noticeboard",
-            "mx": 248.889,
-            "my": 382.578
+            "mx": 268.8,
+            "my": 409.884
           }
         ],
         "stations": [
           {
             "id": "station_eastbrook_forge",
-            "mx": 262.641,
-            "my": 418.556
+            "mx": 257.422,
+            "my": 376.889
           },
           {
             "id": "station_eastbrook_kitchens",
-            "mx": 260.789,
-            "my": 410.311
+            "mx": 303.317,
+            "my": 383.716
           },
           {
             "id": "station_eastbrook_loom",
-            "mx": 277.728,
-            "my": 421.831
+            "mx": 252.956,
+            "my": 368.711
           },
           {
             "id": "station_eastbrook_toolworks",
-            "mx": 278.605,
-            "my": 434.631
+            "mx": 252.018,
+            "my": 370.489
           },
           {
             "id": "station_eastbrook_apothecary",
-            "mx": 278.715,
-            "my": 415.289
+            "mx": 252.644,
+            "my": 364.757
           },
           {
             "id": "station_eastbrook_tannery",
-            "mx": 277.965,
-            "my": 428.373
+            "mx": 257.707,
+            "my": 361.244
           }
         ],
         "farmPatches": [
           {
             "id": "patch_eastbrook",
-            "mx": 286.578,
-            "my": 371.911
+            "mx": 283.749,
+            "my": 369.083
           }
         ]
       }
@@ -1416,8 +1405,8 @@
       "in": {
         "snapshot": "station",
         "zone": "eastbrook_vale",
-        "px": -10.172222222222222,
-        "pz": -109.8,
+        "px": -7,
+        "pz": -81,
         "zoom": 2,
         "panned": false,
         "cx": 0,
@@ -1430,457 +1419,10 @@
       },
       "out": {
         "region": {
-          "minX": -100.17222222222222,
-          "maxX": 79.82777777777778,
-          "minZ": -180,
-          "maxZ": 0
-        },
-        "labels": true,
-        "player": {
-          "mx": 256,
-          "my": 312.32
-        },
-        "ping": null,
-        "party": [
-          {
-            "pid": 20,
-            "wx": -5.1722222222222225,
-            "wz": -117.8,
-            "mx": 241.778,
-            "my": 335.076
-          }
-        ],
-        "givers": [
-          {
-            "x": 1.5,
-            "z": -95.3,
-            "kind": "available"
-          }
-        ],
-        "npcs": [
-          {
-            "kind": "available",
-            "mx": 222.799,
-            "my": 271.076
-          }
-        ],
-        "questAreas": [
-          {
-            "mx": 273.917,
-            "my": 310.613,
-            "radius": 17.067,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 222.799,
-            "my": 271.076,
-            "radius": 17.067,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 298.177,
-            "my": 267.378,
-            "radius": 17.067,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 240.15,
-            "my": 332.231,
-            "radius": 17.067,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 243.484,
-            "my": 323.698,
-            "radius": 17.067,
-            "numbers": [
-              2
-            ]
-          }
-        ],
-        "navigation": [],
-        "services": [
-          {
-            "kind": "mailbox",
-            "mx": 255.51,
-            "my": 278.756
-          },
-          {
-            "kind": "noticeboard",
-            "mx": 210.015,
-            "my": 250.327
-          }
-        ],
-        "stations": [
-          {
-            "id": "station_eastbrook_forge",
-            "mx": 238.933,
-            "my": 323.698
-          },
-          {
-            "id": "station_eastbrook_kitchens",
-            "mx": 236.644,
-            "my": 299.622
-          },
-          {
-            "id": "station_eastbrook_loom",
-            "mx": 270.522,
-            "my": 331.662
-          },
-          {
-            "id": "station_eastbrook_toolworks",
-            "mx": 272.276,
-            "my": 357.262
-          },
-          {
-            "id": "station_eastbrook_apothecary",
-            "mx": 272.495,
-            "my": 307.578
-          },
-          {
-            "id": "station_eastbrook_tannery",
-            "mx": 270.995,
-            "my": 344.747
-          }
-        ],
-        "farmPatches": [
-          {
-            "id": "patch_eastbrook",
-            "mx": 288.221,
-            "my": 231.822
-          }
-        ]
-      }
-    },
-    {
-      "in": {
-        "snapshot": "station",
-        "zone": "eastbrook_vale",
-        "px": -10.172222222222222,
-        "pz": -109.8,
-        "zoom": 2,
-        "panned": false,
-        "cx": 0,
-        "cz": 0,
-        "pinged": true,
-        "pingX": -30.172222222222224,
-        "pingZ": -94.8,
-        "quests": "c1_08_vouch,c1_09_buckles_glory",
-        "canvas": 512
-      },
-      "out": {
-        "region": {
-          "minX": -100.17222222222222,
-          "maxX": 79.82777777777778,
-          "minZ": -180,
-          "maxZ": 0
-        },
-        "labels": true,
-        "player": {
-          "mx": 256,
-          "my": 312.32
-        },
-        "ping": {
-          "mx": 312.889,
-          "my": 269.653
-        },
-        "party": [
-          {
-            "pid": 20,
-            "wx": -5.1722222222222225,
-            "wz": -117.8,
-            "mx": 241.778,
-            "my": 335.076
-          }
-        ],
-        "givers": [
-          {
-            "x": 1.5,
-            "z": -95.3,
-            "kind": "available"
-          }
-        ],
-        "npcs": [
-          {
-            "kind": "available",
-            "mx": 222.799,
-            "my": 271.076
-          }
-        ],
-        "questAreas": [
-          {
-            "mx": 273.917,
-            "my": 310.613,
-            "radius": 17.067,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 222.799,
-            "my": 271.076,
-            "radius": 17.067,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 298.177,
-            "my": 267.378,
-            "radius": 17.067,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 240.15,
-            "my": 332.231,
-            "radius": 17.067,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 243.484,
-            "my": 323.698,
-            "radius": 17.067,
-            "numbers": [
-              2
-            ]
-          }
-        ],
-        "navigation": [],
-        "services": [
-          {
-            "kind": "mailbox",
-            "mx": 255.51,
-            "my": 278.756
-          },
-          {
-            "kind": "noticeboard",
-            "mx": 210.015,
-            "my": 250.327
-          }
-        ],
-        "stations": [
-          {
-            "id": "station_eastbrook_forge",
-            "mx": 238.933,
-            "my": 323.698
-          },
-          {
-            "id": "station_eastbrook_kitchens",
-            "mx": 236.644,
-            "my": 299.622
-          },
-          {
-            "id": "station_eastbrook_loom",
-            "mx": 270.522,
-            "my": 331.662
-          },
-          {
-            "id": "station_eastbrook_toolworks",
-            "mx": 272.276,
-            "my": 357.262
-          },
-          {
-            "id": "station_eastbrook_apothecary",
-            "mx": 272.495,
-            "my": 307.578
-          },
-          {
-            "id": "station_eastbrook_tannery",
-            "mx": 270.995,
-            "my": 344.747
-          }
-        ],
-        "farmPatches": [
-          {
-            "id": "patch_eastbrook",
-            "mx": 288.221,
-            "my": 231.822
-          }
-        ]
-      }
-    },
-    {
-      "in": {
-        "snapshot": "station",
-        "zone": "eastbrook_vale",
-        "px": -10.172222222222222,
-        "pz": -109.8,
-        "zoom": 2,
-        "panned": true,
-        "cx": 29.827777777777776,
-        "cz": -134.8,
-        "pinged": false,
-        "pingX": 0,
-        "pingZ": 0,
-        "quests": "c1_08_vouch,c1_09_buckles_glory",
-        "canvas": 512
-      },
-      "out": {
-        "region": {
-          "minX": -60.172222222222224,
-          "maxX": 119.82777777777778,
-          "minZ": -180,
-          "maxZ": 0
-        },
-        "labels": true,
-        "player": {
-          "mx": 369.778,
-          "my": 312.32
-        },
-        "ping": null,
-        "party": [
-          {
-            "pid": 20,
-            "wx": -5.1722222222222225,
-            "wz": -117.8,
-            "mx": 355.556,
-            "my": 335.076
-          }
-        ],
-        "givers": [
-          {
-            "x": 1.5,
-            "z": -95.3,
-            "kind": "available"
-          }
-        ],
-        "npcs": [
-          {
-            "kind": "available",
-            "mx": 336.577,
-            "my": 271.076
-          }
-        ],
-        "questAreas": [
-          {
-            "mx": 387.695,
-            "my": 310.613,
-            "radius": 17.067,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 336.577,
-            "my": 271.076,
-            "radius": 17.067,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 411.955,
-            "my": 267.378,
-            "radius": 17.067,
-            "numbers": [
-              1
-            ]
-          },
-          {
-            "mx": 353.928,
-            "my": 332.231,
-            "radius": 17.067,
-            "numbers": [
-              2
-            ]
-          },
-          {
-            "mx": 357.262,
-            "my": 323.698,
-            "radius": 17.067,
-            "numbers": [
-              2
-            ]
-          }
-        ],
-        "navigation": [],
-        "services": [
-          {
-            "kind": "mailbox",
-            "mx": 369.288,
-            "my": 278.756
-          },
-          {
-            "kind": "noticeboard",
-            "mx": 323.793,
-            "my": 250.327
-          }
-        ],
-        "stations": [
-          {
-            "id": "station_eastbrook_forge",
-            "mx": 352.711,
-            "my": 323.698
-          },
-          {
-            "id": "station_eastbrook_kitchens",
-            "mx": 350.422,
-            "my": 299.622
-          },
-          {
-            "id": "station_eastbrook_loom",
-            "mx": 384.3,
-            "my": 331.662
-          },
-          {
-            "id": "station_eastbrook_toolworks",
-            "mx": 386.054,
-            "my": 357.262
-          },
-          {
-            "id": "station_eastbrook_apothecary",
-            "mx": 386.273,
-            "my": 307.578
-          },
-          {
-            "id": "station_eastbrook_tannery",
-            "mx": 384.773,
-            "my": 344.747
-          }
-        ],
-        "farmPatches": [
-          {
-            "id": "patch_eastbrook",
-            "mx": 401.999,
-            "my": 231.822
-          }
-        ]
-      }
-    },
-    {
-      "in": {
-        "snapshot": "station",
-        "zone": "eastbrook_vale",
-        "px": -10.172222222222222,
-        "pz": -109.8,
-        "zoom": 4,
-        "panned": false,
-        "cx": 0,
-        "cz": 0,
-        "pinged": false,
-        "pingX": 0,
-        "pingZ": 0,
-        "quests": "c1_08_vouch,c1_09_buckles_glory",
-        "canvas": 512
-      },
-      "out": {
-        "region": {
-          "minX": -55.172222222222224,
-          "maxX": 34.827777777777776,
-          "minZ": -154.8,
-          "maxZ": -64.8
+          "minX": -97,
+          "maxX": 83,
+          "minZ": -171,
+          "maxZ": 9
         },
         "labels": true,
         "player": {
@@ -1891,62 +1433,509 @@
         "party": [
           {
             "pid": 20,
-            "wx": -5.1722222222222225,
-            "wz": -117.8,
-            "mx": 227.556,
-            "my": 301.511
+            "wx": -2,
+            "wz": -89,
+            "mx": 241.778,
+            "my": 278.756
           }
         ],
         "givers": [
           {
-            "x": 1.5,
-            "z": -95.3,
+            "x": -3.49,
+            "z": -106.72,
             "kind": "available"
           }
         ],
         "npcs": [
           {
             "kind": "available",
-            "mx": 189.598,
-            "my": 173.511
+            "mx": 246.016,
+            "my": 329.159
           }
         ],
         "questAreas": [
           {
-            "mx": 291.834,
-            "my": 252.587,
+            "mx": 232.078,
+            "my": 240.725,
+            "radius": 17.067,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 246.016,
+            "my": 329.159,
+            "radius": 17.067,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 248.206,
+            "my": 300.999,
+            "radius": 17.067,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 249.173,
+            "my": 357.831,
+            "radius": 17.067,
+            "numbers": [
+              2
+            ]
+          },
+          {
+            "mx": 238.933,
+            "my": 263.964,
+            "radius": 17.067,
+            "numbers": [
+              2
+            ]
+          }
+        ],
+        "navigation": [],
+        "services": [
+          {
+            "kind": "mailbox",
+            "mx": 264.533,
+            "my": 310.044
+          },
+          {
+            "kind": "noticeboard",
+            "mx": 270.689,
+            "my": 333.369
+          }
+        ],
+        "stations": [
+          {
+            "id": "station_eastbrook_forge",
+            "mx": 238.933,
+            "my": 267.378
+          },
+          {
+            "id": "station_eastbrook_kitchens",
+            "mx": 330.724,
+            "my": 281.031
+          },
+          {
+            "id": "station_eastbrook_loom",
+            "mx": 225.759,
+            "my": 246.78
+          },
+          {
+            "id": "station_eastbrook_toolworks",
+            "mx": 228.124,
+            "my": 254.578
+          },
+          {
+            "id": "station_eastbrook_apothecary",
+            "mx": 229.376,
+            "my": 243.115
+          },
+          {
+            "id": "station_eastbrook_tannery",
+            "mx": 239.502,
+            "my": 236.089
+          }
+        ],
+        "farmPatches": [
+          {
+            "id": "patch_eastbrook",
+            "mx": 297.244,
+            "my": 257.422
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "station",
+        "zone": "eastbrook_vale",
+        "px": -7,
+        "pz": -81,
+        "zoom": 2,
+        "panned": false,
+        "cx": 0,
+        "cz": 0,
+        "pinged": true,
+        "pingX": -27,
+        "pingZ": -66,
+        "quests": "c1_08_vouch,c1_09_buckles_glory",
+        "canvas": 512
+      },
+      "out": {
+        "region": {
+          "minX": -97,
+          "maxX": 83,
+          "minZ": -171,
+          "maxZ": 9
+        },
+        "labels": true,
+        "player": {
+          "mx": 256,
+          "my": 256
+        },
+        "ping": {
+          "mx": 312.889,
+          "my": 213.333
+        },
+        "party": [
+          {
+            "pid": 20,
+            "wx": -2,
+            "wz": -89,
+            "mx": 241.778,
+            "my": 278.756
+          }
+        ],
+        "givers": [
+          {
+            "x": -3.49,
+            "z": -106.72,
+            "kind": "available"
+          }
+        ],
+        "npcs": [
+          {
+            "kind": "available",
+            "mx": 246.016,
+            "my": 329.159
+          }
+        ],
+        "questAreas": [
+          {
+            "mx": 232.078,
+            "my": 240.725,
+            "radius": 17.067,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 246.016,
+            "my": 329.159,
+            "radius": 17.067,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 248.206,
+            "my": 300.999,
+            "radius": 17.067,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 249.173,
+            "my": 357.831,
+            "radius": 17.067,
+            "numbers": [
+              2
+            ]
+          },
+          {
+            "mx": 238.933,
+            "my": 263.964,
+            "radius": 17.067,
+            "numbers": [
+              2
+            ]
+          }
+        ],
+        "navigation": [],
+        "services": [
+          {
+            "kind": "mailbox",
+            "mx": 264.533,
+            "my": 310.044
+          },
+          {
+            "kind": "noticeboard",
+            "mx": 270.689,
+            "my": 333.369
+          }
+        ],
+        "stations": [
+          {
+            "id": "station_eastbrook_forge",
+            "mx": 238.933,
+            "my": 267.378
+          },
+          {
+            "id": "station_eastbrook_kitchens",
+            "mx": 330.724,
+            "my": 281.031
+          },
+          {
+            "id": "station_eastbrook_loom",
+            "mx": 225.759,
+            "my": 246.78
+          },
+          {
+            "id": "station_eastbrook_toolworks",
+            "mx": 228.124,
+            "my": 254.578
+          },
+          {
+            "id": "station_eastbrook_apothecary",
+            "mx": 229.376,
+            "my": 243.115
+          },
+          {
+            "id": "station_eastbrook_tannery",
+            "mx": 239.502,
+            "my": 236.089
+          }
+        ],
+        "farmPatches": [
+          {
+            "id": "patch_eastbrook",
+            "mx": 297.244,
+            "my": 257.422
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "station",
+        "zone": "eastbrook_vale",
+        "px": -7,
+        "pz": -81,
+        "zoom": 2,
+        "panned": true,
+        "cx": 33,
+        "cz": -106,
+        "pinged": false,
+        "pingX": 0,
+        "pingZ": 0,
+        "quests": "c1_08_vouch,c1_09_buckles_glory",
+        "canvas": 512
+      },
+      "out": {
+        "region": {
+          "minX": -57,
+          "maxX": 123,
+          "minZ": -180,
+          "maxZ": 0
+        },
+        "labels": true,
+        "player": {
+          "mx": 369.778,
+          "my": 230.4
+        },
+        "ping": null,
+        "party": [
+          {
+            "pid": 20,
+            "wx": -2,
+            "wz": -89,
+            "mx": 355.556,
+            "my": 253.156
+          }
+        ],
+        "givers": [
+          {
+            "x": -3.49,
+            "z": -106.72,
+            "kind": "available"
+          }
+        ],
+        "npcs": [
+          {
+            "kind": "available",
+            "mx": 359.794,
+            "my": 303.559
+          }
+        ],
+        "questAreas": [
+          {
+            "mx": 345.856,
+            "my": 215.125,
+            "radius": 17.067,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 359.794,
+            "my": 303.559,
+            "radius": 17.067,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 361.984,
+            "my": 275.399,
+            "radius": 17.067,
+            "numbers": [
+              1
+            ]
+          },
+          {
+            "mx": 362.951,
+            "my": 332.231,
+            "radius": 17.067,
+            "numbers": [
+              2
+            ]
+          },
+          {
+            "mx": 352.711,
+            "my": 238.364,
+            "radius": 17.067,
+            "numbers": [
+              2
+            ]
+          }
+        ],
+        "navigation": [],
+        "services": [
+          {
+            "kind": "mailbox",
+            "mx": 378.311,
+            "my": 284.444
+          },
+          {
+            "kind": "noticeboard",
+            "mx": 384.467,
+            "my": 307.769
+          }
+        ],
+        "stations": [
+          {
+            "id": "station_eastbrook_forge",
+            "mx": 352.711,
+            "my": 241.778
+          },
+          {
+            "id": "station_eastbrook_kitchens",
+            "mx": 444.501,
+            "my": 255.431
+          },
+          {
+            "id": "station_eastbrook_loom",
+            "mx": 339.537,
+            "my": 221.18
+          },
+          {
+            "id": "station_eastbrook_toolworks",
+            "mx": 341.902,
+            "my": 228.978
+          },
+          {
+            "id": "station_eastbrook_apothecary",
+            "mx": 343.154,
+            "my": 217.515
+          },
+          {
+            "id": "station_eastbrook_tannery",
+            "mx": 353.28,
+            "my": 210.489
+          }
+        ],
+        "farmPatches": [
+          {
+            "id": "patch_eastbrook",
+            "mx": 411.022,
+            "my": 231.822
+          }
+        ]
+      }
+    },
+    {
+      "in": {
+        "snapshot": "station",
+        "zone": "eastbrook_vale",
+        "px": -7,
+        "pz": -81,
+        "zoom": 4,
+        "panned": false,
+        "cx": 0,
+        "cz": 0,
+        "pinged": false,
+        "pingX": 0,
+        "pingZ": 0,
+        "quests": "c1_08_vouch,c1_09_buckles_glory",
+        "canvas": 512
+      },
+      "out": {
+        "region": {
+          "minX": -52,
+          "maxX": 38,
+          "minZ": -126,
+          "maxZ": -36
+        },
+        "labels": true,
+        "player": {
+          "mx": 256,
+          "my": 256
+        },
+        "ping": null,
+        "party": [
+          {
+            "pid": 20,
+            "wx": -2,
+            "wz": -89,
+            "mx": 227.556,
+            "my": 301.511
+          }
+        ],
+        "givers": [
+          {
+            "x": -3.49,
+            "z": -106.72,
+            "kind": "available"
+          }
+        ],
+        "npcs": [
+          {
+            "kind": "available",
+            "mx": 236.032,
+            "my": 402.318
+          }
+        ],
+        "questAreas": [
+          {
+            "mx": 208.156,
+            "my": 225.451,
             "radius": 34.133,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 189.598,
-            "my": 173.511,
+            "mx": 236.032,
+            "my": 402.318,
             "radius": 34.133,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 340.354,
-            "my": 166.116,
+            "mx": 240.412,
+            "my": 345.998,
             "radius": 34.133,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 224.3,
-            "my": 295.822,
+            "mx": 242.347,
+            "my": 459.662,
             "radius": 34.133,
             "numbers": [
               2
             ]
           },
           {
-            "mx": 230.969,
-            "my": 278.756,
+            "mx": 221.867,
+            "my": 271.929,
             "radius": 34.133,
             "numbers": [
               2
@@ -1957,13 +1946,13 @@
         "services": [
           {
             "kind": "mailbox",
-            "mx": 255.02,
-            "my": 188.871
+            "mx": 273.067,
+            "my": 364.089
           },
           {
             "kind": "noticeboard",
-            "mx": 169.687,
-            "my": 137.671
+            "mx": 267.378,
+            "my": 410.738
           }
         ],
         "stations": [
@@ -1974,35 +1963,35 @@
           },
           {
             "id": "station_eastbrook_kitchens",
-            "mx": 217.288,
-            "my": 248.604
+            "mx": 405.447,
+            "my": 306.062
           },
           {
             "id": "station_eastbrook_loom",
-            "mx": 285.045,
-            "my": 294.684
+            "mx": 204.004,
+            "my": 246.044
           },
           {
             "id": "station_eastbrook_toolworks",
-            "mx": 288.552,
-            "my": 345.884
+            "mx": 188.228,
+            "my": 265.176
           },
           {
             "id": "station_eastbrook_apothecary",
-            "mx": 288.989,
-            "my": 268.516
+            "mx": 202.752,
+            "my": 221.229
           },
           {
             "id": "station_eastbrook_tannery",
-            "mx": 285.991,
-            "my": 320.853
+            "mx": 227.004,
+            "my": 216.178
           }
         ],
         "farmPatches": [
           {
             "id": "patch_eastbrook",
-            "mx": 320.442,
-            "my": 95.004
+            "mx": 338.489,
+            "my": 258.844
           }
         ]
       }
@@ -2011,12 +2000,12 @@
       "in": {
         "snapshot": "station",
         "zone": "eastbrook_vale",
-        "px": -10.172222222222222,
-        "pz": -109.8,
+        "px": -7,
+        "pz": -81,
         "zoom": 4,
         "panned": true,
-        "cx": 29.827777777777776,
-        "cz": -134.8,
+        "cx": 33,
+        "cz": -106,
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
@@ -2025,10 +2014,10 @@
       },
       "out": {
         "region": {
-          "minX": -15.172222222222224,
-          "maxX": 74.82777777777778,
-          "minZ": -179.8,
-          "maxZ": -89.80000000000001
+          "minX": -12,
+          "maxX": 78,
+          "minZ": -151,
+          "maxZ": -61
         },
         "labels": true,
         "player": {
@@ -2039,62 +2028,62 @@
         "party": [
           {
             "pid": 20,
-            "wx": -5.1722222222222225,
-            "wz": -117.8,
+            "wx": -2,
+            "wz": -89,
             "mx": 455.111,
             "my": 159.289
           }
         ],
         "givers": [
           {
-            "x": 1.5,
-            "z": -95.3,
+            "x": -3.49,
+            "z": -106.72,
             "kind": "available"
           }
         ],
         "npcs": [
           {
             "kind": "available",
-            "mx": 417.154,
-            "my": 31.289
+            "mx": 463.588,
+            "my": 260.096
           }
         ],
         "questAreas": [
           {
-            "mx": 519.389,
-            "my": 110.364,
+            "mx": 435.712,
+            "my": 83.228,
             "radius": 34.133,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 417.154,
-            "my": 31.289,
+            "mx": 463.588,
+            "my": 260.096,
             "radius": 34.133,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 567.909,
-            "my": 23.893,
+            "mx": 467.968,
+            "my": 203.776,
             "radius": 34.133,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 451.856,
-            "my": 153.6,
+            "mx": 469.902,
+            "my": 317.44,
             "radius": 34.133,
             "numbers": [
               2
             ]
           },
           {
-            "mx": 458.524,
-            "my": 136.533,
+            "mx": 449.422,
+            "my": 129.707,
             "radius": 34.133,
             "numbers": [
               2
@@ -2105,8 +2094,13 @@
         "services": [
           {
             "kind": "mailbox",
-            "mx": 482.576,
-            "my": 46.649
+            "mx": 499.915,
+            "my": 222.574
+          },
+          {
+            "kind": "noticeboard",
+            "mx": 494.933,
+            "my": 268.516
           }
         ],
         "stations": [
@@ -2116,9 +2110,24 @@
             "my": 136.533
           },
           {
-            "id": "station_eastbrook_kitchens",
-            "mx": 444.843,
-            "my": 106.382
+            "id": "station_eastbrook_loom",
+            "mx": 431.559,
+            "my": 103.822
+          },
+          {
+            "id": "station_eastbrook_toolworks",
+            "mx": 415.784,
+            "my": 122.954
+          },
+          {
+            "id": "station_eastbrook_apothecary",
+            "mx": 430.308,
+            "my": 79.007
+          },
+          {
+            "id": "station_eastbrook_tannery",
+            "mx": 454.56,
+            "my": 73.956
           }
         ],
         "farmPatches": []
@@ -2137,7 +2146,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_09_buckles_glory,c1_d02_clear_quarry",
+        "quests": "c1_09_buckles_glory,c1_15_warmth_missing",
         "canvas": 512
       },
       "out": {
@@ -2164,16 +2173,16 @@
         ],
         "givers": [
           {
-            "x": 1.5,
-            "z": -95.3,
+            "x": -3.49,
+            "z": -106.72,
             "kind": "available"
           }
         ],
         "npcs": [
           {
             "kind": "available",
-            "mx": 253.867,
-            "my": 391.538
+            "mx": 260.964,
+            "my": 407.78
           }
         ],
         "questAreas": [
@@ -2194,17 +2203,33 @@
             ]
           },
           {
-            "mx": 264.209,
-            "my": 417.849,
+            "mx": 257.422,
+            "my": 375.182,
             "radius": 8.533,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 248.889,
-            "my": 7.111,
+            "mx": 298.667,
+            "my": 139.378,
             "radius": 15.644,
+            "numbers": [
+              2
+            ]
+          },
+          {
+            "mx": 248.415,
+            "my": 332.089,
+            "radius": 13.568,
+            "numbers": [
+              2
+            ]
+          },
+          {
+            "mx": 252.708,
+            "my": 336.071,
+            "radius": 15.827,
             "numbers": [
               2
             ]
@@ -2221,51 +2246,51 @@
           {
             "kind": "mailbox",
             "mx": 270.222,
-            "my": 395.378
+            "my": 398.222
           },
           {
             "kind": "noticeboard",
-            "mx": 248.889,
-            "my": 382.578
+            "mx": 268.8,
+            "my": 409.884
           }
         ],
         "stations": [
           {
             "id": "station_eastbrook_forge",
-            "mx": 262.641,
-            "my": 418.556
+            "mx": 257.422,
+            "my": 376.889
           },
           {
             "id": "station_eastbrook_kitchens",
-            "mx": 260.789,
-            "my": 410.311
+            "mx": 303.317,
+            "my": 383.716
           },
           {
             "id": "station_eastbrook_loom",
-            "mx": 277.728,
-            "my": 421.831
+            "mx": 252.956,
+            "my": 368.711
           },
           {
             "id": "station_eastbrook_toolworks",
-            "mx": 278.605,
-            "my": 434.631
+            "mx": 252.018,
+            "my": 370.489
           },
           {
             "id": "station_eastbrook_apothecary",
-            "mx": 278.715,
-            "my": 415.289
+            "mx": 252.644,
+            "my": 364.757
           },
           {
             "id": "station_eastbrook_tannery",
-            "mx": 277.965,
-            "my": 428.373
+            "mx": 257.707,
+            "my": 361.244
           }
         ],
         "farmPatches": [
           {
             "id": "patch_eastbrook",
-            "mx": 286.578,
-            "my": 371.911
+            "mx": 283.749,
+            "my": 369.083
           }
         ]
       }
@@ -2283,7 +2308,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_09_buckles_glory,c1_d02_clear_quarry",
+        "quests": "c1_09_buckles_glory,c1_15_warmth_missing",
         "canvas": 512
       },
       "out": {
@@ -2310,16 +2335,16 @@
         ],
         "givers": [
           {
-            "x": 1.5,
-            "z": -95.3,
+            "x": -3.49,
+            "z": -106.72,
             "kind": "available"
           }
         ],
         "npcs": [
           {
             "kind": "available",
-            "mx": 253.867,
-            "my": 391.538
+            "mx": 260.964,
+            "my": 407.78
           }
         ],
         "questAreas": [
@@ -2340,17 +2365,33 @@
             ]
           },
           {
-            "mx": 264.209,
-            "my": 417.849,
+            "mx": 257.422,
+            "my": 375.182,
             "radius": 8.533,
             "numbers": [
               1
             ]
           },
           {
-            "mx": 248.889,
-            "my": 7.111,
+            "mx": 298.667,
+            "my": 139.378,
             "radius": 15.644,
+            "numbers": [
+              2
+            ]
+          },
+          {
+            "mx": 248.415,
+            "my": 332.089,
+            "radius": 13.568,
+            "numbers": [
+              2
+            ]
+          },
+          {
+            "mx": 252.708,
+            "my": 336.071,
+            "radius": 15.827,
             "numbers": [
               2
             ]
@@ -2367,51 +2408,51 @@
           {
             "kind": "mailbox",
             "mx": 270.222,
-            "my": 395.378
+            "my": 398.222
           },
           {
             "kind": "noticeboard",
-            "mx": 248.889,
-            "my": 382.578
+            "mx": 268.8,
+            "my": 409.884
           }
         ],
         "stations": [
           {
             "id": "station_eastbrook_forge",
-            "mx": 262.641,
-            "my": 418.556
+            "mx": 257.422,
+            "my": 376.889
           },
           {
             "id": "station_eastbrook_kitchens",
-            "mx": 260.789,
-            "my": 410.311
+            "mx": 303.317,
+            "my": 383.716
           },
           {
             "id": "station_eastbrook_loom",
-            "mx": 277.728,
-            "my": 421.831
+            "mx": 252.956,
+            "my": 368.711
           },
           {
             "id": "station_eastbrook_toolworks",
-            "mx": 278.605,
-            "my": 434.631
+            "mx": 252.018,
+            "my": 370.489
           },
           {
             "id": "station_eastbrook_apothecary",
-            "mx": 278.715,
-            "my": 415.289
+            "mx": 252.644,
+            "my": 364.757
           },
           {
             "id": "station_eastbrook_tannery",
-            "mx": 277.965,
-            "my": 428.373
+            "mx": 257.707,
+            "my": 361.244
           }
         ],
         "farmPatches": [
           {
             "id": "patch_eastbrook",
-            "mx": 286.578,
-            "my": 371.911
+            "mx": 283.749,
+            "my": 369.083
           }
         ]
       }
@@ -2429,7 +2470,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_09_buckles_glory,c1_d02_clear_quarry",
+        "quests": "c1_09_buckles_glory,c1_15_warmth_missing",
         "canvas": 512
       },
       "out": {
@@ -2456,8 +2497,8 @@
         ],
         "givers": [
           {
-            "x": 1.5,
-            "z": -95.3,
+            "x": -3.49,
+            "z": -106.72,
             "kind": "available"
           }
         ],
@@ -2472,8 +2513,8 @@
             ]
           },
           {
-            "mx": 207.644,
-            "my": 14.222,
+            "mx": 307.2,
+            "my": 278.756,
             "radius": 31.289,
             "numbers": [
               2
@@ -2499,7 +2540,7 @@
         "pinged": true,
         "pingX": -32,
         "pingZ": 173,
-        "quests": "c1_09_buckles_glory,c1_d02_clear_quarry",
+        "quests": "c1_09_buckles_glory,c1_15_warmth_missing",
         "canvas": 512
       },
       "out": {
@@ -2529,8 +2570,8 @@
         ],
         "givers": [
           {
-            "x": 1.5,
-            "z": -95.3,
+            "x": -3.49,
+            "z": -106.72,
             "kind": "available"
           }
         ],
@@ -2545,8 +2586,8 @@
             ]
           },
           {
-            "mx": 207.644,
-            "my": 14.222,
+            "mx": 307.2,
+            "my": 278.756,
             "radius": 31.289,
             "numbers": [
               2
@@ -2572,7 +2613,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_09_buckles_glory,c1_d02_clear_quarry",
+        "quests": "c1_09_buckles_glory,c1_15_warmth_missing",
         "canvas": 512
       },
       "out": {
@@ -2599,8 +2640,8 @@
         ],
         "givers": [
           {
-            "x": 1.5,
-            "z": -95.3,
+            "x": -3.49,
+            "z": -106.72,
             "kind": "available"
           }
         ],
@@ -2615,8 +2656,8 @@
             ]
           },
           {
-            "mx": 321.422,
-            "my": 14.222,
+            "mx": 420.978,
+            "my": 278.756,
             "radius": 31.289,
             "numbers": [
               2
@@ -2642,7 +2683,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_09_buckles_glory,c1_d02_clear_quarry",
+        "quests": "c1_09_buckles_glory,c1_15_warmth_missing",
         "canvas": 512
       },
       "out": {
@@ -2669,8 +2710,8 @@
         ],
         "givers": [
           {
-            "x": 1.5,
-            "z": -95.3,
+            "x": -3.49,
+            "z": -106.72,
             "kind": "available"
           }
         ],
@@ -2685,8 +2726,8 @@
             ]
           },
           {
-            "mx": 159.289,
-            "my": 28.444,
+            "mx": 358.4,
+            "my": 557.511,
             "radius": 62.578,
             "numbers": [
               2
@@ -2712,7 +2753,7 @@
         "pinged": false,
         "pingX": 0,
         "pingZ": 0,
-        "quests": "c1_09_buckles_glory,c1_d02_clear_quarry",
+        "quests": "c1_09_buckles_glory,c1_15_warmth_missing",
         "canvas": 512
       },
       "out": {
@@ -2739,8 +2780,8 @@
         ],
         "givers": [
           {
-            "x": 1.5,
-            "z": -95.3,
+            "x": -3.49,
+            "z": -106.72,
             "kind": "available"
           }
         ],
@@ -2755,8 +2796,8 @@
             ]
           },
           {
-            "mx": 386.844,
-            "my": 17.067,
+            "mx": 585.956,
+            "my": 546.133,
             "radius": 62.578,
             "numbers": [
               2
