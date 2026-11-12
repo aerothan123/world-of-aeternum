@@ -1,7 +1,7 @@
 // Predefined gate/portal exit facing: before this fix, leaveDungeon left the
 // player facing whatever direction they last walked inside the instance
 // (here simulated with an arbitrary interior facing) instead of a predefined
-// outward direction. Shoots the Hollow Crypt door exterior plus the minimap's
+// outward direction. Shoots the Sunken Bastion door exterior plus the minimap's
 // player-facing arrow, immediately after leaveDungeon.
 //   OUT=tmp/after.png MAP_OUT=tmp/after_map.png node scripts/dungeon_exit_facing_shot.mjs
 import fs from 'node:fs';
@@ -59,15 +59,15 @@ const result = await page.evaluate(() => {
   const g = window.__game;
   const sim = g.sim;
   const door = [...sim.entities.values()].find(
-    (e) => e.templateId === 'dungeon_door' && e.dungeonId === 'hollow_crypt',
+    (e) => e.templateId === 'dungeon_door' && e.dungeonId === 'sunken_bastion',
   );
-  if (!door) return { ok: false, reason: 'no hollow_crypt door in this world' };
+  if (!door) return { ok: false, reason: 'no sunken_bastion door in this world' };
   // God mode: the door exterior can sit near an overworld patrol, and combat
   // keeps ticking while the loading curtain streams in a fresh zone. Level 60
   // gives recalcPlayerStats a large real maxHp so nothing later clamps it back down.
   sim.setPlayerLevel(60);
   sim.player.maxHp = sim.player.hp = 999999;
-  sim.enterDungeon('hollow_crypt');
+  sim.enterDungeon('sunken_bastion');
   // Simulate an arbitrary interior facing picked up while exploring, before
   // walking back to the exit portal (mirrors the "whatever direction they
   // came from" report): unrelated to the door's own orientation outside.

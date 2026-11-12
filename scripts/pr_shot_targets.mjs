@@ -1412,7 +1412,7 @@ export const TARGETS = [
         const sim = window.__game?.sim;
         if (!sim?.instances || !sim.ctx) return false;
         const inst = sim.instances.find(
-          (i) => i.dungeonId === 'hollow_crypt' && i.partyKey === null,
+          (i) => i.dungeonId === 'sunken_bastion' && i.partyKey === null,
         );
         if (!inst) return false;
         inst.partyKey = sim.ctx.instanceKeyFor(sim.playerId);
@@ -7928,7 +7928,7 @@ export const TARGETS = [
     when: ['map_surface_core', 'interior_map_controller'],
     variants: [{ key: 'desktop' }, ...(presses === 1 ? [{ key: 'mobile', mobile: true }] : [])],
     async capture(page) {
-      await page.evaluate(() => window.__game?.sim?.enterDungeon?.('hollow_crypt'));
+      await page.evaluate(() => window.__game?.sim?.enterDungeon?.('sunken_bastion'));
       await wait(1500); // let the instance teleport and its zone stream settle
       await awaitWorldPainted(page);
       await dismissTutorialGreeting(page);
@@ -7956,7 +7956,7 @@ export const TARGETS = [
     when: ['map_pinch_zoom_core', 'map_pan_core'],
     variants: [{ key: 'desktop' }, { key: 'mobile', mobile: true }],
     async capture(page) {
-      await page.evaluate(() => window.__game?.sim?.enterDungeon?.('hollow_crypt'));
+      await page.evaluate(() => window.__game?.sim?.enterDungeon?.('sunken_bastion'));
       await wait(1500);
       await awaitWorldPainted(page);
       await dismissTutorialGreeting(page);
@@ -7984,7 +7984,7 @@ export const TARGETS = [
       await page.evaluate(() => {
         const sim = window.__game?.sim;
         if (!sim) return;
-        sim.enterDungeon?.('hollow_crypt');
+        sim.enterDungeon?.('sunken_bastion');
         const inside = { x: sim.player.pos.x + 6, z: sim.player.pos.z - 4 };
         // A raw position write back to the meadow (like the world-map target),
         // not leaveDungeon: the exit teleport raises the loading curtain again.
@@ -10942,8 +10942,8 @@ export const TARGETS = [
     async capture(page) {
       await page.evaluate(() => document.getElementById('tutorial-greeting')?.remove());
       const pageIds = await openReliquaryConquerorsShelf(page);
-      const target = pageIds.includes('conquerors_hollow_crypt')
-        ? 'conquerors_hollow_crypt'
+      const target = pageIds.includes('conquerors_sunken_bastion')
+        ? 'conquerors_sunken_bastion'
         : pageIds[0];
       if (!target) throw new Error('reliquary shelf listed no pages');
       // Illuminate ONE page by reading its own cells (never a hard-coded relic

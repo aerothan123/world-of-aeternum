@@ -3,8 +3,7 @@
 // sergeant points at one player past the tank and shouts (a 2 s kickable bar,
 // the mark drawn over its target from the cast's own target id). When the
 // shout lands, every living Fogbound Arbalest of the sergeant's own pack
-// (Entity.dungeonPackId, as crypt_kit.ts reads a necromancer's warriors)
-// looses a bolt at the mark at once; a wall or a crenel between an arbalest
+// (Entity.dungeonPackId) looses a bolt at the mark at once; a wall or a crenel between an arbalest
 // and the mark stops that one bolt. Kick the sergeant, or the marked player
 // steps behind the battlements before the bar ends, or braces for it.
 //

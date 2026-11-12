@@ -1,5 +1,5 @@
 // Evidence frames of the dungeon trash pass's second wave in a live offline
-// world: the Gravecaller Adept's Gravespark Volley, the Bastion Revenant's
+// world: the Bastion Revenant's
 // Throatlight, the Drowned Sergeant's Loose on My Mark, the Moonlit Siren's
 // Call of the Shallows and the Moonmantle Ray's heroic Heartpearl. Each one
 // set up with /dev spawns (or its real pack), framed, saved frame by frame and
@@ -30,17 +30,9 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 // spawn (/dev <d> spawn <type>, each 10 yd ahead, the player turned by
 // `spread` between spawns), an action, the kit cast to force on a template
 // (/dev trashkit cast <key>) and the frames (ms after the trigger) to save.
+// (The Hollow Crypt's Gravespark Volley sequence left with the dungeon,
+// retired 2026-11-11.)
 const SEQS = [
-  {
-    id: 'andanada_chispas',
-    d: 'crypt',
-    tp: 'cloister',
-    spawn: ['adept'],
-    force: { template: 'crypt_gravecaller_adept', key: 'nova' },
-    cast: 'crypt_gravespark_volley',
-    frames: [100, 1000, 2000, 2700, 3150, 3600],
-    cam: { yaw: 0.6, pitch: 0.5, dist: 22 },
-  },
   {
     id: 'luz_garganta',
     d: 'bastion',
@@ -176,7 +168,6 @@ async function waitCast(page, cast, timeout = 45000) {
 }
 
 const CLEAR_PACKS = {
-  crypt: ['c1', 'c2', 'c3', 'c4', 'p1', 'drake'],
   bastion: ['f1', 'f2', 'fa', 'fb', 'f3', 'rc', 'r2'],
   temple: ['g4', 'g5', 'pa'],
 };
@@ -327,7 +318,6 @@ async function main() {
     }
     await page.addStyleTag({ content: '#ui, #nameplates { display: none !important; }' });
     const FIELDS = {
-      crypt: 'hollowCryptField',
       bastion: 'sunkenBastionField',
       temple: 'drownedTempleField',
     };

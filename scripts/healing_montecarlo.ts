@@ -537,8 +537,6 @@ type Encounter = {
 };
 
 const ENCOUNTERS: Encounter[] = [
-  { key: 'crypt_trash_x3_shambler', dungeon: 'hollow_crypt', spawn: [['crypt_shambler', 3]] },
-  { key: 'crypt_boss_morthen', dungeon: 'hollow_crypt', spawn: [['morthen', 1]] },
   { key: 'bastion_boss_vael', dungeon: 'sunken_bastion', spawn: [['vael_the_mistcaller', 1]] },
   { key: 'temple_boss_ysolei', dungeon: 'drowned_temple', spawn: [['ysolei', 1]] },
   {
@@ -817,12 +815,10 @@ function main() {
   }[] = [];
   const cEncounters = ENCOUNTERS.filter((e) =>
     [
-      'crypt_boss_morthen',
       'bastion_boss_vael',
       'temple_boss_ysolei',
       'sanctum_midboss_korgath',
       'sanctum_boss_korzul',
-      'crypt_trash_x3_shambler',
     ].includes(e.key),
   );
   for (const encounter of cEncounters) {
@@ -839,7 +835,6 @@ function main() {
     }
   }
   for (const encounterKey of [
-    'crypt_boss_morthen',
     'bastion_boss_vael',
     'temple_boss_ysolei',
     'sanctum_midboss_korgath',

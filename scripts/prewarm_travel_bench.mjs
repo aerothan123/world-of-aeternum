@@ -60,8 +60,7 @@ const WAYPOINTS = [
 
 // One dungeon per distinct interior (+ a couple of crypt re-uses to confirm dedup).
 const DUNGEONS = [
-  'hollow_crypt', // interior: crypt
-  'sunken_bastion', // interior: crypt (re-use)
+  'sunken_bastion', // interior: crypt
   'gravewyrm_sanctum', // interior: sanctum
   'drowned_temple', // interior: temple
   'nythraxis_crypt', // interior: crypt (re-use)

@@ -362,8 +362,3 @@ export const HOLLOW_CRYPT_ITEMS: Record<string, ItemDef> = {
     requiredClass: CASTER,
   },
 };
-
-// EMPTY since the hollow-crypt-icons-2026-10-03 wave painted every non-weapon
-// piece and the generated Heroic Cantor's Hymnal (the weapons never parked
-// here: their paintings ride ITEM_WEAPON_VARIANTS).
-export const HOLLOW_CRYPT_ART_PENDING_ITEM_IDS: readonly string[] = [];

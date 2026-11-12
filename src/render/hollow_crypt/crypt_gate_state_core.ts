@@ -65,11 +65,6 @@ export function gateView(key: string, now: number): GateView {
   };
 }
 
-/** Forget every gate (tests; a fresh page starts empty anyway). */
-export function clearGateMemoryForTest(): void {
-  memory.clear();
-}
-
 // Moved here from crypt_plan_core.ts when the Hollow Crypt was retired
 // (2026-11-11); every dungeon's gate renderer still eases through it.
 export const GATE_REVEAL_SECONDS = 2.6;

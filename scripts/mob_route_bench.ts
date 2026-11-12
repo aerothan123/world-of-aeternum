@@ -9,17 +9,17 @@
 //
 // What it measures:
 //   single searches   in the open world (Dawnhold's east curtain wall and its
-//                     one gate, on the shipped seed) and in a claimed heroic
-//                     Hollow Crypt (the Undercroft Grille's curtain wall and
-//                     the Ossuary Monument): a clear line, a wall detour, a
-//                     perched target, the widest window. Each row prints what
-//                     the search itself answered (found, none, refused).
+//                     one gate, on the shipped seed): a clear line, a wall
+//                     detour, a perched target, the widest window. Each row
+//                     prints what the search itself answered (found, none,
+//                     refused). (The claimed Hollow Crypt arm left with the
+//                     dungeon when the owner retired it, 2026-11-11.)
 //   a tick's budget   timed DIRECTLY, with no whole-tick noise: the most route
 //                     work one tick can do (ROUTE_NODES_PER_TICK cells: one
 //                     capped search and a second in the cells left) and the
 //                     most sight work (SIGHT_QUERIES_PER_TICK queries), in the
-//                     Hollow Crypt and in the dungeon interior with the most
-//                     colliders (found by counting, not by name).
+//                     dungeon interior with the most colliders (found by
+//                     counting, not by name).
 //   whole scenes      a pack of 20 casters whose target steps out of sight,
 //                     and 10 casters with their target dancing across a
 //                     doorway edge, each against the same scene with the
@@ -34,12 +34,6 @@ import { interiorColliderFrame, isBlocked } from '../src/sim/colliders';
 import { DELVES, DUNGEONS, instanceOrigin, MOBS } from '../src/sim/data';
 import { DAWNHOLD, DAWNHOLD_GATES } from '../src/sim/dawnhold_layout';
 import { createMob } from '../src/sim/entity';
-import {
-  applyDungeonMobTuning,
-  mobLevelForDungeonDifficulty,
-  mobTemplateForDungeonDifficulty,
-} from '../src/sim/instances/difficulty';
-import { claimedInstanceAt } from '../src/sim/instances/dungeons';
 import { SIGHT_QUERIES_PER_TICK } from '../src/sim/mob/cast_sight';
 import {
   ROUTE_NODES_PER_PLAN,
@@ -140,72 +134,6 @@ function openWorld(): World {
   player.maxHp = 1e9;
   player.hp = 1e9;
   return w;
-}
-
-function crypt(shutGate: boolean): World {
-  const sim = new Sim({ seed: 23, playerClass: 'warrior', autoEquip: false, devCommands: true });
-  const player = sim.player;
-  sim.chat('/dev level 20', player.id);
-  sim.chat('/dev crypt enter heroic', player.id);
-  const inst = claimedInstanceAt(sim.ctx, player.pos);
-  if (!inst) throw new Error('no crypt claim');
-  for (const id of inst.mobIds) {
-    const e = sim.ctx.entities.get(id);
-    if (!e || e.dead) continue;
-    if (shutGate && e.templateId === 'crypt_gravecaller_necromancer') continue;
-    sim.ctx.handleDeath(e, player);
-  }
-  player.devNoAggro = true;
-  player.maxHp = 1e9;
-  player.hp = 1e9;
-  const o = instanceOrigin(DUNGEONS.hollow_crypt.index, inst.slot);
-  sim.tick();
-  sim.drainEvents();
-  return {
-    name: shutGate ? 'Hollow Crypt (grille shut)' : 'Hollow Crypt (grille open)',
-    sim,
-    player,
-    ox: o.x,
-    oz: o.z,
-    caster: 'crypt_gravecaller_adept',
-    spawn(templateId, at) {
-      const template = MOBS[templateId];
-      const mob = createMob(
-        sim.ctx.nextId++,
-        mobTemplateForDungeonDifficulty(template, 'hollow_crypt', inst.difficulty),
-        mobLevelForDungeonDifficulty('hollow_crypt', inst.difficulty, template.minLevel),
-        sim.ctx.groundPos(o.x + at.x, o.z + at.z),
-      );
-      applyDungeonMobTuning(mob, 'hollow_crypt', inst.difficulty);
-      mob.dungeonPackId = 'bench';
-      mob.maxHp = 1e7;
-      mob.hp = 1e7;
-      sim.ctx.addEntity(mob);
-      inst.mobIds.push(mob.id);
-      return mob;
-    },
-    plans: [
-      { name: 'clear line, 26 yd', from: { x: 13, z: -44 }, to: { x: 13, z: -18 } },
-      { name: 'monument detour', from: { x: 0, z: -44 }, to: { x: 0, z: -18 } },
-      {
-        name: shutGate ? 'wall with its gate shut' : 'wall detour (gate 18 yd aside)',
-        from: { x: 18, z: 30 },
-        to: { x: 18, z: 12 },
-      },
-      { name: 'perched target 6 yd away', from: { x: 0, z: -38.5 }, to: { x: 0, z: -32 } },
-      { name: 'widest window (perched)', from: { x: 30, z: -61 }, to: { x: 0, z: -30 } },
-    ],
-    pack: {
-      casters: (i) => ({ x: 10 + (i % 5) * 2.2, z: 28 + Math.floor(i / 5) * 2.2 }),
-      seen: { x: 16, z: 44 },
-      hidden: { x: 18, z: 12 },
-    },
-    dance: {
-      casters: (i) => ({ x: 9 + (i % 5) * 2.2, z: 27 + Math.floor(i / 5) * 2.2 }),
-      a: { x: 3, z: 14 },
-      b: { x: 14, z: 14 },
-    },
-  };
 }
 
 const ms = (n: number): string => n.toFixed(3).padStart(8);
@@ -312,23 +240,6 @@ function benchBudgets(
   }
 }
 
-function benchCryptBudgets(): void {
-  const w = crypt(true);
-  const mob = w.spawn(w.caster, { x: 18, z: 30 });
-  benchBudgets(
-    w.name,
-    w.sim,
-    mob,
-    w.player,
-    [
-      { name: 'across the shut grille', from: { x: 18, z: 30 }, to: { x: 18, z: 12 } },
-      { name: 'the monument between them', from: { x: 0, z: -44 }, to: { x: 0, z: -18 } },
-      { name: 'a clear line', from: { x: 13, z: -44 }, to: { x: 13, z: -18 } },
-    ],
-    (e, at) => place(w, e, at),
-  );
-}
-
 /** The dungeon interior with the most colliders (its cell lists are the
  *  longest, so a judged cell and a sight sample cost the most there). */
 function densestInterior(): { id: string; ox: number; oz: number; colliders: number } {
@@ -380,8 +291,8 @@ function benchDensestInterior(): void {
   if (!perch) throw new Error(`no perch found in ${d.id}`);
   const mob = createMob(
     sim.ctx.nextId++,
-    MOBS.crypt_gravecaller_adept,
-    8,
+    MOBS.corrupted_priest_malric,
+    10,
     sim.ctx.groundPos(d.ox + from.x, d.oz + from.z),
   );
   sim.ctx.addEntity(mob);
@@ -552,10 +463,6 @@ function benchDelveSight(): void {
 }
 
 benchPlans(openWorld());
-benchPlans(crypt(false));
-benchPlans(crypt(true));
-benchCryptBudgets();
 benchDensestInterior();
 benchScenes(openWorld);
-benchScenes(() => crypt(false));
 benchDelveSight();

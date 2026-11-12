@@ -1,5 +1,5 @@
-// The Hollow Crypt's GPU particle kit, shared by the hero creatures' effects
-// (crypt_creature_fx.ts) and the finale's (crypt_finale_fx.ts): per-particle
+// The shared dungeon GPU particle kit (born in the retired Hollow Crypt's
+// renderer, now imported by every dungeon FX painter): per-particle
 // launch data advected entirely in the vertex shader on one clock, drawn as
 // camera-facing sprites; fire runs the Ignivar flame atlas through the
 // ghost-fire ramp as upright flame tongues. The CPU writes a particle only
@@ -172,24 +172,6 @@ void main() {
   float core = pow(max(1.0 - r, 0.0), 2.2);
   float fade = smoothstep(0.0, 0.1, vT) * (1.0 - smoothstep(0.55, 1.0, vT));
   gl_FragColor = vec4(vColor.rgb * (0.6 + 1.2 * core), core * fade * vColor.a);
-}
-`;
-
-/** Heat shimmer over the fire (the Ignivar furnace's wobble haze): a faint,
- *  rising band of warped light, additive, so the air over the flames swims. */
-export const HAZE_FRAG = /* glsl */ `
-uniform float uTime;
-varying float vT;
-varying float vSeed;
-varying vec4 vColor;
-varying vec2 vUv;
-void main() {
-  vec2 p = vUv - 0.5;
-  float rise = uTime * 5.0 + vSeed * 20.0;
-  float wob = sin(vUv.y * 21.0 - rise) * 0.5 + sin(vUv.x * 13.0 + rise * 0.7) * 0.5;
-  float mask = (1.0 - smoothstep(0.12, 0.5, length(p * vec2(1.0, 0.8))));
-  float fade = smoothstep(0.0, 0.2, vT) * (1.0 - smoothstep(0.55, 1.0, vT));
-  gl_FragColor = vec4(vColor.rgb * (0.7 + 0.5 * wob), mask * fade * vColor.a * (0.45 + 0.55 * wob));
 }
 `;
 

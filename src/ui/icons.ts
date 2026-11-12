@@ -13,7 +13,6 @@ import { CHAPTER_ONE_ART_PENDING_ITEM_IDS } from '../sim/content/chapter_one';
 import { CHAPTER_TWO_ART_PENDING_ITEM_IDS } from '../sim/content/chapter_two';
 import { CHAPTER_TWO_GATED_ART_PENDING_ITEM_IDS } from '../sim/content/chapter_two_bundles';
 import { FURNITURE_ART_PENDING_ITEM_IDS } from '../sim/content/furniture';
-import { HOLLOW_CRYPT_ART_PENDING_ITEM_IDS } from '../sim/content/hollow_crypt_items';
 import { IGNIVAR_ART_PENDING_ITEM_IDS } from '../sim/content/ignivar_loot';
 import { isRawCookingCatch } from '../sim/content/items';
 import { QUEST_SHIELD_ART_PENDING_ITEM_IDS } from '../sim/content/quest_shields';
@@ -2806,48 +2805,6 @@ const ABILITY_RECIPES: Record<string, IconRecipe> = {
   ),
   dgn_wildheart_ambush: r('shadow', 'blood', ['claw_slash', { p: 'crosshair', ...BR }], ['motion']),
   dgn_wildheart_zulgar_enrage: r('fury', 'blood', ['roar', { p: 'fang', ...BR }], ['glow', 'arcs']),
-  // Hollow Crypt dungeon-journal icons (src/ui/boss_journal/dungeons/hollow_crypt.ts).
-  dgn_crypt_barrowflame: r('fire', 'bone', ['flame', { p: 'skull', ...BR }], ['arcs']),
-  dgn_crypt_tail_lash: r('shadow', 'bone', ['bone', { p: 'claw_slash', ...BR }], ['motion']),
-  dgn_crypt_wing_gust: r('storm', 'bone', ['wing', { p: 'sunburst', ...BIG }], ['motion']),
-  dgn_crypt_embers: r('fire', 'ember', ['flame', { p: 'boot', ...BR }], ['drips']),
-  dgn_crypt_shovelful: r('earth', 'earthBrown', ['pickaxe', { p: 'eye', ...BR }], ['motion']),
-  dgn_crypt_measured: r('shadow', 'bone', ['crosshair', { p: 'skull', ...BR }], ['glow']),
-  dgn_crypt_blow: r('steel', 'blood', ['pickaxe', { p: 'shield', ...BR }], ['crack']),
-  dgn_crypt_grave_vigor: r('fury', 'bone', ['skull', { p: 'bolt', ...BR }], ['glow']),
-  dgn_crypt_unquiet_earth: r('earth', 'bone', ['hand', { p: 'bone', ...BR }], ['crack']),
-  dgn_crypt_burial_toll: r('shadow', 'gold', ['bell', { p: 'skull', ...BR }], ['arcs']),
-  dgn_crypt_lament: r('frost', 'silverWhite', ['moon', { p: 'heart', ...BR }], ['arcs']),
-  dgn_crypt_lantern: r('holy', 'holyGold', ['candle', { p: 'shield', ...BR }], ['glow']),
-  dgn_crypt_embrace: r('frost', 'ice', ['hand', { p: 'snowflake', ...BR }], ['sparkle']),
-  dgn_crypt_rime_path: r('frost', 'ice', ['snowflake', { p: 'boot', ...BR }], ['motion']),
-  dgn_crypt_bridal_freeze: r(
-    'frost',
-    'silverWhite',
-    ['snowflake', { p: 'sunburst', ...BIG }],
-    ['glow'],
-  ),
-  dgn_crypt_harmony: r('arcane', 'shadowPurple', ['bell', { p: 'shield', ...BR }], ['arcs']),
-  dgn_crypt_dirge: r('shadow', 'shadowPurple', ['skull', { p: 'bell', ...BR }], ['arcs']),
-  dgn_crypt_bone_organ: r('shadow', 'bone', ['bone', { p: 'bell', ...BR }], ['drips']),
-  dgn_crypt_encore: r('shadow', 'bone', ['skull', { p: 'ascension_seal', ...BR }], ['sparkle']),
-  dgn_crypt_unbroken_verse: r('blood', 'shadowPurple', ['bell', { p: 'cross', ...BR }], ['glow']),
-  dgn_crypt_crescendo: r('arcane', 'arcanePink', ['bell', { p: 'sunburst', ...BIG }], ['arcs']),
-  dgn_crypt_shadow_pulse: r(
-    'shadow',
-    'shadowPurple',
-    ['sunburst', { p: 'skull', ...BR }],
-    ['arcs'],
-  ),
-  dgn_crypt_gravecall: r('shadow', 'sky', ['skull', { p: 'arrow', ...BR }], ['motion']),
-  dgn_crypt_grasp: r('earth', 'shadowPurple', ['hand', { p: 'crosshair', ...BR }], ['crack']),
-  dgn_crypt_rite: r('shadow', 'blood', ['sigil_rune', { p: 'candle', ...BR }], ['glow']),
-  dgn_crypt_candle: r('holy', 'ember', ['candle', { p: 'heart', ...BR }], ['sparkle']),
-  dgn_crypt_name_dead: r('holy', 'gold', ['scroll', { p: 'candle', ...BR }], ['glow']),
-  dgn_crypt_reap: r('shadow', 'silverWhite', ['claw_slash', { p: 'skull', ...BR }], ['motion']),
-  dgn_crypt_pyre_strafe: r('fire', 'ember', ['wing', { p: 'flame', ...BR }], ['motion']),
-  dgn_crypt_dread_bellow: r('shadow', 'bone', ['roar', { p: 'skull', ...BR }], ['arcs']),
-  dgn_crypt_burning_knell: r('fire', 'blood', ['bell', { p: 'flame', ...BR }], ['glow']),
   // Sunken Bastion dungeon-journal icons (src/ui/boss_journal/dungeons/sunken_bastion.ts).
   dgn_bastion_broadside: r('frost', 'sky', ['bolt', { p: 'arrow', ...BR }], ['motion']),
   dgn_bastion_cursed_anchor: r('shadow', 'sky', ['gear', { p: 'tendrils', ...BR }], ['motion']),
@@ -5861,9 +5818,6 @@ export const ITEM_ART_PENDING = new Set<string>([
   ...BRAMBLEHIDE_ART_PENDING_ITEM_IDS,
   ...NYTHRAXIS_GAP_ART_PENDING_ITEM_IDS,
   // All 135 Season 2 armor pieces now ship individual paintings.
-  // The Hollow Crypt rework's per-boss loot: EMPTY since its painted wave
-  // (hollow-crypt-icons-2026-10-03) landed; the seam stays for the next park.
-  ...HOLLOW_CRYPT_ART_PENDING_ITEM_IDS,
   ...BUDDY_ART_PENDING_ITEM_IDS,
   // Player housing furniture: EMPTY since its render batch landed; the seam
   // stays for the next batch.

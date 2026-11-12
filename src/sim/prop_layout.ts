@@ -334,8 +334,8 @@ export interface RuinRingColumn {
 /**
  * The columns of a ruin ring, at the angles and heights BOTH the collider set
  * and the renderer use. A ring may omit columns by index: the Fallen Chapel's
- * nave ring drops the one that stood on the Hollow Crypt's door lane
- * (src/sim/hollow_crypt_entrance.ts).
+ * nave ring drops the one that stood on the door lane of the retired Hollow
+ * Crypt.
  */
 export function ruinRingColumns(ring: {
   readonly x: number;

@@ -28,9 +28,9 @@ export function regrowHead(ctx: SimContext, head: Entity, share: number): void {
   head.regrown = true;
   head.hp = Math.max(1, Math.round(head.maxHp * share));
   // The loot this head rolled on its first death is HELD while it stands, not
-  // dropped (the reassemble recipe, mob/trash_kit/crypt_kit.ts standBodyUp): the
-  // centre head carries the fight's one boss roll, and releaseHeldHeadLoot hands
-  // it back with the corpse when the last head falls.
+  // dropped (trashLife.lootHeld): the centre head carries the fight's one boss
+  // roll, and releaseHeldHeadLoot hands it back with the corpse when the last
+  // head falls.
   head.trashLife ??= {};
   head.trashLife.lootHeld = head.trashLife.lootHeld === true || head.lootable;
   head.lootable = false;

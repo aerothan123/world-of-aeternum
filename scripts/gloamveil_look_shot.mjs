@@ -53,7 +53,7 @@ const SCENARIOS = [
     moments: ['entry', 'standing', 'casting', 'walking'],
   },
   { name: 'low', preset: 1, where: 'shore', moments: ['standing'] },
-  { name: 'dungeon', preset: 4, where: 'hollow_crypt', moments: ['standing'] },
+  { name: 'dungeon', preset: 4, where: 'sunken_bastion', moments: ['standing'] },
   { name: 'overlap', preset: 4, where: 'shore', moments: ['consecration'] },
 ];
 

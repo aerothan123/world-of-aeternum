@@ -140,13 +140,16 @@ describe('ability icons', () => {
     // 586: plus the Sunken Bastion boss guide recipes (dgn_bastion_*).
     // 614: plus the Drowned Temple boss guide recipes (dgn_temple_*).
     // Vampiric Touch, Tithe Bomb and Void Rupture.
-    expect(ids).toHaveLength(626);
+    // 595: minus the 31 Hollow Crypt boss guide recipes (dgn_crypt_*), which
+    // left with the retired dungeon's journal (2026-11-11).
+    expect(ids).toHaveLength(595);
     for (const id of ids) expect(hasExplicitAbilityIcon(id), id).toBe(true);
 
     const identity = ids.map((id) => ({ id, recipe: abilityIconRecipe(id) }));
     const hash = createHash('sha256').update(stableSerialize(identity)).digest('hex');
     // Re-minted over the merged ABILITY_RECIPES literal (v0.45.0 integration: + courier;
-    // then + the five-player dungeon boss guide recipes, plus release ability recipes).
-    expect(hash).toBe('91b046f0c1025ce2aa9666728280d33fef818d263036c8b269a2b4834b52f5fb');
+    // then + the five-player dungeon boss guide recipes, plus release ability recipes;
+    // re-minted again when the Hollow Crypt's dgn_crypt_* recipes were retired).
+    expect(hash).toBe('0b3107d2417949968dc8a626286d9024a33d98f8e95613d425d8fa7036eb238b');
   });
 });

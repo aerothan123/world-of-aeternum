@@ -458,7 +458,7 @@ export interface AttachDef {
   /** The size the prop draws at about its hand, on top of its model's own fit: set by the
    *  swap path from the equipped ITEM (held_item_size_core.ts: a common or uncommon weapon
    *  draws a fifth smaller), or authored on a fixed attach whose rig is not the WOC bodies'
-   *  scale (WOC_CRYPT_PROP_SIZE). Absent is 1. */
+   *  scale. Absent is 1. */
   size?: number;
 }
 
@@ -474,8 +474,8 @@ export interface VisualDef {
    *  tail): the ground anchor is the lowest skinned vertex, so without the
    *  sink the body is lifted until the tail tip touches and the feet float. */
   hover?: number;
-  /** A creature that flies, or waits perched high over the floor (the Hollow
-   *  Crypt's drake and gargoyles): its airborne state is read from its drawn
+  /** A creature that flies, or waits perched high over the floor (the
+   *  Gravewyrm Sanctum's flier, sanctum_boss_looks.ts): its airborne state is read from its drawn
    *  height over the standing surface, as a player's is (a mob's `onGround`
    *  never leaves true), so `jump` plays while it is up (LOOPED, never clamped:
    *  a flight loop or a perch), `fall` while it plunges and `land` on touchdown. */
@@ -665,9 +665,9 @@ export interface VisualDef {
    *  KayKit modular library. The class keeps its fixed `player_<class>` def on
    *  every surface (WOC_BODY_CLASSES in woc_parts_core.ts). */
   wocCharacter?: WocCharacterManifest;
-  /** Boss stance vocabularies keyed by a presentation gesture id (Morthen's
-   *  bell staff and the scythe it unfolds into, src/render/hollow_crypt/
-   *  morthen_fx_core.ts). The gesture, sent through the renderer's
+  /** Boss stance vocabularies keyed by a presentation gesture id (the
+   *  Drowned Temple's and the Gravewyrm Sanctum's bosses, temple_fx_core.ts and
+   *  sanctum_boss_looks.ts). The gesture, sent through the renderer's
    *  triggerAttack seam, swaps the rig's whole ClipMap in place and plays the
    *  stance's `enter` one-shot when it names one; a gesture for the stance
    *  already held does nothing. `clips` should be one of these stances. */

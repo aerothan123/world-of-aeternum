@@ -150,11 +150,6 @@ export const HOSTILE_FACTIONS: Readonly<Record<HostileFactionId, HostileFactionD
       id: 'pale_accord',
       name: 'Pale Accord',
       mobIds: Object.freeze([
-        'morthen',
-        'hollow_acolyte',
-        'crypt_gravecaller_adept',
-        'crypt_gravecaller_necromancer',
-        'candlewright_acolyte',
         'tidebound_acolyte',
         'vael_the_mistcaller',
         'korzul_the_gravewyrm',

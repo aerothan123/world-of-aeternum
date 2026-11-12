@@ -1,5 +1,4 @@
 const SCENES: Readonly<Record<string, string>> = {
-  hollow_crypt: '/textures/loading/hollow-crypt-empty.webp',
   sunken_bastion: '/ui/dungeon-scenes/sunken-bastion.webp',
   drowned_temple: '/ui/dungeon-scenes/drowned-temple.webp',
   gravewyrm_sanctum: '/ui/dungeon-scenes/gravewyrm-sanctum.webp',

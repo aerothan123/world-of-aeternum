@@ -894,14 +894,6 @@ function grow(ctx: SimContext, inst: InstanceSlot, mob: Entity, into: string): v
   if (grown) {
     grown.facing = mob.facing;
     grown.prevFacing = mob.facing;
-    ctx.emit({
-      type: 'spellfx',
-      sourceId: grown.id,
-      targetId: grown.id,
-      school: 'shadow',
-      fx: 'nova',
-      ability: 'crypt_bone_growth',
-    });
   }
   owner.summonedIds = owner.summonedIds.filter((id) => id !== mob.id);
   for (const meta of ctx.players.values()) {
