@@ -28,7 +28,6 @@ import { WATER_LEVEL } from '../../src/sim/world';
 
 /** The EA Must dungeons (ea-plan.md section 2.2). */
 export const EA_DUNGEONS = [
-  'hollow_crypt',
   'sunken_bastion',
   'drowned_temple',
   'gravewyrm_sanctum',

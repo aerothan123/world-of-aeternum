@@ -95,22 +95,12 @@
       "model": "creatures/frog",
       "height": 1.7
     },
-    "bonechill_widow": {
-      "key": "mob_spider",
-      "model": "creatures/spider",
-      "height": 1.4
-    },
     "boneclad_revenant": {
       "key": "skel_warrior",
       "model": "chars/enemies/skeleton_warrior",
       "height": 2.5
     },
     "bound_guardian": {
-      "key": "skel_minion",
-      "model": "creatures/woc_skeleton_minion",
-      "height": 2.5
-    },
-    "bound_soul": {
       "key": "skel_minion",
       "model": "creatures/woc_skeleton_minion",
       "height": 2.5
@@ -185,20 +175,10 @@
       "model": "buddies/sprites",
       "height": 0.4
     },
-    "candlewright_acolyte": {
-      "key": "skel_minion",
-      "model": "creatures/woc_skeleton_minion",
-      "height": 2.5
-    },
     "canopy_weaver": {
       "key": "mob_spider",
       "model": "creatures/spider",
       "height": 1.4
-    },
-    "cantor_ilvane": {
-      "key": "crypt_skel_cantor",
-      "model": "creatures/woc_crypt_cantor_ilvane",
-      "height": 5.964
     },
     "captain_verlan": {
       "key": "skel_minion",
@@ -244,76 +224,6 @@
       "key": "mob_glub",
       "model": "creatures/glubevolved",
       "height": 1.4
-    },
-    "crypt_bone_brute": {
-      "key": "crypt_skel_brute",
-      "model": "creatures/woc_crypt_bone_brute",
-      "height": 4.6
-    },
-    "crypt_bone_minion": {
-      "key": "crypt_skel_minion",
-      "model": "creatures/woc_skeleton_minion",
-      "height": 3.5
-    },
-    "crypt_bone_pile": {
-      "key": "crypt_skel_bone_pile",
-      "model": "chars/enemies/skeleton_warrior",
-      "height": 1.4
-    },
-    "crypt_carrion_crow": {
-      "key": "mob_crypt_crow",
-      "model": "creatures/crypt_crow",
-      "height": 1.7
-    },
-    "crypt_chapel_gargoyle": {
-      "key": "mob_crypt_gargoyle",
-      "model": "creatures/woc_crypt_gargoyle",
-      "height": 5.81
-    },
-    "crypt_crow_caller": {
-      "key": "player_rogue",
-      "model": "chars/players/woc/base_male",
-      "height": 2.8600000000000003
-    },
-    "crypt_gravecaller_adept": {
-      "key": "crypt_skel_adept",
-      "model": "creatures/woc_crypt_gravecaller_adept",
-      "height": 3.2
-    },
-    "crypt_gravecaller_necromancer": {
-      "key": "crypt_skel_necromancer",
-      "model": "creatures/woc_crypt_gravecaller_necromancer",
-      "height": 3.3
-    },
-    "crypt_knellwyrm": {
-      "key": "mob_crypt_knellwyrm",
-      "model": "creatures/woc_crypt_knellwyrm",
-      "height": 15.07
-    },
-    "crypt_ossuary_cutthroat": {
-      "key": "crypt_skel_cutthroat",
-      "model": "creatures/woc_crypt_ossuary_cutthroat",
-      "height": 3.2
-    },
-    "crypt_ossuary_drake": {
-      "key": "mob_crypt_drake",
-      "model": "creatures/woc_crypt_ossuary_drake",
-      "height": 13.63
-    },
-    "crypt_ossuary_warrior": {
-      "key": "crypt_skel_warrior",
-      "model": "creatures/woc_crypt_ossuary_warrior",
-      "height": 3.3
-    },
-    "crypt_remembrance_candle": {
-      "key": "crypt_rite_candle_body",
-      "model": "chars/enemies/skeleton_warrior",
-      "height": 3.6
-    },
-    "crypt_shambler": {
-      "key": "skel_rogue",
-      "model": "chars/enemies/skeleton_rogue",
-      "height": 2.5
     },
     "culvert_rat": {
       "key": "mob_kobold",
@@ -835,21 +745,6 @@
       "model": "creatures/hoard_boss_mushroom",
       "height": 2.2
     },
-    "hollow_acolyte": {
-      "key": "skel_mage",
-      "model": "chars/enemies/skeleton_mage",
-      "height": 2.5
-    },
-    "hollow_chorister": {
-      "key": "crypt_skel_chorister",
-      "model": "creatures/woc_crypt_hollow_chorister",
-      "height": 3.3
-    },
-    "hollow_gravedigger": {
-      "key": "skel_minion",
-      "model": "creatures/woc_skeleton_minion",
-      "height": 2.5
-    },
     "howdah_hexcaller": {
       "key": "wildheart_howdah_hexcaller",
       "model": "creatures/wildheart_hexcaller",
@@ -939,11 +834,6 @@
       "key": "mob_ghost",
       "model": "creatures/ghost",
       "height": 1.6
-    },
-    "marrow_restless_bones": {
-      "key": "skel_minion",
-      "model": "creatures/woc_skeleton_minion",
-      "height": 2.5
     },
     "marrowlord_varkas": {
       "key": "skel_warrior",
@@ -1049,11 +939,6 @@
       "key": "mob_alpaca",
       "model": "creatures/alpaca",
       "height": 1.7
-    },
-    "morthen": {
-      "key": "crypt_morthen_lich",
-      "model": "creatures/woc_crypt_morthen",
-      "height": 6.668999999999999
     },
     "mudfin_murloc": {
       "key": "mob_murloc",
@@ -1184,11 +1069,6 @@
       "key": "mob_treant",
       "model": "creatures/yeti",
       "height": 2.6
-    },
-    "ossuary_sentinel": {
-      "key": "skel_minion",
-      "model": "creatures/woc_skeleton_minion",
-      "height": 2.5
     },
     "pale_accord_delver": {
       "key": "player_warlock",
@@ -1430,11 +1310,6 @@
       "model": "creatures/demonalt",
       "height": 2.1
     },
-    "rime_egg_sac": {
-      "key": "crypt_rime_egg_sac",
-      "model": "creatures/woc_crypt_rime_egg_sac",
-      "height": 2.2
-    },
     "rime_elemental": {
       "key": "mob_elemental",
       "model": "creatures/golelingevolved",
@@ -1444,21 +1319,6 @@
       "key": "sanctum_rime_whelp",
       "model": "creatures/sanctum_rime_whelp",
       "height": 2.25
-    },
-    "rimeweb": {
-      "key": "crypt_lady_bonechill",
-      "model": "creatures/woc_crypt_lady_bonechill",
-      "height": 6.749
-    },
-    "rimeweb_hatchling": {
-      "key": "mob_spider",
-      "model": "creatures/spider",
-      "height": 1.4
-    },
-    "rimeweb_spinner": {
-      "key": "mob_spider",
-      "model": "creatures/spider",
-      "height": 1.4
     },
     "saltdown_ram": {
       "key": "mob_alpaca",
@@ -1499,11 +1359,6 @@
       "key": "mob_dragonkin",
       "model": "creatures/dragonevolved",
       "height": 2.4
-    },
-    "sexton_marrow": {
-      "key": "crypt_skel_sexton",
-      "model": "creatures/woc_crypt_sexton_marrow",
-      "height": 5.975
     },
     "shackled_prisoner": {
       "key": "bastion_prisoner",
