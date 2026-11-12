@@ -4,6 +4,7 @@
 // tier, cosmetic layers that shed on the low tier, and a warning pulse only
 // over the bar's last stretch. Presentation only: the fill IS the sim's bar.
 import { describe, expect, it } from 'vitest';
+import { templeTelegraphSpecs } from '../src/render/drowned_temple/temple_fx_core';
 import {
   TELEGRAPH_THREAT_COLORS,
   TELEGRAPH_WARN_FROM,
@@ -11,8 +12,9 @@ import {
   telegraphLook,
   telegraphOutline,
 } from '../src/render/floor_telegraph/telegraph_look_core';
-import { cryptTelegraphSpecs } from '../src/render/hollow_crypt/crypt_trash_fx_core';
+import { sanctumTelegraphSpecs } from '../src/render/gravewyrm_sanctum_fx/sanctum_fx_core';
 import { bastionTelegraphSpecs } from '../src/render/sunken_bastion/bastion_fx_core';
+import { basinTelegraphSpecs } from '../src/render/wildheart_basin/basin_fx_core';
 
 const PALETTE = new Set<number>(Object.values(TELEGRAPH_THREAT_COLORS));
 
@@ -75,8 +77,13 @@ describe('the floor telegraph look', () => {
 
 describe('every dungeon telegraph speaks the one threat palette', () => {
   const all = [
-    ...Object.entries(cryptTelegraphSpecs()).map(([id, s]) => ({ id, ...s })),
+    // The Hollow Crypt's specs left with the dungeon (2026-11-11); every
+    // remaining dungeon's telegraph table joins instead, so the palette pin
+    // still spans more than one dungeon.
     ...Object.entries(bastionTelegraphSpecs()).map(([id, s]) => ({ id, ...s })),
+    ...Object.entries(templeTelegraphSpecs()).map(([id, s]) => ({ id, ...s })),
+    ...Object.entries(sanctumTelegraphSpecs()).map(([id, s]) => ({ id, ...s })),
+    ...Object.entries(basinTelegraphSpecs()).map(([id, s]) => ({ id, ...s })),
   ];
 
   it('colours every cone, ring, lane and glyph by its threat', () => {

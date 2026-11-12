@@ -1,5 +1,6 @@
 // The target reticle is a decal on the ground under the unit. Under a unit on
-// the wing (the Hollow Crypt's Ossuary Drake flies its loop 22 yd up) it marked
+// the wing (the retired Hollow Crypt's Ossuary Drake flew its loop 22 yd up;
+// every flying dungeon patrol is now read off the live tables) it marked
 // a spot on the floor where nothing stood, and read as a body a warrior could
 // Charge. It hides until the unit comes down.
 
@@ -9,7 +10,7 @@ import {
   reticleShownUnder,
   SELECTION_RING_AIRBORNE,
 } from '../src/render/selection_ring';
-import { HOLLOW_CRYPT_SPAWNS } from '../src/sim/content/hollow_crypt';
+import { DUNGEONS } from '../src/sim/data';
 import { FLIER_OUT_OF_REACH } from '../src/sim/mob/patrol';
 
 describe('selection reticle under an airborne unit', () => {
@@ -25,9 +26,12 @@ describe('selection reticle under an airborne unit', () => {
 
   it('is not drawn under a unit on the wing', () => {
     expect(reticleGrounded(10 + SELECTION_RING_AIRBORNE + 0.01, 10)).toBe(false);
-    // Every flying patrol of the Hollow Crypt flies well over the cut.
-    const fliers = HOLLOW_CRYPT_SPAWNS.filter((s) => s.patrol?.altitude !== undefined);
-    expect(fliers.map((s) => s.mobId)).toContain('crypt_ossuary_drake');
+    // Every flying patrol of every dungeon flies well over the cut (the
+    // Hollow Crypt's drake, the case this was written for, was retired with
+    // the dungeon; the loop below is vacuous while no dungeon has a flier).
+    const fliers = Object.values(DUNGEONS).flatMap((d) =>
+      d.spawns.filter((s) => s.patrol?.altitude !== undefined),
+    );
     for (const s of fliers) {
       const altitude = s.patrol?.altitude ?? 0;
       expect(altitude, s.mobId).toBeGreaterThan(SELECTION_RING_AIRBORNE + 2);

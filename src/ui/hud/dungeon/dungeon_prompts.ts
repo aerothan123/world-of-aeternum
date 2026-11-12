@@ -6,10 +6,7 @@
 // Breath, the Prey, the Hunting Spear, the Stalk, the pollen, the sun glyphs,
 // the Pack Bond readout) and the Gravewyrm Sanctum's
 // (sanctum_alert_view.ts on the same family: the chains, the meltwater, the
-// lake) and the Hollow Crypt's (crypt_alert_view.ts on the same family: the
-// grave mark, the Frozen Embrace, the Bride's Lament, the Open Grave, the
-// Burning Knell's half, Grasp of the Grave, the Reap, the Toll and Harmony
-// readouts, the Rite's candles and the Bound Souls) and the Drowned Temple's
+// lake) and the Drowned Temple's
 // (temple_alert_view.ts on the same family: Choirmother Selthe's Score, its
 // melody, its answer and her broken voice), plus the trash engine's
 // use prompt (kit_use_prompt_view.ts on the same family: a Soul Brazier to kick
@@ -18,21 +15,20 @@
 // each view from the frame's inputs and hands it to that prompt's painter. The
 // frame hands it the world (its entities and roster version, and the target
 // command a use press needs): the prompts look bodies up by id, and the
-// Sanctum, Crypt, Wildheart and Temple alerts and the use prompt keep their
-// scenes off the roster (sanctum_alert_scene_core.ts, crypt_alert_scene_core.ts,
+// Sanctum, Wildheart and Temple alerts and the use prompt keep their
+// scenes off the roster (sanctum_alert_scene_core.ts,
 // wildheart_alert_scene_core.ts, temple_alert_scene_core.ts, KitUseSceneScan).
 //
 // The prompts share one slot over the action bar, so the use prompt gives way
 // to every encounter prompt above it (a strike to dodge or a cage to break
-// outranks a brazier), except the Crypt alert's SOFT readouts (the Rite's
-// candle count, a Bound Soul on its way) and the Wildheart alert's SOFT kinds
-// (a Hunting Spear to pull), which give the slot to the use prompt when it
-// has a body to offer (the relight prompt at a candle, the pull at a spear);
+// outranks a brazier), except the Wildheart alert's SOFT kinds (a Hunting
+// Spear to pull), which give the slot to the use prompt when it has a body to
+// offer (the pull at a spear);
 // the interact press itself still kicks the brazier
 // whatever the slot shows (src/game/nearby_interaction_core.ts).
 //
 // The player's "Dungeon mechanic hints" setting hides the ADVISORY alerts (the
-// five encounter alert family members) and nothing else; a hidden alert is not
+// four encounter alert family members) and nothing else; a hidden alert is not
 // built and never holds the slot. Which prompt the setting governs and who
 // holds the slot are both decided in dungeon_prompt_policy_core.ts.
 
@@ -135,9 +131,7 @@ export class DungeonPrompts {
     bastion: false,
     wildheart: false,
     sanctum: false,
-    crypt: false,
     temple: false,
-    cryptSoft: false,
     wildheartSoft: false,
   };
 
@@ -242,17 +236,14 @@ export class DungeonPrompts {
       : HINT_HIDDEN;
     this.temple.paint(temple);
     // The use prompt last: it yields the shared slot to any prompt showing
-    // above (a soft Crypt readout yields to it instead).
+    // above (a soft Wildheart alert yields to it instead).
     const slot = this.slot;
     slot.cage = cage.visible;
     slot.chain = chain.visible;
     slot.bastion = bastion.visible;
     slot.wildheart = wildheart.visible;
     slot.sanctum = sanctum.visible;
-    // The Hollow Crypt alert left with the dungeon (2026-11-11).
-    slot.crypt = false;
     slot.temple = temple.visible;
-    slot.cryptSoft = false;
     slot.wildheartSoft = wildheartSoft;
     const use = usePromptYields(slot)
       ? null

@@ -4,7 +4,8 @@
 // shared slot (src/ui/hud/dungeon/dungeon_prompt_policy_core.ts), and the composer
 // that consumes it (DungeonPrompts). The setting itself, its options row and
 // the graphics-preset independence pin live in
-// tests/dungeon_hints_setting.test.ts.
+// tests/dungeon_hints_setting.test.ts. The Hollow Crypt alert, its soft
+// readout and their cases left with the dungeon (2026-11-11).
 
 import { afterEach, describe, expect, it } from 'vitest';
 import { GRAVEWYRM_SANCTUM_MOBS } from '../src/sim/content/gravewyrm_sanctum';
@@ -15,11 +16,6 @@ import {
   SELTHE_SCORE,
   SELTHE_SCORE_WARD,
 } from '../src/sim/encounters/drowned_temple/ids';
-import {
-  MORTHEN_CANDLE_ID,
-  MORTHEN_GRASP_TEMPLATE,
-  MORTHEN_GRAVE_CHILL,
-} from '../src/sim/encounters/hollow_crypt';
 import {
   OLEN_SENTENCED,
   OSSICK_SHACKLED,
@@ -53,7 +49,6 @@ const ALL_IDS: DungeonPromptId[] = [
   'bastion',
   'wildheart',
   'sanctum',
-  'crypt',
   'temple',
   'kitUse',
 ];
@@ -61,7 +56,7 @@ const ALL_IDS: DungeonPromptId[] = [
 // ---- the pure policy --------------------------------------------------------------
 
 describe('dungeon prompt policy: what the hints setting governs', () => {
-  it('classifies every prompt, the five encounter alerts advisory and no other', () => {
+  it('classifies every prompt, the four encounter alerts advisory and no other', () => {
     // Literal, so reclassifying a prompt is a deliberate edit here too.
     expect(DUNGEON_PROMPT_ADVISORY).toEqual({
       cage: false,
@@ -69,7 +64,6 @@ describe('dungeon prompt policy: what the hints setting governs', () => {
       bastion: true,
       wildheart: true,
       sanctum: true,
-      crypt: true,
       temple: true,
       kitUse: false,
     });
@@ -84,7 +78,6 @@ describe('dungeon prompt policy: what the hints setting governs', () => {
     expect(dungeonPromptEnabled('bastion', false)).toBe(false);
     expect(dungeonPromptEnabled('wildheart', false)).toBe(false);
     expect(dungeonPromptEnabled('sanctum', false)).toBe(false);
-    expect(dungeonPromptEnabled('crypt', false)).toBe(false);
     expect(dungeonPromptEnabled('temple', false)).toBe(false);
     // The prompts a player presses or steers by are never governed by it.
     expect(dungeonPromptEnabled('cage', false)).toBe(true);
@@ -100,9 +93,7 @@ describe('dungeon prompt policy: the shared slot', () => {
     bastion: false,
     wildheart: false,
     sanctum: false,
-    crypt: false,
     temple: false,
-    cryptSoft: false,
     wildheartSoft: false,
   };
 
@@ -111,28 +102,8 @@ describe('dungeon prompt policy: the shared slot', () => {
   });
 
   it('any prompt showing above holds the slot', () => {
-    for (const id of [
-      'cage',
-      'chain',
-      'bastion',
-      'wildheart',
-      'sanctum',
-      'crypt',
-      'temple',
-    ] as const) {
-      expect(usePromptYields({ ...none, [id]: true }), id).toBe(true);
-    }
-  });
-
-  it('a soft Crypt readout does not hold it, alone', () => {
-    expect(usePromptYields({ ...none, crypt: true, cryptSoft: true })).toBe(false);
-    // The soft flag means nothing without a showing Crypt alert.
-    expect(usePromptYields({ ...none, cryptSoft: true })).toBe(false);
-  });
-
-  it('a soft Crypt readout beside another showing prompt changes nothing', () => {
     for (const id of ['cage', 'chain', 'bastion', 'wildheart', 'sanctum', 'temple'] as const) {
-      expect(usePromptYields({ ...none, crypt: true, cryptSoft: true, [id]: true }), id).toBe(true);
+      expect(usePromptYields({ ...none, [id]: true }), id).toBe(true);
     }
   });
 
@@ -140,7 +111,7 @@ describe('dungeon prompt policy: the shared slot', () => {
     expect(usePromptYields({ ...none, wildheart: true, wildheartSoft: true })).toBe(false);
     // The soft flag means nothing without a showing Wildheart alert.
     expect(usePromptYields({ ...none, wildheartSoft: true })).toBe(false);
-    for (const id of ['cage', 'chain', 'bastion', 'sanctum', 'crypt', 'temple'] as const) {
+    for (const id of ['cage', 'chain', 'bastion', 'sanctum', 'temple'] as const) {
       const state = { ...none, wildheart: true, wildheartSoft: true, [id]: true };
       expect(usePromptYields(state), id).toBe(true);
     }
@@ -196,16 +167,6 @@ function rig() {
 }
 
 const brazier = () => createMob(50, BRAZIER, 18, { x: 3, y: 0, z: 0 });
-const candle = () => createMob(51, MOBS[MORTHEN_CANDLE_ID], 10, { x: 3, y: 0, z: 0 });
-const graspRing = () =>
-  ({
-    id: 60,
-    kind: 'object',
-    templateId: MORTHEN_GRASP_TEMPLATE,
-    pos: { x: 0, y: 0, z: 0 },
-    scale: 4,
-    auras: [],
-  }) as unknown as Entity;
 
 /** Zulgar's Hunting Spear standing 3 yd off (inside its 4 yd pull) or far off. */
 const spear = (x = 3) => createMob(52, MOBS[HUNTING_SPEAR_ID], 20, { x, y: 0, z: 0 });
@@ -250,7 +211,6 @@ const moonTile = () =>
 const SENTENCED: Auras = [{ id: OLEN_SENTENCED, remaining: 4, duration: 8 }];
 const PREY: Auras = [{ id: ZULGAR_PREY, remaining: 4, duration: 8, value2: 1 }];
 const BRANDED: Auras = [{ id: SANCTUM_BRANDED, remaining: 6, duration: 12 }];
-const RITE: Auras = [{ id: MORTHEN_GRAVE_CHILL, value: 1, value2: 3, remaining: 2, duration: 2 }];
 
 describe('DungeonPrompts: the hints setting hides the advisory alerts only', () => {
   afterEach(() => {
@@ -266,13 +226,6 @@ describe('DungeonPrompts: the hints setting hides the advisory alerts only', () 
     { name: "the Sunken Bastion's crown alert", id: 'bastion-alert', auras: SENTENCED },
     { name: "the Wildheart Basin's alert", id: 'wildheart-alert', auras: PREY },
     { name: "the Gravewyrm Sanctum's alert", id: 'sanctum-alert', auras: BRANDED },
-    {
-      name: "the Hollow Crypt's alert (a strike to leave)",
-      id: 'crypt-alert',
-      auras: [],
-      setup: (r) => r.add(graspRing()),
-    },
-    { name: "the Hollow Crypt's soft readout (the Rite)", id: 'crypt-alert', auras: RITE },
     {
       name: "the Drowned Temple's alert (Selthe's Score)",
       id: 'temple-alert',
@@ -389,31 +342,6 @@ describe('DungeonPrompts: the shared slot under the hints setting', () => {
     expect(r.calls).toEqual(['target:50', 'interact']);
     r.prompts.dispose();
     bare.prompts.dispose();
-  });
-
-  it('hints off: a hidden hard Crypt alert frees the slot for the relight prompt', () => {
-    const r = rig();
-    r.add(candle());
-    r.add(graspRing());
-    r.prompts.paint(r.frame(true));
-    expect(r.shown('crypt-alert')).toBe(true);
-    expect(r.shown('kit-use-prompt')).toBe(false);
-    r.prompts.paint(r.frame(false));
-    expect(r.shown('crypt-alert')).toBe(false);
-    expect(r.shown('kit-use-prompt')).toBe(true);
-    r.prompts.dispose();
-  });
-
-  it('hints off: the soft Crypt readout stays hidden with or without a candle in reach', () => {
-    const r = rig();
-    r.prompts.paint(r.frame(false, RITE));
-    expect(r.shown('crypt-alert')).toBe(false);
-    expect(r.shown('kit-use-prompt')).toBe(false);
-    r.add(candle());
-    r.prompts.paint(r.frame(false, RITE));
-    expect(r.shown('crypt-alert')).toBe(false);
-    expect(r.shown('kit-use-prompt')).toBe(true);
-    r.prompts.dispose();
   });
 
   it('hints off: the use prompt still yields to the cage and to the chain', () => {

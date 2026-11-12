@@ -6,19 +6,10 @@
 // live camp wolf, which keep the full built-in world via makeFullWorld().
 
 import { describe, expect, it } from 'vitest';
-import {
-  CRYPT_SPAWNS,
-  DUNGEON_X_THRESHOLD,
-  DUNGEONS,
-  dungeonAt,
-  instanceOrigin,
-  MOBS,
-} from '../src/sim/data';
+import { DUNGEON_X_THRESHOLD, DUNGEONS, dungeonAt, instanceOrigin, MOBS } from '../src/sim/data';
 import { EASTBROOK_NPC_PLACEMENTS_BY_ID } from '../src/sim/eastbrook_layout';
-import { cryptDevTrigger } from '../src/sim/encounters/hollow_crypt';
 import { createMob } from '../src/sim/entity';
-import { claimedInstanceAt } from '../src/sim/instances/dungeons';
-import { type Party, Sim } from '../src/sim/sim';
+import type { Party, Sim } from '../src/sim/sim';
 import {
   dist2d,
   type Entity,
@@ -1038,7 +1029,11 @@ describe('trading', () => {
   });
 });
 
-describe('the Hollow Crypt', () => {
+// Instance claiming is a shared mechanic, so it moved off the retired Hollow
+// Crypt (2026-11-11) onto the Sunken Bastion with the same assertions. The
+// crypt-only spawn-set / Shadow Pulse case and Aldric's crypt quest chain
+// went with the dungeon.
+describe('dungeon instance claiming', () => {
   it('party members enter the same instance; strangers get their own', () => {
     const sim = makeWorld();
     const a = sim.addPlayer('warrior', 'Aleph');
@@ -1046,10 +1041,10 @@ describe('the Hollow Crypt', () => {
     const c = sim.addPlayer('rogue', 'Gimel');
     sim.partyInvite(b, a);
     sim.partyAccept(b);
-    for (const pid of [a, b, c]) teleport(sim, pid, 80, 88);
-    sim.enterCrypt(a);
-    sim.enterCrypt(b);
-    sim.enterCrypt(c);
+    for (const pid of [a, b, c]) teleport(sim, pid, 45, 511);
+    sim.enterDungeon('sunken_bastion', a);
+    sim.enterDungeon('sunken_bastion', b);
+    sim.enterDungeon('sunken_bastion', c);
     const ea = sim.entities.get(a)!;
     const eb = sim.entities.get(b)!;
     const ec = sim.entities.get(c)!;
@@ -1057,70 +1052,16 @@ describe('the Hollow Crypt', () => {
     expect(sim.instanceSlotAt(ec.pos)).not.toBe(sim.instanceSlotAt(ea.pos));
     // elites spawned in each claimed instance
     const slotA = sim.instanceSlotAt(ea.pos)!;
-    const originA = instanceOrigin(0, slotA);
-    const bossA = nearestMob(sim, 'morthen', originA);
+    const originA = instanceOrigin(DUNGEONS.sunken_bastion.index, slotA);
+    const bossA = nearestMob(sim, 'vael_the_mistcaller', originA);
     expect(bossA).toBeTruthy();
     expect(Math.abs(bossA.pos.x - originA.x)).toBeLessThan(50);
     expect(sim.instances.filter((i) => i.partyKey !== null).length).toBe(2);
-    // exit returns to the chapel door
-    sim.leaveCrypt(a);
+    // exit returns to the overworld door
+    sim.leaveDungeon(a);
     expect(ea.pos.x).toBeLessThan(200);
   });
-
-  it('crypt has the full spawn set and Morthen pulses in combat', () => {
-    const sim = makeWorld();
-    const a = sim.addPlayer('warrior', 'Aleph');
-    teleport(sim, a, 80, 88);
-    sim.enterCrypt(a);
-    const slot = sim.instanceSlotAt(mustEntity(sim, a).pos) ?? 0;
-    const origin = instanceOrigin(0, slot);
-    const cryptMobs = [...sim.entities.values()].filter(
-      (e) =>
-        e.kind === 'mob' &&
-        Math.abs(e.pos.x - origin.x) < 120 &&
-        Math.abs(e.pos.z - origin.z) < 250,
-    );
-    expect(cryptMobs.length).toBe(CRYPT_SPAWNS.length);
-    // walk the player onto the boss: pulse should hit within ~12s
-    const boss = nearestMob(sim, 'morthen', origin);
-    // Skip his entrance at the Rite Ring (encounters/hollow_crypt): this pins
-    // the pulse in combat, not the cinematic.
-    const claim = claimedInstanceAt(sim.ctx, mustEntity(sim, a).pos);
-    if (claim) cryptDevTrigger(sim.ctx, claim, 'skip');
-    const ea = sim.entities.get(a)!;
-    sim.setPlayerLevel(10, a);
-    ea.hp = ea.maxHp;
-    teleport(sim, a, boss.pos.x + 2, boss.pos.z);
-    sim.targetEntity(boss.id, a);
-    face(sim, a, boss.id);
-    sim.startAutoAttack(a);
-    let pulsed = false;
-    for (let i = 0; i < 20 * 25 && !pulsed; i++) {
-      face(sim, a, boss.id);
-      const events = sim.tick();
-      if (
-        events.some((e) => e.type === 'damage' && e.ability === 'Shadow Pulse' && e.targetId === a)
-      )
-        pulsed = true;
-      if (ea.dead) break;
-    }
-    expect(pulsed).toBe(true);
-  });
-
-  it('the storyline chain gates the dungeon quest', () => {
-    const sim = new Sim({ seed: 42, playerClass: 'warrior' });
-    expect(sim.questState('q_whispers')).toBe('unavailable'); // needs q_bones
-    expect(sim.questState('q_rite')).toBe('unavailable');
-    expect(sim.questState('q_hollow')).toBe('unavailable');
-    sim.questsDone.add('q_bones');
-    expect(sim.questState('q_whispers')).toBe('available');
-    sim.questsDone.add('q_whispers');
-    expect(sim.questState('q_rite')).toBe('available');
-    sim.questsDone.add('q_rite');
-    expect(sim.questState('q_hollow')).toBe('available');
-  });
 });
-
 describe('the new dungeons', () => {
   it('the Sunken Bastion and Gravewyrm Sanctum are enterable with full spawn sets', () => {
     const sim = makeWorld();
@@ -1195,12 +1136,15 @@ describe('dungeon difficulty slash command', () => {
   it('routes /dungeon reset to the owned-instance reset', () => {
     const sim = makeWorld();
     const p = sim.addPlayer('warrior', 'Solo');
-    sim.enterDungeon('hollow_crypt', p);
+    // Any five-man works; the Sunken Bastion replaced the retired Hollow Crypt.
+    sim.enterDungeon('sunken_bastion', p);
     sim.leaveDungeon(p);
     // Seed a divergent preference so this tests explicit slash-command routing,
     // independently of the automatic switch covered in difficulty_selection.test.ts.
     sim.players.get(p)!.dungeonDifficulty = 'heroic';
-    const claim = sim.instances.find((inst) => inst.dungeonId === 'hollow_crypt' && inst.partyKey);
+    const claim = sim.instances.find(
+      (inst) => inst.dungeonId === 'sunken_bastion' && inst.partyKey,
+    );
     expect(claim?.difficulty).toBe('normal');
 
     sim.drainEvents();

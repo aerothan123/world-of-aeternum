@@ -18,7 +18,6 @@ import {
   instanceSlotForZ,
   MOBS,
 } from '../src/sim/data';
-import { finishRite } from '../src/sim/encounters/hollow_crypt/morthen_rise';
 import {
   IGNIVAR_APPROACH_GUARDIAN_IDS,
   IGNIVAR_CRUCIBLE_WARDEN_ID,
@@ -195,11 +194,11 @@ describe('instance combat hold: hate tables are slot-scoped, never distance-scop
   });
 
   it('holds a party member anywhere in the room for an instance boss, and nobody outside it', () => {
-    const { sim, instance, pid, player, mobs } = claim('hollow_crypt');
-    const boss = expectDefined(mobs.find((m) => MOBS[m.templateId]?.boss));
-    // Morthen waits entombed for his entrance at the Rite Ring
-    // (encounters/hollow_crypt/morthen_rise.ts); skip it so he fights.
-    finishRite(sim.ctx, instance, boss);
+    // Moved off the retired Hollow Crypt's Morthen (2026-11-11) onto
+    // Knight-Commander Olen, a boss with no scripted entrance to skip.
+    const { sim, instance, pid, player, mobs } = claim('sunken_bastion');
+    const boss = expectDefined(mobs.find((m) => m.templateId === 'knight_commander_olen'));
+    expect(MOBS[boss.templateId]?.boss).toBe(true);
     const passivePid = sim.addPlayer('priest', 'Passive');
     sim.setPlayerLevel(30, passivePid);
     sim.partyInvite(passivePid, pid);

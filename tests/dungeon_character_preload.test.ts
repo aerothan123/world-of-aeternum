@@ -26,13 +26,15 @@ it('holds iOS dungeon arrival for its bodies and retries a failed download', asy
   const { dungeonAndBuddyBodyUrls, dungeonCharacterBodyUrls } = await import(
     '../src/render/characters/rift_body_stream_core'
   );
-  pending.url = dungeonCharacterBodyUrls('hollow_crypt').find((url) =>
+  // Any streamed dungeon works; the Sunken Bastion replaced the retired
+  // Hollow Crypt (2026-11-11) as the fixture.
+  pending.url = dungeonCharacterBodyUrls('sunken_bastion').find((url) =>
     dungeonAndBuddyBodyUrls().has(url),
   )!;
   expect(pending.url).toBeTruthy();
   const { Renderer } = await import('../src/render/renderer');
   const { DUNGEON_LIST, instanceOrigin } = await import('../src/sim/data');
-  const dungeon = DUNGEON_LIST.find((entry) => entry.interior === 'hollow_crypt')!;
+  const dungeon = DUNGEON_LIST.find((entry) => entry.interior === 'sunken_bastion')!;
   const origin = instanceOrigin(dungeon.index, 0);
   const renderer = { zoneIdAt: () => null } as unknown as InstanceType<typeof Renderer>;
   const ready = () => Renderer.prototype.isZoneReadyAt.call(renderer, origin.x, origin.z);

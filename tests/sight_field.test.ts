@@ -34,15 +34,16 @@ import {
 } from '../src/render/trash_engine_fx/sight_field_core';
 import { NOVA_RAYS } from '../src/render/trash_engine_fx/trash_engine_fx_core';
 import { DUNGEONS, instanceOrigin, MOBS } from '../src/sim/data';
-import { ILVANE_TUNING } from '../src/sim/encounters/hollow_crypt/ilvane_ids';
 import { groundHeight } from '../src/sim/world';
 import { WORLD_SEED } from '../src/sim/world_seed';
 
 describe('sight field core: a dense polar grid', () => {
   it('keeps a station under a yard apart on every shipped sight field', () => {
-    const adept = MOBS.crypt_gravecaller_adept.trashKit?.nova?.radius ?? 0;
-    expect(adept).toBe(30);
-    for (const radius of [adept, ILVANE_TUNING.dirgeRadius]) {
+    // The two shipped fields (the Gravecaller Adept's 30 yd volley and
+    // Cantor Ilvane's Dirge) left with the Hollow Crypt (2026-11-11); the core
+    // is pinned at the volley's radius and the widest the shader grid takes.
+    const adept = 30;
+    for (const radius of [adept, SIGHT_MAX_STATIONS * SIGHT_STATION_YARDS]) {
       const k = sightStations(radius);
       expect(k).toBeLessThanOrEqual(SIGHT_MAX_STATIONS);
       expect(radius / k).toBeLessThanOrEqual(SIGHT_STATION_YARDS + 1e-9);
@@ -188,13 +189,14 @@ describe('sight field surface: draped on the real floor', () => {
     );
   });
 
-  it('follows the Chapel Stair down into the cloister vertex for vertex (the adepts home)', () => {
-    // The c1 adept at the stair foot (instance-local 0, -54): its volley's
-    // field reaches up the Chapel Stair and over the cloister's lips.
-    const o = instanceOrigin(DUNGEONS.hollow_crypt.index, 0);
+  it('follows the Sea Gate landing down onto the flats vertex for vertex', () => {
+    // Moved off the retired Hollow Crypt's Chapel Stair (2026-11-11): a field
+    // at the foot of the Sunken Bastion's landing climbs the landing and
+    // spreads over the flats below.
+    const o = instanceOrigin(DUNGEONS.sunken_bastion.index, 0);
     const ground = (x: number, z: number) => groundHeight(x, z, WORLD_SEED);
-    const x = o.x;
-    const z = o.z - 54;
+    const x = o.x - 10;
+    const z = o.z - 205;
     const y = ground(x, z);
     const radius = 30;
     const s = new SightFieldSurface(NOVA_RAYS, sightStations(radius));

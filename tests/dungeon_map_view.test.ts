@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
 import { GRAVEWYRM_SANCTUM_FIELD } from '../src/sim/content/gravewyrm_sanctum_layout';
-import { HOLLOW_CRYPT_FIELD } from '../src/sim/content/hollow_crypt_layout';
 import { SUNKEN_BASTION_FIELD } from '../src/sim/content/sunken_bastion_layout';
 import { DUNGEONS, instanceOrigin } from '../src/sim/data';
 import { CRYPT_LAYOUT } from '../src/sim/dungeon_layout';
@@ -69,12 +68,14 @@ function worldIn(
   } as unknown as IWorld;
 }
 
+// The generic five-man fixture is the Sunken Bastion: the Hollow Crypt that
+// used to carry these cases was retired (2026-11-11).
 describe('generic dungeon map view', () => {
   it('uses the live entity-entry radius rather than the wider retention edge', () => {
     expect(PLAYER_INTEREST_RADIUS).toBe(90);
   });
 
-  it.each(['hollow_crypt', IGNIVAR_MOLTEN_ASSEMBLY_ID])(
+  it.each(['sunken_bastion', IGNIVAR_MOLTEN_ASSEMBLY_ID])(
     'routes %s to the interior map on both HUD surfaces',
     (dungeonId) => {
       const world = worldIn(dungeonId);
@@ -97,7 +98,6 @@ describe('generic dungeon map view', () => {
   });
 
   it.each([
-    ['hollow_crypt', HOLLOW_CRYPT_FIELD],
     ['sunken_bastion', SUNKEN_BASTION_FIELD],
     ['gravewyrm_sanctum', GRAVEWYRM_SANCTUM_FIELD],
   ] as const)('draws the %s as its painted open-air field plate, not a fallback box', (id, def) => {
@@ -125,8 +125,8 @@ describe('generic dungeon map view', () => {
   });
 
   it("draws a party member's dungeon from OUTSIDE via the anchor: party marker, no player arrow", () => {
-    const origin = instanceOrigin(DUNGEONS.hollow_crypt.index, 2);
-    const outside = worldIn('hollow_crypt') as unknown as {
+    const origin = instanceOrigin(DUNGEONS.sunken_bastion.index, 2);
+    const outside = worldIn('sunken_bastion') as unknown as {
       player: { pos: { x: number; y: number; z: number } };
       partyInfo: unknown;
     };
@@ -139,11 +139,11 @@ describe('generic dungeon map view', () => {
     expect(buildDungeonWorldMapModel(world, 560, 34)).toBeNull();
     const model = buildDungeonWorldMapModel(world, 560, 34, { x: origin.x + 3, z: origin.z + 2 });
     expect(model).not.toBeNull();
-    expect(model?.dungeonId).toBe('hollow_crypt');
+    expect(model?.dungeonId).toBe('sunken_bastion');
     expect(model?.markers.map((m) => m.kind)).toEqual(['party']);
     // A member in ANOTHER copy of the same dungeon shares the local coordinates
     // but not the origin: never a marker on this plan (both builders).
-    const other = instanceOrigin(DUNGEONS.hollow_crypt.index, 4);
+    const other = instanceOrigin(DUNGEONS.sunken_bastion.index, 4);
     outside.partyInfo = {
       members: [
         { pid: 7, name: 'Ally', cls: 'mage', dead: 0, x: origin.x + 3, z: origin.z + 2 },
@@ -158,7 +158,7 @@ describe('generic dungeon map view', () => {
     // The stateful core takes the same anchor and agrees.
     const core = new DungeonMapViewCore();
     const hot = core.worldMap(world, 560, 34, { x: origin.x + 3, z: origin.z + 2 });
-    expect(hot?.dungeonId).toBe('hollow_crypt');
+    expect(hot?.dungeonId).toBe('sunken_bastion');
     expect(hot?.markers.map((m) => m.kind)).toEqual(['party']);
     expect(core.worldMap(world, 560, 34)).toBeNull();
   });
@@ -206,7 +206,7 @@ describe('generic dungeon map view', () => {
   });
 
   it('reuses hot-path containers for a generic dungeon and Molten Assembly', () => {
-    for (const dungeonId of ['hollow_crypt', IGNIVAR_MOLTEN_ASSEMBLY_ID]) {
+    for (const dungeonId of ['sunken_bastion', IGNIVAR_MOLTEN_ASSEMBLY_ID]) {
       const core = new DungeonMapViewCore();
       const world = worldIn(dungeonId);
       const minimap = core.minimap(world, 162, 1.7);

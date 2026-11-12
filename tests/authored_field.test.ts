@@ -4,10 +4,12 @@
 // too (its bespoke height function retired for a field record of its own).
 
 import { describe, expect, it } from 'vitest';
-import { HOLLOW_CRYPT_FIELD, HOLLOW_CRYPT_RING } from '../src/sim/content/hollow_crypt_layout';
+import {
+  SUNKEN_BASTION_ANCHORS,
+  SUNKEN_BASTION_FIELD,
+} from '../src/sim/content/sunken_bastion_layout';
 import { WILDHEART_BASIN_FIELD } from '../src/sim/content/wildheart_basin_layout';
 import { DUNGEONS, instanceOrigin } from '../src/sim/data';
-import { MORTHEN_SPOT } from '../src/sim/encounters/hollow_crypt/ids';
 import {
   type AuthoredFieldDef,
   authoredFieldCliffRuns,
@@ -91,50 +93,32 @@ describe('authored field height', () => {
   });
 });
 
-describe('the Hollow Crypt field', () => {
-  it('stands every named space at its authored height', () => {
-    const f = HOLLOW_CRYPT_FIELD;
-    expect(authoredFieldHeight(f, 0, -128)).toBe(20); // Lychgate Landing
-    expect(authoredFieldHeight(f, 0, -30)).toBe(0); // Ossuary Cloister
-    expect(authoredFieldHeight(f, -82, 46)).toBe(2); // Sexton's Yard
-    expect(authoredFieldHeight(f, -82, 116)).toBe(8); // the Bell Yard
-    expect(authoredFieldHeight(f, 76, 40)).toBe(-6); // Widow's Gallery
-    expect(authoredFieldHeight(f, 105, 64)).toBe(0); // the rim walk
-    expect(authoredFieldHeight(f, 0, 162)).toBe(5); // the choir loft
-    // The Rite Ring: one level floor from the rim to the altar, Morthen's spot
-    // included (no raised dais paved over the engraved circle's inner bands).
-    expect(authoredFieldHeight(f, HOLLOW_CRYPT_RING.x, HOLLOW_CRYPT_RING.z - 15)).toBe(24);
-    expect(authoredFieldHeight(f, HOLLOW_CRYPT_RING.x, HOLLOW_CRYPT_RING.z)).toBe(24);
-    expect(authoredFieldHeight(f, MORTHEN_SPOT.x, MORTHEN_SPOT.z)).toBe(24);
-    for (const [dx, dz] of [
-      [0, 10],
-      [9, 7],
-      [-9, 7],
-      [0, 17],
-      [5, 2],
-    ])
-      expect(authoredFieldHeight(f, HOLLOW_CRYPT_RING.x + dx, HOLLOW_CRYPT_RING.z + dz)).toBe(24);
-    expect(HOLLOW_CRYPT_FIELD.surfaces.some((s) => s.id === 'rite_dais')).toBe(false);
-    expect(authoredFieldHeight(f, 60, -100)).toBe(-40); // the mist chasm
-    // The Chapel Stair halfway down.
-    expect(authoredFieldHeight(f, 0, -96)).toBeCloseTo(10, 5);
-  });
-
+// The Hollow Crypt was retired (2026-11-11). Its named-space height table went
+// with it; the two shared-engine pins (collider budget, live ground through
+// groundHeight) are restated on the Sunken Bastion's field.
+describe('the authored dungeon fields', () => {
   it('keeps the collider set modest (interior lists are scanned linearly)', () => {
-    expect(authoredFieldColliders(HOLLOW_CRYPT_FIELD, 0).length).toBeLessThan(500);
+    expect(authoredFieldColliders(SUNKEN_BASTION_FIELD, 0).length).toBeLessThan(500);
   });
 
-  it('is the live ground of every Hollow Crypt slot through groundHeight', () => {
-    const d = DUNGEONS.hollow_crypt;
-    expect(d.interior).toBe('hollow_crypt');
-    expect(authoredFieldFor(d.interior)).toBe(HOLLOW_CRYPT_FIELD);
+  it('is the live ground of every Sunken Bastion slot through groundHeight', () => {
+    const d = DUNGEONS.sunken_bastion;
+    expect(d.interior).toBe('sunken_bastion');
+    expect(authoredFieldFor(d.interior)).toBe(SUNKEN_BASTION_FIELD);
+    const { entry } = SUNKEN_BASTION_ANCHORS;
     for (const slot of [0, 5, 23]) {
       const o = instanceOrigin(d.index, slot);
-      expect(groundHeight(o.x, o.z - 128, 1)).toBe(20);
-      expect(groundHeight(o.x - 82, o.z + 116, 1)).toBe(8);
+      for (const [x, z] of [
+        [entry.x, entry.z],
+        [-2, 24],
+        [-22, 214],
+      ]) {
+        expect(groundHeight(o.x + x, o.z + z, 1)).toBe(
+          authoredFieldHeight(SUNKEN_BASTION_FIELD, x, z),
+        );
+      }
     }
   });
-
   it('serves the Wildheart Basin from its own field record on the same engine', () => {
     const d = DUNGEONS.wildheart_basin;
     expect(authoredFieldFor(d.interior)).toBe(WILDHEART_BASIN_FIELD);

@@ -2,7 +2,6 @@
 // derived from the same record the sim walks, generic for every field, and the
 // dungeon map's markers ride it (a shut gate or seal marks the way).
 import { describe, expect, it } from 'vitest';
-import { HOLLOW_CRYPT_FIELD } from '../src/sim/content/hollow_crypt_layout';
 import { SUNKEN_BASTION_GATES } from '../src/sim/content/sunken_bastion';
 import { FOGBEACON, SUNKEN_BASTION_FIELD } from '../src/sim/content/sunken_bastion_layout';
 import { DUNGEONS, instanceOrigin } from '../src/sim/data';
@@ -45,7 +44,7 @@ describe('the painted field map plan', () => {
     expect(plan.cliffs.some((c) => c.intoVoid)).toBe(true);
     expect(plan.cliffs.some((c) => !c.intoVoid)).toBe(true);
     expect(plan.void).toBe('sea');
-    expect(fieldMapPlan(HOLLOW_CRYPT_FIELD).void).toBe('mist');
+    // The Hollow Crypt's 'mist' void left with the dungeon (2026-11-11).
   });
 
   it('marks the Bastion landmarks, stairs and every gate', () => {
@@ -70,10 +69,12 @@ describe('the painted field map plan', () => {
   });
 
   it('is generic: any authored field gets a plan, a room interior none', () => {
-    expect(fieldMapForInterior('hollow_crypt')?.key).toBe('hollow_crypt');
+    // Restated on the Sunken Bastion's field (the Hollow Crypt was retired).
+    expect(fieldMapForInterior('sunken_bastion')?.key).toBe(SUNKEN_BASTION_FIELD.key);
+    expect(fieldMapForInterior('hollow_crypt')).toBeNull();
     expect(fieldMapForInterior('crypt')).toBeNull();
     expect(fieldMapForInterior('sanctum')).toBeNull();
-    const plan = fieldMapPlan(HOLLOW_CRYPT_FIELD);
+    const plan = fieldMapPlan(SUNKEN_BASTION_FIELD);
     expect(fieldMapHeightShare(plan, plan.heightMin)).toBe(0);
     expect(fieldMapHeightShare(plan, plan.heightMax)).toBe(1);
   });
