@@ -80,7 +80,7 @@ describe('thornhollow: collision routing', () => {
     // resolve to no model and are drawn by a different pass entirely, so the
     // dungeons render zero footprints, and the only maps the force-off ever
     // silenced were the ones with real placement collision.
-    const kitConversions = ['hollow_crypt', 'nythraxis_raid_arena', 'litany_apse'] as const;
+    const kitConversions = ['sunken_bastion', 'nythraxis_raid_arena', 'litany_apse'] as const;
     return Promise.all(
       kitConversions.map(async (id) => {
         const kit = await createShippedMap(id, `fp_${id}`, 1);

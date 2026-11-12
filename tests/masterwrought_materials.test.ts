@@ -42,7 +42,7 @@ type AnyEntity = Entity & Record<string, any>;
 // A raid epic (Nythraxis loot, itemFromRaid true) and the refusal control: a
 // heroic FIVE-MAN epic, which is epic quality but not raid-sourced.
 const RAID_EPIC = 'crownforged_dreadhelm';
-const FIVEMAN_EPIC = 'morthens_cryptforged_hauberk';
+const FIVEMAN_EPIC = 'mistcallers_fang';
 
 // Known weekday facts for the pure week math: 2026-08-11 is a Tuesday.
 const TUESDAY = '2026-08-11';
@@ -84,8 +84,8 @@ function mobInInstance(sim: AnySim, inst: any, templateId: string): AnyEntity {
   return mob as AnyEntity;
 }
 
-// Two-player heroic hollow_crypt party standing at Morthen, ready to kill.
-function heroicMorthenRig(seed = 9): {
+// Two-player heroic sunken_bastion party standing at Vael, ready to kill.
+function heroicVaelRig(seed = 9): {
   sim: AnySim;
   leader: number;
   member: number;
@@ -98,10 +98,10 @@ function heroicMorthenRig(seed = 9): {
   sim.partyInvite(member, leader);
   sim.partyAccept(member);
   sim.setDungeonDifficulty('heroic', leader);
-  enterDungeon(sim.ctx, 'hollow_crypt', leader);
-  enterDungeon(sim.ctx, 'hollow_crypt', member);
-  const inst = claimedDungeon(sim, 'hollow_crypt', 'heroic');
-  const boss = mobInInstance(sim, inst, 'morthen');
+  enterDungeon(sim.ctx, 'sunken_bastion', leader);
+  enterDungeon(sim.ctx, 'sunken_bastion', member);
+  const inst = claimedDungeon(sim, 'sunken_bastion', 'heroic');
+  const boss = mobInInstance(sim, inst, 'vael_the_mistcaller');
   const le = sim.entities.get(leader) as AnyEntity;
   const me = sim.entities.get(member) as AnyEntity;
   teleport(sim, le, boss.pos.x + 1, boss.pos.z);
@@ -204,7 +204,7 @@ describe('the death hub resolves the claimed instance ONCE (Phase 18 scan dedupe
   }
 
   it('the hub hands BOTH award arms the identical pre-resolved slot', () => {
-    const { sim, leader, inst, boss } = heroicMorthenRig();
+    const { sim, leader, inst, boss } = heroicVaelRig();
     const seen: unknown[] = [];
     const ctx = sim.ctx as Record<string, any>;
     for (const key of ['awardHeroicMarks', 'awardWyrmfallCores']) {
@@ -223,7 +223,7 @@ describe('the death hub resolves the claimed instance ONCE (Phase 18 scan dedupe
   });
 
   it('a callee handed the resolved slot never re-scans; omitted, it scans for itself', () => {
-    const { sim, leader, member, inst, boss } = heroicMorthenRig();
+    const { sim, leader, member, inst, boss } = heroicVaelRig();
     const leaderMeta = sim.players.get(leader) as PlayerMeta;
     const memberMeta = sim.players.get(member) as PlayerMeta;
     // Handed the slot: zero scans, full payout (behavior-identical).
@@ -239,7 +239,7 @@ describe('the death hub resolves the claimed instance ONCE (Phase 18 scan dedupe
     const cores = sim.countItem(WYRMFALL_CORE_ITEM_ID, leader);
     expect(cores).toBeGreaterThanOrEqual(WYRMFALL_BOSS_MIN);
     // Handed null (the hub scanned and found no claim): a no-op, still no scan.
-    const fresh = heroicMorthenRig(11);
+    const fresh = heroicVaelRig(11);
     const freshMeta = fresh.sim.players.get(fresh.leader) as PlayerMeta;
     spy = spyFinds(fresh.sim);
     try {
@@ -266,7 +266,7 @@ describe('the death hub resolves the claimed instance ONCE (Phase 18 scan dedupe
 
 describe('wyrmfall cores: the boss faucet', () => {
   it('a heroic final-boss kill pays every present participant the same rolled count', () => {
-    const { sim, leader, member, boss } = heroicMorthenRig();
+    const { sim, leader, member, boss } = heroicVaelRig();
     killBoss(sim, leader, boss);
     const leaderCores = sim.countItem(WYRMFALL_CORE_ITEM_ID, leader);
     const memberCores = sim.countItem(WYRMFALL_CORE_ITEM_ID, member);
@@ -281,7 +281,7 @@ describe('wyrmfall cores: the boss faucet', () => {
   it('the same seed rolls the same count twice (rng, not wall clock)', () => {
     const counts: number[] = [];
     for (let run = 0; run < 2; run++) {
-      const { sim, leader, boss } = heroicMorthenRig(31);
+      const { sim, leader, boss } = heroicVaelRig(31);
       killBoss(sim, leader, boss);
       counts.push(sim.countItem(WYRMFALL_CORE_ITEM_ID, leader));
     }
@@ -289,7 +289,7 @@ describe('wyrmfall cores: the boss faucet', () => {
   });
 
   it('the daily gate closes the source after one payout and reopens on the reset-day flip', () => {
-    const { sim, leader, member, boss } = heroicMorthenRig();
+    const { sim, leader, member, boss } = heroicVaelRig();
     (sim as any).resetDay = '2026-08-12';
     killBoss(sim, leader, boss);
     const first = sim.countItem(WYRMFALL_CORE_ITEM_ID, leader);
@@ -300,7 +300,7 @@ describe('wyrmfall cores: the boss faucet', () => {
     const memberMeta = sim.players.get(member)! as PlayerMeta;
     sim.ctx.awardWyrmfallCores(boss, [leaderMeta, memberMeta]);
     expect(sim.countItem(WYRMFALL_CORE_ITEM_ID, leader)).toBe(first);
-    expect(leaderMeta.wyrmfallDaily.sources.has('hollow_crypt:heroic')).toBe(true);
+    expect(leaderMeta.wyrmfallDaily.sources.has('sunken_bastion:heroic')).toBe(true);
     // The realm's day rolls over: the same source pays again.
     (sim as any).resetDay = '2026-08-13';
     sim.ctx.awardWyrmfallCores(boss, [leaderMeta, memberMeta]);
@@ -311,9 +311,9 @@ describe('wyrmfall cores: the boss faucet', () => {
   it('a normal five-man final boss pays nothing and draws nothing', () => {
     const sim = makeDungeonSim(7);
     const leader = sim.addPlayer('warrior', 'Solo');
-    enterDungeon(sim.ctx, 'hollow_crypt', leader);
-    const inst = claimedDungeon(sim, 'hollow_crypt', 'normal');
-    const boss = mobInInstance(sim, inst, 'morthen');
+    enterDungeon(sim.ctx, 'sunken_bastion', leader);
+    const inst = claimedDungeon(sim, 'sunken_bastion', 'normal');
+    const boss = mobInInstance(sim, inst, 'vael_the_mistcaller');
     teleport(sim, sim.entities.get(leader) as AnyEntity, boss.pos.x + 1, boss.pos.z);
     const meta = sim.players.get(leader)! as PlayerMeta;
     const draws = countDraws(sim, () => sim.ctx.awardWyrmfallCores(boss, [meta]));
@@ -322,7 +322,7 @@ describe('wyrmfall cores: the boss faucet', () => {
   });
 
   it('an uncredited kill pays nobody and draws nothing; a credited one draws exactly once', () => {
-    const { sim, leader, member, boss } = heroicMorthenRig();
+    const { sim, leader, member, boss } = heroicVaelRig();
     const leaderMeta = sim.players.get(leader)! as PlayerMeta;
     const memberMeta = sim.players.get(member)! as PlayerMeta;
     expect(countDraws(sim, () => sim.ctx.awardWyrmfallCores(boss, []))).toBe(0);
@@ -336,7 +336,7 @@ describe('wyrmfall cores: the boss faucet', () => {
   });
 
   it('a door-camper on the claim who never entered is paid nothing, mailed nothing', () => {
-    const { sim, leader, boss } = heroicMorthenRig();
+    const { sim, leader, boss } = heroicVaelRig();
     // Joins the party (so the claim holds them) AFTER the instance exists,
     // but never walks through the door: not present, not in enteredBy.
     const camper = sim.addPlayer('rogue', 'Camper');
@@ -384,12 +384,12 @@ describe('wyrmfall cores: the boss faucet', () => {
       expect(FINAL_BOSS_TEMPLATE_IDS.has(id), id).toBe(false);
     }
     // Positive controls: the set genuinely carries both faucet arms.
-    expect(FINAL_BOSS_TEMPLATE_IDS.has('morthen')).toBe(true);
+    expect(FINAL_BOSS_TEMPLATE_IDS.has('vael_the_mistcaller')).toBe(true);
     expect(FINAL_BOSS_TEMPLATE_IDS.has('nythraxis_scourge_of_thornpeak')).toBe(true);
   });
 
   it('a participant absent from the corpse but on the claim is paid by raven, not bags', () => {
-    const { sim, leader, member, boss } = heroicMorthenRig();
+    const { sim, leader, member, boss } = heroicVaelRig();
     const leaderMeta = sim.players.get(leader)! as PlayerMeta;
     // The member stays in the party (the claim holds them) but is not in the
     // death-time participation snapshot: the mail arm owes them their share.
@@ -713,7 +713,7 @@ describe("maker's ember: the weekly bankable keystone", () => {
   });
 
   it('rides the heroic kill for present participants and losing A/S rift crews', () => {
-    const { sim: dsim, leader, member, boss } = heroicMorthenRig();
+    const { sim: dsim, leader, member, boss } = heroicVaelRig();
     (dsim as any).resetDay = TUESDAY;
     killBoss(dsim, leader, boss);
     expect(dsim.countItem(MAKERS_EMBER_ITEM_ID, leader)).toBe(1);
@@ -738,7 +738,7 @@ describe("maker's ember: the weekly bankable keystone", () => {
   });
 
   it('rides completion, not the core gate: a closed daily source still pays the week', () => {
-    const { sim: dsim, leader, boss } = heroicMorthenRig();
+    const { sim: dsim, leader, boss } = heroicVaelRig();
     (dsim as any).resetDay = TUESDAY;
     killBoss(dsim, leader, boss);
     expect(dsim.countItem(MAKERS_EMBER_ITEM_ID, leader)).toBe(1);
@@ -756,7 +756,7 @@ describe("maker's ember: the weekly bankable keystone", () => {
   });
 
   it('present participants only: the raven-paid absentee banks the week, no ember now', () => {
-    const { sim: dsim, leader, member, boss } = heroicMorthenRig();
+    const { sim: dsim, leader, member, boss } = heroicVaelRig();
     (dsim as any).resetDay = TUESDAY;
     const leaderMeta = dsim.players.get(leader)! as PlayerMeta;
     // Only the leader is in the death-time snapshot: the member takes cores
@@ -1125,12 +1125,12 @@ describe('persistence: the two new PlayerMeta fields', () => {
     const pid = sim.addPlayer('warrior', 'Saver');
     const meta = sim.players.get(pid)! as PlayerMeta;
     (sim as any).resetDay = TUESDAY;
-    meta.wyrmfallDaily = { date: TUESDAY, sources: new Set(['rift', 'hollow_crypt:heroic']) };
+    meta.wyrmfallDaily = { date: TUESDAY, sources: new Set(['rift', 'sunken_bastion:heroic']) };
     tryGrantMakersEmber(sim.ctx, meta);
     const state = JSON.parse(JSON.stringify(sim.serializeCharacter(pid)));
     expect(state.wyrmfallDaily).toEqual({
       date: TUESDAY,
-      sources: ['rift', 'hollow_crypt:heroic'],
+      sources: ['rift', 'sunken_bastion:heroic'],
     });
     expect(state.emberWeekAnchor).toBe(TUESDAY);
 
@@ -1138,7 +1138,7 @@ describe('persistence: the two new PlayerMeta fields', () => {
     const pid2 = sim2.addPlayer('warrior', 'Saver', { state });
     const meta2 = sim2.players.get(pid2)! as PlayerMeta;
     expect(meta2.wyrmfallDaily.date).toBe(TUESDAY);
-    expect(meta2.wyrmfallDaily.sources).toEqual(new Set(['rift', 'hollow_crypt:heroic']));
+    expect(meta2.wyrmfallDaily.sources).toEqual(new Set(['rift', 'sunken_bastion:heroic']));
     expect(meta2.emberWeekAnchor).toBe(TUESDAY);
     // Re-serialize equality: the fields survive a second trip unchanged.
     const again = JSON.parse(JSON.stringify(sim2.serializeCharacter(pid2)));

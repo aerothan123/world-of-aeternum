@@ -864,13 +864,13 @@ describe('weekly activity completion hooks', () => {
   it('counts fresh normal dungeon clears through the fourth and eighth milestones', () => {
     const { sim, pid, meta, player } = make();
     for (let run = 1; run <= 9; run++) {
-      enterDungeon(sim.ctx, 'hollow_crypt', pid);
+      enterDungeon(sim.ctx, 'sunken_bastion', pid);
       const inst = sim.instances.find(
-        (i) => i.dungeonId === 'hollow_crypt' && i.partyKey !== null,
+        (i) => i.dungeonId === 'sunken_bastion' && i.partyKey !== null,
       )!;
       const boss = inst.mobIds
         .map((id) => sim.entities.get(id)!)
-        .find((e) => e?.templateId === 'morthen')!;
+        .find((e) => e?.templateId === 'vael_the_mistcaller')!;
       player.pos = { ...boss.pos, x: boss.pos.x + 1 };
       player.prevPos = { ...player.pos };
       sim.ctx.rebucket(player);
@@ -889,13 +889,13 @@ describe('weekly activity completion hooks', () => {
     (difficulty) => {
       const { sim, pid, meta, player } = make();
       if (difficulty === 'heroic') sim.setDungeonDifficulty('heroic', pid);
-      enterDungeon(sim.ctx, 'hollow_crypt', pid);
+      enterDungeon(sim.ctx, 'sunken_bastion', pid);
       const instance = sim.instances.find(
-        (i) => i.dungeonId === 'hollow_crypt' && i.partyKey !== null,
+        (i) => i.dungeonId === 'sunken_bastion' && i.partyKey !== null,
       )!;
       const boss = instance.mobIds
         .map((id) => sim.entities.get(id)!)
-        .find((e) => e?.templateId === 'morthen')!;
+        .find((e) => e?.templateId === 'vael_the_mistcaller')!;
       player.pos = { ...boss.pos, x: boss.pos.x + 1 };
       player.prevPos = { ...player.pos };
       sim.ctx.rebucket(player);

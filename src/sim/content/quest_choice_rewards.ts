@@ -1088,14 +1088,6 @@ export const QUEST_CHOICE_REWARDS: Readonly<Record<string, readonly string[]>> =
     'hedgerow_chausses',
     'hedgerow_trousers',
   ],
-  q_rite: [
-    'hedgerow_leggings',
-    'hedgerow_breeches',
-    'hedgerow_legwraps',
-    'hedgerow_legguards',
-    'hedgerow_chausses',
-    'hedgerow_trousers',
-  ],
   q_rite_of_redemption: [
     'bogwalker_robe',
     'bogwalker_jerkin',

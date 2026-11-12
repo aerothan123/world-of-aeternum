@@ -7,11 +7,12 @@
 // every later index would shift and the tracker would tick the wrong boss, or
 // the gates would open on the wrong kill.
 //
-// So this drives every boss of the five group dungeons through a real pull
+// So this drives every boss of the four group dungeons through a real pull
 // (its health walked down so phase mechanics fire), a real reset (the player
 // leaves and the boss evades home) and its death, and then, with the dev
-// triggers a playtest uses, the three splice paths a plain pull does not reach
-// (the Gorgebloom's sprouts, the Saurian's rider, Morthen's candle bodies). The
+// triggers a playtest uses, the splice paths a plain pull does not reach (the
+// Gorgebloom's sprouts and the Saurian's rider; Morthen's candle bodies retired
+// with the Hollow Crypt). The
 // placed prefix of the roster must hold the whole way, and each case proves the
 // tail really was summoned into or spliced, so the pin is not vacuously true.
 import { describe, expect, it } from 'vitest';
@@ -22,7 +23,6 @@ import { type InstanceSlot, Sim } from '../src/sim/sim';
 import type { DungeonDifficulty, Entity } from '../src/sim/types';
 
 const GROUP_DUNGEONS = [
-  'hollow_crypt',
   'sunken_bastion',
   'drowned_temple',
   'gravewyrm_sanctum',
@@ -119,7 +119,6 @@ function everyBoss(dungeonId: string, difficulty: DungeonDifficulty): Watch {
   sim.setDungeonDifficulty(difficulty, sim.player.id);
   expect(enterDungeon(sim.ctx, dungeonId, sim.player.id, true)).toBe(true);
   const inst = claim(sim);
-  const spawns = DUNGEONS[dungeonId].spawns;
   const watch = watchOf(sim, inst);
   const plan = dungeonRunPlan(dungeonId, difficulty);
   if (!plan) throw new Error(`${dungeonId} has no run plan`);
@@ -143,29 +142,12 @@ function everyBoss(dungeonId: string, difficulty: DungeonDifficulty): Watch {
     expect(placedBody(sim, inst, row.mobId), `${row.mobId} is the same body`).toBe(boss);
     expect(rows()?.[rowIndex], `${row.mobId} row open before the kill`).toBe(false);
 
-    if (row.finaleId) {
-      // Morthen cannot be slain before his entrance; the playtest shortcut
-      // lands and slays him, and the encounter then summons the finale.
-      sim.chat('/dev crypt wyrm', sim.player.id);
-      const finale = () =>
-        inst.mobIds
-          .slice(spawns.length)
-          .map((id) => sim.ctx.entities.get(id))
-          .find((e): e is Entity => e?.templateId === row.finaleId);
-      for (let i = 0; i < 5 * TICKS_PER_SECOND && !finale(); i++) sim.tick();
-      check(inst, watch, `${row.finaleId} summoned`);
-      const body = finale();
-      if (!body) throw new Error(`${row.finaleId} was never summoned`);
-      expect(rows()?.[rowIndex], `${row.mobId} row open until the finale dies`).toBe(false);
-      sim.ctx.handleDeath(body, sim.player);
-    } else {
-      // A boss of several bodies (the Mere Hydra) is down only when every one
-      // of them is: the row stays open until the last falls.
-      row.bodyIds.forEach((bodyId, n) => {
-        expect(rows()?.[rowIndex], `${row.mobId} row open before body ${n + 1}`).toBe(false);
-        sim.ctx.handleDeath(placedBody(sim, inst, bodyId), sim.player);
-      });
-    }
+    // A boss of several bodies (the Mere Hydra) is down only when every one
+    // of them is: the row stays open until the last falls.
+    row.bodyIds.forEach((bodyId, n) => {
+      expect(rows()?.[rowIndex], `${row.mobId} row open before body ${n + 1}`).toBe(false);
+      sim.ctx.handleDeath(placedBody(sim, inst, bodyId), sim.player);
+    });
     // The tracker's read, which is what the stable prefix protects: this
     // boss, and only the bosses killed so far, read defeated.
     expect(rows(), `rows after ${row.mobId}`).toEqual(plan.map((_unused, i) => i <= rowIndex));
@@ -251,25 +233,6 @@ describe.each(['normal', 'heroic'] as const)(
       expect(leaveDungeon(r.sim.ctx, r.sim.player.id)).toBe(true);
       run(r.sim, r.inst, r.watch, 10, 'saurian reset');
       expect(r.tailCount('howdah_hexcaller'), 'the rider left the roster').toBe(0);
-      expect(r.watch.shrank).toBe(true);
-    }, 120_000);
-
-    it('the candle bodies of Morthen leave the roster one by one, and all at a reset', () => {
-      const r = staged('hollow_crypt');
-      expect(r.placedAs('crypt_remembrance_candle')).toBe(false);
-      r.dev('/dev crypt pull morthen');
-      run(r.sim, r.inst, r.watch, 3, 'morthen pull');
-      r.dev('/dev crypt trigger rite');
-      run(r.sim, r.inst, r.watch, 2, 'rite');
-      const candles = r.tailCount('crypt_remembrance_candle');
-      expect(candles, 'the Rite stood its candle bodies up').toBeGreaterThan(1);
-      // Relighting a candle splices its body out from the MIDDLE of the tail.
-      r.dev('/dev crypt trigger candle');
-      run(r.sim, r.inst, r.watch, 1, 'first candle relit');
-      expect(r.tailCount('crypt_remembrance_candle')).toBe(candles - 1);
-      expect(leaveDungeon(r.sim.ctx, r.sim.player.id)).toBe(true);
-      run(r.sim, r.inst, r.watch, 6, 'morthen reset');
-      expect(r.tailCount('crypt_remembrance_candle'), 'the reset cleared the rest').toBe(0);
       expect(r.watch.shrank).toBe(true);
     }, 120_000);
   },

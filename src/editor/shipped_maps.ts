@@ -40,7 +40,6 @@ import { thornhollowMap } from './shipped_thornhollow';
 export type ShippedMapId =
   | 'overworld'
   | 'thornhollow'
-  | 'hollow_crypt'
   | 'sunken_bastion'
   | 'gravewyrm_sanctum'
   | 'drowned_temple'
@@ -59,7 +58,6 @@ export interface ShippedMapEntry {
 export const SHIPPED_MAPS: readonly ShippedMapEntry[] = [
   { id: 'overworld', name: 'World of ClaudeCraft', group: 'World' },
   { id: 'thornhollow', name: 'Thornhollow', group: 'Battleground' },
-  { id: 'hollow_crypt', name: 'The Hollow Crypt', group: 'Dungeon' },
   { id: 'sunken_bastion', name: 'The Sunken Bastion', group: 'Dungeon' },
   { id: 'gravewyrm_sanctum', name: 'Gravewyrm Sanctum', group: 'Dungeon' },
   { id: 'drowned_temple', name: 'The Drowned Temple', group: 'Dungeon' },
@@ -333,7 +331,6 @@ interface LayoutSource {
 }
 
 const DUNGEON_LAYOUTS: Partial<Record<ShippedMapId, LayoutSource>> = {
-  hollow_crypt: { layout: CRYPT_LAYOUT, interior: 'crypt', variant: 'crypt' },
   sunken_bastion: { layout: CRYPT_LAYOUT, interior: 'crypt', variant: 'bastion' },
   gravewyrm_sanctum: {
     layout: SANCTUM_LAYOUT,

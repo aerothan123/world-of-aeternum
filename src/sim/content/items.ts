@@ -2615,8 +2615,9 @@ export const BASE_ITEMS: Record<string, ItemDef> = {
   },
   // --- Hollow Crypt rewards (rare/blue) ---
   // Item-level showcase: these rares are NORMALIZED to the stat budget their item
-  // level earns (see src/sim/item_level.ts). The three weapons are the q_hollow
-  // reward for felling Morthen (level 10), so item level 13 (rare +3) -> a 7-point
+  // level earns (see src/sim/item_level.ts). The three weapons were the q_hollow
+  // reward for felling Morthen (level 10; the crypt is retired and
+  // hollow_crypt_retired.ts keeps that tier), so item level 13 (rare +3) -> a 7-point
   // primary-stat budget; each keeps its own stat identity (str/sta, agi/sta,
   // int/spi) at the same total. The three archetype chests drop from the level-7
   // chapel elites, so item level 10 -> a 6-point budget. tests/item_level.test.ts

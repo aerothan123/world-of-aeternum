@@ -273,12 +273,12 @@ describe('moved_object_preview: the live shift', () => {
   it('moves a door set piece as a whole, and a plain door has none to move', () => {
     const scene = new THREE.Scene();
     const piece = new THREE.Group();
-    piece.name = 'hollowCryptEntrance';
+    piece.name = 'sunkenBastionEntrance';
     piece.matrixAutoUpdate = false;
     scene.add(piece);
     const n = shiftMovedObjectInScene(
       scene,
-      { kind: 'dungeonDoor', dungeonId: 'hollow_crypt' },
+      { kind: 'dungeonDoor', dungeonId: 'sunken_bastion' },
       { x: 0, z: 0 },
       { x: 4, z: -3 },
       () => 0,

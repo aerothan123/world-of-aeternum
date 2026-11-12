@@ -24,14 +24,19 @@ import {
 import { QUEST_STRIP_MAX_OBJECTIVES, questStripView } from '../src/ui/hud/quest/quest_strip_core';
 import type { DungeonRunView } from '../src/world_api/dungeons';
 
-const CRYPT = ['sexton_marrow', 'rimeweb', 'cantor_ilvane', 'morthen'] as const;
+const BASTION = [
+  'knight_commander_olen',
+  'gaol_turnkey',
+  'gaoler_ossick',
+  'vael_the_mistcaller',
+] as const;
 
 /** The run as the offline Sim hands it over: frozen, reference-stable. */
 function simRun(
   defeated: readonly string[] = [],
   difficulty: 'normal' | 'heroic' = 'normal',
-  bosses: readonly string[] = CRYPT,
-  dungeonId = 'hollow_crypt',
+  bosses: readonly string[] = BASTION,
+  dungeonId = 'sunken_bastion',
 ): DungeonRunView {
   return Object.freeze({
     dungeonId,
@@ -79,30 +84,30 @@ describe('dungeon tracker model', () => {
 
   it.each(SHAPES)('builds the same model from %s', (_label, make) => {
     const model = buildDungeonTracker(
-      { dungeonRun: make(['sexton_marrow'], 'heroic') },
+      { dungeonRun: make(['knight_commander_olen'], 'heroic') },
       makeDungeonTrackerModel(),
     );
     expect(model.visible).toBe(true);
-    expect(model.dungeonId).toBe('hollow_crypt');
+    expect(model.dungeonId).toBe('sunken_bastion');
     expect(model.heroic).toBe(true);
     expect(model.count).toBe(4);
     expect(model.defeated).toBe(1);
     expect(model.complete).toBe(false);
     expect(rowsOf(model)).toEqual([
-      ['sexton_marrow', true, false],
-      ['rimeweb', false, false],
-      ['cantor_ilvane', false, false],
-      ['morthen', false, false],
+      ['knight_commander_olen', true, false],
+      ['gaol_turnkey', false, false],
+      ['gaoler_ossick', false, false],
+      ['vael_the_mistcaller', false, false],
     ]);
   });
 
   it('the two world shapes yield field-for-field identical models', () => {
     const a = buildDungeonTracker(
-      { dungeonRun: simRun(['rimeweb', 'morthen'], 'heroic') },
+      { dungeonRun: simRun(['gaol_turnkey', 'vael_the_mistcaller'], 'heroic') },
       makeDungeonTrackerModel(),
     );
     const b = buildDungeonTracker(
-      { dungeonRun: clientRun(['rimeweb', 'morthen'], 'heroic') },
+      { dungeonRun: clientRun(['gaol_turnkey', 'vael_the_mistcaller'], 'heroic') },
       makeDungeonTrackerModel(),
     );
     expect(a).toEqual(b);
@@ -117,7 +122,11 @@ describe('dungeon tracker model', () => {
     const model = makeDungeonTrackerModel();
     const rows = model.rows;
     const first = [...rows];
-    for (const defeated of [[], ['sexton_marrow'], ['sexton_marrow', 'rimeweb']]) {
+    for (const defeated of [
+      [],
+      ['knight_commander_olen'],
+      ['knight_commander_olen', 'gaol_turnkey'],
+    ]) {
       const out = buildDungeonTracker({ dungeonRun: simRun(defeated) }, model);
       expect(out).toBe(model);
       expect(out.rows).toBe(rows);
@@ -130,11 +139,11 @@ describe('dungeon tracker model', () => {
   it('reads complete only when every boss is down', () => {
     const model = makeDungeonTrackerModel();
     buildDungeonTracker(
-      { dungeonRun: simRun(['sexton_marrow', 'rimeweb', 'cantor_ilvane']) },
+      { dungeonRun: simRun(['knight_commander_olen', 'gaol_turnkey', 'gaoler_ossick']) },
       model,
     );
     expect([model.defeated, model.complete]).toEqual([3, false]);
-    buildDungeonTracker({ dungeonRun: simRun([...CRYPT]) }, model);
+    buildDungeonTracker({ dungeonRun: simRun([...BASTION]) }, model);
     expect([model.defeated, model.complete]).toEqual([4, true]);
   });
 
@@ -173,11 +182,11 @@ describe('dungeon tracker model', () => {
     build(simRun()); // first sighting
     build(simRun()); // nothing
     build(simRun()); // nothing
-    build(simRun(['rimeweb'])); // a row turns done
-    for (let i = 0; i < DUNGEON_TRACKER_FLASH_BUILDS + 2; i++) build(simRun(['rimeweb'])); // the highlight runs out: no text
-    build(simRun(['rimeweb'], 'heroic')); // the difficulty
+    build(simRun(['gaol_turnkey'])); // a row turns done
+    for (let i = 0; i < DUNGEON_TRACKER_FLASH_BUILDS + 2; i++) build(simRun(['gaol_turnkey'])); // the highlight runs out: no text
+    build(simRun(['gaol_turnkey'], 'heroic')); // the difficulty
     build(null); // hidden: nothing to resolve
-    build(simRun(['rimeweb'], 'heroic')); // back on screen
+    build(simRun(['gaol_turnkey'], 'heroic')); // back on screen
     const steps = revs.map((rev, i) => (i === 0 ? rev : rev - revs[i - 1]));
     expect(steps[0]).toBeGreaterThan(0);
     expect(steps.slice(1, 3)).toEqual([0, 0]);
@@ -191,7 +200,8 @@ describe('dungeon tracker model', () => {
     const tracked = FINDER_ACTIVITIES.map((a) => dungeonRunPlan(a.dungeonId, a.difficulty)).filter(
       (plan) => plan !== null,
     );
-    expect(tracked.length).toBeGreaterThanOrEqual(10);
+    // Four group dungeons on both difficulties (the Hollow Crypt's pair retired).
+    expect(tracked.length).toBeGreaterThanOrEqual(8);
     for (const plan of tracked) {
       expect(plan.length).toBeLessThanOrEqual(DUNGEON_TRACKER_ROW_CAP);
       // The strip shows a page's objectives in full only up to its own cap.
@@ -203,7 +213,7 @@ describe('dungeon tracker model', () => {
 describe('dungeon tracker kill highlight', () => {
   it('never lights a row that was already down when the tracker appeared', () => {
     const model = makeDungeonTrackerModel();
-    buildDungeonTracker({ dungeonRun: simRun(['sexton_marrow', 'rimeweb']) }, model);
+    buildDungeonTracker({ dungeonRun: simRun(['knight_commander_olen', 'gaol_turnkey']) }, model);
     expect(model.rows.slice(0, 4).map((row) => row.flash)).toEqual([false, false, false, false]);
     expect(model.completeFlash).toBe(false);
   });
@@ -211,7 +221,7 @@ describe('dungeon tracker kill highlight', () => {
   it('lights the row of a boss that falls while the tracker is up, then lets it rest', () => {
     const model = makeDungeonTrackerModel();
     buildDungeonTracker({ dungeonRun: simRun() }, model);
-    const after = simRun(['rimeweb']);
+    const after = simRun(['gaol_turnkey']);
     for (let build = 0; build < DUNGEON_TRACKER_FLASH_BUILDS; build++) {
       buildDungeonTracker({ dungeonRun: after }, model);
       expect(model.rows[1].flash, `build ${build}`).toBe(true);
@@ -225,18 +235,18 @@ describe('dungeon tracker kill highlight', () => {
   it('lights two bosses that fall on the same poll, each on its own row', () => {
     const model = makeDungeonTrackerModel();
     buildDungeonTracker({ dungeonRun: simRun() }, model);
-    buildDungeonTracker({ dungeonRun: simRun(['sexton_marrow', 'cantor_ilvane']) }, model);
+    buildDungeonTracker({ dungeonRun: simRun(['knight_commander_olen', 'gaoler_ossick']) }, model);
     expect(model.rows.slice(0, 4).map((row) => row.flash)).toEqual([true, false, true, false]);
   });
 
   it('lights the plate when the LAST boss falls in view, not for a run entered already finished', () => {
     const watched = makeDungeonTrackerModel();
     buildDungeonTracker(
-      { dungeonRun: simRun(['sexton_marrow', 'rimeweb', 'cantor_ilvane']) },
+      { dungeonRun: simRun(['knight_commander_olen', 'gaol_turnkey', 'gaoler_ossick']) },
       watched,
     );
     expect(watched.completeFlash).toBe(false);
-    const done = simRun([...CRYPT]);
+    const done = simRun([...BASTION]);
     for (let build = 0; build < DUNGEON_TRACKER_FLASH_BUILDS; build++) {
       buildDungeonTracker({ dungeonRun: done }, watched);
       expect(watched.completeFlash, `build ${build}`).toBe(true);
@@ -256,14 +266,14 @@ describe('dungeon tracker kill highlight', () => {
     buildDungeonTracker({ dungeonRun: simRun() }, model);
     buildDungeonTracker({ dungeonRun: null }, model);
     // The boss died while the player was outside: nothing to celebrate on return.
-    buildDungeonTracker({ dungeonRun: simRun(['sexton_marrow']) }, model);
+    buildDungeonTracker({ dungeonRun: simRun(['knight_commander_olen']) }, model);
     expect(model.rows[0]).toMatchObject({ done: true, flash: false });
   });
 
   it('treats another dungeon, or the other difficulty, as a first sighting', () => {
     const model = makeDungeonTrackerModel();
     buildDungeonTracker({ dungeonRun: simRun() }, model);
-    buildDungeonTracker({ dungeonRun: simRun(['sexton_marrow'], 'heroic') }, model);
+    buildDungeonTracker({ dungeonRun: simRun(['knight_commander_olen'], 'heroic') }, model);
     expect(model.rows[0]).toMatchObject({ done: true, flash: false });
     buildDungeonTracker(
       {
@@ -287,7 +297,7 @@ describe('dungeon tracker kill highlight', () => {
   it('drops a highlight at once if the row reopens (a fresh claim of the same dungeon)', () => {
     const model = makeDungeonTrackerModel();
     buildDungeonTracker({ dungeonRun: simRun() }, model);
-    buildDungeonTracker({ dungeonRun: simRun(['sexton_marrow']) }, model);
+    buildDungeonTracker({ dungeonRun: simRun(['knight_commander_olen']) }, model);
     expect(model.rows[0].flash).toBe(true);
     buildDungeonTracker({ dungeonRun: simRun() }, model);
     expect(model.rows[0]).toMatchObject({ done: false, flash: false, flashHold: 0 });
@@ -373,17 +383,20 @@ describe('dungeon run as a touch quest strip page', () => {
   });
 
   it.each(SHAPES)('projects the run onto the strip model from %s', (_label, make) => {
-    const quest = dungeonStripQuest({ dungeonRun: make(['sexton_marrow'], 'heroic') }, text);
+    const quest = dungeonStripQuest(
+      { dungeonRun: make(['knight_commander_olen'], 'heroic') },
+      text,
+    );
     expect(quest).toEqual({
-      id: `${DUNGEON_STRIP_QUEST_PREFIX}hollow_crypt:heroic`,
+      id: `${DUNGEON_STRIP_QUEST_PREFIX}sunken_bastion:heroic`,
       number: 0,
-      title: '<hollow_crypt+H>',
+      title: '<sunken_bastion+H>',
       complete: false,
       objectives: [
-        { label: '[sexton_marrow]', current: 1, total: 1 },
-        { label: '[rimeweb]', current: 0, total: 1 },
-        { label: '[cantor_ilvane]', current: 0, total: 1 },
-        { label: '[morthen]', current: 0, total: 1 },
+        { label: '[knight_commander_olen]', current: 1, total: 1 },
+        { label: '[gaol_turnkey]', current: 0, total: 1 },
+        { label: '[gaoler_ossick]', current: 0, total: 1 },
+        { label: '[vael_the_mistcaller]', current: 0, total: 1 },
       ],
     });
   });
@@ -393,7 +406,7 @@ describe('dungeon run as a touch quest strip page', () => {
     const heroic = dungeonStripQuest({ dungeonRun: simRun([], 'heroic') }, text);
     expect(normal?.id).not.toBe(heroic?.id);
     expect(normal?.id.startsWith(DUNGEON_STRIP_QUEST_PREFIX)).toBe(true);
-    expect(normal?.title).toBe('<hollow_crypt>');
+    expect(normal?.title).toBe('<sunken_bastion>');
     // No logged quest id and no other synthetic page (the Clue Scroll's
     // `clue:` row) can be read as the dungeon page.
     expect(Object.keys(QUESTS).filter((id) => id.startsWith(DUNGEON_STRIP_QUEST_PREFIX))).toEqual(
@@ -403,20 +416,22 @@ describe('dungeon run as a touch quest strip page', () => {
   });
 
   it('reads complete once every boss is down', () => {
-    expect(dungeonStripQuest({ dungeonRun: simRun([...CRYPT]) }, text)?.complete).toBe(true);
-    expect(dungeonStripQuest({ dungeonRun: simRun(['morthen']) }, text)?.complete).toBe(false);
+    expect(dungeonStripQuest({ dungeonRun: simRun([...BASTION]) }, text)?.complete).toBe(true);
+    expect(dungeonStripQuest({ dungeonRun: simRun(['vael_the_mistcaller']) }, text)?.complete).toBe(
+      false,
+    );
   });
 
   it('the strip shows every boss of the page, each done or not', () => {
-    const quest = dungeonStripQuest({ dungeonRun: simRun(['rimeweb']) }, text);
+    const quest = dungeonStripQuest({ dungeonRun: simRun(['gaol_turnkey']) }, text);
     if (!quest) throw new Error('no page');
     const view = questStripView([quest], 0);
     expect(view.hiddenObjectives).toBe(0);
     expect(view.objectives.map((o) => [o.label, o.done])).toEqual([
-      ['[sexton_marrow]', false],
-      ['[rimeweb]', true],
-      ['[cantor_ilvane]', false],
-      ['[morthen]', false],
+      ['[knight_commander_olen]', false],
+      ['[gaol_turnkey]', true],
+      ['[gaoler_ossick]', false],
+      ['[vael_the_mistcaller]', false],
     ]);
   });
 });

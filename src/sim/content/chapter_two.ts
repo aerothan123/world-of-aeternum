@@ -60,7 +60,6 @@ export function chapterTwoXp(level: number, size: Size): number {
  *  zone2.ts; tests/chapter_two_content.test.ts pins each to chapterTwoXp. */
 export const CHAPTER_TWO_RETUNED_SHIPPED_QUESTS: Readonly<Record<string, readonly [number, Size]>> =
   Object.freeze({
-    q_hollow: [8, 'large'],
     q_fenbridge_muster: [7, 'medium'],
     q_prowlers: [7, 'medium'],
     q_deepfen: [8, 'medium'],

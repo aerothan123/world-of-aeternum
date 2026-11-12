@@ -5,7 +5,6 @@ import { MAX_PLACEMENTS, sanitizeMapDoc } from '../src/sim/map_doc';
 const EXPECTED_IDS: ShippedMapId[] = [
   'overworld',
   'thornhollow',
-  'hollow_crypt',
   'sunken_bastion',
   'gravewyrm_sanctum',
   'drowned_temple',
@@ -53,8 +52,8 @@ describe('shipped map editor catalog', () => {
   );
 
   it('returns fresh documents instead of sharing editable arrays', async () => {
-    const first = await createShippedMap('hollow_crypt', 'first', 1);
-    const second = await createShippedMap('hollow_crypt', 'second', 2);
+    const first = await createShippedMap('sunken_bastion', 'first', 1);
+    const second = await createShippedMap('sunken_bastion', 'second', 2);
     first.placements[0].x += 99;
     first.content.zones[0].name = 'Changed';
 
@@ -128,7 +127,7 @@ describe('shipped map editor catalog', () => {
   });
 
   it('preserves the shipped interior environment instead of presenting it outdoors', async () => {
-    const dungeon = await createShippedMap('hollow_crypt', 'dungeon', 1);
+    const dungeon = await createShippedMap('sunken_bastion', 'dungeon', 1);
     const temple = await createShippedMap('drowned_temple', 'temple', 1);
     const raid = await createShippedMap('nythraxis_raid_arena', 'raid', 1);
     const arena = await createShippedMap('ashen_coliseum', 'arena', 1);

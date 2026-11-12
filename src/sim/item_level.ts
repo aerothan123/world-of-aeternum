@@ -29,6 +29,7 @@ import {
 } from './content/heroic_loot';
 import { HEROIC_VENDOR_STOCK } from './content/heroic_vendor';
 import { hoardLootSourceLevels } from './content/hoard_loot';
+import { HOLLOW_CRYPT_RETIRED_SOURCE_LEVELS } from './content/hollow_crypt_retired';
 import { IGNIVAR_LOOT_ITEM_IDS, IGNIVAR_RAID_LOOT_SOURCE_LEVEL } from './content/ignivar_loot';
 import {
   NYTHRAXIS_RELOCATED_ITEM_IDS,
@@ -261,6 +262,11 @@ function buildSourceIndex(): Map<string, ItemSource> {
   for (const [itemId, bossId] of Object.entries(REFERRAL_REWARD_SOURCE_BOSSES))
     bump(itemId, MOBS[bossId]?.maxLevel, false);
   for (const [itemId, level] of Object.entries(REFERRAL_RETIRED_SOURCE_LEVELS))
+    bump(itemId, level, false);
+  // The retired Hollow Crypt's items keep the source tier they shipped at
+  // (content/hollow_crypt_retired.ts): their mobs and quests are gone, so
+  // nothing else in the content would price them any more.
+  for (const [itemId, level] of Object.entries(HOLLOW_CRYPT_RETIRED_SOURCE_LEVELS))
     bump(itemId, level, false);
   // Warfare Season 2 reads source 29: epic item level 35, level with the raid tier.
   for (const itemId of SEASON2_STOCK) bump(itemId, SEASON2_SOURCE_LEVEL, false);

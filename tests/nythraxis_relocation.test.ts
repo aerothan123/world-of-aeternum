@@ -5,10 +5,13 @@
 // Heroic copy to that same boss's heroic roll and, for thirteen of them, also
 // to one Hollow Crypt, Sunken Bastion or Drowned Temple heroic boss. The four
 // heroic raid trinkets moved to heroic five-man bosses. Every moved piece keeps
-// the raid tier it shipped at, so no owned copy changes.
+// the raid tier it shipped at, so no owned copy changes. When the Hollow Crypt
+// was retired (2026-11-11) the owner retired the four Thornpeak relics' crypt
+// rows with it (NYTHRAXIS_CRYPT_RETIRED_COPY_IDS): nine away copies remain.
 import { describe, expect, it } from 'vitest';
 import { HEROIC_BOSS_LOOT, NYTHRAXIS_RAID_BOSS_ID } from '../src/sim/content/heroic_loot';
 import {
+  NYTHRAXIS_CRYPT_RETIRED_COPY_IDS,
   NYTHRAXIS_RELOCATED_ITEM_IDS,
   NYTHRAXIS_RELOCATED_TRINKET_IDS,
 } from '../src/sim/content/nythraxis_loot';
@@ -21,6 +24,9 @@ import { weeklyLootPool } from '../src/sim/weekly_rewards';
 const SANCTUM = ['korgath_the_bound', 'grand_necromancer_velkhar', 'korzul_the_gravewyrm'];
 const BASIN = ['wildheart_beastmaster', 'the_gorgebloom', 'wildheart_high_priest'];
 const HOME_BOSSES = [...SANCTUM, ...BASIN];
+const BASTION = ['knight_commander_olen', 'gaoler_ossick', 'gaol_turnkey', 'vael_the_mistcaller'];
+const TEMPLE = ['choirmother_selthe', 'tideglass_colossus', 'mere_hydra_head_center', 'ysolei'];
+const CRYPT_RETIRED: readonly string[] = NYTHRAXIS_CRYPT_RETIRED_COPY_IDS;
 
 const isGear = (id: string | undefined): id is string => {
   const item = id ? ITEMS[id] : undefined;
@@ -84,8 +90,10 @@ describe('each relocated raid piece has one home boss', () => {
       expect(atHome, `${id} heroic copy on its home boss`).toHaveLength(1);
       expect(away.length).toBeLessThanOrEqual(1);
       // A piece with a second heroic boss takes the small home share; one without
-      // takes the full share at home.
-      expect(atHome[0].row.chance).toBeCloseTo(away.length ? 0.04 : 0.1, 9);
+      // takes the full share at home. The four relics whose crypt copy was
+      // retired keep the small home share they shipped with.
+      const small = away.length > 0 || CRYPT_RETIRED.includes(id);
+      expect(atHome[0].row.chance).toBeCloseTo(small ? 0.04 : 0.1, 9);
       for (const h of away) {
         expect([...SANCTUM, ...BASIN, NYTHRAXIS_RAID_BOSS_ID]).not.toContain(h.bossId);
         expect(h.row.chance).toBeCloseTo(0.1, 9);
@@ -93,14 +101,24 @@ describe('each relocated raid piece has one home boss', () => {
     },
   );
 
-  it('spreads thirteen Heroic copies over the twelve Crypt, Bastion and Temple bosses', () => {
+  it('spreads nine Heroic copies over the eight Bastion and Temple bosses', () => {
     const away = NYTHRAXIS_RELOCATED_ITEM_IDS.flatMap((id) => {
       const [{ bossId: home }] = normalRows(id);
       return rowsFor(HEROIC_BOSS_LOOT, `heroic_${id}`).filter((h) => h.bossId !== home);
     });
-    expect(away).toHaveLength(13);
-    expect(new Set(away.map((h) => h.bossId)).size).toBe(12);
+    expect(away).toHaveLength(9);
+    expect(new Set(away.map((h) => h.bossId))).toEqual(new Set([...BASTION, ...TEMPLE]));
   });
+
+  it.each(NYTHRAXIS_CRYPT_RETIRED_COPY_IDS)(
+    '%s lost only its retired crypt copy and keeps its home rows and tier',
+    (id) => {
+      const [{ bossId: home }] = normalRows(id);
+      expect(SANCTUM).toContain(home);
+      expect(rowsFor(HEROIC_BOSS_LOOT, `heroic_${id}`).map((h) => h.bossId)).toEqual([home]);
+      expect(itemLevel(ITEMS[`heroic_${id}`])).toBe(33);
+    },
+  );
 });
 
 describe('the relocated raid trinkets', () => {

@@ -8,6 +8,7 @@
 // existence predicates over the whole table for the per-band coverage, so
 // future additions grow the table without breaking the pins.
 import { describe, expect, it } from 'vitest';
+import { HOLLOW_CRYPT_RETIRED_HEROIC_BASE_IDS } from '../src/sim/content/hollow_crypt_retired';
 import { DUNGEONS, ITEMS, MOBS } from '../src/sim/data';
 import { canEquipItem, isShieldItem, weaponArchetypeForItem } from '../src/sim/equipment_rules';
 import { weaponDpsBudget } from '../src/sim/item_budget';
@@ -284,7 +285,6 @@ describe('itemization coverage: the int/spi shield and the low-level held offhan
 describe('itemization coverage: heroic variants are only built from heroic-eligible instances', () => {
   it('every heroic variant has its base in a heroic-eligible mob loot table', () => {
     const heroicInstanceIds = new Set([
-      'hollow_crypt',
       'sunken_bastion',
       'drowned_temple',
       'gravewyrm_sanctum',
@@ -296,9 +296,15 @@ describe('itemization coverage: heroic variants are only built from heroic-eligi
       if (!heroicInstanceIds.has(def.id)) continue;
       for (const spawn of def.spawns) heroicEligibleMobs.add(spawn.mobId);
     }
+    // The retired Hollow Crypt's shipped copies are the one sanctioned
+    // exception: their bases have no live source, and every one of them must
+    // still be minted (content/hollow_crypt_retired.ts).
+    const retiredBases = new Set<string>(HOLLOW_CRYPT_RETIRED_HEROIC_BASE_IDS);
+    for (const baseId of retiredBases) expect(ITEMS[`heroic_${baseId}`]?.heroicOf).toBe(baseId);
     for (const item of Object.values(ITEMS)) {
       if (!item.heroicOf) continue;
       const baseId = item.heroicOf;
+      if (retiredBases.has(baseId)) continue;
       const hasEligibleSource = Object.values(MOBS).some(
         (mob) =>
           heroicEligibleMobs.has(mob.id) &&

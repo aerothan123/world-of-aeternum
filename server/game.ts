@@ -7556,7 +7556,7 @@ export class GameServer {
         }
         break;
       }
-      // dungeons ('enter_crypt'/'leave_crypt' kept as aliases for older bots)
+      // dungeons; older bots' aliases: enter_crypt names the retired crypt, so it refuses
       case 'enter_crypt':
       case 'enter_dungeon': {
         // must actually be near that dungeon's door

@@ -808,7 +808,11 @@ const THORNPEAK_SHARE = 0.1;
 // Gravewyrm Sanctum or Wildheart Basin boss whose Normal table carries it), so
 // every relic on those dungeons' Reliquary pages is paid on both difficulties.
 // A piece with no second heroic boss takes THORNPEAK_SHARE at home; one that
-// also drops from a Crypt, Bastion or Temple boss takes this smaller share.
+// also drops from a Bastion or Temple boss takes this smaller share. The four
+// relics whose second copy dropped from a Hollow Crypt boss
+// (NYTHRAXIS_CRYPT_RETIRED_COPY_IDS in content/nythraxis_loot.ts) keep this
+// share too: the owner retired their crypt rows with the dungeon (2026-11-11)
+// rather than re-homing them, so their home rows are exactly as shipped.
 const THORNPEAK_HOME_SHARE = 0.04;
 // The Heroic copy of each blue on a lower dungeon boss's Normal blue roll
 // (2026-10-08). Those base rows are normalOnly, so the copy is what keeps the

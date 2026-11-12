@@ -167,14 +167,13 @@ describe('dungeon run plan (content)', () => {
 
   it('gives no live dungeon a finale: every row ends on its own placed bodies', () => {
     // The Hollow Crypt's Knellwyrm was the one summoned finale; it retired
-    // with the dungeon, so every row is settled by the bodies it names.
-    const finales = GROUP_DUNGEONS.flatMap((id) =>
-      (['normal', 'heroic'] as const).flatMap((difficulty) =>
-        (dungeonRunPlan(id, difficulty) ?? [])
-          .filter((row) => row.finaleId !== null)
-          .map((row) => `${id}:${row.mobId}>${row.finaleId}`),
-      ),
-    );
+    // with the dungeon, and the tracker no longer waits on a summoned body. A
+    // dungeon whose exit opened after some other body than its final boss
+    // would need that support back, so no live dungeon may name one.
+    const finales = GROUP_DUNGEONS.flatMap((id) => {
+      const after = DUNGEONS[id]?.bossExitPortal?.after;
+      return after === undefined ? [] : [`${id}>${after}`];
+    });
     expect(finales).toEqual([]);
   });
 

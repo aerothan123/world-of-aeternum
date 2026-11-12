@@ -42,8 +42,18 @@ describe('item level: source derivation', () => {
     for (const id of CHEST_TRIO) expect(itemSourceLevel(id), id).toBe(7);
   });
 
-  it('derives a quest reward level from its hardest kill objective (the boss)', () => {
-    // The weapon trio is the q_hollow reward for slaying Morthen (level 10).
+  it('derives a quest reward level from its hardest kill objective', () => {
+    // The Hedgerow chest pieces are q_silence_the_call's reward for slaying
+    // level-7 Restless Bones: above the quest's own minLevel (5) and q_mine's
+    // level-6 Deeprock Diggers, which pay the same pieces.
+    for (const id of ['hedgerow_robe', 'hedgerow_jerkin', 'hedgerow_tunic'])
+      expect(itemSourceLevel(id), id).toBe(7);
+  });
+
+  it('keeps the retired Hollow Crypt weapon trio at the tier its quest gave it', () => {
+    // The weapon trio was the q_hollow reward for slaying Morthen (level 10);
+    // the quest left with the crypt and content/hollow_crypt_retired.ts keeps
+    // the shipped source level.
     for (const id of WEAPON_TRIO) expect(itemSourceLevel(id), id).toBe(10);
   });
 

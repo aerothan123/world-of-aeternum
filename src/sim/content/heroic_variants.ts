@@ -34,6 +34,7 @@ import {
   NYTHRAXIS_RAID_BOSS_ID,
   NYTHRAXIS_RAID_LOOT_SOURCE_LEVEL,
 } from './heroic_loot';
+import { HOLLOW_CRYPT_RETIRED_HEROIC_BASE_IDS } from './hollow_crypt_retired';
 import { NYTHRAXIS_RELOCATED_ITEM_IDS } from './nythraxis_loot';
 import { TEMPLE_DUNGEON_DEFS } from './temple';
 import { WILDHEART_DUNGEON_DEFS } from './wildheart';
@@ -176,10 +177,11 @@ function makeHeroicVariant(base: ItemDef, sourceLevel = HEROIC_VARIANT_SOURCE_LE
   return variant as ItemDef;
 }
 
-// The six dungeon/raid instances that have a heroic difficulty. Only mobs that
-// spawn inside one of these instances can drop a heroic-upgraded variant.
+// The five dungeon/raid instances that have a heroic difficulty. Only mobs that
+// spawn inside one of these instances can drop a heroic-upgraded variant. (The
+// retired Hollow Crypt's shipped copies are kept by
+// HOLLOW_CRYPT_RETIRED_HEROIC_BASE_IDS instead; see buildHeroicVariants.)
 const HEROIC_INSTANCE_IDS = new Set([
-  'hollow_crypt',
   'sunken_bastion',
   'drowned_temple',
   'gravewyrm_sanctum',
@@ -224,6 +226,12 @@ export function buildHeroicVariants(
         continue;
       eligible.add(id);
     }
+  }
+  // The retired Hollow Crypt's shipped Heroic copies: no mob drops their bases
+  // any more, but players own the copies, so they keep minting from the same
+  // base at the same tier (content/hollow_crypt_retired.ts).
+  for (const id of HOLLOW_CRYPT_RETIRED_HEROIC_BASE_IDS) {
+    if (items[id]) eligible.add(id);
   }
   // The heroic Nythraxis raid boss's own set pieces and legendaries upgrade to
   // the RAID tier (source 27), one step above the five-man heroic variants

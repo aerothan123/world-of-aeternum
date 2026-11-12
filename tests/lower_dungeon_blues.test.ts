@@ -7,7 +7,9 @@
 // guaranteed on the final boss. The Mere Hydra's group rides its centre head
 // only (each head pays once, on its first death). Item and required levels
 // are pinned as literals; new stat lines are checked against the budget
-// formulas, never a copied literal.
+// formulas, never a copied literal. The Hollow Crypt was retired on
+// 2026-11-11: its four groups left with its bosses, and its blues stay pinned
+// at the levels they shipped at (content/hollow_crypt_retired.ts).
 import { describe, expect, it } from 'vitest';
 import { DROWNED_TEMPLE_ITEMS } from '../src/sim/content/drowned_temple_items';
 import { HOLLOW_CRYPT_ITEMS } from '../src/sim/content/hollow_crypt_items';
@@ -40,45 +42,48 @@ interface BlueGroup {
 const REGULAR = 0.35;
 const FINAL = 1;
 
-const DUNGEONS: Record<string, Record<string, BlueGroup>> = {
-  hollow_crypt: {
-    sexton_marrow: {
-      group: 'marrow_blue',
-      total: REGULAR,
-      slot: 'gloves',
-      mail: ['spadeworn_gauntlets', 11, 8],
-      leather: ['gravedirt_grips', 11, 8],
-      cloth: ['bellrope_mitts', 11, 8],
-      weapon: ['sextons_spadehaft', 11, 8],
-    },
-    rimeweb: {
-      group: 'rimeweb_blue',
-      total: REGULAR,
-      slot: 'helmet',
-      mail: ['rimewreath_coif', 12, 9],
-      leather: ['rime_laced_hood', 12, 9],
-      cloth: ['lamenting_veil', 12, 9],
-      weapon: ['rimeweb_fang', 12, 9],
-    },
-    cantor_ilvane: {
-      group: 'ilvane_blue',
-      total: REGULAR,
-      slot: 'shoulder',
-      mail: ['choirward_pauldrons', 12, 9],
-      leather: ['choristers_spaulders', 12, 9],
-      cloth: ['cantors_stole', 12, 9],
-      weapon: ['cantors_hymnal', 12, 9],
-    },
-    morthen: {
-      group: 'morthen_blue',
-      total: FINAL,
-      slot: 'chest',
-      mail: ['knellbound_hauberk', 13, 10],
-      leather: ['candlewatch_jerkin', 13, 10],
-      cloth: ['robe_of_the_unquiet_rite', 13, 10],
-      weapon: ['gravecallers_rod', 13, 10],
-    },
+// The retired Hollow Crypt's groups, as they shipped. No live boss pays them;
+// the pieces keep these item and required levels.
+const RETIRED_CRYPT: Record<string, BlueGroup> = {
+  sexton_marrow: {
+    group: 'marrow_blue',
+    total: REGULAR,
+    slot: 'gloves',
+    mail: ['spadeworn_gauntlets', 11, 8],
+    leather: ['gravedirt_grips', 11, 8],
+    cloth: ['bellrope_mitts', 11, 8],
+    weapon: ['sextons_spadehaft', 11, 8],
   },
+  rimeweb: {
+    group: 'rimeweb_blue',
+    total: REGULAR,
+    slot: 'helmet',
+    mail: ['rimewreath_coif', 12, 9],
+    leather: ['rime_laced_hood', 12, 9],
+    cloth: ['lamenting_veil', 12, 9],
+    weapon: ['rimeweb_fang', 12, 9],
+  },
+  cantor_ilvane: {
+    group: 'ilvane_blue',
+    total: REGULAR,
+    slot: 'shoulder',
+    mail: ['choirward_pauldrons', 12, 9],
+    leather: ['choristers_spaulders', 12, 9],
+    cloth: ['cantors_stole', 12, 9],
+    weapon: ['cantors_hymnal', 12, 9],
+  },
+  morthen: {
+    group: 'morthen_blue',
+    total: FINAL,
+    slot: 'chest',
+    mail: ['knellbound_hauberk', 13, 10],
+    leather: ['candlewatch_jerkin', 13, 10],
+    cloth: ['robe_of_the_unquiet_rite', 13, 10],
+    weapon: ['gravecallers_rod', 13, 10],
+  },
+};
+
+const DUNGEONS: Record<string, Record<string, BlueGroup>> = {
   sunken_bastion: {
     // The shipped Tideguard, Eelscale and Drowned Prayer pieces keep the
     // source tier they shipped at (level 13, item level 16) on level-12 Olen.
@@ -264,17 +269,31 @@ describe('Lower-dungeon normal blues: one group per boss', () => {
     },
   );
 
-  it("each dungeon's bosses cover different slots, the three together every armour slot", () => {
+  it("each dungeon's bosses cover different slots, the two together all but the shoulder", () => {
     const all = new Set<string>();
     for (const bosses of Object.values(DUNGEONS)) {
       const slots = Object.values(bosses).map((spec) => spec.slot as string);
       expect(new Set(slots).size).toBe(slots.length);
       for (const slot of slots) all.add(slot);
     }
-    expect([...all].sort()).toEqual(
-      ['chest', 'feet', 'gloves', 'helmet', 'legs', 'shoulder', 'waist'].sort(),
-    );
+    // The shoulder trio was Cantor Ilvane's, retired with the Hollow Crypt.
+    expect([...all].sort()).toEqual(['chest', 'feet', 'gloves', 'helmet', 'legs', 'waist'].sort());
   });
+
+  it.each(Object.entries(RETIRED_CRYPT))(
+    "retired %s's blues keep their shipped levels and drop from no live table",
+    (bossId, spec) => {
+      expect(MOBS[bossId]).toBeUndefined();
+      const live = new Set(
+        Object.values(MOBS).flatMap((mob) => (mob.loot ?? []).map((entry) => entry.itemId)),
+      );
+      for (const [id, ilvl, req] of [spec.mail, spec.leather, spec.cloth, spec.weapon]) {
+        expect(itemLevel(ITEMS[id]), id).toBe(ilvl);
+        expect(requiredLevelFor(ITEMS[id]), id).toBe(req);
+        expect(live.has(id), id).toBe(false);
+      }
+    },
+  );
 
   it('every dungeon offers a strength, an agility and a caster weapon', () => {
     for (const [dungeonId, bosses] of Object.entries(DUNGEONS)) {

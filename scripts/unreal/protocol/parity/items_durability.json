@@ -2044,7 +2044,7 @@
         "current": 41,
         "broken": false,
         "state": "ok",
-        "cost": 2
+        "cost": 17
       }
     },
     {
@@ -2058,7 +2058,7 @@
         "current": 21,
         "broken": false,
         "state": "ok",
-        "cost": 42
+        "cost": 357
       }
     },
     {
@@ -2072,7 +2072,7 @@
         "current": 10,
         "broken": false,
         "state": "low",
-        "cost": 64
+        "cost": 544
       }
     },
     {
@@ -2086,7 +2086,7 @@
         "current": 1,
         "broken": false,
         "state": "low",
-        "cost": 82
+        "cost": 697
       }
     },
     {
@@ -2100,7 +2100,7 @@
         "current": 0,
         "broken": true,
         "state": "broken",
-        "cost": 84
+        "cost": 714
       }
     },
     {
@@ -2114,7 +2114,7 @@
         "current": 0,
         "broken": true,
         "state": "broken",
-        "cost": 84
+        "cost": 714
       }
     },
     {
