@@ -1469,8 +1469,8 @@ const GRAVEYARD_ANCHOR = ebv2SiteOr('svc:graveyard', { x: 37.5, z: -99.3 });
 // The Weekly Vault: a stone hall flush against the bank's harbour-side
 // flank, its door looking the way the bank's does, toward the square. At the
 // Studio map's own spot its box ran 0.34 yd into the bank's wall, so it
-// stands half a yard further out along its own width; it stands on the
-// bank's shelf (EASTBROOK_LAYOUT.pads).
+// stands half a yard further out along its own width, on the v2 design
+// ground (the old building pads retired with the v2 port).
 const WEEKLY_VAULT = { x: -73.73, z: -103.4, rot: Math.PI / 4 } as const;
 
 // v2: a new character starts where the design's player start stands, and the
@@ -1610,103 +1610,10 @@ const SERVICES = {
   bankerChestSamplePoints: BANKER_CHEST_SAMPLE_POINTS,
 } as const;
 
-/** One level stamp of a building's pad (the HeightStamp shape, in plain data:
- *  this module imports nothing). */
-export interface EastbrookPad {
-  x: number;
-  z: number;
-  radius: number;
-  delta: number;
-  falloff: 'smooth';
-  mode: 'level';
-  hardness: number;
-}
-
-/**
- * Level pads under a rectangle: a grid of stamps whose solid cores just cover
- * its cells, so the level ground hugs the rectangle instead of spilling round
- * it in one great disc (the Highwatch pads, highwatch_layout.ts), with
- * `taper` yards of eased grade beyond. Every stamp levels to `height`.
- */
-function padsOver(
-  box: { center: Point2; halfWidth: number; halfDepth: number; rotation: number },
-  height: number,
-  columns: number,
-  rows: number,
-  taper: number,
-): EastbrookPad[] {
-  const cellWidth = (box.halfWidth * 2) / columns;
-  const cellDepth = (box.halfDepth * 2) / rows;
-  const core = Math.hypot(cellWidth / 2, cellDepth / 2);
-  const radius = core + taper;
-  const pads: EastbrookPad[] = [];
-  for (let column = 0; column < columns; column++) {
-    for (let row = 0; row < rows; row++) {
-      const center = localToWorld(
-        box.center,
-        box.rotation,
-        -box.halfWidth + cellWidth * (column + 0.5),
-        -box.halfDepth + cellDepth * (row + 0.5),
-      );
-      pads.push({
-        x: center.x,
-        z: center.z,
-        radius,
-        delta: height,
-        falloff: 'smooth',
-        mode: 'level',
-        hardness: core / radius,
-      });
-    }
-  }
-  return pads;
-}
-
-// The ground under the placed buildings: each stands on a level shelf that
-// covers its whole reach (porch, stair and eaves), so nothing grows up
-// through a floor and no footing hangs over a dip, eased into the streets
-// round it. The shelves keep to the town's grade: the bank, the vault on its
-// flank and the apothecary's shop on the strand's lip at the main street's
-// height (-0.7), the chapel on the plat beside the coast track (-0.9), and
-// the smithy, the inn and the quay cottage on the rise north of the square
-// (0.5), cut into it, each with a long taper so the banks behind them stay
-// climbable. Neighbours share a height wherever their tapers overlap, so one
-// pad never tilts another building's floor; the coastal ones keep a short
-// taper that ends on the dry strand (no ground crosses the sea surface). In
-// the built-in world they are the last stamps on their ground (data.ts), the
-// Studio rebuild map carries the same list.
-const BANK_SHELF = -0.7;
-const CHAPEL_SHELF = -0.9;
-const RISE_SHELF = 0.5;
-const PADS: EastbrookPad[] = [
-  ...padsOver(buildingById('eastbrook_bank').reach, BANK_SHELF, 5, 5, 4),
-  // the vault and the apron before its door, on the bank's shelf
-  ...padsOver(
-    {
-      center: localToWorld(WEEKLY_VAULT, WEEKLY_VAULT.rot, 0, 1.75),
-      halfWidth: 7,
-      halfDepth: 7.75,
-      rotation: WEEKLY_VAULT.rot,
-    },
-    BANK_SHELF,
-    2,
-    2,
-    4,
-  ),
-  ...padsOver(buildingById('eastbrook_smithy').reach, RISE_SHELF, 3, 2, 5),
-  ...padsOver(buildingById('eastbrook_inn').reach, RISE_SHELF, 3, 3, 9),
-  ...padsOver(buildingById('eastbrook_chapel').reach, CHAPEL_SHELF, 3, 4, 4),
-  // a finer grid, so the shelf hugs the shop's seaward eaves and its taper is
-  // spent before the strand reaches the water
-  ...padsOver(buildingById('eastbrook_apothecary').reach, BANK_SHELF, 4, 4, 4),
-  ...padsOver(buildingById('eastbrook_quay_cottage').reach, RISE_SHELF, 2, 2, 8),
-];
-
 export const EASTBROOK_LAYOUT = deepFreeze({
   id: 'eastbrook_civic_layout_v2',
   preservedBuildings: [] as readonly PreservedBuildingPlacement[],
   buildings: BUILDINGS,
-  pads: PADS,
   // The vault stands where the Studio map stands it, against the bank's
   // harbour-side flank (WEEKLY_VAULT).
   weeklyVault: {

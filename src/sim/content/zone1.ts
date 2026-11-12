@@ -130,20 +130,6 @@ export const SOWFIELD_SEABED_TERRAIN_EDITS: HeightStamp[] = [
   { x: 20, z: -146, radius: 13, delta: -5.2, falloff: 'smooth', mode: 'level' },
 ];
 
-// The Tidehold rebuild's building pads (sim/eastbrook_layout.ts pads): a grid
-// of level stamps under each placed building, its solid cores covering the
-// model's whole reach, each shelf eased into the streets by its own taper,
-// the vault on the bank's shelf. Applied LAST (array order is application
-// order), after the plat, the quay and the strand; the Studio rebuild map
-// carries the same list. None reaches the quay's working pad or the player
-// start, and none lifts a cell of sea out of the water. A grid, not one disc
-// per building: a disc whose core covers a whole reach spills well past its
-// long sides, and on the World of ClaudeCraft Studio map's sites those discs
-// (the bank's above all) lifted the harbour seabed out of the sea.
-// Copied: the layout's records are frozen, and edit lists are plain data.
-export const EASTBROOK_BUILDING_PAD_TERRAIN_EDITS: HeightStamp[] = EASTBROOK_LAYOUT.pads.map(
-  (pad) => ({ ...pad }),
-);
 // Flower drifts beside the lamplit town streets (owner refinement round 3).
 // The renderer's grass ring treats these circles as guaranteed bloom cells
 // (the REALM_FLOWER_MEADOWS mechanism); placement inside them still skips
