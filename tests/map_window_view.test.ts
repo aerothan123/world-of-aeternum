@@ -88,6 +88,11 @@ const ZONE_MIN_X = ZONE.xMin ?? STRIP_MIN_X;
 const ZONE_MAX_X = ZONE.xMax ?? STRIP_MAX_X;
 const FULL_SPAN = Math.max(ZONE_MAX_X - ZONE_MIN_X, ZONE.zMax - ZONE.zMin);
 const ZONE_CX = (ZONE_MIN_X + ZONE_MAX_X) / 2;
+/** Half the max-zoom frame: the zone's span over MAP_MAX_ZOOM, halved. */
+const MAX_ZOOM_HALF_SPAN = FULL_SPAN / MAP_MAX_ZOOM / 2;
+/** The zoom whose frame is the 90 yd town view the landmark-nudge arms assert at
+ *  (zoom 4 of the 360 yd vale; the frame, not the factor, is what they need). */
+const TOWN_FRAME_ZOOM = FULL_SPAN / 90;
 const LABELS_ZOOM = 1;
 // Explicit combat content keeps generic glyph geometry independent of ambient
 // profession-offer visibility and content-table insertion order.
@@ -1559,21 +1564,28 @@ describe('zone-map gather nodes', () => {
   });
 
   it('culls nodes outside the zoomed view rect (pan pays only for what is on screen)', () => {
-    // zoom 3 framed at the player (0, 0): the visible square is 120yd wide
-    // and the cull pads it by the marker margin, so the band runs to +-84yd.
-    // The whole Copper Dig ore field sits on the dig headland since the New
-    // Eastbrook relocation, entirely west of the pad, so every vein culls;
-    // the near-edge discrimination comes from herb_eastbrook_5 (5yd past the
-    // east bound) against herb_eastbrook_4 inside it (wood_eastbrook_3, the
-    // west-edge stand, retired with tree chopping). A cull that stopped
-    // culling and one that culled everything both red.
-    const model = buildOverworldMapModel(input(makeOverworldWorld('sim'), 3));
+    // Re-pinned for Eastbrook Vale v2 (the vale is 450 yd wide and its nodes
+    // stand on the design's sites): zoom 3 framed at (0, 33), the visible
+    // square is FULL_SPAN / 3 = 150 yd wide and the cull pads it by the marker
+    // margin, so the band runs x -99..99, z -66..132. The Copper Dig veins sit
+    // on the north headland (z 137 to 161) and the west herbs past x -180, so
+    // they cull; the near-edge discrimination comes from ore_eastbrook_6
+    // (5 yd past the north bound) against herb_eastbrook_2 inside it. A cull
+    // that stopped culling and one that culled everything both red.
+    const band = FULL_SPAN / 3 / 2 + 24;
+    const center = { x: 0, z: 33 };
+    const model = buildOverworldMapModel({ ...input(makeOverworldWorld('sim'), 3), center });
     const kept = new Set(model.gatherNodes.map((n) => n.nodeId));
-    expect(kept.has('ore_eastbrook_1')).toBe(false); // (-130, -77): headland, west of the pad
-    expect(kept.has('ore_eastbrook_4')).toBe(false); // (-152, -72): west of the pad
-    expect(kept.has('herb_eastbrook_5')).toBe(false); // (89, -27): just past the east bound
-    expect(kept.has('herb_eastbrook_4')).toBe(true); // (6, -69): inside the pad
-    expect(model.gatherNodes).toHaveLength(2); // five before the wood stands retired
+    const pos = (id: string) => GATHER_NODES.find((n) => n.id === id)?.pos;
+    // fixture guard: the two discriminating nodes stand where this arm says
+    expect(pos('ore_eastbrook_6')?.z).toBeCloseTo(center.z + band + 5, 6);
+    expect(Math.abs((pos('herb_eastbrook_2')?.z ?? 0) - center.z)).toBeLessThan(band);
+    expect(kept.has('ore_eastbrook_1')).toBe(false); // (-21.89, 150.06): north headland
+    expect(kept.has('ore_eastbrook_4')).toBe(false); // (-42, 158): north headland
+    expect(kept.has('ore_eastbrook_6')).toBe(false); // (-15, 137): just past the north bound
+    expect(kept.has('herb_eastbrook_4')).toBe(false); // (-181.79, 84.41): outside the band
+    expect(kept.has('herb_eastbrook_2')).toBe(true); // (-23.47, 51.75): inside the band
+    expect(model.gatherNodes).toHaveLength(1);
   });
 
   it('never leaks nodes from another zone into the committed zone model', () => {
@@ -1684,32 +1696,37 @@ describe('zone-map civic services', () => {
     };
     world.questState = () => 'unavailable';
     world.player.pos = { x: 0, z: ZONE_CZ };
+    // The max-zoom frame is the zone's span over MAP_MAX_ZOOM, centred on the
+    // player: a yard inside its edge is on screen, 20 yd past it is not.
+    // (Re-pinned for Eastbrook Vale v2, whose slot is 450 yd wide: the frame
+    // was the literal +-30 of the 360 yd vale.)
+    const half = MAX_ZOOM_HALF_SPAN;
     world.stationPlacements = [
       {
         id: 'offscreen_forge',
         type: 'forge',
         zoneId: ZONE.id,
-        pos: { x: 50, z: ZONE_CZ },
+        pos: { x: half + 20, z: ZONE_CZ },
         masterNpcId: 'custom_master',
       },
       {
         id: 'edge_loom',
         type: 'loom',
         zoneId: ZONE.id,
-        pos: { x: 29, z: ZONE_CZ },
+        pos: { x: half - 1, z: ZONE_CZ },
         masterNpcId: 'custom_master',
       },
     ];
     const model = buildOverworldMapModel(
       input(world as unknown as IWorld, MAP_MAX_ZOOM, NO_DECOR, PROPS, {
         mailboxes: [
-          { x: 50, z: ZONE_CZ },
-          { x: -29, z: ZONE_CZ },
+          { x: half + 20, z: ZONE_CZ },
+          { x: -(half - 1), z: ZONE_CZ },
         ],
       }),
     );
 
-    expect(model.region).toMatchObject({ minX: -30, maxX: 30 });
+    expect(model.region).toMatchObject({ minX: -half, maxX: half });
     expect(model.services).toHaveLength(1);
     expect(model.stations).toHaveLength(1);
     expect(model.services[0].mx).toBeLessThanOrEqual(CANVAS - 8);
@@ -1759,7 +1776,7 @@ describe('zone-map civic services', () => {
         }),
       );
 
-      expect(model.region).toMatchObject({ minX: -30, maxX: 30 });
+      expect(model.region).toMatchObject({ minX: -MAX_ZOOM_HALF_SPAN, maxX: MAX_ZOOM_HALF_SPAN });
       expect(model.services).toHaveLength(1);
       expect(model.services[0][axis]).toBe(expected);
     },
@@ -2353,7 +2370,7 @@ describe('zone-map farm patches', () => {
     // the second must be displaced, which is only possible if an accepted patch
     // badge joins the shared landmark list. Since the release/v0.41.0 merge the
     // farm badge takes the world-yard nudge cap like every landmark, so the
-    // de-overlap is asserted where the cap allows it: the zoom-4 town frame,
+    // de-overlap is asserted where the cap allows it: the 90 yd town frame,
     // where the cap converts to more pixels than the separation needs (the
     // same two-half shape as the station cap arm above). At the full-zone
     // frame the second badge holds its authored spot inside the cap instead of
@@ -2363,8 +2380,9 @@ describe('zone-map farm patches', () => {
       { id: 'patch_first', zoneId: ZONE.id, tier: 1, x: site.x, z: site.z, beds: [] },
       { id: 'patch_second', zoneId: ZONE.id, tier: 2, x: site.x, z: site.z, beds: [] },
     ];
+    // The town frame is 90 yd wide whatever the zone's span (TOWN_FRAME_ZOOM).
     const zoomed = buildOverworldMapModel({
-      ...input(world as unknown as IWorld, 4),
+      ...input(world as unknown as IWorld, TOWN_FRAME_ZOOM),
       center: { x: site.x, z: site.z },
     });
     expect(zoomed.farmPatches.map((patch) => patch.patchId)).toEqual([
@@ -2386,7 +2404,7 @@ describe('zone-map farm patches', () => {
   it('clears the stations placed before it on the same landmark layer', () => {
     const world = makeOverworldWorld('sim') as unknown as { farmPatches: unknown[] };
     // Same world position as the Eastbrook forge (STATIONS[0]). Asserted at the
-    // zoom-4 town frame for the reason the arm above records: under the
+    // 90 yd town frame for the reason the arm above records: under the
     // world-yard cap the full-zone frame holds badges at their true spots.
     const forge = STATIONS.find((station) => station.id === 'station_eastbrook_forge');
     expect(forge).toBeDefined();
@@ -2395,7 +2413,7 @@ describe('zone-map farm patches', () => {
       { id: 'patch_on_forge', zoneId: ZONE.id, tier: 1, x: forge.pos.x, z: forge.pos.z, beds: [] },
     ];
     const model = buildOverworldMapModel({
-      ...input(world as unknown as IWorld, 4),
+      ...input(world as unknown as IWorld, TOWN_FRAME_ZOOM),
       center: { x: forge.pos.x, z: forge.pos.z },
     });
     const patch = model.farmPatches[0];

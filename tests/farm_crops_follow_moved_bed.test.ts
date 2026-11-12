@@ -109,11 +109,23 @@ describe('a growing crop follows its moved bed', () => {
     expect(crop, 'the growing crop must be drawn').toBeDefined();
     expect(crop?.position.x).toBe(TARGET.x);
     expect(crop?.position.z).toBe(TARGET.z);
-    const facing = new THREE.Vector3(0, 0, 1).applyQuaternion(
-      crop?.quaternion ?? new THREE.Quaternion(),
-    );
+    const q = crop?.quaternion ?? new THREE.Quaternion();
+    const facing = new THREE.Vector3(0, 0, 1).applyQuaternion(q);
     // Turned with the bed: the shipped bed has no turn, so its crop faces +z.
-    expect(Math.atan2(facing.x, facing.z)).toBeCloseTo(TARGET.rotY, 1);
+    // The turn is about the bed's OWN up: the seat tilts the bed to the ground
+    // normal first (render/farm_patches.ts), and on the Eastbrook Vale v2 design
+    // this spot slopes, so the bare world-frame heading of the tilted forward
+    // reads about 0.07 off the turn. Measured against the tilt alone (the same
+    // up, no turn) the angle about that up is the turn itself.
+    const up = new THREE.Vector3(0, 1, 0).applyQuaternion(q);
+    const tiltOnly = new THREE.Vector3(0, 0, 1).applyQuaternion(
+      new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), up),
+    );
+    const turn = Math.atan2(
+      new THREE.Vector3().crossVectors(tiltOnly, facing).dot(up),
+      tiltOnly.dot(facing),
+    );
+    expect(turn).toBeCloseTo(TARGET.rotY, 1);
     visuals.dispose();
 
     // Ripe: the old spot is out of reach, the moved bed harvests.
