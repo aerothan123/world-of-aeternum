@@ -1052,7 +1052,7 @@ describe('Guide Reliquary spoiler-safe catalog', () => {
     }
   });
 
-  it('labels all four outside-completion pages, and renders tag plus note for each', () => {
+  it('labels all six outside-completion pages, and renders tag plus note for each', () => {
     // The generated blob carries the flag for exactly the live flagged set
     // (a third flagged page must surface here the moment it is authored)...
     expect(
@@ -1062,6 +1062,9 @@ describe('Guide Reliquary spoiler-safe catalog', () => {
       ]),
     ).toEqual([
       ['horizons_vault_of_ages', 'retired'],
+      // The retired Hollow Crypt pages (dungeon retired 2026-11-11).
+      ['conquerors_hollow_crypt', 'retired'],
+      ['conquerors_hollow_crypt_heroic', 'retired'],
       ['horizons_riftbound', 'personal'],
       ['professions_forgebreaker', 'personal'],
       // Class-locked Warfare Season 2 stock.
@@ -1071,8 +1074,8 @@ describe('Guide Reliquary spoiler-safe catalog', () => {
     // heading and the explanatory note, one pair per flagged page, resolved
     // through t() (never hardcoded English), with none on ordinary pages.
     const html = reliquaryCatalogSections(GUIDE_RELIQUARY);
-    expect(html.match(/guide-reliquary-flag/g)?.length).toBe(4);
-    expect(html.match(/guide-reliquary-note/g)?.length).toBe(4);
+    expect(html.match(/guide-reliquary-flag/g)?.length).toBe(6);
+    expect(html.match(/guide-reliquary-note/g)?.length).toBe(6);
     expect(html).toContain(`(${t('guide.reliquaryPage.retiredTag')})`);
     expect(html).toContain(`(${t('guide.reliquaryPage.personalTag')})`);
     expect(html).toContain(t('guide.reliquaryPage.retiredNote'));
