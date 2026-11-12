@@ -24,7 +24,15 @@
 // offset -4..+6 x distance 3..35 sight line incl. the pet-beside line clear, ground
 // variation under 0.15) against the v0.32.1 collider set. Spares that also pass at
 // full resolution: (-60, -10), (-70, -80).
-export const PROBE_OPEN_FIELD = { x: 50, z: -90 } as const;
+// Re-hunted for the Eastbrook Vale v2 port: (50, -90) is v2 design ground now, with the
+// design's houses and walls across the fan. Off the v2 field no spot keeps the whole fan
+// clear on every seed the probes run (the procedural tree and rock scatter follows the
+// seed), while the v2 design turns that scatter off, so the anchor moved onto it:
+// (-156, -148), in the open south-west of the vale, keeps every offset -4..+6 x distance
+// 3..35 sight line (and the pet-beside line) clear on every seed, no camp within 40 yd of
+// the fan. The design ground is not as flat as the old field: 0.54 of height variation
+// across the footprint (against 0.15), the flattest clear fan the design offers.
+export const PROBE_OPEN_FIELD = { x: -156, z: -148 } as const;
 
 interface AnchorableSim {
   player: {
