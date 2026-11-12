@@ -36,6 +36,7 @@ import {
 import { ZONE1_PROPS, ZONE1_ROADS } from '../src/sim/content/zone1';
 import { BUILTIN_WORLD, NPCS, PROPS, STATIONS, setActiveWorldContent } from '../src/sim/data';
 import { EASTBROOK_BUILDINGS_BY_ID, EASTBROOK_LAYOUT } from '../src/sim/eastbrook_layout';
+import { ebv2RestsAt } from '../src/sim/eastbrook_v2/rest';
 import {
   FENBRIDGE_BUILDINGS_BY_ID,
   FENBRIDGE_LAYOUT,
@@ -52,6 +53,7 @@ import { isResting } from '../src/sim/progression/xp';
 import type { BuildingDef, Entity } from '../src/sim/types';
 import { groundHeight, terrainHeight, waterLevelAt } from '../src/sim/world';
 import { WORLD_SEED } from '../src/sim/world_seed';
+import { EBV2_INN } from './helpers/ebv2_inn';
 
 const SEED = WORLD_SEED;
 // Re-pinned 2026-08 for the Eastbrook harbor move (d19aa33f76,
@@ -223,7 +225,9 @@ describe('Eastbrook Grand Armoury retirement (round 4)', () => {
 
 describe('Eastbrook Grand Armoury gameplay preservation', () => {
   it('keeps resting with the authored Eastbrook inn', () => {
-    const innRestPoint = EASTBROOK_BUILDINGS_BY_ID.eastbrook_inn.frontStandingPoint;
+    // Eastbrook Vale v2: the design's inn (the Kettle and Cradle) is the rest
+    // building; the shipped inn record stands on design ground and rests nobody.
+    const innRestPoint = EBV2_INN;
     const player = {
       inCombat: false,
       pos: {
@@ -239,8 +243,8 @@ describe('Eastbrook Grand Armoury gameplay preservation', () => {
     // The inn's rest footprint is the authored one and nothing else grants
     // rest: the inn row plus its 2 yard padding is the whole area.
     player.inCombat = false;
-    player.pos.x = EASTBROOK_BUILDINGS_BY_ID.eastbrook_inn.position.x;
-    player.pos.z = EASTBROOK_BUILDINGS_BY_ID.eastbrook_inn.position.z;
+    player.pos.x = EBV2_INN.x;
+    player.pos.z = EBV2_INN.z;
     expect(isResting(player)).toBe(true);
 
     player.pos.x = NPCS.card_master.pos.x;
@@ -255,7 +259,11 @@ describe('Eastbrook Grand Armoury gameplay preservation', () => {
     // (The Tidehold rebuild, 2026-10, moved both again and kept them apart:
     // he flanks the bank's door at (16.3, -109.5) and the inn is the painted
     // tavern walled around (-40.51, -72.3).)
-    expect(isResting(player)).toBe(false);
+    // Eastbrook Vale v2 seats the card table INSIDE the design's inn (the
+    // Kettle and Cradle), so his stand rests now, and only because it lies in
+    // the inn's own footprint: rest still belongs to the inn.
+    expect(ebv2RestsAt(player.pos.x, player.pos.z)).toBe(true);
+    expect(isResting(player)).toBe(true);
     // The landmark's narrow threshold halo stays the adapter's rule for
     // custom worlds that place it.
     expect(buildingRestPadding(LANDMARK_FIXTURE)).toBe(0.9);

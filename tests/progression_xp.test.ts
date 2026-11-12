@@ -6,11 +6,11 @@
 // extracted module is callable and the move preserved behavior.
 
 import { describe, expect, it } from 'vitest';
-import { PROPS } from '../src/sim/data';
 import { isResting, prestige, updateRested } from '../src/sim/progression/xp';
 import { Sim } from '../src/sim/sim';
 import { DT, MAX_LEVEL, PRESTIGE_XP_PER_RANK, xpForLevel } from '../src/sim/types';
 import { terrainHeight } from '../src/sim/world';
+import { EBV2_INN } from './helpers/ebv2_inn';
 
 type AnySim = Sim & Record<string, any>;
 
@@ -25,7 +25,9 @@ function teleport(sim: AnySim, e: any, x: number, z: number): void {
   e.prevPos = { ...e.pos };
 }
 
-const inn = PROPS.buildings.find((b) => b.kind === 'inn')!;
+// Eastbrook Vale v2: the design's inn is the built-in world's rest building (the
+// shipped inn record stands on design ground and rests nobody there).
+const inn = EBV2_INN;
 
 describe('progression/xp — isResting (inn footprint)', () => {
   it('is true inside an inn footprint while out of combat', () => {

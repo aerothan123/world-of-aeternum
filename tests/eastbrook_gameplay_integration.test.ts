@@ -47,6 +47,7 @@ import {
   type ZonePropsDef,
 } from '../src/sim/types';
 import { groundHeight, waterLevelAt } from '../src/sim/world';
+import { ebv2InnDoorstepCandidates } from './helpers/ebv2_inn';
 
 const SEED = 20061;
 const ZONE1_TOWN_NPC_IDS = EASTBROOK_LAYOUT.services.npcs
@@ -903,9 +904,12 @@ describe('Eastbrook authored gameplay data integration', () => {
     // the moved spawn is re-pinned here as exported data.
     // Re-pinned for the World of ClaudeCraft Studio map's arrangement: the
     // graveyard moved with the chapel into the churchyard beside it.
-    expect(PLAYER_START).toEqual({ x: -94, z: -58 });
-    expect(EASTBROOK_LAYOUT.services.graveyard.position).toEqual({ x: 37.5, z: -99.3 });
-    expect(EASTBROOK_LAYOUT.services.graveyard.legacyReleasePoint).toEqual({ x: 39.5, z: -99.3 });
+    // Re-pinned for Eastbrook Vale v2: the owner-approved start is the design's
+    // player_spawn below the south gate, and the graveyard is the design's
+    // knoll east of town (its release point two yards east of the stone).
+    expect(PLAYER_START).toEqual({ x: -16, z: -158 });
+    expect(EASTBROOK_LAYOUT.services.graveyard.position).toEqual({ x: 146, z: -118 });
+    expect(EASTBROOK_LAYOUT.services.graveyard.legacyReleasePoint).toEqual({ x: 148, z: -118 });
   });
 });
 
@@ -1235,7 +1239,13 @@ describe('Eastbrook runtime collision, spawn, and services', () => {
       (building) => building.id === 'eastbrook_inn',
     );
     if (!innPlacement) throw new Error('missing authored Eastbrook inn');
-    const restPoint = innPlacement.frontStandingPoint;
+    // Eastbrook Vale v2: the design's inn is the sole Eastbrook rest area (the
+    // shipped inn record stands on design ground and rests nobody), so the rest
+    // point is an open spot on its doorstep band, inside the rest padding.
+    const restPoint = ebv2InnDoorstepCandidates().find(
+      (point) => !isBlocked(SEED, point.x, point.z, 0.5),
+    );
+    if (!restPoint) throw new Error('no open doorstep round the v2 inn');
     const barracksFront = { x: 12, z: -5.5 };
     expect(isBlocked(SEED, restPoint.x, restPoint.z, 0.5)).toBe(false);
     expect(isResting({ inCombat: false, pos: { ...restPoint, y: 0 } } as Entity)).toBe(true);

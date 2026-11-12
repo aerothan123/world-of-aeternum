@@ -117,6 +117,7 @@ import {
   updateWorldQuests,
 } from '../../src/sim/world_quests';
 import { WORLD_SEED } from '../../src/sim/world_seed';
+import { EBV2_INN } from '../helpers/ebv2_inn';
 import { runCraft } from '../helpers/enchant_family_cast';
 import { OPEN_FIELD } from '../helpers/open_field';
 import type { Recorder, Scenario } from './record';
@@ -4824,11 +4825,9 @@ function g1bXpPrestige(): Scenario {
       // 1. Rested accrual: park inside an inn footprint, out of combat, and tick.
       //    updateRested fires each regen-phase tick while isResting(p) is true,
       //    accruing a positive (sub-unit) pool off DT.
-      const innB = requireValue(
-        PROPS.buildings.find((b) => b.kind === 'inn'),
-        'parity scenario building',
-      );
-      teleport(sim, p, innB.x, innB.z);
+      //    Eastbrook Vale v2: the design's inn is the built-in world's rest
+      //    building (the shipped inn record on design ground rests nobody).
+      teleport(sim, p, EBV2_INN.x, EBV2_INN.z);
       rec.tick(60);
       rec.notes.restedAfterAccrual = meta.restedXp;
       rec.snapshot('rested-accrued');
