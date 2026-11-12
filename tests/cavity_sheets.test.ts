@@ -169,36 +169,42 @@ describe('carve document round-trip (sim/map_doc.ts)', () => {
 });
 
 describe('world bindings (sim/world.ts)', () => {
-  // A big carve sphere buried under the shipped world's ground near (0, 40).
+  // A big carve sphere buried under the shipped world's ground. Re-sited for
+  // Eastbrook Vale v2: it sat near (0, 40), which is v2 design ground now (the
+  // design's heightfield is laid over the shipped terrain there), so it is
+  // buried at (0, 240) instead, the same shipped ground just north of the vale;
+  // every coordinate below is the old one taken relative to the carve's centre.
+  const CX = 0;
+  const CZ = 240;
   function buriedCarve(): { cut: TerrainCut; surface: number } {
-    const surface = terrainHeight(0, 40, SEED);
-    return { cut: { x: 0, y: surface - 8, z: 40, radius: 6, carve: true }, surface };
+    const surface = terrainHeight(CX, CZ, SEED);
+    return { cut: { x: CX, y: surface - 8, z: CZ, radius: 6, carve: true }, surface };
   }
 
   it('groundHeightNear stands a deep mover on the cavity floor', () => {
     const { cut, surface } = buriedCarve();
     setActiveWorldContent(world({ holes: [cut] }));
-    const floor = groundHeightNear(0, 40, SEED, surface - 14);
+    const floor = groundHeightNear(CX, CZ, SEED, surface - 14);
     expect(floor).toBeLessThan(surface - 10);
     expect(floor).toBeGreaterThan(surface - 15);
     // The surface mover is unaffected: the ground sheet above is intact.
-    expect(groundHeightNear(0, 40, SEED, surface)).toBeCloseTo(groundHeight(0, 40, SEED), 5);
+    expect(groundHeightNear(CX, CZ, SEED, surface)).toBeCloseTo(groundHeight(CX, CZ, SEED), 5);
   });
 
   it('onUnderSheet is true only for the mover on the cavity floor', () => {
     const { cut, surface } = buriedCarve();
     setActiveWorldContent(world({ holes: [cut] }));
-    expect(onUnderSheet(0, 40, SEED, surface - 14)).toBe(true);
-    expect(onUnderSheet(0, 40, SEED, surface)).toBe(false);
+    expect(onUnderSheet(CX, CZ, SEED, surface - 14)).toBe(true);
+    expect(onUnderSheet(CX, CZ, SEED, surface)).toBe(false);
   });
 
   it('sheetCeilingAt reports the rock roof for the cavity mover', () => {
     const { cut, surface } = buriedCarve();
     setActiveWorldContent(world({ holes: [cut] }));
-    const ceiling = sheetCeilingAt(0, 40, SEED, surface - 14);
+    const ceiling = sheetCeilingAt(CX, CZ, SEED, surface - 14);
     expect(ceiling).toBeLessThan(surface);
     expect(ceiling).toBeGreaterThan(surface - 8);
-    expect(sheetCeilingAt(0, 40, SEED, surface)).toBe(Infinity);
+    expect(sheetCeilingAt(CX, CZ, SEED, surface)).toBe(Infinity);
   });
 
   it('sheetWallBlocksStep: rock beside the cavity blocks, the interior does not', () => {
@@ -206,11 +212,11 @@ describe('world bindings (sim/world.ts)', () => {
     setActiveWorldContent(world({ holes: [cut] }));
     const feet = surface - 13.5; // on the cavity floor
     // Step across the middle of the room: air all the way.
-    expect(sheetWallBlocksStep(SEED, -1, 40, feet, 1, 40)).toBe(false);
+    expect(sheetWallBlocksStep(SEED, CX - 1, CZ, feet, CX + 1, CZ)).toBe(false);
     // Step from the interior into the rock beyond the wall.
-    expect(sheetWallBlocksStep(SEED, 4, 40, feet, 8, 40)).toBe(true);
+    expect(sheetWallBlocksStep(SEED, CX + 4, CZ, feet, CX + 8, CZ)).toBe(true);
     // Surface movers never consult the rock test.
-    expect(sheetWallBlocksStep(SEED, 4, 40, surface, 8, 40)).toBe(false);
+    expect(sheetWallBlocksStep(SEED, CX + 4, CZ, surface, CX + 8, CZ)).toBe(false);
   });
 
   it('sheetMouthStepOk allows a small rise only across a sheet transfer', () => {
@@ -218,8 +224,10 @@ describe('world bindings (sim/world.ts)', () => {
     setActiveWorldContent(world({ holes: [cut] }));
     const feet = surface - 13.5;
     // Transfer between cavity and surface with a small rise: allowed.
-    expect(sheetMouthStepOk(SEED, 0, 40, feet, 30, 40, feet, feet + 1)).toBe(true);
+    expect(sheetMouthStepOk(SEED, CX, CZ, feet, CX + 30, CZ, feet, feet + 1)).toBe(true);
     // Same rise with no transfer (both on the surface): refused.
-    expect(sheetMouthStepOk(SEED, 30, 40, surface, 31, 40, surface, surface + 1)).toBe(false);
+    expect(sheetMouthStepOk(SEED, CX + 30, CZ, surface, CX + 31, CZ, surface, surface + 1)).toBe(
+      false,
+    );
   });
 });

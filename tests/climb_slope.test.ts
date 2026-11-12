@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { isBlocked } from '../src/sim/colliders';
 import { BUILTIN_WORLD, CAMPS } from '../src/sim/data';
+import { inEbv2Field } from '../src/sim/eastbrook_v2';
 import { PLAYER_MAX_CLIMB_SLOPE } from '../src/sim/pathfind';
 import { rideSteepnessAt } from '../src/sim/ride_height';
 import { Sim } from '../src/sim/sim';
@@ -60,22 +61,38 @@ function teleport(sim: Sim, x: number, z: number): void {
   p.vy = 0;
 }
 
-// A z where the run-up to the west rim wall is dry, collider-free, and far from
-// mob camps, plus where the wall's steep band begins and where its crest tops out.
-let rimApproach: { z: number; xStart: number; xCrest: number } | null = null;
-function findWestRimApproach(seed: number): { z: number; xStart: number; xCrest: number } {
+// A z where the run-up to a rim wall is dry, collider-free, and far from mob
+// camps, plus where the wall's steep band begins and where its crest tops out.
+// `dir` is the way the rim rises along x: -1 for the west rim, +1 for the east.
+// Re-sited for Eastbrook Vale v2: the west rim's one clean run on this seed lay
+// inside what is now the v2 design field (design ground, its own relief), and
+// none clears the scan north of it, so after the west rim the scan tries the
+// vale's east rim (rising east from x 130, north of the field) the same way.
+interface RimApproach {
+  z: number;
+  xStart: number;
+  xCrest: number;
+  dir: -1 | 1;
+}
+let rimApproach: RimApproach | null = null;
+function findRimApproach(seed: number): RimApproach {
   if (rimApproach) return rimApproach;
-  rimApproach = scanWestRimApproach(seed);
+  rimApproach = scanRimApproach(seed, -1) ?? scanRimApproach(seed, 1);
+  if (!rimApproach) throw new Error('no clean rim approach found for this seed');
   return rimApproach;
 }
 
-function scanWestRimApproach(seed: number): { z: number; xStart: number; xCrest: number } {
+function scanRimApproach(seed: number, dir: -1 | 1): RimApproach | null {
+  const x0 = 130 * dir;
   outer: for (let z = -60; z <= 820; z += 7) {
+    if (inEbv2Field(x0, z) || inEbv2Field(x0 + 54 * dir, z)) continue;
     for (const camp of CAMPS) {
-      if (Math.hypot(camp.center.x + 160, camp.center.z - z) < camp.radius + 80) continue outer;
+      if (Math.hypot(camp.center.x - 160 * dir, camp.center.z - z) < camp.radius + 80)
+        continue outer;
     }
     let xSteep = Number.NaN;
-    for (let x = -130; x >= -178; x -= 0.5) {
+    for (let i = 0; i <= 96; i++) {
+      const x = x0 + 0.5 * i * dir;
       if (terrainHeight(x, z, seed) < WATER_LEVEL + 0.5) continue outer;
       if (Number.isNaN(xSteep) && isBlocked(seed, x, z, 0.6)) continue outer;
       if (Number.isNaN(xSteep) && terrainSteepness(x, z, seed) > CLIMB_LIMIT + 0.2) {
@@ -85,23 +102,30 @@ function scanWestRimApproach(seed: number): { z: number; xStart: number; xCrest:
     if (Number.isNaN(xSteep)) continue;
     let xCrest = xSteep;
     let hCrest = -Infinity;
-    for (let x = xSteep; x >= -184; x -= 0.5) {
+    for (let x = xSteep; Math.abs(x) <= 184; x += 0.5 * dir) {
       const h = terrainHeight(x, z, seed);
       if (h > hCrest) {
         hCrest = h;
         xCrest = x;
       }
     }
-    return { z, xStart: xSteep + 6, xCrest };
+    // A rim RISES to its crest from the run-up.
+    if (hCrest <= terrainHeight(xSteep - 6 * dir, z, seed)) continue;
+    return { z, xStart: xSteep - 6 * dir, xCrest, dir };
   }
-  throw new Error('no clean west-rim approach found for this seed');
+  return null;
+}
+
+/** Still on the run-up side of the crest (never crossed it). */
+function shortOfCrest(x: number, rim: RimApproach): boolean {
+  return (rim.xCrest - x) * rim.dir > 0;
 }
 
 // A steep on-wall footing reachable for the slide tests: the first point past
 // the steep band start with real steepness.
 function findSteepFooting(seed: number): { x: number; z: number } {
-  const { z, xStart } = findWestRimApproach(seed);
-  for (let x = xStart; x >= -184; x -= 0.25) {
+  const { z, xStart, dir } = findRimApproach(seed);
+  for (let x = xStart; Math.abs(x) <= 184; x += 0.25 * dir) {
     if (terrainSteepness(x, z, seed) > CLIMB_LIMIT + 0.4 && !isBlocked(seed, x, z, 0.6)) {
       return { x, z };
     }
@@ -109,7 +133,8 @@ function findSteepFooting(seed: number): { x: number; z: number } {
   throw new Error('no steep footing found');
 }
 
-const WEST = -Math.PI / 2; // facing f moves along (sin f, cos f); west = -x
+// facing f moves along (sin f, cos f): toward the rim is -x (west) or +x (east)
+const towardRim = (rim: RimApproach) => (rim.dir * Math.PI) / 2;
 
 describe('unwalkable slope movement gates', () => {
   // CLIMB_LIMIT is deliberately a literal (an independent pin, not a
@@ -120,7 +145,8 @@ describe('unwalkable slope movement gates', () => {
 
   it('cannot climb the rim wall by strafing diagonally (switchback)', { timeout: 30000 }, () => {
     const sim = makeSim();
-    const { z, xStart, xCrest } = findWestRimApproach(SEED);
+    const rim = findRimApproach(SEED);
+    const { z, xStart } = rim;
     teleport(sim, xStart, z);
     const meta = sim.players.get(sim.player.id);
     if (!meta) throw new Error('missing player meta');
@@ -129,10 +155,10 @@ describe('unwalkable slope movement gates', () => {
       // hug the live gradient at ~65 degrees off uphill, alternating sides:
       // the classic switchback that beats a direction-only slope check
       const down = terrainDownhill(sim.player.pos.x, sim.player.pos.z, SEED);
-      const uphill = down ? Math.atan2(-down.x, -down.z) : WEST;
+      const uphill = down ? Math.atan2(-down.x, -down.z) : towardRim(rim);
       sim.player.facing = uphill + (Math.floor(i / 15) % 2 === 0 ? 1.15 : -1.15);
       sim.tick();
-      expect(sim.player.pos.x, `tick ${i}: crossed the rim crest`).toBeGreaterThan(xCrest);
+      expect(shortOfCrest(sim.player.pos.x, rim), `tick ${i}: crossed the rim crest`).toBe(true);
     }
   });
 
@@ -147,14 +173,15 @@ describe('unwalkable slope movement gates', () => {
     // that as a breach. Measure the climb itself instead, both ways it could
     // happen (walking up the face, or laddering it with a ledge grab).
     const sim = makeSim();
-    const { z, xStart, xCrest } = findWestRimApproach(SEED);
+    const rim = findRimApproach(SEED);
+    const { z, xStart, xCrest } = rim;
     const hCrest = terrainHeight(xCrest, z, SEED);
     teleport(sim, xStart, z);
     const meta = sim.players.get(sim.player.id);
     if (!meta) throw new Error('missing player meta');
     meta.moveInput.forward = true;
     meta.moveInput.jump = true;
-    sim.player.facing = WEST;
+    sim.player.facing = towardRim(rim);
     // The crest was surveyed along THIS z line only, so the gate is asserted
     // while the body is still on it. The swept solver slides along a face far
     // better than the old resolver did, and over a minute of jump-spam the
@@ -166,7 +193,7 @@ describe('unwalkable slope movement gates', () => {
     for (let i = 0; i < 20 * 60; i++) {
       sim.tick();
       if (Math.abs(sim.player.pos.z - z) < 3) {
-        expect(sim.player.pos.x, `tick ${i}: crossed the rim crest`).toBeGreaterThan(xCrest);
+        expect(shortOfCrest(sim.player.pos.x, rim), `tick ${i}: crossed the rim crest`).toBe(true);
         peakY = Math.max(peakY, sim.player.pos.y);
       }
       expect(sim.player.pos.y, `tick ${i}: climbed to the rim crest height`).toBeLessThan(hCrest);

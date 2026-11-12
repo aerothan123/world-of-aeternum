@@ -15,6 +15,7 @@ import {
   zoneWelcomeText,
 } from '../src/sim/data';
 import { EASTBROOK_BUILDINGS_BY_ID, localToWorld } from '../src/sim/eastbrook_layout';
+import { EBV2_COLLIDER_IDS, EBV2_COLLIDERS } from '../src/sim/eastbrook_v2/layout.generated';
 import { finishVaelIntro } from '../src/sim/encounters/sunken_bastion/vael_intro';
 import { createMob } from '../src/sim/entity';
 import { IGNIVAR_LIFT_RIDE_SECONDS } from '../src/sim/ignivar_forge_lift';
@@ -32,7 +33,6 @@ import {
   terrainSteepnessAt,
   WATER_LEVEL,
 } from '../src/sim/world';
-
 import { decorations, formRaid, makeLootSim, makeSim, SEED, teleportTo } from './fixes_shared';
 import { expectDefined } from './helpers/defined';
 import { wallFootFixture } from './helpers/wall_foot';
@@ -209,7 +209,10 @@ describe('collision & terrain', () => {
   });
 
   it('resolvePosition pushes points out of colliders', () => {
-    const center = EASTBROOK_BUILDINGS_BY_ID.eastbrook_bank.position;
+    // Re-sited for Eastbrook Vale v2: the old bank stands down on v2 design
+    // ground; the v2 counting house (EBV2_COLLIDERS col_27557) is the solid now.
+    const house = EBV2_COLLIDERS[EBV2_COLLIDER_IDS.indexOf('col_27557')];
+    const center = { x: house[0], z: house[1] };
     const inside = resolvePosition(SEED, center.x, center.z, 0.5);
     expect(Math.abs(inside.x - center.x) + Math.abs(inside.z - center.z)).toBeGreaterThan(0.5);
     const open = resolvePosition(SEED, 0, -40, 0.5); // open road
@@ -343,7 +346,7 @@ describe('terrain wall standoff', () => {
     // Only the Abandoned Crypt entry overrides moundOffset/moundRadius; this
     // pins the `?? 3.4` / `?? 5` fallback arm of src/sim/colliders.ts so an
     // edit to either default (or to the mound's rotY math) regresses these
-    // two entries silently while the crypt-only assertions above stay green.
+    // entries silently while the crypt-only assertions above stay green.
     const mineMoundFar = (x: number, z: number, rot: number) => ({
       x: x - 15 * Math.sin(rot),
       z: z - 15 * Math.cos(rot),
@@ -352,11 +355,9 @@ describe('terrain wall standoff', () => {
     expect(isBlocked(SEED, 91.09, 613.41, PLAYER_BODY_RADIUS)).toBe(true); // mound center
     const deeprockFar = mineMoundFar(88, 612, -2.0);
     expect(isBlocked(SEED, deeprockFar.x, deeprockFar.z, PLAYER_BODY_RADIUS)).toBe(false); // far past the 5yd mound radius
-    // zone1 mine (-148, -92, rot 0.8), on the dig headland since the New
-    // Eastbrook relocation (the mound offset math is unchanged):
-    expect(isBlocked(SEED, -40.44, 135.63, PLAYER_BODY_RADIUS)).toBe(true); // mound center
-    const zone1Far = mineMoundFar(-38, 138, 0.8);
-    expect(isBlocked(SEED, zone1Far.x, zone1Far.z, PLAYER_BODY_RADIUS)).toBe(false); // far past the 5yd mound radius
+    // The zone1 mine at (-38, 138) was the second entry until the Eastbrook
+    // Vale v2 port: the Copper Dig is v2 design ground now, where the shipped
+    // mine mound stands down, so Deeprock carries the fallback arm alone.
   });
 
   it('keeps the Abandoned Crypt mound collider matched to its visible rock pile', () => {

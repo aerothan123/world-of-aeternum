@@ -6,7 +6,7 @@ import {
   resolvePosition,
 } from '../src/sim/colliders';
 import { PROPS } from '../src/sim/data';
-import { EASTBROOK_BUILDINGS_BY_ID } from '../src/sim/eastbrook_layout';
+import { EBV2_COLLIDER_IDS, EBV2_COLLIDERS } from '../src/sim/eastbrook_v2/layout.generated';
 import {
   findPath,
   findPlayerPath,
@@ -78,16 +78,21 @@ describe('player pathfinding', () => {
     // map's arrangement, which moved the shop to the strand: the smithy that
     // took the old chapel rise blocks the straight line along z -73, with open
     // ground at both ends to detour over.
+    // Re-staged for Eastbrook Vale v2: the smithy on the old chapel rise is
+    // gone. The v2 design's first solid (EBV2_COLLIDERS row col_001, a 13.9 x
+    // 9.3 yd box north of the chapel at (-5.05, -30.52)) blocks the straight
+    // line along z -31, with open ground at both ends to detour over.
     const seed = 20061;
-    const from = { x: -13, z: -73 };
-    const to = { x: 9, z: -73 };
+    const from = { x: -14, z: -31 };
+    const to = { x: 4, z: -31 };
     const path = findPlayerPath(seed, from, to);
 
-    expect(isBlocked(seed, -2, -73)).toBe(true);
+    expect(EBV2_COLLIDER_IDS[0]).toBe('col_001');
+    expect(isBlocked(seed, -5, -31)).toBe(true);
     expect(isBlocked(seed, from.x, from.z)).toBe(false);
     expect(isBlocked(seed, to.x, to.z)).toBe(false);
     expect(path.length).toBeGreaterThan(1);
-    expect(path.some((p) => Math.abs(p.z + 73) > 0.5)).toBe(true);
+    expect(path.some((p) => Math.abs(p.z + 31) > 0.5)).toBe(true);
     expect(path[path.length - 1]).toEqual(to);
   });
 
@@ -97,17 +102,21 @@ describe('player pathfinding', () => {
     // hall's own walkable floor, which is right for a building you can walk
     // into. The sealed quay cottage is the case this pins: no floor inside,
     // so the click comes out past the nearest wall face.
+    // Re-staged for Eastbrook Vale v2: the quay cottage is gone. A v2 design
+    // house is a sealed solid box (no walk-in floor), so this uses the house
+    // box col_27657 west of the bank, at (-78.23, -104.5), 8.4 x 8 yd.
     const seed = 20061;
-    const cottage = EASTBROOK_BUILDINGS_BY_ID.eastbrook_quay_cottage;
-    expect('walkIn' in cottage && cottage.walkIn).toBe(false);
-    const center = cottage.position;
+    const i = EBV2_COLLIDER_IDS.indexOf('col_27657');
+    expect(i).toBeGreaterThanOrEqual(0);
+    const [cx, cz, halfWidth, halfDepth] = EBV2_COLLIDERS[i];
+    const center = { x: cx, z: cz };
     const target = resolvePlayerDestination(seed, center);
 
     expect(isBlocked(seed, center.x, center.z)).toBe(true);
     expect(isBlocked(seed, target.x, target.z)).toBe(false);
-    // just outside the nearest wall face (the cottage is 11 yd deep, so the
-    // nearest outside point sits a body width past its half depth)
-    const nearestFace = Math.min(cottage.footprint.halfWidth, cottage.footprint.halfDepth);
+    // just outside the nearest wall face (the nearest outside point sits a
+    // body width past the box's shorter half extent)
+    const nearestFace = Math.min(halfWidth, halfDepth);
     const reached = Math.hypot(target.x - center.x, target.z - center.z);
     expect(reached).toBeGreaterThan(nearestFace);
     expect(reached).toBeLessThan(nearestFace + 1.5);

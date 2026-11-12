@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { isBlocked, moverHeight, resolveMovement } from '../src/sim/colliders';
 import { BUILTIN_WORLD, setActiveWorldContent } from '../src/sim/data';
+import { inEbv2Field } from '../src/sim/eastbrook_v2';
 import { moveSpeedMult, type PlayerMotionDeps, stepPlayerMotion } from '../src/sim/player_motion';
 import { Sim } from '../src/sim/sim';
 import type { Entity, MoveInput, WorldContent } from '../src/sim/types';
@@ -110,7 +111,11 @@ function settle(deps: PlayerMotionDeps, a: Entity): void {
 // shallower than the climb gate) with room for a wide prop and a run uphill.
 function findHillside(seed: number): { x: number; z: number; uphill: { x: number; z: number } } {
   for (let x = -120; x <= 120; x += 2) {
-    for (let z = -120; z <= 120; z += 2) {
+    // Eastbrook Vale v2: the scan ran z -120..120, all v2 design ground now,
+    // where the shipped prop the case authors stands down; it runs on north
+    // past the v2 field over the same shipped terrain instead.
+    for (let z = -120; z <= 440; z += 2) {
+      if (inEbv2Field(x, z)) continue;
       if (terrainHeight(x, z, seed) < WATER_LEVEL + 3) continue;
       const steep = terrainSteepnessAt(x, z, seed);
       if (steep < 0.8 || steep > 1.2) continue;

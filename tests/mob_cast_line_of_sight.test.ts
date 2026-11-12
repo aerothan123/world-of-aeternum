@@ -672,9 +672,13 @@ describe('the hold and the leash still rule a caster no route reaches', () => {
 // route is planned (chase_route.ts keeps routes to instances): he closes
 // straight, the slide fan rounds the prop, and the leash and the stall are
 // what they always were.
+// Re-sited for Eastbrook Vale v2: the quay watch tower stands down on v2
+// design ground (and the v2 design has no free-standing round tower). The
+// pair now uses the same hexWatchtower model where the world still stands
+// one, at (402, 720) (r 3), 5 yd east of the player's spot as before.
 describe('in the open world', () => {
   const WORLD_SEED_WITH_PROP = 7788;
-  const SPOT = { x: -94, z: -41 };
+  const SPOT = { x: 397, z: 720 };
 
   function field(dist: number): { sim: Sim; player: Entity; caster: Entity } {
     const sim = new Sim({ seed: WORLD_SEED_WITH_PROP, playerClass: 'warrior' });
