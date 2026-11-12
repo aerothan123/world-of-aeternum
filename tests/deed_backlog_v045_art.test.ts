@@ -26,16 +26,8 @@ const batches = [
       'dgn_great_saurian',
     ],
   },
-  {
-    id: 'deed-crypt-icons-v045-2026-10-22',
-    deeds: [
-      'dgn_crypt_knellwyrm',
-      'dgn_marrow_tidy',
-      'dgn_lady_nobody_hanging',
-      'dgn_ilvane_hush',
-      'dgn_morthen_candlelight',
-    ],
-  },
+  // The crypt batch (deed-crypt-icons-v045-2026-10-22) left with the Hollow
+  // Crypt's deeds (2026-11-11); its accepted-art record stays as history.
   {
     id: 'deed-temple-icons-v045-2026-10-22',
     deeds: [

@@ -122,25 +122,32 @@ function fiestaMatch(sim: Sim, teamA: number[], teamB: number[]): ArenaMatch {
 }
 
 describe('encounter mechanical arms (onMobKillCreditForDeeds)', () => {
-  it('dgn_morthen_flawless: a clean heroic kill grants; a death taint or normal tier blocks', () => {
+  it('dgn_korzul_flawless: a clean two-player heroic kill grants both; a taint or Normal blocks', () => {
     const clean = makeSim();
-    const c = encounterInstance(clean, 'morthen', 'hollow_crypt', 'heroic', ['Tank', 'Healer']);
+    const c = encounterInstance(clean, 'korzul_the_gravewyrm', 'gravewyrm_sanctum', 'heroic', [
+      'Tank',
+      'Healer',
+    ]);
     onMobKillCreditForDeeds(clean.ctx, c.boss, null, c.recipients[0], c.recipients);
-    for (const m of c.recipients) expect(m.deedsEarned.has('dgn_morthen_flawless')).toBe(true);
+    for (const m of c.recipients) expect(m.deedsEarned.has('dgn_korzul_flawless')).toBe(true);
 
     // A player death inside the engaged boss's heroic instance taints the window.
     const taint = makeSim();
-    const t = encounterInstance(taint, 'morthen', 'hollow_crypt', 'heroic', ['Tank']);
+    const t = encounterInstance(taint, 'korzul_the_gravewyrm', 'gravewyrm_sanctum', 'heroic', [
+      'Tank',
+    ]);
     t.boss.threat.set(t.recipients[0].entityId, 100); // engaged: window open
     onPlayerDeathForDeeds(taint.ctx, entityOf(taint, t.recipients[0]));
     onMobKillCreditForDeeds(taint.ctx, t.boss, null, t.recipients[0], t.recipients);
-    expect(t.recipients[0].deedsEarned.has('dgn_morthen_flawless')).toBe(false);
+    expect(t.recipients[0].deedsEarned.has('dgn_korzul_flawless')).toBe(false);
 
     // Same clean pull on Normal difficulty never satisfies the heroic-only gate.
     const normal = makeSim();
-    const n = encounterInstance(normal, 'morthen', 'hollow_crypt', 'normal', ['Tank']);
+    const n = encounterInstance(normal, 'korzul_the_gravewyrm', 'gravewyrm_sanctum', 'normal', [
+      'Tank',
+    ]);
     onMobKillCreditForDeeds(normal.ctx, n.boss, null, n.recipients[0], n.recipients);
-    expect(n.recipients[0].deedsEarned.has('dgn_morthen_flawless')).toBe(false);
+    expect(n.recipients[0].deedsEarned.has('dgn_korzul_flawless')).toBe(false);
   });
 
   it('dgn_ysolei_flawless: a clean heroic kill grants; a death taint blocks', () => {
@@ -349,125 +356,8 @@ describe('encounter mechanical arms (onMobKillCreditForDeeds)', () => {
     expect(neighbor.deedsEarned.has('dgn_nythraxis_deathless')).toBe(false);
   });
 
-  it('dgn_morthen_trio: at most three participants grants; a fourth blocks', () => {
-    const ok = makeSim();
-    const boss = spawnMob(ok, 'morthen', { x: 5, y: 0, z: -5 });
-    const three = ['A', 'B', 'C'].map((n) => addMeta(ok, n));
-    for (const m of three) onDamageDealtForDeeds(ok.ctx, entityOf(ok, m), boss, 10, false, 'hit');
-    onMobKillCreditForDeeds(ok.ctx, boss, null, three[0], three);
-    for (const m of three) expect(m.deedsEarned.has('dgn_morthen_trio')).toBe(true);
-
-    const over = makeSim();
-    const boss2 = spawnMob(over, 'morthen', { x: 5, y: 0, z: -5 });
-    const four = ['A', 'B', 'C', 'D'].map((n) => addMeta(over, n));
-    for (const m of four)
-      onDamageDealtForDeeds(over.ctx, entityOf(over, m), boss2, 10, false, 'hit');
-    onMobKillCreditForDeeds(over.ctx, boss2, null, four[0], four);
-    for (const m of four) expect(m.deedsEarned.has('dgn_morthen_trio')).toBe(false);
-  });
-
-  it('dgn_morthen_trio: the attempt roster is the union of damagers and the recipient envelope', () => {
-    // Five players inside the instance with only three damaging still field a
-    // five-player attempt: nobody earns the trio deed.
-    const five = makeSim();
-    const f = encounterInstance(five, 'morthen', 'hollow_crypt', 'normal', [
-      'A',
-      'B',
-      'C',
-      'D',
-      'E',
-    ]);
-    for (const m of f.recipients.slice(0, 3)) {
-      onDamageDealtForDeeds(five.ctx, entityOf(five, m), f.boss, 10, false, 'hit');
-    }
-    onMobKillCreditForDeeds(five.ctx, f.boss, null, f.recipients[0], f.recipients);
-    for (const m of f.recipients) expect(m.deedsEarned.has('dgn_morthen_trio')).toBe(false);
-
-    // A genuine trio with a present non-attacker (a dedicated healer) still
-    // earns it for all three.
-    const trio = makeSim();
-    const t = encounterInstance(trio, 'morthen', 'hollow_crypt', 'normal', ['A', 'B', 'C']);
-    for (const m of t.recipients.slice(0, 2)) {
-      onDamageDealtForDeeds(trio.ctx, entityOf(trio, m), t.boss, 10, false, 'hit');
-    }
-    onMobKillCreditForDeeds(trio.ctx, t.boss, null, t.recipients[0], t.recipients);
-    for (const m of t.recipients) expect(m.deedsEarned.has('dgn_morthen_trio')).toBe(true);
-
-    // A fourth damager who leaves the recipient envelope before the kill
-    // still counts against the cap: an envelope-only count would see three.
-    const left = makeSim();
-    const l = encounterInstance(left, 'morthen', 'hollow_crypt', 'normal', ['A', 'B', 'C']);
-    const fourth = addMeta(left, 'D');
-    const fourthEnt = entityOf(left, fourth);
-    fourthEnt.pos = { ...entityOf(left, l.recipients[0]).pos };
-    for (const m of [...l.recipients, fourth]) {
-      onDamageDealtForDeeds(left.ctx, entityOf(left, m), l.boss, 10, false, 'hit');
-    }
-    fourthEnt.pos = { x: fourthEnt.pos.x + 500, y: 0, z: fourthEnt.pos.z };
-    onMobKillCreditForDeeds(left.ctx, l.boss, null, l.recipients[0], l.recipients);
-    for (const m of l.recipients) expect(m.deedsEarned.has('dgn_morthen_trio')).toBe(false);
-  });
-
-  it('dgn_morthen_trio: a heal-only member who dies inside the envelope and releases still counts', () => {
-    // A four-player attempt whose heal-only member never damages the boss:
-    // recording damagers alone would size the roster at three and wrongly grant
-    // the trio deed. The death-scan arm folds the dying non-damager, inside the
-    // engaged room, into the durable roster before the released spirit exits.
-    const sim = makeSim();
-    const s = encounterInstance(sim, 'morthen', 'hollow_crypt', 'normal', ['A', 'B', 'C']);
-    for (const m of s.recipients) {
-      onDamageDealtForDeeds(sim.ctx, entityOf(sim, m), s.boss, 10, false, 'hit');
-    }
-    // A heal-only fourth member, standing in the room while the boss is engaged.
-    const healer = addMeta(sim, 'D');
-    const healerEnt = entityOf(sim, healer);
-    healerEnt.pos = { ...entityOf(sim, s.recipients[0]).pos };
-    s.boss.threat.set(s.recipients[0].entityId, 100); // the attempt is live
-    // The healer dies inside the envelope, then releases out of the instance.
-    onPlayerDeathForDeeds(sim.ctx, healerEnt);
-    healerEnt.pos = { x: healerEnt.pos.x + 500, y: 0, z: healerEnt.pos.z };
-    onMobKillCreditForDeeds(sim.ctx, s.boss, null, s.recipients[0], s.recipients);
-    for (const m of s.recipients) expect(m.deedsEarned.has('dgn_morthen_trio')).toBe(false);
-  });
-
-  it('dgn_morthen_trio: a heal-only member captured by the 1 Hz sweep counts even after leaving', () => {
-    // The departed-non-damager hole: a healer generates threat, is folded into
-    // the roster by the 1 Hz sweep, then walks out and drops off the hate table
-    // before the kill. An envelope-only count would see three at the kill.
-    const sim = makeSim();
-    const s = encounterInstance(sim, 'morthen', 'hollow_crypt', 'normal', ['A', 'B', 'C']);
-    for (const m of s.recipients) {
-      onDamageDealtForDeeds(sim.ctx, entityOf(sim, m), s.boss, 10, false, 'hit');
-    }
-    const healer = addMeta(sim, 'D');
-    s.boss.threat.set(healer.entityId, 50); // healing put the healer on the hate table
-    sim.tickCount = 20; // cross a 1 Hz sweep boundary
-    updateDeeds(sim.ctx);
-    // The healer leaves and drops off the hate table before the boss falls.
-    s.boss.threat.delete(healer.entityId);
-    onMobKillCreditForDeeds(sim.ctx, s.boss, null, s.recipients[0], s.recipients);
-    for (const m of s.recipients) expect(m.deedsEarned.has('dgn_morthen_trio')).toBe(false);
-  });
-
-  it('dgn_morthen_trio: a fourth member present only through their PET on the hate table counts', () => {
-    // The sweep fold owner-resolves the threat table: a pet entry credits the
-    // owning player, so a healer whose only hate-table presence is their pet
-    // still lands in the roster and the trio restriction holds.
-    const sim = makeSim();
-    const s = encounterInstance(sim, 'morthen', 'hollow_crypt', 'normal', ['A', 'B', 'C']);
-    for (const m of s.recipients) {
-      onDamageDealtForDeeds(sim.ctx, entityOf(sim, m), s.boss, 10, false, 'hit');
-    }
-    const healer = addMeta(sim, 'D');
-    const pet = spawnMob(sim, 'webwood_spider', { x: 6, y: 0, z: -6 });
-    pet.ownerId = healer.entityId;
-    s.boss.threat.set(pet.id, 50); // only the PET ever touched the hate table
-    sim.tickCount = 20; // cross a 1 Hz sweep boundary
-    updateDeeds(sim.ctx);
-    s.boss.threat.delete(pet.id);
-    onMobKillCreditForDeeds(sim.ctx, s.boss, null, s.recipients[0], s.recipients);
-    for (const m of s.recipients) expect(m.deedsEarned.has('dgn_morthen_trio')).toBe(false);
-  });
+  // The dgn_morthen_trio cases (the participant-cap deed) left with the Hollow
+  // Crypt on 2026-11-11: no live boss carries a trio task (deeds.ts TRIO_TASKS).
 
   it('dgn_vael_thralls: every summoned add dead grants; a live add blocks', () => {
     const clean = makeSim();

@@ -175,7 +175,7 @@ describe('weekly vault class restrictions', () => {
             ? pool
             : pool.startsWith('raid')
               ? 'nythraxis_scourge_of_thornpeak'
-              : 'hollow_crypt';
+              : 'sunken_bastion';
         const opening = prepareWeeklyRewardOpen(sim.ctx, `1000:${index}`, pid, undefined, [table]);
         expect(opening, `${cls}: ${pool}`).not.toBeNull();
         if (opening) expectAllowedStats(cls, ITEMS[opening.itemId]);

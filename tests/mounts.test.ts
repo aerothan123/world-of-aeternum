@@ -268,7 +268,9 @@ describe('mount reins items (the collection: owning the item is owning the mount
       reins_drakemaw_raptor: ['balgath_cyclops'],
     };
     const FIVE_MAN_SOURCES: Record<string, readonly string[]> = {
-      reins_stormfeather_griffin: ['morthen'],
+      // Its five-man path (Morthen) left with the Hollow Crypt (2026-11-11); the
+      // heroic raid and the rift green pool still carry it.
+      reins_stormfeather_griffin: [],
       reins_shadowjump_toad: ['vael_the_mistcaller'],
       reins_grag_bear: ['wildheart_high_priest', 'ysolei'],
       reins_stalkglider_snail: ['korzul_the_gravewyrm', 'wildheart_high_priest'],

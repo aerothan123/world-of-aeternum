@@ -21,7 +21,7 @@ import {
 
 const batch = (): WeeklyVaultBatch => ({
   resetAtMs: 1000,
-  bossUnlocks: { sexton_marrow: 1, morthen: 2, vael_the_mistcaller: 1 },
+  bossUnlocks: { knight_commander_olen: 1, vael_the_mistcaller: 2, choirmother_selthe: 1 },
   choices: [{ pool: 'dungeon' }],
 });
 function setup() {
@@ -143,20 +143,22 @@ describe('weekly reward table options', () => {
   it('groups only cleared dungeon bosses at the earned difficulty', () => {
     const b = batch();
     const normal = weeklyRewardTableOptions(b, b.choices[0], 'mage', 20);
-    expect(normal.map((t) => t.id)).toEqual(['hollow_crypt', 'sunken_bastion']);
+    expect(normal.map((t) => t.id)).toEqual(['sunken_bastion', 'drowned_temple']);
     expect(normal[0].items).toEqual(
       [
         ...new Set(
-          ['sexton_marrow', 'morthen'].flatMap((id) => weeklyBossLootPool(id, 'dungeon', 'mage')),
+          ['knight_commander_olen', 'vael_the_mistcaller'].flatMap((id) =>
+            weeklyBossLootPool(id, 'dungeon', 'mage'),
+          ),
         ),
       ].sort(),
     );
     b.choices[0].pool = 'dungeon_heroic';
     expect(weeklyRewardTableOptions(b, b.choices[0], 'mage', 20)).toEqual([
       {
-        id: 'hollow_crypt',
+        id: 'sunken_bastion',
         kind: 'dungeon',
-        items: weeklyBossLootPool('morthen', 'dungeon_heroic', 'mage'),
+        items: weeklyBossLootPool('vael_the_mistcaller', 'dungeon_heroic', 'mage'),
       },
     ]);
   });
@@ -166,11 +168,11 @@ describe('weekly reward table options', () => {
     const bad = [
       undefined,
       [],
-      ['hollow_crypt', 'fake'],
+      ['sunken_bastion', 'fake'],
       ['nythraxis_scourge_of_thornpeak'],
-      ['morthen'],
+      ['vael_the_mistcaller'],
       [3],
-      Array(WEEKLY_TABLE_SELECTION_LIMIT + 1).fill('hollow_crypt'),
+      Array(WEEKLY_TABLE_SELECTION_LIMIT + 1).fill('sunken_bastion'),
       ['x'.repeat(129)],
     ];
     for (const ids of bad)
@@ -184,7 +186,7 @@ describe('weekly reward table options', () => {
   it('gives each item one chance regardless of duplicate or reordered selected tables', () => {
     const h = setup();
     const options = weeklyRewardTableOptions(h.batch, h.batch.choices[0], 'mage', 20);
-    const selected = ['sunken_bastion', 'hollow_crypt', 'sunken_bastion'];
+    const selected = ['sunken_bastion', 'drowned_temple', 'sunken_bastion'];
     expect(selectedWeeklyRewardTables(options, selected)).toEqual(
       selectedWeeklyRewardTables(options, [...selected].reverse()),
     );

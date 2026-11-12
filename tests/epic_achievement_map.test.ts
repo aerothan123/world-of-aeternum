@@ -10,8 +10,10 @@ import { DEED_ORDER, DEEDS } from '../src/sim/content/deeds';
 const ACH_NAME_RE = /^ACH_[A-Z0-9_]+$/;
 
 describe('Epic achievement map', () => {
-  it('has exactly the 84 registered entries (same launch set as Steam)', () => {
-    expect(Object.keys(ACHIEVEMENT_MAP).length).toBe(84);
+  it('has exactly the 83 registered entries (same launch set as Steam)', () => {
+    // 84 shipped; ACH_HOLLOW_CRYPT left with its deed when the Hollow Crypt
+    // retired (2026-11-11).
+    expect(Object.keys(ACHIEVEMENT_MAP).length).toBe(83);
   });
 
   it('covers the whole Reliquary ladder: every col_reliquary_* deed in DEED_ORDER is mapped', () => {
@@ -56,7 +58,7 @@ describe('Epic achievement map', () => {
 
   it('carries the exact same table as the Steam twin (the shared launch set)', () => {
     // The LAUNCH SET is one id vocabulary across both storefronts (the Epic
-    // header's claim), and each side carries its own independent 84-line
+    // header's claim), and each side carries its own independent 83-line
     // literal. The full-literal pins in each file already red any one-map
     // edit; what this cross-pin adds is the twin-awareness step in the
     // routine flow where a map and its own literal are updated together.
@@ -67,7 +69,7 @@ describe('Epic achievement map', () => {
     expect(ACHIEVEMENT_MAP).toEqual(STEAM_ACHIEVEMENT_MAP);
   });
 
-  it('pins the full 84-entry registered map as a literal (permanent Epic achievement ids)', () => {
+  it('pins the full 83-entry registered map as a literal (permanent Epic achievement ids)', () => {
     expect(ACHIEVEMENT_MAP).toEqual({
       prog_first_steps: 'ACH_FIRST_STEPS',
       prog_double_digits: 'ACH_DOUBLE_DIGITS',
@@ -87,7 +89,6 @@ describe('Epic achievement map', () => {
       cmb_first_blood: 'ACH_FIRST_BLOOD',
       cmb_slayer: 'ACH_SLAYER',
       cmb_first_fall: 'ACH_FIRST_FALL',
-      dgn_hollow_crypt: 'ACH_HOLLOW_CRYPT',
       dgn_sunken_bastion: 'ACH_SUNKEN_BASTION',
       dgn_drowned_temple: 'ACH_DROWNED_TEMPLE',
       dgn_gravewyrm_sanctum: 'ACH_GRAVEWYRM_SANCTUM',

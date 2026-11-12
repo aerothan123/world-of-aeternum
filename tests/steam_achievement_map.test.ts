@@ -9,12 +9,14 @@ import { DEED_ORDER, DEEDS } from '../src/sim/content/deeds';
 const ACH_NAME_RE = /^ACH_[A-Z0-9_]+$/;
 
 describe('Steam achievement map', () => {
-  it('has exactly the 84 registered entries (68 launch + 4 catalog refresh + 3 professions marquee + 9 reliquary ladder)', () => {
+  it('has exactly the 83 registered entries (67 launch + 4 catalog refresh + 3 professions marquee + 9 reliquary ladder)', () => {
+    // ACH_HOLLOW_CRYPT, a launch entry, left with its deed when the Hollow
+    // Crypt retired (2026-11-11).
     // The three Professions 2.0 marquee deeds
     // (prog_guildsworn, prog_masterwright, prog_master_angler) and the nine
     // Phase 18 Reliquary ladder deeds (four Curator ranks, completion, shelf,
     // three Illuminations) join the map.
-    expect(Object.keys(ACHIEVEMENT_MAP).length).toBe(84);
+    expect(Object.keys(ACHIEVEMENT_MAP).length).toBe(83);
   });
 
   it('covers the whole Reliquary ladder: every col_reliquary_* deed in DEED_ORDER is mapped', () => {
@@ -76,7 +78,7 @@ describe('Steam achievement map', () => {
     expect(ACHIEVEMENT_MAP.prog_guildsworn).toBe('ACH_GUILDSWORN');
   });
 
-  it('pins the full 84-entry registered map as a literal (permanent Steam API names)', () => {
+  it('pins the full 83-entry registered map as a literal (permanent Steam API names)', () => {
     // ACH names are permanent once shipped; a bulk regeneration that swapped two
     // deed-to-ACH mappings would keep the count, the shape, and the uniqueness
     // checks above all green. Only a literal snapshot of every pair catches it.
@@ -99,7 +101,6 @@ describe('Steam achievement map', () => {
       cmb_first_blood: 'ACH_FIRST_BLOOD',
       cmb_slayer: 'ACH_SLAYER',
       cmb_first_fall: 'ACH_FIRST_FALL',
-      dgn_hollow_crypt: 'ACH_HOLLOW_CRYPT',
       dgn_sunken_bastion: 'ACH_SUNKEN_BASTION',
       dgn_drowned_temple: 'ACH_DROWNED_TEMPLE',
       dgn_gravewyrm_sanctum: 'ACH_GRAVEWYRM_SANCTUM',

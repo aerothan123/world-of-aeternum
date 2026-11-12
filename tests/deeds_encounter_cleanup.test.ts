@@ -7,7 +7,7 @@
 // sweep for any despawn path that bypassed the seam.
 import { describe, expect, it } from 'vitest';
 import { MOBS } from '../src/sim/data';
-import { onBossAddsSummonedForDeeds, onDamageDealtForDeeds, updateDeeds } from '../src/sim/deeds';
+import { onBossAddsSummonedForDeeds, updateDeeds } from '../src/sim/deeds';
 import { createMob } from '../src/sim/entity';
 import { Sim } from '../src/sim/sim';
 import type { Entity, Vec3 } from '../src/sim/types';
@@ -44,9 +44,10 @@ describe('deed encounter teardown', () => {
   it('the 1 Hz sweep prunes an encounter whose boss entity has vanished', () => {
     const sim = makeSim();
     const player = sim.entities.get(sim.playerId)!;
-    const boss = spawnMob(sim, 'morthen', { x: player.pos.x + 2, y: 0, z: player.pos.z });
-    // A damage tick on a participant-tracked boss opens the encounter entry.
-    onDamageDealtForDeeds(sim.ctx, player, boss, 10, false, 'hit');
+    const boss = spawnMob(sim, 'deacon_varric', { x: player.pos.x + 2, y: 0, z: player.pos.z });
+    // An add-summon taint opens the encounter entry (no boss is participant-
+    // tracked at the damage site since Morthen's trio deed retired).
+    onBossAddsSummonedForDeeds(sim.ctx, boss, [777]);
     expect(sim.ctx.deedRuntime.encounters.has(boss.id)).toBe(true);
     // A despawn path that bypassed the roster seam: the entity is simply gone.
     sim.entities.delete(boss.id);
@@ -58,8 +59,8 @@ describe('deed encounter teardown', () => {
   it('the sweep does NOT prune an active attempt whose boss is still alive', () => {
     const sim = makeSim();
     const player = sim.entities.get(sim.playerId)!;
-    const boss = spawnMob(sim, 'morthen', { x: player.pos.x + 2, y: 0, z: player.pos.z });
-    onDamageDealtForDeeds(sim.ctx, player, boss, 10, false, 'hit');
+    const boss = spawnMob(sim, 'deacon_varric', { x: player.pos.x + 2, y: 0, z: player.pos.z });
+    onBossAddsSummonedForDeeds(sim.ctx, boss, [777]);
     expect(sim.ctx.deedRuntime.encounters.has(boss.id)).toBe(true);
     sim.tickCount = 20;
     updateDeeds(sim.ctx);

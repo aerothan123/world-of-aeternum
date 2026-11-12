@@ -104,7 +104,6 @@ describe('weekly reward presentation', () => {
     }
     expect(dungeon.pools[0].tables.map((table) => table.id)).toEqual(
       expect.arrayContaining([
-        'hollow_crypt',
         'sunken_bastion',
         'drowned_temple',
         'gravewyrm_sanctum',
@@ -112,7 +111,7 @@ describe('weekly reward presentation', () => {
       ]),
     );
     expect(dungeon.pools[1].tables.map((table) => table.id)).toEqual(
-      expect.arrayContaining(['hollow_crypt', 'gravewyrm_sanctum', 'wildheart_basin']),
+      expect.arrayContaining(['sunken_bastion', 'gravewyrm_sanctum', 'wildheart_basin']),
     );
     for (const entry of raid.pools)
       expect(entry.tables.map((table) => table.id)).toEqual(
@@ -129,14 +128,14 @@ describe('weekly reward presentation', () => {
       }
     }
     // Permanent unlocks remain available without any current-week progress.
-    state.bossUnlocks = { morthen: 2, nythraxis_scourge_of_thornpeak: 2 };
+    state.bossUnlocks = { vael_the_mistcaller: 2, nythraxis_scourge_of_thornpeak: 2 };
     const unlocked = buildWeeklyRewardsView(info, 'warrior');
     expect(unlocked[0].progress).toBe(0);
     expect(unlocked[1].progress).toBe(0);
     for (const pool of unlocked[0].pools)
       expect(pool.tables.map((table) => table.id)).toEqual(['nythraxis_scourge_of_thornpeak']);
     for (const pool of unlocked[1].pools)
-      expect(pool.tables.map((table) => table.id)).toEqual(['hollow_crypt']);
+      expect(pool.tables.map((table) => table.id)).toEqual(['sunken_bastion']);
   });
   it('filters every previewed item by equip level, not just whole tables', () => {
     const state = emptyWeeklyRewards();
