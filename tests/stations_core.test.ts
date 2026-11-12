@@ -11,15 +11,33 @@ import { STATIONS } from '../src/sim/data';
 
 describe('stationPropPlacements (the pure placement core)', () => {
   it('covers every STATIONS record that is not dressed', () => {
-    // A dressed station (the Eastbrook crafting yard's, town kit phase 2) has a
-    // placed kit bench for its face, so it draws no procedural cluster.
+    // A dressed station has an authored model for its face, so it draws no
+    // procedural cluster. None is dressed while the v2 town has no station
+    // models (the Eastbrook town kit benches retired with the old layout).
     const placedIds = new Set(stationPropPlacements(STATIONS).map((p) => p.stationId));
     for (const station of STATIONS) {
       expect(placedIds.has(station.id), station.id).toBe(!station.dressed);
     }
-    expect(STATIONS.filter((station) => station.dressed)).toHaveLength(6);
+    expect(STATIONS.filter((station) => station.dressed)).toHaveLength(0);
     expect(placedIds.size).toBe(STATIONS.filter((station) => !station.dressed).length);
     expect(placedIds.size).toBeGreaterThan(0);
+  });
+
+  it('draws something at every Eastbrook station (players see what they craft at)', () => {
+    // The six Eastbrook v2 stations have no authored model yet, so each must
+    // draw the generic cluster AT its own site: an invisible station that
+    // still works breaks the rule that a player sees what they act on.
+    const eastbrook = STATIONS.filter((station) => station.zoneId === 'eastbrook_vale');
+    expect(eastbrook).toHaveLength(6);
+    const placements = stationPropPlacements(STATIONS);
+    for (const station of eastbrook) {
+      const own = placements.filter((p) => p.stationId === station.id);
+      expect(own.length, `${station.id} draws props`).toBeGreaterThan(0);
+      for (const p of own) {
+        const dist = Math.hypot(p.x - station.pos.x, p.z - station.pos.z);
+        expect(dist, `${station.id} ${p.kind} stays at the site`).toBeLessThan(4);
+      }
+    }
   });
 
   it('each cluster keeps its thematic anchor prop BESIDE the station pos', () => {

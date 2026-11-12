@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { isBlocked, resolvePosition, supportHeightAt } from '../src/sim/colliders';
 import { getActiveWorldContent, NPCS, OVERWORLD_GRAVEYARDS, PLAYER_START } from '../src/sim/data';
+import { ebv2OwnsBuiltin } from '../src/sim/eastbrook_v2/ground';
 import { PLAYER_BODY_RADIUS } from '../src/sim/pathfind';
 import { MAX_STEP_HEIGHT } from '../src/sim/physics';
 import { GRAVE_COUNT, graveHeight, graveOffset } from '../src/sim/prop_layout';
@@ -9,8 +10,8 @@ import { groundHeight } from '../src/sim/world';
 
 // Use the same relocated service anchors as the renderer and collider builder.
 const stations = () => getActiveWorldContent().services?.stations ?? [];
-// stationAnchor carries `dressed`, so a station whose kit bench is its face
-// (Eastbrook's crafting yard) adds no procedural cluster here either.
+// stationAnchor carries `dressed`, so a station with an authored model for its
+// face adds no procedural cluster here either (none is dressed in the v2 port).
 const anchors = () => stations().map(stationAnchor);
 const townNpcs = () => {
   const out: { x: number; z: number }[] = [];
@@ -36,14 +37,22 @@ describe('town furniture blocks', () => {
   it('blocks at every profession station cluster', () => {
     const placed = townPropPlacements(anchors(), townNpcs());
     let checked = 0;
+    let placeholders = 0;
     for (const prop of placed) {
+      // Eastbrook v2: the stations draw the generic cluster as a placeholder
+      // until v2 station models exist, and on design ground the shipped props
+      // stand down (eastbrook_v2/colliders.ts ebv2StandDown), so these carry no
+      // body of their own (the design's solids still block where they stand).
+      if (ebv2OwnsBuiltin(prop.x, prop.z)) {
+        placeholders++;
+        continue;
+      }
       expect(isBlocked(SEED, prop.x, prop.z, R), `${prop.x},${prop.z}`).toBe(true);
       checked++;
     }
-    // Town kit (phase 2): Eastbrook's six stations are dressed by their yard
-    // benches (box colliders, tests/town_kit_assets.test.ts), so only the
-    // Fenbridge and Highwatch clusters remain here.
+    // the Fenbridge and Highwatch clusters
     expect(checked).toBeGreaterThanOrEqual(5);
+    expect(placeholders).toBeGreaterThan(0);
   });
 
   it('blocks the headstones, except the one a Spirit Healer stands on', () => {
@@ -73,6 +82,8 @@ describe('town furniture is traversable, not a maze of walls', () => {
     let pinned = 0;
     for (const prop of townPropPlacements(anchors(), townNpcs())) {
       if (!prop.size.standable) continue;
+      // Eastbrook v2 placeholders stand down on design ground (see above)
+      if (ebv2OwnsBuiltin(prop.x, prop.z)) continue;
       const expected = groundHeight(prop.x, prop.z, SEED) + prop.size.height;
       expect(
         supportHeightAt(SEED, prop.x, prop.z, R, expected + 0.01),

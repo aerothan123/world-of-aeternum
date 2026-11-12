@@ -828,7 +828,8 @@ describe('Eastbrook authored gameplay data integration', () => {
     ]);
     for (const station of eastbrook) {
       expect(station.zoneId).toBe('eastbrook_vale');
-      expect(station.dressed).toBe(true);
+      // undressed until v2 station models exist: the generic cluster draws
+      expect(station.dressed).toBeFalsy();
       const placement = EASTBROOK_STATIONS_BY_ID[station.id];
       expect(station.pos).toEqual(placement.position);
       expect(station.type).toBe(placement.type);
