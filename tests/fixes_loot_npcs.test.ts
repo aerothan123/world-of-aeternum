@@ -15,6 +15,7 @@ import {
   PROPS,
   QUESTS,
 } from '../src/sim/data';
+import { inEbv2Field } from '../src/sim/eastbrook_v2';
 import { createMob } from '../src/sim/entity';
 import { ACTIONS, encodeObs } from '../src/sim/obs';
 import { Sim } from '../src/sim/sim';
@@ -652,7 +653,10 @@ describe('pet heel warp', () => {
     // Tidehold rebuild of Eastbrook (#4494): the old (12,-48)/(12,-135) pair's
     // bank no longer breaks the line, so the pet ran home instead. Staged on
     // terrain, away from the town, so a town edit cannot move it again.
-    teleportTo(sim, -150, 90);
+    // Re-staged for Eastbrook Vale v2: the (-150, 90)/(-150, 178) pair is v2
+    // design ground now and the pet ran home; the same 88 yd column just north
+    // of the v2 field, (-150, 190)/(-150, 278), still leaves only the warp.
+    teleportTo(sim, -150, 190);
 
     // adopt a wild beast as a heeling pet and strand it on the far side of the bank
     const pet = [...sim.entities.values()].find((e) => e.kind === 'mob' && !e.dead)!;
@@ -661,7 +665,7 @@ describe('pet heel warp', () => {
     pet.aggroTargetId = null;
     pet.inCombat = false;
     pet.petMode = 'passive';
-    pet.pos = { x: -150, z: 178, y: p.pos.y };
+    pet.pos = { x: -150, z: 278, y: p.pos.y };
     pet.prevPos = { ...pet.pos };
     (sim as any).grid.update(pet); // grid now buckets the pet at its far cell
 
@@ -863,11 +867,19 @@ describe('spell visuals', () => {
     // Straddle a world campfire: its collider sits on the ray (it still blocks
     // MOVEMENT below), but its visual top (1.45) is under the eye line (1.6),
     // so the cast sees straight over it.
-    const [cx, cz] = PROPS.campfires[0];
+    // Eastbrook Vale v2: shipped props on v2 design ground stand down, so the
+    // campfire and the building are the first ones off it (were [0]).
+    const fire = PROPS.campfires.find(([x, z]) => !inEbv2Field(x, z));
+    if (!fire) throw new Error('no campfire off the v2 field');
+    const [cx, cz] = fire;
     expect(isBlocked(seed, cx, cz, 0.5)).toBe(true); // movement still collides
     expect(lineOfSightClear(seed, { x: cx - 3, z: cz }, { x: cx + 3, z: cz })).toBe(true);
     // A building straddled through its center still blocks (top far above eyes).
-    const bldg = PROPS.buildings[0];
+    // (a sealed one: a walk-in building's centre is open floor)
+    const bldg = PROPS.buildings.find(
+      (b) => !inEbv2Field(b.x, b.z) && isBlocked(seed, b.x, b.z, 0.5),
+    );
+    if (!bldg) throw new Error('no building off the v2 field');
     const bldgSpan = bldg.w + bldg.d;
     expect(
       lineOfSightClear(

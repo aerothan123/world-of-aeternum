@@ -26,6 +26,7 @@ import { graveHeight, graveOffset } from '../src/sim/prop_layout';
 import { Sim } from '../src/sim/sim';
 import { DT, type Entity, type WorldContent } from '../src/sim/types';
 import { groundHeight, terrainHeight, terrainSteepnessAt, WATER_LEVEL } from '../src/sim/world';
+import { OPEN_FIELD } from './helpers/open_field';
 
 // The ledge climb completes the traversal ladder: step over the low, vault the
 // mid, CLIMB the high, and everything above that is a wall.
@@ -48,9 +49,13 @@ function world(props: Partial<WorldContent['props']>): WorldContent {
 // first z-strip-flat cell, ground the strip probe never validated (the
 // findLevelSpot precedent: grow the helper when a test's needs exceed the
 // flat-spot guarantee).
+// Re-sited for Eastbrook Vale v2: this used to search x, z -110..110, which is
+// now the v2 design field, where the shipped props these fixtures author
+// (crates, stalls, benches) stand down. It searches the open test lane around
+// OPEN_FIELD instead; the fixtures only need generic flat ground.
 function findFlatSpot(): { x: number; z: number } {
-  for (let x = -110; x <= 110; x += 3) {
-    for (let z = -110; z <= 110; z += 3) {
+  for (let x = OPEN_FIELD.x - 110; x <= OPEN_FIELD.x + 110; x += 3) {
+    for (let z = OPEN_FIELD.z - 110; z <= OPEN_FIELD.z + 110; z += 3) {
       if (terrainHeight(x, z, SEED) < WATER_LEVEL + 2) continue;
       let ok = true;
       for (let dx = -3; dx <= 3 && ok; dx += 1) {
@@ -70,9 +75,11 @@ const SPOT = findFlatSpot();
 // Stricter than findFlatSpot: an interior spot with a near-zero terrain grade,
 // for the one test below that reads an exact overhead value (not just whether
 // a collider is present) off a wide (dz -3..5) probe span.
+// Re-sited with findFlatSpot: was x, z -40..40 (now v2 design ground), now the
+// same span around OPEN_FIELD.
 function findLevelSpot(): { x: number; z: number } {
-  for (let x = -40; x <= 40; x += 3) {
-    for (let z = -40; z <= 40; z += 3) {
+  for (let x = OPEN_FIELD.x - 40; x <= OPEN_FIELD.x + 40; x += 3) {
+    for (let z = OPEN_FIELD.z - 40; z <= OPEN_FIELD.z + 40; z += 3) {
       if (terrainHeight(x, z, SEED) < WATER_LEVEL + 2) continue;
       let ok = true;
       for (let dz = -3; dz <= 5 && ok; dz += 1) {
@@ -430,7 +437,7 @@ describe('the climb against real world geometry', () => {
 
   it('carries a player from the ground onto a real graveyard cross', () => {
     setActiveWorldContent(null);
-    // Eastbrook's cemetery, stone 1: a cross, and the anchor stone beside it
+    // An overworld cemetery, stone 1: a cross, and the anchor stone beside it
     // is deliberately uncollided (a Spirit Healer stands there).
     // Re-pinned 2026-08 for the harbor move (d19aa33f76, the New Eastbrook
     // program, docs/design/eastbrook-revamp/site-plan.md): the cemetery is
@@ -442,7 +449,12 @@ describe('the climb against real world geometry', () => {
     // cemetery moved with the chapel to (37.5, -99.3). Its ground still falls
     // northward under stone 1, so the approach stays from the north (from the
     // south, top minus floor is 1.838, a vault again).
-    const gy = { x: 37.5, z: -99.3 };
+    // Re-sited for Eastbrook Vale v2: the Eastbrook cemeteries now stand on
+    // v2 design ground, where the shipped headstones stand down. This uses the
+    // next overworld graveyard north of the vale, (-18, 286), whose stone 1
+    // sits on level ground (top minus floor 2.059 on every side, over the
+    // 2.025 CLIMB_MIN_OVERHEAD), still approached from the north.
+    const gy = { x: -18, z: 286 };
     const off = graveOffset(1);
     const sx = gy.x + off.x;
     const sz = gy.z + off.z;

@@ -9,6 +9,7 @@ import {
   supportHeightAt,
 } from '../src/sim/colliders';
 import { BUILTIN_WORLD, setActiveWorldContent } from '../src/sim/data';
+import { inEbv2Field } from '../src/sim/eastbrook_v2';
 import {
   ROCK_COLLIDER_MIN_SCALE,
   ROCK_HEIGHT_PER_SCALE,
@@ -37,6 +38,7 @@ import {
   terrainSteepnessAt,
   WATER_LEVEL,
 } from '../src/sim/world';
+import { OPEN_FIELD } from './helpers/open_field';
 
 // The character physics solver: swept collision, multi-plane sliding,
 // depenetration, step-up, and the terrain wall/contour gate. These pin the
@@ -70,9 +72,13 @@ function params(over: Partial<CharacterMoveParams> = {}): CharacterMoveParams {
 const out: CharacterMoveResult = { x: 0, y: 0, z: 0, blocked: false, stepped: 0 };
 
 // A flat, dry, collider-free strip to build cases on.
+// Re-sited for Eastbrook Vale v2: this used to search x, z -120..120, which is
+// now the v2 design field, where the shipped props the cases author stand
+// down. It searches the open test lane around OPEN_FIELD instead; the cases
+// only need generic flat ground.
 function findFlatSpot(): { x: number; z: number } {
-  for (let x = -120; x <= 120; x += 3) {
-    for (let z = -120; z <= 120; z += 3) {
+  for (let x = OPEN_FIELD.x - 120; x <= OPEN_FIELD.x + 120; x += 3) {
+    for (let z = OPEN_FIELD.z - 120; z <= OPEN_FIELD.z + 120; z += 3) {
       const h = terrainHeight(x, z, SEED);
       if (h < WATER_LEVEL + 1.5) continue;
       let ok = true;
@@ -142,7 +148,11 @@ function findSteepFace(): { x: number; z: number } | undefined {
   // only qualifying face in the world. The sweep also runs the full z span, so
   // one retuned margin cannot empty it; `expect(found).toBeDefined()` in each
   // case below is the anti-vacuity pin that fails loudly if it ever does.
-  for (let z = -200; z <= 200; z += 7) {
+  // Eastbrook Vale v2: the rim inside the v2 design field (z -180..180) is
+  // design ground now, so the sweep runs on up the same west rim past it
+  // (it used to stop at z 200).
+  for (let z = -200; z <= 820; z += 7) {
+    if (inEbv2Field(-130, z)) continue;
     for (let x = -130; x >= -184; x -= 0.25) {
       if (terrainHeight(x, z, SEED) < WATER_LEVEL + 0.5) continue;
       if (isBlocked(SEED, x, z, 0.6)) continue;

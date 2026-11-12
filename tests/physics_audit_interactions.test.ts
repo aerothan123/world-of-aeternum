@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 import { createStepSmooth, stepSmoothHeight } from '../src/render/step_smooth_core';
 import {
   moverHeight,
@@ -7,7 +7,13 @@ import {
   STALL_CANOPY_TOP,
   supportHeightAt,
 } from '../src/sim/colliders';
-import { DUNGEONS, instanceOrigin, MOBS } from '../src/sim/data';
+import {
+  BUILTIN_WORLD,
+  DUNGEONS,
+  instanceOrigin,
+  MOBS,
+  setActiveWorldContent,
+} from '../src/sim/data';
 import { CRYPT_LAYOUT, DAIS_HEIGHT, tombSlotRoll } from '../src/sim/dungeon_layout';
 import { createMob } from '../src/sim/entity';
 import { findLedgeGrab } from '../src/sim/physics/ledge';
@@ -15,6 +21,7 @@ import { moveSpeedMult, type PlayerMotionDeps, stepPlayerMotion } from '../src/s
 import { Sim } from '../src/sim/sim';
 import type { Entity, MoveInput } from '../src/sim/types';
 import { groundHeight } from '../src/sim/world';
+import { OPEN_FIELD } from './helpers/open_field';
 
 // The physics-asset audit, interaction half: forced movement (knockback,
 // charge, Vaulting Charge) against standable geometry, client-predictor parity
@@ -64,12 +71,33 @@ function hold(sim: Sim, input: Partial<MoveInput>, ticks: number): void {
   }
 }
 
+// Re-sited for Eastbrook Vale v2: the stall cases below used the old Eastbrook
+// provisioner stall at (-8.5, 3), turned PI/2, which is gone from v2 design
+// ground (the knockback case had gone vacuous, the canopy case red). They now
+// author that same generic stall on the open test lane, and every coordinate
+// is the old one taken relative to it.
+const STALL = { x: OPEN_FIELD.x, z: OPEN_FIELD.z + 3 };
+
+afterEach(() => {
+  setActiveWorldContent(null);
+});
+
+function useStallWorld(): void {
+  setActiveWorldContent({
+    ...BUILTIN_WORLD,
+    props: {
+      ...BUILTIN_WORLD.props,
+      stalls: [...BUILTIN_WORLD.props.stalls, { x: STALL.x, z: STALL.z, rot: Math.PI / 2, r: 1.7 }],
+    },
+  });
+}
+
 function climbOntoCanopy(sim: Sim): void {
-  teleport(sim, -8.5, -0.3, 0);
+  teleport(sim, STALL.x, STALL.z - 3.3, 0);
   const p = sim.player;
   for (let i = 0; i < 140; i++) {
     hold(sim, { forward: true, jump: true }, 1);
-    const rel = p.pos.y - groundHeight(-8.5, 3, SEED);
+    const rel = p.pos.y - groundHeight(STALL.x, STALL.z, SEED);
     if (p.onGround && rel > STALL_CANOPY_EAVE - 0.1) return;
   }
   throw new Error('never reached the canopy');
@@ -77,15 +105,16 @@ function climbOntoCanopy(sim: Sim): void {
 
 describe('knockbacks x roofs', () => {
   it('knocked INTO the stall face: stopped at the rim, never embedded', () => {
+    useStallWorld();
     const sim = makeSim();
-    teleport(sim, -8.5, 0.2, Math.PI); // just south of the rim, facing away
+    teleport(sim, STALL.x, STALL.z - 2.8, Math.PI); // just south of the rim, facing away
     const p = sim.player;
     // Knockback the sim way: the shared relocation seat. Use the wolf's
     // knockback template through a real swing.
     const tmpl = MOBS.forest_wolf;
     const saved = tmpl.knockback?.chance;
     if (tmpl.knockback) tmpl.knockback.chance = 1;
-    const mob = createMob(sim.nextId++, tmpl, 5, { x: -8.5, y: p.pos.y, z: -1.2 });
+    const mob = createMob(sim.nextId++, tmpl, 5, { x: STALL.x, y: p.pos.y, z: STALL.z - 4.2 });
     mob.hostile = true;
     sim.addEntity(mob);
     try {
@@ -93,7 +122,7 @@ describe('knockbacks x roofs', () => {
         hold(sim, {}, 1);
         // The wolf pushes the player north into the stall: the body must
         // never end up inside the stall footprint at street height.
-        const d = Math.hypot(p.pos.x - -8.5, p.pos.z - 3);
+        const d = Math.hypot(p.pos.x - STALL.x, p.pos.z - STALL.z);
         const rel = p.pos.y - groundHeight(p.pos.x, p.pos.z, SEED);
         if (rel < 1.0) expect(d).toBeGreaterThan(1.7 + 0.4);
       }
@@ -149,6 +178,7 @@ describe('client predictor parity in dungeons', () => {
 
 describe('persistence on a roof', () => {
   it('serialize/restore a player standing on the canopy keeps a sane y', () => {
+    useStallWorld();
     const sim = makeSim();
     climbOntoCanopy(sim);
     const p = sim.player;
@@ -168,7 +198,7 @@ describe('persistence on a roof', () => {
       'restored rel height',
       rel.toFixed(2),
       'saved at',
-      (yBefore - groundHeight(-8.5, 3, SEED)).toFixed(2),
+      (yBefore - groundHeight(STALL.x, STALL.z, SEED)).toFixed(2),
     );
     expect(rel).toBeGreaterThanOrEqual(-0.01);
     expect(rel).toBeLessThanOrEqual(STALL_CANOPY_TOP + 0.05);
@@ -235,14 +265,15 @@ describe('climb vetoes', () => {
 
 describe('charge and chase', () => {
   it('warrior charge routes around a stall, never onto or through it', () => {
+    useStallWorld();
     const sim = makeSim();
-    teleport(sim, -10.5, -3.0, 0);
+    teleport(sim, STALL.x - 2, STALL.z - 6, 0);
     const p = sim.player;
     const tmpl = MOBS.forest_wolf;
     // Diagonal past the stall edge: line of sight clears, but the straight
     // run to the target still crosses the stall footprint, so the path must
     // route around it.
-    const mob = createMob(sim.nextId++, tmpl, 5, { x: -10.5, y: 0, z: 9.0 });
+    const mob = createMob(sim.nextId++, tmpl, 5, { x: STALL.x - 2, y: 0, z: STALL.z + 6 });
     mob.pos.y = groundHeight(mob.pos.x, mob.pos.z, SEED);
     mob.hostile = true;
     sim.addEntity(mob);
