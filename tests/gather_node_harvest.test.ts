@@ -24,8 +24,17 @@ vi.mock('../server/db', () => ({
 
 import { type ClientSession, GameServer } from '../server/game';
 import { bagCapacity } from '../src/sim/bags';
-import { GATHER_NODES, ITEMS, MOBS } from '../src/sim/data';
+import { invalidateStaticColliders } from '../src/sim/colliders';
+import {
+  BUILTIN_WORLD,
+  GATHER_NODES,
+  gatherNodesInActiveWorld,
+  ITEMS,
+  MOBS,
+  setActiveWorldContent,
+} from '../src/sim/data';
 import { createMob } from '../src/sim/entity';
+import { freezeObjectMoves, objectMoveKey } from '../src/sim/moved_objects';
 import { PLAYER_SWIM_DEPTH } from '../src/sim/pathfind';
 import { completeFishing } from '../src/sim/professions/fishing';
 import {
@@ -42,7 +51,13 @@ import {
   wieldRequirementForTier,
 } from '../src/sim/professions/wield_gate';
 import { Sim } from '../src/sim/sim';
-import { type Entity, INTERACT_RANGE, type SimEvent, xpForLevel } from '../src/sim/types';
+import {
+  type Entity,
+  INTERACT_RANGE,
+  type SimEvent,
+  type WorldContent,
+  xpForLevel,
+} from '../src/sim/types';
 import { groundHeight, terrainHeight, waterLevelAt } from '../src/sim/world';
 import { bareClient } from './helpers/bare_client';
 import { completeCorpseHarvest } from './helpers/complete_corpse_harvest';
@@ -2024,38 +2039,67 @@ describe('harvest denies in combat and while swimming (the startFishing pair)', 
     // INSIDE INTERACT_RANGE at seed 42, so casting from the water is denied
     // while the node's own dry footing grants. (It was wood_thornpeak_1 at
     // seed 1 until tree chopping retired the wood stands.)
+    // Eastbrook Vale v2 retired the shipped shape: every vale water body lies at the
+    // sea plane, so a node with swim-deep water in reach would have open sea inside
+    // its harvest disc, which tests/gather_node_placement.test.ts forbids ("no water
+    // in reach"), and no shipped node keeps one. The fixture therefore stands the
+    // patch on the vale pond's bank through a Studio map move (moved_objects.ts),
+    // the shipped path the harvest gate measures a moved node's reach from
+    // (tests/moved_objects.test.ts pins that path itself). BANK is wading ground
+    // 3 yd outside the pond's swim edge (radius 25 about (-92, 88)); DEEP is 1.5 yd
+    // inside it, 4.5 yd from the patch.
     const WATERLINE = 'herb_eastbrook_1';
-    const DEEP = { x: -62.3, z: 91 };
-    const node = mustNode(WATERLINE);
-    const sim = makeWorld(42);
-    expect(
-      groundHeight(DEEP.x, DEEP.z, sim.cfg.seed) <
-        waterLevelAt(DEEP.x, DEEP.z, sim.cfg.seed) - PLAYER_SWIM_DEPTH,
-    ).toBe(true);
-    expect(Math.hypot(DEEP.x - node.pos.x, DEEP.z - node.pos.z)).toBeLessThanOrEqual(
-      INTERACT_RANGE,
-    );
-    const pid = sim.addPlayer('warrior', 'Wader');
-    sim.addItem('gathering_sickle', 1, pid);
-    const p = mustEntity(sim, pid);
-    p.pos.x = DEEP.x;
-    p.pos.z = DEEP.z;
-    p.pos.y = terrainHeight(DEEP.x, DEEP.z, sim.cfg.seed);
-    p.prevPos = { ...p.pos };
-    expect(sim.ctx.isSwimming(p)).toBe(true);
-    sim.drainEvents();
-    expect(sim.harvestNode(WATERLINE, undefined, pid)).toBe(false);
-    expect(
-      sim
-        .drainEvents()
-        .some((e) => e.type === 'error' && e.text === "You can't do that while swimming."),
-    ).toBe(true);
-    // The node's own dry footing (teleportOntoNode) grants the same node.
-    teleportOntoNode(sim, pid, WATERLINE);
-    expect(sim.ctx.isSwimming(p)).toBe(false);
-    expect(sim.harvestNode(WATERLINE, undefined, pid)).toBe(true);
+    const BANK = { x: -64, z: 88 };
+    const DEEP = { x: -68.5, z: 88 };
+    const world: WorldContent = {
+      ...BUILTIN_WORLD,
+      objectMoves: freezeObjectMoves({ [objectMoveKey('gatherNode', WATERLINE)]: BANK }),
+    };
+    setActiveWorldContent(world);
+    invalidateStaticColliders();
+    try {
+      const sim = new Sim({ seed: 42, playerClass: 'warrior', noPlayer: true, world });
+      waterlineStand(sim, WATERLINE, BANK, DEEP);
+    } finally {
+      setActiveWorldContent(null);
+      invalidateStaticColliders();
+    }
   });
 });
+
+function waterlineStand(
+  sim: Sim,
+  WATERLINE: string,
+  BANK: { x: number; z: number },
+  DEEP: { x: number; z: number },
+): void {
+  const node = expectDefined(gatherNodesInActiveWorld().find((n) => n.id === WATERLINE));
+  expect(node.pos).toEqual(BANK);
+  expect(
+    groundHeight(DEEP.x, DEEP.z, sim.cfg.seed) <
+      waterLevelAt(DEEP.x, DEEP.z, sim.cfg.seed) - PLAYER_SWIM_DEPTH,
+  ).toBe(true);
+  expect(Math.hypot(DEEP.x - node.pos.x, DEEP.z - node.pos.z)).toBeLessThanOrEqual(INTERACT_RANGE);
+  const pid = sim.addPlayer('warrior', 'Wader');
+  sim.addItem('gathering_sickle', 1, pid);
+  const p = mustEntity(sim, pid);
+  p.pos.x = DEEP.x;
+  p.pos.z = DEEP.z;
+  p.pos.y = terrainHeight(DEEP.x, DEEP.z, sim.cfg.seed);
+  p.prevPos = { ...p.pos };
+  expect(sim.ctx.isSwimming(p)).toBe(true);
+  sim.drainEvents();
+  expect(sim.harvestNode(WATERLINE, undefined, pid)).toBe(false);
+  expect(
+    sim
+      .drainEvents()
+      .some((e) => e.type === 'error' && e.text === "You can't do that while swimming."),
+  ).toBe(true);
+  // The node's own dry footing (teleportOntoNode) grants the same node.
+  teleportOntoNode(sim, pid, WATERLINE);
+  expect(sim.ctx.isSwimming(p)).toBe(false);
+  expect(sim.harvestNode(WATERLINE, undefined, pid)).toBe(true);
+}
 
 describe('harvest breaks stealth and action-locked forms refuse it', () => {
   it('an action-locked form refuses with the shapeshifted literal, zero draws, and shifting out grants', () => {

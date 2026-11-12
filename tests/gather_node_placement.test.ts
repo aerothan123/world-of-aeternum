@@ -1009,6 +1009,11 @@ describe('gather node placement: every node sits on ground a player can work', (
     // now (re-measured 29.8 / 29.6 / 30.9), and the forest carries wood, held
     // to its own floor (every tuned zone's trees reach 95 percent and up of its
     // walkable ground).
+    // Eastbrook Vale v2 (450 yd wide, its herb and berry spots clustered in the
+    // east) measured 22.9 on the design's own spots; three patches moved onto
+    // open meadow (data/eastbrook_v2/sites_config.json) bring it to 28.3, about
+    // the most twelve nodes reach there while the Copper Dig field holds its
+    // ring, so the vale is the zone that notices first.
     const COVERAGE_FLOOR_PCT = 28;
     const FOREST_COVERAGE_FLOOR_PCT = 90;
 

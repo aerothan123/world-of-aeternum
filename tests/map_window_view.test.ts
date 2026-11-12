@@ -1568,10 +1568,12 @@ describe('zone-map gather nodes', () => {
     // stand on the design's sites): zoom 3 framed at (0, 33), the visible
     // square is FULL_SPAN / 3 = 150 yd wide and the cull pads it by the marker
     // margin, so the band runs x -99..99, z -66..132. The Copper Dig veins sit
-    // on the north headland (z 137 to 161) and the west herbs past x -180, so
+    // on the north headland (z 137 to 161) and the design herbs past x -180, so
     // they cull; the near-edge discrimination comes from ore_eastbrook_6
-    // (5 yd past the north bound) against herb_eastbrook_2 inside it. A cull
-    // that stopped culling and one that culled everything both red.
+    // (5 yd past the north bound) and herb_eastbrook_3 (13 yd past the x -99
+    // bound) against herb_eastbrook_2 inside it, with the two meadow patches
+    // (herb_eastbrook_1 and _5) kept near the opposite corners. A cull that
+    // stopped culling and one that culled everything both red.
     const band = FULL_SPAN / 3 / 2 + 24;
     const center = { x: 0, z: 33 };
     const model = buildOverworldMapModel({ ...input(makeOverworldWorld('sim'), 3), center });
@@ -1584,8 +1586,11 @@ describe('zone-map gather nodes', () => {
     expect(kept.has('ore_eastbrook_4')).toBe(false); // (-42, 158): north headland
     expect(kept.has('ore_eastbrook_6')).toBe(false); // (-15, 137): just past the north bound
     expect(kept.has('herb_eastbrook_4')).toBe(false); // (-181.79, 84.41): outside the band
+    expect(kept.has('herb_eastbrook_3')).toBe(false); // (-112, 12): just past the x bound
     expect(kept.has('herb_eastbrook_2')).toBe(true); // (-23.47, 51.75): inside the band
-    expect(model.gatherNodes).toHaveLength(1);
+    expect(kept.has('herb_eastbrook_1')).toBe(true); // (54, 96): inside the band
+    expect(kept.has('herb_eastbrook_5')).toBe(true); // (94, -48): inside the band
+    expect(model.gatherNodes).toHaveLength(3);
   });
 
   it('never leaks nodes from another zone into the committed zone model', () => {

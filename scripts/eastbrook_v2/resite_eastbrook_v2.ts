@@ -37,7 +37,7 @@ import {
   ebv2Weight,
 } from '../../src/sim/eastbrook_v2';
 import { EBV2_FIELD_GRID } from '../../src/sim/eastbrook_v2/field.generated';
-import { EBV2_COLLIDERS } from '../../src/sim/eastbrook_v2/layout.generated';
+import { EBV2_COLLIDERS, EBV2_NODES } from '../../src/sim/eastbrook_v2/layout.generated';
 import { EBV2_SITE_LOG, ebv2Site } from '../../src/sim/eastbrook_v2/sites';
 import { MAX_AGGRO_RADIUS } from '../../src/sim/mob/aggro_ranges';
 import { PLAYER_MAX_CLIMB_SLOPE } from '../../src/sim/pathfind';
@@ -59,7 +59,8 @@ const cfg = JSON.parse(
   exact: string[];
   anchors: Record<string, string>;
   lots: Record<string, string>;
-  nodes: Record<string, 'ore' | 'herb' | 'berry'>;
+  /** a design node kind (export order), a named design node id, or an explicit spot */
+  nodes: Record<string, string | P>;
   objectGroups: (
     | { building: string; point: string; items: string[] }
     | { from: P; to: P; items: string[]; building?: undefined }
@@ -416,7 +417,28 @@ const nodeQueues = {
   berry: ebv2Nodes('berry').filter(designNodeOk),
 };
 const unfilled: string[] = [];
-for (const [id, kind] of Object.entries(cfg.nodes)) {
+// A node pinned to a named design node, or to an explicit spot (a patch where the
+// design has no node of its own, placed for the zone's gathering coverage), takes
+// that spot first, so the kind queues below never hand the same design node out twice.
+for (const [id, want] of Object.entries(cfg.nodes)) {
+  if (typeof want === 'object') {
+    // a patch's own body is no solid, so it needs a gatherer's footing clear of the design's
+    if (!designNodeOk(want) || designClearance(want) < 1.8)
+      problems.push(`node:${id} explicit spot ${want.x},${want.z} is not workable`);
+    sites[`node:${id}`] = { x: want.x, z: want.z };
+  } else if (!(want in nodeQueues)) {
+    const kind = EBV2_NODES.find((n) => n.id === want)?.kind as keyof typeof nodeQueues | undefined;
+    const queue = kind ? nodeQueues[kind] : undefined;
+    const at = queue?.findIndex((n) => n.id === want) ?? -1;
+    if (!queue || at < 0)
+      problems.push(`node:${id} names design node ${want}, missing or unworkable`);
+    else sites[`node:${id}`] = { x: queue[at].x, z: queue[at].z };
+    if (queue && at >= 0) queue.splice(at, 1);
+  }
+}
+for (const [id, want] of Object.entries(cfg.nodes)) {
+  if (typeof want === 'object' || !(want in nodeQueues)) continue;
+  const kind = want as keyof typeof nodeQueues;
   const n = nodeQueues[kind].shift() ?? (kind === 'berry' ? nodeQueues.herb.shift() : undefined);
   if (n) sites[`node:${id}`] = { x: n.x, z: n.z };
   else unfilled.push(id);
