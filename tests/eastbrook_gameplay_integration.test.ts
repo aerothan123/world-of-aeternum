@@ -27,6 +27,7 @@ import {
   localToWorld,
   samplePolyline,
 } from '../src/sim/eastbrook_layout';
+import { EBV2_ROADS } from '../src/sim/eastbrook_v2/layout.generated';
 import { FENBRIDGE_LAYOUT, FENBRIDGE_STATIONS_BY_ID } from '../src/sim/fenbridge_layout';
 import {
   findPath,
@@ -462,31 +463,18 @@ describe('Eastbrook authored gameplay data integration', () => {
     expect(ZONE1_PROPS.delveMarkers).toEqual([{ x: -136, z: 112, delveId: 'collapsed_reliquary' }]);
   });
 
-  // Re-pinned 2026-08-18 for the harbor move (commit d19aa33f76,
-  // docs/design/eastbrook-revamp/site-plan.md), then for owner refinement
-  // round 3: the wall and its gates are retired by design, so every road
-  // carries gateId null and there is no gate crossing to contain. Round 3
-  // added the inn lane (appended last, the by-index spread rule), trimmed
-  // the beach promenade to the pulled-in strand, and re-tied the coast
-  // track to hug the new waterline. The town kit spread appended Meadow Lane,
-  // the housing quarter's lane, on the same rule.
-  it('keeps every preserved exterior road on its authored prefix with no gate crossing', () => {
-    expect(ZONE1_ROADS).toHaveLength(8);
-    for (let index = 0; index < EASTBROOK_LAYOUT.roads.length; index++) {
-      const authored = EASTBROOK_LAYOUT.roads[index];
-      expect(ZONE1_ROADS[index].slice(0, authored.points.length)).toEqual(authored.points);
-      expect(authored.gateId).toBeNull();
-    }
-    expect(ZONE1_ROADS.map((road) => road.at(-1))).toEqual([
-      { x: -32, z: 140 },
-      { x: -92, z: -56 },
-      { x: 65, z: -65 },
-      { x: -9.2, z: -134 },
-      { x: -9, z: -100.4 },
-      { x: -96, z: -66 },
-      { x: -44, z: -98 },
-      { x: 64, z: -24 },
-    ]);
+  // Re-pinned for the Eastbrook Vale v2 port (roads step): the vale's roads are
+  // the v2 design's EBV2_ROADS, one sim polyline per design road in export order,
+  // point for point, so the terrain splat, the map and every road clearance follow
+  // the design. The old town streets and exterior tracks (EASTBROOK_LAYOUT.roads,
+  // their authored prefixes and end points pinned here before) retired with the
+  // old town, and the design has no wall, so no road carries a gate crossing.
+  it('lays the vale roads exactly on the v2 design roads', () => {
+    expect(ZONE1_ROADS).toHaveLength(EBV2_ROADS.length);
+    expect(EBV2_ROADS).toHaveLength(14);
+    EBV2_ROADS.forEach((road, index) => {
+      expect(ZONE1_ROADS[index]).toEqual(road.points.map(([x, z]) => ({ x, z })));
+    });
   });
 
   it('moves only the 15 town NPC placement fields and preserves key order and all other payload', () => {

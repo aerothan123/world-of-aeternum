@@ -204,9 +204,12 @@ export const TREASURE_SITES: readonly TreasureSiteDef[] = Object.freeze([
   { id: 'site_palmreach_north_road', zoneId: 'palmreach', x: -448, z: 866 },
   { id: 'site_galecrest_west_road', zoneId: 'galecrest', x: 256, z: 391 },
   { id: 'site_galecrest_north_road', zoneId: 'galecrest', x: 326, z: 381 },
-  { id: 'site_eastbrook_north_road', zoneId: 'eastbrook_vale', x: -10, z: -21 },
-  { id: 'site_eastbrook_meadow_road', zoneId: 'eastbrook_vale', x: -2, z: 44 },
-  { id: 'site_eastbrook_west_road', zoneId: 'eastbrook_vale', x: -13, z: 129 },
+  // The three vale sites stepped to the nearest spot that keeps the dig rules
+  // (8 yd off a road, within 25 yd of one, dry and clear) on the Eastbrook v2
+  // design's ground and roads: (-10, -21), (-2, 44) and (-13, 129) before.
+  { id: 'site_eastbrook_north_road', zoneId: 'eastbrook_vale', x: -13, z: -22 },
+  { id: 'site_eastbrook_meadow_road', zoneId: 'eastbrook_vale', x: -9, z: 42 },
+  { id: 'site_eastbrook_west_road', zoneId: 'eastbrook_vale', x: -12, z: 129 },
   { id: 'site_mirefen_east_road', zoneId: 'mirefen_marsh', x: 52, z: 305 },
   { id: 'site_mirefen_west_road', zoneId: 'mirefen_marsh', x: -58, z: 371 },
   { id: 'site_mirefen_north_road', zoneId: 'mirefen_marsh', x: 102, z: 418 },
