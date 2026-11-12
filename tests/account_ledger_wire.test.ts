@@ -57,8 +57,8 @@ import { type CharacterState, Sim } from '../src/sim/sim';
 import type { SimEvent } from '../src/sim/types';
 import { bareClient } from './helpers/bare_client';
 
-const CATALOGUE_RELIC = 'cryptbone_helm';
-const PAGE_ID = 'conquerors_hollow_crypt';
+const CATALOGUE_RELIC = 'tideguard_greaves';
+const PAGE_ID = 'conquerors_sunken_bastion';
 const TITLE_DEED = DEED_ORDER.find((id) => DEEDS[id].reward?.kind === 'title')!;
 const FLAGSHIP_DEED = 'col_reliquary_illum_thunzharr';
 const FLAGSHIP_PAGE = 'conquerors_thunzharr';

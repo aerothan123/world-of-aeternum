@@ -588,14 +588,14 @@ describe('unknown ids fall through to the caller fallback', () => {
   });
 
   it('preserves the item passthrough for a real item id (behavior unchanged)', () => {
-    expect(reliquaryCellArt({ kind: 'item', id: 'cryptbone_helm' })).toEqual({
+    expect(reliquaryCellArt({ kind: 'item', id: 'tideguard_greaves' })).toEqual({
       kind: 'item',
-      itemId: 'cryptbone_helm',
+      itemId: 'tideguard_greaves',
     });
     // The recent ring's wire-shaped kind resolves the same way.
-    expect(reliquaryCellArt({ kind: 'unknown', id: 'cryptbone_helm' })).toEqual({
+    expect(reliquaryCellArt({ kind: 'unknown', id: 'tideguard_greaves' })).toEqual({
       kind: 'item',
-      itemId: 'cryptbone_helm',
+      itemId: 'tideguard_greaves',
     });
   });
 });
@@ -933,11 +933,11 @@ describe('ReliquaryWindow cell markup', () => {
     // grid passes its pre-resolved descriptor into cellIconHtml while the
     // strip omits the argument; byte-identity here is what proves the
     // default-parameter path cannot desync the two.
-    const rig = makeRig({ recent: ['cryptbone_helm'] });
+    const rig = makeRig({ recent: ['tideguard_greaves'] });
     rig.window.open('overview');
     const chip = rig.el.querySelector<HTMLImageElement>('.reliquary-recent-icon img');
     if (!chip) throw new Error('contract: a recent item find paints its art in the chip');
-    openPage(rig, 'conquerors', 'conquerors_hollow_crypt');
-    expect(cellArt(rig, 'cryptbone_helm').outerHTML).toBe(chip.outerHTML);
+    openPage(rig, 'conquerors', 'conquerors_sunken_bastion');
+    expect(cellArt(rig, 'tideguard_greaves').outerHTML).toBe(chip.outerHTML);
   });
 });

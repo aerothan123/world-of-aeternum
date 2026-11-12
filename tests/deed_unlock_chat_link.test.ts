@@ -29,7 +29,7 @@ import { contactAtOnce } from './helpers/renderer_contact';
 
 const UNLOCK_ID = 'prog_first_steps';
 const BROADCAST_ID = 'cmb_first_blood';
-const ILLUMINATED_PAGE_ID = 'conquerors_hollow_crypt';
+const ILLUMINATED_PAGE_ID = 'conquerors_sunken_bastion';
 
 // The DOM normalizes an assigned hex (rgb() form differs per engine), so
 // round-trip the expected color through the same style property.
@@ -201,7 +201,7 @@ describe('the illumination broadcast line (case reliquaryIlluminationBroadcast)'
     // The assertion above shares the key and the substitution with production,
     // so it cannot see a reword of the template. This literal is the pin on the
     // English prose itself, names substituted.
-    expect(line.textContent).toBe('Hilda has illuminated a Reliquary page: [The Hollow Crypt]');
+    expect(line.textContent).toBe('Hilda has illuminated a Reliquary page: [The Sunken Bastion]');
     expect(line.style.color).toBe(cssColor('#40d264'));
     const link = line.querySelector('span.chat-deed-link') as HTMLElement;
     expect(link).not.toBeNull();

@@ -49,10 +49,10 @@ vi.mock('../src/ui/icons', async (importOriginal) => ({
 // A Conquerors page and a Professions page: the pair that makes a cross-shelf
 // jump observable at all (the off-shelf render bug needs the persisted page and
 // the jump target to sit on DIFFERENT rails).
-const CRYPT_PAGE = 'conquerors_hollow_crypt';
+const BASTION_PAGE = 'conquerors_sunken_bastion';
 const NOTES_PAGE = 'professions_field_notes';
 // One item relic on the Conquerors page, for the Overview recent chip.
-const CRYPT_RELIC = 'cryptbone_helm';
+const BASTION_RELIC = 'tideguard_greaves';
 
 // Content premises: the two pages exist, sit on the shelves this suite assumes,
 // and the relic really is on the Conquerors page. Without these, a catalog
@@ -165,11 +165,11 @@ function click(el: HTMLElement, selector: string): HTMLElement {
 
 beforeEach(() => {
   document.body.innerHTML = '';
-  premise(CRYPT_PAGE, 'conquerors');
+  premise(BASTION_PAGE, 'conquerors');
   premise(NOTES_PAGE, 'professions');
-  const crypt = RELIQUARY_PAGES_BY_ID[CRYPT_PAGE];
-  if (!crypt?.relics.some((r) => r.kind === 'item' && r.itemId === CRYPT_RELIC)) {
-    throw new Error(`content premise: ${CRYPT_PAGE} holds ${CRYPT_RELIC}`);
+  const bastion = RELIQUARY_PAGES_BY_ID[BASTION_PAGE];
+  if (!bastion?.relics.some((r) => r.kind === 'item' && r.itemId === BASTION_RELIC)) {
+    throw new Error(`content premise: ${BASTION_PAGE} holds ${BASTION_RELIC}`);
   }
 });
 
@@ -186,7 +186,7 @@ describe('openWithPage: the chat deep link', () => {
 
   it('moves the reading position onto the landed page header (a jump is a navigation)', () => {
     const { w, el } = makeWindow(baseState());
-    w.openWithPage(CRYPT_PAGE);
+    w.openWithPage(BASTION_PAGE);
     const head = header(el);
     expect(head).not.toBeNull();
     expect(head?.tabIndex).toBe(-1);
@@ -198,9 +198,9 @@ describe('openWithPage: the chat deep link', () => {
     // steal the focus the navigation promised (the closed-window chat link).
     const { w, el } = makeWindow(baseState(), { open: false });
     expect(w.isOpen).toBe(false);
-    w.openWithPage(CRYPT_PAGE);
+    w.openWithPage(BASTION_PAGE);
     expect(w.isOpen).toBe(true);
-    expect(paintedPage(el)).toBe(reliquaryPageName(CRYPT_PAGE));
+    expect(paintedPage(el)).toBe(reliquaryPageName(BASTION_PAGE));
     expect(document.activeElement).toBe(header(el));
     expect(el.querySelector('[data-close]')).not.toBe(document.activeElement);
   });
@@ -212,7 +212,7 @@ describe('openWithPage: the chat deep link', () => {
     (Element.prototype as unknown as { scrollIntoView: unknown }).scrollIntoView = spy;
     try {
       const { w } = makeWindow(baseState(), { open: false });
-      w.openWithPage(CRYPT_PAGE);
+      w.openWithPage(BASTION_PAGE);
       // Once under display:none during render, once after open() sets flex so
       // the scroll is reliable against a visible root (the deeds cold-jump).
       expect(spy).toHaveBeenCalledTimes(2);
@@ -224,7 +224,7 @@ describe('openWithPage: the chat deep link', () => {
 
   it('clears a needle and an ownership chip that could hide the landed page', () => {
     const { w, el } = makeWindow(baseState());
-    w.openWithPage(CRYPT_PAGE);
+    w.openWithPage(BASTION_PAGE);
     click(el, '[data-filter="missing"]');
     typeSearch(el, 'zzzz-no-such-relic');
     expect(searchField(el).value).toBe('zzzz-no-such-relic');
@@ -238,7 +238,7 @@ describe('openWithPage: the chat deep link', () => {
 
   it('is a ONE-SHOT: a later repaint does not yank a MOVED reading position back', () => {
     const { w, el } = makeWindow(baseState());
-    w.openWithPage(CRYPT_PAGE);
+    w.openWithPage(BASTION_PAGE);
     expect(document.activeElement).toBe(header(el));
     // Phase 22 gave the header a data-focus-key so a rebuild moments after a
     // deep link (the rarity fetch landing on the slow band) RESTORES the
@@ -261,10 +261,10 @@ describe('openWithPage: the chat deep link', () => {
     // very next tick would rebuild on identical state and drop the reading
     // position the jump just placed (the deeds spotlight-elision contract).
     const { w, el } = makeWindow(baseState());
-    w.openWithPage(CRYPT_PAGE);
+    w.openWithPage(BASTION_PAGE);
     w.refreshIfChanged();
     expect(document.activeElement).toBe(header(el));
-    expect(paintedPage(el)).toBe(reliquaryPageName(CRYPT_PAGE));
+    expect(paintedPage(el)).toBe(reliquaryPageName(BASTION_PAGE));
   });
 
   it('opens the window unfocused, and un-navigated, for an id the catalog lost', () => {
@@ -395,7 +395,7 @@ describe('open(nav): the shelf deep link', () => {
     // all filtered away by a needle from ten minutes ago reads as a dead link.
     // The ownership chips live on a page detail, so the state is set up there.
     const { w, el } = makeWindow(baseState());
-    w.openWithPage(CRYPT_PAGE);
+    w.openWithPage(BASTION_PAGE);
     click(el, '[data-filter="missing"]');
     typeSearch(el, 'zzzz-no-such-relic');
     expect(searchField(el).value).toBe('zzzz-no-such-relic');
@@ -435,30 +435,32 @@ describe('open(nav): the shelf deep link', () => {
 describe('in-window [data-page] rows share the jump', () => {
   it('the Overview recent chip lands on the relic page under its own rail', () => {
     const state = baseState();
-    state.itemsDiscovered.add(CRYPT_RELIC);
-    state.recent = [CRYPT_RELIC];
+    state.itemsDiscovered.add(BASTION_RELIC);
+    state.recent = [BASTION_RELIC];
     const { w, el } = makeWindow(state);
     expect(w.isOpen).toBe(true);
-    const chip = el.querySelector<HTMLElement>(`.reliquary-recent-item[data-page="${CRYPT_PAGE}"]`);
+    const chip = el.querySelector<HTMLElement>(
+      `.reliquary-recent-item[data-page="${BASTION_PAGE}"]`,
+    );
     expect(chip, 'the recent chip carries its page target').not.toBeNull();
     chip?.click();
     expect(activeNav(el)).toBe('conquerors');
-    expect(paintedPage(el)).toBe(reliquaryPageName(CRYPT_PAGE));
+    expect(paintedPage(el)).toBe(reliquaryPageName(BASTION_PAGE));
   });
 
   it('an Overview nearly-complete row lands on its page under its own rail', () => {
     const state = baseState();
-    // Every Hollow Crypt relic but one: one remaining puts the page on the
+    // Every Sunken Bastion relic but one: one remaining puts the page on the
     // nearly-complete strip.
-    for (const relic of RELIQUARY_PAGES_BY_ID[CRYPT_PAGE]?.relics.slice(0, -1) ?? []) {
+    for (const relic of RELIQUARY_PAGES_BY_ID[BASTION_PAGE]?.relics.slice(0, -1) ?? []) {
       if (relic.kind === 'item') state.itemsDiscovered.add(relic.itemId);
     }
     const { el } = makeWindow(state);
-    const row = el.querySelector<HTMLElement>(`.reliquary-nearly-row[data-page="${CRYPT_PAGE}"]`);
+    const row = el.querySelector<HTMLElement>(`.reliquary-nearly-row[data-page="${BASTION_PAGE}"]`);
     expect(row, 'the nearly strip holds the all-but-one page').not.toBeNull();
     row?.click();
     expect(activeNav(el)).toBe('conquerors');
-    expect(paintedPage(el)).toBe(reliquaryPageName(CRYPT_PAGE));
+    expect(paintedPage(el)).toBe(reliquaryPageName(BASTION_PAGE));
   });
 
   it('keeps the needle the player typed (only the external jump clears it)', () => {
@@ -466,12 +468,12 @@ describe('in-window [data-page] rows share the jump', () => {
     // wiping their needle on every row click would undo the narrowing they are
     // using to browse.
     const { w, el } = makeWindow(baseState(), { nav: 'conquerors' });
-    const needle = reliquaryPageName(CRYPT_PAGE);
+    const needle = reliquaryPageName(BASTION_PAGE);
     typeSearch(el, needle);
-    const row = el.querySelector<HTMLElement>(`.reliquary-page-row[data-page="${CRYPT_PAGE}"]`);
+    const row = el.querySelector<HTMLElement>(`.reliquary-page-row[data-page="${BASTION_PAGE}"]`);
     expect(row, 'the shelf row survives its own page name as a needle').not.toBeNull();
     row?.click();
-    expect(paintedPage(el)).toBe(reliquaryPageName(CRYPT_PAGE));
+    expect(paintedPage(el)).toBe(reliquaryPageName(BASTION_PAGE));
     expect(searchField(el).value).toBe(needle);
     // And it is navigation, not a deep link: no header focus grab.
     expect(document.activeElement).not.toBe(header(el));

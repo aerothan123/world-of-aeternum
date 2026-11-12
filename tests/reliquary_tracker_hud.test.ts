@@ -52,7 +52,7 @@ const TOTAL = 7;
 // Two more live pages, for the nothing-pinned default ranking. Real ids because
 // the default scan walks RELIQUARY_PAGE_ORDER: a fabricated id would simply
 // never be asked about.
-const CANDIDATE_A = 'conquerors_hollow_crypt';
+const CANDIDATE_A = 'conquerors_sunken_bastion';
 const CANDIDATE_B = 'professions_field_notes';
 
 /** Page progress the stubbed completion read answers from. */
