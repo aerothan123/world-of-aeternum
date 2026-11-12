@@ -1172,7 +1172,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "referralCards.retiredStamp"
   ],
   "es_ES": [
     "abilityUi.cast.chopping",
@@ -2337,7 +2338,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "referralCards.retiredStamp"
   ],
   "fr_FR": [
     "abilityUi.cast.chopping",
@@ -3502,7 +3504,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "referralCards.retiredStamp"
   ],
   "fr_CA": [
     "abilityUi.cast.chopping",
@@ -4667,7 +4670,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "referralCards.retiredStamp"
   ],
   "en_CA": [],
   "it_IT": [
@@ -5833,7 +5837,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "referralCards.retiredStamp"
   ],
   "de_DE": [
     "abilityUi.cast.chopping",
@@ -6998,7 +7003,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "referralCards.retiredStamp"
   ],
   "zh_CN": [
     "entities.items.c1_amended_cart_tag.name",
@@ -7932,7 +7938,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "referralCards.retiredStamp"
   ],
   "zh_TW": [
     "entities.items.c1_amended_cart_tag.name",
@@ -8866,7 +8873,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "referralCards.retiredStamp"
   ],
   "ko_KR": [
     "entities.items.c1_amended_cart_tag.name",
@@ -9800,7 +9808,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "referralCards.retiredStamp"
   ],
   "ja_JP": [
     "entities.items.c1_amended_cart_tag.name",
@@ -10734,7 +10743,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "referralCards.retiredStamp"
   ],
   "pt_BR": [
     "abilityUi.cast.chopping",
@@ -11899,7 +11909,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "referralCards.retiredStamp"
   ],
   "ru_RU": [
     "entities.items.c1_amended_cart_tag.name",
@@ -12833,7 +12844,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "referralCards.retiredStamp"
   ],
   "cs_CZ": [
     "abilityUi.cast.chopping",
@@ -13998,7 +14010,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "referralCards.retiredStamp"
   ],
   "nl_NL": [
     "abilityUi.cast.chopping",
@@ -15163,7 +15176,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "referralCards.retiredStamp"
   ],
   "pl_PL": [
     "abilityUi.cast.chopping",
@@ -16328,7 +16342,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "referralCards.retiredStamp"
   ],
   "id_ID": [
     "abilityUi.cast.chopping",
@@ -17493,7 +17508,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "referralCards.retiredStamp"
   ],
   "tr_TR": [
     "abilityUi.cast.chopping",
@@ -18658,7 +18674,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "referralCards.retiredStamp"
   ],
   "sv_SE": [
     "abilityUi.cast.chopping",
@@ -19823,7 +19840,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "referralCards.retiredStamp"
   ],
   "vi_VN": [
     "abilityUi.cast.chopping",
@@ -20988,7 +21006,8 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "referralCards.retiredStamp"
   ],
   "da_DK": [
     "abilityUi.cast.chopping",
@@ -22153,6 +22172,7 @@ export const pending: Record<string, readonly string[]> = {
     "questEditor.status.saved",
     "questEditor.status.unsaved",
     "questEditor.subtitle",
-    "questEditor.title"
+    "questEditor.title",
+    "referralCards.retiredStamp"
   ]
 };

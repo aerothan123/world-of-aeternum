@@ -62,6 +62,7 @@ export const tr_TR: EnTranslations = {
     "earned": "Kazanılan",
     "redeemed": "Alındı",
     "emptyStamp": "Henüz kazanılmadı",
+    "retiredStamp": "No longer available",
     "stamping": "Kartın damgalanıyor...",
     "redeem": "Ödülü al",
     "previous": "Önce önceki damgaları kullan.",

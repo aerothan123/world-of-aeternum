@@ -10,8 +10,13 @@ export const REFERRAL_FOG_TRINKET = 'referral_fog_charm';
 export const REFERRAL_SLIME_REINS = 'reins_wobbles_slime';
 export const REFERRAL_RAPTOR_REINS = 'reins_referral_raptor';
 export const REFERRAL_REWARD_SOURCE_BOSSES: Readonly<Record<string, string>> = {
-  [REFERRAL_HOLLOW_TRINKET]: 'morthen',
   [REFERRAL_FOG_TRINKET]: 'vael_the_mistcaller',
+};
+// The hollow charm's boss (Morthen, level 10) left with the Hollow Crypt
+// (2026-11-11). Its milestone can no longer be earned, but saved copies keep
+// the item level that boss gave them.
+export const REFERRAL_RETIRED_SOURCE_LEVELS: Readonly<Record<string, number>> = {
+  [REFERRAL_HOLLOW_TRINKET]: 10,
 };
 
 // Rewards stay in personal custody so a card can move before its final binding.

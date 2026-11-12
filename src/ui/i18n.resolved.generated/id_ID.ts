@@ -62,6 +62,7 @@ export const id_ID: EnTranslations = {
     "earned": "Diraih",
     "redeemed": "Ditukarkan",
     "emptyStamp": "Belum diperoleh",
+    "retiredStamp": "No longer available",
     "stamping": "Mengecap kartumu...",
     "redeem": "Tukarkan hadiah",
     "previous": "Tukarkan cap sebelumnya dahulu.",

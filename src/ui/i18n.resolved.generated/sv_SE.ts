@@ -62,6 +62,7 @@ export const sv_SE: EnTranslations = {
     "earned": "Fullbordade",
     "redeemed": "Inlöst",
     "emptyStamp": "Inte förtjänad ännu",
+    "retiredStamp": "No longer available",
     "stamping": "Stämplar ditt kort...",
     "redeem": "Lös in belöning",
     "previous": "Lös in tidigare stämplar först.",

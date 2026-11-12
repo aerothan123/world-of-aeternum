@@ -62,6 +62,7 @@ export const pl_PL: EnTranslations = {
     "earned": "Zdobyte",
     "redeemed": "Odebrano",
     "emptyStamp": "Jeszcze nie zdobyto",
+    "retiredStamp": "No longer available",
     "stamping": "Stemplowanie twojej karty...",
     "redeem": "Odbierz nagrodę",
     "previous": "Najpierw odbierz wcześniejsze pieczątki.",

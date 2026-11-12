@@ -463,6 +463,14 @@
     color: var(--color-text-success);
   }
 
+  /* A retired slot (its content left the game): greyed out, never a goal. */
+  .referral-stamp.is-retired .referral-stamp-art,
+  .referral-stamp.is-retired .referral-stamp-mark,
+  .referral-stamp.is-retired .referral-stamp-name {
+    filter: grayscale(1);
+    opacity: 0.45;
+  }
+
   .referral-stamp > .ui-btn {
     white-space: normal;
     height: auto;

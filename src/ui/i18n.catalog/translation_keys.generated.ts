@@ -21108,6 +21108,7 @@ export type TranslationKeyFlat =
   | 'referralCards.referrerRewards.4'
   | 'referralCards.referrerRewards.5'
   | 'referralCards.referrerTitle'
+  | 'referralCards.retiredStamp'
   | 'referralCards.reward'
   | 'referralCards.rewards.fogbinder'
   | 'referralCards.rewards.gravewyrm'

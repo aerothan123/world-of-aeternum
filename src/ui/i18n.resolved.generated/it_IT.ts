@@ -62,6 +62,7 @@ export const it_IT: EnTranslations = {
     "earned": "Ottenute",
     "redeemed": "Riscattato",
     "emptyStamp": "Non ancora guadagnato",
+    "retiredStamp": "No longer available",
     "stamping": "Applicazione del timbro alla tessera...",
     "redeem": "Riscatta ricompensa",
     "previous": "Riscatta prima i timbri precedenti.",

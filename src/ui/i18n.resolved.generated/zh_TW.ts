@@ -62,6 +62,7 @@ export const zh_TW: EnTranslations = {
     "earned": "已獲得",
     "redeemed": "已領取",
     "emptyStamp": "尚未獲得",
+    "retiredStamp": "No longer available",
     "stamping": "正在為卡片蓋章...",
     "redeem": "領取獎勵",
     "previous": "請先領取之前印章的獎勵。",

@@ -62,6 +62,7 @@ export const cs_CZ: EnTranslations = {
     "earned": "Vykonané",
     "redeemed": "Vyzvednuto",
     "emptyStamp": "Zatím nezískáno",
+    "retiredStamp": "No longer available",
     "stamping": "Razítkování tvé kartičky...",
     "redeem": "Vyzvednout odměnu",
     "previous": "Nejprve vyzvedni předchozí razítka.",

@@ -62,6 +62,7 @@ export const nl_NL: EnTranslations = {
     "earned": "Behaald",
     "redeemed": "Ingewisseld",
     "emptyStamp": "Nog niet verdiend",
+    "retiredStamp": "No longer available",
     "stamping": "Je kaart stempelen...",
     "redeem": "Beloning inwisselen",
     "previous": "Haal eerst eerdere stempels op.",

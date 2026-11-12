@@ -62,6 +62,7 @@ export const da_DK: EnTranslations = {
     "earned": "Opnået",
     "redeemed": "Indløst",
     "emptyStamp": "Ikke fortjent endnu",
+    "retiredStamp": "No longer available",
     "stamping": "Stempler dit kort...",
     "redeem": "Indløs belønning",
     "previous": "Indløs tidligere stempler først.",

@@ -62,6 +62,7 @@ export const ja_JP: EnTranslations = {
     "earned": "獲得済み",
     "redeemed": "受取済み",
     "emptyStamp": "未獲得",
+    "retiredStamp": "No longer available",
     "stamping": "カードにスタンプを押しています...",
     "redeem": "報酬を受け取る",
     "previous": "先に前のスタンプ報酬を受け取ってください。",

@@ -83,14 +83,21 @@ function cardHtml(
         })
       : referralText('summon');
   const rows = referralStampRows(own);
-  const progress = `<div class="referral-progress"><strong>${formatNumber(rows.filter((stamp) => stamp.earned).length)}/${formatNumber(rows.length)}</strong><small>${esc(referralText('earned'))}</small></div>`;
+  const goals = rows.filter((stamp) => !stamp.retired);
+  const progress = `<div class="referral-progress"><strong>${formatNumber(goals.filter((stamp) => stamp.earned).length)}/${formatNumber(goals.length)}</strong><small>${esc(referralText('earned'))}</small></div>`;
   const stamps =
     card.status === 'active'
       ? rows
           .map((stamp) => {
             const stampKey = referralStampKey(card.linkId, own.characterId!, stamp.id);
             const isAnimating = stamp.earned && !stamp.redeemed && !animated.has(stampKey);
-            const status = stamp.redeemed ? 'redeemed' : stamp.earned ? 'earned' : 'emptyStamp';
+            const status = stamp.redeemed
+              ? 'redeemed'
+              : stamp.earned
+                ? 'earned'
+                : stamp.retired
+                  ? 'retiredStamp'
+                  : 'emptyStamp';
             const tooltip = referralText('reward', { reward: referralText(`rewards.${stamp.id}`) });
             const id = `referral-reward-${card.linkId}-${stamp.id}`;
             const sameCharacter = own.characterId === snapshot.characterId;
@@ -103,7 +110,7 @@ function cardHtml(
                     `data-milestone="${stamp.id}" ${!stamp.redeemable || isAnimating ? 'disabled' : ''}`,
                   )
                 : '';
-            return `<li class="referral-stamp ui-card ui-card-tile ${stamp.earned ? 'is-earned' : ''} ${stamp.redeemed ? 'is-redeemed' : ''} ${stamp.redeemable && sameCharacter ? 'is-ready' : ''}" data-stamp-key="${esc(stampKey)}" data-animate="${isAnimating}"><button type="button" class="referral-stamp-inspect" aria-describedby="${id}"${focusKeyAttr(`stamp:${card.linkId}:${stamp.id}`)}><span class="referral-stamp-art" aria-hidden="true">${rewardArt(STAMP_ART[stamp.id], 'mount')}</span><span class="referral-stamp-mark" aria-hidden="true">${stamp.earned ? svgIcon('check') : formatNumber(stamp.index + 1)}</span><span class="referral-stamp-name">${esc(referralText(`milestones.${stamp.id}`))}</span><span class="referral-stamp-status ui-muted">${esc(referralText(status))}</span></button><span class="referral-reward ui-panel-strong" role="tooltip" id="${id}">${esc(tooltip)}</span>${rewardButton}${stamp.earned && !stamp.redeemable && !stamp.redeemed ? `<span class="ui-muted">${esc(referralText('previous'))}</span>` : ''}</li>`;
+            return `<li class="referral-stamp ui-card ui-card-tile ${stamp.earned ? 'is-earned' : ''} ${stamp.redeemed ? 'is-redeemed' : ''} ${stamp.redeemable && sameCharacter ? 'is-ready' : ''} ${stamp.retired ? 'is-retired' : ''}" data-stamp-key="${esc(stampKey)}" data-animate="${isAnimating}"><button type="button" class="referral-stamp-inspect" aria-describedby="${id}"${focusKeyAttr(`stamp:${card.linkId}:${stamp.id}`)}><span class="referral-stamp-art" aria-hidden="true">${rewardArt(STAMP_ART[stamp.id], 'mount')}</span><span class="referral-stamp-mark" aria-hidden="true">${stamp.earned ? svgIcon('check') : formatNumber(stamp.index + 1)}</span><span class="referral-stamp-name">${esc(referralText(`milestones.${stamp.id}`))}</span><span class="referral-stamp-status ui-muted">${esc(referralText(status))}</span></button><span class="referral-reward ui-panel-strong" role="tooltip" id="${id}">${esc(tooltip)}</span>${rewardButton}${stamp.earned && !stamp.redeemable && !stamp.redeemed ? `<span class="ui-muted">${esc(referralText('previous'))}</span>` : ''}</li>`;
           })
           .join('')
       : '';

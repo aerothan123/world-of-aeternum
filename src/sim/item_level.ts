@@ -36,7 +36,10 @@ import {
 } from './content/nythraxis_loot';
 import { FURY_STOCK, WARFARE_SOURCE_LEVEL, WARFARE_TRINKET_STOCK } from './content/pvp_honor';
 import { SEASON2_SOURCE_LEVEL, SEASON2_STOCK } from './content/pvp_honor_season2';
-import { REFERRAL_REWARD_SOURCE_BOSSES } from './content/referral_rewards';
+import {
+  REFERRAL_RETIRED_SOURCE_LEVELS,
+  REFERRAL_REWARD_SOURCE_BOSSES,
+} from './content/referral_rewards';
 import {
   RIFT_EPIC_ITEM_IDS,
   RIFT_GEAR_ITEM_IDS,
@@ -257,6 +260,8 @@ function buildSourceIndex(): Map<string, ItemSource> {
   // level-10 uncommon gives 3 Stamina; the level-13 rare evolution gives 5.
   for (const [itemId, bossId] of Object.entries(REFERRAL_REWARD_SOURCE_BOSSES))
     bump(itemId, MOBS[bossId]?.maxLevel, false);
+  for (const [itemId, level] of Object.entries(REFERRAL_RETIRED_SOURCE_LEVELS))
+    bump(itemId, level, false);
   // Warfare Season 2 reads source 29: epic item level 35, level with the raid tier.
   for (const itemId of SEASON2_STOCK) bump(itemId, SEASON2_SOURCE_LEVEL, false);
   // Heroic boss drops: level-20 content one tier up (the heroic bump), so the

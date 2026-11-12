@@ -62,6 +62,7 @@ export const pt_BR: EnTranslations = {
     "earned": "Conquistados",
     "redeemed": "Resgatado",
     "emptyStamp": "Ainda não obtido",
+    "retiredStamp": "No longer available",
     "stamping": "Selando seu cartão...",
     "redeem": "Resgatar recompensa",
     "previous": "Resgate os selos anteriores primeiro.",

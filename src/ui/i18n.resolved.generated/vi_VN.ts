@@ -62,6 +62,7 @@ export const vi_VN: EnTranslations = {
     "earned": "Đã Lập",
     "redeemed": "Đã Nhận",
     "emptyStamp": "Chưa Đạt",
+    "retiredStamp": "No longer available",
     "stamping": "Đang đóng tem lên thẻ...",
     "redeem": "Nhận Phần Thưởng",
     "previous": "Nhận Tem Trước Trước Đã.",

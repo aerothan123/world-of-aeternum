@@ -62,6 +62,7 @@ export const de_DE: EnTranslations = {
     "earned": "Errungen",
     "redeemed": "Eingelöst",
     "emptyStamp": "Noch nicht verdient",
+    "retiredStamp": "No longer available",
     "stamping": "Deine Karte wird abgestempelt …",
     "redeem": "Belohnung einlösen",
     "previous": "Löse zuerst frühere Stempel ein.",

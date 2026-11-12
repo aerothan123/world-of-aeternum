@@ -62,6 +62,7 @@ export const ru_RU: EnTranslations = {
     "earned": "Получено",
     "redeemed": "Награда получена",
     "emptyStamp": "Ещё не получено",
+    "retiredStamp": "No longer available",
     "stamping": "Ставим отметку на карточке...",
     "redeem": "Получить награду",
     "previous": "Сначала получите награды за предыдущие отметки.",

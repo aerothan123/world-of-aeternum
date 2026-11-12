@@ -59,6 +59,7 @@ export const referralCardStrings = {
   earned: 'Earned',
   redeemed: 'Redeemed',
   emptyStamp: 'Not yet earned',
+  retiredStamp: 'No longer available',
   stamping: 'Stamping your card...',
   redeem: 'Redeem reward',
   previous: 'Redeem earlier stamps first.',

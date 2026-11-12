@@ -62,6 +62,7 @@ export const ko_KR: EnTranslations = {
     "earned": "획득함",
     "redeemed": "수령함",
     "emptyStamp": "아직 획득하지 않음",
+    "retiredStamp": "No longer available",
     "stamping": "카드에 도장을 찍는 중...",
     "redeem": "보상 받기",
     "previous": "이전 도장 보상부터 받으세요.",

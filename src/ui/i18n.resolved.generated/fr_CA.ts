@@ -62,6 +62,7 @@ export const fr_CA: EnTranslations = {
     "earned": "Obtenus",
     "redeemed": "Récupérée",
     "emptyStamp": "Pas encore obtenu",
+    "retiredStamp": "No longer available",
     "stamping": "Application d'un tampon sur votre carte...",
     "redeem": "Récupérer la récompense",
     "previous": "Récupérez d'abord les tampons précédents.",
