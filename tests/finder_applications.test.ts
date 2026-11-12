@@ -47,7 +47,7 @@ function setup(count = 2) {
   });
   const add = (name: string) => {
     const pid = sim.addPlayer('warrior', name);
-    sim.setPlayerLevel(8, pid);
+    sim.setPlayerLevel(12, pid);
     sim.setSpec(TALENTS.warrior.specs.find((spec) => spec.role === 'dps')!.id, pid);
     sim.dungeonFinderSetRoles(['dps'], pid);
     return pid;
@@ -55,7 +55,7 @@ function setup(count = 2) {
   const helper = add('Helper');
   const leaders = Array.from({ length: count }, (_, i) => {
     const leader = add(`Leader${i}`);
-    expect(sim.enterDungeon('hollow_crypt', leader)).toBe(true);
+    expect(sim.enterDungeon('sunken_bastion', leader)).toBe(true);
     sim.dungeonFinderExpeditionOpen(leader);
     return leader;
   });
@@ -94,13 +94,13 @@ describe('independent expedition applications through the authoritative Sim', ()
     expect(sim.dungeonFinderInfoFor(helper)?.myApplications).toEqual([
       {
         listingId: listings[0],
-        activityId: 'hollow_crypt_normal',
+        activityId: 'sunken_bastion_normal',
         leaderName: 'Leader0',
         remaining: 120,
       },
       {
         listingId: listings[1],
-        activityId: 'hollow_crypt_normal',
+        activityId: 'sunken_bastion_normal',
         leaderName: 'Leader1',
         remaining: 120,
       },
@@ -254,7 +254,7 @@ describe('independent expedition applications through the authoritative Sim', ()
   it('preserves single pending application behavior for ordinary listings', () => {
     const { sim, add, helper, apply, pending } = setup();
     const leader = add('Ordinary');
-    sim.dungeonFinderListingCreate('hollow_crypt_normal', [], leader);
+    sim.dungeonFinderListingCreate('sunken_bastion_normal', [], leader);
     const listing = sim.dungeonFinderInfoFor(leader)!.myListing!.id;
     sim.dungeonFinderApply(listing, helper);
     apply(0);

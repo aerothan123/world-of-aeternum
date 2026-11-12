@@ -228,7 +228,7 @@ describe('simplified group navigation', () => {
   it('browses groups without substituting another dungeon when the guide activity is unavailable', () => {
     const { root, world, window, click } = setup();
     window.open('catalogue');
-    click('[data-row="hollow_crypt_normal"]');
+    click('[data-row="sunken_bastion_normal"]');
     click('[data-guide-group]');
     expect(root.querySelector('.df-board-shell')).not.toBeNull();
     expect(root.querySelector('.df-create')).toBeNull();

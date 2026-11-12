@@ -17,8 +17,8 @@ import {
 
 const listing: FinderListingRowView = {
   id: 7,
-  activityId: 'hollow_crypt_normal',
-  dungeonId: 'hollow_crypt',
+  activityId: 'sunken_bastion_normal',
+  dungeonId: 'sunken_bastion',
   difficulty: 'normal',
   kind: 'dungeon',
   leaderName: 'Leader',
@@ -26,7 +26,7 @@ const listing: FinderListingRowView = {
   size: 2,
   capacity: 5,
   needed: { tank: 0, healer: 1, dps: 2 },
-  members: [{ cls: 'warrior', level: 8, role: 'tank' }],
+  members: [{ cls: 'warrior', level: 12, role: 'tank' }],
   mine: false,
   applied: false,
   canApply: true,
@@ -109,17 +109,17 @@ describe('Guild Parties in the board UI', () => {
       board: [
         {
           id: 3,
-          activityId: 'hollow_crypt_normal',
+          activityId: 'sunken_bastion_normal',
           leaderName: 'Leader',
           tags: [FINDER_GUILD_TAG],
           guild: 'Nightwatch',
           size: 1,
           capacity: 5,
           needed: { tank: 1, healer: 1, dps: 3 },
-          members: [{ cls: 'warrior' as const, level: 8, role: 'tank' as const }],
+          members: [{ cls: 'warrior' as const, level: 12, role: 'tank' as const }],
         },
       ],
-      playerLevel: 8,
+      playerLevel: 12,
       playerClass: 'warrior' as const,
       playerId: 1,
       specRole: null,
@@ -167,10 +167,10 @@ describe('Guild Parties in the board UI', () => {
 describe('leader tools: adverts and applicant inspect', () => {
   const mine = {
     id: 7,
-    activityId: 'hollow_crypt_normal',
+    activityId: 'sunken_bastion_normal',
     tags: [],
     applicants: [],
-    advertText: 'LFM - The Hollow Crypt - Normal - 1/5 - Healer/DPS needed',
+    advertText: 'LFM - The Sunken Bastion - Normal - 1/5 - Healer/DPS needed',
   };
 
   it('previews the line and greys out a cooling or offline target with its reason', () => {
@@ -209,7 +209,7 @@ describe('leader tools: adverts and applicant inspect', () => {
         name: 'Ayla',
         cls: 'priest',
         spec: null,
-        level: 8,
+        level: 12,
         roles: ['healer'],
       }),
     );

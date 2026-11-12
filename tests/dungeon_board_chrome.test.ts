@@ -12,8 +12,8 @@ import { tTalent } from '../src/ui/talent_i18n';
 
 const listing: FinderListingRowView = {
   id: 7,
-  activityId: 'hollow_crypt_normal',
-  dungeonId: 'hollow_crypt',
+  activityId: 'sunken_bastion_normal',
+  dungeonId: 'sunken_bastion',
   difficulty: 'normal',
   kind: 'dungeon',
   leaderName: '<img src=x onerror=alert(1)>',
@@ -182,7 +182,7 @@ describe('premade board chrome', () => {
     const root = markup(premadeBoardHtml(board, '<button data-act="create"></button>'));
     expect(root.querySelector('.df-board-own .df-applicants')).not.toBeNull();
     expect(root.querySelector('.df-board-hero img')?.getAttribute('src')).toBe(
-      '/textures/loading/hollow-crypt-empty.webp',
+      '/ui/dungeon-scenes/sunken-bastion.webp',
     );
     expect(root.querySelector('.df-board-listings .df-listing')).not.toBeNull();
     expect(root.querySelector('[data-act="closelisting"]')).not.toBeNull();

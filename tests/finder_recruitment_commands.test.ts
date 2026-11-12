@@ -5,7 +5,7 @@ import { bareClient } from './helpers/bare_client';
 
 const settings = {
   kind: 'recruit' as const,
-  activityId: 'hollow_crypt_normal',
+  activityId: 'sunken_bastion_normal',
   role: 'tank' as const,
   details: { purpose: 'first_time' as const, note: 'Learning together' },
 };

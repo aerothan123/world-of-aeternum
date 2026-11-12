@@ -75,16 +75,16 @@ const errorsFor = (events: SimEvent[], pid: number) =>
     .filter((e) => e.type === 'error' && e.pid === pid)
     .map((e) => (e as { text: string }).text);
 
-// A standard eligible five for the Hollow Crypt (levels 7-10).
+// A standard eligible five for the Sunken Bastion (levels 12-13).
 function queueFive(sim: Sim): Joined {
   const pids = addPlayers(sim, [
-    { cls: 'warrior', roles: ['tank'], level: 8 },
-    { cls: 'priest', roles: ['healer'], level: 8 },
-    { cls: 'mage', roles: ['dps'], level: 8 },
-    { cls: 'rogue', roles: ['dps'], level: 8 },
-    { cls: 'hunter', roles: ['dps'], level: 8 },
+    { cls: 'warrior', roles: ['tank'], level: 12 },
+    { cls: 'priest', roles: ['healer'], level: 12 },
+    { cls: 'mage', roles: ['dps'], level: 12 },
+    { cls: 'rogue', roles: ['dps'], level: 12 },
+    { cls: 'hunter', roles: ['dps'], level: 12 },
   ]);
-  for (const pid of pids) sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], pid);
+  for (const pid of pids) sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], pid);
   const events = tickAll(sim, 1);
   return { sim, pids, events };
 }
@@ -99,13 +99,13 @@ function acceptAll(sim: Sim, pids: number[]): SimEvent[] {
 // ---------------------------------------------------------------------------
 
 describe('finder catalogue metadata', () => {
-  it('pins the 15 activity ids in catalogue order', () => {
+  it('pins the 13 activity ids in catalogue order', () => {
+    // The Hollow Crypt pair left with the dungeon (retired by the owner,
+    // 2026-11-11), so the Sunken Bastion opens the catalogue.
     expect(FINDER_ACTIVITIES.map((a) => a.id)).toEqual([
-      'hollow_crypt_normal',
       'sunken_bastion_normal',
       'drowned_temple_normal',
       'gravewyrm_sanctum_normal',
-      'hollow_crypt_heroic',
       'sunken_bastion_heroic',
       'drowned_temple_heroic',
       'gravewyrm_sanctum_heroic',
@@ -123,12 +123,13 @@ describe('finder catalogue metadata', () => {
     const bands = Object.fromEntries(
       FINDER_ACTIVITIES.map((a) => [a.id, [a.minLevel, a.maxLevel]]),
     );
+    // The 7 to 10 gap is intentional: the owner retired the Hollow Crypt
+    // (2026-11-11) with no stand-in, and the band stays empty until the Copper
+    // Dig deep workings dungeon is built to fill it.
     expect(bands).toEqual({
-      hollow_crypt_normal: [7, 10],
       sunken_bastion_normal: [12, 13],
       drowned_temple_normal: [16, 18],
       gravewyrm_sanctum_normal: [19, 20],
-      hollow_crypt_heroic: [20, 20],
       sunken_bastion_heroic: [20, 20],
       drowned_temple_heroic: [20, 20],
       gravewyrm_sanctum_heroic: [20, 20],
@@ -416,11 +417,11 @@ describe('normalizeFinderSelection', () => {
       normalizeFinderSelection([
         'gravewyrm_sanctum_normal',
         'nope',
-        'hollow_crypt_normal',
+        'sunken_bastion_normal',
         'nythraxis_crypt_normal',
-        'hollow_crypt_normal',
+        'sunken_bastion_normal',
       ]),
-    ).toEqual(['hollow_crypt_normal', 'gravewyrm_sanctum_normal']);
+    ).toEqual(['sunken_bastion_normal', 'gravewyrm_sanctum_normal']);
   });
 });
 
@@ -494,7 +495,7 @@ describe('automatic queue', () => {
     const infos = pids.map((pid) => sim.dungeonFinderInfoFor(pid));
     for (const info of infos) {
       expect(info?.proposal).not.toBeNull();
-      expect(info?.proposal?.activityId).toBe('hollow_crypt_normal');
+      expect(info?.proposal?.activityId).toBe('sunken_bastion_normal');
       expect(info?.proposal?.size).toBe(5);
       expect(info?.proposal?.myResponse).toBe('pending');
       expect(info?.proposal?.remaining).toBeGreaterThan(FINDER_PROPOSAL_SECONDS - 2);
@@ -535,11 +536,11 @@ describe('automatic queue', () => {
   it('level range is strict at both ends', () => {
     const sim = makeSim();
     const [low, high] = addPlayers(sim, [
-      { cls: 'warrior', roles: ['tank'], level: 6 },
-      { cls: 'mage', roles: ['dps'], level: 11 },
+      { cls: 'warrior', roles: ['tank'], level: 11 },
+      { cls: 'mage', roles: ['dps'], level: 14 },
     ]);
-    sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], low);
-    sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], high);
+    sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], low);
+    sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], high);
     const events = tickAll(sim, 1);
     expect(errorsFor(events, low)).toContain('You do not meet the level range for that activity.');
     expect(errorsFor(events, high)).toContain('You do not meet the level range for that activity.');
@@ -552,17 +553,17 @@ describe('automatic queue', () => {
     const pid = sim.addPlayer('warrior', 'NoSpec');
     sim.setPlayerLevel(20, pid);
     sim.dungeonFinderSetRoles(['tank'], pid);
-    sim.dungeonFinderQueueJoin(['hollow_crypt_heroic'], pid);
+    sim.dungeonFinderQueueJoin(['sunken_bastion_heroic'], pid);
     expect(errorsFor(tickAll(sim, 1), pid)).toEqual([]);
     expect(sim.dungeonFinderInfoFor(pid)?.eligibleRoles).toEqual(['tank', 'dps']);
-    expect(sim.dungeonFinderInfoFor(pid)?.queue?.activities).toEqual(['hollow_crypt_heroic']);
+    expect(sim.dungeonFinderInfoFor(pid)?.queue?.activities).toEqual(['sunken_bastion_heroic']);
     for (const level of [4, 5]) {
       const low = sim.addPlayer('warrior', `Level${level}`);
       sim.setPlayerLevel(level, low);
       sim.dungeonFinderSetRoles(['tank'], low);
       expect(errorsFor(tickAll(sim, 1), low)).toEqual([]);
       expect(sim.dungeonFinderInfoFor(low)?.roles).toEqual(['tank']);
-      sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], low);
+      sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], low);
       expect(errorsFor(tickAll(sim, 1), low)).toContain(
         'You do not meet the level range for that activity.',
       );
@@ -579,7 +580,7 @@ describe('automatic queue', () => {
     expect(errorsFor(events, pid)).toContain('You cannot fill that role.');
     // A specialization cannot grant roles unsupported by the class.
     const specced = sim.addPlayer('mage', 'M2');
-    sim.setPlayerLevel(8, specced);
+    sim.setPlayerLevel(12, specced);
     sim.setSpec(specIdFor('mage', 'dps'), specced);
     sim.dungeonFinderSetRoles(['tank'], specced);
     const eventsSpecced = tickAll(sim, 1);
@@ -593,16 +594,16 @@ describe('automatic queue', () => {
     const druid = sim.addPlayer('druid', 'P0');
     sim.setPlayerLevel(4, druid);
     sim.dungeonFinderSetRoles(['tank', 'healer'], druid);
-    sim.setPlayerLevel(8, druid);
+    sim.setPlayerLevel(12, druid);
     sim.setSpec(specIdFor('druid', 'healer'), druid);
     const rest = addPlayers(sim, [
-      { cls: 'warrior', roles: ['tank'], level: 8 },
-      { cls: 'mage', roles: ['dps'], level: 8 },
-      { cls: 'rogue', roles: ['dps'], level: 8 },
-      { cls: 'hunter', roles: ['dps'], level: 8 },
+      { cls: 'warrior', roles: ['tank'], level: 12 },
+      { cls: 'mage', roles: ['dps'], level: 12 },
+      { cls: 'rogue', roles: ['dps'], level: 12 },
+      { cls: 'hunter', roles: ['dps'], level: 12 },
     ]);
     const pids = [druid, ...rest];
-    for (const pid of pids) sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], pid);
+    for (const pid of pids) sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], pid);
     tickAll(sim, 1);
     // The warrior fills Tank, so the matcher assigns the druid to Healer.
     expect(sim.dungeonFinderInfoFor(pids[0])?.proposal?.role).toBe('healer');
@@ -621,7 +622,7 @@ describe('automatic queue', () => {
     const decliner = sim.dungeonFinderInfoFor(pids[4]);
     expect(decliner?.queue).toBeNull();
     expect(decliner?.cooldown).toBeGreaterThan(FINDER_DECLINE_COOLDOWN_SECONDS - 3);
-    sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], pids[4]);
+    sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], pids[4]);
     const events = tickAll(sim, 1);
     expect(errorsFor(events, pids[4])).toContain('You cannot join the queue again yet.');
     // The others are queued again and their wait includes the pre-proposal time.
@@ -634,7 +635,7 @@ describe('automatic queue', () => {
     }
     // After the cooldown passes, the decliner may queue again.
     tickAll(sim, 20 * (FINDER_DECLINE_COOLDOWN_SECONDS + 1));
-    sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], pids[4]);
+    sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], pids[4]);
     tickAll(sim, 1);
     expect(sim.dungeonFinderInfoFor(pids[4])?.queue).not.toBeNull();
   });
@@ -646,11 +647,11 @@ describe('automatic queue', () => {
     // Only offenders are cooled down. queueFive drives solo units alone, so both arms here
     // are premade-shaped.
     const defs: { cls: PlayerClass; roles: Role[]; level: number; name?: string }[] = [
-      { cls: 'warrior', roles: ['tank'], level: 8, name: 'Lead' },
-      { cls: 'priest', roles: ['healer'], level: 8, name: 'Mate' },
-      { cls: 'mage', roles: ['dps'], level: 8, name: 'Solo0' },
-      { cls: 'rogue', roles: ['dps'], level: 8, name: 'Solo1' },
-      { cls: 'hunter', roles: ['dps'], level: 8, name: 'Solo2' },
+      { cls: 'warrior', roles: ['tank'], level: 12, name: 'Lead' },
+      { cls: 'priest', roles: ['healer'], level: 12, name: 'Mate' },
+      { cls: 'mage', roles: ['dps'], level: 12, name: 'Solo0' },
+      { cls: 'rogue', roles: ['dps'], level: 12, name: 'Solo1' },
+      { cls: 'hunter', roles: ['dps'], level: 12, name: 'Solo2' },
     ];
 
     // Arm 1: the premade's non-leader declines after their leader has accepted.
@@ -658,9 +659,9 @@ describe('automatic queue', () => {
     const [lead, mate, ...solos] = addPlayers(sim, defs);
     sim.partyInvite(mate, lead);
     sim.partyAccept(mate);
-    for (const pid of solos) sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], pid);
+    for (const pid of solos) sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], pid);
     tickAll(sim, 1);
-    sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], lead);
+    sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], lead);
     tickAll(sim, 1);
     expect(sim.dungeonFinderInfoFor(mate)?.proposal).not.toBeNull();
     // Queue time accrues well inside the availability window before anyone answers.
@@ -685,7 +686,7 @@ describe('automatic queue', () => {
       expect(info?.cooldown).toBe(0);
     }
     // The party cannot return while the offender is still locked out.
-    sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], lead);
+    sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], lead);
     expect(errorsFor(tickAll(sim, 1), lead)).toContain('Mate cannot join the queue again yet.');
 
     // Arm 2: the same premade, with the mate silent until the offer runs out.
@@ -693,9 +694,9 @@ describe('automatic queue', () => {
     const [lead2, mate2, ...solos2] = addPlayers(sim2, defs);
     sim2.partyInvite(mate2, lead2);
     sim2.partyAccept(mate2);
-    for (const pid of solos2) sim2.dungeonFinderQueueJoin(['hollow_crypt_normal'], pid);
+    for (const pid of solos2) sim2.dungeonFinderQueueJoin(['sunken_bastion_normal'], pid);
     tickAll(sim2, 1);
-    sim2.dungeonFinderQueueJoin(['hollow_crypt_normal'], lead2);
+    sim2.dungeonFinderQueueJoin(['sunken_bastion_normal'], lead2);
     tickAll(sim2, 1);
     expect(sim2.dungeonFinderInfoFor(mate2)?.proposal).not.toBeNull();
     for (const pid of [lead2, ...solos2]) sim2.dungeonFinderRespond(true, pid);
@@ -755,18 +756,18 @@ describe('automatic queue', () => {
       { cls: 'rogue', roles: ['dps'], level: 20 },
       { cls: 'hunter', roles: ['dps'], level: 20 },
     ]);
-    // Tank only wants the Sanctum; everyone else only heroic Hollow Crypt:
+    // Tank only wants the Sanctum; everyone else only heroic Sunken Bastion:
     // no intersection, no proposal.
     sim2.dungeonFinderQueueJoin(['gravewyrm_sanctum_normal'], pids2[0]);
-    for (const pid of pids2.slice(1)) sim2.dungeonFinderQueueJoin(['hollow_crypt_heroic'], pid);
+    for (const pid of pids2.slice(1)) sim2.dungeonFinderQueueJoin(['sunken_bastion_heroic'], pid);
     tickAll(sim2, 1);
     for (const pid of pids2) expect(sim2.dungeonFinderInfoFor(pid)?.proposal ?? null).toBeNull();
     // The tank widens their selection: now the shared heroic can match, and the
     // chosen activity follows the OLDEST unit's ordered selection.
     sim2.dungeonFinderQueueLeave(pids2[0]);
-    sim2.dungeonFinderQueueJoin(['hollow_crypt_heroic', 'gravewyrm_sanctum_heroic'], pids2[0]);
+    sim2.dungeonFinderQueueJoin(['sunken_bastion_heroic', 'gravewyrm_sanctum_heroic'], pids2[0]);
     tickAll(sim2, 1);
-    expect(sim2.dungeonFinderInfoFor(pids2[1])?.proposal?.activityId).toBe('hollow_crypt_heroic');
+    expect(sim2.dungeonFinderInfoFor(pids2[1])?.proposal?.activityId).toBe('sunken_bastion_heroic');
   });
 
   it('is FIFO: the oldest compatible dps get the slots', () => {
@@ -776,20 +777,20 @@ describe('automatic queue', () => {
       Array.from({ length: 5 }, (_, i) => ({
         cls: 'mage' as PlayerClass,
         roles: ['dps'] as Role[],
-        level: 8,
+        level: 12,
         name: `D${i}`,
       })),
     );
     for (const pid of dps) {
-      sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], pid);
+      sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], pid);
       tickAll(sim, 1); // strictly increasing join times
     }
     const [tank, healer] = addPlayers(sim, [
-      { cls: 'warrior', roles: ['tank'], level: 8 },
-      { cls: 'priest', roles: ['healer'], level: 8 },
+      { cls: 'warrior', roles: ['tank'], level: 12 },
+      { cls: 'priest', roles: ['healer'], level: 12 },
     ]);
-    sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], tank);
-    sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], healer);
+    sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], tank);
+    sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], healer);
     tickAll(sim, 1);
     for (const pid of dps.slice(0, 3))
       expect(sim.dungeonFinderInfoFor(pid)?.proposal).not.toBeNull();
@@ -802,21 +803,21 @@ describe('automatic queue', () => {
   it('keeps premade parties indivisible and preserves their leader', () => {
     const sim = makeSim();
     const pids = addPlayers(sim, [
-      { cls: 'warrior', roles: ['tank'], level: 8, name: 'Lead' },
-      { cls: 'priest', roles: ['healer'], level: 8, name: 'Mate' },
-      { cls: 'mage', roles: ['dps'], level: 8 },
-      { cls: 'rogue', roles: ['dps'], level: 8 },
-      { cls: 'hunter', roles: ['dps'], level: 8 },
+      { cls: 'warrior', roles: ['tank'], level: 12, name: 'Lead' },
+      { cls: 'priest', roles: ['healer'], level: 12, name: 'Mate' },
+      { cls: 'mage', roles: ['dps'], level: 12 },
+      { cls: 'rogue', roles: ['dps'], level: 12 },
+      { cls: 'hunter', roles: ['dps'], level: 12 },
     ]);
     // Solos queue FIRST, so the premade is the newest unit; its leader must
     // still lead the formed party.
-    for (const pid of pids.slice(2)) sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], pid);
+    for (const pid of pids.slice(2)) sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], pid);
     tickAll(sim, 1);
     sim.partyInvite(pids[1], pids[0]);
     sim.partyAccept(pids[1]);
     const premade = sim.partyOf(pids[0]);
     expect(premade?.leader).toBe(pids[0]);
-    sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], pids[0]);
+    sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], pids[0]);
     tickAll(sim, 1);
     for (const pid of pids) expect(sim.dungeonFinderInfoFor(pid)?.proposal).not.toBeNull();
     acceptAll(sim, pids);
@@ -829,15 +830,15 @@ describe('automatic queue', () => {
   it('only the premade leader may queue or dequeue the unit', () => {
     const sim = makeSim();
     const [lead, mate] = addPlayers(sim, [
-      { cls: 'warrior', roles: ['tank'], level: 8 },
-      { cls: 'priest', roles: ['healer'], level: 8 },
+      { cls: 'warrior', roles: ['tank'], level: 12 },
+      { cls: 'priest', roles: ['healer'], level: 12 },
     ]);
     sim.partyInvite(mate, lead);
     sim.partyAccept(mate);
-    sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], mate);
+    sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], mate);
     let events = tickAll(sim, 1);
     expect(errorsFor(events, mate)).toContain('Only the party leader may use the Dungeon Finder.');
-    sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], lead);
+    sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], lead);
     tickAll(sim, 1);
     expect(sim.dungeonFinderInfoFor(mate)?.queue).not.toBeNull();
     sim.dungeonFinderQueueLeave(mate);
@@ -849,12 +850,12 @@ describe('automatic queue', () => {
   it('every premade member must satisfy the level band (anti-boost)', () => {
     const sim = makeSim();
     const [lead, low] = addPlayers(sim, [
-      { cls: 'warrior', roles: ['tank'], level: 8 },
+      { cls: 'warrior', roles: ['tank'], level: 12 },
       { cls: 'priest', roles: ['healer'], level: 5, name: 'Lowbie' },
     ]);
     sim.partyInvite(low, lead);
     sim.partyAccept(low);
-    sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], lead);
+    sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], lead);
     const events = tickAll(sim, 1);
     expect(errorsFor(events, lead)).toContain(
       'Lowbie does not meet the level range for that activity.',
@@ -869,7 +870,7 @@ describe('automatic queue', () => {
       Array.from({ length: 5 }, (_, i) => ({
         cls: 'druid' as PlayerClass,
         roles: ['tank', 'healer', 'dps'] as Role[],
-        level: 8,
+        level: 12,
         name: `F${i}`,
       })),
     );
@@ -877,7 +878,7 @@ describe('automatic queue', () => {
       sim.partyInvite(pid, pids[0]);
       sim.partyAccept(pid);
     }
-    sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], pids[0]);
+    sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], pids[0]);
     const events = tickAll(sim, 1);
     expect(errorsFor(events, pids[0])).toContain('Your group is too large for that activity.');
   });
@@ -885,13 +886,13 @@ describe('automatic queue', () => {
   it('drops a queued unit when its party roster changes (sweep)', () => {
     const sim = makeSim();
     const [lead, mate, third] = addPlayers(sim, [
-      { cls: 'warrior', roles: ['tank'], level: 8 },
-      { cls: 'priest', roles: ['healer'], level: 8 },
-      { cls: 'mage', roles: ['dps'], level: 8 },
+      { cls: 'warrior', roles: ['tank'], level: 12 },
+      { cls: 'priest', roles: ['healer'], level: 12 },
+      { cls: 'mage', roles: ['dps'], level: 12 },
     ]);
     sim.partyInvite(mate, lead);
     sim.partyAccept(mate);
-    sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], lead);
+    sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], lead);
     tickAll(sim, 1);
     expect(sim.dungeonFinderInfoFor(lead)?.queue).not.toBeNull();
     // Roster change: a third member joins the party outside the finder.
@@ -976,10 +977,10 @@ describe('automatic queue', () => {
 describe('premade board', () => {
   function listedPair(sim: Sim): { leader: number; applicant: number } {
     const [leader, applicant] = addPlayers(sim, [
-      { cls: 'warrior', roles: ['tank'], level: 8, name: 'Lead' },
-      { cls: 'priest', roles: ['healer'], level: 8, name: 'App' },
+      { cls: 'warrior', roles: ['tank'], level: 12, name: 'Lead' },
+      { cls: 'priest', roles: ['healer'], level: 12, name: 'App' },
     ]);
-    sim.dungeonFinderListingCreate('hollow_crypt_normal', ['first_run'], leader);
+    sim.dungeonFinderListingCreate('sunken_bastion_normal', ['first_run'], leader);
     tickAll(sim, 1);
     return { leader, applicant };
   }
@@ -989,7 +990,7 @@ describe('premade board', () => {
     const { leader } = listedPair(sim);
     const board = sim.dungeonFinderBoardView();
     expect(board).toHaveLength(1);
-    expect(board[0].activityId).toBe('hollow_crypt_normal');
+    expect(board[0].activityId).toBe('sunken_bastion_normal');
     expect(board[0].leaderName).toBe('Lead');
     expect(board[0].tags).toEqual(['first_run']);
     expect(board[0].size).toBe(1);
@@ -1040,8 +1041,8 @@ describe('premade board', () => {
     const listingId = sim.dungeonFinderBoardView()[0].id;
     const [low, tank2, other] = addPlayers(sim, [
       { cls: 'mage', roles: ['dps'], level: 5 },
-      { cls: 'paladin', roles: ['tank'], level: 8 },
-      { cls: 'rogue', roles: ['dps'], level: 8 },
+      { cls: 'paladin', roles: ['tank'], level: 12 },
+      { cls: 'rogue', roles: ['dps'], level: 12 },
     ]);
     let events: SimEvent[];
     sim.dungeonFinderApply(listingId, low);
@@ -1060,7 +1061,7 @@ describe('premade board', () => {
     // One live application at a time.
     sim.dungeonFinderApply(listingId, low);
     sim.dungeonFinderSetRoles(['dps'], low);
-    sim.setPlayerLevel(8, low);
+    sim.setPlayerLevel(12, low);
     sim.dungeonFinderApply(listingId, low);
     tickAll(sim, 1);
     sim.dungeonFinderApply(listingId, low);
@@ -1071,14 +1072,14 @@ describe('premade board', () => {
   it('closes the listing when it fills and notifies remaining applicants when it closes', () => {
     const sim = makeSim();
     const [leader, h, d1, d2, d3, extra] = addPlayers(sim, [
-      { cls: 'warrior', roles: ['tank'], level: 8, name: 'Lead' },
-      { cls: 'priest', roles: ['healer'], level: 8 },
-      { cls: 'mage', roles: ['dps'], level: 8 },
-      { cls: 'rogue', roles: ['dps'], level: 8 },
-      { cls: 'hunter', roles: ['dps'], level: 8 },
-      { cls: 'warlock', roles: ['dps'], level: 8 },
+      { cls: 'warrior', roles: ['tank'], level: 12, name: 'Lead' },
+      { cls: 'priest', roles: ['healer'], level: 12 },
+      { cls: 'mage', roles: ['dps'], level: 12 },
+      { cls: 'rogue', roles: ['dps'], level: 12 },
+      { cls: 'hunter', roles: ['dps'], level: 12 },
+      { cls: 'warlock', roles: ['dps'], level: 12 },
     ]);
-    sim.dungeonFinderListingCreate('hollow_crypt_normal', [], leader);
+    sim.dungeonFinderListingCreate('sunken_bastion_normal', [], leader);
     tickAll(sim, 1);
     const listingId = sim.dungeonFinderBoardView()[0].id;
     for (const pid of [h, d1, d2, d3, extra]) sim.dungeonFinderApply(listingId, pid);
@@ -1150,7 +1151,7 @@ describe('premade board', () => {
     tickAll(sim, 1);
     expect(sim.dungeonFinderBoardView()).toHaveLength(1);
     // The accepted healer outlevels the band: the listing must close.
-    sim.setPlayerLevel(12, applicant);
+    sim.setPlayerLevel(14, applicant);
     tickAll(sim, 21);
     expect(sim.dungeonFinderBoardView()).toHaveLength(0);
   });
@@ -1166,14 +1167,14 @@ describe('/dev lfg seeding', () => {
 
   it('queue mode spawns the complementary bots so my join pops a proposal', () => {
     const sim = makeDevSim();
-    sim.setPlayerLevel(8);
+    sim.setPlayerLevel(12);
     sim.setSpec(specIdFor('warrior', 'tank'));
     sim.dungeonFinderSetRoles(['tank']);
     sim.chat('/dev lfg');
     tickAll(sim, 1);
     const bots = [...sim.players.values()].filter((m) => m.isDevBot);
     expect(bots).toHaveLength(4);
-    sim.dungeonFinderQueueJoin(['hollow_crypt_normal']);
+    sim.dungeonFinderQueueJoin(['sunken_bastion_normal']);
     tickAll(sim, 1);
     expect(sim.dungeonFinderInfo?.proposal).not.toBeNull();
     expect(sim.dungeonFinderInfo?.proposal?.role).toBe('tank');
@@ -1201,10 +1202,10 @@ describe('/dev lfg seeding', () => {
 
   it('board mode publishes bot listings and sends my listing an applicant', () => {
     const sim = makeDevSim();
-    sim.setPlayerLevel(8);
+    sim.setPlayerLevel(12);
     sim.setSpec(specIdFor('warrior', 'tank'));
     sim.dungeonFinderSetRoles(['tank']);
-    sim.dungeonFinderListingCreate('hollow_crypt_normal', ['first_run']);
+    sim.dungeonFinderListingCreate('sunken_bastion_normal', ['first_run']);
     sim.chat('/dev lfg board');
     tickAll(sim, 1);
     expect(sim.dungeonFinderBoardView()).toHaveLength(3);
@@ -1213,14 +1214,14 @@ describe('/dev lfg seeding', () => {
 
   it('asks for a role first and is inert without devCommands', () => {
     const sim = makeDevSim();
-    sim.setPlayerLevel(8);
+    sim.setPlayerLevel(12);
     // Specced but no role selected: seeding must still refuse.
     sim.setSpec(specIdFor('warrior', 'tank'));
     sim.chat('/dev lfg');
     tickAll(sim, 1);
     expect([...sim.players.values()].filter((m) => m.isDevBot)).toHaveLength(0);
     const prod = new Sim({ seed: 42, playerClass: 'warrior', world: EMPTY_TEST_WORLD });
-    prod.setPlayerLevel(8);
+    prod.setPlayerLevel(12);
     prod.setSpec(specIdFor('warrior', 'tank'));
     prod.dungeonFinderSetRoles(['tank']);
     prod.chat('/dev lfg');
@@ -1250,13 +1251,13 @@ describe('parity with the invite path (party-side rules)', () => {
   it('clears a premade ready check when the finder dissolves its source party', () => {
     const sim = makeSim();
     const pids = addPlayers(sim, [
-      { cls: 'warrior', roles: ['tank'], level: 8, name: 'Lead' },
-      { cls: 'priest', roles: ['healer'], level: 8, name: 'Mate' },
-      { cls: 'mage', roles: ['dps'], level: 8 },
-      { cls: 'rogue', roles: ['dps'], level: 8 },
-      { cls: 'hunter', roles: ['dps'], level: 8 },
+      { cls: 'warrior', roles: ['tank'], level: 12, name: 'Lead' },
+      { cls: 'priest', roles: ['healer'], level: 12, name: 'Mate' },
+      { cls: 'mage', roles: ['dps'], level: 12 },
+      { cls: 'rogue', roles: ['dps'], level: 12 },
+      { cls: 'hunter', roles: ['dps'], level: 12 },
     ]);
-    for (const pid of pids.slice(2)) sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], pid);
+    for (const pid of pids.slice(2)) sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], pid);
     tickAll(sim, 1);
     sim.partyInvite(pids[1], pids[0]);
     sim.partyAccept(pids[1]);
@@ -1265,7 +1266,7 @@ describe('parity with the invite path (party-side rules)', () => {
     sim.chat('/ready', pids[0]);
     tickAll(sim, 1);
     expect((sim as any).readyChecks.has(premadeId)).toBe(true);
-    sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], pids[0]);
+    sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], pids[0]);
     tickAll(sim, 1);
     acceptAll(sim, pids);
     const formed = sim.partyOf(pids[0]);
@@ -1287,8 +1288,8 @@ describe('parity with the invite path (party-side rules)', () => {
     for (const pid of pids) expect(sim.dungeonFinderInfoFor(pid)?.proposal).toBeNull();
     expect(sim.dungeonFinderInfoFor(pids[4])?.queue).toBeNull();
     // And a leaver still in players/entities can never be re-matched.
-    for (const pid of pids.slice(0, 4)) sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], pid);
-    sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], pids[4]);
+    for (const pid of pids.slice(0, 4)) sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], pid);
+    sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], pids[4]);
     tickAll(sim, 2);
     expect(sim.dungeonFinderInfoFor(pids[0])?.proposal).toBeNull();
     expect(sim.partyOf(pids[0])).toBeNull();

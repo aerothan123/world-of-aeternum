@@ -183,7 +183,7 @@ describe('publishGroupDraft: the party roles follow the create', () => {
       [2, 'healer'],
       [99, 'dps'],
     ]);
-    expect(publishGroupDraft(world, 'hollow_crypt_normal', 'tank', new Set(), roles)).toBe(false);
+    expect(publishGroupDraft(world, 'sunken_bastion_normal', 'tank', new Set(), roles)).toBe(false);
     expect(publishGroupDraft(world, 'gravewyrm_sanctum_normal', 'tank', new Set(), roles)).toBe(
       true,
     );

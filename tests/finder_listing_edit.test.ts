@@ -33,12 +33,12 @@ const textsFor = (events: SimEvent[], pid: number, type: 'error' | 'log') =>
 describe('bring your party: leader-assigned member roles', () => {
   it('seats the party on the listing and fills the needed roles from the assignment', () => {
     const { sim, add, party } = setup();
-    const leader = add('warrior', 8, 'Lead');
-    const priest = add('priest', 8, 'Mender');
-    const mage = add('mage', 8, 'Spark');
+    const leader = add('warrior', 12, 'Lead');
+    const priest = add('priest', 12, 'Mender');
+    const mage = add('mage', 12, 'Spark');
     sim.dungeonFinderSetRoles(['tank'], leader);
     party(leader, priest, mage);
-    sim.dungeonFinderListingCreate('hollow_crypt_normal', [], leader);
+    sim.dungeonFinderListingCreate('sunken_bastion_normal', [], leader);
     // Before an assignment the members have no finder role, so every slot reads open.
     expect(sim.dungeonFinderBoardView()[0]).toMatchObject({
       size: 3,
@@ -63,19 +63,19 @@ describe('bring your party: leader-assigned member roles', () => {
       { pid: priest, role: 'healer' },
       { pid: mage, role: 'dps' },
     ]);
-    expect(mine?.advertText).toBe('LFM - The Hollow Crypt - Normal - 3/5 - DPS needed');
+    expect(mine?.advertText).toBe('LFM - The Sunken Bastion - Normal - 3/5 - DPS needed');
     // The assignment is listing-scoped: the members' own selections are untouched.
     expect(sim.dungeonFinderInfoFor(priest)?.roles).toEqual([]);
   });
 
   it('ignores a role the class cannot fill, a non-member, and the leader, and a resend replaces', () => {
     const { sim, add, party } = setup();
-    const leader = add('warrior', 8, 'Lead');
-    const mage = add('mage', 8, 'Spark');
-    const stranger = add('priest', 8, 'Stranger');
+    const leader = add('warrior', 12, 'Lead');
+    const mage = add('mage', 12, 'Spark');
+    const stranger = add('priest', 12, 'Stranger');
     sim.dungeonFinderSetRoles(['tank'], leader);
     party(leader, mage);
-    sim.dungeonFinderListingCreate('hollow_crypt_normal', [], leader);
+    sim.dungeonFinderListingCreate('sunken_bastion_normal', [], leader);
     sim.dungeonFinderExpeditionConfigure(
       {
         kind: 'party_roles',
@@ -107,13 +107,13 @@ describe('bring your party: leader-assigned member roles', () => {
 
   it('counts assigned roles when an applicant asks for a seat', () => {
     const { sim, add, party } = setup();
-    const leader = add('warrior', 8, 'Lead');
-    const priest = add('priest', 8, 'Mender');
-    const healer = add('priest', 8, 'Applicant');
+    const leader = add('warrior', 12, 'Lead');
+    const priest = add('priest', 12, 'Mender');
+    const healer = add('priest', 12, 'Applicant');
     sim.dungeonFinderSetRoles(['tank'], leader);
     sim.dungeonFinderSetRoles(['healer'], healer);
     party(leader, priest);
-    sim.dungeonFinderListingCreate('hollow_crypt_normal', [], leader);
+    sim.dungeonFinderListingCreate('sunken_bastion_normal', [], leader);
     sim.dungeonFinderExpeditionConfigure(
       { kind: 'party_roles', roles: [{ pid: priest, role: 'healer' }] },
       leader,
@@ -128,11 +128,11 @@ describe('bring your party: leader-assigned member roles', () => {
 describe('a returning member seats by the role they applied with', () => {
   it('drops a stale assignment when the player is accepted back', () => {
     const { sim, add, party } = setup();
-    const leader = add('warrior', 8, 'Lead');
-    const druid = add('druid', 8, 'Bramble');
+    const leader = add('warrior', 12, 'Lead');
+    const druid = add('druid', 12, 'Bramble');
     sim.dungeonFinderSetRoles(['tank'], leader);
     party(leader, druid);
-    sim.dungeonFinderListingCreate('hollow_crypt_normal', [], leader);
+    sim.dungeonFinderListingCreate('sunken_bastion_normal', [], leader);
     sim.dungeonFinderExpeditionConfigure(
       { kind: 'party_roles', roles: [{ pid: druid, role: 'dps' }] },
       leader,
@@ -210,7 +210,7 @@ describe('changing a listing difficulty', () => {
     sim.dungeonFinderListingCreate('gravewyrm_sanctum_normal', [], leader);
 
     sim.dungeonFinderExpeditionConfigure(
-      { kind: 'difficulty', activityId: 'hollow_crypt_heroic' },
+      { kind: 'difficulty', activityId: 'sunken_bastion_heroic' },
       leader,
     );
     expect(textsFor(sim.tick(), leader, 'error')).toContain('That listing is no longer available.');
@@ -266,7 +266,7 @@ describe('online: the new configure kinds on the wire', () => {
       cooldown: 0,
       proposal: null,
       myApplication: null,
-      myListing: { id: 1, activityId: 'hollow_crypt_normal', tags: [], applicants: [] },
+      myListing: { id: 1, activityId: 'sunken_bastion_normal', tags: [], applicants: [] },
     };
     const good = decodeDungeonFinderInfo({
       ...base,
@@ -277,7 +277,7 @@ describe('online: the new configure kinds on the wire', () => {
       ...base,
       myListing: { ...base.myListing, partyRoles: [{ pid: 4, role: 'bard' }] },
     });
-    expect(bad?.myListing).toMatchObject({ id: 1, activityId: 'hollow_crypt_normal' });
+    expect(bad?.myListing).toMatchObject({ id: 1, activityId: 'sunken_bastion_normal' });
     expect(bad?.myListing?.partyRoles).toBeUndefined();
   });
 });

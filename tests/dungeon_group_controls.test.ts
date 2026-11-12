@@ -18,8 +18,8 @@ function setup() {
     myApplication: null,
     expedition: {
       exitId: 4,
-      activityId: 'hollow_crypt_normal',
-      dungeonId: 'hollow_crypt',
+      activityId: 'sunken_bastion_normal',
+      dungeonId: 'sunken_bastion',
       leaderPid: 1,
       isLeader: true,
       isInside: true,
@@ -98,7 +98,7 @@ describe('Groups expedition controls', () => {
     const { root, info, world, repaint } = setup();
     info.myListing = {
       id: 7,
-      activityId: 'hollow_crypt_normal',
+      activityId: 'sunken_bastion_normal',
       tags: [],
       applicants: [],
       details: { purpose: 'clear', note: '' },
@@ -164,7 +164,7 @@ describe('Groups expedition controls', () => {
       raidLockouts: () => [],
     });
     Object.assign(world.player, { level: 20 });
-    info.myListing = { id: 7, activityId: 'hollow_crypt_normal', tags: [], applicants: [] };
+    info.myListing = { id: 7, activityId: 'sunken_bastion_normal', tags: [], applicants: [] };
     root.id = 'dungeon-finder-window';
     document.body.append(root);
     const window = new DungeonFinderWindow({

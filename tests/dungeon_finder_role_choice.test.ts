@@ -9,7 +9,7 @@ const makeSim = () =>
 
 function add(sim: Sim, cls: PlayerClass, name: string, spec?: string): number {
   const pid = sim.addPlayer(cls, name);
-  sim.setPlayerLevel(8, pid);
+  sim.setPlayerLevel(12, pid);
   if (spec) sim.setSpec(spec, pid);
   return pid;
 }
@@ -21,7 +21,7 @@ describe('finder role declarations independent of specialization', () => {
     const helper = add(sim, 'priest', 'Helper');
     sim.dungeonFinderSetRoles(['tank'], leader);
     sim.dungeonFinderSetRoles(['healer'], helper);
-    sim.dungeonFinderListingCreate('hollow_crypt_normal', [], leader);
+    sim.dungeonFinderListingCreate('sunken_bastion_normal', [], leader);
     const listingId = sim.dungeonFinderInfoFor(leader)!.myListing!.id;
     expect(sim.instances.filter((slot) => slot.partyKey !== null)).toHaveLength(0);
     expect(sim.dungeonFinderInfoFor(leader)!.expedition).toBeNull();
@@ -30,7 +30,7 @@ describe('finder role declarations independent of specialization', () => {
     sim.dungeonFinderApplicationRespond(helper, true, leader);
     expect(sim.partyOf(leader)?.members).toEqual([leader, helper]);
     expect(sim.instances.filter((slot) => slot.partyKey !== null)).toHaveLength(0);
-    expect(sim.enterDungeon('hollow_crypt', leader)).toBe(true);
+    expect(sim.enterDungeon('sunken_bastion', leader)).toBe(true);
     sim.dungeonFinderExpeditionOpen(leader);
     expect(sim.partyOf(leader)?.members).toEqual([leader, helper]);
     const expedition = sim.dungeonFinderInfoFor(leader)!.expedition!;
@@ -59,8 +59,8 @@ describe('finder role declarations independent of specialization', () => {
     sim.dungeonFinderSetRoles(['healer'], pid);
     expect(sim.dungeonFinderInfoFor(pid)!.roles).toEqual([]);
     sim.dungeonFinderSetRoles(['tank'], pid);
-    sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], pid);
-    expect(sim.dungeonFinderInfoFor(pid)!.queue?.activities).toEqual(['hollow_crypt_normal']);
+    sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], pid);
+    expect(sim.dungeonFinderInfoFor(pid)!.queue?.activities).toEqual(['sunken_bastion_normal']);
     expect(sim.players.get(pid)!.talents.spec).toBeNull();
   });
 
@@ -81,7 +81,7 @@ describe('finder role declarations independent of specialization', () => {
     const roles: Role[] = ['tank', 'healer', 'dps', 'dps', 'dps'];
     pids.forEach((pid, i) => {
       sim.dungeonFinderSetRoles([roles[i]], pid);
-      sim.dungeonFinderQueueJoin(['hollow_crypt_normal'], pid);
+      sim.dungeonFinderQueueJoin(['sunken_bastion_normal'], pid);
     });
     sim.tick();
     expect(pids.map((pid) => sim.dungeonFinderInfoFor(pid)!.proposal?.role)).toEqual(roles);
@@ -95,7 +95,7 @@ describe('finder role declarations independent of specialization', () => {
     const sim = makeSim();
     const leader = add(sim, 'warrior', 'Leader', 'arms');
     const helper = add(sim, 'warrior', 'Helper', 'arms');
-    expect(sim.enterDungeon('hollow_crypt', leader)).toBe(true);
+    expect(sim.enterDungeon('sunken_bastion', leader)).toBe(true);
     sim.dungeonFinderExpeditionOpen(leader);
     const listing = sim.dungeonFinderInfoFor(leader)!.myListing!.id;
     sim.dungeonFinderExpeditionApply(listing, 'tank', helper);
