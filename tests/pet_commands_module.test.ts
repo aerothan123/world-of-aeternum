@@ -26,6 +26,7 @@ import {
 import { Sim } from '../src/sim/sim';
 import type { Entity, SimEvent } from '../src/sim/types';
 import { localizeSimText } from '../src/ui/sim_i18n';
+import { placePlayerInValeMeadow } from './helpers/vale_meadow';
 import { EMPTY_TEST_WORLD } from './sim_shared';
 
 // Direct unit tests for the extracted pet command/lifecycle module (P1b). They drive
@@ -45,6 +46,10 @@ function hunterWorld(seed = 11): { sim: AnySim; hid: number; hunter: AnyEntity }
   }) as AnySim;
   const hid = sim.addPlayer('hunter', 'Owner') as number;
   sim.setPlayerLevel(12, hid);
+  // Eastbrook Vale v2: targets stand at fixed offsets from the pet, and the v2
+  // start (-16, -158) sits among the south gate's solids, so owners (and the
+  // pets summoned beside them) stand in the vale meadow, clear on every seed.
+  placePlayerInValeMeadow(sim, hid);
   const hunter = sim.entities.get(hid) as AnyEntity;
   return { sim, hid, hunter };
 }
@@ -82,6 +87,7 @@ describe('pet_commands module (P1b)', () => {
       world: EMPTY_TEST_WORLD,
     }) as AnySim;
     const pid = sim.addPlayer('warlock', 'Demonist') as number;
+    placePlayerInValeMeadow(sim, pid); // Eastbrook Vale v2: see hunterWorld
     const owner = sim.entities.get(pid) as AnyEntity;
     summonPet(sim.ctx, owner, 'gloomshade');
     const pet = petOf(sim.ctx, pid) as AnyEntity;
@@ -108,6 +114,7 @@ describe('pet_commands module (P1b)', () => {
       world: EMPTY_TEST_WORLD,
     }) as AnySim;
     const pid = sim.addPlayer('warlock', 'Demonist') as number;
+    placePlayerInValeMeadow(sim, pid); // Eastbrook Vale v2: see hunterWorld
     const owner = sim.entities.get(pid) as AnyEntity;
     summonPet(sim.ctx, owner, 'emberkin');
     const pet = petOf(sim.ctx, pid) as AnyEntity;
@@ -265,6 +272,7 @@ describe('pet_commands module (P1b)', () => {
       world: EMPTY_TEST_WORLD,
     }) as AnySim;
     const pid = sim.addPlayer('warlock', 'Demonist') as number;
+    placePlayerInValeMeadow(sim, pid); // Eastbrook Vale v2: see hunterWorld
     const owner = sim.entities.get(pid) as AnyEntity;
     summonPet(sim.ctx, owner, 'gloomshade');
     const original = petOf(sim.ctx, pid) as AnyEntity;
@@ -301,6 +309,7 @@ describe('pet_commands module (P1b)', () => {
       world: EMPTY_TEST_WORLD,
     }) as AnySim;
     const pid = sim.addPlayer('warlock', 'Demonist') as number;
+    placePlayerInValeMeadow(sim, pid); // Eastbrook Vale v2: see hunterWorld
     const owner = sim.entities.get(pid) as AnyEntity;
     summonPet(sim.ctx, owner, 'gloomshade');
     const pet = petOf(sim.ctx, pid) as AnyEntity;
@@ -335,6 +344,7 @@ describe('pet_commands module (P1b)', () => {
       world: EMPTY_TEST_WORLD,
     }) as AnySim;
     const pid = sim.addPlayer('warlock', 'Demonist') as number;
+    placePlayerInValeMeadow(sim, pid); // Eastbrook Vale v2: see hunterWorld
     const owner = sim.entities.get(pid) as AnyEntity;
     summonPet(sim.ctx, owner, 'gloomshade');
     const pet = petOf(sim.ctx, pid) as AnyEntity;

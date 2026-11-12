@@ -274,7 +274,9 @@ describe('Eastbrook town grass exclusion', () => {
       halfDepth: 0.3,
       // Re-pinned 2026-08: the noticeboard was re-laid with the harbor move
       // (d19aa33f76, docs/design/eastbrook-revamp/site-plan.md).
-      rotation: -2.17084654019665,
+      // Re-pinned for Eastbrook Vale v2: the board stands on its v2 design
+      // site (svc_noticeboard) square to the world axes (was -2.17084654019665).
+      rotation: 0,
     });
     expect(byId.get('eastbrook_noticeboard:serviceApron')).toMatchObject({
       kind: 'circle',

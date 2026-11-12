@@ -388,6 +388,9 @@ describe('SelfMotionPredictor', () => {
     expect(lab.srv.player.pos.z).toBeCloseTo(-1000, 3);
   });
 
+  const BLOCKER_LANE = { x: -32.87, z: -88.6 - 5.82 };
+  const BLOCKER_LANE_NEAR = { x: -32.87, z: -88.6 - 4.02 };
+
   // Running into a blocker (the Fallen Chapel's south gable wall, the
   // gable_wall_w collider in sim/hollow_crypt_entrance.ts at world (85.925, 68),
   // whose flat south face stands at z = 67.32) is the case the predictor must
@@ -398,8 +401,13 @@ describe('SelfMotionPredictor', () => {
   // backward by RUN_SPEED x echo on the contact frame. A normal forward step at
   // 60 fps is RUN_SPEED/60 = 0.117 yd, so any backward frame step of that order
   // reads as a snap; the leash + divergence servo alone keep it sub-centimeter.
+  // Re-staged for Eastbrook Vale v2: the Fallen Chapel's gable wall stands
+  // down on v2 design ground. The lanes now run north into the south wall of
+  // the v2 inn (EBV2_COLLIDERS col_27704, an axis-aligned 16.6 x 11.3 yd box at
+  // (-32.87, -82.94), its flat south face at z = -88.6) over level open ground,
+  // starting the same 5.82 yd (and 4.02 yd) short of the face as before.
   it.each([100, 200, 300])('does not snap the pose backward on contact at %ims echo', (lagMs) => {
-    const lab = new Lab(lagMs, FRAME_MS, { start: { x: 85.92, z: 61.5 }, facing: 0 });
+    const lab = new Lab(lagMs, FRAME_MS, { start: BLOCKER_LANE, facing: 0 });
     lab.frame();
     lab.frame();
     lab.setInput(mi({ forward: true }));
@@ -420,7 +428,7 @@ describe('SelfMotionPredictor', () => {
   });
 
   it('never renders the pose through a blocker it is running into', () => {
-    const lab = new Lab(200, FRAME_MS, { start: { x: 85.92, z: 61.5 }, facing: 0 });
+    const lab = new Lab(200, FRAME_MS, { start: BLOCKER_LANE, facing: 0 });
     lab.frame();
     lab.frame();
     lab.setInput(mi({ forward: true }));
@@ -439,7 +447,7 @@ describe('SelfMotionPredictor', () => {
   });
 
   it('holds a settled pose while forward is held against a wall', () => {
-    const lab = new Lab(120, FRAME_MS, { start: { x: 85.92, z: 63.3 }, facing: 0 });
+    const lab = new Lab(120, FRAME_MS, { start: BLOCKER_LANE_NEAR, facing: 0 });
     lab.setInput(mi({ forward: true }));
     for (let i = 0; i < 60; i++) lab.frame(); // run in and settle
 

@@ -27,6 +27,7 @@ import {
 } from '../src/sim/content/chapter_two_bundles';
 import { C2_ORWIN, CHAPTER_TWO_KINDLEMOOR } from '../src/sim/content/chapter_two_kindlemoor';
 import { ESCORTS, GROUND_OBJECTS, ITEMS, MOBS, NPCS, QUESTS, ZONES, zoneAt } from '../src/sim/data';
+import { ebv2SiteOr, objectSiteKey } from '../src/sim/eastbrook_v2/sites';
 import type { QuestDef } from '../src/sim/types';
 import { XP_TABLE } from '../src/sim/types';
 import { groundHeight, isInWaterBody, waterLevelAt } from '../src/sim/world';
@@ -118,7 +119,19 @@ describe('Chapter Two core bundle', () => {
       expect(NPCS[quest.turnInNpcId].questIds, id).toContain(id);
     }
     for (const id of Object.keys(CHAPTER_TWO_ITEMS)) expect(ITEMS[id], id).toBeDefined();
-    for (const def of CHAPTER_TWO_OBJECTS) expect(GROUND_OBJECTS).toContain(def);
+    // Re-sited for Eastbrook Vale v2: an object the resite moved onto its v2
+    // design site (eastbrook_v2/sites.ts applyEbv2Sites) is merged as a copy
+    // there (was: the authored record itself).
+    for (const def of CHAPTER_TWO_OBJECTS) {
+      const live = {
+        ...def,
+        positions: def.positions.map((p) => ({
+          ...p,
+          ...ebv2SiteOr(objectSiteKey(def.itemId, p), p),
+        })),
+      };
+      expect(GROUND_OBJECTS).toContainEqual(live);
+    }
   });
 
   it('resolves every giver, target, item and prerequisite', () => {
@@ -145,9 +158,14 @@ describe('Chapter Two core bundle', () => {
   });
 
   it('puts every core object and catch spot on dry open ground in Eastbrook or Mirefen', () => {
+    // Eastbrook Vale v2: where each object lives (its design site, else as
+    // authored), through the same site keys data.ts applies.
     const points: [string, number, number][] = [];
     for (const def of CHAPTER_TWO_OBJECTS)
-      for (const p of def.positions) points.push([def.itemId, p.x, p.z]);
+      for (const p of def.positions) {
+        const at = ebv2SiteOr(objectSiteKey(def.itemId, p), p);
+        points.push([def.itemId, at.x, at.z]);
+      }
     expect(
       points.filter(([, x, z]) => !dryAndOpen(x, z)).map(([id, x, z]) => `${id}@${x},${z}`),
     ).toEqual([]);

@@ -60,7 +60,15 @@ describe('town furniture blocks', () => {
     // exactly where the grid's first stone is drawn. That one stays scenery
     // (walling it would push players out of release range of the healer); the
     // rest of the cemetery is solid.
-    const gy = OVERWORLD_GRAVEYARDS[0];
+    // Re-sited for Eastbrook Vale v2: the first graveyard (Eastbrook's) stands
+    // on v2 design ground, where the shipped headstones stand down, so this
+    // takes the first overworld graveyard off it that draws headstones.
+    const gy = OVERWORLD_GRAVEYARDS.find(
+      (g) =>
+        !ebv2OwnsBuiltin(g.x, g.z) &&
+        getActiveWorldContent().props.graveyards.some((p) => p.x === g.x && p.z === g.z),
+    );
+    if (!gy) throw new Error('no overworld graveyard with headstones off v2 ground');
     let blocked = 0;
     for (let i = 0; i < GRAVE_COUNT; i++) {
       const off = graveOffset(i);

@@ -39,6 +39,7 @@ import { MOBS } from '../src/sim/data';
 import { createMob } from '../src/sim/entity';
 import { Sim } from '../src/sim/sim';
 import type { Entity } from '../src/sim/types';
+import { placePlayerInValeMeadow } from './helpers/vale_meadow';
 
 function shaman(
   rows: Record<number, string> = {},
@@ -51,6 +52,11 @@ function shaman(
   const allyId = sim.addPlayer('warrior', 'Protected Ally');
   sim.setPlayerLevel(20, pid);
   sim.setPlayerLevel(20, allyId);
+  // Eastbrook Vale v2: the hub practice yard (its healing dummy is an injured
+  // friendly) stands beside the v2 start, so the party stands in the vale
+  // meadow, where nothing but what a case adds is nearby.
+  placePlayerInValeMeadow(sim, pid);
+  placePlayerInValeMeadow(sim, allyId);
   expect(sim.applyTalents({ spec, rows }, pid)).toBe(true);
   const player = sim.entities.get(pid);
   const ally = sim.entities.get(allyId);
@@ -487,6 +493,7 @@ describe('Shaman v0.29 talent grid', () => {
     const { sim, player, ally } = shaman({ 20: SHAMAN_TALENT_IDS.livingWeapon }, 'restoration');
     const secondId = sim.addPlayer('warrior', 'Nearby Injured');
     sim.setPlayerLevel(20, secondId);
+    placePlayerInValeMeadow(sim, secondId);
     const second = sim.entities.get(secondId);
     if (!second) throw new Error('missing nearby ally');
     ally.hp = ally.maxHp;

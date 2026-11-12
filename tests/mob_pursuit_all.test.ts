@@ -128,10 +128,13 @@ describe('ranged petSpell casters keep the classic caster loop', () => {
     // Eastbrook, and the Wolf Run watch tower at (27, -13) the pair used next
     // went with the genshin artstyle merge (8bff2cec638); its next cast is a
     // tick or two away.
+    // Re-sited for Eastbrook Vale v2: the quay tower stands down on v2 design
+    // ground, so the pair moved to (397, 720), 5 yd west of the same model's
+    // tower at (402, 720) (tests/mob_cast_line_of_sight.test.ts uses it too).
     const mob = engageMob(sim, p, 'corrupted_priest_malric', 20, 'chase', { swingTimer: 0.1 });
     for (const e of [p, mob]) {
-      e.pos.x += -94;
-      e.pos.z = -41;
+      e.pos.x += 397;
+      e.pos.z = 720;
       e.prevPos = { ...e.pos };
       sim.rebucket?.(e);
     }
@@ -142,6 +145,6 @@ describe('ranged petSpell casters keep the classic caster loop', () => {
     // The cast it was about to begin asked for sight and did not get it.
     expect(mob.aiState).toBe('chase');
     expect(p.hp).toBe(hp);
-    expect(mob.pos.x !== -74 || mob.pos.z !== -41).toBe(true);
+    expect(mob.pos.x !== 417 || mob.pos.z !== 720).toBe(true);
   });
 });
