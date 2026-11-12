@@ -26,6 +26,15 @@ describe('road curves', () => {
     ).toBe(false);
   });
 
+  it('stops a design road at the slot edge, so the neighbour zones never read it', () => {
+    // the Mirefen road ends on the north edge (4, 180) and the causeway road on the
+    // east edge (180, -28): half a yard past either end the design road no longer
+    // counts (the neighbour's own road, a few yards off, is the nearest there)
+    expect(roadDistance(4, 180.5)).toBeGreaterThan(2);
+    expect(roadDistance(180.5, -28)).toBeGreaterThan(1.5);
+    expect(roadDistance(4, 179.5)).toBeLessThan(1);
+  });
+
   it('keeps the meander on the other roads', () => {
     let warped = 0;
     for (const road of ROADS) {

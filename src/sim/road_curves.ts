@@ -15,6 +15,7 @@
 // ---------------------------------------------------------------------------
 
 import { getActiveWorldContent, getContentGeneration } from './data';
+import { inEbv2Field } from './eastbrook_v2/ground';
 import { ebv2IsDesignRoad } from './eastbrook_v2/roads';
 import { fbm2 } from './rng';
 
@@ -149,8 +150,12 @@ export function roadDistance(x: number, z: number): number {
     wx = x + (fbm2(x * 0.045, z * 0.045, 9203, 2) - 0.5) * ROAD_MEANDER;
     wz = z + (fbm2(x * 0.045 + 37, z * 0.045 - 11, 9205, 2) - 0.5) * ROAD_MEANDER;
   }
+  // a design road reaches no further than the design's slot: its clearance, splat and
+  // terrain gating stop at the slot edge, so a neighbour zone's ground never reads it
+  const inSlot = inEbv2Field(x, z);
   let best2 = Infinity;
   for (const road of roads) {
+    if (!road.meander && !inSlot) continue;
     const qx = road.meander ? wx : x;
     const qz = road.meander ? wz : z;
     if (qx < road.minX || qx > road.maxX || qz < road.minZ || qz > road.maxZ) continue;
