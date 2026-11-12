@@ -607,6 +607,9 @@ describe('dungeon deep sweep', () => {
       // A perched gargoyle waits on its arch, a flying patrol on the wing
       // (mob/trash_kit): each at its own authored height, not the floor.
       const up = e.perchY ?? e.dungeonPatrol?.flightY;
+      // Vael waits off the floor for his scripted entrance on the Beacon Crown
+      // (encounters/sunken_bastion/vael_intro.ts), as Morthen did in the crypt.
+      if (e.templateId === 'vael_the_mistcaller') continue;
       const g = up ?? groundHeight(e.pos.x, e.pos.z, SEED);
       expect(Math.abs(e.pos.y - g), e.templateId).toBeLessThan(0.01);
       checked++;
