@@ -10,13 +10,21 @@ import {
   buildingContainsRestPoint,
   buildingRestPadding,
 } from '../building_layout';
-import { getActiveWorldContent, isBuiltinWorldActive } from '../data';
+import { getActiveWorldContent, isBuiltinWorldActive, isBuiltinWorldContent } from '../data';
 import { ebv2OwnsBuiltin, ebv2RestsAt } from '../eastbrook_v2';
 import { KIT_BUILDINGS } from '../kit_buildings';
 import { tavernRestsAt } from '../mirefen_tavern';
 import type { PlayerMeta } from '../sim';
 import type { SimContext } from '../sim_context';
-import { type BuildingDef, canPrestige, DT, type Entity, MAX_LEVEL, xpForLevel } from '../types';
+import {
+  type BuildingDef,
+  canPrestige,
+  DT,
+  type Entity,
+  MAX_LEVEL,
+  type WorldContent,
+  xpForLevel,
+} from '../types';
 import { harborHouseRestsAt } from '../wyrmwatch_harbor_house';
 
 // Rested-XP tuning. Consumed only by updateRested / isResting below.
@@ -79,10 +87,13 @@ export function isResting(
 // Accrue rested XP while resting in an inn. Classic-era rate: 5% of the level's
 // XP-to-level per 8 in-game hours, clamped to 1.5 levels. Deterministic —
 // paced off DT, never wall-clock. No accrual at the cap (no level bar).
+// `world` is the running Sim's own construction world, so both its inns and the
+// built-in-only rest rules (the v2 design inn, and a shipped inn on design ground
+// resting nobody) follow that world, never the mutable active registry.
 export function updateRested(
   p: Entity,
   meta: PlayerMeta,
-  buildings: readonly BuildingDef[] = getActiveWorldContent().props.buildings,
+  world: WorldContent = getActiveWorldContent(),
 ): void {
   if (p.level >= MAX_LEVEL) return;
   const cap = RESTED_CAP_LEVELS * xpForLevel(p.level);
@@ -90,7 +101,7 @@ export function updateRested(
     meta.restedXp = cap;
     return;
   }
-  if (!isResting(p, buildings)) return;
+  if (!isResting(p, world.props.buildings, KIT_BUILDINGS, isBuiltinWorldContent(world))) return;
   const fillSeconds = RESTED_FILL_HOURS * RESTED_SECONDS_PER_GAME_HOUR;
   const perSecond = (RESTED_FILL_FRACTION * xpForLevel(p.level)) / fillSeconds;
   meta.restedXp = Math.min(cap, meta.restedXp + perSecond * DT);
