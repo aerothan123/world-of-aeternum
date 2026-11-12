@@ -580,8 +580,146 @@ describe('Eastbrook authored gameplay data integration', () => {
       'tinker_gizzel',
       'farmer_jessica',
     ] as const;
+    // Re-minted at the story merge that brought Chapters One and Two into the
+    // Eastbrook town (measured on the Eastbrook Vale v2 port; the payload is
+    // byte-identical at the pilot-town merge a968885f, so neither the town
+    // rebuild nor the v2 port moved it). Exactly five payloads moved, and the
+    // moves are three fields: four keepers took their story names (name, and
+    // the marshal his title), and five keepers had the chapter quest hooks
+    // APPENDED after their existing questIds. The rows are asserted here,
+    // BEFORE the digests, and the counterfactual below restores exactly these
+    // fields and reproduces the two previous pins byte for byte, so any other
+    // drift still fails here.
+    const CHAPTER_ROWS = {
+      marshal_redbrook: {
+        name: ['Marshal Redbrook', 'Warden Corren Stoutvale'],
+        title: ['Town Marshal', 'Lanternwarden Commander'],
+        questIds: [
+          ['q_wolves', 'q_greyjaw', 'q_bandits', 'q_ringleader', 'q_mogger'],
+          [
+            'c1_08_vouch',
+            'c1_24_sandwich_emergency',
+            'c1_27_supper_despite',
+            'c1_d01_bounty_culvert',
+            'c1_d08_lunch_stew',
+            'c1_d10_road_checkposts',
+            'c1_d10_quay_posts',
+            'c2_05_causeway_watch',
+          ],
+        ],
+      },
+      trader_wilkes: {
+        name: ['Trader Wilkes', 'Silven Brackett'],
+        title: ['Provisioner', 'Provisioner'],
+        questIds: [
+          ['q_boars', 'q_supplies'],
+          [
+            'c1_08_vouch',
+            'c1_10_handle_doubt',
+            'c1_20_order_unsigned',
+            'c1_d07_receipt_rivets',
+            'c1_d07_receipt_hinges',
+            'c1_d12_road_not_rumor',
+            'c2_01_ship_sank_twice',
+            'c2_02_whose_seal',
+            'c2_17_bandit_pay',
+            'c2_34_coin_quiet_road',
+            'c2_42_strongboxes_shoals',
+          ],
+        ],
+      },
+      apothecary_lin: {
+        name: ['Apothecary Lin', 'Ivara Fenmoss'],
+        title: ['Herbalist', 'Herbalist'],
+        questIds: [
+          ['q_spiders'],
+          [
+            'c1_08_vouch',
+            'c1_10_handle_doubt',
+            'c1_12_tied_to_root',
+            'c1_15_warmth_missing',
+            'c1_d06_leaves_silvermint',
+            'c1_d09_parcels_herbs',
+          ],
+        ],
+      },
+      brother_aldric: {
+        name: ['Brother Aldric', 'Brother Aldric'],
+        title: ['Priest of the Vale', 'Priest of the Vale'],
+        questIds: [
+          [
+            'q_bones',
+            'q_whispers',
+            'q_names_of_the_dead',
+            'q_silence_the_call',
+            'q_rite',
+            'q_sexton',
+            'q_hollow',
+            'q_gravecallers_trail',
+            'q_divine_tome',
+            'q_fenbridge_muster',
+          ],
+          [
+            'c1_07_across',
+            'c1_08_vouch',
+            'c1_13_flowers_down',
+            'c1_14_buried_tuesday',
+            'c1_15_warmth_missing',
+            'c1_20_order_unsigned',
+            'c1_21_watch_cannot_see',
+            'c1_25_someone_teaching',
+            'c1_26_promise_paint',
+            'c1_28_door_left_shut',
+            'c2_12_door_we_left_shut',
+            'c2_10_cord_in_cider_vat',
+          ],
+        ],
+      },
+      forgemistress_darva: {
+        name: ['Forgemistress Darva', 'Brunna Flintmorrow'],
+        title: ['Master of the Forge', 'Master of the Forge'],
+        questIds: [
+          ['q_prof_attune_smith', 'q_prof_amends_smith', 'q_prof_workorder_forge'],
+          [
+            'c1_10_handle_doubt',
+            'c1_09_buckles_glory',
+            'c1_22_place_you_keep',
+            'c1_27_supper_despite',
+            'c1_d02_clear_quarry',
+            'c1_d04_metal_copper',
+            'c1_d07_receipt_rivets',
+          ],
+        ],
+      },
+    } as const;
+    for (const [id, row] of Object.entries(CHAPTER_ROWS)) {
+      const def = ZONE1_NPCS[id];
+      expect(def.name, id).toBe(row.name[1]);
+      expect(def.title, id).toBe(row.title[1]);
+      expect(def.questIds, id).toEqual([...row.questIds[0], ...row.questIds[1]]);
+    }
+    /** The payload with exactly the chapter rows put back as they stood. */
+    function beforeChapterRows(
+      payload: Record<string, Omit<NpcDef, 'pos' | 'facing'> | NpcDef>,
+    ): Record<string, Omit<NpcDef, 'pos' | 'facing'> | NpcDef> {
+      for (const [id, row] of Object.entries(CHAPTER_ROWS)) {
+        payload[id] = {
+          ...payload[id],
+          name: row.name[0],
+          title: row.title[0],
+          questIds: [...row.questIds[0]],
+        };
+      }
+      return payload;
+    }
+    expect(
+      createHash('sha256')
+        .update(JSON.stringify(beforeChapterRows(stableTownNpcPayload())))
+        .digest('hex'),
+      'restoring exactly the chapter rows reproduces the previous digest',
+    ).toBe('ecc22e457d1f325155266ede8bd5306f73d9d5057854316b502f43c9e4dcd8a3');
     function withoutPr3FieldKitRows(): Record<string, Omit<NpcDef, 'pos' | 'facing'> | NpcDef> {
-      const payload = stableTownNpcPayload();
+      const payload = beforeChapterRows(stableTownNpcPayload());
       for (const id of PR3_FIELD_KIT_VENDOR_ROWS) {
         const def = payload[id];
         const items = def.vendorItems;
@@ -599,11 +737,12 @@ describe('Eastbrook authored gameplay data integration', () => {
       createHash('sha256').update(JSON.stringify(withoutPr3FieldKitRows())).digest('hex'),
       'stripping exactly the six PR3 field_kit rows reproduces the pre-PR3 digest',
     ).toBe('ef35b8640f9ed213e86dbac9b04ba7a8ec9cdde6179d3859e833519dcaabb6c2');
-    // CURRENT digest, WITH the six field_kit rows. Measured on the merged
-    // working tree; the counterfactual above already proves the only content
-    // difference from the pre-PR3 payload is those six rows.
+    // CURRENT digest, WITH the six field_kit rows and the chapter rows.
+    // Measured on the merged working tree; the counterfactuals above already
+    // prove the only content difference from the earlier payloads is those
+    // rows.
     expect(createHash('sha256').update(JSON.stringify(stableTownNpcPayload())).digest('hex')).toBe(
-      'ecc22e457d1f325155266ede8bd5306f73d9d5057854316b502f43c9e4dcd8a3',
+      'b608d427bc64b15f61752cc1b25e7c74876a233da18da3ea847357f60248a8aa',
     );
     expect(ZONE1_TOWN_NPC_IDS).toHaveLength(15);
     for (const id of ZONE1_TOWN_NPC_IDS) {
@@ -618,8 +757,11 @@ describe('Eastbrook authored gameplay data integration', () => {
     // here as the non-layout Eastbrook placement; the world-side proof (never
     // nudged, beside the beds, off the road) lives in
     // tests/farmer_npc_placement.test.ts.
+    // Re-pinned for Eastbrook Vale v2: her inline seat (-15.5, -81.5) stands on
+    // design ground, and the resite stepped her 1.5 yd to her v2 site
+    // (sites.generated.ts npc:farmer_jessica), clear of the design's solids.
     expect(ZONE1_NPCS.farmer_jessica).toMatchObject({
-      pos: { x: -15.5, z: -81.5 },
+      pos: { x: -15.5, z: -80 },
       facing: -Math.PI / 2,
       farmer: true,
     });
@@ -636,19 +778,21 @@ describe('Eastbrook authored gameplay data integration', () => {
   // road swings west round the smithy's forge shelter over his old stand, so
   // he keeps the town's edge between that road and the coast track.
   // Re-pinned for Eastbrook Vale v2: makeNpc stands him on his v2 design site
-  // (sites.generated.ts npc:fury); his facing is still the old derived turn.
+  // (sites.generated.ts npc:fury), facing the road from that post like the
+  // other design keepers (eastbrook_v2/facing.ts); the old derived turn was
+  // measured at his retired spot.
   it('spawns layout-authored FURY under a reserved id without shifting nextId or RNG', () => {
     expect(EASTBROOK_NPC_PLACEMENTS_BY_ID.fury).toEqual({
       id: 'fury',
       position: { x: -14.2, z: -119.43 },
-      facing: -2.0570389598824015,
+      facing: -2.530605592600772,
       anchorId: 'eastbrook_chapel',
       bodyRadius: 0.6,
     });
     expect(BUILTIN_WORLD.npcs[FURY_NPC_ID]).toMatchObject({
       id: 'fury',
       pos: { x: -14.2, z: -119.43 },
-      facing: -2.0570389598824015,
+      facing: -2.530605592600772,
       dynamic: true,
     });
     expect(FURY_ENTITY_ID).toBe(1_000_000_001);
@@ -687,8 +831,8 @@ describe('Eastbrook authored gameplay data integration', () => {
       z: -119.43,
       spawnX: -14.2,
       spawnZ: -119.43,
-      facing: -2.0570389598824015,
-      prevFacing: -2.0570389598824015,
+      facing: -2.530605592600772,
+      prevFacing: -2.530605592600772,
     });
     expect([...withFury.entities.keys()].filter((id) => id !== FURY_ENTITY_ID)).toEqual([
       ...withoutFury.entities.keys(),
@@ -1022,12 +1166,20 @@ describe('Eastbrook runtime collision, spawn, and services', () => {
   it('keeps the fixed-seed world projection stable through wandering and respawn', {
     // Two complete shipped-world simulations run through wandering and respawn.
     // Loaded five-worker CI can exceed the old 90s budget while the bounded
-    // projection still completes deterministically.
-    timeout: 180000,
+    // projection still completes deterministically. Eastbrook Vale v2: both
+    // worlds now stand on the design (its 1071 solids and the full field), and a
+    // tick pair costs about a fifth more than the shipped pair, so the budget
+    // rose with it.
+    timeout: 420000,
   }, () => {
     const stabilitySeed = 4_242;
     const legacyWorld = {
       ...BUILTIN_WORLD,
+      // Eastbrook Vale v2: the copy is still the built-in ground (the editor's
+      // live-world preview flag), so both worlds stand on the same design
+      // terrain and the comparison stays the props alone; a plain copy fell
+      // back to the shipped heightfield and every spawn height differed.
+      liveWorldPreview: true as const,
       props: legacyEastbrookProps(BUILTIN_WORLD.props),
       services: {
         ...BUILTIN_WORLD.services,
