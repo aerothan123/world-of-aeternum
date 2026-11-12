@@ -14,7 +14,7 @@
     {
       "tick": 0,
       "time": 0,
-      "nextId": 1197,
+      "nextId": 1401,
       "state": "5bc471b0",
       "events": "741638a5",
       "rng": {
@@ -28,9 +28,9 @@
     {
       "tick": 25,
       "time": 1.25,
-      "nextId": 1199,
-      "state": "02095ecc",
-      "events": "69037916",
+      "nextId": 1403,
+      "state": "64b620be",
+      "events": "4f617e56",
       "rng": {
         "draws": 0,
         "digest": "811c9dc5"
@@ -39,9 +39,9 @@
     {
       "tick": 50,
       "time": 2.5,
-      "nextId": 1199,
-      "state": "0a5e1fa7",
-      "events": "16f6d3c2",
+      "nextId": 1403,
+      "state": "09f3bd0f",
+      "events": "3738b23a",
       "rng": {
         "draws": 70,
         "digest": "2db3d6b8"
@@ -50,9 +50,9 @@
     {
       "tick": 75,
       "time": 3.75,
-      "nextId": 1199,
-      "state": "53358061",
-      "events": "0e06b6bc",
+      "nextId": 1403,
+      "state": "888d1c5f",
+      "events": "3973b1ec",
       "rng": {
         "draws": 293,
         "digest": "69add3b2"
@@ -61,9 +61,9 @@
     {
       "tick": 100,
       "time": 5,
-      "nextId": 1199,
-      "state": "c018803a",
-      "events": "4fc6682a",
+      "nextId": 1403,
+      "state": "0803a7a8",
+      "events": "e9b37f2e",
       "rng": {
         "draws": 518,
         "digest": "4c356c2e"
@@ -72,9 +72,9 @@
     {
       "tick": 125,
       "time": 6.25,
-      "nextId": 1199,
-      "state": "3675a69c",
-      "events": "7ea14569",
+      "nextId": 1403,
+      "state": "17d48e3a",
+      "events": "ec691351",
       "rng": {
         "draws": 781,
         "digest": "bba8277e"
@@ -83,8 +83,8 @@
     {
       "tick": 142,
       "time": 7.1,
-      "nextId": 1199,
-      "state": "0652d535",
+      "nextId": 1403,
+      "state": "a0753845",
       "events": "741638a5",
       "rng": {
         "draws": 965,
@@ -161,7 +161,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1197,
+          "entityId": 1401,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -312,7 +312,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1198,
+          "entityId": 1402,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -392,7 +392,7 @@
               "name": "Battle Stance",
               "remaining": 3597.95,
               "school": "physical",
-              "sourceId": 1197
+              "sourceId": 1401
             }
           ],
           "blockChance": 0.05,
@@ -405,7 +405,7 @@
           "fiveSecondRule": 106.1,
           "healPower": 5,
           "hp": 632,
-          "id": 1197,
+          "id": 1401,
           "kind": "player",
           "level": 15,
           "lootFfaTimer": "Infinity",
@@ -423,9 +423,9 @@
           "potionCooldownUntil": -1,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
@@ -455,7 +455,7 @@
           "facing": 3.141593,
           "fiveSecondRule": 106.1,
           "healPower": 34,
-          "id": 1198,
+          "id": 1402,
           "kind": "player",
           "level": 15,
           "lootFfaTimer": "Infinity",
@@ -473,9 +473,9 @@
           "resource": 1161,
           "resourceType": "mana",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 34,
           "stats": {

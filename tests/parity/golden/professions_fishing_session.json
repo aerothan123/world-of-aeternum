@@ -17,8 +17,8 @@
     {
       "tick": 0,
       "time": 0,
-      "nextId": 1198,
-      "state": "92e3041b",
+      "nextId": 1402,
+      "state": "cf470738",
       "events": "741638a5",
       "rng": {
         "draws": 0,
@@ -67,7 +67,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1390,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -133,7 +133,7 @@
               "name": "Battle Stance",
               "remaining": 3600,
               "school": "physical",
-              "sourceId": 1190
+              "sourceId": 1390
             }
           ],
           "blockChance": 0.05,
@@ -143,11 +143,11 @@
           "critChance": 0.06,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.06,
-          "fallStartY": -2,
+          "fallStartY": 0.39,
           "fiveSecondRule": 99,
           "healPower": 5,
           "hp": 100,
-          "id": 1190,
+          "id": 1390,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -159,16 +159,16 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
@@ -191,9 +191,9 @@
     {
       "tick": 0,
       "time": 0,
-      "nextId": 1198,
-      "state": "85eae346",
-      "events": "4cfe4a10",
+      "nextId": 1402,
+      "state": "3bb1cadc",
+      "events": "f2ff20e4",
       "rng": {
         "draws": 1,
         "digest": "acd1c827"
@@ -242,7 +242,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1390,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -312,7 +312,7 @@
               "name": "Battle Stance",
               "remaining": 3600,
               "school": "physical",
-              "sourceId": 1190
+              "sourceId": 1390
             }
           ],
           "blockChance": 0.05,
@@ -325,13 +325,13 @@
           "critChance": 0.06,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.06,
-          "fallStartY": -2.902683,
+          "fallStartY": -4.03,
           "fishBiteAtTick": 91,
           "fishCastZoneId": "eastbrook_vale",
           "fiveSecondRule": 99,
           "healPower": 5,
           "hp": 100,
-          "id": 1190,
+          "id": 1390,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -344,15 +344,15 @@
           "petMode": "defensive",
           "pos": {
             "x": -92,
-            "y": -2.902683,
+            "y": -4.03,
             "z": 56
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
@@ -375,9 +375,9 @@
     {
       "tick": 91,
       "time": 4.55,
-      "nextId": 1198,
-      "state": "a5d510c7",
-      "events": "cf18cfae",
+      "nextId": 1402,
+      "state": "488491f5",
+      "events": "80ad029a",
       "rng": {
         "draws": 1,
         "digest": "acd1c827"
@@ -426,7 +426,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1390,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -496,7 +496,7 @@
               "name": "Battle Stance",
               "remaining": 3595.45,
               "school": "physical",
-              "sourceId": 1190
+              "sourceId": 1390
             }
           ],
           "blockChance": 0.05,
@@ -509,13 +509,13 @@
           "critChance": 0.06,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.06,
-          "fallStartY": -2.902683,
+          "fallStartY": -4.03,
           "fishCastZoneId": "eastbrook_vale",
           "fishReelDeadlineTick": 141,
           "fiveSecondRule": 103.55,
           "healPower": 5,
           "hp": 100,
-          "id": 1190,
+          "id": 1390,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -528,15 +528,15 @@
           "petMode": "defensive",
           "pos": {
             "x": -92,
-            "y": -2.902683,
+            "y": -4.03,
             "z": 56
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
@@ -559,9 +559,9 @@
     {
       "tick": 91,
       "time": 4.55,
-      "nextId": 1198,
-      "state": "f9f8fcd1",
-      "events": "a1c479b4",
+      "nextId": 1402,
+      "state": "0c5ba847",
+      "events": "194cb3e2",
       "rng": {
         "draws": 2,
         "digest": "00a2a78c"
@@ -614,7 +614,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1390,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -622,7 +622,9 @@
           },
           "equipmentInstance": {},
           "factionCurrencies": {},
-          "factions": {},
+          "factions": {
+            "bracken_circle": 1
+          },
           "gatherTools": {
             "fishing": {
               "count": 1,
@@ -700,7 +702,7 @@
               "name": "Battle Stance",
               "remaining": 3595.45,
               "school": "physical",
-              "sourceId": 1190
+              "sourceId": 1390
             }
           ],
           "blockChance": 0.05,
@@ -711,11 +713,11 @@
           "critChance": 0.06,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.06,
-          "fallStartY": -2.902683,
+          "fallStartY": -4.03,
           "fiveSecondRule": 103.55,
           "healPower": 5,
           "hp": 100,
-          "id": 1190,
+          "id": 1390,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -728,15 +730,15 @@
           "petMode": "defensive",
           "pos": {
             "x": -92,
-            "y": -2.902683,
+            "y": -4.03,
             "z": 56
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
@@ -759,9 +761,9 @@
     {
       "tick": 99,
       "time": 4.95,
-      "nextId": 1198,
-      "state": "c079e374",
-      "events": "f016f8a8",
+      "nextId": 1402,
+      "state": "105508ec",
+      "events": "471df5ac",
       "rng": {
         "draws": 3,
         "digest": "1e79975d"
@@ -820,7 +822,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1390,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -828,7 +830,9 @@
           },
           "equipmentInstance": {},
           "factionCurrencies": {},
-          "factions": {},
+          "factions": {
+            "bracken_circle": 1
+          },
           "gatherTools": {
             "fishing": {
               "count": 1,
@@ -903,7 +907,7 @@
               "name": "Battle Stance",
               "remaining": 3595.05,
               "school": "physical",
-              "sourceId": 1190
+              "sourceId": 1390
             }
           ],
           "blockChance": 0.05,
@@ -916,13 +920,13 @@
           "critChance": 0.06,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.06,
-          "fallStartY": -2.902683,
+          "fallStartY": -4.03,
           "fishBiteAtTick": 234,
           "fishCastZoneId": "eastbrook_vale",
           "fiveSecondRule": 103.95,
           "healPower": 5,
           "hp": 100,
-          "id": 1190,
+          "id": 1390,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -935,15 +939,15 @@
           "petMode": "defensive",
           "pos": {
             "x": -92,
-            "y": -2.902683,
+            "y": -4.03,
             "z": 56
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {

@@ -14,14 +14,14 @@
     "rare gather event: hunted hit in the herb window, gatherRareEvent fanout + x5 signed yield",
     "gatherResult qty/rareEvent payload fields"
   ],
-  "draws": 204,
-  "drawDigest": "545d7bf1",
+  "draws": 4,
+  "drawDigest": "49d036fe",
   "frames": [
     {
       "tick": 0,
       "time": 0,
-      "nextId": 1198,
-      "state": "92e3041b",
+      "nextId": 1402,
+      "state": "cf470738",
       "events": "741638a5",
       "rng": {
         "draws": 0,
@@ -70,7 +70,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1390,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -136,7 +136,7 @@
               "name": "Battle Stance",
               "remaining": 3600,
               "school": "physical",
-              "sourceId": 1190
+              "sourceId": 1390
             }
           ],
           "blockChance": 0.05,
@@ -146,11 +146,11 @@
           "critChance": 0.06,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.06,
-          "fallStartY": -2,
+          "fallStartY": 0.39,
           "fiveSecondRule": 99,
           "healPower": 5,
           "hp": 100,
-          "id": 1190,
+          "id": 1390,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -162,16 +162,16 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
@@ -194,9 +194,9 @@
     {
       "tick": 51,
       "time": 2.55,
-      "nextId": 1198,
-      "state": "d9c80fdd",
-      "events": "1a4e617d",
+      "nextId": 1402,
+      "state": "746afee2",
+      "events": "6d588379",
       "rng": {
         "draws": 2,
         "digest": "00a2a78c"
@@ -230,7 +230,7 @@
           "cls": "warrior",
           "companionUpgrades": {},
           "counters": {
-            "xpGained": 21
+            "xpGained": 10
           },
           "craftDaily": {},
           "craftSkills": {},
@@ -264,7 +264,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1390,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -272,7 +272,9 @@
           },
           "equipmentInstance": {},
           "factionCurrencies": {},
-          "factions": {},
+          "factions": {
+            "bracken_circle": 1
+          },
           "gatherTools": {
             "herbalism": {
               "count": 1,
@@ -323,7 +325,12 @@
               ]
             }
           ],
-          "lifetimeXp": 21,
+          "lifeSkillStanding": {
+            "earned": {
+              "gather": 1
+            }
+          },
+          "lifetimeXp": 10,
           "mailWelcomed": true,
           "nodeHarvestReadyAt": {
             "ore_eastbrook_1": 242.5
@@ -344,7 +351,7 @@
           "vaultAttemptDurable": true,
           "worldQuestReplacements": {},
           "wyrmfallDaily": {},
-          "xp": 21
+          "xp": 10
         }
       ],
       "entities": [
@@ -359,7 +366,7 @@
               "name": "Battle Stance",
               "remaining": 3597.45,
               "school": "physical",
-              "sourceId": 1190
+              "sourceId": 1390
             }
           ],
           "blockChance": 0.05,
@@ -370,11 +377,11 @@
           "critChance": 0.06,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.06,
-          "fallStartY": -0.477872,
+          "fallStartY": 8.13,
           "fiveSecondRule": 101.55,
           "healPower": 5,
           "hp": 100,
-          "id": 1190,
+          "id": 1390,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -386,16 +393,16 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -20,
-            "y": -0.477872,
-            "z": 153
+            "x": -21.89,
+            "y": 8.13,
+            "z": 150.06
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
@@ -418,9 +425,9 @@
     {
       "tick": 114,
       "time": 5.7,
-      "nextId": 1198,
-      "state": "7c00609d",
-      "events": "f0bdceb8",
+      "nextId": 1402,
+      "state": "4dbdc7ae",
+      "events": "05c46778",
       "rng": {
         "draws": 4,
         "digest": "49d036fe"
@@ -454,7 +461,7 @@
           "cls": "warrior",
           "companionUpgrades": {},
           "counters": {
-            "xpGained": 42
+            "xpGained": 20
           },
           "craftDaily": {},
           "craftSkills": {},
@@ -503,7 +510,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1390,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -511,7 +518,9 @@
           },
           "equipmentInstance": {},
           "factionCurrencies": {},
-          "factions": {},
+          "factions": {
+            "bracken_circle": 3
+          },
           "gatherTools": {
             "herbalism": {
               "count": 1,
@@ -575,7 +584,12 @@
               ]
             }
           ],
-          "lifetimeXp": 42,
+          "lifeSkillStanding": {
+            "earned": {
+              "gather": 2
+            }
+          },
+          "lifetimeXp": 20,
           "mailWelcomed": true,
           "nodeHarvestReadyAt": {
             "ore_eastbrook_1": 242.5
@@ -597,7 +611,7 @@
           "vaultAttemptDurable": true,
           "worldQuestReplacements": {},
           "wyrmfallDaily": {},
-          "xp": 42
+          "xp": 20
         }
       ],
       "entities": [
@@ -612,7 +626,7 @@
               "name": "Battle Stance",
               "remaining": 3594.3,
               "school": "physical",
-              "sourceId": 1190
+              "sourceId": 1390
             }
           ],
           "blockChance": 0.05,
@@ -623,11 +637,11 @@
           "critChance": 0.06,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.06,
-          "fallStartY": -2.819698,
+          "fallStartY": 1.230097,
           "fiveSecondRule": 104.7,
           "healPower": 5,
           "hp": 100,
-          "id": 1190,
+          "id": 1390,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -639,16 +653,16 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -100.940695,
-            "y": -2.819698,
-            "z": 11.060247
+            "x": -72.69,
+            "y": 1.230097,
+            "z": -27.87
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
@@ -671,122 +685,122 @@
     {
       "tick": 500,
       "time": 25,
-      "nextId": 1198,
-      "state": "f020b5bd",
-      "events": "75b088e5",
+      "nextId": 1402,
+      "state": "2de07541",
+      "events": "765d36bd",
       "rng": {
-        "draws": 18,
-        "digest": "9145b740"
+        "draws": 4,
+        "digest": "49d036fe"
       }
     },
     {
       "tick": 1000,
       "time": 50,
-      "nextId": 1198,
-      "state": "7f2ffd52",
-      "events": "0bb62e85",
+      "nextId": 1402,
+      "state": "500aa7b4",
+      "events": "76b45b9d",
       "rng": {
-        "draws": 38,
-        "digest": "d0aec0bd"
+        "draws": 4,
+        "digest": "49d036fe"
       }
     },
     {
       "tick": 1500,
       "time": 75,
-      "nextId": 1198,
-      "state": "f5085e46",
-      "events": "f77df862",
+      "nextId": 1402,
+      "state": "8b4550a4",
+      "events": "76b45b9d",
       "rng": {
-        "draws": 58,
-        "digest": "7a44de5f"
+        "draws": 4,
+        "digest": "49d036fe"
       }
     },
     {
       "tick": 2000,
       "time": 100,
-      "nextId": 1198,
-      "state": "96ce4805",
-      "events": "21e11d02",
+      "nextId": 1402,
+      "state": "eddf2ab9",
+      "events": "2f544f71",
       "rng": {
-        "draws": 76,
-        "digest": "21be3a88"
+        "draws": 4,
+        "digest": "49d036fe"
       }
     },
     {
       "tick": 2500,
       "time": 125,
-      "nextId": 1198,
-      "state": "1bfe02db",
-      "events": "2be0456b",
+      "nextId": 1402,
+      "state": "bd27767a",
+      "events": "76b45b9d",
       "rng": {
-        "draws": 96,
-        "digest": "618fafda"
+        "draws": 4,
+        "digest": "49d036fe"
       }
     },
     {
       "tick": 3000,
       "time": 150,
-      "nextId": 1198,
-      "state": "332657f0",
-      "events": "2be0456b",
+      "nextId": 1402,
+      "state": "0f57c07b",
+      "events": "76b45b9d",
       "rng": {
-        "draws": 116,
-        "digest": "6fbace71"
+        "draws": 4,
+        "digest": "49d036fe"
       }
     },
     {
       "tick": 3500,
       "time": 175,
-      "nextId": 1198,
-      "state": "ce6a2fd6",
-      "events": "1eabff3d",
+      "nextId": 1402,
+      "state": "0cdb4e9f",
+      "events": "76b45b9d",
       "rng": {
-        "draws": 136,
-        "digest": "33a83e8b"
+        "draws": 4,
+        "digest": "49d036fe"
       }
     },
     {
       "tick": 4000,
       "time": 200,
-      "nextId": 1198,
-      "state": "1ffa8534",
-      "events": "9bb2dad3",
+      "nextId": 1402,
+      "state": "25fbf9f6",
+      "events": "76b45b9d",
       "rng": {
-        "draws": 156,
-        "digest": "f0dbf356"
+        "draws": 4,
+        "digest": "49d036fe"
       }
     },
     {
       "tick": 4500,
       "time": 225,
-      "nextId": 1198,
-      "state": "dd53377e",
-      "events": "82c3ea4e",
+      "nextId": 1402,
+      "state": "0a234a07",
+      "events": "2f544f71",
       "rng": {
-        "draws": 174,
-        "digest": "b5a61cc9"
+        "draws": 4,
+        "digest": "49d036fe"
       }
     },
     {
       "tick": 5000,
       "time": 250,
-      "nextId": 1198,
-      "state": "208f44bb",
-      "events": "9bb2dad3",
+      "nextId": 1402,
+      "state": "e64e8846",
+      "events": "76b45b9d",
       "rng": {
-        "draws": 194,
-        "digest": "6647d061"
+        "draws": 4,
+        "digest": "49d036fe"
       }
     },
     {
       "tick": 5216,
       "time": 260.8,
-      "nextId": 1198,
-      "state": "17a424a5",
-      "events": "2447eeab",
+      "nextId": 1402,
+      "state": "46fa6bd3",
+      "events": "15af517d",
       "rng": {
-        "draws": 204,
-        "digest": "545d7bf1"
+        "draws": 4,
+        "digest": "49d036fe"
       },
       "label": "rare-event-window",
       "players": [
@@ -817,8 +831,7 @@
           "cls": "warrior",
           "companionUpgrades": {},
           "counters": {
-            "levelUps": 2,
-            "xpGained": 2022
+            "xpGained": 20
           },
           "craftDaily": {},
           "craftSkills": {},
@@ -834,31 +847,17 @@
               "handaxe",
               "ironbark_log",
               "recruit_tunic",
-              "silverleaf_herb",
               "worn_sword"
             ],
             "visited": [
               "felling:tree",
-              "gather:eastbrook_vale:herb",
               "gather:eastbrook_vale:ore",
               "gather:eastbrook_vale:wood",
-              "gather_event:moonlit_bloom",
-              "poi:eastbrook_vale:copper_dig"
+              "poi:eastbrook_vale:copper_dig",
+              "poi:eastbrook_vale:mirror_lake"
             ]
           },
           "deedsEarned": [
-            [
-              "chr_vale_gatherer",
-              ""
-            ],
-            [
-              "col_moonlit_bloom",
-              ""
-            ],
-            [
-              "exp_first_herb",
-              ""
-            ],
             [
               "exp_first_ore",
               ""
@@ -876,17 +875,13 @@
               ""
             ],
             [
-              "prog_first_steps",
-              ""
-            ],
-            [
               "prog_logging_100",
               ""
             ]
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1390,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -894,7 +889,9 @@
           },
           "equipmentInstance": {},
           "factionCurrencies": {},
-          "factions": {},
+          "factions": {
+            "bracken_circle": 3
+          },
           "gatherTools": {
             "herbalism": {
               "count": 1,
@@ -910,7 +907,6 @@
             }
           },
           "gatheringProficiency": {
-            "herbalism": 1,
             "logging": 100,
             "mining": 1
           },
@@ -943,53 +939,25 @@
                   }
                 }
               ]
-            },
-            {
-              "count": 20,
-              "itemId": "silverleaf_herb",
-              "materialSources": [
-                {
-                  "count": 15,
-                  "source": {}
-                },
-                {
-                  "count": 5,
-                  "source": {
-                    "signer": "Adventurer"
-                  }
-                }
-              ]
-            },
-            {
-              "count": 1,
-              "itemId": "silverleaf_herb",
-              "materialSources": [
-                {
-                  "count": 1,
-                  "source": {}
-                }
-              ]
             }
           ],
-          "lifetimeXp": 2022,
+          "lifeSkillStanding": {
+            "earned": {
+              "gather": 2
+            }
+          },
+          "lifetimeXp": 20,
           "mailWelcomed": true,
           "nodeHarvestReadyAt": {
-            "herb_eastbrook_1": 500.75,
             "ore_eastbrook_1": 242.5
           },
           "profTierTutorialSent": true,
           "recipesGrandfathered": true,
           "reliquary": {
             "counts": {},
-            "firstFind": {},
-            "marks": [
-              "gather_event:moonlit_bloom"
-            ],
-            "recent": [
-              "gather_event:moonlit_bloom"
-            ]
+            "firstFind": {}
           },
-          "renown": 45,
+          "renown": 30,
           "talents": {
             "rows": {}
           },
@@ -1000,13 +968,13 @@
           "vaultAttemptDurable": true,
           "worldQuestReplacements": {},
           "wyrmfallDaily": {},
-          "xp": 722
+          "xp": 20
         }
       ],
       "entities": [
         {
           "aiState": "idle",
-          "attackPower": 54,
+          "attackPower": 46,
           "auras": [
             {
               "duration": 3600,
@@ -1015,26 +983,26 @@
               "name": "Battle Stance",
               "remaining": 3339.2,
               "school": "physical",
-              "sourceId": 1190
+              "sourceId": 1390
             }
           ],
           "blockChance": 0.05,
           "blockValue": 6,
-          "castTotal": 2.5,
+          "castTotal": 3,
           "combatTimer": 359.8,
           "comboUntil": -1,
-          "critChance": 0.061,
+          "critChance": 0.06,
           "detonateTimer": "Infinity",
-          "dodgeChance": 0.061,
-          "fallStartY": -4.19148,
+          "dodgeChance": 0.06,
+          "fallStartY": -3.87,
           "fiveSecondRule": 359.8,
           "healPower": 5,
-          "hp": 176,
-          "id": 1190,
+          "hp": 100,
+          "id": 1390,
           "kind": "player",
-          "level": 3,
+          "level": 1,
           "lootFfaTimer": "Infinity",
-          "maxHp": 176,
+          "maxHp": 100,
           "maxResource": 100,
           "moveSpeed": 7,
           "offhandItemId": "eastbrook_buckler",
@@ -1043,24 +1011,24 @@
           "petMode": "defensive",
           "pos": {
             "x": -59,
-            "y": -4.19148,
+            "y": -3.87,
             "z": 91
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
-            "agi": 22,
-            "armor": 172,
+            "agi": 20,
+            "armor": 144,
             "int": 10,
             "spi": 11,
-            "sta": 27,
-            "str": 27
+            "sta": 23,
+            "str": 23
           },
           "templateId": "warrior",
           "weapon": {
@@ -1074,12 +1042,12 @@
     {
       "tick": 5218,
       "time": 260.9,
-      "nextId": 1198,
-      "state": "5e20117a",
+      "nextId": 1402,
+      "state": "53f4165a",
       "events": "741638a5",
       "rng": {
-        "draws": 204,
-        "digest": "545d7bf1"
+        "draws": 4,
+        "digest": "49d036fe"
       },
       "label": "final",
       "players": [
@@ -1110,8 +1078,7 @@
           "cls": "warrior",
           "companionUpgrades": {},
           "counters": {
-            "levelUps": 2,
-            "xpGained": 2022
+            "xpGained": 20
           },
           "craftDaily": {},
           "craftSkills": {},
@@ -1127,31 +1094,17 @@
               "handaxe",
               "ironbark_log",
               "recruit_tunic",
-              "silverleaf_herb",
               "worn_sword"
             ],
             "visited": [
               "felling:tree",
-              "gather:eastbrook_vale:herb",
               "gather:eastbrook_vale:ore",
               "gather:eastbrook_vale:wood",
-              "gather_event:moonlit_bloom",
-              "poi:eastbrook_vale:copper_dig"
+              "poi:eastbrook_vale:copper_dig",
+              "poi:eastbrook_vale:mirror_lake"
             ]
           },
           "deedsEarned": [
-            [
-              "chr_vale_gatherer",
-              ""
-            ],
-            [
-              "col_moonlit_bloom",
-              ""
-            ],
-            [
-              "exp_first_herb",
-              ""
-            ],
             [
               "exp_first_ore",
               ""
@@ -1169,17 +1122,13 @@
               ""
             ],
             [
-              "prog_first_steps",
-              ""
-            ],
-            [
               "prog_logging_100",
               ""
             ]
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1390,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -1187,7 +1136,9 @@
           },
           "equipmentInstance": {},
           "factionCurrencies": {},
-          "factions": {},
+          "factions": {
+            "bracken_circle": 3
+          },
           "gatherTools": {
             "herbalism": {
               "count": 1,
@@ -1203,7 +1154,6 @@
             }
           },
           "gatheringProficiency": {
-            "herbalism": 1,
             "logging": 100,
             "mining": 1
           },
@@ -1236,53 +1186,25 @@
                   }
                 }
               ]
-            },
-            {
-              "count": 20,
-              "itemId": "silverleaf_herb",
-              "materialSources": [
-                {
-                  "count": 15,
-                  "source": {}
-                },
-                {
-                  "count": 5,
-                  "source": {
-                    "signer": "Adventurer"
-                  }
-                }
-              ]
-            },
-            {
-              "count": 1,
-              "itemId": "silverleaf_herb",
-              "materialSources": [
-                {
-                  "count": 1,
-                  "source": {}
-                }
-              ]
             }
           ],
-          "lifetimeXp": 2022,
+          "lifeSkillStanding": {
+            "earned": {
+              "gather": 2
+            }
+          },
+          "lifetimeXp": 20,
           "mailWelcomed": true,
           "nodeHarvestReadyAt": {
-            "herb_eastbrook_1": 500.75,
             "ore_eastbrook_1": 242.5
           },
           "profTierTutorialSent": true,
           "recipesGrandfathered": true,
           "reliquary": {
             "counts": {},
-            "firstFind": {},
-            "marks": [
-              "gather_event:moonlit_bloom"
-            ],
-            "recent": [
-              "gather_event:moonlit_bloom"
-            ]
+            "firstFind": {}
           },
-          "renown": 45,
+          "renown": 30,
           "talents": {
             "rows": {}
           },
@@ -1293,13 +1215,13 @@
           "vaultAttemptDurable": true,
           "worldQuestReplacements": {},
           "wyrmfallDaily": {},
-          "xp": 722
+          "xp": 20
         }
       ],
       "entities": [
         {
           "aiState": "idle",
-          "attackPower": 54,
+          "attackPower": 46,
           "auras": [
             {
               "duration": 3600,
@@ -1308,26 +1230,26 @@
               "name": "Battle Stance",
               "remaining": 3339.1,
               "school": "physical",
-              "sourceId": 1190
+              "sourceId": 1390
             }
           ],
           "blockChance": 0.05,
           "blockValue": 6,
-          "castTotal": 2.5,
+          "castTotal": 3,
           "combatTimer": 359.9,
           "comboUntil": -1,
-          "critChance": 0.061,
+          "critChance": 0.06,
           "detonateTimer": "Infinity",
-          "dodgeChance": 0.061,
-          "fallStartY": -4.19148,
+          "dodgeChance": 0.06,
+          "fallStartY": -3.87,
           "fiveSecondRule": 359.9,
           "healPower": 5,
-          "hp": 176,
-          "id": 1190,
+          "hp": 100,
+          "id": 1390,
           "kind": "player",
-          "level": 3,
+          "level": 1,
           "lootFfaTimer": "Infinity",
-          "maxHp": 176,
+          "maxHp": 100,
           "maxResource": 100,
           "moveSpeed": 7,
           "offhandItemId": "eastbrook_buckler",
@@ -1336,24 +1258,24 @@
           "petMode": "defensive",
           "pos": {
             "x": -59,
-            "y": -4.19148,
+            "y": -3.87,
             "z": 91
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
-            "agi": 22,
-            "armor": 172,
+            "agi": 20,
+            "armor": 144,
             "int": 10,
             "spi": 11,
-            "sta": 27,
-            "str": 27
+            "sta": 23,
+            "str": 23
           },
           "templateId": "warrior",
           "weapon": {
