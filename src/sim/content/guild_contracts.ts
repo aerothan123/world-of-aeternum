@@ -2,8 +2,8 @@
 // live in src/sim/guild_contracts.ts and src/sim/guild_quartermaster.ts).
 //
 // Every week the board posts three contracts, one of each kind, the same for the whole realm:
-//  - 'boss': defeat a named boss of one of the five five-player dungeons, either difficulty;
-//  - 'heroic': clear one of the five on Heroic (its final boss falls on Heroic);
+//  - 'boss': defeat a named boss of one of the four five-player dungeons, either difficulty;
+//  - 'heroic': clear one of the four on Heroic (its final boss falls on Heroic);
 //  - 'task': see one of the dungeons' encounter skill tasks through (the very conditions the
 //    Book of Deeds' encounter deeds test, src/sim/deeds.ts), repeatable week on week.
 // A contract pays Lantern Seals, the guild's own currency, spent only at the quartermaster,
@@ -94,7 +94,7 @@ const boss = (dungeonId: string, mobId: string): GuildContractDef => ({
   seals: GUILD_CONTRACT_SEALS.boss,
 });
 
-/** The named bosses of the five dungeons (src/sim/content/dungeon_finder.ts encounter order).
+/** The named bosses of the four dungeons (src/sim/content/dungeon_finder.ts encounter order).
  *  The Mere Hydra is left out: its heads die one by one and only the last fells it. */
 export const GUILD_BOSS_CONTRACTS: readonly GuildContractDef[] = [
   boss('sunken_bastion', 'knight_commander_olen'),
@@ -137,7 +137,7 @@ const task = (dungeonId: string, mobId: string, taskDeedId: string): GuildContra
   seals: GUILD_CONTRACT_SEALS.task,
 });
 
-/** The five dungeons' encounter skill tasks the deeds evaluator already judges at the boss's
+/** The four dungeons' encounter skill tasks the deeds evaluator already judges at the boss's
  *  death (deeds.ts FLAWLESS_TASKS, ADD_TASKS, SPLASH_TASKS). */
 export const GUILD_TASK_CONTRACTS: readonly GuildContractDef[] = [
   task('sunken_bastion', 'knight_commander_olen', 'dgn_olen_arc'),

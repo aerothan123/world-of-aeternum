@@ -52,7 +52,9 @@ export function guildContractsForWeek(week: string): GuildContractDef[] {
   return [
     pick(GUILD_BOSS_CONTRACTS, n * 7 + 3),
     pick(GUILD_HEROIC_CONTRACTS, n * 3 + 1),
-    pick(GUILD_TASK_CONTRACTS, n * 3 + 2),
+    // 5, not 3: the six task contracts left after the Hollow Crypt's retirement
+    // share a factor with 3, which would post only two of them.
+    pick(GUILD_TASK_CONTRACTS, n * 5 + 2),
   ];
 }
 
