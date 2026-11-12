@@ -15,8 +15,8 @@
     {
       "tick": 0,
       "time": 0,
-      "nextId": 1198,
-      "state": "d7e04156",
+      "nextId": 1409,
+      "state": "be77d253",
       "events": "741638a5",
       "rng": {
         "draws": 0,
@@ -64,7 +64,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1397,
           "equipment": {
             "chest": "footpad_jerkin",
             "mainhand": "rusty_dagger",
@@ -128,11 +128,11 @@
           "detonateTimer": "Infinity",
           "dodgeChance": 0.0625,
           "dualWielding": true,
-          "fallStartY": -2,
+          "fallStartY": 0.39,
           "fiveSecondRule": 99,
           "healPower": 6,
           "hp": 62,
-          "id": 1190,
+          "id": 1397,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -150,17 +150,17 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "potionCooldownUntil": -1,
           "resource": 100,
           "resourceType": "energy",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 6,
           "stats": {
@@ -184,9 +184,9 @@
     {
       "tick": 10,
       "time": 0.5,
-      "nextId": 1212,
-      "state": "110c09eb",
-      "events": "fdd65bbb",
+      "nextId": 1423,
+      "state": "763bab7a",
+      "events": "f5161b7b",
       "rng": {
         "draws": 3,
         "digest": "8261aa7c"
@@ -195,9 +195,9 @@
     {
       "tick": 20,
       "time": 1,
-      "nextId": 1212,
-      "state": "4e18bc51",
-      "events": "c3b69972",
+      "nextId": 1423,
+      "state": "08fa6496",
+      "events": "7e8aba31",
       "rng": {
         "draws": 3,
         "digest": "8261aa7c"
@@ -206,8 +206,8 @@
     {
       "tick": 30,
       "time": 1.5,
-      "nextId": 1212,
-      "state": "af057313",
+      "nextId": 1423,
+      "state": "c410719e",
       "events": "741638a5",
       "rng": {
         "draws": 3,
@@ -217,8 +217,8 @@
     {
       "tick": 40,
       "time": 2,
-      "nextId": 1212,
-      "state": "71a4b11d",
+      "nextId": 1423,
+      "state": "ad6a0480",
       "events": "741638a5",
       "rng": {
         "draws": 3,
@@ -228,8 +228,8 @@
     {
       "tick": 50,
       "time": 2.5,
-      "nextId": 1212,
-      "state": "33a31f4b",
+      "nextId": 1423,
+      "state": "cf114234",
       "events": "741638a5",
       "rng": {
         "draws": 3,
@@ -239,8 +239,8 @@
     {
       "tick": 60,
       "time": 3,
-      "nextId": 1212,
-      "state": "b7bfe901",
+      "nextId": 1423,
+      "state": "ae221b06",
       "events": "741638a5",
       "rng": {
         "draws": 3,
@@ -250,9 +250,9 @@
     {
       "tick": 69,
       "time": 3.45,
-      "nextId": 1213,
-      "state": "6a6b7d39",
-      "events": "809adbbf",
+      "nextId": 1424,
+      "state": "162206b2",
+      "events": "11646116",
       "rng": {
         "draws": 5,
         "digest": "50aeceb5"
@@ -340,7 +340,7 @@
             "eastbrook_ledger"
           ],
           "delveMarks": 1,
-          "entityId": 1190,
+          "entityId": 1397,
           "equipment": {
             "chest": "footpad_jerkin",
             "mainhand": "rusty_dagger",
@@ -407,10 +407,13 @@
           "detonateTimer": "Infinity",
           "dodgeChance": 0.0715,
           "dualWielding": true,
+          "durabilityWear": {
+            "dealt": 1
+          },
           "fiveSecondRule": 102.45,
           "healPower": 6,
           "hp": 50000,
-          "id": 1190,
+          "id": 1397,
           "inCombat": true,
           "kind": "player",
           "level": 7,
@@ -436,9 +439,9 @@
           "resource": 100,
           "resourceType": "energy",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 6,
           "stats": {
@@ -467,7 +470,7 @@
           "facing": 3.141593,
           "fiveSecondRule": 99,
           "hp": 1,
-          "id": 1211,
+          "id": 1422,
           "kind": "object",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -500,8 +503,8 @@
     {
       "tick": 70,
       "time": 3.5,
-      "nextId": 1213,
-      "state": "c3e56e1f",
+      "nextId": 1424,
+      "state": "dfac80aa",
       "events": "741638a5",
       "rng": {
         "draws": 5,
@@ -511,8 +514,8 @@
     {
       "tick": 71,
       "time": 3.55,
-      "nextId": 1213,
-      "state": "132e1581",
+      "nextId": 1424,
+      "state": "0177f604",
       "events": "741638a5",
       "rng": {
         "draws": 5,
@@ -601,7 +604,7 @@
             "eastbrook_ledger"
           ],
           "delveMarks": 1,
-          "entityId": 1190,
+          "entityId": 1397,
           "equipment": {
             "chest": "footpad_jerkin",
             "mainhand": "rusty_dagger",
@@ -668,10 +671,13 @@
           "detonateTimer": "Infinity",
           "dodgeChance": 0.0715,
           "dualWielding": true,
+          "durabilityWear": {
+            "dealt": 1
+          },
           "fiveSecondRule": 102.55,
           "healPower": 6,
           "hp": 50000,
-          "id": 1190,
+          "id": 1397,
           "inCombat": true,
           "kind": "player",
           "level": 7,
@@ -697,9 +703,9 @@
           "resource": 100,
           "resourceType": "energy",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 6,
           "stats": {
@@ -728,7 +734,7 @@
           "facing": 3.141593,
           "fiveSecondRule": 99,
           "hp": 1,
-          "id": 1211,
+          "id": 1422,
           "kind": "object",
           "level": 1,
           "lootFfaTimer": "Infinity",

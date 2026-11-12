@@ -14,8 +14,8 @@
     {
       "tick": 0,
       "time": 0,
-      "nextId": 1198,
-      "state": "d7e04156",
+      "nextId": 1409,
+      "state": "be77d253",
       "events": "741638a5",
       "rng": {
         "draws": 0,
@@ -63,7 +63,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1397,
           "equipment": {
             "chest": "footpad_jerkin",
             "mainhand": "rusty_dagger",
@@ -127,11 +127,11 @@
           "detonateTimer": "Infinity",
           "dodgeChance": 0.0625,
           "dualWielding": true,
-          "fallStartY": -2,
+          "fallStartY": 0.39,
           "fiveSecondRule": 99,
           "healPower": 6,
           "hp": 62,
-          "id": 1190,
+          "id": 1397,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -149,17 +149,17 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "potionCooldownUntil": -1,
           "resource": 100,
           "resourceType": "energy",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 6,
           "stats": {
@@ -183,9 +183,9 @@
     {
       "tick": 20,
       "time": 1,
-      "nextId": 1199,
-      "state": "4e47adb2",
-      "events": "f3cf5870",
+      "nextId": 1410,
+      "state": "d7d4e3cb",
+      "events": "47ab86fd",
       "rng": {
         "draws": 12,
         "digest": "f30c489f"
@@ -194,9 +194,9 @@
     {
       "tick": 40,
       "time": 2,
-      "nextId": 1199,
-      "state": "c95a5bf1",
-      "events": "dfb3dccc",
+      "nextId": 1410,
+      "state": "512ef044",
+      "events": "94f4264b",
       "rng": {
         "draws": 19,
         "digest": "d68c35cb"
@@ -205,9 +205,9 @@
     {
       "tick": 60,
       "time": 3,
-      "nextId": 1199,
-      "state": "3f54e5ba",
-      "events": "895349bf",
+      "nextId": 1410,
+      "state": "b2379a88",
+      "events": "dcd3f6ae",
       "rng": {
         "draws": 162,
         "digest": "fe151d49"
@@ -216,8 +216,8 @@
     {
       "tick": 72,
       "time": 3.6,
-      "nextId": 1199,
-      "state": "53009246",
+      "nextId": 1410,
+      "state": "1fe2236a",
       "events": "741638a5",
       "rng": {
         "draws": 249,
@@ -267,9 +267,6 @@
               "baked_bread",
               "footpad_jerkin",
               "rusty_dagger"
-            ],
-            "visited": [
-              "poi:eastbrook_vale:eastbrook_docks"
             ]
           },
           "deedsEarned": [
@@ -288,7 +285,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1397,
           "equipment": {
             "chest": "footpad_jerkin",
             "mainhand": "rusty_dagger",
@@ -356,12 +353,16 @@
           "detonateTimer": "Infinity",
           "dodgeChance": 0.076,
           "dualWielding": true,
+          "durabilityWear": {
+            "dealt": 6,
+            "taken": 1
+          },
           "facing": 1.570796,
-          "fallStartY": -2,
+          "fallStartY": 0.41,
           "fiveSecondRule": 102.6,
           "healPower": 6,
           "hp": 49992,
-          "id": 1190,
+          "id": 1397,
           "inCombat": true,
           "kind": "player",
           "level": 10,
@@ -381,17 +382,17 @@
           "overpowerUntil": 6.85,
           "petMode": "defensive",
           "pos": {
-            "x": -93.5,
-            "y": -2,
-            "z": -58
+            "x": -15.5,
+            "y": 0.41,
+            "z": -158
           },
           "potionCooldownUntil": -1,
           "resource": 100,
           "resourceType": "energy",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 6,
           "stats": {
@@ -403,7 +404,7 @@
             "str": 26
           },
           "swingTimer": 0.05,
-          "targetId": 1198,
+          "targetId": 1409,
           "templateId": "rogue",
           "weapon": {
             "dagger": true,
@@ -413,7 +414,7 @@
           }
         },
         {
-          "aggroTargetId": 1190,
+          "aggroTargetId": 1397,
           "aiState": "attack",
           "autoAttack": true,
           "combatTimer": 1.2,
@@ -422,17 +423,17 @@
           "detonateTimer": "Infinity",
           "dodgeChance": 0.05,
           "facing": -1.570796,
-          "fallStartY": -2,
+          "fallStartY": 0.39,
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 8896,
-          "id": 1198,
+          "id": 1409,
           "inCombat": true,
           "kind": "mob",
           "leashAnchor": {
-            "x": -92,
-            "y": -2,
-            "z": -58
+            "x": -14,
+            "y": 0.39,
+            "z": -158
           },
           "level": 5,
           "lootFfaTimer": "Infinity",
@@ -442,26 +443,26 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -92,
-            "y": -2,
-            "z": -58
+            "x": -14,
+            "y": 0.39,
+            "z": -158
           },
           "potionCooldownUntil": -1,
           "spawnPos": {
-            "x": -92,
-            "y": -2,
-            "z": -58
+            "x": -14,
+            "y": 0.39,
+            "z": -158
           },
           "stats": {
             "armor": 40
           },
           "swingTimer": 0.45,
-          "tappedById": 1190,
-          "targetId": 1190,
+          "tappedById": 1397,
+          "targetId": 1397,
           "templateId": "forest_wolf",
           "threat": [
             [
-              1190,
+              1397,
               105
             ]
           ],

@@ -13,8 +13,8 @@
     {
       "tick": 0,
       "time": 0,
-      "nextId": 1198,
-      "state": "997fdb32",
+      "nextId": 1409,
+      "state": "3c1c9881",
       "events": "741638a5",
       "rng": {
         "draws": 0,
@@ -62,7 +62,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1397,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -128,11 +128,11 @@
           "critChance": 0.056,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.056,
-          "fallStartY": -2,
+          "fallStartY": 0.39,
           "fiveSecondRule": 99,
           "healPower": 13,
           "hp": 54,
-          "id": 1190,
+          "id": 1397,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -143,17 +143,17 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "potionCooldownUntil": -1,
           "resource": 195,
           "resourceType": "mana",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 13,
           "stats": {
@@ -176,9 +176,9 @@
     {
       "tick": 10,
       "time": 0.5,
-      "nextId": 1199,
-      "state": "438bf8ea",
-      "events": "45daecf0",
+      "nextId": 1410,
+      "state": "098ed973",
+      "events": "db5a7b79",
       "rng": {
         "draws": 3,
         "digest": "80e78b7c"
@@ -187,9 +187,9 @@
     {
       "tick": 20,
       "time": 1,
-      "nextId": 1199,
-      "state": "bf9c7eed",
-      "events": "c3b69972",
+      "nextId": 1410,
+      "state": "5890e516",
+      "events": "7e8aba31",
       "rng": {
         "draws": 3,
         "digest": "80e78b7c"
@@ -198,8 +198,8 @@
     {
       "tick": 30,
       "time": 1.5,
-      "nextId": 1199,
-      "state": "efde6ee8",
+      "nextId": 1410,
+      "state": "e9d6e095",
       "events": "741638a5",
       "rng": {
         "draws": 3,
@@ -209,8 +209,8 @@
     {
       "tick": 40,
       "time": 2,
-      "nextId": 1199,
-      "state": "5cc07c93",
+      "nextId": 1410,
+      "state": "2450b1de",
       "events": "741638a5",
       "rng": {
         "draws": 3,
@@ -220,9 +220,9 @@
     {
       "tick": 50,
       "time": 2.5,
-      "nextId": 1199,
-      "state": "7e6eae2a",
-      "events": "3385486e",
+      "nextId": 1410,
+      "state": "c8cafda0",
+      "events": "bd1bcd9c",
       "rng": {
         "draws": 72,
         "digest": "1e25b053"
@@ -231,8 +231,8 @@
     {
       "tick": 60,
       "time": 3,
-      "nextId": 1199,
-      "state": "9e0e0b96",
+      "nextId": 1410,
+      "state": "29d09b26",
       "events": "741638a5",
       "rng": {
         "draws": 153,
@@ -242,8 +242,8 @@
     {
       "tick": 70,
       "time": 3.5,
-      "nextId": 1199,
-      "state": "2d8c60ef",
+      "nextId": 1410,
+      "state": "7114eed7",
       "events": "741638a5",
       "rng": {
         "draws": 241,
@@ -253,9 +253,9 @@
     {
       "tick": 80,
       "time": 4,
-      "nextId": 1199,
-      "state": "bfbb5a6e",
-      "events": "419db2b2",
+      "nextId": 1410,
+      "state": "3cd5e649",
+      "events": "44a4b149",
       "rng": {
         "draws": 329,
         "digest": "fe735496"
@@ -264,9 +264,9 @@
     {
       "tick": 90,
       "time": 4.5,
-      "nextId": 1199,
-      "state": "b1d1899d",
-      "events": "3c9e2f09",
+      "nextId": 1410,
+      "state": "5f923199",
+      "events": "f54ee937",
       "rng": {
         "draws": 414,
         "digest": "00a5eee7"
@@ -275,8 +275,8 @@
     {
       "tick": 100,
       "time": 5,
-      "nextId": 1199,
-      "state": "9e01efec",
+      "nextId": 1410,
+      "state": "81594040",
       "events": "741638a5",
       "rng": {
         "draws": 507,
@@ -286,8 +286,8 @@
     {
       "tick": 110,
       "time": 5.5,
-      "nextId": 1199,
-      "state": "00df8953",
+      "nextId": 1410,
+      "state": "63cfc70b",
       "events": "741638a5",
       "rng": {
         "draws": 605,
@@ -297,8 +297,8 @@
     {
       "tick": 120,
       "time": 6,
-      "nextId": 1199,
-      "state": "20d5b285",
+      "nextId": 1410,
+      "state": "dcb0cce7",
       "events": "741638a5",
       "rng": {
         "draws": 687,
@@ -308,8 +308,8 @@
     {
       "tick": 120,
       "time": 6,
-      "nextId": 1199,
-      "state": "20d5b285",
+      "nextId": 1410,
+      "state": "dcb0cce7",
       "events": "741638a5",
       "rng": {
         "draws": 687,
@@ -358,9 +358,6 @@
               "baked_bread",
               "gnarled_staff",
               "spring_water"
-            ],
-            "visited": [
-              "poi:eastbrook_vale:eastbrook_docks"
             ]
           },
           "deedsEarned": [
@@ -391,7 +388,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1397,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -460,11 +457,14 @@
           "critChance": 0.056,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.056,
-          "fallStartY": -2,
+          "durabilityWear": {
+            "taken": 3
+          },
+          "fallStartY": 0.39,
           "fiveSecondRule": 2.05,
           "healPower": 41,
           "hp": 49836,
-          "id": 1190,
+          "id": 1397,
           "inCombat": true,
           "kind": "player",
           "level": 20,
@@ -476,17 +476,17 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "potionCooldownUntil": -1,
           "resource": 1427,
           "resourceType": "mana",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 41,
           "stats": {
@@ -497,7 +497,7 @@
             "sta": 52,
             "str": 10
           },
-          "targetId": 1198,
+          "targetId": 1409,
           "templateId": "mage",
           "weapon": {
             "max": 6,
@@ -506,7 +506,7 @@
           }
         },
         {
-          "aggroTargetId": 1190,
+          "aggroTargetId": 1397,
           "aiState": "attack",
           "auras": [
             {
@@ -516,7 +516,7 @@
               "name": "Cinderbolt",
               "remaining": 6.05,
               "school": "fire",
-              "sourceId": 1190,
+              "sourceId": 1397,
               "tickInterval": 2,
               "tickTimer": 0.05,
               "value": 3
@@ -529,17 +529,17 @@
           "detonateTimer": "Infinity",
           "dodgeChance": 0.05,
           "facing": 3.141593,
-          "fallStartY": -2,
+          "fallStartY": 0.39,
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 49889,
-          "id": 1198,
+          "id": 1409,
           "inCombat": true,
           "kind": "mob",
           "leashAnchor": {
-            "x": -94,
-            "y": -2,
-            "z": -56
+            "x": -16,
+            "y": 0.39,
+            "z": -156
           },
           "level": 23,
           "lootFfaTimer": "Infinity",
@@ -549,25 +549,25 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -94,
-            "y": -2,
-            "z": -56
+            "x": -16,
+            "y": 0.39,
+            "z": -156
           },
           "potionCooldownUntil": -1,
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -56
+            "x": -16,
+            "y": 0.39,
+            "z": -156
           },
           "stats": {
             "armor": 220
           },
           "swingTimer": 0.1,
-          "tappedById": 1190,
+          "tappedById": 1397,
           "templateId": "forest_wolf",
           "threat": [
             [
-              1190,
+              1397,
               112
             ]
           ],
@@ -582,8 +582,8 @@
     {
       "tick": 120,
       "time": 6,
-      "nextId": 1199,
-      "state": "20d5b285",
+      "nextId": 1410,
+      "state": "dcb0cce7",
       "events": "741638a5",
       "rng": {
         "draws": 687,
@@ -632,9 +632,6 @@
               "baked_bread",
               "gnarled_staff",
               "spring_water"
-            ],
-            "visited": [
-              "poi:eastbrook_vale:eastbrook_docks"
             ]
           },
           "deedsEarned": [
@@ -665,7 +662,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1397,
           "equipment": {
             "chest": "apprentice_robe",
             "mainhand": "gnarled_staff"
@@ -734,11 +731,14 @@
           "critChance": 0.056,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.056,
-          "fallStartY": -2,
+          "durabilityWear": {
+            "taken": 3
+          },
+          "fallStartY": 0.39,
           "fiveSecondRule": 2.05,
           "healPower": 41,
           "hp": 49836,
-          "id": 1190,
+          "id": 1397,
           "inCombat": true,
           "kind": "player",
           "level": 20,
@@ -750,17 +750,17 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "potionCooldownUntil": -1,
           "resource": 1427,
           "resourceType": "mana",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 41,
           "stats": {
@@ -771,7 +771,7 @@
             "sta": 52,
             "str": 10
           },
-          "targetId": 1198,
+          "targetId": 1409,
           "templateId": "mage",
           "weapon": {
             "max": 6,
@@ -780,7 +780,7 @@
           }
         },
         {
-          "aggroTargetId": 1190,
+          "aggroTargetId": 1397,
           "aiState": "attack",
           "auras": [
             {
@@ -790,7 +790,7 @@
               "name": "Cinderbolt",
               "remaining": 6.05,
               "school": "fire",
-              "sourceId": 1190,
+              "sourceId": 1397,
               "tickInterval": 2,
               "tickTimer": 0.05,
               "value": 3
@@ -803,17 +803,17 @@
           "detonateTimer": "Infinity",
           "dodgeChance": 0.05,
           "facing": 3.141593,
-          "fallStartY": -2,
+          "fallStartY": 0.39,
           "fiveSecondRule": 99,
           "hostile": true,
           "hp": 49889,
-          "id": 1198,
+          "id": 1409,
           "inCombat": true,
           "kind": "mob",
           "leashAnchor": {
-            "x": -94,
-            "y": -2,
-            "z": -56
+            "x": -16,
+            "y": 0.39,
+            "z": -156
           },
           "level": 23,
           "lootFfaTimer": "Infinity",
@@ -823,25 +823,25 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -94,
-            "y": -2,
-            "z": -56
+            "x": -16,
+            "y": 0.39,
+            "z": -156
           },
           "potionCooldownUntil": -1,
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -56
+            "x": -16,
+            "y": 0.39,
+            "z": -156
           },
           "stats": {
             "armor": 220
           },
           "swingTimer": 0.1,
-          "tappedById": 1190,
+          "tappedById": 1397,
           "templateId": "forest_wolf",
           "threat": [
             [
-              1190,
+              1397,
               112
             ]
           ],

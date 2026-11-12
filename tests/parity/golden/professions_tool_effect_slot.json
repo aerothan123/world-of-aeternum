@@ -22,8 +22,8 @@
     {
       "tick": 0,
       "time": 0,
-      "nextId": 1198,
-      "state": "92e3041b",
+      "nextId": 1409,
+      "state": "eac76dfd",
       "events": "741638a5",
       "rng": {
         "draws": 0,
@@ -72,7 +72,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1397,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -138,7 +138,7 @@
               "name": "Battle Stance",
               "remaining": 3600,
               "school": "physical",
-              "sourceId": 1190
+              "sourceId": 1397
             }
           ],
           "blockChance": 0.05,
@@ -148,11 +148,11 @@
           "critChance": 0.06,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.06,
-          "fallStartY": -2,
+          "fallStartY": 0.39,
           "fiveSecondRule": 99,
           "healPower": 5,
           "hp": 100,
-          "id": 1190,
+          "id": 1397,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -164,16 +164,16 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
@@ -196,9 +196,9 @@
     {
       "tick": 0,
       "time": 0,
-      "nextId": 1198,
-      "state": "7e151fa7",
-      "events": "f20d3371",
+      "nextId": 1409,
+      "state": "d0e3ea4b",
+      "events": "9c44669e",
       "rng": {
         "draws": 0,
         "digest": "811c9dc5"
@@ -251,7 +251,7 @@
           },
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1397,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -332,7 +332,7 @@
               "name": "Battle Stance",
               "remaining": 3600,
               "school": "physical",
-              "sourceId": 1190
+              "sourceId": 1397
             }
           ],
           "blockChance": 0.05,
@@ -342,11 +342,11 @@
           "critChance": 0.06,
           "detonateTimer": "Infinity",
           "dodgeChance": 0.06,
-          "fallStartY": -2,
+          "fallStartY": 0.39,
           "fiveSecondRule": 99,
           "healPower": 5,
           "hp": 100,
-          "id": 1190,
+          "id": 1397,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -358,16 +358,16 @@
           "overpowerUntil": -1,
           "petMode": "defensive",
           "pos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "potionCooldownUntil": -1,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
@@ -390,9 +390,9 @@
     {
       "tick": 51,
       "time": 2.55,
-      "nextId": 1198,
-      "state": "1c67b258",
-      "events": "17a08e99",
+      "nextId": 1409,
+      "state": "6a00dac6",
+      "events": "a56340e4",
       "rng": {
         "draws": 2,
         "digest": "00a2a78c"
@@ -426,7 +426,7 @@
           "cls": "warrior",
           "companionUpgrades": {},
           "counters": {
-            "xpGained": 36
+            "xpGained": 40
           },
           "craftDaily": {},
           "craftSkills": {},
@@ -463,7 +463,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1397,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -471,7 +471,9 @@
           },
           "equipmentInstance": {},
           "factionCurrencies": {},
-          "factions": {},
+          "factions": {
+            "bracken_circle": 1
+          },
           "gatherTools": {
             "herbalism": {
               "count": 1,
@@ -514,7 +516,12 @@
               ]
             }
           ],
-          "lifetimeXp": 36,
+          "lifeSkillStanding": {
+            "earned": {
+              "gather": 1
+            }
+          },
+          "lifetimeXp": 40,
           "mailWelcomed": true,
           "nodeHarvestReadyAt": {
             "ore_mirefen_t2": 242.1
@@ -545,7 +552,7 @@
           "vaultAttemptDurable": true,
           "worldQuestReplacements": {},
           "wyrmfallDaily": {},
-          "xp": 36
+          "xp": 40
         }
       ],
       "entities": [
@@ -560,7 +567,7 @@
               "name": "Battle Stance",
               "remaining": 3597.45,
               "school": "physical",
-              "sourceId": 1190
+              "sourceId": 1397
             }
           ],
           "blockChance": 0.05,
@@ -575,7 +582,7 @@
           "fiveSecondRule": 101.55,
           "healPower": 5,
           "hp": 100,
-          "id": 1190,
+          "id": 1397,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -594,9 +601,9 @@
           "potionCooldownUntil": -1,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
@@ -619,9 +626,9 @@
     {
       "tick": 53,
       "time": 2.65,
-      "nextId": 1198,
-      "state": "bf663695",
-      "events": "4523e63c",
+      "nextId": 1409,
+      "state": "c9c71125",
+      "events": "39d551a3",
       "rng": {
         "draws": 2,
         "digest": "00a2a78c"
@@ -655,7 +662,7 @@
           "cls": "warrior",
           "companionUpgrades": {},
           "counters": {
-            "xpGained": 36
+            "xpGained": 40
           },
           "craftDaily": {},
           "craftSkills": {},
@@ -692,7 +699,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1397,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -700,7 +707,9 @@
           },
           "equipmentInstance": {},
           "factionCurrencies": {},
-          "factions": {},
+          "factions": {
+            "bracken_circle": 1
+          },
           "gatherTools": {
             "herbalism": {
               "count": 1,
@@ -743,7 +752,12 @@
               ]
             }
           ],
-          "lifetimeXp": 36,
+          "lifeSkillStanding": {
+            "earned": {
+              "gather": 1
+            }
+          },
+          "lifetimeXp": 40,
           "mailWelcomed": true,
           "nodeHarvestReadyAt": {
             "ore_mirefen_t2": 242.1
@@ -774,7 +788,7 @@
           "vaultAttemptDurable": true,
           "worldQuestReplacements": {},
           "wyrmfallDaily": {},
-          "xp": 36
+          "xp": 40
         }
       ],
       "entities": [
@@ -789,7 +803,7 @@
               "name": "Battle Stance",
               "remaining": 3597.35,
               "school": "physical",
-              "sourceId": 1190
+              "sourceId": 1397
             }
           ],
           "blockChance": 0.05,
@@ -804,7 +818,7 @@
           "fiveSecondRule": 101.65,
           "healPower": 5,
           "hp": 100,
-          "id": 1190,
+          "id": 1397,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -823,9 +837,9 @@
           "potionCooldownUntil": -1,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
@@ -848,9 +862,9 @@
     {
       "tick": 55,
       "time": 2.75,
-      "nextId": 1198,
-      "state": "5b83d4e9",
-      "events": "fcc0e323",
+      "nextId": 1409,
+      "state": "551dcbdb",
+      "events": "4270b197",
       "rng": {
         "draws": 2,
         "digest": "00a2a78c"
@@ -884,7 +898,7 @@
           "cls": "warrior",
           "companionUpgrades": {},
           "counters": {
-            "xpGained": 36
+            "xpGained": 40
           },
           "craftDaily": {},
           "craftSkills": {},
@@ -921,7 +935,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1397,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -929,7 +943,9 @@
           },
           "equipmentInstance": {},
           "factionCurrencies": {},
-          "factions": {},
+          "factions": {
+            "bracken_circle": 1
+          },
           "gatherTools": {
             "herbalism": {
               "count": 1,
@@ -972,7 +988,12 @@
               ]
             }
           ],
-          "lifetimeXp": 36,
+          "lifeSkillStanding": {
+            "earned": {
+              "gather": 1
+            }
+          },
+          "lifetimeXp": 40,
           "mailWelcomed": true,
           "nodeHarvestReadyAt": {
             "ore_mirefen_t2": 242.1
@@ -1003,7 +1024,7 @@
           "vaultAttemptDurable": true,
           "worldQuestReplacements": {},
           "wyrmfallDaily": {},
-          "xp": 36
+          "xp": 40
         }
       ],
       "entities": [
@@ -1018,7 +1039,7 @@
               "name": "Battle Stance",
               "remaining": 3597.25,
               "school": "physical",
-              "sourceId": 1190
+              "sourceId": 1397
             }
           ],
           "blockChance": 0.05,
@@ -1033,7 +1054,7 @@
           "fiveSecondRule": 101.75,
           "healPower": 5,
           "hp": 100,
-          "id": 1190,
+          "id": 1397,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -1052,9 +1073,9 @@
           "potionCooldownUntil": -1,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
@@ -1077,9 +1098,9 @@
     {
       "tick": 106,
       "time": 5.3,
-      "nextId": 1198,
-      "state": "4a1c88c6",
-      "events": "3e4f0fa0",
+      "nextId": 1409,
+      "state": "0fe3c20b",
+      "events": "38a079ef",
       "rng": {
         "draws": 4,
         "digest": "49d036fe"
@@ -1113,7 +1134,7 @@
           "cls": "warrior",
           "companionUpgrades": {},
           "counters": {
-            "xpGained": 72
+            "xpGained": 76
           },
           "craftDaily": {},
           "craftSkills": {},
@@ -1151,7 +1172,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1397,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -1159,7 +1180,9 @@
           },
           "equipmentInstance": {},
           "factionCurrencies": {},
-          "factions": {},
+          "factions": {
+            "bracken_circle": 2
+          },
           "gatherTools": {
             "herbalism": {
               "count": 1,
@@ -1214,7 +1237,12 @@
               ]
             }
           ],
-          "lifetimeXp": 72,
+          "lifeSkillStanding": {
+            "earned": {
+              "gather": 2
+            }
+          },
+          "lifetimeXp": 76,
           "mailWelcomed": true,
           "nodeHarvestReadyAt": {
             "ore_mirefen_1": 244.45,
@@ -1246,7 +1274,7 @@
           "vaultAttemptDurable": true,
           "worldQuestReplacements": {},
           "wyrmfallDaily": {},
-          "xp": 72
+          "xp": 76
         }
       ],
       "entities": [
@@ -1261,7 +1289,7 @@
               "name": "Battle Stance",
               "remaining": 3594.7,
               "school": "physical",
-              "sourceId": 1190
+              "sourceId": 1397
             }
           ],
           "blockChance": 0.05,
@@ -1276,7 +1304,7 @@
           "fiveSecondRule": 104.3,
           "healPower": 5,
           "hp": 100,
-          "id": 1190,
+          "id": 1397,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -1295,9 +1323,9 @@
           "potionCooldownUntil": -1,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
@@ -1320,9 +1348,9 @@
     {
       "tick": 157,
       "time": 7.85,
-      "nextId": 1198,
-      "state": "b5dc78de",
-      "events": "19d17a98",
+      "nextId": 1409,
+      "state": "7528ccf8",
+      "events": "35cf47bc",
       "rng": {
         "draws": 6,
         "digest": "1272a77a"
@@ -1356,7 +1384,7 @@
           "cls": "warrior",
           "companionUpgrades": {},
           "counters": {
-            "xpGained": 108
+            "xpGained": 116
           },
           "craftDaily": {},
           "craftSkills": {},
@@ -1395,7 +1423,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1397,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -1403,7 +1431,9 @@
           },
           "equipmentInstance": {},
           "factionCurrencies": {},
-          "factions": {},
+          "factions": {
+            "bracken_circle": 3
+          },
           "gatherTools": {
             "herbalism": {
               "count": 1,
@@ -1464,7 +1494,12 @@
               ]
             }
           ],
-          "lifetimeXp": 108,
+          "lifeSkillStanding": {
+            "earned": {
+              "gather": 3
+            }
+          },
+          "lifetimeXp": 116,
           "mailWelcomed": true,
           "nodeHarvestReadyAt": {
             "ore_mirefen_1": 244.45,
@@ -1497,7 +1532,7 @@
           "vaultAttemptDurable": true,
           "worldQuestReplacements": {},
           "wyrmfallDaily": {},
-          "xp": 108
+          "xp": 116
         }
       ],
       "entities": [
@@ -1512,7 +1547,7 @@
               "name": "Battle Stance",
               "remaining": 3592.15,
               "school": "physical",
-              "sourceId": 1190
+              "sourceId": 1397
             }
           ],
           "blockChance": 0.05,
@@ -1527,7 +1562,7 @@
           "fiveSecondRule": 106.85,
           "healPower": 5,
           "hp": 100,
-          "id": 1190,
+          "id": 1397,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -1546,9 +1581,9 @@
           "potionCooldownUntil": -1,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
@@ -1571,8 +1606,8 @@
     {
       "tick": 159,
       "time": 7.95,
-      "nextId": 1198,
-      "state": "85188839",
+      "nextId": 1409,
+      "state": "af1e6dfd",
       "events": "741638a5",
       "rng": {
         "draws": 6,
@@ -1607,7 +1642,7 @@
           "cls": "warrior",
           "companionUpgrades": {},
           "counters": {
-            "xpGained": 108
+            "xpGained": 116
           },
           "craftDaily": {},
           "craftSkills": {},
@@ -1646,7 +1681,7 @@
           ],
           "delveClears": {},
           "delveDaily": {},
-          "entityId": 1190,
+          "entityId": 1397,
           "equipment": {
             "chest": "recruit_tunic",
             "mainhand": "worn_sword",
@@ -1654,7 +1689,9 @@
           },
           "equipmentInstance": {},
           "factionCurrencies": {},
-          "factions": {},
+          "factions": {
+            "bracken_circle": 3
+          },
           "gatherTools": {
             "herbalism": {
               "count": 1,
@@ -1715,7 +1752,12 @@
               ]
             }
           ],
-          "lifetimeXp": 108,
+          "lifeSkillStanding": {
+            "earned": {
+              "gather": 3
+            }
+          },
+          "lifetimeXp": 116,
           "mailWelcomed": true,
           "nodeHarvestReadyAt": {
             "ore_mirefen_1": 244.45,
@@ -1748,7 +1790,7 @@
           "vaultAttemptDurable": true,
           "worldQuestReplacements": {},
           "wyrmfallDaily": {},
-          "xp": 108
+          "xp": 116
         }
       ],
       "entities": [
@@ -1763,7 +1805,7 @@
               "name": "Battle Stance",
               "remaining": 3592.05,
               "school": "physical",
-              "sourceId": 1190
+              "sourceId": 1397
             }
           ],
           "blockChance": 0.05,
@@ -1778,7 +1820,7 @@
           "fiveSecondRule": 106.95,
           "healPower": 5,
           "hp": 100,
-          "id": 1190,
+          "id": 1397,
           "kind": "player",
           "level": 1,
           "lootFfaTimer": "Infinity",
@@ -1797,9 +1839,9 @@
           "potionCooldownUntil": -1,
           "resourceType": "rage",
           "spawnPos": {
-            "x": -94,
-            "y": -2,
-            "z": -58
+            "x": -16,
+            "y": 0.39,
+            "z": -158
           },
           "spellPower": 5,
           "stats": {
