@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-4aa5e-c0943b31-256c0f21-14b3-b4ad9a78-f493dfc8",
+    "id": "live-4aa5f-2d192e9a-f95db18a-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "4aa5e-c0943b31-256c0f21",
+    "overworldBase": "4aa5f-2d192e9a-f95db18a",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -3701,7 +3701,7 @@
         "name": "Card Master",
         "title": "Dealer of Chance",
         "pos": {
-          "x": -32.23,
+          "x": -31.83,
           "z": -90.4
         },
         "facing": 0.7853981633974481,
@@ -3752,7 +3752,7 @@
         "name": "Cook Marlow",
         "title": "Master of the Kitchens",
         "pos": {
-          "x": -30.11,
+          "x": -29.71,
           "z": -89.3
         },
         "facing": -1.5707963267948966,
@@ -6128,7 +6128,7 @@
         "name": "Jorren",
         "title": "Innkeeper",
         "pos": {
-          "x": -34.43,
+          "x": -34.03,
           "z": -91.05
         },
         "facing": -2.72,
@@ -7811,16 +7811,16 @@
         "name": "Tapping Wall Panel",
         "positions": [
           {
-            "x": -31.23,
+            "x": -30.83,
             "z": -98.27
           },
           {
-            "x": -29.63,
+            "x": -29.23,
             "z": -98.97
           },
           {
-            "x": -27.13,
-            "z": -97.27
+            "x": -26.97,
+            "z": -97.74
           }
         ]
       },
@@ -7829,7 +7829,7 @@
         "name": "Nibbled Rent Notice",
         "positions": [
           {
-            "x": -28.33,
+            "x": -27.93,
             "z": -100.07
           }
         ]
@@ -7839,7 +7839,7 @@
         "name": "Disused Speaking Pipe",
         "positions": [
           {
-            "x": -25.59,
+            "x": -25.67,
             "z": -98.34
           }
         ]
@@ -7849,7 +7849,7 @@
         "name": "Bread Heel",
         "positions": [
           {
-            "x": -26.83,
+            "x": -26.43,
             "z": -103.07
           }
         ]
@@ -7859,7 +7859,7 @@
         "name": "Empty Pantry Saucer",
         "positions": [
           {
-            "x": -24.53,
+            "x": -24.13,
             "z": -99.77
           }
         ]
@@ -8023,15 +8023,15 @@
         "name": "Covered Stew Bowl",
         "positions": [
           {
-            "x": -24.83,
+            "x": -24.43,
             "z": -104.07
           },
           {
-            "x": -24.13,
+            "x": -23.73,
             "z": -102.87
           },
           {
-            "x": -25.53,
+            "x": -25.13,
             "z": -104.57
           }
         ]
@@ -8041,15 +8041,15 @@
         "name": "Bread Bundle",
         "positions": [
           {
-            "x": -30.23,
+            "x": -29.83,
             "z": -103.37
           },
           {
-            "x": -31.53,
+            "x": -31.13,
             "z": -103.17
           },
           {
-            "x": -30.83,
+            "x": -30.43,
             "z": -102.17
           }
         ]
@@ -8063,8 +8063,8 @@
             "z": -76.5
           },
           {
-            "x": -40.5,
-            "z": -76.7
+            "x": -41.6,
+            "z": -79.72
           },
           {
             "x": -40.5,
@@ -8329,7 +8329,7 @@
         "name": "The Inn's Public Hearth",
         "positions": [
           {
-            "x": -28.33,
+            "x": -27.93,
             "z": -103.57
           }
         ]

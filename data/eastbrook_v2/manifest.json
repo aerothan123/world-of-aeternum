@@ -1,11 +1,11 @@
 {
   "note": "Written by scripts/eastbrook_v2/import_eastbrook_v2.ts. Do not edit by hand.",
   "source": {
-    "commit": "0091c326e526ecfb05ded209f9532fc39dac3d44",
+    "commit": "3b801004abbc26046e8c458e1e51fd721dea8096",
     "files": {
       "heightfield.json": "b4551c2194d49a825de922c47fd058e003b6087410d91239028e3a88122aae91",
-      "colliders.json": "df4a1ba8859d1380c0704332c2f7c2310ff1dd9d62d77083ed42a0d60a9f18fe",
-      "points.json": "83bc6c9ddbc688981ac45fc2900a536a4b991800126b8816398e8e831f70e7ad",
+      "colliders.json": "1ca2d1830a043e24fd8f9a0eb84133e43d762df981eb8a58479c691e2061183d",
+      "points.json": "9c4f0a6761338d39377170de650fe56653576f697888774ecf7bd8db479b32ac",
       "nodes.json": "42e01f94cc33796fd8e4d975507fc14df703e19453bf603fea125de73ce1345d",
       "roads.json": "9da2a725ef9d840647059cbd3f8239058277c25c02b1bb44d2b6d7bc89640b94"
     }

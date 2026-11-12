@@ -120,6 +120,14 @@
           },
           {
             "kind": "station",
+            "ref": "station:station_eastbrook_kitchens",
+            "wx": -32.87,
+            "wz": -89.8,
+            "mx": 124.979,
+            "my": 29.66
+          },
+          {
+            "kind": "station",
             "ref": "station:station_eastbrook_toolworks",
             "wx": 1.43,
             "wz": -82.6,
@@ -1746,9 +1754,9 @@
           {
             "kind": "station",
             "ref": "station:station_eastbrook_kitchens",
-            "wx": -33.27,
+            "wx": -32.87,
             "wz": -89.8,
-            "mx": 125.659,
+            "mx": 124.979,
             "my": 95.96
           },
           {
@@ -2021,9 +2029,9 @@
           {
             "kind": "station",
             "ref": "station:station_eastbrook_kitchens",
-            "wx": -33.27,
+            "wx": -32.87,
             "wz": -89.8,
-            "mx": 125.659,
+            "mx": 124.979,
             "my": 95.96
           },
           {
