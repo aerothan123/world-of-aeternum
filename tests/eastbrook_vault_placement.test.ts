@@ -27,9 +27,10 @@ import {
 } from '../src/render/eastbrook_weekly_vault';
 import { collisionOverrideFor } from '../src/sim/asset_collision';
 import { promotedTownBuildingStandsDown } from '../src/sim/authored_town_buildings';
-import { colliderInternalsForTest } from '../src/sim/colliders';
+import { colliderInternalsForTest, isBlocked } from '../src/sim/colliders';
 import { BUILTIN_WORLD, setActiveWorldContent } from '../src/sim/data';
 import { EASTBROOK_LAYOUT, localToWorld } from '../src/sim/eastbrook_layout';
+import { ebv2OwnsBuiltin } from '../src/sim/eastbrook_v2';
 import { terrainHeight } from '../src/sim/world';
 import { WORLD_SEED } from '../src/sim/world_seed';
 
@@ -174,11 +175,22 @@ describe('the Weekly Vault record collider', () => {
     expect(promotedTownBuildingStandsDown({ authoredTowns: true }, rebuild)).toBe(true);
   });
 
-  it('leaves the shipped world its collider and takes it out of a document that owns the vault', () => {
+  // Restated for the Eastbrook Vale v2 port: the shipped world kept the hall's
+  // record box until the v2 design took the hall's ground. Every old record on
+  // design ground stands its box down (eastbrook_town_solids.test.ts), so the
+  // shipped world now walls the hall with the design's own boxes: its centre
+  // stays solid, so nobody stands inside it. A document that owns the vault
+  // still carries no record box. A document that promotes only the town
+  // buildings is no longer the design-owned built-in ground, so the hall's
+  // own record box stands there again (the vault is its own family).
+  it('keeps the shipped hall solid on the design ground and takes the record out of a document that owns the vault', () => {
     expect(VAULT_BOXES.length).toBeGreaterThan(0);
-    expect(vaultObb(WORLD_SEED)).toHaveLength(VAULT_BOXES.length);
+    expect(ebv2OwnsBuiltin(VAULT.x, VAULT.z)).toBe(true);
+    expect(vaultObb(WORLD_SEED)).toHaveLength(0);
+    expect(isBlocked(WORLD_SEED, VAULT.x, VAULT.z, 0.5)).toBe(true);
     setActiveWorldContent({ ...BUILTIN_WORLD, promotedScenery: { authoredTowns: true } });
     expect(vaultObb(WORLD_SEED)).toHaveLength(VAULT_BOXES.length);
+    expect(isBlocked(WORLD_SEED, VAULT.x, VAULT.z, 0.5)).toBe(true);
     setActiveWorldContent({ ...BUILTIN_WORLD, promotedScenery: { eastbrookVault: true } });
     expect(vaultObb(WORLD_SEED)).toHaveLength(0);
   });

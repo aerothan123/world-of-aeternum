@@ -47,10 +47,10 @@ const VIEW = MOBILE
   : { width: 1600, height: 900 };
 
 // Jessica stands at (-15.5, -81.5) facing the beds; bed_eastbrook_1 is at
-// (-24, -84). The bed arm resolves the caller's OWN nearest bed by proximity
+// (-27, -75) since the Eastbrook Vale v2 port. The bed arm resolves the caller's OWN nearest bed by proximity
 // (INTERACT_RANGE), so the journey stands the player ON the bed.
 const JESSICA_SPOT = { x: -17, z: -81.5 };
-const BED_SPOT = { x: -24, z: -84 };
+const BED_SPOT = { x: -27, z: -75 };
 
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 

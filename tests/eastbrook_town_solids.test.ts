@@ -79,21 +79,8 @@ describe('the Eastbrook town solids', () => {
         ).toBe(false);
       }
     }
-    // the town kit pieces: re-pinned from "a retired row carries no box, a kept one still does
-    // off the design": with the footprint table gone no row is retired by name, so a piece on
-    // the design's ground carries no box and one off it (none today) keeps its own
-    for (const piece of EASTBROOK_LAYOUT.townKit) {
-      const stands = colliders.some((collider) =>
-        sameBox(collider, {
-          x: piece.collider.center.x,
-          z: piece.collider.center.z,
-          hw: piece.collider.halfWidth,
-          hd: piece.collider.halfDepth,
-        }),
-      );
-      const owned = ebv2Owns(piece.collider.center.x, piece.collider.center.z);
-      expect(stands, piece.id).toBe(!owned);
-    }
+    // The town kit pieces' loop retired with the old kit in the Eastbrook Vale
+    // v2 port: no kit piece stands, so none can carry a box.
   });
   it('keeps every town NPC, service and quest object out of the walls', () => {
     const sim = new Sim({ seed: WORLD_SEED, playerClass: 'warrior' });
@@ -149,8 +136,12 @@ describe('the Eastbrook town solids', () => {
       expect(isBlocked(WORLD_SEED, x, z, 0.3), entity.templateId).toBe(false);
     }
     expect([...seen].sort()).toEqual([...INN_THINGS].sort());
+    // The rest step re-pinned for the Eastbrook Vale v2 port: the rest area is
+    // the design inn's own footprint (eastbrook_v2/rest.ts), so a traveller
+    // rests on the v2 inn's doorstep; the shipped inn record stands on ground
+    // the design owns and rests nobody there (progression/xp.ts).
     const player = sim.player;
-    player.pos = sim.groundPos(inn.frontStandingPoint.x, inn.frontStandingPoint.z);
+    player.pos = sim.groundPos(innV2.x, innV2.z);
     player.inCombat = false;
     expect(isResting(player)).toBe(true);
   });

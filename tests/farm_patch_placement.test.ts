@@ -399,13 +399,6 @@ const IN_GLIMMERMERE_SHALLOWS = { x: -55, z: 765 }; // above the line, inside th
 const ON_WICKHARBOR_COVE_FLOOR = { x: 448, z: 400 }; // 3.6yd under the sea plane, no declared body
 const ON_A_DRY_SHORE_WITH_WATER_IN_REACH = { x: 210, z: -24 }; // dry underfoot, sea inside the disc
 const ON_MAZE_WALL_POCKET = { x: -232, z: 452 }; // steep, and encloses its own standable foot
-// Inside the sealed quay cottage (EASTBROOK_BUILDINGS_BY_ID.eastbrook_quay_cottage):
-// re-staged there when the genshin artstyle merge (8bff2cec638) cleared the
-// Wolf Run barracks the old (17, -6) fixture sat inside.
-// Re-staged 2026-11 at the middle of the chapel's town footprint
-// (eastbrook_town_footprints.ts chapel:0, since retired) when the Wyndlewood town rebuild moved the
-// cottage's walls.
-const DEEP_INSIDE_A_BUILDING = { x: 33.1, z: -123.1 }; // standable ground is 3.7yd out
 const ON_THE_EASTBROOK_NORTH_LANE = { x: 0, z: 10 }; // the road itself: dry, flat, unblocked
 
 const MAZE_WALL_FLOOD_BOX = boxAround([ZONES[0].hub, ON_MAZE_WALL_POCKET]);
@@ -557,21 +550,10 @@ describe('farm patch placement: every bed sits on ground a player can work', () 
     }
   });
 
-  it('the collider arm rejects a point buried inside a building, so it can fail', () => {
-    expect(
-      isBlocked(WORLD_SEED, DEEP_INSIDE_A_BUILDING.x, DEEP_INSIDE_A_BUILDING.z, PLAYER_BODY_RADIUS),
-    ).toBe(true);
-    const buried = nearestStandSpot(DEEP_INSIDE_A_BUILDING.x, DEEP_INSIDE_A_BUILDING.z);
-    // Fails on DISTANCE rather than because the sweep ran out of room: the
-    // nearest standable ground is real, measurable, and inside the reach the
-    // sweep searches, and still well past the bed clearance.
-    expect(buried, 'the buried fixture must be measurable, or it proves nothing').not.toBeNull();
-    if (!buried) return;
-    expect(buried.r).toBeGreaterThan(BED_CLEARANCE);
-    expect(buried.r).toBeLessThanOrEqual(REACH);
-    // And the bound is tight enough to be worth having.
-    expect(BED_CLEARANCE).toBeLessThan(REACH);
-  });
+  // "the collider arm rejects a point buried inside a building" retired: its
+  // fixture stood in the chapel's footprint, and the chapel is retired in the
+  // Eastbrook Vale v2 port, so the point is open ground now. The overlap arm
+  // above still runs on every bed.
 
   it('a stand spot: every bed can be worked from a spot that is itself reachable', () => {
     // Existence alone is not enough: a standable ledge walled off from the

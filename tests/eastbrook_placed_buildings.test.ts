@@ -961,9 +961,12 @@ describe('the ground under the placed buildings', () => {
     } finally {
       setActiveWorldContent(null);
     }
-    // Eastbrook Vale v2: the design's own ground carries most of the town, so the pads
-    // shape only the eased edge of it and the harbor cove
-    expect(shaped).toBeGreaterThan(500);
+    // Eastbrook Vale v2: the design's own ground now carries every cell round the
+    // placed buildings (the ground it lays wins over the pad stamps), so the pads
+    // shape none of them and no pad can leave a bank. Pinned at 0 so a pad that
+    // starts shaping ground again comes back through this check, with the steep
+    // bound below still holding for every cell it shapes.
+    expect(shaped).toBe(0);
     if (process.env.PRINT_STEEP) console.log(tooSteep.join(' | '));
     expect(tooSteep).toEqual([]);
   });
