@@ -1,5 +1,6 @@
 // Eastbrook Vale v2: services, stations and NPCs stand on their sites in the imported
 // design (eastbrook_v2/sites.ts), falling back to the authored spot below.
+import { ebv2FacingToRoad } from './eastbrook_v2/facing';
 import { ebv2Site, ebv2SiteOr } from './eastbrook_v2/sites';
 
 export interface Point2 {
@@ -1222,13 +1223,10 @@ const MEADOW_LANE_JOIN = { x: 30, z: -30 } as const;
 export const EASTBROOK_MEADOW_LANE_Z = MEADOW_LANE_Z;
 export const EASTBROOK_MEADOW_LANE_JOIN = MEADOW_LANE_JOIN;
 
+// No service reads a kit piece any more (stations, masters, the Merchant and the
+// bursar stand on design sites); the kit stays only for its remaining render,
+// map and decor users until they retire with it.
 const TOWN_KIT = [...YARD, ...MARKET_ROW, ...SQUARE_KIT, ...GATE_KIT];
-
-function kitById(id: string) {
-  const placement = TOWN_KIT.find((candidate) => candidate.id === id);
-  if (!placement) throw new Error(`missing Eastbrook town kit placement ${id}`);
-  return placement;
-}
 
 function makeObbPlacement(
   id: string,
@@ -1624,20 +1622,18 @@ const BANK = buildingById('eastbrook_bank');
 const CHAPEL = buildingById('eastbrook_chapel');
 const SMITHY = buildingById('eastbrook_smithy');
 
-// The crafting yard's stations (town kit phase 2, plan section 4.3): each
-// station point is the front of its kit bench, where service routes end and
-// the crafting gate measures from. The forge, the kitchens (in from the inn
-// lane), the loom and the toolworks keep their ids; the yard adds Eastbrook's
-// own apothecary and tannery. The yard's other benches (the armorer's anvil,
-// the smelter, the jeweler's bench, the enchanting altar, the scribe's desk,
-// the woodshop and the stonecutter) are its visible faces for the crafts that
-// bind to these types; every one stands inside every station's 20 yd gate.
-const YARD_FORGE = kitById('kit_yard_forge');
-const YARD_COOKING = kitById('kit_yard_cooking');
-const YARD_LOOM = kitById('kit_yard_loom');
-const YARD_ENGINEERING = kitById('kit_yard_engineering');
-const YARD_ALCHEMY = kitById('kit_yard_alchemy');
-const YARD_TANNERY = kitById('kit_yard_tannery');
+// The crafting stations stand on their design sites (sites.generated.ts, placed
+// by scripts/eastbrook_v2/resite_eastbrook_v2.ts beside the design's craft
+// buildings): each station point is where service routes end and the crafting
+// gate measures from. The forge, the kitchens, the loom and the toolworks keep
+// their ids, with Eastbrook's own apothecary and tannery. The town kit's yard
+// benches they once stood at are retired with the old layout; a missing site
+// fails at load rather than parking a station on retired ground.
+function siteOf(key: string): Point2 {
+  const s = ebv2Site(key);
+  if (!s) throw new Error(`Eastbrook v2: no design site '${key}'`);
+  return { x: s.x, z: s.z };
+}
 
 const STATIONS = (
   [
@@ -1645,54 +1641,45 @@ const STATIONS = (
       id: 'station_eastbrook_forge',
       type: 'forge',
       masterNpcId: 'forgemistress_darva',
-      position: YARD_FORGE.frontStandingPoint,
       interactionRadius: 20,
-      kitId: YARD_FORGE.id,
     },
     {
       id: 'station_eastbrook_kitchens',
       type: 'kitchens',
       masterNpcId: 'cook_marlow',
-      position: YARD_COOKING.frontStandingPoint,
       interactionRadius: 20,
-      kitId: YARD_COOKING.id,
     },
     {
       id: 'station_eastbrook_loom',
       type: 'loom',
       masterNpcId: 'weaver_ottilie',
-      position: YARD_LOOM.frontStandingPoint,
       interactionRadius: 20,
-      kitId: YARD_LOOM.id,
     },
     {
       id: 'station_eastbrook_toolworks',
       type: 'toolworks',
       masterNpcId: 'tinker_gizzel',
-      position: YARD_ENGINEERING.frontStandingPoint,
       interactionRadius: 20,
-      kitId: YARD_ENGINEERING.id,
     },
     {
       id: 'station_eastbrook_apothecary',
       type: 'apothecary',
       masterNpcId: 'apothecary_lin',
-      position: YARD_ALCHEMY.frontStandingPoint,
       interactionRadius: 20,
-      kitId: YARD_ALCHEMY.id,
     },
     {
       id: 'station_eastbrook_tannery',
       type: 'tannery',
       masterNpcId: 'tanner_tamsin',
-      position: YARD_TANNERY.frontStandingPoint,
       interactionRadius: 20,
-      kitId: YARD_TANNERY.id,
     },
   ] as const
 ).map((station) => ({
-  ...station,
-  position: ebv2SiteOr(`station:${station.id}`, station.position),
+  id: station.id,
+  type: station.type,
+  masterNpcId: station.masterNpcId,
+  position: siteOf(`station:${station.id}`),
+  interactionRadius: station.interactionRadius,
 }));
 
 const FORGE_STATION = STATIONS[0];
@@ -1702,37 +1689,27 @@ const TOOLWORKS_STATION = STATIONS[3];
 const APOTHECARY_STATION = STATIONS[4];
 const TANNERY_STATION = STATIONS[5];
 
-/** A yard master stands a stride out from their station point, toward the
- *  aisle the yard opens on, their back to the bench and their face to the
- *  crafters who come to them. */
-const MASTER_STEP = 1.6;
-function masterBeside(station: { position: Point2 }, bench: { rotation: number }): Point2 {
-  return localToWorld(station.position, bench.rotation, 0, MASTER_STEP);
+/** A keeper on the design: their own site, facing the nearest design road (the
+ *  lane their customers walk up from, eastbrook_v2/facing.ts). Masters, the
+ *  Merchant and the bursar take their posts this way, none from a kit bench. */
+function keeperPost(npcId: string): { position: Point2; facing: number } {
+  const position = siteOf(`npc:${npcId}`);
+  return { position, facing: ebv2FacingToRoad(position.x, position.z) };
 }
 
 function makeNpc(id: string, position: Point2, facing: number, anchorId: string) {
   return { id, position: ebv2SiteOr(`npc:${id}`, position), facing, anchorId, bodyRadius: 0.6 };
 }
 
-// The Merchant keeps the World Market from the trading post's counter on
-// Market Row, facing the main street (town kit phase 2).
-const TRADING_POST = kitById('kit_trading_post');
-const MERCHANT_POSITION = TRADING_POST.frontStandingPoint;
+// The Merchant keeps the World Market from the design's trading post, facing
+// its road.
+const MERCHANT_POST = keeperPost('the_merchant');
 // Starter combat givers occupy the civic square with room between each stand.
 // Wilkes keeps his vendor service on the market edge; trades stay at their stations.
 const TRADER_POSITION = { x: -25, z: -94 } as const;
-// The apothecary masters the crafting yard's alchemy bench (town kit phase
-// 2): she stands at the bench's north end, toward the square and off the
-// yard aisle (the crafts lane ends there), so the starter combat givers still
-// read as one group round the square (each within 12 yd of another, none more
-// than 18 yd off it, and every other yard station 7 yd away,
-// tests/eastbrook_combat_giver_visibility.test.ts). Her shop stays hers.
-const APOTHECARY_POSITION = localToWorld(
-  APOTHECARY_STATION.position,
-  YARD_ALCHEMY.rotation,
-  -2.8,
-  -0.5,
-);
+// The apothecary masters the alchemy station from her own design site; she
+// still faces the square like the other starter combat givers.
+const APOTHECARY_POSITION = siteOf('npc:apothecary_lin');
 // On the main street at the square's corner.
 const BRANDT_POSITION = { x: -22.3, z: -104.6 } as const;
 // On the open ground south-west of the square the Weekly Vault left (it
@@ -1742,16 +1719,14 @@ const BRANDT_POSITION = { x: -22.3, z: -104.6 } as const;
 // crafting yard's kitchens at the yard's square end stay 7 yd off his stand.
 const ODELL_POSITION = { x: 1.8, z: -102.6 } as const;
 // Smith Haldren keeps the smithy: he stands at its door north of the square,
-// looking out of it. The yard's masters (town kit phase 2) each stand a
-// stride out from their own bench's station point, toward the aisle, facing
-// out of the bench: the forge and kitchens masters on the west rim, the loom,
-// toolworks and tannery masters on the east rim.
+// looking out of it. The station masters keep posts beside their stations on
+// the design (keeperPost), facing the road their crafters come by.
 const SMITH_POSITION = SMITHY.frontStandingPoint;
-const DARVA_POSITION = masterBeside(FORGE_STATION, YARD_FORGE);
-const COOK_POSITION = masterBeside(KITCHENS_STATION, YARD_COOKING);
-const WEAVER_POSITION = masterBeside(LOOM_STATION, YARD_LOOM);
-const TINKER_POSITION = masterBeside(TOOLWORKS_STATION, YARD_ENGINEERING);
-const TANNER_POSITION = masterBeside(TANNERY_STATION, YARD_TANNERY);
+const DARVA_POST = keeperPost('forgemistress_darva');
+const COOK_POST = keeperPost('cook_marlow');
+const WEAVER_POST = keeperPost('weaver_ottilie');
+const TINKER_POST = keeperPost('tinker_gizzel');
+const TANNER_POST = keeperPost('tanner_tamsin');
 const SAUL_POSITION = { x: 10.2, z: -87.5 } as const;
 // The chronicler keeps the turn he took from the toolworks lot he once
 // stood by, so his post at the mailbox reads the same.
@@ -1775,15 +1750,12 @@ const MARSHAL_POSITION = { x: 1.5, z: -95.3 } as const;
 // The chapel's door looks across the coast track to the square; Brother
 // Aldric greets from the foot of its steps. The card master keeps the bank's
 // door, a few strides out from it and to one side of its line, looking out
-// of it. The bursar and his banker chest keep the storage shed on Market Row
-// beside the trading post (town kit phase 2, plan section 4.2), looking out
-// of its open front at the main street.
+// of it. The bursar keeps his banker chest at his design site, facing the
+// road, the chest at his side and a little behind him (BANKER_CHEST_LOCAL).
 const ALDRIC_POSITION = CHAPEL.frontStandingPoint;
 const BANK_DOOR_OUT = 4.16;
 const BANK_DOOR_SIDE = 4.5;
-const STORAGE_SHED = kitById('kit_storage_shed');
-const BURSAR_POSITION = STORAGE_SHED.frontStandingPoint;
-const BURSAR_FACING = STORAGE_SHED.rotation;
+const BURSAR_POST = keeperPost('bursar_fernando');
 const CARD_MASTER_POSITION = localToWorld(
   BANK.frontStandingPoint,
   BANK.rotation,
@@ -1793,7 +1765,7 @@ const CARD_MASTER_POSITION = localToWorld(
 const BANK_DOOR_FACING = BANK.frontFacing;
 
 const NPCS = [
-  makeNpc('the_merchant', MERCHANT_POSITION, TRADING_POST.rotation, TRADING_POST.id),
+  makeNpc('the_merchant', MERCHANT_POST.position, MERCHANT_POST.facing, 'eastbrook_world_market'),
   makeNpc(
     'marshal_redbrook',
     MARSHAL_POSITION,
@@ -1827,16 +1799,16 @@ const NPCS = [
     facingToward(ODELL_POSITION, CIVIC_CENTER),
     'eastbrook_civic_square',
   ),
-  makeNpc('bursar_fernando', BURSAR_POSITION, BURSAR_FACING, STORAGE_SHED.id),
+  makeNpc('bursar_fernando', BURSAR_POST.position, BURSAR_POST.facing, 'eastbrook_banker_chest'),
   makeNpc('card_master', CARD_MASTER_POSITION, BANK_DOOR_FACING, BANK.id),
   makeNpc('chronicler_saul', SAUL_POSITION, SAUL_FACING, 'mailbox_eastbrook'),
-  makeNpc('forgemistress_darva', DARVA_POSITION, YARD_FORGE.rotation, FORGE_STATION.id),
-  makeNpc('cook_marlow', COOK_POSITION, YARD_COOKING.rotation, KITCHENS_STATION.id),
-  makeNpc('weaver_ottilie', WEAVER_POSITION, YARD_LOOM.rotation, LOOM_STATION.id),
-  makeNpc('tinker_gizzel', TINKER_POSITION, YARD_ENGINEERING.rotation, TOOLWORKS_STATION.id),
+  makeNpc('forgemistress_darva', DARVA_POST.position, DARVA_POST.facing, FORGE_STATION.id),
+  makeNpc('cook_marlow', COOK_POST.position, COOK_POST.facing, KITCHENS_STATION.id),
+  makeNpc('weaver_ottilie', WEAVER_POST.position, WEAVER_POST.facing, LOOM_STATION.id),
+  makeNpc('tinker_gizzel', TINKER_POST.position, TINKER_POST.facing, TOOLWORKS_STATION.id),
   makeNpc('fury', FURY_POSITION, facingToward(FURY_POSITION, CIVIC_CENTER), 'eastbrook_chapel'),
-  // APPENDED: the yard's tannery master (town kit phase 2)
-  makeNpc('tanner_tamsin', TANNER_POSITION, YARD_TANNERY.rotation, TANNERY_STATION.id),
+  // APPENDED: the tannery master
+  makeNpc('tanner_tamsin', TANNER_POST.position, TANNER_POST.facing, TANNERY_STATION.id),
 ] as const;
 
 const BURSAR = NPCS.find((npc) => npc.id === 'bursar_fernando');

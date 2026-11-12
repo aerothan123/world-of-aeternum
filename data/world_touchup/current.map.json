@@ -1,14 +1,14 @@
 {
   "version": 2,
   "meta": {
-    "id": "live-4aa60-4e3276e6-6752ab96-14b3-b4ad9a78-f493dfc8",
+    "id": "live-4aa71-53f9fd06-d27bc556-14b3-b4ad9a78-f493dfc8",
     "name": "Live world",
     "description": "",
     "createdAt": 0,
     "updatedAt": 0,
     "seed": 20061,
     "parentId": "",
-    "overworldBase": "4aa60-4e3276e6-6752ab96",
+    "overworldBase": "4aa71-53f9fd06-d27bc556",
     "overworldRevision": "14b3-b4ad9a78-f493dfc8"
   },
   "content": {
@@ -3570,7 +3570,7 @@
           "x": 1.89,
           "z": -76.47
         },
-        "facing": -2.6391425759138585,
+        "facing": -2.584861572527948,
         "color": 8207512,
         "questIds": [
           "q_spiders",
@@ -3690,7 +3690,7 @@
           "x": -42.4,
           "z": -98.81
         },
-        "facing": 0,
+        "facing": -0.21866894587394195,
         "color": 13214247,
         "questIds": [],
         "greeting": "Welcome to the Gilded Strongbox. Your goods rest safe behind our locks.",
@@ -3755,7 +3755,7 @@
           "x": -29.71,
           "z": -89.3
         },
-        "facing": -1.5707963267948966,
+        "facing": -1.827402372878145,
         "color": 13208139,
         "questIds": [
           "q_prof_attune_apothecary",
@@ -3782,7 +3782,7 @@
           "x": -0.69,
           "z": -77.26
         },
-        "facing": 1.5707963267948966,
+        "facing": -1.5707963267948966,
         "color": 7430568,
         "questIds": ["q_prof_attune_outfitter", "q_prof_amends_outfitter", "q_prof_workorder_loom"],
         "greeting": "Mind the threads, $C. A steady hand at the loom beats a strong one.",
@@ -3803,7 +3803,7 @@
           "x": 1.82,
           "z": -84.52
         },
-        "facing": 1.5707963267948966,
+        "facing": -1.5707963267948966,
         "color": 11570519,
         "questIds": [
           "q_prof_attune_bombardier",
@@ -6216,7 +6216,7 @@
           "x": -0.16,
           "z": -74.6
         },
-        "facing": 1.5707963267948966,
+        "facing": -1.5707963267948966,
         "color": 9398844,
         "questIds": [],
         "greeting": "Fresh hides on the racks today, $C. Scrape with the grain, never against it.",
